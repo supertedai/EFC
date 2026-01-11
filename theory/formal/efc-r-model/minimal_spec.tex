@@ -1,0 +1,75 @@
+\section*{EFC-R: Regime Sector Specification}
+
+\subsection*{Fundamental Fields}
+
+Let $S(\mathbf{x}) \in [0,1]$ denote the dimensionless entropy field,
+where low $S$ corresponds to ordered, high-density regions and high $S$
+to diffuse, disordered environments.
+
+Define the energy-flow field:
+\[
+E_f(\mathbf{x}) = \rho(\mathbf{x})\,[1 - S(\mathbf{x})]
+\]
+
+\subsection*{Effective Gravitational Potential}
+
+The Newtonian potential $\Phi_N$ sourced by baryons is modified as:
+\[
+\Phi_{\mathrm{eff}}(\mathbf{x})
+= \Phi_N(\mathbf{x})\,\bigl(1 + \alpha S(\mathbf{x})\bigr)
+\]
+where $\alpha$ is a dimensionless coupling constant.
+
+\subsection*{Equations of Motion}
+
+Circular velocities follow from:
+\[
+\frac{v^2(r)}{r} = \frac{d\Phi_{\mathrm{eff}}}{dr}
+\]
+
+Expanding:
+\[
+\frac{v^2(r)}{r}
+= \frac{d\Phi_N}{dr}(1 + \alpha S)
++ \alpha\,\Phi_N\,\frac{dS}{dr}
+\]
+
+The second term generates effective non-Newtonian behavior
+only in regions where $\nabla S \neq 0$.
+
+\subsection*{Entropy Profile Closure}
+
+A minimal empirical form is:
+\[
+S(r) = S_c + (S_\infty - S_c)
+\left[1 - e^{-r/r_S}\right]
+\]
+
+where:
+\begin{itemize}
+\item $S_c$ is the core entropy
+\item $S_\infty$ is the background entropy
+\item $r_S$ is the entropy scale radius
+\end{itemize}
+
+\subsection*{Regime Validity}
+
+EFC-R applies where:
+\[
+|\nabla S| \neq 0
+\]
+
+It is invalid in:
+\begin{itemize}
+\item cluster-scale systems
+\item stellar-scale dynamics
+\item homogeneous cosmological regimes
+\end{itemize}
+
+\subsection*{Emergent Scaling}
+
+In the asymptotic regime, the equations imply:
+\[
+v^4 \propto G M_b
+\]
+recovering the baryonic Tully–Fisher relation without additional assumptions.
