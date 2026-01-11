@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://schema.org/identifier",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
+  "@type": "ScholarlyArticle",
+  "name": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+  "description": "Analysis demonstrating simultaneous resolution of H₀ and S8 tensions through entropy-dependent modification of local-to-global parameter inference within the EFC framework.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0006-5904-4032"
+  },
+  "datePublished": "2026-01-09",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "doi",
+      "value": "10.6084/m9.figshare.31026151"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "slug",
+      "value": "EFC-H0-S8-Tensions"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "figshare_id",
+      "value": "31026151"
+    }
+  ],
+  "keywords": [
+    "Hubble tension",
+    "H0",
+    "S8 tension",
+    "ΛCDM",
+    "Energy-Flow Cosmology",
+    "CMB",
+    "BAO",
+    "SPARC",
+    "thermodynamic cosmology",
+    "galaxy rotation curves"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Hubble tension",
+      "description": "Discrepancy between local (73.0 km/s/Mpc) and CMB-derived (67.4 km/s/Mpc) Hubble constant measurements"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "S8 tension",
+      "description": "Discrepancy in matter clustering amplitude between early and late universe probes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Local-Global Inference Separation",
+      "description": "Framework for understanding how entropy gradients bias parameter inference from local to global scales"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers",
+    "identifier": "efc-papers"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results",
+      "identifier": "arXiv:1807.06209"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SH0ES 2022",
+      "identifier": "10.3847/2041-8213/ac5c5b"
+    }
+  ],
+  "efc:tier": "CANONICAL",
+  "efc:layer": "APPLIED",
+  "efc:domain": "cosmology",
+  "efc:key_equations": [
+    "G_eff(S) = G_N(1 + βS)",
+    "Δχ² = 40.29"
+  ],
+  "efc:validates": [
+    "entropy-dependent gravitational coupling",
+    "growth damping mechanism"
+  ]
+}
