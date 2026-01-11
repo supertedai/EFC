@@ -35,7 +35,7 @@ This is accomplished **without modifying**:
 
 The approach explicitly separates the validated core of EFC from experimental extensions, providing a falsifiable framework with clear domain of validity.
 
-## Tags
+## Keywords
 
 - Hubble tension (H₀)
 - S8 tension
@@ -56,5 +56,7 @@ The approach explicitly separates the validated core of EFC from experimental ex
 ## Files
 
 - `EFC-H0-S8-Tensions.pdf` - Main paper
-- `EFC-H0-S8-Tensions.tex` - LaTeX source
 - `EFC-H0-S8-Tensions.jsonld` - Structured metadata
+- `index.json` - Paper index
+- `schema.json` - Validation schema
+- `citations.bib` - BibTeX references
