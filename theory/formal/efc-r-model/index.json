@@ -1,0 +1,18 @@
+{
+  "model": "EFC-R",
+  "layer": "theory.formal",
+  "domain": "galactic regime",
+  "status": "validated",
+  "validated_against": ["SPARC"],
+  "dependencies": ["EFC-Core"],
+  "excludes": [
+    "cluster dynamics",
+    "early universe cosmology",
+    "variable speed of light"
+  ],
+  "key_parameters": ["alpha", "S_c", "S_infty", "r_S"],
+  "primary_equations": [
+    "Phi_eff = Phi_N (1 + alpha S)",
+    "v^2/r = dPhi_eff/dr"
+  ]
+}
