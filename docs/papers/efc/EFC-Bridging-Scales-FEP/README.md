@@ -23,20 +23,25 @@ The result is a theory-constrained and empirically testable framework that refra
 
 **No claims of empirical confirmation are made.** Instead, the work defines a minimal set of falsifiable predictions and measurement protocols that enable systematic empirical evaluation across biological, artificial, and physical systems.
 
-## Tags
+## Keywords
 
 - Energy-Flow Cosmology (EFC)
 - Free Energy Principle
 - Variational Free Energy
 - Non-equilibrium thermodynamics
 - Markov blankets
+- Active Inference
 
 ## Categories
 
 - Complex systems
+- Theoretical physics
+- Cognitive science
 
 ## Files
 
 - `EFC-Bridging-Scales-FEP.pdf` - Main paper
-- `EFC-Bridging-Scales-FEP.tex` - LaTeX source
 - `EFC-Bridging-Scales-FEP.jsonld` - Structured metadata
+- `index.json` - Paper index
+- `schema.json` - Validation schema
+- `citations.bib` - BibTeX references

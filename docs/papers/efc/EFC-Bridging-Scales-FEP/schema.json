@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "const": "EFC-Bridging-Scales-FEP"
+    },
+    "type": {
+      "type": "string",
+      "const": "EFC-Paper"
+    },
+    "collection": {
+      "type": "string",
+      "const": "efc"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^10\\.\\d{4,}/.*$"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["CANONICAL", "PRIMARY", "SECONDARY", "TERTIARY"]
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["THEORY", "APPLIED", "FORMAL", "META"]
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["cosmology", "cognition", "thermodynamics", "general", "quantum"]
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["name", "type", "collection", "title", "author", "date", "doi"]
+}
