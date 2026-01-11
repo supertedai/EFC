@@ -61,41 +61,9 @@
     "name": "Energy-Flow Cosmology Papers",
     "identifier": "efc-papers"
   },
-  "citation": [
-    {
-      "@type": "ScholarlyArticle",
-      "name": "SPARC: Mass Models for 175 Disk Galaxies",
-      "author": "Lelli, McGaugh, Schombert",
-      "datePublished": "2016",
-      "identifier": "10.3847/0004-6256/152/6/157"
-    },
-    {
-      "@type": "ScholarlyArticle",
-      "name": "FIRE simulations",
-      "author": "Oñorbe et al.",
-      "datePublished": "2015"
-    }
-  ],
+  "url": "https://doi.org/10.6084/m9.figshare.31007248",
   "efc:tier": "CANONICAL",
   "efc:layer": "APPLIED",
   "efc:domain": "cosmology",
-  "efc:key_equations": [
-    "E_f = ρ(1 - S)",
-    "V²_rot(r) = r · ∂Φ_eff/∂r",
-    "E_total = E_flow + E_latent"
-  ],
-  "efc:statistical_results": {
-    "sample_size": 20,
-    "success_rate": 0.80,
-    "spearman_rho": 0.705,
-    "p_value": 0.0005,
-    "efc_chi2_red": 26.2,
-    "lcdm_chi2_red": 69.6
-  },
-  "efc:morphology_breakdown": {
-    "LSB": {"n": 5, "success_rate": 1.0},
-    "dwarf_irregular": {"n": 5, "success_rate": 0.8},
-    "spiral": {"n": 8, "success_rate": 0.75},
-    "barred_disturbed": {"n": 2, "success_rate": 0.0}
-  }
+  "efc:collection": "efc"
 }

@@ -45,7 +45,7 @@ EFC-R's regime-dependent pattern aligns with independent findings from FIRE hydr
 
 This is a **pilot study (N=20)**. Results are hypothesis-generating and motivate, but do not complete, a full theoretical treatment of EFC-R. Independent validation on larger samples is essential.
 
-## Tags
+## Keywords
 
 - Energy-Flow Cosmology
 - Dark Matter Alternatives
@@ -64,6 +64,7 @@ This is a **pilot study (N=20)**. Results are hypothesis-generating and motivate
 ## Files
 
 - `EFC-R-SPARC-Regime-Validity.pdf` - Main paper
-- `EFC-R-SPARC-Regime-Validity.tex` - LaTeX source
 - `EFC-R-SPARC-Regime-Validity.jsonld` - Structured metadata
-- `data/` - Rotation curve fits and analysis data
+- `index.json` - Paper index
+- `schema.json` - Validation schema
+- `citations.bib` - BibTeX references
