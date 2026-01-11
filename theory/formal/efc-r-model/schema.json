@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EFC-R Model Schema",
+  "type": "object",
+  "required": ["model", "domain", "status"],
+  "properties": {
+    "model": { "const": "EFC-R" },
+    "domain": { "type": "string" },
+    "status": { "enum": ["validated", "experimental", "deprecated"] },
+    "validated_against": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "key_parameters": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
