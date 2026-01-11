@@ -1,0 +1,236 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\title{SPARC175 Dataset Index}
+\author{Morten Magnusson \\
+Energy-Flow Cosmology Initiative}
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Index and navigation guide for the SPARC175 regime-dependent validity analysis dataset. This document provides an overview of all files, their relationships, and how to navigate the complete analysis.
+\end{abstract}
+
+\tableofcontents
+
+\section{Dataset Overview}
+
+\begin{tabular}{ll}
+\textbf{Name:} & SPARC175 Regime Analysis \\
+\textbf{Version:} & 1.0 \\
+\textbf{Date:} & January 11, 2026 \\
+\textbf{DOI:} & 10.6084/m9.figshare.31045126 \\
+\textbf{Author:} & Morten Magnusson \\
+\textbf{ORCID:} & 0009-0002-4860-5095 \\
+\textbf{License:} & CC-BY 4.0 \\
+\end{tabular}
+
+\section{File Structure}
+
+\subsection{Main Documents}
+
+\begin{itemize}
+    \item \texttt{README.md} -- Overview and quick start guide
+    \item \texttt{SPARC175\_COMPLETE\_PAPER.md} -- Full paper (Markdown)
+    \item \texttt{SPARC175\_COMPLETE\_PAPER.pdf} -- Full paper (PDF)
+    \item \texttt{SPARC175\_SUMMARY.md} -- Executive summary
+\end{itemize}
+
+\subsection{Metadata Files}
+
+\begin{itemize}
+    \item \texttt{index.json} -- Machine-readable dataset index
+    \item \texttt{schema.json} -- JSON schema for data validation
+    \item \texttt{minimal\_spec.tex} -- Mathematical specification
+    \item \texttt{index.tex} -- This document
+\end{itemize}
+
+\subsection{Data Files}
+
+All data files are in JSON format and located in the \texttt{data/} directory:
+
+\begin{itemize}
+    \item \texttt{sparc175\_qc.json} -- Quality control log (175 entries)
+    \item \texttt{sparc175\_clean.json} -- Clean rotation curve data
+    \item \texttt{sparc175\_fits.json} -- Fit results for all models
+    \item \texttt{sparc175\_classified.json} -- Regime classifications
+    \item \texttt{sparc175\_statistics.json} -- Summary statistics
+\end{itemize}
+
+\subsection{Figures}
+
+All figures are PNG format, 150 DPI, located in \texttt{figures/}:
+
+\begin{itemize}
+    \item \texttt{sparc175\_regime\_distribution.png} -- Three-panel regime overview
+    \item \texttt{sparc175\_aic\_vs\_latent.png} -- Model preference scatter plot
+    \item \texttt{sparc175\_success\_by\_bins.png} -- Success rate by complexity bins
+\end{itemize}
+
+\subsection{Analysis Scripts}
+
+Python scripts for full reproducibility, located in \texttt{scripts/}:
+
+\begin{itemize}
+    \item \texttt{sparc175\_day1\_qc.py} -- Data quality control
+    \item \texttt{sparc175\_day2\_fit.py} -- Model fitting pipeline
+    \item \texttt{sparc175\_day3\_classify.py} -- Regime classification
+    \item \texttt{sparc175\_day4\_visualize.py} -- Figure generation
+    \item \texttt{sparc175\_day5\_document.py} -- Summary generation
+\end{itemize}
+
+\section{EFC-R Regime Model}
+
+The Energy-Flow Cosmology Regime (EFC-R) framework extends the baseline EFC model by introducing a regime-dependent decomposition:
+
+\begin{equation}
+E_{\text{total}} = E_{\text{flow}} + E_{\text{latent}}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $E_{\text{flow}}$: Manifest energy flow (measurable dynamics)
+    \item $E_{\text{latent}}$: Structural complexity (non-equilibrium stress)
+\end{itemize}
+
+Regimes are characterized by the balance parameter:
+\begin{equation}
+\alpha(L) = \frac{E_{\text{flow}}}{E_{\text{total}}}
+\end{equation}
+
+Where $L$ is the latent proxy quantifying structural complexity:
+\begin{itemize}
+    \item $\alpha \to 1$ (FLOW regime): Pure energy-flow dynamics
+    \item $\alpha \to 0$ (LATENT regime): Structure-dominated
+    \item $\alpha \approx 0.5$ (TRANSITION): Mixed dynamics
+\end{itemize}
+
+\subsection{Physical Interpretation}
+
+\textbf{FLOW Regime ($\alpha \to 1$):}
+\begin{itemize}
+    \item Low structural complexity
+    \item Smooth entropy gradients
+    \item Dynamic equilibrium
+    \item Examples: LSB galaxies, diffuse dwarfs
+\end{itemize}
+
+\textbf{LATENT Regime ($\alpha \to 0$):}
+\begin{itemize}
+    \item High structural complexity
+    \item Strong non-equilibrium features
+    \item Energy stored in structure
+    \item Examples: Barred spirals, tidally disturbed systems
+\end{itemize}
+
+\textbf{TRANSITION Zone:}
+\begin{itemize}
+    \item Regime boundaries
+    \item Mixed dynamics
+    \item Critical slowing down expected
+    \item Tipping point behavior
+\end{itemize}
+
+\subsection{Key Predictions}
+
+The EFC-R framework makes specific testable predictions:
+
+\begin{enumerate}
+    \item \textbf{Universal regime boundaries:} Same $L$ thresholds across domains
+    \item \textbf{Sharp transitions:} Step-like behavior, not gradual
+    \item \textbf{Measurement degradation:} Uncertainty increases near boundaries
+    \item \textbf{Cross-domain isomorphism:} Same pattern in economics, biology
+    \item \textbf{Tipping point dynamics:} Hysteresis and critical slowing
+\end{enumerate}
+
+\section{Data Usage Guide}
+
+\subsection{Quick Data Access}
+
+To load and explore the classified results:
+
+\begin{verbatim}
+import json
+
+# Load classified results
+with open('data/sparc175_classified.json') as f:
+    data = json.load(f)
+
+# Access specific galaxy
+galaxy = data['results']['NGC6503']
+print(f"Regime: {galaxy['regime']}")
+print(f"EFC chi2/dof: {galaxy['efc']['chi2_red']:.2f}")
+print(f"Latent proxy: {galaxy['latent']['L']:.3f}")
+\end{verbatim}
+
+\subsection{Reproduce Complete Analysis}
+
+\begin{verbatim}
+# Install dependencies
+pip install numpy scipy matplotlib tqdm
+
+# Run pipeline
+python scripts/sparc175_day1_qc.py
+python scripts/sparc175_day2_fit.py
+python scripts/sparc175_day3_classify.py
+python scripts/sparc175_day4_visualize.py
+python scripts/sparc175_day5_document.py
+\end{verbatim}
+
+\section{Key Results}
+
+\subsection{Regime Distribution}
+
+\begin{center}
+\begin{tabular}{l|c|c|c|c}
+\textbf{Regime} & \textbf{N} & \textbf{\%} & \textbf{EFC Win} & \textbf{$\langle L \rangle$} \\
+\hline
+FLOW & 62 & 35.4 & 100.0\% & 0.290 \\
+TRANSITION & 86 & 49.1 & 4.7\% & 0.223 \\
+LATENT & 27 & 15.4 & 3.7\% & 0.500 \\
+\end{tabular}
+\end{center}
+
+\subsection{Statistical Significance}
+
+\textbf{Mann-Whitney U Test:}
+\begin{itemize}
+    \item Comparison: FLOW vs LATENT
+    \item Test statistic: $p < 0.0001$
+    \item Conclusion: \textbf{Highly significant separation}
+\end{itemize}
+
+\section{Citation}
+
+To cite this dataset:
+
+\begin{verbatim}
+Magnusson, M. (2026). Regime-Dependent Validity 
+in Galaxy Rotation Curve Modeling: Comprehensive 
+Analysis of 175 SPARC Galaxies. Figshare. 
+DOI: 10.6084/m9.figshare.31045126
+\end{verbatim}
+
+\section{Contact}
+
+\begin{tabular}{ll}
+\textbf{Author:} & Morten Magnusson \\
+\textbf{Email:} & morten@magnusson.as \\
+\textbf{Web:} & https://energyflow-cosmology.com/ \\
+\textbf{ORCID:} & 0009-0002-4860-5095 \\
+\end{tabular}
+
+\section{Version History}
+
+\begin{tabular}{lll}
+\textbf{Version} & \textbf{Date} & \textbf{Changes} \\
+\hline
+1.0 & 2026-01-11 & Initial release \\
+\end{tabular}
+
+\end{document}
