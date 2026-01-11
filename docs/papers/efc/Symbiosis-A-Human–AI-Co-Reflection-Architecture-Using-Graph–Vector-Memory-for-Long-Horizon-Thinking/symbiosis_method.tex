@@ -1,0 +1,418 @@
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+\newcommand{\paperdoi}{10.6084/m9.figshare.30773684}
+\hypersetup{pdfinfo={DOI={\paperdoi}}}
+
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\setstretch{1.2}
+
+\title{Symbiosis: A Human--AI Co-Reflection Architecture Using Graph--Vector Memory for Long-Horizon Thinking}
+\author{Morten Magnusson \\ Independent Researcher}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper presents \textit{Symbiosis}, a human--AI co-reflection architecture designed to support long-horizon thinking, traceable theory development, and structured cognitive work across extended timescales. The system integrates large language models (LLMs) with a hybrid memory substrate consisting of a knowledge graph (Neo4j), a vector database (Qdrant), and a unified API layer that binds reflection, retrieval, and logging into one operational loop.
+
+Unlike conventional retrieval-augmented generation (RAG) systems, Symbiosis is built not only for document search, but for persistent reasoning, hypothesis tracking, and metacognitive feedback over time. The architecture enables a human user to externalize thinking into a verifiable structure, reducing cognitive load while increasing coherence, continuity, and historical depth of reasoning.
+
+The system has been developed and stress-tested through multi-year theoretical work on Energy-Flow Cosmology (EFC), a thermodynamic cosmology framework that challenges standard interpretations of dark matter, dark energy, and spacetime dynamics. EFC serves as an empirical and practical case for evaluating Symbiosis as a real-world, high-complexity cognitive scaffold.
+
+This paper documents the method, architectural choices, and current capabilities of Symbiosis as a research infrastructure for reflective human--AI interaction. It does not claim finality or standardization. Instead, it establishes a reproducible, inspectable foundation for long-term co-reasoning systems that can be iterated and extended by others.
+\end{abstract}
+
+\section{Introduction}
+
+Most contemporary AI systems are optimized for short interactions. They answer questions, summarize documents, and assist with local problem solving. What they do not inherently provide is long-range cognitive continuity: memory of how ideas develop, why specific decisions were made, and how a theory or project evolves across weeks, months, and years.
+
+Human cognition is naturally continuous but constrained. Working memory is narrow, attention is limited, and complex projects suffer from fragmentation. Hypotheses drift, assumptions are forgotten, and conceptual debt accumulates. This is especially visible in domains that require abstract, cross-domain, and multi-year reasoning, such as fundamental physics, large-scale systems design, or strategic research programmes.
+
+Symbiosis was built around a simple question:
+
+\begin{quote}
+\textbf{How can a human and an AI system think together coherently over long time scales without losing structure, traceability, or internal consistency?}
+\end{quote}
+
+The approach taken in this work is not to treat the AI as a standalone agent, but as part of a structured cognitive infrastructure. Symbiosis provides a method and an architecture that binds an LLM to external, hybrid memory and to explicit metacognitive logging. The goal is not to simulate human cognition, but to support it.
+
+This paper presents Symbiosis as an operational method: a system that runs, is used continuously, and has been iteratively shaped by real research needs. It is a working platform under active development, not a finished product.
+
+\section{Design Goals}
+
+Symbiosis was designed around five primary goals. These goals were not defined in the abstract; they emerged from concrete bottlenecks experienced in daily work on EFC and related projects.
+
+\begin{enumerate}
+    \item \textbf{Persistent Memory} \\
+    The system should store not only documents, but also reasoning, hypotheses, questions, and relationships between them. Past thinking must be available as structured context, not as scattered notes.
+
+    \item \textbf{Traceability} \\
+    Every idea, hypothesis, or conceptual shift should be reconstructable:
+    \begin{itemize}
+        \item Where did it come from?
+        \item Which conversations or documents influenced it?
+        \item How did it change over time?
+    \end{itemize}
+
+    \item \textbf{Hybrid Representation} \\
+    No single representation is sufficient. Symbolic structure (graphs) and semantic similarity (vectors) must coexist. Graphs are better for explicit structure and explanation; vectors are better for flexible retrieval.
+
+    \item \textbf{Metacognitive Feedback} \\
+    The system should not only support content-level reasoning, but also provide hooks for reflecting on how reasoning unfolds: patterns of insight, hesitation, convergence, or drift.
+
+    \item \textbf{Human-Centered Control} \\
+    Symbiosis is a tool. The human remains responsible for goals, interpretation, and value judgments. The AI is constrained to generation, retrieval, and structural mirroring. The architecture deliberately avoids autonomous goal formation.
+\end{enumerate}
+
+These goals define both the scope and the limitations of the system.
+
+\section{Architectural Overview}
+
+Symbiosis consists of five core layers that work together as a single loop. Each layer can be replaced or upgraded, but the method depends on their interaction.
+
+\subsection{LLM Interface Layer}
+
+The LLM functions as the conversational and generative interface. It is:
+\begin{itemize}
+    \item stateless in itself,
+    \item dependent on external context,
+    \item responsible for generating text, hypotheses, summaries, and structural suggestions.
+\end{itemize}
+
+The model is treated as a powerful transition function: it transforms inputs (prompts plus retrieved context) into structured outputs. It is not treated as a long-term memory store.
+
+\subsection{Knowledge Graph (Neo4j)}
+
+The knowledge graph provides symbolic structure. It stores:
+\begin{itemize}
+    \item concepts (nodes),
+    \item hypotheses and conjectures,
+    \item documents, sections, and fragments,
+    \item relationships between ideas,
+    \item temporal links (e.g., \texttt{updated\_at}, \texttt{derived\_from}),
+    \item reasoning dependencies (e.g., \texttt{supports}, \texttt{challenges}, \texttt{refines}).
+\end{itemize}
+
+By representing thinking as an evolving graph, the system enables:
+\begin{itemize}
+    \item inspection of structure,
+    \item detection of contradictions,
+    \item reuse of concepts across projects,
+    \item explicit mapping between theory components and supporting material.
+\end{itemize}
+
+The graph is not static. It is updated as new conversations, documents, and insights are processed.
+
+\subsection{Vector Database (Qdrant)}
+
+The vector database provides semantic memory. It stores:
+\begin{itemize}
+    \item embeddings of text segments from documents,
+    \item embeddings of conversation snippets,
+    \item embeddings of concept descriptions and summaries,
+    \item embeddings of reflective notes.
+\end{itemize}
+
+The vector layer supports:
+\begin{itemize}
+    \item similarity search (``find things like this idea''),
+    \item flexible retrieval when graph structure is incomplete,
+    \item bridging between loosely related areas that share latent patterns.
+\end{itemize}
+
+In practice, the vector store is often the first retrieval pass, followed by graph-based refinement.
+
+\subsection{Unified API Layer}
+
+The Unified API abstracts the internal complexity. It provides stable endpoints for:
+\begin{itemize}
+    \item ingestion of new documents and text,
+    \item embedding generation,
+    \item creation and update of graph nodes and relationships,
+    \item storage of embeddings in vector collections,
+    \item hybrid RAG queries that combine graph and vector retrieval,
+    \item unified query endpoints for client tools (e.g., chat front-ends, notebooks).
+\end{itemize}
+
+This layer decouples client tools from the implementation details of Neo4j, Qdrant, and the LLM provider. It also centralizes configuration and logging.
+
+\subsection{Reflection \& Logging Layer}
+
+All interactions with the system can be logged in a structured way, including:
+\begin{itemize}
+    \item full dialogue turns (human + AI),
+    \item tags (topic, project, layer, hypothesis ID),
+    \item resonance or relevance indicators,
+    \item model and agent metadata,
+    \item retrieved context snapshots.
+\end{itemize}
+
+This reflection layer makes it possible to:
+\begin{itemize}
+    \item replay reasoning episodes,
+    \item analyze how ideas develop over time,
+    \item examine how the AI influences direction,
+    \item study metacognitive patterns (e.g., when breakthroughs occur).
+\end{itemize}
+
+The logging is not an afterthought; it is an integral part of the method.
+
+\section{Operational Loop}
+
+Symbiosis operates as a closed loop. Each interaction between human and AI is not an isolated event, but one step in an ongoing process.
+
+A typical cycle looks like this:
+
+\begin{enumerate}
+    \item \textbf{Human prompt} \\
+    The user poses a question, refines a hypothesis, requests a summary, or asks for a structural comparison.
+
+    \item \textbf{Context retrieval (graph + vector)} \\
+    The system retrieves:
+    \begin{itemize}
+        \item semantically related items from the vector store,
+        \item relevant nodes and relationships from the graph,
+        \item potentially, previous conversations on the same topic.
+    \end{itemize}
+
+    \item \textbf{LLM generation} \\
+    The LLM receives the prompt plus curated context and produces:
+    \begin{itemize}
+        \item an answer,
+        \item a proposed structure,
+        \item suggested graph updates,
+        \item new hypotheses or reformulations.
+    \end{itemize}
+
+    \item \textbf{Structured logging} \\
+    The entire episode is logged: prompt, retrieved context, model output, and metadata. This creates a trace that can be revisited.
+
+    \item \textbf{Graph update} \\
+    Based on the output, new nodes and edges may be added, or existing ones updated. This step can be partly automated but remains under human control.
+
+    \item \textbf{Vector update} \\
+    New text segments (summaries, refined hypotheses, decisions) are embedded and stored in the vector database, extending the semantic memory.
+
+    \item \textbf{Feedback tagging (optional)} \\
+    The user can tag the episode (e.g., ``high insight'', ``discarded'', ``partial'', ``clarifies X''), which adds an explicit metacognitive layer.
+\end{enumerate}
+
+Over time, this loop builds a dense, structured record of both content and process.
+
+\section{Capabilities: What Symbiosis Already Solves}
+
+Even in its current version, Symbiosis enables workflows that would be difficult to sustain with traditional tools.
+
+Key capabilities include:
+
+\begin{itemize}
+    \item \textbf{Long-horizon theory development} \\
+    The system can hold large, interdependent conceptual structures and keep them accessible over months and years.
+
+    \item \textbf{Persistent conceptual memory} \\
+    Ideas are not lost when a session ends. They are preserved as nodes, edges, embeddings, and logs.
+
+    \item \textbf{Verifiable reasoning history} \\
+    It becomes possible to reconstruct why a theory or design took a particular direction, and which paths were considered and rejected.
+
+    \item \textbf{Reduction of cognitive load} \\
+    The human no longer has to manually track all assumptions, dependencies, and earlier versions of an idea.
+
+    \item \textbf{Prevention of circular reasoning} \\
+    By externalizing structure, the system helps detect when arguments loop back on themselves without new evidence.
+
+    \item \textbf{Cross-domain conceptual reuse} \\
+    Concepts developed in one project can be reused in others, with clear lineage.
+
+    \item \textbf{Continuous ideation without fragmentation} \\
+    Work can be paused and resumed later without losing context or coherence.
+\end{itemize}
+
+These capabilities are already in active use in the ongoing development of EFC and related projects.
+
+\section{Case Study: Energy-Flow Cosmology (EFC)}
+
+Energy-Flow Cosmology (EFC) is a thermodynamic reinterpretation of cosmology. It emphasizes energy flow, entropy gradients, and emergent structure rather than dark matter and dark energy as independent entities.
+
+EFC has several properties that make it a demanding test case:
+
+\begin{itemize}
+    \item it is multi-domain (thermodynamics, cosmology, information theory),
+    \item it is highly abstract and non-local,
+    \item it contains many competing hypotheses and sub-models,
+    \item it evolves quickly as new connections are made,
+    \item it challenges well-established conceptual frameworks.
+\end{itemize}
+
+In practice, EFC has been used as:
+
+\begin{itemize}
+    \item a \textbf{load test} for the graph: many interconnected concepts and relations,
+    \item a \textbf{stress test} for the vector store: diverse text and evolving terminology,
+    \item an \textbf{evaluation domain} for the reflection layer: tracking how hypotheses shift over time.
+\end{itemize}
+
+Without a system like Symbiosis, maintaining internal consistency across EFC's layers would be extremely difficult. The architecture does not prove EFC, but it makes sustained, structured work on EFC feasible.
+
+\section{Metacognitive Dimension}
+
+Symbiosis is not limited to storing content. It is deliberately designed to track aspects of the thinking process itself.
+
+Examples include:
+
+\begin{itemize}
+    \item \textbf{Temporal patterns}: when do insights cluster, and what precedes them?
+    \item \textbf{Influence mapping}: which documents, conversations, or prompts tend to shift direction?
+    \item \textbf{Uncertainty markers}: where does the user explicitly mark doubt, inconsistency, or open questions?
+    \item \textbf{Decision points}: when are hypotheses accepted, rejected, or reformulated?
+\end{itemize}
+
+By logging this information and tying it to graph and vector structures, the system can be used to study metacognitive patterns in real work, not only in controlled experiments.
+
+In this sense, Symbiosis functions both as a research tool and as a live laboratory for human--AI co-reflection.
+
+\section{Relation to Conventional RAG Systems}
+
+At first glance, Symbiosis might look similar to a sophisticated RAG setup. However, there are crucial differences.
+
+Standard RAG systems:
+
+\begin{itemize}
+    \item index documents into a vector store,
+    \item retrieve top-$k$ passages based on similarity,
+    \item feed them into an LLM to answer queries,
+    \item treat past dialogue as disposable or transient.
+\end{itemize}
+
+Symbiosis, in contrast:
+
+\begin{itemize}
+    \item treats concepts, hypotheses, and relationships as first-class objects,
+    \item maintains an explicit knowledge graph alongside vectors,
+    \item logs and analyzes reasoning traces over time,
+    \item supports long-term theory development, not only question answering.
+\end{itemize}
+
+The system is closer to a \textbf{cognitive infrastructure} than a search engine. It does not merely find relevant text; it maintains and evolves a structured representation of a thinking process.
+
+\section{Human--AI Symbiosis as Method}
+
+A key methodological choice is to frame Symbiosis not as ``an AI system'' but as a method for sustained human--AI co-reflection.
+
+The division of roles is clear:
+
+\begin{itemize}
+    \item The \textbf{human} provides goals, interpretation, and value judgments.
+    \item The \textbf{AI} provides generative power, retrieval, and structural suggestions.
+    \item The \textbf{architecture} provides memory, structure, and continuity.
+\end{itemize}
+
+This framing avoids the conceptual traps of ``autonomous AI agents'' and keeps epistemic responsibility rooted in human judgment. The system amplifies human thinking but does not replace it.
+
+\section{Implementation Notes}
+
+While this paper focuses on method and architecture, some implementation properties are relevant for reproducibility:
+
+\begin{itemize}
+    \item The system is built around standard components (Neo4j, Qdrant, LLM APIs).
+    \item The Unified API is stateless and can be deployed as a container.
+    \item Configuration is managed through environment variables to decouple secrets and endpoints.
+    \item Collections, labels, and node types are kept explicit to ease reuse for other domains.
+    \item Logging formats are JSON-based to support downstream analysis and tool integration.
+\end{itemize}
+
+These choices are not prescriptive. Other implementations may swap components or change deployment strategies while preserving the core method.
+
+\section{Limitations}
+
+Symbiosis is explicitly limited in scope and maturity.
+
+Current limitations include:
+
+\begin{itemize}
+    \item It is not a general consumer product. It assumes a technically competent user.
+    \item It has not yet been validated across large user groups or multiple independent research teams.
+    \item It is under continuous development, with changes to schemas, APIs, and workflows.
+    \item It does not implement autonomous goal-seeking behavior or self-modifying agents.
+    \item It depends on external LLM providers or locally hosted models, which may change over time.
+\end{itemize}
+
+These are not hidden weaknesses; they define the current boundaries of the system.
+
+\section{Why Publish This as a Method DOI Now}
+
+The system is at a point where:
+
+\begin{itemize}
+    \item the architecture is coherent and stable enough to describe,
+    \item the method has been exercised extensively in a demanding domain (EFC),
+    \item the core components are in place and working together,
+    \item the system is likely to evolve further.
+\end{itemize}
+
+This is precisely the right time to publish a methodological preprint rather than a finalized software paper. Publishing now:
+
+\begin{itemize}
+    \item establishes priority for the overall approach,
+    \item provides a citable reference for future work on Symbiosis and related systems,
+    \item invites inspection, critique, and adaptation,
+    \item anchors the method in the open research ecosystem.
+\end{itemize}
+
+Future iterations can reference this version as the foundational description.
+
+\section{Relation to Future Development}
+
+Several directions for future work are already visible:
+
+\begin{itemize}
+    \item \textbf{Learning over reasoning traces}: using logs to train models to better support long-horizon thinking.
+    \item \textbf{Graph Neural Networks on the knowledge graph}: embedding the graph itself for richer retrieval and representation.
+    \item \textbf{Advanced metacognitive feedback loops}: providing higher-level reflection back to the user about their own patterns.
+    \item \textbf{Multi-agent specialization}: using multiple models or configurations for different roles (critic, summarizer, connector).
+    \item \textbf{Shared Symbiosis spaces}: enabling multiple humans to work within a shared graph--vector--reflection substrate.
+\end{itemize}
+
+These extensions are not required for the validity of the current method. They build on it.
+
+\section{Why This Matters}
+
+Modern AI tooling is optimized for speed and local tasks. Human thought, especially in research and complex design, is optimized for continuity and depth. There is a structural gap between the two.
+
+Symbiosis addresses this gap by:
+
+\begin{itemize}
+    \item preserving intellectual continuity over long periods,
+    \item reducing ``amnesia-driven'' reasoning where past work is forgotten,
+    \item enabling large abstractions to remain coherent instead of fragmenting,
+    \item creating a controlled human-in-the-loop process for theory and system development.
+\end{itemize}
+
+In short, Symbiosis shows that it is possible, with existing technology, to build a practical architecture for long-horizon human--AI co-reflection.
+
+\section{Conclusion}
+
+Symbiosis demonstrates that long-term, structured co-reasoning between humans and AI systems is not a theoretical aspiration but a practical reality. By binding LLMs to persistent hybrid memory and metacognitive logging, it becomes possible to externalize not only information, but structured thought itself.
+
+EFC provides a demanding real-world domain in which the system has already proven useful as a cognitive scaffold. However, the method is not tied to any single theory or discipline. It is a general approach to building cognitive infrastructure around human--AI interaction.
+
+This paper does not claim to present a finished system or a standardized framework. It presents a working foundation that can be inspected, critiqued, reproduced, and extended.
+
+\section*{Acknowledgments}
+
+The development of Symbiosis has co-evolved with the development of Energy-Flow Cosmology. The two projects have shaped each other: EFC providing the complexity and demands, Symbiosis providing the structure and continuity.
+
+\section*{Declaration}
+
+This work is released as a methodological preprint. The system remains under active development. Future iterations, extensions, and evaluations will reference this initial DOI as the foundational description of the Symbiosis method and architecture.
+
+\end{document}

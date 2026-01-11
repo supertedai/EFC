@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "node_types": {
+    "master": { "description": "Canonical specification" },
+    "archive": { "description": "Historic version" },
+    "formal": { "description": "Mathematical and structural specification" },
+    "edition": { "description": "Versioned complete representations" },
+    "conceptual": { "description": "Core theoretical developments" },
+    "observational": { "description": "Empirical or evidence-based papers" },
+    "methodology": { "description": "AI workflow and technical documentation" }
+  },
+  "edge_types": {
+    "extends": { "description": "Paper extends a prior version" },
+    "refines": { "description": "Paper refines an idea or model" },
+    "supports": { "description": "Provides evidence or validation" },
+    "interfaces": { "description": "Describes system interfaces" }
+  }
+}

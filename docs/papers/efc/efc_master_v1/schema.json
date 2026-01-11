@@ -1,0 +1,37 @@
+{
+  "required": [
+    "@context",
+    "@type",
+    "identifier",
+    "name",
+    "version",
+    "author",
+    "encodingFormat",
+    "url"
+  ],
+  "properties": {
+    "@context": { "type": "string" },
+    "@type": { "type": "string" },
+    "identifier": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "encodingFormat": { "type": "string" },
+    "url": { "type": "string" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "about": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "author": {
+      "type": "object",
+      "required": ["name", "identifier"],
+      "properties": {
+        "name": { "type": "string" },
+        "identifier": { "type": "string" }
+      }
+    }
+  }
+}

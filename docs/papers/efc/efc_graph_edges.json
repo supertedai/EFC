@@ -1,0 +1,20 @@
+{
+  "edges": [
+    { "from": "efc_master_v1", "to": "efc_master", "type": "extends" },
+    { "from": "efc_master", "to": "efc_formal_spec", "type": "refines" },
+
+    { "from": "efc_formal_spec", "to": "EFC-v1.2-Foundational-Framework", "type": "extends" },
+    { "from": "EFC-v1.2-Foundational-Framework", "to": "EFC-v2.1-Complete-Edition", "type": "extends" },
+    { "from": "EFC-v2.1-Complete-Edition", "to": "EFC-v2.1-Modular-Synthesis", "type": "refines" },
+    { "from": "EFC-v2.1-Complete-Edition", "to": "EFC-v2.2-Cross-Field-Integration-Summary", "type": "extends" },
+
+    { "from": "EFC-Grid-Higgs-Paradigm-Shift", "to": "efc_master", "type": "supports" },
+    { "from": "EFC-Grid-Model-Entropic-Dynamics", "to": "efc_master", "type": "supports" },
+
+    { "from": "EFC-Introduction-to-Energy-Flow-in-Space-Time", "to": "efc_formal_spec", "type": "supports" },
+    { "from": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution", "to": "efc_formal_spec", "type": "supports" },
+
+    { "from": "ai_workflow_framework", "to": "efc_master", "type": "interfaces" },
+    { "from": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time", "to": "efc_master", "type": "interfaces" }
+  ]
+}

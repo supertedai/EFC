@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{tikz}
+
+\geometry{margin=2.5cm}
+
+\title{\textbf{Variable Effective Light Speed in Entropic Transition States:\\
+A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)}}
+
+\author{Morten Magnusson}
+\date{Version 2.0 --- November 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In Energy-Flow Cosmology (EFC), the effective speed of light is not a primitive
+constant but an emergent propagation limit determined by the entropic state of
+the grid. Two fundamental entropic phases---a low-entropy constraining state
+($s_0$) and a high-entropy dissipative state ($s_1$)---govern the information
+capacity, local curvature, and energy-flow geometry. This paper provides a
+formal description of variable light speed as a function of the entropic
+gradient, derives a minimal model for $c_{\mathrm{eff}}(S)$, and introduces the
+collapse mechanisms at both ends of the spectrum that shape observational
+horizons and redshift behaviour.
+\end{abstract}
+
+\section{Introduction}
+Energy-Flow Cosmology (EFC) describes spacetime as a coupled
+energy--entropy--information grid. Geometry is not fundamental: curvature and
+signal propagation emerge from the dynamic flow of energy and the distribution
+of entropy across the grid.
+
+Instead of treating the speed of light as an axiom, we view the \emph{effective}
+speed of light $c_{\mathrm{eff}}$ as the maximum information-propagation rate in
+a local entropic context. The structure is dominated by two coarse-grained
+states:
+\begin{itemize}
+\item $s_0$: a low-entropy, low-information, near-rigid state;
+\item $s_1$: a high-entropy, high-information, turbulent state.
+\end{itemize}
+
+\section{The $s_0$ State: Low-Entropy Rigidity}
+The $s_0$ state is defined by:
+\begin{itemize}
+\item minimal entropy production,
+\item weak or nearly uniform energy-flow fields,
+\item few active degrees of freedom,
+\item low curvature and near-rigid grid behaviour.
+\end{itemize}
+
+Near the $s_0$ limit, the grid becomes too constrained. Propagation encounters
+\emph{structural rigidity}, where local adjustments are suppressed. As the system
+approaches the $s_0$-collapse threshold, accumulated tension is released in a
+coherence ``pop'' event. Just before collapse, $c_{\mathrm{eff}}$ increases sharply
+due to a transient drop in entropic drag.
+
+\section{The $s_1$ State: High-Entropy Dissipation}
+The $s_1$ state exhibits:
+\begin{itemize}
+\item high entropy and strong entropy production,
+\item high information density,
+\item turbulent and structured energy flows,
+\item enhanced curvature and deformation.
+\end{itemize}
+
+Near the $s_1$ extreme, propagation loses coherence. Excessive fluctuations
+obstruct signal propagation; entropic drag dominates and $c_{\mathrm{eff}}$
+falls toward zero. Collapse occurs when coherent information channels fail.
+
+\section{A Bell-Shaped Model for $c_{\mathrm{eff}}(S)$}
+Let $S$ represent the local entropic state. The effective speed of light reaches
+a maximum at an intermediate optimal value $S_{\ast}$ where the grid balances
+flexibility and stability.
+
+A minimal symmetric model is:
+\begin{equation}
+    c_{\mathrm{eff}}(S) = 
+    c_0 \exp\!\left[-\alpha (S - S_{\ast})^2 \right],
+\end{equation}
+where $c_0$ is the maximum propagation speed and $\alpha$ sets the width.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % Axes
+    \draw[->] (-0.2,0) -- (6.2,0) node[right] {$S$};
+    \draw[->] (0,-0.2) -- (0,3.2) node[above] {$c_{\mathrm{eff}}$};
+
+    % Bell curve
+    \draw[thick,blue,domain=0.3:5.7,samples=200]
+        plot (\x,{3*exp(-0.5*(\x-3)^2)});
+
+    % Labels
+    \draw (0.8,-0.15) node {$s_0$};
+    \draw (3,-0.15) node {$S_{\ast}$};
+    \draw (5.2,-0.15) node {$s_1$};
+
+    % Vertical lines
+    \draw[dashed] (0.8,0) -- (0.8,1.1);
+    \draw[dashed] (3,0) -- (3,3);
+    \draw[dashed] (5.2,0) -- (5.2,1.1);
+
+    % Peak label
+    \draw (3,3.2) node {$\text{maximum } c_{\mathrm{eff}}$};
+\end{tikzpicture}
+\caption{Bell-shaped model for the effective propagation speed $c_{\mathrm{eff}}$ as a function
+of the entropic state $S$. The grid transitions from rigid ($s_0$) to optimal
+flexibility ($S_{\ast}$) and then to dissipative ($s_1$).}
+\end{figure}
+
+\section{Collapse Dynamics}
+\subsection{$s_0$-Collapse}
+Low entropy produces rigidity. Stress accumulates until the grid can no longer
+maintain coherence; collapse releases this in a high-coherence spike with a
+temporary rise in $c_{\mathrm{eff}}$.
+
+\subsection{$s_1$-Collapse}
+High entropy destroys coherence. Excessive microscopic variation blocks
+propagation. As $c_{\mathrm{eff}} \rightarrow 0$, the grid loses the capacity to
+transmit information. This forms a natural observational boundary.
+
+\section{Redshift as an Entropic Integral}
+For a photon:
+\[
+E_\gamma = h\nu, 
+\qquad 
+\nu = \frac{c_{\mathrm{eff}}}{\lambda}.
+\]
+
+As $c_{\mathrm{eff}}$ decreases in $s_1$-dominated regions:
+\begin{itemize}
+\item $\nu$ decreases,
+\item $E_\gamma$ decreases,
+\item the photon is redshifted.
+\end{itemize}
+
+The general form is:
+\begin{equation}
+z = \int_\gamma 
+g\!\left(S(x), \nabla S(x), c_{\mathrm{eff}}(S)\right) ds,
+\end{equation}
+where $\gamma$ is the photon path and $g$ encodes local entropic drag.
+
+This explains:
+\begin{itemize}
+\item extreme high-$z$ galaxies (low $c_{\mathrm{eff}}$ regions),
+\item the CMB as an $s_1$-collapse boundary,
+\item observational limits without invoking metric expansion.
+\end{itemize}
+
+\section{Cosmological Implications}
+\begin{itemize}
+\item coherent explanation of high redshift without accelerated expansion,
+\item anisotropies tied to entropy structure,
+\item modified lensing time delays,
+\item early galaxy formation via $S$-gradient effects,
+\item natural horizon from $s_1$-collapse.
+\end{itemize}
+
+\section{Conclusion}
+In EFC, the speed of light is an emergent, entropic quantity. The $s_0/s_1$
+framework provides a minimal description of how information propagates and why
+observational boundaries arise. This model replaces a rigid constant $c$ with a 
+state-dependent limit tied directly to energy flow and entropy.
+
+\end{document}
