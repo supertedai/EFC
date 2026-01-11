@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://schema.org/identifier",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
+  "@type": "ScholarlyArticle",
+  "name": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+  "description": "Analysis of 20 SPARC galaxies revealing systematic regime-dependent validity patterns in EFC, leading to the development of the EFC-R meta-framework.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0006-5904-4032"
+  },
+  "datePublished": "2026-01-06",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "doi",
+      "value": "10.6084/m9.figshare.31007248"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "slug",
+      "value": "EFC-R-SPARC-Regime-Validity"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "figshare_id",
+      "value": "31007248"
+    }
+  ],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Dark Matter Alternatives",
+    "Galaxy Rotation Curves",
+    "SPARC",
+    "Regime Theory",
+    "Non-equilibrium Dynamics",
+    "EFC-R"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "EFC-R Framework",
+      "description": "Meta-framework for understanding regime-dependent validity through E_total = E_flow + E_latent decomposition"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "SPARC Database",
+      "description": "Spitzer Photometry and Accurate Rotation Curves - 175 disk galaxies with high-quality rotation curves"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Latent Energy Field",
+      "description": "Non-equilibrium component capturing structural complexity and dynamical disturbance"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers",
+    "identifier": "efc-papers"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SPARC: Mass Models for 175 Disk Galaxies",
+      "author": "Lelli, McGaugh, Schombert",
+      "datePublished": "2016",
+      "identifier": "10.3847/0004-6256/152/6/157"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "FIRE simulations",
+      "author": "Oñorbe et al.",
+      "datePublished": "2015"
+    }
+  ],
+  "efc:tier": "CANONICAL",
+  "efc:layer": "APPLIED",
+  "efc:domain": "cosmology",
+  "efc:key_equations": [
+    "E_f = ρ(1 - S)",
+    "V²_rot(r) = r · ∂Φ_eff/∂r",
+    "E_total = E_flow + E_latent"
+  ],
+  "efc:statistical_results": {
+    "sample_size": 20,
+    "success_rate": 0.80,
+    "spearman_rho": 0.705,
+    "p_value": 0.0005,
+    "efc_chi2_red": 26.2,
+    "lcdm_chi2_red": 69.6
+  },
+  "efc:morphology_breakdown": {
+    "LSB": {"n": 5, "success_rate": 1.0},
+    "dwarf_irregular": {"n": 5, "success_rate": 0.8},
+    "spiral": {"n": 8, "success_rate": 0.75},
+    "barred_disturbed": {"n": 2, "success_rate": 0.0}
+  }
+}
