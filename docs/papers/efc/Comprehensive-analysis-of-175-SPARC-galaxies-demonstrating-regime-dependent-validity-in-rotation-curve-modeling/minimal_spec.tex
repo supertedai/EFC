@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+\title{SPARC175: Minimal Mathematical Specification}
+\author{Morten Magnusson}
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Model Definition}
+
+\subsection{EFC-fit (Ultra-Phenomenological)}
+
+The rotation velocity is modeled as:
+\begin{equation}
+v(r) = v_{\text{flat}} \times \sqrt{1 - \exp\left(-\left(\frac{r}{r_{\text{turnon}}}\right)^{\gamma}\right)}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $v_{\text{flat}}$ : Asymptotic velocity [km/s], $v_{\text{flat}} \in [50, 200]$
+    \item $r_{\text{turnon}}$ : Turnon scale [kpc], $r_{\text{turnon}} \in [0.1, 30]$
+    \item $\gamma$ : Sharpness parameter, $\gamma \in [0.5, 5.0]$
+\end{itemize}
+
+\subsection{LCDM-NFW Comparison}
+
+For comparison, we use a simplified NFW profile:
+\begin{equation}
+v^2(r) = V_{200}^2 \times \frac{\ln(1+x) - \frac{x}{1+x}}{\ln(1+c) - \frac{c}{1+c}}
+\end{equation}
+
+\noindent where $x = r/r_s$ and $c = 10$ (fixed concentration).
+
+\section{Fitting Procedure}
+
+\subsection{Objective Function}
+
+Minimize:
+\begin{equation}
+\chi^2 = \sum_{i=1}^{N} \left(\frac{v_{\text{obs},i} - v_{\text{model}}(r_i)}{\sigma_{v,i}}\right)^2
+\end{equation}
+
+Reduced chi-squared:
+\begin{equation}
+\chi^2_{\text{red}} = \frac{\chi^2}{N - k}
+\end{equation}
+
+\noindent where $N$ is number of data points and $k$ is number of free parameters.
+
+\subsection{Model Selection}
+
+Akaike Information Criterion:
+\begin{equation}
+\text{AIC} = \chi^2 + 2k
+\end{equation}
+
+Model preference:
+\begin{equation}
+\Delta\text{AIC} = \text{AIC}_{\text{EFC}} - \text{AIC}_{\text{LCDM}}
+\end{equation}
+
+\section{Latent Proxy}
+
+Structural complexity quantified as:
+\begin{equation}
+L = 0.4 \times |\rho_{\text{radial}}| + 0.3 \times r_{\text{sign}} + 0.3 \times \min\left(\frac{\chi^2_{\text{red}}}{10}, 1\right)
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\rho_{\text{radial}}$ : Spearman correlation between $r$ and residuals
+    \item $r_{\text{sign}}$ : Sign changes per data point
+    \item $\chi^2_{\text{red}}$ : Reduced chi-squared
+\end{itemize}
+
+\section{Regime Classification}
+
+\begin{align}
+\text{FLOW} &: \Delta\text{AIC} \leq -10 \text{ AND } \chi^2_{\text{red}} < 20 \\
+\text{TRANSITION} &: -10 < \Delta\text{AIC} < +10 \text{ OR } 20 < \chi^2_{\text{red}} < 50 \\
+\text{LATENT} &: \Delta\text{AIC} \geq +10 \text{ OR } \chi^2_{\text{red}} > 50
+\end{align}
+
+\section{Statistical Tests}
+
+\subsection{Mann-Whitney U Test}
+
+Null hypothesis: $L_{\text{FLOW}}$ and $L_{\text{LATENT}}$ are from the same distribution.
+
+\textbf{Result:} $p < 0.0001$ $\Rightarrow$ Reject null hypothesis.
+
+\subsection{Spearman Correlation}
+
+Test correlation between $\Delta\text{AIC}$ and $L$:
+\begin{equation}
+\rho = \text{Spearman}(\Delta\text{AIC}, L)
+\end{equation}
+
+\textbf{Result:} $\rho = 0.022$, $p = 0.775$ $\Rightarrow$ Not significant.
+
+\section{Key Results}
+
+\subsection{Regime Distribution}
+
+\begin{tabular}{l|c|c|c}
+Regime & N & \% & EFC Win Rate \\
+\hline
+FLOW & 62 & 35.4\% & 100\% \\
+TRANSITION & 86 & 49.1\% & 4.7\% \\
+LATENT & 27 & 15.4\% & 3.7\% \\
+\end{tabular}
+
+\subsection{Fit Quality}
+
+\begin{tabular}{l|c|c}
+Regime & $\langle \chi^2_{\text{red}} \rangle$ & $\sigma(\chi^2_{\text{red}})$ \\
+\hline
+FLOW & 2.05 & 2.82 \\
+TRANSITION & 2.19 & 7.22 \\
+LATENT & 297.83 & 553.50 \\
+\end{tabular}
+
+\section{Reproducibility}
+
+All fits use:
+\begin{itemize}
+    \item Differential evolution optimizer
+    \item Fixed seed: 42
+    \item maxiter = 300
+    \item atol = $10^{-6}$
+    \item tol = $10^{-4}$
+\end{itemize}
+
+\noindent \textbf{DOI:} 10.6084/m9.figshare.31045126
+
+\end{document}

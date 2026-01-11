@@ -1,0 +1,162 @@
+{
+  "dataset": {
+    "name": "SPARC175 Regime Analysis",
+    "version": "1.0",
+    "date": "2026-01-11",
+    "doi": "10.6084/m9.figshare.31045126",
+    "description": "Comprehensive regime-dependent validity analysis of 175 SPARC galaxies",
+    "license": "CC-BY-4.0"
+  },
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Energy-Flow Cosmology Initiative, Norway",
+    "email": "morten@magnusson.as",
+    "website": "https://energyflow-cosmology.com/"
+  },
+  "sample": {
+    "source": "SPARC Database (Lelli et al., 2016)",
+    "n_galaxies": 175,
+    "n_datapoints": 3391,
+    "mean_points_per_galaxy": 19.4,
+    "std_points_per_galaxy": 16.0,
+    "range": [4, 115]
+  },
+  "results": {
+    "regimes": {
+      "FLOW": {
+        "n": 62,
+        "percentage": 35.4,
+        "efc_success_rate": 100.0,
+        "mean_L": 0.290,
+        "std_L": 0.143,
+        "mean_chi2_red": 2.05,
+        "std_chi2_red": 2.82
+      },
+      "TRANSITION": {
+        "n": 86,
+        "percentage": 49.1,
+        "efc_success_rate": 4.7,
+        "mean_L": 0.223,
+        "std_L": 0.105,
+        "mean_chi2_red": 2.19,
+        "std_chi2_red": 7.22
+      },
+      "LATENT": {
+        "n": 27,
+        "percentage": 15.4,
+        "efc_success_rate": 3.7,
+        "mean_L": 0.500,
+        "std_L": 0.111,
+        "mean_chi2_red": 297.83,
+        "std_chi2_red": 553.50
+      }
+    },
+    "statistics": {
+      "mann_whitney": {
+        "test": "FLOW vs LATENT separation",
+        "p_value": 0.0000,
+        "conclusion": "Highly significant (p < 0.0001)"
+      },
+      "spearman": {
+        "test": "ΔAIC vs L correlation",
+        "rho": 0.022,
+        "p_value": 0.7752,
+        "conclusion": "Not significant (proxy needs refinement)"
+      }
+    }
+  },
+  "files": {
+    "paper": {
+      "markdown": "SPARC175_COMPLETE_PAPER.md",
+      "pdf": "SPARC175_COMPLETE_PAPER.pdf",
+      "summary": "SPARC175_SUMMARY.md"
+    },
+    "data": {
+      "qc": "sparc175_qc.json",
+      "clean": "sparc175_clean.json",
+      "fits": "sparc175_fits.json",
+      "classified": "sparc175_classified.json",
+      "statistics": "sparc175_statistics.json"
+    },
+    "figures": {
+      "regime_distribution": "sparc175_regime_distribution.png",
+      "aic_vs_latent": "sparc175_aic_vs_latent.png",
+      "success_by_bins": "sparc175_success_by_bins.png"
+    },
+    "scripts": {
+      "qc": "sparc175_day1_qc.py",
+      "fit": "sparc175_day2_fit.py",
+      "classify": "sparc175_day3_classify.py",
+      "visualize": "sparc175_day4_visualize.py",
+      "document": "sparc175_day5_document.py"
+    }
+  },
+  "methodology": {
+    "model": {
+      "name": "EFC-fit (ultra-phenomenological)",
+      "formula": "v(r) = v_flat × sqrt(1 - exp(-(r/r_turnon)^sharpness))",
+      "parameters": 3,
+      "bounds": {
+        "v_flat": [50, 200],
+        "r_turnon": [0.1, 30],
+        "sharpness": [0.5, 5.0]
+      }
+    },
+    "comparison": {
+      "name": "ΛCDM-NFW",
+      "parameters": 2,
+      "concentration": 10
+    },
+    "optimizer": {
+      "method": "differential_evolution",
+      "maxiter": 300,
+      "seed": 42,
+      "atol": 1e-6,
+      "tol": 1e-4
+    },
+    "classification": {
+      "FLOW": "ΔAIC ≤ -10 AND χ²_red < 20",
+      "TRANSITION": "-10 < ΔAIC < +10 OR 20 < χ²_red < 50",
+      "LATENT": "ΔAIC ≥ +10 OR χ²_red > 50"
+    },
+    "latent_proxy": {
+      "formula": "L = 0.4×|ρ| + 0.3×sign_rate + 0.3×(χ²_red/10)",
+      "components": [
+        "radial_trend (Spearman ρ)",
+        "oscillation (sign changes)",
+        "fit_quality (normalized χ²)"
+      ]
+    }
+  },
+  "reproducibility": {
+    "deterministic": true,
+    "fixed_seed": 42,
+    "no_manual_tuning": true,
+    "explicit_settings": true,
+    "code_available": true
+  },
+  "related_work": {
+    "n20_pilot": "10.6084/m9.figshare.31007248",
+    "efc_framework": "https://energyflow-cosmology.com/",
+    "sparc_database": "Lelli et al. (2016), AJ, 152, 157"
+  },
+  "keywords": [
+    "galaxy rotation curves",
+    "SPARC",
+    "regime theory",
+    "model validity",
+    "complexity classification",
+    "Energy-Flow Cosmology",
+    "EFC-R",
+    "dark matter alternatives",
+    "modified gravity",
+    "statistical astronomy"
+  ],
+  "metadata": {
+    "created": "2026-01-11",
+    "last_updated": "2026-01-11",
+    "format_version": "1.0",
+    "schema": "schema.json"
+  }
+}

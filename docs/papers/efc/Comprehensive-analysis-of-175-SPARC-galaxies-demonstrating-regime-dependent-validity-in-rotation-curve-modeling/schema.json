@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://energyflow-cosmology.com/schemas/sparc175/v1.0",
+  "title": "SPARC175 Data Schema",
+  "description": "Schema for SPARC175 regime analysis data files",
+  "version": "1.0",
+  
+  "definitions": {
+    "galaxy_data": {
+      "type": "object",
+      "properties": {
+        "r": {
+          "type": "array",
+          "items": {"type": "number", "minimum": 0},
+          "description": "Radial distances [kpc]"
+        },
+        "v_obs": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Observed velocities [km/s]"
+        },
+        "v_err": {
+          "type": "array",
+          "items": {"type": "number", "minimum": 0},
+          "description": "Velocity uncertainties [km/s]"
+        },
+        "v_gas": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Gas component velocities [km/s]"
+        },
+        "v_disk": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Disk component velocities [km/s]"
+        },
+        "v_bulge": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Bulge component velocities [km/s]"
+        }
+      },
+      "required": ["r", "v_obs", "v_err"]
+    },
+    
+    "fit_result": {
+      "type": "object",
+      "properties": {
+        "success": {"type": "boolean"},
+        "params": {
+          "type": "array",
+          "items": {"type": "number"}
+        },
+        "chi2": {"type": "number", "minimum": 0},
+        "chi2_red": {"type": "number", "minimum": 0},
+        "aic": {"type": "number"},
+        "bic": {"type": "number"},
+        "residuals": {
+          "type": "object",
+          "properties": {
+            "rms": {"type": "number", "minimum": 0},
+            "radial_trend": {"type": "number", "minimum": -1, "maximum": 1},
+            "radial_trend_p": {"type": "number", "minimum": 0, "maximum": 1},
+            "sign_changes": {"type": "integer", "minimum": 0},
+            "sign_changes_rate": {"type": "number", "minimum": 0, "maximum": 1}
+          },
+          "required": ["rms", "radial_trend", "sign_changes"]
+        }
+      },
+      "required": ["success", "params", "chi2", "chi2_red", "aic", "bic", "residuals"]
+    },
+    
+    "latent_proxy": {
+      "type": "object",
+      "properties": {
+        "L": {"type": "number", "minimum": 0, "maximum": 1},
+        "components": {
+          "type": "object",
+          "properties": {
+            "residual_trend": {"type": "number"},
+            "oscillation": {"type": "number"},
+            "chi2_normalized": {"type": "number"}
+          }
+        }
+      },
+      "required": ["L"]
+    },
+    
+    "regime_type": {
+      "type": "string",
+      "enum": ["FLOW", "TRANSITION", "LATENT", "DATA_PROBLEM"]
+    }
+  },
+  
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "n_galaxies": {"type": "integer", "minimum": 0},
+        "n_success": {"type": "integer", "minimum": 0},
+        "n_failed": {"type": "integer", "minimum": 0},
+        "model": {"type": "string"},
+        "regime_counts": {
+          "type": "object",
+          "properties": {
+            "FLOW": {"type": "integer"},
+            "TRANSITION": {"type": "integer"},
+            "LATENT": {"type": "integer"}
+          }
+        }
+      },
+      "required": ["n_galaxies", "model"]
+    },
+    
+    "results": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_-]+$": {
+          "type": "object",
+          "properties": {
+            "n_points": {"type": "integer", "minimum": 1},
+            "efc": {"$ref": "#/definitions/fit_result"},
+            "lcdm": {"$ref": "#/definitions/fit_result"},
+            "comparison": {
+              "type": "object",
+              "properties": {
+                "delta_aic": {"type": "number"},
+                "delta_bic": {"type": "number"},
+                "winner": {
+                  "type": "string",
+                  "enum": ["EFC", "LCDM", "TIE", "FAILED"]
+                }
+              },
+              "required": ["delta_aic", "winner"]
+            },
+            "latent": {"$ref": "#/definitions/latent_proxy"},
+            "regime": {"$ref": "#/definitions/regime_type"}
+          },
+          "required": ["n_points", "efc", "lcdm", "comparison"]
+        }
+      }
+    }
+  },
+  
+  "required": ["metadata", "results"]
+}
