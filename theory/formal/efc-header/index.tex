@@ -1,0 +1,94 @@
+% =========================================================================
+% Energy-Flow Cosmology — Formal Header Specification
+% =========================================================================
+
+\section*{EFC Formal Header}
+
+\subsection*{1. Purpose}
+
+The EFC Formal Header defines the shared notation, global constants,
+normalizations, and macro definitions used across all formal modules
+(EFC–S, EFC–D, EFC–H, EFC–C$_0$, parameters, diagrams, and specifications).
+
+It provides a consistent symbolic base and ensures uniform mathematical
+presentation across the entire EFC theory.
+
+\subsection*{2. Global Normalization}
+
+Entropy is defined over a normalized domain:
+
+\[
+0 \leq S(\mathbf{x}, t) \leq 1.
+\]
+
+Energy–flow potential:
+
+\[
+E_f = \rho(1-S).
+\]
+
+Propagation speed normalization:
+
+\[
+c_{\text{eff}} = (1 + R)^{-1}.
+\]
+
+\subsection*{3. Shared Symbols}
+
+\begin{itemize}
+    \item $S$ — entropy field  
+    \item $\rho$ — structural density  
+    \item $E_f$ — energy–flow field  
+    \item $R$ — grid resistance  
+    \item $C$ — information capacity  
+    \item $I_0$ — information resonance scalar  
+    \item $c_{\text{eff}}$ — effective propagation speed  
+\end{itemize}
+
+\subsection*{4. Standard LaTeX Macros}
+
+\begin{verbatim}
+\newcommand{\Ef}{E_f}
+\newcommand{\dS}{\frac{dS}{dt}}
+\newcommand{\drho}{\frac{d\rho}{dt}}
+\newcommand{\dEf}{\frac{dE_f}{dt}}
+\newcommand{\dR}{\frac{dR}{dt}}
+\newcommand{\ceff}{c_{\text{eff}}}
+\end{verbatim}
+
+\subsection*{5. Spatial Notation}
+
+\[
+\nabla S, \quad \nabla E_f, \quad \nabla \rho
+\]
+
+represent local spatial gradients.
+
+Temporal derivatives:
+
+\[
+\frac{d}{dt} = \frac{\partial}{\partial t} + \mathbf{v}\cdot\nabla.
+\]
+
+\subsection*{6. Diagrams and Flow Ordering}
+
+The canonical EFC dependency chain:
+
+\[
+S \rightarrow \rho \rightarrow E_f \rightarrow R \rightarrow c_{\text{eff}}
+\]
+
+is defined here as a global convention.
+
+\subsection*{7. Purpose in the EFC Framework}
+
+The header:
+
+\begin{itemize}
+    \item harmonizes notation across all formal modules
+    \item ensures model compatibility
+    \item simplifies LaTeX compilation
+    \item supports machine-readable mapping of symbols and meaning
+\end{itemize}
+
+It is included or referenced by all higher-level specifications.

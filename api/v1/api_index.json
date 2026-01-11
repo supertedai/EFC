@@ -1,0 +1,32 @@
+{
+  "api_version": "1.0.0",
+  "description": "Unified API index for Energy-Flow Cosmology. Provides full endpoint map for concepts, methodology, terms, and metadata.",
+  "last_updated": "2025-11-15",
+  "root": "api/v1/",
+  "endpoints": {
+    "concepts": {
+      "path": "api/v1/concepts.json",
+      "type": "definitions",
+      "description": "Core scientific concepts of Energy-Flow Cosmology."
+    },
+    "methodology": {
+      "path": "api/v1/methodology.json",
+      "type": "open_science_process",
+      "description": "Full AI-augmented methodology and reflective process documentation."
+    },
+    "terms": {
+      "path": "api/v1/terms.json",
+      "type": "vocabulary",
+      "description": "Formal terms, definitions, and vocabulary for EFC."
+    },
+    "meta": {
+      "path": "api/v1/meta.json",
+      "type": "metadata",
+      "description": "AuthNode, provenance, DOIs, links, and repository metadata."
+    }
+  },
+  "integrity": {
+    "has_all_required_files": true,
+    "missing_files": []
+  }
+}

@@ -1,0 +1,154 @@
+% =====================================================================
+% Energy-Flow Cosmology — EFC-H Structural Model (Master Specification)
+% =====================================================================
+
+\section*{EFC–H Structural Model: Formal Specification}
+
+\subsection*{1. Purpose}
+
+The EFC–H model defines how stable structures emerge from the interaction
+between entropy, structural density, energy flow, and grid resistance in
+Energy-Flow Cosmology (EFC). It describes halo formation, structure
+profiles, and long-range stability produced by the energy–entropy system.
+
+\subsection*{2. Core Fields}
+
+\begin{itemize}
+    \item Entropy field: $S(\mathbf{x}, t)$
+    \item Structural density: $\rho(\mathbf{x}, t)$
+    \item Energy–flow field: $E_f(\mathbf{x}, t)$
+    \item Grid resistance: $R(\mathbf{x}, t)$
+    \item Effective propagation speed: $c_{\text{eff}}$
+\end{itemize}
+
+\subsection*{3. Structural Formation Condition}
+
+A region becomes a stable structure when:
+
+\[
+E_f > R.
+\]
+
+Equivalently:
+
+\[
+\rho(1 - S) > R(S, \rho).
+\]
+
+This defines the **structural boundary condition**.
+
+\subsection*{4. Structural Growth Law}
+
+Density evolves according to:
+
+\[
+\frac{d\rho}{dt} = F(E_f, \nabla E_f),
+\]
+
+with a minimum closure:
+
+\[
+\frac{d\rho}{dt} \propto E_f - R.
+\]
+
+If $E_f > R$, structure condenses;  
+if $E_f < R$, structure disperses.
+
+\subsection*{5. Halo Profile Equation}
+
+For quasi-static structures:
+
+\[
+\nabla E_f = 0,
+\]
+
+which yields:
+
+\[
+\rho(1-S) = \text{constant}.
+\]
+
+This defines the core **EFC halo law**, linking:
+
+- low local entropy  
+- moderate to high structure  
+- stable energy-flow equilibrium  
+
+\subsection*{6. Gradient-Coupled Structure}
+
+Spatial gradients define limb, transition, and asymptotic regimes:
+
+\[
+\nabla S(\mathbf{x}) \neq 0
+\quad \Rightarrow \quad
+\text{extended halo behaviour}.
+\]
+
+The extended halo region satisfies:
+
+\[
+E_f(\mathbf{x}) \approx \text{constant},
+\]
+
+while $S(\mathbf{x})$ slowly increases with radius.
+
+\subsection*{7. Resistance–Structure Coupling}
+
+Resistance reduces as structure grows:
+
+\[
+\frac{\partial R}{\partial \rho} < 0,
+\]
+
+and increases with entropy:
+
+\[
+\frac{\partial R}{\partial S} > 0.
+\]
+
+This coupling produces:
+
+- stable cores (low $S$, high $\rho$, low $R$)  
+- extended halos (moderate $S$, moderate $R$)  
+- fading outskirts (higher $S$, higher $R$)
+
+\subsection*{8. Effective Propagation Velocity}
+
+Propagation speed is:
+
+\[
+c_{\text{eff}} = (1 + R)^{-1}.
+\]
+
+Inside structures ($R$ low), propagation is faster;  
+outside ($R$ high), propagation is slower.
+
+This produces observable lensing and apparent mass enrichment
+without dark matter.
+
+\subsection*{9. Full EFC–H System}
+
+\[
+\begin{aligned}
+E_f &= \rho(1 - S), \\
+\frac{d\rho}{dt} &= F(E_f, \nabla E_f), \\
+R &= R(S, \rho), \\
+c_{\text{eff}} &= (1 + R)^{-1}, \\
+\nabla E_f &\rightarrow \text{halo profiles}, \\
+E_f > R &\rightarrow \text{structural condensation}.
+\end{aligned}
+\]
+
+\subsection*{10. Role in the EFC Framework}
+
+EFC–H provides:
+
+\begin{itemize}
+    \item the base for halo formation without dark matter
+    \item a structural layer linking dynamics (EFC–D) to density profiles
+    \item the formal underpinning for cluster-scale predictions and CMB distortions
+    \item the foundation for the EFC–S structural module
+\end{itemize}
+
+EFC–H is the core structural layer of EFC, providing the theoretical
+basis for all emergent mass, halo shapes, and gravitational-like effects.

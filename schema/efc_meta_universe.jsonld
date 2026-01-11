@@ -1,0 +1,34 @@
+{
+  "@context": {
+    "efc": "https://energyflow-cosmology.com/schema#",
+    "id": "efc:id",
+    "name": "efc:name",
+    "type": "efc:type",
+    "influences": { "@id": "efc:influences", "@type": "@id" },
+    "shapes": { "@id": "efc:shapes", "@type": "@id" },
+    "drives": { "@id": "efc:drives", "@type": "@id" },
+    "creates_gradient": { "@id": "efc:creates_gradient", "@type": "@id" },
+    "forms": { "@id": "efc:forms", "@type": "@id" }
+  },
+
+  "@graph": [
+    {
+      "@type": "efc:Insight",
+      "id": "i_efc_core",
+      "name": "Energi → gradient → dynamikk → struktur",
+      "influences": "tp_expansion"
+    },
+    {
+      "@type": "efc:MetaPattern",
+      "id": "mp_entropy_clarity",
+      "name": "Entropy → Clarity",
+      "shapes": "dyn_expansion"
+    },
+    {
+      "@type": "efc:CognitiveMechanism",
+      "id": "cm_parallel_gradient",
+      "name": "Parallel Gradient Reading",
+      "drives": "m_expansion"
+    }
+  ]
+}

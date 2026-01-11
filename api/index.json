@@ -1,0 +1,25 @@
+{
+  "name": "Energy-Flow Cosmology (EFC) Open Semantic API",
+  "description": "Machine-readable semantic API exposing the Energy-Flow Cosmology (EFC) framework — concepts, definitions, and cross-domain relations built on thermodynamic and informational foundations.",
+  "version": "v1.0.0",
+  "license": "CC-BY-4.0",
+  "homepage": "https://energyflow-cosmology.com",
+  "repository": "https://github.com/supertedai/energyflow-cosmology",
+  "base_url": "https://raw.githubusercontent.com/supertedai/energyflow-cosmology/main/api/v1/",
+  "distribution": {
+    "@type": "DataDownload",
+    "encodingFormat": "application/ld+json",
+    "contentUrl": "https://raw.githubusercontent.com/supertedai/energyflow-cosmology/main/api/v1/concepts.json"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "url": "https://energyflow-cosmology.com"
+  },
+  "resources": {
+    "concepts": "v1/concepts.json",
+    "terms": "v1/terms.json",
+    "examples": "v1/concept/"
+  }
+}

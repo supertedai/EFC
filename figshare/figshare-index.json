@@ -1,0 +1,74 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DataCatalog",
+  "@id": "https://github.com/supertedai/energyflow-cosmology/figshare/figshare-index.json",
+  "name": "Energy-Flow Cosmology (EFC) DOI Index and Data Mapping",
+  "description": "Canonical dataset index linking all core Figshare works in the Energy-Flow Cosmology (EFC) framework to their corresponding Markdown source files in this repository. Provides persistent DOI–source mapping for scholarly, semantic, and LLM ingestion.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "thermodynamics",
+    "entropy",
+    "cosmology",
+    "emergent gravity",
+    "information theory",
+    "CEM-Cosmos",
+    "Grid-Higgs Framework"
+  ],
+  "inLanguage": "en-US",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Energy-Flow Cosmology Initiative",
+    "sameAs": "https://energyflow-cosmology.com"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "@id": "https://figshare.com/authors/Morten_Magnusson/20477774",
+    "sameAs": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Initiative"
+    }
+  },
+  "dateCreated": "2025-11-07",
+  "dateModified": "2025-11-11",
+  "dataset": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Energy-Flow Cosmology v1.2: Foundational Framework and Cross-Field Continuity",
+      "identifier": "https://doi.org/10.6084/m9.figshare.30563738",
+      "url": "https://github.com/supertedai/energyflow-cosmology/docs/EFC-v1.2-Foundational-Framework.md",
+      "version": "v1.2",
+      "datePublished": "2025-11-07",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Energy-Flow Cosmology (EFC-v2.1): Unified Thermodynamic Framework across Structure, Dynamics, and Cognition",
+      "identifier": "https://doi.org/10.6084/m9.figshare.30478916",
+      "url": "https://github.com/supertedai/energyflow-cosmology/docs/EFC-v2.1-Unified-Framework.md",
+      "version": "v2.1",
+      "datePublished": "2025-10-30",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Applied Energy-Flow Cosmology v2.2 – Cross-Field Integration Summary (2025)",
+      "identifier": "https://doi.org/10.6084/m9.figshare.30530156",
+      "url": "https://github.com/supertedai/energyflow-cosmology/docs/Applied-EFC-v2.2-Summary.md",
+      "version": "v2.2",
+      "datePublished": "2025-11-04",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "CEM-Cosmos: A Field-Theoretic Model of Consciousness Coupled to Energy-Flow Cosmology",
+      "identifier": "https://doi.org/10.6084/m9.figshare.30275947",
+      "url": "https://github.com/supertedai/energyflow-cosmology/docs/CEM-Cosmos-Model.md",
+      "version": "v1.0",
+      "datePublished": "2025-10-04",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ]
+}

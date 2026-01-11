@@ -1,0 +1,34 @@
+% =====================================================================
+% EFC — D Model (Minimal Dynamics Specification)
+% =====================================================================
+
+\section*{EFC–D Dynamics (Minimal Specification)}
+
+\[
+E_f = \rho(1-S)
+\]
+
+\[
+\frac{dE_f}{dt} = \nabla_t E_f
+\]
+
+\[
+\frac{d\rho}{dt} \propto E_f - R
+\]
+
+\[
+\frac{dS}{dt} \propto -\rho + |\nabla E_f|
+\]
+
+\[
+R = R(S,\rho)
+\]
+
+\[
+\frac{dR}{dt} = \alpha \frac{dS}{dt} - \beta \frac{d\rho}{dt}
+\]
+
+\[
+c_{\text{eff}} = (1 + R)^{-1}
+\]
+

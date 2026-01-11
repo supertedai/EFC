@@ -1,0 +1,126 @@
+% =====================================================================
+% Energy-Flow Cosmology — Flow Diagram (Master Specification)
+% =====================================================================
+
+\section*{EFC Flow Diagram: Formal Specification}
+
+\subsection*{1. Purpose}
+
+The EFC Flow Diagram describes the causally ordered relationships between
+the core fields of Energy-Flow Cosmology (EFC): entropy $S$, structural
+density $\rho$, energy flow $E_f$, grid resistance $R$, information
+capacity $C$, and effective propagation speed $c_{\text{eff}}$.
+
+This diagram defines the canonical dependency and update ordering used
+throughout the entire EFC formal system, simulations, and analytical
+derivations.
+
+\subsection*{2. Core Dependency Structure}
+
+The causal structure of EFC is:
+
+\[
+S \rightarrow \rho \rightarrow E_f \rightarrow R \rightarrow c_{\text{eff}}
+\]
+
+Information capacity and informational resonance arise from:
+
+\[
+S \rightarrow C, \quad (E_f, \nabla S) \rightarrow I_0
+\]
+
+\subsection*{3. Field Definitions}
+
+\begin{itemize}
+    \item Entropy field: $S(\mathbf{x}, t)$
+    \item Structural density: $\rho(\mathbf{x}, t)$
+    \item Energy–flow field: $E_f(\mathbf{x}, t)$
+    \item Grid resistance: $R(\mathbf{x}, t)$
+    \item Effective propagation speed: $c_{\text{eff}}(\mathbf{x}, t)$
+    \item Information capacity: $C(\mathbf{x}, t)$
+    \item Information resonance scalar: $I_0(\mathbf{x}, t)$
+\end{itemize}
+
+\subsection*{4. Diagram Equations}
+
+Entropy influences density:
+
+\[
+\frac{d\rho}{dt} \propto E_f - R
+\]
+
+Density and entropy determine energy flow:
+
+\[
+E_f = \rho(1 - S)
+\]
+
+Energy flow and entropy gradients influence the informational layer:
+
+\[
+I_0 = \gamma |E_f \cdot \nabla S|
+\]
+
+Resistance couples back:
+
+\[
+R = R(S, \rho)
+\]
+
+Propagation speed:
+
+\[
+c_{\text{eff}} = (1 + R)^{-1}
+\]
+
+Information capacity:
+
+\[
+C = C_0 (1 - S)
+\]
+
+\subsection*{5. Canonical Update Ordering}
+
+The EFC Flow Diagram imposes this update order in simulations:
+
+\[
+S \longrightarrow \rho \longrightarrow E_f \longrightarrow R \longrightarrow c_{\text{eff}}
+\]
+
+And for the informational layer:
+
+\[
+S \longrightarrow (C, \nabla S) \longrightarrow (I_0, \Phi_I)
+\]
+
+\subsection*{6. Unified Diagram}
+
+\[
+\boxed{
+S \Rightarrow
+\begin{cases}
+\, C \\
+\, \rho
+\end{cases}
+\Rightarrow E_f
+\Rightarrow
+\begin{cases}
+\, I_0 \\
+\, R
+\end{cases}
+\Rightarrow c_{\text{eff}}
+}
+\]
+
+\subsection*{7. Role in the EFC Framework}
+
+The diagram defines:
+
+\begin{itemize}
+    \item update sequence for numerical solvers
+    \item conceptual map for all formal models (S, D, H, C$_0$)
+    \item integration rule between information and structural layers
+    \item foundations for EFC visualization and explanation
+\end{itemize}
+
+It functions as the operational backbone of the EFC formal architecture.

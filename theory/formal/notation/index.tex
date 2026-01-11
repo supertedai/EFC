@@ -1,0 +1,119 @@
+% =====================================================================
+% Energy-Flow Cosmology — Global Notation Specification (Master)
+% =====================================================================
+
+\section*{EFC Notation: Master Specification}
+
+\subsection*{1. Purpose}
+
+This document defines the global notation system used across all formal
+models in Energy-Flow Cosmology (EFC). It standardises mathematical
+symbols, tensor/field naming, derivative conventions and component
+structure to ensure consistency across the S, D, H, C$_0$, and
+formal-spec modules.
+
+\subsection*{2. Core Scalar Fields}
+
+\[
+\begin{aligned}
+S(\mathbf{x},t) &:&\;\text{entropy field, normalized } 0 \leq S \leq 1 \\
+\rho(\mathbf{x},t) &:&\;\text{structural density} \\
+E_f(\mathbf{x},t) &:&\;\text{energy–flow potential} \\
+R(\mathbf{x},t) &:&\;\text{grid resistance} \\
+C(\mathbf{x},t) &:&\;\text{information capacity} \\
+I_0(\mathbf{x},t) &:&\;\text{information resonance scalar}
+\end{aligned}
+\]
+
+\subsection*{3. Derived Quantities}
+
+Energy–flow potential:
+\[
+E_f = \rho(1-S)
+\]
+
+Information capacity:
+\[
+C = C_0(1-S)
+\]
+
+Propagation speed:
+\[
+c_{\text{eff}} = (1 + R)^{-1}
+\]
+
+Information resonance:
+\[
+I_0 = \gamma |E_f \cdot \nabla S|
+\]
+
+\subsection*{4. Gradient and Differential Operators}
+
+Spatial gradients:
+\[
+\nabla S, \quad \nabla \rho, \quad \nabla E_f
+\]
+
+Temporal evolution operator:
+\[
+\frac{d}{dt}
+    = \frac{\partial}{\partial t}
+    + \mathbf{v}\cdot\nabla
+\]
+
+Directional derivative:
+\[
+\nabla_{\mathbf{v}} f = \mathbf{v}\cdot\nabla f
+\]
+
+\subsection*{5. Vector and Direction Symbols}
+
+Propagation direction:
+\[
+\hat{\mathbf{u}}
+\]
+
+Propagation velocity:
+\[
+\mathbf{v} = c_{\text{eff}}\hat{\mathbf{u}}
+\]
+
+\subsection*{6. Canonical Update Ordering}
+
+\[
+S \rightarrow \rho \rightarrow E_f \rightarrow R \rightarrow c_{\text{eff}}
+\]
+
+\[
+S \rightarrow (C,\nabla S) \rightarrow I_0
+\]
+
+\subsection*{7. Standard LaTeX Macros}
+
+\begin{verbatim}
+\newcommand{\Sf}{S}
+\newcommand{\rhof}{\rho}
+\newcommand{\Ef}{E_f}
+\newcommand{\Rf}{R}
+\newcommand{\Ccap}{C}
+\newcommand{\Izero}{I_0}
+\newcommand{\ceff}{c_{\text{eff}}}
+\newcommand{\grad}{\nabla}
+\end{verbatim}
+
+\subsection*{8. Purpose within the EFC Framework}
+
+This notation specification guarantees uniform mathematical expression
+across:
+
+\begin{itemize}
+    \item EFC–S (Spatial Structure)
+    \item EFC–D (Dynamics)
+    \item EFC–H (Halo / Emergent Mass)
+    \item EFC–C$_0$ (Information Model)
+    \item Formal Spec and Header modules
+\end{itemize}
+
+It is required for consistent presentation and machine-readable
+interpretation of all EFC formal documents.
+

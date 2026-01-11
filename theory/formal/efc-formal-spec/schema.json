@@ -1,0 +1,25 @@
+{
+  "required": [
+    "@context",
+    "@type",
+    "identifier",
+    "name",
+    "version"
+  ],
+  "properties": {
+    "@context": { "type": "string" },
+    "@type": { "type": "string" },
+    "identifier": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "author": { "type": "object" },
+    "about": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "hasPart": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

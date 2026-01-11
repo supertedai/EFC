@@ -1,0 +1,93 @@
+% =====================================================================
+% Energy-Flow Cosmology — Minimal Formal Specification
+% =====================================================================
+
+\section*{Energy-Flow Cosmology: Minimal Formal Specification}
+
+\subsection*{1. Fields and Core Quantities}
+
+Let the spatial domain be described by coordinates $\mathbf{x}$.
+
+\begin{itemize}
+    \item Entropy field: $S(\mathbf{x})$
+    \item Structural density: $\rho(\mathbf{x})$
+    \item Energy–flow potential: $E_f(\mathbf{x})$
+    \item Grid resistance: $R(\mathbf{x})$
+    \item Information capacity: $C(\mathbf{x})$
+\end{itemize}
+
+Entropy is normalized:
+\[
+0 \leq S(\mathbf{x}) \leq 1.
+\]
+
+The local density:
+\[
+\rho(\mathbf{x}) = \frac{m}{V}.
+\]
+
+\subsection*{2. Energy–Flow Potential}
+
+\[
+E_f = \rho \, (1 - S).
+\]
+
+The temporal change:
+\[
+\frac{dE_f}{dt} = \nabla_t E_f.
+\]
+
+\subsection*{3. Entropy Gradient and Flow}
+
+\[
+\nabla S(\mathbf{x}) \rightarrow \text{redistribution of } E_f.
+\]
+
+\subsection*{4. Structural Response}
+
+\[
+\frac{d\rho}{dt} = F(E_f, \nabla E_f).
+\]
+
+\[
+\frac{d\rho}{dt} \propto E_f - R(\mathbf{x}).
+\]
+
+\subsection*{5. Propagation Resistance}
+
+\[
+R = R(S, \rho).
+\]
+
+\[
+c_{\text{eff}} = \frac{1}{1 + R}.
+\]
+
+\subsection*{6. Information Capacity}
+
+\[
+C(\mathbf{x}) = C_0 \, (1 - S(\mathbf{x})).
+\]
+
+\subsection*{7. Coupled System}
+
+\[
+\begin{aligned}
+E_f &= \rho\,(1-S), \\
+\frac{dE_f}{dt} &= \nabla_t E_f, \\
+\frac{d\rho}{dt} &= F(E_f, \nabla E_f), \\
+R &= R(S,\rho), \\
+c_{\text{eff}} &= (1 + R)^{-1}, \\
+C &= C_0\,(1-S).
+\end{aligned}
+\]
+
+\subsection*{8. Purpose}
+
+Reference foundation for:
+\begin{itemize}
+    \item EFC-S structural model
+    \item EFC-D dynamical model
+    \item EFC-C$_0$ information model
+    \item Simulation implementations
+\end{itemize}

@@ -1,0 +1,54 @@
+{
+  "id": "efc-s-model",
+  "name": "EFC\u2013S Structural Model",
+  "path": "theory/formal/efc-s-model",
+  "layer": "EFC-S",
+  "summary": "# EFC\u2013S Structural Model",
+  "keywords": [
+    "efc",
+    "model",
+    "structural",
+    "entropy",
+    "subsection",
+    "item",
+    "rho",
+    "e_f",
+    "energy",
+    "flow",
+    "mathbf",
+    "structure",
+    "density",
+    "profiles",
+    "spatial",
+    "defines",
+    "describes",
+    "e_0",
+    "equilibrium",
+    "frac",
+    "is",
+    "itemize",
+    "profile",
+    "resistance",
+    "begin"
+  ],
+  "dependencies": [],
+  "raw": {
+    "has_readme": true,
+    "has_index_md": false,
+    "has_index_tex": true,
+    "has_index_json": true
+  },
+  "index_json": {
+    "model": "EFC-S",
+    "description": "Structural layer of Energy-Flow Cosmology.",
+    "fields": {
+      "G": "Grid state (structural capacity)",
+      "S": "Entropy field",
+      "rho": "Density field",
+      "R": "Grid resistance function"
+    },
+    "relations": {
+      "Phi_S": "rho * (1 - S)"
+    }
+  }
+}

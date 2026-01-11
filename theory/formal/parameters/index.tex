@@ -1,0 +1,120 @@
+% =====================================================================
+% Energy-Flow Cosmology — Global Parameter Specification (Master)
+% =====================================================================
+
+\section*{EFC Global Parameters: Master Specification}
+
+\subsection*{1. Purpose}
+
+This document defines the global constants, coefficients, and
+normalization parameters used across the formal models of
+Energy-Flow Cosmology (EFC). These parameters appear in the
+S, D, H, C$_0$, flow-diagram, and formal-spec modules.
+
+\subsection*{2. Normalization Constants}
+
+\paragraph{Entropy normalization}
+\[
+0 \leq S(\mathbf{x}, t) \leq 1
+\]
+
+\paragraph{Information capacity baseline}
+\[
+C_0 > 0
+\]
+
+\paragraph{Propagation normalization}
+\[
+c_{\text{eff}} = (1+R)^{-1}
+\]
+
+\subsection*{3. Coupling Coefficients}
+
+\paragraph{Resistance evolution}
+\[
+\frac{dR}{dt}
+= \alpha \frac{dS}{dt}
+- \beta \frac{d\rho}{dt}
+\]
+
+with:
+\[
+\alpha > 0, \quad \beta > 0
+\]
+
+\paragraph{Information resonance}
+\[
+I_0 = \gamma |E_f \cdot \nabla S|
+\]
+
+with:
+\[
+\gamma > 0
+\]
+
+\subsection*{4. Structural Parameters}
+
+Equilibrium structural constant:
+\[
+E_0 = \rho(1-S)
+\]
+
+Used in S-model equilibrium:
+\[
+\nabla E_f = 0
+\]
+
+\paragraph{Structure formation threshold}
+\[
+E_f > R
+\]
+
+\subsection*{5. Spatial Gradient Parameters}
+
+\paragraph{Entropy gradient magnitude}
+\[
+0 < \left|\frac{dS}{dr}\right| \ll 1
+\]
+
+\paragraph{Structural coherence scale}
+\[
+L_s > 0
+\]
+
+Defines spatial smoothness of entropy and density profiles.
+
+\subsection*{6. Simulation Parameters}
+
+\paragraph{Time discretisation}
+\[
+\Delta t > 0
+\]
+
+\paragraph{Spatial resolution}
+\[
+\Delta x > 0
+\]
+
+\paragraph{Gradient threshold for stability}
+\[
+\epsilon_{\nabla} > 0
+\]
+
+\paragraph{Update ordering (canonical)}
+\[
+S \rightarrow \rho \rightarrow E_f \rightarrow R \rightarrow c_{\text{eff}}
+\]
+
+\subsection*{7. Purpose in the EFC Framework}
+
+These parameters are used to:
+
+\begin{itemize}
+    \item define model constants across formal modules  
+    \item ensure structural and dynamical consistency  
+    \item unify simulation implementations  
+    \item enable reproducibility and machine interpretation  
+\end{itemize}
+
+They form the baseline parameter environment for the entire formal system.
+

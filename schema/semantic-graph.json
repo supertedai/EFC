@@ -1,0 +1,1138 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-11-18T05:54:12.194059Z",
+  "node_count": 124,
+  "doc_node_count": 122,
+  "keyword_count": 86,
+  "nodes": [
+    {
+      "id": "AI-Augmented-Scientific-Workflow-Framework",
+      "path": "methodology/AI-Augmented-Scientific-Workflow-Framework/AI-Augmented-Scientific-Workflow-Framework/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/AI-Augmented-Scientific-Workflow-Framework/AI-Augmented-Scientific-Workflow-Framework",
+      "related": []
+    },
+    {
+      "id": "api",
+      "path": "api/api.jsonld",
+      "layer": "api",
+      "parent": "api",
+      "related": []
+    },
+    {
+      "id": "api/README_API",
+      "path": "api/README_API.jsonld",
+      "layer": "api",
+      "parent": "api",
+      "related": [
+        "meta/architecture",
+        "meta/reflection/reflection-log",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "cognition",
+      "path": "meta/cognition/cognition/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/cognition",
+      "related": []
+    },
+    {
+      "id": "docs/cognition/CEM-Consciousness-Ego-Mirror",
+      "path": "docs/papers/efc/CEM-Consciousness-Ego-Mirror/CEM-Consciousness-Ego-Mirror.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/CEM-Consciousness-Ego-Mirror",
+      "related": []
+    },
+    {
+      "id": "docs/docs/index",
+      "path": "docs/docs/index.jsonld",
+      "layer": "docs",
+      "parent": "docs/docs",
+      "related": [
+        "docs/index"
+      ]
+    },
+    {
+      "id": "docs/figures/readme/index",
+      "path": "docs/figures/readme/index.jsonld",
+      "layer": "docs",
+      "parent": "docs/figures/readme",
+      "related": []
+    },
+    {
+      "id": "docs/index",
+      "path": "docs/index.jsonld",
+      "layer": "docs",
+      "parent": "docs",
+      "related": [
+        "docs/docs/index"
+      ]
+    },
+    {
+      "id": "docs/mathjax-header/index",
+      "path": "docs/mathjax-header/index.jsonld",
+      "layer": "docs",
+      "parent": "docs/mathjax-header",
+      "related": []
+    },
+    {
+      "id": "docs/meta/readme/index",
+      "path": "docs/meta/readme/index.jsonld",
+      "layer": "docs",
+      "parent": "docs/meta/readme",
+      "related": [
+        "meta/README/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index"
+      ]
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-A-Deep-Dive-into-the-Halo-Concept",
+      "path": "docs/papers/efc/EFC-A-Deep-Dive-into-the-Halo-Concept/EFC-A-Deep-Dive-into-the-Halo-Concept.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-A-Deep-Dive-into-the-Halo-Concept",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-AI-Augmented-Scientific-Workflow-Framework",
+      "path": "docs/papers/efc/EFC-AI-Augmented-Scientific-Workflow-Framework/EFC-AI-Augmented-Scientific-Workflow-Framework.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-AI-Augmented-Scientific-Workflow-Framework",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Applications-and-Implications",
+      "path": "docs/papers/efc/EFC-Applications-and-Implications/EFC-Applications-and-Implications.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Applications-and-Implications",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-CMB-Thermodynamic-Gradient",
+      "path": "docs/papers/efc/EFC-CMB-Thermodynamic-Gradient/EFC-CMB-Thermodynamic-Gradient.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-CMB-Thermodynamic-Gradient",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters",
+      "path": "docs/papers/efc/EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters/EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Can-Entropy-Drive-Cosmic-Evolution",
+      "path": "docs/papers/efc/EFC-Can-Entropy-Drive-Cosmic-Evolution/EFC-Can-Entropy-Drive-Cosmic-Evolution.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Can-Entropy-Drive-Cosmic-Evolution",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
+      "path": "docs/papers/efc/EFC-Dynamic-Balance-Entropy-Order-and-Chaos/EFC-Dynamic-Balance-Entropy-Order-and-Chaos.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe",
+      "path": "docs/papers/efc/EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe/EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Field-Equations-for-Entropy-Driven-Spacetime",
+      "path": "docs/papers/efc/EFC-Field-Equations-for-Entropy-Driven-Spacetime/EFC-Field-Equations-for-Entropy-Driven-Spacetime.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Field-Equations-for-Entropy-Driven-Spacetime",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
+      "path": "docs/papers/efc/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Grid-Higgs-Framework",
+      "path": "docs/papers/efc/EFC-Grid-Higgs-Framework/EFC-Grid-Higgs-Framework.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Grid-Higgs-Framework",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Grid-Higgs-Paradigm-Shift",
+      "path": "docs/papers/efc/EFC-Grid-Higgs-Paradigm-Shift/EFC-Grid-Higgs-Paradigm-Shift.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Grid-Higgs-Paradigm-Shift",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Grid-Model-Entropic-Dynamics.",
+      "path": "docs/papers/efc/EFC-Grid-Model-Entropic-Dynamics./EFC-Grid-Model-Entropic-Dynamics..jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Grid-Model-Entropic-Dynamics.",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-How-Does-Balance-Shape-Universal-Structures",
+      "path": "docs/papers/efc/EFC-How-Does-Balance-Shape-Universal-Structures/EFC-How-Does-Balance-Shape-Universal-Structures.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-How-Does-Balance-Shape-Universal-Structures",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-How-Energy-Flow-Sustain-Spacetime",
+      "path": "docs/papers/efc/EFC-How-Energy-Flow-Sustain-Spacetime/EFC-How-Energy-Flow-Sustain-Spacetime.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-How-Energy-Flow-Sustain-Spacetime",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Hypothesis-Interrelation-Energy-Entropy",
+      "path": "docs/papers/efc/EFC-Hypothesis-Interrelation-Energy-Entropy/EFC-Hypothesis-Interrelation-Energy-Entropy.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Hypothesis-Interrelation-Energy-Entropy",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Hypothesis-Universe-as-Energy-Driven-System",
+      "path": "docs/papers/efc/EFC-Hypothesis-Universe-as-Energy-Driven-System/EFC-Hypothesis-Universe-as-Energy-Driven-System.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Hypothesis-Universe-as-Energy-Driven-System",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Integrated-Hypothesis-Time-Entropy",
+      "path": "docs/papers/efc/EFC-Integrated-Hypothesis-Time-Entropy/EFC-Integrated-Hypothesis-Time-Entropy.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Integrated-Hypothesis-Time-Entropy",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Introduction-to-Energy-Flow-in-Space-Time",
+      "path": "docs/papers/efc/EFC-Introduction-to-Energy-Flow-in-Space-Time/EFC-Introduction-to-Energy-Flow-in-Space-Time.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Introduction-to-Energy-Flow-in-Space-Time",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
+      "path": "docs/papers/efc/EFC-Introduction-to-Entropy-in-Cosmic-Evolution/EFC-Introduction-to-Entropy-in-Cosmic-Evolution.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Is-Consciousness-Linked-to-Entropy",
+      "path": "docs/papers/efc/EFC-Is-Consciousness-Linked-to-Entropy/EFC-Is-Consciousness-Linked-to-Entropy.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Is-Consciousness-Linked-to-Entropy",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe",
+      "path": "docs/papers/efc/EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe/EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time",
+      "path": "docs/papers/efc/EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time/EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
+      "path": "docs/papers/efc/EFC-Observational-Evidence-Entropy-Cosmic-Evolution/EFC-Observational-Evidence-Entropy-Cosmic-Evolution.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Observational-Evidence-for-Energy-Flow",
+      "path": "docs/papers/efc/EFC-Observational-Evidence-for-Energy-Flow/EFC-Observational-Evidence-for-Energy-Flow.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Observational-Evidence-for-Energy-Flow",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Subhypothesis-Light-Speed-Limit",
+      "path": "docs/papers/efc/EFC-Subhypothesis-Light-Speed-Limit/EFC-Subhypothesis-Light-Speed-Limit.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Subhypothesis-Light-Speed-Limit",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
+      "path": "docs/papers/efc/EFC-Technical-Documentation-Energy-Flow-in-Space-Time/EFC-Technical-Documentation-Energy-Flow-in-Space-Time.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-The-Energy-Flow-Interface",
+      "path": "docs/papers/efc/EFC-The-Energy-Flow-Interface/EFC-The-Energy-Flow-Interface.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-The-Energy-Flow-Interface",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Thermodynamic-Bridge-GR-QFT",
+      "path": "docs/papers/efc/EFC-Thermodynamic-Bridge-GR-QFT/EFC-Thermodynamic-Bridge-GR-QFT.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Thermodynamic-Bridge-GR-QFT",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Unresolved-Questions-and-Challenges-Entropy",
+      "path": "docs/papers/efc/EFC-Unresolved-Questions-and-Challenges-Entropy/EFC-Unresolved-Questions-and-Challenges-Entropy.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Unresolved-Questions-and-Challenges-Entropy",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-What-Happens-at-the-Universes-Extremes",
+      "path": "docs/papers/efc/EFC-What-Happens-at-the-Universes-Extremes/EFC-What-Happens-at-the-Universes-Extremes.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-What-Happens-at-the-Universes-Extremes",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now",
+      "path": "docs/papers/efc/EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now/EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-Why-is-Light-Speed-a-Cosmic-Limit",
+      "path": "docs/papers/efc/EFC-Why-is-Light-Speed-a-Cosmic-Limit/EFC-Why-is-Light-Speed-a-Cosmic-Limit.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-Why-is-Light-Speed-a-Cosmic-Limit",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-v1.2-Foundational-Framework",
+      "path": "docs/papers/efc/EFC-v1.2-Foundational-Framework/EFC-v1.2-Foundational-Framework.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-v1.2-Foundational-Framework",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-v2.1-Complete-Edition",
+      "path": "docs/papers/efc/EFC-v2.1-Complete-Edition/EFC-v2.1-Complete-Edition.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-v2.1-Complete-Edition",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-v2.1-Modular-Synthesis",
+      "path": "docs/papers/efc/EFC-v2.1-Modular-Synthesis/EFC-v2.1-Modular-Synthesis.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-v2.1-Modular-Synthesis",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/EFC-v2.2-Cross-Field-Integration-Summary",
+      "path": "docs/papers/efc/EFC-v2.2-Cross-Field-Integration-Summary/EFC-v2.2-Cross-Field-Integration-Summary.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/EFC-v2.2-Cross-Field-Integration-Summary",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/ai_workflow_framework",
+      "path": "docs/papers/efc/ai_workflow_framework/ai_workflow_framework.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/ai_workflow_framework",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/efc_formal_spec",
+      "path": "docs/papers/efc/efc_formal_spec/efc_formal_spec.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/efc_formal_spec",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/efc_master",
+      "path": "docs/papers/efc/efc_master/efc_master.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/efc_master",
+      "related": []
+    },
+    {
+      "id": "docs/restored_pdfs/efc_master_v1",
+      "path": "docs/papers/efc/efc_master_v1/efc_master_v1.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/efc_master_v1",
+      "related": []
+    },
+    {
+      "id": "docs/sections/README/index",
+      "path": "docs/papers/efc/index/index.jsonld",
+      "layer": "docs",
+      "parent": "docs/papers/efc/index",
+      "related": []
+    },
+    {
+      "id": "meta",
+      "path": "meta/meta/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta",
+      "related": []
+    },
+    {
+      "id": "meta-process",
+      "path": "meta/meta-process/meta-process/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/meta-process",
+      "related": []
+    },
+    {
+      "id": "meta/README/index",
+      "path": "meta/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/README",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index"
+      ]
+    },
+    {
+      "id": "meta/WORKFLOW_MAP",
+      "path": "meta/workflow-map/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/workflow-map",
+      "related": []
+    },
+    {
+      "id": "meta/architecture",
+      "path": "meta/architecture/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/architecture",
+      "related": [
+        "api/README_API",
+        "meta/cognition/you",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/reflection/reflection-log",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "meta/cognition/CEM-Consciousness-Ego-Mirror",
+      "path": "meta/cognition/cem-consciousness-ego-mirror/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/cem-consciousness-ego-mirror",
+      "related": []
+    },
+    {
+      "id": "meta/cognition/EFC-Hypothesis-Entropy-and-Energy-Flow",
+      "path": "meta/cognition/efc-hypothesis-entropy-and-energy-flow/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/efc-hypothesis-entropy-and-energy-flow",
+      "related": []
+    },
+    {
+      "id": "meta/cognition/README/index",
+      "path": "meta/cognition/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/README",
+      "related": [
+        "meta/cognition/readme/index"
+      ]
+    },
+    {
+      "id": "meta/cognition/cognitive-field",
+      "path": "meta/cognition/cognitive-field/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/cognitive-field",
+      "related": [
+        "meta/cognition/cognitive-signature",
+        "meta/cognition/entropy-clarity",
+        "meta/cognition/you",
+        "meta/meta-process/co-field",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/vector-alignment"
+      ]
+    },
+    {
+      "id": "meta/cognition/cognitive-signature",
+      "path": "meta/cognition/cognitive-signature/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/cognitive-signature",
+      "related": [
+        "meta/cognition/cognitive-field",
+        "meta/cognition/you",
+        "meta/meta-architecture-spec",
+        "meta/symbiosis/symbiotic-process-llm"
+      ]
+    },
+    {
+      "id": "meta/cognition/entropy-clarity",
+      "path": "meta/cognition/entropy-clarity/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/entropy-clarity",
+      "related": [
+        "meta/cognition/cognitive-field",
+        "meta/symbiosis/vector-alignment"
+      ]
+    },
+    {
+      "id": "meta/cognition/readme/index",
+      "path": "meta/cognition/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/readme",
+      "related": [
+        "meta/cognition/README/index"
+      ]
+    },
+    {
+      "id": "meta/cognition/transient-representations",
+      "path": "meta/cognition/transient-representations/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/transient-representations",
+      "related": []
+    },
+    {
+      "id": "meta/cognition/you",
+      "path": "meta/cognition/you/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/cognition/you",
+      "related": [
+        "meta/architecture",
+        "meta/cognition/cognitive-field",
+        "meta/cognition/cognitive-signature",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec"
+      ]
+    },
+    {
+      "id": "meta/meta-architecture",
+      "path": "meta/meta-architecture/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-architecture",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/architecture",
+        "meta/cognition/you",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index"
+      ]
+    },
+    {
+      "id": "meta/meta-architecture-spec",
+      "path": "meta/meta-architecture-spec/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-architecture-spec",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/architecture",
+        "meta/cognition/cognitive-signature",
+        "meta/cognition/you",
+        "meta/meta-architecture",
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index",
+        "meta/symbiosis/symbiotic-process-llm"
+      ]
+    },
+    {
+      "id": "meta/meta-process/README/index",
+      "path": "meta/meta-process/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/README",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/process-of-process",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-summary",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "meta/meta-process/backlog",
+      "path": "meta/meta-process/backlog/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/backlog",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/co-field",
+      "path": "meta/meta-process/co-field/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/co-field",
+      "related": [
+        "meta/cognition/cognitive-field",
+        "meta/meta-reflective-protocol",
+        "meta/metascope",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/symbiosis-interface"
+      ]
+    },
+    {
+      "id": "meta/meta-process/global-dynamics",
+      "path": "meta/meta-process/global-dynamics/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/global-dynamics",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/milestones",
+      "path": "meta/meta-process/milestones/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/milestones",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/process-of-process",
+      "path": "meta/meta-process/process-of-process/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/process-of-process",
+      "related": [
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-summary",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "meta/meta-process/readme/index",
+      "path": "meta/meta-process/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/readme",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/process-of-process",
+        "meta/meta-reflective-protocol",
+        "meta/readme/index",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-summary",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "meta/meta-process/roadmap",
+      "path": "meta/meta-process/roadmap/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/roadmap",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/self-evaluation",
+      "path": "meta/meta-process/self-evaluation/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/self-evaluation",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/tasks",
+      "path": "meta/meta-process/tasks/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/tasks",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/validation-plan",
+      "path": "meta/meta-process/validation-plan/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/validation-plan",
+      "related": []
+    },
+    {
+      "id": "meta/meta-process/workflows",
+      "path": "meta/meta-process/workflows/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-process/workflows",
+      "related": []
+    },
+    {
+      "id": "meta/meta-reflective-protocol",
+      "path": "meta/meta-reflective-protocol/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/meta-reflective-protocol",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/co-field",
+        "meta/meta-process/readme/index",
+        "meta/metascope",
+        "meta/readme/index",
+        "meta/symbiosis/symbiosis-interface"
+      ]
+    },
+    {
+      "id": "meta/metascope",
+      "path": "meta/metascope/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/metascope",
+      "related": [
+        "meta/meta-process/co-field",
+        "meta/meta-reflective-protocol",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/symbiosis-interface",
+        "meta/symbiosis/system",
+        "meta/symbiosis/system-coherence",
+        "methodology/reproducibility-guide"
+      ]
+    },
+    {
+      "id": "meta/personal/Personal-Note",
+      "path": "meta/personal/personal-note/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/personal/personal-note",
+      "related": []
+    },
+    {
+      "id": "meta/personal/README/index",
+      "path": "meta/personal/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/personal/README",
+      "related": [
+        "meta/personal/readme/index"
+      ]
+    },
+    {
+      "id": "meta/personal/readme/index",
+      "path": "meta/personal/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/personal/readme",
+      "related": [
+        "meta/personal/README/index"
+      ]
+    },
+    {
+      "id": "meta/readme/index",
+      "path": "meta/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/readme",
+      "related": [
+        "docs/meta/readme/index",
+        "meta/README/index",
+        "meta/meta-architecture",
+        "meta/meta-architecture-spec",
+        "meta/meta-process/README/index",
+        "meta/meta-process/readme/index",
+        "meta/meta-reflective-protocol"
+      ]
+    },
+    {
+      "id": "meta/reflection/README/index",
+      "path": "meta/reflection/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/reflection/README",
+      "related": [
+        "meta/reflection/readme/index",
+        "meta/reflection/reflection-log"
+      ]
+    },
+    {
+      "id": "meta/reflection/readme/index",
+      "path": "meta/reflection/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/reflection/readme",
+      "related": [
+        "meta/reflection/README/index",
+        "meta/reflection/reflection-log"
+      ]
+    },
+    {
+      "id": "meta/reflection/reflection-log",
+      "path": "meta/reflection/reflection-log/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/reflection/reflection-log",
+      "related": [
+        "api/README_API",
+        "meta/architecture",
+        "meta/reflection/README/index",
+        "meta/reflection/readme/index",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "meta/resources/README/index",
+      "path": "meta/resources/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/resources/README",
+      "related": [
+        "meta/resources/readme/index"
+      ]
+    },
+    {
+      "id": "meta/resources/readme/index",
+      "path": "meta/resources/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/resources/readme",
+      "related": [
+        "meta/resources/README/index"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/README/index",
+      "path": "meta/symbiosis/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/README",
+      "related": [
+        "meta/symbiosis/readme/index",
+        "meta/symbiosis/symbiosis-interface"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/readme/index",
+      "path": "meta/symbiosis/readme/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/readme",
+      "related": [
+        "meta/symbiosis/README/index",
+        "meta/symbiosis/symbiosis-interface"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/resonance-mechanism",
+      "path": "meta/symbiosis/resonance-mechanism/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/resonance-mechanism",
+      "related": [
+        "meta/cognition/cognitive-field",
+        "meta/meta-process/co-field",
+        "meta/metascope",
+        "meta/symbiosis/system",
+        "meta/symbiosis/system-coherence",
+        "methodology/reproducibility-guide"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/symbiosis-interface",
+      "path": "meta/symbiosis/symbiosis-interface/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/symbiosis-interface",
+      "related": [
+        "meta/meta-process/co-field",
+        "meta/meta-reflective-protocol",
+        "meta/metascope",
+        "meta/symbiosis/README/index",
+        "meta/symbiosis/readme/index"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/symbiotic-process",
+      "path": "meta/symbiosis/symbiotic-process/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/symbiotic-process",
+      "related": [
+        "meta/meta-process/README/index",
+        "meta/meta-process/process-of-process",
+        "meta/meta-process/readme/index",
+        "meta/symbiosis/symbiotic-process-llm",
+        "meta/symbiosis/symbiotic-process-summary",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/symbiotic-process-llm",
+      "path": "meta/symbiosis/symbiotic-process-llm/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/symbiotic-process-llm",
+      "related": [
+        "meta/cognition/cognitive-signature",
+        "meta/meta-architecture-spec",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-summary"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/symbiotic-process-summary",
+      "path": "meta/symbiosis/symbiotic-process-summary/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/symbiotic-process-summary",
+      "related": [
+        "meta/meta-process/README/index",
+        "meta/meta-process/process-of-process",
+        "meta/meta-process/readme/index",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-llm",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/system",
+      "path": "meta/symbiosis/system/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/system",
+      "related": [
+        "meta/metascope",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/system-coherence",
+        "methodology/reproducibility-guide"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/system-coherence",
+      "path": "meta/symbiosis/system-coherence/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/system-coherence",
+      "related": [
+        "meta/metascope",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/system",
+        "methodology/reproducibility-guide"
+      ]
+    },
+    {
+      "id": "meta/symbiosis/vector-alignment",
+      "path": "meta/symbiosis/vector-alignment/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/vector-alignment",
+      "related": [
+        "meta/cognition/cognitive-field",
+        "meta/cognition/entropy-clarity"
+      ]
+    },
+    {
+      "id": "meta/topology-of-insight",
+      "path": "meta/topology-of-insight/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/topology-of-insight",
+      "related": [
+        "meta/topology/README/index"
+      ]
+    },
+    {
+      "id": "meta/topology/README/index",
+      "path": "meta/topology/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/topology/README",
+      "related": [
+        "meta/topology-of-insight"
+      ]
+    },
+    {
+      "id": "meta/topology/aux/README/index",
+      "path": "meta/topology/aux/README/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/topology/aux/README",
+      "related": []
+    },
+    {
+      "id": "methodology",
+      "path": "methodology/methodology/index/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/methodology/index",
+      "related": []
+    },
+    {
+      "id": "methodology/AI-Augmented-Scientific-Workflow-Framework/README/index",
+      "path": "methodology/AI-Augmented-Scientific-Workflow-Framework/README/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/AI-Augmented-Scientific-Workflow-Framework/README",
+      "related": [
+        "methodology/AI-Augmented-Scientific-Workflow-Framework/ai_workflow_framework"
+      ]
+    },
+    {
+      "id": "methodology/AI-Augmented-Scientific-Workflow-Framework/ai_workflow_framework",
+      "path": "methodology/AI-Augmented-Scientific-Workflow-Framework/ai_workflow_framework/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/AI-Augmented-Scientific-Workflow-Framework/ai_workflow_framework",
+      "related": [
+        "methodology/AI-Augmented-Scientific-Workflow-Framework/README/index"
+      ]
+    },
+    {
+      "id": "methodology/EFC-AI-Augmented-Scientific-Workflow-Framework",
+      "path": "methodology/EFC-AI-Augmented-Scientific-Workflow-Framework.jsonld",
+      "layer": "methodology",
+      "parent": "methodology",
+      "related": []
+    },
+    {
+      "id": "methodology/EFC-epistemology",
+      "path": "methodology/EFC-epistemology/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/EFC-epistemology",
+      "related": []
+    },
+    {
+      "id": "methodology/README/index",
+      "path": "methodology/README/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/README",
+      "related": [
+        "methodology/methodology/README/index",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "methodology/ai_workflow_framework",
+      "path": "methodology/ai_workflow_framework.jsonld",
+      "layer": "methodology",
+      "parent": "methodology",
+      "related": []
+    },
+    {
+      "id": "methodology/author-method-note",
+      "path": "methodology/author-method-note/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/author-method-note",
+      "related": []
+    },
+    {
+      "id": "methodology/methodology/README/index",
+      "path": "methodology/methodology/README/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/methodology/README",
+      "related": [
+        "methodology/README/index",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "methodology/open-method",
+      "path": "methodology/open-method/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/open-method",
+      "related": [
+        "api/README_API",
+        "meta/architecture",
+        "meta/reflection/reflection-log",
+        "methodology/README/index",
+        "methodology/methodology/README/index",
+        "methodology/open-process/README/index"
+      ]
+    },
+    {
+      "id": "methodology/open-process/README/index",
+      "path": "methodology/open-process/README/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/open-process/README",
+      "related": [
+        "meta/meta-process/README/index",
+        "meta/meta-process/process-of-process",
+        "meta/meta-process/readme/index",
+        "meta/symbiosis/symbiotic-process",
+        "meta/symbiosis/symbiotic-process-summary",
+        "methodology/open-method"
+      ]
+    },
+    {
+      "id": "methodology/open-process/aux/README/index",
+      "path": "methodology/open-process/aux/README/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/open-process/aux/README",
+      "related": []
+    },
+    {
+      "id": "methodology/reproducibility-guide",
+      "path": "methodology/reproducibility-guide/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/reproducibility-guide",
+      "related": [
+        "meta/metascope",
+        "meta/symbiosis/resonance-mechanism",
+        "meta/symbiosis/system",
+        "meta/symbiosis/system-coherence"
+      ]
+    },
+    {
+      "id": "methodology/symbiosis-interface",
+      "path": "methodology/symbiosis-interface/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/symbiosis-interface",
+      "related": [
+        "methodology/symbiotic-process",
+        "methodology/symbiotic-process-llm",
+        "methodology/symbiotic-process-summary"
+      ]
+    },
+    {
+      "id": "methodology/symbiotic-process",
+      "path": "methodology/symbiotic-process/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/symbiotic-process",
+      "related": [
+        "methodology/symbiosis-interface",
+        "methodology/symbiotic-process-llm",
+        "methodology/symbiotic-process-summary"
+      ]
+    },
+    {
+      "id": "methodology/symbiotic-process-llm",
+      "path": "methodology/symbiotic-process-llm/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/symbiotic-process-llm",
+      "related": [
+        "methodology/symbiosis-interface",
+        "methodology/symbiotic-process",
+        "methodology/symbiotic-process-summary"
+      ]
+    },
+    {
+      "id": "methodology/symbiotic-process-summary",
+      "path": "methodology/symbiotic-process-summary/index.jsonld",
+      "layer": "methodology",
+      "parent": "methodology/symbiotic-process-summary",
+      "related": [
+        "methodology/symbiosis-interface",
+        "methodology/symbiotic-process",
+        "methodology/symbiotic-process-llm"
+      ]
+    },
+    {
+      "id": "personal",
+      "path": "meta/personal/personal/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/personal/personal",
+      "related": []
+    },
+    {
+      "id": "reflection",
+      "path": "meta/reflection/reflection/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/reflection/reflection",
+      "related": []
+    },
+    {
+      "id": "symbiosis",
+      "path": "meta/symbiosis/symbiosis/index.jsonld",
+      "layer": "meta",
+      "parent": "meta/symbiosis/symbiosis",
+      "related": []
+    }
+  ]
+}

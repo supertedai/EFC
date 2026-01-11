@@ -1,0 +1,59 @@
+{
+  "id": "parameters",
+  "name": "EFC Global Parameters",
+  "path": "theory/formal/parameters",
+  "layer": "parameters",
+  "summary": "# EFC Global Parameters",
+  "keywords": [
+    "paragraph",
+    "parameters",
+    "subsection",
+    "constants",
+    "formal",
+    "global",
+    "normalization",
+    "structural",
+    "e_f",
+    "efc",
+    "entropy",
+    "flow",
+    "frac",
+    "item",
+    "rightarrow",
+    "used",
+    "across",
+    "coefficients",
+    "cosmology",
+    "defines",
+    "dt",
+    "energy",
+    "gradient",
+    "in",
+    "master"
+  ],
+  "dependencies": [],
+  "raw": {
+    "has_readme": true,
+    "has_index_md": false,
+    "has_index_tex": true,
+    "has_index_json": true
+  },
+  "index_json": {
+    "parameters": {
+      "static": {
+        "S0": "Low-entropy reference",
+        "S1": "High-entropy reference",
+        "rho0": "Reference density"
+      },
+      "dynamic": {
+        "kE": "Energy-flow scaling",
+        "kS": "Entropy-gradient scaling",
+        "kEta": "Grid-resistance scaling"
+      },
+      "structural_thresholds": {
+        "Scrit": "Onset of structure formation",
+        "Ssat": "Entropy saturation"
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "meta_api_version": "1.1.1",
+  "description": "API index for EFC theory, meta, cognition, symbiosis and AUTH layers.",
+  "last_updated": "2025-11-19",
+  "nodes": [
+    {
+      "id": "global_schema",
+      "name": "Global Schema",
+      "type": "Dataset",
+      "path": "schema/global_schema.json"
+    },
+    {
+      "id": "schema_map",
+      "name": "Schema Map",
+      "type": "Dataset",
+      "path": "schema/schema-map.json"
+    },
+    {
+      "id": "site_graph",
+      "name": "Site Graph",
+      "type": "Dataset",
+      "path": "schema/site-graph.json"
+    },
+    {
+      "id": "semantic_index",
+      "name": "Semantic Search Index",
+      "type": "Dataset",
+      "path": "semantic-search-index.json"
+    },
+    {
+      "id": "auth_layer",
+      "name": "AUTH Layer",
+      "type": "CreativeWork",
+      "path": "auth/index.jsonld",
+      "doi": "10.6084/m9.figshare.30656828"
+    },
+    {
+      "id": "metagraph",
+      "name": "Meta Graph",
+      "type": "Dataset",
+      "path": "meta-graph/meta-graph.jsonld"
+    }
+  ],
+  "entrypoints": {
+    "schema": "schema/global_schema.json",
+    "schema_map": "schema/schema-map.json",
+    "semantic_index": "semantic-search-index.json",
+    "auth": "auth/index.jsonld",
+    "meta_graph": "meta-graph/meta-graph.jsonld"
+  },
+  "sources": {
+    "figshare": {
+      "id": 30666506,
+      "title": "EFC \u2014 Entropy-Dependent Speed of Light Through the s\u2080/s\u2081 Phase Thresholds",
+      "published_date": null,
+      "url": "https://api.figshare.com/v2/account/articles/30666506",
+      "doi": "",
+      "resource_id": null,
+      "resource_doi": null
+    }
+  },
+  "doi": {
+    "master_spec": {
+      "doi": "",
+      "figshare_id": 30666506,
+      "url": "https://api.figshare.com/v2/account/articles/30666506",
+      "published_date": null,
+      "source": "figshare"
+    }
+  }
+}

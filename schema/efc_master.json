@@ -1,0 +1,478 @@
+{
+  "name": "Energy-Flow Cosmology \u2014 Formal Semantic Schema",
+  "version": "1.0",
+  "modules": [
+    {
+      "id": "efc-c0-model",
+      "name": "EFC\u2013C\u2080 Information Model",
+      "path": "theory/formal/efc-c0-model",
+      "layer": "EFC-C0",
+      "summary": "# EFC\u2013C\u2080 Information Model",
+      "keywords": [
+        "information",
+        "item",
+        "efc",
+        "flow",
+        "energy",
+        "subsection",
+        "entropy",
+        "informational",
+        "mathbf",
+        "resonance",
+        "e_f",
+        "itemize",
+        "model",
+        "_0",
+        "capacity",
+        "i_0",
+        "resistance",
+        "begin",
+        "cdot",
+        "end",
+        "field",
+        "flux",
+        "grid",
+        "nabla",
+        "aligned"
+      ],
+      "dependencies": [
+        "EFC-S"
+      ],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "model": "EFC-C0",
+        "description": "Base entropy\u2013information layer of Energy-Flow Cosmology.",
+        "relations": {
+          "capacity": "C = C0 * (1 - S)",
+          "resistance": "R = R(S, rho)",
+          "effective_speed": "c_eff = 1 / (1 + R)"
+        },
+        "regimes": {
+          "S0": "Low-entropy reference regime",
+          "S1": "High-entropy reference regime"
+        },
+        "notes": [
+          "This layer defines propagation behaviour.",
+          "Feeds into EFC-D dynamics and EFC-H lensing/rotation.",
+          "No dynamics of its own; purely structural mapping."
+        ]
+      }
+    },
+    {
+      "id": "efc-d-model",
+      "name": "EFC\u2013D Dynamics Model",
+      "path": "theory/formal/efc-d-model",
+      "layer": "EFC-D",
+      "summary": "# EFC\u2013D Dynamics Model",
+      "keywords": [
+        "e_f",
+        "frac",
+        "rho",
+        "dt",
+        "item",
+        "energy",
+        "entropy",
+        "flow",
+        "efc",
+        "mathbf",
+        "resistance",
+        "subsection",
+        "density",
+        "dynamics",
+        "dynamical",
+        "model",
+        "propagation",
+        "evolution",
+        "in",
+        "itemize",
+        "nabla",
+        "structural",
+        "c_",
+        "ds",
+        "eff"
+      ],
+      "dependencies": [
+        "EFC-S",
+        "EFC-C0"
+      ],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "model": "EFC-D",
+        "description": "Dynamic layer of Energy-Flow Cosmology.",
+        "equations": {
+          "Ef": "rho * (1 - S)",
+          "dEf_dt": "(1 - S) * drho_dt - rho * dS_dt",
+          "grad_Ef": "(1 - S) * grad(rho) - rho * grad(S)",
+          "flow_velocity": "-grad(Ef)"
+        }
+      }
+    },
+    {
+      "id": "efc-flow-diagram",
+      "name": "EFC Flow Diagram",
+      "path": "theory/formal/efc-flow-diagram",
+      "layer": "diagram",
+      "summary": "# EFC Flow Diagram",
+      "keywords": [
+        "flow",
+        "diagram",
+        "efc",
+        "item",
+        "rightarrow",
+        "e_f",
+        "energy",
+        "rho",
+        "information",
+        "mathbf",
+        "subsection",
+        "c_",
+        "eff",
+        "entropy",
+        "formal",
+        "longrightarrow",
+        "text",
+        "capacity",
+        "i_0",
+        "update",
+        "begin",
+        "cases",
+        "density",
+        "end",
+        "itemize"
+      ],
+      "dependencies": [],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": false
+      }
+    },
+    {
+      "id": "efc-formal-spec",
+      "name": "EFC Formal Specification",
+      "path": "theory/formal/efc-formal-spec",
+      "layer": "formal-master",
+      "summary": "# EFC Formal Specification",
+      "keywords": [
+        "e_f",
+        "frac",
+        "rho",
+        "efc",
+        "dt",
+        "text",
+        "flow",
+        "information",
+        "model",
+        "nabla",
+        "energy",
+        "section",
+        "formal",
+        "6pt",
+        "mathbf",
+        "structural",
+        "c_",
+        "eff",
+        "item",
+        "specification",
+        "document",
+        "ds",
+        "resistance",
+        "rightarrow",
+        "4pt"
+      ],
+      "dependencies": [
+        "EFC-S",
+        "EFC-D",
+        "EFC-H",
+        "EFC-C0",
+        "notation",
+        "parameters",
+        "header"
+      ],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": false
+      }
+    },
+    {
+      "id": "efc-h-model",
+      "name": "EFC\u2013H Structural Model: Formal Specification",
+      "path": "theory/formal/efc-h-model",
+      "layer": "EFC-S",
+      "summary": "% ===================================================================== % Energy-Flow Cosmology \u2014 EFC-H Structural Model (Master Specification) % =====================================================================",
+      "keywords": [
+        "e_f",
+        "efc",
+        "rho",
+        "structural",
+        "subsection",
+        "item",
+        "halo",
+        "structure",
+        "text",
+        "mathbf",
+        "energy",
+        "entropy",
+        "flow",
+        "frac",
+        "nabla",
+        "propagation",
+        "density",
+        "is",
+        "itemize",
+        "low",
+        "partial",
+        "resistance",
+        "stable",
+        "begin",
+        "c_"
+      ],
+      "dependencies": [],
+      "raw": {
+        "has_readme": false,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "model": "EFC-H",
+        "description": "Halo-level structural model of Energy-Flow Cosmology.",
+        "profiles": {
+          "rho(r)": "rho0 * (1 + r/rs)^(-alpha)",
+          "S(r)": "S0 + 1 - exp(-r/rs)"
+        },
+        "dynamics": {
+          "Ef(r)": "rho(r) * (1 - S(r))",
+          "v2(r)": "r * dEf/dr",
+          "lensing": "integral(Ef(sqrt(R^2 + z^2))) dz"
+        }
+      }
+    },
+    {
+      "id": "efc-header",
+      "name": "EFC Formal Header",
+      "path": "theory/formal/efc-header",
+      "layer": "EFC-H",
+      "summary": "# EFC Formal Header",
+      "keywords": [
+        "item",
+        "efc",
+        "formal",
+        "header",
+        "subsection",
+        "frac",
+        "newcommand",
+        "dt",
+        "e_f",
+        "flow",
+        "rho",
+        "across",
+        "all",
+        "c_",
+        "eff",
+        "energy",
+        "global",
+        "itemize",
+        "nabla",
+        "notation",
+        "rightarrow",
+        "text",
+        "begin",
+        "end",
+        "is"
+      ],
+      "dependencies": [
+        "EFC-S",
+        "EFC-D",
+        "EFC-C0"
+      ],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": false
+      }
+    },
+    {
+      "id": "efc-s-model",
+      "name": "EFC\u2013S Structural Model",
+      "path": "theory/formal/efc-s-model",
+      "layer": "EFC-S",
+      "summary": "# EFC\u2013S Structural Model",
+      "keywords": [
+        "efc",
+        "model",
+        "structural",
+        "entropy",
+        "subsection",
+        "item",
+        "rho",
+        "e_f",
+        "energy",
+        "flow",
+        "mathbf",
+        "structure",
+        "density",
+        "profiles",
+        "spatial",
+        "defines",
+        "describes",
+        "e_0",
+        "equilibrium",
+        "frac",
+        "is",
+        "itemize",
+        "profile",
+        "resistance",
+        "begin"
+      ],
+      "dependencies": [],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "model": "EFC-S",
+        "description": "Structural layer of Energy-Flow Cosmology.",
+        "fields": {
+          "G": "Grid state (structural capacity)",
+          "S": "Entropy field",
+          "rho": "Density field",
+          "R": "Grid resistance function"
+        },
+        "relations": {
+          "Phi_S": "rho * (1 - S)"
+        }
+      }
+    },
+    {
+      "id": "notation",
+      "name": "EFC Global Notation",
+      "path": "theory/formal/notation",
+      "layer": "notation",
+      "summary": "# EFC Global Notation",
+      "keywords": [
+        "mathbf",
+        "text",
+        "efc",
+        "nabla",
+        "newcommand",
+        "subsection",
+        "notation",
+        "e_f",
+        "formal",
+        "rightarrow",
+        "energy",
+        "flow",
+        "information",
+        "item",
+        "rho",
+        "c_",
+        "eff",
+        "global",
+        "i_0",
+        "specification",
+        "across",
+        "all",
+        "begin",
+        "cdot",
+        "cosmology"
+      ],
+      "dependencies": [
+        "header"
+      ],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "notation": {
+          "S": "Entropy field",
+          "rho": "Density",
+          "Ef": "Energy-flow potential",
+          "Phi_S": "Structural potential",
+          "c(S)": "Entropy-dependent propagation speed",
+          "n(S)": "Refractive analogue",
+          "Hz": "Local expansion-resistance",
+          "dotX": "Temporal derivative"
+        }
+      }
+    },
+    {
+      "id": "parameters",
+      "name": "EFC Global Parameters",
+      "path": "theory/formal/parameters",
+      "layer": "parameters",
+      "summary": "# EFC Global Parameters",
+      "keywords": [
+        "paragraph",
+        "parameters",
+        "subsection",
+        "constants",
+        "formal",
+        "global",
+        "normalization",
+        "structural",
+        "e_f",
+        "efc",
+        "entropy",
+        "flow",
+        "frac",
+        "item",
+        "rightarrow",
+        "used",
+        "across",
+        "coefficients",
+        "cosmology",
+        "defines",
+        "dt",
+        "energy",
+        "gradient",
+        "in",
+        "master"
+      ],
+      "dependencies": [],
+      "raw": {
+        "has_readme": true,
+        "has_index_md": false,
+        "has_index_tex": true,
+        "has_index_json": true
+      },
+      "index_json": {
+        "parameters": {
+          "static": {
+            "S0": "Low-entropy reference",
+            "S1": "High-entropy reference",
+            "rho0": "Reference density"
+          },
+          "dynamic": {
+            "kE": "Energy-flow scaling",
+            "kS": "Entropy-gradient scaling",
+            "kEta": "Grid-resistance scaling"
+          },
+          "structural_thresholds": {
+            "Scrit": "Onset of structure formation",
+            "Ssat": "Entropy saturation"
+          }
+        }
+      }
+    }
+  ]
+}

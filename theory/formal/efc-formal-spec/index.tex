@@ -1,0 +1,289 @@
+% =====================================================================
+% ENERGY–FLOW COSMOLOGY (EFC)
+% FORMAL SPECIFICATION — MASTER DOCUMENT
+% =====================================================================
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.4cm}
+
+% Optional macros from header:
+\newcommand{\Ef}{E_f}
+\newcommand{\ceff}{c_{\text{eff}}}
+
+\begin{document}
+
+\title{Energy–Flow Cosmology \\ \large Master Formal Specification}
+\author{Morten Magnusson}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+
+% ======================================================
+\section{Purpose of This Document}
+% ======================================================
+
+This document provides the unified formal specification for the full
+Energy–Flow Cosmology (EFC) framework. It integrates the structural,
+dynamical, informational, and resistance–propagation models into a
+coherent mathematical system.
+
+The models included:
+
+\begin{itemize}
+    \item EFC–S: Spatial Structure Model
+    \item EFC–D: Dynamical Evolution Model
+    \item EFC–H: Structural / Halo Model
+    \item EFC–C$_0$: Information and Resonance Model
+    \item Flow Diagram: Canonical Dependency Ordering
+    \item Global Parameters
+    \item Global Notation
+\end{itemize}
+
+Together, they define the complete formal base for EFC theory,
+simulations, and analytical predictions.
+
+
+% ======================================================
+\section{Global Notation and Definitions}
+% ======================================================
+
+The core scalar fields:
+
+\[
+\begin{aligned}
+S(\mathbf{x},t) &: \text{entropy field, } 0\le S \le 1,\\[4pt]
+\rho(\mathbf{x},t) &: \text{structural density},\\[4pt]
+E_f(\mathbf{x},t) &: \text{energy–flow potential},\\[4pt]
+R(\mathbf{x},t) &: \text{grid resistance},\\[4pt]
+C(\mathbf{x},t) &: \text{information capacity},\\[4pt]
+I_0(\mathbf{x},t) &: \text{information resonance scalar}.
+\end{aligned}
+\]
+
+Energy–flow potential:
+\[
+E_f = \rho(1 - S)
+\]
+
+Effective propagation velocity:
+\[
+c_{\text{eff}} = (1 + R)^{-1}
+\]
+
+Information capacity:
+\[
+C = C_0 (1 - S)
+\]
+
+Information resonance:
+\[
+I_0 = \gamma |E_f \cdot \nabla S|
+\]
+
+
+% ======================================================
+\section{Global Parameters}
+% ======================================================
+
+Entropy normalization:
+\[
+0 \le S \le 1
+\]
+
+Energy–flow equilibrium constant:
+\[
+E_0 = \rho(1-S)
+\]
+
+Coupling coefficients:
+\[
+\frac{dR}{dt} = \alpha\frac{dS}{dt} - \beta \frac{d\rho}{dt},
+\quad \alpha>0,\; \beta>0
+\]
+
+Gradient constraints:
+\[
+0 < \left|\frac{dS}{dr}\right| \ll 1
+\]
+
+Simulation parameters:
+\[
+\Delta t>0,\quad \Delta x>0
+\]
+
+
+% ======================================================
+\section{EFC–S: Spatial Structural Model}
+% ======================================================
+
+Structural equilibrium is defined by:
+\[
+\nabla E_f = 0
+\]
+
+Given:
+\[
+E_f = \rho(1-S)
+\]
+
+Equilibrium condition:
+\[
+\rho(1-S) = E_0
+\]
+
+Spatial density profile:
+\[
+\rho(r) = \frac{E_0}{1 - S(r)}
+\]
+
+Resistance as a function of entropy:
+\[
+R = R(S)
+\]
+
+Propagation:
+\[
+c_{\text{eff}} = (1+R)^{-1}
+\]
+
+
+% ======================================================
+\section{EFC–D: Dynamical Evolution Model}
+% ======================================================
+
+Dynamics of energy flow:
+\[
+\frac{dE_f}{dt} = \nabla_t E_f
+\]
+
+Structural evolution:
+\[
+\frac{d\rho}{dt} = F(E_f, \nabla E_f)
+\]
+minimal closure:
+\[
+\frac{d\rho}{dt} \propto E_f - R
+\]
+
+Entropy evolution:
+\[
+\frac{dS}{dt} \propto -\rho + |\nabla E_f|
+\]
+
+Resistance evolution:
+\[
+\frac{dR}{dt} = \alpha \frac{dS}{dt} - \beta\frac{d\rho}{dt}
+\]
+
+Velocity:
+\[
+\mathbf{v} = c_{\text{eff}} \hat{\mathbf{u}}
+\]
+
+
+% ======================================================
+\section{EFC–H: Structural / Halo Model}
+% ======================================================
+
+Structure formation threshold:
+\[
+E_f > R
+\]
+
+Halo equilibrium:
+\[
+\nabla E_f = 0
+\]
+
+Density profile identical to equilibrium S-model:
+\[
+\rho(r) = \frac{E_0}{1 - S(r)}
+\]
+
+Resistance gradient defines halo limb:
+\[
+\frac{\partial R}{\partial S} > 0 ,\quad 
+\frac{\partial R}{\partial \rho} < 0
+\]
+
+
+% ======================================================
+\section{EFC–C$_0$: Information Model}
+% ======================================================
+
+Information capacity:
+\[
+C = C_0(1-S)
+\]
+
+Information flux:
+\[
+\Phi_I = E_f \cdot \nabla S
+\]
+
+Information resonance:
+\[
+I_0 = \gamma |E_f \cdot \nabla S|
+\]
+
+Propagation:
+\[
+c_{\text{eff}} = (1 + R)^{-1}
+\]
+
+
+% ======================================================
+\section{Canonical Flow Diagram}
+% ======================================================
+
+Primary causal chain:
+\[
+S \rightarrow \rho \rightarrow E_f \rightarrow R \rightarrow c_{\text{eff}}
+\]
+
+Information chain:
+\[
+S \rightarrow (C,\nabla S) \rightarrow I_0
+\]
+
+Together these form the complete update ordering for all simulations and
+analytical models.
+
+
+% ======================================================
+\section{Unified System}
+% ======================================================
+
+The full EFC master system:
+
+\[
+\begin{aligned}
+E_f &= \rho(1-S), \\[6pt]
+\frac{dE_f}{dt} &= \nabla_t E_f, \\[6pt]
+\frac{d\rho}{dt} &= F(E_f,\nabla E_f), \\[6pt]
+\frac{dS}{dt} &= G(E_f,\rho,\nabla\rho), \\[6pt]
+R &= R(S,\rho), \\[6pt]
+\frac{dR}{dt} &= \alpha\frac{dS}{dt} - \beta\frac{d\rho}{dt}, \\[6pt]
+c_{\text{eff}} &= (1+R)^{-1}, \\[6pt]
+C &= C_0(1-S), \\[6pt]
+I_0 &= \gamma |E_f\cdot\nabla S|.
+\end{aligned}
+\]
+
+
+% ======================================================
+\section*{Conclusion}
+
+This document defines the complete mathematical structure of
+Energy–Flow Cosmology. All higher-level documents, simulations, and
+interpretations rely on the formal definitions and dependencies
+established here.
+
+\end{document}

@@ -1,0 +1,58 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://doi.org/10.6084/m9.figshare.30656828",
+
+  "name": "AUTH Layer — Origin & Authorship Specification",
+  "description": "Defines the provenance, cognitive signature, structural signature, citation rules and identity propagation model for Energy-Flow Cosmology (EFC).",
+  "identifier": "EFC-AUTH",
+  "inLanguage": "en",
+  "doi": "10.6084/m9.figshare.30656828",
+
+  "terms": [
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.origin",
+      "name": "Origin Declaration",
+      "description": "Declares the unique provenance of EFC as a single origin node: this repository, its commit lineage and the documented meta-cognitive process."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.cognitiveSignature",
+      "name": "Cognitive Signature",
+      "description": "Describes the field-based reasoning, parallel structure formation, entropy–clarity inversion and s0/s1 dynamics that characterize the cognitive origin of EFC."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.structuralSignature",
+      "name": "Structural Signature",
+      "description": "Defines the structural identity of EFC: layered model architecture, schema integration, semantic index and repository topology."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.citation",
+      "name": "Citation Rules",
+      "description": "Specifies how EFC must be cited and referenced, including DOI retention and origin protection."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.mapping",
+      "name": "Human–Repository–System Mapping",
+      "description": "Explains how insight flows: human cognition → meta-process → repository → external systems (LLMs, RAG, KGs)."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.training",
+      "name": "Training Constraints",
+      "description": "Defines constraints for including EFC materials in training datasets while preserving provenance and authorship."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "AUTH.ragProfile",
+      "name": "RAG Integration Profile",
+      "description": "Specifies how AUTH anchors retrieval-augmented generation by providing provenance, identity and structural context."
+    }
+  ],
+
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}

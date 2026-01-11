@@ -1,0 +1,18 @@
+{
+  "model": "EFC-C0",
+  "description": "Base entropy–information layer of Energy-Flow Cosmology.",
+  "relations": {
+    "capacity": "C = C0 * (1 - S)",
+    "resistance": "R = R(S, rho)",
+    "effective_speed": "c_eff = 1 / (1 + R)"
+  },
+  "regimes": {
+    "S0": "Low-entropy reference regime",
+    "S1": "High-entropy reference regime"
+  },
+  "notes": [
+    "This layer defines propagation behaviour.",
+    "Feeds into EFC-D dynamics and EFC-H lensing/rotation.",
+    "No dynamics of its own; purely structural mapping."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "model": "EFC-S",
+  "description": "Structural layer of Energy-Flow Cosmology.",
+  "fields": {
+    "G": "Grid state (structural capacity)",
+    "S": "Entropy field",
+    "rho": "Density field",
+    "R": "Grid resistance function"
+  },
+  "relations": {
+    "Phi_S": "rho * (1 - S)"
+  }
+}

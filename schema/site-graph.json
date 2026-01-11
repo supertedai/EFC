@@ -1,0 +1,154 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DataCatalog",
+  "@id": "https://energyflow-cosmology.com/site-graph",
+  "name": "Energy-Flow Cosmology Site Graph",
+  "description": "High-level semantic map of the Energy-Flow Cosmology ecosystem.",
+  "dataset": [
+    {
+      "@type": "Dataset",
+      "@id": "#theory",
+      "name": "EFC Formal Theory",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/x-tex",
+          "contentUrl": "theory/formal/efc_master.tex"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/x-tex",
+          "contentUrl": "theory/formal/efc_formal_spec.tex"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#models",
+      "name": "EFC Core Models",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "src/efc/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#validation",
+      "name": "Validation Data",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "data/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#schema",
+      "name": "Schema Graph",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "schema/concepts.json"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "schema/authors.json"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/jsonld",
+          "contentUrl": "schema/auth.jsonld"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#meta-layer",
+      "name": "Meta Layer",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "meta-index.json"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "meta/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#cognition-layer",
+      "name": "Cognition Layer",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "meta/cognition/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#symbiosis-layer",
+      "name": "Symbiosis Layer",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "meta/symbiosis/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#reflection-layer",
+      "name": "Reflection Layer",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/zip",
+          "contentUrl": "meta/reflection/"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#meta-graph",
+      "name": "Meta Knowledge Graph",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/ld+json",
+          "contentUrl": "meta-graph/meta-graph.jsonld"
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "#auth-layer",
+      "name": "AUTH Layer",
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "application/jsonld",
+          "contentUrl": "schema/auth.jsonld"
+        },
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/markdown",
+          "contentUrl": "auth/index.md"
+        }
+      ]
+    }
+  ]
+}

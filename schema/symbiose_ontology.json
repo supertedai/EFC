@@ -1,0 +1,288 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Symbiose Knowledge Graph Ontology",
+  "description": "Complete ontology for EFC Symbiose system - node types, edge types, and semantic rules",
+  "version": "1.0.0",
+  "created": "2025-12-10",
+  
+  "node_types": {
+    "Document": {
+      "description": "Source document container",
+      "properties": ["source", "type", "timestamp", "authority", "trust"],
+      "purpose": "provenance"
+    },
+    "Chunk": {
+      "description": "Text fragment from document",
+      "properties": ["text", "chunk_index", "token_count", "authority", "trust"],
+      "purpose": "retrieval"
+    },
+    "Concept": {
+      "description": "Named theoretical concept or entity",
+      "properties": ["name", "definition", "domain", "layer", "stability"],
+      "purpose": "knowledge"
+    },
+    "Hypothesis": {
+      "description": "Testable claim or proposition",
+      "properties": ["statement", "confidence", "status", "domain"],
+      "purpose": "reasoning"
+    },
+    "Mechanism": {
+      "description": "Causal or functional process",
+      "properties": ["name", "process", "domain", "type"],
+      "purpose": "explanation"
+    },
+    "Equation": {
+      "description": "Mathematical formulation",
+      "properties": ["latex", "variables", "domain", "validity_range"],
+      "purpose": "formalization"
+    },
+    "Model": {
+      "description": "Coherent theoretical framework",
+      "properties": ["name", "description", "domain", "assumptions"],
+      "purpose": "structure"
+    },
+    "Assumption": {
+      "description": "Foundational premise or constraint",
+      "properties": ["statement", "necessity", "domain"],
+      "purpose": "foundation"
+    },
+    "Observation": {
+      "description": "Empirical data or measurement",
+      "properties": ["description", "source", "confidence", "domain"],
+      "purpose": "grounding"
+    },
+    "Prediction": {
+      "description": "Testable consequence of theory",
+      "properties": ["statement", "testability", "status", "domain"],
+      "purpose": "validation"
+    },
+    "Conflict": {
+      "description": "Identified tension or contradiction",
+      "properties": ["description", "severity", "resolution_status"],
+      "purpose": "reflection"
+    },
+    "Question": {
+      "description": "Open research question",
+      "properties": ["question", "priority", "status", "domain"],
+      "purpose": "guidance"
+    },
+    "Method": {
+      "description": "Analytical or computational approach",
+      "properties": ["name", "description", "domain", "type"],
+      "purpose": "procedure"
+    }
+  },
+  
+  "edge_types": {
+    "document_level": {
+      "HAS_CHUNK": {
+        "source": "Document",
+        "target": "Chunk",
+        "description": "Document contains chunk",
+        "properties": []
+      },
+      "MENTIONS": {
+        "source": "Chunk",
+        "target": "Concept|Hypothesis|Mechanism|Equation|Model",
+        "description": "Chunk mentions knowledge entity",
+        "properties": ["context", "confidence"]
+      }
+    },
+    
+    "structural": {
+      "PART_OF": {
+        "source": "*",
+        "target": "Model|Framework",
+        "description": "Component of larger structure",
+        "properties": ["role"]
+      },
+      "DERIVES_FROM": {
+        "source": "Concept|Equation|Hypothesis",
+        "target": "Concept|Equation|Assumption",
+        "description": "Logical derivation",
+        "properties": ["reasoning"]
+      },
+      "DEPENDS_ON": {
+        "source": "*",
+        "target": "*",
+        "description": "Functional dependency",
+        "properties": ["type"]
+      },
+      "INSTANTIATES": {
+        "source": "Observation|Prediction",
+        "target": "Concept|Model",
+        "description": "Concrete instance of abstract",
+        "properties": ["context"]
+      }
+    },
+    
+    "evidential": {
+      "SUPPORTS": {
+        "source": "Observation|Prediction|Hypothesis",
+        "target": "Hypothesis|Model|Concept",
+        "description": "Provides evidence for",
+        "properties": ["strength", "confidence"]
+      },
+      "CONTRADICTS": {
+        "source": "Observation|Hypothesis",
+        "target": "Hypothesis|Model",
+        "description": "Evidence against",
+        "properties": ["severity"]
+      },
+      "TESTS": {
+        "source": "Observation|Prediction",
+        "target": "Hypothesis|Model",
+        "description": "Empirically tests",
+        "properties": ["outcome"]
+      },
+      "CONFIRMS": {
+        "source": "Observation",
+        "target": "Prediction",
+        "description": "Validates prediction",
+        "properties": ["confidence"]
+      }
+    },
+    
+    "causal": {
+      "CAUSES": {
+        "source": "Mechanism|Concept",
+        "target": "Concept|Observation",
+        "description": "Causal relationship",
+        "properties": ["mechanism", "confidence"]
+      },
+      "EXPLAINS": {
+        "source": "Mechanism|Model",
+        "target": "Observation|Concept",
+        "description": "Provides explanation",
+        "properties": ["completeness"]
+      },
+      "ENABLES": {
+        "source": "Concept|Mechanism",
+        "target": "Concept|Mechanism",
+        "description": "Makes possible",
+        "properties": []
+      },
+      "EMERGES_FROM": {
+        "source": "Concept",
+        "target": "Concept|Mechanism",
+        "description": "Emergent property",
+        "properties": ["scale"]
+      }
+    },
+    
+    "logical": {
+      "IMPLIES": {
+        "source": "Hypothesis|Assumption",
+        "target": "Hypothesis|Prediction",
+        "description": "Logical implication",
+        "properties": ["necessity"]
+      },
+      "REQUIRES": {
+        "source": "Model|Mechanism",
+        "target": "Assumption|Concept",
+        "description": "Necessary condition",
+        "properties": []
+      },
+      "CONSTRAINS": {
+        "source": "Assumption|Model",
+        "target": "Concept|Hypothesis",
+        "description": "Imposes boundary",
+        "properties": ["type"]
+      }
+    },
+    
+    "semantic": {
+      "ANALOGOUS_TO": {
+        "source": "Concept",
+        "target": "Concept",
+        "description": "Structural similarity",
+        "properties": ["similarity", "mapping"]
+      },
+      "RELATES_TO": {
+        "source": "*",
+        "target": "*",
+        "description": "General semantic relation",
+        "properties": ["type"]
+      },
+      "BRIDGES": {
+        "source": "Concept|Model",
+        "target": "Concept|Model",
+        "description": "Connects different domains",
+        "properties": ["domains"]
+      }
+    },
+    
+    "reflective": {
+      "CONFLICTS_WITH": {
+        "source": "Hypothesis|Model|Assumption",
+        "target": "Hypothesis|Model|Assumption",
+        "description": "Theoretical tension",
+        "properties": ["severity", "resolution"]
+      },
+      "RESOLVES": {
+        "source": "Model|Hypothesis",
+        "target": "Conflict",
+        "description": "Addresses conflict",
+        "properties": ["completeness"]
+      },
+      "RAISES": {
+        "source": "Observation|Hypothesis",
+        "target": "Question",
+        "description": "Motivates inquiry",
+        "properties": []
+      },
+      "ADDRESSES": {
+        "source": "Hypothesis|Model",
+        "target": "Question",
+        "description": "Attempts to answer",
+        "properties": ["completeness"]
+      }
+    },
+    
+    "methodological": {
+      "USES": {
+        "source": "Method|Model",
+        "target": "Concept|Equation|Method",
+        "description": "Employs in analysis",
+        "properties": []
+      },
+      "GOVERNS": {
+        "source": "Equation",
+        "target": "Concept|Mechanism",
+        "description": "Mathematical control",
+        "properties": ["regime"]
+      },
+      "APPLIES": {
+        "source": "Method|Model",
+        "target": "Observation|Concept",
+        "description": "Applied to",
+        "properties": ["context"]
+      }
+    }
+  },
+  
+  "domains": [
+    "cosmology",
+    "thermodynamics",
+    "quantum",
+    "information",
+    "cognition",
+    "meta",
+    "general"
+  ],
+  
+  "layers": [
+    "formal",
+    "applied",
+    "meta",
+    "cognitive",
+    "computational"
+  ],
+  
+  "confidence_levels": [
+    "speculative",
+    "provisional",
+    "established",
+    "foundational"
+  ]
+}

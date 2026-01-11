@@ -1,0 +1,260 @@
+{
+  "project": "Energy-Flow Cosmology (EFC)",
+  "version": "2.1",
+  "last_updated": "2025-11-20",
+  "layers": {
+    "theory": {
+      "description": "Formal scientific foundation of Energy-Flow Cosmology (EFC): field definitions, entropy dynamics, potentials and mathematical specification.",
+      "includes": [
+        "theory/formal/efc_master.tex",
+        "theory/formal/efc_formal_spec.pdf",
+        "src/efc/core/",
+        "src/efc/potential/",
+        "src/efc/entropy/"
+      ]
+    },
+    "validation": {
+      "description": "Empirical validation layer: SPARC rotation curves, JWST early galaxies, DESI BAO, lensing, simulation output and comparison scripts.",
+      "includes": [
+        "output/",
+        "data/",
+        "scripts/validate_efc.py"
+      ]
+    },
+    "meta": {
+      "description": "Meta-architecture and reflective structure: meta-process, metascope, topology of insight, co-field mechanics and unified meta-graph.",
+      "includes": [
+        "meta/",
+        "meta-index.json",
+        "meta/meta-process/",
+        "meta-graph/meta-graph.jsonld",
+        "meta-graph/meta_graph_vis.html"
+      ]
+    },
+    "cognition": {
+      "description": "Cognitive field maps: entropy\u2013clarity inversion, s\u2080/s\u2081 transitions and transient representation dynamics.",
+      "includes": [
+        "cognition/"
+      ]
+    },
+    "symbiosis": {
+      "description": "Human\u2013model co-field integration: resonance, alignment, interface, symmetry and cross-domain stabilisation.",
+      "includes": [
+        "symbiosis/"
+      ]
+    },
+    "auth": {
+      "description": "Origin, provenance, identity and authorship layer for EFC. Defines source, cognitive signature and structural signature.",
+      "includes": [
+        "auth/",
+        "auth/index.md",
+        "auth/index.jsonld",
+        "auth/manifest.json",
+        "figshare/auth.json"
+      ]
+    }
+  },
+  "special_artifacts": {
+    "repo_map_html": "output/repo_map.html",
+    "personal_note": "personal/Personal-Note.md"
+  },
+  "nodes": {
+    "FigshareMaster": {
+      "description": "Auto-synchronised master specification from Figshare. Provides DOIs, metadata and external publication links.",
+      "files": [
+        {
+          "name": "master.json",
+          "path": "figshare/master.json",
+          "type": "figshare_master_metadata",
+          "figshare_id": 30656351,
+          "doi": "10.6084/m9.figshare.30656351",
+          "url": "https://api.figshare.com/v2/account/articles/30656351",
+          "published_date": null
+        }
+      ],
+      "links": [
+        {
+          "type": "covers_concept",
+          "ref": "EFC-S"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "EFC-D"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "EFC-C0"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "Grid-Higgs Framework"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "Halo Entropy Model"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "CEM-Cosmos"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "IMX"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Open Cognitive Methodology"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Reflective Loop"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Author-Method-Note"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Symbiosis Interface"
+        },
+        {
+          "type": "uses_method",
+          "ref": "EFC Epistemology v1"
+        }
+      ]
+    },
+    "FigshareAUTH": {
+      "description": "AUTH Layer publication: origin, provenance, authorship, cognitive signature, structural signature, citations.",
+      "files": [
+        {
+          "name": "auth.json",
+          "path": "figshare/auth.json",
+          "type": "figshare_auth_metadata",
+          "figshare_id": 30656828,
+          "doi": "10.6084/m9.figshare.30656828",
+          "url": "https://api.figshare.com/v2/account/articles/30656828",
+          "published_date": null
+        }
+      ],
+      "links": [
+        {
+          "type": "defines",
+          "ref": "Authorship-Provenance"
+        },
+        {
+          "type": "defines",
+          "ref": "Cognitive Signature"
+        },
+        {
+          "type": "defines",
+          "ref": "Structural Signature"
+        },
+        {
+          "type": "defines",
+          "ref": "EFC Identity Layer"
+        }
+      ]
+    },
+    "FigshareNode": {
+      "description": "Auto-synkronisert Figshare-kilde for siste publiserte EFC-masterspesifikasjon.",
+      "files": [
+        {
+          "name": "latest.json",
+          "path": "figshare/latest.json",
+          "type": "latest_metadata",
+          "figshare_id": 30666506,
+          "doi": "",
+          "url": "https://api.figshare.com/v2/account/articles/30666506",
+          "published_date": null
+        }
+      ],
+      "links": [
+        {
+          "type": "covers_concept",
+          "ref": "EFC-S"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "EFC-D"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "EFC-C\u2080"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "Grid-Higgs Framework"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "Halo Entropy Model"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "CEM-Cosmos"
+        },
+        {
+          "type": "covers_concept",
+          "ref": "IMX"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Open Cognitive Methodology"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Reflective Loop"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Author-Method-Note"
+        },
+        {
+          "type": "uses_method",
+          "ref": "Symbiose Interface"
+        },
+        {
+          "type": "uses_method",
+          "ref": "EFC Epistemology v1"
+        }
+      ]
+    }
+  },
+  "doi_index": [
+    {
+      "doi": "10.6084/m9.figshare.30630500",
+      "figshare_id": 30630500,
+      "url": "https://api.figshare.com/v2/account/articles/30630500",
+      "role": "archived_spec",
+      "node": "FigshareMaster"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30636863",
+      "figshare_id": 30636863,
+      "url": "https://api.figshare.com/v2/account/articles/30636863",
+      "role": "archived_spec",
+      "node": "FigshareMaster"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30642497",
+      "figshare_id": 30642497,
+      "url": "https://api.figshare.com/v2/account/articles/30642497",
+      "role": "archived_spec",
+      "node": "FigshareMaster"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30656351",
+      "figshare_id": 30656351,
+      "url": "https://api.figshare.com/v2/account/articles/30656351",
+      "role": "master_spec",
+      "node": "FigshareMaster"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30656828",
+      "figshare_id": 30656828,
+      "url": "https://api.figshare.com/v2/account/articles/30656828",
+      "role": "auth_layer",
+      "node": "FigshareAUTH"
+    }
+  ]
+}

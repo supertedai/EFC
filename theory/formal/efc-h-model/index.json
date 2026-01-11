@@ -1,0 +1,13 @@
+{
+  "model": "EFC-H",
+  "description": "Halo-level structural model of Energy-Flow Cosmology.",
+  "profiles": {
+    "rho(r)": "rho0 * (1 + r/rs)^(-alpha)",
+    "S(r)": "S0 + 1 - exp(-r/rs)"
+  },
+  "dynamics": {
+    "Ef(r)": "rho(r) * (1 - S(r))",
+    "v2(r)": "r * dEf/dr",
+    "lensing": "integral(Ef(sqrt(R^2 + z^2))) dz"
+  }
+}

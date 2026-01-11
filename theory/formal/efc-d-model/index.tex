@@ -1,0 +1,149 @@
+% =====================================================================
+% Energy-Flow Cosmology — EFC-D Dynamics Model (Master Specification)
+% =====================================================================
+
+\section*{EFC–D Dynamics Model: Formal Specification}
+
+\subsection*{1. Purpose}
+
+The EFC–D model defines the dynamical evolution of the energy–entropy
+system in Energy-Flow Cosmology (EFC). It specifies how energy flow,
+entropy gradients, structural density, and propagation resistance evolve
+in time and space.
+
+This module provides the core dynamical equations used in simulations
+and analytical modelling.
+
+\subsection*{2. Fields and Quantities}
+
+\begin{itemize}
+    \item Entropy field: $S(\mathbf{x}, t)$
+    \item Structural density: $\rho(\mathbf{x}, t)$
+    \item Energy–flow field: $E_f(\mathbf{x}, t)$
+    \item Grid resistance: $R(\mathbf{x}, t)$
+    \item Effective propagation velocity: $c_{\text{eff}}(\mathbf{x}, t)$
+\end{itemize}
+
+\subsection*{3. Evolution of the Energy–Flow Field}
+
+Energy flow depends on density and entropy:
+
+\[
+E_f = \rho(1 - S)
+\]
+
+Temporal evolution:
+
+\[
+\frac{dE_f}{dt} = \nabla_t E_f = 
+\frac{\partial E_f}{\partial t}
++ \mathbf{v} \cdot \nabla E_f,
+\]
+
+where $\mathbf{v}$ is the local propagation vector influenced by entropy
+structure and grid resistance.
+
+\subsection*{4. Dynamics of Structural Density}
+
+Density evolves according to local stabilisation of energy flow:
+
+\[
+\frac{d\rho}{dt} = F(E_f, \nabla E_f).
+\]
+
+A simplified dynamical closure is:
+
+\[
+\frac{d\rho}{dt} \propto E_f - R.
+\]
+
+Regions with strong energy flow relative to resistance become stable
+structures; regions with weak flow disperse.
+
+\subsection*{5. Entropy Dynamics}
+
+Entropy evolves under:
+
+\[
+\frac{dS}{dt} = G(E_f, \rho, \nabla \rho),
+\]
+
+where $G$ is a process describing:
+
+\begin{itemize}
+    \item local smoothing of steep gradients,
+    \item entropy production from structural change,
+    \item entropy suppression in high-density coherent regions.
+\end{itemize}
+
+A minimal phenomenological form:
+
+\[
+\frac{dS}{dt} \propto - \rho + |\nabla E_f|.
+\]
+
+\subsection*{6. Resistance Evolution}
+
+Resistance depends on entropy and density:
+
+\[
+R = R(S, \rho),
+\]
+
+and evolves according to:
+
+\[
+\frac{dR}{dt} = \alpha \frac{dS}{dt} - \beta \frac{d\rho}{dt},
+\]
+
+with $\alpha,\beta > 0$.
+
+Increasing entropy increases resistance; increasing structure decreases it.
+
+\subsection*{7. Propagation Dynamics}
+
+Propagation velocity:
+
+\[
+c_{\text{eff}} = (1 + R)^{-1}.
+\]
+
+Dynamical consequence:
+
+\[
+\mathbf{v} = c_{\text{eff}} \, \hat{\mathbf{u}},
+\]
+
+where $\hat{\mathbf{u}}$ is the local direction of minimal grid
+resistance.
+
+\subsection*{8. Coupled System}
+
+The full EFC–D dynamical system:
+
+\[
+\begin{aligned}
+E_f &= \rho(1-S), \\
+\frac{dE_f}{dt} &= \nabla_t E_f, \\
+\frac{d\rho}{dt} &= F(E_f,\nabla E_f), \\
+\frac{dS}{dt} &= G(E_f, \rho, \nabla \rho), \\
+R &= R(S,\rho), \\
+\frac{dR}{dt} &= \alpha\frac{dS}{dt} - \beta\frac{d\rho}{dt}, \\
+c_{\text{eff}} &= (1 + R)^{-1}.
+\end{aligned}
+\]
+
+\subsection*{9. Role in the EFC Framework}
+
+The EFC–D model provides:
+
+\begin{itemize}
+    \item temporal evolution rules for simulations
+    \item analytic dynamical behaviour for halo formation
+    \item foundations for the EFC–S structural model
+    \item propagation constraints (via $R$ and $c_{\text{eff}}$)
+    \item compatibility with cosmological solvers (RAMSES, GADGET-4)
+\end{itemize}
+
+This is the central dynamical layer of Energy-Flow Cosmology.
+

@@ -1,0 +1,140 @@
+{
+  "nodes": [
+    {
+      "id": "efc-c0-model",
+      "label": "EFC\u2013C\u2080 Information Model",
+      "layer": "EFC-C0",
+      "path": "theory/formal/efc-c0-model"
+    },
+    {
+      "id": "efc-d-model",
+      "label": "EFC\u2013D Dynamics Model",
+      "layer": "EFC-D",
+      "path": "theory/formal/efc-d-model"
+    },
+    {
+      "id": "efc-flow-diagram",
+      "label": "EFC Flow Diagram",
+      "layer": "diagram",
+      "path": "theory/formal/efc-flow-diagram"
+    },
+    {
+      "id": "efc-formal-spec",
+      "label": "EFC Formal Specification",
+      "layer": "formal-master",
+      "path": "theory/formal/efc-formal-spec"
+    },
+    {
+      "id": "efc-h-model",
+      "label": "EFC\u2013H Structural Model: Formal Specification",
+      "layer": "EFC-S",
+      "path": "theory/formal/efc-h-model"
+    },
+    {
+      "id": "efc-header",
+      "label": "EFC Formal Header",
+      "layer": "EFC-H",
+      "path": "theory/formal/efc-header"
+    },
+    {
+      "id": "efc-s-model",
+      "label": "EFC\u2013S Structural Model",
+      "layer": "EFC-S",
+      "path": "theory/formal/efc-s-model"
+    },
+    {
+      "id": "notation",
+      "label": "EFC Global Notation",
+      "layer": "notation",
+      "path": "theory/formal/notation"
+    },
+    {
+      "id": "parameters",
+      "label": "EFC Global Parameters",
+      "layer": "parameters",
+      "path": "theory/formal/parameters"
+    }
+  ],
+  "edges": [
+    {
+      "from": "efc-c0-model",
+      "to": "efc-h-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-c0-model",
+      "to": "efc-s-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-d-model",
+      "to": "efc-h-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-d-model",
+      "to": "efc-s-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-d-model",
+      "to": "efc-c0-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "efc-h-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "efc-s-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "efc-d-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "efc-header",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "efc-c0-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "notation",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-formal-spec",
+      "to": "parameters",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-header",
+      "to": "efc-h-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-header",
+      "to": "efc-s-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-header",
+      "to": "efc-d-model",
+      "type": "depends_on_layer"
+    },
+    {
+      "from": "efc-header",
+      "to": "efc-c0-model",
+      "type": "depends_on_layer"
+    }
+  ]
+}

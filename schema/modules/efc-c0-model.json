@@ -1,0 +1,61 @@
+{
+  "id": "efc-c0-model",
+  "name": "EFC\u2013C\u2080 Information Model",
+  "path": "theory/formal/efc-c0-model",
+  "layer": "EFC-C0",
+  "summary": "# EFC\u2013C\u2080 Information Model",
+  "keywords": [
+    "information",
+    "item",
+    "efc",
+    "flow",
+    "energy",
+    "subsection",
+    "entropy",
+    "informational",
+    "mathbf",
+    "resonance",
+    "e_f",
+    "itemize",
+    "model",
+    "_0",
+    "capacity",
+    "i_0",
+    "resistance",
+    "begin",
+    "cdot",
+    "end",
+    "field",
+    "flux",
+    "grid",
+    "nabla",
+    "aligned"
+  ],
+  "dependencies": [
+    "EFC-S"
+  ],
+  "raw": {
+    "has_readme": true,
+    "has_index_md": false,
+    "has_index_tex": true,
+    "has_index_json": true
+  },
+  "index_json": {
+    "model": "EFC-C0",
+    "description": "Base entropy\u2013information layer of Energy-Flow Cosmology.",
+    "relations": {
+      "capacity": "C = C0 * (1 - S)",
+      "resistance": "R = R(S, rho)",
+      "effective_speed": "c_eff = 1 / (1 + R)"
+    },
+    "regimes": {
+      "S0": "Low-entropy reference regime",
+      "S1": "High-entropy reference regime"
+    },
+    "notes": [
+      "This layer defines propagation behaviour.",
+      "Feeds into EFC-D dynamics and EFC-H lensing/rotation.",
+      "No dynamics of its own; purely structural mapping."
+    ]
+  }
+}

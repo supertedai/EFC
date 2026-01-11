@@ -1,0 +1,11 @@
+{
+  "status": "ok",
+  "message": "This endpoint provides live EFC context. Use with Msty Live Context.",
+  "usage": {
+    "method": "POST",
+    "body": {
+      "query": "your text"
+    },
+    "returns": "semantic index + raw snippets + metadata + graph context"
+  }
+}

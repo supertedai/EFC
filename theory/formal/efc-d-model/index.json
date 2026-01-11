@@ -1,0 +1,10 @@
+{
+  "model": "EFC-D",
+  "description": "Dynamic layer of Energy-Flow Cosmology.",
+  "equations": {
+    "Ef": "rho * (1 - S)",
+    "dEf_dt": "(1 - S) * drho_dt - rho * dS_dt",
+    "grad_Ef": "(1 - S) * grad(rho) - rho * grad(S)",
+    "flow_velocity": "-grad(Ef)"
+  }
+}

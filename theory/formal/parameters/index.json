@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "static": {
+      "S0": "Low-entropy reference",
+      "S1": "High-entropy reference",
+      "rho0": "Reference density"
+    },
+    "dynamic": {
+      "kE": "Energy-flow scaling",
+      "kS": "Entropy-gradient scaling",
+      "kEta": "Grid-resistance scaling"
+    },
+    "structural_thresholds": {
+      "Scrit": "Onset of structure formation",
+      "Ssat": "Entropy saturation"
+    }
+  }
+}

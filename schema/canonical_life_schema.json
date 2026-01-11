@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Canonical Life Schema",
+  "description": "Complete schema for a human life with change over time",
+  "version": "1.0.0",
+  
+  "definitions": {
+    "base_entity": {
+      "type": "object",
+      "required": ["id", "domain", "name", "status", "since", "confidence", "source"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier"
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "IDENTITY",
+            "FAMILY",
+            "OWNERSHIP",
+            "LOCATION",
+            "WORK",
+            "PROJECTS",
+            "SKILLS",
+            "HEALTH",
+            "FINANCE",
+            "THEORY"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Primary name or identifier"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "archived"],
+          "default": "active"
+        },
+        "since": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this became true"
+        },
+        "until": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When this stopped being true (null = still active)"
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Optional context"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["canonical", "inferred", "uncertain"],
+          "default": "canonical"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["user", "system", "imported"],
+          "default": "user"
+        }
+      }
+    },
+    
+    "identity": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "IDENTITY" },
+            "full_name": { "type": "string" },
+            "birth_year": { "type": ["integer", "null"] },
+            "role": { "type": ["string", "null"], "description": "Primary role or title" }
+          }
+        }
+      ]
+    },
+    
+    "family": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "FAMILY" },
+            "role": {
+              "type": "string",
+              "enum": ["spouse", "child", "parent", "sibling", "other"]
+            },
+            "person_name": { "type": "string" }
+          },
+          "required": ["role", "person_name"]
+        }
+      ]
+    },
+    
+    "ownership": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "OWNERSHIP" },
+            "type": {
+              "type": "string",
+              "enum": ["vehicle", "property", "asset", "equipment", "other"]
+            },
+            "model": { "type": ["string", "null"] },
+            "value": { "type": ["number", "null"] }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    
+    "location": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "LOCATION" },
+            "type": {
+              "type": "string",
+              "enum": ["residence", "temporary", "office", "other"]
+            },
+            "city": { "type": ["string", "null"] },
+            "country": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    
+    "work": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "WORK" },
+            "role": { "type": "string", "description": "Job title or responsibility" },
+            "organization": { "type": "string" },
+            "employment_type": {
+              "type": "string",
+              "enum": ["full-time", "part-time", "contract", "founder", "volunteer", "other"]
+            }
+          },
+          "required": ["role", "organization"]
+        }
+      ]
+    },
+    
+    "project": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "PROJECTS" },
+            "description": { "type": ["string", "null"] },
+            "github_repo": { "type": ["string", "null"] },
+            "collaborators": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      ]
+    },
+    
+    "skill": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "SKILLS" },
+            "level": {
+              "type": "string",
+              "enum": ["beginner", "intermediate", "advanced", "expert"]
+            },
+            "category": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    
+    "health": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "HEALTH" },
+            "category": {
+              "type": "string",
+              "enum": ["genetics", "diagnosis", "medication", "allergy", "other"]
+            },
+            "value": { "type": ["string", "null"] }
+          },
+          "required": ["category"]
+        }
+      ]
+    },
+    
+    "finance": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "FINANCE" },
+            "type": {
+              "type": "string",
+              "enum": ["account", "investment", "loan", "income_source", "other"]
+            },
+            "institution": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    
+    "theory": {
+      "allOf": [
+        { "$ref": "#/definitions/base_entity" },
+        {
+          "properties": {
+            "domain": { "const": "THEORY" },
+            "description": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" },
+            "publication_status": {
+              "type": "string",
+              "enum": ["draft", "published", "in_review", "archived"]
+            }
+          }
+        }
+      ]
+    }
+  },
+  
+  "operations": {
+    "CREATE": {
+      "description": "Create new fact",
+      "effects": {
+        "status": "active",
+        "since": "now (if not provided)"
+      }
+    },
+    "READ": {
+      "description": "Retrieve current state",
+      "default_filter": "status = active"
+    },
+    "UPDATE": {
+      "description": "Modify existing fact",
+      "preserves": ["id", "since", "domain"]
+    },
+    "ARCHIVE": {
+      "description": "Mark as no longer active",
+      "effects": {
+        "status": "archived",
+        "until": "now"
+      }
+    },
+    "DELETE": {
+      "description": "Remove completely (errors only)",
+      "warning": "Use ARCHIVE instead unless correcting a mistake"
+    }
+  },
+  
+  "canonical_domains": [
+    "IDENTITY",
+    "FAMILY",
+    "OWNERSHIP",
+    "HEALTH"
+  ],
+  
+  "inference_rules": {
+    "time_default": "If since is missing → now",
+    "status_default": "CREATE → active, ARCHIVE → archived",
+    "change_interpretation": "change/adapt/update → UPDATE operation",
+    "replacement_pattern": "replace A with B → ARCHIVE(A) + CREATE(B)",
+    "implicit_types": {
+      "car/vehicle": "OWNERSHIP.type=vehicle",
+      "married/spouse": "FAMILY.role=spouse",
+      "project": "PROJECTS.status=active"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "https://github.com/supertedai/energyflow-cosmology/schema/methodology-index.json",
+  "name": "EFC Methodology Index",
+  "description": "Entry point for the methodological and reflective documentation of Energy-Flow Cosmology (EFC).",
+  "about": {
+    "@type": "ResearchProcess",
+    "@id": "https://github.com/supertedai/energyflow-cosmology/methodology/open-process.json"
+  },
+  "isPartOf": {
+    "@type": "Dataset",
+    "@id": "https://github.com/supertedai/energyflow-cosmology/schema/site-graph.json"
+  },
+  "keywords": [
+    "research methodology",
+    "reflective reasoning",
+    "open science",
+    "human-AI collaboration",
+    "thermodynamic modeling"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "sameAs": "https://orcid.org/0009-0002-4860-5095"
+  }
+}

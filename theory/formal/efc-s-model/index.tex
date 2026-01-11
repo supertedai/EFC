@@ -1,0 +1,123 @@
+% =====================================================================
+% Energy-Flow Cosmology — EFC-S Structural Profile Model (Master Spec)
+% =====================================================================
+
+\section*{EFC–S Structural Model: Formal Specification}
+
+\subsection*{1. Purpose}
+
+The EFC–S model defines the spatial structure of density, entropy, and
+energy–flow profiles in Energy-Flow Cosmology (EFC). Unlike EFC–D, which
+defines temporal evolution, the S model describes *static equilibrium*,
+radial profiles, and spatial organisation of matter and entropy.
+
+This model is used for predicting halo shapes, cluster profiles, lensing
+behaviour and large-scale structural coherence.
+
+\subsection*{2. Core Fields}
+
+\begin{itemize}
+    \item Entropy field: $S(\mathbf{x})$
+    \item Structural density: $\rho(\mathbf{x})$
+    \item Energy–flow potential: $E_f(\mathbf{x})$
+    \item Grid resistance: $R(\mathbf{x})$
+\end{itemize}
+
+All functions are *time-independent* in the S-model.
+
+\subsection*{3. Structural Equilibrium Condition}
+
+The defining equation of the structural model is:
+
+\[
+\nabla E_f = 0.
+\]
+
+Given:
+
+\[
+E_f = \rho (1 - S),
+\]
+
+equilibrium implies:
+
+\[
+\rho(1 - S) = E_0,
+\]
+
+where $E_0$ is a spatial constant (locally defined for each structure).
+
+This is the **EFC Structural Equilibrium Law**.
+
+\subsection*{4. Structural Profile Equation}
+
+Solving for density:
+
+\[
+\rho(\mathbf{x}) = \frac{E_0}{1 - S(\mathbf{x})}.
+\]
+
+Interpretation:
+
+- Regions with lower entropy hold higher structure.
+- As entropy increases outward, density decreases naturally.
+- This produces smooth halo-like radial profiles without free parameters.
+
+\subsection*{5. Entropy Profile Constraint}
+
+EFC–S assumes gently increasing entropy with radius:
+
+\[
+\frac{dS}{dr} > 0,
+\quad
+| \frac{dS}{dr} | \ll 1.
+\]
+
+This produces:
+
+- flat cores,  
+- slowly declining mid-radii,  
+- asymptotic tails.
+
+\subsection*{6. Resistance Profile}
+
+Resistance increases with entropy:
+
+\[
+R(r) = R(S(r)).
+\]
+
+Thus outer regions have higher propagation resistance.
+
+This reproduces:
+
+- gravitational-like effects,
+- lensing magnification,
+- dynamical slowing consistent with effective “mass”.
+
+\subsection*{7. Combined Structural System}
+
+The full S-model:
+
+\[
+\begin{aligned}
+E_f &= \rho(1-S), \\
+\nabla E_f &= 0, \\
+\rho(r) &= \frac{E_0}{1 - S(r)}, \\
+R &= R(S), \\
+c_{\text{eff}} &= (1 + R)^{-1}.
+\end{aligned}
+\]
+
+This defines the spatial structure of EFC systems.
+
+\subsection*{8. Relationship to Other EFC Models}
+
+\begin{itemize}
+    \item EFC–D: describes time evolution of $S$, $\rho$, $E_f$, $R$.
+    \item EFC–H: describes structure formation and halo boundaries.
+    \item EFC–C$_0$: describes informational and cognitive resonance.
+\end{itemize}
+
+EFC–S provides the *static backbone* that all other models rely on.
+

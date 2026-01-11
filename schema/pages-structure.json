@@ -1,0 +1,101 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://energyflow-cosmology.com/#website",
+      "url": "https://energyflow-cosmology.com/",
+      "name": "Energy-Flow Cosmology",
+      "description": "A unified thermodynamic model of the universe developed by Morten Magnusson, integrating energy flow, entropy, and structure across scales.",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://energyflow-cosmology.com/#organization",
+        "name": "Energy-Flow Cosmology Initiative",
+        "url": "https://energyflow-cosmology.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://energyflow-cosmology.com/wp-content/uploads/2024/12/EFC-logo.png"
+        }
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://energyflow-cosmology.com/about/#webpage",
+      "url": "https://energyflow-cosmology.com/about/",
+      "name": "About — Energy-Flow Cosmology",
+      "about": {
+        "@type": "Person",
+        "@id": "https://energyflow-cosmology.com/#person",
+        "name": "Morten Magnusson",
+        "jobTitle": "Founder & Researcher",
+        "affiliation": {
+          "@id": "https://energyflow-cosmology.com/#organization"
+        },
+        "identifier": "https://orcid.org/0009-0002-4860-5095",
+        "sameAs": [
+          "https://figshare.com/authors/Morten_Magnusson/20477774"
+        ],
+        "email": "contact@energyflow-cosmology.com"
+      },
+      "description": "About Morten Magnusson and the origins of Energy-Flow Cosmology — bridging thermodynamics, structure, and consciousness."
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://energyflow-cosmology.com/resources/#webpage",
+      "url": "https://energyflow-cosmology.com/resources/",
+      "name": "Resources — Energy-Flow Cosmology",
+      "description": "Access Energy-Flow Cosmology publications, datasets, DOIs, and validation materials.",
+      "isPartOf": { "@id": "https://energyflow-cosmology.com/#website" }
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://energyflow-cosmology.com/concepts/#efc-series",
+      "url": "https://energyflow-cosmology.com/concepts/",
+      "name": "Concepts — Energy-Flow Cosmology",
+      "description": "Core conceptual modules of Energy-Flow Cosmology (EFC), including the Grid–Higgs Framework, Halo Model of Entropy, and CEM-Cosmos.",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Grid–Higgs Framework",
+          "url": "https://energyflow-cosmology.com/concepts/grid-higgs-framework/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Halo Model of Entropy",
+          "url": "https://energyflow-cosmology.com/concepts/halo-model-of-entropy-efc-s/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "CEM-Cosmos",
+          "url": "https://energyflow-cosmology.com/concepts/cem-cosmos-efc-c/"
+        }
+      ]
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://energyflow-cosmology.com/contact/#webpage",
+      "url": "https://energyflow-cosmology.com/contact/",
+      "name": "Contact — Energy-Flow Cosmology",
+      "description": "Contact information for research collaboration, media inquiries, or institutional correspondence.",
+      "isPartOf": { "@id": "https://energyflow-cosmology.com/#website" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://energyflow-cosmology.com/validation-ledger/#webpage",
+      "url": "https://energyflow-cosmology.com/validation-ledger/",
+      "name": "Validation Ledger — Energy-Flow Cosmology",
+      "description": "Comparative framework mapping EFC predictions against ΛCDM datasets (JWST, DESI, CMB, SPARC).",
+      "isPartOf": { "@id": "https://energyflow-cosmology.com/#website" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://energyflow-cosmology.com/faq/#webpage",
+      "url": "https://energyflow-cosmology.com/faq/",
+      "name": "FAQ — Energy-Flow Cosmology",
+      "description": "Answers to key questions about Energy-Flow Cosmology, entropy, dark matter, and the structure of the universe.",
+      "isPartOf": { "@id": "https://energyflow-cosmology.com/#website" }
+    }
+  ]
+}
+
