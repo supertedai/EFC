@@ -444,6 +444,7 @@ This work made use of the SPARC database (Lelli et al., 2016). Analysis was perf
 ## Data Availability
 
 All data, code, and figures are available at:
+- **GitHub:** https://github.com/supertedai/EFC (primary repository)
 - **Figshare:** DOI: 10.6084/m9.figshare.31045126
 - **Website:** https://energyflow-cosmology.com/
 
@@ -453,6 +454,8 @@ All data, code, and figures are available at:
 - `sparc175_qc.json` - Quality control log
 - All figures (PNG, high resolution)
 - Python analysis scripts (fully reproducible)
+
+**GitHub Repository:** The complete analysis pipeline, all data files, and documentation are maintained at https://github.com/supertedai/EFC
 
 ---
 

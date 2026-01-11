@@ -58,6 +58,12 @@ sparc175/
 3. **Explore data:** Open any `.json` file in `data/`
 4. **View figures:** All figures in `figures/`
 
+### Repository
+
+**GitHub:** https://github.com/supertedai/EFC
+
+All data, code, and documentation are maintained in the GitHub repository.
+
 ### Reproduce Analysis
 
 ```bash
