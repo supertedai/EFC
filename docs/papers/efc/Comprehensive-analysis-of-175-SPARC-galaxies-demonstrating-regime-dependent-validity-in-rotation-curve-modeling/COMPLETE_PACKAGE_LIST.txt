@@ -1,0 +1,96 @@
+SPARC175 COMPLETE PACKAGE
+=========================
+DOI: 10.6084/m9.figshare.31045126
+Generated: 2026-01-11
+Total size: ~1.5 MB
+
+ROOT DIRECTORY (/mnt/user-data/outputs/)
+========================================
+
+Main Documents:
+---------------
+✓ SPARC175_COMPLETE_PAPER.md (50 KB) - Full paper Markdown
+✓ SPARC175_COMPLETE_PAPER.pdf (56 KB) - Full paper PDF
+✓ SPARC175_COMPLETE_PAPER.html (48 KB) - HTML version
+✓ SPARC175_SUMMARY.md (13 KB) - Executive summary
+✓ README.md (8 KB) - Quick start guide
+✓ PACKAGE_MANIFEST.md (3 KB) - File listing
+✓ COMPLETE_PACKAGE_LIST.txt (this file)
+
+Metadata Files:
+--------------
+✓ index.json (4 KB) - Machine-readable index
+✓ schema.json (3 KB) - JSON schema
+✓ figshare_metadata.json (0.6 KB) - Figshare upload metadata
+
+LaTeX Files:
+-----------
+✓ minimal_spec.tex (3 KB) - Mathematical specification
+✓ index.tex (7 KB) - Navigation document
+
+DATA/ SUBDIRECTORY
+==================
+✓ sparc175_qc.json (41 KB) - Quality control log
+✓ sparc175_clean.json (271 KB) - Clean dataset (175 galaxies)
+✓ sparc175_fits.json (213 KB) - Fit results all galaxies
+✓ sparc175_classified.json (257 KB) - Regime classifications
+✓ sparc175_statistics.json (1.6 KB) - Summary statistics
+
+FIGURES/ SUBDIRECTORY
+=====================
+✓ sparc175_regime_distribution.png (118 KB) - Three-panel regime overview
+✓ sparc175_aic_vs_latent.png (76 KB) - Model preference scatter
+✓ sparc175_success_by_bins.png (81 KB) - Success rate by bins
+
+SCRIPTS/ SUBDIRECTORY
+=====================
+✓ sparc175_hybrid.py (5.8 KB) - Day 1: Quality control
+✓ sparc175_day2_fit.py (7.4 KB) - Day 2: Fitting pipeline
+✓ sparc175_day3_classify.py (6.7 KB) - Day 3: Classification
+✓ sparc175_day4_visualize.py (8.8 KB) - Day 4: Visualization
+✓ sparc175_day5_document.py (11 KB) - Day 5: Documentation
+✓ sparc175_analysis.py (5.4 KB) - Additional analysis
+✓ sparc175_fixed.py (2.1 KB) - Testing script
+
+TOTAL FILES: 27
+TOTAL SIZE: ~1.5 MB
+
+KEY RESULTS SUMMARY
+===================
+- Sample: 175 SPARC galaxies
+- FLOW regime: 62 galaxies (35.4%) - 100% EFC success
+- TRANSITION: 86 galaxies (49.1%) - Mixed dynamics  
+- LATENT regime: 27 galaxies (15.4%) - ~4% EFC success
+- Statistical significance: p < 0.0001 (Mann-Whitney U)
+
+REPRODUCIBILITY
+===============
+All analysis fully reproducible:
+- Fixed seeds (42)
+- Deterministic algorithms
+- No manual tuning
+- Complete code provided
+
+UPLOAD TO FIGSHARE
+==================
+1. Visit: https://figshare.com/account/projects
+2. Find article: DOI 10.6084/m9.figshare.31045126
+3. Upload all files maintaining directory structure
+4. Publish new version
+
+CITATION
+========
+Magnusson, M. (2026). Regime-Dependent Validity in Galaxy 
+Rotation Curve Modeling: Comprehensive Analysis of 175 SPARC 
+Galaxies. Figshare. DOI: 10.6084/m9.figshare.31045126
+
+LICENSE
+=======
+CC-BY 4.0 - Free to share and adapt with attribution
+
+CONTACT
+=======
+Morten Magnusson
+morten@magnusson.as
+https://energyflow-cosmology.com/
+ORCID: 0009-0002-4860-5095
