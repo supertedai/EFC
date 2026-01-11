@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://schema.org/identifier",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
+  "@type": "ScholarlyArticle",
+  "name": "Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks",
+  "description": "A formally constrained bridge between the Free Energy Principle and Energy-Flow Cosmology, linking variational free energy to measurable energy flow dynamics across entropy gradients.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0006-5904-4032"
+  },
+  "datePublished": "2026-01-10",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "doi",
+      "value": "10.6084/m9.figshare.31042678"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "slug",
+      "value": "EFC-Bridging-Scales-FEP"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "figshare_id",
+      "value": "31042678"
+    }
+  ],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Free Energy Principle",
+    "Variational Free Energy",
+    "Non-equilibrium thermodynamics",
+    "Markov blankets",
+    "EFC"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Free Energy Principle",
+      "description": "A principle from neuroscience suggesting that biological systems minimize variational free energy"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Markov blankets",
+      "description": "Statistical boundaries that separate internal states from external states"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers",
+    "identifier": "efc-papers"
+  },
+  "efc:tier": "CANONICAL",
+  "efc:layer": "THEORY",
+  "efc:domain": "cognition",
+  "efc:relates_to": [
+    "Active Inference",
+    "entropy gradients",
+    "self-organization"
+  ]
+}
