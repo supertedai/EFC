@@ -1,0 +1,77 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://doi.org/",
+    "orcid": "https://orcid.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31061665",
+  "name": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+  "headline": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Initiative"
+    }
+  },
+  "datePublished": "2026-01-13",
+  "description": "Multiple observational tensions with LCDM have been reported across disparate redshifts. We present a systematic analysis combining low-redshift galaxy dynamics (SPARC, z ~ 0) with high-redshift galaxy abundances (COSMOS-Web/JWST, z > 6) to test whether deviations from standard predictions cluster in identifiable regimes. Using a descriptive taxonomy (L0-L3), we find that deviations cluster systematically: chi-squared = 47.3, df = 4, p < 10^-8.",
+  "keywords": ["cosmology", "galaxies", "high-redshift", "dark matter", "LCDM", "regime analysis", "JWST", "SPARC"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Cosmology",
+      "inDefinedTermSet": "https://astrothesaurus.org"
+    },
+    {
+      "@type": "DefinedTerm", 
+      "name": "Galaxy dynamics",
+      "inDefinedTermSet": "https://astrothesaurus.org"
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SPARC: Mass Models for 175 Disk Galaxies",
+      "author": "Lelli, F., McGaugh, S. S., & Schombert, J. M.",
+      "datePublished": "2016",
+      "isPartOf": {"name": "Astronomical Journal", "volumeNumber": "152"}
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "UniverseMachine: The correlation between galaxy growth and dark matter halo assembly",
+      "author": "Behroozi, P., et al.",
+      "datePublished": "2019",
+      "isPartOf": {"name": "MNRAS", "volumeNumber": "488"}
+    }
+  ],
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": "Regime Analysis Results",
+    "description": "Statistical analysis of LCDM deviations across cosmic time",
+    "variableMeasured": [
+      {
+        "@type": "PropertyValue",
+        "name": "chi-squared",
+        "value": 47.3
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "p-value",
+        "value": "1.3e-9"
+      }
+    ]
+  }
+}

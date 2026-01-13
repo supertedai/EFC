@@ -1,0 +1,70 @@
+{
+  "title": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Energy-Flow Cosmology Initiative"
+    }
+  ],
+  "date": "2026-01-13",
+  "version": "1.0",
+  "doi": "10.6084/m9.figshare.31061665",
+  "keywords": [
+    "cosmology: observations",
+    "galaxies: high-redshift",
+    "galaxies: kinematics",
+    "dark matter",
+    "LCDM tensions",
+    "regime analysis"
+  ],
+  "abstract": "Multiple observational tensions with LCDM have been reported across disparate redshifts. We present a systematic analysis combining low-redshift galaxy dynamics (SPARC, z ~ 0) with high-redshift galaxy abundances (COSMOS-Web/JWST, z > 6) to test whether deviations from standard predictions cluster in identifiable regimes. Using a descriptive taxonomy (L0-L3), we find that deviations cluster systematically: chi-squared = 47.3, df = 4, p < 10^-8. These results establish structured regime dependence without proposing alternative physics.",
+  "datasets": {
+    "low_redshift": {
+      "name": "SPARC",
+      "source": "Lelli et al. 2016",
+      "n_galaxies": 175,
+      "redshift": "z ~ 0"
+    },
+    "high_redshift": {
+      "name": "COSMOS2025",
+      "source": "Shuntov et al. 2025",
+      "n_galaxies": 26288,
+      "redshift": "z > 5",
+      "area_deg2": 0.54
+    }
+  },
+  "results": {
+    "statistical_test": {
+      "chi_squared": 47.3,
+      "df": 4,
+      "p_value": "1.3e-9"
+    },
+    "jwst_excess": {
+      "z_5_6": {"ratio_behroozi": 23, "ratio_halo_limit": 3.1},
+      "z_7_8": {"ratio_behroozi": 124, "ratio_halo_limit": 7.7},
+      "z_8_9": {"ratio_behroozi": 259, "ratio_halo_limit": 10.4},
+      "z_9_10": {"ratio_behroozi": 529, "ratio_halo_limit": 10.6}
+    }
+  },
+  "claims": {
+    "positive": [
+      "Deviations cluster systematically by regime",
+      "Pattern observed independently at low-z and high-z",
+      "Statistical significance: p < 10^-8"
+    ],
+    "negative": [
+      "Does NOT falsify LCDM",
+      "Does NOT propose alternative dynamics",
+      "Does NOT identify unique physical mechanism"
+    ]
+  },
+  "files": {
+    "pdf": "Paper2_Regime_Dependent_Breakdown.pdf",
+    "docx": "Paper2_Regime_Dependent_Breakdown.docx",
+    "metadata": "metadata.json",
+    "jsonld": "metadata.jsonld"
+  },
+  "license": "CC-BY-4.0",
+  "repository": "https://github.com/mortenmagnusson/efc-papers"
+}
