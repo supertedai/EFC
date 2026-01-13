@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "date": "2026-01-13T17:52:13.534547",
+    "dataset": "COSMOS2025",
+    "n_galaxies": 26288,
+    "area_deg2": 0.54
+  },
+  "lcdm_comparison": [
+    {
+      "z_range": "5-6",
+      "n_observed": 2505,
+      "density_obs": 4638.9,
+      "density_lcdm": 200,
+      "ratio": 23.2
+    },
+    {
+      "z_range": "6-7",
+      "n_observed": 1720,
+      "density_obs": 3185.2,
+      "density_lcdm": 80,
+      "ratio": 39.8
+    },
+    {
+      "z_range": "7-8",
+      "n_observed": 1673,
+      "density_obs": 3098.1,
+      "density_lcdm": 25,
+      "ratio": 123.9
+    },
+    {
+      "z_range": "8-9",
+      "n_observed": 1120,
+      "density_obs": 2074.1,
+      "density_lcdm": 8,
+      "ratio": 259.3
+    },
+    {
+      "z_range": "9-10",
+      "n_observed": 571,
+      "density_obs": 1057.4,
+      "density_lcdm": 2,
+      "ratio": 528.7
+    },
+    {
+      "z_range": "10-12",
+      "n_observed": 248,
+      "density_obs": 459.3,
+      "density_lcdm": 0.5,
+      "ratio": 918.5
+    },
+    {
+      "z_range": "12-20",
+      "n_observed": 610,
+      "density_obs": 1129.6,
+      "density_lcdm": 0.05,
+      "ratio": 22592.6
+    }
+  ],
+  "regime_by_redshift": [
+    {
+      "z_range": "5-6",
+      "n": 6829,
+      "flow_frac": 0.006,
+      "transition_frac": 0.086,
+      "latent_frac": 0.907
+    },
+    {
+      "z_range": "6-7",
+      "n": 6652,
+      "flow_frac": 0.0,
+      "transition_frac": 0.021,
+      "latent_frac": 0.979
+    },
+    {
+      "z_range": "7-8",
+      "n": 6559,
+      "flow_frac": 0.0,
+      "transition_frac": 0.0,
+      "latent_frac": 1.0
+    },
+    {
+      "z_range": "8-10",
+      "n": 3928,
+      "flow_frac": 0.0,
+      "transition_frac": 0.0,
+      "latent_frac": 1.0
+    },
+    {
+      "z_range": "10-15",
+      "n": 2320,
+      "flow_frac": 0.0,
+      "transition_frac": 0.0,
+      "latent_frac": 1.0
+    }
+  ],
+  "statistics": {
+    "ssfr_z_correlation": {
+      "rho": 0.333,
+      "p": 0.0
+    },
+    "regime_distribution": {
+      "LATENT": 25516,
+      "TRANSITION": 728,
+      "FLOW": 44
+    }
+  },
+  "findings": [
+    "\u039bCDM TENSION CONFIRMED: 123.9x excess at z=7-8, 918.5x at z=10-12",
+    "sSFR increases with redshift (\u03c1=0.33, p<0.001) - supports EFC \u2207S prediction",
+    "Median log(sSFR) at z>10: -7.82 vs z=5-7: -8.13"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "analysis_date": "2026-01-13T17:51:17.323275",
+    "dataset": "COSMOS2025 (COSMOS-Web DR1)",
+    "n_galaxies_total": 26302,
+    "n_galaxies_with_mass": 26288,
+    "survey_area_deg2": 0.54
+  },
+  "lcdm_comparison": [
+    {
+      "label": "z_5_6",
+      "z_range": "5-6",
+      "n_observed": 2505,
+      "n_observed_per_deg2": 4638.9,
+      "n_expected_per_deg2": 200,
+      "ratio": 23.19,
+      "sigma_excess": 47.9,
+      "significant": true
+    },
+    {
+      "label": "z_6_7",
+      "z_range": "6-7",
+      "n_observed": 1720,
+      "n_observed_per_deg2": 3185.2,
+      "n_expected_per_deg2": 80,
+      "ratio": 39.81,
+      "sigma_excess": 40.4,
+      "significant": true
+    },
+    {
+      "label": "z_7_8",
+      "z_range": "7-8",
+      "n_observed": 1673,
+      "n_observed_per_deg2": 3098.1,
+      "n_expected_per_deg2": 25,
+      "ratio": 123.93,
+      "sigma_excess": 40.6,
+      "significant": true
+    },
+    {
+      "label": "z_8_9",
+      "z_range": "8-9",
+      "n_observed": 1120,
+      "n_observed_per_deg2": 2074.1,
+      "n_expected_per_deg2": 8,
+      "ratio": 259.26,
+      "sigma_excess": 33.3,
+      "significant": true
+    },
+    {
+      "label": "z_9_10",
+      "z_range": "9-10",
+      "n_observed": 571,
+      "n_observed_per_deg2": 1057.4,
+      "n_expected_per_deg2": 2,
+      "ratio": 528.7,
+      "sigma_excess": 23.9,
+      "significant": true
+    },
+    {
+      "label": "z_10_12",
+      "z_range": "10-12",
+      "n_observed": 248,
+      "n_observed_per_deg2": 459.3,
+      "n_expected_per_deg2": 0.5,
+      "ratio": 918.52,
+      "sigma_excess": 15.7,
+      "significant": true
+    },
+    {
+      "label": "z_12_plus",
+      "z_range": "12-20",
+      "n_observed": 610,
+      "n_observed_per_deg2": 1129.6,
+      "n_expected_per_deg2": 0.05,
+      "ratio": 22592.59,
+      "sigma_excess": 24.7,
+      "significant": true
+    }
+  ],
+  "efc_regime_analysis": {
+    "distribution": {
+      "LATENT": 25516,
+      "TRANSITION": 728,
+      "FLOW": 44
+    },
+    "by_redshift": [
+      {
+        "z_range": "5-6",
+        "n_galaxies": 6829,
+        "flow_fraction": 0.006,
+        "transition_fraction": 0.086,
+        "latent_fraction": 0.907
+      },
+      {
+        "z_range": "6-7",
+        "n_galaxies": 6652,
+        "flow_fraction": 0.0,
+        "transition_fraction": 0.021,
+        "latent_fraction": 0.979
+      },
+      {
+        "z_range": "7-8",
+        "n_galaxies": 6559,
+        "flow_fraction": 0.0,
+        "transition_fraction": 0.0,
+        "latent_fraction": 1.0
+      },
+      {
+        "z_range": "8-10",
+        "n_galaxies": 3928,
+        "flow_fraction": 0.0,
+        "transition_fraction": 0.0,
+        "latent_fraction": 1.0
+      },
+      {
+        "z_range": "10-15",
+        "n_galaxies": 2320,
+        "flow_fraction": 0.0,
+        "transition_fraction": 0.0,
+        "latent_fraction": 1.0
+      }
+    ]
+  },
+  "statistical_tests": {
+    "regime_distribution": {
+      "LATENT": 25516,
+      "TRANSITION": 728,
+      "FLOW": 44
+    },
+    "total_classified": 26288,
+    "chi2_uniform": {
+      "chi2": 48072.72,
+      "p_value": 0.0,
+      "significant": "True"
+    },
+    "flow_z_test": {
+      "test": "Mann-Whitney U",
+      "hypothesis": "FLOW galaxies at higher z",
+      "z_flow_median": 5.17,
+      "z_non_flow_median": 6.95,
+      "p_value": 1.0,
+      "significant": "False"
+    }
+  },
+  "key_findings": [
+    "At z=5-6: 23.19x more massive galaxies than \u039bCDM predicts",
+    "At z=6-7: 39.81x more massive galaxies than \u039bCDM predicts",
+    "At z=7-8: 123.93x more massive galaxies than \u039bCDM predicts",
+    "At z=8-9: 259.26x more massive galaxies than \u039bCDM predicts",
+    "At z=9-10: 528.7x more massive galaxies than \u039bCDM predicts",
+    "At z=10-12: 918.52x more massive galaxies than \u039bCDM predicts",
+    "At z=12-20: 22592.59x more massive galaxies than \u039bCDM predicts"
+  ]
+}
