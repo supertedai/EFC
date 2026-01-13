@@ -1,0 +1,87 @@
+{
+  "title": "EFC Regime Classification Summary",
+  "source_paper": "Paper III: Energy-Flow Cosmology and Regime-Dependent Structure Formation",
+  "doi": "10.6084/m9.figshare.31061872",
+  "framework": {
+    "name": "Energy-Flow Cosmology (EFC)",
+    "core_equation": "E_f = ρ(1 - S)",
+    "decomposition": "E_total = E_flow + E_latent",
+    "status": "phenomenological"
+  },
+  "regime_classification": {
+    "parameter": "L = E_latent / E_total",
+    "note": "Boundaries empirically motivated from SPARC; not universal constants",
+    "regimes": [
+      {
+        "name": "FLOW",
+        "range": "L < 0.25",
+        "interpretation": "Near-equilibrium; smooth entropy gradients",
+        "model_validity": "Simple models valid",
+        "sparc_fraction": "35%",
+        "sparc_success_rate": "100%"
+      },
+      {
+        "name": "TRANSITION",
+        "range": "0.25 ≤ L < 0.45",
+        "interpretation": "Mixed dynamics; developing non-equilibrium features",
+        "model_validity": "Partial",
+        "sparc_fraction": "49%",
+        "sparc_success_rate": "~60%"
+      },
+      {
+        "name": "LATENT",
+        "range": "L ≥ 0.45",
+        "interpretation": "Non-equilibrium dominated; significant structural energy",
+        "model_validity": "Simple models fail",
+        "sparc_fraction": "15%",
+        "sparc_success_rate": "~10%"
+      }
+    ]
+  },
+  "cross_scale_correspondence": {
+    "galactic": {
+      "scale": "kpc",
+      "dataset": "SPARC N=175",
+      "steep_gradient": "LSB galaxies: 100% simple-model success",
+      "shallow_gradient": "Barred galaxies: ~4% success"
+    },
+    "cosmological": {
+      "scale": "Gpc",
+      "dataset": "JWST COSMOS-Web N=26,288",
+      "steep_gradient": "z > 10: 920× abundance excess",
+      "shallow_gradient": "z < 3: ΛCDM valid"
+    }
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Regime classification replicates on independent samples",
+      "test_datasets": ["LITTLE THINGS", "DMS"],
+      "falsifiable": true
+    },
+    {
+      "id": "P2",
+      "statement": "Abundance excess continues monotonically to z > 15",
+      "test_method": "Future JWST observations",
+      "falsifiable": true
+    },
+    {
+      "id": "P3",
+      "statement": "Morphological complexity correlates with regime membership",
+      "test_method": "Cross-dataset analysis",
+      "falsifiable": true
+    },
+    {
+      "id": "P4",
+      "statement": "FIRE cusp-core transitions align with EFC regime boundaries",
+      "test_method": "Simulation comparison",
+      "falsifiable": true
+    }
+  ],
+  "limitations": [
+    "Framework not derived from first principles",
+    "Regime boundaries require independent calibration",
+    "Scope limited to phenomena in Papers I–II"
+  ],
+  "scope_statement": "No claim of model replacement. Offered as organizing interpretation only."
+}

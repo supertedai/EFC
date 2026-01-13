@@ -1,0 +1,114 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31061872",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.6084/m9.figshare.31061872"
+  },
+  "name": "Energy-Flow Cosmology and Regime-Dependent Structure Formation",
+  "headline": "Paper III: A Thermodynamic Framework for Galaxy Formation Anomalies",
+  "description": "Introduces Energy-Flow Cosmology (EFC) as a physical framework consistent with empirical regime structure in galaxy dynamics (SPARC) and early universe structure formation (JWST COSMOS-Web). The phenomenological decomposition E_total = E_flow + E_latent provides a unified interpretation without replacing ΛCDM.",
+  "abstract": "Papers I and II of this series established empirical regime structure in two independent datasets: (I) morphology-dependent rotation curve behavior in 175 SPARC galaxies, and (II) order-of-magnitude galaxy abundance excesses at z > 6 in JWST COSMOS-Web data. This third paper introduces Energy-Flow Cosmology (EFC) as a physical framework consistent with both findings. The core mechanism is entropy-gradient-driven energy flow, introduced through the phenomenological decomposition E_total = E_flow + E_latent. We show that this framework is consistent with: (i) the three-regime classification (FLOW, TRANSITION, LATENT) observed in galactic dynamics, and (ii) accelerated structure formation in the early universe. The interpretation is offered as an organizing framework, not a replacement for ΛCDM.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Initiative"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-01-13",
+  "dateCreated": "2026-01-13",
+  "inLanguage": "en",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "regime-dependent validity",
+    "entropy gradients",
+    "galaxy rotation curves",
+    "early structure formation",
+    "thermodynamic cosmology",
+    "SPARC",
+    "JWST",
+    "COSMOS-Web"
+  ],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Cosmology"
+    },
+    {
+      "@type": "Thing", 
+      "name": "Galaxy Formation"
+    },
+    {
+      "@type": "Thing",
+      "name": "Thermodynamics"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "EFC Regime Structure Series",
+    "numberOfItems": 3
+  },
+  "hasPart": [
+    {
+      "@type": "Chapter",
+      "name": "Introduction",
+      "position": 1
+    },
+    {
+      "@type": "Chapter",
+      "name": "The Energy-Flow Framework",
+      "position": 2
+    },
+    {
+      "@type": "Chapter",
+      "name": "Application to Galactic Dynamics",
+      "position": 3
+    },
+    {
+      "@type": "Chapter",
+      "name": "Application to Early Structure Formation",
+      "position": 4
+    },
+    {
+      "@type": "Chapter",
+      "name": "Cross-Scale Correspondence",
+      "position": 5
+    },
+    {
+      "@type": "Chapter",
+      "name": "Testable Predictions",
+      "position": 6
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Paper I: SPARC Regime Analysis",
+      "identifier": "10.6084/m9.figshare.31045126"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "EFC v2.1 Framework",
+      "identifier": "10.6084/m9.figshare.30478916"
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Figshare"
+  },
+  "url": "https://energyflow-cosmology.com/papers/paper3-regime-synthesis",
+  "sameAs": [
+    "https://figshare.com/articles/31061872",
+    "https://github.com/supertedai/EFC"
+  ]
+}
