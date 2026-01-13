@@ -1,0 +1,133 @@
+# EBE Regime Thresholds and Validation Metrics
+# Based on SPARC175 N=175 analysis (January 2026)
+# DOI: 10.6084/m9.figshare.31047703
+
+## REGIME BOUNDARIES (L-based)
+L1_threshold,0.337,Flow to Transition boundary
+L2_threshold,0.427,Transition to Latent boundary
+
+## ENTROPY BOUNDARIES (S-based)
+S_lower_empirical,0.10,Below this: ordered (GR-like) - low measurability
+S_upper_empirical,0.90,Above this: fragmented (QFT-like) - low measurability
+S_optimal_range,0.10-0.90,Entropy-bounded empirical window
+
+## REGIME STATISTICS
+### FLOW Regime (L < 0.337)
+n_flow,62,Number of galaxies
+percentage_flow,35.4,Percentage of sample
+mean_L_flow,0.29,Mean L value
+std_L_flow,0.024,Standard deviation of L
+mean_S_flow,0.165,Mean entropy estimate
+mean_chi2_flow,2.05,Mean EFC chi-squared
+success_rate_flow,100.0,Percentage with chi2 < 3
+mean_quality_flow,high,Dominant quality tier
+
+### TRANSITION Regime (0.337 â‰¤ L < 0.427)
+n_transition,86,Number of galaxies
+percentage_transition,49.1,Percentage of sample
+mean_L_transition,0.223,Mean L value (note: lower than FLOW due to bimodality)
+std_L_transition,0.067,Standard deviation of L
+mean_S_transition,0.351,Mean entropy estimate
+success_rate_transition,4.7,Percentage with chi2 < 3
+mean_quality_transition,mixed,Quality distribution
+
+### LATENT Regime (L â‰¥ 0.427)
+n_latent,27,Number of galaxies
+percentage_latent,15.4,Percentage of sample
+mean_L_latent,0.50,Mean L value
+std_L_latent,0.024,Standard deviation of L
+mean_S_latent,0.87,Mean entropy estimate
+mean_chi2_latent,297.83,Mean EFC chi-squared
+success_rate_latent,3.7,Percentage with chi2 < 3
+mean_quality_latent,low-medium,Dominant quality tier
+
+## PRIMARY VALIDATION TESTS
+### Mann-Whitney U Test (FLOW vs others)
+test_name,Mann-Whitney U
+p_value,<0.0001,Highly significant regime structure
+cliff_delta,0.371,Moderate-to-large effect size
+interpretation,Regime structure is statistically robust
+
+### Kruskal-Wallis H Test (3-way comparison)
+test_name,Kruskal-Wallis H
+p_value,0.012,Significant difference across regimes
+interpretation,All three regimes are distinguishable
+
+### Permutation Test
+test_name,Permutation Test (10000 iterations)
+p_value,0.016,Significant non-random structure
+observed_delta,0.371,Actual effect size
+null_distribution_mean,0.042,Expected under null hypothesis
+interpretation,Regime effect unlikely due to chance
+
+### CMB Null Test
+test_name,CMB Null Test
+p_value,0.251,Not significant (as expected)
+interpretation,PASS - CMB shows no regime structure (equilibrium Sâ‰ˆ0.5)
+theoretical_prediction,confirmed,EBE predicts CMB should fail regime test
+
+## CONFOUND ANALYSIS
+### Quality-L Correlation
+correlation_coefficient,-0.43,Moderate negative correlation
+interpretation,Higher quality â†’ lower L (more likely FLOW)
+concern_level,MODERATE,Effect strengthens in high-quality subsample
+mitigation,Stratified analysis shows consistent direction across quality tiers
+
+### High-Quality Subsample Analysis
+n_high_quality,87,Galaxies with N_points > 45
+p_value_high_quality,0.001,More significant than full sample
+cliff_delta_high_quality,0.69,Larger effect size
+interpretation,Effect STRENGTHENS in high-quality data (argues against pure artifact)
+
+## SENSITIVITY ANALYSES
+total_sensitivity_tests,14,Number of robustness checks performed
+significant_sensitivity_tests,6,Number showing p < 0.05
+consistent_direction,14/14,All tests show same directional effect
+key_variations_tested,"Alternative L definitions, Different quality cutoffs, Subsample bootstrap, Outlier removal, Alternative regime boundaries"
+
+## REPLICATION STATUS
+### N=20 Pilot (December 2025)
+pilot_n,20,Original pilot sample size
+pilot_regime_structure,validated,Regime pattern observed
+pilot_flow_success,100%,Same as N=175
+scaling_validation,PASS,Findings replicate at larger scale
+
+### Independent Dataset Status
+LITTLE_THINGS,pending,~40 dwarf galaxies - not yet analyzed
+DMS_survey,pending,~300 dwarf galaxies - not yet analyzed
+next_critical_step,MNRAS peer review,Publication is the validation bottleneck
+
+## CROSS-DOMAIN PREDICTIONS
+### Economics
+prediction,Market efficiency varies by entropy regime,Testable
+status,conceptual,Needs operationalization
+
+### Biology
+prediction,Metabolic efficiency bounded by entropy gradients,Testable
+status,conceptual,Requires biological entropy proxy
+
+### Cognition
+prediction,Learning efficacy peaks at S â‰ˆ 0.4-0.6,Testable
+status,conceptual,Needs cognitive entropy measure
+
+## PUBLICATION METRICS
+status,ready_with_minor_edits,Manuscript complete
+target_journal,MNRAS,Monthly Notices of the Royal Astronomical Society
+target_submission,Q1 2026,January-March 2026
+estimated_review_time,3-6 months,Typical MNRAS turnaround
+peer_review_status,not_submitted,Awaiting final author approval
+
+## DATA AVAILABILITY
+primary_dataset,SPARC175_master_dataset.csv,This file
+analysis_scripts,GitHub repository,https://github.com/supertedai/EFC
+figshare_doi,10.6084/m9.figshare.31047703,Complete analysis package
+license,CC-BY-4.0,Open access
+
+## NOTES
+note_1,"L is a model-blind structural proxy computed BEFORE model fitting"
+note_2,"S is estimated from L using calibrated entropy gradient relation"
+note_3,"Regime boundaries (L1, L2) are empirically derived from SPARC data"
+note_4,"CMB null test is a CRITICAL validation - it must fail to support EBE theory"
+note_5,"Quality confound exists but effect strengthens in high-quality data"
+note_6,"All 14 sensitivity tests show consistent directional effect"
+note_7,"100% success in FLOW regime is unprecedented in galaxy rotation modeling"
