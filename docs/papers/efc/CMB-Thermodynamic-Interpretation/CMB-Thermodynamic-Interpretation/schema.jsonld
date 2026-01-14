@@ -1,0 +1,196 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.org/ontology#",
+    "astro": "http://www.ivoa.net/rdf/UCD#"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31064929",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.6084/m9.figshare.31064929"
+  },
+  "name": "CMB Thermodynamic Interpretation",
+  "headline": "A compatibility and null-test framework under entropy-constrained structure formation",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Initiative"
+    }
+  },
+  "datePublished": "2026-01-14",
+  "description": "Framework for testing consistency between Energy-Flow Cosmology and CMB observables. JWST observations constrain entropy profile S(z), tested against CMB without parameter fitting.",
+  "keywords": [
+    "Cosmic Microwave Background",
+    "Energy-Flow Cosmology",
+    "JWST",
+    "entropy",
+    "cosmology",
+    "null test",
+    "falsifiability"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Cosmic Microwave Background",
+      "termCode": "CMB"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Energy-Flow Cosmology",
+      "termCode": "EFC"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Paper Series",
+    "url": "https://energyflow-cosmology.org"
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "efc:causalStructure": {
+    "@type": "efc:CausalChain",
+    "efc:steps": [
+      {
+        "@type": "efc:ObservationalConstraint",
+        "name": "JWST/COSMOS-Web",
+        "efc:constrains": "S(z)"
+      },
+      {
+        "@type": "efc:EntropyProfile",
+        "name": "S(z)",
+        "efc:derivedFrom": "JWST",
+        "efc:testedAgainst": "CMB"
+      },
+      {
+        "@type": "efc:CompatibilityTest",
+        "name": "CMB Observables",
+        "efc:parameterFitting": false
+      }
+    ]
+  },
+  "efc:compatibilityConstraints": [
+    {
+      "@type": "efc:Constraint",
+      "name": "Acoustic Scale",
+      "efc:symbol": "theta_s",
+      "efc:value": "100.09 +/- 0.30 arcmin",
+      "efc:type": "must_hold"
+    },
+    {
+      "@type": "efc:Constraint",
+      "name": "Peak Ratio",
+      "efc:symbol": "R",
+      "efc:value": "~0.42",
+      "efc:type": "must_hold"
+    },
+    {
+      "@type": "efc:Constraint",
+      "name": "Damping Scale",
+      "efc:symbol": "l_D",
+      "efc:value": "Silk damping form",
+      "efc:type": "must_hold"
+    },
+    {
+      "@type": "efc:Constraint",
+      "name": "TE/EE Correlation",
+      "efc:value": "positive",
+      "efc:type": "must_hold"
+    }
+  ],
+  "efc:predictions": [
+    {
+      "@type": "efc:Prediction",
+      "name": "Lensing Amplitude",
+      "efc:symbol": "A_L",
+      "efc:prediction": "< 1.0",
+      "efc:falsification": "A_L >= 1.0"
+    },
+    {
+      "@type": "efc:Prediction",
+      "name": "ISW Phase",
+      "efc:prediction": "0.01-0.1 rad at l > 1000"
+    },
+    {
+      "@type": "efc:Prediction",
+      "name": "Lensing Spectrum",
+      "efc:symbol": "C_l^phiphi",
+      "efc:prediction": "z-dependent at high l"
+    }
+  ],
+  "efc:nullTests": [
+    {
+      "@type": "efc:NullTest",
+      "name": "Peak Position Invariance",
+      "efc:criterion": "theta_s within 0.5%",
+      "efc:falsifiable": true
+    },
+    {
+      "@type": "efc:NullTest",
+      "name": "Damping Consistency",
+      "efc:criterion": "l_D within 5%",
+      "efc:falsifiable": true
+    },
+    {
+      "@type": "efc:NullTest",
+      "name": "Lensing-Growth Consistency",
+      "efc:criterion": "A_L in 0.9-0.95",
+      "efc:falsifiable": true
+    }
+  ],
+  "efc:parameters": [
+    {
+      "@type": "efc:Parameter",
+      "name": "S_0",
+      "description": "Entropy at z=0",
+      "efc:constraintSource": "SPARC rotation curves"
+    },
+    {
+      "@type": "efc:Parameter",
+      "name": "S_eq",
+      "description": "Entropy at matter-radiation equality",
+      "efc:constraintSource": "CMB peak structure"
+    },
+    {
+      "@type": "efc:Parameter",
+      "name": "alpha_S",
+      "description": "Entropy coupling strength",
+      "efc:constraintSource": "JWST sSFR correlation"
+    },
+    {
+      "@type": "efc:Parameter",
+      "name": "n_S",
+      "description": "Entropy profile exponent",
+      "efc:constraintSource": "Cross-scale consistency"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.6084/m9.figshare.31059964",
+      "name": "Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.6084/m9.figshare.31061665",
+      "name": "Regime-Dependent Breakdown of LambdaCDM Across Cosmic Time"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results. VI. Cosmological parameters",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Astronomy & Astrophysics"
+      },
+      "volumeNumber": "641",
+      "pageStart": "A6"
+    }
+  ]
+}

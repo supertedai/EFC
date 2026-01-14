@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="720" height="480" fill="white"/>
+  
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Figure 1. Causal and Observational Flow</text>
+  
+  <!-- Box 1: JWST -->
+  <rect x="60" y="60" width="180" height="80" rx="8" fill="#E8F4FC" stroke="#2E86AB" stroke-width="2"/>
+  <text x="150" y="90" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1a1a1a">JWST / COSMOS-Web</text>
+  <text x="150" y="110" text-anchor="middle" font-family="Arial" font-size="11" fill="#444">Empirical galaxy excess</text>
+  <text x="150" y="126" text-anchor="middle" font-family="Arial" font-size="11" fill="#444">z &gt; 6 (N = 26,288)</text>
+  
+  <!-- Arrow 1 -->
+  <line x1="150" y1="140" x2="150" y2="180" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Annotation 1 -->
+  <rect x="170" y="148" width="100" height="24" rx="4" fill="#FFF9E6" stroke="#E6C200" stroke-width="1"/>
+  <text x="220" y="165" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">No CMB input</text>
+  
+  <!-- Box 2: S(z) -->
+  <rect x="60" y="190" width="180" height="80" rx="8" fill="#F0E6FF" stroke="#7B2CBF" stroke-width="2"/>
+  <text x="150" y="220" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1a1a1a">Entropy Profile S(z)</text>
+  <text x="150" y="240" text-anchor="middle" font-family="Arial" font-size="11" fill="#444">Empirically constrained</text>
+  <text x="150" y="256" text-anchor="middle" font-family="Arial" font-size="11" fill="#444">from sSFR(z) correlation</text>
+  
+  <!-- Arrow 2 -->
+  <line x1="150" y1="270" x2="150" y2="310" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Annotation 2 -->
+  <rect x="170" y="278" width="120" height="24" rx="4" fill="#FFF9E6" stroke="#E6C200" stroke-width="1"/>
+  <text x="230" y="295" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">No parameter fitting</text>
+  
+  <!-- Box 3: CMB - split into two zones -->
+  <rect x="60" y="320" width="180" height="130" rx="8" fill="#F5F5F5" stroke="#666" stroke-width="2"/>
+  <text x="150" y="345" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#1a1a1a">CMB Observables</text>
+  <text x="150" y="362" text-anchor="middle" font-family="Arial" font-size="11" fill="#444">Tested for compatibility</text>
+  
+  <!-- Constraints zone (green) -->
+  <rect x="70" y="375" width="160" height="30" rx="4" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+  <text x="150" y="395" text-anchor="middle" font-family="Arial" font-size="10" fill="#2E7D32">θₛ, peaks, damping (must hold)</text>
+  
+  <!-- Predictions zone (orange) -->
+  <rect x="70" y="410" width="160" height="30" rx="4" fill="#FFF3E0" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="150" y="430" text-anchor="middle" font-family="Arial" font-size="10" fill="#E65100">A_L, ISW, lensing (may deviate)</text>
+  
+  <!-- Right side: Key principles box -->
+  <rect x="320" y="80" width="340" height="340" rx="8" fill="#FAFAFA" stroke="#DDD" stroke-width="1"/>
+  <text x="490" y="105" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Framework Principles</text>
+  
+  <!-- Principle 1 -->
+  <text x="340" y="140" font-family="Arial" font-size="12" font-weight="bold" fill="#2E86AB">1. Causal Independence</text>
+  <text x="340" y="158" font-family="Arial" font-size="11" fill="#444">S(z) derived from JWST alone</text>
+  <text x="340" y="174" font-family="Arial" font-size="11" fill="#444">No circular inference with CMB</text>
+  
+  <!-- Principle 2 -->
+  <text x="340" y="205" font-family="Arial" font-size="12" font-weight="bold" fill="#7B2CBF">2. Fixed Parameters</text>
+  <text x="340" y="223" font-family="Arial" font-size="11" fill="#444">EFC parameters (S₀, α_S, n_S) set before CMB test</text>
+  <text x="340" y="239" font-family="Arial" font-size="11" fill="#444">No post-hoc tuning permitted</text>
+  
+  <!-- Principle 3 -->
+  <text x="340" y="270" font-family="Arial" font-size="12" font-weight="bold" fill="#4CAF50">3. Early-Universe Constraints</text>
+  <text x="340" y="288" font-family="Arial" font-size="11" fill="#444">Acoustic scale, peak structure, damping</text>
+  <text x="340" y="304" font-family="Arial" font-size="11" fill="#444">Must match Planck 2018 → Pass/Fail</text>
+  
+  <!-- Principle 4 -->
+  <text x="340" y="335" font-family="Arial" font-size="12" font-weight="bold" fill="#FF9800">4. Late-Time Predictions</text>
+  <text x="340" y="353" font-family="Arial" font-size="11" fill="#444">Lensing amplitude A_L &lt; 1.0</text>
+  <text x="340" y="369" font-family="Arial" font-size="11" fill="#444">ISW phase variation at high ℓ</text>
+  <text x="340" y="385" font-family="Arial" font-size="11" fill="#444">Testable deviations from ΛCDM</text>
+  
+  <!-- Falsification note -->
+  <rect x="340" y="400" width="300" height="24" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1"/>
+  <text x="490" y="417" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#C62828">A_L ≥ 1.0 at high significance → Framework falsified</text>
+  
+</svg>

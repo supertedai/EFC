@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+title: CMB Thermodynamic Interpretation
+message: If you use this framework, please cite it using these metadata.
+type: dataset
+authors:
+  - family-names: Magnusson
+    given-names: Morten
+    orcid: https://orcid.org/0009-0002-4860-5095
+    affiliation: Energy-Flow Cosmology Initiative
+identifiers:
+  - type: doi
+    value: 10.6084/m9.figshare.31064929
+    description: Figshare repository
+repository-code: https://github.com/mortensi/CMB-Thermodynamic-Interpretation
+url: https://energyflow-cosmology.org
+abstract: >-
+  A compatibility and null-test framework for testing 
+  Energy-Flow Cosmology against CMB observables. 
+  JWST observations constrain the entropy profile S(z),
+  which is tested against Planck CMB constraints without
+  parameter fitting.
+keywords:
+  - Cosmic Microwave Background
+  - Energy-Flow Cosmology
+  - JWST
+  - entropy
+  - cosmology
+  - null test
+  - falsifiability
+  - Planck
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2026-01-14
+references:
+  - type: article
+    authors:
+      - family-names: Magnusson
+        given-names: Morten
+    title: Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions
+    doi: 10.6084/m9.figshare.31059964
+    year: 2026
+  - type: article
+    authors:
+      - family-names: Magnusson
+        given-names: Morten
+    title: Regime-Dependent Breakdown of LambdaCDM Across Cosmic Time
+    doi: 10.6084/m9.figshare.31061665
+    year: 2026
+  - type: article
+    authors:
+      - name: Planck Collaboration
+    title: Planck 2018 results. VI. Cosmological parameters
+    journal: Astronomy & Astrophysics
+    volume: 641
+    start: A6
+    year: 2020
