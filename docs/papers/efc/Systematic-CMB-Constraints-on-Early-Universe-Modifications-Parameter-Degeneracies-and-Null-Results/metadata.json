@@ -1,0 +1,91 @@
+{
+  "name": "efc-cmb-testing",
+  "version": "1.0.0",
+  "title": "Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results",
+  "description": "Complete framework for testing Energy-Flow Cosmology mechanisms against Planck 2018 CMB data, demonstrating parameter degeneracy artifacts and null results for two mechanisms.",
+  "doi": "10.6084/m9.figshare.31095466",
+  "created": "2026-01-20",
+  "updated": "2026-01-20",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "cosmology",
+    "CMB",
+    "Planck",
+    "energy-flow cosmology",
+    "EFC-R",
+    "parameter degeneracy",
+    "LCDM",
+    "alternative theories",
+    "Thomson scattering",
+    "background dynamics",
+    "Boltzmann code",
+    "CLASS"
+  ],
+  "authors": [
+    {
+      "role": "principal investigator",
+      "affiliation": "Energy-Flow Cosmology Research"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/[username]/efc-cmb-testing"
+  },
+  "data": {
+    "source": "Planck 2018",
+    "spectrum": "Temperature (TT)",
+    "points": 2507,
+    "ell_range": [2, 2508]
+  },
+  "methods": {
+    "boltzmann_solver": "CLASS v3.2.0",
+    "analysis": "Python 3.12",
+    "statistics": "Amplitude marginalization + chi-squared"
+  },
+  "results": {
+    "mechanism_1": {
+      "name": "Thomson scattering (kappa-dot)",
+      "type": "microscopic",
+      "status": "rejected",
+      "minimum": "boost = 0%",
+      "delta_chi2": "+5.4 at +/-1%"
+    },
+    "mechanism_2": {
+      "name": "Background energy density H(z)",
+      "type": "macroscopic",
+      "status": "rejected (after 2D analysis)",
+      "minimum": "epsilon approximately 0%",
+      "delta_chi2_1d": "-65 at epsilon=+3% (artifact)",
+      "delta_chi2_2d": "-1.26 at epsilon=-0.5% (noise)"
+    },
+    "key_finding": "Parameter degeneracy between epsilon and h created false signal in 1D scan"
+  },
+  "files": {
+    "main_document": "EFC_CMB_Testing_Results.pdf",
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "index": "index.html",
+    "jsonld": "dataset.jsonld",
+    "figures": [
+      "kappa_sweep_final.png",
+      "grid_2d_landscape.png",
+      "grid_1d_slices.png",
+      "efc_hz_corrected_final.png"
+    ],
+    "documentation": [
+      "FINAL_ANALYSIS_1D_VS_2D.md",
+      "CORRECTED_FINAL_SUMMARY.md"
+    ]
+  },
+  "cite": {
+    "format": "bibtex",
+    "entry": "@misc{efc_cmb_2026,\n  title={Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results},\n  author={},\n  year={2026},\n  doi={10.6084/m9.figshare.31095466},\n  note={Energy-Flow Cosmology testing against Planck 2018 data}\n}"
+  },
+  "ai_metadata": {
+    "machine_readable": true,
+    "structured_results": true,
+    "replication_package": true,
+    "code_available": true,
+    "data_available": true
+  }
+}

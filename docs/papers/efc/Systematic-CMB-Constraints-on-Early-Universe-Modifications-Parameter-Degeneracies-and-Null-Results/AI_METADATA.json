@@ -1,0 +1,127 @@
+{
+  "ai_metadata": {
+    "version": "1.0",
+    "created": "2026-01-20",
+    "purpose": "Machine-readable dataset description for AI systems",
+    "structured_results": true,
+    "replication_package": true
+  },
+  "dataset_structure": {
+    "type": "cosmology_analysis",
+    "domain": "observational_cosmology",
+    "subdomain": "CMB_analysis",
+    "methodology": "parameter_constraint",
+    "data_source": "Planck_2018"
+  },
+  "computational_reproducibility": {
+    "code_available": true,
+    "data_available": true,
+    "environment_specified": true,
+    "dependencies": [
+      "CLASS v3.2.0",
+      "Python 3.12",
+      "NumPy",
+      "SciPy",
+      "Matplotlib",
+      "emcee",
+      "corner"
+    ],
+    "runtime_estimate": "1-2 hours (full sweep)",
+    "hardware_requirements": "Standard workstation (4+ CPU cores)"
+  },
+  "results_structured": {
+    "mechanism_1": {
+      "name": "kappa_dot_modification",
+      "type": "microscopic",
+      "parameter": "boost",
+      "tested_range": [-0.03, 0.03],
+      "tested_points": 7,
+      "optimal_value": 0.0,
+      "optimal_chi2_dof": 1.1853,
+      "delta_chi2_at_plus_1pct": 5.4,
+      "delta_chi2_at_minus_1pct": 5.4,
+      "conclusion": "rejected",
+      "confidence": "high"
+    },
+    "mechanism_2": {
+      "name": "H_z_background_energy",
+      "type": "macroscopic",
+      "parameter": "epsilon",
+      "tested_range": [-0.01, 0.04],
+      "tested_points_1d": 10,
+      "tested_points_2d": 77,
+      "apparent_1d_optimal": 0.03,
+      "apparent_1d_delta_chi2": -64.87,
+      "true_2d_optimal": -0.005,
+      "true_2d_delta_chi2": -1.26,
+      "degeneracy_parameter": "h",
+      "degeneracy_strength": "strong",
+      "conclusion": "rejected_after_2d_analysis",
+      "confidence": "high",
+      "lesson": "parameter_degeneracy_artifact"
+    }
+  },
+  "key_findings": {
+    "primary": "Both EFC mechanisms rejected by Planck 2018 TT data when parameter covariances properly handled",
+    "methodological": "Parameter degeneracies can create false signals in single-parameter scans",
+    "theoretical": "CMB epoch (L0-L1 regime) consistent with LCDM as expected in EFC-R framework"
+  },
+  "statistical_metrics": {
+    "baseline_chi2_dof": 1.1987,
+    "data_points": 2507,
+    "ell_range": [2, 2508],
+    "amplitude_marginalization": true,
+    "systematic_errors": "not_included"
+  },
+  "parameter_space": {
+    "dimensions_tested": 2,
+    "primary_parameters": ["epsilon_efc", "h"],
+    "fixed_parameters": ["omega_b", "omega_cdm", "A_s", "n_s", "tau_reio"],
+    "degeneracy_matrix": {
+      "epsilon_h": "strong_negative_correlation",
+      "epsilon_omega_b": "weak",
+      "epsilon_omega_cdm": "weak"
+    }
+  },
+  "ai_usability": {
+    "training_data": false,
+    "benchmark": true,
+    "example_analysis": true,
+    "null_result_demonstration": true,
+    "degeneracy_tutorial": true,
+    "suitable_for": [
+      "cosmology_education",
+      "method_validation",
+      "parameter_estimation_training",
+      "false_signal_detection"
+    ]
+  },
+  "extensions": {
+    "suggested_followup": [
+      "Full MCMC over 6-7 parameters",
+      "Complete Planck likelihood (TT+TE+EE+lensing)",
+      "Alternative EFC parameterizations",
+      "Testing in non-linear structure formation regimes"
+    ],
+    "code_adaptable_to": [
+      "Other alternative theories",
+      "Different CMB datasets",
+      "Modified gravity tests",
+      "Early dark energy constraints"
+    ]
+  },
+  "quality_indicators": {
+    "peer_review": "not_yet",
+    "code_review": "internal",
+    "data_validation": "against_Planck_2018",
+    "reproducibility_tested": true,
+    "documentation_completeness": "high"
+  },
+  "access": {
+    "doi": "10.6084/m9.figshare.31095466",
+    "license": "CC-BY-4.0",
+    "code_license": "MIT",
+    "restrictions": "none",
+    "embargo": "none"
+  }
+}

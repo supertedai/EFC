@@ -1,0 +1,133 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "@id": "https://doi.org/10.6084/m9.figshare.31095466",
+  "identifier": "10.6084/m9.figshare.31095466",
+  "name": "EFC-CMB Testing Results: Parameter Degeneracies and Null Results",
+  "description": "Complete systematic testing framework for Energy-Flow Cosmology mechanisms against Planck 2018 CMB temperature power spectrum. Tests two mechanisms: (1) modified Thomson scattering kappa-dot(z) and (2) Gaussian-windowed background energy density. Both mechanisms rejected when parameter degeneracies properly handled. Demonstrates critical importance of multi-dimensional parameter space exploration.",
+  "url": "https://doi.org/10.6084/m9.figshare.31095466",
+  "version": "1.0.0",
+  "datePublished": "2026-01-20",
+  "dateModified": "2026-01-20",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": [
+    "cosmology",
+    "CMB",
+    "Planck 2018",
+    "Energy-Flow Cosmology",
+    "EFC-R",
+    "parameter degeneracy",
+    "LCDM",
+    "alternative cosmology",
+    "Thomson scattering",
+    "Hubble parameter",
+    "CLASS Boltzmann code",
+    "null results",
+    "systematic testing"
+  ],
+  "creator": [
+    {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Research"
+    }
+  ],
+  "citation": "EFC-CMB Testing Results (2026). DOI: 10.6084/m9.figshare.31095466",
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/pdf",
+      "contentUrl": "EFC_CMB_Testing_Results.pdf",
+      "name": "Main Publication Document"
+    },
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/markdown",
+      "contentUrl": "README.md",
+      "name": "Repository README"
+    },
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "metadata.json",
+      "name": "Machine-Readable Metadata"
+    }
+  ],
+  "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "Figshare",
+    "url": "https://figshare.com"
+  },
+  "spatialCoverage": "Cosmic Microwave Background (full sky)",
+  "temporalCoverage": "z ~ 1100 (recombination epoch)",
+  "measurementTechnique": [
+    "Boltzmann equation solving (CLASS)",
+    "Amplitude marginalization",
+    "Chi-squared fitting",
+    "2D parameter grid scanning"
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "CMB Temperature Power Spectrum",
+      "description": "Planck 2018 TT spectrum, 2507 data points",
+      "unitText": "microKelvin squared"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Thomson Scattering Modification",
+      "description": "kappa-dot boost parameter",
+      "minValue": -0.03,
+      "maxValue": 0.03,
+      "unitText": "fractional"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Background Energy Density",
+      "description": "epsilon EFC parameter",
+      "minValue": -0.01,
+      "maxValue": 0.04,
+      "unitText": "fractional"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Hubble Parameter",
+      "description": "h = H0/100",
+      "minValue": 0.66,
+      "maxValue": 0.685,
+      "unitText": "dimensionless"
+    }
+  ],
+  "isBasedOn": [
+    {
+      "@type": "Dataset",
+      "name": "Planck 2018 Release",
+      "url": "https://pla.esac.esa.int/",
+      "description": "Planck Legacy Archive - Temperature power spectrum"
+    }
+  ],
+  "usageInfo": {
+    "@type": "CreativeWork",
+    "text": "This dataset is freely available under CC-BY 4.0. Code and analysis scripts included for full reproducibility. Suitable for: (1) Replication studies, (2) Alternative theory testing, (3) Parameter degeneracy demonstrations, (4) Educational purposes in cosmology methods."
+  },
+  "mainEntity": {
+    "@type": "ScholarlyArticle",
+    "headline": "Systematic CMB Constraints on Early-Universe Modifications",
+    "abstract": "We present a systematic framework for testing alternative cosmological scenarios against Planck 2018 CMB data. Two EFC-inspired mechanisms tested: (i) modified photon-baryon coupling and (ii) Gaussian-windowed background energy. Both rejected when parameter covariances properly handled. Critical finding: 1D scans showed false epsilon=+3% signal (Delta-chi-squared=-65) due to degeneracy with Hubble parameter h; 2D analysis reveals true minimum at epsilon=0 (Delta-chi-squared=-1.26). Demonstrates importance of multi-dimensional parameter exploration.",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Parameter Degeneracy",
+        "description": "Strong correlation between epsilon_EFC and h creates false signals in single-parameter scans"
+      },
+      {
+        "@type": "Thing",
+        "name": "EFC-R Regime Framework",
+        "description": "CMB epoch (z~1100) represents L0-L1 linear regime where LCDM expected to dominate"
+      }
+    ]
+  },
+  "funding": {
+    "@type": "Grant",
+    "name": "Independent Research"
+  }
+}
