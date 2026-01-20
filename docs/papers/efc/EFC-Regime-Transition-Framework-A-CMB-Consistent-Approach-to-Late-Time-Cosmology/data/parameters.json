@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-01-20",
+    "doi": "10.6084/m9.figshare.31096951"
+  },
+  "cosmology": {
+    "source": "Planck 2018",
+    "H0_km_s_Mpc": 67.36,
+    "omega_b": 0.0494,
+    "omega_c": 0.2646,
+    "omega_lambda": 0.685,
+    "omega_r": 9e-5,
+    "A_s": 2.1e-9,
+    "n_s": 0.9649,
+    "tau": 0.0544
+  },
+  "regime_transition": {
+    "chi_early": 0.2,
+    "chi_late": 2.5,
+    "z_transition": 50,
+    "delta_z": 30,
+    "alpha": 10.0,
+    "chi_c": 1.0,
+    "b": 1.0,
+    "tau_relax": 0.1,
+    "phi0": 1.0
+  },
+  "numerical": {
+    "z_min": 0,
+    "z_max": 3000,
+    "n_points": 15000,
+    "phi_init": 1e-6,
+    "rtol": 1e-10,
+    "atol": 1e-12
+  },
+  "cmb_safety": {
+    "z_cmb": 1100,
+    "threshold": 1e-4,
+    "measured_G_cmb": 1.00e-12,
+    "safety_margin_orders": 8
+  },
+  "key_results": {
+    "G_z3000": 1.0e-12,
+    "G_z1100": 1.0e-12,
+    "G_z100": 1.2e-12,
+    "G_z10": 9.2e-16,
+    "G_z2": 0.25,
+    "G_z0": 0.9999
+  }
+}
