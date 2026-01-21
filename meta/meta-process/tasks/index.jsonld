@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Meta-Process Tasks",
+  "description": "Defines the operational tasks performed by the meta-process architecture, including coherence maintenance, transition validation, load control, diagnostics and boundary enforcement.",
+  "identifier": "efc:meta-process-tasks",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Structural Task",
+      "identifier": "efc:term/structural-task",
+      "description": "An operational action required for the meta-process to maintain stable function."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Coherence Task",
+      "identifier": "efc:term/coherence-task",
+      "description": "A task focused on maintaining alignment across layers."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Transition Task",
+      "identifier": "efc:term/transition-task",
+      "description": "A task that verifies, validates or supports structural state transitions."
+    }
+  ]
+}

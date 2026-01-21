@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Self-Evaluation Layer",
+  "description": "Defines how the meta-process evaluates its own structure, coherence, transitions and global behaviour. Provides metrics, diagnostic rules, and consistency tests.",
+  "identifier": "efc:self-evaluation",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Self-Evaluation",
+      "identifier": "efc:term/self-evaluation",
+      "description": "A structural process for evaluating the correctness and stability of the meta-architecture."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Drift Detection",
+      "identifier": "efc:term/drift-detection",
+      "description": "Metrics and rules used to detect deviation from intended architecture."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Evaluation Metric",
+      "identifier": "efc:term/evaluation-metric",
+      "description": "Quantitative or qualitative measure of architectural performance."
+    }
+  ]
+}

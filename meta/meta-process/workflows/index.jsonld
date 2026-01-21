@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Meta-Process Workflows",
+  "description": "Defines the canonical operational workflows used by the meta-process, including coherence, transition, stability and diagnostic sequences.",
+  "identifier": "efc:meta-process-workflows",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Workflow",
+      "identifier": "efc:term/workflow",
+      "description": "A defined sequence of structural tasks executed in a specific order."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Transition Workflow",
+      "identifier": "efc:term/transition-workflow",
+      "description": "A workflow that governs state or layer transitions."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Stability Workflow",
+      "identifier": "efc:term/stability-workflow",
+      "description": "A workflow that maintains or restores structural stability."
+    }
+  ]
+}
