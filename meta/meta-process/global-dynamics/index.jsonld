@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Global Dynamics Layer",
+  "description": "The Global Dynamics layer defines large-scale behaviour, global state transitions, and long-range coherence across the entire meta-process architecture.",
+  "identifier": "efc:global-dynamics",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Global State",
+      "identifier": "efc:term/global-state",
+      "description": "A system-wide configuration describing the overall behaviour of the meta-process."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Transition Zone",
+      "identifier": "efc:term/transition-zone",
+      "description": "A region of shifting stability where the system moves between global states."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Resonance Load",
+      "identifier": "efc:term/resonance-load",
+      "description": "Measure of system-wide tension and cross-layer synchronization."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Stability Plateau",
+      "identifier": "efc:term/stability-plateau",
+      "description": "A period of sustained coherence across layers."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Collapse Cascade",
+      "identifier": "efc:term/collapse-cascade",
+      "description": "A chain reaction where instability spreads across layers."
+    }
+  ]
+}

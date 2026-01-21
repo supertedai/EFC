@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Process-of-Process Layer",
+  "description": "The Process-of-Process layer defines how the meta-process architecture reorganises, simplifies, and evolves over time. It governs meta-level transitions, recursive control loops, and structural adjustments.",
+  "identifier": "efc:process-of-process",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Meta-Control Loop",
+      "identifier": "efc:term/meta-control-loop",
+      "description": "A feedback loop that monitors and adjusts the behaviour of the entire meta-process."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Meta-Transition",
+      "identifier": "efc:term/meta-transition",
+      "description": "A change in the architecture itself rather than in its output."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Process Recursion",
+      "identifier": "efc:term/process-recursion",
+      "description": "Controlled self-reference used to adjust system rules without infinite regress."
+    }
+  ]
+}

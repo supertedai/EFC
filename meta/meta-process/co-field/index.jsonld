@@ -1,0 +1,42 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Co-Field Layer",
+  "description": "The Co-Field layer coordinates interactions between multiple structural fields in the meta-process architecture. It synchronizes parallel structures, resolves conflicts, merges reinforcing fields, and isolates incompatible ones.",
+  "identifier": "efc:co-field",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Co-Field",
+      "identifier": "efc:term/co-field",
+      "description": "A dynamic interaction surface where multiple structural fields co-evolve and influence each other."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Field Weight",
+      "identifier": "efc:term/field-weight",
+      "description": "Relative influence factor of a structural field during interaction."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Interaction Surface",
+      "identifier": "efc:term/interaction-surface",
+      "description": "The area of overlap where fields interact, reinforce, or conflict."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Stability Threshold",
+      "identifier": "efc:term/stability-threshold",
+      "description": "The minimum coherence required for a field to persist or influence others."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Collapse Trigger",
+      "identifier": "efc:term/collapse-trigger",
+      "description": "Conditions that force a field to revert to a transient state."
+    }
+  ]
+}

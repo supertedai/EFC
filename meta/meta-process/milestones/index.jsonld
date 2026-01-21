@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Meta-Process Milestones",
+  "description": "Structural milestones marking major transitions in the meta-process architecture, including layer expansions, consolidations, primitive reductions, and global state shifts.",
+  "identifier": "efc:meta-process-milestones",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Milestone",
+      "identifier": "efc:term/milestone",
+      "description": "A structural event that changes the configuration, capacity, or behaviour of the meta-process architecture."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Layer Expansion",
+      "identifier": "efc:term/layer-expansion",
+      "description": "A milestone in which a new layer is introduced into the meta-process."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Primitive Reduction",
+      "identifier": "efc:term/primitive-reduction",
+      "description": "Simplification of the architecture through removal or consolidation of primitives."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Global Transition",
+      "identifier": "efc:term/global-transition",
+      "description": "A system-wide transition between global states."
+    }
+  ]
+}
