@@ -1,0 +1,119 @@
+{
+  "version": "1.0",
+  "date": "2026-01-21",
+  "framework": "Entropy-Bounded Empiricism (EBE)",
+  
+  "transitions": {
+    "L0_to_L1": {
+      "name": "Activation",
+      "description": "Phase-extended activation from latent to stable active regime",
+      "type": "phase_extended",
+      "characteristics": [
+        "Gradual increase in energy throughput",
+        "Emergence of feedback mechanisms",
+        "Formation of stable operational modes",
+        "Crossing of critical coupling thresholds"
+      ],
+      "thresholds": {
+        "energy_throughput": "critical_activation_level",
+        "structural_coupling": "sufficient_for_feedback",
+        "information_exchange": "above_noise_floor",
+        "boundary_stability": "permits_sustained_flow"
+      },
+      "temporal_profile": "gradual_continuous",
+      "reversibility": "low",
+      "inference_notes": [
+        "Transition region has mixed L0/L1 characteristics",
+        "Inference rules must account for partial activation",
+        "Critical threshold crossing may exhibit hysteresis"
+      ]
+    },
+    
+    "L1_to_L2": {
+      "name": "Complexification",
+      "description": "Transition from stable to complex active dynamics",
+      "type": "gradual",
+      "characteristics": [
+        "Increase in non-linearity",
+        "Emergence of local sensitivity",
+        "Growth in entropy production",
+        "Formation of hierarchical structures"
+      ],
+      "thresholds": {
+        "non_linearity": "exceeds_linear_approximation_validity",
+        "sensitivity": "local_perturbations_amplify",
+        "entropy_production": "increases_beyond_L1_baseline",
+        "structural_complexity": "hierarchical_organization_emerges"
+      },
+      "temporal_profile": "continuous_gradual",
+      "reversibility": "moderate",
+      "inference_notes": [
+        "L1 models gradually lose validity",
+        "Transition region requires non-linear analysis",
+        "No sharp boundary between L1 and L2"
+      ]
+    },
+    
+    "L2_to_L3": {
+      "name": "Deactivation",
+      "description": "Transition from active complex dynamics to residual structure",
+      "type": "phase_extended",
+      "characteristics": [
+        "Energy throughput falls below maintenance thresholds",
+        "Feedback mechanisms no longer sustain coherence",
+        "Structural coupling weakens or breaks down",
+        "System transitions from process to residue"
+      ],
+      "thresholds": {
+        "energy_throughput": "below_maintenance_minimum",
+        "feedback_coherence": "insufficient_for_self_organization",
+        "structural_coupling": "breaks_below_critical_strength",
+        "operational_capacity": "cannot_sustain_active_dynamics"
+      },
+      "temporal_profile": "gradual_with_possible_rapid_phase",
+      "reversibility": "very_low",
+      "inference_notes": [
+        "Most critical boundary for inference validity",
+        "Active-phase models become invalid",
+        "Residual structure preserves some information but not process",
+        "Crossing this boundary terminates predictive models"
+      ]
+    },
+    
+    "L3_to_L0": {
+      "name": "Cyclical Reset",
+      "description": "Residual structure becomes latent configuration for new cycle",
+      "type": "conceptual_cyclical",
+      "characteristics": [
+        "L3 structure persists as potential L0 configuration",
+        "New boundary conditions may activate latent structure",
+        "Information from previous cycle encoded in configuration",
+        "No continuous temporal connection between cycles"
+      ],
+      "thresholds": {
+        "context_change": "new_boundary_conditions_established",
+        "structural_availability": "L3_residue_accessible_as_substrate",
+        "potential_activation": "environment_permits_reactivation"
+      },
+      "temporal_profile": "discontinuous_cyclical",
+      "reversibility": "not_applicable",
+      "inference_notes": [
+        "This is not a temporal transition but a conceptual cycle",
+        "New L0 state may incorporate L3 structure from previous systems",
+        "Causal continuity is broken; only structural inheritance remains",
+        "Enables multi-cycle analysis without assuming temporal linearity"
+      ]
+    }
+  },
+  
+  "transition_properties": {
+    "boundary_type": "phase_extended",
+    "sharp_boundaries": false,
+    "description": "All transitions are phase-extended rather than instantaneous. This means inference validity gradually changes across transition regions.",
+    "regime_leakage_risk": {
+      "definition": "Applying inference rules from one regime to another regime where those rules are invalid",
+      "high_risk_transitions": ["L2_to_L3"],
+      "mitigation": "Explicit regime tracking and boundary recognition in models"
+    }
+  }
+}

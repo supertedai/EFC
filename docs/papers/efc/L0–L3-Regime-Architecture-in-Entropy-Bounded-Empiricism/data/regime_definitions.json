@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "date": "2026-01-21",
+  "framework": "Entropy-Bounded Empiricism (EBE)",
+  "context": "Energy-Flow Cosmology (EFC)",
+  
+  "regimes": {
+    "L0": {
+      "name": "Latent Regime",
+      "description": "Configuration space without active dynamics",
+      "characteristics": [
+        "Potential structure without active energy flow",
+        "No self-maintenance or operational dynamics",
+        "Configuration space rather than trajectory space",
+        "May serve as initial conditions for activation"
+      ],
+      "dynamics": {
+        "energy_flow": "none",
+        "entropy_production": "none",
+        "operational_status": "latent",
+        "temporal_evolution": "static_configuration"
+      },
+      "inference_validity": [
+        "Configuration analysis valid",
+        "Potential state enumeration valid",
+        "Causal history inference invalid",
+        "Active dynamics projection invalid"
+      ]
+    },
+    
+    "L1": {
+      "name": "Stable Active Regime",
+      "description": "Low-entropy, predictable operational phase",
+      "characteristics": [
+        "Stable energy flow and low entropy production",
+        "Predictable dynamics with minimal sensitivity",
+        "Efficient operation near equilibrium",
+        "Clear boundary conditions and conserved quantities"
+      ],
+      "dynamics": {
+        "energy_flow": "stable_low",
+        "entropy_production": "low",
+        "operational_status": "active_stable",
+        "temporal_evolution": "predictable_trajectory"
+      },
+      "inference_validity": [
+        "Linear approximations valid",
+        "Near-equilibrium models valid",
+        "Long-term prediction reliable within regime",
+        "Extrapolation to L2 requires validation"
+      ]
+    },
+    
+    "L2": {
+      "name": "Complex Active Regime",
+      "description": "Non-linear dynamics with structural formation",
+      "characteristics": [
+        "Non-linear dynamics and structural complexity",
+        "Local sensitivity and emergent patterns",
+        "Higher entropy production than L1",
+        "Formation of hierarchical organization"
+      ],
+      "dynamics": {
+        "energy_flow": "variable_high",
+        "entropy_production": "high",
+        "operational_status": "active_complex",
+        "temporal_evolution": "non_linear_trajectory"
+      },
+      "inference_validity": [
+        "Non-linear models required",
+        "Local sensitivity analysis necessary",
+        "Long-term prediction limited by sensitivity",
+        "Structural formation analysis valid"
+      ]
+    },
+    
+    "L3": {
+      "name": "Residual Structure / Memory Regime",
+      "description": "Structure without process, information without flow",
+      "characteristics": [
+        "Persistence of structure without active maintenance",
+        "Information encoded in configuration but not in process",
+        "No operational energy flow or entropy production",
+        "Potential substrate for future activation (new L0 state)"
+      ],
+      "dynamics": {
+        "energy_flow": "none",
+        "entropy_production": "none",
+        "operational_status": "residual",
+        "temporal_evolution": "frozen_configuration"
+      },
+      "inference_validity": [
+        "Historical reconstruction valid (with caveats)",
+        "Structural analysis valid",
+        "Active dynamics inference invalid",
+        "Reverse engineering of past processes limited"
+      ],
+      "cyclical_connection": {
+        "target_regime": "L0",
+        "description": "L3 residual structure can serve as L0 latent configuration for new cycles"
+      }
+    }
+  },
+  
+  "architecture_properties": {
+    "linearity": "cyclical",
+    "description": "The L0–L3 architecture is cyclical rather than linear. Residual structure from one system's L3 phase can serve as latent configuration (L0) for subsequent activation cycles.",
+    "regime_count": 4,
+    "transition_type": "phase_extended"
+  }
+}
