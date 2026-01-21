@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "domains": [
+    {
+      "id": "papers_efc",
+      "root": "docs/papers/efc",
+      "type": "paper",
+      "jsonld_type": "CreativeWork"
+    },
+    {
+      "id": "theory",
+      "root": "theory",
+      "type": "theory",
+      "jsonld_type": "ScholarlyArticle"
+    },
+    {
+      "id": "meta",
+      "root": "meta",
+      "type": "meta",
+      "jsonld_type": "CreativeWork"
+    },
+    {
+      "id": "auth",
+      "root": "auth",
+      "type": "auth",
+      "jsonld_type": "CreativeWork"
+    }
+  ]
+}

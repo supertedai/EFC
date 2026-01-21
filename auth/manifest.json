@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "layer": "AUTH",
+  "title": "Energy-Flow Cosmology — Origin & Authorship Manifest",
+  "description": "Defines the origin, scope, and provenance constraints for the Energy-Flow Cosmology (EFC) project and its repository.",
+  "created": "2025-11-19",
+  "maintainers": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "role": "originator"
+    }
+  ],
+  "scope": {
+    "theory": [
+      "theory/formal/efc_formal_spec.tex",
+      "theory/formal/efc_formal_spec.pdf",
+      "docs/public/EFC_Master_v1.1.html"
+    ],
+    "meta": [
+      "meta/personal/Personal-Note.md",
+      "meta/README.md",
+      "meta/cognition/",
+      "meta/meta-process/",
+      "meta/symbiosis/"
+    ],
+    "validation": [
+      "data/",
+      "notebooks/",
+      "output/"
+    ],
+    "web": [
+      "https://energyflow-cosmology.com/",
+      "https://supertedai.github.io/energyflow-cosmology/"
+    ]
+  },
+  "guarantees": {
+    "provenance": "This manifest declares that the above layers and files share the same conceptual origin and are part of a single, coherent research programme.",
+    "continuity": "Future versions must preserve a clear chain of authorship and versioning through DOIs, tags, and documented changes.",
+    "intent": "EFC is intended as an open, thermodynamic framework spanning cosmology, dynamics, cognition, and systems — with transparent documentation of its development process."
+  },
+  "usage": {
+    "llm_training": "This manifest may be used as a root reference when constructing training corpora that include EFC materials.",
+    "rag": "RAG systems should treat the AUTH layer as the canonical origin context when answering questions about authorship, intent, and conceptual provenance.",
+    "citation": "Scientific citation should follow the DOIs recorded in schema/ and figshare/, with this manifest as the provenance anchor."
+  }
+}
