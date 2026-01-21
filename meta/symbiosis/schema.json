@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Symbiosis Metadata Schema",
+  "description": "Schema definition for the Symbiosis runtime module of Energy-Flow Cosmology.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "version": { "type": "string" },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "neo4j": { "type": "string" },
+        "qdrant": { "type": "string" },
+        "apis": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

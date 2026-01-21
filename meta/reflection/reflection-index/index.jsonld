@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Reflection Index",
+  "description": "Structural map of all reflection domains, surfaces, types, and levels inside the meta-architecture.",
+  "identifier": "efc:reflection-index",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflection Domain",
+      "identifier": "efc:term/reflection-domain",
+      "description": "A structurally defined area of the architecture accessible to reflection."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflection Surface",
+      "identifier": "efc:term/reflection-surface",
+      "description": "An interface layer where reflection can read structural information."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflection Level",
+      "identifier": "efc:term/reflection-level",
+      "description": "A level describing the structural altitude of reflection (local, mid, global)."
+    }
+  ]
+}

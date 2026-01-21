@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "https://schema.org/",
+    "https://doi.org/10.5063/schema/codemeta-2.0"
+  ],
+  "@type": "Dataset",
+  "name": "Symbiosis Runtime Metadata Index",
+  "description": "Metadata index for the Symbiosis subsystem of the Energy-Flow Cosmology (EFC) project.",
+  "identifier": "symbiosis-index-v1",
+  "version": "1.0.0",
+  "hasPart": [
+    {
+      "@id": "symbiosis_metadata.jsonld",
+      "@type": "CreativeWork"
+    },
+    {
+      "@id": "schema.json",
+      "@type": "CreativeWork"
+    }
+  ],
+  "isPartOf": {
+    "@type": "Dataset",
+    "name": "Energy-Flow Cosmology Metadata Layer"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "sameAs": "https://github.com/supertedai"
+  },
+  "codeRepository": "https://github.com/supertedai/energyflow-cosmology"
+}

@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/"
+  },
+  "@type": "CreativeWork",
+  "name": "Meta-Reflective Protocol",
+  "description": "Defines the structural protocol for reflection inside the meta-process. Ensures bounded, non-psychological, and stable introspection across all layers.",
+  "identifier": "efc:meta-reflective-protocol",
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflective Protocol",
+      "identifier": "efc:term/reflective-protocol",
+      "description": "A formalised procedure describing how the system reflects on its own structural state."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflective Boundary",
+      "identifier": "efc:term/reflective-boundary",
+      "description": "A constraint ensuring reflection does not leak into content-level or psychological domains."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Reflective Cycle",
+      "identifier": "efc:term/reflective-cycle",
+      "description": "A bounded cycle of introspection executed according to the protocol."
+    }
+  ]
+}

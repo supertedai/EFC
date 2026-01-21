@@ -1,0 +1,41 @@
+{
+  "@context": [
+    "https://schema.org/",
+    "https://doi.org/10.5063/schema/codemeta-2.0"
+  ],
+  "@type": "SoftwareSourceCode",
+  "name": "Symbiosis Runtime",
+  "description": "The cognitive runtime subsystem for Energy-Flow Cosmology (EFC). Integrates unified APIs, knowledge graph memory, vector store, RAG, and meta-reflective logging.",
+  "version": "0.1.0-dev",
+  "codeRepository": "https://github.com/supertedai/energyflow-cosmology/tree/main/meta/symbiosis",
+  "programmingLanguage": ["Python", "Shell"],
+  "license": "MIT",
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": "supertedai",
+    "sameAs": "https://github.com/supertedai"
+  },
+  "isPartOf": {
+    "@type": "SoftwareSourceCode",
+    "name": "Energy-Flow Cosmology",
+    "codeRepository": "https://github.com/supertedai/energyflow-cosmology"
+  },
+  "keywords": [
+    "Symbiosis",
+    "EFC",
+    "Knowledge Graph",
+    "Neo4j",
+    "Qdrant",
+    "RAG",
+    "API",
+    "Reflection",
+    "AI-assisted research"
+  ],
+  "softwareRequirements": {
+    "neo4j": ">=5.21",
+    "qdrant": ">=1.8",
+    "python": ">=3.11"
+  },
+  "runtimePlatform": "Hetzner runtime-master"
+}
