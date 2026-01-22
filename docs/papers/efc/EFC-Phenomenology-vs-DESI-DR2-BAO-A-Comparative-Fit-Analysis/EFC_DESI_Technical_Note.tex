@@ -1,0 +1,127 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{orcidlink}
+
+% Title formatting
+\title{\textbf{EFC Phenomenology vs DESI DR2 BAO:}\\[0.3em]
+\Large A Comparative Fit Analysis\\[1em]
+\normalsize\textit{Technical Note}}
+
+\author{Morten Magnusson~\orcidlink{0009-0002-4860-5095}}
+\date{22 January 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We test a phenomenological dark energy parameterization inspired by Energy-Flow Cosmology (EFC) against DESI DR2 BAO measurements. Within the models tested, the EFC-inspired form yields the lowest $\chi^2$ (3.60), compared to $w_0w_a$CDM (4.49) and $\Lambda$CDM (23.71). This constitutes a necessary but not sufficient condition for EFC validation. Next steps include deriving $w(z)$ from first principles and multi-probe analysis with full covariance.
+\end{abstract}
+
+\section{Introduction}
+
+The DESI DR2 BAO results suggest that a cosmological constant ($\Lambda$CDM) provides a poor fit to the data, pointing instead toward dynamical dark energy. We examine whether an entropy-driven transition model, motivated by Energy-Flow Cosmology, can accommodate these observations.
+
+\textit{This is a phenomenological parametrization inspired by EFC; the next step is to derive the functional form from the EFC field equations and test it in a multi-probe analysis (BAO + SN + CMB) with full covariance.}
+
+\section{Data}
+
+We use seven DESI DR2 BAO distance measurements ($D_V/r_d$) spanning $z = 0.30$ to $z = 2.33$ with diagonal errors only. Full covariance treatment is deferred to future work.
+
+\section{Models Tested}
+
+\subsection{$\Lambda$CDM}
+
+Standard cosmological constant with $w = -1$ at all redshifts.
+
+\subsection{$w_0w_a$CDM}
+
+CPL parametrization:
+\begin{equation}
+w(z) = w_0 + w_a \cdot \frac{z}{1+z}
+\end{equation}
+using DESI-reported best-fit values.
+
+\subsection{EFC-Inspired Form}
+
+Smooth transition motivated by entropy-gradient dynamics:
+\begin{equation}
+w(z) = w_{\mathrm{late}} + (w_{\mathrm{early}} - w_{\mathrm{late}}) \cdot \tanh\left[\frac{z - z_{\mathrm{trans}}}{0.5}\right]
+\end{equation}
+Parameters fitted post-hoc to BAO data.
+
+\section{Results}
+
+\subsection{Goodness of Fit}
+
+\begin{table}[h]
+\centering
+\caption{$\chi^2$ comparison across models (7 data points)}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{$\chi^2$} & \textbf{$\Delta\chi^2$ vs $\Lambda$CDM} & \textbf{Assessment} \\
+\midrule
+$\Lambda$CDM & 23.71 & --- & Poor fit \\
+$w_0w_a$CDM (DESI) & 4.49 & $-19.22$ & Good fit \\
+EFC (best-fit) & 3.60 & $-20.11$ & Best fit$^*$ \\
+\bottomrule
+\end{tabular}
+\label{tab:chi2}
+\end{table}
+\noindent$^*$Within the models tested here.
+
+\subsection{EFC Best-Fit Parameters}
+
+\begin{itemize}[nosep]
+\item $w_{\mathrm{late}} = -0.80$ (dark energy equation of state today)
+\item $w_{\mathrm{early}} = -1.41$ (at high $z$)
+\item $z_{\mathrm{trans}} = 1.07$ (transition redshift)
+\end{itemize}
+
+\subsection{$w(z)$ Evolution}
+
+Both dynamical models show phantom behavior ($w < -1$) at high redshift, but the EFC form predicts milder evolution: $w(z=2) = -1.20$ versus $w(z=2) = -1.33$ for $w_0w_a$.
+
+\section{Interpretation}
+
+\begin{enumerate}
+\item $\Lambda$CDM yields a significantly worse BAO fit, consistent with DESI's conclusion that dynamical dark energy is favored.
+\item The EFC-inspired parameterization is compatible with DESI DR2 and marginally outperforms $w_0w_a$CDM within this test.
+\item These parameters were fitted post-hoc; this does not constitute a prediction from EFC theory.
+\end{enumerate}
+
+\section{Limitations}
+
+\begin{itemize}
+\item Diagonal errors only---full covariance matrix not used
+\item BAO data only---CMB and SN constraints not included
+\item Post-hoc fitting rather than \textit{a priori} prediction from EFC equations
+\item Simplified $\chi^2$ comparison---no Bayesian model selection (e.g., BIC, evidence ratio)
+\end{itemize}
+
+\section{Next Steps}
+
+\begin{enumerate}
+\item \textbf{Derive $w(z)$ from EFC field equations}---replace post-hoc fitting with first-principles prediction
+\item \textbf{Multi-probe analysis}---combine BAO + Pantheon+ SN + Planck CMB with full covariance
+\item \textbf{Identify unique EFC signatures}---features that $w_0w_a$ cannot reproduce
+\item \textbf{Bayesian model comparison}---BIC or evidence ratio accounting for parameter count
+\end{enumerate}
+
+\section{Conclusion}
+
+An EFC-inspired dark energy parameterization fits DESI DR2 BAO data at least as well as the standard $w_0w_a$CDM model. This represents a \textit{necessary but not sufficient} condition for validating EFC. To elevate this from phenomenology to prediction, the $w(z)$ form must be derived from EFC equations and tested against combined multi-probe data.
+
+\vspace{1em}
+\noindent\textbf{Data and Code Availability:} DESI DR2 data from Zenodo (doi:10.5281/zenodo.14733025). Analysis code and supplementary materials available at: \url{https://github.com/supertedai/EFC}.
+
+\end{document}

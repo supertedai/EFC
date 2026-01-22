@@ -1,0 +1,76 @@
+{
+  "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+  "type": "technical-note",
+  "version": "1.0.0",
+  "date": "2026-01-22",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "orcid_url": "https://orcid.org/0009-0002-4860-5095"
+    }
+  ],
+  "abstract": "We test a phenomenological dark energy parameterization inspired by Energy-Flow Cosmology (EFC) against DESI DR2 BAO measurements. Within the models tested, the EFC-inspired form yields the lowest χ² (3.60), compared to w₀wₐCDM (4.49) and ΛCDM (23.71). This constitutes a necessary but not sufficient condition for EFC validation.",
+  "keywords": [
+    "cosmology",
+    "dark energy",
+    "Energy-Flow Cosmology",
+    "EFC",
+    "DESI",
+    "BAO",
+    "baryon acoustic oscillations",
+    "equation of state",
+    "w(z)",
+    "ΛCDM",
+    "CPL parameterization"
+  ],
+  "repository": "https://github.com/supertedai/EFC",
+  "license": "CC-BY-4.0",
+  "data_sources": [
+    {
+      "name": "DESI DR2 BAO",
+      "doi": "10.5281/zenodo.14733025",
+      "url": "https://doi.org/10.5281/zenodo.14733025"
+    }
+  ],
+  "models": {
+    "ΛCDM": {
+      "description": "Standard cosmological constant",
+      "w": -1,
+      "chi_squared": 23.71
+    },
+    "w0waCDM": {
+      "description": "CPL parameterization",
+      "equation": "w(z) = w₀ + wₐ · z/(1+z)",
+      "chi_squared": 4.49
+    },
+    "EFC": {
+      "description": "Energy-Flow Cosmology inspired",
+      "equation": "w(z) = w_late + (w_early − w_late) · tanh[(z − z_trans)/Δz]",
+      "parameters": {
+        "w_late": -0.80,
+        "w_early": -1.41,
+        "z_trans": 1.07,
+        "delta_z": 0.5
+      },
+      "chi_squared": 3.60
+    }
+  },
+  "results": {
+    "best_fit_model": "EFC",
+    "delta_chi_squared_vs_LCDM": -20.11,
+    "conclusion": "EFC-inspired parameterization fits DESI DR2 BAO data at least as well as w₀wₐCDM"
+  },
+  "limitations": [
+    "Diagonal errors only—full covariance matrix not used",
+    "BAO data only—CMB and SN constraints not included",
+    "Post-hoc fitting rather than a priori prediction from EFC equations",
+    "Simplified χ² comparison—no Bayesian model selection"
+  ],
+  "next_steps": [
+    "Derive w(z) from EFC field equations",
+    "Multi-probe analysis (BAO + Pantheon+ SN + Planck CMB)",
+    "Identify unique EFC signatures",
+    "Bayesian model comparison (BIC, evidence ratio)"
+  ]
+}

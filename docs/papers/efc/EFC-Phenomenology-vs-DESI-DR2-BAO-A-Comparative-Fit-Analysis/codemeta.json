@@ -1,0 +1,48 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "ScholarlyArticle",
+  "identifier": "EFC-DESI-Technical-Note-v1.0.0",
+  "name": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+  "description": "Technical note comparing Energy-Flow Cosmology (EFC) inspired dark energy parameterization against DESI DR2 BAO measurements.",
+  "version": "1.0.0",
+  "dateCreated": "2026-01-22",
+  "datePublished": "2026-01-22",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "codeRepository": "https://github.com/supertedai/EFC",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Morten",
+      "familyName": "Magnusson",
+      "@id": "https://orcid.org/0009-0002-4860-5095"
+    }
+  ],
+  "keywords": [
+    "cosmology",
+    "dark energy",
+    "Energy-Flow Cosmology",
+    "DESI",
+    "BAO",
+    "equation of state"
+  ],
+  "programmingLanguage": [
+    "Python",
+    "LaTeX"
+  ],
+  "relatedLink": [
+    "https://doi.org/10.5281/zenodo.14733025"
+  ],
+  "citation": [
+    {
+      "@type": "Dataset",
+      "name": "DESI DR2 BAO Data",
+      "identifier": "10.5281/zenodo.14733025",
+      "url": "https://doi.org/10.5281/zenodo.14733025"
+    }
+  ],
+  "isPartOf": {
+    "@type": "SoftwareSourceCode",
+    "name": "EFC Framework",
+    "codeRepository": "https://github.com/supertedai/EFC"
+  }
+}

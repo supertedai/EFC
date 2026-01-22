@@ -1,0 +1,109 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "@id": "https://github.com/supertedai/EFC/technical-note",
+  "name": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+  "headline": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+  "description": "We test a phenomenological dark energy parameterization inspired by Energy-Flow Cosmology (EFC) against DESI DR2 BAO measurements. The EFC-inspired form yields the lowest χ² (3.60), compared to w₀wₐCDM (4.49) and ΛCDM (23.71).",
+  "abstract": "We test a phenomenological dark energy parameterization inspired by Energy-Flow Cosmology (EFC) against DESI DR2 BAO measurements. Within the models tested, the EFC-inspired form yields the lowest χ² (3.60), compared to w₀wₐCDM (4.49) and ΛCDM (23.71). This constitutes a necessary but not sufficient condition for EFC validation. Next steps include deriving w(z) from first principles and multi-probe analysis with full covariance.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "givenName": "Morten",
+    "familyName": "Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095",
+      "url": "https://orcid.org/0009-0002-4860-5095"
+    }
+  },
+  "dateCreated": "2026-01-22",
+  "datePublished": "2026-01-22",
+  "inLanguage": "en",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": [
+    "cosmology",
+    "dark energy",
+    "Energy-Flow Cosmology",
+    "EFC",
+    "DESI",
+    "BAO",
+    "baryon acoustic oscillations",
+    "equation of state",
+    "ΛCDM",
+    "CPL parameterization",
+    "w(z)"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Dark Energy",
+      "description": "Hypothetical form of energy that permeates all of space and accelerates the expansion of the universe"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Energy-Flow Cosmology",
+      "alternateName": "EFC",
+      "description": "Theoretical framework treating cosmic evolution as entropy-driven energy flow"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Baryon Acoustic Oscillations",
+      "alternateName": "BAO",
+      "description": "Periodic fluctuations in the density of visible baryonic matter in the universe"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": "EFC DESI Analysis Results",
+    "description": "Chi-squared comparison of dark energy models against DESI DR2 BAO data",
+    "variableMeasured": [
+      {
+        "@type": "PropertyValue",
+        "name": "χ² ΛCDM",
+        "value": 23.71
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "χ² w₀wₐCDM",
+        "value": 4.49
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "χ² EFC",
+        "value": 3.60
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "w_late",
+        "value": -0.80,
+        "description": "Dark energy equation of state today"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "w_early",
+        "value": -1.41,
+        "description": "Dark energy equation of state at high redshift"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "z_trans",
+        "value": 1.07,
+        "description": "Transition redshift"
+      }
+    ]
+  },
+  "isBasedOn": {
+    "@type": "Dataset",
+    "name": "DESI DR2 BAO Data",
+    "identifier": "10.5281/zenodo.14733025",
+    "url": "https://doi.org/10.5281/zenodo.14733025"
+  },
+  "codeRepository": "https://github.com/supertedai/EFC",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

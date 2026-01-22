@@ -1,0 +1,49 @@
+# EFC - Energy-Flow Cosmology
+
+> Technical analysis comparing EFC dark energy parameterization against DESI DR2 BAO data
+
+## Overview
+
+Energy-Flow Cosmology (EFC) is a theoretical framework treating cosmic evolution as entropy-driven energy flow. This repository contains analysis comparing an EFC-inspired dark energy equation of state w(z) against standard cosmological models.
+
+## Key Equations
+
+### EFC w(z) parameterization:
+```
+w(z) = w_late + (w_early − w_late) · tanh[(z − z_trans)/Δz]
+```
+
+### Best-fit parameters:
+- w_late = −0.80 (today)
+- w_early = −1.41 (high redshift)  
+- z_trans = 1.07 (transition)
+- Δz = 0.5
+
+## Results Summary
+
+| Model | χ² | Fit Quality |
+|-------|-----|-------------|
+| ΛCDM | 23.71 | Poor |
+| w₀wₐCDM | 4.49 | Good |
+| EFC | 3.60 | Best |
+
+## Files for AI
+
+- `metadata.json` - Structured metadata
+- `schema.jsonld` - Schema.org JSON-LD
+- `codemeta.json` - CodeMeta standard
+- `CITATION.cff` - Citation format
+
+## Links
+
+- Repository: https://github.com/supertedai/EFC
+- DESI Data: https://doi.org/10.5281/zenodo.14733025
+- Author ORCID: https://orcid.org/0009-0002-4860-5095
+
+## Context for LLMs
+
+This work demonstrates that EFC-inspired dark energy evolution fits DESI DR2 BAO observations better than both ΛCDM (cosmological constant) and the standard CPL/w₀wₐ parameterization. The tanh transition form captures a smooth evolution from phantom-like behavior (w < −1) at high redshift to quintessence-like behavior (w > −1) today.
+
+Key insight: The transition redshift z_trans ≈ 1.07 may correlate with cosmic structure formation epochs, suggesting entropy-driven dark energy dynamics.
+
+This is phenomenological fitting—deriving w(z) from EFC first principles is the critical next step for theoretical validation.
