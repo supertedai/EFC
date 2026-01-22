@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "note": "Thresholds are domain-calibrated, not universal constants. Adjust based on empirical validation.",
+  
+  "domains": {
+    "default": {
+      "description": "General-purpose thresholds",
+      "theta_L1": 0.3,
+      "theta_L2": 0.7,
+      "confidence_ceiling_L2": 0.7,
+      "entropy_weights": {
+        "edge": 0.30,
+        "node": 0.25,
+        "structural": 0.25,
+        "retrieval": 0.20
+      }
+    },
+    
+    "medical": {
+      "description": "Medical/healthcare domain - conservative thresholds",
+      "theta_L1": 0.2,
+      "theta_L2": 0.5,
+      "confidence_ceiling_L2": 0.5,
+      "entropy_weights": {
+        "edge": 0.35,
+        "node": 0.30,
+        "structural": 0.20,
+        "retrieval": 0.15
+      },
+      "notes": "Lower thresholds due to high-stakes nature of medical decisions"
+    },
+    
+    "legal": {
+      "description": "Legal domain - moderate thresholds",
+      "theta_L1": 0.25,
+      "theta_L2": 0.6,
+      "confidence_ceiling_L2": 0.6,
+      "entropy_weights": {
+        "edge": 0.30,
+        "node": 0.30,
+        "structural": 0.25,
+        "retrieval": 0.15
+      },
+      "notes": "Jurisdictional variation increases baseline entropy"
+    },
+    
+    "financial": {
+      "description": "Financial domain - time-sensitive",
+      "theta_L1": 0.25,
+      "theta_L2": 0.55,
+      "confidence_ceiling_L2": 0.55,
+      "entropy_weights": {
+        "edge": 0.25,
+        "node": 0.20,
+        "structural": 0.30,
+        "retrieval": 0.25
+      },
+      "notes": "Higher weight on structural/retrieval due to temporal dynamics"
+    },
+    
+    "scientific_literature": {
+      "description": "Scientific/academic domain",
+      "theta_L1": 0.35,
+      "theta_L2": 0.75,
+      "confidence_ceiling_L2": 0.65,
+      "entropy_weights": {
+        "edge": 0.25,
+        "node": 0.35,
+        "structural": 0.20,
+        "retrieval": 0.20
+      },
+      "notes": "Higher tolerance for competing interpretations; emphasis on concept definitions"
+    },
+    
+    "product_catalog": {
+      "description": "E-commerce/product data",
+      "theta_L1": 0.4,
+      "theta_L2": 0.8,
+      "confidence_ceiling_L2": 0.8,
+      "entropy_weights": {
+        "edge": 0.35,
+        "node": 0.20,
+        "structural": 0.30,
+        "retrieval": 0.15
+      },
+      "notes": "Well-structured domain with clear relationships"
+    },
+    
+    "news_current_events": {
+      "description": "News and current events",
+      "theta_L1": 0.2,
+      "theta_L2": 0.5,
+      "confidence_ceiling_L2": 0.5,
+      "entropy_weights": {
+        "edge": 0.20,
+        "node": 0.20,
+        "structural": 0.35,
+        "retrieval": 0.25
+      },
+      "notes": "High temporal instability; facts change rapidly"
+    }
+  },
+  
+  "calibration_guidance": {
+    "step_1": "Identify known-stable queries in your domain",
+    "step_2": "Compute baseline entropy across stable queries",
+    "step_3": "Identify queries where standard RAG produced overconfident incorrect outputs",
+    "step_4": "Adjust theta_L1 until those queries fall in L2",
+    "step_5": "Validate on held-out test set",
+    "step_6": "Monitor and adjust in production"
+  }
+}

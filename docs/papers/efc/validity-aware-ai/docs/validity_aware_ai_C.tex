@@ -1,0 +1,409 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    pdfinfo={DOI={10.6084/m9.figshare.31122970}}
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+\setstretch{1.2}
+
+\title{Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference\\[1em]
+\large C. Beyond the Black Box\\[0.5em]
+\normalsize Consequences, Accountability, and the Future of Validity-Aware AI}
+
+\author{Morten Magnusson\\
+\small Independent Researcher\\
+\small ORCID: 0009-0002-4860-5095}
+
+\date{January 2026\\[0.5em]
+\small DOI: 10.6084/m9.figshare.31122970}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This section examines the broader implications of building AI systems that know where they fail. We argue that explainability is the wrong goal---validity awareness is the right goal. The framework introduces epistemic honesty as a fourth dimension of AI safety, alongside alignment, robustness, and fairness. By making regime classification auditable, the architecture creates verifiable checkpoints for accountability and transforms hallucination from a quality issue into a protocol violation.
+\end{abstract}
+
+\noindent\textbf{Keywords:} AI safety, epistemic honesty, accountability, explainability, validity awareness, deployment standards
+
+\section{Introduction}
+
+Sections A and B established a technical foundation: entropy can be measured in knowledge structures, regimes can be classified, and system behavior can be constrained based on epistemic conditions.
+
+This section asks: \textbf{What does it mean to build AI systems that know where they fail?}
+
+The answer has implications beyond architecture. It touches on:
+
+\begin{itemize}
+    \item How we define AI safety
+    \item What we should demand from deployed systems
+    \item How accountability shifts when systems can report their own limits
+\end{itemize}
+
+The core argument of this section is:
+
+\begin{quote}
+\textit{Explainability is the wrong goal. Validity awareness is the right goal.}
+\end{quote}
+
+\section{The Explainability Trap}
+
+\subsection{What Explainability Promises}
+
+The dominant paradigm in AI safety research focuses on \textbf{explainability}: making AI systems interpretable so humans can understand why they produce certain outputs.
+
+Explainability research asks:
+\begin{itemize}
+    \item Which features drove this prediction?
+    \item What attention patterns led to this output?
+    \item Can we trace the reasoning chain?
+\end{itemize}
+
+These are valuable questions. But they rest on a flawed assumption.
+
+\subsection{The Hidden Assumption}
+
+Explainability assumes that \textbf{if we understand how a system reached a conclusion, we can assess whether that conclusion is valid}.
+
+This is false in high-entropy domains.
+
+A system can explain its reasoning perfectly---and still be wrong. The explanation may be internally coherent, the attention patterns may be traceable, the features may be identifiable---but if the underlying knowledge domain is contested, unstable, or poorly defined, the output has no valid foundation regardless of how well we can explain it.
+
+\subsection{The Alternative}
+
+Validity awareness asks a different question:
+
+\begin{quote}
+\textit{Not ``why did the system produce this output?'' but ``should the system have produced any confident output at all?''}
+\end{quote}
+
+This is a pre-generation question, not a post-hoc analysis. It shifts the focus from \textbf{interpreting outputs} to \textbf{constraining outputs based on epistemic conditions}.
+
+Explainability helps us understand failure after it happens.
+Validity awareness helps us prevent certain failures before they happen.
+
+\section{Redefining AI Safety}
+
+\subsection{The Current Framing}
+
+AI safety is typically framed in terms of:
+
+\begin{itemize}
+    \item \textbf{Alignment}: Does the system pursue goals that humans endorse?
+    \item \textbf{Robustness}: Does the system behave correctly under adversarial conditions?
+    \item \textbf{Fairness}: Does the system treat different groups equitably?
+\end{itemize}
+
+These are important. But they miss a fundamental dimension.
+
+\subsection{The Missing Dimension: Epistemic Honesty}
+
+A system can be:
+\begin{itemize}
+    \item Aligned with human values
+    \item Robust to adversarial inputs
+    \item Fair across demographic groups
+\end{itemize}
+
+And still be \textbf{epistemically dishonest}---producing confident outputs in domains where confidence is not warranted.
+
+Epistemic honesty is not about what the system says. It is about \textbf{whether the system should be saying anything confidently at all}.
+
+\subsection{The Regime-Aware Definition}
+
+Validity-aware AI adds a fourth dimension to safety:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Dimension} & \textbf{Question} \\
+\midrule
+Alignment & Does the system pursue endorsed goals? \\
+Robustness & Does the system handle adversarial inputs? \\
+Fairness & Does the system treat groups equitably? \\
+\textbf{Epistemic Honesty} & Does the system know when it shouldn't speak confidently? \\
+\bottomrule
+\end{tabular}
+\caption{Four dimensions of AI safety}
+\end{table}
+
+A system that passes the first three tests but fails the fourth is dangerous in ways that current safety frameworks do not capture.
+
+\section{The Accountability Shift}
+
+\subsection{Current Accountability Model}
+
+When an AI system produces a harmful output, accountability is unclear:
+
+\begin{itemize}
+    \item Is it the model developer's fault? (training data, architecture choices)
+    \item Is it the deployer's fault? (insufficient guardrails, inappropriate use case)
+    \item Is it the user's fault? (misleading prompts, ignoring warnings)
+\end{itemize}
+
+This diffusion of responsibility is a known problem in AI governance.
+
+\subsection{The Regime-Aware Model}
+
+Regime-Aware AI creates a new accountability structure:
+
+\textbf{If the system operates in L1} and produces an incorrect output:
+\begin{itemize}
+    \item Accountability lies with knowledge curation (the facts were wrong)
+    \item This is a \textbf{content problem}, not a system problem
+\end{itemize}
+
+\textbf{If the system operates in L2} and produces an incorrect output without uncertainty:
+\begin{itemize}
+    \item Accountability lies with protocol implementation (the system violated its own constraints)
+    \item This is a \textbf{compliance problem}
+\end{itemize}
+
+\textbf{If the system operates in L2$\to$L3} and produces a confident output:
+\begin{itemize}
+    \item Accountability lies with the deployer (the system warned, but warnings were ignored or suppressed)
+    \item This is a \textbf{governance problem}
+\end{itemize}
+
+\textbf{If the system lacks regime awareness entirely}:
+\begin{itemize}
+    \item Accountability lies with the developer (they deployed an epistemically blind system)
+    \item This is a \textbf{design problem}
+\end{itemize}
+
+The regime classification creates \textbf{verifiable checkpoints} for accountability.
+
+\subsection{Auditable Epistemic Behavior}
+
+Because regime classification produces metadata, it becomes possible to audit:
+
+\begin{itemize}
+    \item How often did the system operate in L2 vs L1?
+    \item Were L2 warnings surfaced to users?
+    \item Did generation respect protocol constraints?
+    \item Were L3 boundaries honored?
+\end{itemize}
+
+This transforms accountability from ``who is to blame for this output?'' to ``was the epistemic protocol followed?''
+
+\section{From Probability to Validity}
+
+\subsection{The Probability Paradigm}
+
+Modern ML is built on probability. Models output:
+\begin{itemize}
+    \item Class probabilities
+    \item Token likelihoods
+    \item Confidence scores
+\end{itemize}
+
+These probabilities describe \textbf{model uncertainty}---how confident the model is given its training and the input.
+
+\subsection{The Problem}
+
+Model confidence $\neq$ validity.
+
+A model can be highly confident (low entropy over output distribution) while operating in a domain where no confident answer is warranted (high entropy in knowledge structure).
+
+The probability paradigm answers: ``What does the model think?''
+It does not answer: ``Should we trust what the model thinks?''
+
+\subsection{The Validity Paradigm}
+
+Validity awareness adds a layer above probability:
+
+\begin{verbatim}
+Model Output:    P(answer | query, context)     -> Model confidence
+Validity Check:  H(G) < theta                   -> Domain supports inference?
+Final Output:    Answer if valid, else refuse/hedge
+\end{verbatim}
+
+This is not a replacement for probability. It is a \textbf{constraint on when probability-based outputs should be trusted}.
+
+The shift is from:
+\begin{itemize}
+    \item ``Here is my best guess with 87\% confidence''
+\end{itemize}
+
+To:
+\begin{itemize}
+    \item ``The domain entropy is 0.23 (L1). Here is my answer with 87\% model confidence.''
+    \item Or: ``The domain entropy is 0.71 (L2). I can offer interpretations but not a definitive answer.''
+    \item Or: ``The domain entropy exceeds threshold (L3 boundary). I cannot provide a reliable answer to this query.''
+\end{itemize}
+
+\section{Implications for Deployment}
+
+\subsection{High-Stakes Domains}
+
+In domains where AI outputs have significant consequences---medical diagnosis, legal advice, financial decisions---regime awareness is not optional.
+
+A system that:
+\begin{itemize}
+    \item Cannot measure domain entropy
+    \item Cannot classify regime
+    \item Cannot constrain its own confidence
+\end{itemize}
+
+Should not be deployed in high-stakes contexts, regardless of how accurate it appears in testing.
+
+\subsection{The Minimum Standard}
+
+We propose a minimum standard for validity-aware deployment:
+
+\begin{enumerate}
+    \item \textbf{Entropy measurement must be implemented}: The system must assess knowledge stability before generation
+    \item \textbf{Regime classification must be explicit}: Users must know whether they are receiving L1, L2, or L3 responses
+    \item \textbf{Protocol constraints must be enforced}: The system must not violate its own epistemic rules
+    \item \textbf{Audit trails must be preserved}: Regime classifications must be logged for review
+\end{enumerate}
+
+Systems that cannot meet this standard should be clearly labeled as \textbf{epistemically unaware} and deployed only in contexts where validity is not critical.
+
+\subsection{The User Interface Implication}
+
+Regime awareness should be visible to users, not hidden in backend metadata.
+
+A simple implementation:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Regime} & \textbf{User-Facing Indicator} \\
+\midrule
+L1 & $\checkmark$ High confidence domain \\
+L2 & $\triangle$ Contested domain---multiple interpretations exist \\
+L2$\to$L3 & $\triangle\triangle$ Unstable domain---treat with caution \\
+L3 & $\square$ Archival information only \\
+\bottomrule
+\end{tabular}
+\caption{User-facing regime indicators}
+\end{table}
+
+Users deserve to know when they are receiving information from a stable domain versus a contested one.
+
+\section{What This Does Not Solve}
+
+\subsection{Explicit Limitations}
+
+Regime-aware AI does not solve:
+
+\begin{itemize}
+    \item \textbf{Factual errors in L1 domains}: If the knowledge graph contains incorrect information, the system will confidently repeat it
+    \item \textbf{Subtle reasoning failures}: Logic can fail even when domain entropy is low
+    \item \textbf{Adversarial manipulation}: Prompt injection and jailbreaks are orthogonal problems
+    \item \textbf{Value alignment}: Knowing epistemic limits does not ensure ethical behavior
+    \item \textbf{Political neutrality}: Regime classification does not resolve contested values, only contested facts
+\end{itemize}
+
+\subsection{What It Does Solve}
+
+Regime-aware AI solves:
+
+\begin{itemize}
+    \item \textbf{Confident hallucination}: The system cannot produce high-confidence outputs in high-entropy domains without violating protocol
+    \item \textbf{Invisible uncertainty}: Users know when they are in contested territory
+    \item \textbf{Accountability diffusion}: Regime logs create verifiable checkpoints
+    \item \textbf{Cosmetic hedging}: Real uncertainty is structural, not rhetorical
+\end{itemize}
+
+This is not everything. But it is more than current systems provide.
+
+\section{The Broader Vision}
+
+\subsection{Beyond Individual Systems}
+
+The principles in this paper apply beyond any single implementation:
+
+\begin{itemize}
+    \item \textbf{Any RAG system} can be extended with regime awareness
+    \item \textbf{Any knowledge graph} can support entropy measurement
+    \item \textbf{Any LLM integration} can include pre-generation validity checks
+\end{itemize}
+
+The architecture is not proprietary. The method is not patented. The goal is to establish \textbf{regime awareness as a standard expectation}, not a competitive advantage.
+
+\subsection{The Research Agenda}
+
+This paper opens several research directions:
+
+\begin{enumerate}
+    \item \textbf{Threshold calibration}: Empirical methods for determining domain-specific $\theta$ values
+    \item \textbf{Entropy estimation}: More sophisticated measures of knowledge graph entropy
+    \item \textbf{Protocol learning}: Can systems learn appropriate response protocols from examples?
+    \item \textbf{Cross-domain transfer}: Do thresholds generalize across similar domains?
+    \item \textbf{User studies}: How do users respond to regime-aware interfaces?
+\end{enumerate}
+
+\subsection{The Normative Claim}
+
+We close with a normative claim:
+
+\begin{quote}
+\textit{AI systems that cannot report their own epistemic limits should not be deployed in contexts where those limits matter.}
+\end{quote}
+
+This is not a technical claim. It is a claim about what we should demand from AI systems as a society.
+
+A system that does not know where it fails is more dangerous than a system that fails often---because we cannot prepare for failures we cannot anticipate.
+
+Regime awareness makes failure predictable. That is not a complete solution. But it is a necessary foundation.
+
+\section{Summary}
+
+Section C establishes the \textbf{broader implications} of regime-aware AI:
+
+\begin{enumerate}
+    \item \textbf{Explainability is insufficient}: Understanding why a system produced an output does not tell us whether it should have produced that output
+    \item \textbf{Epistemic honesty is a safety dimension}: A system can be aligned, robust, and fair while still being epistemically dishonest
+    \item \textbf{Accountability becomes auditable}: Regime classification creates verifiable checkpoints for responsibility
+    \item \textbf{Probability is not enough}: Model confidence must be constrained by domain validity
+    \item \textbf{Deployment standards follow}: High-stakes systems should not be deployed without regime awareness
+\end{enumerate}
+
+\section{Conclusion}
+
+This paper has argued that AI systems should know where they fail---not just fail gracefully, but \textbf{recognize in advance when confident inference is not warranted}.
+
+The technical mechanism is entropy measurement in knowledge structures. The architectural implementation is Regime-Aware RAG. The broader principle is validity awareness as a core requirement for responsible AI deployment.
+
+We do not claim this solves all problems. We claim it solves a specific, important problem: the production of confident outputs in uncertain domains.
+
+A system that knows its limits is not less capable. It is more honest. And honesty, in AI as in human reasoning, is the foundation of trust.
+
+\section*{References}
+
+\noindent Magnusson, M. (2026). L0--L3 Regime Architecture in Entropy-Bounded Empiricism. Figshare. \url{https://doi.org/10.6084/m9.figshare.31112536}
+
+\noindent Magnusson, M. (2025). Symbiosis: A Human--AI Co-Reflection Architecture Using Graph--Vector Memory for Long-Horizon Thinking. Figshare. \url{https://doi.org/10.6084/m9.figshare.30773684}
+
+\noindent Magnusson, M. (2026). Entropy-Bounded Empiricism: SPARC175 Complete Documentation. GitHub/EFC.
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}
+\small\textit{Section C of: ``Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference'' (DOI: 10.6084/m9.figshare.31122970)}
+
+\end{document}

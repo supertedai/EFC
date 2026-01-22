@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "date": "2026-01-22",
+  "framework": "Validity-Aware AI",
+  "doi": "10.6084/m9.figshare.31122970",
+  
+  "regimes": {
+    "L0": {
+      "name": "Latent Regime",
+      "description": "Configuration space without active dynamics",
+      "entropy_range": "N/A (system inactive)",
+      "inference_validity": "none",
+      "system_behavior": "inactive",
+      "characteristics": [
+        "Graph exists as schema or template",
+        "No queries being processed",
+        "Relationships defined but not traversed"
+      ],
+      "ai_mapping": {
+        "state": "system_inactive",
+        "output": "none",
+        "protocol": "null"
+      }
+    },
+    
+    "L1": {
+      "name": "Stable Active Regime",
+      "description": "Low-entropy, predictable operation",
+      "entropy_range": "H(G) < theta_L1",
+      "inference_validity": "high",
+      "system_behavior": "standard_inference",
+      "characteristics": [
+        "Relationships consistent and uncontested",
+        "Historical patterns reliable",
+        "Linear approximations valid"
+      ],
+      "ai_mapping": {
+        "state": "confident_generation",
+        "output": "point_estimates_allowed",
+        "protocol": "standard"
+      }
+    },
+    
+    "L2": {
+      "name": "Complex Active Regime",
+      "description": "High-entropy, contested dynamics",
+      "entropy_range": "theta_L1 <= H(G) < theta_L2",
+      "inference_validity": "conditional",
+      "system_behavior": "uncertainty_aware_inference",
+      "characteristics": [
+        "Multiple valid interpretations coexist",
+        "Local sensitivity to inputs",
+        "Historical models diverging"
+      ],
+      "ai_mapping": {
+        "state": "hedged_generation",
+        "output": "uncertainty_required",
+        "protocol": "uncertainty_aware"
+      }
+    },
+    
+    "L3": {
+      "name": "Residual Regime",
+      "description": "Structure without process",
+      "entropy_range": "H(G) >= theta_L2 or domain inactive",
+      "inference_validity": "historical_only",
+      "system_behavior": "archival_retrieval",
+      "characteristics": [
+        "Information frozen",
+        "No new edges or updates",
+        "Structure preserves past, not present"
+      ],
+      "ai_mapping": {
+        "state": "retrieval_only",
+        "output": "no_predictions",
+        "protocol": "archival"
+      }
+    }
+  },
+  
+  "transitions": {
+    "L1_to_L2": {
+      "trigger": "H(G) > theta_L1",
+      "type": "phase_extended",
+      "indicators": [
+        "Edge variance exceeds baseline",
+        "Model disagreement emerges",
+        "Temporal instability increases"
+      ],
+      "ai_response": "switch_to_uncertainty_protocol"
+    },
+    "L2_to_L3": {
+      "trigger": "H(G) >= theta_L2",
+      "type": "phase_extended",
+      "indicators": [
+        "Entropy approaches maximum",
+        "No stable interpretation available",
+        "Domain marked as inactive"
+      ],
+      "ai_response": "switch_to_archival_protocol"
+    }
+  },
+  
+  "core_invariant": "No system may generate confident claims outside the regime where such claims are empirically valid."
+}

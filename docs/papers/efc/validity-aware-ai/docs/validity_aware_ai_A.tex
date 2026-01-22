@@ -1,0 +1,315 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    pdfinfo={DOI={10.6084/m9.figshare.31122970}}
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+\setstretch{1.2}
+
+\title{Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference\\[1em]
+\large A. Entropy, Validity, and Regimes\\[0.5em]
+\normalsize Extending L0--L3 Regime Architecture to Knowledge-Graph Inference}
+
+\author{Morten Magnusson\\
+\small Independent Researcher\\
+\small ORCID: 0009-0002-4860-5095}
+
+\date{January 2026\\[0.5em]
+\small DOI: 10.6084/m9.figshare.31122970}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This section extends the L0--L3 regime architecture from physical systems to knowledge-graph-based AI systems. The core principle---that inference is valid only within regimes where data and dynamics remain consistent---applies equally to inference over structured information. We define entropy measures for knowledge graphs, map L0--L3 regimes to inference validity states, and establish detection algorithms for regime transitions. The framework provides a mathematical and epistemological foundation for building AI systems that know where they fail.
+\end{abstract}
+
+\noindent\textbf{Keywords:} entropy-bounded empiricism, regime architecture, knowledge graphs, AI safety, validity awareness, hallucination prevention
+
+\section{Introduction}
+
+The L0--L3 regime architecture establishes a foundational principle: \textbf{inference is valid only within the regime where data and dynamics remain consistent}. This principle was developed in the context of Energy-Flow Cosmology (EFC) and validated against 175 galaxy rotation curves (SPARC175), where regime-dependent model validity was demonstrated with $p < 0.0001$.
+
+This section extends the framework to \textbf{knowledge-graph-based AI systems}, demonstrating that the same epistemological constraints apply to inference over structured information. The core insight is:
+
+\begin{quote}
+\textit{Model validity is a function of measurable entropy in the knowledge structure, not of model complexity or training volume.}
+\end{quote}
+
+\section{Entropy in Knowledge Graphs}
+
+\subsection{Definition}
+
+For a knowledge graph $G = (V, E)$ where $V$ is a set of nodes (concepts, facts, entities) and $E$ is a set of edges (relationships), we define \textbf{graph entropy} as:
+
+\begin{equation}
+\mathcal{H}(G) = \mathcal{H}_V + \mathcal{H}_E + \mathcal{H}_{VE}
+\end{equation}
+
+Where:
+
+\textbf{Node entropy} (uncertainty in concept definitions):
+\begin{equation}
+\mathcal{H}_V = -\sum_{v \in V} p(v) \log p(v)
+\end{equation}
+
+\textbf{Edge entropy} (uncertainty in relationships):
+\begin{equation}
+\mathcal{H}_E = -\sum_{e \in E} p(e) \log p(e)
+\end{equation}
+
+\textbf{Structural entropy} (uncertainty in graph topology):
+\begin{equation}
+\mathcal{H}_{VE} = -\sum_{(v,e) \in G} p(v,e) \log p(v|e)
+\end{equation}
+
+\subsection{Interpretation}
+
+\begin{itemize}
+    \item \textbf{Low entropy} ($\mathcal{H}(G) \to 0$): The graph represents a well-defined, internally consistent domain. Relationships are unambiguous. Inference is reliable.
+    \item \textbf{High entropy} ($\mathcal{H}(G) \to 1$): The graph contains contradictions, contested relationships, or domains where multiple incompatible models coexist. Inference becomes unreliable.
+\end{itemize}
+
+\textbf{Note on scaling}: $\mathcal{H}(G)$ is normalized relative to domain baseline. Thresholds ($\theta$) are calibrated per domain, not universal constants. A medical knowledge graph may have different baseline entropy than a product catalog---what matters is deviation from stable operating range, not absolute value.
+
+\subsection{Practical Measurement}
+
+In operational systems (e.g., Symbiosis architecture), entropy can be estimated through:
+
+\begin{enumerate}
+    \item \textbf{Edge variance}: Standard deviation of confidence scores across edges of the same type
+    \item \textbf{Node disagreement}: Number of conflicting properties or definitions per concept
+    \item \textbf{Model disagreement}: Divergence between predictions from different embedded models
+    \item \textbf{Temporal instability}: Rate of change in graph structure over time
+\end{enumerate}
+
+\section{Regime Definitions for Knowledge Graphs}
+
+The L0--L3 architecture maps directly to knowledge-graph-based inference:
+
+\subsection{L0 --- Latent (Configuration Space)}
+
+The graph contains \textbf{potential structure} but no active inference dynamics.
+
+\begin{itemize}
+    \item Graph exists as schema or template
+    \item No queries are being processed
+    \item Relationships are defined but not traversed
+    \item \textbf{Inference validity}: None (system inactive)
+\end{itemize}
+
+\subsection{L1 --- Stable Active (Predictable Inference)}
+
+The graph operates in a \textbf{low-entropy, well-defined domain}.
+
+\begin{itemize}
+    \item Relationships are consistent and uncontested
+    \item Historical patterns reliably predict current queries
+    \item Linear approximations and cached inferences remain valid
+    \item \textbf{Inference validity}: High confidence, reliable extrapolation within domain
+\end{itemize}
+
+\textbf{Example}: Querying a product catalog with fixed relationships (product $\to$ category $\to$ price)
+
+\subsection{L2 --- Complex Active (Non-Linear Dynamics)}
+
+The graph contains \textbf{contested relationships, emerging patterns, or cross-domain tensions}.
+
+\begin{itemize}
+    \item Multiple valid interpretations coexist
+    \item Local sensitivity: small changes in input produce large changes in output
+    \item Historical models begin to diverge from observed patterns
+    \item \textbf{Inference validity}: Requires explicit uncertainty quantification; point estimates unreliable
+\end{itemize}
+
+\textbf{Example}: Querying scientific literature where competing theories explain the same phenomenon
+
+\subsection{L3 --- Residual (Structure Without Process)}
+
+The graph contains \textbf{historical structure} but active dynamics have ceased.
+
+\begin{itemize}
+    \item Information is frozen; no new edges or updates
+    \item Queries return historical snapshots, not current state
+    \item Structure preserves what was, not what is
+    \item \textbf{Inference validity}: Historical reconstruction only; active prediction invalid
+\end{itemize}
+
+\textbf{Operational mode}: L3 is not ``do nothing''---it is \textbf{retrieval without projection}. The system can still answer ``what did we know then?'' but must refuse ``what should we expect now?'' This read-only epistemic mode preserves value while preventing invalid extrapolation.
+
+\textbf{Example}: A deprecated knowledge base from a discontinued project
+
+\section{The Regime Transition Function}
+
+\subsection{L1 $\to$ L2 Transition}
+
+The critical transition for AI safety occurs when a knowledge domain \textbf{exits the stable regime}:
+
+\begin{equation}
+L1 \rightarrow L2 \quad \text{when} \quad \mathcal{H}(G) > \theta_{\text{critical}}
+\end{equation}
+
+Where $\theta_{\text{critical}}$ is a domain-dependent threshold.
+
+\textbf{Phase-extended transition}: This crossing is not instantaneous. The uncertainty regime grows before collapse becomes observable. A system may operate in a \textbf{transition zone} where L1 inference is degrading but L2 protocols have not yet engaged. Detecting this zone---not just the boundary---is critical for early warning.
+
+This transition is characterized by:
+
+\begin{enumerate}
+    \item \textbf{Edge variance exceeds baseline}: Confidence scores on relationships diverge
+    \item \textbf{Model disagreement emerges}: Different inference paths produce contradictory results
+    \item \textbf{Temporal instability increases}: Graph structure changes faster than models can adapt
+\end{enumerate}
+
+\subsection{Detection Algorithm}
+
+\begin{lstlisting}[language=Python]
+def detect_regime_transition(graph, query_context):
+    """
+    Detect whether inference should proceed in L1 or L2 mode.
+    Returns regime classification and confidence.
+    """
+    # Measure local entropy around query
+    subgraph = extract_relevant_subgraph(graph, query_context)
+    
+    H_nodes = compute_node_entropy(subgraph)
+    H_edges = compute_edge_entropy(subgraph)
+    H_structural = compute_structural_entropy(subgraph)
+    
+    H_total = H_nodes + H_edges + H_structural
+    
+    # Regime classification
+    if H_total < THETA_L1_UPPER:
+        return Regime.L1, confidence=1.0 - H_total
+    elif H_total < THETA_L2_UPPER:
+        return Regime.L2, confidence=estimate_l2_confidence(H_total)
+    else:
+        return Regime.L3_WARNING, confidence=0.0
+\end{lstlisting}
+
+\subsection{System Response by Regime}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Regime} & \textbf{System Behavior} & \textbf{Output Characteristics} \\
+\midrule
+L1 & Standard inference & Point estimates, high confidence \\
+L2 & Uncertainty-aware & Probability distributions, explicit caveats \\
+L2$\to$L3 & Inference degradation & Refusal to generate point estimates \\
+L3 & Historical retrieval only & No predictive claims, archival mode \\
+\bottomrule
+\end{tabular}
+\caption{Regime-dependent system behavior}
+\end{table}
+
+\section{Why This Matters for AI}
+
+\subsection{The Problem with Current Systems}
+
+Standard LLMs and RAG systems are \textbf{epistemically blind}:
+
+\begin{itemize}
+    \item They generate outputs regardless of domain entropy
+    \item They compensate for uncertainty with \textbf{more text, more coherence, more confident rhetoric}
+    \item They have no mechanism to detect regime boundaries
+    \item They cannot degrade their own epistemic status
+\end{itemize}
+
+This is the operational definition of \textbf{hallucination}: generating high-confidence outputs in high-entropy domains.
+
+\subsection{The EBE Solution}
+
+Entropy-Bounded Empiricism provides a structural alternative:
+
+\begin{enumerate}
+    \item \textbf{Pre-inference entropy measurement}: Before generating any output, measure $\mathcal{H}(G)$ in the relevant subgraph
+    \item \textbf{Regime classification}: Determine whether the query falls in L1, L2, or L3
+    \item \textbf{Response modulation}: Adjust output format, confidence, and caveats based on regime
+    \item \textbf{Collapse detection}: Refuse to generate point estimates when approaching L2$\to$L3 boundary
+\end{enumerate}
+
+\subsection{The Core Claim}
+
+\begin{quote}
+\textit{A system that does not know where it fails is more dangerous than a system that fails often.}
+\end{quote}
+
+The goal is not to eliminate failure. The goal is to make failure \textbf{detectable and predictable}.
+
+\section{Relation to Existing Work}
+
+\subsection{Builds On}
+
+\begin{itemize}
+    \item \textbf{L0--L3 Regime Architecture} (Magnusson 2026): Foundational regime definitions and transition logic
+    \item \textbf{Symbiosis Architecture} (Magnusson 2025): Graph-vector hybrid memory for long-horizon reasoning
+    \item \textbf{SPARC175 Validation} (EBE-SPARC175): Statistical demonstration of regime-dependent validity
+\end{itemize}
+
+\subsection{Extends Beyond}
+
+This section introduces:
+
+\begin{enumerate}
+    \item \textbf{Formal entropy definitions} for knowledge graphs (not physical systems)
+    \item \textbf{Detection algorithm} for regime transitions in inference
+    \item \textbf{System response protocol} linking entropy to output behavior
+\end{enumerate}
+
+\subsection{Does Not Claim}
+
+\begin{itemize}
+    \item Universal applicability without domain calibration
+    \item Automatic threshold determination ($\theta_{\text{critical}}$ requires empirical tuning)
+    \item Replacement of domain expertise (EBE constrains inference, does not replace understanding)
+\end{itemize}
+
+\section{Summary}
+
+Section A establishes the \textbf{mathematical and epistemological foundation} for regime-aware AI:
+
+\begin{enumerate}
+    \item \textbf{Entropy in knowledge graphs} is measurable through node, edge, and structural components
+    \item \textbf{L0--L3 regimes} map directly to inference validity in AI systems
+    \item \textbf{Regime transitions} are detectable through entropy thresholds and model disagreement
+    \item \textbf{System response} must change based on regime---this is not optional, it is epistemically required
+\end{enumerate}
+
+The following sections (B, C) show how this foundation translates into concrete architecture (Regime-Aware RAG) and broader implications (Beyond the Black Box).
+
+\section*{References}
+
+\noindent Magnusson, M. (2026). L0--L3 Regime Architecture in Entropy-Bounded Empiricism. Figshare. \url{https://doi.org/10.6084/m9.figshare.31112536}
+
+\noindent Magnusson, M. (2025). Symbiosis: A Human--AI Co-Reflection Architecture Using Graph--Vector Memory for Long-Horizon Thinking. Figshare. \url{https://doi.org/10.6084/m9.figshare.30773684}
+
+\noindent Magnusson, M. (2026). Entropy-Bounded Empiricism: SPARC175 Complete Documentation. GitHub/EFC.
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}
+\small\textit{Section A of: ``Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference'' (DOI: 10.6084/m9.figshare.31122970)}
+
+\end{document}

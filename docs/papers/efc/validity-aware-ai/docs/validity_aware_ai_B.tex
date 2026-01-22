@@ -1,0 +1,406 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    pdfinfo={DOI={10.6084/m9.figshare.31122970}}
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+\setstretch{1.2}
+
+\title{Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference\\[1em]
+\large B. Regime-Aware RAG\\[0.5em]
+\normalsize Architecture and Implementation Logic for Validity-Sensitive Retrieval}
+
+\author{Morten Magnusson\\
+\small Independent Researcher\\
+\small ORCID: 0009-0002-4860-5095}
+
+\date{January 2026\\[0.5em]
+\small DOI: 10.6084/m9.figshare.31122970}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This section presents Regime-Aware RAG, an architectural extension to retrieval-augmented generation that incorporates entropy measurement and regime classification before output generation. The architecture inserts an EBE (Entropy-Bounded Empiricism) filter between retrieval and generation, enabling the system to modulate its response based on the epistemic stability of the queried domain. By making validity assessment structural rather than post-hoc, hallucination becomes a protocol violation rather than a quality issue.
+\end{abstract}
+
+\noindent\textbf{Keywords:} RAG, retrieval-augmented generation, regime awareness, knowledge graphs, epistemic safety, hallucination prevention
+
+\section{Introduction}
+
+Section A established that inference validity is regime-dependent: a system operating in L1 (stable, low-entropy) can make confident predictions, while a system in L2 (complex, high-entropy) must quantify uncertainty, and a system approaching L3 must refuse predictive claims entirely.
+
+This section shows \textbf{how to build this into a RAG architecture}.
+
+The core architectural claim is:
+
+\begin{quote}
+\textit{Retrieval without regime context is epistemically irresponsible in complex domains.}
+\end{quote}
+
+Standard RAG retrieves relevant documents and feeds them to an LLM. It does not ask: ``Is this domain stable enough for confident inference?'' Regime-Aware RAG asks this question before every generation.
+
+\section{The Problem with Standard RAG}
+
+\subsection{The Standard Pipeline}
+
+A conventional RAG system operates as follows:
+
+\begin{verbatim}
+Query -> Embed -> Vector Search -> Top-k Retrieval -> LLM Generation -> Output
+\end{verbatim}
+
+This pipeline optimizes for \textbf{relevance}: finding documents that match the query semantically. It does not optimize for \textbf{validity}: whether the retrieved information supports reliable inference.
+
+\subsection{What Standard RAG Cannot Do}
+
+\begin{enumerate}
+    \item \textbf{Detect contradictions}: If retrieved documents contain conflicting claims, the LLM receives both without warning
+    \item \textbf{Measure domain stability}: No mechanism exists to assess whether the knowledge domain is contested or settled
+    \item \textbf{Modulate confidence}: The LLM generates with the same rhetorical certainty regardless of underlying uncertainty
+    \item \textbf{Refuse gracefully}: No architectural pathway exists for ``I cannot reliably answer this''
+\end{enumerate}
+
+\subsection{The Consequence}
+
+Standard RAG compensates for epistemic uncertainty with \textbf{linguistic fluency}. When the retrieved context is contradictory or incomplete, the LLM produces:
+
+\begin{itemize}
+    \item More text (to appear thorough)
+    \item More hedging words (to appear cautious)
+    \item More confident rhetoric (to appear authoritative)
+\end{itemize}
+
+This is not safety. This is \textbf{cosmetic uncertainty}---surface-level caveats that do not reflect structural epistemic limits.
+
+\section{Regime-Aware RAG Architecture}
+
+\subsection{The Extended Pipeline}
+
+Regime-Aware RAG inserts an \textbf{EBE filter} between retrieval and generation:
+
+\begin{verbatim}
+Query -> Embed -> Vector Search -> Top-k Retrieval
+                                        |
+                                Graph Enrichment (Neo4j)
+                                        |
+                                EBE Regime Filter <- H(G) measurement
+                                        |
+                                Regime Classification (L1/L2/L3)
+                                        |
+                                Response Protocol Selection
+                                        |
+                                LLM Generation (regime-constrained)
+                                        |
+                                Output (with epistemic metadata)
+\end{verbatim}
+
+\subsection{Component Specification}
+
+\paragraph{Vector Store (Qdrant)}
+Standard semantic retrieval returning top-k chunks with similarity scores. \textbf{Extended}: Each chunk carries metadata including \texttt{confidence}, \texttt{source\_authority}, \texttt{timestamp}, \texttt{contradiction\_flags}.
+
+\paragraph{Knowledge Graph (Neo4j)}
+Stores concepts, relationships, and their properties. Tracks relationship confidence, provenance, and temporal validity. \textbf{Extended}: Supports entropy queries---edge variance, node disagreement, model divergence.
+
+\paragraph{EBE Regime Filter}
+The core innovation. This component:
+\begin{enumerate}
+    \item Extracts the \textbf{relevant subgraph} for the query
+    \item Computes \textbf{local entropy} $\mathcal{H}(G)$ using metrics from Section A
+    \item Classifies the query into \textbf{L1, L2, or L3}
+    \item Selects the appropriate \textbf{response protocol}
+\end{enumerate}
+
+\paragraph{Response Protocol Engine}
+Maps regime classification to output behavior:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Regime} & \textbf{Protocol} & \textbf{LLM Constraints} \\
+\midrule
+L1 & Standard & Full generation, confidence allowed \\
+L2 & Uncertainty-aware & Must include probability estimates, cite conflicts \\
+L2$\to$L3 & Degraded & Point estimates forbidden, explicit warning required \\
+L3 & Archival & Historical retrieval only, ``as of [date]'' framing \\
+\bottomrule
+\end{tabular}
+\caption{Response protocol by regime}
+\end{table}
+
+\section{The EBE Filter in Detail}
+
+\subsection{Input}
+
+\begin{itemize}
+    \item Query vector (from embedding)
+    \item Retrieved chunks (from vector search)
+    \item Relevant subgraph (from Neo4j traversal)
+\end{itemize}
+
+\subsection{Entropy Computation}
+
+\begin{lstlisting}[language=Python]
+def compute_regime_entropy(subgraph, retrieved_chunks):
+    """
+    Compute H(G) for the query-relevant knowledge structure.
+    Returns entropy score and component breakdown.
+    """
+    # Edge entropy: variance in relationship confidence
+    edge_confidences = [e.confidence for e in subgraph.edges]
+    H_edges = compute_variance_entropy(edge_confidences)
+    
+    # Node entropy: disagreement in concept definitions
+    node_definitions = [n.definitions for n in subgraph.nodes]
+    H_nodes = compute_definition_divergence(node_definitions)
+    
+    # Structural entropy: instability in graph topology
+    temporal_snapshots = get_graph_history(subgraph, window=30)
+    H_structural = compute_topology_drift(temporal_snapshots)
+    
+    # Retrieval entropy: contradiction in retrieved chunks
+    H_retrieval = compute_chunk_contradiction(retrieved_chunks)
+    
+    # Combined entropy (weighted)
+    H_total = (W_EDGE * H_edges + W_NODE * H_nodes + 
+               W_STRUCT * H_structural + W_RETRIEVAL * H_retrieval)
+    
+    return {'total': H_total, 'components': {...}}
+\end{lstlisting}
+
+\textbf{Note}: Weights are calibrated per domain and may be learned or rule-based.
+
+\subsection{Regime Classification}
+
+\begin{lstlisting}[language=Python]
+def classify_regime(entropy_result, domain_thresholds):
+    """
+    Map entropy to regime.
+    Thresholds are domain-calibrated, not universal.
+    """
+    H = entropy_result['total']
+    theta_L1 = domain_thresholds.get('L1_upper', 0.3)
+    theta_L2 = domain_thresholds.get('L2_upper', 0.7)
+    
+    if H < theta_L1:
+        return Regime.L1, confidence=1.0 - H
+    elif H < theta_L2:
+        confidence = 1.0 - (H - theta_L1) / (theta_L2 - theta_L1)
+        return Regime.L2, confidence
+    else:
+        return Regime.L3_WARNING, confidence=0.0
+\end{lstlisting}
+
+\section{Response Protocol Implementation}
+
+\subsection{L1 Protocol (Standard)}
+
+When $\mathcal{H}(G) < \theta_{L1}$:
+\begin{itemize}
+    \item LLM generates normally
+    \item Confidence statements permitted
+    \item No special constraints
+\end{itemize}
+
+\subsection{L2 Protocol (Uncertainty-Aware)}
+
+When $\theta_{L1} \leq \mathcal{H}(G) < \theta_{L2}$:
+\begin{itemize}
+    \item LLM must acknowledge competing interpretations
+    \item Point estimates must include uncertainty ranges
+    \item Conflicting sources must be cited explicitly
+    \item Confidence ceiling enforced (e.g., max 70\%)
+\end{itemize}
+
+\textbf{System prompt addition}:
+\begin{verbatim}
+EPISTEMIC CONSTRAINT: This query falls in regime L2 (contested domain).
+- Do not make unqualified assertions
+- Present competing interpretations where they exist
+- Include uncertainty estimates for any quantitative claims
+- Maximum confidence level: 70%
+\end{verbatim}
+
+\subsection{L2$\to$L3 Protocol (Degraded)}
+
+When $\mathcal{H}(G)$ approaches $\theta_{L2}$:
+\begin{itemize}
+    \item Point estimates forbidden
+    \item Must explicitly warn user of epistemic instability
+    \item Suggest alternative query strategies
+\end{itemize}
+
+\subsection{L3 Protocol (Archival)}
+
+When $\mathcal{H}(G) \geq \theta_{L2}$ or domain is marked inactive:
+\begin{itemize}
+    \item Retrieval-only mode
+    \item All responses framed as historical
+    \item No predictive claims permitted
+    \item Explicit ``as of [date]'' framing mandatory
+\end{itemize}
+
+\section{Hallucination Prevention}
+
+\subsection{The Mechanism}
+
+Standard RAG allows hallucination because it has no pre-generation validity check. The LLM receives context and generates---regardless of whether that context supports reliable inference.
+
+Regime-Aware RAG prevents hallucination \textbf{structurally}:
+
+\begin{enumerate}
+    \item \textbf{Before generation}: Entropy is measured, regime is classified
+    \item \textbf{During generation}: System prompt constrains output based on regime
+    \item \textbf{After generation}: Output is validated against regime constraints
+\end{enumerate}
+
+Hallucination in high-entropy domains becomes a \textbf{protocol violation}, not just a quality issue.
+
+\subsection{What This Does NOT Solve}
+
+Regime-Aware RAG does not prevent:
+\begin{itemize}
+    \item Factual errors within L1 domains (knowledge may still be wrong)
+    \item Subtle reasoning errors (logic can fail regardless of regime)
+    \item Adversarial manipulation (prompt injection remains a separate problem)
+\end{itemize}
+
+It prevents: \textbf{confident outputs in uncertain domains}.
+
+\section{Integration with Symbiosis Architecture}
+
+\subsection{Where EBE Fits}
+
+The Symbiosis architecture (Magnusson 2025) provides:
+\begin{itemize}
+    \item \textbf{Neo4j}: Knowledge graph for structural memory
+    \item \textbf{Qdrant}: Vector store for semantic retrieval
+    \item \textbf{Unified API}: Abstraction layer for retrieval and logging
+    \item \textbf{Reflection Layer}: Metacognitive tracking
+\end{itemize}
+
+Regime-Aware RAG extends this with:
+\begin{itemize}
+    \item \textbf{EBE Filter}: Entropy measurement and regime classification
+    \item \textbf{Protocol Engine}: Response constraint enforcement
+    \item \textbf{Epistemic Metadata}: Regime classification in logs
+\end{itemize}
+
+\subsection{The Extended Operational Loop}
+
+\begin{enumerate}
+    \item Human prompt
+    \item Context retrieval (Qdrant + Neo4j)
+    \item \textbf{EBE regime classification} $\leftarrow$ NEW
+    \item \textbf{Protocol selection} $\leftarrow$ NEW
+    \item LLM generation (regime-constrained) $\leftarrow$ MODIFIED
+    \item Structured logging (with regime) $\leftarrow$ EXTENDED
+    \item Graph/vector update
+    \item Feedback tagging
+\end{enumerate}
+
+The loop remains human-centered. The EBE filter does not make decisions---it provides epistemic metadata that shapes how the system responds.
+
+\section{Implementation Considerations}
+
+\subsection{Threshold Calibration}
+
+Domain-specific thresholds ($\theta_{L1}$, $\theta_{L2}$) require empirical calibration:
+\begin{enumerate}
+    \item \textbf{Baseline measurement}: Compute entropy across known-stable queries
+    \item \textbf{Failure analysis}: Identify queries where standard RAG produced incorrect/overconfident outputs
+    \item \textbf{Threshold tuning}: Adjust until regime classification matches observed validity
+\end{enumerate}
+
+This is not a weakness---it is an explicit acknowledgment that epistemic boundaries are domain-dependent.
+
+\subsection{Performance Overhead}
+
+The EBE filter adds latency:
+\begin{itemize}
+    \item Graph traversal: $\sim$50--200ms (depending on subgraph size)
+    \item Entropy computation: $\sim$10--50ms
+    \item Protocol selection: $<$5ms
+\end{itemize}
+
+Total overhead: \textbf{60--250ms per query}. Acceptable for most applications; may require optimization for real-time systems.
+
+\subsection{Graceful Degradation}
+
+If the EBE filter fails (Neo4j unavailable, computation timeout):
+\begin{itemize}
+    \item Default to L2 protocol (conservative)
+    \item Log the failure
+    \item Continue with uncertainty-aware generation
+\end{itemize}
+
+The system should never fail silently into L1. Conservative bias under uncertainty is intentional---it is safer to over-hedge than to over-claim.
+
+\section{Relation to Existing Approaches}
+
+\subsection{What This Is NOT}
+
+\begin{itemize}
+    \item \textbf{Not calibration}: We are not adjusting model confidence after training
+    \item \textbf{Not uncertainty quantification}: We are not computing Bayesian posteriors
+    \item \textbf{Not explainability}: We are not explaining why the model produced an output
+\end{itemize}
+
+\subsection{What This IS}
+
+\begin{itemize}
+    \item \textbf{Pre-generation validity assessment}: Measuring epistemic conditions before output
+    \item \textbf{Architectural constraint}: Building validity awareness into the pipeline
+    \item \textbf{Regime-sensitive response}: Changing output behavior based on domain state
+\end{itemize}
+
+The goal is not to make the LLM more accurate. The goal is to make the system \textbf{honest about its limits}.
+
+\section{Summary}
+
+Section B establishes the \textbf{architectural implementation} of regime-aware inference:
+
+\begin{enumerate}
+    \item \textbf{Standard RAG is epistemically blind}: It retrieves and generates without validity assessment
+    \item \textbf{The EBE filter measures entropy} in the relevant knowledge subgraph
+    \item \textbf{Regime classification} (L1/L2/L3) determines response protocol
+    \item \textbf{Response protocols constrain generation} based on epistemic conditions
+    \item \textbf{Hallucination becomes a protocol violation}, not just a quality issue
+\end{enumerate}
+
+The following section (C) examines the broader implications: what it means to build AI systems that know where they fail.
+
+\section*{References}
+
+\noindent Magnusson, M. (2026). L0--L3 Regime Architecture in Entropy-Bounded Empiricism. Figshare. \url{https://doi.org/10.6084/m9.figshare.31112536}
+
+\noindent Magnusson, M. (2025). Symbiosis: A Human--AI Co-Reflection Architecture Using Graph--Vector Memory for Long-Horizon Thinking. Figshare. \url{https://doi.org/10.6084/m9.figshare.30773684}
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}
+\small\textit{Section B of: ``Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference'' (DOI: 10.6084/m9.figshare.31122970)}
+
+\end{document}

@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+title: "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: Magnusson
+    given-names: Morten
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+repository-code: "https://github.com/supertedai/validity-aware-ai"
+url: "https://doi.org/10.6084/m9.figshare.31122970"
+doi: "10.6084/m9.figshare.31122970"
+date-released: "2026-01-22"
+version: "1.0"
+license: CC-BY-4.0
+keywords:
+  - entropy-bounded empiricism
+  - regime architecture
+  - AI safety
+  - validity awareness
+  - hallucination prevention
+  - RAG
+  - knowledge graphs
+  - epistemic honesty
+abstract: >-
+  Validity-Aware AI is an architectural framework that enables AI systems to 
+  recognize and report their own epistemic limits. By measuring entropy in 
+  knowledge structures and classifying queries into regimes (L1/L2/L3), the 
+  system can modulate its response confidence and refuse to generate confident 
+  outputs in high-entropy domains. This transforms hallucination from a quality 
+  issue into a protocol violation.
+references:
+  - type: article
+    authors:
+      - family-names: Magnusson
+        given-names: Morten
+    title: "L0–L3 Regime Architecture in Entropy-Bounded Empiricism"
+    doi: "10.6084/m9.figshare.31112536"
+    year: 2026
+  - type: article
+    authors:
+      - family-names: Magnusson
+        given-names: Morten
+    title: "Symbiosis: A Human–AI Co-Reflection Architecture Using Graph–Vector Memory for Long-Horizon Thinking"
+    doi: "10.6084/m9.figshare.30773684"
+    year: 2025
