@@ -1,0 +1,44 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ResearchProject",
+      "@id": "https://energyflow-cosmology.com/#efc",
+      "name": "Energy-Flow Cosmology (EFC)",
+      "url": "https://energyflow-cosmology.com",
+      "description": "Energy-Flow Cosmology (EFC) is a regime-dependent thermodynamic framework in which cosmic structure, gravity, and large-scale dynamics emerge from measurable energy and entropy flow interactions, without invoking dark matter, dark energy, or a cosmological constant.",
+      "keywords": [
+        "Energy-Flow Cosmology",
+        "thermodynamic cosmology",
+        "entropy gradients",
+        "emergent gravity",
+        "regime-dependent physics",
+        "Entropy-Bounded Empiricism"
+      ],
+      "creator": {
+        "@id": "https://energyflow-cosmology.com/#morten-magnusson"
+      },
+      "founder": {
+        "@id": "https://energyflow-cosmology.com/#morten-magnusson"
+      },
+      "inLanguage": "en",
+      "isAccessibleForFree": true
+    },
+    {
+      "@type": "Person",
+      "@id": "https://energyflow-cosmology.com/#morten-magnusson",
+      "name": "Morten Magnusson",
+      "url": "https://energyflow-cosmology.com",
+      "jobTitle": "Independent Researcher",
+      "description": "Independent researcher and founder of Energy-Flow Cosmology (EFC), developing regime-dependent, entropy-bounded models of cosmology and complex systems grounded in thermodynamics and empirical validation.",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Energy-Flow Cosmology Initiative"
+      },
+      "sameAs": [
+        "https://figshare.com/authors/Morten_Magnusson",
+        "https://github.com/supertedai"
+      ]
+    }
+  ]
+}
