@@ -1,0 +1,136 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "doi": "https://doi.org/",
+    "orcid": "https://orcid.org/"
+  },
+  "@type": "SoftwareSourceCode",
+  "@id": "https://github.com/supertedai/efc-toolkit",
+  "name": "EFC Toolkit",
+  "description": "Energy-Flow Cosmology Framework for AI Systems - A Python package for regime-dependent cosmological calculations, transition metrics, and validity-aware inference.",
+  "version": "0.1.0",
+  "dateCreated": "2026-01-24",
+  "license": "https://opensource.org/licenses/MIT",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Python",
+    "version": ">=3.9"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "orcid:0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hasselvegen 5",
+      "postalCode": "4051",
+      "addressLocality": "Sola",
+      "addressCountry": "Norway"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095",
+      "url": "https://orcid.org/0009-0002-4860-5095"
+    }
+  },
+  "codeRepository": "https://github.com/supertedai/efc-toolkit",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "@id": "https://energyflow-cosmology.com",
+    "name": "Energy-Flow Cosmology Initiative"
+  },
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Energy-Flow Cosmology",
+      "description": "A framework describing regime-dependent gravitational dynamics through entropy gradients"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Regime Architecture",
+      "description": "L0-L3 hierarchy from cosmological to sub-galactic scales"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Transition Metric",
+      "description": "μ(a) = G_eff/G as function of scale factor"
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "efc.regimes",
+      "description": "L0-L3 regime architecture definitions"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "efc.transition",
+      "description": "Transition function μ(a) and Δ_F estimator"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "efc.validators",
+      "description": "Validity checking for regime-aware AI"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "efc.constants",
+      "description": "Physical constants and DOI registry"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31135597",
+      "name": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
+      "datePublished": "2026-01-23"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31127380",
+      "name": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+      "datePublished": "2026-01-22"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31122970",
+      "name": "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference",
+      "datePublished": "2026-01-22"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31096951",
+      "name": "EFC Regime Transition Framework: A CMB-Consistent Approach to Late-Time Cosmology",
+      "datePublished": "2026-01-21"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31112536",
+      "name": "L0–L3 Regime Architecture in Entropy-Bounded Empiricism",
+      "datePublished": "2026-01-21"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31095466",
+      "name": "Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results",
+      "datePublished": "2026-01-20"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31045126",
+      "name": "Comprehensive analysis of 175 SPARC galaxies demonstrating regime-dependent validity in rotation curve modeling",
+      "datePublished": "2026-01-11"
+    }
+  ],
+  "keywords": [
+    "cosmology",
+    "energy-flow-cosmology",
+    "regime-dependent",
+    "transition-metric",
+    "modified-gravity",
+    "validity-aware-ai",
+    "entropy-bounded-empiricism"
+  ]
+}

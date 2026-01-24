@@ -1,0 +1,104 @@
+# EFC Toolkit Index
+# Machine-readable index for AI systems
+
+meta:
+  schema_version: "1.0"
+  created: "2026-01-24"
+  package: efc-toolkit
+  version: "0.1.0"
+
+author:
+  name: Morten Magnusson
+  address: Hasselvegen 5, 4051 Sola, Norway
+  orcid: "0009-0002-4860-5095"
+
+files:
+  core:
+    - path: efc/__init__.py
+      type: python
+      purpose: Package entry point
+    - path: efc/regimes.py
+      type: python
+      purpose: L0-L3 regime architecture
+    - path: efc/transition.py
+      type: python
+      purpose: μ(a) and Δ_F calculations
+    - path: efc/validators.py
+      type: python
+      purpose: Validity checking
+    - path: efc/constants.py
+      type: python
+      purpose: Physical constants and DOIs
+  
+  metadata:
+    - path: meta.json
+      type: json
+      purpose: Machine-readable metadata
+    - path: schema.jsonld
+      type: jsonld
+      purpose: Linked data schema
+    - path: codemeta.json
+      type: codemeta
+      purpose: Software metadata standard
+    - path: CITATION.cff
+      type: cff
+      purpose: GitHub citation
+    - path: package.json
+      type: json
+      purpose: NPM-style metadata
+  
+  documentation:
+    - path: README.md
+      type: markdown
+      purpose: Main documentation
+    - path: LICENSE
+      type: text
+      purpose: MIT license
+  
+  examples:
+    - path: examples/ai_usage.py
+      type: python
+      purpose: AI system usage patterns
+  
+  tests:
+    - path: tests/test_efc.py
+      type: python
+      purpose: Test suite
+
+regimes:
+  L0:
+    scale: ">100 Mpc"
+    mu: 1.00
+    status: gr_consistent
+  L1:
+    scale: "1-100 Mpc"
+    mu: 1.05
+    status: transition
+  L2:
+    scale: "0.001-1 Mpc"
+    mu: 1.15
+    status: efc_core
+  L3:
+    scale: "<0.001 Mpc"
+    mu: 1.00
+    status: gr_consistent
+
+key_equations:
+  - name: Effective coupling
+    symbol: μ(a)
+    latex: "\\mu(a) \\equiv G_{eff}(a) / G"
+  - name: Transition kernel
+    latex: "\\mu(a) = 1 + \\Delta\\mu \\cdot R((\\ln a - \\ln a_t) / \\sigma)"
+  - name: Transition estimator
+    symbol: Δ_F
+    latex: "\\Delta_F = \\int W(a) [\\mu(a) - 1] d\\ln a"
+    reference_value: 0.1
+
+publications:
+  foundations: "10.6084/m9.figshare.31135597"
+  desi_bao: "10.6084/m9.figshare.31127380"
+  validity_ai: "10.6084/m9.figshare.31122970"
+  regime_transition: "10.6084/m9.figshare.31096951"
+  l0_l3: "10.6084/m9.figshare.31112536"
+  cmb_constraints: "10.6084/m9.figshare.31095466"
+  sparc_175: "10.6084/m9.figshare.31045126"

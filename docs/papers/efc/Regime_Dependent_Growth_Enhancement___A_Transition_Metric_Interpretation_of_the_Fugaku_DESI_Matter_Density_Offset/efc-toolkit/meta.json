@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "schema_version": "1.0.0",
+    "created": "2026-01-24",
+    "updated": "2026-01-24"
+  },
+  "package": {
+    "name": "efc-toolkit",
+    "version": "0.1.0",
+    "type": "python-library",
+    "purpose": "AI-consumable framework for Energy-Flow Cosmology calculations"
+  },
+  "author": {
+    "name": "Morten Magnusson",
+    "address": {
+      "street": "Hasselvegen 5",
+      "postal_code": "4051",
+      "city": "Sola",
+      "country": "Norway",
+      "country_code": "NO"
+    },
+    "identifiers": {
+      "orcid": "0009-0002-4860-5095",
+      "orcid_url": "https://orcid.org/0009-0002-4860-5095"
+    }
+  },
+  "framework": {
+    "name": "Energy-Flow Cosmology",
+    "abbreviation": "EFC",
+    "core_concept": "Regime-dependent effective gravitational coupling μ(a) = G_eff/G"
+  },
+  "regimes": {
+    "L0": {
+      "name": "Cosmological",
+      "scale_range_mpc": [100, null],
+      "mu_typical": 1.00,
+      "mu_uncertainty": 0.01,
+      "physics": "CMB, BAO, early universe",
+      "gr_consistent": true
+    },
+    "L1": {
+      "name": "Large-Scale Structure",
+      "scale_range_mpc": [1, 100],
+      "mu_typical": 1.05,
+      "mu_uncertainty": 0.05,
+      "physics": "Clusters, voids, transition zone",
+      "gr_consistent": false
+    },
+    "L2": {
+      "name": "Galaxy",
+      "scale_range_mpc": [0.001, 1],
+      "mu_typical": 1.15,
+      "mu_uncertainty": 0.10,
+      "physics": "Rotation curves, velocity dispersions",
+      "gr_consistent": false
+    },
+    "L3": {
+      "name": "Sub-galactic",
+      "scale_range_mpc": [0, 0.001],
+      "mu_typical": 1.00,
+      "mu_uncertainty": 0.001,
+      "physics": "Solar system, stellar dynamics",
+      "gr_consistent": true
+    }
+  },
+  "entropy_regimes": {
+    "low_s": {
+      "range": [0, 0.1],
+      "status": "GR_LIMIT",
+      "description": "Ordered, geometrical regime"
+    },
+    "mid_s": {
+      "range": [0.1, 0.9],
+      "status": "CORE_DOMAIN",
+      "description": "EFC validity domain"
+    },
+    "high_s": {
+      "range": [0.9, 1.0],
+      "status": "BOUNDARY",
+      "description": "Non-classical, field theory limit"
+    }
+  },
+  "equations": {
+    "effective_coupling": {
+      "latex": "\\mu(a) \\equiv \\frac{G_{\\mathrm{eff}}(a)}{G}",
+      "description": "Dimensionless effective gravitational coupling"
+    },
+    "transition_kernel": {
+      "latex": "\\mu(a) = 1 + \\Delta\\mu \\, \\mathcal{R}\\!\\left(\\frac{\\ln a - \\ln a_t}{\\sigma}\\right)",
+      "description": "Smooth transition function",
+      "parameters": {
+        "delta_mu": "Enhancement amplitude",
+        "a_t": "Transition epoch",
+        "sigma": "Transition width",
+        "R": "Monotonic regulator (sigmoid/tanh)"
+      }
+    },
+    "transition_estimator": {
+      "latex": "\\Delta_{\\mathrm{F}} \\equiv \\int W(a)\\,[\\mu(a)-1]\\,d\\ln a",
+      "description": "Fugaku/DESI transition metric",
+      "reference_value": 0.1,
+      "uncertainty": 0.03
+    }
+  },
+  "consistency_conditions": [
+    {
+      "name": "CMB Consistency",
+      "requirement": "μ(a) → 1 for a ≪ a_t",
+      "doi": "10.6084/m9.figshare.31095466"
+    },
+    {
+      "name": "LSS Consistency",
+      "requirement": "Δ_F matches Fugaku/DESI offset (~0.1)",
+      "doi": "10.6084/m9.figshare.31127380"
+    },
+    {
+      "name": "Galaxy Consistency",
+      "requirement": "μ(a) → 1 + Δμ at late times",
+      "doi": "10.6084/m9.figshare.31045126"
+    }
+  ],
+  "publications": [
+    {
+      "key": "foundations",
+      "title": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
+      "doi": "10.6084/m9.figshare.31135597",
+      "date": "2026-01-23",
+      "type": "preprint"
+    },
+    {
+      "key": "desi_bao",
+      "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+      "doi": "10.6084/m9.figshare.31127380",
+      "date": "2026-01-22",
+      "type": "preprint"
+    },
+    {
+      "key": "validity_aware_ai",
+      "title": "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference",
+      "doi": "10.6084/m9.figshare.31122970",
+      "date": "2026-01-22",
+      "type": "preprint"
+    },
+    {
+      "key": "regime_transition",
+      "title": "EFC Regime Transition Framework: A CMB-Consistent Approach to Late-Time Cosmology",
+      "doi": "10.6084/m9.figshare.31096951",
+      "date": "2026-01-21",
+      "type": "preprint"
+    },
+    {
+      "key": "l0_l3_architecture",
+      "title": "L0–L3 Regime Architecture in Entropy-Bounded Empiricism",
+      "doi": "10.6084/m9.figshare.31112536",
+      "date": "2026-01-21",
+      "type": "preprint"
+    },
+    {
+      "key": "cmb_constraints",
+      "title": "Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results",
+      "doi": "10.6084/m9.figshare.31095466",
+      "date": "2026-01-20",
+      "type": "preprint"
+    },
+    {
+      "key": "cmb_thermodynamic",
+      "title": "CMB - Thermodynamic Interpretation",
+      "doi": "10.6084/m9.figshare.31064929",
+      "date": "2026-01-14",
+      "type": "preprint"
+    },
+    {
+      "key": "structure_formation",
+      "title": "Energy-Flow Cosmology and Regime-Dependent Structure Formation",
+      "doi": "10.6084/m9.figshare.31061872",
+      "date": "2026-01-13",
+      "type": "preprint"
+    },
+    {
+      "key": "sparc_ebe",
+      "title": "Entropy-Bounded Empiricism (EBE) SPARC175 Complete Documentation",
+      "doi": "10.6084/m9.figshare.31047703",
+      "date": "2026-01-13",
+      "type": "preprint"
+    },
+    {
+      "key": "cosmos_web",
+      "title": "Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions in COSMOS-Web",
+      "doi": "10.6084/m9.figshare.31059964",
+      "date": "2026-01-13",
+      "type": "preprint"
+    },
+    {
+      "key": "regime_breakdown",
+      "title": "Regime-Dependent Breakdown of ΛCDM Across Cosmic Time",
+      "doi": "10.6084/m9.figshare.31061665",
+      "date": "2026-01-13",
+      "type": "preprint"
+    },
+    {
+      "key": "sparc_175",
+      "title": "Comprehensive analysis of 175 SPARC galaxies demonstrating regime-dependent validity in rotation curve modeling",
+      "doi": "10.6084/m9.figshare.31045126",
+      "date": "2026-01-11",
+      "type": "preprint"
+    },
+    {
+      "key": "free_energy_principle",
+      "title": "Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks",
+      "doi": "10.6084/m9.figshare.31042678",
+      "date": "2026-01-10",
+      "type": "preprint"
+    },
+    {
+      "key": "h0_s8_tensions",
+      "title": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+      "doi": "10.6084/m9.figshare.31026151",
+      "date": "2026-01-09",
+      "type": "preprint"
+    },
+    {
+      "key": "regime_validity",
+      "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+      "doi": "10.6084/m9.figshare.31007248",
+      "date": "2026-01-06",
+      "type": "preprint"
+    }
+  ],
+  "external_references": {
+    "DESI_2024": {
+      "title": "DESI 2024 VI: Cosmological Constraints from BAO",
+      "arxiv": "2404.03002",
+      "year": 2024
+    },
+    "Planck_2018": {
+      "title": "Planck 2018 results. VI. Cosmological parameters",
+      "journal": "A&A 641, A6",
+      "year": 2020
+    },
+    "Uchuu_2021": {
+      "title": "The Uchuu simulations: Data Release 1",
+      "journal": "MNRAS 506, 4210",
+      "year": 2021,
+      "note": "Fugaku N-body baseline"
+    }
+  },
+  "ai_guidelines": {
+    "primary_use": "Validity-aware cosmological reasoning",
+    "always_check": "Regime validity before making claims",
+    "cite": "DOIs for verifiability",
+    "acknowledge": "Epistemic boundaries where EFC stops working",
+    "key_principle": "EFC admits where it fails - this is strength, not weakness"
+  }
+}

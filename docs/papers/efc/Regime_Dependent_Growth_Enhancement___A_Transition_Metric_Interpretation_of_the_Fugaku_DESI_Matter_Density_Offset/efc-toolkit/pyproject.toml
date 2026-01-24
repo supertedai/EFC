@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "efc-toolkit"
+version = "0.1.0"
+description = "Energy-Flow Cosmology Framework for AI Systems"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Morten Magnusson", email = "morten@magnusson.as"}
+]
+maintainers = [
+    {name = "Morten Magnusson", email = "morten@magnusson.as"}
+]
+keywords = [
+    "cosmology",
+    "energy-flow",
+    "efc",
+    "regime-dependent",
+    "transition-metric",
+    "modified-gravity",
+    "ai-toolkit"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.20.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+]
+docs = [
+    "sphinx>=6.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/supertedai/efc-toolkit"
+Documentation = "https://efc-toolkit.readthedocs.io"
+Repository = "https://github.com/supertedai/efc-toolkit"
+Issues = "https://github.com/supertedai/efc-toolkit/issues"
+"DOI (Foundations)" = "https://doi.org/10.6084/m9.figshare.31135597"
+"ORCID" = "https://orcid.org/0009-0002-4860-5095"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["efc*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=efc --cov-report=term-missing"
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
