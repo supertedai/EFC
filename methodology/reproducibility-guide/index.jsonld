@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "identifier": "methodology/reproducibility-guide",
+  "name": "\ud83d\udee0\ufe0f Reproducibility Guide: Running the EFC System",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "version": "1.0",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "methodology"
+  },
+  "layer": "methodology",
+  "encodingFormat": "md",
+  "url": "methodology/reproducibility-guide.md",
+  "description": "This guide provides the necessary steps to clone the **Energy-Flow Cosmology (EFC) Computational System** and execute its core validation and build workflows locally. The goal is to ensure **full reproducibility** of published results and to demonstrate the functionality of the system's automated pipelines (GitHub Actions).",
+  "keywords": [
+    "guide",
+    "reproducibility",
+    "running",
+    "system"
+  ]
+}

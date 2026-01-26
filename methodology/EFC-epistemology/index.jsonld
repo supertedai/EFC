@@ -1,0 +1,29 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "EFC": "https://energyflow-cosmology.com/schema#"
+    }
+  ],
+  "@type": ["CreativeWork", "EFC:Node"],
+  "identifier": "efc-epistemology",
+  "name": "EFC Epistemology",
+  "description": "Epistemic foundations for Energy-Flow Cosmology, defining how knowledge is constructed, validated and constrained within a thermodynamic framework.",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "version": "1.0",
+  "about": [
+    "Energy-Flow Cosmology",
+    "Thermodynamics",
+    "Epistemology",
+    "Methodology",
+    "Scientific foundations"
+  ],
+  "EFC:layer": "methodology",
+  "EFC:category": "epistemology",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/supertedai/energyflow-cosmology/tree/main/methodology/EFC-epistemology"
+}

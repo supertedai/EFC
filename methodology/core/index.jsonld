@@ -1,0 +1,22 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "EFC": "https://energyflow-cosmology.com/schema#"
+    }
+  ],
+  "@type": ["CreativeWork", "EFC:Node"],
+  "identifier": "efc-core",
+  "name": "EFC Core Layer",
+  "description": "The fundamental computational layer of Energy-Flow Cosmology, defining parameters, core model functions, and baseline thermodynamic operations.",
+  "version": "1.0",
+  "EFC:layer": "core",
+  "EFC:category": "computational-foundation",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/supertedai/energyflow-cosmology/tree/main/core"
+}
