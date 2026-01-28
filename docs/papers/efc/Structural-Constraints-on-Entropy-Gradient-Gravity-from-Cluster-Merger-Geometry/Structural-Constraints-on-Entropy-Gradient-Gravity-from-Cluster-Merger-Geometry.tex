@@ -1,0 +1,349 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\definecolor{claimcolor}{RGB}{0,100,0}
+\definecolor{warncolor}{RGB}{180,100,0}
+\definecolor{failcolor}{RGB}{180,0,0}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{EFC Bullet Cluster Constraint Study}
+\lhead{Technical Note v1.0}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+
+\title{Structural Constraints on Entropy-Gradient Gravity\\from Cluster Merger Geometry\\[0.5em]
+\large Falsification of Local Couplings and Predictive Tests of Non-Local Formulations}
+
+\author{Morten Magnusson\\[0.3em]
+\small ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095}\\[0.5em]
+\small\texttt{Reproducible Technical Constraint Study}}
+
+\date{January 28, 2026\\[0.3em]
+\small Version 1.0.0\\[0.3em]
+\small DOI: \href{https://doi.org/10.6084/m9.figshare.31173850}{10.6084/m9.figshare.31173850}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We test whether Energy-Flow Cosmology (EFC) entropy-gradient formulations can reproduce the Bullet Cluster (1E~0657-56) gravitational lensing geometry without invoking particle dark matter. Using reconstructed baryonic distributions, we find that \textbf{local gradient-based couplings are definitively ruled out} (0/42 parameter combinations pass geometric criteria), while \textbf{non-local, component-sensitive formulations can reproduce the observed spatial separation} under specific structural requirements. We derive a minimal $w(M,t)$ model with one global parameter ($\eta = 66.2$) and generate \textit{a priori} predictions for MACS~J0025 and Abell~520. These predictions are falsifiable and were not tuned to their lensing maps. This work establishes structural constraints on EFC-type theories rather than empirical validation, which requires real shear catalog data.
+\end{abstract}
+
+\vspace{1em}
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Epistemological Status:} This is a \textit{Reproducible Technical Constraint Study}, not an observational validation. All $\kappa$-maps are synthetic reconstructions from published parameters. The value lies in falsifying local formulations and establishing necessary structural requirements for any viable entropy-gradient gravity theory.
+}}
+
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+The Bullet Cluster provides a critical test for modified gravity theories: the gravitational lensing mass ($\kappa$-map) is spatially offset from the dominant baryonic component (X-ray gas) by $\sim$150~kpc at $8\sigma$ significance \cite{Clowe2006}. Any theory claiming to explain gravitational phenomena without dark matter particles must reproduce this geometry.
+
+\textbf{Test objective:} Determine whether EFC entropy-gradient gravity can produce $\kappa$-peaks at galaxy positions (not gas positions) using only baryonic inputs.
+
+%==============================================================================
+\section{Tested Postulates}
+%==============================================================================
+
+\subsection{Postulate v1.0 (Local Gradient)}
+
+\begin{equation}
+G_{\text{eff}} = 1 + \alpha \times L_0 \times |\nabla\ln\Sigma_b|
+\end{equation}
+\begin{equation}
+\kappa_{\text{EFC}} = \frac{\Sigma_b \times G_{\text{eff}}}{\Sigma_c}
+\end{equation}
+
+\textbf{Free parameters:} $\alpha$ (coupling), $L_0$ (length scale)
+
+\subsection{Postulate v1.1 (Non-local + Component-sensitive)}
+
+\begin{align}
+q_\nabla &= |\nabla\ln\Sigma_b| \quad \text{(edge signal)}\\
+q_\Delta &= -\nabla^2\ln\Sigma_b \quad \text{(center signal)}\\
+q &= (1-\beta) q_\Delta + \beta q_\nabla \quad \text{($\beta=0.3$ fixed)}\\
+\bar{q} &= \mathcal{G}(L_0) * q \quad \text{(non-local smoothing)}
+\end{align}
+
+\begin{equation}
+\Sigma_{\text{eff}} = \Sigma_{\text{gas}}(1+\alpha\bar{q}) + w\,\Sigma_{\text{stellar}}(1+\alpha\bar{q})
+\end{equation}
+
+\textbf{Free parameters:} $\alpha$, $L_0$, $w$ \quad \textbf{Fixed:} $\beta = 0.3$
+
+%==============================================================================
+\section{Pass/Fail Criteria}
+%==============================================================================
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Criterion} & \textbf{Requirement} & \textbf{Physical meaning} \\
+\midrule
+Peak count & $= 2$ & Two distinct mass concentrations \\
+Gas offset & $> 100$ kpc & Mass NOT at gas position \\
+Galaxy proximity & $< 50$ kpc & Mass AT galaxy position \\
+Peak ratio & $0.9 - 1.2$ & Comparable main/sub masses \\
+\bottomrule
+\end{tabular}
+\caption{Geometric criteria for $\kappa$-map validation}
+\end{table}
+
+%==============================================================================
+\section{Results}
+%==============================================================================
+
+\subsection{v1.0 Local Gradient: \textcolor{failcolor}{FALSIFIED}}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+Metric & Result \\
+\midrule
+Combinations tested & 42 \\
+\textbf{Passing} & \textbf{0} \\
+Best $\chi^2$ & 10.3 \\
+Failure mode & Peaks at 222--847 kpc from galaxies \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Mechanism:} The gradient operator $|\nabla\ln\Sigma|$ acts as an edge detector. For any radial density profile, the maximum gradient occurs at the inflection point (ring/edge), not at the center. This places $\kappa$-peaks at density \textit{transitions} rather than at density \textit{peaks}.
+
+\textbf{Conclusion:} Local gradient-based $G_{\text{eff}}$ is \textbf{definitively ruled out} for cluster-scale lensing regardless of parameter choice.
+
+\subsection{v1.1 Non-local: \textcolor{warncolor}{CONDITIONAL PASS}}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+Metric & Result \\
+\midrule
+Combinations tested & 75 \\
+\textbf{Passing} & \textbf{14} \\
+Best $\chi^2$ & 3.42 \\
+Best parameters & $\alpha=1.5$, $L_0=200$ kpc, $w=20$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Critical caveat:} v1.1 passes \textit{only when the input stellar distribution already has the correct peak ratio} matching the observed $\kappa$-map. This means the test verifies that EFC can \textit{preserve} a mass distribution geometry, not that it \textit{predicts} the mass distribution from first principles.
+
+%==============================================================================
+\section{Result Claims}
+%==============================================================================
+
+\noindent\textbf{BC-001 (Constraint):} A purely local entropy-gradient coupling ($G_{\text{eff}} \propto |\nabla\ln\rho_b|$) fails to reproduce the Bullet Cluster lensing geometry. The operator acts as an edge-enhancer and displaces $\kappa$-peaks away from galaxy centers. This version of EFC is therefore \textbf{ruled out} at cluster-merger scales.
+
+\vspace{0.5em}
+\noindent\textbf{BC-002 (Structural Requirement):} Reproducing the observed mass--gas separation requires non-local response and stronger coupling to the collisionless component than to shocked plasma. This is a \textit{necessary condition} for EFC-type gravity models in merger regimes.
+
+\vspace{0.5em}
+\noindent\textbf{BC-003 (Working Hypothesis):} A minimal non-local, component-sensitive formulation with $w(M,t) = r(M) \times (1 + t/\tau_{\text{mix}})$ and $L_0 \sim R_{\text{core}}$ can reproduce the Bullet geometry without dark matter particles, provided these parameters are set by independent cluster dynamics.
+
+\vspace{0.5em}
+\noindent\textbf{BC-004 (Predictive Status):} Using a single global mixing parameter $\eta$, the model yields \textit{a priori} predictions for $w$ and $L_0$ in other mergers (MACS~J0025, Abell~520). These predictions are falsifiable and were not tuned to their lensing maps.
+
+\vspace{0.5em}
+\noindent\textbf{BC-005 (Current Limitation):} All $\kappa$-maps used here are reconstructed from published parameters rather than raw shear catalogs. The results therefore constitute theoretical and structural constraints, not a definitive empirical validation.
+
+\vspace{0.5em}
+\noindent\textbf{BC-006 (Next Empirical Test):} The hypothesis will be considered supported only if the predicted $(w, L_0)$ reproduce $\kappa$-peak geometry in at least one independent merger without parameter retuning.
+
+%==============================================================================
+\section{The $w(M,t)$ Model}
+%==============================================================================
+
+\subsection{Physical Motivation}
+
+The component weighting $w$ reflects entropy-gradient \textit{preservation}:
+\begin{itemize}
+\item Collisionless matter (galaxies/stars): gradients preserved ($f_* \approx 1$)
+\item Collisional matter (ICM gas): gradients destroyed by shock + mixing ($f_{\text{gas}} \ll 1$)
+\end{itemize}
+
+\subsection{Model Equations}
+
+\textbf{Compression ratio (Rankine-Hugoniot):}
+\begin{equation}
+r(M) = \frac{(\gamma+1)M^2}{(\gamma-1)M^2 + 2} \quad [\gamma = 5/3]
+\end{equation}
+
+\textbf{Mixing timescale:}
+\begin{equation}
+\tau_{\text{mix}} = \eta \times L_0 / \sigma_v
+\end{equation}
+
+\textbf{Saturating model (recommended):}
+\begin{equation}
+\boxed{w(M,t) = r(M) \times \left(1 + \frac{t}{\tau_{\text{mix}}}\right)}
+\end{equation}
+
+\textbf{Global parameter:} $\eta = 66.2$ (calibrated on Bullet Cluster)
+
+\subsection{Why Saturating, Not Exponential}
+
+An exponential mixing law $w \propto e^{t/\tau}$ is \textit{ill-conditioned}: $\pm50$ Myr uncertainty in merger age gives $\pm100$--200\% change in $w$. The saturating form gives only $\pm25\%$ sensitivity, making predictions robust.
+
+%==============================================================================
+\section{Predictions for Other Mergers}
+%==============================================================================
+
+\subsection{Locked Parameters}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+$\eta$ & 66.2 (global, from Bullet) \\
+$c$ & 0.8 ($L_0 = c \times R_{\text{core}}$) \\
+$\sigma_v$ & 500 km/s (fixed) \\
+$\alpha$ & 1.5 \\
+$\beta$ & 0.3 (fixed) \\
+\bottomrule
+\end{tabular}
+\caption{Locked parameters -- NO per-cluster fitting}
+\end{table}
+
+\subsection{Predicted $w$ and $L_0$}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+Cluster & $M$ & $t$ (Myr) & $R_{\text{core}}$ & $w_{\text{pred}}$ & $L_0$ (kpc) & Uncertainty \\
+\midrule
+Bullet & 3.0 & 150 & 250 & 20.0 & 200 & calibration \\
+MACS J0025 & 2.0 & 150 & 150 & \textbf{23.9} & \textbf{120} & $\pm 30\%$ \\
+Abell 520 & 2.5 & 200 & 200 & \textbf{28.2} & \textbf{160} & $\pm 23\%$ \\
+\bottomrule
+\end{tabular}
+\caption{Predictions using locked $\eta = 66.2$}
+\end{table}
+
+\subsection{Validation Results (Synthetic Data)}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Cluster & Peaks & Gas offset & Galaxy prox. & Ratio & Result \\
+\midrule
+MACS J0025 & 2 \checkmark & 119 kpc \checkmark & 8.5 kpc \checkmark & 1.07 \checkmark & \textcolor{claimcolor}{\textbf{PASS}} \\
+Abell 520 & 2 \checkmark & 126 kpc \checkmark & 8.5 kpc \checkmark & 1.21 $\times$ & \textcolor{warncolor}{\textbf{PASS 3/4}} \\
+\bottomrule
+\end{tabular}
+\caption{Prediction tests on synthetic $\kappa$-maps (no tuning)}
+\end{table}
+
+%==============================================================================
+\section{Discussion}
+%==============================================================================
+
+\subsection{What We Have Shown}
+
+\begin{enumerate}
+\item \textbf{Robust falsification of v1.0:} Local entropy-gradient couplings cannot reproduce Bullet Cluster geometry under any reasonable parameterization.
+\item \textbf{Structural requirements identified:} To match observations, EFC must have non-local response ($L_0 \sim 200$ kpc) and strong preference for collisionless component ($w \sim 20$).
+\item \textbf{Predictive framework:} Using locked parameters, the model predicts $w$ and $L_0$ for independent clusters.
+\end{enumerate}
+
+\subsection{What We Have NOT Shown}
+
+\begin{itemize}
+\item That EFC \textit{predicts} the correct mass ratio from baryonic physics alone
+\item That the $w \sim 20$ weighting has fully independent physical derivation
+\item That these parameters work on \textit{real} $\kappa$-maps from shear catalogs
+\end{itemize}
+
+\subsection{Path Forward}
+
+The hypothesis (BC-003) will be considered supported if:
+\begin{enumerate}
+\item Predicted $(w, L_0)$ reproduce $\kappa$ geometry on real FITS data
+\item No per-cluster parameter adjustment is required
+\item The model works for at least one ``clean'' merger (MACS J0025 preferred)
+\end{enumerate}
+
+%==============================================================================
+\section{Conclusion}
+%==============================================================================
+
+The Bullet Cluster test \textbf{constrains} EFC rather than confirms it. We have:
+
+\begin{itemize}
+\item[\checkmark] Ruled out local gradient formulations
+\item[\checkmark] Identified the structural form required for compatibility
+\item[\checkmark] Mapped the viable parameter space
+\item[\checkmark] Generated falsifiable predictions for other mergers
+\item[$\circ$] NOT demonstrated predictive power on real observational data
+\end{itemize}
+
+This represents genuine progress in theory-building: converting a qualitative challenge (``Bullet Cluster disproves modified gravity'') into a quantitative constraint on the theory space.
+
+%==============================================================================
+\section*{Data and Code Availability}
+%==============================================================================
+
+All code, synthetic data, and figures are available at:\\
+\url{https://doi.org/10.6084/m9.figshare.31173850}
+
+\begin{itemize}
+\item \texttt{code/} -- Complete Python pipeline
+\item \texttt{data/} -- Synthetic $\Sigma$ and $\kappa$ maps
+\item \texttt{figures/} -- All generated visualizations
+\end{itemize}
+
+The analysis is fully reproducible. Real $\kappa$-map validation requires access to original shear catalogs (contact Clowe, Bradač, or Cha et al.).
+
+%==============================================================================
+\section*{Acknowledgments}
+%==============================================================================
+
+This work builds on the pioneering analyses of Clowe et al. (2006), Bradač et al. (2006), and Brownstein \& Moffat (2007). We thank the weak lensing community for making cluster data progressively more accessible.
+
+%==============================================================================
+\begin{thebibliography}{9}
+
+\bibitem{Clowe2006}
+Clowe, D., et al. (2006).
+\textit{A direct empirical proof of the existence of dark matter}.
+ApJL 648, L109.
+
+\bibitem{Bradac2006}
+Bradač, M., et al. (2006).
+\textit{Strong and Weak Lensing United III}.
+ApJ 652, 937.
+
+\bibitem{Brownstein2007}
+Brownstein, J.R. \& Moffat, J.W. (2007).
+\textit{Bullet Cluster 1E0657-558 evidence shows modified gravity in the absence of dark matter}.
+MNRAS 382, 29.
+
+\bibitem{Cha2025}
+Cha, S., et al. (2025).
+\textit{A High-Caliber View of the Bullet Cluster through JWST Strong and Weak Lensing Analyses}.
+arXiv:2503.21870.
+
+\end{thebibliography}
+
+\end{document}
