@@ -1,0 +1,82 @@
+# EFC Bullet Cluster Constraint Study - Machine Readable Format
+# DOI: 10.6084/m9.figshare.31173850
+
+metadata:
+  title: "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry"
+  subtitle: "Falsification of Local Couplings and Predictive Tests of Non-Local Formulations"
+  author:
+    name: Morten Magnusson
+    orcid: "0009-0002-4860-5095"
+  doi: "10.6084/m9.figshare.31173850"
+  date: "2026-01-28"
+  version: "1.0.0"
+  type: "Reproducible Technical Constraint Study"
+  license: CC-BY-4.0
+
+epistemological_status:
+  category: CONSTRAINT_STUDY
+  claim_level: STRUCTURAL_REQUIREMENTS
+  data_type: SYNTHETIC_RECONSTRUCTION
+  validation_status: PENDING_REAL_DATA
+
+result_claims:
+  BC-001:
+    type: CONSTRAINT
+    status: ESTABLISHED
+    summary: "Local gradient coupling FALSIFIED (0/42 pass)"
+    
+  BC-002:
+    type: STRUCTURAL_REQUIREMENT
+    status: ESTABLISHED
+    summary: "Non-local + component-sensitive coupling REQUIRED"
+    requirements:
+      - L0: ~200 kpc
+      - w: ~20
+      
+  BC-003:
+    type: WORKING_HYPOTHESIS
+    status: PROVISIONAL
+    model: "w(M,t) = r(M) × (1 + t/τ_mix)"
+    global_parameter:
+      η: 66.2
+      
+  BC-004:
+    type: PREDICTIONS
+    status: GENERATED
+    falsifiable: true
+
+predictions:
+  bullet_cluster:
+    status: calibration
+    w: 20.0
+    L0_kpc: 200
+    
+  macs_j0025:
+    status: prediction
+    w: 23.9
+    L0_kpc: 120
+    test_result: PASS_ALL_CRITERIA
+    
+  abell_520:
+    status: prediction
+    w: 28.2
+    L0_kpc: 160
+    test_result: PASS_GEOMETRY_MARGINAL_RATIO
+
+equations:
+  v1.0_local:
+    G_eff: "1 + α × L₀ × |∇ln(Σ_b)|"
+    status: FALSIFIED
+    
+  v1.1_nonlocal:
+    Σ_eff: "Σ_gas(1+α×q̄) + w×Σ_stellar(1+α×q̄)"
+    status: CONDITIONAL_PASS
+    best_fit:
+      α: 1.5
+      L0_kpc: 200
+      w: 20
+      
+  w_model:
+    compression: "r(M) = (γ+1)M² / ((γ-1)M² + 2)"
+    mixing: "τ_mix = η × L₀ / σ_v"
+    saturating: "w(M,t) = r(M) × (1 + t/τ_mix)"

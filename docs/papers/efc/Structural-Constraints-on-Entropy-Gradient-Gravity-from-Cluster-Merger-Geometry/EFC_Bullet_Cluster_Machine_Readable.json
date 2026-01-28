@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "title": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
+    "subtitle": "Falsification of Local Couplings and Predictive Tests of Non-Local Formulations",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095"
+    },
+    "doi": "10.6084/m9.figshare.31173850",
+    "date": "2026-01-28",
+    "version": "1.0.0",
+    "type": "Reproducible Technical Constraint Study",
+    "license": "CC-BY-4.0",
+    "keywords": ["entropy-gradient gravity", "EFC", "Bullet Cluster", "weak lensing", "modified gravity", "dark matter", "cluster mergers"]
+  },
+
+  "epistemological_status": {
+    "category": "CONSTRAINT_STUDY",
+    "claim_level": "STRUCTURAL_REQUIREMENTS",
+    "data_type": "SYNTHETIC_RECONSTRUCTION",
+    "validation_status": "PENDING_REAL_DATA",
+    "warnings": [
+      "All κ-maps are synthetic reconstructions from published parameters",
+      "NOT an observational validation",
+      "Real shear catalog testing required for empirical confirmation"
+    ]
+  },
+
+  "tested_postulates": {
+    "v1.0_local_gradient": {
+      "equation": "G_eff = 1 + α × L₀ × |∇ln(Σ_b)|",
+      "kappa_equation": "κ_EFC = (Σ_b × G_eff) / Σ_c",
+      "free_parameters": ["α (coupling)", "L₀ (length scale)"],
+      "status": "FALSIFIED"
+    },
+    "v1.1_nonlocal_component_sensitive": {
+      "equations": {
+        "edge_signal": "q_∇ = |∇ln(Σ_b)|",
+        "center_signal": "q_Δ = -∇²ln(Σ_b)",
+        "combined": "q = (1-β)q_Δ + β×q_∇",
+        "smoothed": "q̄ = G(L₀) * q",
+        "effective_density": "Σ_eff = Σ_gas(1+α×q̄) + w×Σ_stellar(1+α×q̄)"
+      },
+      "free_parameters": ["α", "L₀", "w"],
+      "fixed_parameters": {"β": 0.3},
+      "status": "CONDITIONAL_PASS"
+    }
+  },
+
+  "pass_fail_criteria": {
+    "peak_count": {"requirement": 2, "meaning": "Two distinct mass concentrations"},
+    "gas_offset": {"requirement": ">100 kpc", "meaning": "Mass NOT at gas position"},
+    "galaxy_proximity": {"requirement": "<50 kpc", "meaning": "Mass AT galaxy position"},
+    "peak_ratio": {"requirement": "0.9-1.2", "meaning": "Comparable main/sub masses"}
+  },
+
+  "results": {
+    "v1.0_local": {
+      "status": "FALSIFIED",
+      "combinations_tested": 42,
+      "passing": 0,
+      "best_chi2": 10.3,
+      "failure_mode": "Peaks at 222-847 kpc from galaxies",
+      "mechanism": "Gradient operator acts as edge detector, places κ-peaks at density transitions not centers"
+    },
+    "v1.1_nonlocal": {
+      "status": "CONDITIONAL_PASS",
+      "combinations_tested": 75,
+      "passing": 14,
+      "best_chi2": 3.42,
+      "best_parameters": {"α": 1.5, "L₀_kpc": 200, "w": 20},
+      "caveat": "Passes only when input stellar distribution already has correct peak ratio"
+    }
+  },
+
+  "result_claims": {
+    "BC-001": {
+      "type": "CONSTRAINT",
+      "status": "ESTABLISHED",
+      "claim": "Local entropy-gradient coupling (G_eff ∝ |∇ln(ρ_b)|) fails to reproduce Bullet Cluster lensing geometry",
+      "evidence": "0/42 parameter combinations pass; acts as edge-enhancer displacing κ-peaks from galaxy centers"
+    },
+    "BC-002": {
+      "type": "STRUCTURAL_REQUIREMENT",
+      "status": "ESTABLISHED",
+      "claim": "Reproducing observed mass-gas separation requires non-local response and stronger coupling to collisionless component",
+      "requirements": ["Non-local scale L₀ ~ 200 kpc", "Component weighting w ~ 20"]
+    },
+    "BC-003": {
+      "type": "WORKING_HYPOTHESIS",
+      "status": "PROVISIONAL",
+      "claim": "Minimal non-local, component-sensitive formulation with w(M,t) = r(M) × (1 + t/τ_mix) and L₀ ~ R_core can reproduce Bullet geometry",
+      "conditions": "Parameters must be set by independent cluster dynamics"
+    },
+    "BC-004": {
+      "type": "PREDICTIVE_STATUS",
+      "status": "PREDICTIONS_GENERATED",
+      "claim": "Using single global mixing parameter η, model yields a priori predictions for w and L₀ in other mergers",
+      "falsifiable": true
+    },
+    "BC-005": {
+      "type": "LIMITATION",
+      "status": "ACKNOWLEDGED",
+      "claim": "All κ-maps reconstructed from published parameters, not raw shear catalogs",
+      "implication": "Results are theoretical/structural constraints, not definitive empirical validation"
+    },
+    "BC-006": {
+      "type": "NEXT_TEST",
+      "status": "PENDING",
+      "claim": "Hypothesis supported only if predicted (w, L₀) reproduce κ-peak geometry in independent merger without retuning"
+    }
+  },
+
+  "w_model": {
+    "physical_basis": "Component weighting reflects entropy-gradient preservation",
+    "collisionless": {"description": "galaxies/stars", "gradient_preservation": 1.0},
+    "collisional": {"description": "ICM gas", "gradient_preservation": "<<1 (shock + mixing)"},
+    "equations": {
+      "compression_ratio": "r(M) = (γ+1)M² / ((γ-1)M² + 2)",
+      "mixing_timescale": "τ_mix = η × L₀ / σ_v",
+      "saturating_model": "w(M,t) = r(M) × (1 + t/τ_mix)"
+    },
+    "constants": {"γ": 1.667},
+    "global_parameter": {"η": 66.2, "source": "Bullet Cluster calibration"},
+    "model_choice": "Saturating (not exponential) for robustness to merger age uncertainty"
+  },
+
+  "locked_parameters": {
+    "η": {"value": 66.2, "description": "Global mixing parameter"},
+    "c": {"value": 0.8, "description": "L₀ = c × R_core"},
+    "σ_v_km_s": {"value": 500, "description": "Turbulent velocity"},
+    "α": {"value": 1.5, "description": "Coupling strength"},
+    "β": {"value": 0.3, "description": "Gradient/curvature mix"}
+  },
+
+  "predictions": {
+    "bullet_cluster": {
+      "status": "CALIBRATION",
+      "mach": 3.0,
+      "t_myr": 150,
+      "r_core_kpc": 250,
+      "w_predicted": 20.0,
+      "L0_kpc": 200
+    },
+    "macs_j0025": {
+      "status": "PREDICTION",
+      "mach": 2.0,
+      "t_myr": 150,
+      "r_core_kpc": 150,
+      "w_predicted": 23.9,
+      "L0_kpc": 120,
+      "uncertainty": "±30%",
+      "test_result": {
+        "peaks": {"value": 2, "pass": true},
+        "gas_offset_kpc": {"value": 119, "pass": true},
+        "galaxy_proximity_kpc": {"value": 8.5, "pass": true},
+        "peak_ratio": {"value": 1.07, "pass": true},
+        "overall": "PASS_ALL_CRITERIA"
+      }
+    },
+    "abell_520": {
+      "status": "PREDICTION",
+      "mach": 2.5,
+      "t_myr": 200,
+      "r_core_kpc": 200,
+      "w_predicted": 28.2,
+      "L0_kpc": 160,
+      "uncertainty": "±23%",
+      "test_result": {
+        "peaks": {"value": 2, "pass": true},
+        "gas_offset_kpc": {"value": 126, "pass": true},
+        "galaxy_proximity_kpc": {"value": 8.5, "pass": true},
+        "peak_ratio": {"value": 1.211, "pass": false, "note": "0.011 outside limit"},
+        "overall": "PASS_GEOMETRY_MARGINAL_RATIO"
+      }
+    }
+  },
+
+  "scientific_position": {
+    "speculative_idea": false,
+    "structured_hypothesis": true,
+    "falsifiable_model": true,
+    "predictive_framework": true,
+    "observationally_validated": false,
+    "next_milestone": "Test against real FITS κ-maps"
+  },
+
+  "data_sources": {
+    "bullet_cluster": {
+      "reference": "Brownstein & Moffat (2007), MNRAS 382, 29",
+      "data_type": "Parameters from 2006 November 15 data release"
+    },
+    "macs_j0025": {
+      "reference": "Bradač et al. (2008), ApJ 687, 959"
+    },
+    "abell_520": {
+      "reference": "Mahdavi et al. (2007), ApJ 668, 806"
+    }
+  },
+
+  "references": [
+    {"key": "Clowe2006", "citation": "Clowe, D., et al. (2006). ApJL 648, L109"},
+    {"key": "Bradac2006", "citation": "Bradač, M., et al. (2006). ApJ 652, 937"},
+    {"key": "Brownstein2007", "citation": "Brownstein, J.R. & Moffat, J.W. (2007). MNRAS 382, 29"},
+    {"key": "Cha2025", "citation": "Cha, S., et al. (2025). arXiv:2503.21870"}
+  ],
+
+  "reproducibility": {
+    "code_available": true,
+    "code_location": "code/",
+    "main_script": "run_all_tests.py",
+    "dependencies": ["numpy", "scipy", "matplotlib", "astropy"],
+    "synthetic_data": true,
+    "real_fits_required_for": "Empirical validation"
+  }
+}

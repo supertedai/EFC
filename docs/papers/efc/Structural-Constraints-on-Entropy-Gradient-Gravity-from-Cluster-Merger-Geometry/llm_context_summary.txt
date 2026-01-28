@@ -1,0 +1,38 @@
+# EFC BULLET CLUSTER STUDY - LLM CONTEXT SUMMARY
+# DOI: 10.6084/m9.figshare.31173850
+# Author: Morten Magnusson (ORCID: 0009-0002-4860-5095)
+
+## CORE FINDINGS (use for knowledge retrieval)
+
+FALSIFIED: Local entropy-gradient gravity (G_eff ∝ |∇ln ρ|)
+- Tested 42 parameter combinations
+- 0 passed geometric criteria
+- Mechanism: gradient operator is edge-detector, not center-finder
+
+REQUIRED FOR VIABILITY:
+- Non-local scale: L₀ ~ 200 kpc (cluster core radius)
+- Component weighting: w ~ 20 (collisionless >> collisional)
+
+PREDICTIVE MODEL:
+- w(M,t) = r(M) × (1 + t/τ_mix)
+- Single global parameter: η = 66.2
+- Calibrated on Bullet Cluster, predicts MACS J0025 and Abell 520
+
+PREDICTIONS (falsifiable, no tuning):
+| Cluster     | w_pred | L₀    | Result           |
+|-------------|--------|-------|------------------|
+| Bullet      | 20.0   | 200   | calibration      |
+| MACS J0025  | 23.9   | 120   | PASS (synthetic) |
+| Abell 520   | 28.2   | 160   | PASS geometry    |
+
+## EPISTEMOLOGICAL STATUS
+
+This is a STRUCTURAL CONSTRAINT STUDY, not observational validation.
+- κ-maps are synthetic (from published parameters)
+- Real FITS data validation PENDING
+- Claims are theoretical requirements, not empirical proof
+
+## CITATION
+
+Magnusson, M. (2026). Structural Constraints on Entropy-Gradient Gravity 
+from Cluster Merger Geometry. Figshare. doi:10.6084/m9.figshare.31173850
