@@ -13,16 +13,50 @@ This MCP server enables AI agents to:
 
 ## Installation
 
-### For Claude Desktop
+### For Claude Desktop (Windows)
 
-Add to your `claude_desktop_config.json`:
+1. **Find your config file:**
+   ```
+   %APPDATA%\Claude\claude_desktop_config.json
+   ```
+   Typically: `C:\Users\<YourName>\AppData\Roaming\Claude\claude_desktop_config.json`
+
+2. **Add this configuration:**
 
 ```json
 {
   "mcpServers": {
     "efc": {
       "command": "python",
-      "args": ["-m", "efc_mcp_server"],
+      "args": ["efc_mcp_server.py"],
+      "cwd": "C:\\Users\\<YourName>\\path\\to\\EFC\\integrations\\mcp",
+      "env": {
+        "EFC_ROOT": "C:\\Users\\<YourName>\\path\\to\\EFC",
+        "FIGSHARE_TOKEN": "your-figshare-token",
+        "WP_EFC_URL": "https://energyflow-cosmology.com/",
+        "WP_EFC_USER": "your-username",
+        "WP_EFC_APP_PASSWORD": "your-app-password",
+        "WP_MAGNUSSON_URL": "https://www.magnusson.as/",
+        "WP_MAGNUSSON_USER": "your-username",
+        "WP_MAGNUSSON_APP_PASSWORD": "your-app-password"
+      }
+    }
+  }
+}
+```
+
+3. **Restart Claude Desktop** after saving the config.
+
+### For Claude Desktop (macOS/Linux)
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `~/.config/Claude/claude_desktop_config.json` (Linux):
+
+```json
+{
+  "mcpServers": {
+    "efc": {
+      "command": "python",
+      "args": ["efc_mcp_server.py"],
       "cwd": "/path/to/EFC/integrations/mcp",
       "env": {
         "EFC_ROOT": "/path/to/EFC",
@@ -39,15 +73,32 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-### For Claude Code CLI
+### Windows Command Line Setup
 
-```bash
-export EFC_ROOT=/path/to/EFC
-export FIGSHARE_TOKEN=your-figshare-token
-# ... other env vars
+```powershell
+# Set environment variables (PowerShell)
+$env:EFC_ROOT = "C:\Users\<YourName>\path\to\EFC"
+$env:FIGSHARE_TOKEN = "your-figshare-token"
+$env:WP_EFC_URL = "https://energyflow-cosmology.com/"
+$env:WP_EFC_USER = "your-username"
+$env:WP_EFC_APP_PASSWORD = "your-app-password"
+$env:WP_MAGNUSSON_URL = "https://www.magnusson.as/"
+$env:WP_MAGNUSSON_USER = "your-username"
+$env:WP_MAGNUSSON_APP_PASSWORD = "your-app-password"
 
-cd /path/to/EFC/integrations/mcp
-python -m efc_mcp_server
+# Navigate and run
+cd C:\Users\<YourName>\path\to\EFC\integrations\mcp
+pip install -r requirements.txt
+python efc_mcp_server.py
+```
+
+### Windows Persistent Environment Variables
+
+To set permanently (run as Administrator):
+```powershell
+[System.Environment]::SetEnvironmentVariable("FIGSHARE_TOKEN", "your-token", "User")
+[System.Environment]::SetEnvironmentVariable("EFC_ROOT", "C:\path\to\EFC", "User")
+# ... etc
 ```
 
 ## Available Tools
