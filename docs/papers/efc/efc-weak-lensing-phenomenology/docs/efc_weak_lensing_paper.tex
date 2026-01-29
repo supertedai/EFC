@@ -1,0 +1,424 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{EFC Weak Lensing Phenomenology:\\
+A Testable $\mu(k,z)$ Framework and DES Y6 Validation Protocol}
+
+\author{Morten Magnusson\\
+\small Independent Researcher, Norway\\
+\small ORCID: 0009-0002-4860-5095\\
+\small \href{https://energyflow-cosmology.com}{energyflow-cosmology.com}
+}
+
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a phenomenological framework for testing Energy-Flow Cosmology (EFC) 
+against weak gravitational lensing observations. Starting from the EFC field 
+equations, we demonstrate that the published EFC field equations do not predict 
+modified lensing without additional structure. We introduce a minimal operational 
+closure (Postulat A) that linearly couples entropy production to matter 
+density, yielding an explicit modified gravity parameter $\mu(k,z)$ in 
+standard cosmological perturbation form. We derive the resulting weak 
+lensing predictions and present a complete validation protocol against 
+Dark Energy Survey Year 6 (DES Y6) 3$\times$2pt data, including explicit 
+pass/fail criteria. This work does not claim that EFC explains the $S_8$ 
+tension; rather, it provides the minimal theoretical infrastructure required 
+to test whether it can. All code is publicly available.
+\end{abstract}
+
+\section{Introduction}
+
+Energy-Flow Cosmology (EFC) is a field-theoretic framework in which entropy 
+and energy flow are treated as fundamental degrees of freedom generating 
+spacetime curvature \citep{Magnusson2025}. The theory aims to explain cosmic 
+structure without invoking dark matter or dark energy, instead attributing 
+gravitational effects to thermodynamic gradients.
+
+A critical test for any alternative gravity theory is weak gravitational 
+lensing, which probes the spacetime geometry directly through the deflection 
+of light from distant galaxies. The Dark Energy Survey Year 6 (DES Y6) results 
+\citep{DESY6_2026} report $S_8 = 0.789 \pm 0.012$, approximately $2.6\sigma$ 
+lower than CMB-based predictions from Planck. This tension motivates testing 
+whether modified gravity frameworks like EFC can provide a natural explanation.
+
+However, as we demonstrate in this paper, EFC as currently formulated does 
+\emph{not} automatically predict modified lensing. The entropy field $S(x)$ 
+in EFC evolves according to its own dynamics without direct coupling to 
+matter density perturbations. To obtain testable predictions, we must 
+introduce an additional assumption.
+
+The purpose of this paper is threefold:
+\begin{enumerate}
+    \item Demonstrate explicitly why EFC requires additional structure for lensing predictions
+    \item Introduce a minimal, operationally motivated closure (Postulat A)
+    \item Provide a complete falsification protocol against DES Y6 data
+\end{enumerate}
+
+We emphasize that this is a \emph{phenomenology} paper, not a claim that EFC 
+explains observations. We provide the theoretical infrastructure for testing.
+
+\section{EFC Field Equations}
+
+We begin with the EFC action as presented in \citet{Magnusson2025}:
+\begin{equation}
+    S = \int d^4x \sqrt{-g} \left[ \frac{R}{16\pi G} 
+    - \frac{\kappa_S}{2}(\nabla S)^2 - V(S) 
+    - \frac{\kappa_J}{2}J_\mu J^\mu 
+    + \gamma \nabla_\mu S \, J^\mu 
+    + \lambda(\nabla_\mu J^\mu - \Sigma) \right]
+\end{equation}
+where:
+\begin{itemize}
+    \item $S(x) \in [0,1]$: normalized entropy potential
+    \item $J^\mu$: energy/entropy flow four-vector
+    \item $\Sigma \geq 0$: entropy production rate
+    \item $\kappa_S, \kappa_J, \gamma$: dimensionless coupling constants
+    \item $V(S) = V_0 + \frac{1}{2}m_S^2(S-S_0)^2$: entropic potential
+\end{itemize}
+
+Variation with respect to $g_{\mu\nu}$ yields the modified Einstein equations:
+\begin{equation}
+    G_{\mu\nu} = 8\pi G \left( T_{\mu\nu}^{(m)} + T_{\mu\nu}^{(S,J)} \right)
+\end{equation}
+with the entropy-flow stress-energy tensor:
+\begin{align}
+    T_{\mu\nu}^{(S,J)} &= \kappa_S \left[ \nabla_\mu S \nabla_\nu S 
+    - \frac{1}{2}g_{\mu\nu}(\nabla S)^2 \right] - g_{\mu\nu} V(S) \nonumber \\
+    &\quad + \kappa_J \left[ J_\mu J_\nu - \frac{1}{2}g_{\mu\nu} J_\alpha J^\alpha \right] 
+    + \gamma \left[ \nabla_{(\mu} S \, J_{\nu)} - \frac{1}{2}g_{\mu\nu} \nabla_\alpha S \, J^\alpha \right]
+\end{align}
+
+The equations of motion for $S$ and $J^\mu$ are:
+\begin{align}
+    \kappa_S \Box S - V'(S) + \gamma \nabla_\mu J^\mu &= 0 \\
+    \kappa_J J_\mu &= \gamma \nabla_\mu S + \nabla_\mu \lambda \\
+    \nabla_\mu J^\mu &= \Sigma
+\end{align}
+
+\section{The Matter Coupling Problem}
+
+\subsection{Why EFC Does Not Predict Lensing Automatically}
+
+Combining equations (4) and (6), the entropy field evolves as:
+\begin{equation}
+    \kappa_S \Box S - V'(S) + \gamma \Sigma = 0
+\end{equation}
+
+\textbf{Critical observation}: The entropy production $\Sigma$ appears as the 
+only source term for $\delta S$. However, in the EFC action as written, 
+$\Sigma$ is \emph{not defined as a function of matter density}. It is a 
+free function constrained only by $\Sigma \geq 0$.
+
+This means that matter perturbations $\delta_m$ do not automatically source 
+entropy perturbations $\delta S$. Without this coupling, the entropy sector 
+evolves independently, and there is no mechanism by which structure formation 
+modifies the gravitational potentials through entropy gradients.
+
+\subsection{The Gap in the Current Framework}
+
+To obtain a prediction for weak lensing, we need one of the following:
+\begin{enumerate}
+    \item[(A)] An explicit coupling $\Sigma = \Sigma(\rho_m, T, \ldots)$ 
+    \item[(B)] A direct coupling in the action, e.g., $\int f(S) T \sqrt{-g}\, d^4x$
+    \item[(C)] A coupling of $S$ to curvature scalars, e.g., $f(S)R$
+\end{enumerate}
+
+None of these appear in the published EFC field equations. This is not a 
+criticism of the theory---it simply means the theory is incomplete for 
+making lensing predictions in its current form.
+
+\section{Postulat A: Minimal Operational Closure}
+
+We introduce the following operational assumption:
+
+\begin{quote}
+\textbf{Postulat A}: Entropy production is linearly coupled to matter density:
+\begin{equation}
+    \delta\Sigma(k,z) = \xi \, \rho_m(z) \, \delta_m(k,z) \, g(z) \, h(k)
+\end{equation}
+where $\xi$ is a coupling constant, $g(z)$ is a regime-gating function, 
+and $h(k)$ is a scale filter. Note that $\xi$ carries the dimensions 
+required to make $\Sigma$ a scalar of dimension [time$^{-1}$], since 
+$\kappa_S$, $\kappa_J$, and $\gamma$ are dimensionless and $S$ is normalized.
+\end{quote}
+
+This is explicitly an \emph{assumption}, not a derivation. We introduce it 
+because:
+\begin{itemize}
+    \item It is the minimal structure needed to obtain predictions
+    \item It is physically motivated (entropy production should correlate with matter)
+    \item It yields a testable, falsifiable framework
+    \item It can be replaced by a derived coupling in future work
+\end{itemize}
+
+For this paper, we adopt:
+\begin{align}
+    g(z) &= \Theta(z_t - z), \quad z_t = 2 \\
+    h(k) &= \frac{1}{1 + k^2/k_*^2}, \quad k_* = 0.1 \, h/\text{Mpc}
+\end{align}
+
+The Heaviside function ensures no modification at $z > 2$, preserving early-universe 
+physics (CMB, BBN). The scale filter concentrates effects on scales relevant to 
+DES observations.
+
+\section{Derivation of $\mu(k,z)$}
+
+\subsection{Linear Perturbation Theory}
+
+We perturb around a flat FRW background in Newtonian gauge:
+\begin{equation}
+    ds^2 = -(1+2\Psi)dt^2 + a^2(1-2\Phi)\delta_{ij}dx^i dx^j
+\end{equation}
+
+Perturbing $S = \bar{S}(t) + \delta S$ and using the quasi-static, 
+sub-horizon approximation ($k \gg aH$, time derivatives subdominant):
+\begin{equation}
+    \left( \kappa_S \frac{k^2}{a^2} + m_S^2 \right) \delta S \approx \gamma \, \delta\Sigma
+\end{equation}
+
+Substituting Postulat A:
+\begin{equation}
+    \delta S \approx \frac{\gamma \xi \rho_m \delta_m \, g(z) \, h(k)}{\kappa_S k^2/a^2 + m_S^2}
+\end{equation}
+
+\subsection{Modified Poisson Equation}
+
+In linear perturbation theory, the dominant contribution to $\delta\rho_S$ 
+comes from the potential term:
+\begin{equation}
+    \delta\rho_S \approx V'(\bar{S}) \, \delta S = m_S^2 (\bar{S} - S_0) \, \delta S
+\end{equation}
+
+The modified Poisson equation becomes:
+\begin{equation}
+    k^2 \Psi = 4\pi G a^2 \left[ \rho_m \delta_m + \delta\rho_S \right] 
+    = 4\pi G a^2 \, \mu(k,z) \, \rho_m \delta_m
+\end{equation}
+
+where we define:
+\begin{equation}
+    \boxed{\mu(k,z) = 1 + A_\mu \, \Theta(z_t - z) \, \frac{1}{1 + k^2/k_*^2}}
+\end{equation}
+
+with the amplitude:
+\begin{equation}
+    A_\mu = \frac{m_S^2 (\bar{S} - S_0) \, \gamma \xi}{\kappa_S k_*^2 + m_S^2}
+\end{equation}
+
+Equation (16) applies strictly in the linear perturbation regime. 
+Non-linear corrections would require a full modified $N$-body treatment 
+or an effective halo model extension.
+
+\subsection{Gravitational Slip}
+
+In this minimal framework, we find negligible anisotropic stress at linear order, 
+yielding:
+\begin{equation}
+    \eta \equiv \frac{\Phi}{\Psi} \approx 1
+\end{equation}
+
+The lensing parameter is therefore:
+\begin{equation}
+    \Sigma_{\text{lens}}(k,z) = \frac{\mu(k,z)}{2}(1 + \eta) \approx \mu(k,z)
+\end{equation}
+
+\textbf{Important}: In this minimal model, the same function controls both 
+growth and lensing. A richer model with gravitational slip would allow 
+independent modification of these observables.
+
+\section{DES Y6 Validation Protocol}
+
+\subsection{Data}
+
+We target the DES Y6 3$\times$2pt analysis \citep{DESY6_2026}:
+\begin{itemize}
+    \item Cosmic shear (shape-shape correlations)
+    \item Galaxy clustering (position-position)
+    \item Galaxy-galaxy lensing (position-shape)
+\end{itemize}
+
+Key measurements: $S_8 = 0.789 \pm 0.012$, $\Omega_m = 0.333$ (ΛCDM baseline).
+
+\subsection{Model Comparison}
+
+\textbf{Model 0} (Baseline): Standard ΛCDM with DES Y6 likelihood
+
+\textbf{Model 1} (EFC-A): ΛCDM + $A_\mu$ with $z_t = 2$, $k_* = 0.1 \, h/$Mpc fixed
+
+\subsection{Parameters and Priors}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Parameter & Prior & Notes \\
+\hline
+$\Omega_m, \Omega_b, h, n_s, A_s$ & DES Y6 standard & Cosmology \\
+Shear calibration $m_i$ & DES Y6 standard & Nuisance \\
+Photo-$z$ shifts & DES Y6 standard & Nuisance \\
+Intrinsic alignments & DES Y6 standard & Nuisance \\
+Galaxy bias $b_i$ & DES Y6 standard & Nuisance \\
+$A_\mu$ & Flat $[-0.5, +0.5]$ & EFC parameter \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Pass/Fail Criteria}
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Criterion & Pass & Fail \\
+\hline
+$\Delta\chi^2$ (Model 1 vs Model 0) & $\geq 6$ & $< 2$ \\
+$A_\mu$ significance & $> 2\sigma$ from 0 & consistent with 0 \\
+AIC/BIC & prefers Model 1 & prefers Model 0 \\
+Nuisance absorption & $A_\mu$ uncorrelated & $A_\mu$ degenerate with nuisance \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Control Tests}
+
+To ensure robustness:
+\begin{enumerate}
+    \item Run cosmic shear only
+    \item Run 2$\times$2pt (clustering + galaxy-galaxy lensing)
+    \item Run full 3$\times$2pt
+\end{enumerate}
+
+If signal appears only in shear but vanishes in 3$\times$2pt, suspect systematics.
+
+\subsection{CMB Consistency Check}
+
+Compute CMB lensing power spectrum $C_\ell^{\phi\phi}$ with DES best-fit. 
+If significantly discrepant with Planck CMB lensing, the model is ruled out.
+
+\section{What Would Falsify This Framework}
+
+We explicitly state the conditions under which this framework fails:
+
+\begin{enumerate}
+    \item \textbf{$A_\mu$ consistent with zero}: If DES Y6 data prefer $A_\mu = 0$, 
+    then EFC with Postulat A provides no improvement over ΛCDM for weak lensing.
+    
+    \item \textbf{Wrong sign}: If data prefer $A_\mu > 0$ (stronger lensing), 
+    this contradicts the hypothesis that EFC explains the low $S_8$ values.
+    
+    \item \textbf{Scale dependence mismatch}: If data prefer a $k$-dependence 
+    inconsistent with equation (16), the specific form of Postulat A is falsified.
+    
+    \item \textbf{CMB lensing conflict}: If the best-fit model strongly 
+    disagrees with Planck CMB lensing, the model is ruled out.
+    
+    \item \textbf{Nuisance degeneracy}: If $A_\mu$ is completely degenerate 
+    with intrinsic alignments or photo-$z$ uncertainties, the test is inconclusive.
+\end{enumerate}
+
+\section{Limitations}
+
+We are explicit about what this paper does \emph{not} do:
+
+\begin{enumerate}
+    \item \textbf{Postulat A is not derived}: The matter coupling is an operational 
+    assumption. A complete theory would derive $\Sigma(\rho_m)$ from the action.
+    
+    \item \textbf{No data fit performed}: We present predictions and test design, 
+    not results. The actual DES Y6 fit is future work.
+    
+    \item \textbf{No unique EFC signature}: Currently, $\mu(k,z)$ in equation (16) 
+    resembles generic modified gravity parametrizations. Distinguishing EFC from 
+    other MG theories requires additional observables or theoretical predictions.
+    
+    \item \textbf{Minimal slip}: We assume $\eta \approx 1$. A richer model with 
+    $\eta \neq 1$ would allow independent probes of growth and lensing.
+    
+    \item \textbf{Fixed regime parameters}: We fix $z_t = 2$ and $k_* = 0.1 \, h/$Mpc 
+    rather than fitting them, to avoid over-parametrization.
+\end{enumerate}
+
+\section{Discussion}
+
+This paper occupies a specific position in the scientific literature: it is 
+a \emph{phenomenology} paper that bridges formal theory and observational 
+testing. We have:
+
+\begin{itemize}
+    \item Identified a gap in EFC (no automatic lensing prediction)
+    \item Introduced a minimal closure (Postulat A)
+    \item Derived testable predictions ($\mu(k,z)$)
+    \item Designed a falsification protocol
+\end{itemize}
+
+This is analogous to how many modified gravity theories are developed: 
+the action is proposed first, phenomenological consequences are worked out, 
+and data comparison follows. We are at the second stage.
+
+The value of this work is not in claiming EFC explains observations, but in 
+providing the infrastructure to test whether it can.
+
+\section{Conclusion}
+
+We have presented a phenomenological framework for testing Energy-Flow Cosmology 
+against weak lensing observations. The key results are:
+
+\begin{enumerate}
+    \item EFC as published does not automatically predict modified lensing
+    \item Postulat A (linear entropy-matter coupling) provides minimal closure
+    \item The resulting $\mu(k,z)$ is given by equation (16)
+    \item A complete DES Y6 test protocol is provided with pass/fail criteria
+\end{enumerate}
+
+All code is available at \url{https://github.com/supertedai/EFC} and archived 
+on Figshare.
+
+The next step is to run the actual fit against DES Y6 data. Regardless of the 
+outcome, this paper provides the theoretical foundation for that test.
+
+\section*{Acknowledgments}
+
+This work was developed in collaboration with the Symbiose AI research system.
+
+\bibliographystyle{apalike}
+\begin{thebibliography}{9}
+
+\bibitem[DES Collaboration(2026)]{DESY6_2026}
+DES Collaboration. (2026).
+\newblock Dark Energy Survey Year 6 Results: Cosmological Constraints from 
+Galaxy Clustering and Weak Lensing.
+\newblock \emph{arXiv:2601.14559}.
+
+\bibitem[Magnusson(2025)]{Magnusson2025}
+Magnusson, M. (2025).
+\newblock Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime.
+\newblock Figshare. \url{https://doi.org/10.6084/m9.figshare.30421807}
+
+\bibitem[Jacobson(1995)]{Jacobson1995}
+Jacobson, T. (1995).
+\newblock Thermodynamics of Spacetime: The Einstein Equation of State.
+\newblock \emph{Phys. Rev. Lett.}, 75, 1260.
+
+\bibitem[Padmanabhan(2010)]{Padmanabhan2010}
+Padmanabhan, T. (2010).
+\newblock Thermodynamical Aspects of Gravity: New Insights.
+\newblock \emph{Rept. Prog. Phys.}, 73, 046901.
+
+\bibitem[Verlinde(2011)]{Verlinde2011}
+Verlinde, E. (2011).
+\newblock On the Origin of Gravity and the Laws of Newton.
+\newblock \emph{JHEP}, 04, 029.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "doi": "10.6084/m9.figshare.31188193",
+    "generated": "2026-01-29",
+    "description": "Reference values for validation"
+  },
+  
+  "parameters": {
+    "fiducial": {
+      "A_mu": 0.0,
+      "z_t": 2.0,
+      "k_star": 0.1
+    },
+    "efc_example": {
+      "A_mu": -0.1,
+      "z_t": 2.0,
+      "k_star": 0.1
+    }
+  },
+  
+  "test_cases": {
+    "gr_limit": {
+      "description": "GR recovery when A_mu = 0",
+      "input": {"A_mu": 0.0, "k": 0.1, "z": 0.5},
+      "expected": {"mu": 1.0, "sigma_lens": 1.0, "eta": 1.0}
+    },
+    
+    "high_z_limit": {
+      "description": "GR recovery at z > z_t",
+      "input": {"A_mu": -0.2, "k": 0.1, "z": 3.0},
+      "expected": {"mu": 1.0, "sigma_lens": 1.0}
+    },
+    
+    "high_k_limit": {
+      "description": "GR recovery at k >> k_*",
+      "input": {"A_mu": -0.2, "k": 10.0, "z": 0.5},
+      "expected": {"mu": 1.0, "tolerance": 0.01}
+    },
+    
+    "low_k_limit": {
+      "description": "Maximum modification at k << k_*",
+      "input": {"A_mu": -0.2, "k": 0.001, "z": 0.5},
+      "expected": {"mu": 0.8, "tolerance": 0.001}
+    },
+    
+    "des_relevant": {
+      "description": "DES Y6 relevant scales",
+      "input": {"A_mu": -0.1, "k": 0.1, "z": 0.5},
+      "expected": {"mu": 0.95, "tolerance": 0.01}
+    },
+    
+    "s8_scaling": {
+      "description": "S8 ratio approximation",
+      "input": {"A_mu": -0.2, "z": 0.5},
+      "expected": {
+        "s8_ratio": 0.949,
+        "tolerance": 0.02,
+        "note": "S8_EFC/S8_LCDM ≈ sqrt(μ) at effective scale"
+      }
+    }
+  },
+  
+  "grid_outputs": {
+    "k_grid": [0.001, 0.01, 0.05, 0.1, 0.2, 0.5, 1.0],
+    "z_grid": [0.3, 0.5, 0.7, 1.0, 1.5, 2.0, 2.5],
+    
+    "mu_values_A_mu_minus_0.1": {
+      "description": "μ(k,z) for A_μ = -0.1",
+      "z=0.5": {
+        "k=0.001": 0.900,
+        "k=0.01": 0.900,
+        "k=0.1": 0.950,
+        "k=1.0": 0.999
+      },
+      "z=2.5": {
+        "note": "All values = 1.0 (z > z_t)"
+      }
+    }
+  },
+  
+  "physical_constraints": {
+    "s8_tension": {
+      "des_y6": {"value": 0.789, "error": 0.012},
+      "planck": {"value": 0.83, "error": 0.02},
+      "tension_sigma": 2.6,
+      "required_ratio": 0.95
+    },
+    
+    "a_mu_for_s8_match": {
+      "value": -0.1,
+      "range": [-0.2, -0.05],
+      "note": "Approximate range to match DES Y6 S8"
+    }
+  }
+}
