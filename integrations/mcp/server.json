@@ -1,0 +1,249 @@
+{
+  "name": "efc-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Energy-Flow Cosmology AI agent management",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "repository": "https://github.com/supertedai/EFC",
+
+  "surfaces": {
+    "repository": {
+      "name": "EFC Repository",
+      "url": "https://github.com/supertedai/EFC",
+      "type": "git",
+      "capabilities": ["read", "write", "validate"]
+    },
+    "website_efc": {
+      "name": "Energy-Flow Cosmology Website",
+      "url": "https://energyflow-cosmology.com/",
+      "type": "wordpress",
+      "capabilities": ["read", "write", "media"]
+    },
+    "website_magnusson": {
+      "name": "Magnusson Hypothesis Platform",
+      "url": "https://www.magnusson.as/",
+      "type": "wordpress",
+      "capabilities": ["read", "write", "media"]
+    },
+    "figshare": {
+      "name": "Figshare Publications",
+      "url": "https://figshare.com/",
+      "type": "figshare_api",
+      "capabilities": ["read", "write", "publish"]
+    }
+  },
+
+  "tools": [
+    {
+      "name": "wp_list_posts",
+      "description": "List posts from a WordPress site",
+      "parameters": {
+        "site": {
+          "type": "string",
+          "enum": ["efc", "magnusson"],
+          "description": "Which site to query"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["publish", "draft", "pending", "any"],
+          "default": "any"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 10
+        }
+      }
+    },
+    {
+      "name": "wp_create_post",
+      "description": "Create a new WordPress post",
+      "parameters": {
+        "site": {
+          "type": "string",
+          "enum": ["efc", "magnusson"]
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "content": {
+          "type": "string",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "publish", "pending"],
+          "default": "draft"
+        },
+        "categories": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "meta": {
+          "type": "object",
+          "description": "Custom meta fields including JSON-LD"
+        }
+      }
+    },
+    {
+      "name": "wp_update_post",
+      "description": "Update an existing WordPress post",
+      "parameters": {
+        "site": {
+          "type": "string",
+          "enum": ["efc", "magnusson"]
+        },
+        "post_id": {
+          "type": "integer",
+          "required": true
+        },
+        "title": {"type": "string"},
+        "content": {"type": "string"},
+        "status": {"type": "string"}
+      }
+    },
+    {
+      "name": "figshare_list_articles",
+      "description": "List Figshare articles",
+      "parameters": {
+        "page": {"type": "integer", "default": 1},
+        "page_size": {"type": "integer", "default": 10}
+      }
+    },
+    {
+      "name": "figshare_create_article",
+      "description": "Create a new Figshare article",
+      "parameters": {
+        "title": {"type": "string", "required": true},
+        "description": {"type": "string", "required": true},
+        "keywords": {"type": "array", "items": {"type": "string"}},
+        "categories": {"type": "array"},
+        "defined_type": {
+          "type": "string",
+          "enum": ["preprint", "dataset", "software", "figure", "media", "poster", "presentation"]
+        },
+        "license": {"type": "integer", "default": 1}
+      }
+    },
+    {
+      "name": "figshare_upload_file",
+      "description": "Upload a file to a Figshare article",
+      "parameters": {
+        "article_id": {"type": "integer", "required": true},
+        "file_path": {"type": "string", "required": true}
+      }
+    },
+    {
+      "name": "figshare_publish",
+      "description": "Publish a Figshare article (assigns DOI)",
+      "parameters": {
+        "article_id": {"type": "integer", "required": true}
+      }
+    },
+    {
+      "name": "validate_jsonld",
+      "description": "Validate JSON-LD files in the repository",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "default": "/jsonld/",
+          "description": "Path relative to EFC_ROOT"
+        },
+        "fix": {
+          "type": "boolean",
+          "default": false,
+          "description": "Attempt to fix issues"
+        }
+      }
+    },
+    {
+      "name": "update_doi_map",
+      "description": "Update figshare/doi-map.json from Figshare API",
+      "parameters": {}
+    },
+    {
+      "name": "sync_metadata",
+      "description": "Synchronize metadata across repository files",
+      "parameters": {
+        "dry_run": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    {
+      "name": "check_links",
+      "description": "Verify internal and external links",
+      "parameters": {
+        "include_external": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    {
+      "name": "full_sync",
+      "description": "Complete synchronization across all surfaces",
+      "parameters": {
+        "dry_run": {
+          "type": "boolean",
+          "default": true
+        },
+        "surfaces": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": ["repository", "website_efc", "website_magnusson", "figshare"]
+        }
+      }
+    }
+  ],
+
+  "prompts": [
+    {
+      "name": "publish_paper",
+      "description": "Guided workflow to publish a new paper",
+      "arguments": [
+        {"name": "paper_path", "description": "Path to paper folder in /docs/papers/efc/"}
+      ]
+    },
+    {
+      "name": "update_website",
+      "description": "Guided workflow to update website content",
+      "arguments": [
+        {"name": "site", "description": "Which site: efc or magnusson"},
+        {"name": "content_type", "description": "Type: post, page, or concept"}
+      ]
+    },
+    {
+      "name": "validate_all",
+      "description": "Validate entire repository for consistency"
+    }
+  ],
+
+  "resources": [
+    {
+      "uri": "efc://schema/global",
+      "name": "Global Schema",
+      "description": "The master schema defining all domains",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "efc://doi/map",
+      "name": "DOI Map",
+      "description": "Mapping of all Figshare DOIs",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "efc://auth/manifest",
+      "name": "AUTH Manifest",
+      "description": "Provenance and scope definition",
+      "mimeType": "application/json"
+    }
+  ]
+}

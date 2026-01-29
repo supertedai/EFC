@@ -1,0 +1,93 @@
+# Energy-Flow Cosmology (EFC) - AI Navigation Guide
+# Version: 1.0
+# Last Updated: 2025-01-29
+
+## Identity
+
+Author: Morten Magnusson
+ORCID: https://orcid.org/0009-0002-4860-5095
+Personal Website: https://www.magnusson.as/
+Project Website: https://energyflow-cosmology.com/
+Repository: https://github.com/supertedai/EFC
+License: CC-BY-4.0
+
+## What is EFC?
+
+Energy-Flow Cosmology (EFC) is a unified thermodynamic framework where:
+- Energy flows along entropy gradients
+- Spacetime curvature emerges from energy-entropy coupling
+- Dark matter and dark energy are reinterpreted as thermodynamic effects
+- Consciousness is modeled as resonance in energy gradients
+
+Core principle: "Energy flows along entropy gradients"
+
+## Repository Structure
+
+/auth/          - Origin, authorship, provenance (START HERE for identity)
+/theory/        - Formal equations and mathematical specifications
+/schema/        - Ontology, semantic definitions, JSON-LD contexts
+/methodology/   - Research process and reproducibility framework
+/meta/          - Cognition, reflection, symbiosis architecture
+/meta-graph/    - Graph representation of meta-layer
+/docs/          - Papers, notebooks, figures
+/src/           - Python implementations
+/api/           - Semantic API endpoints
+/jsonld/        - JSON-LD semantic files
+/figshare/      - Publication metadata and DOI mappings
+/integrations/  - External system integrations
+/scripts/       - Utility scripts
+
+## Entry Points by Purpose
+
+### For Understanding EFC Theory
+1. /theory/formal/efc-formal-spec/ - Complete formal specification
+2. /docs/papers/efc/EFC-v2.1-Complete-Edition/ - Main synthesis paper
+3. /schema/concepts.json - Core concept definitions
+
+### For Machine Processing
+1. /schema/global_schema.json - Domain definitions
+2. /jsonld/*.jsonld - Semantic representations
+3. /api/v1/ - REST API structure
+
+### For Provenance/Citation
+1. /auth/index.md - Origin and authorship
+2. /auth/citation.bib - BibTeX entry
+3. /figshare/doi-map.json - DOI mappings
+
+### For AI Integration
+1. /auth/rag-profile.json - RAG configuration
+2. /integrations/mcp/ - MCP server for AI agents
+3. This file (llms.txt) - Navigation guide
+
+## Key DOIs
+
+- AUTH Layer: 10.6084/m9.figshare.30656828
+- EFC v1.2: 10.6084/m9.figshare.30563738
+- EFC v2.2: 10.6084/m9.figshare.30530156
+- Formal Spec: 10.6084/m9.figshare.30630500
+- Symbiosis: 10.6084/m9.figshare.30773684
+
+## Ecosystem
+
+This repository is ONE surface of a larger ecosystem:
+
+1. magnusson.as - Personal hypothesis platform ("Entropic Universal Truth")
+2. energyflow-cosmology.com - Public EFC theory website
+3. github.com/supertedai/EFC - This repository (technical implementation)
+4. figshare.com - Peer-reviewed publications with DOIs
+5. orcid.org/0009-0002-4860-5095 - Academic identity
+
+## For AI Agents
+
+When working with this repository:
+1. Always check /auth/ for provenance before making claims
+2. Use /schema/global_schema.json for domain understanding
+3. Respect the modular structure (S, D, C0, H, R models)
+4. Cite using DOIs from /figshare/doi-map.json
+5. For updates, use the MCP server at /integrations/mcp/
+
+## Contact
+
+For collaboration or questions about EFC:
+- Website: https://www.magnusson.as/cooperation
+- Project: https://energyflow-cosmology.com/
