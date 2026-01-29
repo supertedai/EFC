@@ -1,0 +1,92 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "EFC",
+  "name": "Energy-Flow Cosmology",
+  "description": "A unified thermodynamic framework for cosmology, implementing entropy-gradient-driven structure formation, galactic dynamics, and consciousness models.",
+  "version": "2.1.0",
+  "dateCreated": "2024-01-01",
+  "dateModified": "2025-01-29",
+  "datePublished": "2025-01-29",
+
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0002-4860-5095",
+      "givenName": "Morten",
+      "familyName": "Magnusson",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Independent Researcher"
+      }
+    }
+  ],
+
+  "maintainer": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0002-4860-5095",
+      "givenName": "Morten",
+      "familyName": "Magnusson"
+    }
+  ],
+
+  "codeRepository": "https://github.com/supertedai/EFC",
+  "url": "https://energyflow-cosmology.com/",
+
+  "programmingLanguage": [
+    {
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "version": "3.9+"
+    },
+    {
+      "@type": "ComputerLanguage",
+      "name": "LaTeX"
+    }
+  ],
+
+  "runtimePlatform": "Python 3.9+",
+
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "keywords": [
+    "cosmology",
+    "thermodynamics",
+    "entropy",
+    "energy flow",
+    "theoretical physics",
+    "galactic dynamics",
+    "dark matter",
+    "dark energy",
+    "consciousness"
+  ],
+
+  "issueTracker": "https://github.com/supertedai/EFC/issues",
+
+  "relatedLink": [
+    "https://energyflow-cosmology.com/",
+    "https://www.magnusson.as/",
+    "https://orcid.org/0009-0002-4860-5095"
+  ],
+
+  "developmentStatus": "active",
+
+  "referencePublication": {
+    "@type": "ScholarlyArticle",
+    "@id": "https://doi.org/10.6084/m9.figshare.30530156",
+    "name": "Energy-Flow Cosmology v2.2: Cross-Field Integration Summary"
+  },
+
+  "softwareRequirements": [
+    "numpy",
+    "scipy",
+    "matplotlib"
+  ],
+
+  "readme": "https://github.com/supertedai/EFC/blob/main/README.md",
+
+  "contIntegration": false,
+
+  "buildInstructions": "https://github.com/supertedai/EFC/blob/main/src/README.md"
+}

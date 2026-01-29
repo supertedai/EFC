@@ -1,0 +1,143 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "orcid": "https://orcid.org/",
+    "figshare": "https://doi.org/10.6084/m9.figshare."
+  },
+  "@type": "ResearchProject",
+  "@id": "https://energyflow-cosmology.com/",
+  "name": "Energy-Flow Cosmology (EFC)",
+  "description": "A unified thermodynamic framework in which a continuous energy-entropy flow field generates the structure, dynamics, and cognition of the Universe.",
+  "url": "https://energyflow-cosmology.com/",
+  "version": "2.1",
+  "dateCreated": "2024-01-01",
+  "dateModified": "2025-01-29",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "givenName": "Morten",
+    "familyName": "Magnusson",
+    "url": "https://www.magnusson.as/",
+    "sameAs": [
+      "https://orcid.org/0009-0002-4860-5095",
+      "https://www.magnusson.as/",
+      "https://github.com/supertedai"
+    ]
+  },
+
+  "mainEntity": {
+    "@type": "ScholarlyArticle",
+    "name": "Energy-Flow Cosmology v2.1: Unified Thermodynamic Framework",
+    "identifier": "figshare:30530156",
+    "url": "https://doi.org/10.6084/m9.figshare.30530156"
+  },
+
+  "hasPart": [
+    {
+      "@type": "WebSite",
+      "@id": "https://energyflow-cosmology.com/",
+      "name": "Energy-Flow Cosmology",
+      "description": "Public-facing website for EFC theory, papers, and resources",
+      "url": "https://energyflow-cosmology.com/",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.magnusson.as/",
+      "name": "Magnusson's Hypothesis Platform",
+      "description": "Personal research platform exploring Entropic Universal Truth - the philosophical foundation underlying EFC",
+      "url": "https://www.magnusson.as/",
+      "inLanguage": ["en", "no"],
+      "about": {
+        "@type": "Thing",
+        "name": "Entropic Universal Truth",
+        "description": "The conceptual foundation connecting entropy, time, space, energy, and consciousness"
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://github.com/supertedai/EFC",
+      "name": "EFC Repository",
+      "description": "Technical implementation, formal specifications, and semantic knowledge base for Energy-Flow Cosmology",
+      "url": "https://github.com/supertedai/EFC",
+      "codeRepository": "https://github.com/supertedai/EFC",
+      "programmingLanguage": ["Python", "LaTeX", "JSON-LD"]
+    },
+    {
+      "@type": "DataCatalog",
+      "@id": "https://figshare.com/authors/Morten_Magnusson/18515981",
+      "name": "EFC Figshare Collection",
+      "description": "Peer-reviewed publications with persistent DOIs",
+      "url": "https://figshare.com/authors/Morten_Magnusson/18515981"
+    }
+  ],
+
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095",
+      "url": "https://orcid.org/0009-0002-4860-5095"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "DOI",
+      "value": "10.6084/m9.figshare.30656828",
+      "url": "https://doi.org/10.6084/m9.figshare.30656828",
+      "name": "AUTH Layer DOI"
+    }
+  ],
+
+  "keywords": [
+    "cosmology",
+    "thermodynamics",
+    "entropy",
+    "energy flow",
+    "dark matter alternative",
+    "dark energy alternative",
+    "consciousness",
+    "theoretical physics",
+    "entropy gradients",
+    "halo model"
+  ],
+
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Energy-Entropy Coupling",
+      "description": "The fundamental principle that energy flows along entropy gradients, generating spacetime curvature and structure"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Thermodynamic Halo",
+      "description": "A self-organizing field region where energy density and entropy reach dynamic equilibrium, replacing dark matter halos"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "CEM-Cosmos",
+      "description": "Consciousness as an Energy-Modulated field, where awareness arises as resonance in non-equilibrium energy gradients"
+    }
+  ],
+
+  "funding": {
+    "@type": "MonetaryGrant",
+    "name": "Independent Research",
+    "funder": {
+      "@type": "Person",
+      "name": "Morten Magnusson"
+    }
+  },
+
+  "isAccessibleForFree": true,
+
+  "conditionsOfAccess": "Open access under CC-BY-4.0 license",
+
+  "sdPublisher": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "url": "https://www.magnusson.as/"
+  }
+}
