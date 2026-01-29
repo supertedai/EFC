@@ -1,0 +1,24 @@
+system,regime,test,metric,value,unit,interpretation
+Bullet Cluster,lensing,nested_model,p_value,0.99,,Gas term statistically irrelevant
+Bullet Cluster,lensing,nested_model,R_ratio,Inf,,A_gas approaches zero
+Bullet Cluster,lensing,fit_approx,lambda,2.15,arcmin,Entropy coupling scale
+Bullet Cluster,lensing,fit_hsc,lambda,1.48,arcmin,With real HSC data
+Bullet Cluster,lensing,fit_hsc,lambda,260,kpc,Physical scale
+Bullet Cluster,lensing,fit,chi2_red,0.048,,Excellent fit
+MACS J0025,lensing,cross_validation,lambda,0.77,arcmin,No parameter tuning
+MACS J0025,lensing,cross_validation,lambda,315,kpc,Physical scale
+MACS J0025,lensing,cross_validation,z,0.586,,Higher redshift test
+Galaxy,rotation,newtonian,chi2,296,,Pure baryons fail
+Galaxy,rotation,newtonian,chi2_red,10.21,,Poor fit
+Galaxy,rotation,newtonian,M_L,1.52,,Mass-to-light ratio
+Galaxy,rotation,efc,chi2,4.5,,98% improvement
+Galaxy,rotation,efc,chi2_red,0.17,,Excellent fit
+Galaxy,rotation,efc,M_L,0.46,,Lower M/L needed
+Galaxy,rotation,efc,v_h,141,km/s,Asymptotic entropy velocity
+Galaxy,rotation,efc,lambda,2.4,kpc,Entropy coupling scale
+Galaxy,scaling,lambda_over_R,ratio,0.96,,Lambda/R_disk
+Bullet Cluster,scaling,lambda_over_R,ratio,0.52,,Lambda/R_cluster
+MACS J0025,scaling,lambda_over_R,ratio,0.53,,Lambda/R_cluster
+All,scaling,lambda_over_R,mean,0.67,,Consistent across regimes
+All,scaling,lambda_over_R,range_low,0.5,,Lower bound
+All,scaling,lambda_over_R,range_high,1.0,,Upper bound

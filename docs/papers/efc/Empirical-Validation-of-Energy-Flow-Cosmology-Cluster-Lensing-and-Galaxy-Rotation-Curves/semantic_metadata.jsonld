@@ -1,0 +1,142 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "astro": "http://astrothesaurus.org/uat/"
+  },
+  "@type": "Dataset",
+  "@id": "https://doi.org/10.6084/m9.figshare.31190233",
+  
+  "name": "EFC Empirical Validation: Cluster Lensing and Galaxy Rotation Curves",
+  "description": "Validation of Energy-Flow Cosmology across two gravitational regimes",
+  "datePublished": "2026-01-29",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  
+  "creator": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+
+  "about": [
+    {
+      "@type": "efc:Theory",
+      "name": "Energy-Flow Cosmology",
+      "identifier": "efc:EFC"
+    },
+    {
+      "@type": "astro:Concept",
+      "name": "Gravitational lensing",
+      "identifier": "astro:746"
+    },
+    {
+      "@type": "astro:Concept", 
+      "name": "Galaxy rotation curves",
+      "identifier": "astro:619"
+    },
+    {
+      "@type": "astro:Concept",
+      "name": "Dark matter",
+      "identifier": "astro:353"
+    }
+  ],
+
+  "spatialCoverage": [
+    {
+      "@type": "efc:AstronomicalObject",
+      "name": "Bullet Cluster",
+      "identifier": "1E 0657-56",
+      "coordinates": {
+        "ra": 104.6234,
+        "dec": -55.9464
+      },
+      "redshift": 0.296
+    },
+    {
+      "@type": "efc:AstronomicalObject",
+      "name": "MACS J0025.4-1222",
+      "coordinates": {
+        "ra": 6.3637,
+        "dec": -12.3728
+      },
+      "redshift": 0.586
+    }
+  ],
+
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "Lambda (entropy coupling scale)",
+      "unitCode": "kpc",
+      "description": "Non-local entropy coupling range"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Lambda/R ratio",
+      "unitCode": "dimensionless",
+      "description": "Entropy scale relative to system size",
+      "minValue": 0.5,
+      "maxValue": 1.0
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Chi-squared",
+      "description": "Goodness of fit statistic"
+    }
+  ],
+
+  "efc:validationResults": {
+    "clusterLensing": {
+      "status": "passed",
+      "gasTerm": "irrelevant",
+      "pValue": 0.99
+    },
+    "rotationCurves": {
+      "status": "passed",
+      "improvement": "98%",
+      "chi2_efc": 4.5,
+      "chi2_newton": 296
+    },
+    "lambdaScaling": {
+      "status": "discovered",
+      "finding": "λ/R consistent across regimes"
+    }
+  },
+
+  "efc:connections": [
+    {
+      "relation": "validates",
+      "target": "efc:EntropyGradientCoupling"
+    },
+    {
+      "relation": "supports",
+      "target": "efc:DifferentialMatterCoupling"
+    },
+    {
+      "relation": "extends",
+      "target": "https://doi.org/10.6084/m9.figshare.31007248"
+    },
+    {
+      "relation": "complements",
+      "target": "https://doi.org/10.6084/m9.figshare.31188193"
+    }
+  ],
+
+  "efc:physicalConcepts": [
+    {
+      "name": "Entropy Coupling Scale (λ)",
+      "definition": "Characteristic length over which entropy gradients influence gravitational response",
+      "scaling": "λ/R_system ≈ 0.5-1.0"
+    },
+    {
+      "name": "Differential Matter Coupling",
+      "definition": "Collisionless matter couples strongly to entropy gradients; dissipative matter couples weakly",
+      "evidence": "Bullet Cluster p=0.99 for gas irrelevance"
+    },
+    {
+      "name": "Entropy-Induced Effective Mass",
+      "definition": "Entropy gradients create additional gravitational potential that mimics dark matter",
+      "evidence": "Rotation curve χ² improvement of 98%"
+    }
+  ]
+}
