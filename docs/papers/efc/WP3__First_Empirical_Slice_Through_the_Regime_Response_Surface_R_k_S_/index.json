@@ -1,0 +1,82 @@
+{
+  "id": "wp3-first-empirical-slice-rks",
+  "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k,S)",
+  "short_title": "WP3 R(k,S) Slice",
+  "version": "1.0",
+  "date": "2026-01-30",
+  "doi": "10.6084/m9.figshare.31215259",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "empirical_analysis",
+  "status": "published",
+  "series": "EFC Response Atlas",
+  "series_entry": "WP3",
+  "abstract_short": "First empirical R(k,S) coordinate from RSD data: R(k≈0.13, S≈0.30) ≈ +0.30. ΛCDM preferred by AIC.",
+  "keywords": [
+    "R(k,S)",
+    "regime response surface",
+    "fσ₈",
+    "RSD",
+    "BOSS",
+    "eBOSS",
+    "DESI",
+    "modified gravity",
+    "cartography"
+  ],
+  "core_concepts": [
+    {
+      "name": "Response Coordinate",
+      "symbol": "R(k,S)",
+      "value": "+0.30",
+      "location": "k≈0.13 h/Mpc, S≈0.30"
+    },
+    {
+      "name": "Structural Maturity",
+      "symbol": "S(z)",
+      "formula": "S = 1/(1 + (z/z_mid)²)"
+    },
+    {
+      "name": "Modified Growth",
+      "symbol": "μ",
+      "formula": "μ = 1 + R(k,S)"
+    }
+  ],
+  "data_sources": [
+    {"survey": "BOSS DR12", "N": 3, "z_range": [0.38, 0.61]},
+    {"survey": "eBOSS DR16", "N": 3, "z_range": [0.70, 1.48]},
+    {"survey": "DESI Y1", "N": 6, "z_range": [0.295, 1.491]}
+  ],
+  "model_comparison": {
+    "LCDM": {"chi2": 9.36, "AIC": 15.4, "params": 3},
+    "RkS_slice": {"chi2": 9.12, "AIC": 19.1, "params": 5},
+    "verdict": "ΛCDM preferred by ΔAIC = -3.8"
+  },
+  "trajectory_coverage": {
+    "k_range": [0.1, 0.13],
+    "k_unit": "h/Mpc",
+    "S_range": [0.3, 0.7],
+    "z_range": [0.3, 1.5]
+  },
+  "epistemic_status": "cartography",
+  "validation_claim": false,
+  "dependencies": [
+    {
+      "id": "rks-framework",
+      "doi": "10.6084/m9.figshare.31211437",
+      "relation": "theoretical_basis"
+    }
+  ],
+  "files": {
+    "pdf": "wp3_rks_article.pdf",
+    "tex": "wp3_rks_article.tex",
+    "figures": [
+      "wp3_rks_final.png",
+      "rks_wp3_trajectory.png",
+      "wp3_v1_clean.png"
+    ]
+  },
+  "data_hash": "c76720490b99dbd6",
+  "run_id": "wp3_rks_v2.0"
+}

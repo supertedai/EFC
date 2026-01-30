@@ -1,0 +1,279 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{doi}
+
+% Custom commands
+\newcommand{\fsig}{f\sigma_8}
+\newcommand{\Rks}{R(k,S)}
+\newcommand{\LCDM}{$\Lambda$CDM}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\title{WP3: First Empirical Slice Through the Regime Response Surface $R(k,S)$}
+
+\author{Morten Magnusson\\
+\small \href{https://orcid.org/0009-0002-4860-5095}{ORCID: 0009-0002-4860-5095}\\
+\small Independent Researcher
+}
+
+\date{January 30, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present the first empirical mapping of the regime response surface $R(k,S)$ along the redshift-space distortion (RSD) trajectory. Using $f\sigma_8(z)$ measurements from BOSS DR12, eBOSS DR16, and DESI Y1 ($N=12$), we constrain one coordinate on the gravitational response surface: $R(k\approx 0.13\,h/\text{Mpc}, S\approx 0.30) \approx +0.30$. Under Akaike Information Criterion (AIC), \LCDM{} ($R=0$) is preferred by $\Delta\text{AIC} = -3.8$, indicating that the data are consistent with zero response within complexity penalty. This work is \emph{cartography}---a measurement in a new coordinate system---not a model comparison or validation claim. WP3 provides the first entry in a planned response atlas mapping gravitational behavior across structural regimes.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Energy-Flow Cosmology, modified gravity, regime response surface, growth rate, $f\sigma_8$, RSD
+
+\noindent\textbf{DOI:} \href{https://doi.org/10.6084/m9.figshare.31215259}{10.6084/m9.figshare.31215259}
+
+\section{Introduction}
+
+Standard approaches to testing modified gravity theories typically parameterize deviations from General Relativity using time-dependent functions such as $\mu(a)$ or scale-and-time-dependent functions $\mu(k,z)$. These parameterizations treat modifications as perturbations to be constrained, leading naturally to model comparison frameworks where modified gravity ``competes'' with \LCDM.
+
+The $R(k,S)$ framework \citep{Magnusson2026RkS} introduces a fundamentally different perspective. Rather than parameterizing deviations from GR, it establishes a \emph{coordinate system} for gravitational response based on:
+\begin{itemize}
+    \item $k$: spatial scale (wavenumber)
+    \item $S$: structural maturity (a state variable encoding entropy/structure evolution)
+\end{itemize}
+
+The gravitational response is then:
+\begin{equation}
+    \mu = 1 + R(k,S)
+\end{equation}
+where $R(k,S)$ is a response surface that can take positive, negative, or zero values depending on the structural regime.
+
+This reframing transforms the question from ``Does modified gravity fit better than \LCDM?'' to ``Where does this observation sit in regime-response space?'' The result is \emph{cartography}, not competition.
+
+\section{The $R(k,S)$ Framework}
+
+\subsection{From Time to Structural Maturity}
+
+In standard cosmology, evolution is parameterized by cosmic time or equivalently scale factor $a$ and redshift $z$. The $R(k,S)$ framework replaces this with \emph{structural maturity} $S$, defined as a state variable that tracks the universe's progression from singularity ($S=0$) to altularity ($S=1$).
+
+For this WP3 feasibility slice, we adopt a monotonic proxy mapping:
+\begin{equation}
+    S(z) = \frac{1}{1 + (z/z_{\text{mid}})^2}
+\end{equation}
+where $z_{\text{mid}} \approx 1.5$ corresponds to peak structure formation.
+
+\textbf{Important caveat:} This $S(z)$ is a convenient monotonic proxy for structural maturity, not yet a physically derived observable. In the full $R(k,S)$ framework, $S$ should be computed from nonlinear growth statistics (e.g., $\sigma/\sigma_{\text{lin}}$, halo mass function evolution, or entropy production rates). The present work demonstrates the methodology using this proxy; future work will replace it with observationally grounded $S$ definitions. Without this replacement, $S$ remains a reparameterized redshift.
+
+\subsection{Scale Dependence}
+
+Different observational probes are sensitive to different spatial scales $k$. Redshift-space distortions (RSD) primarily probe the quasi-linear regime at $k \sim 0.1\,h/\text{Mpc}$. The effective wavenumber varies mildly with redshift:
+\begin{equation}
+    k_{\text{eff}}(z) \approx 0.1 \times (1 + 0.15z) \quad [h/\text{Mpc}]
+\end{equation}
+
+\subsection{WP3 as a Trajectory}
+
+WP3 does not test the entire $R(k,S)$ surface. It tests \emph{one trajectory} through this space:
+\begin{equation}
+    \text{WP3 trajectory:} \quad (k_{\text{eff}}(z), S(z)) \quad \text{for } z \in [0.3, 1.5]
+\end{equation}
+
+This corresponds to:
+\begin{itemize}
+    \item $k \in [0.1, 0.13]\,h/\text{Mpc}$
+    \item $S \in [0.3, 0.7]$
+\end{itemize}
+
+\section{Data and Method}
+
+\subsection{Dataset}
+
+We use 12 $f\sigma_8(z)$ measurements from three surveys:
+
+\begin{table}[h]
+\centering
+\caption{$f\sigma_8(z)$ data used in this analysis}
+\label{tab:data}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Survey & $z$ & $f\sigma_8$ & $\sigma$ & Reference \\
+\midrule
+BOSS DR12 & 0.38 & 0.497 & 0.045 & Alam et al. (2017) \\
+BOSS DR12 & 0.51 & 0.458 & 0.038 & Alam et al. (2017) \\
+BOSS DR12 & 0.61 & 0.436 & 0.034 & Alam et al. (2017) \\
+eBOSS DR16 & 0.70 & 0.473 & 0.041 & eBOSS (2021) \\
+eBOSS DR16 & 0.85 & 0.315 & 0.095 & eBOSS (2021) \\
+eBOSS DR16 & 1.48 & 0.462 & 0.045 & eBOSS (2021) \\
+DESI Y1 & 0.295 & 0.447 & 0.028 & DESI (2024) \\
+DESI Y1 & 0.510 & 0.470 & 0.025 & DESI (2024) \\
+DESI Y1 & 0.706 & 0.447 & 0.022 & DESI (2024) \\
+DESI Y1 & 0.930 & 0.437 & 0.024 & DESI (2024) \\
+DESI Y1 & 1.184 & 0.389 & 0.032 & DESI (2024) \\
+DESI Y1 & 1.491 & 0.297 & 0.055 & DESI (2024) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Limitation:} We use diagonal errors only; covariance matrices are not included. Data hash: \texttt{c76720490b99dbd6}.
+
+\textbf{Statistical caveat:} Because no covariance matrices are used, the $\chi^2$, AIC, and BIC values reported here are approximate and should be interpreted as indicative only. A full analysis would require the published covariance matrices from each survey.
+
+\subsection{Models}
+
+\paragraph{\LCDM{} ($R=0$):}
+\begin{equation}
+    f\sigma_8(z) = \Omega_m(z)^\gamma \times \sigma_8 \times D(z)
+\end{equation}
+with 3 free parameters: $\sigma_8$, $\Omega_m$, $\gamma$.
+
+\paragraph{$R(k,S)$ slice:}
+\begin{equation}
+    f\sigma_8(z) = \Omega_m(z)^\gamma \times \sqrt{\mu(z)} \times \sigma_8 \times D(z)
+\end{equation}
+where $\mu(z)$ is parameterized using a local Gaussian basis function to probe response amplitude along the trajectory:
+\begin{equation}
+    \mu(z) = 1 + \Delta R \exp\left[-\frac{(z - z_{\text{peak}})^2}{2 \times 0.6^2}\right]
+\end{equation}
+\textbf{Important caveat:} This Gaussian profile is a phenomenological basis function chosen for mathematical convenience, not an EFC prediction. It allows us to measure whether the data prefer non-zero response amplitude ($\Delta R \neq 0$) at some characteristic redshift ($z_{\text{peak}}$). The true $R(k,S)$ surface shape must ultimately be derived from first principles or reconstructed non-parametrically.
+
+This model has 5 free parameters: $\sigma_8$, $\Omega_m$, $\Delta R$, $z_{\text{peak}}$, $\gamma$.
+
+\subsection{Optimization}
+
+We use differential evolution (seed=42, maxiter=1000, tol=$10^{-8}$) to minimize $\chi^2$.
+
+\section{Results}
+
+\begin{table}[h]
+\centering
+\caption{Model comparison results}
+\label{tab:results}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Model & $k$ (params) & $\chi^2$ & dof & AIC & BIC \\
+\midrule
+\LCDM{} & 3 & 9.36 & 9 & 15.4 & 16.8 \\
+$R(k,S)$ slice & 5 & 9.12 & 7 & 19.1 & 21.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Best-fit parameters:}
+\begin{itemize}
+    \item \LCDM: $\sigma_8 = 0.775$, $\Omega_m = 0.250$, $\gamma = 0.450$
+    \item $R(k,S)$: $\sigma_8 = 0.797$, $\Omega_m = 0.276$, $\Delta R = +0.30$, $z_{\text{peak}} = 2.30$, $\gamma = 0.61$
+\end{itemize}
+
+\paragraph{Model comparison:}
+\begin{itemize}
+    \item $\Delta\chi^2 = +0.24$ (marginal improvement for $R(k,S)$)
+    \item $\Delta\text{AIC} = -3.8$ (\LCDM{} preferred)
+    \item $\Delta\text{BIC} = -4.6$ (\LCDM{} preferred)
+\end{itemize}
+
+\paragraph{Coordinate on response surface:}
+\begin{equation}
+    R(k \approx 0.13\,h/\text{Mpc}, S \approx 0.30) \approx +0.30
+\end{equation}
+
+\section{Interpretation}
+
+\subsection{What WP3 Shows}
+
+WP3 demonstrates that:
+\begin{enumerate}
+    \item A non-zero response $R \approx +0.30$ is \emph{allowed} by the data at this trajectory
+    \item However, $R = 0$ (\LCDM) is \emph{preferred} when complexity is penalized
+    \item The measurement is \emph{prior-sensitive}: the location on the surface is not tightly constrained
+\end{enumerate}
+
+\subsection{What WP3 Does Not Show}
+
+WP3 does \emph{not}:
+\begin{itemize}
+    \item Validate the $R(k,S)$ framework
+    \item Falsify the $R(k,S)$ framework
+    \item Claim that EFC is better than \LCDM
+    \item Provide a complete map of the response surface
+\end{itemize}
+
+\subsection{Epistemic Status}
+
+This is \textbf{cartography}: a measurement in a new coordinate system. The observable ($f\sigma_8$) becomes a coordinate; the theory becomes a geometry.
+
+WP3 provides \emph{one noisy point} on the response surface---exactly what early cartography looks like.
+
+\section{The Response Atlas}
+
+WP3 is the first entry in a planned response atlas:
+
+\begin{table}[h]
+\centering
+\caption{Response Atlas: planned trajectories through $R(k,S)$}
+\label{tab:atlas}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Probe & $k$ window & $S$ range & Status \\
+\midrule
+RSD / $f\sigma_8$ & $\sim 0.1\,h/\text{Mpc}$ & $[0.3, 0.7]$ & \textbf{WP3 (this work)} \\
+Weak lensing & different $k$ & overlapping $S$ & WP4 (ready) \\
+Clusters & smaller $k$ & higher $S$ & Planned \\
+CMB & large scales & $S \approx 0$ & Boundary condition \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each probe maps a different trajectory through $(k,S)$ space. Together, they will constrain the shape of the response surface.
+
+\section{Conclusion}
+
+WP3 provides the first empirical coordinate on the regime response surface $R(k,S)$:
+\begin{equation}
+    R(k \approx 0.13, S \approx 0.30) \approx +0.30 \quad \text{(prior-sensitive, AIC prefers } R=0\text{)}
+\end{equation}
+
+This is not a validation or falsification of Energy-Flow Cosmology. It is a measurement that locates one class of observations within a new coordinate system for gravitational response.
+
+The shift from ``Does modified gravity fit better?'' to ``Where does this observation sit in regime-response space?'' represents a move from curve fitting to state-space mapping---from parameter tuning to theory-driven cartography.
+
+\section*{Data Availability}
+
+Manifest and analysis code: \texttt{wp3\_rks\_manifest.json}\\
+Data hash: \texttt{c76720490b99dbd6}\\
+Run ID: \texttt{wp3\_rks\_v2.0}
+
+\section*{Acknowledgments}
+
+This work made use of public data from BOSS, eBOSS, and DESI collaborations.
+
+\begin{thebibliography}{9}
+
+\bibitem[Alam et al.(2017)]{Alam2017}
+Alam, S., et al. 2017, MNRAS, 470, 2617
+
+\bibitem[eBOSS Collaboration(2021)]{eBOSS2021}
+eBOSS Collaboration 2021, PRD, 103, 083533
+
+\bibitem[DESI Collaboration(2024)]{DESI2024}
+DESI Collaboration 2024, arXiv:2404.03002
+
+\bibitem[Magnusson(2026a)]{Magnusson2026RkS}
+Magnusson, M. 2026a, ``$R(k,S)$ as a Regime Response Surface in Energy-Flow Cosmology,'' Figshare, \href{https://doi.org/10.6084/m9.figshare.31211437}{doi:10.6084/m9.figshare.31211437}
+
+\end{thebibliography}
+
+\end{document}
