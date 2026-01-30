@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/schema.json",
+  "title": "EFC Unified Analysis Schema",
+  "description": "Schema for EFC unified cosmological analysis results",
+  "type": "object",
+  "properties": {
+    "entropy_field": {
+      "type": "object",
+      "description": "Entropy field S(a) configuration",
+      "properties": {
+        "S_infinity": {"type": "number", "description": "Asymptotic entropy value"},
+        "a_t": {"type": "number", "description": "Transition scale factor"},
+        "sigma": {"type": "number", "description": "Transition width"},
+        "form": {"type": "string", "enum": ["sigmoid", "tanh"]}
+      },
+      "required": ["a_t", "sigma"]
+    },
+    "effective_coupling": {
+      "type": "object",
+      "description": "μ(a) = 1 + βS(a)",
+      "properties": {
+        "beta": {"type": "number", "description": "EFC coupling constant"},
+        "gamma": {"type": "number", "description": "Background modification parameter"}
+      },
+      "required": ["beta"]
+    },
+    "chi2_result": {
+      "type": "object",
+      "description": "Chi-squared fit results",
+      "properties": {
+        "probe": {"type": "string", "enum": ["BAO", "SN", "RSD", "total"]},
+        "value": {"type": "number"},
+        "N_data": {"type": "integer"}
+      }
+    },
+    "model_comparison": {
+      "type": "object",
+      "properties": {
+        "baseline": {"type": "string", "default": "LCDM"},
+        "test_model": {"type": "string"},
+        "delta_chi2": {"type": "number"},
+        "verdict": {"type": "string"}
+      }
+    }
+  },
+  "efc_analysis_type": "unified_multi_probe",
+  "probes": ["BAO", "SN_Ia", "RSD"]
+}

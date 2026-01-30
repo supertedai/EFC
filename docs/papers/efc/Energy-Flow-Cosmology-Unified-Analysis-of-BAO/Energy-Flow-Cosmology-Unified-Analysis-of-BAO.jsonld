@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/schema#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31215613",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.6084/m9.figshare.31215613"
+  },
+  "name": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD with a Derived Effective Gravitational Coupling",
+  "headline": "First regime-consistency check of EFC against combined cosmological probes",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, 4051 Sola, Norway",
+    "email": "morten@magnusson.as"
+  },
+  "datePublished": "2026-01",
+  "version": "1.0",
+  "abstract": "We present a unified cosmological analysis testing Energy-Flow Cosmology (EFC) against combined baryon acoustic oscillation (BAO), Type Ia supernova (SN Ia), and redshift-space distortion (RSD) observations. The effective gravitational coupling μ(a) = G_eff/G is derived from the EFC field equation rather than phenomenologically fitted. With one free amplitude parameter (β = 0.16) and transition hyperparameters fixed a priori, EFC achieves χ²_total = 51.1 compared to ΛCDM's χ² = 49.4 (Δχ² = +1.7). This constitutes a first-pass regime-consistency check, demonstrating that EFC does not introduce internal tension between geometry and growth probes.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "effective gravitational coupling",
+    "baryon acoustic oscillations",
+    "redshift-space distortions",
+    "structure growth",
+    "entropy field",
+    "regime consistency",
+    "BAO",
+    "SN Ia",
+    "RSD",
+    "DESI",
+    "Pantheon+"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Effective Gravitational Coupling",
+      "description": "μ(a) = 1 + βS(a), derived from EFC field equations"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Entropy Field",
+      "description": "S(a) governing late-time gravitational enhancement via sigmoid evolution"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Regime Consistency",
+      "description": "Same S(a) describes both geometry and growth without internal tension"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": "Unified BAO+SN+RSD Compilation",
+    "description": "33 data points from DESI DR2, Pantheon+, BOSS/eBOSS/DESI"
+  },
+  "result": [
+    {
+      "@type": "PropertyValue",
+      "name": "EFC coupling constant",
+      "value": "β = 0.16",
+      "description": "16% late-time gravity enhancement"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Total χ² difference",
+      "value": "Δχ² = +1.71",
+      "description": "EFC vs ΛCDM, compatible within statistical fluctuations"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "EFC Papers",
+    "identifier": "efc-papers"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.30563738",
+      "name": "Energy-Flow Cosmology v1.2"
+    }
+  ],
+  "encodingFormat": "application/pdf",
+  "url": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf"
+}
