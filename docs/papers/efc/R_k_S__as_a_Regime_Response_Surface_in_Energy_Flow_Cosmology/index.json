@@ -1,0 +1,42 @@
+{
+  "id": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
+  "title": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology",
+  "subtitle": "A Unified Framework for Structure-Dependent Gravitational Response",
+  "path": "docs/papers/efc/R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
+  "pdf": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology.pdf",
+  "md": "R_kS_Regime_Response_Surface.md",
+  "tex": "R_kS_paper.tex",
+  "doi": "10.6084/m9.figshare.31211437",
+  "keywords": [
+    "EFC",
+    "Regime Response Surface",
+    "Modified Gravity",
+    "S8 Tension",
+    "Structure Formation",
+    "Gravitational Coupling",
+    "Cosmological Perturbations",
+    "DES Y6",
+    "Weak Lensing",
+    "L1-L2 Transition"
+  ],
+  "concepts": {
+    "R_k_S": "Regime response function encoding gravitational deviation from GR as function of scale k and structural state S",
+    "S_state_variable": "Structural maturity parameter measuring nonlinear structure accumulation",
+    "mu_modification": "μ(k,S) = 1 + R(k,S) modifying Poisson equation",
+    "L1_regime": "CMB epoch with S≈0 and μ≈1 (standard GR)",
+    "L2_regime": "Late universe with S>0 and μ>1 (enhanced growth)"
+  },
+  "falsification_criteria": [
+    "Tomographic consistency: All redshift bins must follow single R(k,S) surface",
+    "Trend sign matching: Probes with overlapping (k,S) must show same deviation sign",
+    "S-gradient prediction: Predicted S8 offset must match observed redshift evolution"
+  ],
+  "dependencies": [
+    "Fugaku-DESI Transition Metric (doi:10.6084/m9.figshare.31144030.v1)",
+    "EFC Weak Lensing Phenomenology (doi:10.6084/m9.figshare.31188193.v1)"
+  ],
+  "layer": "docs",
+  "type": "paper",
+  "version": "1.0",
+  "date": "2026-01-30"
+}
