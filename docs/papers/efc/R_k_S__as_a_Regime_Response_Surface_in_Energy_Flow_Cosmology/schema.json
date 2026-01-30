@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "R(k,S) Regime Response Surface Schema",
+  "description": "Schema for EFC regime response surface framework",
+  "required": [
+    "@context",
+    "@type",
+    "identifier",
+    "name",
+    "version",
+    "author"
+  ],
+  "properties": {
+    "@context": { "type": "string" },
+    "@type": { "type": "string" },
+    "identifier": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "encodingFormat": { "type": "string" },
+    "url": { "type": "string" },
+    "doi": { "type": "string" },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "about": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "author": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "identifier": { "type": "string" }
+      }
+    },
+    "concepts": {
+      "type": "object",
+      "description": "Core theoretical concepts for AI parsing"
+    },
+    "falsification_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Testable predictions that can falsify the framework"
+    },
+    "mathematical_objects": {
+      "type": "object",
+      "properties": {
+        "R_k_S": { "type": "string", "description": "Regime response function" },
+        "S_z": { "type": "string", "description": "Structural state variable" },
+        "mu_k_S": { "type": "string", "description": "Modified gravity parameter" }
+      }
+    }
+  }
+}
