@@ -1,0 +1,73 @@
+{
+  "id": "efc-unified-analysis-bao-sn-rsd",
+  "title": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD",
+  "short_title": "EFC Unified BAO Analysis",
+  "version": "1.0",
+  "date": "2026-01",
+  "doi": "10.6084/m9.figshare.31215613",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "type": "empirical_analysis",
+  "status": "published",
+  "abstract_short": "First regime-consistency check: EFC with derived μ(a) achieves Δχ²=+1.7 vs ΛCDM across BAO, SN, RSD.",
+  "keywords": [
+    "EFC",
+    "unified analysis",
+    "BAO",
+    "SN Ia",
+    "RSD",
+    "μ(a)",
+    "entropy field",
+    "regime consistency",
+    "modified gravity"
+  ],
+  "core_equations": [
+    {
+      "name": "EFC Field Equation",
+      "latex": "G_{\\mu\\nu} = 8\\pi G(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}) + \\Lambda_{eff} g_{\\mu\\nu}"
+    },
+    {
+      "name": "Effective Gravitational Coupling",
+      "latex": "\\mu(a) = 1 + \\beta S(a)",
+      "symbol": "μ(a)"
+    },
+    {
+      "name": "Entropy Field",
+      "latex": "S(a) = \\frac{S_\\infty}{2}[1 + \\tanh((\\ln a - \\ln a_t)/\\sigma)]"
+    }
+  ],
+  "parameters": {
+    "beta": {"value": 0.16, "description": "EFC coupling constant"},
+    "a_t": {"value": 0.55, "z_t": 0.82, "description": "Transition scale factor"},
+    "sigma": {"value": 0.10, "description": "Transition width"},
+    "gamma": {"value": 0, "description": "Background modification (disabled)"}
+  },
+  "data_sources": [
+    {"probe": "BAO", "survey": "DESI DR2", "N": 6, "z_range": [0.51, 2.33]},
+    {"probe": "SN Ia", "survey": "Pantheon+", "N": 16, "z_range": [0.01, 1.00]},
+    {"probe": "RSD", "survey": "BOSS+eBOSS+DESI", "N": 11, "z_range": [0.30, 1.52]}
+  ],
+  "results": {
+    "LCDM": {"chi2_BAO": 9.81, "chi2_SN": 28.98, "chi2_RSD": 10.56, "chi2_total": 49.35},
+    "EFC": {"chi2_BAO": 9.81, "chi2_SN": 28.98, "chi2_RSD": 12.28, "chi2_total": 51.06},
+    "delta_chi2": 1.71,
+    "verdict": "Compatible within statistical fluctuations, no internal tension"
+  },
+  "key_findings": [
+    "μ(a) derived from EFC field equations, not phenomenologically fitted",
+    "BAO and SN identical to ΛCDM by construction (γ=0)",
+    "RSD slightly worse (Δχ²=+1.7) but within fluctuations",
+    "Same S(a) describes geometry and growth without tension"
+  ],
+  "dependencies": [
+    {"id": "efc-v1.2", "doi": "10.6084/m9.figshare.30563738"}
+  ],
+  "files": {
+    "pdf": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf",
+    "tex": "efc_unified_preprint.tex",
+    "figures": ["EFC_unified_analysis.png", "EFC_mu_theoretical_derivation.png"]
+  }
+}
