@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_/schema.json",
+  "title": "WP3 R(k,S) Empirical Slice Schema",
+  "description": "Schema for WP3 empirical analysis of R(k,S) response surface",
+  "type": "object",
+  "properties": {
+    "response_coordinate": {
+      "type": "object",
+      "description": "Measured point on R(k,S) surface",
+      "properties": {
+        "k": {"type": "number", "description": "Wavenumber in h/Mpc"},
+        "S": {"type": "number", "description": "Structural maturity parameter"},
+        "R": {"type": "number", "description": "Response amplitude"}
+      },
+      "required": ["k", "S", "R"]
+    },
+    "fsigma8_measurement": {
+      "type": "object",
+      "description": "Growth rate measurement",
+      "properties": {
+        "z": {"type": "number", "description": "Redshift"},
+        "value": {"type": "number", "description": "fσ₈ value"},
+        "sigma": {"type": "number", "description": "Measurement uncertainty"},
+        "survey": {"type": "string", "description": "Source survey"}
+      },
+      "required": ["z", "value", "sigma", "survey"]
+    },
+    "model_fit": {
+      "type": "object",
+      "description": "Model fitting results",
+      "properties": {
+        "model": {"type": "string"},
+        "chi2": {"type": "number"},
+        "dof": {"type": "integer"},
+        "AIC": {"type": "number"},
+        "BIC": {"type": "number"},
+        "params": {"type": "object"}
+      }
+    },
+    "trajectory": {
+      "type": "object",
+      "description": "Coverage in (k,S) space",
+      "properties": {
+        "k_min": {"type": "number"},
+        "k_max": {"type": "number"},
+        "S_min": {"type": "number"},
+        "S_max": {"type": "number"}
+      }
+    }
+  },
+  "efc_regime": "L2",
+  "probe_type": "RSD",
+  "observable": "fσ₈"
+}

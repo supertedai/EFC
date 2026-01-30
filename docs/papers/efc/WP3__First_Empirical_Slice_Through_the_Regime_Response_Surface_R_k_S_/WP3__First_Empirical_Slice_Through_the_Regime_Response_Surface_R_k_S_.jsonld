@@ -1,0 +1,82 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/schema#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31215259",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "DOI",
+      "value": "10.6084/m9.figshare.31215259"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "data_hash",
+      "value": "c76720490b99dbd6"
+    }
+  ],
+  "name": "WP3: First Empirical Slice Through the Regime Response Surface R(k,S)",
+  "headline": "First empirical mapping of R(k,S) along the RSD trajectory using fσ₈ data",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "datePublished": "2026-01-30",
+  "version": "1.0",
+  "abstract": "First empirical mapping of the regime response surface R(k,S) along the redshift-space distortion (RSD) trajectory. Using fσ₈(z) measurements from BOSS DR12, eBOSS DR16, and DESI Y1 (N=12), we constrain one coordinate: R(k≈0.13 h/Mpc, S≈0.30) ≈ +0.30. Under AIC, ΛCDM (R=0) is preferred by ΔAIC = -3.8. This is cartography—measurement in a new coordinate system—not model validation.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "regime response surface",
+    "growth rate",
+    "fσ₈",
+    "RSD",
+    "BOSS",
+    "eBOSS",
+    "DESI",
+    "cartography",
+    "response atlas"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "R(k,S) Response Surface",
+      "description": "Gravitational response parameterized by wavenumber k and structural maturity S"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Structural Maturity S",
+      "description": "State variable tracking universe progression from singularity (S=0) to altularity (S=1)"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": "WP3 fσ₈ Compilation",
+    "description": "12 fσ₈(z) measurements from BOSS DR12, eBOSS DR16, DESI Y1",
+    "measurementTechnique": "Redshift-space distortions (RSD)"
+  },
+  "result": {
+    "@type": "PropertyValue",
+    "name": "Response coordinate",
+    "value": "R(k≈0.13, S≈0.30) ≈ +0.30",
+    "description": "First measured point on R(k,S) surface; ΛCDM preferred by AIC"
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "EFC Response Atlas",
+    "description": "Systematic mapping of gravitational response across structural regimes"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31211437",
+      "name": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology"
+    }
+  ],
+  "encodingFormat": "application/pdf",
+  "url": "wp3_rks_article.pdf"
+}
