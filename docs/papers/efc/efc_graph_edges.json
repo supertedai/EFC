@@ -15,6 +15,11 @@
     { "from": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution", "to": "efc_formal_spec", "type": "supports" },
 
     { "from": "ai_workflow_framework", "to": "efc_master", "type": "interfaces" },
-    { "from": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time", "to": "efc_master", "type": "interfaces" }
+    { "from": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time", "to": "efc_master", "type": "interfaces" },
+
+    { "from": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology", "to": "EFC-v1.2-Foundational-Framework", "type": "extends" },
+    { "from": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_", "to": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology", "type": "supports" },
+    { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "EFC-v1.2-Foundational-Framework", "type": "supports" },
+    { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_", "type": "refines" }
   ]
 }
