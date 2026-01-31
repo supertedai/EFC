@@ -20,6 +20,9 @@
     { "from": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology", "to": "EFC-v1.2-Foundational-Framework", "type": "extends" },
     { "from": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_", "to": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology", "type": "supports" },
     { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "EFC-v1.2-Foundational-Framework", "type": "supports" },
-    { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_", "type": "refines" }
+    { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_", "type": "refines" },
+
+    { "from": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes", "to": "EFC-v1.2-Foundational-Framework", "type": "extends" },
+    { "from": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO", "to": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes", "type": "validates" }
   ]
 }
