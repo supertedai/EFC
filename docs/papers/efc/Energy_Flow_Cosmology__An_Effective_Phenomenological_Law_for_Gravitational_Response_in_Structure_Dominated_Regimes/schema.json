@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Effective Phenomenological Law Schema",
+  "description": "Schema for the effective gravitational coupling in EFC",
+  "type": "object",
+  "properties": {
+    "effective_coupling": {
+      "type": "object",
+      "description": "The effective gravitational coupling μ(a)",
+      "properties": {
+        "form": {
+          "type": "string",
+          "const": "μ(a) = 1 + βS(a)"
+        },
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "beta": {
+              "type": "number",
+              "description": "Coupling strength parameter",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "a_t": {
+              "type": "number",
+              "description": "Transition scale factor",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "sigma": {
+              "type": "number",
+              "description": "Transition width",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "entropy_field": {
+      "type": "object",
+      "description": "The entropy field S(a)",
+      "properties": {
+        "form": {
+          "type": "string",
+          "const": "S(a) = (S_∞/2)[1 + tanh((ln a - ln a_t)/σ)]"
+        },
+        "boundary_conditions": {
+          "type": "object",
+          "properties": {
+            "early_universe": {"const": 0},
+            "late_universe": {"const": 1}
+          }
+        }
+      }
+    },
+    "regime_applicability": {
+      "type": "object",
+      "properties": {
+        "L0": {"type": "boolean", "description": "Early universe / CMB"},
+        "L1": {"type": "boolean", "description": "Linear perturbations"},
+        "L2": {"type": "boolean", "description": "Structure-dominated"},
+        "L3": {"type": "boolean", "description": "Deep non-linear"}
+      }
+    }
+  }
+}
