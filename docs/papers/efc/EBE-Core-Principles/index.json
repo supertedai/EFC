@@ -1,0 +1,55 @@
+{
+  "id": "ebe-core-principles",
+  "title": "Entropy-Bounded Empiricism: Core Principles",
+  "shortTitle": "EBE Core Principles",
+  "path": "docs/papers/efc/EBE-Core-Principles",
+  "pdf": "EBE_Core_Principles_v1_0-1.pdf",
+  "version": "1.0",
+  "date": "2026-01-01",
+  "doi": "10.6084/m9.figshare.31222903",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "license": "CC-BY-4.0",
+  "layer": "methodology",
+  "type": "paper",
+  "status": "published",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "regime architecture",
+    "epistemic layering",
+    "measurement protocol",
+    "energy-flow cosmology",
+    "S-axis",
+    "L-axis",
+    "RCMP"
+  ],
+  "concepts": {
+    "primary": ["S-axis", "L-axis", "RCMP", "regime-gating", "epistemic-degradation"],
+    "s_axis_regimes": ["Low-S", "Mid-S", "High-S"],
+    "l_axis_layers": ["L0", "L1", "L2", "L3"]
+  },
+  "structure": {
+    "sections": [
+      {"number": 1, "title": "Introduction"},
+      {"number": 2, "title": "Purpose and Scope"},
+      {"number": 3, "title": "The S-Axis: Physical Regime Hierarchy"},
+      {"number": 4, "title": "The L-Axis: Epistemic Layer Hierarchy"},
+      {"number": 5, "title": "RCMP: The Regime-Consistent Measurement Protocol"},
+      {"number": 6, "title": "The Regime-Gating Principle"},
+      {"number": 7, "title": "Proxy-Chain Transparency"},
+      {"number": 8, "title": "Epistemic Consequences"},
+      {"number": 9, "title": "Summary: The EBE Core Equation"},
+      {"number": 10, "title": "Applications Beyond Cosmology"},
+      {"number": 11, "title": "Conclusion"}
+    ]
+  },
+  "relationships": {
+    "extends": [{"id": "l0-l3-regime-architecture", "doi": "10.6084/m9.figshare.31112536"}],
+    "relatedTo": [
+      {"id": "rcmp", "doi": "10.6084/m9.figshare.31222900"},
+      {"id": "energy-flow-cosmology", "doi": "10.6084/m9.figshare.27315821"}
+    ]
+  }
+}

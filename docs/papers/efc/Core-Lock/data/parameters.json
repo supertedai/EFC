@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for Core Lock mathematical framework",
+  "grid_state_function": {
+    "f0": {
+      "description": "Initial value of grid state function at S=0",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "delta_s": {
+      "description": "Characteristic entropy scale",
+      "default": 1.0,
+      "unit": "entropy units",
+      "constraints": "must be positive"
+    }
+  },
+  "beta_constraint": {
+    "formula": "β_f(S) = -1/ΔS",
+    "description": "Universal RG-flow constraint for all observables",
+    "note": "This is independent of S"
+  },
+  "correlation_test": {
+    "formula": "d ln v / d ln c = a_v/a_c = constant",
+    "description": "Falsification criterion - ratio must be constant",
+    "tolerance": 0.01
+  },
+  "simulation_defaults": {
+    "s_min": 0.0,
+    "s_max": 5.0,
+    "n_points": 100,
+    "tolerance": 0.01
+  }
+}

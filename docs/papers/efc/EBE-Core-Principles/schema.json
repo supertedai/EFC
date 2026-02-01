@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/ebe-core-principles.schema.json",
+  "title": "EBE Core Principles Schema",
+  "description": "Schema for validating EBE classification data",
+  "type": "object",
+  "definitions": {
+    "SRegime": {
+      "type": "string",
+      "enum": ["low_s", "mid_s", "high_s"],
+      "description": "Physical regime on the S-axis"
+    },
+    "LLayer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"],
+      "description": "Epistemic layer on the L-axis"
+    },
+    "Classification": {
+      "type": "object",
+      "properties": {
+        "observable": {
+          "type": "string",
+          "description": "The physical quantity being measured"
+        },
+        "s_regime": {
+          "$ref": "#/definitions/SRegime"
+        },
+        "l_layer": {
+          "$ref": "#/definitions/LLayer"
+        },
+        "proxy_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of proxy steps from direct measurement"
+        },
+        "regime_boundary": {
+          "type": "string",
+          "description": "Condition defining regime boundary"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Epistemic confidence in classification"
+        }
+      },
+      "required": ["observable", "s_regime", "l_layer"]
+    },
+    "RegimeTransfer": {
+      "type": "object",
+      "properties": {
+        "source_regime": {
+          "$ref": "#/definitions/SRegime"
+        },
+        "target_regime": {
+          "$ref": "#/definitions/SRegime"
+        },
+        "claim": {
+          "type": "string"
+        },
+        "is_valid": {
+          "type": "boolean"
+        },
+        "justification": {
+          "type": "string"
+        }
+      },
+      "required": ["source_regime", "target_regime", "claim", "is_valid"]
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "classifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Classification"
+      }
+    },
+    "transfers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RegimeTransfer"
+      }
+    }
+  }
+}

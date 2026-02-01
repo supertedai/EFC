@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "description": "The three ontological hypotheses analyzed in EFC Ontological Foundations",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "Energy-Flow Primacy",
+      "description": "Energy-flow is the fundamental concept; entropy emerges from it",
+      "primacy_claim": "energy_flow",
+      "definitions": [
+        {
+          "concept": "energy_flow",
+          "requires": ["energy", "direction", "spacetime"]
+        },
+        {
+          "concept": "direction",
+          "requires": ["time", "entropy"]
+        },
+        {
+          "concept": "entropy",
+          "requires": ["energy", "probability"]
+        }
+      ],
+      "passes_circularity_test": false,
+      "failure_reason": "energy_flow requires direction, direction requires entropy, entropy requires energy"
+    },
+    {
+      "id": "H2",
+      "name": "Entropy Primacy",
+      "description": "Entropy is the fundamental concept; energy-flow emerges from it",
+      "primacy_claim": "entropy",
+      "definitions": [
+        {
+          "concept": "entropy",
+          "requires": ["microstates", "probability"]
+        },
+        {
+          "concept": "microstates",
+          "requires": ["energy", "configuration"]
+        },
+        {
+          "concept": "energy",
+          "requires": ["work", "change"]
+        },
+        {
+          "concept": "change",
+          "requires": ["entropy", "time"]
+        }
+      ],
+      "passes_circularity_test": false,
+      "failure_reason": "entropy requires microstates, microstates requires energy, energy requires change, change requires entropy"
+    },
+    {
+      "id": "H3",
+      "name": "Co-Primary Structure",
+      "description": "EF and S emerge together from pre-geometric potential",
+      "primacy_claim": "pre_geometric_potential",
+      "definitions": [
+        {
+          "concept": "pre_geometric_potential",
+          "requires": []
+        },
+        {
+          "concept": "differentiation",
+          "requires": ["pre_geometric_potential"]
+        },
+        {
+          "concept": "energy_flow",
+          "requires": ["differentiation"]
+        },
+        {
+          "concept": "entropy",
+          "requires": ["differentiation"]
+        }
+      ],
+      "passes_circularity_test": true,
+      "failure_reason": null
+    }
+  ],
+  "conclusion": "Only H3 (Co-Primary Structure) passes the circularity test"
+}

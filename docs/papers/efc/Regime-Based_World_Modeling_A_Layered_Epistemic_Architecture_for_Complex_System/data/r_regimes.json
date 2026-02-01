@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "description": "R-axis regime definitions for Regime-Based World Modeling",
+  "regimes": [
+    {
+      "id": "R0",
+      "name": "Field Regime",
+      "description": "Fundamental physics, quantum fields, spacetime",
+      "scale_range": "Planck to nuclear",
+      "typical_systems": ["QFT", "General Relativity", "particle physics"],
+      "emergent_properties": []
+    },
+    {
+      "id": "R1",
+      "name": "Structure Regime",
+      "description": "Organized matter with stable configurations",
+      "scale_range": "Atomic to planetary",
+      "typical_systems": ["atoms", "molecules", "crystals", "stars"],
+      "emergent_properties": ["phase transitions", "collective modes"]
+    },
+    {
+      "id": "R2",
+      "name": "Complex Regime",
+      "description": "Emergent systems with irreducible properties",
+      "scale_range": "Cellular to cosmic",
+      "typical_systems": ["life", "economies", "ecosystems", "societies"],
+      "emergent_properties": ["self-organization", "adaptation", "consciousness"]
+    }
+  ],
+  "domain_mappings": {
+    "physics": {
+      "R0": "quantum/relativistic",
+      "R1": "classical/thermodynamic",
+      "R2": "astrophysical/cosmological"
+    },
+    "biology": {
+      "R0": "molecular",
+      "R1": "cellular",
+      "R2": "organism/ecosystem"
+    },
+    "economics": {
+      "R0": "individual transactions",
+      "R1": "firms/markets",
+      "R2": "macroeconomy"
+    },
+    "ai": {
+      "R0": "subsymbolic",
+      "R1": "symbolic",
+      "R2": "emergent behavior"
+    }
+  }
+}

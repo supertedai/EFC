@@ -1,0 +1,51 @@
+{
+  "id": "regime-based-world-modeling",
+  "title": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex Systems",
+  "shortTitle": "RBWM",
+  "path": "docs/papers/efc/Regime-Based_World_Modeling_A_Layered_Epistemic_Architecture_for_Complex_System",
+  "pdf": "Regime_Based_World_Modeling__A_Layered_Epistemic_Architecture_for_Complex_Systems-1.pdf",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31223650",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "license": "CC-BY-4.0",
+  "layer": "methodology",
+  "type": "paper",
+  "status": "published",
+  "keywords": [
+    "emergence",
+    "multi-scale modeling",
+    "epistemic layering",
+    "regime-gating",
+    "driver proximity",
+    "complexity architecture",
+    "world models"
+  ],
+  "concepts": {
+    "primary": ["R-axis", "L-axis", "regime-gating-principle", "driver-proximity", "validity-domain"],
+    "r_axis_regimes": ["R0-Field", "R1-Structure", "R2-Complex"],
+    "l_axis_layers": ["L0-Raw", "L1-Calibrated", "L2-Derived", "L3-Theoretical"],
+    "applications": ["physics", "biology", "economics", "artificial-intelligence"]
+  },
+  "structure": {
+    "sections": [
+      {"number": 1, "title": "Introduction"},
+      {"number": 2, "title": "The Regime-Gating Principle"},
+      {"number": 3, "title": "The (R, L) Coordinate System"},
+      {"number": 4, "title": "Applications Across Domains"},
+      {"number": 5, "title": "Implementation in World Models"},
+      {"number": 6, "title": "Discussion"},
+      {"number": 7, "title": "Conclusion"}
+    ]
+  },
+  "relationships": {
+    "extends": [{"id": "l0-l3-regime-architecture", "doi": "10.6084/m9.figshare.31112536"}],
+    "relatedTo": [
+      {"id": "ebe-core-principles", "doi": "10.6084/m9.figshare.31222903"},
+      {"id": "symbiosis", "doi": "10.6084/m9.figshare.30773684"}
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "description": "L-axis layer definitions for Entropy-Bounded Empiricism",
+  "layers": [
+    {
+      "id": "L0",
+      "name": "Raw Measurement",
+      "description": "Direct sensor output with minimal processing",
+      "proximity": 1.0,
+      "confidence_factor": 1.0,
+      "typical_examples": ["photon counts", "voltage readings", "pixel values"],
+      "requirements": ["instrument specification", "raw data format"]
+    },
+    {
+      "id": "L1",
+      "name": "Calibrated Data",
+      "description": "Processed data with instrument corrections applied",
+      "proximity": 0.75,
+      "confidence_factor": 0.9,
+      "typical_examples": ["flux values", "calibrated spectra", "corrected images"],
+      "requirements": ["calibration procedure", "systematic corrections", "uncertainty estimates"]
+    },
+    {
+      "id": "L2",
+      "name": "Derived Quantities",
+      "description": "Computed values requiring assumptions or models",
+      "proximity": 0.5,
+      "confidence_factor": 0.7,
+      "typical_examples": ["distances", "masses", "velocities", "accelerations"],
+      "requirements": ["derivation method", "assumptions made", "input parameters", "error propagation"]
+    },
+    {
+      "id": "L3",
+      "name": "Theoretical Constructs",
+      "description": "Model-dependent quantities not directly observable",
+      "proximity": 0.25,
+      "confidence_factor": 0.4,
+      "typical_examples": ["dark matter density", "inflation parameters", "string tensions"],
+      "requirements": ["theoretical model", "model parameters", "validity domain", "alternative models"]
+    }
+  ]
+}

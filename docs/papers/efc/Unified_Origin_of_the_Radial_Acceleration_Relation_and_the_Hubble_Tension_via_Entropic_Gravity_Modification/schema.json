@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/h0-unification.json",
+  "title": "H0-RAR Unification Schema",
+  "description": "Schema for H0 tension and RAR unification analysis",
+  "type": "object",
+  "definitions": {
+    "H0Measurement": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "H0 value in km/s/Mpc",
+          "minimum": 50,
+          "maximum": 100
+        },
+        "uncertainty": {
+          "type": "number",
+          "description": "Uncertainty in km/s/Mpc"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["CMB", "local", "TRGB", "gravitational_waves"]
+        },
+        "method": {
+          "type": "string"
+        }
+      },
+      "required": ["value", "source"]
+    },
+    "MONDPoint": {
+      "type": "object",
+      "properties": {
+        "g_ratio": {
+          "type": "number",
+          "description": "g_bar / a0 ratio"
+        },
+        "mu": {
+          "type": "number",
+          "description": "MOND interpolation function value",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mu_inverse": {
+          "type": "number",
+          "description": "Gravitational enhancement factor"
+        },
+        "implied_aG": {
+          "type": "number",
+          "description": "Implied gravitational coupling coefficient"
+        }
+      },
+      "required": ["g_ratio", "mu"]
+    },
+    "EntropyParameters": {
+      "type": "object",
+      "properties": {
+        "z_trans": {
+          "type": "number",
+          "description": "Transition redshift (Cosmic Noon)",
+          "default": 3
+        },
+        "delta": {
+          "type": "number",
+          "description": "Sigmoid width parameter",
+          "default": 0.5
+        },
+        "delta_phi": {
+          "type": "number",
+          "description": "Phase difference CMB to today",
+          "default": 1.71
+        }
+      }
+    },
+    "UnificationResult": {
+      "type": "object",
+      "properties": {
+        "aG_cosmological": {
+          "type": "number",
+          "description": "a_G from H0 tension"
+        },
+        "aG_galactic": {
+          "type": "number",
+          "description": "a_G from MOND transition"
+        },
+        "discrepancy_percent": {
+          "type": "number",
+          "description": "Percentage discrepancy between methods"
+        },
+        "h0_predicted": {
+          "type": "number",
+          "description": "Predicted H0 from MOND a_G"
+        },
+        "h0_observed": {
+          "type": "number",
+          "description": "Observed local H0"
+        },
+        "prediction_accuracy_percent": {
+          "type": "number",
+          "description": "Prediction accuracy"
+        },
+        "unified": {
+          "type": "boolean",
+          "description": "Whether unification is achieved"
+        }
+      }
+    }
+  },
+  "properties": {
+    "h0_measurements": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/H0Measurement" }
+    },
+    "mond_table": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/MONDPoint" }
+    },
+    "entropy_params": { "$ref": "#/definitions/EntropyParameters" },
+    "result": { "$ref": "#/definitions/UnificationResult" }
+  }
+}
