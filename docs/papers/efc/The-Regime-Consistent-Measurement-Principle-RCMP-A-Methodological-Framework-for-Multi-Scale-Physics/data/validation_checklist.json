@@ -1,0 +1,151 @@
+{
+  "$schema": "../schema.json",
+  "version": "1.0",
+  "description": "RCMP validation checklist for analysis compliance",
+  "checklist": [
+    {
+      "id": "driver_identified",
+      "name": "Driver Identified",
+      "principle": "Driver Proximity",
+      "requirement": "Physical driver explicit for each regime",
+      "verification_steps": [
+        "Identify the physical phenomenon being studied",
+        "Determine what drives the phenomenon in each regime",
+        "Document the driver-observable coupling",
+        "Verify primary variable is most directly coupled"
+      ],
+      "common_failures": [
+        "Using mass proxies when acceleration is the driver",
+        "Not specifying regime-dependent drivers",
+        "Implicit driver assumptions"
+      ],
+      "example_pass": {
+        "domain": "Galaxy dynamics",
+        "driver": "Gravitational response",
+        "regime": "Low acceleration (g_bar < 1e-11 m/s²)",
+        "primary_variable": "Centripetal acceleration"
+      }
+    },
+    {
+      "id": "regime_tagged",
+      "name": "Regime Tagged",
+      "principle": "Regime Tagging",
+      "requirement": "Each data point labeled with dominant regime",
+      "verification_steps": [
+        "Define regime boundaries in parameter space",
+        "Assign each measurement to a regime",
+        "Label with epistemic layer (L0-L3)",
+        "Document mixed-regime data"
+      ],
+      "common_failures": [
+        "Mixing high-g and low-g data without tagging",
+        "Not specifying epistemic layer",
+        "Ignoring regime boundary effects"
+      ],
+      "example_pass": {
+        "measurement": {"g_bar": 5e-12, "g_obs": 8e-12},
+        "regime_tag": "low_acceleration",
+        "layer_tag": "L2",
+        "boundary": "g_bar < 1e-11 m/s²"
+      }
+    },
+    {
+      "id": "proxy_chain_documented",
+      "name": "Proxy Chain Documented",
+      "principle": "Proxy Accounting",
+      "requirement": "Full transformation sequence recorded",
+      "verification_steps": [
+        "List all steps from L0 to final quantity",
+        "Document transformation at each step",
+        "Record assumptions required",
+        "Note parameters involved"
+      ],
+      "common_failures": [
+        "Skipping intermediate transformations",
+        "Hidden model assumptions",
+        "Undocumented coordinate choices"
+      ],
+      "example_pass": {
+        "chain": [
+          {"step": "Spectral velocity", "layer": "L0", "transformation": "Raw measurement"},
+          {"step": "Rotation velocity", "layer": "L1", "transformation": "Inclination correction"},
+          {"step": "Acceleration", "layer": "L2", "transformation": "g = V²/R"}
+        ]
+      }
+    },
+    {
+      "id": "uncertainties_propagated",
+      "name": "Uncertainties Propagated",
+      "principle": "Proxy Accounting",
+      "requirement": "Each transformation adds to error budget",
+      "verification_steps": [
+        "Assign uncertainty to each proxy step",
+        "Document uncertainty sources",
+        "Apply propagation formula",
+        "Report total uncertainty"
+      ],
+      "common_failures": [
+        "Ignoring model uncertainty",
+        "Not propagating through transformations",
+        "Missing systematic uncertainties"
+      ],
+      "example_pass": {
+        "uncertainty_budget": [
+          {"step": "L0", "sigma": 0.01, "source": "Instrumental"},
+          {"step": "L1", "sigma": 0.02, "source": "Inclination"},
+          {"step": "L2", "sigma": 0.05, "source": "Distance"}
+        ],
+        "total_sigma": 0.055
+      }
+    },
+    {
+      "id": "cross_validation_performed",
+      "name": "Cross-Validation Performed",
+      "principle": "Cross-Validation",
+      "requirement": "Multiple proxy chains compared",
+      "verification_steps": [
+        "Identify independent measurement pathways",
+        "Compute results from each pathway",
+        "Compare with statistical tests",
+        "Document convergence or divergence"
+      ],
+      "common_failures": [
+        "Single proxy chain only",
+        "Not testing alternative pathways",
+        "Ignoring divergent results"
+      ],
+      "example_pass": {
+        "chains_compared": 2,
+        "chain_A": "Spectral → Velocity → Acceleration",
+        "chain_B": "Photometry → Mass → Acceleration",
+        "result": "Convergent within 1σ"
+      }
+    }
+  ],
+  "scoring": {
+    "all_pass": {
+      "status": "VALID",
+      "description": "Full RCMP compliance"
+    },
+    "partial_pass": {
+      "status": "PARTIAL",
+      "minimum_items": 3,
+      "description": "Partial compliance - review failed items"
+    },
+    "fail": {
+      "status": "INVALID",
+      "maximum_pass": 2,
+      "description": "RCMP validation failed - significant revisions needed"
+    }
+  },
+  "output_template": {
+    "header": "RCMP Validation Report",
+    "sections": [
+      "Analysis identification",
+      "Checklist results",
+      "Warnings and recommendations",
+      "Overall status"
+    ],
+    "format": "markdown"
+  }
+}

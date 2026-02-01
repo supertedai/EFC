@@ -1,0 +1,165 @@
+{
+  "id": "rcmp-measurement-principle",
+  "title": "The Regime-Consistent Measurement Principle (RCMP): A Methodological Framework for Multi-Scale Physics",
+  "shortTitle": "RCMP Framework",
+  "path": "docs/papers/efc/The-Regime-Consistent-Measurement-Principle-RCMP-A-Methodological-Framework-for-Multi-Scale-Physics",
+  "pdf": "The_Regime_Consistent_Measurement_Principle__RCMP___A_Methodological_Framework_for_Multi_Scale_Physics-1.pdf",
+  "version": "1.0",
+  "date": "2026-01-01",
+  "doi": "10.6084/m9.figshare.31222900",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "layer": "methodology",
+  "type": "paper",
+  "status": "published",
+  "keywords": [
+    "measurement methodology",
+    "regime validity",
+    "proxy variables",
+    "galactic dynamics",
+    "radial acceleration relation",
+    "epistemology of physics",
+    "multi-scale physics",
+    "uncertainty propagation",
+    "L0-L3 epistemic layers",
+    "cross-regime mapping",
+    "SPARC dataset"
+  ],
+  "concepts": {
+    "primary": [
+      "regime-consistent-measurement",
+      "driver-proximity",
+      "regime-tagging",
+      "proxy-accounting",
+      "coordinate-humility",
+      "cross-validation"
+    ],
+    "epistemic": [
+      "L0-direct-measurement",
+      "L1-calibrated-observable",
+      "L2-derived-quantity",
+      "L3-theoretical-construct"
+    ]
+  },
+  "structure": {
+    "sections": [
+      {
+        "number": 1,
+        "title": "Introduction",
+        "topic": "Multi-regime measurement challenges"
+      },
+      {
+        "number": 2,
+        "title": "Statement of the Principle",
+        "topic": "RCMP formal definition and core principles"
+      },
+      {
+        "number": 3,
+        "title": "Theoretical Foundation",
+        "topic": "L0-L3 epistemic layers and regime validity"
+      },
+      {
+        "number": 4,
+        "title": "Application: Galaxy Rotation Curves",
+        "topic": "SPARC dataset analysis demonstration"
+      },
+      {
+        "number": 5,
+        "title": "Generalization",
+        "topic": "Broader applicability and theory choice"
+      },
+      {
+        "number": 6,
+        "title": "Formal Specification",
+        "topic": "Mathematical formalization"
+      },
+      {
+        "number": 7,
+        "title": "Discussion",
+        "topic": "Limitations and future development"
+      },
+      {
+        "number": 8,
+        "title": "Conclusion",
+        "topic": "Summary and implications"
+      }
+    ],
+    "appendices": [
+      {
+        "letter": "A",
+        "title": "Worked Example: Low-g Scatter Analysis"
+      }
+    ]
+  },
+  "files": {
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "index.json",
+      "RCMP.jsonld",
+      "schema.json",
+      "CITATION.cff",
+      "citations.bib"
+    ],
+    "source": [
+      "src/__init__.py",
+      "src/rcmp_validator.py",
+      "src/regime_tagger.py",
+      "src/proxy_chain.py",
+      "src/uncertainty_propagator.py"
+    ],
+    "data": [
+      "data/epistemic_layers.json",
+      "data/validation_checklist.json",
+      "data/galaxy_example.json"
+    ],
+    "examples": [
+      "examples/rcmp_galaxy_analysis.py"
+    ],
+    "docs": [
+      "docs/RCMP-framework.md",
+      "docs/epistemic-layers.md",
+      "docs/application-galaxy.md"
+    ]
+  },
+  "relationships": {
+    "extends": [
+      {
+        "id": "l0-l3-regime-architecture",
+        "doi": "10.6084/m9.figshare.31112536"
+      }
+    ],
+    "relatedTo": [
+      {
+        "id": "validity-aware-ai",
+        "doi": "10.6084/m9.figshare.31122970"
+      },
+      {
+        "id": "entropy-bounded-empiricism",
+        "framework": "EFC"
+      }
+    ],
+    "validates": [
+      {
+        "dataset": "SPARC",
+        "url": "http://astroweb.cwru.edu/SPARC/"
+      }
+    ]
+  },
+  "validation": {
+    "rcmp_checklist": {
+      "driver_identified": true,
+      "regime_tagged": true,
+      "proxy_chain_documented": true,
+      "uncertainties_propagated": true,
+      "cross_validation_performed": true
+    }
+  }
+}

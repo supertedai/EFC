@@ -1,0 +1,170 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/schema/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "bibo": "http://purl.org/ontology/bibo/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31222900",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "DOI",
+      "value": "10.6084/m9.figshare.31222900"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "GitHub",
+      "value": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/The-Regime-Consistent-Measurement-Principle-RCMP-A-Methodological-Framework-for-Multi-Scale-Physics"
+    }
+  ],
+  "name": "The Regime-Consistent Measurement Principle (RCMP): A Methodological Framework for Multi-Scale Physics",
+  "headline": "A methodological framework for preventing interpretive errors in multi-regime measurements",
+  "alternativeHeadline": "RCMP: Regime-Consistent Measurement Principle",
+  "description": "The Regime-Consistent Measurement Principle (RCMP) is a methodological framework designed to prevent interpretive errors when measurements span multiple physical regimes. The principle states that an observable must be interpreted through the variable most directly coupled to the physical driver in the phenomenon's operative regime, with cross-regime mappings requiring explicit transformation and uncertainty propagation.",
+  "abstract": "We introduce the Regime-Consistent Measurement Principle (RCMP), a methodological framework designed to prevent interpretive errors when measurements span multiple physical regimes. The principle states that an observable must be interpreted through the variable most directly coupled to the physical driver in the phenomenon's operative regime, with cross-regime mappings requiring explicit transformation and uncertainty propagation. We formalize five core principles: driver proximity, regime tagging, proxy accounting, coordinate humility, and cross-validation. The framework is demonstrated through application to galaxy rotation curve analysis, where it successfully distinguishes between per-point scatter (intra-galaxy variability) and per-galaxy median response (inter-galaxy physics), resolving apparent discrepancies in the low-acceleration regime.",
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "givenName": "Morten",
+    "familyName": "Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Independent Researcher",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Norway"
+      }
+    }
+  },
+  "datePublished": "2026-01-01",
+  "dateCreated": "2026-01-01",
+  "version": "1.0",
+  "inLanguage": ["en", "no"],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": [
+    "measurement methodology",
+    "regime validity",
+    "proxy variables",
+    "galactic dynamics",
+    "radial acceleration relation",
+    "epistemology of physics",
+    "multi-scale physics",
+    "uncertainty propagation",
+    "L0-L3 epistemic layers",
+    "cross-regime mapping"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Regime-Consistent Measurement Principle",
+      "description": "An observable must be interpreted through the variable most directly coupled to the physical driver in the phenomenon's operative regime"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Driver Proximity",
+      "description": "Choose the most directly coupled observable within the operative regime"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Regime Tagging",
+      "description": "Each measurement must be labeled with its dominant regime(s) using L0-L3 hierarchy"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Proxy Accounting",
+      "description": "Each transformation carries an explicit uncertainty budget entry"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Coordinate Humility",
+      "description": "The choice of coordinate system is not epistemically neutral"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Cross-Validation",
+      "description": "Consistency must be tested across different proxy chains"
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Chapter",
+      "name": "Statement of the Principle",
+      "position": 2,
+      "description": "Formal definition and five core principles of RCMP"
+    },
+    {
+      "@type": "Chapter",
+      "name": "Theoretical Foundation",
+      "position": 3,
+      "description": "L0-L3 epistemic layer structure and regime-dependent validity"
+    },
+    {
+      "@type": "Chapter",
+      "name": "Application: Galaxy Rotation Curves",
+      "position": 4,
+      "description": "SPARC dataset analysis demonstrating RCMP methodology"
+    },
+    {
+      "@type": "Chapter",
+      "name": "Formal Specification",
+      "position": 6,
+      "description": "Mathematical formalization of RCMP"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Radial Acceleration Relation in Rotationally Supported Galaxies",
+      "author": ["Stacy S. McGaugh", "Federico Lelli", "James M. Schombert"],
+      "datePublished": "2016",
+      "isPartOf": {
+        "@type": "PublicationVolume",
+        "name": "Physical Review Letters",
+        "volumeNumber": "117"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.1103/PhysRevLett.117.201101"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves",
+      "author": ["Federico Lelli", "Stacy S. McGaugh", "James M. Schombert"],
+      "datePublished": "2017",
+      "isPartOf": {
+        "@type": "PublicationVolume",
+        "name": "The Astronomical Journal",
+        "volumeNumber": "153"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.3847/1538-3881/aa5c8b"
+      }
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC) Research Program",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "efc:epistemicLayer": "methodology",
+  "efc:validationStatus": "published",
+  "efc:corePrinciples": [
+    "driver-proximity",
+    "regime-tagging",
+    "proxy-accounting",
+    "coordinate-humility",
+    "cross-validation"
+  ]
+}

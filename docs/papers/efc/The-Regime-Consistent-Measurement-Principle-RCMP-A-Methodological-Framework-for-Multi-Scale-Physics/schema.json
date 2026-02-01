@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schema/rcmp/v1",
+  "title": "RCMP Schema",
+  "description": "JSON Schema for Regime-Consistent Measurement Principle data structures",
+  "definitions": {
+    "EpistemicLayer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"],
+      "description": "Epistemic layer classification (L0=direct measurement, L1=calibrated, L2=derived, L3=theoretical)"
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the measurement"
+        },
+        "observable": {
+          "type": "string",
+          "description": "Name of the measured observable"
+        },
+        "value": {
+          "type": "number",
+          "description": "Measured value"
+        },
+        "uncertainty": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Measurement uncertainty (1-sigma)"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Physical unit"
+        },
+        "layer": {
+          "$ref": "#/definitions/EpistemicLayer"
+        },
+        "regime": {
+          "type": "string",
+          "description": "Operative regime identifier"
+        }
+      },
+      "required": ["observable", "value", "layer"]
+    },
+    "ProxyStep": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of this proxy step"
+        },
+        "from_layer": {
+          "$ref": "#/definitions/EpistemicLayer"
+        },
+        "to_layer": {
+          "$ref": "#/definitions/EpistemicLayer"
+        },
+        "transformation": {
+          "type": "string",
+          "description": "Mathematical or procedural transformation applied"
+        },
+        "uncertainty_added": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Uncertainty introduced by this step"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Assumptions required for this transformation"
+        }
+      },
+      "required": ["name", "from_layer", "to_layer"]
+    },
+    "ProxyChain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProxyStep"
+          },
+          "minItems": 1
+        },
+        "total_uncertainty": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total propagated uncertainty"
+        }
+      },
+      "required": ["steps"]
+    },
+    "Driver": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the physical driver"
+        },
+        "regime": {
+          "type": "string",
+          "description": "Regime where this driver is operative"
+        },
+        "boundary_condition": {
+          "type": "string",
+          "description": "Condition defining regime boundary"
+        },
+        "primary_variable": {
+          "type": "string",
+          "description": "Variable most directly coupled to this driver"
+        }
+      },
+      "required": ["name", "regime"]
+    },
+    "ValidationChecklist": {
+      "type": "object",
+      "properties": {
+        "driver_identified": {
+          "type": "boolean",
+          "description": "Physical driver explicit for each regime"
+        },
+        "regime_tagged": {
+          "type": "boolean",
+          "description": "Each data point labeled with dominant regime"
+        },
+        "proxy_chain_documented": {
+          "type": "boolean",
+          "description": "Full transformation sequence recorded"
+        },
+        "uncertainties_propagated": {
+          "type": "boolean",
+          "description": "Each transformation adds to error budget"
+        },
+        "cross_validation_performed": {
+          "type": "boolean",
+          "description": "Multiple proxy chains compared"
+        }
+      },
+      "required": [
+        "driver_identified",
+        "regime_tagged",
+        "proxy_chain_documented",
+        "uncertainties_propagated",
+        "cross_validation_performed"
+      ]
+    },
+    "RCMPAnalysis": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "driver": {
+          "$ref": "#/definitions/Driver"
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Measurement"
+          }
+        },
+        "proxy_chains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProxyChain"
+          }
+        },
+        "validation": {
+          "$ref": "#/definitions/ValidationChecklist"
+        },
+        "conclusion": {
+          "type": "string",
+          "description": "RCMP-compliant conclusion (problem definition, not resolution)"
+        }
+      },
+      "required": ["driver", "measurements", "proxy_chains", "validation"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "analysis": {
+      "$ref": "#/definitions/RCMPAnalysis"
+    }
+  }
+}
