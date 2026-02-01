@@ -1,0 +1,73 @@
+{
+  "id": "hubble-tension-regime-mismatch",
+  "title": "The Hubble Tension as Regime Mismatch: Background Gravity vs Structure Gravity in Energy-Flow Cosmology",
+  "short_title": "Hubble Tension as Regime Mismatch",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31224247",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "research_paper",
+  "epistemic_layer": "B",
+  "epistemic_status": "Regime-reinterpretation hypothesis, not yet independent measurement",
+  "keywords": [
+    "Hubble tension",
+    "regime-dependent gravity",
+    "entropic gravity",
+    "background vs structure",
+    "EFC",
+    "environment-effective theory"
+  ],
+  "abstract": "Proposes that the Hubble tension arises from regime mismatch: early-universe probes measure background gravity G₀, while late-universe probes operate in structure-dominated environments with G_eff ≠ G₀. Predicts H₀_structure = 73 km/s/Mpc exactly.",
+  "key_insight": "The distinction between background and structure is not purely temporal but environmental",
+  "two_regimes": {
+    "background": {
+      "description": "Linear, smooth cosmological background",
+      "effective_G": "G₀",
+      "probes": ["CMB", "BAO"],
+      "h0_inferred": "~67 km/s/Mpc"
+    },
+    "structure": {
+      "description": "Nonlinear, collapsed structures",
+      "effective_G": "G₀ exp(a_G · ΔΦ)",
+      "probes": ["SN Ia + Cepheids", "TRGB", "Masers"],
+      "h0_inferred": "~73 km/s/Mpc"
+    }
+  },
+  "key_equations": {
+    "regime_dependent_G": "G_eff(R) = G₀ for background, G₀ exp(a_G · ΔΦ) for structure",
+    "friedmann_constraint": "a_H₀ = ½ a_G",
+    "h0_ratio": "H_structure / H_background = exp(½ a_G ΔΦ) = 1.083"
+  },
+  "numerical_result": {
+    "aG": 0.094,
+    "delta_phi": 1.71,
+    "h0_background": 67.4,
+    "h0_structure_predicted": 73.0,
+    "h0_structure_observed": 73.0,
+    "agreement": "exact"
+  },
+  "falsification_criteria": [
+    "Environment dependence: SNe in voids should give lower H₀ than SNe in clusters",
+    "Standard candle systematics: SN Ia magnitude residuals ΔM ~ 0.02 mag by environment",
+    "Probe consistency: All background probes → ~67; all structure probes → ~73",
+    "a_G from SPARC: Direct fitting must yield a_G ≈ 0.1 ± 0.02"
+  ],
+  "fail_condition": "If SN Ia residuals show NO environmental dependence at ΔM ~ 0.02 mag level",
+  "related_papers": [
+    {
+      "id": "h0-rar-unification",
+      "doi": "10.6084/m9.figshare.31223908",
+      "relationship": "derives a_G from MOND"
+    },
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "relationship": "mathematical_foundation"
+    }
+  ]
+}
