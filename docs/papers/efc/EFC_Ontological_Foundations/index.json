@@ -1,0 +1,56 @@
+{
+  "id": "efc-ontological-foundations",
+  "title": "EFC Ontological Foundations v1.0: The Co-Primary Structure",
+  "shortTitle": "EFC Ontology",
+  "path": "docs/papers/efc/EFC_Ontological_Foundations",
+  "pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "license": "CC-BY-4.0",
+  "layer": "ontology",
+  "type": "paper",
+  "status": "methodological",
+  "epistemicStatus": "Layer C - Coherence argument, not empirical claim",
+  "keywords": [
+    "ontology",
+    "co-primacy",
+    "pre-Planck physics",
+    "entropy",
+    "energy-flow",
+    "emergence",
+    "EFC",
+    "differentiation"
+  ],
+  "concepts": {
+    "primary": ["co-primary-structure", "pre-geometric-potential", "planck-transition", "differentiation"],
+    "hypotheses": {
+      "H1": "Energy-flow primacy (fails circularity test)",
+      "H2": "Entropy primacy (fails circularity test)",
+      "H3": "Co-primary structure (passes all tests)"
+    },
+    "phases": ["pre-Planck", "Planck-transition", "post-Planck"],
+    "frameworks_referenced": ["Wheeler", "Verlinde", "Prigogine", "Holographic-Principle"]
+  },
+  "structure": {
+    "sections": [
+      {"number": 1, "title": "The Circularity Problem"},
+      {"number": 2, "title": "Cross-Domain Evidence"},
+      {"number": 3, "title": "The Co-Primary Resolution"},
+      {"number": 4, "title": "Integration with EFC Architecture"},
+      {"number": 5, "title": "Epistemic Status and Limitations"},
+      {"number": 6, "title": "Conclusion"}
+    ]
+  },
+  "relationships": {
+    "foundationFor": [
+      {"id": "core-lock", "doi": "10.6084/m9.figshare.31223503"},
+      {"id": "ebe-core-principles", "doi": "10.6084/m9.figshare.31222903"}
+    ],
+    "relatedTo": [{"id": "energy-flow-cosmology", "doi": "10.6084/m9.figshare.27315821"}]
+  },
+  "efcArchitectureLayer": 0
+}

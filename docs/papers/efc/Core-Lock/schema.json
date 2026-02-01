@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/core-lock.schema.json",
+  "title": "EBE Core Lock Schema",
+  "description": "Schema for validating Core Lock mathematical structures",
+  "type": "object",
+  "definitions": {
+    "GridStateFunction": {
+      "type": "object",
+      "properties": {
+        "f0": {
+          "type": "number",
+          "description": "Initial value f₀"
+        },
+        "delta_s": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Characteristic entropy scale ΔS"
+        }
+      },
+      "required": ["f0", "delta_s"]
+    },
+    "BetaConstraint": {
+      "type": "object",
+      "properties": {
+        "delta_s": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Entropy scale in β_f(S) = -1/ΔS"
+        }
+      },
+      "required": ["delta_s"]
+    },
+    "ProjectionLaw": {
+      "type": "object",
+      "properties": {
+        "observable": {
+          "type": "string",
+          "description": "Name of projected observable"
+        },
+        "base_function": {
+          "$ref": "#/definitions/GridStateFunction"
+        },
+        "phase_integral": {
+          "type": "boolean",
+          "description": "Whether phase Φ(S) is computed"
+        }
+      },
+      "required": ["observable", "base_function"]
+    },
+    "CorrelationTest": {
+      "type": "object",
+      "properties": {
+        "variable_1": {
+          "type": "string"
+        },
+        "variable_2": {
+          "type": "string"
+        },
+        "ratio": {
+          "type": "number",
+          "description": "Expected constant ratio a_v/a_c"
+        },
+        "measured_ratio": {
+          "type": "number"
+        },
+        "uncertainty": {
+          "type": "number",
+          "minimum": 0
+        },
+        "passes": {
+          "type": "boolean"
+        }
+      },
+      "required": ["variable_1", "variable_2", "ratio"]
+    },
+    "SimulationResult": {
+      "type": "object",
+      "properties": {
+        "s_values": {
+          "type": "array",
+          "items": {"type": "number"}
+        },
+        "f_values": {
+          "type": "array",
+          "items": {"type": "number"}
+        },
+        "beta_values": {
+          "type": "array",
+          "items": {"type": "number"}
+        },
+        "constraint_satisfied": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "grid_state": {
+      "$ref": "#/definitions/GridStateFunction"
+    },
+    "beta_constraint": {
+      "$ref": "#/definitions/BetaConstraint"
+    },
+    "projection_laws": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ProjectionLaw"
+      }
+    },
+    "falsification_tests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CorrelationTest"
+      }
+    }
+  }
+}
