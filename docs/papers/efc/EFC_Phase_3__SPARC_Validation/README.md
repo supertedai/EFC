@@ -2,7 +2,7 @@
 
 ## AI-Friendly Package
 
-**DOI**: [10.6084/m9.figshare.31224397](https://doi.org/10.6084/m9.figshare.31224397)
+**DOI**: [10.6084/m9.figshare.31224538](https://doi.org/10.6084/m9.figshare.31224538)
 **Version**: 1.0
 **Author**: Morten Magnusson (ORCID: 0009-0002-4860-5095)
 **Date**: February 2026
