@@ -1,0 +1,47 @@
+{
+  "entropy_mapping": {
+    "z_trans": 3.0,
+    "delta": 0.5,
+    "description": "Sigmoid entropy mapping S(z) parameters",
+    "z_trans_interpretation": "Cosmic Noon - peak of star formation"
+  },
+  "phase": {
+    "f0": 1.0,
+    "delta_s": 1.0,
+    "delta_phi": 1.71,
+    "description": "Accumulated phase parameters"
+  },
+  "mond": {
+    "a0": 1.2e-10,
+    "a0_unit": "m/s²",
+    "interpolation_form": "simple",
+    "transition_g_ratio": 5.0,
+    "description": "MOND acceleration scale and interpolation"
+  },
+  "h0_measurements": {
+    "h0_cmb": {
+      "value": 67.4,
+      "uncertainty": 0.5,
+      "source": "Planck 2018",
+      "method": "CMB"
+    },
+    "h0_local": {
+      "value": 73.0,
+      "uncertainty": 1.0,
+      "source": "SH0ES 2022",
+      "method": "Cepheid distance ladder"
+    }
+  },
+  "derived_values": {
+    "aG_from_h0_tension": 0.094,
+    "aG_from_mond_transition": 0.107,
+    "discrepancy_percent": 14,
+    "h0_predicted": 73.9,
+    "prediction_accuracy_percent": 98.8
+  },
+  "key_relations": {
+    "friedmann_constraint": "a_H0 = 0.5 * a_G",
+    "effective_gravity": "G_eff = G0 * exp(a_G * delta_phi)",
+    "h0_prediction": "H0_pred = H0_cmb * exp(a_H0 * delta_phi)"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31223908",
+  "name": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
+  "headline": "H₀ tension and RAR arise from entropy-driven gravity modification",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "Hubble tension",
+    "radial acceleration relation",
+    "MOND",
+    "entropic gravity",
+    "modified gravity",
+    "Energy-Flow Cosmology",
+    "gravitational coupling"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:HubbleTension",
+      "name": "Hubble Tension",
+      "description": "4-6σ discrepancy between H₀ from CMB (~67.4) vs local (~73.0 km/s/Mpc)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RadialAccelerationRelation",
+      "name": "Radial Acceleration Relation",
+      "description": "Tight correlation between observed and baryonic accelerations in galaxies"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:GravitationalCouplingCoefficient",
+      "name": "Gravitational Coupling Coefficient (a_G)",
+      "description": "Entropy-phase coupling for gravitational enhancement, ~0.1"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:FriedmannConstraint",
+      "name": "Friedmann Constraint",
+      "description": "a_H₀ = ½ a_G, emerging from H² ∝ G_eff structure"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:MONDInterpolation",
+      "name": "MOND Interpolation Function",
+      "description": "μ(x) = x/(1+x) connecting Newtonian and deep-MOND regimes"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Unified Origin Claim",
+    "description": "Hubble tension and RAR arise from same entropy-driven gravity modification"
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31223503",
+      "name": "EBE Core Lock v1.0: The S-Dynamic Foundation"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Radial Acceleration Relation in Rotationally Supported Galaxies",
+      "author": "McGaugh, Lelli, Schombert",
+      "datePublished": "2016"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SH0ES: Local H₀ Measurement",
+      "author": "Riess et al.",
+      "datePublished": "2022"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 Cosmological Parameters",
+      "author": "Planck Collaboration",
+      "datePublished": "2020"
+    }
+  ],
+  "epistemicStatus": "Layer B - Mathematical prediction compatible with current observations"
+}

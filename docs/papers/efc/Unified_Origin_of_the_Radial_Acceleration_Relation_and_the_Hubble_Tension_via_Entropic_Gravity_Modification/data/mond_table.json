@@ -1,0 +1,74 @@
+{
+  "description": "MOND interpolation function values and implied a_G",
+  "interpolation_form": "simple: μ(x) = x/(1+x)",
+  "delta_phi": 1.71,
+  "a0": "1.2e-10 m/s²",
+  "table": [
+    {
+      "g_ratio": 0.5,
+      "mu": 0.333,
+      "mu_inverse": 3.000,
+      "ln_mu_inv": 1.099,
+      "implied_aG": 0.643,
+      "regime": "deep_mond"
+    },
+    {
+      "g_ratio": 1.0,
+      "mu": 0.500,
+      "mu_inverse": 2.000,
+      "ln_mu_inv": 0.693,
+      "implied_aG": 0.406,
+      "regime": "mond"
+    },
+    {
+      "g_ratio": 2.0,
+      "mu": 0.667,
+      "mu_inverse": 1.500,
+      "ln_mu_inv": 0.405,
+      "implied_aG": 0.238,
+      "regime": "transition"
+    },
+    {
+      "g_ratio": 5.0,
+      "mu": 0.833,
+      "mu_inverse": 1.200,
+      "ln_mu_inv": 0.182,
+      "implied_aG": 0.107,
+      "regime": "transition",
+      "note": "Cosmic web average - used for unification"
+    },
+    {
+      "g_ratio": 10.0,
+      "mu": 0.909,
+      "mu_inverse": 1.100,
+      "ln_mu_inv": 0.095,
+      "implied_aG": 0.056,
+      "regime": "newtonian"
+    },
+    {
+      "g_ratio": 20.0,
+      "mu": 0.952,
+      "mu_inverse": 1.050,
+      "ln_mu_inv": 0.049,
+      "implied_aG": 0.029,
+      "regime": "newtonian"
+    },
+    {
+      "g_ratio": 50.0,
+      "mu": 0.980,
+      "mu_inverse": 1.020,
+      "ln_mu_inv": 0.020,
+      "implied_aG": 0.012,
+      "regime": "newtonian"
+    },
+    {
+      "g_ratio": 100.0,
+      "mu": 0.990,
+      "mu_inverse": 1.010,
+      "ln_mu_inv": 0.010,
+      "implied_aG": 0.006,
+      "regime": "newtonian"
+    }
+  ],
+  "key_insight": "At g_bar/a0 = 5 (transition zone where cosmic structures reside), a_G ≈ 0.107, which is within 14% of a_G ≈ 0.094 derived from H0 tension"
+}

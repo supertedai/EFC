@@ -1,0 +1,80 @@
+{
+  "id": "efc-h0-unification",
+  "title": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
+  "short_title": "H0-RAR Unification",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31223908",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "research_paper",
+  "epistemic_layer": "B",
+  "epistemic_status": "Mathematical prediction compatible with current observations",
+  "keywords": [
+    "Hubble tension",
+    "radial acceleration relation",
+    "MOND",
+    "entropic gravity",
+    "modified gravity",
+    "EFC",
+    "gravitational coupling"
+  ],
+  "abstract": "Demonstrates that the Hubble tension and RAR arise from the same mechanism: entropy-driven modification of effective gravity. Predicts H₀ ≈ 74 km/s/Mpc from galaxy rotation data, matching observations within 1.2%.",
+  "key_results": {
+    "aG_from_h0_tension": 0.094,
+    "aG_from_mond_transition": 0.107,
+    "discrepancy": "14%",
+    "h0_predicted": 73.9,
+    "h0_observed": 73.0,
+    "prediction_accuracy": "1.2%"
+  },
+  "key_equations": {
+    "grid_state_function": "f(S) = f₀ exp(-S/ΔS)",
+    "accumulated_phase": "Φ(S) = (ΔS/f₀)[exp(S/ΔS) - 1]",
+    "entropy_mapping": "S(z) = ½[1 - tanh((ln(1+z) - ln(1+z_trans))/Δ)]",
+    "effective_gravity": "G_eff(S) = G₀ exp(a_G · ΔΦ)",
+    "friedmann_constraint": "a_H₀ = ½ a_G",
+    "mond_aG": "a_G = ln(μ⁻¹) / ΔΦ"
+  },
+  "parameters": {
+    "z_trans": 3,
+    "delta": 0.5,
+    "delta_phi": 1.71,
+    "a0_mond": "1.2e-10 m/s²",
+    "h0_cmb": "67.4 km/s/Mpc",
+    "h0_local": "73.0 km/s/Mpc"
+  },
+  "falsification_criteria": [
+    "a_G from SPARC fits must yield ~0.1",
+    "Correlation signature d ln v / d ln c must be constant"
+  ],
+  "related_papers": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "relationship": "mathematical_foundation"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "relationship": "methodological_framework"
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "relationship": "measurement_protocol"
+    }
+  ],
+  "files": {
+    "paper": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification.pdf",
+    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
+    "metadata": ["CITATION.cff", "index.json", "H0Unification.jsonld", "schema.json"],
+    "source_code": ["src/entropy_mapping.py", "src/phase_calculator.py", "src/h0_predictor.py", "src/mond_interpolation.py", "src/unification.py"],
+    "data": ["data/h0_measurements.json", "data/mond_table.json", "data/parameters.json"],
+    "examples": ["examples/h0_prediction.py", "examples/unification_demo.py"]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "description": "Hubble constant measurements from different methods",
+  "unit": "km/s/Mpc",
+  "measurements": [
+    {
+      "id": "planck_2018",
+      "value": 67.4,
+      "uncertainty": 0.5,
+      "source": "Planck Collaboration",
+      "year": 2020,
+      "method": "CMB",
+      "reference": "A&A 641, A6 (2020)",
+      "doi": "10.1051/0004-6361/201833910",
+      "category": "early_universe"
+    },
+    {
+      "id": "sh0es_2022",
+      "value": 73.04,
+      "uncertainty": 1.04,
+      "source": "SH0ES Team (Riess et al.)",
+      "year": 2022,
+      "method": "Cepheid distance ladder",
+      "reference": "ApJ 934, L7 (2022)",
+      "doi": "10.3847/2041-8213/ac5c5b",
+      "category": "local"
+    },
+    {
+      "id": "trgb_2019",
+      "value": 69.8,
+      "uncertainty": 1.9,
+      "source": "Freedman et al.",
+      "year": 2019,
+      "method": "TRGB distance ladder",
+      "reference": "ApJ 882, 34 (2019)",
+      "category": "local"
+    },
+    {
+      "id": "h0licow_2020",
+      "value": 73.3,
+      "uncertainty": 1.8,
+      "source": "H0LiCOW",
+      "year": 2020,
+      "method": "Time-delay cosmography",
+      "reference": "MNRAS 498, 1420 (2020)",
+      "category": "local"
+    },
+    {
+      "id": "megamaser_2020",
+      "value": 73.9,
+      "uncertainty": 3.0,
+      "source": "Megamaser Cosmology Project",
+      "year": 2020,
+      "method": "Water masers",
+      "category": "local"
+    }
+  ],
+  "tension_analysis": {
+    "h0_early": 67.4,
+    "h0_late": 73.0,
+    "tension_sigma": "4-6σ",
+    "ln_ratio": 0.0798,
+    "delta_phi": 1.71,
+    "derived_aH0": 0.0467,
+    "derived_aG": 0.0935
+  }
+}
