@@ -1,0 +1,54 @@
+{
+  "description": "BOSS DR12 consensus BAO measurements",
+  "reference": "Alam et al. (2017) MNRAS 470, 2617",
+  "arxiv": "1607.03155",
+  "measurements": {
+    "z_eff": [0.38, 0.51, 0.61],
+    "DM_over_rs": {
+      "values": [10.27, 13.38, 15.87],
+      "description": "Comoving angular diameter distance / sound horizon"
+    },
+    "DH_over_rs": {
+      "values": [24.89, 22.43, 20.75],
+      "description": "Hubble distance / sound horizon"
+    }
+  },
+  "covariance_structure": {
+    "type": "Full 6x6 correlation matrix",
+    "ordering": "DM(z1), DM(z2), DM(z3), DH(z1), DH(z2), DH(z3)",
+    "note": "DM and DH are correlated within and across redshift bins"
+  },
+  "baseline_cosmology": {
+    "source": "Planck 2018",
+    "H0": 67.4,
+    "H0_unit": "km/s/Mpc",
+    "Omega_m": 0.315,
+    "r_s": 147.09,
+    "r_s_unit": "Mpc"
+  },
+  "chi2_results": {
+    "LCDM": {
+      "value": 20.83,
+      "dof": 6,
+      "note": "Planck 2018 baseline"
+    },
+    "EFC_DESI_params": {
+      "value": 13.06,
+      "z_L1L2": 1.01,
+      "alpha_L2": 0.045,
+      "note": "Transfer test (no refit)"
+    },
+    "delta_chi2": -7.77
+  },
+  "eboss_extension": {
+    "tracers": ["LRG", "ELG", "QSO", "Lya"],
+    "combined_N": 14,
+    "reference": "Alam et al. (2021) Phys. Rev. D 103, 083533",
+    "best_fit": {
+      "z_L1L2": 1.60,
+      "alpha_L2": 0.036,
+      "delta_AICc": -19.3,
+      "delta_BIC": -19.1
+    }
+  }
+}
