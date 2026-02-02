@@ -1,0 +1,74 @@
+{
+  "description": "DESI DR2 BAO measurements used in EFC regime-transition fit",
+  "source": "DESI Collaboration DR2 (2025)",
+  "measurements": [
+    {
+      "tracer": "BGS",
+      "z_eff": 0.30,
+      "D_M_over_rd": 7.93,
+      "D_M_over_rd_error": 0.15,
+      "D_H_over_rd": 20.98,
+      "D_H_over_rd_error": 0.61
+    },
+    {
+      "tracer": "LRG1",
+      "z_eff": 0.51,
+      "D_M_over_rd": 13.62,
+      "D_M_over_rd_error": 0.25,
+      "D_H_over_rd": 20.98,
+      "D_H_over_rd_error": 0.61
+    },
+    {
+      "tracer": "LRG2",
+      "z_eff": 0.71,
+      "D_M_over_rd": 17.86,
+      "D_M_over_rd_error": 0.35,
+      "D_H_over_rd": 20.08,
+      "D_H_over_rd_error": 0.52
+    },
+    {
+      "tracer": "LRG3+ELG1",
+      "z_eff": 0.93,
+      "D_M_over_rd": 21.71,
+      "D_M_over_rd_error": 0.28,
+      "D_H_over_rd": 17.88,
+      "D_H_over_rd_error": 0.35
+    },
+    {
+      "tracer": "ELG2",
+      "z_eff": 1.32,
+      "D_M_over_rd": 27.79,
+      "D_M_over_rd_error": 0.69,
+      "D_H_over_rd": 13.82,
+      "D_H_over_rd_error": 0.42
+    },
+    {
+      "tracer": "QSO",
+      "z_eff": 1.49,
+      "D_M_over_rd": 30.69,
+      "D_M_over_rd_error": 0.80,
+      "D_H_over_rd": 13.38,
+      "D_H_over_rd_error": 0.42
+    },
+    {
+      "tracer": "Lya QSO",
+      "z_eff": 2.33,
+      "D_M_over_rd": 39.71,
+      "D_M_over_rd_error": 0.94,
+      "D_H_over_rd": 8.52,
+      "D_H_over_rd_error": 0.17
+    }
+  ],
+  "fiducial_cosmology": {
+    "Omega_m": 0.3134,
+    "H0": 67.4,
+    "rd": 147.09,
+    "unit": "Mpc"
+  },
+  "notes": [
+    "D_M = comoving angular diameter distance",
+    "D_H = c/H(z) Hubble distance",
+    "rd = sound horizon at drag epoch",
+    "Measurements include correlations (see full covariance matrix)"
+  ]
+}

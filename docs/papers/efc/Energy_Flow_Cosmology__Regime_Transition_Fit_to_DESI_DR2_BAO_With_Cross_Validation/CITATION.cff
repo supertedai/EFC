@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO With Cross-Validation"
+type: dataset
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Independent Researcher, Norway"
+version: "1.0"
+date-released: "2026-02-01"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/supertedai/EFC"
+keywords:
+  - "Energy-Flow Cosmology"
+  - "DESI DR2"
+  - "BAO"
+  - "regime transition"
+  - "dark energy"
+  - "Hubble tension"
+  - "cross-validation"
+abstract: >
+  EFC regime-transition model fit to DESI DR2 BAO data.
+  The model modifies the Friedmann equation as
+  E²(z) → E²(z) × [1 + α_L2 × f(z) × Θ(z)],
+  introducing a smooth transition at z ≈ 1.0.
+  Best-fit: z_L1L2 = 1.01 ± 0.08, α_L2 = 0.045 ± 0.012.
+  Δχ² = -8.4 compared to ΛCDM, with consistent
+  cross-validation against Pantheon+ and cosmic chronometers.
