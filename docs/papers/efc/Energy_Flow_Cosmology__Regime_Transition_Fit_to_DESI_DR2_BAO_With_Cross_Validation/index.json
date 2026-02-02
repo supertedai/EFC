@@ -1,0 +1,111 @@
+{
+  "id": "efc-desi-dr2-bao",
+  "title": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO",
+  "subtitle": "With Cross-Validation Against Pantheon+ and H(z) Chronometers",
+  "version": "1.0",
+  "date": "2026-02-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "SupertedAI, Norway",
+    "email": "morten@supertedai.tech"
+  },
+  "license": "CC-BY-4.0",
+  "type": "empirical_validation",
+  "epistemic_layer": "A",
+  "epistemic_status": "Empirical validation against multiple probes",
+  "keywords": [
+    "DESI DR2",
+    "BAO",
+    "regime transition",
+    "Pantheon+",
+    "cosmic chronometers",
+    "cross-validation",
+    "EFC"
+  ],
+  "model": {
+    "parameterization": "E²(z) → E²(z) × [1 + α_L2 × f(z) × Θ(z)]",
+    "coupling_function": "f(z) = (1+z)⁻¹",
+    "transition_function": "Θ(z) = ½[1 + tanh((z_L1L2 - z)/Δz)]",
+    "transition_width": 0.3,
+    "reduces_to_LCDM": "when α_L2 = 0"
+  },
+  "best_fit": {
+    "z_L1L2": 1.01,
+    "alpha_L2": 0.045
+  },
+  "data_sources": {
+    "bao": {
+      "name": "DESI DR2",
+      "n_points": 13,
+      "z_range": [0.295, 2.330],
+      "observables": ["D_V/r_s", "D_M/r_s", "D_H/r_s"],
+      "reference": "arXiv:2503.14738"
+    },
+    "supernovae": {
+      "name": "Pantheon+",
+      "n_points": 277,
+      "z_range": [0.01, 2.3],
+      "reference": "Scolnic et al. 2022"
+    },
+    "chronometers": {
+      "name": "Cosmic Chronometers",
+      "n_points": 34,
+      "z_range": [0.07, 1.97],
+      "mean_uncertainty": "22%",
+      "reference": "Moresco et al. 2022"
+    }
+  },
+  "results": {
+    "bao_primary": {
+      "chi2_LCDM": 31.34,
+      "chi2_EFC": 9.33,
+      "delta_chi2": -22.01,
+      "dof_LCDM": 13,
+      "dof_EFC": 11
+    },
+    "information_criteria": {
+      "delta_AIC": -18.01,
+      "delta_BIC": -16.88
+    },
+    "hold_out_validation": {
+      "chi2_h_t_LCDM": 22.16,
+      "chi2_h_t_EFC": 3.52,
+      "delta_chi2_h_t": -18.65,
+      "status": "Pass - survives overfitting test"
+    },
+    "pantheon_cross_check": {
+      "chi2_LCDM": 230.63,
+      "chi2_EFC": 230.69,
+      "delta_chi2": 0.06,
+      "status": "Statistically indistinguishable",
+      "shape_test_max": 0.0018
+    },
+    "chronometers": {
+      "chi2_LCDM": 15.03,
+      "chi2_EFC": 14.85,
+      "delta_chi2": -0.17,
+      "status": "Consistent with BAO best-fit"
+    },
+    "combined": {
+      "n_total": 47,
+      "chi2_LCDM": 46.36,
+      "chi2_EFC": 24.19,
+      "delta_chi2": -22.17,
+      "delta_AIC": -18.17,
+      "delta_BIC": -14.47
+    }
+  },
+  "fixed_parameters": {
+    "H0": {"value": 67.4, "unit": "km/s/Mpc"},
+    "Omega_m": 0.3134,
+    "r_d": {"value": 147.114, "unit": "Mpc"}
+  },
+  "validation_summary": [
+    {"test": "BAO primary", "n": 13, "delta_chi2": -22.01, "status": "Pass"},
+    {"test": "Hold-out (conditional)", "n": 3, "delta_chi2": -18.65, "status": "Pass"},
+    {"test": "SN shape test", "n": 277, "status": "Pass"},
+    {"test": "CC consistency", "n": 34, "delta_chi2": -0.17, "status": "Pass"},
+    {"test": "Combined", "n": 47, "delta_chi2": -22.17, "status": "Pass"}
+  ]
+}
