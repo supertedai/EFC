@@ -1,0 +1,83 @@
+{
+  "description": "Best-fit results from BOSS DR12 consensus analysis",
+  "LCDM": {
+    "parameters": {
+      "H0": {"value": 66.57, "unit": "km/s/Mpc"},
+      "Omega_m": {"value": 0.359},
+      "sigma8": {"value": 0.667},
+      "alpha_L2": {"value": 0, "note": "fixed"}
+    },
+    "fit_quality": {
+      "chi2": 7.29,
+      "dof": 6,
+      "chi2_per_dof": 1.22
+    }
+  },
+  "EFC": {
+    "parameters": {
+      "H0": {"value": 69.65, "unit": "km/s/Mpc"},
+      "Omega_m": {"value": 0.347},
+      "sigma8": {"value": 0.669},
+      "alpha_L2": {"value": 0.353}
+    },
+    "fit_quality": {
+      "chi2": 4.28,
+      "dof": 5,
+      "chi2_per_dof": 0.86
+    }
+  },
+  "alpha_L2_constraint": {
+    "best_fit": 0.34,
+    "error_plus": 0.16,
+    "error_minus": 0.16,
+    "interval_1sigma": [0.18, 0.51],
+    "interval_2sigma": [-0.02, 0.71],
+    "LCDM_excluded_at": "1σ but not 2σ"
+  },
+  "model_comparison": {
+    "delta_chi2": 3.01,
+    "significance_sigma": 1.7,
+    "p_value": 0.083,
+    "delta_AIC": 1.01,
+    "delta_BIC": 0.81,
+    "interpretation": "Suggestive but not statistically significant"
+  },
+  "separate_likelihoods": {
+    "BAO_only": {
+      "n_data": 6,
+      "alpha_L2": {"value": 0.28, "error": 0.18},
+      "preference": "positive α_L2"
+    },
+    "RSD_only": {
+      "n_data": 3,
+      "alpha_L2": {"value": -1.4, "note": "large uncertainty"},
+      "preference": "negative α_L2"
+    },
+    "sign_conflict": {
+      "present": true,
+      "interpretation": "S8 tension recast in EFC parameter space",
+      "physical_meaning": "Data prefer both faster expansion AND stronger clustering"
+    }
+  },
+  "sensitivity_analysis": {
+    "H_z038_dependence": {
+      "note": "Dropping H(z=0.38) reduces Δχ² from 3.01 to 0.33",
+      "conclusion": "α_L2 > 0 preference largely driven by lowest-z H measurement"
+    }
+  },
+  "predictions": {
+    "gravitational_slip": {
+      "eta": 1,
+      "testable_precision": {
+        "Euclid": 0.03,
+        "Euclid_Rubin": 0.01
+      }
+    },
+    "H0_shift": {
+      "from_LCDM": 66.57,
+      "to_EFC": 69.65,
+      "unit": "km/s/Mpc",
+      "note": "Closer to SH0ES but does not fully resolve tension"
+    }
+  }
+}
