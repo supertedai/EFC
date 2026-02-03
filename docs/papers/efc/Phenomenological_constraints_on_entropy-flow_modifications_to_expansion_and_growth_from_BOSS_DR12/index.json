@@ -1,0 +1,97 @@
+{
+  "paper_id": "efc_phenomenological_constraints_boss_dr12",
+  "title": "Phenomenological constraints on entropy-flow modifications to expansion and growth from BOSS DR12",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "date": "2026-02",
+  "doi": "10.6084/m9.figshare.31243828",
+  "repository": "https://github.com/supertedai/EFC",
+  "abstract": "Single-parameter phenomenological extension of ΛCDM motivated by EFC, where entropy-gradient couplings at structure-formation scale modify both background expansion and linear growth rate. Best-fit α_L2 = 0.35 ± 0.16 with Δχ² = 3.01 (1.7σ preference). BAO-RSD sign conflict reflects S8 tension in EFC parameter space.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "BOSS DR12",
+    "BAO",
+    "RSD",
+    "growth rate",
+    "S8 tension",
+    "phenomenological constraints",
+    "gravitational slip"
+  ],
+  "model": {
+    "description": "Single-parameter modification to ΛCDM",
+    "parameters": ["H0", "Omega_m", "sigma8", "alpha_L2"],
+    "equations": {
+      "DM_modification": "D_M^EFC(z) = D_M^ΛCDM(z) × [1 + α_L2 × g_D(z)]",
+      "H_modification": "H^EFC(z) = H^ΛCDM(z) × [1 + α_L2 × g_H(z)]",
+      "fsigma8_modification": "fσ8^EFC(z) = fσ8^ΛCDM(z) × [1 + α_L2 × g_growth(z)]"
+    },
+    "coupling_functions": {
+      "g_D": "(1 - Ωm(z))/(1+z) × ln(1+z)",
+      "g_growth": "-[1 - Ωm(z)]^(3/2) × ln(1+z) / (1+z)^(1/2)",
+      "note": "g_D > 0 and g_growth < 0 for z > 0 (anti-correlation)"
+    },
+    "predictions": {
+      "gravitational_slip": "η ≡ Φ/Ψ = 1",
+      "testable_with": ["Euclid", "Vera C. Rubin Observatory"]
+    }
+  },
+  "results": {
+    "best_fit": {
+      "LCDM": {
+        "H0": {"value": 66.57, "unit": "km/s/Mpc"},
+        "Omega_m": {"value": 0.359},
+        "sigma8": {"value": 0.667},
+        "alpha_L2": {"value": 0, "note": "fixed"},
+        "chi2": 7.29,
+        "dof": 6
+      },
+      "EFC": {
+        "H0": {"value": 69.65, "unit": "km/s/Mpc"},
+        "Omega_m": {"value": 0.347},
+        "sigma8": {"value": 0.669},
+        "alpha_L2": {"value": 0.353},
+        "chi2": 4.28,
+        "dof": 5
+      }
+    },
+    "alpha_L2_constraint": {
+      "value": 0.34,
+      "error_plus": 0.16,
+      "error_minus": 0.16,
+      "interval_1sigma": [0.18, 0.51],
+      "interval_2sigma": [-0.02, 0.71]
+    },
+    "model_comparison": {
+      "delta_chi2": 3.01,
+      "significance": "1.7σ",
+      "p_value": 0.083,
+      "delta_AIC": 1.01,
+      "delta_BIC": 0.81
+    },
+    "bao_rsd_tension": {
+      "BAO_only": {"alpha_L2": 0.28, "error": 0.18},
+      "RSD_only": {"alpha_L2": -1.4, "note": "large uncertainty"},
+      "interpretation": "S8 tension recast in EFC parameter space"
+    }
+  },
+  "data": {
+    "dataset": "BOSS DR12 consensus",
+    "reference": "Alam et al. 2017, MNRAS 470, 2617",
+    "observables": ["DM(z)", "H(z)", "fσ8(z)"],
+    "redshifts": [0.38, 0.51, 0.61],
+    "n_data_points": 9,
+    "covariance": "Full 9×9 matrix",
+    "fiducial_rs": {"value": 147.78, "unit": "Mpc"}
+  },
+  "files": {
+    "documentation": ["README.md", "CITATION.cff", "LICENSE"],
+    "source": ["src/efc_phenomenology.py", "src/__init__.py"],
+    "data": ["data/boss_dr12_consensus.json", "data/fit_results.json"],
+    "examples": ["examples/phenomenology_fit.py"]
+  }
+}

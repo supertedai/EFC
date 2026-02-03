@@ -1,0 +1,37 @@
+{
+  "description": "BOSS DR12 consensus BAO + RSD measurements",
+  "reference": "Alam et al. 2017, MNRAS 470, 2617",
+  "fiducial_cosmology": {
+    "rs_fid": 147.78,
+    "unit": "Mpc"
+  },
+  "effective_redshifts": [0.38, 0.51, 0.61],
+  "observables": {
+    "DM_rs": {
+      "description": "D_M(z) × r_s^fid / r_s",
+      "values": [1512.39, 1975.22, 2306.68],
+      "unit": "Mpc",
+      "errors": [22.41, 26.92, 33.32]
+    },
+    "H_rs": {
+      "description": "H(z) × r_s / r_s^fid",
+      "values": [81.21, 90.90, 98.96],
+      "unit": "km/s/Mpc",
+      "errors": [2.37, 2.33, 2.50]
+    },
+    "fsigma8": {
+      "description": "f(z) × σ_8(z)",
+      "values": [0.497, 0.458, 0.436],
+      "errors": [0.045, 0.038, 0.034]
+    }
+  },
+  "data_vector": {
+    "order": ["DM_0.38", "DM_0.51", "DM_0.61", "H_0.38", "H_0.51", "H_0.61", "fs8_0.38", "fs8_0.51", "fs8_0.61"],
+    "values": [1512.39, 1975.22, 2306.68, 81.21, 90.90, 98.96, 0.497, 0.458, 0.436]
+  },
+  "covariance_matrix": {
+    "description": "Full 9×9 covariance including all cross-correlations",
+    "note": "Matrix structure captures BAO-RSD correlations",
+    "diagonal_errors": [22.41, 26.92, 33.32, 2.37, 2.33, 2.50, 0.045, 0.038, 0.034]
+  }
+}
