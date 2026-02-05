@@ -166,10 +166,53 @@ the physical interpretation of EFC as a late-time gravity modification.
 
 ---
 
+## Test C1: Mini-Profile (Ωm, A_s)
+
+**Question:** How does EFC shift the optimal cosmology?
+
+### Grid Scan Results
+
+5×5 grid in (Ωm, ln_1e10_A_s) for α=0.00 and α=0.10.
+
+### Best Points
+
+| α | Ωm | ln_As | σ8 | S8 | −ln(L) |
+|---|-----|-------|-----|-----|--------|
+| **0.00** (ΛCDM) | 0.261 | 3.05 | 0.792 | **0.739** | -346.26 |
+| **0.10** (EFC) | 0.261 | 2.90 | 0.734 | **0.685** | -321.59 |
+
+### Key Finding
+
+```
+EFC cosmology shift:
+  ΔS8 = 0.685 - 0.739 = -0.054 (LOWER, not higher!)
+  Δln_As = 2.90 - 3.05 = -0.15 (15% lower amplitude)
+  Δ(-lnL) = +24.67 (better fit even with profile)
+```
+
+### S8 Tension Analysis
+
+| Dataset | S8 | Tension with Planck |
+|---------|-----|---------------------|
+| Planck 2018 | 0.832 | — |
+| KiDS ΛCDM | 0.739 | 2.3σ |
+| **KiDS EFC** | **0.685** | **3.6σ (WORSE)** |
+
+### Interpretation
+
+EFC (Case A) prefers **lower** σ8/S8 because Σ² enhances lensing signal.
+To match the same data, less intrinsic structure is needed.
+
+**Conclusion:** EFC improves shear fit but **increases** S8 tension with CMB.
+This is physically consistent: Case A is a lensing amplitude modification,
+not a solution to the S8 discrepancy.
+
+---
+
 ## Remaining Tests Needed
 
 1. **Cross-validation:** Test on KV450 or DES Y3
-2. **Consistency check:** Does EFC+shear agree with RSD/clusters?
+2. **Case B implementation:** Consistent MG with μ in growth equations
 
 ---
 
@@ -181,13 +224,19 @@ the physical interpretation of EFC as a late-time gravity modification.
 | IA sensitivity | IA=0, not eating IA | ✅ |
 | Small-scale robustness | 63% persists with hard cuts | ✅ |
 | Amplitude equivalence | NOT just amplitude, Δ=41 residual | ✅ |
-| **Tomographic localization** | **Low-z 3.2× stronger than high-z** | ✅ |
-| Statistical claim | Δ(−2 ln L) = -50.9 | ⚠️ Not "7σ" |
+| Tomographic localization | Low-z 3.2× stronger than high-z | ✅ |
+| **Mini-profile (C1)** | **EFC prefers S8=0.685 (lower!)** | ✅ |
+| S8 tension | EFC INCREASES tension with Planck | ⚠️ |
 
-**All stress tests passed. EFC improvement is:**
+**All pattern tests passed. EFC improvement is:**
 - NOT IA compensation (IA=0)
 - NOT just small-scale (63% persists)
 - NOT just amplitude (+41 residual after A_s tuning)
 - LOCALIZED to low-z (as EFC predicts)
+
+**Critical finding from C1:**
+- EFC (Case A) improves shear fit by preferring LOWER S8
+- This INCREASES tension with Planck CMB (3.6σ vs 2.3σ)
+- Case A is phenomenological lensing boost, not S8 tension solution
 
 **Date:** 2026-02-05
