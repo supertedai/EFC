@@ -11,8 +11,8 @@
 EFC (Energy-Flow Cosmology) gravitational response modification has been
 successfully integrated into the KCAP/CosmoSIS weak lensing pipeline.
 
-**Key Finding:** EFC with α=0.05 **improves** the fit to KiDS-1000 data
-compared to ΛCDM, with Δχ² = -37.2 (better fit).
+**Key Finding:** EFC with optimal α=0.10 **improves** the fit to KiDS-1000 data
+compared to ΛCDM, with Δχ² = -50.9 (better fit, ~7σ preference).
 
 ---
 
@@ -137,12 +137,44 @@ ShearTestbed_v1/
 
 ---
 
+## PARAMETER SCAN RESULTS
+
+### α_L2 Scan (Full Results)
+
+| α_L2 | -ln(L) | χ² | Δχ² vs ΛCDM |
+|------|--------|-----|-------------|
+| 0.00 | -349.68 | 699.4 | 0.0 (baseline) |
+| 0.01 | -345.19 | 690.4 | -9.0 |
+| 0.02 | -341.06 | 682.1 | -17.2 |
+| 0.03 | -337.32 | 674.6 | -24.7 |
+| 0.05 | -331.08 | 662.2 | -37.2 |
+| 0.07 | -326.71 | 653.4 | -45.9 |
+| 0.08 | -325.30 | 650.6 | -48.7 |
+| 0.09 | -324.46 | 648.9 | -50.4 |
+| **0.10** | **-324.21** | **648.4** | **-50.9** |
+| 0.11 | -324.59 | 649.2 | -50.2 |
+| 0.12 | -325.64 | 651.3 | -48.1 |
+| 0.15 | -333.19 | 666.4 | -33.0 |
+| 0.20 | -362.95 | 725.9 | +26.5 |
+
+### Best-Fit Parameters
+
+| Metric | Value |
+|--------|-------|
+| **Best-fit α_L2** | **0.10 ± 0.01** |
+| **Best -ln(L)** | -324.21 |
+| **Best χ²** | 648.4 |
+| **Δχ² vs ΛCDM** | **-50.9** |
+| **Statistical significance** | **~7.1σ** |
+
+---
+
 ## NEXT STEPS (M3)
 
-1. **Parameter exploration:** Vary α, k_t, z_a to map likelihood surface
-2. **MCMC inference:** Run chains to constrain EFC parameters
-3. **Derived EFC:** Implement full field-theoretic Σ(k,z)
-4. **Cross-validation:** Test against other weak lensing datasets
+1. **MCMC inference:** Run chains to constrain EFC parameters with priors
+2. **Derived EFC:** Implement full field-theoretic Σ(k,z)
+3. **Cross-validation:** Test against other weak lensing datasets (KV450, DES)
+4. **S₈ inference:** Run full parameter estimation with EFC
 
 ---
 
@@ -153,7 +185,8 @@ ShearTestbed_v1/
 - EFC module implemented and tested
 - KCAP integration complete
 - Null test validates hook (identical to ΛCDM)
-- EFC improves fit to KiDS-1000 data (Δχ² = -37.2)
+- Parameter scan completed: best-fit α_L2 = 0.10
+- EFC improves fit to KiDS-1000 data by **Δχ² = -50.9 (~7σ)**
 
 **Date:** 2026-02-05
 **Pipeline Version:** v2.0 (EFC-enabled)
