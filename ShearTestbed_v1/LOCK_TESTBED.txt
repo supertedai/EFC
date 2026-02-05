@@ -1,0 +1,53 @@
+================================================================================
+                    SHEAR TESTBED V1.0 - LOCKED DECISION
+================================================================================
+
+TESTBED:     KiDS-1000 Cosmic Shear (Flinc ξ± data)
+LOCKED DATE: 2026-02-05
+STATUS:      M1.1 - Baseline ΛCDM Reproduction ✅ PASSED
+
+DATASET SPECIFICATION:
+- Survey:         KiDS-1000 DR4
+- Observable:     Two-point correlation functions (ξ±) - cosmic shear
+- Data format:    ASCII (Flinc mock framework)
+- Data file:      kcap/data/KiDS1000/Flinc/data_vector/xipm_binned_data.ascii
+- Data vector:    195 elements (post-cut)
+                  105 ξ+ (7 θ-bins × 15 bin pairs)
+                  90 ξ- (6 θ-bins × 15 bin pairs)
+- Tomographic:    5 bins
+- θ-range:        ξ+: 0.5'-72' (7 bins), ξ-: 4'-300' (6 bins)
+
+CLARIFICATION:
+- "Flinc" is KiDS-1000 simulation/mock framework name
+- Contains actual cosmic shear ξ± data (NOT galaxy-galaxy lensing)
+- Scale cuts pre-applied in data file (195 points, not 270)
+
+TARGET METRICS (from Flinc best-fit):
+- χ²:             209.5 (195 data points)
+- χ²/dof:         1.07 (good fit)
+- -ln(L):         104.74
+- S₈:             ~0.76 (KiDS-1000 fiducial)
+- σ₈:             ~0.76
+- Ωm:             ~0.26
+
+M1.1 SUCCESS CRITERIA: ✅ ALL PASSED
+- Reproduce -ln(L) within ±5 of 104.74          ✅
+- Reproduce χ²/dof ≈ 1.0-1.2 (reasonable fit)   ✅
+- Data vector correctly loaded (195 points)      ✅
+- Pipeline functional                            ✅
+
+M1.2 NULL-TEST (NEXT):
+- Set Σ(k,z) = 1.0 explicitly in theory module
+- Results must be identical to M1.1 (validates EFC hook interface)
+
+LOCKED METHODOLOGY:
+- Primary:   KCAP/CosmoSIS pipeline (Flinc ξ± data)
+- Config:    kcap/runs/config/KiDS1000_Flinc.ini
+- Likelihood: utils/kids1000_flinc_like.py
+
+NO MODIFICATIONS ALLOWED AFTER M1 COMPLETION EXCEPT:
+- EFC Σ(k,z) activation in M2
+
+================================================================================
+                    M1.1 BASELINE VALIDATED - 2026-02-05
+================================================================================
