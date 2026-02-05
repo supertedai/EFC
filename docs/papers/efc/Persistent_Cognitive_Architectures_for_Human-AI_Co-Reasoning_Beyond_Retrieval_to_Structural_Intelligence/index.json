@@ -1,0 +1,178 @@
+{
+  "title": "Persistent Cognitive Architectures for Human-AI Co-Reasoning: Beyond Retrieval to Structural Intelligence",
+  "short_title": "Symbiose Cognitive Architecture",
+  "author": "Morten Magnusson",
+  "affiliation": "Independent Researcher, Norway",
+  "date": "2026-02",
+  "doi": "10.6084/m9.figshare.31271707",
+  "keywords": [
+    "Human-AI collaboration",
+    "cognitive architecture",
+    "knowledge graphs",
+    "causal reasoning",
+    "persistent memory",
+    "proactive autonomy",
+    "Quantum Leap",
+    "epistemic framework"
+  ],
+  "abstract": "While retrieval-augmented generation (RAG) enables large language models to access external knowledge, it remains fundamentally reactive and stateless. We present Symbiose, a cognitive architecture that combines graph-based causal reasoning, temporal pattern recognition, and proactive autonomy to enable persistent, evolving collaboration between humans and AI. Components are integrated through Quantum Leap (QL), a persistent cognitive orchestration layer. Every response is tagged via an L0–L3 epistemic framework distinguishing canonical facts from LLM-generated hypotheses.",
+  "system_name": "Symbiose",
+  "orchestration_layer": "Quantum Leap (QL)",
+  "architecture": {
+    "components": {
+      "graph_database": "Neo4j 5.x",
+      "vector_store": "Qdrant 1.7.x",
+      "llm_layer": ["GPT-4o", "Claude Sonnet 4.5"],
+      "backend": "Python 3.11, FastAPI",
+      "embedding_model": "OpenAI text-embedding-3-large"
+    },
+    "ql_components": [
+      {
+        "name": "Session Context Tracker",
+        "function": "Cross-session identity linking via shared concepts",
+        "status": "Active"
+      },
+      {
+        "name": "Embedding Relevance Scorer",
+        "function": "Contextual ranking of suggestions by semantic fit",
+        "status": "Active"
+      },
+      {
+        "name": "Graph-Vector Fusion",
+        "function": "Combined semantic + structural reasoning",
+        "status": "Active"
+      },
+      {
+        "name": "Preference Learner",
+        "function": "Bayesian confidence updates on user feedback",
+        "status": "Active",
+        "feedback_entries": 18,
+        "feedback_types": 6
+      },
+      {
+        "name": "Emergent Reasoning",
+        "function": "Discover non-obvious patterns via graph analysis",
+        "status": "Active",
+        "causal_relations": 55
+      },
+      {
+        "name": "Causal Understanding",
+        "function": "Extract and represent causal claims explicitly",
+        "status": "Active"
+      },
+      {
+        "name": "Continuous Memory",
+        "function": "Multi-level memory consolidation",
+        "status": "Active",
+        "consolidated_memories": 4
+      }
+    ]
+  },
+  "epistemic_framework": {
+    "L0": {
+      "name": "Canonical",
+      "description": "Ground truth from authoritative sources",
+      "certainty": "Known with certainty",
+      "sources": ["neo4j_canonical", "Life Contract", "sensor data"]
+    },
+    "L1": {
+      "name": "Derived",
+      "description": "Facts logically derived from L0",
+      "certainty": "True given L0 premises",
+      "sources": ["causal inferences", "mathematical consequences"]
+    },
+    "L2": {
+      "name": "Supported",
+      "description": "Claims backed by evidence but not fully verified",
+      "certainty": "Probable given evidence",
+      "sources": ["RAG-retrieved", "LLM with citations"]
+    },
+    "L3": {
+      "name": "Inferred",
+      "description": "LLM-generated content without explicit grounding",
+      "certainty": "Plausible but unverified",
+      "sources": ["synthesis", "analogies"]
+    }
+  },
+  "graph_schema": {
+    "node_types": [
+      "Concept",
+      "Evidence",
+      "Prediction",
+      "SyntheticInsight",
+      "Memory"
+    ],
+    "relationship_types": [
+      "CAUSES",
+      "RELATES_TO",
+      "SUPPORTS",
+      "PREDICTS",
+      "CONSOLIDATES"
+    ]
+  },
+  "proactive_triggers": [
+    {
+      "type": "Temporal",
+      "description": "X days since last Y",
+      "mechanism": "threshold-based"
+    },
+    {
+      "type": "Evidence gap",
+      "description": "Claim without support",
+      "mechanism": "Neo4j query-based"
+    },
+    {
+      "type": "Pattern",
+      "description": "Recurring topic",
+      "mechanism": "frequency-based"
+    },
+    {
+      "type": "Causal",
+      "description": "Change may affect downstream",
+      "mechanism": "graph traversal-based"
+    }
+  ],
+  "case_study": {
+    "domain": "Energy-Flow Cosmology (EFC)",
+    "duration_months": 12,
+    "graph_growth": {
+      "initial_nodes": 593000,
+      "final_nodes": 602000,
+      "causal_relations": 2160,
+      "synthetic_insights": 47
+    },
+    "temporal_phases": [
+      {"weeks": "1-4", "phase": "Conceptual exploration"},
+      {"weeks": "5-12", "phase": "Hypothesis generation"},
+      {"weeks": "13-20", "phase": "Observational test design"},
+      {"weeks": "21+", "phase": "Refinement"}
+    ]
+  },
+  "evaluation_results": {
+    "causal_reasoning_accuracy": {
+      "symbiose": 0.94,
+      "gpt4_zero_shot": 0.76,
+      "rag_alone": 0.68
+    },
+    "memory_query_speedup": {
+      "with_consolidation_seconds": 0.3,
+      "without_consolidation_seconds": 4.2,
+      "speedup_factor": 14
+    },
+    "proactive_suggestions": {
+      "total": 83,
+      "accepted": 61,
+      "acceptance_rate": 0.735,
+      "exploration_phase_acceptance": 0.85,
+      "implementation_phase_acceptance": 0.60
+    }
+  },
+  "key_distinction": "This is NOT AGI - Symbiose is a cognitive architecture for collaboration, not artificial general intelligence",
+  "limitations": [
+    "Graph construction relies on LLM entity extraction",
+    "Scalability constraints beyond ~1M nodes",
+    "Bayesian priors require manual tuning",
+    "L3 content vulnerable to hallucination",
+    "Single-user architecture only"
+  ]
+}
