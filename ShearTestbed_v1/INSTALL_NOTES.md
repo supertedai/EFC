@@ -62,6 +62,29 @@ cd /home/user/EFC/ShearTestbed_v1/kcap
 cosmosis runs/config/KV450_no_sys.ini
 ```
 
+## NumPy 2.x Compatibility Fixes
+
+The following files were patched for NumPy 2.x compatibility:
+
+1. `cosmosis-standard-library/structure/projection/limber.py`
+   - Changed `np.int` to `np.int64`
+
+2. Multiple files using `np.trapz`:
+   - Changed `np.trapz` to `np.trapezoid`
+   - Affected: load_nz.py, load_nz_fits.py, photoz_bias.py, photoz_distortion.py, mini_2pt_like.py
+
+3. `utils/mini_2pt_like.py`
+   - Fixed array comparison `!= []` to `len(array) > 0`
+
+## Verification Test
+
+Successfully ran KV450 test pipeline:
+```
+cosmosis runs/config/KV450_no_sys.ini -p runtime.sampler=test
+```
+- Likelihood: -94.14
+- Pipeline time: ~1.75 seconds
+
 ## Notes
 
 - The installation was performed with `--no-mpi` flag (no MPI support)
