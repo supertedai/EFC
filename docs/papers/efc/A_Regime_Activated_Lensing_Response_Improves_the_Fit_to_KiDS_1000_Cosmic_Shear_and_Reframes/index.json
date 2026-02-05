@@ -1,0 +1,162 @@
+{
+  "paper": {
+    "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the S8 Tension",
+    "authors": [
+      {
+        "name": "Morten Magnusson",
+        "affiliation": "Independent Researcher, Norway",
+        "orcid": "0009-0002-4860-5095"
+      }
+    ],
+    "date": "2026-02",
+    "doi": "10.6084/m9.figshare.31271917",
+    "repository": "https://github.com/supertedai/EFC",
+    "license": "CC-BY-4.0",
+    "framework": "Energy-Flow Cosmology (EFC)",
+    "type": "working_paper"
+  },
+  "abstract": {
+    "problem": "KiDS-1000 and other weak lensing surveys measure S8 values 2-3σ below Planck-CMB predictions",
+    "method": "Introduce regime-activated lensing response Σ(k,z) that modifies matter-light coupling",
+    "result": "Likelihood improvement Δ(-2lnL) ≈ -50.9, S8 tension effectively resolved",
+    "interpretation": "Tension reframed as lensing coupling difference, not σ8 discrepancy"
+  },
+  "model": {
+    "name": "Regime-Activated Lensing Response",
+    "effective_power_spectrum": "P_eff(k,z) = P_ΛCDM(k,z) × Σ²(k,z)",
+    "lensing_response": {
+      "formula": "Σ(k,z) = Σ_k(k) × Σ_z(z)",
+      "scale_dependence": {
+        "formula": "Σ_k(k) = 1 + α × tanh((k - k_trans) / δk)",
+        "delta_k": 0.05,
+        "description": "Smooth transition at k_trans"
+      },
+      "redshift_dependence": {
+        "formula_active": "Σ_z(z) = 1 + α × (1 - z/z_activ) for z < z_activ",
+        "formula_inactive": "Σ_z(z) = 1 for z ≥ z_activ",
+        "description": "Linear ramp below activation redshift"
+      }
+    },
+    "parameters": {
+      "alpha": {
+        "symbol": "α",
+        "description": "Lensing response amplitude",
+        "best_fit": 0.10,
+        "unit": "dimensionless"
+      },
+      "k_trans": {
+        "symbol": "k_trans",
+        "description": "Transition wavenumber",
+        "best_fit": 0.1,
+        "unit": "h/Mpc"
+      },
+      "z_activ": {
+        "symbol": "z_activ",
+        "description": "Activation redshift",
+        "best_fit": 0.5,
+        "unit": "dimensionless"
+      }
+    }
+  },
+  "results": {
+    "likelihood_improvement": {
+      "delta_minus2lnL": -50.9,
+      "description": "Improvement over ΛCDM baseline",
+      "additional_parameters": 3
+    },
+    "sigma_at_pivot": {
+      "k": 0.3,
+      "z": 0.3,
+      "value": 1.13,
+      "unit": "dimensionless"
+    },
+    "tomographic_fingerprint": {
+      "low_z_improvement_factor": 3.2,
+      "high_z_improvement_factor": 0.4,
+      "dividing_redshift": 0.5,
+      "prediction_matched": true
+    }
+  },
+  "s8_tension_analysis": {
+    "kids1000_observed": {
+      "s8": 0.759,
+      "error": 0.024
+    },
+    "planck_cmb": {
+      "s8": 0.834,
+      "error": 0.016
+    },
+    "tension_standard": {
+      "sigma": "2-3",
+      "interpretation": "σ8 discrepancy"
+    },
+    "reframing": {
+      "definition": "S_WL = σ8 × Σ",
+      "sigma8_true": 0.734,
+      "sigma_pivot": 1.13,
+      "s_wl_reframed": 0.829,
+      "planck_s8": 0.834,
+      "residual_tension": "< 1σ",
+      "interpretation": "Tension dissolves when lensing response is accounted for"
+    }
+  },
+  "physical_motivation": {
+    "framework": "Energy-Flow Cosmology",
+    "mechanism": "Entropy gradients modify metric perturbation coupling matter to light",
+    "activation_conditions": [
+      "Wavenumber k > k_trans (nonlinear clustering regime)",
+      "Redshift z < z_activ (late-time structure formation)"
+    ],
+    "relation_to_galaxy_scales": "Σ(k,z) is cosmological analog of μ(g_bar) at galaxy scales"
+  },
+  "data_sources": {
+    "primary": {
+      "name": "KiDS-1000",
+      "reference": "Asgari et al. (2021)",
+      "observable": "Cosmic shear two-point correlation functions",
+      "area_sq_deg": 1006
+    },
+    "comparison": {
+      "cmb": "Planck 2018",
+      "other_wl": ["DES-Y3", "HSC-Y1"]
+    }
+  },
+  "comparison_with_lcdm": {
+    "lcdm_parameters": 6,
+    "model_parameters": 9,
+    "additional_parameters": 3,
+    "chi2_improvement": -50.9,
+    "tension_status": {
+      "lcdm": "2-3σ",
+      "with_sigma": "resolved"
+    }
+  },
+  "keywords": [
+    "weak gravitational lensing",
+    "KiDS-1000",
+    "cosmic shear",
+    "S8 tension",
+    "lensing response",
+    "Energy-Flow Cosmology",
+    "matter-light coupling",
+    "entropy gradients",
+    "cosmological tensions"
+  ],
+  "related_papers": [
+    {
+      "title": "Energy-Flow Cosmology: Regime Transition Fit to DESI DR2 BAO",
+      "doi": "10.6084/m9.figshare.28755566",
+      "relation": "BAO observations"
+    },
+    {
+      "title": "WP4 BOSS DR12 Cross-Survey Transfer Test",
+      "doi": "10.6084/m9.figshare.31231522",
+      "relation": "Independent validation"
+    },
+    {
+      "title": "Phenomenological constraints on α_L2",
+      "doi": "10.6084/m9.figshare.31243828",
+      "relation": "Growth constraints"
+    }
+  ]
+}
