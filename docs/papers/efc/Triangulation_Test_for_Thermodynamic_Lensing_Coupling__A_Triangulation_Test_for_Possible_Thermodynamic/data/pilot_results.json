@@ -1,0 +1,56 @@
+{
+  "bullet_cluster": {
+    "name": "1E 0657-56 (Bullet Cluster)",
+    "type": "merging",
+    "redshift": 0.296,
+    "description": "Merging cluster with strong shock structures and pronounced entropy gradients",
+    "lensing_source": "JWST NIRCam (Cha et al. 2025; Cho et al. 2025)",
+    "xray_source": "Chandra 500 ks (Million & Allen 2008) + ACCEPT",
+    "results": {
+      "n_bins": 57,
+      "pearson_rho": -0.129,
+      "spearman_rho": -0.179,
+      "p_value": 0.21,
+      "significant": false,
+      "interpretation": "No statistically significant correlation detected"
+    },
+    "notes": [
+      "Strong shock structures and pronounced entropy gradients",
+      "Large hydrostatic mass bias expected for mergers",
+      "Correlation sign not robust given uncertainties"
+    ]
+  },
+  "abell_1835": {
+    "name": "Abell 1835",
+    "type": "relaxed",
+    "redshift": 0.253,
+    "description": "Dynamically relaxed, cool-core cluster with smooth entropy structure",
+    "lensing_source": "HST + Subaru (Smith et al. 2005)",
+    "xray_source": "Chandra + ACCEPT",
+    "results": {
+      "n_bins": null,
+      "pearson_rho": -0.052,
+      "spearman_rho": -0.147,
+      "p_value": 0.70,
+      "significant": false,
+      "interpretation": "No statistically significant correlation detected"
+    },
+    "notes": [
+      "Relaxed system used as control",
+      "Weaker residuals and gradients as expected",
+      "Thermodynamic coupling hypothesis predicts weaker signal in relaxed systems"
+    ]
+  },
+  "expected_behavior": {
+    "null_hypothesis": {
+      "name": "ΛCDM",
+      "expected_rho": "~0 or weak",
+      "mechanism": "R arises from non-thermal pressure (bulk motions, turbulence)"
+    },
+    "alternative_hypothesis": {
+      "name": "Thermodynamic coupling",
+      "expected_rho": "> 0, significant",
+      "mechanism": "If κ ∝ ∇²K, then R ∝ |∇K|"
+    }
+  }
+}
