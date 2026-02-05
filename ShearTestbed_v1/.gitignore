@@ -1,0 +1,16 @@
+# Build artifacts
+kcap/build/
+*.so
+*.o
+*.a
+*.mod
+*.pyc
+__pycache__/
+
+# Large downloaded packages
+cosmosis-standalone-0.2.2/
+cosmosis-standalone.tar.gz
+
+# Temporary files
+*.log
+*.tmp
