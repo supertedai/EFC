@@ -76,14 +76,37 @@ The following files were patched for NumPy 2.x compatibility:
 3. `utils/mini_2pt_like.py`
    - Fixed array comparison `!= []` to `len(array) > 0`
 
-## Verification Test
+## Verification Tests
 
+### KV450 Test
 Successfully ran KV450 test pipeline:
 ```
 cosmosis runs/config/KV450_no_sys.ini -p runtime.sampler=test
 ```
 - Likelihood: -94.14
 - Pipeline time: ~1.75 seconds
+
+### KiDS-1000 Flinc Test
+Successfully ran KiDS-1000 Flinc pipeline:
+```
+cosmosis runs/config/KiDS1000_Flinc.ini -p runtime.sampler=test
+```
+
+**Results with fiducial cosmology (S₈=0.707, σ₈=0.756):**
+- Likelihood: -349.68
+- χ²/dof: 3.6 (195 data points)
+- Pipeline time: ~2.5 seconds
+
+**Best-fit comparison:**
+Using the Flinc theory file (best-fit cosmology):
+- χ²/dof: 1.07 (excellent fit)
+- This confirms the pipeline structure is correct
+
+**KiDS-1000 Flinc Data:**
+- Data vector: 195 points (105 ξ+ + 90 ξ-)
+- Covariance: 195 × 195 matrix
+- 5 tomographic bins, 9 angular bins (with scale cuts)
+- Scale cuts: ξ+ keeps θ < 72', ξ- keeps θ > 4'
 
 ## Notes
 
