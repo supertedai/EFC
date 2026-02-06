@@ -1,0 +1,163 @@
+{
+  "dataset": "TNG-Cluster + ACCEPT comparison",
+  "description": "Entropy-structure coupling correlation analysis",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31286368",
+  "tng_cluster": {
+    "description": "TNG-Cluster cosmological MHD simulation",
+    "reference": "Nelson et al. 2024; Lehle et al. 2024",
+    "n_halos": 352,
+    "redshift": 0,
+    "mass_range": {
+      "log_M500c_min": 14.0,
+      "log_M500c_max": 15.3,
+      "unit": "log10(M_sun)"
+    },
+    "cool_core_population": {
+      "SCC": {"count": 28, "fraction": 0.08, "threshold": "K0 <= 22 keV cm^2"},
+      "WCC": {"count": 206, "fraction": 0.59, "threshold": "22 < K0 <= 150 keV cm^2"},
+      "NCC": {"count": 118, "fraction": 0.34, "threshold": "K0 > 150 keV cm^2"}
+    }
+  },
+  "accept": {
+    "description": "Archive of Chandra Cluster Entropy Profile Tables",
+    "reference": "Cavagnolo et al. 2009",
+    "n_clusters": 239,
+    "correlation_alpha_yCCT": {
+      "rho": 0.36,
+      "description": "Entropy slope alpha vs central cooling time indicator"
+    }
+  },
+  "primary_correlations": {
+    "ne_slope_vs_K0": {
+      "description": "Electron density slope vs central entropy",
+      "rho": -0.872,
+      "p_value": 7.96e-111,
+      "N": 352
+    },
+    "ne_slope_vs_tcool": {
+      "description": "Electron density slope vs central cooling time",
+      "rho": -0.878,
+      "p_value": 7.21e-114,
+      "N": 352
+    },
+    "Cphys_vs_K0": {
+      "description": "X-ray concentration vs central entropy",
+      "rho": -0.927,
+      "N": 352
+    },
+    "Cphys_vs_ne_slope": {
+      "description": "X-ray concentration vs density slope",
+      "rho": 0.875,
+      "N": 352
+    },
+    "K0_vs_M500c": {
+      "description": "Central entropy vs halo mass (weak correlation)",
+      "rho": 0.242,
+      "p_value": 4.33e-6,
+      "N": 352
+    }
+  },
+  "mass_controlled": {
+    "partial_ne_slope_K0_given_M": {
+      "description": "Partial correlation controlling for log M500c",
+      "rho": -0.880,
+      "p_value": 2e-115,
+      "N": 352,
+      "mass_contribution": "0%"
+    },
+    "interpretation": "Mass confounding does NOT explain the sign flip"
+  },
+  "mass_binned_analysis": {
+    "description": "Spearman correlations ne_slope vs K0 by mass bin",
+    "bins": [
+      {
+        "mass_bin": "[14.0, 14.3)",
+        "N": 41,
+        "rho": -0.790,
+        "p_value": 9e-10
+      },
+      {
+        "mass_bin": "[14.3, 14.6)",
+        "N": 118,
+        "rho": -0.860,
+        "p_value": 1e-35
+      },
+      {
+        "mass_bin": "[14.6, 14.9)",
+        "N": 121,
+        "rho": -0.901,
+        "p_value": 5e-45
+      },
+      {
+        "mass_bin": "[14.9, 15.5)",
+        "N": 71,
+        "rho": -0.897,
+        "p_value": 4e-26
+      }
+    ],
+    "verdict": "All mass bins show negative correlations"
+  },
+  "proxy_definition_matching": {
+    "description": "Alpha proxy = (2/3) × ne_slope analysis",
+    "alpha_proxy_distribution": {
+      "min": -0.23,
+      "max": 1.60,
+      "median": 0.31,
+      "accept_median_for_comparison": 1.1
+    },
+    "correlations": {
+      "alpha_proxy_vs_K0_raw": {"rho": -0.872, "p_value": 8e-111, "N": 352},
+      "alpha_proxy_vs_K0_partial_M": {"rho": -0.880, "p_value": 2e-115, "N": 352},
+      "alpha_proxy_vs_tcool_raw": {"rho": -0.878, "p_value": 7e-114, "N": 352},
+      "alpha_proxy_vs_tcool_partial_M": {"rho": -0.876, "p_value": 1e-112, "N": 352}
+    }
+  },
+  "ks_test": {
+    "description": "Kolmogorov-Smirnov test between SCC and NCC density slopes",
+    "D_statistic": 1.000,
+    "p_value": 2.4e-30,
+    "interpretation": "Complete separation between SCC and NCC"
+  },
+  "sign_flip_summary": {
+    "tng_cluster_rho": -0.872,
+    "accept_rho": 0.36,
+    "sign_reversal": true,
+    "magnitude_difference": 1.23,
+    "statistical_significance": "p ~ 10^-111 for TNG result"
+  },
+  "pre_registered_tests": {
+    "path_b_pretest": {
+      "status": "completed",
+      "method": "Proxy-based using alpha_proxy = (2/3) × ne_slope",
+      "result": "Sign flip confirmed",
+      "verdict": "GO - proceed to Path A"
+    },
+    "path_a_decisive": {
+      "status": "pre-registered, awaiting execution",
+      "method": "Full Cavagnolo-model K(r) fit over [20, 400] kpc",
+      "locked_parameters": {
+        "centre": "SUBFIND-determined",
+        "fit_range_kpc": [20, 400],
+        "initial_alpha_guess": 1.1,
+        "n_radial_bins": 30,
+        "binning": "mass-weighted",
+        "min_bin_occupancy": 5,
+        "gas_selection": "non-star-forming, T > 1e6 K"
+      },
+      "stop_go_criterion": {
+        "STOP": "rho(alpha_fit, K0) > 0 AND rho(alpha_fit, tcool) > 0",
+        "GO": "rho(alpha_fit, K0) < 0",
+        "PARTIAL": "Mixed signs"
+      }
+    }
+  },
+  "systematic_considerations": {
+    "irreducible_differences": [
+      "TNG: intrinsic 3D mass-weighted quantities",
+      "ACCEPT: deprojected X-ray spectroscopic with emission weighting",
+      "TNG: mass-selected sample",
+      "ACCEPT: X-ray selected, flux-limited sample"
+    ],
+    "expected_impact": "Affects absolute normalisation but not expected to reverse rank-order correlations"
+  }
+}
