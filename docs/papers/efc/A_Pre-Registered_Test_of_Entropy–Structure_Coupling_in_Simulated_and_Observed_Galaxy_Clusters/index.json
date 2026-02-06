@@ -1,0 +1,230 @@
+{
+  "paper": {
+    "title": "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters",
+    "short_title": "Entropy-Structure Coupling Test",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-02",
+    "status": "pre-print",
+    "doi": "10.6084/m9.figshare.31286368",
+    "keywords": [
+      "galaxy clusters",
+      "intracluster medium",
+      "cool cores",
+      "entropy profiles",
+      "cosmological simulations",
+      "TNG-Cluster",
+      "pre-registered analysis"
+    ]
+  },
+  "abstract": "Tests whether the observed positive correlation between entropy profile steepness and cool-core state in ACCEPT X-ray clusters is reproduced in TNG-Cluster simulations. Finds a strong negative correlation (sign flip), robust against mass confounding.",
+  "key_result": {
+    "description": "Sign flip in entropy-structure coupling between simulation and observation",
+    "tng_cluster": {
+      "correlation_ne_slope_K0": -0.872,
+      "p_value": "8e-111",
+      "n_halos": 352
+    },
+    "accept_observed": {
+      "correlation_alpha_yCCT": 0.36,
+      "n_clusters": 239
+    },
+    "interpretation": "Complete sign reversal indicates potential sim-obs mismatch in ICM physics"
+  },
+  "data_sources": {
+    "tng_cluster": {
+      "reference": "Nelson et al. 2024",
+      "description": "352 zoom simulations of massive galaxy clusters",
+      "mass_range": {
+        "min_log_M500c": 14.0,
+        "max_log_M500c": 15.3,
+        "unit": "log10(M_sun)"
+      },
+      "redshift": 0,
+      "resolution": "TNG300-1",
+      "gas_mass_resolution": {
+        "value": 1.2e7,
+        "unit": "M_sun"
+      }
+    },
+    "lehle_catalogue": {
+      "reference": "Lehle et al. 2024",
+      "variables": ["K0", "ne_slope", "tcool", "ne", "Cphys", "Cscaled"],
+      "gas_selection": "non-star-forming, T > 1e6 K, mass-weighted"
+    },
+    "accept": {
+      "reference": "Cavagnolo et al. 2009",
+      "description": "Archive of Chandra Cluster Entropy Profile Tables",
+      "n_clusters": 239,
+      "instrument": "Chandra"
+    }
+  },
+  "models": {
+    "entropy_profile": {
+      "name": "Cavagnolo model",
+      "equation": "K(r) = K0 + K100 * (r / 100 kpc)^alpha",
+      "parameters": {
+        "K0": {
+          "description": "Central entropy",
+          "unit": "keV cm^2"
+        },
+        "K100": {
+          "description": "Entropy normalisation at 100 kpc",
+          "unit": "keV cm^2"
+        },
+        "alpha": {
+          "description": "Power-law index (entropy gradient steepness)",
+          "accept_median": 1.1
+        }
+      }
+    },
+    "alpha_proxy": {
+      "equation": "alpha_proxy = (2/3) * ne_slope",
+      "description": "Density contribution to entropy gradient",
+      "interpretation": "Lower bound on alpha under physical temperature gradient assumption",
+      "tng_distribution": {
+        "min": -0.23,
+        "max": 1.60,
+        "median": 0.31
+      }
+    },
+    "entropy_decomposition": {
+      "equation": "alpha = d_ln_T/d_ln_r + (2/3) * (-d_ln_ne/d_ln_r)",
+      "description": "Logarithmic entropy slope decomposed into temperature and density terms"
+    }
+  },
+  "cool_core_classification": {
+    "reference": "Hudson et al. 2010",
+    "thresholds": {
+      "SCC": {
+        "name": "Strong Cool-Core",
+        "criterion": "K0 <= 22 keV cm^2"
+      },
+      "WCC": {
+        "name": "Weak Cool-Core",
+        "criterion": "22 < K0 <= 150 keV cm^2"
+      },
+      "NCC": {
+        "name": "Non-Cool-Core",
+        "criterion": "K0 > 150 keV cm^2"
+      }
+    },
+    "tng_population": {
+      "SCC": {"count": 28, "fraction": 0.08},
+      "WCC": {"count": 206, "fraction": 0.59},
+      "NCC": {"count": 118, "fraction": 0.34}
+    }
+  },
+  "results": {
+    "primary_correlations": {
+      "ne_slope_vs_K0": {
+        "rho": -0.872,
+        "p_value": "8e-111",
+        "N": 352
+      },
+      "ne_slope_vs_tcool": {
+        "rho": -0.878,
+        "p_value": "7e-114",
+        "N": 352
+      },
+      "Cphys_vs_K0": {
+        "rho": -0.927,
+        "description": "Internal consistency check"
+      },
+      "Cphys_vs_ne_slope": {
+        "rho": 0.875,
+        "description": "Internal consistency check"
+      }
+    },
+    "mass_controlled": {
+      "partial_ne_slope_K0_given_M": {
+        "rho": -0.880,
+        "p_value": "2e-115",
+        "mass_contribution": "0%"
+      },
+      "interpretation": "Sign flip is NOT driven by mass confounding"
+    },
+    "mass_binned": [
+      {"bin": "[14.0, 14.3)", "N": 41, "rho": -0.790, "p_value": "9e-10"},
+      {"bin": "[14.3, 14.6)", "N": 118, "rho": -0.860, "p_value": "1e-35"},
+      {"bin": "[14.6, 14.9)", "N": 121, "rho": -0.901, "p_value": "5e-45"},
+      {"bin": "[14.9, 15.5)", "N": 71, "rho": -0.897, "p_value": "4e-26"}
+    ],
+    "proxy_definition_matching": {
+      "alpha_proxy_vs_K0_raw": {"rho": -0.872, "p_value": "8e-111"},
+      "alpha_proxy_vs_K0_partial_M": {"rho": -0.880, "p_value": "2e-115"},
+      "alpha_proxy_vs_tcool_raw": {"rho": -0.878, "p_value": "7e-114"},
+      "alpha_proxy_vs_tcool_partial_M": {"rho": -0.876, "p_value": "1e-112"}
+    },
+    "ks_test_scc_vs_ncc": {
+      "D_statistic": 1.000,
+      "p_value": "2.4e-30",
+      "interpretation": "Complete separation between SCC and NCC density slopes"
+    }
+  },
+  "pre_registered_tests": {
+    "path_b": {
+      "name": "Proxy-Based Pre-Test",
+      "status": "completed",
+      "description": "Computationally efficient test using alpha_proxy",
+      "result": "Sign flip confirmed"
+    },
+    "path_a": {
+      "name": "Decisive Full Profile Fit",
+      "status": "pre-registered, awaiting execution",
+      "description": "Full Cavagnolo-model K(r) fit over [20, 400] kpc",
+      "parameters_locked": {
+        "centre": "SUBFIND-determined",
+        "fit_range_kpc": [20, 400],
+        "initial_alpha_guess": 1.1,
+        "binning": "mass-weighted",
+        "n_radial_bins": 30,
+        "min_bin_occupancy": 5
+      }
+    },
+    "stop_go_criterion": {
+      "STOP": "rho(alpha_fit, K0) > 0 AND rho(alpha_fit, tcool) > 0",
+      "GO": "rho(alpha_fit, K0) < 0",
+      "PARTIAL": "Mixed signs across CC proxies"
+    }
+  },
+  "interpretation": {
+    "possible_explanations": [
+      {
+        "name": "Subgrid modelling",
+        "description": "AGN feedback in TNG may produce overly mechanical CC/NCC transitions"
+      },
+      {
+        "name": "Observational systematics",
+        "description": "Projection effects, spectral fitting biases, or selection effects in ACCEPT"
+      },
+      {
+        "name": "Missing physics",
+        "description": "Cosmic ray transport, anisotropic conduction, magnetic draping not captured"
+      }
+    ],
+    "systematic_differences": [
+      "TNG: intrinsic 3D mass-weighted quantities",
+      "ACCEPT: deprojected X-ray spectroscopic with emission weighting",
+      "TNG: mass-selected sample",
+      "ACCEPT: X-ray selected, flux-limited sample"
+    ],
+    "implications": "Framework-independent question: Why do modern ΛCDM hydrodynamic simulations not reproduce the observed entropy-structure coupling?"
+  },
+  "package_contents": {
+    "source_code": "src/entropy_structure_coupling.py",
+    "data_file": "data/tng_cluster_results.json",
+    "example": "examples/entropy_structure_demo.py",
+    "documentation": "README.md"
+  },
+  "references": [
+    {"key": "Cavagnolo2009", "citation": "Cavagnolo, K. W., et al. 2009, ApJS, 182, 12"},
+    {"key": "Fabian1994", "citation": "Fabian, A. C. 1994, ARA&A, 32, 277"},
+    {"key": "Hudson2010", "citation": "Hudson, D. S., et al. 2010, A&A, 513, A37"},
+    {"key": "Lehle2024", "citation": "Lehle, K., et al. 2024, A&A, 687, A30"},
+    {"key": "Nelson2024", "citation": "Nelson, D., et al. 2024, A&A, 686, A157"},
+    {"key": "Peterson2006", "citation": "Peterson, J. R. & Fabian, A. C. 2006, Phys. Rep., 427, 1"},
+    {"key": "Pillepich2018", "citation": "Pillepich, A., et al. 2018, MNRAS, 473, 4077"},
+    {"key": "Weinberger2017", "citation": "Weinberger, R., et al. 2017, MNRAS, 465, 3291"}
+  ]
+}
