@@ -8,3 +8,10 @@ __pycache__/
 # local-only
 figshare/auth.json
 _quarantine/
+
+# BESR3 local data (large HDF5 cutouts and results)
+besr3/data/*.hdf5
+besr3/data/*.parquet
+besr3/results/
+besr2b/data/*.hdf5
+*.npz
