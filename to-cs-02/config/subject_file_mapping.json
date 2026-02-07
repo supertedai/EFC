@@ -1,0 +1,28 @@
+{
+  "description": "Maps subject numbers to EEGLAB file prefixes in sedation-restingstate dataset",
+  "note": "Each subject has 4 conditions identified by the last 3-digit code in the filename",
+  "format": "XX-2010-anest YYYYMMDD NNN.CCC where XX=subject, CCC=condition code",
+  "conditions_order": ["baseline", "mild", "moderate", "recovery"],
+  "subjects": {
+    "02": {"prefix": "02-2010-anest", "codes": ["003", "006", "014"], "alt_prefix": "02-2010-anest-", "alt_codes": ["003"]},
+    "03": {"prefix": "03-2010-anest", "codes": ["003", "008", "021", "026"]},
+    "05": {"prefix": "05-2010-anest", "codes": ["004", "009", "022", "027"]},
+    "06": {"prefix": "06-2010-anest", "codes": ["003", "008", "013", "026"]},
+    "07": {"prefix": "07-2010-anest", "codes": ["003", "008", "021", "027"]},
+    "08": {"prefix": "08-2010-anest", "codes": ["004", "010", "015", "028"]},
+    "09": {"prefix": "09-2010-anest", "codes": ["003", "008", "021", "026"]},
+    "10": {"prefix": "10-2010-anest", "codes": ["005", "010", "015", "028"]},
+    "13": {"prefix": "13-2010-anest", "codes": ["003", "008", "013", "026"]},
+    "14": {"prefix": "14-2010-anest", "codes": ["007", "011", "016", "031"]},
+    "18": {"prefix": "18-2010-anest", "codes": ["003", "009", "014", "027"]},
+    "20": {"prefix": "20-2010-anest", "codes": ["004", "009", "022", "027"]},
+    "22": {"prefix": "22-2010-anest", "codes": ["004", "009", "014"], "alt_codes_recovery": ["003"]},
+    "23": {"prefix": "23-2010-anest", "codes": ["003", "008", "022", "027"]},
+    "24": {"prefix": "24-2010-anest", "codes": ["003", "010", "015", "028"]},
+    "25": {"prefix": "25-2010-anest", "codes": ["003", "008", "021", "026"]},
+    "26": {"prefix": "26-2010-anest", "codes": ["003", "008", "013", "026"]},
+    "27": {"prefix": "27-2010-anest", "codes": ["001", "010", "023", "028"]},
+    "28": {"prefix": "28-2010-anest", "codes": ["004", "011", "016", "029"]},
+    "29": {"prefix": "29-2010-anest", "codes": ["005", "010", "023", "028"]}
+  }
+}

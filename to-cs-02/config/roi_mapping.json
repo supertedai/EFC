@@ -1,0 +1,49 @@
+{
+  "description": "EGI HydroCel GSN-128 to 8 ROIs via coordinate-based quantile split",
+  "source": "Chennu et al. 2016 mixed naming convention (EGI E-numbers + standard 10-20)",
+  "rois": {
+    "F_L": {
+      "label": "Frontal Left",
+      "channels": ["Fp1", "F3", "F7", "E20", "E23", "E26", "E27", "E28", "E29", "E30"]
+    },
+    "F_R": {
+      "label": "Frontal Right",
+      "channels": ["Fp2", "Fz", "F4", "F8", "E2", "E3", "E4", "E5", "E6", "E7", "E10", "E123", "E118"]
+    },
+    "C_L": {
+      "label": "Central Left",
+      "channels": ["C3", "E31", "E34", "E35", "E37", "E39", "E40", "E41", "E42", "T3"]
+    },
+    "C_R": {
+      "label": "Central Right",
+      "channels": ["C4", "Cz", "T4", "E105", "E106", "E109", "E110", "E111", "E112", "E115", "E116"]
+    },
+    "P_L": {
+      "label": "Parietal Left",
+      "channels": ["P3", "E46", "E47", "E50", "E51", "E53", "E54", "E55", "T5", "E59", "E60"]
+    },
+    "P_R": {
+      "label": "Parietal Right",
+      "channels": ["P4", "Pz", "T6", "E85", "E86", "E87", "E90", "E91", "E93", "E97", "E98", "E117"]
+    },
+    "O_L": {
+      "label": "Occipital Left",
+      "channels": ["O1", "E61", "E65", "E66", "E67", "E71", "E72", "E76", "E77", "E78"]
+    },
+    "O_R": {
+      "label": "Occipital Right",
+      "channels": ["O2", "Oz", "E79", "E80", "E84", "E101", "E102", "E103", "E15", "E16", "E18", "E19", "E13"]
+    }
+  },
+  "subject_classification": {
+    "threshold": 24,
+    "note": "Correct responses at moderate sedation out of 40. >= 24 = responsive, < 24 = drowsy",
+    "responsive": [1, 3, 7, 9, 11, 12, 13, 14, 15, 16, 18, 19, 20],
+    "drowsy": [2, 4, 5, 6, 8, 10, 17],
+    "hit_rates": {
+      "1": 39, "2": 3, "3": 33, "4": 1, "5": 6, "6": 21, "7": 34,
+      "8": 0, "9": 35, "10": 12, "11": 39, "12": 39, "13": 35,
+      "14": 35, "15": 37, "16": 40, "17": 15, "18": 37, "19": 38, "20": 38
+    }
+  }
+}
