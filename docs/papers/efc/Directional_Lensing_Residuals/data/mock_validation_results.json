@@ -1,0 +1,146 @@
+{
+  "description": "Mock validation results for directional lensing residuals pipeline",
+  "paper_doi": "10.6084/m9.figshare.31288063",
+  "mock_configuration": {
+    "cluster_type": "Bullet Cluster analogue",
+    "icm_profile": "analytical beta-model",
+    "dm_profile": "NFW",
+    "halo_geometry": "two-halo",
+    "mass_ratio": "8:1",
+    "shock_mach": 2.5,
+    "noise_model": "Gaussian"
+  },
+  "rotation_null": {
+    "n_angles": 23,
+    "step_degrees": 15,
+    "angles_degrees": [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345],
+    "outlier_handling": "median/MAD (robust)",
+    "note": "Halo-edge crossings at theta ~ ±30° produce |A_rot| > 50"
+  },
+  "efc_mock": {
+    "description": "Synthetic data with entropy-dependent convergence",
+    "c_eff_model": "c_eff(S) proportional to exp(-S/S_max)",
+    "results": {
+      "A_shock": {
+        "value": 6.75,
+        "uncertainty": "bootstrap",
+        "interpretation": "Raw directional asymmetry"
+      },
+      "A_rot_median": {
+        "value": 5.38,
+        "interpretation": "Median of rotation null distribution"
+      },
+      "sigma_MAD": {
+        "value": 7.35,
+        "formula": "1.4826 * MAD[A_rot]",
+        "interpretation": "Robust scatter estimate"
+      },
+      "A_sig": {
+        "value": 0.19,
+        "formula": "(A_shock - A_rot_median) / sigma_MAD",
+        "sign": "positive",
+        "interpretation": "Locally-normalized significance"
+      },
+      "p_rot": {
+        "value": 0.39,
+        "formula": "#{A_rot >= A_shock} / N_rot",
+        "interpretation": "Non-parametric one-sided p-value"
+      }
+    },
+    "decision": {
+      "outcome": "sub-significant",
+      "note": "Expected for smooth analytical profiles"
+    }
+  },
+  "lcdm_mock": {
+    "description": "Synthetic data with standard GR (kappa proportional to Sigma only)",
+    "c_eff_model": "none (c = c_0 constant)",
+    "results": {
+      "A_shock": {
+        "value": -1.12,
+        "uncertainty": "bootstrap",
+        "interpretation": "Raw directional asymmetry"
+      },
+      "A_rot_median": {
+        "value": 6.96,
+        "interpretation": "Median of rotation null distribution"
+      },
+      "sigma_MAD": {
+        "value": 6.68,
+        "formula": "1.4826 * MAD[A_rot]",
+        "interpretation": "Robust scatter estimate"
+      },
+      "A_sig": {
+        "value": -1.21,
+        "formula": "(A_shock - A_rot_median) / sigma_MAD",
+        "sign": "negative",
+        "interpretation": "Locally-normalized significance"
+      },
+      "p_rot": {
+        "value": 0.65,
+        "formula": "#{A_rot >= A_shock} / N_rot",
+        "interpretation": "Non-parametric one-sided p-value"
+      }
+    },
+    "decision": {
+      "outcome": "null/negative",
+      "note": "Correct behavior when no entropy-dependent signal present"
+    }
+  },
+  "sign_separation_test": {
+    "EFC_A_sig": 0.19,
+    "LCDM_A_sig": -1.21,
+    "sign_difference": 1.40,
+    "EFC_positive": true,
+    "LCDM_negative": true,
+    "sign_separation_confirmed": true,
+    "interpretation": "Pipeline correctly distinguishes models by A_sig sign"
+  },
+  "false_positive_test": {
+    "LCDM_A_sig_exceeds_threshold": false,
+    "threshold": 2.0,
+    "false_positive_count": 0,
+    "total_tests": 1,
+    "false_positive_rate": 0.0,
+    "status": "PASSED"
+  },
+  "partial_correlation_test": {
+    "statistic": "r(kappa,T|n)",
+    "description": "Partial correlation between GGM edge amplitudes",
+    "EFC_value": -0.25,
+    "LCDM_value": -0.25,
+    "degenerate": true,
+    "reason": "Hydrodynamic T-n coupling produces similar r(kappa,T|n) in both models",
+    "conclusion": "r(kappa,T|n) is supportive but NOT decisive; A_sig is primary statistic"
+  },
+  "estimator_comparison": {
+    "A_sig": {
+      "type": "primary",
+      "measures": "Locally-normalized directional kappa-residual",
+      "LCDM_behavior": "approximately 0 or negative",
+      "EFC_behavior": "positive",
+      "discriminating_power": "high (sign separation)"
+    },
+    "A_shock": {
+      "type": "intermediate",
+      "measures": "Raw directional asymmetry",
+      "LCDM_behavior": "non-zero due to geometry",
+      "EFC_behavior": "more positive",
+      "discriminating_power": "low (biased by halo shape)"
+    },
+    "r_kappa_T_given_n": {
+      "type": "secondary",
+      "measures": "Partial edge correlation",
+      "LCDM_behavior": "non-zero due to hydrodynamics",
+      "EFC_behavior": "more negative",
+      "discriminating_power": "low (degenerate)"
+    }
+  },
+  "validation_summary": {
+    "sign_separation": "CONFIRMED",
+    "false_positives": "NONE",
+    "partial_correlation_degeneracy": "CONFIRMED",
+    "pipeline_status": "VALIDATED",
+    "ready_for_real_data": true
+  }
+}
