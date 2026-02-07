@@ -1,0 +1,220 @@
+{
+  "paper": {
+    "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sandnes, Norway",
+    "date": "2026-02-07",
+    "doi": "10.6084/m9.figshare.31288063",
+    "status": "preprint",
+    "keywords": [
+      "gravitational lensing",
+      "galaxy clusters",
+      "shock fronts",
+      "intracluster medium",
+      "modified gravity",
+      "entropy"
+    ]
+  },
+  "framework": {
+    "name": "Energy-Flow Cosmology (EFC)",
+    "test_type": "pre-registered",
+    "status": "pipeline_ready",
+    "target_data": "JWST kappa-maps + Chandra thermodynamic maps"
+  },
+  "primary_estimator": {
+    "name": "A_sig",
+    "description": "Locally-normalized directional kappa-residual excess",
+    "formula": "A_sig = [A_shock - median(A_rot)] / sigma_MAD",
+    "components": {
+      "A_shock": {
+        "formula": "(mean(Delta_kappa)_pre - mean(Delta_kappa)_post) / sigma_diff",
+        "description": "Raw directional shock asymmetry"
+      },
+      "A_rot": {
+        "description": "Rotation null distribution",
+        "n_angles": 23,
+        "step_degrees": 15,
+        "angles": [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345]
+      },
+      "sigma_MAD": {
+        "formula": "1.4826 * MAD[A_rot]",
+        "description": "Robust scatter estimate (Gaussian sigma equivalent)"
+      }
+    },
+    "interpretation": {
+      "positive": "Excess kappa on low-entropy (pre-shock) side - c_eff(S) signal",
+      "zero": "No directional preference - consistent with GR",
+      "negative": "Excess kappa on high-entropy side"
+    }
+  },
+  "mass_model": {
+    "total": "kappa_model = kappa_NFW + kappa_gas",
+    "dark_matter": {
+      "profile": "NFW",
+      "halos": 2,
+      "description": "Two-halo geometry (main cluster + sub-cluster)"
+    },
+    "gas": {
+      "formula": "kappa_gas = [alpha * Sigma_gas + beta * Sigma_P] / Sigma_crit",
+      "components": {
+        "Sigma_gas": "Integral of mu_e * m_p * n_e along line of sight",
+        "Sigma_P": "Integral of n_e * (kT)^0.5 along line of sight (pressure proxy)"
+      }
+    },
+    "anti_circularity": {
+      "description": "Coefficients fitted outside shock aperture only",
+      "method": "least_squares",
+      "fit_region": "all pixels outside shock extraction aperture"
+    }
+  },
+  "shock_geometry": {
+    "aperture": {
+      "shape": "rectangular_strip",
+      "width": "2 * R_strip along shock normal",
+      "length": "L_strip along shock surface"
+    },
+    "regions": {
+      "Omega_pre": "Pre-shock (upstream, low-entropy)",
+      "Omega_post": "Post-shock (downstream, high-entropy)"
+    },
+    "definition_source": "X-ray surface brightness discontinuity (independent of lensing)"
+  },
+  "mock_validation": {
+    "description": "Synthetic Bullet Cluster analogues",
+    "icm_profile": "beta-model",
+    "dm_profile": "NFW",
+    "mass_ratio": "8:1 (two-halo geometry)",
+    "results": {
+      "EFC_mock": {
+        "A_shock": 6.75,
+        "A_rot_median": 5.38,
+        "sigma_MAD": 7.35,
+        "A_sig": 0.19,
+        "p_rot": 0.39,
+        "signal": "positive"
+      },
+      "LCDM_mock": {
+        "A_shock": -1.12,
+        "A_rot_median": 6.96,
+        "sigma_MAD": 6.68,
+        "A_sig": -1.21,
+        "p_rot": 0.65,
+        "signal": "negative_or_null"
+      }
+    },
+    "key_finding": "Correct sign separation between models",
+    "false_positive_rate": 0
+  },
+  "decision_criteria": {
+    "pre_registered": true,
+    "detection": {
+      "criteria": "A_sig > 3 AND p_rot < 0.05 in >= 2 clusters",
+      "action": "Evidence for directional lensing asymmetry"
+    },
+    "marginal": {
+      "criteria": "A_sig > 2 OR (A_sig > 1.5 AND r(kappa,T|n) < -0.15)",
+      "action": "Tentative; extend to additional clusters"
+    },
+    "null": {
+      "criteria": "A_sig < 2 in all clusters",
+      "action": "Upper bound on |Delta_kappa/kappa| at shocks"
+    }
+  },
+  "degeneracy_breaking": {
+    "G_vs_c": {
+      "G_eff_modification": {
+        "effect": "Isotropic enhancement",
+        "A_sig_prediction": "approximately 0",
+        "reason": "Gravity has no preferred direction"
+      },
+      "c_eff_modification": {
+        "effect": "Directional enhancement",
+        "A_sig_prediction": "positive",
+        "reason": "Photons accumulate extra phase delay on low-S side"
+      }
+    }
+  },
+  "secondary_estimator": {
+    "name": "r(kappa,T|n)",
+    "description": "Partial correlation between GGM edge amplitudes",
+    "status": "supportive_but_degenerate",
+    "LCDM_value": -0.25,
+    "note": "Degenerate due to hydrodynamic T-n coupling"
+  },
+  "expected_signal": {
+    "cluster": "Bullet Cluster",
+    "shock_mach": 2.5,
+    "rankine_hugoniot": {
+      "T2_over_T1": 2.85,
+      "n2_over_n1": 2.29,
+      "S2_over_S1": 1.67
+    },
+    "delta_S_over_S_max": 0.35,
+    "mu_0": 0.415,
+    "kappa_local": "0.15-0.25",
+    "predicted_delta_kappa": 0.03,
+    "delta_kappa_over_kappa_percent": 15,
+    "optimistic_significance": "6 sigma",
+    "realistic_significance": "2-4 sigma"
+  },
+  "data_requirements": {
+    "per_cluster": [
+      {
+        "map": "kappa",
+        "source": "weak+strong lensing reconstruction",
+        "instrument": "JWST"
+      },
+      {
+        "map": "kT",
+        "source": "X-ray spectral fitting",
+        "instrument": "Chandra"
+      },
+      {
+        "map": "n_e",
+        "source": "X-ray surface brightness deprojection",
+        "instrument": "Chandra"
+      }
+    ],
+    "target_clusters": [
+      {
+        "name": "Bullet Cluster",
+        "kappa_source": "Cha et al. 2025",
+        "strong_lensing_constraints": 146,
+        "weak_lensing_density": "398 sources/arcmin^2",
+        "reconstruction": "MARS algorithm",
+        "chandra_exposure_ks": 500
+      },
+      {
+        "name": "Abell 2146",
+        "feature": "Double-shock system",
+        "references": ["Russell et al. 2010", "Russell et al. 2012", "Russell et al. 2022"]
+      }
+    ]
+  },
+  "systematics": {
+    "astrometric_coregistration": {
+      "description": "WCS alignment between kappa-map and X-ray maps",
+      "concern": "Sub-arcsecond misalignment can introduce spurious directional residuals",
+      "mitigation": "Cross-correlate point source positions in both frames"
+    },
+    "mass_modeling": "Uncertainty in NFW parameters",
+    "psf_effects": "Point spread function convolution",
+    "reconstruction_systematics": "Lensing reconstruction algorithm choices"
+  },
+  "efc_connection": {
+    "effective_speed_of_light": "c_eff(S) = c_0 * [1 + mu(S)]",
+    "mu_function": "Monotonically decreasing function of entropy S",
+    "prediction": "Photons traversing low-entropy regions accumulate additional convergence",
+    "formula": "Delta_kappa_EFC = mu_0 * (Delta_S / S_max) * kappa_local"
+  },
+  "package_contents": {
+    "readme": "README.md",
+    "metadata": "index.json",
+    "source_code": "src/directional_lensing.py",
+    "data": "data/mock_validation_results.json",
+    "examples": "examples/directional_lensing_demo.py",
+    "citation": "CITATION.cff",
+    "license": "LICENSE"
+  }
+}
