@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/entropy-bounded-empiricism-EBE/schema.json",
+  "title": "EBE SPARC175 Schema",
+  "type": "object",
+  "properties": {
+    "galaxy": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "integer"},
+        "name": {"type": "string"},
+        "regime": {"type": "string", "enum": ["FLOW", "TRANSITION", "LATENT"]},
+        "L_value": {"type": "number", "minimum": 0, "maximum": 1},
+        "S_estimate": {"type": "number"},
+        "chi2_efc": {"type": "number"},
+        "chi2_lcdm": {"type": "number"},
+        "success_efc": {"type": "boolean"}
+      }
+    },
+    "regime_threshold": {
+      "type": "object",
+      "properties": {
+        "L1": {"type": "number"},
+        "L2": {"type": "number"}
+      }
+    },
+    "statistical_test": {
+      "type": "object",
+      "properties": {
+        "test_name": {"type": "string"},
+        "p_value": {"type": "number"},
+        "effect_size": {"type": "number"}
+      }
+    }
+  },
+  "efc_analysis_type": "regime_validity",
+  "framework": "entropy_bounded_empiricism"
+}

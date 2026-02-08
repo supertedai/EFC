@@ -1,0 +1,39 @@
+{
+  "id": "entropy-bounded-empiricism-ebe-sparc175",
+  "title": "Entropy-Bounded Empiricism: Regime-Dependent Validity in Galaxy Rotation Curves",
+  "short_title": "EBE SPARC175",
+  "version": "1.0",
+  "date": "2026-01-12",
+  "doi": "10.6084/m9.figshare.31047703",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "empirical_analysis",
+  "status": "published",
+  "abstract_short": "EBE framework: 100% EFC success in FLOW regime (62/62 galaxies). Mann-Whitney p<0.0001, Cliff's δ=0.371. CMB null test passes (p=0.251).",
+  "keywords": ["EBE", "entropy-bounded empiricism", "SPARC", "rotation curves", "regime validity", "L parameter", "S entropy"],
+  "key_results": {
+    "flow_success_rate": {"value": 1.0, "n": 62, "description": "100% EFC success in FLOW regime"},
+    "mann_whitney_p": {"value": "<0.0001", "description": "Highly significant"},
+    "kruskal_wallis_p": {"value": 0.012, "description": "Significant 3-way difference"},
+    "permutation_p": {"value": 0.016, "description": "Non-random structure"},
+    "effect_size": {"metric": "Cliff's δ", "value": 0.371, "interpretation": "medium-to-large"},
+    "cmb_null_p": {"value": 0.251, "description": "PASS - CMB shows no regime structure"}
+  },
+  "regime_distribution": {
+    "FLOW": {"n": 62, "pct": 35.4, "L_range": "<0.337", "S_range": "<0.25"},
+    "TRANSITION": {"n": 86, "pct": 49.1, "L_range": "0.337-0.427", "S_range": "0.25-0.65"},
+    "LATENT": {"n": 27, "pct": 15.4, "L_range": "≥0.427", "S_range": "≥0.65"}
+  },
+  "thresholds": {
+    "L1": 0.337,
+    "L2": 0.427,
+    "S_bounds": [0.1, 0.9]
+  },
+  "files": {
+    "dataset": "sparc175_master_dataset.csv",
+    "thresholds": "regime_thresholds_validation.txt",
+    "analysis": "statistical_analysis_summary.py"
+  }
+}

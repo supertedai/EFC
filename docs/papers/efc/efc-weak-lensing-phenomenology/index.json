@@ -1,0 +1,58 @@
+{
+  "id": "efc-weak-lensing-phenomenology",
+  "title": "EFC Weak Lensing Phenomenology: A Testable μ(k,z) Framework and DES Y6 Validation Protocol",
+  "short_title": "EFC Weak Lensing",
+  "version": "1.0",
+  "date": "2026-01",
+  "doi": "10.6084/m9.figshare.31188193",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "theoretical_framework",
+  "status": "published",
+  "abstract_short": "Testable μ(k,z) framework for weak lensing. Addresses S₈ tension (0.789 vs 0.83). Pass/fail criteria defined for DES Y6.",
+  "keywords": ["EFC", "weak lensing", "μ(k,z)", "DES Y6", "S₈ tension", "modified gravity", "Postulate A"],
+  "core_equations": [
+    {
+      "name": "μ(k,z) EFC form",
+      "latex": "\\mu(k,z) = 1 + A_\\mu \\times \\Theta(z_t - z) \\times 1/(1 + k^2/k_*^2)"
+    },
+    {
+      "name": "Postulate A coupling",
+      "latex": "\\delta\\Sigma(k,z) = \\xi \\rho_m(z) \\delta_m(k,z) g(z) h(k)"
+    }
+  ],
+  "parameters": {
+    "A_mu": {"description": "Free amplitude (constrained by data)"},
+    "z_t": {"value": 2, "description": "Redshift transition (preserves CMB)"},
+    "k_star": {"value": 0.1, "unit": "h/Mpc", "description": "Scale filter"}
+  },
+  "validation_protocol": {
+    "pass_criteria": [
+      {"metric": "Δχ²", "threshold": "≥ 6"},
+      {"metric": "A_μ significance", "threshold": "> 2σ from 0"},
+      {"metric": "AIC/BIC", "threshold": "prefers EFC"}
+    ],
+    "falsification": [
+      "A_μ = 0 (no improvement)",
+      "A_μ > 0 (wrong sign)",
+      "CMB lensing conflict",
+      "Nuisance degeneracy"
+    ]
+  },
+  "s8_tension": {
+    "DES_Y6": 0.789,
+    "Planck": 0.83,
+    "tension_sigma": 2.6
+  },
+  "dependencies": [
+    {"doi": "10.6084/m9.figshare.30421807", "title": "EFC Field Equations"},
+    {"doi": "10.6084/m9.figshare.30630500", "title": "EFC Master Specification"}
+  ],
+  "files": {
+    "docs": "docs/",
+    "src": "src/",
+    "tests": "tests/"
+  }
+}

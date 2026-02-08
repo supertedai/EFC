@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/validity-aware-ai/schema.json",
+  "title": "Validity-Aware AI Schema",
+  "type": "object",
+  "properties": {
+    "regime": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"]
+    },
+    "graph_entropy": {
+      "type": "object",
+      "properties": {
+        "H_V": {"type": "number", "description": "Node entropy"},
+        "H_E": {"type": "number", "description": "Edge entropy"},
+        "H_VE": {"type": "number", "description": "Structural entropy"},
+        "total": {"type": "number"}
+      }
+    },
+    "response_protocol": {
+      "type": "string",
+      "enum": ["standard", "uncertainty_aware", "refuse", "archive"]
+    }
+  },
+  "efc_framework": "validity_aware_ai"
+}

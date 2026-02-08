@@ -1,0 +1,56 @@
+{
+  "id": "efc-phenomenology-desi-dr2-bao",
+  "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+  "short_title": "EFC vs DESI DR2 BAO",
+  "version": "1.0",
+  "date": "2026-01-22",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "technical_note",
+  "status": "published",
+  "abstract_short": "EFC-inspired w(z) yields lowest χ²=3.60 vs w₀wₐCDM (4.49) and ΛCDM (23.71) against DESI DR2 BAO.",
+  "keywords": [
+    "EFC",
+    "DESI DR2",
+    "BAO",
+    "dark energy",
+    "w(z)",
+    "CPL parameterization",
+    "entropy transition"
+  ],
+  "core_equations": [
+    {
+      "name": "EFC-inspired w(z)",
+      "latex": "w(z) = w_{late} + (w_{early} - w_{late}) \\cdot \\tanh[(z - z_{trans})/0.5]"
+    }
+  ],
+  "parameters": {
+    "w_late": {"value": -0.80, "description": "Dark energy EoS today"},
+    "w_early": {"value": -1.41, "description": "Dark energy EoS at high z"},
+    "z_trans": {"value": 1.07, "description": "Transition redshift"}
+  },
+  "results": {
+    "LCDM": {"chi2": 23.71, "assessment": "Poor fit"},
+    "w0waCDM": {"chi2": 4.49, "assessment": "Good fit"},
+    "EFC": {"chi2": 3.60, "assessment": "Best fit (within models tested)"}
+  },
+  "data_sources": [
+    {"survey": "DESI DR2", "type": "BAO", "N": 7, "z_range": [0.30, 2.33]}
+  ],
+  "limitations": [
+    "Diagonal errors only (no covariance)",
+    "BAO only (no CMB/SN)",
+    "Post-hoc fitting, not a priori prediction"
+  ],
+  "next_steps": [
+    "Derive w(z) from EFC field equations",
+    "Multi-probe analysis with full covariance",
+    "Bayesian model comparison"
+  ],
+  "files": {
+    "pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
+    "tex": "EFC_DESI_Technical_Note.tex"
+  }
+}

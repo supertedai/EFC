@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/regime-dependent-breakdown/schema.json",
+  "title": "ΛCDM Regime Breakdown Schema",
+  "type": "object",
+  "properties": {
+    "chi2_test": {
+      "type": "object",
+      "properties": {
+        "chi2": {"type": "number"},
+        "df": {"type": "integer"},
+        "p_value": {"type": "number"}
+      }
+    },
+    "excess_ratio": {
+      "type": "object",
+      "properties": {
+        "z_range": {"type": "string"},
+        "ratio": {"type": "number"},
+        "reference": {"type": "string"}
+      }
+    }
+  },
+  "efc_analysis_type": "lcdm_tension_analysis"
+}

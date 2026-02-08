@@ -1,0 +1,43 @@
+{
+  "id": "structural-constraints-cluster-merger",
+  "title": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
+  "short_title": "EFC Cluster Merger Constraints",
+  "version": "1.0.0",
+  "date": "2026-01-28",
+  "doi": "10.6084/m9.figshare.31173850",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "constraint_study",
+  "status": "published",
+  "abstract_short": "Local entropy-gradient couplings falsified (0/42 pass). Required: non-local L₀~200 kpc, collisionless weighting w~20.",
+  "keywords": ["EFC", "Bullet Cluster", "cluster mergers", "entropy-gradient gravity", "falsification", "non-local coupling"],
+  "key_results": {
+    "BC-001": {
+      "claim": "Local gradient coupling falsified",
+      "result": "0/42 parameter combinations pass"
+    },
+    "BC-002": {
+      "claim": "Required structure",
+      "L0_kpc": 200,
+      "w_collisionless": 20
+    },
+    "BC-003": {
+      "claim": "Predictive model",
+      "eta": 66.2
+    }
+  },
+  "predictions": [
+    {"cluster": "Bullet", "w_pred": 20.0, "L0_kpc": 200, "status": "calibration"},
+    {"cluster": "MACS J0025", "w_pred": 23.9, "L0_kpc": 120, "status": "PASS (synthetic)"},
+    {"cluster": "Abell 520", "w_pred": 28.2, "L0_kpc": 160, "status": "PASS geometry"}
+  ],
+  "limitations": ["Synthetic κ-maps, not real FITS data"],
+  "files": {
+    "pdf": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry.pdf",
+    "tex": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry.tex",
+    "code": "code/",
+    "data": "data/"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/EFC-C_Consciousness_Field_Resonance/schema.json",
+  "title": "EFC-C Consciousness Field Resonance Schema",
+  "type": "object",
+  "required": ["id", "title", "doi", "author", "key_results"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^efc-c-consciousness-field-resonance$"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\.6084/m9\\.figshare\\.\\d+$"},
+    "author": {
+      "type": "object",
+      "required": ["name", "orcid"],
+      "properties": {
+        "name": {"type": "string"},
+        "orcid": {"type": "string", "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{4}$"}
+      }
+    },
+    "key_results": {
+      "type": "object",
+      "required": ["differentiation_effect", "integration_effect", "product_test_F1"],
+      "properties": {
+        "differentiation_effect": {
+          "type": "object",
+          "properties": {
+            "cohens_d": {"type": "number", "minimum": 0}
+          }
+        },
+        "integration_effect": {
+          "type": "object",
+          "properties": {
+            "cohens_d": {"type": "number", "minimum": 0}
+          }
+        },
+        "product_test_F1": {
+          "type": "object",
+          "properties": {
+            "status": {"type": "string", "pattern": "FALSIFIED.*"}
+          }
+        }
+      }
+    },
+    "empirical_pillars": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"type": "string"}
+    },
+    "testable_predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "prediction", "test"],
+        "properties": {
+          "id": {"type": "string"},
+          "prediction": {"type": "string"},
+          "test": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/efc-weak-lensing-phenomenology/schema.json",
+  "title": "EFC Weak Lensing Schema",
+  "type": "object",
+  "properties": {
+    "mu_kz": {
+      "type": "object",
+      "description": "Modified gravity parameter μ(k,z)",
+      "properties": {
+        "A_mu": {"type": "number", "description": "Amplitude"},
+        "z_t": {"type": "number", "description": "Transition redshift"},
+        "k_star": {"type": "number", "description": "Scale filter h/Mpc"}
+      }
+    },
+    "validation_result": {
+      "type": "object",
+      "properties": {
+        "delta_chi2": {"type": "number"},
+        "A_mu_significance": {"type": "number"},
+        "verdict": {"type": "string", "enum": ["pass", "fail", "inconclusive"]}
+      }
+    }
+  },
+  "efc_analysis_type": "weak_lensing_phenomenology",
+  "target_survey": "DES_Y6"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/EFC-Phenomenology-vs-DESI-DR2-BAO/schema.json",
+  "title": "EFC DESI DR2 BAO Comparison Schema",
+  "type": "object",
+  "properties": {
+    "w_z_model": {
+      "type": "object",
+      "properties": {
+        "form": {"type": "string", "enum": ["constant", "CPL", "tanh_transition"]},
+        "w_late": {"type": "number"},
+        "w_early": {"type": "number"},
+        "z_trans": {"type": "number"}
+      }
+    },
+    "chi2_result": {
+      "type": "object",
+      "properties": {
+        "model": {"type": "string"},
+        "value": {"type": "number"},
+        "N_data": {"type": "integer"}
+      }
+    }
+  },
+  "efc_analysis_type": "dark_energy_phenomenology",
+  "probe": "BAO"
+}

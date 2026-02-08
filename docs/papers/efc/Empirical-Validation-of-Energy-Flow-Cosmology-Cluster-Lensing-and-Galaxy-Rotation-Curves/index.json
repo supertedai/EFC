@@ -1,0 +1,38 @@
+{
+  "id": "efc-empirical-validation-cluster-rotation",
+  "title": "EFC Validation: Cluster Lensing and Galaxy Rotation Curves",
+  "short_title": "EFC Empirical Validation",
+  "version": "1.0",
+  "date": "2026-01-29",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "empirical_analysis",
+  "status": "published",
+  "abstract_short": "EFC passes both cluster lensing (Bullet Cluster) and galaxy rotation curve tests. Gas term statistically irrelevant (p=0.99). Rotation χ²=4.5 vs Newton χ²=296.",
+  "keywords": ["EFC", "Bullet Cluster", "cluster lensing", "rotation curves", "SPARC", "entropy coupling", "λ scaling"],
+  "key_results": [
+    {"test": "Bullet Cluster lensing", "result": "κ follows galaxies, not gas", "p_value": 0.99},
+    {"test": "MACS J0025 lensing", "result": "Same structure confirmed", "status": "pass"},
+    {"test": "Galaxy rotation", "result": "χ²=4.5 vs Newton χ²=296", "improvement": "98%"}
+  ],
+  "lambda_scaling": {
+    "bullet_cluster": {"lambda_kpc": 250, "system_size_kpc": 500, "ratio": 0.5},
+    "galaxy": {"lambda_kpc": 2.4, "system_size_kpc": 2.5, "ratio": 1.0},
+    "interpretation": "λ scales with system size, not universal constant"
+  },
+  "core_equations": [
+    {
+      "name": "Total velocity",
+      "latex": "v^2_{total}(r) = v^2_{baryon}(r) + v^2_{entropy}(r)"
+    },
+    {
+      "name": "Entropy contribution",
+      "latex": "v^2_{entropy} = v_h^2 \\cdot (1 - (r_h/r) \\cdot \\arctan(r/r_h))"
+    }
+  ],
+  "files": {
+    "key_figures": ["efc_rotation_corrected.png", "bullet_real_hsc_fit.png", "nested_test_result.png"]
+  }
+}

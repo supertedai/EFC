@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Empirical-Validation/schema.json",
+  "title": "EFC Empirical Validation Schema",
+  "type": "object",
+  "properties": {
+    "lensing_result": {
+      "type": "object",
+      "properties": {
+        "cluster": {"type": "string"},
+        "kappa_source": {"type": "string", "enum": ["galaxies", "gas", "both"]},
+        "log_likelihood": {"type": "number"},
+        "p_value": {"type": "number"}
+      }
+    },
+    "rotation_curve": {
+      "type": "object",
+      "properties": {
+        "chi2_newton": {"type": "number"},
+        "chi2_efc": {"type": "number"},
+        "lambda_kpc": {"type": "number"}
+      }
+    },
+    "lambda_scaling": {
+      "type": "object",
+      "properties": {
+        "system": {"type": "string"},
+        "lambda": {"type": "number"},
+        "system_size": {"type": "number"},
+        "ratio": {"type": "number"}
+      }
+    }
+  },
+  "efc_analysis_type": "empirical_validation",
+  "probes": ["cluster_lensing", "rotation_curves"]
+}
