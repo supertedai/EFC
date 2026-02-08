@@ -1,152 +1,241 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-This document provides instructions for AI agents working with the EFC repository.
+**Version**: 2.0 | **Updated**: 2026-01-30
+
+This document provides comprehensive instructions for AI agents working with the EFC repository.
+
+---
 
 ## Quick Reference
 
+```yaml
+author: Morten Magnusson
+orcid: 0009-0002-4860-5095
+repository: github.com/supertedai/EFC
+license: CC-BY-4.0
+core_principle: "Energy flows along entropy gradients"
+```
+
 | Resource | Location |
 |----------|----------|
-| Author | Morten Magnusson |
-| ORCID | [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095) |
-| Repository | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
-| Website | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
-| Personal | [magnusson.as](https://www.magnusson.as/) |
+| Machine Navigation | [`llms.txt`](./llms.txt) |
+| Provenance | [`/auth/`](./auth/) |
+| Schema | [`/schema/global_schema.json`](./schema/global_schema.json) |
+| Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
+| DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |
 
-## The Big Picture
+---
 
-Energy-Flow Cosmology (EFC) is a unified thermodynamic framework that explains:
+## Core Theory Summary
 
-- **Galactic rotation curves** without dark matter particles
-- **Cosmic acceleration** without dark energy as a substance
-- **Structure formation** through entropy gradients
-- **Consciousness** as resonance in energy fields
+### The Big Picture
 
-**Core Axiom**: Energy flows along entropy gradients. This single principle generates gravity, structure, and awareness.
+EFC is a unified thermodynamic framework where **energy flows along entropy gradients**. This single principle explains:
+
+| Phenomenon | EFC Mechanism |
+|------------|---------------|
+| Galaxy rotation | Entropy gradient coupling (no dark matter particles) |
+| Cosmic acceleration | Thermodynamic expansion (no dark energy substance) |
+| Structure formation | Regime-dependent growth via R(k,S) |
+| S₈ tension | L1→L2 regime transition |
+
+### Key Equations
+
+**Effective Gravitational Coupling:**
+```
+μ(a) = G_eff/G = 1 + βS(a)
+```
+
+**Regime Response Surface:**
+```
+μ(k,S) = 1 + R(k,S)
+```
+
+**Empirical Constraint (2026):**
+```
+β ≈ 0.16 (from unified BAO/SN/RSD analysis)
+R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3 RSD slice)
+```
+
+### Regime Architecture
+
+| Regime | S value | μ value | Description |
+|--------|---------|---------|-------------|
+| L0 | → 0 | ≈ 1 | Pre-inflation, quantum |
+| L1 | ≈ 0 | ≈ 1 | CMB epoch, GR valid |
+| L1→L2 | 0–1 | 1→1+β | Transition (S₈ tension source) |
+| L2 | > 0 | > 1 | Late universe, enhanced gravity |
+| L3 | → 1 | → 1+β | Far future, saturation |
+
+---
 
 ## Repository Architecture
 
 ```
 EFC/
-├── auth/           # START HERE - Origin & provenance
-├── theory/         # Formal mathematics (LaTeX)
-├── schema/         # Ontology & semantic web
-├── methodology/    # Research process
-├── meta/           # Meta-cognition layer
-├── docs/           # Papers & publications
-├── src/            # Python code
-├── api/            # Semantic API
-├── jsonld/         # Linked data
-├── figshare/       # DOI mappings
-└── integrations/   # External systems (MCP, WordPress)
+├── auth/               # START HERE — Origin, provenance, identity
+├── theory/
+│   └── formal/         # LaTeX: S, D, R, H, C0 models
+├── docs/
+│   └── papers/efc/     # All papers (AI-optimized metadata)
+├── schema/             # Ontology, JSON-LD contexts
+├── api/                # Semantic REST API
+├── jsonld/             # Linked data files
+├── figshare/           # DOI mappings
+├── integrations/
+│   └── mcp/            # MCP Server for AI agents
+├── llms.txt            # Machine-readable navigation
+└── AGENTS.md           # This file
 ```
+
+---
+
+## Paper Metadata Structure
+
+Each paper in `/docs/papers/efc/[paper-name]/` contains:
+
+| File | Purpose | Format |
+|------|---------|--------|
+| `README.md` | Human-readable summary | Markdown |
+| `index.json` | Machine-readable index | JSON |
+| `schema.json` | Validation schema | JSON Schema |
+| `*.jsonld` | Linked data | JSON-LD |
+| `citations.bib` | References | BibTeX |
+| `*.pdf` | Authoritative document | PDF |
+
+### Example: Reading Paper Metadata
+
+```python
+import json
+
+# Load machine-readable index
+with open('docs/papers/efc/WP3__First_Empirical_Slice.../index.json') as f:
+    paper = json.load(f)
+
+print(paper['doi'])           # "10.6084/m9.figshare.31215259"
+print(paper['keywords'])      # ["R(k,S)", "fσ₈", "RSD", ...]
+print(paper['results'])       # {"delta_chi2": 1.71, ...}
+```
+
+---
 
 ## Navigation Rules
 
 ### When Asked About EFC
 
-1. **Start with `/auth/`** - Understand provenance first
-2. **Check `/theory/formal/`** - For mathematical claims
-3. **Reference `/docs/papers/`** - For published findings
-4. **Cite DOIs** - Use `/figshare/doi-map.json`
+1. **Check `/auth/`** — Understand provenance first
+2. **Read `/theory/formal/`** — For mathematical claims
+3. **Reference `/docs/papers/`** — For published findings
+4. **Use DOIs** — From `/figshare/doi-map.json`
 
 ### When Modifying Content
 
-1. **Preserve semantic structure** - Maintain JSON-LD consistency
-2. **Update both .md and .jsonld** - Keep human and machine versions in sync
-3. **Follow global_schema.json** - Respect domain definitions
-4. **Log changes** - Document in appropriate metadata files
+1. **Preserve semantic structure** — Maintain JSON-LD consistency
+2. **Update both formats** — Keep .md and .jsonld in sync
+3. **Follow schema** — Respect `/schema/global_schema.json`
+4. **Log changes** — Update metadata timestamps
 
-### When Publishing
+### When Creating New Papers
 
-1. **Use MCP server** - Located at `/integrations/mcp/`
-2. **Sync with Figshare** - Update `/figshare/sync_log.json`
-3. **Update websites** - energyflow-cosmology.com and magnusson.as
-4. **Preserve DOI links** - Never break existing DOI references
+Required files:
+```
+docs/papers/efc/[Paper-Name]/
+├── README.md              # Human summary
+├── index.json             # Machine index
+├── schema.json            # Validation
+├── [Paper-Name].jsonld    # Linked data
+├── [Paper-Name].pdf       # Authoritative
+└── citations.bib          # References
+```
+
+---
+
+## Key Publications Index
+
+### Foundational Theory
+| ID | DOI | Title |
+|----|-----|-------|
+| `efc-v1.2` | 10.6084/m9.figshare.30563738 | EFC Foundational Framework |
+| `efc-v2.2` | 10.6084/m9.figshare.30530156 | Cross-Field Integration |
+| `auth-layer` | 10.6084/m9.figshare.30656828 | AUTH Layer (Provenance) |
+
+### Empirical Analysis
+| ID | DOI | Key Result |
+|----|-----|------------|
+| `rks-framework` | 10.6084/m9.figshare.31211437 | R(k,S) theoretical framework |
+| `wp3-rks-slice` | 10.6084/m9.figshare.31215259 | R≈+0.30 at (k≈0.13, S≈0.30) |
+| `unified-bao` | 10.6084/m9.figshare.31215613 | β=0.16, Δχ²=+1.7 |
+
+### Human-AI Collaboration
+| ID | DOI | Topic |
+|----|-----|-------|
+| `symbiosis` | 10.6084/m9.figshare.30773684 | Graph-Vector memory architecture |
+
+---
+
+## MCP Server
+
+Located at `/integrations/mcp/`:
+
+```bash
+cd integrations/mcp
+pip install -r requirements.txt
+python efc_mcp_server.py
+```
+
+### Capabilities
+
+| Function | Description |
+|----------|-------------|
+| `post_to_website` | Publish to energyflow-cosmology.com |
+| `upload_figshare` | Create/update Figshare items |
+| `validate_jsonld` | Check semantic consistency |
+| `sync_doi_map` | Update DOI mappings |
+
+---
 
 ## Modular Theory Structure
 
-EFC consists of interconnected models:
+| Model | Location | Domain |
+|-------|----------|--------|
+| EFC-S | `/theory/formal/efc-s-model/` | Structure (Halo) |
+| EFC-D | `/theory/formal/efc-d-model/` | Dynamics |
+| EFC-R | `/theory/formal/efc-r-model/` | Rotation curves |
+| EFC-H | `/theory/formal/efc-h-model/` | Halo profiles |
+| EFC-C0 | `/theory/formal/efc-c0-model/` | Consciousness |
 
-| Model | Domain | Location |
-|-------|--------|----------|
-| EFC-S | Structure (Halo) | `/theory/formal/efc-s-model/` |
-| EFC-D | Dynamics | `/theory/formal/efc-d-model/` |
-| EFC-R | Rotation curves | `/theory/formal/efc-r-model/` |
-| EFC-H | Halo profiles | `/theory/formal/efc-h-model/` |
-| EFC-C0 | Entropy-information | `/theory/formal/efc-c0-model/` |
-
-## Semantic Web Integration
-
-- **JSON-LD files**: All in `/jsonld/` directory
-- **Schema.org types**: Defined in `/schema/global_schema.json`
-- **Concepts**: Listed in `/schema/concepts.json`
-- **API endpoints**: Documented in `/api/v1/`
-
-## MCP Server Capabilities
-
-The MCP server at `/integrations/mcp/` enables:
-
-1. **Website Management**
-   - Post to energyflow-cosmology.com
-   - Update magnusson.as
-   - Sync content across platforms
-
-2. **Figshare Integration**
-   - Upload new publications
-   - Update metadata
-   - Manage DOI mappings
-
-3. **Repository Maintenance**
-   - Validate JSON-LD consistency
-   - Update semantic graphs
-   - Generate documentation
+---
 
 ## Validation Checklist
 
 Before committing changes:
 
-- [ ] JSON-LD files validate against schema
-- [ ] All DOI references are correct
-- [ ] ORCID is properly linked
+- [ ] JSON-LD validates against schema
+- [ ] All DOI references correct
+- [ ] ORCID properly linked (0009-0002-4860-5095)
 - [ ] No broken internal links
 - [ ] Metadata timestamps updated
+- [ ] Both human (.md) and machine (.json) formats in sync
 
-## Common Tasks
-
-### Adding a New Paper
-
-1. Create folder in `/docs/papers/efc/`
-2. Add required files: README.md, {name}.pdf, {name}.jsonld, citations.bib
-3. Update `/figshare/` if publishing to Figshare
-4. Update `/api/v1/concepts.json` if new concepts introduced
-
-### Updating Theory
-
-1. Edit LaTeX in `/theory/formal/`
-2. Update corresponding JSON schema
-3. Sync with `/schema/modules/`
-4. Update version in metadata
-
-### Publishing to Website
-
-1. Use MCP server tools
-2. Ensure JSON-LD metadata is complete
-3. Update sitemap in `/schema/site-graph.json`
-4. Log in `/figshare/sync_log.json`
+---
 
 ## Error Handling
 
-If you encounter inconsistencies:
+If inconsistencies found:
 
-1. Check `/schema/global_schema.json` for authoritative structure
-2. Consult `/auth/manifest.json` for scope boundaries
-3. Reference DOIs in `/figshare/doi-map.json` for canonical versions
-4. Report issues to the repository maintainer
+1. **Schema authority**: `/schema/global_schema.json`
+2. **Scope boundaries**: `/auth/manifest.json`
+3. **Canonical DOIs**: `/figshare/doi-map.json`
+4. **Report issues**: Repository maintainer
 
-## Contact for AI Collaboration
+---
 
-This repository supports symbiotic human-AI collaboration as defined in:
-- `/methodology/symbiosis-interface/`
-- `/meta/symbiosis/`
+## Contact
 
-For structured collaboration, follow the protocols in `/meta/meta-process/`.
+- **Website**: [magnusson.as/cooperation](https://www.magnusson.as/cooperation)
+- **Project**: [energyflow-cosmology.com](https://energyflow-cosmology.com/)
+- **ORCID**: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
+
+---
+
+*This repository supports symbiotic human-AI collaboration as defined in `/methodology/symbiosis-interface/`*
