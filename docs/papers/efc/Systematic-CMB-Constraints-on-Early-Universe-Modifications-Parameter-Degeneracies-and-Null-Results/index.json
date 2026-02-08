@@ -1,0 +1,37 @@
+{
+  "id": "efc-cmb-constraints-null-results",
+  "title": "Systematic CMB Constraints on EFC: Parameter Degeneracies and Null Results",
+  "short_title": "EFC CMB Null Results",
+  "version": "1.0",
+  "date": "2026-01-20",
+  "doi": "10.6084/m9.figshare.31095466",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "constraint_analysis",
+  "status": "published",
+  "abstract_short": "Both κ̇ and H(z) EFC mechanisms REJECTED against Planck 2018 CMB. 1D 'signal' was parameter degeneracy artifact. CMB epoch = L0-L1 regime where standard physics expected.",
+  "keywords": ["EFC", "CMB", "Planck", "null result", "parameter degeneracy", "κ̇", "H(z)", "CLASS"],
+  "mechanisms_tested": {
+    "kappa_dot": {"status": "REJECTED", "chi2_min": "boost=0%", "delta_chi2": "+5.4 at ±1%"},
+    "Hz": {"status": "REJECTED", "true_min": "ε≈0, Δχ²≈-1", "1D_artifact": "ε≈+3% was degeneracy"}
+  },
+  "key_lesson": "Parameter degeneracies can create false signals. Multi-dimensional analysis essential.",
+  "regime_interpretation": {
+    "cmb_epoch": "L0-L1 regime",
+    "expected": "Standard physics dominant",
+    "result": "ΛCDM provides best fit",
+    "implication": "Consistent with EFC-R framework"
+  },
+  "data": {
+    "source": "Planck 2018 TT spectrum",
+    "N_points": 2507,
+    "ell_range": [2, 2508]
+  },
+  "tools": ["CLASS v3.2.0 (modified)", "Python"],
+  "files": {
+    "pdf": "EFC_CMB_Testing_Results.pdf",
+    "figures": ["kappa_sweep_final.png", "grid_2d_landscape.png", "efc_hz_corrected_final.png"]
+  }
+}

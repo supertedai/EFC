@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Structural-Constraints/schema.json",
+  "title": "Cluster Merger Constraints Schema",
+  "type": "object",
+  "properties": {
+    "constraint": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "claim": {"type": "string"},
+        "status": {"type": "string", "enum": ["falsified", "required", "prediction"]}
+      }
+    },
+    "cluster_prediction": {
+      "type": "object",
+      "properties": {
+        "cluster": {"type": "string"},
+        "w_pred": {"type": "number"},
+        "L0_kpc": {"type": "number"}
+      }
+    }
+  },
+  "efc_analysis_type": "cluster_merger_constraints"
+}

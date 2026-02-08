@@ -1,0 +1,76 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/vocab#",
+    "doi": "https://doi.org/",
+    "orcid": "https://orcid.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31289806",
+  "name": "Consciousness as Field Resonance: From Ego-Filtered Ontology to Differentiation-Dominant Dynamics",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "orcid:0009-0002-4860-5095"
+    },
+    "affiliation": "Independent Researcher, Sandnes, Norway"
+  },
+  "datePublished": "2026",
+  "description": "Consciousness is best understood as a resonant regime within a universal dynamical field, where systems differ by their capacity to form differentiated, self-referential dynamical structures. Empirical analysis shows spectral differentiation (Omega) tracks conscious state (Cohen's d = 1.50) with double dissociation. The pre-registered multiplicative model C = Omega x kappa is falsified (F1).",
+  "keywords": ["consciousness", "spectral entropy", "transfer entropy", "differentiation", "integration", "field ontology", "EEG", "CEM framework"],
+  "isPartOf": {
+    "@type": "Collection",
+    "name": "Energy-Flow Cosmology Paper Collection",
+    "url": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc"
+  },
+  "efc:framework": "Consciousness-Ego-Mirror (CEM)",
+  "efc:keyFindings": [
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "Differentiation Effect",
+      "measure": "Omega (spectral entropy)",
+      "effectSize": 1.50,
+      "interpretation": "Primary marker of consciousness"
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "Integration Effect",
+      "measure": "kappa (transfer entropy)",
+      "effectSize": 0.42,
+      "interpretation": "Weak, not significant"
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "Product Test F1",
+      "status": "FALSIFIED",
+      "interpretation": "Multiplicative model does not improve prediction"
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "Regional Posterior",
+      "measure": "C(parietal)",
+      "effectSize": 2.10,
+      "status": "Exploratory candidate"
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "Balance Signal",
+      "measure": "corr(Omega, kappa)",
+      "value": -0.27,
+      "interpretation": "Trade-off between differentiation and integration"
+    }
+  ],
+  "efc:revisedModel": {
+    "falsified": "Consciousness = Omega x kappa (both maximised globally)",
+    "supported": "Consciousness = differentiation-dominant resonance regime, constrained by sufficient regional feedback"
+  },
+  "efc:conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime.",
+  "citation": [
+    {"@id": "doi:10.1371/journal.pcbi.1004669", "name": "Chennu et al. 2016"},
+    {"@id": "doi:10.1038/nrn.2016.22", "name": "Koch et al. 2016"},
+    {"@id": "doi:10.6084/m9.figshare.30478916.v1", "name": "EFC-v2.1"}
+  ]
+}

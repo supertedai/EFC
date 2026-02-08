@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/cosmos-galaxy-abundances/schema.json",
+  "title": "COSMOS Galaxy Abundances Schema",
+  "type": "object",
+  "properties": {
+    "galaxy": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "ra": {"type": "number"},
+        "dec": {"type": "number"},
+        "z_phot": {"type": "number"},
+        "mass_med": {"type": "number"},
+        "sfr_med": {"type": "number"}
+      }
+    }
+  },
+  "efc_analysis_type": "high_z_galaxy_abundances"
+}

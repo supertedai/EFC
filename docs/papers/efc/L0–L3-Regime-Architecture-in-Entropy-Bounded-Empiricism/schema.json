@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/L0-L3-Regime-Architecture/schema.json",
+  "title": "L0-L3 Regime Schema",
+  "type": "object",
+  "properties": {
+    "regime": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"],
+      "description": "Current system regime"
+    },
+    "transition": {
+      "type": "object",
+      "properties": {
+        "from": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]},
+        "to": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]},
+        "mechanism": {"type": "string"}
+      }
+    }
+  },
+  "efc_framework": "entropy_bounded_empiricism"
+}

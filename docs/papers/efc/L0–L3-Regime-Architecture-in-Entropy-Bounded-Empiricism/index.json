@@ -1,0 +1,35 @@
+{
+  "id": "l0-l3-regime-architecture",
+  "title": "L0–L3 Regime Architecture in Entropy-Bounded Empiricism",
+  "short_title": "L0-L3 Regime Architecture",
+  "version": "1.0",
+  "date": "2026-01-21",
+  "doi": "10.6084/m9.figshare.31112536",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "foundational_framework",
+  "status": "published",
+  "abstract_short": "Four operational regimes (L0-L3) with transitions. Inference valid only within regime where data and dynamics remain consistent.",
+  "keywords": ["L0-L3", "regime architecture", "entropy-bounded empiricism", "EBE", "phase transitions", "dynamical inference"],
+  "regimes": {
+    "L0": {"name": "Latent", "description": "Configuration space without active dynamics"},
+    "L1": {"name": "Stable Active", "description": "Low-entropy, predictable operation"},
+    "L2": {"name": "Complex Active", "description": "Non-linear dynamics, structural formation"},
+    "L3": {"name": "Residual", "description": "Structure without process, information without flow"}
+  },
+  "transitions": {
+    "L0_L1": {"name": "Activation", "description": "Phase-extended crossing of critical thresholds"},
+    "L2_L3": {"name": "Deactivation", "description": "Decline below maintenance thresholds"},
+    "L3_L0": {"name": "Cyclical", "description": "Residual structure as new latent potential"}
+  },
+  "core_principle": "Inference is valid only within the regime where data and dynamics remain consistent.",
+  "applications": ["biology", "ecology", "economics", "cognition", "technology lifecycles"],
+  "files": {
+    "docs": "docs/",
+    "data": "data/",
+    "src": "src/",
+    "examples": "examples/"
+  }
+}

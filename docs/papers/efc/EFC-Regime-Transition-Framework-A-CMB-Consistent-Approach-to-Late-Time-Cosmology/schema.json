@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/EFC-Regime-Transition-Framework/schema.json",
+  "title": "EFC Regime Transition Framework Schema",
+  "type": "object",
+  "properties": {
+    "gating_function": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number"},
+        "G": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "cmb_safety": {
+      "type": "object",
+      "properties": {
+        "G_CMB": {"type": "number"},
+        "threshold": {"type": "number", "default": 1e-4},
+        "margin_orders": {"type": "integer"}
+      }
+    }
+  },
+  "efc_analysis_type": "regime_transition",
+  "method": "Landau_theory"
+}

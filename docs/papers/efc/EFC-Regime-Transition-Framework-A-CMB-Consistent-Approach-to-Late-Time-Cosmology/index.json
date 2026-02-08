@@ -1,0 +1,44 @@
+{
+  "id": "efc-regime-transition-framework",
+  "title": "Dynamical Regime Transitions in Cosmology: A CMB-Safe Framework",
+  "short_title": "EFC CMB-Safe Framework",
+  "version": "1.0",
+  "date": "2026-01-20",
+  "doi": "10.6084/m9.figshare.31096951",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "theoretical_framework",
+  "status": "published",
+  "abstract_short": "Landau theory provides CMB safety through dynamical gating: G(z=1100)≈10⁻¹² (8 orders below threshold), G(z=0)≈0.9999.",
+  "keywords": ["EFC", "CMB safety", "Landau theory", "regime transition", "gating function", "CLASS integration"],
+  "key_results": {
+    "G_CMB": {"value": 1e-12, "description": "8 orders below 10⁻⁴ threshold"},
+    "G_z10": {"value": 9.2e-16, "description": "Intermediate-z suppressed"},
+    "G_z2": {"value": 0.25, "description": "Partial activation"},
+    "G_z0": {"value": 0.9999, "description": "Full activation today"}
+  },
+  "core_equations": [
+    {
+      "name": "Gating function",
+      "description": "G(z) computed from Landau equation via RK4 integration"
+    }
+  ],
+  "key_features": [
+    "CMB-safe by construction (dynamics, not tuning)",
+    "Fully reproducible (code included)",
+    "CLASS-compatible",
+    "Landau theory framework"
+  ],
+  "what_this_shows": [
+    "Regime-dependent modifications CAN be CMB-safe",
+    "Landau theory provides natural gating mechanism",
+    "Delayed activation (χ crosses χ_c at z≈50, effect at z<2)"
+  ],
+  "files": {
+    "paper": "paper/magnusson2026_efc_regime_transitions.pdf",
+    "code": "code/",
+    "data": "data/"
+  }
+}
