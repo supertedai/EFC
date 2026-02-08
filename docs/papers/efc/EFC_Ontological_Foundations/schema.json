@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/ontology.schema.json",
+  "title": "EFC Ontological Foundations Schema",
+  "description": "Schema for validating ontological structures and circularity tests",
+  "type": "object",
+  "definitions": {
+    "Hypothesis": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["H1", "H2", "H3"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "primacy_claim": {
+          "type": "string",
+          "description": "What is claimed to be primary"
+        },
+        "passes_circularity_test": {
+          "type": "boolean"
+        },
+        "failure_reason": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "passes_circularity_test"]
+    },
+    "CircularityTest": {
+      "type": "object",
+      "properties": {
+        "concept_a": {
+          "type": "string"
+        },
+        "concept_b": {
+          "type": "string"
+        },
+        "a_requires_b": {
+          "type": "boolean"
+        },
+        "b_requires_a": {
+          "type": "boolean"
+        },
+        "is_circular": {
+          "type": "boolean"
+        },
+        "dependency_chain": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["concept_a", "concept_b", "is_circular"]
+    },
+    "Phase": {
+      "type": "string",
+      "enum": ["pre_planck", "planck_transition", "post_planck"],
+      "description": "Ontological phase of development"
+    },
+    "DifferentiationModel": {
+      "type": "object",
+      "properties": {
+        "pre_differentiated": {
+          "type": "string",
+          "description": "The pre-geometric potential"
+        },
+        "differentiated_aspects": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 2
+        },
+        "transition_mechanism": {
+          "type": "string"
+        }
+      },
+      "required": ["pre_differentiated", "differentiated_aspects"]
+    },
+    "FrameworkReference": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "relevance": {
+          "type": "string"
+        },
+        "alignment": {
+          "type": "string",
+          "enum": ["supportive", "neutral", "conflicting"]
+        }
+      },
+      "required": ["name", "relevance"]
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Hypothesis"
+      }
+    },
+    "circularity_tests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CircularityTest"
+      }
+    },
+    "differentiation_model": {
+      "$ref": "#/definitions/DifferentiationModel"
+    },
+    "framework_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/FrameworkReference"
+      }
+    }
+  }
+}

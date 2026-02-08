@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31223503",
+  "name": "EBE Core Lock v1.0: The S-Dynamic Foundation",
+  "headline": "Mathematical engine for Entropy-Bounded Empiricism with falsifiable predictions",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "RG-flow",
+    "emergent constants",
+    "correlation signature",
+    "falsifiable prediction",
+    "grid state function"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:GridStateFunction",
+      "name": "Grid State Function",
+      "description": "f(S) = f₀ exp(-S/ΔS), fundamental solution"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:BetaConstraint",
+      "name": "Beta Constraint",
+      "description": "β_f(S) = -1/ΔS, universal RG-flow behavior"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:InformationLength",
+      "name": "Information Length",
+      "description": "Conserved quantity in projections"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:CorrelationSignature",
+      "name": "Correlation Signature",
+      "description": "d ln v / d ln c = constant, falsification test"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31222903",
+      "name": "Entropy-Bounded Empiricism: Core Principles"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31222900",
+      "name": "The Regime-Consistent Measurement Principle (RCMP)"
+    }
+  ],
+  "epistemicStatus": "Layer B - Mathematical engine compatible with current null results"
+}

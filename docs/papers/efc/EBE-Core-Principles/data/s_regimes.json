@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "description": "S-axis regime definitions for Entropy-Bounded Empiricism",
+  "regimes": [
+    {
+      "id": "low_s",
+      "name": "Low-S Regime",
+      "description": "Simple, low-entropy systems with few degrees of freedom",
+      "entropy_range": [0.0, 0.3],
+      "typical_systems": ["particle physics", "atomic systems", "crystals"],
+      "characteristics": {
+        "degrees_of_freedom": "few",
+        "predictability": "high",
+        "emergence_level": "minimal"
+      }
+    },
+    {
+      "id": "mid_s",
+      "name": "Mid-S Regime",
+      "description": "Moderate complexity with emergent collective behavior",
+      "entropy_range": [0.3, 0.7],
+      "typical_systems": ["stellar interiors", "molecular systems", "plasmas"],
+      "characteristics": {
+        "degrees_of_freedom": "moderate",
+        "predictability": "medium",
+        "emergence_level": "significant"
+      }
+    },
+    {
+      "id": "high_s",
+      "name": "High-S Regime",
+      "description": "Complex, high-entropy systems with many degrees of freedom",
+      "entropy_range": [0.7, 1.0],
+      "typical_systems": ["galaxies", "biological systems", "economies"],
+      "characteristics": {
+        "degrees_of_freedom": "many",
+        "predictability": "low",
+        "emergence_level": "dominant"
+      }
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "../schema.json",
+  "version": "1.0",
+  "description": "Example RCMP analysis data for galaxy rotation curves",
+  "analysis": {
+    "id": "sparc_rar_analysis",
+    "title": "RCMP Analysis of SPARC Radial Acceleration Relation",
+    "domain": "galaxy_dynamics",
+    "dataset": {
+      "name": "SPARC",
+      "reference": "Lelli et al. (2017)",
+      "url": "http://astroweb.cwru.edu/SPARC/",
+      "n_galaxies": 175
+    }
+  },
+  "driver": {
+    "name": "gravitational_response",
+    "description": "Gravitational response to baryonic mass distribution",
+    "regime": "low_acceleration",
+    "boundary_condition": "g_bar < 1e-11 m/s²",
+    "primary_variable": "centripetal_acceleration",
+    "justification": "Gravity couples directly to acceleration, not mass proxies"
+  },
+  "regimes": {
+    "high_acceleration": {
+      "condition": "g_bar > 1e-10 m/s²",
+      "characteristics": "Newtonian regime, g_obs ≈ g_bar",
+      "n_points_typical": "Inner disk regions"
+    },
+    "low_acceleration": {
+      "condition": "g_bar < 1e-11 m/s²",
+      "characteristics": "Deep MOND regime, g_obs >> g_bar",
+      "n_points_typical": "Outer disk, dwarf galaxies"
+    },
+    "transition": {
+      "condition": "1e-11 < g_bar < 1e-10 m/s²",
+      "characteristics": "Interpolation region",
+      "scale": "a_0 ≈ 1.2e-10 m/s²"
+    }
+  },
+  "proxy_chain": {
+    "name": "velocity_to_acceleration",
+    "steps": [
+      {
+        "name": "spectral_velocity",
+        "layer": "L0",
+        "sigma": 0.005,
+        "description": "Raw spectral line velocity from HI or Hα",
+        "assumptions": []
+      },
+      {
+        "name": "rotation_velocity",
+        "layer": "L1",
+        "sigma": 0.02,
+        "transformation": "V_rot = V_obs / sin(i)",
+        "assumptions": ["Thin disk geometry", "Circular orbits", "Known inclination"],
+        "parameters": ["Inc", "eInc"]
+      },
+      {
+        "name": "centripetal_acceleration",
+        "layer": "L2",
+        "sigma": 0.05,
+        "transformation": "g_obs = V_rot² / R",
+        "assumptions": ["Accurate distance", "Correct radius determination"],
+        "parameters": ["D", "eD"]
+      }
+    ],
+    "total_uncertainty": 0.054
+  },
+  "baryonic_chain": {
+    "name": "photometry_to_g_bar",
+    "steps": [
+      {
+        "name": "infrared_flux",
+        "layer": "L0",
+        "sigma": 0.02,
+        "description": "Spitzer 3.6μm photometry"
+      },
+      {
+        "name": "stellar_mass",
+        "layer": "L1",
+        "sigma": 0.1,
+        "transformation": "M_* = (M/L) × L_3.6",
+        "assumptions": ["Mass-to-light ratio calibration"],
+        "parameters": ["M/L_disk", "M/L_bulge"]
+      },
+      {
+        "name": "baryonic_acceleration",
+        "layer": "L2",
+        "sigma": 0.15,
+        "transformation": "g_bar = GM_bar(<R) / R²",
+        "assumptions": ["Newtonian gravity", "Spherical symmetry approximation"]
+      }
+    ]
+  },
+  "sample_measurements": [
+    {
+      "galaxy": "NGC2403",
+      "type": "spiral",
+      "T_type": 6,
+      "point_id": 15,
+      "R_kpc": 12.5,
+      "V_rot_km_s": 135.2,
+      "g_obs": 1.46e-10,
+      "g_bar": 8.2e-11,
+      "regime": "transition",
+      "layer": "L2",
+      "quality_flag": 1
+    },
+    {
+      "galaxy": "DDO154",
+      "type": "dwarf",
+      "T_type": 10,
+      "point_id": 8,
+      "R_kpc": 4.2,
+      "V_rot_km_s": 47.3,
+      "g_obs": 5.3e-11,
+      "g_bar": 3.1e-12,
+      "regime": "low_acceleration",
+      "layer": "L2",
+      "quality_flag": 1
+    }
+  ],
+  "analysis_results": {
+    "per_point_analysis": {
+      "description": "All individual data points",
+      "tests_for": "Internal structure, measurement effects",
+      "dwarf_vs_spiral_scatter_ratio": 1.27,
+      "p_value": 0.02,
+      "interpretation": "Dwarfs show higher intra-galaxy variability"
+    },
+    "per_galaxy_analysis": {
+      "description": "Median residual per galaxy",
+      "tests_for": "Class-level physics, systematic offsets",
+      "dwarf_vs_spiral_scatter_ratio": 1.0,
+      "p_value": 0.47,
+      "interpretation": "No systematic difference between galaxy classes"
+    },
+    "systematic_tests": [
+      {
+        "hypothesis": "High-frequency kinematic noise",
+        "proxy_tested": "roughness_ratio",
+        "result": "Not supported",
+        "holm_p": 0.15
+      },
+      {
+        "hypothesis": "Outer-disk systematic",
+        "proxy_tested": "radius_trend",
+        "result": "Not supported",
+        "holm_p": 0.15
+      },
+      {
+        "hypothesis": "Pressure support",
+        "proxy_tested": "V_flat_correlation",
+        "result": "Wrong sign",
+        "holm_p": null
+      },
+      {
+        "hypothesis": "Distance uncertainty",
+        "proxy_tested": "eD_correlation",
+        "result": "Supported",
+        "holm_p": 0.035
+      }
+    ]
+  },
+  "rcmp_validation": {
+    "driver_identified": true,
+    "regime_tagged": true,
+    "proxy_chain_documented": true,
+    "uncertainties_propagated": true,
+    "cross_validation_performed": true,
+    "status": "VALID"
+  },
+  "conclusion": {
+    "type": "problem_definition",
+    "statement": "The low-acceleration manifold is real at the galaxy level. Excess scatter in dwarfs is internal and low-frequency. Distance uncertainty explains some amplitude variation. High-frequency kinematic and simple pressure-support explanations are disfavored. A weak V_flat anomaly remains unexplained.",
+    "explained": [
+      "Distance uncertainty contribution"
+    ],
+    "ruled_out": [
+      "High-frequency kinematic noise",
+      "Simple pressure support"
+    ],
+    "open": [
+      "V_flat–median residual correlation"
+    ]
+  }
+}

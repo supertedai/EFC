@@ -1,0 +1,72 @@
+{
+  "description": "EFC screening form fit to SPARC RAR data",
+  "method": "Unbinned maximum likelihood with intrinsic scatter",
+  "data_source": {
+    "name": "SPARC",
+    "reference": "Lelli, McGaugh, Schombert 2016",
+    "galaxies_total": 175,
+    "galaxies_used": 174,
+    "data_points": 3264,
+    "quality_cuts": {
+      "Q": "≤ 2",
+      "inclination": "> 30°"
+    }
+  },
+  "model": {
+    "form": "ln μ = k × ln(1 + g†/g_bar)",
+    "equivalent": "μ = (1 + g†/g_bar)^k"
+  },
+  "canonical_fit": {
+    "k": {
+      "value": 0.415,
+      "error": 0.029,
+      "description": "Screening exponent"
+    },
+    "g_dagger": {
+      "value": 2.51e-10,
+      "error": 0.60e-10,
+      "unit": "m/s²",
+      "description": "Transition acceleration scale"
+    },
+    "sigma_int": {
+      "value": 0.33,
+      "unit": "ln μ",
+      "dex_equivalent": 0.14,
+      "description": "Intrinsic scatter"
+    }
+  },
+  "robustness_tests": {
+    "k_range": [0.38, 0.45],
+    "g_dagger_range_1e10": [2.0, 3.0],
+    "alternative_methods": [
+      "Binned data fit",
+      "Different quality cuts",
+      "Per-galaxy median",
+      "Chi-squared minimization"
+    ]
+  },
+  "bootstrap": {
+    "iterations": 500,
+    "method": "Galaxy-level resampling",
+    "note": "Preserves intra-galaxy correlations"
+  },
+  "cross_scale_check": {
+    "aG_from_H0": {
+      "value": 0.094,
+      "error": 0.01,
+      "source": "H₀ tension analysis (independent)",
+      "doi": "10.6084/m9.figshare.31223908"
+    },
+    "C_derived": {
+      "value": 4.4,
+      "error": 0.6,
+      "formula": "C = k / a_G",
+      "interpretation": "Phase-gain parameter connecting galactic and cosmological scales"
+    }
+  },
+  "comparison_with_mond": {
+    "mond_a0": 1.2e-10,
+    "efc_g_dagger": 2.51e-10,
+    "note": "Different scales due to different functional forms"
+  }
+}

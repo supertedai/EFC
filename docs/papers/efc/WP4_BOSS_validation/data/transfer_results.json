@@ -1,0 +1,82 @@
+{
+  "description": "EFC transfer test results: DESI DR2 to BOSS DR12",
+  "transfer_test": {
+    "method": "Apply DESI parameters to BOSS data without refitting",
+    "k_eff": 0,
+    "desi_parameters": {
+      "z_L1L2": 1.01,
+      "alpha_L2": 0.045,
+      "delta_z": 0.05
+    },
+    "results": {
+      "chi2_LCDM": 20.83,
+      "chi2_EFC": 13.06,
+      "delta_chi2": -7.77,
+      "interpretation": "Transfer supported"
+    }
+  },
+  "robustness_diagnostics": {
+    "diagonal_covariance": {
+      "rho": 0,
+      "delta_chi2": -4.24,
+      "interpretation": "Improvement persists without correlations"
+    },
+    "full_covariance": {
+      "rho": 1,
+      "delta_chi2": -7.77
+    },
+    "all_rho_negative": true
+  },
+  "eigenmode_analysis": {
+    "low_lambda_gain": -5.50,
+    "high_lambda_gain": -2.27,
+    "interpretation": "Gains from strongly-penalized modes (genuine improvement)"
+  },
+  "whitened_residuals": {
+    "components": [
+      {"name": "w1", "chi2_LCDM": 1.27, "chi2_EFC": 2.29, "delta": 1.01},
+      {"name": "w2", "chi2_LCDM": 1.09, "chi2_EFC": 2.14, "delta": 1.05},
+      {"name": "w3", "chi2_LCDM": 0.01, "chi2_EFC": 2.82, "delta": 2.81},
+      {"name": "w4", "chi2_LCDM": 1.50, "chi2_EFC": 0.48, "delta": -1.02},
+      {"name": "w5", "chi2_LCDM": 15.30, "chi2_EFC": 3.91, "delta": -11.39},
+      {"name": "w6", "chi2_LCDM": 1.65, "chi2_EFC": 1.43, "delta": -0.23}
+    ],
+    "dominant_improvement": "w5 contributes Δχ² = -11.39",
+    "n_improved": 3,
+    "n_degraded": 3,
+    "note": "Strongly-constrained component improvements outweigh degradations"
+  },
+  "best_fit_parameters": {
+    "BOSS_only": {
+      "N": 6,
+      "k_eff": 1,
+      "z_L1L2": "> 0.6 (lower bound only)",
+      "alpha_L2": 0.036,
+      "delta_AICc": -6.4,
+      "delta_BIC": -7.6,
+      "note": "Likelihood flat for z_L1L2 > z_max = 0.61"
+    },
+    "BOSS_eBOSS": {
+      "N": 14,
+      "k_eff": 2,
+      "z_L1L2": 1.60,
+      "alpha_L2": 0.036,
+      "delta_AICc": -19.3,
+      "delta_BIC": -19.1,
+      "note": "High-z Lyα breaks z_L1L2 degeneracy"
+    },
+    "DESI_DR2": {
+      "N": 13,
+      "k_eff": 2,
+      "z_L1L2": 1.01,
+      "alpha_L2": 0.045,
+      "delta_AICc": -1,
+      "delta_BIC": -1.0
+    }
+  },
+  "consistency": {
+    "alpha_L2_range": [0.035, 0.045],
+    "alpha_L2_stable": true,
+    "z_L1L2_DESI_in_BOSS_eBOSS_1sigma": true
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "node_types": {
     "master": { "description": "Canonical specification" },
     "archive": { "description": "Historic version" },
@@ -7,12 +7,20 @@
     "edition": { "description": "Versioned complete representations" },
     "conceptual": { "description": "Core theoretical developments" },
     "observational": { "description": "Empirical or evidence-based papers" },
-    "methodology": { "description": "AI workflow and technical documentation" }
+    "methodology": { "description": "AI workflow and technical documentation" },
+    "validation": { "description": "Multi-probe validation and regime testing" }
   },
   "edge_types": {
     "extends": { "description": "Paper extends a prior version" },
     "refines": { "description": "Paper refines an idea or model" },
     "supports": { "description": "Provides evidence or validation" },
-    "interfaces": { "description": "Describes system interfaces" }
+    "interfaces": { "description": "Describes system interfaces" },
+    "validates": { "description": "Provides empirical validation of theory" }
+  },
+  "validation_regimes": {
+    "L0": { "description": "Early universe / CMB epoch" },
+    "L1": { "description": "Linear perturbation regime" },
+    "L2": { "description": "Non-linear structure formation" },
+    "L3": { "description": "Deep non-linear / virialized" }
   }
 }

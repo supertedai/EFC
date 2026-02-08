@@ -1,0 +1,161 @@
+{
+  "title": "A Triangulation Test for Possible Thermodynamic Contributions to Gravitational Lensing in Galaxy Clusters",
+  "short_title": "Triangulation Test for Thermodynamic-Lensing Coupling",
+  "author": "Morten Magnusson",
+  "affiliation": "Independent Researcher",
+  "orcid": "0009-0002-4860-5095",
+  "date": "2026-02",
+  "doi": "10.6084/m9.figshare.31267297",
+  "journal": "MNRAS",
+  "version": "1.0",
+
+  "methodology": {
+    "name": "Triangulation Test",
+    "description": "Compare three independent observables to test for thermodynamic-lensing coupling",
+    "observables": [
+      {
+        "name": "Lensing Mass",
+        "symbol": "M_lens",
+        "type": "geometric",
+        "formula": "M_lens(<r) = π r² Σ_crit κ̄(<r)",
+        "data_sources": ["JWST NIRCam", "HST ACS/WFC3", "Subaru HSC"],
+        "uncertainty": "5-10%"
+      },
+      {
+        "name": "Hydrostatic Mass",
+        "symbol": "M_HSE",
+        "type": "dynamic",
+        "formula": "M_HSE(<r) = -(kTr)/(μm_pG)[d ln n_e/d ln r + d ln T/d ln r]",
+        "data_sources": ["Chandra ACIS", "XMM-Newton EPIC", "ACCEPT catalog"],
+        "uncertainty": "10-20%"
+      },
+      {
+        "name": "Entropy Gradient",
+        "symbol": "|∇K|",
+        "type": "thermodynamic",
+        "formula": "K(r) = T(r) n_e(r)^(-2/3)",
+        "data_sources": ["X-ray T and n_e profiles"],
+        "uncertainty": "20-30%"
+      }
+    ],
+    "test_statistic": {
+      "mass_residual": "R(r) = M_lens(r) - M_HSE(r)",
+      "normalized_residual": "R_norm(r) = R(r)/M_lens(r)",
+      "normalized_gradient": "G_norm(r) = |∇K(r)|/max|∇K|",
+      "correlation": "ρ(R_norm, G_norm)"
+    }
+  },
+
+  "pilot_results": {
+    "bullet_cluster": {
+      "name": "1E 0657-56 (Bullet Cluster)",
+      "type": "merging",
+      "n_bins": 57,
+      "pearson_rho": -0.129,
+      "spearman_rho": -0.179,
+      "p_value": 0.21,
+      "significant": false,
+      "lensing_data": "JWST NIRCam (Cha et al. 2025)",
+      "xray_data": "Chandra 500 ks + ACCEPT"
+    },
+    "abell_1835": {
+      "name": "Abell 1835",
+      "type": "relaxed",
+      "pearson_rho": -0.052,
+      "spearman_rho": -0.147,
+      "p_value": 0.70,
+      "significant": false,
+      "lensing_data": "HST + Subaru",
+      "xray_data": "Chandra + ACCEPT"
+    }
+  },
+
+  "consistency_checks": {
+    "achromaticity": {
+      "test": "Lensing independent of wavelength",
+      "data": "H0LiCOW (6 lensed quasars)",
+      "result": "χ²/dof = 0.91",
+      "status": "consistent"
+    },
+    "cmb_spectrum": {
+      "test": "Standard blackbody at z ~ 1000",
+      "data": "COBE/FIRAS",
+      "result": "|Δy| < 1.5e-5, |Δμ| < 9e-5",
+      "status": "assumed"
+    },
+    "wep": {
+      "test": "Composition-independent free fall",
+      "data": "LLR + MICROSCOPE",
+      "result": "ε < 1e-15",
+      "status": "assumed"
+    },
+    "bbn": {
+      "test": "Standard expansion at z ~ 1e9",
+      "data": "Planck + D/H",
+      "result": "N_eff = 2.99 ± 0.17",
+      "status": "assumed"
+    },
+    "time_delays": {
+      "test": "Achromatic gravitational delays",
+      "data": "H0LiCOW + TDCOSMO",
+      "result": "Δχ²/dof = 8.7e-4",
+      "status": "consistent"
+    },
+    "void_lensing": {
+      "test": "Underdensity lensing signal",
+      "data": "DES Y3",
+      "result": "κ_void/κ_ΛCDM = 0.79 ± 0.15",
+      "status": "intriguing"
+    }
+  },
+
+  "detection_thresholds": {
+    "single_cluster": {
+      "n_bins": 57,
+      "rho_required_2sigma": 0.25,
+      "expected_signal": "0.1-0.2",
+      "power": "under-powered"
+    },
+    "stacked_samples": [
+      {"n_clusters": 10, "n_eff": 570, "detectable_rho_3sigma": 0.08},
+      {"n_clusters": 20, "n_eff": 1140, "detectable_rho_3sigma": 0.06},
+      {"n_clusters": 50, "n_eff": 2850, "detectable_rho_3sigma": 0.04}
+    ]
+  },
+
+  "speculative_prediction": {
+    "name": "Line-of-sight redshift signal",
+    "magnitude": "Δz_LOS ~ 1e-6 to 1e-5",
+    "properties": [
+      "Frequency-independent",
+      "Correlated with entropy structure",
+      "Detectable by stacking cluster-quasar sightlines"
+    ],
+    "test_method": "VLT/UVES (R~40000) or stacked DESI spectra",
+    "null_hypothesis": "ΛCDM predicts no such correlation"
+  },
+
+  "key_caveats": [
+    "Pilot results consistent with null hypothesis",
+    "No evidence for modified gravity claimed",
+    "Methodology validation, not detection",
+    "Larger samples needed for decisive sensitivity"
+  ],
+
+  "confounding_factors": [
+    "Dynamical state coupling (shocks produce both entropy jumps and HSE deviations)",
+    "Projection effects (LOS integration)",
+    "Non-thermal pressure (cosmic rays, magnetic fields, turbulence)",
+    "Mass-sheet degeneracy"
+  ],
+
+  "keywords": [
+    "gravitational lensing",
+    "galaxy clusters",
+    "intracluster medium",
+    "entropy",
+    "hydrostatic equilibrium",
+    "mass discrepancy",
+    "thermodynamic gravity"
+  ]
+}

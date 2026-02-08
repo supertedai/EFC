@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: article
+title: "EFC Phase 3: SPARC Validation"
+subtitle: "Empirical Test of Energy-Flow Cosmology Against the Radial Acceleration Relation"
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Independent Researcher, Norway"
+date-released: 2026-02-01
+version: "1.0"
+doi: "10.6084/m9.figshare.31224538"
+url: "https://github.com/supertedai/EFC"
+license: CC-BY-4.0
+keywords:
+  - radial acceleration relation
+  - MOND
+  - modified gravity
+  - Hubble tension
+  - SPARC
+  - EFC
+  - cross-scale consistency
+abstract: >-
+  Unbinned maximum-likelihood fit of EFC screening form to 174 SPARC
+  galaxies (3264 data points). Obtains k = 0.415 ± 0.029 and
+  g† = (2.51 ± 0.60) × 10⁻¹⁰ m/s² with σ_int ≈ 0.14 dex.
+  Combined with a_G = 0.094 from H₀ analysis, yields cross-scale
+  consistency parameter C = k/a_G = 4.4 ± 0.6.
+references:
+  - type: article
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    title: "Unified Origin of the RAR and the Hubble Tension"
+    doi: "10.6084/m9.figshare.31223908"
+    year: 2026
+  - type: article
+    authors:
+      - family-names: "Lelli"
+        given-names: "Federico"
+      - family-names: "McGaugh"
+        given-names: "Stacy S."
+      - family-names: "Schombert"
+        given-names: "James M."
+    title: "SPARC: Mass Models for 175 Disk Galaxies"
+    journal: "Astronomical Journal"
+    volume: 152
+    pages: 157
+    year: 2016
+  - type: article
+    authors:
+      - family-names: "McGaugh"
+        given-names: "Stacy S."
+      - family-names: "Lelli"
+        given-names: "Federico"
+      - family-names: "Schombert"
+        given-names: "James M."
+    title: "Radial Acceleration Relation in Rotationally Supported Galaxies"
+    journal: "Physical Review Letters"
+    volume: 117
+    pages: 201101
+    year: 2016

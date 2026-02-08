@@ -1,0 +1,73 @@
+{
+  "id": "efc-closure-conjectures",
+  "title": "EFC Closure Conjectures",
+  "subtitle": "Proposed Relations: g† = cH₀/e and C ≈ 2e - 1",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "theoretical_conjecture",
+  "epistemic_layer": "C",
+  "epistemic_status": "Conjectured closure. Consistent with data but not derived from first principles. Testable.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "radial acceleration relation",
+    "Hubble tension",
+    "transition acceleration",
+    "closure relations",
+    "Euler number"
+  ],
+  "conjectures": {
+    "transition_acceleration": {
+      "formula": "g† = c × H₀ / e",
+      "motivation": "One e-fold drop in grid stiffness at S = ΔS",
+      "numerical_value": "2.51e-10 m/s² for H₀ = 70.2"
+    },
+    "phase_factor": {
+      "formula": "C = 2e - 1",
+      "numerical_value": 4.437,
+      "interpretation": "Galactic phase = (e-1) + e"
+    }
+  },
+  "key_prediction": {
+    "formula": "H₀ = e × g† / c",
+    "using_sparc": {
+      "g_dagger": "2.51e-10 m/s²",
+      "g_dagger_error": "0.60e-10 m/s²",
+      "h0_predicted": 70.2,
+      "h0_error": 16.8,
+      "unit": "km/s/Mpc"
+    },
+    "consistency": {
+      "planck": "within 1σ",
+      "sh0es": "within 1σ",
+      "trgb": "within 1σ"
+    }
+  },
+  "irreducible_parameter": {
+    "name": "a_G",
+    "value": 0.094,
+    "note": "Cannot currently be derived from simpler quantities"
+  },
+  "falsification_conditions": [
+    "g† measurements with <10% uncertainty inconsistent with cH₀/e at >3σ",
+    "Phase factor C deviates from 2e-1 by more than 20%",
+    "Alternative f(S) forms fit RAR better without factors of e"
+  ],
+  "related_papers": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "relationship": "source of exponential structure"
+    },
+    {
+      "id": "sparc-validation",
+      "doi": "10.6084/m9.figshare.31224397",
+      "relationship": "source of g† measurement"
+    }
+  ]
+}

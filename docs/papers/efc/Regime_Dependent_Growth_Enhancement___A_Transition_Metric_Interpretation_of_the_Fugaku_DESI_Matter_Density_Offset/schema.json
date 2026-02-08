@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/fugaku-desi-transition/schema.json",
+  "title": "Fugaku-DESI Transition Metric Schema",
+  "type": "object",
+  "properties": {
+    "transition_estimator": {
+      "type": "object",
+      "properties": {
+        "delta_F": {"type": "number"},
+        "a_min": {"type": "number"},
+        "a_max": {"type": "number"},
+        "window_function": {"type": "string"}
+      }
+    },
+    "transition_kernel": {
+      "type": "object",
+      "properties": {
+        "delta_mu": {"type": "number"},
+        "a_t": {"type": "number", "description": "Central transition epoch"},
+        "sigma": {"type": "number", "description": "Transition width"}
+      }
+    },
+    "consistency_check": {
+      "type": "object",
+      "properties": {
+        "regime": {"type": "string", "enum": ["CMB", "DESI_Fugaku", "Galaxy"]},
+        "requirement": {"type": "string"},
+        "satisfied": {"type": "boolean"}
+      }
+    }
+  },
+  "efc_analysis_type": "transition_metric",
+  "framework": "energy_flow_cosmology"
+}

@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31222903",
+  "name": "Entropy-Bounded Empiricism: Core Principles",
+  "headline": "A methodological framework organizing physical claims by entropy regime and epistemic layer",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-01-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "regime architecture",
+    "epistemic layering",
+    "measurement protocol",
+    "S-axis",
+    "L-axis",
+    "RCMP"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:SAxis",
+      "name": "S-Axis",
+      "description": "Physical regime hierarchy based on entropy/complexity"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LAxis",
+      "name": "L-Axis",
+      "description": "Epistemic layer hierarchy based on measurement proximity"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RCMP",
+      "name": "Regime-Consistent Measurement Protocol",
+      "description": "Operational protocol for regime-aware measurements"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeGating",
+      "name": "Regime-Gating Principle",
+      "description": "Principle that claims valid in one regime may not transfer to another"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31112536",
+      "name": "L0-L3 Regime Architecture"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31222900",
+      "name": "The Regime-Consistent Measurement Principle (RCMP)"
+    }
+  ]
+}

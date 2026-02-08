@@ -1,0 +1,53 @@
+{
+  "id": "ebe-core-lock",
+  "title": "EBE Core Lock v1.0: The S-Dynamic Foundation",
+  "shortTitle": "Core Lock",
+  "path": "docs/papers/efc/Core-Lock",
+  "pdf": "Core_Lock.pdf",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31223503",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "license": "CC-BY-4.0",
+  "layer": "theory",
+  "type": "paper",
+  "status": "hypothetical",
+  "epistemicStatus": "Layer B - Mathematical engine compatible with current null results",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "RG-flow",
+    "emergent constants",
+    "correlation signature",
+    "falsifiable prediction",
+    "grid state function"
+  ],
+  "concepts": {
+    "primary": ["grid-state-function", "beta-constraint", "information-length", "projection-laws"],
+    "equations": {
+      "beta_function": "β_f(S) = -1/ΔS",
+      "grid_state": "f(S) = f₀ exp(-S/ΔS)",
+      "phase": "Φ(S) = ∫dS'/f(S')",
+      "correlation_test": "d ln v / d ln c = a_v/a_c = constant"
+    }
+  },
+  "structure": {
+    "sections": [
+      {"number": 1, "title": "Introduction and Relation to EBE"},
+      {"number": 2, "title": "Core Lock Specification"},
+      {"number": 3, "title": "Conservation Law: Information Length"},
+      {"number": 4, "title": "Projection Laws"},
+      {"number": 5, "title": "Falsification Criterion"},
+      {"number": 6, "title": "Numerical Verification"},
+      {"number": 7, "title": "Epistemic Status and Limitations"},
+      {"number": 8, "title": "Conclusion"}
+    ]
+  },
+  "relationships": {
+    "dependsOn": [{"id": "ebe-core-principles", "doi": "10.6084/m9.figshare.31222903"}],
+    "relatedTo": [{"id": "rcmp", "doi": "10.6084/m9.figshare.31222900"}]
+  },
+  "figures": ["core_lock_survival_test.png", "ebe_core_lock_v1_simulation.png"]
+}

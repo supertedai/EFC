@@ -1,0 +1,122 @@
+{
+  "title": "Independent Validation of Energy-Flow Cosmology BAO Predictions: Cross-Survey Transfer from DESI DR2 to BOSS DR12",
+  "short_title": "WP4 BOSS Validation",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "date": "2026-02-02",
+  "version": "1.0",
+  "doi": "10.6084/m9.figshare.31231522",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "BOSS DR12",
+    "BAO",
+    "transfer test",
+    "cross-validation",
+    "regime gating",
+    "Hubble rate"
+  ],
+  "abstract": "Independent validation of EFC using BOSS DR12 BAO data. DESI best-fit parameters (z_L1L2 = 1.01, α_L2 = 0.045) reduce BOSS χ² from 20.83 to 13.06 (Δχ² = −7.77) without refitting. Robustness confirmed under diagonal covariance and eigenmode analysis.",
+  "efc_model": {
+    "equation": "H_EFC(z) = H_ΛCDM(z) × [1 + α_L2 · Θ(z)]",
+    "gating_function": "Θ(z) = ½ × [1 + tanh((z_L1L2 − z) / Δz)]",
+    "transition_width": 0.05,
+    "regime_L1": "z > z_L1L2: ΛCDM regime (Θ ≈ 0)",
+    "regime_L2": "z < z_L1L2: EFC modified (Θ ≈ 1)"
+  },
+  "desi_parameters": {
+    "z_L1L2": 1.01,
+    "alpha_L2": 0.045,
+    "source": "DESI DR2 best-fit"
+  },
+  "transfer_test": {
+    "chi2_LCDM": 20.83,
+    "chi2_EFC": 13.06,
+    "delta_chi2": -7.77,
+    "k_eff": 0,
+    "interpretation": "Transfer supported without refitting"
+  },
+  "robustness": {
+    "diagonal_covariance": {
+      "delta_chi2": -4.24,
+      "status": "improvement persists"
+    },
+    "eigenmode_analysis": {
+      "low_lambda_gain": -5.50,
+      "high_lambda_gain": -2.27,
+      "interpretation": "Gains from strongly-penalized modes"
+    },
+    "whitened_w5": {
+      "chi2_LCDM": 15.30,
+      "chi2_EFC": 3.91,
+      "delta_chi2": -11.39
+    }
+  },
+  "best_fit_parameters": {
+    "BOSS": {
+      "N": 6,
+      "k_eff": 1,
+      "z_L1L2": "> 0.6 (lower bound)",
+      "alpha_L2": 0.036,
+      "delta_AICc": -6.4,
+      "delta_BIC": -7.6
+    },
+    "BOSS_eBOSS": {
+      "N": 14,
+      "k_eff": 2,
+      "z_L1L2": 1.60,
+      "alpha_L2": 0.036,
+      "delta_AICc": -19.3,
+      "delta_BIC": -19.1
+    },
+    "DESI_DR2": {
+      "N": 13,
+      "k_eff": 2,
+      "z_L1L2": 1.01,
+      "alpha_L2": 0.045,
+      "delta_AICc": -1,
+      "delta_BIC": -1.0
+    }
+  },
+  "boss_data": {
+    "source": "BOSS DR12 Consensus",
+    "reference": "Alam et al. (2017) MNRAS 470, 2617",
+    "observables": ["D_M/r_s", "D_H/r_s"],
+    "z_eff": [0.38, 0.51, 0.61],
+    "N_points": 6,
+    "covariance": "Full 6×6 correlation matrix"
+  },
+  "baseline_cosmology": {
+    "source": "Planck 2018",
+    "H0": 67.4,
+    "H0_unit": "km/s/Mpc",
+    "Omega_m": 0.315,
+    "r_s": 147.09,
+    "r_s_unit": "Mpc"
+  },
+  "physical_implications": {
+    "H_enhancement": "~4-5% at z < z_L1L2",
+    "hubble_tension": "Potential partial resolution",
+    "dark_energy": "Implications for w(z) inference",
+    "structure_growth": "Effects at low redshift"
+  },
+  "conclusions": [
+    "Transfer supported: Δχ² = -7.77 without refitting",
+    "Robustness confirmed under diagonal covariance",
+    "α_L2 ≈ 0.035-0.045 consistent across surveys",
+    "Complementary constraints: DESI → z_L1L2, BOSS → α_L2"
+  ],
+  "files": {
+    "paper": "WP4_BOSS_validation.pdf",
+    "readme": "README.md",
+    "code": "src/efc_boss_transfer.py",
+    "data": "data/boss_dr12_bao.json",
+    "example": "examples/transfer_test.py"
+  }
+}

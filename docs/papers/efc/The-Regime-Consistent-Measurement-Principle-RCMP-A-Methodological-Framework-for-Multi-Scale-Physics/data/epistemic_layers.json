@@ -1,0 +1,144 @@
+{
+  "$schema": "../schema.json",
+  "version": "1.0",
+  "description": "Epistemic layer definitions for RCMP framework",
+  "layers": {
+    "L0": {
+      "name": "Direct Measurement",
+      "description": "Raw sensor output with minimal processing",
+      "characteristics": [
+        "Immediate instrument reading",
+        "No model-dependent interpretation",
+        "Uncertainty is purely instrumental"
+      ],
+      "epistemic_distance": 0,
+      "examples": {
+        "galaxy_dynamics": "Spectral line wavelength",
+        "cosmology": "Photon counts",
+        "particle_physics": "Detector hits",
+        "climate_science": "Thermometer reading"
+      },
+      "uncertainty_sources": [
+        "Sensor noise",
+        "Calibration drift",
+        "Environmental factors"
+      ]
+    },
+    "L1": {
+      "name": "Calibrated Observable",
+      "description": "Instrument-corrected measurement",
+      "characteristics": [
+        "Standard calibrations applied",
+        "Instrument response modeled",
+        "Background subtracted"
+      ],
+      "epistemic_distance": 1,
+      "examples": {
+        "galaxy_dynamics": "Rotation velocity V(R)",
+        "cosmology": "Apparent magnitude",
+        "particle_physics": "Particle momentum",
+        "climate_science": "Calibrated temperature"
+      },
+      "transformations_from_L0": [
+        "Instrument response function",
+        "Calibration coefficients",
+        "Background subtraction"
+      ],
+      "uncertainty_additions": [
+        "Calibration uncertainty",
+        "Background estimation error",
+        "Response function uncertainty"
+      ]
+    },
+    "L2": {
+      "name": "Derived Quantity",
+      "description": "Quantity computed from L1 observables using physical models",
+      "characteristics": [
+        "Requires physical assumptions",
+        "Model-dependent",
+        "Multiple L1 inputs may combine"
+      ],
+      "epistemic_distance": 2,
+      "examples": {
+        "galaxy_dynamics": "Centripetal acceleration g_obs",
+        "cosmology": "Distance modulus",
+        "particle_physics": "Invariant mass",
+        "climate_science": "Heat flux"
+      },
+      "transformations_from_L1": [
+        "Physical model application",
+        "Coordinate transformations",
+        "Error propagation through equations"
+      ],
+      "uncertainty_additions": [
+        "Model uncertainty",
+        "Parameter uncertainty",
+        "Systematic effects"
+      ]
+    },
+    "L3": {
+      "name": "Theoretical Construct",
+      "description": "Quantity inferred from L2 via theoretical framework",
+      "characteristics": [
+        "Theory-dependent",
+        "May involve unobservable entities",
+        "Highest interpretation dependency"
+      ],
+      "epistemic_distance": 3,
+      "examples": {
+        "galaxy_dynamics": "Dark matter density profile",
+        "cosmology": "Hubble parameter",
+        "particle_physics": "Quark mass",
+        "climate_science": "Climate sensitivity"
+      },
+      "transformations_from_L2": [
+        "Theoretical model fitting",
+        "Inverse problem solutions",
+        "Parameter inference"
+      ],
+      "uncertainty_additions": [
+        "Theoretical model uncertainty",
+        "Degeneracies",
+        "Prior dependencies"
+      ]
+    }
+  },
+  "transitions": {
+    "L0_to_L1": {
+      "name": "Calibration",
+      "description": "Raw data → Calibration model → Observable",
+      "typical_operations": [
+        "Instrument response correction",
+        "Background subtraction",
+        "Unit conversion"
+      ]
+    },
+    "L1_to_L2": {
+      "name": "Physical Derivation",
+      "description": "Observable → Physical model → Derived quantity",
+      "typical_operations": [
+        "Physical law application",
+        "Coordinate transformation",
+        "Multi-observable combination"
+      ]
+    },
+    "L2_to_L3": {
+      "name": "Theoretical Inference",
+      "description": "Derived quantity → Theoretical framework → Construct",
+      "typical_operations": [
+        "Model fitting",
+        "Parameter estimation",
+        "Theoretical interpretation"
+      ]
+    }
+  },
+  "uncertainty_propagation": {
+    "formula": "σ_n = √(σ_{n-1}² + σ_transition²)",
+    "with_correlation": "σ_n² = σ_{n-1}² + σ_transition² + 2ρσ_{n-1}σ_transition",
+    "notes": [
+      "Each layer transition adds uncertainty",
+      "Correlations should be documented when known",
+      "Total uncertainty accumulates through chain"
+    ]
+  }
+}

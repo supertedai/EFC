@@ -1,0 +1,131 @@
+{
+  "case_study": {
+    "domain": "Energy-Flow Cosmology (EFC)",
+    "duration": {
+      "months": 12,
+      "description": "Year-long scientific collaboration"
+    }
+  },
+  "graph_metrics": {
+    "initial": {
+      "nodes": 593000,
+      "description": "Primarily concept definitions"
+    },
+    "final": {
+      "nodes": 602000,
+      "growth": 9000,
+      "description": "Added relationships, evidence, predictions"
+    },
+    "causal_relations": {
+      "count": 2160,
+      "description": "Explicitly represented cause-effect chains"
+    },
+    "synthetic_insights": {
+      "count": 47,
+      "examples": [
+        "Entropy gradients at void boundaries may explain large-scale structure",
+        "Bullet Cluster offset tests EFC prediction: no dark matter halo needed",
+        "Temporal patterns suggest 10-day cycles between conceptual and quantitative work"
+      ]
+    }
+  },
+  "temporal_phases": [
+    {
+      "weeks": "1-4",
+      "phase": "Conceptual exploration",
+      "activities": ["Defining entropy gradients", "Energy flow concepts"]
+    },
+    {
+      "weeks": "5-12",
+      "phase": "Hypothesis generation",
+      "activities": ["Deriving testable predictions"]
+    },
+    {
+      "weeks": "13-20",
+      "phase": "Observational test design",
+      "activities": ["Bullet Cluster analysis", "Galaxy formation tests"]
+    },
+    {
+      "weeks": "21+",
+      "phase": "Refinement",
+      "activities": ["Literature review", "Theory refinement"]
+    }
+  ],
+  "proactive_suggestions": {
+    "examples": [
+      {
+        "week": 8,
+        "trigger": "temporal",
+        "suggestion": "We've discussed entropy gradients extensively. Should we formalize this as a mathematical framework?"
+      },
+      {
+        "week": 14,
+        "trigger": "evidence_gap",
+        "suggestion": "Bullet Cluster analysis could discriminate EFC from ΛCDM. Should we design a specific test?"
+      },
+      {
+        "week": 22,
+        "trigger": "pattern",
+        "suggestion": "Galaxy cluster abundance evolution N(M,z) offers another discriminator."
+      }
+    ],
+    "total": 83,
+    "accepted": 61,
+    "rejected": 22,
+    "acceptance_rate": 0.735
+  },
+  "context_dependent_acceptance": {
+    "exploration_phase": 0.85,
+    "implementation_phase": 0.60,
+    "note": "System learned this pattern and adjusted suggestion frequency"
+  },
+  "emergent_capabilities": {
+    "cross_concept_discovery": {
+      "example_query": "How does entropy relate to biological complexity?",
+      "traversal": [
+        "Entropy",
+        "Energy Flow",
+        "Dissipative Structures",
+        "Self-Organization",
+        "Biological Complexity"
+      ],
+      "hops": 5,
+      "note": "Discovered automatically from graph structure"
+    },
+    "evidence_gap_identification": {
+      "detection": "Claim 'Entropy gradients drive structure formation' lacks quantitative support",
+      "suggestion": "Should we derive the mathematical relationship between ∇S and gravitational potential?"
+    },
+    "temporal_pattern_recognition": {
+      "observation": "User discusses Bullet Cluster every ~10 days",
+      "inference": "This is a priority test case",
+      "action": "Suggested literature review on Bullet Cluster observations"
+    }
+  },
+  "evaluation_results": {
+    "causal_reasoning_accuracy": {
+      "test_set_size": 50,
+      "query_types": ["What causes X?", "What are the effects of Y?"],
+      "results": {
+        "symbiose_graph_traversal": 0.94,
+        "gpt4_zero_shot": 0.76,
+        "rag_alone": 0.68
+      },
+      "critical_detail": "Symbiose's accuracy comes from explicit graph structure, not LLM knowledge"
+    },
+    "memory_consolidation_effectiveness": {
+      "query": "What did we work on this month?",
+      "without_consolidation_seconds": 4.2,
+      "with_consolidation_seconds": 0.3,
+      "speedup_factor": 14,
+      "accuracy": 1.0,
+      "note": "Abstractions preserve key facts"
+    }
+  },
+  "comparison_with_stateless_llm": {
+    "query": "What's the next step for EFC development?",
+    "gpt4_response": "Consider formalizing the mathematical framework, reviewing observational data, or writing a paper.",
+    "symbiose_response": "Based on our 22 weeks of work, we've formalized entropy gradients and identified Bullet Cluster as a key test. The next step is galaxy cluster abundance evolution N(M,z) as a discriminator between EFC and ΛCDM structure growth. We haven't explored this yet, and it offers independent validation.",
+    "key_difference": "Symbiose synthesizes 22 weeks of context to suggest a specific, novel next step GPT-4 cannot access"
+  }
+}

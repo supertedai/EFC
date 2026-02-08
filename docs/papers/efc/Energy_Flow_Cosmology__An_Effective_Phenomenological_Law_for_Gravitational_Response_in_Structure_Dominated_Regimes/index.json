@@ -1,0 +1,78 @@
+{
+  "id": "efc-effective-phenomenological-law",
+  "title": "Energy-Flow Cosmology: An Effective Phenomenological Law for Gravitational Response in Structure-Dominated Regimes",
+  "short_title": "EFC Effective Phenomenological Law",
+  "version": "1.0",
+  "date": "2026-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "type": "formal",
+  "status": "published",
+  "validation": {
+    "efc_d": true,
+    "efc_s": false,
+    "efc_c": false,
+    "regime": "L1-L2",
+    "ledger_status": "Validated",
+    "ledger_entry": "Foundational framework"
+  },
+  "abstract_short": "Theoretical derivation of the effective gravitational coupling μ(a) = 1 + βS(a) from EFC field equations, governing gravitational response in structure-dominated cosmological regimes.",
+  "keywords": [
+    "EFC",
+    "effective gravitational coupling",
+    "phenomenological law",
+    "structure formation",
+    "entropy field",
+    "modified gravity",
+    "regime transition",
+    "L1-L2",
+    "μ(a)"
+  ],
+  "core_equations": [
+    {
+      "name": "EFC Field Equation",
+      "latex": "G_{\\mu\\nu} = 8\\pi G(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}) + \\Lambda_{eff} g_{\\mu\\nu}"
+    },
+    {
+      "name": "Effective Gravitational Coupling",
+      "latex": "\\mu(a) = \\frac{G_{eff}}{G} = 1 + \\beta S(a)",
+      "symbol": "μ(a)"
+    },
+    {
+      "name": "Entropy Field",
+      "latex": "S(a) = \\frac{S_\\infty}{2}[1 + \\tanh((\\ln a - \\ln a_t)/\\sigma)]"
+    }
+  ],
+  "parameters": {
+    "beta": {"value": 0.16, "description": "EFC coupling constant"},
+    "a_t": {"value": 0.55, "z_t": 0.82, "description": "Transition scale factor"},
+    "sigma": {"value": 0.10, "description": "Transition width"},
+    "S_inf": {"value": 1.0, "description": "Asymptotic entropy saturation"}
+  },
+  "regime_applicability": {
+    "L0": {"active": false, "description": "GR limit, μ ≈ 1"},
+    "L1": {"active": true, "description": "Linear perturbations, transition begins"},
+    "L2": {"active": true, "description": "Structure-dominated, μ > 1"},
+    "L3": {"active": true, "description": "Deep non-linear, full enhancement"}
+  },
+  "key_findings": [
+    "μ(a) derived from EFC field equations, not phenomenologically fitted",
+    "Automatic GR recovery in early universe via dynamic suppression",
+    "Single entropy field S(a) governs both geometry and growth",
+    "Transition occurs at z ≈ 0.82 with sharp width σ = 0.10"
+  ],
+  "dependencies": [
+    {"id": "efc-v1.2", "doi": "10.6084/m9.figshare.30563738"}
+  ],
+  "related_papers": [
+    {"id": "unified-bao-sn-rsd", "doi": "10.6084/m9.figshare.31215613", "relation": "validates"},
+    {"id": "rks-framework", "doi": "10.6084/m9.figshare.31211437", "relation": "extends"},
+    {"id": "wp3-rks-slice", "doi": "10.6084/m9.figshare.31215259", "relation": "supports"}
+  ],
+  "files": {
+    "pdf": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes.pdf"
+  }
+}

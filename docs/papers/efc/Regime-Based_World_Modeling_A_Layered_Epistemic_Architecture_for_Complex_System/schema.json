@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/rbwm.schema.json",
+  "title": "Regime-Based World Modeling Schema",
+  "description": "Schema for validating (R, L) coordinate claims",
+  "type": "object",
+  "definitions": {
+    "RRegime": {
+      "type": "string",
+      "enum": ["R0", "R1", "R2"],
+      "description": "Physical regime on the R-axis"
+    },
+    "LLayer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"],
+      "description": "Epistemic layer on the L-axis"
+    },
+    "Coordinate": {
+      "type": "object",
+      "properties": {
+        "r": {
+          "$ref": "#/definitions/RRegime"
+        },
+        "l": {
+          "$ref": "#/definitions/LLayer"
+        }
+      },
+      "required": ["r", "l"]
+    },
+    "Claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string",
+          "description": "The claim being made"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/Coordinate"
+        },
+        "driver": {
+          "type": "string",
+          "description": "Primary physical driver"
+        },
+        "validity_domain": {
+          "type": "string",
+          "description": "Conditions where claim holds"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["statement", "coordinate"]
+    },
+    "DriverProximity": {
+      "type": "object",
+      "properties": {
+        "measured_quantity": {
+          "type": "string"
+        },
+        "target_driver": {
+          "type": "string"
+        },
+        "proxy_steps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proximity_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["measured_quantity", "target_driver"]
+    },
+    "RegimeGate": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "$ref": "#/definitions/Coordinate"
+        },
+        "target": {
+          "$ref": "#/definitions/Coordinate"
+        },
+        "transfer_allowed": {
+          "type": "boolean"
+        },
+        "justification": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["source", "target", "transfer_allowed"]
+    },
+    "DomainMapping": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "enum": ["physics", "biology", "economics", "ai"]
+        },
+        "r_interpretation": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        },
+        "l_interpretation": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        }
+      },
+      "required": ["domain"]
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Claim"
+      }
+    },
+    "regime_gates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RegimeGate"
+      }
+    },
+    "domain_mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/DomainMapping"
+      }
+    }
+  }
+}

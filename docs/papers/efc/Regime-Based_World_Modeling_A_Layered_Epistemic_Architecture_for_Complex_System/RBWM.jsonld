@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31223650",
+  "name": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex Systems",
+  "headline": "A coordinate system for organizing knowledge claims across physical regimes and epistemic layers",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "emergence",
+    "multi-scale modeling",
+    "epistemic layering",
+    "regime-gating",
+    "driver proximity",
+    "complexity architecture",
+    "world models"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RAxis",
+      "name": "R-Axis",
+      "description": "Physical regime hierarchy: R0-Field, R1-Structure, R2-Complex"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LAxis",
+      "name": "L-Axis",
+      "description": "Epistemic layer hierarchy: L0-Raw, L1-Calibrated, L2-Derived, L3-Theoretical"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeGatingPrinciple",
+      "name": "Regime-Gating Principle",
+      "description": "Claims cannot freely transfer between regimes without justification"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:DriverProximity",
+      "name": "Driver Proximity",
+      "description": "Measure of how directly a measurement relates to the physical driver"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ValidityDomain",
+      "name": "Validity Domain",
+      "description": "Region in (R, L) space where a claim holds"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31112536",
+      "name": "L0-L3 Regime Architecture"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31222903",
+      "name": "Entropy-Bounded Empiricism: Core Principles"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.30773684",
+      "name": "Symbiosis"
+    }
+  ],
+  "applicationDomain": [
+    "physics",
+    "biology",
+    "economics",
+    "artificial intelligence"
+  ]
+}

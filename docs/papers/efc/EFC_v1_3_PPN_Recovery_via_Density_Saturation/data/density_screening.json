@@ -1,0 +1,88 @@
+{
+  "description": "Density-based screening results for Solar System",
+  "formula": "Θ(ρ_eff) = exp[-(ρ_eff/ρ*)^n]",
+  "effective_density_definition": {
+    "formula": "ρ_eff(r) = 3 M_enc(r) / (4π r³)",
+    "interpretation": "Source-smoothed mean interior density",
+    "note": "NOT the local particle density (e.g., solar wind)"
+  },
+  "parameters": {
+    "rho_star": {
+      "value": 1e-22,
+      "unit": "kg/m³",
+      "source": "SPARC galactic fits"
+    },
+    "n": {
+      "value": 2,
+      "description": "Steepness parameter"
+    }
+  },
+  "physical_motivation": {
+    "description": "Screening evaluates density of gravitational source, not local vacuum",
+    "analogy": "Similar to chameleon screening depending on Newtonian potential"
+  },
+  "results": [
+    {
+      "location": "Solar core",
+      "r": "0",
+      "rho_eff_value": 1.6e5,
+      "rho_eff_unit": "kg/m³",
+      "rho_eff_over_rho_star": 1.6e27,
+      "theta": 0,
+      "status": "fully screened"
+    },
+    {
+      "location": "Solar surface",
+      "r": "R_sun",
+      "rho_eff_value": 1.4e3,
+      "rho_eff_unit": "kg/m³",
+      "rho_eff_over_rho_star": 1.4e25,
+      "theta": 0,
+      "status": "fully screened"
+    },
+    {
+      "location": "1 AU",
+      "r": "1.496e11 m",
+      "M_enc": "M_sun",
+      "rho_eff_value": 5.9e3,
+      "rho_eff_unit": "kg/m³",
+      "note": "Source-smoothed density, NOT solar wind (~1e-20 kg/m³)",
+      "rho_eff_over_rho_star": 5.9e25,
+      "theta": 0,
+      "status": "fully screened"
+    },
+    {
+      "location": "Saturn",
+      "r": "9.54 AU",
+      "rho_eff_value": 4.6,
+      "rho_eff_unit": "kg/m³",
+      "rho_eff_over_rho_star": 4.6e22,
+      "theta": 0,
+      "status": "fully screened"
+    },
+    {
+      "location": "Galaxy disk (8 kpc)",
+      "r": "~8 kpc",
+      "M_enc": "~1e11 M_sun",
+      "rho_eff_value": 1e-22,
+      "rho_eff_unit": "kg/m³",
+      "rho_eff_over_rho_star": 1.0,
+      "theta": 0.37,
+      "status": "partial screening"
+    },
+    {
+      "location": "Galaxy outskirts (30 kpc)",
+      "r": "~30 kpc",
+      "M_enc": "~1e10 M_sun",
+      "rho_eff_value": 1e-24,
+      "rho_eff_unit": "kg/m³",
+      "rho_eff_over_rho_star": 0.01,
+      "theta": 0.9999,
+      "status": "EFC modifications fully active"
+    }
+  ],
+  "interpretation": {
+    "high_density": "ρ_eff >> ρ* → Θ → 0 (modifications suppressed)",
+    "low_density": "ρ_eff << ρ* → Θ → 1 (EFC active)"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "description": "Classification of H₀ probes by gravitational regime",
+  "regimes": {
+    "background": {
+      "description": "Linear, smooth cosmological background",
+      "effective_G": "G₀",
+      "expected_h0": "~67 km/s/Mpc"
+    },
+    "structure": {
+      "description": "Nonlinear, collapsed structures (galaxies, clusters)",
+      "effective_G": "G₀ exp(a_G · ΔΦ)",
+      "expected_h0": "~73 km/s/Mpc"
+    }
+  },
+  "probes": [
+    {
+      "id": "CMB",
+      "name": "CMB (Planck)",
+      "regime": "background",
+      "h0_value": 67.4,
+      "h0_error": 0.5,
+      "reference": "Planck 2018",
+      "description": "Cosmic microwave background temperature and polarization"
+    },
+    {
+      "id": "BAO",
+      "name": "Baryon Acoustic Oscillations",
+      "regime": "background",
+      "h0_value": 67.0,
+      "h0_error": 1.0,
+      "reference": "Various surveys",
+      "description": "Sound horizon scale in matter distribution"
+    },
+    {
+      "id": "SN_Ia_Cepheids",
+      "name": "SN Ia + Cepheids (SH0ES)",
+      "regime": "structure",
+      "h0_value": 73.04,
+      "h0_error": 1.04,
+      "reference": "Riess et al. 2022",
+      "description": "Distance ladder: Cepheids calibrate SN Ia in host galaxies"
+    },
+    {
+      "id": "TRGB",
+      "name": "Tip of Red Giant Branch",
+      "regime": "structure",
+      "h0_value": 69.8,
+      "h0_error": 1.7,
+      "reference": "Freedman et al. 2021",
+      "description": "Standard candles in galaxy halos"
+    },
+    {
+      "id": "Masers",
+      "name": "Megamasers",
+      "regime": "structure",
+      "h0_value": 73.9,
+      "h0_error": 3.0,
+      "reference": "Megamaser Cosmology Project",
+      "description": "Water masers in AGN accretion disks"
+    },
+    {
+      "id": "SBF",
+      "name": "Surface Brightness Fluctuations",
+      "regime": "structure",
+      "h0_value": 70.0,
+      "h0_error": 2.0,
+      "reference": "Various",
+      "description": "Fluctuations in unresolved stellar populations"
+    },
+    {
+      "id": "GW_Sirens",
+      "name": "Gravitational Wave Standard Sirens",
+      "regime": "mixed",
+      "h0_value": 70.0,
+      "h0_error": 12.0,
+      "reference": "LIGO/Virgo",
+      "description": "Binary mergers with EM counterparts"
+    }
+  ],
+  "key_insight": "Background probes cluster around 67 km/s/Mpc; structure probes cluster around 73 km/s/Mpc. This is not a coincidence but an expected signature of regime-dependent gravity."
+}
