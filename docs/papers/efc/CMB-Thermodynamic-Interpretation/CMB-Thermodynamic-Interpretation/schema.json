@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/cmb-thermodynamic/schema.json",
+  "title": "CMB Thermodynamic Interpretation Schema",
+  "type": "object",
+  "properties": {
+    "compatibility_constraint": {
+      "type": "object",
+      "properties": {
+        "observable": {"type": "string"},
+        "value": {"type": "string"},
+        "requirement": {"type": "string", "enum": ["within_uncertainty", "within_2sigma", "standard_functional_form", "sign_preserved"]},
+        "type": {"type": "string", "enum": ["must_hold", "may_deviate"]}
+      }
+    },
+    "null_test": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "criterion": {"type": "string"},
+        "falsification": {"type": "string"}
+      }
+    },
+    "efc_parameter": {
+      "type": "object",
+      "properties": {
+        "symbol": {"type": "string"},
+        "name": {"type": "string"},
+        "constraint_source": {"type": "string"}
+      }
+    }
+  },
+  "efc_analysis_type": "cmb_compatibility",
+  "framework": "energy_flow_cosmology"
+}

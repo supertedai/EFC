@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/foundations-efc/schema.json",
+  "title": "EFC Foundations Schema",
+  "type": "object",
+  "properties": {
+    "regime": {
+      "type": "object",
+      "properties": {
+        "level": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]},
+        "state": {"type": "string"},
+        "validity": {"type": "string"}
+      }
+    },
+    "core_equation": {
+      "type": "object",
+      "properties": {
+        "mu": {"type": "number", "minimum": 1},
+        "beta": {"type": "number"},
+        "S": {"type": "number", "minimum": 0}
+      }
+    },
+    "methodological_constraint": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "type": {"type": "string", "enum": ["regime_bounded", "pre_registered", "cross_scale"]}
+      }
+    }
+  },
+  "efc_analysis_type": "foundational_framework",
+  "framework": "energy_flow_cosmology"
+}

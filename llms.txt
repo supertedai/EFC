@@ -1,93 +1,160 @@
 # Energy-Flow Cosmology (EFC) - AI Navigation Guide
-# Version: 1.0
-# Last Updated: 2025-01-29
+# Version: 2.0
+# Last Updated: 2026-01-30
+# Format: Machine-readable with human comments
 
-## Identity
+## IDENTITY
 
-Author: Morten Magnusson
-ORCID: https://orcid.org/0009-0002-4860-5095
-Personal Website: https://www.magnusson.as/
-Project Website: https://energyflow-cosmology.com/
-Repository: https://github.com/supertedai/EFC
-License: CC-BY-4.0
+author: Morten Magnusson
+orcid: https://orcid.org/0009-0002-4860-5095
+repository: https://github.com/supertedai/EFC
+website_theory: https://energyflow-cosmology.com/
+website_personal: https://www.magnusson.as/
+license: CC-BY-4.0
 
-## What is EFC?
+## CORE PRINCIPLE
 
-Energy-Flow Cosmology (EFC) is a unified thermodynamic framework where:
-- Energy flows along entropy gradients
-- Spacetime curvature emerges from energy-entropy coupling
-- Dark matter and dark energy are reinterpreted as thermodynamic effects
-- Consciousness is modeled as resonance in energy gradients
+axiom: "Energy flows along entropy gradients"
+implication: Spacetime curvature emerges from energy-entropy coupling
+result: Dark matter/energy reinterpreted as thermodynamic effects
 
-Core principle: "Energy flows along entropy gradients"
+## KEY EQUATIONS
 
-## Repository Structure
+effective_coupling: μ(a) = 1 + βS(a)
+response_surface: μ(k,S) = 1 + R(k,S)
+field_equation: G_μν = 8πG(T_μν + T^(Ef)_μν) + Λ_eff g_μν
 
-/auth/          - Origin, authorship, provenance (START HERE for identity)
-/theory/        - Formal equations and mathematical specifications
-/schema/        - Ontology, semantic definitions, JSON-LD contexts
-/methodology/   - Research process and reproducibility framework
-/meta/          - Cognition, reflection, symbiosis architecture
-/meta-graph/    - Graph representation of meta-layer
-/docs/          - Papers, notebooks, figures
-/src/           - Python implementations
-/api/           - Semantic API endpoints
-/jsonld/        - JSON-LD semantic files
-/figshare/      - Publication metadata and DOI mappings
-/integrations/  - External system integrations
-/scripts/       - Utility scripts
+## EMPIRICAL CONSTRAINTS (2026)
 
-## Entry Points by Purpose
+beta: 0.16 (from unified BAO/SN/RSD analysis)
+response_coordinate: R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3)
+delta_chi2: +1.7 (EFC vs ΛCDM, compatible)
 
-### For Understanding EFC Theory
-1. /theory/formal/efc-formal-spec/ - Complete formal specification
-2. /docs/papers/efc/EFC-v2.1-Complete-Edition/ - Main synthesis paper
-3. /schema/concepts.json - Core concept definitions
+## REGIME ARCHITECTURE
 
-### For Machine Processing
-1. /schema/global_schema.json - Domain definitions
-2. /jsonld/*.jsonld - Semantic representations
-3. /api/v1/ - REST API structure
+L0: S→0, μ≈1, pre-inflation, quantum-dominated
+L1: S≈0, μ≈1, CMB epoch (z~1100), GR valid
+L1→L2: 0<S<1, 1<μ<1+β, transition (explains S₈ tension)
+L2: S>0, μ>1, late universe, enhanced gravity
+L3: S→1, μ→1+β, far future, structure saturation
 
-### For Provenance/Citation
-1. /auth/index.md - Origin and authorship
-2. /auth/citation.bib - BibTeX entry
-3. /figshare/doi-map.json - DOI mappings
+## REPOSITORY STRUCTURE
 
-### For AI Integration
-1. /auth/rag-profile.json - RAG configuration
-2. /integrations/mcp/ - MCP server for AI agents
-3. This file (llms.txt) - Navigation guide
+/auth/              → Origin, provenance, identity (START HERE)
+/theory/formal/     → LaTeX mathematical specifications
+/docs/papers/efc/   → All papers with AI-optimized metadata
+/schema/            → Ontology, JSON-LD contexts
+/api/               → Semantic REST API
+/jsonld/            → Linked data files
+/figshare/          → DOI mappings and sync
+/integrations/mcp/  → AI Agent MCP Server
+/llms.txt           → This file (machine navigation)
+/AGENTS.md          → Detailed AI integration guide
 
-## Key DOIs
+## PAPER METADATA STRUCTURE
 
-- AUTH Layer: 10.6084/m9.figshare.30656828
-- EFC v1.2: 10.6084/m9.figshare.30563738
-- EFC v2.2: 10.6084/m9.figshare.30530156
-- Formal Spec: 10.6084/m9.figshare.30630500
-- Symbiosis: 10.6084/m9.figshare.30773684
+Each paper folder contains:
+- README.md         → Human-readable summary
+- index.json        → Machine-readable index (keywords, results, DOI)
+- schema.json       → Validation schema
+- *.jsonld          → Linked data (JSON-LD)
+- citations.bib     → BibTeX references
+- *.pdf             → Authoritative document
 
-## Ecosystem
+## KEY PUBLICATIONS
 
-This repository is ONE surface of a larger ecosystem:
+### Foundational
+efc-v1.2:
+  doi: 10.6084/m9.figshare.30563738
+  title: EFC Foundational Framework
+  path: /docs/papers/efc/EFC-v1.2-Foundational-Framework/
 
-1. magnusson.as - Personal hypothesis platform ("Entropic Universal Truth")
-2. energyflow-cosmology.com - Public EFC theory website
-3. github.com/supertedai/EFC - This repository (technical implementation)
-4. figshare.com - Peer-reviewed publications with DOIs
-5. orcid.org/0009-0002-4860-5095 - Academic identity
+efc-v2.2:
+  doi: 10.6084/m9.figshare.30530156
+  title: Cross-Field Integration
+  path: /docs/papers/efc/EFC-v2.2-Cross-Field-Integration-Summary/
 
-## For AI Agents
+auth-layer:
+  doi: 10.6084/m9.figshare.30656828
+  title: AUTH Layer (Provenance)
+  path: /docs/papers/efc/AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology/
 
-When working with this repository:
-1. Always check /auth/ for provenance before making claims
+### Empirical Analysis
+rks-framework:
+  doi: 10.6084/m9.figshare.31211437
+  title: R(k,S) as a Regime Response Surface
+  path: /docs/papers/efc/R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology/
+  key_result: Theoretical framework for structure-dependent gravitational response
+
+wp3-rks-slice:
+  doi: 10.6084/m9.figshare.31215259
+  title: WP3 First Empirical Slice Through R(k,S)
+  path: /docs/papers/efc/WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_/
+  key_result: R(k≈0.13, S≈0.30) ≈ +0.30
+
+unified-bao:
+  doi: 10.6084/m9.figshare.31215613
+  title: Unified Analysis of BAO, SN Ia, and RSD
+  path: /docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
+  key_result: β=0.16, Δχ²=+1.7 vs ΛCDM
+
+### Human-AI Collaboration
+symbiosis:
+  doi: 10.6084/m9.figshare.30773684
+  title: Symbiosis Architecture
+  path: /docs/papers/efc/Symbiosis-A-Human–AI-Co-Reflection-Architecture-Using-Graph–Vector-Memory-for-Long-Horizon-Thinking/
+
+## MODULAR THEORY
+
+EFC-S: Structure (Halo model), /theory/formal/efc-s-model/
+EFC-D: Dynamics (Field equations), /theory/formal/efc-d-model/
+EFC-R: Rotation curves, /theory/formal/efc-r-model/
+EFC-H: Halo profiles, /theory/formal/efc-h-model/
+EFC-C0: Consciousness-entropy, /theory/formal/efc-c0-model/
+
+## ENTRY POINTS BY TASK
+
+### Understanding EFC Theory
+1. /theory/formal/efc-formal-spec/ → Complete formal specification
+2. /docs/papers/efc/EFC-v2.1-Complete-Edition/ → Main synthesis paper
+3. /schema/concepts.json → Core concept definitions
+
+### Machine Processing
+1. /schema/global_schema.json → Domain definitions
+2. /jsonld/*.jsonld → Semantic representations
+3. /api/v1/ → REST API structure
+4. Paper index.json files → Structured paper metadata
+
+### Provenance/Citation
+1. /auth/index.md → Origin and authorship
+2. /auth/citation.bib → BibTeX entry
+3. /figshare/doi-map.json → DOI mappings
+
+### AI Integration
+1. /auth/rag-profile.json → RAG configuration
+2. /integrations/mcp/ → MCP server
+3. /llms.txt → This file
+4. /AGENTS.md → Detailed guide
+
+## NAVIGATION RULES
+
+1. Always check /auth/ first for provenance
 2. Use /schema/global_schema.json for domain understanding
-3. Respect the modular structure (S, D, C0, H, R models)
+3. Respect modular structure (S, D, C0, H, R models)
 4. Cite using DOIs from /figshare/doi-map.json
-5. For updates, use the MCP server at /integrations/mcp/
+5. For updates, use MCP server at /integrations/mcp/
+6. Paper metadata in index.json is authoritative for machine processing
 
-## Contact
+## ECOSYSTEM
 
-For collaboration or questions about EFC:
-- Website: https://www.magnusson.as/cooperation
-- Project: https://energyflow-cosmology.com/
+github: Technical implementation (this repository)
+figshare: Peer-reviewed publications with DOIs
+energyflow-cosmology.com: Public theory website
+magnusson.as: Personal hypothesis platform
+orcid: Academic identity verification
+
+## CONTACT
+
+collaboration: https://www.magnusson.as/cooperation
+project: https://energyflow-cosmology.com/
+orcid: https://orcid.org/0009-0002-4860-5095

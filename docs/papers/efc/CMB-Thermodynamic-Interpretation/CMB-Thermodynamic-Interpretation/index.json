@@ -1,0 +1,60 @@
+{
+  "id": "cmb-thermodynamic-interpretation",
+  "title": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework Under Entropy-Constrained Structure Formation",
+  "short_title": "CMB Thermodynamic Interpretation",
+  "version": "1.0",
+  "date": "2026-01-14",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "type": "null_test_framework",
+  "status": "published",
+  "abstract_short": "CMB compatibility framework for EFC with null tests: theta_s within 0.5%, damping scale within 5%, A_L in 0.9-0.95 range. Predictions for ISW phase shift and lensing evolution.",
+  "keywords": ["CMB", "thermodynamic interpretation", "null tests", "EFC", "Planck", "lensing", "ISW"],
+  "core_principle": {
+    "causal_chain": ["JWST", "S(z)", "CMB"],
+    "constraints": ["No parameter fitting", "No circular inference", "Causal ordering enforced"]
+  },
+  "compatibility_constraints": [
+    {"observable": "theta_s", "value": "100.09 +/- 0.30 arcmin", "requirement": "within_uncertainty"},
+    {"observable": "peak_ratio_R", "value": "~0.42", "requirement": "within_2sigma"},
+    {"observable": "damping_scale_lD", "requirement": "standard_functional_form"},
+    {"observable": "TE_EE_correlation", "value": "positive", "requirement": "sign_preserved"}
+  ],
+  "prediction_zones": [
+    {"observable": "A_L", "prediction": "< 1.0", "mechanism": "smoother_halos"},
+    {"observable": "ISW_phase", "prediction": "0.01-0.1 rad at l > 1000", "mechanism": "energy_flow_coupling"},
+    {"observable": "C_l_phiphi", "prediction": "z-dependent at high l", "mechanism": "entropy_gradient_evolution"}
+  ],
+  "null_tests": [
+    {"name": "peak_position_invariance", "criterion": "theta_s within 0.5%", "falsification": "deviation > 0.5%"},
+    {"name": "damping_consistency", "criterion": "l_D within 5%", "falsification": "systematic deviation"},
+    {"name": "lensing_growth_consistency", "criterion": "A_L in range 0.9-0.95", "falsification": "A_L >= 1.0 at high significance"}
+  ],
+  "efc_parameters": [
+    {"symbol": "S_0", "name": "Entropy at z=0", "constraint_source": "SPARC rotation curves"},
+    {"symbol": "S_eq", "name": "Entropy at matter-radiation equality", "constraint_source": "CMB peak structure"},
+    {"symbol": "alpha_S", "name": "Entropy coupling strength", "constraint_source": "JWST sSFR correlation"},
+    {"symbol": "n_S", "name": "Entropy profile exponent", "constraint_source": "Cross-scale consistency"}
+  ],
+  "empirical_basis": {
+    "source": "JWST/COSMOS-Web",
+    "sample_size": 26288,
+    "redshift_range": "z > 5",
+    "regime_chi2": 47.3,
+    "regime_p_value": "<10^-9"
+  },
+  "related_papers": [
+    {"doi": "10.6084/m9.figshare.31059964", "title": "COSMOS-Web Galaxy Abundances"},
+    {"doi": "10.6084/m9.figshare.31061665", "title": "Regime Breakdown LCDM"},
+    {"doi": "10.6084/m9.figshare.31064929", "title": "EFC Structure Formation"}
+  ],
+  "files": {
+    "pdf": "CMB_Thermodynamic_Interpretation.pdf",
+    "figure": "figure1_causal_flow.svg",
+    "schema": "schema.jsonld",
+    "index_yaml": "index.yaml",
+    "citation": "CITATION.cff"
+  }
+}
