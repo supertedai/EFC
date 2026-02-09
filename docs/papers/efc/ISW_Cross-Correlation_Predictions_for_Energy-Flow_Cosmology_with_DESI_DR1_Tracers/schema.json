@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efc-project.org/papers/isw-cross-correlation-desi-dr1/schema.json",
+  "title": "ISW Cross-Correlation Predictions for EFC with DESI DR1",
+  "description": "Schema for ISW-galaxy cross-correlation C_ℓ^Tg predictions in Energy-Flow Cosmology using DESI DR1 tracer windows",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "isw-cross-correlation-desi-dr1"
+    },
+    "efc_parameters": {
+      "type": "object",
+      "properties": {
+        "beta": {
+          "type": "number",
+          "description": "Gravitational enhancement amplitude β in μ(a) = 1 + β S(a)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "a_t": {
+          "type": "number",
+          "description": "Transition scale factor",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "z_t": {
+          "type": "number",
+          "description": "Transition redshift z_t = 1/a_t - 1",
+          "minimum": 0
+        },
+        "sigma_cos": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Transition width parameter range",
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "required": ["beta", "a_t", "z_t"]
+    },
+    "isw_kernel": {
+      "type": "object",
+      "properties": {
+        "K_total": {
+          "type": "string",
+          "description": "Total ISW kernel expression"
+        },
+        "K_mu": {
+          "type": "string",
+          "description": "Standard μ-weighted potential decay term"
+        },
+        "K_mu_prime": {
+          "type": "string",
+          "description": "EFC transition term from dμ/dt"
+        }
+      },
+      "required": ["K_total", "K_mu", "K_mu_prime"]
+    },
+    "cancellation_metric": {
+      "type": "object",
+      "properties": {
+        "C": {
+          "type": "number",
+          "description": "Cancellation metric C ∈ [0, 1]",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "definition": {
+          "type": "string",
+          "description": "C = 1 - |Σ C_ℓ,tot| / (|Σ C_ℓ,μ| + |Σ C_ℓ,μ'|)"
+        }
+      }
+    },
+    "tracer_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tracer": {
+            "type": "string",
+            "enum": ["LRGz0", "LRGz1", "LRGz2", "LRG_ELG", "ELG", "QSO"]
+          },
+          "z_eff": {
+            "type": "number",
+            "description": "Effective redshift of tracer sample"
+          },
+          "C": {
+            "type": "number",
+            "description": "Cancellation metric value"
+          },
+          "A_ISW": {
+            "type": "number",
+            "description": "ISW amplitude relative to ΛCDM"
+          }
+        },
+        "required": ["tracer", "z_eff", "C"]
+      }
+    },
+    "predictions_vs_lcdm": {
+      "type": "object",
+      "properties": {
+        "EFC": {
+          "type": "object",
+          "properties": {
+            "cancellation": {"type": "string"},
+            "amplitude": {"type": "string"},
+            "redshift_dependence": {"type": "string"}
+          }
+        },
+        "LCDM": {
+          "type": "object",
+          "properties": {
+            "cancellation": {"type": "string"},
+            "amplitude": {"type": "string"},
+            "redshift_dependence": {"type": "string"}
+          }
+        }
+      }
+    },
+    "falsification_criteria": {
+      "type": "object",
+      "properties": {
+        "EFC_falsified_if": {
+          "type": "string",
+          "description": "Condition under which EFC is falsified"
+        },
+        "LCDM_challenged_if": {
+          "type": "string",
+          "description": "Condition under which ΛCDM is challenged"
+        },
+        "decisive_test": {
+          "type": "string",
+          "description": "Key observational test"
+        }
+      },
+      "required": ["EFC_falsified_if", "decisive_test"]
+    }
+  },
+  "required": ["id", "efc_parameters", "isw_kernel", "cancellation_metric", "falsification_criteria"]
+}
