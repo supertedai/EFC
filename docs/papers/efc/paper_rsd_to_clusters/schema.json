@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/paper_rsd_to_clusters/schema.json",
+  "title": "RSD to Clusters Cross-Probe Test Schema",
+  "type": "object",
+  "required": ["id", "title", "doi", "author", "input_constraint", "key_results"],
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\."},
+    "author": {
+      "type": "object",
+      "required": ["name", "orcid"],
+      "properties": {
+        "name": {"type": "string"},
+        "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$"}
+      }
+    },
+    "input_constraint": {
+      "type": "object",
+      "required": ["parameter", "value", "source"],
+      "properties": {
+        "parameter": {"type": "string"},
+        "value": {"type": "number"},
+        "uncertainty": {"type": "number"},
+        "source": {"type": "string"}
+      }
+    },
+    "key_results": {
+      "type": "object",
+      "properties": {
+        "total_abundance": {"type": "object"},
+        "shape_signature": {"type": "object"}
+      }
+    },
+    "falsification_criteria": {
+      "type": "object",
+      "properties": {
+        "falsified_if": {"type": "array", "items": {"type": "string"}},
+        "consistent_if": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

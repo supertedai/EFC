@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Structural_Coherence_Evaluation_for_Physical_Theories/schema.json",
+  "title": "Structural Coherence Evaluation Framework Schema",
+  "type": "object",
+  "required": ["id", "title", "doi", "author", "four_principles", "five_metrics"],
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\."},
+    "author": {
+      "type": "object",
+      "required": ["name", "orcid"],
+      "properties": {
+        "name": {"type": "string"},
+        "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$"}
+      }
+    },
+    "four_principles": {
+      "type": "object",
+      "properties": {
+        "I": {"$ref": "#/$defs/principle"},
+        "II": {"$ref": "#/$defs/principle"},
+        "III": {"$ref": "#/$defs/principle"},
+        "IV": {"$ref": "#/$defs/principle"}
+      }
+    },
+    "five_metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "principle"],
+        "properties": {
+          "name": {"type": "string"},
+          "formula": {"type": "string"},
+          "principle": {"type": "string"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "principle": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {"type": "string"},
+        "description": {"type": "string"},
+        "metric": {"type": "string"}
+      }
+    }
+  }
+}
