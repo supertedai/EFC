@@ -1,0 +1,85 @@
+{
+  "id": "rsd-to-clusters",
+  "title": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
+  "doi": "10.6084/m9.figshare.31292827",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "keywords": [
+    "cosmology",
+    "dark energy",
+    "galaxy clusters",
+    "modified gravity",
+    "large-scale structure",
+    "redshift-space distortions",
+    "eROSITA",
+    "cross-probe test"
+  ],
+  "abstract": "A cross-probe test of late-time structure growth propagating RSD constraints on effective gravitational coupling into galaxy cluster abundance predictions with zero free parameters fit to cluster data.",
+  "methodology": {
+    "approach": "Parameter-locked cross-probe",
+    "inference_chain": "RSD → Growth history D(z) → Mass function → Cluster counts",
+    "key_feature": "No parameters fit to cluster data"
+  },
+  "input_constraint": {
+    "parameter": "α_L2",
+    "value": 0.34,
+    "uncertainty": 0.16,
+    "source": "BOSS DR12 RSD measurements",
+    "equation": "μ_EFC(a) = 1 + α_L2 × f_transition(a)"
+  },
+  "key_results": {
+    "total_abundance": {
+      "ratio": "N_EFC / N_ΛCDM = 1.064 ± 0.02",
+      "interpretation": "+6.4% more clusters than ΛCDM"
+    },
+    "growth_enhancement": {
+      "z_0": {"D_ratio": 1.016, "delta": "+1.6%"},
+      "z_0.2": {"D_ratio": 1.007, "delta": "+0.7%"},
+      "z_0.4": {"D_ratio": 1.002, "delta": "+0.2%"},
+      "z_0.6": {"D_ratio": 1.000, "delta": "+0.0%"}
+    },
+    "shape_signature": {
+      "description": "z-dependent tilt in cluster redshift distribution",
+      "gradient": "dR/dz < 0",
+      "z_0.15": "R(z) ≈ 1.05 (excess)",
+      "z_0.7": "R(z) ≈ 0.94 (deficit)",
+      "robustness": "Insensitive to uniform mass-calibration systematics"
+    }
+  },
+  "shape_observable": {
+    "definition": "R(z) = R_EFC(z) / R_ΛCDM(z), where R(z) = N(z)/N_total",
+    "advantage": "Robust against uniform multiplicative mass-calibration errors",
+    "statistical_power": "~2-3σ discrimination"
+  },
+  "falsification_criteria": {
+    "falsified_if": [
+      "Fewer total clusters than ΛCDM (after mass calibration)",
+      "Positive dR/dz (more high-z fraction than low-z)",
+      "Flat R(z) at ≤1% level"
+    ],
+    "consistent_if": [
+      "~5-8% cluster excess relative to ΛCDM",
+      "Negative dR/dz with amplitude ~0.05-0.10",
+      "Crossover near z ~ 0.3-0.4"
+    ]
+  },
+  "data_context": {
+    "target_survey": "eRASS1",
+    "cluster_sample": "N ≈ 5259 (cosmology sample)",
+    "mass_range": "M > 10^14 M_☉",
+    "redshift_range": "0.1 < z < 0.8",
+    "mass_calibration": "DES Y3, KiDS-1000, HSC weak lensing"
+  },
+  "normalization": {
+    "choice": "High-z (primordial) normalization",
+    "rationale": "Forward prediction from CMB, not retrodiction",
+    "A_s": "Fixed across models"
+  },
+  "systematic_considerations": {
+    "robust_against": ["Uniform mass-bias offsets", "Overall survey completeness", "Redshift-independent selection"],
+    "sensitive_to": "Strongly redshift-dependent systematics"
+  }
+}

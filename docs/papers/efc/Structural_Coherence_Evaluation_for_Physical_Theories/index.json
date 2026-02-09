@@ -1,0 +1,118 @@
+{
+  "id": "structural-coherence-evaluation",
+  "title": "Structural Coherence Evaluation for Physical Theories: A Theory-Agnostic Framework with Observation-Native Ontology and Self-Imposed Falsifiability",
+  "doi": "10.6084/m9.figshare.31293745",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "keywords": [
+    "theory evaluation",
+    "structural coherence",
+    "falsifiability",
+    "observation-native ontology",
+    "philosophy of science",
+    "model comparison",
+    "graph database",
+    "forbidden patterns"
+  ],
+  "abstract": "A theory-agnostic evaluation framework for assessing structural coherence and falsifiability of physical theories. Introduces four operational principles and five structural metrics for cross-paradigm comparison without privileging any specific ontology.",
+  "four_principles": {
+    "I": {
+      "name": "Observation-Native Ontology",
+      "description": "Phenomena defined as measured observables, not theory-laden constructs",
+      "metric": "Ontology Dependence Score (ODS 0-3)"
+    },
+    "II": {
+      "name": "Declared Structural Vulnerability",
+      "description": "Theories must specify forbidden observational patterns from internal constraints",
+      "metric": "Forbidden Pattern Coverage"
+    },
+    "III": {
+      "name": "Priced Adaptation",
+      "description": "Survival through modification carries explicit epistemic cost",
+      "metric": "Model Plasticity, Cumulative Structural Drift"
+    },
+    "IV": {
+      "name": "Primitive Transparency",
+      "description": "Independent explanatory assumptions declared explicitly",
+      "metric": "Explanatory Compression, FDOF"
+    }
+  },
+  "five_metrics": [
+    {
+      "name": "Explanatory Compression",
+      "formula": "C = |tested phenomena| / |primitive assumptions|",
+      "principle": "IV"
+    },
+    {
+      "name": "Anomaly Burden",
+      "components": ["Mismatch Rate", "Coverage Penalty"],
+      "principle": "I, III"
+    },
+    {
+      "name": "Model Plasticity",
+      "indicators": ["Variant Proliferation Rate", "Parameter Growth", "Special-Case Rule Count"],
+      "principle": "III"
+    },
+    {
+      "name": "Layer Consistency",
+      "dimensions": ["Mechanism unity", "Parameter coherence", "Transition smoothness"],
+      "principle": "I, II"
+    },
+    {
+      "name": "Forbidden Pattern Coverage",
+      "formula": "EffectiveCoverage = Σ tested_i / w(ORL_i)",
+      "levels": ["Core patterns", "Module patterns"],
+      "principle": "II"
+    }
+  ],
+  "forbidden_patterns_structure": {
+    "components": ["Scope", "Description (observation-native)", "Violation condition", "Test procedure"],
+    "hierarchy": ["Core (invalidate framework)", "Module (revise specific application)"],
+    "key_property": "Ontological independence from competing frameworks"
+  },
+  "framework_forbidden_patterns": {
+    "TCS-F1": "Robustness Failure - rankings change under reasonable counting variations",
+    "TCS-F2": "Epistemic Divergence - systematic opposition to expert assessment",
+    "TCS-F3": "Performative Falsifiability - rewards trivial over deep forbidden patterns"
+  },
+  "case_studies": [
+    {
+      "name": "ΛCDM",
+      "type": "Empirically Mature",
+      "primitives": "3-5",
+      "profile": "High coverage, moderate anomaly burden, limited self-declared falsifiability"
+    },
+    {
+      "name": "Entropy-Gradient (EFC)",
+      "type": "Emergent",
+      "primitives": "2-3",
+      "profile": "High declared falsifiability, limited coverage, low plasticity"
+    },
+    {
+      "name": "MOND/Modified Gravity",
+      "type": "Intermediate",
+      "primitives": "2-6",
+      "profile": "High galactic compression, declining consistency in extensions"
+    }
+  ],
+  "implementation": {
+    "type": "Property Graph Database",
+    "node_types": ["Theory", "PrimitiveAssumption", "ObservablePhenomenon", "Mapping", "Assessment", "ForbiddenPattern", "CoherenceProfile", "InferenceLayer"],
+    "key_features": ["Snapshot-based versioning", "No retroactive credit", "Temporal tracking"]
+  },
+  "key_innovations": [
+    "Self-imposed falsifiability as operational, machine-checkable property",
+    "Forbidden patterns derived from constitutive laws",
+    "Theory comparison across ontological boundaries",
+    "Reflexive application of framework standards"
+  ],
+  "relationship_to_existing": {
+    "Bayesian_evidence": "Complementary - operates at theory level, not model level",
+    "Information_criteria": "Counts primitives not parameters",
+    "Lakatos": "Operationalizes prospectively rather than retrospectively",
+    "Pre-registration": "Extends from experiments to theoretical frameworks"
+  }
+}
