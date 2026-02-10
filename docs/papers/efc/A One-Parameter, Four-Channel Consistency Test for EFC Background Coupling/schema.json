@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efc-project.org/papers/four-channel-consistency-test/schema.json",
+  "title": "Four-Channel Consistency Test for EFC Background Coupling",
+  "description": "Schema for one-parameter four-channel consistency test of EFC background coupling β·T(a)",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-four-channel-consistency-test"
+    },
+    "modified_friedmann": {
+      "type": "object",
+      "properties": {
+        "beta": {
+          "type": "number",
+          "description": "Dimensionless background coupling amplitude",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "T_a": {
+          "type": "string",
+          "description": "Transition function T(a) from normalised distance-coupling kernel"
+        }
+      },
+      "required": ["beta"]
+    },
+    "channel_results": {
+      "type": "object",
+      "properties": {
+        "bao_distances": {
+          "type": "object",
+          "properties": {
+            "chi2": {"type": "number"},
+            "delta_chi2": {"type": "number"},
+            "status": {"enum": ["PASS", "FAIL"]}
+          }
+        },
+        "growth_rate": {
+          "type": "object",
+          "properties": {
+            "chi2": {"type": "number"},
+            "delta_chi2": {"type": "number"},
+            "status": {"enum": ["PASS", "FAIL"]}
+          }
+        },
+        "cmb_lensing": {
+          "type": "object",
+          "properties": {
+            "pull": {"type": "string"},
+            "status": {"enum": ["PASS", "FAIL"]}
+          }
+        },
+        "sn_ia": {
+          "type": "object",
+          "properties": {
+            "max_delta_mu": {"type": "number"},
+            "status": {"enum": ["PASS", "FAIL"]}
+          }
+        }
+      },
+      "required": ["bao_distances", "growth_rate", "cmb_lensing", "sn_ia"]
+    },
+    "channel_comparison": {
+      "type": "object",
+      "properties": {
+        "poisson": {
+          "type": "object",
+          "properties": {
+            "alpha": {"type": "number"},
+            "chi2_rsd": {"type": "number"},
+            "status": {"enum": ["Excluded", "Favoured", "Baseline"]}
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "beta": {"type": "number"},
+            "chi2_rsd": {"type": "number"},
+            "status": {"enum": ["Excluded", "Favoured", "Baseline"]}
+          }
+        }
+      },
+      "description": "Comparison of Poisson vs background coupling channels"
+    },
+    "regime_consistency": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "z": {"type": ["number", "string"]},
+          "T_z": {"type": ["number", "string"]},
+          "mu_minus_1": {"type": ["number", "string"]},
+          "margin": {"type": "string"}
+        }
+      },
+      "description": "Automatic regime recovery from T(a) → 0 when Ωₘ → 1"
+    },
+    "falsification_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string", "pattern": "^F[1-5]$"},
+          "observation": {"type": "string"},
+          "implication": {"type": "string"},
+          "type": {"enum": ["Hard kill", "Soft constraint"]}
+        },
+        "required": ["id", "observation", "type"]
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "sigma8_landscape": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "probe": {"type": "string"},
+          "sigma8": {"type": "number"},
+          "error": {"type": "number"},
+          "efc_pull": {"type": "string"}
+        },
+        "required": ["probe", "sigma8"]
+      }
+    }
+  },
+  "required": ["id", "modified_friedmann", "channel_results", "falsification_criteria"]
+}
