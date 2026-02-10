@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efc-project.org/papers/regime-consistency-lya-bao-rsd-sce/schema.json",
+  "title": "Regime Consistency Test Schema for EFC Coupling T(z)",
+  "description": "Schema for three-regime consistency test of EFC coupling function across Lyα, BAO, and RSD with SCE evaluation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-regime-consistency-lya-bao-rsd-sce"
+    },
+    "transition_function_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "z": {"type": "number"},
+          "omega_m_z": {"type": "number"},
+          "g_D": {"type": ["number", "string"]},
+          "T_z": {"type": ["number", "string"]},
+          "regime": {"type": "string"}
+        },
+        "required": ["z", "T_z", "regime"]
+      },
+      "description": "T(z) values across redshift regimes"
+    },
+    "three_regime_tests": {
+      "type": "object",
+      "properties": {
+        "lya_p1d": {
+          "type": "object",
+          "properties": {
+            "z": {"type": "number"},
+            "T_z": {"type": "number"},
+            "results": {
+              "type": "object",
+              "properties": {
+                "amplitude_pull": {"type": "string"},
+                "slope_pull": {"type": "string"}
+              }
+            },
+            "status": {"enum": ["PASS", "FAIL"]}
+          },
+          "required": ["z", "T_z", "status"]
+        },
+        "bao_boss_dr12": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "object",
+              "properties": {
+                "chi2_efc": {"type": "number"},
+                "chi2_lcdm": {"type": "number"},
+                "delta_chi2": {"type": "number"}
+              }
+            },
+            "status": {"enum": ["PASS", "FAIL"]}
+          },
+          "required": ["status"]
+        },
+        "rsd_boss_dr12": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "object",
+              "properties": {
+                "chi2_efc": {"type": "number"},
+                "chi2_lcdm": {"type": "number"},
+                "delta_chi2": {"type": "number"}
+              }
+            },
+            "status": {"enum": ["PASS", "FAIL"]}
+          },
+          "required": ["status"]
+        }
+      },
+      "required": ["lya_p1d", "bao_boss_dr12", "rsd_boss_dr12"]
+    },
+    "combined_results": {
+      "type": "object",
+      "properties": {
+        "bao_rsd_combined": {
+          "type": "object",
+          "properties": {
+            "chi2_efc": {"type": "number"},
+            "chi2_lcdm": {"type": "number"},
+            "delta_chi2": {"type": "number"},
+            "significance": {"type": "string"}
+          }
+        }
+      }
+    },
+    "sce_evaluation": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "explanatory_compression": {"type": "object"},
+            "anomaly_burden": {"type": "object"},
+            "model_plasticity": {"type": "object"},
+            "layer_consistency": {"type": "object"},
+            "forbidden_patterns": {"type": "object"}
+          }
+        },
+        "summary": {"type": "string"}
+      },
+      "description": "Structural Coherence Evaluation comparing EFC vs ΛCDM"
+    },
+    "forbidden_patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string", "pattern": "^EFC-FP-"},
+          "definition": {"type": "string"},
+          "status": {"enum": ["Not triggered", "Triggered"]}
+        },
+        "required": ["id", "definition", "status"]
+      },
+      "minItems": 5,
+      "description": "Pre-registered falsifiability conditions"
+    },
+    "regime_coherence_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "regime": {"type": "string"},
+          "z": {"type": ["number", "string"]},
+          "T_z": {"type": ["number", "string"]},
+          "prediction": {"type": "string"},
+          "result": {"enum": ["PASS", "FAIL"]}
+        },
+        "required": ["regime", "result"]
+      }
+    }
+  },
+  "required": ["id", "three_regime_tests", "forbidden_patterns", "sce_evaluation"]
+}
