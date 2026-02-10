@@ -1,0 +1,160 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-four-channel-consistency-test",
+  "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (β · T(a))",
+  "description": "Consistency test of EFC's background coupling against four independent cosmological probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Demonstrates that Poisson-channel modification is excluded while background coupling shows mild preference.",
+  "version": "1.0.0",
+  "date": "2026-02",
+  "doi": "10.6084/m9.figshare.31304980",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "modified Friedmann equation",
+    "background coupling",
+    "BAO",
+    "RSD",
+    "CMB lensing",
+    "Type Ia supernovae",
+    "S8 tension",
+    "BOSS DR12",
+    "Pantheon+",
+    "consistency test"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent researcher"
+  },
+  "core_equations": {
+    "modified_friedmann": {
+      "latex": "H^2(a) = H_0^2 [\\Omega_m a^{-3} + \\Omega_\\Lambda (1 + \\beta \\cdot T(a))]",
+      "description": "EFC background modification with coupling amplitude β and transition function T(a)"
+    },
+    "transition_function": {
+      "latex": "g_D(z) = \\frac{1 - \\Omega_m(z)}{1+z} \\ln(1+z)",
+      "description": "Distance-coupling kernel, normalised to peak at unity"
+    },
+    "growth_ode": {
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} = 4\\pi G \\rho_m \\delta",
+      "description": "Growth equation with enhanced Hubble friction from modified H(a)"
+    }
+  },
+  "parameters": {
+    "beta": {
+      "value": 0.08,
+      "description": "Dimensionless background coupling amplitude"
+    },
+    "sigma_8_efc": {
+      "value": 0.805,
+      "description": "EFC prediction for σ₈"
+    },
+    "sigma_8_lcdm": {
+      "value": 0.811,
+      "description": "ΛCDM baseline σ₈"
+    }
+  },
+  "channel_comparison": {
+    "poisson": {
+      "alpha": 0.34,
+      "chi2_rsd": 18.2,
+      "sigma_8": 0.879,
+      "direction": "Enhanced",
+      "status": "Excluded"
+    },
+    "background": {
+      "beta": 0.08,
+      "chi2_rsd": 1.09,
+      "sigma_8": 0.805,
+      "direction": "Suppressed",
+      "status": "Favoured"
+    },
+    "lcdm": {
+      "chi2_rsd": 1.34,
+      "sigma_8": 0.811,
+      "status": "Baseline"
+    }
+  },
+  "four_channel_results": {
+    "bao_distances": {
+      "data": "BOSS DR12",
+      "redshifts": [0.38, 0.51, 0.61],
+      "chi2": 1.93,
+      "chi2_lcdm": 5.58,
+      "delta_chi2": -3.65,
+      "status": "PASS",
+      "role": "Detection"
+    },
+    "growth_rate": {
+      "data": "BOSS DR12 fσ₈",
+      "chi2": 1.09,
+      "chi2_lcdm": 1.34,
+      "delta_chi2": -0.25,
+      "status": "PASS",
+      "role": "Detection",
+      "measurements": [
+        {"z": 0.38, "fsigma8_efc": 0.464, "fsigma8_obs": "0.497 ± 0.045", "pull": "-0.73σ"},
+        {"z": 0.51, "fsigma8_efc": 0.463, "fsigma8_obs": "0.458 ± 0.038", "pull": "+0.13σ"},
+        {"z": 0.61, "fsigma8_efc": 0.460, "fsigma8_obs": "0.436 ± 0.034", "pull": "+0.71σ"}
+      ]
+    },
+    "cmb_lensing": {
+      "data": "ACT+SPT+Planck 2025",
+      "S8_observed": "0.825 ± 0.014",
+      "S8_efc": 0.815,
+      "S8_lcdm": 0.821,
+      "pull": "-0.71σ",
+      "status": "PASS",
+      "role": "Neutral"
+    },
+    "sn_ia": {
+      "data": "Pantheon+",
+      "max_delta_mu": 0.032,
+      "status": "PASS",
+      "role": "Neutral"
+    },
+    "combined_bao_rsd": {
+      "delta_chi2": -3.89,
+      "significance": "~2σ preference"
+    }
+  },
+  "regime_consistency": {
+    "boss": {"z": 0.51, "T_z": 0.990, "mu_minus_1": 0.340, "margin": "Detection channel"},
+    "lya_p1d": {"z": 3.0, "T_z": 0.107, "mu_minus_1": 0.037, "margin": "~10× suppressed"},
+    "cmb_recombination": {"z": 1100, "T_z": "9.7e-11", "mu_minus_1": "3.3e-11", "margin": ">10⁸× below bound"},
+    "bbn": {"z": "~10⁸", "T_z": "<10⁻³⁰", "mu_minus_1": "<10⁻²⁵", "margin": ">10²³× below bound"}
+  },
+  "sigma8_landscape": [
+    {"probe": "Planck 2018 primary", "sigma8": 0.811, "error": 0.006, "efc_pull": "-1.0σ", "z": 1100},
+    {"probe": "Planck PR4 primary", "sigma8": 0.807, "error": 0.006, "efc_pull": "-0.33σ", "z": 1100},
+    {"probe": "CMB lensing combined", "sigma8": 0.811, "error": 0.019, "efc_pull": "-0.32σ", "z": "0.5-5"},
+    {"probe": "BOSS RSD (derived)", "sigma8": 0.805, "error": 0.020, "efc_pull": "+0.00σ", "z": "~0.5"},
+    {"probe": "KiDS Legacy", "sigma8": 0.748, "error": 0.022, "efc_pull": "+2.6σ", "z": "~0.5"},
+    {"probe": "DES Y3", "sigma8": 0.765, "error": 0.023, "efc_pull": "+1.7σ", "z": "~0.5"},
+    {"probe": "EFC prediction", "sigma8": 0.805}
+  ],
+  "falsification_criteria": [
+    {"id": "F1", "observation": "Large μ − 1 at z > 2 where Ωₘ ≈ 1", "implication": "Coupling not epoch-governed", "type": "Hard kill"},
+    {"id": "F2", "observation": "Growth enhancement at z < 1", "implication": "Background channel wrong", "type": "Hard kill"},
+    {"id": "F3", "observation": "Poisson μ > 1 detected at α_L2 level", "implication": "Architecture violated", "type": "Hard kill"},
+    {"id": "F4", "observation": "BAO–growth β split > 3σ", "implication": "Single-channel fails", "type": "Hard kill"},
+    {"id": "F5", "observation": "CMB lensing σ₈ > 3σ from EFC", "implication": "Background inconsistent", "type": "Hard kill"}
+  ],
+  "falsification_status": {
+    "triggered": [],
+    "tightest_constraint": "F5 (CMB lensing at −0.71σ)"
+  },
+  "key_conclusions": [
+    "Poisson-equation coupling (μ > 1) is excluded by BOSS RSD",
+    "EFC enters through the Friedmann equation, not Poisson",
+    "β = 0.08 shows mild preference in combined BAO + RSD (Δχ² = −3.89, ~2σ)",
+    "Independently consistent with CMB lensing and SN Ia",
+    "Four channels, one parameter, zero kills",
+    "Regime passes at z = 3 and z = 1100 are automatic consequences of T(a) → 0"
+  ],
+  "architectural_constraint": "EFC behaves as a dynamical dark-energy-like background effect, not as classical modified gravity in the Poisson term",
+  "files": {
+    "paper": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  }
+}
