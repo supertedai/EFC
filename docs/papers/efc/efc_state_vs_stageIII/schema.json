@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efc-project.org/papers/efc-state-vs-stageIII/schema.json",
+  "title": "EFC vs Stage-III Cosmology State Assessment Schema",
+  "description": "Schema for Stage-III validation update and SCE protocol for weak-lensing comparisons",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-state-vs-stageIII"
+    },
+    "stage_III_observational_update": {
+      "type": "object",
+      "properties": {
+        "kids_legacy": {
+          "type": "object",
+          "properties": {
+            "S8": {"type": "number"},
+            "planck_consistency": {"type": "string"}
+          }
+        },
+        "hsc_y3_desi": {
+          "type": "object",
+          "properties": {
+            "S8": {"type": "number"},
+            "S8_error": {"type": "number"}
+          }
+        },
+        "combined_wl": {
+          "type": "object",
+          "properties": {
+            "S8": {"type": "number"}
+          }
+        },
+        "cause_of_shift": {"type": "string"}
+      },
+      "required": ["kids_legacy", "hsc_y3_desi", "cause_of_shift"]
+    },
+    "efc_impact_assessment": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "updated_role": {"type": "string"},
+          "status": {"enum": ["Strengthened", "Role shifted", "Unchanged", "Weakened"]}
+        }
+      }
+    },
+    "narrative_update": {
+      "type": "object",
+      "properties": {
+        "deprecated": {"type": "string"},
+        "current": {"type": "string"}
+      },
+      "required": ["deprecated", "current"]
+    },
+    "category_transition": {
+      "type": "object",
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"}
+      },
+      "required": ["from", "to"]
+    },
+    "sce_layer_classification": {
+      "type": "object",
+      "properties": {
+        "O_layer": {
+          "type": "object",
+          "properties": {
+            "name": {"const": "Observation-Native Ontology"},
+            "description": {"type": "string"},
+            "weak_lensing_examples": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "M_layer": {
+          "type": "object",
+          "properties": {
+            "name": {"const": "Mapping Transparency"},
+            "description": {"type": "string"},
+            "S8_assumptions": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "T_layer": {
+          "type": "object",
+          "properties": {
+            "name": {"const": "Theory Consumption"},
+            "description": {"type": "string"}
+          }
+        }
+      },
+      "required": ["O_layer", "M_layer", "T_layer"],
+      "description": "SCE three-layer classification for derived quantities"
+    },
+    "stage_IV_discriminating_tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test": {"type": "string"},
+          "efc_prediction": {"type": "string"},
+          "lcdm_prediction": {"type": "string"},
+          "data_source": {"type": "string"}
+        },
+        "required": ["test", "efc_prediction", "lcdm_prediction"]
+      }
+    },
+    "stage_III_update_footnote": {
+      "type": "string",
+      "description": "Standard footnote for insertion in existing/forthcoming papers"
+    }
+  },
+  "required": ["id", "stage_III_observational_update", "narrative_update", "sce_layer_classification"]
+}
