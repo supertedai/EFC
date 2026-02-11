@@ -9,9 +9,18 @@
 <body>
 
 <!-- ✅ Energy-Flow Cosmology (EFC) – Complete Validation Ledger
-     Canonical Regime-Aware Version – February 2026 (v1.9) -->
+     Canonical Regime-Aware Version – February 2026 (v2.0) -->
 
 <h1>Energy-Flow Cosmology (EFC) – Complete Validation Ledger</h1>
+
+<!-- Executive Summary -->
+<div style="background-color:#f8f9fa; border-left:4px solid #007bff; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Executive Summary:</strong> The EFC Validation Ledger is a regime-structured falsification framework designed to test Energy-Flow Cosmology across independent physical domains without hidden parameter tuning.
+Each observable is mapped to the specific regime (L0–L3) and physical sector it can constrain, ensuring that early-universe, late-time, and strong-field tests are not conflated.
+All results are governed by a global parameter registry and status hierarchy, so that empirical likelihood tests, consistency checks, phenomenological probes, and structural constraints are clearly distinguished.
+</p>
+</div>
 
 <p>
 This ledger documents the empirical, methodological, and theoretical validation status of
@@ -24,6 +33,268 @@ non-linear structure formation (L2–L3).
 Each entry links to citable public artifacts where available. Planned tests are listed
 with defined methodologies to ensure transparency and falsifiability.
 </p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 0.1: STATUS CLASSIFICATION KEY -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>0.1 Status Classification Key (Validation Maturity Levels)</h2>
+
+<p>Each entry in the Validation Ledger is assigned a status label describing what level of scientific validation has been achieved. These labels are hierarchical and prevent phenomenological consistency from being mistaken for full theoretical validation.</p>
+
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:20px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:25%;">Status</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Meaning</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:30%;">Requirements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🟢 Completed (Data Likelihood Test)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Full quantitative comparison between EFC and ΛCDM using an established likelihood or statistical framework. This is a direct empirical test.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Real data; reproducible pipeline; documented parameters; Δχ² or Bayes factor</td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🟢 Completed (Consistency Check)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">EFC predicts little or no deviation in the tested regime, and current data show no contradiction. EFC survives but does not gain positive support.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Near-null prediction by construction; observations within GR-consistent range</td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🟢 Completed (Structural Constraint)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Theoretical or geometric argument rules out certain operator classes or coupling types. Reduces model space but is not a likelihood comparison.</td>
+      <td style="border:1px solid #ddd; padding:8px;">No parameter fitting; uses symmetry or configuration arguments</td>
+    </tr>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🟡 Phenomenological</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Temporary parameterization motivated by EFC tested against data, but coupling not yet derived from field-level framework. Provides empirical insight but does not count as canonical validation.</td>
+      <td style="border:1px solid #ddd; padding:8px;">No action-level derivation; explicitly labeled provisional</td>
+    </tr>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🟡 Framework-Level Diagnostic</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Internal or cross-regime consistency evaluation of framework structure rather than direct observable comparison. Evaluates model architecture, not empirical fit.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Assesses coherence, parameter economy, or regime compatibility</td>
+    </tr>
+    <tr style="background-color:#f0f8ff;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🔵 Planned (Pipeline Ready)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Test with fully specified methodology and data source, awaiting execution. Actionable validation step.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Observable defined; dataset identified; statistical method known</td>
+    </tr>
+    <tr style="background-color:#f0f8ff;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🔵 Conceptual / Method Defined</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Theoretical test formulated but requires new derivation, simulation, or pipeline development. Part of roadmap, not yet validation test.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Physical principle identified; observable link described</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>🔴 Discrepant</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">EFC predictions conflict with observations beyond statistical tolerance. Falsification point unless resolved by theoretical revision.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Quantitative comparison performed; disagreement exceeds uncertainty</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>⚪ Inactive / Not Dominant</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">EFC sector does not meaningfully contribute in this regime due to suppression or gating. Not failure, not success—regime not sensitive to tested coupling.</td>
+      <td style="border:1px solid #ddd; padding:8px;">—</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;"><strong>Governance Rule:</strong> No result may be labeled "Completed (Data Likelihood Test)" unless all active parameters were declared in the Global Parameter Registry, no probe-specific re-tuning occurred, and frozen parameters remained fixed across datasets.</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 0.2: GLOBAL PARAMETER REGISTRY -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>0.2 Global Parameter Registry (Frozen-Parameter Governance)</h2>
+
+<p>This section defines the complete set of physical and phenomenological control parameters used across the EFC validation program. Its purpose is to prevent hidden tuning, enforce cross-regime consistency, and document where each parameter is allowed to enter. Unless explicitly stated otherwise, all parameters are globally shared across probes and cannot be re-tuned per dataset.</p>
+
+<h3>Background-Coupling Parameters</h3>
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Parameter</th>
+      <th style="border:1px solid #ddd; padding:6px;">Symbol</th>
+      <th style="border:1px solid #ddd; padding:6px;">Role</th>
+      <th style="border:1px solid #ddd; padding:6px;">Regime</th>
+      <th style="border:1px solid #ddd; padding:6px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Late-time background coupling amplitude</td>
+      <td style="border:1px solid #ddd; padding:6px;">β</td>
+      <td style="border:1px solid #ddd; padding:6px;">Controls strength of EFC vacuum/background modification via H²(a)</td>
+      <td style="border:1px solid #ddd; padding:6px;">L1–L2</td>
+      <td style="border:1px solid #ddd; padding:6px;">Frozen after four-channel fit</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Regime transition function</td>
+      <td style="border:1px solid #ddd; padding:6px;">T(a)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Smooth activation function controlling when background coupling turns on</td>
+      <td style="border:1px solid #ddd; padding:6px;">L0–L2</td>
+      <td style="border:1px solid #ddd; padding:6px;">Form fixed; transition scale globally shared</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Transition redshift</td>
+      <td style="border:1px solid #ddd; padding:6px;">z<sub>t</sub></td>
+      <td style="border:1px solid #ddd; padding:6px;">Characteristic redshift where T(a) activates</td>
+      <td style="border:1px solid #ddd; padding:6px;">L1–L2</td>
+      <td style="border:1px solid #ddd; padding:6px;">Shared across all late-time probes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Growth-Sector Parameters</h3>
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Parameter</th>
+      <th style="border:1px solid #ddd; padding:6px;">Symbol</th>
+      <th style="border:1px solid #ddd; padding:6px;">Role</th>
+      <th style="border:1px solid #ddd; padding:6px;">Regime</th>
+      <th style="border:1px solid #ddd; padding:6px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Integrated regime transition strength</td>
+      <td style="border:1px solid #ddd; padding:6px;">Δ<sub>F</sub></td>
+      <td style="border:1px solid #ddd; padding:6px;">Measures cumulative deviation from GR growth across regimes</td>
+      <td style="border:1px solid #ddd; padding:6px;">L1–L2</td>
+      <td style="border:1px solid #ddd; padding:6px;">Physically bounded via Θ(ρ)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Effective gravitational modification</td>
+      <td style="border:1px solid #ddd; padding:6px;">μ(k,z)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Perturbation-sector modification (only in Case B or structural diagnostics)</td>
+      <td style="border:1px solid #ddd; padding:6px;">L1–L2</td>
+      <td style="border:1px solid #ddd; padding:6px;">Inactive in baseline EFC-D; only Case B</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Density-Saturation Mechanism</h3>
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Parameter</th>
+      <th style="border:1px solid #ddd; padding:6px;">Symbol</th>
+      <th style="border:1px solid #ddd; padding:6px;">Role</th>
+      <th style="border:1px solid #ddd; padding:6px;">Regime</th>
+      <th style="border:1px solid #ddd; padding:6px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Density saturation function</td>
+      <td style="border:1px solid #ddd; padding:6px;">Θ(ρ)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Suppresses EFC effects in high-density environments</td>
+      <td style="border:1px solid #ddd; padding:6px;">L2–L3 (screening)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Form fixed; scale shared across all systems</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Critical density scale</td>
+      <td style="border:1px solid #ddd; padding:6px;">ρ<sub>crit</sub></td>
+      <td style="border:1px solid #ddd; padding:6px;">Density where Θ(ρ) transitions toward suppression</td>
+      <td style="border:1px solid #ddd; padding:6px;">L2–L3</td>
+      <td style="border:1px solid #ddd; padding:6px;">Global constant</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Lensing Phenomenology (Temporary Closures)</h3>
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Parameter</th>
+      <th style="border:1px solid #ddd; padding:6px;">Symbol</th>
+      <th style="border:1px solid #ddd; padding:6px;">Role</th>
+      <th style="border:1px solid #ddd; padding:6px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:6px;">Lensing amplitude modifier</td>
+      <td style="border:1px solid #ddd; padding:6px;">Σ(k,z)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Phenomenological shear amplitude boost (Case A only)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Temporary closure; not field-derived</td>
+    </tr>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:6px;">Phenomenological lensing coupling</td>
+      <td style="border:1px solid #ddd; padding:6px;">α<sub>L2</sub></td>
+      <td style="border:1px solid #ddd; padding:6px;">Controls Σ² amplitude</td>
+      <td style="border:1px solid #ddd; padding:6px;">Not a field-derived parameter; Case A only</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;"><strong>⚠️ Restriction:</strong> Σ(k,z) and α<sub>L2</sub> are not part of canonical EFC. They are placeholders until a Θ(ρ)-derived metric coupling is implemented.</p>
+
+<h3>Parameters Explicitly NOT Allowed to Vary</h3>
+<ul style="font-size:14px;">
+  <li>Baryon physics adjustments to compensate cosmological effects</li>
+  <li>Galaxy bias redefinition between probes to restore agreement</li>
+  <li>Dataset-specific transition redshift z<sub>t</sub></li>
+  <li>Probe-dependent Θ(ρ) or screening scale</li>
+  <li>Independent lensing vs clustering couplings</li>
+</ul>
+<p style="font-size:13px; color:#555;">Any use of these would constitute <em>model extension</em>, not validation of baseline EFC.</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 0.3: REGIME × OBSERVABLE × SECTOR MATRIX -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>0.3 Regime × Observable × Sector Matrix</h2>
+
+<p>This matrix shows which physical regime, which observable, and which parameter sector each validation test constrains. It prevents cross-regime leakage and makes it explicit where EFC is active, suppressed, or structurally tested.</p>
+
+<p style="font-size:13px;"><strong>Sector Key:</strong> BG = Background expansion (β, T(a)) · GRW = Growth/perturbation (Δ<sub>F</sub>, μ) · LEN = Lensing/metric response · SCR = Density saturation/screening Θ(ρ) · PROP = Propagation sector</p>
+
+<table style="width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px; text-align:left;">Observable / Test</th>
+      <th style="border:1px solid #ddd; padding:6px; text-align:center;">L0</th>
+      <th style="border:1px solid #ddd; padding:6px; text-align:center;">L1</th>
+      <th style="border:1px solid #ddd; padding:6px; text-align:center;">L2</th>
+      <th style="border:1px solid #ddd; padding:6px; text-align:center;">L3</th>
+      <th style="border:1px solid #ddd; padding:6px; text-align:left;">Active Sector(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid #ddd; padding:5px;">CMB TT power spectrum</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG (suppressed)</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">CMB TE/EE + lensing</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG, GRW (suppressed)</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">BBN expansion rate</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG (hard bound)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">BAO isotropic</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">BAO anisotropic (D<sub>A</sub> vs H)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">SN Ia distances</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">RSD growth fσ₈(z)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG → GRW response</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Full-shape P(k)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">GRW</td></tr>
+    <tr style="background-color:#fffef5;"><td style="border:1px solid #ddd; padding:5px;">Weak lensing (Case A)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">LEN (phenomenological)</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Weak lensing (Case B)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">GRW + LEN</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">E<sub>G</sub> statistic (lensing×RSD)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG + LEN</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">ISW cross-correlation</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Lyα high-z null test</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">BG (suppressed)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Galaxy rotation curves (SPARC)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px;">GRW + SCR</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Cluster lensing geometry</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">LEN + SCR</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Cluster abundance N(M,z)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">GRW</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Cluster entropy–structure</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px;">SCR</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Solar System PPN</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px;">SCR</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Binary pulsars</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px;">SCR</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:5px;">Standard sirens (GW vs EM)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">PROP</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;"><strong>Legend:</strong> ✅ = Primary sensitivity · ⚪ = Suppressed / secondary / consistency role · — = Not relevant in this regime</p>
+
+<p style="font-size:13px; color:#555;">This matrix prevents the most common cosmology mistake: <em>Using a probe to constrain a sector that is physically suppressed in that regime.</em></p>
 
 <hr>
 
@@ -865,6 +1136,9 @@ to test whether a self-consistent modified gravity treatment can improve fits <e
 <h2>6. Update Log</h2>
 
 <ul>
+  <!-- v2.0 entry -->
+  <li><strong>2026-02-11 (v2.0)</strong> – Full methodological upgrade: Added Executive Summary with 6-channel validation overview; Status Classification Key (Section 0.1) defining 9 validation maturity levels; Global Parameter Registry (Section 0.2) with 4 parameter tables (Background-Coupling, Growth-Sector, Density-Saturation, Lensing Phenomenology) enforcing frozen-parameter governance; Regime × Observable × Sector Matrix (Section 0.3) mapping 20 channels to parameter dependencies. These additions establish canonical governance preventing hidden tuning and ensuring parameter-lock consistency across all EFC validation tests.</li>
+
   <!-- v1.9 entry -->
   <li><strong>2026-02-11 (v1.9)</strong> – Methodological refinements: adjusted status wording on 5 rows to improve epistemological precision (High-z null → "null-prediction consistency check"; JWST ΛCDM → ⚠️ with interpretation caveat; Cluster merger → "structural exclusion test"; SCE → "meta-model evaluation"; CMB TT → "Boltzmann validation pending"). Added 8 planned validation rows covering critical cosmological tests: P(k,z) full-shape, CMB TE/EE/φφ, multi-epoch RSD, E<sub>G</sub> slip, BAO anisotropic split, BBN expansion-rate, galaxy bias, and global parameter-lock test.</li>
 
@@ -929,7 +1203,7 @@ to test whether a self-consistent modified gravity treatment can improve fits <e
 </ul>
 
 <p style="font-size:13px; color:#666;">
-© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v1.9)
+© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v2.0)
 </p>
 
 </body>
