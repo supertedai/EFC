@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-11T19:34:06Z",
+  "generated_at": "2026-02-11T20:58:51Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 2,
@@ -13,7 +13,7 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 0,
+    "frontier_count": 8,
     "tcs_compression": 2.0,
     "tcs_mismatch": 0.25
   },
@@ -515,7 +515,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.486356Z",
+      "timestamp": "2026-02-11T20:00:26.882435Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -535,7 +535,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.500094Z",
+      "timestamp": "2026-02-11T20:00:26.893212Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -555,7 +555,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.463064Z",
+      "timestamp": "2026-02-11T20:00:26.865906Z",
       "best_fit": {},
       "posterior_summary": {}
     },
@@ -568,7 +568,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.530285Z",
+      "timestamp": "2026-02-11T20:00:26.918441Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -584,7 +584,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.516088Z",
+      "timestamp": "2026-02-11T20:00:26.905628Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -603,7 +603,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T18:59:05.417127Z",
+      "timestamp": "2026-02-11T20:00:26.850025Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -626,7 +626,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-11T18:54:55.368308+00:00"
+      "timestamp": "2026-02-11T20:54:57.807184+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -640,7 +640,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-11T18:54:55.420159+00:00"
+      "timestamp": "2026-02-11T20:54:57.914840+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -654,7 +654,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-11T18:54:55.442925+00:00"
+      "timestamp": "2026-02-11T20:54:57.931954+00:00"
     }
   },
   "parameters": {
@@ -1500,7 +1500,88 @@
       "created_at": 1769150437967
     }
   ],
-  "frontier_gaps": [],
+  "frontier_gaps": [
+    {
+      "question": "Hvordan kan EFC-modellen anvendes for å forstå koblingen mellom entropi og bevissthet i nevrale nettverk?",
+      "domain": "efc|neuroscience|consciousness",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "resonance",
+      "efc_prediction": "Bevissthet vil manifestere seg ved optimal integrasjon av energiflyt i nevrale nettverk, indikert av høy entropi.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.993000000+00:00"
+    },
+    {
+      "question": "Hvilke observasjoner fra JWST kan bekrefte EFCs prediksjoner om mørk energi som en entropigradient?",
+      "domain": "efc|cosmology",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "approach": "top_down",
+      "efc_prediction": "Mørk energi vil vise seg som en entropigradient, med spesifikke effekter på galakseformasjon og ekspansjon.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.979000000+00:00"
+    },
+    {
+      "question": "Hvordan kan EFC-modellen bidra til å forstå faseoverganger i komplekse systemer?",
+      "domain": "efc|thermodynamics|complex systems",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "falsification",
+      "efc_prediction": "Faseoverganger vil vise klare tegn på påvirkning fra entropigradienten, noe som kan falsifisere EFC hvis motbevist.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.943000000+00:00"
+    },
+    {
+      "question": "Kan entropigradienten forklare de observerte avvikene i Systemic Risk Index i økonomiske systemer?",
+      "domain": "efc|thermodynamics|economics",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "Endringer i den systemiske risikoen vil reflektere endringer i entropigradienten i økonomiske systemer.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.932000000+00:00"
+    },
+    {
+      "question": "Hvilke uventede konsekvenser gir EFC-modellen for termodynamiske prosesser i biologiske systemer?",
+      "domain": "efc|biology|thermodynamics",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "blindspot",
+      "efc_prediction": "Biologiske systemer vil vise tydelige tegn på entropigradientens innflytelse på utvikling og kompleksitet.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.896000000+00:00"
+    },
+    {
+      "question": "Hvordan kan observerte variasjoner i Hubble-konstanten relateres til α-effekter på kosmologisk skala?",
+      "domain": "efc|cosmology",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "resonance",
+      "efc_prediction": "Hubble-konstanten vil avhenge av entropigradienten og variere i forskjellige deler av universet.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.862000000+00:00"
+    },
+    {
+      "question": "Hva er sammenhengen mellom nevral aktivitet og entropi i bevissthetens dynamikk?",
+      "domain": "efc|neuroscience|consciousness",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "Økt nevral aktivitet vil korrelere med høyere entropi i bevissthetsprosesser.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.812000000+00:00"
+    },
+    {
+      "question": "Hvordan påvirker entropigradienten morfologi og dynamikk av galakseklynger i høyredshift-universet?",
+      "domain": "efc|cosmology",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "approach": "top_down",
+      "efc_prediction": "Galakseklynger vil ha forskjellige strukturelle egenskaper avhengig av entropigradienten på tidlig tid.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-11T20:50:28.773000000+00:00"
+    }
+  ],
   "status_levels": [
     {
       "level_id": "completed_data_likelihood",
