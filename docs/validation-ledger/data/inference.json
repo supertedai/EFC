@@ -1,18 +1,18 @@
 {
   "name": "EFC Bayesian Inference Results",
   "version": "3.0",
-  "generated_at": "2026-02-11T20:58:51Z",
+  "generated_at": "2026-02-11T21:17:32Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
       "name": "EFC Inference: bao_boss_dr12",
       "result": "chi2_red=nan (poor fit)",
       "status": "poor_fit",
-      "chi2_reduced": NaN,
+      "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.882435Z",
+      "timestamp": "2026-02-11T21:01:48.504069Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -21,18 +21,21 @@
         "wa": 0.0,
         "r_d": 147.09
       },
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_bao_desi_y1",
       "name": "EFC Inference: bao_desi_y1",
       "result": "chi2_red=nan (poor fit)",
       "status": "poor_fit",
-      "chi2_reduced": NaN,
+      "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.893212Z",
+      "timestamp": "2026-02-11T21:01:48.517261Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -41,7 +44,10 @@
         "wa": 0.0,
         "r_d": 147.09
       },
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_cluster_tng",
@@ -52,36 +58,42 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.865906Z",
+      "timestamp": "2026-02-11T21:01:48.489555Z",
       "best_fit": {},
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "self_consistent",
+      "engine_note": "Self-consistent prediction (observed=predicted) — awaiting EFC physics",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
       "result": "chi2_red=nan (poor fit)",
       "status": "poor_fit",
-      "chi2_reduced": NaN,
+      "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.918441Z",
+      "timestamp": "2026-02-11T21:01:48.550104Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
       },
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_hz_chronometers",
       "name": "EFC Inference: hz_chronometers",
       "result": "chi2_red=nan (poor fit)",
       "status": "poor_fit",
-      "chi2_reduced": NaN,
+      "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.905628Z",
+      "timestamp": "2026-02-11T21:01:48.534853Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -89,7 +101,10 @@
         "w0": -1.0,
         "wa": 0.0
       },
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_shear_kids1000",
@@ -100,14 +115,17 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-11T20:00:26.850025Z",
+      "timestamp": "2026-02-11T21:01:48.466920Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
         "z_activ": 0.5,
         "delta_k": 0.05
       },
-      "posterior_summary": {}
+      "posterior_summary": {},
+      "engine_status": "active",
+      "engine_note": null,
+      "mcmc_status": "not_run"
     }
   ]
 }
