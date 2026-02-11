@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://energyflow-cosmology.com/validation-ledger/schema.json",
+  "title": "EFC Validation Ledger",
+  "description": "Schema for the EFC validation ledger data files.",
+  "type": "object",
+  "required": [
+    "version",
+    "generated_at",
+    "stats",
+    "tests"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator": {
+      "type": "string"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total_public": {
+          "type": "integer"
+        },
+        "physics_test": {
+          "type": "integer"
+        },
+        "consistency_check": {
+          "type": "integer"
+        },
+        "phenomenological": {
+          "type": "integer"
+        },
+        "framework_constraint": {
+          "type": "integer"
+        },
+        "planned_pipeline": {
+          "type": "integer"
+        },
+        "inference_count": {
+          "type": "integer"
+        }
+      }
+    },
+    "tests": {
+      "type": "object",
+      "properties": {
+        "physics_test": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_test"
+          }
+        },
+        "consistency_check": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_test"
+          }
+        },
+        "phenomenological": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_test"
+          }
+        },
+        "framework_constraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_test"
+          }
+        },
+        "planned_pipeline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/validation_test"
+          }
+        }
+      }
+    },
+    "inference_results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/inference_result"
+      }
+    },
+    "tcs_profiles": {
+      "type": "object"
+    },
+    "evidence_register": {
+      "type": "object"
+    }
+  },
+  "definitions": {
+    "validation_test": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "test_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "vl_category": {
+          "type": "string",
+          "enum": [
+            "physics_test",
+            "consistency_check",
+            "phenomenological",
+            "framework_constraint",
+            "planned_pipeline"
+          ]
+        },
+        "data_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prediction": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "result": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "inference_result": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chi2_reduced": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "converged": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "best_fit": {
+          "type": "object"
+        },
+        "posterior_summary": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

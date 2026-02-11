@@ -1,0 +1,107 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://energyflow-cosmology.com/validation-ledger/",
+  "identifier": "efc-validation-ledger",
+  "name": "EFC Validation Ledger",
+  "description": "Living record of empirical validation tests, Bayesian inference results, and theory coherence metrics for Energy-Flow Cosmology (EFC).",
+  "version": "3.0",
+  "dateModified": "2026-02-11T19:25:22Z",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "@id": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "maintainer": {
+    "@type": "SoftwareApplication",
+    "name": "Symbiose AGI Validation Pipeline",
+    "url": "https://github.com/supertedai/AGI"
+  },
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "Markdown (human-readable)",
+      "contentUrl": "https://github.com/supertedai/EFC/blob/main/docs/validation-ledger/index.md",
+      "encodingFormat": "text/markdown"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "JSON (machine-readable)",
+      "contentUrl": "https://github.com/supertedai/EFC/blob/main/docs/validation-ledger/data/ledger.json",
+      "encodingFormat": "application/json"
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Dataset",
+      "name": "Validation Tests",
+      "url": "data/tests.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Inference Results",
+      "url": "data/inference.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "TCS Coherence",
+      "url": "data/tcs.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Parameters",
+      "url": "data/parameters.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Regime Matrix",
+      "url": "data/regime-matrix.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "S8 Convergence",
+      "url": "data/s8-convergence.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Structural Constraints",
+      "url": "data/structural-constraints.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Evidence Register",
+      "url": "data/evidence-register.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Pipeline",
+      "url": "data/pipeline.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Hypotheses",
+      "url": "data/hypotheses.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Frontier Gaps",
+      "url": "data/frontier-gaps.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Status Levels",
+      "url": "data/status-levels.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Changelog",
+      "url": "data/changelog.json"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Statistics",
+      "url": "data/stats.json"
+    }
+  ]
+}

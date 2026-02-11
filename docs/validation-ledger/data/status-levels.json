@@ -1,0 +1,70 @@
+{
+  "name": "Status Classification System",
+  "version": "3.0",
+  "generated_at": "2026-02-11T19:25:22Z",
+  "levels": [
+    {
+      "level_id": "completed_data_likelihood",
+      "name": "Completed (Data Likelihood Test)",
+      "emoji": "🟢",
+      "meaning": "Full quantitative comparison using established statistical frameworks with real data",
+      "sort_order": 1
+    },
+    {
+      "level_id": "completed_consistency_check",
+      "name": "Completed (Consistency Check)",
+      "emoji": "🟢",
+      "meaning": "EFC predicts minimal deviation; observations show no contradiction",
+      "sort_order": 2
+    },
+    {
+      "level_id": "completed_structural_constraint",
+      "name": "Completed (Structural Constraint)",
+      "emoji": "🟢",
+      "meaning": "Geometric arguments rule out operator classes without parameter fitting",
+      "sort_order": 3
+    },
+    {
+      "level_id": "phenomenological",
+      "name": "Phenomenological",
+      "emoji": "🟡",
+      "meaning": "Temporary parameterization tested empirically but not derived from field theory",
+      "sort_order": 4
+    },
+    {
+      "level_id": "framework_diagnostic",
+      "name": "Framework-Level Diagnostic",
+      "emoji": "🟡",
+      "meaning": "Internal coherence evaluation rather than direct observable comparison",
+      "sort_order": 5
+    },
+    {
+      "level_id": "planned_pipeline_ready",
+      "name": "Planned (Pipeline Ready)",
+      "emoji": "🔵",
+      "meaning": "Fully specified methodology awaiting execution",
+      "sort_order": 6
+    },
+    {
+      "level_id": "conceptual_method_defined",
+      "name": "Conceptual / Method Defined",
+      "emoji": "🔵",
+      "meaning": "Observable link identified; derivation still needed",
+      "sort_order": 7
+    },
+    {
+      "level_id": "discrepant",
+      "name": "Discrepant",
+      "emoji": "🔴",
+      "meaning": "Predictions conflict with observations beyond statistical tolerance",
+      "sort_order": 8
+    },
+    {
+      "level_id": "inactive_not_dominant",
+      "name": "Inactive / Not Dominant",
+      "emoji": "⚪",
+      "meaning": "Sector suppressed in specific regime",
+      "sort_order": 9
+    }
+  ]
+}

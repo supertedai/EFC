@@ -1,0 +1,148 @@
+{
+  "name": "Planned Validation Pipeline",
+  "version": "3.0",
+  "generated_at": "2026-02-11T19:25:22Z",
+  "phases": {
+    "1": [
+      {
+        "id": "p1_desi_dr2",
+        "name": "DESI DR2/Y5 w(z) falsification test",
+        "phase": 1,
+        "method": "BAO w(z) analysis",
+        "dataset": "DESI DR2",
+        "priority": "high",
+        "status": "planned"
+      },
+      {
+        "id": "p1_chi_z",
+        "name": "Derive physical χ(z)",
+        "phase": 1,
+        "method": "Analytical derivation from field equations",
+        "dataset": "Theory",
+        "priority": "high",
+        "status": "planned"
+      },
+      {
+        "id": "p1_small_scale",
+        "name": "Euclid/Rubin small-scale tests",
+        "phase": 1,
+        "method": "Non-linear power spectrum",
+        "dataset": "Euclid/Rubin LSST",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p1_bao_growth",
+        "name": "Joint BAO + growth fits",
+        "phase": 1,
+        "method": "MCMC with EFC-modified expansion",
+        "dataset": "BOSS/DESI",
+        "priority": "high",
+        "status": "planned"
+      },
+      {
+        "id": "p1_wl_theta",
+        "name": "Weak-lensing with Θ(ρ)-derived coupling",
+        "phase": 1,
+        "method": "Lensing kernel modification",
+        "dataset": "KiDS/DES/Euclid",
+        "priority": "high",
+        "status": "planned"
+      }
+    ],
+    "2": [
+      {
+        "id": "p2_cmb_lensing",
+        "name": "CMB lensing + gravitational slip",
+        "phase": 2,
+        "method": "Cross-correlation analysis",
+        "dataset": "Planck lensing",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p2_cluster_nmz",
+        "name": "Cluster abundance N(M,z)",
+        "phase": 2,
+        "method": "Mass function comparison",
+        "dataset": "eROSITA/SPT/Planck SZ",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p2_rar_numerical",
+        "name": "Numerical S(r) solution for RAR",
+        "phase": 2,
+        "method": "Numerical ODE integration",
+        "dataset": "SPARC175",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p2_ppn",
+        "name": "Solar System PPN explicit γ/β bounds",
+        "phase": 2,
+        "method": "Post-Newtonian expansion",
+        "dataset": "Cassini/LLR",
+        "priority": "high",
+        "status": "planned"
+      }
+    ],
+    "3": [
+      {
+        "id": "p3_beta_split",
+        "name": "Beta-split test (distance vs growth)",
+        "phase": 3,
+        "method": "Split analysis",
+        "dataset": "BAO + RSD",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p3_case_b",
+        "name": "Case B implementation (consistent MG with μ)",
+        "phase": 3,
+        "method": "Full modified gravity implementation",
+        "dataset": "Multi-survey",
+        "priority": "high",
+        "status": "planned"
+      },
+      {
+        "id": "p3_shock_front",
+        "name": "Cluster shock-front lensing asymmetry",
+        "phase": 3,
+        "method": "κ-map analysis",
+        "dataset": "JWST + Chandra",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p3_des_y3",
+        "name": "DES Y3 cross-validation",
+        "phase": 3,
+        "method": "Multi-probe likelihood",
+        "dataset": "DES Y3/Y6",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p3_isw_tomo",
+        "name": "ISW tomographic validation",
+        "phase": 3,
+        "method": "Tomographic cross-correlation",
+        "dataset": "Planck × DESI",
+        "priority": "medium",
+        "status": "planned"
+      },
+      {
+        "id": "p3_sirens",
+        "name": "Standard sirens (Einstein Telescope era)",
+        "phase": 3,
+        "method": "GW vs EM distance comparison",
+        "dataset": "Einstein Telescope",
+        "priority": "low",
+        "status": "planned"
+      }
+    ]
+  }
+}
