@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-11T19:25:22Z",
+  "generated_at": "2026-02-11T19:30:35Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 2,
@@ -37,7 +37,7 @@
         "test_id": "ledger_isw_cancellation_prediction_metric",
         "name": "ISW cancellation prediction (𝒞 metric)",
         "description": "Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)",
-        "result": "𝒞 = 0.59–0.96 (monotonic); AISW= 0.29–0.56; all published data within 1.6σ",
+        "result": "Completed (Data Consistency Band Test) — 𝒞 = 0.59–0.96 (monotonic); AISW = 0.29–0.56; all published data within 1.6σ",
         "status": "success",
         "vl_category": "physics_test",
         "also_phenomenological": null,
@@ -267,7 +267,7 @@
         "test_id": "ledger_cluster_core_entropystructure_coupling",
         "name": "Cluster core entropy–structure coupling",
         "description": "⚪",
-        "result": "Completed (diagnostic mismatch)",
+        "result": "Framework Diagnostic — Data-Informed: diagnostic mismatch (ρ sign flip TNG vs ACCEPT)",
         "status": "partial",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
