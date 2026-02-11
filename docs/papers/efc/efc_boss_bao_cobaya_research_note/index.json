@@ -1,0 +1,180 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-boss-bao-cobaya-research-note",
+  "title": "Covariance-Aware BAO Consistency Test of Energy-Flow Cosmology Using the BOSS DR12 Consensus Likelihood",
+  "description": "Fixed-parameter consistency test of EFC modified background expansion against precision BAO data using the official BOSS DR12 consensus likelihood with full 6×6 covariance matrix. EFC yields Δχ² = -2.4 without parameter retuning.",
+  "version": "1.0.0",
+  "date": "2026-02",
+  "doi": "10.6084/m9.figshare.31314922",
+  "type": "Research Note",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "baryon acoustic oscillations",
+    "modified gravity",
+    "dark energy",
+    "cosmological inference",
+    "Energy-Flow Cosmology",
+    "BOSS DR12",
+    "covariance matrix",
+    "model comparison",
+    "Cobaya",
+    "CosmoMC"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Energy-Flow Cosmology Initiative"
+  },
+  "core_equations": {
+    "efc_modified_friedmann": {
+      "latex": "E^2_{EFC}(z) = E^2_{ΛCDM}(z) × [1 + α_{L2} · f(z) · Θ(z)]",
+      "description": "EFC-modified Friedmann equation"
+    },
+    "coupling_function": {
+      "latex": "f(z) = 1/(1+z)",
+      "description": "Coupling function"
+    },
+    "regime_transition": {
+      "latex": "Θ(z) = ½[1 + tanh((z_{L1L2} - z)/Δz)]",
+      "description": "Regime transition function"
+    }
+  },
+  "parameters": {
+    "alpha_L2": {
+      "value": 0.045,
+      "source": "DESI DR2 best fit",
+      "description": "Coupling strength"
+    },
+    "z_L1L2": {
+      "value": 1.01,
+      "description": "Transition redshift"
+    },
+    "delta_z": {
+      "value": 0.3,
+      "description": "Transition width"
+    },
+    "H0": {
+      "value": 67.4,
+      "unit": "km/s/Mpc",
+      "source": "Planck 2018"
+    },
+    "Omega_m": {
+      "value": 0.3134,
+      "source": "Planck 2018"
+    },
+    "r_s": {
+      "value": 147.09,
+      "unit": "Mpc",
+      "description": "Sound horizon"
+    }
+  },
+  "modification_amplitude": {
+    "z_0.38": "~3.4%",
+    "z_1.01": "~1.1%",
+    "z_gt_2": "effectively zero"
+  },
+  "data": {
+    "boss_dr12": {
+      "description": "BOSS DR12 consensus BAO measurements from Alam et al. (2017)",
+      "observables": ["DM(z)", "H(z)"],
+      "redshifts": [0.38, 0.51, 0.61],
+      "covariance": "Full 6×6 matrix from CobayaSampler (BAO_consensus_covtot_dM_Hz.txt)",
+      "r_s_fid": 147.78
+    },
+    "cosmic_chronometers": {
+      "description": "H(z) measurements from Moresco et al. (2022)",
+      "n_points": 25,
+      "z_range": [0.07, 1.97]
+    }
+  },
+  "boss_dr12_data_vector": [
+    {"z": 0.38, "DM_rs_fid_rs": 1512.39, "H_rs_rs_fid": 81.21},
+    {"z": 0.51, "DM_rs_fid_rs": 1975.22, "H_rs_rs_fid": 90.90},
+    {"z": 0.61, "DM_rs_fid_rs": 2306.68, "H_rs_rs_fid": 98.96}
+  ],
+  "primary_results": {
+    "boss_bao": {
+      "lcdm_chi2": 5.79,
+      "efc_chi2": 3.43,
+      "delta_chi2": -2.36,
+      "dof": 6,
+      "lcdm_chi2_red": 0.96,
+      "efc_chi2_red": 0.69,
+      "driver": "z = 0.61 bin"
+    },
+    "cosmic_chronometers": {
+      "lcdm_chi2": 13.49,
+      "efc_chi2": 12.86,
+      "delta_chi2": -0.63,
+      "dof": 25,
+      "chi2_red": 0.54
+    },
+    "combined_geometric": {
+      "total_dof": 31,
+      "delta_chi2": -2.99,
+      "result": "EFC mild preference"
+    }
+  },
+  "per_observable_residuals": [
+    {"observable": "DM(0.38)", "data": 1512.4, "lcdm": 1540.5, "efc": 1512.0, "delta_lcdm": -28.2, "delta_efc": 0.4},
+    {"observable": "H(0.38)", "data": 81.2, "lcdm": 82.4, "efc": 83.8, "delta_lcdm": -1.2, "delta_efc": -2.6},
+    {"observable": "DM(0.51)", "data": 1975.2, "lcdm": 1995.3, "efc": 1960.0, "delta_lcdm": -20.1, "delta_efc": 15.2},
+    {"observable": "H(0.51)", "data": 90.9, "lcdm": 89.1, "efc": 90.4, "delta_lcdm": 1.8, "delta_efc": 0.5},
+    {"observable": "DM(0.61)", "data": 2306.7, "lcdm": 2321.6, "efc": 2281.9, "delta_lcdm": -15.0, "delta_efc": 24.8},
+    {"observable": "H(0.61)", "data": 99.0, "lcdm": 94.7, "efc": 96.0, "delta_lcdm": 4.2, "delta_efc": 3.0}
+  ],
+  "test_characteristics": {
+    "type": "Fixed-parameter consistency test",
+    "not": ["Full likelihood fit", "Model selection analysis", "Bayesian evidence comparison"],
+    "significance": "EFC background survives precision test without parameter retuning"
+  },
+  "comparison_to_wp4": {
+    "wp4_delta_chi2": -7.77,
+    "wp4_covariance": "Internally calibrated",
+    "this_work_delta_chi2": -2.36,
+    "this_work_covariance": "Cobaya consensus (more conservative)",
+    "consistency": "Both show EFC preference in same direction"
+  },
+  "limitations": [
+    "Tests only H(z) background geometry sector",
+    "Does not constrain structure growth (fσ8 requires CLASS/CAMB validation)",
+    "Does not address CMB physics",
+    "Does not address gravitational lensing",
+    "No DESI anisotropic BAO (requires separate likelihood)",
+    "Cosmic chronometers use published individual errors without cross-correlations"
+  ],
+  "next_steps": [
+    "Validate growth factor D(z) and f(z) against CLASS for RSD channel",
+    "Implement DESI DR2 anisotropic BAO likelihood",
+    "Add Pantheon+ supernova distance moduli",
+    "Perform joint multi-probe analysis with consistent parameter space"
+  ],
+  "reproducibility": {
+    "bao_data_file": "sdss_DR12Consensus_bao.dat",
+    "covariance_file": "BAO_consensus_covtot_dM_Hz.txt",
+    "source": "CobayaSampler repository on GitHub",
+    "pipeline": "EFC Unified Inference Pipeline v2.0",
+    "dependencies": ["scipy.integrate.quad", "numpy.linalg.inv"],
+    "boltzmann_solver": "Not required"
+  },
+  "references": [
+    {"id": 1, "citation": "Magnusson (2026). EFC Regime-Transition Fit to DESI DR2 BAO. DOI: 10.6084/m9.figshare.31127380"},
+    {"id": 2, "citation": "Magnusson (2026). EFC Transfer Test: DESI DR2 to BOSS DR12. DOI: 10.6084/m9.figshare.31231522"},
+    {"id": 3, "citation": "Magnusson (2026). SPARC175 Rotation Curve Analysis. DOI: 10.6084/m9.figshare.31047703"},
+    {"id": 4, "citation": "Magnusson (2026). JWST COSMOS-Web Abundance Excess. DOI: 10.6084/m9.figshare.31059964"},
+    {"id": 5, "citation": "Magnusson (2026). EFC Complete Validation Ledger v1.3.1. DOI: 10.6084/m9.figshare.31314922"},
+    {"id": 6, "citation": "Alam et al. [BOSS] (2017). MNRAS 470, 2617. arXiv:1607.03155"},
+    {"id": 7, "citation": "Aghanim et al. [Planck] (2020). A&A 641, A6. arXiv:1807.06209"},
+    {"id": 8, "citation": "Moresco et al. (2022). Living Rev. Rel. 25, 6. arXiv:2201.07241"}
+  ],
+  "key_conclusions": [
+    "EFC background modification passes the most stringent publicly available BAO consistency test",
+    "No validated geometric channel penalises EFC relative to ΛCDM",
+    "Result is fully reproducible using standard CosmoMC/Cobaya infrastructure",
+    "Fixed-parameter test (no retuning) - pure transfer validation"
+  ],
+  "files": {
+    "paper": "efc_boss_bao_cobaya_research_note.pdf",
+    "schema": "schema.json"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://efc-project.org/papers/efc-boss-bao-cobaya/schema.json",
+  "title": "EFC BOSS BAO Cobaya Research Note Schema",
+  "description": "Schema for covariance-aware BAO consistency test using BOSS DR12 consensus likelihood",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-boss-bao-cobaya-research-note"
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "alpha_L2": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "source": {"type": "string"}
+          },
+          "required": ["value"]
+        },
+        "z_L1L2": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"}
+          }
+        },
+        "delta_z": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"}
+          }
+        }
+      },
+      "description": "EFC model parameters (fixed from DESI DR2)"
+    },
+    "primary_results": {
+      "type": "object",
+      "properties": {
+        "boss_bao": {
+          "type": "object",
+          "properties": {
+            "lcdm_chi2": {"type": "number"},
+            "efc_chi2": {"type": "number"},
+            "delta_chi2": {"type": "number"},
+            "dof": {"type": "integer"}
+          },
+          "required": ["lcdm_chi2", "efc_chi2", "delta_chi2"]
+        },
+        "cosmic_chronometers": {
+          "type": "object",
+          "properties": {
+            "lcdm_chi2": {"type": "number"},
+            "efc_chi2": {"type": "number"},
+            "delta_chi2": {"type": "number"},
+            "dof": {"type": "integer"}
+          }
+        },
+        "combined_geometric": {
+          "type": "object",
+          "properties": {
+            "total_dof": {"type": "integer"},
+            "delta_chi2": {"type": "number"},
+            "result": {"type": "string"}
+          }
+        }
+      },
+      "required": ["boss_bao"]
+    },
+    "per_observable_residuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "observable": {"type": "string"},
+          "data": {"type": "number"},
+          "lcdm": {"type": "number"},
+          "efc": {"type": "number"},
+          "delta_lcdm": {"type": "number"},
+          "delta_efc": {"type": "number"}
+        },
+        "required": ["observable", "data", "lcdm", "efc"]
+      }
+    },
+    "test_characteristics": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string"},
+        "not": {"type": "array", "items": {"type": "string"}},
+        "significance": {"type": "string"}
+      },
+      "description": "Clarifies that this is a fixed-parameter consistency test, not a full fit"
+    },
+    "reproducibility": {
+      "type": "object",
+      "properties": {
+        "bao_data_file": {"type": "string"},
+        "covariance_file": {"type": "string"},
+        "source": {"type": "string"},
+        "dependencies": {"type": "array", "items": {"type": "string"}}
+      },
+      "description": "All resources needed to reproduce the analysis"
+    }
+  },
+  "required": ["id", "parameters", "primary_results", "test_characteristics"]
+}
