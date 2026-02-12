@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "description": "Revised ISW cross-correlation predictions following Consistency Audit v1.1",
+    "paper_doi": "10.6084/m9.figshare.31329082",
+    "original_paper_doi": "10.6084/m9.figshare.31301953",
+    "channel": "growth-driven",
+    "multipole_range": [2, 60],
+    "date": "2026-02"
+  },
+  "mu_parameters": {
+    "beta": 0.16,
+    "a_t": 0.55,
+    "sigma": 0.25,
+    "equation": "μ(a) = 1 + β × exp[-(a - a_t)² / (2σ²)]",
+    "status": "unchanged"
+  },
+  "tracers": {
+    "LRGz0": {
+      "z_eff": 0.510,
+      "A_ISW_original": 0.56,
+      "A_ISW_revised": 0.87,
+      "original_suppression_percent": 44,
+      "revised_suppression_percent": 13,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    },
+    "LRGz1": {
+      "z_eff": 0.706,
+      "A_ISW_original": 0.43,
+      "A_ISW_revised": 0.87,
+      "original_suppression_percent": 57,
+      "revised_suppression_percent": 13,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    },
+    "LRGz2": {
+      "z_eff": 0.930,
+      "A_ISW_original": 0.33,
+      "A_ISW_revised": 0.89,
+      "original_suppression_percent": 67,
+      "revised_suppression_percent": 11,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    },
+    "LRG+ELG": {
+      "z_eff": 0.930,
+      "A_ISW_original": 0.29,
+      "A_ISW_revised": 0.89,
+      "original_suppression_percent": 71,
+      "revised_suppression_percent": 11,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    },
+    "ELG": {
+      "z_eff": 1.317,
+      "A_ISW_original": 0.15,
+      "A_ISW_revised": 0.92,
+      "original_suppression_percent": 85,
+      "revised_suppression_percent": 8,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    },
+    "QSO": {
+      "z_eff": 1.491,
+      "A_ISW_original": 0.20,
+      "A_ISW_revised": 0.90,
+      "original_suppression_percent": 80,
+      "revised_suppression_percent": 10,
+      "cancellation_index_original": null,
+      "cancellation_index_revised": null,
+      "original_status": "withdrawn"
+    }
+  },
+  "summary": {
+    "A_ISW_revised_mean": 0.89,
+    "A_ISW_revised_uncertainty": 0.03,
+    "A_ISW_revised_range": [0.87, 0.92],
+    "suppression_percent": 11,
+    "z_dependence": "negligible",
+    "A_ISW_original_range": [0.15, 0.56],
+    "original_suppression_range_percent": [44, 85]
+  },
+  "channel_interpretations": {
+    "growth_driven": {
+      "adopted": true,
+      "potential_relation": "Φ ∝ D(a)/a",
+      "mu_role": "μ affects ISW only through D(a) and f(a)",
+      "isw_source": "S ∝ H(a)(D/a)(1-f)",
+      "prediction": "A_ISW ≈ 0.89 ± 0.03 (positive, z-independent)",
+      "cancellation_metric": "not applicable"
+    },
+    "potential_driven": {
+      "adopted": false,
+      "potential_relation": "Φ ∝ μ(a)·D(a)/a",
+      "additional_term": "dμ/d ln a in ISW kernel",
+      "prediction": "Anti-correlation (A < 0) for z_eff ≳ 0.6",
+      "status": "Disfavoured by existing positive ISW detections"
+    }
+  },
+  "preserved_elements": {
+    "growth_ODE": {
+      "status": "correct",
+      "note": "μ(a) in growth equation is well-defined"
+    },
+    "mu_parameterisation": {
+      "status": "correct",
+      "values": {"beta": 0.16, "a_t": 0.55, "sigma": 0.25}
+    },
+    "limber_approximation": {
+      "status": "valid",
+      "deviation": "< 3% from exact non-Limber"
+    },
+    "tracer_definitions": {
+      "status": "valid",
+      "note": "DESI DR1 bins and bias values unchanged"
+    },
+    "background_cosmology": {
+      "status": "valid",
+      "note": "Fiducial ΛCDM H(a) is correct"
+    },
+    "qualitative_prediction": {
+      "status": "valid",
+      "note": "EFC predicts A_ISW < 1 for all tracers"
+    }
+  },
+  "falsification": {
+    "original": {
+      "criterion": "C > 0.7, A < 0.5 at z_t",
+      "status": "deprecated",
+      "reason": "Cancellation metric not applicable under growth-driven ISW"
+    },
+    "revised": {
+      "criterion": "A_ISW = 1.00 ± 0.05 across all bins",
+      "exclusion_level": "> 2σ",
+      "key_test": "Combined multi-tracer analysis",
+      "positive_evidence": "A_ISW < 0.9 across multiple bins"
+    }
+  },
+  "validation_ledger": {
+    "current_version": "v1.6",
+    "target_version": "v1.7",
+    "status_change": "Completed → Under revision"
+  }
+}

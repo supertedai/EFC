@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this revision patch, please cite it as below."
+type: report
+title: "ISW Paper Revision Patch: Proposed Corrections to ISW Cross-Correlation Predictions for EFC with DESI DR1 Tracers"
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Energy-Flow Cosmology Project"
+date-released: 2026-02-01
+doi: "10.6084/m9.figshare.31329082"
+url: "https://doi.org/10.6084/m9.figshare.31329082"
+repository: "https://github.com/supertedai/EFC"
+keywords:
+  - ISW effect
+  - integrated Sachs-Wolfe
+  - cross-correlation
+  - DESI DR1
+  - Energy-Flow Cosmology
+  - EFC
+  - revision patch
+  - consistency audit
+abstract: >-
+  The ISW Consistency Audit (v1.1) established that the published A_ISW values
+  (0.56 → 0.15) cannot be reproduced under any self-consistent channel—growth-driven,
+  potential-driven, or covariance-weighted. This patch proposes minimal, defensible
+  revisions to the ISW paper that preserve its core predictions while correcting
+  the quantitative A_ISW claims. Under the growth-driven interpretation, the revised
+  prediction is A_ISW ≈ 0.89 ± 0.03 across all DESI DR1 tracer bins, representing
+  a uniform ~11% suppression relative to ΛCDM with no significant z-dependence.
+references:
+  - type: article
+    title: "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers"
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    doi: "10.6084/m9.figshare.31301953"
+    year: 2026
+    notes: "Original paper to which this revision patch applies"

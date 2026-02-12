@@ -1,0 +1,194 @@
+{
+  "paper": {
+    "title": "ISW Paper Revision Patch: Proposed Corrections to ISW Cross-Correlation Predictions for EFC with DESI DR1 Tracers",
+    "short_title": "ISW Revision Patch",
+    "authors": [
+      {
+        "name": "Morten Magnusson",
+        "orcid": "0009-0002-4860-5095",
+        "affiliation": "Energy-Flow Cosmology Project"
+      }
+    ],
+    "date": "2026-02",
+    "doi": "10.6084/m9.figshare.31329082",
+    "type": "internal_note",
+    "note_type": "WP2 Internal Note",
+    "companion_to": "ISW Consistency Audit v1.1",
+    "applies_to_doi": "10.6084/m9.figshare.31301953"
+  },
+  "summary": {
+    "purpose": "Proposes minimal corrections to ISW paper preserving core predictions while correcting quantitative A_ISW claims",
+    "key_finding": "Original A_ISW values (0.56→0.15) cannot be reproduced; revised prediction is A_ISW ≈ 0.89 ± 0.03 (uniform ~11% suppression)",
+    "status": "Under revision"
+  },
+  "revision_categories": {
+    "category_1": {
+      "name": "Retract specific A_ISW values",
+      "description": "Original z-dependent suppression (44-85%) replaced with uniform ~11% suppression",
+      "original_claim": "A_ISW = 0.56 → 0.15 (strong z-dependence)",
+      "revised_claim": "A_ISW ≈ 0.89 ± 0.03 (z-independent)"
+    },
+    "category_2": {
+      "name": "Clarify μ-channel interpretation",
+      "description": "Distinguish growth-driven vs potential-driven interpretations",
+      "growth_driven": {
+        "potential": "Φ ∝ D(a)/a",
+        "mu_role": "μ affects ISW only through D(a) and f(a)",
+        "isw_source": "S ∝ H(a)(D/a)(1-f)",
+        "prediction": "A_ISW ≈ 0.89 (positive)"
+      },
+      "potential_driven": {
+        "potential": "Φ ∝ μ(a)·D(a)/a",
+        "additional_term": "dμ/d ln a in ISW kernel",
+        "prediction": "Anti-correlation (A < 0) for z_eff ≳ 0.6",
+        "status": "Disfavoured by positive ISW detections"
+      }
+    },
+    "category_3": {
+      "name": "Revise cancellation metric",
+      "description": "Cancellation index C not applicable under growth-driven ISW",
+      "original_metric": "C = 1 - |Σ C_tot| / (|Σ C_Kμ| + |Σ C_Kμ'|)",
+      "revised_status": "Not applicable (no K_μ' channel exists)"
+    }
+  },
+  "revised_predictions": {
+    "description": "Growth-driven channel; ℓ ∈ [2, 60]",
+    "tracers": [
+      {
+        "name": "LRGz0",
+        "z_eff": 0.510,
+        "A_ISW_original": 0.56,
+        "A_ISW_revised": 0.87,
+        "original_status": "withdrawn"
+      },
+      {
+        "name": "LRGz1",
+        "z_eff": 0.706,
+        "A_ISW_original": 0.43,
+        "A_ISW_revised": 0.87,
+        "original_status": "withdrawn"
+      },
+      {
+        "name": "LRGz2",
+        "z_eff": 0.930,
+        "A_ISW_original": 0.33,
+        "A_ISW_revised": 0.89,
+        "original_status": "withdrawn"
+      },
+      {
+        "name": "LRG+ELG",
+        "z_eff": 0.930,
+        "A_ISW_original": 0.29,
+        "A_ISW_revised": 0.89,
+        "original_status": "withdrawn"
+      },
+      {
+        "name": "ELG",
+        "z_eff": 1.317,
+        "A_ISW_original": 0.15,
+        "A_ISW_revised": 0.92,
+        "original_status": "withdrawn"
+      },
+      {
+        "name": "QSO",
+        "z_eff": 1.491,
+        "A_ISW_original": 0.20,
+        "A_ISW_revised": 0.90,
+        "original_status": "withdrawn"
+      }
+    ],
+    "summary": {
+      "A_ISW_range": [0.87, 0.92],
+      "A_ISW_mean": 0.89,
+      "A_ISW_uncertainty": 0.03,
+      "suppression_percent": 11,
+      "z_dependence": "negligible"
+    }
+  },
+  "preserved_elements": [
+    {
+      "element": "Growth ODE",
+      "status": "Correct",
+      "note": "μ(a) in growth equation is well-defined"
+    },
+    {
+      "element": "μ(a) parameterisation",
+      "status": "Correct",
+      "parameters": {
+        "beta": 0.16,
+        "a_t": 0.55,
+        "sigma": 0.25
+      }
+    },
+    {
+      "element": "Limber approximation",
+      "status": "Valid",
+      "note": "Exact non-Limber differs by < 3%"
+    },
+    {
+      "element": "Tracer definitions",
+      "status": "Valid",
+      "note": "DESI DR1 bins and bias values unchanged"
+    },
+    {
+      "element": "H(a) background",
+      "status": "Valid",
+      "note": "Fiducial ΛCDM background is correct"
+    },
+    {
+      "element": "Qualitative prediction",
+      "status": "Valid",
+      "note": "EFC predicts A_ISW < 1 for all tracers"
+    }
+  ],
+  "falsification": {
+    "original": {
+      "criterion": "C > 0.7, A < 0.5 at z_t",
+      "key_discriminator": "Tomographic C gradient"
+    },
+    "revised": {
+      "criterion": "A_ISW = 1.00 ± 0.05 across all bins",
+      "exclusion_level": "> 2σ",
+      "key_discriminator": "Uniform 11% suppression in multi-tracer stack",
+      "positive_evidence": "A_ISW < 0.9 across multiple bins"
+    }
+  },
+  "validation_ledger_update": {
+    "current_version": "v1.6",
+    "target_version": "v1.7",
+    "changes": {
+      "status": {
+        "from": "Completed (no observational conflict)",
+        "to": "Under revision"
+      },
+      "A_ISW": {
+        "from": "0.29–0.56 (bias-calibrated)",
+        "to": "0.87–0.92 (growth-driven, self-consistent)"
+      },
+      "C": {
+        "from": "0.59–0.96",
+        "to": "Not applicable (growth-driven)"
+      }
+    }
+  },
+  "implementation": {
+    "applies_to": "DOI: 10.6084/m9.figshare.31301953",
+    "code_files": [
+      "isw_channel_test.py",
+      "isw_amplitude_fit.py"
+    ],
+    "revised_version_suffix": "v2—corrected"
+  },
+  "keywords": [
+    "ISW effect",
+    "integrated Sachs-Wolfe",
+    "cross-correlation",
+    "DESI DR1",
+    "Energy-Flow Cosmology",
+    "EFC",
+    "revision patch",
+    "consistency audit",
+    "growth-driven",
+    "A_ISW"
+  ]
+}
