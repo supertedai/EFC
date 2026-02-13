@@ -7,8 +7,8 @@
     "physics_test": 3,
     "consistency_check": 9,
     "phenomenological": 6,
-    "framework_constraint": 6,
-    "planned_pipeline": 13,
+    "framework_constraint": 7,
+    "planned_pipeline": 12,
     "total_public": 37,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -296,21 +296,6 @@
     ],
     "framework_constraint": [
       {
-        "test_id": "conv_background_gate_sign_constraint_efclass_technical_note_i_",
-        "name": "Background gate sign constraint (EFCLASS Technical Note I)",
-        "description": "Background gate sign test: Additive gate E²=E²_LCDM + A·g(a) under E(0)=1 closure produces ΔE²=A[g(z)-g(0)] ≤ 0 for all z>0 when gate is monotonically increasing in a. Verified analytically (Lemma 1) and numerically in CLASS v3.3.4 to <0.3%. Physical consequence: fσ₈ increases by +0.5-0.8% (A=0.15), ruling out background-only S₈ suppression under this parameterisation. Structural channel constraint, not observational test.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "framework_constraint",
-        "also_phenomenological": null,
-        "data_source": "CLASS v3.3.4 internal consistency (EFCLASS patch, 9-point numerical verification)",
-        "prediction": "ΔE² ≤ 0 for all z>0 (sign-locked). Background channel cannot suppress structure growth. S₈ amelioration requires perturbation-level μ<1.",
-        "notes": "Sign lemma proved and numerically verified in CLASS v3.3.4. 0/39998 sign violations. DOI: 10.6084/m9.figshare.31333414. Structural constraint, not observational test.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-13T14:28:48.793000000+00:00",
-        "status_detail": "planned"
-      },
-      {
         "test_id": "ledger_cluster_core_entropystructure_coupling",
         "name": "Cluster core entropy–structure coupling",
         "description": "⚪",
@@ -384,6 +369,38 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "completed_framework"
+      },
+      {
+        "test_id": "ledger_efclass_sign_structure_background_exclusion",
+        "name": "EFCLASS Sign Structure: background channel σ₈ exclusion",
+        "description": "Analytical proof + CLASS v3.3.4 verification: ΔE²(z) = A[g(z) − g(0)] ≤ 0 for all z > 0. Background-level gate produces reduced Hubble friction (enhanced growth), ruling out background channel for σ₈ suppression.",
+        "result": "Completed (structural proof) — ΔE² ≤ 0; fσ₈ enhanced +0.5–0.76% at BOSS DR12 redshifts; background channel excluded for σ₈ suppression",
+        "status": "success",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "CLASS v3.3.4 Boltzmann solver (analytical + numerical)",
+        "prediction": "Background modification cannot suppress σ₈; perturbation-level μ < 1 required",
+        "notes": "EFCLASS Sign Structure: background channel σ₈ exclusion | ✅ | ⚪ | ⚪ | Sign Lemma: ΔE²(z) = A[g(z) − g(0)] ≤ 0 for all z > 0 under E(0)=1 normalisation. Numerical verification < 0.3% agreement at 9 redshift points. Growth enhancement +0.5% to +0.76% in fσ₈ at BOSS DR12 redshifts. Implication: background-level EFC cannot suppress σ₈; perturbation-level μ(a) < 1 required. 77 lines of C code across background.h, background.c, input.c. | 31333414",
+        "quantitative_result": "ΔE² ≤ 0 (proven); fσ₈ enhancement +0.5–0.76% at BOSS DR12 redshifts; analytical-numerical agreement < 0.3%",
+        "figshare_doi": "10.6084/m9.figshare.31333414",
+        "last_synced": "2026-02-13T00:00:00Z",
+        "status_detail": "completed_structural"
+      },
+      {
+        "test_id": "ledger_perturbation_sigma8_suppression_mu",
+        "name": "Perturbation-Level σ₈ Suppression via μ(a) < 1: WP1a reference model",
+        "description": "Systematic scan of perturbation channel μ(a) = 1 − B g(a) for σ₈ suppression. Universal factor-2 from gate broadening established. WP1a reference model defined.",
+        "result": "Completed (structural constraint) — WP1a: μ₀=0.85, σ₈=0.773, S₈=0.790 (73% gap closure); structural ceiling ~43% within Planck 1σ",
+        "status": "success",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "BOSS DR12 RSD (3 pts, full covariance; Alam et al. 2017)",
+        "prediction": "Scale-free μ(a) modification establishes structural ceiling for σ₈ suppression; perturbation channel required but ceiling-limited",
+        "notes": "Perturbation-Level σ₈ Suppression via μ(a) < 1 | ✅ | ⚪ | ⚪ | Universal factor-2: Δσ₈(n=2)/Δσ₈(n=6) = 2.00 ± 0.01. WP1a reference model: A=0, B=0.187, n=2, z_t=1.01; μ₀=0.85, σ₈=0.773, S₈=0.790. S₈ gap closed: 73%. Planck status: ~1.5σ from μ₀=1. Structural ceiling: scale-free μ(a) closes at most ~43% within Planck 1σ. Calibration: B = (1 − μ₀)/g(1; n). | 31333600",
+        "quantitative_result": "WP1a: μ₀=0.85, σ₈=0.773, S₈=0.790; factor-2 ratio = 2.00 ± 0.01; 73% S₈ gap closure; structural ceiling ~43% within Planck 1σ",
+        "figshare_doi": "10.6084/m9.figshare.31333600",
+        "last_synced": "2026-02-13T00:00:00Z",
+        "status_detail": "completed_structural"
       }
     ],
     "planned_pipeline": [
@@ -566,21 +583,6 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "pending"
-      },
-      {
-        "test_id": null,
-        "name": null,
-        "description": null,
-        "result": "no_robust_support",
-        "status": "success",
-        "vl_category": null,
-        "also_phenomenological": null,
-        "data_source": null,
-        "prediction": null,
-        "notes": null,
-        "quantitative_result": null,
-        "last_synced": null,
-        "status_detail": "completed"
       }
     ]
   },
@@ -1280,6 +1282,21 @@
         "doi": "31314922",
         "name": "BAO covariance test",
         "category": "empirical"
+      },
+      {
+        "doi": "31332730",
+        "name": "MVP-G1 Growth fσ8 LOO robustness",
+        "category": "empirical"
+      },
+      {
+        "doi": "31333414",
+        "name": "EFCLASS Sign Structure: background channel σ₈ exclusion",
+        "category": "empirical"
+      },
+      {
+        "doi": "31333600",
+        "name": "Perturbation-Level σ₈ Suppression via μ(a) < 1",
+        "category": "empirical"
       }
     ],
     "methodological": [
@@ -1764,5 +1781,6 @@
         "WorkPackage"
       ]
     }
-  ]
+  ],
+  "total_count": 37
 }

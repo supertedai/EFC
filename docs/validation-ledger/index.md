@@ -137,21 +137,22 @@ _Temporary parameterizations tested empirically but not derived from EFC field t
 | 6 | Weak-lensing shear (Case A) | KiDS-1000 Flinc ξ± | KiDS-1000 Flinc ξ± | αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM) |
 
 
-### 🔧 Framework Constraints — Model-Space Structure (6)
+### 🔧 Framework Constraints — Model-Space Structure (7)
 
 _Internal coherence mechanisms and structural exclusion arguments._
 
 | # | Test | Dataset | EFC Prediction | Result |
 |---|------|---------|----------------|--------|
-| 1 | Background gate sign constraint (EFCLASS Technical Note I) | CLASS v3.3.4 internal consistency (EFCLASS patch, 9-point numerical verification) | ΔE² ≤ 0 for all z>0 (sign-locked). Background channel cannot suppress structure growth. S₈ amelioration requires perturbation-level μ<1. | Planned |
-| 2 | Cluster core entropy–structure coupling | ACCEPT / TNG-Cluster | ⚪ | Framework Diagnostic — Data-Informed: diagnostic mismatch (ρ sign flip TNG vs ACCEPT) |
-| 3 | Cluster merger geometry | Cluster lensing & mass–gas offsets | ⚪ | Completed (structural exclusion test) |
-| 4 | Core Lock consistency enforcement (31223503) | — | Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3 | — |
-| 5 | Density Saturation Θ(ρ) (v1.3) | — | Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with | — |
-| 6 | Structural coherence across regimes (SCE evaluation) | KiDS, BAO, RSD, Lyα, CMB lensing | ⚪ | Completed (meta-model evaluation) |
+| 1 | Cluster core entropy–structure coupling | ACCEPT / TNG-Cluster | ⚪ | Framework Diagnostic — Data-Informed: diagnostic mismatch (ρ sign flip TNG vs ACCEPT) |
+| 2 | Cluster merger geometry | Cluster lensing & mass–gas offsets | ⚪ | Completed (structural exclusion test) |
+| 3 | Core Lock consistency enforcement (31223503) | — | Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3 | — |
+| 4 | Density Saturation Θ(ρ) (v1.3) | — | Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with | — |
+| 5 | Structural coherence across regimes (SCE evaluation) | KiDS, BAO, RSD, Lyα, CMB lensing | ⚪ | Completed (meta-model evaluation) |
+| 6 | EFCLASS Sign Structure: background channel σ₈ exclusion | CLASS v3.3.4 (analytical + numerical) | Background modification cannot suppress σ₈; μ < 1 required | Completed (structural proof) — ΔE² ≤ 0; fσ₈ enhanced +0.5–0.76% | [31333414](https://doi.org/10.6084/m9.figshare.31333414) |
+| 7 | Perturbation-Level σ₈ Suppression via μ(a) < 1 (WP1a) | BOSS DR12 RSD (3 pts, full cov) | Structural ceiling for σ₈ suppression via scale-free μ(a) | WP1a: μ₀=0.85, σ₈=0.773, S₈=0.790 (73% gap); ceiling ~43% in Planck 1σ | [31333600](https://doi.org/10.6084/m9.figshare.31333600) |
 
 
-### 🔵 Planned Pipeline — Methodology Defined (13)
+### 🔵 Planned Pipeline — Methodology Defined (12)
 
 _Fully specified tests awaiting execution._
 
@@ -337,9 +338,9 @@ _Requires next-generation surveys or novel methodology._
 
 ## Recent Changes (last 7 days)
 
-- **2026-02-13** — Background gate sign constraint (EFCLASS Technical Note I): status=_planned_
-- **2026-02-13** — MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode): status=_planned_
-- **2026-02-12** — —: status=_completed_
+- **2026-02-13** — EFCLASS Sign Structure: background channel σ₈ exclusion: status=_COMPLETE_ — ΔE² ≤ 0; fσ₈ enhanced +0.5–0.76%; background excluded — [10.6084/m9.figshare.31333414](https://doi.org/10.6084/m9.figshare.31333414)
+- **2026-02-13** — Perturbation-Level σ₈ Suppression via μ(a) < 1 (WP1a): status=_COMPLETE_ — μ₀=0.85, S₈=0.790 (73% gap); ceiling ~43% — [10.6084/m9.figshare.31333600](https://doi.org/10.6084/m9.figshare.31333600)
+- **2026-02-13** — MVP-G1 Growth fσ8 LOO Robustness (N2a): status=_COMPLETE_ — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α<0 in EFC growth channel — [10.6084/m9.figshare.31332730](https://doi.org/10.6084/m9.figshare.31332730)
 - **2026-02-08** — Strong Lens Time Delay Conflict: status=_unresolved_
 - **2026-02-08** — Monotonic Radial Boost Problem: status=_resolved_
 - **2026-02-08** — EFC-Y6 Compressed Likelihood: status=_COMPLETE_
