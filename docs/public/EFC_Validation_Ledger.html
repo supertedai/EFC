@@ -1284,5 +1284,17 @@ does not require new physics but remains a target for Stage-IV precision tests.
 © 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v2.1)
 </p>
 
+<script>
+// Auto-resize: send height to parent (WordPress) so iframe has no inner scrollbar
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+// Re-measure after any late-loading content
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
 </body>
 </html>
