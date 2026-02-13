@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Perturbation-Level_sigma8_Suppression/schema.json",
+  "title": "EFC Perturbation-Level σ₈ Suppression Schema",
+  "description": "Schema for perturbation-level μ(a) < 1 modifications and σ₈ suppression analysis",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-perturbation-sigma8-suppression"
+    },
+    "gate_function": {
+      "type": "object",
+      "description": "Sigmoid gate g(a) = 1/(1 + (a_t/a)^n)",
+      "properties": {
+        "a_t": {"type": "number", "description": "Transition scale factor"},
+        "n": {"type": "number", "description": "Steepness exponent", "minimum": 1},
+        "z_t": {"type": "number", "description": "Transition redshift"}
+      },
+      "required": ["a_t", "n"]
+    },
+    "mu_modification": {
+      "type": "object",
+      "description": "μ(a) = 1 − B g(a) perturbation modification",
+      "properties": {
+        "B": {"type": "number", "description": "Perturbation amplitude", "minimum": 0},
+        "mu_0": {"type": "number", "description": "Present-day μ value", "maximum": 1},
+        "Sigma": {"type": "number", "description": "Lensing potential parameter"}
+      },
+      "required": ["B", "mu_0"]
+    },
+    "background": {
+      "type": "object",
+      "description": "Background cosmological parameters",
+      "properties": {
+        "A": {"type": "number", "description": "Background gate amplitude (0 for pure μ-model)"},
+        "Omega_m": {"type": "number"},
+        "H0": {"type": "number"}
+      }
+    },
+    "scan_result": {
+      "type": "object",
+      "properties": {
+        "sigma_8": {"type": "number"},
+        "S_8": {"type": "number"},
+        "delta_sigma_8": {"type": "number"},
+        "chi2_RSD": {"type": "number"},
+        "gap_closed_percent": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    },
+    "universal_factor_2": {
+      "type": "object",
+      "description": "Ratio Δσ₈(n=2)/Δσ₈(n=6) = 2.00 ± 0.01",
+      "properties": {
+        "ratio": {"type": "number"},
+        "uncertainty": {"type": "number"}
+      }
+    }
+  },
+  "required": ["id", "mu_modification", "gate_function"],
+  "efc_analysis_type": "perturbation_sigma8_suppression"
+}

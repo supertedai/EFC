@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/EFC-Growth-Sector-Robustness/schema.json",
+  "title": "EFC Growth-Sector Robustness Schema",
+  "description": "Schema for leave-one-out robustness analysis of the EFC Hubble-Friction channel growth signal",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-growth-sector-robustness"
+    },
+    "alpha_fit": {
+      "type": "object",
+      "description": "EFC coupling constant fit result",
+      "properties": {
+        "alpha": {"type": "number", "description": "Best-fit coupling constant"},
+        "sigma": {"type": "number", "description": "1σ uncertainty"},
+        "significance": {"type": "number", "description": "Detection significance in σ"},
+        "delta_AIC": {"type": "number"},
+        "delta_BIC": {"type": "number"}
+      },
+      "required": ["alpha", "sigma"]
+    },
+    "robustness_control": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string", "enum": ["N1_sound_horizon", "N2_amplitude_prior", "T7_leave_one_out"]},
+        "status": {"type": "string", "enum": ["PASSED", "FAILED", "INCONCLUSIVE"]},
+        "description": {"type": "string"}
+      },
+      "required": ["name", "status"]
+    },
+    "loo_result": {
+      "type": "object",
+      "properties": {
+        "drop_index": {"type": "integer", "minimum": 0, "maximum": 6},
+        "z": {"type": "number"},
+        "alpha": {"type": "number"},
+        "sigma": {"type": "number"},
+        "significance": {"type": "number"},
+        "delta_AIC": {"type": "number"},
+        "pass": {"type": "boolean"}
+      },
+      "required": ["drop_index", "z", "alpha", "pass"]
+    },
+    "fsigma8_datapoint": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number", "minimum": 0},
+        "fsigma8": {"type": "number"},
+        "error": {"type": "number"},
+        "survey": {"type": "string"}
+      },
+      "required": ["z", "fsigma8", "error"]
+    }
+  },
+  "required": ["id", "alpha_fit"],
+  "efc_analysis_type": "growth_sector_robustness"
+}

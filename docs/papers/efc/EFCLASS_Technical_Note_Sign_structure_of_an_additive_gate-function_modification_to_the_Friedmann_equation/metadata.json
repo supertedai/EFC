@@ -1,0 +1,61 @@
+{
+  "name": "efclass-sign-structure",
+  "version": "1.0.0",
+  "title": "Sign structure of an additive gate-function modification to the Friedmann equation",
+  "description": "Analytical proof and CLASS v3.3.4 numerical verification that the EFC background gate produces ΔE² ≤ 0 under E(0) = 1 normalisation, implying reduced Hubble friction and enhanced growth. Rules out background channel for σ₈ suppression.",
+  "doi": "10.6084/m9.figshare.31333414",
+  "created": "2026-02-13",
+  "updated": "2026-02-13",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "cosmology",
+    "Friedmann equation",
+    "gate function",
+    "sign lemma",
+    "Hubble friction",
+    "energy-flow cosmology",
+    "EFC",
+    "CLASS",
+    "Boltzmann solver",
+    "background modification",
+    "structure growth"
+  ],
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "role": "principal investigator",
+      "affiliation": "Independent Researcher, Stavanger, Norway"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "methods": {
+    "boltzmann_solver": "CLASS v3.3.4",
+    "modification": "77 lines of C code across background.h, background.c, input.c",
+    "verification": "Analytical vs numerical comparison at 9 redshift points"
+  },
+  "results": {
+    "sign_lemma": "ΔE²(z) = A[g(z) − g(0)] ≤ 0 for all z > 0",
+    "numerical_agreement": "< 0.3% at all redshift points",
+    "growth_enhancement": "+0.5% to +0.76% in fσ₈ at BOSS DR12 redshifts",
+    "implication": "Background-level EFC cannot suppress σ₈; perturbation-level μ < 1 required"
+  },
+  "files": {
+    "paper": "efclass_companion_note.pdf",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFCLASS-Sign-Structure.jsonld",
+    "citations": "citations.bib",
+    "readme": "README.md"
+  },
+  "ai_metadata": {
+    "machine_readable": true,
+    "structured_results": true,
+    "equations_provided": true,
+    "numerical_data_tabulated": true,
+    "class_patch_specified": true
+  }
+}

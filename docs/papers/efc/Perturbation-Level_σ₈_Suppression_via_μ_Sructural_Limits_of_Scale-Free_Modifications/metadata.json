@@ -1,0 +1,75 @@
+{
+  "name": "efc-perturbation-sigma8-suppression",
+  "version": "1.0.0",
+  "title": "Perturbation-Level σ₈ Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications",
+  "description": "Systematic scan of the perturbation channel μ(a) = 1 − B g(a) for σ₈ suppression in the EFC framework. Establishes the universal factor-2 from gate broadening and defines the WP1a reference model.",
+  "doi": "10.6084/m9.figshare.31333600",
+  "created": "2026-02-13",
+  "updated": "2026-02-13",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "cosmology",
+    "sigma8",
+    "S8 tension",
+    "perturbation theory",
+    "modified gravity",
+    "energy-flow cosmology",
+    "EFC",
+    "gate function",
+    "growth suppression",
+    "Hubble friction",
+    "Planck constraints",
+    "BOSS DR12",
+    "RSD"
+  ],
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "role": "principal investigator",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "data": {
+    "source": "BOSS DR12 RSD",
+    "points": 3,
+    "covariance": "full",
+    "reference": "Alam et al. (2017)"
+  },
+  "methods": {
+    "growth_solver": "Growth ODE with μ(a) modification",
+    "scan_types": ["B-sweep (amplitude)", "n-sweep (gate width)"],
+    "calibration": "B = (1 − μ₀) / g(1; n)",
+    "background": "ΛCDM (A = 0)"
+  },
+  "results": {
+    "central_result": "Universal factor-2: Δσ₈(n=2)/Δσ₈(n=6) = 2.00 ± 0.01",
+    "reference_model": {
+      "name": "WP1a",
+      "parameters": {"A": 0, "B": 0.187, "n": 2, "z_t": 1.01},
+      "observables": {"mu_0": 0.85, "sigma_8": 0.773, "S_8": 0.790},
+      "S8_gap_closed": "73%",
+      "planck_status": "~1.5σ from μ₀ = 1"
+    },
+    "structural_ceiling": "Scale-free μ(a) closes at most ~43% within Planck 1σ"
+  },
+  "files": {
+    "paper": "efc_technical_note_II.pdf",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "Perturbation-Level-sigma8-Suppression.jsonld",
+    "citations": "citations.bib",
+    "readme": "README.md"
+  },
+  "ai_metadata": {
+    "machine_readable": true,
+    "structured_results": true,
+    "equations_provided": true,
+    "scan_data_tabulated": true,
+    "reference_model_defined": true
+  }
+}

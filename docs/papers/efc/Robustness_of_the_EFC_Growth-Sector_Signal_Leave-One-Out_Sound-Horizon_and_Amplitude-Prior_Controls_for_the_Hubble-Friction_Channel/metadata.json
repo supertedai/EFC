@@ -1,0 +1,70 @@
+{
+  "name": "efc-growth-sector-robustness",
+  "version": "1.0.0",
+  "title": "Robustness of the EFC Growth-Sector Signal: Leave-One-Out, Sound-Horizon, and Amplitude-Prior Controls for the Hubble-Friction Channel",
+  "description": "Three independent robustness controls for the EFC growth-sector α = −1.00 ± 0.46 (2.20σ) signal: sound-horizon independence, amplitude-prior sensitivity, and leave-one-out analysis. All controls pass. Sub-detection-threshold hint for late-time growth suppression.",
+  "doi": "10.6084/m9.figshare.31332730",
+  "created": "2026-02",
+  "updated": "2026-02",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "cosmology",
+    "growth rate",
+    "fσ₈",
+    "BAO",
+    "leave-one-out",
+    "robustness",
+    "energy-flow cosmology",
+    "EFC",
+    "Hubble friction",
+    "Bayesian analysis",
+    "BOSS DR12",
+    "6dFGS",
+    "SDSS",
+    "eBOSS"
+  ],
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "role": "principal investigator",
+      "affiliation": "Independent Researcher, Sandnes, Norway"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "data": {
+    "BAO": {"points": 14, "z_range": "0.106–2.334"},
+    "growth_rate": {"points": 7, "z_range": "0.02–0.85"}
+  },
+  "methods": {
+    "pipeline": "MVP-G1 Hubble Friction Channel",
+    "fitting": "Joint Bayesian fit",
+    "controls": ["N1: Sound-horizon independence", "N2: Amplitude-prior sensitivity", "T7: Leave-one-out"],
+    "nuisance": "N2a mode (r_d fixed, tight σ₈ prior)"
+  },
+  "results": {
+    "signal": "α = −1.00 ± 0.46 (2.20σ)",
+    "robustness_score": "3/3 controls passed",
+    "LOO_score": "7/7 (100%)",
+    "alpha_range_LOO": "[-1.11, -0.88]",
+    "status": "Robust sub-detection-threshold hint"
+  },
+  "files": {
+    "paper": "EFC_Growth_Sector_Robustness_DOI_31332730.pdf",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-Growth-Sector-Robustness.jsonld",
+    "citations": "citations.bib",
+    "readme": "README.md"
+  },
+  "ai_metadata": {
+    "machine_readable": true,
+    "structured_results": true,
+    "loo_data_tabulated": true,
+    "fsigma8_data_provided": true,
+    "degeneracy_structure_documented": true
+  }
+}
