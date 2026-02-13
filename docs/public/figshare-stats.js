@@ -18,16 +18,15 @@
 (function () {
   'use strict';
 
-  var API      = 'https://api.figshare.com/v2';
-  var STATS    = 'https://stats.figshare.com';
-  var AUTHOR   = 'Morten Magnusson';
-  var ORCID    = '0009-0002-4860-5095';
+  var API           = 'https://api.figshare.com/v2';
+  var STATS         = 'https://stats.figshare.com';
+  var KNOWN_ARTICLE = 30630500;              // EFC Master – always by this author
+  var AUTHOR_NAME   = 'Morten Magnusson';
 
   // ── Helpers ──────────────────────────────────────────────
 
   function fmt(n) {
-    // 6025 → "6 025+"
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '+';
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + '+';
   }
 
   function setEl(id, value) {
@@ -35,93 +34,90 @@
     if (el) el.textContent = value;
   }
 
-  // ── Fetch all articles by author (paginated) ─────────────
+  // ── Step 1 – Get author_id from a known article ─────────
 
-  function fetchAllArticles() {
-    var articles = [];
+  function getAuthorId() {
+    return fetch(API + '/articles/' + KNOWN_ARTICLE)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var authors = data.authors || [];
+        for (var i = 0; i < authors.length; i++) {
+          if (authors[i].full_name === AUTHOR_NAME) return authors[i].id;
+        }
+        return authors.length > 0 ? authors[0].id : null;
+      });
+  }
+
+  // ── Step 2 – Count articles (paginated search) ──────────
+
+  function countArticles() {
+    var total = 0;
     var page = 1;
     var pageSize = 100;
 
-    function fetchPage() {
+    function nextPage() {
       return fetch(API + '/articles/search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          search_for: ':author: ' + ORCID,
+          search_for: ':author: "' + AUTHOR_NAME + '"',
           page: page,
           page_size: pageSize
         })
       })
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (!Array.isArray(data) || data.length === 0) return articles;
-          articles = articles.concat(data);
-          if (data.length < pageSize) return articles;
+          if (!Array.isArray(data) || data.length === 0) return total;
+          total += data.length;
+          if (data.length < pageSize) return total;
           page++;
-          return fetchPage();
+          return nextPage();
         });
     }
 
-    return fetchPage();
+    return nextPage();
   }
 
-  // ── Fetch author ID from first article ───────────────────
+  // ── Step 3 – Aggregate views / downloads ────────────────
 
-  function fetchAuthorId(articleId) {
-    return fetch(API + '/articles/' + articleId)
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var authors = data.authors || [];
-        for (var i = 0; i < authors.length; i++) {
-          if (authors[i].full_name === AUTHOR ||
-              (authors[i].orcid_id && authors[i].orcid_id.indexOf(ORCID) !== -1)) {
-            return authors[i].id;
-          }
-        }
-        // Fallback: return first author
-        return authors.length > 0 ? authors[0].id : null;
-      });
-  }
-
-  // ── Fetch aggregate stats ────────────────────────────────
-
-  function fetchStat(type, authorId) {
+  function fetchAuthorStat(type, authorId) {
     return fetch(STATS + '/total/' + type + '/author/' + authorId)
-      .then(function (r) { return r.json(); })
-      .then(function (data) { return data.totals || 0; });
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (d) { return d.totals || 0; });
   }
 
-  // ── Main ─────────────────────────────────────────────────
+  // ── Main ────────────────────────────────────────────────
 
   function run() {
-    fetchAllArticles()
-      .then(function (articles) {
-        // Update paper count immediately
-        setEl('efc-papers', fmt(articles.length));
+    getAuthorId()
+      .then(function (authorId) {
+        if (!authorId) return;
 
-        if (articles.length === 0) return;
+        // Paper count (independent of authorId, but we wait for
+        // the bootstrap fetch to confirm connectivity first)
+        countArticles().then(function (n) {
+          if (n > 0) setEl('efc-papers', fmt(n));
+        });
 
-        // Get author ID from first article, then fetch stats
-        return fetchAuthorId(articles[0].id)
-          .then(function (authorId) {
-            if (!authorId) return;
-            return Promise.all([
-              fetchStat('views', authorId),
-              fetchStat('downloads', authorId)
-            ]);
-          })
-          .then(function (stats) {
-            if (!stats) return;
-            setEl('efc-views', fmt(stats[0]));
-            setEl('efc-downloads', fmt(stats[1]));
-          });
+        // Views + downloads
+        return Promise.all([
+          fetchAuthorStat('views', authorId),
+          fetchAuthorStat('downloads', authorId)
+        ]);
       })
-      .catch(function () {
-        // Silently fail — keeps hardcoded fallback values
+      .then(function (stats) {
+        if (!stats) return;
+        if (stats[0] > 0) setEl('efc-views', fmt(stats[0]));
+        if (stats[1] > 0) setEl('efc-downloads', fmt(stats[1]));
+      })
+      .catch(function (err) {
+        console.warn('EFC Figshare stats:', err);
       });
   }
 
-  // Run when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {
