@@ -534,6 +534,29 @@ with defined methodologies to ensure transparency and falsifiability.
       </td>
     </tr>
 
+    <!-- MVP-G1 Growth: fσ8 Leave-One-Out robustness (v2.2) -->
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>MVP-G1 Growth: fσ<sub>8</sub> Leave-One-Out robustness (N2a)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">fσ<sub>8</sub> extended (7 pts, z=0.02–0.85) + BAO(14)</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        T7 Leave-One-Out robustness (fσ<sub>8</sub>, N2a-mode: r<sub>d</sub>=147.09, σ<sub>8</sub>~N(0.81,0.02)):
+        7/7 LOO runs pass (|α|/σ ≥ 1.7 AND ΔAIC ≤ 0).
+        α-estimate extremely stable: α = −1.00 ± 0.46 (2.20σ), LOO-range [−1.11, −0.88], spread only 0.23.
+        No single fσ<sub>8</sub> measurement drives the hint; lowest significance at z=0.02 drop (1.84σ), highest at z=0.15 drop (2.42σ).
+        Correlations stable across LOO: corr(α,Ω<sub>m</sub>) ≈ +0.59, corr(α,σ<sub>8</sub>) ≈ −0.26.
+        Full MVP-G1 control suite passed: N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness (7/7).
+        <strong>Conclusion:</strong> Robust, distributed ~2σ preference for α&lt;0 in EFC growth channel; signal is structural, not artefactual.
+      </td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (robust hint)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        Internal EFC pipeline output (MVP-G1)
+      </td>
+    </tr>
+
     <tr>
       <td style="border:1px solid #ddd; padding:8px;"><strong>Regime transition metric (Δ<sub>F</sub>)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">DESI + Fugaku-class N-body + SPARC</td>
@@ -926,6 +949,18 @@ They constrain EFC phenomenology without providing canonical theoretical validat
         Case A is phenomenological lensing boost, not S₈ tension solution.
       </td>
     </tr>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>MVP-G1 Growth: fσ<sub>8</sub> LOO robustness (N2a)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">fσ<sub>8</sub> extended (7 pts) + BAO(14)</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        α = −1.00 ± 0.46 (2.20σ); ΔAIC = −2.91<br>
+        LOO 7/7 pass; |α|/σ range [1.84, 2.42]
+      </td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        Robust ~2σ preference for α&lt;0 in EFC Hubble friction channel. Signal distributed across all 7 growth data points — not driven by any single measurement.
+        Full MVP-G1 control suite: N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO (7/7).
+      </td>
+    </tr>
     <tr>
       <td style="border:1px solid #ddd; padding:8px;"><strong>Solar System screening</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">Cassini / LLR / perihelion</td>
@@ -1286,6 +1321,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <h2>6. Recent Updates</h2>
 
 <ul>
+  <li><strong>2026-02-13 (v2.2)</strong> – Added MVP-G1 Growth fσ<sub>8</sub> Leave-One-Out robustness test (N2a mode). α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α&lt;0 in EFC growth channel. Full MVP-G1 control suite passed (N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness).</li>
   <li><strong>2026-02-12 (v2.1)</strong> – ISW Consistency Audit v1.1 applied (<a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a>). Recomputed A<sub>ISW</sub> under fully self-consistent growth-channel implementation. Revised prediction: uniform suppression A<sub>ISW</sub> ≈ 0.89 ± 0.03 across tracers.</li>
   <li><strong>2026-02-11 (v2.0.1)</strong> – KB synchronization update: Added Section 2.3 S₈ Stage-III Convergence table. Standardized three "Completed" rows to follow 9-level status system.</li>
   <li><strong>2026-02-11 (v2.0)</strong> – Full methodological upgrade: Executive Summary, Status Classification Key, Global Parameter Registry, Regime × Observable × Sector Matrix.</li>
@@ -1296,7 +1332,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <p><a href="EFC_Changelog.html"><strong>View full revision history &rarr;</strong></a></p>
 
 <p style="font-size:13px; color:#666;">
-© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v2.1)
+© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v2.2)
 </p>
 
 <script>
