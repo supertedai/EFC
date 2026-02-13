@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EFC Validation Ledger – Full Revision History</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #1a3a6b;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff;
+      padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a4a7f;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr {
+      border: none;
+      border-top: 1px solid #d0d7e3;
+      margin: 2rem 0;
+    }
+    ul { padding-left: 1.6rem; }
+    li { margin-bottom: 0.5rem; font-size: 0.92rem; }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: #007bff;
+    }
+    .back-link:hover { text-decoration: underline; }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<a class="back-link" href="EFC_Validation_Ledger.html">&larr; Back to Validation Ledger</a>
+
+<h1>EFC Validation Ledger – Full Revision History</h1>
+
+<p>Complete changelog for the Energy-Flow Cosmology Validation Ledger, documenting all structural, methodological, and empirical updates since inception.</p>
+
+<hr>
+
+<h2>2026</h2>
+
+<ul>
+  <!-- v2.1 entry -->
+  <li><strong>2026-02-12 (v2.1)</strong> – ISW Consistency Audit v1.1 applied (<a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a>). Removed tomographic cancellation metric 𝒞 from canonical prediction set. Recomputed A<sub>ISW</sub> under fully self-consistent growth-channel implementation (ODE-based D(a), no potential μ′ term). Revised prediction: uniform suppression A<sub>ISW</sub> ≈ 0.89 ± 0.03 across tracers. Updated ISW row status from "Completed (no observational conflict; falsifiable prediction locked)" to "Completed (Self-consistent recomputation; quantitative revision)". Deprecated 𝒞-metric in Section 1.1 Phenomenological Constraints. Updated ISW sector in Regime × Observable Matrix to "BG → GRW (growth response only; no direct potential coupling)". Updated ISW planned pipeline entry from 𝒞-metric tomographic test to uniform A<sub>ISW</sub> amplitude validation.</li>
+
+  <!-- v2.0.1 entry -->
+  <li><strong>2026-02-11 (v2.0.1)</strong> – KB synchronization update: Added Section 2.3 S₈ Stage-III Convergence table with DEPRECATED/CURRENT framing (KiDS Legacy 0.815, HSC Y3 0.805, Combined 0.813). Standardized three "Completed" rows to follow the 9-level status system: Galaxy rotation curves → Data Likelihood Test; Δ<sub>F</sub> regime transition → Consistency Check; H₀ tension → Consistency Check.</li>
+
+  <!-- v2.0 entry -->
+  <li><strong>2026-02-11 (v2.0)</strong> – Full methodological upgrade: Added Executive Summary with 6-channel validation overview; Status Classification Key (Section 0.1) defining 9 validation maturity levels; Global Parameter Registry (Section 0.2) with 4 parameter tables (Background-Coupling, Growth-Sector, Density-Saturation, Lensing Phenomenology) enforcing frozen-parameter governance; Regime × Observable × Sector Matrix (Section 0.3) mapping 20 channels to parameter dependencies. These additions establish canonical governance preventing hidden tuning and ensuring parameter-lock consistency across all EFC validation tests.</li>
+
+  <!-- v1.9 entry -->
+  <li><strong>2026-02-11 (v1.9)</strong> – Methodological refinements: adjusted status wording on 5 rows to improve epistemological precision (High-z null → "null-prediction consistency check"; JWST ΛCDM → ⚠️ with interpretation caveat; Cluster merger → "structural exclusion test"; SCE → "meta-model evaluation"; CMB TT → "Boltzmann validation pending"). Added 8 planned validation rows covering critical cosmological tests: P(k,z) full-shape, CMB TE/EE/φφ, multi-epoch RSD, E<sub>G</sub> slip, BAO anisotropic split, BBN expansion-rate, galaxy bias, and global parameter-lock test.</li>
+
+  <!-- v1.8 entry -->
+  <li><strong>2026-02-11 (v1.8)</strong> – Added covariance-aware BAO consistency test using official BOSS DR12 consensus likelihood with full 6×6 covariance matrix (<a href="https://doi.org/10.6084/m9.figshare.31314922">31314922</a>). Fixed-parameter transfer test shows Δχ² = −2.4 for BAO and Δχ² = −0.6 for cosmic chronometers. No validated geometric channel penalises EFC relative to ΛCDM.</li>
+
+  <!-- v1.7 entry -->
+  <li><strong>2026-02-10 (v1.7)</strong> – Major hierarchical restructuring. Added master row "Late-time background coupling architecture (β·T(a))" establishing multi-channel consistency across BAO, RSD, SN Ia, and CMB lensing (<a href="https://doi.org/10.6084/m9.figshare.31304980">31304980</a>). Added "High-z null regime consistency" demonstrating T(z) predicts near-zero modification at z ≈ 3 (<a href="https://doi.org/10.6084/m9.figshare.31304995">31304995</a>). Added "Structural coherence across regimes (SCE evaluation)" for framework-level disciplined assessment (<a href="https://doi.org/10.6084/m9.figshare.31305550">31305550</a>). Updated BAO+RSD and BAO transfer rows with superseding references. Added β-split test and standard sirens to Planned Pipeline (<a href="https://doi.org/10.6084/m9.figshare.31305421">31305421</a>).</li>
+
+  <!-- v1.6 entry -->
+  <li><strong>2026-02-09 (v1.6)</strong> – Upgraded ISW cross-correlation from "Planned" to "Completed (no observational conflict)". Added bias-calibrated A<sub>ISW</sub> analysis with DESI DR1 tracer windows, cancellation index 𝒞, and kernel decomposition K<sub>μ</sub>/K<sub>μ′</sub>. All published ISW measurements consistent within 1.6σ. H(a) background sensitivity confirmed (Δχ² < 1). Falsifiable prediction locked: DESI tomographic bins overlapping z<sub>t</sub> should show 𝒞 > 0.7 and A<sub>ISW</sub> < 0.5. Paper-ready methodology published as <a href="https://doi.org/10.6084/m9.figshare.31301953">31301953</a>.</li>
+
+  <li><strong>2026-02-07 (v1.5)</strong> – Added pre-registered cluster shock-front lensing asymmetry test (Directional Lensing Residuals at Cluster Merger Shock Fronts). Defines directional residual estimator A<sub>sig</sub> and rotation-null methodology for L2 geometric symmetry discrimination. Status: analysis pending JWST κ integration.</li>
+
+  <li><strong>2026-02-07 (v1.4)</strong> – Added Cluster core entropy–structure coupling row (<a href="https://doi.org/10.6084/m9.figshare.31286368">31286368</a>): pre-registered sim–obs diagnostic test showing sign-flip mismatch in TNG-Cluster vs ACCEPT</li>
+
+  <li><strong>2026-02-05 (v1.4)</strong> – Added KiDS-1000 Flinc cosmic shear testbed results (<a href="https://doi.org/10.6084/m9.figshare.31271917">31271917</a>)</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Updated Weak-lensing shear row: Case A phenomenological test completed; Δ(−2 ln L) = −50.9 at α<sub>L2</sub> = 0.10</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Added critical finding: EFC Case A prefers lower S₈ (0.685 vs 0.739), increasing Planck tension (3.6σ vs 2.3σ)</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Added Section 2.2: Weak-Lensing Case A Insight</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Added Case A S₈ direction constraint to Structural Constraints table</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Added DES Y3 cross-validation and Case B implementation to Planned Validation Pipeline</li>
+  <li><strong>2026-02-05 (v1.4)</strong> – Updated Section 1.1 Phenomenological Constraints with KiDS-1000 Flinc testbed entry</li>
+
+  <li><strong>2026-02-03</strong> – Added GR Recovery via Density Saturation – Quantitative PPN Analysis (<a href="https://doi.org/10.6084/m9.figshare.31244827">31244827</a>)</li>
+  <li><strong>2026-02-03</strong> – Updated Solar System / PPN row: status upgraded to "Quantitative compatibility supported (screened regime)" with citable evidence</li>
+  <li><strong>2026-02-03</strong> – Updated Weak-lensing row: clarified C<sub>ℓ</sub> prediction and Θ(ρ) coupling still pending</li>
+  <li><strong>2026-02-03</strong> – Updated CMB power spectrum row: added note on dynamic suppression demonstration</li>
+  <li><strong>2026-02-03</strong> – Added Section 1.1: Phenomenological Constraints (separates empirical tests from field-derived validation)</li>
+  <li><strong>2026-02-03</strong> – Added clarification note on ⚪ symbol meaning in EFC columns</li>
+  <li><strong>2026-02-03</strong> – Added BAO+RSD joint fit (phenomenological α<sub>L2</sub>) row with BOSS DR12 data (<a href="https://doi.org/10.6084/m9.figshare.31243828">31243828</a>)</li>
+
+  <li><strong>2026-02-02 (v1.3)</strong> – Added Solar System / PPN / EP validation row with Density Saturation gate mechanism</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Added CMB lensing + gravitational slip (Φ vs Ψ) validation row</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Added Cluster abundance / mass function N(M,z) validation row</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Added Section 2.1: Density Saturation Mechanism with physical motivation</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Extended R(k,S) → R(k,S,ρ) with explicit density axis</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Updated Weak-lensing status from "Phenomenological" to "Under derivation (v1.3)"</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Added Density Saturation Θ(ρ) to Structural Constraints table</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Updated Δ<sub>F</sub> interpretation to include physical bounding by Θ(ρ)</li>
+  <li><strong>2026-02-02 (v1.3)</strong> – Added four new items to Planned Validation Pipeline</li>
+  <li><strong>2026-02-02</strong> – Added BAO transfer test artifact (DESI → BOSS/eBOSS; no refit) (31231522)</li>
+  <li><strong>2026-02-02</strong> – Added SPARC Phase 3 empirical screening fit + intrinsic scatter (31224538)</li>
+  <li><strong>2026-02-01</strong> – Added Core Lock v1.0 (consistency enforcement layer) (31223503)</li>
+  <li><strong>2026-02-01</strong> – Added EBE Core Principles v1.0 (31222903)</li>
+  <li><strong>2026-02-01</strong> – Added EFC Closure Conjectures (31224466)</li>
+  <li><strong>2026-02-01</strong> – Added EFC Ontological Foundations v1.0.2 (31223668)</li>
+  <li><strong>2026-01-30</strong> – Added unified BAO+SN Ia+RSD growth/expansion analysis (31215613)</li>
+  <li><strong>2026-01-30</strong> – Added WP3 empirical R(k,S) cartography slice (fσ₈ trajectory) (31215259)</li>
+  <li><strong>2026-01-29</strong> – Added empirical cross-scale validation (cluster lensing + rotation curves) (31190233)</li>
+  <li><strong>2026-01-29</strong> – Added weak-lensing phenomenology paper (31188193)</li>
+  <li><strong>2026-01-29</strong> – Reclassified weak-lensing entry as phenomenological closure with missing derivation</li>
+  <li><strong>2026-01-29</strong> – Reframed cluster merger result as structural constraint (not validation)</li>
+  <li><strong>2026-01-29</strong> – Added Structural Constraints section</li>
+  <li><strong>2026-01-29</strong> – Clarified regime insight with lensing derivation requirement</li>
+  <li><strong>2026-01-24</strong> – Regime transition metric (Δ<sub>F</sub>) defined and constrained</li>
+  <li><strong>2026-01-22</strong> – Added dynamic L0 suppression result</li>
+  <li><strong>2026-01-20</strong> – CMB Planck TT analysis completed</li>
+  <li><strong>2026-01-13</strong> – JWST COSMOS-Web and SPARC175 analyses integrated</li>
+  <li><strong>2026-01-09</strong> – H₀ and BAO entries refined</li>
+</ul>
+
+<h2>2025</h2>
+
+<ul>
+  <li><strong>2025-11-05</strong> – Public validation ledger initiated</li>
+</ul>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger – Revision History
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>
