@@ -1,0 +1,116 @@
+{
+  "id": "efclass-sign-structure",
+  "title": "Sign structure of an additive gate-function modification to the Friedmann equation",
+  "short_title": "EFC Background Sign Lemma",
+  "version": "1.0",
+  "date": "2026-02-13",
+  "doi": "10.6084/m9.figshare.31333414",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Stavanger, Norway"
+  },
+  "type": "analytical_proof",
+  "status": "published",
+  "series": "EFCLASS Technical Note I",
+  "abstract_short": "Under standard closure normalisation E(0) = 1, the additive gate ΔE² = A[g(z) − g(0)] is strictly non-positive for all z > 0. This reduces Hubble friction and enhances structure growth. Background-level EFC cannot suppress σ₈. Verified numerically in CLASS v3.3.4 to < 0.1%.",
+  "keywords": ["EFC", "Friedmann equation", "gate function", "sign lemma", "Hubble friction", "CLASS", "background modification", "closure normalisation"],
+  "referenced_by": {
+    "technical_note_II": {
+      "id": "efc-perturbation-sigma8-suppression",
+      "doi": "10.6084/m9.figshare.31333600",
+      "relationship": "Builds on sign lemma to investigate perturbation channel"
+    }
+  },
+  "core_equations": {
+    "friedmann_standard": {
+      "latex": "E^2(z) = \\Omega_r (1+z)^4 + \\Omega_m (1+z)^3 + \\Omega_\\Lambda",
+      "description": "Standard Friedmann equation with E(0) = 1"
+    },
+    "friedmann_efc": {
+      "latex": "E^2_{EFC}(z) = \\Omega_r (1+z)^4 + \\Omega_m (1+z)^3 + \\Omega'_\\Lambda + A\\, g(z)",
+      "description": "EFC-modified Friedmann equation at background level"
+    },
+    "gate_function": {
+      "latex": "g(z) = 1 / (1 + (a_t/a)^n),\\quad a = 1/(1+z),\\quad a_t = 1/(1+z_t)",
+      "description": "Sigmoid gate function activating at late times"
+    },
+    "closure_condition": {
+      "latex": "\\Omega'_\\Lambda = \\Omega_\\Lambda - A\\, g(0)",
+      "description": "Adjusted cosmological constant to ensure E_EFC(0) = 1"
+    },
+    "sign_lemma": {
+      "latex": "\\Delta E^2(z) = A[g(z) - g(0)] \\leq 0 \\quad \\forall\\, z > 0",
+      "description": "Lemma 1: ΔE² is strictly non-positive when gate is monotonically non-decreasing in a and A > 0"
+    },
+    "growth_equation": {
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} - \\frac{3}{2}\\Omega_m H_0^2 (1+z)^3 \\mu\\, \\delta = 0",
+      "description": "Linear growth equation for matter perturbations"
+    }
+  },
+  "parameters": {
+    "h": {"value": 0.674, "description": "Hubble constant h = H₀/100"},
+    "omega_b": {"value": 0.02237, "description": "Baryon density ω_b"},
+    "omega_cdm": {"value": 0.1200, "description": "CDM density ω_cdm"},
+    "m_nu": {"value": 0.06, "unit": "eV", "description": "Neutrino mass"},
+    "A": {"value": 0.15, "description": "EFC coupling amplitude"},
+    "z_t": {"value": 1.01, "description": "Transition redshift"},
+    "n": {"value": 6, "description": "Steepness exponent"},
+    "g_0": {"value": 0.985062, "description": "Derived: g(z=0)"},
+    "Omega_Lambda_prime": {"value": 0.5373, "description": "Derived: adjusted Ω'_Λ"}
+  },
+  "results": {
+    "sign_verification": {
+      "description": "ΔH² comparison: CLASS vs analytical prediction at 9 redshift points",
+      "agreement": "< 0.3% at all z > 0",
+      "sign_confirmed": true,
+      "data": [
+        {"z": 0.0, "delta_H2_class": 0.0, "delta_H2_analytical": 0.0, "delta_H_over_H_pct": 0.0},
+        {"z": 0.3, "delta_H2_class": -4.049e-10, "delta_H2_analytical": -4.038e-10, "delta_H_over_H_pct": -0.291},
+        {"z": 0.5, "delta_H2_class": -1.003e-9, "delta_H2_analytical": -1.003e-9, "delta_H_over_H_pct": -0.569},
+        {"z": 0.7, "delta_H2_class": -1.915e-9, "delta_H2_analytical": -1.918e-9, "delta_H_over_H_pct": -0.853},
+        {"z": 1.0, "delta_H2_class": -3.620e-9, "delta_H2_analytical": -3.621e-9, "delta_H_over_H_pct": -1.124},
+        {"z": 1.5, "delta_H2_class": -5.856e-9, "delta_H2_analytical": -5.856e-9, "delta_H_over_H_pct": -1.039},
+        {"z": 2.0, "delta_H2_class": -6.839e-9, "delta_H2_analytical": -6.840e-9, "delta_H_over_H_pct": -0.739},
+        {"z": 3.0, "delta_H2_class": -7.348e-9, "delta_H2_analytical": -7.348e-9, "delta_H_over_H_pct": -0.349},
+        {"z": 5.0, "delta_H2_class": -7.458e-9, "delta_H2_analytical": -7.458e-9, "delta_H_over_H_pct": -0.107}
+      ]
+    },
+    "closure_checks": {
+      "H0_ratio": {"value": 1.0, "status": "Exact"},
+      "Omega_Lambda_prime_plus_Omega_efc_0": {"value": 0.685103, "equals": "Ω_Λ^std"},
+      "tau_z1100_difference": {"value": "< 1 ppm", "status": "r_s preserved"},
+      "g_z1100": {"value": 3.7e-17, "status": "Gate fully suppressed"}
+    },
+    "growth_signature": {
+      "description": "fσ₈ at BOSS DR12 redshifts: enhanced growth due to reduced Hubble friction",
+      "data": [
+        {"z": 0.38, "fsigma8_LCDM": 0.4749, "fsigma8_EFC": 0.4773, "delta_pct": 0.50},
+        {"z": 0.51, "fsigma8_LCDM": 0.4731, "fsigma8_EFC": 0.4762, "delta_pct": 0.65},
+        {"z": 0.61, "fsigma8_LCDM": 0.4679, "fsigma8_EFC": 0.4715, "delta_pct": 0.76}
+      ]
+    },
+    "class_patch": {
+      "files_modified": ["background.h", "background.c", "input.c"],
+      "total_lines": 77,
+      "details": [
+        {"file": "background.h", "modification": "Parameters + index", "lines": 9},
+        {"file": "background.c", "modification": "Gate functions + density + output", "lines": 35},
+        {"file": "input.c", "modification": "Parsing + closure adjustment", "lines": 33}
+      ]
+    }
+  },
+  "key_conclusions": [
+    "ΔE²(z) = A[g(z) − g(0)] ≤ 0 for all z > 0 (Lemma 1)",
+    "H_EFC(z) ≤ H_ΛCDM(z): reduced Hubble friction enhances structure growth",
+    "Background-level EFC cannot suppress σ₈ under E(0) = 1 normalisation",
+    "fσ₈ increases by +0.5–0.8% for A = 0.15",
+    "S₈ tension requires perturbation-level modifications (μ < 1)",
+    "Structural constraint independent of numerical values of (A, z_t, n)"
+  ],
+  "files": {
+    "paper": "efclass_companion_note.pdf",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  }
+}

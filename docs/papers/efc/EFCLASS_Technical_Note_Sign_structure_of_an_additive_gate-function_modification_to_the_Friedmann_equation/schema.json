@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/EFCLASS-Sign-Structure/schema.json",
+  "title": "EFC Background Sign Structure Schema",
+  "description": "Schema for background-level Friedmann equation gate modification and sign lemma verification",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efclass-sign-structure"
+    },
+    "gate_function": {
+      "type": "object",
+      "description": "Sigmoid gate g(z) = 1/(1 + (a_t/a)^n)",
+      "properties": {
+        "A": {"type": "number", "description": "Coupling amplitude", "exclusiveMinimum": 0},
+        "z_t": {"type": "number", "description": "Transition redshift"},
+        "n": {"type": "number", "description": "Steepness exponent", "minimum": 1},
+        "a_t": {"type": "number", "description": "Transition scale factor"}
+      },
+      "required": ["A", "z_t", "n"]
+    },
+    "sign_verification": {
+      "type": "object",
+      "properties": {
+        "redshift": {"type": "number", "minimum": 0},
+        "delta_E2": {"type": "number", "maximum": 0},
+        "agreement_pct": {"type": "number"}
+      }
+    },
+    "closure_check": {
+      "type": "object",
+      "properties": {
+        "H0_ratio": {"type": "number", "const": 1.0},
+        "rs_preserved": {"type": "boolean"}
+      }
+    },
+    "growth_signature": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number"},
+        "fsigma8_LCDM": {"type": "number"},
+        "fsigma8_EFC": {"type": "number"},
+        "direction": {"type": "string", "enum": ["enhanced", "suppressed"]}
+      }
+    }
+  },
+  "required": ["id", "gate_function"],
+  "efc_analysis_type": "background_sign_structure"
+}
