@@ -262,6 +262,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "partial"
+      },
+      {
+        "test_id": "ledger_mvpg1_growth_fs8_loo_robustness_n2a",
+        "name": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a)",
+        "description": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14); N2a-mode: rd=147.09, σ8~N(0.81,0.02)",
+        "result": "Completed (robust hint) — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass |α|/σ ≥ 1.7 AND ΔAIC ≤ 0; LOO range [−1.11, −0.88]",
+        "status": "success",
+        "vl_category": "phenomenological",
+        "also_phenomenological": true,
+        "data_source": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14)",
+        "prediction": "Late-time growth suppression consistent with α<0 in Hubble friction channel (background→growth response)",
+        "notes": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a) | ✅ | ⚪ | ✅ | T7 Leave-One-Out robustness (fσ8, N2a-mode): 7/7 LOO runs pass (|α|/σ ≥ 1.7 AND ΔAIC ≤ 0). α-estimate extremely stable: α = −1.00 ± 0.46 (2.20σ), LOO-range [−1.11, −0.88], spread only 0.23. No single fσ8 measurement drives the hint; lowest significance at z=0.02 drop (1.84σ, ΔAIC=−1.59), highest at z=0.15 drop (2.42σ, ΔAIC=−3.97). Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ8) ≈ −0.26. Full MVP-G1 control suite passed: N1 rd-independence, N2 σ8-prior strengthening (2.20σ under tight prior), T7 LOO robustness (7/7). Conclusion: Robust, distributed ~2σ preference for α<0 in EFC growth channel under rd-fixing and tight σ8-prior; signal is structural, not artefactual.",
+        "quantitative_result": "α = −1.00 ± 0.46 (2.20σ); ΔAIC = −2.91; LOO 7/7 pass; |α|/σ range [1.84, 2.42]; ΔAIC range [−3.97, −1.59]; corr(α,Ωm)≈+0.59; corr(α,σ8)≈−0.26",
+        "last_synced": "2026-02-13T00:00:00Z",
+        "status_detail": "completed_robust_hint"
       }
     ],
     "framework_constraint": [
@@ -524,5 +539,5 @@
       }
     ]
   },
-  "total_count": 34
+  "total_count": 35
 }
