@@ -332,7 +332,6 @@ _Requires next-generation surveys or novel methodology._
 
 ### EFC Frontier Research Gaps
 
-- **Ubesvart: Morten kapasitet intelligens IQ kognitiv evne begavelse styr** (approach: None, domain: efc)
 - **Why does median residual μ correlate positively with Vflat in Q=1 dwarfs?** (approach: None, domain: cosmology|galaxy_dynamics)
 
 
