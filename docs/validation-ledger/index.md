@@ -6,7 +6,7 @@ _Version: v2.1 (auto-generated) — Regime-structured falsification methodology_
 
 ## Executive Summary
 
-The Energy-Flow Cosmology (EFC) validation ledger reports 2 physics tests, 9 consistency checks, and 6 phenomenological fits, with no confirmed falsifications to date. Theory coherence is maintained at compression=1.33 and mismatch=0.25. Recent updates include the resolution of the Monotonic Radial Boost Problem and completion of EFC-Y6 compressed likelihood analysis.
+The Energy-Flow Cosmology (EFC) validation ledger reports 2 physics tests, 9 consistency checks, and 7 phenomenological fits, with no confirmed falsifications to date. Theory coherence is maintained at compression=1.33 and mismatch=0.25. Recent updates include the resolution of the Monotonic Radial Boost Problem and completion of EFC-Y6 compressed likelihood analysis.
 
 ## Status Classification System
 
@@ -92,7 +92,7 @@ _Legend: ✓ = Primary sensitivity, (suppressed) = Secondary/consistency, — = 
 
 ## Empirical Validation Status
 
-_34 tests tracked: 2 physics, 9 consistency, 6 phenomenological, 5 structural, 12 planned — **0 confirmed falsifications**_
+_35 tests tracked: 2 physics, 9 consistency, 7 phenomenological, 5 structural, 12 planned — **0 confirmed falsifications**_
 
 
 ### 🔬 Physics Tests — Data Likelihood Comparisons (2)
@@ -122,7 +122,7 @@ _EFC predicts minimal deviation; observations show no contradiction._
 | 9 | Solar System / PPN / EP | Cassini / LLR / perihelion | ⚪ | Quantitative compatibility supported (screened regime) |
 
 
-### 🟡 Phenomenological Fits — Not Field-Derived (6)
+### 🟡 Phenomenological Fits — Not Field-Derived (7)
 
 _Temporary parameterizations tested empirically but not derived from EFC field theory._
 
@@ -134,6 +134,7 @@ _Temporary parameterizations tested empirically but not derived from EFC field t
 | 4 | Galaxy bias evolution consistency | BOSS, DESI clustering + lensing cross-correlation | ⚪ | Planned – bias-growth joint modeling |
 | 5 | Weak-lensing phenomenological closure (Postulate A) | — | Demonstrates absence of a derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides path to replace this closure with  | — |
 | 6 | Weak-lensing shear (Case A) | KiDS-1000 Flinc ξ± | KiDS-1000 Flinc ξ± | αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM) |
+| 7 | MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a) | fσ8_extended (7 pts, z=0.02–0.85) + BAO(14) | Late-time growth suppression consistent with α<0 in Hubble friction channel | Completed (robust hint) — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; LOO range [−1.11, −0.88]; ΔAIC range [−3.97, −1.59] |
 
 
 ### 🔧 Framework Constraints — Model-Space Structure (5)
@@ -347,6 +348,7 @@ _Requires next-generation surveys or novel methodology._
 
 ## Recent Changes (last 7 days)
 
+- **2026-02-13** — MVP-G1 Growth fσ8 LOO Robustness (N2a): status=_COMPLETE_ — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α<0 in EFC growth channel
 - **2026-02-08** — Strong Lens Time Delay Conflict: status=_unresolved_
 - **2026-02-08** — Monotonic Radial Boost Problem: status=_resolved_
 - **2026-02-08** — EFC-Y6 Compressed Likelihood: status=_COMPLETE_
