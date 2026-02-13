@@ -1,20 +1,20 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-12T15:19:42Z",
+  "generated_at": "2026-02-13T19:21:31Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 2,
+    "physics_test": 3,
     "consistency_check": 9,
-    "phenomenological": 7,
+    "phenomenological": 6,
     "framework_constraint": 7,
     "planned_pipeline": 12,
     "total_public": 37,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 8,
-    "tcs_compression": 1.33,
+    "frontier_count": 2,
+    "tcs_compression": 2.0,
     "tcs_mismatch": 0.25
   },
   "tests": {
@@ -48,6 +48,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_mvp_g1_f_leave_one_out_robustness_n2a_mode_",
+        "name": "MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)",
+        "description": "Leave-One-Out stress test of EFC Hubble friction channel (α parameter) in growth sector. 7 fσ₈ data points (z=0.02-0.85) + 14 BAO points, N2a mode (rd=147.09, σ₈~N(0.81,0.02)). Tests whether α<0 signal is driven by any single data point. Combined with rd-independence test (N1) and σ₈-control test (N2), this completes a three-part robustness validation of the growth-sector hint. Result: 7/7 LOO runs pass (|α|/σ ≥ 1.84 AND ΔAIC ≤ 0). α stable in range [-1.11, -0.88]. No single fσ₈ measurement drives the hint. Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ₈) ≈ -0.26.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "fσ₈ extended compilation (7 points, z=0.02-0.85): 6dFGS, SDSS MGS, BOSS DR12 (3 bins), eBOSS, Vipers. BAO compilation (14 points). Pipeline: MVP-G1 Hubble Friction Channel with N2a nuisance controls.",
+        "prediction": "EFC predicts late-time growth suppression (α<0) in Hubble friction channel. Signal should be distributed across redshift range, not concentrated in any single measurement. LOO robustness score should be ≥6/7 for the hint to qualify as non-artefactual.",
+        "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
       }
     ],
     "consistency_check": [
@@ -277,22 +292,6 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "partial"
-      },
-      {
-        "test_id": "ledger_mvpg1_growth_fs8_loo_robustness_n2a",
-        "name": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a)",
-        "description": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14); N2a-mode: rd=147.09, σ8~N(0.81,0.02)",
-        "result": "Completed (robust hint) — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass |α|/σ ≥ 1.7 AND ΔAIC ≤ 0; LOO range [−1.11, −0.88]",
-        "status": "success",
-        "vl_category": "phenomenological",
-        "also_phenomenological": true,
-        "data_source": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14)",
-        "prediction": "Late-time growth suppression consistent with α<0 in Hubble friction channel (background→growth response)",
-        "notes": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a) | ✅ | ⚪ | ✅ | T7 Leave-One-Out robustness (fσ8, N2a-mode): 7/7 LOO runs pass (|α|/σ ≥ 1.7 AND ΔAIC ≤ 0). α-estimate extremely stable: α = −1.00 ± 0.46 (2.20σ), LOO-range [−1.11, −0.88], spread only 0.23. No single fσ8 measurement drives the hint; lowest significance at z=0.02 drop (1.84σ, ΔAIC=−1.59), highest at z=0.15 drop (2.42σ, ΔAIC=−3.97). Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ8) ≈ −0.26. Full MVP-G1 control suite passed: N1 rd-independence, N2 σ8-prior strengthening (2.20σ under tight prior), T7 LOO robustness (7/7). Conclusion: Robust, distributed ~2σ preference for α<0 in EFC growth channel under rd-fixing and tight σ8-prior; signal is structural, not artefactual. | 31332730",
-        "quantitative_result": "α = −1.00 ± 0.46 (2.20σ); ΔAIC = −2.91; LOO 7/7 pass; |α|/σ range [1.84, 2.42]; ΔAIC range [−3.97, −1.59]; corr(α,Ωm)≈+0.59; corr(α,σ8)≈−0.26",
-        "figshare_doi": "10.6084/m9.figshare.31332730",
-        "last_synced": "2026-02-13T00:00:00Z",
-        "status_detail": "completed_robust_hint"
       }
     ],
     "framework_constraint": [
@@ -597,7 +596,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.359933Z",
+      "timestamp": "2026-02-13T18:58:19.934370Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -620,7 +619,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.371813Z",
+      "timestamp": "2026-02-13T18:58:19.946631Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -643,7 +642,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.347389Z",
+      "timestamp": "2026-02-13T18:58:19.922863Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -659,7 +658,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.398147Z",
+      "timestamp": "2026-02-13T18:58:19.968515Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -678,7 +677,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.383740Z",
+      "timestamp": "2026-02-13T18:58:19.956909Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -700,7 +699,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-12T14:23:45.333860Z",
+      "timestamp": "2026-02-13T18:58:19.909136Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -726,7 +725,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-12T14:55:32.172409+00:00"
+      "timestamp": "2026-02-13T18:31:19.196370+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -740,11 +739,11 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-12T14:55:32.202537+00:00"
+      "timestamp": "2026-02-13T18:31:19.225432+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 1.33,
+      "compression": 2.0,
       "mismatch_rate": 0.25,
       "coverage_penalty": 0.4286,
       "layer_consistency": "high",
@@ -753,8 +752,8 @@
       "total": 7,
       "untested": 3,
       "mismatches": 1,
-      "primitives": 4,
-      "timestamp": "2026-02-12T14:55:32.273398+00:00"
+      "primitives": 2,
+      "timestamp": "2026-02-13T18:31:19.248080+00:00"
     }
   },
   "parameters": {
@@ -1632,76 +1631,6 @@
   ],
   "frontier_gaps": [
     {
-      "question": "Hva ville utfallene av eksperimenter med bevissthet og energiflyt motbevise EFC-modellen?",
-      "domain": "efc|consciousness",
-      "severity": "CRITICAL",
-      "status": "OPEN",
-      "approach": "falsification",
-      "efc_prediction": "Funn av bevissthet uten tilstrekkelig energiflyt vil motbevise EFCs premisser.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.349000000+00:00"
-    },
-    {
-      "question": "Hvordan kan EFC forutsi forholdet mellom entropi og kompleksitet i biologiske systemer?",
-      "domain": "efc|biology",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": "blindspot",
-      "efc_prediction": "Biologiske systemer med høyere kompleksitet vil vise høyere entropigradienter.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.338000000+00:00"
-    },
-    {
-      "question": "Hvilke observasjoner fra Euclid-misjonen kan utfordre eller bekrefte EFC-modeller av kosmisk ekspansjon?",
-      "domain": "efc|cosmology",
-      "severity": "HIGH",
-      "status": "OPEN",
-      "approach": "bottom_up",
-      "efc_prediction": "Kosmisk ekspansjon vil vise avvik fra ΛCDM-modellen under visse betingelser relatert til entropigradienten.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.317000000+00:00"
-    },
-    {
-      "question": "Hvordan relaterer energi-flyt og bevissthet seg i nevrale nettverk i lys av EFC-prinsipper?",
-      "domain": "efc|neuroscience|consciousness",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": "resonance",
-      "efc_prediction": "Bevissthet vil korrelere med høyere nivåer av energiflyt i nevrale nettverk.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.307000000+00:00"
-    },
-    {
-      "question": "Kan observasjoner av mørk energi i JWST-dataene forklares som en konsekvens av entropigradienten?",
-      "domain": "efc|cosmology",
-      "severity": "HIGH",
-      "status": "OPEN",
-      "approach": "bottom_up",
-      "efc_prediction": "Mørk energi-effekter vil avhenge av entropigradienten i forskjellige områder av universet.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.287000000+00:00"
-    },
-    {
-      "question": "Hvordan påvirker entropigradienten strukturen og morfologien til galakseklynger?",
-      "domain": "efc|cosmology",
-      "severity": "CRITICAL",
-      "status": "OPEN",
-      "approach": "top_down",
-      "efc_prediction": "Galakseklynger vil ha varierende morfologi avhengig av den lokale entropigradienten.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-12T15:08:17.222000000+00:00"
-    },
-    {
-      "question": "Ubesvart: Morten kapasitet intelligens IQ kognitiv evne begavelse styr",
-      "domain": "efc",
-      "severity": "LOW",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "conversation_gap",
-      "created_at": "2026-02-12T07:19:06.983000000+00:00"
-    },
-    {
       "question": "Why does median residual μ correlate positively with Vflat in Q=1 dwarfs?",
       "domain": "cosmology|galaxy_dynamics",
       "severity": "MEDIUM",
@@ -1779,15 +1708,33 @@
   ],
   "changelog": [
     {
-      "name": "MVP-G1 Growth fσ8 LOO Robustness (N2a)",
-      "status": "COMPLETE",
-      "result": "α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α<0 in EFC growth channel",
-      "last_updated": "2026-02-13T00:00:00Z",
+      "name": "Background gate sign constraint (EFCLASS Technical Note I)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-13T14:28:48.793000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-13T11:53:22.563000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": null,
+      "status": "completed",
+      "result": "no_robust_support",
+      "last_updated": "2026-02-12T20:35:10.390000000+00:00",
       "source": null,
       "all_labels": [
-        "EFCValidation",
-        "PhenomenologicalTest",
-        "GrowthSector"
+        "EFCValidation"
       ]
     },
     {
@@ -1834,5 +1781,6 @@
         "WorkPackage"
       ]
     }
-  ]
+  ],
+  "total_count": 37
 }
