@@ -137,7 +137,7 @@ _Temporary parameterizations tested empirically but not derived from EFC field t
 | 7 | MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a) | fσ8_extended (7 pts, z=0.02–0.85) + BAO(14) | Late-time growth suppression consistent with α<0 in Hubble friction channel | Completed (robust hint) — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; LOO range [−1.11, −0.88]; ΔAIC range [−3.97, −1.59] | [31332730](https://doi.org/10.6084/m9.figshare.31332730) |
 
 
-### 🔧 Framework Constraints — Model-Space Structure (5)
+### 🔧 Framework Constraints — Model-Space Structure (7)
 
 _Internal coherence mechanisms and structural exclusion arguments._
 
@@ -148,6 +148,8 @@ _Internal coherence mechanisms and structural exclusion arguments._
 | 3 | Core Lock consistency enforcement (31223503) | — | Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3 | — |
 | 4 | Density Saturation Θ(ρ) (v1.3) | — | Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with | — |
 | 5 | Structural coherence across regimes (SCE evaluation) | KiDS, BAO, RSD, Lyα, CMB lensing | ⚪ | Completed (meta-model evaluation) |
+| 6 | EFCLASS Sign Structure: background channel σ₈ exclusion | CLASS v3.3.4 (analytical + numerical) | Background modification cannot suppress σ₈; μ < 1 required | Completed (structural proof) — ΔE² ≤ 0; fσ₈ enhanced +0.5–0.76% | [31333414](https://doi.org/10.6084/m9.figshare.31333414) |
+| 7 | Perturbation-Level σ₈ Suppression via μ(a) < 1 (WP1a) | BOSS DR12 RSD (3 pts, full cov) | Structural ceiling for σ₈ suppression via scale-free μ(a) | WP1a: μ₀=0.85, σ₈=0.773, S₈=0.790 (73% gap); ceiling ~43% in Planck 1σ | [31333600](https://doi.org/10.6084/m9.figshare.31333600) |
 
 
 ### 🔵 Planned Pipeline — Methodology Defined (12)
@@ -348,6 +350,8 @@ _Requires next-generation surveys or novel methodology._
 
 ## Recent Changes (last 7 days)
 
+- **2026-02-13** — EFCLASS Sign Structure: background channel σ₈ exclusion: status=_COMPLETE_ — ΔE² ≤ 0; fσ₈ enhanced +0.5–0.76%; background excluded — [10.6084/m9.figshare.31333414](https://doi.org/10.6084/m9.figshare.31333414)
+- **2026-02-13** — Perturbation-Level σ₈ Suppression via μ(a) < 1 (WP1a): status=_COMPLETE_ — μ₀=0.85, S₈=0.790 (73% gap); ceiling ~43% — [10.6084/m9.figshare.31333600](https://doi.org/10.6084/m9.figshare.31333600)
 - **2026-02-13** — MVP-G1 Growth fσ8 LOO Robustness (N2a): status=_COMPLETE_ — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α<0 in EFC growth channel — [10.6084/m9.figshare.31332730](https://doi.org/10.6084/m9.figshare.31332730)
 - **2026-02-08** — Strong Lens Time Delay Conflict: status=_unresolved_
 - **2026-02-08** — Monotonic Radial Boost Problem: status=_resolved_

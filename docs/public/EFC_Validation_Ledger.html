@@ -708,6 +708,47 @@ with defined methodologies to ensure transparency and falsifiability.
       </td>
     </tr>
 
+    <!-- EFCLASS Sign Structure: background channel σ₈ exclusion (v2.3) -->
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">CLASS v3.3.4 (analytical + numerical)</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        Sign Lemma: ΔE²(z) = A[g(z) − g(0)] ≤ 0 for all z &gt; 0 under E(0)=1 normalisation.
+        Numerical verification &lt; 0.3% agreement at 9 redshift points.
+        Growth enhancement +0.5% to +0.76% in fσ<sub>8</sub> at BOSS DR12 redshifts.
+        <strong>Implication:</strong> Background-level EFC cannot suppress σ<sub>8</sub>; perturbation-level μ(a) &lt; 1 required.
+        77 lines of C code across background.h, background.c, input.c.
+      </td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (structural proof)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        <a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>
+      </td>
+    </tr>
+
+    <!-- Perturbation-Level σ₈ Suppression via μ(a) < 1 (v2.3) -->
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1: WP1a reference model</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">BOSS DR12 RSD (3 pts, full covariance)</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        Universal factor-2: Δσ<sub>8</sub>(n=2)/Δσ<sub>8</sub>(n=6) = 2.00 ± 0.01.
+        WP1a reference model: A=0, B=0.187, n=2, z<sub>t</sub>=1.01; μ<sub>0</sub>=0.85, σ<sub>8</sub>=0.773, S<sub>8</sub>=0.790.
+        S<sub>8</sub> gap closed: 73%. Planck status: ~1.5σ from μ<sub>0</sub>=1.
+        <strong>Structural ceiling:</strong> Scale-free μ(a) closes at most ~43% within Planck 1σ.
+      </td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (structural constraint)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        <a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>
+      </td>
+    </tr>
+
     <!-- Structural coherence across regimes (v1.7) -->
     <tr style="background-color:#e6ffe6;">
       <td style="border:1px solid #ddd; padding:8px;"><strong>Structural coherence across regimes (SCE evaluation)</strong></td>
@@ -1182,6 +1223,22 @@ does not require new physics but remains a target for Stage-IV precision tests.
       </td>
     </tr>
 
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion (<a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">L1 background (Friedmann equation)</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        Analytical proof that ΔE²(z) ≤ 0 for all z &gt; 0: additive gate modification reduces Hubble friction, enhancing growth. Background channel structurally excluded for σ<sub>8</sub> suppression. Verified in CLASS v3.3.4.
+      </td>
+    </tr>
+
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1 (<a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">L1 perturbations (growth ODE)</td>
+      <td style="border:1px solid #ddd; padding:8px;">
+        WP1a reference model: μ<sub>0</sub>=0.85, σ<sub>8</sub>=0.773, S<sub>8</sub>=0.790 (73% gap closure). Universal factor-2 from gate broadening. Structural ceiling: scale-free μ(a) closes at most ~43% within Planck 1σ.
+      </td>
+    </tr>
+
   </tbody>
 </table>
 
@@ -1268,6 +1325,16 @@ does not require new physics but remains a target for Stage-IV precision tests.
   <!-- v1.8 entry -->
   <li><strong>Covariance-aware BAO consistency test (BOSS DR12 consensus likelihood):</strong>
     <a href="https://doi.org/10.6084/m9.figshare.31314922">31314922</a></li>
+
+  <!-- v2.2–v2.3 entries -->
+  <li><strong>MVP-G1 Growth fσ<sub>8</sub> LOO robustness (N2a):</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31332730">31332730</a></li>
+
+  <li><strong>EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion:</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a></li>
+
+  <li><strong>Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1 (WP1a reference model):</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a></li>
 </ul>
 
 <h3>Structural / Theoretical Constraints</h3>
@@ -1322,6 +1389,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <h2>6. Recent Updates</h2>
 
 <ul>
+  <li><strong>2026-02-13 (v2.3)</strong> – Added EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion (ΔE² ≤ 0 proven; fσ<sub>8</sub> enhanced +0.5–0.76%). Added Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1: WP1a reference model (μ<sub>0</sub>=0.85, S<sub>8</sub>=0.790, 73% gap closure; structural ceiling ~43%). [<a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>] [<a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>]</li>
   <li><strong>2026-02-13 (v2.2)</strong> – Added MVP-G1 Growth fσ<sub>8</sub> Leave-One-Out robustness test (N2a mode). α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α&lt;0 in EFC growth channel. Full MVP-G1 control suite passed (N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness). [<a href="https://doi.org/10.6084/m9.figshare.31332730">10.6084/m9.figshare.31332730</a>]</li>
   <li><strong>2026-02-12 (v2.1)</strong> – ISW Consistency Audit v1.1 applied (<a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a>). Recomputed A<sub>ISW</sub> under fully self-consistent growth-channel implementation. Revised prediction: uniform suppression A<sub>ISW</sub> ≈ 0.89 ± 0.03 across tracers.</li>
   <li><strong>2026-02-11 (v2.0.1)</strong> – KB synchronization update: Added Section 2.3 S₈ Stage-III Convergence table. Standardized three "Completed" rows to follow 9-level status system.</li>
