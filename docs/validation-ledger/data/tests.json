@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-12T15:19:42Z",
+  "generated_at": "2026-02-13T19:21:31Z",
   "categories": {
     "physics_test": [
       {
@@ -33,6 +33,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_mvp_g1_f_leave_one_out_robustness_n2a_mode_",
+        "name": "MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)",
+        "description": "Leave-One-Out stress test of EFC Hubble friction channel (α parameter) in growth sector. 7 fσ₈ data points (z=0.02-0.85) + 14 BAO points, N2a mode (rd=147.09, σ₈~N(0.81,0.02)). Tests whether α<0 signal is driven by any single data point. Combined with rd-independence test (N1) and σ₈-control test (N2), this completes a three-part robustness validation of the growth-sector hint. Result: 7/7 LOO runs pass (|α|/σ ≥ 1.84 AND ΔAIC ≤ 0). α stable in range [-1.11, -0.88]. No single fσ₈ measurement drives the hint. Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ₈) ≈ -0.26.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "fσ₈ extended compilation (7 points, z=0.02-0.85): 6dFGS, SDSS MGS, BOSS DR12 (3 bins), eBOSS, Vipers. BAO compilation (14 points). Pipeline: MVP-G1 Hubble Friction Channel with N2a nuisance controls.",
+        "prediction": "EFC predicts late-time growth suppression (α<0) in Hubble friction channel. Signal should be distributed across redshift range, not concentrated in any single measurement. LOO robustness score should be ≥6/7 for the hint to qualify as non-artefactual.",
+        "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
       }
     ],
     "consistency_check": [
@@ -262,25 +277,24 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "partial"
-      },
-      {
-        "test_id": "ledger_mvpg1_growth_fs8_loo_robustness_n2a",
-        "name": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a)",
-        "description": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14); N2a-mode: rd=147.09, σ8~N(0.81,0.02)",
-        "result": "Completed (robust hint) — α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass |α|/σ ≥ 1.7 AND ΔAIC ≤ 0; LOO range [−1.11, −0.88]",
-        "status": "success",
-        "vl_category": "phenomenological",
-        "also_phenomenological": true,
-        "data_source": "fσ8_extended (7 pts, z=0.02–0.85) + BAO(14)",
-        "prediction": "Late-time growth suppression consistent with α<0 in Hubble friction channel (background→growth response)",
-        "notes": "MVP-G1 Growth: fσ8 Leave-One-Out robustness (N2a) | ✅ | ⚪ | ✅ | T7 Leave-One-Out robustness (fσ8, N2a-mode): 7/7 LOO runs pass (|α|/σ ≥ 1.7 AND ΔAIC ≤ 0). α-estimate extremely stable: α = −1.00 ± 0.46 (2.20σ), LOO-range [−1.11, −0.88], spread only 0.23. No single fσ8 measurement drives the hint; lowest significance at z=0.02 drop (1.84σ, ΔAIC=−1.59), highest at z=0.15 drop (2.42σ, ΔAIC=−3.97). Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ8) ≈ −0.26. Full MVP-G1 control suite passed: N1 rd-independence, N2 σ8-prior strengthening (2.20σ under tight prior), T7 LOO robustness (7/7). Conclusion: Robust, distributed ~2σ preference for α<0 in EFC growth channel under rd-fixing and tight σ8-prior; signal is structural, not artefactual. | 31332730",
-        "quantitative_result": "α = −1.00 ± 0.46 (2.20σ); ΔAIC = −2.91; LOO 7/7 pass; |α|/σ range [1.84, 2.42]; ΔAIC range [−3.97, −1.59]; corr(α,Ωm)≈+0.59; corr(α,σ8)≈−0.26",
-        "figshare_doi": "10.6084/m9.figshare.31332730",
-        "last_synced": "2026-02-13T00:00:00Z",
-        "status_detail": "completed_robust_hint"
       }
     ],
     "framework_constraint": [
+      {
+        "test_id": "conv_background_gate_sign_constraint_efclass_technical_note_i_",
+        "name": "Background gate sign constraint (EFCLASS Technical Note I)",
+        "description": "Background gate sign test: Additive gate E²=E²_LCDM + A·g(a) under E(0)=1 closure produces ΔE²=A[g(z)-g(0)] ≤ 0 for all z>0 when gate is monotonically increasing in a. Verified analytically (Lemma 1) and numerically in CLASS v3.3.4 to <0.3%. Physical consequence: fσ₈ increases by +0.5-0.8% (A=0.15), ruling out background-only S₈ suppression under this parameterisation. Structural channel constraint, not observational test.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "CLASS v3.3.4 internal consistency (EFCLASS patch, 9-point numerical verification)",
+        "prediction": "ΔE² ≤ 0 for all z>0 (sign-locked). Background channel cannot suppress structure growth. S₈ amelioration requires perturbation-level μ<1.",
+        "notes": "Sign lemma proved and numerically verified in CLASS v3.3.4. 0/39998 sign violations. DOI: 10.6084/m9.figshare.31333414. Structural constraint, not observational test.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-13T14:28:48.793000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "ledger_cluster_core_entropystructure_coupling",
         "name": "Cluster core entropy–structure coupling",
@@ -537,8 +551,23 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "pending"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": null,
+        "result": "no_robust_support",
+        "status": "success",
+        "vl_category": null,
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "completed"
       }
     ]
   },
-  "total_count": 35
+  "total_count": 37
 }
