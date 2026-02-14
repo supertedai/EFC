@@ -1,24 +1,39 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-14T06:32:42Z",
+  "generated_at": "2026-02-14T12:31:56Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 3,
-    "consistency_check": 9,
+    "physics_test": 4,
+    "consistency_check": 10,
     "phenomenological": 6,
-    "framework_constraint": 6,
+    "framework_constraint": 7,
     "planned_pipeline": 13,
-    "total_public": 37,
+    "total_public": 40,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
     "frontier_count": 1,
-    "tcs_compression": 1.33,
+    "tcs_compression": 2.0,
     "tcs_mismatch": 0.25
   },
   "tests": {
     "physics_test": [
+      {
+        "test_id": "conv_efclass_sign_test_h_negative_for_additive_gate",
+        "name": "EFCLASS sign test: ΔH² negative for additive gate",
+        "description": "Background-only EFC gate E²=E²_LCDM + A·g(a) with closure Ω_Λ→Ω_Λ-A·g(1) produces ΔH²<0 for all z>0. This increases growth (fσ₈ +0.5-0.8%) rather than suppressing it. Verified analytically and numerically in CLASS v3.3.4. 9/9 z-points match to <0.1%. This means S₈ suppression requires perturbation-level μ<1, not background friction.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFCLASS v0.1 CLASS background output, BOSS DR12 fσ₈ comparison",
+        "prediction": "Additive background gate with closure normalisation always gives ΔH<0 at z>0, increasing fσ₈. Only μ(k,z)<1 or inverted gate can suppress growth.",
+        "notes": "Core physics validation. Tester ontologisk konsistens: ΔH² < 0 i additive gate er nødvendig for at hele EFC-mekanismen (Hubble-friksjon → vekst-undertrykkelse) skal holde. Hvis tegnet er feil kollapser motoren. Nivå: Retning/signatur.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-14T11:10:35.226000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "ledger_galaxy_rotation_curves",
         "name": "Galaxy rotation curves",
@@ -95,6 +110,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_bao_rsd_tension_resolution_via_free_8_0",
+        "name": "BAO-RSD tension resolution via free σ8_0",
+        "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it confirms EFC is consistent. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "Phase 2.2 joint BAO+CC+RSD scan; BOSS DR12 fσ8; DESI DR2-like BAO",
+        "prediction": "EFC predicts that freeing σ8_0 in the joint BAO+CC+RSD fit will shift best-fit to σ8_0 ≈ 0.78±0.03 with A ≈ 0.10±0.05, resolving the BAO-RSD tension. If σ8_0 remains at Planck value (0.811) while A>0 is preferred, this indicates a genuine growth-geometry mismatch requiring modified growth coupling.",
+        "notes": "Cross-channel consistency diagnostic. Tester om BAO-RSD spenningen løses via fri σ8_0 — men dette er diagnostisk, ikke en styrketest. Kritisk tolkning: Hvis spenning forsvinner uten ekstrem σ8_0 → robust. Krever unaturlig σ8_0 → manglende mekanisme. Spenning består → bakgrunnsmodul utilstrekkelig. Nivå: Global konsistens (sekundær).",
+        "quantitative_result": null,
+        "last_synced": "2026-02-14T11:10:47.101000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "ledger_early_galaxies_jwst",
@@ -371,6 +401,21 @@
         "status_detail": "unknown"
       },
       {
+        "test_id": "conv_gate_transition_zone_anomaly_concentration_z_1",
+        "name": "Gate transition zone anomaly concentration z~1",
+        "description": "EFC's peak E(z) deviation from ΛCDM occurs at z≈1.0-1.25 where the gate function transitions (g≈0.34-0.51). This is a regime-boundary signature. If future data (DESI DR2 full, Euclid) shows anomalies concentrated at z~1 in both distance and growth simultaneously, it supports EFC's regime transition. If anomalies are uniformly distributed in z, it disfavors the gate model.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Phase 2.2 E(z) deviation profile; gate function g(a,a_t) with n=6",
+        "prediction": "EFC predicts that cosmological anomalies relative to ΛCDM will be concentrated in z=0.7-1.3 (the gate transition zone), with amplitude ≤1.1% in E(z). High-z (z>2) and low-z (z<0.3) should show <0.3% deviations. This is a falsifiable z-dependent prediction.",
+        "notes": "Regime-structure validation. Tester om gate-arkitekturen har observerbare konsekvenser: anomali-konsentrasjon rundt z~1 overgangssonen (L0-L1 → L2). Hvis avvik er tilfeldig distribuert svekkes gate-hypotesen. Mer viktig enn χ²-tester — tester arkitektur, ikke fit. Nivå: Struktur/regime-overgang.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-14T11:10:41.221000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_structural_coherence_across_regimes_sce_evaluation",
         "name": "Structural coherence across regimes (SCE evaluation)",
         "description": "⚪",
@@ -594,7 +639,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.964742Z",
+      "timestamp": "2026-02-14T11:59:29.201909Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -617,7 +662,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.974752Z",
+      "timestamp": "2026-02-14T11:59:29.217960Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -640,7 +685,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.953583Z",
+      "timestamp": "2026-02-14T11:59:29.181471Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -656,7 +701,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.997319Z",
+      "timestamp": "2026-02-14T11:59:29.252785Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -675,7 +720,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.987910Z",
+      "timestamp": "2026-02-14T11:59:29.239330Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -697,7 +742,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-14T05:58:08.940624Z",
+      "timestamp": "2026-02-14T11:59:29.166200Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -723,7 +768,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-14T06:31:40.654986+00:00"
+      "timestamp": "2026-02-14T11:31:48.567490+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -737,11 +782,11 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-14T06:31:40.700095+00:00"
+      "timestamp": "2026-02-14T11:31:48.640214+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 1.33,
+      "compression": 2.0,
       "mismatch_rate": 0.25,
       "coverage_penalty": 0.4286,
       "layer_consistency": "high",
@@ -750,8 +795,8 @@
       "total": 7,
       "untested": 3,
       "mismatches": 1,
-      "primitives": 4,
-      "timestamp": "2026-02-14T06:31:40.790163+00:00"
+      "primitives": 2,
+      "timestamp": "2026-02-14T11:31:48.674977+00:00"
     }
   },
   "parameters": {
@@ -1690,6 +1735,36 @@
     }
   ],
   "changelog": [
+    {
+      "name": "BAO-RSD tension resolution via free σ8_0",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-14T11:10:47.101000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Gate transition zone anomaly concentration z~1",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-14T11:10:41.221000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFCLASS sign test: ΔH² negative for additive gate",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-14T11:10:35.226000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
     {
       "name": "Background gate sign constraint (EFCLASS Technical Note I)",
       "status": "planned",
