@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-15T06:32:40Z",
+  "generated_at": "2026-02-15T12:33:17Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 4,
@@ -639,7 +639,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.750137Z",
+      "timestamp": "2026-02-15T12:27:09.691405Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -662,7 +662,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.761871Z",
+      "timestamp": "2026-02-15T12:27:09.704166Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -685,7 +685,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.737468Z",
+      "timestamp": "2026-02-15T12:27:09.672424Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -701,7 +701,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.789436Z",
+      "timestamp": "2026-02-15T12:27:09.735733Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -720,7 +720,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.776537Z",
+      "timestamp": "2026-02-15T12:27:09.717114Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -742,7 +742,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T06:31:51.717667Z",
+      "timestamp": "2026-02-15T12:27:09.653696Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -768,7 +768,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-15T06:09:50.685704+00:00"
+      "timestamp": "2026-02-15T12:09:59.791752+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -782,7 +782,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-15T06:09:50.780051+00:00"
+      "timestamp": "2026-02-15T12:09:59.820518+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -796,7 +796,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-15T06:09:50.820305+00:00"
+      "timestamp": "2026-02-15T12:09:59.835484+00:00"
     }
   },
   "parameters": {
@@ -1803,50 +1803,6 @@
       "source": null,
       "all_labels": [
         "EFCValidation"
-      ]
-    },
-    {
-      "name": "Strong Lens Time Delay Conflict",
-      "status": "unresolved",
-      "result": null,
-      "last_updated": "2026-02-08T10:07:27.325000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation",
-        "CriticalConflict"
-      ]
-    },
-    {
-      "name": "Monotonic Radial Boost Problem",
-      "status": "resolved",
-      "result": null,
-      "last_updated": "2026-02-08T10:07:19.319000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation",
-        "CriticalProblem"
-      ]
-    },
-    {
-      "name": "EFC-Y6 Compressed Likelihood",
-      "status": "COMPLETE",
-      "result": null,
-      "last_updated": "2026-02-08T10:02:45.266000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation",
-        "WorkPackage"
-      ]
-    },
-    {
-      "name": "Cluster Baryon Fraction Test",
-      "status": "SPECIFICATION_LOCKED",
-      "result": null,
-      "last_updated": "2026-02-08T10:02:45.266000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation",
-        "WorkPackage"
       ]
     }
   ]
