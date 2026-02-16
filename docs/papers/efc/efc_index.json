@@ -275,6 +275,18 @@
         "kill_tests": 5,
         "structural_departures": 1
       }
+    },
+    {
+      "id": "cosmological-growth-constraints-lambda-locked",
+      "path": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity",
+      "type": "technical_note",
+      "companion": "discrete-entropic-gravity-cubic-graph",
+      "validation": {
+        "status": "stress_test_passed",
+        "regime": "L1-L2",
+        "lambda_locked_viable": true,
+        "sub_hubble_viable": false
+      }
     }
   ]
 }

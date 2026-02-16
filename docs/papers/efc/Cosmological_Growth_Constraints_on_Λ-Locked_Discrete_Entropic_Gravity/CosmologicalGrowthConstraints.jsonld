@@ -1,0 +1,93 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "name": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+  "headline": "Only Λ-locking preserves realistic structure growth; sub-Hubble transitions produce catastrophic overgrowth",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-16",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "cosmological growth",
+    "structure formation",
+    "σ₈",
+    "Λ-locking",
+    "discrete gravity",
+    "modified gravity",
+    "infrared screening",
+    "linear perturbation theory",
+    "Energy-Flow Cosmology"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:EffectiveGravitationalCoupling",
+      "name": "Effective Gravitational Coupling G_eff(k)",
+      "description": "Lorentzian window: G_eff(k)/G = 1 + (C²−1)/(1+(k/k_Λ)²), screening infrared enhancement above k_Λ"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LambdaLockingViability",
+      "name": "Λ-Locking Viability Condition",
+      "description": "L_Λ ≳ H₀⁻¹ required for cosmological consistency; follows from L_Λ ∝ Λ^{-1/2}"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:CatastrophicOvergrowth",
+      "name": "Catastrophic Overgrowth",
+      "description": "Sub-Hubble transition scales produce σ₈ >> 1 (factors of 450–30,000 above ΛCDM)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LinearGrowthEquation",
+      "name": "Linear Growth Equation",
+      "description": "δ'' + (2+H'/H)δ' − (3/2)Ω_m(a)[G_eff(k)/G]δ = 0"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Λ-Locking Necessity",
+    "description": "Λ-locking is a necessary condition for cosmological consistency of any infrared-enhanced gravity model"
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31348411",
+      "name": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
+      "author": "Magnusson, M.",
+      "datePublished": "2026"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results. VI. Cosmological parameters",
+      "author": "Planck Collaboration",
+      "datePublished": "2020",
+      "identifier": "doi:10.1051/0004-6361/201833910"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Modified Gravity and Cosmology",
+      "author": "Clifton, T. et al.",
+      "datePublished": "2012",
+      "identifier": "doi:10.1016/j.physrep.2012.01.001"
+    }
+  ],
+  "epistemicStatus": "Layer B - Stress test establishing necessary condition for cosmological consistency"
+}

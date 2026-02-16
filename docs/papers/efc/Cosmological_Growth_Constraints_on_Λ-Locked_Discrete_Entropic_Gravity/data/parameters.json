@@ -1,0 +1,52 @@
+{
+  "description": "Cosmological and model parameters for growth constraint analysis",
+  "cosmological_parameters": {
+    "Omega_m": 0.315,
+    "H0": 67.4,
+    "H0_unit": "km/s/Mpc",
+    "sigma8_LCDM": 0.811,
+    "sigma8_observed": "0.811 ± 0.006",
+    "source": "Planck 2018 (arXiv:1807.06209)"
+  },
+  "discrete_operator": {
+    "prefactor_C": 2.32,
+    "C_squared": 5.3824,
+    "source_doi": "10.6084/m9.figshare.31348411"
+  },
+  "geff_model": {
+    "form": "Lorentzian",
+    "formula": "G_eff(k)/G = 1 + (C² − 1) / (1 + (k/k_Λ)²)",
+    "enhancement_factor": 4.3824,
+    "note": "C² − 1 = 2.32² − 1 ≈ 4.38"
+  },
+  "lambda_locking": {
+    "Lambda": 1.11e-52,
+    "Lambda_unit": "m^-2",
+    "L_Lambda_Gpc": 4.4,
+    "k_Lambda_h_per_Mpc": 0.0014,
+    "relation": "L_Λ = 1/√Λ ≈ H₀⁻¹"
+  },
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "Λ-locked",
+      "transition_scale": "4.4 Gpc",
+      "k_transition_h_per_Mpc": 0.0014,
+      "description": "All structure formation scales (k ≳ 0.01 h/Mpc) remain screened"
+    },
+    {
+      "id": "B",
+      "name": "10 Mpc",
+      "transition_scale": "10 Mpc",
+      "k_transition_h_per_Mpc": 0.1,
+      "description": "Enhancement active across full range of linear growth scales"
+    },
+    {
+      "id": "C",
+      "name": "1 Mpc",
+      "transition_scale": "1 Mpc",
+      "k_transition_h_per_Mpc": 1.0,
+      "description": "Enhancement penetrates into quasi-nonlinear regime"
+    }
+  ]
+}

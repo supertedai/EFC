@@ -1,0 +1,60 @@
+{
+  "description": "σ₈ and growth index results for all scenarios",
+  "growth_equation": "δ'' + (2 + H'/H)δ' − (3/2)Ω_m(a)[G_eff(k)/G]δ = 0",
+  "background": "Planck 2018 (Ω_m = 0.315, H₀ = 67.4 km/s/Mpc)",
+  "results": [
+    {
+      "model": "ΛCDM",
+      "scenario": null,
+      "transition_scale": null,
+      "k_transition": null,
+      "sigma8_z0": 0.811,
+      "gamma": 0.554,
+      "sigma8_excess_percent": null,
+      "sigma8_excess_factor": null,
+      "viable": true
+    },
+    {
+      "model": "Graph-AQUAL",
+      "scenario": "A",
+      "transition_scale": "4.4 Gpc (Λ-locked)",
+      "k_transition_h_per_Mpc": 0.0014,
+      "sigma8_z0": 0.814,
+      "gamma": 0.554,
+      "sigma8_excess_percent": 0.4,
+      "sigma8_excess_factor": 1.004,
+      "viable": true,
+      "notes": "Indistinguishable from ΛCDM at 0.4% level; within σ₈ = 0.811 ± 0.006"
+    },
+    {
+      "model": "Graph-AQUAL",
+      "scenario": "B",
+      "transition_scale": "10 Mpc",
+      "k_transition_h_per_Mpc": 0.1,
+      "sigma8_z0": 367,
+      "gamma": 0.541,
+      "sigma8_excess_percent": null,
+      "sigma8_excess_factor": 452,
+      "viable": false,
+      "notes": "Catastrophic overgrowth: σ₈ exceeds unity by factor ~450"
+    },
+    {
+      "model": "Graph-AQUAL",
+      "scenario": "C",
+      "transition_scale": "1 Mpc",
+      "k_transition_h_per_Mpc": 1.0,
+      "sigma8_z0": 24098,
+      "gamma": 0.536,
+      "sigma8_excess_percent": null,
+      "sigma8_excess_factor": 29714,
+      "viable": false,
+      "notes": "Extreme catastrophic overgrowth: σ₈ exceeds unity by factor ~30,000"
+    }
+  ],
+  "conclusion": {
+    "viability_condition": "L_Λ ≳ H₀⁻¹",
+    "necessary_condition": "Λ-locking at super-Hubble scale",
+    "gamma_insensitive": true,
+    "gamma_note": "Growth index γ unchanged because it depends on background expansion shape f(Ω_m), not G_eff amplitude"
+  }
+}
