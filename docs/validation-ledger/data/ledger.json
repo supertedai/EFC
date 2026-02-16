@@ -1,19 +1,19 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-15T12:33:17Z",
+  "generated_at": "2026-02-16T06:25:12Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 4,
+    "physics_test": 5,
     "consistency_check": 10,
     "phenomenological": 6,
-    "framework_constraint": 7,
+    "framework_constraint": 9,
     "planned_pipeline": 13,
-    "total_public": 40,
+    "total_public": 43,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 2,
+    "frontier_count": 4,
     "tcs_compression": 2.0,
     "tcs_mismatch": 0.25
   },
@@ -48,6 +48,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_gravitational_slip_a_k_from_grid_tension_ansatz",
+        "name": "Gravitational slip η(a,k,ρ) from grid tension ansatz",
+        "description": "Introduce gravitational slip η(a,k,ρ)≠1 into EFCLASS where Ψ carries grid modification (A·f(δT)) and Φ remains GR-like (B·g(δT) with B≪A in L3). This follows from the locked ontological decision that EFC is a spatial modifier. Test against S₈ tension, weak lensing, and verify strong lens time delay is no longer catastrophic.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFCLASS perturbation code + DES Y6 / KiDS Legacy weak lensing + H0LiCOW/TDCOSMO strong lens time delays",
+        "prediction": "η≠1 in L2 regime should: (1) resolve S₈ tension via differential Φ/Ψ coupling, (2) maintain strong lens time delay within observational bounds, (3) give specific η(z) profile derivable from χ control parameter. Expected η ≈ 0.95-0.99 in L2, η→1 in L0.",
+        "notes": "Høy risiko — QL flagget RISKY/REVIEW korrekt. MÅ kjøres shadow mode: behold eta=1 baseline som CONTROL, test eta!=1 kun i L3 først, på uavhengig linsedata (TDCOSMO subset). Ikke slipp i hele (a,k,rho)-rommet. Viktig: eta!=1 er AVLEDET fra temporal channel saturation, ikke primær ontologi. Formuler som mettet tidskanal, la slip vaere konsekvens.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-16T06:05:38.865000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "ledger_isw_cancellation_prediction_metric",
@@ -268,7 +283,7 @@
         "name": "Case A S₈ direction (v1.4)",
         "description": "Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.\n        Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.",
         "result": "",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "",
@@ -276,7 +291,7 @@
         "notes": "Case A S₈ direction (v1.4) | L1–L2 lensing",
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
-        "status_detail": "unknown"
+        "status_detail": "completed"
       },
       {
         "test_id": "ledger_galaxy_bias_evolution_consistency",
@@ -298,7 +313,7 @@
         "name": "Weak-lensing phenomenological closure (Postulate A)",
         "description": "Demonstrates absence of a derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides path to replace this closure with physical derivation.",
         "result": "",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "",
@@ -306,7 +321,7 @@
         "notes": "Weak-lensing phenomenological closure (Postulate A) | L1 linear perturbations",
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
-        "status_detail": "unknown"
+        "status_detail": "completed"
       },
       {
         "test_id": "ledger_weaklensing_shear_case_a",
@@ -375,7 +390,7 @@
         "name": "Core Lock consistency enforcement (31223503)",
         "description": "Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3",
         "result": "",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "",
@@ -383,14 +398,14 @@
         "notes": "Core Lock consistency enforcement (31223503) | All regimes (method layer)",
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
-        "status_detail": "unknown"
+        "status_detail": "completed"
       },
       {
         "test_id": "ledger_density_saturation_v13",
         "name": "Density Saturation Θ(ρ) (v1.3)",
         "description": "Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with explicit density discrimination",
         "result": "",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "",
@@ -398,7 +413,7 @@
         "notes": "Density Saturation Θ(ρ) (v1.3) | All regimes (L0–L3)",
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
-        "status_detail": "unknown"
+        "status_detail": "completed"
       },
       {
         "test_id": "conv_gate_transition_zone_anomaly_concentration_z_1",
@@ -429,6 +444,36 @@
         "quantitative_result": "",
         "last_synced": "2026-02-14T06:31:26.323119Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_t_as_natural_equivalent_from_grid_ontology",
+        "name": "T₀ as natural Λ-equivalent from grid ontology",
+        "description": "If grid tension T(x)=T₀+δT(x) is the correct EFC ontology, then T₀ (uniform background tension) should naturally produce de Sitter-like expansion without postulating Λ as a separate parameter. This is derivable from the grid S0→S1 phase transition framework. Must show T₀ relates to observed Λ value.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Observed Λ value from Planck + DESI BAO + SN Ia distance ladder",
+        "prediction": "T₀ provides natural cosmological constant: Λ_eff ∝ T₀. Dark energy is not a separate field but the ground-state tension of the grid substrate. Expansion driven by grid thermodynamics, not by Λ.",
+        "notes": "Medium risiko. Kan testes på bakgrunn/ekspansjon (WP5) uten å røre perturbations. Må vise at T0 mapper til observert Omega_Lambda ≈ 0.7. Kill-test: ingen parameter-region der T0 reproduserer SN+BAO distances simultant.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-16T06:05:30.683000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv__x_t_s_s_global_as_universal_regime_control_parameter",
+        "name": "χ(x,t) = |∇δS|/S_global as universal regime control parameter",
+        "description": "Define χ(x,t) = |∇δS|/S_global as the single universal control parameter that indexes L0→L3 continuously. Must show χ increases monotonically with structure intensity and correctly separates all four regimes. Replaces ad-hoc regime boundaries with physics-derived scalar.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "SPARC rotation curves (L2), Bullet Cluster (L2-L3 transition), Solar System PPN (L3), CMB (L0)",
+        "prediction": "χ ≪ 1 in L0 (CMB), χ ~ 10⁻³-10⁻¹ in L1/L2 (galaxies, clusters), χ ≫ 1 in L3 (strong fields, black holes). Single scalar provides continuous regime transition. Density saturation Θ(ρ) should be expressible as function of χ.",
+        "notes": "Lavest risiko. Kan testes uten å endre fysisk pipeline. Gir struktur til L0-L3. Må vise monotonisitet empirisk på SPARC/Bullet Cluster/CMB/Solar System datapoints. Kill-test: non-monotonic chi i cluster outskirts.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-16T06:05:24.732000000+00:00",
+        "status_detail": "planned"
       }
     ],
     "planned_pipeline": [
@@ -639,7 +684,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.691405Z",
+      "timestamp": "2026-02-16T05:37:06.143746Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -662,7 +707,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.704166Z",
+      "timestamp": "2026-02-16T05:37:06.159026Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -685,7 +730,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.672424Z",
+      "timestamp": "2026-02-16T05:37:06.130595Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -701,7 +746,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.735733Z",
+      "timestamp": "2026-02-16T05:37:06.183935Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -720,7 +765,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.717114Z",
+      "timestamp": "2026-02-16T05:37:06.170809Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -742,7 +787,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-15T12:27:09.653696Z",
+      "timestamp": "2026-02-16T05:37:06.114321Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -768,7 +813,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-15T12:09:59.791752+00:00"
+      "timestamp": "2026-02-16T05:32:03.346965+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -782,7 +827,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-15T12:09:59.820518+00:00"
+      "timestamp": "2026-02-16T05:32:03.386933+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -796,7 +841,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-15T12:09:59.835484+00:00"
+      "timestamp": "2026-02-16T05:32:03.410121+00:00"
     }
   },
   "parameters": {
@@ -1659,6 +1704,26 @@
   ],
   "frontier_gaps": [
     {
+      "question": "Hvordan kan EFC-modellen forklare eksistensen av anomalier i Systemic Risk Index?",
+      "domain": "efc|economics|systems",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "Anomalier i Systemic Risk Index vil kunne knyttes til endringer i entropigradienten i økonomiske systemer.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-16T04:41:50.098000000+00:00"
+    },
+    {
+      "question": "Hvordan kan EFC forklare bevissthetens emergens i konteksten av termodynamiske prinsipper?",
+      "domain": "efc|consciousness|thermodynamics",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "resonance",
+      "efc_prediction": "Bevissthet krever en viss grad av integrasjon av energiflyt, som er målbar gjennom termodynamiske parametre.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-16T04:41:50.052000000+00:00"
+    },
+    {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
       "severity": "MEDIUM",
@@ -1745,6 +1810,36 @@
     }
   ],
   "changelog": [
+    {
+      "name": "Gravitational slip η(a,k,ρ) from grid tension ansatz",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-16T06:05:38.865000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "T₀ as natural Λ-equivalent from grid ontology",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-16T06:05:30.683000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "χ(x,t) = |∇δS|/S_global as universal regime control parameter",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-16T06:05:24.732000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
     {
       "name": "BAO-RSD tension resolution via free σ8_0",
       "status": "planned",
