@@ -1,0 +1,47 @@
+{
+  "test": "KT5",
+  "description": "External Field Effect \u2014 v2 vectorial radial projection",
+  "params": {
+    "N": 21,
+    "M": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "g_ext_ratio": 0.0,
+      "g_ext": 0.0,
+      "enhancement_raw": 4.626662279104061,
+      "enhancement_radial": null,
+      "enhancement_mag": null,
+      "converged": true,
+      "time_s": 8.1
+    },
+    {
+      "g_ext_ratio": 1.0,
+      "g_ext": 2.0,
+      "enhancement_raw": 4.742438104076409,
+      "enhancement_radial": null,
+      "enhancement_mag": null,
+      "converged": true,
+      "time_s": 7.5
+    },
+    {
+      "g_ext_ratio": 5.0,
+      "g_ext": 10.0,
+      "enhancement_raw": 11.45420776450046,
+      "enhancement_radial": null,
+      "enhancement_mag": null,
+      "converged": true,
+      "time_s": 8.1
+    }
+  ],
+  "verdict": {
+    "baseline_enhancement": null,
+    "min_strong_enhancement": null,
+    "strong_to_baseline_ratio": null,
+    "efe_status": "INSUFFICIENT_DATA",
+    "monotone_decreasing": null,
+    "method": "vectorial g_int.r_hat projection"
+  }
+}
