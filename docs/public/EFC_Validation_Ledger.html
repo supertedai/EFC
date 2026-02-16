@@ -87,7 +87,7 @@
 <body>
 
 <!-- ✅ Energy-Flow Cosmology (EFC) – Complete Validation Ledger
-     Canonical Multi-Sector Version – February 2026 (v3.1) -->
+     Canonical Multi-Sector Referee Version – February 2026 (v3.2) -->
 
 <h1>Energy-Flow Cosmology (EFC) – Complete Validation Ledger</h1>
 
@@ -201,6 +201,44 @@ with defined methodologies to ensure transparency and falsifiability.
 </table>
 
 <p style="font-size:13px; color:#555;"><strong>Governance Rule:</strong> No result may be labeled "Completed (Data Likelihood Test)" unless all active parameters were declared in the Global Parameter Registry, no probe-specific re-tuning occurred, and frozen parameters remained fixed across datasets.</p>
+
+<h3>Validation Tier Classification</h3>
+
+<p>Each completed entry is additionally assigned a Validation Tier (T1–T4) indicating the depth of empirical confrontation. This prevents internal structural results from being visually conflated with full data-vs-model tests.</p>
+
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:20px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:15%;">Tier</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Meaning</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:35%;">Typical evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#d4edda;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>T1</strong> – Joint-likelihood</td>
+      <td style="border:1px solid #ddd; padding:8px;">Full multi-probe joint likelihood comparison between EFC and &Lambda;CDM with frozen parameters across all channels.</td>
+      <td style="border:1px solid #ddd; padding:8px;">&Delta;&chi;&sup2; or Bayes factor across &ge; 2 independent probes</td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>T2</strong> – Single-probe likelihood</td>
+      <td style="border:1px solid #ddd; padding:8px;">Quantitative comparison with real observational data using a single probe or dataset. Direct empirical test, but not multi-channel.</td>
+      <td style="border:1px solid #ddd; padding:8px;">&Delta;&chi;&sup2; or goodness-of-fit on one dataset</td>
+    </tr>
+    <tr style="background-color:#fff3cd;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>T3</strong> – Structural / analytical</td>
+      <td style="border:1px solid #ddd; padding:8px;">Analytical proof, structural constraint, or self-consistent prediction. Reduces model space or establishes theoretical bounds but does not constitute direct data confrontation.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Sign lemma, symmetry argument, analytical bound</td>
+    </tr>
+    <tr style="background-color:#e2e3e5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>T4</strong> – Framework diagnostic</td>
+      <td style="border:1px solid #ddd; padding:8px;">Internal consistency evaluation, meta-model comparison, or cross-regime coherence check. Evaluates framework architecture, not empirical fit.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Coherence metric, parameter economy, regime compatibility</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;"><strong>Note:</strong> Validation Tiers are shown as badges in the Status column of the main table (e.g., <span style="background:#d4edda; padding:1px 6px; border-radius:3px; font-size:12px; font-weight:600;">T1</span>). Planned tests and entries awaiting execution are not assigned a tier.</p>
 
 <hr>
 
@@ -484,7 +522,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Single-parameter background modification tested across four independent cosmological probes (BAO, RSD, SN Ia, CMB lensing). Poisson-sector coupling disfavoured by RSD; background channel produces consistent growth suppression via expansion history.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (multi-channel consistency)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#d4edda; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T1</span> <strong>Completed (multi-channel consistency)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31304980">31304980</a>
       </td>
@@ -501,7 +539,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Density Saturation mechanism with source-smoothed effective density yields screening sufficient to pass Cassini, LLR, perihelion, and WEP bounds. Linearized field analysis shows PPN parameter γ = 1 at leading order, with residual deviations bounded far below current experimental sensitivity. Full strong equivalence principle proof remains a target for action-level derivation.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Quantitative compatibility supported (screened regime)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Quantitative compatibility supported (screened regime)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31244827">31244827</a> ● Cassini/Shapiro ● LLR bounds
       </td>
@@ -515,7 +553,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
       <td style="border:1px solid #ddd; padding:8px;">MOND-like regime emerges in IR gradient-dominated sector (&xi; &lt; 1, &eta; &lt; 1). Regime-dependent validity via EBE partition.</td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (Data Likelihood Test)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (Data Likelihood Test)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31047703">31047703</a>,
         <a href="https://doi.org/10.6084/m9.figshare.31007248">31007248</a>,
@@ -540,7 +578,7 @@ with defined methodologies to ensure transparency and falsifiability.
         Case A is phenomenological lensing boost, not S₈ tension solution.
         Case B (consistent MG with μ in growth equations) required for tension resolution test.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (phenomenological; Case A only)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (phenomenological; Case A only)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31271917">31271917</a>,
         <a href="https://doi.org/10.6084/m9.figshare.31188193">31188193</a>
@@ -569,8 +607,8 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚠️</td>
-      <td style="border:1px solid #ddd; padding:8px;">Quantitative support in high-entropy regime; ΛCDM shows tension under standard assumptions (SF, dust, IMF interpretation-dependent)</td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">EFC consistent with observed abundance in high-entropy regime; &Lambda;CDM shows tension under standard assumptions (SF, dust, IMF interpretation-dependent)</td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (interpretation-dependent)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31059964">31059964</a>
       </td>
@@ -587,7 +625,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Out-of-sample transfer: late-time growth/geometry sector must remain consistent when carried across surveys without parameter re-tuning. Later confirmed by explicit four-channel background-coupling consistency test.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (transfer consistency)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31231522">31231522</a>,
         <a href="https://doi.org/10.6084/m9.figshare.31304980">31304980</a>
@@ -605,7 +643,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Superseded by four-channel architecture test showing consistent single-parameter background coupling (β = 0.08) across BAO, RSD, SN Ia, and CMB lensing.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (phenomenological test)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (phenomenological test)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31243828">31243828</a>,
         <a href="https://doi.org/10.6084/m9.figshare.31304980">31304980</a>
@@ -629,7 +667,7 @@ with defined methodologies to ensure transparency and falsifiability.
         Full MVP-G1 control suite passed: N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness (7/7).
         <strong>Conclusion:</strong> Robust, distributed ~2σ preference for α&lt;0 in EFC growth channel; signal is structural, not artefactual.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (robust hint)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (robust hint; ~2&sigma;)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31332730">31332730</a>
       </td>
@@ -647,7 +685,7 @@ with defined methodologies to ensure transparency and falsifiability.
         Measures effective gravitational enhancement rather than a background density parameter.
         Now physically bounded by Density Saturation Θ(ρ) in high-density regimes.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (Consistency Check)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Completed (Consistency Check)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31144030">31144030</a>
       </td>
@@ -677,9 +715,9 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px;">
-        Strong-field L2 geometric constraint; falsifies local coupling classes and imposes structural requirements on admissible operators
+        Strong-field L2 geometric constraint; disfavours local coupling classes and imposes structural requirements on admissible operators
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (structural exclusion test)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Completed (structural exclusion test)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31173850">31173850</a>
       </td>
@@ -713,7 +751,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Pre-registered rank correlation test between entropy profile slope (α) and core thermodynamics (K₀, t<sub>cool</sub>). Under matched Cavagnolo et al. (2009) definitions, TNG-Cluster shows strong <em>negative</em> correlation (ρ ≈ −0.4 to −0.6), opposite to <em>positive</em> correlation in ACCEPT observations. Mass-controlled partial correlations confirm sign flip. Diagnostic mismatch points to deficiencies in simulated ICM thermodynamic regulation.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (diagnostic mismatch)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e2e3e5; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T4</span> <strong>Completed (diagnostic mismatch)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31286368">31286368</a>
       </td>
@@ -762,7 +800,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         L1 linear perturbations: Under fully self-consistent growth-channel implementation (ODE-based D(a), no potential μ′ term), EFC predicts a uniform late-time ISW amplitude suppression A<sub>ISW</sub> ≈ 0.89 ± 0.03 across tracer bins. No strong tomographic gradient survives internal consistency audit. <strong>Definitive discriminator:</strong> Measured A<sub>ISW</sub> must deviate from unity by ≈10% in a tracer-independent manner. A statistically significant detection of A<sub>ISW</sub> ≈ 1.0 ± 0.02 would disfavor the background-driven EFC channel.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (Self-consistent recomputation; quantitative revision)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Completed (self-consistent prediction; awaiting observational confrontation)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31301953">31301953</a>,
         <a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a>
@@ -780,7 +818,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Same coupling T(z) predicts near-zero modification at high redshift; data consistent with null detection, as required by the same transition function T(z) used in the four-channel background test.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (null-prediction consistency check)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (null-prediction consistency check)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31304995">31304995</a>
       </td>
@@ -801,7 +839,7 @@ with defined methodologies to ensure transparency and falsifiability.
         <strong>Implication:</strong> Background-level EFC cannot suppress σ<sub>8</sub>; perturbation-level μ(a) &lt; 1 required.
         77 lines of C code across background.h, background.c, input.c.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (structural proof)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Completed (structural proof)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>
       </td>
@@ -821,7 +859,7 @@ with defined methodologies to ensure transparency and falsifiability.
         S<sub>8</sub> gap closed: 73%. Planck status: ~1.5σ from μ<sub>0</sub>=1.
         <strong>Structural ceiling:</strong> Scale-free μ(a) closes at most ~43% within Planck 1σ.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (structural constraint)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#fff3cd; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T3</span> <strong>Completed (structural constraint)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>
       </td>
@@ -838,7 +876,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Framework-level diagnostic (not empirical observable): EFC shows higher layer consistency and lower model plasticity; ΛCDM retains higher compression
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (meta-model evaluation)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e2e3e5; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T4</span> <strong>Completed (meta-model evaluation)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31305550">31305550</a>
       </td>
@@ -855,7 +893,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px;">
         Fixed-parameter transfer test using official Cobaya likelihood with full covariance matrix. Δχ² = −2.4 (BAO) + −0.6 (CC) = −3.0 total. No validated geometric channel penalises EFC relative to ΛCDM.
       </td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (consistency test)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (consistency test)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31314922">31314922</a>
       </td>
@@ -868,8 +906,8 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">❌</td>
-      <td style="border:1px solid #ddd; padding:8px;">Local–global inference separation</td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (Consistency Check)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Local–global inference separation; EFC survives but does not resolve the tension</td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>Completed (Consistency Check)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31026151">31026151</a>
       </td>
@@ -883,7 +921,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚠️</td>
       <td style="border:1px solid #ddd; padding:8px;">Geometric BAO-only phenomenology; full dynamical multi-probe test pending</td>
-      <td style="border:1px solid #ddd; padding:8px;"><strong>BAO phenomenology completed</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;"><span style="background:#e6ffe6; padding:1px 6px; border-radius:3px; font-size:11px; font-weight:600;">T2</span> <strong>BAO phenomenology completed</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31127380">31127380</a>
       </td>
@@ -1344,7 +1382,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
       <td style="border:1px solid #ddd; padding:8px;"><strong>Cluster merger geometry (31173850)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">L2 non-linear</td>
       <td style="border:1px solid #ddd; padding:8px;">
-        Eliminates local entropy-gradient couplings; requires operator classes with component sensitivity and geometric smoothing
+        Constrains local entropy-gradient couplings; requires operator classes with component sensitivity and geometric smoothing to remain viable
       </td>
     </tr>
 
@@ -1352,7 +1390,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
       <td style="border:1px solid #ddd; padding:8px;"><strong>Weak-lensing phenomenological closure (Postulate A)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">L1 linear perturbations</td>
       <td style="border:1px solid #ddd; padding:8px;">
-        Demonstrates absence of a derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides path to replace this closure with physical derivation.
+        Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.
       </td>
     </tr>
 
@@ -1394,6 +1432,124 @@ does not require new physics but remains a target for Stage-IV precision tests.
 
 <hr>
 
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3.1: EXPLICIT FALSIFICATION CONDITIONS -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>3.1 Explicit Falsification Conditions</h2>
+
+<p>The following observational outcomes would constitute strong evidence against the EFC framework or specific EFC sectors. Each condition is linked to the sector and regime it would constrain. These are standing predictions — not post-hoc adjustments.</p>
+
+<div style="background-color:#fff0f0; border-left:4px solid #dc3545; padding:15px; margin:15px 0;">
+
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin:0;">
+  <thead style="background-color:#f8d7da;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:5%;">#</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:35%;">Falsification Condition</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left; width:15%;">Sector</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Consequence if observed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F1</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Measured A<sub>ISW</sub> = 1.00 &plusmn; 0.02 (tracer-independent) on DESI DR1 &times; Planck</td>
+      <td style="border:1px solid #ddd; padding:8px;">BG (L1)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Rules out background-driven EFC growth channel; &beta;&middot;T(a) coupling disfavoured</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F2</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Multi-epoch RSD trajectory shows no statistically significant deviation from &Lambda;CDM across z = 0.02&ndash;1.5</td>
+      <td style="border:1px solid #ddd; padding:8px;">GRW (L1&ndash;L2)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Eliminates growth-channel modification; EFC must reduce to pure background cosmology</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F3</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Cluster lensing asymmetry absent at pre-registered significance level on JWST &kappa; maps (A<sub>sig</sub> consistent with zero)</td>
+      <td style="border:1px solid #ddd; padding:8px;">LEN + SCR (L2)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Disfavours entropy- or structure-coupled anisotropic lensing response</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F4</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Full-shape P(k) inconsistent with background-only growth modification at &gt; 3&sigma;</td>
+      <td style="border:1px solid #ddd; padding:8px;">GRW (L1&ndash;L2)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Scale-dependent growth pattern requires Poisson-sector modification not present in baseline EFC</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F5</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Discrete gravity operator fails to reproduce observed rotation curve diversity across morphological types (SPARC + MaNGA joint likelihood)</td>
+      <td style="border:1px solid #ddd; padding:8px;">DGS (L2&ndash;L3)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Graph-AQUAL operator structurally insufficient; discrete sector requires revision or abandonment</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>F6</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">&Lambda;-locked screening produces cosmological growth instability that cannot be resolved without introducing free parameters</td>
+      <td style="border:1px solid #ddd; padding:8px;">DGS + BG</td>
+      <td style="border:1px solid #ddd; padding:8px;">&Lambda; as bulk capacity hypothesis fails; screening mechanism requires replacement</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<p style="font-size:13px; color:#555;">
+<strong>Standing commitment:</strong> These falsification conditions are pre-registered and will not be revised post-hoc. If any condition is met by future data, the affected sector must be either formally revised or abandoned, with the revision documented in this ledger.
+</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3.2: HISTORICAL FALSIFICATIONS AND MODEL REVISIONS -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>3.2 Historical Falsifications and Model Revisions</h2>
+
+<p>Scientific integrity requires documenting not only current successes but also historical failures. The following entries record model versions or specific predictions that were falsified by data or internal analysis, leading to structural revisions. These are preserved to demonstrate that EFC evolves through empirical confrontation, not post-hoc accommodation.</p>
+
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f8d7da;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Falsified Element</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Failure Mode</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Resolution</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>EFC v1 Scalar Index Model</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Original scalar-index parametrisation produced monotonic radial boost incompatible with observed rotation curve diversity. Failed to reproduce flat/declining outer profiles.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Abandoned in favour of regime-dependent EBE framework with explicit density saturation &Theta;(&rho;). Monotonic Radial Boost Problem resolved by structural revision.</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong style="color:#dc3545;">FALSIFIED</strong> &rarr; Superseded</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>EFC-R on SPARC (direct application)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Direct application of EFC-R coupling to full SPARC sample produced systematic residuals in Regime 2&ndash;3 galaxies. Only Regime 1 (low-acceleration) showed acceptable fits.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Led to regime partitioning (EBE framework) and recognition that single-regime coupling cannot span full acceleration range. Multi-regime structure now core architectural feature.</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong style="color:#dc3545;">PARTIAL FAIL</strong> &rarr; Resolved by regime separation</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>ISW cancellation metric C (v1.6)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Original tomographic cancellation prediction relied on mixed-channel implementation producing spurious tomographic gradient.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Superseded by ISW Consistency Audit v1.1. Self-consistent ODE-based growth channel produces uniform A<sub>ISW</sub> &asymp; 0.89 &plusmn; 0.03. Original C-metric deprecated.</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong style="color:#dc3545;">DEPRECATED</strong> &rarr; Revised (v2.1)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>Poisson-sector coupling (direct &mu; boost)</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Early EFC assumption that Poisson-sector &mu; &gt; 1 could enhance growth was tested against RSD data. Found to be disfavoured; background channel preferred.</td>
+      <td style="border:1px solid #ddd; padding:8px;">Led to structural separation of background (H&sup2;) and perturbation (&mu;) channels. Current architecture: background channel primary, perturbation channel requires &mu; &lt; 1 for &sigma;<sub>8</sub> suppression.</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong style="color:#dc3545;">DISFAVOURED</strong> &rarr; Architecture revised</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;">
+<strong>Governance Rule:</strong> Any future falsification of a current EFC sector or prediction must be documented in this section within one ledger revision cycle. Suppressing or omitting falsification history is explicitly prohibited under the EFC validation protocol.
+</p>
+
+<hr>
+
 <h2>4. Evidence Register (Citable Artifacts)</h2>
 
 <h3>Empirical &amp; Phenomenological</h3>
@@ -1416,7 +1572,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
   <li><strong>JWST COSMOS-Web abundance excess:</strong>
     <a href="https://doi.org/10.6084/m9.figshare.31059964">31059964</a></li>
 
-  <li><strong>ΛCDM breakdown across cosmic time:</strong>
+  <li><strong>Identified multi-regime tension under standard &Lambda;CDM assumptions:</strong>
     <a href="https://doi.org/10.6084/m9.figshare.31061665">31061665</a></li>
 
   <li><strong>H₀ / S8 inference separation:</strong>
@@ -1549,6 +1705,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <h2>6. Recent Updates</h2>
 
 <ul>
+  <li><strong>2026-02-16 (v3.2 – Referee Version)</strong> – Validation Tier system (T1–T4) added to distinguish joint-likelihood, single-probe, structural, and diagnostic results. Explicit Falsification Conditions section (F1–F6) with pre-registered predictions. Historical Falsifications and Model Revisions section documenting EFC v1 scalar index falsification, SPARC partial failure, ISW C-metric deprecation, and Poisson-sector disfavouring. Normative language toned down throughout (assertions &rarr; constraints). ISW status updated to &ldquo;awaiting observational confrontation&rdquo;. JWST status clarified as &ldquo;interpretation-dependent&rdquo;. H<sub>0</sub> regime interpretation expanded.</li>
   <li><strong>2026-02-16 (v3.1)</strong> – Major structural upgrade: Ledger partitioned into background, perturbation, and discrete operator sectors. Added Section 0.0 Regime Coordinates (&xi;, &eta;) with formal UV–IR classification. Added Section 1.1 Discrete Gravity Sector (Graph-Based Operator) with KT1–KT5 tests and Cosmological Growth Stability. Added DGS parameters to Global Parameter Registry (&xi;, &eta;, &mu;<sub>&Lambda;</sub>, C, &beta;). Extended Regime &times; Observable &times; Sector Matrix with DGS entries. Updated Executive Summary to reflect multi-sector theoretical program with &Lambda;-locked screening. MOND language refined to &ldquo;MOND-like regime emerges in IR gradient-dominated sector.&rdquo; Evidence basis: [<a href="https://doi.org/10.6084/m9.figshare.31348411">31348411</a>] [<a href="https://doi.org/10.6084/m9.figshare.31348414">31348414</a>] [<a href="https://doi.org/10.6084/m9.figshare.31348417">31348417</a>]</li>
   <li><strong>2026-02-13 (v2.3)</strong> – Added EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion (ΔE² ≤ 0 proven; fσ<sub>8</sub> enhanced +0.5–0.76%). Added Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1: WP1a reference model (μ<sub>0</sub>=0.85, S<sub>8</sub>=0.790, 73% gap closure; structural ceiling ~43%). [<a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>] [<a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>]</li>
   <li><strong>2026-02-13 (v2.2)</strong> – Added MVP-G1 Growth fσ<sub>8</sub> Leave-One-Out robustness test (N2a mode). α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α&lt;0 in EFC growth channel. Full MVP-G1 control suite passed (N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness). [<a href="https://doi.org/10.6084/m9.figshare.31332730">10.6084/m9.figshare.31332730</a>]</li>
@@ -1562,7 +1719,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <p><a href="EFC_Changelog.html"><strong>View full revision history &rarr;</strong></a></p>
 
 <p style="font-size:13px; color:#666;">
-© 2026 Energy-Flow Cosmology Initiative · Canonical Multi-Sector Validation Ledger (v3.1)
+© 2026 Energy-Flow Cosmology Initiative · Canonical Multi-Sector Validation Ledger (v3.2 – Referee Version)
 </p>
 
 <script>
