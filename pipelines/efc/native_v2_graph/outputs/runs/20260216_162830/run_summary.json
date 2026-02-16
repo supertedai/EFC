@@ -1,0 +1,41 @@
+{
+  "run_id": "20260216_162830",
+  "tests": [
+    "kt1",
+    "kt2",
+    "kt3",
+    "kt4",
+    "kt5"
+  ],
+  "mode": "quick",
+  "total_time_s": 189.4,
+  "results": {
+    "kt1": {
+      "newton_recovery": "PASS",
+      "mond_limit": "PASS",
+      "overall": "PASS"
+    },
+    "kt2": {
+      "C_latest": 2.3544985464922923,
+      "trend": -0.0886168216576464,
+      "interpretation": "converging_slowly"
+    },
+    "kt3": {
+      "beta_ratio": 0.0,
+      "beta_slope": 0.1659770225635854,
+      "verdict_ratio": "FAIL",
+      "verdict_slope": "FAIL",
+      "expected": 0.5,
+      "note": "beta=0 means Lambda-locked transition (not mass-dependent)"
+    },
+    "kt4": {
+      "error": "Object of type bool is not JSON serializable"
+    },
+    "kt5": {
+      "baseline_enhancement": 4.626662279104061,
+      "min_strong_enhancement": 9.110037724820954,
+      "efe_status": "NOT_DETECTED",
+      "note": "Uses internal field (g_ext subtracted) for measurement"
+    }
+  }
+}

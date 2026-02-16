@@ -1,0 +1,48 @@
+# EFC Native v2 Graph — Sweep Configurations for KT Suite
+
+kt1_limits:
+  description: "Newton recovery — slope -> -2 when g/a0 >> 1"
+  sweep_param: a0
+  values: [2.0, 0.5, 0.1, 0.01, 0.001]
+  fixed:
+    N: 31
+    M: 50.0
+  pass_criterion: "slope_outer < -1.7 when g/a0 > 30"
+
+kt2_convergence:
+  description: "Prefactor C convergence with grid size"
+  sweep_param: N
+  values: [21, 31, 41]
+  fixed:
+    M: 50.0
+    a0: 2.0
+  pass_criterion: "C -> 1 or C stable as N -> inf"
+
+kt3_mass_scaling:
+  description: "Transition radius scales as sqrt(M)"
+  sweep_param: M
+  values: [10, 25, 50, 100, 200]
+  fixed:
+    N: 31
+    a0: 2.0
+  pass_criterion: "beta ~ 0.5 in r_trans ~ M^beta"
+
+kt4_superposition:
+  description: "Nonlinear superposition breaking"
+  sources:
+    A: {pos: [-4, 0, 0], M: 30.0}
+    B: {pos: [4, 0, 0], M: 30.0}
+  fixed:
+    N: 31
+    a0: 2.0
+  pass_criterion: "delta_Phi smooth, nonzero, noise_ratio < 2.0"
+
+kt5_efe:
+  description: "External Field Effect"
+  sweep_param: g_ext_ratio
+  values: [0.0, 0.1, 0.5, 1.0, 2.0, 5.0]
+  fixed:
+    N: 31
+    M: 50.0
+    a0: 2.0
+  pass_criterion: "enhancement decreases with g_ext"

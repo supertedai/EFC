@@ -1,0 +1,33 @@
+# EFC Native v2 Graph — Base Configuration
+# All tests inherit from this unless overridden in sweeps.yaml
+
+domain:
+  N: 31
+  spacing: 1.0
+  boundary_margin: 1.5
+
+mass_model:
+  type: point
+  M: 50.0
+  r_source: 2.0
+
+physics:
+  G_eff: 1.0
+  a0: 2.0
+  mu_func: standard    # standard: x/sqrt(1+x^2), simple: x/(1+x)
+
+solver:
+  max_iter: 500
+  tol: 1.0e-4
+  damping: 0.3
+
+observables:
+  volume_weighted: true
+  r_inner: [3.0, 5.0]
+  r_mid: [5.0, 8.0]
+  r_outer: [8.0, 12.0]
+
+output:
+  dir: outputs/runs
+  figures_dir: outputs/figures
+  format: json        # json or csv
