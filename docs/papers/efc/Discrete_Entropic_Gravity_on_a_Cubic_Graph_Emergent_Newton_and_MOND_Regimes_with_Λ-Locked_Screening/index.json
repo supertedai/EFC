@@ -1,0 +1,115 @@
+{
+  "id": "discrete-entropic-gravity-cubic-graph",
+  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
+  "short_title": "Discrete Graph Gravity",
+  "version": "1.0",
+  "date": "2026-02-16",
+  "doi": "10.6084/m9.figshare.31348411",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "technical_note",
+  "epistemic_layer": "B",
+  "epistemic_status": "Technical construction with controlled numerical tests; does not claim MOND equivalence",
+  "keywords": [
+    "discrete gravity",
+    "cubic graph",
+    "AQUAL",
+    "MOND",
+    "entropic gravity",
+    "Λ-locking",
+    "cosmological constant",
+    "graph topology",
+    "Newtonian limit",
+    "external field effect",
+    "modified gravity",
+    "EFC"
+  ],
+  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Reproduces Newtonian 1/r² and MOND-like 1/r scaling, Λ-locked transition, broken superposition, and external field effect. A nontrivial prefactor C ≈ 2.32 emerges (a₀,eff ≈ 5.4 a₀), and mass scaling is weak (r_trans ∝ M^0.18 vs MOND M^0.5).",
+  "key_results": {
+    "newton_slope": -2.00,
+    "mond_slope_a0_2": -0.99,
+    "mond_slope_a0_05": -1.01,
+    "prefactor_C": 2.32,
+    "a0_eff_ratio": 5.4,
+    "mass_scaling_exponent": 0.18,
+    "mass_scaling_uncertainty": 0.03,
+    "superposition_violation": "13.7%",
+    "sigma8_suppression": "0.7%",
+    "growth_suppression_epsilon0": "0.8%"
+  },
+  "key_equations": {
+    "discrete_gradient": "|∇Φ|_ij = |Φ_i − Φ_j| / a",
+    "interpolating_function": "μ(x) = x / √(1 + x²)",
+    "aqual_weight": "w_ij = μ(|Φ_i − Φ_j| / (a₀·a))",
+    "field_equation": "Σ_{j~i} w_ij(Φ_j − Φ_i) = 4πGρ_i",
+    "bulk_entropic_term": "F_bulk = ½ μ_Λ (S_i − S_V)²",
+    "screening_length": "L_Λ ∝ Λ^{-1/2}",
+    "acceleration_scale": "a₀ = c²/L_Λ ∝ c²√Λ",
+    "graph_deep_mond": "g_graph = C √(a₀ g_N)",
+    "effective_a0": "a₀,eff = C² a₀ ≈ 5.4 a₀",
+    "growth_ode": "δ̈ + 2H(a)δ̇ − (3/2)Ω_m H₀²(1+z)³ δ = 0"
+  },
+  "parameters": {
+    "lattice_sizes_tested": [21, 31, 41],
+    "convergence_tolerance": 1e-4,
+    "beta_background": 0.08,
+    "superposition_separation": "8a",
+    "Lambda_source": "Planck 2018"
+  },
+  "kill_tests": [
+    {"id": "KT1", "name": "Newton and MOND Recovery", "result": "PASS"},
+    {"id": "KT2", "name": "Prefactor Convergence", "result": "PASS", "value": 2.32},
+    {"id": "KT3", "name": "Mass Scaling", "result": "STRUCTURAL_DEPARTURE", "exponent": 0.18},
+    {"id": "KT4", "name": "Broken Superposition", "result": "PASS", "violation": "13.7%"},
+    {"id": "KT5", "name": "External Field Effect", "result": "PASS"}
+  ],
+  "falsification_criteria": [
+    "Operator must recover g ∝ r⁻² (Newton) and g ∝ r⁻¹ (deep MOND)",
+    "Prefactor C must converge under resolution refinement",
+    "Rotation curve comparisons must use a₀,eff = C²a₀",
+    "Mass-scaling exponent 0.18 is testable against galaxy-scale data"
+  ],
+  "related_papers": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "relationship": "mathematical_foundation"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "relationship": "methodological_framework"
+    },
+    {
+      "id": "efc-h0-unification",
+      "doi": "10.6084/m9.figshare.31223908",
+      "relationship": "entropic_gravity_modification"
+    }
+  ],
+  "files": {
+    "paper": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening.pdf",
+    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
+    "metadata": ["CITATION.cff", "index.json", "DiscreteEntropicGravity.jsonld", "schema.json"],
+    "source_code": [
+      "src/__init__.py",
+      "src/cubic_graph.py",
+      "src/aqual_operator.py",
+      "src/lambda_screening.py",
+      "src/kill_tests.py",
+      "src/growth_check.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/kill_test_results.json",
+      "data/convergence_table.json"
+    ],
+    "examples": [
+      "examples/run_kill_tests.py",
+      "examples/prefactor_convergence.py"
+    ]
+  }
+}

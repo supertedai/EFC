@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/discrete-entropic-gravity.json",
+  "title": "Discrete Entropic Gravity on a Cubic Graph Schema",
+  "description": "Schema for the discrete AQUAL operator on cubic graph with Λ-locked screening",
+  "type": "object",
+  "definitions": {
+    "LatticeParameters": {
+      "type": "object",
+      "properties": {
+        "N": {
+          "type": "integer",
+          "description": "Cubic lattice dimension (N³ nodes)",
+          "minimum": 5
+        },
+        "a": {
+          "type": "number",
+          "description": "Lattice spacing"
+        },
+        "a0": {
+          "type": "number",
+          "description": "MOND acceleration scale in lattice units"
+        },
+        "boundary": {
+          "type": "string",
+          "enum": ["open", "periodic"],
+          "description": "Boundary condition type"
+        }
+      },
+      "required": ["N"]
+    },
+    "InterpolatingFunction": {
+      "type": "object",
+      "properties": {
+        "form": {
+          "type": "string",
+          "description": "Functional form of μ(x)",
+          "const": "x / sqrt(1 + x^2)"
+        },
+        "x": {
+          "type": "number",
+          "description": "Argument |Φ_i − Φ_j| / (a₀ · a)"
+        },
+        "mu": {
+          "type": "number",
+          "description": "Interpolation function value",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "KillTestResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["KT1", "KT2", "KT3", "KT4", "KT5"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "STRUCTURAL_DEPARTURE"]
+        },
+        "measured_value": {
+          "description": "Measured numerical result"
+        },
+        "expected_value": {
+          "description": "Expected value from standard theory"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "result"]
+    },
+    "PrefactorConvergence": {
+      "type": "object",
+      "properties": {
+        "N": {
+          "type": "integer",
+          "description": "Lattice size"
+        },
+        "C_cubic": {
+          "type": "number",
+          "description": "Prefactor measured with cubic binning"
+        },
+        "C_sphere": {
+          "type": "number",
+          "description": "Prefactor measured with spherical binning"
+        }
+      },
+      "required": ["N", "C_cubic", "C_sphere"]
+    },
+    "CosmologicalCheck": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "sigma8": {
+          "type": "number",
+          "description": "σ₈ amplitude"
+        },
+        "fsigma8_z051": {
+          "type": "number",
+          "description": "fσ₈ at z = 0.51"
+        },
+        "epsilon0": {
+          "type": ["number", "null"],
+          "description": "Total growth suppression relative to ΛCDM"
+        }
+      }
+    },
+    "BulkEntropicTerm": {
+      "type": "object",
+      "properties": {
+        "mu_Lambda": {
+          "type": "number",
+          "description": "Coupling strength ∝ Λ"
+        },
+        "S_i": {
+          "type": "number",
+          "description": "Local entropy at node i"
+        },
+        "S_V": {
+          "type": "number",
+          "description": "Volume-averaged reference entropy"
+        },
+        "L_Lambda": {
+          "type": "number",
+          "description": "Yukawa-like screening length ∝ Λ^{-1/2}"
+        }
+      }
+    }
+  },
+  "properties": {
+    "lattice": { "$ref": "#/definitions/LatticeParameters" },
+    "interpolating_function": { "$ref": "#/definitions/InterpolatingFunction" },
+    "bulk_term": { "$ref": "#/definitions/BulkEntropicTerm" },
+    "kill_tests": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/KillTestResult" },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "convergence": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/PrefactorConvergence" }
+    },
+    "cosmological_check": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/CosmologicalCheck" }
+    }
+  }
+}

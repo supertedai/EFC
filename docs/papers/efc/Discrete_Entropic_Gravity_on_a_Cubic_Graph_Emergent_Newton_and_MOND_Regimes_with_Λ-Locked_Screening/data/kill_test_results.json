@@ -1,0 +1,99 @@
+{
+  "description": "Results of five kill tests for the discrete AQUAL operator on cubic graph",
+  "solver_tolerance": 1e-4,
+  "kill_tests": [
+    {
+      "id": "KT1",
+      "name": "Newton and MOND Recovery",
+      "result": "PASS",
+      "description": "Operator must recover g ∝ r⁻² (Newton) and g ∝ r⁻¹ (deep MOND)",
+      "measurements": [
+        {
+          "regime": "Newton",
+          "a0": 0.001,
+          "region": "inner (3 < r/a < 5)",
+          "measured_slope": -2.00,
+          "expected_slope": -2.0
+        },
+        {
+          "regime": "MOND",
+          "a0": 2.0,
+          "region": "outer (r > r_MOND)",
+          "measured_slope": -0.99,
+          "expected_slope": -1.0
+        },
+        {
+          "regime": "MOND",
+          "a0": 0.5,
+          "region": "outer (r > r_MOND)",
+          "measured_slope": -1.01,
+          "expected_slope": -1.0
+        }
+      ]
+    },
+    {
+      "id": "KT2",
+      "name": "Prefactor Convergence",
+      "result": "PASS",
+      "description": "Deep-MOND prefactor C = g_AQUAL / √(a₀ g_N) must converge",
+      "converged_value": 2.32,
+      "binning_independent": true,
+      "interpretation": "C ≠ 1 means graph does not reproduce standard MOND. Effective a₀,eff = C²a₀ ≈ 5.4 a₀",
+      "convergence_data": [
+        {"N": 21, "C_cubic": 2.443, "C_sphere": 2.433},
+        {"N": 31, "C_cubic": 2.354, "C_sphere": 2.349},
+        {"N": 41, "C_cubic": 2.320, "C_sphere": 2.321}
+      ]
+    },
+    {
+      "id": "KT3",
+      "name": "Mass Scaling",
+      "result": "STRUCTURAL_DEPARTURE",
+      "description": "In standard MOND, r_trans ∝ M^0.5. Measured exponent is 0.18.",
+      "measured_exponent": 0.18,
+      "uncertainty": 0.03,
+      "expected_exponent": 0.50,
+      "interpretation": "Λ-locking dominates over local mass in setting transition radius. Structural consequence of Λ-proportional reservoir term."
+    },
+    {
+      "id": "KT4",
+      "name": "Broken Superposition",
+      "result": "PASS",
+      "description": "Nonlinear superposition violation for two equal point masses",
+      "configuration": "Two equal masses separated by d = 8a",
+      "measured_violation": 0.137,
+      "violation_unit": "δΦ/Φ_max",
+      "spatial_structure": "smooth (not noise)",
+      "interpretation": "Arises from nonlinear μ-function; expected from any AQUAL-type operator"
+    },
+    {
+      "id": "KT5",
+      "name": "External Field Effect",
+      "result": "PASS",
+      "description": "Enhancement must decrease with external field strength",
+      "behaviour": "monotonic decrease after radial projection",
+      "quantitative": false,
+      "note": "Qualitative in this test; quantitative measurement requires galaxy-pair boundary conditions"
+    }
+  ],
+  "cosmological_stability": {
+    "description": "Minimal consistency check against BOSS DR12 fσ₈",
+    "beta": 0.08,
+    "channel": "background only",
+    "results": [
+      {
+        "model": "ΛCDM",
+        "sigma8": 0.811,
+        "fsigma8_z051": 0.473,
+        "epsilon0": null
+      },
+      {
+        "model": "This work (background)",
+        "sigma8": 0.805,
+        "fsigma8_z051": 0.463,
+        "epsilon0": 0.008
+      }
+    ],
+    "interpretation": "σ₈ suppressed by 0.7%, consistent with S₈ tension direction. Stability check, not a fit."
+  }
+}
