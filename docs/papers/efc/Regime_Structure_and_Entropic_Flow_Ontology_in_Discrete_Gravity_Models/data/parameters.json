@@ -1,0 +1,59 @@
+{
+  "description": "Physical constants and model parameters for the regime structure framework",
+  "physical_constants": {
+    "G": 6.674e-11,
+    "G_unit": "m³ kg⁻¹ s⁻²",
+    "c": 2.998e8,
+    "c_unit": "m/s",
+    "Lambda": 1.11e-52,
+    "Lambda_unit": "m⁻²",
+    "Lambda_source": "Planck 2018 (arXiv:1807.06209)"
+  },
+  "interpolating_function": {
+    "form": "standard",
+    "formula": "μ(x) = x / √(1 + x²)",
+    "properties": {
+      "x_much_greater_1": "μ(x) → 1 (Newtonian regime)",
+      "x_much_less_1": "μ(x) ~ x (MOND regime)",
+      "x_equals_1": "μ(1) = 1/√2 ≈ 0.707 (transition)"
+    }
+  },
+  "aqual_kinetic_integrand": {
+    "formula": "F(x) = ∫₀ˣ y μ(y) dy",
+    "source": "Bekenstein & Milgrom (1984)"
+  },
+  "acceleration_scale": {
+    "a0": 1.2e-10,
+    "a0_unit": "m/s²",
+    "relation_to_Lambda": "a₀ ∝ c² √Λ",
+    "note": "Not an independent local constant; controlled by cosmology"
+  },
+  "screening_scale": {
+    "mu_Lambda_proportionality": "μ_Λ ∝ Λ",
+    "L_Lambda_formula": "L_Λ = 1/√μ_Λ",
+    "L_Lambda_value_Gpc": 4.4,
+    "relation": "L_Λ ∝ Λ⁻¹/² ~ H₀⁻¹"
+  },
+  "lattice": {
+    "type": "cubic lattice or general graph",
+    "adjacency": "⟨i, j⟩ nearest-neighbour pairs",
+    "spacing_symbol": "a",
+    "boundary": "not specified (general framework)"
+  },
+  "regime_ratios": {
+    "xi": {
+      "formula": "ξ = |∇Φ| / a₀",
+      "description": "Ratio of gradient field strength to MOND acceleration scale"
+    },
+    "eta": {
+      "formula": "η = μ_Λ Φ / |∇²Φ|",
+      "description": "Ratio of bulk term to Laplacian (gradient curvature)"
+    }
+  },
+  "discrete_renormalization": {
+    "prefactor_C": 2.32,
+    "effective_a0_ratio": 5.4,
+    "relation": "a₀,eff = C² a₀",
+    "source_doi": "10.6084/m9.figshare.31348411"
+  }
+}

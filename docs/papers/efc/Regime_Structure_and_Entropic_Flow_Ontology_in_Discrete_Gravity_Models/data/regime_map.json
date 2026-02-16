@@ -1,0 +1,79 @@
+{
+  "description": "Regime dominance map for the discrete entropic functional (Section 4, Eq. 9)",
+  "dimensionless_ratios": {
+    "xi": {
+      "symbol": "ξ",
+      "formula": "|∇Φ| / a₀",
+      "description": "Gradient strength relative to MOND scale"
+    },
+    "eta": {
+      "symbol": "η",
+      "formula": "μ_Λ Φ / |∇²Φ|",
+      "description": "Bulk strength relative to gradient curvature"
+    }
+  },
+  "regimes": [
+    {
+      "name": "UV (Newtonian)",
+      "id": "UV",
+      "xi_condition": ">> 1",
+      "eta_condition": "<< 1",
+      "dominant_sector": "gradient",
+      "mu_behaviour": "μ(x) → 1",
+      "behaviour": "g ∝ r⁻²",
+      "field_equation": "∇²Φ = 4πGρ",
+      "paper_equation": "Eq. 4",
+      "numerical_verification": "log-log slope = -2.00 [ref 1]",
+      "physical_examples": ["solar system", "stellar dynamics", "compact objects"]
+    },
+    {
+      "name": "IR (MOND-like)",
+      "id": "IR",
+      "xi_condition": "<< 1",
+      "eta_condition": "<< 1",
+      "dominant_sector": "gradient (nonlinear)",
+      "mu_behaviour": "μ(x) ~ x",
+      "behaviour": "g ∝ r⁻¹",
+      "field_equation": "∇·(|∇Φ|/a₀ ∇Φ) = 4πGρ",
+      "paper_equation": "Eq. 5",
+      "numerical_verification": "g = C √(a₀ g_N), C ≈ 2.32 [ref 1]",
+      "physical_examples": ["galaxy outskirts", "low surface brightness galaxies", "wide binary stars"]
+    },
+    {
+      "name": "Cosmological",
+      "id": "Cosmo",
+      "xi_condition": "any",
+      "eta_condition": ">> 1",
+      "dominant_sector": "bulk",
+      "mu_behaviour": "bulk term μ_Λ dominates",
+      "behaviour": "Yukawa screening",
+      "field_equation": "∇²Φ − μ_Λ Φ = 4πGρ",
+      "paper_equation": "Eq. 6",
+      "screening_scale": "L_Λ = 1/√μ_Λ ∝ Λ⁻¹/² ~ 4.4 Gpc",
+      "sigma8_preserved": true,
+      "physical_examples": ["super-Hubble scales", "large-scale structure screening"]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "UV",
+      "to": "IR",
+      "condition": "ξ ~ 1",
+      "physical_meaning": "g ~ a₀",
+      "description": "Gradient strength drops below MOND scale; nonlinear coupling activates"
+    },
+    {
+      "from": "IR",
+      "to": "Cosmological",
+      "condition": "η ~ 1",
+      "physical_meaning": "scales approaching L_Λ",
+      "description": "Bulk term overtakes gradient sector; Yukawa screening dominates"
+    }
+  ],
+  "key_properties": {
+    "exhaustiveness": "For any field configuration, exactly one sector dominates",
+    "smoothness": "Transitions governed by interpolating function μ(x)",
+    "minimality": "No free functions beyond μ(x) and μ_Λ ∝ Λ",
+    "graph_defined": "Entire framework on graph topology; no continuum metric assumed"
+  }
+}
