@@ -1,0 +1,59 @@
+{
+  "test": "KT3",
+  "description": "Mass scaling of transition radius",
+  "params": {
+    "N": 31,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "M": 10.0,
+      "r_pred": 2.23606797749979,
+      "r_trans_ratio": 3.5,
+      "r_trans_slope": 4.5,
+      "converged": true,
+      "time_s": 90.1
+    },
+    {
+      "M": 25.0,
+      "r_pred": 3.5355339059327378,
+      "r_trans_ratio": 3.5,
+      "r_trans_slope": 4.5,
+      "converged": true,
+      "time_s": 83.4
+    },
+    {
+      "M": 50.0,
+      "r_pred": 5.0,
+      "r_trans_ratio": 3.5,
+      "r_trans_slope": 4.5,
+      "converged": true,
+      "time_s": 90.0
+    },
+    {
+      "M": 100.0,
+      "r_pred": 7.0710678118654755,
+      "r_trans_ratio": 3.5,
+      "r_trans_slope": 6.5,
+      "converged": true,
+      "time_s": 90.0
+    },
+    {
+      "M": 200.0,
+      "r_pred": 10.0,
+      "r_trans_ratio": 3.5,
+      "r_trans_slope": 8.5,
+      "converged": true,
+      "time_s": 89.8
+    }
+  ],
+  "verdict": {
+    "beta_ratio": 0.0,
+    "beta_slope": 0.21624358281378617,
+    "verdict_ratio": "FAIL",
+    "verdict_slope": "FAIL",
+    "expected": 0.5,
+    "note": "beta=0 means Lambda-locked transition (not mass-dependent)"
+  }
+}
