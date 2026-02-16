@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "efc:RegimeStructureEntropicFlowOntology",
+  "name": "Regime Structure and Entropic Flow Ontology in Discrete Gravity Models",
+  "headline": "Three gravitational regimes emerge from dominance transitions in a single discrete entropic functional, with Λ as bulk capacity parameter",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-16",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "regime structure",
+    "entropic flow ontology",
+    "discrete gravity",
+    "graph functionals",
+    "AQUAL",
+    "MOND",
+    "cosmological constant",
+    "bulk entropic capacity",
+    "emergent spacetime",
+    "Energy-Flow Cosmology"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:DiscreteEntropicFunctional",
+      "name": "Discrete Entropic Functional",
+      "description": "Three-sector functional F[Φ] on a graph: gradient (nearest-neighbour AQUAL coupling), bulk (quadratic Λ-anchoring to Φ_V), and source (linear matter coupling)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeDominanceMap",
+      "name": "Regime Dominance Map",
+      "description": "Classification of field configurations into UV (Newtonian), IR (MOND-like), or Cosmological regimes via dimensionless ratios ξ = |∇Φ|/a₀ and η = μ_Λ Φ/|∇²Φ|"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:BulkEntropicCapacity",
+      "name": "Bulk Entropic Capacity (Λ)",
+      "description": "Λ functions as a bulk capacity parameter: locally sets MOND scale a₀ ∝ c²√Λ, globally sets screening length L_Λ ∝ Λ⁻¹/² ~ 4.4 Gpc"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:EntropicFlowOntology",
+      "name": "Entropic Flow Ontology",
+      "description": "Ontological framework: entropy is network capacity, energy flow is gradient redistribution, spacetime is emergent from graph structure, time is equilibrium relaxation"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:InterpolatingFunction",
+      "name": "Standard Interpolating Function",
+      "description": "μ(x) = x/√(1+x²), providing smooth transitions between Newtonian (μ→1) and MOND (μ~x) regimes"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Regime Exhaustiveness",
+    "description": "The UV, IR, and Cosmological regimes are exhaustive: for any field configuration, exactly one sector of the discrete entropic functional dominates, producing the corresponding gravitational behaviour without requiring separate theoretical frameworks"
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31348411",
+      "name": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
+      "author": "Magnusson, M.",
+      "datePublished": "2026"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "doi:10.6084/m9.figshare.31348414",
+      "name": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+      "author": "Magnusson, M.",
+      "datePublished": "2026"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis",
+      "author": "Milgrom, M.",
+      "datePublished": "1983"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Does the missing mass problem signal the breakdown of Newtonian gravity?",
+      "author": "Bekenstein, J. D. and Milgrom, M.",
+      "datePublished": "1984"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Emergent Gravity and the Dark Universe",
+      "author": "Verlinde, E.",
+      "datePublished": "2017",
+      "identifier": "doi:10.21468/SciPostPhys.2.3.016"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results. VI. Cosmological parameters",
+      "author": "Planck Collaboration",
+      "datePublished": "2020",
+      "identifier": "doi:10.1051/0004-6361/201833910"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Modified Gravity and Cosmology",
+      "author": "Clifton, T. et al.",
+      "datePublished": "2012",
+      "identifier": "doi:10.1016/j.physrep.2012.01.001"
+    }
+  ],
+  "epistemicStatus": "Layer A - Foundational framework providing regime-based ontology for discrete entropic gravity models"
+}

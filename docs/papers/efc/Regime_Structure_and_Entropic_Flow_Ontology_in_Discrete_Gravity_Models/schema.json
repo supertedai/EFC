@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/regime-structure-entropic-flow-ontology.json",
+  "title": "Regime Structure and Entropic Flow Ontology Schema",
+  "description": "Schema for regime classification and entropic functional decomposition in discrete gravity models",
+  "type": "object",
+  "definitions": {
+    "InterpolatingFunction": {
+      "type": "object",
+      "properties": {
+        "form": {
+          "type": "string",
+          "const": "standard",
+          "description": "μ(x) = x/√(1+x²)"
+        },
+        "x": {
+          "type": "number",
+          "description": "Dimensionless argument |∇Φ|/a₀"
+        },
+        "mu": {
+          "type": "number",
+          "description": "Value of μ(x)",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["form", "x", "mu"]
+    },
+    "FunctionalSector": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["gradient", "bulk", "source"]
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable label (UV, IR, etc.)"
+        },
+        "expression": {
+          "type": "string",
+          "description": "Mathematical expression for this sector"
+        },
+        "physical_role": {
+          "type": "string",
+          "description": "Physical interpretation"
+        },
+        "dominant_when": {
+          "type": "string",
+          "description": "Condition under which this sector dominates"
+        }
+      },
+      "required": ["name", "expression", "physical_role"]
+    },
+    "RegimeClassification": {
+      "type": "object",
+      "properties": {
+        "regime": {
+          "type": "string",
+          "enum": ["UV", "IR", "Cosmological"],
+          "description": "Identified regime"
+        },
+        "behaviour": {
+          "type": "string",
+          "description": "Gravitational scaling behaviour"
+        },
+        "xi": {
+          "type": "string",
+          "description": "Condition on ξ = |∇Φ|/a₀"
+        },
+        "eta": {
+          "type": "string",
+          "description": "Condition on η = μ_Λ Φ/|∇²Φ|"
+        },
+        "field_equation": {
+          "type": "string",
+          "description": "Reduced field equation in this regime"
+        }
+      },
+      "required": ["regime", "behaviour", "xi", "eta", "field_equation"]
+    },
+    "RegimeTransition": {
+      "type": "object",
+      "properties": {
+        "from_regime": {
+          "type": "string",
+          "enum": ["UV", "IR", "Cosmological"]
+        },
+        "to_regime": {
+          "type": "string",
+          "enum": ["UV", "IR", "Cosmological"]
+        },
+        "condition": {
+          "type": "string",
+          "description": "Transition condition"
+        },
+        "physical_scale": {
+          "type": "string",
+          "description": "Physical scale at which transition occurs"
+        }
+      },
+      "required": ["from_regime", "to_regime", "condition"]
+    },
+    "LambdaDualRole": {
+      "type": "object",
+      "properties": {
+        "local_role": {
+          "type": "string",
+          "description": "Local role: setting a₀"
+        },
+        "global_role": {
+          "type": "string",
+          "description": "Global role: setting L_Λ"
+        },
+        "Lambda_m2": {
+          "type": "number",
+          "description": "Cosmological constant in m⁻²"
+        },
+        "a0_relation": {
+          "type": "string",
+          "description": "Relation a₀ ∝ c² √Λ"
+        },
+        "L_Lambda_relation": {
+          "type": "string",
+          "description": "Relation L_Λ ∝ Λ⁻¹/²"
+        }
+      }
+    },
+    "OntologicalCommitment": {
+      "type": "object",
+      "properties": {
+        "concept": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "description": "Ontological status in the framework"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": ["concept", "status"]
+    }
+  },
+  "properties": {
+    "interpolating_function": { "$ref": "#/definitions/InterpolatingFunction" },
+    "functional_sectors": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/FunctionalSector" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "regimes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/RegimeClassification" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "transitions": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/RegimeTransition" }
+    },
+    "lambda_dual_role": { "$ref": "#/definitions/LambdaDualRole" },
+    "ontological_commitments": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/OntologicalCommitment" }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "description": "Three-sector decomposition of the discrete entropic functional (Eq. 1)",
+  "functional": {
+    "formula": "F[Φ] = Σ_{⟨i,j⟩} κ_ij F(|Φ_i − Φ_j|/a₀) + Σ_i ½ μ_Λ (Φ_i − Φ_V)² + Σ_i λ_i ρ_i Φ_i",
+    "paper_equation": "Eq. 1",
+    "stationarity_condition": "δF/δΦ_i = 0"
+  },
+  "sectors": [
+    {
+      "name": "gradient",
+      "label": "Gradient sector (UV)",
+      "expression": "Σ_{⟨i,j⟩} κ_ij F(|Φ_i − Φ_j| / a₀)",
+      "integrand": "F(x) = ∫₀ˣ y μ(y) dy (AQUAL kinetic integrand)",
+      "coupling": "nearest-neighbour with nonlinear conductivity μ(x)",
+      "physical_role": "Encodes local field dynamics",
+      "dominant_regimes": ["UV (Newtonian)", "IR (MOND-like)"],
+      "parameters": {
+        "kappa_ij": "edge weights (bond conductivity)",
+        "a0": "MOND acceleration scale",
+        "mu_x": "interpolating function μ(x) = x/√(1+x²)"
+      },
+      "limits": {
+        "strong_field": {
+          "condition": "|∇Φ| >> a₀ (x >> 1)",
+          "mu_value": "μ → 1",
+          "result": "Linear (Newtonian) coupling: ∇²Φ = 4πGρ"
+        },
+        "weak_field": {
+          "condition": "|∇Φ| << a₀ (x << 1)",
+          "mu_value": "μ ~ x",
+          "result": "Nonlinear (MOND) coupling: ∇·(|∇Φ|/a₀ ∇Φ) = 4πGρ"
+        }
+      }
+    },
+    {
+      "name": "bulk",
+      "label": "Bulk sector (IR)",
+      "expression": "Σ_i ½ μ_Λ (Φ_i − Φ_V)²",
+      "coupling": "quadratic coupling to volume-averaged background potential Φ_V",
+      "physical_role": "Encodes cosmological screening",
+      "dominant_regime": "Cosmological",
+      "parameters": {
+        "mu_Lambda": "bulk coupling strength, μ_Λ ∝ Λ",
+        "Phi_V": "volume-averaged background potential"
+      },
+      "screening": {
+        "type": "Yukawa",
+        "scale": "L_Λ = 1/√μ_Λ",
+        "value_Gpc": 4.4,
+        "preserves_sigma8": true
+      },
+      "analogy": "Global capacitor providing return path to reference potential (circuit analogy)"
+    },
+    {
+      "name": "source",
+      "label": "Source sector",
+      "expression": "Σ_i λ_i ρ_i Φ_i",
+      "coupling": "linear coupling to local matter density ρ_i",
+      "physical_role": "Encodes gravitational sourcing",
+      "dominant_regime": "Present in all regimes",
+      "parameters": {
+        "lambda_i": "coupling constants",
+        "rho_i": "local matter density at node i"
+      },
+      "note": "Appears as 4πGρ on RHS of Euler-Lagrange equation"
+    }
+  ],
+  "euler_lagrange": {
+    "discrete": "Σ_{j~i} κ_ij μ(|Φ_i − Φ_j|/(a₀ a)) (Φ_j − Φ_i) − μ_Λ(Φ_i − Φ_V) = 4πGρ_i",
+    "continuum_limit": "∇·[μ(|∇Φ|/a₀) ∇Φ] − μ_Λ(Φ − Φ_V) = 4πGρ",
+    "paper_equations": ["Eq. 2 (discrete)", "Eq. 3 (continuum)"]
+  },
+  "lambda_dual_role": {
+    "description": "Λ is not vacuum energy but bulk entropic capacity",
+    "local_role": {
+      "relation": "a₀ ∝ c² √Λ",
+      "meaning": "Sets the MOND transition scale"
+    },
+    "global_role": {
+      "relation": "L_Λ ∝ Λ⁻¹/² ~ 4.4 Gpc",
+      "meaning": "Sets the screening length at Hubble scale"
+    },
+    "structural_feature": "Both roles emerge from the single parameter μ_Λ ∝ Λ in the bulk sector"
+  },
+  "ontological_status": {
+    "entropy": "Functional capacity of the discrete network (not thermodynamic)",
+    "energy_flow": "Gradient energy redistribution on the graph",
+    "cosmological_constant": "Bulk entropic capacity — anchoring to Φ_V",
+    "spacetime": "Emergent from graph structure; no fundamental metric",
+    "time": "Not fundamental; δF/δΦ_i = 0 is equilibrium; dynamics is relaxation"
+  }
+}
