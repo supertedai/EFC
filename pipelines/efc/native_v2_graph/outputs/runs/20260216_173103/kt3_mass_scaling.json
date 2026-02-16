@@ -1,0 +1,74 @@
+{
+  "test": "KT3",
+  "description": "Mass scaling \u2014 v2 rolling slope near g_N=a0 crossing",
+  "params": {
+    "N": 31,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "M": 10.0,
+      "r_pred": 2.23606797749979,
+      "r_trans_ratio": 3.5,
+      "r_trans_rolling": 4.5,
+      "rolling_method": "rolling_slope_start",
+      "slope_at_crossing": -1.1086675184322479,
+      "slope_at_r_mond": -1.1086675184322479,
+      "converged": true,
+      "time_s": 89.4
+    },
+    {
+      "M": 25.0,
+      "r_pred": 3.5355339059327378,
+      "r_trans_ratio": 3.5,
+      "r_trans_rolling": 4.5,
+      "rolling_method": "rolling_slope_start",
+      "slope_at_crossing": -1.2804860206698034,
+      "slope_at_r_mond": -1.2804860206698034,
+      "converged": true,
+      "time_s": 83.0
+    },
+    {
+      "M": 50.0,
+      "r_pred": 5.0,
+      "r_trans_ratio": 3.5,
+      "r_trans_rolling": 4.5,
+      "rolling_method": "rolling_slope_start",
+      "slope_at_crossing": -1.4866418302086153,
+      "slope_at_r_mond": -1.4866418302086153,
+      "converged": true,
+      "time_s": 89.6
+    },
+    {
+      "M": 100.0,
+      "r_pred": 7.0710678118654755,
+      "r_trans_ratio": 3.5,
+      "r_trans_rolling": 5.555487226784854,
+      "rolling_method": "rolling_slope_interp",
+      "slope_at_crossing": -1.5,
+      "slope_at_r_mond": -1.2560045252389802,
+      "converged": true,
+      "time_s": 89.4
+    },
+    {
+      "M": 200.0,
+      "r_pred": 10.0,
+      "r_trans_ratio": 3.5,
+      "r_trans_rolling": 8.110073680873555,
+      "rolling_method": "rolling_slope_interp",
+      "slope_at_crossing": -1.5,
+      "slope_at_r_mond": -1.3462097967245221,
+      "converged": true,
+      "time_s": 87.5
+    }
+  ],
+  "verdict": {
+    "beta_ratio": 0.0,
+    "beta_rolling": 0.18273891482469315,
+    "verdict_ratio": "FAIL",
+    "verdict_rolling": "FAIL",
+    "expected": 0.5,
+    "note": "beta=0 means Lambda-locked. Rolling method uses g_N=a0 crossing window."
+  }
+}

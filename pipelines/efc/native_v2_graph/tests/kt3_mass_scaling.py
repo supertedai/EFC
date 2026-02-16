@@ -5,9 +5,8 @@ KT3: Mass Scaling of Transition Radius
 In MOND/AQUAL: r_transition ~ sqrt(GM/a0) ~ sqrt(M).
 Does the graph-AQUAL reproduce beta ~ 0.5 in r_trans ~ M^beta?
 
-Uses TWO detection methods:
-  1. Ratio-based: first r where g/g_N > threshold
-  2. Slope-based: r where local slope crosses -1.5
+v2: Uses rolling log-slope fit with g_N=a0 crossing window.
+    Avoids grid-locked detection at fixed bin.
 
 Output: kt3_mass_scaling.json
 """
@@ -20,7 +19,8 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from kernel.solver import solve_aqual
 from kernel.observables import (radial_profile, find_transition_radius,
-                                 find_transition_radius_slope)
+                                 find_transition_gN_crossing,
+                                 rolling_log_slope)
 
 
 def run_kt3(M_values=None, N=31, G_eff=1.0, a0=2.0, output_dir=None):
@@ -31,7 +31,7 @@ def run_kt3(M_values=None, N=31, G_eff=1.0, a0=2.0, output_dir=None):
     os.makedirs(output_dir, exist_ok=True)
 
     print("\n" + "=" * 60)
-    print("KT3: MASS SCALING")
+    print("KT3: MASS SCALING (v2 — rolling slope + g_N crossing)")
     print("=" * 60)
 
     results = []
@@ -48,23 +48,36 @@ def run_kt3(M_values=None, N=31, G_eff=1.0, a0=2.0, output_dir=None):
             res['pos'], res['r_arr'], res['g_mag'], res['boundary'])
         g_newton = G_eff * M / r ** 2
 
-        # Method 1: ratio threshold
+        # Method 1: old ratio threshold (for comparison)
         r_trans_ratio = find_transition_radius(r, g, g_newton, threshold=1.5)
-        # Method 2: slope-based
-        r_trans_slope = find_transition_radius_slope(r, g, slope_threshold=-1.5)
+
+        # Method 2: NEW — rolling slope near g_N=a0 crossing
+        crossing = find_transition_gN_crossing(
+            r, g, G_eff, M, a0, slope_threshold=-1.5, half_window=2)
+
+        # Method 3: rolling slope diagnostic
+        r_centers, slopes = rolling_log_slope(r, g, half_window=2)
+        slope_at_r_mond = np.nan
+        if len(r_centers) > 0:
+            idx_near = np.argmin(np.abs(r_centers - r_pred))
+            slope_at_r_mond = float(slopes[idx_near])
 
         entry = {
             'M': float(M),
             'r_pred': float(r_pred),
             'r_trans_ratio': float(r_trans_ratio) if not np.isnan(r_trans_ratio) else None,
-            'r_trans_slope': float(r_trans_slope) if not np.isnan(r_trans_slope) else None,
+            'r_trans_rolling': crossing['r_trans'] if not np.isnan(crossing['r_trans']) else None,
+            'rolling_method': crossing['method'],
+            'slope_at_crossing': crossing['slope_at_crossing'] if not np.isnan(crossing['slope_at_crossing']) else None,
+            'slope_at_r_mond': float(slope_at_r_mond) if not np.isnan(slope_at_r_mond) else None,
             'converged': res['converged'],
             'time_s': round(dt, 1),
         }
         results.append(entry)
-        print(f"    r_trans (ratio): {r_trans_ratio}")
-        print(f"    r_trans (slope): {r_trans_slope}")
-        print(f"    r_pred:          {r_pred:.2f}")
+        print(f"    r_trans (ratio):   {r_trans_ratio}")
+        print(f"    r_trans (rolling): {crossing['r_trans']:.2f} [{crossing['method']}]")
+        print(f"    r_pred:            {r_pred:.2f}")
+        print(f"    slope@r_mond:      {slope_at_r_mond:.2f}")
         print(f"    ({dt:.1f}s)")
 
     # Fit power law for each method
@@ -76,11 +89,11 @@ def run_kt3(M_values=None, N=31, G_eff=1.0, a0=2.0, output_dir=None):
         rt = np.array([v[1] for v in valid])
         if np.all(rt == rt[0]):
             return 0.0, valid
-        beta, _ = np.polyfit(np.log10(Ms), np.log10(rt), 1)
+        beta, intercept = np.polyfit(np.log10(Ms), np.log10(rt), 1)
         return float(beta), valid
 
     beta_ratio, _ = fit_beta(results, 'r_trans_ratio')
-    beta_slope, _ = fit_beta(results, 'r_trans_slope')
+    beta_rolling, _ = fit_beta(results, 'r_trans_rolling')
 
     def judge(beta):
         if beta is None:
@@ -93,16 +106,16 @@ def run_kt3(M_values=None, N=31, G_eff=1.0, a0=2.0, output_dir=None):
 
     verdict = {
         'beta_ratio': beta_ratio,
-        'beta_slope': beta_slope,
+        'beta_rolling': beta_rolling,
         'verdict_ratio': judge(beta_ratio),
-        'verdict_slope': judge(beta_slope),
+        'verdict_rolling': judge(beta_rolling),
         'expected': 0.5,
-        'note': 'beta=0 means Lambda-locked transition (not mass-dependent)',
+        'note': 'beta=0 means Lambda-locked. Rolling method uses g_N=a0 crossing window.',
     }
 
     output = {
         'test': 'KT3',
-        'description': 'Mass scaling of transition radius',
+        'description': 'Mass scaling — v2 rolling slope near g_N=a0 crossing',
         'params': {'N': N, 'G_eff': G_eff, 'a0': a0},
         'results': results,
         'verdict': verdict,
