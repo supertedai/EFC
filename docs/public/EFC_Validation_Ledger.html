@@ -87,29 +87,50 @@
 <body>
 
 <!-- ✅ Energy-Flow Cosmology (EFC) – Complete Validation Ledger
-     Canonical Regime-Aware Version – February 2026 (v2.1) -->
+     Canonical Multi-Sector Version – February 2026 (v3.1) -->
 
 <h1>Energy-Flow Cosmology (EFC) – Complete Validation Ledger</h1>
 
 <!-- Executive Summary -->
 <div style="background-color:#f8f9fa; border-left:4px solid #007bff; padding:15px; margin:20px 0;">
 <p style="margin:0; font-size:15px;">
-<strong>Executive Summary:</strong> The EFC Validation Ledger is a regime-structured falsification framework designed to test Energy-Flow Cosmology across independent physical domains without hidden parameter tuning.
-Each observable is mapped to the specific regime (L0–L3) and physical sector it can constrain, ensuring that early-universe, late-time, and strong-field tests are not conflated.
-All results are governed by a global parameter registry and status hierarchy, so that empirical likelihood tests, consistency checks, phenomenological probes, and structural constraints are clearly distinguished.
+<strong>Executive Summary:</strong> EFC now contains a discrete gravity sector with explicit UV–IR regime structure and &Lambda;-locked screening. All validation entries are partitioned into <strong>background</strong>, <strong>perturbation</strong>, and <strong>discrete operator</strong> sectors. Each observable is mapped to the specific regime (L0–L3) and physical sector it can constrain, ensuring that early-universe, late-time, and strong-field tests are not conflated. All results are governed by a global parameter registry and status hierarchy, so that empirical likelihood tests, consistency checks, phenomenological probes, and structural constraints are clearly distinguished.
 </p>
 </div>
 
 <p>
 This ledger documents the empirical, methodological, and theoretical validation status of
 <strong>Energy-Flow Cosmology (EFC)</strong> across observational regimes.
-It explicitly distinguishes between early-universe linear physics (L0–L1) and late-time,
-non-linear structure formation (L2–L3).
+It explicitly distinguishes between early-universe linear physics (L0–L1), late-time
+non-linear structure formation (L2–L3), and the discrete gravity operator sector (Graph-Based AQUAL).
 </p>
 
 <p>
 Each entry links to citable public artifacts where available. Planned tests are listed
 with defined methodologies to ensure transparency and falsifiability.
+</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 0.0: REGIME COORDINATES -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>0.0 Regime Coordinates (&xi;, &eta;)</h2>
+
+<p>All validation tests in this ledger are classified by their position in the EFC regime space, defined by two dimensionless coordinates:</p>
+
+<div style="background-color:#f0f4fa; border:1px solid #c0cfea; padding:15px 20px; margin:15px 0; border-radius:4px;">
+<p style="margin:0 0 10px 0; font-size:15px;">
+<strong>&xi;</strong> &equiv; |&nabla;&Phi;| / a<sub>0</sub> &nbsp;&mdash;&nbsp; Gradient regime coordinate. Measures the local gravitational acceleration relative to the MOND scale a<sub>0</sub>. &xi; &gt; 1 corresponds to Newtonian (UV) regime; &xi; &lt; 1 corresponds to deep-MOND (IR) regime.
+</p>
+<p style="margin:0; font-size:15px;">
+<strong>&eta;</strong> &equiv; &mu;<sub>&Lambda;</sub> &Phi; / |&nabla;<sup>2</sup>&Phi;| &nbsp;&mdash;&nbsp; Screening regime coordinate. Measures the ratio of &Lambda;-locked bulk screening to the local Laplacian source. &eta; &gt; 1 indicates screening-dominated (Newtonian recovery); &eta; &lt; 1 indicates IR-gradient-dominated (MOND-like emergence).
+</p>
+</div>
+
+<p style="font-size:13px; color:#555;">
+<strong>Governance Rule:</strong> All test entries are tagged with their (&xi;, &eta;)-regime to prevent cross-regime conflation. Tests in the Newtonian regime (&xi; &gg; 1, &eta; &gg; 1) constrain screening fidelity. Tests in the IR regime (&xi; &lt; 1, &eta; &lt; 1) constrain the discrete gravity operator. Intermediate regimes (&xi; ~ 1) constrain the transition structure.
 </p>
 
 <hr>
@@ -313,6 +334,56 @@ with defined methodologies to ensure transparency and falsifiability.
 
 <p style="font-size:13px; color:#555;"><strong>⚠️ Restriction:</strong> Σ(k,z) and α<sub>L2</sub> are not part of canonical EFC. They are placeholders until a Θ(ρ)-derived metric coupling is implemented.</p>
 
+<h3>Discrete Gravity Sector (Graph-AQUAL Operator)</h3>
+<table style="width:100%; border-collapse:collapse; font-size:14px; margin-bottom:15px;">
+  <thead style="background-color:#f0f0f0;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Parameter</th>
+      <th style="border:1px solid #ddd; padding:6px;">Symbol</th>
+      <th style="border:1px solid #ddd; padding:6px;">Role</th>
+      <th style="border:1px solid #ddd; padding:6px;">Regime</th>
+      <th style="border:1px solid #ddd; padding:6px;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Gradient regime coordinate</td>
+      <td style="border:1px solid #ddd; padding:6px;">&xi;</td>
+      <td style="border:1px solid #ddd; padding:6px;">|&nabla;&Phi;| / a<sub>0</sub>; classifies UV (&xi; &gt; 1) vs IR (&xi; &lt; 1) regime</td>
+      <td style="border:1px solid #ddd; padding:6px;">All (L0–L3)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Dimensionless coordinate; not fitted</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Screening regime coordinate</td>
+      <td style="border:1px solid #ddd; padding:6px;">&eta;</td>
+      <td style="border:1px solid #ddd; padding:6px;">&mu;<sub>&Lambda;</sub> &Phi; / |&nabla;<sup>2</sup>&Phi;|; classifies screening dominance</td>
+      <td style="border:1px solid #ddd; padding:6px;">All (L0–L3)</td>
+      <td style="border:1px solid #ddd; padding:6px;">Dimensionless coordinate; not fitted</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">&Lambda;-locked screening scale</td>
+      <td style="border:1px solid #ddd; padding:6px;">&mu;<sub>&Lambda;</sub></td>
+      <td style="border:1px solid #ddd; padding:6px;">IR screening mass derived from cosmological constant; &Lambda; treated as bulk capacity, not free parameter</td>
+      <td style="border:1px solid #ddd; padding:6px;">L2–L3</td>
+      <td style="border:1px solid #ddd; padding:6px;">Fixed by &Lambda;; not independently tunable</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Graph operator prefactor</td>
+      <td style="border:1px solid #ddd; padding:6px;">C</td>
+      <td style="border:1px solid #ddd; padding:6px;">Structural renormalization constant from graph discretisation (C &asymp; 2.32)</td>
+      <td style="border:1px solid #ddd; padding:6px;">L2–L3</td>
+      <td style="border:1px solid #ddd; padding:6px;">Structural; emerges from discretisation</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #ddd; padding:6px;">Mass scaling exponent</td>
+      <td style="border:1px solid #ddd; padding:6px;">&beta;</td>
+      <td style="border:1px solid #ddd; padding:6px;">IR mass-scaling exponent under &Lambda;-locked screening (&beta; &asymp; 0.18)</td>
+      <td style="border:1px solid #ddd; padding:6px;">L2–L3</td>
+      <td style="border:1px solid #ddd; padding:6px;">&Lambda;-locked; not independently fitted</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3>Parameters Explicitly NOT Allowed to Vary</h3>
 <ul style="font-size:14px;">
   <li>Baryon physics adjustments to compensate cosmological effects</li>
@@ -333,7 +404,7 @@ with defined methodologies to ensure transparency and falsifiability.
 
 <p>This matrix shows which physical regime, which observable, and which parameter sector each validation test constrains. It prevents cross-regime leakage and makes it explicit where EFC is active, suppressed, or structurally tested.</p>
 
-<p style="font-size:13px;"><strong>Sector Key:</strong> BG = Background expansion (β, T(a)) · GRW = Growth/perturbation (Δ<sub>F</sub>, μ) · LEN = Lensing/metric response · SCR = Density saturation/screening Θ(ρ) · PROP = Propagation sector</p>
+<p style="font-size:13px;"><strong>Sector Key:</strong> BG = Background expansion (β, T(a)) · GRW = Growth/perturbation (Δ<sub>F</sub>, μ) · LEN = Lensing/metric response · SCR = Density saturation/screening Θ(ρ) · PROP = Propagation sector · <strong>DGS = Discrete Gravity Sector (Graph-AQUAL, &xi;/&eta; regime)</strong></p>
 
 <table style="width:100%; border-collapse:collapse; font-size:13px; margin-bottom:20px;">
   <thead style="background-color:#f0f0f0;">
@@ -367,6 +438,13 @@ with defined methodologies to ensure transparency and falsifiability.
     <tr><td style="border:1px solid #ddd; padding:5px;">Solar System PPN</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px;">SCR</td></tr>
     <tr><td style="border:1px solid #ddd; padding:5px;">Binary pulsars</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px;">SCR</td></tr>
     <tr><td style="border:1px solid #ddd; padding:5px;">Standard sirens (GW vs EM)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">PROP</td></tr>
+    <tr style="background-color:#e8eef6;"><td style="border:1px solid #ddd; padding:5px;" colspan="6"><strong>Discrete Gravity Sector (Graph-Based Operator)</strong></td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Newton recovery (KT1)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px;">DGS (&xi; ≫ 1)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Prefactor renormalization (KT2)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">DGS (&xi; ~ 1)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Mass scaling / &Lambda;-lock (KT3)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">DGS (&xi; &lt; 1, &eta; &lt; 1)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Superposition breaking (KT4)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">DGS (&xi; ~ 1)</td></tr>
+    <tr style="background-color:#fffef5;"><td style="border:1px solid #ddd; padding:5px;">External field effect (KT5)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">DGS (&xi; ~ 1)</td></tr>
+    <tr style="background-color:#e6ffe6;"><td style="border:1px solid #ddd; padding:5px;">Cosmological growth stability (CGS)</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">⚪</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">✅</td><td style="border:1px solid #ddd; padding:5px; text-align:center;">—</td><td style="border:1px solid #ddd; padding:5px;">DGS + BG (&Lambda;-locked)</td></tr>
   </tbody>
 </table>
 
@@ -436,7 +514,7 @@ with defined methodologies to ensure transparency and falsifiability.
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">⚪</td>
       <td style="border:1px solid #ddd; padding:8px; text-align:center;">✅</td>
-      <td style="border:1px solid #ddd; padding:8px;">Regime-dependent validity (EBE partition)</td>
+      <td style="border:1px solid #ddd; padding:8px;">MOND-like regime emerges in IR gradient-dominated sector (&xi; &lt; 1, &eta; &lt; 1). Regime-dependent validity via EBE partition.</td>
       <td style="border:1px solid #ddd; padding:8px;"><strong>Completed (Data Likelihood Test)</strong></td>
       <td style="border:1px solid #ddd; padding:8px;">
         <a href="https://doi.org/10.6084/m9.figshare.31047703">31047703</a>,
@@ -954,8 +1032,80 @@ A phenomenological BAO+RSD joint fit (BOSS DR12) has been completed, yielding a 
 
 <hr>
 
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1.1: DISCRETE GRAVITY SECTOR (Graph-Based Operator) -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<h2>1.1 Discrete Gravity Sector (Graph-Based Operator)</h2>
+
+<p>
+This section documents the validation status of the EFC discrete gravity operator (Graph-AQUAL), which implements modified gravitational dynamics on a graph-based spatial discretisation. This sector is distinct from background cosmological tests and phenomenological closures. All tests below are tagged with their (&xi;, &eta;)-regime.
+</p>
+
+<table style="width:100%; border-collapse:collapse; font-size:14.5px;">
+  <thead style="background-color:#e8eef6;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Test ID</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Test</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Regime (&xi;, &eta;)</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Result</th>
+      <th style="border:1px solid #ddd; padding:8px; text-align:left;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>KT1</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Newton Recovery</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; &gg; 1, &eta; &gg; 1</td>
+      <td style="border:1px solid #ddd; padding:8px;">Newtonian limit recovered in high-acceleration regime; discrete operator reduces to standard Poisson equation</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>PASS</strong></td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>KT2</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Prefactor Renormalization</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; ~ 1 (transition)</td>
+      <td style="border:1px solid #ddd; padding:8px;">C &asymp; 2.32 (structural constant; not a free parameter)</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>PASS (structural)</strong></td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>KT3</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Mass Scaling</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; &lt; 1, &eta; &lt; 1</td>
+      <td style="border:1px solid #ddd; padding:8px;">&Lambda;-locked; &beta; &asymp; 0.18</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>PASS (&Lambda;-locked)</strong></td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>KT4</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Superposition Breaking</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; ~ 1 (multi-source)</td>
+      <td style="border:1px solid #ddd; padding:8px;">Non-linear superposition correctly handled by graph operator</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>PASS</strong></td>
+    </tr>
+    <tr style="background-color:#fffef5;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>KT5</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">External Field Effect</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; ~ 1 (composite field)</td>
+      <td style="border:1px solid #ddd; padding:8px;">EFE signature present; amplitude partially reproduced</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>PARTIAL PASS</strong></td>
+    </tr>
+    <tr style="background-color:#e6ffe6;">
+      <td style="border:1px solid #ddd; padding:8px;"><strong>CGS</strong></td>
+      <td style="border:1px solid #ddd; padding:8px;">Cosmological Growth Stability</td>
+      <td style="border:1px solid #ddd; padding:8px;">&xi; variable, &eta; &lt; 1</td>
+      <td style="border:1px solid #ddd; padding:8px;">Growth evolution survives under &Lambda;-locked IR screening; unstable without &Lambda;-lock</td>
+      <td style="border:1px solid #ddd; padding:8px;"><strong>SURVIVES (&Lambda;-locked only)</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:13px; color:#555;">
+<strong>Note:</strong> The Discrete Gravity Sector tests are structurally independent from the background cosmological tests in Section 1. The &Lambda;-locked screening mechanism (KT3, CGS) treats &Lambda; as an active bulk-capacity parameter, not a freely tunable constant. All entries are governed by the (&xi;, &eta;) regime classification defined in Section 0.0.
+</p>
+
+<hr>
+
 <!-- Phenomenological Constraints -->
-<h2>1.1 Phenomenological Constraints</h2>
+<h2>1.2 Phenomenological Constraints</h2>
 
 <p>
 These entries reflect empirically driven tests of EFC-motivated parametrizations rather than fully derived field-level results.
@@ -1335,6 +1485,16 @@ does not require new physics but remains a target for Stage-IV precision tests.
 
   <li><strong>Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1 (WP1a reference model):</strong>
     <a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a></li>
+
+  <!-- v3.1 Discrete Gravity Sector entries -->
+  <li><strong>Discrete Entropic Gravity on a Cubic Graph: Emergent Newton and MOND Regimes with &Lambda;-Locked Screening:</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31348411">31348411</a></li>
+
+  <li><strong>Cosmological Growth Constraints on &Lambda;-Locked Discrete Entropic Gravity:</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31348414">31348414</a></li>
+
+  <li><strong>Regime Structure and Entropic Flow Ontology in Discrete Gravity Models:</strong>
+    <a href="https://doi.org/10.6084/m9.figshare.31348417">31348417</a></li>
 </ul>
 
 <h3>Structural / Theoretical Constraints</h3>
@@ -1389,6 +1549,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <h2>6. Recent Updates</h2>
 
 <ul>
+  <li><strong>2026-02-16 (v3.1)</strong> – Major structural upgrade: Ledger partitioned into background, perturbation, and discrete operator sectors. Added Section 0.0 Regime Coordinates (&xi;, &eta;) with formal UV–IR classification. Added Section 1.1 Discrete Gravity Sector (Graph-Based Operator) with KT1–KT5 tests and Cosmological Growth Stability. Added DGS parameters to Global Parameter Registry (&xi;, &eta;, &mu;<sub>&Lambda;</sub>, C, &beta;). Extended Regime &times; Observable &times; Sector Matrix with DGS entries. Updated Executive Summary to reflect multi-sector theoretical program with &Lambda;-locked screening. MOND language refined to &ldquo;MOND-like regime emerges in IR gradient-dominated sector.&rdquo; Evidence basis: [<a href="https://doi.org/10.6084/m9.figshare.31348411">31348411</a>] [<a href="https://doi.org/10.6084/m9.figshare.31348414">31348414</a>] [<a href="https://doi.org/10.6084/m9.figshare.31348417">31348417</a>]</li>
   <li><strong>2026-02-13 (v2.3)</strong> – Added EFCLASS Sign Structure: background channel σ<sub>8</sub> exclusion (ΔE² ≤ 0 proven; fσ<sub>8</sub> enhanced +0.5–0.76%). Added Perturbation-Level σ<sub>8</sub> Suppression via μ(a) &lt; 1: WP1a reference model (μ<sub>0</sub>=0.85, S<sub>8</sub>=0.790, 73% gap closure; structural ceiling ~43%). [<a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>] [<a href="https://doi.org/10.6084/m9.figshare.31333600">31333600</a>]</li>
   <li><strong>2026-02-13 (v2.2)</strong> – Added MVP-G1 Growth fσ<sub>8</sub> Leave-One-Out robustness test (N2a mode). α = −1.00 ± 0.46 (2.20σ); 7/7 LOO pass; robust hint for α&lt;0 in EFC growth channel. Full MVP-G1 control suite passed (N1 r<sub>d</sub>-independence, N2 σ<sub>8</sub>-prior strengthening, T7 LOO robustness). [<a href="https://doi.org/10.6084/m9.figshare.31332730">10.6084/m9.figshare.31332730</a>]</li>
   <li><strong>2026-02-12 (v2.1)</strong> – ISW Consistency Audit v1.1 applied (<a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a>). Recomputed A<sub>ISW</sub> under fully self-consistent growth-channel implementation. Revised prediction: uniform suppression A<sub>ISW</sub> ≈ 0.89 ± 0.03 across tracers.</li>
@@ -1401,7 +1562,7 @@ does not require new physics but remains a target for Stage-IV precision tests.
 <p><a href="EFC_Changelog.html"><strong>View full revision history &rarr;</strong></a></p>
 
 <p style="font-size:13px; color:#666;">
-© 2026 Energy-Flow Cosmology Initiative · Canonical Validation Ledger (v2.2)
+© 2026 Energy-Flow Cosmology Initiative · Canonical Multi-Sector Validation Ledger (v3.1)
 </p>
 
 <script>
