@@ -1,0 +1,129 @@
+{
+  "id": "cosmological-growth-constraints-lambda-locked",
+  "title": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+  "short_title": "Growth Constraints on Λ-Locked Gravity",
+  "version": "1.0",
+  "date": "2026-02-16",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "technical_note",
+  "epistemic_layer": "B",
+  "epistemic_status": "Stress test establishing Λ-locking as necessary condition for cosmological consistency",
+  "keywords": [
+    "cosmological growth",
+    "structure formation",
+    "σ₈",
+    "Λ-locking",
+    "discrete gravity",
+    "modified gravity",
+    "AQUAL",
+    "MOND",
+    "infrared screening",
+    "linear perturbation theory",
+    "EFC"
+  ],
+  "abstract": "Tests cosmological viability of discrete entropic gravity with Λ-locked screening. Three transition-scale scenarios compared: Λ-locked (4.4 Gpc), 10 Mpc, and 1 Mpc. Only Λ-locking preserves realistic σ₈ ≈ 0.8. Sub-Hubble transitions produce catastrophic overgrowth (σ₈ >> 1). Establishes Λ-locking as necessary condition for cosmological consistency.",
+  "key_results": {
+    "scenarios": [
+      {
+        "name": "ΛCDM",
+        "transition_scale": null,
+        "k_transition": null,
+        "sigma8": 0.811,
+        "gamma": 0.554,
+        "viable": true
+      },
+      {
+        "name": "Graph-AQUAL (Λ-locked)",
+        "transition_scale_Gpc": 4.4,
+        "k_transition_h_per_Mpc": 0.0014,
+        "sigma8": 0.814,
+        "gamma": 0.554,
+        "sigma8_excess_percent": 0.4,
+        "viable": true
+      },
+      {
+        "name": "Graph-AQUAL (10 Mpc)",
+        "transition_scale_Mpc": 10,
+        "k_transition_h_per_Mpc": 0.1,
+        "sigma8": 367,
+        "gamma": 0.541,
+        "sigma8_excess_factor": 452,
+        "viable": false
+      },
+      {
+        "name": "Graph-AQUAL (1 Mpc)",
+        "transition_scale_Mpc": 1,
+        "k_transition_h_per_Mpc": 1.0,
+        "sigma8": 24098,
+        "gamma": 0.536,
+        "sigma8_excess_factor": 29714,
+        "viable": false
+      }
+    ],
+    "viability_condition": "L_Λ ≳ H₀⁻¹",
+    "lambda_locked_scale_Gpc": 4.4,
+    "prefactor_C": 2.32,
+    "C_squared": 5.38,
+    "sigma8_observed": "0.811 ± 0.006"
+  },
+  "key_equations": {
+    "deep_mond_enhancement": "g = C √(a₀ g_N)",
+    "geff_ratio": "G_eff(k)/G = 1 + (C²−1) / (1 + (k/k_Λ)²)",
+    "transition_wavenumber": "k_Λ = 1/L_Λ, L_Λ ∝ Λ^{-1/2}",
+    "growth_equation": "δ'' + (2 + H'/H)δ' − (3/2)Ω_m(a)[G_eff(k)/G]δ = 0",
+    "viability_condition": "L_Λ ≳ H₀⁻¹"
+  },
+  "parameters": {
+    "Omega_m": 0.315,
+    "H0_km_s_Mpc": 67.4,
+    "sigma8_LCDM": 0.811,
+    "C": 2.32,
+    "Lambda_m2": 1.11e-52,
+    "L_Lambda_Gpc": 4.4,
+    "k_Lambda_h_per_Mpc": 0.0014
+  },
+  "limitations": [
+    "Linear growth only; no nonlinear corrections or N-body verification",
+    "No CMB angular power spectrum computed",
+    "No full Boltzmann integration (CLASS/CAMB)",
+    "G_eff(k) is Lorentzian approximation to full discrete operator",
+    "Poisson-channel modification μ(a) < 1 not activated"
+  ],
+  "companion_paper": {
+    "id": "discrete-entropic-gravity-cubic-graph",
+    "doi": "10.6084/m9.figshare.31348411",
+    "relationship": "defines the operator tested here"
+  },
+  "related_papers": [
+    {
+      "id": "discrete-entropic-gravity-cubic-graph",
+      "doi": "10.6084/m9.figshare.31348411",
+      "relationship": "companion_operator_paper"
+    }
+  ],
+  "files": {
+    "paper": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity.pdf",
+    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
+    "metadata": ["CITATION.cff", "index.json", "CosmologicalGrowthConstraints.jsonld", "schema.json"],
+    "source_code": [
+      "src/__init__.py",
+      "src/geff_coupling.py",
+      "src/growth_equation.py",
+      "src/scenario_runner.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/scenario_results.json",
+      "data/geff_profiles.json"
+    ],
+    "examples": [
+      "examples/run_scenarios.py",
+      "examples/geff_profile.py"
+    ]
+  }
+}

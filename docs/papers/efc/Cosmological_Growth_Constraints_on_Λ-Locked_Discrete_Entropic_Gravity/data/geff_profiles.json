@@ -1,0 +1,31 @@
+{
+  "description": "G_eff(k)/G profiles for each scenario, sampled at representative wavenumbers",
+  "formula": "G_eff(k)/G = 1 + (C²−1) / (1 + (k/k_transition)²)",
+  "C": 2.32,
+  "C_squared_minus_1": 4.3824,
+  "k_unit": "h/Mpc",
+  "k_samples": [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10.0],
+  "profiles": [
+    {
+      "scenario": "A",
+      "name": "Λ-locked (4.4 Gpc)",
+      "k_transition": 0.0014,
+      "geff_over_g": [5.3728, 5.2258, 4.9282, 2.0192, 1.2848, 1.0054, 1.0014, 1.0001, 1.0000, 1.0000, 1.0000],
+      "note": "All structure scales (k > 0.01) have G_eff/G ≈ 1"
+    },
+    {
+      "scenario": "B",
+      "name": "10 Mpc transition",
+      "k_transition": 0.1,
+      "geff_over_g": [5.3824, 5.3824, 5.3824, 5.3778, 5.3388, 4.5543, 3.1912, 1.1592, 1.0432, 1.0018, 1.0004],
+      "note": "Enhancement active across full linear growth range"
+    },
+    {
+      "scenario": "C",
+      "name": "1 Mpc transition",
+      "k_transition": 1.0,
+      "geff_over_g": [5.3824, 5.3824, 5.3824, 5.3824, 5.3824, 5.3813, 5.3780, 5.1623, 3.1912, 1.1592, 1.0432],
+      "note": "Enhancement penetrates deep into quasi-nonlinear regime"
+    }
+  ]
+}

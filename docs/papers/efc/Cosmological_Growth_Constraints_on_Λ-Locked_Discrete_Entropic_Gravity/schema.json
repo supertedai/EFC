@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/cosmological-growth-constraints.json",
+  "title": "Cosmological Growth Constraints Schema",
+  "description": "Schema for Λ-locked growth constraint analysis on discrete entropic gravity",
+  "type": "object",
+  "definitions": {
+    "CosmologicalParameters": {
+      "type": "object",
+      "properties": {
+        "Omega_m": {
+          "type": "number",
+          "description": "Matter density parameter",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "H0": {
+          "type": "number",
+          "description": "Hubble constant in km/s/Mpc"
+        },
+        "sigma8_LCDM": {
+          "type": "number",
+          "description": "ΛCDM σ₈ normalisation"
+        }
+      },
+      "required": ["Omega_m", "H0", "sigma8_LCDM"]
+    },
+    "GeffModel": {
+      "type": "object",
+      "properties": {
+        "form": {
+          "type": "string",
+          "const": "Lorentzian",
+          "description": "G_eff(k)/G = 1 + (C²−1)/(1+(k/k_Λ)²)"
+        },
+        "C": {
+          "type": "number",
+          "description": "Discrete renormalization prefactor"
+        },
+        "k_transition": {
+          "type": "number",
+          "description": "Transition wavenumber in h/Mpc"
+        },
+        "L_transition": {
+          "type": "number",
+          "description": "Transition length scale"
+        },
+        "L_transition_unit": {
+          "type": "string"
+        }
+      },
+      "required": ["C", "k_transition"]
+    },
+    "ScenarioResult": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "transition_scale": {
+          "type": ["string", "null"],
+          "description": "Physical transition scale"
+        },
+        "k_transition": {
+          "type": ["number", "null"],
+          "description": "Transition wavenumber in h/Mpc"
+        },
+        "sigma8": {
+          "type": "number",
+          "description": "σ₈(z=0)"
+        },
+        "gamma": {
+          "type": "number",
+          "description": "Growth index"
+        },
+        "viable": {
+          "type": "boolean",
+          "description": "Whether this scenario is cosmologically viable"
+        },
+        "sigma8_excess_factor": {
+          "type": ["number", "null"],
+          "description": "Factor by which σ₈ exceeds ΛCDM value"
+        }
+      },
+      "required": ["name", "sigma8", "gamma", "viable"]
+    },
+    "GeffProfile": {
+      "type": "object",
+      "properties": {
+        "scenario": {
+          "type": "string"
+        },
+        "k_values": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Wavenumber samples in h/Mpc"
+        },
+        "geff_over_g": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "G_eff(k)/G at each k"
+        }
+      }
+    }
+  },
+  "properties": {
+    "cosmological_parameters": { "$ref": "#/definitions/CosmologicalParameters" },
+    "geff_model": { "$ref": "#/definitions/GeffModel" },
+    "scenarios": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ScenarioResult" }
+    },
+    "geff_profiles": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/GeffProfile" }
+    }
+  }
+}
