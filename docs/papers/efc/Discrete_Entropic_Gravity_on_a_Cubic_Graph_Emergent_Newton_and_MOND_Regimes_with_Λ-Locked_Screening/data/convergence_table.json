@@ -1,0 +1,38 @@
+{
+  "description": "Prefactor convergence C = g_AQUAL / √(a₀ g_N) as function of lattice size N",
+  "definition": "C measures deviation from standard deep-MOND relation g = √(a₀ g_N)",
+  "effective_relation": "g_graph = C √(a₀ g_N), so a₀,eff = C² a₀",
+  "convergence_target": 2.32,
+  "binning_geometries": ["cubic", "spherical"],
+  "data": [
+    {
+      "N": 21,
+      "total_nodes": 9261,
+      "C_cubic": 2.443,
+      "C_sphere": 2.433,
+      "C_difference": 0.010,
+      "a0_eff_ratio": 5.968
+    },
+    {
+      "N": 31,
+      "total_nodes": 29791,
+      "C_cubic": 2.354,
+      "C_sphere": 2.349,
+      "C_difference": 0.005,
+      "a0_eff_ratio": 5.541
+    },
+    {
+      "N": 41,
+      "total_nodes": 68921,
+      "C_cubic": 2.320,
+      "C_sphere": 2.321,
+      "C_difference": 0.001,
+      "a0_eff_ratio": 5.382
+    }
+  ],
+  "extrapolated_limit": {
+    "C_infinity": 2.32,
+    "a0_eff_ratio_infinity": 5.38,
+    "note": "C is independent of binning geometry, indicating it is intrinsic to discrete topology"
+  }
+}

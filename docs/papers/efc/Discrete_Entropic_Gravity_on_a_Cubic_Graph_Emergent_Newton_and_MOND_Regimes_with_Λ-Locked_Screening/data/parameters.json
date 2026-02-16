@@ -1,0 +1,41 @@
+{
+  "description": "Physical and lattice parameters for discrete entropic gravity on cubic graph",
+  "lattice": {
+    "sizes_tested": [21, 31, 41],
+    "boundary": "open",
+    "connectivity": "6-nearest-neighbour (interior), fewer at boundaries"
+  },
+  "aqual": {
+    "interpolating_function": "mu(x) = x / sqrt(1 + x^2)",
+    "a0_values_tested": [0.001, 0.5, 2.0],
+    "a0_description": "In lattice units"
+  },
+  "solver": {
+    "method": "damped nonlinear relaxation",
+    "convergence_criterion": "||ΔΦ||_∞ < 1e-4"
+  },
+  "lambda_locking": {
+    "Lambda": 1.11e-52,
+    "Lambda_unit": "m^-2",
+    "Lambda_source": "Planck 2018 (arXiv:1807.06209)",
+    "mu_Lambda_proportionality": "μ_Λ ∝ Λ",
+    "screening_length": "L_Λ = 1/√Λ",
+    "acceleration_scale": "a₀ = c²√Λ"
+  },
+  "cosmological_check": {
+    "beta": 0.08,
+    "channel": "background only (no Poisson modification)",
+    "comparison_data": "BOSS DR12 fσ₈ measurements"
+  },
+  "superposition_test": {
+    "mass_count": 2,
+    "mass_ratio": "equal",
+    "separation": "8a"
+  },
+  "physical_constants": {
+    "c": 2.998e8,
+    "c_unit": "m/s",
+    "G": 6.674e-11,
+    "G_unit": "m³/(kg·s²)"
+  }
+}

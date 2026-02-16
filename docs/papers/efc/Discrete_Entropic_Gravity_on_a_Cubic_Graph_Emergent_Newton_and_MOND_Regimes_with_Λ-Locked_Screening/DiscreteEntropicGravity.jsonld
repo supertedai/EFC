@@ -1,0 +1,122 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31348411",
+  "name": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
+  "headline": "Graph-based gravity operator reproduces Newton and MOND regimes from entropic flux without continuum metric",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-16",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "keywords": [
+    "discrete gravity",
+    "cubic graph",
+    "AQUAL",
+    "MOND",
+    "entropic gravity",
+    "cosmological constant",
+    "Λ-locking",
+    "graph topology",
+    "Newtonian limit",
+    "external field effect",
+    "modified gravity",
+    "Energy-Flow Cosmology"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:DiscreteAQUALOperator",
+      "name": "Discrete AQUAL Operator",
+      "description": "Graph analogue of AQUAL with weights w_ij = μ(|Φ_i−Φ_j|/(a₀·a)) and field equation Σ w_ij(Φ_j−Φ_i) = 4πGρ_i"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LambdaLockedScreening",
+      "name": "Λ-Locked Screening",
+      "description": "Bulk entropic reservoir term F_bulk = ½μ_Λ(S_i−S_V)² with μ_Λ ∝ Λ, producing screening length L_Λ ∝ Λ^{-1/2}"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:DiscreteRenormalizationPrefactor",
+      "name": "Discrete Renormalization Prefactor",
+      "description": "Nontrivial prefactor C ≈ 2.32 intrinsic to cubic topology, giving a₀,eff = C²a₀ ≈ 5.4 a₀"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:KillTest",
+      "name": "Kill Test",
+      "description": "Falsification test designed such that failure would invalidate the operator"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ExternalFieldEffect",
+      "name": "External Field Effect (EFE)",
+      "description": "Enhancement decreases monotonically with external field strength in the nonlinear operator"
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Graph-Emergent Gravity Regimes",
+    "description": "A purely graph-based operator with entropic flux weighting reproduces Newtonian and MOND-like regimes without continuum metric, with transition scale locked to Λ"
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis",
+      "author": "Milgrom, M.",
+      "datePublished": "1983"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Does the missing mass problem signal the breakdown of Newtonian gravity?",
+      "author": "Bekenstein, J. D. and Milgrom, M.",
+      "datePublished": "1984"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Emergent Gravity and the Dark Universe",
+      "author": "Verlinde, E.",
+      "datePublished": "2017",
+      "identifier": "doi:10.21468/SciPostPhys.2.3.016"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results. VI. Cosmological parameters",
+      "author": "Planck Collaboration",
+      "datePublished": "2020",
+      "identifier": "doi:10.1051/0004-6361/201833910"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "The clustering of galaxies in the completed SDSS-III BOSS",
+      "author": "Alam, S. et al.",
+      "datePublished": "2017",
+      "identifier": "doi:10.1093/mnras/stx721"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Modified Gravity and Cosmology",
+      "author": "Clifton, T. et al.",
+      "datePublished": "2012",
+      "identifier": "doi:10.1016/j.physrep.2012.01.001"
+    }
+  ],
+  "epistemicStatus": "Layer B - Technical construction with controlled numerical tests"
+}
