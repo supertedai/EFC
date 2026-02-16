@@ -1,0 +1,19 @@
+# Unit System
+# Graph simulations use dimensionless units (G=1, spacing=1)
+# Physical units for comparison with data
+
+dimensionless:
+  G_eff: 1.0
+  spacing: 1.0
+  description: "Natural graph units. All masses, lengths in lattice units."
+
+SI:
+  G: 6.674e-11       # m^3 kg^-1 s^-2
+  c: 2.998e8          # m/s
+  hbar: 1.055e-34     # J s
+  k_B: 1.381e-23      # J/K
+
+galactic:
+  G: 4.302e-3         # pc (km/s)^2 M_sun^-1
+  kpc: 3.086e19        # m
+  M_sun: 1.989e30      # kg
