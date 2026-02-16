@@ -1,0 +1,48 @@
+{
+  "test": "KT2",
+  "description": "Prefactor C \u2014 v2 cubic vs spherical domain",
+  "params": {
+    "M": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "N": 21,
+      "n_nodes": 9261,
+      "C_cubic": 2.4431153681499387,
+      "C_std_cubic": 0.03252535307797033,
+      "slope_cubic": null,
+      "C_sphere": 2.4431153681499387,
+      "C_std_sphere": 0.03252535307797033,
+      "slope_sphere": null,
+      "R_sphere": 8.0,
+      "converged": true,
+      "iterations": 13,
+      "time_s": 8.2
+    },
+    {
+      "N": 31,
+      "n_nodes": 29791,
+      "C_cubic": 2.3544985464922923,
+      "C_std_cubic": 0.050470687434060475,
+      "slope_cubic": -1.0743761920090562,
+      "C_sphere": 2.366418423298262,
+      "C_std_sphere": 0.05487310595663561,
+      "slope_sphere": -1.1160665046812936,
+      "R_sphere": 12.0,
+      "converged": true,
+      "iterations": 13,
+      "time_s": 87.8
+    }
+  ],
+  "verdict": {
+    "C_cubic_latest": 2.3544985464922923,
+    "C_sphere_latest": 2.366418423298262,
+    "trend_cubic": -0.0886168216576464,
+    "trend_sphere": -0.07669694485167655,
+    "interpretation_cubic": "converging_slowly",
+    "interpretation_sphere": "converging_slowly",
+    "geometry_diagnostic": "consistent (not geometry artefact)"
+  }
+}

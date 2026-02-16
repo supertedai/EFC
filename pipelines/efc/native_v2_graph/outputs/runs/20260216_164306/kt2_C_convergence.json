@@ -1,0 +1,46 @@
+{
+  "test": "KT2",
+  "description": "Prefactor C convergence with grid size",
+  "params": {
+    "M": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "N": 21,
+      "n_nodes": 9261,
+      "C": 2.4431153681499387,
+      "C_std": 0.03252535307797033,
+      "slope_outer": null,
+      "converged": true,
+      "iterations": 13,
+      "time_s": 8.3
+    },
+    {
+      "N": 31,
+      "n_nodes": 29791,
+      "C": 2.3544985464922923,
+      "C_std": 0.050470687434060475,
+      "slope_outer": -1.0743761920090562,
+      "converged": true,
+      "iterations": 13,
+      "time_s": 88.5
+    },
+    {
+      "N": 41,
+      "n_nodes": 68921,
+      "C": 2.3198280825101265,
+      "C_std": 0.05298435380090271,
+      "slope_outer": -1.0436742223737008,
+      "converged": true,
+      "iterations": 13,
+      "time_s": 461.2
+    }
+  ],
+  "verdict": {
+    "C_latest": 2.3198280825101265,
+    "trend": -0.12328728563981217,
+    "interpretation": "converging_slowly"
+  }
+}

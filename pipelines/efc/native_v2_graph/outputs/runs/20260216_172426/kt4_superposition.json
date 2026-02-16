@@ -1,0 +1,20 @@
+{
+  "test": "KT4",
+  "description": "Superposition violation (nonlinear coupling)",
+  "params": {
+    "N": 21,
+    "G_eff": 1.0,
+    "a0": 2.0,
+    "M_A": 30.0,
+    "M_B": 30.0,
+    "d": 4.0
+  },
+  "verdict": {
+    "rms_normalized": 0.12263453723128369,
+    "max_normalized": 0.2408129013252086,
+    "noise_ratio": 0.34040284253167297,
+    "smooth": true,
+    "nonzero": true,
+    "overall": "PASS"
+  }
+}

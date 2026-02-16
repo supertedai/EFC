@@ -1,0 +1,74 @@
+{
+  "test": "KT5",
+  "description": "External Field Effect \u2014 v2 vectorial radial projection",
+  "params": {
+    "N": 31,
+    "M": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0
+  },
+  "results": [
+    {
+      "g_ext_ratio": 0.0,
+      "g_ext": 0.0,
+      "enhancement_raw": 4.199403443805684,
+      "enhancement_radial": 4.0952722186602974,
+      "enhancement_mag": 4.199403443805684,
+      "converged": true,
+      "time_s": 88.5
+    },
+    {
+      "g_ext_ratio": 0.1,
+      "g_ext": 0.2,
+      "enhancement_raw": 4.198352922934877,
+      "enhancement_radial": 4.09105308407035,
+      "enhancement_mag": 4.195725675415372,
+      "converged": true,
+      "time_s": 88.1
+    },
+    {
+      "g_ext_ratio": 0.5,
+      "g_ext": 1.0,
+      "enhancement_raw": 4.214669745611163,
+      "enhancement_radial": 4.0040631908269,
+      "enhancement_mag": 4.145155787463283,
+      "converged": true,
+      "time_s": 81.9
+    },
+    {
+      "g_ext_ratio": 1.0,
+      "g_ext": 2.0,
+      "enhancement_raw": 4.2604325758059245,
+      "enhancement_radial": 3.85388397946938,
+      "enhancement_mag": 4.244843652480132,
+      "converged": true,
+      "time_s": 95.5
+    },
+    {
+      "g_ext_ratio": 2.0,
+      "g_ext": 4.0,
+      "enhancement_raw": 4.589305812657237,
+      "enhancement_radial": 3.5464479460845824,
+      "enhancement_mag": 5.196634105041348,
+      "converged": true,
+      "time_s": 93.8
+    },
+    {
+      "g_ext_ratio": 5.0,
+      "g_ext": 10.0,
+      "enhancement_raw": 7.17756844613067,
+      "enhancement_radial": 2.9054501075144863,
+      "enhancement_mag": 10.862436494255382,
+      "converged": true,
+      "time_s": 87.7
+    }
+  ],
+  "verdict": {
+    "baseline_enhancement": 4.0952722186602974,
+    "min_strong_enhancement": 2.9054501075144863,
+    "strong_to_baseline_ratio": 0.7094644635039566,
+    "efe_status": "PARTIAL",
+    "monotone_decreasing": true,
+    "method": "vectorial g_int.r_hat projection"
+  }
+}
