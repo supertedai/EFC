@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-16T06:25:12Z",
+  "generated_at": "2026-02-16T12:25:48Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 5,
+    "physics_test": 6,
     "consistency_check": 10,
     "phenomenological": 6,
     "framework_constraint": 9,
     "planned_pipeline": 13,
-    "total_public": 43,
+    "total_public": 44,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
@@ -92,6 +92,21 @@
         "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv__monotonicity_in_galaxy_cluster_radial_profiles",
+        "name": "χ-monotonicity in galaxy cluster radial profiles",
+        "description": "Test whether χ(r) = |∇δT(r)|/T₀ ∝ |dΦ_N/dr| increases monotonically from outskirts to core in galaxy clusters within [0.05, 1.0] R₅₀₀. Uses WL mass profiles (HSC/KiDS/DES) or X-ray hydrostatic profiles (eROSITA ER1) to reconstruct Φ_N(r). Tests cool-core and non-cool-core separately. Kill if ≥30% of gold-sample clusters show robust bumps (surviving bootstrap resampling ≥90%), or if cool-core vs non-cool-core require systematically different χ-forms.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "eROSITA ER1 cluster catalog + XMM/Chandra gold subsample for X-ray T(r) profiles. HSC/KiDS/DES cluster WL mass profiles for Φ_N(r) reconstruction. Classification: cool-core vs non-cool-core from X-ray concentration measure.",
+        "prediction": "χ(r) is monotonically increasing (Spearman ρ < -0.8 between r and χ) from 1.0 R₅₀₀ to 0.05 R₅₀₀ in both cool-core and non-cool-core clusters, with ≤1 sign change in dχ/dr after Savitzky-Golay smoothing. If this holds, χ is validated as universal regime index. If it fails, χ-concept dies but grid ontology, dual readout, and ×4800 resolution survive.",
+        "notes": "FIRST DOOR TO RISK. Highest-value kill-test because: (1) data exists now (eROSITA ER1 + WL profiles), (2) independent of WP4 baseline, (3) genuinely risky (cool-core variations could kill it). Kill conditions: Kill A = ≥30% gold sample shows robust bumps. Kill B = CC vs NCC require different χ-forms. Kill C = stacking masks non-monotonicity. Failure modes: inner-core-only fail is salvageable (AGN subregime), broad fail kills single-scalar gating. This test must run BEFORE η(a,k,ρ) fitting or T₀→Λ mapping.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-16T08:31:45.911000000+00:00",
         "status_detail": "planned"
       }
     ],
@@ -684,7 +699,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.143746Z",
+      "timestamp": "2026-02-16T11:48:11.039249Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -707,7 +722,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.159026Z",
+      "timestamp": "2026-02-16T11:48:11.049759Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -730,7 +745,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.130595Z",
+      "timestamp": "2026-02-16T11:48:11.027605Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -746,7 +761,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.183935Z",
+      "timestamp": "2026-02-16T11:48:11.071787Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -765,7 +780,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.170809Z",
+      "timestamp": "2026-02-16T11:48:11.060548Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -787,7 +802,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-16T05:37:06.114321Z",
+      "timestamp": "2026-02-16T11:48:11.012588Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -813,7 +828,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-16T05:32:03.346965+00:00"
+      "timestamp": "2026-02-16T11:32:14.371136+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -827,7 +842,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-16T05:32:03.386933+00:00"
+      "timestamp": "2026-02-16T11:32:14.398746+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -841,7 +856,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-16T05:32:03.410121+00:00"
+      "timestamp": "2026-02-16T11:32:14.412268+00:00"
     }
   },
   "parameters": {
@@ -1704,24 +1719,24 @@
   ],
   "frontier_gaps": [
     {
-      "question": "Hvordan kan EFC-modellen forklare eksistensen av anomalier i Systemic Risk Index?",
-      "domain": "efc|economics|systems",
-      "severity": "HIGH",
+      "question": "Hvordan kan anomalier i Systemic Risk Index forklares gjennom energiflyt og entropi i økonomiske systemer?",
+      "domain": "efc|economics",
+      "severity": "MEDIUM",
       "status": "OPEN",
       "approach": "bottom_up",
-      "efc_prediction": "Anomalier i Systemic Risk Index vil kunne knyttes til endringer i entropigradienten i økonomiske systemer.",
+      "efc_prediction": "Økonomiske systemer viser utfall som er påvirket av energiflyt og entropigradienter, noe som kan føre til systemiske risikoer.",
       "source": "llm_frontier_discovery",
-      "created_at": "2026-02-16T04:41:50.098000000+00:00"
+      "created_at": "2026-02-16T10:45:54.859000000+00:00"
     },
     {
-      "question": "Hvordan kan EFC forklare bevissthetens emergens i konteksten av termodynamiske prinsipper?",
-      "domain": "efc|consciousness|thermodynamics",
+      "question": "Hvordan kan entropi og bevissthet samhandle i nevrale nettverk som en dynamisk entropi-prosess?",
+      "domain": "efc|neuroscience|consciousness",
       "severity": "MEDIUM",
       "status": "OPEN",
       "approach": "resonance",
-      "efc_prediction": "Bevissthet krever en viss grad av integrasjon av energiflyt, som er målbar gjennom termodynamiske parametre.",
+      "efc_prediction": "Bevissthet i nevrale nettverk vil demonstrere en entropi-drevet prosess der høyere kompleksitet korrelerer med energiflyt.",
       "source": "llm_frontier_discovery",
-      "created_at": "2026-02-16T04:41:50.052000000+00:00"
+      "created_at": "2026-02-16T10:45:54.824000000+00:00"
     },
     {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
@@ -1810,6 +1825,16 @@
     }
   ],
   "changelog": [
+    {
+      "name": "χ-monotonicity in galaxy cluster radial profiles",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-16T08:31:45.911000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
     {
       "name": "Gravitational slip η(a,k,ρ) from grid tension ansatz",
       "status": "planned",

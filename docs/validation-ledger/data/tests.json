@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-16T06:25:12Z",
+  "generated_at": "2026-02-16T12:25:48Z",
   "categories": {
     "physics_test": [
       {
@@ -77,6 +77,21 @@
         "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv__monotonicity_in_galaxy_cluster_radial_profiles",
+        "name": "χ-monotonicity in galaxy cluster radial profiles",
+        "description": "Test whether χ(r) = |∇δT(r)|/T₀ ∝ |dΦ_N/dr| increases monotonically from outskirts to core in galaxy clusters within [0.05, 1.0] R₅₀₀. Uses WL mass profiles (HSC/KiDS/DES) or X-ray hydrostatic profiles (eROSITA ER1) to reconstruct Φ_N(r). Tests cool-core and non-cool-core separately. Kill if ≥30% of gold-sample clusters show robust bumps (surviving bootstrap resampling ≥90%), or if cool-core vs non-cool-core require systematically different χ-forms.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "eROSITA ER1 cluster catalog + XMM/Chandra gold subsample for X-ray T(r) profiles. HSC/KiDS/DES cluster WL mass profiles for Φ_N(r) reconstruction. Classification: cool-core vs non-cool-core from X-ray concentration measure.",
+        "prediction": "χ(r) is monotonically increasing (Spearman ρ < -0.8 between r and χ) from 1.0 R₅₀₀ to 0.05 R₅₀₀ in both cool-core and non-cool-core clusters, with ≤1 sign change in dχ/dr after Savitzky-Golay smoothing. If this holds, χ is validated as universal regime index. If it fails, χ-concept dies but grid ontology, dual readout, and ×4800 resolution survive.",
+        "notes": "FIRST DOOR TO RISK. Highest-value kill-test because: (1) data exists now (eROSITA ER1 + WL profiles), (2) independent of WP4 baseline, (3) genuinely risky (cool-core variations could kill it). Kill conditions: Kill A = ≥30% gold sample shows robust bumps. Kill B = CC vs NCC require different χ-forms. Kill C = stacking masks non-monotonicity. Failure modes: inner-core-only fail is salvageable (AGN subregime), broad fail kills single-scalar gating. This test must run BEFORE η(a,k,ρ) fitting or T₀→Λ mapping.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-16T08:31:45.911000000+00:00",
         "status_detail": "planned"
       }
     ],
@@ -659,5 +674,5 @@
       }
     ]
   },
-  "total_count": 43
+  "total_count": 44
 }
