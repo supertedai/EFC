@@ -1,84 +1,9 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-17T17:32:43Z",
+  "generated_at": "2026-02-17T17:35:55Z",
   "categories": {
     "physics_test": [
-      {
-        "test_id": "conv_aqual_emergence_deep_newton_regime_slope_2_",
-        "name": "AQUAL emergence: Deep Newton regime (slope → -2)",
-        "description": "Kill-test 1: Verifiser at EFC-gitteret gir dypt Newton-regime. Finn område med g/a_0 ≫ 1 (typisk 30-100, ikke bare 2-3) og mål helning. Den skal gå mot -2. Hvis den aldri går mot -2 har vi ikke Newton-grense — da er det ikke AQUAL men en annen effektiv teori.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "EFC numerisk gitter-eksperiment med varierende a_0 og tilstrekkelig romlig oppløsning i indre region",
-        "prediction": "EFC gitter-løsningen gir slope → -2 i regimet g/a_0 ≫ 1, konsistent med Newtonsk 1/r² gravitasjon.",
-        "notes": "Deep Newton regime: slope → -2. Verifies Newtonian limit recovery at high acceleration.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:49.675000000+00:00",
-        "status_detail": "planned"
-      },
-      {
-        "test_id": "conv_aqual_emergence_external_field_effect_efe_analog",
-        "name": "AQUAL emergence: External Field Effect (EFE) analog",
-        "description": "Kill-test 5: External Field Effect (EFE) analog. MOND gir EFE — en distinkt observabel. Test om EFC-gitterversjonen produserer en analog EFE når et eksternt felt legges på. Dette er en sterk diskriminator mellom MOND-mekanismer.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "EFC gitter med ekstern feltgradient (homogent bakgrunnsfelt pålagt)",
-        "prediction": "EFC-gitteret produserer en EFE-analog: intern dynamikk endres av eksternt felt, konsistent med AQUAL-prediksjon.",
-        "notes": "External Field Effect analog from Graph-AQUAL operator. Tests nonlinear regime behaviour.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:24.183000000+00:00",
-        "status_detail": "planned"
-      },
-      {
-        "test_id": "conv_aqual_emergence_prefaktor_c_konvergens_c_1_vs_prediksjon_",
-        "name": "AQUAL emergence: Prefaktor C konvergens (C→1 vs prediksjon)",
-        "description": "Kill-test 2: Konvergenstest av prefaktor C ≡ g/g_MOND ≈ 2.3. Øk gridstørrelse, flytt randbetingelser, bytt sampling. Se om C → 1 i kontinuum-/stor-boks-grensen. Hvis 2.3 blir stående uansett er det ikke numerikk — da er det en prediksjon fra gitteret som må testes mot SPARC.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "EFC gitter med økende N (gridstørrelse), varierende randbetingelser (absorberende/Dirichlet/Neumann), kubisk vs sfærisk sampling med radial binning og volumvekting",
-        "prediction": "Prefaktor C → 1 ved N → ∞ og korrekte randbetingelser (numerisk artefakt). Alternativt: C ≠ 1 er stabil prediksjon som må eies og testes mot SPARC-data.",
-        "notes": "Prefactor C convergence test. C ≈ 2.32 must be resolution-independent. Core structural prediction of cubic graph topology.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:44.018000000+00:00",
-        "status_detail": "planned"
-      },
-      {
-        "test_id": "conv_aqual_emergence_to_kilde_superposisjonstest",
-        "name": "AQUAL emergence: To-kilde superposisjonstest",
-        "description": "Kill-test 4: Superposisjonstest med to kilder. I ikke-lineær Poisson er superposisjon brutt på en spesifikk måte. Sett inn to masser og verifiser at løsningen oppfører seg konsistent (og ikke numerisk ustabil eller artefaktfull).",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "EFC gitter med to punktmasser — test superposisjon i ikke-lineær Poisson",
-        "prediction": "To-kilde-løsningen viser konsistent ikke-lineær superposisjonsbrudd i tråd med AQUAL-forventninger, uten numeriske artefakter.",
-        "notes": "Two-source superposition test. 13.7% nonlinear violation is a structural prediction of the discrete operator.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:29.349000000+00:00",
-        "status_detail": "planned"
-      },
-      {
-        "test_id": "conv_aqual_emergence_m_skalering_av_overgangsradius",
-        "name": "AQUAL emergence: √M-skalering av overgangsradius",
-        "description": "Kill-test 3: Masse-skalering av overgangsradius. MOND/AQUAL gir r_M ∝ √(GM/a_0). Test flere masser uten retuning. Hvis √M-skalering holder uten å justere parametere, er det sterk bekreftelse på AQUAL-struktur.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "EFC gitter med flere punktmasser med varierende M",
-        "prediction": "Overgangsradius r_M skalerer som √M uten retuning av gitter-parametere.",
-        "notes": "√M-scaling of transition radius. Graph operator gives r_trans ∝ M^0.18, deviating from MOND M^0.5. Discriminating prediction.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:35.798000000+00:00",
-        "status_detail": "planned"
-      },
       {
         "test_id": "conv_efclass_sign_test_h_negative_for_additive_gate",
         "name": "EFCLASS sign test: ΔH² negative for additive gate",
@@ -123,21 +48,6 @@
         "quantitative_result": "",
         "last_synced": "2026-02-17T06:31:28.109885Z",
         "status_detail": "success"
-      },
-      {
-        "test_id": "conv_graph_aqual_newton_mond_limit_recovery_kt1_",
-        "name": "Graph-AQUAL Newton-MOND limit recovery (KT1)",
-        "description": "Discrete AQUAL on cubic lattice recovers both Newton (slope -2.00) and MOND (slope -0.99) limits from one functional when nonlinearity is placed on potential Φ. Verified at N=21,31,41.",
-        "result": "Planned",
-        "status": "unknown",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "grid_aqual_v2.py numerical solver, KT1 test suite",
-        "prediction": "EFC predicts that a graph functional with gradient-dependent conductivity μ(|∇Φ|/a₀) gives exact Newton and MOND asymptotic slopes without importing either GR Poisson or MOND ν(ξ).",
-        "notes": "KT1: Newton-MOND limit recovery from discrete entropic functional on cubic graph. Core kill test for EFC GRAV.",
-        "quantitative_result": null,
-        "last_synced": "2026-02-17T12:23:17.984000000+00:00",
-        "status_detail": "planned"
       },
       {
         "test_id": "conv_gravitational_slip_a_k_from_grid_tension_ansatz",
@@ -854,5 +764,5 @@
       }
     ]
   },
-  "total_count": 56
+  "total_count": 50
 }
