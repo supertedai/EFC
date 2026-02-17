@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-17T17:35:55Z",
+  "generated_at": "2026-02-17T17:41:42Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 12,
@@ -10,10 +10,11 @@
     "framework_constraint": 9,
     "planned_pipeline": 12,
     "total_public": 50,
+    "n_falsified": 0,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 9,
+    "frontier_count": 4,
     "tcs_compression": 2.0,
     "tcs_mismatch": 0.25,
     "pillar_1_lcdm": 0,
@@ -1821,16 +1822,6 @@
   ],
   "frontier_gaps": [
     {
-      "question": "Hvilke eksperimentelle resultater ville falsifisere EFCs syn på bevissthet som et resultat av energiflyt?",
-      "domain": "efc|consciousness|neuroscience",
-      "severity": "CRITICAL",
-      "status": "OPEN",
-      "approach": "falsification",
-      "efc_prediction": "EFC ville bli falsifisert hvis bevissthet kunne observeres uavhengig av energiflyt eller entropigradient.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-17T17:06:12.593000000+00:00"
-    },
-    {
       "question": "Hvordan kan EFCs forklaring på mørk energi sammenlignes med observerte anomalier i galaksekspansjon?",
       "domain": "efc|cosmology",
       "severity": "HIGH",
@@ -1839,46 +1830,6 @@
       "efc_prediction": "EFC predikerer at anomalier i galaksekspansjon kan tilskrives endringer i entropigradienten, i stedet for en konstant mørk energi.",
       "source": "llm_frontier_discovery",
       "created_at": "2026-02-17T17:06:12.568000000+00:00"
-    },
-    {
-      "question": "Finnes det en kritisk eksponentkorrelasjon mellom faseoverganger i biologiske systemer og α-parameteren?",
-      "domain": "efc|biology",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": "top_down",
-      "efc_prediction": "EFC predikerer at biologiske systemer vil vise faseoverganger som korrelerer med variasjoner i α-parameteren.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-17T17:06:12.559000000+00:00"
-    },
-    {
-      "question": "Hva antyder de nylige avvikene i Systemic Risk Index om entropi og energiflyt i økonomiske systemer?",
-      "domain": "efc|economics",
-      "severity": "HIGH",
-      "status": "OPEN",
-      "approach": "bottom_up",
-      "efc_prediction": "EFC predikerer at avvikene i Systemic Risk Index reflekterer underliggende endringer i energiflyt og entropigradient i økonomien.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-17T17:06:12.549000000+00:00"
-    },
-    {
-      "question": "Hvordan kan resonansen mellom termodynamikk og nevrovitenskap forklare opplevelsen av bevissthet i lys av EFC-modellen?",
-      "domain": "efc|consciousness|neuroscience|thermodynamics",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": "resonance",
-      "efc_prediction": "EFC predikerer at bevissthet oppstår ved høyere energiflyt og resonans i nevronale nettverk, som korrelerer med α-parameteren.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-17T17:06:12.538000000+00:00"
-    },
-    {
-      "question": "Kan vi observere en α-avhengighet i synlige egenskaper av exoplaneter som reflekterer bevissthet i deres atmosfærer?",
-      "domain": "efc|biology|neuroscience",
-      "severity": "HIGH",
-      "status": "OPEN",
-      "approach": "bottom_up",
-      "efc_prediction": "EFC predikerer at eksoplaneter med høyere α vil vise skilt av komplekse atmosfærer som antyder liv eller bevissthet.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-17T17:06:12.513000000+00:00"
     },
     {
       "question": "Hvordan påvirker entropigradienten i galakseklynger dannelsen av mørk materie-strukturer?",
@@ -2002,66 +1953,6 @@
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-02-17T12:24:00.732000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL emergence: Deep Newton regime (slope → -2)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:49.675000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL emergence: Prefaktor C konvergens (C→1 vs prediksjon)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:44.018000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL emergence: √M-skalering av overgangsradius",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:35.798000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL emergence: To-kilde superposisjonstest",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:29.349000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL emergence: External Field Effect (EFE) analog",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:24.183000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Graph-AQUAL Newton-MOND limit recovery (KT1)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:23:17.984000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
