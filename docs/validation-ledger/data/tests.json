@@ -1,9 +1,84 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-17T08:45:33Z",
+  "generated_at": "2026-02-17T14:46:18Z",
   "categories": {
     "physics_test": [
+      {
+        "test_id": "conv_aqual_emergence_deep_newton_regime_slope_2_",
+        "name": "AQUAL emergence: Deep Newton regime (slope → -2)",
+        "description": "Kill-test 1: Verifiser at EFC-gitteret gir dypt Newton-regime. Finn område med g/a_0 ≫ 1 (typisk 30-100, ikke bare 2-3) og mål helning. Den skal gå mot -2. Hvis den aldri går mot -2 har vi ikke Newton-grense — da er det ikke AQUAL men en annen effektiv teori.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFC numerisk gitter-eksperiment med varierende a_0 og tilstrekkelig romlig oppløsning i indre region",
+        "prediction": "EFC gitter-løsningen gir slope → -2 i regimet g/a_0 ≫ 1, konsistent med Newtonsk 1/r² gravitasjon.",
+        "notes": "Deep Newton regime: slope → -2. Verifies Newtonian limit recovery at high acceleration.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:49.675000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_aqual_emergence_external_field_effect_efe_analog",
+        "name": "AQUAL emergence: External Field Effect (EFE) analog",
+        "description": "Kill-test 5: External Field Effect (EFE) analog. MOND gir EFE — en distinkt observabel. Test om EFC-gitterversjonen produserer en analog EFE når et eksternt felt legges på. Dette er en sterk diskriminator mellom MOND-mekanismer.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFC gitter med ekstern feltgradient (homogent bakgrunnsfelt pålagt)",
+        "prediction": "EFC-gitteret produserer en EFE-analog: intern dynamikk endres av eksternt felt, konsistent med AQUAL-prediksjon.",
+        "notes": "External Field Effect analog from Graph-AQUAL operator. Tests nonlinear regime behaviour.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:24.183000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_aqual_emergence_prefaktor_c_konvergens_c_1_vs_prediksjon_",
+        "name": "AQUAL emergence: Prefaktor C konvergens (C→1 vs prediksjon)",
+        "description": "Kill-test 2: Konvergenstest av prefaktor C ≡ g/g_MOND ≈ 2.3. Øk gridstørrelse, flytt randbetingelser, bytt sampling. Se om C → 1 i kontinuum-/stor-boks-grensen. Hvis 2.3 blir stående uansett er det ikke numerikk — da er det en prediksjon fra gitteret som må testes mot SPARC.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFC gitter med økende N (gridstørrelse), varierende randbetingelser (absorberende/Dirichlet/Neumann), kubisk vs sfærisk sampling med radial binning og volumvekting",
+        "prediction": "Prefaktor C → 1 ved N → ∞ og korrekte randbetingelser (numerisk artefakt). Alternativt: C ≠ 1 er stabil prediksjon som må eies og testes mot SPARC-data.",
+        "notes": "Prefactor C convergence test. C ≈ 2.32 must be resolution-independent. Core structural prediction of cubic graph topology.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:44.018000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_aqual_emergence_to_kilde_superposisjonstest",
+        "name": "AQUAL emergence: To-kilde superposisjonstest",
+        "description": "Kill-test 4: Superposisjonstest med to kilder. I ikke-lineær Poisson er superposisjon brutt på en spesifikk måte. Sett inn to masser og verifiser at løsningen oppfører seg konsistent (og ikke numerisk ustabil eller artefaktfull).",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFC gitter med to punktmasser — test superposisjon i ikke-lineær Poisson",
+        "prediction": "To-kilde-løsningen viser konsistent ikke-lineær superposisjonsbrudd i tråd med AQUAL-forventninger, uten numeriske artefakter.",
+        "notes": "Two-source superposition test. 13.7% nonlinear violation is a structural prediction of the discrete operator.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:29.349000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_aqual_emergence_m_skalering_av_overgangsradius",
+        "name": "AQUAL emergence: √M-skalering av overgangsradius",
+        "description": "Kill-test 3: Masse-skalering av overgangsradius. MOND/AQUAL gir r_M ∝ √(GM/a_0). Test flere masser uten retuning. Hvis √M-skalering holder uten å justere parametere, er det sterk bekreftelse på AQUAL-struktur.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "EFC gitter med flere punktmasser med varierende M",
+        "prediction": "Overgangsradius r_M skalerer som √M uten retuning av gitter-parametere.",
+        "notes": "√M-scaling of transition radius. Graph operator gives r_trans ∝ M^0.18, deviating from MOND M^0.5. Discriminating prediction.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:35.798000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "conv_efclass_sign_test_h_negative_for_additive_gate",
         "name": "EFCLASS sign test: ΔH² negative for additive gate",
@@ -35,21 +110,6 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_integration_2026-02-17_021037_aqual",
-        "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
-        "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
-        "result": "C=2.32: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
-        "status": "partial",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "G_eff gate × linear growth ODE, 4 screening scales, C from KT2",
-        "prediction": "LCDM baseline survives; screening at k < 0.01 h/Mpc keeps σ₈ and γ within 5% of ΛCDM",
-        "notes": null,
-        "quantitative_result": "{\"C\": 2.3198280825101287, \"survived\": [\"LCDM_baseline\", \"k_Lambda_0.0014\"], \"exploded\": [\"k_Lambda_0.1\", \"k_Lambda_1.0\"], \"overall_verdict\": \"PARTIAL_BRIDGE\"}",
-        "last_synced": null,
-        "status_detail": "partial"
-      },
-      {
         "test_id": "ledger_galaxy_rotation_curves",
         "name": "Galaxy rotation curves",
         "description": "✅",
@@ -63,6 +123,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-17T06:31:28.109885Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_graph_aqual_newton_mond_limit_recovery_kt1_",
+        "name": "Graph-AQUAL Newton-MOND limit recovery (KT1)",
+        "description": "Discrete AQUAL on cubic lattice recovers both Newton (slope -2.00) and MOND (slope -0.99) limits from one functional when nonlinearity is placed on potential Φ. Verified at N=21,31,41.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "grid_aqual_v2.py numerical solver, KT1 test suite",
+        "prediction": "EFC predicts that a graph functional with gradient-dependent conductivity μ(|∇Φ|/a₀) gives exact Newton and MOND asymptotic slopes without importing either GR Poisson or MOND ν(ξ).",
+        "notes": "KT1: Newton-MOND limit recovery from discrete entropic functional on cubic graph. Core kill test for EFC GRAV.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:23:17.984000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "conv_gravitational_slip_a_k_from_grid_tension_ansatz",
@@ -125,6 +200,21 @@
         "status_detail": "success"
       },
       {
+        "test_id": "grav_kt1_2026-02-17_085934_aqual",
+        "name": "Grid-AQUAL Newton/MOND limits (KT1)",
+        "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
+        "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.027 (target: -2.0)",
+        "status": "success",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Grid-AQUAL solver, spherical point mass, N=41 grid",
+        "prediction": "Inner slope → -2 (Newton) as a0→0; Outer slope → -1 (MOND) as a0→∞",
+        "notes": null,
+        "quantitative_result": "{\"mond_slope\": -1.0501, \"newton_slope\": -2.0272, \"verdict\": \"PASSED\"}",
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
         "test_id": "grav_kt3_2026-02-16_aqual_v0p2",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
@@ -156,6 +246,21 @@
       },
       {
         "test_id": "grav_kt3_2026-02-17_021037_aqual",
+        "name": "Grid-AQUAL mass-scaling exponent (KT3)",
+        "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
+        "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
+        "status": "partial",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Grid-AQUAL solver, M ∈ {10, 25, 50, 100, 200}, N=41, a₀=2.0",
+        "prediction": "β = 0.50 ± 0.15 for isolated spherical sources",
+        "notes": null,
+        "quantitative_result": "{\"beta\": 0.2934, \"verdict\": \"MARGINAL\"}",
+        "last_synced": null,
+        "status_detail": "partial"
+      },
+      {
+        "test_id": "grav_kt3_2026-02-17_085934_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -215,6 +320,21 @@
         "status_detail": "success"
       },
       {
+        "test_id": "grav_kt2_2026-02-17_085934_aqual",
+        "name": "Grid-AQUAL prefactor convergence (KT2)",
+        "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
+        "result": "C_vw = 2.3198 (converged)",
+        "status": "success",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Grid-AQUAL solver, N ∈ {21, 31, 41}, spherical point mass M=50",
+        "prediction": "C converges to a finite value; residual between N-steps < 0.1",
+        "notes": null,
+        "quantitative_result": "{\"C_vw\": 2.3198, \"C_squared\": 5.3816, \"verdict\": \"PASSED\"}",
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
         "test_id": "ledger_isw_cancellation_prediction_metric",
         "name": "ISW cancellation prediction (𝒞 metric)",
         "description": "Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)",
@@ -242,6 +362,36 @@
         "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_shadow_mode_v2_tdcosmo_pemd_nfw_time_delay_consistency",
+        "name": "Shadow-mode v2: TDCOSMO PEMD+NFW time-delay consistency",
+        "description": "Tests temporal channel saturation using realistic TDCOSMO-2025 lens mass profiles (power-law PEMD and composite Chameleon+NFW). Fits A, ε, χ_sat against 8-lens time delays, velocity dispersions, and gravitational slip constraints with independent DESI+KiDS priors. Upgrade from v1 SIS approximation.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "TDCOSMO-2025 (Shajib+2025, arXiv:2506.03023): 8 quadruply-lensed quasars with published γ', θ_E, σ_v, time delays, and NFW halo parameters.",
+        "prediction": "EFC predicts temporal potential deviation < 0.1% from GR for all TDCOSMO lenses, with ε ~ 0.005 and η > 0.95. The prediction is independent of lens profile choice (PL vs composite) because temporal saturation operates at the ontological level, not the profile level.",
+        "notes": "Shadow-mode v2: TDCOSMO time-delay consistency test. Independent of GRAV but relevant for pipeline validation.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:24:12.433000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_verlinde_relation_a_ch_emergent_from_bulk_entropy",
+        "name": "Verlinde relation a₀~cH₀ emergent from bulk entropy",
+        "description": "Adding volume-law bulk term to graph functional produces screening length L_Λ ∝ Λ^{-0.500} (exact) and transition acceleration a₀ ∝ Λ^{+0.500} (exact). This is the Verlinde relation a₀ ≈ √3·cH₀ emergent from graph, not imported.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Bulk entropy reservoir term F_bulk with μ=β²Λ, tested over 7 Λ-values",
+        "prediction": "EFC predicts Verlinde relation a₀ = c²√Λ emerges from graph functional with bulk entropy reservoir, without free parameters beyond Λ itself.",
+        "notes": "Verlinde relation a₀ ~ cH₀ emergent from bulk entropy. Tests whether the MOND acceleration scale emerges naturally from the bulk sector coupling μ_Λ ∝ Λ.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:24:07.085000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -413,6 +563,21 @@
       }
     ],
     "phenomenological": [
+      {
+        "test_id": "conv_anti_efe_constructive_external_field_response_in_graph_aqual",
+        "name": "Anti-EFE: constructive external field response in Graph-AQUAL",
+        "description": "Graph-AQUAL shows anti-EFE: internal enhancement INCREASES with external field strength (4.2x → 5.2x → 10.9x), opposite to standard MOND/AQUAL. If confirmed after measurement fix, this is a novel prediction distinguishing graph-AQUAL from MOND.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "KT5 EFE sweep: g_ext/a₀ = [0, 0.3, 1, 2, 5]",
+        "prediction": "EFC graph-AQUAL predicts constructive external field coupling (anti-EFE) where external field enhances rather than suppresses MOND-like boost. Testable against galaxy samples in external fields (e.g., Crater II, NGC 1052-DF2).",
+        "notes": "Anti-EFE: constructive external field response. Tests whether Graph-AQUAL shows constructive (not destructive) response to uniform external field in some configurations.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-17T12:24:00.732000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "ledger_bao_anisotropic_split_davs_hz",
         "name": "BAO anisotropic split (DAvs H(z))",
@@ -839,5 +1004,5 @@
       }
     ]
   },
-  "total_count": 55
+  "total_count": 66
 }
