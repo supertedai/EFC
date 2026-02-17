@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-17T16:34:56Z",
+  "generated_at": "2026-02-17T17:32:43Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 18,
@@ -13,9 +13,21 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 2,
-    "tcs_compression": 1.33,
-    "tcs_mismatch": 0.25
+    "frontier_count": 9,
+    "tcs_compression": 2.0,
+    "tcs_mismatch": 0.25,
+    "pillar_1_lcdm": 0,
+    "pillar_2_native": 23,
+    "pillar_3_grav": 13,
+    "pillar_4_cross": 20,
+    "grav_kt_count": 3,
+    "grav_kt_passed": 2,
+    "grav_kt_marginal": 1,
+    "grav_claims": 3,
+    "grav_claims_supported": 2,
+    "grav_integration_results": 4,
+    "grav_integration_survived": 2,
+    "grav_integration_exploded": 2
   },
   "tests": {
     "physics_test": [
@@ -879,7 +891,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.915117Z",
+      "timestamp": "2026-02-17T17:28:34.071853Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -902,7 +914,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.924827Z",
+      "timestamp": "2026-02-17T17:28:34.084721Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -925,7 +937,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.903439Z",
+      "timestamp": "2026-02-17T17:28:34.049792Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -941,7 +953,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.947537Z",
+      "timestamp": "2026-02-17T17:28:34.113685Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -960,7 +972,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.938054Z",
+      "timestamp": "2026-02-17T17:28:34.100063Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -982,7 +994,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-17T16:24:50.888818Z",
+      "timestamp": "2026-02-17T17:28:34.027717Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1008,7 +1020,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-17T15:44:37.658292+00:00"
+      "timestamp": "2026-02-17T16:44:39.377913+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1022,11 +1034,11 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-17T15:44:37.687209+00:00"
+      "timestamp": "2026-02-17T16:44:39.407549+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 1.33,
+      "compression": 2.0,
       "mismatch_rate": 0.25,
       "coverage_penalty": 0.4286,
       "layer_consistency": "high",
@@ -1035,8 +1047,8 @@
       "total": 7,
       "untested": 3,
       "mismatches": 1,
-      "primitives": 4,
-      "timestamp": "2026-02-17T15:44:37.749904+00:00"
+      "primitives": 2,
+      "timestamp": "2026-02-17T16:44:39.421726+00:00"
     }
   },
   "parameters": {
@@ -1899,6 +1911,76 @@
   ],
   "frontier_gaps": [
     {
+      "question": "Hvilke eksperimentelle resultater ville falsifisere EFCs syn på bevissthet som et resultat av energiflyt?",
+      "domain": "efc|consciousness|neuroscience",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "approach": "falsification",
+      "efc_prediction": "EFC ville bli falsifisert hvis bevissthet kunne observeres uavhengig av energiflyt eller entropigradient.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.593000000+00:00"
+    },
+    {
+      "question": "Hvordan kan EFCs forklaring på mørk energi sammenlignes med observerte anomalier i galaksekspansjon?",
+      "domain": "efc|cosmology",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "EFC predikerer at anomalier i galaksekspansjon kan tilskrives endringer i entropigradienten, i stedet for en konstant mørk energi.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.568000000+00:00"
+    },
+    {
+      "question": "Finnes det en kritisk eksponentkorrelasjon mellom faseoverganger i biologiske systemer og α-parameteren?",
+      "domain": "efc|biology",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "top_down",
+      "efc_prediction": "EFC predikerer at biologiske systemer vil vise faseoverganger som korrelerer med variasjoner i α-parameteren.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.559000000+00:00"
+    },
+    {
+      "question": "Hva antyder de nylige avvikene i Systemic Risk Index om entropi og energiflyt i økonomiske systemer?",
+      "domain": "efc|economics",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "EFC predikerer at avvikene i Systemic Risk Index reflekterer underliggende endringer i energiflyt og entropigradient i økonomien.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.549000000+00:00"
+    },
+    {
+      "question": "Hvordan kan resonansen mellom termodynamikk og nevrovitenskap forklare opplevelsen av bevissthet i lys av EFC-modellen?",
+      "domain": "efc|consciousness|neuroscience|thermodynamics",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "resonance",
+      "efc_prediction": "EFC predikerer at bevissthet oppstår ved høyere energiflyt og resonans i nevronale nettverk, som korrelerer med α-parameteren.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.538000000+00:00"
+    },
+    {
+      "question": "Kan vi observere en α-avhengighet i synlige egenskaper av exoplaneter som reflekterer bevissthet i deres atmosfærer?",
+      "domain": "efc|biology|neuroscience",
+      "severity": "HIGH",
+      "status": "OPEN",
+      "approach": "bottom_up",
+      "efc_prediction": "EFC predikerer at eksoplaneter med høyere α vil vise skilt av komplekse atmosfærer som antyder liv eller bevissthet.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.513000000+00:00"
+    },
+    {
+      "question": "Hvordan påvirker entropigradienten i galakseklynger dannelsen av mørk materie-strukturer?",
+      "domain": "efc|cosmology",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "approach": "top_down",
+      "efc_prediction": "EFC predikerer at entropigradienten vil være korrelert med distribusjonen og morfologien av mørk materie i galakseklynger.",
+      "source": "llm_frontier_discovery",
+      "created_at": "2026-02-17T17:06:12.476000000+00:00"
+    },
+    {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
       "severity": "MEDIUM",
@@ -2165,5 +2247,103 @@
         "EFCValidation"
       ]
     }
-  ]
+  ],
+  "grav_pipeline": {
+    "latest_run": {
+      "run_id": "2026-02-17_085934_aqual",
+      "verdict": "NEEDS_REVIEW",
+      "started": null,
+      "integration_verdict": "PARTIAL_BRIDGE"
+    },
+    "kill_tests": [
+      {
+        "name": "KT1_Newton_MOND_Limits",
+        "status": "PASSED",
+        "label": "KT1",
+        "slope_mond": -1.0500612068387782,
+        "slope_newton": -2.0271524708809157,
+        "c_value": null,
+        "c_last_diff": null,
+        "beta": null,
+        "n_cases": 5
+      },
+      {
+        "name": "KT2_Prefactor_Convergence",
+        "status": "PASSED",
+        "label": "KT2",
+        "slope_mond": null,
+        "slope_newton": null,
+        "c_value": 2.3198280825101287,
+        "c_last_diff": null,
+        "beta": null,
+        "n_cases": null
+      },
+      {
+        "name": "KT3_Mass_Scaling",
+        "status": "MARGINAL",
+        "label": "KT3",
+        "slope_mond": null,
+        "slope_newton": null,
+        "c_value": null,
+        "c_last_diff": null,
+        "beta": 0.2934489669522471,
+        "n_cases": null
+      }
+    ],
+    "claims": [
+      {
+        "text": "Transition radius scales as sqrt(GM/a0) consistent with MOND prediction.",
+        "status": "MARGINAL",
+        "claim_type": null
+      },
+      {
+        "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
+        "status": "SUPPORTED",
+        "claim_type": null
+      },
+      {
+        "text": "Prefactor C converges to a finite value as grid resolution increases.",
+        "status": "SUPPORTED",
+        "claim_type": null
+      }
+    ],
+    "integration_results": [
+      {
+        "scenario": "LCDM_baseline",
+        "status": "SURVIVES",
+        "C": 2.3198280825101287,
+        "sigma8": 0.81,
+        "gamma": 0.555,
+        "sigma8_dev": 0.0,
+        "k_lambda": null
+      },
+      {
+        "scenario": "k_Lambda_0.0014",
+        "status": "SURVIVES",
+        "C": 2.3198280825101287,
+        "sigma8": 0.8106,
+        "gamma": 0.554,
+        "sigma8_dev": 0.07,
+        "k_lambda": 0.0014
+      },
+      {
+        "scenario": "k_Lambda_0.1",
+        "status": "EXPLODED",
+        "C": 2.3198280825101287,
+        "sigma8": 1.5897,
+        "gamma": -0.111,
+        "sigma8_dev": 96.26,
+        "k_lambda": 0.1
+      },
+      {
+        "scenario": "k_Lambda_1.0",
+        "status": "EXPLODED",
+        "C": 2.3198280825101287,
+        "sigma8": 1.8493,
+        "gamma": -0.198,
+        "sigma8_dev": 128.31,
+        "k_lambda": 1.0
+      }
+    ]
+  }
 }

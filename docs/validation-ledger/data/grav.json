@@ -1,0 +1,133 @@
+{
+  "name": "EFC-GRAV Pipeline",
+  "version": "3.0",
+  "generated_at": "2026-02-17T17:32:43Z",
+  "latest_run": {
+    "run_id": "2026-02-17_085934_aqual",
+    "verdict": "NEEDS_REVIEW",
+    "started": null,
+    "integration_verdict": "PARTIAL_BRIDGE"
+  },
+  "kill_tests": [
+    {
+      "name": "KT1_Newton_MOND_Limits",
+      "status": "PASSED",
+      "label": "KT1",
+      "slope_mond": -1.0500612068387782,
+      "slope_newton": -2.0271524708809157,
+      "c_value": null,
+      "c_last_diff": null,
+      "beta": null,
+      "n_cases": 5
+    },
+    {
+      "name": "KT2_Prefactor_Convergence",
+      "status": "PASSED",
+      "label": "KT2",
+      "slope_mond": null,
+      "slope_newton": null,
+      "c_value": 2.3198280825101287,
+      "c_last_diff": null,
+      "beta": null,
+      "n_cases": null
+    },
+    {
+      "name": "KT3_Mass_Scaling",
+      "status": "MARGINAL",
+      "label": "KT3",
+      "slope_mond": null,
+      "slope_newton": null,
+      "c_value": null,
+      "c_last_diff": null,
+      "beta": 0.2934489669522471,
+      "n_cases": null
+    }
+  ],
+  "kill_test_definitions": [
+    {
+      "name": "KT1_Newton_MOND_Limits",
+      "description": "Newton limit (slope ~ -2) when g/a0 >> 1; MOND limit (slope ~ -1) when g/a0 << 1",
+      "metric": null,
+      "threshold": null
+    },
+    {
+      "name": "KT2_Prefactor_Convergence",
+      "description": "Prefactor C = g_AQUAL / sqrt(a0 * g_N) convergence with grid resolution N",
+      "metric": null,
+      "threshold": null
+    },
+    {
+      "name": "KT3_Mass_Scaling",
+      "description": "Transition radius scales as sqrt(M): r_trans ~ M^beta with beta ~ 0.5",
+      "metric": null,
+      "threshold": null
+    },
+    {
+      "name": "KT4_Superposition",
+      "description": "Non-linear superposition: gravity from two sources != sum of individual gravities",
+      "metric": null,
+      "threshold": null
+    },
+    {
+      "name": "KT5_EFE",
+      "description": "External Field Effect: presence of uniform external field modifies internal dynamics",
+      "metric": null,
+      "threshold": null
+    }
+  ],
+  "claims": [
+    {
+      "text": "Transition radius scales as sqrt(GM/a0) consistent with MOND prediction.",
+      "status": "MARGINAL",
+      "claim_type": null
+    },
+    {
+      "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
+      "status": "SUPPORTED",
+      "claim_type": null
+    },
+    {
+      "text": "Prefactor C converges to a finite value as grid resolution increases.",
+      "status": "SUPPORTED",
+      "claim_type": null
+    }
+  ],
+  "integration_results": [
+    {
+      "scenario": "LCDM_baseline",
+      "status": "SURVIVES",
+      "C": 2.3198280825101287,
+      "sigma8": 0.81,
+      "gamma": 0.555,
+      "sigma8_dev": 0.0,
+      "k_lambda": null
+    },
+    {
+      "scenario": "k_Lambda_0.0014",
+      "status": "SURVIVES",
+      "C": 2.3198280825101287,
+      "sigma8": 0.8106,
+      "gamma": 0.554,
+      "sigma8_dev": 0.07,
+      "k_lambda": 0.0014
+    },
+    {
+      "scenario": "k_Lambda_0.1",
+      "status": "EXPLODED",
+      "C": 2.3198280825101287,
+      "sigma8": 1.5897,
+      "gamma": -0.111,
+      "sigma8_dev": 96.26,
+      "k_lambda": 0.1
+    },
+    {
+      "scenario": "k_Lambda_1.0",
+      "status": "EXPLODED",
+      "C": 2.3198280825101287,
+      "sigma8": 1.8493,
+      "gamma": -0.198,
+      "sigma8_dev": 128.31,
+      "k_lambda": 1.0
+    }
+  ]
+}
