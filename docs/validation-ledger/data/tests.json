@@ -1,9 +1,39 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-18T06:24:55Z",
+  "generated_at": "2026-02-18T12:25:25Z",
   "categories": {
     "physics_test": [
+      {
+        "test_id": "conv_cmb_bao_joint_fit_background_gate_null_result",
+        "name": "CMB+BAO Joint Fit: Background α-gate null result",
+        "description": "Full Planck 2018 + DESI 2024 BAO + Pantheon+ joint minimize. Tests whether EFC background gate E²=E²_LCDM + α·g(a) can carry the late-time α≈−0.7 signal from BAO/growth pipelines. Result: BAO breaks α–H₀ degeneracy, collapsing α from −0.7 to −0.045. H₀ returns to 67.9. Background α-gate cannot sustain late-time signal under joint constraints.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Planck 2018 (plik_lite + lowl_TT + lowl_EE + lensing) + DESI 2024 BAO + Pantheon+ SN via EFCLASS/cobaya",
+        "prediction": "If α≈−0.7 is real background physics, joint fit should find α significantly negative with improved total χ². Instead: α→−0.045, confirming background gate is proxy, not fundamental.",
+        "notes": "Joint fit complete. BAO breaks degeneracy. α collapses from −0.7 to −0.045. Background gate is proxy, not physics. Core result 2026-02-18.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-18T11:09:09.717000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": null,
+        "name": "EFC Baseline α-signal",
+        "description": "Joint BAO+H(z)+SNIa+fσ₈ MCMC with EFC α-parameter. Tests whether dark energy data prefers α<0 (entropic flow) over ΛCDM (α=0).",
+        "result": null,
+        "status": "pending",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, 70 data points, emcee sampler",
+        "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
+        "notes": null,
+        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"DEGENERACY_LIMITED\"}",
+        "last_synced": null,
+        "status_detail": "pending"
+      },
       {
         "test_id": "conv_efclass_sign_test_h_negative_for_additive_gate",
         "name": "EFCLASS sign test: ΔH² negative for additive gate",
@@ -20,7 +50,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_integration_2026-02-16_192322_aqual",
+        "test_id": "grav_integration_2026-02-18_052322_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.32: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -65,7 +95,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-02-16_aqual_v0p2",
+        "test_id": "grav_kt1_2026-02-18_052322_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.027 (target: -2.0)",
@@ -80,7 +110,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-02-16_aqual_v0p2",
+        "test_id": "grav_kt3_2026-02-18_052322_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -95,7 +125,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-02-16_aqual_v0p2",
+        "test_id": "grav_kt2_2026-02-18_052322_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3198 (converged)",
@@ -307,6 +337,96 @@
         "status_detail": "success"
       },
       {
+        "test_id": null,
+        "name": "N1 Sound Horizon Control",
+        "description": "Tests whether α-signal survives when rd (sound horizon) is (a) fixed to Planck, (b) freed as MCMC parameter. Rules out rd-degeneracy.",
+        "result": null,
+        "status": "partial",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, N1a (fixed rd) + N1b (free rd)",
+        "prediction": "α significance survives within 0.5σ of baseline under both rd treatments",
+        "notes": null,
+        "quantitative_result": "{\"n1a_sigma\": 1.73, \"n1b_sigma\": 1.67, \"verdict\": \"PARTIAL\"}",
+        "last_synced": null,
+        "status_detail": "partial"
+      },
+      {
+        "test_id": null,
+        "name": "N2 σ8 Prior Sweep",
+        "description": "Tests α-signal stability across tight/medium/flat σ₈ priors. Rules out prior-driven artifact.",
+        "result": null,
+        "status": "success",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, 3 σ₈ prior configurations",
+        "prediction": "α significance stable (within 0.5σ) across all σ₈ prior widths",
+        "notes": null,
+        "quantitative_result": "{\"verdict\": \"PASS\", \"stram_sigma\": 1.83, \"middels_sigma\": 1.75, \"flat_sigma\": 1.73}",
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
+        "test_id": null,
+        "name": "N3 Gate Freedom",
+        "description": "IDENTIFIABILITY test: frees gate parameters (a_t, δ_a) alongside α using EFCVariantB (6-param MCMC). Tests whether α is identifiable when gate shape has freedom, or collapses into α–gate degeneracy. Reports A_eff = α·G (gate-normalized amplitude) for comparison with N7. Distinct from N7 (shape-robustness): N3 asks 'can α be extracted?' while N7 asks 'does α survive a different gate class?'",
+        "result": null,
+        "status": "failed",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, EFCVariantB with free gate",
+        "prediction": "α identifiable: no α–a_t degeneracy, A_eff consistent with fixed-gate baseline",
+        "notes": null,
+        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for full sweep + A_eff\"}",
+        "last_synced": null,
+        "status_detail": "failed"
+      },
+      {
+        "test_id": null,
+        "name": "N4 Modified Poisson μ≠1",
+        "description": "Tests whether EFC growth modification μ(a) = 1 + (μ₀−1)·g(a) is consistent with fσ₈ data. Uses EFCVariantC.",
+        "result": null,
+        "status": "partial",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, EFCVariantC with free μ₀",
+        "prediction": "μ₀ consistent with 1.0; no tension with growth data",
+        "notes": null,
+        "quantitative_result": "{\"verdict\": \"MARGINAL\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
+        "last_synced": null,
+        "status_detail": "partial"
+      },
+      {
+        "test_id": null,
+        "name": "N5 Flat rd Prior",
+        "description": "Tests α-signal with completely flat (uniform) rd prior over [100, 200] Mpc. Ultimate rd-independence check.",
+        "result": null,
+        "status": "success",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "emcee MCMC, uniform rd prior [100, 200] Mpc",
+        "prediction": "α significance survives flat rd prior",
+        "notes": null,
+        "quantitative_result": "{\"verdict\": \"PASS\", \"details\": \"see DiagnosticResult for rd posterior\"}",
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
+        "test_id": null,
+        "name": "N7 Power-law Gate Shape-Robustness",
+        "description": "SHAPE-ROBUSTNESS test: replaces logistic gate with power-law gate g(a)=1/(1+(a_t/a)^n), n=2 from L0 Lorentzian derivation (Core Derivation Note v0.2, Eq. 6-8). Tests whether α survives a different gate CLASS — model-invariance across functional forms. Reports both raw α and A_eff=α·G (gate-mass-normalized amplitude) for fair cross-gate comparison. Distinct from N3 (identifiability): N7 asks 'does α survive a different gate class?' while N3 asks 'can α be extracted when gate has freedom?'",
+        "result": null,
+        "status": "partial",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "NUTS HMC, EFCVariantE (power-law gate, n=2)",
+        "prediction": "α survives at ≥1.5σ with power-law gate; A_eff consistent with logistic baseline",
+        "notes": null,
+        "quantitative_result": "{\"verdict\": \"MARGINAL\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
+        "last_synced": null,
+        "status_detail": "partial"
+      },
+      {
         "test_id": "ledger_regime_transition_metric_f",
         "name": "Regime transition metric (ΔF)",
         "description": "⚪",
@@ -461,6 +581,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_cmb_h_degeneracy_corridor_structural_constraint_",
+        "name": "CMB α–H₀ degeneracy corridor (structural constraint)",
+        "description": "Planck-only minimize scan reveals α–H₀ degeneracy corridor: |Δχ²| < 2 across entire α range [0, −0.7]. CMB alone cannot distinguish ΛCDM from EFC. Mechanism: θ* = r_s/D_A is preserved by shifting H₀ (from 68.2 at α=0 to 63.1 at α=−0.7). This is a structural framework constraint on background-only modifications.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "EFCLASS minimize scan: 11 α-values from 0 to −0.7, each with 7 free cosmological parameters, full Planck 2018 likelihood",
+        "prediction": "Any late-time additive background gate E²=E²_LCDM+α·g(a) with smooth g(a) will produce α–H₀ degeneracy in CMB-only fits. CMB alone is structurally insufficient to constrain such modifications.",
+        "notes": "Structural constraint proven empirically. α–H₀ corridor |Δχ²|<2 across α∈[0,−0.7]. CMB alone structurally insufficient for background-gate constraints.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-18T11:09:15.919000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_cluster_core_entropystructure_coupling",
         "name": "Cluster core entropy–structure coupling",
         "description": "⚪",
@@ -519,6 +654,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-17T06:31:28.109885Z",
         "status_detail": "unknown"
+      },
+      {
+        "test_id": "conv_efc_physics_localization_perturbation_sector_not_background",
+        "name": "EFC physics localization: perturbation sector, not background",
+        "description": "Three independent lines of evidence converge: (1) Technical Note I proved analytically that background gate ΔH²≤0 increases fσ8, not suppresses it. (2) Joint fit shows α→0 under CMB+BAO. (3) WP1a showed σ8 suppression requires μ&lt;1 at perturbation level. Conclusion: If EFC has observable effects, they must originate in the perturbation sector (modified Poisson equation, gravitational slip), not in background Friedmann modification.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Joint fit results + EFCLASS Technical Note I + WP1a σ8 suppression test",
+        "prediction": "EFC background-only modifications cannot produce σ8 suppression or survive joint CMB+BAO constraints with α significantly different from zero. Observable EFC effects require perturbation-level μ≠1.",
+        "notes": "Three independent evidence lines converge: Technical Note I (analytical), joint fit (empirical), WP1a (numerical). EFC effects must originate in perturbation sector (μ≠1), not background. This is the most important structural finding of the CMB campaign.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-18T11:09:21.320000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "conv_gate_transition_zone_anomaly_concentration_z_1",
@@ -779,5 +929,5 @@
       }
     ]
   },
-  "total_count": 51
+  "total_count": 61
 }
