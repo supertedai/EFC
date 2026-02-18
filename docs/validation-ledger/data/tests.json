@@ -1,9 +1,24 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-18T12:25:25Z",
+  "generated_at": "2026-02-18T18:25:51Z",
   "categories": {
     "physics_test": [
+      {
+        "test_id": "conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav",
+        "name": "2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip",
+        "description": "2D scan in (μ,Σ) space reveals degeneracy valley where μ&lt;1 suppresses σ₈ while Σ&gt;1 compensates lensing penalty. Sweet spot (μ=0.94, Σ=1.05) delivers 6.4% σ₈ suppression at Δχ²=+2.49. This demonstrates that EFC perturbation sector CAN carry the late-time signal if it produces correlated gravitational slip (μ≠Σ). Pure μ (Σ=1) was excluded; the slip degree of freedom is essential.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "MGCAMB v1.5.2, 25-point (μ,Σ) grid, Planck 2018 TTTEEE+lowl+lensing",
+        "prediction": "If EFC entropy gradients modify Ψ (matter potential) more than Φ+Ψ (lensing potential), the framework naturally produces μ&lt;1 with Σ≈1.05 — exactly the viable region found in this scan.",
+        "notes": "Degeneracy valley confirmed at (μ=0.94, Σ=1.05): 6.4% σ₈ suppression at Δχ²=+2.49. Gravitational slip is the essential degree of freedom. Pure μ excluded, μ-Σ correlated modification viable. Fixed cosmological params — needs minimize/MCMC and joint-fit confirmation as next step.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-18T18:06:20.528000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "conv_cmb_bao_joint_fit_background_gate_null_result",
         "name": "CMB+BAO Joint Fit: Background α-gate null result",
@@ -50,7 +65,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_integration_2026-02-18_052322_aqual",
+        "test_id": "grav_integration_2026-02-18_120958_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.32: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -95,7 +110,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-02-18_052322_aqual",
+        "test_id": "grav_kt1_2026-02-18_120958_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.027 (target: -2.0)",
@@ -110,7 +125,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-02-18_052322_aqual",
+        "test_id": "grav_kt3_2026-02-18_120958_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -125,7 +140,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-02-18_052322_aqual",
+        "test_id": "grav_kt2_2026-02-18_120958_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3198 (converged)",
@@ -167,6 +182,21 @@
         "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_planck_x_m_scan_propto_omega_cannot_deliver_s8_relief",
+        "name": "Planck x_m scan: propto_omega cannot deliver S8 relief",
+        "description": "Full Planck 2018 chi2 scan of propto_omega alpha_M parameter (x_m) using hi_class v3.0. Scanned x_m from 0 to 0.6 with three likelihood configs (TTTEEE+lowl, lensing-only, full). Found: (1) TTTEEE constrains x_m < 0.25 at 2sigma, (2) lensing is completely blind (Δχ² < 0.02), (3) x_m > 0 pushes sigma8 UP (wrong sign), (4) x_m < 0 is gravitationally unstable (gradient instability). Propto_omega alpha_M alone cannot resolve S8 tension.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Planck 2018 TTTEEE_lite + lowl TT/EE + lensing via cobaya 3.6.1 + hi_class v3.0",
+        "prediction": "propto_omega with positive x_m gives enhanced growth (sigma8 UP) due to friction reduction dominating over Poisson weakening. Negative x_m triggers gradient instability. The CMB constraint is Δχ² = +5.3 at x_m=0.3, driven entirely by low-l TT (ISW effect). Lensing adds no constraint.",
+        "notes": "Planck x_m scan complete. 33 evaluations, 11 x_m values × 3 likelihood configs. TTTEEE drives all constraint, lensing blind. 2σ upper limit x_m ≲ 0.25 at fixed params. propto_omega cannot deliver S8 relief. Mechanism: friction reduction from alpha_M dominates over Poisson weakening.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-18T16:44:57.528000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -929,5 +959,5 @@
       }
     ]
   },
-  "total_count": 61
+  "total_count": 63
 }
