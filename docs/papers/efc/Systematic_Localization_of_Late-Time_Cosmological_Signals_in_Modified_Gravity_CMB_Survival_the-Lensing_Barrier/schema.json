@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier/schema.json",
+  "title": "EFC CMB Localization Study Schema",
+  "description": "Schema for the five-phase systematic localization of late-time cosmological signals in modified gravity",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "efc-cmb-localization"
+    },
+    "background_joint_fit": {
+      "type": "object",
+      "description": "Phase 1: Background gate joint-fit result",
+      "properties": {
+        "dataset": {"type": "string"},
+        "chi2_lcdm": {"type": "number"},
+        "chi2_efc": {"type": "number"},
+        "alpha_bf": {"type": "number", "description": "Best-fit EFC background coupling"},
+        "delta_chi2": {"type": "number"}
+      },
+      "required": ["dataset", "chi2_lcdm", "chi2_efc", "alpha_bf", "delta_chi2"]
+    },
+    "pure_mu_scan_point": {
+      "type": "object",
+      "description": "Phase 2: Pure μ scan result at fixed Σ = 1",
+      "properties": {
+        "mu": {"type": "number", "minimum": 0.8, "maximum": 1.1},
+        "delta_sigma8_pct": {"type": "number"},
+        "delta_chi2_TT": {"type": "number"},
+        "delta_chi2_lens": {"type": "number"},
+        "delta_chi2_full": {"type": "number"},
+        "verdict": {"type": "string", "enum": ["Excluded", "Marginal", "Viable"]}
+      },
+      "required": ["mu", "delta_chi2_full", "verdict"]
+    },
+    "mu_sigma_valley_point": {
+      "type": "object",
+      "description": "Phase 2: μ–Σ degeneracy valley profiled point",
+      "properties": {
+        "mu": {"type": "number"},
+        "sigma_star": {"type": "number", "description": "Optimal Σ at this μ"},
+        "delta_chi2_full": {"type": "number"},
+        "delta_sigma8_pct": {"type": "number"},
+        "s8_relief_pct": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "required": ["mu", "sigma_star", "delta_chi2_full"]
+    },
+    "AL_diagnostic": {
+      "type": "object",
+      "description": "Phase 3: A_L degeneracy diagnostic",
+      "properties": {
+        "model": {"type": "string"},
+        "chi2_min": {"type": "number"},
+        "delta_chi2": {"type": "number"},
+        "AL_bf": {"type": "number"},
+        "dof": {"type": "integer", "minimum": 0}
+      },
+      "required": ["model", "chi2_min"]
+    },
+    "b0_filter_result": {
+      "type": "object",
+      "description": "Phase 4: B0 bridge test filter result",
+      "properties": {
+        "name": {"type": "string"},
+        "direction": {"type": ["string", "null"], "enum": ["Weaken", "Strengthen", null]},
+        "delta_sigma8_pct": {"type": ["number", "null"]},
+        "chi2": {"type": "number"},
+        "delta_chi2": {"type": ["number", "null"]},
+        "verdict": {"type": "string"}
+      },
+      "required": ["name", "chi2", "verdict"]
+    },
+    "surviving_signal_spec": {
+      "type": "object",
+      "description": "Combined surviving signal specification for MG perturbation theory",
+      "properties": {
+        "sign": {"type": "string"},
+        "magnitude": {"type": "string"},
+        "lensing": {"type": "string"},
+        "scales": {"type": "string"},
+        "epoch": {"type": "string"}
+      },
+      "required": ["sign", "magnitude", "lensing", "scales", "epoch"]
+    }
+  },
+  "required": ["id"],
+  "efc_analysis_type": "cmb_localization_study"
+}

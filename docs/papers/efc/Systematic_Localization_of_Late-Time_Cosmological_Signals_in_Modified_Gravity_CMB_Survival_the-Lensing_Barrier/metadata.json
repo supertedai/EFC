@@ -1,0 +1,76 @@
+{
+  "name": "efc-cmb-localization",
+  "version": "1.0.0",
+  "title": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival, the Lensing Barrier, and a Growth-Sector Sign Constraint",
+  "description": "Five-phase systematic localization study testing EFC against Planck 2018 CMB, DESI 2024 BAO, SDSS DR12 BAO, and Pantheon+ supernovae. Background sector is observationally empty. Perturbation sector survives Planck within a narrow slip window (μ ∈ [0.93, 0.96], Σ ∈ [1.03, 1.07]). The (μ, Σ) valley is degenerate with the A_L anomaly, but fσ₈ data independently confirm μ < 1 at > 2σ.",
+  "doi": "10.6084/m9.figshare.31368433",
+  "created": "2026-02",
+  "updated": "2026-02",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "cosmology", "modified gravity", "CMB constraints", "gravitational slip",
+    "fσ₈", "A_L anomaly", "dark energy perturbations", "Planck 2018",
+    "DESI BAO", "SDSS DR12", "Pantheon+", "MGCAMB", "CLASS",
+    "μ–Σ parametrization", "lensing barrier", "S₈ tension",
+    "growth rate", "energy-flow cosmology", "EFC"
+  ],
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "role": "principal investigator",
+      "affiliation": "Independent Researcher, Sandnes, Norway"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "data": {
+    "CMB": {"survey": "Planck 2018", "likelihoods": 4},
+    "BAO": {"surveys": ["DESI 2024", "SDSS DR12"]},
+    "supernovae": {"survey": "Pantheon+"},
+    "growth_rate": {"points": 7, "z_range": "0.38–0.85"}
+  },
+  "methods": {
+    "phases": 5,
+    "pipeline_background": "EFCLASS (CLASS v3.3.4 + EFC modifications) + cobaya",
+    "pipeline_perturbation": "MGCAMB v1.5.2 (MG flag=6) + cobaya",
+    "sampler": "BOBYQA minimize + MCMC (2399 samples)",
+    "analysis": [
+      "Phase 1: Background gate (α–H₀ degeneracy, joint fits)",
+      "Phase 2: Perturbation sector (pure μ scan, μ–Σ valley, minimize with free cosmology)",
+      "Phase 3: A_L degeneracy diagnostics (χ², Fisher matrix, gradient decomposition)",
+      "Phase 4: Growth-sector sign constraint (B0 bridge test with screening filters)",
+      "Phase 5: Theory–observation gap (Grid-AQUAL → (μ,Σ) mapping)"
+    ]
+  },
+  "results": {
+    "background_sector": "Observationally empty (α → 0 in all joint fits)",
+    "perturbation_sweet_spot": "μ = 0.94, Σ = 1.05, Δχ² = −0.45",
+    "AL_degeneracy": "cos = 0.93 (same CMB modes)",
+    "growth_sign": "μ < 1 at > 2σ from fσ₈ (Δχ² = −5.22 for F3 tanh filter)",
+    "theory_gap": "Grid-AQUAL incompatible: wrong sign, no slip, wrong screening scale",
+    "status": "Localization complete; relativistic perturbation theory required"
+  },
+  "files": {
+    "paper": "Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier.pdf",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-CMB-Localization.jsonld",
+    "citations": "citations.bib",
+    "src": "src/cmb_localization.py",
+    "data": "data/localization_results.json",
+    "examples": "examples/localization_demo.py",
+    "readme": "README.md"
+  },
+  "ai_metadata": {
+    "machine_readable": true,
+    "structured_results": true,
+    "all_scan_data_tabulated": true,
+    "five_phase_results_provided": true,
+    "surviving_signal_spec_documented": true,
+    "theory_gap_documented": true,
+    "reference_implementation_provided": true
+  }
+}

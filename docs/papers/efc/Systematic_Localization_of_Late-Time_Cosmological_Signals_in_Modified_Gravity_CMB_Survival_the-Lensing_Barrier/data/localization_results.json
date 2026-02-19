@@ -1,0 +1,74 @@
+{
+  "paper_doi": "10.6084/m9.figshare.31368433",
+  "phase1_background_gate": {
+    "planck_mcmc": {"alpha": -0.32, "sigma": 0.40, "significance_sigma": 0.82, "n_samples": 2399, "corr_alpha_H0": 0.975},
+    "joint_fits": [
+      {"dataset": "Planck only", "chi2_lcdm": 1010.35, "chi2_efc": 1012.23, "alpha_bf": 0.035, "delta_chi2": 1.88},
+      {"dataset": "Planck + SDSS DR12", "chi2_lcdm": 1016.91, "chi2_efc": 1015.60, "alpha_bf": -0.111, "delta_chi2": -1.31},
+      {"dataset": "Planck + DESI 2024", "chi2_lcdm": 1025.65, "chi2_efc": 1028.63, "alpha_bf": -0.045, "delta_chi2": 2.98},
+      {"dataset": "Planck + DESI + Pantheon+", "chi2_lcdm": 2432.71, "chi2_efc": 2430.61, "alpha_bf": -0.045, "delta_chi2": -2.10}
+    ],
+    "conclusion": "Background gate observationally empty"
+  },
+  "phase2_perturbation_sector": {
+    "pure_mu_scan": [
+      {"mu": 0.90, "delta_sigma8_pct": -10.3, "delta_chi2_TT": 18.5, "delta_chi2_lens": 14.7, "delta_chi2_full": 33.2, "verdict": "Excluded"},
+      {"mu": 0.93, "delta_sigma8_pct": -7.3, "delta_chi2_TT": 11.5, "delta_chi2_lens": 7.5, "delta_chi2_full": 19.0, "verdict": "Excluded"},
+      {"mu": 0.95, "delta_sigma8_pct": -5.3, "delta_chi2_TT": 7.6, "delta_chi2_lens": 3.9, "delta_chi2_full": 11.5, "verdict": "Excluded"},
+      {"mu": 0.97, "delta_sigma8_pct": -3.2, "delta_chi2_TT": 4.1, "delta_chi2_lens": 1.4, "delta_chi2_full": 5.6, "verdict": "Marginal"},
+      {"mu": 0.99, "delta_sigma8_pct": -1.1, "delta_chi2_TT": 1.2, "delta_chi2_lens": 0.2, "delta_chi2_full": 1.4, "verdict": "Viable"}
+    ],
+    "mu_sigma_valley": [
+      {"mu": 0.92, "sigma_star": 1.060, "delta_chi2_full": 4.56, "delta_sigma8_pct": -8.4, "s8_relief_pct": 100},
+      {"mu": 0.93, "sigma_star": 1.050, "delta_chi2_full": 3.45, "delta_sigma8_pct": -7.4, "s8_relief_pct": 93},
+      {"mu": 0.94, "sigma_star": 1.050, "delta_chi2_full": 2.49, "delta_sigma8_pct": -6.4, "s8_relief_pct": 81},
+      {"mu": 0.95, "sigma_star": 1.040, "delta_chi2_full": 1.61, "delta_sigma8_pct": -5.3, "s8_relief_pct": 67}
+    ],
+    "lensing_parabolic_fit": {"mu": 0.94, "sigma_min": 1.047, "sigma_uncertainty": 0.013},
+    "minimize_free_cosmo": {
+      "GR_reference_chi2": 1014.78,
+      "points": [
+        {"mu": 0.94, "sigma_mg": 1.05, "chi2_min": 1014.33, "delta_chi2": -0.45, "delta_chi2_highl": -4.68, "delta_chi2_lowlTT": 2.97},
+        {"mu": 0.95, "sigma_mg": 1.04, "chi2_min": 1015.90, "delta_chi2": 1.13, "delta_chi2_highl": -0.40, "delta_chi2_lowlTT": 0.93},
+        {"mu": 0.92, "sigma_mg": 1.06, "chi2_min": 1019.90, "delta_chi2": 5.12, "delta_chi2_highl": -5.48, "delta_chi2_lowlTT": 5.91}
+      ]
+    }
+  },
+  "phase3_AL_degeneracy": {
+    "chi2_comparison": [
+      {"model": "GR reference", "chi2_min": 1014.78, "delta_chi2": 0.00, "AL_bf": 1.000, "dof": 0},
+      {"model": "GR + A_L free", "chi2_min": 1010.36, "delta_chi2": -4.42, "AL_bf": 1.042, "dof": 1},
+      {"model": "(mu,Sigma) + A_L=1", "chi2_min": 1014.33, "delta_chi2": -0.45, "AL_bf": 1.000, "dof": 2},
+      {"model": "(mu,Sigma) + A_L free", "chi2_min": 1016.37, "delta_chi2": 1.59, "AL_bf": 0.976, "dof": 3}
+    ],
+    "fisher_cos_flat_AL": 0.81,
+    "gradient_cos_sigma_AL": 0.93,
+    "conclusion": "(mu,Sigma) valley IS the A_L anomaly through physical metric potentials"
+  },
+  "phase4_growth_sign": {
+    "alpha_eff": 0.06,
+    "z_range": [0.38, 0.85],
+    "filters": [
+      {"filter": "LCDM", "direction": null, "chi2": 66.62, "delta_chi2": null, "verdict": "Reference"},
+      {"filter": "F3 tanh", "direction": "Weaken", "delta_sigma8_pct": -0.54, "chi2": 61.40, "delta_chi2": -5.22, "verdict": "> 2s improvement"},
+      {"filter": "F2 gauss", "direction": "Weaken", "delta_sigma8_pct": -0.25, "chi2": 63.62, "delta_chi2": -3.00, "verdict": "Improves"},
+      {"filter": "F1 raised", "direction": "Weaken", "delta_sigma8_pct": -0.18, "chi2": 64.45, "delta_chi2": -2.17, "verdict": "Improves"},
+      {"filter": "F0 original", "direction": "Weaken", "delta_sigma8_pct": 0.00, "chi2": 66.61, "delta_chi2": -0.01, "verdict": "Neutral"},
+      {"filter": "F1 raised", "direction": "Strengthen", "delta_sigma8_pct": 16.8, "chi2": 561.4, "delta_chi2": 494.7, "verdict": "Killed"}
+    ],
+    "conclusion": "mu < 1 at > 2s, independent of A_L"
+  },
+  "phase5_theory_gap": {
+    "incompatibilities": [
+      {"issue": "Wrong sign", "galactic": "mu_GRAV > 1", "cosmological": "mu < 1 required"},
+      {"issue": "No slip", "galactic": "eta = 1", "cosmological": "eta ~ 1.12 required"},
+      {"issue": "Screening", "galactic": "k_Lambda=0.0014 h/Mpc", "cosmological": "k ~ 0.05-0.1 h/Mpc needed"}
+    ],
+    "requirement": "Relativistic EFC perturbation theory with two metric potentials"
+  },
+  "surviving_signal_spec": {
+    "mu": 0.94, "mu_range": [0.93, 0.96],
+    "sigma": 1.05, "sigma_range": [1.03, 1.07],
+    "eta": 1.12, "scales": "k ~ 0.05-0.1 h/Mpc", "epoch": "z < 1"
+  }
+}
