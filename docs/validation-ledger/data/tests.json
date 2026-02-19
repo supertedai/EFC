@@ -1,9 +1,24 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-19T06:26:56Z",
+  "generated_at": "2026-02-19T12:27:32Z",
   "categories": {
     "physics_test": [
+      {
+        "test_id": "conv_2d_mu_sigma_planck_constraint_degeneracy_stripe_at_sigma_1_0",
+        "name": "2D mu-Sigma Planck constraint: degeneracy stripe at Sigma~1.05",
+        "description": "MGCAMB 2D scan of gravitational coupling mu and lensing parameter Sigma against Planck 2018. Tests whether perturbation sector can carry late-time EFC signal. 25-point grid with 75 Planck evaluations.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Planck 2018 TTTEEE_lite + lowl + lensing, MGCAMB v1.5.2 MG_flag=6",
+        "prediction": "mu=0.94 Sigma=1.05 achieves dchi2(full)=+2.49 with 6.4% sigma8 suppression. Degeneracy stripe exists at Sigma~1.05. Perturbation sector CAN carry EFC signal.",
+        "notes": "Godkjent: 2D μ-Σ Planck degeneracy stripe test. Viktig for å kartlegge parameterrommet.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T07:55:28.561000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav",
         "name": "2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip",
@@ -32,6 +47,21 @@
         "notes": "Sign constraint locked by data. μ>1 killed with hundreds of χ² units. μ<1 improves fσ₈ at >2σ. Independent of A_L. Relevant scales k≈0.05-0.1 h/Mpc. Current GRAV/AQUAL has wrong sign. EFC needs regime-split: MOND-like locally, growth-damping cosmologically.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T06:11:11.201000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_cmb_planck_constraint_on_efc_background_gate_",
+        "name": "CMB Planck constraint on EFC background gate α",
+        "description": "Full Boltzmann-level CMB constraint analysis using modified CLASS + cobaya against Planck 2018 likelihoods (plik_lite TTTEEE + lowl TT/EE + lensing). Tests whether EFC background gate parameter α survives CMB and joint CMB+BAO constraints. Three levels of analysis: (1) fixed-parameter α-scan, (2) minimize with 7 free params, (3) joint fit with DESI BAO + Pantheon+ SN.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Planck 2018 plik_lite TTTEEE + lowl TT + lowl EE + lensing (via cobaya 3.6.1), DESI 2024 BAO, Pantheon+ SN, modified CLASS 3.3.4 with EFC gate in background.c",
+        "prediction": "EFC predicts that α≠0 modifies H(z) via the gate function, shifting θ* and DA(z*). With fixed Planck params, α=-0.7 is killed (Δχ²=+2624). With free params, Planck absorbs α via H0 shift (Δχ²≈0 for all α). Joint Planck+BAO collapses α from -0.7 to -0.05, because BAO breaks the α-H0 degeneracy.",
+        "notes": "Godkjent: CMB Planck bakgrunnstest for α. Direkte relevant for MCMC degeneracy-problemet.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T07:55:41.256000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -80,7 +110,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_integration_2026-02-19_024241_aqual",
+        "test_id": "grav_integration_2026-02-19_094818_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.32: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -93,6 +123,51 @@
         "quantitative_result": "{\"C\": 2.3198280825101287, \"survived\": [\"LCDM_baseline\", \"k_Lambda_0.0014\"], \"exploded\": [\"k_Lambda_0.1\", \"k_Lambda_1.0\"], \"overall_verdict\": \"PARTIAL_BRIDGE\"}",
         "last_synced": null,
         "status_detail": "partial"
+      },
+      {
+        "test_id": "conv_freeze_v2_f_z_1_5_blind_prediction_for_desi_dr2_elg",
+        "name": "Freeze v2: fσ₈(z=1.5) blind prediction for DESI DR2 ELG",
+        "description": "Compute fσ₈ at z=1.5 using frozen α=-0.689 from sealed NUTS cycle and freeze as blind prediction before DESI DR2 ELG release. Extends the sealed prediction set to higher redshift in the regime transition zone. Executable immediately with growth ODE solver.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Growth ODE solver with frozen parameters from freeze_20260218_050713",
+        "prediction": "EFC with α=-0.689 predicts fσ₈(z=1.5) will be lower than ΛCDM value, with separation growing compared to z=0.7. The exact numerical value will be sealed with hash.",
+        "notes": "P1 Tier 2. Smart blind prediction — rett i DESI ELG diskrimineringssone nær crossover z≈2.04. Høy publiseringsverdi. Kjøres etter trajectory-rekonstruksjon for konsistens.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:17:59.620000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_freeze_v3_e_g_z_0_7_gravitational_slip_prediction",
+        "name": "Freeze v3: E_G(z=0.7) gravitational slip prediction",
+        "description": "Compute E_G(z=0.7) = Ωm/β gravitational slip statistic under EFC (α=-0.689). E_G is directly sensitive to μ/Σ ratio and provides independent test of gravitational slip. Seal before Euclid DR1. Executable now with growth ODE.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "β=f/b from growth ODE + linear bias model, frozen α=-0.689",
+        "prediction": "EFC predicts E_G(z=0.7) differs from ΛCDM due to μ≠Σ. If μ<1 and Σ≈1, E_G should be systematically higher than ΛCDM. Exact value sealed with hash.",
+        "notes": "P1 Tier 2. E_G direkte sensitiv til μ/Σ — unik diskriminator. Seal før Euclid DR1. Krever bias-modell antakelse, men growth ODE gir f.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:18:05.856000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_freeze_v4_planck_independent_h_from_efc_bao_snia",
+        "name": "Freeze v4: Planck-independent H₀ from EFC BAO+SNIa",
+        "description": "Compute H₀ from BAO+SNIa alone under EFC (α=-0.689), without any CMB information. If H₀^EFC falls between Planck (67.4) and SH0ES (73.0), EFC may mediate the Hubble tension. Seal as blind prediction. Executable with existing cobaya pipeline.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "cobaya minimize with BAO (BOSS+DESI) + Pantheon+ SNIa, no CMB prior",
+        "prediction": "EFC with α=-0.689 predicts H₀ from BAO+SNIa in range 69-71 km/s/Mpc (between Planck and SH0ES). If H₀ ≈ 67-68, no tension relief. If H₀ > 71, strong tension relief claim.",
+        "notes": "P2 Tier 2. Konsistens-test, ikke kjerne-test (GPT korrekt). α–H₀ degeneracy betyr H₀ alene ikke falsifiserer. Men verdifull som Hubble tension statement — enten mediator eller ikke.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:18:13.477000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "ledger_galaxy_rotation_curves",
@@ -125,7 +200,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-02-19_024241_aqual",
+        "test_id": "grav_kt1_2026-02-19_094818_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.027 (target: -2.0)",
@@ -140,7 +215,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-02-19_024241_aqual",
+        "test_id": "grav_kt3_2026-02-19_094818_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -155,7 +230,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-02-19_024241_aqual",
+        "test_id": "grav_kt2_2026-02-19_094818_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3198 (converged)",
@@ -185,6 +260,21 @@
         "status_detail": "success"
       },
       {
+        "test_id": "conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_",
+        "name": "MGCAMB mu-Sigma perturbation scan (constant mu, Sigma=1)",
+        "description": "Tests whether pure Poisson modification (mu less than 1 with Sigma=1) can suppress sigma8 enough to resolve S8 tension while remaining consistent with Planck 2018 TTTEEE+lowl+lensing. Uses MGCAMB v1.5.2 MG_flag=6 reconstruction with 11 mu bins. Scans mu from 0.80 to 1.20 with fixed cosmological parameters at Planck best-fit.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "MGCAMB v1.5.2 + cobaya 3.6.1 + Planck 2018 (TTTEEE_lite + lowl TT + lowl EE + lensing)",
+        "prediction": "EFC predicts mu less than 1 (weaker late-time gravity) to suppress sigma8. The test finds that mu=0.93 gives the right suppression (-7.3%) but at unacceptable Planck cost (Dchi2=+19). Only mu=0.99 is viable (Dchi2=+1.4) but gives insufficient suppression (1.1%). Lensing is NOT blind to mu unlike propto_omega — Sigma=1 does not decouple lensing from growth. CONCLUSION: constant mu with Sigma=1 cannot carry the EFC signal in the perturbation sector.",
+        "notes": "Godkjent: MGCAMB nulltest med Σ=1. Viktig konsistenssjekk for perturbativt regime.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T07:55:37.201000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_mvp_g1_f_leave_one_out_robustness_n2a_mode_",
         "name": "MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)",
         "description": "Leave-One-Out stress test of EFC Hubble friction channel (α parameter) in growth sector. 7 fσ₈ data points (z=0.02-0.85) + 14 BAO points, N2a mode (rd=147.09, σ₈~N(0.81,0.02)). Tests whether α<0 signal is driven by any single data point. Combined with rd-independence test (N1) and σ₈-control test (N2), this completes a three-part robustness validation of the growth-sector hint. Result: 7/7 LOO runs pass (|α|/σ ≥ 1.84 AND ΔAIC ≤ 0). α stable in range [-1.11, -0.88]. No single fσ₈ measurement drives the hint. Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ₈) ≈ -0.26.",
@@ -212,6 +302,21 @@
         "notes": "Planck x_m scan complete. 33 evaluations, 11 x_m values × 3 likelihood configs. TTTEEE drives all constraint, lensing blind. 2σ upper limit x_m ≲ 0.25 at fixed params. propto_omega cannot deliver S8 relief. Mechanism: friction reduction from alpha_M dominates over Poisson weakening.",
         "quantitative_result": null,
         "last_synced": "2026-02-18T16:44:57.528000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_scale_dependent_k_z_first_constraint_on_efc_characteristic_s",
+        "name": "Scale-dependent μ(k,z): first constraint on EFC characteristic scale k*",
+        "description": "Extend WP1a (scale-free μ) to scale-dependent μ(k,z) with sigmoid cutoff h(k/k*). Scan k* to test whether current fσ₈/RSD data constrain k*. If k* unconstrained, scale-free is sufficient. If data prefer finite k*, it reveals EFC's characteristic scale — a major theoretical discriminator. Executable with modified growth ODE.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Modified growth ODE with k-dependent source μ(k,z)=1-B·g(a)·h(k/k*), existing RSD data",
+        "prediction": "If EFC modifies gravity via a grid mechanism with characteristic scale, k* should be finite and related to the grid/entropy scale. If k* → ∞ (no scale), EFC operates as effective field theory without fundamental scale. Expected range: k* ~ 0.01-0.3 h/Mpc.",
+        "notes": "P1 Tier 1. Teoretisk kritisk: knytter til F3 tanh-band (k≈0.1). Avgjør om EFC har karakteristisk skala eller forblir scale-free effektiv teori. Kjøres parallelt med σ₈(z) trajectory.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:17:52.976000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -500,6 +605,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-17T06:31:28.109885Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey",
+        "name": "σ₈(z) full trajectory reconstruction: EFC vs ΛCDM vs multi-survey data",
+        "description": "Compute full σ₈(z) trajectory from z=0 to z=3 under EFC (α=-0.689, WP1a μ₀=0.813) vs ΛCDM. Compare against multi-survey compilation of σ₈ constraints at different redshifts. Tests whether EFC's growth suppression profile matches the z-dependent pattern seen in data, not just individual points. Executable now with growth ODE.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "Growth ODE + DES Y6, HSC-SSP, KiDS-Legacy compiled σ₈(z) values",
+        "prediction": "EFC predicts σ₈(z) systematically lower than ΛCDM for z<1.5, converging at z>2. The maximum deviation occurs at z≈0.3-0.7 where the gate function is most active. If observed σ₈(z) values from different surveys show this z-dependent pattern, it supports late-time activation.",
+        "notes": "P1 Tier 1. Full dynamisk signatur, ikke bare enkeltpunkt. Binder direkte til sealed α. Growth ODE + pipeline = lav kost. Kjøres etter μ-bridge men før freeze-prediksjoner.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:17:45.743000000+00:00",
+        "status_detail": "planned"
       }
     ],
     "phenomenological": [
@@ -713,6 +833,36 @@
         "notes": "Three independent evidence lines converge: Technical Note I (analytical), joint fit (empirical), WP1a (numerical). EFC effects must originate in perturbation sector (μ≠1), not background. This is the most important structural finding of the CMB campaign.",
         "quantitative_result": null,
         "last_synced": "2026-02-18T11:09:21.320000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_forbidden_pattern_distance_to_trigger_quantification",
+        "name": "Forbidden Pattern distance-to-trigger quantification",
+        "description": "For each of the 5 EFC-FP forbidden patterns, compute quantitative 'distance to trigger' in nσ units using current data. This demonstrates genuine vulnerability and quantifies how far EFC is from falsification on each axis. Strengthens the falsifiability claim by showing specific margins rather than just 'not triggered'. Executable from existing results.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Existing validation ledger results + 5 forbidden pattern definitions",
+        "prediction": "All 5 FPs should show >2σ distance to trigger (safe margin). If any FP is within 1σ of triggering, it becomes the highest-priority investigation target. Publication-ready falsifiability demonstration.",
+        "notes": "P1 epistemisk. GPT kalte denne 'overraskende undervurdert' — korrekt. Kvantifiserer avstand til falsifikasjon i σ for alle 5 FP. Toppnivå metodologi, konsistent med EBE/RCMP. De fleste alternative kosmologier har ikke tilsvarende. Demonstrerer genuin sårbarhet.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:18:21.639000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_grav_to_cosmo_eff_regime_bridge_test",
+        "name": "GRAV-to-cosmo μ_eff regime bridge test",
+        "description": "Extract effective μ_eff from Graph-AQUAL solutions at cluster scales and check sign consistency with cosmological requirement μ<1 (WP1a). Current GRAV gives μ>1 locally. This is the critical regime bridge test: if μ flips sign between local and cosmological scales, the regime transition must be justified. If no consistent bridging exists, the local-cosmological gap is a structural weakness. Executable from existing GRAV output.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Existing GRAV Graph-AQUAL runs (10 completed) + WP1a reference model",
+        "prediction": "EFC regime framework predicts μ>1 at galactic scales (L2-L3) transitioning to μ<1 at cosmological linear scales (L1-L2). The transition should occur at scales k~0.01-0.1 h/Mpc where structure goes from nonlinear to linear. If μ>1 persists at all scales, single-parameter α cannot accommodate both regimes.",
+        "notes": "P0 CRITICAL PATH. GPT + Claude enige: dette er make-or-break for hele EFC-rammeverket. μ>1 lokalt vs μ<1 kosmologisk — hvis ingen konsistent regime-bro finnes, er EFC to urelaterte effektive modeller, ikke ett rammeverk. GRAV output har Φ(r), ∇Φ, μ(x) og EL-residual — μ_eff-ekstraksjon er post-processing på eksisterende runs. Lavthengende frukt med høyest informasjonsverdi.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T12:17:38.703000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -974,5 +1124,5 @@
       }
     ]
   },
-  "total_count": 64
+  "total_count": 74
 }
