@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-19T00:26:18Z",
+  "generated_at": "2026-02-19T06:26:56Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 16,
+    "physics_test": 17,
     "consistency_check": 16,
     "phenomenological": 7,
     "framework_constraint": 11,
     "planned_pipeline": 13,
-    "total_public": 63,
+    "total_public": 64,
     "n_falsified": 1,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,7 +18,7 @@
     "tcs_compression": 2.0,
     "tcs_mismatch": 0.25,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 32,
+    "pillar_2_native": 33,
     "pillar_3_grav": 8,
     "pillar_4_cross": 23,
     "grav_kt_count": 3,
@@ -48,6 +48,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1",
+        "name": "B0 Bridge Test: fσ₈ sign constraint — μ must be less than 1",
+        "description": "B0 Bridge Test: Growth-sector sign constraint. Tests whether weakened (μ&lt;1) or strengthened (μ&gt;1) gravity improves fσ₈ fit. Result: μ&lt;1 improves systematically (F3: Δχ²=−5.22, >2σ for 1 DOF). μ&gt;1 killed (Δχ²=+495 to +2680). Original GRAV screening (k_Λ=0.0014) has zero effect. Relevant scales: k≈0.05-0.1 h/Mpc. This is independent of CMB A_L anomaly — fσ₈ measures growth directly. Sign constraint: EFC perturbation sector MUST produce μ&lt;1 at late times to match growth data. Current GRAV/AQUAL (μ>1) has wrong sign for cosmological growth.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "fσ₈ compilation (7 datapoints, z=0.38-0.85) tested against ΛCDM + modified screening filters (F0-F3) with α_eff=0.06",
+        "prediction": "If EFC can produce μ(a,k) &lt; 1 at z&lt;1 and k≈0.05-0.1 h/Mpc with ~6% effective weakening, it will improve fσ₈ by Δχ²≈−5 without significantly affecting σ₈ (&lt;1% change). Next test (B1): physical gate parametrization. Next test (B2): joint Planck + fσ₈ with consistent μ-Σ.",
+        "notes": "Sign constraint locked by data. μ>1 killed with hundreds of χ² units. μ<1 improves fσ₈ at >2σ. Independent of A_L. Relevant scales k≈0.05-0.1 h/Mpc. Current GRAV/AQUAL has wrong sign. EFC needs regime-split: MOND-like locally, growth-damping cosmologically.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T06:11:11.201000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_cmb_bao_joint_fit_background_gate_null_result",
         "name": "CMB+BAO Joint Fit: Background α-gate null result",
         "description": "Full Planck 2018 + DESI 2024 BAO + Pantheon+ joint minimize. Tests whether EFC background gate E²=E²_LCDM + α·g(a) can carry the late-time α≈−0.7 signal from BAO/growth pipelines. Result: BAO breaks α–H₀ degeneracy, collapsing α from −0.7 to −0.045. H₀ returns to 67.9. Background α-gate cannot sustain late-time signal under joint constraints.",
@@ -73,7 +88,7 @@
         "data_source": "emcee MCMC, 70 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"DEGENERACY_LIMITED\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -93,7 +108,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_integration_2026-02-18_190509_aqual",
+        "test_id": "grav_integration_2026-02-19_024241_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.32: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -138,7 +153,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-02-18_190509_aqual",
+        "test_id": "grav_kt1_2026-02-19_024241_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.027 (target: -2.0)",
@@ -153,7 +168,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-02-18_190509_aqual",
+        "test_id": "grav_kt3_2026-02-19_024241_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -168,7 +183,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-02-18_190509_aqual",
+        "test_id": "grav_kt2_2026-02-19_024241_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3198 (converged)",
@@ -997,7 +1012,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.209020Z",
+      "timestamp": "2026-02-19T06:12:08.544824Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1020,7 +1035,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.221510Z",
+      "timestamp": "2026-02-19T06:12:08.559907Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1043,7 +1058,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.196113Z",
+      "timestamp": "2026-02-19T06:12:08.532278Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1059,7 +1074,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.241621Z",
+      "timestamp": "2026-02-19T06:12:08.582136Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1078,7 +1093,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.231970Z",
+      "timestamp": "2026-02-19T06:12:08.570278Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1100,7 +1115,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-18T23:56:48.181057Z",
+      "timestamp": "2026-02-19T06:12:08.516307Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1126,7 +1141,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-18T23:35:47.406045+00:00"
+      "timestamp": "2026-02-19T05:45:10.356534+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1140,7 +1155,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-18T23:35:47.434106+00:00"
+      "timestamp": "2026-02-19T05:45:10.394953+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1154,7 +1169,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-18T23:35:47.449269+00:00"
+      "timestamp": "2026-02-19T05:45:10.409484+00:00"
     }
   },
   "parameters": {
@@ -2104,6 +2119,16 @@
   ],
   "changelog": [
     {
+      "name": "B0 Bridge Test: fσ₈ sign constraint — μ must be less than 1",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-19T06:11:11.201000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip",
       "status": "planned",
       "result": "Planned",
@@ -2276,7 +2301,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-02-18_190509_aqual",
+      "run_id": "2026-02-19_024241_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
