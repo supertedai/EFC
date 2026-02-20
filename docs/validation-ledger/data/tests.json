@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-19T18:28:14Z",
+  "generated_at": "2026-02-20T00:28:54Z",
   "categories": {
     "physics_test": [
       {
@@ -99,15 +99,15 @@
         "name": "EFC Baseline α-signal",
         "description": "Joint BAO+H(z)+SNIa+fσ₈ MCMC with EFC α-parameter. Tests whether dark energy data prefers α<0 (entropic flow) over ΛCDM (α=0).",
         "result": null,
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, 70 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
-        "status_detail": "PLANNED"
+        "status_detail": "pending"
       },
       {
         "test_id": "conv_efclass_sign_test_h_negative_for_additive_gate",
@@ -506,7 +506,7 @@
         "name": "N1 Sound Horizon Control",
         "description": "Tests whether α-signal survives when rd (sound horizon) is (a) fixed to Planck, (b) freed as MCMC parameter. Rules out rd-degeneracy.",
         "result": null,
-        "status": "unknown",
+        "status": "partial",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, N1a (fixed rd) + N1b (free rd)",
@@ -514,14 +514,14 @@
         "notes": null,
         "quantitative_result": "{\"n1a_sigma\": 1.73, \"n1b_sigma\": 1.67, \"verdict\": \"PARTIAL\"}",
         "last_synced": null,
-        "status_detail": "PARTIAL"
+        "status_detail": "partial"
       },
       {
         "test_id": null,
         "name": "N2 σ8 Prior Sweep",
         "description": "Tests α-signal stability across tight/medium/flat σ₈ priors. Rules out prior-driven artifact.",
         "result": null,
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, 3 σ₈ prior configurations",
@@ -529,14 +529,14 @@
         "notes": null,
         "quantitative_result": "{\"verdict\": \"PASS\", \"stram_sigma\": 1.83, \"middels_sigma\": 1.75, \"flat_sigma\": 1.73}",
         "last_synced": null,
-        "status_detail": "PASSED"
+        "status_detail": "success"
       },
       {
         "test_id": null,
         "name": "N3 Gate Freedom",
         "description": "IDENTIFIABILITY test: frees gate parameters (a_t, δ_a) alongside α using EFCVariantB (6-param MCMC). Tests whether α is identifiable when gate shape has freedom, or collapses into α–gate degeneracy. Reports A_eff = α·G (gate-normalized amplitude) for comparison with N7. Distinct from N7 (shape-robustness): N3 asks 'can α be extracted?' while N7 asks 'does α survive a different gate class?'",
         "result": null,
-        "status": "unknown",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, EFCVariantB with free gate",
@@ -544,14 +544,14 @@
         "notes": null,
         "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for full sweep + A_eff\"}",
         "last_synced": null,
-        "status_detail": "FAILED"
+        "status_detail": "failed"
       },
       {
         "test_id": null,
         "name": "N4 Modified Poisson μ≠1",
         "description": "Tests whether EFC growth modification μ(a) = 1 + (μ₀−1)·g(a) is consistent with fσ₈ data. Uses EFCVariantC.",
         "result": null,
-        "status": "unknown",
+        "status": "partial",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, EFCVariantC with free μ₀",
@@ -559,14 +559,14 @@
         "notes": null,
         "quantitative_result": "{\"verdict\": \"MARGINAL\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
         "last_synced": null,
-        "status_detail": "PARTIAL"
+        "status_detail": "partial"
       },
       {
         "test_id": null,
         "name": "N5 Flat rd Prior",
         "description": "Tests α-signal with completely flat (uniform) rd prior over [100, 200] Mpc. Ultimate rd-independence check.",
         "result": null,
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, uniform rd prior [100, 200] Mpc",
@@ -574,14 +574,14 @@
         "notes": null,
         "quantitative_result": "{\"verdict\": \"PASS\", \"details\": \"see DiagnosticResult for rd posterior\"}",
         "last_synced": null,
-        "status_detail": "PASSED"
+        "status_detail": "success"
       },
       {
         "test_id": null,
         "name": "N7 Power-law Gate Shape-Robustness",
         "description": "SHAPE-ROBUSTNESS test: replaces logistic gate with power-law gate g(a)=1/(1+(a_t/a)^n), n=2 from L0 Lorentzian derivation (Core Derivation Note v0.2, Eq. 6-8). Tests whether α survives a different gate CLASS — model-invariance across functional forms. Reports both raw α and A_eff=α·G (gate-mass-normalized amplitude) for fair cross-gate comparison. Distinct from N3 (identifiability): N7 asks 'does α survive a different gate class?' while N3 asks 'can α be extracted when gate has freedom?'",
         "result": null,
-        "status": "unknown",
+        "status": "partial",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "NUTS HMC, EFCVariantE (power-law gate, n=2)",
@@ -589,7 +589,7 @@
         "notes": null,
         "quantitative_result": "{\"verdict\": \"MARGINAL\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
         "last_synced": null,
-        "status_detail": "PARTIAL"
+        "status_detail": "partial"
       },
       {
         "test_id": "ledger_regime_transition_metric_f",
@@ -745,6 +745,21 @@
       }
     ],
     "framework_constraint": [
+      {
+        "test_id": "conv_action_integral_gap_tier_1_theoretical_obstruction",
+        "name": "Action Integral Gap — Tier-1 theoretical obstruction",
+        "description": "The EFC growth gate g(a) and AQUAL local limit are currently coupled phenomenologically, not through a shared variational principle. Without an action S_EFC = ∫d⁴x √(-g) L(g, S_ent, ∇S_ent, Φ, Λ), the gate function remains imposed (L6), k* cannot be derived from first principles, and the three-scale hierarchy (L_Λ, k_NL, a₀) lacks a unifying derivation. This is identified as the primary theoretical gap in the framework. The k* derivation attempt from |∇Φ| = a₀ yields k* ~ H₀²Ωmδ/a₀, requiring δ ~ 100 — confirming k* is tied to nonlinear structure formation (k_NL), not to fundamental cosmological scales.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "First-principles derivation attempt (Newtonian potential gradient vs a₀), comparison with k_NL from ΛCDM matter power spectra, validation ledger items E1, E3, E5-E7, L6",
+        "prediction": "EFC predicts that a well-posed action principle S_EFC would yield: (1) the growth gate as an equation of motion, (2) the AQUAL limit as a weak-field reduction, and (3) k* ≈ k_NL as a solution of the coupled system. Until this action is constructed, k* remains an emergent regime boundary coinciding with the nonlinear scale.",
+        "notes": "Approved based on k* transition scale analysis (Magnusson 2026-02-19). The action integral is confirmed as the primary theoretical obstruction: k* cannot be derived from Λ or a₀ alone, and the growth gate / AQUAL limit are coupled phenomenologically, not variationally. Both MCMC samplers (emcee + NUTS) confirm degeneracy that cannot be broken without stronger theoretical constraints. Tier-1 open problem.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-19T18:47:39.538000000+00:00",
+        "status_detail": "planned"
+      },
       {
         "test_id": "conv_background_gate_sign_constraint_efclass_technical_note_i_",
         "name": "Background gate sign constraint (EFCLASS Technical Note I)",
@@ -1139,5 +1154,5 @@
       }
     ]
   },
-  "total_count": 75
+  "total_count": 76
 }
