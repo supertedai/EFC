@@ -1,40 +1,8 @@
 {
   "name": "S₈ Stage-III Convergence",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "measurements": [
-    {
-      "id": "kids_legacy",
-      "name": "KiDS Legacy",
-      "s8_text": "0.815 ± 0.016",
-      "s8_value": 0.815,
-      "status": "CURRENT",
-      "note": "Updated shear calibration + photo-z"
-    },
-    {
-      "id": "stage_iii_combined",
-      "name": "Stage-III Combined",
-      "s8_text": "0.813 ± 0.012",
-      "s8_value": 0.813,
-      "status": "CURRENT",
-      "note": "Weighted mean"
-    },
-    {
-      "id": "hsc_y3",
-      "name": "HSC Y3",
-      "s8_text": "0.805 ± 0.022",
-      "s8_value": 0.805,
-      "status": "CURRENT",
-      "note": "Independent ground-based confirmation"
-    },
-    {
-      "id": "planck_2018",
-      "name": "Planck 2018",
-      "s8_text": "0.834 ± 0.016",
-      "s8_value": 0.834,
-      "status": "CMB_REFERENCE",
-      "note": "~1.3σ from Stage-III"
-    },
     {
       "id": "des_y3_original",
       "name": "DES Y3 (original)",
@@ -42,14 +10,6 @@
       "s8_value": 0.776,
       "status": "DEPRECATED",
       "note": "Pending Y6 re-analysis"
-    },
-    {
-      "id": "kids1000_original",
-      "name": "KiDS-1000 (original)",
-      "s8_text": "0.759 ± 0.024",
-      "s8_value": 0.759,
-      "status": "DEPRECATED",
-      "note": "Superseded by Legacy re-analysis"
     }
   ]
 }

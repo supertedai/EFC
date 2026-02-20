@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "categories": {
     "physics_test": [
       {
@@ -185,21 +185,6 @@
         "status_detail": "PLANNED"
       },
       {
-        "test_id": "ledger_galaxy_rotation_curves",
-        "name": "Galaxy rotation curves",
-        "description": "✅",
-        "result": "T2Completed (Data Likelihood Test)",
-        "status": "success",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "SPARC175 / MaNGA",
-        "prediction": "✅",
-        "notes": "Galaxy rotation curves | ✅ | ⚪ | ✅ | MOND-like regime emerges in IR gradient-dominated sector (ξ < 1, η < 1). Regime-dependent validity via EBE partition. | 31047703,31007248,31045126,31224538",
-        "quantitative_result": "",
-        "last_synced": "2026-02-20T06:31:30.178760Z",
-        "status_detail": "success"
-      },
-      {
         "test_id": "conv_gravitational_slip_a_k_from_grid_tension_ansatz",
         "name": "Gravitational slip η(a,k,ρ) from grid tension ansatz",
         "description": "Introduce gravitational slip η(a,k,ρ)≠1 into EFCLASS where Ψ carries grid modification (A·f(δT)) and Φ remains GR-like (B·g(δT) with B≪A in L3). This follows from the locked ontological decision that EFC is a spatial modifier. Test against S₈ tension, weak lensing, and verify strong lens time delay is no longer catastrophic.",
@@ -363,6 +348,21 @@
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
         "status_detail": "PLANNED"
+      },
+      {
+        "test_id": null,
+        "name": "Phi/Psi Shadow-Mode v1.0: C=2.32, k_lambda=0.0014",
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "unknown"
       },
       {
         "test_id": "conv_planck_x_m_scan_propto_omega_cannot_deliver_s8_relief",

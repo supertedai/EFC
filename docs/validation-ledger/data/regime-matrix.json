@@ -1,7 +1,7 @@
 {
   "name": "Regime × Observable × Sector Matrix",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "channels": [
     {
       "channel_id": "bao_anisotropic",
@@ -15,50 +15,6 @@
       ]
     },
     {
-      "channel_id": "bao_isotropic",
-      "name": "BAO isotropic",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "binary_pulsars",
-      "name": "Binary pulsars",
-      "L0": "--",
-      "L1": "--",
-      "L2": "suppressed",
-      "L3": "check",
-      "active_sectors": [
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "cmb_tt",
-      "name": "CMB TT power spectrum",
-      "L0": "suppressed",
-      "L1": "--",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "cluster_abundance",
-      "name": "Cluster abundance N(M,z)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "GRW"
-      ]
-    },
-    {
       "channel_id": "cluster_entropy",
       "name": "Cluster entropy-structure",
       "L0": "--",
@@ -66,18 +22,6 @@
       "L2": "check",
       "L3": "suppressed",
       "active_sectors": [
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "cluster_lensing",
-      "name": "Cluster lensing geometry",
-      "L0": "--",
-      "L1": "--",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "LEN",
         "SCR"
       ]
     },
@@ -94,40 +38,6 @@
       ]
     },
     {
-      "channel_id": "full_shape_pk",
-      "name": "Full-shape P(k)",
-      "L0": "--",
-      "L1": "check",
-      "L2": "suppressed",
-      "L3": "--",
-      "active_sectors": [
-        "GRW"
-      ]
-    },
-    {
-      "channel_id": "galaxy_rotation",
-      "name": "Galaxy rotation curves (SPARC)",
-      "L0": "--",
-      "L1": "--",
-      "L2": "check",
-      "L3": "suppressed",
-      "active_sectors": [
-        "GRW",
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "isw_cross",
-      "name": "ISW cross-correlation",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
       "channel_id": "lya_null",
       "name": "Lyα high-z null test",
       "L0": "suppressed",
@@ -139,40 +49,6 @@
       ]
     },
     {
-      "channel_id": "rsd_growth",
-      "name": "RSD growth fσ₈(z)",
-      "L0": "--",
-      "L1": "check",
-      "L2": "suppressed",
-      "L3": "--",
-      "active_sectors": [
-        "BG",
-        "GRW"
-      ]
-    },
-    {
-      "channel_id": "sn_ia",
-      "name": "SN Ia distances",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "solar_system_ppn",
-      "name": "Solar System PPN",
-      "L0": "--",
-      "L1": "--",
-      "L2": "suppressed",
-      "L3": "check",
-      "active_sectors": [
-        "SCR"
-      ]
-    },
-    {
       "channel_id": "standard_sirens",
       "name": "Standard sirens (GW vs EM)",
       "L0": "--",
@@ -181,29 +57,6 @@
       "L3": "--",
       "active_sectors": [
         "PROP"
-      ]
-    },
-    {
-      "channel_id": "weak_lensing_case_a",
-      "name": "Weak lensing (Case A)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "LEN"
-      ]
-    },
-    {
-      "channel_id": "weak_lensing_case_b",
-      "name": "Weak lensing (Case B)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "GRW",
-        "LEN"
       ]
     }
   ]

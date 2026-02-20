@@ -1,20 +1,8 @@
 {
   "name": "Structural Constraints",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "constraints": [
-    {
-      "id": "case_a_s8_direction",
-      "name": "Case A S₈ direction (v1.4)",
-      "scale": "L1-L2 lensing",
-      "effect": "Phenomenological lensing amplitude modification drives S₈ lower, increasing CMB tension. Case B required for tension resolution"
-    },
-    {
-      "id": "cluster_merger_geometry",
-      "name": "Cluster merger geometry",
-      "scale": "L2 non-linear",
-      "effect": "Eliminates local entropy-gradient couplings; requires operator classes with component sensitivity and geometric smoothing"
-    },
     {
       "id": "core_lock",
       "name": "Core Lock consistency enforcement",
@@ -26,12 +14,6 @@
       "name": "Density Saturation Θ(ρ)",
       "scale": "All regimes (L0-L3)",
       "effect": "Enforces automatic GR recovery in high-density; physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension"
-    },
-    {
-      "id": "weaklensing_closure",
-      "name": "Weak-lensing phenomenological closure (Postulate A)",
-      "scale": "L1 linear perturbations",
-      "effect": "Demonstrates absence of derived lensing coupling; temporary closure pending action-level derivation. Density Saturation provides path to replace"
     }
   ]
 }

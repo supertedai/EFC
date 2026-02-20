@@ -1,37 +1,8 @@
 {
   "name": "EFC Global Parameter Registry",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "parameter_groups": {
-    "background_coupling": [
-      {
-        "param_id": "beta",
-        "name": "Late-time background coupling amplitude",
-        "symbol": "β",
-        "role": "Controls vacuum modification via H²(a)",
-        "param_group": "background_coupling",
-        "regime": "L1-L2",
-        "status": "Frozen after four-channel fit"
-      },
-      {
-        "param_id": "T_a",
-        "name": "Regime transition function",
-        "symbol": "T(a)",
-        "role": "Smooth activation controlling coupling onset",
-        "param_group": "background_coupling",
-        "regime": "L0-L2",
-        "status": "Form fixed; transition scale shared globally"
-      },
-      {
-        "param_id": "z_t",
-        "name": "Transition redshift",
-        "symbol": "z_t",
-        "role": "Characteristic redshift of T(a) activation",
-        "param_group": "background_coupling",
-        "regime": "L1-L2",
-        "status": "Shared across all late-time probes"
-      }
-    ],
     "density_saturation": [
       {
         "param_id": "rho_crit",
@@ -41,55 +12,6 @@
         "param_group": "density_saturation",
         "regime": "L2-L3",
         "status": "Global constant"
-      },
-      {
-        "param_id": "theta_rho",
-        "name": "Density saturation function",
-        "symbol": "Θ(ρ)",
-        "role": "Suppresses EFC effects in high-density environments",
-        "param_group": "density_saturation",
-        "regime": "L2-L3",
-        "status": "Form fixed; scale shared across all systems"
-      }
-    ],
-    "growth_sector": [
-      {
-        "param_id": "mu_kz",
-        "name": "Effective gravitational modification",
-        "symbol": "μ(k,z)",
-        "role": "Perturbation-sector modification",
-        "param_group": "growth_sector",
-        "regime": "L1-L2",
-        "status": "Inactive in baseline EFC-D; only Case B"
-      },
-      {
-        "param_id": "delta_F",
-        "name": "Integrated regime transition strength",
-        "symbol": "ΔF",
-        "role": "Cumulative deviation from GR growth",
-        "param_group": "growth_sector",
-        "regime": "L1-L2",
-        "status": "Bounded via Θ(ρ)"
-      }
-    ],
-    "lensing_phenomenology": [
-      {
-        "param_id": "sigma_kz",
-        "name": "Lensing amplitude modifier",
-        "symbol": "Σ(k,z)",
-        "role": "Phenomenological shear amplitude boost (Case A only)",
-        "param_group": "lensing_phenomenology",
-        "regime": "L1-L2",
-        "status": "Temporary closure; not field-derived"
-      },
-      {
-        "param_id": "alpha_L2",
-        "name": "Phenomenological lensing coupling",
-        "symbol": "α_L2",
-        "role": "Controls Σ² amplitude",
-        "param_group": "lensing_phenomenology",
-        "regime": "L1-L2",
-        "status": "Not a field-derived parameter; Case A only"
       }
     ]
   },

@@ -1,7 +1,7 @@
 {
   "name": "Planned Validation Pipeline",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "phases": {
     "1": [
       {
@@ -61,15 +61,6 @@
         "status": "planned"
       },
       {
-        "id": "p2_cluster_nmz",
-        "name": "Cluster abundance N(M,z)",
-        "phase": 2,
-        "method": "Mass function comparison",
-        "dataset": "eROSITA/SPT/Planck SZ",
-        "priority": "medium",
-        "status": "planned"
-      },
-      {
         "id": "p2_rar_numerical",
         "name": "Numerical S(r) solution for RAR",
         "phase": 2,
@@ -105,15 +96,6 @@
         "method": "Full modified gravity implementation",
         "dataset": "Multi-survey",
         "priority": "high",
-        "status": "planned"
-      },
-      {
-        "id": "p3_shock_front",
-        "name": "Cluster shock-front lensing asymmetry",
-        "phase": 3,
-        "method": "κ-map analysis",
-        "dataset": "JWST + Chandra",
-        "priority": "medium",
         "status": "planned"
       },
       {

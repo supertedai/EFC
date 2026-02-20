@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-20T12:30:28Z",
+  "generated_at": "2026-02-20T18:30:56Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 29,
@@ -15,8 +15,8 @@
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
     "frontier_count": 3,
-    "tcs_compression": 2.0,
-    "tcs_mismatch": 0.25,
+    "tcs_compression": 1.0,
+    "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
     "pillar_2_native": 44,
     "pillar_3_grav": 11,
@@ -24,8 +24,8 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 3,
-    "grav_claims_supported": 2,
+    "grav_claims": 4,
+    "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
     "grav_integration_exploded": 2
@@ -213,21 +213,6 @@
         "status_detail": "PLANNED"
       },
       {
-        "test_id": "ledger_galaxy_rotation_curves",
-        "name": "Galaxy rotation curves",
-        "description": "✅",
-        "result": "T2Completed (Data Likelihood Test)",
-        "status": "success",
-        "vl_category": "physics_test",
-        "also_phenomenological": null,
-        "data_source": "SPARC175 / MaNGA",
-        "prediction": "✅",
-        "notes": "Galaxy rotation curves | ✅ | ⚪ | ✅ | MOND-like regime emerges in IR gradient-dominated sector (ξ < 1, η < 1). Regime-dependent validity via EBE partition. | 31047703,31007248,31045126,31224538",
-        "quantitative_result": "",
-        "last_synced": "2026-02-20T06:31:30.178760Z",
-        "status_detail": "success"
-      },
-      {
         "test_id": "conv_gravitational_slip_a_k_from_grid_tension_ansatz",
         "name": "Gravitational slip η(a,k,ρ) from grid tension ansatz",
         "description": "Introduce gravitational slip η(a,k,ρ)≠1 into EFCLASS where Ψ carries grid modification (A·f(δT)) and Φ remains GR-like (B·g(δT) with B≪A in L3). This follows from the locked ontological decision that EFC is a spatial modifier. Test against S₈ tension, weak lensing, and verify strong lens time delay is no longer catastrophic.",
@@ -391,6 +376,21 @@
         "quantitative_result": null,
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
         "status_detail": "PLANNED"
+      },
+      {
+        "test_id": null,
+        "name": "Phi/Psi Shadow-Mode v1.0: C=2.32, k_lambda=0.0014",
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "unknown"
       },
       {
         "test_id": "conv_planck_x_m_scan_propto_omega_cannot_deliver_s8_relief",
@@ -1267,7 +1267,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.480599Z",
+      "timestamp": "2026-02-20T17:50:38.168897Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1290,7 +1290,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.495056Z",
+      "timestamp": "2026-02-20T17:50:38.185126Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1313,7 +1313,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.463256Z",
+      "timestamp": "2026-02-20T17:50:38.149192Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1329,7 +1329,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.524115Z",
+      "timestamp": "2026-02-20T17:50:38.215055Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1348,7 +1348,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.509440Z",
+      "timestamp": "2026-02-20T17:50:38.202510Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1370,7 +1370,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T11:37:29.438649Z",
+      "timestamp": "2026-02-20T17:50:38.110521Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1386,77 +1386,48 @@
   "tcs_profiles": {
     "efc_v1.0": {
       "version": "efc_v1.0",
-      "compression": 1.0,
+      "compression": 0.0,
       "mismatch_rate": 0.0,
       "coverage_penalty": 0.0,
-      "layer_consistency": "moderate",
+      "layer_consistency": "low",
       "fp_coverage": 0.8235,
-      "tested": 2,
-      "total": 2,
+      "tested": 0,
+      "total": 0,
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-20T12:08:27.209603+00:00"
+      "timestamp": "2026-02-20T18:08:35.625338+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
-      "compression": 1.0,
+      "compression": 0.0,
       "mismatch_rate": 0.0,
+      "coverage_penalty": 1.0,
+      "layer_consistency": "low",
+      "fp_coverage": 0.8235,
+      "tested": 0,
+      "total": 3,
+      "untested": 3,
+      "mismatches": 0,
+      "primitives": 2,
+      "timestamp": "2026-02-20T18:08:35.665858+00:00"
+    },
+    "efc_v3.0": {
+      "version": "efc_v3.0",
+      "compression": 1.0,
+      "mismatch_rate": 0.5,
       "coverage_penalty": 0.6,
       "layer_consistency": "moderate",
       "fp_coverage": 0.8235,
       "tested": 2,
       "total": 5,
       "untested": 3,
-      "mismatches": 0,
-      "primitives": 2,
-      "timestamp": "2026-02-20T12:08:27.261823+00:00"
-    },
-    "efc_v3.0": {
-      "version": "efc_v3.0",
-      "compression": 2.0,
-      "mismatch_rate": 0.25,
-      "coverage_penalty": 0.4286,
-      "layer_consistency": "high",
-      "fp_coverage": 0.8235,
-      "tested": 4,
-      "total": 7,
-      "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-20T12:08:27.290537+00:00"
+      "timestamp": "2026-02-20T18:08:35.690741+00:00"
     }
   },
   "parameters": {
-    "background_coupling": [
-      {
-        "param_id": "beta",
-        "name": "Late-time background coupling amplitude",
-        "symbol": "β",
-        "role": "Controls vacuum modification via H²(a)",
-        "param_group": "background_coupling",
-        "regime": "L1-L2",
-        "status": "Frozen after four-channel fit"
-      },
-      {
-        "param_id": "T_a",
-        "name": "Regime transition function",
-        "symbol": "T(a)",
-        "role": "Smooth activation controlling coupling onset",
-        "param_group": "background_coupling",
-        "regime": "L0-L2",
-        "status": "Form fixed; transition scale shared globally"
-      },
-      {
-        "param_id": "z_t",
-        "name": "Transition redshift",
-        "symbol": "z_t",
-        "role": "Characteristic redshift of T(a) activation",
-        "param_group": "background_coupling",
-        "regime": "L1-L2",
-        "status": "Shared across all late-time probes"
-      }
-    ],
     "density_saturation": [
       {
         "param_id": "rho_crit",
@@ -1466,55 +1437,6 @@
         "param_group": "density_saturation",
         "regime": "L2-L3",
         "status": "Global constant"
-      },
-      {
-        "param_id": "theta_rho",
-        "name": "Density saturation function",
-        "symbol": "Θ(ρ)",
-        "role": "Suppresses EFC effects in high-density environments",
-        "param_group": "density_saturation",
-        "regime": "L2-L3",
-        "status": "Form fixed; scale shared across all systems"
-      }
-    ],
-    "growth_sector": [
-      {
-        "param_id": "mu_kz",
-        "name": "Effective gravitational modification",
-        "symbol": "μ(k,z)",
-        "role": "Perturbation-sector modification",
-        "param_group": "growth_sector",
-        "regime": "L1-L2",
-        "status": "Inactive in baseline EFC-D; only Case B"
-      },
-      {
-        "param_id": "delta_F",
-        "name": "Integrated regime transition strength",
-        "symbol": "ΔF",
-        "role": "Cumulative deviation from GR growth",
-        "param_group": "growth_sector",
-        "regime": "L1-L2",
-        "status": "Bounded via Θ(ρ)"
-      }
-    ],
-    "lensing_phenomenology": [
-      {
-        "param_id": "sigma_kz",
-        "name": "Lensing amplitude modifier",
-        "symbol": "Σ(k,z)",
-        "role": "Phenomenological shear amplitude boost (Case A only)",
-        "param_group": "lensing_phenomenology",
-        "regime": "L1-L2",
-        "status": "Temporary closure; not field-derived"
-      },
-      {
-        "param_id": "alpha_L2",
-        "name": "Phenomenological lensing coupling",
-        "symbol": "α_L2",
-        "role": "Controls Σ² amplitude",
-        "param_group": "lensing_phenomenology",
-        "regime": "L1-L2",
-        "status": "Not a field-derived parameter; Case A only"
       }
     ]
   },
@@ -1558,50 +1480,6 @@
       ]
     },
     {
-      "channel_id": "bao_isotropic",
-      "name": "BAO isotropic",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "binary_pulsars",
-      "name": "Binary pulsars",
-      "L0": "--",
-      "L1": "--",
-      "L2": "suppressed",
-      "L3": "check",
-      "active_sectors": [
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "cmb_tt",
-      "name": "CMB TT power spectrum",
-      "L0": "suppressed",
-      "L1": "--",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "cluster_abundance",
-      "name": "Cluster abundance N(M,z)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "GRW"
-      ]
-    },
-    {
       "channel_id": "cluster_entropy",
       "name": "Cluster entropy-structure",
       "L0": "--",
@@ -1609,18 +1487,6 @@
       "L2": "check",
       "L3": "suppressed",
       "active_sectors": [
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "cluster_lensing",
-      "name": "Cluster lensing geometry",
-      "L0": "--",
-      "L1": "--",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "LEN",
         "SCR"
       ]
     },
@@ -1637,40 +1503,6 @@
       ]
     },
     {
-      "channel_id": "full_shape_pk",
-      "name": "Full-shape P(k)",
-      "L0": "--",
-      "L1": "check",
-      "L2": "suppressed",
-      "L3": "--",
-      "active_sectors": [
-        "GRW"
-      ]
-    },
-    {
-      "channel_id": "galaxy_rotation",
-      "name": "Galaxy rotation curves (SPARC)",
-      "L0": "--",
-      "L1": "--",
-      "L2": "check",
-      "L3": "suppressed",
-      "active_sectors": [
-        "GRW",
-        "SCR"
-      ]
-    },
-    {
-      "channel_id": "isw_cross",
-      "name": "ISW cross-correlation",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
       "channel_id": "lya_null",
       "name": "Lyα high-z null test",
       "L0": "suppressed",
@@ -1679,40 +1511,6 @@
       "L3": "--",
       "active_sectors": [
         "BG"
-      ]
-    },
-    {
-      "channel_id": "rsd_growth",
-      "name": "RSD growth fσ₈(z)",
-      "L0": "--",
-      "L1": "check",
-      "L2": "suppressed",
-      "L3": "--",
-      "active_sectors": [
-        "BG",
-        "GRW"
-      ]
-    },
-    {
-      "channel_id": "sn_ia",
-      "name": "SN Ia distances",
-      "L0": "--",
-      "L1": "check",
-      "L2": "--",
-      "L3": "--",
-      "active_sectors": [
-        "BG"
-      ]
-    },
-    {
-      "channel_id": "solar_system_ppn",
-      "name": "Solar System PPN",
-      "L0": "--",
-      "L1": "--",
-      "L2": "suppressed",
-      "L3": "check",
-      "active_sectors": [
-        "SCR"
       ]
     },
     {
@@ -1725,64 +1523,9 @@
       "active_sectors": [
         "PROP"
       ]
-    },
-    {
-      "channel_id": "weak_lensing_case_a",
-      "name": "Weak lensing (Case A)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "LEN"
-      ]
-    },
-    {
-      "channel_id": "weak_lensing_case_b",
-      "name": "Weak lensing (Case B)",
-      "L0": "--",
-      "L1": "suppressed",
-      "L2": "check",
-      "L3": "--",
-      "active_sectors": [
-        "GRW",
-        "LEN"
-      ]
     }
   ],
   "s8_measurements": [
-    {
-      "id": "kids_legacy",
-      "name": "KiDS Legacy",
-      "s8_text": "0.815 ± 0.016",
-      "s8_value": 0.815,
-      "status": "CURRENT",
-      "note": "Updated shear calibration + photo-z"
-    },
-    {
-      "id": "stage_iii_combined",
-      "name": "Stage-III Combined",
-      "s8_text": "0.813 ± 0.012",
-      "s8_value": 0.813,
-      "status": "CURRENT",
-      "note": "Weighted mean"
-    },
-    {
-      "id": "hsc_y3",
-      "name": "HSC Y3",
-      "s8_text": "0.805 ± 0.022",
-      "s8_value": 0.805,
-      "status": "CURRENT",
-      "note": "Independent ground-based confirmation"
-    },
-    {
-      "id": "planck_2018",
-      "name": "Planck 2018",
-      "s8_text": "0.834 ± 0.016",
-      "s8_value": 0.834,
-      "status": "CMB_REFERENCE",
-      "note": "~1.3σ from Stage-III"
-    },
     {
       "id": "des_y3_original",
       "name": "DES Y3 (original)",
@@ -1790,29 +1533,9 @@
       "s8_value": 0.776,
       "status": "DEPRECATED",
       "note": "Pending Y6 re-analysis"
-    },
-    {
-      "id": "kids1000_original",
-      "name": "KiDS-1000 (original)",
-      "s8_text": "0.759 ± 0.024",
-      "s8_value": 0.759,
-      "status": "DEPRECATED",
-      "note": "Superseded by Legacy re-analysis"
     }
   ],
   "structural_constraints": [
-    {
-      "id": "case_a_s8_direction",
-      "name": "Case A S₈ direction (v1.4)",
-      "scale": "L1-L2 lensing",
-      "effect": "Phenomenological lensing amplitude modification drives S₈ lower, increasing CMB tension. Case B required for tension resolution"
-    },
-    {
-      "id": "cluster_merger_geometry",
-      "name": "Cluster merger geometry",
-      "scale": "L2 non-linear",
-      "effect": "Eliminates local entropy-gradient couplings; requires operator classes with component sensitivity and geometric smoothing"
-    },
     {
       "id": "core_lock",
       "name": "Core Lock consistency enforcement",
@@ -1824,12 +1547,6 @@
       "name": "Density Saturation Θ(ρ)",
       "scale": "All regimes (L0-L3)",
       "effect": "Enforces automatic GR recovery in high-density; physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension"
-    },
-    {
-      "id": "weaklensing_closure",
-      "name": "Weak-lensing phenomenological closure (Postulate A)",
-      "scale": "L1 linear perturbations",
-      "effect": "Demonstrates absence of derived lensing coupling; temporary closure pending action-level derivation. Density Saturation provides path to replace"
     }
   ],
   "evidence_register": {
@@ -1867,11 +1584,6 @@
       {
         "doi": "31095466",
         "name": "SPARC rotation analysis",
-        "category": "empirical"
-      },
-      {
-        "doi": "31127380",
-        "name": "CMB power spectrum",
         "category": "empirical"
       },
       {
@@ -1930,11 +1642,6 @@
         "category": "empirical"
       },
       {
-        "doi": "31301953",
-        "name": "ISW cross-correlation",
-        "category": "empirical"
-      },
-      {
         "doi": "31304980",
         "name": "Beta*T(a) architecture",
         "category": "empirical"
@@ -1973,11 +1680,6 @@
       }
     ],
     "structural": [
-      {
-        "doi": "31173850",
-        "name": "Cluster merger geometry",
-        "category": "structural"
-      },
       {
         "doi": "31188193",
         "name": "Weak-lensing Case A",
@@ -2049,15 +1751,6 @@
         "status": "planned"
       },
       {
-        "id": "p2_cluster_nmz",
-        "name": "Cluster abundance N(M,z)",
-        "phase": 2,
-        "method": "Mass function comparison",
-        "dataset": "eROSITA/SPT/Planck SZ",
-        "priority": "medium",
-        "status": "planned"
-      },
-      {
         "id": "p2_rar_numerical",
         "name": "Numerical S(r) solution for RAR",
         "phase": 2,
@@ -2096,15 +1789,6 @@
         "status": "planned"
       },
       {
-        "id": "p3_shock_front",
-        "name": "Cluster shock-front lensing asymmetry",
-        "phase": 3,
-        "method": "κ-map analysis",
-        "dataset": "JWST + Chandra",
-        "priority": "medium",
-        "status": "planned"
-      },
-      {
         "id": "p3_des_y3",
         "name": "DES Y3 cross-validation",
         "phase": 3,
@@ -2135,16 +1819,6 @@
   },
   "hypotheses": [
     {
-      "name": "Entropy-driven Spacetime",
-      "description": "The hypothesis that spacetime curvature and evolution are driven primarily by entropy distribution and gradients.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 3.59,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769115025943
-    },
-    {
       "name": "Entropy Bounded Empiricism",
       "description": "A methodological principle that constrains empirical inference by entropy bounds to resolve cosmological tensions.",
       "domain": "cosmology",
@@ -2165,16 +1839,6 @@
       "created_at": 1769113942126
     },
     {
-      "name": "Structural Stability",
-      "description": "The maintenance of structural integrity within universal frameworks.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 2.7,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769153401119
-    },
-    {
       "name": "Black Hole Entropy",
       "description": "The relationship between the entropy of a black hole and its event horizon area.",
       "domain": "cosmology|thermodynamics",
@@ -2185,34 +1849,14 @@
       "created_at": 1769151659140
     },
     {
-      "name": "Entropy-Driven Spacetime",
-      "description": "The hypothesis that spacetime structure emerges from entropy gradients and energy flow.",
+      "name": "Structural Stability",
+      "description": "The maintenance of structural integrity within universal frameworks.",
       "domain": "cosmology",
       "status": "conjecture",
       "epistemic_net": 2.7,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769149674755
-    },
-    {
-      "name": "Cosmic Expansion",
-      "description": "The universe's expansion driven by entropy.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 2.4000000000000004,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769151581786
-    },
-    {
-      "name": "Energy-Flow Cosmology (EFC)",
-      "description": "A framework proposing a universe with continuous energy recycling and the CMB as a thermodynamic equilibrium.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 2.2999999999999994,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769150437967
+      "created_at": 1769153401119
     },
     {
       "name": "Energy Flow Hypothesis",
@@ -2223,16 +1867,6 @@
       "testability": "partially_testable",
       "source": null,
       "created_at": 1769152041380
-    },
-    {
-      "name": "EFC Theory",
-      "description": "The Entropy Flow Continuum (EFC) hypothesis proposing a unified description of energy and entropy dynamics in galactic halos.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.9999999999999998,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769113131813
     },
     {
       "name": "Regime‑dependent validity",
@@ -2283,6 +1917,56 @@
       "testability": "partially_testable",
       "source": null,
       "created_at": 1769123899522
+    },
+    {
+      "name": "Entropy-dependent inference modification",
+      "description": "Proposed entropy‑driven adjustment of local‑to‑global parameter inference that simultaneously resolves H₀ and S₈ tensions.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 1.7,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769115931156
+    },
+    {
+      "name": "Domain of Validity Theorem",
+      "description": "Theorem stating that EFC‑R stops precisely where classical potential physics is expected to stop, mapping empirical boundaries of the model.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 1.65,
+      "testability": "indirectly_testable",
+      "source": null,
+      "created_at": 1769110785665
+    },
+    {
+      "name": "Energy Flow Regulation by c",
+      "description": "The hypothesis that the speed of light regulates energy flow across cosmic scales.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 1.0,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769151911275
+    },
+    {
+      "name": "Emergent Light Speed",
+      "description": "Hypothesis proposing that the speed of light emerges from underlying energy flow rather than being a primary boundary.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 0.96,
+      "testability": "indirectly_testable",
+      "source": null,
+      "created_at": 1769118837731
+    },
+    {
+      "name": "Fundamental Dynamics of the Universe",
+      "description": "Theory connecting energy, time, space, and consciousness",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 0.95,
+      "testability": "in_principle_not_testable",
+      "source": null,
+      "created_at": 1769153065162
     }
   ],
   "frontier_gaps": [
@@ -2739,6 +2423,11 @@
       },
       {
         "text": "Prefactor C converges to a finite value as grid resolution increases.",
+        "status": "SUPPORTED",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "SUPPORTED",
         "claim_type": null
       }
