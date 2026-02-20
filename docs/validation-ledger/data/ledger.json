@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-20T00:28:54Z",
+  "generated_at": "2026-02-20T06:29:43Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 25,
@@ -14,7 +14,7 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 5,
+    "frontier_count": 3,
     "tcs_compression": 2.0,
     "tcs_mismatch": 0.25,
     "pillar_1_lcdm": 0,
@@ -1192,7 +1192,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.476610Z",
+      "timestamp": "2026-02-20T06:12:37.696695Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1215,7 +1215,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.493749Z",
+      "timestamp": "2026-02-20T06:12:37.707619Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1238,7 +1238,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.461064Z",
+      "timestamp": "2026-02-20T06:12:37.685313Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1254,7 +1254,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.520781Z",
+      "timestamp": "2026-02-20T06:12:37.733139Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1273,7 +1273,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.507867Z",
+      "timestamp": "2026-02-20T06:12:37.718476Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1295,7 +1295,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T00:00:04.438185Z",
+      "timestamp": "2026-02-20T06:12:37.669176Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1321,7 +1321,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-19T23:45:42.456992+00:00"
+      "timestamp": "2026-02-20T06:02:55.037378+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1335,7 +1335,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-19T23:45:42.486964+00:00"
+      "timestamp": "2026-02-20T06:02:55.064987+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1349,7 +1349,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-19T23:45:42.501206+00:00"
+      "timestamp": "2026-02-20T06:02:55.083514+00:00"
     }
   },
   "parameters": {
@@ -2212,16 +2212,6 @@
   ],
   "frontier_gaps": [
     {
-      "question": "Kan vi bruke data fra JWST for å identifisere kritiske eksponenter i faseoverganger i universet?",
-      "domain": "efc|cosmology",
-      "severity": "CRITICAL",
-      "status": "OPEN",
-      "approach": "top_down",
-      "efc_prediction": "EFC forutsier spesifikke kritiske eksponenter som skal observeres under faseoverganger, noe som kan bekreftes med JWST-data.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-19T23:41:32.638000000+00:00"
-    },
-    {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
       "severity": "MEDIUM",
@@ -2230,16 +2220,6 @@
       "efc_prediction": null,
       "source": "cross_domain_transfer",
       "created_at": "2026-02-15T04:48:23.034000000+00:00"
-    },
-    {
-      "question": "{'hypothesis': \"Iterative application of the Expectation-Maximization algorithm to data from the 'efc_theory' domain will uncover structures analogous to those found in the 'emergent_pattern' domains.\", 'test': \"Within 30 days, run the EM algorithm on a representative dataset from the 'efc_theory' domain (using the same parameters and setup as in 'emergent_pattern') and observe if latent structures emerge that are similar to those previously found. Measure structure emergence using relevant metrics such as Bayesian Information Criterion or log-likelihood improvement.\", 'expected_result': 'Significant improvement in these metrics after multiple iterations of EM, indicating the presence of latent structures.'}",
-      "domain": "efc_theory",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-02-12T23:54:25.814000000+00:00"
     },
     {
       "question": "After reviewing and improving the engine physics or data quality related to 'inference_shear_kids1000' module within 30 days, we expect a significant reduction in its chi2 value (<5), indicating a better fit and improved overall EFC model performance.",
