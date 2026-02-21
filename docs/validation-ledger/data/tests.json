@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-21T12:32:42Z",
+  "generated_at": "2026-02-21T18:32:59Z",
   "categories": {
     "physics_test": [
       {
@@ -1093,11 +1093,11 @@
         "status_detail": "pending"
       },
       {
-        "test_id": "freeze_20260218_050713",
-        "name": "Blind Prediction Freeze v1 (NUTS cycle 20260217)",
+        "test_id": "freeze_20260221_160857",
+        "name": "Blind Prediction Freeze (nuts_20260220_221940)",
         "description": null,
         "result": null,
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": null,
@@ -1105,7 +1105,22 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "pending"
+        "status_detail": "frozen"
+      },
+      {
+        "test_id": "freeze_20260218_050713",
+        "name": "Blind Prediction Freeze v1 (NUTS cycle 20260217)",
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "frozen"
       },
       {
         "test_id": "ledger_cmb_polarization_lensing_internal_consistency_teee",
@@ -1274,5 +1289,5 @@
       }
     ]
   },
-  "total_count": 84
+  "total_count": 85
 }

@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-21T12:32:42Z",
+  "generated_at": "2026-02-21T18:32:59Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 29,
     "consistency_check": 17,
     "phenomenological": 8,
     "framework_constraint": 17,
-    "planned_pipeline": 13,
-    "total_public": 84,
+    "planned_pipeline": 14,
+    "total_public": 85,
     "n_falsified": 5,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -20,7 +20,7 @@
     "pillar_1_lcdm": 0,
     "pillar_2_native": 45,
     "pillar_3_grav": 11,
-    "pillar_4_cross": 28,
+    "pillar_4_cross": 29,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -1121,11 +1121,11 @@
         "status_detail": "pending"
       },
       {
-        "test_id": "freeze_20260218_050713",
-        "name": "Blind Prediction Freeze v1 (NUTS cycle 20260217)",
+        "test_id": "freeze_20260221_160857",
+        "name": "Blind Prediction Freeze (nuts_20260220_221940)",
         "description": null,
         "result": null,
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": null,
@@ -1133,7 +1133,22 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "pending"
+        "status_detail": "frozen"
+      },
+      {
+        "test_id": "freeze_20260218_050713",
+        "name": "Blind Prediction Freeze v1 (NUTS cycle 20260217)",
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "frozen"
       },
       {
         "test_id": "ledger_cmb_polarization_lensing_internal_consistency_teee",
@@ -1312,7 +1327,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.345994Z",
+      "timestamp": "2026-02-21T17:54:52.455377Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1335,7 +1350,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.365536Z",
+      "timestamp": "2026-02-21T17:54:52.472334Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1358,7 +1373,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.328838Z",
+      "timestamp": "2026-02-21T17:54:52.442338Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1374,7 +1389,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.399574Z",
+      "timestamp": "2026-02-21T17:54:52.500381Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1393,7 +1408,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.381027Z",
+      "timestamp": "2026-02-21T17:54:52.485914Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1415,7 +1430,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T11:44:30.303971Z",
+      "timestamp": "2026-02-21T17:54:52.429039Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1441,7 +1456,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T12:09:05.326570+00:00"
+      "timestamp": "2026-02-21T17:36:55.183795+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1455,7 +1470,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T12:09:05.367344+00:00"
+      "timestamp": "2026-02-21T17:36:55.217926+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1469,7 +1484,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-21T12:09:05.392705+00:00"
+      "timestamp": "2026-02-21T17:36:55.230285+00:00"
     }
   },
   "parameters": {
