@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-20T18:30:56Z",
+  "generated_at": "2026-02-21T00:31:31Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 29,
     "consistency_check": 17,
     "phenomenological": 7,
-    "framework_constraint": 15,
+    "framework_constraint": 16,
     "planned_pipeline": 13,
-    "total_public": 81,
+    "total_public": 82,
     "n_falsified": 1,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -20,7 +20,7 @@
     "pillar_1_lcdm": 0,
     "pillar_2_native": 44,
     "pillar_3_grav": 11,
-    "pillar_4_cross": 26,
+    "pillar_4_cross": 27,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -849,6 +849,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_axiom_0_test_s_regime_vs_friedmann_t_i_kosmologisk_evolusjon",
+        "name": "Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon",
+        "description": "Aksiom 0 postulerer at tid er sekundær — en monoton indeks over irreversible Grid-konfigurasjonsoverganger, ikke en primitiv variabel. Dette impliserer at kosmologisk evolusjon kan parameteriseres av S-regime direkte, uten ekstern Friedmann-tid. Testen undersøker om EFC-pipeline kan reprodusere BAO og growth-observabler med S som uavhengig variabel i stedet for z(t), og om de observerte 2-3σ avvikene fra ΛCDM (forseglet prediksjon 2026-02-18) har strukturell forklaring i S-regime-overganger snarere enn parametriske avvik.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "DESI DR1 BAO-data, BOSS fσ8-målinger, forseglet EFC-prediksjon 2026-02-18 (freeze_20260218_050713), SPARC175 regime-datasett",
+        "prediction": "Hvis Aksiom 0 holder: (1) EFC reproduserer BAO-skalaer og fσ8-kurver med S-parameterisering uten Friedmann-t-bakgrunn. (2) De 2-3σ avvikene i DH_rd og fs8 fra forseglet prediksjon korresponderer med identifiserbare S-regime-overganger (FLOW→TRANSITION→LATENT), ikke tilfeldige parametriske feil. (3) Residualene i LATENT-regimet (α→0) er systematiske, ikke stokastiske — noe som indikerer manglende fysikk i høy-S, ikke modellfeil.",
+        "notes": "Formell test-spesifikasjon oppdatert per Morten Magnusson 2026-02-20. Hardere og matematisk renere versjon:\n\nTITTEL: Axiom-0 Test: Reparametrisering z → S og regime-bundet signatur i forseglede avvik\n\nA. PREREGISTRERTE PREDIKSJONER (låst)\nInput: DH_rd_z10 (3.1σ), DH_rd_z07 (2.3σ), fs8_z07 (2.0σ)\nP1 (regime-kollaps): Avvik som funksjon av Ŝ skal falle nær FLOW→TRANSITION eller TRANSITION→LATENT grense.\nP2 (LATENT-struktur): Residualer i LATENT skal vise samme fortegn og lav intern spredning relativt til FLOW/TRANSITION.\nH0: Ingen avvik klustrer ved S-grenser, ingen fortegn-koherens i LATENT.\n\nB. REPARAMETRISERING z → Ŝ\nŜ(z) = α1·log ρ_SFR(z) + α2·log f_gas(z) + α3·log C(z)\nLåsing: equal-weight (α1=α2=α3=1) ELLER PCA på proxy-data før analyse. Velges og låses FØR kjøring.\nEkstern data for ρ_SFR(z) og f_gas(z): survey-baserte evolusjonskurver (Madau-Dickinson o.l.). SPARC brukes kun som C-anker ved z≈0.\n\nC. TESTSTATISTIKK\nRegimegrenser: kvantiler av Ŝ(z) — FLOW (nedre 1/3), TRANSITION (midtre 1/3), LATENT (øvre 1/3).\nClustering-test: avstand fra hvert avvikspunkt til nærmeste S-grense vs nullfordeling fra permutasjon av z-etiketter.\n\nD. RESIDUALANALYSE LATENT\nFortegn-koherens: andel residualer med samme fortegn.\nRuns-test langs Ŝ-sortert rekkefølge.\nRetningskonsistens: projekter residualvektor på fast retning låst på forhånd.\n\nE. DOBBELT FALSIFISERBARHET\nHvis z→Ŝ ikke reproduserer baseline-fit → Aksiom 0 mangler koblingsregel.\nHvis LATENT-residualer ikke viser koherens → Aksiom 0 gir ikke regime-signatur i disse data.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-20T19:04:00.632000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_background_gate_sign_constraint_efclass_technical_note_i_",
         "name": "Background gate sign constraint (EFCLASS Technical Note I)",
         "description": "Background gate sign test: Additive gate E²=E²_LCDM + A·g(a) under E(0)=1 closure produces ΔE²=A[g(z)-g(0)] ≤ 0 for all z>0 when gate is monotonically increasing in a. Verified analytically (Lemma 1) and numerically in CLASS v3.3.4 to <0.3%. Physical consequence: fσ₈ increases by +0.5-0.8% (A=0.15), ruling out background-only S₈ suppression under this parameterisation. Structural channel constraint, not observational test.",
@@ -1267,7 +1282,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.168897Z",
+      "timestamp": "2026-02-21T00:02:36.759420Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1290,7 +1305,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.185126Z",
+      "timestamp": "2026-02-21T00:02:36.769733Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1313,7 +1328,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.149192Z",
+      "timestamp": "2026-02-21T00:02:36.745750Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1329,7 +1344,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.215055Z",
+      "timestamp": "2026-02-21T00:02:36.795662Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1348,7 +1363,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.202510Z",
+      "timestamp": "2026-02-21T00:02:36.782491Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1370,7 +1385,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-20T17:50:38.110521Z",
+      "timestamp": "2026-02-21T00:02:36.731692Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1396,7 +1411,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-20T18:08:35.625338+00:00"
+      "timestamp": "2026-02-21T00:08:45.996196+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1410,7 +1425,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-20T18:08:35.665858+00:00"
+      "timestamp": "2026-02-21T00:08:46.050817+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1424,7 +1439,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-20T18:08:35.690741+00:00"
+      "timestamp": "2026-02-21T00:08:46.251559+00:00"
     }
   },
   "parameters": {
@@ -2068,6 +2083,16 @@
   ],
   "changelog": [
     {
+      "name": "Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-20T19:04:00.632000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "IG-1: Identifiability gate (α degeneracy break with ≥3 probes)",
       "status": "planned",
       "result": "Planned",
@@ -2352,16 +2377,6 @@
       "status": "PLANNED",
       "result": "Planned",
       "last_updated": "2026-02-16T06:05:30.683000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "χ(x,t) = |∇δS|/S_global as universal regime control parameter",
-      "status": "PLANNED",
-      "result": "Planned",
-      "last_updated": "2026-02-16T06:05:24.732000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"

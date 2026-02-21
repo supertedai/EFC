@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-20T18:30:56Z",
+  "generated_at": "2026-02-21T00:31:31Z",
   "categories": {
     "physics_test": [
       {
@@ -821,6 +821,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_axiom_0_test_s_regime_vs_friedmann_t_i_kosmologisk_evolusjon",
+        "name": "Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon",
+        "description": "Aksiom 0 postulerer at tid er sekundær — en monoton indeks over irreversible Grid-konfigurasjonsoverganger, ikke en primitiv variabel. Dette impliserer at kosmologisk evolusjon kan parameteriseres av S-regime direkte, uten ekstern Friedmann-tid. Testen undersøker om EFC-pipeline kan reprodusere BAO og growth-observabler med S som uavhengig variabel i stedet for z(t), og om de observerte 2-3σ avvikene fra ΛCDM (forseglet prediksjon 2026-02-18) har strukturell forklaring i S-regime-overganger snarere enn parametriske avvik.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "DESI DR1 BAO-data, BOSS fσ8-målinger, forseglet EFC-prediksjon 2026-02-18 (freeze_20260218_050713), SPARC175 regime-datasett",
+        "prediction": "Hvis Aksiom 0 holder: (1) EFC reproduserer BAO-skalaer og fσ8-kurver med S-parameterisering uten Friedmann-t-bakgrunn. (2) De 2-3σ avvikene i DH_rd og fs8 fra forseglet prediksjon korresponderer med identifiserbare S-regime-overganger (FLOW→TRANSITION→LATENT), ikke tilfeldige parametriske feil. (3) Residualene i LATENT-regimet (α→0) er systematiske, ikke stokastiske — noe som indikerer manglende fysikk i høy-S, ikke modellfeil.",
+        "notes": "Formell test-spesifikasjon oppdatert per Morten Magnusson 2026-02-20. Hardere og matematisk renere versjon:\n\nTITTEL: Axiom-0 Test: Reparametrisering z → S og regime-bundet signatur i forseglede avvik\n\nA. PREREGISTRERTE PREDIKSJONER (låst)\nInput: DH_rd_z10 (3.1σ), DH_rd_z07 (2.3σ), fs8_z07 (2.0σ)\nP1 (regime-kollaps): Avvik som funksjon av Ŝ skal falle nær FLOW→TRANSITION eller TRANSITION→LATENT grense.\nP2 (LATENT-struktur): Residualer i LATENT skal vise samme fortegn og lav intern spredning relativt til FLOW/TRANSITION.\nH0: Ingen avvik klustrer ved S-grenser, ingen fortegn-koherens i LATENT.\n\nB. REPARAMETRISERING z → Ŝ\nŜ(z) = α1·log ρ_SFR(z) + α2·log f_gas(z) + α3·log C(z)\nLåsing: equal-weight (α1=α2=α3=1) ELLER PCA på proxy-data før analyse. Velges og låses FØR kjøring.\nEkstern data for ρ_SFR(z) og f_gas(z): survey-baserte evolusjonskurver (Madau-Dickinson o.l.). SPARC brukes kun som C-anker ved z≈0.\n\nC. TESTSTATISTIKK\nRegimegrenser: kvantiler av Ŝ(z) — FLOW (nedre 1/3), TRANSITION (midtre 1/3), LATENT (øvre 1/3).\nClustering-test: avstand fra hvert avvikspunkt til nærmeste S-grense vs nullfordeling fra permutasjon av z-etiketter.\n\nD. RESIDUALANALYSE LATENT\nFortegn-koherens: andel residualer med samme fortegn.\nRuns-test langs Ŝ-sortert rekkefølge.\nRetningskonsistens: projekter residualvektor på fast retning låst på forhånd.\n\nE. DOBBELT FALSIFISERBARHET\nHvis z→Ŝ ikke reproduserer baseline-fit → Aksiom 0 mangler koblingsregel.\nHvis LATENT-residualer ikke viser koherens → Aksiom 0 gir ikke regime-signatur i disse data.",
+        "quantitative_result": null,
+        "last_synced": "2026-02-20T19:04:00.632000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_background_gate_sign_constraint_efclass_technical_note_i_",
         "name": "Background gate sign constraint (EFCLASS Technical Note I)",
         "description": "Background gate sign test: Additive gate E²=E²_LCDM + A·g(a) under E(0)=1 closure produces ΔE²=A[g(z)-g(0)] ≤ 0 for all z>0 when gate is monotonically increasing in a. Verified analytically (Lemma 1) and numerically in CLASS v3.3.4 to <0.3%. Physical consequence: fσ₈ increases by +0.5-0.8% (A=0.15), ruling out background-only S₈ suppression under this parameterisation. Structural channel constraint, not observational test.",
@@ -1229,5 +1244,5 @@
       }
     ]
   },
-  "total_count": 81
+  "total_count": 82
 }
