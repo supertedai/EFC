@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-22T00:33:25Z",
+  "generated_at": "2026-02-22T06:34:30Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 29,
@@ -745,15 +745,15 @@
         "test_id": "axiom0_s_hat_v1",
         "name": "Axiom 0: S_hat(z) Regime Boundary Test",
         "description": "Pre-registered phenomenological test: BAO anomalies cluster at EFC regime boundaries in S_hat(z) = log10(rho_SFR) + log10(f_gas) + C0. Sources locked (Madau-Dickinson + Tacconi/PHIBSS Table 3b beta=2). Regime boundaries from uniform z-grid quantiles.",
-        "result": "DEGENERATE_N10",
+        "result": "Primary p=1.0, Sign coherence p=0.01953125",
         "status": "pending",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "BAO surveys (6dF, MGS, BOSS, eBOSS, DESI)",
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
-        "notes": "Primary test degenerate (obs=null_median) at N=10 under shuffle_s_hat_values scheme. Secondary sign coherence 8/9 (p=0.0195). Auto-updated by research_daemon Phase 7. test_version=v1.0",
+        "notes": "Auto-updated by research_daemon Phase 7. test_version=v1.0",
         "quantitative_result": "p_primary=1.0 p_binom=0.01953125 n=10",
-        "last_synced": "2026-02-21T10:35:01.496000000+00:00",
+        "last_synced": "2026-02-22T06:07:52.508000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1342,7 +1342,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.633677Z",
+      "timestamp": "2026-02-22T06:15:17.452646Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1365,7 +1365,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.645158Z",
+      "timestamp": "2026-02-22T06:15:17.464492Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1388,7 +1388,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.614094Z",
+      "timestamp": "2026-02-22T06:15:17.432943Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1404,7 +1404,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.670661Z",
+      "timestamp": "2026-02-22T06:15:17.493896Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1423,7 +1423,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.659434Z",
+      "timestamp": "2026-02-22T06:15:17.480998Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1445,7 +1445,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-22T00:04:59.598080Z",
+      "timestamp": "2026-02-22T06:15:17.413975Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1471,7 +1471,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T23:37:06.117473+00:00"
+      "timestamp": "2026-02-22T05:37:16.338951+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1485,7 +1485,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T23:37:06.147342+00:00"
+      "timestamp": "2026-02-22T05:37:16.390041+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1499,7 +1499,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-21T23:37:06.162316+00:00"
+      "timestamp": "2026-02-22T05:37:16.416451+00:00"
     }
   },
   "parameters": {
@@ -2143,6 +2143,16 @@
   ],
   "changelog": [
     {
+      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
+      "status": "pending",
+      "result": "Primary p=1.0, Sign coherence p=0.01953125",
+      "last_updated": "2026-02-22T06:07:52.508000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "Axiom-0 S_hat(z) regime boundary test (BAO N=10)",
       "status": "planned",
       "result": "Planned",
@@ -2158,16 +2168,6 @@
       "result": "Planned",
       "last_updated": "2026-02-21T12:03:51.606000000+00:00",
       "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
-      "status": "pending",
-      "result": "DEGENERATE_N10",
-      "last_updated": "2026-02-21T10:35:01.496000000+00:00",
-      "source": null,
       "all_labels": [
         "EFCValidation"
       ]
