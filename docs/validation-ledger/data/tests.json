@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-21T18:32:59Z",
+  "generated_at": "2026-02-22T00:33:25Z",
   "categories": {
     "physics_test": [
       {
@@ -729,6 +729,21 @@
         "status_detail": "pending"
       },
       {
+        "test_id": "conv_axiom_0_s_hat_z_regime_boundary_test_bao_n_10_",
+        "name": "Axiom-0 S_hat(z) regime boundary test (BAO N=10)",
+        "description": "Pre-registered test: Do BAO residuals from LCDM cluster at EFC regime boundaries in S_hat(z) space? S_hat(z) = log10(rho_SFR) + log10(f_gas) + C0 with locked Madau-Dickinson + Tacconi/PHIBSS sources. Regime boundaries from uniform z-grid quantiles (1/3, 2/3). Primary: permutation test of mean distance to nearest boundary. Secondary: sign coherence in TRANSITION+LATENT regimes.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2.",
+        "prediction": "EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondary pattern: 8/9 positive deviations in TRANSITION+LATENT (binomial p=0.020). DESI z=1.0 lands exactly on FLOW/TRANSITION boundary (delta=0.000). Result: not falsified, not confirmed, consistent with smooth regime structure.",
+        "notes": "",
+        "quantitative_result": null,
+        "last_synced": "2026-02-21T18:42:08.701000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_bao_anisotropic_split_davs_hz",
         "name": "BAO anisotropic split (DAvs H(z))",
         "description": "⚪",
@@ -1289,5 +1304,5 @@
       }
     ]
   },
-  "total_count": 85
+  "total_count": 86
 }

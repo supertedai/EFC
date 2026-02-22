@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-21T18:32:59Z",
+  "generated_at": "2026-02-22T00:33:25Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 29,
     "consistency_check": 17,
-    "phenomenological": 8,
+    "phenomenological": 9,
     "framework_constraint": 17,
     "planned_pipeline": 14,
-    "total_public": 85,
+    "total_public": 86,
     "n_falsified": 5,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,7 +18,7 @@
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 45,
+    "pillar_2_native": 46,
     "pillar_3_grav": 11,
     "pillar_4_cross": 29,
     "grav_kt_count": 3,
@@ -757,6 +757,21 @@
         "status_detail": "pending"
       },
       {
+        "test_id": "conv_axiom_0_s_hat_z_regime_boundary_test_bao_n_10_",
+        "name": "Axiom-0 S_hat(z) regime boundary test (BAO N=10)",
+        "description": "Pre-registered test: Do BAO residuals from LCDM cluster at EFC regime boundaries in S_hat(z) space? S_hat(z) = log10(rho_SFR) + log10(f_gas) + C0 with locked Madau-Dickinson + Tacconi/PHIBSS sources. Regime boundaries from uniform z-grid quantiles (1/3, 2/3). Primary: permutation test of mean distance to nearest boundary. Secondary: sign coherence in TRANSITION+LATENT regimes.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2.",
+        "prediction": "EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondary pattern: 8/9 positive deviations in TRANSITION+LATENT (binomial p=0.020). DESI z=1.0 lands exactly on FLOW/TRANSITION boundary (delta=0.000). Result: not falsified, not confirmed, consistent with smooth regime structure.",
+        "notes": "",
+        "quantitative_result": null,
+        "last_synced": "2026-02-21T18:42:08.701000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_bao_anisotropic_split_davs_hz",
         "name": "BAO anisotropic split (DAvs H(z))",
         "description": "⚪",
@@ -1327,7 +1342,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.455377Z",
+      "timestamp": "2026-02-22T00:04:59.633677Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1350,7 +1365,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.472334Z",
+      "timestamp": "2026-02-22T00:04:59.645158Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1373,7 +1388,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.442338Z",
+      "timestamp": "2026-02-22T00:04:59.614094Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1389,7 +1404,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.500381Z",
+      "timestamp": "2026-02-22T00:04:59.670661Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1408,7 +1423,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.485914Z",
+      "timestamp": "2026-02-22T00:04:59.659434Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1430,7 +1445,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-21T17:54:52.429039Z",
+      "timestamp": "2026-02-22T00:04:59.598080Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1456,7 +1471,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T17:36:55.183795+00:00"
+      "timestamp": "2026-02-21T23:37:06.117473+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1470,7 +1485,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-21T17:36:55.217926+00:00"
+      "timestamp": "2026-02-21T23:37:06.147342+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1484,7 +1499,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-21T17:36:55.230285+00:00"
+      "timestamp": "2026-02-21T23:37:06.162316+00:00"
     }
   },
   "parameters": {
@@ -2128,6 +2143,16 @@
   ],
   "changelog": [
     {
+      "name": "Axiom-0 S_hat(z) regime boundary test (BAO N=10)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-21T18:42:08.701000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "Axiom 0 meta-analysis v1.0-meta: alpha-Shat correlation",
       "status": "planned",
       "result": "Planned",
@@ -2412,16 +2437,6 @@
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-02-17T12:24:00.732000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "χ-monotonicity in galaxy cluster radial profiles",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-16T08:31:45.911000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
