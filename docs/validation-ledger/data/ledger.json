@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-24T12:11:36Z",
+  "generated_at": "2026-02-24T18:11:56Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -14,7 +14,7 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 4,
+    "frontier_count": 3,
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.414986Z",
+      "timestamp": "2026-02-24T17:36:28.648955Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.431096Z",
+      "timestamp": "2026-02-24T17:36:28.663863Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.396616Z",
+      "timestamp": "2026-02-24T17:36:28.636599Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.459573Z",
+      "timestamp": "2026-02-24T17:36:28.690430Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.445261Z",
+      "timestamp": "2026-02-24T17:36:28.676898Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T11:23:37.374538Z",
+      "timestamp": "2026-02-24T17:36:28.622136Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-24T12:09:39.080919+00:00"
+      "timestamp": "2026-02-24T18:09:47.595348+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-24T12:09:39.128210+00:00"
+      "timestamp": "2026-02-24T18:09:47.624941+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-24T12:09:39.157833+00:00"
+      "timestamp": "2026-02-24T18:09:47.639759+00:00"
     }
   },
   "parameters": {
@@ -2165,16 +2165,6 @@
     }
   ],
   "frontier_gaps": [
-    {
-      "question": "Applying the 'inference_cluster_tng' module from domain 'unknown' to Bullet Cluster data should result in a chi2 value less than 2.0 within 30 days of testing.",
-      "domain": "project.bullet cluster efc test",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-02-24T11:16:21.897000000+00:00"
-    },
     {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
