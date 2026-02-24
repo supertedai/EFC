@@ -1,9 +1,9 @@
 {
   "name": "EFC-GRAV Pipeline",
   "version": "3.0",
-  "generated_at": "2026-02-24T06:10:53Z",
+  "generated_at": "2026-02-24T12:11:36Z",
   "latest_run": {
-    "run_id": "2026-02-19_165353_aqual",
+    "run_id": "2026-02-23_161325_aqual",
     "verdict": "NEEDS_REVIEW",
     "started": null,
     "integration_verdict": "PARTIAL_BRIDGE"
@@ -13,20 +13,20 @@
       "name": "KT1_Newton_MOND_Limits",
       "status": "PASSED",
       "label": "KT1",
-      "slope_mond": -1.0500612068387782,
-      "slope_newton": -2.0271524708809157,
+      "slope_mond": -1.0500612068387758,
+      "slope_newton": -2.0286017174186997,
       "c_value": null,
       "c_last_diff": null,
       "beta": null,
-      "n_cases": 5
+      "n_cases": 10
     },
     {
       "name": "KT2_Prefactor_Convergence",
-      "status": "PASSED",
+      "status": "PARTIAL",
       "label": "KT2",
       "slope_mond": null,
       "slope_newton": null,
-      "c_value": 2.3198280825101287,
+      "c_value": 3.683293823139218,
       "c_last_diff": null,
       "beta": null,
       "n_cases": null
@@ -39,7 +39,7 @@
       "slope_newton": null,
       "c_value": null,
       "c_last_diff": null,
-      "beta": 0.2934489669522471,
+      "beta": 0.3192956835601273,
       "n_cases": null
     }
   ],
@@ -82,12 +82,12 @@
       "claim_type": null
     },
     {
-      "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
-      "status": "SUPPORTED",
+      "text": "Prefactor C converges to a finite value as grid resolution increases.",
+      "status": "PARTIAL",
       "claim_type": null
     },
     {
-      "text": "Prefactor C converges to a finite value as grid resolution increases.",
+      "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
       "status": "SUPPORTED",
       "claim_type": null
     },
