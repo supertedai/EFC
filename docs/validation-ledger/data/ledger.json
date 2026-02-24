@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-23T08:03:52Z",
+  "generated_at": "2026-02-24T05:32:26Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 29,
+    "physics_test": 32,
     "consistency_check": 17,
-    "phenomenological": 9,
-    "framework_constraint": 17,
+    "phenomenological": 12,
+    "framework_constraint": 19,
     "planned_pipeline": 14,
-    "total_public": 86,
+    "total_public": 94,
     "n_falsified": 5,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,9 +18,9 @@
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 46,
+    "pillar_2_native": 52,
     "pillar_3_grav": 11,
-    "pillar_4_cross": 29,
+    "pillar_4_cross": 31,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -123,6 +123,21 @@
         "status_detail": "failed"
       },
       {
+        "test_id": "conv_desi_dr2_bao_constraint_post_prediction_",
+        "name": "DESI DR2 BAO α-constraint (post-prediction)",
+        "description": "First external-data BAO test of EFC. DESI DR2 13-point BAO with full 13×13 block-diagonal covariance. MCMC posterior: α = -0.119 ± 0.227 (0.52σ). Shifts α from BOSS/eBOSS multi-probe value of -0.684±0.405 (1.69σ) to ~0 at 2.5σ. ΔAIC(EFC−ΛCDM) = +1.74 (no preference). Gate locked at a_t=0.5, δ_a=0.1. Strong α ≈ -0.7 excluded at >4σ by high-z bins (z=0.934, 1.321, 2.330). Weak α ≈ -0.1 consistent but not preferred.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "DESI DR2 BAO (arXiv:2503.14738), 13 measurements, 7 z-bins, full covariance",
+        "prediction": "EFC BAO-only: α consistent with 0. Strong α (|α| > 0.4) excluded by DESI DR2 precision at z > 0.9. EFC signal, if present, must live in growth/regime sector, not background expansion.",
+        "notes": "Approved as hard constraint. DESI DR2 BAO-only posterior: α = -0.119 ± 0.227 (0.52σ), consistent with ΛCDM. Strong α ≈ -0.68 excluded at >4σ in high-z bins. This is a CONSTRAINT node, not support. Full 13×13 covariance, well-converged (n_eff≈3065, acc=0.59).",
+        "quantitative_result": null,
+        "last_synced": "2026-02-23T10:21:31.770000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": null,
         "name": "EFC Baseline α-signal",
         "description": "Joint BAO+H(z)+SNIa+fσ₈ MCMC with EFC α-parameter. Tests whether dark energy data prefers α<0 (entropic flow) over ΛCDM (α=0).",
@@ -130,10 +145,10 @@
         "status": "pending",
         "vl_category": "physics_test",
         "also_phenomenological": null,
-        "data_source": "emcee MCMC, 70 data points, emcee sampler",
+        "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.7659, \"alpha_std\": 0.4313, \"significance_sigma\": 1.78, \"daic\": -1.22, \"dbic\": 1.03, \"verdict\": \"DEGENERACY_LIMITED\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"NO_SIGNAL\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -466,6 +481,36 @@
         "quantitative_result": null,
         "last_synced": "2026-02-16T08:31:45.911000000+00:00",
         "status_detail": "planned"
+      },
+      {
+        "test_id": "desi_dr2_bao_alpha_constraint_v1",
+        "name": null,
+        "description": "DESI DR2 BAO-only MCMC with full 13×13 covariance. α = -0.119 ± 0.227 (0.52σ from zero). 95% CI [-0.567, +0.324]. Consistent with ΛCDM. ΔAIC(EFC−ΛCDM) = +1.74, no preference for extra parameter.",
+        "result": null,
+        "status": "success",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "DESI DR2 (arXiv:2503.14738), 13 measurements, 7 z-bins",
+        "prediction": "α consistent with 0 in BAO sector. Strong α (|α| > 0.4) excluded.",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
+        "test_id": "desi_dr2_strong_alpha_bao_falsified_v1",
+        "name": null,
+        "description": "EFC with α ≈ -0.68 (BOSS/eBOSS best-fit) gives χ² = 95.3 against DESI DR2 (13 dof). Per-bin: z=0.934 contributes χ²=36.8, z=1.321 χ²=24.1, z=2.330 χ²=21.4. The VariantA gate (a_t=0.5, δ_a=0.1) with strong α drives H(z) too low at z > 0.9, producing catastrophic DH/rd residuals (+5σ at z=0.934). This falsifies strong α in the BAO/background sector specifically, NOT EFC generally.",
+        "result": null,
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "DESI DR2 BAO vs pre-existing NUTS posterior (α = -0.684 ± 0.405)",
+        "prediction": "Strong α ≈ -0.68 should be consistent with DESI DR2 BAO",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "failure"
       }
     ],
     "consistency_check": [
@@ -860,6 +905,51 @@
         "quantitative_result": "",
         "last_synced": "2026-02-20T06:31:30.178760Z",
         "status_detail": "partial"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": "Full multi-probe MCMC (BAO DESI DR2 + fs8 + Hz + SNIa, 69 pts) with DESI DR2 replacing BOSS/eBOSS. Alpha = -0.138 +/- 0.211 (0.65 sigma). No statistically significant deviation from LCDM. Strong background modification excluded. Weak negative skew allowed but not preferred. DAIC = +1.59 favors LCDM. Confirms that alpha ~ -0.6 from old pipeline was BAO-driven.",
+        "result": null,
+        "status": "success",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "DESI DR2 BAO (13 pts, full covariance) + fs8_extended + Hz_CC + Pantheon_binned",
+        "prediction": "If EFC background modification is real, alpha should remain significantly negative even with precise DESI DR2 BAO data",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": "DESI DR2 BAO-only MCMC: alpha = -0.119 +/- 0.227 (0.52 sigma). Consistent with LCDM. Strong alpha excluded.",
+        "result": null,
+        "status": "success",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "success"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": "Strong alpha (~-0.68) gives chi2=95.3 vs LCDM 16.2 against DESI DR2. Catastrophic failure at z>0.9. Gate a_t=0.5 delta_a=0.1 drives H(z) too low.",
+        "result": null,
+        "status": "success",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "success"
       }
     ],
     "framework_constraint": [
@@ -1117,6 +1207,36 @@
         "quantitative_result": null,
         "last_synced": "2026-02-16T06:05:24.732000000+00:00",
         "status_detail": "planned"
+      },
+      {
+        "test_id": "efc_signal_locus_update_dr2_v1",
+        "name": null,
+        "description": "DESI DR2 BAO constrains α to [-0.57, +0.32] (95% CI). Combined with per-bin analysis showing EFC wins at z=0.706 (χ²=1.0 vs 8.2 for ΛCDM) but loses catastrophically at z > 0.9 with strong α, this updates the EFC signal locus: any EFC effect must be weak in BAO/background (|α| < 0.4) and must primarily manifest in growth/regime/gravitational transition sector (fσ8, lensing, KT3 β-convergence). This makes KT3 v2 the primary evidence carrier.",
+        "result": null,
+        "status": "partial",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "DESI DR2 BAO constraint + existing multi-probe pipeline",
+        "prediction": "EFC signal, if real, lives in growth/regime sector. Background effect must be weak.",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "partial"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": "DESI DR2 confirms background sector consistent with LCDM. EFC signal, if real, must reside in growth/gravity/regime sector. KT3 v2 beta-convergence becomes decisive test.",
+        "result": null,
+        "status": "success",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "success"
       }
     ],
     "planned_pipeline": [
@@ -1342,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.505539Z",
+      "timestamp": "2026-02-24T05:01:04.359498Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1365,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.518033Z",
+      "timestamp": "2026-02-24T05:01:04.374407Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1388,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.488868Z",
+      "timestamp": "2026-02-24T05:01:04.338716Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1404,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.545392Z",
+      "timestamp": "2026-02-24T05:01:04.402447Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1423,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.531396Z",
+      "timestamp": "2026-02-24T05:01:04.388281Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1445,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-23T07:19:10.471646Z",
+      "timestamp": "2026-02-24T05:01:04.296934Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1471,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-23T07:10:12.113175+00:00"
+      "timestamp": "2026-02-24T05:10:47.907929+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1485,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-23T07:10:12.148859+00:00"
+      "timestamp": "2026-02-24T05:10:47.939389+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1499,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-23T07:10:12.161207+00:00"
+      "timestamp": "2026-02-24T05:10:47.957815+00:00"
     }
   },
   "parameters": {
@@ -2143,6 +2263,56 @@
   ],
   "changelog": [
     {
+      "name": null,
+      "status": "success",
+      "result": null,
+      "last_updated": "2026-02-23T13:00:00.000000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "DESI DR2 BAO α-constraint (post-prediction)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-02-23T10:21:31.770000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": null,
+      "status": "success",
+      "result": null,
+      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": null,
+      "status": "success",
+      "result": null,
+      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": null,
+      "status": "success",
+      "result": null,
+      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=1.0, Sign coherence p=0.01953125",
@@ -2387,56 +2557,6 @@
       "status": "pending",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-02-18T11:09:21.320000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "CMB α–H₀ degeneracy corridor (structural constraint)",
-      "status": "pending",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-02-18T11:09:15.919000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "CMB+BAO Joint Fit: Background α-gate null result",
-      "status": "failed",
-      "result": "COLLAPSED",
-      "last_updated": "2026-02-18T11:09:09.717000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Shadow-mode v2: TDCOSMO PEMD+NFW time-delay consistency",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:24:12.433000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Verlinde relation a₀~cH₀ emergent from bulk entropy",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:24:07.085000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Anti-EFE: constructive external field response in Graph-AQUAL",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-17T12:24:00.732000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
