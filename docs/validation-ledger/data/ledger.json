@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-25T12:14:29Z",
+  "generated_at": "2026-02-25T18:15:12Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:45.970213Z",
+      "timestamp": "2026-02-25T17:22:45.467617Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:45.983149Z",
+      "timestamp": "2026-02-25T17:22:45.482629Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:45.955251Z",
+      "timestamp": "2026-02-25T17:22:45.453414Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:46.019904Z",
+      "timestamp": "2026-02-25T17:22:45.509957Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:46.003041Z",
+      "timestamp": "2026-02-25T17:22:45.495213Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-25T12:10:45.933802Z",
+      "timestamp": "2026-02-25T17:22:45.435879Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-25T12:10:19.219182+00:00"
+      "timestamp": "2026-02-25T18:10:30.086863+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-25T12:10:19.250109+00:00"
+      "timestamp": "2026-02-25T18:10:30.117776+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-25T12:10:19.269094+00:00"
+      "timestamp": "2026-02-25T18:10:30.130724+00:00"
     }
   },
   "parameters": {
@@ -2527,26 +2527,6 @@
       "status": "success",
       "result": "Planned",
       "last_updated": "2026-02-19T06:11:11.201000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip",
-      "status": "partial",
-      "result": "MARGINAL",
-      "last_updated": "2026-02-18T18:06:20.528000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Planck x_m scan: propto_omega cannot deliver S8 relief",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-18T16:44:57.528000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
