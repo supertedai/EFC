@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-25T00:13:05Z",
+  "generated_at": "2026-02-25T06:13:49Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -10,7 +10,7 @@
     "framework_constraint": 19,
     "planned_pipeline": 14,
     "total_public": 94,
-    "n_falsified": 5,
+    "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
@@ -148,7 +148,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"NO_SIGNAL\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -639,30 +639,30 @@
         "name": "N1 Sound Horizon Control",
         "description": "Tests whether α-signal survives when rd (sound horizon) is (a) fixed to Planck, (b) freed as MCMC parameter. Rules out rd-degeneracy.",
         "result": null,
-        "status": "partial",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, N1a (fixed rd) + N1b (free rd)",
         "prediction": "α significance survives within 0.5σ of baseline under both rd treatments",
         "notes": null,
-        "quantitative_result": "{\"n1a_sigma\": 1.73, \"n1b_sigma\": 1.67, \"verdict\": \"PARTIAL\"}",
+        "quantitative_result": "{\"n1a_sigma\": 0.49, \"n1b_sigma\": 0.5, \"verdict\": \"COLLAPSED\"}",
         "last_synced": null,
-        "status_detail": "partial"
+        "status_detail": "failed"
       },
       {
         "test_id": null,
         "name": "N2 σ8 Prior Sweep",
         "description": "Tests α-signal stability across tight/medium/flat σ₈ priors. Rules out prior-driven artifact.",
         "result": null,
-        "status": "success",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, 3 σ₈ prior configurations",
         "prediction": "α significance stable (within 0.5σ) across all σ₈ prior widths",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"PASS\", \"stram_sigma\": 1.83, \"middels_sigma\": 1.75, \"flat_sigma\": 1.73}",
+        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"stram_sigma\": 0.67, \"middels_sigma\": 0.59, \"flat_sigma\": 0.53}",
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "failed"
       },
       {
         "test_id": null,
@@ -684,45 +684,45 @@
         "name": "N4 Modified Poisson μ≠1",
         "description": "Tests whether EFC growth modification μ(a) = 1 + (μ₀−1)·g(a) is consistent with fσ₈ data. Uses EFCVariantC.",
         "result": null,
-        "status": "partial",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, EFCVariantC with free μ₀",
         "prediction": "μ₀ consistent with 1.0; no tension with growth data",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"MARGINAL\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
+        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
         "last_synced": null,
-        "status_detail": "partial"
+        "status_detail": "failed"
       },
       {
         "test_id": null,
         "name": "N5 Flat rd Prior",
         "description": "Tests α-signal with completely flat (uniform) rd prior over [100, 200] Mpc. Ultimate rd-independence check.",
         "result": null,
-        "status": "success",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "emcee MCMC, uniform rd prior [100, 200] Mpc",
         "prediction": "α significance survives flat rd prior",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"PASS\", \"details\": \"see DiagnosticResult for rd posterior\"}",
+        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for rd posterior\"}",
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "failed"
       },
       {
         "test_id": null,
         "name": "N7 Power-law Gate Shape-Robustness",
         "description": "SHAPE-ROBUSTNESS test: replaces logistic gate with power-law gate g(a)=1/(1+(a_t/a)^n), n=2 from L0 Lorentzian derivation (Core Derivation Note v0.2, Eq. 6-8). Tests whether α survives a different gate CLASS — model-invariance across functional forms. Reports both raw α and A_eff=α·G (gate-mass-normalized amplitude) for fair cross-gate comparison. Distinct from N3 (identifiability): N7 asks 'does α survive a different gate class?' while N3 asks 'can α be extracted when gate has freedom?'",
         "result": null,
-        "status": "partial",
+        "status": "pending",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "NUTS HMC, EFCVariantE (power-law gate, n=2)",
         "prediction": "α survives at ≥1.5σ with power-law gate; A_eff consistent with logistic baseline",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"MARGINAL\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
+        "quantitative_result": "{\"verdict\": \"NO_SIGNAL\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
         "last_synced": null,
-        "status_detail": "partial"
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_regime_transition_metric_f",
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:35.003652Z",
+      "timestamp": "2026-02-25T05:54:45.088079Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:35.011111Z",
+      "timestamp": "2026-02-25T05:54:45.103424Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:34.993954Z",
+      "timestamp": "2026-02-25T05:54:45.075340Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:35.031696Z",
+      "timestamp": "2026-02-25T05:54:45.130768Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:35.021557Z",
+      "timestamp": "2026-02-25T05:54:45.116543Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-24T23:45:34.980020Z",
+      "timestamp": "2026-02-25T05:54:45.057105Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-25T00:09:57.272966+00:00"
+      "timestamp": "2026-02-25T06:10:08.340623+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-25T00:09:57.297193+00:00"
+      "timestamp": "2026-02-25T06:10:08.390204+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-25T00:09:57.306027+00:00"
+      "timestamp": "2026-02-25T06:10:08.408534+00:00"
     }
   },
   "parameters": {
