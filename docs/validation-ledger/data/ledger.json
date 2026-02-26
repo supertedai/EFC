@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-26T12:16:23Z",
+  "generated_at": "2026-02-26T18:17:15Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -14,7 +14,7 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 3,
+    "frontier_count": 5,
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:52.977840Z",
+      "timestamp": "2026-02-26T18:03:04.739559Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:52.992200Z",
+      "timestamp": "2026-02-26T18:03:04.750067Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:52.955964Z",
+      "timestamp": "2026-02-26T18:03:04.726539Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:53.027790Z",
+      "timestamp": "2026-02-26T18:03:04.772593Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:53.012221Z",
+      "timestamp": "2026-02-26T18:03:04.761002Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-26T11:53:52.940517Z",
+      "timestamp": "2026-02-26T18:03:04.688723Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-26T12:11:01.999181+00:00"
+      "timestamp": "2026-02-26T18:11:10.914887+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-26T12:11:02.025000+00:00"
+      "timestamp": "2026-02-26T18:11:10.935784+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-26T12:11:02.042399+00:00"
+      "timestamp": "2026-02-26T18:11:10.946799+00:00"
     }
   },
   "parameters": {
@@ -2166,6 +2166,26 @@
   ],
   "frontier_gaps": [
     {
+      "question": "The chi² value for the 'inference_cluster_tng' module in domain B will be less than or equal to 2.0 when tested within the next 30 days.",
+      "domain": "efc_theory",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": null,
+      "efc_prediction": null,
+      "source": "cross_domain_transfer",
+      "created_at": "2026-02-26T18:09:54.261000000+00:00"
+    },
+    {
+      "question": "Within 30 days, measure chi2 value for module 'inference_shear_kids1000'. If it's above 5.0, the previous recommendation of 50% quality is incorrect.",
+      "domain": "efc_theory",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": null,
+      "efc_prediction": null,
+      "source": "cross_domain_transfer",
+      "created_at": "2026-02-26T18:09:37.750000000+00:00"
+    },
+    {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
       "severity": "MEDIUM",
@@ -2407,86 +2427,6 @@
       "status": "pending",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-02-19T18:47:39.538000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "AQUAL void leakage: falsification test for L0/L1 regime screening",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:36:20.300000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Forbidden Pattern distance-to-trigger quantification",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:18:21.639000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Freeze v4: Planck-independent H₀ from EFC BAO+SNIa",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:18:13.477000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Freeze v3: E_G(z=0.7) gravitational slip prediction",
-      "status": "partial",
-      "result": "MARGINAL",
-      "last_updated": "2026-02-19T12:18:05.856000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Freeze v2: fσ₈(z=1.5) blind prediction for DESI DR2 ELG",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:17:59.620000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Scale-dependent μ(k,z): first constraint on EFC characteristic scale k*",
-      "status": "success",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:17:52.976000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "σ₈(z) full trajectory reconstruction: EFC vs ΛCDM vs multi-survey data",
-      "status": "success",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:17:45.743000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "GRAV-to-cosmo μ_eff regime bridge test",
-      "status": "success",
-      "result": "Planned",
-      "last_updated": "2026-02-19T12:17:38.703000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
