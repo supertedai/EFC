@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-02-27T12:19:14Z",
+  "generated_at": "2026-02-27T18:20:00Z",
   "categories": {
     "physics_test": [
       {
@@ -762,15 +762,15 @@
         "test_id": "axiom0_s_hat_v1",
         "name": "Axiom 0: S_hat(z) Regime Boundary Test",
         "description": "Pre-registered phenomenological test: BAO anomalies cluster at EFC regime boundaries in S_hat(z) = log10(rho_SFR) + log10(f_gas) + C0. Sources locked (Madau-Dickinson + Tacconi/PHIBSS Table 3b beta=2). Regime boundaries from uniform z-grid quantiles.",
-        "result": "Primary p=1.0, Sign coherence p=0.01953125",
+        "result": "Primary p=0.57688, Sign coherence p=0.01953125",
         "status": "pending",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "BAO surveys (6dF, MGS, BOSS, eBOSS, DESI)",
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
-        "notes": "Auto-updated by research_daemon Phase 7. test_version=v1.0",
-        "quantitative_result": "p_primary=1.0 p_binom=0.01953125 n=10",
-        "last_synced": "2026-02-22T06:07:52.508000000+00:00",
+        "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
+        "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
+        "last_synced": "2026-02-27T17:47:23.154000000+00:00",
         "status_detail": "pending"
       },
       {
