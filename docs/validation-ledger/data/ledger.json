@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-02-27T00:18:01Z",
+  "generated_at": "2026-02-27T06:18:22Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -14,7 +14,7 @@
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 4,
+    "frontier_count": 3,
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.271074Z",
+      "timestamp": "2026-02-27T05:21:38.895630Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.282753Z",
+      "timestamp": "2026-02-27T05:21:38.906885Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.255689Z",
+      "timestamp": "2026-02-27T05:21:38.883748Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.303475Z",
+      "timestamp": "2026-02-27T05:21:38.930737Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.293717Z",
+      "timestamp": "2026-02-27T05:21:38.920254Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-02-27T00:13:38.238201Z",
+      "timestamp": "2026-02-27T05:21:38.870433Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-27T00:11:19.024250+00:00"
+      "timestamp": "2026-02-27T06:11:29.419736+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-02-27T00:11:19.050635+00:00"
+      "timestamp": "2026-02-27T06:11:29.442756+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-02-27T00:11:19.068171+00:00"
+      "timestamp": "2026-02-27T06:11:29.453704+00:00"
     }
   },
   "parameters": {
@@ -2165,16 +2165,6 @@
     }
   ],
   "frontier_gaps": [
-    {
-      "question": "Kan vi bruke data fra JWST for å identifisere kritiske eksponenter i faseoverganger i universet?",
-      "domain": "efc|cosmology",
-      "severity": "CRITICAL",
-      "status": "OPEN",
-      "approach": "top_down",
-      "efc_prediction": "EFC forutsier spesifikke kritiske eksponenter som skal observeres under faseoverganger, noe som kan bekreftes med JWST-data.",
-      "source": "llm_frontier_discovery",
-      "created_at": "2026-02-19T23:41:32.638000000+00:00"
-    },
     {
       "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
       "domain": "efc_theory",
