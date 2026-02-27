@@ -1,11 +1,12 @@
 #!/bin/bash
-# Configure Technitium DNS Server for DNS-over-HTTPS (DoH)
+# Configure Technitium DNS Server for secure DNS protocols
 # - Rekursiv: Ren rekursjon (root → TLD → autoritativ), ingen forwarders
-# - Autoritativ: DoH-listener slik at klienter bruker sikker kanal
+# - Sikre protokoller: DoH, DoT, DoQ, DoH/3 aktivert
 # - DNSSEC: Aktivert for validering
-# - Port 53: Deaktiveres (alt over DoH)
+# - Port 53: Deaktiveres (alt over sikre kanaler)
 #
-# Usage: ./configure-technitium-doh.sh
+# Usage: ./configure-technitium-doh.sh [token]
+#        TECHNITIUM_TOKEN=xxx ./configure-technitium-doh.sh
 
 set -euo pipefail
 
@@ -43,6 +44,12 @@ CURRENT=$(curl -s "${DNS_SERVER}/api/settings/get?token=${TOKEN}")
 echo "   Nåværende forwarders: $(echo "$CURRENT" | jq '.response.forwarders')"
 echo "   Rekursjon:           $(echo "$CURRENT" | jq '.response.enableRecursion')"
 echo "   DNSSEC:              $(echo "$CURRENT" | jq '.response.dnssecValidation')"
+echo "   UDP (port 53):       $(echo "$CURRENT" | jq '.response.enableDnsOverUdp')"
+echo "   TCP (port 53):       $(echo "$CURRENT" | jq '.response.enableDnsOverTcp')"
+echo "   DoH:                 $(echo "$CURRENT" | jq '.response.enableDnsOverHttps')"
+echo "   DoT:                 $(echo "$CURRENT" | jq '.response.enableDnsOverTls')"
+echo "   DoQ:                 $(echo "$CURRENT" | jq '.response.enableDnsOverQuic')"
+echo "   DoH/3:               $(echo "$CURRENT" | jq '.response.enableDnsOverHttp3')"
 
 # --- 1. Aktiver ren rekursjon, fjern alle forwarders ---
 echo ""
@@ -62,22 +69,32 @@ else
     echo "$RECURSION_RESULT" | jq .
 fi
 
-# --- 2. Aktiver DoH-listener (sikker kanal for klienter) ---
+# --- 2. Aktiver alle sikre DNS-protokoller ---
 echo ""
-echo ">> Aktiverer DNS-over-HTTPS listener for klienter..."
+echo ">> Aktiverer sikre DNS-protokoller..."
+echo "   DNS-over-HTTP     (port 80)  - for reverse proxy / ACME"
+echo "   DNS-over-HTTPS    (port 443) - DoH"
+echo "   DNS-over-TLS      (port 853) - DoT"
+echo "   DNS-over-QUIC     (port 853) - DoQ"
+echo "   DNS-over-HTTP/3   (port 443) - DoH/3"
 
-DOH_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
+PROTO_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
     --data-urlencode "enableDnsOverHttp=true" \
     --data-urlencode "enableDnsOverHttps=true" \
+    --data-urlencode "enableDnsOverTls=true" \
+    --data-urlencode "enableDnsOverQuic=true" \
+    --data-urlencode "enableDnsOverHttp3=true" \
     --data-urlencode "dnsOverHttpPort=80" \
-    --data-urlencode "dnsOverHttpsPort=443")
+    --data-urlencode "dnsOverTlsPort=853" \
+    --data-urlencode "dnsOverHttpsPort=443" \
+    --data-urlencode "dnsOverQuicPort=853")
 
-STATUS=$(echo "$DOH_RESULT" | jq -r '.status')
+STATUS=$(echo "$PROTO_RESULT" | jq -r '.status')
 if [ "$STATUS" = "ok" ]; then
-    echo "   DoH-listener aktivert (HTTPS port 443, HTTP port 80)."
+    echo "   Alle sikre protokoller aktivert OK."
 else
-    echo "   FEIL ved aktivering av DoH:"
-    echo "$DOH_RESULT" | jq .
+    echo "   FEIL ved aktivering av sikre protokoller:"
+    echo "$PROTO_RESULT" | jq .
 fi
 
 # --- 3. Deaktiver vanlig DNS på port 53 ---
@@ -100,29 +117,59 @@ else
     echo "   Port 53 forblir aktiv."
 fi
 
-# --- 4. Verifiser konfigurasjon ---
+# --- 4. TLS-sertifikat ---
+echo ""
+read -p "Sti til TLS-sertifikat (.pfx/.p12), eller trykk Enter for å hoppe over: " TLS_PATH
+if [ -n "$TLS_PATH" ]; then
+    read -sp "Sertifikat-passord (Enter for ingen): " TLS_PASS
+    echo
+
+    TLS_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
+        --data-urlencode "tlsCertificatePath=${TLS_PATH}" \
+        --data-urlencode "tlsCertificatePassword=${TLS_PASS}")
+
+    STATUS=$(echo "$TLS_RESULT" | jq -r '.status')
+    if [ "$STATUS" = "ok" ]; then
+        echo "   TLS-sertifikat konfigurert: ${TLS_PATH}"
+    else
+        echo "   FEIL ved TLS-konfigurasjon:"
+        echo "$TLS_RESULT" | jq .
+    fi
+else
+    echo "   Hopper over TLS-sertifikat."
+    echo "   MERK: DoT, DoQ og DoH krever TLS-sertifikat for å fungere!"
+fi
+
+# --- 5. Verifiser konfigurasjon ---
 echo ""
 echo ">> Verifiserer endelig konfigurasjon..."
 FINAL=$(curl -s "${DNS_SERVER}/api/settings/get?token=${TOKEN}")
 
 echo ""
-echo "   === Endelig konfigurasjon ==="
-echo "   Rekursjon:         $(echo "$FINAL" | jq '.response.enableRecursion')"
-echo "   Forwarders:        $(echo "$FINAL" | jq '.response.forwarders')"
-echo "   DNSSEC:            $(echo "$FINAL" | jq '.response.dnssecValidation')"
-echo "   DoH (HTTPS):       $(echo "$FINAL" | jq '.response.enableDnsOverHttps')"
-echo "   DoH port:          $(echo "$FINAL" | jq '.response.dnsOverHttpsPort')"
-echo "   UDP (port 53):     $(echo "$FINAL" | jq '.response.enableDnsOverUdp')"
-echo "   TCP (port 53):     $(echo "$FINAL" | jq '.response.enableDnsOverTcp')"
+echo "   ╔══════════════════════════════════════╗"
+echo "   ║      Endelig DNS-konfigurasjon       ║"
+echo "   ╠══════════════════════════════════════╣"
+echo "   ║ Rekursjon:       $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableRecursion')") ║"
+echo "   ║ Forwarders:      $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.forwarders // "ingen"')") ║"
+echo "   ║ DNSSEC:          $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.dnssecValidation')") ║"
+echo "   ╠══════════════════════════════════════╣"
+echo "   ║ UDP port 53:     $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverUdp')") ║"
+echo "   ║ TCP port 53:     $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverTcp')") ║"
+echo "   ╠══════════════════════════════════════╣"
+echo "   ║ DoH (HTTPS/443): $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverHttps')") ║"
+echo "   ║ DoH (HTTP/80):   $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverHttp')") ║"
+echo "   ║ DoH/3:           $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverHttp3')") ║"
+echo "   ║ DoT (853):       $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverTls')") ║"
+echo "   ║ DoQ (853):       $(printf '%-18s' "$(echo "$FINAL" | jq -r '.response.enableDnsOverQuic')") ║"
+echo "   ╚══════════════════════════════════════╝"
 
 echo ""
 echo "Ferdig! Technitium DNS kjører nå med:"
 echo "  - Ren rekursiv oppløsning (ingen forwarders)"
-echo "  - DNSSEC-validering aktivert"
-echo "  - Klienter kobler til via DoH (HTTPS)"
+echo "  - DNSSEC-validering"
+echo "  - DoH, DoT, DoQ, DoH/3 aktivert"
 echo ""
-echo "MERK: For HTTPS trenger du et TLS-sertifikat."
-echo "Konfigurer dette i Technitium: Settings > Web Service > TLS Certificate"
-echo "eller bruk innebygd Let's Encrypt (ACME)."
-echo ""
-echo "Test med: curl -s 'https://192.168.1.34/dns-query?name=example.com&type=A' -H 'accept: application/dns-json'"
+echo "Klient-endepunkter:"
+echo "  DoH:  https://192.168.1.34/dns-query"
+echo "  DoT:  tls://192.168.1.34:853"
+echo "  DoQ:  quic://192.168.1.34:853"
