@@ -1,7 +1,9 @@
 #!/bin/bash
 # Configure Technitium DNS Server for DNS-over-HTTPS (DoH)
-# - Recursive: Use DoH forwarders instead of plain DNS (port 53)
-# - Authoritative: Enable DoH listener on the server
+# - Rekursiv: Ren rekursjon (root → TLD → autoritativ), ingen forwarders
+# - Autoritativ: DoH-listener slik at klienter bruker sikker kanal
+# - DNSSEC: Aktivert for validering
+# - Port 53: Deaktiveres (alt over DoH)
 #
 # Usage: ./configure-technitium-doh.sh
 
@@ -28,32 +30,32 @@ echo "   Innlogget OK."
 # --- Hent nåværende innstillinger ---
 echo ">> Henter nåværende innstillinger..."
 CURRENT=$(curl -s "${DNS_SERVER}/api/settings/get?token=${TOKEN}")
-echo "   Nåværende DNS-port: $(echo "$CURRENT" | jq '.response.dnsServerLocalEndPoints')"
 echo "   Nåværende forwarders: $(echo "$CURRENT" | jq '.response.forwarders')"
+echo "   Rekursjon:           $(echo "$CURRENT" | jq '.response.enableRecursion')"
+echo "   DNSSEC:              $(echo "$CURRENT" | jq '.response.dnssecValidation')"
 
-# --- 1. Konfigurer rekursive DoH-forwarders ---
+# --- 1. Aktiver ren rekursjon, fjern alle forwarders ---
 echo ""
-echo ">> Konfigurerer rekursive DoH-forwarders..."
-echo "   (Cloudflare, Google, Quad9 over HTTPS)"
+echo ">> Aktiverer ren rekursiv oppløsning (ingen forwarders)..."
+echo "   Serveren vil spørre root-servere → TLD → autoritative direkte."
 
-# Sett forwarders til DoH
-FORWARDER_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
-    --data-urlencode "forwarders=https://cloudflare-dns.com/dns-query,https://dns.google/dns-query,https://dns.quad9.net/dns-query" \
-    --data-urlencode "forwarderProtocol=HttpsJson")
+RECURSION_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
+    --data-urlencode "enableRecursion=true" \
+    --data-urlencode "forwarders=" \
+    --data-urlencode "dnssecValidation=true")
 
-STATUS=$(echo "$FORWARDER_RESULT" | jq -r '.status')
+STATUS=$(echo "$RECURSION_RESULT" | jq -r '.status')
 if [ "$STATUS" = "ok" ]; then
-    echo "   Rekursive DoH-forwarders konfigurert OK."
+    echo "   Ren rekursjon aktivert, forwarders fjernet, DNSSEC aktivert."
 else
-    echo "   FEIL ved konfigurasjon av forwarders:"
-    echo "$FORWARDER_RESULT" | jq .
+    echo "   FEIL:"
+    echo "$RECURSION_RESULT" | jq .
 fi
 
-# --- 2. Aktiver DoH-listener på serveren (autoritativ) ---
+# --- 2. Aktiver DoH-listener (sikker kanal for klienter) ---
 echo ""
-echo ">> Aktiverer DNS-over-HTTPS listener..."
+echo ">> Aktiverer DNS-over-HTTPS listener for klienter..."
 
-# Aktiver DoH på port 443
 DOH_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
     --data-urlencode "enableDnsOverHttp=true" \
     --data-urlencode "enableDnsOverHttps=true" \
@@ -62,13 +64,13 @@ DOH_RESULT=$(curl -s "${DNS_SERVER}/api/settings/set?token=${TOKEN}" \
 
 STATUS=$(echo "$DOH_RESULT" | jq -r '.status')
 if [ "$STATUS" = "ok" ]; then
-    echo "   DoH-listener aktivert OK (HTTPS port 443, HTTP port 80)."
+    echo "   DoH-listener aktivert (HTTPS port 443, HTTP port 80)."
 else
     echo "   FEIL ved aktivering av DoH:"
     echo "$DOH_RESULT" | jq .
 fi
 
-# --- 3. Deaktiver vanlig DNS på port 53 (valgfritt) ---
+# --- 3. Deaktiver vanlig DNS på port 53 ---
 echo ""
 read -p "Vil du deaktivere vanlig DNS på port 53? (j/n): " DISABLE_53
 if [ "$DISABLE_53" = "j" ]; then
@@ -93,16 +95,24 @@ echo ""
 echo ">> Verifiserer endelig konfigurasjon..."
 FINAL=$(curl -s "${DNS_SERVER}/api/settings/get?token=${TOKEN}")
 
-echo "   DoH aktivert:     $(echo "$FINAL" | jq '.response.enableDnsOverHttps')"
-echo "   DoH port:         $(echo "$FINAL" | jq '.response.dnsOverHttpsPort')"
-echo "   Forwarders:       $(echo "$FINAL" | jq '.response.forwarders')"
-echo "   Forwarder proto:  $(echo "$FINAL" | jq '.response.forwarderProtocol')"
-echo "   UDP (port 53):    $(echo "$FINAL" | jq '.response.enableDnsOverUdp')"
-echo "   TCP (port 53):    $(echo "$FINAL" | jq '.response.enableDnsOverTcp')"
+echo ""
+echo "   === Endelig konfigurasjon ==="
+echo "   Rekursjon:         $(echo "$FINAL" | jq '.response.enableRecursion')"
+echo "   Forwarders:        $(echo "$FINAL" | jq '.response.forwarders')"
+echo "   DNSSEC:            $(echo "$FINAL" | jq '.response.dnssecValidation')"
+echo "   DoH (HTTPS):       $(echo "$FINAL" | jq '.response.enableDnsOverHttps')"
+echo "   DoH port:          $(echo "$FINAL" | jq '.response.dnsOverHttpsPort')"
+echo "   UDP (port 53):     $(echo "$FINAL" | jq '.response.enableDnsOverUdp')"
+echo "   TCP (port 53):     $(echo "$FINAL" | jq '.response.enableDnsOverTcp')"
 
 echo ""
-echo "Ferdig! Technitium DNS bruker nå DoH for sikre oppslag."
+echo "Ferdig! Technitium DNS kjører nå med:"
+echo "  - Ren rekursiv oppløsning (ingen forwarders)"
+echo "  - DNSSEC-validering aktivert"
+echo "  - Klienter kobler til via DoH (HTTPS)"
 echo ""
-echo "MERK: For at DoH-listeneren skal fungere med HTTPS trenger du et TLS-sertifikat."
-echo "Du kan konfigurere dette i Technitium under Settings > Web Service > TLS Certificate."
-echo "Alternativt kan du bruke Let's Encrypt via Technitium sitt innebygde ACME-støtte."
+echo "MERK: For HTTPS trenger du et TLS-sertifikat."
+echo "Konfigurer dette i Technitium: Settings > Web Service > TLS Certificate"
+echo "eller bruk innebygd Let's Encrypt (ACME)."
+echo ""
+echo "Test med: curl -s 'https://192.168.1.34/dns-query?name=example.com&type=A' -H 'accept: application/dns-json'"
