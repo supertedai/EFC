@@ -12,20 +12,30 @@ set -euo pipefail
 DNS_SERVER="http://192.168.1.34:5380"
 
 # --- Autentisering ---
-read -p "Brukernavn: " DNS_USER
-read -sp "Passord: " DNS_PASS
-echo
+# Token kan settes via miljøvariabel TECHNITIUM_TOKEN eller som første argument
+TOKEN="${1:-${TECHNITIUM_TOKEN:-}}"
 
-echo ">> Logger inn på Technitium DNS..."
-LOGIN_RESPONSE=$(curl -s "${DNS_SERVER}/api/user/login?user=${DNS_USER}&pass=${DNS_PASS}&includeInfo=true")
-
-TOKEN=$(echo "$LOGIN_RESPONSE" | jq -r '.token // empty')
 if [ -z "$TOKEN" ]; then
-    echo "FEIL: Kunne ikke logge inn. Sjekk brukernavn/passord."
-    echo "$LOGIN_RESPONSE" | jq .
-    exit 1
+    echo "Bruk: ./configure-technitium-doh.sh <token>"
+    echo "  eller: TECHNITIUM_TOKEN=xxx ./configure-technitium-doh.sh"
+    echo ""
+    read -p "Brukernavn: " DNS_USER
+    read -sp "Passord: " DNS_PASS
+    echo
+
+    echo ">> Logger inn på Technitium DNS..."
+    LOGIN_RESPONSE=$(curl -s "${DNS_SERVER}/api/user/login?user=${DNS_USER}&pass=${DNS_PASS}&includeInfo=true")
+
+    TOKEN=$(echo "$LOGIN_RESPONSE" | jq -r '.token // empty')
+    if [ -z "$TOKEN" ]; then
+        echo "FEIL: Kunne ikke logge inn. Sjekk brukernavn/passord."
+        echo "$LOGIN_RESPONSE" | jq .
+        exit 1
+    fi
+    echo "   Innlogget OK."
+else
+    echo ">> Bruker oppgitt API-token."
 fi
-echo "   Innlogget OK."
 
 # --- Hent nåværende innstillinger ---
 echo ">> Henter nåværende innstillinger..."
