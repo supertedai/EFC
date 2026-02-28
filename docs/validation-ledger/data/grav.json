@@ -1,9 +1,9 @@
 {
   "name": "EFC-GRAV Pipeline",
   "version": "3.0",
-  "generated_at": "2026-02-27T18:20:00Z",
+  "generated_at": "2026-02-28T00:20:42Z",
   "latest_run": {
-    "run_id": "2026-02-25_171914_aqual",
+    "run_id": "2026-02-27_052136_aqual",
     "verdict": "NEEDS_REVIEW",
     "started": null,
     "integration_verdict": "PARTIAL_BRIDGE"
@@ -22,11 +22,11 @@
     },
     {
       "name": "KT2_Prefactor_Convergence",
-      "status": "PARTIAL",
+      "status": "PASSED",
       "label": "KT2",
       "slope_mond": null,
       "slope_newton": null,
-      "c_value": 3.683293823139218,
+      "c_value": 2.326896011909397,
       "c_last_diff": null,
       "beta": null,
       "n_cases": null
@@ -39,7 +39,7 @@
       "slope_newton": null,
       "c_value": null,
       "c_last_diff": null,
-      "beta": 0.3192956835601273,
+      "beta": 0.29344896695224687,
       "n_cases": null
     }
   ],
@@ -82,12 +82,12 @@
       "claim_type": null
     },
     {
-      "text": "Prefactor C converges to a finite value as grid resolution increases.",
-      "status": "PARTIAL",
+      "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
+      "status": "SUPPORTED",
       "claim_type": null
     },
     {
-      "text": "Discrete grid functional reproduces Newton and MOND limits from one equation.",
+      "text": "Prefactor C converges to a finite value as grid resolution increases.",
       "status": "SUPPORTED",
       "claim_type": null
     },
@@ -101,7 +101,7 @@
     {
       "scenario": "LCDM_baseline",
       "status": "SURVIVES",
-      "C": 2.3198280825101287,
+      "C": 2.326896011909397,
       "sigma8": 0.81,
       "gamma": 0.555,
       "sigma8_dev": 0.0,
@@ -110,7 +110,7 @@
     {
       "scenario": "k_Lambda_0.0014",
       "status": "SURVIVES",
-      "C": 2.3198280825101287,
+      "C": 2.326896011909397,
       "sigma8": 0.8106,
       "gamma": 0.554,
       "sigma8_dev": 0.07,
@@ -119,19 +119,19 @@
     {
       "scenario": "k_Lambda_0.1",
       "status": "EXPLODED",
-      "C": 2.3198280825101287,
-      "sigma8": 1.5897,
-      "gamma": -0.111,
-      "sigma8_dev": 96.26,
+      "C": 2.326896011909397,
+      "sigma8": 1.5972,
+      "gamma": -0.114,
+      "sigma8_dev": 97.18,
       "k_lambda": 0.1
     },
     {
       "scenario": "k_Lambda_1.0",
       "status": "EXPLODED",
-      "C": 2.3198280825101287,
-      "sigma8": 1.8493,
-      "gamma": -0.198,
-      "sigma8_dev": 128.31,
+      "C": 2.326896011909397,
+      "sigma8": 1.8597,
+      "gamma": -0.201,
+      "sigma8_dev": 129.6,
       "k_lambda": 1.0
     }
   ]
