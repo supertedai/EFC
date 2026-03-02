@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-02T06:24:58Z",
+  "generated_at": "2026-03-02T12:25:34Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -798,7 +798,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-02T04:17:07.720000000+00:00",
+        "last_synced": "2026-03-02T10:38:35.821000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1462,7 +1462,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.122893Z",
+      "timestamp": "2026-03-02T11:32:11.292779Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1485,7 +1485,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.135603Z",
+      "timestamp": "2026-03-02T11:32:11.306510Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1508,7 +1508,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.109970Z",
+      "timestamp": "2026-03-02T11:32:11.271941Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1524,7 +1524,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.158707Z",
+      "timestamp": "2026-03-02T11:32:11.331907Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1543,7 +1543,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.146573Z",
+      "timestamp": "2026-03-02T11:32:11.320985Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1565,7 +1565,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-02T06:24:06.094379Z",
+      "timestamp": "2026-03-02T11:32:11.237774Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1591,7 +1591,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-02T05:54:27.882916+00:00"
+      "timestamp": "2026-03-02T11:54:37.824891+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1605,7 +1605,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-02T05:54:27.903298+00:00"
+      "timestamp": "2026-03-02T11:54:37.855071+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1619,7 +1619,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-02T05:54:27.916158+00:00"
+      "timestamp": "2026-03-02T11:54:37.872795+00:00"
     }
   },
   "parameters": {
@@ -2266,7 +2266,7 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-02T04:17:07.720000000+00:00",
+      "last_updated": "2026-03-02T10:38:35.821000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
@@ -2277,46 +2277,6 @@
       "status": "success",
       "result": null,
       "last_updated": "2026-02-23T13:00:00.000000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "DESI DR2 BAO α-constraint (post-prediction)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-02-23T10:21:31.770000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": null,
-      "status": "success",
-      "result": null,
-      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": null,
-      "status": "success",
-      "result": null,
-      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
-      "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": null,
-      "status": "success",
-      "result": null,
-      "last_updated": "2026-02-23T10:00:00.000000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
