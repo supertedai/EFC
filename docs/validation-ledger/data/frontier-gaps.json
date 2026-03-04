@@ -1,18 +1,8 @@
 {
   "name": "EFC Frontier Research Gaps",
   "version": "3.0",
-  "generated_at": "2026-03-03T18:27:55Z",
+  "generated_at": "2026-03-04T00:28:24Z",
   "gaps": [
-    {
-      "question": "In the next 30 days, if we perform an autonomous cycle with a sampler in the unknown domain (similar to B), we expect its 'alpha_mean' value to be closer to -0.9946564348953854 and receive a 'ROBUST' verdict, assuming the sampler's behavior is similar to null.",
-      "domain": "efc_theory",
-      "severity": "MEDIUM",
-      "status": "OPEN",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-03-03T18:08:36.325000000+00:00"
-    },
     {
       "question": "Applying the 'inference_cluster_tng' module from domain 'unknown' to Bullet Cluster data should result in a chi2 value less than 2.0 within 30 days of testing.",
       "domain": "project.bullet cluster efc test",
