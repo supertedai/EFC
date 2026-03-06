@@ -1,0 +1,62 @@
+{
+  "paper_doi": "10.6084/m9.figshare.31368433",
+  "conventions": {
+    "metric": "ds^2 = -(1+2Psi)dt^2 + a^2(1-2Phi)dx^2",
+    "slip_definition": "eta = Phi/Psi",
+    "mu_definition": "mu = G_eff/G",
+    "sigma_definition": "Sigma = G_lens/G = mu(1+eta)/2",
+    "GR_values": {"mu": 1, "eta": 1, "sigma": 1}
+  },
+  "target_signature": {
+    "mu": {"value": 0.925, "condition": "< 1"},
+    "eta": {"value": 1.27, "condition": "> 1", "note": "For mu=0.925, Sigma=1.05"},
+    "sigma": {"value": 1.05, "condition": "> 1"},
+    "delta_mu": -0.075,
+    "transition_regime": {"z_min": 0.5, "z_max": 1.5}
+  },
+  "entropy_field": {
+    "a_t": 0.30,
+    "z_t": 2.3,
+    "Delta": 0.3,
+    "S_today": 0.969,
+    "dS_dlna_peak": 0.833
+  },
+  "scalar_tensor_ansatz": {
+    "alpha_T": 0,
+    "alpha_B_form": "B0 * dS/d(ln a)",
+    "alpha_M_form": "M0 * S(a)",
+    "free_parameters": {
+      "B0": {"description": "Braiding amplitude", "range": "to be constrained"},
+      "M0": {"description": "Planck-mass running", "range": "to be constrained"},
+      "a_t": {"value": 0.30, "description": "Transition scale factor"},
+      "Delta": {"value": 0.3, "description": "Transition sharpness"}
+    },
+    "stability": {
+      "no_ghost": "Q_S = alpha_K + 3/2 alpha_B^2 > 0",
+      "no_gradient": "c_S^2 > 0"
+    },
+    "implementation": "hi_class + EFTCosmoMC"
+  },
+  "vector_tensor_ansatz": {
+    "coupling": "beta",
+    "mass": "m^2",
+    "slip_estimate": "eta - 1 ~ C_eta * beta^2 * (nabla S)^2 / (k^2 * rho_eff)",
+    "C_eta": "positive, to be determined",
+    "free_parameters": {
+      "beta": {"description": "Entropy-flow coupling", "range": "to be constrained"},
+      "m2": {"description": "Vector field mass squared", "constraint": "> 0"},
+      "a_t": {"value": 0.30},
+      "Delta": {"value": 0.3}
+    },
+    "stability": {
+      "no_tachyon": "m^2 > 0",
+      "no_ghost": "beta^2 < beta_max^2"
+    },
+    "implementation": "Requires new Boltzmann code"
+  },
+  "cmb_compatibility": {
+    "high_z_recovery": "mu -> 1, eta -> 1 at z > 10 via S -> 0",
+    "required_slip_for_target": 1.24,
+    "note": "eta > 2*Sigma/mu - 1 for mu=0.925, Sigma=1.05"
+  }
+}
