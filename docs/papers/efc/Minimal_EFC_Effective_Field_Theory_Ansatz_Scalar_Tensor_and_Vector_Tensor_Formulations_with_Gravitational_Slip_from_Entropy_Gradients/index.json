@@ -1,0 +1,135 @@
+{
+  "$schema": "./schema.json",
+  "paper_id": "EFC-EFT-Ansatz-v6",
+  "title": "Minimal EFC Effective Field Theory Ansatz: Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "version": "v6",
+  "date": "2026-03-06",
+  "doi": "10.6084/m9.figshare.31368433",
+  "status": "Proposed EFT completion — not canonical baseline EFC-D",
+  "abstract": "Two complementary EFT ansatze for EFC: scalar-tensor (Horndeski/EFT-DE) and vector-tensor (dynamical 4-vector J^mu). Both use sigmoid entropy field S(a) to govern GR-to-modified-gravity transition. Target: mu < 1, eta > 1, Sigma > 1.",
+
+  "conventions": {
+    "metric": "ds^2 = -(1+2Psi)dt^2 + a^2(1-2Phi)dx^2",
+    "gauge": "Conformal Newtonian (longitudinal)",
+    "slip": "eta = Phi/Psi (GR: eta = 1)",
+    "mu": "mu = G_eff / G (GR: mu = 1)",
+    "sigma": "Sigma = G_lens / G = mu(1+eta)/2 (GR: Sigma = 1)",
+    "sign_convention": "eta > 1 means |Phi| > |Psi|: lensing potential enhanced"
+  },
+
+  "target_signature": {
+    "mu": {"value": 0.925, "condition": "< 1", "mechanism": "Weakened gravity in growth ODE"},
+    "eta": {"value": 1.27, "condition": "> 1", "mechanism": "Gravitational slip from entropy gradients"},
+    "sigma": {"value": 1.05, "condition": "> 1", "mechanism": "Enhanced lensing: Sigma = mu(1+eta)/2"},
+    "regime": "0.5 < z < 1.5 (transition)",
+    "constraint_eq8": "eta > 2*Sigma/mu - 1"
+  },
+
+  "entropy_field": {
+    "equation": "S(a) = [1 + exp(-(ln a - ln a_t) / Delta)]^{-1}",
+    "parameters": {
+      "a_t": {"value": 0.30, "description": "Transition scale factor", "z_t": 2.3},
+      "Delta": {"value": 0.3, "description": "Transition sharpness"}
+    },
+    "boundary_conditions": {
+      "early_universe": "S -> 0 (GR recovery)",
+      "today": "S -> 1 (max modification)",
+      "peak": "dS/d(ln a) peaks at a = a_t"
+    },
+    "growth_ansatz": {
+      "equation": "mu(a) = 1 + delta_mu * S(a)",
+      "delta_mu": -0.075
+    }
+  },
+
+  "ansatz_I_scalar_tensor": {
+    "name": "Scalar-Tensor EFT (Horndeski)",
+    "action": "L = M_Pl^2/2 R + K(S,X) + G3(S,X) box S",
+    "X_definition": "X = -1/2 (nabla S)^2",
+    "alpha_parameters": {
+      "alpha_T": {"value": 0, "reason": "GW170817 constraint"},
+      "alpha_B": {"form": "proportional to dS/d(ln a)", "coefficient": "B0 (free)"},
+      "alpha_M": {"form": "proportional to S(a)", "coefficient": "M0 (free)"}
+    },
+    "free_parameters": ["B0", "M0", "a_t", "Delta"],
+    "observables": "mu, eta, Sigma determined by {alpha_K, alpha_B, alpha_M, alpha_T} via quasi-static limit",
+    "expected_behaviour": [
+      "mu < 1 at mid-z (alpha_B, alpha_M -> 0 at high z)",
+      "eta > 1 from alpha_B != 0 (sign for B0 > 0, to be confirmed numerically)",
+      "Sigma > 1 region may exist in {B0, M0} space"
+    ],
+    "stability_conditions": {
+      "no_ghost": "Q_S = alpha_K + 3/2 alpha_B^2 > 0",
+      "no_gradient": "c_S^2 > 0"
+    },
+    "implementation": "hi_class + EFTCosmoMC",
+    "testability": "High"
+  },
+
+  "ansatz_II_vector_tensor": {
+    "name": "Vector-Tensor EFT (Energy Flow)",
+    "action": "L = M_Pl^2/2 R - 1/4 F_{mu nu} F^{mu nu} - m^2/2 J_mu J^mu + beta J^mu nabla_mu S",
+    "F_definition": "F_{mu nu} = nabla_mu J_nu - nabla_nu J_mu",
+    "coupling": "beta (entropy-flow coupling constant)",
+    "anisotropic_stress": {
+      "energy_momentum": "T_{mu nu}^(nabla S) = beta^2 [nabla_mu S nabla_nu S - 1/4 g_{mu nu} (nabla S)^2]",
+      "shear": "pi ~ beta^2 nabla S_bar . nabla delta_S",
+      "slip_estimate": "eta - 1 ~ C_eta beta^2 (nabla S_bar)^2 / (k^2 rho_eff)",
+      "C_eta": "positive, to be determined by full perturbation analysis"
+    },
+    "free_parameters": ["beta", "m^2", "a_t", "Delta"],
+    "stability_conditions": {
+      "no_tachyon": "m^2 > 0",
+      "no_ghost": "beta^2 < beta_max^2"
+    },
+    "scalar_connection": "S ~ nabla_mu J^mu or S ~ |J|^2",
+    "implementation": "Requires new Boltzmann code",
+    "testability": "Low"
+  },
+
+  "comparison_table": [
+    {"property": "EFC ontology", "scalar_tensor": "Indirect (S as effective scalar)", "vector_tensor": "Direct (J^mu as flow)"},
+    {"property": "Free parameters", "scalar_tensor": "{B0, M0, a_t, Delta}", "vector_tensor": "{beta, m^2, a_t, Delta}"},
+    {"property": "mu < 1 mechanism", "scalar_tensor": "Via alpha_B, alpha_M", "vector_tensor": "Via J^mu mass term"},
+    {"property": "eta > 1 mechanism", "scalar_tensor": "Via braiding alpha_B != 0", "vector_tensor": "Via pi ~ (nabla S)^2"},
+    {"property": "Sigma > 1", "scalar_tensor": "Numerical check required", "vector_tensor": "Numerical check required"},
+    {"property": "GR at high z", "scalar_tensor": "Automatic (alpha -> 0)", "vector_tensor": "Automatic (nabla S -> 0)"},
+    {"property": "GW170817", "scalar_tensor": "alpha_T = 0 imposed", "vector_tensor": "Naturally small c_T correction"},
+    {"property": "Numerical tools", "scalar_tensor": "hi_class, EFTCosmoMC", "vector_tensor": "New Boltzmann code needed"},
+    {"property": "Testability", "scalar_tensor": "High", "vector_tensor": "Low"}
+  ],
+
+  "cmb_compatibility": {
+    "requirement": "mu -> 1, eta -> 1 at z > 10",
+    "mechanism": "Sigmoid S -> 0 at high z",
+    "alens_motivation": "Sigma > 1 at z ~ 0.5-1",
+    "required_slip": "eta > 2*Sigma/mu - 1 ~ 1.24 for mu=0.925, Sigma=1.05"
+  },
+
+  "falsification_criterion": "No parameter region {B0, M0, a_t, Delta} with mu < 1, eta > 1, Sigma > 1 simultaneously under stability + CMB + LSS constraints in hi_class scan",
+
+  "open_questions": [
+    "Does {B0, M0} region exist with mu < 1, eta > 1, Sigma > 1 simultaneously?",
+    "Are stability conditions Q_S > 0, c_S^2 > 0 satisfied across sigmoid transition?",
+    "What is the precise coefficient C_eta in the vector-tensor slip (Eq 21)?",
+    "Does J^mu action reduce to scalar EFT in isotropic quasi-static limit?"
+  ],
+
+  "priority_steps": [
+    "Implement alpha_B(a), alpha_M(a) with EFC sigmoid in hi_class",
+    "Run joint Planck 2018 + DESI Y1 + BOSS likelihood for {B0, M0, a_t, Delta}",
+    "Verify stability conditions numerically",
+    "Derive linearised perturbation equations for J^mu sector, compute eta(a,k)"
+  ],
+
+  "references": [
+    {"key": "Bellini2014", "arxiv": "1404.3713", "title": "Maximal freedom at minimum cost"},
+    {"key": "Horndeski1974", "doi": "10.1007/BF01807638", "title": "Second-order scalar-tensor field equations"},
+    {"key": "Zumalacarregui2017", "arxiv": "1605.06102", "title": "hi_class"},
+    {"key": "Heisenberg2019", "arxiv": "1807.01725", "title": "Systematic approach to GR generalisations"},
+    {"key": "GW170817", "arxiv": "1710.05834", "title": "GW and gamma-rays from BNS merger"},
+    {"key": "Magnusson2026", "url": "https://energyflow-cosmology.com", "title": "EFC research notes"}
+  ]
+}

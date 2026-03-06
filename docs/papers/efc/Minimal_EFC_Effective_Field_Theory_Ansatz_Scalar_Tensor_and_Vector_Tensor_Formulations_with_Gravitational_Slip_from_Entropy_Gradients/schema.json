@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC-EFT-Ansatz index.json schema",
+  "type": "object",
+  "required": ["paper_id", "title", "author", "conventions", "target_signature", "entropy_field", "ansatz_I_scalar_tensor", "ansatz_II_vector_tensor"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "author": {"type": "string"},
+    "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"},
+    "version": {"type": "string"},
+    "date": {"type": "string", "format": "date"},
+    "doi": {"type": "string"},
+    "status": {"type": "string"},
+    "abstract": {"type": "string"},
+    "conventions": {
+      "type": "object",
+      "required": ["metric", "gauge", "slip", "mu", "sigma"],
+      "properties": {
+        "metric": {"type": "string"},
+        "gauge": {"type": "string"},
+        "slip": {"type": "string"},
+        "mu": {"type": "string"},
+        "sigma": {"type": "string"}
+      }
+    },
+    "target_signature": {
+      "type": "object",
+      "required": ["mu", "eta", "sigma"],
+      "properties": {
+        "mu": {"type": "object", "properties": {"value": {"type": "number"}, "condition": {"type": "string"}}},
+        "eta": {"type": "object", "properties": {"value": {"type": "number"}, "condition": {"type": "string"}}},
+        "sigma": {"type": "object", "properties": {"value": {"type": "number"}, "condition": {"type": "string"}}}
+      }
+    },
+    "entropy_field": {
+      "type": "object",
+      "required": ["equation", "parameters"],
+      "properties": {
+        "equation": {"type": "string"},
+        "parameters": {"type": "object"},
+        "boundary_conditions": {"type": "object"},
+        "growth_ansatz": {"type": "object"}
+      }
+    },
+    "ansatz_I_scalar_tensor": {
+      "type": "object",
+      "required": ["name", "action", "alpha_parameters", "free_parameters"],
+      "properties": {
+        "name": {"type": "string"},
+        "action": {"type": "string"},
+        "alpha_parameters": {"type": "object"},
+        "free_parameters": {"type": "array", "items": {"type": "string"}},
+        "stability_conditions": {"type": "object"}
+      }
+    },
+    "ansatz_II_vector_tensor": {
+      "type": "object",
+      "required": ["name", "action", "coupling", "free_parameters"],
+      "properties": {
+        "name": {"type": "string"},
+        "action": {"type": "string"},
+        "coupling": {"type": "string"},
+        "anisotropic_stress": {"type": "object"},
+        "free_parameters": {"type": "array", "items": {"type": "string"}},
+        "stability_conditions": {"type": "object"}
+      }
+    },
+    "comparison_table": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["property", "scalar_tensor", "vector_tensor"],
+        "properties": {
+          "property": {"type": "string"},
+          "scalar_tensor": {"type": "string"},
+          "vector_tensor": {"type": "string"}
+        }
+      }
+    },
+    "falsification_criterion": {"type": "string"},
+    "open_questions": {"type": "array", "items": {"type": "string"}},
+    "references": {"type": "array"}
+  }
+}

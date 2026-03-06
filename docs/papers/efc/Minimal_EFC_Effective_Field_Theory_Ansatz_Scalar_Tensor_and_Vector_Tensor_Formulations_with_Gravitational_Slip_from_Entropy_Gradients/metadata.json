@@ -1,0 +1,58 @@
+{
+  "package_format": "efc-ai-friendly-v1",
+  "paper_id": "EFC-EFT-Ansatz-v6",
+  "title": "Minimal EFC Effective Field Theory Ansatz",
+  "subtitle": "Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Energy-Flow Cosmology Initiative"
+  },
+  "version": "v6",
+  "date": "2026-03-06",
+  "doi": "10.6084/m9.figshare.31368433",
+  "license": "CC-BY-4.0",
+  "status": "research_note",
+  "canonical_status": "proposed (not canonical baseline EFC-D)",
+  "topics": [
+    "effective field theory",
+    "modified gravity",
+    "scalar-tensor gravity",
+    "vector-tensor gravity",
+    "Horndeski theory",
+    "gravitational slip",
+    "entropy gradients",
+    "CMB lensing",
+    "energy-flow cosmology"
+  ],
+  "ai_metadata": {
+    "ai_parseable": true,
+    "structured_data": ["index.json", "data/eft_parameters.json"],
+    "executable_code": ["src/efc_eft_ansatz.py", "examples/eft_demo.py"],
+    "linked_data": ["EFC-EFT-Ansatz.jsonld"],
+    "validation": ["schema.json"]
+  },
+  "files": [
+    {"path": "README.md", "type": "documentation", "format": "markdown"},
+    {"path": "index.json", "type": "structured_data", "format": "json"},
+    {"path": "schema.json", "type": "validation", "format": "json-schema"},
+    {"path": "metadata.json", "type": "metadata", "format": "json"},
+    {"path": "EFC-EFT-Ansatz.jsonld", "type": "linked_data", "format": "json-ld"},
+    {"path": "citations.bib", "type": "references", "format": "bibtex"},
+    {"path": "src/__init__.py", "type": "source", "format": "python"},
+    {"path": "src/efc_eft_ansatz.py", "type": "source", "format": "python"},
+    {"path": "data/eft_parameters.json", "type": "data", "format": "json"},
+    {"path": "examples/eft_demo.py", "type": "example", "format": "python"}
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "numpy": ">=1.20"
+  },
+  "related_papers": [
+    {
+      "id": "EFC-CMB-Localization",
+      "title": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity",
+      "relation": "Provides the mu-Sigma survival valley that motivates this EFT ansatz"
+    }
+  ]
+}
