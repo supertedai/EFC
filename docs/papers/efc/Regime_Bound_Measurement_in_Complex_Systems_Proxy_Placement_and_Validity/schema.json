@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regime-Bound Measurement index.json schema",
+  "type": "object",
+  "required": ["paper_id", "title", "author", "core_concepts", "theses", "predictions", "cases"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "author": {"type": "string"},
+    "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"},
+    "core_concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "definition", "failure_mode", "test"],
+        "properties": {
+          "name": {"type": "string"},
+          "definition": {"type": "string"},
+          "failure_mode": {"type": "string"},
+          "test": {"type": "string"}
+        }
+      }
+    },
+    "structural_chain": {"type": "array", "items": {"type": "object"}},
+    "theses": {"type": "array", "items": {"type": "object"}},
+    "derived_predictions": {"type": "array"},
+    "predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "domain", "prediction", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "domain": {"type": "string"},
+          "prediction": {"type": "string"},
+          "status": {"type": "string", "enum": ["PARTIAL", "ACTIVE", "Pending", "Meth."]},
+          "test_protocol": {"type": "string"},
+          "current_evidence": {"type": "string"}
+        }
+      }
+    },
+    "falsification_criteria": {"type": "array"},
+    "cases": {"type": "array"}
+  }
+}

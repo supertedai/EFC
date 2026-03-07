@@ -1,0 +1,43 @@
+{
+  "paper_id": "EFC-Regime-Measurement",
+  "prediction_register": {
+    "cosmology": [
+      {"id": "C1", "prediction": "Same (k,S) coordinate yields consistent response across independent probes", "status": "PARTIAL", "evidence": "p=0.020 sign coherence, N=10, secondary statistic", "dataset": "DESI DR2 + f sigma8"},
+      {"id": "C2", "prediction": "Proxy substitution from global S-hat to local structural proxy yields directional drift", "status": "Pending", "evidence": "Test designed; local proxy not yet available", "dataset": "SDSS/GAMA"},
+      {"id": "C3", "prediction": "Largest BAO/growth deviations cluster near regime boundaries", "status": "ACTIVE", "evidence": "DESI z=1.0 dist=0.000 (anecdotal at N=10)", "dataset": "DESI Year-5"},
+      {"id": "C4", "prediction": "H0 within one regime has lower inter-survey variance than pooled", "status": "ACTIVE", "evidence": "Analysis not yet run", "dataset": "Existing H0 literature"},
+      {"id": "C5", "prediction": "LATENT residuals sign-coherent; FLOW higher-variance; ratio > 2.0", "status": "PARTIAL", "evidence": "8/9 positive sign coherence in TRANSITION+LATENT", "dataset": "BAO deviations"},
+      {"id": "C6", "prediction": "Models matched on chi2_BAO diverge in f sigma8 at TRANSITION", "status": "Pending", "evidence": "Requires Euclid WL + DESI growth sample", "dataset": "Euclid WL"}
+    ],
+    "ai_evaluation": [
+      {"id": "A1", "prediction": "Boundary variance increase: models near regime boundaries show higher output variance", "status": "Meth.", "evidence": "Testable on any benchmark + OOD dataset"},
+      {"id": "A2", "prediction": "Episenter shift: accuracy -> calibration error substitution causes >= 2 quartile rank drops", "status": "Meth.", "evidence": "Testable on MMLU + calibration data"},
+      {"id": "A3", "prediction": "Cross-regime Spearman r < 0.5; within-regime r > 0.75", "status": "ACTIVE", "evidence": "Data available; analysis not yet published"},
+      {"id": "A4", "prediction": "SHAP coherence uncorrelated with OOD performance", "status": "Meth.", "evidence": "Requires paired in-dist./OOD evaluation"},
+      {"id": "A5", "prediction": "Validity profile reduces deployment failure prediction error > 20%", "status": "Pending", "evidence": "Requires production incident dataset"}
+    ],
+    "framework_level": [
+      {"id": "F1", "prediction": "Proxy substitution drift direction predictable from declared blindness (both domains)", "status": "ACTIVE", "evidence": "Cosmology component partially run (Axiom 0)"},
+      {"id": "F2", "prediction": "Regime-ID resolution more frequent than model-substitution resolution", "status": "Meth.", "evidence": "Requires systematic conflict taxonomy"}
+    ]
+  },
+  "framework_breaking": [
+    {"id": "F-BREAK 1", "outcome": "Regime-random residuals", "consequence": "Regime structure hypothesis falsified"},
+    {"id": "F-BREAK 2", "outcome": "Proxy-substitution drift is random", "consequence": "Proxy theory falsified"},
+    {"id": "F-BREAK 3", "outcome": "Episenter shift produces random redistribution", "consequence": "Episenter theory falsified"},
+    {"id": "F-BREAK 4", "outcome": "Hubble tension survives full regime-compatibility test", "consequence": "Regime-mismatch explanation falsified"},
+    {"id": "F-BREAK 5", "outcome": "Null results are regime-random", "consequence": "Cartographic null prediction falsified"}
+  ],
+  "partial_revision_triggers": [
+    "S-hat(z) fails to predict regime boundaries at z > 1.5",
+    "Sign coherence does not replicate at N > 30",
+    "Cross-regime rank correlation is domain-pair-dependent",
+    "Episenter shift produces smaller magnitude than predicted"
+  ],
+  "status_legend": {
+    "ACTIVE": "Pre-registered, awaiting data",
+    "PARTIAL": "Preliminary result, not confirmatory",
+    "Pending": "Dataset not yet available",
+    "Meth.": "Methodological, testable on existing data, analysis not yet run"
+  }
+}
