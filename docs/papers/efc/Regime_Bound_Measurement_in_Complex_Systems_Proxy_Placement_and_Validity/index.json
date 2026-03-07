@@ -1,0 +1,187 @@
+{
+  "$schema": "./schema.json",
+  "paper_id": "EFC-Regime-Measurement",
+  "title": "Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "date": "2026-03-07",
+  "status": "working_paper",
+  "abstract": "Formalises a general measurement framework where analysis is cartography — mapping outputs as coordinates on a structured response surface — rather than verdict. Five operative concepts (regime, proxy, placement, episenter, compression) applied to cosmological structure analysis (WP3/R(k,S)) and AI evaluation. 13 testable predictions with falsification criteria.",
+
+  "core_thesis": "Observed outputs in complex systems are not direct reads of the underlying phenomenon, but regime-conditioned products of proxy choice, instrument logic, observer placement, and interpretive compression.",
+
+  "core_concepts": [
+    {
+      "name": "Regime",
+      "definition": "Bounded domain in parameter space where a consistent set of inferential rules, response functions, and validity criteria holds",
+      "properties": ["Interior stability", "Boundary conditions", "Non-universality"],
+      "failure_mode": "Conflation: pooling across regime boundaries",
+      "test": "Residuals by regime differ significantly",
+      "cosmology_example": "FLOW/TRANSITION/LATENT over S-hat(z)",
+      "ai_example": "Formal academic vs. conversational/adversarial inputs"
+    },
+    {
+      "name": "Proxy",
+      "definition": "Mediating variable through which a phenomenon is made measurable, with defined visibility and declared blindness",
+      "properties": ["Visibility-blindness asymmetry", "Regime-conditioned validity", "Declared limitations requirement"],
+      "failure_mode": "Opacity: treating proxy as direct read",
+      "test": "Proxy substitution produces systematic drift",
+      "cosmology_example": "S-hat(z) = log10(rho_SFR) + log10(f_gas) + C0; blind to local environments",
+      "ai_example": "BLEU score; blind to semantic adequacy, pragmatic coherence"
+    },
+    {
+      "name": "Placement",
+      "definition": "Observer's operative position across three analytically independent spaces",
+      "dimensions": ["Physical placement", "Instrument placement", "Interpretive placement"],
+      "failure_mode": "Incompatibility: comparing across placement dimensions",
+      "test": "Placement-matching reduces apparent conflict",
+      "cosmology_example": "CMB (z~1100, power spectrum, FLRW extrapolation) vs SNIa (z<0.1, distance ladder, local calibration)",
+      "ai_example": "Human rater vs automated metric (different instrument + interpretive placement)"
+    },
+    {
+      "name": "Episenter",
+      "definition": "Weighted set of privileged variables and interpretive choices that determines what appears central and what is pushed to the periphery",
+      "key_property": "Constructed, not found",
+      "failure_mode": "Universalism: undeclared single episenter",
+      "test": "Episenter shift produces structured redistribution",
+      "cosmology_example": "z-space vs S-space: same data, different residual structures",
+      "ai_example": "Accuracy vs calibration error: different model rankings"
+    },
+    {
+      "name": "Compression",
+      "definition": "Structural reduction inherent in any measurement act: mapping from high-dimensional phenomenon to lower-dimensional output",
+      "properties": ["Necessary", "Selective", "Consequential"],
+      "failure_mode": "Neglect: scalar treated as complete representation",
+      "test": "Lost dimensions have predictable footprint",
+      "cosmology_example": "P(k) discards phase information and higher-order correlations",
+      "ai_example": "Scalar benchmark score discards variance, tail behaviour, failure modes"
+    }
+  ],
+
+  "structural_chain": [
+    {"step": "regime", "role": "scope"},
+    {"step": "proxy + placement", "role": "access"},
+    {"step": "episenter", "role": "organisation"},
+    {"step": "compression", "role": "reduction"},
+    {"step": "output", "role": "observed datum"}
+  ],
+
+  "theses": [
+    {"id": 1, "statement": "Measurement is not direct readout"},
+    {"id": 2, "statement": "Proxy creates both visibility and blindness"},
+    {"id": 3, "statement": "Measurement placement is a primary question"},
+    {"id": 4, "statement": "Episenter is produced, not given"},
+    {"id": 5, "statement": "Conflicts may be regime conflicts"},
+    {"id": 6, "statement": "Validity is regime-conditioned"},
+    {"id": 7, "statement": "Analysis of the analysis is part of the analysis"},
+    {"id": 8, "statement": "Measurement is compression"},
+    {"id": 9, "statement": "A fragment carries holistic structure under four conditions: structural logic preservation, episenter compatibility, directional consistency, regime compatibility"}
+  ],
+
+  "derived_predictions": [
+    {"id": "P1", "name": "Consistent response at shared coordinates"},
+    {"id": "P2", "name": "Systematic proxy-substitution drift"},
+    {"id": "P3", "name": "Regime-resolution of conflicts"},
+    {"id": "P4", "name": "Cartographic null results"},
+    {"id": "P5", "name": "Episenter-shift redistribution"}
+  ],
+
+  "cases": [
+    {
+      "id": "Case1",
+      "name": "Cosmology (WP3 / R(k,S))",
+      "three_failures": ["Regime conflation", "Proxy opacity (z as direct proxy)", "Episenter universalism (H0)"],
+      "response_surface": "R(k, S) maps scale k x structural state S",
+      "regimes": [
+        {"name": "FLOW", "tertile": "Bottom", "character": "High rho_SFR; active energy redistribution", "expected": "High response amplitude, higher variance"},
+        {"name": "TRANSITION", "tertile": "Middle", "character": "Near-boundary dynamics; moderate rho_SFR", "expected": "Intermediate; high boundary sensitivity"},
+        {"name": "LATENT", "tertile": "Top", "character": "Low rho_SFR; suppressed response", "expected": "Near-null signal; coherent sign structure"}
+      ],
+      "proxy": {
+        "formula": "S-hat(z) = log10(rho_SFR(z)) + log10(f_gas(z)) + C0",
+        "components": ["rho_SFR: Madau-Dickinson parametrisation", "f_gas: Tacconi/PHIBSS Table 3b (beta=2)", "Equal weight, locked parametrisation"],
+        "declared_blindness": "Encodes cosmic averages, not local structural state"
+      },
+      "axiom0": {
+        "primary": {"statistic": "Mean distance to nearest regime boundary", "result": "p = 1.0", "interpretation": "Degenerate: deterministic mapping with N=10 leaves no permutation variance"},
+        "secondary": {"statistic": "Sign coherence (TRANSITION + LATENT)", "result": "p = 0.020", "interpretation": "8/9 positive; consistent with EFC but not confirmatory"},
+        "notable": [
+          {"point": "DESI z=1.0", "finding": "dist = 0.000 (exactly on FLOW/TRANSITION boundary)"},
+          {"point": "eBOSS LRG z=0.51", "finding": "2.0 sigma, dist = 0.019"},
+          {"point": "f sigma8 z=0.7", "finding": "2.0 sigma"}
+        ],
+        "n_data": 10,
+        "status": "Preliminary; requires N >= 30 and pre-registration as primary"
+      },
+      "hubble_tension": {
+        "reframing": "Regime mismatch, not empirical contradiction",
+        "cmb_placement": {"z": 1100, "regime": "FLOW", "instrument": "CMB anisotropy power spectrum"},
+        "snia_placement": {"z_max": 0.1, "regime": "LATENT", "instrument": "SNIa distance modulus ladder"},
+        "prediction_C4": "H0 within one regime has lower inter-survey variance than pooled cross-regime"
+      }
+    },
+    {
+      "id": "Case2",
+      "name": "AI Evaluation (Validity-Aware AI)",
+      "three_failures": ["Explainability conflation", "Benchmark regime opacity", "Episenter universalism (accuracy)"],
+      "regime_dimensions": ["Input distribution", "Task structure", "Annotation regime", "Deployment context"],
+      "key_insight": "Explainability is not validity — explainability measures internal routing, validity measures output quality",
+      "validity_profile": ["Regime declaration", "Proxy declaration", "Placement specification", "Episenter transparency", "Compression accounting"]
+    }
+  ],
+
+  "predictions": [
+    {"id": "C1", "domain": "Cosmology", "prediction": "Same (k,S) coordinate yields consistent response across independent probes", "status": "PARTIAL", "test_protocol": "Map DESI DR2 + f sigma8 onto (k,S); test consistency vs probe-specific null", "current_evidence": "p=0.020 sign coherence, N=10, secondary statistic"},
+    {"id": "C2", "domain": "Cosmology", "prediction": "Proxy substitution from global S-hat to local structural proxy yields directional drift", "status": "Pending", "test_protocol": "Compare regime assignments: S-hat(z) vs morphology proxy on SDSS/GAMA"},
+    {"id": "C3", "domain": "Cosmology", "prediction": "Largest BAO/growth deviations cluster near regime boundaries in S-hat-space", "status": "ACTIVE", "test_protocol": "Axiom 0 v2 pre-registered on DESI Year-5 (N>=30)"},
+    {"id": "C4", "domain": "Cosmology", "prediction": "H0 within a single S-hat-regime shows lower inter-survey variance than pooled cross-regime estimates", "status": "ACTIVE", "test_protocol": "Stratify existing H0 measurements by S-hat-regime; compute within- vs cross-regime variance"},
+    {"id": "C5", "domain": "Cosmology", "prediction": "LATENT residuals sign-coherent and low-variance; FLOW higher-variance; ratio > 2.0", "status": "PARTIAL", "test_protocol": "Compute residuals per regime; runs-test + sign-coherence + variance ratio", "current_evidence": "8/9 positive sign coherence in TRANSITION+LATENT"},
+    {"id": "C6", "domain": "Cosmology", "prediction": "Models matched on chi2_BAO but differing in proxy construction diverge in f sigma8 at TRANSITION coordinates", "status": "Pending", "test_protocol": "Select matched model pairs; evaluate f sigma8 at S-hat-identified TRANSITION coords"},
+    {"id": "A1", "domain": "AI", "prediction": "Models near benchmark regime boundaries show higher output variance and lower metric reliability", "status": "Meth.", "test_protocol": "Sample inputs at graduated OOD distance; compute output variance per distance band"},
+    {"id": "A2", "domain": "AI", "prediction": "Accuracy -> calibration error substitution: top-quartile-accuracy/bottom-half-calibration models fall >= 2 quartiles", "status": "Meth.", "test_protocol": "Apply both metrics to MMLU; compute rank changes; test direction vs permutation null"},
+    {"id": "A3", "domain": "AI", "prediction": "Spearman r < 0.5 between formal-academic and conversational/adversarial rankings; within-regime r > 0.75", "status": "ACTIVE", "test_protocol": "MMLU vs MT-Bench / adversarial NLI ranking correlation"},
+    {"id": "A4", "domain": "AI", "prediction": "SHAP coherence in training regime is uncorrelated with OOD performance", "status": "Meth.", "test_protocol": "Compute SHAP coherence on train-dist; evaluate same models OOD; test correlation"},
+    {"id": "A5", "domain": "AI", "prediction": "Validity profile reduces deployment failure prediction error by > 20% vs scalar score alone", "status": "Pending", "test_protocol": "Collect production incident data; compare prediction accuracy"},
+    {"id": "F1", "domain": "Both", "prediction": "Proxy substitution drift direction in both domains is predictable from declared structural blindness", "status": "ACTIVE", "test_protocol": "Proxy swap experiments in both domains; test direction vs permutation null"},
+    {"id": "F2", "domain": "Both", "prediction": "Conflicts resolved by regime identification but not by model substitution are more frequent than the reverse", "status": "Meth.", "test_protocol": "Systematic conflict taxonomy in both domains; resolution scoring"}
+  ],
+
+  "falsification_criteria": [
+    {"id": "F-BREAK 1", "name": "Regime-random residuals", "description": "LATENT, TRANSITION, FLOW residuals are statistically indistinguishable"},
+    {"id": "F-BREAK 2", "name": "Proxy-substitution drift is random", "description": "Drift direction cannot be predicted from declared blindness"},
+    {"id": "F-BREAK 3", "name": "Episenter shift produces random redistribution", "description": "Rank changes after metric substitution are indistinguishable from random"},
+    {"id": "F-BREAK 4", "name": "Hubble tension survives full regime-compatibility test", "description": "Tension persists at full significance after all three placement dimensions made compatible"},
+    {"id": "F-BREAK 5", "name": "Null results are regime-random", "description": "Null results distributed uniformly across regimes"}
+  ],
+
+  "genuine_test_criteria": [
+    {"id": "C1", "name": "Pre-specification", "description": "Prediction stated before test, protocol locked"},
+    {"id": "C2", "name": "Discriminability", "description": "Prediction distinguishable from competing explanation"},
+    {"id": "C3", "name": "Directionality", "description": "Direction and approximate magnitude specified"},
+    {"id": "C4", "name": "Regime-scope declaration", "description": "Regime in which prediction holds is declared"}
+  ],
+
+  "falsification_protocol": [
+    {"id": "FC1", "requirement": "Pre-registered test"},
+    {"id": "FC2", "requirement": "Adequate statistical power"},
+    {"id": "FC3", "requirement": "Regime-compatible execution"}
+  ],
+
+  "references": [
+    {"key": "[1]", "doi": "10.6084/m9.figshare.31231522", "title": "BAO transfer test"},
+    {"key": "[2]", "doi": "10.6084/m9.figshare.31304980", "title": "Four-channel background coupling"},
+    {"key": "[3]", "doi": "10.6084/m9.figshare.31305550", "title": "SCE: EFC vs LCDM"},
+    {"key": "[4]", "doi": "10.6084/m9.figshare.31211437", "title": "R(k,S) framework"},
+    {"key": "[5]", "doi": "10.6084/m9.figshare.31215259", "title": "WP3 first empirical slice"},
+    {"key": "[6]", "doi": "10.6084/m9.figshare.31368433", "title": "CMB+LSS localization"},
+    {"key": "[7]", "doi": "10.6084/m9.figshare.31332730", "title": "MVP-G1 growth robustness"},
+    {"key": "[8]", "doi": "10.6084/m9.figshare.31222903", "title": "EBE Core Principles"},
+    {"key": "[9]", "doi": "10.6084/m9.figshare.31222900", "title": "RCMP"},
+    {"key": "[10]", "doi": "10.6084/m9.figshare.31224247", "title": "Hubble Tension as Regime Mismatch"},
+    {"key": "[11]", "doi": "10.6084/m9.figshare.31293745", "title": "SCE Framework"},
+    {"key": "[12]", "doi": "10.6084/m9.figshare.31122970", "title": "Validity-Aware AI"},
+    {"key": "[13]", "doi": "10.6084/m9.figshare.31223650", "title": "Regime-Based World Modeling"},
+    {"key": "[14]", "doi": "10.6084/m9.figshare.31562200", "title": "EFC EFT Ansatz"}
+  ]
+}

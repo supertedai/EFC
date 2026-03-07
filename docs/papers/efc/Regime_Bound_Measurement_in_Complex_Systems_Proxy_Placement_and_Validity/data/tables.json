@@ -1,0 +1,87 @@
+{
+  "paper_id": "EFC-Regime-Measurement",
+  "table1_reference": {
+    "title": "Five operative concepts with definitions, failure modes, and testability criteria",
+    "rows": [
+      {"concept": "Regime", "definition": "Bounded domain where consistent inferential rules hold", "failure_mode": "Conflation: pooling across regime boundaries", "test": "Residuals by regime differ significantly"},
+      {"concept": "Proxy", "definition": "Mediating variable with defined visibility and declared blindness", "failure_mode": "Opacity: treating proxy as direct read", "test": "Proxy substitution produces systematic drift"},
+      {"concept": "Placement", "definition": "Position across physical, instrument, interpretive space", "failure_mode": "Incompatibility: comparing across placement dimensions", "test": "Placement-matching reduces apparent conflict"},
+      {"concept": "Episenter", "definition": "Weighted privileged variables organising what appears central", "failure_mode": "Universalism: undeclared single episenter", "test": "Episenter shift produces structured redistribution"},
+      {"concept": "Compression", "definition": "Structural reduction from phenomenon to output", "failure_mode": "Neglect: scalar treated as complete representation", "test": "Lost dimensions have predictable footprint"}
+    ]
+  },
+  "table2_regimes": {
+    "title": "Three EFC structural regimes",
+    "note": "Boundaries set by tertile quantiles over z in [0.07, 2.4], locked before analysis",
+    "rows": [
+      {"regime": "FLOW", "tertile": "Bottom", "character": "High rho_SFR; active energy redistribution; rapid structural assembly", "expected_response": "High response amplitude, higher variance"},
+      {"regime": "TRANSITION", "tertile": "Middle", "character": "Near-boundary dynamics; moderate rho_SFR; regime crossover", "expected_response": "Intermediate; high boundary sensitivity"},
+      {"regime": "LATENT", "tertile": "Top", "character": "Low rho_SFR; suppressed response; structural equilibration", "expected_response": "Near-null signal; coherent sign structure"}
+    ]
+  },
+  "table3_axiom0": {
+    "title": "Axiom 0 test results (2026-02-20, N=10 BAO deviations)",
+    "primary": {"statistic": "Mean distance to boundary", "result": "p = 1.0", "interpretation": "Degenerate: deterministic mapping with N=10"},
+    "secondary": {"statistic": "Sign coherence (TRANSITION + LATENT)", "result": "p = 0.020", "interpretation": "8/9 positive; consistent but not confirmatory"},
+    "notable_points": [
+      {"point": "DESI z=1.0", "distance": 0.000, "significance": "On FLOW/TRANSITION boundary"},
+      {"point": "eBOSS LRG z=0.51", "distance": 0.019, "significance": "2.0 sigma"},
+      {"point": "f sigma8 z=0.7", "significance": "2.0 sigma, in TRANSITION regime"}
+    ]
+  },
+  "table4_hubble_placement": {
+    "title": "Placement analysis of two primary H0 measurement configurations",
+    "dimensions": ["Physical (z)", "S-hat regime", "Instrument", "Interpretive", "Compression"],
+    "cmb": {"z": 1100, "regime": "FLOW", "instrument": "CMB anisotropy power spectrum", "interpretive": "FLRW extrapolation from z=1100", "compression": "Full CMB power spectrum -> H0"},
+    "snia": {"z_max": 0.1, "regime": "LATENT", "instrument": "SNIa distance modulus ladder", "interpretive": "Local calibration + FLRW", "compression": "Full distance ladder -> H0"},
+    "conclusion": "All three placement dimensions are incompatible"
+  },
+  "table5_ai_regimes": {
+    "title": "Four dimensions defining an AI evaluation regime",
+    "dimensions": [
+      {"dimension": "Input distribution", "high_validity": "Formal academic text matching training distribution", "unknown_validity": "Informal conversational text, code-switching, low-resource languages"},
+      {"dimension": "Task structure", "high_validity": "Closed-form QA with single correct answer", "unknown_validity": "Open-ended generation with multi-dimensional quality criteria"},
+      {"dimension": "Annotation regime", "high_validity": "Expert-labelled data in target domain", "unknown_validity": "Crowdsourced labels, different protocol, different population"},
+      {"dimension": "Deployment context", "high_validity": "Batch processing in controlled environment", "unknown_validity": "Real-time interactive deployment under adversarial input pressure"}
+    ]
+  },
+  "table6_ai_metrics": {
+    "title": "Proxy structure of standard AI evaluation metrics",
+    "rows": [
+      {"metric": "BLEU/ROUGE", "target": "Translation/summarisation quality", "visibility": "n-gram overlap with reference; reliable in formal single-reference regimes", "blindness": "Semantic adequacy, pragmatic coherence, multi-reference validity, register variation"},
+      {"metric": "Accuracy/F1", "target": "Classification correctness", "visibility": "Mean correctness on i.i.d. held-out set", "blindness": "Calibration, tail behaviour, failure mode distribution, OOD performance"},
+      {"metric": "Perplexity", "target": "LM quality", "visibility": "Log-likelihood on test set; sensitive to distributional fit", "blindness": "Downstream task performance, factual accuracy, coherence over long contexts"},
+      {"metric": "Human preference ratings", "target": "Overall output quality", "visibility": "Captures pragmatic and contextual quality; regime-flexible", "blindness": "Rater variance, annotation protocol dependence, demographic coverage"},
+      {"metric": "SHAP/attention", "target": "Feature attribution (explainability)", "visibility": "Local attribution for single inference; mechanistically informative", "blindness": "Global validity, calibration, cross-regime reliability, output accuracy"}
+    ]
+  },
+  "table7_cross_domain": {
+    "title": "Structural parallel across both domains",
+    "rows": [
+      {"concept": "Regime", "cosmology": "FLOW/TRANSITION/LATENT over S-hat(z)", "ai": "Input dist. x task structure x annotation protocol x deployment context"},
+      {"concept": "Proxy", "cosmology": "S-hat(z): blind to local environments", "ai": "Accuracy/BLEU: blind to calibration, tail behaviour, cross-regime transfer"},
+      {"concept": "Placement", "cosmology": "Physical (z, k), instrument (BAO/f sigma8/CMB), interpretive", "ai": "Input domain, evaluation instrument, interpretive framework"},
+      {"concept": "Episenter", "cosmology": "z-space vs S-space: different residual structures", "ai": "Accuracy vs calibration error: different model rankings"},
+      {"concept": "Compression", "cosmology": "P(k) discards phase and higher-order correlations", "ai": "Scalar score discards variance, tail structure, failure modes"}
+    ]
+  },
+  "table9_differentiation_cosm": {
+    "title": "Framework predictions vs LCDM + systematics",
+    "rows": [
+      {"prediction": "Residual structure by regime", "framework": "Residuals sign-coherent within TRANSITION/LATENT; variance increases near boundaries", "lcdm": "Residuals uniform across z; boundary clustering is coincidental"},
+      {"prediction": "Hubble tension resolution", "framework": "Tension reduces when probes are made regime-compatible", "lcdm": "Tension persists; requires new physics"},
+      {"prediction": "Proxy substitution", "framework": "Systematic, directional drift; direction predictable from proxy blindness", "lcdm": "Proxy substitution produces noise; no systematic direction"},
+      {"prediction": "Null result distribution", "framework": "Null results concentrated in LATENT regime", "lcdm": "Null results distributed randomly across z"},
+      {"prediction": "H0 within-regime variance", "framework": "H0 within one regime has lower variance than pooled", "lcdm": "Inter-survey variance is instrument-dependent, not regime-dependent"}
+    ]
+  },
+  "table10_differentiation_ai": {
+    "title": "Framework predictions vs standard benchmark practice",
+    "rows": [
+      {"prediction": "Cross-regime rank correlation", "framework": "Spearman r < 0.5 between formal-academic and adversarial/conversational", "standard": "Rankings reflect general capability; r > 0.75 for strong models"},
+      {"prediction": "Episenter shift effect", "framework": "Systematic, directional rank changes when accuracy -> calibration error", "standard": "Rankings robust to metric choice; changes are noise"},
+      {"prediction": "Explainability-validity link", "framework": "SHAP coherence in training regime uncorrelated with OOD performance", "standard": "High explainability predicts better transfer performance"},
+      {"prediction": "Validity profile utility", "framework": "Regime-scoped evaluation reduces deployment failure prediction error > 20%", "standard": "Benchmark score sufficient predictor of deployment performance"}
+    ]
+  }
+}

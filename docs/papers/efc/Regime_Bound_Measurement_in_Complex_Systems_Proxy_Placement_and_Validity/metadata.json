@@ -1,0 +1,44 @@
+{
+  "package_format": "efc-ai-friendly-v1",
+  "paper_id": "EFC-Regime-Measurement",
+  "title": "Regime-Bound Measurement in Complex Systems",
+  "subtitle": "Proxy, Placement, and Validity",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "date": "2026-03-07",
+  "status": "working_paper",
+  "license": "CC-BY-4.0",
+  "topics": [
+    "measurement theory", "regime-bound measurement", "proxy validity",
+    "epistemic placement", "complex systems", "cosmological structure",
+    "AI evaluation", "cartographic analysis", "falsifiability"
+  ],
+  "ai_metadata": {
+    "ai_parseable": true,
+    "structured_data": ["index.json", "data/predictions.json", "data/tables.json"],
+    "executable_code": ["src/regime_measurement.py", "examples/regime_demo.py"],
+    "linked_data": ["EFC-Regime-Measurement.jsonld"],
+    "validation": ["schema.json"]
+  },
+  "files": [
+    {"path": "README.md", "type": "documentation", "format": "markdown"},
+    {"path": "index.json", "type": "structured_data", "format": "json"},
+    {"path": "schema.json", "type": "validation", "format": "json-schema"},
+    {"path": "metadata.json", "type": "metadata", "format": "json"},
+    {"path": "EFC-Regime-Measurement.jsonld", "type": "linked_data", "format": "json-ld"},
+    {"path": "citations.bib", "type": "references", "format": "bibtex"},
+    {"path": "src/__init__.py", "type": "source", "format": "python"},
+    {"path": "src/regime_measurement.py", "type": "source", "format": "python"},
+    {"path": "data/predictions.json", "type": "data", "format": "json"},
+    {"path": "data/tables.json", "type": "data", "format": "json"},
+    {"path": "examples/regime_demo.py", "type": "example", "format": "python"}
+  ],
+  "dependencies": {"python": ">=3.8"},
+  "related_papers": [
+    {"id": "EFC-CMB-Localization", "relation": "Provides mu-Sigma survival valley motivating regime structure"},
+    {"id": "EFC-EFT-Ansatz", "relation": "Field-theoretic complement deriving perturbation-sector implications"}
+  ]
+}
