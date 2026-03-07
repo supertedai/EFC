@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-07T00:34:32Z",
+  "generated_at": "2026-03-07T06:34:54Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
@@ -798,7 +798,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-06T17:26:15.686000000+00:00",
+        "last_synced": "2026-03-07T00:53:12.282000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1477,7 +1477,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.087710Z",
+      "timestamp": "2026-03-07T06:30:14.755885Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1500,7 +1500,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.099816Z",
+      "timestamp": "2026-03-07T06:30:14.768225Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1523,7 +1523,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.076681Z",
+      "timestamp": "2026-03-07T06:30:14.744483Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1539,7 +1539,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.122437Z",
+      "timestamp": "2026-03-07T06:30:14.791528Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1558,7 +1558,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.110331Z",
+      "timestamp": "2026-03-07T06:30:14.780456Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1580,7 +1580,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T00:19:29.064540Z",
+      "timestamp": "2026-03-07T06:30:14.731709Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1606,7 +1606,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-07T00:30:45.057635+00:00"
+      "timestamp": "2026-03-07T05:49:45.043464+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1620,7 +1620,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-07T00:30:45.086223+00:00"
+      "timestamp": "2026-03-07T05:49:45.072076+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1634,7 +1634,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-07T00:30:45.099187+00:00"
+      "timestamp": "2026-03-07T05:49:45.093093+00:00"
     }
   },
   "parameters": {
@@ -2278,21 +2278,21 @@
   ],
   "changelog": [
     {
-      "name": "hi_class scalar-tensor EFC falsification test",
+      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-03-06T20:09:40.592000000+00:00",
-      "source": "conversation_bridge",
+      "result": "Primary p=0.57688, Sign coherence p=0.01953125",
+      "last_updated": "2026-03-07T00:53:12.282000000+00:00",
+      "source": null,
       "all_labels": [
         "EFCValidation"
       ]
     },
     {
-      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
+      "name": "hi_class scalar-tensor EFC falsification test",
       "status": "pending",
-      "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-06T17:26:15.686000000+00:00",
-      "source": null,
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-03-06T20:09:40.592000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
