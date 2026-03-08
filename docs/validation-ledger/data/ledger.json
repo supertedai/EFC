@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-07T18:36:14Z",
+  "generated_at": "2026-03-08T00:36:29Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 32,
     "consistency_check": 17,
     "phenomenological": 12,
-    "framework_constraint": 20,
+    "framework_constraint": 22,
     "planned_pipeline": 15,
-    "total_public": 96,
+    "total_public": 98,
     "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -20,7 +20,7 @@
     "pillar_1_lcdm": 0,
     "pillar_2_native": 52,
     "pillar_3_grav": 12,
-    "pillar_4_cross": 32,
+    "pillar_4_cross": 34,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -798,7 +798,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-07T16:22:33.907000000+00:00",
+        "last_synced": "2026-03-07T22:03:57.654000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1089,6 +1089,21 @@
         "status_detail": "unknown"
       },
       {
+        "test_id": "conv_double_slit_as_grid_resolution_phenomenon_in_grc",
+        "name": "Double-Slit as Grid-Resolution Phenomenon in GRC",
+        "description": "GRC/EFC kjerneontologien kanoniserer kvante-uskarhet som grid-oppløsningsfenomen (Discrete Grid Substrate → Quantum Uncertainty Dissolution, l_g). Manifest Wavefunction Ψ = Grid ⊗ Energy ⊗ Clarity(S) gir en naturlig ontologisk lesning av dobbel-slitt: grid setter tillatte posisjoner, EF kobler seg distribuert, C(S) bestemmer om interferens (høy koherens) eller kollaps (lokal registrering) skjer. Dette er kanonisert i ontologien men ikke matematisk derivert. Denne validasjonen definerer kravet: en formell derivatkjede fra triaden til et interferensmønster, pluss én testbar distinksjon mot standard QM.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Teoretisk derivasjon fra GRC-triaden. Fremtidig empirisk test via høy-presisjon dobbel-slitt-eksperimenter ved sub-nanometer spaltegeometri, eller indirekte via dekoherenstider i kvanteoptikk.",
+        "prediction": "GRC predikerer at interferensmønsteret i dobbel-slitt-eksperimentet er begrenset av grid-skala l_g, slik at det eksisterer en geometri-avhengig cutoff i registreringsoppløsning som standard QM ikke har. Spesifikt: ved spaltegeometri der spaltebredde nærmer seg l_g, forventer GRC et avvik fra standard QM-interferensmønsteret. C(S) predikerer at dekoherens skjer via entropiøkning, ikke via tilfeldig miljøkobling alene.",
+        "notes": "Godkjent av Morten. Kanonisk ontologisk bro fra GRC-triaden til dobbel-slitt-fenomenet. Status: teoretisk konsistensforlengelse, ikke empirisk lukket. Neste steg: derivasjonsnote §1-§5.",
+        "quantitative_result": null,
+        "last_synced": "2026-03-07T18:41:21.693000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_efc_physics_localization_perturbation_sector_not_background",
         "name": "EFC physics localization: perturbation sector, not background",
         "description": "Three independent lines of evidence converge: (1) Technical Note I proved analytically that background gate ΔH²≤0 increases fσ8, not suppresses it. (2) Joint fit shows α→0 under CMB+BAO. (3) WP1a showed σ8 suppression requires μ&lt;1 at perturbation level. Conclusion: If EFC has observable effects, they must originate in the perturbation sector (modified Poisson equation, gravitational slip), not in background Friedmann modification.",
@@ -1116,6 +1131,21 @@
         "notes": "P1 epistemisk. GPT kalte denne 'overraskende undervurdert' — korrekt. Kvantifiserer avstand til falsifikasjon i σ for alle 5 FP. Toppnivå metodologi, konsistent med EBE/RCMP. De fleste alternative kosmologier har ikke tilsvarende. Demonstrerer genuin sårbarhet.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T12:18:21.639000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_g2_operational_definition_of_local_s_for_p3_testability",
+        "name": "G2: Operational Definition of Local S for P3 Testability",
+        "description": "G2 er den kritiske åpne gapen som avgjør om P3 (S-sensitiv dekoherens) er en reell ny prediksjon eller bare en omdøping av kjent miljødekoherens. Tre kandidatdefinisjoner av lokal S må evalueres: (A) von Neumann-entropi for delsystemet, (B) entanglement-entropi mot miljøet, (C) frienergi-/strukturproxy. Kriteriet er at den valgte S-definisjonen må gi minst én av: distinkt målbar proxy, annen funksjonell form enn temperatur, annen avhengighet, eller annen statistisk signatur. Hvis ingen kandidat består dette kravet, mister P3 sin tann og GRC har ingen testbar kvantedistinksjon.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Teoretisk derivasjon først. Deretter: eksisterende dekoherensmålinger i kvanteoptikk og supraledende qubits der lokal termodynamisk entropi kan estimeres uavhengig av temperatur.",
+        "prediction": "Minst én av de tre S-kandidatene (A, B, C) gir en operasjonell definisjon som predikerer målbar dekoherenstid τ_d ∝ C(S) = exp(-S/S_max) med en avhengighet som ikke kollapser til ren temperatur/miljøkobling. Spesifikt: to systemer med lik temperatur men ulik lokal S vil vise ulik τ_d.",
+        "notes": "Godkjent av Morten. Arbeidsregel: G2 er vellykket kun hvis lokal S kan operasjonaliseres på en måte som gir testbar forskjell utover temperatur, standard miljøkobling eller ren språk-omskriving av kjent dekoherensfysikk. Start med Kandidat C (frienergi/strukturproxy) som mest EFC-konsistent. Kandidat A er svakest.",
+        "quantitative_result": null,
+        "last_synced": "2026-03-07T19:15:00.457000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -1492,7 +1522,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.093007Z",
+      "timestamp": "2026-03-07T23:59:59.379546Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1515,7 +1545,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.112603Z",
+      "timestamp": "2026-03-07T23:59:59.393135Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1538,7 +1568,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.072143Z",
+      "timestamp": "2026-03-07T23:59:59.345298Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1554,7 +1584,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.148796Z",
+      "timestamp": "2026-03-07T23:59:59.416439Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1573,7 +1603,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.125682Z",
+      "timestamp": "2026-03-07T23:59:59.404937Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1595,7 +1625,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-07T17:49:16.041375Z",
+      "timestamp": "2026-03-07T23:59:59.298912Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1621,7 +1651,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-07T17:50:04.344620+00:00"
+      "timestamp": "2026-03-07T23:50:13.455889+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1635,7 +1665,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-07T17:50:04.404311+00:00"
+      "timestamp": "2026-03-07T23:50:13.478222+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1649,7 +1679,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-07T17:50:04.423409+00:00"
+      "timestamp": "2026-03-07T23:50:13.489617+00:00"
     }
   },
   "parameters": {
@@ -2296,8 +2326,28 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-07T16:22:33.907000000+00:00",
+      "last_updated": "2026-03-07T22:03:57.654000000+00:00",
       "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "G2: Operational Definition of Local S for P3 Testability",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-03-07T19:15:00.457000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Double-Slit as Grid-Resolution Phenomenon in GRC",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-03-07T18:41:21.693000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
