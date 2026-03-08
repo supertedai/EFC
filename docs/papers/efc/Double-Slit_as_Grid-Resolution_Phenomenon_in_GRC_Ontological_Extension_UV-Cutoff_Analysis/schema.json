@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GRC Double-Slit index.json schema",
+  "type": "object",
+  "required": ["paper_id", "title", "author", "axioms", "predictions", "falsification_points"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "author": {"type": "string"},
+    "axioms": {"type": "array", "items": {"type": "object", "required": ["id", "name", "content"]}},
+    "manifest_triad": {"type": "object"},
+    "uv_cutoff": {"type": "object"},
+    "predictions": {"type": "array", "items": {"type": "object", "required": ["id", "name", "status"]}},
+    "falsification_points": {"type": "array", "items": {"type": "object", "required": ["id", "condition"]}},
+    "open_gaps": {"type": "array"}
+  }
+}

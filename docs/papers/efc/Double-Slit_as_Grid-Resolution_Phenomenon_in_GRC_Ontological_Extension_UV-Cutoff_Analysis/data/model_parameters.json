@@ -1,0 +1,50 @@
+{
+  "paper_id": "EFC-GRC-DoubleSlit-v02",
+  "manifest_triad": {
+    "equation": "Psi_manifest = G(x) tensor E(x,t) . C(S(x,t))",
+    "components": ["G: discrete geometric grid", "E: energy flow", "C(S): entropy-clarity"]
+  },
+  "clarity_function": {
+    "equation": "C(S) = exp(-S/S_max)",
+    "S_max": "maximum entropy scale",
+    "limits": {"S_to_0": "C -> 1 (high clarity)", "S_to_Smax": "C -> 1/e (low clarity)"}
+  },
+  "uv_cutoff": {
+    "k_max": "pi / l_g",
+    "gaussian_slit_fourier": "a-tilde(k) = exp(-sigma^2 k^2 / 2) cos(kD/2)",
+    "deviation_bound": "|Delta A| <= (l_g / pi sigma^2) exp(-pi^2 sigma^2 / 2 l_g^2)",
+    "suppression_type": "exponential in (sigma/l_g)^2",
+    "withdrawn": "Polynomial ansatz O((l_g/d)^2) from v0.1"
+  },
+  "predictions": [
+    {"id": "P1", "name": "Backward compatibility", "status": "Required", "type": "analytic"},
+    {"id": "P2", "name": "Geometric cutoff", "status": "Downgraded", "type": "principled but inaccessible"},
+    {"id": "P3", "name": "S-sensitive decoherence", "status": "Open", "type": "primary candidate", "blocked_by": "G2"},
+    {"id": "P4", "name": "Which-path suppression", "status": "Open", "type": "secondary candidate"},
+    {"id": "P5", "name": "No prediction d >> l_g", "status": "No-claim", "type": "scope limit"}
+  ],
+  "falsification_points": [
+    {"id": "F1", "condition": "Backward compatibility fails"},
+    {"id": "F2", "condition": "No scale-deviation predicted"},
+    {"id": "F3", "condition": "Decoherence fully standard (no S-component)"},
+    {"id": "F4", "condition": "Higher-order stats identical to QM"},
+    {"id": "F5", "condition": "Delta P doesn't decrease with d/l_g"},
+    {"id": "F6", "condition": "QM at d >> l_g does NOT falsify (scope)"}
+  ],
+  "open_gaps": [
+    {"id": "G2", "priority": 1, "description": "Operational definition of local S", "blocks": "P3",
+     "candidates": ["A: von Neumann entropy", "B: Entanglement entropy", "C: Free-energy proxy"]},
+    {"id": "P3_gap", "priority": 2, "description": "Formal decoherence model via C(S)"},
+    {"id": "P4_gap", "priority": 3, "description": "Concrete higher-order observable"},
+    {"id": "G3", "priority": 4, "description": "Explicit P(x) for concrete geometry"},
+    {"id": "G5", "priority": 5, "description": "Closure Condition 3 vs mode basis"}
+  ],
+  "component_status": [
+    {"component": "Sections 1-6", "status": "Stable"},
+    {"component": "M5 geometric deviation", "status": "Revised (exponential not polynomial)"},
+    {"component": "P2 geometric test", "status": "Downgraded (principled not accessible)"},
+    {"component": "P3 S-sensitive decoherence", "status": "Open (primary candidate)"},
+    {"component": "P4 fluctuation statistics", "status": "Open (secondary candidate)"},
+    {"component": "G2 operational S", "status": "Open (highest priority)"}
+  ]
+}

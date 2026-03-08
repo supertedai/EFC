@@ -1,0 +1,115 @@
+{
+  "$schema": "./schema.json",
+  "paper_id": "EFC-GRC-DoubleSlit-v02",
+  "title": "Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology",
+  "subtitle": "Ontological Extension, UV-Cutoff Analysis, and Open Gaps toward Quantum Testability",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "version": "v0.2 (Revised)",
+  "date": "2026-03-08",
+  "status": "Working note. Not peer-reviewed.",
+  "scope": "Ontological and minimal-model extension of GRC to sub-L0 quantum regime. Not an empirical closure paper.",
+
+  "abstract": "GRC treats quantum uncertainty as grid-resolution: Delta x >= l_g. UV-cutoff derivation shows geometric deviation from QM is exponentially suppressed: |Delta A| ~ exp(-pi^2 sigma^2 / 2 l_g^2). Primary testable distinction relocated to entropy-sensitive decoherence (P3) and higher-order measurement statistics (P4). Polynomial ansatz O((l_g/d)^2) withdrawn.",
+
+  "manifest_triad": {
+    "equation": "Psi_manifest(x,t) = G(x) ⊗ E(x,t) · C(S(x,t))",
+    "G": "Discrete geometric substrate with node scale l_g",
+    "E": "Energy flow through G (dynamic mode)",
+    "C_S": "Clarity function: C(S) = exp(-S/S_max)"
+  },
+
+  "axioms": [
+    {"id": "A1", "name": "Grid (G)", "content": "Discrete geometric substrate with fundamental node scale l_g"},
+    {"id": "A2", "name": "Energy Flow (E)", "content": "Energy manifests as distributed flow through G; localized = particle-like, distributed = field-like"},
+    {"id": "A3", "name": "Clarity Function C(S)", "content": "C(S) = exp(-S/S_max); low S = high clarity, high S = low clarity"},
+    {"id": "A4", "name": "Manifest Structure", "content": "Psi_manifest = G(x) ⊗ E(x,t) · C(S(x,t)); no registration without triad"},
+    {"id": "A5", "name": "Grid-Resolution Limit", "content": "Spatial registration limited by l_g; position cannot be realized below l_g"},
+    {"id": "A6", "name": "Registration as Local Selection", "content": "Measurement = physical process that locally selects and stabilizes Psi_manifest"}
+  ],
+
+  "definitions": [
+    {"id": "D1", "name": "Geometry as boundary condition", "content": "Double-slit = boundary condition selecting subset of allowed grid modes"},
+    {"id": "D2", "name": "Interference as distributed grid-coupling", "content": "High C(S) maintains distributed coupling; P(x) = weighted distribution over allowed positions"},
+    {"id": "D3", "name": "Registration as local selection", "content": "Distributed manifest structure selected and stabilized as local event"},
+    {"id": "D4", "name": "Measurement as entropic localization", "content": "Which-path measurement increases S locally, lowers C(S), reduces distributed coupling"},
+    {"id": "D5", "name": "Scale limit", "content": "At d ~ l_g, continuous approximation breaks; possible QM distinction"}
+  ],
+
+  "minimal_model": {
+    "M1": "Grid-mode basis {phi_n(x)} with resolution l_g; recovers QM as l_g -> 0",
+    "M2": "Amplitude: A(x) = sum_n a_n phi_n(x) C(S_n)",
+    "M3": "Registration: P(x) = |A(x)|^2; recovers QM in double limit C->1, l_g/d->0",
+    "M4": "Decoherence: local S-increase suppresses cross-terms in |A(x)|^2",
+    "M5_revised": "UV cutoff: Delta A = integral[|k|>pi/l_g] a-tilde(k) e^{ikx} dk"
+  },
+
+  "uv_cutoff": {
+    "grc_amplitude": "A_GRC(x) = integral[-kmax,kmax] a-tilde(k) e^{ikx} dk, kmax = pi/l_g",
+    "qm_amplitude": "A_QM(x) = integral[-inf,inf] a-tilde(k) e^{ikx} dk",
+    "exact_deviation": "Delta A(x) = integral[|k|>pi/l_g] a-tilde(k) e^{ikx} dk",
+    "gaussian_profile": "a-tilde(k) = exp(-sigma^2 k^2 / 2) cos(kD/2)",
+    "gaussian_bound": "|Delta A| <= (l_g / pi sigma^2) exp(-pi^2 sigma^2 / 2 l_g^2)",
+    "conclusion": "Exponentially suppressed for sigma >> l_g; polynomial ansatz O((l_g/d)^2) withdrawn",
+    "practical_implication": "For sub-Planckian l_g, deviation is numerically indistinguishable from zero"
+  },
+
+  "predictions": [
+    {"id": "P1", "name": "Backward compatibility", "status": "Required (analytic)", "content": "Must recover standard QM as C->1 and l_g/d->0", "type": "consistency"},
+    {"id": "P2", "name": "Geometric cutoff deviation", "status": "Downgraded", "content": "UV-cutoff deviation is exponentially suppressed; principled but inaccessible for sub-Planckian l_g", "type": "principled"},
+    {"id": "P3", "name": "S-sensitive decoherence", "status": "Open (primary candidate)", "content": "Decoherence modulated by local S via tau_d proportional to C(S); distinct from standard Lindblad if S definable independently of T", "blocked_by": "G2", "type": "empirical"},
+    {"id": "P4", "name": "Gradual which-path suppression", "status": "Open (secondary candidate)", "content": "Partial S-increase produces gradual interference suppression; distinguishable via higher-order statistics", "type": "empirical"},
+    {"id": "P5", "name": "No prediction for d >> l_g", "status": "Explicit no-claim", "content": "GRC makes no deviation prediction when d >> l_g and S is low", "type": "scope_limit"}
+  ],
+
+  "falsification_points": [
+    {"id": "F1", "condition": "Backward compatibility fails", "type": "analytic"},
+    {"id": "F2", "condition": "No scale-deviation where GRC predicts one", "note": "Principled, not operative for sub-Planckian l_g"},
+    {"id": "F3", "condition": "Decoherence fully reduced to T + environment with no S-component", "type": "nearest-term empirical"},
+    {"id": "F4", "condition": "Higher-order statistics identical to QM under partial measurement", "type": "empirical"},
+    {"id": "F5", "condition": "Delta P(x) doesn't decrease with d/l_g in UV-cutoff model", "type": "analytic"},
+    {"id": "F6", "condition": "Standard QM results at d >> l_g do NOT falsify GRC", "type": "scope_boundary"}
+  ],
+
+  "open_gaps": [
+    {"id": "G2", "priority": 1, "description": "Operational definition of local S", "blocks": "P3 testability", "status": "critical",
+     "candidates": [
+       {"id": "A", "name": "von Neumann entropy of subsystem", "assessment": "Weakest; likely reduces to standard QM"},
+       {"id": "B", "name": "Entanglement entropy against environment", "assessment": "Requires showing C(S_B) predicts different rate than Lindblad"},
+       {"id": "C", "name": "Free-energy or structural complexity proxy", "assessment": "Most EFC-native; hardest to operationalize; highest priority"}
+     ],
+     "success_criterion": "Produces (1) distinct proxy not reducible to T, (2) different functional form, (3) different dependence, or (4) different statistical signature"
+    },
+    {"id": "P3", "priority": 2, "description": "Formal decoherence model via C(S)", "blocks": "Main test candidate"},
+    {"id": "P4", "priority": 3, "description": "Concrete higher-order observable", "blocks": "Secondary test"},
+    {"id": "G3", "priority": 4, "description": "Explicit P(x) for concrete geometry", "blocks": "Numerical check"},
+    {"id": "G5", "priority": 5, "description": "Closure Condition 3 vs mode basis", "blocks": "Internal consistency"}
+  ],
+
+  "component_status": [
+    {"component": "Sections 1-6 (axioms through falsification)", "status": "Stable", "note": "Canonical"},
+    {"component": "M5 (geometric deviation)", "status": "Revised", "note": "Exponential, not polynomial"},
+    {"component": "P2 (geometric test)", "status": "Downgraded", "note": "Principled, not accessible"},
+    {"component": "P3 (S-sensitive decoherence)", "status": "Open", "note": "Primary test candidate"},
+    {"component": "P4 (fluctuation statistics)", "status": "Open", "note": "Secondary test candidate"},
+    {"component": "G2 (operational S)", "status": "Open", "note": "Highest priority gap"}
+  ],
+
+  "one_line_status": "Geometric cutoff test (P2) inaccessible for sub-Planckian l_g. Quantum distinction, if any, lies in measurement as entropy process (P3/P4), not interference geometry.",
+
+  "references": [
+    {"key": "[1]", "citation": "Feynman et al. 1965, Feynman Lectures Vol III"},
+    {"key": "[2]", "doi": "10.1103/RevModPhys.75.715", "citation": "Zurek 2003"},
+    {"key": "[3]", "doi": "10.1007/978-3-662-05328-7", "citation": "Joos et al. 2003"},
+    {"key": "[4]", "doi": "10.1038/351111a0", "citation": "Scully et al. 1991"},
+    {"key": "[5]", "doi": "10.1103/PhysRevLett.77.4887", "citation": "Brune et al. 1996"},
+    {"key": "[6]", "doi": "10.1038/44348", "citation": "Arndt et al. 1999"},
+    {"key": "[7]", "citation": "Rovelli 2004, Quantum Gravity"},
+    {"key": "[8]", "doi": "10.1007/BF01608499", "citation": "Lindblad 1976"},
+    {"key": "[9]", "citation": "Magnusson 2026, GRC Three-Field Synthesis"},
+    {"key": "[10]", "doi": "10.6084/m9.figshare.31223668", "citation": "EFC Ontological Foundations"},
+    {"key": "[11]", "doi": "10.6084/m9.figshare.31224466", "citation": "EFC Closure Conjectures"},
+    {"key": "[12]", "doi": "10.6084/m9.figshare.31224538", "citation": "EFC Phase 3 SPARC"},
+    {"key": "[13]", "doi": "10.6084/m9.figshare.31230703", "citation": "EFC DESI DR2 BAO"}
+  ]
+}
