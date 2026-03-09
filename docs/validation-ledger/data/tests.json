@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-03-08T18:37:47Z",
+  "generated_at": "2026-03-09T00:38:15Z",
   "categories": {
     "physics_test": [
       {
@@ -93,6 +93,21 @@
         "quantitative_result": "α significance: 0.0σ (best), 0.0σ (worst)",
         "last_synced": "2026-02-18T11:09:09.717000000+00:00",
         "status_detail": "failed"
+      },
+      {
+        "test_id": "conv_cluster_tng_mass_only_regime_model_not_supported",
+        "name": "Cluster TNG mass-only regime model: NOT SUPPORTED",
+        "description": "Grid search (120k evaluations) over tanh regime model rho_pred(M) = tanh((A_M*ln(M/M_piv) - Xi_eff) / Delta_Xi) against 4 TNG-Cluster mass bins. Constant rho null model preferred (ΔAIC = +4.43). Best-fit tanh collapses to constant (A_M→min, Delta_Xi→max). Sign-flip is inter-sample (TNG rho=-0.87 vs ACCEPT rho=+0.36), not intra-mass. Mass alone does not drive regime transition within this mass range.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "TNG-Cluster 352 halos z=0, 4 mass bins. Grid: A_M [0.2-5.0], Xi_eff [-2.0-4.0], Delta_Xi [0.05-2.0]. Null models: constant, linear, step.",
+        "prediction": "EFC predicts mass-driven regime transition producing sign flip in rho(ne_slope, K0). RESULT: Not observed within TNG mass bins [14.0-15.3 log M_sun]. All bins show rho ≈ -0.87 (constant). Regime variable must include core-state (cooling time, SCC/NCC) not mass alone.",
+        "notes": "Grid search v1. 120k evaluations. ΔAIC=+4.43 (null preferred). Clean falsification of mass-only regime hypothesis. Key finding: sign-flip is inter-sample not intra-mass.",
+        "quantitative_result": null,
+        "last_synced": "2026-03-08T18:48:09.560000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "conv_desi_dr2_bao_constraint_post_prediction_",
@@ -770,7 +785,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-08T13:13:15.171000000+00:00",
+        "last_synced": "2026-03-08T19:45:07.323000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -832,6 +847,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-24T06:09:29.131111Z",
         "status_detail": "unknown"
+      },
+      {
+        "test_id": "conv_cluster_core_state_regime_f_scc_as_regime_variable_cross_sam",
+        "name": "Cluster core-state regime: f_SCC as regime variable (cross-sample N=2)",
+        "description": "Core-state regime model tests whether cool-core fraction (f_SCC) drives the entropy-structure coupling sign flip. rho_pred = tanh((a_C * f_SCC - Xi_c) / Delta_Xi). Previous mass-only model failed (DAIC=+4.43). Core-state model is CONSISTENT with cross-sample data (TNG f_SCC=0.08, rho=-0.872; ACCEPT f_SCC~0.25, rho=+0.36) but N=2 is insufficient for robust model selection. 1-param tanh beats constant (DAIC=-213) but is indistinguishable from linear interpolation at N=2. ACCEPT f_SCC is estimated from literature. Sign-flip threshold estimated at f_SCC~0.15-0.20.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "TNG-Cluster (352 halos, z=0, Lehle+2024) + ACCEPT (239 clusters, Cavagnolo+2009). Cross-sample analysis with f_SCC as coordinate. Grid search: 80k evaluations. Sensitivity scan on ACCEPT f_SCC (0.12-0.50).",
+        "prediction": "EFC predicts that the entropy-structure coupling sign (rho) is driven by core-state composition: NCC-dominated samples (low f_SCC) show negative rho (S0 frozen regime), while SCC-rich samples (high f_SCC) show positive rho (S1 flowing regime). The tanh transition occurs at f_SCC ~ 0.15-0.20. Testable when per-subpopulation rho data (SCC/WCC/NCC separately) or additional cluster samples become available.",
+        "notes": "Core-state model is consistent with sign flip but N=2 cross-sample data is insufficient for robust model selection. Establishes f_SCC as plausible regime variable. Next: per-subpopulation rho data needed (SCC/WCC/NCC bins). Status: partial (consistent but underpowered).",
+        "quantitative_result": null,
+        "last_synced": "2026-03-08T19:08:13.949000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "ledger_galaxy_bias_evolution_consistency",
@@ -1484,5 +1514,5 @@
       }
     ]
   },
-  "total_count": 98
+  "total_count": 100
 }
