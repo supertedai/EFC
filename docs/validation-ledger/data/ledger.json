@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-11T06:43:28Z",
+  "generated_at": "2026-03-11T12:43:40Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -15,7 +15,7 @@
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
     "frontier_count": 3,
-    "tcs_compression": 1.0,
+    "tcs_compression": 0.67,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
     "pillar_2_native": 54,
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.849345Z",
+      "timestamp": "2026-03-11T12:41:55.216037Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.862455Z",
+      "timestamp": "2026-03-11T12:41:55.226060Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.833278Z",
+      "timestamp": "2026-03-11T12:41:55.205404Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.888635Z",
+      "timestamp": "2026-03-11T12:41:55.248543Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.876073Z",
+      "timestamp": "2026-03-11T12:41:55.238534Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-11T06:30:14.816525Z",
+      "timestamp": "2026-03-11T12:41:55.186433Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-11T06:02:49.867810+00:00"
+      "timestamp": "2026-03-11T12:03:00.844137+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,11 +1695,11 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-11T06:02:49.897356+00:00"
+      "timestamp": "2026-03-11T12:03:00.904406+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 1.0,
+      "compression": 0.67,
       "mismatch_rate": 0.5,
       "coverage_penalty": 0.6,
       "layer_consistency": "moderate",
@@ -1708,8 +1708,8 @@
       "total": 5,
       "untested": 3,
       "mismatches": 1,
-      "primitives": 2,
-      "timestamp": "2026-03-11T06:02:49.911408+00:00"
+      "primitives": 4,
+      "timestamp": "2026-03-11T12:03:00.982084+00:00"
     }
   },
   "parameters": {
