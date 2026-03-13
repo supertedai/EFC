@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-13T00:47:11Z",
+  "generated_at": "2026-03-13T06:47:57Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -183,7 +183,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-03-11_215639_aqual",
+        "test_id": "grav_integration_2026-03-12_171304_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.33: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -258,7 +258,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-03-11_215639_aqual",
+        "test_id": "grav_kt1_2026-03-12_171304_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -273,7 +273,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-03-11_215639_aqual",
+        "test_id": "grav_kt3_2026-03-12_171304_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -288,7 +288,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-03-11_215639_aqual",
+        "test_id": "grav_kt2_2026-03-12_171304_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3269 (converged)",
@@ -813,7 +813,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-12T17:46:00.945000000+00:00",
+        "last_synced": "2026-03-13T02:28:31.960000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.850720Z",
+      "timestamp": "2026-03-13T05:54:32.257345Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.862764Z",
+      "timestamp": "2026-03-13T05:54:32.272982Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.836441Z",
+      "timestamp": "2026-03-13T05:54:32.241975Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.887565Z",
+      "timestamp": "2026-03-13T05:54:32.301716Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.877612Z",
+      "timestamp": "2026-03-13T05:54:32.288875Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-13T00:44:24.820473Z",
+      "timestamp": "2026-03-13T05:54:32.224568Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-12T23:51:45.578449+00:00"
+      "timestamp": "2026-03-13T05:51:55.236052+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-12T23:51:45.614092+00:00"
+      "timestamp": "2026-03-13T05:51:55.261443+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-12T23:51:45.629111+00:00"
+      "timestamp": "2026-03-13T05:51:55.276908+00:00"
     }
   },
   "parameters": {
@@ -2356,7 +2356,7 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-12T17:46:00.945000000+00:00",
+      "last_updated": "2026-03-13T02:28:31.960000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
@@ -2425,7 +2425,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-03-11_215639_aqual",
+      "run_id": "2026-03-12_171304_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
