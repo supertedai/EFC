@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-03-15T00:51:40Z",
+  "generated_at": "2026-03-15T06:51:59Z",
   "categories": {
     "physics_test": [
       {
@@ -135,7 +135,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -785,7 +785,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-14T21:45:28.742000000+00:00",
+        "last_synced": "2026-03-15T03:36:59.056000000+00:00",
         "status_detail": "pending"
       },
       {
