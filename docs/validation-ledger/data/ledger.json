@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-15T18:53:06Z",
+  "generated_at": "2026-03-16T00:53:18Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.627463Z",
+      "timestamp": "2026-03-16T00:51:49.518082Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.640330Z",
+      "timestamp": "2026-03-16T00:51:49.530884Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.615538Z",
+      "timestamp": "2026-03-16T00:51:49.503967Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.663909Z",
+      "timestamp": "2026-03-16T00:51:49.557000Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.652090Z",
+      "timestamp": "2026-03-16T00:51:49.544877Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-15T18:41:05.602859Z",
+      "timestamp": "2026-03-16T00:51:49.487890Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-15T18:28:28.071632+00:00"
+      "timestamp": "2026-03-16T00:52:29.225067+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-15T18:28:28.096832+00:00"
+      "timestamp": "2026-03-16T00:52:29.298161+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-15T18:28:28.118770+00:00"
+      "timestamp": "2026-03-16T00:52:29.312979+00:00"
     }
   },
   "parameters": {
@@ -2358,16 +2358,6 @@
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
       "last_updated": "2026-03-15T18:36:16.721000000+00:00",
       "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Cluster core-state regime: f_SCC as regime variable (cross-sample N=2)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-03-08T19:08:13.949000000+00:00",
-      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
