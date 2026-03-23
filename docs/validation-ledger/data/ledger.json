@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-08T06:36:55Z",
+  "generated_at": "2026-03-23T19:08:02Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 32,
+    "physics_test": 33,
     "consistency_check": 17,
-    "phenomenological": 12,
+    "phenomenological": 13,
     "framework_constraint": 22,
     "planned_pipeline": 15,
-    "total_public": 98,
+    "total_public": 100,
     "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,7 +18,7 @@
     "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 52,
+    "pillar_2_native": 54,
     "pillar_3_grav": 12,
     "pillar_4_cross": 34,
     "grav_kt_count": 3,
@@ -123,6 +123,21 @@
         "status_detail": "failed"
       },
       {
+        "test_id": "conv_cluster_tng_mass_only_regime_model_not_supported",
+        "name": "Cluster TNG mass-only regime model: NOT SUPPORTED",
+        "description": "Grid search (120k evaluations) over tanh regime model rho_pred(M) = tanh((A_M*ln(M/M_piv) - Xi_eff) / Delta_Xi) against 4 TNG-Cluster mass bins. Constant rho null model preferred (ΔAIC = +4.43). Best-fit tanh collapses to constant (A_M→min, Delta_Xi→max). Sign-flip is inter-sample (TNG rho=-0.87 vs ACCEPT rho=+0.36), not intra-mass. Mass alone does not drive regime transition within this mass range.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "TNG-Cluster 352 halos z=0, 4 mass bins. Grid: A_M [0.2-5.0], Xi_eff [-2.0-4.0], Delta_Xi [0.05-2.0]. Null models: constant, linear, step.",
+        "prediction": "EFC predicts mass-driven regime transition producing sign flip in rho(ne_slope, K0). RESULT: Not observed within TNG mass bins [14.0-15.3 log M_sun]. All bins show rho ≈ -0.87 (constant). Regime variable must include core-state (cooling time, SCC/NCC) not mass alone.",
+        "notes": "Grid search v1. 120k evaluations. ΔAIC=+4.43 (null preferred). Clean falsification of mass-only regime hypothesis. Key finding: sign-flip is inter-sample not intra-mass.",
+        "quantitative_result": null,
+        "last_synced": "2026-03-08T18:48:09.560000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_desi_dr2_bao_constraint_post_prediction_",
         "name": "DESI DR2 BAO α-constraint (post-prediction)",
         "description": "First external-data BAO test of EFC. DESI DR2 13-point BAO with full 13×13 block-diagonal covariance. MCMC posterior: α = -0.119 ± 0.227 (0.52σ). Shifts α from BOSS/eBOSS multi-probe value of -0.684±0.405 (1.69σ) to ~0 at 2.5σ. ΔAIC(EFC−ΛCDM) = +1.74 (no preference). Gate locked at a_t=0.5, δ_a=0.1. Strong α ≈ -0.7 excluded at >4σ by high-z bins (z=0.934, 1.321, 2.330). Weak α ≈ -0.1 consistent but not preferred.",
@@ -168,7 +183,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-03-07_034027_aqual",
+        "test_id": "grav_integration_2026-03-23_005621_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.38: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -243,7 +258,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-03-07_034027_aqual",
+        "test_id": "grav_kt1_2026-03-23_005621_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -258,7 +273,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-03-07_034027_aqual",
+        "test_id": "grav_kt3_2026-03-23_005621_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -273,7 +288,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-03-07_034027_aqual",
+        "test_id": "grav_kt2_2026-03-23_005621_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3762 (converged)",
@@ -798,7 +813,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-08T05:46:13.165000000+00:00",
+        "last_synced": "2026-03-23T18:48:10.697000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -860,6 +875,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-24T06:09:29.131111Z",
         "status_detail": "unknown"
+      },
+      {
+        "test_id": "conv_cluster_core_state_regime_f_scc_as_regime_variable_cross_sam",
+        "name": "Cluster core-state regime: f_SCC as regime variable (cross-sample N=2)",
+        "description": "Core-state regime model tests whether cool-core fraction (f_SCC) drives the entropy-structure coupling sign flip. rho_pred = tanh((a_C * f_SCC - Xi_c) / Delta_Xi). Previous mass-only model failed (DAIC=+4.43). Core-state model is CONSISTENT with cross-sample data (TNG f_SCC=0.08, rho=-0.872; ACCEPT f_SCC~0.25, rho=+0.36) but N=2 is insufficient for robust model selection. 1-param tanh beats constant (DAIC=-213) but is indistinguishable from linear interpolation at N=2. ACCEPT f_SCC is estimated from literature. Sign-flip threshold estimated at f_SCC~0.15-0.20.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "TNG-Cluster (352 halos, z=0, Lehle+2024) + ACCEPT (239 clusters, Cavagnolo+2009). Cross-sample analysis with f_SCC as coordinate. Grid search: 80k evaluations. Sensitivity scan on ACCEPT f_SCC (0.12-0.50).",
+        "prediction": "EFC predicts that the entropy-structure coupling sign (rho) is driven by core-state composition: NCC-dominated samples (low f_SCC) show negative rho (S0 frozen regime), while SCC-rich samples (high f_SCC) show positive rho (S1 flowing regime). The tanh transition occurs at f_SCC ~ 0.15-0.20. Testable when per-subpopulation rho data (SCC/WCC/NCC separately) or additional cluster samples become available.",
+        "notes": "Core-state model is consistent with sign flip but N=2 cross-sample data is insufficient for robust model selection. Establishes f_SCC as plausible regime variable. Next: per-subpopulation rho data needed (SCC/WCC/NCC bins). Status: partial (consistent but underpowered).",
+        "quantitative_result": null,
+        "last_synced": "2026-03-08T19:08:13.949000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "ledger_galaxy_bias_evolution_consistency",
@@ -1522,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.244370Z",
+      "timestamp": "2026-03-23T18:11:30.939727Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1545,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.257289Z",
+      "timestamp": "2026-03-23T18:11:30.949978Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1568,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.232459Z",
+      "timestamp": "2026-03-23T18:11:30.923919Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1584,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.279587Z",
+      "timestamp": "2026-03-23T18:11:30.970749Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1603,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.269051Z",
+      "timestamp": "2026-03-23T18:11:30.960517Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1625,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-08T06:10:44.215361Z",
+      "timestamp": "2026-03-23T18:11:30.910902Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1651,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-08T06:07:54.739161+00:00"
+      "timestamp": "2026-03-23T18:32:15.933384+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1665,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-08T06:07:54.786995+00:00"
+      "timestamp": "2026-03-23T18:32:15.966255+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1679,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-08T06:07:54.813527+00:00"
+      "timestamp": "2026-03-23T18:32:15.980249+00:00"
     }
   },
   "parameters": {
@@ -2326,48 +2356,8 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-08T05:46:13.165000000+00:00",
+      "last_updated": "2026-03-23T18:48:10.697000000+00:00",
       "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "G2: Operational Definition of Local S for P3 Testability",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-03-07T19:15:00.457000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Double-Slit as Grid-Resolution Phenomenon in GRC",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-03-07T18:41:21.693000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "KT3 v3 — Entropy-first mass scaling test",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-03-07T15:26:15.386000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "hi_class scalar-tensor EFC falsification test",
-      "status": "pending",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-03-06T20:09:40.592000000+00:00",
-      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
@@ -2375,7 +2365,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-03-07_034027_aqual",
+      "run_id": "2026-03-23_005621_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
