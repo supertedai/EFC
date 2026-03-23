@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regime-Locked Measurement index.json schema",
+  "type": "object",
+  "required": ["paper_id", "title", "formal_framework", "domains", "protocol", "falsification"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "formal_framework": {"type": "object"},
+    "domains": {"type": "array"},
+    "protocol": {"type": "object"},
+    "falsification": {"type": "object"}
+  }
+}

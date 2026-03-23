@@ -1,0 +1,45 @@
+{
+  "paper_id": "EFC-Regime-Locked-Measurement",
+  "regime_definition": {
+    "equation": "R = (I, V, B, G)",
+    "components": {"I": "instrument", "V": "validity domain", "B": "blind set", "G": "gradient sensitivity"}
+  },
+  "regime_locked": "m in V(R_i) and m not in V(R_j) for i != j",
+  "alpha_score": {
+    "equation": "alpha(phi, R) = |phi ∩ V(R)| / |phi|",
+    "range": [0, 1],
+    "estimation": ["residual structure fraction", "cross-regime recovery", "Bayesian evidence ratio"]
+  },
+  "cdvc": {"equation": "sigma in intersection V(R_k) for N >= 3", "N_achieved": 6},
+  "meta_regime": "R* : (R_i, phi) -> alpha(phi, R_i)",
+  "blind_set_taxonomy": [
+    {"type": "B_ont", "character": "Outside physical reach", "detection": "New instrument class"},
+    {"type": "B_meth", "character": "Excluded by assumptions", "detection": "Cross-regime comparison"},
+    {"type": "B_inst", "character": "Below sensitivity", "detection": "Instrument upgrade"}
+  ],
+  "domains": [
+    {"domain": "Cosmology", "sees": "Model-predicted signals", "misses": "Alternative mechanisms", "B": "meth"},
+    {"domain": "AI Alignment", "sees": "Deviation from norms", "misses": "Convergence drift", "B": "meth"},
+    {"domain": "Cyber Security", "sees": "Known signatures", "misses": "Regime-boundary exploits", "B": "meth"},
+    {"domain": "Intelligence", "sees": "In-scope threats", "misses": "Out-of-doctrine threats", "B": "meth"},
+    {"domain": "Economics", "sees": "In-regime behaviour", "misses": "Regime transitions", "B": "inst"},
+    {"domain": "Consciousness", "sees": "Neural correlates", "misses": "Subjective experience", "B": "ont"}
+  ],
+  "protocol_steps": [
+    {"step": 1, "name": "Regime Identification"},
+    {"step": 2, "name": "Blind Set Elicitation"},
+    {"step": 3, "name": "Cross-Regime Check"},
+    {"step": 4, "name": "Residual Analysis"},
+    {"step": 5, "name": "Alpha-Scoring"}
+  ],
+  "s0_s1_conjecture": {
+    "status": "open",
+    "S0": "Deep framework integration",
+    "S1": "Superficial linguistic mirroring"
+  },
+  "falsification": {
+    "framework": ["B=empty demonstrated", "CDVC from shared bias"],
+    "protocol": ["Fails to detect planted blind spots", "Alpha non-discriminating"],
+    "conjecture": ["General S0/S1 distinguisher found"]
+  }
+}
