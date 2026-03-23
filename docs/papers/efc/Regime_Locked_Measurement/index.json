@@ -1,0 +1,145 @@
+{
+  "$schema": "./schema.json",
+  "paper_id": "EFC-Regime-Locked-Measurement",
+  "title": "Regime-Locked Measurement as a General Structural Constraint",
+  "subtitle": "Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "date": "2026-03",
+
+  "abstract": "Formalises regime-locked measurement as a general structural constraint. Shared structural pattern across six domains. Three contributions: alpha-score alpha(phi, R) in [0,1], blind-set taxonomy (ontological/methodological/instrumental), and five-step meta-regime protocol. Worked example identifies convergence drift in AI alignment.",
+
+  "epistemic_status": [
+    {"level": "Definition", "status": "Formal", "content": "Regime, regime-locked measurement, CDVC, meta-regime, alpha-score, blind-set taxonomy"},
+    {"level": "Hypothesis", "status": "Testable", "content": "Shared pattern across domains; meta-regime detects blind spots; alpha outperforms binary"},
+    {"level": "Conjecture", "status": "Open", "content": "S0/S1 observational equivalence at gradient extremes"}
+  ],
+
+  "formal_framework": {
+    "regime": {
+      "definition": "R = (I, V, B, G)",
+      "I": "Instrument (physical, institutional, or algorithmic)",
+      "V": "Validity domain",
+      "B": "Blind set (typically invisible from within R)",
+      "G": "Gradient sensitivity",
+      "key_property": "Absence of signal is indistinguishable from absence of phenomenon"
+    },
+    "regime_locked_measurement": {
+      "definition": "m in V(R_i) and m not in V(R_j) for i != j",
+      "meaning": "Phenomena in B(R_i) are not merely unmeasured — they are unmeasurable within R_i"
+    },
+    "alpha_score": {
+      "equation": "alpha(phi, R_i) = |phi ∩ V(R_i)| / |phi| in [0, 1]",
+      "at_1": "Regime fully appropriate",
+      "at_0": "Phenomenon entirely in blind set",
+      "estimation_methods": ["Residual structure fraction", "Cross-regime recovery rate", "Bayesian evidence ratio"],
+      "selection": "arg max_i alpha(phi, R_i)"
+    },
+    "cdvc": {
+      "definition": "sigma in intersection V(R_k) for N >= 3 domains",
+      "status": "Indicator, not proof",
+      "conditions": ["Independent generation", "Predictive content"],
+      "alternative": "Could reflect shared cognitive bias"
+    },
+    "meta_regime": {
+      "definition": "R* : (R_i, phi) -> alpha(phi, R_i) in [0, 1]"
+    },
+    "residual_inference": {
+      "equation": "structured(r) => r in B_inferred",
+      "procedure": "r = data - model(I); test for clustering, scale-dependence, correlation"
+    },
+    "s0_s1_conjecture": {
+      "status": "Conjecture",
+      "description": "At gradient extremes, different generative processes produce indistinguishable outputs",
+      "ai_formulation": "Deep framework integration (S0) vs superficial linguistic mirroring (S1)",
+      "connection": "Identifiability problem in inverse problems / latent-variable models"
+    }
+  },
+
+  "blind_set_taxonomy": [
+    {"type": "B_ont", "name": "Ontological", "character": "Outside instrument's physical reach", "detection": "New instrument class"},
+    {"type": "B_meth", "name": "Methodological", "character": "Excluded by framework assumptions", "detection": "Cross-regime comparison; assumption audit"},
+    {"type": "B_inst", "name": "Instrumental", "character": "Within reach but below sensitivity", "detection": "Instrument upgrade; residual analysis"}
+  ],
+
+  "domains": [
+    {"domain": "Cosmology", "instrument_sees": "Model-predicted signals", "instrument_misses": "Alternative mechanisms", "B_type": "meth", "residual_signal": "Hubble tension as structured residual"},
+    {"domain": "AI Alignment", "instrument_sees": "Deviation from norms", "instrument_misses": "Convergence drift", "B_type": "meth", "residual_signal": "Persistent high-quality outputs not flagged"},
+    {"domain": "Cyber Security", "instrument_sees": "Known signatures", "instrument_misses": "Regime-boundary exploits", "B_type": "meth", "residual_signal": "SolarWinds, Stuxnet exploited trusted zones"},
+    {"domain": "Intelligence", "instrument_sees": "In-scope threats", "instrument_misses": "Out-of-doctrine threats", "B_type": "meth", "residual_signal": "Pre-9/11 cross-agency signals in each B"},
+    {"domain": "Economics", "instrument_sees": "In-regime behaviour", "instrument_misses": "Regime transitions", "B_type": "inst", "residual_signal": "2008 crisis: low-volatility calibration blind at boundary"},
+    {"domain": "Consciousness", "instrument_sees": "Neural correlates", "instrument_misses": "Subjective experience", "B_type": "ont", "residual_signal": "Hard problem"}
+  ],
+
+  "protocol": {
+    "name": "Meta-Regime Evaluation Protocol (Algorithm 1)",
+    "input": "Instrument I, target phenomenon phi, candidate regimes {R_1,...,R_n}",
+    "steps": [
+      {"step": 1, "name": "Regime Identification", "action": "Characterise R = (I, V, B, G)"},
+      {"step": 2, "name": "Blind Set Elicitation", "action": "Enumerate B_known; classify as B_ont/B_meth/B_inst"},
+      {"step": 3, "name": "Cross-Regime Check", "action": "For each b in B_i, test if b in V_j for some j != i"},
+      {"step": 4, "name": "Residual Analysis", "action": "Test residuals for structure -> B_inferred candidates"},
+      {"step": 5, "name": "Alpha-Scoring", "action": "Estimate alpha; flag if below threshold; report B types"}
+    ],
+    "alpha_estimation": [
+      "Residual structure fraction (higher -> lower alpha)",
+      "Cross-regime recovery rate",
+      "Bayesian evidence ratio"
+    ],
+    "worked_example": {
+      "domain": "AI Alignment",
+      "step1": "Current instruments in deviation-detection regime. V: violations. B: convergence drift.",
+      "step2": "B_known includes convergence drift (B_meth). Detection: switch to convergence evaluation.",
+      "step3": "Detectable from interpretability regime (mechanistic probes of internal representations).",
+      "step4": "Persistent high-quality responses reclassified as B_inferred candidates.",
+      "step5": "alpha ~ 0.5-0.7 (heuristic). B_meth indicates closeable by paradigm expansion."
+    }
+  },
+
+  "falsification": {
+    "framework_level": [
+      "Measurement system demonstrated with B = empty (no blind spots across boundaries)",
+      "Six-domain convergence shown to arise from shared methodological artefact"
+    ],
+    "protocol_level": [
+      "Protocol fails to detect planted blind spots in controlled setting",
+      "Alpha fails to discriminate between known-different regimes"
+    ],
+    "conjecture_level": [
+      "General method reliably distinguishes S0/S1 from output alone"
+    ]
+  },
+
+  "limitations": [
+    "Self-reference: R_meta has unknown B_meta",
+    "CDVC: indicator, not proof (shared cognitive bias possible)",
+    "S0/S1: conjecture only",
+    "Alpha requires proxy estimation (itself regime-dependent)",
+    "No controlled empirical validation yet",
+    "Provenance: regime concept from thermodynamic cosmology",
+    "Evidential asymmetry: some cases well-sourced, others conceptual"
+  ],
+
+  "implications": {
+    "scientific_methodology": "No single methodology can claim observational completeness",
+    "ai_governance": "Alignment evaluation should include convergence monitoring alongside deviation monitoring",
+    "intelligence_security": "Proactive blind-spot identification via steps 2-3"
+  },
+
+  "references": [
+    {"key": "[1]", "doi": "10.6084/m9.figshare.30478916", "title": "EFC-v2.1"},
+    {"key": "[2]", "doi": "10.6084/m9.figshare.31112536", "title": "L0-L3 Regime Architecture"},
+    {"key": "[3]", "doi": "10.6084/m9.figshare.31222900", "title": "RCMP"},
+    {"key": "[4]", "doi": "10.6084/m9.figshare.31224247", "title": "Hubble Tension as Regime Mismatch"},
+    {"key": "[5]", "doi": "10.6084/m9.figshare.31122970", "title": "Validity-Aware AI"},
+    {"key": "[6]", "title": "Anthropic AI Safety Recommendations (2025)"},
+    {"key": "[7]", "title": "Greenblatt et al., Alignment Faking (2024)"},
+    {"key": "[8]", "title": "Scaling Monosemanticity (2024)"},
+    {"key": "[9]", "title": "9/11 Commission Report (2004)"},
+    {"key": "[10]", "title": "Taleb, The Black Swan (2007)"},
+    {"key": "[11]", "title": "CISA SolarWinds Alert (2021)"},
+    {"key": "[12]", "title": "Langner, Stuxnet (2011)"},
+    {"key": "[13]", "title": "Chalmers, Hard Problem (1995)"}
+  ]
+}

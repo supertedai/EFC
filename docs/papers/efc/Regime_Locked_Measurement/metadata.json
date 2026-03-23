@@ -1,0 +1,28 @@
+{
+  "package_format": "efc-ai-friendly-v1",
+  "paper_id": "EFC-Regime-Locked-Measurement",
+  "title": "Regime-Locked Measurement as a General Structural Constraint",
+  "author": {"name": "Morten Magnusson", "orcid": "0009-0002-4860-5095", "affiliation": "Symbiose Research, Sandnes, Norway"},
+  "date": "2026-03",
+  "license": "CC-BY-4.0",
+  "topics": ["regime-locked measurement", "blind set taxonomy", "meta-regime protocol", "alpha score", "CDVC", "AI alignment", "convergence drift"],
+  "ai_metadata": {
+    "ai_parseable": true,
+    "structured_data": ["index.json", "data/framework.json"],
+    "executable_code": ["src/regime_locked.py", "examples/regime_locked_demo.py"],
+    "linked_data": ["EFC-Regime-Locked.jsonld"],
+    "validation": ["schema.json"]
+  },
+  "files": [
+    {"path": "README.md", "type": "documentation"},
+    {"path": "index.json", "type": "structured_data"},
+    {"path": "schema.json", "type": "validation"},
+    {"path": "metadata.json", "type": "metadata"},
+    {"path": "EFC-Regime-Locked.jsonld", "type": "linked_data"},
+    {"path": "citations.bib", "type": "references"},
+    {"path": "src/__init__.py", "type": "source"},
+    {"path": "src/regime_locked.py", "type": "source"},
+    {"path": "data/framework.json", "type": "data"},
+    {"path": "examples/regime_locked_demo.py", "type": "example"}
+  ]
+}
