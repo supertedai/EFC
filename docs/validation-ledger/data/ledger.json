@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-25T01:11:16Z",
+  "generated_at": "2026-03-25T07:12:00Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -163,7 +163,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -183,7 +183,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-03-23_200530_aqual",
+        "test_id": "grav_integration_2026-03-24_151920_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.33: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -258,7 +258,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-03-23_200530_aqual",
+        "test_id": "grav_kt1_2026-03-24_151920_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -273,7 +273,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-03-23_200530_aqual",
+        "test_id": "grav_kt3_2026-03-24_151920_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -288,7 +288,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-03-23_200530_aqual",
+        "test_id": "grav_kt2_2026-03-24_151920_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.3269 (converged)",
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.037672Z",
+      "timestamp": "2026-03-25T06:13:50.211022Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.049002Z",
+      "timestamp": "2026-03-25T06:13:50.223053Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.026447Z",
+      "timestamp": "2026-03-25T06:13:50.199415Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.078874Z",
+      "timestamp": "2026-03-25T06:13:50.250159Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.061168Z",
+      "timestamp": "2026-03-25T06:13:50.235884Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T01:05:06.011399Z",
+      "timestamp": "2026-03-25T06:13:50.185993Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-25T01:03:48.836950+00:00"
+      "timestamp": "2026-03-25T07:03:58.489172+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-25T01:03:48.862936+00:00"
+      "timestamp": "2026-03-25T07:03:58.512498+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-25T01:03:48.882179+00:00"
+      "timestamp": "2026-03-25T07:03:58.523153+00:00"
     }
   },
   "parameters": {
@@ -2365,7 +2365,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-03-23_200530_aqual",
+      "run_id": "2026-03-24_151920_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
