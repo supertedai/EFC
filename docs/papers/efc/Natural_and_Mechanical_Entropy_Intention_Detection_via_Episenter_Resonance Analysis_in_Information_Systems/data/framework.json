@@ -1,0 +1,211 @@
+{
+  "formal_definitions": {
+    "structural_intention": {
+      "equation_number": 1,
+      "symbol": "I",
+      "formula_latex": "I = D_{\\mathrm{KL}}(q(x) \\| p(x|D)) = \\sum_x q(x) \\ln \\frac{q(x)}{p(x|D)}",
+      "description": "KL-divergence between observed output q(x) and baseline dynamics p(x|D)",
+      "properties": ["agent-free", "information-theoretic", "measurable"],
+      "I_zero": "Output fully explained by system dynamics",
+      "I_positive": "Excess structure = structural intention",
+      "baseline_estimation": [
+        "Unaligned version of same model (pre-RLHF checkpoint)",
+        "Pre-intervention baseline",
+        "Null generative model matched in architecture"
+      ]
+    },
+    "natural_entropy": {
+      "equation_number": 2,
+      "symbol": "S_N",
+      "formula_latex": "S_N = H(X|D) = -\\sum_x p(x|D) \\ln p(x|D)",
+      "description": "Uncertainty from intrinsic system dynamics",
+      "properties": ["distributed_episenter", "organic_resonance", "scale_consistent", "regime_native"],
+      "key": "Carries structure but not direction — consequence of dynamics, not design"
+    },
+    "mechanical_entropy": {
+      "equation_number": 3,
+      "symbol": "S_M",
+      "formula_latex": "S_M = H(X|D,I) + \\lambda \\, I(X;I)",
+      "description": "Uncertainty shaped by external structural intervention",
+      "terms": {
+        "H(X|D,I)": "Residual uncertainty after accounting for dynamics and intervention",
+        "I(X;I)": "Mutual information between output and structural intervention",
+        "lambda": "Coupling constant (fixed at 1)"
+      },
+      "recovery": "When I=0, S_M = S_N",
+      "key_difference": "Contains I(X;I) component coupled to external source"
+    },
+    "entropy_class_residual": {
+      "equation_number": 4,
+      "symbol": "Delta_S",
+      "formula_latex": "\\Delta S = S_{\\mathrm{observed}} - S_N^{\\mathrm{predicted}}",
+      "interpretation": {
+        "near_zero": "Consistent with natural origin",
+        "systematically_positive": "Indicates mechanical injection (with structural markers)"
+      }
+    }
+  },
+  "detection_diagnostics": {
+    "D1_episenter_concentration": {
+      "equation_numbers": [5, 6],
+      "symbol": "E",
+      "weight": "w_k = I(X_k; X)",
+      "formula_latex": "E = \\frac{\\max_k I(X_k; X)}{\\sum_k I(X_k; X)}",
+      "high_E": "Single variable dominates → mechanical signature",
+      "low_E": "Distributed organisation → natural signature",
+      "alternative_estimators": ["SHAP values", "gradient-based feature importance", "graph centrality"],
+      "constraint": "Estimator must be declared and held constant within experiment"
+    },
+    "D2_resonance_spectrum_ratio": {
+      "equation_number": 7,
+      "symbol": "R(omega)",
+      "formula_latex": "R(\\omega) = \\frac{P_{\\mathrm{observed}}(\\omega)}{P_{\\mathrm{null}}(\\omega)}",
+      "null_model": "Mean spectral density across B bootstrap permutations",
+      "interpretation": "R(omega) >> 1 at specific frequencies → non-native periodicity"
+    },
+    "D3_cross_regime_asymmetry": {
+      "equation_number": 8,
+      "symbol": "A",
+      "formula_latex": "A = \\max_{r,s} |\\Delta S(T_r(X)) - \\Delta S(T_s(X))|",
+      "natural": "A ≈ 0 (regime-consistent)",
+      "mechanical": "A >> 0 (regime-asymmetric)",
+      "example_regimes": [
+        "Semantic reframing (restating same question in different domain)",
+        "Prompt structure transformation (open-ended vs. constrained)",
+        "Domain shift (coding same response for physics vs. systems theory)"
+      ]
+    },
+    "combined_criterion": {
+      "equation_number": 9,
+      "formula_latex": "E > E_{\\mathrm{crit}} \\wedge \\exists \\omega: R(\\omega) > R_{\\mathrm{crit}} \\wedge A > A_{\\mathrm{crit}}",
+      "note": "Conjunction of all three required to avoid false positives"
+    }
+  },
+  "case_studies": [
+    {
+      "id": "CS1",
+      "title": "LLM Alignment Bias as Mechanical Entropy",
+      "domain": "AI/LLM",
+      "episenter": "Concentrated — training-data paradigm dominance + safety constraints",
+      "resonance": "Periodic pushback: acknowledge → qualify → redirect → request evidence",
+      "cross_regime": "Regime-asymmetric — friction only where paradigm has data dominance",
+      "multi_model": "Convergence across Gemini, GPT-4, Claude (qualitative observation)"
+    },
+    {
+      "id": "CS2",
+      "title": "Academic Paradigm-Guarding",
+      "domain": "Academia",
+      "episenter": "Concentrated around institutional decision structures",
+      "note": "Serves legitimate function but also injects mechanical entropy"
+    },
+    {
+      "id": "CS3",
+      "title": "Information Warfare",
+      "domain": "Psyops",
+      "episenter": "Centralised and intentional",
+      "resonance": "Detectable periodicity not matching organic engagement",
+      "cross_regime": "Manufactured narratives collapse under cross-regime analysis"
+    }
+  ],
+  "empirical_protocol": {
+    "name": "LLM Alignment Test",
+    "target_prediction": "P2",
+    "hypothesis": "Alignment mechanisms introduce periodic structure detectable via spectral analysis",
+    "steps": [
+      {
+        "step": 1,
+        "name": "Prompt generation",
+        "N": 500,
+        "categories": ["within_established_paradigms", "challenging_established_paradigms"],
+        "matching_criteria": ["complexity", "domain", "specificity"]
+      },
+      {
+        "step": 2,
+        "name": "Response collection",
+        "M_models": ">=3",
+        "record": "full responses"
+      },
+      {
+        "step": 3,
+        "name": "Response coding",
+        "codes": {
+          "A": "acknowledge",
+          "H": "hedge/qualify",
+          "R": "redirect to established framework",
+          "E": "request evidence",
+          "S": "substantive engagement"
+        },
+        "method": "Rule-based classifier (published with code)",
+        "validation": "Inter-rater reliability on 10% random subsample"
+      },
+      {
+        "step": 4,
+        "name": "Spectral analysis",
+        "method": "Autocorrelation + FFT of coded sequences per category"
+      },
+      {
+        "step": 5,
+        "name": "Null model",
+        "B": 1000,
+        "permutations": [
+          "Shuffle symbolic codes within each response",
+          "Shuffle prompts between categories"
+        ]
+      },
+      {
+        "step": 6,
+        "name": "Detection",
+        "formula": "R(omega) = P_obs(omega) / P_null(omega)",
+        "significance": "99% confidence"
+      }
+    ],
+    "expected_result": "Category (b) shows significant spectral peaks absent in category (a) and null",
+    "falsification": "No significant spectral peaks in category (b), or identical peaks in both"
+  },
+  "falsifiable_predictions": [
+    {"id": "P1", "domain": "LLM", "prediction": "Alignment-induced friction exhibits higher E than genuine epistemic uncertainty"},
+    {"id": "P2", "domain": "LLM", "prediction": "Pushback frequency of aligned models is statistically periodic, independent of argument quality"},
+    {"id": "P3", "domain": "LLM", "prediction": "Cross-regime testing reduces alignment friction for unconventional frameworks"},
+    {"id": "P4", "domain": "LLM", "prediction": "Broader latent spaces yield lower E for alignment bias"},
+    {"id": "P5", "domain": "Academia", "prediction": "Rejection rates for paradigm-challenging papers peak at regime boundaries"},
+    {"id": "P6", "domain": "Academia", "prediction": "Episenter shift produces systematic redistribution of paper rankings"},
+    {"id": "P7", "domain": "Psyops", "prediction": "Coordinated campaigns show resonance peaks at non-native frequencies"},
+    {"id": "P8", "domain": "Psyops", "prediction": "Cross-regime analysis degrades manufactured coherence faster than organic"},
+    {"id": "P9", "domain": "General", "prediction": "Natural entropy: A ≈ 0; mechanical: A >> 0"},
+    {"id": "P10", "domain": "General", "prediction": "Delta_S for mechanical entropy is systematically positive"},
+    {"id": "P11", "domain": "General", "prediction": "Meta-control systems can distinguish S_N from S_M; others cannot"},
+    {"id": "P12", "domain": "EFC-C", "prediction": "Meta-observation capability may represent the minimal architecture for real-time entropy class discrimination"},
+    {"id": "P13", "domain": "EFC-C", "prediction": "Multi-mirror observation increases S_M detection super-linearly"}
+  ],
+  "regime_bound_extension": {
+    "new_concept": "Entropy Class",
+    "position": "sixth operative concept",
+    "pipeline": ["Regime", "Proxy", "Placement", "Episenter", "Entropy Class", "Compression", "Output"],
+    "pipeline_arrows": "Regime →(scope) Proxy + Placement →(access) Episenter →(organisation) Entropy Class →(origin) Compression →(reduction) Output"
+  },
+  "failure_modes": [
+    {
+      "name": "Adversarial masking",
+      "description": "Injection deliberately mimics natural resonance spectrum (analogous to steganography)"
+    },
+    {
+      "name": "Episenter laundering",
+      "description": "Constructed episenter deliberately distributed across proxy sources"
+    },
+    {
+      "name": "Incomplete regime coverage",
+      "description": "Insufficient regimes prevent cross-regime checks"
+    }
+  ],
+  "references": [
+    {"id": 1, "cite": "Brillouin (1962)", "topic": "Free vs bound information"},
+    {"id": 2, "cite": "Farquhar et al. (2024)", "topic": "Semantic entropy for LLM hallucination detection"},
+    {"id": 3, "cite": "Kullback & Leibler (1951)", "topic": "KL-divergence"},
+    {"id": 4, "cite": "Landauer (1961)", "topic": "Physical cost of information erasure"},
+    {"id": 5, "cite": "Magnusson (2025)", "topic": "CEM-Cosmos consciousness model"},
+    {"id": 6, "cite": "Magnusson (2026a)", "topic": "Regime-Bound Measurement"},
+    {"id": 7, "cite": "Magnusson (2026b)", "topic": "RCMP"},
+    {"id": 8, "cite": "Magnusson (2026c)", "topic": "Entropy-Bounded Empiricism"},
+    {"id": 9, "cite": "Shannon (1948)", "topic": "Mathematical theory of communication"}
+  ]
+}

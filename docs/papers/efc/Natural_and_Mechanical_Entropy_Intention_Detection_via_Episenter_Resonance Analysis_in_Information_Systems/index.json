@@ -1,0 +1,207 @@
+{
+  "paper_id": "natural-mechanical-entropy-intention-detection",
+  "title": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems",
+  "short_title": "Natural and Mechanical Entropy",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Independent Researcher, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "version": "v2",
+  "date": "2026-03-26",
+  "status": "working_paper",
+  "framework": "EFC",
+  "subframework": "Regime-Bound Measurement",
+  "keywords": [
+    "natural entropy",
+    "mechanical entropy",
+    "intention detection",
+    "episenter analysis",
+    "regime-bound measurement",
+    "information manipulation",
+    "AI alignment bias",
+    "EFC",
+    "resonance signature"
+  ],
+  "abstract": "Information systems—from large language models (LLMs) to institutional paradigms—produce outputs that blend emergent signal with constructed bias. This paper formalises a distinction between natural entropy (emergent, intention-free, with distributed episenter and organic resonance) and mechanical entropy (constructed, intention-bearing, with localised episenter and imposed resonance frequency). We define intention operationally as the KL-divergence between the observed output distribution and the distribution predicted by the system's own dynamics, avoiding agent-theoretic assumptions. Three independent diagnostics—episenter concentration (via mutual information), resonance spectrum ratio (against a bootstrap null), and cross-regime asymmetry—form a combined detection criterion. Three case studies (LLM alignment bias, academic paradigm-guarding, information warfare) demonstrate the framework's generality. Thirteen falsifiable predictions and a concrete empirical protocol for the LLM case are provided.",
+  "epistemic_status": {
+    "type": "working_paper",
+    "peer_reviewed": false,
+    "empirical_protocol_executed": false,
+    "empirical_protocol_proposed": true,
+    "falsifiable_predictions": 13,
+    "case_studies": 3
+  },
+  "core_concepts": {
+    "structural_intention": {
+      "symbol": "I",
+      "definition": "KL-divergence between observed output q(x) and baseline dynamics p(x|D)",
+      "formula": "I = D_KL(q(x) || p(x|D)) = sum_x q(x) ln(q(x)/p(x|D))",
+      "properties": ["agent-free", "information-theoretic", "measurable"],
+      "zero_condition": "I=0 when output fully explained by system dynamics"
+    },
+    "natural_entropy": {
+      "symbol": "S_N",
+      "definition": "Uncertainty arising from intrinsic system dynamics",
+      "formula": "S_N = H(X|D) = -sum_x p(x|D) ln p(x|D)",
+      "properties": ["distributed_episenter", "organic_resonance", "scale_consistent", "regime_native"]
+    },
+    "mechanical_entropy": {
+      "symbol": "S_M",
+      "definition": "Uncertainty shaped by external structural intervention",
+      "formula": "S_M = H(X|D,I) + lambda * I(X;I)",
+      "coupling_constant": "lambda = 1 (fixed)",
+      "recovery": "When I=0, S_M = S_N",
+      "key_difference": "Contains I(X;I) component coupled to external source"
+    },
+    "entropy_class_residual": {
+      "symbol": "Delta_S",
+      "formula": "Delta_S = S_observed - S_N_predicted",
+      "interpretation": {
+        "zero": "Consistent with natural origin",
+        "positive": "Indicates mechanical injection (with structural markers)"
+      }
+    }
+  },
+  "detection_framework": {
+    "name": "Episenter-Resonance Analysis",
+    "diagnostics": [
+      {
+        "id": "D1",
+        "name": "Episenter Concentration",
+        "symbol": "E",
+        "formula": "E = max_k I(X_k; X) / sum_k I(X_k; X)",
+        "weight_definition": "w_k = I(X_k; X) (mutual information)",
+        "interpretation": {
+          "high_E": "Single variable dominates → mechanical signature",
+          "low_E": "Distributed organisation → natural signature"
+        },
+        "alternative_estimators": ["SHAP values", "gradient-based feature importance", "graph centrality"]
+      },
+      {
+        "id": "D2",
+        "name": "Resonance Spectrum Ratio",
+        "symbol": "R(omega)",
+        "formula": "R(omega) = P_observed(omega) / P_null(omega)",
+        "null_model": "Bootstrap resampling (B permutations)",
+        "interpretation": "R(omega) >> 1 at specific frequencies → non-native periodicity"
+      },
+      {
+        "id": "D3",
+        "name": "Cross-Regime Asymmetry",
+        "symbol": "A",
+        "formula": "A = max_{r,s} |Delta_S(T_r(X)) - Delta_S(T_s(X))|",
+        "interpretation": {
+          "A_near_zero": "Natural entropy (regime-consistent)",
+          "A_large": "Mechanical entropy (regime-asymmetric)"
+        },
+        "example_regimes": ["semantic reframing", "prompt structure transformation", "domain shift"]
+      }
+    ],
+    "combined_criterion": "E > E_crit AND exists omega: R(omega) > R_crit AND A > A_crit",
+    "note": "Conjunction of all three required to avoid false positives"
+  },
+  "case_studies": [
+    {
+      "id": "CS1",
+      "title": "LLM Alignment Bias as Mechanical Entropy",
+      "domain": "AI/LLM",
+      "description": "Alignment mechanisms (RLHF, constitutional AI) inject structure into response distributions. Alignment-induced conservatism constitutes mechanical entropy.",
+      "episenter": "Concentrated — training-data paradigm dominance + safety constraints",
+      "resonance": "Periodic pushback pattern: acknowledge → qualify → redirect → request evidence",
+      "cross_regime": "Bias regime-asymmetric — friction only where established paradigm has training-data dominance",
+      "multi_model": "Convergence observed across Gemini, GPT-4, Claude (qualitative)"
+    },
+    {
+      "id": "CS2",
+      "title": "Academic Paradigm-Guarding",
+      "domain": "Academia",
+      "description": "Peer review, funding allocation, citation networks inject mechanical entropy with concentrated episenter around institutional decision structures."
+    },
+    {
+      "id": "CS3",
+      "title": "Information Warfare",
+      "domain": "Psyops",
+      "description": "State-level information operations inject constructed narratives. Centralised episenter, detectable periodicity, manufactured narratives collapse under cross-regime analysis."
+    }
+  ],
+  "empirical_protocol": {
+    "target": "LLM Alignment Test (Prediction P2)",
+    "hypothesis": "Alignment mechanisms introduce periodic structure detectable via spectral analysis",
+    "method": {
+      "prompt_generation": {"N": 500, "categories": ["within_established_paradigms", "challenging_established_paradigms"], "matching": ["complexity", "domain", "specificity"]},
+      "response_collection": {"M_models": ">=3", "record": "full responses"},
+      "response_coding": {"codes": ["A (acknowledge)", "H (hedge/qualify)", "R (redirect)", "E (request evidence)", "S (substantive engagement)"], "method": "rule-based classifier", "inter_rater": "10% random subsample human annotation"},
+      "spectral_analysis": "Autocorrelation + FFT of coded sequences per category",
+      "null_model": {"method": "bootstrap", "B": 1000, "permutations": ["shuffle codes within response", "shuffle prompts between categories"]},
+      "detection": "R(omega) = P_obs(omega)/P_null(omega), test for peaks at 99% confidence"
+    },
+    "expected_result": "Category (b) shows spectral peaks (A→H→R→E cycles) absent in category (a) and null; E higher for category (b)",
+    "falsification": "No significant spectral peaks in category (b), or identical peaks in both categories"
+  },
+  "falsifiable_predictions": [
+    {"id": "P1", "domain": "LLM", "prediction": "Alignment-induced friction exhibits higher E than genuine epistemic uncertainty"},
+    {"id": "P2", "domain": "LLM", "prediction": "Pushback frequency of aligned models is statistically periodic, independent of argument quality"},
+    {"id": "P3", "domain": "LLM", "prediction": "Cross-regime testing reduces alignment friction for unconventional frameworks"},
+    {"id": "P4", "domain": "LLM", "prediction": "Broader latent spaces yield lower E for alignment bias"},
+    {"id": "P5", "domain": "Academia", "prediction": "Rejection rates for paradigm-challenging papers peak at regime boundaries"},
+    {"id": "P6", "domain": "Academia", "prediction": "Episenter shift produces systematic redistribution of paper rankings"},
+    {"id": "P7", "domain": "Psyops", "prediction": "Coordinated campaigns show resonance peaks at non-native frequencies"},
+    {"id": "P8", "domain": "Psyops", "prediction": "Cross-regime analysis degrades manufactured coherence faster than organic"},
+    {"id": "P9", "domain": "General", "prediction": "Natural entropy: A ≈ 0; mechanical: A >> 0"},
+    {"id": "P10", "domain": "General", "prediction": "Delta_S for mechanical entropy is systematically positive"},
+    {"id": "P11", "domain": "General", "prediction": "Meta-control systems can distinguish S_N from S_M; others cannot"},
+    {"id": "P12", "domain": "EFC-C", "prediction": "Meta-observation capability may represent the minimal architecture for real-time entropy class discrimination"},
+    {"id": "P13", "domain": "EFC-C", "prediction": "Multi-mirror observation increases S_M detection super-linearly"}
+  ],
+  "regime_bound_extension": {
+    "new_concept": "Entropy Class (sixth operative concept)",
+    "pipeline": "Regime → Proxy + Placement → Episenter → Entropy Class → Compression → Output",
+    "original_concepts": ["regime", "proxy", "placement", "episenter", "compression"]
+  },
+  "efc_c_connection": {
+    "model": "CEM-Cosmos",
+    "claim": "Consciousness arises as informational resonance in the entropy field",
+    "implication": "Ability to detect mechanical entropy may be fundamental capability of meta-observing systems",
+    "measurement_loop": "Output = f(regime, measurement, reference, target)",
+    "status": "hypothesis (P12), not established claim"
+  },
+  "failure_modes": [
+    {"name": "Adversarial masking", "description": "Injection deliberately mimics natural resonance spectrum"},
+    {"name": "Episenter laundering", "description": "Constructed episenter deliberately distributed across proxy sources"},
+    {"name": "Incomplete regime coverage", "description": "Insufficient regimes prevent cross-regime checks"}
+  ],
+  "limitations": [
+    "Thresholds must be calibrated empirically per domain",
+    "Natural/mechanical distinction not always binary — hybrid cases exist",
+    "Empirical protocol proposed but not yet executed",
+    "Adversary aware of criteria can design evasive mechanical entropy"
+  ],
+  "references": {
+    "count": 9,
+    "key_refs": [
+      "Shannon (1948) — mathematical theory of communication",
+      "Kullback & Leibler (1951) — KL-divergence",
+      "Landauer (1961) — irreversibility and computing",
+      "Brillouin (1962) — science and information theory",
+      "Farquhar et al. (2024) — semantic entropy for LLM hallucination detection",
+      "Magnusson (2025) — CEM-Cosmos consciousness model",
+      "Magnusson (2026a) — Regime-Bound Measurement",
+      "Magnusson (2026b) — RCMP",
+      "Magnusson (2026c) — Entropy-Bounded Empiricism"
+    ]
+  },
+  "files": {
+    "pdf": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "Natural_and_Mechanical_Entropy.jsonld",
+    "citations": "citations.bib",
+    "source": "src/entropy_intention.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_entropy_intention.py"
+  }
+}
