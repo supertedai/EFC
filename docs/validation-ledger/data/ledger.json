@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-25T19:12:44Z",
+  "generated_at": "2026-03-26T01:13:15Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -183,17 +183,17 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-03-24_151920_aqual",
+        "test_id": "grav_integration_2026-03-25_102726_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
-        "result": "C=2.33: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
+        "result": "C=2.38: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
         "status": "partial",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "G_eff gate × linear growth ODE, 4 screening scales, C from KT2",
         "prediction": "LCDM baseline survives; screening at k < 0.01 h/Mpc keeps σ₈ and γ within 5% of ΛCDM",
         "notes": null,
-        "quantitative_result": "{\"C\": 2.326896011909397, \"survived\": [\"LCDM_baseline\", \"k_Lambda_0.0014\"], \"exploded\": [\"k_Lambda_0.1\", \"k_Lambda_1.0\"], \"overall_verdict\": \"PARTIAL_BRIDGE\"}",
+        "quantitative_result": "{\"C\": 2.3762110492945654, \"survived\": [\"LCDM_baseline\", \"k_Lambda_0.0014\"], \"exploded\": [\"k_Lambda_0.1\", \"k_Lambda_1.0\"], \"overall_verdict\": \"PARTIAL_BRIDGE\"}",
         "last_synced": null,
         "status_detail": "partial"
       },
@@ -258,7 +258,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-03-24_151920_aqual",
+        "test_id": "grav_kt1_2026-03-25_102726_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -273,7 +273,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-03-24_151920_aqual",
+        "test_id": "grav_kt3_2026-03-25_102726_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.2934 (target: 0.5 for √(GM/a₀))",
@@ -288,17 +288,17 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-03-24_151920_aqual",
+        "test_id": "grav_kt2_2026-03-25_102726_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
-        "result": "C_vw = 2.3269 (converged)",
+        "result": "C_vw = 2.3762 (converged)",
         "status": "success",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "Grid-AQUAL solver, N ∈ {21, 31, 41}, spherical point mass M=50",
         "prediction": "C converges to a finite value; residual between N-steps < 0.1",
         "notes": null,
-        "quantitative_result": "{\"C_vw\": 2.3269, \"C_squared\": 5.4144, \"verdict\": \"PASSED\"}",
+        "quantitative_result": "{\"C_vw\": 2.3762, \"C_squared\": 5.6464, \"verdict\": \"PASSED\"}",
         "last_synced": null,
         "status_detail": "success"
       },
@@ -813,7 +813,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-25T14:14:59.782000000+00:00",
+        "last_synced": "2026-03-25T22:12:18.396000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.246609Z",
+      "timestamp": "2026-03-26T00:46:18.726106Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.258244Z",
+      "timestamp": "2026-03-26T00:46:18.737639Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.235282Z",
+      "timestamp": "2026-03-26T00:46:18.714135Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.299487Z",
+      "timestamp": "2026-03-26T00:46:18.758557Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.286820Z",
+      "timestamp": "2026-03-26T00:46:18.747567Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-25T18:35:51.214521Z",
+      "timestamp": "2026-03-26T00:46:18.700018Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-25T18:21:30.780832+00:00"
+      "timestamp": "2026-03-26T00:21:41.720529+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-25T18:21:30.812967+00:00"
+      "timestamp": "2026-03-26T00:21:41.751050+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-25T18:21:30.825908+00:00"
+      "timestamp": "2026-03-26T00:21:41.766886+00:00"
     }
   },
   "parameters": {
@@ -2356,7 +2356,7 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-25T14:14:59.782000000+00:00",
+      "last_updated": "2026-03-25T22:12:18.396000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
@@ -2365,7 +2365,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-03-24_151920_aqual",
+      "run_id": "2026-03-25_102726_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
@@ -2388,7 +2388,7 @@
         "label": "KT2",
         "slope_mond": null,
         "slope_newton": null,
-        "c_value": 2.326896011909397,
+        "c_value": 2.3762110492945654,
         "c_last_diff": null,
         "beta": null,
         "n_cases": null
