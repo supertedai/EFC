@@ -1,0 +1,76 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "efc:Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems",
+  "name": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Independent Researcher, Sandnes, Norway"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-03-26",
+  "version": "v2",
+  "description": "Formalises the distinction between natural entropy (emergent, intention-free) and mechanical entropy (constructed, intention-bearing) in information systems. Defines structural intention as KL-divergence from baseline dynamics. Provides three-diagnostic detection framework and thirteen falsifiable predictions.",
+  "keywords": [
+    "natural entropy",
+    "mechanical entropy",
+    "intention detection",
+    "episenter analysis",
+    "regime-bound measurement",
+    "information manipulation",
+    "AI alignment bias",
+    "EFC",
+    "resonance signature"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Natural Entropy",
+      "description": "Uncertainty arising from intrinsic system dynamics with distributed episenter"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Mechanical Entropy",
+      "description": "Uncertainty shaped by external structural intervention with localised episenter"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Structural Intention",
+      "description": "KL-divergence between observed output and system baseline dynamics"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Episenter–Resonance Analysis",
+      "description": "Three-diagnostic detection framework for mechanical entropy"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC) Paper Series"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Regime-Bound Measurement in Complex Systems",
+      "author": {"@type": "Person", "name": "Morten Magnusson"},
+      "datePublished": "2026"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A mathematical theory of communication",
+      "author": {"@type": "Person", "name": "Claude E. Shannon"},
+      "datePublished": "1948"
+    }
+  ]
+}
