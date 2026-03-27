@@ -1,0 +1,244 @@
+{
+  "paper_id": "efc-relativistic-action-field-equations",
+  "title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of mu, Sigma, eta",
+  "short_title": "EFC Relativistic Action",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Energy-Flow Cosmology Initiative",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "version": "v0.5",
+  "date": "2026-03",
+  "doi": "10.6084/m9.figshare.31876324",
+  "status": "working_paper",
+  "framework": "EFC",
+  "keywords": [
+    "EFC action", "field equations", "perturbation theory", "modified gravity",
+    "mu-Sigma-eta", "gravitational waves", "scalar-tensor", "entropy flow",
+    "kinetic stiffness", "flow constraint", "conformal Newtonian gauge"
+  ],
+  "abstract": "We derive the complete field equations for the EFC relativistic action, which couples an entropy-flow scalar field phi non-minimally to gravity via F(phi)R, with density-dependent kinetic stiffness K(rho) and a Lagrange-multiplier flow constraint. We perform the full linearisation in conformal Newtonian gauge around an FRW background, and extract closed-form expressions for the effective gravitational couplings mu(k,z) and Sigma(k,z), and the gravitational slip eta(k,z). We show that the combination of non-minimal coupling, kinetic stiffness, and flow constraint naturally produces mu<1, Sigma>1, and eta!=1, consistent with the survival valley identified in the EFC Validation Ledger.",
+  "epistemic_status": {
+    "type": "working_paper",
+    "version": "v0.5",
+    "peer_reviewed": false,
+    "variational_derivation": true,
+    "self_contained": true,
+    "regime_validity": "quasi-static, sub-horizon (k >> aH)",
+    "falsification_conditions": 6,
+    "open_items": ["full ADM Hamiltonian analysis", "numerical EFCLASS implementation"]
+  },
+  "action": {
+    "name": "EFC relativistic action",
+    "equation_number": 1,
+    "formula": "S_EFC = int d^4x sqrt(-g) [ (1/2) M_Pl^2 F(phi) R - (1/2) K(rho) g^{mu nu} d_mu phi d_nu phi - V(phi) - lambda (box phi - Gamma(rho)) ]",
+    "components": {
+      "non_minimal_coupling": {
+        "symbol": "F(phi)",
+        "form": "F(phi) = 1 + alpha*phi",
+        "condition": "|alpha*phi| << 1",
+        "role": "Geometry-information coupling: entropy field modifies what curvature means"
+      },
+      "kinetic_stiffness": {
+        "symbol": "K(rho)",
+        "form": "K(rho) = K0 / (1 - rho/rho_crit)",
+        "divergence": "K -> infinity as rho -> rho_crit",
+        "role": "Cost of moving information diverges at high density (automatic screening)"
+      },
+      "potential": {
+        "symbol": "V(phi)",
+        "role": "Entropy-field potential"
+      },
+      "flow_constraint": {
+        "multiplier": "lambda (Lagrange multiplier)",
+        "constraint": "box phi = Gamma(rho)",
+        "role": "Entropy flow must balance a ledger tied to matter density"
+      },
+      "entropy_production": {
+        "symbol": "Gamma(rho)",
+        "concrete_form": "Gamma(rho) = gamma_0 * (rho/rho_crit) / (1 + rho/rho_crit)",
+        "derivative": "Gamma'(rho) = gamma_0 / (rho_crit * (1 + rho/rho_crit)^2)",
+        "properties": ["vanishes in vacuum", "grows with density", "saturates at rho_crit"]
+      }
+    },
+    "departures_from_GR": [
+      "Geometry-information coupling F(phi)R",
+      "Kinetic stiffness K(rho)",
+      "Flow constraint lambda(box phi - Gamma)"
+    ]
+  },
+  "field_equations": {
+    "modified_einstein": {
+      "equation_number": 7,
+      "formula": "M_Pl^2 F(phi) G_mu_nu = T^(m) + T^(phi) + T^(V) + T^(lambda) - M_Pl^2 (nabla_mu nabla_nu F - g_mu_nu box F)",
+      "stress_tensors": {
+        "T_phi": "K(rho) (d_mu phi d_nu phi - (1/2) g_mu_nu (nabla phi)^2)",
+        "T_V": "-g_mu_nu V(phi)",
+        "T_lambda": "nabla_mu lambda nabla_nu phi + nabla_nu lambda nabla_mu phi - g_mu_nu nabla_a lambda nabla^a phi + lambda (nabla_mu nabla_nu phi - g_mu_nu box phi)"
+      },
+      "slip_sources": [
+        "Standard scalar-tensor anisotropic stress from nabla_mu nabla_nu F",
+        "Flow-constraint tensor T^(lambda) (unique to EFC)",
+        "Cross-terms from density-dependent K(rho)"
+      ]
+    },
+    "scalar_field": {
+      "equation_number": 8,
+      "formula": "nabla_mu (K(rho) nabla^mu phi) + box lambda + (1/2) M_Pl^2 F'(phi) R - V'(phi) = 0"
+    },
+    "constraint": {
+      "equation_number": 9,
+      "formula": "box phi = Gamma(rho)",
+      "implication": "phi is not a free dynamical field; its d'Alembertian is fixed by matter density"
+    },
+    "response_field": {
+      "equation_number": 10,
+      "formula": "box lambda = V'(phi) - (1/2) M_Pl^2 F'(phi) R - nabla_mu (K(rho) nabla^mu phi)",
+      "interpretation": "lambda records the cost of maintaining the entropy ledger in curved spacetime"
+    }
+  },
+  "perturbation_theory": {
+    "gauge": "Conformal Newtonian",
+    "background": "FRW: ds^2 = -dt^2 + a^2(t) delta_ij dx^i dx^j",
+    "perturbed_metric": "ds^2 = -(1+2Psi)dt^2 + a^2(1-2Phi) delta_ij dx^i dx^j",
+    "regime": "quasi-static, sub-horizon (k >> aH)",
+    "key_result": {
+      "equation_number": 17,
+      "formula": "delta_phi = (a^2/k^2) Gamma'(rho_bar) delta_rho",
+      "interpretation": "Entropy perturbation is slaved to matter perturbation"
+    },
+    "dimensionless_parameters": {
+      "epsilon_F": {"formula": "F'(phi_bar) a^2 Gamma' / (F k^2)", "equation": 24},
+      "epsilon_lambda": {"formula": "lambda_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)", "equation": 25},
+      "epsilon_K": {"formula": "K(rho_bar) phi_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)", "equation": 26}
+    }
+  },
+  "observables": {
+    "mu": {
+      "name": "Effective Poisson coupling",
+      "definition": "-(k^2/a^2) Psi = 4 pi G mu delta_rho_m",
+      "formula": "mu = (1 + eps_F + eps_K^resp) / (F * (1 + R))",
+      "equation_number": 28,
+      "prediction": "< 1 (stiffness-dominated)",
+      "mechanism": "Entropy-stiffness: flow constraint forces delta_phi ~ delta_rho, large K makes this costly",
+      "typical_value": 0.94
+    },
+    "eta": {
+      "name": "Gravitational slip",
+      "definition": "eta = Phi / Psi",
+      "formula": "eta = 1 + 2(eps_F + eps_lambda + eps_lambda_resp)",
+      "equation_number": 27,
+      "prediction": "> 1 (flow anisotropy)",
+      "mechanism": "Three slip sources: scalar-tensor, flow-constraint, response-field",
+      "typical_value": 1.10
+    },
+    "sigma": {
+      "name": "Effective lensing coupling",
+      "definition": "-(k^2/a^2)(Phi+Psi) = 8 pi G Sigma delta_rho_m",
+      "formula": "Sigma = mu(1+eta)/2",
+      "equation_number": 32,
+      "prediction": "> 1 (slip compensation)",
+      "mechanism": "Numerator boosted by slip, denominator suppressed by stiffness",
+      "typical_value": 1.05
+    },
+    "stiffness_response": {
+      "symbol": "R(k,z)",
+      "formula": "R = K(rho_bar) a^4 (Gamma')^2 phi_dot_bar^2 / (M_Pl^2 F k^4)",
+      "equation_number": 29,
+      "sign": "positive definite",
+      "role": "Controls mu suppression"
+    }
+  },
+  "tensor_sector": {
+    "gw_speed": {
+      "result": "c_T = c exactly",
+      "equation_number": 38,
+      "reason": "No Weyl-tensor or higher-derivative couplings in action",
+      "gw170817": "PASSED"
+    },
+    "gw_amplitude": {
+      "formula": "d_L^GW(z) = d_L^EM(z) * sqrt(F(phi_0)/F(phi(z)))",
+      "equation_number": 40,
+      "approximation": "d_L^GW/d_L^EM ≈ 1 - (alpha/2)(phi(z) - phi_0)",
+      "testable_with": ["Einstein Telescope", "LISA", "Cosmic Explorer"]
+    },
+    "friction_constraint": {
+      "requirement": "|F_dot/F| << H",
+      "implication": "|alpha * phi_dot_bar| << H",
+      "equation_number": 42
+    },
+    "contributing_terms": {
+      "F_phi_R": true,
+      "K_rho_nabla_phi_2": false,
+      "V_phi": false,
+      "lambda_constraint": false
+    }
+  },
+  "closure": {
+    "delta_lambda": {
+      "equation_number": 44,
+      "formula": "delta_lambda ≈ -K(rho_bar) (a^2 Gamma'/k^2) delta_rho - M_Pl^2 F' (a^2/(2k^2)) delta_R",
+      "status": "Algebraically determined (not dynamically independent)"
+    },
+    "degree_of_freedom_count": {
+      "naive": "2 extra scalar DOF (phi, lambda)",
+      "effective": "0 extra propagating DOF in sub-horizon regime",
+      "reason": "Constraint fixes phi; lambda algebraically slaved"
+    },
+    "ghost_analysis": {
+      "sub_horizon": "Ghost-free by construction",
+      "tensor": "Stable (second-order, no Ostrogradsky)",
+      "super_horizon": "Full ADM analysis required (open)"
+    }
+  },
+  "falsification_conditions": [
+    {"id": "FA1", "condition": "R(k,z) < 0 for any k,z", "consequence": "Stiffness mechanism fails; mu > 1 generically", "status": "open"},
+    {"id": "FA2", "condition": "Ghost in (delta_phi, delta_lambda) sector", "consequence": "Theory UV-unstable; action must be modified", "status": "open"},
+    {"id": "FA3", "condition": "c_T != c", "consequence": "GW170817 violated", "status": "PASSED"},
+    {"id": "FA4", "condition": "eta = 1 identically", "consequence": "Flow constraint does not generate anisotropic stress", "status": "open"},
+    {"id": "FA5", "condition": "No parameter region gives mu in [0.93,0.96], Sigma in [1.03,1.07]", "consequence": "Action doesn't reproduce observed signatures", "status": "open"},
+    {"id": "FA6", "condition": "|F_dot/F| >= H at any z < 2", "consequence": "GW friction too large; violates LIGO/Virgo amplitude constraints", "status": "open"}
+  ],
+  "survival_valley": {
+    "mu_range": [0.93, 0.96],
+    "sigma_range": [1.03, 1.07],
+    "eta_typical": 1.10,
+    "source": "Systematic localisation analysis (Magnusson 2026, Figshare 10.6084/m9.figshare.31368433)"
+  },
+  "cross_sector_summary": [
+    {"sector": "Growth", "observable": "mu(k,z)", "prediction": "< 1", "source": "K(rho) stiffness"},
+    {"sector": "Lensing", "observable": "Sigma(k,z)", "prediction": "> 1", "source": "lambda-anisotropy"},
+    {"sector": "Slip", "observable": "eta(k,z)", "prediction": "!= 1", "source": "F' + lambda + phi"},
+    {"sector": "GW speed", "observable": "c_T", "prediction": "= c", "source": "No Weyl coupling"},
+    {"sector": "GW amplitude", "observable": "d_L^GW/d_L^EM", "prediction": "!= 1", "source": "F(phi) friction"}
+  ],
+  "references": {
+    "count": 11,
+    "key_refs": [
+      "Magnusson (2026) — EFC Validation Ledger",
+      "Magnusson (2026) — Systematic Localization in CMB+LSS Parameter Space",
+      "Magnusson (2026) — EFCLASS Sign Structure",
+      "Magnusson (2026) — Perturbation-Level sigma_8 Suppression",
+      "Magnusson (2026) — Four-Channel Background Coupling",
+      "Magnusson (2026) — GR Recovery via Density Saturation",
+      "Magnusson (2026) — Discrete Entropic Gravity",
+      "Brans & Dicke (1961) — Mach's Principle and Relativistic Gravitation",
+      "Horndeski (1974) — Second-Order Scalar-Tensor Field Equations",
+      "Abbott et al. (2017) — GW170817",
+      "Blas, Lesgourgues & Tram (2011) — CLASS"
+    ]
+  },
+  "files": {
+    "pdf": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "EFC_Relativistic_Action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/efc_relativistic.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_efc_relativistic.py"
+  }
+}

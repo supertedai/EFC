@@ -1,0 +1,70 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "efc:EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction",
+  "name": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of mu, Sigma, eta",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Energy-Flow Cosmology Initiative"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-03",
+  "version": "v0.5",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.6084/m9.figshare.31876324"
+  },
+  "description": "First self-contained variational derivation of all EFC perturbation-sector predictions from a single action principle. Derives field equations, performs linearisation in conformal Newtonian gauge, and extracts closed-form mu(k,z), Sigma(k,z), eta(k,z). Shows c_T=c exactly and predicts modified GW amplitude.",
+  "keywords": [
+    "EFC action", "field equations", "perturbation theory", "modified gravity",
+    "mu-Sigma-eta", "gravitational waves", "scalar-tensor", "entropy flow",
+    "kinetic stiffness", "screening mechanism"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "EFC Relativistic Action",
+      "description": "Action coupling entropy-flow scalar field to gravity via F(phi)R with kinetic stiffness and flow constraint"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Entropy-Stiffness Mechanism",
+      "description": "Physical reason mu < 1: flow constraint prevents scalar field from freely supporting gravitational collapse"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Flow-Anisotropy Mechanism",
+      "description": "Physical reason Sigma > 1: Lagrange multiplier generates tensorial stress absent in standard scalar-tensor theories"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC) Paper Series"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Mach's Principle and a Relativistic Theory of Gravitation",
+      "author": [{"@type": "Person", "name": "C. Brans"}, {"@type": "Person", "name": "R. H. Dicke"}],
+      "datePublished": "1961"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral",
+      "author": {"@type": "Organization", "name": "LIGO/Virgo Collaboration"},
+      "datePublished": "2017"
+    }
+  ]
+}
