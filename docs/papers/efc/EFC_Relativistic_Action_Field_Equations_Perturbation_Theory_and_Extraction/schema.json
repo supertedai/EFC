@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "efc-relativistic-action-schema",
+  "title": "EFC Relativistic Action Paper Schema",
+  "description": "JSON Schema for the AI-friendly metadata of the EFC Relativistic Action paper",
+  "type": "object",
+  "required": ["paper_id", "title", "authors", "version", "date", "status", "abstract", "action", "field_equations", "observables", "falsification_conditions"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string"},
+          "affiliation": {"type": "string"},
+          "orcid": {"type": "string"}
+        }
+      }
+    },
+    "version": {"type": "string"},
+    "date": {"type": "string"},
+    "doi": {"type": "string"},
+    "status": {"type": "string", "enum": ["working_paper", "preprint", "published"]},
+    "abstract": {"type": "string"},
+    "action": {
+      "type": "object",
+      "required": ["name", "formula", "components"],
+      "properties": {
+        "name": {"type": "string"},
+        "equation_number": {"type": "integer"},
+        "formula": {"type": "string"},
+        "components": {"type": "object"},
+        "departures_from_GR": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "field_equations": {
+      "type": "object",
+      "properties": {
+        "modified_einstein": {"type": "object"},
+        "scalar_field": {"type": "object"},
+        "constraint": {"type": "object"},
+        "response_field": {"type": "object"}
+      }
+    },
+    "observables": {
+      "type": "object",
+      "properties": {
+        "mu": {
+          "type": "object",
+          "required": ["formula", "prediction"],
+          "properties": {
+            "name": {"type": "string"},
+            "formula": {"type": "string"},
+            "prediction": {"type": "string"},
+            "typical_value": {"type": "number"}
+          }
+        },
+        "eta": {"type": "object"},
+        "sigma": {"type": "object"}
+      }
+    },
+    "tensor_sector": {
+      "type": "object",
+      "properties": {
+        "gw_speed": {"type": "object"},
+        "gw_amplitude": {"type": "object"}
+      }
+    },
+    "falsification_conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "condition", "consequence"],
+        "properties": {
+          "id": {"type": "string"},
+          "condition": {"type": "string"},
+          "consequence": {"type": "string"},
+          "status": {"type": "string"}
+        }
+      }
+    }
+  }
+}

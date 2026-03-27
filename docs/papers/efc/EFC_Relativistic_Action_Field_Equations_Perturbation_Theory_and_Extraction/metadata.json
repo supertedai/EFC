@@ -1,0 +1,28 @@
+{
+  "package_format": "ai-friendly-paper",
+  "package_version": "1.0",
+  "created": "2026-03-27",
+  "generator": "Claude (Anthropic)",
+  "paper_title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of mu, Sigma, eta",
+  "ai_parsability": {
+    "machine_readable_metadata": true,
+    "json_schema_validated": true,
+    "linked_data": true,
+    "reference_implementation": true,
+    "runnable_demo": true,
+    "structured_citations": true
+  },
+  "files": {
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC_Relativistic_Action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/efc_relativistic.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_efc_relativistic.py"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": ["numpy"]
+  }
+}
