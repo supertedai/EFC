@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "covariant-eft-entropy-driven-gravity-schema",
+  "title": "Covariant EFT for Entropy-Driven Gravity Paper Schema",
+  "type": "object",
+  "required": ["paper_id", "title", "authors", "date", "status", "abstract", "action", "structural_results", "critical_gap"],
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "authors": {"type": "array", "items": {"type": "object", "required": ["name"]}},
+    "date": {"type": "string", "format": "date"},
+    "doi": {"type": "string"},
+    "status": {"type": "string"},
+    "abstract": {"type": "string"},
+    "action": {
+      "type": "object",
+      "required": ["formula", "components", "parameters"],
+      "properties": {
+        "formula": {"type": "string"},
+        "components": {"type": "object"},
+        "parameters": {"type": "object"}
+      }
+    },
+    "structural_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "result"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "result": {"type": "string"}
+        }
+      }
+    },
+    "critical_gap": {
+      "type": "object",
+      "required": ["problem", "requirement", "diagnosis"],
+      "properties": {
+        "problem": {"type": "string"},
+        "requirement": {"type": "string"},
+        "diagnosis": {"type": "string"},
+        "resolution_needed": {"type": "string"}
+      }
+    },
+    "construction_programme": {"type": "object"},
+    "outstanding_tests": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "paper_id": "covariant-eft-entropy-driven-gravity",
+  "title": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme",
+  "short_title": "Covariant EFT for Entropy-Driven Gravity",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Independent Researcher, Sola, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "version": "v1",
+  "date": "2026-03-28",
+  "doi": "10.6084/m9.figshare.31878334",
+  "status": "working_paper",
+  "framework": "EFC",
+  "keywords": [
+    "covariant EFT", "scalar-tensor", "entropy-driven gravity", "RAR",
+    "Bose-Einstein", "gravitational waves", "gravitational slip",
+    "solar-system constraints", "acceleration scale", "a0",
+    "iterative falsification", "microphysical gap"
+  ],
+  "abstract": "We present the complete results of a systematic 17-iteration programme to construct and test a covariant scalar-tensor effective field theory (EFT) in which gravitational dynamics are modified by an entropy-like scalar field S via an acceleration-dependent response function. Five structural results hold independently of the specific mu(g): (i) c_gw = c exactly; (ii) gravitational slip eta ≈ 1 with O(Phi*mu) suppression; (iii) solar-system constraints satisfied by exponential amplitude suppression; (iv) ghost-free, tachyon-free, hyperbolic; (v) the RAR is formally identical to a Bose-Einstein occupation number. A critical negative result: the classical field equation produces a correction increasing with acceleration, whereas RAR requires a decreasing correction, identifying a microphysical gap.",
+  "epistemic_status": {
+    "type": "working_paper",
+    "peer_reviewed": false,
+    "construction_programme": "17 iterations",
+    "structural_results": 5,
+    "critical_gap": true,
+    "outstanding_tests": 6
+  },
+  "action": {
+    "equation_number": 3,
+    "formula": "S = int d^4x sqrt(-g) [R/(16piG_N) + (1/2) g^{mu nu} d_mu S d_nu S - V(S) - beta |dS|_eps S^2 + L_m]",
+    "components": {
+      "einstein_hilbert": "R/(16piG_N)",
+      "kinetic": "(1/2) g^{mu nu} d_mu S d_nu S",
+      "potential": "V(S) = (1/2) m_S^2 (S - S_0)^2",
+      "coupling": "-beta |dS|_eps S^2",
+      "matter": "L_m[psi_matter, g_{mu nu}] (minimally coupled)",
+      "regularised_gradient": "|dS|_eps = sqrt((d_mu S)(d^mu S) + eps^2)"
+    },
+    "parameters": {
+      "beta": "gradient-field coupling (sets acceleration scale)",
+      "m_S": "field mass (lambda_S = 1/m_S ~ 50 kpc)",
+      "epsilon": "minimum grid tension (vacuum floor regulator)",
+      "a0": {"value": 1.2e-10, "unit": "m/s^2", "source": "SPARC"}
+    },
+    "departures_from_GR": [
+      "One scalar field S with gradient-field coupling",
+      "No f(S)R coupling (minimal coupling to gravity)",
+      "No higher-curvature terms, no Riemann coupling"
+    ]
+  },
+  "structural_results": [
+    {
+      "id": "SR1",
+      "title": "Gravitational Wave Speed",
+      "result": "c_gw = c exactly",
+      "type": "theorem",
+      "proof": "For actions S = int sqrt(-g)[R/16piG + F(g,S,dS)] with no metric derivatives in F, the tensor kinetic operator is identical to GR. Delta_c/c ~ 10^-54, 10^39 times below GW170817 bound.",
+      "comparison": "Horndeski theories with G4(X)R modify tensor kinetic operator — EFC avoids this"
+    },
+    {
+      "id": "SR2",
+      "title": "Gravitational Slip",
+      "result": "eta = 1 + O(Phi * mu)",
+      "mechanism": "Structural cancellation in radial stress T_rr: the '1' cancels with '-g_rr', leaving O(Phi) suppression",
+      "galactic_value": "|eta - 1| < 10^-6 (Phi ~ 10^-6, mu <= 1)",
+      "note": "Independent of specific mu form. Resolves x4800 time-delay problem from earlier EFC versions."
+    },
+    {
+      "id": "SR3",
+      "title": "Solar-System Compatibility",
+      "result": "Exponential amplitude suppression (not screening)",
+      "mechanism": "mu(g) = 1/(exp(sqrt(g/a0)) - 1) -> exp(-sqrt(g/a0)) for g >> a0",
+      "values": {
+        "sun_surface": {"g": 274, "mu": "~0"},
+        "earth_orbit": {"g": 5.9e-3, "mu": "~0"},
+        "saturn_cassini": {"g": 6.5e-5, "mu": "10^-320"},
+        "galaxy_outskirts": {"g": 1.2e-10, "mu": 0.58}
+      },
+      "note": "Not chameleon/Vainshtein screening — functional amplitude suppression"
+    },
+    {
+      "id": "SR4",
+      "title": "Stability",
+      "results": {
+        "ghost_free": "Z = 1 + beta S_bar^2 eps^2 / ((dS_bar)^2 + eps^2)^(3/2) > 1",
+        "tachyon_free": "m_eff^2 = m_S^2 + 2 beta |dS_bar| > 0",
+        "hyperbolic": "Principal symbol = standard d'Alembertian",
+        "energy_condition": "T_00^(S) > 0 for V >= 0, beta > 0"
+      }
+    },
+    {
+      "id": "SR5",
+      "title": "RAR as Bose-Einstein Statistics",
+      "result": "mu(g) = 1/(exp(sqrt(g/a0)) - 1)",
+      "identification": "Formally identical to Bose-Einstein occupation number <n> = 1/(exp(E/kT) - 1) with E/kT = sqrt(g/a0)",
+      "interpretation": "Spacetime grid has discrete nodes with bosonic excitation modes; E ~ sqrt(g), kT ~ sqrt(a0)",
+      "uniqueness": "Only acceleration coupling |nabla Phi| gives correct universal form (not density rho or potential Phi)"
+    }
+  ],
+  "critical_gap": {
+    "section": 8,
+    "problem": "Classical field equation from -beta|dS|S^2 produces T_00^(S) = beta S_0^2 kappa g / c^2, giving correction linear in g (increasing)",
+    "requirement": "RAR requires mu(g) -> 0 as g -> infinity (decreasing)",
+    "diagnosis": "BE form arises from quantum statistical mechanics, not classical field limit. Classical local Lagrangian generically produces polynomial corrections, not exponential suppression.",
+    "resolution_needed": "Quantum treatment of S-field or fundamentally non-local coupling",
+    "what_survives": "All structural results (SR1-SR5) are independent of specific mu form"
+  },
+  "eft_formulation": {
+    "equation_number": 15,
+    "formula": "G_eff(g) = G_N * (1 + 1/(exp(sqrt(g/a0)) - 1))",
+    "status": "mu(g) postulated as effective relation, not derived from classical action",
+    "inherits": "All structural properties (SR1-SR5)",
+    "parameters": 1,
+    "parameter": "a0 = 1.2e-10 m/s^2"
+  },
+  "self_consistent_solution": {
+    "tracking_ansatz": "dS/dr = kappa g / c^2",
+    "without_potential": "Tracking fails: delta_kappa/kappa = 225% (v13)",
+    "with_potential": "V(S) = (1/2) m_S^2 (S - S_0)^2, m_S ~ 10^-28 eV — tracking holds to ~0.1% from 1-100 kpc (v14)"
+  },
+  "construction_programme": {
+    "total_iterations": 17,
+    "passed": 15,
+    "failed": 2,
+    "failed_iterations": [13, 17],
+    "methodology": "Iterative falsification — each version tests a specific hypothesis"
+  },
+  "comparison_table": [
+    {"theory": "LCDM", "new_params": "2 (Omega_DM, Lambda)", "mu_form": "N/A", "cgw": "Yes", "solar_safe": "N/A"},
+    {"theory": "MOND", "new_params": "1 (a0)", "mu_form": "chosen", "cgw": "N/A (non-relativistic)", "solar_safe": "Problematic"},
+    {"theory": "TeVeS", "new_params": "3+", "mu_form": "from vector", "cgw": "constrained", "solar_safe": "partial"},
+    {"theory": "f(R)", "new_params": "1+", "mu_form": "from f", "cgw": "constrained", "solar_safe": "chameleon"},
+    {"theory": "Horndeski", "new_params": "2+", "mu_form": "from G_i", "cgw": "mostly killed", "solar_safe": "Vainshtein"},
+    {"theory": "EFC-EFT", "new_params": "1 (a0)", "mu_form": "BE (identified)", "cgw": "Yes (shown)", "solar_safe": "automatic"}
+  ],
+  "outstanding_tests": [
+    "Weak lensing consistency: mu_lens = mu_dyn predicted by eta ≈ 1",
+    "Structure growth: f*sigma_8(z) from modified growth equation",
+    "CMB: ISW effect and peak shifts vs Planck",
+    "Cluster-scale: mu(g) lensing mass in Bullet Cluster-type systems",
+    "Strong lensing: time-delay compatibility via eta ≈ 1",
+    "Cosmological background: H(z) vs DESI BAO/Pantheon+"
+  ],
+  "limitations": [
+    "mu(g) not derived from classical action — microphysical gap",
+    "Slip result only in weak-field spherically symmetric regime",
+    "Not tested against CMB, f*sigma_8, Bullet Cluster, H(z)",
+    "Does not address cosmological constant problem directly"
+  ],
+  "references": {
+    "count": 12,
+    "key_refs": [
+      "McGaugh, Lelli, Schombert (2016) — RAR discovery",
+      "Lelli et al. (2017) — RAR analysis",
+      "Milgrom (1983) — MOND",
+      "Bekenstein (2004) — TeVeS",
+      "Magnusson (2025) — EFC Formal Master Specification",
+      "Magnusson (2025) — The Energy-Flow Interface",
+      "Magnusson (2026) — EFC Closure Conjectures",
+      "Magnusson (2026) — DESI DR2 BAO regime-transition fit",
+      "Magnusson (2026) — SPARC Phase 3 Validation",
+      "Magnusson (2026) — x4800 Problem",
+      "Magnusson (2026) — Cluster Merger Structural Constraints",
+      "Magnusson (2026) — EFC Weak Lensing Phenomenology"
+    ]
+  },
+  "files": {
+    "pdf": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "Covariant_EFT.jsonld",
+    "citations": "citations.bib",
+    "source": "src/covariant_eft.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_covariant_eft.py"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "action": {
+    "equation": 3,
+    "formula_latex": "S = \\int d^4x \\sqrt{-g} \\left[ \\frac{R}{16\\pi G_N} + \\frac{1}{2} g^{\\mu\\nu} \\partial_\\mu S \\partial_\\nu S - V(S) - \\beta |\\partial S|_\\varepsilon S^2 + \\mathcal{L}_m \\right]",
+    "components": {
+      "gradient_norm": "|dS|_eps = sqrt((d_mu S)(d^mu S) + eps^2)",
+      "potential": "V(S) = (1/2) m_S^2 (S - S_0)^2",
+      "matter": "L_m[psi, g_{mu nu}] minimally coupled"
+    },
+    "parameters": {
+      "beta": "gradient-field coupling",
+      "m_S": {"value": "~10^-28 eV", "screening_length": "~50 kpc"},
+      "epsilon": "vacuum floor regulator",
+      "a0": {"value": 1.2e-10, "unit": "m/s^2"}
+    }
+  },
+  "structural_results": [
+    {
+      "id": "SR1",
+      "title": "Gravitational Wave Speed",
+      "result": "c_gw = c exactly",
+      "type": "theorem",
+      "proof_sketch": "For S = int sqrt(-g)[R/16piG + F(g,S,dS)] with no metric derivatives in F, delta^2 F/(delta g)^2 is algebraic in h; integration by parts cannot generate dh.dh terms. Tensor kinetic operator = GR.",
+      "bound": "Delta_c/c ~ 10^-54 (10^39 below GW170817)"
+    },
+    {
+      "id": "SR2",
+      "title": "Gravitational Slip",
+      "equation": 9,
+      "result": "eta = 1 + O(Phi * mu)",
+      "mechanism": "T_rr^(beta) = beta S^2 (|dS|^2/|dS| - g_rr |dS|) => '1' cancels with '-g_rr', leaving O(Phi) suppression",
+      "galactic": "|eta - 1| < 10^-6"
+    },
+    {
+      "id": "SR3",
+      "title": "Solar-System Compatibility",
+      "result": "Exponential amplitude suppression",
+      "formula": "mu(g>>a0) -> exp(-sqrt(g/a0))",
+      "values": [
+        {"location": "Sun surface", "g": 274, "sqrt_g_a0": 1.5e6, "mu": "~0"},
+        {"location": "Earth orbit", "g": 5.9e-3, "sqrt_g_a0": 7031, "mu": "~0"},
+        {"location": "Saturn (Cassini)", "g": 6.5e-5, "sqrt_g_a0": 736, "mu": "10^-320"},
+        {"location": "Galaxy outskirts", "g": 1.2e-10, "sqrt_g_a0": 1, "mu": 0.58}
+      ],
+      "note": "Not chameleon/Vainshtein screening — functional amplitude suppression"
+    },
+    {
+      "id": "SR4",
+      "title": "Stability",
+      "ghost_free": {"formula": "Z = 1 + beta S^2 eps^2 / ((dS)^2 + eps^2)^(3/2) > 1", "equation": 11},
+      "tachyon_free": "m_eff^2 = m_S^2 + 2 beta |dS| > 0",
+      "hyperbolic": "Principal symbol = standard d'Alembertian",
+      "energy_condition": "T_00^(S) > 0 for V >= 0, beta > 0"
+    },
+    {
+      "id": "SR5",
+      "title": "RAR as Bose-Einstein Statistics",
+      "formula": "mu(g) = 1 / (exp(sqrt(g/a0)) - 1)",
+      "identification": "Bose-Einstein <n> = 1/(exp(E/kT) - 1) with E/kT = sqrt(g/a0)",
+      "interpretation": "Spacetime grid with bosonic excitation modes; E ~ sqrt(g), kT ~ sqrt(a0)",
+      "uniqueness_test": {
+        "density": "Wrong functional form",
+        "potential": "r-dependent, not universal",
+        "acceleration": "Reproduces RAR (only correct coupling)"
+      }
+    }
+  ],
+  "critical_gap": {
+    "section": 8,
+    "equation": 14,
+    "classical_result": "nabla^2 Phi = 4piG rho + alpha_EFC * g (correction linear in g, INCREASING)",
+    "requirement": "mu(g) -> 0 as g -> infinity (DECREASING)",
+    "diagnosis": "BE form = quantum statistical mechanics of grid excitations. Classical local Lagrangian generically produces polynomial corrections, not exponential suppression.",
+    "resolution_needed": ["Quantum treatment of S-field", "Fundamentally non-local coupling"],
+    "what_survives": "All structural results (SR1-SR5) independent of specific mu form"
+  },
+  "eft_formulation": {
+    "equation": 15,
+    "formula": "G_eff(g) = G_N (1 + 1/(exp(sqrt(g/a0)) - 1))",
+    "status": "mu(g) postulated as effective relation",
+    "parameters": 1,
+    "inherits": ["SR1", "SR2", "SR3", "SR4", "SR5"]
+  },
+  "self_consistent_solution": {
+    "tracking_ansatz": "dS/dr = kappa g / c^2",
+    "v13_without_potential": {"result": "FAILS", "deviation": "225%"},
+    "v14_with_potential": {"result": "PASSES", "deviation": "~0.1%", "V": "(1/2) m_S^2 (S-S0)^2", "m_S": "~10^-28 eV"}
+  },
+  "construction_programme": [
+    {"v": 1, "test": "Wave-particle duality from grid+sampling", "result": "Consistent", "pass": true},
+    {"v": 2, "test": "Particle-based measurement feedback", "result": "Effect exists", "pass": true},
+    {"v": 3, "test": "Planck-scale coupling strength", "result": "delta_rho ~ 10^-132; unmeasurable", "pass": true},
+    {"v": 4, "test": "Field-based continuous feedback", "result": "Three regimes found", "pass": true},
+    {"v": 5, "test": "SI-unit mapping of coupling", "result": "Grid is gravitational, not EM", "pass": true},
+    {"v": 6, "test": "RAR functional form", "result": "Formally identical to Bose-Einstein", "pass": true},
+    {"v": 7, "test": "Which coupling reproduces RAR", "result": "Acceleration g uniquely", "pass": true},
+    {"v": 8, "test": "Covariant action construction", "result": "Minimal action found", "pass": true},
+    {"v": 9, "test": "GW speed (first analysis)", "result": "c_gw = c (argument)", "pass": true},
+    {"v": 10, "test": "Full quadratic action L(2)", "result": "No dh.dh from F", "pass": true},
+    {"v": 11, "test": "Generalised Z-tensor, arbitrary dS_bar", "result": "Speed isotropic", "pass": true},
+    {"v": 12, "test": "Phi/Psi slip derivation", "result": "eta = 1 + O(Phi*mu)", "pass": true},
+    {"v": 13, "test": "Self-consistent S_bar(r), V=0", "result": "Tracking fails (225%)", "pass": false},
+    {"v": 14, "test": "Derive V(S) from tracking", "result": "V = (1/2) m_S^2 S^2 restores it", "pass": true},
+    {"v": 15, "test": "Screening mechanism", "result": "BE amplitude suppression", "pass": true},
+    {"v": 16, "test": "Fifth force / PPN", "result": "All constraints satisfied (exp. suppressed)", "pass": true},
+    {"v": 17, "test": "Modified Poisson from field equations", "result": "T_00^S proportional to g (wrong direction)", "pass": false}
+  ],
+  "comparison_table": [
+    {"theory": "LCDM", "new_params": "2 (Omega_DM, Lambda)", "mu_form": "N/A", "cgw": "Yes", "solar_safe": "N/A"},
+    {"theory": "MOND", "new_params": "1 (a0)", "mu_form": "chosen", "cgw": "N/A", "solar_safe": "Problematic"},
+    {"theory": "TeVeS", "new_params": "3+", "mu_form": "from vector", "cgw": "constrained", "solar_safe": "partial"},
+    {"theory": "f(R)", "new_params": "1+", "mu_form": "from f", "cgw": "constrained", "solar_safe": "chameleon"},
+    {"theory": "Horndeski", "new_params": "2+", "mu_form": "from G_i", "cgw": "mostly killed", "solar_safe": "Vainshtein"},
+    {"theory": "EFC-EFT", "new_params": "1 (a0)", "mu_form": "BE (identified)", "cgw": "Yes (shown)", "solar_safe": "automatic"}
+  ],
+  "outstanding_tests": [
+    "Weak lensing: mu_lens = mu_dyn (from eta ≈ 1)",
+    "Structure growth: f*sigma_8(z)",
+    "CMB: ISW + peak shifts",
+    "Cluster-scale: Bullet Cluster lensing",
+    "Strong lensing: time delays",
+    "Background: H(z) vs DESI/Pantheon+"
+  ]
+}
