@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-28T13:18:12Z",
+  "generated_at": "2026-03-28T19:18:42Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -163,7 +163,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -813,7 +813,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-28T07:17:50.657000000+00:00",
+        "last_synced": "2026-03-28T13:24:21.086000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.882735Z",
+      "timestamp": "2026-03-28T18:41:19.046540Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.898253Z",
+      "timestamp": "2026-03-28T18:41:19.058715Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.865950Z",
+      "timestamp": "2026-03-28T18:41:19.033865Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.927262Z",
+      "timestamp": "2026-03-28T18:41:19.081466Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.914326Z",
+      "timestamp": "2026-03-28T18:41:19.069229Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-28T12:30:12.850370Z",
+      "timestamp": "2026-03-28T18:41:19.021150Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-28T13:05:06.799579+00:00"
+      "timestamp": "2026-03-28T19:05:15.861878+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1695,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-28T13:05:06.833993+00:00"
+      "timestamp": "2026-03-28T19:05:15.890059+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1709,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-03-28T13:05:06.849578+00:00"
+      "timestamp": "2026-03-28T19:05:15.905789+00:00"
     }
   },
   "parameters": {
@@ -2356,7 +2356,7 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-28T07:17:50.657000000+00:00",
+      "last_updated": "2026-03-28T13:24:21.086000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
