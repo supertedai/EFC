@@ -1,0 +1,133 @@
+{
+  "paper_id": "grid-microphysics-rar",
+  "title": "From Grid Microphysics to the Radial Acceleration Relation: A Minimal Gradient-Coupled Excitation Model",
+  "short_title": "Grid Microphysics to RAR",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Independent Researcher, Sola, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "version": "v1",
+  "date": "2026-03-28",
+  "doi": "10.6084/m9.figshare.31878760",
+  "status": "working_paper",
+  "framework": "EFC",
+  "keywords": [
+    "grid microphysics", "radial acceleration relation", "RAR",
+    "Bose-Einstein", "gradient coupling", "excitation energy",
+    "lattice derivation", "a0", "MOND", "discrete gravity",
+    "microphysical bridge", "EFC", "Graph-AQUAL", "KT3"
+  ],
+  "abstract": "A precise structural gap exists in Energy-Flow Cosmology: the covariant EFT requires a gravitational enhancement function mu(g) = 1/(exp(sqrt(g/a0))-1) that is formally identical to a Bose-Einstein occupation number, but this form cannot be derived from any classical local Lagrangian. We show that a minimal microscopic model — discrete degrees of freedom on a substrate (grid) with gradient-coupled excitation energy E proportional to sqrt(|nabla Phi|) — reproduces the observed functional form without free parameters beyond the measured scale a0. The key physical input is that excitation energy couples to local gravitational strain (gradient of the potential) rather than to the potential itself or to the density.",
+  "epistemic_status": {
+    "type": "working_paper",
+    "peer_reviewed": false,
+    "assumptions": 3,
+    "falsification_conditions": 4,
+    "limitations": 5,
+    "gap_closed": "microphysical_bridge"
+  },
+  "problem": {
+    "identified_gap": "Classical local Lagrangian cannot produce Bose-Einstein form of mu(g)",
+    "source": "Covariant EFT 17-iteration programme (DOI: 10.6084/m9.figshare.31878334)",
+    "obstruction": "Classical action with finitely many derivatives produces polynomial corrections, not exponential suppression",
+    "target_form": "mu(g) = 1/(exp(sqrt(g/a0)) - 1)"
+  },
+  "three_assumptions": [
+    {
+      "id": "A1",
+      "name": "Bosonic statistics",
+      "content": "Excitation modes at each grid node obey Bose-Einstein statistics: <n> = 1/(exp(E/k_B T_grid) - 1)",
+      "justification": "Standard for non-interacting bosons; requires only discrete, indistinguishable modes"
+    },
+    {
+      "id": "A2",
+      "name": "Gradient-coupled excitation energy",
+      "content": "E(x) = hbar * omega_0 * sqrt(|nabla Phi(x)| / g*)",
+      "justification": "Node energy responds to local strain (gradient of potential), not potential itself or density"
+    },
+    {
+      "id": "A3",
+      "name": "Single scale",
+      "content": "a0 = g* * (k_B T_grid / hbar omega_0)^2 = 1.2e-10 m/s^2",
+      "justification": "Measured SPARC value; combines grid parameters into single observable"
+    }
+  ],
+  "derivation_chain": {
+    "steps": [
+      "Substitute E = hbar*omega_0*sqrt(g/g*) into BE distribution",
+      "Use a0 = g*(k_B T_grid / hbar omega_0)^2",
+      "Simplify: hbar*omega_0/(k_B T_grid) * sqrt(g/g*) = sqrt(g/a0)",
+      "Result: <n> = 1/(exp(sqrt(g/a0)) - 1) = mu(g)"
+    ],
+    "complete_chain": "Grid DOF -> gradient coupling -> E proportional to sqrt(g) -> BE statistics -> mu(g) -> G_eff -> RAR"
+  },
+  "lattice_derivation": {
+    "title": "Lattice derivation of E proportional to sqrt(g)",
+    "setup": "Two adjacent grid nodes i,j separated by l_g in gravitational field with local acceleration g",
+    "restoring_force": "Delta F = -(nabla^2 Phi) * xi approx -(g/l_g) * xi (Hooke's law)",
+    "spring_constant": "k_eff = g/l_g",
+    "frequency": "omega = sqrt(k_eff/m_eff) = sqrt(g/(m_eff * l_g))",
+    "energy": "E = hbar * omega proportional to sqrt(g)",
+    "robustness": "Generic for any system where restoring force depends on local gradient of external potential"
+  },
+  "why_sqrt_g": {
+    "gradient_coupling": "In elastic medium, energy is proportional to strain; for discrete substrate in gravitational field, strain is |nabla Phi| * l_g",
+    "alternatives_fail": {
+      "density_rho": "Gives m_eff proportional to sqrt(G*rho); not a function of g alone, wrong functional form",
+      "potential_Phi": "Gives m_eff proportional to sqrt(|Phi|); r-dependent, not universal",
+      "acceleration_g": "Gives E proportional to sqrt(g); produces BE form with one universal scale a0"
+    },
+    "conclusion": "Only gradient coupling is consistent with observed universality of the RAR"
+  },
+  "eft_bridge": {
+    "macro_framework": "Covariant EFT establishes G_eff(g) = G_N(1 + mu(g)) with five structural properties for any decreasing mu(g)",
+    "micro_model": "Present note supplies the specific form of mu from gradient-coupled bosonic excitations",
+    "complete_chain_eq14": "Grid DOF -> E proportional to sqrt(g) -> mu(g) -> G_eff -> RAR"
+  },
+  "kt3_resolution": {
+    "problem": "KT3 gives beta=0.29 vs expected 0.50; transition radius dominated by bulk Lambda-scale",
+    "diagnosis": "Classical discrete operator imposes bulk scale instead of local gradient scale",
+    "prediction": "Statistical occupation (rather than classical field values) should restore beta=0.5",
+    "mechanism": "Condition <n> ~ 1 gives g_trans ~ a0, therefore r_trans ~ sqrt(GM/a0) (MOND scaling)"
+  },
+  "limitations": [
+    "No dynamics (kinematic model only)",
+    "No grid topology assumed (generic discrete bosonic modes)",
+    "No quantum field theory (BE used as input, not derived from path integral)",
+    "No cosmological derivation (static, weak-field limit)",
+    "No derivation of a0 (measured, not predicted)"
+  ],
+  "falsification_conditions": [
+    {
+      "id": "FC1",
+      "condition": "mu must have exact BE form, not Fermi-Dirac, not classical Boltzmann, not power law",
+      "threshold": "Deviation from BE form at ≤5% level (galaxy-survey precision)"
+    },
+    {
+      "id": "FC2",
+      "condition": "Coupling variable must be g = |nabla Phi|, not rho, Phi, or any other local quantity",
+      "test": "Observational evidence for density-dependent or potential-dependent mu would falsify"
+    },
+    {
+      "id": "FC3",
+      "condition": "Excitation energy must scale as sqrt(g), i.e. E proportional to g^alpha with alpha = 1/2",
+      "test": "Grid Hamiltonian derivation yielding alpha != 1/2 would falsify"
+    },
+    {
+      "id": "FC4",
+      "condition": "KT3 should recover beta = 0.5 when Graph-AQUAL incorporates statistical occupation",
+      "test": "Concrete numerical test within existing GRAV pipeline"
+    }
+  ],
+  "references": [
+    {"key": "[1]", "citation": "McGaugh, Lelli, Schombert, PRL 117, 201101 (2016)", "topic": "SPARC RAR"},
+    {"key": "[2]", "doi": "10.6084/m9.figshare.31878334", "topic": "Covariant EFT"},
+    {"key": "[3]", "doi": "10.6084/m9.figshare.31876324", "topic": "EFC Relativistic Action"},
+    {"key": "[4]", "doi": "10.6084/m9.figshare.31348411", "topic": "Discrete Entropic Gravity (Graph-AQUAL)"},
+    {"key": "[5]", "doi": "10.6084/m9.figshare.30630500", "topic": "EFC Formal Master Specification"},
+    {"key": "[6]", "doi": "10.6084/m9.figshare.31564129", "topic": "Double-Slit Grid-Resolution"}
+  ]
+}

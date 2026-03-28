@@ -1,0 +1,92 @@
+{
+  "title": "Grid Microphysics to RAR — Model Data",
+  "doi": "10.6084/m9.figshare.31878760",
+  "constants": {
+    "a0": {"value": 1.2e-10, "unit": "m/s^2", "source": "SPARC (McGaugh+ 2016)"},
+    "G_N": {"value": 6.674e-11, "unit": "m^3 kg^-1 s^-2"},
+    "hbar": {"value": 1.0546e-34, "unit": "J*s"},
+    "k_B": {"value": 1.3806e-23, "unit": "J/K"}
+  },
+  "three_assumptions": {
+    "A1": {
+      "name": "Bosonic statistics",
+      "equation": "<n> = 1/(exp(E/k_B T_grid) - 1)",
+      "justification": "Standard BE for non-interacting bosons; requires discrete, indistinguishable modes"
+    },
+    "A2": {
+      "name": "Gradient-coupled excitation energy",
+      "equation": "E(x) = hbar * omega_0 * sqrt(|nabla Phi(x)| / g*)",
+      "justification": "Node energy responds to local strain, not potential or density"
+    },
+    "A3": {
+      "name": "Single scale",
+      "equation": "a0 = g* * (k_B T_grid / hbar omega_0)^2",
+      "value": "1.2e-10 m/s^2"
+    }
+  },
+  "derivation_chain": [
+    {"step": 1, "description": "Grid DOF with gradient coupling", "arrow": "->"},
+    {"step": 2, "description": "E proportional to sqrt(g)", "equation": "E = hbar*omega_0*sqrt(g/g*)", "arrow": "->"},
+    {"step": 3, "description": "Bose-Einstein statistics", "equation": "<n> = 1/(exp(E/k_B T) - 1)", "arrow": "->"},
+    {"step": 4, "description": "mu(g)", "equation": "mu(g) = 1/(exp(sqrt(g/a0)) - 1)", "arrow": "->"},
+    {"step": 5, "description": "G_eff", "equation": "G_eff = G_N(1 + mu(g))", "arrow": "->"},
+    {"step": 6, "description": "RAR", "equation": "g_obs = g_bar * (1 + mu(g_bar))"}
+  ],
+  "lattice_derivation": {
+    "setup": "Two adjacent nodes i,j separated by l_g in field with acceleration g",
+    "restoring_force": "Delta F = -(g/l_g) * xi",
+    "spring_constant": "k_eff = g/l_g",
+    "frequency": "omega = sqrt(k_eff/m_eff) = sqrt(g/(m_eff*l_g))",
+    "energy": "E = hbar*omega proportional to sqrt(g)",
+    "scaling_exponent": 0.5,
+    "robustness_analogies": [
+      "Phonon dispersion in inhomogeneous elastic media",
+      "WKB approximation: turning-point frequency omega ~ sqrt(|V'|)",
+      "Unruh effect: T = hbar*a/(2*pi*c*k_B) ~ sqrt(a^2)"
+    ]
+  },
+  "why_gradient_coupling": {
+    "density_fails": "m_eff ~ sqrt(G*rho); not function of g alone, wrong form",
+    "potential_fails": "m_eff ~ sqrt(|Phi|); r-dependent, not universal",
+    "gradient_works": "E ~ sqrt(g); produces BE form with one universal scale a0",
+    "conclusion": "Only gradient coupling consistent with observed RAR universality"
+  },
+  "kt3_resolution": {
+    "problem": "KT3 gives beta=0.29 vs expected 0.50",
+    "cause": "Classical operator imposes bulk Lambda-scale",
+    "fix": "Statistical occupation imposes local gradient scale",
+    "prediction": "beta should recover 0.5 when Graph-AQUAL uses BE occupation",
+    "mechanism": "<n>~1 gives g_trans~a0, therefore r_trans~sqrt(GM/a0)"
+  },
+  "limitations": [
+    {"id": "L1", "type": "No dynamics", "detail": "Kinematic model only; no grid Hamiltonian or time evolution"},
+    {"id": "L2", "type": "No grid topology", "detail": "No specific lattice structure, dimensionality, or spacing assumed"},
+    {"id": "L3", "type": "No QFT", "detail": "BE used as input, not derived from canonical quantisation"},
+    {"id": "L4", "type": "No cosmology", "detail": "Static, weak-field limit only"},
+    {"id": "L5", "type": "No a0 derivation", "detail": "a0 is measured (SPARC), not predicted from grid parameters"}
+  ],
+  "falsification_conditions": [
+    {"id": "FC1", "condition": "mu must be exact BE (not FD, Boltzmann, or power law)", "threshold": "<=5% deviation at galaxy-survey precision"},
+    {"id": "FC2", "condition": "Coupling variable must be g = |nabla Phi|", "test": "Evidence for rho- or Phi-dependent mu falsifies"},
+    {"id": "FC3", "condition": "E ~ g^alpha with alpha = 1/2 exactly", "test": "alpha != 1/2 from grid Hamiltonian falsifies"},
+    {"id": "FC4", "condition": "KT3 recovers beta=0.5 with statistical occupation", "test": "Numerical test in GRAV pipeline"}
+  ],
+  "connection_to_efc_papers": {
+    "covariant_eft": {
+      "doi": "10.6084/m9.figshare.31878334",
+      "role": "Identified the gap (classical S gives wrong direction); established 5 structural results"
+    },
+    "relativistic_action": {
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Cosmological perturbation theory (mu<1, Sigma>1, c_T=c); complementary to galactic regime"
+    },
+    "graph_aqual": {
+      "doi": "10.6084/m9.figshare.31348411",
+      "role": "Discrete solver; KT3 failure is the GRAV-sector manifestation of the same gap"
+    },
+    "this_paper": {
+      "doi": "10.6084/m9.figshare.31878760",
+      "role": "Bridges macro (EFT) and micro (grid) via gradient-coupled bosonic excitations"
+    }
+  }
+}
