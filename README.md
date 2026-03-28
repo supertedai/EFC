@@ -5,6 +5,7 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.5-orange)](./docs/public/EFC_Validation_Ledger.html)
 
 ---
 
@@ -18,6 +19,8 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.5) |
+| **Papers** | 117 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
 
 ---
 
@@ -25,16 +28,18 @@
 
 | Phenomenon | Standard Model | EFC Interpretation |
 |------------|----------------|-------------------|
-| Galaxy rotation curves | Dark matter particles | Entropy gradient coupling |
-| Cosmic acceleration | Dark energy (Λ) | Thermodynamic expansion |
-| Structure formation | ΛCDM + inflation | Regime-dependent growth |
-| S₈ tension | Systematic error? | L1→L2 regime transition |
+| Galaxy rotation curves | Dark matter particles | Discrete entropic gravity (Graph-AQUAL) with Λ-locked screening |
+| Cosmic acceleration | Dark energy (Λ) | Thermodynamic expansion via entropy-flow coupling |
+| Structure formation | ΛCDM + inflation | Regime-dependent growth (μ < 1 suppresses σ₈) |
+| S₈ tension | Systematic error? | L1→L2 regime transition via perturbation-level μ(a) |
+| Gravitational waves | c_gw = c trivially | c_gw = c by theorem (both non-minimal and minimal coupling) |
+| Radial Acceleration Relation | DM halo tuning | Bose–Einstein occupation number from entropy field |
 
 ---
 
 ## Core Equations
 
-### Effective Gravitational Coupling
+### Phenomenological Coupling (Background)
 ```
 μ(a) = G_eff/G = 1 + βS(a)
 ```
@@ -45,14 +50,45 @@
 ```
 μ(k,S) = 1 + R(k,S)
 ```
-- **k** = wavenumber (scale)
-- **S** = structural maturity
 - **R(k,S)** = single global response surface for all probes
+
+### EFC Relativistic Action (Cosmological Perturbations)
+```
+S = ∫ d⁴x √(-g) [ F(φ)R + K(ρ)(∂φ)² + λ(∇_μ φ - J_μ) + L_m ]
+```
+- **F(φ)R** = non-minimal coupling (entropy-stiffness → μ < 1)
+- **K(ρ)** = density-dependent kinetic stiffness (automatic screening)
+- **λ(∇φ - J)** = Lagrange-multiplier flow constraint (→ Σ > 1, η ≠ 1)
+- **Result**: μ ≈ 0.94, Σ ≈ 1.05, η ≈ 1.10, c_T = c exactly
+
+### Covariant EFT (Galactic Regime)
+```
+S = ∫ d⁴x √(-g) [ R/(16πG) + ½(∂S)² - V(S) - β|∂S|_ε S² + L_m ]
+```
+- Minimally coupled scalar S with gradient-field coupling
+- **c_gw = c** exactly (theorem for minimally coupled class)
+- **RAR** = Bose–Einstein occupation number: μ = 1/(exp(√(g/a₀)) - 1)
+- **Critical gap**: classical S gives wrong-direction correction → microphysical mechanism required
 
 ### EFC Field Equation
 ```
 G_μν = 8πG(T_μν + T^(Ef)_μν) + Λ_eff g_μν
 ```
+
+---
+
+## Multi-Sector Architecture
+
+EFC is partitioned into six physical sectors, each with its own regime and observational constraints:
+
+| Sector | Code | Domain | Key Observable |
+|--------|------|--------|----------------|
+| **Background** | BG | Expansion history (β, T(a)) | BAO, SN Ia, H(z) |
+| **Growth** | GRW | Perturbation-level structure | fσ₈, μ(a), P(k) |
+| **Lensing** | LEN | Metric response | κ, γ, Σ(k,z) |
+| **Screening** | SCR | Density saturation Θ(ρ) | Solar System PPN, Cassini |
+| **Propagation** | PROP | Wave transport | c_gw, standard sirens |
+| **Discrete Gravity** | DGS | Graph-AQUAL operator | Rotation curves, SPARC, ξ/η regime |
 
 ---
 
@@ -63,26 +99,34 @@ G_μν = 8πG(T_μν + T^(Ef)_μν) + Λ_eff g_μν
 | **L0** | Pre-inflation | S → 0 | Quantum-dominated |
 | **L1** | CMB (z~1100) | S ≈ 0 | Linear, GR valid (μ≈1) |
 | **L1→L2** | Transition | 0 < S < 1 | Regime change |
-| **L2** | Late universe | S > 0 | Enhanced gravity (μ>1) |
+| **L2** | Late universe | S > 0 | Modified growth (μ<1 at perturbation level) |
 | **L3** | Far future | S → 1 | Structure saturation |
+
+**Regime Coordinates** (Discrete Gravity Sector):
+- **ξ** = kL_grid — UV–IR transition coordinate
+- **η** = μ_Λ Φ / |∇²Φ| — screening regime coordinate
 
 ---
 
-## Latest Empirical Results
+## Validation Status
 
-### Unified BAO/SN/RSD Analysis
-| Model | χ² (total) | Verdict |
-|-------|------------|---------|
-| ΛCDM | 49.4 | Baseline |
-| EFC (β=0.16) | 51.1 | Compatible (Δχ²=+1.7) |
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.5) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
 
-**Key finding**: Same S(a) describes geometry AND growth without internal tension.
+### Key Results
+| Test | Status | Reference |
+|------|--------|-----------|
+| Unified BAO/SN/RSD (β=0.16) | T2 — Compatible (Δχ²=+1.7) | [31215613](https://doi.org/10.6084/m9.figshare.31215613) |
+| Galaxy rotation curves (SPARC175) | T2 — Completed | [31047703](https://doi.org/10.6084/m9.figshare.31047703) |
+| KiDS-1000 cosmic shear | T2 — Completed | [31224739](https://doi.org/10.6084/m9.figshare.31224739) |
+| CMB systematic localization | T2 — α≈0 (CMB blind) | [31368433](https://doi.org/10.6084/m9.figshare.31368433) |
+| Growth fσ₈ LOO robustness | T2 — α<0 at ~2σ | [31332730](https://doi.org/10.6084/m9.figshare.31332730) |
+| Solar System PPN/EP | T3 — Compatible (γ→1) | [31244827](https://doi.org/10.6084/m9.figshare.31244827) |
+| GRAV→(μ,Σ) structural gap | **CLOSED** (v3.4) | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
+| Covariant EFT (c_gw=c, RAR=BE) | T3 — Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
+| Microphysical gap | **OPEN** (v3.5) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
 
-### WP3: R(k,S) Empirical Slice
-```
-R(k ≈ 0.13 h/Mpc, S ≈ 0.30) ≈ +0.30
-```
-First coordinate on the regime response surface (ΛCDM preferred by AIC, but non-zero response allowed).
+### Falsification Conditions (F1–F7 + FA1–FA6)
+Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **PASSED** by relativistic derivation. Six action-level conditions (FA1–FA6) now govern the perturbation sector. See [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) for details.
 
 ---
 
@@ -91,21 +135,43 @@ First coordinate on the regime response surface (ΛCDM preferred by AIC, but non
 ### Foundational
 | Paper | DOI | Status |
 |-------|-----|--------|
-| EFC v1.2: Foundational Framework | [10.6084/m9.figshare.30563738](https://doi.org/10.6084/m9.figshare.30563738) | Published |
-| EFC v2.2: Cross-Field Integration | [10.6084/m9.figshare.30530156](https://doi.org/10.6084/m9.figshare.30530156) | Published |
-| AUTH Layer (Provenance) | [10.6084/m9.figshare.30656828](https://doi.org/10.6084/m9.figshare.30656828) | Published |
+| EFC v1.2: Foundational Framework | [30563738](https://doi.org/10.6084/m9.figshare.30563738) | Published |
+| EFC v2.2: Cross-Field Integration | [30530156](https://doi.org/10.6084/m9.figshare.30530156) | Published |
+| AUTH Layer (Provenance) | [30656828](https://doi.org/10.6084/m9.figshare.30656828) | Published |
+| EFC Ontological Foundations | [31223668](https://doi.org/10.6084/m9.figshare.31223668) | Published |
+| EBE Core Principles | [31222903](https://doi.org/10.6084/m9.figshare.31222903) | Published |
 
 ### Empirical Analysis
 | Paper | DOI | Key Result |
 |-------|-----|------------|
-| R(k,S) Response Surface | [10.6084/m9.figshare.31211437](https://doi.org/10.6084/m9.figshare.31211437) | Theoretical framework |
-| WP3: First Empirical Slice | [10.6084/m9.figshare.31215259](https://doi.org/10.6084/m9.figshare.31215259) | R≈+0.30 at (k,S) |
-| Unified BAO/SN/RSD | [10.6084/m9.figshare.31215613](https://doi.org/10.6084/m9.figshare.31215613) | β=0.16, Δχ²=+1.7 |
+| R(k,S) Response Surface | [31211437](https://doi.org/10.6084/m9.figshare.31211437) | Theoretical framework |
+| WP3: First Empirical Slice | [31215259](https://doi.org/10.6084/m9.figshare.31215259) | R≈+0.30 at (k,S) |
+| Unified BAO/SN/RSD | [31215613](https://doi.org/10.6084/m9.figshare.31215613) | β=0.16, Δχ²=+1.7 |
+| SPARC175 Regime Validation | [31047703](https://doi.org/10.6084/m9.figshare.31047703) | EBE partition |
+| KiDS-1000 Cosmic Shear | [31224739](https://doi.org/10.6084/m9.figshare.31224739) | Regime-activated lensing |
+| BOSS DR12 BAO Consistency | [31314922](https://doi.org/10.6084/m9.figshare.31314922) | Covariance-aware BAO |
+| Growth fσ₈ Robustness (LOO) | [31332730](https://doi.org/10.6084/m9.figshare.31332730) | α<0 at ~2σ, 7/7 LOO |
 
-### Human-AI Collaboration
+### Structural & Theoretical
+| Paper | DOI | Key Result |
+|-------|-----|------------|
+| Density Saturation PPN Recovery | [31244827](https://doi.org/10.6084/m9.figshare.31244827) | Solar System screening |
+| EFCLASS Sign Structure | [31333414](https://doi.org/10.6084/m9.figshare.31333414) | ΔE²≤0 background exclusion |
+| Perturbation-Level σ₈ Suppression | [31333600](https://doi.org/10.6084/m9.figshare.31333600) | μ₀=0.85, 73% gap closure |
+| Systematic CMB Localization | [31368433](https://doi.org/10.6084/m9.figshare.31368433) | α≈0 under CMB+BAO |
+| Discrete Entropic Gravity (Graph-AQUAL) | [31348411](https://doi.org/10.6084/m9.figshare.31348411) | Newton + MOND + Λ-screening |
+| EFC Closure Conjectures | [31224466](https://doi.org/10.6084/m9.figshare.31224466) | Closure ansätze |
+| EFC Relativistic Action | [31876324](https://doi.org/10.6084/m9.figshare.31876324) | μ<1, Σ>1, η≠1, c_T=c |
+| Covariant EFT (Entropy-Driven Gravity) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) | c_gw=c theorem, RAR=BE, microphysical gap |
+
+### Methodology & AI
 | Paper | DOI |
 |-------|-----|
-| Symbiosis Architecture | [10.6084/m9.figshare.30773684](https://doi.org/10.6084/m9.figshare.30773684) |
+| Symbiosis Architecture | [30773684](https://doi.org/10.6084/m9.figshare.30773684) |
+| Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
+| ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
+
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 117 papers with AI-optimized metadata.
 
 ---
 
@@ -117,13 +183,36 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   └── papers/efc/     # All papers with AI-optimized metadata
+│   ├── papers/efc/     # 117 papers with AI-optimized metadata
+│   ├── public/         # Validation Ledger, Master Spec, figures
+│   ├── figures/        # Shared figures
+│   ├── notebooks/      # Jupyter notebooks
+│   └── notes/          # Research notes
+├── src/
+│   └── efc/            # Python modules
+│       ├── core/       # Core EFC implementation
+│       ├── entropy/    # Entropy calculations
+│       ├── perturbation/  # Growth, gate, mu, background
+│       ├── potential/  # Potential calculations
+│       ├── solver/     # Grid-AQUAL solver & tests
+│       ├── validation/ # Validation routines & SPARC I/O
+│       └── meta/       # Co-field simulator
+├── pipelines/
+│   └── efc/native_v2_graph/  # Graph-AQUAL pipeline
+│       ├── kernel/     # AQUAL, energy, fields, operators
+│       └── tests/      # Kill tests (KT1–KT5)
 ├── schema/             # Ontology & JSON-LD contexts
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files
 ├── figshare/           # DOI mappings
 ├── integrations/
 │   └── mcp/            # AI Agent MCP Server
+├── scripts/            # Validation & plotting scripts
+├── tools/              # Comparison utilities
+├── meta/               # Meta-architecture & reflection
+├── meta-graph/         # Graph structure & relationships
+├── methodology/        # Scientific methodology
+├── shared/             # Shared configurations
 ├── llms.txt            # AI navigation (machine-readable)
 └── AGENTS.md           # AI integration guide
 ```
@@ -146,22 +235,16 @@ cd integrations/mcp && pip install -r requirements.txt && python efc_mcp_server.
 ### Paper Metadata Structure
 Each paper in `/docs/papers/efc/` contains:
 - `README.md` — Human-readable summary
-- `index.json` — Machine-readable index
+- `index.json` — Machine-readable index (concepts, equations, results)
 - `schema.json` — Validation schema
+- `metadata.json` — Structured metadata
 - `*.jsonld` — Linked data
 - `citations.bib` — BibTeX
 
----
-
-## Modular Theory
-
-| Model | Domain | Key Equation |
-|-------|--------|--------------|
-| **EFC-S** | Structure | Halo thermodynamic boundaries |
-| **EFC-D** | Dynamics | Energy flow field equations |
-| **EFC-R** | Rotation | μ(r) rotation curve modification |
-| **EFC-H** | Halos | Entropy halo profiles |
-| **EFC-C0** | Cognition | Consciousness-entropy coupling |
+AI-friendly packages additionally include:
+- `src/__init__.py` + `src/<module>.py` — Importable Python implementation
+- `data/<data>.json` — Structured data (parameters, results, tables)
+- `examples/<demo>.py` — Executable demonstration scripts
 
 ---
 
@@ -180,10 +263,10 @@ Each paper in `/docs/papers/efc/` contains:
 ## Citation
 
 ```bibtex
-@misc{magnusson2025efc,
+@misc{magnusson2026efc,
   author       = {Magnusson, Morten},
   title        = {Energy-Flow Cosmology (EFC)},
-  year         = {2025},
+  year         = {2026},
   doi          = {10.6084/m9.figshare.30656828},
   url          = {https://github.com/supertedai/EFC},
   note         = {ORCID: 0009-0002-4860-5095}
