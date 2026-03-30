@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-03-30T07:21:37Z",
+  "generated_at": "2026-03-30T13:22:01Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 33,
@@ -15,7 +15,7 @@
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
     "frontier_count": 3,
-    "tcs_compression": 0.67,
+    "tcs_compression": 1.0,
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
     "pillar_2_native": 54,
@@ -813,7 +813,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-03-30T02:24:35.724000000+00:00",
+        "last_synced": "2026-03-30T09:36:33.690000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1552,7 +1552,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.241935Z",
+      "timestamp": "2026-03-30T12:53:24.082137Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1575,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.255345Z",
+      "timestamp": "2026-03-30T12:53:24.092027Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1598,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.229140Z",
+      "timestamp": "2026-03-30T12:53:24.069046Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1614,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.281882Z",
+      "timestamp": "2026-03-30T12:53:24.114881Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1633,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.269220Z",
+      "timestamp": "2026-03-30T12:53:24.103086Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1655,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-03-30T06:42:42.211915Z",
+      "timestamp": "2026-03-30T12:53:24.052135Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1681,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-30T06:39:57.083310+00:00"
+      "timestamp": "2026-03-30T12:40:06.897567+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,11 +1695,11 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-03-30T06:39:57.111435+00:00"
+      "timestamp": "2026-03-30T12:40:06.922156+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 0.67,
+      "compression": 1.0,
       "mismatch_rate": 0.5,
       "coverage_penalty": 0.6,
       "layer_consistency": "moderate",
@@ -1708,8 +1708,8 @@
       "total": 5,
       "untested": 3,
       "mismatches": 1,
-      "primitives": 4,
-      "timestamp": "2026-03-30T06:39:57.160278+00:00"
+      "primitives": 2,
+      "timestamp": "2026-03-30T12:40:06.937176+00:00"
     }
   },
   "parameters": {
@@ -2356,7 +2356,7 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-03-30T02:24:35.724000000+00:00",
+      "last_updated": "2026-03-30T09:36:33.690000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
