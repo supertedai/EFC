@@ -1,0 +1,75 @@
+{
+  "title": "Local Degree Heterogeneity Predicts Functional Variability Gradients in the Human Connectome",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "date": "2026-04-05",
+  "version": "1.0",
+  "doi": "10.6084/m9.figshare.31940370",
+  "type": "research-article",
+  "status": "preprint",
+  "abstract": "Hub regions in the human brain exhibit higher functional variability than peripheral regions, but the structural basis of this gradient remains unclear. Here we quantify this hub-to-periphery gradient using a single scalar - the centrifugal entropy score kappa - and identify its structural driver across two independent datasets. In group-average HCP connectivity across six parcellation atlases (68-400 regions), kappa exceeds unity in five of six scales and is stable across parcellation resolution (CV = 1.7%) and hub/periphery threshold choice (kappa > 1 for all 30 combinations tested). In eight individual DSI structural connectomes (219 regions), we confirm the gradient at the subject level (kappa = 2.20 +/- 0.15) and show that the hub-to-periphery degree ratio is strongly associated with 94% of inter-subject variance (r = -0.97, p < 0.001). By contrast, the Fiedler eigenvalue shows no significant association (r = 0.16, p = 0.70). We propose kappa as a candidate biomarker for connectome organisation.",
+  "keywords": [
+    "structural connectome",
+    "functional variability",
+    "hub-periphery gradient",
+    "degree heterogeneity",
+    "Fiedler eigenvalue",
+    "biomarker",
+    "resting-state fMRI",
+    "graph theory"
+  ],
+  "key_results": {
+    "kappa_group_average": {
+      "range": [1.10, 1.27],
+      "cv_structural": 0.017,
+      "n_atlases": 6,
+      "threshold_robust": true
+    },
+    "kappa_individual": {
+      "mean": 2.20,
+      "std": 0.15,
+      "n_subjects": 8,
+      "cv": 0.069
+    },
+    "degree_ratio_correlation": {
+      "r": -0.97,
+      "p": 0.0001,
+      "r_squared": 0.94
+    },
+    "fiedler_correlation": {
+      "r": 0.16,
+      "p": 0.70,
+      "interpretation": "not significant"
+    }
+  },
+  "data_sources": [
+    {
+      "name": "ENIGMA Toolbox HCP group-average",
+      "url": "https://github.com/MICA-MNI/ENIGMA",
+      "type": "group-average connectivity matrices"
+    },
+    {
+      "name": "BCTpy individual DSI connectomes",
+      "url": "https://github.com/aestrivex/bctpy",
+      "type": "individual structural connectomes"
+    }
+  ],
+  "code_repository": "https://github.com/supertedai/EFC",
+  "license": "CC-BY 4.0",
+  "categories": [
+    "Neuroscience",
+    "Network Science",
+    "Computational Biology"
+  ],
+  "related_efc_papers": [],
+  "falsification_criteria": [
+    "kappa < 1 consistently across atlases and subjects",
+    "degree ratio uncorrelated with kappa on independent large-sample data",
+    "Fiedler eigenvalue becomes significant predictor with larger n"
+  ]
+}
