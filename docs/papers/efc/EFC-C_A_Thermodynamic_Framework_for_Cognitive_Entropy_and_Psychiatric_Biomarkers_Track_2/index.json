@@ -1,0 +1,74 @@
+{
+  "paper_id": "efc-c-cognitive-entropy",
+  "title": "EFC-C: A Thermodynamic Framework for Cognitive Entropy and Psychiatric Biomarkers",
+  "short_title": "EFC-C Cognition Framework",
+  "authors": [{"name": "Morten Magnusson", "affiliation": "Symbiose Research, Sandnes, Norway", "orcid": "0009-0002-4860-5095"}],
+  "version": "v0.1",
+  "date": "2026-03-31",
+  "doi": "10.6084/m9.figshare.31940505",
+  "status": "research_note",
+  "framework": "EFC-C",
+  "keywords": ["EFC-C", "cognitive entropy", "psychiatric biomarker", "entropy gradient", "thermodynamic brain", "entropic brain hypothesis", "schizophrenia", "MDD", "default mode network", "neural entropy production"],
+  "abstract": "EFC-C models the brain as an open thermodynamic system governed by entropy-gradient dynamics. The framework produces a scalar observable S_dot_neural (total neural entropy production rate) and a gradient tensor nabla S_dot encoding directional entropy flow. Three falsifiable predictions distinguish EFC-C from the Entropic Brain Hypothesis: (1) centrifugal hub-to-periphery gradient, (2) disorder-specific gradient inversions, (3) entropy threshold for cognitive function.",
+  "core_postulate": {
+    "equation": "S_dot_neural = sum_i integral(s_dot_i dV) over regions R_i",
+    "equation_number": 1,
+    "gradient_tensor": "nabla S_dot encodes directional structure of entropy flow across connectome",
+    "disorder_gradient": "Delta nabla S_disorder = nabla S_patient - nabla S_healthy",
+    "equation_number_2": 2
+  },
+  "comparison_with_existing": {
+    "table_1": [
+      {"framework": "EBH", "magnitude": true, "topology": false, "gradient_direction": false, "psychiatric": "partial"},
+      {"framework": "Free Energy Principle", "magnitude": "implicit", "topology": false, "gradient_direction": false, "psychiatric": "indirect"},
+      {"framework": "IIT", "magnitude": false, "topology": true, "gradient_direction": false, "psychiatric": "indirect"},
+      {"framework": "EFC-C", "magnitude": true, "topology": true, "gradient_direction": true, "psychiatric": "direct"}
+    ],
+    "key_distinction": "EBH is the scalar projection of the more complete EFC-C tensor field"
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "title": "Topological entropy structure",
+      "prediction": "Entropy production highest in DMN hubs, decreasing centrifugally toward sensory cortices",
+      "consistency": "Consistent with fMRI: Lempel-Ziv complexity and MSE highest in association cortices and DMN",
+      "references": ["[3] Rosas et al. 2023", "[10] Creel & Hartman 2025"]
+    },
+    {
+      "id": "P2",
+      "title": "Disorder-specific gradient signatures",
+      "prediction": "Schizophrenia: elevated anterior entropy, fragmented hub gradient. MDD: reduced magnitude, posterior bias. ADHD: fragmented gradient topology.",
+      "consistency_schizophrenia": "Increased frontal MFE, prefrontal-temporal dysconnection [7]",
+      "consistency_mdd": "Lower MSE in left frontal, reduced EEG microstate complexity [8]",
+      "references": ["[7] Noroozi et al. 2025", "[8] Pan et al. 2025"]
+    },
+    {
+      "id": "P3",
+      "title": "Entropy threshold for cognitive function",
+      "prediction": "Onset of productive cognition requires S_dot_neural > S_dot_star",
+      "consistency": "Loss of Lempel-Ziv complexity below critical level predicts unresponsive states [2]",
+      "references": ["[2] Carhart-Harris 2018"]
+    }
+  ],
+  "limitations": [
+    "No direct model fit (qualitative consistency only)",
+    "Parameter underdetermination (bridge theory from EFC cosmological to neural not derived)",
+    "Gradient measurement requires careful entropy estimator, scale, and parcellation choices"
+  ],
+  "next_steps": [
+    "Fit EFC-C gradient model to open resting-state fMRI (HCP, OpenNeuro)",
+    "Derive formal bridge from EFC cosmological entropy equations to neural s_dot_i",
+    "Test P2 differential: schizophrenia vs MDD classification using gradient features",
+    "AIC comparison against pure-EBH scalar model"
+  ],
+  "references": [
+    {"key": "[1]", "citation": "Carhart-Harris et al., Front. Hum. Neurosci. 8, 20 (2014)", "topic": "EBH"},
+    {"key": "[2]", "citation": "Carhart-Harris, Neuropharmacology 142, 167 (2018)", "topic": "EBH revisited"},
+    {"key": "[3]", "doi": "10.1038/s41598-023-32649-7", "topic": "Whole-brain neural entropy model"},
+    {"key": "[4]", "citation": "Friston, Nat. Rev. Neurosci. 11, 127 (2010)", "topic": "Free Energy Principle"},
+    {"key": "[5]", "citation": "Tononi, BMC Neurosci. 5, 42 (2004)", "topic": "IIT"},
+    {"key": "[7]", "doi": "10.1038/s41398-025-03354-y", "topic": "Schizophrenia MFE"},
+    {"key": "[8]", "doi": "10.1007/s11571-025-10305-2", "topic": "MDD EEG entropy"},
+    {"key": "[11]", "doi": "10.6084/m9.figshare.31224538", "topic": "EFC SPARC Phase 3"}
+  ]
+}
