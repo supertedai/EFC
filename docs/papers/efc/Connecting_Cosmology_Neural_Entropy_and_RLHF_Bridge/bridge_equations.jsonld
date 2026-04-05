@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31940547",
+  "name": "Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    },
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "datePublished": "2026-04",
+  "description": "Two formal bridge equations connecting EFC's three research tracks via dissipative gradient-flow dynamics and a universal Lyapunov functional.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["EFC", "bridge equations", "gradient flow", "entropy production", "RLHF", "neural entropy", "Lyapunov"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Bridge B1 (Cosmology -> Neural)",
+      "description": "eta = C_eff / D_ratio^gamma; degree heterogeneity drives entropy gradient"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Bridge B2 (Neural -> RLHF)",
+      "description": "nabla S_neural <-> nabla^2 R(s,a); entropy topology maps to reward curvature"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Unified Dynamics",
+      "description": "dF/dt = -integral |nabla s_dot|^2 dV + B; Helmholtz free energy as Lyapunov functional"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC)",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Cross-Domain Bridge Equations Schema",
+  "description": "Validation schema for EFC bridge equations paper data",
+  "type": "object",
+  "required": ["paper_id", "title", "doi", "unified_dynamics", "bridge_B1", "bridge_B2", "cross_domain_predictions"],
+  "properties": {
+    "paper_id": {"type": "string", "const": "efc-cross-domain-bridge"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\.\\d{4,}"},
+    "unified_dynamics": {
+      "type": "object",
+      "required": ["equation", "interpretation", "stability_condition"],
+      "properties": {
+        "equation": {"type": "string"},
+        "interpretation": {"type": "string"},
+        "stability_condition": {"type": "string"}
+      }
+    },
+    "observable_dictionary": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["quantity", "cosmology", "neural", "rlhf"],
+        "properties": {
+          "quantity": {"type": "string"},
+          "cosmology": {"type": "string"},
+          "neural": {"type": "string"},
+          "rlhf": {"type": "string"}
+        }
+      }
+    },
+    "bridge_B1": {
+      "type": "object",
+      "required": ["name", "revised_B1_star_star"],
+      "properties": {
+        "name": {"type": "string"},
+        "revised_B1_star_star": {
+          "type": "object",
+          "required": ["equation", "D_ratio", "gamma", "C_eff"]
+        }
+      }
+    },
+    "bridge_B2": {
+      "type": "object",
+      "required": ["name", "tensor_identification", "scalar_identification"],
+      "properties": {
+        "name": {"type": "string"},
+        "tensor_identification": {"type": "object", "required": ["equation"]},
+        "scalar_identification": {"type": "object", "required": ["equation"]}
+      }
+    },
+    "cross_domain_predictions": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "formula", "test", "falsification"]
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "paper_id": "efc-cross-domain-bridge",
+  "doi": "10.6084/m9.figshare.31940547",
+  "observable_dictionary": [
+    {"quantity": "Entropy field", "cosmology": "s_dot(x,t)", "neural": "s_dot_i(V_i)", "rlhf": "-H(pi_theta|s)"},
+    {"quantity": "Free energy F", "cosmology": "-ln(mu) * g_bar", "neural": "-T_cog * H(pi_net)", "rlhf": "<E> - beta_KL * H(pi_theta)"},
+    {"quantity": "Temperature T", "cosmology": "g_dagger (transition)", "neural": "T_cog", "rlhf": "beta_KL"},
+    {"quantity": "Gradient", "cosmology": "nabla s_dot (large-scale)", "neural": "nabla S_n (connectome)", "rlhf": "nabla^2 R (reward curvature)"},
+    {"quantity": "Attractor", "cosmology": "Low-mu screening", "neural": "DMN-centrifugal", "rlhf": "Low-entropy policy"}
+  ],
+  "bridge_B1_parameters": {
+    "k": 0.415,
+    "a_G": 0.094,
+    "C_cross_scale": 4.414,
+    "L_cortex_m": 0.1,
+    "alpha_N_predicted": 44.1,
+    "alpha_N_units": "K bit^-1 m^2 s^-1",
+    "c_m_range_m_per_s": [10, 100],
+    "g_eff_range_per_m": [0.01, 1.0]
+  },
+  "bridge_B1_star_star": {
+    "equation": "eta = C_eff / D_ratio^gamma",
+    "D_ratio_definition": "<k_hub> / <k_periph>",
+    "hub_definition": "Top 10% by degree (DMN, frontoparietal)",
+    "periphery_definition": "Bottom 30% by degree (V1, A1, S1, M1)",
+    "gamma_range": [0.5, 0.6],
+    "C_eff_range": [1.9, 2.2],
+    "kappa": 0.5,
+    "empirical_HCP_group": 1.93,
+    "empirical_HCP_individual": 2.23,
+    "fiedler_r": 0.16,
+    "degree_ratio_r": -0.97,
+    "revision_note": "v0.2 replaces Fiedler eigenvalue (non-predictive) with degree ratio (near-deterministic)"
+  },
+  "bridge_B2": {
+    "tensor_mapping": "nabla S_neural <-> nabla^2 R(s,a)",
+    "scalar_mapping": "S_neural / (k_B * T_cog) <-> H(pi_theta|s)",
+    "temperature_mapping": "beta_KL <-> 1/T_cog",
+    "T_cog_definition": "S_neural_star / (k_B * I_net)",
+    "note": "Exact at equilibrium optima; transient dynamics require kinetic extension"
+  },
+  "cross_domain_predictions": [
+    {
+      "id": "P4**",
+      "formula": "eta = C_eff / D_ratio^gamma",
+      "test": "HCP SC + MSE; |r| > 0.40",
+      "falsification": "|r| < 0.30 on n >= 20"
+    },
+    {
+      "id": "P5",
+      "formula": "T_cog from fMRI -> optimal beta_KL",
+      "test": "Compare fMRI-predicted beta_KL with grid-search optimum",
+      "falsification": "Optimal beta_KL inconsistent with prediction"
+    },
+    {
+      "id": "P6",
+      "formula": "nabla S_neural topology <-> nabla^2 R topology",
+      "test": "fMRI gradient vs reward curvature in trained LLMs",
+      "falsification": "Uncorrelated"
+    }
+  ],
+  "stability_condition": {
+    "equation": "integral |nabla s_dot|^2 dV >= boundary_flux B",
+    "cosmology_scale": "< 100 Mpc",
+    "neural_condition": "Resting state",
+    "rlhf_condition": "Convergent training (not during grokking)"
+  }
+}
