@@ -1,34 +1,39 @@
-# Centrifugal Entropy Gradients in the Human Structural Connectome:
-# Multi-Scale and Individual-Subject Evidence for Degree-Driven Organisation
+# Local Degree Heterogeneity, Not Global Connectivity, Governs
+# Functional Variability Gradients in the Human Connectome
 
 **Morten Magnusson**
 Symbiose Research, Sandnes, Norway
 ORCID: 0009-0002-4860-5095
 
-**April 2026 — Manuscript Draft v2.0**
+**April 2026**
 
 ---
 
 ## Abstract
 
-We report a centrifugal entropy gradient in the human structural connectome:
-hub regions exhibit systematically higher functional variability than peripheral
-regions, quantified by the centrifugal entropy score κ = ⟨S_hub⟩ / ⟨S_periph⟩.
-Using HCP group-average connectivity across six parcellation atlases (68–400
-regions), we find κ > 1 in five of six scales, with remarkable stability
-(CV = 1.7% for structural proxy across 30 threshold combinations). In a
-complementary analysis of eight individual DSI connectomes (219 regions), we
-confirm the gradient at the subject level (κ = 2.20 ± 0.15) and identify
-its structural driver: the hub-to-periphery degree ratio explains 94% of
-inter-subject variance in κ (r = −0.97, p = 0.0001). By contrast, global
-algebraic connectivity (Fiedler eigenvalue λ₂) shows no significant
-relationship with κ (r = 0.16, p = 0.70). This dissociation demonstrates
-that neural entropy gradients are governed by local degree heterogeneity,
-not global spectral properties. We propose κ as a single-number biomarker
-of connectome organisation with potential clinical applications.
+Hub regions in the human brain exhibit higher functional variability than
+peripheral regions, but the structural basis of this gradient remains
+unclear. Here we quantify this hub-to-periphery gradient using a single
+scalar — the centrifugal entropy score κ = ⟨S_hub⟩ / ⟨S_periph⟩ — and
+identify its structural driver across two independent datasets. In
+group-average HCP connectivity across six parcellation atlases (68–400
+regions), κ exceeds unity in five of six scales and is stable across
+parcellation resolution (CV = 1.7%) and hub/periphery threshold choice
+(κ > 1 for all 30 combinations tested). In eight individual DSI structural
+connectomes (219 regions), we confirm the gradient at the subject level
+(κ = 2.20 ± 0.15) and show that the hub-to-periphery degree ratio explains
+94% of inter-subject variance (r = −0.97, p < 0.001). By contrast, the
+Fiedler eigenvalue — the standard measure of global algebraic connectivity
+— shows no significant association with κ (r = 0.16, p = 0.70). This
+dissociation indicates that functional variability gradients are shaped by
+local degree contrast rather than global spectral properties of the
+connectome. The absolute magnitude of κ depends on the entropy proxy, but
+the direction of the gradient and its structural driver are invariant
+across proxies, atlases, and subjects. We propose κ as a candidate
+biomarker for connectome organisation in health and disease.
 
-**Keywords:** structural connectome, entropy gradient, hub-periphery organisation,
-degree heterogeneity, individual differences, resting-state fMRI, biomarker
+**Keywords:** structural connectome, functional variability, hub-periphery
+gradient, degree heterogeneity, Fiedler eigenvalue, biomarker
 
 ---
 
