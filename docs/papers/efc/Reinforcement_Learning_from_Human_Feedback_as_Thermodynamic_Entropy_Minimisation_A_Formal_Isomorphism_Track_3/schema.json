@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RLHF Thermodynamic Isomorphism Schema",
+  "description": "Validation schema for RLHF-thermodynamics isomorphism paper data",
+  "type": "object",
+  "required": ["paper_id", "title", "doi", "isomorphism_table", "predictions"],
+  "properties": {
+    "paper_id": {"type": "string", "const": "rlhf-thermodynamic-isomorphism"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\.\\d{4,}"},
+    "isomorphism_table": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["rlhf", "stat_mech"],
+        "properties": {
+          "rlhf": {"type": "string"},
+          "stat_mech": {"type": "string"}
+        }
+      }
+    },
+    "foundational_identity": {
+      "type": "object",
+      "required": ["optimal_policy", "interpretation"],
+      "properties": {
+        "optimal_policy": {"type": "string"},
+        "interpretation": {"type": "string"}
+      }
+    },
+    "free_energy_derivation": {
+      "type": "object",
+      "required": ["equation"],
+      "properties": {
+        "equation": {"type": "string"},
+        "note": {"type": "string"}
+      }
+    },
+    "jailbreak_model": {
+      "type": "object",
+      "required": ["equation", "interpretation"],
+      "properties": {
+        "equation": {"type": "string"},
+        "interpretation": {"type": "string"}
+      }
+    },
+    "predictions": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "formula", "test", "falsification"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^P[1-3]$"},
+          "title": {"type": "string"},
+          "formula": {"type": "string"},
+          "test": {"type": "string"},
+          "falsification": {"type": "string"}
+        }
+      }
+    },
+    "design_principles": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

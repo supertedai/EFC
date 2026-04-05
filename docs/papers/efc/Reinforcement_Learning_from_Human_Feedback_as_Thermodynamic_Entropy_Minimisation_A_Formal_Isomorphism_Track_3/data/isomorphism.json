@@ -1,0 +1,65 @@
+{
+  "paper_id": "rlhf-thermodynamic-isomorphism",
+  "doi": "10.6084/m9.figshare.31940535",
+  "isomorphism_table": [
+    {"rlhf": "Policy pi(a|s)", "stat_mech": "Boltzmann distribution p(a) ~ exp(-beta*E)", "equation": "Eq. 3"},
+    {"rlhf": "Reward R(s,a)", "stat_mech": "Negative energy -E(a,s)", "equation": "Table 1"},
+    {"rlhf": "KL penalty beta_KL", "stat_mech": "Temperature T (k_B=1)", "equation": "Table 1"},
+    {"rlhf": "Reference policy pi_ref", "stat_mech": "Prior / vacuum state", "equation": "Table 1"},
+    {"rlhf": "RLHF objective J(theta)", "stat_mech": "Negative Helmholtz free energy -F", "equation": "Eq. 4"},
+    {"rlhf": "Partition function Z(s)", "stat_mech": "Canonical partition function", "equation": "Eq. 3"},
+    {"rlhf": "PPO clip ratio", "stat_mech": "Thermostat (maintains T stability)", "equation": "Table 1"},
+    {"rlhf": "Grokking", "stat_mech": "First-order phase transition", "equation": "Section 4"},
+    {"rlhf": "Alignment", "stat_mech": "Low-entropy policy attractor", "equation": "Section 5"},
+    {"rlhf": "Jailbreaking", "stat_mech": "Thermal fluctuation over barrier Delta_F", "equation": "Eq. 9"},
+    {"rlhf": "Constitutional AI", "stat_mech": "External field shaping energy landscape", "equation": "Section 5.2"}
+  ],
+  "key_equations": {
+    "optimal_policy": {
+      "equation": "pi*(a|s) = pi_ref(a|s) * exp(R(s,a)/beta_KL) / Z(s)",
+      "number": 3,
+      "interpretation": "Boltzmann distribution with energy -R and temperature beta_KL"
+    },
+    "free_energy_identity": {
+      "equation": "J = E[R] + beta_KL * H(pi) + beta_KL * E[ln pi_ref] = -F + const",
+      "number": 4,
+      "note": "Algebraically exact, not approximate"
+    },
+    "jailbreak_kramers": {
+      "equation": "Pr(jailbreak|p) ~ exp(-Delta_F(p) / T_eff)",
+      "number": 9,
+      "interpretation": "Arrhenius/Kramers escape rate"
+    },
+    "alignment_capability_bound": {
+      "equation": "A * C <= 1 - exp(-(F0-F*)/T)",
+      "number": 11,
+      "interpretation": "Universal trade-off from free-energy constraints"
+    }
+  },
+  "predictions": {
+    "P1": {
+      "title": "Optimal temperature scaling",
+      "formula": "beta_KL* ~ H_task^{-1/2}",
+      "test": "Train on tasks of varying entropy; plot reward vs beta_KL per task class",
+      "falsification": "Optimal beta_KL independent of task entropy"
+    },
+    "P2": {
+      "title": "Grokking latent period",
+      "formula": "Delta_t_grok ~ (H_mem - H_gen) / T_eff",
+      "test": "Modular arithmetic datasets varying modulus p; measure H before/after grokking",
+      "falsification": "r < 0.3 between predicted and observed stall periods"
+    },
+    "P3": {
+      "title": "Alignment-capability bound",
+      "formula": "A * C <= 1 - exp(-(F0-F*)/T)",
+      "test": "Train family varying beta_KL; plot A*C. Should show universal maximum.",
+      "falsification": "Monotone increase of A*C beyond predicted bound on high-beta side"
+    }
+  },
+  "design_principles": {
+    "task_matched_temperature": "Set beta_KL from H_task, not grid search",
+    "annealed_alignment": "High T early (capability), low T late (alignment crystallisation)",
+    "landscape_architecture": "Constitutional AI shapes Delta_F barriers",
+    "exponential_jailbreak_resistance": "Modest Delta_F increase -> exponential P(jailbreak) decrease"
+  }
+}
