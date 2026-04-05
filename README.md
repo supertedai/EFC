@@ -5,7 +5,8 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.5-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.7-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-35+-brightgreen)](#ai-friendly-paper-packages)
 
 ---
 
@@ -13,14 +14,15 @@
 
 | Key | Value |
 |-----|-------|
-| **Author** | Morten Magnusson |
+| **Author** | Morten Magnusson (Symbiose Research, Sandnes, Norway) |
 | **ORCID** | [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095) |
 | **Primary DOI** | [10.6084/m9.figshare.30656828](https://doi.org/10.6084/m9.figshare.30656828) |
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.5) |
-| **Papers** | 117 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.7) |
+| **Papers** | 119+ papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 35+ with executable Python + structured data |
 
 ---
 
@@ -34,6 +36,8 @@
 | S₈ tension | Systematic error? | L1→L2 regime transition via perturbation-level μ(a) |
 | Gravitational waves | c_gw = c trivially | c_gw = c by theorem (both non-minimal and minimal coupling) |
 | Radial Acceleration Relation | DM halo tuning | Bose–Einstein occupation number from entropy field |
+| Brain functional variability | Unrelated to cosmology | Local degree heterogeneity drives entropy gradient (r ≈ −0.97) |
+| RLHF alignment | Engineering heuristic | Algebraically exact thermodynamic free-energy minimisation |
 
 ---
 
@@ -68,7 +72,21 @@ S = ∫ d⁴x √(-g) [ R/(16πG) + ½(∂S)² - V(S) - β|∂S|_ε S² + L_m ]
 - Minimally coupled scalar S with gradient-field coupling
 - **c_gw = c** exactly (theorem for minimally coupled class)
 - **RAR** = Bose–Einstein occupation number: μ = 1/(exp(√(g/a₀)) - 1)
-- **Critical gap**: classical S gives wrong-direction correction → microphysical mechanism required
+
+### EFC Screening Model (Track 1)
+```
+ln(μ) = k · ln(1 + g†/g_bar)
+```
+- **k** = 0.415 ± 0.029 (174 SPARC galaxies)
+- **g†** = 2.51 × 10⁻¹⁰ m/s² (transition scale)
+- **C** = k/a_G = 4.4 (cross-scale consistency)
+
+### Unified Gradient-Flow Dynamics (Bridge)
+```
+dF/dt = −∫_Ω |∇ṡ(x,t)|² dV + B[ṡ]
+```
+- **F** = Helmholtz free energy (Lyapunov functional for all three regimes)
+- Connects cosmology, neural entropy, and RLHF
 
 ### EFC Field Equation
 ```
@@ -92,6 +110,18 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ---
 
+## Three-Track Research Programme
+
+| Track | Domain | Key Paper | DOI |
+|-------|--------|-----------|-----|
+| **Spor 1** | Galactic & Cosmological Dynamics | EFC Screening Model | [31940469](https://doi.org/10.6084/m9.figshare.31940469) |
+| **Spor 2** | Neural Entropy & Psychiatric Biomarkers (EFC-C) | Cognitive Entropy Framework | [31940505](https://doi.org/10.6084/m9.figshare.31940505) |
+| **Spor 3** | AI Architecture & Alignment (RLHF) | Thermodynamic Isomorphism | [31940535](https://doi.org/10.6084/m9.figshare.31940535) |
+| **Bridge** | Cross-Domain Unification | Bridge Equations B1/B2 | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
+| **Synthesis** | Civilization Map | Homo Fluxus v2.0 | [31940604](https://doi.org/10.6084/m9.figshare.31940604) |
+
+---
+
 ## Regime Architecture (L0–L3)
 
 | Regime | Epoch | S value | Physics |
@@ -110,7 +140,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.5) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.7) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
 
 ### Key Results
 | Test | Status | Reference |
@@ -120,10 +150,13 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.5) tracks 
 | KiDS-1000 cosmic shear | T2 — Completed | [31224739](https://doi.org/10.6084/m9.figshare.31224739) |
 | CMB systematic localization | T2 — α≈0 (CMB blind) | [31368433](https://doi.org/10.6084/m9.figshare.31368433) |
 | Growth fσ₈ LOO robustness | T2 — α<0 at ~2σ | [31332730](https://doi.org/10.6084/m9.figshare.31332730) |
+| EFC Screening (k=0.415, 174 galaxies) | T2 — Completed | [31940469](https://doi.org/10.6084/m9.figshare.31940469) |
 | Solar System PPN/EP | T3 — Compatible (γ→1) | [31244827](https://doi.org/10.6084/m9.figshare.31244827) |
 | GRAV→(μ,Σ) structural gap | **CLOSED** (v3.4) | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
 | Covariant EFT (c_gw=c, RAR=BE) | T3 — Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
-| Microphysical gap | **OPEN** (v3.5) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
+| Grid Microphysics (BE RAR derivation) | T3 — Microphysical bridge | [31878760](https://doi.org/10.6084/m9.figshare.31878760) |
+| Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
+| Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
 
 ### Falsification Conditions (F1–F7 + FA1–FA6)
 Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **PASSED** by relativistic derivation. Six action-level conditions (FA1–FA6) now govern the perturbation sector. See [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) for details.
@@ -162,7 +195,18 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Discrete Entropic Gravity (Graph-AQUAL) | [31348411](https://doi.org/10.6084/m9.figshare.31348411) | Newton + MOND + Λ-screening |
 | EFC Closure Conjectures | [31224466](https://doi.org/10.6084/m9.figshare.31224466) | Closure ansätze |
 | EFC Relativistic Action | [31876324](https://doi.org/10.6084/m9.figshare.31876324) | μ<1, Σ>1, η≠1, c_T=c |
-| Covariant EFT (Entropy-Driven Gravity) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) | c_gw=c theorem, RAR=BE, microphysical gap |
+| Covariant EFT (Entropy-Driven Gravity) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) | c_gw=c theorem, RAR=BE |
+| Grid Microphysics to RAR | [31878760](https://doi.org/10.6084/m9.figshare.31878760) | BE RAR from 3 assumptions |
+
+### Track 1–3 + Bridge + Synthesis
+| Paper | DOI | Key Result |
+|-------|-----|------------|
+| EFC Screening Model (Track 1) | [31940469](https://doi.org/10.6084/m9.figshare.31940469) | k=0.415, g†=2.51e-10, C=4.4 |
+| EFC-C Cognitive Entropy (Track 2) | [31940505](https://doi.org/10.6084/m9.figshare.31940505) | Neural entropy gradients, 3 predictions |
+| RLHF Thermodynamic Isomorphism (Track 3) | [31940535](https://doi.org/10.6084/m9.figshare.31940535) | J = −F exactly, 3 predictions |
+| Connectome Degree Heterogeneity | [31940370](https://doi.org/10.6084/m9.figshare.31940370) | r = −0.97, κ from degree ratio |
+| Cross-Domain Bridge Equations | [31940547](https://doi.org/10.6084/m9.figshare.31940547) | B1/B2, unified gradient flow |
+| Homo Fluxus v2.0 (Civilization Map) | [31940604](https://doi.org/10.6084/m9.figshare.31940604) | Grid→EF→S→D→C, empirically anchored |
 
 ### Methodology & AI
 | Paper | DOI |
@@ -171,7 +215,35 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 117 papers with AI-optimized metadata.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 119+ papers with AI-optimized metadata.
+
+---
+
+## AI-Friendly Paper Packages
+
+35+ papers have full AI-friendly packages with executable Python implementations:
+
+| Package | Module | Key Classes |
+|---------|--------|-------------|
+| EFC Screening Model | `efc_screening.py` | EFCScreening, CrossScaleConsistency, BulletCluster |
+| EFC-C Cognitive Entropy | `efc_cognition.py` | NeuralEntropyProduction, EntropyGradient, DisorderSignature |
+| RLHF Thermodynamics | `rlhf_thermodynamics.py` | BoltzmannPolicy, FreeEnergyObjective, GrokkingPhaseTransition |
+| Connectome Heterogeneity | `connectome_kappa.py` | CentrifugalEntropyScore, ConnectomeAnalysis, NetworkFeatures |
+| Cross-Domain Bridge | `bridge_equations.py` | UnifiedGradientFlow, BridgeB1StarStar, BridgeB2Neural2RLHF |
+| Homo Fluxus | `homo_fluxus.py` | EFCChain, EgoThermodynamics, DSMReframe, HomoFluxusNode |
+| Grid Microphysics | `grid_microphysics.py` | GridNode, BoseEinsteinRAR, LatticeDerivation |
+| Covariant EFT | `covariant_eft.py` | CovEFT, GravWaveSpeed, BoseEinsteinRAR |
+| CMB Localization | `cmb_localization.py` | CMBSurvival, LensingBarrier, BackgroundGate |
+| Graph-AQUAL | `discrete_gravity.py` | GraphAQUAL, LambdaScreening, RegimeCoordinates |
+| EFC Relativistic Action | `efc_relativistic_action.py` | RelativisticAction, PerturbationSector |
+
+Each package includes:
+- `src/<module>.py` — Importable Python with documented classes
+- `data/<data>.json` — Structured parameters, results, tables
+- `examples/<demo>.py` — Executable demonstration (tested)
+- `index.json` + `schema.json` + `metadata.json` — Machine-readable metadata
+- `*.jsonld` — Linked data
+- `citations.bib` — BibTeX references
 
 ---
 
@@ -183,8 +255,8 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 117 papers with AI-optimized metadata
-│   ├── public/         # Validation Ledger, Master Spec, figures
+│   ├── papers/efc/     # 119+ papers with AI-optimized metadata
+│   ├── public/         # Validation Ledger (v3.7), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
 │   └── notes/          # Research notes
@@ -214,7 +286,11 @@ EFC/
 ├── methodology/        # Scientific methodology
 ├── shared/             # Shared configurations
 ├── llms.txt            # AI navigation (machine-readable)
-└── AGENTS.md           # AI integration guide
+├── AGENTS.md           # AI integration guide
+├── CITATION.cff        # Citation metadata
+├── codemeta.json       # Software metadata (CodeMeta 2.0)
+├── ecosystem.jsonld    # Ecosystem linked data
+└── efc_integration_test.py  # Integration test suite
 ```
 
 ---

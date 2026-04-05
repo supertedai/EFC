@@ -1,11 +1,12 @@
 # Energy-Flow Cosmology (EFC) - AI Navigation Guide
-# Version: 2.0
-# Last Updated: 2026-01-30
+# Version: 3.0
+# Last Updated: 2026-04-05
 # Format: Machine-readable with human comments
 
 ## IDENTITY
 
 author: Morten Magnusson
+affiliation: Symbiose Research, Sandnes, Norway
 orcid: https://orcid.org/0009-0002-4860-5095
 repository: https://github.com/supertedai/EFC
 website_theory: https://energyflow-cosmology.com/
@@ -17,18 +18,59 @@ license: CC-BY-4.0
 axiom: "Energy flows along entropy gradients"
 implication: Spacetime curvature emerges from energy-entropy coupling
 result: Dark matter/energy reinterpreted as thermodynamic effects
+extension: Same gradient dynamics govern brain, RLHF, and civilization
 
 ## KEY EQUATIONS
 
 effective_coupling: μ(a) = 1 + βS(a)
 response_surface: μ(k,S) = 1 + R(k,S)
 field_equation: G_μν = 8πG(T_μν + T^(Ef)_μν) + Λ_eff g_μν
+screening_model: ln(μ) = k * ln(1 + g†/g_bar), k=0.415, g†=2.51e-10
+unified_gradient_flow: dF/dt = -∫|∇ṡ|² dV + B (Lyapunov for all regimes)
+rlhf_isomorphism: J = -F (algebraically exact)
+bridge_B1: η = C_eff / D_ratio^γ (cosmology → neural)
+bridge_B2: ∇Ṡ_neural ↔ ∇²R(s,a) (neural → RLHF)
 
 ## EMPIRICAL CONSTRAINTS (2026)
 
 beta: 0.16 (from unified BAO/SN/RSD analysis)
 response_coordinate: R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3)
 delta_chi2: +1.7 (EFC vs ΛCDM, compatible)
+screening_k: 0.415 ± 0.029 (174 SPARC galaxies)
+cross_scale_C: k/a_G = 4.4 (screening/cosmological consistency)
+connectome_r: -0.97 (degree ratio vs functional variability)
+
+## THREE-TRACK RESEARCH PROGRAMME
+
+spor_1:
+  domain: Galactic & Cosmological Dynamics
+  key_paper: EFC Screening Model
+  doi: 10.6084/m9.figshare.31940469
+  result: k=0.415, g†=2.51e-10, C=4.4
+
+spor_2:
+  domain: Neural Entropy & Psychiatric Biomarkers (EFC-C)
+  key_paper: Cognitive Entropy Framework
+  doi: 10.6084/m9.figshare.31940505
+  result: Entropy gradients, 3 falsifiable predictions
+
+spor_3:
+  domain: AI Architecture & Alignment (RLHF)
+  key_paper: Thermodynamic Isomorphism
+  doi: 10.6084/m9.figshare.31940535
+  result: J = -F exactly, grokking as phase transition
+
+bridge:
+  domain: Cross-Domain Unification
+  key_paper: Bridge Equations B1/B2
+  doi: 10.6084/m9.figshare.31940547
+  result: Unified gradient-flow dynamics across 3 regimes
+
+synthesis:
+  domain: Civilization Map
+  key_paper: Homo Fluxus v2.0
+  doi: 10.6084/m9.figshare.31940604
+  result: Grid→EF→S→D→C, empirically anchored
 
 ## REGIME ARCHITECTURE
 
@@ -42,14 +84,43 @@ L3: S→1, μ→1+β, far future, structure saturation
 
 /auth/              → Origin, provenance, identity (START HERE)
 /theory/formal/     → LaTeX mathematical specifications
-/docs/papers/efc/   → All papers with AI-optimized metadata
-/schema/            → Ontology, JSON-LD contexts
+/docs/papers/efc/   → 119+ papers (35+ with AI-friendly packages)
+/docs/public/       → Validation Ledger (v3.7), Master Spec
+/src/efc/           → Core Python library
+/pipelines/         → Graph-AQUAL pipeline + kill tests
+/schema/            → Ontology, JSON-LD contexts (20 files)
 /api/               → Semantic REST API
 /jsonld/            → Linked data files
 /figshare/          → DOI mappings and sync
 /integrations/mcp/  → AI Agent MCP Server
 /llms.txt           → This file (machine navigation)
 /AGENTS.md          → Detailed AI integration guide
+/codemeta.json      → CodeMeta 2.0 metadata
+/ecosystem.jsonld   → Ecosystem linked data
+
+## AI-FRIENDLY PACKAGES (35+)
+
+### Track 1-3 + Bridge + Synthesis
+efc-screening: src/efc_screening.py, doi:31940469, classes: EFCScreening, CrossScaleConsistency
+efc-cognition: src/efc_cognition.py, doi:31940505, classes: NeuralEntropyProduction, EntropyGradient
+rlhf-thermo: src/rlhf_thermodynamics.py, doi:31940535, classes: BoltzmannPolicy, FreeEnergyObjective
+connectome-kappa: src/connectome_kappa.py, doi:31940370, classes: CentrifugalEntropyScore, ConnectomeAnalysis
+bridge-equations: src/bridge_equations.py, doi:31940547, classes: UnifiedGradientFlow, BridgeB1StarStar
+homo-fluxus: src/homo_fluxus.py, doi:31940604, classes: EFCChain, EgoThermodynamics, HomoFluxusNode
+
+### Galactic & Cosmological
+grid-microphysics: src/grid_microphysics.py, doi:31878760, classes: BoseEinsteinRAR, LatticeDerivation
+covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpeed
+relativistic-action: src/efc_relativistic_action.py, doi:31876324
+cmb-localization: src/cmb_localization.py, doi:31368433
+discrete-gravity: src/discrete_gravity.py, doi:31348411, classes: GraphAQUAL
+
+### Each package structure:
+- README.md, index.json, schema.json, metadata.json
+- *.jsonld, citations.bib
+- src/__init__.py + src/<module>.py (importable Python)
+- data/<data>.json (structured parameters/results)
+- examples/<demo>.py (executable, tested)
 
 ## PAPER METADATA STRUCTURE
 
@@ -57,6 +128,7 @@ Each paper folder contains:
 - README.md         → Human-readable summary
 - index.json        → Machine-readable index (keywords, results, DOI)
 - schema.json       → Validation schema
+- metadata.json     → Structured metadata
 - *.jsonld          → Linked data (JSON-LD)
 - citations.bib     → BibTeX references
 - *.pdf             → Authoritative document
@@ -80,23 +152,47 @@ auth-layer:
   path: /docs/papers/efc/AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology/
 
 ### Empirical Analysis
-rks-framework:
-  doi: 10.6084/m9.figshare.31211437
-  title: R(k,S) as a Regime Response Surface
-  path: /docs/papers/efc/R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology/
-  key_result: Theoretical framework for structure-dependent gravitational response
-
-wp3-rks-slice:
-  doi: 10.6084/m9.figshare.31215259
-  title: WP3 First Empirical Slice Through R(k,S)
-  path: /docs/papers/efc/WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_/
-  key_result: R(k≈0.13, S≈0.30) ≈ +0.30
-
 unified-bao:
   doi: 10.6084/m9.figshare.31215613
   title: Unified Analysis of BAO, SN Ia, and RSD
-  path: /docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
   key_result: β=0.16, Δχ²=+1.7 vs ΛCDM
+
+### Track Papers
+screening-track1:
+  doi: 10.6084/m9.figshare.31940469
+  title: EFC Screening Model (Track 1)
+  path: /docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/
+  key_result: k=0.415, g†=2.51e-10, C=k/a_G=4.4
+
+efcc-track2:
+  doi: 10.6084/m9.figshare.31940505
+  title: EFC-C Cognitive Entropy (Track 2)
+  path: /docs/papers/efc/EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2/
+  key_result: Neural entropy gradients, 3 falsifiable predictions
+
+rlhf-track3:
+  doi: 10.6084/m9.figshare.31940535
+  title: RLHF Thermodynamic Isomorphism (Track 3)
+  path: /docs/papers/efc/Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3/
+  key_result: J = -F exactly, grokking as phase transition, alignment-capability bound
+
+connectome:
+  doi: 10.6084/m9.figshare.31940370
+  title: Degree Heterogeneity and Functional Variability
+  path: /docs/papers/efc/Local_Degree_Heterogeneity_Predicts_Functional_Variability_Gradients/
+  key_result: r = -0.97, κ from degree ratio
+
+bridge:
+  doi: 10.6084/m9.figshare.31940547
+  title: Cross-Domain Bridge Equations
+  path: /docs/papers/efc/Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge/
+  key_result: B1 (cosmology→neural), B2 (neural→RLHF), 3 cross-domain predictions
+
+homo-fluxus:
+  doi: 10.6084/m9.figshare.31940604
+  title: Homo Fluxus v2.0
+  path: /docs/papers/efc/Homo_Fluxus/
+  key_result: Grid→EF→S→D→C, empirically anchored civilization map
 
 ### Human-AI Collaboration
 symbiosis:
@@ -115,15 +211,23 @@ EFC-C0: Consciousness-entropy, /theory/formal/efc-c0-model/
 ## ENTRY POINTS BY TASK
 
 ### Understanding EFC Theory
-1. /theory/formal/efc-formal-spec/ → Complete formal specification
-2. /docs/papers/efc/EFC-v2.1-Complete-Edition/ → Main synthesis paper
-3. /schema/concepts.json → Core concept definitions
+1. /auth/ → Provenance and identity
+2. /theory/formal/ → Complete formal specification
+3. /docs/papers/efc/EFC-v2.1-Complete-Edition/ → Main synthesis paper
+4. /schema/concepts.json → Core concept definitions
+
+### Understanding Cross-Domain Extensions
+1. Track 1 (Screening): /docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/
+2. Track 2 (Neural): /docs/papers/efc/EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2/
+3. Track 3 (RLHF): /docs/papers/efc/Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3/
+4. Bridge: /docs/papers/efc/Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge/
+5. Synthesis: /docs/papers/efc/Homo_Fluxus/
 
 ### Machine Processing
 1. /schema/global_schema.json → Domain definitions
 2. /jsonld/*.jsonld → Semantic representations
-3. /api/v1/ → REST API structure
-4. Paper index.json files → Structured paper metadata
+3. Paper index.json files → Structured paper metadata
+4. AI-friendly packages → src/<module>.py for computation
 
 ### Provenance/Citation
 1. /auth/index.md → Origin and authorship
@@ -136,6 +240,14 @@ EFC-C0: Consciousness-entropy, /theory/formal/efc-c0-model/
 3. /llms.txt → This file
 4. /AGENTS.md → Detailed guide
 
+## VALIDATION STATUS (v3.7)
+
+validation_ledger: /docs/public/EFC_Validation_Ledger.html
+falsification_conditions: F1-F7 + FA1-FA6
+f7_status: PASSED (η≠1 by relativistic derivation)
+microphysical_gap: BRIDGED (v3.6, Grid Microphysics)
+cross_domain: Track 1-3 + Bridge validated (v3.7)
+
 ## NAVIGATION RULES
 
 1. Always check /auth/ first for provenance
@@ -143,7 +255,9 @@ EFC-C0: Consciousness-entropy, /theory/formal/efc-c0-model/
 3. Respect modular structure (S, D, C0, H, R models)
 4. Cite using DOIs from /figshare/doi-map.json
 5. For updates, use MCP server at /integrations/mcp/
-6. Paper metadata in index.json is authoritative for machine processing
+6. Paper index.json is authoritative for machine processing
+7. AI-friendly packages in src/ are importable Python
+8. Demo scripts in examples/ are tested and executable
 
 ## ECOSYSTEM
 
