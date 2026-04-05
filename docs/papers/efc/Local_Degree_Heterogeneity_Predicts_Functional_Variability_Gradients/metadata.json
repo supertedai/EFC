@@ -1,0 +1,28 @@
+{
+  "title": "Local Degree Heterogeneity Predicts Functional Variability Gradients in the Human Connectome",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "date": "2026-04-05",
+  "doi": "10.6084/m9.figshare.31940370",
+  "version": "v1",
+  "license": "CC-BY-4.0",
+  "type": "research-article",
+  "status": "preprint",
+  "keywords": [
+    "structural connectome", "functional variability", "hub-periphery gradient",
+    "degree heterogeneity", "Fiedler eigenvalue", "biomarker",
+    "resting-state fMRI", "graph theory", "centrifugal entropy score", "kappa"
+  ],
+  "abstract": "Hub regions in the human brain exhibit higher functional variability than peripheral regions, but the structural basis of this gradient remains unclear. Here we quantify this hub-to-periphery gradient using a single scalar — the centrifugal entropy score kappa = <S_hub>/<S_periph> — and identify its primary structural correlate across two independent datasets. In group-average HCP connectivity across six parcellation atlases (68-400 regions), kappa exceeds unity in five of six scales and is stable across parcellation resolution (CV = 1.7%). In eight individual DSI structural connectomes (219 regions), the hub-to-periphery degree ratio explains 94% of inter-subject variance (r = -0.97, p < 0.001). The Fiedler eigenvalue shows no significant association (r = 0.16, p = 0.70).",
+  "significance": "First scalar biomarker (kappa) that captures the directional structure of functional variability gradients across the connectome, with demonstrated scale invariance and a dissociation between local (degree ratio) and global (Fiedler) structural predictors",
+  "categories": ["Neuroscience", "Network Science", "Computational Biology"],
+  "data_sources": [
+    {"name": "ENIGMA Toolbox / HCP S1200", "url": "https://github.com/MICA-MNI/ENIGMA", "type": "group-average connectivity"},
+    {"name": "BCTpy / Lausanne atlas", "url": "https://github.com/aestrivex/bctpy", "type": "individual DSI connectomes"}
+  ]
+}

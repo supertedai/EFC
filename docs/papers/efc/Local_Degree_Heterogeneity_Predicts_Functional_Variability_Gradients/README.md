@@ -24,9 +24,16 @@ The gradient is robust to parcellation resolution (CV = 1.7%) and threshold choi
 | File | Description |
 |------|-------------|
 | `article.md` | Complete manuscript |
-| `index.json` | Machine-readable metadata |
+| `index.json` | Machine-readable metadata and key results |
+| `schema.json` | Validation schema |
+| `metadata.json` | Structured metadata |
+| `connectome_kappa.jsonld` | JSON-LD linked data |
+| `citations.bib` | BibTeX references |
 | `CITATION.cff` | Citation metadata |
 | `cover_letter.md` | Journal submission cover letter |
+| `src/connectome_kappa.py` | Python implementation (kappa, features, sensitivity) |
+| `data/results.json` | Structured results (Tables 3-5, correlations, thresholds) |
+| `examples/demo_kappa.py` | Executable demonstration of all key results |
 
 ## Analysis Code
 
