@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Screening Model Validation – Schema",
+  "type": "object",
+  "required": ["screening_model", "sparc_fit", "cross_scale", "falsification_criteria"],
+  "properties": {
+    "screening_model": {
+      "type": "object",
+      "required": ["k", "g_dagger", "sigma_int"],
+      "properties": {
+        "k": {"type": "number", "minimum": 0.30, "maximum": 0.55},
+        "g_dagger": {"type": "number"},
+        "sigma_int": {"type": "number"}
+      }
+    },
+    "sparc_fit": {
+      "type": "object",
+      "required": ["n_galaxies", "n_points"],
+      "properties": {
+        "n_galaxies": {"type": "integer", "const": 174},
+        "n_points": {"type": "integer", "const": 3264}
+      }
+    },
+    "cross_scale": {
+      "type": "object",
+      "required": ["C", "a_G"],
+      "properties": {
+        "C": {"type": "number"},
+        "a_G": {"type": "number"}
+      }
+    },
+    "falsification_criteria": {
+      "type": "array",
+      "minItems": 5
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "paper_id": "efc-screening-rar-validation",
+  "title": "Energy-Flow Cosmology: Empirical Validation of the EFC Screening Model Against the Radial Acceleration Relation",
+  "short_title": "EFC Screening Model Validation",
+  "authors": [{"name": "Morten Magnusson", "affiliation": "Symbiose Research, Sandnes, Norway", "orcid": "0009-0002-4860-5095"}],
+  "version": "v2.0",
+  "date": "2026-03",
+  "doi": "10.6084/m9.figshare.31940469",
+  "status": "working_paper",
+  "framework": "EFC",
+  "keywords": ["radial acceleration relation", "RAR", "SPARC", "screening model", "weak lensing", "KiDS-1000", "Bullet Cluster", "Hubble tension", "phase-gain", "modified gravity"],
+  "abstract": "Multi-scale empirical validation of the EFC screening model: SPARC RAR fit (k=0.415, g†=2.51e-10 m/s², sigma_int~0.14 dex), KiDS-1000 lensing (Delta(-2lnL)=-50.9), Bullet Cluster entropy-gradient interpretation, and H0 tension via a_G=0.094. Phase-gain C=k/a_G=4.4 connects galactic and cosmological scales.",
+  "screening_model": {
+    "equation": "ln mu = k * ln(1 + g†/g_bar)",
+    "equivalent": "mu = (1 + g†/g_bar)^k",
+    "parameters": {
+      "k": {"value": 0.415, "error": 0.029, "name": "screening exponent", "range": [0.38, 0.45]},
+      "g_dagger": {"value": 2.51e-10, "error": 0.60e-10, "unit": "m/s^2", "name": "transition acceleration"},
+      "sigma_int": {"value": 0.14, "unit": "dex", "note": "0.33 in ln mu"}
+    }
+  },
+  "sparc_analysis": {
+    "n_galaxies": 174,
+    "n_data_points": 3264,
+    "quality_cuts": "Q <= 2, inclination > 30 deg",
+    "method": "unbinned maximum likelihood with intrinsic scatter",
+    "bootstrap": {"n_iterations": 500, "level": "galaxy-level", "purpose": "preserve intra-galaxy correlations"}
+  },
+  "cross_scale": {
+    "phase_gain_C": {"value": 4.4, "error": 0.6, "formula": "C = k/a_G"},
+    "a_G": {"value": 0.094, "error": 0.01, "source": "H0 tension analysis (independent)"},
+    "significance": "Non-trivial consistency: C derived from galactic (k) and cosmological (a_G) data independently"
+  },
+  "kids_1000": {
+    "lensing_response": "P_EFC = P_LCDM * Sigma^2(k,z)",
+    "alpha_L2": {"value": 0.10, "error": 0.01},
+    "delta_log_likelihood": -50.9,
+    "S8_efc": 0.685,
+    "S8_lcdm": 0.739,
+    "case": "A (phenomenological)",
+    "note": "Case A is lensing boost, not S8 solution; Case B (mu in growth) needed"
+  },
+  "bullet_cluster": {
+    "effective_potential": "Phi_eff = Phi_N + alpha * nabla S",
+    "mechanism": "Shocked gas has steep negative entropy gradients (reduced enhancement); galaxies retain gentle gradients (maintained enhancement)",
+    "prediction": "Lensing offset toward galaxy concentrations, not gas peak",
+    "offset": "~150 kpc",
+    "status": "qualitative; hydrodynamic simulations needed"
+  },
+  "hubble_tension": {
+    "G_eff": "G_eff(S) = G_0 * exp(a_G * Delta Phi(S))",
+    "relation": "a_H0 = (1/2) * a_G",
+    "a_H0_derived": 0.0467,
+    "a_G_derived": 0.094,
+    "H0_SH0ES": 73.0,
+    "H0_Planck": 67.4
+  },
+  "closure_conjectures": [
+    {"id": "CC1", "formula": "g† = c*H0/e", "H0_predicted": "70.2 +/- 16.8 km/s/Mpc", "status": "consistent but imprecise"},
+    {"id": "CC2", "formula": "C = 2e - 1 ~ 4.44", "C_observed": "4.4 +/- 0.6", "status": "consistent"}
+  ],
+  "s8_landscape_update": {
+    "kids_legacy": {"S8": 0.815, "error_plus": 0.016, "error_minus": 0.021},
+    "hsc_y3": {"S8": 0.805, "error": 0.018},
+    "combined_wl": {"S8": 0.813, "error_plus": 0.009, "error_minus": 0.010},
+    "cmb_lensing": {"S8": 0.828, "error": 0.012},
+    "efc_prediction": {"sigma8": 0.805, "beta": 0.08}
+  },
+  "falsification_criteria": [
+    {"id": "F1", "condition": "k outside [0.30, 0.55] from independent SPARC re-analysis"},
+    {"id": "F2", "condition": "g† inconsistent with c*H0/e at >3 sigma with improved precision"},
+    {"id": "F3", "condition": "No lensing response Sigma(k,z) detected in Stage-IV data"},
+    {"id": "F4", "condition": "C = k/a_G inconsistent with 2e-1 at >3 sigma"},
+    {"id": "F5", "condition": "Bullet Cluster offset explained without entropy-gradient coupling"}
+  ],
+  "references": [
+    {"key": "[1]", "citation": "McGaugh, Lelli, Schombert, PRL 117, 201101 (2016)"},
+    {"key": "[2]", "citation": "Lelli, McGaugh, Schombert, AJ 152, 157 (2016)", "topic": "SPARC"},
+    {"key": "[3]", "citation": "Asgari et al., A&A 645, A104 (2021)", "topic": "KiDS-1000"},
+    {"key": "[10]", "doi": "10.6084/m9.figshare.31271917", "topic": "KiDS-1000 regime-activated lensing"},
+    {"key": "[11]", "doi": "10.6084/m9.figshare.31305550", "topic": "S8 landscape convergence"},
+    {"key": "[12]", "doi": "10.6084/m9.figshare.31223908", "topic": "Unified RAR + H0 tension"}
+  ]
+}

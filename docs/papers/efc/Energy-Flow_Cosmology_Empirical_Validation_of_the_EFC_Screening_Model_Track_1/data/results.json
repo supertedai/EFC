@@ -1,0 +1,45 @@
+{
+  "title": "EFC Screening Model — Results Data",
+  "doi": "10.6084/m9.figshare.31940469",
+  "table_1_canonical_fit": {
+    "k": {"value": 0.415, "error": 0.029, "source": "SPARC (bootstrap)"},
+    "g_dagger": {"value": 2.51e-10, "error": 0.60e-10, "unit": "m/s^2"},
+    "sigma_int": {"value_ln_mu": 0.33, "value_dex": 0.14},
+    "a_G": {"value": 0.094, "error": 0.01, "source": "H0 analysis (independent)"},
+    "C": {"value": 4.4, "error": 0.6, "formula": "k/a_G"}
+  },
+  "table_3_kids1000": {
+    "alpha_L2": {"value": 0.10, "error": 0.01},
+    "delta_neg2lnL": -50.9,
+    "S8_efc": 0.685,
+    "S8_lcdm": 0.739,
+    "additional_params": 3,
+    "note": "Case A phenomenological"
+  },
+  "table_4_s8_landscape": [
+    {"probe": "KiDS Legacy", "S8": 0.815, "error_plus": 0.016, "error_minus": 0.021},
+    {"probe": "HSC Y3 (DESI-calibrated)", "S8": 0.805, "error": 0.018},
+    {"probe": "Combined WL", "S8": 0.813, "error_plus": 0.009, "error_minus": 0.010},
+    {"probe": "CMB lensing", "S8": 0.828, "error": 0.012},
+    {"probe": "EFC beta=0.08", "sigma8": 0.805}
+  ],
+  "hubble_tension_derivation": {
+    "H0_SH0ES": 73.0,
+    "H0_Planck": 67.4,
+    "ln_ratio": 0.0798,
+    "a_H0": 0.0467,
+    "a_G": 0.0935,
+    "factor_half": "Emerges from Friedmann equation H^2 ~ G*rho"
+  },
+  "closure_conjectures": {
+    "CC1": {"formula": "g† = c*H0/e", "H0_predicted": 70.2, "H0_error": 16.8},
+    "CC2": {"formula": "C = 2e-1", "C_predicted": 4.436, "C_observed": 4.4}
+  },
+  "falsification_criteria": [
+    "k outside [0.30, 0.55]",
+    "g† inconsistent with c*H0/e at >3 sigma",
+    "No Sigma(k,z) in Stage-IV",
+    "C inconsistent with 2e-1 at >3 sigma",
+    "Bullet Cluster offset without entropy-gradient"
+  ]
+}
