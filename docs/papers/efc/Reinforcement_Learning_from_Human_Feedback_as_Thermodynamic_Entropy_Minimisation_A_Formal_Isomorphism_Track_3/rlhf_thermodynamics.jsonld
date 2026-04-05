@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31940535",
+  "name": "Reinforcement Learning from Human Feedback as Thermodynamic Entropy Minimisation: A Formal Isomorphism and Testable Predictions",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    },
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "datePublished": "2026-03-31",
+  "description": "Formal isomorphism between RLHF and statistical-mechanical free energy minimisation with three falsifiable predictions.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["RLHF", "thermodynamics", "free energy", "Boltzmann distribution", "grokking", "phase transition", "alignment"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "RLHF-Thermodynamics Isomorphism",
+      "description": "R -> -E, beta_KL -> T, J = -F (algebraically exact)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Optimal Boltzmann Policy",
+      "description": "pi*(a|s) = pi_ref(a|s) * exp(R(s,a)/beta_KL) / Z(s)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Jailbreaking as Kramers Escape",
+      "description": "Pr(jailbreak) ~ exp(-Delta_F / T_eff)"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC)",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}
