@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC-C Cognition Framework – Schema",
+  "type": "object",
+  "required": ["core_postulate", "predictions", "comparison"],
+  "properties": {
+    "core_postulate": {
+      "type": "object",
+      "required": ["S_dot_neural", "gradient_tensor"],
+      "properties": {
+        "S_dot_neural": {"type": "string"},
+        "gradient_tensor": {"type": "string"}
+      }
+    },
+    "predictions": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"type": "object", "required": ["id", "prediction", "consistency"]}
+    },
+    "comparison": {
+      "type": "array",
+      "minItems": 4,
+      "description": "Comparison with EBH, FEP, IIT, EFC-C"
+    }
+  }
+}

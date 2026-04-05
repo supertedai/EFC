@@ -1,0 +1,53 @@
+{
+  "title": "EFC-C Framework Data",
+  "doi": "10.6084/m9.figshare.31940505",
+  "core_equations": {
+    "eq1": {"name": "Total neural entropy production", "formula": "S_dot_neural = sum_i integral(s_dot_i dV)"},
+    "eq2": {"name": "Disorder gradient deviation", "formula": "Delta nabla S = nabla S_patient - nabla S_healthy"}
+  },
+  "comparison_table_1": [
+    {"framework": "EBH", "magnitude": true, "topology": false, "gradient_direction": false, "psychiatric_application": "partial"},
+    {"framework": "Free Energy Principle", "magnitude": "implicit", "topology": false, "gradient_direction": false, "psychiatric_application": "indirect"},
+    {"framework": "IIT", "magnitude": false, "topology": true, "gradient_direction": false, "psychiatric_application": "indirect"},
+    {"framework": "EFC-C", "magnitude": true, "topology": true, "gradient_direction": true, "psychiatric_application": "direct"}
+  ],
+  "predictions": {
+    "P1": {
+      "title": "Topological entropy structure",
+      "prediction": "Centrifugal gradient: S_dot highest at DMN/salience hubs, decreasing toward sensory cortices",
+      "evidence": [
+        "Lempel-Ziv complexity highest in association cortices (Rosas+ 2023)",
+        "MSE highest in DMN at coarse scales",
+        "Kappa > 1 across 6 parcellation atlases (Magnusson 2026)"
+      ]
+    },
+    "P2": {
+      "title": "Disorder-specific gradient signatures",
+      "disorders": {
+        "schizophrenia": {"gradient": "Elevated anterior entropy, fragmented hub", "evidence": "Increased frontal MFE (Noroozi+ 2025)"},
+        "MDD": {"gradient": "Reduced magnitude, posterior bias", "evidence": "Lower MSE left frontal (Pan+ 2025)"},
+        "ADHD": {"gradient": "Fragmented gradient topology", "evidence": "Predicted, not yet tested"}
+      }
+    },
+    "P3": {
+      "title": "Entropy threshold",
+      "prediction": "S_dot_neural > S_dot_star required for productive cognition",
+      "evidence": "Lempel-Ziv below critical level predicts unresponsive states (Carhart-Harris 2018)"
+    }
+  },
+  "healthy_gradient_profile": {
+    "DMN": 1.0,
+    "Salience": 0.85,
+    "Frontoparietal": 0.75,
+    "Attention": 0.60,
+    "Sensorimotor": 0.40,
+    "Primary_visual": 0.30,
+    "Primary_auditory": 0.30
+  },
+  "next_steps": [
+    "Fit EFC-C to open resting-state fMRI (HCP, OpenNeuro)",
+    "Derive formal bridge from EFC cosmological to neural equations",
+    "Schizophrenia vs MDD classification using gradient features",
+    "AIC comparison against pure-EBH scalar model"
+  ]
+}
