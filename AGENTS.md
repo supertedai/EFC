@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 2.0 | **Updated**: 2026-01-30
+**Version**: 3.0 | **Updated**: 2026-04-05
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -10,10 +10,13 @@ This document provides comprehensive instructions for AI agents working with the
 
 ```yaml
 author: Morten Magnusson
+affiliation: Symbiose Research, Sandnes, Norway
 orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
+validation_ledger: v3.7
+ai_packages: 35+
 ```
 
 | Resource | Location |
@@ -23,6 +26,7 @@ core_principle: "Energy flows along entropy gradients"
 | Schema | [`/schema/global_schema.json`](./schema/global_schema.json) |
 | Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
 | DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |
+| Validation Ledger | [`/docs/public/EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) |
 
 ---
 
@@ -38,6 +42,8 @@ EFC is a unified thermodynamic framework where **energy flows along entropy grad
 | Cosmic acceleration | Thermodynamic expansion (no dark energy substance) |
 | Structure formation | Regime-dependent growth via R(k,S) |
 | S₈ tension | L1→L2 regime transition |
+| Brain functional variability | Local degree heterogeneity → entropy gradient (r ≈ −0.97) |
+| RLHF alignment | Helmholtz free energy minimisation (algebraically exact) |
 
 ### Key Equations
 
@@ -51,11 +57,31 @@ EFC is a unified thermodynamic framework where **energy flows along entropy grad
 μ(k,S) = 1 + R(k,S)
 ```
 
+**EFC Screening (Track 1):**
+```
+ln(μ) = k · ln(1 + g†/g_bar)    k = 0.415, g† = 2.51e-10
+```
+
+**Unified Gradient Flow (Bridge):**
+```
+dF/dt = −∫ |∇ṡ|² dV + B    (Lyapunov for all three regimes)
+```
+
 **Empirical Constraint (2026):**
 ```
 β ≈ 0.16 (from unified BAO/SN/RSD analysis)
 R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3 RSD slice)
 ```
+
+### Three-Track Research Programme
+
+| Track | Domain | Key Paper | DOI |
+|-------|--------|-----------|-----|
+| **Spor 1** | Galactic & Cosmological | EFC Screening Model | 10.6084/m9.figshare.31940469 |
+| **Spor 2** | Neural Entropy (EFC-C) | Cognitive Entropy Framework | 10.6084/m9.figshare.31940505 |
+| **Spor 3** | AI/RLHF Alignment | Thermodynamic Isomorphism | 10.6084/m9.figshare.31940535 |
+| **Bridge** | Cross-Domain | Bridge Equations B1/B2 | 10.6084/m9.figshare.31940547 |
+| **Synthesis** | Civilization Map | Homo Fluxus v2.0 | 10.6084/m9.figshare.31940604 |
 
 ### Regime Architecture
 
@@ -77,15 +103,93 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   └── papers/efc/     # All papers (AI-optimized metadata)
-├── schema/             # Ontology, JSON-LD contexts
+│   ├── papers/efc/     # 119+ papers (35+ with AI-friendly packages)
+│   └── public/         # Validation Ledger (v3.7), Master Spec
+├── src/efc/            # Core Python library
+├── pipelines/          # Graph-AQUAL pipeline + kill tests
+├── schema/             # Ontology, JSON-LD contexts (20 files)
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files
 ├── figshare/           # DOI mappings
-├── integrations/
-│   └── mcp/            # MCP Server for AI agents
+├── integrations/mcp/   # MCP Server for AI agents
 ├── llms.txt            # Machine-readable navigation
-└── AGENTS.md           # This file
+├── AGENTS.md           # This file
+├── codemeta.json       # CodeMeta 2.0 metadata
+└── ecosystem.jsonld    # Ecosystem linked data
+```
+
+---
+
+## AI-Friendly Paper Packages (35+)
+
+Papers with full executable Python packages (`src/`, `data/`, `examples/`):
+
+### Track 1–3 + Bridge + Synthesis
+| Paper | Module | DOI |
+|-------|--------|-----|
+| EFC Screening Model (Track 1) | `efc_screening.py` | 31940469 |
+| EFC-C Cognitive Entropy (Track 2) | `efc_cognition.py` | 31940505 |
+| RLHF Thermodynamics (Track 3) | `rlhf_thermodynamics.py` | 31940535 |
+| Connectome Degree Heterogeneity | `connectome_kappa.py` | 31940370 |
+| Cross-Domain Bridge Equations | `bridge_equations.py` | 31940547 |
+| Homo Fluxus v2.0 | `homo_fluxus.py` | 31940604 |
+
+### Galactic & Cosmological
+| Paper | Module | DOI |
+|-------|--------|-----|
+| Grid Microphysics to RAR | `grid_microphysics.py` | 31878760 |
+| Covariant EFT | `covariant_eft.py` | 31878334 |
+| EFC Relativistic Action | `efc_relativistic_action.py` | 31876324 |
+| CMB Localization / Lensing Barrier | `cmb_localization.py` | 31368433 |
+| Discrete Entropic Gravity (Graph-AQUAL) | `discrete_gravity.py` | 31348411 |
+| Double-Slit Grid Resolution | `double_slit_grid.py` | — |
+| Minimal EFC EFT Ansatz | `minimal_eft.py` | — |
+
+### Methodology & Frameworks
+| Paper | Module |
+|-------|--------|
+| EBE Core Principles | `ebe_classifier.py`, `regime_gating.py` |
+| Core Lock | 5 modules (consistency enforcement) |
+| Regime-Bound Measurement | `regime_bound_measurement.py` |
+| Regime-Locked Measurement | `regime_locked_measurement.py` |
+| Natural & Mechanical Entropy | `natural_mechanical_entropy.py` |
+| RCMP Framework | 5 modules |
+| Regime-Based World Modeling | 5 modules |
+
+### Each Package Contains:
+```
+paper_directory/
+├── README.md              # Human summary
+├── index.json             # Machine-readable index (keywords, results, DOI)
+├── schema.json            # JSON Schema validation
+├── metadata.json          # Structured metadata
+├── *.jsonld               # JSON-LD linked data
+├── citations.bib          # BibTeX references
+├── src/
+│   ├── __init__.py        # Package exports
+│   └── <module>.py        # Importable Python classes
+├── data/
+│   └── <data>.json        # Structured parameters, results, tables
+└── examples/
+    └── <demo>.py          # Executable demonstration (tested)
+```
+
+### Example: Using a Package
+
+```python
+import sys
+sys.path.insert(0, 'docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/src')
+
+from efc_screening import EFCScreening, CrossScaleConsistency
+
+# Compute screening at given acceleration
+model = EFCScreening()
+mu = model.mu(g_bar=1e-10)  # At 1e-10 m/s²
+print(f"μ = {mu:.4f}")
+
+# Cross-scale consistency
+csc = CrossScaleConsistency()
+print(f"C = k/a_G = {csc.C:.2f}")
 ```
 
 ---
@@ -99,23 +203,10 @@ Each paper in `/docs/papers/efc/[paper-name]/` contains:
 | `README.md` | Human-readable summary | Markdown |
 | `index.json` | Machine-readable index | JSON |
 | `schema.json` | Validation schema | JSON Schema |
+| `metadata.json` | Structured metadata | JSON |
 | `*.jsonld` | Linked data | JSON-LD |
 | `citations.bib` | References | BibTeX |
 | `*.pdf` | Authoritative document | PDF |
-
-### Example: Reading Paper Metadata
-
-```python
-import json
-
-# Load machine-readable index
-with open('docs/papers/efc/WP3__First_Empirical_Slice.../index.json') as f:
-    paper = json.load(f)
-
-print(paper['doi'])           # "10.6084/m9.figshare.31215259"
-print(paper['keywords'])      # ["R(k,S)", "fσ₈", "RSD", ...]
-print(paper['results'])       # {"delta_chi2": 1.71, ...}
-```
 
 ---
 
@@ -127,6 +218,7 @@ print(paper['results'])       # {"delta_chi2": 1.71, ...}
 2. **Read `/theory/formal/`** — For mathematical claims
 3. **Reference `/docs/papers/`** — For published findings
 4. **Use DOIs** — From `/figshare/doi-map.json`
+5. **Check Validation Ledger** — For current status of results
 
 ### When Modifying Content
 
@@ -134,18 +226,23 @@ print(paper['results'])       # {"delta_chi2": 1.71, ...}
 2. **Update both formats** — Keep .md and .jsonld in sync
 3. **Follow schema** — Respect `/schema/global_schema.json`
 4. **Log changes** — Update metadata timestamps
+5. **Test demos** — Run `examples/<demo>.py` after changes
 
-### When Creating New Papers
+### When Creating New AI-Friendly Packages
 
-Required files:
+Required files (10-file structure):
 ```
 docs/papers/efc/[Paper-Name]/
-├── README.md              # Human summary
-├── index.json             # Machine index
-├── schema.json            # Validation
-├── [Paper-Name].jsonld    # Linked data
-├── [Paper-Name].pdf       # Authoritative
-└── citations.bib          # References
+├── README.md              # Summary, key results, file structure
+├── index.json             # Complete machine index
+├── schema.json            # JSON Schema validation
+├── metadata.json          # Structured metadata
+├── [name].jsonld           # JSON-LD linked data
+├── citations.bib          # BibTeX references
+├── src/__init__.py        # Package exports
+├── src/<module>.py        # Python implementation
+├── data/<data>.json       # Structured data
+└── examples/<demo>.py     # Tested executable demo
 ```
 
 ---
@@ -159,17 +256,22 @@ docs/papers/efc/[Paper-Name]/
 | `efc-v2.2` | 10.6084/m9.figshare.30530156 | Cross-Field Integration |
 | `auth-layer` | 10.6084/m9.figshare.30656828 | AUTH Layer (Provenance) |
 
+### Track 1–3 + Bridge
+| ID | DOI | Key Result |
+|----|-----|------------|
+| `screening-track1` | 10.6084/m9.figshare.31940469 | k=0.415, g†=2.51e-10, C=4.4 |
+| `efcc-track2` | 10.6084/m9.figshare.31940505 | Neural entropy gradients, 3 predictions |
+| `rlhf-track3` | 10.6084/m9.figshare.31940535 | J = −F exactly, 3 predictions |
+| `connectome` | 10.6084/m9.figshare.31940370 | Degree ratio r = −0.97 |
+| `bridge` | 10.6084/m9.figshare.31940547 | B1/B2 unified gradient flow |
+| `homo-fluxus` | 10.6084/m9.figshare.31940604 | Grid→EF→S→D→C civilization map |
+
 ### Empirical Analysis
 | ID | DOI | Key Result |
 |----|-----|------------|
-| `rks-framework` | 10.6084/m9.figshare.31211437 | R(k,S) theoretical framework |
-| `wp3-rks-slice` | 10.6084/m9.figshare.31215259 | R≈+0.30 at (k≈0.13, S≈0.30) |
 | `unified-bao` | 10.6084/m9.figshare.31215613 | β=0.16, Δχ²=+1.7 |
-
-### Human-AI Collaboration
-| ID | DOI | Topic |
-|----|-----|-------|
-| `symbiosis` | 10.6084/m9.figshare.30773684 | Graph-Vector memory architecture |
+| `sparc175` | 10.6084/m9.figshare.31047703 | EBE regime partition |
+| `kids1000` | 10.6084/m9.figshare.31224739 | Regime-activated lensing |
 
 ---
 
@@ -216,17 +318,7 @@ Before committing changes:
 - [ ] No broken internal links
 - [ ] Metadata timestamps updated
 - [ ] Both human (.md) and machine (.json) formats in sync
-
----
-
-## Error Handling
-
-If inconsistencies found:
-
-1. **Schema authority**: `/schema/global_schema.json`
-2. **Scope boundaries**: `/auth/manifest.json`
-3. **Canonical DOIs**: `/figshare/doi-map.json`
-4. **Report issues**: Repository maintainer
+- [ ] Demo scripts tested (`python examples/<demo>.py`)
 
 ---
 
