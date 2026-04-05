@@ -1,0 +1,88 @@
+{
+  "title": "Local Degree Heterogeneity — Results Data",
+  "doi": "10.6084/m9.figshare.31940370",
+  "kappa_definition": {
+    "formula": "kappa = <S_hub> / <S_periph>",
+    "hub_threshold": "top 10% by weighted structural degree",
+    "periphery_threshold": "bottom 30% by weighted structural degree",
+    "interpretation": {
+      "kappa_gt_1": "Centrifugal gradient: hubs have higher functional variability",
+      "kappa_eq_1": "No gradient: entropy uniformly distributed",
+      "kappa_lt_1": "Centripetal gradient: periphery has higher variability"
+    }
+  },
+  "entropy_proxies": {
+    "primary": {
+      "name": "FC-CV (functional connectivity coefficient of variation)",
+      "formula": "S_i = std(FC_i) / mean(|FC_i|)",
+      "available_for": "Dataset 1 (group-average with functional matrices)"
+    },
+    "secondary": {
+      "name": "Structural log-degree",
+      "formula": "S_i = log(1 + degree_i)",
+      "available_for": "Both datasets"
+    }
+  },
+  "dataset_1_group_average": {
+    "source": "ENIGMA Toolbox / HCP S1200",
+    "type": "group-average structural and functional connectivity",
+    "parcellation_atlases": [
+      {"name": "Desikan-Killiany", "n_regions": 68, "type": "anatomical", "kappa_fc_cv": 0.954, "kappa_structural": 1.267},
+      {"name": "Schaefer-100", "n_regions": 100, "type": "functional", "kappa_fc_cv": 1.143, "kappa_structural": 1.165},
+      {"name": "Schaefer-200", "n_regions": 200, "type": "functional", "kappa_fc_cv": 1.198, "kappa_structural": 1.182},
+      {"name": "Schaefer-300", "n_regions": 300, "type": "functional", "kappa_fc_cv": 1.250, "kappa_structural": 1.180},
+      {"name": "Glasser-360", "n_regions": 360, "type": "multimodal", "kappa_fc_cv": 1.099, "kappa_structural": 1.202},
+      {"name": "Schaefer-400", "n_regions": 400, "type": "functional", "kappa_fc_cv": 1.097, "kappa_structural": 1.184}
+    ],
+    "kappa_structural_cv": 0.028,
+    "kappa_fc_cv_cv": 0.084,
+    "scale_invariance": "6-fold range in parcellation resolution (68 -> 400 regions)"
+  },
+  "dataset_2_individual": {
+    "source": "BCTpy / Lausanne atlas",
+    "type": "individual DSI structural connectomes",
+    "n_subjects": 8,
+    "n_regions": 219,
+    "kappa_mean": 2.20,
+    "kappa_std": 0.15,
+    "kappa_range": [1.91, 2.37],
+    "kappa_cv": 0.069
+  },
+  "feature_correlations_dataset_1": {
+    "note": "Pearson correlations between kappa(FC-CV) and structural features (n=6 atlases)",
+    "results": [
+      {"feature": "Peripheral mean degree", "r": 0.86, "p": 0.028, "significant": true},
+      {"feature": "Degree ratio (D_ratio)", "r": -0.83, "p": 0.042, "significant": true},
+      {"feature": "Clustering coefficient", "r": -0.78, "p": 0.067, "significant": false},
+      {"feature": "Modularity Q", "r": 0.73, "p": 0.100, "significant": false},
+      {"feature": "Hub mean degree", "r": -0.75, "p": 0.088, "significant": false},
+      {"feature": "Fiedler eigenvalue", "r": -0.63, "p": 0.178, "significant": false},
+      {"feature": "Betweenness ratio", "r": -0.56, "p": 0.249, "significant": false},
+      {"feature": "Participation ratio", "r": 0.47, "p": 0.344, "significant": false}
+    ]
+  },
+  "feature_correlations_dataset_2": {
+    "note": "Individual-subject correlations (n=8 subjects)",
+    "degree_ratio": {"r": -0.97, "p": 0.001, "r_squared": 0.94},
+    "fiedler": {"r": 0.16, "p": 0.70, "r_squared": 0.026}
+  },
+  "threshold_sensitivity": {
+    "atlas": "Schaefer-200",
+    "n_combinations": 30,
+    "hub_thresholds_tested": [0.05, 0.08, 0.10, 0.12, 0.15, 0.20],
+    "periphery_thresholds_tested": [0.20, 0.25, 0.30, 0.35, 0.40],
+    "fc_cv": {"kappa_range": [1.107, 1.246], "mean": 1.172, "cv": 0.032, "all_above_unity": true},
+    "structural": {"kappa_range": [1.143, 1.227], "mean": 1.181, "cv": 0.017, "all_above_unity": true}
+  },
+  "clinical_predictions": [
+    {"domain": "Schizophrenia", "prediction": "kappa reduced (hub dysconnection)"},
+    {"domain": "Major Depression", "prediction": "kappa altered (anterior/posterior dissociation)"},
+    {"domain": "Ageing", "prediction": "kappa reduced (white matter degeneration of hub connections)"},
+    {"domain": "Psychedelics", "prediction": "kappa increased (preferential hub entropy increase)"}
+  ],
+  "falsification_criteria": [
+    "kappa < 1 consistently across atlases and subjects",
+    "Degree ratio uncorrelated with kappa on independent large-sample data",
+    "Fiedler eigenvalue becomes significant predictor with larger n"
+  ]
+}

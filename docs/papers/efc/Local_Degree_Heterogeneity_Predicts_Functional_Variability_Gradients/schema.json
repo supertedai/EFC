@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local Degree Heterogeneity Predicts Functional Variability Gradients – Validation Schema",
+  "description": "Schema for validating the centrifugal entropy score kappa and its structural correlates in the human connectome",
+  "type": "object",
+  "required": ["kappa_definition", "datasets", "key_results", "falsification_criteria"],
+  "properties": {
+    "kappa_definition": {
+      "type": "object",
+      "required": ["formula", "hub_threshold", "periphery_threshold"],
+      "properties": {
+        "formula": {"type": "string", "const": "kappa = <S_hub> / <S_periph>"},
+        "hub_threshold": {"type": "string"},
+        "periphery_threshold": {"type": "string"}
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["name", "n_subjects_or_atlases"],
+        "properties": {
+          "name": {"type": "string"},
+          "n_subjects_or_atlases": {"type": "integer"}
+        }
+      }
+    },
+    "key_results": {
+      "type": "object",
+      "required": ["kappa_group", "kappa_individual", "degree_ratio_r", "fiedler_r"],
+      "properties": {
+        "kappa_group": {"type": "object"},
+        "kappa_individual": {"type": "object"},
+        "degree_ratio_r": {"type": "number", "maximum": -0.90},
+        "fiedler_r": {"type": "number"}
+      }
+    },
+    "falsification_criteria": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"type": "string"}
+    }
+  }
+}
