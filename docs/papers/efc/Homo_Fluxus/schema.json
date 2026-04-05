@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Homo Fluxus v2.0 Schema",
+  "description": "Validation schema for Homo Fluxus civilization map data",
+  "type": "object",
+  "required": ["paper_id", "title", "doi", "efc_chain", "empirical_anchor", "triad", "domain_applications"],
+  "properties": {
+    "paper_id": {"type": "string", "const": "homo-fluxus-v2"},
+    "title": {"type": "string"},
+    "doi": {"type": "string", "pattern": "^10\\.\\d{4,}"},
+    "efc_chain": {
+      "type": "object",
+      "required": ["layers", "definition"],
+      "properties": {
+        "layers": {"type": "array", "minItems": 5, "items": {"type": "string"}},
+        "definition": {"type": "string"}
+      }
+    },
+    "empirical_anchor": {
+      "type": "object",
+      "required": ["result", "source"],
+      "properties": {
+        "result": {"type": "string"},
+        "source": {"type": "string"}
+      }
+    },
+    "ego_thermodynamic_function": {
+      "type": "object",
+      "required": ["principle", "dsm_reframe"],
+      "properties": {
+        "principle": {"type": "string"},
+        "dsm_reframe": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["condition", "efc"],
+            "properties": {
+              "condition": {"type": "string"},
+              "efc": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "triad": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["entity", "mode", "characteristic"]
+      }
+    },
+    "domain_applications": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["domain", "principle"]
+      }
+    },
+    "falsification_programme": {
+      "type": "object",
+      "required": ["spor_1", "spor_2", "spor_3", "bridge"]
+    }
+  }
+}
