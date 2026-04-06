@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.0 | **Updated**: 2026-04-05
+**Version**: 3.1 | **Updated**: 2026-04-06
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -16,7 +16,7 @@ repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger: v3.7
-ai_packages: 35+
+ai_packages: 36+
 ```
 
 | Resource | Location |
@@ -137,6 +137,7 @@ Papers with full executable Python packages (`src/`, `data/`, `examples/`):
 ### Galactic & Cosmological
 | Paper | Module | DOI |
 |-------|--------|-----|
+| Gradient-Coupled Grid Action | `grid_action.py` | 31941465 |
 | Grid Microphysics to RAR | `grid_microphysics.py` | 31878760 |
 | Covariant EFT | `covariant_eft.py` | 31878334 |
 | EFC Relativistic Action | `efc_relativistic_action.py` | 31876324 |
@@ -265,6 +266,7 @@ docs/papers/efc/[Paper-Name]/
 | `connectome` | 10.6084/m9.figshare.31940370 | Degree ratio r = −0.97 |
 | `bridge` | 10.6084/m9.figshare.31940547 | B1/B2 unified gradient flow |
 | `homo-fluxus` | 10.6084/m9.figshare.31940604 | Grid→EF→S→D→C civilization map |
+| `gradient-grid-action` | 10.6084/m9.figshare.31941465 | E ∝ √g from minimal Lagrangian |
 
 ### Empirical Analysis
 | ID | DOI | Key Result |

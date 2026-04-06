@@ -6,7 +6,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.7-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-35+-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-36+-brightgreen)](#ai-friendly-paper-packages)
 
 ---
 
@@ -22,7 +22,7 @@
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.7) |
 | **Papers** | 119+ papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 35+ with executable Python + structured data |
+| **AI Packages** | 36+ with executable Python + structured data |
 
 ---
 
@@ -155,6 +155,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.7) tracks 
 | GRAV→(μ,Σ) structural gap | **CLOSED** (v3.4) | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
 | Covariant EFT (c_gw=c, RAR=BE) | T3 — Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
 | Grid Microphysics (BE RAR derivation) | T3 — Microphysical bridge | [31878760](https://doi.org/10.6084/m9.figshare.31878760) |
+| Gradient-Coupled Grid Action (E∝√g) | T3 — Structural | [31941465](https://doi.org/10.6084/m9.figshare.31941465) |
 | Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 | Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
 
@@ -197,6 +198,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | EFC Relativistic Action | [31876324](https://doi.org/10.6084/m9.figshare.31876324) | μ<1, Σ>1, η≠1, c_T=c |
 | Covariant EFT (Entropy-Driven Gravity) | [31878334](https://doi.org/10.6084/m9.figshare.31878334) | c_gw=c theorem, RAR=BE |
 | Grid Microphysics to RAR | [31878760](https://doi.org/10.6084/m9.figshare.31878760) | BE RAR from 3 assumptions |
+| Gradient-Coupled Grid Action | [31941465](https://doi.org/10.6084/m9.figshare.31941465) | E ∝ √g from minimal Lagrangian, operator uniqueness |
 
 ### Track 1–3 + Bridge + Synthesis
 | Paper | DOI | Key Result |
@@ -221,7 +223,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 
 ## AI-Friendly Paper Packages
 
-35+ papers have full AI-friendly packages with executable Python implementations:
+36+ papers have full AI-friendly packages with executable Python implementations:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -231,6 +233,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Connectome Heterogeneity | `connectome_kappa.py` | CentrifugalEntropyScore, ConnectomeAnalysis, NetworkFeatures |
 | Cross-Domain Bridge | `bridge_equations.py` | UnifiedGradientFlow, BridgeB1StarStar, BridgeB2Neural2RLHF |
 | Homo Fluxus | `homo_fluxus.py` | EFCChain, EgoThermodynamics, DSMReframe, HomoFluxusNode |
+| Gradient-Coupled Grid Action | `grid_action.py` | GridAction, GradientCouplingTheorem, OperatorElimination |
 | Grid Microphysics | `grid_microphysics.py` | GridNode, BoseEinsteinRAR, LatticeDerivation |
 | Covariant EFT | `covariant_eft.py` | CovEFT, GravWaveSpeed, BoseEinsteinRAR |
 | CMB Localization | `cmb_localization.py` | CMBSurvival, LensingBarrier, BackgroundGate |
