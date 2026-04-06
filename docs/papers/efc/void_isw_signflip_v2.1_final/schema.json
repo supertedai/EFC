@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/void-isw-signflip",
+  "title": "EFC Void ISW Sign-Flip Schema",
+  "description": "Validation schema for the ISW sign-flip prediction in density-dependent gravity",
+  "type": "object",
+  "properties": {
+    "void": {
+      "type": "object",
+      "properties": {
+        "delta": {"type": "number", "description": "Void density contrast", "maximum": 0},
+        "z": {"type": "number", "description": "Void redshift", "minimum": 0},
+        "R_v": {"type": "number", "description": "Void radius [Mpc]", "exclusiveMinimum": 0}
+      },
+      "required": ["delta"]
+    },
+    "isw_decomposition": {
+      "type": "object",
+      "properties": {
+        "isw_linear": {"type": "number", "description": "Standard linear ISW contribution"},
+        "rees_sciama": {"type": "number", "description": "Non-linear RS contribution from dμ/dt"},
+        "total": {"type": "number", "description": "Total ISW = linear + RS"}
+      },
+      "required": ["isw_linear", "rees_sciama", "total"]
+    },
+    "amplitude_ratio": {
+      "type": "number",
+      "description": "A_total = ΔT_EFC / ΔT_ΛCDM"
+    },
+    "sign_flip": {
+      "type": "boolean",
+      "description": "Whether the total ISW signal has flipped sign"
+    }
+  },
+  "required": ["void", "amplitude_ratio"]
+}

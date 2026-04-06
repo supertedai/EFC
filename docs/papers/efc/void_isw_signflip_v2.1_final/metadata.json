@@ -1,0 +1,46 @@
+{
+  "title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "doi": "10.6084/m9.figshare.31942677",
+  "date_published": "2026-04-06",
+  "version": "2.1",
+  "framework": "Energy-Flow Cosmology (EFC) v3.7",
+  "license": "CC-BY-4.0",
+  "language": "en",
+
+  "classification": {
+    "domain": "observational_cosmology",
+    "track": "galactic_cosmological",
+    "track_number": 1,
+    "category": "testable_prediction",
+    "level": "novel_signal"
+  },
+
+  "methodology": {
+    "approach": "Analytical ISW decomposition in density-dependent gravity",
+    "techniques": [
+      "ISW decomposition into linear and Rees-Sciama terms",
+      "Sign analysis from chain rule dμ/dt = (dμ/dρ)(dρ/dt)",
+      "Amplitude ratio A_total computation",
+      "Void depth parametrization",
+      "Comparison with ISW excess observations"
+    ]
+  },
+
+  "numerical_parameters": {
+    "void_redshift": 0.5,
+    "void_radius_Mpc": 150,
+    "IR_cutoff_k_star": 0.03,
+    "gamma_form": "√ρ (from BE statistics)"
+  },
+
+  "related_papers": [
+    {"doi": "10.6084/m9.figshare.31876324", "title": "EFC Relativistic Action", "relation": "source_action"},
+    {"doi": "10.6084/m9.figshare.31941543", "title": "Regime Transition Test", "relation": "regime_consistency"},
+    {"doi": "10.6084/m9.figshare.31878760", "title": "Grid Microphysics to RAR", "relation": "BE_statistics"}
+  ]
+}

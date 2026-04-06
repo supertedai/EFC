@@ -6,7 +6,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.7-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-37+-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-38+-brightgreen)](#ai-friendly-paper-packages)
 
 ---
 
@@ -22,7 +22,7 @@
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.7) |
 | **Papers** | 119+ papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 37+ with executable Python + structured data |
+| **AI Packages** | 38+ with executable Python + structured data |
 
 ---
 
@@ -157,6 +157,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.7) tracks 
 | Grid Microphysics (BE RAR derivation) | T3 — Microphysical bridge | [31878760](https://doi.org/10.6084/m9.figshare.31878760) |
 | Gradient-Coupled Grid Action (E∝√g) | T3 — Structural | [31941465](https://doi.org/10.6084/m9.figshare.31941465) |
 | Regime Transition Test (μ<1→μ>1) | T3 — Numerical consistency | [31941543](https://doi.org/10.6084/m9.figshare.31941543) |
+| Void ISW Sign-Flip | T3 — Novel prediction | [31942677](https://doi.org/10.6084/m9.figshare.31942677) |
 | Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 | Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
 
@@ -225,7 +226,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 
 ## AI-Friendly Paper Packages
 
-37+ papers have full AI-friendly packages with executable Python implementations:
+38+ papers have full AI-friendly packages with executable Python implementations:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -237,6 +238,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Homo Fluxus | `homo_fluxus.py` | EFCChain, EgoThermodynamics, DSMReframe, HomoFluxusNode |
 | Gradient-Coupled Grid Action | `grid_action.py` | GridAction, GradientCouplingTheorem, OperatorElimination |
 | Regime Transition Test | `regime_transition.py` | EFCRegimeTransition, SurvivalValley, SpatiotemporalGrid |
+| Void ISW Sign-Flip | `void_isw.py` | ISWDecomposition, SignFlipAnalysis, AmplitudeRatio |
 | Grid Microphysics | `grid_microphysics.py` | GridNode, BoseEinsteinRAR, LatticeDerivation |
 | Covariant EFT | `covariant_eft.py` | CovEFT, GravWaveSpeed, BoseEinsteinRAR |
 | CMB Localization | `cmb_localization.py` | CMBSurvival, LensingBarrier, BackgroundGate |

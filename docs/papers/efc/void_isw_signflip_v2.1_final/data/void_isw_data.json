@@ -1,0 +1,99 @@
+{
+  "paper": {
+    "title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
+    "doi": "10.6084/m9.figshare.31942677",
+    "version": "2.1"
+  },
+
+  "equations": {
+    "isw_decomposition": {
+      "id": "Eq1",
+      "latex": "\\frac{d\\Phi}{dt} = \\mu \\frac{d\\delta}{dt} + \\delta \\frac{d\\mu}{dt}",
+      "terms": {
+        "linear_ISW": "μ·(dδ/dt) — standard ISW (cold spot in voids)",
+        "Rees_Sciama": "δ·(dμ/dt) — non-linear RS from density-dependent μ (hot spot in voids)"
+      }
+    },
+    "mu_density": {
+      "id": "Eq2-3",
+      "latex": "\\mu(k, \\rho) = \\frac{1 + \\varepsilon_F}{F(1 + R(k, \\rho))}",
+      "density_enters_through": "Γ'(ρ) in R(k,ρ)"
+    },
+    "chain_rule": {
+      "id": "Eq4",
+      "latex": "\\frac{d\\mu}{dt} = \\frac{d\\mu}{d\\rho} \\cdot \\frac{d\\rho}{dt}"
+    },
+    "amplitude_ratio": {
+      "id": "Eq9",
+      "latex": "A_{\\text{total}} \\equiv \\frac{\\Delta T_{\\text{EFC}}}{\\Delta T_{\\Lambda\\text{CDM}}} = \\frac{\\text{ISW}_{\\text{lin}} + \\text{RS}}{\\text{ISW}_{\\Lambda\\text{CDM}}}"
+    },
+    "scaling": {
+      "id": "Eq10",
+      "latex": "\\frac{|\\text{RS}|}{|\\text{ISW}_{\\text{lin}}|} \\propto |\\delta| \\cdot \\rho^{-1/2}"
+    }
+  },
+
+  "sign_analysis": {
+    "in_voids": {
+      "d_mu_d_rho": "> 0 (from √ρ-form of Γ(ρ), BE statistics)",
+      "d_rho_dt": "< 0 (void expanding)",
+      "d_mu_dt": "< 0 (coupling weakening)",
+      "delta": "< 0 (underdensity)",
+      "RS_sign": "> 0 (hot spot)",
+      "ISW_linear_sign": "< 0 (cold spot)",
+      "net": "RS opposes linear ISW"
+    },
+    "robustness": "Sign determined solely by dμ/dρ > 0, structural from √ρ-form"
+  },
+
+  "table_1": {
+    "description": "ISW amplitude ratio A_total as function of void depth",
+    "parameters": {"z": 0.5, "R_v_Mpc": 150, "k_star_Mpc_inv": 0.03},
+    "rows": [
+      {"delta": -0.3, "rho_over_rho_crit": 0.024, "mu": 0.87, "RS_over_ISW": -0.07, "A_total": 0.93},
+      {"delta": -0.5, "rho_over_rho_crit": 0.017, "mu": 0.82, "RS_over_ISW": -0.22, "A_total": 0.78},
+      {"delta": -0.7, "rho_over_rho_crit": 0.010, "mu": 0.71, "RS_over_ISW": -0.81, "A_total": 0.19},
+      {"delta": -0.8, "rho_over_rho_crit": 0.007, "mu": 0.60, "RS_over_ISW": -1.83, "A_total": -0.83},
+      {"delta": -0.9, "rho_over_rho_crit": 0.003, "mu": 0.41, "RS_over_ISW": -5.88, "A_total": -4.88}
+    ]
+  },
+
+  "key_features": [
+    "δ ~ -0.3: RS is ~7% correction, cold spot persists",
+    "δ ~ -0.7: A_total ≈ 0.2, cold spot reduced to ~20% of ΛCDM",
+    "δ ~ -0.8: SIGN FLIP. A_total < 0: net hot spot from void",
+    "δ ≲ -0.9: RS dominates, strong hot spot"
+  ],
+
+  "isw_excess_anomaly": {
+    "observed": "A_ISW ≈ 5.2 ± 1.6 (Kovacs+ 2022, BOSS+DES supervoids)",
+    "efc_prediction": "A_total < 1 for deep voids",
+    "tension": "Both ΛCDM (A=1) and EFC (A<1) in tension with observed excess",
+    "likely_systematics": ["LOS elongation (q ≈ 2.6)", "a posteriori selection", "stacking methodology biases"],
+    "conclusion": "If excess survives systematics, requires new physics beyond both frameworks"
+  },
+
+  "predictions": [
+    {
+      "id": "P1",
+      "description": "Depth-dependent ISW turnover",
+      "test": "Depth-binned void-CMB stacking (BOSS DR12 / DESI)",
+      "LCDM": "Monotonically increasing |ΔT| with |δ|",
+      "EFC": "Turnover and sign reversal near δ ~ -0.7"
+    },
+    {
+      "id": "P2",
+      "description": "Scale dependence of turnover",
+      "test": "Cross depth × size bins",
+      "mechanism": "R(k) ∝ k⁻⁴ amplifies at large scales"
+    },
+    {
+      "id": "P3",
+      "description": "Redshift evolution",
+      "test": "z ~ 0.3 vs z ~ 0.7 stacking",
+      "mechanism": "RS/ISW ratio increases at lower z"
+    }
+  ],
+
+  "falsification": "If void-stacked ISW increases monotonically with |δ| across all depth bins"
+}
