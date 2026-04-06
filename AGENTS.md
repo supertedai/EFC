@@ -16,7 +16,7 @@ repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger: v3.7
-ai_packages: 42+
+ai_packages: 126 (100% coverage)
 ```
 
 | Resource | Location |
