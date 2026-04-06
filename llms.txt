@@ -84,7 +84,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 
 /auth/              → Origin, provenance, identity (START HERE)
 /theory/formal/     → LaTeX mathematical specifications
-/docs/papers/efc/   → 119+ papers (35+ with AI-friendly packages)
+/docs/papers/efc/   → 119+ papers (36+ with AI-friendly packages)
 /docs/public/       → Validation Ledger (v3.7), Master Spec
 /src/efc/           → Core Python library
 /pipelines/         → Graph-AQUAL pipeline + kill tests
@@ -98,7 +98,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (39+)
+## AI-FRIENDLY PACKAGES (40+)
 
 ### Track 1-3 + Bridge + Synthesis
 efc-screening: src/efc_screening.py, doi:31940469, classes: EFCScreening, CrossScaleConsistency
@@ -113,6 +113,7 @@ gradient-grid-action: src/grid_action.py, doi:31941465, classes: GridAction, Gra
 regime-transition: src/regime_transition.py, doi:31941543, classes: EFCRegimeTransition, SurvivalValley, SpatiotemporalGrid
 void-isw-signflip: src/void_isw.py, doi:31942677, classes: ISWDecomposition, SignFlipAnalysis, AmplitudeRatio
 cosmic-dipole: src/cosmic_dipole.py, doi:31942731, classes: KinematicDipole, EntropyGradient, DipoleAmplitude
+entropy-budget: src/entropy_budget.py, doi:31942734, classes: CosmicEntropyInventory, BekensteinHawkingEntropy, ThermostatConjecture
 grid-microphysics: src/grid_microphysics.py, doi:31878760, classes: BoseEinsteinRAR, LatticeDerivation
 covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpeed
 relativistic-action: src/efc_relativistic_action.py, doi:31876324
@@ -221,6 +222,12 @@ cosmic-dipole:
   title: The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in EFC
   path: /docs/papers/efc/EFC_Cosmic_Dipole_Working_Note/
   key_result: Isotropy as regime condition; ∇S → ΔG_eff → intrinsic dipole; ~2% entropy variation required
+
+entropy-budget:
+  doi: 10.6084/m9.figshare.31942734
+  title: The Cosmic Entropy Budget as Constraint on the EFC S-Field
+  path: /docs/papers/efc/EFC_Entropy_Budget_Working_Note/
+  key_result: SMBH entropy dominates (~10^104 k_B) → S=S_max (grid collapse); thermostat conjecture AGN→S(z) at z~1
 
 ### Human-AI Collaboration
 symbiosis:

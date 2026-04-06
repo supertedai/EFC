@@ -1,0 +1,35 @@
+{
+  "id": "efc-entropy-budget",
+  "title": "The Cosmic Entropy Budget as Constraint on the EFC S-Field",
+  "doi": "10.6084/m9.figshare.31942734",
+  "version": "0.1",
+  "status": "working_note",
+  "date": "2026-04-06",
+  "author": {"name": "Morten Magnusson", "orcid": "0009-0002-4860-5095"},
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "license": "CC-BY-4.0",
+  "abstract": "Shows the observed cosmic entropy budget (SMBH-dominated) is structurally consistent with EFC's S-field: SMBHs at S=S_max (grid collapse), CMB at S_max (thermal limit), and AGN activity decline driving the S(z) sigmoid transition at z~1.",
+  "keywords": ["entropy budget", "Bekenstein-Hawking", "supermassive black holes", "S-field", "thermostat conjecture", "AGN", "grid collapse", "EFC"],
+  "key_equations": {
+    "bekenstein_hawking": "S_BH = 4πGM²k_B/(ℏc)",
+    "s_field_mapping": "S_EFC/S_max = S_BH/S_BH,max(M)",
+    "accretion_luminosity": "L_acc = η Ṁ c²",
+    "entropy_production": "Ṡ_acc ≈ L_acc/T_acc"
+  },
+  "predictions": [
+    {"id": "P1", "description": "SMBH density correlates with local μ"},
+    {"id": "P2", "description": "S(z) tracks AGN luminosity density"},
+    {"id": "P3", "description": "Void galaxies show enhanced μ"},
+    {"id": "P4", "description": "S_max scales with BH entropy for typical SMBH mass"}
+  ],
+  "open_gaps": [
+    {"id": "G1", "description": "Quantitative S(z)–AGN derivation"},
+    {"id": "G2", "description": "S-field normalization"},
+    {"id": "G3", "description": "Interior BH description (L3)"},
+    {"id": "G4", "description": "Hawking radiation and S-field decay"}
+  ],
+  "connections": {"builds_on": [
+    {"doi": "10.6084/m9.figshare.31876324"}, {"doi": "10.6084/m9.figshare.31223668"}
+  ]},
+  "files": {"pdf": "EFC_Entropy_Budget_Working_Note.pdf", "source": "src/entropy_budget.py", "data": "data/entropy_budget_data.json", "demo": "examples/demo_entropy_budget.py"}
+}
