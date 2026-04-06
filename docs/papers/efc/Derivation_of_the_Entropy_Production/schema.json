@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Derivation_of_the_Entropy_Production/schema.json",
+  "title": "Entropy Production Derivation Schema",
+  "description": "Validates data for the Γ(ρ) derivation from BE grid-mode statistics",
+  "type": "object",
+  "properties": {
+    "be_occupation": {
+      "type": "object",
+      "properties": {
+        "formula": { "type": "string" },
+        "a0": { "type": "number" },
+        "x_param": { "type": "string" }
+      }
+    },
+    "von_neumann_entropy": {
+      "type": "object",
+      "properties": {
+        "formula": { "type": "string" },
+        "marginal_entropy": { "type": "string" }
+      }
+    },
+    "gamma_derivation": {
+      "type": "object",
+      "properties": {
+        "per_mode_formula": { "type": "string" },
+        "total_formula": { "type": "string" },
+        "rho_crit": { "type": "string" }
+      }
+    },
+    "scenario": {
+      "type": "string",
+      "enum": ["A", "B", "B+", "C"]
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "target": { "type": "string" },
+          "result": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      }
+    }
+  }
+}

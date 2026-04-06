@@ -1,0 +1,81 @@
+{
+  "paper": {
+    "title": "Derivation of the Entropy Production Function Γ(ρ) from Grid-Mode Bose–Einstein Statistics",
+    "doi": "10.6084/m9.figshare.31942821",
+    "version": "1.0",
+    "framework": "EFC v3.7",
+    "companion": "10.6084/m9.figshare.31942800"
+  },
+  "be_occupation": {
+    "formula": "n(g) = 1/(exp(√(g/a₀)) - 1)",
+    "a0": 1.2e-10,
+    "a0_unit": "m/s²",
+    "x_param": "x(ρ) = √(βρ/a₀)",
+    "beta": "4πG_N r*/3",
+    "equation_numbers": ["Eq. 1", "Eq. 4"]
+  },
+  "von_neumann_entropy": {
+    "formula": "s(n) = (1+n)ln(1+n) - n ln(n)",
+    "marginal_entropy": "ds/dn = ln(1+1/n) = x for BE distribution",
+    "key_identity": "ds/dn = x — marginal entropy equals dimensionless energy",
+    "equation_numbers": ["Eq. 7", "Eq. 9", "Eq. 11"]
+  },
+  "derivation_chain": {
+    "step_1": {
+      "name": "Entropy functional",
+      "result": "s(n) = (1+n)ln(1+n) - n ln n",
+      "equation": "Eq. 7"
+    },
+    "step_2": {
+      "name": "Time derivative via density evolution",
+      "formula": "Γ = (ds/dn)(dn/dρ)",
+      "factors": {
+        "ds_dn": "x (Eq. 11)",
+        "dn_drho": "-n(n+1) x/(2ρ) (Eq. 16)"
+      },
+      "equation": "Eq. 17"
+    },
+    "step_3": {
+      "name": "Assembly",
+      "per_mode": "|Γ| = (β/(2a₀)) n(n+1) (Eq. 20)",
+      "total": "Γ(ρ) ∝ ρ^(3/2)/(ρ+ρ_crit) (Eq. 37)"
+    }
+  },
+  "rho_crit": {
+    "formula": "a₀/(G_N l_g)",
+    "origin": "Grid node activation: G_N ρ l_g² > a₀ l_g",
+    "equation": "Eq. 33"
+  },
+  "table_1_requirements": [
+    {"id": "R1", "target": "Γ ∝ ρ", "result": "Γ ∝ ρ^(3/2)", "status": "Partial"},
+    {"id": "R2", "target": "Γ → const", "result": "Γ ∝ ρ^(1/2)", "status": "Partial"},
+    {"id": "R3", "target": "Emergent ρ_crit", "result": "a₀/(G_N l_g)", "status": "Yes"},
+    {"id": "DC", "target": "μ ≠ Γ", "result": "Static vs dynamical", "status": "Resolved"}
+  ],
+  "double_counting_resolution": {
+    "mu_be": "Static, local, instantaneous occupation at a point",
+    "gamma": "Dynamical, rate of entropy change as distribution evolves",
+    "analogy": "Bose gas: n̄(ε) → equation of state; dS/dt → relaxation dynamics"
+  },
+  "scenario_classification": {
+    "scenario": "B",
+    "description": "Partial match: correct qualitative structure, exponent 3/2 vs 1",
+    "correct": ["ρ_crit emerges", "Γ→0 at ρ=0", "natural scale from a₀", "double-counting resolved"],
+    "not_exact": ["Low-ρ exponent 3/2 not 1", "High-ρ growth ρ^(1/2) not const"],
+    "path_to_A": ["Derive D_eff from grid action (→ companion paper)", "Recalibrate survival valley"]
+  },
+  "limit_analysis": {
+    "low_rho": {
+      "x": "→ 0",
+      "n": "≈ 1/x ≫ 1 (quantum-degenerate)",
+      "per_mode_gamma": "≈ 1/(2ρ)",
+      "total_gamma": "∝ ρ^(3/2)/(ρ+ρ_crit)"
+    },
+    "high_rho": {
+      "x": "→ ∞",
+      "n": "≈ e^(-x) ≪ 1 (classical)",
+      "per_mode_gamma": "→ 0 exponentially",
+      "total_gamma": "∝ ρ^(1/2)"
+    }
+  }
+}

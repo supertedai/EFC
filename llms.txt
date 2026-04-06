@@ -98,7 +98,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (41+)
+## AI-FRIENDLY PACKAGES (42+)
 
 ### Track 1-3 + Bridge + Synthesis
 efc-screening: src/efc_screening.py, doi:31940469, classes: EFCScreening, CrossScaleConsistency
@@ -115,6 +115,7 @@ void-isw-signflip: src/void_isw.py, doi:31942677, classes: ISWDecomposition, Sig
 cosmic-dipole: src/cosmic_dipole.py, doi:31942731, classes: KinematicDipole, EntropyGradient, DipoleAmplitude
 entropy-budget: src/entropy_budget.py, doi:31942734, classes: CosmicEntropyInventory, BekensteinHawkingEntropy, ThermostatConjecture
 density-of-states: src/density_of_states.py, doi:31942800, classes: GridActivation, DensityOfStates, EntropyProductionFunction
+entropy-production: src/entropy_production.py, doi:31942821, classes: BEOccupation, VonNeumannEntropy, GammaDerivation
 grid-microphysics: src/grid_microphysics.py, doi:31878760, classes: BoseEinsteinRAR, LatticeDerivation
 covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpeed
 relativistic-action: src/efc_relativistic_action.py, doi:31876324
@@ -235,6 +236,12 @@ density-of-states:
   title: Density of States of Gravitationally Active Grid Modes
   path: /docs/papers/efc/Density_of_States_of_Gravitationally/
   key_result: D_eff(ρ) ∝ √(ρ/ρ_crit) from boundary-mode mechanism; Γ(ρ) = Γ₀√(ρ/ρ_crit)/(1+√(ρ/ρ_crit)); Scenario B+; ~20% agreement with phenomenological ansatz
+
+entropy-production:
+  doi: 10.6084/m9.figshare.31942821
+  title: Derivation of the Entropy Production Function Γ(ρ) from Grid-Mode Bose–Einstein Statistics
+  path: /docs/papers/efc/Derivation_of_the_Entropy_Production/
+  key_result: Γ ∝ ρ^(3/2)/(ρ+ρ_crit) from BE+vN entropy; Scenario B; double-counting μ vs Γ resolved; companion to D_eff paper (31942800)
 
 ### Human-AI Collaboration
 symbiosis:
