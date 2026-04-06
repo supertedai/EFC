@@ -41,7 +41,7 @@
       "alpha": {
         "symbol": "α",
         "description": "Lensing response amplitude",
-        "best_fit": 0.10,
+        "best_fit": 0.1,
         "unit": "dimensionless"
       },
       "k_trans": {
@@ -118,7 +118,10 @@
     },
     "comparison": {
       "cmb": "Planck 2018",
-      "other_wl": ["DES-Y3", "HSC-Y1"]
+      "other_wl": [
+        "DES-Y3",
+        "HSC-Y1"
+      ]
     }
   },
   "comparison_with_lcdm": {
@@ -158,5 +161,6 @@
       "doi": "10.6084/m9.figshare.31243828",
       "relation": "Growth constraints"
     }
-  ]
+  ],
+  "doi": "10.6084/m9.figshare.31271917"
 }

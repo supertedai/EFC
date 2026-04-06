@@ -35,7 +35,31 @@
         "description": "Rotation null distribution",
         "n_angles": 23,
         "step_degrees": 15,
-        "angles": [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345]
+        "angles": [
+          15,
+          30,
+          45,
+          60,
+          75,
+          90,
+          105,
+          120,
+          135,
+          150,
+          165,
+          180,
+          195,
+          210,
+          225,
+          240,
+          255,
+          270,
+          285,
+          300,
+          315,
+          330,
+          345
+        ]
       },
       "sigma_MAD": {
         "formula": "1.4826 * MAD[A_rot]",
@@ -188,7 +212,11 @@
       {
         "name": "Abell 2146",
         "feature": "Double-shock system",
-        "references": ["Russell et al. 2010", "Russell et al. 2012", "Russell et al. 2022"]
+        "references": [
+          "Russell et al. 2010",
+          "Russell et al. 2012",
+          "Russell et al. 2022"
+        ]
       }
     ]
   },
@@ -216,5 +244,6 @@
     "examples": "examples/directional_lensing_demo.py",
     "citation": "CITATION.cff",
     "license": "LICENSE"
-  }
+  },
+  "doi": "10.6084/m9.figshare.31288063"
 }

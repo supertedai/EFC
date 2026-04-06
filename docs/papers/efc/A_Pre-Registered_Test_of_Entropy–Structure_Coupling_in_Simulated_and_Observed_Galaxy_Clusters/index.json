@@ -43,13 +43,20 @@
       "redshift": 0,
       "resolution": "TNG300-1",
       "gas_mass_resolution": {
-        "value": 1.2e7,
+        "value": 12000000.0,
         "unit": "M_sun"
       }
     },
     "lehle_catalogue": {
       "reference": "Lehle et al. 2024",
-      "variables": ["K0", "ne_slope", "tcool", "ne", "Cphys", "Cscaled"],
+      "variables": [
+        "K0",
+        "ne_slope",
+        "tcool",
+        "ne",
+        "Cphys",
+        "Cscaled"
+      ],
       "gas_selection": "non-star-forming, T > 1e6 K, mass-weighted"
     },
     "accept": {
@@ -84,7 +91,7 @@
       "interpretation": "Lower bound on alpha under physical temperature gradient assumption",
       "tng_distribution": {
         "min": -0.23,
-        "max": 1.60,
+        "max": 1.6,
         "median": 0.31
       }
     },
@@ -110,9 +117,18 @@
       }
     },
     "tng_population": {
-      "SCC": {"count": 28, "fraction": 0.08},
-      "WCC": {"count": 206, "fraction": 0.59},
-      "NCC": {"count": 118, "fraction": 0.34}
+      "SCC": {
+        "count": 28,
+        "fraction": 0.08
+      },
+      "WCC": {
+        "count": 206,
+        "fraction": 0.59
+      },
+      "NCC": {
+        "count": 118,
+        "fraction": 0.34
+      }
     }
   },
   "results": {
@@ -138,26 +154,58 @@
     },
     "mass_controlled": {
       "partial_ne_slope_K0_given_M": {
-        "rho": -0.880,
+        "rho": -0.88,
         "p_value": "2e-115",
         "mass_contribution": "0%"
       },
       "interpretation": "Sign flip is NOT driven by mass confounding"
     },
     "mass_binned": [
-      {"bin": "[14.0, 14.3)", "N": 41, "rho": -0.790, "p_value": "9e-10"},
-      {"bin": "[14.3, 14.6)", "N": 118, "rho": -0.860, "p_value": "1e-35"},
-      {"bin": "[14.6, 14.9)", "N": 121, "rho": -0.901, "p_value": "5e-45"},
-      {"bin": "[14.9, 15.5)", "N": 71, "rho": -0.897, "p_value": "4e-26"}
+      {
+        "bin": "[14.0, 14.3)",
+        "N": 41,
+        "rho": -0.79,
+        "p_value": "9e-10"
+      },
+      {
+        "bin": "[14.3, 14.6)",
+        "N": 118,
+        "rho": -0.86,
+        "p_value": "1e-35"
+      },
+      {
+        "bin": "[14.6, 14.9)",
+        "N": 121,
+        "rho": -0.901,
+        "p_value": "5e-45"
+      },
+      {
+        "bin": "[14.9, 15.5)",
+        "N": 71,
+        "rho": -0.897,
+        "p_value": "4e-26"
+      }
     ],
     "proxy_definition_matching": {
-      "alpha_proxy_vs_K0_raw": {"rho": -0.872, "p_value": "8e-111"},
-      "alpha_proxy_vs_K0_partial_M": {"rho": -0.880, "p_value": "2e-115"},
-      "alpha_proxy_vs_tcool_raw": {"rho": -0.878, "p_value": "7e-114"},
-      "alpha_proxy_vs_tcool_partial_M": {"rho": -0.876, "p_value": "1e-112"}
+      "alpha_proxy_vs_K0_raw": {
+        "rho": -0.872,
+        "p_value": "8e-111"
+      },
+      "alpha_proxy_vs_K0_partial_M": {
+        "rho": -0.88,
+        "p_value": "2e-115"
+      },
+      "alpha_proxy_vs_tcool_raw": {
+        "rho": -0.878,
+        "p_value": "7e-114"
+      },
+      "alpha_proxy_vs_tcool_partial_M": {
+        "rho": -0.876,
+        "p_value": "1e-112"
+      }
     },
     "ks_test_scc_vs_ncc": {
-      "D_statistic": 1.000,
+      "D_statistic": 1.0,
       "p_value": "2.4e-30",
       "interpretation": "Complete separation between SCC and NCC density slopes"
     }
@@ -175,7 +223,10 @@
       "description": "Full Cavagnolo-model K(r) fit over [20, 400] kpc",
       "parameters_locked": {
         "centre": "SUBFIND-determined",
-        "fit_range_kpc": [20, 400],
+        "fit_range_kpc": [
+          20,
+          400
+        ],
         "initial_alpha_guess": 1.1,
         "binning": "mass-weighted",
         "n_radial_bins": 30,
@@ -218,13 +269,38 @@
     "documentation": "README.md"
   },
   "references": [
-    {"key": "Cavagnolo2009", "citation": "Cavagnolo, K. W., et al. 2009, ApJS, 182, 12"},
-    {"key": "Fabian1994", "citation": "Fabian, A. C. 1994, ARA&A, 32, 277"},
-    {"key": "Hudson2010", "citation": "Hudson, D. S., et al. 2010, A&A, 513, A37"},
-    {"key": "Lehle2024", "citation": "Lehle, K., et al. 2024, A&A, 687, A30"},
-    {"key": "Nelson2024", "citation": "Nelson, D., et al. 2024, A&A, 686, A157"},
-    {"key": "Peterson2006", "citation": "Peterson, J. R. & Fabian, A. C. 2006, Phys. Rep., 427, 1"},
-    {"key": "Pillepich2018", "citation": "Pillepich, A., et al. 2018, MNRAS, 473, 4077"},
-    {"key": "Weinberger2017", "citation": "Weinberger, R., et al. 2017, MNRAS, 465, 3291"}
-  ]
+    {
+      "key": "Cavagnolo2009",
+      "citation": "Cavagnolo, K. W., et al. 2009, ApJS, 182, 12"
+    },
+    {
+      "key": "Fabian1994",
+      "citation": "Fabian, A. C. 1994, ARA&A, 32, 277"
+    },
+    {
+      "key": "Hudson2010",
+      "citation": "Hudson, D. S., et al. 2010, A&A, 513, A37"
+    },
+    {
+      "key": "Lehle2024",
+      "citation": "Lehle, K., et al. 2024, A&A, 687, A30"
+    },
+    {
+      "key": "Nelson2024",
+      "citation": "Nelson, D., et al. 2024, A&A, 686, A157"
+    },
+    {
+      "key": "Peterson2006",
+      "citation": "Peterson, J. R. & Fabian, A. C. 2006, Phys. Rep., 427, 1"
+    },
+    {
+      "key": "Pillepich2018",
+      "citation": "Pillepich, A., et al. 2018, MNRAS, 473, 4077"
+    },
+    {
+      "key": "Weinberger2017",
+      "citation": "Weinberger, R., et al. 2017, MNRAS, 465, 3291"
+    }
+  ],
+  "doi": "10.6084/m9.figshare.31286368"
 }

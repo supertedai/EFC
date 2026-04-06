@@ -82,7 +82,7 @@
   "parameters": {
     "G": 6.674e-11,
     "G_unit": "m³ kg⁻¹ s⁻²",
-    "c": 2.998e8,
+    "c": 299800000.0,
     "c_unit": "m/s",
     "Lambda_m2": 1.11e-52,
     "a0_m_s2": 1.2e-10,
@@ -120,8 +120,17 @@
   ],
   "files": {
     "paper": "Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models.pdf",
-    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
-    "metadata": ["CITATION.cff", "index.json", "RegimeStructureEntropicFlowOntology.jsonld", "schema.json"],
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "RegimeStructureEntropicFlowOntology.jsonld",
+      "schema.json"
+    ],
     "source_code": [
       "src/__init__.py",
       "src/interpolating_function.py",
@@ -137,5 +146,6 @@
       "examples/classify_regimes.py",
       "examples/functional_sectors.py"
     ]
-  }
+  },
+  "doi": "10.6084/m9.figshare.31348417"
 }
