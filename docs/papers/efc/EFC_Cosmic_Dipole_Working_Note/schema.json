@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/cosmic-dipole",
+  "title": "EFC Cosmic Dipole Schema",
+  "type": "object",
+  "properties": {
+    "dipole": {
+      "type": "object",
+      "properties": {
+        "D_kinematic": {"type": "number", "description": "Kinematic dipole amplitude"},
+        "D_observed": {"type": "number", "description": "Observed dipole amplitude"},
+        "D_excess": {"type": "number", "description": "Excess over kinematic"},
+        "D_EFC": {"type": "number", "description": "EFC-predicted intrinsic dipole"}
+      }
+    },
+    "entropy_gradient": {
+      "type": "object",
+      "properties": {
+        "grad_S_over_S": {"type": "number", "description": "|∇S|L_grad/S̄"},
+        "required_variation_percent": {"type": "number", "description": "Required % entropy variation"}
+      }
+    },
+    "tracer": {
+      "type": "object",
+      "properties": {
+        "b_eff": {"type": "number", "description": "Effective tracer bias"},
+        "survey": {"type": "string"}
+      }
+    }
+  }
+}
