@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/gradient-coupled-grid-action",
+  "title": "EFC Gradient-Coupled Grid Action Schema",
+  "description": "Validation schema for the gradient-coupled grid action derivation of E ∝ √g",
+  "type": "object",
+  "properties": {
+    "grid_action": {
+      "type": "object",
+      "description": "Three-term Lagrangian S_grid",
+      "properties": {
+        "m_eff": {
+          "type": "number",
+          "description": "Effective grid DOF mass",
+          "exclusiveMinimum": 0
+        },
+        "kappa_0": {
+          "type": "number",
+          "description": "Bare elastic stiffness constant",
+          "minimum": 0
+        },
+        "alpha": {
+          "type": "number",
+          "description": "Gradient coupling constant",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": ["m_eff", "kappa_0", "alpha"]
+    },
+    "effective_stiffness": {
+      "type": "object",
+      "description": "κ_eff(x) = κ₀ + α g(x)",
+      "properties": {
+        "kappa_eff": {
+          "type": "number",
+          "description": "Total effective stiffness at position x",
+          "exclusiveMinimum": 0
+        },
+        "g_local": {
+          "type": "number",
+          "description": "Local gravitational acceleration |∇Φ|",
+          "minimum": 0
+        }
+      },
+      "required": ["kappa_eff", "g_local"]
+    },
+    "dispersion": {
+      "type": "object",
+      "description": "Dispersion relation ω²(k,g)",
+      "properties": {
+        "omega_squared": {
+          "type": "number",
+          "description": "Angular frequency squared",
+          "minimum": 0
+        },
+        "k": {
+          "type": "number",
+          "description": "Wavenumber",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": ["omega_squared", "k"]
+    },
+    "operator_candidates": {
+      "type": "array",
+      "description": "Coupling operator candidates C1-C5",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string", "pattern": "^C[1-5]$"},
+          "operator": {"type": "string"},
+          "survives": {"type": "boolean"},
+          "failure_reason": {"type": ["string", "null"]}
+        },
+        "required": ["id", "operator", "survives"]
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "regimes": {
+      "type": "array",
+      "description": "Physical regimes of the dispersion relation",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "condition": {"type": "string"},
+          "dispersion_limit": {"type": "string"}
+        },
+        "required": ["name", "condition"]
+      },
+      "minItems": 3
+    },
+    "predictions": {
+      "type": "array",
+      "description": "Falsifiable predictions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "description": {"type": "string"},
+          "status": {"type": "string", "enum": ["testable", "tested", "falsified"]}
+        },
+        "required": ["id", "description", "status"]
+      }
+    }
+  },
+  "required": ["grid_action", "effective_stiffness", "dispersion"]
+}

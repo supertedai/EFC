@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "orcid": "https://orcid.org/",
+    "figshare": "https://doi.org/10.6084/m9.figshare."
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31941465",
+  "name": "EFC Gradient-Coupled Grid Action",
+  "description": "Derives the EFC screening relation E ∝ √g from a minimal three-term Lagrangian S_grid with gradient coupling ½α|∇Φ|(∇ξ)². Establishes operator uniqueness by eliminating four alternative couplings.",
+  "url": "https://doi.org/10.6084/m9.figshare.31941465",
+  "datePublished": "2026-04-05",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "givenName": "Morten",
+    "familyName": "Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    }
+  },
+
+  "isPartOf": {
+    "@type": "ResearchProject",
+    "@id": "https://energyflow-cosmology.com/",
+    "name": "Energy-Flow Cosmology (EFC)"
+  },
+
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:GridAction",
+      "name": "Grid Action S_grid",
+      "description": "Three-term minimal Lagrangian: kinetic ½m_eff(∂_t ξ)², bare elastic ½κ₀(∇ξ)², gradient coupling ½α|∇Φ|(∇ξ)²"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:EffectiveStiffness",
+      "name": "Effective Stiffness",
+      "description": "κ_eff(x) = κ₀ + αg(x), emergent from Euler-Lagrange variation of S_grid"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:GradientCouplingTheorem",
+      "name": "Gradient Coupling Theorem (Theorem 1)",
+      "description": "In the gravitational regime (αg ≫ κ₀), the grid excitation energy satisfies E ∝ √g"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:OperatorUniqueness",
+      "name": "Operator Uniqueness",
+      "description": "Systematic elimination of C1(ρ), C2(Φ), C3(g²), C4(∇²Φ); only C5(|∇Φ|) survives"
+    }
+  ],
+
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "figshare:31878760",
+      "name": "Grid Microphysics to RAR"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "figshare:31878334",
+      "name": "Covariant EFT for EFC"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "figshare:31940469",
+      "name": "EFC Screening Model (Track 1)"
+    }
+  ],
+
+  "keywords": [
+    "grid action",
+    "gradient coupling",
+    "effective stiffness",
+    "dispersion relation",
+    "operator uniqueness",
+    "bosonic quantisation",
+    "E ∝ √g",
+    "screening relation",
+    "EFC",
+    "Lagrangian mechanics"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "paper": {
+    "title": "EFC Gradient-Coupled Grid Action",
+    "doi": "10.6084/m9.figshare.31941465",
+    "version": "1.0"
+  },
+
+  "parameters": {
+    "m_eff": {
+      "description": "Effective mass of grid DOF",
+      "symbol": "m_eff",
+      "role": "kinetic term coefficient",
+      "units": "model-dependent"
+    },
+    "kappa_0": {
+      "description": "Bare elastic stiffness",
+      "symbol": "κ₀",
+      "role": "vacuum dispersion constant",
+      "constraint": "κ₀/(α·a₀) ≪ 1"
+    },
+    "alpha": {
+      "description": "Gradient coupling constant",
+      "symbol": "α",
+      "role": "gravity-grid coupling strength",
+      "constraint": "> 0"
+    },
+    "a_0": {
+      "description": "MOND acceleration scale",
+      "symbol": "a₀",
+      "value": 1.2e-10,
+      "units": "m/s²"
+    }
+  },
+
+  "equations": {
+    "grid_action": {
+      "id": "Eq2",
+      "latex": "S_{\\text{grid}} = \\int dt\\, d^3x \\left[ \\frac{1}{2} m_{\\text{eff}} (\\partial_t \\xi)^2 - \\frac{1}{2} \\kappa_0 (\\nabla \\xi)^2 - \\frac{1}{2} \\alpha |\\nabla \\Phi| (\\nabla \\xi)^2 \\right]",
+      "terms": {
+        "kinetic": "½ m_eff (∂_t ξ)²",
+        "bare_elastic": "½ κ₀ (∇ξ)²",
+        "gradient_coupling": "½ α |∇Φ| (∇ξ)²"
+      }
+    },
+    "effective_stiffness": {
+      "id": "Eq5",
+      "latex": "\\kappa_{\\text{eff}}(x) = \\kappa_0 + \\alpha\\, g(x)",
+      "derivation": "Euler-Lagrange variation of S_grid"
+    },
+    "dispersion": {
+      "id": "Eq6-7",
+      "latex": "\\omega^2(k, g) = \\frac{\\kappa_0 + \\alpha g}{m_{\\text{eff}}} k^2"
+    },
+    "theorem_1": {
+      "id": "Eq8",
+      "latex": "E = \\hbar \\omega = \\hbar \\sqrt{\\frac{\\alpha g}{m_{\\text{eff}}}}\\, k \\propto \\sqrt{g}",
+      "condition": "αg ≫ κ₀ (gravitational regime)"
+    },
+    "crossover": {
+      "latex": "g_{\\text{cross}} = \\frac{\\kappa_0}{\\alpha}"
+    },
+    "hamiltonian": {
+      "latex": "H = \\sum_k \\hbar \\omega_k \\left( a^\\dagger_k a_k + \\frac{1}{2} \\right)"
+    },
+    "thermal_occupation": {
+      "latex": "\\langle n_k \\rangle = \\frac{1}{\\exp(\\hbar \\omega_k / k_B T_{\\text{grid}}) - 1}"
+    }
+  },
+
+  "operator_table": {
+    "description": "Coupling operator candidates (Table 1)",
+    "candidates": [
+      {
+        "id": "C1",
+        "operator": "ρ(x)",
+        "name": "Local mass density",
+        "survives": false,
+        "reason": "Not a gravitational invariant; matter-dependent"
+      },
+      {
+        "id": "C2",
+        "operator": "Φ(x)",
+        "name": "Gravitational potential",
+        "survives": false,
+        "reason": "Gauge-dependent (shift symmetry violation)"
+      },
+      {
+        "id": "C3",
+        "operator": "|∇Φ|²",
+        "name": "Squared acceleration",
+        "survives": false,
+        "reason": "Wrong scaling: E ∝ g instead of E ∝ √g"
+      },
+      {
+        "id": "C4",
+        "operator": "∇²Φ",
+        "name": "Laplacian of potential",
+        "survives": false,
+        "reason": "Vanishes in vacuum; non-local"
+      },
+      {
+        "id": "C5",
+        "operator": "|∇Φ|",
+        "name": "Gravitational acceleration magnitude",
+        "survives": true,
+        "reason": "Passes all constraints: dimensional, symmetry, locality, correct scaling"
+      }
+    ]
+  },
+
+  "regimes": [
+    {
+      "name": "bare_elastic",
+      "condition": "κ₀ ≫ αg",
+      "dispersion": "ω ≈ √(κ₀/m_eff) · k",
+      "physics": "Gravity-independent vacuum dispersion"
+    },
+    {
+      "name": "gravitational",
+      "condition": "αg ≫ κ₀",
+      "dispersion": "ω ≈ √(αg/m_eff) · k",
+      "physics": "E ∝ √g regime; RAR screening relation"
+    },
+    {
+      "name": "transition",
+      "condition": "αg ~ κ₀",
+      "dispersion": "ω = √((κ₀ + αg)/m_eff) · k",
+      "physics": "Full dispersion; near g_cross = κ₀/α"
+    }
+  ],
+
+  "derivation_chain": [
+    "S_grid (three-term action, Eq. 2)",
+    "Euler-Lagrange → κ_eff = κ₀ + αg (Eq. 5)",
+    "WKB plane-wave → ω²(k,g) (Eq. 6-7)",
+    "Gravitational limit → E ∝ √g (Theorem 1, Eq. 8)",
+    "Canonical quantisation → Fock space [a,a†] = δ",
+    "Bose-Einstein statistics → ⟨n_k⟩",
+    "Thermal occupation → μ(g) screening"
+  ],
+
+  "predictions": [
+    {
+      "id": "P1",
+      "description": "Bare stiffness bound",
+      "condition": "κ₀/(α·a₀) ≪ 1",
+      "status": "testable"
+    },
+    {
+      "id": "P2",
+      "description": "Dispersion signature at sub-kpc scales",
+      "observable": "Deviation from E ∝ √g near g_cross",
+      "status": "testable"
+    }
+  ],
+
+  "open_questions": [
+    {
+      "id": "L3",
+      "description": "Grid DOF existence — assumed, not derived"
+    },
+    {
+      "id": "uniqueness",
+      "description": "Coupling form uniqueness within the C5 operator class"
+    },
+    {
+      "id": "hierarchy",
+      "description": "Hierarchy condition κ₀/(α·a₀) ≪ 1 — motivation needed"
+    }
+  ]
+}
