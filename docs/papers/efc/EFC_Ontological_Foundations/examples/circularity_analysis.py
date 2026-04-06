@@ -8,12 +8,12 @@ Demonstrates the circularity testing of the three hypotheses.
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add package root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from circularity_tester import CircularityTester, Definition
-from hypothesis_analyzer import HypothesisAnalyzer, HypothesisID, compare_hypotheses
-from ontology_model import CoPrimaryModel, create_standard_model
+from src.circularity_tester import CircularityTester, Definition
+from src.hypothesis_analyzer import HypothesisAnalyzer, HypothesisID, compare_hypotheses
+from src.ontology_model import CoPrimaryModel, create_standard_model
 
 
 def main():

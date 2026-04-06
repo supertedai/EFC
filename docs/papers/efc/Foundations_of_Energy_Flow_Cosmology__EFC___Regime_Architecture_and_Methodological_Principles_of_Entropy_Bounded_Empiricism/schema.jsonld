@@ -1,0 +1,95 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "efc": "https://github.com/supertedai/EFC/ontology#",
+      "efc:regimeLevel": {"@id": "efc:regimeLevel", "@type": "xsd:string"},
+      "efc:epistemicLayer": {"@id": "efc:epistemicLayer", "@type": "xsd:string"},
+      "efc:entropyBounded": {"@id": "efc:entropyBounded", "@type": "xsd:boolean"},
+      "efc:coreEquation": {"@id": "efc:coreEquation"},
+      "efc:regimeArchitecture": {"@id": "efc:regimeArchitecture"},
+      "efc:methodologicalPrinciple": {"@id": "efc:methodologicalPrinciple"}
+    }
+  ],
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31135597",
+  "identifier": "10.6084/m9.figshare.31135597",
+  "name": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
+  "description": "Foundational framework for Energy-Flow Cosmology establishing regime architecture (L0-L3), methodological principles of Entropy-Bounded Empiricism, and core equation mu(a) = 1 + beta*S(a).",
+  "version": "1.0",
+  "datePublished": "2026",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Morten Magnusson",
+      "identifier": "https://orcid.org/0009-0002-4860-5095"
+    }
+  ],
+  "keywords": [
+    "EFC",
+    "Energy-Flow Cosmology",
+    "regime architecture",
+    "L0-L3",
+    "entropy-bounded empiricism",
+    "methodological framework"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://raw.githubusercontent.com/supertedai/EFC/main/docs/papers/efc/Foundations_of_Energy_Flow_Cosmology__EFC___Regime_Architecture_and_Methodological_Principles_of_Entropy_Bounded_Empiricism/Foundations.pdf",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "EFC Papers"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Energy-Flow Cosmology"
+  },
+  "efc:entropyBounded": true,
+  "efc:epistemicLayer": "foundational",
+  "efc:coreEquation": [
+    {
+      "@type": "PropertyValue",
+      "name": "Effective gravitational coupling",
+      "description": "mu(a) = G_eff/G = 1 + beta*S(a)",
+      "propertyID": "efc:mu_equation"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Regime Response Surface",
+      "description": "mu(k,S) = 1 + R(k,S)",
+      "propertyID": "efc:regime_response_surface"
+    }
+  ],
+  "efc:regimeArchitecture": [
+    {
+      "@type": "DefinedTerm",
+      "name": "L0 - Latent",
+      "description": "Pre-activation, entropy below threshold",
+      "efc:regimeLevel": "L0"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "L1 - Stable Active",
+      "description": "High confidence, reliable predictions",
+      "efc:regimeLevel": "L1"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "L2 - Complex Active",
+      "description": "Requires uncertainty quantification",
+      "efc:regimeLevel": "L2"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "L3 - Residual",
+      "description": "Historical retrieval only",
+      "efc:regimeLevel": "L3"
+    }
+  ],
+  "efc:methodologicalPrinciple": [
+    "Regime-bounded inference",
+    "Pre-registration of predictions",
+    "No post-hoc parameter fitting",
+    "Causal ordering enforcement",
+    "Cross-scale consistency requirements"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "title": "EFC v2.1 Modular Synthesis -- Structured Data",
+  "version": "2.1",
+  "modules": {
+    "M1_Structural": {
+      "name": "Structural",
+      "inputs": ["grid_state", "energy_distribution"],
+      "outputs": ["metric_tensor", "curvature", "topology"],
+      "constraints": ["Bianchi identity", "metric signature (-,+,+,+)"]
+    },
+    "M2_Dynamical": {
+      "name": "Dynamical",
+      "inputs": ["metric_tensor", "matter_content", "entropy_state"],
+      "outputs": ["field_equations", "Hubble_rate", "growth_rate"],
+      "constraints": ["Energy conservation", "Covariant divergence = 0"]
+    },
+    "M3_Entropic": {
+      "name": "Entropic",
+      "inputs": ["scale_factor"],
+      "outputs": ["entropy_state", "entropy_gradient", "entropy_production_rate"],
+      "constraints": ["Second Law: dS/dt >= 0", "S bounded by S_inf"]
+    },
+    "M4_Informational": {
+      "name": "Informational",
+      "inputs": ["entropy_state", "temperature"],
+      "outputs": ["information_content", "erasure_cost", "complexity_measure"],
+      "constraints": ["Landauer bound: E >= kT ln 2 per bit"]
+    }
+  },
+  "inter_module_flows": [
+    {"from": "M3", "to": "M2", "data": "entropy_state"},
+    {"from": "M1", "to": "M2", "data": "metric_tensor"},
+    {"from": "M3", "to": "M4", "data": "entropy_state"},
+    {"from": "M2", "to": "M1", "data": "curvature feedback"}
+  ],
+  "global_constraints": [
+    "All modules must agree on spacetime dimensionality (3+1)",
+    "Entropy monotonicity must hold across all module interactions",
+    "Energy conservation at all inter-module boundaries"
+  ]
+}

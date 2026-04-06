@@ -1,0 +1,37 @@
+{
+  "title": "EFC Master Specification -- Structured Data",
+  "version": "1.0",
+  "canonical_parameters": {
+    "S_inf": 1.0,
+    "a_t": 0.55,
+    "sigma": 0.10,
+    "z_t": 0.82,
+    "beta": 0.16,
+    "H0": 67.4,
+    "Omega_m": 0.315,
+    "Omega_r": 9.0e-5,
+    "Omega_Lambda": 0.685
+  },
+  "field_equation": "G_{mu nu} = 8piG(T_{mu nu} + T^{(E_f)}_{mu nu}) + Lambda_eff g_{mu nu}",
+  "entropy_sigmoid": "S(a) = (S_inf/2)[1 + tanh((ln a - ln a_t)/sigma)]",
+  "effective_coupling": "mu(a) = 1 + beta * S(a)",
+  "regimes": [
+    {"label": "L0", "name": "Planck/Sub-Planck", "dominant_fields": ["Grid"]},
+    {"label": "L1", "name": "Quantum/Early Universe", "dominant_fields": ["Energy Flow", "Grid"]},
+    {"label": "L2", "name": "Classical/Structure Formation", "dominant_fields": ["Energy Flow", "Entropy"]},
+    {"label": "L3", "name": "Cosmological/Horizon", "dominant_fields": ["Entropy", "Information"]}
+  ],
+  "consistency_rules": [
+    {"id": "CR1", "name": "Entropy monotonicity", "statement": "dS/dt >= 0"},
+    {"id": "CR2", "name": "Energy conservation", "statement": "nabla_mu T^{mu nu} = 0"},
+    {"id": "CR3", "name": "GR recovery", "statement": "beta -> 0 => GR + Lambda"},
+    {"id": "CR4", "name": "Metric emergence", "statement": "Grid averaging -> smooth g_{mu nu}"},
+    {"id": "CR5", "name": "Information-entropy duality", "statement": "Landauer bound"},
+    {"id": "CR6", "name": "Regime continuity", "statement": "Fields continuous across boundaries"}
+  ],
+  "fields": ["Energy Flow (E_f)", "Entropy (S)", "Grid (G_grid)", "Information (I)"],
+  "cognitive_layer": {
+    "landauer_bound": "E >= k_B T ln 2 per bit",
+    "role": "Bridges thermodynamic and information-theoretic descriptions"
+  }
+}

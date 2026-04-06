@@ -1,0 +1,36 @@
+{
+  "title": "Symbiotic Insight Framework Reference Data",
+  "description": "Example insight fields and stabilisation parameters for the SIF framework.",
+  "stabilisation_defaults": {
+    "coherence_threshold": 0.5,
+    "max_cycles": 10,
+    "field_states": ["raw", "stabilised", "structured", "preserved"]
+  },
+  "example_fields": [
+    {
+      "label": "entropy_regime_boundary",
+      "domain": "cosmology",
+      "content": "The boundary between FLOW and TRANSITION regimes at L=0.337 may correspond to a thermodynamic phase transition in the entropy field."
+    },
+    {
+      "label": "cross_scale_invariance",
+      "domain": "mathematics",
+      "content": "Scale-invariant properties of the L parameter suggest a renormalisation group structure underlying regime classification."
+    },
+    {
+      "label": "biological_entropy_analog",
+      "domain": "biology",
+      "content": "Metabolic rate scaling in organisms follows entropy-bounded constraints analogous to the EBE framework in cosmology."
+    },
+    {
+      "label": "cognitive_load_parallel",
+      "domain": "cognition",
+      "content": "Working memory capacity limits parallel to entropy bounds suggest a universal information-processing constraint."
+    }
+  ],
+  "cross_domain_connections": [
+    ["entropy_regime_boundary", "cross_scale_invariance"],
+    ["biological_entropy_analog", "cognitive_load_parallel"],
+    ["entropy_regime_boundary", "biological_entropy_analog"]
+  ]
+}

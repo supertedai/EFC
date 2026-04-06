@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31292827",
+  "name": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
+  "headline": "Zero free parameters: RSD constraints propagated to cluster abundance predictions",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "keywords": ["galaxy clusters", "RSD", "eROSITA", "cross-probe test"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ParameterLockedTest",
+      "name": "Parameter-Locked Cross-Probe",
+      "description": "No parameters fit to cluster data; all locked from RSD"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ShapeObservable",
+      "name": "Shape Observable R(z)",
+      "description": "R(z) = N_EFC(z)/N_LCDM(z) ratio insensitive to uniform mass bias"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

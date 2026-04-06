@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Closure Conjectures Schema",
+  "type": "object",
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "version": {"type": "string"},
+    "doi": {"type": ["string", "null"]},
+    "key_results": {"type": "array", "items": {"type": "object"}},
+    "parameters": {"type": "object"},
+    "predictions": {"type": "array"}
+  },
+  "required": ["paper_id", "title"]
+}

@@ -1,0 +1,65 @@
+{
+  "description": "Open questions and entropy gaps in EFC",
+  "questions": [
+    {
+      "id": "Q1",
+      "category": "theoretical",
+      "title": "Entropy field normalisation",
+      "description": "How should the entropy field S be normalised across different cosmological scales?",
+      "severity": 4,
+      "status": "open"
+    },
+    {
+      "id": "Q2",
+      "category": "observational",
+      "title": "CMB entropy imprint",
+      "description": "Can the entropy-flow contribution to CMB anisotropy be isolated from standard signals?",
+      "severity": 3,
+      "status": "open"
+    },
+    {
+      "id": "Q3",
+      "category": "mathematical",
+      "title": "Non-linear entropy coupling",
+      "description": "What is the correct form of the non-linear coupling between entropy and energy flow at high gradients?",
+      "severity": 5,
+      "status": "open"
+    },
+    {
+      "id": "Q4",
+      "category": "computational",
+      "title": "Numerical stability at S boundaries",
+      "description": "Simulations become unstable near S=0 and S=1 boundaries. What regularisation is appropriate?",
+      "severity": 4,
+      "status": "partial"
+    },
+    {
+      "id": "Q5",
+      "category": "theoretical",
+      "title": "Arrow of time from entropy flow",
+      "description": "Does the EFC entropy field provide a fundamental basis for the thermodynamic arrow of time?",
+      "severity": 3,
+      "status": "open"
+    }
+  ],
+  "gaps": [
+    {
+      "name": "cosmic_entropy_production_rate",
+      "expected_value": 1e20,
+      "observed_value": 3e19,
+      "unit": "J K^-1 Gyr^-1 Mpc^-3"
+    },
+    {
+      "name": "cluster_entropy_floor",
+      "expected_value": 0.05,
+      "observed_value": 0.12,
+      "unit": "normalised"
+    },
+    {
+      "name": "void_entropy_ceiling",
+      "expected_value": 0.98,
+      "observed_value": 0.85,
+      "unit": "normalised"
+    }
+  ]
+}

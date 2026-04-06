@@ -5,8 +5,8 @@ Example: EFC Transfer Test from DESI DR2 to BOSS DR12
 Demonstrates the cross-survey validation methodology.
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.efc_boss_transfer import EFCTransferTest, PAPER_RESULTS
 import numpy as np

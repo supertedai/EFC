@@ -1,0 +1,27 @@
+{
+  "paper_id": "EFC-Field-Equations-for-Entropy-Driven-Spacetime",
+  "field_equation": "G_mu_nu + Lambda g_mu_nu = kappa T_mu_nu + alpha S_mu_nu",
+  "parameters": {
+    "alpha": {
+      "description": "Entropy-gravity coupling constant",
+      "default": 1e-3,
+      "units": "dimensionless"
+    },
+    "Lambda": {
+      "description": "Cosmological constant",
+      "value": 1.1e-52,
+      "units": "m^-2"
+    },
+    "kappa": {
+      "description": "Einstein gravitational coupling 8piG/c^4",
+      "units": "m/J"
+    }
+  },
+  "tensors": {
+    "G_mu_nu": "Einstein tensor (spacetime curvature)",
+    "T_mu_nu": "Stress-energy tensor (matter/radiation)",
+    "S_mu_nu": "Entropy-flow stress tensor (EFC addition)",
+    "g_mu_nu": "Metric tensor"
+  },
+  "key_insight": "Spacetime dynamics arise from entropy gradients and grid-level resistance, not curvature alone"
+}

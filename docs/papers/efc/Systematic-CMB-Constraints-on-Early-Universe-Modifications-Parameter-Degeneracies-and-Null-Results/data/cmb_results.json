@@ -1,0 +1,44 @@
+{
+  "paper": "Systematic CMB Constraints on EFC: Parameter Degeneracies and Null Results",
+  "doi": "10.6084/m9.figshare.31095466",
+  "date": "2026-01-20",
+  "cmb_data": {
+    "source": "Planck 2018 TT spectrum",
+    "n_points": 2507,
+    "ell_range": [2, 2508]
+  },
+  "kappa_dot_mechanism": {
+    "status": "REJECTED",
+    "implementation": "kappa_dot *= (1 + boost * tanh((z - 700) / 200))",
+    "results": [
+      {"boost_percent": -2.0, "chi2_per_dof": 1.1905, "delta_chi2": 13.0},
+      {"boost_percent": -1.0, "chi2_per_dof": 1.1875, "delta_chi2": 5.4},
+      {"boost_percent":  0.0, "chi2_per_dof": 1.1853, "delta_chi2": 0.0},
+      {"boost_percent":  1.0, "chi2_per_dof": 1.1875, "delta_chi2": 5.4},
+      {"boost_percent":  2.0, "chi2_per_dof": 1.1905, "delta_chi2": 13.0}
+    ],
+    "conclusion": "No preference for kappa-dot modification. Standard LCDM preferred."
+  },
+  "hz_mechanism": {
+    "status": "REJECTED",
+    "implementation": "rho_EFC = epsilon * rho_tot(a) * gaussian_window",
+    "1d_artifact": {
+      "epsilon_percent": 3.0,
+      "delta_chi2": -65,
+      "explanation": "Parameter degeneracy with h"
+    },
+    "2d_true_minimum": {
+      "epsilon_percent": -0.5,
+      "h": 0.6736,
+      "delta_chi2": -1.26
+    },
+    "conclusion": "No preference for epsilon != 0 when h allowed to vary."
+  },
+  "regime_interpretation": {
+    "cmb_epoch": "L0-L1",
+    "expected": "Standard physics dominant",
+    "result": "LCDM provides best fit",
+    "implication": "Consistent with EFC-R framework"
+  },
+  "key_lesson": "Parameter degeneracies can create false signals. Multi-dimensional analysis essential."
+}

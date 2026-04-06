@@ -1,0 +1,75 @@
+{
+  "description": "Default EFC AI-augmented scientific workflow stages and validation layers",
+  "workflow": {
+    "name": "EFC Scientific Workflow",
+    "author": "Morten Magnusson"
+  },
+  "stages": [
+    {
+      "name": "hypothesis",
+      "role": "human",
+      "description": "Formulate the scientific hypothesis",
+      "inputs": [],
+      "outputs": ["hypothesis_statement", "scope_definition"]
+    },
+    {
+      "name": "literature_review",
+      "role": "joint",
+      "description": "Survey existing work and identify gaps",
+      "inputs": ["hypothesis_statement"],
+      "outputs": ["literature_summary", "gap_analysis"]
+    },
+    {
+      "name": "derivation",
+      "role": "joint",
+      "description": "Derive equations and theoretical results",
+      "inputs": ["hypothesis_statement", "gap_analysis"],
+      "outputs": ["equations", "theoretical_predictions"]
+    },
+    {
+      "name": "implementation",
+      "role": "ai",
+      "description": "Implement computational models",
+      "inputs": ["equations"],
+      "outputs": ["code", "unit_tests"]
+    },
+    {
+      "name": "validation",
+      "role": "joint",
+      "description": "Validate against data and consistency criteria",
+      "inputs": ["code", "theoretical_predictions"],
+      "outputs": ["validation_report", "figures"]
+    },
+    {
+      "name": "documentation",
+      "role": "joint",
+      "description": "Write up results with full metadata",
+      "inputs": ["validation_report", "figures"],
+      "outputs": ["paper_draft", "metadata"]
+    },
+    {
+      "name": "peer_review",
+      "role": "human",
+      "description": "External review and revision",
+      "inputs": ["paper_draft"],
+      "outputs": ["final_paper"]
+    }
+  ],
+  "validation_layers": [
+    {
+      "name": "EFC-D",
+      "description": "Derivation validity",
+      "criteria": ["mathematical_consistency", "dimensional_analysis", "limit_recovery"]
+    },
+    {
+      "name": "EFC-S",
+      "description": "Statistical validity",
+      "criteria": ["chi2_threshold", "AIC_comparison", "residual_normality"]
+    },
+    {
+      "name": "EFC-C",
+      "description": "Consistency",
+      "criteria": ["cross_probe_agreement", "parameter_stability", "regime_continuity"]
+    }
+  ]
+}

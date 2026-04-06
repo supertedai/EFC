@@ -1,0 +1,48 @@
+{
+  "title": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO With Cross-Validation Against Pantheon+ and H(z) Chronometers",
+  "short_id": "efc-desi-dr2-bao",
+  "version": "1.0",
+  "date": "2026-02-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": null,
+  "abstract": "Validates an EFC regime-transition parameterization against DESI DR2 BAO data with cross-validation against Pantheon+ supernovae and cosmic chronometers. The transition model (z_L1L2 = 1.01, alpha_L2 = 0.045) yields Delta-chi-squared = -22.01 for two additional parameters, surviving rigorous conditional hold-out validation.",
+  "keywords": [
+    "DESI DR2",
+    "BAO",
+    "regime transition",
+    "Pantheon+",
+    "cosmic chronometers",
+    "cross-validation",
+    "EFC"
+  ],
+  "efc_context": {
+    "track": "empirical_validation",
+    "regime_relevance": "L1-L2 transition at z ~ 1",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {"test": "BAO primary", "n": 13, "delta_chi2": -22.01, "status": "Pass"},
+    {"test": "Hold-out (conditional)", "n": 3, "delta_chi2": -18.65, "status": "Pass"},
+    {"test": "SN shape test", "n": 277, "status": "Pass"},
+    {"test": "CC consistency", "n": 34, "delta_chi2": -0.17, "status": "Pass"},
+    {"test": "Combined", "n": 47, "delta_chi2": -22.17, "status": "Pass"}
+  ],
+  "file_manifest": {
+    "README.md": "Documentation",
+    "CITATION.cff": "Citation metadata",
+    "LICENSE": "CC-BY-4.0 license",
+    "index.json": "Machine-readable metadata",
+    "schema.json": "JSON Schema",
+    "metadata.json": "This file",
+    "desi_dr2_bao.jsonld": "Linked data",
+    "citations.bib": "BibTeX references",
+    "src/": "Source code",
+    "data/": "Data files",
+    "examples/": "Example scripts"
+  }
+}

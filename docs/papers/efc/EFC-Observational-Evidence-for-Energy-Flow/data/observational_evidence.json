@@ -1,0 +1,44 @@
+{
+  "description": "Sample observational evidence data for EFC energy-flow signatures",
+  "signatures": [
+    {
+      "name": "NGC3198",
+      "energy_flux": 1.2e-14,
+      "entropy_gradient": 0.075,
+      "redshift": 0.0022
+    },
+    {
+      "name": "NGC6503",
+      "energy_flux": 8.5e-15,
+      "entropy_gradient": 0.062,
+      "redshift": 0.0003
+    },
+    {
+      "name": "F568-3",
+      "energy_flux": 3.1e-15,
+      "entropy_gradient": 0.095,
+      "redshift": 0.0029
+    }
+  ],
+  "cmb_modes": [
+    {"multipole_l": 2, "delta_T": 25.0, "energy_flow_contribution": 0.15},
+    {"multipole_l": 10, "delta_T": 40.0, "energy_flow_contribution": 0.08},
+    {"multipole_l": 100, "delta_T": 70.0, "energy_flow_contribution": 0.03}
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Coma",
+      "mass_solar": 1.2e15,
+      "temperature_keV": 8.2,
+      "entropy_index": 0.65,
+      "bulk_velocity_km_s": 320.0
+    },
+    {
+      "cluster_name": "Virgo",
+      "mass_solar": 1.0e14,
+      "temperature_keV": 2.3,
+      "entropy_index": 0.48,
+      "bulk_velocity_km_s": 180.0
+    }
+  ]
+}

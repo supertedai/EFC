@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/vocab#",
+    "doi": "https://doi.org/",
+    "orcid": "https://orcid.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31045126",
+  "name": "Comprehensive Analysis of 175 SPARC Galaxies Demonstrating Regime-Dependent Validity in Rotation Curve Modeling",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "orcid:0009-0002-4860-5095"
+    },
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    }
+  },
+  "datePublished": "2026-01-11",
+  "description": "Comprehensive regime-dependent validity analysis of 175 SPARC galaxies demonstrating that rotation curve modeling success is regime-dependent. FLOW regime achieves 100% success while LATENT regime shows systematic failure.",
+  "keywords": [
+    "galaxy rotation curves",
+    "SPARC",
+    "regime theory",
+    "model validity",
+    "Energy-Flow Cosmology"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "EFC Regime Structure Series",
+    "numberOfItems": 3
+  },
+  "efc:framework": "EFC-R (Regime Analysis)",
+  "efc:keyFindings": [
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "FLOW Regime Success",
+      "efc:regimeType": "FLOW",
+      "efc:galaxyCount": 62,
+      "efc:successRate": 1.0,
+      "efc:meanChi2Reduced": 2.05
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "TRANSITION Regime",
+      "efc:regimeType": "TRANSITION",
+      "efc:galaxyCount": 86,
+      "efc:successRate": 0.047
+    },
+    {
+      "@type": "efc:EmpiricalResult",
+      "name": "LATENT Regime Failure",
+      "efc:regimeType": "LATENT",
+      "efc:galaxyCount": 27,
+      "efc:successRate": 0.037,
+      "efc:meanChi2Reduced": 297.83
+    },
+    {
+      "@type": "efc:StatisticalTest",
+      "name": "Mann-Whitney U Test",
+      "efc:comparison": "FLOW vs LATENT",
+      "efc:pValue": 0.0001,
+      "efc:conclusion": "Highly significant regime separation"
+    }
+  ],
+  "efc:model": {
+    "name": "EFC-fit (ultra-phenomenological)",
+    "efc:formula": "v(r) = v_flat * sqrt(1 - exp(-(r/r_turnon)^sharpness))",
+    "efc:parameters": 3
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Lelli et al. 2016 - SPARC Database",
+      "identifier": "doi:10.3847/0004-6256/152/6/157"
+    }
+  ],
+  "sameAs": [
+    "https://github.com/supertedai/EFC",
+    "https://energyflow-cosmology.com/"
+  ]
+}

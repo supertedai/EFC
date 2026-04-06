@@ -1,0 +1,55 @@
+{
+  "title": "GR Recovery in Energy-Flow Cosmology via Density Saturation: Quantitative PPN Analysis for the Solar System",
+  "short_id": "efc-v1.3-ppn-recovery",
+  "version": "2.1",
+  "date": "2026-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31244827",
+  "abstract": "Demonstrates EFC compatibility with Solar System precision tests through dual screening mechanisms. Derives gamma = 1 from field equations with |delta-gamma| < 10^-19 at higher order. EFC modifications suppressed 10^4 to 10^8 below the Cassini bound.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "PPN formalism",
+    "Solar System tests",
+    "screening mechanisms",
+    "general relativity",
+    "Cassini bound",
+    "equivalence principle"
+  ],
+  "efc_context": {
+    "track": "solar-system-validation",
+    "regime_relevance": "Solar System precision tests",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {
+      "description": "PPN parameter gamma derived as theorem (not assumption)",
+      "gamma": 1,
+      "higher_order_bound": "< 1e-19"
+    },
+    {
+      "description": "EFC modifications suppressed well below Cassini bound",
+      "cassini_margin": "> 1e14"
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "ppn_recovery.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "CITATION.cff": "Citation file format",
+    "LICENSE": "CC-BY-4.0 license",
+    "EFC_v1_3___PPN_Recovery_via_Density_Saturation__v2_1__Page_1_GR_Recovery_in_Energy_Flow_Cosmology_via_Density_Saturation__Quantitative_PPN_Analysis.pdf": "Paper PDF",
+    "src/__init__.py": "Python package init",
+    "src/efc_ppn_screening.py": "Core source code",
+    "data/acceleration_screening.json": "Acceleration screening data",
+    "data/density_screening.json": "Density screening data",
+    "examples/": "Usage examples"
+  }
+}

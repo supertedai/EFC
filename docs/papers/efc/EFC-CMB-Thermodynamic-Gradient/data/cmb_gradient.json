@@ -1,0 +1,16 @@
+{
+  "paper_id": "EFC-CMB-Thermodynamic-Gradient",
+  "cmb_mean_temperature_K": 2.725,
+  "grid": {
+    "scale_m": 1e24,
+    "resistance": 0.01,
+    "description": "Characteristic grid-level structure shaping CMB anisotropy"
+  },
+  "representative_modes": [
+    {"multipole_l": 2, "amplitude_uK": 25.0, "entropy_gradient_W_m3_K": 1e-30},
+    {"multipole_l": 10, "amplitude_uK": 40.0, "entropy_gradient_W_m3_K": 3e-30},
+    {"multipole_l": 100, "amplitude_uK": 70.0, "entropy_gradient_W_m3_K": 8e-30},
+    {"multipole_l": 200, "amplitude_uK": 72.0, "entropy_gradient_W_m3_K": 9e-30}
+  ],
+  "key_insight": "CMB anisotropy arises from entropy flow and grid-level resistance, not dark matter or dark energy"
+}

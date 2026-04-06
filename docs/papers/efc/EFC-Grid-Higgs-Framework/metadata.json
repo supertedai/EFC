@@ -1,0 +1,44 @@
+{
+  "title": "EFC \u2014 Grid-Higgs Framework",
+  "short_id": "efc-grid-higgs-framework",
+  "version": "v1.0",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "abstract": "Introduces the Grid-Higgs Framework: a structural model describing how grid-level resistance, energy flow, and entropy gradients produce Higgs-like mass effects without appealing to particle-field interactions.",
+  "keywords": [
+    "EFC",
+    "Grid-Higgs framework",
+    "mass emergence",
+    "energy flow",
+    "entropy",
+    "spacetime resistance"
+  ],
+  "efc_context": {
+    "track": "Fundamental Theory",
+    "regime_relevance": "Mass emergence via grid resistance and entropy gradients",
+    "epistemic_layer": "Layer A (theoretical foundation)"
+  },
+  "key_results": [
+    "Mass emerges from grid-level resistance to energy flow",
+    "Higgs-like mass generation without particle-field coupling",
+    "Effective mass formula from entropy gradient and grid resistance",
+    "Inertia as emergent property of energy flow impedance"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-Grid-Higgs-Framework.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-Grid-Higgs-Framework.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/grid_higgs.py"],
+    "data": "data/parameters.json",
+    "demo": "examples/demo_grid_higgs.py"
+  }
+}

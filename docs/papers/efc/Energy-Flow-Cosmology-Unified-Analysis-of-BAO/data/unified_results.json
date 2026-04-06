@@ -1,0 +1,46 @@
+{
+  "title": "EFC Unified Analysis -- Results Data",
+  "doi": "10.6084/m9.figshare.31215613",
+  "parameters": {
+    "beta": 0.16,
+    "a_t": 0.55,
+    "z_t": 0.82,
+    "sigma": 0.10,
+    "gamma": 0.0
+  },
+  "data_sources": [
+    {"probe": "BAO", "survey": "DESI DR2", "N": 6, "z_range": [0.51, 2.33]},
+    {"probe": "SN Ia", "survey": "Pantheon+", "N": 16, "z_range": [0.01, 1.00]},
+    {"probe": "RSD", "survey": "BOSS+eBOSS+DESI", "N": 11, "z_range": [0.30, 1.52]}
+  ],
+  "total_data_points": 33,
+  "chi_squared": {
+    "LCDM": {
+      "BAO": 9.81,
+      "SN": 28.98,
+      "RSD": 10.56,
+      "total": 49.35
+    },
+    "EFC": {
+      "BAO": 9.81,
+      "SN": 28.98,
+      "RSD": 12.28,
+      "total": 51.06
+    },
+    "delta_chi2": 1.71
+  },
+  "key_findings": [
+    "mu(a) derived from EFC field equations, not phenomenologically fitted",
+    "BAO and SN identical to LCDM by construction (gamma=0)",
+    "RSD slightly worse (Delta chi2=+1.7) but within statistical fluctuations",
+    "Same S(a) describes geometry and growth without tension"
+  ],
+  "verdict": "Compatible within statistical fluctuations, no internal tension",
+  "mu_values": [
+    {"a": 0.01, "z": 99.0, "mu": 1.000},
+    {"a": 0.30, "z": 2.33, "mu": 1.000},
+    {"a": 0.55, "z": 0.82, "mu": 1.080},
+    {"a": 0.70, "z": 0.43, "mu": 1.155},
+    {"a": 1.00, "z": 0.00, "mu": 1.160}
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "description": "Four-channel consistency test results for EFC background coupling",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31304980",
+  "parameters": {
+    "beta": 0.08,
+    "sigma8_efc": 0.805,
+    "sigma8_lcdm": 0.811
+  },
+  "channel_comparison": {
+    "poisson": {
+      "alpha": 0.34,
+      "chi2_rsd": 18.2,
+      "sigma8": 0.879,
+      "direction": "Enhanced",
+      "status": "Excluded"
+    },
+    "background": {
+      "beta": 0.08,
+      "chi2_rsd": 1.09,
+      "sigma8": 0.805,
+      "direction": "Suppressed",
+      "status": "Favoured"
+    },
+    "lcdm": {
+      "chi2_rsd": 1.34,
+      "sigma8": 0.811,
+      "status": "Baseline"
+    }
+  },
+  "four_channel_results": {
+    "bao_distances": {
+      "data": "BOSS DR12",
+      "redshifts": [0.38, 0.51, 0.61],
+      "chi2_efc": 1.93,
+      "chi2_lcdm": 5.58,
+      "delta_chi2": -3.65,
+      "status": "PASS",
+      "role": "Detection"
+    },
+    "growth_rate": {
+      "data": "BOSS DR12 fsigma8",
+      "chi2_efc": 1.09,
+      "chi2_lcdm": 1.34,
+      "delta_chi2": -0.25,
+      "status": "PASS",
+      "role": "Detection",
+      "measurements": [
+        {"z": 0.38, "fsigma8_efc": 0.464, "fsigma8_obs": 0.497, "error": 0.045, "pull": -0.73},
+        {"z": 0.51, "fsigma8_efc": 0.463, "fsigma8_obs": 0.458, "error": 0.038, "pull": 0.13},
+        {"z": 0.61, "fsigma8_efc": 0.460, "fsigma8_obs": 0.436, "error": 0.034, "pull": 0.71}
+      ]
+    },
+    "cmb_lensing": {
+      "data": "ACT+SPT+Planck 2025",
+      "S8_observed": 0.825,
+      "S8_error": 0.014,
+      "S8_efc": 0.815,
+      "S8_lcdm": 0.821,
+      "pull": -0.71,
+      "status": "PASS",
+      "role": "Neutral"
+    },
+    "sn_ia": {
+      "data": "Pantheon+",
+      "max_delta_mu": 0.032,
+      "status": "PASS",
+      "role": "Neutral"
+    }
+  },
+  "combined_bao_rsd": {
+    "delta_chi2": -3.89,
+    "significance": "~2sigma preference"
+  },
+  "regime_consistency": {
+    "boss": {"z": 0.51, "T_z": 0.990, "mu_minus_1": 0.079},
+    "lya_p1d": {"z": 3.0, "T_z": 0.107, "mu_minus_1": 0.009},
+    "cmb_recombination": {"z": 1100, "T_z": 9.7e-11, "mu_minus_1": 7.8e-12}
+  }
+}

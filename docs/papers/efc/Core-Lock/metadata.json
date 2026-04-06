@@ -1,0 +1,54 @@
+{
+  "title": "EBE Core Lock v1.0: The S-Dynamic Foundation",
+  "short_id": "ebe-core-lock",
+  "version": "v1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31223503",
+  "abstract": "Defines the mathematical engine ('Core Lock') of Entropy-Bounded Empiricism. Specifies the grid state function f(S), the RG-flow beta function beta_f(S) = -1/DeltaS, the information-length conservation law, projection laws mapping grid dynamics to observables, and a falsifiable correlation signature d ln v / d ln c = constant.",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "RG-flow",
+    "emergent constants",
+    "correlation signature",
+    "falsifiable prediction",
+    "grid state function",
+    "information length",
+    "projection laws"
+  ],
+  "efc_context": {
+    "track": "Methodology/EBE",
+    "regime_relevance": "S-dynamic foundation across all regimes",
+    "epistemic_layer": "Layer A (mathematical foundation)"
+  },
+  "key_results": [
+    "Grid state function f(S) = f0 exp(-S/DeltaS) with RG-flow beta function beta_f = -1/DeltaS",
+    "Information-length conservation law constraining regime transitions",
+    "Projection laws mapping grid-level dynamics to observable quantities",
+    "Falsifiable correlation test: d ln v / d ln c = a_v/a_c = constant",
+    "Numerical verification of core lock survival under parameter variation"
+  ],
+  "file_manifest": {
+    "pdf": "Core_Lock.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "CoreLock.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/beta_constraint.py",
+      "src/grid_state_function.py",
+      "src/information_length.py",
+      "src/projection_laws.py",
+      "src/simulation.py"
+    ],
+    "data": "data/parameters.json",
+    "demo": "examples/basic_simulation.py"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "SPARC175 Regime Summary Data",
+  "description": "Summary regime classification data for 175 SPARC galaxies",
+  "author": "Morten Magnusson",
+  "license": "CC-BY-4.0",
+  "regime_distribution": {
+    "FLOW": {"count": 62, "percentage": 35.4, "success_rate": 1.0, "mean_chi2_red": 2.05, "std_chi2_red": 2.82},
+    "TRANSITION": {"count": 86, "percentage": 49.1, "success_rate": 0.047, "mean_chi2_red": 2.19, "std_chi2_red": 7.22},
+    "LATENT": {"count": 27, "percentage": 15.4, "success_rate": 0.037, "mean_chi2_red": 297.83, "std_chi2_red": 553.50}
+  },
+  "sample_galaxies": [
+    {"name": "DDO154", "regime": "FLOW", "delta_aic": -25.3, "chi2_red": 1.2, "L": 0.12, "v_flat": 55.0, "r_turnon": 2.1, "sharpness": 1.8},
+    {"name": "NGC2403", "regime": "FLOW", "delta_aic": -18.7, "chi2_red": 3.4, "L": 0.18, "v_flat": 136.0, "r_turnon": 3.5, "sharpness": 2.1},
+    {"name": "NGC3198", "regime": "FLOW", "delta_aic": -15.2, "chi2_red": 2.8, "L": 0.15, "v_flat": 150.0, "r_turnon": 4.2, "sharpness": 1.9},
+    {"name": "UGC128", "regime": "TRANSITION", "delta_aic": -3.1, "chi2_red": 8.5, "L": 0.32, "v_flat": 130.0, "r_turnon": 8.0, "sharpness": 1.2},
+    {"name": "NGC4138", "regime": "TRANSITION", "delta_aic": 5.4, "chi2_red": 25.3, "L": 0.38, "v_flat": 160.0, "r_turnon": 2.0, "sharpness": 3.5},
+    {"name": "NGC2841", "regime": "LATENT", "delta_aic": 42.5, "chi2_red": 185.0, "L": 0.72, "v_flat": 190.0, "r_turnon": 1.5, "sharpness": 4.2},
+    {"name": "NGC7814", "regime": "LATENT", "delta_aic": 55.1, "chi2_red": 320.0, "L": 0.85, "v_flat": 180.0, "r_turnon": 0.8, "sharpness": 4.8}
+  ],
+  "statistical_tests": {
+    "mann_whitney_u": {"comparison": "FLOW vs LATENT", "p_value": 0.0001, "significant": true},
+    "spearman_rho": {"comparison": "delta_AIC vs L", "rho": 0.022, "p_value": 0.7752, "significant": false}
+  },
+  "model_parameters": {
+    "efc_fit": {"formula": "v(r) = v_flat * sqrt(1 - exp(-(r/r_turnon)^sharpness))", "n_params": 3},
+    "nfw": {"formula": "v^2(r) = V200^2 * [ln(1+x) - x/(1+x)] / [ln(1+c) - c/(1+c)]", "n_params": 2, "concentration": 10}
+  }
+}

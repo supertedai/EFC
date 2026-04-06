@@ -1,0 +1,20 @@
+{
+  "description": "Sample data for the light speed limit model: entropy cost and Lorentz factor vs velocity",
+  "parameters": {
+    "c": 1.0,
+    "units": "natural (c=1)"
+  },
+  "velocity_profile": [
+    {"v": 0.0,  "gamma": 1.000, "entropy_cost": 1.000, "causal": true},
+    {"v": 0.1,  "gamma": 1.005, "entropy_cost": 1.015, "causal": true},
+    {"v": 0.3,  "gamma": 1.048, "entropy_cost": 1.153, "causal": true},
+    {"v": 0.5,  "gamma": 1.155, "entropy_cost": 1.540, "causal": true},
+    {"v": 0.7,  "gamma": 1.400, "entropy_cost": 2.744, "causal": true},
+    {"v": 0.9,  "gamma": 2.294, "entropy_cost": 12.08, "causal": true},
+    {"v": 0.95, "gamma": 3.203, "entropy_cost": 32.85, "causal": true},
+    {"v": 0.99, "gamma": 7.089, "entropy_cost": 356.3, "causal": true},
+    {"v": 0.999,"gamma": 22.37, "entropy_cost": 11190, "causal": true},
+    {"v": 1.0,  "gamma": "inf",  "entropy_cost": "inf",  "causal": true}
+  ],
+  "notes": "Entropy cost diverges as v approaches c, making the speed limit a thermodynamic consequence."
+}

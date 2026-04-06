@@ -1,0 +1,49 @@
+{
+  "paper": "Variable Effective Light Speed in Entropic Transition States: s0/s1 Structure in EFC",
+  "date": "2025-12-04",
+  "constants": {
+    "c_vacuum_m_s": 299792458.0
+  },
+  "entropic_states": {
+    "s0": {
+      "label": "s0",
+      "entropy_range": [0.0, 0.5],
+      "description": "Low-entropy constraining state: full light speed, gravitational dominance",
+      "c_eff_fraction": "~1.0 (near vacuum c)"
+    },
+    "s1": {
+      "label": "s1",
+      "entropy_range": [0.5, 1.0],
+      "description": "High-entropy dissipative state: reduced propagation, information horizon limits",
+      "c_eff_fraction": "< 1.0 (reduced)"
+    }
+  },
+  "default_model_parameters": {
+    "s_transition": 0.5,
+    "sharpness": 10.0,
+    "c_min_fraction": 0.1,
+    "modulation_function": "f(S) = c_min + (1 - c_min) / (1 + exp(k * (S - s_t)))"
+  },
+  "collapse_regimes": {
+    "s0_collapse": {
+      "entropy_threshold": 0.01,
+      "description": "Gravitational collapse, black hole formation",
+      "observable": "Event horizons, singularities"
+    },
+    "s1_collapse": {
+      "entropy_threshold": 0.99,
+      "description": "Information horizon collapse, de Sitter limit",
+      "observable": "Cosmological horizon, accelerated expansion"
+    }
+  },
+  "redshift_correction": {
+    "formula": "(1 + z_total) = (1 + z_expansion) * (c_emit / c_obs)",
+    "interpretation": "Observed redshift includes contribution from c_eff variation along path"
+  },
+  "key_predictions": [
+    "c_eff is maximal in low-entropy (s0) regions",
+    "c_eff is suppressed in high-entropy (s1) regions",
+    "Transition is controlled by entropic gradient, not spacetime geometry alone",
+    "Curvature emerges from spatial variation of c_eff"
+  ]
+}

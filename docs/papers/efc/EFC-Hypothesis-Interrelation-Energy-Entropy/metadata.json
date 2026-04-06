@@ -1,0 +1,45 @@
+{
+  "title": "EFC \u2014 Hypothesis: Interrelation Between Energy and Entropy",
+  "short_id": "efc-hypothesis-energy-entropy-interrelation",
+  "version": "v1.0",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "abstract": "Presents the hypothesis that energy flow and entropy gradients are interdependent components of a unified thermodynamic field. Outlines how their interaction shapes structure, dynamics, information propagation, and spacetime behaviour within the EFC framework.",
+  "keywords": [
+    "EFC",
+    "energy",
+    "entropy",
+    "thermodynamics",
+    "energy flow",
+    "entropy gradient",
+    "unified field hypothesis"
+  ],
+  "efc_context": {
+    "track": "Fundamental Theory",
+    "regime_relevance": "Unified energy-entropy field hypothesis",
+    "epistemic_layer": "Layer A (theoretical foundation)"
+  },
+  "key_results": [
+    "Energy flow and entropy gradients form a unified thermodynamic field",
+    "Interdependence relation: dEf/dS = -kappa * grad_S",
+    "Information propagation bounded by entropy production rate",
+    "Spacetime behaviour emerges from energy-entropy coupling"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-Hypothesis-Interrelation-Energy-Entropy.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-Hypothesis-Interrelation-Energy-Entropy.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/energy_entropy_interrelation.py"],
+    "data": "data/parameters.json",
+    "demo": "examples/demo_energy_entropy.py"
+  }
+}

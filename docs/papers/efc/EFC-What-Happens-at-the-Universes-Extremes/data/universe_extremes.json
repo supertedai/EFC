@@ -1,0 +1,23 @@
+{
+  "description": "Sample data for entropic boundary behaviour at cosmic extremes",
+  "boundaries": [
+    {"S": 0.001, "energy_flow": 0.001, "structure_stability": 0.99, "propagation_speed_ratio": 0.01},
+    {"S": 0.01, "energy_flow": 0.01, "structure_stability": 0.95, "propagation_speed_ratio": 0.10},
+    {"S": 0.10, "energy_flow": 0.15, "structure_stability": 0.80, "propagation_speed_ratio": 0.50},
+    {"S": 0.50, "energy_flow": 1.00, "structure_stability": 0.50, "propagation_speed_ratio": 1.00},
+    {"S": 0.90, "energy_flow": 0.20, "structure_stability": 0.15, "propagation_speed_ratio": 0.60},
+    {"S": 0.99, "energy_flow": 0.02, "structure_stability": 0.02, "propagation_speed_ratio": 0.05},
+    {"S": 0.999, "energy_flow": 0.001, "structure_stability": 0.001, "propagation_speed_ratio": 0.005}
+  ],
+  "regimes": [
+    {"name": "frozen_order", "S_min": 0.0, "S_max": 0.01, "flow_suppression": 0.99, "description": "Near S=0: crystalline order, frozen energy flow"},
+    {"name": "low_entropy", "S_min": 0.01, "S_max": 0.20, "flow_suppression": 0.50, "description": "Structured, moderate flow suppression"},
+    {"name": "active_zone", "S_min": 0.20, "S_max": 0.80, "flow_suppression": 0.0, "description": "Active dynamics, full energy flow"},
+    {"name": "high_entropy", "S_min": 0.80, "S_max": 0.99, "flow_suppression": 0.60, "description": "Approaching disorder, flow diminishing"},
+    {"name": "heat_death", "S_min": 0.99, "S_max": 1.0, "flow_suppression": 0.99, "description": "Near S=1: maximal disorder, information collapse"}
+  ],
+  "collapse_scenarios": [
+    {"S_current": 0.90, "S_target": 1.0, "collapse_rate": 0.05},
+    {"S_current": 0.10, "S_target": 0.0, "collapse_rate": 0.02}
+  ]
+}

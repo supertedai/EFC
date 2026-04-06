@@ -1,0 +1,48 @@
+{
+  "title": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework Under Entropy-Constrained Structure Formation",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "doi": "10.6084/m9.figshare.31064929",
+  "date_published": "2026-01-14",
+  "version": "1.0",
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "license": "CC-BY-4.0",
+  "language": "en",
+
+  "classification": {
+    "domain": "observational_cosmology",
+    "track": "galactic_cosmological",
+    "track_number": 1,
+    "category": "null_test_framework",
+    "level": "compatibility_test"
+  },
+
+  "methodology": {
+    "approach": "CMB compatibility testing via entropy-constrained structure formation",
+    "techniques": [
+      "JWST-to-CMB causal chain: S(z) from JWST constrains CMB predictions",
+      "Null tests with falsification thresholds",
+      "Compatibility constraints on theta_s, peak ratio, damping, polarization",
+      "Prediction zones for A_L, ISW phase, lensing power spectrum"
+    ]
+  },
+
+  "numerical_parameters": {
+    "theta_s_arcmin": {"value": 100.09, "uncertainty": 0.30},
+    "peak_ratio_R": {"value": 0.42},
+    "A_L_predicted_range": [0.9, 0.95],
+    "ISW_phase_range_rad": [0.01, 0.1],
+    "jwst_chi2": 47.3,
+    "jwst_df": 4,
+    "jwst_sample_size": 26288
+  },
+
+  "related_papers": [
+    {"doi": "10.6084/m9.figshare.31059964", "title": "COSMOS-Web Galaxy Abundances", "relation": "empirical_basis"},
+    {"doi": "10.6084/m9.figshare.31061665", "title": "Regime-Dependent Breakdown of LCDM", "relation": "regime_analysis"},
+    {"doi": "10.6084/m9.figshare.31064929", "title": "EFC Structure Formation", "relation": "theoretical_basis"}
+  ]
+}

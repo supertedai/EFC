@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-01-22",
+    "data_source": "DESI DR2",
+    "data_doi": "10.5281/zenodo.14733025"
+  },
+  "desi_dr2_bao_data": [
+    {"z_eff": 0.30, "observable": "DV/rd", "value": 7.93, "error": 0.15},
+    {"z_eff": 0.51, "observable": "DV/rd", "value": 13.13, "error": 0.18},
+    {"z_eff": 0.71, "observable": "DM/rd", "value": 16.85, "error": 0.32},
+    {"z_eff": 0.71, "observable": "DH/rd", "value": 20.98, "error": 0.61},
+    {"z_eff": 0.93, "observable": "DM/rd", "value": 21.71, "error": 0.28},
+    {"z_eff": 1.32, "observable": "DM/rd", "value": 27.79, "error": 0.69},
+    {"z_eff": 2.33, "observable": "DM/rd", "value": 39.71, "error": 0.94}
+  ],
+  "efc_best_fit_parameters": {
+    "w_late": -0.80,
+    "w_early": -1.41,
+    "z_trans": 1.07,
+    "delta_z": 0.5,
+    "equation": "w(z) = w_late + (w_early - w_late) * tanh[(z - z_trans) / delta_z]"
+  },
+  "chi_squared_results": {
+    "LCDM": {
+      "chi2": 23.71,
+      "n_params": 2,
+      "assessment": "Poor fit"
+    },
+    "w0waCDM": {
+      "chi2": 4.49,
+      "n_params": 4,
+      "w0": -0.45,
+      "wa": -1.79,
+      "assessment": "Good fit"
+    },
+    "EFC": {
+      "chi2": 3.60,
+      "n_params": 5,
+      "assessment": "Best fit (within models tested)"
+    }
+  },
+  "delta_chi2": {
+    "EFC_vs_LCDM": -20.11,
+    "w0waCDM_vs_LCDM": -19.22,
+    "EFC_vs_w0waCDM": -0.89
+  },
+  "limitations": [
+    "Diagonal errors only (no covariance matrix)",
+    "BAO only (no CMB or supernovae)",
+    "Post-hoc fitting, not a priori prediction"
+  ],
+  "next_steps": [
+    "Derive w(z) from EFC field equations",
+    "Multi-probe analysis with full covariance",
+    "Bayesian model comparison"
+  ]
+}

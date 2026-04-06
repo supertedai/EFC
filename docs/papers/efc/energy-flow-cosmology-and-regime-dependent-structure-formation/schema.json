@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/energy-flow-cosmology-and-regime-dependent-structure-formation/schema.json",
+  "title": "Energy-Flow Cosmology Regime-Dependent Structure Formation Schema",
+  "description": "Schema for EFC Paper III regime structure data",
+  "type": "object",
+  "required": ["regime_classification", "energy_decomposition"],
+  "properties": {
+    "regime_classification": {
+      "type": "object",
+      "required": ["FLOW", "TRANSITION", "LATENT"],
+      "properties": {
+        "FLOW": {
+          "type": "object",
+          "required": ["L_range", "description"],
+          "properties": {
+            "L_range": {
+              "type": "array",
+              "items": {"type": "number"},
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "description": {"type": "string"}
+          }
+        },
+        "TRANSITION": {
+          "type": "object",
+          "required": ["L_range", "description"],
+          "properties": {
+            "L_range": {
+              "type": "array",
+              "items": {"type": "number"},
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "description": {"type": "string"}
+          }
+        },
+        "LATENT": {
+          "type": "object",
+          "required": ["L_range", "description"],
+          "properties": {
+            "L_range": {
+              "type": "array",
+              "items": {"type": "number"},
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "description": {"type": "string"}
+          }
+        }
+      }
+    },
+    "energy_decomposition": {
+      "type": "object",
+      "required": ["formula", "components"],
+      "properties": {
+        "formula": {"type": "string"},
+        "components": {
+          "type": "object",
+          "required": ["E_flow", "E_latent"],
+          "properties": {
+            "E_flow": {"type": "object", "properties": {"description": {"type": "string"}}},
+            "E_latent": {"type": "object", "properties": {"description": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "cross_scale_correspondence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gradient", "galactic", "cosmological"],
+        "properties": {
+          "gradient": {"type": "string"},
+          "galactic": {"type": "string"},
+          "cosmological": {"type": "string"}
+        }
+      }
+    },
+    "testable_predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "prediction"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^P[1-9]$"},
+          "prediction": {"type": "string"},
+          "test": {"type": "string"}
+        }
+      }
+    }
+  }
+}

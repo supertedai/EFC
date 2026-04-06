@@ -8,12 +8,12 @@ Demonstrates basic usage of the EBE classification system.
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add package root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from ebe_classifier import EBEClassifier
-from s_axis import SRegime
-from l_axis import LLayer
+from src.ebe_classifier import EBEClassifier
+from src.s_axis import SRegime
+from src.l_axis import LLayer
 
 
 def main():

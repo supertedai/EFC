@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/efc-c-cognitive-entropy-v2",
+  "title": "EFC-C v2 Cognitive Entropy Gradients Schema",
+  "description": "Validation schema for centrifugal entropy score and connectome-constrained predictions",
+  "type": "object",
+  "properties": {
+    "kappa": {
+      "type": "object",
+      "properties": {
+        "S_hub_mean": {"type": "number", "description": "Mean entropy of hub regions", "minimum": 0},
+        "S_periph_mean": {"type": "number", "description": "Mean entropy of peripheral regions", "minimum": 0},
+        "kappa_value": {"type": "number", "description": "Centrifugal entropy score S_hub/S_periph", "minimum": 0}
+      },
+      "required": ["kappa_value"]
+    },
+    "connectome": {
+      "type": "object",
+      "properties": {
+        "lambda_2": {"type": "number", "description": "Fiedler eigenvalue of normalized graph Laplacian", "minimum": 0},
+        "n_regions": {"type": "integer", "description": "Number of parcellation regions", "minimum": 1},
+        "hub_threshold_percentile": {"type": "number", "minimum": 0, "maximum": 100},
+        "periph_threshold_percentile": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "required": ["lambda_2"]
+    },
+    "bridge_parameters": {
+      "type": "object",
+      "properties": {
+        "C": {"type": "number", "description": "Cross-domain constant k/a_G from SPARC"},
+        "tau_c": {"type": "number", "description": "Cortical entropy redistribution timescale [s]", "minimum": 0}
+      },
+      "required": ["C", "tau_c"]
+    },
+    "prediction": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "enum": ["Q1", "Q2a", "Q2b", "Q2c", "Q3"]},
+        "kappa_predicted": {"type": "number"},
+        "falsified": {"type": "boolean"}
+      },
+      "required": ["id"]
+    },
+    "alpha_AP": {
+      "type": "object",
+      "properties": {
+        "S_anterior_hub": {"type": "number", "minimum": 0},
+        "S_posterior_hub": {"type": "number", "minimum": 0},
+        "alpha_AP_value": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "required": ["kappa"]
+}

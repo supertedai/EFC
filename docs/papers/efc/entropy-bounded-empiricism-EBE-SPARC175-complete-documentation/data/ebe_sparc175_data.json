@@ -1,0 +1,32 @@
+{
+  "title": "EBE SPARC175 Reference Data",
+  "description": "Key results and parameters from the Entropy-Bounded Empiricism analysis of 175 SPARC galaxies.",
+  "regime_thresholds": {
+    "L1": 0.337,
+    "L2": 0.427,
+    "S_lower": 0.1,
+    "S_upper": 0.9
+  },
+  "regime_distribution": {
+    "FLOW": {"n": 62, "pct": 35.4, "L_range": [0.0, 0.337], "S_range": [0.0, 0.25]},
+    "TRANSITION": {"n": 86, "pct": 49.1, "L_range": [0.337, 0.427], "S_range": [0.25, 0.65]},
+    "LATENT": {"n": 27, "pct": 15.4, "L_range": [0.427, 1.0], "S_range": [0.65, 1.0]}
+  },
+  "key_results": {
+    "flow_success_rate_efc": 1.0,
+    "flow_n": 62,
+    "mann_whitney_p": 0.0001,
+    "kruskal_wallis_p": 0.012,
+    "permutation_p": 0.016,
+    "cliffs_delta": 0.371,
+    "cmb_null_p": 0.251,
+    "quality_confound_rho": -0.43
+  },
+  "example_galaxies": [
+    {"name": "DDO154", "regime": "FLOW", "L_value": 0.18, "S_estimate": 0.10, "chi2_efc": 0.8, "chi2_lcdm": 1.5},
+    {"name": "NGC2366", "regime": "FLOW", "L_value": 0.22, "S_estimate": 0.12, "chi2_efc": 1.1, "chi2_lcdm": 2.1},
+    {"name": "IC2574", "regime": "FLOW", "L_value": 0.25, "S_estimate": 0.15, "chi2_efc": 0.9, "chi2_lcdm": 1.8},
+    {"name": "NGC5457", "regime": "TRANSITION", "L_value": 0.38, "S_estimate": 0.42, "chi2_efc": 4.2, "chi2_lcdm": 3.8},
+    {"name": "NGC4594", "regime": "LATENT", "L_value": 0.55, "S_estimate": 0.78, "chi2_efc": 8.5, "chi2_lcdm": 7.2}
+  ]
+}

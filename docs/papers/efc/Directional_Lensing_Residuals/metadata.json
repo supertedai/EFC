@@ -1,0 +1,49 @@
+{
+  "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
+  "short_id": "directional-lensing-residuals",
+  "version": "1.0",
+  "date": "2026-02-07",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31288063",
+  "abstract": "Proposes a pre-registered test for directional lensing residuals at cluster merger shock fronts. The A_sig estimator measures locally-normalized directional kappa-residual excess to distinguish EFC c_eff(S) predictions from standard GR. Mock validation on synthetic Bullet Cluster analogues shows correct sign separation between models.",
+  "keywords": [
+    "gravitational lensing",
+    "galaxy clusters",
+    "shock fronts",
+    "intracluster medium",
+    "modified gravity",
+    "entropy"
+  ],
+  "efc_context": {
+    "track": "pre-registered-test",
+    "regime_relevance": "cluster-scale shock fronts",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {
+      "description": "Mock validation shows correct sign separation between EFC and LCDM",
+      "efc_A_sig": 0.19,
+      "lcdm_A_sig": -1.21,
+      "false_positive_rate": 0
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "directional_lensing.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "CITATION.cff": "Citation file format",
+    "LICENSE": "CC-BY-4.0 license",
+    "Directional_Lensing_Residuals_Magnusson_2026.pdf": "Paper PDF",
+    "src/directional_lensing.py": "Core analysis source code",
+    "data/mock_validation_results.json": "Mock validation results",
+    "examples/": "Usage examples"
+  }
+}

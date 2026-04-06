@@ -1,0 +1,42 @@
+{
+  "paper_id": "EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "speed_of_light": {
+      "symbol": "c",
+      "value": 2.998e8,
+      "unit": "m/s",
+      "description": "Speed of light in vacuum"
+    },
+    "grid_resistance": {
+      "symbol": "R",
+      "default": 0.01,
+      "unit": "dimensionless",
+      "description": "Grid-level resistance regulating propagation speed"
+    },
+    "planck_length": {
+      "symbol": "l_P",
+      "value": 1.616e-35,
+      "unit": "m"
+    },
+    "planck_time": {
+      "symbol": "t_P",
+      "value": 5.391e-44,
+      "unit": "s"
+    }
+  },
+  "equations": {
+    "effective_speed": "v_eff = c / (1 + R)",
+    "regulation_strength": "Gamma_reg = R / (1 + R)",
+    "causal_horizon": "r_H = v_eff * t",
+    "stability_condition": "L / v_eff < t_dyn",
+    "critical_size": "L_crit = v_eff * t_dyn"
+  },
+  "key_concepts": [
+    "Speed of light as maximum propagation boundary",
+    "Grid resistance modulates effective light speed",
+    "Causal horizon defined by v_eff",
+    "Stability requires communication faster than dynamics",
+    "Light speed emerges from entropy-energy interaction"
+  ]
+}

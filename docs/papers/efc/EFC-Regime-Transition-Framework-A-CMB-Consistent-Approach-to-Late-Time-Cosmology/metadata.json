@@ -1,0 +1,42 @@
+{
+  "title": "Dynamical Regime Transitions in Cosmology: A CMB-Safe Framework",
+  "short_id": "efc-regime-transition-framework",
+  "version": "v1.0",
+  "date": "2026-01-20",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31096951",
+  "abstract": "Landau theory provides CMB safety through dynamical gating: G(z=1100) is approximately 1e-12 (8 orders below the 1e-4 threshold), while G(z=0) is approximately 0.9999. The gating function G(z), computed from the Landau equation via RK4 integration, ensures that regime-dependent modifications to gravity are fully suppressed at recombination and only activate at late times (z < 2), providing a CMB-consistent approach to late-time cosmological modifications.",
+  "keywords": [
+    "EFC",
+    "CMB safety",
+    "Landau theory",
+    "regime transition",
+    "gating function",
+    "CLASS integration",
+    "late-time cosmology"
+  ],
+  "efc_context": {
+    "track": "Theoretical Framework",
+    "regime_relevance": "CMB-safe regime transitions via Landau gating",
+    "epistemic_layer": "Layer A (theoretical foundation)"
+  },
+  "key_results": [
+    "G(z=1100) ~ 1e-12: 8 orders below CMB safety threshold",
+    "G(z=10) ~ 9.2e-16: intermediate-z fully suppressed",
+    "G(z=2) ~ 0.25: partial activation begins",
+    "G(z=0) ~ 0.9999: full activation today",
+    "CMB safety achieved by dynamics, not parameter tuning"
+  ],
+  "file_manifest": {
+    "index": "index.json",
+    "metadata": "metadata.json",
+    "paper": "paper/magnusson2026_efc_regime_transitions.pdf",
+    "code": "code/",
+    "data": "data/"
+  }
+}

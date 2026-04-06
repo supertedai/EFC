@@ -8,6 +8,9 @@ Part of: Validity-Aware AI
 DOI: 10.6084/m9.figshare.31122970
 """
 
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 # Note: This example uses mock data. In production, connect to real
 # Neo4j and Qdrant instances.
 

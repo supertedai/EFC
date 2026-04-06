@@ -1,0 +1,44 @@
+{
+  "description": "BOSS DR12 consensus BAO data and EFC consistency test results",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31314922",
+  "boss_dr12_data_vector": [
+    {"z": 0.38, "DM_rs_fid_rs": 1512.39, "H_rs_rs_fid": 81.21},
+    {"z": 0.51, "DM_rs_fid_rs": 1975.22, "H_rs_rs_fid": 90.90},
+    {"z": 0.61, "DM_rs_fid_rs": 2306.68, "H_rs_rs_fid": 98.96}
+  ],
+  "parameters": {
+    "alpha_L2": 0.045,
+    "z_L1L2": 1.01,
+    "delta_z": 0.3,
+    "H0": 67.4,
+    "Omega_m": 0.3134,
+    "r_s": 147.09,
+    "r_s_fid": 147.78
+  },
+  "primary_results": {
+    "boss_bao": {
+      "lcdm_chi2": 5.79,
+      "efc_chi2": 3.43,
+      "delta_chi2": -2.36,
+      "dof": 6
+    },
+    "cosmic_chronometers": {
+      "lcdm_chi2": 13.49,
+      "efc_chi2": 12.86,
+      "delta_chi2": -0.63,
+      "n_points": 25
+    },
+    "combined": {
+      "total_dof": 31,
+      "delta_chi2": -2.99
+    }
+  },
+  "per_observable_residuals": [
+    {"observable": "DM(0.38)", "data": 1512.4, "lcdm": 1540.5, "efc": 1512.0},
+    {"observable": "H(0.38)", "data": 81.2, "lcdm": 82.4, "efc": 83.8},
+    {"observable": "DM(0.51)", "data": 1975.2, "lcdm": 1995.3, "efc": 1960.0},
+    {"observable": "H(0.51)", "data": 90.9, "lcdm": 89.1, "efc": 90.4},
+    {"observable": "DM(0.61)", "data": 2306.7, "lcdm": 2321.6, "efc": 2281.9},
+    {"observable": "H(0.61)", "data": 99.0, "lcdm": 94.7, "efc": 96.0}
+  ]
+}

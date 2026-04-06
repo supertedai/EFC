@@ -1,0 +1,28 @@
+{
+  "description": "Sample R(k,S) response surface values and S8 predictions",
+  "parameters": {
+    "R_max": 0.30,
+    "k_pivot": 0.13,
+    "S_pivot": 0.30
+  },
+  "surface_samples": [
+    {"k": 0.05, "S": 0.0,  "R": 0.000, "mu": 1.000, "regime": "L1"},
+    {"k": 0.10, "S": 0.1,  "R": 0.057, "mu": 1.057, "regime": "L1-L2"},
+    {"k": 0.13, "S": 0.3,  "R": 0.150, "mu": 1.150, "regime": "L2"},
+    {"k": 0.13, "S": 0.5,  "R": 0.188, "mu": 1.188, "regime": "L2"},
+    {"k": 0.13, "S": 0.7,  "R": 0.210, "mu": 1.210, "regime": "L2"},
+    {"k": 0.13, "S": 1.0,  "R": 0.231, "mu": 1.231, "regime": "L3"},
+    {"k": 0.20, "S": 0.5,  "R": 0.119, "mu": 1.119, "regime": "L2"}
+  ],
+  "s8_tension": {
+    "S8_cmb": 0.83,
+    "S8_lensing": 0.79,
+    "offset": 0.04,
+    "efc_interpretation": "L1 to L2 regime transition, not systematic error"
+  },
+  "falsification_criteria": [
+    "Tomographic consistency: all redshift bins follow single R(k,S)",
+    "Trend sign matching: overlapping (k,S) probes show same deviation sign",
+    "S-gradient prediction: predicted S8 offset matches observed redshift evolution"
+  ]
+}

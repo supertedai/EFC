@@ -1,0 +1,37 @@
+{
+  "paper_id": "EFC-Is-Consciousness-Linked-to-Entropy",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "phi_threshold": {
+      "symbol": "Phi_min",
+      "default": 0.5,
+      "unit": "dimensionless",
+      "description": "Minimum integrated information for consciousness candidacy"
+    },
+    "entropy_rate": {
+      "symbol": "S_rate",
+      "default": 1.0,
+      "unit": "J K^-1 s^-1",
+      "description": "Entropy production rate of the cognitive subsystem"
+    },
+    "information_capacity": {
+      "symbol": "I_cap",
+      "default": 100.0,
+      "unit": "bits",
+      "description": "Information processing capacity"
+    }
+  },
+  "equations": {
+    "cognitive_temperature": "T_cog = S_rate / I_cap",
+    "gradient_asymmetry": "A = (grad_int - grad_ext) / (|grad_int| + |grad_ext|)",
+    "emergence_score": "E = Phi * max(A, 0)",
+    "consciousness_condition": "Phi >= Phi_min AND A > 0"
+  },
+  "key_concepts": [
+    "Consciousness as emergent from entropy gradients",
+    "Information integration (Phi) as prerequisite",
+    "Gradient asymmetry between internal and external entropy",
+    "Cognitive temperature analogous to thermodynamic temperature",
+    "Entropy-information coupling drives awareness"
+  ]
+}

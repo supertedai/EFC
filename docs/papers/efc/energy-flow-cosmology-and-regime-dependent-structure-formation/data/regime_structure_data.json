@@ -1,0 +1,40 @@
+{
+  "title": "Regime-Dependent Structure Formation Data",
+  "description": "Summary data for EFC Paper III regime structure analysis across galactic and cosmological scales",
+  "author": "Morten Magnusson",
+  "license": "CC-BY-4.0",
+  "energy_decomposition": {
+    "formula": "E_total = E_flow + E_latent",
+    "description": "Phenomenological decomposition of total energy into observable flow and latent complexity components"
+  },
+  "regime_classification": {
+    "FLOW": {"L_range": [0.0, 0.25], "description": "Near-equilibrium; simple models valid", "galactic_example": "LSB galaxies", "success_rate": 1.00},
+    "TRANSITION": {"L_range": [0.25, 0.45], "description": "Mixed dynamics", "galactic_example": "Spiral galaxies", "success_rate": 0.047},
+    "LATENT": {"L_range": [0.45, 1.0], "description": "Non-equilibrium dominated", "galactic_example": "Barred/complex galaxies", "success_rate": 0.037}
+  },
+  "cross_scale_correspondence": [
+    {"gradient": "steep", "galactic": "LSB: 100% success", "cosmological": "z > 10: 1000x excess", "L_range": [0.0, 0.25]},
+    {"gradient": "moderate", "galactic": "Spiral: mixed", "cosmological": "6 < z < 10: 10x excess", "L_range": [0.25, 0.45]},
+    {"gradient": "shallow", "galactic": "Barred: ~4% success", "cosmological": "z < 3: LCDM valid", "L_range": [0.45, 1.0]}
+  ],
+  "testable_predictions": [
+    {"id": "P1", "prediction": "Regime classification replicates on independent samples", "test": "LITTLE THINGS, DMS datasets"},
+    {"id": "P2", "prediction": "Abundance excess continues monotonically to z > 15", "test": "Future JWST deep fields"},
+    {"id": "P3", "prediction": "Morphological complexity correlates with regime membership", "test": "Cross-dataset morphology analysis"},
+    {"id": "P4", "prediction": "FIRE simulation cusp-core transitions align with EFC regime boundaries", "test": "FIRE simulation comparison"}
+  ],
+  "sample_systems": [
+    {"name": "DDO154", "scale": "galactic", "L": 0.12, "regime": "FLOW", "gradient": 8.5},
+    {"name": "NGC3198", "scale": "galactic", "L": 0.15, "regime": "FLOW", "gradient": 6.2},
+    {"name": "UGC128", "scale": "galactic", "L": 0.32, "regime": "TRANSITION", "gradient": 2.1},
+    {"name": "NGC2841", "scale": "galactic", "L": 0.72, "regime": "LATENT", "gradient": 0.5},
+    {"name": "z=12 field", "scale": "cosmological", "redshift": 12.0, "excess_factor": 500, "gradient": 9.0},
+    {"name": "z=8 field", "scale": "cosmological", "redshift": 8.0, "excess_factor": 50, "gradient": 3.5},
+    {"name": "z=2 field", "scale": "cosmological", "redshift": 2.0, "excess_factor": 1.0, "gradient": 0.8}
+  ],
+  "paper_series": {
+    "paper_1": {"doi": "10.6084/m9.figshare.31045126", "type": "empirical", "content": "SPARC N=175"},
+    "paper_2": {"doi": "10.6084/m9.figshare.31059964", "type": "empirical", "content": "COSMOS-Web z>6"},
+    "paper_3": {"doi": "10.6084/m9.figshare.31061872", "type": "interpretive", "content": "EFC framework"}
+  }
+}

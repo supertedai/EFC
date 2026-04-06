@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for spacetime sustenance model",
+  "energy_flow_network": {
+    "ef_0": {
+      "description": "Central energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    },
+    "r_c": {
+      "description": "Core radius of flow node",
+      "default": 1.0,
+      "unit": "length units"
+    },
+    "n_nodes": {
+      "description": "Number of flow nodes in network",
+      "default": 10
+    },
+    "formula": "Ef(r) = Ef_0 / (1 + (r/r_c)^2)"
+  },
+  "stability": {
+    "r_threshold": {
+      "description": "Minimum flow-gradient product for spacetime stability",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "formula": "Sigma = Ef * |grad_S| / R_threshold >= 1"
+  },
+  "entropy_gradient": {
+    "grad_s_0": {
+      "description": "Central entropy gradient",
+      "default": 0.5,
+      "unit": "entropy / length"
+    }
+  },
+  "radial_grid": {
+    "r_min": 0.0,
+    "r_max": 20.0,
+    "n_points": 50
+  }
+}

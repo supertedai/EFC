@@ -1,0 +1,26 @@
+{
+  "paper": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+  "doi": "10.6084/m9.figshare.31061665",
+  "date": "2026-01",
+  "statistical_test": {
+    "chi2": 47.3,
+    "df": 4,
+    "p_value": 1.3e-9,
+    "confidence": ">99.99%"
+  },
+  "high_z_excess": [
+    {"z_range": "5-6",  "ratio_behroozi": 23,  "ratio_halo_limit": 3.1},
+    {"z_range": "7-8",  "ratio_behroozi": 124, "ratio_halo_limit": 7.7},
+    {"z_range": "8-9",  "ratio_behroozi": 259, "ratio_halo_limit": 10.4},
+    {"z_range": "9-10", "ratio_behroozi": 529, "ratio_halo_limit": 10.6}
+  ],
+  "data_sources": [
+    {"name": "SPARC",      "n_objects": 175,   "z": "~0",  "reference": "Lelli+ 2016"},
+    {"name": "COSMOS2025", "n_objects": 26288, "z": ">5",  "reference": "Shuntov+ 2025"}
+  ],
+  "disclaimers": [
+    "Does NOT falsify LCDM - regime structure may be accommodated within standard framework",
+    "Does NOT propose alternative dynamics - no modified gravity or new physics invoked",
+    "Does NOT identify unique mechanism - multiple explanations remain viable"
+  ]
+}

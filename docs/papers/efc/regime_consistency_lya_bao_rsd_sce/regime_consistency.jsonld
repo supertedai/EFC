@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31304995",
+  "name": "Regime Consistency of an Entropy-Gradient Coupling: Lya, BAO and RSD Tests within a Structural Coherence Framework",
+  "headline": "Single coupling T(z) passes three-regime consistency test with Delta_chi2=-3.89 for BAO+RSD",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-10",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "keywords": ["regime consistency", "Lya P1D", "BAO", "RSD", "BOSS DR12", "SCE", "EFC"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:TransitionFunction",
+      "name": "EFC Transition Function T(z)",
+      "description": "T(z) = g_D(z)/g_D(z_peak), where g_D(z) = (1-Omega_m(z))/(1+z) * ln(1+z)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeConsistency",
+      "name": "Three-Regime Consistency",
+      "description": "Single T(z) tested across growth (z~0.5), Lya (z~3), and CMB (z~1100) regimes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:SCEFramework",
+      "name": "Structural Coherence Evaluation",
+      "description": "Multi-metric framework comparing EFC and LCDM structural properties"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

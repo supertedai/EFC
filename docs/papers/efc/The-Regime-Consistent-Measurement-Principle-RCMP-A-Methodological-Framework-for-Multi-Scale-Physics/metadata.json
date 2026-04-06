@@ -1,0 +1,57 @@
+{
+  "title": "The Regime-Consistent Measurement Principle (RCMP): A Methodological Framework for Multi-Scale Physics",
+  "short_id": "RCMP",
+  "version": "v1.0",
+  "date": "2026-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31222900",
+  "abstract": "Introduces the Regime-Consistent Measurement Principle (RCMP), a methodology for valid cross-regime measurements in multi-scale physics. The framework comprises five pillars: driver-proximity, regime-tagging, proxy-accounting, coordinate-humility, and cross-validation. Demonstrated with SPARC galaxy rotation curve data.",
+  "keywords": [
+    "RCMP",
+    "regime-consistent measurement",
+    "multi-scale physics",
+    "driver proximity",
+    "regime tagging",
+    "proxy accounting",
+    "coordinate humility",
+    "cross-validation",
+    "SPARC"
+  ],
+  "efc_context": {
+    "track": "Methodology",
+    "regime_relevance": "Measurement methodology ensuring validity across regime boundaries",
+    "epistemic_layer": "Layer A (measurement methodology)"
+  },
+  "key_results": [
+    "Five-pillar RCMP methodology: driver-proximity, regime-tagging, proxy-accounting, coordinate-humility, cross-validation",
+    "Formal criteria for valid cross-regime measurement",
+    "Demonstration with SPARC galaxy rotation curve data",
+    "Uncertainty propagation framework for regime-tagged observables"
+  ],
+  "file_manifest": {
+    "pdf": "The_Regime_Consistent_Measurement_Principle__RCMP___A_Methodological_Framework_for_Multi_Scale_Physics-1.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "RCMP.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/proxy_chain.py",
+      "src/rcmp_validator.py",
+      "src/regime_tagger.py",
+      "src/uncertainty_propagator.py"
+    ],
+    "data": [
+      "data/epistemic_layers.json",
+      "data/galaxy_example.json",
+      "data/validation_checklist.json"
+    ],
+    "demo": "examples/rcmp_galaxy_analysis.py"
+  }
+}

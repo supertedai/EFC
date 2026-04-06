@@ -1,0 +1,87 @@
+{
+  "paper": {
+    "title": "Toward a Quantitative c_eff(a): Parameterization, Constraints, and Degeneracy-Breaking Tests",
+    "doi": "10.6084/m9.figshare.31305421",
+    "version": "3.0"
+  },
+
+  "equations": {
+    "c_eff_ansatz": {
+      "id": "Eq-ceff",
+      "latex": "c_{\\text{eff}}(a) = c_0 \\left[ 1 + \\varepsilon \\cdot \\beta \\cdot T(a) \\right]",
+      "description": "First-order Taylor expansion of grid response; valid for epsilon*beta*T << 1"
+    },
+    "comoving_distance": {
+      "id": "Eq-dC",
+      "latex": "d_C(z) = \\int_0^z \\frac{c_{\\text{eff}}(z')}{H(z')} \\, dz'"
+    },
+    "refractive_index": {
+      "id": "Eq-n",
+      "latex": "n(a) = \\frac{c_0}{c_{\\text{eff}}(a)}",
+      "description": "Optical-medium interpretation (Case ii)"
+    },
+    "cddr": {
+      "id": "Eq-eta",
+      "latex": "\\eta(z) \\equiv \\frac{D_L}{D_A (1+z)^2}",
+      "description": "Case i: eta=1 exactly; Case ii: eta != 1"
+    }
+  },
+
+  "parameters": {
+    "c_0": {"value": 1.0, "unit": "c", "description": "Laboratory speed of light"},
+    "beta": {"value": 0.08, "source": "BAO+RSD four-channel consistency", "doi": "10.6084/m9.figshare.31304980"},
+    "epsilon": {"range": [0.01, 0.1], "description": "Propagation-limit coupling strength, one free parameter"},
+    "z_peak": {"value": 0.441, "description": "Peak of T(a) where Omega_m(z) ~ 0.5"}
+  },
+
+  "numerical_table": {
+    "description": "Table from Section 2.3: numerical values at beta = 0.08",
+    "default_epsilon_range": "0.01 - 0.1",
+    "rows": [
+      {"z": 0.0, "T_z": 0.87, "beta_T": 0.070, "dc_c_eps_01": 0.0070, "dc_c_eps_001": 0.00070},
+      {"z": 0.44, "T_z": 1.00, "beta_T": 0.080, "dc_c_eps_01": 0.0080, "dc_c_eps_001": 0.00080},
+      {"z": 0.51, "T_z": 0.99, "beta_T": 0.079, "dc_c_eps_01": 0.0079, "dc_c_eps_001": 0.00079},
+      {"z": 1.0, "T_z": 0.69, "beta_T": 0.055, "dc_c_eps_01": 0.0055, "dc_c_eps_001": 0.00055},
+      {"z": 2.0, "T_z": 0.22, "beta_T": 0.018, "dc_c_eps_01": 0.0018, "dc_c_eps_001": 0.00018},
+      {"z": 3.0, "T_z": 0.107, "beta_T": 0.0086, "dc_c_eps_01": 0.00086, "dc_c_eps_001": 0.000086},
+      {"z": 1100, "T_z": 0.0, "beta_T": 0.0, "dc_c_eps_01": 0.0, "dc_c_eps_001": 0.0}
+    ]
+  },
+
+  "epsilon_meaning": [
+    {"epsilon": 0, "meaning": "No c_eff variation; pure dark energy equivalent"},
+    {"epsilon": 1, "meaning": "Full coupling; same fractional change as Lambda-sector contribution to H^2"},
+    {"epsilon_much_less_than_1": "Weak coupling; propagation responds subdominantly to vacuum state change"}
+  ],
+
+  "implementations": {
+    "case_i_metric_vsl": {
+      "description": "c_eff enters as modified conformal structure",
+      "cddr": "preserved (eta = 1 exactly)",
+      "degeneracy": "degenerate with modified H(z) in distance-only tests",
+      "note": "Conservative implementation"
+    },
+    "case_ii_optical_medium": {
+      "description": "c_eff enters as spacetime refractive index n(a) = c_0/c_eff(a)",
+      "cddr": "can be violated; sign change near z ~ 0.44",
+      "unique_signature": "CDDR sign change is unique EFC fingerprint",
+      "note": "Requires explicit photon transport model"
+    }
+  },
+
+  "degeneracy_breaking_tests": [
+    {"id": "Test 1", "name": "CDDR", "applies_to": "Case ii only", "precision_needed": "~1% at multiple redshifts"},
+    {"id": "Test 2", "name": "ISW kernel shape", "applies_to": "Both", "status": "noise-limited at l < 60"},
+    {"id": "Test 3", "name": "beta-split", "applies_to": "Both", "status": "cleanest test", "future": "DESI DR3 + Euclid"},
+    {"id": "Test 4", "name": "Standard sirens", "applies_to": "Both", "future": "Einstein Telescope + Cosmic Explorer"}
+  ],
+
+  "falsification_criteria": [
+    {"id": "F-ceff-1", "condition": "CDDR violation inconsistent with T(z)", "meaning": "c_eff not grid-driven", "applies_to": "Case ii"},
+    {"id": "F-ceff-2", "condition": "beta_BAO = beta_RSD to <1%", "meaning": "epsilon ~ 0", "applies_to": "Both"},
+    {"id": "F-ceff-3", "condition": "CDDR monotonic (no sign change)", "meaning": "Not EFC-type", "applies_to": "Case ii"},
+    {"id": "F-ceff-4", "condition": "Local lab c variation", "meaning": "EFC predicts no local effect", "applies_to": "Both"},
+    {"id": "F-ceff-5", "condition": "D_L^GW = D_L^EM to sub-percent", "meaning": "No EM-specific modification", "applies_to": "Both"},
+    {"id": "F-ceff-6", "condition": "Case ii but eta=1 to <0.5%", "meaning": "Case ii ruled out", "applies_to": "Case ii"}
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "EFC Closure Conjectures: Proposed Relations g-dagger = cH0/e and C = 2e - 1",
+  "short_id": "efc-closure-conjectures",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": null,
+  "abstract": "Proposes two closure relations for EFC transition parameters motivated by Euler's number e appearing in the Core Lock structure: the transition acceleration g-dagger = c H0 / e and the phase factor C = 2e - 1. Both are consistent with current data but not derived from first principles.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "radial acceleration relation",
+    "Hubble tension",
+    "transition acceleration",
+    "closure relations",
+    "Euler number"
+  ],
+  "efc_context": {
+    "track": "theoretical-conjecture",
+    "regime_relevance": "galactic-to-cosmological transition",
+    "epistemic_layer": "C"
+  },
+  "key_results": [
+    {
+      "description": "Transition acceleration conjecture",
+      "formula": "g-dagger = c * H0 / e",
+      "numerical_value": "2.51e-10 m/s^2 for H0 = 70.2"
+    },
+    {
+      "description": "Phase factor conjecture",
+      "formula": "C = 2e - 1",
+      "numerical_value": 4.437
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "closure_conjectures.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "LICENSE": "CC-BY-4.0 license",
+    "EFC_Closure_Conjectures.pdf": "Paper PDF",
+    "src/__init__.py": "Python package init",
+    "src/closure_relations.py": "Core source code",
+    "examples/": "Usage examples"
+  }
+}

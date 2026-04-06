@@ -1,0 +1,60 @@
+{
+  "paper_id": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "cmb_temperature": {
+      "symbol": "T_CMB",
+      "value": 2.725,
+      "unit": "K",
+      "description": "Present-day CMB temperature"
+    },
+    "cmb_anisotropy": {
+      "symbol": "delta_T/T",
+      "value": 1e-5,
+      "unit": "dimensionless",
+      "description": "CMB temperature anisotropy level"
+    },
+    "hubble_constant": {
+      "symbol": "H_0",
+      "value": 67.4,
+      "unit": "km/s/Mpc",
+      "description": "Hubble constant (Planck 2018)"
+    },
+    "sigma_8": {
+      "symbol": "sigma_8",
+      "value": 0.811,
+      "unit": "dimensionless",
+      "description": "RMS density fluctuation at 8 Mpc/h"
+    }
+  },
+  "observational_signatures": [
+    {
+      "observable": "CMB anisotropies",
+      "efc_interpretation": "Primordial entropy gradient seeds",
+      "key_result": "delta T/T ~ 1e-5 consistent with entropy fluctuations"
+    },
+    {
+      "observable": "Galaxy rotation curves",
+      "efc_interpretation": "Entropy gradient correction at galaxy scale",
+      "key_result": "Flat rotation curves without dark matter halo"
+    },
+    {
+      "observable": "Large-scale structure",
+      "efc_interpretation": "Entropy-driven growth of density perturbations",
+      "key_result": "sigma_8 suppression at low redshift"
+    },
+    {
+      "observable": "BAO scale",
+      "efc_interpretation": "Sound horizon set by entropy-energy interaction",
+      "key_result": "Consistent with Planck BAO measurements"
+    }
+  ],
+  "sample_rotation_curve": [
+    {"radius_kpc": 2.0, "v_obs_km_s": 120, "v_newton_km_s": 115},
+    {"radius_kpc": 5.0, "v_obs_km_s": 160, "v_newton_km_s": 140},
+    {"radius_kpc": 10.0, "v_obs_km_s": 180, "v_newton_km_s": 120},
+    {"radius_kpc": 15.0, "v_obs_km_s": 185, "v_newton_km_s": 100},
+    {"radius_kpc": 20.0, "v_obs_km_s": 182, "v_newton_km_s": 85},
+    {"radius_kpc": 30.0, "v_obs_km_s": 178, "v_newton_km_s": 65}
+  ]
+}

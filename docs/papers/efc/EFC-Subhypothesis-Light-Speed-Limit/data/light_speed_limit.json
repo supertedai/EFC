@@ -1,0 +1,15 @@
+{
+  "description": "Sample grid-resistance regions for light-speed-limit analysis",
+  "regions": [
+    {"R_grid": 1.0, "entropy_density": 0.50, "energy_flow_density": 1.0},
+    {"R_grid": 1.0001, "entropy_density": 0.52, "energy_flow_density": 0.98},
+    {"R_grid": 1.05, "entropy_density": 0.60, "energy_flow_density": 0.85},
+    {"R_grid": 1.20, "entropy_density": 0.75, "energy_flow_density": 0.60},
+    {"R_grid": 2.00, "entropy_density": 0.90, "energy_flow_density": 0.30}
+  ],
+  "limit_scenarios": [
+    {"entropy_gradient": 0.0, "flow_coupling": 1.0, "R_grid": 1.0},
+    {"entropy_gradient": 0.01, "flow_coupling": 0.99, "R_grid": 1.01},
+    {"entropy_gradient": 0.10, "flow_coupling": 0.90, "R_grid": 1.10}
+  ]
+}

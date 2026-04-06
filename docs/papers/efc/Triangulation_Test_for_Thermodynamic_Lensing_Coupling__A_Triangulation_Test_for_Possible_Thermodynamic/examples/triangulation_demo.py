@@ -5,8 +5,8 @@ Demonstrates the triangulation methodology on simulated cluster data.
 """
 
 import numpy as np
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.triangulation_test import (
     TriangulationAnalysis,

@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31305550",
+  "name": "EFC vs Stage-III Cosmology State Assessment",
+  "headline": "EFC sigma8=0.805 matches converging Stage-III weak-lensing landscape",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-02-10",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "keywords": ["Stage-III surveys", "weak lensing", "S8 tension", "KiDS Legacy", "HSC Y3"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:StageIIIAssessment",
+      "name": "Stage-III Assessment",
+      "description": "EFC positioned as precision structural competitor in converging lensing landscape"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:SCELayers",
+      "name": "O-layer / M-layer Distinction",
+      "description": "Observation-native vs mapping-dependent quantities in weak lensing"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

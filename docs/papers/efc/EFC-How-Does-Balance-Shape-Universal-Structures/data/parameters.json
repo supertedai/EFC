@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for balance and universal structure model",
+  "energy_flow": {
+    "ef_0": {
+      "description": "Background energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    }
+  },
+  "entropy": {
+    "s_background": {
+      "description": "Background entropy level",
+      "default": 1.0,
+      "unit": "entropy units"
+    }
+  },
+  "grid_resistance": {
+    "resistance_base": {
+      "description": "Base grid resistance",
+      "default": 5.0,
+      "unit": "resistance units"
+    }
+  },
+  "hierarchy": {
+    "n_scales": {
+      "description": "Number of hierarchy levels in structure formation",
+      "default": 5
+    },
+    "scale_ratio": {
+      "description": "Scale ratio between hierarchy levels",
+      "default": 3.0
+    }
+  },
+  "equilibrium": {
+    "balance_tolerance": {
+      "description": "Tolerance for equilibrium identification",
+      "default": 0.3
+    }
+  },
+  "spatial_grid": {
+    "x_min": 0.0,
+    "x_max": 20.0,
+    "n_points": 100
+  }
+}

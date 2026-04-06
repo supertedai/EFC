@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for cluster spacetime distortion model",
+  "entropy_gradient": {
+    "s_center": {
+      "description": "Central entropy value of the cluster",
+      "default": 1.0,
+      "unit": "entropy units"
+    },
+    "grad_s": {
+      "description": "Entropy gradient magnitude",
+      "default": 0.5,
+      "unit": "entropy units / Mpc"
+    },
+    "scale_radius": {
+      "description": "Characteristic scale radius of entropy profile",
+      "default": 2.0,
+      "unit": "Mpc"
+    }
+  },
+  "energy_flow": {
+    "ef_0": {
+      "description": "Central energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    },
+    "decay_length": {
+      "description": "Characteristic decay length of energy flow",
+      "default": 3.0,
+      "unit": "Mpc"
+    }
+  },
+  "coupling": {
+    "description": "Coupling constant between entropy gradient and spacetime distortion",
+    "default": 1.0,
+    "unit": "dimensionless"
+  },
+  "radial_grid": {
+    "r_min": 0.1,
+    "r_max": 10.0,
+    "n_points": 50,
+    "unit": "Mpc"
+  }
+}

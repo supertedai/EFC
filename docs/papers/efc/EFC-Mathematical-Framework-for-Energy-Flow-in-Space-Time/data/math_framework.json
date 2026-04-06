@@ -1,0 +1,49 @@
+{
+  "paper_id": "EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "grid_resistance": {
+      "symbol": "R",
+      "default": 0.01,
+      "unit": "dimensionless",
+      "description": "Grid damping coefficient in the energy-flow equation"
+    },
+    "gate_alpha": {
+      "symbol": "alpha",
+      "default": 0.1,
+      "unit": "dimensionless",
+      "description": "Gate function modification amplitude"
+    },
+    "gate_mu0": {
+      "symbol": "mu_0",
+      "default": 1.0,
+      "unit": "dimensionless",
+      "description": "Gate function transition scale"
+    },
+    "speed_of_light": {
+      "symbol": "c",
+      "value": 2.998e8,
+      "unit": "m/s"
+    },
+    "gravitational_constant": {
+      "symbol": "G",
+      "value": 6.674e-11,
+      "unit": "m^3 kg^-1 s^-2"
+    }
+  },
+  "equations": {
+    "energy_flow": "d(rho)/dt + div J = -R*rho + Q",
+    "entropy_production": "sigma = J * |nabla T| / T^2",
+    "gate_function": "g(mu) = 1 + alpha * (1 - exp(-mu/mu_0))",
+    "second_law": "sigma >= 0",
+    "steady_state": "rho_ss = Q / R",
+    "damping_time": "tau = 1 / R"
+  },
+  "key_concepts": [
+    "Energy-flow equation with grid damping",
+    "Entropy production satisfying second law",
+    "Gate function modulating gravitational response",
+    "Scalar field gradients and Laplacians",
+    "Steady-state and characteristic time scales"
+  ]
+}

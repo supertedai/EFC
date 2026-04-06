@@ -8,8 +8,8 @@ ISW Cross-Correlation Predictions for EFC with DESI DR1 Tracers"
 DOI: 10.6084/m9.figshare.31329082
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.isw_revision import (
     RevisedISWPredictions, ChannelComparison, FalsificationCriteria,

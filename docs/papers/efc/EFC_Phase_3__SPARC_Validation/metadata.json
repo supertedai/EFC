@@ -1,0 +1,57 @@
+{
+  "title": "EFC Phase 3: SPARC Validation",
+  "short_id": "efc-phase3-sparc-validation",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31224538",
+  "abstract": "Empirical test of Energy-Flow Cosmology against the Radial Acceleration Relation using the SPARC dataset (174 galaxies, 3264 data points). Fits the EFC screening form mu = (1 + g-dagger/g_bar)^k, obtaining k = 0.415 +/- 0.029 and g-dagger = 2.51e-10 m/s^2.",
+  "keywords": [
+    "radial acceleration relation",
+    "MOND",
+    "modified gravity",
+    "Hubble tension",
+    "SPARC",
+    "EFC",
+    "cross-scale consistency"
+  ],
+  "efc_context": {
+    "track": "empirical-validation",
+    "regime_relevance": "galactic rotation curves",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {
+      "description": "Screening exponent from SPARC fit",
+      "parameter": "k",
+      "value": 0.415,
+      "error": 0.029
+    },
+    {
+      "description": "Transition acceleration scale",
+      "parameter": "g_dagger",
+      "value": "2.51e-10 m/s^2",
+      "error": "0.60e-10 m/s^2"
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "sparc_validation.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "CITATION.cff": "Citation file format",
+    "LICENSE": "CC-BY-4.0 license",
+    "EFC_Phase_3__SPARC_Validation.pdf": "Paper PDF",
+    "src/__init__.py": "Python package init",
+    "src/screening_model.py": "Core source code",
+    "data/fit_results.json": "SPARC fit results",
+    "examples/": "Usage examples"
+  }
+}

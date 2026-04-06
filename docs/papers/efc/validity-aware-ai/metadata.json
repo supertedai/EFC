@@ -1,0 +1,55 @@
+{
+  "title": "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference",
+  "short_id": "VAAI",
+  "version": "v1.0",
+  "date": "2026",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31122970",
+  "abstract": "Proposes an AI architecture for pre-inference entropy measurement and regime classification across three layers (L1/L2/L3). Reframes hallucination as a protocol violation rather than a stochastic error. The architecture ensures no confident claims are made outside an empirically valid regime.",
+  "keywords": [
+    "validity-aware AI",
+    "entropy-bounded inference",
+    "regime classification",
+    "hallucination prevention",
+    "protocol violation",
+    "L1/L2/L3 layers",
+    "regime-sensitive inference",
+    "epistemic safety"
+  ],
+  "efc_context": {
+    "track": "Track 3 (AI/RLHF)",
+    "regime_relevance": "AI architecture enforcing regime-bounded validity for inference and response generation",
+    "epistemic_layer": "Layer A (architectural proposal)"
+  },
+  "key_results": [
+    "Pre-inference entropy measurement architecture with L1/L2/L3 regime classification",
+    "Hallucination reframed as protocol violation rather than stochastic error",
+    "No confident claims outside empirically valid regime boundary",
+    "Entropy-bounded response protocols for regime-sensitive AI systems"
+  ],
+  "file_manifest": {
+    "pdf": null,
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "validity-aware-ai.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/ebe_filter.py",
+      "src/entropy_measures.py",
+      "src/regime_classifier.py",
+      "src/response_protocols.py"
+    ],
+    "data": [
+      "data/domain_thresholds.json",
+      "data/regime_definitions.json"
+    ],
+    "demo": "examples/regime_detection_example.py"
+  }
+}

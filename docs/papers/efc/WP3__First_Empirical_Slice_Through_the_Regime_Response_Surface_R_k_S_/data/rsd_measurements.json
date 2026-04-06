@@ -1,0 +1,33 @@
+{
+  "description": "RSD fsigma8 measurements used in WP3 empirical R(k,S) slice",
+  "key_result": {
+    "R": 0.30,
+    "k_hMpc": 0.13,
+    "S": 0.30,
+    "interpretation": "Cartography, not validation"
+  },
+  "model_comparison": {
+    "LCDM": {"chi2": 9.36, "AIC": 15.4, "params": 3},
+    "RkS_slice": {"chi2": 9.12, "AIC": 19.1, "params": 5},
+    "verdict": "LCDM preferred by delta_AIC = -3.8"
+  },
+  "measurements": [
+    {"survey": "BOSS DR12", "z": 0.38, "fsigma8": 0.497, "error": 0.045},
+    {"survey": "BOSS DR12", "z": 0.51, "fsigma8": 0.458, "error": 0.038},
+    {"survey": "BOSS DR12", "z": 0.61, "fsigma8": 0.436, "error": 0.034},
+    {"survey": "eBOSS DR16", "z": 0.70, "fsigma8": 0.473, "error": 0.041},
+    {"survey": "eBOSS DR16", "z": 0.85, "fsigma8": 0.315, "error": 0.095},
+    {"survey": "eBOSS DR16", "z": 1.48, "fsigma8": 0.462, "error": 0.045},
+    {"survey": "DESI Y1", "z": 0.295, "fsigma8": 0.408, "error": 0.040},
+    {"survey": "DESI Y1", "z": 0.510, "fsigma8": 0.449, "error": 0.032},
+    {"survey": "DESI Y1", "z": 0.706, "fsigma8": 0.413, "error": 0.029},
+    {"survey": "DESI Y1", "z": 0.930, "fsigma8": 0.381, "error": 0.034},
+    {"survey": "DESI Y1", "z": 1.184, "fsigma8": 0.396, "error": 0.062},
+    {"survey": "DESI Y1", "z": 1.491, "fsigma8": 0.318, "error": 0.076}
+  ],
+  "trajectory_coverage": {
+    "k_range_hMpc": [0.1, 0.13],
+    "S_range": [0.3, 0.7],
+    "z_range": [0.3, 1.5]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "EFC v2.1 Complete Edition -- Structured Data",
+  "version": "2.1",
+  "field_equation": {
+    "symbolic": "G_{mu nu} = 8 pi G (T_{mu nu} + T^{(E_f)}_{mu nu}) + Lambda_eff g_{mu nu}",
+    "components": {
+      "Einstein_tensor": "G_{mu nu}",
+      "matter_stress_energy": "T_{mu nu}",
+      "energy_flow_stress_energy": "T^{(E_f)}_{mu nu}",
+      "effective_cosmological_constant": "Lambda_eff"
+    }
+  },
+  "entropy_field": {
+    "equation": "S(a) = (S_inf/2)[1 + tanh((ln a - ln a_t)/sigma)]",
+    "parameters": {
+      "S_inf": 1.0,
+      "a_t": 0.55,
+      "sigma": 0.10,
+      "z_t": 0.82
+    }
+  },
+  "gravitational_coupling": {
+    "equation": "mu(a) = 1 + beta * S(a)",
+    "parameters": {
+      "beta": 0.16,
+      "mu_today": 1.16,
+      "mu_early": 1.0
+    }
+  },
+  "cosmological_parameters": {
+    "H0": {"value": 67.4, "unit": "km/s/Mpc", "source": "Planck 2018"},
+    "Omega_m": 0.315,
+    "Omega_r": 9.0e-5,
+    "Omega_Lambda": 0.685
+  },
+  "regimes": {
+    "L0": {"name": "Planck / Sub-Planck", "scale": "< l_P"},
+    "L1": {"name": "Quantum / Early Universe", "scale": "l_P to ~Mpc"},
+    "L2": {"name": "Classical / Structure Formation", "scale": "Mpc to ~Gpc"},
+    "L3": {"name": "Cosmological / Horizon", "scale": "> Gpc"}
+  },
+  "fields": ["Energy Flow (E_f)", "Entropy (S)", "Grid (G_grid)", "Information (I)"],
+  "supersedes": "EFC v1.x foundational series"
+}

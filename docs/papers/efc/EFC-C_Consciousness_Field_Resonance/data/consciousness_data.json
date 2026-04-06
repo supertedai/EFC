@@ -1,0 +1,76 @@
+{
+  "title": "Consciousness Field Resonance Empirical Data",
+  "description": "Summary empirical data from EEG propofol sedation study (Chennu et al. 2016) analyzed under the CEM framework",
+  "author": "Morten Magnusson",
+  "license": "CC-BY-4.0",
+  "data_source": {
+    "dataset": "Chennu et al. 2016",
+    "subjects": 20,
+    "overlap_cohort": 12,
+    "paradigm": "Propofol sedation EEG"
+  },
+  "key_results": {
+    "differentiation_effect": {
+      "measure": "Omega (full band)",
+      "cohens_d": 1.50,
+      "p_value": 0.073,
+      "interpretation": "Strong - primary marker of consciousness"
+    },
+    "integration_effect": {
+      "measure": "kappa (global TE)",
+      "cohens_d": 0.42,
+      "p_value": 0.530,
+      "interpretation": "Weak, not significant"
+    },
+    "product_test_F1": {
+      "measure": "C = Omega(4-40Hz) x kappa",
+      "cohens_d": 0.63,
+      "p_value": 0.432,
+      "status": "FALSIFIED"
+    },
+    "regional_posterior": {
+      "measure": "C(parietal)",
+      "cohens_d": 2.10,
+      "p_value": 0.018,
+      "status": "Exploratory candidate"
+    },
+    "balance_signal": {
+      "measure": "corr(Omega, kappa)",
+      "value": -0.27,
+      "interpretation": "Trade-off: higher differentiation = lower integration"
+    }
+  },
+  "double_dissociation": {
+    "responsive": {"delta_omega": 0.054, "p_value": 0.001},
+    "drowsy": {"delta_omega": -0.063, "p_value": 0.016},
+    "interpretation": "Drug does not determine direction - consciousness does"
+  },
+  "resonance_continuum": [
+    {"system": "stone", "field": "thermodynamic", "omega_range": [0.0, 0.05], "resonance": "near_zero"},
+    {"system": "cell", "field": "metabolic", "omega_range": [0.10, 0.30], "resonance": "low"},
+    {"system": "anaesthetised_brain", "field": "neural", "omega_range": [0.52, 0.72], "resonance": "reduced"},
+    {"system": "waking_brain", "field": "neural", "omega_range": [0.78, 0.88], "resonance": "extreme"}
+  ],
+  "sample_subjects": [
+    {"id": "S01", "condition": "waking", "omega": 0.82, "kappa": 0.15, "region": "global"},
+    {"id": "S02", "condition": "waking", "omega": 0.85, "kappa": 0.12, "region": "global"},
+    {"id": "S03", "condition": "waking", "omega": 0.79, "kappa": 0.18, "region": "global"},
+    {"id": "S04", "condition": "waking", "omega": 0.88, "kappa": 0.10, "region": "global"},
+    {"id": "S05", "condition": "waking", "omega": 0.80, "kappa": 0.16, "region": "global"},
+    {"id": "S06", "condition": "waking", "omega": 0.84, "kappa": 0.13, "region": "global"},
+    {"id": "S07", "condition": "sedated", "omega": 0.58, "kappa": 0.22, "region": "global"},
+    {"id": "S08", "condition": "sedated", "omega": 0.62, "kappa": 0.20, "region": "global"},
+    {"id": "S09", "condition": "sedated", "omega": 0.55, "kappa": 0.25, "region": "global"},
+    {"id": "S10", "condition": "sedated", "omega": 0.68, "kappa": 0.19, "region": "global"},
+    {"id": "S11", "condition": "sedated", "omega": 0.52, "kappa": 0.28, "region": "global"},
+    {"id": "S12", "condition": "sedated", "omega": 0.65, "kappa": 0.21, "region": "global"}
+  ],
+  "parietal_data": [
+    {"id": "S01", "condition": "waking", "omega_parietal": 0.86, "kappa_parietal": 0.30},
+    {"id": "S02", "condition": "waking", "omega_parietal": 0.88, "kappa_parietal": 0.28},
+    {"id": "S03", "condition": "waking", "omega_parietal": 0.84, "kappa_parietal": 0.32},
+    {"id": "S07", "condition": "sedated", "omega_parietal": 0.55, "kappa_parietal": 0.12},
+    {"id": "S08", "condition": "sedated", "omega_parietal": 0.60, "kappa_parietal": 0.10},
+    {"id": "S09", "condition": "sedated", "omega_parietal": 0.50, "kappa_parietal": 0.14}
+  ]
+}
