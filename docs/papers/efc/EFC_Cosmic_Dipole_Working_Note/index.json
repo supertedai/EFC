@@ -1,0 +1,59 @@
+{
+  "id": "efc-cosmic-dipole",
+  "title": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in Energy-Flow Cosmology",
+  "doi": "10.6084/m9.figshare.31942731",
+  "version": "0.1",
+  "status": "working_note",
+  "date": "2026-04-06",
+  "author": {"name": "Morten Magnusson", "orcid": "0009-0002-4860-5095", "affiliation": "Independent Researcher, Sola, Norway"},
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "license": "CC-BY-4.0",
+
+  "abstract": "Examines whether EFC contains a natural mechanism for the observed galaxy number count dipole excess (2-3x kinematic prediction). Identifies the key ingredient: isotropy is a regime condition valid in L0/L1, not an absolute postulate. Any residual entropy gradient ∇S imprints a preferred direction via G_eff(S). Required gradient is ~2% across the observable volume, consistent with CMB constraints.",
+
+  "keywords": ["cosmic dipole", "number count dipole", "anisotropy", "entropy gradient", "regime-dependent isotropy", "cosmological principle", "CatWISE", "NVSS", "EFC"],
+
+  "key_equations": {
+    "G_eff": "G_eff(S) = G_N(1 + μ(S))",
+    "directional_G_eff": "ΔG_eff(n̂) ≈ G_N μ₀ f'(S̄) (∇S · n̂) L_grad",
+    "dipole_amplitude": "D_EFC ≈ (b_eff/2) μ₀ |f'(S̄)| |∇S| L_grad / S̄",
+    "required_gradient": "|∇S| L_grad / S̄ ≈ 0.023 (for D_excess ≈ 0.007)"
+  },
+
+  "observational_context": {
+    "D_kinematic": "~0.0045 (from v ≈ 370 km/s)",
+    "D_observed": "0.008–0.015 (NVSS, CatWISE, WISE-SuperCOSMOS)",
+    "D_excess": "0.005–0.010 (2–3× kinematic)",
+    "alignment": "Approximately aligned with CMB dipole"
+  },
+
+  "predictions": [
+    {"id": "P1", "description": "Redshift dependence: dipole excess grows with decreasing z"},
+    {"id": "P2", "description": "Directional fσ₈ anisotropy at ~2% level"},
+    {"id": "P3", "description": "Alignment with bulk flow and CMB dipole direction"},
+    {"id": "P4", "description": "Scale dependence: excess stronger for large-volume tracers"}
+  ],
+
+  "open_gaps": [
+    {"id": "G1", "description": "Origin of ∇S (initial conditions / topology)"},
+    {"id": "G2", "description": "Quantitative f(S) profile at super-Hubble scales"},
+    {"id": "G3", "description": "Separation from kinematic contribution"},
+    {"id": "G4", "description": "Consistency with CMB isotropy (explicit verification)"}
+  ],
+
+  "connections": {
+    "builds_on": [
+      {"doi": "10.6084/m9.figshare.31940469", "title": "EFC Screening Model"},
+      {"doi": "10.6084/m9.figshare.31368433", "title": "Systematic CMB Localization"},
+      {"doi": "10.6084/m9.figshare.31941543", "title": "Regime Transition Test"}
+    ]
+  },
+
+  "files": {
+    "pdf": "EFC_Cosmic_Dipole_Working_Note.pdf",
+    "readme": "README.md", "schema": "schema.json", "metadata": "metadata.json",
+    "jsonld": "cosmic_dipole.jsonld", "citations": "citations.bib",
+    "source": "src/cosmic_dipole.py", "data": "data/cosmic_dipole_data.json",
+    "demo": "examples/demo_cosmic_dipole.py"
+  }
+}

@@ -16,7 +16,7 @@ repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger: v3.7
-ai_packages: 38+
+ai_packages: 39+
 ```
 
 | Resource | Location |
@@ -140,6 +140,7 @@ Papers with full executable Python packages (`src/`, `data/`, `examples/`):
 | Gradient-Coupled Grid Action | `grid_action.py` | 31941465 |
 | Regime Transition Test | `regime_transition.py` | 31941543 |
 | Void ISW Sign-Flip | `void_isw.py` | 31942677 |
+| Cosmic Dipole Working Note | `cosmic_dipole.py` | 31942731 |
 | Grid Microphysics to RAR | `grid_microphysics.py` | 31878760 |
 | Covariant EFT | `covariant_eft.py` | 31878334 |
 | EFC Relativistic Action | `efc_relativistic_action.py` | 31876324 |
@@ -271,6 +272,7 @@ docs/papers/efc/[Paper-Name]/
 | `gradient-grid-action` | 10.6084/m9.figshare.31941465 | E ∝ √g from minimal Lagrangian |
 | `regime-transition` | 10.6084/m9.figshare.31941543 | μ<1↔μ>1 regime consistency, R∝k⁻⁴ |
 | `void-isw-signflip` | 10.6084/m9.figshare.31942677 | ISW sign-flip in deep voids, A_total turnover |
+| `cosmic-dipole` | 10.6084/m9.figshare.31942731 | Regime-dependent anisotropy, ∇S → dipole excess |
 
 ### Empirical Analysis
 | ID | DOI | Key Result |

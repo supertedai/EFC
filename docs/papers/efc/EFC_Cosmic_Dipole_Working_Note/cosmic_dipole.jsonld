@@ -1,0 +1,15 @@
+{
+  "@context": {"@vocab": "https://schema.org/", "efc": "https://energyflow-cosmology.com/ontology#", "figshare": "https://doi.org/10.6084/m9.figshare."},
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31942731",
+  "name": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in Energy-Flow Cosmology",
+  "description": "Working note showing EFC contains a natural mechanism for the galaxy number count dipole excess: regime-dependent isotropy plus entropy gradient ∇S produces direction-dependent structure growth.",
+  "datePublished": "2026-04-06",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "author": {"@type": "Person", "@id": "https://orcid.org/0009-0002-4860-5095", "name": "Morten Magnusson"},
+  "about": [
+    {"@type": "DefinedTerm", "@id": "efc:CosmicDipole", "name": "Cosmic Dipole Anomaly", "description": "Galaxy number count dipole 2-3x larger than kinematic prediction"},
+    {"@type": "DefinedTerm", "@id": "efc:RegimeDependentIsotropy", "name": "Regime-Dependent Isotropy", "description": "Isotropy valid in L0/L1, broken by spatial S(x) in L2"}
+  ],
+  "keywords": ["cosmic dipole", "anisotropy", "entropy gradient", "cosmological principle", "EFC"]
+}

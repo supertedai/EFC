@@ -98,7 +98,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (38+)
+## AI-FRIENDLY PACKAGES (39+)
 
 ### Track 1-3 + Bridge + Synthesis
 efc-screening: src/efc_screening.py, doi:31940469, classes: EFCScreening, CrossScaleConsistency
@@ -112,6 +112,7 @@ homo-fluxus: src/homo_fluxus.py, doi:31940604, classes: EFCChain, EgoThermodynam
 gradient-grid-action: src/grid_action.py, doi:31941465, classes: GridAction, GradientCouplingTheorem, OperatorElimination
 regime-transition: src/regime_transition.py, doi:31941543, classes: EFCRegimeTransition, SurvivalValley, SpatiotemporalGrid
 void-isw-signflip: src/void_isw.py, doi:31942677, classes: ISWDecomposition, SignFlipAnalysis, AmplitudeRatio
+cosmic-dipole: src/cosmic_dipole.py, doi:31942731, classes: KinematicDipole, EntropyGradient, DipoleAmplitude
 grid-microphysics: src/grid_microphysics.py, doi:31878760, classes: BoseEinsteinRAR, LatticeDerivation
 covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpeed
 relativistic-action: src/efc_relativistic_action.py, doi:31876324
@@ -214,6 +215,12 @@ void-isw-signflip:
   title: Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids
   path: /docs/papers/efc/void_isw_signflip_v2.1_final/
   key_result: RS term δ·dμ/dt flips ISW from cold→hot in deep voids; sign flip near δ≈-0.7; A_total turnover
+
+cosmic-dipole:
+  doi: 10.6084/m9.figshare.31942731
+  title: The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in EFC
+  path: /docs/papers/efc/EFC_Cosmic_Dipole_Working_Note/
+  key_result: Isotropy as regime condition; ∇S → ΔG_eff → intrinsic dipole; ~2% entropy variation required
 
 ### Human-AI Collaboration
 symbiosis:

@@ -1,0 +1,58 @@
+{
+  "paper": {"title": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in EFC", "doi": "10.6084/m9.figshare.31942731", "version": "0.1", "status": "working_note"},
+
+  "observational_data": {
+    "peculiar_velocity_km_s": 370,
+    "D_kinematic": 0.00247,
+    "observations": [
+      {"survey": "NVSS", "D_obs": 0.012, "error": 0.003, "tracer": "radio sources", "reference": "Secrest+ 2021"},
+      {"survey": "CatWISE2020", "D_obs": 0.0095, "error": 0.002, "tracer": "quasars", "reference": "Dam+ 2023"},
+      {"survey": "WISE-SuperCOSMOS", "D_obs": 0.008, "error": 0.002, "tracer": "galaxies", "reference": "Multiple"}
+    ],
+    "excess_range": [0.005, 0.010],
+    "excess_factor": "2–3× kinematic"
+  },
+
+  "efc_mechanism": {
+    "key_insight": "Isotropy is a regime condition (L0/L1), not an absolute postulate",
+    "entropy_gradient": {
+      "required_grad_S_over_S": 0.023,
+      "variation_percent": "~2%",
+      "source": "Not derived; possible from local supercluster asymmetry (~10%)"
+    },
+    "parameters": {
+      "mu_0": 0.415,
+      "b_eff": 1.5,
+      "f_prime": 1.0
+    }
+  },
+
+  "equations": {
+    "G_eff": {"id": "Eq1", "latex": "G_{\\text{eff}}(S) = G_N(1 + \\mu(S))"},
+    "delta_G_eff": {"id": "Eq2", "latex": "\\Delta G_{\\text{eff}}(\\hat{n}) \\approx G_N \\mu_0 f'(\\bar{S}) (\\nabla S \\cdot \\hat{n}) L_{\\text{grad}}"},
+    "dipole": {"id": "Eq4", "latex": "D_{\\text{EFC}} \\approx \\frac{b_{\\text{eff}}}{2} \\mu_0 |f'(\\bar{S})| \\frac{|\\nabla S| L_{\\text{grad}}}{\\bar{S}}"},
+    "required": {"id": "Eq5", "latex": "\\frac{|\\nabla S| L_{\\text{grad}}}{\\bar{S}} \\approx 0.023"}
+  },
+
+  "cmb_consistency": {
+    "cmb_anisotropy": 1e-5,
+    "growth_factor": 1000,
+    "expected_late_time": 0.01,
+    "required": 0.023,
+    "status": "Plausible (within factor ~2 of expected)"
+  },
+
+  "predictions": [
+    {"id": "P1", "description": "Dipole excess grows with decreasing z", "test": "Tomographic bins"},
+    {"id": "P2", "description": "Directional fσ₈ anisotropy ~2%", "test": "DESI/Euclid"},
+    {"id": "P3", "description": "Alignment with bulk flow and CMB dipole", "test": "Direction comparison"},
+    {"id": "P4", "description": "Scale dependence via R(k)∝k⁻⁴", "test": "Volume-dependent tracers"}
+  ],
+
+  "open_gaps": [
+    {"id": "G1", "description": "Origin of ∇S (initial conditions)"},
+    {"id": "G2", "description": "Quantitative f(S) at super-Hubble scales"},
+    {"id": "G3", "description": "Separation from kinematic contribution"},
+    {"id": "G4", "description": "Explicit CMB isotropy verification"}
+  ]
+}
