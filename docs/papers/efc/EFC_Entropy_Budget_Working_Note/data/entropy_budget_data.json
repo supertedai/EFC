@@ -1,0 +1,131 @@
+{
+  "paper": {
+    "title": "The Cosmic Entropy Budget as Constraint on the EFC S-Field",
+    "doi": "10.6084/m9.figshare.31942734",
+    "version": "0.1",
+    "framework": "EFC v3.7"
+  },
+  "table_1_entropy_inventory": {
+    "description": "Cosmic entropy budget from Egan & Lineweaver (2010)",
+    "unit": "k_B",
+    "components": [
+      {
+        "name": "Supermassive black holes",
+        "log10_S_kB": 104,
+        "fraction": 0.9999,
+        "s_field_regime": "S = S_max (grid collapse)"
+      },
+      {
+        "name": "Stellar-mass black holes",
+        "log10_S_kB": 98,
+        "fraction": 1e-6,
+        "s_field_regime": "S = S_max (grid collapse)"
+      },
+      {
+        "name": "CMB photons",
+        "log10_S_kB": 89,
+        "fraction": 1e-15,
+        "s_field_regime": "S → S_max (thermal equilibrium)"
+      },
+      {
+        "name": "Relic neutrinos",
+        "log10_S_kB": 88,
+        "fraction": 1e-16,
+        "s_field_regime": "S → S_max (thermal limit)"
+      },
+      {
+        "name": "Baryonic matter",
+        "log10_S_kB": 81,
+        "fraction": 1e-23,
+        "s_field_regime": "S ≪ S_max (structured)"
+      }
+    ]
+  },
+  "table_2_grc_triad": {
+    "description": "GRC triad configurations: Reality = Grid ⊗ Energy · Clarity(S)",
+    "configurations": [
+      {
+        "phenomenon": "Elementary particles",
+        "grid": "Discrete nodes",
+        "energy": "Quantised modes",
+        "clarity_S": "S → 0",
+        "interpretation": "Minimal entropy, grid fully resolved"
+      },
+      {
+        "phenomenon": "Classical fields",
+        "grid": "Continuum limit",
+        "energy": "Smooth flow",
+        "clarity_S": "S ≈ 0.5 S_max",
+        "interpretation": "Intermediate entropy, EFT regime"
+      },
+      {
+        "phenomenon": "CMB radiation",
+        "grid": "Thermalised grid",
+        "energy": "Planck spectrum",
+        "clarity_S": "S → S_max",
+        "interpretation": "Thermal equilibrium, information delocalised"
+      },
+      {
+        "phenomenon": "Black holes",
+        "grid": "Collapsed grid",
+        "energy": "Trapped flow",
+        "clarity_S": "S = S_max",
+        "interpretation": "Grid collapse boundary, holographic bound saturated"
+      }
+    ]
+  },
+  "key_equations": {
+    "bekenstein_hawking": {
+      "formula": "S_BH = 4πGM²k_B/(ℏc)",
+      "description": "Maximum entropy for region of given mass",
+      "constants": {
+        "G": 6.674e-11,
+        "c": 2.998e8,
+        "hbar": 1.055e-34,
+        "k_B": 1.381e-23
+      }
+    },
+    "s_field_mapping": {
+      "formula": "S_EFC/S_max = S_BH/S_BH,max(M) = (M/M_max)²",
+      "description": "Normalised S-field from BH entropy ratio"
+    },
+    "accretion_luminosity": {
+      "formula": "L_acc = η Ṁ c²",
+      "eta_thin_disk": 0.1,
+      "description": "Radiative luminosity from accretion"
+    },
+    "entropy_production": {
+      "formula": "Ṡ_acc ≈ L_acc / T_acc",
+      "description": "Entropy production rate from accretion"
+    }
+  },
+  "thermostat_conjecture": {
+    "description": "AGN activity decline drives S(z) sigmoid transition at z ~ 1",
+    "z_mid": 1.0,
+    "z_AGN_peak": 2.0,
+    "z_quench": 0.5,
+    "delta_z": 0.5,
+    "agn_decline_factor": 10,
+    "note": "AGN luminosity density declines ~10× from z=2 to z=0"
+  },
+  "representative_smbh_entropies": {
+    "description": "Bekenstein-Hawking entropy for notable SMBHs",
+    "entries": [
+      {"name": "Sgr A*", "mass_Msun": 4e6, "log10_S_kB": 90.6},
+      {"name": "M87*", "mass_Msun": 6.5e9, "log10_S_kB": 97.0},
+      {"name": "TON 618", "mass_Msun": 6.6e10, "log10_S_kB": 99.0}
+    ]
+  },
+  "predictions": [
+    {"id": "P1", "description": "SMBH density correlates with local μ", "type": "correlation"},
+    {"id": "P2", "description": "S(z) tracks AGN luminosity density", "type": "temporal"},
+    {"id": "P3", "description": "Void galaxies show enhanced μ", "type": "spatial"},
+    {"id": "P4", "description": "S_max scales with BH entropy for typical SMBH mass", "type": "normalization"}
+  ],
+  "open_gaps": [
+    {"id": "G1", "description": "Quantitative S(z)–AGN derivation", "level": "L2"},
+    {"id": "G2", "description": "S-field normalization", "level": "L2"},
+    {"id": "G3", "description": "Interior BH description (L3)", "level": "L3"},
+    {"id": "G4", "description": "Hawking radiation and S-field decay", "level": "L3"}
+  ]
+}

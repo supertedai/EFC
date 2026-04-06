@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/entropy-budget",
+  "title": "EFC Entropy Budget Schema",
+  "type": "object",
+  "properties": {
+    "component": {"type": "object", "properties": {
+      "name": {"type": "string"}, "entropy_kB": {"type": "number"}, "fraction": {"type": "number"}
+    }},
+    "s_field": {"type": "object", "properties": {
+      "S_EFC": {"type": "number", "minimum": 0}, "S_max": {"type": "number", "exclusiveMinimum": 0},
+      "ratio": {"type": "number", "minimum": 0, "maximum": 1}
+    }},
+    "bekenstein_hawking": {"type": "object", "properties": {
+      "M_solar": {"type": "number"}, "S_kB": {"type": "number"}, "area_m2": {"type": "number"}
+    }}
+  }
+}
