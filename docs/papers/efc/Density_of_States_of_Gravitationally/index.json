@@ -1,0 +1,41 @@
+{
+  "package": "density-of-states-grid-modes",
+  "version": "1.0.0",
+  "title": "Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge",
+  "doi": "10.6084/m9.figshare.31942800",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "framework": "EFC v3.7",
+  "license": "CC-BY-4.0",
+  "created": "2026-04-06",
+  "files": {
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "density_of_states.jsonld",
+    "citations": "citations.bib",
+    "source": "src/density_of_states.py",
+    "init": "src/__init__.py",
+    "data": "data/density_of_states_data.json",
+    "demo": "examples/demo_density_of_states.py"
+  },
+  "entry_point": "src/density_of_states.py",
+  "classes": [
+    "GridActivation",
+    "DensityOfStates",
+    "PerModeEntropy",
+    "EntropyProductionFunction",
+    "ScenarioComparison",
+    "Predictions"
+  ],
+  "key_result": "D_eff(ρ) ∝ √(ρ/ρ_crit) from boundary-mode mechanism; Γ(ρ) = Γ₀√(ρ/ρ_crit)/(1+√(ρ/ρ_crit)) — Scenario B+",
+  "keywords": [
+    "density of states",
+    "grid modes",
+    "entropy production",
+    "Bose-Einstein",
+    "activation dynamics",
+    "microphysics",
+    "EFC"
+  ]
+}

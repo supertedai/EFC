@@ -1,0 +1,93 @@
+{
+  "paper": {
+    "title": "Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge",
+    "doi": "10.6084/m9.figshare.31942800",
+    "version": "1.0",
+    "framework": "EFC v3.7"
+  },
+  "grid_structure": {
+    "description": "Discrete lattice with Higgs-stabilised nodes",
+    "node_spacing": "l_g (sub-Planck or Planck-scale)",
+    "node_tension": "σ₀ = a₀ (MOND scale)",
+    "nodes_per_volume": "N_total = V/l_g³"
+  },
+  "activation_condition": {
+    "formula": "G_N ρ l_g² > σ₀ l_g",
+    "threshold": "ρ > ρ_crit = a₀/(G_N l_g)",
+    "equation_number": "Eq. 3"
+  },
+  "rho_crit": {
+    "formula": "a₀ / (G_N l_g)",
+    "origin": "Microphysics — same as MOND scale (Eq. 5)",
+    "connection": "σ₀ = a₀ from gradient-coupled grid action"
+  },
+  "density_of_states": {
+    "mechanism": "Boundary-mode: standing modes in gravitational potential well",
+    "n_active_formula": "j_max = 2r √(ρ/ρ_crit) / l_g  (Eq. 25)",
+    "d_eff_formula": "D_eff(ρ) = D₀ √(ρ/ρ_crit) / (1 + √(ρ/ρ_crit))  (Eq. 28)",
+    "low_rho": "D_eff ∝ √(ρ/ρ_crit)",
+    "high_rho": "D_eff → D₀ (all modes active)",
+    "saturation_density": "ρ_sat = ρ_crit/4  (Eq. 27)"
+  },
+  "failed_approaches": {
+    "description": "Section 3 documents three approaches that give wrong D_eff scaling",
+    "approaches": [
+      {
+        "name": "Stochastic activation (Rayleigh)",
+        "result": "Super-exponentially suppressed — too aggressive",
+        "equation": "Eq. 7-8"
+      },
+      {
+        "name": "Mode counting by energy (d=3 dispersion)",
+        "result": "D_eff ∝ ρ^(-1/4) — wrong exponent",
+        "equation": "Eq. 15"
+      },
+      {
+        "name": "Gradient-coupled dispersion",
+        "result": "D(E) ∝ E^5 → D_eff ∝ ρ^(-1/2) — wrong sign",
+        "equation": "Eq. 20-21"
+      }
+    ]
+  },
+  "per_mode_entropy": {
+    "formula": "Γ_per-mode = (β/(2a₀)) n(n+1)  (Eq. 33)",
+    "low_rho": "≈ 1/(2ρ)  (Eq. 34)",
+    "high_rho": "≈ (β/(2a₀)) e^(-x) → 0  (Eq. 35)",
+    "source": "Companion note [1]: BE statistics"
+  },
+  "rho_dot_rescue": {
+    "description": "Section 6.4: cosmological trajectory provides the missing ρ factor",
+    "formula": "Γ_t = (dS/dρ) · ρ̇ = (dS/dρ) · (-3Hρ)",
+    "result": "ρ^(-1/2) × ρ = ρ^(1/2)",
+    "equation": "Eq. 44-45"
+  },
+  "final_result": {
+    "formula": "Γ(ρ) = Γ₀ √(ρ/ρ_crit) / (1 + √(ρ/ρ_crit))",
+    "rho_crit": "a₀/(G_N l_g)",
+    "equation": "Eq. 48",
+    "properties": {
+      "low_rho": "Γ ∝ √ρ (vanishes correctly)",
+      "high_rho": "Γ → Γ₀ (saturates correctly)",
+      "rho_crit": "Emergent from a₀ and l_g",
+      "uniqueness": "No functional freedom remains"
+    }
+  },
+  "table_1_requirement_check": [
+    {"id": "R1", "requirement": "Low-ρ scaling", "target": "∝ ρ", "derived": "∝ ρ^(-1/2)", "status": "Failed"},
+    {"id": "R2", "requirement": "High-ρ behaviour", "target": "→ const", "derived": "→ 0 (exponential)", "status": "Different but physical"},
+    {"id": "R3", "requirement": "Emergent ρ_crit", "target": "from a₀, G_N, l_g", "derived": "Yes", "status": "Passed"},
+    {"id": "R4", "requirement": "D_eff from grid", "target": "Derived", "derived": "√(ρ/ρ_crit)", "status": "Derived"},
+    {"id": "R5", "requirement": "Double-counting", "target": "Resolved", "derived": "Confirmed", "status": "Passed"}
+  ],
+  "scenario_classification": {
+    "current": "B+",
+    "description": "Microphysically derived effective form with correct saturation and emergent ρ_crit",
+    "comparison_to_phenomenological": "~20% agreement over 0.01 < ρ/ρ_crit < 1"
+  },
+  "implications": [
+    {"id": "I1", "description": "Γ(ρ) fully derived — no free functions"},
+    {"id": "I2", "description": "~20% deviation from phenomenological ansatz"},
+    {"id": "I3", "description": "Survival valley recalibration needed"},
+    {"id": "I4", "description": "Distinguishable by Euclid/DESI DR3"}
+  ]
+}
