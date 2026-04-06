@@ -108,8 +108,17 @@
   ],
   "files": {
     "paper": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity.pdf",
-    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
-    "metadata": ["CITATION.cff", "index.json", "CosmologicalGrowthConstraints.jsonld", "schema.json"],
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "CosmologicalGrowthConstraints.jsonld",
+      "schema.json"
+    ],
     "source_code": [
       "src/__init__.py",
       "src/geff_coupling.py",
@@ -125,5 +134,6 @@
       "examples/run_scenarios.py",
       "examples/geff_profile.py"
     ]
-  }
+  },
+  "doi": "10.6084/m9.figshare.31348414"
 }

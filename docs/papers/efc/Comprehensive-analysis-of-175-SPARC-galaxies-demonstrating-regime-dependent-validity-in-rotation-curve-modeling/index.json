@@ -20,7 +20,10 @@
     "n_datapoints": 3391,
     "mean_points_per_galaxy": 19.4,
     "std_points_per_galaxy": 16.0,
-    "range": [4, 115]
+    "range": [
+      4,
+      115
+    ]
   },
   "results": {
     "regimes": {
@@ -28,7 +31,7 @@
         "n": 62,
         "percentage": 35.4,
         "efc_success_rate": 100.0,
-        "mean_L": 0.290,
+        "mean_L": 0.29,
         "std_L": 0.143,
         "mean_chi2_red": 2.05,
         "std_chi2_red": 2.82
@@ -46,16 +49,16 @@
         "n": 27,
         "percentage": 15.4,
         "efc_success_rate": 3.7,
-        "mean_L": 0.500,
+        "mean_L": 0.5,
         "std_L": 0.111,
         "mean_chi2_red": 297.83,
-        "std_chi2_red": 553.50
+        "std_chi2_red": 553.5
       }
     },
     "statistics": {
       "mann_whitney": {
         "test": "FLOW vs LATENT separation",
-        "p_value": 0.0000,
+        "p_value": 0.0,
         "conclusion": "Highly significant (p < 0.0001)"
       },
       "spearman": {
@@ -98,9 +101,18 @@
       "formula": "v(r) = v_flat × sqrt(1 - exp(-(r/r_turnon)^sharpness))",
       "parameters": 3,
       "bounds": {
-        "v_flat": [50, 200],
-        "r_turnon": [0.1, 30],
-        "sharpness": [0.5, 5.0]
+        "v_flat": [
+          50,
+          200
+        ],
+        "r_turnon": [
+          0.1,
+          30
+        ],
+        "sharpness": [
+          0.5,
+          5.0
+        ]
       }
     },
     "comparison": {
@@ -112,8 +124,8 @@
       "method": "differential_evolution",
       "maxiter": 300,
       "seed": 42,
-      "atol": 1e-6,
-      "tol": 1e-4
+      "atol": 1e-06,
+      "tol": 0.0001
     },
     "classification": {
       "FLOW": "ΔAIC ≤ -10 AND χ²_red < 20",
@@ -159,5 +171,6 @@
     "last_updated": "2026-01-11",
     "format_version": "1.0",
     "schema": "schema.json"
-  }
+  },
+  "doi": "10.6084/m9.figshare.31045126"
 }

@@ -26,31 +26,75 @@
     "differentiation"
   ],
   "concepts": {
-    "primary": ["co-primary-structure", "pre-geometric-potential", "planck-transition", "differentiation"],
+    "primary": [
+      "co-primary-structure",
+      "pre-geometric-potential",
+      "planck-transition",
+      "differentiation"
+    ],
     "hypotheses": {
       "H1": "Energy-flow primacy (fails circularity test)",
       "H2": "Entropy primacy (fails circularity test)",
       "H3": "Co-primary structure (passes all tests)"
     },
-    "phases": ["pre-Planck", "Planck-transition", "post-Planck"],
-    "frameworks_referenced": ["Wheeler", "Verlinde", "Prigogine", "Holographic-Principle"]
+    "phases": [
+      "pre-Planck",
+      "Planck-transition",
+      "post-Planck"
+    ],
+    "frameworks_referenced": [
+      "Wheeler",
+      "Verlinde",
+      "Prigogine",
+      "Holographic-Principle"
+    ]
   },
   "structure": {
     "sections": [
-      {"number": 1, "title": "The Circularity Problem"},
-      {"number": 2, "title": "Cross-Domain Evidence"},
-      {"number": 3, "title": "The Co-Primary Resolution"},
-      {"number": 4, "title": "Integration with EFC Architecture"},
-      {"number": 5, "title": "Epistemic Status and Limitations"},
-      {"number": 6, "title": "Conclusion"}
+      {
+        "number": 1,
+        "title": "The Circularity Problem"
+      },
+      {
+        "number": 2,
+        "title": "Cross-Domain Evidence"
+      },
+      {
+        "number": 3,
+        "title": "The Co-Primary Resolution"
+      },
+      {
+        "number": 4,
+        "title": "Integration with EFC Architecture"
+      },
+      {
+        "number": 5,
+        "title": "Epistemic Status and Limitations"
+      },
+      {
+        "number": 6,
+        "title": "Conclusion"
+      }
     ]
   },
   "relationships": {
     "foundationFor": [
-      {"id": "core-lock", "doi": "10.6084/m9.figshare.31223503"},
-      {"id": "ebe-core-principles", "doi": "10.6084/m9.figshare.31222903"}
+      {
+        "id": "core-lock",
+        "doi": "10.6084/m9.figshare.31223503"
+      },
+      {
+        "id": "ebe-core-principles",
+        "doi": "10.6084/m9.figshare.31222903"
+      }
     ],
-    "relatedTo": [{"id": "energy-flow-cosmology", "doi": "10.6084/m9.figshare.27315821"}]
+    "relatedTo": [
+      {
+        "id": "energy-flow-cosmology",
+        "doi": "10.6084/m9.figshare.27315821"
+      }
+    ]
   },
-  "efcArchitectureLayer": 0
+  "efcArchitectureLayer": 0,
+  "doi": "10.6084/m9.figshare.31223668"
 }

@@ -38,20 +38,33 @@
     "bao": {
       "name": "DESI DR2",
       "n_points": 13,
-      "z_range": [0.295, 2.330],
-      "observables": ["D_V/r_s", "D_M/r_s", "D_H/r_s"],
+      "z_range": [
+        0.295,
+        2.33
+      ],
+      "observables": [
+        "D_V/r_s",
+        "D_M/r_s",
+        "D_H/r_s"
+      ],
       "reference": "arXiv:2503.14738"
     },
     "supernovae": {
       "name": "Pantheon+",
       "n_points": 277,
-      "z_range": [0.01, 2.3],
+      "z_range": [
+        0.01,
+        2.3
+      ],
       "reference": "Scolnic et al. 2022"
     },
     "chronometers": {
       "name": "Cosmic Chronometers",
       "n_points": 34,
-      "z_range": [0.07, 1.97],
+      "z_range": [
+        0.07,
+        1.97
+      ],
       "mean_uncertainty": "22%",
       "reference": "Moresco et al. 2022"
     }
@@ -97,15 +110,46 @@
     }
   },
   "fixed_parameters": {
-    "H0": {"value": 67.4, "unit": "km/s/Mpc"},
+    "H0": {
+      "value": 67.4,
+      "unit": "km/s/Mpc"
+    },
     "Omega_m": 0.3134,
-    "r_d": {"value": 147.114, "unit": "Mpc"}
+    "r_d": {
+      "value": 147.114,
+      "unit": "Mpc"
+    }
   },
   "validation_summary": [
-    {"test": "BAO primary", "n": 13, "delta_chi2": -22.01, "status": "Pass"},
-    {"test": "Hold-out (conditional)", "n": 3, "delta_chi2": -18.65, "status": "Pass"},
-    {"test": "SN shape test", "n": 277, "status": "Pass"},
-    {"test": "CC consistency", "n": 34, "delta_chi2": -0.17, "status": "Pass"},
-    {"test": "Combined", "n": 47, "delta_chi2": -22.17, "status": "Pass"}
-  ]
+    {
+      "test": "BAO primary",
+      "n": 13,
+      "delta_chi2": -22.01,
+      "status": "Pass"
+    },
+    {
+      "test": "Hold-out (conditional)",
+      "n": 3,
+      "delta_chi2": -18.65,
+      "status": "Pass"
+    },
+    {
+      "test": "SN shape test",
+      "n": 277,
+      "status": "Pass"
+    },
+    {
+      "test": "CC consistency",
+      "n": 34,
+      "delta_chi2": -0.17,
+      "status": "Pass"
+    },
+    {
+      "test": "Combined",
+      "n": 47,
+      "delta_chi2": -22.17,
+      "status": "Pass"
+    }
+  ],
+  "doi": "10.6084/m9.figshare.31230703"
 }

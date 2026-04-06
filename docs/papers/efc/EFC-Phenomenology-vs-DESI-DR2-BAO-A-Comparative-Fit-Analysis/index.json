@@ -27,17 +27,43 @@
     }
   ],
   "parameters": {
-    "w_late": {"value": -0.80, "description": "Dark energy EoS today"},
-    "w_early": {"value": -1.41, "description": "Dark energy EoS at high z"},
-    "z_trans": {"value": 1.07, "description": "Transition redshift"}
+    "w_late": {
+      "value": -0.8,
+      "description": "Dark energy EoS today"
+    },
+    "w_early": {
+      "value": -1.41,
+      "description": "Dark energy EoS at high z"
+    },
+    "z_trans": {
+      "value": 1.07,
+      "description": "Transition redshift"
+    }
   },
   "results": {
-    "LCDM": {"chi2": 23.71, "assessment": "Poor fit"},
-    "w0waCDM": {"chi2": 4.49, "assessment": "Good fit"},
-    "EFC": {"chi2": 3.60, "assessment": "Best fit (within models tested)"}
+    "LCDM": {
+      "chi2": 23.71,
+      "assessment": "Poor fit"
+    },
+    "w0waCDM": {
+      "chi2": 4.49,
+      "assessment": "Good fit"
+    },
+    "EFC": {
+      "chi2": 3.6,
+      "assessment": "Best fit (within models tested)"
+    }
   },
   "data_sources": [
-    {"survey": "DESI DR2", "type": "BAO", "N": 7, "z_range": [0.30, 2.33]}
+    {
+      "survey": "DESI DR2",
+      "type": "BAO",
+      "N": 7,
+      "z_range": [
+        0.3,
+        2.33
+      ]
+    }
   ],
   "limitations": [
     "Diagonal errors only (no covariance)",
@@ -52,5 +78,6 @@
   "files": {
     "pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
     "tex": "EFC_DESI_Technical_Note.tex"
-  }
+  },
+  "doi": "10.6084/m9.figshare.31127380"
 }
