@@ -1,0 +1,11 @@
+# Core scientific stack
+numpy>=1.22,<3
+scipy>=1.8,<2
+matplotlib>=3.5,<4
+pandas>=1.4,<3
+
+# Optional: HCP neuroimaging pipeline (pipelines/efc/hcp_bridge_b1/)
+# nibabel>=4.0,<6
+
+# Optional: CosmoSIS integration (docs/papers/efc/efc-weak-lensing-phenomenology/)
+# cosmosis>=0.5

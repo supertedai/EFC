@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "efc"
+version = "3.1.0"
+description = "Energy-Flow Cosmology — unified thermodynamic framework"
+readme = "README.md"
+license = "CC-BY-4.0"
+requires-python = ">=3.9"
+authors = [
+    { name = "Morten Magnusson" },
+]
+
+dependencies = [
+    "numpy>=1.22,<3",
+    "scipy>=1.8,<2",
+    "matplotlib>=3.5,<4",
+    "pandas>=1.4,<3",
+]
+
+[project.optional-dependencies]
+hcp = ["nibabel>=4.0,<6"]
+cosmosis = ["cosmosis>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

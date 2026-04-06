@@ -6,7 +6,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.7-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-42+-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-126-brightgreen)](#ai-friendly-paper-packages)
 
 ---
 
@@ -21,8 +21,8 @@
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.7) |
-| **Papers** | 119+ papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 42+ with executable Python + structured data |
+| **Papers** | 126 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 126 with executable Python + structured data (100% coverage) |
 
 ---
 
@@ -224,13 +224,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 119+ papers with AI-optimized metadata.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 126 papers, all with full 10-file AI-friendly packages (100% coverage).
 
 ---
 
 ## AI-Friendly Paper Packages
 
-42+ papers have full AI-friendly packages with executable Python implementations:
+All 126 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -271,7 +271,7 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 119+ papers with AI-optimized metadata
+│   ├── papers/efc/     # 126 papers with 10-file AI-friendly packages (100%)
 │   ├── public/         # Validation Ledger (v3.7), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
