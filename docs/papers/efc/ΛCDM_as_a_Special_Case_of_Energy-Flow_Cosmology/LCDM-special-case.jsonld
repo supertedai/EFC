@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31943361",
+  "name": "ΛCDM as a Special Case of Energy-Flow Cosmology",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research"
+    }
+  },
+  "datePublished": "2026-04-06",
+  "version": "1.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology",
+    "@id": "https://github.com/supertedai/EFC"
+  },
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "ΛCDM Reduction",
+      "description": "K(ρ)→∞, T(a)→0, ξ≫1 ⟹ μ,Σ,η→1 ⟹ Friedmann+Poisson",
+      "efc:equationNumber": 6,
+      "efc:type": "structural_result"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "DESI DR2 Background Coupling",
+      "description": "α = −0.14 ± 0.21 (0.65σ from null), ΔAIC = +1.59",
+      "efc:type": "empirical_result"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Perturbation Survival Valley",
+      "description": "μ ∈ [0.93, 0.96], Σ ∈ [1.03, 1.07], η ≠ 1",
+      "efc:type": "prediction"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Gas-Law Analogy",
+      "description": "ΛCDM:EFC :: Ideal Gas Law:Statistical Mechanics",
+      "efc:type": "conceptual_framework"
+    }
+  ],
+  "efc:regime": ["L0", "L1", "L2", "L3"],
+  "efc:track": "Synthesis",
+  "efc:consolidates": {
+    "publications": 204,
+    "registered_tests": 100,
+    "historical_falsifications": 5,
+    "development_months": 14
+  },
+  "citation": [
+    {"@id": "doi:10.6084/m9.figshare.31876324"},
+    {"@id": "doi:10.6084/m9.figshare.31368433"},
+    {"@id": "doi:10.6084/m9.figshare.31940469"},
+    {"@id": "doi:10.6084/m9.figshare.31348411"},
+    {"@id": "doi:10.6084/m9.figshare.31878760"},
+    {"@id": "doi:10.6084/m9.figshare.31941465"},
+    {"@id": "doi:10.6084/m9.figshare.31941543"},
+    {"@id": "doi:10.6084/m9.figshare.31942677"},
+    {"@id": "doi:10.6084/m9.figshare.31942734"},
+    {"@id": "doi:10.6084/m9.figshare.31942800"},
+    {"@id": "doi:10.6084/m9.figshare.31942821"},
+    {"@id": "doi:10.6084/m9.figshare.31940505"},
+    {"@id": "doi:10.6084/m9.figshare.31940535"},
+    {"@id": "doi:10.6084/m9.figshare.31940370"},
+    {"@id": "doi:10.6084/m9.figshare.31940547"},
+    {"@id": "doi:10.6084/m9.figshare.31940604"}
+  ]
+}

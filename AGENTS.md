@@ -15,8 +15,8 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v3.7
-ai_packages: 126 (100% coverage)
+validation_ledger: v3.8
+ai_packages: 127 (100% coverage)
 ```
 
 | Resource | Location |
@@ -82,6 +82,7 @@ R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3 RSD slice)
 | **Spor 3** | AI/RLHF Alignment | Thermodynamic Isomorphism | 10.6084/m9.figshare.31940535 |
 | **Bridge** | Cross-Domain | Bridge Equations B1/B2 | 10.6084/m9.figshare.31940547 |
 | **Synthesis** | Civilization Map | Homo Fluxus v2.0 | 10.6084/m9.figshare.31940604 |
+| **Consolidation** | Full Programme | ΛCDM as Special Case of EFC | 10.6084/m9.figshare.31943361 |
 
 ### Regime Architecture
 
@@ -103,8 +104,8 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 119+ papers (35+ with AI-friendly packages)
-│   └── public/         # Validation Ledger (v3.7), Master Spec
+│   ├── papers/efc/     # 127 papers (127 with AI-friendly packages, 100%)
+│   └── public/         # Validation Ledger (v3.8), Master Spec
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL pipeline + kill tests
 ├── schema/             # Ontology, JSON-LD contexts (20 files)
@@ -120,9 +121,14 @@ EFC/
 
 ---
 
-## AI-Friendly Paper Packages (35+)
+## AI-Friendly Paper Packages (127)
 
-Papers with full executable Python packages (`src/`, `data/`, `examples/`):
+All 127 papers have full executable Python packages (`src/`, `data/`, `examples/`):
+
+### Consolidation
+| Paper | Module | DOI |
+|-------|--------|-----|
+| **ΛCDM as Special Case of EFC** | `lcdm_special_case.py` | 31943361 |
 
 ### Track 1–3 + Bridge + Synthesis
 | Paper | Module | DOI |
@@ -255,6 +261,11 @@ docs/papers/efc/[Paper-Name]/
 ---
 
 ## Key Publications Index
+
+### Consolidation (Start Here)
+| ID | DOI | Key Result |
+|----|-----|------------|
+| `lcdm-special-case` | 10.6084/m9.figshare.31943361 | **ΛCDM = L0/L1 limit of EFC, DESI DR2 α=−0.14±0.21, 204 pubs, 100 tests** |
 
 ### Foundational Theory
 | ID | DOI | Title |
