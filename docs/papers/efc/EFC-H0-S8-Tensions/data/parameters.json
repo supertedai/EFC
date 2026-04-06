@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for H0-S8 tension resolution model",
+  "effective_gravity": {
+    "g_n": {
+      "description": "Newton's gravitational constant (normalised)",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "beta": {
+      "description": "Entropy coupling parameter for G_eff",
+      "default": -0.02,
+      "unit": "dimensionless",
+      "constraints": "negative for late-universe suppression"
+    },
+    "formula": "G_eff(S) = G_N * (1 + beta * S)"
+  },
+  "hubble_tension": {
+    "h0_local": {
+      "description": "Local H0 measurement",
+      "default": 73.0,
+      "unit": "km/s/Mpc"
+    },
+    "h0_cmb": {
+      "description": "CMB-inferred H0",
+      "default": 67.4,
+      "unit": "km/s/Mpc"
+    },
+    "sigma_local": 1.0,
+    "sigma_cmb": 0.5
+  },
+  "s8_tension": {
+    "s8_lcdm": {
+      "description": "LCDM predicted sigma_8",
+      "default": 0.832
+    },
+    "s8_observed": {
+      "description": "Late-universe observed sigma_8",
+      "default": 0.766
+    },
+    "sigma_obs": 0.020
+  },
+  "entropy_values": {
+    "s_local": {
+      "description": "Local entropy for H0 correction",
+      "default": 5.0
+    },
+    "s_growth": {
+      "description": "Growth-era entropy for S8 correction",
+      "default": 4.0
+    }
+  }
+}

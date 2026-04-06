@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/cmb-thermodynamic-interpretation",
+  "title": "EFC CMB Thermodynamic Interpretation Schema",
+  "description": "Validation schema for CMB compatibility and null-test framework under EFC",
+  "type": "object",
+  "properties": {
+    "entropy_profile": {
+      "type": "object",
+      "properties": {
+        "S_0": {"type": "number", "description": "Entropy at z=0"},
+        "S_eq": {"type": "number", "description": "Entropy at matter-radiation equality"},
+        "alpha_S": {"type": "number", "description": "Entropy coupling strength", "minimum": 0},
+        "n_S": {"type": "number", "description": "Entropy profile exponent"}
+      },
+      "required": ["S_0", "alpha_S"]
+    },
+    "compatibility_test": {
+      "type": "object",
+      "properties": {
+        "observable": {"type": "string"},
+        "value": {"type": "number"},
+        "uncertainty": {"type": "number", "minimum": 0},
+        "within_tolerance": {"type": "boolean"}
+      },
+      "required": ["observable", "within_tolerance"]
+    },
+    "null_test": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "threshold_percent": {"type": "number", "minimum": 0},
+        "observed_deviation_percent": {"type": "number", "minimum": 0},
+        "falsified": {"type": "boolean"}
+      },
+      "required": ["name", "falsified"]
+    },
+    "prediction": {
+      "type": "object",
+      "properties": {
+        "A_L": {"type": "number", "description": "Lensing amplitude"},
+        "ISW_phase_rad": {"type": "number", "description": "ISW phase shift in radians"},
+        "theta_s_arcmin": {"type": "number", "description": "Angular sound horizon"}
+      }
+    },
+    "jwst_excess": {
+      "type": "object",
+      "properties": {
+        "z_bin": {"type": "string"},
+        "ratio_vs_lcdm": {"type": "number", "minimum": 1},
+        "ratio_vs_halo_limit": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "required": ["entropy_profile"]
+}

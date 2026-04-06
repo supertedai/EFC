@@ -1,0 +1,39 @@
+{
+  "title": "EFC Foundations Reference Data",
+  "description": "Core parameters, regime architecture, and equation definitions for the Foundations of Energy-Flow Cosmology.",
+  "core_parameters": {
+    "beta": 0.12,
+    "S_threshold": 0.1,
+    "k_ref": 1.0
+  },
+  "core_equations": [
+    {
+      "name": "Effective gravitational coupling",
+      "formula": "mu(a) = G_eff/G = 1 + beta * S(a)",
+      "description": "Scale-dependent modification of gravitational coupling via local entropy."
+    },
+    {
+      "name": "Regime Response Surface",
+      "formula": "mu(k, S) = 1 + R(k, S)",
+      "description": "Two-dimensional surface encoding regime transitions across wavenumber and entropy."
+    }
+  ],
+  "regime_architecture": {
+    "L0": {"state": "Latent", "S_range": [0.0, 0.1], "validity": "Pre-activation, entropy below threshold"},
+    "L1": {"state": "Stable Active", "S_range": [0.1, 0.4], "validity": "High confidence, reliable predictions"},
+    "L2": {"state": "Complex Active", "S_range": [0.4, 0.7], "validity": "Requires uncertainty quantification"},
+    "L3": {"state": "Residual", "S_range": [0.7, 1.0], "validity": "Historical retrieval only"}
+  },
+  "methodological_principles": [
+    "Regime-bounded inference",
+    "Pre-registration of predictions",
+    "No post-hoc parameter fitting",
+    "Causal ordering enforcement",
+    "Cross-scale consistency requirements"
+  ],
+  "related_dois": [
+    {"doi": "10.6084/m9.figshare.31112536", "title": "L0-L3 Regime Architecture"},
+    {"doi": "10.6084/m9.figshare.31047703", "title": "EBE SPARC175 Analysis"},
+    {"doi": "10.6084/m9.figshare.31127380", "title": "EFC vs DESI DR2 BAO"}
+  ]
+}

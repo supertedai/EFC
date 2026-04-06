@@ -1,0 +1,37 @@
+{
+  "title": "EFC vs Stage-III Cosmology State Assessment",
+  "short_id": "efc-state-vs-stageIII",
+  "version": "1.0.0",
+  "date": "2026-02-10",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31305550",
+  "abstract": "Stage-III cosmology update reframing EFC from tension resolution to precision structural competitor in the post-tension weak-lensing landscape.",
+  "keywords": ["Energy-Flow Cosmology", "S8 tension", "weak lensing", "Stage-III surveys", "KiDS Legacy", "HSC Y3"],
+  "efc_context": {
+    "track": "Validation Update / Stage-III Assessment",
+    "regime_relevance": "Weak-lensing landscape z ~ 0.5",
+    "epistemic_layer": "Layer B (validation and narrative update)"
+  },
+  "key_results": [
+    "EFC sigma8=0.805 matches converging Stage-III lensing (S8=0.805-0.815)",
+    "Narrative shift from tension resolution to precision competitor",
+    "SCE O-layer/M-layer protocol for observation-level testing"
+  ],
+  "file_manifest": {
+    "pdf": "efc_state_vs_stageIII.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "state_vs_stage3.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/state_vs_stage3.py"],
+    "data": "data/stage3_observations.json",
+    "demo": "examples/demo_stage3.py"
+  }
+}

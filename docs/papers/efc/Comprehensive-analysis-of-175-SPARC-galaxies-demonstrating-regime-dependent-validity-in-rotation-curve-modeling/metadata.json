@@ -1,0 +1,39 @@
+{
+  "title": "Comprehensive Analysis of 175 SPARC Galaxies Demonstrating Regime-Dependent Validity in Rotation Curve Modeling",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "corresponding": true
+    }
+  ],
+  "version": "1.0",
+  "date": "2026-01-11",
+  "doi": "10.6084/m9.figshare.31045126",
+  "license": "CC-BY-4.0",
+  "type": "empirical_analysis",
+  "series": {
+    "name": "EFC Regime Structure Series",
+    "paper_number": 1,
+    "total_papers": 3
+  },
+  "abstract": "Comprehensive regime-dependent validity analysis of 175 SPARC galaxies. Models achieve 100% success in low-complexity FLOW regime but systematically fail in high-complexity LATENT regime. Regime separation is statistically significant (Mann-Whitney U, p < 0.0001).",
+  "keywords": [
+    "galaxy rotation curves",
+    "SPARC",
+    "regime theory",
+    "model validity",
+    "complexity classification",
+    "Energy-Flow Cosmology",
+    "EFC-R"
+  ],
+  "data_source": {
+    "name": "SPARC Database",
+    "reference": "Lelli et al. (2016), AJ, 152, 157",
+    "n_galaxies": 175,
+    "n_datapoints": 3391
+  },
+  "repository": "https://github.com/supertedai/EFC",
+  "website": "https://energyflow-cosmology.com/"
+}

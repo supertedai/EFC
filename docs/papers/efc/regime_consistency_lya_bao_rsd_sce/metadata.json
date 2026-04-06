@@ -1,0 +1,39 @@
+{
+  "title": "Regime Consistency of an Entropy-Gradient Coupling: Lya, BAO and RSD Tests within a Structural Coherence Framework",
+  "short_id": "efc-regime-consistency-lya-bao-rsd-sce",
+  "version": "1.0.0",
+  "date": "2026-02-10",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31304995",
+  "abstract": "Structural regime consistency test of EFC coupling function T(z) across three independent cosmological probes (Lya P1D, BOSS BAO, BOSS RSD), evaluated using the Structural Coherence Evaluation framework against LCDM.",
+  "keywords": ["Energy-Flow Cosmology", "regime consistency", "Lya P1D", "BAO", "RSD", "BOSS DR12", "SCE", "transition function"],
+  "efc_context": {
+    "track": "Empirical Validation / Multi-regime consistency",
+    "regime_relevance": "Three regimes: growth (z~0.5), Lya (z~3), CMB (z~1100)",
+    "epistemic_layer": "Layer B (cross-regime consistency test)"
+  },
+  "key_results": [
+    "BAO: Delta_chi2 = -3.65 (EFC preferred)",
+    "RSD: Delta_chi2 = -0.25 (neutral)",
+    "BAO+RSD combined: Delta_chi2 = -3.89 (~2sigma)",
+    "Lya P1D: amplitude pull -0.27sigma, slope +0.01sigma (consistent with null)",
+    "All 3 regimes PASS, 5 forbidden patterns not triggered"
+  ],
+  "file_manifest": {
+    "pdf": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "regime_consistency.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/regime_consistency.py"],
+    "data": "data/regime_consistency_data.json",
+    "demo": "examples/demo_regime_consistency.py"
+  }
+}

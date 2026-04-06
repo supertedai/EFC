@@ -1,0 +1,65 @@
+{
+  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newton and MOND Regimes with \u039b-Locked Screening",
+  "short_id": "discrete-entropic-gravity-cubic-graph",
+  "version": "v1.0",
+  "date": "2026-02-16",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31348411",
+  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Numerically recovers Newtonian 1/r\u00b2 and MOND-like 1/r scaling, \u039b-locked regime transitions, broken superposition (13.7% violation), and the external field effect. An emergent prefactor C \u2248 2.32 yields a\u2080,eff \u2248 5.4 a\u2080, and mass scaling follows r_trans \u221d M^0.18 (vs MOND M^0.5).",
+  "keywords": [
+    "discrete gravity",
+    "cubic graph",
+    "AQUAL",
+    "MOND",
+    "entropic gravity",
+    "\u039b-locking",
+    "cosmological constant",
+    "graph topology",
+    "Newtonian limit",
+    "external field effect",
+    "modified gravity",
+    "EFC"
+  ],
+  "efc_context": {
+    "track": "Track 1 (Galactic/Cosmological)",
+    "regime_relevance": "Galactic-scale gravity; Newton-to-MOND transition on discrete graph",
+    "epistemic_layer": "Layer B (numerical construction)"
+  },
+  "key_results": [
+    "Newton slope recovery: -2.00; MOND slope recovery: -0.99 to -1.01",
+    "Emergent prefactor C = 2.32, giving a0_eff = C^2 * a0 ~ 5.4 a0",
+    "Mass-scaling exponent 0.18 +/- 0.03 (structural departure from MOND 0.5)",
+    "Broken superposition: 13.7% violation",
+    "External field effect confirmed on cubic graph"
+  ],
+  "file_manifest": {
+    "pdf": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_\u039b-Locked_Screening.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "DiscreteEntropicGravity.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/cubic_graph.py",
+      "src/aqual_operator.py",
+      "src/lambda_screening.py",
+      "src/kill_tests.py",
+      "src/growth_check.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/kill_test_results.json",
+      "data/convergence_table.json"
+    ],
+    "demo": [
+      "examples/run_kill_tests.py",
+      "examples/prefactor_convergence.py"
+    ]
+  }
+}

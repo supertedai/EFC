@@ -1,0 +1,21 @@
+{
+  "description": "Sample temporal profile data for the Energy Flow and the Now model",
+  "parameters": {
+    "S_max": 1.0,
+    "tau": 1.0
+  },
+  "time_series": [
+    {"t": -5.0, "S": 0.0067, "dS_dt": 0.0066, "now_intensity": 0.0000},
+    {"t": -4.0, "S": 0.0180, "dS_dt": 0.0177, "now_intensity": 0.0003},
+    {"t": -3.0, "S": 0.0474, "dS_dt": 0.0452, "now_intensity": 0.0021},
+    {"t": -2.0, "S": 0.1192, "dS_dt": 0.1050, "now_intensity": 0.0125},
+    {"t": -1.0, "S": 0.2689, "dS_dt": 0.1966, "now_intensity": 0.0529},
+    {"t":  0.0, "S": 0.5000, "dS_dt": 0.2500, "now_intensity": 0.1250},
+    {"t":  1.0, "S": 0.7311, "dS_dt": 0.1966, "now_intensity": 0.1437},
+    {"t":  2.0, "S": 0.8808, "dS_dt": 0.1050, "now_intensity": 0.0925},
+    {"t":  3.0, "S": 0.9526, "dS_dt": 0.0452, "now_intensity": 0.0430},
+    {"t":  4.0, "S": 0.9820, "dS_dt": 0.0177, "now_intensity": 0.0174},
+    {"t":  5.0, "S": 0.9933, "dS_dt": 0.0066, "now_intensity": 0.0066}
+  ],
+  "notes": "The Now intensity peaks near t=1, where both entropy and its gradient are significant."
+}

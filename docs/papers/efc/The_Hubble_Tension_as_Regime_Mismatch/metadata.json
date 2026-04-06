@@ -1,0 +1,46 @@
+{
+  "title": "The Hubble Tension as Regime Mismatch: Background Gravity vs Structure Gravity in Energy-Flow Cosmology",
+  "short_id": "hubble-tension-regime-mismatch",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31224247",
+  "abstract": "Proposes that the Hubble tension arises from regime mismatch: early-universe probes measure background gravity G_0, while late-universe probes operate in structure-dominated environments with G_eff not equal to G_0. Predicts H0_structure = 73 km/s/Mpc exactly.",
+  "keywords": [
+    "Hubble tension",
+    "regime-dependent gravity",
+    "entropic gravity",
+    "background vs structure",
+    "EFC",
+    "environment-effective theory"
+  ],
+  "efc_context": {
+    "track": "research_paper",
+    "regime_relevance": "background vs structure gravity regimes",
+    "epistemic_layer": "B"
+  },
+  "key_results": [
+    {"prediction": "H0_structure", "value": 73.0, "unit": "km/s/Mpc", "agreement": "exact"},
+    {"parameter": "a_G", "value": 0.094},
+    {"parameter": "H0_ratio", "value": 1.083}
+  ],
+  "file_manifest": {
+    "README.md": "Documentation",
+    "CITATION.cff": "Citation metadata",
+    "LICENSE": "CC-BY-4.0 license",
+    "index.json": "Machine-readable metadata",
+    "The_Hubble_Tension_as_Regime_Mismatch.pdf": "Original paper",
+    "schema.json": "JSON Schema",
+    "metadata.json": "This file",
+    "hubble_tension_regime_mismatch.jsonld": "Linked data",
+    "citations.bib": "BibTeX references",
+    "src/": "Source code",
+    "data/": "Data files",
+    "examples/": "Example scripts"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Phenomenological constraints on entropy-flow modifications to expansion and growth from BOSS DR12",
+  "short_id": "efc-phenomenological-boss-dr12",
+  "version": "1.0",
+  "date": "2026-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31243828",
+  "abstract": "Single-parameter phenomenological extension of LCDM motivated by EFC, where entropy-gradient couplings at structure-formation scale modify both background expansion and linear growth rate. Best-fit alpha_L2 = 0.35 +/- 0.16 with Delta-chi-squared = 3.01 (1.7-sigma preference). BAO-RSD sign conflict reflects S8 tension in EFC parameter space.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "BOSS DR12",
+    "BAO",
+    "RSD",
+    "growth rate",
+    "S8 tension",
+    "phenomenological constraints",
+    "gravitational slip"
+  ],
+  "efc_context": {
+    "track": "empirical_validation",
+    "regime_relevance": "entropy-flow modifications to expansion and growth",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {"parameter": "alpha_L2", "value": 0.34, "error": 0.16, "significance": "1.7-sigma"},
+    {"metric": "delta_chi2", "value": 3.01},
+    {"prediction": "gravitational slip eta = 1", "testable_with": "Euclid, Vera C. Rubin Observatory"}
+  ],
+  "file_manifest": {
+    "README.md": "Documentation",
+    "CITATION.cff": "Citation metadata",
+    "LICENSE": "CC-BY-4.0 license",
+    "index.json": "Machine-readable metadata",
+    "efc_phenomenology_paper.pdf": "Original paper",
+    "schema.json": "JSON Schema",
+    "metadata.json": "This file",
+    "efc_phenomenology_boss_dr12.jsonld": "Linked data",
+    "citations.bib": "BibTeX references",
+    "src/": "Source code",
+    "data/": "Data files",
+    "examples/": "Example scripts"
+  }
+}

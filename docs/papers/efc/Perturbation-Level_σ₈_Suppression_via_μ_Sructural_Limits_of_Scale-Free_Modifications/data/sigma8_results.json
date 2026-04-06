@@ -1,0 +1,57 @@
+{
+  "paper": "Perturbation-Level sigma_8 Suppression via mu(a) < 1",
+  "date": "2026-02-13",
+  "doi": "10.6084/m9.figshare.31333600",
+  "cosmology": {
+    "Omega_m": 0.3134,
+    "H0": 67.4,
+    "sigma_8_lcdm": 0.811
+  },
+  "reference_model_WP1a": {
+    "A": 0.0,
+    "B": 0.187,
+    "n": 2,
+    "z_t": 1.01,
+    "mu_0": 0.85,
+    "sigma_8": 0.773,
+    "S_8": 0.790,
+    "gap_closed_percent": 73,
+    "planck_mu0_status": "~1.5 sigma",
+    "delta_chi2_RSD": -19.8
+  },
+  "b_sweep": [
+    {"B": 0.000, "mu_0": 1.000, "sigma_8": 0.811, "S_8": 0.829, "chi2_RSD": 65.3},
+    {"B": 0.050, "mu_0": 0.951, "sigma_8": 0.805, "S_8": 0.823, "chi2_RSD": 61.7},
+    {"B": 0.100, "mu_0": 0.902, "sigma_8": 0.799, "S_8": 0.816, "chi2_RSD": 58.2},
+    {"B": 0.150, "mu_0": 0.852, "sigma_8": 0.792, "S_8": 0.810, "chi2_RSD": 54.8},
+    {"B": 0.200, "mu_0": 0.803, "sigma_8": 0.786, "S_8": 0.804, "chi2_RSD": 51.5},
+    {"B": 0.250, "mu_0": 0.754, "sigma_8": 0.780, "S_8": 0.797, "chi2_RSD": 48.3},
+    {"B": 0.300, "mu_0": 0.705, "sigma_8": 0.774, "S_8": 0.791, "chi2_RSD": 45.2}
+  ],
+  "universal_factor_2": [
+    {"mu_0": 0.913, "delta_sigma8_n6": -0.011, "delta_sigma8_n2": -0.022, "ratio": 2.01},
+    {"mu_0": 0.850, "delta_sigma8_n6": -0.019, "delta_sigma8_n2": -0.038, "ratio": 2.00},
+    {"mu_0": 0.800, "delta_sigma8_n6": -0.025, "delta_sigma8_n2": -0.050, "ratio": 2.00}
+  ],
+  "s8_gap_closure": {
+    "planck_S8": 0.834,
+    "planck_S8_error": 0.016,
+    "lensing_S8": 0.776,
+    "lensing_S8_error": 0.017,
+    "gap": 0.052,
+    "closure_table": [
+      {"mu_0": 0.913, "n": 6, "sigma_8": 0.800, "gap_closed_percent": 21, "planck_status": "OK"},
+      {"mu_0": 0.913, "n": 2, "sigma_8": 0.789, "gap_closed_percent": 43, "planck_status": "OK"},
+      {"mu_0": 0.850, "n": 3, "sigma_8": 0.784, "gap_closed_percent": 52, "planck_status": "~1.5 sigma"},
+      {"mu_0": 0.850, "n": 2, "sigma_8": 0.773, "gap_closed_percent": 73, "planck_status": "~1.5 sigma"},
+      {"mu_0": 0.800, "n": 2, "sigma_8": 0.761, "gap_closed_percent": 97, "planck_status": "2 sigma"}
+    ]
+  },
+  "key_conclusions": [
+    "Background (A) and perturbation (B) channels are non-degenerate",
+    "Temporal support matters more than instantaneous amplitude: universal factor-2",
+    "Scale-free mu(a) has structural ceiling: ~43% S8 closure within Planck 1-sigma",
+    "73% amelioration at ~1.5 sigma with reference model (mu_0=0.85, n=2)",
+    "Full resolution requires scale dependence mu(k,a) or combined channel"
+  ]
+}

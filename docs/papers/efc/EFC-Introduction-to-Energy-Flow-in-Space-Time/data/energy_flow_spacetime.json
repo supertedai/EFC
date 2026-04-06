@@ -1,0 +1,37 @@
+{
+  "paper_id": "EFC-Introduction-to-Energy-Flow-in-Space-Time",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "grid_resistance": {
+      "symbol": "R",
+      "default": 0.01,
+      "unit": "dimensionless",
+      "description": "Grid-level resistance to energy propagation in spacetime"
+    },
+    "flux_magnitude": {
+      "symbol": "J",
+      "default": 1e10,
+      "unit": "J m^-2 s^-1",
+      "description": "Energy flux magnitude"
+    },
+    "speed_of_light": {
+      "symbol": "c",
+      "value": 2.998e8,
+      "unit": "m/s"
+    }
+  },
+  "equations": {
+    "effective_flux": "J_eff = J / (1 + R)",
+    "momentum_density": "p = J / c^2",
+    "information_speed": "v_info = c / (1 + R)",
+    "entropy_gradient": "nabla S = (S[i+1] - S[i-1]) / (2 dx)",
+    "continuity": "div J = -dE/dt"
+  },
+  "key_concepts": [
+    "Energy flow as the fundamental spacetime driver",
+    "Grid resistance modulates propagation",
+    "Entropy gradient drives flow direction",
+    "Information speed bounded by c/(1+R)",
+    "Structure from flow convergence"
+  ]
+}

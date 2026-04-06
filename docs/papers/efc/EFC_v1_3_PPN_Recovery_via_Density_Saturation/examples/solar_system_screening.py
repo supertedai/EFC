@@ -8,8 +8,8 @@ experimental bounds in the Solar System through dual screening.
 Reference: Magnusson (2026), DOI: 10.6084/m9.figshare.31244827
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.efc_ppn_screening import (
     AccelerationScreening,
     DensityScreening,

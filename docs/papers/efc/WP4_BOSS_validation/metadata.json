@@ -1,0 +1,48 @@
+{
+  "title": "Independent Validation of Energy-Flow Cosmology BAO Predictions: Cross-Survey Transfer from DESI DR2 to BOSS DR12",
+  "short_id": "wp4-boss-validation",
+  "version": "1.0",
+  "date": "2026-02-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31231522",
+  "abstract": "Independent validation of EFC using BOSS DR12 BAO data. DESI best-fit parameters (z_L1L2 = 1.01, alpha_L2 = 0.045) reduce BOSS chi-squared from 20.83 to 13.06 (Delta-chi-squared = -7.77) without refitting. Robustness confirmed under diagonal covariance and eigenmode analysis.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "BOSS DR12",
+    "BAO",
+    "transfer test",
+    "cross-validation",
+    "regime gating",
+    "Hubble rate"
+  ],
+  "efc_context": {
+    "track": "empirical_validation",
+    "regime_relevance": "cross-survey transfer from DESI DR2 to BOSS DR12",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {"test": "Transfer test (no refit)", "delta_chi2": -7.77, "status": "Transfer supported"},
+    {"test": "Diagonal covariance", "delta_chi2": -4.24, "status": "Improvement persists"},
+    {"test": "Eigenmode analysis", "low_lambda_gain": -5.50, "high_lambda_gain": -2.27}
+  ],
+  "file_manifest": {
+    "README.md": "Documentation",
+    "CITATION.cff": "Citation metadata",
+    "LICENSE": "CC-BY-4.0 license",
+    "index.json": "Machine-readable metadata",
+    "WP4_BOSS_validation.pdf": "Original paper",
+    "schema.json": "JSON Schema",
+    "metadata.json": "This file",
+    "wp4_boss_validation.jsonld": "Linked data",
+    "citations.bib": "BibTeX references",
+    "src/": "Source code",
+    "data/": "Data files",
+    "examples/": "Example scripts"
+  }
+}

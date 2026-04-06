@@ -1,0 +1,131 @@
+{
+  "paper": {
+    "title": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework",
+    "doi": "10.6084/m9.figshare.31064929",
+    "version": "1.0"
+  },
+
+  "causal_chain": {
+    "description": "JWST -> S(z) -> CMB consequences",
+    "constraints": [
+      "No parameter fitting",
+      "No circular inference",
+      "Causal ordering enforced"
+    ]
+  },
+
+  "efc_parameters": [
+    {
+      "symbol": "S_0",
+      "name": "Entropy at z=0",
+      "constraint_source": "SPARC rotation curves",
+      "value": 1.0,
+      "unit": "dimensionless (normalized)"
+    },
+    {
+      "symbol": "S_eq",
+      "name": "Entropy at matter-radiation equality",
+      "constraint_source": "CMB peak structure"
+    },
+    {
+      "symbol": "alpha_S",
+      "name": "Entropy coupling strength",
+      "constraint_source": "JWST sSFR correlation",
+      "value": 0.5
+    },
+    {
+      "symbol": "n_S",
+      "name": "Entropy profile exponent",
+      "constraint_source": "Cross-scale consistency",
+      "value": 1.5
+    }
+  ],
+
+  "compatibility_constraints": [
+    {
+      "observable": "theta_s",
+      "value": 100.09,
+      "uncertainty": 0.30,
+      "unit": "arcmin",
+      "source": "Planck 2018",
+      "requirement": "within uncertainty"
+    },
+    {
+      "observable": "peak_ratio_R",
+      "value": 0.42,
+      "uncertainty": 0.05,
+      "requirement": "within 2-sigma"
+    },
+    {
+      "observable": "damping_lD",
+      "requirement": "standard Silk damping form"
+    },
+    {
+      "observable": "TE_EE_correlation",
+      "requirement": "positive sign preserved"
+    }
+  ],
+
+  "null_tests": [
+    {
+      "id": "NT1",
+      "name": "peak_position_invariance",
+      "criterion": "theta_s within 0.5%",
+      "threshold_percent": 0.5,
+      "reference_value": 100.09,
+      "falsification": "deviation > 0.5%"
+    },
+    {
+      "id": "NT2",
+      "name": "damping_consistency",
+      "criterion": "l_D within 5%",
+      "threshold_percent": 5.0,
+      "reference_value": 1050,
+      "falsification": "systematic deviation > 5%"
+    },
+    {
+      "id": "NT3",
+      "name": "lensing_growth_consistency",
+      "criterion": "A_L in 0.9-0.95",
+      "A_L_range": [0.9, 0.95],
+      "falsification": "A_L >= 1.0 at high significance"
+    }
+  ],
+
+  "prediction_zones": [
+    {
+      "id": "PZ1",
+      "observable": "A_L",
+      "prediction": "< 1.0",
+      "predicted_range": [0.9, 0.95],
+      "mechanism": "smoother halos from entropy-modified structure formation"
+    },
+    {
+      "id": "PZ2",
+      "observable": "ISW_phase_shift",
+      "prediction": "0.01-0.1 rad at l > 1000",
+      "mechanism": "energy-flow coupling to potential evolution"
+    },
+    {
+      "id": "PZ3",
+      "observable": "C_l_phiphi",
+      "prediction": "z-dependent at high l",
+      "mechanism": "entropy gradient evolution"
+    }
+  ],
+
+  "jwst_excess": {
+    "source": "JWST/COSMOS-Web",
+    "sample_size": 26288,
+    "redshift_range": "z > 5",
+    "chi2": 47.3,
+    "df": 4,
+    "p_value": "<1e-9",
+    "bins": [
+      {"z_bin": "5-6", "ratio_vs_lcdm": 23, "ratio_vs_halo_limit": 3.1, "status": "within baryonic physics"},
+      {"z_bin": "7-8", "ratio_vs_lcdm": 124, "ratio_vs_halo_limit": 7.7, "status": "exceeds standard models"},
+      {"z_bin": "8-9", "ratio_vs_lcdm": 259, "ratio_vs_halo_limit": 10.4, "status": "exceeds epsilon=1 limit"},
+      {"z_bin": "9-10", "ratio_vs_lcdm": 529, "ratio_vs_halo_limit": 10.6, "status": "exceeds epsilon=1 limit"}
+    ]
+  }
+}

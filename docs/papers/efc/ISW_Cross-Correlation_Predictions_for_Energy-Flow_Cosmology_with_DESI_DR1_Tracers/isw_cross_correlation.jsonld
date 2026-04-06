@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31301953",
+  "name": "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers",
+  "headline": "Cancellation metric quantifies ISW suppression from EFC transition kernel",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "keywords": ["ISW effect", "CMB cross-correlation", "DESI", "cancellation metric"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ISWKernel",
+      "name": "ISW Kernel Decomposition",
+      "description": "K(a) = K_mu + K_mu_prime, with opposite-sign contributions near z_t"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:CancellationMetric",
+      "name": "Cancellation Metric C",
+      "description": "Quantifies degree of opposite-sign cancellation in ISW signal"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

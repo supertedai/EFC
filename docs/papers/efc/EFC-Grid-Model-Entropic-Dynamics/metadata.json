@@ -1,0 +1,46 @@
+{
+  "title": "EFC \u2014 Grid Model for Entropic Dynamics",
+  "short_id": "efc-grid-model-entropic-dynamics",
+  "version": "v1.0",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "abstract": "Describes how entropic dynamics emerge from the interaction between the Grid field, the entropy field S, and the energy-flow field Ef. Explains how local and global structure form through gradients, resistance, and distributed energy propagation.",
+  "keywords": [
+    "EFC",
+    "grid model",
+    "entropic dynamics",
+    "energy flow",
+    "entropy gradient",
+    "dynamic structure",
+    "grid field",
+    "spacetime resistance"
+  ],
+  "efc_context": {
+    "track": "Fundamental Theory",
+    "regime_relevance": "Entropic dynamics from grid-entropy-flow interaction",
+    "epistemic_layer": "Layer A (theoretical foundation)"
+  },
+  "key_results": [
+    "Entropic dynamics emerge from Grid-S-Ef field interaction",
+    "Local structure forms through entropy gradient topology",
+    "Global structure from distributed energy propagation and resistance",
+    "Dynamic equilibrium between flow and entropy production"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-Grid-Model-Entropic-Dynamics.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-Grid-Model-Entropic-Dynamics.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/entropic_dynamics.py"],
+    "data": "data/parameters.json",
+    "demo": "examples/demo_entropic_dynamics.py"
+  }
+}

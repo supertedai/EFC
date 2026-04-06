@@ -1,0 +1,35 @@
+{
+  "title": "Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions in COSMOS-Web",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "corresponding": true
+    }
+  ],
+  "version": "1.0",
+  "date": "2026",
+  "doi": "10.6084/m9.figshare.31059964",
+  "license": "CC-BY-4.0",
+  "type": "observational_analysis",
+  "abstract": "8,447 massive galaxies (log M*/Msun > 9) at z > 5 from COSMOS-Web exceed LCDM halo-limited predictions. Observed galaxy abundances at z > 6 significantly exceed halo mass function predictions with excess factors growing monotonically with redshift.",
+  "keywords": [
+    "COSMOS-Web",
+    "high-z galaxies",
+    "galaxy abundances",
+    "JWST",
+    "stellar mass function",
+    "halo mass function",
+    "early universe"
+  ],
+  "data_source": {
+    "catalog": "COSMOS2025 (Shuntov et al. 2025)",
+    "survey": "JWST COSMOS-Web DR1",
+    "sample_size": 8447,
+    "mass_cut": "log M*/Msun > 9",
+    "redshift_range": "z > 5"
+  },
+  "repository": "https://github.com/supertedai/EFC",
+  "website": "https://energyflow-cosmology.com/"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "EFC-R-SPARC-Regime-Validity",
+  "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "version": "1.0",
+  "type": "paper",
+  "domain": "cosmology",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Dark Matter Alternatives",
+    "Galaxy Rotation Curves",
+    "SPARC",
+    "Regime Theory",
+    "Non-equilibrium Dynamics",
+    "EFC-R"
+  ],
+  "description": "Analysis of 20 SPARC galaxies using EFC, developing EFC-R: a meta-framework for regime-dependent validity via E_total = E_flow + E_latent decomposition.",
+  "created": "2026-04-06",
+  "files": {
+    "source_module": "src/sparc_regime.py",
+    "data": "data/sparc_regime.json",
+    "demo": "examples/demo_sparc_regime.py"
+  }
+}

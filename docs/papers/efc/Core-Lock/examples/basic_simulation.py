@@ -8,12 +8,12 @@ Demonstrates the grid state function and beta constraint verification.
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add package root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from grid_state_function import GridStateFunction
-from beta_constraint import BetaConstraint
-from simulation import CoreLockSimulation, run_verification
+from src.grid_state_function import GridStateFunction
+from src.beta_constraint import BetaConstraint
+from src.simulation import CoreLockSimulation, run_verification
 
 
 def main():

@@ -1,0 +1,44 @@
+{
+  "title": "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers",
+  "short_id": "isw-cross-correlation-desi-dr1",
+  "version": "1.0.0",
+  "date": "2026",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31301953",
+  "abstract": "Computes ISW-galaxy cross-correlation C_l^Tg for EFC using linear perturbation theory, introducing the cancellation metric C to quantify opposite-sign contributions from standard and transition kernels.",
+  "keywords": [
+    "integrated Sachs-Wolfe effect",
+    "ISW",
+    "CMB cross-correlation",
+    "DESI",
+    "modified gravity",
+    "large-scale structure"
+  ],
+  "efc_context": {
+    "track": "Perturbation Theory / ISW",
+    "regime_relevance": "Transition redshift z_t = 0.82 overlap with DESI tracers",
+    "epistemic_layer": "Layer B (prediction with falsification criterion)"
+  },
+  "key_results": [
+    "Cancellation metric C increases monotonically with tracer z_eff overlap with z_t",
+    "EFC predicts A_ISW = 0.29-0.56 vs LCDM A_ISW = 1.0",
+    "Kernel decomposition shows opposite-sign K_mu and K_mu_prime near z_t"
+  ],
+  "file_manifest": {
+    "pdf": "ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "isw_cross_correlation.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/isw_cross_correlation.py"],
+    "data": "data/isw_predictions.json",
+    "demo": "examples/demo_isw.py"
+  }
+}

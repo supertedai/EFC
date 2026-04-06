@@ -1,0 +1,21 @@
+{
+  "description": "Evolution of the effective gravitational coupling mu(a) across cosmic time",
+  "parameters": {
+    "beta": 0.16,
+    "a_t": 0.55,
+    "sigma": 0.10,
+    "S_inf": 1.0
+  },
+  "evolution": [
+    {"z": 1100, "a": 0.0009, "S": 0.0000, "mu": 1.0000, "regime": "L0"},
+    {"z": 10.0, "a": 0.0909, "S": 0.0000, "mu": 1.0000, "regime": "L0"},
+    {"z": 3.00, "a": 0.2500, "S": 0.0000, "mu": 1.0000, "regime": "L0"},
+    {"z": 1.50, "a": 0.4000, "S": 0.0001, "mu": 1.0000, "regime": "L0"},
+    {"z": 1.00, "a": 0.5000, "S": 0.0378, "mu": 1.0060, "regime": "L1"},
+    {"z": 0.82, "a": 0.5495, "S": 0.5000, "mu": 1.0800, "regime": "L2"},
+    {"z": 0.50, "a": 0.6667, "S": 0.9741, "mu": 1.1559, "regime": "L3"},
+    {"z": 0.30, "a": 0.7692, "S": 0.9985, "mu": 1.1598, "regime": "L3"},
+    {"z": 0.00, "a": 1.0000, "S": 1.0000, "mu": 1.1600, "regime": "L3"}
+  ],
+  "notes": "Transition is sharp (sigma=0.10) at z_t ~ 0.82. GR is recovered at early times."
+}

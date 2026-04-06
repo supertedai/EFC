@@ -1,0 +1,35 @@
+{
+  "paper_id": "EFC-Integrated-Hypothesis-Time-Entropy",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "grid_resistance": {
+      "symbol": "R",
+      "default": 0.01,
+      "unit": "dimensionless",
+      "description": "Grid-level resistance modulating local time tick rate"
+    },
+    "entropy_rate": {
+      "symbol": "dS/dt",
+      "unit": "J K^-1 s^-1",
+      "description": "Local entropy production rate"
+    },
+    "boltzmann_constant": {
+      "symbol": "k_B",
+      "value": 1.380649e-23,
+      "unit": "J/K"
+    }
+  },
+  "equations": {
+    "arrow_of_time": "sign(dS/dt) > 0",
+    "tick_rate": "tau_dot = |dS/dt| / (1 + R)",
+    "time_dilation": "gamma_local = tau_dot_local / tau_dot_ref",
+    "causality_condition": "S(t2) >= S(t1) for t2 > t1"
+  },
+  "key_concepts": [
+    "Time emerges from entropy gradients",
+    "Causality requires monotonic entropy increase",
+    "Grid resistance modulates local tick rate",
+    "Arrow of time equals direction of entropy production",
+    "Temporal ordering from energy-flow directionality"
+  ]
+}

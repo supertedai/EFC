@@ -1,0 +1,15 @@
+{
+  "paper_id": "EFC-Can-Entropy-Drive-Cosmic-Evolution",
+  "epochs": [
+    {"name": "Radiation era", "time_s": 1.0, "entropy_density": 1e12, "process": "Photon entropy dominance"},
+    {"name": "Recombination", "time_s": 1.2e13, "entropy_density": 1e8, "process": "Entropy gradient freeze-out"},
+    {"name": "Structure formation", "time_s": 1e16, "entropy_density": 1e4, "process": "Gravitational entropy channelling"},
+    {"name": "Present", "time_s": 4.35e17, "entropy_density": 1e2, "process": "Stellar/BH entropy production"}
+  ],
+  "gradients": [
+    {"label": "Primordial", "magnitude": 1e10, "scale_m": 1e22},
+    {"label": "Cluster-scale", "magnitude": 1e4, "scale_m": 1e23},
+    {"label": "Void-filament boundary", "magnitude": 1e2, "scale_m": 1e24}
+  ],
+  "key_claim": "Entropy gradients and thermodynamic imbalances alone can generate and sustain cosmic structure"
+}

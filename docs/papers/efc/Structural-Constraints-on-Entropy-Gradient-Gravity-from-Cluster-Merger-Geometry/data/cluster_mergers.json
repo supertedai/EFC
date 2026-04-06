@@ -1,0 +1,49 @@
+{
+  "description": "Cluster merger data for entropy-gradient gravity constraint tests",
+  "parameters": {
+    "L0_kpc": 200,
+    "w_collisionless": 20,
+    "eta": 66.2
+  },
+  "clusters": [
+    {
+      "name": "Bullet Cluster",
+      "M_total_1e14": 15.0,
+      "R_core_kpc": 250,
+      "v_merger_km_s": 4700,
+      "separation_kpc": 720,
+      "w_pred": 20.0,
+      "L0_kpc": 200,
+      "status": "calibration"
+    },
+    {
+      "name": "MACS J0025",
+      "M_total_1e14": 8.0,
+      "R_core_kpc": 150,
+      "v_merger_km_s": 3000,
+      "separation_kpc": 400,
+      "w_pred": 23.9,
+      "L0_kpc": 120,
+      "status": "PASS (synthetic)"
+    },
+    {
+      "name": "Abell 520",
+      "M_total_1e14": 12.0,
+      "R_core_kpc": 200,
+      "v_merger_km_s": 2500,
+      "separation_kpc": 600,
+      "w_pred": 28.2,
+      "L0_kpc": 160,
+      "status": "PASS geometry (synthetic)"
+    }
+  ],
+  "key_results": {
+    "BC-001": "Local gradient coupling falsified: 0/42 parameter combinations pass",
+    "BC-002": "Required: non-local L0~200 kpc, collisionless w~20",
+    "BC-003": "Predictive model with eta=66.2"
+  },
+  "limitations": [
+    "Synthetic kappa-maps, not real FITS data",
+    "Predictions await validation against real lensing observations"
+  ]
+}

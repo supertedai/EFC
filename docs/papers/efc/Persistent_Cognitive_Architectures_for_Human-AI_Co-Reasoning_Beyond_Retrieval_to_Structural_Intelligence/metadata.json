@@ -1,0 +1,47 @@
+{
+  "title": "Persistent Cognitive Architectures for Human-AI Co-Reasoning: Beyond Retrieval to Structural Intelligence",
+  "short_id": "symbiose-cognitive-architecture",
+  "version": "1.0",
+  "date": "2026-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31271707",
+  "abstract": "While retrieval-augmented generation (RAG) enables large language models to access external knowledge, it remains fundamentally reactive and stateless. We present Symbiose, a cognitive architecture that combines graph-based causal reasoning, temporal pattern recognition, and proactive autonomy to enable persistent, evolving collaboration between humans and AI. Components are integrated through Quantum Leap (QL), a persistent cognitive orchestration layer. Every response is tagged via an L0-L3 epistemic framework distinguishing canonical facts from LLM-generated hypotheses.",
+  "keywords": [
+    "Human-AI collaboration",
+    "cognitive architecture",
+    "knowledge graphs",
+    "causal reasoning",
+    "persistent memory",
+    "proactive autonomy",
+    "Quantum Leap",
+    "epistemic framework"
+  ],
+  "efc_context": {
+    "track": "methodology",
+    "regime_relevance": "cognitive architecture for EFC research",
+    "epistemic_layer": "infrastructure"
+  },
+  "key_results": [
+    {"metric": "Causal reasoning accuracy", "symbiose": 0.94, "gpt4_zero_shot": 0.76, "rag_alone": 0.68},
+    {"metric": "Memory query speedup", "factor": 14},
+    {"metric": "Proactive suggestion acceptance rate", "value": 0.735}
+  ],
+  "file_manifest": {
+    "README.md": "Documentation",
+    "CITATION.cff": "Citation metadata",
+    "LICENSE": "CC-BY-4.0 license",
+    "index.json": "Machine-readable metadata",
+    "schema.json": "JSON Schema",
+    "metadata.json": "This file",
+    "symbiose_cognitive_architecture.jsonld": "Linked data",
+    "citations.bib": "BibTeX references",
+    "src/": "Source code",
+    "data/": "Data files",
+    "examples/": "Example scripts"
+  }
+}

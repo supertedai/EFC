@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for energy-entropy interrelation model",
+  "unified_field": {
+    "ef_0": {
+      "description": "Initial energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    },
+    "s_0": {
+      "description": "Initial (reference) entropy value",
+      "default": 1.0,
+      "unit": "entropy units"
+    },
+    "formula": "Ef(S) = Ef_0 - kappa * (S - S_0)^2 / 2"
+  },
+  "coupling": {
+    "kappa": {
+      "description": "Primary energy-entropy coupling constant",
+      "default": 0.5,
+      "unit": "dimensionless"
+    },
+    "mu": {
+      "description": "Secondary nonlinear coupling parameter",
+      "default": 0.1,
+      "unit": "dimensionless"
+    },
+    "formula_coupling": "K_eff(S) = kappa * (1 + mu * S)",
+    "formula_feedback": "dS/dt = kappa * Ef * |grad_S|"
+  },
+  "information_bound": {
+    "formula": "v_info <= sqrt(sigma_s / kappa)",
+    "description": "Information propagation bounded by entropy production"
+  },
+  "simulation": {
+    "dt": 0.01,
+    "n_steps": 100,
+    "grad_s": 0.3
+  }
+}

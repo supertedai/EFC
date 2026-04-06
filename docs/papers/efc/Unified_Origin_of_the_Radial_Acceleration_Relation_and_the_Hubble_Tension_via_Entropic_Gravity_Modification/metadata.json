@@ -1,0 +1,60 @@
+{
+  "title": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
+  "short_id": "H0-RAR-Unification",
+  "version": "v1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31223908",
+  "abstract": "Identifies a common origin for the Hubble tension and the Radial Acceleration Relation (RAR) via entropy-driven gravity modification. Predicts H_0 ~ 73.9 km/s/Mpc from galaxy rotation data, matching the SH0ES measurement to 1.2%. The MOND acceleration scale a_G is recovered with agreement within 14%.",
+  "keywords": [
+    "Hubble tension",
+    "radial acceleration relation",
+    "entropic gravity",
+    "H0 prediction",
+    "MOND",
+    "galaxy rotation curves",
+    "entropy-driven modification",
+    "unification"
+  ],
+  "efc_context": {
+    "track": "Track 1",
+    "regime_relevance": "Unifies galactic-scale RAR with cosmological H0 tension through entropy-driven gravity modification",
+    "epistemic_layer": "Layer B (empirical prediction)"
+  },
+  "key_results": [
+    "H_0 ~ 73.9 km/s/Mpc predicted from galaxy rotation data (1.2% match to SH0ES)",
+    "Common entropy-driven origin for Hubble tension and RAR",
+    "MOND acceleration scale a_G recovered within 14% agreement",
+    "Cross-scale unification linking kpc dynamics to Gpc expansion"
+  ],
+  "file_manifest": {
+    "pdf": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "H0Unification.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/entropy_mapping.py",
+      "src/h0_predictor.py",
+      "src/mond_interpolation.py",
+      "src/phase_calculator.py",
+      "src/unification.py"
+    ],
+    "data": [
+      "data/h0_measurements.json",
+      "data/mond_table.json",
+      "data/parameters.json"
+    ],
+    "demo": [
+      "examples/h0_prediction.py",
+      "examples/unification_demo.py"
+    ]
+  }
+}

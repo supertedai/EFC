@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/symbiotic-insight-framework/schema.json",
+  "title": "Symbiotic Insight Framework (SIF) Schema",
+  "description": "JSON Schema for the Symbiotic Insight Framework, a structural methodology for high-velocity scientific reasoning.",
+  "type": "object",
+  "properties": {
+    "insight_event": {
+      "type": "object",
+      "description": "A discrete insight event in the human-AI coupled process",
+      "properties": {
+        "id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "source": {"type": "string", "enum": ["human", "computational", "coupled"]},
+        "domain": {"type": "string"},
+        "content": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "cross_domain_links": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["id", "source", "content"]
+    },
+    "stabilization_record": {
+      "type": "object",
+      "description": "Record of insight stabilization by the computational system",
+      "properties": {
+        "insight_id": {"type": "string"},
+        "stabilized_form": {"type": "string", "enum": ["structured_note", "hypothesis", "equation", "dataset", "publication_draft"]},
+        "verification_status": {"type": "string", "enum": ["raw", "structured", "verified", "published"]},
+        "preservation_location": {"type": "string"}
+      },
+      "required": ["insight_id", "stabilized_form"]
+    },
+    "velocity_metric": {
+      "type": "object",
+      "description": "Metrics for insight production velocity",
+      "properties": {
+        "insights_per_session": {"type": "number", "minimum": 0},
+        "cross_domain_connections": {"type": "integer", "minimum": 0},
+        "stabilization_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "session_duration_hours": {"type": "number", "minimum": 0}
+      }
+    },
+    "coupled_process": {
+      "type": "object",
+      "description": "The coupled human-computational reasoning process",
+      "properties": {
+        "human_role": {"type": "string", "description": "Generates parallel conceptual fields at high speed"},
+        "computational_role": {"type": "string", "description": "Stabilises, structures and preserves conceptual fields"},
+        "interaction_mode": {"type": "string", "enum": ["synchronous", "asynchronous", "hybrid"]},
+        "feedback_loop": {"type": "boolean"}
+      }
+    }
+  },
+  "efc_analysis_type": "meta_systems",
+  "framework": "symbiotic_insight_framework"
+}

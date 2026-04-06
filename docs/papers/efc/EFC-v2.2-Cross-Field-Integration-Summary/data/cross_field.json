@@ -1,0 +1,26 @@
+{
+  "title": "EFC v2.2 Cross-Field Integration -- Structured Data",
+  "version": "2.2",
+  "fields": ["Energy Flow", "Entropy", "Grid", "Information"],
+  "couplings": [
+    {"pair": ["Energy Flow", "Entropy"], "type": "direct", "strength_param": "beta=0.16", "regime": "L1-L3"},
+    {"pair": ["Energy Flow", "Grid"], "type": "mediated", "strength_param": null, "regime": "L0-L1"},
+    {"pair": ["Energy Flow", "Information"], "type": "emergent", "strength_param": null, "regime": "L2-L3"},
+    {"pair": ["Entropy", "Grid"], "type": "direct", "strength_param": null, "regime": "L0-L2"},
+    {"pair": ["Entropy", "Information"], "type": "direct", "strength_param": null, "regime": "All"},
+    {"pair": ["Grid", "Information"], "type": "emergent", "strength_param": null, "regime": "L0-L1"}
+  ],
+  "integration_levels": [
+    {"level": "Micro", "name": "Grid Microphysics", "primary_fields": ["Grid", "Information"]},
+    {"level": "Meso", "name": "Thermodynamic Coupling", "primary_fields": ["Entropy", "Energy Flow"]},
+    {"level": "Macro", "name": "Cosmological Dynamics", "primary_fields": ["Energy Flow", "Entropy"]},
+    {"level": "Global", "name": "Unified Architecture", "primary_fields": ["All"]}
+  ],
+  "coupling_types": {
+    "direct": "Fields directly modify each other's equations of motion",
+    "mediated": "Coupling occurs through an intermediate field or mechanism",
+    "emergent": "Coupling appears at larger scales from underlying micro-interactions"
+  },
+  "total_unique_couplings": 6,
+  "fully_connected": true
+}

@@ -7,8 +7,8 @@ Magnusson (2026) "Directional Lensing Residuals at Cluster Merger Shock Fronts"
 DOI: 10.6084/m9.figshare.31288063
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.directional_lensing import (
     AsigEstimator, RotationNull, DecisionCriteria,

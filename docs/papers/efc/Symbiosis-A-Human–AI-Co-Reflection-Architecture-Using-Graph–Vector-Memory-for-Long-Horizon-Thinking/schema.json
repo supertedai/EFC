@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/symbiosis-method/schema.json",
+  "title": "Symbiosis Co-Reflection Architecture Schema",
+  "description": "JSON Schema for the Symbiosis human-AI co-reflection architecture using graph-vector memory for long-horizon thinking.",
+  "type": "object",
+  "properties": {
+    "architecture": {
+      "type": "object",
+      "description": "Symbiosis architecture components",
+      "properties": {
+        "knowledge_graph": {
+          "type": "object",
+          "properties": {
+            "backend": {"type": "string", "description": "Graph database backend (e.g. Neo4j)"},
+            "node_types": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "edge_types": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "vector_database": {
+          "type": "object",
+          "properties": {
+            "backend": {"type": "string", "description": "Vector store backend (e.g. Qdrant)"},
+            "embedding_model": {"type": "string"},
+            "dimension": {"type": "integer"}
+          }
+        },
+        "llm_layer": {
+          "type": "object",
+          "properties": {
+            "model": {"type": "string"},
+            "role": {"type": "string", "enum": ["reflection", "retrieval", "generation", "metacognition"]}
+          }
+        }
+      }
+    },
+    "memory_substrate": {
+      "type": "object",
+      "description": "Hybrid memory combining graph and vector representations",
+      "properties": {
+        "type": {"type": "string", "enum": ["graph", "vector", "hybrid"]},
+        "persistence": {"type": "boolean"},
+        "temporal_indexing": {"type": "boolean"}
+      }
+    },
+    "reasoning_trace": {
+      "type": "object",
+      "description": "A single reasoning trace in the co-reflection loop",
+      "properties": {
+        "id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "source": {"type": "string", "enum": ["human", "ai", "system"]},
+        "content": {"type": "string"},
+        "hypothesis_id": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "required": ["id", "source", "content"]
+    },
+    "reflection_cycle": {
+      "type": "object",
+      "description": "A complete reflection cycle in the co-reasoning process",
+      "properties": {
+        "cycle_id": {"type": "string"},
+        "traces": {
+          "type": "array",
+          "items": {"$ref": "#/properties/reasoning_trace"}
+        },
+        "outcome": {"type": "string"},
+        "metacognitive_note": {"type": "string"}
+      }
+    }
+  },
+  "efc_analysis_type": "meta_systems",
+  "framework": "symbiosis_co_reflection"
+}

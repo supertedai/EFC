@@ -1,0 +1,57 @@
+{
+  "title": "EFC Weak Lensing Phenomenology: A Testable \u03bc(k,z) Framework and DES Y6 Validation Protocol",
+  "short_id": "efc-weak-lensing-phenomenology",
+  "version": "1.0.0",
+  "date": "2026-01-29",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31188193",
+  "abstract": "A phenomenological framework for testing Energy-Flow Cosmology (EFC) against weak gravitational lensing observations. Provides an explicit scale- and redshift-dependent modified gravity parameter \u03bc(k,z) = 1 + A_\u03bc \u00d7 \u0398(z_t \u2212 z) \u00d7 1/(1 + k\u00b2/k_*\u00b2), with regime gating that preserves CMB consistency at z > z_t and suppresses modifications at small scales. Defines a complete DES Y6 validation protocol with pass/fail criteria including \u0394\u03c7\u00b2 \u2265 6, A_\u03bc significance > 2\u03c3 from zero, and AIC/BIC preference for EFC over \u039bCDM. Addresses the S\u2088 tension (DES Y6: 0.789 vs Planck: 0.83, ~2.6\u03c3) through a single free parameter A_\u03bc.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "weak lensing",
+    "\u03bc(k,z)",
+    "modified gravity",
+    "DES Y6",
+    "S\u2088 tension",
+    "Postulate A",
+    "gravitational slip",
+    "cosmological perturbations"
+  ],
+  "efc_context": {
+    "track": "Track 1 \u2014 Cosmological Observables",
+    "regime_relevance": "Late-time (z < 2) large-scale structure; regime gating preserves early-universe (CMB) consistency",
+    "epistemic_layer": "Phenomenological prediction with falsifiable protocol"
+  },
+  "key_results": [
+    "\u03bc(k,z) reduces to GR (\u03bc = 1) at z > z_t = 2 and k >> k_* = 0.1 h/Mpc, preserving CMB and small-scale physics",
+    "S\u2088 tension can be addressed with A_\u03bc in the range [-0.2, -0.05], giving S\u2088(EFC)/S\u2088(\u039bCDM) \u2248 \u221a\u03bc \u2248 0.95",
+    "Minimal model assumes no gravitational slip (\u03b7 = \u03a6/\u03a8 = 1), so \u03a3_lens = \u03bc",
+    "Four falsification criteria defined: A_\u03bc = 0, A_\u03bc > 0, CMB lensing conflict, nuisance degeneracy"
+  ],
+  "file_manifest": {
+    "AI_CONTEXT.md": "Machine-readable context for AI-assisted analysis",
+    "CITATION.cff": "Citation metadata in CFF format",
+    "LICENSE": "CC-BY-4.0 license text",
+    "README.md": "Package overview and usage instructions",
+    "citations.bib": "BibTeX references",
+    "index.json": "Structured package index with equations and parameters",
+    "schema.json": "JSON Schema for validation results",
+    "efc-weak-lensing-phenomenology.jsonld": "Linked data description",
+    "requirements.txt": "Python dependencies",
+    "metadata.json": "This file \u2014 package metadata",
+    "data/expected_outputs.json": "Reference values for numerical validation",
+    "docs/DERIVATION.md": "Mathematical derivation notes",
+    "docs/efc_weak_lensing_paper.tex": "LaTeX source of the paper",
+    "docs/efc_weak_lensing_paper.pdf": "Compiled paper PDF",
+    "src/__init__.py": "Python package init with public API",
+    "src/efc_weak_lensing.py": "Core implementation of \u03bc(k,z), \u03a3_lens, growth ODE, and pipeline interfaces",
+    "tests/__init__.py": "Test package init",
+    "tests/test_mu.py": "Unit tests for \u03bc(k,z) limits and behaviour",
+    "examples/demo.py": "Demonstration script covering key functionality"
+  }
+}

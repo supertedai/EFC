@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31293745",
+  "name": "Structural Coherence Evaluation for Physical Theories",
+  "headline": "Theory-agnostic framework with observation-native ontology and self-imposed falsifiability",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0.0",
+  "keywords": ["theory evaluation", "structural coherence", "falsifiability", "model comparison"],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ExplanatoryCompression",
+      "name": "Explanatory Compression",
+      "description": "C = |tested phenomena| / |primitive assumptions|"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ForbiddenPatternCoverage",
+      "name": "Forbidden Pattern Coverage",
+      "description": "Self-imposed falsifiability as operational, machine-checkable property"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  }
+}

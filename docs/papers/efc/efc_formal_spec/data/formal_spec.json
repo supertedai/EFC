@@ -1,0 +1,44 @@
+{
+  "title": "EFC Formal Specification -- Structured Data",
+  "version": "1.0",
+  "field_equation": {
+    "symbolic": "G_{mu nu} = 8 pi G (T_{mu nu} + T^{(E_f)}_{mu nu}) + Lambda_eff g_{mu nu}",
+    "term_count": 3,
+    "GR_limit": "T^{(E_f)} -> 0, Lambda_eff -> Lambda"
+  },
+  "symbols": {
+    "G_uv": {"latex": "G_{\\mu\\nu}", "type": "tensor", "description": "Einstein tensor"},
+    "T_uv": {"latex": "T_{\\mu\\nu}", "type": "tensor", "description": "Stress-energy tensor"},
+    "T_Ef_uv": {"latex": "T^{(E_f)}_{\\mu\\nu}", "type": "tensor", "description": "Energy-flow stress-energy"},
+    "Lambda_eff": {"latex": "\\Lambda_{\\text{eff}}", "type": "scalar", "description": "Effective cosmological constant"},
+    "S_a": {"latex": "S(a)", "type": "function", "description": "Entropy sigmoid"},
+    "mu_a": {"latex": "\\mu(a)", "type": "function", "description": "Effective gravitational coupling"},
+    "beta": {"latex": "\\beta", "type": "parameter", "description": "EFC coupling constant"},
+    "a_t": {"latex": "a_t", "type": "parameter", "description": "Transition scale factor"},
+    "sigma": {"latex": "\\sigma", "type": "parameter", "description": "Transition width"},
+    "g_uv": {"latex": "g_{\\mu\\nu}", "type": "tensor", "description": "Metric tensor"}
+  },
+  "entropy_sigmoid": {
+    "equation": "S(a) = (S_inf/2)[1 + tanh((ln a - ln a_t)/sigma)]",
+    "boundary_conditions": {
+      "a_to_0": "S -> 0",
+      "a_eq_at": "S = S_inf/2",
+      "a_to_inf": "S -> S_inf"
+    },
+    "default_params": {"S_inf": 1.0, "a_t": 0.55, "sigma": 0.10}
+  },
+  "thermodynamic_constraints": [
+    {"id": "C1", "name": "Entropy monotonicity", "statement": "dS/dt >= 0"},
+    {"id": "C2", "name": "Energy conservation", "statement": "nabla_mu T^{mu nu} = 0"},
+    {"id": "C3", "name": "Entropy boundedness", "statement": "0 <= S <= S_inf"},
+    {"id": "C4", "name": "GR limit", "statement": "beta -> 0 => EFC -> GR"},
+    {"id": "C5", "name": "Positive definiteness", "statement": "mu(a) >= 1"}
+  ],
+  "grid_field": {
+    "symbol": "G_grid",
+    "dimensionality": 4,
+    "signature": [-1, 1, 1, 1],
+    "topology": "Locally finite graph -> smooth manifold",
+    "metric_dof": 10
+  }
+}

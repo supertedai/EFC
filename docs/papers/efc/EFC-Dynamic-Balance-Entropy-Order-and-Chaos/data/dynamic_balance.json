@@ -1,0 +1,15 @@
+{
+  "paper_id": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
+  "states": [
+    {"label": "Crystal lattice", "order_param": 0.95, "entropy_rate": 1e-5, "energy_flow_W": 100},
+    {"label": "Living cell", "order_param": 0.55, "entropy_rate": 0.01, "energy_flow_W": 1.0},
+    {"label": "Turbulent plasma", "order_param": 0.15, "entropy_rate": 10000, "energy_flow_W": 1e8},
+    {"label": "Equilibrium gas", "order_param": 0.02, "entropy_rate": 1e-8, "energy_flow_W": 1e-4}
+  ],
+  "transitions": [
+    {"from": "ordered", "to": "transitional", "trigger": "Entropy injection", "critical_order": 0.7},
+    {"from": "transitional", "to": "chaotic", "trigger": "Cascade instability", "critical_order": 0.3},
+    {"from": "chaotic", "to": "ordered", "trigger": "Dissipative condensation", "critical_order": 0.3}
+  ],
+  "key_insight": "Order and chaos co-evolve via entropy flow; life occupies the transitional regime"
+}

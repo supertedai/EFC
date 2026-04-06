@@ -1,0 +1,10 @@
+{
+  "description": "Sample interface layers for EFC energy-flow interface analysis",
+  "layers": [
+    {"name": "core-halo", "S_left": 0.15, "S_right": 0.65, "J_through": 2.5, "R_grid": 1.02, "width": 0.5},
+    {"name": "halo-IGM", "S_left": 0.65, "S_right": 0.85, "J_through": 0.8, "R_grid": 1.10, "width": 1.0},
+    {"name": "cluster-void", "S_left": 0.55, "S_right": 0.95, "J_through": 0.3, "R_grid": 1.25, "width": 5.0},
+    {"name": "disk-bulge", "S_left": 0.30, "S_right": 0.45, "J_through": 3.0, "R_grid": 1.01, "width": 0.2}
+  ],
+  "relaxation_rate": 0.5
+}

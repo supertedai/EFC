@@ -1,0 +1,15 @@
+{
+  "description": "Sample SPARC galaxy data for EFC-R regime analysis",
+  "galaxies": [
+    {"name": "F568-3", "morphology": "LSB", "chi2_efc": 8.1, "chi2_lcdm": 52.3, "entropy_gradient": 0.095, "alpha": 0.95, "efc_success": true},
+    {"name": "F563-1", "morphology": "LSB", "chi2_efc": 6.5, "chi2_lcdm": 48.1, "entropy_gradient": 0.091, "alpha": 0.92, "efc_success": true},
+    {"name": "F571-8", "morphology": "LSB", "chi2_efc": 10.2, "chi2_lcdm": 55.0, "entropy_gradient": 0.088, "alpha": 0.90, "efc_success": true},
+    {"name": "DDO154", "morphology": "dwarf_irregular", "chi2_efc": 15.3, "chi2_lcdm": 60.2, "entropy_gradient": 0.078, "alpha": 0.85, "efc_success": true},
+    {"name": "DDO168", "morphology": "dwarf_irregular", "chi2_efc": 18.7, "chi2_lcdm": 58.0, "entropy_gradient": 0.072, "alpha": 0.80, "efc_success": true},
+    {"name": "DDO064", "morphology": "dwarf_irregular", "chi2_efc": 22.0, "chi2_lcdm": 65.0, "entropy_gradient": 0.069, "alpha": 0.75, "efc_success": true},
+    {"name": "NGC2403", "morphology": "spiral", "chi2_efc": 30.5, "chi2_lcdm": 72.1, "entropy_gradient": 0.065, "alpha": 0.70, "efc_success": true},
+    {"name": "NGC6503", "morphology": "spiral", "chi2_efc": 35.2, "chi2_lcdm": 80.0, "entropy_gradient": 0.060, "alpha": 0.65, "efc_success": true},
+    {"name": "NGC3198", "morphology": "spiral", "chi2_efc": 40.0, "chi2_lcdm": 75.5, "entropy_gradient": 0.058, "alpha": 0.60, "efc_success": true},
+    {"name": "NGC2841", "morphology": "barred_disturbed", "chi2_efc": 85.0, "chi2_lcdm": 45.0, "entropy_gradient": 0.035, "alpha": 0.25, "efc_success": false}
+  ]
+}

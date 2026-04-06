@@ -1,0 +1,95 @@
+{
+  "paper": {
+    "title": "EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States",
+    "version": "2.0",
+    "track": "Track 2: Neural Entropy"
+  },
+
+  "equations": {
+    "kappa_definition": {
+      "id": "Eq-kappa",
+      "latex": "\\kappa = \\frac{\\langle S_{\\text{hub}} \\rangle}{\\langle S_{\\text{periph}} \\rangle}",
+      "description": "Centrifugal entropy score: ratio of mean hub to peripheral entropy"
+    },
+    "bridge_B1_star": {
+      "id": "Eq-B1*",
+      "latex": "\\kappa_{\\text{healthy}} = \\frac{C}{1 + \\lambda_2(W) \\cdot \\tau_c}",
+      "parameters": {
+        "C": "k / a_G = 4.4 +/- 0.6 (SPARC galactic fit)",
+        "lambda_2": "Fiedler eigenvalue of L_sym = I - D^{-1/2} W D^{-1/2}",
+        "tau_c": "L_parcel^2 / D_eff ~ 3.5 s"
+      }
+    },
+    "delta_kappa": {
+      "id": "Eq-Dk",
+      "latex": "\\Delta\\kappa = C \\left[ \\frac{1}{1 + \\lambda_{2,h} \\tau_c} - \\frac{1}{1 + \\lambda_{2,d} \\tau_c} \\right]"
+    },
+    "alpha_AP": {
+      "id": "Eq-aAP",
+      "latex": "\\alpha_{AP} = \\frac{\\langle S_{\\text{anterior hub}} \\rangle}{\\langle S_{\\text{posterior hub}} \\rangle}"
+    },
+    "kappa_crit": {
+      "id": "Eq-kcrit",
+      "latex": "\\kappa_{\\text{crit}} = \\frac{C}{1 + \\lambda_{2,\\max} \\cdot \\tau_{c,\\max}} = 0.73"
+    }
+  },
+
+  "parameters": {
+    "C": {"value": 4.4, "uncertainty": 0.6, "source": "SPARC galactic fit (Spor 1)", "doi": "10.6084/m9.figshare.31301953"},
+    "lambda_2_HCP_range": {"min": 0.3, "max": 0.8, "typical": 0.5, "source": "Gu et al. 2015"},
+    "tau_c": {"value": 3.5, "unit": "s", "min": 2.0, "max": 5.0, "derivation": "L_parcel^2/D_eff, L~5mm, D~3mm/s"},
+    "kappa_healthy_central": 1.6,
+    "kappa_crit": 0.73
+  },
+
+  "kappa_table": [
+    {"lambda_2": 0.3, "tau_c": 2.0, "kappa_pred": 2.75},
+    {"lambda_2": 0.5, "tau_c": 3.5, "kappa_pred": 1.60},
+    {"lambda_2": 0.8, "tau_c": 5.0, "kappa_pred": 0.88}
+  ],
+
+  "predictions": [
+    {
+      "id": "Q1",
+      "description": "Healthy resting-state kappa ~ 1.6; kappa ~ 1/lambda_2",
+      "observable": "kappa from HCP MSE + connectome",
+      "falsification": "r(kappa, 1/lambda_2) < 0.30 for n >= 20, or |z| > 3 on group mean"
+    },
+    {
+      "id": "Q2a",
+      "description": "alpha_AP_scz > alpha_AP_healthy (anterior-dominant entropy elevation)",
+      "observable": "anterior/posterior hub entropy ratio",
+      "falsification": "effect not detected (p > 0.05, n >= 15/group)"
+    },
+    {
+      "id": "Q2b",
+      "description": "alpha_AP_mdd < alpha_AP_healthy (posterior-shifted entropy)",
+      "observable": "anterior/posterior hub entropy ratio",
+      "falsification": "effect not detected (p > 0.05, n >= 15/group)"
+    },
+    {
+      "id": "Q2c",
+      "description": "Delta_kappa correlates with Delta_lambda_2",
+      "observable": "cross-group structural-entropic coupling",
+      "falsification": "r < 0.25 for n >= 30 pooled"
+    },
+    {
+      "id": "Q3",
+      "description": "kappa < 0.73 in disorders of consciousness",
+      "observable": "kappa in UWS/VS patients",
+      "falsification": "kappa_DoC > 0.73 significantly"
+    }
+  ],
+
+  "disorder_connectome_data": {
+    "healthy": {"lambda_2": 0.5, "connectome_change": "baseline"},
+    "schizophrenia": {"lambda_2": 0.35, "connectome_change": "reduced frontotemporal connectivity", "kappa_direction": "elevated"},
+    "MDD": {"lambda_2": 0.40, "connectome_change": "reduced global efficiency", "kappa_direction": "elevated"}
+  },
+
+  "datasets": [
+    {"name": "HCP 1200", "n_target": 50, "population": "healthy adults", "modalities": ["DTI", "rs-fMRI"], "access": "ConnectomeDB"},
+    {"name": "OpenNeuro ds000030 (UCLA)", "n_target": 100, "population": "schizophrenia + healthy", "modalities": ["structural", "rs-fMRI"], "access": "OpenNeuro"},
+    {"name": "OpenNeuro ds000171", "n_target": 40, "population": "MDD + healthy", "modalities": ["rs-fMRI"], "access": "OpenNeuro"}
+  ]
+}

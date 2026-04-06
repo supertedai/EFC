@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "title": "Sign structure of an additive gate-function modification to the Friedmann equation",
+    "short_title": "EFC Background Sign Lemma",
+    "series": "EFCLASS Technical Note I",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "doi": "10.6084/m9.figshare.31333414",
+    "date": "2026-02-13",
+    "class_version": "3.3.4"
+  },
+  "parameters": {
+    "h": 0.674,
+    "omega_b": 0.02237,
+    "omega_cdm": 0.1200,
+    "m_nu_eV": 0.06,
+    "A": 0.15,
+    "z_t": 1.01,
+    "n": 6,
+    "g_0": 0.985062,
+    "Omega_Lambda_prime": 0.5373
+  },
+  "sign_verification": {
+    "description": "Delta H^2 comparison: CLASS vs analytical at 9 redshift points",
+    "agreement": "< 0.3% at all z > 0",
+    "data": [
+      {"z": 0.0, "delta_H2_class": 0.0, "delta_H2_analytical": 0.0, "delta_H_over_H_pct": 0.0},
+      {"z": 0.3, "delta_H2_class": -4.049e-10, "delta_H2_analytical": -4.038e-10, "delta_H_over_H_pct": -0.291},
+      {"z": 0.5, "delta_H2_class": -1.003e-9, "delta_H2_analytical": -1.003e-9, "delta_H_over_H_pct": -0.569},
+      {"z": 0.7, "delta_H2_class": -1.915e-9, "delta_H2_analytical": -1.918e-9, "delta_H_over_H_pct": -0.853},
+      {"z": 1.0, "delta_H2_class": -3.620e-9, "delta_H2_analytical": -3.621e-9, "delta_H_over_H_pct": -1.124},
+      {"z": 1.5, "delta_H2_class": -5.856e-9, "delta_H2_analytical": -5.856e-9, "delta_H_over_H_pct": -1.039},
+      {"z": 2.0, "delta_H2_class": -6.839e-9, "delta_H2_analytical": -6.840e-9, "delta_H_over_H_pct": -0.739},
+      {"z": 3.0, "delta_H2_class": -7.348e-9, "delta_H2_analytical": -7.348e-9, "delta_H_over_H_pct": -0.349},
+      {"z": 5.0, "delta_H2_class": -7.458e-9, "delta_H2_analytical": -7.458e-9, "delta_H_over_H_pct": -0.107}
+    ]
+  },
+  "closure_checks": {
+    "H0_ratio": 1.0,
+    "Omega_Lambda_prime_plus_Omega_efc_0": 0.685103,
+    "tau_z1100_difference": "< 1 ppm",
+    "g_z1100": 3.7e-17
+  },
+  "growth_signature": {
+    "description": "f*sigma_8 at BOSS DR12 redshifts",
+    "data": [
+      {"z": 0.38, "fsigma8_LCDM": 0.4749, "fsigma8_EFC": 0.4773, "delta_pct": 0.50},
+      {"z": 0.51, "fsigma8_LCDM": 0.4731, "fsigma8_EFC": 0.4762, "delta_pct": 0.65},
+      {"z": 0.61, "fsigma8_LCDM": 0.4679, "fsigma8_EFC": 0.4715, "delta_pct": 0.76}
+    ]
+  },
+  "key_conclusions": [
+    "Delta E^2(z) = A[g(z) - g(0)] <= 0 for all z > 0 (Lemma 1)",
+    "H_EFC(z) <= H_LCDM(z): reduced Hubble friction enhances structure growth",
+    "Background-level EFC cannot suppress sigma_8 under E(0) = 1 normalisation",
+    "f*sigma_8 increases by +0.5-0.8% for A = 0.15",
+    "S_8 tension requires perturbation-level modifications (mu < 1)"
+  ],
+  "class_patch": {
+    "files_modified": ["background.h", "background.c", "input.c"],
+    "total_lines": 77
+  }
+}

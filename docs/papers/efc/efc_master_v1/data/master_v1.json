@@ -1,0 +1,33 @@
+{
+  "title": "EFC Master Specification v1 (Archive) -- Structured Data",
+  "version": "1.0",
+  "status": "archived",
+  "parameters": {
+    "S_inf": 1.0,
+    "a_t": 0.55,
+    "sigma": 0.10,
+    "beta": 0.16,
+    "H0": 67.4,
+    "Omega_m": 0.315,
+    "Omega_Lambda": 0.685
+  },
+  "fields": [
+    {"name": "Energy Flow", "symbol": "E_f", "section": "Section 2"},
+    {"name": "Entropy", "symbol": "S", "section": "Section 3"},
+    {"name": "Grid", "symbol": "G_grid", "section": "Section 4"},
+    {"name": "Information", "symbol": "I", "section": "Section 5"}
+  ],
+  "regimes": [
+    {"label": "L0", "name": "Planck Scale", "dominant": "Grid"},
+    {"label": "L1", "name": "Early Universe", "dominant": "Energy Flow"},
+    {"label": "L2", "name": "Structure Formation", "dominant": "Entropy"},
+    {"label": "L3", "name": "Horizon Scale", "dominant": "Information"}
+  ],
+  "superseded_by": "efc_master (current version)",
+  "preservation_purpose": [
+    "Historical reference",
+    "Reproducibility",
+    "Theory development tracking",
+    "Comparison with v2.x"
+  ]
+}

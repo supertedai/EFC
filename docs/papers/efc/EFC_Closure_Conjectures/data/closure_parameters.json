@@ -1,0 +1,107 @@
+{
+  "paper_id": "efc-closure-conjectures",
+  "title": "EFC Closure Conjectures - Key Parameters and Results",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare",
+  "description": "Numerical parameters and results for the EFC closure conjectures: g_dagger = c*H0/e and C = 2e - 1",
+
+  "physical_constants": {
+    "c": {
+      "value": 299792458,
+      "unit": "m/s",
+      "description": "Speed of light"
+    },
+    "e": {
+      "value": 2.718281828459045,
+      "unit": "dimensionless",
+      "description": "Euler's number"
+    },
+    "km_s_mpc_to_si": {
+      "value": 3.2408e-20,
+      "unit": "1/s per km/s/Mpc",
+      "description": "Unit conversion factor"
+    }
+  },
+
+  "conjecture_1": {
+    "name": "Transition acceleration",
+    "formula": "g_dagger = c * H0 / e",
+    "motivation": "One e-fold drop in grid stiffness at S = delta_S",
+    "predictions": {
+      "H0_67_4": {
+        "H0": 67.4,
+        "H0_unit": "km/s/Mpc",
+        "g_dagger": 2.42e-10,
+        "g_dagger_unit": "m/s^2",
+        "source": "Planck 2018"
+      },
+      "H0_70_2": {
+        "H0": 70.2,
+        "H0_unit": "km/s/Mpc",
+        "g_dagger": 2.51e-10,
+        "g_dagger_unit": "m/s^2",
+        "source": "SPARC-derived"
+      },
+      "H0_73_0": {
+        "H0": 73.0,
+        "H0_unit": "km/s/Mpc",
+        "g_dagger": 2.62e-10,
+        "g_dagger_unit": "m/s^2",
+        "source": "SH0ES"
+      }
+    }
+  },
+
+  "conjecture_2": {
+    "name": "Phase factor",
+    "formula": "C = 2e - 1",
+    "numerical_value": 4.436563656918091,
+    "interpretation": "Galactic phase = (e-1) + e"
+  },
+
+  "key_prediction": {
+    "formula": "H0 = e * g_dagger / c",
+    "sparc_input": {
+      "g_dagger": 2.51e-10,
+      "g_dagger_error": 0.60e-10,
+      "unit": "m/s^2"
+    },
+    "result": {
+      "H0": 70.2,
+      "H0_error": 16.8,
+      "unit": "km/s/Mpc"
+    },
+    "consistency": {
+      "planck_H0": 67.4,
+      "planck_status": "within 1 sigma",
+      "sh0es_H0": 73.0,
+      "sh0es_status": "within 1 sigma",
+      "trgb_H0": 69.8,
+      "trgb_status": "within 1 sigma"
+    }
+  },
+
+  "irreducible_parameter": {
+    "name": "a_G",
+    "value": 0.094,
+    "derived_k": 0.417,
+    "k_formula": "k = a_G * C = a_G * (2e - 1)",
+    "note": "Cannot currently be derived from simpler quantities"
+  },
+
+  "falsification_conditions": [
+    {
+      "id": "F1",
+      "condition": "g_dagger measurements with <10% uncertainty inconsistent with c*H0/e at >3 sigma"
+    },
+    {
+      "id": "F2",
+      "condition": "Phase factor C deviates from 2e-1 by more than 20%"
+    },
+    {
+      "id": "F3",
+      "condition": "Alternative f(S) forms fit RAR better without factors of e"
+    }
+  ]
+}

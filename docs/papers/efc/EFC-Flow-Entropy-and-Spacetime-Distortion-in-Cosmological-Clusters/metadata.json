@@ -1,0 +1,45 @@
+{
+  "title": "EFC \u2014 Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
+  "short_id": "efc-flow-entropy-spacetime-distortion-clusters",
+  "version": "v1.0",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "abstract": "Describes how energy flow, entropy gradients, and grid-level resistance produce observable spacetime distortions in cosmological clusters, including lensing, dynamics, temperature asymmetries, and cluster morphology as emergent thermodynamic processes.",
+  "keywords": [
+    "EFC",
+    "energy flow",
+    "entropy",
+    "spacetime distortion",
+    "cosmological clusters",
+    "lensing",
+    "thermodynamics"
+  ],
+  "efc_context": {
+    "track": "Applied Cosmology",
+    "regime_relevance": "Cluster-scale spacetime distortion via entropy gradients",
+    "epistemic_layer": "Layer B (applied model)"
+  },
+  "key_results": [
+    "Spacetime distortion emerges from entropy gradients in cluster environments",
+    "Lensing effects explained through energy flow resistance without dark matter",
+    "Temperature asymmetries arise from thermodynamic flow imbalance",
+    "Cluster morphology predicted by entropy gradient topology"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/cluster_distortion.py"],
+    "data": "data/parameters.json",
+    "demo": "examples/demo_cluster_distortion.py"
+  }
+}

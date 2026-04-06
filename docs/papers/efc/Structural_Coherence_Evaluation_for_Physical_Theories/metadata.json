@@ -1,0 +1,45 @@
+{
+  "title": "Structural Coherence Evaluation for Physical Theories: A Theory-Agnostic Framework with Observation-Native Ontology and Self-Imposed Falsifiability",
+  "short_id": "structural-coherence-evaluation",
+  "version": "1.0.0",
+  "date": "2026",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31293745",
+  "abstract": "A theory-agnostic evaluation framework for assessing structural coherence and falsifiability of physical theories. Introduces four operational principles and five structural metrics for cross-paradigm comparison.",
+  "keywords": [
+    "theory evaluation",
+    "structural coherence",
+    "falsifiability",
+    "observation-native ontology",
+    "philosophy of science",
+    "model comparison"
+  ],
+  "efc_context": {
+    "track": "Methodology / Philosophy of Science",
+    "regime_relevance": "Framework-level meta-evaluation across all regimes",
+    "epistemic_layer": "Layer A (evaluation methodology)"
+  },
+  "key_results": [
+    "Four operational principles for theory evaluation",
+    "Five quantifiable structural metrics",
+    "Self-imposed falsifiability as machine-checkable property",
+    "Case studies: LCDM, EFC, MOND"
+  ],
+  "file_manifest": {
+    "pdf": "Structural_Coherence_Evaluation_for_Physical_Theories__A_Theory_Agnostic_Framework_with_Observation_Native_Ontology_and_Self_Imposed_Falsifiability.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "structural_coherence.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/structural_coherence.py"],
+    "data": "data/sce_case_studies.json",
+    "demo": "examples/demo_sce.py"
+  }
+}

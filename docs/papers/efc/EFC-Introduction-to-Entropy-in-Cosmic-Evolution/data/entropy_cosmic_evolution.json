@@ -1,0 +1,40 @@
+{
+  "paper_id": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "boltzmann_constant": {
+      "symbol": "k_B",
+      "value": 1.380649e-23,
+      "unit": "J/K"
+    },
+    "stefan_boltzmann": {
+      "symbol": "sigma_SB",
+      "value": 5.670374e-8,
+      "unit": "W m^-2 K^-4"
+    },
+    "cmb_temperature": {
+      "symbol": "T_CMB",
+      "value": 2.725,
+      "unit": "K"
+    }
+  },
+  "cosmic_epochs": [
+    {"name": "planck", "temperature_K": 1.4e32, "entropy_density": 1e90, "redshift": 1e32},
+    {"name": "inflation_end", "temperature_K": 1e27, "entropy_density": 1e80, "redshift": 1e27},
+    {"name": "nucleosynthesis", "temperature_K": 1e9, "entropy_density": 1e10, "redshift": 1e9},
+    {"name": "recombination", "temperature_K": 3000, "entropy_density": 1e4, "redshift": 1100},
+    {"name": "present", "temperature_K": 2.725, "entropy_density": 0.01, "redshift": 0}
+  ],
+  "equations": {
+    "entropy_density_radiation": "s_rad = (4/3) * sigma_SB * T^3",
+    "thermal_energy": "u = sigma_SB * T^4",
+    "second_law": "dS_total / dt >= 0"
+  },
+  "key_concepts": [
+    "Entropy gradients drive structure formation across scales",
+    "Total cosmic entropy increases monotonically",
+    "Entropy budget: radiation, matter, structure contributions",
+    "Structure entropy dominated by black holes at late times",
+    "Energy propagation follows entropy gradient direction"
+  ]
+}

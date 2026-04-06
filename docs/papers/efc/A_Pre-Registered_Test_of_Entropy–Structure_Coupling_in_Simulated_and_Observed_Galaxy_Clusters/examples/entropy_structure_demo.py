@@ -8,8 +8,8 @@ in Simulated and Observed Galaxy Clusters"
 DOI: 10.6084/m9.figshare.31286368
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.entropy_structure_coupling import (
     EntropyProfileModel, AlphaProxy, CoolCoreClassifier, CoolCoreClass,

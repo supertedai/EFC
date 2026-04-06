@@ -1,0 +1,53 @@
+{
+  "title": "A Pre-Registered Test of Entropy-Structure Coupling in Simulated and Observed Galaxy Clusters",
+  "short_id": "entropy-structure-coupling",
+  "version": "1.0",
+  "date": "2026-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31286368",
+  "abstract": "Tests whether the observed positive correlation between entropy profile steepness and cool-core state in ACCEPT X-ray clusters is reproduced in TNG-Cluster simulations. Finds a strong negative correlation (sign flip), robust against mass confounding.",
+  "keywords": [
+    "galaxy clusters",
+    "intracluster medium",
+    "cool cores",
+    "entropy profiles",
+    "cosmological simulations",
+    "TNG-Cluster",
+    "pre-registered analysis"
+  ],
+  "efc_context": {
+    "track": "observational-test",
+    "regime_relevance": "cluster-scale ICM thermodynamics",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {
+      "description": "Sign flip in entropy-structure coupling between TNG-Cluster simulation and ACCEPT observations",
+      "tng_correlation": -0.872,
+      "accept_correlation": 0.36,
+      "p_value": "8e-111"
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "entropy_structure_coupling.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "CITATION.cff": "Citation file format",
+    "LICENSE": "CC-BY-4.0 license",
+    "BESR3_paper.pdf": "Paper PDF",
+    "BESR3_methods_section_draft.md": "Methods section draft",
+    "BESR3_results_prewritten.md": "Pre-written results",
+    "besr3_path_a_alpha_fit.py": "Path A alpha fitting script",
+    "src/entropy_structure_coupling.py": "Core analysis source code",
+    "data/tng_cluster_results.json": "TNG-Cluster analysis results",
+    "examples/": "Usage examples"
+  }
+}

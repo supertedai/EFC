@@ -1,0 +1,27 @@
+{
+  "description": "Sample halo entropy profiles for the EFC Halo Concept",
+  "parameters": {
+    "beta": 0.16,
+    "units": {
+      "r": "kpc",
+      "S": "normalised entropy density",
+      "v": "normalised rotation velocity"
+    }
+  },
+  "milky_way_like": {
+    "M_baryon": 1.0,
+    "S_0": 1.0,
+    "r_s": 10.0,
+    "alpha": 2.0,
+    "radial_profile": [
+      {"r":  1,  "S": 0.990, "mu": 1.158, "v_rot": 1.076},
+      {"r":  5,  "S": 0.800, "mu": 1.128, "v_rot": 0.475},
+      {"r": 10,  "S": 0.500, "mu": 1.080, "v_rot": 0.329},
+      {"r": 20,  "S": 0.200, "mu": 1.032, "v_rot": 0.227},
+      {"r": 30,  "S": 0.100, "mu": 1.016, "v_rot": 0.184},
+      {"r": 50,  "S": 0.038, "mu": 1.006, "v_rot": 0.142},
+      {"r": 100, "S": 0.010, "mu": 1.002, "v_rot": 0.100}
+    ]
+  },
+  "notes": "The entropy-enhanced mu(r) produces flatter rotation curves than Keplerian M/r alone."
+}

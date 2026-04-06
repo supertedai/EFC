@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for Grid Model for Entropic Dynamics",
+  "grid_field": {
+    "g0": {
+      "description": "Grid field amplitude",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "sigma": {
+      "description": "Characteristic width of the grid field",
+      "default": 2.0,
+      "unit": "length units"
+    },
+    "formula": "G(x) = G0 * exp(-x^2 / (2 * sigma^2))"
+  },
+  "entropic_flow": {
+    "diffusion": {
+      "description": "Diffusion coefficient driving entropy flow",
+      "default": 1.0,
+      "unit": "diffusion units"
+    },
+    "formula": "J(x) = -D * grad_S / G(x)"
+  },
+  "entropy_profile": {
+    "s0": {
+      "description": "Entropy at origin",
+      "default": 1.0,
+      "unit": "entropy units"
+    },
+    "grad_s": {
+      "description": "Background entropy gradient",
+      "default": 0.5,
+      "unit": "entropy / length"
+    }
+  },
+  "spatial_grid": {
+    "x_min": -5.0,
+    "x_max": 5.0,
+    "n_points": 50
+  }
+}

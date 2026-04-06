@@ -1,0 +1,66 @@
+{
+  "description": "Three-regime consistency test data for EFC coupling T(z)",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31304995",
+  "parameters": {
+    "beta": 0.08,
+    "alpha_L2": 0.34,
+    "z_peak": 0.441,
+    "H0": 67.4,
+    "Omega_m": 0.3134
+  },
+  "transition_function_values": [
+    {"z": 0.44, "omega_m_z": 0.548, "g_D": 0.1066, "T_z": 1.000, "regime": "Peak"},
+    {"z": 0.51, "omega_m_z": 0.613, "g_D": 0.1056, "T_z": 0.990, "regime": "BOSS"},
+    {"z": 2.33, "omega_m_z": 0.945, "g_D": 0.0201, "T_z": 0.188, "regime": "BAO Lya"},
+    {"z": 3.00, "omega_m_z": 0.967, "g_D": 0.0114, "T_z": 0.107, "regime": "Lya P1D"},
+    {"z": 1100, "omega_m_z": 1.000, "g_D": "~1e-10", "T_z": "~1e-10", "regime": "CMB"}
+  ],
+  "lya_p1d": {
+    "z": 3.0,
+    "T_z": 0.107,
+    "data_source": "DESI arXiv:2601.21432",
+    "amplitude_pull": -0.27,
+    "slope_pull": 0.01,
+    "status": "PASS"
+  },
+  "bao_boss_dr12": {
+    "z_eff": [0.38, 0.51, 0.61],
+    "DM_rs_fid_rs": [1512.39, 1975.22, 2306.68],
+    "H_rs_rs_fid": [81.21, 90.90, 98.96],
+    "chi2_efc": 1.93,
+    "chi2_lcdm": 5.58,
+    "delta_chi2": -3.65,
+    "pulls": [
+      {"z": 0.38, "DM_pull": "+0.29sigma", "DH_pull": "-1.10sigma"},
+      {"z": 0.51, "DM_pull": "-0.26sigma", "DH_pull": "+0.12sigma"},
+      {"z": 0.61, "DM_pull": "+0.14sigma", "DH_pull": "+0.74sigma"}
+    ],
+    "status": "PASS"
+  },
+  "rsd_boss_dr12": {
+    "z_eff": [0.38, 0.51, 0.61],
+    "fsigma8_obs": [0.497, 0.458, 0.436],
+    "fsigma8_err": [0.045, 0.038, 0.034],
+    "fsigma8_efc": [0.464, 0.463, 0.460],
+    "chi2_efc": 1.09,
+    "chi2_lcdm": 1.34,
+    "delta_chi2": -0.25,
+    "derived": {
+      "sigma8_0": 0.805,
+      "S8": 0.825,
+      "growth_suppression": "0.8%"
+    },
+    "status": "PASS"
+  },
+  "combined_bao_rsd": {
+    "chi2_efc": 3.02,
+    "chi2_lcdm": 6.92,
+    "delta_chi2": -3.89,
+    "significance": "~2sigma preference for EFC"
+  },
+  "regime_coherence_summary": [
+    {"regime": "Growth", "z": "0.4-0.6", "T_z": "0.95-1.0", "prediction": "Enhanced H, suppressed growth", "result": "PASS"},
+    {"regime": "Lya", "z": "3.0", "T_z": "0.107", "prediction": "Near-null effect", "result": "PASS"},
+    {"regime": "CMB", "z": "1100", "T_z": "~1e-10", "prediction": "GR recovery", "result": "PASS"}
+  ]
+}

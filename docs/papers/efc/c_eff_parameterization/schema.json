@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/c-eff-parameterization",
+  "title": "EFC c_eff Parameterization Schema",
+  "description": "Validation schema for effective speed of sound parameterization c_eff(a) = c_0[1 + epsilon*beta*T(a)]",
+  "type": "object",
+  "properties": {
+    "c_eff": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number", "description": "Redshift", "minimum": 0},
+        "T_z": {"type": "number", "description": "Transition function value", "minimum": 0, "maximum": 1},
+        "epsilon": {"type": "number", "description": "Coupling strength", "minimum": 0},
+        "beta": {"type": "number", "description": "Background coupling amplitude"},
+        "c_eff_over_c0": {"type": "number", "description": "c_eff / c_0"}
+      },
+      "required": ["z", "c_eff_over_c0"]
+    },
+    "implementation": {
+      "type": "object",
+      "properties": {
+        "case": {"type": "string", "enum": ["metric_vsl", "optical_medium"]},
+        "cddr_preserved": {"type": "boolean"},
+        "eta": {"type": "number", "description": "CDDR ratio D_L / [D_A*(1+z)^2]"}
+      },
+      "required": ["case"]
+    },
+    "distance": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number", "minimum": 0},
+        "d_C_Mpc": {"type": "number", "description": "Comoving distance [Mpc]"},
+        "d_L_Mpc": {"type": "number", "description": "Luminosity distance [Mpc]"},
+        "delta_d_percent": {"type": "number", "description": "Fractional distance shift from c_eff"}
+      }
+    },
+    "falsification": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "condition": {"type": "string"},
+        "falsified": {"type": "boolean"}
+      },
+      "required": ["id", "falsified"]
+    }
+  },
+  "required": ["c_eff"]
+}

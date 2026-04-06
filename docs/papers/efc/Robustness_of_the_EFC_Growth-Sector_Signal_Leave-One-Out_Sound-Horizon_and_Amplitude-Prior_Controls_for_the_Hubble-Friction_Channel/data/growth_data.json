@@ -1,0 +1,46 @@
+{
+  "paper": "Robustness of the EFC Growth-Sector Signal",
+  "doi": "10.6084/m9.figshare.31332730",
+  "date": "2026-02",
+  "base_signal": {
+    "alpha": -1.00,
+    "sigma": 0.46,
+    "significance_sigma": 2.20,
+    "delta_AIC": -2.91,
+    "delta_BIC": -0.91,
+    "p_value_one_sided": 0.028
+  },
+  "parameters": {
+    "r_d_Mpc": 147.09,
+    "Omega_m": 0.315,
+    "sigma_8": 0.81,
+    "H0_km_s_Mpc": 67.4
+  },
+  "fsigma8_compilation": [
+    {"survey": "6dFGS",      "z": 0.02, "fsigma8": 0.360, "error": 0.040},
+    {"survey": "SDSS MGS",   "z": 0.15, "fsigma8": 0.490, "error": 0.055},
+    {"survey": "BOSS DR12",  "z": 0.38, "fsigma8": 0.430, "error": 0.054},
+    {"survey": "BOSS DR12",  "z": 0.51, "fsigma8": 0.452, "error": 0.057},
+    {"survey": "BOSS DR12",  "z": 0.61, "fsigma8": 0.457, "error": 0.052},
+    {"survey": "VIPERS",     "z": 0.77, "fsigma8": 0.420, "error": 0.060},
+    {"survey": "FastSound",  "z": 0.85, "fsigma8": 0.380, "error": 0.080}
+  ],
+  "leave_one_out": [
+    {"drop": 0, "z": 0.02, "survey": "6dFGS",     "alpha": -0.88, "sigma": 0.48, "significance": 1.84, "delta_AIC": -1.59, "pass": true},
+    {"drop": 1, "z": 0.15, "survey": "SDSS MGS",   "alpha": -1.11, "sigma": 0.46, "significance": 2.42, "delta_AIC": -3.97, "pass": true},
+    {"drop": 2, "z": 0.38, "survey": "BOSS DR12",  "alpha": -0.98, "sigma": 0.46, "significance": 2.12, "delta_AIC": -2.58, "pass": true},
+    {"drop": 3, "z": 0.51, "survey": "BOSS DR12",  "alpha": -1.03, "sigma": 0.47, "significance": 2.22, "delta_AIC": -2.97, "pass": true},
+    {"drop": 4, "z": 0.61, "survey": "BOSS DR12",  "alpha": -1.04, "sigma": 0.48, "significance": 2.19, "delta_AIC": -3.20, "pass": true},
+    {"drop": 5, "z": 0.77, "survey": "VIPERS",     "alpha": -1.00, "sigma": 0.47, "significance": 2.12, "delta_AIC": -2.70, "pass": true},
+    {"drop": 6, "z": 0.85, "survey": "FastSound",  "alpha": -0.97, "sigma": 0.46, "significance": 2.09, "delta_AIC": -2.54, "pass": true}
+  ],
+  "robustness_controls": {
+    "N1_sound_horizon": {"status": "PASSED", "result": "|Delta_alpha| < 0.05"},
+    "N2_amplitude_prior": {"status": "PASSED", "result": "Signal strengthens from ~1.7 to 2.20 sigma"},
+    "T7_leave_one_out": {"status": "PASSED", "score": "7/7", "alpha_range": [-1.11, -0.88]}
+  },
+  "degeneracy": {
+    "r_alpha_Omega_m": 0.59,
+    "r_alpha_sigma8": -0.27
+  }
+}

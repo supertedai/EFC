@@ -1,0 +1,55 @@
+{
+  "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the S8 Tension",
+  "short_id": "kids1000-lensing-response",
+  "version": "1.0",
+  "date": "2026-02",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31271917",
+  "abstract": "Introduces a regime-activated lensing response that modifies matter-light coupling, achieving a likelihood improvement of delta(-2lnL) ~ -50.9 over LCDM for KiDS-1000 cosmic shear. The S8 tension is reframed as a lensing coupling difference rather than a sigma8 discrepancy.",
+  "keywords": [
+    "weak gravitational lensing",
+    "KiDS-1000",
+    "cosmic shear",
+    "S8 tension",
+    "lensing response",
+    "Energy-Flow Cosmology",
+    "matter-light coupling",
+    "entropy gradients",
+    "cosmological tensions"
+  ],
+  "efc_context": {
+    "track": "cosmological-test",
+    "regime_relevance": "cosmic shear / weak lensing regime",
+    "epistemic_layer": "A"
+  },
+  "key_results": [
+    {
+      "description": "Likelihood improvement over LCDM baseline",
+      "delta_minus2lnL": -50.9,
+      "additional_parameters": 3
+    },
+    {
+      "description": "S8 tension resolved when lensing response accounted for",
+      "residual_tension": "< 1 sigma"
+    }
+  ],
+  "file_manifest": {
+    "README.md": "Documentation and overview",
+    "index.json": "Structured paper metadata",
+    "schema.json": "JSON Schema for package validation",
+    "metadata.json": "Machine-readable metadata",
+    "lensing_response.jsonld": "Linked data descriptor",
+    "citations.bib": "BibTeX citation",
+    "CITATION.cff": "Citation file format",
+    "LICENSE": "CC-BY-4.0 license",
+    "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes_the_Interpretation_of_S_.pdf": "Paper PDF",
+    "src/lensing_response.py": "Core analysis source code",
+    "data/kids1000_results.json": "KiDS-1000 fit results",
+    "examples/": "Usage examples"
+  }
+}

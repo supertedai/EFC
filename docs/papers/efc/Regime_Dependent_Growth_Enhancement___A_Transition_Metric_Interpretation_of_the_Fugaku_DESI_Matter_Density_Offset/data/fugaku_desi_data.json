@@ -1,0 +1,23 @@
+{
+  "description": "Transition metric data for Fugaku-DESI matter density offset interpretation",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31140000",
+  "transition_estimator": {
+    "Delta_F": 0.1,
+    "interpretation": "Integrated transition strength, not fundamental density shift"
+  },
+  "consistency_conditions": [
+    {"regime": "CMB", "z": 1100, "requirement": "mu ~ 1 at recombination", "status": "satisfied"},
+    {"regime": "DESI/Fugaku", "z_range": [0.3, 1.0], "requirement": "Delta_F ~ 0.1", "status": "satisfied"},
+    {"regime": "Galaxy", "z": 0, "requirement": "mu > 1 asymptotically", "status": "satisfied"}
+  ],
+  "kernel_parameters": {
+    "delta_mu": 0.1,
+    "a_t": 0.55,
+    "sigma": 0.3
+  },
+  "data_sources": {
+    "desi_dr2_bao": {"reference": "arXiv:2404.03002", "type": "BAO"},
+    "planck_2018": {"reference": "A&A 641, A6", "type": "CMB"},
+    "fugaku_uchuu": {"reference": "MNRAS 506, 4210", "type": "N-body simulations"}
+  }
+}

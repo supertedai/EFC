@@ -1,0 +1,43 @@
+{
+  "description": "Cluster abundance predictions from RSD-locked EFC test",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31292827",
+  "input_constraint": {
+    "parameter": "alpha_L2",
+    "value": 0.34,
+    "uncertainty": 0.16,
+    "source": "BOSS DR12 RSD measurements"
+  },
+  "total_abundance": {
+    "N_EFC_over_N_LCDM": 1.064,
+    "error": 0.02,
+    "interpretation": "+6.4% more clusters than LCDM"
+  },
+  "growth_enhancement": [
+    {"z": 0.0, "D_ratio": 1.016, "delta_percent": 1.6},
+    {"z": 0.2, "D_ratio": 1.007, "delta_percent": 0.7},
+    {"z": 0.4, "D_ratio": 1.002, "delta_percent": 0.2},
+    {"z": 0.6, "D_ratio": 1.000, "delta_percent": 0.0}
+  ],
+  "shape_signature": {
+    "description": "z-dependent tilt in cluster redshift distribution",
+    "gradient": "dR/dz < 0",
+    "R_values": [
+      {"z": 0.15, "R": 1.05},
+      {"z": 0.35, "R": 1.01},
+      {"z": 0.70, "R": 0.94}
+    ],
+    "crossover_z": 0.35,
+    "robustness": "Insensitive to uniform mass-calibration systematics"
+  },
+  "target_survey": {
+    "name": "eRASS1",
+    "N_clusters": 5259,
+    "mass_range": "M > 10^14 Msun",
+    "z_range": [0.1, 0.8]
+  },
+  "falsification_criteria": [
+    {"condition": "Fewer total clusters than LCDM", "type": "Hard kill"},
+    {"condition": "Positive dR/dz", "type": "Hard kill"},
+    {"condition": "Flat R(z) at 1% level", "type": "Hard kill"}
+  ]
+}

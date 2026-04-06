@@ -1,0 +1,30 @@
+{
+  "title": "Symbiosis Architecture Reference Data",
+  "description": "Example knowledge graph, reflection entries, and hypothesis tracking data for the Symbiosis co-reflection architecture.",
+  "components": {
+    "knowledge_graph": "Neo4j",
+    "vector_database": "Qdrant",
+    "llm_layer": "Large Language Model API",
+    "api_layer": "Unified reflection-retrieval-logging API"
+  },
+  "example_graph": {
+    "nodes": [
+      {"id": "efc", "type": "concept", "label": "Energy-Flow Cosmology", "content": "Thermodynamic cosmology framework challenging standard dark matter/energy interpretations."},
+      {"id": "ebe", "type": "concept", "label": "Entropy-Bounded Empiricism", "content": "Epistemological constraint on model validity based on entropy bounds."},
+      {"id": "sparc", "type": "evidence", "label": "SPARC175 Dataset", "content": "175 galaxy rotation curves with regime classification."},
+      {"id": "h_regime", "type": "hypothesis", "label": "Regime-Dependent Validity", "content": "Physical models have bounded validity determined by entropy regime."},
+      {"id": "r_cross", "type": "reflection", "label": "Cross-Domain Extension", "content": "Can EBE principles apply outside astrophysics?"}
+    ],
+    "edges": [
+      {"source": "efc", "target": "ebe", "relation": "foundational_basis"},
+      {"source": "ebe", "target": "sparc", "relation": "tested_with"},
+      {"source": "h_regime", "target": "sparc", "relation": "supported_by"},
+      {"source": "r_cross", "target": "ebe", "relation": "extends"}
+    ]
+  },
+  "example_reflections": [
+    {"trigger": "paper_review", "content": "The EBE framework stands independently of EFC as a test case.", "tag": "methodological_clarity"},
+    {"trigger": "data_analysis", "content": "100% FLOW success rate suggests regime classification is meaningful.", "tag": "empirical_confidence"},
+    {"trigger": "cross_domain", "content": "Biological metabolic scaling may follow entropy-bounded constraints.", "tag": "hypothesis_generation"}
+  ]
+}

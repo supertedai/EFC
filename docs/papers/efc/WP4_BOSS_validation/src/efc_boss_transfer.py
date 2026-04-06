@@ -136,7 +136,7 @@ class EFCTransferTest:
         for i, zi in enumerate(z):
             z_int = np.linspace(0, zi, n_int)
             integrand = 1 / self.H_LCDM(z_int)
-            DM[i] = self.c * np.trapz(integrand, z_int)
+            DM[i] = self.c * np.trapezoid(integrand, z_int)
         return DM
 
     def DM_EFC(self, z: np.ndarray, n_int: int = 1000) -> np.ndarray:
@@ -149,7 +149,7 @@ class EFCTransferTest:
         for i, zi in enumerate(z):
             z_int = np.linspace(0, zi, n_int)
             integrand = 1 / self.H_EFC(z_int)
-            DM[i] = self.c * np.trapz(integrand, z_int)
+            DM[i] = self.c * np.trapezoid(integrand, z_int)
         return DM
 
     def model_vector_LCDM(self) -> np.ndarray:

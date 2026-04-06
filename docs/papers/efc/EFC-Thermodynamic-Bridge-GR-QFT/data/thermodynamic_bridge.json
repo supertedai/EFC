@@ -1,0 +1,23 @@
+{
+  "description": "Sample thermodynamic bridge configurations between GR and QFT sectors",
+  "bridges": [
+    {
+      "gr": {"curvature_R": 1e-52, "energy_density": 1e-10, "entropy_density_GR": 5e-20},
+      "qft": {"omega": 1e12, "occupation_n": 100, "entropy_density_QFT": 3e-20},
+      "J_bridge": 1e-8,
+      "R_grid": 1.0
+    },
+    {
+      "gr": {"curvature_R": 1e-48, "energy_density": 1e-6, "entropy_density_GR": 2e-16},
+      "qft": {"omega": 1e14, "occupation_n": 10, "entropy_density_QFT": 8e-17},
+      "J_bridge": 1e-4,
+      "R_grid": 1.05
+    },
+    {
+      "gr": {"curvature_R": 1e-44, "energy_density": 1e-2, "entropy_density_GR": 7e-12},
+      "qft": {"omega": 1e16, "occupation_n": 1, "entropy_density_QFT": 2e-12},
+      "J_bridge": 1.0,
+      "R_grid": 1.20
+    }
+  ]
+}

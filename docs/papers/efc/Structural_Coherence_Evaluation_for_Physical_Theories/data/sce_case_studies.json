@@ -1,0 +1,48 @@
+{
+  "description": "SCE framework case study data for LCDM, EFC, and MOND",
+  "reference": "Magnusson (2026), DOI: 10.6084/m9.figshare.31293745",
+  "case_studies": [
+    {
+      "name": "LCDM",
+      "type": "Empirically Mature",
+      "primitives": 3,
+      "phenomena": 6,
+      "fdof": 2,
+      "C_core": 2.0,
+      "C_tensions": 1.7,
+      "anomaly_burden": {"A1": 3, "A2": 2, "A3": 1},
+      "plasticity": {"variant_proliferation": "High", "parameter_growth": "Growing", "special_case_rules": 2},
+      "forbidden_patterns": {"declared": 0, "tested": 0},
+      "profile": "High coverage, moderate anomaly burden, limited self-declared falsifiability"
+    },
+    {
+      "name": "EFC (L2)",
+      "type": "Emergent",
+      "primitives": 2,
+      "phenomena": 4,
+      "fdof": 1,
+      "C_core": 1.3,
+      "C_tensions": 1.85,
+      "anomaly_burden": {"A1": 0, "A2": 6, "A3": 3},
+      "plasticity": {"variant_proliferation": "Moderate", "parameter_growth": "Decreasing", "special_case_rules": 0},
+      "forbidden_patterns": {"declared": 5, "tested": 5, "triggered": 0},
+      "profile": "High declared falsifiability, limited coverage, low plasticity"
+    },
+    {
+      "name": "MOND/Modified Gravity",
+      "type": "Intermediate",
+      "primitives": 4,
+      "phenomena": 4,
+      "fdof": 3,
+      "anomaly_burden": {"A1": 2, "A2": 3, "A3": 2},
+      "plasticity": {"variant_proliferation": "High", "parameter_growth": "Growing"},
+      "profile": "High galactic compression, declining consistency in extensions"
+    }
+  ],
+  "four_principles": [
+    {"id": "I", "name": "Observation-Native Ontology", "metric": "ODS 0-3"},
+    {"id": "II", "name": "Declared Structural Vulnerability", "metric": "Forbidden Pattern Coverage"},
+    {"id": "III", "name": "Priced Adaptation", "metric": "Model Plasticity"},
+    {"id": "IV", "name": "Primitive Transparency", "metric": "Explanatory Compression"}
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "figshare": "https://doi.org/10.6084/m9.figshare."
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31064929",
+  "name": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework Under Entropy-Constrained Structure Formation",
+  "description": "Tests consistency between EFC and CMB observables. JWST observations constrain S(z), which is tested against CMB constraints without parameter fitting. Includes null tests for theta_s (0.5%), damping (5%), and lensing (A_L < 1.0).",
+  "datePublished": "2026-01-14",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    }
+  },
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:CMBCompatibility",
+      "name": "CMB Compatibility Framework",
+      "description": "Null-test framework testing EFC predictions against CMB observables"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:EntropyProfile",
+      "name": "Entropy Profile S(z)",
+      "description": "Redshift-dependent entropy profile constrained by JWST and tested against CMB"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LensingAmplitude",
+      "name": "Lensing Amplitude A_L",
+      "description": "EFC predicts A_L in 0.9-0.95 range from smoother halos"
+    }
+  ],
+  "citation": [
+    {"@type": "ScholarlyArticle", "@id": "figshare:31059964", "name": "COSMOS-Web Galaxy Abundances"},
+    {"@type": "ScholarlyArticle", "@id": "figshare:31061665", "name": "Regime-Dependent Breakdown of LCDM"}
+  ],
+  "keywords": ["CMB", "thermodynamic interpretation", "null tests", "EFC", "Planck", "lensing", "ISW", "entropy profile"]
+}

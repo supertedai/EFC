@@ -8,14 +8,14 @@ Demonstrates using the (R, L) coordinate system for physics claims.
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add package root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from world_model import WorldModel
-from claim import Claim
-from r_axis import RRegime
-from l_axis import LLayer
-from driver_proximity import compute_proximity
+from src.world_model import WorldModel
+from src.claim import Claim
+from src.r_axis import RRegime
+from src.l_axis import LLayer
+from src.driver_proximity import compute_proximity
 
 
 def main():

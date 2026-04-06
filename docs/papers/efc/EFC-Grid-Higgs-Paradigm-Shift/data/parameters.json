@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for Grid-Higgs Paradigm Shift model",
+  "thermodynamic_mass": {
+    "lambda_": {
+      "description": "Thermodynamic mass coupling constant",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "gamma": {
+      "description": "Saturation parameter controlling mass plateau",
+      "default": 0.3,
+      "unit": "dimensionless"
+    },
+    "formula": "m_thermo(S, Ef) = lambda * S * Ef / (1 + gamma * S)"
+  },
+  "inertia_field": {
+    "i0": {
+      "description": "Base inertia at zero entropy",
+      "default": 1.0,
+      "unit": "inertia units"
+    },
+    "eta": {
+      "description": "Entropy-inertia coupling",
+      "default": 0.1,
+      "unit": "dimensionless"
+    },
+    "formula": "I(S) = I0 * (1 + eta * S^2)"
+  },
+  "energy_flow": {
+    "ef_0": {
+      "description": "Reference energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    }
+  },
+  "entropy_range": {
+    "s_min": 0.0,
+    "s_max": 10.0,
+    "n_points": 50
+  }
+}

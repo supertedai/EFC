@@ -1,0 +1,25 @@
+{
+  "name": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
+  "title": "EFC — Technical Documentation: Energy Flow in Space-Time",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "version": "1.0",
+  "type": "paper",
+  "domain": "cosmology",
+  "keywords": [
+    "EFC",
+    "Technical Documentation",
+    "Energy Flow",
+    "Spacetime",
+    "Field Specification",
+    "Simulation"
+  ],
+  "description": "Formal, computational, and structural aspects of energy flow in spacetime: definitions, field specifications, variable sets, mathematical operators, and integration rules for simulation and analysis.",
+  "created": "2026-04-06",
+  "files": {
+    "source_module": "src/energy_flow_spacetime.py",
+    "data": "data/energy_flow_spacetime.json",
+    "demo": "examples/demo_energy_flow_spacetime.py"
+  }
+}

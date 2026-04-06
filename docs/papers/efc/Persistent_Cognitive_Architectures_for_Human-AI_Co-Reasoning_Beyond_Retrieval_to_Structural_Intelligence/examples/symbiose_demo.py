@@ -7,8 +7,8 @@ Magnusson (2026) "Persistent Cognitive Architectures for Human-AI Co-Reasoning"
 DOI: 10.6084/m9.figshare.31271707
 """
 
-import sys
-sys.path.insert(0, '..')
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.symbiose_architecture import (
     GraphVectorFusion, EpistemicTagger, MemoryConsolidation, QuantumLeap,

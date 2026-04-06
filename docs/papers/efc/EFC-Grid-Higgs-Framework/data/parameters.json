@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "description": "Default parameters for Grid-Higgs Framework",
+  "grid_resistance": {
+    "r0": {
+      "description": "Base grid resistance at zero entropy",
+      "default": 1.0,
+      "unit": "resistance units"
+    },
+    "alpha": {
+      "description": "Coupling between entropy and resistance",
+      "default": 0.5,
+      "unit": "dimensionless"
+    }
+  },
+  "mass_generation": {
+    "kappa": {
+      "description": "Mass-generation coupling constant",
+      "default": 1.0,
+      "unit": "dimensionless"
+    },
+    "formula": "m_eff = kappa * R(S) * Ef"
+  },
+  "energy_flow": {
+    "ef_0": {
+      "description": "Reference energy flow density",
+      "default": 10.0,
+      "unit": "energy flow units"
+    }
+  },
+  "entropy_range": {
+    "s_min": 0.0,
+    "s_max": 5.0,
+    "n_points": 50
+  }
+}

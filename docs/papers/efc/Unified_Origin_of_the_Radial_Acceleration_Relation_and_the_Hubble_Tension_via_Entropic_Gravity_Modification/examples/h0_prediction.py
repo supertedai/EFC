@@ -13,13 +13,13 @@ import math
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+# Add package root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from entropy_mapping import EntropyMapping
-from phase_calculator import PhaseCalculator
-from mond_interpolation import MONDInterpolator, compute_aG_from_mond
-from h0_predictor import H0Predictor, predict_h0
+from src.entropy_mapping import EntropyMapping
+from src.phase_calculator import PhaseCalculator
+from src.mond_interpolation import MONDInterpolator, compute_aG_from_mond
+from src.h0_predictor import H0Predictor, predict_h0
 
 
 def main():

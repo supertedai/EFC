@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "title": "AUTH Layer -- Origin, Provenance, and Structural Signature of Energy-Flow Cosmology",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "doi": "10.6084/m9.figshare.30656828",
+    "version": "1.0"
+  },
+  "layers": [
+    {"name": "theory", "description": "Scientific content and equations"},
+    {"name": "methodology", "description": "Numerical tools and verification"},
+    {"name": "cognition", "description": "Insight process and s0/s1 transitions"},
+    {"name": "meta", "description": "Architecture and cross-layer structure"},
+    {"name": "auth", "description": "Provenance, identity, and structural signature"}
+  ],
+  "structural_signature": {
+    "theory_anchors": [
+      "entropy_flow_equation",
+      "regime_transition_dynamics",
+      "gate_function_modification",
+      "closure_normalisation"
+    ],
+    "methodology_anchors": [
+      "CLASS_integration",
+      "BAO_fitting",
+      "CMB_safety_verification",
+      "sign_lemma_proof"
+    ],
+    "cognition_anchors": [
+      "s0_s1_transition_model",
+      "insight_stabilisation",
+      "structural_continuity",
+      "provenance_integrity"
+    ],
+    "cross_links": [
+      {"from": "entropy_flow_equation", "to": "regime_transition_dynamics"},
+      {"from": "gate_function_modification", "to": "CLASS_integration"},
+      {"from": "closure_normalisation", "to": "CMB_safety_verification"},
+      {"from": "s0_s1_transition_model", "to": "insight_stabilisation"},
+      {"from": "sign_lemma_proof", "to": "gate_function_modification"}
+    ]
+  },
+  "s0_s1_transitions": {
+    "description": "Insight stabilisation across s0 (latent) and s1 (active) states",
+    "stabilisation_threshold": 3,
+    "states": ["s0_latent", "s1_active", "stabilised"]
+  },
+  "key_concepts": [
+    {
+      "name": "Structural Signature",
+      "definition": "The pattern of anchors and cross-links that uniquely identify the EFC framework across layers"
+    },
+    {
+      "name": "Provenance Chain",
+      "definition": "Hash-linked sequence of records tracing the origin and evolution of an EFC concept"
+    },
+    {
+      "name": "Identity Verification",
+      "definition": "Process of confirming structural consistency and chain validity of the AUTH layer"
+    },
+    {
+      "name": "Insight Stabilisation",
+      "definition": "Mechanism by which latent insights (s0) become confirmed (s1) through cross-layer confirmation"
+    }
+  ]
+}

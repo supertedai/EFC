@@ -1,0 +1,45 @@
+{
+  "title": "EFC \u2014 How Energy Flow Sustains Spacetime",
+  "short_id": "efc-energy-flow-sustains-spacetime",
+  "version": "v1.0",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher"
+  },
+  "license": "CC-BY-4.0",
+  "abstract": "Explains how continuous energy flow maintains the structural, geometric, and dynamical properties of spacetime within the EFC framework. Outlines how entropy gradients, resistance fields, and distributed flows provide the underlying support for spacetime stability and large-scale structure.",
+  "keywords": [
+    "EFC",
+    "energy flow",
+    "spacetime stability",
+    "entropy gradient",
+    "dynamic structure",
+    "grid field",
+    "entropy field"
+  ],
+  "efc_context": {
+    "track": "Fundamental Theory",
+    "regime_relevance": "Spacetime sustained by continuous energy flow",
+    "epistemic_layer": "Layer A (theoretical foundation)"
+  },
+  "key_results": [
+    "Spacetime stability requires continuous energy flow",
+    "Geometric properties emerge from entropy-flow equilibrium",
+    "Resistance fields maintain structural coherence",
+    "Large-scale structure supported by distributed flow networks"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-How-Energy-Flow-Sustain-Spacetime.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFC-How-Energy-Flow-Sustain-Spacetime.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": ["src/spacetime_sustain.py"],
+    "data": "data/parameters.json",
+    "demo": "examples/demo_spacetime_sustain.py"
+  }
+}

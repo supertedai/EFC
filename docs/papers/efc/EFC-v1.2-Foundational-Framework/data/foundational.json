@@ -1,0 +1,58 @@
+{
+  "title": "EFC v1.2 Foundational Framework -- Structured Data",
+  "version": "1.2",
+  "fields": {
+    "energy_flow": {
+      "symbol": "E_f",
+      "description": "Net directional energy transfer driving cosmic evolution",
+      "role": "Primary dynamical driver"
+    },
+    "entropy": {
+      "symbol": "S",
+      "description": "Thermodynamic entropy production governing irreversibility and structure",
+      "role": "Determines arrow of time and structure formation rate"
+    },
+    "grid": {
+      "symbol": "G_grid",
+      "description": "Discrete substrate encoding spatial connectivity and topology",
+      "role": "Micro-structural scaffold for spacetime geometry"
+    },
+    "information": {
+      "symbol": "I",
+      "description": "Information content linked to entropy via Landauer-like bound",
+      "role": "Bridges thermodynamic and informational descriptions"
+    }
+  },
+  "regimes": {
+    "L0": {"name": "Planck / Sub-Planck", "scale": "< l_P ~ 1.6e-35 m"},
+    "L1": {"name": "Quantum / Early Universe", "scale": "l_P to ~Mpc"},
+    "L2": {"name": "Classical / Structure Formation", "scale": "Mpc to ~Gpc"},
+    "L3": {"name": "Cosmological / Horizon", "scale": "> Gpc"}
+  },
+  "entropy_sigmoid": {
+    "equation": "S(a) = (S_inf/2) * [1 + tanh((ln a - ln a_t) / sigma)]",
+    "default_parameters": {
+      "S_inf": 1.0,
+      "a_t": 0.55,
+      "sigma": 0.10
+    }
+  },
+  "thermodynamic_principles": [
+    "Second Law (generalised): dS/dt >= 0",
+    "Energy Conservation: total energy redistributed, not created",
+    "Entropy-Structure Coupling: structure formation produces entropy",
+    "Landauer Bound: bit erasure costs >= kT ln 2"
+  ],
+  "structural_relationships": [
+    {"name": "Energy-Entropy coupling", "fields": ["E_f", "S"]},
+    {"name": "Entropy-Grid feedback", "fields": ["S", "G_grid"]},
+    {"name": "Grid-Geometry emergence", "fields": ["G_grid", "g_mu_nu"]},
+    {"name": "Information-Entropy duality", "fields": ["I", "S"]}
+  ],
+  "constants": {
+    "k_B": {"value": 1.380649e-23, "unit": "J/K"},
+    "h": {"value": 6.62607015e-34, "unit": "J*s"},
+    "c": {"value": 2.998e8, "unit": "m/s"},
+    "G": {"value": 6.674e-11, "unit": "m^3 kg^-1 s^-2"}
+  }
+}

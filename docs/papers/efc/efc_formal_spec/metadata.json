@@ -1,0 +1,48 @@
+{
+  "title": "EFC -- Formal Specification",
+  "short_id": "efc_formal_spec",
+  "version": "1.0",
+  "date": "2025",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": null,
+  "abstract": "Formal specification of the EFC framework. Defines mathematical objects, field equations, structural relations, and thermodynamic constraints. Serves as the canonical reference for notation, symbols, field interactions, and governing principles.",
+  "keywords": [
+    "EFC",
+    "Formal Specification",
+    "Mathematical Framework",
+    "Field Equations",
+    "Energy Flow",
+    "Entropy Field",
+    "Grid Field",
+    "Spacetime Structure",
+    "Thermodynamic Cosmology"
+  ],
+  "efc_context": {
+    "track": "Core Theory",
+    "regime_relevance": "All regimes (L0-L3) -- mathematical definitions",
+    "epistemic_layer": "Formal mathematical specification"
+  },
+  "key_results": [
+    "Canonical notation for all EFC symbols and operators",
+    "Formal field equation: G_uv = 8piG(T_uv + T^(Ef)_uv) + Lambda_eff g_uv",
+    "Entropy sigmoid S(a) formal definition with boundary conditions",
+    "Thermodynamic constraint set ensuring second-law compliance",
+    "Grid field formal structure and emergent geometry conditions"
+  ],
+  "file_manifest": {
+    "pdf": "efc_formal_spec.pdf",
+    "jsonld": "efc_formal_spec.jsonld",
+    "schema": "schema.json",
+    "index": "index.json",
+    "citations": "citations.bib",
+    "metadata": "metadata.json",
+    "src": "src/",
+    "data": "data/",
+    "examples": "examples/"
+  }
+}

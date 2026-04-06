@@ -1,0 +1,47 @@
+{
+  "title": "EFC v2.1 -- Modular Synthesis",
+  "short_id": "EFC-v2.1-Modular-Synthesis",
+  "version": "2.1",
+  "date": "2025",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": null,
+  "abstract": "Modular decomposition of the EFC framework into structural, dynamical, entropic, and informational modules. Each module can be analysed, validated, or extended independently while maintaining a consistent global architecture. Complements the v2.1 Complete Edition.",
+  "keywords": [
+    "EFC",
+    "Modular Synthesis",
+    "Version 2.1",
+    "Structural Module",
+    "Dynamical Module",
+    "Entropic Module",
+    "Informational Module",
+    "Modular Architecture"
+  ],
+  "efc_context": {
+    "track": "Core Theory",
+    "regime_relevance": "All regimes (L0-L3)",
+    "epistemic_layer": "Modular decomposition for independent validation"
+  },
+  "key_results": [
+    "Decomposes EFC into four independent modules: Structural, Dynamical, Entropic, Informational",
+    "Each module has defined inputs, outputs, and interface contracts",
+    "Modules can be validated independently against observational data",
+    "Global consistency constraints ensure inter-module coherence",
+    "Enables incremental extension without breaking existing modules"
+  ],
+  "file_manifest": {
+    "pdf": "EFC-v2.1-Modular-Synthesis.pdf",
+    "jsonld": "EFC-v2.1-Modular-Synthesis.jsonld",
+    "schema": "schema.json",
+    "index": "index.json",
+    "citations": "citations.bib",
+    "metadata": "metadata.json",
+    "src": "src/",
+    "data": "data/",
+    "examples": "examples/"
+  }
+}

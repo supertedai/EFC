@@ -1,0 +1,55 @@
+{
+  "paper": "EFC Empirical Validation: Cluster Lensing and Galaxy Rotation Curves",
+  "date": "2026-01-29",
+  "lambda_scaling": {
+    "bullet_cluster": {
+      "lambda_kpc": 250,
+      "system_size_kpc": 500,
+      "ratio": 0.5
+    },
+    "galaxy_sparc": {
+      "lambda_kpc": 2.4,
+      "system_size_kpc": 2.5,
+      "ratio": 1.0
+    },
+    "interpretation": "lambda scales with system size, not universal constant; lambda/R ~ 0.5-1.0"
+  },
+  "cluster_lensing": {
+    "bullet_cluster": {
+      "log_likelihood_full": 268170.8,
+      "log_likelihood_gal_only": 268170.8,
+      "delta_log_likelihood": 0.0,
+      "p_value_gas_term": 0.99,
+      "interpretation": "Gas term statistically irrelevant; kappa follows galaxies, not gas"
+    },
+    "macs_j0025": {
+      "status": "pass",
+      "interpretation": "Same structure confirmed"
+    },
+    "hsc_real_data": {
+      "lambda_arcmin": 1.48,
+      "status": "robust"
+    }
+  },
+  "rotation_curves": {
+    "model": "v_total^2 = v_baryon^2 + v_entropy^2",
+    "entropy_term": "v_entropy^2 = v_h^2 * (1 - (r_h/r) * arctan(r/r_h))",
+    "chi2_efc": 4.5,
+    "chi2_newton": 296,
+    "improvement_percent": 98,
+    "best_fit": {
+      "v_h_km_s": 160,
+      "r_h_kpc": 2.4
+    }
+  },
+  "core_equations": [
+    {
+      "name": "Total velocity",
+      "latex": "v^2_{total}(r) = v^2_{baryon}(r) + v^2_{entropy}(r)"
+    },
+    {
+      "name": "Entropy contribution",
+      "latex": "v^2_{entropy} = v_h^2 * (1 - (r_h/r) * arctan(r/r_h))"
+    }
+  ]
+}

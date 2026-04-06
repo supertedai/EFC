@@ -1,0 +1,62 @@
+{
+  "title": "Cosmological Growth Constraints on \u039b-Locked Discrete Entropic Gravity",
+  "short_id": "cosmological-growth-constraints-lambda-locked",
+  "version": "v1.0",
+  "date": "2026-02-16",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": null,
+  "abstract": "Stress-tests the cosmological viability of discrete entropic gravity with \u039b-locked screening by comparing three transition-scale scenarios against linear structure-formation observables. Only the \u039b-locked scenario (L_\u039b = 4.4 Gpc) preserves a realistic \u03c3\u2088 \u2248 0.8, while sub-Hubble transitions at 10 Mpc and 1 Mpc produce catastrophic overgrowth (\u03c3\u2088 >> 1). Establishes \u039b-locking (L_\u039b \u2273 H\u2080\u207b\u00b9) as a necessary condition for cosmological consistency.",
+  "keywords": [
+    "cosmological growth",
+    "structure formation",
+    "\u03c3\u2088",
+    "\u039b-locking",
+    "discrete gravity",
+    "modified gravity",
+    "AQUAL",
+    "MOND",
+    "infrared screening",
+    "linear perturbation theory",
+    "EFC"
+  ],
+  "efc_context": {
+    "track": "Track 1 (Galactic/Cosmological)",
+    "regime_relevance": "Cosmological scales; viability of discrete gravity under linear growth",
+    "epistemic_layer": "Layer B (numerical validation)"
+  },
+  "key_results": [
+    "\u039b-locked scenario (4.4 Gpc) yields \u03c3\u2088 = 0.814 with only 0.4% excess over \u039bCDM",
+    "10 Mpc transition produces \u03c3\u2088 = 367 (factor 452 overshoot)",
+    "1 Mpc transition produces \u03c3\u2088 = 24098 (factor 29714 overshoot)",
+    "Viability condition: L_\u039b \u2273 H\u2080\u207b\u00b9",
+    "Emergent prefactor C = 2.32 (C\u00b2 = 5.38)"
+  ],
+  "file_manifest": {
+    "pdf": "Cosmological_Growth_Constraints_on_\u039b-Locked_Discrete_Entropic_Gravity.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "CosmologicalGrowthConstraints.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/geff_coupling.py",
+      "src/growth_equation.py",
+      "src/scenario_runner.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/scenario_results.json",
+      "data/geff_profiles.json"
+    ],
+    "demo": [
+      "examples/run_scenarios.py",
+      "examples/geff_profile.py"
+    ]
+  }
+}

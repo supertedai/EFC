@@ -1,0 +1,49 @@
+{
+  "paper_id": "EFC-Hypothesis-Universe-as-Energy-Driven-System",
+  "framework": "Energy-Flow Cosmology",
+  "parameters": {
+    "grid_resistance": {
+      "symbol": "R",
+      "default": 0.01,
+      "unit": "dimensionless",
+      "description": "Grid-level resistance to energy propagation"
+    },
+    "entropy_gradient": {
+      "symbol": "nabla_S",
+      "default": 1e-5,
+      "unit": "K/m",
+      "description": "Baseline entropy gradient magnitude"
+    },
+    "energy_flux": {
+      "symbol": "J_E",
+      "default": 1e10,
+      "unit": "J m^-2 s^-1",
+      "description": "Energy flux density"
+    },
+    "boltzmann_constant": {
+      "symbol": "k_B",
+      "value": 1.380649e-23,
+      "unit": "J/K"
+    },
+    "speed_of_light": {
+      "symbol": "c",
+      "value": 2.998e8,
+      "unit": "m/s"
+    }
+  },
+  "equations": {
+    "damping_factor": "D = R / (1 + R * rho_E)",
+    "effective_speed": "v_eff = c / (1 + R)",
+    "driving_force": "F = T * |nabla S|",
+    "entropy_production": "sigma = J_E * |nabla S| / T",
+    "net_flow": "J_net = J_E * (1 - D)",
+    "structure_potential": "Phi = F_drive * (1 - D)"
+  },
+  "key_concepts": [
+    "Energy flow as fundamental driver",
+    "Grid field mediates resistance",
+    "Entropy gradients organise structure",
+    "Non-equilibrium thermodynamic cosmology",
+    "Structure formation from energy-entropy interaction"
+  ]
+}
