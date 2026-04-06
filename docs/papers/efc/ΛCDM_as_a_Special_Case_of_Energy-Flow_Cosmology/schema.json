@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LCDM as a Special Case of Energy-Flow Cosmology Schema",
+  "type": "object",
+  "properties": {
+    "paper_id": {"type": "string"},
+    "title": {"type": "string"},
+    "version": {"type": "string"},
+    "doi": {"type": ["string", "null"]},
+    "date": {"type": "string"},
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "orcid": {"type": "string"},
+        "affiliation": {"type": "string"}
+      },
+      "required": ["name"]
+    },
+    "key_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "description": {"type": "string"},
+          "value": {},
+          "uncertainty": {},
+          "unit": {"type": "string"}
+        },
+        "required": ["id", "description"]
+      }
+    },
+    "equations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {"type": "integer"},
+          "name": {"type": "string"},
+          "latex": {"type": "string"},
+          "description": {"type": "string"}
+        },
+        "required": ["number", "name"]
+      }
+    },
+    "regime_structure": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "regime": {"type": "string"},
+          "physical_domain": {"type": "string"},
+          "lcdm_status": {"type": "string"},
+          "efc_prediction": {"type": "string"}
+        },
+        "required": ["regime"]
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "verdict": {"type": "string", "enum": ["COLLAPSED", "PASS", "SAFETY_FAIL", "MARGINAL", "WEAK"]},
+          "interpretation": {"type": "string"}
+        },
+        "required": ["id", "verdict"]
+      }
+    },
+    "kill_tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "test": {"type": "string"},
+          "status": {"type": "string", "enum": ["PASS", "OPEN", "PARTIAL"]},
+          "result": {"type": "string"}
+        },
+        "required": ["id", "status"]
+      }
+    },
+    "parameters": {"type": "object"},
+    "predictions": {"type": "array"},
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "number": {"type": "integer"},
+          "title": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["paper_id", "title"]
+}

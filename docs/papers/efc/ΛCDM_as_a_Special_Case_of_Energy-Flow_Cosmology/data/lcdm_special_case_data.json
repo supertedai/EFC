@@ -1,0 +1,133 @@
+{
+  "paper_id": "lcdm-special-case",
+  "doi": "10.6084/m9.figshare.31943361",
+  "core_equations": {
+    "eq1_regime_driver": {
+      "name": "Regime driver",
+      "formula": "χ = ℓ |∇S| / S*",
+      "variables": {"ℓ": "grid scale", "S": "entropy field", "S*": "normalisation constant"}
+    },
+    "eq2_constitutive_law": {
+      "name": "Constitutive law",
+      "formula": "E_f = −κ(χ) ∇S",
+      "analogy": "Fourier's law in heat conduction"
+    },
+    "eq3_modified_poisson": {
+      "name": "Modified Poisson",
+      "formula": "∇²Φ = 4πG_N μ(χ,k,z) ρ_m δ"
+    },
+    "eq4_effective_coupling": {
+      "name": "Effective coupling",
+      "formula": "μ(χ,k,z) = 1 + ε(k) F(χ)",
+      "notes": "ε(k→0) ≲ C² − 1 ≈ 4.4 from KT2"
+    },
+    "eq5_relativistic_action": {
+      "name": "Relativistic action",
+      "formula": "S_EFC = ∫ d⁴x √(-g) [F(φ)R/2 − K(ρ)(∇φ)²/2 − V(φ) + λ C[φ,∇φ]] + S_m",
+      "predictions": {"mu_lt_1": "entropy-stiffness mechanism", "Sigma_gt_1": "flow-anisotropy mechanism", "eta_neq_1": "gravitational slip", "cT_eq_c": "GW170817 satisfied"}
+    },
+    "eq6_lcdm_reduction": {
+      "name": "ΛCDM reduction",
+      "conditions": ["K(ρ) → ∞", "T(a) → 0", "ξ ≫ 1"],
+      "result": "μ, Σ, η → 1 ⟹ Friedmann + Poisson"
+    },
+    "eq7_background_modification": {
+      "name": "Background modification",
+      "formula": "E²(a) = Ωm a⁻³ + (1−Ωm) + α [g(a) − g(1)]"
+    }
+  },
+  "regime_structure": [
+    {"regime": "L0", "physical_domain": "Global background (FLRW, H(z))", "lcdm_status": "Exact effective description", "efc_prediction": "Suppressed by design: T(a) → 0"},
+    {"regime": "L1", "physical_domain": "Linear perturbations (BAO, fσ8)", "lcdm_status": "Excellent fit", "efc_prediction": "Survival valley: μ ≈ 0.94, Σ ≈ 1.05"},
+    {"regime": "L2", "physical_domain": "Non-linear structure (haloes, clusters)", "lcdm_status": "Requires DM particle (undetected)", "efc_prediction": "Emergent MOND-like; μ > 1"},
+    {"regime": "L3", "physical_domain": "Local dynamics (Solar System)", "lcdm_status": "Exact via G_N", "efc_prediction": "Θ(ρ) → 0: GR recovery"}
+  ],
+  "desi_dr2": {
+    "alpha": -0.14,
+    "alpha_uncertainty": 0.21,
+    "significance_sigma": 0.65,
+    "delta_AIC": 1.59,
+    "pre_DR2_alpha": -0.67,
+    "pre_DR2_uncertainty": 0.40,
+    "alpha_shift": 0.53,
+    "degeneracy": "Ωm–α correlation ≈ +0.66",
+    "n_data_points": 69,
+    "data_composition": {
+      "BAO": "13 DESI DR2 bins with full covariance",
+      "fσ8": "7 points",
+      "Hz": "9 cosmic chronometers",
+      "SNIa": "40 Pantheon+ points"
+    },
+    "diagnostics": [
+      {"id": "N1", "name": "Sound horizon freedom", "verdict": "COLLAPSED", "interpretation": "α does not survive rd freedom"},
+      {"id": "N2", "name": "σ8 sweep", "verdict": "COLLAPSED", "interpretation": "α unstable under σ8 variation"},
+      {"id": "N3", "name": "Gate freedom", "verdict": "COLLAPSED", "interpretation": "Gate parameters absorb α signal"},
+      {"id": "N4", "name": "μ0 sweep", "verdict": "COLLAPSED", "interpretation": "α moves < 1σ across μ0 ∈ [0.8, 1.2]"},
+      {"id": "N5", "name": "rd prior", "verdict": "PASS", "interpretation": "corr(α, rd) ≈ 0; not rd-driven"},
+      {"id": "N6", "name": "Safety Δrd", "verdict": "SAFETY_FAIL", "interpretation": "Δrd = −0.507% trips 0.5% threshold by 0.007%"},
+      {"id": "N7", "name": "Geff growth", "verdict": "MARGINAL", "interpretation": "Weak growth-sector signal"},
+      {"id": "VG", "name": "Variant gravity", "verdict": "WEAK", "interpretation": "μ-amplitude 0.06–5.5%; Δlog L_growth < 0"}
+    ]
+  },
+  "perturbation_valley": {
+    "mu_range": [0.93, 0.96],
+    "sigma_range": [1.03, 1.07],
+    "mu_best": 0.94,
+    "sigma_best": 1.05,
+    "eta_best": 1.10,
+    "lensing_barrier_delta_chi2": 19.0,
+    "B0_fsigma8_delta_chi2": -5.22,
+    "AL_cosine_similarity": 0.93
+  },
+  "screening_model": {
+    "k": 0.415,
+    "k_uncertainty": 0.029,
+    "g_dagger_m_s2": 2.51e-10,
+    "C_constant": 4.4,
+    "n_galaxies": 174,
+    "dataset": "SPARC"
+  },
+  "kill_tests": [
+    {"id": "KT1", "test": "Newton recovery (ξ ≫ 1)", "status": "PASS", "result": "Slopes −2.03 (Newton), −1.05 (MOND)"},
+    {"id": "KT2", "test": "Prefactor C (ξ ∼ 1)", "status": "PASS", "result": "C = 2.32 (structural; not fitted)"},
+    {"id": "KT3", "test": "Mass scaling β (ξ < 1)", "status": "OPEN", "result": "Classical β ≈ 0.29; BE predicts 0.50"},
+    {"id": "KT4", "test": "Superposition (ξ ∼ 1)", "status": "PASS", "result": "Non-linear superposition handled"},
+    {"id": "KT5", "test": "External field effect", "status": "PARTIAL", "result": "EFE present; amplitude partially reproduced"}
+  ],
+  "historical_falsifications": [
+    {"element": "EFC v1 Scalar Index", "failure": "Monotonic radial boost incompatible with RC diversity", "resolution": "Superseded by EBE regime framework"},
+    {"element": "EFC-R on full SPARC", "failure": "Systematic residuals in Regime 2–3", "resolution": "Led to regime partitioning"},
+    {"element": "ISW C-metric", "failure": "Mixed-channel spurious gradient", "resolution": "Superseded by self-consistent ODE"},
+    {"element": "Poisson-sector μ > 1", "failure": "Disfavoured by RSD data", "resolution": "Architecture revised: background primary"},
+    {"element": "Naïve GRAV→(μ,Σ)", "failure": "Wrong sign, no slip, wrong scale", "resolution": "Resolved by Relativistic Action"},
+    {"element": "Strong α in background", "failure": "α ≈ −0.67 collapsed under DR2 to −0.14 ± 0.21", "resolution": "Signal locus updated to growth/structure"}
+  ],
+  "gas_law_analogy": [
+    {"aspect": "Effective theory", "thermodynamics": "Ideal gas law (PV = nRT)", "cosmology": "ΛCDM (Friedmann + Λ)"},
+    {"aspect": "Valid regime", "thermodynamics": "Gas phase (low density, high T)", "cosmology": "L0/L1 (linear, homogeneous, ξ ≫ 1)"},
+    {"aspect": "Deeper framework", "thermodynamics": "Statistical mechanics", "cosmology": "EFC (entropy-flow action)"},
+    {"aspect": "Reduction mechanism", "thermodynamics": "Intermolecular forces → 0", "cosmology": "K(ρ) → ∞, T(a) → 0, ξ ≫ 1"},
+    {"aspect": "New predictions", "thermodynamics": "Phase transitions, critical phenomena", "cosmology": "μ–Σ valley, regime transitions, MOND-like emergence"},
+    {"aspect": "Falsification of analogy", "thermodynamics": "Gas law works at all densities", "cosmology": "EFC predicts no L2/L3 deviations"}
+  ],
+  "beyond_lcdm_predictions": [
+    {"id": "P1", "description": "Perturbation survival valley: μ ≈ 0.94, Σ ≈ 1.05, η ≈ 1.10", "testable_by": "Euclid/LSST fσ8(z)"},
+    {"id": "P2", "description": "SPARC rotation curves from k = 0.415 without dark matter", "testable_by": "Extended rotation curve datasets"},
+    {"id": "P3", "description": "Void ISW sign-flip for deep voids (δ ≲ −0.8)", "testable_by": "Depth-binned void–CMB stacking"},
+    {"id": "P4", "description": "Regime transition μ < 1 ↔ μ > 1 from single action", "testable_by": "Scale-resolved growth measurements"},
+    {"id": "P5", "description": "Cluster entropy–structure sign mismatch", "testable_by": "ICM thermodynamic observations vs simulations"}
+  ],
+  "validation_ledger": {
+    "version": "3.7",
+    "publications": 204,
+    "registered_tests": 100,
+    "historical_falsifications": 5,
+    "sealed_predictions": 6,
+    "falsification_conditions": "F1–F6, FA1–FA6"
+  },
+  "programme_scope": {
+    "development_months": 14,
+    "tracks": ["Track 1 (Cosmology/Gravity)", "Track 2 (Neural/Cognitive, EFC-C)", "Track 3 (RLHF/AI)"],
+    "cross_domain_bridge": "dF/dt = −∫|∇ṡ|² dV + B (Lyapunov for all three regimes)"
+  }
+}

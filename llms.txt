@@ -33,6 +33,9 @@ bridge_B2: ∇Ṡ_neural ↔ ∇²R(s,a) (neural → RLHF)
 
 ## EMPIRICAL CONSTRAINTS (2026)
 
+lcdm_special_case: ΛCDM is L0/L1 limit of EFC (Eq. 6: K(ρ)→∞, T(a)→0, ξ≫1)
+desi_dr2_alpha: -0.14 ± 0.21 (0.65σ from null, ΔAIC=+1.59, ΛCDM preferred in background)
+perturbation_valley: μ∈[0.93,0.96], Σ∈[1.03,1.07], η≠1
 beta: 0.16 (from unified BAO/SN/RSD analysis)
 response_coordinate: R(k≈0.13, S≈0.30) ≈ +0.30 (from WP3)
 delta_chi2: +1.7 (EFC vs ΛCDM, compatible)
@@ -84,7 +87,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 
 /auth/              → Origin, provenance, identity (START HERE)
 /theory/formal/     → LaTeX mathematical specifications
-/docs/papers/efc/   → 126 papers (126 with full 10-file AI-friendly packages, 100% coverage)
+/docs/papers/efc/   → 127 papers (127 with full 10-file AI-friendly packages, 100% coverage)
 /docs/public/       → Validation Ledger (v3.7), Master Spec
 /src/efc/           → Core Python library
 /pipelines/         → Graph-AQUAL pipeline + kill tests
@@ -98,7 +101,10 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (126 — 100% coverage)
+## AI-FRIENDLY PACKAGES (127 — 100% coverage)
+
+### Consolidation (START HERE)
+lcdm-special-case: src/lcdm_special_case.py, doi:31943361, classes: LCDMReduction, DESIDR2Result, PerturbationValley, GasLawAnalogy, KillTestSuite, HistoricalFalsifications
 
 ### Track 1-3 + Bridge + Synthesis
 efc-screening: src/efc_screening.py, doi:31940469, classes: EFCScreening, CrossScaleConsistency
