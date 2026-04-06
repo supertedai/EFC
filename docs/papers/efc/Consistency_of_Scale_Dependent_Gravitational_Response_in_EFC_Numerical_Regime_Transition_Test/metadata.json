@@ -1,0 +1,61 @@
+{
+  "title": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "doi": "10.6084/m9.figshare.31941543",
+  "date_published": "2026-04-06",
+  "version": "1.0",
+  "framework": "Energy-Flow Cosmology (EFC) v3.7",
+  "license": "CC-BY-4.0",
+  "language": "en",
+
+  "classification": {
+    "domain": "theoretical_physics",
+    "track": "galactic_cosmological",
+    "track_number": 1,
+    "category": "numerical_validation",
+    "level": "consistency_test"
+  },
+
+  "methodology": {
+    "approach": "Numerical consistency test of EFT regime transition",
+    "techniques": [
+      "Modified gravity function computation μ(k), η(k), Σ(k)",
+      "Spatiotemporal localization on (k,z) grid",
+      "Parameter space scan with constraint checking",
+      "Linear growth ODE integration",
+      "χ² comparison with BOSS DR12 fσ₈ data"
+    ],
+    "numerical_grid": {
+      "k_range": [0.01, 30],
+      "z_range": [0, 3],
+      "resolution": "200 × 200"
+    }
+  },
+
+  "calibrated_parameters": {
+    "alpha": {"value": 0.001, "meaning": "Non-minimal coupling", "constraint": "ε_F small"},
+    "K_bar": {"value": 643, "meaning": "Kinetic stiffness", "constraint": "R(k_c) ≈ 0.063"},
+    "phi_dot_bar": {"value": 0.01, "meaning": "Background field velocity", "constraint": "R amplitude"},
+    "lambda_dot_bar": {"value": 0.049, "meaning": "Flow constraint rate", "constraint": "η ≈ 1.10"}
+  },
+
+  "open_questions": [
+    "Full non-linear EFT solution (currently uses Newtonian reduction for L2)",
+    "Parameter derivation from first principles",
+    "Bullet Cluster lensing test at k ~ 0.3",
+    "Rigorous Γ(ρ) derivation from the action"
+  ],
+
+  "related_papers": [
+    {"doi": "10.6084/m9.figshare.31876324", "title": "EFC Relativistic Action", "relation": "source_action"},
+    {"doi": "10.6084/m9.figshare.31368433", "title": "Systematic CMB Localization", "relation": "survival_valley"},
+    {"doi": "10.6084/m9.figshare.31878760", "title": "Grid Microphysics to RAR", "relation": "BE_statistics"},
+    {"doi": "10.6084/m9.figshare.31941465", "title": "Gradient-Coupled Grid Action", "relation": "E_sqrt_g"},
+    {"doi": "10.6084/m9.figshare.31878334", "title": "Covariant EFT", "relation": "complementary_EFT"},
+    {"doi": "10.6084/m9.figshare.31224466", "title": "EFC Closure Conjectures", "relation": "closure"}
+  ]
+}

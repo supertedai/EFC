@@ -1,0 +1,114 @@
+{
+  "id": "efc-regime-transition-test",
+  "title": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
+  "doi": "10.6084/m9.figshare.31941543",
+  "version": "1.0",
+  "date": "2026-04-06",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "framework_version": "3.7",
+  "license": "CC-BY-4.0",
+
+  "abstract": "First numerical consistency test of the EFC regime transition. The same relativistic action produces μ < 1 (suppressed growth) in the linear cosmological regime and is compatible with μ > 1 (enhanced gravity) in the non-linear galactic regime. Using μ(k) = (1+ε_F)/(F(1+R(k))) with stiffness response R ∝ k⁻⁴, demonstrates smooth transition, survival valley recovery, GR recovery, spatiotemporal localization, parameter robustness (49.6%), and fσ₈ consistency (Δχ² = −0.03).",
+
+  "keywords": [
+    "regime transition",
+    "scale-dependent gravity",
+    "modified gravity",
+    "stiffness response",
+    "survival valley",
+    "gravitational slip",
+    "lensing coupling",
+    "spatiotemporal localization",
+    "parameter robustness",
+    "growth rate",
+    "EFC",
+    "numerical test"
+  ],
+
+  "key_equations": {
+    "mu_k": "μ(k) = (1 + ε_F + ε_resp_K) / (F(1 + R(k)))",
+    "eta_k": "η(k) = 1 + 2(ε_F + ε_λ + ε_λ,resp)",
+    "sigma_k": "Σ(k) = μ(1 + η)/2",
+    "stiffness_response": "R(k) = K_bar a⁴ (Γ')² φ̇² / (M_Pl² F k⁴)",
+    "gate_function": "Θ(z) = 1/(1 + exp(Δ(z − z_t)))",
+    "growth_ode": "δ'' + (2 + d ln H/d ln a)δ' = (3/2)Ω_m(a)μ(k,z)δ",
+    "entropy_mapping": "Γ'(ρ) ~ (∂μ_BE/∂g)(∂g/∂ρ)"
+  },
+
+  "key_results": [
+    {
+      "id": "no-sign-conflict",
+      "description": "Same action gives μ < 1 (linear) and compatible with μ > 1 (non-linear)"
+    },
+    {
+      "id": "survival-valley",
+      "description": "μ ≈ 0.94, η ≈ 1.10–1.15, Σ > 1 at cosmological scales"
+    },
+    {
+      "id": "gr-recovery",
+      "description": "All EFT corrections vanish at galactic scales"
+    },
+    {
+      "id": "spatiotemporal",
+      "description": "Signal confined to z < 1 and k ≲ 0.1 h/Mpc"
+    },
+    {
+      "id": "robustness",
+      "description": "49.6% of parameter space passes all constraints"
+    },
+    {
+      "id": "growth-consistency",
+      "description": "Δχ² = −0.03 vs ΛCDM on BOSS DR12 fσ₈"
+    }
+  ],
+
+  "predictions": [
+    {
+      "id": "P1",
+      "description": "Cluster-scale transition: μ ≈ 1.1, Σ ≈ 1.2 at k ~ 0.3",
+      "test": "DES Y6, Euclid cluster weak lensing"
+    },
+    {
+      "id": "P2",
+      "description": "No μ > 1 in linear perturbations — structural EFT prohibition",
+      "test": "CMB, BAO, RSD"
+    }
+  ],
+
+  "tables": {
+    "table_1": "Calibrated EFT parameters",
+    "table_2": "Linear EFT observables at characteristic scales",
+    "table_3": "Spatiotemporal diagnostics",
+    "table_4": "fσ₈ predictions vs BOSS DR12"
+  },
+
+  "connections": {
+    "builds_on": [
+      {"id": "relativistic-action", "doi": "10.6084/m9.figshare.31876324"},
+      {"id": "systematic-localization", "doi": "10.6084/m9.figshare.31368433"},
+      {"id": "grid-microphysics", "doi": "10.6084/m9.figshare.31878760"},
+      {"id": "gradient-grid-action", "doi": "10.6084/m9.figshare.31941465"}
+    ],
+    "references": [
+      {"id": "closure-conjectures", "doi": "10.6084/m9.figshare.31224466"},
+      {"id": "covariant-eft", "doi": "10.6084/m9.figshare.31878334"}
+    ]
+  },
+
+  "files": {
+    "pdf": "Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "regime_transition.jsonld",
+    "citations": "citations.bib",
+    "source": "src/regime_transition.py",
+    "data": "data/regime_transition_data.json",
+    "demo": "examples/demo_regime_transition.py"
+  }
+}
