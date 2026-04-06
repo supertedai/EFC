@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "figshare": "https://doi.org/10.6084/m9.figshare."
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31942677",
+  "name": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
+  "description": "Shows EFC's density-dependent μ(ρ) produces a Rees-Sciama term opposing the standard ISW in voids, causing sign-flip for deep voids (δ ≲ -0.8). Testable via depth-binned void-CMB stacking.",
+  "datePublished": "2026-04-06",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson"
+  },
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:ISWSignFlip",
+      "name": "ISW Sign-Flip",
+      "description": "Rees-Sciama term δ·dμ/dt flips ISW signal from cold to hot in deep voids"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:AmplitudeRatio",
+      "name": "ISW Amplitude Ratio A_total",
+      "description": "A_total = ΔT_EFC/ΔT_ΛCDM; crosses zero near δ ≈ -0.7"
+    }
+  ],
+  "citation": [
+    {"@type": "ScholarlyArticle", "@id": "figshare:31876324", "name": "EFC Relativistic Action"},
+    {"@type": "ScholarlyArticle", "@id": "figshare:31878760", "name": "Grid Microphysics to RAR"}
+  ],
+  "keywords": ["ISW effect", "Rees-Sciama", "void cosmology", "sign flip", "density-dependent gravity", "EFC"]
+}
