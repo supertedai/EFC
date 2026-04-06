@@ -1,0 +1,104 @@
+{
+  "id": "efc-gradient-coupled-grid-action",
+  "title": "EFC Gradient-Coupled Grid Action",
+  "subtitle": "Minimal Lagrangian Derivation of E ∝ √g",
+  "doi": "10.6084/m9.figshare.31941465",
+  "version": "1.0",
+  "date": "2026-04-05",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "framework_version": "3.7",
+  "license": "CC-BY-4.0",
+
+  "abstract": "Derives the EFC screening relation E ∝ √g from a minimal three-term Lagrangian S_grid. The gradient coupling ½α|∇Φ|(∇ξ)² produces an effective stiffness κ_eff = κ₀ + αg, yielding a local dispersion relation whose gravitational-regime limit recovers E ∝ √g as a theorem. Operator uniqueness is established by systematically eliminating four alternative couplings.",
+
+  "keywords": [
+    "grid action",
+    "gradient coupling",
+    "effective stiffness",
+    "dispersion relation",
+    "operator uniqueness",
+    "bosonic quantisation",
+    "Bose-Einstein",
+    "screening relation",
+    "EFC",
+    "dark matter alternative",
+    "Lagrangian mechanics",
+    "WKB approximation"
+  ],
+
+  "key_equations": {
+    "grid_action": "S_grid = ∫ dt d³x [½m_eff(∂_t ξ)² − ½κ₀(∇ξ)² − ½α|∇Φ|(∇ξ)²]",
+    "effective_stiffness": "κ_eff(x) = κ₀ + α g(x)",
+    "dispersion": "ω²(k,g) = (κ₀ + αg)/m_eff · k²",
+    "theorem_1": "E = ℏω ∝ √g  (when αg ≫ κ₀)",
+    "crossover": "g_cross = κ₀/α",
+    "hamiltonian": "H = Σ_k ℏω_k (a†_k a_k + ½)",
+    "thermal_occupation": "⟨n_k⟩ = 1/(exp(ℏω_k/k_BT) − 1)"
+  },
+
+  "key_results": [
+    {
+      "id": "theorem-1",
+      "description": "E ∝ √g derived from minimal Lagrangian in gravitational regime",
+      "equation": "E = ℏ√(αg/m_eff) · k"
+    },
+    {
+      "id": "operator-uniqueness",
+      "description": "Only C5 = |∇Φ| coupling survives dimensional, symmetry, and locality constraints",
+      "eliminated": ["C1: ρ(x)", "C2: Φ(x)", "C3: g²", "C4: ∇²Φ"]
+    },
+    {
+      "id": "three-regimes",
+      "description": "Bare elastic (κ₀ ≫ αg), gravitational (αg ≫ κ₀), transition (αg ~ κ₀)",
+      "crossover": "g_cross = κ₀/α"
+    },
+    {
+      "id": "derivation-chain",
+      "description": "Complete chain: S_grid → E-L → WKB → E ∝ √g → BE → μ(g)"
+    }
+  ],
+
+  "predictions": [
+    {
+      "id": "P1",
+      "description": "Bare stiffness bound: κ₀/(αa₀) ≪ 1",
+      "status": "testable"
+    },
+    {
+      "id": "P2",
+      "description": "Dispersion signature at sub-kpc scales",
+      "status": "testable"
+    }
+  ],
+
+  "connections": {
+    "builds_on": [
+      {"id": "grid-microphysics", "doi": "10.6084/m9.figshare.31878760"},
+      {"id": "covariant-eft", "doi": "10.6084/m9.figshare.31878334"}
+    ],
+    "informs": [
+      {"id": "efc-screening", "doi": "10.6084/m9.figshare.31940469"}
+    ],
+    "references": [
+      {"id": "minimal-eft-ansatz", "doi": "10.6084/m9.figshare.31211437"},
+      {"id": "discrete-gravity", "doi": "10.6084/m9.figshare.31224466"}
+    ]
+  },
+
+  "files": {
+    "pdf": "EFC_Gradient_Coupled_Grid_Action.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "grid_action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/grid_action.py",
+    "data": "data/grid_action_data.json",
+    "demo": "examples/demo_grid_action.py"
+  }
+}
