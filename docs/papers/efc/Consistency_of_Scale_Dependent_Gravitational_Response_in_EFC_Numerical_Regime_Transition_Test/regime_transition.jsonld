@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#",
+    "figshare": "https://doi.org/10.6084/m9.figshare."
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31941543",
+  "name": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
+  "description": "First numerical consistency test showing the EFC regime transition is smooth: μ < 1 (linear cosmological) and μ > 1 (non-linear galactic) are two limits of the same action connected through R ∝ k⁻⁴ stiffness response.",
+  "url": "https://doi.org/10.6084/m9.figshare.31941543",
+  "datePublished": "2026-04-06",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "author": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0009-0002-4860-5095",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Independent Researcher, Sola, Norway"
+    }
+  },
+
+  "isPartOf": {
+    "@type": "ResearchProject",
+    "@id": "https://energyflow-cosmology.com/",
+    "name": "Energy-Flow Cosmology (EFC)"
+  },
+
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeTransition",
+      "name": "EFC Regime Transition",
+      "description": "Smooth transition from μ < 1 (cosmological) to μ → 1 (galactic) via R ∝ k⁻⁴ stiffness response"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:SurvivalValley",
+      "name": "Survival Valley",
+      "description": "Parameter region where μ ∈ [0.90, 0.97], η > 1.05, Σ > 1.0 simultaneously satisfied"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:StiffnessResponse",
+      "name": "Stiffness Response R(k)",
+      "description": "R(k) ∝ k⁻⁴, the mechanism driving the regime transition via the flow constraint"
+    }
+  ],
+
+  "citation": [
+    {"@type": "ScholarlyArticle", "@id": "figshare:31876324", "name": "EFC Relativistic Action"},
+    {"@type": "ScholarlyArticle", "@id": "figshare:31368433", "name": "Systematic CMB Localization"},
+    {"@type": "ScholarlyArticle", "@id": "figshare:31878760", "name": "Grid Microphysics to RAR"},
+    {"@type": "ScholarlyArticle", "@id": "figshare:31941465", "name": "Gradient-Coupled Grid Action"}
+  ],
+
+  "keywords": [
+    "regime transition", "scale-dependent gravity", "stiffness response",
+    "survival valley", "gravitational slip", "lensing coupling",
+    "spatiotemporal localization", "parameter robustness", "EFC"
+  ]
+}

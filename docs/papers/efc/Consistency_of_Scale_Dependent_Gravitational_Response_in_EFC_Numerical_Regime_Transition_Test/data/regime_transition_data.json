@@ -1,0 +1,116 @@
+{
+  "paper": {
+    "title": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
+    "doi": "10.6084/m9.figshare.31941543",
+    "version": "1.0"
+  },
+
+  "calibrated_parameters": {
+    "table_1": [
+      {"parameter": "α", "value": 0.001, "meaning": "Non-minimal coupling", "constraint": "ε_F small"},
+      {"parameter": "K_bar", "value": 643, "meaning": "Kinetic stiffness", "constraint": "R(k_c) ≈ 0.063"},
+      {"parameter": "φ̇_bar", "value": 0.01, "meaning": "Background field velocity", "constraint": "R amplitude"},
+      {"parameter": "λ̇_bar", "value": 0.049, "meaning": "Flow constraint rate", "constraint": "η ≈ 1.10"}
+    ]
+  },
+
+  "equations": {
+    "mu_k": {
+      "id": "Eq2",
+      "latex": "\\mu(k) = \\frac{1 + \\varepsilon_F + \\varepsilon^{\\text{resp}}_K}{F(1 + R(k))}",
+      "description": "Scale-dependent gravitational coupling"
+    },
+    "eta_k": {
+      "id": "Eq3",
+      "latex": "\\eta(k) = 1 + 2(\\varepsilon_F + \\varepsilon_\\lambda + \\varepsilon_{\\lambda,\\text{resp}})",
+      "description": "Gravitational slip from flow-constraint anisotropy"
+    },
+    "sigma_k": {
+      "id": "Eq4",
+      "latex": "\\Sigma(k) = \\mu \\frac{1+\\eta}{2}",
+      "description": "Lensing coupling"
+    },
+    "stiffness_response": {
+      "latex": "R(k) = \\frac{K_{\\text{bar}} a^4 (\\Gamma')^2 \\dot{\\bar{\\varphi}}^2}{M_{\\text{Pl}}^2 F k^4}",
+      "scaling": "R ∝ k⁻⁴",
+      "description": "Mechanism driving the regime transition"
+    },
+    "gate_function": {
+      "latex": "\\Theta(z) = \\frac{1}{1 + e^{\\Delta(z - z_t)}}",
+      "parameters": {"z_t": 1.0, "delta": 2.0}
+    },
+    "growth_ode": {
+      "id": "Eq6",
+      "latex": "\\delta'' + \\left(2 + \\frac{d\\ln H}{d\\ln a}\\right)\\delta' = \\frac{3}{2}\\Omega_m(a)\\mu(k,z)\\delta"
+    },
+    "entropy_mapping": {
+      "id": "Eq5",
+      "latex": "\\Gamma'(\\rho) \\sim \\frac{\\partial\\mu_{\\text{BE}}}{\\partial g} \\cdot \\frac{\\partial g}{\\partial\\rho}",
+      "status": "motivated but not rigorously derived"
+    }
+  },
+
+  "table_2_observables": [
+    {"scale": "Cosmological", "k": 0.05, "mu": 0.940, "eta": 1.149, "sigma": 1.010, "regime": "L1 (linear)"},
+    {"scale": "Cluster", "k": 0.33, "mu": 0.9995, "eta": 1.004, "sigma": 1.001, "regime": "L1→L2 boundary"},
+    {"scale": "Galactic", "k": 10.0, "mu": 0.9995, "eta": 1.000, "sigma": 0.9995, "regime": "GR recovery"}
+  ],
+
+  "table_3_spatiotemporal": [
+    {"point": "CMB", "z": 3.0, "k": 0.05, "mu": 0.9995, "eta": 1.0000, "sigma": 0.9995, "R": 4.3e-11},
+    {"point": "BAO", "z": 0.5, "k": 0.1, "mu": 0.9992, "eta": 1.0109, "sigma": 1.0046, "R": 3.7e-4},
+    {"point": "Survival valley", "z": 0.0, "k": 0.05, "mu": 0.9405, "eta": 1.1414, "sigma": 1.0070, "R": 6.4e-2},
+    {"point": "Galactic", "z": 0.0, "k": 10.0, "mu": 0.9995, "eta": 1.0000, "sigma": 0.9995, "R": 4.0e-11}
+  ],
+
+  "table_4_fsigma8": {
+    "data_source": "BOSS DR12",
+    "points": [
+      {"z": 0.38, "fsigma8_obs": 0.497, "error": 0.045, "fsigma8_LCDM": 0.480, "fsigma8_EFC": 0.479},
+      {"z": 0.51, "fsigma8_obs": 0.458, "error": 0.038, "fsigma8_LCDM": 0.470, "fsigma8_EFC": 0.469},
+      {"z": 0.61, "fsigma8_obs": 0.436, "error": 0.034, "fsigma8_LCDM": 0.461, "fsigma8_EFC": 0.461}
+    ],
+    "chi2_LCDM": 0.66,
+    "chi2_EFC": 0.63,
+    "delta_chi2": -0.03,
+    "sigma8_shift": "-0.1%"
+  },
+
+  "parameter_scan": {
+    "viable_fraction": 0.496,
+    "K_bar_viable": [521, 1847],
+    "lambda_dot_viable": [0.026, 0.120],
+    "calibrated_point": {"K_bar": 1057, "lambda_dot": 0.060},
+    "conclusion": "Survival valley is a broad, robust feature — not a fine-tuned island"
+  },
+
+  "established_results": [
+    "No sign-conflict between μ < 1 (linear) and μ > 1 (non-linear)",
+    "Smooth transition via R ∝ k⁻⁴ mechanism, no discontinuity",
+    "Survival valley: μ ≈ 0.94, η ≈ 1.10–1.15, Σ > 1",
+    "GR recovery at galactic scales (k ≫ k_c)",
+    "Consistent microphysics via BE distribution in both regimes"
+  ],
+
+  "open_questions": [
+    {"id": "a", "description": "Full non-linear EFT solution (currently Newtonian reduction for L2)"},
+    {"id": "b", "description": "Parameter derivation from first principles"},
+    {"id": "c", "description": "Bullet Cluster test (k ~ 0.3, μ ≈ 1.1, Σ ≈ 1.2)"},
+    {"id": "d", "description": "Rigorous Γ(ρ) derivation from the action"}
+  ],
+
+  "predictions": [
+    {
+      "id": "P1",
+      "description": "Cluster-scale transition: μ ≈ 1.1, Σ ≈ 1.2 at k ~ 0.3",
+      "test": "DES Y6, Euclid cluster weak lensing"
+    },
+    {
+      "id": "P2",
+      "description": "No μ > 1 in linear perturbations — structural EFT prohibition",
+      "test": "CMB, BAO, RSD"
+    }
+  ],
+
+  "analogy": "Navier-Stokes: laminar (linear, suppressive viscosity) vs turbulence (non-linear, enhanced transport) from the same action"
+}

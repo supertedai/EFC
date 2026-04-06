@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://energyflow-cosmology.com/schemas/regime-transition-test",
+  "title": "EFC Regime Transition Test Schema",
+  "description": "Validation schema for the numerical regime transition consistency test",
+  "type": "object",
+  "properties": {
+    "eft_parameters": {
+      "type": "object",
+      "properties": {
+        "alpha": {"type": "number", "description": "Non-minimal coupling"},
+        "K_bar": {"type": "number", "description": "Kinetic stiffness", "exclusiveMinimum": 0},
+        "phi_dot_bar": {"type": "number", "description": "Background field velocity"},
+        "lambda_dot_bar": {"type": "number", "description": "Flow constraint rate"}
+      },
+      "required": ["alpha", "K_bar", "phi_dot_bar", "lambda_dot_bar"]
+    },
+    "observables": {
+      "type": "object",
+      "properties": {
+        "mu": {"type": "number", "description": "Gravitational coupling μ(k)"},
+        "eta": {"type": "number", "description": "Gravitational slip η(k)"},
+        "sigma": {"type": "number", "description": "Lensing coupling Σ(k)"},
+        "R": {"type": "number", "description": "Stiffness response R(k)", "minimum": 0}
+      },
+      "required": ["mu", "eta", "sigma"]
+    },
+    "regime": {
+      "type": "string",
+      "enum": ["cosmological_L1", "transition", "galactic_L2", "CMB"],
+      "description": "Physical regime classification"
+    },
+    "spatiotemporal_point": {
+      "type": "object",
+      "properties": {
+        "k": {"type": "number", "description": "Wavenumber [h/Mpc]", "exclusiveMinimum": 0},
+        "z": {"type": "number", "description": "Redshift", "minimum": 0}
+      },
+      "required": ["k", "z"]
+    },
+    "survival_valley": {
+      "type": "object",
+      "properties": {
+        "mu_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "eta_min": {"type": "number"},
+        "sigma_min": {"type": "number"}
+      }
+    }
+  },
+  "required": ["eft_parameters", "observables"]
+}
