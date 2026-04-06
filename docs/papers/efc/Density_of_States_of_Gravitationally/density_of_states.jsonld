@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology/"
+  },
+  "@type": "schema:ScholarlyArticle",
+  "@id": "https://doi.org/10.6084/m9.figshare.31942800",
+  "schema:name": "Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge",
+  "schema:author": {
+    "@type": "schema:Person",
+    "schema:name": "Morten Magnusson",
+    "schema:identifier": "https://orcid.org/0009-0002-4860-5095",
+    "schema:affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "schema:datePublished": "2026-04-06",
+  "schema:license": "https://creativecommons.org/licenses/by/4.0/",
+  "schema:isPartOf": {
+    "@type": "schema:CreativeWorkSeries",
+    "schema:name": "Energy-Flow Cosmology Paper Series"
+  },
+  "efc:framework_version": "3.7",
+  "efc:track": "Spor 1 — Galactic & Cosmological",
+  "efc:sector": "Discrete Gravity / Grid Microphysics",
+  "efc:key_result": "D_eff(ρ) ∝ √(ρ/ρ_crit) from boundary-mode mechanism; Γ(ρ) fully derived from microphysics",
+  "efc:scenario_classification": "B+",
+  "efc:predictions": [
+    "Γ ∝ √ρ at low density (vs phenomenological ∝ ρ)",
+    "~20% deviation from phenomenological ansatz in relevant range",
+    "Distinguishable by Euclid/DESI DR3 precision",
+    "Survival valley recalibration needed"
+  ]
+}

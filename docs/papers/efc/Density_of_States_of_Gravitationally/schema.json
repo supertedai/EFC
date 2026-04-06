@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/Density_of_States_of_Gravitationally/schema.json",
+  "title": "Density of States Grid Modes Schema",
+  "description": "Validates data structures for the D_eff(ρ) derivation and Γ(ρ) bridge completion",
+  "type": "object",
+  "properties": {
+    "grid_parameters": {
+      "type": "object",
+      "properties": {
+        "l_g": { "type": "number", "description": "Grid spacing (m)" },
+        "sigma_0": { "type": "number", "description": "Node tension = a_0" },
+        "rho_crit": { "type": "number", "description": "Critical density a_0/(G_N l_g)" }
+      },
+      "required": ["l_g", "sigma_0", "rho_crit"]
+    },
+    "activation_condition": {
+      "type": "object",
+      "properties": {
+        "formula": { "type": "string" },
+        "threshold_density": { "type": "number" }
+      }
+    },
+    "density_of_states": {
+      "type": "object",
+      "properties": {
+        "formula": { "type": "string" },
+        "low_rho_scaling": { "type": "string" },
+        "high_rho_limit": { "type": "string" }
+      }
+    },
+    "entropy_production": {
+      "type": "object",
+      "properties": {
+        "derived_form": { "type": "string" },
+        "phenomenological_form": { "type": "string" },
+        "agreement_percent": { "type": "number" }
+      }
+    },
+    "scenario_classification": {
+      "type": "string",
+      "enum": ["A", "B", "B-", "B+", "C"]
+    },
+    "requirement_check": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "target": { "type": "string" },
+          "derived": { "type": "string" },
+          "status": { "type": "string", "enum": ["Passed", "Failed", "Different but physical"] }
+        }
+      }
+    }
+  }
+}

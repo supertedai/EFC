@@ -6,7 +6,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.7-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-40+-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-41+-brightgreen)](#ai-friendly-paper-packages)
 
 ---
 
@@ -22,7 +22,7 @@
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.7) |
 | **Papers** | 119+ papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 40+ with executable Python + structured data |
+| **AI Packages** | 41+ with executable Python + structured data |
 
 ---
 
@@ -160,6 +160,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.7) tracks 
 | Void ISW Sign-Flip | T3 — Novel prediction | [31942677](https://doi.org/10.6084/m9.figshare.31942677) |
 | Cosmic Dipole Working Note | T4 — Working note | [31942731](https://doi.org/10.6084/m9.figshare.31942731) |
 | Entropy Budget Working Note | T4 — Working note | [31942734](https://doi.org/10.6084/m9.figshare.31942734) |
+| Density of States Grid Modes | T3 — Microphysical derivation | [31942800](https://doi.org/10.6084/m9.figshare.31942800) |
 | Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 | Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
 
@@ -228,7 +229,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 
 ## AI-Friendly Paper Packages
 
-40+ papers have full AI-friendly packages with executable Python implementations:
+41+ papers have full AI-friendly packages with executable Python implementations:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -243,6 +244,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Void ISW Sign-Flip | `void_isw.py` | ISWDecomposition, SignFlipAnalysis, AmplitudeRatio |
 | Cosmic Dipole | `cosmic_dipole.py` | KinematicDipole, EntropyGradient, DipoleAmplitude |
 | Entropy Budget | `entropy_budget.py` | CosmicEntropyInventory, BekensteinHawkingEntropy, ThermostatConjecture |
+| Density of States Grid Modes | `density_of_states.py` | GridActivation, DensityOfStates, EntropyProductionFunction |
 | Grid Microphysics | `grid_microphysics.py` | GridNode, BoseEinsteinRAR, LatticeDerivation |
 | Covariant EFT | `covariant_eft.py` | CovEFT, GravWaveSpeed, BoseEinsteinRAR |
 | CMB Localization | `cmb_localization.py` | CMBSurvival, LensingBarrier, BackgroundGate |
