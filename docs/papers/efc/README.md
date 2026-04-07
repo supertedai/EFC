@@ -77,6 +77,31 @@ These papers develop specific aspects of the EFC model:
 
 ---
 
+---
+
+## AI-Friendly Package (2026-04-07)
+
+Every subdirectory now ships with a uniform **AI-friendly metadata layer** so
+that LLMs and automated agents can ingest, cite, and reproduce the work
+without scraping the PDFs:
+
+- `index.json` — minimal stable identity (id, title, author, ORCID, license, track, regimes, file list)
+- `metadata.json` — schema-aligned superset (paper, domain, files, primary PDF)
+- `ai_manifest.json` — machine-truth view, regenerated on each pass
+- `*.jsonld` — schema.org `ScholarlyArticle` JSON-LD record
+- `README.md` — human-readable summary with file inventory
+
+A directory-level catalogue lives in `ai_friendly_index.json` (130+ packages,
+auto-generated). Hand-curated reference packages with full reproducer code:
+
+- `WP4_BOSS_transfer_validation/` — DESI DR2 → BOSS DR12 cross-survey transfer (Δχ² = −7.77)
+- `Multi_epoch_Growth_Rate_Test_of_EFC/` — 14-point fσ8 multi-epoch test (EFC-VAL-2026-003)
+
+These two follow the same conventions as the auto-generated packages but add
+`src/`, `data/`, `examples/`, `schema.json`, and `citations.bib`.
+
+---
+
 ## Purpose of This Directory
 This collection provides:
 - a stable scientific record  
