@@ -5,6 +5,22 @@
   "period_days": 7,
   "changes": [
     {
+      "name": "AI-Friendly Package Rollout — All EFC Papers",
+      "status": "completed",
+      "result": "130 paper directories now ship index.json + metadata.json + ai_manifest.json + *.jsonld + README.md; ai_friendly_index.json catalogue at docs/papers/efc/. Hand-curated reference packages: WP4_BOSS_transfer_validation, Multi_epoch_Growth_Rate_Test_of_EFC.",
+      "last_updated": "2026-04-07T00:00:00+00:00",
+      "source": "claude/ai-friendly-cosmology-package-O5QcZ",
+      "all_labels": ["AIFriendly", "Metadata", "Provenance"]
+    },
+    {
+      "name": "Multi-epoch Growth Rate Test of EFC (EFC-VAL-2026-003)",
+      "status": "completed",
+      "result": "ΛCDM χ²=12.07/12, EFC χ²=11.98/11, Δχ²=0.10 (0.06σ); null result, B=0 within 1σ profile; Ωm–B degeneracy requires BAO joint fit. DOI 10.6084/m9.figshare.31955871",
+      "last_updated": "2026-04-07T00:00:00+00:00",
+      "source": "Multi_epoch_Growth_Rate_Test_of_EFC",
+      "all_labels": ["EFCValidation", "Growth", "RSD"]
+    },
+    {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
