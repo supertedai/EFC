@@ -1,0 +1,42 @@
+{
+  "report_id": "EFC-VAL-2026-003",
+  "doi": "10.6084/m9.figshare.31955871",
+  "n_data": 14,
+  "z_range": [0.067, 1.491],
+  "LCDM": {
+    "free_params": ["Omega_m", "sigma8_0"],
+    "Omega_m": 0.3019,
+    "sigma8_0": 0.7739,
+    "chi2": 12.07,
+    "dof": 12,
+    "chi2_per_dof": 1.006
+  },
+  "EFC": {
+    "free_params": ["sigma8_0", "B", "z_t"],
+    "fixed": {"Omega_m": 0.3019, "n": 2},
+    "sigma8_0": 0.7916,
+    "B": 0.078,
+    "z_t": 3.00,
+    "z_t_at_boundary": true,
+    "mu0": 0.922,
+    "chi2": 11.98,
+    "dof": 11,
+    "chi2_per_dof": 1.089
+  },
+  "comparison": {
+    "delta_chi2": 0.10,
+    "significance_sigma": 0.06,
+    "delta_AIC": -1.90,
+    "preferred": "LCDM"
+  },
+  "profile_likelihood_B": {
+    "min_at": 0.08,
+    "1sigma_interval": [0.0, 0.40],
+    "LCDM_in_1sigma": true,
+    "survival_valley_in_1sigma": true
+  },
+  "Omega_m_B_degeneracy": {
+    "with_Omega_m_free": {"Omega_m": 0.45, "B": 0.48, "mu0": 0.52},
+    "note": "Unphysical drift; requires BAO/SN/CMB priors to break"
+  }
+}
