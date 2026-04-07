@@ -1,0 +1,62 @@
+{
+  "id": "multi-epoch-growth-rate-test-efc",
+  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: fσ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research",
+  "report_id": "EFC-VAL-2026-003",
+  "doi": "10.6084/m9.figshare.31955871",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31955871",
+  "date": "2026-04-07",
+  "license": "CC-BY-4.0",
+  "type": "multi-epoch validation, null result",
+  "track": "Spor 1 — Galactic/Cosmological",
+  "regimes": ["L1", "L2"],
+  "model": {
+    "growth_ode": "D'' + (3/(2a))[1+Omega_DE(a)] D' = (3/(2a^2)) Omega_m(a) mu(a) D",
+    "mu_of_a": "mu(a) = 1 - B * T(a)",
+    "gate": "T(a) = 1 / (1 + (a_t/a)^n), n=2 fixed",
+    "free_parameters_EFC": ["sigma8_0", "B", "z_t"],
+    "fixed": {"Omega_m": 0.3019, "n": 2},
+    "ICs": {"a_i": 1e-3, "D(a_i)": "a_i", "D'(a_i)": 1}
+  },
+  "data": {
+    "n_points": 14,
+    "z_range": [0.067, 1.491],
+    "covariance": "diagonal",
+    "surveys": ["6dFGS", "BOSS DR12", "eBOSS DR16", "DESI DR1 (full-shape + PV)"]
+  },
+  "main_result": {
+    "LCDM": {"Omega_m": 0.3019, "sigma8_0": 0.7739, "chi2": 12.07, "dof": 12, "chi2_per_dof": 1.006},
+    "EFC":  {"Omega_m": 0.3019, "sigma8_0": 0.7916, "B": 0.078, "z_t": 3.00, "mu0": 0.922, "chi2": 11.98, "dof": 11, "chi2_per_dof": 1.089},
+    "delta_chi2": 0.10,
+    "significance_sigma": 0.06,
+    "delta_AIC": -1.90,
+    "preferred": "LCDM (marginally)",
+    "verdict": "EFC consistent but not preferred; B=0 within 1σ profile"
+  },
+  "key_findings": [
+    "Null result for growth sector: fσ8 data alone do not require modified mu(a)",
+    "Survival valley μ0 ∈ [0.93, 0.96] lies within the 1σ profile contour",
+    "Strong Ωm–B degeneracy: with Ωm free, optimizer drifts to Ωm≈0.45, B≈0.48",
+    "z_t unconstrained (hits boundary at 3.0)",
+    "Cross-probe combination with BAO required to break degeneracy"
+  ],
+  "limitations": [
+    "Diagonal covariance (cross-survey overlap not modelled)",
+    "Ωm fixed at LCDM best-fit",
+    "Scale-independent μ(a); no k-dependence",
+    "z_t unconstrained by fσ8 alone"
+  ],
+  "files": {
+    "paper_pdf": "efc_multi_epoch_note.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "Multi_epoch_Growth_Rate_Test_of_EFC.jsonld",
+    "citations": "citations.bib",
+    "data_table": "data/fsigma8_compilation.csv",
+    "results": "data/efc_multi_epoch_results.json",
+    "src": "src/efc_multi_epoch_v2.py",
+    "example": "examples/reproduce_minimal.py"
+  }
+}
