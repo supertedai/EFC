@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WP4 BOSS Transfer Test Result",
+  "type": "object",
+  "required": ["chi2_LCDM", "chi2_EFC", "delta_chi2", "k_eff"],
+  "properties": {
+    "chi2_LCDM": {"type": "number", "minimum": 0},
+    "chi2_EFC":  {"type": "number", "minimum": 0},
+    "delta_chi2": {"type": "number"},
+    "k_eff": {"type": "integer", "minimum": 0},
+    "z_L1L2": {"type": "number"},
+    "alpha_L2": {"type": "number"}
+  }
+}

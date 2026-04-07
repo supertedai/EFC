@@ -1,0 +1,41 @@
+{
+  "doi": "10.6084/m9.figshare.31954125",
+  "frozen_parameters": {"z_L1L2": 1.01, "alpha_L2": 0.045},
+  "baseline_cosmology": {"H0_km_s_Mpc": 67.4, "Omega_m": 0.315, "rs_Mpc": 147.09, "source": "Planck 2018"},
+  "transfer_test_main": {
+    "dataset": "BOSS DR12",
+    "chi2_LCDM": 20.83,
+    "chi2_EFC": 13.06,
+    "delta_chi2": -7.77,
+    "k_eff": 0
+  },
+  "whitened_components": [
+    {"label": "w1", "chi2_LCDM":  1.27, "chi2_EFC": 2.29, "delta_chi2":  1.01},
+    {"label": "w2", "chi2_LCDM":  1.09, "chi2_EFC": 2.14, "delta_chi2":  1.05},
+    {"label": "w3", "chi2_LCDM":  0.01, "chi2_EFC": 2.82, "delta_chi2":  2.81},
+    {"label": "w4", "chi2_LCDM":  1.50, "chi2_EFC": 0.48, "delta_chi2": -1.02},
+    {"label": "w5", "chi2_LCDM": 15.30, "chi2_EFC": 3.91, "delta_chi2": -11.39},
+    {"label": "w6", "chi2_LCDM":  1.65, "chi2_EFC": 1.43, "delta_chi2": -0.23}
+  ],
+  "eigenmode_partition": {
+    "strongly_penalized_low_lambda": -5.50,
+    "weakly_penalized_high_lambda":  -2.27,
+    "strong_fraction": 0.71
+  },
+  "robustness_sweep": [
+    {"rho": 0.00, "chi2_LCDM": 16.37, "chi2_EFC": 12.13, "delta_chi2": -4.24},
+    {"rho": 0.25, "chi2_LCDM": 15.27, "chi2_EFC": 10.68, "delta_chi2": -4.59},
+    {"rho": 0.50, "chi2_LCDM": 14.82, "chi2_EFC":  9.87, "delta_chi2": -4.96},
+    {"rho": 0.75, "chi2_LCDM": 16.52, "chi2_EFC": 10.82, "delta_chi2": -5.70},
+    {"rho": 1.00, "chi2_LCDM": 20.83, "chi2_EFC": 13.06, "delta_chi2": -7.77}
+  ],
+  "best_fit_reference": [
+    {"dataset": "BOSS",       "N": 6,  "k_eff": 1, "z_L1L2": ">0.6",  "alpha_L2": 0.036, "dAICc":  -6.4,  "dBIC":  -7.6,  "note": "z_L1L2 unidentifiable for >0.6"},
+    {"dataset": "BOSS+eBOSS", "N": 14, "k_eff": 2, "z_L1L2":  1.60,   "alpha_L2": 0.036, "dAICc": -19.3,  "dBIC": -19.1},
+    {"dataset": "DESI DR2",   "N": 13, "k_eff": 2, "z_L1L2":  1.01,   "alpha_L2": 0.045, "dAICc":  -1.0,  "dBIC":  -1.0}
+  ],
+  "datasets": {
+    "BOSS_DR12": {"N": 6, "redshifts": [0.38, 0.51, 0.61], "observables": ["DH/rs", "DM/rs"], "covariance": "6x6 full"},
+    "eBOSS":     {"redshifts": [0.70, 0.85, 1.48, 2.33], "tracers": ["LRG", "ELG", "QSO", "Lya"]}
+  }
+}

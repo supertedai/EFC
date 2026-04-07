@@ -1,0 +1,61 @@
+{
+  "id": "wp4-boss-transfer-validation",
+  "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "doi": "10.6084/m9.figshare.31954125",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31954125",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "type": "post-hoc validation",
+  "track": "Spor 1 — Galactic/Cosmological",
+  "regimes": ["L1", "L2"],
+  "model": {
+    "equation": "H_EFC(z) = H_LCDM(z) * sqrt(1 + alpha_L2 * Theta(z < z_L1L2))",
+    "frozen_parameters": {"z_L1L2": 1.01, "alpha_L2": 0.045},
+    "baseline": {"H0": 67.4, "Omega_m": 0.315, "rs_Mpc": 147.09, "source": "Planck 2018"}
+  },
+  "main_result": {
+    "test": "DESI DR2 -> BOSS DR12 transfer (no refit)",
+    "chi2_LCDM": 20.83,
+    "chi2_EFC": 13.06,
+    "delta_chi2": -7.77,
+    "k_eff": 0
+  },
+  "covariance_diagnostics": {
+    "whitening_dominant_component": {"index": "w5", "delta_chi2": -11.39},
+    "eigenmode_partition": {
+      "strongly_penalized_low_lambda": -5.50,
+      "weakly_penalized_high_lambda": -2.27,
+      "strong_fraction": 0.71
+    },
+    "robustness_sweep": [
+      {"rho": 0.00, "chi2_LCDM": 16.37, "chi2_EFC": 12.13, "delta_chi2": -4.24},
+      {"rho": 0.25, "chi2_LCDM": 15.27, "chi2_EFC": 10.68, "delta_chi2": -4.59},
+      {"rho": 0.50, "chi2_LCDM": 14.82, "chi2_EFC":  9.87, "delta_chi2": -4.96},
+      {"rho": 0.75, "chi2_LCDM": 16.52, "chi2_EFC": 10.82, "delta_chi2": -5.70},
+      {"rho": 1.00, "chi2_LCDM": 20.83, "chi2_EFC": 13.06, "delta_chi2": -7.77}
+    ]
+  },
+  "best_fit_reference": [
+    {"dataset": "BOSS",        "N": 6,  "k_eff": 1, "z_L1L2": ">0.6",  "alpha_L2": 0.036, "dAICc":  -6.4, "dBIC":  -7.6, "note": "z_L1L2 unidentifiable for >0.6"},
+    {"dataset": "BOSS+eBOSS",  "N": 14, "k_eff": 2, "z_L1L2":  1.60,   "alpha_L2": 0.036, "dAICc": -19.3, "dBIC": -19.1},
+    {"dataset": "DESI DR2",    "N": 13, "k_eff": 2, "z_L1L2":  1.01,   "alpha_L2": 0.045, "dAICc":  -1.0, "dBIC":  -1.0}
+  ],
+  "limitations": [
+    "Post-hoc, NOT pre-registered (unlike P3)",
+    "Not a discovery claim",
+    "Does not rule out LCDM",
+    "Improvement Δχ²=−7.77 not claimed as detection"
+  ],
+  "companion_tests": [
+    {"id": "P3", "doi": "10.6084/m9.figshare.31951992", "type": "pre-registered prediction", "result": "0.3σ PASS"},
+    {"id": "WP4", "doi": "10.6084/m9.figshare.31954125", "type": "post-hoc parameter transfer", "result": "Δχ²=−7.77"}
+  ],
+  "files": {
+    "pdf": "WP4_BOSS_transfer_validation.pdf",
+    "module": "src/wp4_transfer.py",
+    "data": "data/wp4_data.json",
+    "demo": "examples/demo.py"
+  }
+}
