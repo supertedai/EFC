@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-04-07T07:39:12Z",
+  "generated_at": "2026-04-07T13:39:38Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 33,
+    "physics_test": 34,
     "consistency_check": 17,
     "phenomenological": 13,
-    "framework_constraint": 22,
+    "framework_constraint": 23,
     "planned_pipeline": 15,
-    "total_public": 100,
+    "total_public": 102,
     "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -19,8 +19,8 @@
     "tcs_mismatch": 0.5,
     "pillar_1_lcdm": 0,
     "pillar_2_native": 54,
-    "pillar_3_grav": 12,
-    "pillar_4_cross": 34,
+    "pillar_3_grav": 13,
+    "pillar_4_cross": 35,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -375,6 +375,21 @@
         "notes": "GRC Triad Contract v2 kill-test. Sealed blind prediction, hash-verified. Awaiting DESI DR2+ data at z > 1.5. No pipeline build needed — only future data comparison.",
         "quantitative_result": null,
         "last_synced": "2026-02-20T08:26:45.384000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_kt3b_environmental_mass_scaling_test_env_",
+        "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
+        "description": "EFC's D_eff(ρ) predicts that the Newton→MOND transition radius r_trans scales as M^β where β depends on local environmental density ρ_env. This is because fewer grid modes are active at low ρ_env (D_eff ∝ √(ρ/ρ_crit)), shifting the effective transition. MOND and Verlinde predict universal β=0.50 independent of environment. ΛCDM predicts scatter from halo formation history but not a clean monotonic trend in ρ_env. This test holds baryonic mass profile constant and compares g_obs/g_bar as a function of environmental density, using SPARC galaxies cross-matched with an environment catalog (nearest-neighbor density or tidal field strength). A monotonic trend in β(ρ_env) or g_obs/g_bar(ρ_env) would be a unique EFC signature.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "SPARC 175 galaxies (Lelli+ 2017) cross-matched with environment catalogs: Tully (2015) galaxy group catalog for nearest-neighbor density, or Eridanus/Fornax void catalogs. Key observables: V_flat, g_obs/g_bar at r where g_bar ~ a₀, and ρ_env from N-th nearest neighbor density estimator.",
+        "prediction": "At fixed baryonic mass, void galaxies (ρ_env ≪ ρ_crit) show systematically weaker gravitational enhancement (lower g_obs/g_bar at g_bar ~ a₀) than galaxies in filaments/groups (ρ_env ~ ρ_crit). Estimated effect size: D_eff ratio between void (ρ/ρ_crit ~ 0.01) and filament (ρ/ρ_crit ~ 1) is √0.01 ≈ 0.1 vs 0.5, giving ~5× fewer active modes. This translates to ~15-30% suppression in enhancement for void galaxies. MOND predicts zero suppression. ΛCDM predicts uncorrelated scatter.",
+        "notes": "Approved. KT3 v1 correctly reclassified as KNOWN_LIMITATION (discrete grid artifact). KT3b is the right physical test — environmental β(ρ_env) is a unique EFC prediction that separates it from MOND/Verlinde/ΛCDM. SPARC+THINGS data available now for α > 0.1 regime. Working note v0.3 reviewed.",
+        "quantitative_result": null,
+        "last_synced": "2026-04-07T07:57:37.851000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -813,7 +828,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v1.1 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.57688 p_binom=0.01953125 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-04-07T03:36:24.809000000+00:00",
+        "last_synced": "2026-04-07T11:43:34.320000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -996,6 +1011,21 @@
         "notes": "Approved based on k* transition scale analysis (Magnusson 2026-02-19). The action integral is confirmed as the primary theoretical obstruction: k* cannot be derived from Λ or a₀ alone, and the growth gate / AQUAL limit are coupled phenomenologically, not variationally. Both MCMC samplers (emcee + NUTS) confirm degeneracy that cannot be broken without stronger theoretical constraints. Tier-1 open problem.",
         "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
         "last_synced": "2026-02-19T18:47:39.538000000+00:00",
+        "status_detail": "pending"
+      },
+      {
+        "test_id": "conv_action_integral_gap_k_derivability_test",
+        "name": "Action Integral Gap — k* derivability test",
+        "description": "The EFC transition scale k* ≈ 0.1–0.3 h/Mpc cannot be derived from Λ or a₀ alone. AQUAL activation (|∇Φ| = a₀) requires δ ~ 100, confirming k* is tied to nonlinear structure (k_NL), not linear cosmological scales. Without a variational action S_EFC = ∫d⁴x √(-g) L(g, S_ent, ∇S_ent, Φ, Λ), the gate function remains imposed (L6) and k* cannot be promoted from emergent to derived. This is the primary theoretical obstruction in EFC.",
+        "result": "REQUIRES_EXTERNAL_TOOL",
+        "status": "pending",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "First-principles derivation (Newtonian potential gradient vs a₀), k_NL from ΛCDM P(k), validation ledger E1/E3/E5-E7/L6. Document: efc_transition_scale.tex",
+        "prediction": "A well-posed EFC action would yield: (1) the growth gate as an equation of motion, (2) AQUAL as a weak-field limit, (3) k* ≈ k_NL as a solution rather than input. Until constructed, k* remains an emergent regime boundary. This constrains EFC's classification as semi-fundamental effective framework.",
+        "notes": "Tier-1 theoretical gap. k* ≈ k_NL confirmed as emergent, not derivable from Λ or a₀. Action integral is the primary obstruction to promoting EFC from effective framework to derived field theory. Full analysis in efc_transition_scale.tex (5 pages). Approved for public ledger.",
+        "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
+        "last_synced": "2026-04-07T08:04:46.088000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1552,7 +1582,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.573410Z",
+      "timestamp": "2026-04-07T13:15:00.155835Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1575,7 +1605,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.588912Z",
+      "timestamp": "2026-04-07T13:15:00.166936Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1598,7 +1628,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.557631Z",
+      "timestamp": "2026-04-07T13:15:00.140821Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1614,7 +1644,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.617707Z",
+      "timestamp": "2026-04-07T13:15:00.189404Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1633,7 +1663,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.603498Z",
+      "timestamp": "2026-04-07T13:15:00.178042Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1655,7 +1685,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-07T07:04:14.539256Z",
+      "timestamp": "2026-04-07T13:15:00.126766Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1681,7 +1711,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-07T07:38:26.502432+00:00"
+      "timestamp": "2026-04-07T13:38:36.913349+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1695,7 +1725,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-07T07:38:26.573852+00:00"
+      "timestamp": "2026-04-07T13:38:36.934011+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1709,7 +1739,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-07T07:38:26.584202+00:00"
+      "timestamp": "2026-04-07T13:38:36.944793+00:00"
     }
   },
   "parameters": {
@@ -2356,8 +2386,28 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
-      "last_updated": "2026-04-07T03:36:24.809000000+00:00",
+      "last_updated": "2026-04-07T11:43:34.320000000+00:00",
       "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Action Integral Gap — k* derivability test",
+      "status": "pending",
+      "result": "REQUIRES_EXTERNAL_TOOL",
+      "last_updated": "2026-04-07T08:04:46.088000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-07T07:57:37.851000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
