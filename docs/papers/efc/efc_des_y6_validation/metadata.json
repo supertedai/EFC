@@ -1,0 +1,34 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "name": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
+  "headline": "DES Y6 PASS: lensing-to-CMB S8 ratio 0.944 ± 0.018 vs EFC prediction 0.95 ± 0.03",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "datePublished": "2026-04-07",
+  "identifier": "10.6084/m9.figshare.31951992",
+  "url": "https://doi.org/10.6084/m9.figshare.31951992",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology — Validation Series"
+  },
+  "keywords": ["S8 tension", "DES Y6", "weak lensing", "EFC", "modified gravity", "validation", "pre-registered"],
+  "efc_context": {
+    "track": "Spor 1 — Galactic/Cosmological",
+    "regimes_tested": ["L1 linear perturbations", "L0 background normalization"],
+    "test_id": "P3",
+    "test_status": "PASS",
+    "preregistration": {
+      "predicted_in": "10.6084/m9.figshare.31188193",
+      "deposited": "January 2026",
+      "data_released": "2026-01-21",
+      "criteria": "ratio ∈ [0.90, 1.00]"
+    },
+    "ledger_impact": "P3 lensing consistency tickbox closed; Validation Ledger advances to v3.9"
+  }
+}

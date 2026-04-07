@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/docs/papers/efc/efc_des_y6_validation/schema.json",
+  "title": "EFC DES Y6 Validation Result",
+  "type": "object",
+  "required": ["S8_lens", "S8_cmb", "ratio", "prediction", "status"],
+  "properties": {
+    "S8_lens": {"type": "object", "properties": {"value": {"type": "number"}, "uncertainty": {"type": "number"}}},
+    "S8_cmb": {"type": "object", "properties": {"value": {"type": "number"}, "uncertainty": {"type": "number"}}},
+    "ratio": {"type": "object", "properties": {"value": {"type": "number"}, "uncertainty": {"type": "number"}}},
+    "prediction": {"type": "object", "properties": {"value": {"type": "number"}, "uncertainty": {"type": "number"}}},
+    "status": {"enum": ["PASS", "FAIL", "MARGINAL"]},
+    "agreement_sigma": {"type": "number", "minimum": 0}
+  }
+}

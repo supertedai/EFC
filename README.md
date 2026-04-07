@@ -5,8 +5,10 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.8-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-127-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.9-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-128-brightgreen)](#ai-friendly-paper-packages)
+
+> **NEW (April 7, 2026)**: [DES Y6 Lensing Validation Update](https://doi.org/10.6084/m9.figshare.31951992) — **P3 lensing test PASS**: observed S₈ˡᵉⁿˢ/S₈ᶜᴹᴮ = **0.944 ± 0.018** vs pre-registered EFC prediction **0.95 ± 0.03** (0.3σ agreement). Pass criterion deposited prior to DES Y6 release (Jan 21, 2026).
 
 > **NEW (April 2026)**: [ΛCDM as a Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — Consolidation paper demonstrating that ΛCDM is the L0/L1 limit of EFC (Eq. 6: K(ρ)→∞, T(a)→0, ξ≫1 ⟹ Friedmann+Poisson). DESI DR2 confirms: α = −0.14 ± 0.21. 14 months, 204 publications, 100 registered tests.
 
@@ -22,9 +24,9 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.8) |
-| **Papers** | 127 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 127 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.9) |
+| **Papers** | 128 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 128 with executable Python + structured data (100% coverage) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
 
 ---
@@ -144,7 +146,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.8) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.9) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
 
 ### Key Results
 | Test | Status | Reference |
@@ -169,6 +171,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.8) tracks 
 | Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 | Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
 | **ΛCDM as Special Case (Consolidation)** | **T2 — DESI DR2 confirmed** | [31943361](https://doi.org/10.6084/m9.figshare.31943361) |
+| **P3 — DES Y6 lensing S₈ ratio** | **T2 — PASS (0.944 ± 0.018 vs 0.95 ± 0.03, 0.3σ)** | [31951992](https://doi.org/10.6084/m9.figshare.31951992) |
 
 ### Falsification Conditions (F1–F7 + FA1–FA6)
 Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **PASSED** by relativistic derivation. Six action-level conditions (FA1–FA6) now govern the perturbation sector. See [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) for details.
@@ -230,13 +233,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 127 papers, all with full 10-file AI-friendly packages (100% coverage).
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 128 papers, all with full 10-file AI-friendly packages (100% coverage).
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 127 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
+All 128 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -259,6 +262,7 @@ All 127 papers have full AI-friendly packages with executable Python implementat
 | Graph-AQUAL | `discrete_gravity.py` | GraphAQUAL, LambdaScreening, RegimeCoordinates |
 | EFC Relativistic Action | `efc_relativistic_action.py` | RelativisticAction, PerturbationSector |
 | **ΛCDM as Special Case** | `lcdm_special_case.py` | LCDMReduction, DESIDR2Result, PerturbationValley, GasLawAnalogy, KillTestSuite |
+| **DES Y6 Lensing Validation** | `des_y6_validation.py` | P3LensingTest, DESY6Result, CMB2026Baseline, EFCLensingPrediction |
 
 Each package includes:
 - `src/<module>.py` — Importable Python with documented classes
@@ -278,8 +282,8 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 127 papers with 10-file AI-friendly packages (100%)
-│   ├── public/         # Validation Ledger (v3.8), Master Spec, figures
+│   ├── papers/efc/     # 128 papers with 10-file AI-friendly packages (100%)
+│   ├── public/         # Validation Ledger (v3.9), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
 │   └── notes/          # Research notes
