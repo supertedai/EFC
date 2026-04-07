@@ -1,0 +1,56 @@
+{
+  "doi": "10.6084/m9.figshare.31951992",
+  "des_y6": {
+    "S8": {"value": 0.789, "uncertainty": 0.012, "model": "LCDM 3x2pt"},
+    "tension_with_cmb_sigma": 2.6,
+    "survey": {
+      "area_deg2": 5000,
+      "source_galaxies_M": 140,
+      "lens_galaxies_M": 9,
+      "n_eff_arcmin2": 8.22,
+      "shear_catalog": "Metadetection",
+      "lens_sample": "MagLim++"
+    },
+    "source": "arXiv:2601.14559",
+    "released": "2026-01-21"
+  },
+  "cmb_2026": {
+    "S8": {"value": 0.836, "uncertainty_plus": 0.012, "uncertainty_minus": 0.013},
+    "components": ["Planck", "ACT DR6", "SPT-3G"],
+    "snr": 61,
+    "source": "Qu et al. 2026, Phys. Rev. D 114"
+  },
+  "ratio": {
+    "value": 0.944,
+    "uncertainty": 0.018,
+    "method": "uncorrelated quadrature"
+  },
+  "efc_prediction": {
+    "ratio": {"value": 0.95, "uncertainty": 0.03},
+    "Sigma_EFC": 0.95,
+    "eta": 1.0,
+    "k_screening": {"value": 0.415, "uncertainty": 0.05, "source": "SPARC Phase 3"},
+    "aG": {"value": 0.094, "uncertainty": 0.01, "source": "H0 analysis"},
+    "pre_registered_doi": "10.6084/m9.figshare.31188193",
+    "deposited": "2026-01",
+    "pass_window": [0.90, 1.00]
+  },
+  "result": {
+    "test": "P3 lensing consistency",
+    "status": "PASS",
+    "agreement_sigma": 0.3
+  },
+  "validation_ledger_april_2026": [
+    {"test": "P1", "name": "Closure g† = cH0/e", "predicted": "2.5e-10 m/s^2", "observed": "2.51 ± 0.60", "status": "consistent"},
+    {"test": "P2", "name": "Cross-scale C stability", "predicted": "C ≈ 4.4", "observed": null, "status": "untested"},
+    {"test": "P3", "name": "Lensing S8 ratio", "predicted": "0.95 ± 0.03", "observed": "0.944 ± 0.018", "status": "PASS"},
+    {"test": "A3", "name": "η = 1 assumption", "predicted": "η = 1", "observed": null, "status": "not tested here"}
+  ],
+  "limitations": [
+    {"id": "L1", "label": "1D test", "detail": "Single-number compression of Σ(k,z)"},
+    {"id": "L2", "label": "Not unique to EFC", "detail": "Massive ν, f(R), decaying DM, baryonic feedback"},
+    {"id": "L3", "label": "DES vs KiDS divergence", "detail": "KiDS Legacy S8≈0.82 (<1σ from CMB)"},
+    {"id": "L4", "label": "η=1 untested", "detail": "Requires E_G statistic"},
+    {"id": "L5", "label": "k from SPARC", "detail": "Inherits SPARC systematics; P2 not yet tested"}
+  ]
+}
