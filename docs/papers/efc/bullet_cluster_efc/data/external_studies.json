@@ -1,0 +1,60 @@
+{
+  "description": "Machine-readable record of the three JWST-era Bullet Cluster studies confronted in EFC-VAL-2026-004. These are EXTERNAL third-party studies; they are NOT EFC empirical evidence entries and do NOT appear in evidence-register.json. They appear only in the HTML ledger §4b External Observations Under Confrontation, and are confronted in this working note.",
+  "layer": "external (third-party)",
+  "policy": "Three-layer evidence separation: (1) own Figshare DOIs in evidence-register, (2) external arXiv studies only in HTML §4b, (3) working notes like this one that confront externals. arXiv IDs MUST NOT leak into evidence-register.json or ledger.json empirical lists.",
+  "studies": [
+    {
+      "key": "Cha2025",
+      "authors": ["Cha, S.", "Jee, M. J.", "Finner, K."],
+      "year": 2025,
+      "venue": "ApJ 987, L15",
+      "doi": "10.3847/2041-8213/ad8f3e",
+      "arxiv": "2503.21870",
+      "title_short": "Highest-resolution JWST mass reconstruction of the Bullet Cluster",
+      "key_numbers": {
+        "strong_lensing_constraints": 146,
+        "weak_lensing_source_density_per_arcmin2": 398,
+        "sidm_bound_cm2_per_g": 0.5,
+        "icl_mass_hausdorff_kpc": 19.80,
+        "icl_mass_hausdorff_err_kpc": 12.46
+      },
+      "used_for": ["A_sig free-form residual (pending)", "SIDM bound interpretation", "three-subclump main cluster structure"]
+    },
+    {
+      "key": "Rihtarsic2026",
+      "authors": ["Rihtar{\u0161}i{\u010d}, G.", "Brada{\u010d}, M.", "Desprez, G."],
+      "year": 2026,
+      "venue": "submitted",
+      "arxiv": "2601.22245",
+      "title_short": "Spectroscopically anchored parametric lens model of the Bullet Cluster",
+      "key_numbers": {
+        "multiple_images": 135,
+        "systems": 27,
+        "zspec_min": 0.9,
+        "zspec_max": 6.7,
+        "bcg_subcluster_offset_kpc": 4
+      },
+      "used_for": ["PIEMD halo geometry (double-peaked main cluster)", "future replacement of placeholder A_sig parameters"]
+    },
+    {
+      "key": "Cho2025",
+      "authors": ["Cho, H.", "Jee, M. J.", "Cha, S."],
+      "year": 2025,
+      "venue": "submitted",
+      "arxiv": "2512.03150",
+      "title_short": "JWST/NIRCam + DECam virial masses of the Bullet Cluster",
+      "key_numbers": {
+        "M200c_main_1e14_Msun": 15.11,
+        "M200c_main_err_up_1e14_Msun": 2.48,
+        "M200c_main_err_down_1e14_Msun": 2.10,
+        "M200c_sub_1e14_Msun": 1.49,
+        "M200c_sub_err_up_1e14_Msun": 0.32,
+        "M200c_sub_err_down_1e14_Msun": 0.25,
+        "mass_ratio": "10:1 minor merger"
+      },
+      "used_for": ["structural exclusion test strengthening", "regime-transition P1 qualitative consistency check", "baryonic mass rescaling estimate (M_baryonic^EFC ~ 13.7e14 M_sun)"]
+    }
+  ],
+  "ledger_reference_section": "§4b External Observations Under Confrontation (docs/public/EFC_Validation_Ledger.html)",
+  "ledger_status_after_this_note": "confronted — working note EFC-VAL-2026-004 / DOI 31963668"
+}

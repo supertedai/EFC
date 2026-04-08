@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "bullet-cluster-efc/schema.json",
+  "title": "Bullet Cluster Under EFC — result schema",
+  "description": "Schema for the A_sig PIEMD baseline and EFC confrontation record of the Bullet Cluster (1E 0657-56) against JWST-era mass reconstructions.",
+  "type": "object",
+  "required": ["report_id", "doi", "asig_baseline", "bootstrap_p_value", "external_studies"],
+  "properties": {
+    "report_id": {"type": "string", "pattern": "^EFC-VAL-\\d{4}-\\d{3}$"},
+    "doi": {"type": "string", "pattern": "^10\\.6084/m9\\.figshare\\.\\d{8}$"},
+    "ledger_version": {"type": "string", "pattern": "^v\\d+\\.\\d+$"},
+    "asig_baseline": {"type": "number"},
+    "bootstrap_p_value": {"type": "number", "minimum": 0, "maximum": 1},
+    "kappa_front": {"type": "number"},
+    "kappa_back": {"type": "number"},
+    "shock_line_x_kpc": {"type": "number"},
+    "strip_width_kpc": {"type": "number"},
+    "strip_length_kpc": {"type": "number"},
+    "halos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "sigma0_km_per_s", "r_core_kpc", "r_cut_kpc"],
+        "properties": {
+          "name": {"type": "string"},
+          "x0_kpc": {"type": "number"},
+          "y0_kpc": {"type": "number"},
+          "sigma0_km_per_s": {"type": "number"},
+          "r_core_kpc": {"type": "number"},
+          "r_cut_kpc": {"type": "number"},
+          "ellipticity": {"type": "number"},
+          "position_angle_deg": {"type": "number"}
+        }
+      }
+    },
+    "external_studies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "arxiv"],
+        "properties": {
+          "key": {"type": "string"},
+          "arxiv": {"type": "string"},
+          "doi": {"type": "string"},
+          "role": {"type": "string"}
+        }
+      }
+    },
+    "frozen_parameters": {
+      "type": "object",
+      "description": "EFC parameters frozen at Ledger v3.11. No new parameters introduced in this paper.",
+      "properties": {
+        "k": {"type": "number"},
+        "mu_cosmological": {"type": "number"},
+        "mu_cluster": {"type": "number"},
+        "Sigma_cosmological": {"type": "number"},
+        "Sigma_cluster": {"type": "number"},
+        "alpha_L2": {"type": "number"},
+        "B_growth": {"type": "number"},
+        "mu0_growth": {"type": "number"}
+      }
+    }
+  }
+}

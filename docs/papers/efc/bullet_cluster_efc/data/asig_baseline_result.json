@@ -1,0 +1,79 @@
+{
+  "test": "A_sig 2D PIEMD baseline on Bullet Cluster 1E 0657-56",
+  "report_id": "EFC-VAL-2026-004",
+  "doi": "10.6084/m9.figshare.31963668",
+  "operator": {
+    "definition": "A_sig = <kappa>_front - <kappa>_back",
+    "shock_line_x_kpc": 480,
+    "shock_normal": [-1, 0],
+    "strip_width_kpc": 200,
+    "strip_length_kpc": 400,
+    "reference": "Markevitch 2006"
+  },
+  "grid": {
+    "nx": 512,
+    "ny": 512,
+    "extent_kpc": [1800, 1200]
+  },
+  "lensing_setup": {
+    "z_lens": 0.296,
+    "z_source": 1.0,
+    "sigma_crit_Msun_per_kpc2": 2.84e9,
+    "halo_model": "PIEMD (Kassiola & Kovner 1993; Kneib et al. 1996)"
+  },
+  "halos": [
+    {
+      "name": "Main-NW",
+      "role": "double-peaked main cluster NW component",
+      "peak_kappa": 0.62,
+      "source": "placeholder from Cho 2025 virial + Cha 2025 offsets"
+    },
+    {
+      "name": "Main-SE",
+      "role": "double-peaked main cluster SE component",
+      "peak_kappa": 0.49,
+      "source": "placeholder from Cho 2025 virial + Cha 2025 offsets"
+    },
+    {
+      "name": "Subcluster",
+      "role": "the 'bullet' (1.5e14 M_sun)",
+      "peak_kappa": 0.49,
+      "source": "placeholder from Cho 2025 virial"
+    },
+    {
+      "name": "Group-NE",
+      "role": "NE group extension",
+      "peak_kappa": 0.16,
+      "source": "motivated by Rihtarsic 2026 lens model"
+    }
+  ],
+  "result": {
+    "kappa_front_mean": 0.1824,
+    "kappa_back_mean": 0.1831,
+    "asig_baseline": -6.9e-4,
+    "bootstrap_n_samples": 5000,
+    "bootstrap_p_value": 0.98,
+    "asig_over_sigma_null": -0.01,
+    "sensitivity_per_20pct_sigma0_MainNW": 0.01
+  },
+  "verdict": {
+    "class": "null hypothesis validated",
+    "physics_interpretation": "PIEMD parametric halo geometry produces no directional asymmetry at the shock front. Any A_sig != 0 observed in delta_kappa = kappa_obs - kappa_PIEMD cannot be attributed to halo geometry within this parametric model class.",
+    "scope": "test-operator validation only; not a physical test of EFC vs LCDM",
+    "next_step": "Execute full A_sig test on delta_kappa residual using Cha et al. (2025) free-form kappa-map"
+  },
+  "caveats": [
+    "Placeholder PIEMD parameters (not Rihtarsic et al. 2026 Table 4 best-fit values)",
+    "Sensitivity analysis: +/- 20% variation in sigma_0^Main-NW yields |DeltaA_sig| ~ 0.01",
+    "Baseline validates test operator only; physical residual delta_kappa not yet computed",
+    "Shock line position and normal from Markevitch 2006; not refit to JWST data"
+  ],
+  "frozen_ledger_parameters": {
+    "k": 0.415,
+    "mu_cluster": 1.1,
+    "Sigma_cluster": 1.2,
+    "C": 2.32,
+    "beta": 0.18,
+    "alpha_L2": 0.045
+  }
+}
