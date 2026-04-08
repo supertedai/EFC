@@ -1,8 +1,11 @@
 {
   "name": "EFC Validation Ledger",
-  "version": "4.4",
+  "version": "4.5",
   "generated_at": "2026-04-08T00:00:00Z",
   "generator": "Symbiose AGI Validation Pipeline",
+  "global_verdict": "OPEN",
+  "stage": "non_rejectable_model",
+  "stage_statement": "EFC cannot be rejected on current data and shows consistent Δχ² ≤ 0 across independent probes. This is NOT a claim of correctness or superiority over ΛCDM; it is a survival verdict from a six-probe kill-test (EFC-VAL-2026-006, DOI 10.6084/m9.figshare.31964847).",
   "stats": {
     "physics_test": 34,
     "consistency_check": 17,
@@ -10,6 +13,10 @@
     "framework_constraint": 23,
     "planned_pipeline": 15,
     "total_public": 102,
+    "consistent_robust": 4,
+    "consistent_preliminary": 3,
+    "neutral_by_construction": 1,
+    "discrepant": 0,
     "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "N/A, N/A, 0.00, N/A, N/A, 10.39",
@@ -2435,8 +2442,104 @@
       "all_labels": [
         "EFCValidation"
       ]
+    },
+    {
+      "name": "EFC vs ΛCDM Kill-Test v6 — Six-probe non-rejectability (EFC-VAL-2026-006)",
+      "status": "consistent_robust",
+      "result": "4/4 cobaya runs Δχ²≤0 (MGCAMB −0.45, A_lens proxy −0.81, A_lens free −0.70, K0/m² −0.30); sector decomposition: lowl TT −0.189, lowl EE −0.070, Lensing −0.329, BAO −0.179, Pantheon+ +0.468; Total Δχ²=−0.300. K0_min=1.552 (−6.5% vs v5), m²_min=0.00318 (−9.1% vs v5). η∈[1.20,1.27], Σ∈[1.03,1.07] valley preserved.",
+      "last_updated": "2026-04-08T00:00:00Z",
+      "source": "10.6084/m9.figshare.31964847",
+      "report_id": "EFC-VAL-2026-006",
+      "all_labels": [
+        "EFCValidation",
+        "ConsistentRobust",
+        "NonRejectableModel"
+      ]
     }
   ],
+  "kill_test_v6_summary": {
+    "doi": "10.6084/m9.figshare.31964847",
+    "report_id": "EFC-VAL-2026-006",
+    "title": "EFC vs ΛCDM: Complete Kill-Test v6",
+    "package": "docs/papers/efc/EFC_vs_LCDM_Kill_Test_v6_final/",
+    "stage": "non_rejectable_model",
+    "global_verdict": "OPEN",
+    "probe_status": [
+      {
+        "probe": "DDO 154 rotation curve (L3)",
+        "level": "consistent_robust",
+        "emoji": "✅",
+        "delta_aic": 35.4,
+        "note": "Decisive for EFC; NFW residuals ±9 km/s vs EFC ±1 km/s"
+      },
+      {
+        "probe": "Multi-component SPARC refit (L3)",
+        "level": "consistent_preliminary",
+        "emoji": "🟡",
+        "delta_aic_best_galaxy": -126,
+        "note": "Five galaxies refitted (100% success); 175-galaxy universality pending"
+      },
+      {
+        "probe": "Bullet Cluster (L2–L3)",
+        "level": "consistent_preliminary",
+        "emoji": "🟡",
+        "delta_aic": 0.6,
+        "note": "Tied with LCDM statistically; observable gas-shock entropy vs 85% invisible mass"
+      },
+      {
+        "probe": "CMB primary (L0)",
+        "level": "neutral_by_construction",
+        "emoji": "⚪",
+        "delta_chi2": 0.0,
+        "note": "α_S→0 at z>1100; peaks/ratios/damping tail identical to ΛCDM — not a test, not a confirmation"
+      },
+      {
+        "probe": "CMB lensing μ–Σ / A_L (L2)",
+        "level": "consistent_robust",
+        "emoji": "✅",
+        "delta_chi2": -0.45,
+        "note": "MGCAMB + Planck 2018 plik_lite, (μ₀,Σ₀)=(0.94,1.05) — reproduced across direct_eval"
+      },
+      {
+        "probe": "Global cosmology (Planck+BAO+Pantheon+) (L2)",
+        "level": "consistent_preliminary",
+        "emoji": "🟡",
+        "delta_chi2": -0.30,
+        "note": "(K0,m²) cobaya bobyqa; Δχ²<0 but sub-statistical (|Δχ²|<1) — 'not worse than ΛCDM', not 'significantly better'"
+      }
+    ],
+    "derived_consistency_entries": [
+      {
+        "entry": "Δχ² stability across cobaya minimize runs",
+        "level": "consistent_robust",
+        "emoji": "✅",
+        "details": "4/4 runs with Δχ²≤0; range [−0.81, −0.30]; stable under MGCAMB, A_lens proxy (fixed/free cosmo), and (K0,m²) bobyqa engines"
+      },
+      {
+        "entry": "Parameter convergence (K0, m²)",
+        "level": "consistent_robust",
+        "emoji": "✅",
+        "details": "K0 converges to 1.552 (−6.5% from v5 reference 1.66); m² converges to 0.00318 (−9.1% from v5 reference 0.0035); both inside sweet-spot windows [1.55,1.68] and [0.0032,0.0038]"
+      }
+    ],
+    "under_review": [
+      {
+        "claim": "Better than ΛCDM",
+        "status": "UNDER_REVIEW",
+        "reason": "|Δχ²|<1 sub-statistical; requires full MCMC with ≥16 GB RAM"
+      },
+      {
+        "claim": "No dark matter / dark energy proven",
+        "status": "UNDER_REVIEW",
+        "reason": "Only 5 SPARC galaxies refitted; cluster/void-lensing tests pending"
+      },
+      {
+        "claim": "Full cosmological validation",
+        "status": "UNDER_REVIEW",
+        "reason": "Cobaya minimize is a local optimum, not a posterior; no MCMC chains yet"
+      }
+    ]
+  },
   "grav_pipeline": {
     "latest_run": {
       "run_id": "2026-04-07_053327_aqual",

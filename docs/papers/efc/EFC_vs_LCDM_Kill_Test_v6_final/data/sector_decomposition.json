@@ -1,0 +1,56 @@
+{
+  "$schema": "../schema.json",
+  "description": "Per-sector chi^2 decomposition for the (K0, m2) cobaya bobyqa run.",
+  "source": "Section 6, Table 6 of EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+  "run_id": "run-4",
+  "run_name": "K0_m2 (cobaya_bobyqa)",
+  "dataset": "lowl + lensing + BAO + Pantheon+",
+  "sectors": [
+    {
+      "sector": "lowl TT",
+      "gr_chi2": 20.130,
+      "efc_chi2": 19.941,
+      "delta_chi2": -0.189,
+      "direction": "EFC preferred"
+    },
+    {
+      "sector": "lowl EE",
+      "gr_chi2": 395.831,
+      "efc_chi2": 395.761,
+      "delta_chi2": -0.070,
+      "direction": "EFC preferred"
+    },
+    {
+      "sector": "Lensing",
+      "gr_chi2": 9.547,
+      "efc_chi2": 9.218,
+      "delta_chi2": -0.329,
+      "direction": "EFC preferred"
+    },
+    {
+      "sector": "BAO",
+      "gr_chi2": 13.216,
+      "efc_chi2": 13.037,
+      "delta_chi2": -0.179,
+      "direction": "EFC preferred"
+    },
+    {
+      "sector": "Pantheon+",
+      "gr_chi2": 1405.744,
+      "efc_chi2": 1406.212,
+      "delta_chi2": 0.468,
+      "direction": "GR preferred (within noise)"
+    }
+  ],
+  "total": {
+    "gr_chi2": 1844.468,
+    "efc_chi2": 1844.168,
+    "delta_chi2": -0.300
+  },
+  "interpretation": {
+    "summary": "4 out of 5 sectors prefer EFC; Pantheon+ slightly prefers GR (+0.468) but remains well within statistical noise.",
+    "dominant_gain_sector": "Lensing",
+    "net_result": "Delta chi^2 = -0.300 (EFC preferred)",
+    "epistemic_note": "Differences are sub-statistical (|Delta chi^2| < 1); result is 'not worse than GR' rather than 'significantly better'."
+  }
+}

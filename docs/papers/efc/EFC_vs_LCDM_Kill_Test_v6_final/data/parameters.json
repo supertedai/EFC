@@ -1,0 +1,85 @@
+{
+  "$schema": "../schema.json",
+  "description": "Field parameters and calibration constants for EFC vs LCDM Kill-Test v6.",
+  "source": "Section 2, Table 3, Table 4 of EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+  "field_parameters": {
+    "K0": {
+      "reference_v5": 1.66,
+      "minimum_v6": 1.552,
+      "delta_percent": -6.5,
+      "sweet_spot": [1.55, 1.68],
+      "units": "dimensionless",
+      "description": "Stiffness parameter for K(rho) bridge"
+    },
+    "m2": {
+      "reference_v5": 0.0035,
+      "minimum_v6": 0.00318,
+      "delta_percent": -9.1,
+      "sweet_spot": [0.0032, 0.0038],
+      "units": "H0^2",
+      "m_over_H0": 0.06,
+      "description": "Mass-squared parameter for slip counter-term"
+    }
+  },
+  "derived_observables": {
+    "mu0": {
+      "reference_v5": 0.940,
+      "gr_value": 1.000,
+      "efc_minimum": 0.9437,
+      "window": [0.93, 0.96]
+    },
+    "Sigma0": {
+      "reference_v5": 1.050,
+      "gr_value": 1.000,
+      "efc_minimum": 1.069,
+      "window": [1.03, 1.07]
+    },
+    "A_lens": {
+      "reference_v5": 1.036,
+      "gr_value": 1.000,
+      "efc_minimum": 1.143
+    },
+    "f_slip": {
+      "sweet_spot": 0.15,
+      "window": [0.12, 0.18],
+      "window_width_percent": 25
+    },
+    "eta": {
+      "sweet_spot": 1.23,
+      "window": [1.20, 1.27]
+    },
+    "Sigma_lensing": {
+      "sweet_spot": 1.05,
+      "window": [1.03, 1.07]
+    }
+  },
+  "cosmological_parameters_at_minimum": {
+    "H0_km_s_Mpc": {
+      "gr": 67.89,
+      "efc": 68.79,
+      "delta": 0.90
+    },
+    "sigma8": {
+      "gr": 0.811,
+      "efc": 0.797,
+      "delta": -0.014
+    },
+    "Omega_m": {
+      "gr": 0.302,
+      "efc": 0.299,
+      "delta": -0.003
+    }
+  },
+  "calibration_anchors": {
+    "k_anchor_h_per_Mpc": 0.05,
+    "mu_k_at_anchor": 0.94,
+    "rho_star_units": "cosmological mean density",
+    "theta_form": "exp(-(rho/rho_star)^2)"
+  },
+  "software_versions": {
+    "camb": "1.6.6",
+    "cobaya": "3.6.2",
+    "mgcamb": "3.0",
+    "python": ">= 3.10"
+  }
+}

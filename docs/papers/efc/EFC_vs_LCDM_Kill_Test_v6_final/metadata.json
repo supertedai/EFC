@@ -1,0 +1,77 @@
+{
+  "title": "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
+  "short_id": "efc-vs-lcdm-kill-test-v6",
+  "version": "v6.0",
+  "date": "2026-04-08",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31964847",
+  "abstract": "Comprehensive kill-test of Energy-Flow Cosmology (EFC) against ΛCDM across six independent probes spanning galactic to cosmological scales. A single action with two field parameters (K0, m²) produces μ = 0.94, η = 1.23, Σ = 1.05 from one mechanism. Four cobaya minimize runs against Planck 2018 plik_lite + lowl + lensing + BAO + Pantheon+ all return Δχ² ≤ 0 in the EFC direction. EFC cannot be rejected on current data; full MCMC with Bayes evidence is the remaining definitive test.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "ΛCDM",
+    "kill test",
+    "cobaya",
+    "MGCAMB",
+    "CAMB",
+    "Planck 2018",
+    "BAO",
+    "Pantheon+",
+    "gravitational slip",
+    "mu Sigma parametrization",
+    "K(rho) bridge",
+    "SPARC",
+    "DDO 154",
+    "rotation curves",
+    "Bullet Cluster",
+    "Hubble tension",
+    "modified gravity"
+  ],
+  "efc_context": {
+    "track": "Cross-Track: Galactic (L3) + Cosmological (L1–L2)",
+    "regime_relevance": "Six-probe consistency test from DDO 154 to Planck 2018",
+    "epistemic_layer": "Layer B → C (numerical kill test; awaiting full MCMC)"
+  },
+  "key_results": [
+    "All four cobaya minimize runs return Δχ² ≤ 0 in the EFC direction",
+    "Total Δχ² = −0.300 across lowl TT, lowl EE, Lensing, BAO, Pantheon+",
+    "Lensing and BAO sectors actively favour EFC (Δχ² = −0.329, −0.179)",
+    "K0 = 1.552 converges from BAO + lensing data alone (without high-ℓ CMB)",
+    "Parameter shifts H0↑ (+0.90 km/s/Mpc), Ω_m↓, σ₈↓ follow analytic μ < 1 prediction",
+    "DDO 154 rotation curve: ΔAIC = +35.4 (decisive for EFC)",
+    "Multi-component SPARC refit: 5% → 100% success rate on 5 galaxies",
+    "Sweet spot f ∈ [0.12, 0.18] is 25% wide (not fine-tuned)",
+    "μ(k=5 h/Mpc) = 1.000 → GR recovered at galactic and solar-system scales"
+  ],
+  "file_manifest": {
+    "pdf": "EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "jsonld": "EFCvsLCDMKillTest.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_modules": [
+      "src/k_rho_bridge.py",
+      "src/gravitational_slip.py",
+      "src/kill_test_suite.py",
+      "src/cobaya_minimize.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/cobaya_runs.json",
+      "data/sector_decomposition.json",
+      "data/probe_results.json",
+      "data/mu_k_table.json"
+    ],
+    "demo": [
+      "examples/run_kill_tests.py",
+      "examples/slip_window_scan.py"
+    ]
+  }
+}
