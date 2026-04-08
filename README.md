@@ -5,8 +5,8 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.10-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-129-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.13-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-132-brightgreen)](#ai-friendly-paper-packages)
 
 > **NEW (April 2026)**: [WP4 BOSS Transfer Validation](https://doi.org/10.6084/m9.figshare.31954125) — Cross-survey parameter transfer: DESI DR2 parameters (z_L1L2 = 1.01, α_L2 = 0.045) frozen and applied to BOSS DR12 give **Δχ² = −7.77 with k_eff = 0**. Covariance diagnostics confirm gain in the most constrained eigenmodes (71%). Post-hoc validation, complements pre-registered P3.
 
@@ -26,9 +26,9 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.10) |
-| **Papers** | 129 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 129 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.13) |
+| **Papers** | 132 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 132 with executable Python + structured data (100% coverage) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
 
 ---
@@ -236,13 +236,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 129 papers, all with full 10-file AI-friendly packages (100% coverage).
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 132 papers, all with full 10-file AI-friendly packages (100% coverage).
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 129 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
+All 132 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -286,7 +286,7 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 129 papers with 10-file AI-friendly packages (100%)
+│   ├── papers/efc/     # 132 papers with 10-file AI-friendly packages (100%)
 │   ├── public/         # Validation Ledger (v3.10), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
