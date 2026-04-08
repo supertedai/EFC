@@ -1,0 +1,111 @@
+# EFC bridge — in-sandbox run (reduced data: lowl + lensing.native only)
+# =======================================================================
+#
+# This is a REDUCED version of efc_bridge.yaml used only for the in-sandbox
+# run on this machine. The full run requires Planck plik_lite TTTEEE data
+# which cannot be downloaded from ESA in this environment (network blocked).
+#
+# What we actually run here:
+#   theory     : vanilla CAMB 1.6.6
+#   data       : Planck 2018 lowl.TT + lowl.EE + lensing.native
+#   cosmology  : free (logA, ns, theta_MC_100, ombh2, omch2, tau)
+#   MG proxy   : Alens free (proxy for Sigma^2; Sigma=1.05 => Alens ~ 1.10)
+#
+# This is exactly the configuration the user flagged as insufficient in
+# the Symbiose session log — it gives the +2.2 conflict signal when Alens
+# is pinned at the EFC value because the lensing.native sector alone cannot
+# see the compensating TT/TE/EE correlations. We run it anyway to:
+#   1. Establish the GR baseline chi² on this reduced dataset.
+#   2. Measure where the data actually wants Alens (the Σ² proxy).
+#   3. Quantify the conflict signal so the user can decide if a full
+#      plik_lite run on a machine with ESA access is worthwhile.
+#
+# When run on a machine with plik_lite TTTEEE data, swap the likelihood
+# block for the one in efc_bridge.yaml.
+
+theory:
+  camb:
+    extra_args:
+      lmax: 2700
+      lens_potential_accuracy: 4
+      AccuracyBoost: 1.1
+      lAccuracyBoost: 1.1
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.044
+
+likelihood:
+  planck_2018_lowl.TT:
+  planck_2018_lowl.EE:
+  planck_2018_lensing.native:
+
+params:
+  logA:
+    prior: {min: 2.6, max: 3.5}
+    ref: {dist: norm, loc: 3.044, scale: 0.02}
+    proposal: 0.015
+    latex: \log(10^{10} A_\mathrm{s})
+    drop: true
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_\mathrm{s}
+  ns:
+    prior: {min: 0.9, max: 1.05}
+    ref: {dist: norm, loc: 0.9649, scale: 0.005}
+    proposal: 0.004
+    latex: n_\mathrm{s}
+  theta_MC_100:
+    prior: {min: 1.03, max: 1.05}
+    ref: {dist: norm, loc: 1.04109, scale: 0.0005}
+    proposal: 0.0004
+    latex: 100\theta_\mathrm{MC}
+    drop: true
+    renames: theta
+  cosmomc_theta:
+    value: "lambda theta_MC_100: 1.e-2*theta_MC_100"
+    derived: false
+  H0:
+    latex: H_0
+  ombh2:
+    prior: {min: 0.019, max: 0.025}
+    ref: {dist: norm, loc: 0.02237, scale: 0.0002}
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omch2:
+    prior: {min: 0.095, max: 0.145}
+    ref: {dist: norm, loc: 0.1200, scale: 0.002}
+    proposal: 0.0015
+    latex: \Omega_\mathrm{c} h^2
+  tau:
+    prior: {dist: norm, loc: 0.0544, scale: 0.0073}
+    ref: {dist: norm, loc: 0.0544, scale: 0.006}
+    proposal: 0.005
+    latex: \tau_\mathrm{reio}
+  Alens:
+    prior: {min: 0.5, max: 1.5}
+    ref: {dist: norm, loc: 1.0, scale: 0.03}
+    proposal: 0.02
+    latex: A_\mathrm{L}
+
+  # Derived parameters
+  sigma8:
+    latex: \sigma_8
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_\mathrm{m}
+  omegamh2:
+    derived: "lambda omegam, H0: omegam*(H0/100)**2"
+    latex: \Omega_\mathrm{m} h^2
+  age:
+    latex: "{\\rm{Age}}/\\mathrm{Gyr}"
+  rdrag:
+    latex: r_\mathrm{drag}
+
+sampler:
+  minimize:
+    ignore_prior: false
+    max_evals: 50000
+
+output: chains/efc_bridge_reduced

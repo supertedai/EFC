@@ -1,0 +1,73 @@
+{
+  "run_date": "2026-04-08",
+  "host": "Claude Code sandbox (15 GB RAM, 30 GB disk)",
+  "stack": {
+    "python": "3.11.15",
+    "cobaya": "3.6.2",
+    "camb": "1.6.6",
+    "mgcamb": "attempted but Python wrapper broken"
+  },
+  "dataset": "planck_2018_lowl.TT + planck_2018_lowl.EE + planck_2018_lensing.native",
+  "note": "Reduced dataset used because ESA pla.esac.esa.int is blocked in the sandbox (403 on CONNECT tunnel), so plik_lite TTTEEE and lensing.clik could not be downloaded. This run is the Alens-proxy from Phase 3 of the Localization paper, not the full (mu, Sigma) run.",
+  "efc_direction": {
+    "description": "Alens free (Alens = Sigma^2 proxy). Full cosmology free.",
+    "chi2_total": 423.42269,
+    "chi2_lowl_TT": 19.867399,
+    "chi2_lowl_EE": 395.7861,
+    "chi2_lensing_native": 7.7691933,
+    "best_fit": {
+      "H0": 71.727208,
+      "logA": 3.0322619,
+      "ns": 1.0059936,
+      "theta_MC_100": 1.0372208,
+      "ombh2": 0.020915902,
+      "omch2": 0.10241211,
+      "tau": 0.053604788,
+      "Alens": 1.1354895,
+      "A_planck": 1.0005192,
+      "sigma8": 0.75611864,
+      "S8": 0.67765514,
+      "omegam": 0.2409677
+    }
+  },
+  "gr_reference": {
+    "description": "Alens fixed at 1.0. Same dataset and priors.",
+    "chi2_total": 424.11801,
+    "chi2_lowl_TT": 19.98717,
+    "chi2_lowl_EE": 395.73331,
+    "chi2_lensing_native": 8.3975277,
+    "best_fit": {
+      "H0": 69.157982,
+      "logA": 3.0473892,
+      "ns": 1.0011886,
+      "theta_MC_100": 1.0384237,
+      "ombh2": 0.022636842,
+      "omch2": 0.11326589,
+      "tau": 0.053937521,
+      "Alens": 1.0,
+      "A_planck": 0.99956682,
+      "sigma8": 0.79649017,
+      "S8": 0.7769973,
+      "omegam": 0.28549561
+    }
+  },
+  "delta": {
+    "delta_chi2_total": -0.69532,
+    "delta_chi2_lowl_TT": -0.11977,
+    "delta_chi2_lowl_EE": 0.05279,
+    "delta_chi2_lensing_native": -0.62833,
+    "delta_H0": 2.569226,
+    "delta_omch2": -0.010854,
+    "delta_omegam": -0.044529,
+    "delta_sigma8": -0.04037,
+    "delta_S8": -0.09934,
+    "Sigma_from_Alens": 1.0656,
+    "comment": "A negative delta chi^2 means the EFC direction (Alens > 1, lower growth, higher H0) is preferred. The sign and magnitude are consistent with the Localization paper Phase 2 (delta chi^2 = -0.45 with full plik_lite). The lensing sector contributes most of the improvement (-0.63), exactly as the Localization paper Phase 3 showed for the A_L anomaly. sqrt(Alens) = 1.066 is within the EFC Sigma window [1.03, 1.07]."
+  },
+  "interpretation": [
+    "When cosmology is free, the reduced lowl + lensing data alone pull Alens to 1.135, H0 to 71.7, and sigma8 to 0.756 - the exact 'higher H0, lower growth' direction EFC predicts structurally.",
+    "The Alens-fixed GR fit (chi2 = 424.12) is worse than the Alens-free fit (chi2 = 423.42) by 0.7, with the improvement localised in the lensing sector as expected.",
+    "This reduced result is NOT a substitute for the full plik_lite + (mu, Sigma) run. The Localization paper's chi^2 = -0.45 with free (mu, Sigma) is the authoritative number. This reduced run only confirms the direction on data that happens to be downloadable in the sandbox.",
+    "Full verification requires: (a) plik_lite TTTEEE data from ESA, (b) a working MGCAMB Python wrapper (the pip build is currently broken on mu0/sigma0)."
+  ]
+}
