@@ -15,8 +15,8 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v4.2 (internal) / v3.11 (public HTML)
-ai_packages: 130 (100% coverage)
+validation_ledger: v4.4 (internal) / v3.13 (public HTML)
+ai_packages: 132 (100% coverage)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 ```
 
