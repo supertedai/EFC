@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EFC-R_SPARC_final.pdf",
@@ -29,12 +29,20 @@
       "bytes": 2617
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1654
+    },
+    {
       "path": "citations.bib",
       "bytes": 2959
     },
     {
       "path": "data/sparc_regime.json",
       "bytes": 1605
+    },
+    {
+      "path": "efc-r-sparc-regime-validity.jsonld",
+      "bytes": 514
     },
     {
       "path": "examples/demo_sparc_regime.py",
@@ -69,6 +77,6 @@
       "bytes": 5200
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

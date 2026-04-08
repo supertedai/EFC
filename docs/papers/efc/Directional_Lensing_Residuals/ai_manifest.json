@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "Directional_Lensing_Residuals_Magnusson_2026.pdf",
@@ -33,12 +33,20 @@
       "bytes": 5847
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1888
+    },
+    {
       "path": "citations.bib",
       "bytes": 338
     },
     {
       "path": "data/mock_validation_results.json",
       "bytes": 4740
+    },
+    {
+      "path": "directional-lensing-residuals.jsonld",
+      "bytes": 516
     },
     {
       "path": "directional_lensing.jsonld",
@@ -77,6 +85,6 @@
       "bytes": 14640
     }
   ],
-  "n_files": 15,
+  "n_files": 17,
   "n_pdfs": 1
 }

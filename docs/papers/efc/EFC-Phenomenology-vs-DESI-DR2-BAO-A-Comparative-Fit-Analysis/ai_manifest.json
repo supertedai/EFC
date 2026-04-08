@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
@@ -37,6 +37,10 @@
       "bytes": 1287
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 2154
+    },
+    {
       "path": "citations.bib",
       "bytes": 410
     },
@@ -47,6 +51,10 @@
     {
       "path": "data/desi_dr2_bao.json",
       "bytes": 1822
+    },
+    {
+      "path": "efc-phenomenology-vs-desi-dr2-bao-a-comparative-fit-analysis.jsonld",
+      "bytes": 547
     },
     {
       "path": "examples/demo_desi_bao.py",
@@ -85,6 +93,6 @@
       "bytes": 5894
     }
   ],
-  "n_files": 17,
+  "n_files": 19,
   "n_pdfs": 1
 }

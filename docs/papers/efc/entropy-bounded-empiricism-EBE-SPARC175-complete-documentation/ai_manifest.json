@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EBE_SPARC175_Complete_Documentation.pdf",
@@ -29,12 +29,20 @@
       "bytes": 10585
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 2154
+    },
+    {
       "path": "citations.bib",
       "bytes": 436
     },
     {
       "path": "data/ebe_sparc175_data.json",
       "bytes": 1420
+    },
+    {
+      "path": "entropy-bounded-empiricism-ebe-sparc175-complete-documentation.jsonld",
+      "bytes": 549
     },
     {
       "path": "entropy-bounded-empiricism.jsonld",
@@ -85,6 +93,6 @@
       "bytes": 8658
     }
   ],
-  "n_files": 17,
+  "n_files": 19,
   "n_pdfs": 1
 }

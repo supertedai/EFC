@@ -5,6 +5,14 @@
   "period_days": 7,
   "changes": [
     {
+      "name": "Bullet Cluster Under EFC (EFC-VAL-2026-004)",
+      "status": "completed",
+      "result": "Four-axis confrontation with three JWST-era studies (Cha 2025, Rihtaršič 2026, Cho 2025). PIEMD A_sig 2D baseline = -6.9e-4, bootstrap p=0.98 (null operator validated). 10:1 minor-merger ratio tightens structural exclusion test (31173850). SIDM bound σ/m < 0.5 cm²/g consistent with EFC no-particle ontology. No new parameters; frozen at Ledger v3.11. Pre-registered A_sig on δκ residual remains pending as decisive discriminator. DOI 10.6084/m9.figshare.31963668",
+      "last_updated": "2026-04-08T00:00:00+00:00",
+      "source": "bullet_cluster_efc",
+      "all_labels": ["EFCValidation", "ClusterLensing", "BulletCluster", "ShockFront", "L2Regime"]
+    },
+    {
       "name": "AI-Friendly Package Rollout — All EFC Papers",
       "status": "completed",
       "result": "130 paper directories now ship index.json + metadata.json + ai_manifest.json + *.jsonld + README.md; ai_friendly_index.json catalogue at docs/papers/efc/. Hand-curated reference packages: WP4_BOSS_transfer_validation, Multi_epoch_Growth_Rate_Test_of_EFC.",

@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 4 — Theory / Grid / EFT",
   "regimes": [],
   "primary_pdf": "EFC_Gradient_Coupled_Grid_Action.pdf",
@@ -25,12 +25,20 @@
       "bytes": 3185
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1705
+    },
+    {
       "path": "citations.bib",
       "bytes": 2012
     },
     {
       "path": "data/grid_action_data.json",
       "bytes": 5008
+    },
+    {
+      "path": "efc-gradient-coupled-grid-action.jsonld",
+      "bytes": 517
     },
     {
       "path": "examples/demo_grid_action.py",
@@ -69,6 +77,6 @@
       "bytes": 14894
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

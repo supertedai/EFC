@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "Paper3_EFC_Regime_Synthesis_FINAL.pdf",
@@ -37,6 +37,10 @@
       "bytes": 4697
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 2198
+    },
+    {
       "path": "citations.bib",
       "bytes": 1634
     },
@@ -47,6 +51,10 @@
     {
       "path": "data/regime_structure_data.json",
       "bytes": 2959
+    },
+    {
+      "path": "energy-flow-cosmology-and-regime-dependent-structure-formation.jsonld",
+      "bytes": 549
     },
     {
       "path": "examples/demo_regime_structure.py",
@@ -89,6 +97,6 @@
       "bytes": 2850
     }
   ],
-  "n_files": 18,
+  "n_files": 20,
   "n_pdfs": 1
 }

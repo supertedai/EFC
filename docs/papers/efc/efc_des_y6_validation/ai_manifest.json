@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "efc_des_y6_validation.pdf",
@@ -21,12 +21,20 @@
       "bytes": 3320
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1610
+    },
+    {
       "path": "citations.bib",
       "bytes": 1537
     },
     {
       "path": "data/des_y6_data.json",
       "bytes": 2312
+    },
+    {
+      "path": "efc-des-y6-validation.jsonld",
+      "bytes": 488
     },
     {
       "path": "efc_des_y6_validation.jsonld",
@@ -69,6 +77,6 @@
       "bytes": 3868
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-v2.2-Cross-Field-Integration-Summary.pdf",
@@ -29,12 +29,20 @@
       "bytes": 689
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1677
+    },
+    {
       "path": "citations.bib",
       "bytes": 243
     },
     {
       "path": "data/cross_field.json",
       "bytes": 1532
+    },
+    {
+      "path": "efc-v2-2-cross-field-integration-summary.jsonld",
+      "bytes": 507
     },
     {
       "path": "examples/demo_cross_field.py",
@@ -65,6 +73,6 @@
       "bytes": 8323
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

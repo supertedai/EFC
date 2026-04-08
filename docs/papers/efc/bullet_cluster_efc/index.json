@@ -1,0 +1,136 @@
+{
+  "id": "bullet-cluster-efc",
+  "title": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Energy-Flow Cosmology Initiative, Bergen, Norway",
+  "report_id": "EFC-VAL-2026-004",
+  "doi": "10.6084/m9.figshare.31963668",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31963668",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "ledger_version": "v3.11",
+  "type": "consistency check, analytical confrontation, pre-registered test pending",
+  "track": "Spor 1 — Galactic/Cosmological",
+  "regimes": ["L2"],
+  "target": {
+    "system": "Bullet Cluster 1E 0657-56",
+    "scale": "cluster (L2, non-linear)",
+    "rho_over_rhocrit": "1e-2 to 1e-1"
+  },
+  "external_studies_confronted": [
+    {
+      "key": "Cha2025",
+      "citation": "Cha, S., Jee, M. J., Finner, K., et al. 2025, ApJ, 987, L15",
+      "arxiv": "2503.21870",
+      "doi": "10.3847/2041-8213/ad8f3e",
+      "contribution": "Highest-resolution JWST mass reconstruction (146 SL + 398 arcmin^-2 WL); SIDM bound sigma/m < 0.5 cm^2 g^-1; ICL-mass Hausdorff 19.80 +/- 12.46 kpc"
+    },
+    {
+      "key": "Rihtarsic2026",
+      "citation": "Rihtarsic, G., Bradac, M., Desprez, G., et al. 2026, submitted",
+      "arxiv": "2601.22245",
+      "contribution": "First spectroscopically anchored parametric lens model (135 secure multiple images, 27 systems, z_spec 0.9-6.7)"
+    },
+    {
+      "key": "Cho2025",
+      "citation": "Cho, H., Jee, M. J., Cha, S., et al. 2025, submitted",
+      "arxiv": "2512.03150",
+      "contribution": "JWST/NIRCam + DECam virial masses M_200c^main = 15.1x10^14 M_sun, M_200c^sub = 1.5x10^14 M_sun; establishes ~10:1 minor merger"
+    }
+  ],
+  "four_axes": [
+    {
+      "axis": "Cluster merger geometry (structural exclusion under revised 10:1 mass ratio)",
+      "efc_artifact": "10.6084/m9.figshare.31173850",
+      "status": "tightened",
+      "note": "Minor merger amplifies isotropic/anisotropic lensing distinction; 1.5e14 M_sun subcluster sits in partial-screening regime; three-subclump main cluster adds geometric constraints"
+    },
+    {
+      "axis": "A_sig 2D PIEMD baseline (directional lensing residual operator)",
+      "efc_artifact": "10.6084/m9.figshare.31222900",
+      "status": "null hypothesis validated",
+      "values": {"asig_baseline": -6.9e-4, "p_value": 0.98, "asig_over_sigma_null": -0.01, "sensitivity_per_20pct_sigma0": 0.01}
+    },
+    {
+      "axis": "SIDM cross-section bound sigma/m < 0.5 cm^2 g^-1 (Cha 2025)",
+      "efc_prediction": "sigma/m = 0 by construction (no DM particle)",
+      "status": "consistent",
+      "note": "Progressive tightening of SIDM bounds toward zero is consistent with EFC's no-particle ontology, but does not prove EFC (collisionless CDM equally consistent)"
+    },
+    {
+      "axis": "Regime-transition prediction P1 (mu_cluster ~1.1, Sigma_cluster ~1.2)",
+      "efc_artifact": "10.6084/m9.figshare.31941543",
+      "status": "qualitative consistency only",
+      "note": "mu~1.1 baryonic rescaling (13.7e14 M_sun) remains insufficient for full mass discrepancy; Relativistic Action solution on Cho profile is a planned pipeline item"
+    }
+  ],
+  "frozen_parameters": {
+    "k": 0.415,
+    "mu_cosmological": 0.94,
+    "mu_cluster": 1.1,
+    "Sigma_cosmological": 1.05,
+    "Sigma_cluster": 1.2,
+    "C": 2.32,
+    "beta": 0.18,
+    "alpha_L2": 0.045,
+    "B_growth": 0.078,
+    "mu0_growth": 0.922,
+    "source": "EFC Validation Ledger v3.11; no new parameters introduced"
+  },
+  "asig_pipeline": {
+    "operator": "A_sig = <kappa>_front - <kappa>_back",
+    "shock_line_x_kpc": 480,
+    "shock_normal": [-1, 0],
+    "strip_width_kpc": 200,
+    "strip_length_kpc": 400,
+    "grid": "512x512 covering 1800x1200 kpc",
+    "halos": ["Main-NW", "Main-SE", "Subcluster", "Group-NE"],
+    "peak_kappa": {"Main-NW": 0.62, "Main-SE": 0.49, "Subcluster": 0.49, "Group-NE": 0.16},
+    "bootstrap_n": 5000,
+    "sigma_cr_Msun_per_kpc2": 2.84e9,
+    "lens_z": 0.296,
+    "source_z": 1.0
+  },
+  "main_result": {
+    "asig_baseline": -6.9e-4,
+    "bootstrap_p_value": 0.98,
+    "verdict": "null hypothesis validated — PIEMD parametric halos produce no directional asymmetry at shock front",
+    "discriminating_test": "A_sig on delta_kappa = kappa_obs - kappa_PIEMD (requires Cha et al. free-form kappa-map; pending)",
+    "efc_prediction_full_residual": "A_sig != 0 aligned with Chandra shock front",
+    "lcdm_prediction_full_residual": "A_sig = 0 (isotropic residuals)"
+  },
+  "key_findings": [
+    "Three JWST-era studies (Cha 2025, Rihtarsic 2026, Cho 2025) do not falsify EFC and do not positively support it over LCDM",
+    "10:1 mass ratio strengthens the structural exclusion test (DOI 31173850), not weakens it",
+    "SIDM tightening to sigma/m < 0.5 cm^2 g^-1 is consistent with EFC's no-particle ontology",
+    "PIEMD A_sig baseline is a null (p=0.98), validating the test operator but not EFC itself",
+    "Pre-registered A_sig test on free-form delta_kappa residual remains the only decisive discriminator at cluster scale",
+    "Given v3.11 growth-sector null (B=0 within 1sigma), the lensing-sector Sigma must carry the L2 signal if EFC is correct"
+  ],
+  "limitations": [
+    "A_sig baseline uses PIEMD with placeholder parameters (not Rihtarsic et al. Table 4 best-fit values)",
+    "Baseline null validates the test operator, not the physical hypothesis — needs free-form kappa-map residual",
+    "Regime-transition P1 confronted qualitatively only; EFC field equations not solved on Cho et al. mass profile",
+    "ICL directionality discriminator is speculative (sub-10 kpc Hausdorff precision not yet achieved)",
+    "Non-perturbative effects in the shock-front region are not yet computed"
+  ],
+  "next_steps": [
+    "Obtain Cha et al. (2025) free-form kappa-map FITS and compute delta_kappa = kappa_obs - kappa_PIEMD",
+    "Apply A_sig pipeline (src/asig_2d_piemd.py) to the residual — the decisive test",
+    "Replace placeholder PIEMD parameters with Rihtarsic et al. (2026) Table 4 best-fit values",
+    "Cross-check with Abell 2146 (second pre-registered A_sig target)",
+    "Solve EFC Relativistic Action field equations on Cho et al. virial mass profile to obtain quantitative mu(r), Sigma(r)"
+  ],
+  "files": {
+    "paper_pdf": "bullet_cluster_efc.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "bullet-cluster-efc.jsonld",
+    "citations": "citations.bib",
+    "asig_baseline": "data/asig_baseline_result.json",
+    "external_studies": "data/external_studies.json",
+    "src_pipeline": "src/asig_2d_piemd.py",
+    "example": "examples/reproduce_baseline.py"
+  }
+}

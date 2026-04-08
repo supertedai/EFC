@@ -1,0 +1,38 @@
+name: EFC repo verify
+
+on:
+  pull_request:
+    paths:
+      - "docs/papers/efc/**"
+      - "docs/validation-ledger/**"
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "scripts/maintenance/**"
+      - ".github/workflows/efc-verify.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/papers/efc/**"
+      - "docs/validation-ledger/**"
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "scripts/maintenance/**"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate AI-friendly manifests
+        run: python3 scripts/maintenance/efc_gen_ai_friendly.py
+      - name: Run EFC verifier
+        run: python3 scripts/maintenance/efc_verify.py
+      - name: Fail on uncommitted changes
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generator produced changes. Run 'python3 scripts/maintenance/efc_maintain.py' locally and commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi

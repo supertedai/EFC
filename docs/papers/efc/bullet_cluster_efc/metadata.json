@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-validation",
+  "paper": {
+    "title": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
+    "report_id": "EFC-VAL-2026-004",
+    "doi": "10.6084/m9.figshare.31963668",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Energy-Flow Cosmology Initiative, Bergen, Norway"
+    },
+    "date": "2026-04",
+    "license": "CC-BY-4.0",
+    "ledger_version": "v3.11"
+  },
+  "domain": {
+    "track": "Spor 1 — Galactic/Cosmological",
+    "regimes": ["L2"],
+    "sector": "lensing / cluster-scale gravity",
+    "target": "Bullet Cluster 1E 0657-56"
+  },
+  "efc_mechanisms": [
+    {
+      "name": "Density Saturation Theta(rho)",
+      "role": "Suppresses EFC corrections in high-density regimes (rho >> rho_crit), recovers GR in Solar System + stellar interiors"
+    },
+    {
+      "name": "Regime-dependent gravitational modification",
+      "role": "mu < 1 at cosmological linear scales, mu > 1 at non-linear galactic/cluster scales (single variational action)"
+    },
+    {
+      "name": "Entropy-gradient lensing",
+      "role": "Effective lensing potential couples to entropy-flow scalar phi, producing anisotropic response near thermodynamic discontinuities (shock fronts)"
+    }
+  ],
+  "external_studies": [
+    {
+      "key": "Cha2025",
+      "authors": "Cha, Jee, Finner, et al.",
+      "year": 2025,
+      "venue": "ApJ 987, L15",
+      "doi": "10.3847/2041-8213/ad8f3e",
+      "arxiv": "2503.21870",
+      "role": "Highest-resolution mass map (JWST NIRCam SL + WL)"
+    },
+    {
+      "key": "Rihtarsic2026",
+      "authors": "Rihtarsic, Bradac, Desprez, et al.",
+      "year": 2026,
+      "venue": "submitted",
+      "arxiv": "2601.22245",
+      "role": "Spectroscopically anchored parametric lens model"
+    },
+    {
+      "key": "Cho2025",
+      "authors": "Cho, Jee, Cha, et al.",
+      "year": 2025,
+      "venue": "submitted",
+      "arxiv": "2512.03150",
+      "role": "JWST/NIRCam + DECam virial masses; 10:1 minor merger"
+    }
+  ],
+  "asig_pipeline": {
+    "operator_definition": "A_sig = <kappa>_front - <kappa>_back",
+    "shock_geometry": {
+      "shock_line_x_kpc": 480,
+      "shock_normal": [-1, 0],
+      "strip_width_kpc": 200,
+      "strip_length_kpc": 400,
+      "reference": "Markevitch 2006"
+    },
+    "grid": {
+      "nx": 512,
+      "ny": 512,
+      "size_kpc": [1800, 1200]
+    },
+    "lensing_setup": {
+      "lens_z": 0.296,
+      "source_z": 1.0,
+      "sigma_cr_Msun_per_kpc2": 2.84e9,
+      "halo_profile": "Pseudo-Isothermal Elliptical Mass Distribution (PIEMD; Kassiola & Kovner 1993, Kneib et al. 1996)"
+    },
+    "halo_components": ["Main-NW", "Main-SE", "Subcluster", "Group-NE"],
+    "null_test": {
+      "type": "bootstrap rotation",
+      "n_samples": 5000
+    }
+  },
+  "baseline_results": {
+    "kappa_front": 0.1824,
+    "kappa_back": 0.1831,
+    "asig_baseline": -6.9e-4,
+    "bootstrap_p_value": 0.98,
+    "asig_over_sigma_null": -0.01,
+    "sensitivity_per_20pct_sigma0": 0.01,
+    "verdict": "null hypothesis validated; PIEMD halo geometry produces no shock-front asymmetry"
+  },
+  "sidm_constraint": {
+    "bound_cm2_per_g": 0.5,
+    "source": "Cha et al. 2025",
+    "efc_interpretation": "sigma/m = 0 by construction (no DM particle); tightening consistent with EFC's no-particle ontology but does not prove it"
+  },
+  "regime_transition_P1": {
+    "mu_cluster": 1.1,
+    "Sigma_cluster": 1.2,
+    "baryonic_mass_rescaling_Msun": 1.37e15,
+    "observed_baryonic_cluster_fraction": 0.15,
+    "verdict": "mu ~ 1.1 enhancement insufficient alone for full cluster mass discrepancy; full quantitative prediction requires EFC field equation solution (planned)"
+  },
+  "parameter_discipline": {
+    "new_parameters_introduced": 0,
+    "frozen_at": "EFC Validation Ledger v3.11",
+    "values": {
+      "k": 0.415,
+      "mu_cosmological": 0.94,
+      "mu_cluster": 1.1,
+      "Sigma_cosmological": 1.05,
+      "Sigma_cluster": 1.2,
+      "C": 2.32,
+      "beta": 0.18,
+      "alpha_L2": 0.045,
+      "B_growth": 0.078,
+      "mu0_growth": 0.922
+    }
+  },
+  "discriminating_test_pending": {
+    "name": "A_sig on free-form delta_kappa residual",
+    "requirement": "Cha et al. (2025) free-form kappa-map FITS",
+    "efc_prediction": "Non-zero A_sig aligned with Chandra shock front (entropy-gradient coupling between phi and Sigma)",
+    "lcdm_prediction": "A_sig = 0 (isotropic residuals after mass model subtraction)",
+    "status": "pre-registered; pending data acquisition"
+  },
+  "links": {
+    "cluster_merger_geometry": "10.6084/m9.figshare.31173850",
+    "directional_lensing_residuals": "10.6084/m9.figshare.31222900",
+    "regime_transition_test": "10.6084/m9.figshare.31941543",
+    "efc_screening_model": "10.6084/m9.figshare.31940469",
+    "efc_relativistic_action": "10.6084/m9.figshare.31876324",
+    "empirical_validation_cluster_lensing": "10.6084/m9.figshare.31190233",
+    "wp4_boss_transfer": "10.6084/m9.figshare.31954125",
+    "multi_epoch_fsigma8": "10.6084/m9.figshare.31955871"
+  }
+}

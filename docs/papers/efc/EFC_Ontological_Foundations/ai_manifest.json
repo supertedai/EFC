@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 4 — Theory / Grid / EFT",
   "regimes": [],
   "primary_pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
@@ -45,12 +45,20 @@
       "bytes": 8257
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 2470
+    },
+    {
       "path": "citations.bib",
       "bytes": 2291
     },
     {
       "path": "data/hypotheses.json",
       "bytes": 2390
+    },
+    {
+      "path": "efc-ontological-foundations.jsonld",
+      "bytes": 512
     },
     {
       "path": "examples/circularity_analysis.py",
@@ -109,6 +117,6 @@
       "bytes": 5440
     }
   ],
-  "n_files": 23,
+  "n_files": 25,
   "n_pdfs": 1
 }
