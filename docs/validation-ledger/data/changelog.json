@@ -5,6 +5,14 @@
   "period_days": 7,
   "changes": [
     {
+      "name": "KT3b Cross-Regime Measurement Failure (EFC-VAL-2026-005)",
+      "status": "completed",
+      "result": "Null result + RCMP diagnosis. Four-run signal collapse (slope: -0.21 → +0.01 → -0.07 → 0.0) explained as a cross-regime measurement failure, not a physical null. KT3b violates the Regime-Consistent Measurement Principle in three ways: V1 driver-response mismatch (ρ_env L1 vs D_eff L2, underived α), V2 boundary observation (ℛ at a₀ on L1/L2 transition), V3 implicit regime mixing (Υ⋆ = 0.5 assumes L1 stellar physics). Three valid test architectures proposed: A (pure L2 RAR shape, 0 params, SPARC data available, recommended next step), B (pure L1 fσ8 growth, 1 param α_L1 = -0.14 ± 0.21), C (derived L1→L2 mapping, 0 params, open problem). DOI 10.6084/m9.figshare.31963821",
+      "last_updated": "2026-04-08T00:00:00+00:00",
+      "source": "KT3b_CrossRegime_Measurement_Failure_DOI",
+      "all_labels": ["EFCValidation", "RCMP", "CrossRegime", "KT3b", "NullResult", "MethodologicalDiagnosis"]
+    },
+    {
       "name": "Bullet Cluster Under EFC (EFC-VAL-2026-004)",
       "status": "completed",
       "result": "Four-axis confrontation with three JWST-era studies (Cha 2025, Rihtaršič 2026, Cho 2025). PIEMD A_sig 2D baseline = -6.9e-4, bootstrap p=0.98 (null operator validated). 10:1 minor-merger ratio tightens structural exclusion test (31173850). SIDM bound σ/m < 0.5 cm²/g consistent with EFC no-particle ontology. No new parameters; frozen at Ledger v3.11. Pre-registered A_sig on δκ residual remains pending as decisive discriminator. DOI 10.6084/m9.figshare.31963668",
@@ -50,12 +58,13 @@
     },
     {
       "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-04-07T07:57:37.851000000+00:00",
-      "source": "conversation_bridge",
+      "status": "superseded",
+      "result": "Null + RCMP diagnosis; see EFC-VAL-2026-005 (DOI 10.6084/m9.figshare.31963821). Three valid replacement architectures proposed; Architecture A (pure L2 RAR slope) is the recommended follow-up.",
+      "last_updated": "2026-04-08T00:00:00+00:00",
+      "source": "KT3b_CrossRegime_Measurement_Failure_DOI",
       "all_labels": [
-        "EFCValidation"
+        "EFCValidation",
+        "Superseded"
       ]
     }
   ]

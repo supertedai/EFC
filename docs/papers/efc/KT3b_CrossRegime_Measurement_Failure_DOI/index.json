@@ -1,0 +1,128 @@
+{
+  "id": "kt3b-cross-regime-measurement-failure",
+  "title": "Cross-Regime Measurement Failure in the KT3b Environmental Test",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Independent Researcher, Sola, Norway",
+  "report_id": "EFC-VAL-2026-005",
+  "doi": "10.6084/m9.figshare.31963821",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31963821",
+  "date": "2026-04",
+  "version": "v1.0",
+  "license": "CC-BY-4.0",
+  "ledger_version_at_publication": "v3.12",
+  "type": "null result + methodological diagnosis",
+  "track": "Spor 1 — Galactic/Cosmological",
+  "regimes": ["L1", "L2", "L1/L2 boundary"],
+  "target": {
+    "test": "KT3b environmental mass-scaling test",
+    "original_coupling": "rho_eff = rho_gal(r) + alpha * rho_env",
+    "original_observable": "R = g_obs / g_bar at g_bar ~ a_0"
+  },
+  "run_history": [
+    {"run": 1, "env_proxy": "log(L/D^2)",           "n_galaxies": 60, "slope": -0.21, "diagnosis": "mass artefact"},
+    {"run": 2, "env_proxy": "Karachentsev Theta_1", "n_galaxies": 17, "slope":  0.01, "diagnosis": "N too small"},
+    {"run": 3, "env_proxy": "Tully N_mem (raw)",    "n_galaxies": 70, "slope": -0.07, "diagnosis": "mass bias"},
+    {"run": 4, "env_proxy": "Tully (mass-matched pairs)", "n_galaxies": 23, "slope": 0.0, "diagnosis": "null"}
+  ],
+  "regime_assignment": [
+    {"component": "D_eff(rho)",          "type": "theory",     "regime": "L2",             "why": "Non-linear galactic dynamics; grid-mode activation at g < a_0"},
+    {"component": "rho_env",             "type": "driver",     "regime": "L1",             "why": "Large-scale structure; Mpc-scale density field; linear perturbation theory"},
+    {"component": "R at a_0",            "type": "observable", "regime": "L1/L2 boundary", "why": "Transition point where the regime changes; maximally unstable"},
+    {"component": "rotation curve",      "type": "data",       "regime": "L2",             "why": "kpc-scale circular velocities"},
+    {"component": "Upsilon_star",        "type": "mass model", "regime": "L1 assumption",  "why": "Stellar population synthesis assumes universal IMF and standard gravity"}
+  ],
+  "rcmp_violations": [
+    {
+      "id": "V1",
+      "name": "Driver-response mismatch",
+      "statement": "rho_env (L1) drives D_eff (L2) through an underived alpha operator"
+    },
+    {
+      "id": "V2",
+      "name": "Boundary observation",
+      "statement": "R at a_0 sits on the L1/L2 boundary where both regimes contribute and neither dominates; stiffness response R(k), entropy production Gamma(rho), and effective Poisson coupling mu(k) all transition here"
+    },
+    {
+      "id": "V3",
+      "name": "Implicit regime mixing in mass model",
+      "statement": "Upsilon_star = 0.5 M_sun/L_sun assumes L1-regime stellar physics applied to L2-regime gravitational dynamics"
+    }
+  ],
+  "undefined_coupling_operator": {
+    "parameter": "alpha",
+    "required_kernel": "K(k, rho_env)",
+    "issues": [
+      "alpha not defined as an operator in function space without a scale- and mode-dependent kernel",
+      "no scale dependence: the same alpha applies regardless of the spatial scale separating L1 and L2",
+      "no mechanism: does not specify how Mpc-scale density affects kpc-scale mode activation",
+      "structurally underdetermined: any measured slope could be attributed to alpha, to an L1/L2 projection artefact, or to residual mass-environment correlation"
+    ]
+  },
+  "valid_architectures": [
+    {
+      "id": "A",
+      "name": "Pure L2 (galactic interior)",
+      "regime": "L2",
+      "prediction": "D_eff modifies the shape of the RAR in the deep-MOND regime (g << a_0), not just its value at a_0",
+      "observable": "d log(g_obs/g_bar) / d log g_bar at g_bar << a_0 (deep L2 regime)",
+      "driver": "Same Theta_1 or N_mem, but observable safely inside L2",
+      "free_parameters": 0,
+      "data_available_now": "Yes (SPARC)",
+      "rcmp_consistent": true,
+      "discriminates": "Yes (RAR shape)",
+      "why_it_works": "Measurement point is far from the regime boundary; deep-MOND slope probes a regime where R(k) has saturated (mu >> 1), reducing sensitivity to boundary fluctuations and isolating intrinsic L2 dynamics"
+    },
+    {
+      "id": "B",
+      "name": "Pure L1 (cosmological growth)",
+      "regime": "L1",
+      "prediction": "D_eff enters the cosmological background through Gamma(rho), which controls the growth rate fsigma8(z); environmental density at L1 scales directly modulates Gamma without cross-regime coupling",
+      "observable": "fsigma8(z) from RSD or void-cluster growth rate comparison",
+      "driver": "L1 environmental density field",
+      "free_parameters": 1,
+      "free_parameter_names": ["alpha_L1"],
+      "current_measurement": "alpha_L1 = -0.14 +/- 0.21",
+      "data_available_now": "Partial (fsigma8)",
+      "rcmp_consistent": true,
+      "discriminates": "Yes (growth rate)",
+      "why_it_works": "Everything is in L1. The MCMC inference pipeline already constrains alpha_L1."
+    },
+    {
+      "id": "C",
+      "name": "Derived L1->L2 mapping",
+      "regime": "derived",
+      "requirement": "Derive alpha from the EFC action by computing how the background S-field at L1 scales enters the boundary conditions of the L2 Poisson equation",
+      "observable": "Same as KT3b, but with a predicted alpha(k, z) rather than a free parameter",
+      "free_parameters": 0,
+      "data_available_now": "No",
+      "rcmp_consistent": true,
+      "discriminates": "Yes (amplitude)",
+      "why_it_is_hard": "Requires solving the coupled (g_mu_nu, S) system across scales; open problem in EFC"
+    }
+  ],
+  "key_findings": [
+    "KT3b null is consistent with a cross-regime measurement design that violates RCMP, not with a physical absence of environmental coupling",
+    "The L1/L2 boundary is the worst place to measure any cross-regime effect",
+    "The alpha coupling is not a physical parameter but an effective fit coefficient absorbing all cross-regime effects indiscriminately",
+    "Architecture A (pure L2, RAR slope at 10^-2 < g_bar/a_0 < 10^-1) is the recommended immediate next step: existing SPARC data, zero free parameters, single regime",
+    "The diagnosis applies to MOND's External Field Effect, Verlinde's emergent gravity, and any framework in which the transition scale a_0 marks a regime boundary — it is stronger than the null result itself"
+  ],
+  "limitations": [
+    "The analysis is structural, not numerical: it does not re-derive the KT3b slope values, only diagnoses why they collapse",
+    "The Fisher-information argument for low S/N at the L1/L2 boundary is qualitative; a quantitative bound requires the full mu(k) fluctuation spectrum",
+    "Architecture C is described as an open problem — no explicit path to the derived alpha(k, z) is provided",
+    "The package includes no re-analysis of SPARC or Tully group catalogues; it is a methodological paper"
+  ],
+  "files": {
+    "paper_pdf": "KT3b_CrossRegime_Measurement_Failure_DOI.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "kt3b-crossregime-measurement-failure-doi.jsonld",
+    "citations": "citations.bib",
+    "run_history": "data/kt3b_run_history.json",
+    "architectures": "data/test_architectures.json",
+    "src_rcmp_check": "src/rcmp_check.py",
+    "example": "examples/check_kt3b_and_alternatives.py"
+  }
+}

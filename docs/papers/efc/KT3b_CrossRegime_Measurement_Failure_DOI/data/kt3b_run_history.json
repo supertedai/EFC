@@ -1,0 +1,45 @@
+{
+  "test": "KT3b environmental mass-scaling test",
+  "report_id": "EFC-VAL-2026-005",
+  "doi": "10.6084/m9.figshare.31963821",
+  "target_coupling": "rho_eff = rho_gal(r) + alpha * rho_env",
+  "observable": "MDAR residual R = g_obs / g_bar at g_bar ~ a_0",
+  "correlated_against": ["tidal environment Theta_1", "group membership N_mem"],
+  "runs": [
+    {
+      "run": 1,
+      "env_proxy": "log(L/D^2)",
+      "n_galaxies": 60,
+      "slope": -0.21,
+      "diagnosis": "mass artefact",
+      "note": "Environmental proxy contaminated by luminosity/diameter correlations; signal not environmental in origin"
+    },
+    {
+      "run": 2,
+      "env_proxy": "Karachentsev Theta_1",
+      "n_galaxies": 17,
+      "slope": 0.01,
+      "diagnosis": "N too small",
+      "note": "Properly environmental proxy but statistically underpowered"
+    },
+    {
+      "run": 3,
+      "env_proxy": "Tully N_mem (raw)",
+      "n_galaxies": 70,
+      "slope": -0.07,
+      "diagnosis": "mass bias",
+      "note": "Larger sample but N_mem correlates with galaxy mass; residual mass bias leaks into slope"
+    },
+    {
+      "run": 4,
+      "env_proxy": "Tully (mass-matched pairs)",
+      "n_galaxies": 23,
+      "slope": 0.0,
+      "diagnosis": "null",
+      "note": "Mass-matched pairs remove the remaining confounder; signal vanishes"
+    }
+  ],
+  "pattern": "monotonic signal collapse as confounders are removed",
+  "standard_interpretation_rejected": "effect too small for SPARC",
+  "proposed_interpretation": "cross-regime measurement failure — the alpha coupling as formulated cannot be measured at R(a_0), regardless of sample size or confounder control"
+}
