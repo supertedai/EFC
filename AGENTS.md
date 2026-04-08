@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.2 | **Updated**: 2026-04-08
+**Version**: 3.3 | **Updated**: 2026-04-08
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -15,8 +15,8 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v4.4 (internal) / v3.13 (public HTML)
-ai_packages: 132 (100% coverage)
+validation_ledger: v4.5 (internal) / v3.14 (public HTML)
+ai_packages: 133 (100% coverage)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 ```
 

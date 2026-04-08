@@ -1,0 +1,95 @@
+{
+  "$schema": "../schema.json",
+  "description": "Six-probe kill-test results spanning L0 (CMB) to L3 (dwarf galaxy).",
+  "source": "Section 3 of EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+  "probes": [
+    {
+      "id": "probe-1",
+      "name": "DDO 154 rotation curve",
+      "regime": "L3",
+      "dataset": "DDO 154 FLOW dataset (Sparc-like)",
+      "metric": "chi2_red",
+      "efc": 0.05,
+      "lcdm": 2.71,
+      "delta_aic": 35.4,
+      "verdict": "EFC_decisive",
+      "note": "NFW residuals +/- 9 km/s; EFC within +/- 1 km/s"
+    },
+    {
+      "id": "probe-2",
+      "name": "Multi-component SPARC refit",
+      "regime": "L3",
+      "dataset": "SPARC (5 galaxies refitted)",
+      "metric": "success_rate_percent",
+      "efc": 100,
+      "lcdm": 5,
+      "delta_aic_best_galaxy": -126,
+      "delta_aic_secondary": -86,
+      "verdict": "EFC_decisive",
+      "note": "NGC 7331 Delta AIC = -126; NGC 4138 Delta AIC = -86; 175-galaxy extension pending"
+    },
+    {
+      "id": "probe-3",
+      "name": "Bullet Cluster",
+      "regime": "L2-L3",
+      "dataset": "Bullet 1E 0657-56 weak-lensing map",
+      "metric": "chi2_red",
+      "efc": 0.46,
+      "lcdm": 0.55,
+      "delta_aic": 0.6,
+      "verdict": "tied",
+      "note": "EFC uses observable gas-shock entropy; LCDM requires 85% invisible mass"
+    },
+    {
+      "id": "probe-4",
+      "name": "CMB primary",
+      "regime": "L0",
+      "dataset": "Planck 2018 plik_lite (peaks, ratios, damping tail)",
+      "metric": "delta_chi2",
+      "efc": 0.0,
+      "lcdm": 0.0,
+      "delta_aic": 0.0,
+      "verdict": "neutral_by_construction",
+      "note": "alpha_S -> 0 at z > 1100; no deviation from LCDM predictions"
+    },
+    {
+      "id": "probe-5",
+      "name": "A_L / (mu, Sigma) lensing anomaly",
+      "regime": "L2",
+      "dataset": "Planck 2018 plik_lite + lowl + lensing",
+      "metric": "delta_chi2",
+      "efc": -0.45,
+      "lcdm": 0.0,
+      "delta_aic": -0.45,
+      "mu0": 0.94,
+      "Sigma0": 1.05,
+      "verdict": "EFC",
+      "note": "MGCAMB run; (mu, Sigma) from single slip counter-term"
+    },
+    {
+      "id": "probe-6",
+      "name": "Cobaya minimize full chain",
+      "regime": "L2",
+      "dataset": "lowl + lensing + BAO + Pantheon+",
+      "metric": "delta_chi2",
+      "efc": -0.30,
+      "lcdm": 0.0,
+      "delta_aic": -0.30,
+      "verdict": "EFC",
+      "note": "Best of four runs: (K0, m^2) bobyqa minimum"
+    }
+  ],
+  "verdict_summary": {
+    "EFC_decisive": 2,
+    "EFC": 2,
+    "tied": 1,
+    "neutral_by_construction": 1,
+    "LCDM": 0,
+    "LCDM_decisive": 0
+  },
+  "non_rejectability_test": {
+    "criterion": "No probe LCDM or LCDM_decisive; at least one probe EFC or EFC_decisive",
+    "result": "PASS",
+    "note": "EFC survives kill-test; still requires full MCMC for Bayesian model comparison."
+  }
+}

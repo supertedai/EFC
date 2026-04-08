@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/efc-vs-lcdm-kill-test-v6.json",
+  "title": "EFC vs ΛCDM Kill-Test v6 Schema",
+  "description": "Schema for the six-probe EFC kill-test against ΛCDM with cobaya minimize runs",
+  "type": "object",
+  "definitions": {
+    "FieldParameters": {
+      "type": "object",
+      "properties": {
+        "K0": {
+          "type": "number",
+          "description": "Stiffness parameter controlling μ(k)",
+          "minimum": 1.0,
+          "maximum": 2.5
+        },
+        "m2": {
+          "type": "number",
+          "description": "Mass-squared controlling gravitational slip",
+          "minimum": 0.001,
+          "maximum": 0.01
+        }
+      },
+      "required": ["K0", "m2"]
+    },
+    "RegimeAssignment": {
+      "type": "object",
+      "properties": {
+        "regime": {
+          "type": "string",
+          "enum": ["L0", "L1", "L2", "L3"],
+          "description": "Epistemic regime (L0: z>1100, L1: 30<z<1100, L2: 0.5<z<30, L3: z~0)"
+        },
+        "redshift_range": {
+          "type": "string",
+          "description": "Human-readable redshift range"
+        },
+        "coupling": {
+          "type": "string",
+          "description": "Dominant coupling in this regime"
+        }
+      },
+      "required": ["regime"]
+    },
+    "ProbeResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "regime": {
+          "type": "string",
+          "enum": ["L0", "L1", "L2", "L3", "L2-L3"]
+        },
+        "efc_chi2_red": {
+          "type": ["number", "null"]
+        },
+        "lcdm_chi2_red": {
+          "type": ["number", "null"]
+        },
+        "delta_aic": {
+          "type": ["number", "null"]
+        },
+        "delta_chi2": {
+          "type": ["number", "null"]
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["EFC_decisive", "EFC", "tied", "neutral_by_construction", "LCDM", "LCDM_decisive"]
+        }
+      },
+      "required": ["id", "name", "regime", "verdict"]
+    },
+    "CobayaRun": {
+      "type": "object",
+      "properties": {
+        "run": {
+          "type": "string",
+          "description": "Human-readable identifier for the run"
+        },
+        "dataset": {
+          "type": "string",
+          "description": "Dataset combination used"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Free parameters varied"
+        },
+        "delta_chi2": {
+          "type": "number",
+          "description": "χ²_EFC − χ²_GR; negative = EFC preferred"
+        },
+        "engine": {
+          "type": "string",
+          "enum": ["direct_eval", "cobaya_minimize", "cobaya_bobyqa"]
+        }
+      },
+      "required": ["run", "dataset", "parameters", "delta_chi2", "engine"]
+    },
+    "SectorDelta": {
+      "type": "object",
+      "properties": {
+        "sector": {
+          "type": "string"
+        },
+        "gr": {
+          "type": "number"
+        },
+        "efc": {
+          "type": "number"
+        },
+        "delta": {
+          "type": "number"
+        }
+      },
+      "required": ["sector", "gr", "efc", "delta"]
+    },
+    "SlipCalibration": {
+      "type": "object",
+      "properties": {
+        "f": {
+          "type": "number",
+          "description": "Slip strength (f=1−V''/(Kk²/a²))",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "eta": {
+          "type": "number",
+          "description": "Gravitational slip η"
+        },
+        "Sigma": {
+          "type": "number",
+          "description": "Lensing modification Σ"
+        },
+        "delta_chi2_est": {
+          "type": "number",
+          "description": "Estimated Δχ² at this slip strength"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Excluded", "Entering window", "Sweet spot", "Edge of window"]
+        }
+      }
+    },
+    "MuKEntry": {
+      "type": "object",
+      "properties": {
+        "k_h_per_Mpc": {
+          "type": "number"
+        },
+        "theta": {
+          "type": "number",
+          "description": "Density suppression Θ(ρ)"
+        },
+        "R_k": {
+          "type": "number",
+          "description": "R(k) ∝ K0/k⁴"
+        },
+        "mu_k": {
+          "type": "number",
+          "description": "μ(k) = 1/(1+R(k))"
+        },
+        "scale": {
+          "type": "string",
+          "description": "Human-readable scale label"
+        }
+      }
+    },
+    "ParameterAtMinimum": {
+      "type": "object",
+      "properties": {
+        "parameter": {
+          "type": "string"
+        },
+        "ref_v5": {
+          "type": ["number", "null"]
+        },
+        "gr": {
+          "type": ["number", "null"]
+        },
+        "efc": {
+          "type": ["number", "null"]
+        },
+        "delta": {
+          "type": ["number", "null"]
+        }
+      }
+    }
+  },
+  "properties": {
+    "parameters": { "$ref": "#/definitions/FieldParameters" },
+    "regimes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/RegimeAssignment" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "probes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ProbeResult" },
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "cobaya_runs": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/CobayaRun" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "sector_decomposition": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SectorDelta" }
+    },
+    "slip_calibration": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SlipCalibration" }
+    },
+    "mu_k_table": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/MuKEntry" }
+    },
+    "parameters_at_minimum": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ParameterAtMinimum" }
+    }
+  }
+}
