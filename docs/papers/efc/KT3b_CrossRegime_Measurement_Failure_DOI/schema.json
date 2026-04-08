@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "kt3b-cross-regime-measurement-failure/schema.json",
+  "title": "KT3b Cross-Regime Measurement Failure — diagnostic schema",
+  "description": "Schema for the KT3b run history, regime assignment, RCMP violation record, and valid test-architecture comparison.",
+  "type": "object",
+  "required": ["report_id", "doi", "run_history", "rcmp_violations", "valid_architectures"],
+  "properties": {
+    "report_id": {"type": "string", "pattern": "^EFC-VAL-\\d{4}-\\d{3}$"},
+    "doi": {"type": "string", "pattern": "^10\\.6084/m9\\.figshare\\.\\d{8}$"},
+    "ledger_version_at_publication": {"type": "string", "pattern": "^v\\d+\\.\\d+$"},
+    "run_history": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["run", "env_proxy", "n_galaxies", "slope", "diagnosis"],
+        "properties": {
+          "run": {"type": "integer", "minimum": 1},
+          "env_proxy": {"type": "string"},
+          "n_galaxies": {"type": "integer", "minimum": 1},
+          "slope": {"type": "number"},
+          "diagnosis": {"type": "string"}
+        }
+      }
+    },
+    "regime_assignment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["component", "regime"],
+        "properties": {
+          "component": {"type": "string"},
+          "type": {"type": "string", "enum": ["theory", "driver", "observable", "data", "mass model"]},
+          "regime": {"type": "string", "enum": ["L1", "L2", "L1/L2 boundary", "L1 assumption", "derived"]},
+          "why": {"type": "string"}
+        }
+      }
+    },
+    "rcmp_violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "statement"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^V\\d+$"},
+          "name": {"type": "string"},
+          "statement": {"type": "string"}
+        }
+      }
+    },
+    "valid_architectures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "regime", "rcmp_consistent"],
+        "properties": {
+          "id": {"type": "string", "enum": ["A", "B", "C"]},
+          "name": {"type": "string"},
+          "regime": {"type": "string"},
+          "observable": {"type": "string"},
+          "free_parameters": {"type": "integer", "minimum": 0},
+          "data_available_now": {"type": ["boolean", "string"]},
+          "rcmp_consistent": {"type": "boolean"},
+          "discriminates": {"type": "string"}
+        }
+      }
+    }
+  }
+}
