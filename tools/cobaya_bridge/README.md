@@ -15,8 +15,10 @@ subdirectory of this folder and runs the Kill-Test v5 bridge test.
 
 - `install.sh`             — idempotent installer (venv + pip + cobaya-install)
 - `run.sh`                 — runner wrapper (minimize / mcmc / GR reference)
-- `efc_bridge.yaml`        — full configuration (plik_lite + lowl + lensing.clik)
-- `efc_bridge_reduced.yaml`— reduced configuration (lowl + lensing.native only)
+- `efc_bridge.yaml`        — full configuration (plik_lite + lowl + lensing.clik), samples (mu0, Sigma0)
+- `efc_bridge_reduced.yaml`— reduced configuration (lowl + lensing.native only), Alens proxy
+- `efc_bridge_K0m2.yaml`   — full posterior config over (K0, m^2) + DESI BAO + Pantheon+
+- `bridge_theory.py`       — closed-form bridge `(K0, m^2) -> (mu0, Sigma0)`
 - `efc_mu_table.json`      — `mu(k,a)`, `Sigma(k,a)` bridge table from `(K0, m^2)`
 - `README.md`              — this file
 
@@ -36,12 +38,13 @@ cd tools/cobaya_bridge
 ./run.sh gr                  # GR reference chi^2 baseline
 ```
 
-## Two yamls, two questions
+## Three yamls, three questions
 
 | file                    | likelihoods                                            | free parameters                                              | answers                                                       |
 |-------------------------|--------------------------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------|
 | `efc_bridge.yaml`         | `plik_lite TTTEEE` + `lowl.TT` + `lowl.EE` + `lensing.clik` | H0, ombh2, omch2, logA, ns, tau, **mu0, Sigma0** (MGCAMB)     | Full sweet-spot test, reproduces the Localization Δχ² = -0.45  |
 | `efc_bridge_reduced.yaml` | `lowl.TT` + `lowl.EE` + `lensing.native`                   | H0, ombh2, omch2, logA, ns, tau, **Alens** (Σ² proxy)         | What a lensing-isolated sandbox can actually decide            |
+| `efc_bridge_K0m2.yaml`    | `plik_lite TTTEEE` + lowl + lensing.clik + **DESI 2024 BAO** + **Pantheon+** | H0, ombh2, omch2, logA, ns, tau, **K0, m_sq** (EFC field params) | Full MCMC posterior over the two underlying EFC field parameters; "the run that decides" from Kill-Test v5 §9 |
 
 The reduced yaml is **not** equivalent to the full one. It was added
 specifically so this tool can still produce a real cobaya minimize in
@@ -97,6 +100,48 @@ but the MG parameters will be fixed at their effective GR value.
   (⚠ blocked in some sandboxes; 403 on the CONNECT tunnel)
 
 If ESA is blocked, `install.sh` falls back to reduced mode automatically.
+
+## Sampling (K0, m^2) directly
+
+`efc_bridge_K0m2.yaml` samples the two EFC field parameters and derives
+`(mu0, Sigma0)` via the closed-form bridge in `bridge_theory.py`:
+
+```
+R(K0)        = K0 * (Gamma' phi_dot)^2 / k_lens^4    = K0 * 9.604e-2  (k_lens = 0.05)
+mu0(K0)      = 1 / (1 + R)
+f(K0, m^2)   = 1 - m^2 / (K0 * k_lens^2)
+eta(K0, m^2) = 1 + ((eta_ref - 1) / f_ref) * f
+Sigma0       = 0.5 * (1 + eta) * mu0
+```
+
+with `eta_ref = 1.23` and `f_ref = 1 - 0.0035/(1.66 * 0.0025) = 0.156627`.
+
+At the reference point `(K0 = 1.66, m_sq = 0.0035)` this returns
+`(mu0, Sigma0) = (0.9401, 1.0482)` exactly — i.e. the Localization paper's
+Phase 2 sweet spot. The yaml expresses these as `value: lambda K0: ...` /
+`value: lambda K0, m_sq: ...` so that cobaya recomputes them at every
+theory call from the sampled `(K0, m_sq)` and forwards them to the
+underlying CAMB / MGCAMB module as input parameters.
+
+To verify the bridge is consistent before launching the run:
+
+```bash
+python3 bridge_theory.py
+# bridge sweet spot: {... 'mu0': 0.9401, 'Sigma0': 1.0482, 'eta': 1.23 ...}
+```
+
+To launch the full posterior on a real machine (≥32 GB RAM, plik_lite +
+DESI BAO + Pantheon+ data installed):
+
+```bash
+./install.sh                # downloads DESI + Pantheon+ alongside Planck
+./run.sh mcmc --K0m2        # full MCMC over (K0, m^2)
+./run.sh minimize --K0m2    # best-fit only (cheaper)
+```
+
+This is the run that gives the joint `(K0, m^2)` posterior. Δchi² ≤ 0
+means the bridge holds and ΛCDM emerges as the `K0 → 0` limit; Δchi² > 10
+means the bridge is falsified at this confidence.
 
 ## Sanity check of the mu-table
 

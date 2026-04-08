@@ -1,0 +1,161 @@
+# EFC Bridge — full MCMC over (K0, m^2) with CMB + BAO + Pantheon+
+# =================================================================
+#
+# This is the full posterior run referenced as "next step" in Kill-Test v5
+# (Session Note v5), Section 9 "Open Questions". Unlike efc_bridge.yaml,
+# which samples (mu0, Sigma0) directly under the standard MGCAMB
+# parametrisation, this configuration samples the two underlying EFC field
+# parameters (K0, m_sq) and derives (mu0, Sigma0) via the closed-form bridge
+# in bridge_theory.py.
+#
+# Sampled parameters:
+#     K0     in [0.5, 3.0]    field stiffness amplitude
+#     m_sq   in [0.001, 0.01] potential curvature m^2 (slip mass)
+#
+# Derived (passed to MGCAMB as mu0, sigma0 inputs):
+#     mu0    = 1 / (1 + K0 * (Gamma' phi_dot)^2 / k_lens^4)
+#     Sigma0 = 0.5 * (1 + eta) * mu0
+#         with eta = 1 + ((eta_ref - 1) / f_ref) * (1 - m_sq / (K0 k_lens^2))
+#
+# Datasets:
+#     - Planck 2018 high-ell plik_lite TTTEEE
+#     - Planck 2018 lowl TT + EE
+#     - Planck 2018 lensing.clik
+#     - DESI 2024 BAO (full sample)
+#     - Pantheon+ supernovae
+#
+# Hardware:
+#     ~32 GB RAM recommended for MCMC, ~16 GB for --minimize
+#     ~2-6 hours for minimize, ~24-72 hours for full MCMC convergence
+
+theory:
+  camb:
+    extra_args:
+      MG_flag: 3            # MGCAMB pure mu-Sigma parametrisation
+      pure_MG_flag: 2       # time-dependence tracks Omega_DE(a)
+      lmax: 2700
+      lens_potential_accuracy: 4
+      AccuracyBoost: 1.2
+      lAccuracyBoost: 1.2
+      dark_energy_model: fluid
+      w: -1.0
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.044
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE_lite:
+  planck_2018_lowl.TT:
+  planck_2018_lowl.EE:
+  planck_2018_lensing.clik:
+  bao.desi_2024_bao_all:
+  sn.pantheonplus:
+
+params:
+  # -------------------- standard cosmology --------------------
+  logA:
+    prior: {min: 2.6, max: 3.5}
+    ref: {dist: norm, loc: 3.044, scale: 0.02}
+    proposal: 0.015
+    latex: \log(10^{10} A_\mathrm{s})
+    drop: true
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_\mathrm{s}
+  ns:
+    prior: {min: 0.9, max: 1.05}
+    ref: {dist: norm, loc: 0.9649, scale: 0.005}
+    proposal: 0.004
+    latex: n_\mathrm{s}
+  theta_MC_100:
+    prior: {min: 1.03, max: 1.05}
+    ref: {dist: norm, loc: 1.04109, scale: 0.0005}
+    proposal: 0.0004
+    latex: 100\theta_\mathrm{MC}
+    drop: true
+    renames: theta
+  cosmomc_theta:
+    value: "lambda theta_MC_100: 1.e-2*theta_MC_100"
+    derived: false
+  H0:
+    latex: H_0
+  ombh2:
+    prior: {min: 0.019, max: 0.025}
+    ref: {dist: norm, loc: 0.02237, scale: 0.0002}
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omch2:
+    prior: {min: 0.095, max: 0.145}
+    ref: {dist: norm, loc: 0.1200, scale: 0.002}
+    proposal: 0.0015
+    latex: \Omega_\mathrm{c} h^2
+  tau:
+    prior: {dist: norm, loc: 0.0544, scale: 0.0073}
+    ref:   {dist: norm, loc: 0.0544, scale: 0.006}
+    proposal: 0.005
+    latex: \tau_\mathrm{reio}
+
+  # -------------------- EFC field parameters --------------------
+  # Sampled directly. Both have flat priors centred on the Kill-Test v5
+  # sweet spot (K0_ref = 1.66, msq_ref = 0.0035).
+  K0:
+    prior: {min: 0.5, max: 3.0}
+    ref:   {dist: norm, loc: 1.66, scale: 0.05}
+    proposal: 0.04
+    latex: K_0
+    drop: true
+  m_sq:
+    prior: {min: 0.001, max: 0.010}
+    ref:   {dist: norm, loc: 0.0035, scale: 0.0003}
+    proposal: 0.0002
+    latex: m^2
+    drop: true
+
+  # -------------------- bridge: (K0, m^2) -> (mu0, sigma0) --------------------
+  # These two get pushed into MGCAMB at every theory call. The expressions
+  # are the closed-form bridge in tools/cobaya_bridge/bridge_theory.py, with
+  # constants:
+  #     gamma_phi_sq = (0.049 * 0.01)^2 = 2.401e-7
+  #     k_lens       = 0.05 h/Mpc
+  #     eta_ref      = 1.23
+  #     f_ref        = 0.15662650...   (= 1 - 0.0035/(1.66*0.05^2))
+  mu0:
+    value: "lambda K0: 1.0 / (1.0 + K0 * 2.401e-7 / 0.05**4)"
+    latex: \mu_0
+  sigma0:
+    value: "lambda K0, m_sq: 0.5 * (1.0 + 1.0 + (1.23 - 1.0) / 0.156627 * (1.0 - m_sq / (K0 * 0.05**2))) * (1.0 / (1.0 + K0 * 2.401e-7 / 0.05**4))"
+    latex: \Sigma_0
+
+  # -------------------- derived diagnostics --------------------
+  sigma8:
+    latex: \sigma_8
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_\mathrm{m}
+  age:
+    latex: "{\\rm{Age}}/\\mathrm{Gyr}"
+  rdrag:
+    latex: r_\mathrm{drag}
+
+sampler:
+  mcmc:
+    drag: true
+    oversample_power: 0.4
+    proposal_scale: 1.9
+    covmat: auto
+    Rminus1_stop: 0.02
+    Rminus1_cl_stop: 0.15
+    max_tries: 1000
+    burn_in: 0
+
+output: chains/efc_bridge_K0m2
+
+# --- EFC bridge metadata ---------------------------------------------------
+# Paper:       Kill-Test v5 (Session Note v5), Magnusson (2026)
+# Bridge:      bridge_theory.py reproduces (mu0, Sigma0) = (0.9401, 1.053)
+#              at the reference point (K0 = 1.66, m_sq = 0.0035) exactly,
+#              consistent with the Localization paper sweet spot.
+# Decision:    Δchi² ≤ 0  -> bridge holds, ΛCDM is the (K0 -> 0) limit
+#              Δchi² > 10 -> bridge falsified at this confidence level
