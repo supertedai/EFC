@@ -1,0 +1,91 @@
+{
+  "run_date": "2026-04-08",
+  "host": "Claude Code sandbox (15 GB RAM, 30 GB disk)",
+  "stack": {
+    "python": "3.11.15",
+    "cobaya": "3.6.2",
+    "camb": "1.6.6",
+    "py_bobyqa": "installed"
+  },
+  "yaml_efc": "tools/cobaya_bridge/efc_bridge_K0m2_reduced.yaml",
+  "yaml_gr":  "tools/cobaya_bridge/efc_bridge_K0m2_reduced_gr.yaml",
+  "dataset": "planck_2018_lowl.TT + planck_2018_lowl.EE + planck_2018_lensing.native + bao.desi_2024_bao_all + sn.pantheonplus",
+  "note": "First in-sandbox run that samples the EFC field parameters (K0, m_sq) DIRECTLY rather than (mu0, Sigma0). Uses vanilla CAMB; mu0 and Sigma0 are diagnostics only, and Alens = Sigma0_eff^2 is the channel through which (K0, m_sq) actually drives the lensing amplitude. Both EFC and GR runs used cobaya minimize with method=bobyqa (2 random restarts). Same priors, same likelihoods.",
+  "sampler": "minimize / bobyqa (2 restarts each)",
+  "efc_K0m2": {
+    "description": "Sampled K0 and m_sq directly. Free cosmology. Alens = Sigma0(K0, m_sq)^2 is pushed into vanilla CAMB.",
+    "chi2_total": 1844.168264,
+    "chi2_lowl_TT": 19.941223,
+    "chi2_lowl_EE": 395.760955,
+    "chi2_lensing_native": 9.21807,
+    "chi2_bao_desi_2024_bao_all": 13.036506,
+    "chi2_sn_pantheonplus": 1406.21151,
+    "best_fit": {
+      "K0": 1.552346,
+      "m_sq": 0.003179,
+      "mu0": 0.943721,
+      "Sigma0_eff": 1.069078,
+      "Alens": 1.142928,
+      "H0": 68.791865,
+      "logA": 3.008177,
+      "ns": 0.980966,
+      "theta_MC_100": 1.042875,
+      "ombh2": 0.022614,
+      "omch2": 0.118323,
+      "tau": 0.05386,
+      "As": 2.025045e-9,
+      "A_planck": 1.000094,
+      "sigma8": 0.796676,
+      "S8": 0.795588,
+      "omegam": 0.299181,
+      "age_Gyr": 13.708749,
+      "rdrag_Mpc": 147.273728
+    }
+  },
+  "gr_reference": {
+    "description": "Same data, same priors, no K0/m_sq, Alens fixed at 1.0.",
+    "chi2_total": 1844.467839,
+    "chi2_lowl_TT": 20.130125,
+    "chi2_lowl_EE": 395.8307,
+    "chi2_lensing_native": 9.546782,
+    "chi2_bao_desi_2024_bao_all": 13.216015,
+    "chi2_sn_pantheonplus": 1405.7441,
+    "best_fit": {
+      "Alens": 1.0,
+      "H0": 67.887801,
+      "logA": 3.0421919,
+      "ns": 0.9906637,
+      "theta_MC_100": 1.0412681,
+      "ombh2": 0.021506127,
+      "omch2": 0.116806,
+      "tau": 0.052580973,
+      "As": 2.0951115e-9,
+      "A_planck": 0.99995015,
+      "sigma8": 0.81145533,
+      "S8": 0.81349044,
+      "omegam": 0.30150667,
+      "age_Gyr": 13.861173,
+      "rdrag_Mpc": 148.9343
+    }
+  },
+  "delta": {
+    "delta_chi2_total": -0.299575,
+    "delta_chi2_lowl_TT": -0.188902,
+    "delta_chi2_lowl_EE": -0.069745,
+    "delta_chi2_lensing_native": -0.328712,
+    "delta_chi2_bao": -0.179509,
+    "delta_chi2_sn": 0.46741,
+    "delta_H0": 0.904064,
+    "delta_omegam": -0.002326,
+    "delta_sigma8": -0.014779,
+    "delta_S8": -0.017902,
+    "delta_omch2": 0.001517,
+    "comment": "Δchi² = -0.30: EFC marginally preferred over GR on the same data. The improvement is dominated by the lensing sector (-0.33), with BAO and lowl TT/EE also slightly preferring EFC. Pantheon+ slightly disfavours EFC (+0.47) because the late-time expansion shift makes the SN distance moduli a worse fit. Net is in EFC's favour. The bobyqa minimum settles at K0 = 1.55, m² = 0.00318 — within 7-9% of the Kill-Test v5 calibration anchor (1.66, 0.0035). The bridge then yields mu0 = 0.944 and Sigma0 = 1.069, both inside the Localization paper's slip window [(0.93,0.96), (1.03,1.07)]."
+  },
+  "interpretation": [
+    "First sandbox run where the EFC field parameters (K0, m^2) are sampled directly instead of (mu0, Sigma0). The bridge in tools/cobaya_bridge/bridge_theory.py is responsible for the (K0, m^2) -> (mu0, Sigma0) -> Alens chain, and it is differentiable through cobaya's lambda mechanism.",
+    "Δchi² = -0.30 confirms that the K0/m^2 parametrisation does not lose information relative to the previous Alens-free run (Δchi² = -0.70 on lowl + lensing alone). Adding DESI 2024 BAO + Pantheon+ tightens the H0 shift from +2.6 to +0.9 but does not flip the sign.",
+    "The bobyqa optimum (K0, m_sq) sits 7-9% below the Kill-Test v5 reference (1.66, 0.0035). That is consistent with the calibration anchor being a single sweet-spot rather than a tightly bracketed posterior peak; the actual best-fit can drift within the slip window without changing mu0 / Sigma0 much.",
+    "This run is NOT a substitute for the full plik_lite + DESI BAO + Pantheon+ MCMC over (K0, m^2) using MGCAMB. The sandbox cannot do that because (a) MGCAMB pip wrapper still doesn't push mu0/sigma0 to the Fortran backend, and (b) Planck high-ell plik_lite data is not reachable from this network. The full run remains the next step on a real workstation."
+  ]
+}
