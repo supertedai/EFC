@@ -5,9 +5,10 @@
 #
 # Usage:
 #     ./run.sh minimize            # default: reduced yaml (in-sandbox)
-#     ./run.sh minimize --full     # full yaml (needs plik_lite)
+#     ./run.sh minimize --full     # full yaml (mu0, Sigma0; needs plik_lite)
+#     ./run.sh minimize --K0m2     # full yaml over (K0, m^2) + BAO + Pantheon+
+#     ./run.sh mcmc --K0m2         # full MCMC posterior over (K0, m^2) + BAO + Pantheon+
 #     ./run.sh gr                  # GR reference minimize (reduced)
-#     ./run.sh mcmc                # full MCMC (not recommended under 16 GB)
 
 set -euo pipefail
 
@@ -27,9 +28,10 @@ shift || true
 
 YAML="$HERE/efc_bridge_reduced.yaml"
 for a in "$@"; do
-    if [[ "$a" == "--full" ]]; then
-        YAML="$HERE/efc_bridge.yaml"
-    fi
+    case "$a" in
+        --full) YAML="$HERE/efc_bridge.yaml" ;;
+        --K0m2) YAML="$HERE/efc_bridge_K0m2.yaml" ;;
+    esac
 done
 
 case "$cmd" in

@@ -90,15 +90,20 @@ if [[ "$REDUCED" == "1" ]]; then
                    -p "$PACKAGES" --no-progress-bars \
                    2>&1 | tee "$LOGS/cobaya_install_reduced.log"
 else
-    echo "[install] full mode: lowl + plik_lite TTTEEE + lensing.clik"
-    echo "[install]   (requires ESA pla.esac.esa.int to be reachable)"
-    cobaya-install "$YAML_FULL" -p "$PACKAGES" --no-progress-bars \
+    echo "[install] full mode: lowl + plik_lite TTTEEE + lensing.clik + DESI BAO + Pantheon+"
+    echo "[install]   (requires ESA pla.esac.esa.int to be reachable for Planck)"
+    cobaya-install "$YAML_FULL" \
+                   cobaya.likelihoods.bao.desi_2024_bao_all \
+                   cobaya.likelihoods.sn.pantheonplus \
+                   -p "$PACKAGES" --no-progress-bars \
                    2>&1 | tee "$LOGS/cobaya_install_full.log" || {
-        echo "[install] full install failed (likely ESA network block)."
-        echo "[install] falling back to reduced install (lowl + lensing.native)"
+        echo "[install] full install failed (likely ESA network block on Planck high-ell)."
+        echo "[install] retrying without plik_lite (BAO + Pantheon+ + reduced Planck)"
         cobaya-install cobaya.likelihoods.planck_2018_lowl.TT \
                        cobaya.likelihoods.planck_2018_lowl.EE \
                        cobaya.likelihoods.planck_2018_lensing.native \
+                       cobaya.likelihoods.bao.desi_2024_bao_all \
+                       cobaya.likelihoods.sn.pantheonplus \
                        -p "$PACKAGES" --no-progress-bars \
                        2>&1 | tee "$LOGS/cobaya_install_reduced.log"
     }
@@ -114,3 +119,4 @@ echo "[install] to run:"
 echo "    ./run.sh minimize           # reduced (in-sandbox)"
 echo "    ./run.sh minimize --full    # requires plik_lite installed"
 echo "    ./run.sh gr                 # GR reference, reduced data"
+echo "    ./run.sh mcmc --K0m2        # full posterior over (K0, m^2) + BAO + Pantheon+"
