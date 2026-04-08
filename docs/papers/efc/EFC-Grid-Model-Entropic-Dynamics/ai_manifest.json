@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 4 — Theory / Grid / EFT",
   "regimes": [],
   "primary_pdf": "EFC-Grid-Model-Entropic-Dynamics.pdf",
@@ -29,12 +29,20 @@
       "bytes": 511
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1638
+    },
+    {
       "path": "citations.bib",
       "bytes": 227
     },
     {
       "path": "data/parameters.json",
       "bytes": 996
+    },
+    {
+      "path": "efc-grid-model-entropic-dynamics.jsonld",
+      "bytes": 517
     },
     {
       "path": "examples/demo_entropic_dynamics.py",
@@ -65,6 +73,6 @@
       "bytes": 4354
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

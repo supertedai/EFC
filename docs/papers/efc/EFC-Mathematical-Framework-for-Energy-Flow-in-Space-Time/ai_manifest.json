@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-Mathematical-Framework-for-Energy-Flow-in-Space-Time.pdf",
@@ -29,12 +29,20 @@
       "bytes": 552
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1809
+    },
+    {
       "path": "citations.bib",
       "bytes": 275
     },
     {
       "path": "data/math_framework.json",
       "bytes": 1425
+    },
+    {
+      "path": "efc-mathematical-framework-for-energy-flow-in-space-time.jsonld",
+      "bytes": 523
     },
     {
       "path": "examples/demo_math_framework.py",
@@ -65,6 +73,6 @@
       "bytes": 7090
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

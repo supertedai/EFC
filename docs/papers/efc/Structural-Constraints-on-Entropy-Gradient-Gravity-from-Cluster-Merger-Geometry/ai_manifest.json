@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry.pdf",
@@ -39,6 +39,10 @@
     {
       "path": "Structural-Constraints.jsonld",
       "bytes": 638
+    },
+    {
+      "path": "ai_manifest.json",
+      "bytes": 4400
     },
     {
       "path": "citations.bib",
@@ -183,8 +187,12 @@
     {
       "path": "src/cluster_merger_constraints.py",
       "bytes": 5358
+    },
+    {
+      "path": "structural-constraints-on-entropy-gradient-gravity-from-cluster-merger-geometry.jsonld",
+      "bytes": 566
     }
   ],
-  "n_files": 42,
+  "n_files": 44,
   "n_pdfs": 1
 }

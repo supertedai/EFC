@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "WP4_BOSS_transfer_validation.pdf",
@@ -27,6 +27,10 @@
     {
       "path": "WP4_BOSS_transfer_validation.pdf",
       "bytes": 276071
+    },
+    {
+      "path": "ai_manifest.json",
+      "bytes": 1653
     },
     {
       "path": "citations.bib",
@@ -67,8 +71,12 @@
     {
       "path": "src/wp4_transfer.py",
       "bytes": 2751
+    },
+    {
+      "path": "wp4-boss-transfer-validation.jsonld",
+      "bytes": 495
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

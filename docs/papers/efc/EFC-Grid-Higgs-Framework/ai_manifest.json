@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 4 — Theory / Grid / EFT",
   "regimes": [],
   "primary_pdf": "EFC-Grid-Higgs-Framework.pdf",
@@ -29,12 +29,20 @@
       "bytes": 424
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1553
+    },
+    {
       "path": "citations.bib",
       "bytes": 211
     },
     {
       "path": "data/parameters.json",
       "bytes": 826
+    },
+    {
+      "path": "efc-grid-higgs-framework.jsonld",
+      "bytes": 509
     },
     {
       "path": "examples/demo_grid_higgs.py",
@@ -65,6 +73,6 @@
       "bytes": 4063
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

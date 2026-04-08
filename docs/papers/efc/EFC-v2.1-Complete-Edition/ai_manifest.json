@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-v2.1-Complete-Edition.pdf",
@@ -29,12 +29,20 @@
       "bytes": 670
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1553
+    },
+    {
       "path": "citations.bib",
       "bytes": 213
     },
     {
       "path": "data/complete_edition.json",
       "bytes": 1396
+    },
+    {
+      "path": "efc-v2-1-complete-edition.jsonld",
+      "bytes": 492
     },
     {
       "path": "examples/demo_complete.py",
@@ -65,6 +73,6 @@
       "bytes": 7340
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

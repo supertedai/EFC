@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EFC_CMB_Testing_Results.pdf",
@@ -43,6 +43,10 @@
     {
       "path": "Systematic-CMB-Constraints.jsonld",
       "bytes": 616
+    },
+    {
+      "path": "ai_manifest.json",
+      "bytes": 2894
     },
     {
       "path": "citations.bib",
@@ -119,8 +123,12 @@
     {
       "path": "src/cmb_constraints.py",
       "bytes": 4977
+    },
+    {
+      "path": "systematic-cmb-constraints-on-early-universe-modifications-parameter-degeneracies-and-null-results.jsonld",
+      "bytes": 585
     }
   ],
-  "n_files": 26,
+  "n_files": 28,
   "n_pdfs": 1
 }

@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-v1.2-Foundational-Framework.pdf",
@@ -29,12 +29,20 @@
       "bytes": 577
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1610
+    },
+    {
       "path": "citations.bib",
       "bytes": 225
     },
     {
       "path": "data/foundational.json",
       "bytes": 2199
+    },
+    {
+      "path": "efc-v1-2-foundational-framework.jsonld",
+      "bytes": 498
     },
     {
       "path": "examples/demo_foundational.py",
@@ -65,6 +73,6 @@
       "bytes": 11079
     }
   ],
-  "n_files": 12,
+  "n_files": 14,
   "n_pdfs": 1
 }

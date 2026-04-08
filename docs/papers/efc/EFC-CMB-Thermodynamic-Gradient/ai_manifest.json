@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EFC-CMB-Thermodynamic-Gradient.pdf",
@@ -29,12 +29,20 @@
       "bytes": 488
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1687
+    },
+    {
       "path": "citations.bib",
       "bytes": 223
     },
     {
       "path": "data/cmb_gradient.json",
       "bytes": 703
+    },
+    {
+      "path": "efc-cmb-thermodynamic-gradient.jsonld",
+      "bytes": 517
     },
     {
       "path": "examples/demo.py",
@@ -69,6 +77,6 @@
       "bytes": 4031
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

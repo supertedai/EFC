@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-Unresolved-Questions-and-Challenges-Entropy.pdf",
@@ -29,12 +29,20 @@
       "bytes": 565
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1841
+    },
+    {
       "path": "citations.bib",
       "bytes": 257
     },
     {
       "path": "data/entropy_challenges.json",
       "bytes": 1894
+    },
+    {
+      "path": "efc-unresolved-questions-and-challenges-entropy.jsonld",
+      "bytes": 514
     },
     {
       "path": "examples/demo_entropy_challenges.py",
@@ -69,6 +77,6 @@
       "bytes": 3504
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

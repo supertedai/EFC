@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "EFC_Phase_3__SPARC_Validation.pdf",
@@ -33,12 +33,20 @@
       "bytes": 4995
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1713
+    },
+    {
       "path": "citations.bib",
       "bytes": 308
     },
     {
       "path": "data/fit_results.json",
       "bytes": 1836
+    },
+    {
+      "path": "efc-phase-3-sparc-validation.jsonld",
+      "bytes": 515
     },
     {
       "path": "examples/sparc_analysis.py",
@@ -73,6 +81,6 @@
       "bytes": 4603
     }
   ],
-  "n_files": 14,
+  "n_files": 16,
   "n_pdfs": 1
 }

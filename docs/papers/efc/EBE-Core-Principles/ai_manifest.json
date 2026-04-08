@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [
     "L0",
@@ -50,6 +50,10 @@
       "bytes": 7175
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 2459
+    },
+    {
       "path": "citations.bib",
       "bytes": 1617
     },
@@ -60,6 +64,10 @@
     {
       "path": "data/s_regimes.json",
       "bytes": 1331
+    },
+    {
+      "path": "ebe-core-principles.jsonld",
+      "bytes": 546
     },
     {
       "path": "examples/basic_classification.py",
@@ -118,6 +126,6 @@
       "bytes": 4238
     }
   ],
-  "n_files": 24,
+  "n_files": 26,
   "n_pdfs": 1
 }

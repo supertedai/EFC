@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-07",
+  "generated": "2026-04-08",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC-What-Happens-at-the-Universes-Extremes.pdf",
@@ -29,12 +29,20 @@
       "bytes": 627
     },
     {
+      "path": "ai_manifest.json",
+      "bytes": 1798
+    },
+    {
       "path": "citations.bib",
       "bytes": 247
     },
     {
       "path": "data/universe_extremes.json",
       "bytes": 1714
+    },
+    {
+      "path": "efc-what-happens-at-the-universes-extremes.jsonld",
+      "bytes": 509
     },
     {
       "path": "examples/demo_universe_extremes.py",
@@ -69,6 +77,6 @@
       "bytes": 4850
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }
