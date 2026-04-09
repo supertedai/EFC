@@ -1,0 +1,19 @@
+{
+  "id": "efc-src",
+  "directory": "src",
+  "title": "EFC Python Source Library",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "package_type": "source-library",
+  "schema_version": "1.0",
+  "generated": "2026-04-08",
+  "entry_points": {
+    "human": "README.md",
+    "machine": "index.json",
+    "semantic": "efc/index.jsonld",
+    "python_import": "from efc.core.efc_core import EFCModel"
+  },
+  "ai_instructions": "Start with index.json for the module map. The perturbation/ module is the richest and most physics-heavy (gate functions, mu(a), growth ODE, fσ8 comparison). For rotation curves use validation/. All cosmological defaults are Planck 2018. Dependencies are minimal: numpy and matplotlib only.",
+  "n_modules": 7
+}

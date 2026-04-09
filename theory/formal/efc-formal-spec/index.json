@@ -1,0 +1,11 @@
+{
+  "id": "efc-formal-spec",
+  "title": "EFC Formal Specification",
+  "description": "Complete and extended formal mathematical specification of the Energy-Flow Cosmology framework, integrating all sub-models (S, D, C0, H, R).",
+  "type": "formal_specification",
+  "version": "1.0",
+  "regime": "L0-L3",
+  "files": ["index.tex", "minimal_spec.tex"],
+  "integrates": ["efc-s-model", "efc-d-model", "efc-c0-model", "efc-h-model", "efc-r-model"],
+  "note": "index.tex is the master version; minimal_spec.tex is a compact baseline with core fields and minimum coupled system."
+}

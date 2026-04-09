@@ -1,0 +1,22 @@
+{
+  "id": "efc-src",
+  "title": "EFC Python Source Library",
+  "short_description": "Core Python implementation of Energy-Flow Cosmology",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "repository": "https://github.com/supertedai/EFC",
+  "path": "src/",
+  "language": "python",
+  "python_requires": ">= 3.10",
+  "n_modules": 7,
+  "efc_context": {
+    "layer": "implementation",
+    "purpose": "Executable Python code implementing EFC theory",
+    "depends_on": ["theory/"],
+    "depended_by": ["pipelines/", "docs/papers/efc/*/src/"],
+    "richest_module": "efc/perturbation/ (5 submodules: gate, background, mu, growth, robustness)"
+  }
+}

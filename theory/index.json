@@ -1,0 +1,112 @@
+{
+  "id": "efc-theory",
+  "title": "EFC Theory Layer",
+  "description": "Formal mathematical specifications of Energy-Flow Cosmology: field equations, regime architecture, model definitions, notation, and parameter registries.",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "theory_layer",
+  "modules": [
+    {
+      "id": "architecture",
+      "path": "architecture/",
+      "title": "Theory Architecture",
+      "description": "Architectural overview of EFC: coupled layers, fields, and mappings (S, E_f, Grid/resistance)",
+      "regime": "all"
+    },
+    {
+      "id": "efc-formal-spec",
+      "path": "formal/efc-formal-spec/",
+      "title": "EFC Formal Specification",
+      "description": "Complete mathematical specification integrating all layers (S, D, C0, H, R)",
+      "regime": "L0-L3"
+    },
+    {
+      "id": "efc-s-model",
+      "path": "formal/efc-s-model/",
+      "title": "EFC-S Structural Model",
+      "description": "Static spatial structure: entropy field S(r), density rho(r), grid state G, structural potential Phi_S = rho*(1-S)",
+      "regime": "L0-L1",
+      "key_equation": "Phi_S = rho * (1 - S)"
+    },
+    {
+      "id": "efc-d-model",
+      "path": "formal/efc-d-model/",
+      "title": "EFC-D Dynamics Model",
+      "description": "Temporal evolution of entropy, density, energy flow E_f = rho*(1-S), and resistance",
+      "regime": "L1-L2",
+      "key_equation": "dE_f/dt = (1-S)*drho/dt - rho*dS/dt"
+    },
+    {
+      "id": "efc-c0-model",
+      "path": "formal/efc-c0-model/",
+      "title": "EFC-C0 Information Model",
+      "description": "Informational capacity C = C0*(1-S), resonance structure, propagation resistance R(S,rho)",
+      "regime": "S0-S1",
+      "key_equation": "c_eff = 1 / (1 + R)"
+    },
+    {
+      "id": "efc-h-model",
+      "path": "formal/efc-h-model/",
+      "title": "EFC-H Halo/Structure Model",
+      "description": "Halo profiles, rotation curves, lensing from entropy-density coupling at cluster/galaxy scales",
+      "regime": "L1-L2",
+      "key_equation": "v^2(r) = r * dE_f/dr"
+    },
+    {
+      "id": "efc-r-model",
+      "path": "formal/efc-r-model/",
+      "title": "EFC-R Regime Model",
+      "description": "Galactic-scale dynamics with Phi_eff = Phi_N*(1 + alpha*S), validated against SPARC rotation curves",
+      "regime": "L2",
+      "key_equation": "Phi_eff = Phi_N * (1 + alpha * S)",
+      "validation": "SPARC pilot N~20"
+    },
+    {
+      "id": "notation",
+      "path": "formal/notation/",
+      "title": "EFC Global Notation",
+      "description": "Standardized symbols: S (entropy), rho (density), E_f (energy-flow), Phi_S (structural potential), c(S), Hz",
+      "regime": "meta"
+    },
+    {
+      "id": "parameters",
+      "path": "formal/parameters/",
+      "title": "EFC Global Parameters",
+      "description": "Global constants and coefficients: S0, S1, rho0, kE, kS, kEta, Scrit, Ssat",
+      "regime": "meta"
+    },
+    {
+      "id": "efc-header",
+      "path": "formal/efc-header/",
+      "title": "EFC Formal Header",
+      "description": "Shared LaTeX macros, normalization constants, and symbolic conventions used across all formal specs",
+      "regime": "meta"
+    },
+    {
+      "id": "efc-flow-diagram",
+      "path": "formal/efc-flow-diagram/",
+      "title": "EFC Flow Diagram",
+      "description": "Causal dependency graph: computational update order linking S, D, C0, H fields",
+      "regime": "meta"
+    }
+  ],
+  "regime_coverage": {
+    "L0": "EFC-S (structural foundation), formal-spec",
+    "L1": "EFC-S, EFC-D (dynamics), EFC-H (halo), EFC-C0 (information)",
+    "L2": "EFC-D, EFC-H, EFC-R (galactic regime, SPARC-validated)",
+    "L3": "formal-spec (unified)",
+    "meta": "notation, parameters, header, flow-diagram"
+  },
+  "file_types": {
+    "tex": "Formal LaTeX specifications (index.tex, minimal_spec.tex)",
+    "json": "Structured metadata (index.json, schema.json)",
+    "jsonld": "Semantic linked data (index.jsonld)",
+    "md": "Human-readable documentation (README.md, index.md)"
+  }
+}

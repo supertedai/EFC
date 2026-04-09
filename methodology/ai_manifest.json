@@ -1,0 +1,17 @@
+{
+  "id": "efc-methodology",
+  "directory": "methodology",
+  "title": "EFC Methodology Layer",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "package_type": "methodology-layer",
+  "schema_version": "1.0",
+  "generated": "2026-04-08",
+  "entry_points": {
+    "human": "README.md",
+    "machine": "index.json"
+  },
+  "ai_instructions": "Start with index.json for the module map. Each subdirectory has README.md (human), index.jsonld (semantic), index.md (detailed), and schema.json (validation). For epistemological foundations see EFC-epistemology/. For human-AI collaboration rules see symbiosis-interface/. For reproducibility standards see reproducibility-guide/.",
+  "n_modules": 10
+}

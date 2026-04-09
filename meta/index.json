@@ -1,0 +1,80 @@
+{
+  "id": "efc-meta",
+  "title": "EFC Meta-Architecture",
+  "description": "Meta-level analytical framework documenting the structural, cognitive, reflective, and process-oriented dimensions of Energy-Flow Cosmology. Self-referential documentation of how EFC is constructed, maintained, and understood.",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "meta_layer",
+  "modules": [
+    {
+      "id": "architecture",
+      "path": "architecture/",
+      "title": "Architecture",
+      "description": "How EFC components relate structurally — canonical reference for system architecture"
+    },
+    {
+      "id": "cognition",
+      "path": "cognition/",
+      "title": "Cognition",
+      "description": "Meta-cognitive layer: consciousness-ego mirror, cognitive field dynamics, entropy-clarity, reasoning fingerprints",
+      "nested": ["cem-consciousness-ego-mirror", "cognitive-field", "cognitive-fingerprint", "cognitive-signature", "entropy-clarity", "transient-representations", "you"]
+    },
+    {
+      "id": "meta-architecture",
+      "path": "meta-architecture/",
+      "title": "Meta-Architecture",
+      "description": "High-order layers organizing global insight formation: pattern merging, topology, coherence"
+    },
+    {
+      "id": "meta-architecture-spec",
+      "path": "meta-architecture-spec/",
+      "title": "Meta-Architecture Specification (MAS)",
+      "description": "Formal specification of the metascope: hybrid human-model insight generation and stabilization"
+    },
+    {
+      "id": "meta-process",
+      "path": "meta-process/",
+      "title": "Meta-Process (Control System)",
+      "description": "Highest structural layer: insight organization, stabilization, state transitions, diagnostics",
+      "nested": ["backlog", "co-field", "global-dynamics", "integration", "milestones", "pattern", "process-of-process", "roadmap", "self-evaluation", "tasks", "topology", "validation-plan", "workflows"]
+    },
+    {
+      "id": "meta-reflective-protocol",
+      "path": "meta-reflective-protocol/",
+      "title": "Meta-Reflective Protocol",
+      "description": "Bounded system introspection: deterministic reflection with non-interference and semantic drift prevention"
+    },
+    {
+      "id": "metascope",
+      "path": "metascope/",
+      "title": "Metascope",
+      "description": "Scope and boundary analysis: claims, applicability limits, framework boundaries"
+    },
+    {
+      "id": "personal",
+      "path": "personal/",
+      "title": "Personal",
+      "description": "Author's field-based thinking, pattern-driven reasoning, s0/s1 transitions — transparent process documentation",
+      "nested": ["personal-note"]
+    },
+    {
+      "id": "reflection",
+      "path": "reflection/",
+      "title": "Reflection",
+      "description": "Structured chronological reflection with formal schema: how understanding of EFC evolved over time",
+      "nested": ["reflection", "reflection-index", "reflection-log", "reflection-schema"]
+    },
+    {
+      "id": "symbiosis",
+      "path": "symbiosis/",
+      "title": "Symbiosis Runtime Layer",
+      "description": "Execution layer: API orchestration, Neo4j knowledge graph, Qdrant vector memory, meta-cognitive loops"
+    }
+  ]
+}
