@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.4 | **Updated**: 2026-04-09
+**Version**: 3.5 | **Updated**: 2026-04-09
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
