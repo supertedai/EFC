@@ -1,0 +1,32 @@
+{
+  "id": "efc-theory",
+  "directory": "theory",
+  "title": "EFC Theory Layer",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "package_type": "theory-layer",
+  "schema_version": "1.0",
+  "generated": "2026-04-08",
+  "entry_points": {
+    "human": "README.md",
+    "machine": "index.json",
+    "semantic": "formal/index.jsonld",
+    "formal_spec": "formal/efc-formal-spec/index.tex"
+  },
+  "ai_instructions": "Start with index.json for structured module map. Each formal/ subdirectory contains index.tex (full LaTeX) and minimal_spec.tex (compact). The notation/ and parameters/ directories define all symbols and constants used across models. Architecture/ provides the high-level field coupling diagram.",
+  "n_modules": 11,
+  "modules": [
+    "architecture",
+    "formal/efc-formal-spec",
+    "formal/efc-s-model",
+    "formal/efc-d-model",
+    "formal/efc-c0-model",
+    "formal/efc-h-model",
+    "formal/efc-r-model",
+    "formal/notation",
+    "formal/parameters",
+    "formal/efc-header",
+    "formal/efc-flow-diagram"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "efc-theory",
+  "title": "EFC Theory Layer",
+  "short_description": "Formal mathematical specifications of Energy-Flow Cosmology",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "repository": "https://github.com/supertedai/EFC",
+  "path": "theory/",
+  "n_modules": 11,
+  "n_formal_models": 5,
+  "file_count": {
+    "tex": 22,
+    "json": 19,
+    "jsonld": 2,
+    "md": 16
+  },
+  "efc_context": {
+    "layer": "theory",
+    "purpose": "Formal definitions, field equations, parameter registries",
+    "depends_on": [],
+    "depended_by": ["src/efc/", "docs/papers/efc/", "pipelines/"],
+    "core_models": ["EFC-S", "EFC-D", "EFC-C0", "EFC-H", "EFC-R"]
+  }
+}

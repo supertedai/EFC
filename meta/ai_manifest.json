@@ -1,0 +1,18 @@
+{
+  "id": "efc-meta",
+  "directory": "meta",
+  "title": "EFC Meta-Architecture",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "package_type": "meta-layer",
+  "schema_version": "1.0",
+  "generated": "2026-04-08",
+  "entry_points": {
+    "human": "README.md",
+    "machine": "index.json"
+  },
+  "ai_instructions": "Start with index.json for the module map. This is a meta-cognitive layer — it documents HOW EFC is developed, not the physics itself. Key subdirectories: cognition/ (7 nested dirs on reasoning patterns), meta-process/ (13 nested dirs on project control), reflection/ (4 nested dirs on evolution tracking), symbiosis/ (runtime integration with Neo4j/Qdrant). Most subdirectories have README.md + index.jsonld + schema.json but NOT index.json or metadata.json at the nested level.",
+  "n_modules": 10,
+  "n_nested_dirs": 25
+}

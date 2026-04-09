@@ -1,0 +1,76 @@
+{
+  "id": "efc-methodology",
+  "title": "EFC Methodology Layer",
+  "description": "Cognitive, procedural, and reproducibility framework supporting EFC research: epistemology, human-AI symbiosis, open methods, and reproducibility standards.",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "type": "methodology_layer",
+  "modules": [
+    {
+      "id": "ai-augmented-workflow",
+      "path": "AI-Augmented-Scientific-Workflow-Framework/",
+      "title": "AI-Augmented Scientific Workflow Framework",
+      "description": "Structured methodology for integrating AI into scientific work without influencing scientific conclusions"
+    },
+    {
+      "id": "efc-epistemology",
+      "path": "EFC-epistemology/",
+      "title": "EFC Epistemology",
+      "description": "Epistemic foundations: how knowledge is constructed, validated, and constrained within the thermodynamic EFC framework"
+    },
+    {
+      "id": "author-method-note",
+      "path": "author-method-note/",
+      "title": "Author's Method Note",
+      "description": "Methodological stance and decision logic used in developing Energy-Flow Cosmology"
+    },
+    {
+      "id": "core",
+      "path": "core/",
+      "title": "Core Methodology",
+      "description": "Fundamental computational components: parameters, core model functions, baseline thermodynamic operations"
+    },
+    {
+      "id": "open-method",
+      "path": "open-method/",
+      "title": "Open Methodology",
+      "description": "Transparent, traceable, and externally verifiable research steps and reasoning paths"
+    },
+    {
+      "id": "open-process",
+      "path": "open-process/",
+      "title": "Open Process",
+      "description": "Scientific workflow: input, derivation, validation, and revision layers with execution protocols"
+    },
+    {
+      "id": "reproducibility-guide",
+      "path": "reproducibility-guide/",
+      "title": "Reproducibility Guide",
+      "description": "Standards for deterministic computation, parameter control, and automated validation across systems"
+    },
+    {
+      "id": "symbiosis-interface",
+      "path": "symbiosis-interface/",
+      "title": "Symbiosis Interface",
+      "description": "Human-AI collaboration framework with role separation, transparency, and scientific integrity"
+    },
+    {
+      "id": "symbiotic-process-llm",
+      "path": "symbiotic-process-llm/",
+      "title": "Symbiotic Process (LLM)",
+      "description": "Structured human-LLM reasoning loop: co-reasoning, validation cycles, and consolidation phases"
+    },
+    {
+      "id": "symbiotic-process-summary",
+      "path": "symbiotic-process-summary/",
+      "title": "Symbiotic Process Summary",
+      "description": "Compact operational overview for quick reference during human-AI interaction"
+    }
+  ]
+}
