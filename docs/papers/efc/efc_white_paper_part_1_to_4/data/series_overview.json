@@ -1,0 +1,45 @@
+{
+  "series": "EFC White Paper",
+  "parts": [
+    {
+      "part": 1,
+      "title": "Recovery Conditions and the LCDM Limit",
+      "doi": "10.6084/m9.figshare.31970886",
+      "key_result": "Three independent sufficient conditions establish EFC contains LCDM (perturbation sector)",
+      "category": "structural",
+      "equations": ["theta(z) = exp(-z^2/2sigma_z^2)", "mu(k,z) = 1 + beta*S(a)*theta(z)", "rho_sat = rho_0/(1 + (rho/rho_s)^n)"],
+      "data_tables": ["recovery_conditions", "level_classification"]
+    },
+    {
+      "part": 2,
+      "title": "Field Equations and Observable Mapping",
+      "doi": "10.6084/m9.figshare.31970898",
+      "key_result": "Entropy field S(a), coupling mu(a) = 1 + beta*S(a), complete observable mapping",
+      "category": "structural",
+      "equations": ["S(a) = S_0 * a^alpha * exp(-lambda/a)", "mu(a) = 1 + beta*S(a)", "f*sigma_8(z)"],
+      "data_tables": ["observable_mapping", "planned_tests"]
+    },
+    {
+      "part": 3,
+      "title": "Data, Validation Ledger, and Falsification Protocol",
+      "doi": "10.6084/m9.figshare.31970904",
+      "key_result": "102 registered tests (66 pass, 17 failed, 5 falsified); 5 kill criteria; sealed blind predictions",
+      "category": "structural",
+      "equations": [],
+      "data_tables": ["validation_ledger", "kill_criteria", "confirmation_roadmap"]
+    },
+    {
+      "part": 4,
+      "title": "Regime Susceptibility and Cross-Scale Mapping",
+      "doi": "10.6084/m9.figshare.31970907",
+      "key_result": "T(S) susceptibility function; entropic continuum; w(a) = -beta(S)*a dynamical dark energy",
+      "category": "structural",
+      "equations": ["rho_eff = S(1-S)", "T(S) = S_0(1-S_0)/[S(1-S)]", "w(a) = -beta(S)*a"],
+      "data_tables": ["entropic_continuum", "susceptibility_properties"]
+    }
+  ],
+  "total_tests": 102,
+  "kill_criteria": 5,
+  "sealed_predictions": 2,
+  "core_coupling": "mu(a) = 1 + beta*S(a), beta ~ 0.16"
+}
