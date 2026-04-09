@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
-  "version": "4.5",
-  "generated_at": "2026-04-08T00:00:00Z",
+  "version": "4.6",
+  "generated_at": "2026-04-09T00:00:00Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "global_verdict": "OPEN",
   "stage": "non_rejectable_model",
@@ -10,9 +10,9 @@
     "physics_test": 34,
     "consistency_check": 17,
     "phenomenological": 13,
-    "framework_constraint": 23,
+    "framework_constraint": 24,
     "planned_pipeline": 15,
-    "total_public": 102,
+    "total_public": 103,
     "consistent_robust": 4,
     "consistent_preliminary": 3,
     "neutral_by_construction": 1,
@@ -1349,6 +1349,21 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_efc_consciousness_bridge_three_equation_system",
+        "name": "EFC Consciousness Bridge — Three-Equation System (Omega_hat, kappa_hat, C)",
+        "description": "Closes the open bridge between the cosmological entropy field S and the EFC-C cognitive variables. Introduces regime-indexed dimensionless variables Omega_hat_l = S(rho)/S_l and kappa_hat_l = (alpha_l/rho_l)|grad(delta S/delta rho)|, replaces the separable product C = Omega*kappa with a non-separable functional C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat)), and derives coupled dynamical equations. One free parameter (gamma). Anti-correlation corr(Omega, kappa) < 0 is derived from the dynamics, not imposed. Five directional predictions consistent with existing propofol sedation EEG data (Chennu et al. 2016, re-analysed in EFC-C Field Resonance paper). Cross-domain constant K = 4.4 +/- 0.6 from SPARC with zero neural parameter fitting.",
+        "result": "Structural derivation completed; 5/5 qualitative predictions supported; gamma unconstrained",
+        "status": "completed",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "EFC field equations (DOI 30421807), EFC-C Consciousness Field Resonance (DOI 31289806), SPARC 175 (Lelli et al. 2016), Chennu et al. 2016 propofol sedation EEG (N=20)",
+        "prediction": "The model predicts: (1) C(waking) > C(sedated) > C(uniform AI), (2) anti-correlation between Omega_hat and kappa_hat in conscious states, (3) cortical entropy gradient proportional to measured C across anaesthesia depths, (4) recurrent AI architectures at testable boundary. Falsified if corr(Omega_hat, kappa_hat) > 0 in conscious states, or if K galactic-neural > 3 sigma discrepant.",
+        "notes": "EFC-VAL-2026-007. DOI 10.6084/m9.figshare.31969983. Three structural problems resolved: (1) separability of C, (2) missing dynamics for Omega_dot/kappa_dot, (3) dimensional disconnection between S and cognitive variables. Derived through Symbiotic Insight Framework (SIF). Limitation: gamma is currently unconstrained and must be estimated from EEG/fMRI data (PCI database or Human Connectome Project). The identification delta S/delta rho <-> transfer entropy in the cognitive regime is an ansatz, not a derivation.",
+        "quantitative_result": "gamma: unconstrained (single free parameter); K = 4.4 +/- 0.6 (inherited); propofol consistency: d(Omega)=1.50, r(anti-corr)=-0.27, d(C_parietal)=2.10 (p=0.018)",
+        "last_synced": "2026-04-09T00:00:00+00:00",
+        "status_detail": "completed"
       }
     ],
     "planned_pipeline": [
