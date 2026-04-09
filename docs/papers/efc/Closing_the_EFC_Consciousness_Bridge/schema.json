@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Closing the EFC Consciousness Bridge — Result Schema",
+  "description": "Schema for the three-equation consciousness bridge system results",
+  "type": "object",
+  "properties": {
+    "regime": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3"],
+      "description": "EFC regime index"
+    },
+    "rho_l_kg_m3": {
+      "type": "number",
+      "description": "Characteristic energy density for the regime (kg/m^3)"
+    },
+    "S_l": {
+      "type": "string",
+      "description": "Characteristic entropy scale name for the regime"
+    },
+    "Omega_hat": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Dimensionless spectral differentiation S(rho)/S_l"
+    },
+    "kappa_hat": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Dimensionless causal integration (alpha_l/rho_l)|grad(delta S/delta rho)|"
+    },
+    "gamma": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Non-separable coupling constant (the single free parameter)"
+    },
+    "C": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Non-separable consciousness functional value"
+    },
+    "anti_correlation_r": {
+      "type": ["number", "null"],
+      "description": "Observed Pearson correlation between Omega and kappa (should be < 0)"
+    },
+    "kappa_hat_steady_state": {
+      "type": ["number", "null"],
+      "description": "Steady-state kappa_hat = J_flow / (mu * Omega_hat)"
+    },
+    "dynamical_state": {
+      "type": "object",
+      "properties": {
+        "d_Omega_hat_dt": {"type": "number", "description": "Time derivative of Omega_hat"},
+        "d_kappa_hat_dt": {"type": "number", "description": "Time derivative of kappa_hat"},
+        "is_steady_state": {"type": "boolean"}
+      }
+    },
+    "prediction": {
+      "type": "object",
+      "properties": {
+        "system": {"type": "string"},
+        "Omega_hat_range": {"type": "string"},
+        "kappa_hat_range": {"type": "string"},
+        "C_level": {"type": "string"},
+        "interpretation": {"type": "string"}
+      }
+    }
+  },
+  "required": ["Omega_hat", "kappa_hat", "gamma", "C"]
+}

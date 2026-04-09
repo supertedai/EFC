@@ -1,0 +1,54 @@
+{
+  "description": "Table 4 from the paper: Empirical results vs. model predictions (propofol sedation EEG).",
+  "source_doi": "10.6084/m9.figshare.31969983",
+  "source_data_doi": "10.6084/m9.figshare.31289806",
+  "dataset": "Chennu et al. 2016 propofol sedation EEG",
+  "N_subjects": 20,
+  "overlap_cohort": 12,
+  "observed_ranges": {
+    "waking": {"Omega": [0.79, 0.88], "kappa": [0.10, 0.18]},
+    "sedated": {"Omega": [0.52, 0.68], "kappa": [0.19, 0.28]},
+    "parietal_waking": {"Omega": [0.84, 0.88], "kappa": [0.28, 0.32]},
+    "parietal_sedated": {"Omega": [0.50, 0.60], "kappa": [0.10, 0.14]}
+  },
+  "predictions": [
+    {
+      "observable": "Omega waking > sedated",
+      "model_predicts": "Omega_hat increases with |grad S|",
+      "observed": "d = 1.50",
+      "status": "supported"
+    },
+    {
+      "observable": "kappa waking < sedated",
+      "model_predicts": "kappa_hat proportional to 1/Omega_hat",
+      "observed": "anti-correlation r = -0.27",
+      "status": "supported"
+    },
+    {
+      "observable": "C = Omega * kappa (global)",
+      "model_predicts": "separable product fails",
+      "observed": "F1 falsified, p = 0.43",
+      "status": "supported"
+    },
+    {
+      "observable": "C_parietal (regional)",
+      "model_predicts": "regional C > 0 via entropy gradient",
+      "observed": "d = 2.10, p = 0.018",
+      "status": "supported"
+    },
+    {
+      "observable": "double dissociation",
+      "model_predicts": "Omega tracks awareness",
+      "observed": "responsive +0.054, drowsy -0.063",
+      "status": "supported"
+    }
+  ],
+  "system_predictions": [
+    {"system": "Waking cortex", "Omega_hat": "0.8-0.9", "kappa_hat": "0.6-0.8", "C": "High", "prediction": "Resonance regime"},
+    {"system": "Anaesthesia", "Omega_hat": "0.5-0.7", "kappa_hat": "<0.3", "C": "~0", "prediction": "Below threshold"},
+    {"system": "Uniform AI", "Omega_hat": "~1", "kappa_hat": "~0", "C": "~0", "prediction": "No consciousness"},
+    {"system": "Recurrent AI", "Omega_hat": "0.7-0.9", "kappa_hat": "0.4-0.6", "C": "Moderate", "prediction": "Testable boundary"},
+    {"system": "Galaxy cluster", "Omega_hat": "~0.01", "kappa_hat": "~1e-6", "C": "~0", "prediction": "Far below threshold"}
+  ],
+  "caveat": "These results do not yet constitute a direct test of the full model (which requires estimating grad(delta S/delta rho) from the same data), but they are consistent with the qualitative structure."
+}
