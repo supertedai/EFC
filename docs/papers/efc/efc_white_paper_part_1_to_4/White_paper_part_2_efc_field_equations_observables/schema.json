@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Observable Mapping Entry",
+  "description": "Schema for an equation-to-observable mapping entry from Table 1",
+  "type": "object",
+  "properties": {
+    "observable": {
+      "type": "string",
+      "description": "Name of the physical observable"
+    },
+    "equation": {
+      "type": "string",
+      "description": "Equation number in the paper"
+    },
+    "dataset": {
+      "type": "string",
+      "description": "Observational dataset used"
+    },
+    "result": {
+      "type": "string",
+      "description": "Measurement or test result"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Pass", "Sealed", "Failed", "T3", "Planned"],
+      "description": "Validation status"
+    }
+  },
+  "required": ["observable", "equation", "dataset", "result", "status"]
+}

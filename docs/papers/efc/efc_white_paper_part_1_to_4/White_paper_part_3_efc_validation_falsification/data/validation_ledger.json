@@ -1,0 +1,36 @@
+{
+  "table": "Table 1: EFC Validation Ledger (102 registered tests)",
+  "source": "White Paper Part 3, Section 2",
+  "summary": {
+    "total": 102,
+    "pass": 66,
+    "partial": 5,
+    "collapsed": 3,
+    "failed": 17,
+    "falsified": 5
+  },
+  "selected_entries": [
+    {"test": "P3: Lensing/CMB S_8 ratio (DES Y6, pre-registered)", "status": "Pass", "result": "T2: 0.3 sigma (pre-registered)"},
+    {"test": "MVP-G1: f*sigma_8 LOO robustness (N2a)", "status": "Pass", "result": "alpha = -1.00 +/- 0.46 (2.20 sigma); 7/7 LOO pass"},
+    {"test": "BAO transfer: DESI -> BOSS/eBOSS (no refit)", "status": "Pass", "result": "T2: Transfer consistency confirmed"},
+    {"test": "BAO covariance-aware test (BOSS DR12)", "status": "Pass", "result": "T2: Consistency confirmed"},
+    {"test": "Solar system / PPN (KT1)", "status": "Pass", "result": "GR recovered; EFC correction < 10^-5"},
+    {"test": "H_0 tension (regime mismatch interpretation)", "status": "Pass", "result": "T2: Consistency check completed"},
+    {"test": "ISW cancellation metric C", "status": "Pass", "result": "C = 0.59-0.96 (monotonic); A_ISW = 0.29-0.56; all within 1.6 sigma"},
+    {"test": "Grid-AQUAL KT1: Newton/MOND limits", "status": "Pass", "result": "Newton slope -2.029 (target -2.0); MOND slope -1.050 (target -1.0)"},
+    {"test": "Grid-AQUAL KT2: Prefactor convergence", "status": "Pass", "result": "C_vw = 2.2960 (converged)"},
+    {"test": "Grid-AQUAL KT3: Lambda-locking", "status": "Pass", "result": "beta ~ 0.18"},
+    {"test": "sigma_8 suppression via mu(a) < 1 (WP1a)", "status": "Pass", "result": "T3: Structural constraint confirmed"},
+    {"test": "Lensing barrier: pure mu < 1 excluded", "status": "Pass", "result": "T3: Gravitational slip required"},
+    {"test": "EFC physics localisation (perturbation sector)", "status": "Pass", "result": "T3: Background sector excluded"},
+    {"test": "MGCAMB mu-Sigma scan (const. mu, Sigma = 1)", "status": "Partial", "result": "Marginal"},
+    {"test": "Strong lens time-delay conflict", "status": "Partial", "result": "Conflict identified; not yet resolved"},
+    {"test": "CMB+BAO joint fit: background alpha-gate", "status": "Collapsed", "result": "Inconsistent with CMB; EFC restricted to perturbation sector"},
+    {"test": "IG-1: alpha identifiability gate (<3 probes)", "status": "Collapsed", "result": "Degeneracy under 2-probe combinations"},
+    {"test": "EFC-R on SPARC (direct application)", "status": "Failed", "result": "Partial fail -> resolved by regime separation"},
+    {"test": "EFC v1 scalar index model", "status": "Falsified", "result": "Superseded by regime-separation architecture"},
+    {"test": "Naive GRAV -> (mu, Sigma) extrapolation (v3.3)", "status": "Falsified", "result": "Resolved by relativistic action derivation"},
+    {"test": "B_0: f*sigma_8 sign constraint mu < 1", "status": "Falsified", "result": "Sign constraint confirmed; original version formalised"},
+    {"test": "GRAV -> (mu, Sigma) structural gap", "status": "Falsified", "result": "Closed by structural derivation"}
+  ]
+}
