@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) – White Paper Series</title>
+  <meta name="description" content="EFC White Paper Series: four-part canonical reference establishing recovery conditions, field equations, validation protocol, and regime susceptibility for Energy-Flow Cosmology." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #1a3a6b;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff;
+      padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a4a7f;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr {
+      border: none;
+      border-top: 1px solid #d0d7e3;
+      margin: 2rem 0;
+    }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    thead { background-color: #eaf0f9; }
+    th {
+      border: 1px solid #d0d7e3;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #1a3a6b;
+    }
+    td {
+      border: 1px solid #e2e6ed;
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    .card {
+      background: #f8faff;
+      border: 1px solid #d0d7e3;
+      border-left: 5px solid #007bff;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.2rem 0;
+    }
+    .card h3 { margin-top: 0; color: #0d1b3e; }
+    .card-part1 { border-left-color: #28a745; }
+    .card-part2 { border-left-color: #007bff; }
+    .card-part3 { border-left-color: #fd7e14; }
+    .card-part4 { border-left-color: #6f42c1; }
+    .eq-box {
+      background: #f0f4f9;
+      border: 1px solid #d0d7e3;
+      border-radius: 6px;
+      padding: 0.8rem 1.2rem;
+      margin: 0.8rem 0;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: white;
+    }
+    .badge-pass { background: #28a745; }
+    .badge-open { background: #fd7e14; }
+    .badge-sealed { background: #6f42c1; }
+    .badge-kill { background: #dc3545; }
+    .highlight-box {
+      background: #e7f0ff;
+      border: 1px solid #5b8def;
+      border-left: 6px solid #1b4db1;
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 6px;
+    }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- EFC White Paper Series – Elevator Pitch (April 2026) -->
+
+<h1>Energy-Flow Cosmology &mdash; White Paper Series</h1>
+
+<p style="font-size: 0.92rem; color: #555;">
+  Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+  ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+  April 2026 &middot; CC-BY-4.0
+</p>
+
+<!-- Elevator pitch -->
+<div class="highlight-box">
+  <p style="margin:0; font-size: 1.05rem;">
+    <strong>One sentence:</strong> Energy-Flow Cosmology modifies gravity in the perturbation sector through an entropy-gradient coupling, contains &Lambda;CDM as a limiting case, and predicts testable deviations &mdash; with a structured falsification protocol frozen before Stage-IV data release.
+  </p>
+</div>
+
+<h2>The Four Papers</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:6%">Part</th>
+      <th style="width:38%">Title</th>
+      <th style="width:42%">Key Result</th>
+      <th style="width:14%">DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Recovery Conditions and the &Lambda;CDM Limit</td>
+      <td>Three independent sufficient conditions establish EFC &supset;<sub>pert</sub> &Lambda;CDM</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31970886">31970886</a></td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Field Equations and Observable Mapping</td>
+      <td>&mu;(a) = 1 + &beta;S(a); complete mapping to f&sigma;<sub>8</sub>, S<sub>8</sub>, &Sigma;, R(k,S)</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31970898">31970898</a></td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>Data, Validation Ledger, and Falsification Protocol</td>
+      <td>102 tests; 2 sealed predictions; 5 kill criteria for Stage-IV</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31970904">31970904</a></td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>Regime Susceptibility and Cross-Scale Mapping</td>
+      <td>T(S) susceptibility; entropic continuum; w(a)&nbsp;=&nbsp;&minus;&beta;(S)&middot;a</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31970907">31970907</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========== PART 1 ========== -->
+<div class="card card-part1">
+  <h3>Part 1 &mdash; Recovery Conditions and the &Lambda;CDM Limit</h3>
+  <p>
+    Any viable extension of &Lambda;CDM must recover standard cosmology in an appropriate limit.
+    Part&nbsp;1 proves three <em>analytically independent</em> sufficient conditions under which EFC reduces
+    exactly to &Lambda;CDM/GR:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Condition</th><th>Limit</th><th>Domain</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>I. Parameter</strong></td><td>&alpha;<sub>L2</sub> &rarr; 0</td><td>Full perturbation sector</td><td>Analytic proof</td></tr>
+      <tr><td><strong>II. Entropy</strong></td><td>S &lt; S<sub>c</sub> &asymp; 0.1</td><td>L0/L1 (GR regime)</td><td>Analytic + KT1</td></tr>
+      <tr><td><strong>III. Density</strong></td><td>&rho; &Gt; &rho;<sub>crit</sub></td><td>Solar system, stellar</td><td>Analytic + KT2/KT3</td></tr>
+    </tbody>
+  </table>
+  <div class="eq-box">
+    <strong>Proposition&nbsp;1 (Triangulated Recovery):</strong>&ensp;
+    [&alpha;<sub>L2</sub> &rarr; 0] &or; [S &lt; S<sub>c</sub>] &or; [&rho; &Gt; &rho;<sub>crit</sub>]
+    &ensp;&rArr;&ensp; &mu;(k,z) &rarr; 1, &ensp;&Sigma;(k,z) &rarr; 1
+  </div>
+  <p>
+    <strong>Corollary&nbsp;1:</strong> EFC contains &Lambda;CDM as a limiting case in the perturbation sector.
+    &ensp;<span class="badge badge-pass">LEVEL 2 ESTABLISHED</span>
+  </p>
+  <p style="font-size: 0.85rem; color: #666;">
+    <strong>Open problem:</strong> Full background H(z) recovery (Level&nbsp;3) remains unestablished.
+    The background &alpha;-gate was found inconsistent with joint CMB+BAO constraints.
+    This boundary is a feature: it precisely defines the domain of validity.
+  </p>
+</div>
+
+<!-- ========== PART 2 ========== -->
+<div class="card card-part2">
+  <h3>Part 2 &mdash; Field Equations and Observable Mapping</h3>
+  <p>
+    Part&nbsp;2 derives the field equations from the entropy-gradient principle and maps every equation
+    to a testable observable.
+  </p>
+
+  <h3>Structural Hierarchy</h3>
+  <table>
+    <thead><tr><th>#</th><th>Element</th><th>Type</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Entropy field S(a) &isin; [0,&thinsp;1]</td><td>Fundamental</td></tr>
+      <tr><td>2</td><td>&mu;(a) = 1 + &beta;&thinsp;S(a), &ensp;&beta; &asymp; 0.16 from SPARC</td><td>Derived</td></tr>
+      <tr><td>3</td><td>Growth equation with &mu;(a)</td><td>Dynamical</td></tr>
+      <tr><td>4</td><td>f&sigma;<sub>8</sub>, S<sub>8</sub>, &Sigma; observables</td><td>Empirical</td></tr>
+      <tr><td>5</td><td>R(k,S) response surface</td><td>Unifying</td></tr>
+    </tbody>
+  </table>
+
+  <div class="eq-box">
+    <strong>EFC kernel:</strong>&ensp;
+    &mu;<sub>EFC</sub>(k,z) = [1 &minus; S&#772;(z)] + s&#771;(k,z) / &delta;&#771;(k,z)
+    &ensp;&ensp;&ensp;
+    <strong>Field equation:</strong>&ensp;
+    G<sub>&mu;&nu;</sub> = <em>f</em>(&nabla;S, E<sub>f</sub>)
+  </div>
+
+  <h3>Current Signal</h3>
+  <table>
+    <thead><tr><th>Observable</th><th>Result</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>&alpha;<sub>L2</sub> (growth sector)</td><td>&minus;1.00 &plusmn; 0.46 (2.20&sigma;, &Delta;AIC = &minus;2.91)</td><td><span class="badge badge-pass">PASS</span></td></tr>
+      <tr><td>f&sigma;<sub>8</sub>(z = 0.7)</td><td>EFC 0.430 vs &Lambda;CDM 0.449 (2.0&sigma;)</td><td><span class="badge badge-sealed">SEALED</span></td></tr>
+      <tr><td>f&sigma;<sub>8</sub> LOO robustness</td><td>7/7 folds pass; |&alpha;|/&sigma; &isin; [1.84, 2.42]</td><td><span class="badge badge-pass">PASS</span></td></tr>
+      <tr><td>S<sub>8</sub> (DES Y6, pre-registered)</td><td>0.944 &plusmn; 0.018 vs 0.95 &plusmn; 0.03 (0.3&sigma;)</td><td><span class="badge badge-pass">PASS</span></td></tr>
+      <tr><td>Solar system (PPN)</td><td>EFC correction &lt; 10<sup>&minus;5</sup></td><td><span class="badge badge-pass">PASS</span></td></tr>
+      <tr><td>&alpha;<sub>L2</sub> (background)</td><td>Inconsistent with CMB+BAO</td><td><span class="badge badge-kill">COLLAPSED</span></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.85rem; color: #666;">
+    The 2.20&sigma; signal is a persistent directional hint, not a detection.
+    Three simultaneous probes are needed to break the &mu;&ndash;&Sigma; degeneracy (IG-1 gate).
+  </p>
+</div>
+
+<!-- ========== PART 3 ========== -->
+<div class="card card-part3">
+  <h3>Part 3 &mdash; Data, Validation Ledger, and Falsification Protocol</h3>
+  <p>
+    A theoretical framework is evaluated by the sharpness of the boundary between
+    &ldquo;still viable&rdquo; and &ldquo;falsified&rdquo;. Part&nbsp;3 makes this boundary explicit, public, and permanent.
+  </p>
+
+  <h3>Validation Ledger Summary</h3>
+  <table>
+    <thead><tr><th>Status</th><th>Count</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr style="background:#e8f5e9"><td><strong>Pass</strong></td><td style="text-align:center">66</td><td>Tests passed at declared tier</td></tr>
+      <tr style="background:#fff8e1"><td><strong>Partial</strong></td><td style="text-align:center">5</td><td>Marginal or partially resolved</td></tr>
+      <tr style="background:#fff3e0"><td><strong>Collapsed</strong></td><td style="text-align:center">3</td><td>Background gate, degeneracy, etc.</td></tr>
+      <tr style="background:#fce4ec"><td><strong>Failed</strong></td><td style="text-align:center">17</td><td>Did not pass (N-tests, etc.)</td></tr>
+      <tr style="background:#f3e5f5"><td><strong>Falsified</strong></td><td style="text-align:center">5</td><td>Superseded by successor model version</td></tr>
+      <tr style="background:#e3f2fd"><td><strong>Total</strong></td><td style="text-align:center"><strong>102</strong></td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Self-falsification history:</strong> EFC has already discarded two model versions (v1 scalar index,
+    na&iuml;ve GRAV&rarr;(&mu;,&Sigma;) extrapolation) and formalised a third (B<sub>0</sub> sign constraint).
+    This is the strongest evidence for the seriousness of the framework.
+  </p>
+
+  <h3>Sealed Blind Predictions</h3>
+  <table>
+    <thead><tr><th>Prediction</th><th>Date</th><th>Parameters</th><th>Hash prefix</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Freeze v1</strong></td>
+        <td>2026-02-18</td>
+        <td>&alpha;<sub>L2</sub> = &minus;0.689; &ensp;f&sigma;<sub>8</sub> crossover z = 2.042</td>
+        <td><code>7a850cfa...</code></td>
+      </tr>
+      <tr>
+        <td><strong>Freeze v2</strong></td>
+        <td>2026-02-21</td>
+        <td>&alpha;<sub>L2</sub> = &minus;0.702</td>
+        <td><code>dbccda15...</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Kill Criteria &mdash; Stage-IV Surveys</h3>
+  <p style="font-size: 0.85rem; color: #666;">Thresholds frozen before data release. No post-hoc adjustment permissible.</p>
+  <table>
+    <thead><tr><th>#</th><th>Criterion</th><th>Trigger</th><th>Consequence</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-kill">KC1</span></td><td>Growth suppression absent</td><td>|&alpha;<sub>L2</sub>| &lt; 0.1 at 3&sigma;</td><td>Growth sector falsified</td></tr>
+      <tr><td><span class="badge badge-kill">KC2</span></td><td>Wrong f&sigma;<sub>8</sub> trajectory</td><td>|z<sub>cross</sub> &minus; 2.042| &gt; 3&sigma;</td><td>Crossover prediction falsified</td></tr>
+      <tr><td><span class="badge badge-kill">KC3</span></td><td>S<sub>8</sub> converges to &Lambda;CDM</td><td>S<sub>8</sub> = S<sub>8,&Lambda;CDM</sub> &plusmn; 0.005</td><td>S<sub>8</sub> channel falsified</td></tr>
+      <tr><td><span class="badge badge-kill">KC4</span></td><td>Gravitational slip absent</td><td>|&eta; &minus; 1| &lt; 0.01 (Euclid)</td><td>Slip prediction falsified</td></tr>
+      <tr><td><span class="badge badge-kill">KC5</span></td><td>No dynamical dark energy</td><td>|w<sub>0</sub> + 1| &lt; 0.02 (Euclid)</td><td>Dynamical DE falsified</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Confirmation Roadmap</h3>
+  <table>
+    <thead><tr><th>Level</th><th>Threshold</th><th>Channel</th><th>Survey</th><th>Timeline</th></tr></thead>
+    <tbody>
+      <tr style="background:#e8f5e9"><td><strong>Hint (current)</strong></td><td>2.20&sigma;</td><td>f&sigma;<sub>8</sub> LOO</td><td>DESI+BOSS</td><td>2026</td></tr>
+      <tr><td>Suggestive</td><td>3&sigma; joint</td><td>f&sigma;<sub>8</sub> + S<sub>8</sub></td><td>+DES+KiDS</td><td>2027</td></tr>
+      <tr><td>Evidence</td><td>3.5&sigma;</td><td>&mu;&ndash;&Sigma; + f&sigma;<sub>8</sub></td><td>+Euclid Y1</td><td>2028</td></tr>
+      <tr><td>Detection</td><td>5&sigma;</td><td>All channels locked</td><td>Euclid+Rubin</td><td>2030+</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== PART 4 ========== -->
+<div class="card card-part4">
+  <h3>Part 4 &mdash; Regime Susceptibility and Cross-Scale Mapping</h3>
+  <p>
+    Parts&nbsp;1&ndash;3 established EFC as a perturbation-sector modification with correct limits and a persistent
+    empirical signal. One structural gap remained: no connection between the galactic coupling
+    (&beta; from SPARC) and the cosmological amplitude. Part&nbsp;4 addresses this with a single conceptual move.
+  </p>
+
+  <h3>The Entropic Continuum</h3>
+  <p>
+    Dark matter and dark energy are <em>not</em> substances &mdash; they are <strong>phases</strong> of a single
+    entropic flow:
+  </p>
+  <table>
+    <thead><tr><th>Phase</th><th>&nabla;<sub>&mu;</sub>J<sup>&mu;</sup></th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dark Matter regime</strong></td><td>&lt; 0 (convergent)</td><td>Excess gravity &mdash; structure formation</td></tr>
+      <tr><td>Matter-dominated</td><td>= 0 (equilibrium)</td><td>Standard expansion</td></tr>
+      <tr><td><strong>Dark Energy regime</strong></td><td>&gt; 0 (divergent)</td><td>Accelerated expansion</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Key Equations</h3>
+  <div class="eq-box">
+    <strong>Effective energy density:</strong>&ensp;
+    &rho;<sub>eff</sub>(S) = S(1 &minus; S)
+    &ensp;&ensp;&mdash;&ensp;&ensp;
+    <strong>Susceptibility:</strong>&ensp;
+    T(S) = S<sub>0</sub>(1 &minus; S<sub>0</sub>) / [S(1 &minus; S)]
+  </div>
+  <div class="eq-box">
+    <strong>Self-regulation (Prop.&nbsp;1):</strong>&ensp;
+    &beta;(S) &middot; &rho;<sub>eff</sub>(S) = &beta;<sub>0</sub> S<sub>0</sub>(1 &minus; S<sub>0</sub>) = <em>const</em>
+  </div>
+  <div class="eq-box">
+    <strong>Dynamical dark energy:</strong>&ensp;
+    w(a) = &minus;&beta;(S) &middot; a
+    &ensp;&ensp;&mdash;&ensp;&ensp;
+    <strong>Amplification:</strong>&ensp;
+    &beta;<sub>cosm</sub> / &beta;<sub>gal</sub> &asymp; 6.25
+  </div>
+  <p>
+    <strong>Physical interpretation:</strong> T(S) is the inverse dynamical capacity.
+    Near the thermodynamic boundaries (S &rarr; 0 or S &rarr; 1), the system is &ldquo;stiff&rdquo; &mdash;
+    small perturbations have large effects. At the midpoint S = 0.5, the system is maximally flexible.
+    The observed &Omega;<sub>&Lambda;</sub>/&Omega;<sub>m</sub> &asymp; 2.5 at z = 0 is a <em>snapshot</em>
+    of where the universe sits on this continuum, not a fundamental constant.
+  </p>
+  <p>
+    <strong>Kill criterion KC5:</strong> If Euclid measures w<sub>0</sub> = &minus;1 to within 2%, the dynamical
+    dark energy prediction is falsified.
+    <span class="badge badge-open">AWAITING EUCLID</span>
+  </p>
+</div>
+
+<hr />
+
+<!-- ========== BOTTOM LINE ========== -->
+<h2>Bottom Line</h2>
+
+<div class="highlight-box">
+<table style="box-shadow:none; border:none; margin:0;">
+  <tbody>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px; width:30%"><strong>What EFC does</strong></td><td style="border:none; padding:6px 12px">Modifies gravitational coupling in the perturbation sector via entropy gradients</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>Formal status</strong></td><td style="border:none; padding:6px 12px">Contains &Lambda;CDM as limiting case (perturbation sector); three independent recovery conditions proved</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>Current signal</strong></td><td style="border:none; padding:6px 12px">&alpha;<sub>L2</sub> = &minus;1.00 &plusmn; 0.46 (2.20&sigma;); &Delta;AIC = &minus;2.91; 7/7 LOO folds pass</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>Validation</strong></td><td style="border:none; padding:6px 12px">102 tests (66 pass, 17 failed, 5 falsified w/&thinsp;successor); stage: non-rejectable model</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>Falsifiability</strong></td><td style="border:none; padding:6px 12px">5 kill criteria frozen before Stage-IV; 2 sealed blind predictions with cryptographic hashes</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>New physics</strong></td><td style="border:none; padding:6px 12px">T(S) susceptibility function; dynamical dark energy w(a) &ne; &minus;1; cross-scale amplification &beta;<sub>cosm</sub>/&beta;<sub>gal</sub> &asymp; 6.25</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>What it does NOT claim</strong></td><td style="border:none; padding:6px 12px">&ldquo;Better than &Lambda;CDM&rdquo;, &ldquo;no dark matter proven&rdquo;, or &ldquo;full cosmological validation&rdquo; &mdash; all remain UNDER REVIEW</td></tr>
+    <tr style="background:transparent"><td style="border:none; padding:6px 12px"><strong>Open problem</strong></td><td style="border:none; padding:6px 12px">Full background H(z) recovery (Level&nbsp;3) &mdash; stated explicitly as a boundary, not a defect</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr />
+
+<h2>Resources</h2>
+<ul>
+  <li><strong>Repository:</strong> <a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a></li>
+  <li><strong>Theory site:</strong> <a href="https://energyflow-cosmology.com/">energyflow-cosmology.com</a></li>
+  <li><strong>Validation Ledger:</strong> <a href="EFC_Validation_Ledger.html">EFC_Validation_Ledger.html</a> (v3.16)</li>
+  <li><strong>AI-friendly packages:</strong> <a href="https://github.com/supertedai/EFC/tree/main/docs/papers/efc/efc_white_paper_part_1_to_4">docs/papers/efc/efc_white_paper_part_1_to_4/</a> (10/10 for each part)</li>
+  <li><strong>Primary DOI:</strong> <a href="https://doi.org/10.6084/m9.figshare.30656828">10.6084/m9.figshare.30656828</a> (AUTH Layer)</li>
+</ul>
+
+<hr />
+<p style="font-size: 0.8rem; color: #999; text-align: center;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; White Paper Series Elevator Pitch (v1.0 &ndash; April 2026)
+</p>
+
+</body>
+</html>
