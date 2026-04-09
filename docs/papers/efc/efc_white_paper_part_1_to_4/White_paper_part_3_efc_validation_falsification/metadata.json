@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
+    "short_title": "EFC White Paper Part 3 — Validation & Falsification",
+    "directory": "White_paper_part_3_efc_validation_falsification",
+    "series": "EFC White Paper (Part 3 of 4)",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    },
+    "doi": "10.6084/m9.figshare.31970904",
+    "date": "2026-04",
+    "license": "CC-BY-4.0"
+  },
+  "domain": {
+    "track": "EFC White Paper Series",
+    "regimes": ["L0", "L1", "L2"],
+    "scope": "Validation ledger, sealed predictions, falsification protocol"
+  },
+  "evidence_discipline": {
+    "three_layer_separation": true,
+    "layers": [
+      "Layer 1: Pre-registered blind predictions (sealed before data)",
+      "Layer 2: Data-likelihood comparisons (post-hoc but quantitative)",
+      "Layer 3: Structural / analytical constraints"
+    ],
+    "pre_registration": "Cryptographic hashes frozen before data comparison",
+    "post_hoc_adjustment": "Forbidden — new sealed cycle required"
+  },
+  "self_falsification_history": [
+    "EFC v1 scalar index model — falsified on SPARC rotation curves",
+    "Naive GRAV -> (mu, Sigma) extrapolation — falsified on structural grounds",
+    "B_0 f*sigma_8 sign constraint — original version falsified, formalised",
+    "GRAV -> (mu, Sigma) structural gap — closed by structural derivation"
+  ],
+  "files": [
+    {"path": "White_paper_part_3_efc_validation_falsification.pdf", "bytes": 304837},
+    {"path": "index.json", "role": "structured_metadata"},
+    {"path": "metadata.json", "role": "extended_metadata"},
+    {"path": "schema.json", "role": "json_schema"},
+    {"path": "white-paper-part-3-validation.jsonld", "role": "linked_data"},
+    {"path": "citations.bib", "role": "bibliography"},
+    {"path": "data/validation_ledger.json", "role": "table_data"},
+    {"path": "data/kill_criteria.json", "role": "table_data"},
+    {"path": "data/confirmation_roadmap.json", "role": "table_data"},
+    {"path": "src/validation_checker.py", "role": "implementation"},
+    {"path": "examples/ledger_summary.py", "role": "demo"}
+  ],
+  "primary_pdf": "White_paper_part_3_efc_validation_falsification.pdf"
+}

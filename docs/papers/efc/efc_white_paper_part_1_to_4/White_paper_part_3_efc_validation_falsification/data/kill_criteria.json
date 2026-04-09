@@ -1,0 +1,48 @@
+{
+  "table": "Kill criteria for Stage-IV surveys",
+  "source": "White Paper Part 3, Section 3",
+  "protocol_doi": "10.6084/m9.figshare.31251277",
+  "note": "Thresholds frozen before Stage-IV data release. No post-hoc adjustment permissible.",
+  "criteria": [
+    {
+      "id": "KC1",
+      "name": "Growth suppression absent",
+      "condition": "|alpha_L2| < 0.1 at 3 sigma across all probes",
+      "threshold": "alpha_L2 consistent with zero",
+      "consequence": "EFC falsified (growth sector)",
+      "target_survey": "Euclid + Rubin LSST + DESI DR2+"
+    },
+    {
+      "id": "KC2",
+      "name": "Wrong or non-monotone f*sigma_8 trajectory",
+      "condition": "|z_cross_obs - 2.042| > 3 sigma (crossover mismatch)",
+      "threshold": "z_cross sealed at 2.042",
+      "consequence": "EFC falsified (crossover prediction)",
+      "target_survey": "DESI DR2 ELG"
+    },
+    {
+      "id": "KC3",
+      "name": "S_8 convergence to LCDM",
+      "condition": "S_8 = S_{8,LCDM} +/- 0.005 with sigma(S_8) < 0.005",
+      "threshold": "Stage-IV joint analysis (Euclid + Rubin LSST + CMB-S4)",
+      "consequence": "EFC falsified (S_8 channel)",
+      "target_survey": "Euclid + Rubin LSST + CMB-S4"
+    },
+    {
+      "id": "KC4",
+      "name": "Gravitational slip absent",
+      "condition": "|eta - 1| < 0.01 at Euclid precision, z in [0.5, 2.0]",
+      "threshold": "eta = Psi/Phi = 1 to within 1%",
+      "consequence": "EFC falsified (slip prediction)",
+      "target_survey": "Euclid"
+    },
+    {
+      "id": "KC5",
+      "name": "Dynamical dark energy absent",
+      "condition": "|w_0 + 1| < 0.02 at Euclid precision across z in [0, 2]",
+      "threshold": "w_0 = -1 to within 2%",
+      "consequence": "EFC falsified (dynamical DE prediction, Part 4)",
+      "target_survey": "Euclid"
+    }
+  ]
+}

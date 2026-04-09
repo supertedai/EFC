@@ -1,0 +1,36 @@
+{
+  "table": "Table 1: EFC recovery conditions status summary",
+  "source": "White Paper Part 1, Section 3",
+  "conditions": [
+    {
+      "condition_id": "I",
+      "name": "Parameter limit",
+      "limit": "alpha_L2 -> 0",
+      "domain": "Full perturbation sector",
+      "status": "Analytic",
+      "result_mu": 1.0,
+      "result_sigma": 1.0,
+      "observational_test": "alpha_L2 = -1.00 +/- 0.46 (2.20 sigma)"
+    },
+    {
+      "condition_id": "II",
+      "name": "Entropy recovery",
+      "limit": "S < S_c ~ 0.1",
+      "domain": "L0/L1 (GR regime)",
+      "status": "Analytic + KT1",
+      "result_mu": 1.0,
+      "result_sigma": 1.0,
+      "observational_test": "Solar system PPN; EFC correction < 10^-5"
+    },
+    {
+      "condition_id": "III",
+      "name": "Density saturation",
+      "limit": "rho >> rho_crit",
+      "domain": "Solar system, stellar",
+      "status": "Analytic + KT2/KT3",
+      "result_mu": 1.0,
+      "result_sigma": 1.0,
+      "observational_test": "Grid-AQUAL KT2 C_vw = 2.2960; KT3 beta ~ 0.18"
+    }
+  ]
+}

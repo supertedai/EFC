@@ -1,0 +1,90 @@
+{
+  "id": "efc-white-paper-part-1-recovery-limits",
+  "title": "Energy-Flow Cosmology: Recovery Conditions and the LCDM Limit",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "doi": "10.6084/m9.figshare.31970886",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31970886",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "type": "foundational white paper, theoretical derivation, recovery proof",
+  "track": "EFC White Paper Series (Part 1 of 4)",
+  "regimes": ["L0", "L1", "L2"],
+  "series": {
+    "name": "EFC White Paper",
+    "part": 1,
+    "total_parts": 4,
+    "companion_dois": [
+      "10.6084/m9.figshare.31970898",
+      "10.6084/m9.figshare.31970904",
+      "10.6084/m9.figshare.31970907"
+    ]
+  },
+  "abstract": "EFC introduces a regime-dependent modification to the perturbation sector of standard cosmology, parametrised by an entropy-gradient coupling alpha_L2 and a transition function Theta(z). Three analytically independent sufficient conditions are established under which EFC reduces exactly to LCDM or GR: (i) parameter limit alpha_L2 -> 0; (ii) low-entropy regime S < S_c; (iii) density saturation rho >> rho_crit. EFC therefore contains LCDM as a limiting case in the perturbation sector.",
+  "recovery_conditions": {
+    "condition_I": {
+      "name": "Parameter limit",
+      "theorem": "Theorem 1 (Parameter recovery)",
+      "limit": "alpha_L2 -> 0",
+      "result": "mu(k,z) -> 1, Sigma(k,z) -> 1",
+      "domain": "Full perturbation sector",
+      "status": "Analytic",
+      "observational_link": "alpha_L2 = -1.00 +/- 0.46 (2.20 sigma); Delta_AIC = -2.91"
+    },
+    "condition_II": {
+      "name": "Low-entropy regime",
+      "theorem": "Theorem 2 (Entropy recovery)",
+      "limit": "S < S_c ~ 0.1",
+      "result": "mu(k,z) -> 1, Sigma(k,z) -> 1",
+      "domain": "L0/L1 (GR regime)",
+      "status": "Analytic + KT1",
+      "observational_link": "Solar system PPN; EFC correction < 10^-5"
+    },
+    "condition_III": {
+      "name": "Density saturation",
+      "theorem": "Theorem 3 (Density recovery)",
+      "limit": "rho >> rho_crit",
+      "result": "Theta(rho) -> 0, G_eff -> G_N",
+      "domain": "Solar system, stellar",
+      "status": "Analytic + KT2/KT3",
+      "observational_link": "Grid-AQUAL KT2 C_vw = 2.2960; KT3 Lambda-locking beta ~ 0.18"
+    }
+  },
+  "triangulated_recovery": {
+    "proposition": "Proposition 1",
+    "statement": "[alpha_L2 -> 0] OR [S < S_c] OR [rho >> rho_crit] ==> mu(k,z) -> 1, Sigma(k,z) -> 1",
+    "proof": "Each condition drives EFC correction to zero through a distinct physical channel; no cross-terms"
+  },
+  "corollary": {
+    "id": "Corollary 1",
+    "statement": "EFC contains LCDM as a limiting case in the perturbation sector",
+    "notation": "EFC superset_pert LCDM"
+  },
+  "core_equations": {
+    "eq1_background": "E^2(z) -> E^2(z)[1 + alpha_L2 * f(z) * Theta(z)]",
+    "eq2_transition": "Theta(z) = (1/2)[1 + tanh((z_L1L2 - z) / Delta_z)]",
+    "eq3_mu": "mu(k,z) = G_eff(k,z)/G_N = 1 - B*g(a; n)",
+    "eq4_sigma": "Sigma(k,z) = G_lens(k,z)/G_N",
+    "eq5_kernel": "mu_EFC(k,z) = (1 - S_bar(z)) + s_tilde(k,z)/delta_tilde(k,z)",
+    "eq6_field": "G_mu_nu = f(grad_S, E_f)",
+    "eq10_triangulated": "[alpha_L2 -> 0] OR [S < S_c] OR [rho >> rho_crit] ==> mu -> 1, Sigma -> 1"
+  },
+  "level_classification": [
+    {"level": 1, "claim": "Compatible with LCDM in some regimes", "status": "Established"},
+    {"level": 2, "claim": "LCDM as limiting case (perturbation sector)", "status": "Established (this work)"},
+    {"level": 3, "claim": "Full generalisation incl. background H(z)", "status": "Open problem"}
+  ],
+  "open_problem": "No consistent mapping from EFC to background expansion H(z) has been established at the Lagrangian level. The background alpha-gate was found inconsistent with joint CMB+BAO constraints. EFC operates as a perturbation-sector modification only at the level of Parts 1-3.",
+  "files": {
+    "paper_pdf": "White_paper_part_1_efc_recovery_limits.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "white-paper-part-1-recovery-limits.jsonld",
+    "citations": "citations.bib",
+    "recovery_conditions": "data/recovery_conditions.json",
+    "level_classification": "data/level_classification.json",
+    "src_recovery": "src/recovery_limits.py",
+    "example": "examples/check_recovery.py"
+  }
+}

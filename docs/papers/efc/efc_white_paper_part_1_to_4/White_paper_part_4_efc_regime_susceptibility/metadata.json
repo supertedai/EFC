@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
+    "short_title": "EFC White Paper Part 4 — Regime Susceptibility",
+    "directory": "White_paper_part_4_efc_regime_susceptibility",
+    "series": "EFC White Paper (Part 4 of 4)",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    },
+    "doi": "10.6084/m9.figshare.31970907",
+    "date": "2026-04",
+    "license": "CC-BY-4.0"
+  },
+  "domain": {
+    "track": "EFC White Paper Series",
+    "regimes": ["L0", "L1", "L2"],
+    "scope": "Regime susceptibility, cross-scale mapping, dynamical dark energy, entropic continuum"
+  },
+  "key_equations": {
+    "rho_eff": "rho_eff(S) = S(1 - S)",
+    "susceptibility": "T(S) = S_0(1-S_0) / [S(1-S)]",
+    "beta_S": "beta(S) = beta_0 * T(S) = beta_0 * S_0(1-S_0) / [S(1-S)]",
+    "self_regulation": "beta(S) * rho_eff(S) = beta_0 * S_0(1-S_0) = const",
+    "equation_of_state": "w(a) = -beta(S) * a",
+    "effective_pressure": "p_eff proportional to -div(J^mu)"
+  },
+  "key_parameters": {
+    "S_0": {"value": 0.1, "source": "SPARC galactic calibration"},
+    "beta_0": {"value": 0.16, "source": "SPARC rotation curves"},
+    "beta_cosm": {"value": "~1.0", "source": "T(S) mapping"},
+    "amplification_ratio": {"value": "~6.25", "source": "beta_cosm/beta_gal"}
+  },
+  "files": [
+    {"path": "White_paper_part_4_efc_regime_susceptibility.pdf", "bytes": 258763},
+    {"path": "index.json", "role": "structured_metadata"},
+    {"path": "metadata.json", "role": "extended_metadata"},
+    {"path": "schema.json", "role": "json_schema"},
+    {"path": "white-paper-part-4-susceptibility.jsonld", "role": "linked_data"},
+    {"path": "citations.bib", "role": "bibliography"},
+    {"path": "data/entropic_continuum.json", "role": "table_data"},
+    {"path": "data/susceptibility_properties.json", "role": "table_data"},
+    {"path": "src/regime_susceptibility.py", "role": "implementation"},
+    {"path": "examples/compute_susceptibility.py", "role": "demo"}
+  ],
+  "primary_pdf": "White_paper_part_4_efc_regime_susceptibility.pdf"
+}

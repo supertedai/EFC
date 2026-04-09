@@ -1,0 +1,17 @@
+{
+  "table": "Table 1: Observable mapping — equation-data correspondence",
+  "source": "White Paper Part 2, Section 5",
+  "entries": [
+    {"observable": "alpha_L2 (background)", "equation": "7", "dataset": "CMB+BAO", "result": "COLLAPSED", "status": "Failed"},
+    {"observable": "alpha_L2 (growth)", "equation": "9", "dataset": "DESI+BOSS", "result": "-1.00 +/- 0.46 (2.20 sigma)", "status": "Pass"},
+    {"observable": "f*sigma_8(z=0.7)", "equation": "9", "dataset": "RSD", "result": "0.430 vs 0.449 (2.0 sigma)", "status": "Sealed"},
+    {"observable": "f*sigma_8 LOO", "equation": "9", "dataset": "RSD", "result": "7/7 folds", "status": "Pass"},
+    {"observable": "S_8 (DES Y6)", "equation": "11", "dataset": "DES", "result": "0.3 sigma (pre-reg.)", "status": "Pass"},
+    {"observable": "BAO transfer", "equation": "7", "dataset": "DESI->BOSS", "result": "No refit needed", "status": "Pass"},
+    {"observable": "Lensing (KiDS)", "equation": "13", "dataset": "KiDS-1000", "result": "Regime-activated fit improved", "status": "Pass"},
+    {"observable": "mu < 1 sign", "equation": "2", "dataset": "Multi-probe", "result": "B > 0 required", "status": "Pass"},
+    {"observable": "Pure mu < 1 excl.", "equation": "13", "dataset": "Structure", "result": "Slip required (Sigma != mu)", "status": "T3"},
+    {"observable": "Solar system (PPN)", "equation": "1", "dataset": "KT1", "result": "GR recovered (< 10^-5)", "status": "Pass"},
+    {"observable": "w(a) = -beta(S)*a", "equation": "13", "dataset": "Euclid", "result": "Candidate: w_0 ~ -1", "status": "Planned"}
+  ]
+}

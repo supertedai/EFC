@@ -1,0 +1,119 @@
+{
+  "id": "efc-white-paper-part-3-validation",
+  "title": "Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "doi": "10.6084/m9.figshare.31970904",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31970904",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "type": "foundational white paper, validation ledger, falsification protocol",
+  "track": "EFC White Paper Series (Part 3 of 4)",
+  "regimes": ["L0", "L1", "L2"],
+  "series": {
+    "name": "EFC White Paper",
+    "part": 3,
+    "total_parts": 4,
+    "companion_dois": [
+      "10.6084/m9.figshare.31970886",
+      "10.6084/m9.figshare.31970898",
+      "10.6084/m9.figshare.31970907"
+    ]
+  },
+  "abstract": "Presents the structured validation ledger (102 registered tests, 66 passed, 17 failed, 5 falsified with successor models), the two sealed blind predictions with cryptographic provenance, and the complete falsification protocol for Stage-IV surveys (Euclid, Rubin LSST, DESI DR2+). Defines sharp kill criteria under which EFC must be abandoned and clear confirmation thresholds.",
+  "validation_summary": {
+    "total_tests": 102,
+    "pass": 66,
+    "partial": 5,
+    "collapsed": 3,
+    "failed": 17,
+    "falsified": 5,
+    "tier_classification": {
+      "T1": "Multi-channel consistency",
+      "T2": "Data-likelihood comparison",
+      "T3": "Structural/analytical proof",
+      "T4": "Meta-model evaluation"
+    }
+  },
+  "sealed_predictions": [
+    {
+      "id": "Freeze v1",
+      "date": "2026-02-18",
+      "hash_prefix": "7a850cfa58477701",
+      "alpha_L2": -0.689,
+      "f_sigma8_crossover": 2.042,
+      "numerical_predictions": {
+        "D_H_rd_z1.0": {"efc": 16.527, "lcdm": 17.466, "sigma": 3.1},
+        "D_H_rd_z0.7": {"efc": 19.797, "lcdm": 20.719, "sigma": 2.3},
+        "f_sigma8_z0.7": {"efc": 0.430, "lcdm": 0.449, "sigma": 2.0}
+      }
+    },
+    {
+      "id": "Freeze v2",
+      "date": "2026-02-21",
+      "hash_prefix": "dbccda150abca0e7",
+      "alpha_L2": -0.702
+    }
+  ],
+  "signal_summary": {
+    "alpha_L2": -1.00,
+    "alpha_L2_uncertainty": 0.46,
+    "significance_sigma": 2.20,
+    "delta_AIC": -2.91,
+    "loo_folds": "7/7 pass",
+    "alpha_over_sigma_range": [1.84, 2.42],
+    "characterisation": "Persistent directional signal, not a detection"
+  },
+  "kill_criteria": [
+    {
+      "id": "KC1",
+      "name": "Growth suppression absent",
+      "condition": "|alpha_L2| < 0.1 at 3 sigma",
+      "consequence": "EFC falsified (growth sector)"
+    },
+    {
+      "id": "KC2",
+      "name": "Wrong f*sigma_8 trajectory",
+      "condition": "|z_cross_obs - 2.042| > 3 sigma",
+      "consequence": "EFC falsified (crossover prediction)"
+    },
+    {
+      "id": "KC3",
+      "name": "S_8 converges to LCDM",
+      "condition": "S_8 = S_{8,LCDM} +/- 0.005 at Stage-IV",
+      "consequence": "EFC falsified (S_8 channel)"
+    },
+    {
+      "id": "KC4",
+      "name": "Gravitational slip absent",
+      "condition": "|eta - 1| < 0.01 at Euclid precision",
+      "consequence": "EFC falsified (slip prediction)"
+    },
+    {
+      "id": "KC5",
+      "name": "Dynamical dark energy absent",
+      "condition": "|w_0 + 1| < 0.02 at Euclid precision",
+      "consequence": "EFC falsified (dynamical DE prediction, Part 4)"
+    }
+  ],
+  "confirmation_roadmap": [
+    {"level": "Hint (current)", "threshold": "2.20 sigma", "channel": "f*sigma_8 LOO", "survey": "DESI+BOSS", "timeline": "2026"},
+    {"level": "Suggestive", "threshold": "3 sigma joint", "channel": "f*sigma_8 + S_8", "survey": "+DES+KiDS", "timeline": "2027"},
+    {"level": "Evidence", "threshold": "3.5 sigma", "channel": "mu-Sigma + f*sigma_8", "survey": "+Euclid Y1", "timeline": "2028"},
+    {"level": "Detection", "threshold": "5 sigma", "channel": "All channels locked", "survey": "Euclid+Rubin", "timeline": "2030+"}
+  ],
+  "falsifiability_protocol_doi": "10.6084/m9.figshare.31251277",
+  "files": {
+    "paper_pdf": "White_paper_part_3_efc_validation_falsification.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "white-paper-part-3-validation.jsonld",
+    "citations": "citations.bib",
+    "validation_ledger": "data/validation_ledger.json",
+    "kill_criteria": "data/kill_criteria.json",
+    "confirmation_roadmap": "data/confirmation_roadmap.json",
+    "src_checker": "src/validation_checker.py",
+    "example": "examples/ledger_summary.py"
+  }
+}

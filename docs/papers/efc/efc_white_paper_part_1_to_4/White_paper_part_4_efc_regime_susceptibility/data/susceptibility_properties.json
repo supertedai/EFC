@@ -1,0 +1,38 @@
+{
+  "table": "T(S) susceptibility function properties",
+  "source": "White Paper Part 4, Sections 4-5",
+  "definition": {
+    "formula": "T(S) = S_0(1-S_0) / [S(1-S)]",
+    "S_0": 0.1,
+    "S_0_source": "SPARC galactic calibration"
+  },
+  "self_regulation": {
+    "proposition": "Proposition 1",
+    "statement": "beta(S) * rho_eff(S) = beta_0 * S_0(1-S_0) = const",
+    "proof": "S(1-S) terms cancel identically under direct substitution",
+    "value": 0.0144
+  },
+  "sample_values": [
+    {"S": 0.01, "rho_eff": 0.0099, "T_S": 9.09, "beta_S": 1.455, "beta_rho": 0.0144},
+    {"S": 0.05, "rho_eff": 0.0475, "T_S": 1.89, "beta_S": 0.303, "beta_rho": 0.0144},
+    {"S": 0.10, "rho_eff": 0.0900, "T_S": 1.00, "beta_S": 0.160, "beta_rho": 0.0144},
+    {"S": 0.30, "rho_eff": 0.2100, "T_S": 0.43, "beta_S": 0.069, "beta_rho": 0.0144},
+    {"S": 0.50, "rho_eff": 0.2500, "T_S": 0.36, "beta_S": 0.058, "beta_rho": 0.0144},
+    {"S": 0.70, "rho_eff": 0.2100, "T_S": 0.43, "beta_S": 0.069, "beta_rho": 0.0144},
+    {"S": 0.90, "rho_eff": 0.0900, "T_S": 1.00, "beta_S": 0.160, "beta_rho": 0.0144},
+    {"S": 0.99, "rho_eff": 0.0099, "T_S": 9.09, "beta_S": 1.455, "beta_rho": 0.0144}
+  ],
+  "equation_of_state": {
+    "formula": "w(a) = -beta(S) * a",
+    "early_universe": "a << 1, S ~ 0: w ~ 0 (matter-like)",
+    "today": "a = 1: w_0 = -beta_cosm (determined by S_cosm)",
+    "altular_limit": "S -> 1: w -> -1 asymptotically (de Sitter)"
+  },
+  "amplification": {
+    "beta_gal": 0.16,
+    "S_gal": 0.1,
+    "beta_cosm": "~1.0 (from T(S) mapping)",
+    "ratio": "~6.25",
+    "note": "Measurable, parameter-free prediction"
+  }
+}

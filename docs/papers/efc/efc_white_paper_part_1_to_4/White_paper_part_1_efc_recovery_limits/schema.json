@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Recovery Condition",
+  "description": "Schema for an EFC recovery condition establishing LCDM as a limiting case",
+  "type": "object",
+  "properties": {
+    "condition_id": {
+      "type": "string",
+      "description": "Identifier (e.g. 'I', 'II', 'III')"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the recovery condition"
+    },
+    "limit": {
+      "type": "string",
+      "description": "Mathematical limit expression"
+    },
+    "result_mu": {
+      "type": "number",
+      "description": "Limiting value of mu(k,z) — should be 1.0"
+    },
+    "result_sigma": {
+      "type": "number",
+      "description": "Limiting value of Sigma(k,z) — should be 1.0"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Physical domain where the condition applies"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Analytic", "Analytic + observational"],
+      "description": "Proof status"
+    },
+    "observational_test": {
+      "type": "string",
+      "description": "Kill-test or observational validation reference"
+    }
+  },
+  "required": ["condition_id", "name", "limit", "result_mu", "result_sigma", "domain", "status"]
+}

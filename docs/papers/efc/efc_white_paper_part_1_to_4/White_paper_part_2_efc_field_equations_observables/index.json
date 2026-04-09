@@ -1,0 +1,106 @@
+{
+  "id": "efc-white-paper-part-2-field-equations",
+  "title": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "doi": "10.6084/m9.figshare.31970898",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31970898",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "type": "foundational white paper, field equations, observable mapping",
+  "track": "EFC White Paper Series (Part 2 of 4)",
+  "regimes": ["L0", "L1", "L2"],
+  "series": {
+    "name": "EFC White Paper",
+    "part": 2,
+    "total_parts": 4,
+    "companion_dois": [
+      "10.6084/m9.figshare.31970886",
+      "10.6084/m9.figshare.31970904",
+      "10.6084/m9.figshare.31970907"
+    ]
+  },
+  "abstract": "Derives the EFC field equations from first principles, defines the entropy field S(a) and its coupling to the effective gravitational parameters mu(k,z) and Sigma(k,z), and establishes the complete observable mapping to growth rate f*sigma_8, weak-lensing amplitude S_8, and the regime response surface R(k,S).",
+  "entropy_field": {
+    "definition": "S(a) is a dimensionless scalar field tracking the mean entropy content of structure at cosmic epoch a",
+    "range": "S in [0,1]",
+    "S_to_0": "Early universe (L0/L1), GR recovered",
+    "S_to_max": "Late-time structure-dominated era (L2)"
+  },
+  "coupling_formula": {
+    "eq1": "mu(a) = 1 + beta * S(a)",
+    "beta": 0.16,
+    "beta_source": "SPARC calibration",
+    "note": "beta is derived, not a free parameter"
+  },
+  "efc_kernel": {
+    "eq4": "mu_EFC(k,z) = [1 - S_bar(z)] + s_tilde(k,z)/delta_tilde(k,z)",
+    "S_bar": "Spatially averaged entropy field",
+    "s_tilde_over_delta": "Fourier-space entropy-to-density ratio",
+    "gr_limit": "S -> 0 and s_tilde -> 0 implies mu_EFC -> 1"
+  },
+  "field_equation": {
+    "eq5": "G_mu_nu = f(grad_S, E_f)",
+    "meaning": "Einstein tensor modulated by entropy gradient and energy-flow density",
+    "gr_limit": "grad_S -> 0 reduces to standard G_mu_nu = 8*pi*G_N*T_mu_nu"
+  },
+  "growth_equation": {
+    "eq6": "f'' + f^2 + (1/2 - 3/2 * Omega_m_tilde) * f = 3/2 * mu(a) * Omega_m_tilde",
+    "mu_effect": "mu < 1 suppresses structure formation, generating S_8 tension reduction"
+  },
+  "observables": {
+    "f_sigma_8": {
+      "eq9": "[f*sigma_8](z) = f(z) * sigma_8(z) = f(z) * sigma_{8,0} * D(z)/D(0)",
+      "sealed_prediction": "f*sigma_8(z=0.7) = 0.430 vs LCDM 0.449",
+      "significance": "2.0 sigma deviation",
+      "loo": "7/7 folds pass"
+    },
+    "S_8_suppression": {
+      "eq10": "Delta_sigma_8 proportional to (1 - mu_0) * integral g(a;n) d ln a",
+      "eq11": "S_8 = sigma_8 * sqrt(Omega_m/0.3) ~ S_{8,LCDM} - delta_S_8(mu_0, B, n)",
+      "empirical": "DES Y6 S_8 at 0.3 sigma (pre-registered, T2 tier)"
+    },
+    "lensing_slip": {
+      "eq13": "Sigma(k,z) = mu_lens(k,z) / G_N",
+      "structural": "Pure mu < 1 excluded; gravitational slip eta = Psi/Phi != 1 required",
+      "testable": "Directly testable with Stage-IV lensing surveys"
+    },
+    "response_surface": {
+      "eq12": "R(k,S): (k,S) -> G_eff(k,S)/G_N",
+      "meaning": "Unifies all perturbation-sector observables into single geometric object",
+      "multi_probe": "Each dataset provides empirical slice through R(k,S)"
+    }
+  },
+  "background_parameterisation": {
+    "eq7": "E^2(z) -> E^2(z)[1 + alpha_L2 * f(z) * Theta(z)]",
+    "status": "COLLAPSED — inconsistent with CMB+BAO",
+    "note": "EFC operates in perturbation sector only (see Part 1, Remark 1)"
+  },
+  "signal_summary": {
+    "alpha_L2": -1.00,
+    "alpha_L2_uncertainty": 0.46,
+    "significance_sigma": 2.20,
+    "delta_AIC": -2.91,
+    "loo_folds": "7/7 pass",
+    "characterisation": "Persistent directional signal, not a detection"
+  },
+  "structural_hierarchy": [
+    {"level": 1, "element": "Entropy field S(a)", "type": "fundamental"},
+    {"level": 2, "element": "Coupling formula mu(a) = 1 + beta*S(a)", "type": "derived"},
+    {"level": 3, "element": "Growth equation with mu(a)", "type": "dynamical"},
+    {"level": 4, "element": "f*sigma_8, S_8, Sigma observables", "type": "empirical"},
+    {"level": 5, "element": "R(k,S) response surface", "type": "unifying"}
+  ],
+  "files": {
+    "paper_pdf": "White_paper_part_2_efc_field_equations_observables.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "white-paper-part-2-field-equations.jsonld",
+    "citations": "citations.bib",
+    "observable_mapping": "data/observable_mapping.json",
+    "planned_tests": "data/planned_tests.json",
+    "src_field": "src/field_equations.py",
+    "example": "examples/compute_observables.py"
+  }
+}
