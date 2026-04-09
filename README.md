@@ -5,16 +5,18 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.14-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-133-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.15-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-134-brightgreen)](#ai-friendly-paper-packages)
 
-> **NEW (April 8, 2026)**: [EFC vs ΛCDM — Complete Kill-Test v6](https://doi.org/10.6084/m9.figshare.31964847) — Six-probe kill-test spanning L0 (CMB) → L3 (dwarf galaxies). All **four cobaya minimize runs return Δχ² ≤ 0** (MGCAMB −0.45, A_lens proxy −0.81, A_lens free −0.70, K₀/m² −0.30). Two-parameter action reproduces μ₀ ≈ 0.94, η ≈ 1.23, Σ₀ ≈ 1.05 from a single mechanism. **Stage: Non-rejectable model on current data.**
+> **NEW (April 9, 2026)**: [EFC Consciousness Bridge](https://doi.org/10.6084/m9.figshare.31969983) — Closes the open bridge between cosmological entropy field S and EFC-C cognitive variables via a **three-equation system** with one free parameter (γ). Non-separable functional C = Ω̂κ̂(1 − e^{−γΩ̂κ̂}), coupled dynamics, dimensionless regime-indexed variables L0–L3. 5/5 propofol predictions consistent. K = 4.4 ± 0.6 from SPARC.
 
-> **NEW (April 2026)**: [WP4 BOSS Transfer Validation](https://doi.org/10.6084/m9.figshare.31954125) — Cross-survey parameter transfer: DESI DR2 parameters (z_L1L2 = 1.01, α_L2 = 0.045) frozen and applied to BOSS DR12 give **Δχ² = −7.77 with k_eff = 0**. Covariance diagnostics confirm gain in the most constrained eigenmodes (71%). Post-hoc validation, complements pre-registered P3.
+> **NEW (April 8, 2026)**: [EFC vs ΛCDM — Complete Kill-Test v6](https://doi.org/10.6084/m9.figshare.31964847) — Six-probe kill-test L0→L3. All **four cobaya minimize runs return Δχ² ≤ 0** (MGCAMB −0.45, A_lens proxy −0.81, A_lens free −0.70, K₀/m² −0.30). **Stage: Non-rejectable model.**
 
-> **NEW (April 7, 2026)**: [DES Y6 Lensing Validation Update](https://doi.org/10.6084/m9.figshare.31951992) — **P3 lensing test PASS**: observed S₈ˡᵉⁿˢ/S₈ᶜᴹᴮ = **0.944 ± 0.018** vs pre-registered EFC prediction **0.95 ± 0.03** (0.3σ agreement). Pass criterion deposited prior to DES Y6 release (Jan 21, 2026).
+> **NEW (April 8, 2026)**: [Bullet Cluster Under EFC](https://doi.org/10.6084/m9.figshare.31963668) — Four-axis confrontation with three JWST-era studies. PIEMD A_sig baseline null (p = 0.98). Pre-registered δκ shock-front test pending as decisive discriminator.
 
-> **NEW (April 2026)**: [ΛCDM as a Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — Consolidation paper demonstrating that ΛCDM is the L0/L1 limit of EFC (Eq. 6: K(ρ)→∞, T(a)→0, ξ≫1 ⟹ Friedmann+Poisson). DESI DR2 confirms: α = −0.14 ± 0.21. 14 months, 204 publications, 100 registered tests.
+> **NEW (April 8, 2026)**: [KT3b Cross-Regime Measurement Failure](https://doi.org/10.6084/m9.figshare.31963821) — Null result diagnosed as cross-regime measurement failure (RCMP violations V1/V2/V3). Three valid replacement architectures proposed.
+
+> **Earlier (April 2026)**: [WP4 BOSS Transfer](https://doi.org/10.6084/m9.figshare.31954125) (Δχ² = −7.77, k_eff = 0) · [Multi-epoch fσ₈ Growth](https://doi.org/10.6084/m9.figshare.31955871) (null, B = 0 within 1σ) · [DES Y6 P3 PASS](https://doi.org/10.6084/m9.figshare.31951992) (0.944 ± 0.018 vs 0.95 ± 0.03) · [ΛCDM as Special Case](https://doi.org/10.6084/m9.figshare.31943361) (DESI DR2: α = −0.14 ± 0.21)
 
 ---
 
@@ -28,9 +30,11 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.14) |
-| **Papers** | 133 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 133 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.15 public / v4.6 internal) |
+| **Papers** | 134 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 134 with executable Python + structured data (100% coverage) |
+| **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
+| **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
 
 ---
@@ -150,36 +154,33 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.10) tracks all empirical, structural, and theoretical results with a four-tier status hierarchy (T1–T4).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.15 / v4.6 internal) tracks 103 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
-### Key Results
+### Hand-Curated Validation Reports (10/10 AI-Friendly Packages)
+
+| Report | Title | Key Result | DOI |
+|--------|-------|-----------|-----|
+| **EFC-VAL-2026-002** | WP4 BOSS DR12 Transfer | Δχ² = −7.77 (k_eff = 0; 71% in constrained eigenmodes) | [31954125](https://doi.org/10.6084/m9.figshare.31954125) |
+| **EFC-VAL-2026-003** | Multi-epoch fσ₈ Growth | Null: B = 0 within 1σ; Δχ² = 0.10 (0.06σ) | [31955871](https://doi.org/10.6084/m9.figshare.31955871) |
+| **EFC-VAL-2026-004** | Bullet Cluster Under EFC | A_sig = −6.9e-4 (p = 0.98 null); δκ shock test pending | [31963668](https://doi.org/10.6084/m9.figshare.31963668) |
+| **EFC-VAL-2026-005** | KT3b Cross-Regime Failure | RCMP violations V1/V2/V3; 3 valid architectures proposed | [31963821](https://doi.org/10.6084/m9.figshare.31963821) |
+| **EFC-VAL-2026-006** | EFC vs ΛCDM Kill-Test v6 | 4/4 cobaya Δχ² ≤ 0; K₀ = 1.552, m² = 0.00318 | [31964847](https://doi.org/10.6084/m9.figshare.31964847) |
+| **EFC-VAL-2026-007** | EFC Consciousness Bridge | Three-equation system; 1 free param (γ); 5/5 propofol consistent | [31969983](https://doi.org/10.6084/m9.figshare.31969983) |
+
+### Selected Earlier Results
 | Test | Status | Reference |
 |------|--------|-----------|
-| Unified BAO/SN/RSD (β=0.16) | T2 — Compatible (Δχ²=+1.7) | [31215613](https://doi.org/10.6084/m9.figshare.31215613) |
-| Galaxy rotation curves (SPARC175) | T2 — Completed | [31047703](https://doi.org/10.6084/m9.figshare.31047703) |
-| KiDS-1000 cosmic shear | T2 — Completed | [31224739](https://doi.org/10.6084/m9.figshare.31224739) |
-| CMB systematic localization | T2 — α≈0 (CMB blind) | [31368433](https://doi.org/10.6084/m9.figshare.31368433) |
-| Growth fσ₈ LOO robustness | T2 — α<0 at ~2σ | [31332730](https://doi.org/10.6084/m9.figshare.31332730) |
-| EFC Screening (k=0.415, 174 galaxies) | T2 — Completed | [31940469](https://doi.org/10.6084/m9.figshare.31940469) |
-| Solar System PPN/EP | T3 — Compatible (γ→1) | [31244827](https://doi.org/10.6084/m9.figshare.31244827) |
-| GRAV→(μ,Σ) structural gap | **CLOSED** (v3.4) | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
-| Covariant EFT (c_gw=c, RAR=BE) | T3 — Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
-| Grid Microphysics (BE RAR derivation) | T3 — Microphysical bridge | [31878760](https://doi.org/10.6084/m9.figshare.31878760) |
-| Gradient-Coupled Grid Action (E∝√g) | T3 — Structural | [31941465](https://doi.org/10.6084/m9.figshare.31941465) |
-| Regime Transition Test (μ<1→μ>1) | T3 — Numerical consistency | [31941543](https://doi.org/10.6084/m9.figshare.31941543) |
-| Void ISW Sign-Flip | T3 — Novel prediction | [31942677](https://doi.org/10.6084/m9.figshare.31942677) |
-| Cosmic Dipole Working Note | T4 — Working note | [31942731](https://doi.org/10.6084/m9.figshare.31942731) |
-| Entropy Budget Working Note | T4 — Working note | [31942734](https://doi.org/10.6084/m9.figshare.31942734) |
-| Density of States Grid Modes | T3 — Microphysical derivation | [31942800](https://doi.org/10.6084/m9.figshare.31942800) |
-| Entropy Production Γ(ρ) Derivation | T3 — Microphysical derivation | [31942821](https://doi.org/10.6084/m9.figshare.31942821) |
-| Connectome degree heterogeneity (r=−0.97) | T2 — Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
-| Cross-domain bridge equations (B1/B2) | T3 — Structural | [31940547](https://doi.org/10.6084/m9.figshare.31940547) |
-| **ΛCDM as Special Case (Consolidation)** | **T2 — DESI DR2 confirmed** | [31943361](https://doi.org/10.6084/m9.figshare.31943361) |
-| **P3 — DES Y6 lensing S₈ ratio** | **T2 — PASS (0.944 ± 0.018 vs 0.95 ± 0.03, 0.3σ)** | [31951992](https://doi.org/10.6084/m9.figshare.31951992) |
-| **WP4 — BOSS transfer (DESI params, no refit)** | **T2 — Δχ² = −7.77 (k_eff = 0; 71% in low-λ eigenmodes)** | [31954125](https://doi.org/10.6084/m9.figshare.31954125) |
+| P3 — DES Y6 lensing S₈ ratio | **PASS** (0.944 ± 0.018 vs 0.95 ± 0.03, 0.3σ) | [31951992](https://doi.org/10.6084/m9.figshare.31951992) |
+| ΛCDM as Special Case (Consolidation) | DESI DR2: α = −0.14 ± 0.21 | [31943361](https://doi.org/10.6084/m9.figshare.31943361) |
+| EFC Screening (k = 0.415, 174 SPARC) | Completed | [31940469](https://doi.org/10.6084/m9.figshare.31940469) |
+| EFC Relativistic Action | μ < 1, Σ > 1, η ≠ 1, c_T = c | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
+| Covariant EFT (c_gw = c, RAR = BE) | Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
+| Galaxy rotation curves (SPARC175) | Completed | [31047703](https://doi.org/10.6084/m9.figshare.31047703) |
+| KiDS-1000 cosmic shear | Completed | [31224739](https://doi.org/10.6084/m9.figshare.31224739) |
+| Connectome heterogeneity (r = −0.97) | Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 
 ### Falsification Conditions (F1–F7 + FA1–FA6)
-Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **PASSED** by relativistic derivation. Six action-level conditions (FA1–FA6) now govern the perturbation sector. See [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) for details.
+Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **PASSED** by relativistic derivation. Six action-level conditions (FA1–FA6) govern the perturbation sector. See [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) for details.
 
 ---
 
@@ -231,6 +232,16 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Homo Fluxus v2.0 (Civilization Map) | [31940604](https://doi.org/10.6084/m9.figshare.31940604) | Grid→EF→S→D→C, empirically anchored |
 | **ΛCDM as Special Case of EFC** | [31943361](https://doi.org/10.6084/m9.figshare.31943361) | **Consolidation: ΛCDM = L0/L1 limit, DESI DR2 α=−0.14±0.21** |
 
+### Validation Reports (EFC-VAL-2026 Series)
+| Paper | DOI | Key Result |
+|-------|-----|------------|
+| WP4 BOSS DR12 Transfer (002) | [31954125](https://doi.org/10.6084/m9.figshare.31954125) | Δχ² = −7.77 frozen transfer |
+| Multi-epoch fσ₈ Growth (003) | [31955871](https://doi.org/10.6084/m9.figshare.31955871) | Null: B = 0 within 1σ |
+| Bullet Cluster Under EFC (004) | [31963668](https://doi.org/10.6084/m9.figshare.31963668) | A_sig PIEMD null (p = 0.98) |
+| KT3b Cross-Regime Failure (005) | [31963821](https://doi.org/10.6084/m9.figshare.31963821) | RCMP V1/V2/V3, 3 architectures |
+| EFC vs ΛCDM Kill-Test v6 (006) | [31964847](https://doi.org/10.6084/m9.figshare.31964847) | 4/4 Δχ² ≤ 0, non-rejectable |
+| EFC Consciousness Bridge (007) | [31969983](https://doi.org/10.6084/m9.figshare.31969983) | Three-eq system, 1 free param |
+
 ### Methodology & AI
 | Paper | DOI |
 |-------|-----|
@@ -238,37 +249,35 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 133 papers, all with full 10-file AI-friendly packages (100% coverage).
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 134 papers, all with AI-friendly packages (100% coverage). Six hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 133 papers have full AI-friendly packages with executable Python implementations (100% coverage as of April 2026):
+All 134 papers have AI-friendly packages (100% coverage as of April 2026). Six hand-curated 10/10 validation reports with full reproducible pipelines:
+
+| Package | Module | Key Functionality |
+|---------|--------|-------------------|
+| **EFC vs ΛCDM Kill-Test v6** | `kill_test_suite.py`, `k_rho_bridge.py`, `gravitational_slip.py`, `cobaya_minimize.py` | Six-probe kill-test, K(ρ) bridge, sector decomposition |
+| **Bullet Cluster Under EFC** | `asig_2d_piemd.py` | PIEMD 4-halo A_sig operator, bootstrap null test |
+| **KT3b Cross-Regime** | `rcmp_check.py` | RCMP linter for V1/V2/V3 violations, 4 architecture factories |
+| **Multi-epoch fσ₈ Growth** | `efc_multi_epoch_v2.py` | Full linear growth ODE, μ(a) gate, 14-point fit |
+| **WP4 BOSS Transfer** | `wp4_transfer.py` | Regime gate, covariance diagnostics, Cholesky whitening |
+| **Consciousness Bridge** | `consciousness_bridge.py` | Three-equation system, non-separable C, regime mapping |
+
+Plus 128 auto-generated packages each containing:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
-| EFC Screening Model | `efc_screening.py` | EFCScreening, CrossScaleConsistency, BulletCluster |
-| EFC-C Cognitive Entropy | `efc_cognition.py` | NeuralEntropyProduction, EntropyGradient, DisorderSignature |
-| RLHF Thermodynamics | `rlhf_thermodynamics.py` | BoltzmannPolicy, FreeEnergyObjective, GrokkingPhaseTransition |
-| Connectome Heterogeneity | `connectome_kappa.py` | CentrifugalEntropyScore, ConnectomeAnalysis, NetworkFeatures |
-| Cross-Domain Bridge | `bridge_equations.py` | UnifiedGradientFlow, BridgeB1StarStar, BridgeB2Neural2RLHF |
-| Homo Fluxus | `homo_fluxus.py` | EFCChain, EgoThermodynamics, DSMReframe, HomoFluxusNode |
-| Gradient-Coupled Grid Action | `grid_action.py` | GridAction, GradientCouplingTheorem, OperatorElimination |
-| Regime Transition Test | `regime_transition.py` | EFCRegimeTransition, SurvivalValley, SpatiotemporalGrid |
-| Void ISW Sign-Flip | `void_isw.py` | ISWDecomposition, SignFlipAnalysis, AmplitudeRatio |
-| Cosmic Dipole | `cosmic_dipole.py` | KinematicDipole, EntropyGradient, DipoleAmplitude |
-| Entropy Budget | `entropy_budget.py` | CosmicEntropyInventory, BekensteinHawkingEntropy, ThermostatConjecture |
-| Density of States Grid Modes | `density_of_states.py` | GridActivation, DensityOfStates, EntropyProductionFunction |
-| Entropy Production Derivation | `entropy_production.py` | BEOccupation, VonNeumannEntropy, GammaDerivation |
-| Grid Microphysics | `grid_microphysics.py` | GridNode, BoseEinsteinRAR, LatticeDerivation |
-| Covariant EFT | `covariant_eft.py` | CovEFT, GravWaveSpeed, BoseEinsteinRAR |
-| CMB Localization | `cmb_localization.py` | CMBSurvival, LensingBarrier, BackgroundGate |
-| Graph-AQUAL | `discrete_gravity.py` | GraphAQUAL, LambdaScreening, RegimeCoordinates |
-| EFC Relativistic Action | `efc_relativistic_action.py` | RelativisticAction, PerturbationSector |
-| **ΛCDM as Special Case** | `lcdm_special_case.py` | LCDMReduction, DESIDR2Result, PerturbationValley, GasLawAnalogy, KillTestSuite |
-| **DES Y6 Lensing Validation** | `des_y6_validation.py` | P3LensingTest, DESY6Result, CMB2026Baseline, EFCLensingPrediction |
-| **WP4 BOSS Transfer Validation** | `wp4_transfer.py` | EFCRegimeGate, TransferTestResult, CovarianceDiagnostics, BestFit |
+| EFC Screening Model | `efc_screening.py` | EFCScreening, CrossScaleConsistency |
+| EFC-C Cognitive Entropy | `efc_cognition.py` | NeuralEntropyProduction, EntropyGradient |
+| RLHF Thermodynamics | `rlhf_thermodynamics.py` | BoltzmannPolicy, FreeEnergyObjective |
+| Connectome Heterogeneity | `connectome_kappa.py` | CentrifugalEntropyScore, ConnectomeAnalysis |
+| Cross-Domain Bridge | `bridge_equations.py` | UnifiedGradientFlow, BridgeB1StarStar |
+| Gradient-Coupled Grid Action | `grid_action.py` | GridAction, GradientCouplingTheorem |
+| ΛCDM as Special Case | `lcdm_special_case.py` | LCDMReduction, KillTestSuite |
+| DES Y6 Lensing | `des_y6_validation.py` | P3LensingTest, EFCLensingPrediction |
 
 Each package includes:
 - `src/<module>.py` — Importable Python with documented classes
@@ -288,8 +297,8 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 133 papers with 10-file AI-friendly packages (100%)
-│   ├── public/         # Validation Ledger (v3.10), Master Spec, figures
+│   ├── papers/efc/     # 134 papers with AI-friendly packages (100%)
+│   ├── public/         # Validation Ledger (v3.15), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
 │   └── notes/          # Research notes
