@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Susceptibility Entry",
+  "description": "Schema for regime susceptibility function evaluation at a given entropy value",
+  "type": "object",
+  "properties": {
+    "S": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Entropy field value"
+    },
+    "rho_eff": {
+      "type": "number",
+      "description": "Effective energy density rho_eff = S(1-S)"
+    },
+    "T_S": {
+      "type": "number",
+      "description": "Regime susceptibility T(S)"
+    },
+    "beta_S": {
+      "type": "number",
+      "description": "Regime-scaled coupling beta(S) = beta_0 * T(S)"
+    },
+    "beta_rho_product": {
+      "type": "number",
+      "description": "Self-regulation product beta(S)*rho_eff(S) — should be constant"
+    }
+  },
+  "required": ["S", "rho_eff", "T_S"]
+}

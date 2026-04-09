@@ -1,0 +1,94 @@
+{
+  "id": "efc-white-paper-part-4-susceptibility",
+  "title": "Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "doi": "10.6084/m9.figshare.31970907",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31970907",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "type": "foundational white paper, regime susceptibility, cross-scale mapping",
+  "track": "EFC White Paper Series (Part 4 of 4)",
+  "regimes": ["L0", "L1", "L2"],
+  "series": {
+    "name": "EFC White Paper",
+    "part": 4,
+    "total_parts": 4,
+    "companion_dois": [
+      "10.6084/m9.figshare.31970886",
+      "10.6084/m9.figshare.31970898",
+      "10.6084/m9.figshare.31970904"
+    ]
+  },
+  "abstract": "Proposes a regime susceptibility function T(S) = S_0(1-S_0)/[S(1-S)] that emerges directly from the S(1-S) structure already present in EFC. T(S) provides a parameter-free cross-scale mapping from SPARC-calibrated galactic amplitude beta_0 ~ 0.16 to a cosmological amplitude giving w_0 ~ -1. The product beta(S)*rho_eff(S) = const ensures self-regulation and GR recovery at S -> 0. Dark matter and dark energy are reinterpreted as convergent and divergent phases of a single entropic continuum.",
+  "entropic_continuum": {
+    "current_divergence": {
+      "convergent": "div(J^mu) < 0 => excess gravity (DM regime)",
+      "equilibrium": "div(J^mu) = 0 => matter-dominated epoch",
+      "divergent": "div(J^mu) > 0 => accelerated expansion (DE regime)"
+    },
+    "claim": "Dark matter and dark energy are phases of a single entropic flow, not substances",
+    "omega_ratio": "Omega_Lambda/Omega_m = f(S(z)/S_max) — monotonically increasing; observed value 2.5 at z=0 is a snapshot, not a constant"
+  },
+  "effective_energy_density": {
+    "eq3": "rho_eff(S) = S(1 - S)",
+    "properties": {
+      "S_to_0": "rho_eff -> 0 (no energy at singularity)",
+      "S_to_1": "rho_eff -> 0 (no energy at Altular limit)",
+      "S_eq_0.5": "rho_eff = 0.25 (maximum, peak dynamical activity)"
+    },
+    "form": "Bernoulli variance — information-theoretic capacity of binary channel"
+  },
+  "susceptibility_function": {
+    "eq6": "T(S) = S_0(1 - S_0) / [S(1 - S)]",
+    "S_0": 0.1,
+    "S_0_source": "SPARC galactic calibration",
+    "properties": {
+      "S_to_0": "T -> infinity (stiff, small perturbations have large effects)",
+      "S_eq_0.5": "T minimised (maximally flexible)",
+      "S_to_1": "T -> infinity (stiff at Altular limit)"
+    },
+    "physical_interpretation": "Inverse of dynamical capacity; mirrors susceptibility near critical point"
+  },
+  "self_regulation": {
+    "proposition_1": "beta(S) * rho_eff(S) = beta_0 * S_0(1-S_0) = const",
+    "proof": "Direct substitution: S(1-S) terms cancel identically",
+    "consequence": "Although T(S) -> infinity as S -> 0 or S -> 1, the physically relevant product beta*rho_eff remains finite and constant",
+    "gr_recovery": "GR recovery at S -> 0 (Part 1, Theorem 2) is not threatened by T"
+  },
+  "equation_of_state": {
+    "eq5": "w(a) = p_eff / rho_eff = -beta(S) * a",
+    "w_0": "~ -beta_cosm, determined by two independent calibrations",
+    "prediction": "w(z) != -1 — dynamical dark energy",
+    "no_parameter_recycling": "Growth-sector parameter n does not enter w_0",
+    "kill_criterion": "KC5: |w_0 + 1| < 0.02 at Euclid precision => falsified"
+  },
+  "cross_scale_amplification": {
+    "beta_gal": {"value": 0.16, "source": "SPARC rotation curves", "S_gal": 0.1},
+    "beta_cosm": {"value": "~ 1.0", "source": "T(S) mapping from S_gal to S_cosm"},
+    "ratio": "beta_cosm / beta_gal ~ 6.25",
+    "note": "Measurable, parameter-free prediction"
+  },
+  "thermodynamic_boundaries": {
+    "singularity": {"S": 0, "description": "Maximal order, zero entropy gradient, no energy flow. GR recovered exactly."},
+    "altular_limit": {"S": 1, "description": "Maximal entropy, zero gradient, no flow. Expansion asymptotes to de Sitter; all coupling vanishes."}
+  },
+  "effective_pressure": {
+    "eq4": "p_eff proportional to -div(J^mu)",
+    "convergent_flow": "Positive effective pressure — structure resists compression",
+    "divergent_flow": "Negative effective pressure — system releases rather than pushes",
+    "acceleration": "Not driven by energy injection; it is relaxation of a binding constraint as entropy approaches maximum"
+  },
+  "files": {
+    "paper_pdf": "White_paper_part_4_efc_regime_susceptibility.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "white-paper-part-4-susceptibility.jsonld",
+    "citations": "citations.bib",
+    "entropic_continuum": "data/entropic_continuum.json",
+    "susceptibility_properties": "data/susceptibility_properties.json",
+    "src_susceptibility": "src/regime_susceptibility.py",
+    "example": "examples/compute_susceptibility.py"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Energy-Flow Cosmology: Recovery Conditions and the LCDM Limit",
+    "short_title": "EFC White Paper Part 1 — Recovery Limits",
+    "directory": "White_paper_part_1_efc_recovery_limits",
+    "series": "EFC White Paper (Part 1 of 4)",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    },
+    "doi": "10.6084/m9.figshare.31970886",
+    "date": "2026-04",
+    "license": "CC-BY-4.0"
+  },
+  "domain": {
+    "track": "EFC White Paper Series",
+    "regimes": ["L0", "L1", "L2"],
+    "scope": "Recovery conditions establishing LCDM as limiting case"
+  },
+  "theorems": [
+    {
+      "id": "Theorem 1",
+      "name": "Parameter recovery",
+      "condition": "alpha_L2 -> 0",
+      "result": "mu = Sigma = 1 at all scales and redshifts",
+      "status": "Analytic proof"
+    },
+    {
+      "id": "Theorem 2",
+      "name": "Entropy recovery",
+      "condition": "S < S_c ~ 0.1",
+      "result": "All EFC corrections vanish; GR recovered",
+      "status": "Analytic proof + KT1 observational support"
+    },
+    {
+      "id": "Theorem 3",
+      "name": "Density recovery",
+      "condition": "rho >> rho_crit",
+      "result": "Theta(rho) -> 0; chameleon-type screening",
+      "status": "Analytic proof + KT2/KT3 observational support"
+    },
+    {
+      "id": "Proposition 1",
+      "name": "Triangulated recovery",
+      "condition": "Any one of three conditions",
+      "result": "mu -> 1, Sigma -> 1 without mutual conflict",
+      "status": "Analytic proof"
+    },
+    {
+      "id": "Corollary 1",
+      "name": "EFC superset LCDM",
+      "condition": "—",
+      "result": "EFC contains LCDM as limiting case (perturbation sector)",
+      "status": "Follows from Proposition 1"
+    }
+  ],
+  "observational_constraints": {
+    "alpha_L2": {
+      "value": -1.00,
+      "uncertainty": 0.46,
+      "significance_sigma": 2.20,
+      "delta_AIC": -2.91,
+      "source": "NUTS cycle sealed prediction (2026-02-18)",
+      "loo_folds": "7/7 pass"
+    },
+    "solar_system_ppn": {
+      "efc_correction": "< 10^-5",
+      "test": "KT1",
+      "status": "GR recovered"
+    },
+    "grid_aqual": {
+      "KT2_C_vw": 2.2960,
+      "KT3_beta": 0.18,
+      "status": "Convergence and Lambda-locking confirmed"
+    }
+  },
+  "key_parameters": {
+    "alpha_L2": "Entropy-gradient coupling amplitude",
+    "Theta_z": "Regime-transition function (smooth tanh gate)",
+    "S_c": "Critical entropy threshold (~0.1)",
+    "rho_crit": "Critical density for screening",
+    "B": "Dimensionless amplitude (growth suppression)",
+    "g_a_n": "Sigmoid gate function: [1 + (a_t/a)^n]^{-1}"
+  },
+  "files": [
+    {"path": "White_paper_part_1_efc_recovery_limits.pdf", "bytes": 285269},
+    {"path": "index.json", "role": "structured_metadata"},
+    {"path": "metadata.json", "role": "extended_metadata"},
+    {"path": "schema.json", "role": "json_schema"},
+    {"path": "white-paper-part-1-recovery-limits.jsonld", "role": "linked_data"},
+    {"path": "citations.bib", "role": "bibliography"},
+    {"path": "data/recovery_conditions.json", "role": "table_data"},
+    {"path": "data/level_classification.json", "role": "table_data"},
+    {"path": "src/recovery_limits.py", "role": "implementation"},
+    {"path": "examples/check_recovery.py", "role": "demo"}
+  ],
+  "primary_pdf": "White_paper_part_1_efc_recovery_limits.pdf"
+}

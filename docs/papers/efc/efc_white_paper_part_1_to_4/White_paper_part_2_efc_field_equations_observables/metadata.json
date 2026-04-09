@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping",
+    "short_title": "EFC White Paper Part 2 — Field Equations & Observables",
+    "directory": "White_paper_part_2_efc_field_equations_observables",
+    "series": "EFC White Paper (Part 2 of 4)",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    },
+    "doi": "10.6084/m9.figshare.31970898",
+    "date": "2026-04",
+    "license": "CC-BY-4.0"
+  },
+  "domain": {
+    "track": "EFC White Paper Series",
+    "regimes": ["L0", "L1", "L2"],
+    "scope": "Field equations, coupling formula, observable mapping, response surface"
+  },
+  "key_equations": {
+    "coupling": "mu(a) = 1 + beta * S(a)  [beta ~ 0.16 from SPARC]",
+    "kernel": "mu_EFC(k,z) = (1 - S_bar(z)) + s_tilde(k,z)/delta_tilde(k,z)",
+    "field": "G_mu_nu = f(grad_S, E_f)",
+    "growth": "f'' + f^2 + (1/2 - 3/2 Omega_m_tilde)f = 3/2 mu(a) Omega_m_tilde",
+    "background": "E^2(z) -> E^2(z)[1 + alpha_L2 f(z) Theta(z)]  [COLLAPSED]",
+    "f_sigma_8": "[f*sigma_8](z) = f(z) * sigma_{8,0} * D(z)/D(0)",
+    "S_8": "S_8 ~ S_{8,LCDM} - delta_S_8(mu_0, B, n)",
+    "response": "R(k,S): (k,S) -> G_eff(k,S)/G_N"
+  },
+  "key_parameters": {
+    "beta": {"value": 0.16, "source": "SPARC calibration", "note": "Derived, not free"},
+    "alpha_L2": {"value": -1.00, "uncertainty": 0.46, "sigma": 2.20},
+    "B": "Dimensionless growth suppression amplitude",
+    "a_t": "Transition epoch",
+    "n": "Sigmoid sharpness (~2-4)"
+  },
+  "files": [
+    {"path": "White_paper_part_2_efc_field_equations_observables.pdf", "bytes": 271529},
+    {"path": "index.json", "role": "structured_metadata"},
+    {"path": "metadata.json", "role": "extended_metadata"},
+    {"path": "schema.json", "role": "json_schema"},
+    {"path": "white-paper-part-2-field-equations.jsonld", "role": "linked_data"},
+    {"path": "citations.bib", "role": "bibliography"},
+    {"path": "data/observable_mapping.json", "role": "table_data"},
+    {"path": "data/planned_tests.json", "role": "table_data"},
+    {"path": "src/field_equations.py", "role": "implementation"},
+    {"path": "examples/compute_observables.py", "role": "demo"}
+  ],
+  "primary_pdf": "White_paper_part_2_efc_field_equations_observables.pdf"
+}

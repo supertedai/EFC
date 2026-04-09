@@ -5,8 +5,10 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.15-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-134-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.16-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-135-brightgreen)](#ai-friendly-paper-packages)
+
+> **NEW (April 9, 2026)**: **[EFC White Paper Series (Parts 1-4)](./docs/papers/efc/efc_white_paper_part_1_to_4/)** — Canonical four-part reference. [Part 1](https://doi.org/10.6084/m9.figshare.31970886): Recovery conditions (EFC ⊃ ΛCDM). [Part 2](https://doi.org/10.6084/m9.figshare.31970898): Field equations & observable mapping. [Part 3](https://doi.org/10.6084/m9.figshare.31970904): Validation ledger & falsification protocol (102 tests, 5 kill criteria). [Part 4](https://doi.org/10.6084/m9.figshare.31970907): Regime susceptibility T(S) & dynamical dark energy.
 
 > **NEW (April 9, 2026)**: [EFC Consciousness Bridge](https://doi.org/10.6084/m9.figshare.31969983) — Closes the open bridge between cosmological entropy field S and EFC-C cognitive variables via a **three-equation system** with one free parameter (γ). Non-separable functional C = Ω̂κ̂(1 − e^{−γΩ̂κ̂}), coupled dynamics, dimensionless regime-indexed variables L0–L3. 5/5 propofol predictions consistent. K = 4.4 ± 0.6 from SPARC.
 
@@ -30,9 +32,9 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.15 public / v4.6 internal) |
-| **Papers** | 134 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 134 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.16 public / v4.7 internal) |
+| **Papers** | 135 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 135 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
@@ -154,7 +156,16 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.15 / v4.6 internal) tracks 103 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 internal) tracks 107 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+
+### EFC White Paper Series (Canonical Reference)
+
+| Part | Title | DOI |
+|------|-------|-----|
+| **Part 1** | Recovery Conditions and the LCDM Limit | [31970886](https://doi.org/10.6084/m9.figshare.31970886) |
+| **Part 2** | Field Equations and Observable Mapping | [31970898](https://doi.org/10.6084/m9.figshare.31970898) |
+| **Part 3** | Data, Validation Ledger, and Falsification Protocol | [31970904](https://doi.org/10.6084/m9.figshare.31970904) |
+| **Part 4** | Regime Susceptibility and Cross-Scale Mapping | [31970907](https://doi.org/10.6084/m9.figshare.31970907) |
 
 ### Hand-Curated Validation Reports (10/10 AI-Friendly Packages)
 
