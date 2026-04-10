@@ -1,6 +1,6 @@
 {
   "name": "EFC Validation Ledger",
-  "version": "3.0",
+  "version": "4.7",
   "generated_at": "2026-04-10T19:46:41Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
@@ -577,7 +577,7 @@
       {
         "test_id": "conv_bao_rsd_tension_resolution_via_free_8_0",
         "name": "BAO-RSD tension resolution via free σ8_0",
-        "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it confirms EFC is consistent. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
+        "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it is consistent with EFC predictions. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
         "result": "DEGENERACY_LIMITED",
         "status": "success",
         "vl_category": "consistency_check",
