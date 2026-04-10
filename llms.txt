@@ -88,7 +88,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 
 /auth/              → Origin, provenance, identity (START HERE)
 /theory/formal/     → LaTeX mathematical specifications
-/docs/papers/efc/   → 136 papers (136 with AI-friendly packages, 100% coverage)
+/docs/papers/efc/   → 137 papers (137 with AI-friendly packages, 100% coverage)
 /docs/public/       → Validation Ledger (v3.16), Master Spec
 /src/efc/           → Core Python library
 /pipelines/         → Graph-AQUAL pipeline + kill tests
@@ -102,7 +102,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (136 — 100% coverage)
+## AI-FRIENDLY PACKAGES (137 — 100% coverage)
 
 ### EFC White Paper Series (Canonical Reference)
 white-paper-part-1: src/recovery_limits.py, doi:31970886, Recovery Conditions & LCDM Limit
@@ -142,6 +142,7 @@ covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpee
 relativistic-action: src/efc_relativistic_action.py, doi:31876324
 cmb-localization: src/cmb_localization.py, doi:31368433
 background-nogo: src/background_nogo.py, doi:31333414, classes: SignLemma, BackgroundNoGo, result: ΔE²≤0 → background sector empty → perturbation only
+scale-localised-gravity: src/scale_localised_gravity.py, doi:31985313, band-pass R(k,a), mu<1, eta>1, Sigma>1, E_G bump ~7% at k_c=0.05 h/Mpc, eps_tot∈[0.38,0.42]
 discrete-gravity: src/discrete_gravity.py, doi:31348411, classes: GraphAQUAL
 
 ### Each package structure:

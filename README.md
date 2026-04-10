@@ -6,7 +6,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.16-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-136-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-137-brightgreen)](#ai-friendly-paper-packages)
 
 > **NEW (April 9, 2026)**: **[EFC White Paper Series (Parts 1-4)](./docs/papers/efc/efc_white_paper_part_1_to_4/)** — Canonical four-part reference. [Part 1](https://doi.org/10.6084/m9.figshare.31970886): Recovery conditions (EFC ⊃ ΛCDM). [Part 2](https://doi.org/10.6084/m9.figshare.31970898): Field equations & observable mapping. [Part 3](https://doi.org/10.6084/m9.figshare.31970904): Validation ledger & falsification protocol (102 tests, 5 kill criteria). [Part 4](https://doi.org/10.6084/m9.figshare.31970907): Regime susceptibility T(S) & dynamical dark energy.
 
@@ -33,8 +33,8 @@
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.16 public / v4.7 internal) |
-| **Papers** | 136 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 136 with executable Python + structured data (100% coverage) |
+| **Papers** | 137 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 137 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
@@ -262,13 +262,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 136 papers, all with AI-friendly packages (100% coverage). Six hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 137 papers, all with AI-friendly packages (100% coverage). Six hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 136 papers have AI-friendly packages (100% coverage as of April 2026). Six hand-curated 10/10 validation reports with full reproducible pipelines:
+All 137 papers have AI-friendly packages (100% coverage as of April 2026). Six hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|

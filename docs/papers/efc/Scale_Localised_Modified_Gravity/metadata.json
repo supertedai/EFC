@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via E_G(k,z)",
+    "directory": "Scale_Localised_Modified_Gravity",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research"
+    },
+    "date": "2026-04",
+    "doi": "10.6084/m9.figshare.31985313",
+    "license": "CC-BY-4.0",
+    "category": "structural",
+    "track": "perturbation_sector"
+  },
+  "domain": {
+    "track": "perturbation_sector",
+    "regimes": ["L1", "L2"],
+    "probes": ["E_G", "mu", "eta", "Sigma", "BOSS_Pk", "CMB_ISW", "CMB_lensing", "KiDS_shear"]
+  },
+  "key_numbers": {
+    "k_c": {"value": 0.05, "unit": "h/Mpc"},
+    "R_0": 0.510,
+    "eps_tot_range": [0.38, 0.42],
+    "mu_at_kc": 0.940,
+    "eta_at_kc": 1.200,
+    "Sigma_at_kc": 1.034,
+    "joint_delta_chi2": 1.4,
+    "EG_bump_pct": 7.4,
+    "detection_sigma": "2.5-3.5"
+  },
+  "files": [
+    {"path": "Scale_Localised_Modified_Gravity.pdf", "bytes": 270153},
+    {"path": "README.md", "role": "human_summary"},
+    {"path": "index.json", "role": "machine_metadata"},
+    {"path": "metadata.json", "role": "extended_metadata"},
+    {"path": "schema.json", "role": "json_schema"},
+    {"path": "scale-localised-modified-gravity.jsonld", "role": "linked_data"},
+    {"path": "citations.bib", "role": "references"},
+    {"path": "data/observational_tests.json", "role": "data"},
+    {"path": "data/eg_prediction.json", "role": "data"},
+    {"path": "src/scale_localised_gravity.py", "role": "source"},
+    {"path": "examples/demo_eg_bump.py", "role": "example"}
+  ],
+  "primary_pdf": "Scale_Localised_Modified_Gravity.pdf"
+}
