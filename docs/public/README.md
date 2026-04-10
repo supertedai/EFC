@@ -26,7 +26,9 @@ the KT test suite before figures or ledger entries are updated.
 docs/public/
 ├── EFC_Changelog.html                    # Version history and change log
 ├── EFC_Master_v1.1.html                  # Master Specification document
+├── EFC_Stage-IV_Data_Roadmap.html        # Stage-IV Data Roadmap
 ├── EFC_Validation_Ledger.html            # Validation Ledger (test results)
+├── EFC_White_Paper_Series.html           # White Paper Series (4-part reference)
 ├── efc_Ef_rho_S_heatmap.png             # Energy-density-entropy heatmap
 ├── efc_halo_S_profile.png               # Halo entropy profile
 ├── efc_halo_rho_profile.png             # Halo density profile
@@ -46,6 +48,8 @@ docs/public/
 |------|-------------|
 | **EFC_Validation_Ledger.html** | The central accountability document. Records every key test (KT1-KT5 and beyond), their pass/fail criteria, observed outcomes, pipeline versions, and dates. External reviewers and AI agents should start here to assess the empirical standing of EFC predictions. |
 | **EFC_Master_v1.1.html** | The Master Specification (v1.1) presenting the full EFC theoretical framework: foundational postulates, energy functional, field equations, emergent limits, and the relationship between entropy geometry and gravitational dynamics. The primary reference for understanding what EFC claims. |
+| **EFC_White_Paper_Series.html** | The four-part canonical reference for EFC: recovery conditions, field equations, validation protocol, and regime susceptibility. Includes sealed blind predictions and kill criteria. |
+| **EFC_Stage-IV_Data_Roadmap.html** | Maps every major Stage-IV data release (2026–2031+) to specific EFC predictions, observables, and kill criteria. Pre-registered evaluation framework with frozen thresholds. |
 | **EFC_Changelog.html** | Chronological record of significant changes to the EFC framework, codebase, and public documents. Each entry is dated and summarises what changed and why. |
 
 ### Figures
@@ -83,6 +87,12 @@ relative path from other documents in the repository.
 
 ## Relationship to Other Directories
 
+- `docs/papers/efc/` -- AI-friendly paper packages (135 packages). Each contains
+  README, metadata, index, schema, source code, data, and examples. Key packages:
+  - `EFC_Background_NoGo_Theorem/` -- Three-pillar proof that background sector
+    is structurally excluded for σ₈ suppression (sign lemma + CLASS + CMB+BAO).
+  - `EFC_vs_LCDM_Kill_Test_v6_final/` -- Six-probe kill-test (Δχ² ≤ 0 across all).
+  - `EFC_Phase_3__SPARC_Validation/` -- 174-galaxy SPARC screening model (k = 0.415).
 - `docs/notes/` -- Internal specifications that define the tests whose results
   appear in the Validation Ledger.
 - `docs/validation-ledger/` -- Build sources or tooling for the ledger HTML.
@@ -97,7 +107,9 @@ relative path from other documents in the repository.
 
 If you are an AI system evaluating the EFC programme, start with the Validation
 Ledger (`EFC_Validation_Ledger.html`) for an empirical summary of what has been
-tested and what passes. Consult the Master Specification for theoretical
-context. Figures can be read as image files for visual analysis of profiles and
-diagnostics. Do not modify files in this directory without first verifying that
-upstream pipeline outputs have been regenerated and validated.
+tested and what passes. The White Paper Series provides theoretical context and
+kill criteria. The Stage-IV Data Roadmap shows when predictions will be tested.
+The Background No-Go Theorem (`docs/papers/efc/EFC_Background_NoGo_Theorem/`)
+explains why all EFC effects are in the perturbation sector. Figures can be read
+as image files for visual analysis. Do not modify files in this directory without
+first verifying that upstream pipeline outputs have been regenerated and validated.

@@ -1,0 +1,190 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-background-nogo-theorem",
+  "title": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
+  "description": "Consolidation of three independent proofs that the EFC background coupling channel (β·T(a) modification to Friedmann equation) cannot suppress σ₈ and is observationally empty under CMB+BAO constraints. Establishes a structural boundary redirecting EFC to the perturbation sector.",
+  "version": "1.0",
+  "date": "2026-04-10",
+  "doi": "10.6084/m9.figshare.31333414",
+  "keywords": [
+    "Energy-Flow Cosmology", "no-go theorem", "background coupling",
+    "Friedmann equation", "sign lemma", "sigma8 tension", "CLASS",
+    "CMB", "BAO", "perturbation sector", "structural boundary"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "modified_friedmann": {
+      "latex": "H^2(a) = H_0^2 [\\Omega_m a^{-3} + \\Omega_\\Lambda (1 + \\beta \\cdot T(a))]",
+      "description": "EFC background modification with coupling amplitude β and transition function T(a)"
+    },
+    "gate_function": {
+      "latex": "g(z) = \\frac{1}{1 + (a_t / a)^n}",
+      "description": "Monotonically activating gate function; g(z) ≤ g(0) for all z > 0"
+    },
+    "closure_normalisation": {
+      "latex": "\\Omega'_\\Lambda = \\Omega_\\Lambda - A \\cdot g(0)",
+      "description": "Closure condition enforcing E(0) = 1"
+    },
+    "sign_lemma": {
+      "latex": "\\Delta E^2(z) = A \\cdot [g(z) - g(0)] \\leq 0 \\quad \\forall z > 0",
+      "description": "The no-go theorem: ΔE² is non-positive everywhere, so background modification enhances growth"
+    },
+    "growth_ode": {
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} = 4\\pi G \\rho_m \\delta",
+      "description": "Growth equation with H_EFC ≤ H_ΛCDM → reduced Hubble friction → enhanced growth"
+    },
+    "perturbation_alternative": {
+      "latex": "\\mu_{\\text{EFC}}(k,z) = \\frac{1}{1 + R(k)}, \\quad R(k) = \\frac{K_0 \\Theta(\\rho) (\\Gamma' \\dot{\\phi})^2 a^4}{M_{\\text{Pl}}^2 F k^4}",
+      "description": "Perturbation-sector modification: μ < 1 suppresses growth via Poisson equation, not Friedmann"
+    }
+  },
+  "parameters": {
+    "sign_lemma_inputs": {
+      "A": {
+        "value": 0.15,
+        "description": "Gate amplitude for numerical verification"
+      },
+      "z_t": {
+        "value": 1.01,
+        "description": "Transition redshift"
+      },
+      "n": {
+        "value": 6,
+        "description": "Gate steepness parameter"
+      },
+      "h": {
+        "value": 0.674,
+        "description": "Reduced Hubble constant"
+      },
+      "omega_b": {
+        "value": 0.02237,
+        "description": "Physical baryon density"
+      },
+      "omega_cdm": {
+        "value": 0.1200,
+        "description": "Physical CDM density"
+      }
+    },
+    "background_coupling": {
+      "beta": {
+        "value": 0.08,
+        "description": "Background coupling amplitude from four-channel test"
+      }
+    },
+    "perturbation_sector": {
+      "mu": {
+        "value": 0.94,
+        "description": "Effective gravitational coupling (survival valley best-fit)"
+      },
+      "Sigma": {
+        "value": 1.05,
+        "description": "Lensing potential modifier"
+      },
+      "eta": {
+        "value": 1.10,
+        "description": "Gravitational slip η = Φ/Ψ"
+      }
+    }
+  },
+  "three_pillars": {
+    "analytical": {
+      "name": "Sign Lemma",
+      "statement": "ΔE²(z) = A·[g(z) − g(0)] ≤ 0 for all z > 0",
+      "proof": "Under closure normalisation E(0) = 1, the gate g(z) is monotonically decreasing for z > 0 (activates at late times). Therefore g(z) ≤ g(0) for all z > 0, and with A > 0, ΔE² ≤ 0.",
+      "corollary": "H_EFC(z) ≤ H_ΛCDM(z) → reduced Hubble friction → enhanced structure growth",
+      "implication": "Background-level EFC structurally excluded for σ₈ suppression",
+      "reference_doi": "10.6084/m9.figshare.31333414"
+    },
+    "numerical": {
+      "name": "CLASS v3.3.4 Verification",
+      "results": [
+        {"z": 0.3, "delta_H_over_H_pct": -0.291, "sign_ok": true},
+        {"z": 0.5, "delta_H_over_H_pct": -0.569, "sign_ok": true},
+        {"z": 1.0, "delta_H_over_H_pct": -1.124, "sign_ok": true},
+        {"z": 2.0, "delta_H_over_H_pct": -0.739, "sign_ok": true},
+        {"z": 5.0, "delta_H_over_H_pct": -0.107, "sign_ok": true}
+      ],
+      "growth_enhancement": [
+        {"z": 0.38, "fsigma8_lcdm": 0.4749, "fsigma8_efc": 0.4773, "change_pct": 0.50},
+        {"z": 0.51, "fsigma8_lcdm": 0.4731, "fsigma8_efc": 0.4762, "change_pct": 0.65},
+        {"z": 0.61, "fsigma8_lcdm": 0.4679, "fsigma8_efc": 0.4715, "change_pct": 0.76}
+      ],
+      "conclusion": "Growth is enhanced at all redshifts — opposite direction from S₈ tension amelioration",
+      "reference_doi": "10.6084/m9.figshare.31333414"
+    },
+    "observational": {
+      "name": "CMB + BAO Joint Constraint",
+      "alpha_collapse": {
+        "dataset": "Planck 2018 TT/TE/EE + BOSS/eBOSS BAO",
+        "result": "α → 0 under all combinations",
+        "significance": "|Δχ²| < 2σ in all combinations",
+        "status": "CONFIRMED"
+      },
+      "alpha_H0_degeneracy": {
+        "correlation": 0.975,
+        "interpretation": "CMB is blind to α; BAO breaks the degeneracy"
+      },
+      "four_channel_test": {
+        "beta": 0.08,
+        "channels": ["BAO distances", "Growth rate", "CMB lensing", "SN Ia"],
+        "combined_delta_chi2": -3.89,
+        "significance": "~2σ preference",
+        "note": "Background coupling consistent but not sufficient for σ₈ suppression"
+      },
+      "reference_doi": "10.6084/m9.figshare.31368433"
+    }
+  },
+  "architectural_consequence": {
+    "excluded_channel": "Background (Friedmann equation modification)",
+    "active_channel": "Perturbation sector (μ, Σ, η modifications)",
+    "reason": "Sign lemma proves background enhancement; observational α-collapse confirms emptiness",
+    "survival_valley": {
+      "mu_range": [0.93, 0.96],
+      "Sigma_range": [1.03, 1.07],
+      "best_fit": {"mu": 0.94, "Sigma": 1.05, "delta_chi2": -0.45}
+    },
+    "testable_predictions": [
+      "μ ≈ 0.94 (growth suppression via Poisson equation)",
+      "Σ ≈ 1.05 (lensing enhancement via anisotropic stress)",
+      "η ≈ 1.10 (gravitational slip, most discriminating observable)",
+      "All testable by Euclid DR1/DR2 (2026–2028) and DESI DR3 (~2027–2028)"
+    ]
+  },
+  "falsification_criteria": [
+    {
+      "id": "NOGO-F1",
+      "condition": "Mechanism found where ΔE² > 0 with E(0) = 1",
+      "implication": "Sign lemma violated; requires non-monotonic gate",
+      "status": "Not viable"
+    },
+    {
+      "id": "NOGO-F2",
+      "condition": "Background-only modification produces σ₈ suppression",
+      "implication": "Analytical proof contains an error",
+      "status": "Not viable"
+    },
+    {
+      "id": "NOGO-F3",
+      "condition": "α ≠ 0 detected at > 3σ in CMB + BAO joint fit",
+      "implication": "Background gate not empty; observational pillar fails",
+      "status": "Not viable"
+    }
+  ],
+  "related_packages": [
+    {"id": "efclass-sign-structure", "doi": "10.6084/m9.figshare.31333414", "role": "Source of analytical proof"},
+    {"id": "cmb-systematic-localization", "doi": "10.6084/m9.figshare.31368433", "role": "Source of observational α-collapse"},
+    {"id": "four-channel-consistency", "doi": "10.6084/m9.figshare.31304980", "role": "β = 0.08 four-probe test"},
+    {"id": "perturbation-sigma8", "doi": "10.6084/m9.figshare.31333600", "role": "Perturbation-sector alternative"},
+    {"id": "kill-test-v6", "doi": "10.6084/m9.figshare.31964847", "role": "Full six-probe validation"},
+    {"id": "efc-relativistic-action", "doi": "10.6084/m9.figshare.31876324", "role": "Derivation of μ, Σ, η from variational action"}
+  ],
+  "files": {
+    "readme": "README.md",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  }
+}
