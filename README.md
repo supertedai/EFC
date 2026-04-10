@@ -157,7 +157,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 internal) tracks 107 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 internal) tracks 102 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
 ### EFC White Paper Series (Canonical Reference)
 

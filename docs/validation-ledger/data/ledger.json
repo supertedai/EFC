@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
-  "version": "3.0",
-  "generated_at": "2026-04-10T13:45:57Z",
+  "version": "4.7",
+  "generated_at": "2026-04-10T19:46:41Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 34,
@@ -577,7 +577,7 @@
       {
         "test_id": "conv_bao_rsd_tension_resolution_via_free_8_0",
         "name": "BAO-RSD tension resolution via free σ8_0",
-        "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it confirms EFC is consistent. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
+        "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it is consistent with EFC predictions. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
         "result": "DEGENERACY_LIMITED",
         "status": "success",
         "vl_category": "consistency_check",
@@ -1582,7 +1582,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.549593Z",
+      "timestamp": "2026-04-10T19:38:47.509593Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1605,7 +1605,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.564951Z",
+      "timestamp": "2026-04-10T19:38:47.523075Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1628,7 +1628,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.535653Z",
+      "timestamp": "2026-04-10T19:38:47.497242Z",
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
@@ -1644,7 +1644,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.591695Z",
+      "timestamp": "2026-04-10T19:38:47.549278Z",
       "best_fit": {
         "Omega_m": 0.315,
         "sigma8": 0.811
@@ -1663,7 +1663,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.578146Z",
+      "timestamp": "2026-04-10T19:38:47.535903Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -1685,7 +1685,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-10T13:27:47.519386Z",
+      "timestamp": "2026-04-10T19:38:47.483546Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
@@ -1711,7 +1711,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-10T13:07:13.692080+00:00"
+      "timestamp": "2026-04-10T19:07:24.264737+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1725,7 +1725,7 @@
       "untested": 3,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-10T13:07:13.718657+00:00"
+      "timestamp": "2026-04-10T19:07:24.303999+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1739,7 +1739,7 @@
       "untested": 3,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-10T13:07:13.732315+00:00"
+      "timestamp": "2026-04-10T19:07:24.318872+00:00"
     }
   },
   "parameters": {

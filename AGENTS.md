@@ -284,7 +284,7 @@ docs/papers/efc/[Paper-Name]/
 ### Consolidation (Start Here)
 | ID | DOI | Key Result |
 |----|-----|------------|
-| `lcdm-special-case` | 10.6084/m9.figshare.31943361 | **ΛCDM = L0/L1 limit of EFC, DESI DR2 α=−0.14±0.21, 204 pubs, 100 tests** |
+| `lcdm-special-case` | 10.6084/m9.figshare.31943361 | **ΛCDM = L0/L1 limit of EFC, DESI DR2 α=−0.14±0.21, 204 pubs, 102 tests** |
 
 ### Foundational Theory
 | ID | DOI | Title |
