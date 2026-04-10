@@ -34,6 +34,7 @@ bridge_B2: ∇Ṡ_neural ↔ ∇²R(s,a) (neural → RLHF)
 ## EMPIRICAL CONSTRAINTS (2026)
 
 lcdm_special_case: ΛCDM is L0/L1 limit of EFC (Eq. 6: K(ρ)→∞, T(a)→0, ξ≫1)
+background_nogo: ΔE²(z) ≤ 0 ∀z>0 (sign lemma); background coupling enhances growth, cannot suppress σ₈; α→0 under CMB+BAO (structurally excluded)
 desi_dr2_alpha: -0.14 ± 0.21 (0.65σ from null, ΔAIC=+1.59, ΛCDM preferred in background)
 perturbation_valley: μ∈[0.93,0.96], Σ∈[1.03,1.07], η≠1
 beta: 0.16 (from unified BAO/SN/RSD analysis)
@@ -87,7 +88,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 
 /auth/              → Origin, provenance, identity (START HERE)
 /theory/formal/     → LaTeX mathematical specifications
-/docs/papers/efc/   → 135 papers (135 with AI-friendly packages, 100% coverage)
+/docs/papers/efc/   → 136 papers (136 with AI-friendly packages, 100% coverage)
 /docs/public/       → Validation Ledger (v3.16), Master Spec
 /src/efc/           → Core Python library
 /pipelines/         → Graph-AQUAL pipeline + kill tests
@@ -101,7 +102,7 @@ L3: S→1, μ→1+β, far future, structure saturation
 /codemeta.json      → CodeMeta 2.0 metadata
 /ecosystem.jsonld   → Ecosystem linked data
 
-## AI-FRIENDLY PACKAGES (135 — 100% coverage)
+## AI-FRIENDLY PACKAGES (136 — 100% coverage)
 
 ### EFC White Paper Series (Canonical Reference)
 white-paper-part-1: src/recovery_limits.py, doi:31970886, Recovery Conditions & LCDM Limit
@@ -140,6 +141,7 @@ grid-microphysics: src/grid_microphysics.py, doi:31878760, classes: BoseEinstein
 covariant-eft: src/covariant_eft.py, doi:31878334, classes: CovEFT, GravWaveSpeed
 relativistic-action: src/efc_relativistic_action.py, doi:31876324
 cmb-localization: src/cmb_localization.py, doi:31368433
+background-nogo: src/background_nogo.py, doi:31333414, classes: SignLemma, BackgroundNoGo, result: ΔE²≤0 → background sector empty → perturbation only
 discrete-gravity: src/discrete_gravity.py, doi:31348411, classes: GraphAQUAL
 
 ### Each package structure:

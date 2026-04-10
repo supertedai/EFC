@@ -16,7 +16,7 @@ repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger: v4.7 (internal) / v3.16 (public HTML)
-ai_packages: 135 (100% coverage)
+ai_packages: 136 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 ```
@@ -57,6 +57,7 @@ EFC is a unified thermodynamic framework where **energy flows along entropy grad
 |------------|---------------|
 | Galaxy rotation | Entropy gradient coupling (no dark matter particles) |
 | Cosmic acceleration | Thermodynamic expansion (no dark energy substance) |
+| Background H(z) no-go | Sign lemma: ΔE² ≤ 0 → background cannot suppress σ₈ → perturbation sector only |
 | Structure formation | Regime-dependent growth via R(k,S) |
 | S₈ tension | L1→L2 regime transition |
 | Brain functional variability | Local degree heterogeneity → entropy gradient (r ≈ −0.97) |
@@ -121,7 +122,7 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 127 papers (127 with AI-friendly packages, 100%)
+│   ├── papers/efc/     # 136 papers (136 with AI-friendly packages, 100%)
 │   └── public/         # Validation Ledger (v3.8), Master Spec
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL pipeline + kill tests
@@ -138,9 +139,9 @@ EFC/
 
 ---
 
-## AI-Friendly Paper Packages (127)
+## AI-Friendly Paper Packages (136)
 
-All 127 papers have full executable Python packages (`src/`, `data/`, `examples/`):
+All 136 papers have full executable Python packages (`src/`, `data/`, `examples/`):
 
 ### Consolidation
 | Paper | Module | DOI |
@@ -171,6 +172,7 @@ All 127 papers have full executable Python packages (`src/`, `data/`, `examples/
 | Covariant EFT | `covariant_eft.py` | 31878334 |
 | EFC Relativistic Action | `efc_relativistic_action.py` | 31876324 |
 | CMB Localization / Lensing Barrier | `cmb_localization.py` | 31368433 |
+| **Background No-Go Theorem** | `background_nogo.py` | 31333414 |
 | Discrete Entropic Gravity (Graph-AQUAL) | `discrete_gravity.py` | 31348411 |
 | Double-Slit Grid Resolution | `double_slit_grid.py` | — |
 | Minimal EFC EFT Ansatz | `minimal_eft.py` | — |

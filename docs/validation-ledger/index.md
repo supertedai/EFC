@@ -97,6 +97,8 @@ The Baryon Acoustic Oscillation data from BOSS DR12 and DESI Y1 are currently re
 
 EFC modifies late-time cosmology via a Hubble friction term: H(a) = H_ΛCDM(a) · [1 + α · g(a)], where α is the coupling strength and g(a) is a gate function activating at low redshift (z ≲ 2). This modification affects expansion history, growth of structure, and distance measures. The α parameter is constrained by joint fits to BAO, H(z), fσ₈, and Type Ia supernovae.
 
+**Background No-Go Theorem (DOI: [31333414](https://doi.org/10.6084/m9.figshare.31333414)):** The background coupling channel is structurally excluded for σ₈ suppression. Three independent proofs: (1) Sign lemma — ΔE²(z) ≤ 0 for all z > 0 under closure normalisation, implying H_EFC ≤ H_ΛCDM and enhanced (not suppressed) growth; (2) CLASS v3.3.4 verification — ΔH/H = −0.3% to −1.1%, negative everywhere; (3) Observational — α collapses to ≈0 under all Planck+BAO combinations. **All late-time EFC effects must enter through the perturbation sector (μ, Σ, η).**
+
 
 ### Autonomous MCMC Results
 
