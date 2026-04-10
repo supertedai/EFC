@@ -1,65 +1,9 @@
 {
   "name": "Recent Changes",
   "version": "3.0",
-  "generated_at": "2026-04-10T01:45:13Z",
+  "generated_at": "2026-04-10T13:45:57Z",
   "period_days": 7,
   "changes": [
-    {
-      "name": "EFC White Paper Series (Parts 1-4) — Canonical four-part reference",
-      "status": "completed",
-      "result": "Full AI-friendly packages created for all four parts of the EFC White Paper series: Part 1 — Recovery Conditions and the LCDM Limit (DOI 10.6084/m9.figshare.31970886): three independent sufficient conditions (parameter limit, entropy recovery, density saturation) establishing EFC contains LCDM as limiting case. Part 2 — Field Equations and Observable Mapping (DOI 10.6084/m9.figshare.31970898): entropy field S(a), coupling mu(a) = 1 + beta*S(a), complete observable mapping (f*sigma_8, S_8, Sigma, R(k,S)). Part 3 — Data, Validation Ledger, and Falsification Protocol (DOI 10.6084/m9.figshare.31970904): 102 registered tests, sealed blind predictions, five kill criteria for Stage-IV surveys. Part 4 — Regime Susceptibility and Cross-Scale Mapping (DOI 10.6084/m9.figshare.31970907): susceptibility function T(S), entropic continuum, dynamical dark energy w(a) = -beta(S)*a. Each part ships with README, index.json, metadata.json, schema.json, JSON-LD, citations.bib, data/, src/, examples/. Parent directory includes series overview README.",
-      "last_updated": "2026-04-09T00:00:00+00:00",
-      "source": "efc_white_paper_part_1_to_4",
-      "all_labels": ["EFCWhitePaper", "RecoveryConditions", "FieldEquations", "ValidationLedger", "FalsificationProtocol", "RegimeSusceptibility", "EntropicContinuum", "CanonicalReference"]
-    },
-    {
-      "name": "EFC Consciousness Bridge — Three-Equation System (EFC-VAL-2026-007)",
-      "status": "completed",
-      "result": "Structural derivation closing the bridge between cosmological entropy field S and EFC-C cognitive variables. Three problems resolved: (1) separable C=Omega*kappa replaced by non-separable functional C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat)); (2) coupled dynamical equations for Omega_hat_dot and kappa_hat_dot derived; (3) dimensionless regime-indexed variables introduced spanning L0-L3. One free parameter (gamma). Anti-correlation corr(Omega,kappa)<0 derived from dynamics, not imposed. 5/5 directional predictions consistent with propofol sedation EEG data (Chennu et al. 2016). Cross-domain constant K = 4.4 +/- 0.6 inherited from SPARC with zero neural fitting. DOI 10.6084/m9.figshare.31969983",
-      "last_updated": "2026-04-09T00:00:00+00:00",
-      "source": "Closing_the_EFC_Consciousness_Bridge",
-      "all_labels": ["EFCValidation", "ConsciousnessBridge", "EFC-C", "NonSeparable", "CrossDomain", "ThreeEquationSystem", "StructuralDerivation"]
-    },
-    {
-      "name": "EFC vs ΛCDM Complete Kill-Test v6 (EFC-VAL-2026-006)",
-      "status": "consistent_robust",
-      "result": "Six-probe kill-test L0→L3 with two-parameter action (K0, m²). 4/4 cobaya minimize runs return Δχ²≤0: MGCAMB -0.45, A_lens proxy -0.81, A_lens free -0.70, (K0,m²) bobyqa -0.30. K0_min=1.552 (−6.5% vs v5), m²_min=0.00318 (−9.1% vs v5), both in sweet-spot windows. Sector decomposition: lowl TT −0.189, lowl EE −0.070, Lensing −0.329, BAO −0.179, Pantheon+ +0.468 → total −0.300. Probe verdicts after strict re-evaluation: ✅ DDO 154 rotation curve (ΔAIC=35.4), ✅ CMB lensing μ-Σ/A_L anomaly (Δχ²=−0.45, reproduced 3×), ✅ Δχ² stability, ✅ (K0, m²) parameter convergence; 🟡 multi-component SPARC refit (5/175), 🟡 Bullet Cluster (tied), 🟡 global cosmology Planck+BAO+Pantheon+ (sub-statistical); ⚪ CMB primary (neutral by construction); 🔴 none. Stage promoted to 🔵 Non-rejectable model; global verdict remains OPEN. UNDER REVIEW (not ticked): 'better than ΛCDM', 'no dark matter/energy proven', 'full cosmological validation'. DOI 10.6084/m9.figshare.31964847",
-      "last_updated": "2026-04-08T00:00:00+00:00",
-      "source": "EFC_vs_LCDM_Kill_Test_v6_final",
-      "all_labels": ["EFCValidation", "KillTest", "NonRejectableModel", "ConsistentRobust", "KRhoBridge", "GravitationalSlip", "CobayaMinimize", "MGCAMB"]
-    },
-    {
-      "name": "KT3b Cross-Regime Measurement Failure (EFC-VAL-2026-005)",
-      "status": "completed",
-      "result": "Null result + RCMP diagnosis. Four-run signal collapse (slope: -0.21 → +0.01 → -0.07 → 0.0) explained as a cross-regime measurement failure, not a physical null. KT3b violates the Regime-Consistent Measurement Principle in three ways: V1 driver-response mismatch (ρ_env L1 vs D_eff L2, underived α), V2 boundary observation (ℛ at a₀ on L1/L2 transition), V3 implicit regime mixing (Υ⋆ = 0.5 assumes L1 stellar physics). Three valid test architectures proposed: A (pure L2 RAR shape, 0 params, SPARC data available, recommended next step), B (pure L1 fσ8 growth, 1 param α_L1 = -0.14 ± 0.21), C (derived L1→L2 mapping, 0 params, open problem). DOI 10.6084/m9.figshare.31963821",
-      "last_updated": "2026-04-08T00:00:00+00:00",
-      "source": "KT3b_CrossRegime_Measurement_Failure_DOI",
-      "all_labels": ["EFCValidation", "RCMP", "CrossRegime", "KT3b", "NullResult", "MethodologicalDiagnosis"]
-    },
-    {
-      "name": "Bullet Cluster Under EFC (EFC-VAL-2026-004)",
-      "status": "completed",
-      "result": "Four-axis confrontation with three JWST-era studies (Cha 2025, Rihtaršič 2026, Cho 2025). PIEMD A_sig 2D baseline = -6.9e-4, bootstrap p=0.98 (null operator validated). 10:1 minor-merger ratio tightens structural exclusion test (31173850). SIDM bound σ/m < 0.5 cm²/g consistent with EFC no-particle ontology. No new parameters; frozen at Ledger v3.11. Pre-registered A_sig on δκ residual remains pending as decisive discriminator. DOI 10.6084/m9.figshare.31963668",
-      "last_updated": "2026-04-08T00:00:00+00:00",
-      "source": "bullet_cluster_efc",
-      "all_labels": ["EFCValidation", "ClusterLensing", "BulletCluster", "ShockFront", "L2Regime"]
-    },
-    {
-      "name": "AI-Friendly Package Rollout — All EFC Papers",
-      "status": "completed",
-      "result": "130 paper directories now ship index.json + metadata.json + ai_manifest.json + *.jsonld + README.md; ai_friendly_index.json catalogue at docs/papers/efc/. Hand-curated reference packages: WP4_BOSS_transfer_validation, Multi_epoch_Growth_Rate_Test_of_EFC.",
-      "last_updated": "2026-04-07T00:00:00+00:00",
-      "source": "claude/ai-friendly-cosmology-package-O5QcZ",
-      "all_labels": ["AIFriendly", "Metadata", "Provenance"]
-    },
-    {
-      "name": "Multi-epoch Growth Rate Test of EFC (EFC-VAL-2026-003)",
-      "status": "completed",
-      "result": "ΛCDM χ²=12.07/12, EFC χ²=11.98/11, Δχ²=0.10 (0.06σ); null result, B=0 within 1σ profile; Ωm–B degeneracy requires BAO joint fit. DOI 10.6084/m9.figshare.31955871",
-      "last_updated": "2026-04-07T00:00:00+00:00",
-      "source": "Multi_epoch_Growth_Rate_Test_of_EFC",
-      "all_labels": ["EFCValidation", "Growth", "RSD"]
-    },
     {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
@@ -82,13 +26,12 @@
     },
     {
       "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
-      "status": "superseded",
-      "result": "Null + RCMP diagnosis; see EFC-VAL-2026-005 (DOI 10.6084/m9.figshare.31963821). Three valid replacement architectures proposed; Architecture A (pure L2 RAR slope) is the recommended follow-up.",
-      "last_updated": "2026-04-08T00:00:00+00:00",
-      "source": "KT3b_CrossRegime_Measurement_Failure_DOI",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-07T07:57:37.851000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
-        "EFCValidation",
-        "Superseded"
+        "EFCValidation"
       ]
     }
   ]

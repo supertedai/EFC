@@ -1,46 +1,21 @@
 {
   "name": "Status Classification System",
-  "version": "3.1",
-  "generated_at": "2026-04-08T00:00:00Z",
+  "version": "3.0",
+  "generated_at": "2026-04-10T13:45:57Z",
   "levels": [
-    {
-      "level_id": "non_rejectable_model",
-      "name": "Stage: Non-rejectable model",
-      "emoji": "🔵",
-      "meaning": "EFC cannot be rejected on current data and shows consistent Δχ² ≤ 0 across independent probes. This is NOT a claim of correctness, only that the model survives current falsification attempts.",
-      "sort_order": 0,
-      "added_in": "v4.5",
-      "stage_of": "overall_epistemic_status"
-    },
-    {
-      "level_id": "consistent_robust",
-      "name": "Consistent with data (robust)",
-      "emoji": "✅",
-      "meaning": "Probe yields Δχ² ≤ 0 or decisive ΔAIC in EFC direction, reproduced across independent runs or datasets. Does NOT mean 'EFC is correct' — only that the data does not reject it.",
-      "sort_order": 1,
-      "added_in": "v4.5"
-    },
-    {
-      "level_id": "consistent_preliminary",
-      "name": "Consistent with data (preliminary / limited sample)",
-      "emoji": "🟡",
-      "meaning": "Probe yields Δχ² ≤ 0 but sample is small, result is not decisive, or test is not independent of calibration. Consistency is real but under-powered.",
-      "sort_order": 2,
-      "added_in": "v4.5"
-    },
     {
       "level_id": "completed_data_likelihood",
       "name": "Completed (Data Likelihood Test)",
       "emoji": "🟢",
       "meaning": "Full quantitative comparison using established statistical frameworks with real data",
-      "sort_order": 3
+      "sort_order": 1
     },
     {
       "level_id": "completed_consistency_check",
       "name": "Completed (Consistency Check)",
       "emoji": "🟢",
       "meaning": "EFC predicts minimal deviation; observations show no contradiction",
-      "sort_order": 4
+      "sort_order": 2
     },
     {
       "level_id": "completed_structural_constraint",
