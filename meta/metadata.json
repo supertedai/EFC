@@ -1,0 +1,21 @@
+{
+  "id": "efc-meta",
+  "title": "EFC Meta-Architecture",
+  "short_description": "Self-referential meta-level framework for EFC: cognition, reflection, process, and symbiosis",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "repository": "https://github.com/supertedai/EFC",
+  "path": "meta/",
+  "n_modules": 10,
+  "n_nested_dirs": 25,
+  "efc_context": {
+    "layer": "meta",
+    "purpose": "Architectural reasoning, cognitive analysis, process tracking, reflective protocols, human-AI symbiosis",
+    "depends_on": ["methodology/"],
+    "depended_by": [],
+    "unique_aspect": "Self-referential: applies EFC concepts to the process of developing EFC itself"
+  }
+}

@@ -1,0 +1,11 @@
+# Local cobaya/CAMB install artifacts (large, reproducible from install.sh)
+.venv/
+packages/
+logs/
+*.log
+*.output
+__pycache__/
+
+# Ignore everything in chains/ except the committed minimum.txt snapshots
+chains/*
+!chains/*.minimum.txt

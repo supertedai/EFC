@@ -1,0 +1,89 @@
+{
+  "id": "efc-src",
+  "title": "EFC Python Source Library",
+  "description": "Core Python implementation of Energy-Flow Cosmology: entropy fields, energy-flow potentials, perturbation-level growth, gate functions, rotation curve validation, and Grid-AQUAL kill tests.",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "language": "python",
+  "python_requires": ">= 3.10",
+  "dependencies": ["numpy", "matplotlib"],
+  "modules": [
+    {
+      "id": "efc-core",
+      "path": "efc/core/",
+      "title": "Core Model & Parameters",
+      "exports": ["EFCParameters", "EFCModel", "compute_state", "rotation_velocity"],
+      "description": "Base classes for EFC parameters, model state computation, energy flow, and rotation curves"
+    },
+    {
+      "id": "efc-entropy",
+      "path": "efc/entropy/",
+      "title": "Entropy Field",
+      "exports": ["entropy_field", "entropy_gradient"],
+      "description": "S(r) = S0*(1 - exp(-r/Ls)) and gradient computations"
+    },
+    {
+      "id": "efc-potential",
+      "path": "efc/potential/",
+      "title": "Energy-Flow Potential",
+      "exports": ["compute_energy_flow", "energy_density", "energy_flow_rate"],
+      "description": "E_f = rho*(1-S) and related energy-flow computations"
+    },
+    {
+      "id": "efc-perturbation",
+      "path": "efc/perturbation/",
+      "title": "Perturbation-Level Growth Physics",
+      "exports": ["gate_function", "mu_of_a", "solve_growth", "compute_fsigma8", "get_fsigma8_arrays", "summarise_loo"],
+      "description": "Gate function g(a), mu(a) = 1 - B*g(a), linear growth ODE, fσ8 observational comparison, LOO robustness",
+      "submodules": ["gate.py", "background.py", "mu.py", "growth.py", "robustness.py"],
+      "references": [
+        "10.6084/m9.figshare.31333414",
+        "10.6084/m9.figshare.31333600",
+        "10.6084/m9.figshare.31332730"
+      ]
+    },
+    {
+      "id": "efc-validation",
+      "path": "efc/validation/",
+      "title": "Rotation Curve Validation",
+      "exports": ["rotation_curve_efc", "validate_rotation_curve", "compare_with_sparc", "load_rotation_curve"],
+      "description": "SPARC rotation curve comparison and parameter loading"
+    },
+    {
+      "id": "efc-solver",
+      "path": "efc/solver/",
+      "title": "Grid-AQUAL Numerical Solver",
+      "exports": ["grid_aqual_killtests", "grid_aqual_extra_tests"],
+      "description": "Numerical convergence tests and kill-test infrastructure for discrete entropic gravity"
+    },
+    {
+      "id": "efc-meta",
+      "path": "efc/meta/",
+      "title": "Meta-Cognitive Layer",
+      "exports": ["cofield_simulator"],
+      "description": "Experimental meta-cognitive simulation framework (minimal)"
+    }
+  ],
+  "standalone_modules": [
+    {
+      "id": "efc-light",
+      "path": "efc_light.py",
+      "title": "EFC Light Speed Model",
+      "exports": ["c_of_S"],
+      "description": "Entropy-dependent effective speed c(S) per formal specification Section 4"
+    }
+  ],
+  "cosmological_defaults": {
+    "Omega_m": 0.3134,
+    "Omega_r": 9.15e-5,
+    "H0_km_s_Mpc": 67.4,
+    "sigma8_lcdm": 0.811,
+    "source": "Planck 2018"
+  }
+}

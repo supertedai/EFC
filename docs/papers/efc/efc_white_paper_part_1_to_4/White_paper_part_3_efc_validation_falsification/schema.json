@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Validation Test Entry",
+  "description": "Schema for a single test in the EFC Validation Ledger",
+  "type": "object",
+  "properties": {
+    "test": {
+      "type": "string",
+      "description": "Name of the validation test"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Pass", "Partial", "Collapsed", "Failed", "Falsified"],
+      "description": "Current validation status"
+    },
+    "result": {
+      "type": "string",
+      "description": "Detailed result description"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["T1", "T2", "T3", "T4"],
+      "description": "Classification tier: T1=multi-channel, T2=data-likelihood, T3=structural, T4=meta-model"
+    }
+  },
+  "required": ["test", "status", "result"]
+}

@@ -1,0 +1,147 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31964847",
+  "name": "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
+  "headline": "Six-probe kill-test of Energy-Flow Cosmology against ΛCDM with four cobaya minimize runs all returning Δχ² ≤ 0 in the EFC direction",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
+  },
+  "datePublished": "2026-04-08",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "6.0",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "ΛCDM",
+    "kill test",
+    "cobaya",
+    "MGCAMB",
+    "CAMB",
+    "Planck 2018",
+    "BAO",
+    "Pantheon+",
+    "gravitational slip",
+    "mu Sigma parametrization",
+    "K(rho) bridge",
+    "SPARC",
+    "DDO 154",
+    "rotation curves",
+    "Bullet Cluster",
+    "Hubble tension",
+    "modified gravity"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:KRhoBridge",
+      "name": "K(ρ) Bridge",
+      "description": "μ(k) = 1/(1+R(k)) with R(k) = K0·Θ(ρ)·(Γ'φ̇)²·a⁴/(M_Pl²·F·k⁴) and Θ(ρ) = exp(−(ρ/ρ*)²). Connects cosmological CMB lensing scale to galactic rotation curves via one parameter K0 ≈ 1.66."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:GravitationalSlip",
+      "name": "Gravitational Slip from δλ",
+      "description": "f = 1 − V''(φ̄)/(K(ρ̄)·k²/a²) with V'' counter-term; sweet spot f ∈ [0.12, 0.18] yields η ∈ [1.20, 1.27] and Σ ∈ [1.03, 1.07]"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:TwoParameterAction",
+      "name": "Two-Parameter Action",
+      "description": "Single action with field parameters (K0, m²) produces μ, η, Σ from one mechanism — stiffness and slip are not independent"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:PredictiveChain",
+      "name": "Predictive Chain",
+      "description": "K0 → μ (stiffness via R ∝ k⁻⁴); m² → f → η → Σ (slip via V''/Kk²); Θ → 0 in dense regions gives GR in Solar System"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:SweetSpotWindow",
+      "name": "Slip Sweet-Spot Window",
+      "description": "f ∈ [0.12, 0.18] (25% wide), yielding η ∈ [1.20, 1.27] and Σ ∈ [1.03, 1.07] consistent with all cobaya runs"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeArchitecture",
+      "name": "L0–L3 Regime Architecture",
+      "description": "L0 (z>1100, α_S→0, GR+SM) | L1 (30<z<1100, linear growth) | L2 (0.5<z<30, α_L2≠0, late-time MG) | L3 (z~0, full entropy-flow, galactic)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:NonRejectabilityStage",
+      "name": "Non-Rejectability Stage",
+      "description": "EFC cannot be rejected on current data; Δχ² ≤ 0 across all four cobaya minimize runs and all six probes. Full MCMC with Bayes evidence is the remaining definitive test."
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Six-Probe Non-Rejectability of EFC",
+    "description": "Across DDO 154, SPARC multi-component refit, Bullet Cluster, CMB primary, A_L/(μ,Σ), and cobaya minimize (plik_lite + lowl + lensing + BAO + Pantheon+), EFC is either decisively preferred, tied, neutral by construction, or favoured with Δχ² ≤ 0. Direction is stable across datasets and parametrizations."
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "EFC: Relativistic Action, Field Equations, Perturbation Theory and Extraction",
+      "author": "Magnusson, M.",
+      "datePublished": "2026",
+      "identifier": "doi:10.6084/m9.figshare.31876324"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival and the Lensing Barrier",
+      "author": "Magnusson, M.",
+      "datePublished": "2026",
+      "identifier": "doi:10.6084/m9.figshare.31368433"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Planck 2018 results. V. CMB power spectra and likelihoods",
+      "author": "Planck Collaboration",
+      "datePublished": "2020",
+      "identifier": "doi:10.1051/0004-6361/201936386"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Cobaya: Code for Bayesian Analysis of an Expanding Universe",
+      "author": "Torrado, J. and Lewis, A.",
+      "datePublished": "2021",
+      "identifier": "doi:10.1088/1475-7516/2021/05/057"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "MGCAMB: Testing gravitational theories with CAMB",
+      "author": "Pogosian, L. et al.",
+      "datePublished": "2010",
+      "identifier": "doi:10.1103/PhysRevD.81.104023"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "SPARC: Mass Models for 175 Disk Galaxies",
+      "author": "Lelli, F. et al.",
+      "datePublished": "2016",
+      "identifier": "doi:10.3847/0004-6256/152/6/157"
+    }
+  ],
+  "epistemicStatus": "Layer B→C — Numerical kill-test across six probes; awaiting full MCMC for Layer C"
+}

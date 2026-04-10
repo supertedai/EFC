@@ -1,0 +1,44 @@
+{
+  "table": "Entropic continuum — energy-flow phases",
+  "source": "White Paper Part 4, Section 2",
+  "phases": [
+    {
+      "phase": "Dark Matter regime",
+      "current_divergence": "div(J^mu) < 0",
+      "flow_type": "Convergent",
+      "effect": "Excess gravity — structure formation enhanced",
+      "effective_pressure": "Positive (resists compression)"
+    },
+    {
+      "phase": "Matter-dominated equilibrium",
+      "current_divergence": "div(J^mu) = 0",
+      "flow_type": "Equilibrium",
+      "effect": "Standard matter-dominated expansion",
+      "effective_pressure": "Zero"
+    },
+    {
+      "phase": "Dark Energy regime",
+      "current_divergence": "div(J^mu) > 0",
+      "flow_type": "Divergent",
+      "effect": "Accelerated expansion",
+      "effective_pressure": "Negative (system releases binding constraint)"
+    }
+  ],
+  "thermodynamic_boundaries": [
+    {
+      "name": "Singularity",
+      "S_value": 0,
+      "description": "Maximal order, zero entropy gradient, no energy flow. GR recovered exactly (Part 1, Theorem 2)."
+    },
+    {
+      "name": "Altular limit",
+      "S_value": 1,
+      "description": "Maximal entropy, zero gradient, no flow. Expansion asymptotes to de Sitter; all coupling vanishes."
+    }
+  ],
+  "omega_ratio": {
+    "formula": "Omega_Lambda(z) / Omega_m(z) = f(S(z) / S_max)",
+    "observed_z0": 2.5,
+    "interpretation": "Measurement of where universe sits on entropic continuum, not a fundamental constant"
+  }
+}

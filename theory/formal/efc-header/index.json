@@ -1,0 +1,10 @@
+{
+  "id": "efc-header",
+  "title": "EFC Formal Header",
+  "description": "Shared notation, constants, normalizations, and LaTeX macro definitions used across all formal specifications.",
+  "type": "meta",
+  "version": "1.0",
+  "regime": "meta",
+  "files": ["index.tex", "minimal_spec.tex"],
+  "used_by": ["efc-s-model", "efc-d-model", "efc-c0-model", "efc-h-model", "efc-r-model", "efc-formal-spec"]
+}

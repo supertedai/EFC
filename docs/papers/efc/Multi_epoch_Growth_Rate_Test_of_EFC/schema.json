@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EFC Multi-epoch fσ8 Validation Package",
+  "type": "object",
+  "required": ["paper", "datasets", "model", "results"],
+  "properties": {
+    "paper": {
+      "type": "object",
+      "required": ["title", "doi", "author", "date"],
+      "properties": {
+        "title": {"type": "string"},
+        "doi": {"type": "string"},
+        "report_id": {"type": "string"},
+        "author": {"type": "object"},
+        "date": {"type": "string"},
+        "license": {"type": "string"}
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["survey", "z", "fsigma8", "sigma"],
+        "properties": {
+          "survey": {"type": "string"},
+          "tracer": {"type": "string"},
+          "z": {"type": "number"},
+          "fsigma8": {"type": "number"},
+          "sigma": {"type": "number"},
+          "ref": {"type": "string"}
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "mu_of_a": {"type": "string"},
+        "free_params_EFC": {"type": "array"},
+        "fixed": {"type": "object"}
+      }
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "LCDM": {"type": "object"},
+        "EFC": {"type": "object"},
+        "delta_chi2": {"type": "number"},
+        "delta_AIC": {"type": "number"}
+      }
+    }
+  }
+}

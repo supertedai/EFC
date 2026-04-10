@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC White Paper Series Entry",
+  "description": "Schema for an entry in the four-part EFC White Paper series",
+  "type": "object",
+  "properties": {
+    "part": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4,
+      "description": "Part number (1-4)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Full title of the white paper part"
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^10\\.6084/m9\\.figshare\\.\\d{8}$",
+      "description": "Figshare DOI"
+    },
+    "key_result": {
+      "type": "string",
+      "description": "One-line summary of the primary result"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["structural", "foundational"],
+      "description": "Evidence category — white papers are structural/foundational"
+    },
+    "equations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key equations introduced in this part"
+    },
+    "data_tables": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named tables in this part"
+    }
+  },
+  "required": ["part", "title", "doi", "key_result", "category"]
+}

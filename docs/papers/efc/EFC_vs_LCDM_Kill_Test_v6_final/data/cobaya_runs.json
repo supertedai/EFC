@@ -1,0 +1,52 @@
+{
+  "$schema": "../schema.json",
+  "description": "All four cobaya minimize runs reported in Section 6, Table 5.",
+  "source": "Section 6, Table 5 of EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+  "runs": [
+    {
+      "id": "run-1",
+      "run": "MGCAMB",
+      "dataset": "plik_lite + lowl + lensing (free cosmology)",
+      "parameters": ["mu0", "Sigma0"],
+      "delta_chi2": -0.45,
+      "engine": "direct_eval",
+      "notes": "MGCAMB with (mu, Sigma) parametrization; 2D grid scan"
+    },
+    {
+      "id": "run-2",
+      "run": "A_lens proxy",
+      "dataset": "plik_lite + lowl + lensing (fixed cosmology)",
+      "parameters": ["A_lens"],
+      "delta_chi2": -0.81,
+      "engine": "cobaya_minimize",
+      "notes": "Fixed cosmology; A_lens as Sigma0 proxy; largest single-parameter improvement"
+    },
+    {
+      "id": "run-3",
+      "run": "A_lens free",
+      "dataset": "plik_lite + lowl + lensing (free cosmology)",
+      "parameters": ["A_lens"],
+      "delta_chi2": -0.70,
+      "engine": "cobaya_minimize",
+      "notes": "Free cosmology; A_lens proxy; robust to cosmology marginalization"
+    },
+    {
+      "id": "run-4",
+      "run": "K0_m2",
+      "dataset": "lowl + lensing + BAO + Pantheon+",
+      "parameters": ["K0", "m2"],
+      "delta_chi2": -0.30,
+      "engine": "cobaya_bobyqa",
+      "notes": "Two-parameter EFC action; full late-time chain; K0_min=1.552, m2_min=0.00318"
+    }
+  ],
+  "aggregate": {
+    "n_runs": 4,
+    "n_efc_preferred": 4,
+    "delta_chi2_min": -0.81,
+    "delta_chi2_max": -0.30,
+    "delta_chi2_mean": -0.565,
+    "all_efc_preferred": true
+  },
+  "falsification_threshold": "Any run returning delta_chi2 > 0 would constitute tension; none observed."
+}

@@ -1,0 +1,25 @@
+{
+  "id": "efc-methodology",
+  "title": "EFC Methodology Layer",
+  "short_description": "Cognitive, procedural, and reproducibility framework for EFC research",
+  "version": "1.0",
+  "date": "2026-04-08",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "license": "CC-BY-4.0",
+  "repository": "https://github.com/supertedai/EFC",
+  "path": "methodology/",
+  "n_modules": 10,
+  "efc_context": {
+    "layer": "methodology",
+    "purpose": "Research process transparency, human-AI separation, epistemological foundations",
+    "depends_on": [],
+    "depended_by": ["meta/", "docs/"],
+    "key_principles": [
+      "Separation of insight and structure",
+      "AI assists organization, not conclusions",
+      "All reasoning traceable and externally verifiable",
+      "Reproducibility via deterministic computation and parameter control"
+    ]
+  }
+}

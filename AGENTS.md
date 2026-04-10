@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.1 | **Updated**: 2026-04-06
+**Version**: 3.5 | **Updated**: 2026-04-09
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -15,8 +15,10 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v3.8
-ai_packages: 127 (100% coverage)
+validation_ledger: v4.7 (internal) / v3.16 (public HTML)
+ai_packages: 135 (100% coverage)
+stage: non_rejectable_model (global verdict OPEN)
+maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 ```
 
 | Resource | Location |
@@ -27,6 +29,21 @@ ai_packages: 127 (100% coverage)
 | Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
 | DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |
 | Validation Ledger | [`/docs/public/EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) |
+| Maintenance | [`/scripts/maintenance/`](./scripts/maintenance/) — generator + verifier + orchestrator |
+
+## Repository invariants (enforced by `scripts/maintenance/efc_verify.py`)
+
+Three evidence layers are kept **strictly separate** — violating this is claim inflation and is rejected by CI:
+
+1. **EFC publications (own Figshare DOI)** → `docs/validation-ledger/data/evidence-register.json` + `data/ledger.json` empirical list. Each entry **must** be a 8-digit Figshare DOI.
+2. **Third-party arXiv publications** → only in `§4b` of `docs/public/EFC_Validation_Ledger.html`, tagged `[external — …]`, with status `no EFC working note yet`. **Never** in the JSON registers.
+3. **EFC working notes confronting externals** → their own Figshare DOI, their own `EFC-VAL-2026-0XX` report ID, entered in layer 1, and the corresponding `§4b` status line flipped to `confronted in [DOI]`.
+
+**Language discipline:** external observations are `consistent with` / `overlaps with` / `within EFC prediction band` — never `confirms EFC`.
+
+**Pre-registration discipline:** predictions must cite the **prior** EFC DOI where the prediction was first stated, in the same sentence, to prevent post-diction.
+
+**Run maintenance manually:** `python3 scripts/maintenance/efc_maintain.py`. See [`scripts/maintenance/README.md`](./scripts/maintenance/README.md) for the full algorithm.
 
 ---
 

@@ -1,0 +1,105 @@
+{
+  "id": "closing-the-efc-consciousness-bridge",
+  "title": "Closing the EFC Consciousness Bridge: Dimensionless, Scale-Invariant Unification of Entropy, Dynamics, and Awareness",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "report_id": "EFC-VAL-2026-007",
+  "doi": "10.6084/m9.figshare.31969983",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31969983",
+  "date": "2026-04",
+  "license": "CC-BY-4.0",
+  "ledger_version": "v3.14",
+  "type": "structural derivation, cross-domain bridge, framework extension",
+  "track": "Spor 4 — Cross-Domain (EFC-C Consciousness)",
+  "regimes": ["L0", "L1", "L2", "L3"],
+  "target": {
+    "system": "Cross-domain bridge: cosmological entropy S to cognitive variables (Omega_hat, kappa_hat)",
+    "scale": "All EFC regimes (L0 cosmology to L3 cognition/AI)",
+    "domain_span": "10^-26 to 10^0 kg/m^3"
+  },
+  "three_equation_system": {
+    "eq_I": "d Omega_hat / dt = -lambda_Omega * grad(delta S / delta rho) + D_Omega * Laplacian(Omega_hat)",
+    "eq_II": "d kappa_hat / dt = J_flow - mu * kappa_hat * Omega_hat",
+    "eq_III": "C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat))"
+  },
+  "dimensionless_variables": {
+    "Omega_hat_l": "S(rho) / S_l",
+    "kappa_hat_l": "(alpha_l / rho_l) * |grad(delta S / delta rho)|",
+    "reduces_to_cognitive": "Omega_hat -> Omega = H(p)/H_max when S(rho) = H(p) and S_l = H_max at L3",
+    "reduces_to_transfer_entropy": "kappa_hat -> kappa = <T(X->Y)> when functional derivative identified with mean transfer entropy"
+  },
+  "cross_domain_constant": {
+    "K": 4.4,
+    "K_uncertainty": 0.6,
+    "source": "SPARC galactic rotation curve data (B1* bridge equation from EFC-C v2)",
+    "neural_parameter_fitting": 0,
+    "equation": "kappa_hat_healthy = K / (1 + lambda_2(W) * tau_c)"
+  },
+  "regime_mapping": [
+    {"regime": "L0", "rho_kg_m3": "~1e-26", "S_l": "S_CMB", "domain": "Cosmology"},
+    {"regime": "L1", "rho_kg_m3": "~1e-22", "S_l": "S_cluster", "domain": "Astrophysics"},
+    {"regime": "L2", "rho_kg_m3": "~1e-3", "S_l": "S_bio", "domain": "Biology"},
+    {"regime": "L3", "rho_kg_m3": "~1e0", "S_l": "H_max", "domain": "Cognition / AI"}
+  ],
+  "non_separable_functional": {
+    "form": "C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat))",
+    "low_limit": "C ~ gamma * Omega_hat^2 * kappa_hat^2 (both differentiation and integration required)",
+    "high_limit": "C -> Omega_hat * kappa_hat (recovers product in saturation)",
+    "why_non_separable": "exp(-gamma * Omega_hat * kappa_hat) couples Omega_hat and kappa_hat multiplicatively inside the exponent"
+  },
+  "emergent_anti_correlation": {
+    "steady_state": "kappa_hat_ss = J_flow / (mu * Omega_hat) ~ 1/Omega_hat",
+    "previously": "External constraint corr(Omega, kappa) < 0 imposed axiomatically",
+    "now": "Anti-correlation derived from dynamics (Eq. II steady state)"
+  },
+  "propofol_consistency": {
+    "source_paper": "10.6084/m9.figshare.31289806",
+    "dataset": "Chennu et al. 2016 propofol sedation EEG (N=20, overlap n=12)",
+    "predictions_tested": 5,
+    "predictions_supported": 5,
+    "status": "Qualitative consistency, not a direct test of full model"
+  },
+  "parameter_inventory": {
+    "free_parameters": 1,
+    "free_parameter_name": "gamma (non-separable coupling constant)",
+    "inherited": ["alpha_l (entropy coupling)", "K (cross-domain constant, 4.4 +/- 0.6)", "lambda_Omega (= alpha_l)"],
+    "measurable": ["D_Omega (diffusion coefficient)", "mu (damping rate)"]
+  },
+  "kill_conditions": [
+    "corr(Omega_hat, kappa_hat) > 0 in confirmed conscious states",
+    "C increases monotonically with Omega_hat without kappa_hat-suppression",
+    "Cortical entropy gradient shows no correlation with consciousness level across anaesthesia depths",
+    "Cross-domain constant K inconsistent between galactic and neural data at > 3 sigma"
+  ],
+  "predictions": [
+    {"system": "Waking cortex", "Omega_hat": "0.8-0.9", "kappa_hat": "0.6-0.8", "C": "High", "prediction": "Resonance regime"},
+    {"system": "Anaesthesia", "Omega_hat": "0.5-0.7", "kappa_hat": "<0.3", "C": "~0", "prediction": "Below threshold"},
+    {"system": "Uniform AI", "Omega_hat": "~1", "kappa_hat": "~0", "C": "~0", "prediction": "No consciousness"},
+    {"system": "Recurrent AI", "Omega_hat": "0.7-0.9", "kappa_hat": "0.4-0.6", "C": "Moderate", "prediction": "Testable boundary"},
+    {"system": "Galaxy cluster", "Omega_hat": "~0.01", "kappa_hat": "~1e-6", "C": "~0", "prediction": "Far below threshold"}
+  ],
+  "limitations": [
+    "Regime characteristic scales (rho_l, S_l) must be calibrated empirically for biological/cognitive systems",
+    "Identification delta S / delta rho <-> transfer entropy in cognitive regime is an ansatz, not a derivation",
+    "gamma is currently unconstrained; its value must come from EEG/fMRI data across conscious states",
+    "Diffusion term D_Omega * Laplacian(Omega_hat) assumes continuum approximation that may break down in discrete network topologies"
+  ],
+  "next_steps": [
+    "Estimate gamma from existing open datasets (PCI database or Human Connectome Project resting-state)",
+    "If gamma fixed from one dataset, model becomes fully predictive for all others",
+    "Compute grad(delta S / delta rho) from high-density EEG or source-reconstructed MEG",
+    "Test correlation between gradient magnitude and C across states (waking, sleep, anaesthesia, psychedelics)"
+  ],
+  "files": {
+    "paper_pdf": "Closing_the_EFC_Consciousness_Bridge.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "closing-the-efc-consciousness-bridge.jsonld",
+    "citations": "citations.bib",
+    "regime_mapping": "data/regime_mapping.json",
+    "propofol_consistency": "data/propofol_consistency.json",
+    "src_bridge": "src/consciousness_bridge.py",
+    "example": "examples/evaluate_bridge.py"
+  }
+}

@@ -1,0 +1,184 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: article
+title: "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative"
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Symbiose Research, Sandnes, Norway"
+version: "6.0"
+date-released: "2026-04-08"
+identifiers:
+  - type: doi
+    value: "10.6084/m9.figshare.31964847"
+    description: "Figshare DOI (v6 final)"
+  - type: doi
+    value: "10.6084/m9.figshare.31876324"
+    description: "Companion: EFC Relativistic Action"
+  - type: doi
+    value: "10.6084/m9.figshare.31368433"
+    description: "Companion: Systematic Localization / CMB Survival"
+repository-code: "https://github.com/supertedai/EFC"
+url: "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/EFC_vs_LCDM_Kill_Test_v6_final"
+license: CC-BY-4.0
+keywords:
+  - Energy-Flow Cosmology
+  - EFC
+  - ΛCDM
+  - kill test
+  - cobaya
+  - MGCAMB
+  - CAMB
+  - Planck 2018
+  - BAO
+  - Pantheon+
+  - gravitational slip
+  - mu Sigma parametrization
+  - K(rho) bridge
+  - SPARC
+  - DDO 154
+  - rotation curves
+  - Bullet Cluster
+  - Hubble tension
+  - modified gravity
+abstract: >-
+  We present a comprehensive kill-test of Energy-Flow Cosmology (EFC) against
+  ΛCDM across six independent probes spanning galactic to cosmological scales.
+  Starting from a single action with two field parameters (K0, m²), EFC
+  produces μ = 0.94, η = 1.23, Σ = 1.05 from one mechanism — stiffness and slip
+  are not independent. Cobaya minimize runs against Planck 2018 (plik_lite
+  TTTEEE + lowl + lensing), BAO, and Pantheon+ consistently return Δχ² ≤ 0 in
+  the EFC direction. The same parameter values (K0 ≈ 1.55–1.68, m² ≈
+  0.0032–0.0038) reproduce the correct (μ, Σ) independently of starting point.
+  EFC cannot be rejected on current data. Full MCMC with Bayes evidence is the
+  remaining definitive test.
+references:
+  - type: article
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    title: "EFC: Relativistic Action and Perturbation Theory"
+    year: 2026
+    doi: "10.6084/m9.figshare.31876324"
+  - type: article
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    title: "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival and the Lensing Barrier"
+    year: 2026
+    doi: "10.6084/m9.figshare.31368433"
+  - type: article
+    authors:
+      - name: "Planck Collaboration"
+    title: "Planck 2018 results. V. CMB power spectra and likelihoods"
+    journal: "Astronomy & Astrophysics"
+    volume: 641
+    pages: "A5"
+    year: 2020
+    doi: "10.1051/0004-6361/201936386"
+  - type: article
+    authors:
+      - name: "Planck Collaboration"
+    title: "Planck 2018 results. VIII. Gravitational lensing"
+    journal: "Astronomy & Astrophysics"
+    volume: 641
+    pages: "A8"
+    year: 2020
+    doi: "10.1051/0004-6361/201833886"
+  - type: article
+    authors:
+      - family-names: "Torrado"
+        given-names: "Jesus"
+      - family-names: "Lewis"
+        given-names: "Antony"
+    title: "Cobaya: Code for Bayesian Analysis of an Expanding Universe"
+    journal: "JCAP"
+    volume: "05"
+    pages: "057"
+    year: 2021
+    doi: "10.1088/1475-7516/2021/05/057"
+  - type: article
+    authors:
+      - family-names: "Lewis"
+        given-names: "Antony"
+      - family-names: "Challinor"
+        given-names: "Anthony"
+      - family-names: "Lasenby"
+        given-names: "Anthony"
+    title: "Efficient Computation of CMB Anisotropies in Closed FRW Models"
+    journal: "Astrophysical Journal"
+    volume: 538
+    pages: "473"
+    year: 2000
+    doi: "10.1086/309179"
+  - type: article
+    authors:
+      - family-names: "Pogosian"
+        given-names: "Levon"
+      - family-names: "Silvestri"
+        given-names: "Alessandra"
+      - family-names: "Koyama"
+        given-names: "Kazuya"
+      - family-names: "Zhao"
+        given-names: "Gong-Bo"
+    title: "MGCAMB: Testing gravitational theories with CAMB"
+    journal: "Physical Review D"
+    volume: 81
+    pages: "104023"
+    year: 2010
+    doi: "10.1103/PhysRevD.81.104023"
+  - type: article
+    authors:
+      - family-names: "Lelli"
+        given-names: "Federico"
+      - family-names: "McGaugh"
+        given-names: "Stacy S."
+      - family-names: "Schombert"
+        given-names: "James M."
+    title: "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves"
+    journal: "Astronomical Journal"
+    volume: 152
+    pages: "157"
+    year: 2016
+    doi: "10.3847/0004-6256/152/6/157"
+  - type: article
+    authors:
+      - family-names: "Clowe"
+        given-names: "Douglas"
+    title: "A Direct Empirical Proof of the Existence of Dark Matter"
+    journal: "Astrophysical Journal Letters"
+    volume: 648
+    pages: "L109"
+    year: 2006
+    doi: "10.1086/508162"
+  - type: article
+    authors:
+      - family-names: "Brout"
+        given-names: "Dillon"
+    title: "The Pantheon+ Analysis: Cosmological Constraints"
+    journal: "Astrophysical Journal"
+    volume: 938
+    pages: "110"
+    year: 2022
+    doi: "10.3847/1538-4357/ac8e04"
+  - type: article
+    authors:
+      - family-names: "Alam"
+        given-names: "Shadab"
+    title: "The clustering of galaxies in the completed SDSS-III BOSS"
+    journal: "Monthly Notices of the Royal Astronomical Society"
+    volume: 470
+    pages: "2617"
+    year: 2017
+    doi: "10.1093/mnras/stx721"
+  - type: article
+    authors:
+      - family-names: "Abbott"
+        given-names: "B. P."
+    title: "Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A"
+    journal: "Physical Review Letters"
+    volume: 119
+    pages: "161101"
+    year: 2017
+    doi: "10.1103/PhysRevLett.119.161101"

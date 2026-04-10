@@ -1,0 +1,60 @@
+{
+  "$schema": "../schema.json",
+  "description": "Canonical mu(k) table from K(rho) bridge — Table 3 of the paper.",
+  "source": "Section 4, Table 3 of EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+  "K0": 1.66,
+  "rho_star_units": "cosmological mean density",
+  "theta_form": "Theta(rho) = exp(-(rho/rho_star)^2)",
+  "entries": [
+    {
+      "scale": "Super-horizon",
+      "k_h_per_Mpc": 0.001,
+      "rho_over_rho_star": 0.0,
+      "theta": 1.0,
+      "R_k": 3.99e7,
+      "mu_k": 1.0,
+      "note": "R >> 1 but k^-4 scaling dominates; mu -> 1 in limit"
+    },
+    {
+      "scale": "CMB lensing",
+      "k_h_per_Mpc": 0.050,
+      "rho_over_rho_star": 0.0,
+      "theta": 1.0,
+      "R_k": 0.0638,
+      "mu_k": 0.94,
+      "note": "Calibration anchor point (Planck 2018 lensing)"
+    },
+    {
+      "scale": "BAO / LSS",
+      "k_h_per_Mpc": 0.100,
+      "rho_over_rho_star": 0.0,
+      "theta": 1.0,
+      "R_k": 0.003988,
+      "mu_k": 0.9960,
+      "note": "Transition to GR-like at BAO scales"
+    },
+    {
+      "scale": "Galactic",
+      "k_h_per_Mpc": 5.000,
+      "rho_over_rho_star": 1.56,
+      "theta": 0.0866,
+      "R_k": 8.8e-10,
+      "mu_k": 1.0,
+      "note": "Theta(rho) suppresses modification in high-density regime"
+    },
+    {
+      "scale": "Solar System",
+      "k_h_per_Mpc": 50.0,
+      "rho_over_rho_star": 4.0,
+      "theta": 1.13e-7,
+      "R_k": 1.1e-24,
+      "mu_k": 1.0,
+      "note": "Deep PPN-safe regime; modifications below 10^-4"
+    }
+  ],
+  "interpretation": {
+    "anchor_match": "mu(k=0.05) = 0.94 matches Planck 2018 lensing amplitude",
+    "ppn_safety": "Modifications at Solar System scales < 10^-10, well inside PPN limits",
+    "galactic_saturation": "Theta(rho) suppression yields GR-limit at dwarf galaxy inner densities"
+  }
+}

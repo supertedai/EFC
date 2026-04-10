@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy-Flow Cosmology — Stage-IV Data Roadmap</title>
+<style>
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    max-width: 960px;
+    margin: 2em auto;
+    padding: 0 1.5em;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 {
+    font-size: 1.7em;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.3em;
+    margin-top: 1.5em;
+  }
+  h2 {
+    font-size: 1.3em;
+    border-bottom: 1px solid #999;
+    padding-bottom: 0.2em;
+    margin-top: 2em;
+  }
+  h3 {
+    font-size: 1.1em;
+    margin-top: 1.5em;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    font-size: 0.92em;
+  }
+  th, td {
+    border: 1px solid #bbb;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f0f0f0;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background: #fafafa;
+  }
+  a {
+    color: #1a5276;
+  }
+  code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.92em;
+    background: #f4f4f4;
+    padding: 1px 4px;
+  }
+  .author {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 2em;
+  }
+  .bottom-line td:first-child {
+    font-weight: bold;
+    width: 30%;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+  }
+  .phase-header {
+    background: #e8e8e8;
+    font-weight: bold;
+  }
+  .seal-badge {
+    display: inline-block;
+    background: #2c3e50;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .kill-badge {
+    display: inline-block;
+    background: #922;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .pipeline-badge {
+    display: inline-block;
+    background: #d4a017;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .pass-badge {
+    display: inline-block;
+    background: #1a7a1a;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<h1>Energy-Flow Cosmology — Stage-IV Data Roadmap</h1>
+
+<p class="author">
+Morten Magnusson · Symbiose Research, Sandnes, Norway ·
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> ·
+April 2026 · CC-BY-4.0
+</p>
+
+<p><strong>One sentence:</strong> This roadmap maps every major Stage-IV data release (2026–2031+) to the specific EFC prediction, observable, regime, and kill criterion it will test — so that no result arrives without a pre-registered expectation.</p>
+
+<hr>
+
+<h2>0. Purpose and Governance</h2>
+
+<p>The <a href="EFC_Validation_Ledger.html">Validation Ledger</a> documents <em>what</em> has been tested.
+The <a href="EFC_White_Paper_Series.html">White Paper Series</a> documents <em>what EFC predicts</em>.
+This roadmap documents <em>when and how</em> those predictions will be confronted with data.</p>
+
+<p><strong>Governance rule:</strong> All entries in this roadmap are frozen at the time of publication.
+No post-hoc addition of tests after data release is permitted.
+New tests may be added to future versions of this roadmap <em>before</em> the relevant data becomes public.
+Additions are versioned and timestamped.</p>
+
+<hr>
+
+<h2>0.1 Notation and Conventions</h2>
+
+<table>
+<tr>
+  <th>Symbol</th>
+  <th>Definition</th>
+  <th>Domain</th>
+</tr>
+<tr>
+  <td>μ(k,z)</td>
+  <td>Effective gravitational coupling (Poisson equation modifier). μ = 1 is GR. EFC perturbation sector: μ ≈ 0.94.</td>
+  <td>Perturbations (L1–L2)</td>
+</tr>
+<tr>
+  <td>Σ(k,z)</td>
+  <td>Lensing potential modifier. Σ = 1 is GR. EFC: Σ ≈ 1.05.</td>
+  <td>Lensing (L1–L2)</td>
+</tr>
+<tr>
+  <td>η</td>
+  <td>Gravitational slip: η ≡ Φ/Ψ. η = 1 is GR. EFC: η ≈ 1.10.</td>
+  <td>Perturbations (L1)</td>
+</tr>
+<tr>
+  <td>β</td>
+  <td>Entropy-gradient coupling strength. β ≈ 0.16 from SPARC (galactic); β<sub>cosm</sub> ≈ 1.0 (cosmological).</td>
+  <td>All regimes</td>
+</tr>
+<tr>
+  <td>S(a)</td>
+  <td>Entropy field, S ∈ [0, 1]. Fundamental scalar in EFC.</td>
+  <td>All regimes</td>
+</tr>
+<tr>
+  <td>T(a)</td>
+  <td>Regime transition function. Controls when background coupling activates.</td>
+  <td>Background (L0–L2)</td>
+</tr>
+<tr>
+  <td>α<sub>L2</sub></td>
+  <td>Integrated growth-sector coupling amplitude. Sealed: α = −0.689 (v1), −0.702 (v2).</td>
+  <td>Growth (L1–L2)</td>
+</tr>
+<tr>
+  <td>Θ(ρ)</td>
+  <td>Density saturation function. Θ → 0 at high density (Solar System); Θ → 1 at low density (cosmological).</td>
+  <td>Screening (L2–L3)</td>
+</tr>
+<tr>
+  <td>k</td>
+  <td>SPARC screening exponent: k = 0.415 ± 0.029 (174 galaxies).</td>
+  <td>Galactic (L2)</td>
+</tr>
+<tr>
+  <td>ξ, η<sub>reg</sub></td>
+  <td>Regime coordinates: ξ ≡ |∇Φ|/a₀ (gradient); η<sub>reg</sub> ≡ μ<sub>Λ</sub>Φ/|∇²Φ| (screening). See Ledger §0.0.</td>
+  <td>All regimes</td>
+</tr>
+<tr>
+  <td>L0–L3</td>
+  <td>Regime levels: L0 = early-universe linear; L1 = late-time linear; L2 = non-linear; L3 = strong-field.</td>
+  <td>Classification</td>
+</tr>
+</table>
+
+<h3>Statistical conventions</h3>
+
+<p>All significance levels (σ) in this document are <strong>frequentist</strong>,
+computed as √Δχ² for nested models or as the equivalent Gaussian significance
+of a p-value for non-nested comparisons. Unless stated otherwise, tests are
+<strong>two-sided</strong> except where a directional prediction is specified
+(e.g., μ &lt; 1, α &lt; 0), in which case one-sided significance is reported and
+explicitly marked. Model comparison uses Δχ² and ΔAIC as primary metrics;
+Bayesian evidence ratios (ln B) are reported where available but are not used
+as primary decision criteria due to prior sensitivity.</p>
+
+<hr>
+
+<h2>1. Survey Timeline Overview</h2>
+
+<table>
+<tr>
+  <th>Survey / Instrument</th>
+  <th>Data Release</th>
+  <th>Expected Date</th>
+  <th>Key Content for EFC</th>
+</tr>
+<tr class="phase-header"><td colspan="4">Phase I — 2026 (Current)</td></tr>
+<tr>
+  <td>DESI</td>
+  <td>DR2 (cosmology chains)</td>
+  <td>2025 Oct (released)</td>
+  <td>BAO (14M galaxies+QSOs, 3 yr); w<sub>0</sub>w<sub>a</sub>CDM constraints</td>
+</tr>
+<tr>
+  <td>DESI</td>
+  <td>DR2 (full spectra + redshifts)</td>
+  <td>2026 H2</td>
+  <td>Full-shape P(k); RSD fσ<sub>8</sub> multi-epoch; Lyα forest</td>
+</tr>
+<tr>
+  <td>Euclid</td>
+  <td>Q2 (Quick Release 2)</td>
+  <td>2026 Jun 24</td>
+  <td>Galactic bulge survey; calibration; cross-match with Roman precursor</td>
+</tr>
+<tr>
+  <td>Euclid</td>
+  <td><strong>DR1</strong></td>
+  <td><strong>2026 Oct 21</strong></td>
+  <td>~2100 deg² weak lensing; photometric redshifts; cosmic shear; galaxy clustering; first dark energy constraints</td>
+</tr>
+<tr>
+  <td>Rubin/LSST</td>
+  <td>DP2 (Data Preview 2)</td>
+  <td>2026 Jul–Sep</td>
+  <td>LSSTCam commissioning data; deep drilling fields; transient alerts</td>
+</tr>
+<tr>
+  <td>Rubin/LSST</td>
+  <td>Alert stream (live)</td>
+  <td>2026 Feb (active)</td>
+  <td>Real-time transients; void identification precursors</td>
+</tr>
+<tr>
+  <td>Planck + ACT DR6 + SPT-3G</td>
+  <td>CMB lensing 2026 baseline</td>
+  <td>2026 (available)</td>
+  <td>S<sub>8</sub><sup>CMB</sup> = 0.836 ± 0.012 (Qu et al. 2026, SNR = 61)</td>
+</tr>
+<tr>
+  <td>JWST</td>
+  <td>Cycle 4 observations</td>
+  <td>2026 (ongoing)</td>
+  <td>Cluster κ maps (Bullet, Abell 2146); high-z galaxy abundances; void lensing</td>
+</tr>
+
+<tr class="phase-header"><td colspan="4">Phase II — 2027–2028</td></tr>
+<tr>
+  <td>DESI</td>
+  <td>DR3 (full 5-year)</td>
+  <td>~2027–2028</td>
+  <td>Full-shape + RSD joint; neutrino mass; fσ<sub>8</sub> trajectory z = 0.02–1.5</td>
+</tr>
+<tr>
+  <td>Euclid</td>
+  <td>DR2</td>
+  <td>~2028</td>
+  <td>First 3 years; ~7000 deg²; tomographic cosmic shear; galaxy clustering; gravitational slip η; E<sub>G</sub> statistic</td>
+</tr>
+<tr>
+  <td>Rubin/LSST</td>
+  <td>DR1</td>
+  <td>~2028 Jun</td>
+  <td>First full year; 18000 deg² southern sky; shear catalogue; void catalogues; cluster abundance N(M,z)</td>
+</tr>
+<tr>
+  <td>Roman</td>
+  <td>Early observations</td>
+  <td>~2027–2028</td>
+  <td>High-z SNe Ia; complementary weak lensing; BAO independent check</td>
+</tr>
+<tr>
+  <td>KiDS</td>
+  <td>Legacy (final)</td>
+  <td>~2027</td>
+  <td>Resolves DES vs KiDS S<sub>8</sub> bifurcation; definitive Stage-III reference</td>
+</tr>
+<tr>
+  <td>SPT-3G / ACT DR7</td>
+  <td>Next-gen CMB lensing</td>
+  <td>~2027–2028</td>
+  <td>Improved C<sub>ℓ</sub><sup>φφ</sup>; A<sub>L</sub> degeneracy resolution; independent η constraint</td>
+</tr>
+
+<tr class="phase-header"><td colspan="4">Phase III — 2029–2031+</td></tr>
+<tr>
+  <td>Euclid</td>
+  <td>DR3 (final)</td>
+  <td>~2030–2031</td>
+  <td>Full 14000 deg²; definitive w<sub>0</sub>, w<sub>a</sub>; μ–Σ joint; η to 1% precision</td>
+</tr>
+<tr>
+  <td>Rubin/LSST</td>
+  <td>DR2–DR5</td>
+  <td>2029–2034</td>
+  <td>Cumulative depth; small-scale non-linear structure; void ISW stacking</td>
+</tr>
+<tr>
+  <td>DESI</td>
+  <td>Final legacy</td>
+  <td>~2029</td>
+  <td>40M redshifts; definitive RSD trajectory; BAO anisotropic split</td>
+</tr>
+<tr>
+  <td>CMB-S4</td>
+  <td>First data</td>
+  <td>~2030+</td>
+  <td>Sub-percent CMB lensing; definitive A<sub>L</sub>; primordial B-modes</td>
+</tr>
+<tr>
+  <td>Einstein Telescope</td>
+  <td>Design / early</td>
+  <td>2030s</td>
+  <td>Standard sirens: propagation-sector test (GW vs EM distances)</td>
+</tr>
+<tr>
+  <td>SKA</td>
+  <td>Early science</td>
+  <td>~2029–2030</td>
+  <td>HI intensity mapping; independent BAO; cosmic dipole test</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>2. Prediction × Data Matrix</h2>
+
+<p>Each row maps a specific EFC prediction to the dataset that will test it, the observable, the quantitative pass/fail criterion, and the pipeline readiness status.</p>
+
+<h3>2.1 Kill Criteria (KC1–KC5) — Stage-IV Falsification Tests</h3>
+
+<p>Thresholds frozen before data release. No post-hoc adjustment permissible.
+Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.</p>
+
+<table>
+<tr>
+  <th>KC</th>
+  <th>Criterion</th>
+  <th>Trigger</th>
+  <th>Primary Dataset</th>
+  <th>Expected Date</th>
+  <th>Pipeline Status</th>
+</tr>
+<tr>
+  <td><span class="kill-badge">KC1</span></td>
+  <td>Growth suppression absent</td>
+  <td>|α<sub>L2</sub>| &lt; 0.1 at 3σ</td>
+  <td>DESI DR3 full-shape + RSD</td>
+  <td>~2027–2028</td>
+  <td><span class="pipeline-badge">PIPELINE NEEDED</span> Full-shape likelihood</td>
+</tr>
+<tr>
+  <td><span class="kill-badge">KC2</span></td>
+  <td>Wrong fσ<sub>8</sub> trajectory</td>
+  <td>|z<sub>cross</sub> − 2.042| &gt; 3σ</td>
+  <td>DESI DR3 RSD multi-epoch</td>
+  <td>~2027–2028</td>
+  <td><span class="seal-badge">SEALED</span> Freeze v1 hash: <code>7a850cfa...</code></td>
+</tr>
+<tr>
+  <td><span class="kill-badge">KC3</span></td>
+  <td>S<sub>8</sub> converges to ΛCDM</td>
+  <td>S<sub>8</sub> = S<sub>8,ΛCDM</sub> ± 0.005</td>
+  <td>Euclid DR1 cosmic shear + CMB lensing 2026</td>
+  <td><strong>2026 Oct</strong></td>
+  <td><span class="pass-badge">P3 PASS</span> on DES Y6 (0.3σ); Euclid will arbitrate</td>
+</tr>
+<tr>
+  <td><span class="kill-badge">KC4</span></td>
+  <td>Gravitational slip absent</td>
+  <td>|η − 1| &lt; 0.01 (Euclid)</td>
+  <td>Euclid DR2 (E<sub>G</sub> statistic + tomographic shear)</td>
+  <td>~2028</td>
+  <td><span class="pipeline-badge">PIPELINE NEEDED</span> E<sub>G</sub> estimator implementation</td>
+</tr>
+<tr>
+  <td><span class="kill-badge">KC5</span></td>
+  <td>No dynamical dark energy</td>
+  <td>|w<sub>0</sub> + 1| &lt; 0.02 (Euclid)</td>
+  <td>Euclid DR1/DR2 + DESI DR3 joint</td>
+  <td>2026–2028</td>
+  <td>DESI DR2 shows 2.3σ preference for w<sub>0</sub>w<sub>a</sub>CDM; monitoring</td>
+</tr>
+</table>
+
+<h3>2.2 Sealed Blind Predictions</h3>
+
+<table>
+<tr>
+  <th>Prediction</th>
+  <th>Value</th>
+  <th>Hash</th>
+  <th>Test Dataset</th>
+  <th>Expected Date</th>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v1</span> α<sub>L2</sub></td>
+  <td>−0.689</td>
+  <td><code>7a850cfa...</code></td>
+  <td>DESI DR3 fσ<sub>8</sub> + BAO joint</td>
+  <td>~2027–2028</td>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v1</span> fσ<sub>8</sub> crossover</td>
+  <td>z = 2.042</td>
+  <td><code>7a850cfa...</code></td>
+  <td>DESI DR3 Lyα + high-z RSD</td>
+  <td>~2027–2028</td>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v2</span> α<sub>L2</sub></td>
+  <td>−0.702</td>
+  <td><code>dbccda15...</code></td>
+  <td>DESI DR3 fσ<sub>8</sub> + BAO joint</td>
+  <td>~2027–2028</td>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v1</span> D<sub>H</sub>/r<sub>d</sub>(z=1.0)</td>
+  <td>EFC: 16.527 vs ΛCDM: 17.466 (3.1σ)</td>
+  <td><code>7a850cfa...</code></td>
+  <td>DESI DR3 BAO anisotropic</td>
+  <td>~2027–2028</td>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v1</span> D<sub>H</sub>/r<sub>d</sub>(z=0.7)</td>
+  <td>EFC: 19.797 vs ΛCDM: 20.719 (2.3σ)</td>
+  <td><code>7a850cfa...</code></td>
+  <td>DESI DR3 BAO anisotropic</td>
+  <td>~2027–2028</td>
+</tr>
+<tr>
+  <td><span class="seal-badge">SEALED v1</span> fσ<sub>8</sub>(z=0.7)</td>
+  <td>EFC: 0.430 vs ΛCDM: 0.449 (2.0σ)</td>
+  <td><code>7a850cfa...</code></td>
+  <td>DESI DR3 RSD</td>
+  <td>~2027–2028</td>
+</tr>
+</table>
+
+<h3>2.3 Action-Level Falsification Conditions (FA1–FA6)</h3>
+
+<p>Defined in the EFC Relativistic Action (<a href="https://doi.org/10.6084/m9.figshare.31876324">31876324</a>).
+These govern the perturbation sector and supersede phenomenological F7.</p>
+
+<table>
+<tr>
+  <th>FA</th>
+  <th>Condition</th>
+  <th>Primary Dataset</th>
+  <th>Expected Date</th>
+  <th>Notes</th>
+</tr>
+<tr>
+  <td>FA1</td>
+  <td>c<sub>T</sub> ≠ c at any redshift</td>
+  <td>LIGO/Virgo/KAGRA O5; Einstein Telescope</td>
+  <td>2027+ / 2030s</td>
+  <td>Currently PASS (GW170817)</td>
+</tr>
+<tr>
+  <td>FA2</td>
+  <td>μ &gt; 1 in linear cosmological regime</td>
+  <td>Euclid DR1/DR2 tomographic growth</td>
+  <td>2026–2028</td>
+  <td>EFC predicts μ ≈ 0.94 in survival valley</td>
+</tr>
+<tr>
+  <td>FA3</td>
+  <td>Σ &lt; 1 in perturbation sector</td>
+  <td>Euclid DR2 cosmic shear C<sub>ℓ</sub></td>
+  <td>~2028</td>
+  <td>EFC predicts Σ ≈ 1.05</td>
+</tr>
+<tr>
+  <td>FA4</td>
+  <td>η = 1 to sub-percent precision</td>
+  <td>Euclid DR2/DR3 (E<sub>G</sub> + lensing×RSD)</td>
+  <td>2028–2031</td>
+  <td>EFC predicts η ≈ 1.10</td>
+</tr>
+<tr>
+  <td>FA5</td>
+  <td>No GR screening in high-density</td>
+  <td>Solar System (Cassini, LLR) — already constrained</td>
+  <td>Ongoing</td>
+  <td>Currently PASS; future: LISA Pathfinder legacy</td>
+</tr>
+<tr>
+  <td>FA6</td>
+  <td>Ghost / tachyon instability detected</td>
+  <td>Theoretical / numerical (ADM Hamiltonian)</td>
+  <td>N/A</td>
+  <td>Currently PASS at 2nd order; full non-linear pending</td>
+</tr>
+</table>
+
+<h3>2.4 Standing Falsification Conditions (F1–F6)</h3>
+
+<table>
+<tr>
+  <th>F</th>
+  <th>Condition</th>
+  <th>Primary Dataset</th>
+  <th>Expected Date</th>
+  <th>EFC Prediction</th>
+</tr>
+<tr>
+  <td>F1</td>
+  <td>A<sub>ISW</sub> = 1.00 ± 0.02 (tracer-independent)</td>
+  <td>DESI DR2/DR3 × Planck C<sub>ℓ</sub><sup>Tg</sup></td>
+  <td>2026–2028</td>
+  <td>EFC: A<sub>ISW</sub> ≈ 0.89 ± 0.03</td>
+</tr>
+<tr>
+  <td>F2</td>
+  <td>No RSD deviation from ΛCDM across z = 0.02–1.5</td>
+  <td>DESI DR3 multi-epoch RSD</td>
+  <td>~2027–2028</td>
+  <td>EFC: monotonic suppression via β·T(a)</td>
+</tr>
+<tr>
+  <td>F3</td>
+  <td>Cluster lensing asymmetry absent (A<sub>sig</sub> = 0)</td>
+  <td>JWST κ maps (Bullet, Abell 2146)</td>
+  <td>2026–2027</td>
+  <td>EFC: directional residual from entropy coupling</td>
+</tr>
+<tr>
+  <td>F4</td>
+  <td>Full-shape P(k) inconsistent with background-only growth</td>
+  <td>DESI DR3 full-shape likelihood</td>
+  <td>~2027–2028</td>
+  <td>EFC: background channel primary; scale-dependent if μ(k,z) active</td>
+</tr>
+<tr>
+  <td>F5</td>
+  <td>Graph-AQUAL fails rotation curve diversity</td>
+  <td>SPARC + MaNGA joint likelihood (ongoing)</td>
+  <td>Incremental</td>
+  <td>EFC: regime-dependent EBE with k = 0.415</td>
+</tr>
+<tr>
+  <td>F6</td>
+  <td>Λ-locked screening produces growth instability</td>
+  <td>Numerical (N-body + Λ-lock)</td>
+  <td>Incremental</td>
+  <td>EFC: stable under Λ-lock (CGS pass)</td>
+</tr>
+</table>
+
+<h3>2.5 Specific Observational Predictions (Awaiting Data)</h3>
+
+<table>
+<tr>
+  <th>Prediction</th>
+  <th>EFC Value / Expectation</th>
+  <th>Primary Dataset</th>
+  <th>Expected Date</th>
+  <th>Regime</th>
+  <th>Reference</th>
+</tr>
+<tr>
+  <td>Void ISW sign-flip</td>
+  <td>Cold→hot for δ ≲ −0.8; turnover near δ ≈ −0.7</td>
+  <td>Rubin DR1 void catalogue × Planck/ACT CMB</td>
+  <td>~2028</td>
+  <td>L1–L2</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31942677">31942677</a></td>
+</tr>
+<tr>
+  <td>Cosmic dipole excess</td>
+  <td>~2% entropy gradient → directional G<sub>eff</sub></td>
+  <td>Rubin DR1 + SKA early science number counts</td>
+  <td>2028–2030</td>
+  <td>L1</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31942731">31942731</a></td>
+</tr>
+<tr>
+  <td>Regime transition μ&lt;1 ↔ μ&gt;1</td>
+  <td>Cluster-scale μ ≈ 1.1, Σ ≈ 1.2; no μ&gt;1 in linear</td>
+  <td>Euclid DR2 cluster lensing + Rubin DR1</td>
+  <td>~2028</td>
+  <td>L2–L3</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31941543">31941543</a></td>
+</tr>
+<tr>
+  <td>Dynamical dark energy w(a) ≠ −1</td>
+  <td>w(a) = −β(S)·a; KC5 test</td>
+  <td>Euclid DR1/DR2 + DESI DR2/DR3 BAO joint</td>
+  <td>2026–2028</td>
+  <td>L1–L2</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31970907">WP Part 4</a></td>
+</tr>
+<tr>
+  <td>Cross-scale amplification β<sub>cosm</sub>/β<sub>gal</sub> ≈ 6.25</td>
+  <td>Susceptibility T(S) links SPARC → cosmic shear</td>
+  <td>Euclid DR2 tomographic shear × SPARC Phase 3</td>
+  <td>~2028</td>
+  <td>L2</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31970907">WP Part 4</a></td>
+</tr>
+<tr>
+  <td>A<sub>L</sub> degeneracy resolution</td>
+  <td>Physical Σ&gt;1 distinguishable from phenomenological A<sub>L</sub>&gt;1</td>
+  <td>Euclid DR2 galaxy lensing + CMB lensing + fσ<sub>8</sub></td>
+  <td>~2028</td>
+  <td>L0–L1</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31368433">31368433</a></td>
+</tr>
+<tr>
+  <td>Lensing-to-CMB S<sub>8</sub> ratio (P3 replication)</td>
+  <td>0.95 ± 0.03 (pre-registered); DES Y6 PASS at 0.3σ</td>
+  <td>Euclid DR1 cosmic shear / CMB lensing 2026</td>
+  <td><strong>2026 Oct</strong></td>
+  <td>L1–L2</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31951992">31951992</a></td>
+</tr>
+<tr>
+  <td>Standard sirens (GW vs EM distance)</td>
+  <td>Propagation-sector β-split test</td>
+  <td>Einstein Telescope / LISA</td>
+  <td>2030s</td>
+  <td>PROP</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31305421">31305421</a></td>
+</tr>
+<tr>
+  <td>SMBH thermostat: AGN decline drives S(z) sigmoid</td>
+  <td>S(z) transition at z ~ 1 tracks AGN luminosity density</td>
+  <td>JWST + eROSITA AGN catalogue</td>
+  <td>2027–2029</td>
+  <td>L2</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31942734">31942734</a></td>
+</tr>
+<tr>
+  <td>Cluster abundance N(M,z)</td>
+  <td>Mass function evolution discriminates EFC vs ΛCDM</td>
+  <td>eROSITA + Euclid DR2 + Rubin DR1</td>
+  <td>~2028</td>
+  <td>L2–L3</td>
+  <td>Method defined</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>3. Statistical Evaluation Framework</h2>
+
+<p>All quantitative tests in this roadmap are evaluated using the following framework.
+The purpose is to ensure that thresholds are reproducible and not arbitrary.</p>
+
+<h3>3.1 Likelihood and Model Comparison</h3>
+
+<table>
+<tr>
+  <th>Element</th>
+  <th>Specification</th>
+</tr>
+<tr>
+  <td><strong>Likelihood form</strong></td>
+  <td>Gaussian likelihood assumed for all Stage-IV probes unless survey documentation specifies otherwise.
+  For cosmic shear: L ∝ exp(−½ Δd<sup>T</sup> C<sup>−1</sup> Δd) where d is the data vector and C the covariance.</td>
+</tr>
+<tr>
+  <td><strong>Data vectors</strong></td>
+  <td>Probe-specific: shear C<sub>ℓ</sub> (Euclid); P(k) multipoles + BAO (DESI); fσ<sub>8</sub>(z) (RSD compilation);
+  CMB lensing C<sub>ℓ</sub><sup>φφ</sup> (Planck/ACT/SPT). Each data vector is defined by the survey collaboration.</td>
+</tr>
+<tr>
+  <td><strong>Covariance</strong></td>
+  <td><strong>Survey-provided covariance matrices are used in all cases.</strong> EFC does not introduce independent
+  covariance estimates. Where survey covariance is unavailable (e.g., pre-release forecasts),
+  Fisher matrix projections from official survey specifications are used and explicitly flagged.</td>
+</tr>
+<tr>
+  <td><strong>Model comparison</strong></td>
+  <td>Primary: Δχ² between EFC and ΛCDM (nested where applicable, profile likelihood where not).
+  Secondary: ΔAIC = Δχ² + 2Δk (penalises extra parameters). Bayesian evidence (ln B) reported
+  where posterior sampling is performed but not used as primary criterion.</td>
+</tr>
+<tr>
+  <td><strong>Parameter handling</strong></td>
+  <td>EFC parameters (β, T(a), z<sub>t</sub>) are frozen in the Global Parameter Registry (Ledger §0.2).
+  Standard cosmological parameters (Ω<sub>m</sub>, H₀, σ₈, n<sub>s</sub>) are marginalised over with
+  Planck 2018 + BAO priors unless stated otherwise. No probe-specific re-tuning is permitted.</td>
+</tr>
+<tr>
+  <td><strong>Threshold interpretation</strong></td>
+  <td>Kill criteria (KC) are evaluated as: if the best-fit EFC parameter falls within the stated
+  null range at the stated confidence level (e.g., |α| &lt; 0.1 at 3σ), the sector is falsified.
+  The confidence level is determined by the posterior width from the survey likelihood, not by
+  an EFC-internal estimate.</td>
+</tr>
+</table>
+
+<h3>3.2 Specific Threshold Definitions</h3>
+
+<table>
+<tr>
+  <th>Criterion</th>
+  <th>Observable</th>
+  <th>Null hypothesis (ΛCDM)</th>
+  <th>EFC prediction</th>
+  <th>Evaluation method</th>
+</tr>
+<tr>
+  <td>KC1</td>
+  <td>α<sub>L2</sub></td>
+  <td>α = 0</td>
+  <td>α ≈ −0.7</td>
+  <td>Posterior from DESI DR3 fσ₈ + BAO joint likelihood; falsified if 99.7% CI includes zero</td>
+</tr>
+<tr>
+  <td>KC2</td>
+  <td>z<sub>cross</sub></td>
+  <td>No crossover</td>
+  <td>z = 2.042</td>
+  <td>Profile likelihood on fσ₈(z) trajectory; falsified if |z<sub>cross</sub> − 2.042| > 3σ<sub>survey</sub></td>
+</tr>
+<tr>
+  <td>KC3</td>
+  <td>S₈ ratio</td>
+  <td>S₈<sup>lens</sup>/S₈<sup>CMB</sup> = 1</td>
+  <td>0.95 ± 0.03</td>
+  <td>Ratio of Euclid DR1 S₈ to CMB lensing 2026 baseline; falsified if ratio = 1.000 ± 0.005</td>
+</tr>
+<tr>
+  <td>KC4</td>
+  <td>η − 1</td>
+  <td>η = 1</td>
+  <td>η ≈ 1.10</td>
+  <td>E<sub>G</sub> statistic from Euclid DR2 lensing×RSD; falsified if |η − 1| < 0.01 at 3σ</td>
+</tr>
+<tr>
+  <td>KC5</td>
+  <td>w₀ + 1</td>
+  <td>w₀ = −1</td>
+  <td>w₀ ≠ −1</td>
+  <td>Euclid + DESI BAO joint posterior; falsified if |w₀ + 1| < 0.02 at 3σ</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>4. Systematics Control</h2>
+
+<p>EFC predictions are tested against survey data that contain observational and astrophysical
+systematics. This section documents how systematics are handled for each primary observable.
+The governing principle is: <strong>EFC uses survey-provided systematics budgets and does not
+introduce its own nuisance parameters beyond those in the Global Parameter Registry.</strong></p>
+
+<table>
+<tr>
+  <th>Observable</th>
+  <th>Dominant Systematics</th>
+  <th>Handling</th>
+  <th>Reference</th>
+</tr>
+<tr>
+  <td>S₈ (cosmic shear)</td>
+  <td>Intrinsic alignments (IA); shear calibration bias (m); photometric redshift errors (Δz)</td>
+  <td>Marginalised using survey-provided IA model (NLA or TATT) and m/Δz priors from Euclid calibration pipeline.
+  EFC Case A test verified: not IA compensation (IA=0 gives 63% persistence); not just amplitude (Δ=41 residual after A<sub>s</sub> tuning).</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31271917">31271917</a></td>
+</tr>
+<tr>
+  <td>fσ₈ (RSD)</td>
+  <td>Galaxy bias model; fibre collisions; redshift-space distortion modelling</td>
+  <td>Uses DESI/BOSS official pipeline with their bias marginalisation.
+  MVP-G1 LOO robustness demonstrated: signal stable across all 7 folds (spread = 0.23 in α).</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31332730">31332730</a></td>
+</tr>
+<tr>
+  <td>CMB lensing (C<sub>ℓ</sub><sup>φφ</sup>)</td>
+  <td>Beam systematics; foreground residuals; noise bias</td>
+  <td>Baseline fixed by Planck/ACT/SPT collaboration. EFC does not modify the CMB lensing reconstruction pipeline.</td>
+  <td>Qu et al. 2026</td>
+</tr>
+<tr>
+  <td>BAO (D<sub>A</sub>, H(z))</td>
+  <td>Reconstruction method; template fitting; fiducial cosmology</td>
+  <td>Uses survey-provided consensus measurements with full covariance. BAO covariance-aware test passed with Cobaya likelihood (Δχ² = −3.0).</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31314922">31314922</a></td>
+</tr>
+<tr>
+  <td>P(k) full-shape</td>
+  <td>Baryonic feedback; non-linear modelling; shot noise</td>
+  <td>Scale cuts applied following survey specifications (typically k<sub>max</sub> ≈ 0.20–0.25 h/Mpc for DR3).
+  Baryonic feedback is a known degeneracy (see §6 Degeneracy). EFC does not fit baryonic parameters.</td>
+  <td>Method defined</td>
+</tr>
+<tr>
+  <td>ISW (C<sub>ℓ</sub><sup>Tg</sup>)</td>
+  <td>Tracer bias; foreground contamination; CMB secondary anisotropies</td>
+  <td>EFC prediction (A<sub>ISW</sub> ≈ 0.89) is tracer-independent by construction. Tracer-dependent variation would indicate systematics, not EFC physics.</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31329082">31329082</a></td>
+</tr>
+<tr>
+  <td>Void ISW stacking</td>
+  <td>Void finder algorithm; aperture photometry; CMB cleaning</td>
+  <td>Depth-binned protocol pre-specified. Sign-flip prediction is qualitative (cold→hot for δ ≲ −0.8) and does not depend on overall amplitude calibration.</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31942677">31942677</a></td>
+</tr>
+<tr>
+  <td>Cluster κ maps</td>
+  <td>PSF modelling; source redshift distribution; cluster member contamination</td>
+  <td>Pre-registered directional residual estimator (A<sub>sig</sub>) is designed to be insensitive to azimuthally symmetric systematics. Only asymmetric residuals contribute to signal.</td>
+  <td>Methodology locked (2026)</td>
+</tr>
+<tr>
+  <td>Solar System (PPN)</td>
+  <td>Spacecraft systematics; ephemeris model</td>
+  <td>No EFC-specific analysis. Cassini/LLR constraints taken as published. Density Saturation mechanism ensures Θ(ρ) → 0 at solar densities.</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31244827">31244827</a></td>
+</tr>
+</table>
+
+<hr>
+
+<h2>5. Blinding and Analysis Protocol</h2>
+
+<p>The integrity of pre-registered predictions depends on demonstrable separation between
+prediction and analysis. The following protocol governs all EFC confrontations with Stage-IV data.</p>
+
+<h3>5.1 Prediction Integrity</h3>
+
+<table>
+<tr>
+  <th>Element</th>
+  <th>Implementation</th>
+</tr>
+<tr>
+  <td><strong>Sealed predictions</strong></td>
+  <td>Two cryptographic freezes (SHA-256 hashes) deposited before data release.
+  Hash <code>7a850cfa...</code> (2026-02-18) and <code>dbccda15...</code> (2026-02-21).
+  Full parameter sets recoverable from hash verification.</td>
+</tr>
+<tr>
+  <td><strong>Kill criteria frozen</strong></td>
+  <td>KC1–KC5 thresholds defined in White Paper Series Part 3 and deposited via Figshare DOI
+  (<a href="https://doi.org/10.6084/m9.figshare.31970904">31970904</a>) before any Stage-IV data release.</td>
+</tr>
+<tr>
+  <td><strong>Parameter freeze</strong></td>
+  <td>Global Parameter Registry (Ledger §0.2) governs all shared parameters. No parameter
+  may be modified between prediction deposit and analysis completion. Violations void the test.</td>
+</tr>
+</table>
+
+<h3>5.2 Analysis Execution</h3>
+
+<table>
+<tr>
+  <th>Element</th>
+  <th>Implementation</th>
+</tr>
+<tr>
+  <td><strong>Pipeline versioning</strong></td>
+  <td>All analysis code is maintained in the EFC GitHub repository
+  (<a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a>).
+  The git commit hash at the time of analysis is recorded in the results paper.
+  No code modifications are permitted after data unblinding.</td>
+</tr>
+<tr>
+  <td><strong>Survey pipelines</strong></td>
+  <td>For survey-provided likelihoods (Euclid, DESI, Rubin), the official pipeline version is used
+  without modification. The pipeline version and any configuration choices are documented.</td>
+</tr>
+<tr>
+  <td><strong>No post-hoc tuning</strong></td>
+  <td>After data unblinding, the following are prohibited: (i) modifying EFC parameters,
+  (ii) changing scale cuts, (iii) switching likelihood forms, (iv) adding or removing probes.
+  If any of these are found necessary, the analysis is restarted as a new, clearly labeled
+  exploratory analysis and does not count toward the pre-registered test.</td>
+</tr>
+<tr>
+  <td><strong>Reporting obligation</strong></td>
+  <td>All results — including failures and null detections — are reported in the Validation Ledger
+  within one revision cycle. Suppression of unfavorable results is explicitly prohibited under
+  the EFC validation protocol (<a href="https://doi.org/10.6084/m9.figshare.31223503">Core Lock v1.0</a>).</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>6. Degeneracy and Discriminant Structure</h2>
+
+<p>Several non-EFC physical effects can produce signals similar to EFC predictions.
+This section identifies the dominant degeneracies and the observational channels
+that break them. <strong>The key discriminant is that EFC predicts a specific
+combination of μ &lt; 1, Σ &gt; 1, and η ≈ 1.10 simultaneously</strong> — a pattern
+that is rare or absent in most competing models.</p>
+
+<h3>6.1 What Can Mimic EFC</h3>
+
+<table>
+<tr>
+  <th>Competing Effect</th>
+  <th>Mimics Which EFC Signal</th>
+  <th>Where It Fails to Match EFC</th>
+  <th>Discriminating Observable</th>
+</tr>
+<tr>
+  <td><strong>Massive neutrinos</strong> (Σm<sub>ν</sub> &gt; 0.06 eV)</td>
+  <td>Growth suppression (lower σ₈/S₈)</td>
+  <td>η = 1 exactly (no gravitational slip); suppression is scale-dependent with characteristic free-streaming scale; no effect on galactic RAR</td>
+  <td>η measurement via E<sub>G</sub> (KC4); scale-dependence of fσ₈(k); SPARC consistency</td>
+</tr>
+<tr>
+  <td><strong>Baryonic feedback</strong></td>
+  <td>Suppression of P(k) at small scales; lower S₈</td>
+  <td>Confined to k &gt; 0.5 h/Mpc; does not affect large-scale fσ₈; no ISW modification; η = 1</td>
+  <td>Scale cuts (EFC signal is at k ≈ 0.05–0.1); ISW amplitude (F1); gravitational slip (KC4)</td>
+</tr>
+<tr>
+  <td><strong>f(R) gravity</strong> (e.g., Hu-Sawicki)</td>
+  <td>μ ≠ 1; modified growth; dynamical dark energy</td>
+  <td>Most f(R) models give μ &gt; 1 (wrong sign for σ₈ suppression); Σ = μ (no independent slip); chameleon screening differs from EFC density saturation at cluster scales</td>
+  <td>Sign of μ (FA2); independent μ vs Σ (Euclid DR2); cluster-scale transition (regime test)</td>
+</tr>
+<tr>
+  <td><strong>Horndeski / EFT of DE</strong></td>
+  <td>General μ(k,z), Σ(k,z) modifications</td>
+  <td>Wide parameter space but: most viable Horndeski models after GW170817 (c<sub>T</sub> = c) give μ ≈ Σ (no significant slip). EFC's specific η ≈ 1.10 with μ &lt; 1 and Σ &gt; 1 occupies a narrow corner.</td>
+  <td>Joint μ–Σ–η measurement (Euclid DR2/DR3); void ISW sign-flip (unique to density-dependent μ(ρ))</td>
+</tr>
+<tr>
+  <td><strong>w₀w<sub>a</sub>CDM</strong> (phenomenological DE)</td>
+  <td>Modified expansion history; BAO shifts</td>
+  <td>Pure background modification: μ = Σ = η = 1 in perturbations. Cannot explain fσ₈ suppression beyond expansion-rate effect.</td>
+  <td>Perturbation-sector observables (fσ₈ residuals, E<sub>G</sub>, void ISW)</td>
+</tr>
+<tr>
+  <td><strong>Phenomenological A<sub>L</sub> &gt; 1</strong></td>
+  <td>Enhanced CMB lensing power</td>
+  <td>A<sub>L</sub> is not a physical parameter — it has no perturbation-sector origin. EFC's Σ &gt; 1 produces identical C<sub>ℓ</sub> residuals (cosine similarity = 0.93) but makes additional predictions (fσ₈, galaxy lensing) that A<sub>L</sub> does not.</td>
+  <td>Galaxy lensing + fσ₈ joint (breaks A<sub>L</sub> degeneracy); see <a href="https://doi.org/10.6084/m9.figshare.31368433">31368433</a></td>
+</tr>
+</table>
+
+<h3>6.2 The EFC Discriminant Signature</h3>
+
+<p>The <strong>unique EFC fingerprint</strong> is the simultaneous occurrence of:</p>
+
+<table>
+<tr>
+  <th>Property</th>
+  <th>EFC Prediction</th>
+  <th>Massive ν</th>
+  <th>f(R)</th>
+  <th>Horndeski (post-GW170817)</th>
+  <th>w₀w<sub>a</sub>CDM</th>
+</tr>
+<tr>
+  <td>μ &lt; 1</td>
+  <td>✅ 0.94</td>
+  <td>—</td>
+  <td>❌ (μ &gt; 1)</td>
+  <td>Possible</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>Σ &gt; 1</td>
+  <td>✅ 1.05</td>
+  <td>—</td>
+  <td>❌ (Σ = μ)</td>
+  <td>Possible</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>η ≈ 1.10</td>
+  <td>✅</td>
+  <td>❌ (η = 1)</td>
+  <td>❌ (η ≈ 1)</td>
+  <td>❌ (typically η ≈ 1)</td>
+  <td>❌ (η = 1)</td>
+</tr>
+<tr>
+  <td>Void ISW sign-flip</td>
+  <td>✅ (density-dep. μ)</td>
+  <td>❌</td>
+  <td>❌</td>
+  <td>❌</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Galactic RAR from same action</td>
+  <td>✅ (k = 0.415)</td>
+  <td>❌</td>
+  <td>Partial</td>
+  <td>❌</td>
+  <td>❌</td>
+</tr>
+</table>
+
+<p><strong>Bottom line:</strong> η ≈ 1.10 is the single most discriminating observable. If Euclid
+measures η = 1.00 ± 0.01, EFC is falsified (KC4) regardless of other channels.
+If η ≈ 1.10 is observed, it rules out massive neutrinos, standard f(R), and w₀w<sub>a</sub>CDM
+as explanations.</p>
+
+<hr>
+
+<h2>7. Failure Response Protocol</h2>
+
+<p>Kill criteria, action-level conditions, and standing falsification conditions have
+different consequences. This hierarchy ensures that responses to data are pre-determined
+and not subject to post-hoc rationalisation.</p>
+
+<table>
+<tr>
+  <th>Level</th>
+  <th>Conditions</th>
+  <th>Consequence if Triggered</th>
+  <th>Scope of Revision</th>
+</tr>
+<tr>
+  <td><strong>Kill Criterion (KC)</strong></td>
+  <td>KC1–KC5</td>
+  <td><strong>Hard falsification</strong> of the specified sector. The sector is formally abandoned.
+  No revision pathway exists within the current EFC framework.
+  Documented in Ledger §3.2 (Historical Falsifications) within one revision cycle.</td>
+  <td>Sector-specific: KC1 kills growth sector; KC3 kills S₈ channel; etc. Other sectors may survive.</td>
+</tr>
+<tr>
+  <td><strong>Action-Level (FA)</strong></td>
+  <td>FA1–FA6</td>
+  <td><strong>Theory-level rejection</strong> of the EFC Relativistic Action in its current form.
+  The variational action must be revised or replaced. Downstream predictions (μ, Σ, η values)
+  are invalidated until a new action is derived and tested.</td>
+  <td>Perturbation sector only. Galactic sector (SPARC, Graph-AQUAL) is not affected.
+  Background sector is already closed.</td>
+</tr>
+<tr>
+  <td><strong>Standing Falsification (F)</strong></td>
+  <td>F1–F6</td>
+  <td><strong>Tension / revision trigger.</strong> The affected channel is disfavoured but the overall
+  framework may survive if other channels compensate. A formal revision is required,
+  documented as a model update (not suppressed).</td>
+  <td>Channel-specific. E.g., F1 (ISW) disfavours background-driven growth but does not
+  kill perturbation sector. F5 (rotation curves) would require Graph-AQUAL revision.</td>
+</tr>
+</table>
+
+<h3>7.1 Compound Failure Rules</h3>
+
+<table>
+<tr>
+  <th>Scenario</th>
+  <th>Interpretation</th>
+</tr>
+<tr>
+  <td>1 KC triggered, others pass</td>
+  <td>Sector falsified. Remaining framework viable but reduced in scope. Documented as partial falsification.</td>
+</tr>
+<tr>
+  <td>2+ KC triggered</td>
+  <td>Framework-level crisis. If growth + lensing + slip all fail, EFC perturbation sector is abandoned.
+  Galactic sector evaluated independently.</td>
+</tr>
+<tr>
+  <td>KC passes but FA fails</td>
+  <td>Empirical signal survives but theoretical derivation is wrong. Action must be revised to reproduce
+  the observed (μ, Σ, η) values. This has precedent: F7 was passed only after the Relativistic Action replaced the naïve GRAV extrapolation.</td>
+</tr>
+<tr>
+  <td>All KC pass, all FA pass</td>
+  <td>Confirmation ladder advances. Does not constitute proof — only survival under increasingly stringent tests.</td>
+</tr>
+<tr>
+  <td>Sealed prediction within 1σ</td>
+  <td>Strong support. Reported as pre-registered confirmation.</td>
+</tr>
+<tr>
+  <td>Sealed prediction within 2σ</td>
+  <td>Consistent. No action required.</td>
+</tr>
+<tr>
+  <td>Sealed prediction beyond 3σ</td>
+  <td>Prediction falsified. Documented in Ledger. Parameter re-estimation from new data is permitted as an exploratory update (clearly labeled, not pre-registered).</td>
+</tr>
+</table>
+
+<p><strong>Governance commitment:</strong> The failure response protocol is frozen at publication.
+No reclassification of KC → F or FA → F is permitted after data release.
+Historical falsifications (Ledger §3.2) demonstrate that EFC has already applied this
+protocol to itself: two model versions and one structural gap have been formally discarded.</p>
+
+<hr>
+
+<h2>8. Mapping to Standard Parameterisations</h2>
+
+<p>To ensure that EFC predictions are interpretable by the wider community, this section
+maps EFC quantities to the standard frameworks used in Stage-IV survey analyses.</p>
+
+<table>
+<tr>
+  <th>Standard Framework</th>
+  <th>EFC Mapping</th>
+  <th>Notes</th>
+</tr>
+<tr>
+  <td><strong>μ(k,z), Σ(k,z)</strong> (MG parameterisation)</td>
+  <td>μ<sub>EFC</sub>(k,z) = [1 − S̄(z)] + s̃(k,z)/δ̃(k,z); at linear scales μ ≈ 0.94, Σ ≈ 1.05, η ≈ 1.10.
+  Scale dependence enters through the stiffness response R ∝ k<sup>−4</sup>.</td>
+  <td>Directly comparable to Euclid MG pipeline. See <a href="https://doi.org/10.6084/m9.figshare.31876324">31876324</a>.</td>
+</tr>
+<tr>
+  <td><strong>w₀w<sub>a</sub>CDM</strong></td>
+  <td>EFC dynamical dark energy: w(a) = −β(S)·a. This is <em>not</em> a free w₀w<sub>a</sub> fit — the functional form is derived from the susceptibility T(S). Effective w₀ and w<sub>a</sub> can be extracted by Taylor expansion for comparison with DESI/Euclid constraints.</td>
+  <td>See <a href="https://doi.org/10.6084/m9.figshare.31970907">WP Part 4</a>.</td>
+</tr>
+<tr>
+  <td><strong>EFT of Dark Energy (α-functions)</strong></td>
+  <td>Not yet derived. The EFC Relativistic Action (F(φ)R + K(ρ) + flow constraint) is a specific
+  scalar-tensor theory that can in principle be mapped to the Bellini-Sawicki α-parameterisation
+  (α<sub>M</sub>, α<sub>B</sub>, α<sub>K</sub>, α<sub>T</sub>). α<sub>T</sub> = 0 exactly (c<sub>T</sub> = c).
+  Full mapping is a planned theoretical task.</td>
+  <td>Priority: medium. Required for comparison with Euclid EFT pipeline.</td>
+</tr>
+<tr>
+  <td><strong>Σm<sub>ν</sub> (neutrino mass)</strong></td>
+  <td>EFC growth suppression partially degenerates with Σm<sub>ν</sub>. Joint fits must marginalise
+  over Σm<sub>ν</sub> with DESI/CMB priors. EFC's η ≠ 1 breaks the degeneracy (neutrinos give η = 1).</td>
+  <td>Neutrino mass constraints from EFC+DESI will differ from ΛCDM+DESI.</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>9. Critical Path: What Must Be Ready Before Data Arrives</h2>
+
+<p>Several predictions require pipeline development or numerical implementation
+before the relevant data release. These are listed in priority order by urgency.</p>
+
+<table>
+<tr>
+  <th>Priority</th>
+  <th>Item</th>
+  <th>Required For</th>
+  <th>Deadline</th>
+  <th>Status</th>
+</tr>
+<tr>
+  <td><strong>1</strong></td>
+  <td>Euclid DR1 S<sub>8</sub> extraction pipeline</td>
+  <td>KC3 (S<sub>8</sub> convergence test); P3 replication</td>
+  <td>2026 Oct</td>
+  <td><span class="pipeline-badge">IN PROGRESS</span> — DES Y6 pipeline exists; adapt for Euclid format</td>
+</tr>
+<tr>
+  <td><strong>2</strong></td>
+  <td>ISW cross-correlation measurement (A<sub>ISW</sub>)</td>
+  <td>F1 (ISW amplitude falsification)</td>
+  <td>2026 H2 (DESI DR2 tracers available)</td>
+  <td><span class="pipeline-badge">PREDICTION READY</span> — A<sub>ISW</sub> ≈ 0.89 ± 0.03; awaiting observational C<sub>ℓ</sub><sup>Tg</sup> publication</td>
+</tr>
+<tr>
+  <td><strong>3</strong></td>
+  <td>E<sub>G</sub> estimator implementation</td>
+  <td>KC4 (gravitational slip); FA4</td>
+  <td>~2028 (Euclid DR2)</td>
+  <td><span class="pipeline-badge">METHOD DEFINED</span> — requires lensing×RSD cross-probe</td>
+</tr>
+<tr>
+  <td><strong>4</strong></td>
+  <td>Full-shape P(k) likelihood with EFC growth</td>
+  <td>KC1 (growth suppression); F4</td>
+  <td>~2027 (DESI DR3)</td>
+  <td><span class="pipeline-badge">PIPELINE NEEDED</span> — EFCLASS Boltzmann implementation required</td>
+</tr>
+<tr>
+  <td><strong>5</strong></td>
+  <td>Void catalogue construction + ISW stacking</td>
+  <td>Void ISW sign-flip prediction</td>
+  <td>~2028 (Rubin DR1)</td>
+  <td><span class="pipeline-badge">METHOD DEFINED</span> — depth-binned stacking protocol locked</td>
+</tr>
+<tr>
+  <td><strong>6</strong></td>
+  <td>Cluster shock-front κ analysis (A<sub>sig</sub>)</td>
+  <td>F3 (cluster lensing asymmetry)</td>
+  <td>2026–2027 (JWST Cycle 4)</td>
+  <td><span class="pipeline-badge">PRE-REGISTERED</span> — methodology locked; awaiting JWST κ maps</td>
+</tr>
+<tr>
+  <td><strong>7</strong></td>
+  <td>Numerical EFCLASS implementation (Boltzmann solver)</td>
+  <td>Full C<sub>ℓ</sub> comparison; ADM Hamiltonian</td>
+  <td>~2028 (Euclid DR2)</td>
+  <td><span class="pipeline-badge">PLANNED</span> — CLASS v3.3.4 sign structure verified; full perturbation module pending</td>
+</tr>
+<tr>
+  <td><strong>8</strong></td>
+  <td>BAO anisotropic split (D<sub>A</sub> vs H(z))</td>
+  <td>Sealed predictions (D<sub>H</sub>/r<sub>d</sub>)</td>
+  <td>~2027 (DESI DR3)</td>
+  <td><span class="pipeline-badge">PREDICTION READY</span> — sealed values frozen</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>10. Confirmation Ladder (Updated)</h2>
+
+<p>Each level requires <em>all previous levels to remain satisfied</em>. Failure at any level
+triggers the corresponding kill criterion or falsification condition.</p>
+
+<table>
+<tr>
+  <th>Level</th>
+  <th>Threshold</th>
+  <th>Channels Required</th>
+  <th>Survey(s)</th>
+  <th>Timeline</th>
+  <th>Status</th>
+</tr>
+<tr>
+  <td><strong>Hint</strong> (current)</td>
+  <td>2.20σ single-channel</td>
+  <td>fσ<sub>8</sub> LOO (7/7)</td>
+  <td>DESI DR1 + BOSS</td>
+  <td>2026</td>
+  <td><span class="pass-badge">ACHIEVED</span></td>
+</tr>
+<tr>
+  <td><strong>Suggestive</strong></td>
+  <td>3σ joint</td>
+  <td>fσ<sub>8</sub> + S<sub>8</sub></td>
+  <td>+ Euclid DR1 + DES Y6</td>
+  <td>2027</td>
+  <td>AWAITING Euclid DR1</td>
+</tr>
+<tr>
+  <td><strong>Evidence</strong></td>
+  <td>3.5σ</td>
+  <td>μ–Σ + fσ<sub>8</sub></td>
+  <td>+ Euclid DR2</td>
+  <td>2028</td>
+  <td>Requires KC4 and E<sub>G</sub> pipeline</td>
+</tr>
+<tr>
+  <td><strong>Detection</strong></td>
+  <td>5σ</td>
+  <td>All channels locked</td>
+  <td>Euclid DR3 + Rubin + DESI final</td>
+  <td>2030+</td>
+  <td>Requires all KC1–KC5 not triggered</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>11. Cross-Domain Predictions (Non-Cosmological)</h2>
+
+<p>EFC extends beyond cosmology through three tracks. These predictions
+have independent testing timelines not tied to Stage-IV surveys.</p>
+
+<table>
+<tr>
+  <th>Prediction</th>
+  <th>Domain</th>
+  <th>Criterion</th>
+  <th>Dataset</th>
+  <th>Reference</th>
+</tr>
+<tr>
+  <td>P4** — η = C<sub>eff</sub>/D<sub>ratio</sub><sup>γ</sup></td>
+  <td>Neuroscience (Track 2)</td>
+  <td>|r| &gt; 0.40 on n ≥ 20 subjects</td>
+  <td>HCP structural connectome + multiscale entropy</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31940547">31940547</a></td>
+</tr>
+<tr>
+  <td>P5 — Optimal β<sub>KL</sub> from resting-state fMRI</td>
+  <td>AI Alignment (Track 3)</td>
+  <td>Calibrate RLHF temperature without grid search</td>
+  <td>HCP fMRI + RLHF training runs</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31940547">31940547</a></td>
+</tr>
+<tr>
+  <td>P2 — Grokking phase transition timing</td>
+  <td>AI Alignment (Track 3)</td>
+  <td>Δt<sub>grok</sub> ~ (H<sub>mem</sub> − H<sub>gen</sub>)/T<sub>eff</sub>; falsified if r &lt; 0.3</td>
+  <td>Modular arithmetic datasets</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31940535">31940535</a></td>
+</tr>
+<tr>
+  <td>Centrifugal gradient (P1, Track 2)</td>
+  <td>Neuroscience</td>
+  <td>Core-to-periphery entropy production gradient</td>
+  <td>HCP connectome + resting-state fMRI</td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31940505">31940505</a></td>
+</tr>
+</table>
+
+<hr>
+
+<h2>Bottom Line</h2>
+
+<table class="bottom-line">
+<tr>
+  <td>Purpose</td>
+  <td>Map every Stage-IV data release to a specific, pre-registered EFC test</td>
+</tr>
+<tr>
+  <td>Next critical date</td>
+  <td><strong>2026 Oct 21</strong> — Euclid DR1: tests KC3 (S<sub>8</sub>), KC5 (w<sub>0</sub>), FA2 (μ sign), P3 replication</td>
+</tr>
+<tr>
+  <td>Sealed predictions</td>
+  <td>2 cryptographic freezes; 6 quantitative values; all testable by DESI DR3 (~2027–2028)</td>
+</tr>
+<tr>
+  <td>Kill criteria</td>
+  <td>5 (KC1–KC5) + 6 action-level (FA1–FA6) + 6 standing (F1–F6) = <strong>17 falsification conditions</strong></td>
+</tr>
+<tr>
+  <td>Pipeline gaps</td>
+  <td>4 items require development before data arrival (E<sub>G</sub> estimator, full-shape likelihood, EFCLASS, void stacking)</td>
+</tr>
+<tr>
+  <td>Statistical framework</td>
+  <td>Survey-provided likelihoods and covariance; Δχ² / ΔAIC primary; no EFC nuisance parameters</td>
+</tr>
+<tr>
+  <td>Systematics</td>
+  <td>Survey-provided budgets for all probes; no independent EFC systematics model</td>
+</tr>
+<tr>
+  <td>Key discriminant</td>
+  <td>η ≈ 1.10 (gravitational slip) — rules out massive neutrinos, f(R), w<sub>0</sub>w<sub>a</sub>CDM if confirmed</td>
+</tr>
+<tr>
+  <td>Failure protocol</td>
+  <td>KC = hard kill (sector abandoned); FA = action revision; F = tension/revision. No reclassification post-data.</td>
+</tr>
+<tr>
+  <td>Governance</td>
+  <td>No post-hoc additions after data release; all entries frozen at publication; versioned updates only</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>Resources</h2>
+
+<ul>
+<li><strong>White Paper Series:</strong> <a href="EFC_White_Paper_Series.html">EFC_White_Paper_Series.html</a></li>
+<li><strong>Validation Ledger:</strong> <a href="EFC_Validation_Ledger.html">EFC_Validation_Ledger.html</a> (v3.9)</li>
+<li><strong>Repository:</strong> <a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a></li>
+<li><strong>Theory site:</strong> <a href="https://energyflow-cosmology.com">energyflow-cosmology.com</a></li>
+<li><strong>Primary DOI:</strong> <a href="https://doi.org/10.6084/m9.figshare.30656828">10.6084/m9.figshare.30656828</a> (AUTH Layer)</li>
+</ul>
+
+<hr>
+
+<p style="font-size:0.85em; color:#777;">
+© 2026 Energy-Flow Cosmology Initiative · Stage-IV Data Roadmap (v1.1 – April 2026)
+</p>
+
+</body>
+</html>

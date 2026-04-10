@@ -1,0 +1,213 @@
+# EFC Bridge — cobaya configuration
+# =================================
+#
+# Full Planck 2018 high-ell plik_lite (TTTEEE) + low-ell (TT, EE) + lensing
+# with free cosmology and two free modified-gravity parameters (mu0, Sigma0)
+# under the MGCAMB mu-Sigma parametrization (MG_flag = 3, DE-tracking time dep.).
+#
+# This is the configuration referenced in Kill-Test v5 (Session Note v5),
+# Section 9 "Open Questions", item 2, and in the Localization paper
+# (DOI: 10.6084/m9.figshare.31368433), Phase 2 "minimize_free_cosmo" block.
+#
+# The sweet spot previously reported:
+#     mu0    = 0.94
+#     Sigma0 = 1.05
+#     Δchi2  = -0.45 vs GR (plik_lite + lowl TT/EE + lensing.clik)
+#
+# Hardware:
+#   - Planck plik_lite high-ell data (~1 GB)
+#   - MGCAMB v1.5.2 (fork of CAMB) installed as the "camb" theory module
+#   - cobaya >= 3.5
+#   - ~16 GB RAM recommended for minimize, ~32 GB for mcmc
+#
+# Run (minimize to reproduce the Δχ² = -0.45 result):
+#   cobaya-run efc_bridge.yaml --minimize
+#
+# Run (full MCMC posterior in the (mu0, Sigma0) plane with free cosmology):
+#   cobaya-run efc_bridge.yaml
+#
+# Install Planck likelihoods first:
+#   cobaya-install efc_bridge.yaml -p /path/to/packages
+
+theory:
+  camb:
+    # Requires MGCAMB fork installed in place of vanilla CAMB
+    # (pip install git+https://github.com/sfu-cosmo/MGCAMB.git@v1.5.2)
+    extra_args:
+      # MG parametrization (see MGCAMB README):
+      #   MG_flag = 3      -> pure mu-Sigma, DE-background-scaled
+      #   pure_MG_flag = 2 -> time-dependence tracks Omega_DE(a)
+      MG_flag: 3
+      pure_MG_flag: 2
+      # We use the mu_0 / Sigma_0 amplitudes sampled below.
+      # lmax / accuracy tuned for high-ell TTTEEE
+      lmax: 2700
+      lens_potential_accuracy: 4
+      AccuracyBoost: 1.2
+      lAccuracyBoost: 1.2
+      # Dark-sector background is ΛCDM; EFC background gate is empty
+      # (Localization paper, Phase 1). Keep w=-1.
+      dark_energy_model: fluid
+      w: -1.0
+      # Massive neutrino sum fixed at minimal value (Planck 2018 default).
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.044
+
+likelihood:
+  # High-ell TTTEEE — plik_lite marginalised over foregrounds.
+  # This is the likelihood MGCAMB + cobaya used in the Localization paper
+  # (Phase 2, "minimize_free_cosmo" column). It is the correct high-ell choice
+  # for (mu, Sigma) because plik_lite retains the full TT+TE+EE correlations
+  # that partially compensate the CMB lensing signal — which the native
+  # lensing-only likelihood cannot see.
+  planck_2018_highl_plik.TTTEEE_lite:
+  planck_2018_lowl.TT:
+  planck_2018_lowl.EE:
+  # Lensing reconstruction — use the clik variant (has cross-correlation
+  # info with the high-ell spectra), not the native lensing-only file.
+  planck_2018_lensing.clik:
+
+params:
+  # -------------------- sampled cosmological parameters --------------------
+  logA:
+    prior:
+      min: 2.6
+      max: 3.5
+    ref:
+      dist: norm
+      loc: 3.044
+      scale: 0.02
+    proposal: 0.015
+    latex: \log(10^{10} A_\mathrm{s})
+    drop: true
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_\mathrm{s}
+  ns:
+    prior:
+      min: 0.9
+      max: 1.05
+    ref:
+      dist: norm
+      loc: 0.9649
+      scale: 0.005
+    proposal: 0.004
+    latex: n_\mathrm{s}
+  theta_MC_100:
+    prior:
+      min: 1.03
+      max: 1.05
+    ref:
+      dist: norm
+      loc: 1.04109
+      scale: 0.0005
+    proposal: 0.0004
+    latex: 100\theta_\mathrm{MC}
+    drop: true
+    renames: theta
+  cosmomc_theta:
+    value: "lambda theta_MC_100: 1.e-2*theta_MC_100"
+    derived: false
+  H0:
+    latex: H_0
+  ombh2:
+    prior:
+      min: 0.019
+      max: 0.025
+    ref:
+      dist: norm
+      loc: 0.02237
+      scale: 0.0002
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omch2:
+    prior:
+      min: 0.095
+      max: 0.145
+    ref:
+      dist: norm
+      loc: 0.1200
+      scale: 0.002
+    proposal: 0.0015
+    latex: \Omega_\mathrm{c} h^2
+  tau:
+    prior:
+      dist: norm
+      loc: 0.0544
+      scale: 0.0073
+    ref:
+      dist: norm
+      loc: 0.0544
+      scale: 0.006
+    proposal: 0.005
+    latex: \tau_\mathrm{reio}
+
+  # -------------------- EFC modified-gravity parameters --------------------
+  # These are the two free MG parameters. They map directly to the EFC
+  # derived quantities (K0, m^2) via the bridge table in efc_mu_table.json:
+  #
+  #   mu0    <-- stiffness response R(k) = K0 Θ(ρ) (Γ' φ̇)^2 a^4 / (M_Pl^2 F k^4)
+  #   Sigma0 <-- slip cancellation f = 1 - V''(φ̄)/[K(ρ̄) k^2/a^2],  m^2 ≈ 0.0035
+  #
+  # Sweet spot from Localization paper Phase 2: (mu0, Sigma0) = (0.94, 1.05)
+  # Expected Δχ² = -0.45 vs GR.
+  mu0:
+    prior:
+      min: 0.80
+      max: 1.20
+    ref:
+      dist: norm
+      loc: 0.94
+      scale: 0.01
+    proposal: 0.01
+    latex: \mu_0
+  Sigma0:
+    prior:
+      min: 0.90
+      max: 1.20
+    ref:
+      dist: norm
+      loc: 1.05
+      scale: 0.01
+    proposal: 0.01
+    latex: \Sigma_0
+
+  # -------------------- derived parameters --------------------
+  sigma8:
+    latex: \sigma_8
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_\mathrm{m}
+  omegamh2:
+    derived: "lambda omegam, H0: omegam*(H0/100)**2"
+    latex: \Omega_\mathrm{m} h^2
+  age:
+    latex: "{\\rm{Age}}/\\mathrm{Gyr}"
+  rdrag:
+    latex: r_\mathrm{drag}
+
+sampler:
+  # Default is full MCMC. Swap in "minimize" on the command line with
+  #     cobaya-run efc_bridge.yaml --minimize
+  # to reproduce the Δχ² = -0.45 best-fit from the Localization paper.
+  mcmc:
+    drag: true
+    oversample_power: 0.4
+    proposal_scale: 1.9
+    covmat: auto
+    Rminus1_stop: 0.02
+    Rminus1_cl_stop: 0.15
+    max_tries: 1000
+    burn_in: 0
+
+output: chains/efc_bridge
+
+# --- EFC bridge metadata ---------------------------------------------------
+# Paper:       Kill-Test v5 (Session Note v5), Magnusson (2026)
+# Related DOI: 10.6084/m9.figshare.31368433 (Localization)
+# Related DOI: 10.6084/m9.figshare.31876324 (Relativistic Action)
+# Bridge:      K0 = 1.66, m^2 ≈ 0.0035, f = 0.15  ->  mu0 = 0.94, Sigma0 = 1.05
+# Table:       See efc_mu_table.json for mu(k, a) on the full grid.

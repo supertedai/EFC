@@ -1,15 +1,109 @@
 {
-  "version": "1.0",
+  "version": "1.2",
   "root": "docs/papers/efc",
   "papers": [
+    {
+      "id": "efc-four-channel-consistency-test",
+      "path": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling",
+      "type": "paper"
+    },
     {
       "id": "AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology",
       "path": "AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology",
       "type": "paper"
     },
     {
+      "id": "A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters",
+      "path": "A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters",
+      "type": "paper"
+    },
+    {
+      "id": "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes",
+      "path": "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes",
+      "type": "paper"
+    },
+    {
       "id": "CEM-Consciousness-Ego-Mirror",
       "path": "CEM-Consciousness-Ego-Mirror",
+      "type": "paper"
+    },
+    {
+      "id": "cmb-thermodynamic-interpretation",
+      "path": "CMB-Thermodynamic-Interpretation",
+      "type": "null_test_framework"
+    },
+    {
+      "id": "Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling",
+      "path": "Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling",
+      "type": "paper"
+    },
+    {
+      "id": "Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge",
+      "path": "Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge",
+      "type": "paper"
+    },
+    {
+      "id": "efc-regime-transition-test",
+      "path": "Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test",
+      "type": "paper"
+    },
+    {
+      "id": "ebe-core-lock",
+      "path": "Core-Lock",
+      "type": "paper"
+    },
+    {
+      "id": "cosmological-growth-constraints-lambda-locked",
+      "path": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity",
+      "type": "technical_note",
+      "companion": "discrete-entropic-gravity-cubic-graph",
+      "validation": {
+        "status": "stress_test_passed",
+        "regime": "L1-L2",
+        "lambda_locked_viable": true,
+        "sub_hubble_viable": false
+      }
+    },
+    {
+      "id": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints",
+      "path": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints",
+      "type": "paper"
+    },
+    {
+      "id": "Density_of_States_of_Gravitationally",
+      "path": "Density_of_States_of_Gravitationally",
+      "type": "paper"
+    },
+    {
+      "id": "Derivation_of_the_Entropy_Production",
+      "path": "Derivation_of_the_Entropy_Production",
+      "type": "paper"
+    },
+    {
+      "id": "Directional_Lensing_Residuals",
+      "path": "Directional_Lensing_Residuals",
+      "type": "paper"
+    },
+    {
+      "id": "discrete-entropic-gravity-cubic-graph",
+      "path": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening",
+      "type": "technical_note",
+      "doi": "10.6084/m9.figshare.31348411",
+      "validation": {
+        "status": "kill_tests_passed",
+        "regime": "L1-L2",
+        "kill_tests": 5,
+        "structural_departures": 1
+      }
+    },
+    {
+      "id": "Double-Slit_as_Grid-Resolution_Phenomenon_in_GRC_Ontological_Extension_UV-Cutoff_Analysis",
+      "path": "Double-Slit_as_Grid-Resolution_Phenomenon_in_GRC_Ontological_Extension_UV-Cutoff_Analysis",
+      "type": "paper"
+    },
+    {
+      "id": "ebe-core-principles",
+      "path": "EBE-Core-Principles",
       "type": "paper"
     },
     {
@@ -28,8 +122,28 @@
       "type": "paper"
     },
     {
+      "id": "EFC-Bridging-Scales-FEP",
+      "path": "EFC-Bridging-Scales-FEP",
+      "type": "EFC-Paper"
+    },
+    {
       "id": "EFC-CMB-Thermodynamic-Gradient",
       "path": "EFC-CMB-Thermodynamic-Gradient",
+      "type": "paper"
+    },
+    {
+      "id": "EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2",
+      "path": "EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2",
+      "type": "paper"
+    },
+    {
+      "id": "efc-c-cognitive-entropy-gradients-v2",
+      "path": "EFC-C_Cognitive_Entropy_Gradients_v2",
+      "type": "quantitative_prediction"
+    },
+    {
+      "id": "efc-c-consciousness-field-resonance",
+      "path": "EFC-C_Consciousness_Field_Resonance",
       "type": "paper"
     },
     {
@@ -76,6 +190,11 @@
       "id": "EFC-Grid-Model-Entropic-Dynamics",
       "path": "EFC-Grid-Model-Entropic-Dynamics",
       "type": "paper"
+    },
+    {
+      "id": "EFC-H0-S8-Tensions",
+      "path": "EFC-H0-S8-Tensions",
+      "type": "EFC-Paper"
     },
     {
       "id": "EFC-How-Does-Balance-Shape-Universal-Structures",
@@ -138,6 +257,21 @@
       "type": "paper"
     },
     {
+      "id": "efc-phenomenology-desi-dr2-bao",
+      "path": "EFC-Phenomenology-vs-DESI-DR2-BAO-A-Comparative-Fit-Analysis",
+      "type": "technical_note"
+    },
+    {
+      "id": "EFC-R-SPARC-Regime-Validity",
+      "path": "EFC-R-SPARC-Regime-Validity",
+      "type": "EFC-Paper"
+    },
+    {
+      "id": "efc-regime-transition-framework",
+      "path": "EFC-Regime-Transition-Framework-A-CMB-Consistent-Approach-to-Late-Time-Cosmology",
+      "type": "theoretical_framework"
+    },
+    {
       "id": "EFC-Subhypothesis-Light-Speed-Limit",
       "path": "EFC-Subhypothesis-Light-Speed-Limit",
       "type": "paper"
@@ -198,9 +332,301 @@
       "type": "paper"
     },
     {
+      "id": "efclass-sign-structure",
+      "path": "EFCLASS_Technical_Note_Sign_structure_of_an_additive_gate-function_modification_to_the_Friedmann_equation",
+      "type": "analytical_proof"
+    },
+    {
+      "id": "efc-closure-conjectures",
+      "path": "EFC_Closure_Conjectures",
+      "type": "theoretical_conjecture"
+    },
+    {
+      "id": "efc-cosmic-dipole",
+      "path": "EFC_Cosmic_Dipole_Working_Note",
+      "type": "paper"
+    },
+    {
+      "id": "efc-entropy-budget",
+      "path": "EFC_Entropy_Budget_Working_Note",
+      "type": "paper"
+    },
+    {
+      "id": "efc-gradient-coupled-grid-action",
+      "path": "EFC_Gradient_Coupled_Grid_Action",
+      "type": "paper"
+    },
+    {
+      "id": "efc-ontological-foundations",
+      "path": "EFC_Ontological_Foundations",
+      "type": "paper"
+    },
+    {
+      "id": "efc-phase3-sparc-validation",
+      "path": "EFC_Phase_3__SPARC_Validation",
+      "type": "empirical_validation"
+    },
+    {
+      "id": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction",
+      "path": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction",
+      "type": "paper"
+    },
+    {
+      "id": "EFC_v1_3_PPN_Recovery_via_Density_Saturation",
+      "path": "EFC_v1_3_PPN_Recovery_via_Density_Saturation",
+      "type": "paper"
+    },
+    {
+      "id": "efc-empirical-validation-cluster-rotation",
+      "path": "Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves",
+      "type": "empirical_analysis"
+    },
+    {
+      "id": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO",
+      "path": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO",
+      "type": "observational",
+      "doi": "10.6084/m9.figshare.31215613",
+      "validation": {
+        "status": "completed",
+        "regime": "L1-L2",
+        "efc_d": true
+      }
+    },
+    {
+      "id": "Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1",
+      "path": "Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1",
+      "type": "paper"
+    },
+    {
+      "id": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes",
+      "path": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes",
+      "type": "formal",
+      "validation": {
+        "status": "validated",
+        "regime": "L1-L2",
+        "efc_d": true
+      }
+    },
+    {
+      "id": "efc-desi-dr2-bao",
+      "path": "Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation",
+      "type": "empirical_validation"
+    },
+    {
+      "id": "foundations-efc-regime-architecture",
+      "path": "Foundations_of_Energy_Flow_Cosmology__EFC___Regime_Architecture_and_Methodological_Principles_of_Entropy_Bounded_Empiricism",
+      "type": "foundational_framework"
+    },
+    {
+      "id": "From_Grid_Microphysics_to_the_Radial_Acceleration",
+      "path": "From_Grid_Microphysics_to_the_Radial_Acceleration",
+      "type": "paper"
+    },
+    {
+      "id": "Homo_Fluxus",
+      "path": "Homo_Fluxus",
+      "type": "paper"
+    },
+    {
+      "id": "ISW_Consistency_Audit_and_Revision_Patch_for_Energy-Flow_Cosmology_Cross-Correlation_Predictions",
+      "path": "ISW_Consistency_Audit_and_Revision_Patch_for_Energy-Flow_Cosmology_Cross-Correlation_Predictions",
+      "type": "paper"
+    },
+    {
+      "id": "isw-cross-correlation-desi-dr1",
+      "path": "ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers",
+      "type": "paper"
+    },
+    {
+      "id": "kt3b-cross-regime-measurement-failure",
+      "path": "KT3b_CrossRegime_Measurement_Failure_DOI",
+      "type": "null result + methodological diagnosis"
+    },
+    {
+      "id": "l0-l3-regime-architecture",
+      "path": "L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
+      "type": "foundational_framework"
+    },
+    {
+      "id": "Local_Degree_Heterogeneity_Predicts_Functional_Variability_Gradients",
+      "path": "Local_Degree_Heterogeneity_Predicts_Functional_Variability_Gradients",
+      "type": "research-article"
+    },
+    {
+      "id": "Minimal_EFC_Effective_Field_Theory_Ansatz_Scalar_Tensor_and_Vector_Tensor_Formulations_with_Gravitational_Slip_from_Entropy_Gradients",
+      "path": "Minimal_EFC_Effective_Field_Theory_Ansatz_Scalar_Tensor_and_Vector_Tensor_Formulations_with_Gravitational_Slip_from_Entropy_Gradients",
+      "type": "paper"
+    },
+    {
+      "id": "multi-epoch-growth-rate-test-efc",
+      "path": "Multi_epoch_Growth_Rate_Test_of_EFC",
+      "type": "multi-epoch validation, null result"
+    },
+    {
+      "id": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems",
+      "path": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems",
+      "type": "paper"
+    },
+    {
+      "id": "Persistent_Cognitive_Architectures_for_Human-AI_Co-Reasoning_Beyond_Retrieval_to_Structural_Intelligence",
+      "path": "Persistent_Cognitive_Architectures_for_Human-AI_Co-Reasoning_Beyond_Retrieval_to_Structural_Intelligence",
+      "type": "paper"
+    },
+    {
+      "id": "efc-perturbation-sigma8-suppression",
+      "path": "Perturbation-Level_σ₈_Suppression_via_μ_Sructural_Limits_of_Scale-Free_Modifications",
+      "type": "perturbation_analysis"
+    },
+    {
+      "id": "Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12",
+      "path": "Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12",
+      "type": "paper"
+    },
+    {
+      "id": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
+      "path": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
+      "type": "formal",
+      "doi": "10.6084/m9.figshare.31211437"
+    },
+    {
+      "id": "regime-based-world-modeling",
+      "path": "Regime-Based_World_Modeling_A_Layered_Epistemic_Architecture_for_Complex_System",
+      "type": "paper"
+    },
+    {
+      "id": "Regime_Bound_Measurement_in_Complex_Systems_Proxy_Placement_and_Validity",
+      "path": "Regime_Bound_Measurement_in_Complex_Systems_Proxy_Placement_and_Validity",
+      "type": "paper"
+    },
+    {
+      "id": "regime-dependent-growth-enhancement-fugaku-desi",
+      "path": "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset",
+      "type": "empirical_analysis"
+    },
+    {
+      "id": "Regime_Locked_Measurement",
+      "path": "Regime_Locked_Measurement",
+      "type": "paper"
+    },
+    {
+      "id": "regime-structure-entropic-flow-ontology",
+      "path": "Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models",
+      "type": "foundational_framework",
+      "companions": [
+        "discrete-entropic-gravity-cubic-graph",
+        "cosmological-growth-constraints-lambda-locked"
+      ],
+      "validation": {
+        "status": "framework_established",
+        "regime": "L0-L2",
+        "regimes_exhaustive": true,
+        "lambda_dual_role": true
+      }
+    },
+    {
+      "id": "Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3",
+      "path": "Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3",
+      "type": "paper"
+    },
+    {
+      "id": "efc-growth-sector-robustness",
+      "path": "Robustness_of_the_EFC_Growth-Sector_Signal_Leave-One-Out_Sound-Horizon_and_Amplitude-Prior_Controls_for_the_Hubble-Friction_Channel",
+      "type": "robustness_analysis"
+    },
+    {
+      "id": "structural-constraints-cluster-merger",
+      "path": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry",
+      "type": "constraint_study"
+    },
+    {
+      "id": "structural-coherence-evaluation",
+      "path": "Structural_Coherence_Evaluation_for_Physical_Theories",
+      "type": "paper"
+    },
+    {
+      "id": "symbiosis_method",
+      "path": "Symbiosis-A-Human–AI-Co-Reflection-Architecture-Using-Graph–Vector-Memory-for-Long-Horizon-Thinking",
+      "type": "paper"
+    },
+    {
+      "id": "efc-cmb-constraints-null-results",
+      "path": "Systematic-CMB-Constraints-on-Early-Universe-Modifications-Parameter-Degeneracies-and-Null-Results",
+      "type": "constraint_analysis"
+    },
+    {
+      "id": "efc-cmb-localization",
+      "path": "Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier",
+      "type": "localization_analysis"
+    },
+    {
+      "id": "rcmp-measurement-principle",
+      "path": "The-Regime-Consistent-Measurement-Principle-RCMP-A-Methodological-Framework-for-Multi-Scale-Physics",
+      "type": "paper"
+    },
+    {
+      "id": "hubble-tension-regime-mismatch",
+      "path": "The_Hubble_Tension_as_Regime_Mismatch",
+      "type": "research_paper"
+    },
+    {
+      "id": "Triangulation_Test_for_Thermodynamic_Lensing_Coupling__A_Triangulation_Test_for_Possible_Thermodynamic",
+      "path": "Triangulation_Test_for_Thermodynamic_Lensing_Coupling__A_Triangulation_Test_for_Possible_Thermodynamic",
+      "type": "paper"
+    },
+    {
+      "id": "efc-h0-unification",
+      "path": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification",
+      "type": "research_paper"
+    },
+    {
+      "id": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_",
+      "path": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_",
+      "type": "observational",
+      "doi": "10.6084/m9.figshare.31215259",
+      "validation": {
+        "status": "completed",
+        "regime": "L2"
+      }
+    },
+    {
+      "id": "wp4-boss-transfer-validation",
+      "path": "WP4_BOSS_transfer_validation",
+      "type": "post-hoc validation"
+    },
+    {
+      "id": "WP4_BOSS_validation",
+      "path": "WP4_BOSS_validation",
+      "type": "paper"
+    },
+    {
       "id": "ai_workflow_framework",
       "path": "ai_workflow_framework",
       "type": "paper"
+    },
+    {
+      "id": "bullet-cluster-efc",
+      "path": "bullet_cluster_efc",
+      "type": "consistency check, analytical confrontation, pre-registered test pending"
+    },
+    {
+      "id": "c-eff-parameterization",
+      "path": "c_eff_parameterization",
+      "type": "parameterization"
+    },
+    {
+      "id": "efc-weak-lensing-phenomenology",
+      "path": "efc-weak-lensing-phenomenology",
+      "type": "theoretical_framework"
+    },
+    {
+      "id": "efc-boss-bao-cobaya-research-note",
+      "path": "efc_boss_bao_cobaya_research_note",
+      "type": "Research Note"
+    },
+    {
+      "id": "efc-des-y6-validation",
+      "path": "efc_des_y6_validation",
+      "type": "validation-update"
     },
     {
       "id": "efc_formal_spec",
@@ -218,9 +644,49 @@
       "type": "paper"
     },
     {
+      "id": "efc-state-vs-stageIII",
+      "path": "efc_state_vs_stageIII",
+      "type": "Methodology note / Validation update / Theory-data interface framework"
+    },
+    {
+      "id": "31061872",
+      "path": "energy-flow-cosmology-and-regime-dependent-structure-formation",
+      "type": "paper"
+    },
+    {
+      "id": "entropy-bounded-empiricism-ebe-sparc175",
+      "path": "entropy-bounded-empiricism-EBE-SPARC175-complete-documentation",
+      "type": "empirical_analysis"
+    },
+    {
+      "id": "cosmos-galaxy-abundances-z6",
+      "path": "observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-COSMOS-web",
+      "type": "observational_analysis"
+    },
+    {
+      "id": "rsd-to-clusters",
+      "path": "paper_rsd_to_clusters",
+      "type": "paper"
+    },
+    {
+      "id": "regime-dependent-breakdown-lcdm",
+      "path": "regime-dependent-breakdown-of-LCDM-across-cosmic-time",
+      "type": "statistical_analysis"
+    },
+    {
+      "id": "efc-regime-consistency-lya-bao-rsd-sce",
+      "path": "regime_consistency_lya_bao_rsd_sce",
+      "type": "paper"
+    },
+    {
       "id": "symbiotic-insight-framework",
       "path": "symbiotic-insight-framework",
       "type": "paper"
+    },
+    {
+      "id": "validity-aware-ai",
+      "path": "validity-aware-ai",
+      "type": "architectural_framework"
     },
     {
       "id": "variable-light-s0-s1",
@@ -228,80 +694,23 @@
       "type": "paper"
     },
     {
-      "id": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO",
-      "path": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO",
-      "type": "observational",
-      "doi": "10.6084/m9.figshare.31215613",
-      "validation": {
-        "status": "completed",
-        "regime": "L1-L2",
-        "efc_d": true
-      }
+      "id": "efc-void-isw-signflip",
+      "path": "void_isw_signflip_v2.1_final",
+      "type": "paper"
     },
     {
-      "id": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_",
-      "path": "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_",
-      "type": "observational",
-      "doi": "10.6084/m9.figshare.31215259",
-      "validation": {
-        "status": "completed",
-        "regime": "L2"
-      }
+      "id": "ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology",
+      "path": "ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology",
+      "type": "paper"
     },
     {
-      "id": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
-      "path": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
-      "type": "formal",
-      "doi": "10.6084/m9.figshare.31211437"
-    },
-    {
-      "id": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes",
-      "path": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes",
-      "type": "formal",
-      "validation": {
-        "status": "validated",
-        "regime": "L1-L2",
-        "efc_d": true
-      }
-    },
-    {
-      "id": "discrete-entropic-gravity-cubic-graph",
-      "path": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening",
+      "id": "efc-vs-lcdm-kill-test-v6",
+      "path": "EFC_vs_LCDM_Kill_Test_v6_final",
       "type": "technical_note",
-      "doi": "10.6084/m9.figshare.31348411",
-      "validation": {
-        "status": "kill_tests_passed",
-        "regime": "L1-L2",
-        "kill_tests": 5,
-        "structural_departures": 1
-      }
-    },
-    {
-      "id": "cosmological-growth-constraints-lambda-locked",
-      "path": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity",
-      "type": "technical_note",
-      "companion": "discrete-entropic-gravity-cubic-graph",
-      "validation": {
-        "status": "stress_test_passed",
-        "regime": "L1-L2",
-        "lambda_locked_viable": true,
-        "sub_hubble_viable": false
-      }
-    },
-    {
-      "id": "regime-structure-entropic-flow-ontology",
-      "path": "Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models",
-      "type": "foundational_framework",
-      "companions": [
-        "discrete-entropic-gravity-cubic-graph",
-        "cosmological-growth-constraints-lambda-locked"
-      ],
-      "validation": {
-        "status": "framework_established",
-        "regime": "L0-L2",
-        "regimes_exhaustive": true,
-        "lambda_dual_role": true
-      }
+      "doi": "10.6084/m9.figshare.31964847",
+      "short_title": "EFC vs LCDM Kill-Test v6",
+      "ai_package": true
     }
-  ]
+  ],
+  "n_papers": 133
 }

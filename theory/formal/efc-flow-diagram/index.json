@@ -1,0 +1,10 @@
+{
+  "id": "efc-flow-diagram",
+  "title": "EFC Flow Diagram",
+  "description": "Causal and computational update order linking entropy (S), structure (rho), energy flow (E_f), resistance (R), information capacity (C), and propagation speed (c_eff).",
+  "type": "meta",
+  "version": "1.0",
+  "regime": "meta",
+  "files": ["index.tex", "minimal_spec.tex"],
+  "dependencies_mapped": ["efc-s-model", "efc-d-model", "efc-c0-model", "efc-h-model"]
+}
