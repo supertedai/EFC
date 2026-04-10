@@ -1,0 +1,63 @@
+{
+  "description": "Observational constraints establishing that the EFC background gate is empty",
+  "alpha_collapse": {
+    "dataset": "Planck 2018 TT/TE/EE + BOSS/eBOSS BAO",
+    "result": "α collapses to ≈ 0 under all Planck+BAO combinations",
+    "significance": "|Δχ²| < 2σ in all combinations",
+    "alpha_H0_correlation": 0.975,
+    "interpretation": "CMB is blind to α; BAO breaks the degeneracy",
+    "reference_doi": "10.6084/m9.figshare.31368433"
+  },
+  "four_channel_test": {
+    "parameter": "β = 0.08",
+    "channels": [
+      {
+        "name": "BAO distances",
+        "data": "BOSS DR12",
+        "chi2_efc": 1.93,
+        "chi2_lcdm": 5.58,
+        "delta_chi2": -3.65,
+        "status": "PASS"
+      },
+      {
+        "name": "Growth rate",
+        "data": "BOSS DR12 fσ₈",
+        "chi2_efc": 1.09,
+        "chi2_lcdm": 1.34,
+        "delta_chi2": -0.25,
+        "status": "PASS"
+      },
+      {
+        "name": "CMB lensing",
+        "data": "ACT+SPT+Planck 2025",
+        "S8_efc": 0.815,
+        "S8_lcdm": 0.821,
+        "S8_observed": "0.825 ± 0.014",
+        "pull": "-0.71σ",
+        "status": "PASS"
+      },
+      {
+        "name": "SN Ia",
+        "data": "Pantheon+",
+        "max_delta_mu": 0.032,
+        "status": "PASS"
+      }
+    ],
+    "combined_delta_chi2": -3.89,
+    "significance": "~2σ preference",
+    "reference_doi": "10.6084/m9.figshare.31304980"
+  },
+  "perturbation_sector_alternative": {
+    "survival_valley": {
+      "mu_range": [0.93, 0.96],
+      "Sigma_range": [1.03, 1.07],
+      "best_fit_mu": 0.94,
+      "best_fit_Sigma": 1.05,
+      "best_fit_eta": 1.10,
+      "delta_chi2": -0.45
+    },
+    "note": "Perturbation sector (μ, Σ, η) is where EFC effects must operate — not the background",
+    "reference_doi": "10.6084/m9.figshare.31368433"
+  },
+  "conclusion": "Background gate is structurally excluded (sign lemma) and observationally empty (α → 0). All EFC effects redirected to perturbation sector."
+}

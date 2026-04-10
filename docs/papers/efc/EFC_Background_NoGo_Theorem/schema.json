@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/supertedai/EFC/schemas/efc-background-nogo-theorem.json",
+  "title": "EFC Background No-Go Theorem Schema",
+  "description": "Validates the index.json for the EFC Background No-Go Theorem package",
+  "type": "object",
+  "definitions": {
+    "SignLemmaResult": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number", "minimum": 0},
+        "delta_H_over_H_pct": {"type": "number", "maximum": 0},
+        "sign_ok": {"type": "boolean", "const": true}
+      },
+      "required": ["z", "delta_H_over_H_pct", "sign_ok"]
+    },
+    "GrowthEnhancement": {
+      "type": "object",
+      "properties": {
+        "z": {"type": "number", "minimum": 0},
+        "fsigma8_lcdm": {"type": "number", "minimum": 0},
+        "fsigma8_efc": {"type": "number", "minimum": 0},
+        "change_pct": {"type": "number", "minimum": 0}
+      },
+      "required": ["z", "fsigma8_lcdm", "fsigma8_efc", "change_pct"]
+    },
+    "FalsificationCriterion": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "pattern": "^NOGO-F[0-9]+$"},
+        "condition": {"type": "string"},
+        "implication": {"type": "string"},
+        "status": {"type": "string", "enum": ["Not viable", "Open", "Triggered"]}
+      },
+      "required": ["id", "condition", "implication", "status"]
+    }
+  },
+  "properties": {
+    "$schema": {"type": "string"},
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "description": {"type": "string"},
+    "version": {"type": "string"},
+    "date": {"type": "string"},
+    "doi": {"type": "string"},
+    "keywords": {"type": "array", "items": {"type": "string"}},
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "orcid": {"type": "string"},
+        "affiliation": {"type": "string"}
+      },
+      "required": ["name", "orcid"]
+    },
+    "core_equations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "latex": {"type": "string"},
+          "description": {"type": "string"}
+        },
+        "required": ["latex", "description"]
+      }
+    },
+    "three_pillars": {
+      "type": "object",
+      "properties": {
+        "analytical": {"type": "object"},
+        "numerical": {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/SignLemmaResult"}
+            },
+            "growth_enhancement": {
+              "type": "array",
+              "items": {"$ref": "#/definitions/GrowthEnhancement"}
+            }
+          }
+        },
+        "observational": {"type": "object"}
+      },
+      "required": ["analytical", "numerical", "observational"]
+    },
+    "falsification_criteria": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/FalsificationCriterion"}
+    }
+  },
+  "required": ["id", "title", "version", "date", "author", "three_pillars", "falsification_criteria"]
+}
