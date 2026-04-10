@@ -11,16 +11,26 @@
   "generated": "2026-04-10",
   "track": "Spor general",
   "regimes": [],
-  "primary_pdf": null,
-  "all_pdfs": [],
+  "primary_pdf": "EFC_Background_NoGo_Theorem.pdf",
+  "all_pdfs": [
+    "EFC_Background_NoGo_Theorem.pdf"
+  ],
   "files": [
     {
       "path": "CITATION.cff",
       "bytes": 1373
     },
     {
+      "path": "EFC_Background_NoGo_Theorem.pdf",
+      "bytes": 305674
+    },
+    {
       "path": "README.md",
       "bytes": 9603
+    },
+    {
+      "path": "ai_manifest.json",
+      "bytes": 1551
     },
     {
       "path": "citations.bib",
@@ -59,18 +69,10 @@
       "bytes": 578
     },
     {
-      "path": "src/__pycache__/__init__.cpython-311.pyc",
-      "bytes": 829
-    },
-    {
-      "path": "src/__pycache__/background_nogo.cpython-311.pyc",
-      "bytes": 7858
-    },
-    {
       "path": "src/background_nogo.py",
       "bytes": 5099
     }
   ],
   "n_files": 14,
-  "n_pdfs": 0
+  "n_pdfs": 1
 }

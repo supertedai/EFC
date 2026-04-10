@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EFC Band-Pass Observational Test",
+  "description": "Schema for an observational test of the scale-localised modified gravity band-pass model",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the observational test"
+    },
+    "delta_chi2": {
+      "type": ["number", "null"],
+      "description": "Delta chi-squared relative to LCDM. Positive = EFC preferred."
+    },
+    "precision": {
+      "type": ["string", "null"],
+      "description": "Current measurement precision"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "PASS (8%)", "EFC better", "Neutral", "GR preferred", "EFC marginal"],
+      "description": "Test outcome"
+    },
+    "k": {
+      "type": "number",
+      "description": "Wavenumber in h/Mpc (for E_G prediction table)"
+    },
+    "EG_GR": {
+      "type": "number",
+      "description": "E_G value in GR"
+    },
+    "EG_EFC": {
+      "type": "number",
+      "description": "E_G value in EFC band-pass model"
+    },
+    "delta_pct": {
+      "type": "number",
+      "description": "Fractional deviation Delta E_G / E_G in percent"
+    },
+    "Sigma_over_mu": {
+      "type": "number",
+      "description": "Ratio Sigma/mu at given k"
+    }
+  },
+  "required": ["name"]
+}

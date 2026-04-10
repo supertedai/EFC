@@ -1,0 +1,30 @@
+{
+  "source": "Scale-Localised Modified Gravity (Table 2)",
+  "doi": "10.6084/m9.figshare.31985313",
+  "description": "E_G(k) prediction at z=0.3 for the band-pass model",
+  "redshift": 0.3,
+  "eps_tot": 0.40,
+  "R_0": 0.510,
+  "k_c": 0.05,
+  "k_c_unit": "h/Mpc",
+  "Omega_m": 0.315,
+  "data": [
+    {"k": 0.01, "EG_GR": 0.460, "EG_EFC": 0.466, "delta_EG_pct": 1.2, "Sigma_over_mu": 1.012},
+    {"k": 0.03, "EG_GR": 0.460, "EG_EFC": 0.488, "delta_EG_pct": 5.9, "Sigma_over_mu": 1.059},
+    {"k": 0.05, "EG_GR": 0.460, "EG_EFC": 0.494, "delta_EG_pct": 7.4, "Sigma_over_mu": 1.072},
+    {"k": 0.10, "EG_GR": 0.460, "EG_EFC": 0.481, "delta_EG_pct": 4.6, "Sigma_over_mu": 1.046},
+    {"k": 0.20, "EG_GR": 0.460, "EG_EFC": 0.468, "delta_EG_pct": 1.6, "Sigma_over_mu": 1.016}
+  ],
+  "peak": {
+    "k": 0.05,
+    "bump_pct": 7.4,
+    "Sigma_over_mu": 1.072
+  },
+  "detection_forecast": {
+    "current_precision_pct": 15,
+    "target_precision_pct": 5,
+    "signal_pct": 7,
+    "significance_sigma": "2.5-3.5",
+    "instrument": "DESI x Planck lensing cross-correlations"
+  }
+}

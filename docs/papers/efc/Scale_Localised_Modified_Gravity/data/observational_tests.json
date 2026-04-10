@@ -1,0 +1,44 @@
+{
+  "source": "Scale-Localised Modified Gravity (Table 1)",
+  "doi": "10.6084/m9.figshare.31985313",
+  "eps_tot": 0.40,
+  "note": "Positive delta_chi2 indicates EFC preferred over LCDM",
+  "tests": [
+    {
+      "name": "BOSS P(k) shape",
+      "delta_chi2": -0.07,
+      "precision": "~3%/bin",
+      "status": "PASS"
+    },
+    {
+      "name": "CMB ISW (low-l)",
+      "delta_chi2": null,
+      "precision": "~10%",
+      "status": "PASS (8%)"
+    },
+    {
+      "name": "CMB lensing A_lens",
+      "delta_chi2": 3.3,
+      "precision": "5.5%",
+      "status": "EFC better"
+    },
+    {
+      "name": "KiDS shear S_WL",
+      "delta_chi2": 0.04,
+      "precision": "2.5%",
+      "status": "Neutral"
+    },
+    {
+      "name": "E_G (current)",
+      "delta_chi2": -1.9,
+      "precision": "~15%",
+      "status": "GR preferred"
+    },
+    {
+      "name": "Joint (net)",
+      "delta_chi2": 1.4,
+      "precision": null,
+      "status": "EFC marginal"
+    }
+  ]
+}
