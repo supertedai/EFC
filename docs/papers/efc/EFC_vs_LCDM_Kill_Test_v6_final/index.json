@@ -193,9 +193,18 @@
   ],
   "open_questions": [
     "Full MCMC posterior with all 7+2 parameters (≥ 16 GB RAM required)",
-    "175-galaxy universality (only 5 refitted so far)",
+    "Full multi-component 175-galaxy universality with fixed (K0, m²) — single-component extension completed 2026-04-11, see Kill-Test v6 Universality_SPARC175",
     "Physical origin of m² ≈ 0.0035 (m/H₀ ≈ 0.06)",
     "A_lens / Σ₀ degeneracy disentanglement via MGCAMB primary MG run"
+  ],
+  "resolved_questions": [
+    {
+      "id": "probe2-cherry-picking",
+      "resolved_date": "2026-04-11",
+      "resolved_by": "kill-test-v6-universality-sparc175",
+      "resolved_path": "../Kill-Test v6 Universality_SPARC175",
+      "summary": "Single-component extension of probe-2 to all 175 SPARC galaxies gives EFC win rate 60.2% (42.1% EFC_decisive), median ΔAIC = +6.21, Mann-Whitney p ≈ 0 (FLOW vs LATENT), Spearman ρ(ΔAIC, v_max) = 0.11. Cherry-picking objection refuted."
+    }
   ],
   "related_papers": [
     {
@@ -220,6 +229,12 @@
     {
       "id": "sparc-175",
       "relationship": "probe_2_dataset"
+    },
+    {
+      "id": "kill-test-v6-universality-sparc175",
+      "directory": "Kill-Test v6 Universality_SPARC175",
+      "relationship": "probe_2_universality_extension",
+      "date": "2026-04-11"
     }
   ],
   "files": {

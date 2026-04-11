@@ -15,6 +15,11 @@ This repository contains the complete analysis of 175 galaxies from the Spitzer 
 
 **Key Finding:** Regime separation is highly statistically significant (Mann-Whitney U test, p < 0.0001).
 
+### Kill-Test v6 Universality Extension (2026-04-11)
+
+A direct extension of this dataset to the [EFC vs ΛCDM Kill-Test v6 (probe-2)](../EFC_vs_LCDM_Kill_Test_v6_final/) methodology is available at
+[**Kill-Test v6 Universality_SPARC175/**](../Kill-Test%20v6%20Universality_SPARC175/). That package fits EFC and NFW to all 175 galaxies with `scipy.differential_evolution` and reports a per-galaxy Kill-Test verdict and regime for each. Headline: EFC wins 60.2% of 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21; cherry-picking objection against the 5-galaxy probe-2 result is **refuted**.
+
 ---
 
 ## Repository Structure

@@ -1,0 +1,76 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite as below."
+title: "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample"
+abstract: >-
+  Extension of the EFC vs ΛCDM Kill-Test v6 (probe-2) to all 175 galaxies
+  in the SPARC database. On 171 successfully fitted galaxies, single-
+  component Energy-Flow Cosmology wins 60.2% against an NFW reference
+  (42.1% EFC_decisive). Median ΔAIC = +6.21 (favours EFC; convention
+  AIC_NFW − AIC_EFC). Mann-Whitney test between FLOW and LATENT regimes
+  gives p ≈ 0. Spearman ρ(ΔAIC, v_max) = 0.11 (p = 0.15) rules out
+  mass-scale selection bias. DDO 154 reproduces at ΔAIC = +125.2
+  (sign-convention verified). Universality verdict: CONFIRMED at the
+  single-component level — the cherry-picking objection against the
+  5-galaxy probe-2 result is refuted.
+type: software
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Symbiose Research, Sandnes, Norway"
+version: "1.0"
+date-released: "2026-04-11"
+license: "CC-BY-4.0"
+keywords:
+  - "Energy-Flow Cosmology"
+  - "EFC"
+  - "kill test"
+  - "universality"
+  - "SPARC 175"
+  - "rotation curves"
+  - "NFW"
+  - "AIC"
+  - "regime classification"
+repository-code: "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175"
+references:
+  - type: article
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    title: "EFC vs ΛCDM: Complete Kill-Test (v6 final)"
+    year: 2026
+    doi: "10.6084/m9.figshare.31964847"
+  - type: dataset
+    authors:
+      - family-names: "Magnusson"
+        given-names: "Morten"
+    title: "Comprehensive analysis of 175 SPARC galaxies demonstrating regime-dependent validity in rotation curve modeling"
+    year: 2026
+    doi: "10.6084/m9.figshare.31045126"
+  - type: article
+    authors:
+      - family-names: "Lelli"
+        given-names: "Federico"
+      - family-names: "McGaugh"
+        given-names: "Stacy S."
+      - family-names: "Schombert"
+        given-names: "James M."
+    title: "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves"
+    year: 2016
+    journal: "The Astronomical Journal"
+    volume: 152
+    issue: 6
+    start: 157
+  - type: article
+    authors:
+      - family-names: "Navarro"
+        given-names: "Julio F."
+      - family-names: "Frenk"
+        given-names: "Carlos S."
+      - family-names: "White"
+        given-names: "Simon D. M."
+    title: "A Universal Density Profile from Hierarchical Clustering"
+    year: 1997
+    journal: "The Astrophysical Journal"
+    volume: 490
+    start: 493
