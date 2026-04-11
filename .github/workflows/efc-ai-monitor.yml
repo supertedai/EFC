@@ -1,0 +1,129 @@
+name: EFC AI monitor
+
+# Read-only AI observer of the EFC maintenance stack.
+#
+# Runs scripts/maintenance/efc_ai_monitor.py, which:
+#   - Collects a state snapshot (ledger, paper archive, recent commits)
+#   - Sends it to Claude (single API call, ~8k input / 2k output tokens)
+#   - Writes docs/validation-ledger/ai_review.{json,md}
+#   - Posts the markdown review to the GitHub Actions job summary
+#
+# Behaviour:
+#   - Never modifies the ledger, paper archive, or public HTML
+#   - Never auto-commits any file (uploads review as an artifact instead)
+#   - Fails gracefully if ANTHROPIC_API_KEY is not configured (dry-run
+#     stub + warning, exit 0 — does not block any other workflow)
+#
+# Triggers:
+#   - Weekly on Monday 06:00 UTC (scheduled review)
+#   - workflow_dispatch (on-demand)
+#   - After a successful efc-sync run on a development branch
+#     (observes the result without modifying it)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # every Monday 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Claude model to use (default: claude-sonnet-4-6)"
+        required: false
+        default: "claude-sonnet-4-6"
+  workflow_run:
+    workflows: ["EFC auto-sync"]
+    types: [completed]
+
+concurrency:
+  group: efc-ai-monitor
+  cancel-in-progress: false
+
+# Minimal permissions — read-only for code, write-only for artifacts.
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    # Skip the workflow_run path if the upstream sync failed
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install anthropic SDK
+        run: python3 -m pip install --quiet anthropic
+
+      - name: Run EFC AI monitor
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -o pipefail
+          MODEL="${{ github.event.inputs.model || 'claude-sonnet-4-6' }}"
+          if [ -z "${ANTHROPIC_API_KEY}" ]; then
+            echo "::warning::ANTHROPIC_API_KEY secret is not configured — running in dry-run mode"
+            python3 scripts/maintenance/efc_ai_monitor.py \
+                --model "$MODEL" \
+                --out ai_review_out \
+                --dry-run 2>&1 | tee monitor.log
+          else
+            python3 scripts/maintenance/efc_ai_monitor.py \
+                --model "$MODEL" \
+                --out ai_review_out 2>&1 | tee monitor.log
+          fi
+
+      - name: Post review to job summary
+        if: always()
+        run: |
+          {
+            echo "# EFC AI Monitor"
+            echo
+            if [ -f ai_review_out/ai_review.md ]; then
+              cat ai_review_out/ai_review.md
+            else
+              echo "_No review produced._"
+            fi
+            echo
+            echo "---"
+            echo
+            echo "## Monitor log (tail)"
+            echo
+            echo '```'
+            tail -40 monitor.log 2>/dev/null || echo "(no log)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload review as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: efc-ai-review-${{ github.run_id }}
+          path: |
+            ai_review_out/ai_review.json
+            ai_review_out/ai_review.md
+            monitor.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Surface the health signal
+        if: always()
+        run: |
+          if [ -f ai_review_out/ai_review.json ]; then
+            HEALTH=$(python3 -c '
+          import json, sys
+          with open("ai_review_out/ai_review.json") as f:
+              d = json.load(f)
+          print(d.get("review", {}).get("overall_health", "unknown"))
+          ')
+            echo "Overall health: $HEALTH"
+            echo "health=$HEALTH" >> "$GITHUB_OUTPUT"
+          fi
