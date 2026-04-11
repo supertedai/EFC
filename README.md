@@ -233,6 +233,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Grid Microphysics to RAR | [31878760](https://doi.org/10.6084/m9.figshare.31878760) | BE RAR from 3 assumptions |
 | Gradient-Coupled Grid Action | [31941465](https://doi.org/10.6084/m9.figshare.31941465) | E ∝ √g from minimal Lagrangian, operator uniqueness |
 | Regime Transition Test | [31941543](https://doi.org/10.6084/m9.figshare.31941543) | μ<1 (linear) ↔ μ>1 (non-linear), R∝k⁻⁴, Δχ²=−0.03 |
+| **Scale-Localised Modified Gravity** | [31985313](https://doi.org/10.6084/m9.figshare.31985313) | Band-pass R(k,a); E_G bump ~7% at k_c=0.05 h/Mpc; testable 2.5–3.5σ |
 
 ### Track 1–3 + Bridge + Synthesis
 | Paper | DOI | Key Result |
