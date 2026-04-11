@@ -48,12 +48,12 @@
       "description": "Energy-Flow Cosmology inspired",
       "equation": "w(z) = w_late + (w_early − w_late) · tanh[(z − z_trans)/Δz]",
       "parameters": {
-        "w_late": -0.80,
+        "w_late": -0.8,
         "w_early": -1.41,
         "z_trans": 1.07,
         "delta_z": 0.5
       },
-      "chi_squared": 3.60
+      "chi_squared": 3.6
     }
   },
   "results": {
@@ -72,5 +72,9 @@
     "Multi-probe analysis (BAO + Pantheon+ SN + Planck CMB)",
     "Identify unique EFC signatures",
     "Bayesian model comparison (BIC, evidence ratio)"
-  ]
+  ],
+  "paper": {
+    "doi": "10.6084/m9.figshare.31127380",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31127380"
+  }
 }

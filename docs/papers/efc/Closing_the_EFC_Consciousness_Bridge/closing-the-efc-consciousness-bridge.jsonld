@@ -12,11 +12,7 @@
     "identifier": "https://orcid.org/0009-0002-4860-5095"
   },
   "datePublished": "2026-04",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "DOI",
-    "value": "10.6084/m9.figshare.31969983"
-  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31969983",
   "url": "https://doi.org/10.6084/m9.figshare.31969983",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "description": "Closes the bridge between the cosmological entropy field S and the EFC-C cognitive variables by introducing dimensionless regime-indexed variables, a non-separable consciousness functional with one free parameter gamma, and coupled dynamical equations. Five directional predictions consistent with existing propofol sedation EEG data.",
@@ -34,14 +30,28 @@
     "SPARC"
   ],
   "about": [
-    {"@type": "DefinedTerm", "name": "Consciousness Bridge"},
-    {"@type": "DefinedTerm", "name": "Non-Separable Functional"},
-    {"@type": "DefinedTerm", "name": "Three-Equation System"},
-    {"@type": "DefinedTerm", "name": "Regime-Indexed Variables"}
+    {
+      "@type": "DefinedTerm",
+      "name": "Consciousness Bridge"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Non-Separable Functional"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Three-Equation System"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Regime-Indexed Variables"
+    }
   ],
   "isPartOf": {
     "@type": "CreativeWorkSeries",
     "name": "EFC Validation Ledger",
     "identifier": "EFC-VAL-2026-007"
-  }
+  },
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31969983",
+  "doi": "10.6084/m9.figshare.31969983"
 }

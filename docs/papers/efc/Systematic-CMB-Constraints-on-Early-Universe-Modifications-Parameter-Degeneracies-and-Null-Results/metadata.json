@@ -35,7 +35,10 @@
     "source": "Planck 2018",
     "spectrum": "Temperature (TT)",
     "points": 2507,
-    "ell_range": [2, 2508]
+    "ell_range": [
+      2,
+      2508
+    ]
   },
   "methods": {
     "boltzmann_solver": "CLASS v3.2.0",
@@ -87,5 +90,9 @@
     "replication_package": true,
     "code_available": true,
     "data_available": true
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31095466",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31095466"
   }
 }

@@ -14,7 +14,16 @@
   "status": "published",
   "series": "EFCLASS Technical Note I",
   "abstract_short": "Under standard closure normalisation E(0) = 1, the additive gate ΔE² = A[g(z) − g(0)] is strictly non-positive for all z > 0. This reduces Hubble friction and enhances structure growth. Background-level EFC cannot suppress σ₈. Verified numerically in CLASS v3.3.4 to < 0.1%.",
-  "keywords": ["EFC", "Friedmann equation", "gate function", "sign lemma", "Hubble friction", "CLASS", "background modification", "closure normalisation"],
+  "keywords": [
+    "EFC",
+    "Friedmann equation",
+    "gate function",
+    "sign lemma",
+    "Hubble friction",
+    "CLASS",
+    "background modification",
+    "closure normalisation"
+  ],
   "referenced_by": {
     "technical_note_II": {
       "id": "efc-perturbation-sigma8-suppression",
@@ -49,15 +58,43 @@
     }
   },
   "parameters": {
-    "h": {"value": 0.674, "description": "Hubble constant h = H₀/100"},
-    "omega_b": {"value": 0.02237, "description": "Baryon density ω_b"},
-    "omega_cdm": {"value": 0.1200, "description": "CDM density ω_cdm"},
-    "m_nu": {"value": 0.06, "unit": "eV", "description": "Neutrino mass"},
-    "A": {"value": 0.15, "description": "EFC coupling amplitude"},
-    "z_t": {"value": 1.01, "description": "Transition redshift"},
-    "n": {"value": 6, "description": "Steepness exponent"},
-    "g_0": {"value": 0.985062, "description": "Derived: g(z=0)"},
-    "Omega_Lambda_prime": {"value": 0.5373, "description": "Derived: adjusted Ω'_Λ"}
+    "h": {
+      "value": 0.674,
+      "description": "Hubble constant h = H₀/100"
+    },
+    "omega_b": {
+      "value": 0.02237,
+      "description": "Baryon density ω_b"
+    },
+    "omega_cdm": {
+      "value": 0.12,
+      "description": "CDM density ω_cdm"
+    },
+    "m_nu": {
+      "value": 0.06,
+      "unit": "eV",
+      "description": "Neutrino mass"
+    },
+    "A": {
+      "value": 0.15,
+      "description": "EFC coupling amplitude"
+    },
+    "z_t": {
+      "value": 1.01,
+      "description": "Transition redshift"
+    },
+    "n": {
+      "value": 6,
+      "description": "Steepness exponent"
+    },
+    "g_0": {
+      "value": 0.985062,
+      "description": "Derived: g(z=0)"
+    },
+    "Omega_Lambda_prime": {
+      "value": 0.5373,
+      "description": "Derived: adjusted Ω'_Λ"
+    }
   },
   "results": {
     "sign_verification": {
@@ -65,38 +102,126 @@
       "agreement": "< 0.3% at all z > 0",
       "sign_confirmed": true,
       "data": [
-        {"z": 0.0, "delta_H2_class": 0.0, "delta_H2_analytical": 0.0, "delta_H_over_H_pct": 0.0},
-        {"z": 0.3, "delta_H2_class": -4.049e-10, "delta_H2_analytical": -4.038e-10, "delta_H_over_H_pct": -0.291},
-        {"z": 0.5, "delta_H2_class": -1.003e-9, "delta_H2_analytical": -1.003e-9, "delta_H_over_H_pct": -0.569},
-        {"z": 0.7, "delta_H2_class": -1.915e-9, "delta_H2_analytical": -1.918e-9, "delta_H_over_H_pct": -0.853},
-        {"z": 1.0, "delta_H2_class": -3.620e-9, "delta_H2_analytical": -3.621e-9, "delta_H_over_H_pct": -1.124},
-        {"z": 1.5, "delta_H2_class": -5.856e-9, "delta_H2_analytical": -5.856e-9, "delta_H_over_H_pct": -1.039},
-        {"z": 2.0, "delta_H2_class": -6.839e-9, "delta_H2_analytical": -6.840e-9, "delta_H_over_H_pct": -0.739},
-        {"z": 3.0, "delta_H2_class": -7.348e-9, "delta_H2_analytical": -7.348e-9, "delta_H_over_H_pct": -0.349},
-        {"z": 5.0, "delta_H2_class": -7.458e-9, "delta_H2_analytical": -7.458e-9, "delta_H_over_H_pct": -0.107}
+        {
+          "z": 0.0,
+          "delta_H2_class": 0.0,
+          "delta_H2_analytical": 0.0,
+          "delta_H_over_H_pct": 0.0
+        },
+        {
+          "z": 0.3,
+          "delta_H2_class": -4.049e-10,
+          "delta_H2_analytical": -4.038e-10,
+          "delta_H_over_H_pct": -0.291
+        },
+        {
+          "z": 0.5,
+          "delta_H2_class": -1.003e-09,
+          "delta_H2_analytical": -1.003e-09,
+          "delta_H_over_H_pct": -0.569
+        },
+        {
+          "z": 0.7,
+          "delta_H2_class": -1.915e-09,
+          "delta_H2_analytical": -1.918e-09,
+          "delta_H_over_H_pct": -0.853
+        },
+        {
+          "z": 1.0,
+          "delta_H2_class": -3.62e-09,
+          "delta_H2_analytical": -3.621e-09,
+          "delta_H_over_H_pct": -1.124
+        },
+        {
+          "z": 1.5,
+          "delta_H2_class": -5.856e-09,
+          "delta_H2_analytical": -5.856e-09,
+          "delta_H_over_H_pct": -1.039
+        },
+        {
+          "z": 2.0,
+          "delta_H2_class": -6.839e-09,
+          "delta_H2_analytical": -6.84e-09,
+          "delta_H_over_H_pct": -0.739
+        },
+        {
+          "z": 3.0,
+          "delta_H2_class": -7.348e-09,
+          "delta_H2_analytical": -7.348e-09,
+          "delta_H_over_H_pct": -0.349
+        },
+        {
+          "z": 5.0,
+          "delta_H2_class": -7.458e-09,
+          "delta_H2_analytical": -7.458e-09,
+          "delta_H_over_H_pct": -0.107
+        }
       ]
     },
     "closure_checks": {
-      "H0_ratio": {"value": 1.0, "status": "Exact"},
-      "Omega_Lambda_prime_plus_Omega_efc_0": {"value": 0.685103, "equals": "Ω_Λ^std"},
-      "tau_z1100_difference": {"value": "< 1 ppm", "status": "r_s preserved"},
-      "g_z1100": {"value": 3.7e-17, "status": "Gate fully suppressed"}
+      "H0_ratio": {
+        "value": 1.0,
+        "status": "Exact"
+      },
+      "Omega_Lambda_prime_plus_Omega_efc_0": {
+        "value": 0.685103,
+        "equals": "Ω_Λ^std"
+      },
+      "tau_z1100_difference": {
+        "value": "< 1 ppm",
+        "status": "r_s preserved"
+      },
+      "g_z1100": {
+        "value": 3.7e-17,
+        "status": "Gate fully suppressed"
+      }
     },
     "growth_signature": {
       "description": "fσ₈ at BOSS DR12 redshifts: enhanced growth due to reduced Hubble friction",
       "data": [
-        {"z": 0.38, "fsigma8_LCDM": 0.4749, "fsigma8_EFC": 0.4773, "delta_pct": 0.50},
-        {"z": 0.51, "fsigma8_LCDM": 0.4731, "fsigma8_EFC": 0.4762, "delta_pct": 0.65},
-        {"z": 0.61, "fsigma8_LCDM": 0.4679, "fsigma8_EFC": 0.4715, "delta_pct": 0.76}
+        {
+          "z": 0.38,
+          "fsigma8_LCDM": 0.4749,
+          "fsigma8_EFC": 0.4773,
+          "delta_pct": 0.5
+        },
+        {
+          "z": 0.51,
+          "fsigma8_LCDM": 0.4731,
+          "fsigma8_EFC": 0.4762,
+          "delta_pct": 0.65
+        },
+        {
+          "z": 0.61,
+          "fsigma8_LCDM": 0.4679,
+          "fsigma8_EFC": 0.4715,
+          "delta_pct": 0.76
+        }
       ]
     },
     "class_patch": {
-      "files_modified": ["background.h", "background.c", "input.c"],
+      "files_modified": [
+        "background.h",
+        "background.c",
+        "input.c"
+      ],
       "total_lines": 77,
       "details": [
-        {"file": "background.h", "modification": "Parameters + index", "lines": 9},
-        {"file": "background.c", "modification": "Gate functions + density + output", "lines": 35},
-        {"file": "input.c", "modification": "Parsing + closure adjustment", "lines": 33}
+        {
+          "file": "background.h",
+          "modification": "Parameters + index",
+          "lines": 9
+        },
+        {
+          "file": "background.c",
+          "modification": "Gate functions + density + output",
+          "lines": 35
+        },
+        {
+          "file": "input.c",
+          "modification": "Parsing + closure adjustment",
+          "lines": 33
+        }
       ]
     }
   },
@@ -112,5 +237,6 @@
     "paper": "efclass_companion_note.pdf",
     "schema": "schema.json",
     "citations": "citations.bib"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31333414"
 }

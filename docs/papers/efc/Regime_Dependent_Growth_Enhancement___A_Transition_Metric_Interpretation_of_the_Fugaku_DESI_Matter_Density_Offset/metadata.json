@@ -11,7 +11,14 @@
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31140000",
   "abstract": "Reinterprets ~10% matter density offset in Fugaku N-body simulations as transition estimator Delta_F measuring integrated regime transition strength.",
-  "keywords": ["DESI", "Fugaku", "N-body simulations", "transition metric", "matter density offset", "regime transition"],
+  "keywords": [
+    "DESI",
+    "Fugaku",
+    "N-body simulations",
+    "transition metric",
+    "matter density offset",
+    "regime transition"
+  ],
   "efc_context": {
     "track": "Empirical Analysis",
     "regime_relevance": "Transition band between CMB and galaxy formation regimes",
@@ -30,8 +37,14 @@
     "jsonld": "transition_metric.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/transition_metric.py"],
+    "src_modules": [
+      "src/transition_metric.py"
+    ],
     "data": "data/fugaku_desi_data.json",
     "demo": "examples/demo_transition_metric.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31140000",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31140000"
   }
 }

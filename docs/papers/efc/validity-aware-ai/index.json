@@ -12,7 +12,15 @@
   "type": "architectural_framework",
   "status": "published",
   "abstract_short": "AI architecture with pre-inference entropy measurement, regime classification (L1/L2/L3), and response protocols. Hallucination defined as protocol violation.",
-  "keywords": ["validity-aware AI", "entropy-bounded", "regime-sensitive", "L0-L3", "hallucination", "epistemic honesty", "RAG"],
+  "keywords": [
+    "validity-aware AI",
+    "entropy-bounded",
+    "regime-sensitive",
+    "L0-L3",
+    "hallucination",
+    "epistemic honesty",
+    "RAG"
+  ],
   "core_principle": "No system may generate confident claims outside the regime where such claims are empirically valid.",
   "problem": "Standard LLMs are epistemically blind - no mechanism to detect regime boundaries or degrade epistemic status.",
   "solution": [
@@ -22,28 +30,60 @@
     "Hallucination as protocol violation, not just quality issue"
   ],
   "regime_architecture": {
-    "L0": {"state": "Latent", "validity": "None (system inactive)"},
-    "L1": {"state": "Stable Active", "validity": "High confidence, reliable"},
-    "L2": {"state": "Complex Active", "validity": "Requires uncertainty quantification"},
-    "L3": {"state": "Residual", "validity": "Historical retrieval only"}
+    "L0": {
+      "state": "Latent",
+      "validity": "None (system inactive)"
+    },
+    "L1": {
+      "state": "Stable Active",
+      "validity": "High confidence, reliable"
+    },
+    "L2": {
+      "state": "Complex Active",
+      "validity": "Requires uncertainty quantification"
+    },
+    "L3": {
+      "state": "Residual",
+      "validity": "Historical retrieval only"
+    }
   },
   "graph_entropy": {
     "formula": "H(G) = H_V + H_E + H_VE",
-    "components": ["Node entropy", "Edge entropy", "Structural entropy"]
+    "components": [
+      "Node entropy",
+      "Edge entropy",
+      "Structural entropy"
+    ]
   },
   "documents": [
-    {"id": "A", "title": "Entropy, Validity, and Regimes"},
-    {"id": "B", "title": "Regime-Aware RAG"},
-    {"id": "C", "title": "Beyond the Black Box"}
+    {
+      "id": "A",
+      "title": "Entropy, Validity, and Regimes"
+    },
+    {
+      "id": "B",
+      "title": "Regime-Aware RAG"
+    },
+    {
+      "id": "C",
+      "title": "Beyond the Black Box"
+    }
   ],
   "dependencies": [
-    {"doi": "10.6084/m9.figshare.31112536", "title": "L0-L3 Regime Architecture"},
-    {"doi": "10.6084/m9.figshare.30773684", "title": "Symbiosis Architecture"}
+    {
+      "doi": "10.6084/m9.figshare.31112536",
+      "title": "L0-L3 Regime Architecture"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30773684",
+      "title": "Symbiosis Architecture"
+    }
   ],
   "files": {
     "docs": "docs/",
     "src": "src/",
     "data": "data/",
     "examples": "examples/"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31122970"
 }

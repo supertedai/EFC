@@ -24,7 +24,12 @@
   ],
   "model": {
     "description": "Single-parameter modification to ΛCDM",
-    "parameters": ["H0", "Omega_m", "sigma8", "alpha_L2"],
+    "parameters": [
+      "H0",
+      "Omega_m",
+      "sigma8",
+      "alpha_L2"
+    ],
     "equations": {
       "DM_modification": "D_M^EFC(z) = D_M^ΛCDM(z) × [1 + α_L2 × g_D(z)]",
       "H_modification": "H^EFC(z) = H^ΛCDM(z) × [1 + α_L2 × g_H(z)]",
@@ -37,24 +42,46 @@
     },
     "predictions": {
       "gravitational_slip": "η ≡ Φ/Ψ = 1",
-      "testable_with": ["Euclid", "Vera C. Rubin Observatory"]
+      "testable_with": [
+        "Euclid",
+        "Vera C. Rubin Observatory"
+      ]
     }
   },
   "results": {
     "best_fit": {
       "LCDM": {
-        "H0": {"value": 66.57, "unit": "km/s/Mpc"},
-        "Omega_m": {"value": 0.359},
-        "sigma8": {"value": 0.667},
-        "alpha_L2": {"value": 0, "note": "fixed"},
+        "H0": {
+          "value": 66.57,
+          "unit": "km/s/Mpc"
+        },
+        "Omega_m": {
+          "value": 0.359
+        },
+        "sigma8": {
+          "value": 0.667
+        },
+        "alpha_L2": {
+          "value": 0,
+          "note": "fixed"
+        },
         "chi2": 7.29,
         "dof": 6
       },
       "EFC": {
-        "H0": {"value": 69.65, "unit": "km/s/Mpc"},
-        "Omega_m": {"value": 0.347},
-        "sigma8": {"value": 0.669},
-        "alpha_L2": {"value": 0.353},
+        "H0": {
+          "value": 69.65,
+          "unit": "km/s/Mpc"
+        },
+        "Omega_m": {
+          "value": 0.347
+        },
+        "sigma8": {
+          "value": 0.669
+        },
+        "alpha_L2": {
+          "value": 0.353
+        },
         "chi2": 4.28,
         "dof": 5
       }
@@ -63,8 +90,14 @@
       "value": 0.34,
       "error_plus": 0.16,
       "error_minus": 0.16,
-      "interval_1sigma": [0.18, 0.51],
-      "interval_2sigma": [-0.02, 0.71]
+      "interval_1sigma": [
+        0.18,
+        0.51
+      ],
+      "interval_2sigma": [
+        -0.02,
+        0.71
+      ]
     },
     "model_comparison": {
       "delta_chi2": 3.01,
@@ -74,24 +107,54 @@
       "delta_BIC": 0.81
     },
     "bao_rsd_tension": {
-      "BAO_only": {"alpha_L2": 0.28, "error": 0.18},
-      "RSD_only": {"alpha_L2": -1.4, "note": "large uncertainty"},
+      "BAO_only": {
+        "alpha_L2": 0.28,
+        "error": 0.18
+      },
+      "RSD_only": {
+        "alpha_L2": -1.4,
+        "note": "large uncertainty"
+      },
       "interpretation": "S8 tension recast in EFC parameter space"
     }
   },
   "data": {
     "dataset": "BOSS DR12 consensus",
     "reference": "Alam et al. 2017, MNRAS 470, 2617",
-    "observables": ["DM(z)", "H(z)", "fσ8(z)"],
-    "redshifts": [0.38, 0.51, 0.61],
+    "observables": [
+      "DM(z)",
+      "H(z)",
+      "fσ8(z)"
+    ],
+    "redshifts": [
+      0.38,
+      0.51,
+      0.61
+    ],
     "n_data_points": 9,
     "covariance": "Full 9×9 matrix",
-    "fiducial_rs": {"value": 147.78, "unit": "Mpc"}
+    "fiducial_rs": {
+      "value": 147.78,
+      "unit": "Mpc"
+    }
   },
   "files": {
-    "documentation": ["README.md", "CITATION.cff", "LICENSE"],
-    "source": ["src/efc_phenomenology.py", "src/__init__.py"],
-    "data": ["data/boss_dr12_consensus.json", "data/fit_results.json"],
-    "examples": ["examples/phenomenology_fit.py"]
-  }
+    "documentation": [
+      "README.md",
+      "CITATION.cff",
+      "LICENSE"
+    ],
+    "source": [
+      "src/efc_phenomenology.py",
+      "src/__init__.py"
+    ],
+    "data": [
+      "data/boss_dr12_consensus.json",
+      "data/fit_results.json"
+    ],
+    "examples": [
+      "examples/phenomenology_fit.py"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31243828"
 }

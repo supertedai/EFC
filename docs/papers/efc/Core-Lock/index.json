@@ -25,7 +25,12 @@
     "grid state function"
   ],
   "concepts": {
-    "primary": ["grid-state-function", "beta-constraint", "information-length", "projection-laws"],
+    "primary": [
+      "grid-state-function",
+      "beta-constraint",
+      "information-length",
+      "projection-laws"
+    ],
     "equations": {
       "beta_function": "β_f(S) = -1/ΔS",
       "grid_state": "f(S) = f₀ exp(-S/ΔS)",
@@ -35,19 +40,57 @@
   },
   "structure": {
     "sections": [
-      {"number": 1, "title": "Introduction and Relation to EBE"},
-      {"number": 2, "title": "Core Lock Specification"},
-      {"number": 3, "title": "Conservation Law: Information Length"},
-      {"number": 4, "title": "Projection Laws"},
-      {"number": 5, "title": "Falsification Criterion"},
-      {"number": 6, "title": "Numerical Verification"},
-      {"number": 7, "title": "Epistemic Status and Limitations"},
-      {"number": 8, "title": "Conclusion"}
+      {
+        "number": 1,
+        "title": "Introduction and Relation to EBE"
+      },
+      {
+        "number": 2,
+        "title": "Core Lock Specification"
+      },
+      {
+        "number": 3,
+        "title": "Conservation Law: Information Length"
+      },
+      {
+        "number": 4,
+        "title": "Projection Laws"
+      },
+      {
+        "number": 5,
+        "title": "Falsification Criterion"
+      },
+      {
+        "number": 6,
+        "title": "Numerical Verification"
+      },
+      {
+        "number": 7,
+        "title": "Epistemic Status and Limitations"
+      },
+      {
+        "number": 8,
+        "title": "Conclusion"
+      }
     ]
   },
   "relationships": {
-    "dependsOn": [{"id": "ebe-core-principles", "doi": "10.6084/m9.figshare.31222903"}],
-    "relatedTo": [{"id": "rcmp", "doi": "10.6084/m9.figshare.31222900"}]
+    "dependsOn": [
+      {
+        "id": "ebe-core-principles",
+        "doi": "10.6084/m9.figshare.31222903"
+      }
+    ],
+    "relatedTo": [
+      {
+        "id": "rcmp",
+        "doi": "10.6084/m9.figshare.31222900"
+      }
+    ]
   },
-  "figures": ["core_lock_survival_test.png", "ebe_core_lock_v1_simulation.png"]
+  "figures": [
+    "core_lock_survival_test.png",
+    "ebe_core_lock_v1_simulation.png"
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223503"
 }

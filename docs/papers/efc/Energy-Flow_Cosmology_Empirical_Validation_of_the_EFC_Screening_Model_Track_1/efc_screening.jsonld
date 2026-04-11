@@ -1,16 +1,40 @@
 {
-  "@context": {"@vocab": "https://schema.org/", "efc": "https://energyflow-cosmology.com/ontology#"},
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
   "@type": "ScholarlyArticle",
   "@id": "https://doi.org/10.6084/m9.figshare.31940469",
   "name": "Energy-Flow Cosmology: Empirical Validation of the EFC Screening Model Against the Radial Acceleration Relation",
-  "author": {"@type": "Person", "name": "Morten Magnusson", "identifier": "https://orcid.org/0009-0002-4860-5095"},
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
   "datePublished": "2026-03",
-  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.6084/m9.figshare.31940469"},
+  "identifier": "https://doi.org/10.6084/m9.figshare.31940469",
   "about": [
-    {"@type": "DefinedTerm", "name": "EFC Screening Model"},
-    {"@type": "DefinedTerm", "name": "Radial Acceleration Relation"},
-    {"@type": "DefinedTerm", "name": "SPARC"},
-    {"@type": "DefinedTerm", "name": "Weak Gravitational Lensing"},
-    {"@type": "DefinedTerm", "name": "Hubble Tension"}
-  ]
+    {
+      "@type": "DefinedTerm",
+      "name": "EFC Screening Model"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Radial Acceleration Relation"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "SPARC"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Weak Gravitational Lensing"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Hubble Tension"
+    }
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31940469",
+  "doi": "10.6084/m9.figshare.31940469"
 }

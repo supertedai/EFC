@@ -36,13 +36,23 @@
     "url": "https://github.com/supertedai/EFC"
   },
   "data": {
-    "BAO": {"points": 14, "z_range": "0.106–2.334"},
-    "growth_rate": {"points": 7, "z_range": "0.02–0.85"}
+    "BAO": {
+      "points": 14,
+      "z_range": "0.106–2.334"
+    },
+    "growth_rate": {
+      "points": 7,
+      "z_range": "0.02–0.85"
+    }
   },
   "methods": {
     "pipeline": "MVP-G1 Hubble Friction Channel",
     "fitting": "Joint Bayesian fit",
-    "controls": ["N1: Sound-horizon independence", "N2: Amplitude-prior sensitivity", "T7: Leave-one-out"],
+    "controls": [
+      "N1: Sound-horizon independence",
+      "N2: Amplitude-prior sensitivity",
+      "T7: Leave-one-out"
+    ],
     "nuisance": "N2a mode (r_d fixed, tight σ₈ prior)"
   },
   "results": {
@@ -66,5 +76,9 @@
     "loo_data_tabulated": true,
     "fsigma8_data_provided": true,
     "degeneracy_structure_documented": true
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31332730",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31332730"
   }
 }

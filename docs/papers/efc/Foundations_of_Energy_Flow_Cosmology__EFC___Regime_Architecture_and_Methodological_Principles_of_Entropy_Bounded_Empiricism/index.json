@@ -12,7 +12,14 @@
   "type": "foundational_framework",
   "status": "published",
   "abstract_short": "Foundational framework for Energy-Flow Cosmology establishing regime architecture (L0-L3), methodological principles of Entropy-Bounded Empiricism, and core equation μ(a) = 1 + βS(a).",
-  "keywords": ["EFC", "Energy-Flow Cosmology", "regime architecture", "L0-L3", "entropy-bounded empiricism", "methodological framework"],
+  "keywords": [
+    "EFC",
+    "Energy-Flow Cosmology",
+    "regime architecture",
+    "L0-L3",
+    "entropy-bounded empiricism",
+    "methodological framework"
+  ],
   "core_principle": "Theoretical models must specify their validity regimes and are not permitted to extrapolate beyond empirically constrained boundaries.",
   "core_equations": [
     {
@@ -27,10 +34,22 @@
     }
   ],
   "regime_architecture": {
-    "L0": {"state": "Latent", "validity": "Pre-activation, entropy below threshold"},
-    "L1": {"state": "Stable Active", "validity": "High confidence, reliable predictions"},
-    "L2": {"state": "Complex Active", "validity": "Requires uncertainty quantification"},
-    "L3": {"state": "Residual", "validity": "Historical retrieval only"}
+    "L0": {
+      "state": "Latent",
+      "validity": "Pre-activation, entropy below threshold"
+    },
+    "L1": {
+      "state": "Stable Active",
+      "validity": "High confidence, reliable predictions"
+    },
+    "L2": {
+      "state": "Complex Active",
+      "validity": "Requires uncertainty quantification"
+    },
+    "L3": {
+      "state": "Residual",
+      "validity": "Historical retrieval only"
+    }
   },
   "methodological_principles": [
     "Regime-bounded inference",
@@ -40,12 +59,22 @@
     "Cross-scale consistency requirements"
   ],
   "related_papers": [
-    {"doi": "10.6084/m9.figshare.31112536", "title": "L0-L3 Regime Architecture"},
-    {"doi": "10.6084/m9.figshare.31047703", "title": "EBE SPARC175 Analysis"},
-    {"doi": "10.6084/m9.figshare.31127380", "title": "EFC vs DESI DR2 BAO"}
+    {
+      "doi": "10.6084/m9.figshare.31112536",
+      "title": "L0-L3 Regime Architecture"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31047703",
+      "title": "EBE SPARC175 Analysis"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31127380",
+      "title": "EFC vs DESI DR2 BAO"
+    }
   ],
   "files": {
     "pdf": "Foundations.pdf",
     "tex": "foundations.tex"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31135597"
 }

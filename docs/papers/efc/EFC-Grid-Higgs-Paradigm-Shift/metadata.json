@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 Grid-Higgs Paradigm Shift",
+  "title": "EFC — Grid-Higgs Paradigm Shift",
   "short_id": "efc-grid-higgs-paradigm-shift",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -39,8 +39,14 @@
     "jsonld": "EFC-Grid-Higgs-Paradigm-Shift.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/paradigm_shift.py"],
+    "src_modules": [
+      "src/paradigm_shift.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_paradigm_shift.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28560935",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28560935"
   }
 }

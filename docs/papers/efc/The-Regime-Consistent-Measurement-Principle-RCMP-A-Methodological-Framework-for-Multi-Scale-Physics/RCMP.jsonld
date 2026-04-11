@@ -7,18 +7,7 @@
   },
   "@type": "ScholarlyArticle",
   "@id": "https://doi.org/10.6084/m9.figshare.31222900",
-  "identifier": [
-    {
-      "@type": "PropertyValue",
-      "propertyID": "DOI",
-      "value": "10.6084/m9.figshare.31222900"
-    },
-    {
-      "@type": "PropertyValue",
-      "propertyID": "GitHub",
-      "value": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/The-Regime-Consistent-Measurement-Principle-RCMP-A-Methodological-Framework-for-Multi-Scale-Physics"
-    }
-  ],
+  "identifier": "https://doi.org/10.6084/m9.figshare.31222900",
   "name": "The Regime-Consistent Measurement Principle (RCMP): A Methodological Framework for Multi-Scale Physics",
   "headline": "A methodological framework for preventing interpretive errors in multi-regime measurements",
   "alternativeHeadline": "RCMP: Regime-Consistent Measurement Principle",
@@ -47,7 +36,10 @@
   "datePublished": "2026-01-01",
   "dateCreated": "2026-01-01",
   "version": "1.0",
-  "inLanguage": ["en", "no"],
+  "inLanguage": [
+    "en",
+    "no"
+  ],
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "keywords": [
     "measurement methodology",
@@ -123,7 +115,11 @@
     {
       "@type": "ScholarlyArticle",
       "name": "Radial Acceleration Relation in Rotationally Supported Galaxies",
-      "author": ["Stacy S. McGaugh", "Federico Lelli", "James M. Schombert"],
+      "author": [
+        "Stacy S. McGaugh",
+        "Federico Lelli",
+        "James M. Schombert"
+      ],
       "datePublished": "2016",
       "isPartOf": {
         "@type": "PublicationVolume",
@@ -139,7 +135,11 @@
     {
       "@type": "ScholarlyArticle",
       "name": "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves",
-      "author": ["Federico Lelli", "Stacy S. McGaugh", "James M. Schombert"],
+      "author": [
+        "Federico Lelli",
+        "Stacy S. McGaugh",
+        "James M. Schombert"
+      ],
       "datePublished": "2017",
       "isPartOf": {
         "@type": "PublicationVolume",
@@ -166,5 +166,7 @@
     "proxy-accounting",
     "coordinate-humility",
     "cross-validation"
-  ]
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31222900",
+  "doi": "10.6084/m9.figshare.31222900"
 }

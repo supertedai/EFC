@@ -50,14 +50,14 @@
   "key_results": {
     "differentiation_effect": {
       "measure": "Omega (full band)",
-      "cohens_d": 1.50,
+      "cohens_d": 1.5,
       "p_value": 0.073,
       "interpretation": "Strong - primary marker of consciousness"
     },
     "integration_effect": {
       "measure": "kappa (global TE)",
       "cohens_d": 0.42,
-      "p_value": 0.530,
+      "p_value": 0.53,
       "interpretation": "Weak, not significant"
     },
     "product_test_F1": {
@@ -68,7 +68,7 @@
     },
     "regional_posterior": {
       "measure": "C(parietal)",
-      "cohens_d": 2.10,
+      "cohens_d": 2.1,
       "p_value": 0.018,
       "status": "Exploratory - candidate for replication"
     },
@@ -93,16 +93,46 @@
     "supported": "Consciousness = differentiation-dominant resonance regime, constrained by sufficient regional feedback, in a balance regime"
   },
   "resonance_continuum": {
-    "stone": {"field": "thermodynamic", "resonance": "near zero"},
-    "cell": {"field": "metabolic", "resonance": "low"},
-    "anaesthetised_brain": {"field": "neural", "resonance": "reduced", "omega": "0.52-0.72"},
-    "waking_brain": {"field": "neural", "resonance": "extreme", "omega": "0.78-0.88"}
+    "stone": {
+      "field": "thermodynamic",
+      "resonance": "near zero"
+    },
+    "cell": {
+      "field": "metabolic",
+      "resonance": "low"
+    },
+    "anaesthetised_brain": {
+      "field": "neural",
+      "resonance": "reduced",
+      "omega": "0.52-0.72"
+    },
+    "waking_brain": {
+      "field": "neural",
+      "resonance": "extreme",
+      "omega": "0.78-0.88"
+    }
   },
   "testable_predictions": [
-    {"id": "R1", "prediction": "Posterior C(P_L) outperforms global C", "test": "DOC patients, sleep, ketamine"},
-    {"id": "R2", "prediction": "kappa shows threshold/sigmoid relation", "test": "kappa vs hit-rate; linear wins = fails"},
-    {"id": "R3", "prediction": "Negative corr(Omega, kappa) generalises", "test": "Sleep, ketamine, DOC datasets"},
-    {"id": "R4", "prediction": "Frontal kappa irrelevant", "test": "C(frontal) d near 0 across paradigms"}
+    {
+      "id": "R1",
+      "prediction": "Posterior C(P_L) outperforms global C",
+      "test": "DOC patients, sleep, ketamine"
+    },
+    {
+      "id": "R2",
+      "prediction": "kappa shows threshold/sigmoid relation",
+      "test": "kappa vs hit-rate; linear wins = fails"
+    },
+    {
+      "id": "R3",
+      "prediction": "Negative corr(Omega, kappa) generalises",
+      "test": "Sleep, ketamine, DOC datasets"
+    },
+    {
+      "id": "R4",
+      "prediction": "Frontal kappa irrelevant",
+      "test": "C(frontal) d near 0 across paradigms"
+    }
   ],
   "data_source": {
     "dataset": "Chennu et al. 2016",
@@ -118,5 +148,6 @@
     "L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
     "validity-aware-ai"
   ],
-  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one."
+  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one.",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31289806"
 }

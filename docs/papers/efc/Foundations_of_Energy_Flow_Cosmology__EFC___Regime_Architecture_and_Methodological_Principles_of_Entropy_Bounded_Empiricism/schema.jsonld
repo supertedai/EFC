@@ -3,17 +3,32 @@
     "https://schema.org",
     {
       "efc": "https://github.com/supertedai/EFC/ontology#",
-      "efc:regimeLevel": {"@id": "efc:regimeLevel", "@type": "xsd:string"},
-      "efc:epistemicLayer": {"@id": "efc:epistemicLayer", "@type": "xsd:string"},
-      "efc:entropyBounded": {"@id": "efc:entropyBounded", "@type": "xsd:boolean"},
-      "efc:coreEquation": {"@id": "efc:coreEquation"},
-      "efc:regimeArchitecture": {"@id": "efc:regimeArchitecture"},
-      "efc:methodologicalPrinciple": {"@id": "efc:methodologicalPrinciple"}
+      "efc:regimeLevel": {
+        "@id": "efc:regimeLevel",
+        "@type": "xsd:string"
+      },
+      "efc:epistemicLayer": {
+        "@id": "efc:epistemicLayer",
+        "@type": "xsd:string"
+      },
+      "efc:entropyBounded": {
+        "@id": "efc:entropyBounded",
+        "@type": "xsd:boolean"
+      },
+      "efc:coreEquation": {
+        "@id": "efc:coreEquation"
+      },
+      "efc:regimeArchitecture": {
+        "@id": "efc:regimeArchitecture"
+      },
+      "efc:methodologicalPrinciple": {
+        "@id": "efc:methodologicalPrinciple"
+      }
     }
   ],
   "@type": "ScholarlyArticle",
   "@id": "https://doi.org/10.6084/m9.figshare.31135597",
-  "identifier": "10.6084/m9.figshare.31135597",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31135597",
   "name": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
   "description": "Foundational framework for Energy-Flow Cosmology establishing regime architecture (L0-L3), methodological principles of Entropy-Bounded Empiricism, and core equation mu(a) = 1 + beta*S(a).",
   "version": "1.0",
@@ -91,5 +106,7 @@
     "No post-hoc parameter fitting",
     "Causal ordering enforcement",
     "Cross-scale consistency requirements"
-  ]
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31135597",
+  "doi": "10.6084/m9.figshare.31135597"
 }

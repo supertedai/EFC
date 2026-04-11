@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "ScholarlyArticle",
   "@id": "doi:10.6084/m9.figshare.31047703",
-  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.6084/m9.figshare.31047703"},
+  "identifier": "https://doi.org/10.6084/m9.figshare.31047703",
   "name": "Entropy-Bounded Empiricism: Regime-Dependent Validity in Galaxy Rotation Curves",
   "author": {
     "@type": "Person",
@@ -11,10 +11,18 @@
   },
   "datePublished": "2026-01-12",
   "abstract": "EBE framework establishes regime-dependent model validity. 100% EFC success in FLOW regime (62/62). Mann-Whitney p<0.0001, effect size δ=0.371. CMB null test passes as predicted.",
-  "keywords": ["EBE", "entropy-bounded empiricism", "SPARC", "rotation curves", "regime validity"],
+  "keywords": [
+    "EBE",
+    "entropy-bounded empiricism",
+    "SPARC",
+    "rotation curves",
+    "regime validity"
+  ],
   "mainEntity": {
     "@type": "Dataset",
     "name": "SPARC175 Master Dataset",
     "description": "175 galaxies with regime classification and validation metrics"
-  }
+  },
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31047703",
+  "doi": "10.6084/m9.figshare.31047703"
 }

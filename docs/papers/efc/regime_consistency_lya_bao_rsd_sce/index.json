@@ -55,11 +55,41 @@
     }
   },
   "transition_function_values": [
-    {"z": 0.44, "omega_m_z": 0.548, "g_D": 0.1066, "T_z": 1.000, "regime": "Peak"},
-    {"z": 0.51, "omega_m_z": 0.613, "g_D": 0.1056, "T_z": 0.990, "regime": "BOSS"},
-    {"z": 2.33, "omega_m_z": 0.945, "g_D": 0.0201, "T_z": 0.188, "regime": "BAO Lyα"},
-    {"z": 3.00, "omega_m_z": 0.967, "g_D": 0.0114, "T_z": 0.107, "regime": "Lyα P1D"},
-    {"z": 1100, "omega_m_z": 1.000, "g_D": "~1e-10", "T_z": "~1e-10", "regime": "CMB"}
+    {
+      "z": 0.44,
+      "omega_m_z": 0.548,
+      "g_D": 0.1066,
+      "T_z": 1.0,
+      "regime": "Peak"
+    },
+    {
+      "z": 0.51,
+      "omega_m_z": 0.613,
+      "g_D": 0.1056,
+      "T_z": 0.99,
+      "regime": "BOSS"
+    },
+    {
+      "z": 2.33,
+      "omega_m_z": 0.945,
+      "g_D": 0.0201,
+      "T_z": 0.188,
+      "regime": "BAO Lyα"
+    },
+    {
+      "z": 3.0,
+      "omega_m_z": 0.967,
+      "g_D": 0.0114,
+      "T_z": 0.107,
+      "regime": "Lyα P1D"
+    },
+    {
+      "z": 1100,
+      "omega_m_z": 1.0,
+      "g_D": "~1e-10",
+      "T_z": "~1e-10",
+      "regime": "CMB"
+    }
   ],
   "three_regime_tests": {
     "lya_p1d": {
@@ -75,7 +105,11 @@
       "note": "Consistent with predicted null"
     },
     "bao_boss_dr12": {
-      "z_range": [0.38, 0.51, 0.61],
+      "z_range": [
+        0.38,
+        0.51,
+        0.61
+      ],
       "T_z_range": "0.95-1.0",
       "data": "BOSS DR12 Alam et al. 2017",
       "results": {
@@ -83,25 +117,59 @@
         "chi2_lcdm": 5.58,
         "delta_chi2": -3.65,
         "pulls": [
-          {"z": 0.38, "DM_pull": "+0.29σ", "DH_pull": "-1.10σ"},
-          {"z": 0.51, "DM_pull": "-0.26σ", "DH_pull": "+0.12σ"},
-          {"z": 0.61, "DM_pull": "+0.14σ", "DH_pull": "+0.74σ"}
+          {
+            "z": 0.38,
+            "DM_pull": "+0.29σ",
+            "DH_pull": "-1.10σ"
+          },
+          {
+            "z": 0.51,
+            "DM_pull": "-0.26σ",
+            "DH_pull": "+0.12σ"
+          },
+          {
+            "z": 0.61,
+            "DM_pull": "+0.14σ",
+            "DH_pull": "+0.74σ"
+          }
         ]
       },
       "status": "PASS",
       "note": "EFC corrects systematic ΛCDM DM overprediction"
     },
     "rsd_boss_dr12": {
-      "z_range": [0.38, 0.51, 0.61],
+      "z_range": [
+        0.38,
+        0.51,
+        0.61
+      ],
       "data": "BOSS DR12 fσ₈",
       "results": {
         "chi2_efc": 1.09,
         "chi2_lcdm": 1.34,
         "delta_chi2": -0.25,
         "measurements": [
-          {"z": 0.38, "fsigma8_efc": 0.464, "fsigma8_obs": "0.497 ± 0.045", "efc_pull": "-0.73σ", "lcdm_pull": "-0.46σ"},
-          {"z": 0.51, "fsigma8_efc": 0.463, "fsigma8_obs": "0.458 ± 0.038", "efc_pull": "+0.13σ", "lcdm_pull": "+0.43σ"},
-          {"z": 0.61, "fsigma8_efc": 0.460, "fsigma8_obs": "0.436 ± 0.034", "efc_pull": "+0.71σ", "lcdm_pull": "+0.97σ"}
+          {
+            "z": 0.38,
+            "fsigma8_efc": 0.464,
+            "fsigma8_obs": "0.497 ± 0.045",
+            "efc_pull": "-0.73σ",
+            "lcdm_pull": "-0.46σ"
+          },
+          {
+            "z": 0.51,
+            "fsigma8_efc": 0.463,
+            "fsigma8_obs": "0.458 ± 0.038",
+            "efc_pull": "+0.13σ",
+            "lcdm_pull": "+0.43σ"
+          },
+          {
+            "z": 0.61,
+            "fsigma8_efc": 0.46,
+            "fsigma8_obs": "0.436 ± 0.034",
+            "efc_pull": "+0.71σ",
+            "lcdm_pull": "+0.97σ"
+          }
         ]
       },
       "status": "PASS",
@@ -122,25 +190,78 @@
     }
   },
   "regime_coherence_summary": [
-    {"regime": "Growth", "z": "0.4-0.6", "T_z": "0.95-1.0", "prediction": "Enhanced H, suppressed growth", "data": "BAO + fσ₈", "result": "PASS"},
-    {"regime": "Lyα", "z": 3.0, "T_z": 0.107, "prediction": "Near-null effect", "data": "Δ²★, n★", "result": "PASS"},
-    {"regime": "CMB", "z": 1100, "T_z": "~1e-10", "prediction": "GR recovery", "data": "Envelope", "result": "PASS"}
+    {
+      "regime": "Growth",
+      "z": "0.4-0.6",
+      "T_z": "0.95-1.0",
+      "prediction": "Enhanced H, suppressed growth",
+      "data": "BAO + fσ₈",
+      "result": "PASS"
+    },
+    {
+      "regime": "Lyα",
+      "z": 3.0,
+      "T_z": 0.107,
+      "prediction": "Near-null effect",
+      "data": "Δ²★, n★",
+      "result": "PASS"
+    },
+    {
+      "regime": "CMB",
+      "z": 1100,
+      "T_z": "~1e-10",
+      "prediction": "GR recovery",
+      "data": "Envelope",
+      "result": "PASS"
+    }
   ],
   "sce_evaluation": {
     "metrics": {
       "explanatory_compression": {
-        "lcdm": {"primitives": "2 (Λ, CDM)", "FDOF": 2, "phenomena": 4, "C_core": 2.0, "C_tensions": 1.7},
-        "efc_l2": {"primitives": "3 (S, μ, T)", "FDOF": 1, "phenomena": 4, "C_core": 1.3, "C_tensions": "1.7-2.0"},
+        "lcdm": {
+          "primitives": "2 (Λ, CDM)",
+          "FDOF": 2,
+          "phenomena": 4,
+          "C_core": 2.0,
+          "C_tensions": 1.7
+        },
+        "efc_l2": {
+          "primitives": "3 (S, μ, T)",
+          "FDOF": 1,
+          "phenomena": 4,
+          "C_core": 1.3,
+          "C_tensions": "1.7-2.0"
+        },
         "winner": "ΛCDM (core)"
       },
       "anomaly_burden": {
-        "lcdm": {"A1": 3, "A2": 2, "A3": "~1", "burden_type": "Precision tensions (S8, H0, w0wa)"},
-        "efc_l2": {"A1": 0, "A2": 6, "A3": 3, "burden_type": "Theoretical incompleteness"},
+        "lcdm": {
+          "A1": 3,
+          "A2": 2,
+          "A3": "~1",
+          "burden_type": "Precision tensions (S8, H0, w0wa)"
+        },
+        "efc_l2": {
+          "A1": 0,
+          "A2": 6,
+          "A3": 3,
+          "burden_type": "Theoretical incompleteness"
+        },
         "winner": "Draw (asymmetric)"
       },
       "model_plasticity": {
-        "lcdm": {"variant_proliferation": "High", "parameter_growth": "Growing", "special_case_rules": "Some", "ad_hoc_patches": "Several"},
-        "efc_l2": {"variant_proliferation": "Moderate", "parameter_growth": "Decreasing (3→1 FDOF)", "special_case_rules": "None", "ad_hoc_patches": "None"},
+        "lcdm": {
+          "variant_proliferation": "High",
+          "parameter_growth": "Growing",
+          "special_case_rules": "Some",
+          "ad_hoc_patches": "Several"
+        },
+        "efc_l2": {
+          "variant_proliferation": "Moderate",
+          "parameter_growth": "Decreasing (3→1 FDOF)",
+          "special_case_rules": "None",
+          "ad_hoc_patches": "None"
+        },
         "winner": "EFC"
       },
       "layer_consistency": {
@@ -208,5 +329,6 @@
   "files": {
     "paper": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
     "schema": "schema.json"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304995"
 }

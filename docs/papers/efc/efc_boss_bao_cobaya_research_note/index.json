@@ -76,21 +76,43 @@
   "data": {
     "boss_dr12": {
       "description": "BOSS DR12 consensus BAO measurements from Alam et al. (2017)",
-      "observables": ["DM(z)", "H(z)"],
-      "redshifts": [0.38, 0.51, 0.61],
+      "observables": [
+        "DM(z)",
+        "H(z)"
+      ],
+      "redshifts": [
+        0.38,
+        0.51,
+        0.61
+      ],
       "covariance": "Full 6×6 matrix from CobayaSampler (BAO_consensus_covtot_dM_Hz.txt)",
       "r_s_fid": 147.78
     },
     "cosmic_chronometers": {
       "description": "H(z) measurements from Moresco et al. (2022)",
       "n_points": 25,
-      "z_range": [0.07, 1.97]
+      "z_range": [
+        0.07,
+        1.97
+      ]
     }
   },
   "boss_dr12_data_vector": [
-    {"z": 0.38, "DM_rs_fid_rs": 1512.39, "H_rs_rs_fid": 81.21},
-    {"z": 0.51, "DM_rs_fid_rs": 1975.22, "H_rs_rs_fid": 90.90},
-    {"z": 0.61, "DM_rs_fid_rs": 2306.68, "H_rs_rs_fid": 98.96}
+    {
+      "z": 0.38,
+      "DM_rs_fid_rs": 1512.39,
+      "H_rs_rs_fid": 81.21
+    },
+    {
+      "z": 0.51,
+      "DM_rs_fid_rs": 1975.22,
+      "H_rs_rs_fid": 90.9
+    },
+    {
+      "z": 0.61,
+      "DM_rs_fid_rs": 2306.68,
+      "H_rs_rs_fid": 98.96
+    }
   ],
   "primary_results": {
     "boss_bao": {
@@ -116,16 +138,62 @@
     }
   },
   "per_observable_residuals": [
-    {"observable": "DM(0.38)", "data": 1512.4, "lcdm": 1540.5, "efc": 1512.0, "delta_lcdm": -28.2, "delta_efc": 0.4},
-    {"observable": "H(0.38)", "data": 81.2, "lcdm": 82.4, "efc": 83.8, "delta_lcdm": -1.2, "delta_efc": -2.6},
-    {"observable": "DM(0.51)", "data": 1975.2, "lcdm": 1995.3, "efc": 1960.0, "delta_lcdm": -20.1, "delta_efc": 15.2},
-    {"observable": "H(0.51)", "data": 90.9, "lcdm": 89.1, "efc": 90.4, "delta_lcdm": 1.8, "delta_efc": 0.5},
-    {"observable": "DM(0.61)", "data": 2306.7, "lcdm": 2321.6, "efc": 2281.9, "delta_lcdm": -15.0, "delta_efc": 24.8},
-    {"observable": "H(0.61)", "data": 99.0, "lcdm": 94.7, "efc": 96.0, "delta_lcdm": 4.2, "delta_efc": 3.0}
+    {
+      "observable": "DM(0.38)",
+      "data": 1512.4,
+      "lcdm": 1540.5,
+      "efc": 1512.0,
+      "delta_lcdm": -28.2,
+      "delta_efc": 0.4
+    },
+    {
+      "observable": "H(0.38)",
+      "data": 81.2,
+      "lcdm": 82.4,
+      "efc": 83.8,
+      "delta_lcdm": -1.2,
+      "delta_efc": -2.6
+    },
+    {
+      "observable": "DM(0.51)",
+      "data": 1975.2,
+      "lcdm": 1995.3,
+      "efc": 1960.0,
+      "delta_lcdm": -20.1,
+      "delta_efc": 15.2
+    },
+    {
+      "observable": "H(0.51)",
+      "data": 90.9,
+      "lcdm": 89.1,
+      "efc": 90.4,
+      "delta_lcdm": 1.8,
+      "delta_efc": 0.5
+    },
+    {
+      "observable": "DM(0.61)",
+      "data": 2306.7,
+      "lcdm": 2321.6,
+      "efc": 2281.9,
+      "delta_lcdm": -15.0,
+      "delta_efc": 24.8
+    },
+    {
+      "observable": "H(0.61)",
+      "data": 99.0,
+      "lcdm": 94.7,
+      "efc": 96.0,
+      "delta_lcdm": 4.2,
+      "delta_efc": 3.0
+    }
   ],
   "test_characteristics": {
     "type": "Fixed-parameter consistency test",
-    "not": ["Full likelihood fit", "Model selection analysis", "Bayesian evidence comparison"],
+    "not": [
+      "Full likelihood fit",
+      "Model selection analysis",
+      "Bayesian evidence comparison"
+    ],
     "significance": "EFC background survives precision test without parameter retuning"
   },
   "comparison_to_wp4": {
@@ -154,18 +222,45 @@
     "covariance_file": "BAO_consensus_covtot_dM_Hz.txt",
     "source": "CobayaSampler repository on GitHub",
     "pipeline": "EFC Unified Inference Pipeline v2.0",
-    "dependencies": ["scipy.integrate.quad", "numpy.linalg.inv"],
+    "dependencies": [
+      "scipy.integrate.quad",
+      "numpy.linalg.inv"
+    ],
     "boltzmann_solver": "Not required"
   },
   "references": [
-    {"id": 1, "citation": "Magnusson (2026). EFC Regime-Transition Fit to DESI DR2 BAO. DOI: 10.6084/m9.figshare.31127380"},
-    {"id": 2, "citation": "Magnusson (2026). EFC Transfer Test: DESI DR2 to BOSS DR12. DOI: 10.6084/m9.figshare.31231522"},
-    {"id": 3, "citation": "Magnusson (2026). SPARC175 Rotation Curve Analysis. DOI: 10.6084/m9.figshare.31047703"},
-    {"id": 4, "citation": "Magnusson (2026). JWST COSMOS-Web Abundance Excess. DOI: 10.6084/m9.figshare.31059964"},
-    {"id": 5, "citation": "Magnusson (2026). EFC Complete Validation Ledger v1.3.1. DOI: 10.6084/m9.figshare.31314922"},
-    {"id": 6, "citation": "Alam et al. [BOSS] (2017). MNRAS 470, 2617. arXiv:1607.03155"},
-    {"id": 7, "citation": "Aghanim et al. [Planck] (2020). A&A 641, A6. arXiv:1807.06209"},
-    {"id": 8, "citation": "Moresco et al. (2022). Living Rev. Rel. 25, 6. arXiv:2201.07241"}
+    {
+      "id": 1,
+      "citation": "Magnusson (2026). EFC Regime-Transition Fit to DESI DR2 BAO. DOI: 10.6084/m9.figshare.31127380"
+    },
+    {
+      "id": 2,
+      "citation": "Magnusson (2026). EFC Transfer Test: DESI DR2 to BOSS DR12. DOI: 10.6084/m9.figshare.31231522"
+    },
+    {
+      "id": 3,
+      "citation": "Magnusson (2026). SPARC175 Rotation Curve Analysis. DOI: 10.6084/m9.figshare.31047703"
+    },
+    {
+      "id": 4,
+      "citation": "Magnusson (2026). JWST COSMOS-Web Abundance Excess. DOI: 10.6084/m9.figshare.31059964"
+    },
+    {
+      "id": 5,
+      "citation": "Magnusson (2026). EFC Complete Validation Ledger v1.3.1. DOI: 10.6084/m9.figshare.31314922"
+    },
+    {
+      "id": 6,
+      "citation": "Alam et al. [BOSS] (2017). MNRAS 470, 2617. arXiv:1607.03155"
+    },
+    {
+      "id": 7,
+      "citation": "Aghanim et al. [Planck] (2020). A&A 641, A6. arXiv:1807.06209"
+    },
+    {
+      "id": 8,
+      "citation": "Moresco et al. (2022). Living Rev. Rel. 25, 6. arXiv:2201.07241"
+    }
   ],
   "key_conclusions": [
     "EFC background modification passes the most stringent publicly available BAO consistency test",
@@ -176,5 +271,6 @@
   "files": {
     "paper": "efc_boss_bao_cobaya_research_note.pdf",
     "schema": "schema.json"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31314922"
 }

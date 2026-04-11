@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 How Does Balance Shape Universal Structures?",
+  "title": "EFC — How Does Balance Shape Universal Structures?",
   "short_id": "efc-balance-universal-structures",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -39,8 +39,14 @@
     "jsonld": "EFC-How-Does-Balance-Shape-Universal-Structures.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/balance_structures.py"],
+    "src_modules": [
+      "src/balance_structures.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_balance_structures.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28098338",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28098338"
   }
 }

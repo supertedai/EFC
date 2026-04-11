@@ -40,19 +40,66 @@
     }
   ],
   "parameters": {
-    "beta": {"value": 0.16, "description": "EFC coupling constant"},
-    "a_t": {"value": 0.55, "z_t": 0.82, "description": "Transition scale factor"},
-    "sigma": {"value": 0.10, "description": "Transition width"},
-    "gamma": {"value": 0, "description": "Background modification (disabled)"}
+    "beta": {
+      "value": 0.16,
+      "description": "EFC coupling constant"
+    },
+    "a_t": {
+      "value": 0.55,
+      "z_t": 0.82,
+      "description": "Transition scale factor"
+    },
+    "sigma": {
+      "value": 0.1,
+      "description": "Transition width"
+    },
+    "gamma": {
+      "value": 0,
+      "description": "Background modification (disabled)"
+    }
   },
   "data_sources": [
-    {"probe": "BAO", "survey": "DESI DR2", "N": 6, "z_range": [0.51, 2.33]},
-    {"probe": "SN Ia", "survey": "Pantheon+", "N": 16, "z_range": [0.01, 1.00]},
-    {"probe": "RSD", "survey": "BOSS+eBOSS+DESI", "N": 11, "z_range": [0.30, 1.52]}
+    {
+      "probe": "BAO",
+      "survey": "DESI DR2",
+      "N": 6,
+      "z_range": [
+        0.51,
+        2.33
+      ]
+    },
+    {
+      "probe": "SN Ia",
+      "survey": "Pantheon+",
+      "N": 16,
+      "z_range": [
+        0.01,
+        1.0
+      ]
+    },
+    {
+      "probe": "RSD",
+      "survey": "BOSS+eBOSS+DESI",
+      "N": 11,
+      "z_range": [
+        0.3,
+        1.52
+      ]
+    }
   ],
   "results": {
-    "LCDM": {"chi2_BAO": 9.81, "chi2_SN": 28.98, "chi2_RSD": 10.56, "chi2_total": 49.35},
-    "EFC": {"chi2_BAO": 9.81, "chi2_SN": 28.98, "chi2_RSD": 12.28, "chi2_total": 51.06},
+    "LCDM": {
+      "chi2_BAO": 9.81,
+      "chi2_SN": 28.98,
+      "chi2_RSD": 10.56,
+      "chi2_total": 49.35
+    },
+    "EFC": {
+      "chi2_BAO": 9.81,
+      "chi2_SN": 28.98,
+      "chi2_RSD": 12.28,
+      "chi2_total": 51.06
+    },
     "delta_chi2": 1.71,
     "verdict": "Compatible within statistical fluctuations, no internal tension"
   },
@@ -63,11 +110,18 @@
     "Same S(a) describes geometry and growth without tension"
   ],
   "dependencies": [
-    {"id": "efc-v1.2", "doi": "10.6084/m9.figshare.30563738"}
+    {
+      "id": "efc-v1.2",
+      "doi": "10.6084/m9.figshare.30563738"
+    }
   ],
   "files": {
     "pdf": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf",
     "tex": "efc_unified_preprint.tex",
-    "figures": ["EFC_unified_analysis.png", "EFC_mu_theoretical_derivation.png"]
-  }
+    "figures": [
+      "EFC_unified_analysis.png",
+      "EFC_mu_theoretical_derivation.png"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215613"
 }

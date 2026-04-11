@@ -1,26 +1,79 @@
 {
-  "@context": {"@vocab": "https://schema.org/", "efc": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/"},
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/"
+  },
   "@type": "ScholarlyArticle",
   "@id": "efc:Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints",
   "name": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
-    "affiliation": {"@type": "Organization", "name": "Independent Researcher, Sola, Norway"},
-    "identifier": {"@type": "PropertyValue", "propertyID": "ORCID", "value": "0009-0002-4860-5095"}
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Independent Researcher, Sola, Norway"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
   },
   "datePublished": "2026-03-28",
-  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.6084/m9.figshare.31878334"},
+  "identifier": "https://doi.org/10.6084/m9.figshare.31878334",
   "description": "Systematic 17-iteration programme constructing a covariant scalar-tensor EFT for entropy-driven gravitational modification. Five structural results: c_gw=c (theorem), eta≈1, solar-system safe, stable, RAR=Bose-Einstein. Critical gap: classical field equation gives wrong direction for mu(g).",
-  "keywords": ["covariant EFT", "scalar-tensor", "entropy-driven gravity", "RAR", "Bose-Einstein", "gravitational waves", "a0"],
-  "about": [
-    {"@type": "DefinedTerm", "name": "Bose-Einstein RAR", "description": "Gravitational enhancement mu = 1/(exp(sqrt(g/a0))-1) formally identical to BE occupation number"},
-    {"@type": "DefinedTerm", "name": "Entropy-Stiffness EFT", "description": "Covariant action with scalar field S coupled via acceleration-dependent response"},
-    {"@type": "DefinedTerm", "name": "Microphysical Gap", "description": "Classical field equation produces increasing correction; RAR requires decreasing — quantum/non-local needed"}
+  "keywords": [
+    "covariant EFT",
+    "scalar-tensor",
+    "entropy-driven gravity",
+    "RAR",
+    "Bose-Einstein",
+    "gravitational waves",
+    "a0"
   ],
-  "isPartOf": {"@type": "CreativeWorkSeries", "name": "Energy-Flow Cosmology (EFC) Paper Series"},
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Bose-Einstein RAR",
+      "description": "Gravitational enhancement mu = 1/(exp(sqrt(g/a0))-1) formally identical to BE occupation number"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Entropy-Stiffness EFT",
+      "description": "Covariant action with scalar field S coupled via acceleration-dependent response"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Microphysical Gap",
+      "description": "Classical field equation produces increasing correction; RAR requires decreasing — quantum/non-local needed"
+    }
+  ],
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology (EFC) Paper Series"
+  },
   "citation": [
-    {"@type": "ScholarlyArticle", "name": "Radial Acceleration Relation in Rotationally Supported Galaxies", "author": [{"@type": "Person", "name": "Stacy S. McGaugh"}], "datePublished": "2016"},
-    {"@type": "ScholarlyArticle", "name": "Modified Newtonian Dynamics", "author": {"@type": "Person", "name": "Mordehai Milgrom"}, "datePublished": "1983"}
-  ]
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Radial Acceleration Relation in Rotationally Supported Galaxies",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Stacy S. McGaugh"
+        }
+      ],
+      "datePublished": "2016"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Modified Newtonian Dynamics",
+      "author": {
+        "@type": "Person",
+        "name": "Mordehai Milgrom"
+      },
+      "datePublished": "1983"
+    }
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31878334",
+  "doi": "10.6084/m9.figshare.31878334"
 }

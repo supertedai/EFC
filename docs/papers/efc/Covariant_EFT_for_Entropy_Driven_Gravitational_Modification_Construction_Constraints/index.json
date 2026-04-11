@@ -15,10 +15,18 @@
   "status": "working_paper",
   "framework": "EFC",
   "keywords": [
-    "covariant EFT", "scalar-tensor", "entropy-driven gravity", "RAR",
-    "Bose-Einstein", "gravitational waves", "gravitational slip",
-    "solar-system constraints", "acceleration scale", "a0",
-    "iterative falsification", "microphysical gap"
+    "covariant EFT",
+    "scalar-tensor",
+    "entropy-driven gravity",
+    "RAR",
+    "Bose-Einstein",
+    "gravitational waves",
+    "gravitational slip",
+    "solar-system constraints",
+    "acceleration scale",
+    "a0",
+    "iterative falsification",
+    "microphysical gap"
   ],
   "abstract": "We present the complete results of a systematic 17-iteration programme to construct and test a covariant scalar-tensor effective field theory (EFT) in which gravitational dynamics are modified by an entropy-like scalar field S via an acceleration-dependent response function. Five structural results hold independently of the specific mu(g): (i) c_gw = c exactly; (ii) gravitational slip eta ≈ 1 with O(Phi*mu) suppression; (iii) solar-system constraints satisfied by exponential amplitude suppression; (iv) ghost-free, tachyon-free, hyperbolic; (v) the RAR is formally identical to a Bose-Einstein occupation number. A critical negative result: the classical field equation produces a correction increasing with acceleration, whereas RAR requires a decreasing correction, identifying a microphysical gap.",
   "epistemic_status": {
@@ -44,7 +52,11 @@
       "beta": "gradient-field coupling (sets acceleration scale)",
       "m_S": "field mass (lambda_S = 1/m_S ~ 50 kpc)",
       "epsilon": "minimum grid tension (vacuum floor regulator)",
-      "a0": {"value": 1.2e-10, "unit": "m/s^2", "source": "SPARC"}
+      "a0": {
+        "value": 1.2e-10,
+        "unit": "m/s^2",
+        "source": "SPARC"
+      }
     },
     "departures_from_GR": [
       "One scalar field S with gradient-field coupling",
@@ -75,10 +87,22 @@
       "result": "Exponential amplitude suppression (not screening)",
       "mechanism": "mu(g) = 1/(exp(sqrt(g/a0)) - 1) -> exp(-sqrt(g/a0)) for g >> a0",
       "values": {
-        "sun_surface": {"g": 274, "mu": "~0"},
-        "earth_orbit": {"g": 5.9e-3, "mu": "~0"},
-        "saturn_cassini": {"g": 6.5e-5, "mu": "10^-320"},
-        "galaxy_outskirts": {"g": 1.2e-10, "mu": 0.58}
+        "sun_surface": {
+          "g": 274,
+          "mu": "~0"
+        },
+        "earth_orbit": {
+          "g": 0.0059,
+          "mu": "~0"
+        },
+        "saturn_cassini": {
+          "g": 6.5e-05,
+          "mu": "10^-320"
+        },
+        "galaxy_outskirts": {
+          "g": 1.2e-10,
+          "mu": 0.58
+        }
       },
       "note": "Not chameleon/Vainshtein screening — functional amplitude suppression"
     },
@@ -126,16 +150,55 @@
     "total_iterations": 17,
     "passed": 15,
     "failed": 2,
-    "failed_iterations": [13, 17],
+    "failed_iterations": [
+      13,
+      17
+    ],
     "methodology": "Iterative falsification — each version tests a specific hypothesis"
   },
   "comparison_table": [
-    {"theory": "LCDM", "new_params": "2 (Omega_DM, Lambda)", "mu_form": "N/A", "cgw": "Yes", "solar_safe": "N/A"},
-    {"theory": "MOND", "new_params": "1 (a0)", "mu_form": "chosen", "cgw": "N/A (non-relativistic)", "solar_safe": "Problematic"},
-    {"theory": "TeVeS", "new_params": "3+", "mu_form": "from vector", "cgw": "constrained", "solar_safe": "partial"},
-    {"theory": "f(R)", "new_params": "1+", "mu_form": "from f", "cgw": "constrained", "solar_safe": "chameleon"},
-    {"theory": "Horndeski", "new_params": "2+", "mu_form": "from G_i", "cgw": "mostly killed", "solar_safe": "Vainshtein"},
-    {"theory": "EFC-EFT", "new_params": "1 (a0)", "mu_form": "BE (identified)", "cgw": "Yes (shown)", "solar_safe": "automatic"}
+    {
+      "theory": "LCDM",
+      "new_params": "2 (Omega_DM, Lambda)",
+      "mu_form": "N/A",
+      "cgw": "Yes",
+      "solar_safe": "N/A"
+    },
+    {
+      "theory": "MOND",
+      "new_params": "1 (a0)",
+      "mu_form": "chosen",
+      "cgw": "N/A (non-relativistic)",
+      "solar_safe": "Problematic"
+    },
+    {
+      "theory": "TeVeS",
+      "new_params": "3+",
+      "mu_form": "from vector",
+      "cgw": "constrained",
+      "solar_safe": "partial"
+    },
+    {
+      "theory": "f(R)",
+      "new_params": "1+",
+      "mu_form": "from f",
+      "cgw": "constrained",
+      "solar_safe": "chameleon"
+    },
+    {
+      "theory": "Horndeski",
+      "new_params": "2+",
+      "mu_form": "from G_i",
+      "cgw": "mostly killed",
+      "solar_safe": "Vainshtein"
+    },
+    {
+      "theory": "EFC-EFT",
+      "new_params": "1 (a0)",
+      "mu_form": "BE (identified)",
+      "cgw": "Yes (shown)",
+      "solar_safe": "automatic"
+    }
   ],
   "outstanding_tests": [
     "Weak lensing consistency: mu_lens = mu_dyn predicted by eta ≈ 1",
@@ -178,5 +241,6 @@
     "source": "src/covariant_eft.py",
     "data": "data/framework.json",
     "demo": "examples/demo_covariant_eft.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878334"
 }

@@ -27,9 +27,20 @@
     "epistemic_layer": "A"
   },
   "key_results": [
-    {"parameter": "alpha_L2", "value": 0.34, "error": 0.16, "significance": "1.7-sigma"},
-    {"metric": "delta_chi2", "value": 3.01},
-    {"prediction": "gravitational slip eta = 1", "testable_with": "Euclid, Vera C. Rubin Observatory"}
+    {
+      "parameter": "alpha_L2",
+      "value": 0.34,
+      "error": 0.16,
+      "significance": "1.7-sigma"
+    },
+    {
+      "metric": "delta_chi2",
+      "value": 3.01
+    },
+    {
+      "prediction": "gravitational slip eta = 1",
+      "testable_with": "Euclid, Vera C. Rubin Observatory"
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -44,5 +55,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31243828",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31243828"
   }
 }

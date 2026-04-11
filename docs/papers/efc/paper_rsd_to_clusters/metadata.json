@@ -11,7 +11,13 @@
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31292827",
   "abstract": "Cross-probe test propagating RSD constraints on effective gravitational coupling into galaxy cluster abundance predictions with zero free parameters fit to cluster data.",
-  "keywords": ["galaxy clusters", "RSD", "modified gravity", "eROSITA", "cross-probe test"],
+  "keywords": [
+    "galaxy clusters",
+    "RSD",
+    "modified gravity",
+    "eROSITA",
+    "cross-probe test"
+  ],
   "efc_context": {
     "track": "Empirical Validation / Cluster Abundance",
     "regime_relevance": "Late-time structure growth 0.1 < z < 0.8",
@@ -30,8 +36,14 @@
     "jsonld": "rsd_to_clusters.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/rsd_to_clusters.py"],
+    "src_modules": [
+      "src/rsd_to_clusters.py"
+    ],
     "data": "data/cluster_predictions.json",
     "demo": "examples/demo_rsd_clusters.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31292827",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31292827"
   }
 }

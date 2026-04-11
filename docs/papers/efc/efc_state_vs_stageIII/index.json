@@ -49,7 +49,7 @@
       "probe": "KiDS+DES+HSC",
       "S8": 0.813,
       "S8_error_plus": 0.009,
-      "S8_error_minus": 0.010,
+      "S8_error_minus": 0.01,
       "reference": "Choppin de Janvry et al. (2025), arXiv:2511.18134"
     },
     "cmb_lensing": {
@@ -88,7 +88,11 @@
     "O_layer": {
       "name": "Observation-Native Ontology",
       "description": "Quantities extracted from data with minimal theoretical input",
-      "weak_lensing_examples": ["shear two-point correlations ξ±(θ)", "convergence power spectra Clκκ", "tomographic bin statistics"]
+      "weak_lensing_examples": [
+        "shear two-point correlations ξ±(θ)",
+        "convergence power spectra Clκκ",
+        "tomographic bin statistics"
+      ]
     },
     "M_layer": {
       "name": "Mapping Transparency",
@@ -165,19 +169,44 @@
   ],
   "stage_III_update_footnote": "Since submission, the Stage-III weak-lensing landscape has shifted upward: KiDS Legacy reports S8 = 0.815 (+0.016/−0.021) (Wright et al. 2025), and HSC Y3 recalibrated with DESI clustering-redshifts yields S8 = 0.805 ± 0.018 (Choppin de Janvry et al. 2025). The EFC background-coupling prediction (σ8 ≈ 0.805) is consistent with these updated values. The S8 tension motivation discussed in this work should be read in light of this convergence; the structural predictions and falsification criteria remain unchanged.",
   "references": [
-    {"id": 1, "citation": "Wright et al., A&A 703, A158 (2025). KiDS Legacy cosmic shear."},
-    {"id": 2, "citation": "Choppin de Janvry et al., arXiv:2511.18134 (2025). HSC Y3 + DESI clustering-z."},
-    {"id": 3, "citation": "Terasawa et al., Phys. Rev. D 111, 063509 (2025). Small-scale HSC Y3 tension."},
-    {"id": 4, "citation": "Tristram et al., A&A 682, A37 (2024). Planck PR4."},
-    {"id": 5, "citation": "Magnusson, DOI: 10.6084/m9.figshare.31293745 (2026). SCE framework."},
-    {"id": 6, "citation": "Magnusson, DOI: 10.6084/m9.figshare.31271917 (2026). Lensing response Σ(k,z)."}
+    {
+      "id": 1,
+      "citation": "Wright et al., A&A 703, A158 (2025). KiDS Legacy cosmic shear."
+    },
+    {
+      "id": 2,
+      "citation": "Choppin de Janvry et al., arXiv:2511.18134 (2025). HSC Y3 + DESI clustering-z."
+    },
+    {
+      "id": 3,
+      "citation": "Terasawa et al., Phys. Rev. D 111, 063509 (2025). Small-scale HSC Y3 tension."
+    },
+    {
+      "id": 4,
+      "citation": "Tristram et al., A&A 682, A37 (2024). Planck PR4."
+    },
+    {
+      "id": 5,
+      "citation": "Magnusson, DOI: 10.6084/m9.figshare.31293745 (2026). SCE framework."
+    },
+    {
+      "id": 6,
+      "citation": "Magnusson, DOI: 10.6084/m9.figshare.31271917 (2026). Lensing response Σ(k,z)."
+    }
   ],
   "related_papers": [
-    {"id": "efc-four-channel-consistency-test", "relationship": "Validates against same β = 0.08"},
-    {"id": "efc-regime-consistency-lya-bao-rsd-sce", "relationship": "Uses same SCE framework"}
+    {
+      "id": "efc-four-channel-consistency-test",
+      "relationship": "Validates against same β = 0.08"
+    },
+    {
+      "id": "efc-regime-consistency-lya-bao-rsd-sce",
+      "relationship": "Uses same SCE framework"
+    }
   ],
   "files": {
     "paper": "efc_state_vs_stageIII.pdf",
     "schema": "schema.json"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31305550"
 }

@@ -48,12 +48,12 @@
       "status": "improvement persists"
     },
     "eigenmode_analysis": {
-      "low_lambda_gain": -5.50,
+      "low_lambda_gain": -5.5,
       "high_lambda_gain": -2.27,
       "interpretation": "Gains from strongly-penalized modes"
     },
     "whitened_w5": {
-      "chi2_LCDM": 15.30,
+      "chi2_LCDM": 15.3,
       "chi2_EFC": 3.91,
       "delta_chi2": -11.39
     }
@@ -70,7 +70,7 @@
     "BOSS_eBOSS": {
       "N": 14,
       "k_eff": 2,
-      "z_L1L2": 1.60,
+      "z_L1L2": 1.6,
       "alpha_L2": 0.036,
       "delta_AICc": -19.3,
       "delta_BIC": -19.1
@@ -87,8 +87,15 @@
   "boss_data": {
     "source": "BOSS DR12 Consensus",
     "reference": "Alam et al. (2017) MNRAS 470, 2617",
-    "observables": ["D_M/r_s", "D_H/r_s"],
-    "z_eff": [0.38, 0.51, 0.61],
+    "observables": [
+      "D_M/r_s",
+      "D_H/r_s"
+    ],
+    "z_eff": [
+      0.38,
+      0.51,
+      0.61
+    ],
     "N_points": 6,
     "covariance": "Full 6×6 correlation matrix"
   },
@@ -118,5 +125,6 @@
     "code": "src/efc_boss_transfer.py",
     "data": "data/boss_dr12_bao.json",
     "example": "examples/transfer_test.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31231522"
 }

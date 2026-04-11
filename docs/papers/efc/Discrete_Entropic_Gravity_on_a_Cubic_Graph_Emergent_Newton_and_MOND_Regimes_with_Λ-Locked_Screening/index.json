@@ -30,7 +30,7 @@
   ],
   "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Reproduces Newtonian 1/r² and MOND-like 1/r scaling, Λ-locked transition, broken superposition, and external field effect. A nontrivial prefactor C ≈ 2.32 emerges (a₀,eff ≈ 5.4 a₀), and mass scaling is weak (r_trans ∝ M^0.18 vs MOND M^0.5).",
   "key_results": {
-    "newton_slope": -2.00,
+    "newton_slope": -2.0,
     "mond_slope_a0_2": -0.99,
     "mond_slope_a0_05": -1.01,
     "prefactor_C": 2.32,
@@ -54,18 +54,45 @@
     "growth_ode": "δ̈ + 2H(a)δ̇ − (3/2)Ω_m H₀²(1+z)³ δ = 0"
   },
   "parameters": {
-    "lattice_sizes_tested": [21, 31, 41],
-    "convergence_tolerance": 1e-4,
+    "lattice_sizes_tested": [
+      21,
+      31,
+      41
+    ],
+    "convergence_tolerance": 0.0001,
     "beta_background": 0.08,
     "superposition_separation": "8a",
     "Lambda_source": "Planck 2018"
   },
   "kill_tests": [
-    {"id": "KT1", "name": "Newton and MOND Recovery", "result": "PASS"},
-    {"id": "KT2", "name": "Prefactor Convergence", "result": "PASS", "value": 2.32},
-    {"id": "KT3", "name": "Mass Scaling", "result": "STRUCTURAL_DEPARTURE", "exponent": 0.18},
-    {"id": "KT4", "name": "Broken Superposition", "result": "PASS", "violation": "13.7%"},
-    {"id": "KT5", "name": "External Field Effect", "result": "PASS"}
+    {
+      "id": "KT1",
+      "name": "Newton and MOND Recovery",
+      "result": "PASS"
+    },
+    {
+      "id": "KT2",
+      "name": "Prefactor Convergence",
+      "result": "PASS",
+      "value": 2.32
+    },
+    {
+      "id": "KT3",
+      "name": "Mass Scaling",
+      "result": "STRUCTURAL_DEPARTURE",
+      "exponent": 0.18
+    },
+    {
+      "id": "KT4",
+      "name": "Broken Superposition",
+      "result": "PASS",
+      "violation": "13.7%"
+    },
+    {
+      "id": "KT5",
+      "name": "External Field Effect",
+      "result": "PASS"
+    }
   ],
   "falsification_criteria": [
     "Operator must recover g ∝ r⁻² (Newton) and g ∝ r⁻¹ (deep MOND)",
@@ -92,8 +119,17 @@
   ],
   "files": {
     "paper": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening.pdf",
-    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
-    "metadata": ["CITATION.cff", "index.json", "DiscreteEntropicGravity.jsonld", "schema.json"],
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "DiscreteEntropicGravity.jsonld",
+      "schema.json"
+    ],
     "source_code": [
       "src/__init__.py",
       "src/cubic_graph.py",
@@ -111,5 +147,6 @@
       "examples/run_kill_tests.py",
       "examples/prefactor_convergence.py"
     ]
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348411"
 }

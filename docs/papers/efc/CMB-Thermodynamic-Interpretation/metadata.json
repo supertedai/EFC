@@ -11,7 +11,6 @@
   "framework": "Energy-Flow Cosmology (EFC)",
   "license": "CC-BY-4.0",
   "language": "en",
-
   "classification": {
     "domain": "observational_cosmology",
     "track": "galactic_cosmological",
@@ -19,7 +18,6 @@
     "category": "null_test_framework",
     "level": "compatibility_test"
   },
-
   "methodology": {
     "approach": "CMB compatibility testing via entropy-constrained structure formation",
     "techniques": [
@@ -29,20 +27,45 @@
       "Prediction zones for A_L, ISW phase, lensing power spectrum"
     ]
   },
-
   "numerical_parameters": {
-    "theta_s_arcmin": {"value": 100.09, "uncertainty": 0.30},
-    "peak_ratio_R": {"value": 0.42},
-    "A_L_predicted_range": [0.9, 0.95],
-    "ISW_phase_range_rad": [0.01, 0.1],
+    "theta_s_arcmin": {
+      "value": 100.09,
+      "uncertainty": 0.3
+    },
+    "peak_ratio_R": {
+      "value": 0.42
+    },
+    "A_L_predicted_range": [
+      0.9,
+      0.95
+    ],
+    "ISW_phase_range_rad": [
+      0.01,
+      0.1
+    ],
     "jwst_chi2": 47.3,
     "jwst_df": 4,
     "jwst_sample_size": 26288
   },
-
   "related_papers": [
-    {"doi": "10.6084/m9.figshare.31059964", "title": "COSMOS-Web Galaxy Abundances", "relation": "empirical_basis"},
-    {"doi": "10.6084/m9.figshare.31061665", "title": "Regime-Dependent Breakdown of LCDM", "relation": "regime_analysis"},
-    {"doi": "10.6084/m9.figshare.31064929", "title": "EFC Structure Formation", "relation": "theoretical_basis"}
-  ]
+    {
+      "doi": "10.6084/m9.figshare.31059964",
+      "title": "COSMOS-Web Galaxy Abundances",
+      "relation": "empirical_basis"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31061665",
+      "title": "Regime-Dependent Breakdown of LCDM",
+      "relation": "regime_analysis"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31064929",
+      "title": "EFC Structure Formation",
+      "relation": "theoretical_basis"
+    }
+  ],
+  "paper": {
+    "doi": "10.6084/m9.figshare.31064929",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31064929"
+  }
 }

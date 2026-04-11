@@ -13,7 +13,18 @@
   "type": "robustness_analysis",
   "status": "published",
   "abstract_short": "Joint Bayesian fit to 14 BAO + 7 fσ₈ points yields α = −1.00 ± 0.46 (2.20σ). Three robustness controls pass: sound-horizon independence (N1), amplitude-prior control (N2), leave-one-out 7/7 (T7). Signal is distributed, robust, sub-detection-threshold hint for late-time growth suppression.",
-  "keywords": ["EFC", "growth rate", "fσ₈", "BAO", "leave-one-out", "robustness", "Hubble friction", "α parameter", "Bayesian", "BOSS DR12"],
+  "keywords": [
+    "EFC",
+    "growth rate",
+    "fσ₈",
+    "BAO",
+    "leave-one-out",
+    "robustness",
+    "Hubble friction",
+    "α parameter",
+    "Bayesian",
+    "BOSS DR12"
+  ],
   "efc_channel": {
     "name": "Hubble Friction Channel",
     "regime": "EFC-D, L2",
@@ -26,38 +37,107 @@
     }
   },
   "parameters": {
-    "alpha": {"value": -1.00, "uncertainty": 0.46, "significance_sigma": 2.20, "description": "EFC coupling constant (negative = growth suppression)"},
-    "r_d": {"value": 147.09, "unit": "Mpc", "description": "Sound horizon (Planck 2018, fixed)"},
-    "Omega_m": {"value": 0.315, "uncertainty": 0.007, "description": "Matter density (Planck prior)"},
-    "sigma_8": {"value": 0.81, "uncertainty": 0.02, "description": "Growth amplitude (tight prior)"},
-    "H0": {"value": 67.4, "uncertainty": 0.5, "unit": "km/s/Mpc", "description": "Hubble constant"}
+    "alpha": {
+      "value": -1.0,
+      "uncertainty": 0.46,
+      "significance_sigma": 2.2,
+      "description": "EFC coupling constant (negative = growth suppression)"
+    },
+    "r_d": {
+      "value": 147.09,
+      "unit": "Mpc",
+      "description": "Sound horizon (Planck 2018, fixed)"
+    },
+    "Omega_m": {
+      "value": 0.315,
+      "uncertainty": 0.007,
+      "description": "Matter density (Planck prior)"
+    },
+    "sigma_8": {
+      "value": 0.81,
+      "uncertainty": 0.02,
+      "description": "Growth amplitude (tight prior)"
+    },
+    "H0": {
+      "value": 67.4,
+      "uncertainty": 0.5,
+      "unit": "km/s/Mpc",
+      "description": "Hubble constant"
+    }
   },
   "nuisance_configuration": "N2a",
   "data": {
     "BAO": {
       "points": 14,
-      "observables": ["D_M/r_d", "D_H/r_d"],
-      "surveys": ["6dFGS", "SDSS MGS", "BOSS DR12", "eBOSS LRG/QSO/ELG", "Ly-α"],
-      "z_range": [0.106, 2.334],
+      "observables": [
+        "D_M/r_d",
+        "D_H/r_d"
+      ],
+      "surveys": [
+        "6dFGS",
+        "SDSS MGS",
+        "BOSS DR12",
+        "eBOSS LRG/QSO/ELG",
+        "Ly-α"
+      ],
+      "z_range": [
+        0.106,
+        2.334
+      ],
       "covariance": "BOSS 6x6 consensus"
     },
     "growth_rate": {
       "points": 7,
       "observable": "fσ₈(z)",
       "surveys_and_redshifts": [
-        {"survey": "6dFGS", "z": 0.02, "fsigma8": 0.360, "error": 0.040},
-        {"survey": "SDSS MGS", "z": 0.15, "fsigma8": 0.490, "error": 0.055},
-        {"survey": "BOSS DR12", "z": 0.38, "fsigma8": 0.430, "error": 0.054},
-        {"survey": "BOSS DR12", "z": 0.51, "fsigma8": 0.452, "error": 0.057},
-        {"survey": "BOSS DR12", "z": 0.61, "fsigma8": 0.457, "error": 0.052},
-        {"survey": "VIPERS", "z": 0.77, "fsigma8": 0.420, "error": 0.060},
-        {"survey": "FastSound", "z": 0.85, "fsigma8": 0.380, "error": 0.080}
+        {
+          "survey": "6dFGS",
+          "z": 0.02,
+          "fsigma8": 0.36,
+          "error": 0.04
+        },
+        {
+          "survey": "SDSS MGS",
+          "z": 0.15,
+          "fsigma8": 0.49,
+          "error": 0.055
+        },
+        {
+          "survey": "BOSS DR12",
+          "z": 0.38,
+          "fsigma8": 0.43,
+          "error": 0.054
+        },
+        {
+          "survey": "BOSS DR12",
+          "z": 0.51,
+          "fsigma8": 0.452,
+          "error": 0.057
+        },
+        {
+          "survey": "BOSS DR12",
+          "z": 0.61,
+          "fsigma8": 0.457,
+          "error": 0.052
+        },
+        {
+          "survey": "VIPERS",
+          "z": 0.77,
+          "fsigma8": 0.42,
+          "error": 0.06
+        },
+        {
+          "survey": "FastSound",
+          "z": 0.85,
+          "fsigma8": 0.38,
+          "error": 0.08
+        }
       ]
     }
   },
   "results": {
     "base_signal": {
-      "alpha": -1.00,
+      "alpha": -1.0,
       "sigma": 0.46,
       "significance": "2.20σ",
       "delta_AIC": -2.91,
@@ -79,16 +159,89 @@
         "description": "Remove each fσ₈ point and refit",
         "pass_criterion": "|α|/σ ≥ 1.7 AND ΔAIC ≤ 0",
         "score": "7/7 (100%)",
-        "alpha_range": [-1.11, -0.88],
+        "alpha_range": [
+          -1.11,
+          -0.88
+        ],
         "status": "PASSED",
         "data": [
-          {"drop": 0, "z": 0.02, "survey": "6dFGS",     "alpha": -0.88, "sigma": 0.48, "significance": 1.84, "delta_AIC": -1.59, "r_alpha_Omega_m": 0.622, "pass": true},
-          {"drop": 1, "z": 0.15, "survey": "SDSS MGS",   "alpha": -1.11, "sigma": 0.46, "significance": 2.42, "delta_AIC": -3.97, "r_alpha_Omega_m": 0.598, "pass": true},
-          {"drop": 2, "z": 0.38, "survey": "BOSS DR12",  "alpha": -0.98, "sigma": 0.46, "significance": 2.12, "delta_AIC": -2.58, "r_alpha_Omega_m": 0.586, "pass": true},
-          {"drop": 3, "z": 0.51, "survey": "BOSS DR12",  "alpha": -1.03, "sigma": 0.47, "significance": 2.22, "delta_AIC": -2.97, "r_alpha_Omega_m": 0.588, "pass": true},
-          {"drop": 4, "z": 0.61, "survey": "BOSS DR12",  "alpha": -1.04, "sigma": 0.48, "significance": 2.19, "delta_AIC": -3.20, "r_alpha_Omega_m": 0.608, "pass": true},
-          {"drop": 5, "z": 0.77, "survey": "VIPERS",     "alpha": -1.00, "sigma": 0.47, "significance": 2.12, "delta_AIC": -2.70, "r_alpha_Omega_m": 0.583, "pass": true},
-          {"drop": 6, "z": 0.85, "survey": "FastSound",  "alpha": -0.97, "sigma": 0.46, "significance": 2.09, "delta_AIC": -2.54, "r_alpha_Omega_m": 0.594, "pass": true}
+          {
+            "drop": 0,
+            "z": 0.02,
+            "survey": "6dFGS",
+            "alpha": -0.88,
+            "sigma": 0.48,
+            "significance": 1.84,
+            "delta_AIC": -1.59,
+            "r_alpha_Omega_m": 0.622,
+            "pass": true
+          },
+          {
+            "drop": 1,
+            "z": 0.15,
+            "survey": "SDSS MGS",
+            "alpha": -1.11,
+            "sigma": 0.46,
+            "significance": 2.42,
+            "delta_AIC": -3.97,
+            "r_alpha_Omega_m": 0.598,
+            "pass": true
+          },
+          {
+            "drop": 2,
+            "z": 0.38,
+            "survey": "BOSS DR12",
+            "alpha": -0.98,
+            "sigma": 0.46,
+            "significance": 2.12,
+            "delta_AIC": -2.58,
+            "r_alpha_Omega_m": 0.586,
+            "pass": true
+          },
+          {
+            "drop": 3,
+            "z": 0.51,
+            "survey": "BOSS DR12",
+            "alpha": -1.03,
+            "sigma": 0.47,
+            "significance": 2.22,
+            "delta_AIC": -2.97,
+            "r_alpha_Omega_m": 0.588,
+            "pass": true
+          },
+          {
+            "drop": 4,
+            "z": 0.61,
+            "survey": "BOSS DR12",
+            "alpha": -1.04,
+            "sigma": 0.48,
+            "significance": 2.19,
+            "delta_AIC": -3.2,
+            "r_alpha_Omega_m": 0.608,
+            "pass": true
+          },
+          {
+            "drop": 5,
+            "z": 0.77,
+            "survey": "VIPERS",
+            "alpha": -1.0,
+            "sigma": 0.47,
+            "significance": 2.12,
+            "delta_AIC": -2.7,
+            "r_alpha_Omega_m": 0.583,
+            "pass": true
+          },
+          {
+            "drop": 6,
+            "z": 0.85,
+            "survey": "FastSound",
+            "alpha": -0.97,
+            "sigma": 0.46,
+            "significance": 2.09,
+            "delta_AIC": -2.54,
+            "r_alpha_Omega_m": 0.594,
+            "pass": true
+          }
         ]
       }
     },
@@ -118,5 +271,6 @@
     "paper": "EFC_Growth_Sector_Robustness_DOI_31332730.pdf",
     "schema": "schema.json",
     "citations": "citations.bib"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31332730"
 }

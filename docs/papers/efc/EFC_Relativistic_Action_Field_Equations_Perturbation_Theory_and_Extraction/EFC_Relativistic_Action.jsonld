@@ -21,16 +21,19 @@
   },
   "datePublished": "2026-03",
   "version": "v0.5",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "DOI",
-    "value": "10.6084/m9.figshare.31876324"
-  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31876324",
   "description": "First self-contained variational derivation of all EFC perturbation-sector predictions from a single action principle. Derives field equations, performs linearisation in conformal Newtonian gauge, and extracts closed-form mu(k,z), Sigma(k,z), eta(k,z). Shows c_T=c exactly and predicts modified GW amplitude.",
   "keywords": [
-    "EFC action", "field equations", "perturbation theory", "modified gravity",
-    "mu-Sigma-eta", "gravitational waves", "scalar-tensor", "entropy flow",
-    "kinetic stiffness", "screening mechanism"
+    "EFC action",
+    "field equations",
+    "perturbation theory",
+    "modified gravity",
+    "mu-Sigma-eta",
+    "gravitational waves",
+    "scalar-tensor",
+    "entropy flow",
+    "kinetic stiffness",
+    "screening mechanism"
   ],
   "about": [
     {
@@ -57,14 +60,28 @@
     {
       "@type": "ScholarlyArticle",
       "name": "Mach's Principle and a Relativistic Theory of Gravitation",
-      "author": [{"@type": "Person", "name": "C. Brans"}, {"@type": "Person", "name": "R. H. Dicke"}],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "C. Brans"
+        },
+        {
+          "@type": "Person",
+          "name": "R. H. Dicke"
+        }
+      ],
       "datePublished": "1961"
     },
     {
       "@type": "ScholarlyArticle",
       "name": "GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral",
-      "author": {"@type": "Organization", "name": "LIGO/Virgo Collaboration"},
+      "author": {
+        "@type": "Organization",
+        "name": "LIGO/Virgo Collaboration"
+      },
       "datePublished": "2017"
     }
-  ]
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31876324",
+  "doi": "10.6084/m9.figshare.31876324"
 }

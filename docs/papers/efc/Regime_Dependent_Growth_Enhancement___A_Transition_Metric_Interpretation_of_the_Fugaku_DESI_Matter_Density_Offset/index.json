@@ -12,7 +12,15 @@
   "type": "empirical_analysis",
   "status": "published",
   "abstract_short": "Reinterprets ~10% matter density offset in Fugaku N-body simulations as transition estimator Delta_F approx 0.1 measuring integrated regime transition strength rather than fundamental density parameter.",
-  "keywords": ["DESI", "Fugaku", "N-body simulations", "transition metric", "matter density offset", "regime transition", "structure formation"],
+  "keywords": [
+    "DESI",
+    "Fugaku",
+    "N-body simulations",
+    "transition metric",
+    "matter density offset",
+    "regime transition",
+    "structure formation"
+  ],
   "core_equations": [
     {
       "name": "Effective gravitational coupling",
@@ -34,25 +42,59 @@
     "delta_F": 0.1,
     "interpretation": "10% matter density offset = integrated transition strength",
     "consistency_conditions": [
-      {"regime": "CMB", "requirement": "mu approx 1 at recombination", "status": "satisfied"},
-      {"regime": "DESI/Fugaku", "requirement": "Delta_F approx 0.1 in transition band", "status": "satisfied"},
-      {"regime": "Galaxy", "requirement": "mu > 1 asymptotically", "status": "satisfied"}
+      {
+        "regime": "CMB",
+        "requirement": "mu approx 1 at recombination",
+        "status": "satisfied"
+      },
+      {
+        "regime": "DESI/Fugaku",
+        "requirement": "Delta_F approx 0.1 in transition band",
+        "status": "satisfied"
+      },
+      {
+        "regime": "Galaxy",
+        "requirement": "mu > 1 asymptotically",
+        "status": "satisfied"
+      }
     ]
   },
   "data_sources": [
-    {"name": "DESI DR2 BAO", "reference": "arXiv:2404.03002"},
-    {"name": "Planck 2018", "reference": "A&A 641, A6"},
-    {"name": "Fugaku/Uchuu simulations", "reference": "MNRAS 506, 4210"}
+    {
+      "name": "DESI DR2 BAO",
+      "reference": "arXiv:2404.03002"
+    },
+    {
+      "name": "Planck 2018",
+      "reference": "A&A 641, A6"
+    },
+    {
+      "name": "Fugaku/Uchuu simulations",
+      "reference": "MNRAS 506, 4210"
+    }
   ],
   "related_papers": [
-    {"doi": "10.6084/m9.figshare.31135597", "title": "EFC Foundations"},
-    {"doi": "10.6084/m9.figshare.31127380", "title": "EFC vs DESI DR2 BAO"},
-    {"doi": "10.6084/m9.figshare.31096951", "title": "EFC Regime Transition Framework"},
-    {"doi": "10.6084/m9.figshare.31112536", "title": "L0-L3 Regime Architecture"}
+    {
+      "doi": "10.6084/m9.figshare.31135597",
+      "title": "EFC Foundations"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31127380",
+      "title": "EFC vs DESI DR2 BAO"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31096951",
+      "title": "EFC Regime Transition Framework"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31112536",
+      "title": "L0-L3 Regime Architecture"
+    }
   ],
   "files": {
     "pdf": "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset.pdf",
     "tex": "efc_transition_metric.tex",
     "toolkit": "efc-toolkit/"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31140000"
 }

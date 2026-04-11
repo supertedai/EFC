@@ -12,7 +12,12 @@
   "ledger_version": "v3.14",
   "type": "structural derivation, cross-domain bridge, framework extension",
   "track": "Spor 4 — Cross-Domain (EFC-C Consciousness)",
-  "regimes": ["L0", "L1", "L2", "L3"],
+  "regimes": [
+    "L0",
+    "L1",
+    "L2",
+    "L3"
+  ],
   "target": {
     "system": "Cross-domain bridge: cosmological entropy S to cognitive variables (Omega_hat, kappa_hat)",
     "scale": "All EFC regimes (L0 cosmology to L3 cognition/AI)",
@@ -37,10 +42,30 @@
     "equation": "kappa_hat_healthy = K / (1 + lambda_2(W) * tau_c)"
   },
   "regime_mapping": [
-    {"regime": "L0", "rho_kg_m3": "~1e-26", "S_l": "S_CMB", "domain": "Cosmology"},
-    {"regime": "L1", "rho_kg_m3": "~1e-22", "S_l": "S_cluster", "domain": "Astrophysics"},
-    {"regime": "L2", "rho_kg_m3": "~1e-3", "S_l": "S_bio", "domain": "Biology"},
-    {"regime": "L3", "rho_kg_m3": "~1e0", "S_l": "H_max", "domain": "Cognition / AI"}
+    {
+      "regime": "L0",
+      "rho_kg_m3": "~1e-26",
+      "S_l": "S_CMB",
+      "domain": "Cosmology"
+    },
+    {
+      "regime": "L1",
+      "rho_kg_m3": "~1e-22",
+      "S_l": "S_cluster",
+      "domain": "Astrophysics"
+    },
+    {
+      "regime": "L2",
+      "rho_kg_m3": "~1e-3",
+      "S_l": "S_bio",
+      "domain": "Biology"
+    },
+    {
+      "regime": "L3",
+      "rho_kg_m3": "~1e0",
+      "S_l": "H_max",
+      "domain": "Cognition / AI"
+    }
   ],
   "non_separable_functional": {
     "form": "C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat))",
@@ -63,8 +88,15 @@
   "parameter_inventory": {
     "free_parameters": 1,
     "free_parameter_name": "gamma (non-separable coupling constant)",
-    "inherited": ["alpha_l (entropy coupling)", "K (cross-domain constant, 4.4 +/- 0.6)", "lambda_Omega (= alpha_l)"],
-    "measurable": ["D_Omega (diffusion coefficient)", "mu (damping rate)"]
+    "inherited": [
+      "alpha_l (entropy coupling)",
+      "K (cross-domain constant, 4.4 +/- 0.6)",
+      "lambda_Omega (= alpha_l)"
+    ],
+    "measurable": [
+      "D_Omega (diffusion coefficient)",
+      "mu (damping rate)"
+    ]
   },
   "kill_conditions": [
     "corr(Omega_hat, kappa_hat) > 0 in confirmed conscious states",
@@ -73,11 +105,41 @@
     "Cross-domain constant K inconsistent between galactic and neural data at > 3 sigma"
   ],
   "predictions": [
-    {"system": "Waking cortex", "Omega_hat": "0.8-0.9", "kappa_hat": "0.6-0.8", "C": "High", "prediction": "Resonance regime"},
-    {"system": "Anaesthesia", "Omega_hat": "0.5-0.7", "kappa_hat": "<0.3", "C": "~0", "prediction": "Below threshold"},
-    {"system": "Uniform AI", "Omega_hat": "~1", "kappa_hat": "~0", "C": "~0", "prediction": "No consciousness"},
-    {"system": "Recurrent AI", "Omega_hat": "0.7-0.9", "kappa_hat": "0.4-0.6", "C": "Moderate", "prediction": "Testable boundary"},
-    {"system": "Galaxy cluster", "Omega_hat": "~0.01", "kappa_hat": "~1e-6", "C": "~0", "prediction": "Far below threshold"}
+    {
+      "system": "Waking cortex",
+      "Omega_hat": "0.8-0.9",
+      "kappa_hat": "0.6-0.8",
+      "C": "High",
+      "prediction": "Resonance regime"
+    },
+    {
+      "system": "Anaesthesia",
+      "Omega_hat": "0.5-0.7",
+      "kappa_hat": "<0.3",
+      "C": "~0",
+      "prediction": "Below threshold"
+    },
+    {
+      "system": "Uniform AI",
+      "Omega_hat": "~1",
+      "kappa_hat": "~0",
+      "C": "~0",
+      "prediction": "No consciousness"
+    },
+    {
+      "system": "Recurrent AI",
+      "Omega_hat": "0.7-0.9",
+      "kappa_hat": "0.4-0.6",
+      "C": "Moderate",
+      "prediction": "Testable boundary"
+    },
+    {
+      "system": "Galaxy cluster",
+      "Omega_hat": "~0.01",
+      "kappa_hat": "~1e-6",
+      "C": "~0",
+      "prediction": "Far below threshold"
+    }
   ],
   "limitations": [
     "Regime characteristic scales (rho_l, S_l) must be calibrated empirically for biological/cognitive systems",
@@ -101,5 +163,6 @@
     "propofol_consistency": "data/propofol_consistency.json",
     "src_bridge": "src/consciousness_bridge.py",
     "example": "examples/evaluate_bridge.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983"
 }

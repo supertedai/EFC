@@ -38,9 +38,15 @@
     "schema": "schema.json"
   },
   "relations": {
-    "extends": ["EFC-R-SPARC-Regime-Validity"],
-    "relates_to": ["EFC-Field-Equations-for-Entropy-Driven-Spacetime"],
-    "validates": ["entropy-dependent gravitational coupling"]
+    "extends": [
+      "EFC-R-SPARC-Regime-Validity"
+    ],
+    "relates_to": [
+      "EFC-Field-Equations-for-Entropy-Driven-Spacetime"
+    ],
+    "validates": [
+      "entropy-dependent gravitational coupling"
+    ]
   },
   "key_results": {
     "h0_chi2_improvement": 40.29,
@@ -51,5 +57,6 @@
     "cmb_consistent": true
   },
   "created_at": "2026-01-09T08:19:09Z",
-  "updated_at": "2026-01-09T08:19:10Z"
+  "updated_at": "2026-01-09T08:19:10Z",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31026151"
 }
