@@ -5,8 +5,10 @@
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.16-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-137-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-138-brightgreen)](#ai-friendly-paper-packages)
+
+> **NEW (April 11, 2026)**: **[Kill-Test v6 Universality on SPARC 175](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/)** — Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies (identical `scipy.differential_evolution` pipeline, seed = 42, AIC model comparison). **EFC win rate 60.2%** on 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21 (favours EFC); median χ²_red 0.44 (EFC) vs 1.69 (NFW); Mann-Whitney FLOW vs LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2. **Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level.**
 
 > **NEW (April 9, 2026)**: **[EFC White Paper Series (Parts 1-4)](./docs/papers/efc/efc_white_paper_part_1_to_4/)** — Canonical four-part reference. [Part 1](https://doi.org/10.6084/m9.figshare.31970886): Recovery conditions (EFC ⊃ ΛCDM). [Part 2](https://doi.org/10.6084/m9.figshare.31970898): Field equations & observable mapping. [Part 3](https://doi.org/10.6084/m9.figshare.31970904): Validation ledger & falsification protocol (102 tests, 5 kill criteria). [Part 4](https://doi.org/10.6084/m9.figshare.31970907): Regime susceptibility T(S) & dynamical dark energy.
 
@@ -32,9 +34,9 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.16 public / v4.7 internal) |
-| **Papers** | 137 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 137 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.17 public / v4.8 internal) |
+| **Papers** | 138 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 138 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
@@ -157,7 +159,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 internal) tracks 102 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.17 / v4.8 internal) tracks 103 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
 ### EFC White Paper Series (Canonical Reference)
 
@@ -178,6 +180,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 
 | **EFC-VAL-2026-005** | KT3b Cross-Regime Failure | RCMP violations V1/V2/V3; 3 valid architectures proposed | [31963821](https://doi.org/10.6084/m9.figshare.31963821) |
 | **EFC-VAL-2026-006** | EFC vs ΛCDM Kill-Test v6 | 4/4 cobaya Δχ² ≤ 0; K₀ = 1.552, m² = 0.00318 | [31964847](https://doi.org/10.6084/m9.figshare.31964847) |
 | **EFC-VAL-2026-007** | EFC Consciousness Bridge | Three-equation system; 1 free param (γ); 5/5 propofol consistent | [31969983](https://doi.org/10.6084/m9.figshare.31969983) |
+| **EFC-VAL-2026-008** | Kill-Test v6 Universality (SPARC 175) | 60.2% EFC win rate on 171/175; median ΔAIC = +6.21; cherry-picking refuted | [`Kill-Test v6 Universality_SPARC175/`](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/) |
 
 ### Selected Earlier Results
 | Test | Status | Reference |
@@ -263,17 +266,18 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 137 papers, all with AI-friendly packages (100% coverage). Six hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 138 papers, all with AI-friendly packages (100% coverage). Seven hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 137 papers have AI-friendly packages (100% coverage as of April 2026). Six hand-curated 10/10 validation reports with full reproducible pipelines:
+All 138 papers have AI-friendly packages (100% coverage as of April 2026). Seven hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|
 | **EFC vs ΛCDM Kill-Test v6** | `kill_test_suite.py`, `k_rho_bridge.py`, `gravitational_slip.py`, `cobaya_minimize.py` | Six-probe kill-test, K(ρ) bridge, sector decomposition |
+| **Kill-Test v6 Universality (SPARC 175)** | `sparc175_killtest_universality.py` | Single-component EFC + NFW on all 175 SPARC galaxies; 60.2% EFC win rate |
 | **Bullet Cluster Under EFC** | `asig_2d_piemd.py` | PIEMD 4-halo A_sig operator, bootstrap null test |
 | **KT3b Cross-Regime** | `rcmp_check.py` | RCMP linter for V1/V2/V3 violations, 4 architecture factories |
 | **Multi-epoch fσ₈ Growth** | `efc_multi_epoch_v2.py` | Full linear growth ODE, μ(a) gate, 14-point fit |
