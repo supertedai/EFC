@@ -2,6 +2,7 @@
 
 **Extension of EFC vs ΛCDM Kill-Test v6 (probe-2) to the full SPARC 175 sample**
 
+**DOI:** [10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762)
 **Author:** Morten Magnusson (ORCID 0009-0002-4860-5095)
 **Affiliation:** Symbiose Research, Sandnes, Norway
 **License:** CC-BY-4.0
@@ -274,19 +275,19 @@ None of these currently hold.
 ## Citation
 
 ```bibtex
-@techreport{magnusson2026killtestuniversalitysparc175,
-  author       = {Magnusson, Morten},
-  title        = {{Kill-Test v6 Universality} --
-                  {Extension of the {EFC} vs {$\Lambda$CDM} Kill-Test to
-                  the Full {SPARC 175} Sample}},
-  institution  = {Symbiose Research},
-  year         = {2026},
-  month        = apr,
-  note         = {Technical note extending
-                  EFC vs $\Lambda$CDM Kill-Test v6 (probe-2).
-                  EFC win rate 60.2\% on 171/175 SPARC galaxies;
-                  universality verdict CONFIRMED.},
-  url          = {https://github.com/supertedai/EFC/tree/main/docs/papers/efc/Kill-Test\%20v6\%20Universality_SPARC175}
+@article{magnusson2026killtestuniversalitysparc175,
+  author  = {Magnusson, Morten},
+  title   = {{Kill-Test v6 Universality} --
+             {Extension of the {EFC} vs {$\Lambda$CDM} Kill-Test to
+             the Full {SPARC 175} Sample}},
+  year    = {2026},
+  month   = apr,
+  doi     = {10.6084/m9.figshare.31986762},
+  note    = {Technical note extending EFC vs $\Lambda$CDM Kill-Test v6
+             (probe-2). EFC win rate 60.2\% on 171/175 SPARC galaxies;
+             universality verdict CONFIRMED at the single-component
+             level; cherry-picking objection against probe-2 refuted.},
+  url     = {https://github.com/supertedai/EFC/tree/main/docs/papers/efc/Kill-Test\%20v6\%20Universality_SPARC175}
 }
 ```
 

@@ -8,7 +8,7 @@
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
 [![AI Packages](https://img.shields.io/badge/AI_Packages-138-brightgreen)](#ai-friendly-paper-packages)
 
-> **NEW (April 11, 2026)**: **[Kill-Test v6 Universality on SPARC 175](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/)** — Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies (identical `scipy.differential_evolution` pipeline, seed = 42, AIC model comparison). **EFC win rate 60.2%** on 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21 (favours EFC); median χ²_red 0.44 (EFC) vs 1.69 (NFW); Mann-Whitney FLOW vs LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2. **Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level.**
+> **NEW (April 11, 2026)**: **[Kill-Test v6 Universality on SPARC 175](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/)** ([DOI 10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762)) — Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies (identical `scipy.differential_evolution` pipeline, seed = 42, AIC model comparison). **EFC win rate 60.2%** on 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21 (favours EFC); median χ²_red 0.44 (EFC) vs 1.69 (NFW); Mann-Whitney FLOW vs LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2. **Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level.**
 
 > **NEW (April 9, 2026)**: **[EFC White Paper Series (Parts 1-4)](./docs/papers/efc/efc_white_paper_part_1_to_4/)** — Canonical four-part reference. [Part 1](https://doi.org/10.6084/m9.figshare.31970886): Recovery conditions (EFC ⊃ ΛCDM). [Part 2](https://doi.org/10.6084/m9.figshare.31970898): Field equations & observable mapping. [Part 3](https://doi.org/10.6084/m9.figshare.31970904): Validation ledger & falsification protocol (102 tests, 5 kill criteria). [Part 4](https://doi.org/10.6084/m9.figshare.31970907): Regime susceptibility T(S) & dynamical dark energy.
 
@@ -180,7 +180,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.17 / v4.8 
 | **EFC-VAL-2026-005** | KT3b Cross-Regime Failure | RCMP violations V1/V2/V3; 3 valid architectures proposed | [31963821](https://doi.org/10.6084/m9.figshare.31963821) |
 | **EFC-VAL-2026-006** | EFC vs ΛCDM Kill-Test v6 | 4/4 cobaya Δχ² ≤ 0; K₀ = 1.552, m² = 0.00318 | [31964847](https://doi.org/10.6084/m9.figshare.31964847) |
 | **EFC-VAL-2026-007** | EFC Consciousness Bridge | Three-equation system; 1 free param (γ); 5/5 propofol consistent | [31969983](https://doi.org/10.6084/m9.figshare.31969983) |
-| **EFC-VAL-2026-008** | Kill-Test v6 Universality (SPARC 175) | 60.2% EFC win rate on 171/175; median ΔAIC = +6.21; cherry-picking refuted | [`Kill-Test v6 Universality_SPARC175/`](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/) |
+| **EFC-VAL-2026-008** | Kill-Test v6 Universality (SPARC 175) | 60.2% EFC win rate on 171/175; median ΔAIC = +6.21; cherry-picking refuted | [31986762](https://doi.org/10.6084/m9.figshare.31986762) |
 
 ### Selected Earlier Results
 | Test | Status | Reference |
