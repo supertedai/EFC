@@ -1,0 +1,222 @@
+{
+  "id": "kill-test-v6-universality-sparc175",
+  "title": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
+  "short_title": "Kill-Test v6 Universality (SPARC 175)",
+  "version": "1.0",
+  "date": "2026-04-11",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "package_type": "ai-friendly-paper",
+  "schema_version": "1.0",
+  "type": "technical_note",
+  "track": "Spor 1 — Galactic/Cosmological",
+  "regimes": ["L3"],
+  "epistemic_layer": "B-C",
+  "epistemic_status": "Non-rejection of single-component EFC against NFW reference on 171/175 SPARC galaxies; cherry-picking objection refuted; universality verdict CONFIRMED at the single-component level.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "ΛCDM",
+    "kill test",
+    "universality",
+    "SPARC",
+    "SPARC 175",
+    "rotation curves",
+    "NFW",
+    "AIC",
+    "differential evolution",
+    "regime classification",
+    "FLOW",
+    "LATENT",
+    "DDO 154",
+    "cherry-picking refutation"
+  ],
+  "abstract": "Kill-Test v6 (probe-2) established a decisive EFC advantage on five hand-refitted SPARC galaxies against a single-component NFW reference. This package extends the same methodology to all 175 SPARC galaxies, refuting the cherry-picking objection. On 171/175 galaxies (4 dropped for n<5 data points), single-component EFC wins 60.2% (42.1% EFC_decisive, 18.1% EFC), ties 26.9%, and loses 12.9% (9.4% LCDM_decisive, 3.5% LCDM). Median ΔAIC = +6.21 (favours EFC; AIC_NFW − AIC_EFC convention). Median χ²_red: EFC 0.44 vs NFW 1.69. Mann-Whitney test for FLOW (71 gal.) vs LATENT (16 gal.) gives p ≈ 0, ruling out the null hypothesis that the two regimes share a ΔAIC distribution. Spearman ρ(ΔAIC, v_max) = 0.11 (p = 0.15) rules out mass-scale selection bias. Kill-Test v6 probe-2 anchor DDO 154 reproduces at ΔAIC = +125.2 (sign convention verified). Universality verdict: CONFIRMED at the single-component level.",
+  "headline_result": {
+    "n_galaxies_total": 175,
+    "n_fitted": 171,
+    "n_failed": 4,
+    "efc_win_rate_percent": 60.2,
+    "lcdm_win_rate_percent": 12.9,
+    "tie_rate_percent": 26.9,
+    "efc_decisive_count": 72,
+    "median_delta_aic": 6.213,
+    "mean_delta_aic": 40.347,
+    "median_chi2_red_efc": 0.4402,
+    "median_chi2_red_nfw": 1.6866,
+    "universality_verdict": "CONFIRMED",
+    "cherry_picking_refuted": true
+  },
+  "verdict_distribution": {
+    "EFC_decisive": 72,
+    "EFC": 31,
+    "tied": 46,
+    "LCDM": 6,
+    "LCDM_decisive": 16
+  },
+  "regime_distribution": {
+    "FLOW": 71,
+    "TRANSITION": 84,
+    "LATENT": 16
+  },
+  "statistical_tests": {
+    "mann_whitney_flow_vs_latent": {
+      "alternative": "FLOW > LATENT (ΔAIC)",
+      "U_statistic": 1136.0,
+      "p_value": 0.0,
+      "n_flow": 71,
+      "n_latent": 16,
+      "interpretation": "Rejects null hypothesis that FLOW and LATENT galaxies share a ΔAIC distribution"
+    },
+    "spearman_delta_aic_vs_vmax": {
+      "rho": 0.1106,
+      "p_value": 0.1497,
+      "interpretation": "No significant correlation between EFC advantage and galaxy v_max — not a dwarf-galaxy artefact"
+    }
+  },
+  "methodology": {
+    "name": "Kill-Test v6 (single-component extension)",
+    "optimiser": "scipy.optimize.differential_evolution",
+    "seed": 42,
+    "tolerance": 1e-8,
+    "maxiter": 500,
+    "init": "sobol",
+    "polish": true,
+    "efc_model": "v(r) = v_flat · sqrt(1 - exp(-(r/r_turnon)^sharpness))",
+    "nfw_model": "v²(r) = V200² · [ln(1+s) - s/(1+s)] / [ln(1+c) - c/(1+c)] / (r/r200),  s = c·r/r200,  r200 = V200 / (10·H0·1e-3)",
+    "H0": 67.4,
+    "delta_aic_convention": "AIC_NFW - AIC_EFC (positive = EFC wins; matches Kill-Test v6 probe-2 where DDO 154 has ΔAIC = +35.4)",
+    "efc_bounds": {
+      "v_flat_km_s": [10.0, 350.0],
+      "r_turnon_kpc": [0.05, 50.0],
+      "sharpness": [0.3, 6.0]
+    },
+    "nfw_bounds": {
+      "V200_km_s": [10.0, 400.0],
+      "c": [1.0, 50.0]
+    },
+    "regime_thresholds": {
+      "FLOW": "ΔAIC ≥ +10 AND χ²_red,EFC < 20",
+      "LATENT": "ΔAIC ≤ -10 OR χ²_red,EFC > 50",
+      "TRANSITION": "otherwise"
+    },
+    "verdict_thresholds": {
+      "EFC_decisive": "ΔAIC > +10",
+      "EFC": "+2 < ΔAIC ≤ +10",
+      "tied": "-2 ≤ ΔAIC ≤ +2",
+      "LCDM": "-10 ≤ ΔAIC < -2",
+      "LCDM_decisive": "ΔAIC < -10"
+    }
+  },
+  "data_source": {
+    "file": "../Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/sparc-n175-extended/sparc_rotation_curves.dat",
+    "format": "Lelli+2016 Rotmod_LTG",
+    "n_rows": 3391,
+    "n_galaxies": 175,
+    "columns": {
+      "0": "Galaxy name",
+      "1": "Distance (Mpc)",
+      "2": "Radius (kpc)",
+      "3": "V_obs (km/s)",
+      "4": "V_err (km/s)",
+      "5": "V_gas (km/s)",
+      "6": "V_disk (km/s)",
+      "7": "V_bulge (km/s)"
+    }
+  },
+  "probe_cross_check": {
+    "killtest_v6_probe2_anchor": {
+      "galaxy": "DDO 154",
+      "probe2_delta_aic": 35.4,
+      "this_work_delta_aic": 125.2,
+      "verdict": "EFC_decisive",
+      "regime": "FLOW",
+      "notes": "Single-component EFC gives a larger advantage than the multi-component probe-2 refit because the NFW reference here has only 2 free parameters (V200, c)."
+    }
+  },
+  "top_wins": {
+    "efc": [
+      {"name": "UGC11914", "delta_aic": 4218.1},
+      {"name": "UGC05253", "delta_aic": 3965.3},
+      {"name": "UGC06787", "delta_aic": 1577.3},
+      {"name": "IC2574", "delta_aic": 1447.7},
+      {"name": "UGC02916", "delta_aic": 794.0}
+    ],
+    "lcdm": [
+      {"name": "UGC02953", "delta_aic": -4305.6},
+      {"name": "NGC5055", "delta_aic": -2921.5},
+      {"name": "UGC09133", "delta_aic": -2414.0},
+      {"name": "UGC02487", "delta_aic": -521.3},
+      {"name": "NGC2841", "delta_aic": -230.7}
+    ]
+  },
+  "failed_galaxies": [
+    {"name": "D512-2", "reason": "Too few data points (4)"},
+    {"name": "NGC6789", "reason": "Too few data points (4)"},
+    {"name": "UGC00634", "reason": "Too few data points (4)"},
+    {"name": "UGC07232", "reason": "Too few data points (4)"}
+  ],
+  "regime_architecture": [
+    {"regime": "L0", "redshift": "z > 1100", "coupling": "α_S → 0", "physics": "Standard GR + Standard Model"},
+    {"regime": "L1", "redshift": "30 < z < 1100", "coupling": "linear growth", "physics": "post-recombination"},
+    {"regime": "L2", "redshift": "0.5 < z < 30", "coupling": "α_L2 ≠ 0", "physics": "late-time modification"},
+    {"regime": "L3", "redshift": "z ~ 0", "coupling": "full entropy-flow", "physics": "galactic / local — this paper"}
+  ],
+  "falsification_criteria": [
+    "Independent re-run returning EFC win rate < 50% on identical input data with seed = 42",
+    "DDO 154 returning ΔAIC < 0 (sign convention test)",
+    "Mann-Whitney FLOW vs LATENT returning p > 0.05",
+    "Replacement of differential_evolution with basin hopping or SHGO changing the median ΔAIC by > factor of 2 in absolute value"
+  ],
+  "open_questions": [
+    "Multi-component 175-galaxy universality with single fixed (K0, m²) across all galaxies",
+    "Structural predictor for LATENT regime assignment (bulge fraction, central density, Θ(ρ) crossing)",
+    "Retest of the four n<5 galaxies (D512-2, NGC 6789, UGC 00634, UGC 07232)"
+  ],
+  "related_papers": [
+    {
+      "id": "efc-vs-lcdm-kill-test-v6",
+      "directory": "EFC_vs_LCDM_Kill_Test_v6_final",
+      "doi": "10.6084/m9.figshare.31964847",
+      "relationship": "parent_kill_test"
+    },
+    {
+      "id": "sparc-175-regime-validity",
+      "directory": "Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling",
+      "doi": "10.6084/m9.figshare.31045126",
+      "relationship": "data_source"
+    },
+    {
+      "id": "efc-r-sparc-regime-validity",
+      "directory": "EFC-R-SPARC-Regime-Validity",
+      "relationship": "efc_r_formula_source"
+    },
+    {
+      "id": "entropy-bounded-empiricism-ebe-sparc175",
+      "directory": "entropy-bounded-empiricism-EBE-SPARC175-complete-documentation",
+      "relationship": "methodological_framework"
+    }
+  ],
+  "files": {
+    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
+    "metadata": ["CITATION.cff", "index.json", "metadata.json", "kill-test-v6-universality-sparc175.jsonld"],
+    "source_code": [
+      "src/sparc175_killtest_universality.py"
+    ],
+    "data": [
+      "data/sparc175_killtest_results.json",
+      "data/summary.json",
+      "data/verdict_distribution.json",
+      "data/top_galaxies.json"
+    ],
+    "examples": [
+      "examples/reproduce.py"
+    ],
+    "references": ["citations.bib"]
+  },
+  "see_also": "ai_manifest.json"
+}

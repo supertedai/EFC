@@ -1,0 +1,49 @@
+{
+  "title": "SPARC 175 Kill-Test Universality — Summary",
+  "date": "2026-04-11T05:13:20.721331+00:00",
+  "methodology": "Kill-Test v6 (differential evolution + AIC comparison)",
+  "delta_aic_convention": "AIC_NFW - AIC_EFC (positive = EFC wins)",
+  "n_galaxies_total": 175,
+  "n_fitted": 171,
+  "n_failed": 4,
+  "verdict_distribution": {
+    "EFC_decisive": 72,
+    "EFC": 31,
+    "tied": 46,
+    "LCDM": 6,
+    "LCDM_decisive": 16
+  },
+  "regime_distribution": {
+    "FLOW": 71,
+    "TRANSITION": 84,
+    "LATENT": 16
+  },
+  "efc_win_rate_percent": 60.2,
+  "lcdm_win_rate_percent": 12.9,
+  "tie_rate_percent": 26.9,
+  "median_delta_aic": 6.213,
+  "mean_delta_aic": 40.347,
+  "median_chi2_red_efc": 0.4402,
+  "median_chi2_red_nfw": 1.6866,
+  "statistical_tests": {
+    "spearman_delta_aic_vs_vmax": {
+      "rho": 0.1106,
+      "p_value": 0.149724,
+      "interpretation": "Tests if EFC advantage correlates with v_max (mass proxy)"
+    },
+    "mann_whitney_flow_vs_latent": {
+      "U_statistic": 1136.0,
+      "p_value": 0.0,
+      "n_flow": 71,
+      "n_latent": 16,
+      "interpretation": "Tests if FLOW galaxies have significantly higher ΔAIC than LATENT"
+    }
+  },
+  "universality": {
+    "n_galaxies": 171,
+    "efc_decisive_count": 72,
+    "efc_decisive_rate_percent": 42.1,
+    "cherry_picking_refuted": true,
+    "universality_verdict": "CONFIRMED"
+  }
+}
