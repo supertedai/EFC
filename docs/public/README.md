@@ -24,6 +24,7 @@ the KT test suite before figures or ledger entries are updated.
 
 ```
 docs/public/
+├── EFC_Elevator_Pitch.html               # 60-second layman introduction
 ├── EFC_Changelog.html                    # Version history and change log
 ├── EFC_Master_v1.1.html                  # Master Specification document
 ├── EFC_Stage-IV_Data_Roadmap.html        # Stage-IV Data Roadmap
@@ -46,6 +47,7 @@ docs/public/
 
 | File | Description |
 |------|-------------|
+| **EFC_Elevator_Pitch.html** | A 60-second plain-English introduction for non-specialists: what EFC is, why it exists, what it solves, what it does not claim, and where to go next. The recommended landing page for anyone arriving at the repository for the first time. |
 | **EFC_Validation_Ledger.html** | The central accountability document. Records every key test (KT1-KT5 and beyond), their pass/fail criteria, observed outcomes, pipeline versions, and dates. External reviewers and AI agents should start here to assess the empirical standing of EFC predictions. |
 | **EFC_Master_v1.1.html** | The Master Specification (v1.1) presenting the full EFC theoretical framework: foundational postulates, energy functional, field equations, emergent limits, and the relationship between entropy geometry and gravitational dynamics. The primary reference for understanding what EFC claims. |
 | **EFC_White_Paper_Series.html** | The four-part canonical reference for EFC: recovery conditions, field equations, validation protocol, and regime susceptibility. Includes sealed blind predictions and kill criteria. |
