@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 Grid-Higgs Framework",
+  "title": "EFC — Grid-Higgs Framework",
   "short_id": "efc-grid-higgs-framework",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -37,8 +37,14 @@
     "jsonld": "EFC-Grid-Higgs-Framework.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/grid_higgs.py"],
+    "src_modules": [
+      "src/grid_higgs.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_grid_higgs.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28559510",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28559510"
   }
 }

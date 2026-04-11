@@ -18,17 +18,33 @@
     }
   },
   "datePublished": "2026-04-05",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "DOI",
-    "value": "10.6084/m9.figshare.31940370"
-  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31940370",
   "about": [
-    {"@type": "DefinedTerm", "name": "Centrifugal Entropy Score"},
-    {"@type": "DefinedTerm", "name": "Structural Connectome"},
-    {"@type": "DefinedTerm", "name": "Hub-Periphery Gradient"},
-    {"@type": "DefinedTerm", "name": "Degree Heterogeneity"},
-    {"@type": "DefinedTerm", "name": "Fiedler Eigenvalue"},
-    {"@type": "DefinedTerm", "name": "Biomarker"}
-  ]
+    {
+      "@type": "DefinedTerm",
+      "name": "Centrifugal Entropy Score"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Structural Connectome"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Hub-Periphery Gradient"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Degree Heterogeneity"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Fiedler Eigenvalue"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Biomarker"
+    }
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31940370",
+  "doi": "10.6084/m9.figshare.31940370"
 }

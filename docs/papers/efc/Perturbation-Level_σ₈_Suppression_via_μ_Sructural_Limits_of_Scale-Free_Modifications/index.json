@@ -14,7 +14,18 @@
   "status": "published",
   "series": "EFCLASS Technical Note II",
   "abstract_short": "Perturbation channel μ(a) = 1 − B g(a) with μ < 1 weakens the gravitational source term. Reducing gate steepness from n=6 to n=2 exactly doubles σ₈ suppression (universal factor-2). Within Planck 1σ, scale-free μ(a) closes ~43% of S₈ gap; at ~1.5σ it closes ~73%. Full resolution requires scale dependence or combined channel.",
-  "keywords": ["EFC", "sigma8", "S8 tension", "perturbation", "mu parameter", "gate function", "growth suppression", "scale-free", "modified gravity", "CLASS"],
+  "keywords": [
+    "EFC",
+    "sigma8",
+    "S8 tension",
+    "perturbation",
+    "mu parameter",
+    "gate function",
+    "growth suppression",
+    "scale-free",
+    "modified gravity",
+    "CLASS"
+  ],
   "depends_on": {
     "technical_note_I": {
       "id": "efclass-sign-structure",
@@ -49,15 +60,42 @@
     }
   },
   "parameters": {
-    "A": {"value": 0.0, "description": "Background amplitude (set to 0 for pure μ-model)"},
-    "B": {"value": 0.187, "description": "Perturbation amplitude (reference model)"},
-    "n": {"value": 2, "description": "Gate steepness exponent (reference model)"},
-    "z_t": {"value": 1.01, "description": "Transition redshift"},
-    "a_t": {"value": 0.4975, "description": "Transition scale factor = 1/(1+z_t)"},
-    "mu_0": {"value": 0.85, "description": "Present-day μ value (reference model)"},
-    "Sigma": {"value": 1.0, "description": "Lensing potential (WP1 default)"},
-    "Omega_m": {"value": 0.3134, "description": "Matter density parameter"},
-    "H0": {"value": 67.4, "description": "Hubble constant [km/s/Mpc]"}
+    "A": {
+      "value": 0.0,
+      "description": "Background amplitude (set to 0 for pure μ-model)"
+    },
+    "B": {
+      "value": 0.187,
+      "description": "Perturbation amplitude (reference model)"
+    },
+    "n": {
+      "value": 2,
+      "description": "Gate steepness exponent (reference model)"
+    },
+    "z_t": {
+      "value": 1.01,
+      "description": "Transition redshift"
+    },
+    "a_t": {
+      "value": 0.4975,
+      "description": "Transition scale factor = 1/(1+z_t)"
+    },
+    "mu_0": {
+      "value": 0.85,
+      "description": "Present-day μ value (reference model)"
+    },
+    "Sigma": {
+      "value": 1.0,
+      "description": "Lensing potential (WP1 default)"
+    },
+    "Omega_m": {
+      "value": 0.3134,
+      "description": "Matter density parameter"
+    },
+    "H0": {
+      "value": 67.4,
+      "description": "Hubble constant [km/s/Mpc]"
+    }
   },
   "reference_model": {
     "name": "WP1a",
@@ -67,7 +105,7 @@
     "z_t": 1.01,
     "mu_0": 0.85,
     "sigma_8": 0.773,
-    "S_8": 0.790,
+    "S_8": 0.79,
     "gap_closed_percent": 73,
     "planck_mu0_status": "~1.5σ",
     "delta_chi2_RSD": -19.8
@@ -76,35 +114,155 @@
     "b_sweep": {
       "description": "Amplitude scan at fixed n=6, A=0",
       "data": [
-        {"B": 0.000, "mu_0": 1.000, "sigma_8": 0.811, "S_8": 0.829, "chi2_RSD": 65.3},
-        {"B": 0.050, "mu_0": 0.951, "sigma_8": 0.805, "S_8": 0.823, "chi2_RSD": 61.7},
-        {"B": 0.100, "mu_0": 0.902, "sigma_8": 0.799, "S_8": 0.816, "chi2_RSD": 58.2},
-        {"B": 0.150, "mu_0": 0.852, "sigma_8": 0.792, "S_8": 0.810, "chi2_RSD": 54.8},
-        {"B": 0.200, "mu_0": 0.803, "sigma_8": 0.786, "S_8": 0.804, "chi2_RSD": 51.5},
-        {"B": 0.250, "mu_0": 0.754, "sigma_8": 0.780, "S_8": 0.797, "chi2_RSD": 48.3},
-        {"B": 0.300, "mu_0": 0.705, "sigma_8": 0.774, "S_8": 0.791, "chi2_RSD": 45.2}
+        {
+          "B": 0.0,
+          "mu_0": 1.0,
+          "sigma_8": 0.811,
+          "S_8": 0.829,
+          "chi2_RSD": 65.3
+        },
+        {
+          "B": 0.05,
+          "mu_0": 0.951,
+          "sigma_8": 0.805,
+          "S_8": 0.823,
+          "chi2_RSD": 61.7
+        },
+        {
+          "B": 0.1,
+          "mu_0": 0.902,
+          "sigma_8": 0.799,
+          "S_8": 0.816,
+          "chi2_RSD": 58.2
+        },
+        {
+          "B": 0.15,
+          "mu_0": 0.852,
+          "sigma_8": 0.792,
+          "S_8": 0.81,
+          "chi2_RSD": 54.8
+        },
+        {
+          "B": 0.2,
+          "mu_0": 0.803,
+          "sigma_8": 0.786,
+          "S_8": 0.804,
+          "chi2_RSD": 51.5
+        },
+        {
+          "B": 0.25,
+          "mu_0": 0.754,
+          "sigma_8": 0.78,
+          "S_8": 0.797,
+          "chi2_RSD": 48.3
+        },
+        {
+          "B": 0.3,
+          "mu_0": 0.705,
+          "sigma_8": 0.774,
+          "S_8": 0.791,
+          "chi2_RSD": 45.2
+        }
       ]
     },
     "n_sweep": {
       "description": "Gate width scan at calibrated B, A=0",
       "data": [
-        {"mu_0": 0.913, "n": 10, "B": 0.087, "sigma_8": 0.801, "delta_sigma_8": -0.010, "S_8": 0.819},
-        {"mu_0": 0.913, "n":  6, "B": 0.088, "sigma_8": 0.800, "delta_sigma_8": -0.011, "S_8": 0.818},
-        {"mu_0": 0.913, "n":  4, "B": 0.092, "sigma_8": 0.798, "delta_sigma_8": -0.013, "S_8": 0.816},
-        {"mu_0": 0.913, "n":  3, "B": 0.098, "sigma_8": 0.795, "delta_sigma_8": -0.016, "S_8": 0.813},
-        {"mu_0": 0.913, "n":  2, "B": 0.109, "sigma_8": 0.789, "delta_sigma_8": -0.022, "S_8": 0.806},
-        {"mu_0": 0.850, "n":  6, "B": 0.152, "sigma_8": 0.792, "delta_sigma_8": -0.019, "S_8": 0.810},
-        {"mu_0": 0.850, "n":  2, "B": 0.187, "sigma_8": 0.773, "delta_sigma_8": -0.038, "S_8": 0.790},
-        {"mu_0": 0.800, "n":  6, "B": 0.203, "sigma_8": 0.786, "delta_sigma_8": -0.025, "S_8": 0.803},
-        {"mu_0": 0.800, "n":  2, "B": 0.250, "sigma_8": 0.761, "delta_sigma_8": -0.050, "S_8": 0.777}
+        {
+          "mu_0": 0.913,
+          "n": 10,
+          "B": 0.087,
+          "sigma_8": 0.801,
+          "delta_sigma_8": -0.01,
+          "S_8": 0.819
+        },
+        {
+          "mu_0": 0.913,
+          "n": 6,
+          "B": 0.088,
+          "sigma_8": 0.8,
+          "delta_sigma_8": -0.011,
+          "S_8": 0.818
+        },
+        {
+          "mu_0": 0.913,
+          "n": 4,
+          "B": 0.092,
+          "sigma_8": 0.798,
+          "delta_sigma_8": -0.013,
+          "S_8": 0.816
+        },
+        {
+          "mu_0": 0.913,
+          "n": 3,
+          "B": 0.098,
+          "sigma_8": 0.795,
+          "delta_sigma_8": -0.016,
+          "S_8": 0.813
+        },
+        {
+          "mu_0": 0.913,
+          "n": 2,
+          "B": 0.109,
+          "sigma_8": 0.789,
+          "delta_sigma_8": -0.022,
+          "S_8": 0.806
+        },
+        {
+          "mu_0": 0.85,
+          "n": 6,
+          "B": 0.152,
+          "sigma_8": 0.792,
+          "delta_sigma_8": -0.019,
+          "S_8": 0.81
+        },
+        {
+          "mu_0": 0.85,
+          "n": 2,
+          "B": 0.187,
+          "sigma_8": 0.773,
+          "delta_sigma_8": -0.038,
+          "S_8": 0.79
+        },
+        {
+          "mu_0": 0.8,
+          "n": 6,
+          "B": 0.203,
+          "sigma_8": 0.786,
+          "delta_sigma_8": -0.025,
+          "S_8": 0.803
+        },
+        {
+          "mu_0": 0.8,
+          "n": 2,
+          "B": 0.25,
+          "sigma_8": 0.761,
+          "delta_sigma_8": -0.05,
+          "S_8": 0.777
+        }
       ]
     },
     "universal_factor_2": {
       "description": "Ratio of σ₈ suppression n=2 vs n=6 at fixed μ₀",
       "data": [
-        {"mu_0": 0.913, "delta_sigma8_n6": -0.011, "delta_sigma8_n2": -0.022, "ratio": 2.01},
-        {"mu_0": 0.850, "delta_sigma8_n6": -0.019, "delta_sigma8_n2": -0.038, "ratio": 2.00},
-        {"mu_0": 0.800, "delta_sigma8_n6": -0.025, "delta_sigma8_n2": -0.050, "ratio": 2.00}
+        {
+          "mu_0": 0.913,
+          "delta_sigma8_n6": -0.011,
+          "delta_sigma8_n2": -0.022,
+          "ratio": 2.01
+        },
+        {
+          "mu_0": 0.85,
+          "delta_sigma8_n6": -0.019,
+          "delta_sigma8_n2": -0.038,
+          "ratio": 2.0
+        },
+        {
+          "mu_0": 0.8,
+          "delta_sigma8_n6": -0.025,
+          "delta_sigma8_n2": -0.05,
+          "ratio": 2.0
+        }
       ]
     },
     "s8_closure": {
@@ -114,11 +272,41 @@
       "lensing_S8_error": 0.017,
       "delta_sigma8_gap": 0.052,
       "data": [
-        {"mu_0": 0.913, "n": 6, "sigma_8": 0.800, "gap_closed_percent": 21, "planck_status": "OK"},
-        {"mu_0": 0.913, "n": 2, "sigma_8": 0.789, "gap_closed_percent": 43, "planck_status": "OK"},
-        {"mu_0": 0.850, "n": 3, "sigma_8": 0.784, "gap_closed_percent": 52, "planck_status": "~1.5σ"},
-        {"mu_0": 0.850, "n": 2, "sigma_8": 0.773, "gap_closed_percent": 73, "planck_status": "~1.5σ"},
-        {"mu_0": 0.800, "n": 2, "sigma_8": 0.761, "gap_closed_percent": 97, "planck_status": "2σ"}
+        {
+          "mu_0": 0.913,
+          "n": 6,
+          "sigma_8": 0.8,
+          "gap_closed_percent": 21,
+          "planck_status": "OK"
+        },
+        {
+          "mu_0": 0.913,
+          "n": 2,
+          "sigma_8": 0.789,
+          "gap_closed_percent": 43,
+          "planck_status": "OK"
+        },
+        {
+          "mu_0": 0.85,
+          "n": 3,
+          "sigma_8": 0.784,
+          "gap_closed_percent": 52,
+          "planck_status": "~1.5σ"
+        },
+        {
+          "mu_0": 0.85,
+          "n": 2,
+          "sigma_8": 0.773,
+          "gap_closed_percent": 73,
+          "planck_status": "~1.5σ"
+        },
+        {
+          "mu_0": 0.8,
+          "n": 2,
+          "sigma_8": 0.761,
+          "gap_closed_percent": 97,
+          "planck_status": "2σ"
+        }
       ]
     }
   },
@@ -133,12 +321,16 @@
     "RSD": "BOSS DR12 (3 redshift points, full covariance, Alam+ 2017)"
   },
   "reproducibility": {
-    "code": ["efc_wp1_mu_only_sweep.py", "efc_wp1_n_scan.py"],
+    "code": [
+      "efc_wp1_mu_only_sweep.py",
+      "efc_wp1_n_scan.py"
+    ],
     "background": "ΛCDM with Ωm = 0.3134, H0 = 67.4"
   },
   "files": {
     "paper": "efc_technical_note_II.pdf",
     "schema": "schema.json",
     "citations": "citations.bib"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31333600"
 }

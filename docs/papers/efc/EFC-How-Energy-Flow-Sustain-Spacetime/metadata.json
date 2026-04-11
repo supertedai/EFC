@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 How Energy Flow Sustains Spacetime",
+  "title": "EFC — How Energy Flow Sustains Spacetime",
   "short_id": "efc-energy-flow-sustains-spacetime",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -38,8 +38,14 @@
     "jsonld": "EFC-How-Energy-Flow-Sustain-Spacetime.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/spacetime_sustain.py"],
+    "src_modules": [
+      "src/spacetime_sustain.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_spacetime_sustain.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28098371",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28098371"
   }
 }

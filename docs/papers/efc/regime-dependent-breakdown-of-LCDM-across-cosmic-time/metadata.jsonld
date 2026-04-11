@@ -23,7 +23,16 @@
   },
   "datePublished": "2026-01-13",
   "description": "Multiple observational tensions with LCDM have been reported across disparate redshifts. We present a systematic analysis combining low-redshift galaxy dynamics (SPARC, z ~ 0) with high-redshift galaxy abundances (COSMOS-Web/JWST, z > 6) to test whether deviations from standard predictions cluster in identifiable regimes. Using a descriptive taxonomy (L0-L3), we find that deviations cluster systematically: chi-squared = 47.3, df = 4, p < 10^-8.",
-  "keywords": ["cosmology", "galaxies", "high-redshift", "dark matter", "LCDM", "regime analysis", "JWST", "SPARC"],
+  "keywords": [
+    "cosmology",
+    "galaxies",
+    "high-redshift",
+    "dark matter",
+    "LCDM",
+    "regime analysis",
+    "JWST",
+    "SPARC"
+  ],
   "about": [
     {
       "@type": "DefinedTerm",
@@ -31,7 +40,7 @@
       "inDefinedTermSet": "https://astrothesaurus.org"
     },
     {
-      "@type": "DefinedTerm", 
+      "@type": "DefinedTerm",
       "name": "Galaxy dynamics",
       "inDefinedTermSet": "https://astrothesaurus.org"
     }
@@ -47,14 +56,20 @@
       "name": "SPARC: Mass Models for 175 Disk Galaxies",
       "author": "Lelli, F., McGaugh, S. S., & Schombert, J. M.",
       "datePublished": "2016",
-      "isPartOf": {"name": "Astronomical Journal", "volumeNumber": "152"}
+      "isPartOf": {
+        "name": "Astronomical Journal",
+        "volumeNumber": "152"
+      }
     },
     {
       "@type": "ScholarlyArticle",
       "name": "UniverseMachine: The correlation between galaxy growth and dark matter halo assembly",
       "author": "Behroozi, P., et al.",
       "datePublished": "2019",
-      "isPartOf": {"name": "MNRAS", "volumeNumber": "488"}
+      "isPartOf": {
+        "name": "MNRAS",
+        "volumeNumber": "488"
+      }
     }
   ],
   "mainEntity": {
@@ -73,5 +88,8 @@
         "value": "1.3e-9"
       }
     ]
-  }
+  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31061665",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31061665",
+  "doi": "10.6084/m9.figshare.31061665"
 }

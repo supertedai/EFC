@@ -50,11 +50,19 @@
     "citations": "citations.bib",
     "citation_cff": "CITATION.cff",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/background_nogo.py"],
+    "src_modules": [
+      "src/background_nogo.py"
+    ],
     "data": [
       "data/sign_lemma_verification.json",
       "data/observational_constraints.json"
     ],
-    "demo": ["examples/verify_nogo.py"]
+    "demo": [
+      "examples/verify_nogo.py"
+    ]
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31333414",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31333414"
   }
 }

@@ -13,12 +13,23 @@ validation ledger, and AI-friendly metadata layer consistent.
   always regenerated so the file inventory stays accurate. Writes the
   catalogue `docs/papers/efc/ai_friendly_index.json`.
 
-- **`efc_verify.py`** — Non-destructive consistency checker. Runs seven
+- **`efc_sync_dois.py`** — DOI sync engine. Walks every paper
+  directory, discovers the paper's canonical Figshare DOI from any of
+  `index.json` / `metadata.json` / `CITATION.cff` / `<slug>.jsonld` /
+  `README.md` header, reconciles conflicts, and in `--apply` mode
+  propagates the canonical DOI into every in-package metadata file that
+  is missing it. Also syncs the top-level `efc_index.json` entries and
+  the ledger evidence registers. Non-destructive and idempotent.
+  See the [DOI sync](#doi-sync) section below.
+
+- **`efc_verify.py`** — Non-destructive consistency checker. Runs eight
   invariants (see below) and exits 1 on error, 0 on clean / warnings only.
 
-- **`efc_maintain.py`** — Orchestrator. Runs the generator then the
-  verifier. Invoked by the `SessionStart` hook in `.claude/settings.json`
-  and by CI (`.github/workflows/efc-verify.yml`).
+- **`efc_maintain.py`** — Orchestrator. Runs the full pipeline:
+  `efc_gen_ai_friendly` → `efc_sync_dois --apply` → `efc_gen_ai_friendly`
+  (re-run to reflect byte-size drift) → `efc_verify`. Invoked by the
+  `SessionStart` hook in `.claude/settings.json` and by CI
+  (`.github/workflows/efc-verify.yml` and `efc-sync.yml`).
 
 ## Invariants checked by `efc_verify.py`
 
@@ -31,6 +42,7 @@ validation ledger, and AI-friendly metadata layer consistent.
 | C5 | `ai_friendly_index.json` is present and its `n_packages` equals the number of directories on disk. |
 | C6 | No arXiv IDs have leaked into the JSON evidence registers. |
 | C7 | §4b entries carry the `[external — …]` tag. |
+| C8 | Per-paper DOI consistency. Every source that declares a DOI inside a paper directory (`index.json`, `metadata.json`, `CITATION.cff`, `*.jsonld`) must declare the **same** canonical Figshare DOI. Hard error on conflict. |
 
 ## The epistemic rule the verifier enforces
 
@@ -43,16 +55,65 @@ Three evidence layers are kept strictly separate:
 Any violation of this separation is claim inflation and is rejected by the
 verifier.
 
+## DOI sync
+
+`efc_sync_dois.py` is the new keep-it-fresh layer for Figshare DOIs.
+When you register a new DOI (i.e. upload the paper to Figshare and want
+its deposit DOI tracked in the repo), the only manual step required is:
+
+1. Put the DOI in **one** of these three places for the relevant paper:
+   - `docs/papers/efc/<paper>/index.json` → add `"doi": "10.6084/m9.figshare.NNNNNNNN"`
+   - `docs/papers/efc/<paper>/metadata.json` → add `paper.doi`
+   - `docs/papers/efc/<paper>/CITATION.cff` → add a top-level `doi:` field
+
+2. Commit and push. The `.github/workflows/efc-sync.yml` action takes
+   it from there and auto-commits:
+   - Writes the same DOI to the other two metadata files above
+   - Writes the DOI to the paper's `<slug>.jsonld` (`identifier`,
+     `sameAs`, `doi`)
+   - Regenerates `ai_manifest.json`
+   - Adds a `doi` field to the matching entry in
+     `docs/papers/efc/efc_index.json`
+   - Mirrors the DOI into `docs/validation-ledger/data/evidence-register.json`
+     and `docs/validation-ledger/data/ledger.json` if the paper has a
+     matching test entry in `tests.json`
+   - Refreshes the catalogue `ai_friendly_index.json`
+
+3. **Manual drift** (things the script intentionally does *not*
+   auto-fix, because the insertion point is editorial):
+   - Paper `README.md` DOI badge in the header block
+   - Top-level `README.md` NEW entry / validation-reports table row
+   - Public HTML (`EFC_Validation_Ledger.html`,
+     `EFC_Changelog.html`, `EFC_White_Paper_Series.html`)
+
+   The sync script **reports** these as "manual drift" so you know
+   what's left. It never silently rewrites Markdown prose or HTML body
+   content.
+
+4. **Conflicts**: if two in-package files declare different DOIs (e.g.
+   you edited `index.json` to DOI-A but `CITATION.cff` still has
+   DOI-B), the sync refuses to propagate and exits with error C8. You
+   must reconcile manually — the script will not guess which one you
+   meant.
+
 ## How it runs
 
-- **On every Claude Code session start**: `.claude/settings.json` fires a
-  `SessionStart` hook that runs `efc_maintain.py`. The exit code is
+- **On every Claude Code session start**: `.claude/settings.json` fires
+  a `SessionStart` hook that runs `efc_maintain.py`. The exit code is
   suppressed so it never blocks the session, but the report is printed.
-- **On every pull request and push to main**: the GitHub Action in
-  `.github/workflows/efc-verify.yml` runs the generator, then the
-  verifier, then fails if the generator produced any uncommitted diff
-  (catches stale `ai_manifest.json` files).
-- **Manually**: `python3 scripts/maintenance/efc_maintain.py` at any time.
+- **On every push to a development branch**: the
+  `.github/workflows/efc-sync.yml` action runs the full maintenance
+  pipeline and **auto-commits drift corrections back to the branch** so
+  you never have to run the scripts manually after editing a DOI. Skips
+  `main` (which is protected and only changes via merged PRs).
+- **On every pull request and push to `main`**: the strict read-only
+  `.github/workflows/efc-verify.yml` action runs the generator and
+  verifier and fails if there's any uncommitted drift. This keeps
+  reviewed branches honest.
+- **Nightly at 05:30 UTC** (`efc-sync.yml` schedule): catches drift
+  that slipped in via direct web edits or rebases.
+- **Manually**: `python3 scripts/maintenance/efc_maintain.py` at any
+  time.
 
 ## Adding a new paper
 
@@ -69,6 +130,14 @@ Mirror the hand-curated reference packages
 - `examples/reproduce_minimal.py`
 - the paper PDF
 
-Then run `efc_maintain.py` to regenerate the manifest and catalogue,
-update the ledger (`evidence-register.json`, `ledger.json`, HTML §4 + §6),
-and commit.
+Once you have a Figshare DOI, add it to `index.json` `doi` field and
+push. The `efc-sync` action will propagate it through the rest of the
+stack automatically. Then manually add:
+
+- A NEW entry in the top-level `README.md`
+- An entry in `docs/public/EFC_Validation_Ledger.html` Section 6
+- An entry in `docs/public/EFC_Changelog.html`
+- If empirical: a `physics_test` entry in `docs/validation-ledger/data/tests.json`
+  (with `paper_directory` set to the directory name so the sync script
+  can mirror it into `evidence-register.json` / `ledger.json`
+  automatically)

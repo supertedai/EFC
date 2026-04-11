@@ -17,10 +17,21 @@
     "@type": "CreativeWorkSeries",
     "name": "Energy-Flow Cosmology — Validation Series"
   },
-  "keywords": ["S8 tension", "DES Y6", "weak lensing", "EFC", "modified gravity", "validation", "pre-registered"],
+  "keywords": [
+    "S8 tension",
+    "DES Y6",
+    "weak lensing",
+    "EFC",
+    "modified gravity",
+    "validation",
+    "pre-registered"
+  ],
   "efc_context": {
     "track": "Spor 1 — Galactic/Cosmological",
-    "regimes_tested": ["L1 linear perturbations", "L0 background normalization"],
+    "regimes_tested": [
+      "L1 linear perturbations",
+      "L0 background normalization"
+    ],
     "test_id": "P3",
     "test_status": "PASS",
     "preregistration": {
@@ -30,5 +41,9 @@
       "criteria": "ratio ∈ [0.90, 1.00]"
     },
     "ledger_impact": "P3 lensing consistency tickbox closed; Validation Ledger advances to v3.9"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31951992",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31951992"
   }
 }

@@ -14,60 +14,170 @@
   "doi": "10.6084/m9.figshare.31305421",
   "type": "parameterization",
   "status": "published",
-
   "abstract": "Parameterization of the effective cosmological propagation speed c_eff(a) = c_0[1 + epsilon*beta*T(a)] within EFC. The background coupling beta = 0.08 from BAO+RSD with epsilon as one free parameter. Two implementations analyzed: metric VSL (CDDR preserved) and optical-medium (CDDR violated near z~0.44). Four degeneracy-breaking tests identified.",
-
   "keywords": [
-    "effective speed of light", "c_eff", "variable speed of light",
-    "cosmic distance duality", "CDDR", "BAO", "RSD",
-    "gravitational waves", "standard sirens", "EFC"
+    "effective speed of light",
+    "c_eff",
+    "variable speed of light",
+    "cosmic distance duality",
+    "CDDR",
+    "BAO",
+    "RSD",
+    "gravitational waves",
+    "standard sirens",
+    "EFC"
   ],
-
   "key_equations": {
     "c_eff_ansatz": "c_eff(a) = c_0 * [1 + epsilon * beta * T(a)]",
     "comoving_distance": "d_C(z) = integral_0^z c_eff(z') / H(z') dz'",
     "refractive_index": "n(a) = c_0 / c_eff(a)",
     "cddr": "eta(z) = D_L / [D_A * (1+z)^2]"
   },
-
   "parameters": {
-    "c_0": {"description": "Laboratory speed of light", "value": 1.0, "unit": "c"},
-    "beta": {"value": 0.08, "source": "BAO+RSD four-channel consistency"},
-    "epsilon": {"range": [0.01, 0.1], "description": "Propagation-limit coupling strength"},
-    "z_peak": {"value": 0.441, "description": "Peak of T(a) transition function"}
+    "c_0": {
+      "description": "Laboratory speed of light",
+      "value": 1.0,
+      "unit": "c"
+    },
+    "beta": {
+      "value": 0.08,
+      "source": "BAO+RSD four-channel consistency"
+    },
+    "epsilon": {
+      "range": [
+        0.01,
+        0.1
+      ],
+      "description": "Propagation-limit coupling strength"
+    },
+    "z_peak": {
+      "value": 0.441,
+      "description": "Peak of T(a) transition function"
+    }
   },
-
   "numerical_table": [
-    {"z": 0.0, "T_z": 0.87, "beta_T": 0.070, "dc_over_c_eps01": "0.70%", "dc_over_c_eps001": "0.070%"},
-    {"z": 0.44, "T_z": 1.00, "beta_T": 0.080, "dc_over_c_eps01": "0.80%", "dc_over_c_eps001": "0.080%"},
-    {"z": 0.51, "T_z": 0.99, "beta_T": 0.079, "dc_over_c_eps01": "0.79%", "dc_over_c_eps001": "0.079%"},
-    {"z": 1.0, "T_z": 0.69, "beta_T": 0.055, "dc_over_c_eps01": "0.55%", "dc_over_c_eps001": "0.055%"},
-    {"z": 2.0, "T_z": 0.22, "beta_T": 0.018, "dc_over_c_eps01": "0.18%", "dc_over_c_eps001": "0.018%"},
-    {"z": 3.0, "T_z": 0.107, "beta_T": 0.0086, "dc_over_c_eps01": "0.086%", "dc_over_c_eps001": "0.0086%"},
-    {"z": 1100, "T_z": 0.0, "beta_T": 0.0, "dc_over_c_eps01": "~0", "dc_over_c_eps001": "~0"}
+    {
+      "z": 0.0,
+      "T_z": 0.87,
+      "beta_T": 0.07,
+      "dc_over_c_eps01": "0.70%",
+      "dc_over_c_eps001": "0.070%"
+    },
+    {
+      "z": 0.44,
+      "T_z": 1.0,
+      "beta_T": 0.08,
+      "dc_over_c_eps01": "0.80%",
+      "dc_over_c_eps001": "0.080%"
+    },
+    {
+      "z": 0.51,
+      "T_z": 0.99,
+      "beta_T": 0.079,
+      "dc_over_c_eps01": "0.79%",
+      "dc_over_c_eps001": "0.079%"
+    },
+    {
+      "z": 1.0,
+      "T_z": 0.69,
+      "beta_T": 0.055,
+      "dc_over_c_eps01": "0.55%",
+      "dc_over_c_eps001": "0.055%"
+    },
+    {
+      "z": 2.0,
+      "T_z": 0.22,
+      "beta_T": 0.018,
+      "dc_over_c_eps01": "0.18%",
+      "dc_over_c_eps001": "0.018%"
+    },
+    {
+      "z": 3.0,
+      "T_z": 0.107,
+      "beta_T": 0.0086,
+      "dc_over_c_eps01": "0.086%",
+      "dc_over_c_eps001": "0.0086%"
+    },
+    {
+      "z": 1100,
+      "T_z": 0.0,
+      "beta_T": 0.0,
+      "dc_over_c_eps01": "~0",
+      "dc_over_c_eps001": "~0"
+    }
   ],
-
   "implementations": [
-    {"case": "i", "name": "Metric VSL", "cddr_preserved": true, "degenerate_with_Hz": true},
-    {"case": "ii", "name": "Optical-medium", "cddr_preserved": false, "sign_change_z": 0.44}
+    {
+      "case": "i",
+      "name": "Metric VSL",
+      "cddr_preserved": true,
+      "degenerate_with_Hz": true
+    },
+    {
+      "case": "ii",
+      "name": "Optical-medium",
+      "cddr_preserved": false,
+      "sign_change_z": 0.44
+    }
   ],
-
   "tests": [
-    {"id": "Test 1", "name": "CDDR", "description": "Sign-change near z~0.44", "applies_to": "Case ii"},
-    {"id": "Test 2", "name": "ISW kernel shape", "description": "Second-order probe at l < 60", "applies_to": "Both"},
-    {"id": "Test 3", "name": "beta-split", "description": "Distance vs growth beta", "applies_to": "Both"},
-    {"id": "Test 4", "name": "Standard sirens", "description": "GW vs EM distances", "applies_to": "Both"}
+    {
+      "id": "Test 1",
+      "name": "CDDR",
+      "description": "Sign-change near z~0.44",
+      "applies_to": "Case ii"
+    },
+    {
+      "id": "Test 2",
+      "name": "ISW kernel shape",
+      "description": "Second-order probe at l < 60",
+      "applies_to": "Both"
+    },
+    {
+      "id": "Test 3",
+      "name": "beta-split",
+      "description": "Distance vs growth beta",
+      "applies_to": "Both"
+    },
+    {
+      "id": "Test 4",
+      "name": "Standard sirens",
+      "description": "GW vs EM distances",
+      "applies_to": "Both"
+    }
   ],
-
   "falsification_criteria": [
-    {"id": "F-ceff-1", "condition": "CDDR violation inconsistent with T(z)", "meaning": "c_eff not grid-driven"},
-    {"id": "F-ceff-2", "condition": "beta_BAO = beta_RSD to <1%", "meaning": "epsilon ~ 0"},
-    {"id": "F-ceff-3", "condition": "CDDR monotonic (no sign change)", "meaning": "Not EFC-type"},
-    {"id": "F-ceff-4", "condition": "Local lab c variation", "meaning": "EFC predicts no local effect"},
-    {"id": "F-ceff-5", "condition": "D_L^GW = D_L^EM to sub-percent", "meaning": "No EM-specific modification"},
-    {"id": "F-ceff-6", "condition": "Case ii but eta=1 to <0.5%", "meaning": "Case ii ruled out"}
+    {
+      "id": "F-ceff-1",
+      "condition": "CDDR violation inconsistent with T(z)",
+      "meaning": "c_eff not grid-driven"
+    },
+    {
+      "id": "F-ceff-2",
+      "condition": "beta_BAO = beta_RSD to <1%",
+      "meaning": "epsilon ~ 0"
+    },
+    {
+      "id": "F-ceff-3",
+      "condition": "CDDR monotonic (no sign change)",
+      "meaning": "Not EFC-type"
+    },
+    {
+      "id": "F-ceff-4",
+      "condition": "Local lab c variation",
+      "meaning": "EFC predicts no local effect"
+    },
+    {
+      "id": "F-ceff-5",
+      "condition": "D_L^GW = D_L^EM to sub-percent",
+      "meaning": "No EM-specific modification"
+    },
+    {
+      "id": "F-ceff-6",
+      "condition": "Case ii but eta=1 to <0.5%",
+      "meaning": "Case ii ruled out"
+    }
   ],
-
   "files": {
     "pdf": "c_eff_parameterization_v3_final.pdf",
     "readme": "README.md",
@@ -78,5 +188,6 @@
     "source": "src/c_eff.py",
     "data": "data/c_eff_data.json",
     "demo": "examples/demo_c_eff.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31305421"
 }

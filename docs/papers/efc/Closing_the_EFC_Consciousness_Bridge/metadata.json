@@ -6,12 +6,18 @@
     "author": "Morten Magnusson",
     "date": "2026-04",
     "doi": "10.6084/m9.figshare.31969983",
-    "pages": 9
+    "pages": 9,
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983"
   },
   "domain": {
     "field": "theoretical physics / consciousness science",
     "track": "EFC-C (consciousness branch)",
-    "regimes": ["L0", "L1", "L2", "L3"],
+    "regimes": [
+      "L0",
+      "L1",
+      "L2",
+      "L3"
+    ],
     "scope": "Cross-domain unification of cosmological entropy field S with cognitive observables (Omega, kappa)"
   },
   "three_problems_resolved": [
@@ -23,12 +29,18 @@
     {
       "problem": "No dynamical equation for Omega_dot or kappa_dot",
       "resolution": "Coupled ODEs: Eq. I (entropic drift + diffusion) and Eq. II (energy-flow source + suppression)",
-      "equation_numbers": ["Eq. 10 / Eq. I", "Eq. 11 / Eq. II"]
+      "equation_numbers": [
+        "Eq. 10 / Eq. I",
+        "Eq. 11 / Eq. II"
+      ]
     },
     {
       "problem": "Variables not dimensionally connected to cosmological entropy field S",
       "resolution": "Regime-indexed dimensionless variables Omega_hat_l = S(rho)/S_l and kappa_hat_l = (alpha_l/rho_l)|grad(delta S/delta rho)|",
-      "equation_numbers": ["Eq. 3", "Eq. 4"]
+      "equation_numbers": [
+        "Eq. 3",
+        "Eq. 4"
+      ]
     }
   ],
   "cross_domain_constant_K": {
@@ -53,11 +65,31 @@
     "N_subjects": 20,
     "overlap_cohort": 12,
     "results": [
-      {"observable": "Omega waking > sedated", "effect_size": "d = 1.50", "status": "supported"},
-      {"observable": "kappa anti-correlated with Omega", "effect_size": "r = -0.27", "status": "supported"},
-      {"observable": "Global C = Omega*kappa fails", "test": "F1 falsified, p = 0.43", "status": "supported"},
-      {"observable": "Parietal C > 0", "effect_size": "d = 2.10, p = 0.018", "status": "supported"},
-      {"observable": "Double dissociation", "values": "Resp. +0.054, drowsy -0.063", "status": "supported"}
+      {
+        "observable": "Omega waking > sedated",
+        "effect_size": "d = 1.50",
+        "status": "supported"
+      },
+      {
+        "observable": "kappa anti-correlated with Omega",
+        "effect_size": "r = -0.27",
+        "status": "supported"
+      },
+      {
+        "observable": "Global C = Omega*kappa fails",
+        "test": "F1 falsified, p = 0.43",
+        "status": "supported"
+      },
+      {
+        "observable": "Parietal C > 0",
+        "effect_size": "d = 2.10, p = 0.018",
+        "status": "supported"
+      },
+      {
+        "observable": "Double dissociation",
+        "values": "Resp. +0.054, drowsy -0.063",
+        "status": "supported"
+      }
     ],
     "caveat": "Qualitative structure consistent; not a direct test of full model (requires grad(delta S/delta rho) estimation)"
   },

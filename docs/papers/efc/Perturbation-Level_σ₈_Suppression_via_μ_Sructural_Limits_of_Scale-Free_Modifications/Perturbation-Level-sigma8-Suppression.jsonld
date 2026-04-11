@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "ScholarlyArticle",
   "@id": "doi:10.6084/m9.figshare.31333600",
-  "identifier": "efc-perturbation-sigma8-suppression",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31333600",
   "name": "Perturbation-Level σ₈ Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications",
   "author": {
     "@type": "Person",
@@ -15,7 +15,16 @@
   },
   "datePublished": "2026-02-13",
   "abstract": "Technical Note I established that background-level EFC cannot suppress σ₈. This note investigates the perturbation channel: μ(a) = 1 − B g(a) with μ < 1, which weakens the gravitational source term in the growth equation. The central result is that reducing n from 6 to 2 exactly doubles the σ₈ suppression at any μ₀ (universal factor-2). Within Planck 1σ constraints on μ₀, a scale-free μ(a) closes ~43% of the S₈ tension; at ~1.5σ it closes ~73%.",
-  "keywords": ["EFC", "sigma8", "S8 tension", "perturbation", "mu parameter", "gate function", "growth suppression", "modified gravity"],
+  "keywords": [
+    "EFC",
+    "sigma8",
+    "S8 tension",
+    "perturbation",
+    "mu parameter",
+    "gate function",
+    "growth suppression",
+    "modified gravity"
+  ],
   "isPartOf": {
     "@type": "CreativeWorkSeries",
     "name": "EFC Papers",
@@ -30,5 +39,7 @@
   "version": "1.0",
   "encodingFormat": "application/pdf",
   "url": "efc_technical_note_II.pdf",
-  "license": "https://creativecommons.org/licenses/by/4.0/"
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31333600",
+  "doi": "10.6084/m9.figshare.31333600"
 }

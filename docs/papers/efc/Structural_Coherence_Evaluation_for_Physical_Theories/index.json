@@ -48,29 +48,51 @@
     },
     {
       "name": "Anomaly Burden",
-      "components": ["Mismatch Rate", "Coverage Penalty"],
+      "components": [
+        "Mismatch Rate",
+        "Coverage Penalty"
+      ],
       "principle": "I, III"
     },
     {
       "name": "Model Plasticity",
-      "indicators": ["Variant Proliferation Rate", "Parameter Growth", "Special-Case Rule Count"],
+      "indicators": [
+        "Variant Proliferation Rate",
+        "Parameter Growth",
+        "Special-Case Rule Count"
+      ],
       "principle": "III"
     },
     {
       "name": "Layer Consistency",
-      "dimensions": ["Mechanism unity", "Parameter coherence", "Transition smoothness"],
+      "dimensions": [
+        "Mechanism unity",
+        "Parameter coherence",
+        "Transition smoothness"
+      ],
       "principle": "I, II"
     },
     {
       "name": "Forbidden Pattern Coverage",
       "formula": "EffectiveCoverage = Σ tested_i / w(ORL_i)",
-      "levels": ["Core patterns", "Module patterns"],
+      "levels": [
+        "Core patterns",
+        "Module patterns"
+      ],
       "principle": "II"
     }
   ],
   "forbidden_patterns_structure": {
-    "components": ["Scope", "Description (observation-native)", "Violation condition", "Test procedure"],
-    "hierarchy": ["Core (invalidate framework)", "Module (revise specific application)"],
+    "components": [
+      "Scope",
+      "Description (observation-native)",
+      "Violation condition",
+      "Test procedure"
+    ],
+    "hierarchy": [
+      "Core (invalidate framework)",
+      "Module (revise specific application)"
+    ],
     "key_property": "Ontological independence from competing frameworks"
   },
   "framework_forbidden_patterns": {
@@ -100,8 +122,21 @@
   ],
   "implementation": {
     "type": "Property Graph Database",
-    "node_types": ["Theory", "PrimitiveAssumption", "ObservablePhenomenon", "Mapping", "Assessment", "ForbiddenPattern", "CoherenceProfile", "InferenceLayer"],
-    "key_features": ["Snapshot-based versioning", "No retroactive credit", "Temporal tracking"]
+    "node_types": [
+      "Theory",
+      "PrimitiveAssumption",
+      "ObservablePhenomenon",
+      "Mapping",
+      "Assessment",
+      "ForbiddenPattern",
+      "CoherenceProfile",
+      "InferenceLayer"
+    ],
+    "key_features": [
+      "Snapshot-based versioning",
+      "No retroactive credit",
+      "Temporal tracking"
+    ]
   },
   "key_innovations": [
     "Self-imposed falsifiability as operational, machine-checkable property",
@@ -114,5 +149,6 @@
     "Information_criteria": "Counts primitives not parameters",
     "Lakatos": "Operationalizes prospectively rather than retrospectively",
     "Pre-registration": "Extends from experiments to theoretical frameworks"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31293745"
 }

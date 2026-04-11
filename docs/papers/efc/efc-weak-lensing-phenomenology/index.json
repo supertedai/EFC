@@ -12,7 +12,15 @@
   "type": "theoretical_framework",
   "status": "published",
   "abstract_short": "Testable μ(k,z) framework for weak lensing. Addresses S₈ tension (0.789 vs 0.83). Pass/fail criteria defined for DES Y6.",
-  "keywords": ["EFC", "weak lensing", "μ(k,z)", "DES Y6", "S₈ tension", "modified gravity", "Postulate A"],
+  "keywords": [
+    "EFC",
+    "weak lensing",
+    "μ(k,z)",
+    "DES Y6",
+    "S₈ tension",
+    "modified gravity",
+    "Postulate A"
+  ],
   "core_equations": [
     {
       "name": "μ(k,z) EFC form",
@@ -24,15 +32,33 @@
     }
   ],
   "parameters": {
-    "A_mu": {"description": "Free amplitude (constrained by data)"},
-    "z_t": {"value": 2, "description": "Redshift transition (preserves CMB)"},
-    "k_star": {"value": 0.1, "unit": "h/Mpc", "description": "Scale filter"}
+    "A_mu": {
+      "description": "Free amplitude (constrained by data)"
+    },
+    "z_t": {
+      "value": 2,
+      "description": "Redshift transition (preserves CMB)"
+    },
+    "k_star": {
+      "value": 0.1,
+      "unit": "h/Mpc",
+      "description": "Scale filter"
+    }
   },
   "validation_protocol": {
     "pass_criteria": [
-      {"metric": "Δχ²", "threshold": "≥ 6"},
-      {"metric": "A_μ significance", "threshold": "> 2σ from 0"},
-      {"metric": "AIC/BIC", "threshold": "prefers EFC"}
+      {
+        "metric": "Δχ²",
+        "threshold": "≥ 6"
+      },
+      {
+        "metric": "A_μ significance",
+        "threshold": "> 2σ from 0"
+      },
+      {
+        "metric": "AIC/BIC",
+        "threshold": "prefers EFC"
+      }
     ],
     "falsification": [
       "A_μ = 0 (no improvement)",
@@ -47,12 +73,19 @@
     "tension_sigma": 2.6
   },
   "dependencies": [
-    {"doi": "10.6084/m9.figshare.30421807", "title": "EFC Field Equations"},
-    {"doi": "10.6084/m9.figshare.30630500", "title": "EFC Master Specification"}
+    {
+      "doi": "10.6084/m9.figshare.30421807",
+      "title": "EFC Field Equations"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30630500",
+      "title": "EFC Master Specification"
+    }
   ],
   "files": {
     "docs": "docs/",
     "src": "src/",
     "tests": "tests/"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31188193"
 }

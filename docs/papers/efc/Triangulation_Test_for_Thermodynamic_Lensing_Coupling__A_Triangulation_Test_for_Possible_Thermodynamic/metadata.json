@@ -26,9 +26,21 @@
     "epistemic_layer": "methodology"
   },
   "key_results": [
-    {"cluster": "Bullet Cluster", "pearson_rho": -0.129, "p_value": 0.21, "significant": false},
-    {"cluster": "Abell 1835", "pearson_rho": -0.052, "p_value": 0.70, "significant": false},
-    {"finding": "Methodology validated; larger samples needed for decisive sensitivity"}
+    {
+      "cluster": "Bullet Cluster",
+      "pearson_rho": -0.129,
+      "p_value": 0.21,
+      "significant": false
+    },
+    {
+      "cluster": "Abell 1835",
+      "pearson_rho": -0.052,
+      "p_value": 0.7,
+      "significant": false
+    },
+    {
+      "finding": "Methodology validated; larger samples needed for decisive sensitivity"
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -43,5 +55,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31267297",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31267297"
   }
 }

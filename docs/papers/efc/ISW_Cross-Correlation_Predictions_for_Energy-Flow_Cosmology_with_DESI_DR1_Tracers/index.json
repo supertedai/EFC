@@ -34,9 +34,20 @@
   "key_results": {
     "cancellation_trend": {
       "description": "C increases monotonically with tracer overlap with z_t",
-      "LRGz0": {"z_eff": 0.51, "C": 0.59, "A_ISW": 0.56},
-      "LRG_ELG": {"z_eff": 0.93, "C": 0.79, "A_ISW": 0.29},
-      "ELG": {"z_eff": 1.32, "C": 0.96}
+      "LRGz0": {
+        "z_eff": 0.51,
+        "C": 0.59,
+        "A_ISW": 0.56
+      },
+      "LRG_ELG": {
+        "z_eff": 0.93,
+        "C": 0.79,
+        "A_ISW": 0.29
+      },
+      "ELG": {
+        "z_eff": 1.32,
+        "C": 0.96
+      }
     },
     "amplitude_suppression": {
       "EFC_range": "A_ISW = 0.29-0.56",
@@ -87,5 +98,6 @@
     "Smooth parametric n(z) approximations used",
     "No mask/pseudo-C_ℓ correction applied",
     "σ_8,0 fitted as nuisance parameter"
-  ]
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31301953"
 }

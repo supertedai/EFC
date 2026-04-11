@@ -44,20 +44,58 @@
     }
   ],
   "data_sources": [
-    {"survey": "BOSS DR12", "N": 3, "z_range": [0.38, 0.61]},
-    {"survey": "eBOSS DR16", "N": 3, "z_range": [0.70, 1.48]},
-    {"survey": "DESI Y1", "N": 6, "z_range": [0.295, 1.491]}
+    {
+      "survey": "BOSS DR12",
+      "N": 3,
+      "z_range": [
+        0.38,
+        0.61
+      ]
+    },
+    {
+      "survey": "eBOSS DR16",
+      "N": 3,
+      "z_range": [
+        0.7,
+        1.48
+      ]
+    },
+    {
+      "survey": "DESI Y1",
+      "N": 6,
+      "z_range": [
+        0.295,
+        1.491
+      ]
+    }
   ],
   "model_comparison": {
-    "LCDM": {"chi2": 9.36, "AIC": 15.4, "params": 3},
-    "RkS_slice": {"chi2": 9.12, "AIC": 19.1, "params": 5},
+    "LCDM": {
+      "chi2": 9.36,
+      "AIC": 15.4,
+      "params": 3
+    },
+    "RkS_slice": {
+      "chi2": 9.12,
+      "AIC": 19.1,
+      "params": 5
+    },
     "verdict": "ΛCDM preferred by ΔAIC = -3.8"
   },
   "trajectory_coverage": {
-    "k_range": [0.1, 0.13],
+    "k_range": [
+      0.1,
+      0.13
+    ],
     "k_unit": "h/Mpc",
-    "S_range": [0.3, 0.7],
-    "z_range": [0.3, 1.5]
+    "S_range": [
+      0.3,
+      0.7
+    ],
+    "z_range": [
+      0.3,
+      1.5
+    ]
   },
   "epistemic_status": "cartography",
   "validation_claim": false,
@@ -78,5 +116,6 @@
     ]
   },
   "data_hash": "c76720490b99dbd6",
-  "run_id": "wp3_rks_v2.0"
+  "run_id": "wp3_rks_v2.0",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215259"
 }

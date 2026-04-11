@@ -2,12 +2,30 @@
   "paper_id": "efc-cross-domain-bridge",
   "title": "Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics",
   "short_title": "EFC Bridge Equations",
-  "authors": [{"name": "Morten Magnusson", "affiliation": "Symbiose Research, Sandnes, Norway", "orcid": "0009-0002-4860-5095"}],
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
   "version": "v0.2",
   "date": "2026-04",
   "doi": "10.6084/m9.figshare.31940547",
   "status": "research_note",
-  "keywords": ["EFC", "bridge equations", "gradient flow", "entropy production", "cosmology", "neural entropy", "RLHF", "free energy", "Lyapunov", "degree heterogeneity", "connectome"],
+  "keywords": [
+    "EFC",
+    "bridge equations",
+    "gradient flow",
+    "entropy production",
+    "cosmology",
+    "neural entropy",
+    "RLHF",
+    "free energy",
+    "Lyapunov",
+    "degree heterogeneity",
+    "connectome"
+  ],
   "abstract": "Two formal bridge equations connect EFC's three tracks (cosmology, neural entropy, RLHF) via dissipative gradient-flow dynamics. Bridge B1 maps cosmological entropy-production density onto a neural analogue using local degree heterogeneity. Bridge B2 maps the neural entropy tensor onto RLHF reward-landscape curvature. Both instantiate dF/dt = -integral |nabla s_dot|^2 dV + B with dF/dt <= 0. Three new cross-domain predictions are derived.",
   "unified_dynamics": {
     "equation": "dF/dt = -integral_Omega |nabla s_dot(x,t)|^2 dV + B[s_dot]",
@@ -16,11 +34,36 @@
     "stability_condition": "dF/dt <= 0 when volume dissipation dominates boundary fluxes"
   },
   "observable_dictionary": [
-    {"quantity": "Entropy field", "cosmology": "s_dot(x,t)", "neural": "s_dot_i(V_i)", "rlhf": "-H(pi_theta|s)"},
-    {"quantity": "Free energy F", "cosmology": "-ln(mu) * g_bar", "neural": "-T_cog * H(pi_net)", "rlhf": "<E> - beta_KL * H(pi_theta)"},
-    {"quantity": "Temperature T", "cosmology": "g_dagger (transition)", "neural": "T_cog", "rlhf": "beta_KL"},
-    {"quantity": "Gradient", "cosmology": "nabla s_dot (large-scale)", "neural": "nabla S_n (connectome)", "rlhf": "nabla^2 R (reward curvature)"},
-    {"quantity": "Attractor", "cosmology": "Low-mu screening", "neural": "DMN-centrifugal", "rlhf": "Low-entropy policy"}
+    {
+      "quantity": "Entropy field",
+      "cosmology": "s_dot(x,t)",
+      "neural": "s_dot_i(V_i)",
+      "rlhf": "-H(pi_theta|s)"
+    },
+    {
+      "quantity": "Free energy F",
+      "cosmology": "-ln(mu) * g_bar",
+      "neural": "-T_cog * H(pi_net)",
+      "rlhf": "<E> - beta_KL * H(pi_theta)"
+    },
+    {
+      "quantity": "Temperature T",
+      "cosmology": "g_dagger (transition)",
+      "neural": "T_cog",
+      "rlhf": "beta_KL"
+    },
+    {
+      "quantity": "Gradient",
+      "cosmology": "nabla s_dot (large-scale)",
+      "neural": "nabla S_n (connectome)",
+      "rlhf": "nabla^2 R (reward curvature)"
+    },
+    {
+      "quantity": "Attractor",
+      "cosmology": "Low-mu screening",
+      "neural": "DMN-centrifugal",
+      "rlhf": "Low-entropy policy"
+    }
   ],
   "bridge_B1": {
     "name": "Cosmology -> Neural (Revised B1**)",
@@ -32,7 +75,11 @@
     "effective_gradient": {
       "equation": "g_eff_i = |nabla Phi_eff_i| / c_m^2",
       "equation_number": 4,
-      "components": ["Phi_met (metabolic)", "Phi_syn (synaptic)", "Phi_info (information-flow)"]
+      "components": [
+        "Phi_met (metabolic)",
+        "Phi_syn (synaptic)",
+        "Phi_info (information-flow)"
+      ]
     },
     "revised_B1_star_star": {
       "equation": "eta = C_eff / D_ratio^gamma",
@@ -87,8 +134,21 @@
     "v0.2": "Replaced with degree ratio D_ratio (B1**); P4** prediction; DOI assigned"
   },
   "references": [
-    {"key": "[1]", "citation": "Magnusson (2026) EFC Screening Model", "doi": "10.6084/m9.figshare.31940469"},
-    {"key": "[2]", "citation": "Magnusson (2026) EFC-C Cognitive Entropy", "doi": "10.6084/m9.figshare.31940505"},
-    {"key": "[3]", "citation": "Magnusson (2026) RLHF Thermodynamic Isomorphism", "doi": "10.6084/m9.figshare.31940535"}
-  ]
+    {
+      "key": "[1]",
+      "citation": "Magnusson (2026) EFC Screening Model",
+      "doi": "10.6084/m9.figshare.31940469"
+    },
+    {
+      "key": "[2]",
+      "citation": "Magnusson (2026) EFC-C Cognitive Entropy",
+      "doi": "10.6084/m9.figshare.31940505"
+    },
+    {
+      "key": "[3]",
+      "citation": "Magnusson (2026) RLHF Thermodynamic Isomorphism",
+      "doi": "10.6084/m9.figshare.31940535"
+    }
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940547"
 }

@@ -43,27 +43,27 @@
         "g_bar": 274,
         "g_ratio": 4.4e-13,
         "mu_minus_1": 1.8e-13,
-        "margin_vs_cassini": 1e8
+        "margin_vs_cassini": 100000000.0
       },
       {
         "location": "1 AU",
-        "g_bar": 5.9e-3,
-        "g_ratio": 2.0e-8,
-        "mu_minus_1": 8.3e-9,
+        "g_bar": 0.0059,
+        "g_ratio": 2e-08,
+        "mu_minus_1": 8.3e-09,
         "margin_vs_cassini": 2800
       },
       {
         "location": "Mercury",
-        "g_bar": 3.9e-2,
-        "g_ratio": 3.1e-9,
-        "mu_minus_1": 1.3e-9,
+        "g_bar": 0.039,
+        "g_ratio": 3.1e-09,
+        "mu_minus_1": 1.3e-09,
         "margin_vs_cassini": 18000
       },
       {
         "location": "Saturn",
-        "g_bar": 6.5e-4,
-        "g_ratio": 1.8e-7,
-        "mu_minus_1": 7.6e-8,
+        "g_bar": 0.00065,
+        "g_ratio": 1.8e-07,
+        "mu_minus_1": 7.6e-08,
         "margin_vs_cassini": 300
       },
       {
@@ -92,26 +92,26 @@
     "solar_system_results": [
       {
         "location": "Solar core",
-        "rho_eff": 1.6e5,
-        "rho_ratio": 1.6e27,
+        "rho_eff": 160000.0,
+        "rho_ratio": 1.6e+27,
         "theta": 0
       },
       {
         "location": "Solar surface",
-        "rho_eff": 1.4e3,
-        "rho_ratio": 1.4e25,
+        "rho_eff": 1400.0,
+        "rho_ratio": 1.4e+25,
         "theta": 0
       },
       {
         "location": "1 AU",
-        "rho_eff": 5.9e3,
-        "rho_ratio": 5.9e25,
+        "rho_eff": 5900.0,
+        "rho_ratio": 5.9e+25,
         "theta": 0
       },
       {
         "location": "Saturn",
         "rho_eff": 4.6,
-        "rho_ratio": 4.6e22,
+        "rho_ratio": 4.6e+22,
         "theta": 0
       },
       {
@@ -205,7 +205,11 @@
   "files": {
     "readme": "README.md",
     "source": "src/efc_ppn_screening.py",
-    "data": ["data/acceleration_screening.json", "data/density_screening.json"],
+    "data": [
+      "data/acceleration_screening.json",
+      "data/density_screening.json"
+    ],
     "examples": "examples/solar_system_screening.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31244827"
 }

@@ -11,7 +11,16 @@
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31304995",
   "abstract": "Structural regime consistency test of EFC coupling function T(z) across three independent cosmological probes (Lya P1D, BOSS BAO, BOSS RSD), evaluated using the Structural Coherence Evaluation framework against LCDM.",
-  "keywords": ["Energy-Flow Cosmology", "regime consistency", "Lya P1D", "BAO", "RSD", "BOSS DR12", "SCE", "transition function"],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "regime consistency",
+    "Lya P1D",
+    "BAO",
+    "RSD",
+    "BOSS DR12",
+    "SCE",
+    "transition function"
+  ],
   "efc_context": {
     "track": "Empirical Validation / Multi-regime consistency",
     "regime_relevance": "Three regimes: growth (z~0.5), Lya (z~3), CMB (z~1100)",
@@ -32,8 +41,14 @@
     "jsonld": "regime_consistency.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/regime_consistency.py"],
+    "src_modules": [
+      "src/regime_consistency.py"
+    ],
     "data": "data/regime_consistency_data.json",
     "demo": "examples/demo_regime_consistency.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31304995",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31304995"
   }
 }

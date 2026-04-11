@@ -1,5 +1,5 @@
 {
-  "title": "Resolving the H\u2080 and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+  "title": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
   "short_id": "efc-h0-s8-tensions",
   "version": "v1.0",
   "date": "2026-01-09",
@@ -41,8 +41,14 @@
     "jsonld": "EFC-H0-S8-Tensions.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/h0_s8_tensions.py"],
+    "src_modules": [
+      "src/h0_s8_tensions.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_h0_s8.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31026151",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31026151"
   }
 }

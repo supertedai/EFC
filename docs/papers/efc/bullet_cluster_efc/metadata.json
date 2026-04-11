@@ -12,11 +12,14 @@
     },
     "date": "2026-04",
     "license": "CC-BY-4.0",
-    "ledger_version": "v3.11"
+    "ledger_version": "v3.11",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31963668"
   },
   "domain": {
     "track": "Spor 1 — Galactic/Cosmological",
-    "regimes": ["L2"],
+    "regimes": [
+      "L2"
+    ],
     "sector": "lensing / cluster-scale gravity",
     "target": "Bullet Cluster 1E 0657-56"
   },
@@ -65,7 +68,10 @@
     "operator_definition": "A_sig = <kappa>_front - <kappa>_back",
     "shock_geometry": {
       "shock_line_x_kpc": 480,
-      "shock_normal": [-1, 0],
+      "shock_normal": [
+        -1,
+        0
+      ],
       "strip_width_kpc": 200,
       "strip_length_kpc": 400,
       "reference": "Markevitch 2006"
@@ -73,15 +79,23 @@
     "grid": {
       "nx": 512,
       "ny": 512,
-      "size_kpc": [1800, 1200]
+      "size_kpc": [
+        1800,
+        1200
+      ]
     },
     "lensing_setup": {
       "lens_z": 0.296,
       "source_z": 1.0,
-      "sigma_cr_Msun_per_kpc2": 2.84e9,
+      "sigma_cr_Msun_per_kpc2": 2840000000.0,
       "halo_profile": "Pseudo-Isothermal Elliptical Mass Distribution (PIEMD; Kassiola & Kovner 1993, Kneib et al. 1996)"
     },
-    "halo_components": ["Main-NW", "Main-SE", "Subcluster", "Group-NE"],
+    "halo_components": [
+      "Main-NW",
+      "Main-SE",
+      "Subcluster",
+      "Group-NE"
+    ],
     "null_test": {
       "type": "bootstrap rotation",
       "n_samples": 5000
@@ -90,7 +104,7 @@
   "baseline_results": {
     "kappa_front": 0.1824,
     "kappa_back": 0.1831,
-    "asig_baseline": -6.9e-4,
+    "asig_baseline": -0.00069,
     "bootstrap_p_value": 0.98,
     "asig_over_sigma_null": -0.01,
     "sensitivity_per_20pct_sigma0": 0.01,
@@ -104,7 +118,7 @@
   "regime_transition_P1": {
     "mu_cluster": 1.1,
     "Sigma_cluster": 1.2,
-    "baryonic_mass_rescaling_Msun": 1.37e15,
+    "baryonic_mass_rescaling_Msun": 1370000000000000.0,
     "observed_baryonic_cluster_fraction": 0.15,
     "verdict": "mu ~ 1.1 enhancement insufficient alone for full cluster mass discrepancy; full quantitative prediction requires EFC field equation solution (planned)"
   },

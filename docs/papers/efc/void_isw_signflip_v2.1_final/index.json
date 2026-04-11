@@ -12,15 +12,20 @@
   "framework": "Energy-Flow Cosmology (EFC)",
   "framework_version": "3.7",
   "license": "CC-BY-4.0",
-
   "abstract": "Shows that EFC's density-dependent μ(ρ) produces a non-linear ISW (Rees-Sciama) contribution with opposite sign to the standard linear ISW in cosmic voids. For deep voids (δ ≲ −0.8), the net ISW signal flips sign: a void produces a hot spot instead of the expected cold spot. The sign follows structurally from dμ/dρ > 0 (BE statistics). Testable via depth-binned void-CMB stacking.",
-
   "keywords": [
-    "ISW effect", "Rees-Sciama", "void cosmology", "sign flip",
-    "density-dependent gravity", "Bose-Einstein", "CMB stacking",
-    "supervoid", "ISW anomaly", "modified gravity", "EFC"
+    "ISW effect",
+    "Rees-Sciama",
+    "void cosmology",
+    "sign flip",
+    "density-dependent gravity",
+    "Bose-Einstein",
+    "CMB stacking",
+    "supervoid",
+    "ISW anomaly",
+    "modified gravity",
+    "EFC"
   ],
-
   "key_equations": {
     "isw_decomposition": "dΦ/dt = μ·(dδ/dt) + δ·(dμ/dt)",
     "mu_density": "μ(k,ρ) = (1+ε_F)/(F(1+R(k,ρ)))",
@@ -29,30 +34,65 @@
     "amplitude_ratio": "A_total = ΔT_EFC/ΔT_ΛCDM = (ISW_lin + RS)/ISW_ΛCDM",
     "scaling": "|RS/ISW_lin| ∝ |δ|·ρ^{-1/2}"
   },
-
   "key_results": [
-    {"id": "sign-analysis", "description": "RS term positive in voids (hot spot), opposing linear ISW cold spot"},
-    {"id": "amplitude-table", "description": "A_total: +0.93 (δ=-0.3), +0.19 (δ=-0.7), -0.83 (δ=-0.8), -4.88 (δ=-0.9)"},
-    {"id": "sign-flip", "description": "A_total crosses zero near δ ≈ -0.7"},
-    {"id": "robustness", "description": "Sign from dμ/dρ > 0, structural from √ρ-form of Γ(ρ)"},
-    {"id": "isw-excess", "description": "EFC predicts A < 1 in deep voids; observed excess likely systematics"}
+    {
+      "id": "sign-analysis",
+      "description": "RS term positive in voids (hot spot), opposing linear ISW cold spot"
+    },
+    {
+      "id": "amplitude-table",
+      "description": "A_total: +0.93 (δ=-0.3), +0.19 (δ=-0.7), -0.83 (δ=-0.8), -4.88 (δ=-0.9)"
+    },
+    {
+      "id": "sign-flip",
+      "description": "A_total crosses zero near δ ≈ -0.7"
+    },
+    {
+      "id": "robustness",
+      "description": "Sign from dμ/dρ > 0, structural from √ρ-form of Γ(ρ)"
+    },
+    {
+      "id": "isw-excess",
+      "description": "EFC predicts A < 1 in deep voids; observed excess likely systematics"
+    }
   ],
-
   "predictions": [
-    {"id": "P1", "description": "Depth-dependent ISW turnover in void-CMB stacking", "test": "BOSS DR12 / DESI void catalogs"},
-    {"id": "P2", "description": "Scale dependence: sign-flip at shallower |δ| for larger voids", "test": "Cross depth×size bins"},
-    {"id": "P3", "description": "Redshift evolution: RS/ISW ratio increases at lower z", "test": "z~0.3 vs z~0.7 stacking"},
-    {"id": "falsification", "description": "Monotonically increasing |ΔT| with |δ| falsifies dμ/dρ > 0"}
+    {
+      "id": "P1",
+      "description": "Depth-dependent ISW turnover in void-CMB stacking",
+      "test": "BOSS DR12 / DESI void catalogs"
+    },
+    {
+      "id": "P2",
+      "description": "Scale dependence: sign-flip at shallower |δ| for larger voids",
+      "test": "Cross depth×size bins"
+    },
+    {
+      "id": "P3",
+      "description": "Redshift evolution: RS/ISW ratio increases at lower z",
+      "test": "z~0.3 vs z~0.7 stacking"
+    },
+    {
+      "id": "falsification",
+      "description": "Monotonically increasing |ΔT| with |δ| falsifies dμ/dρ > 0"
+    }
   ],
-
   "connections": {
     "builds_on": [
-      {"id": "relativistic-action", "doi": "10.6084/m9.figshare.31876324"},
-      {"id": "regime-transition", "doi": "10.6084/m9.figshare.31941543"},
-      {"id": "grid-microphysics", "doi": "10.6084/m9.figshare.31878760"}
+      {
+        "id": "relativistic-action",
+        "doi": "10.6084/m9.figshare.31876324"
+      },
+      {
+        "id": "regime-transition",
+        "doi": "10.6084/m9.figshare.31941543"
+      },
+      {
+        "id": "grid-microphysics",
+        "doi": "10.6084/m9.figshare.31878760"
+      }
     ]
   },
-
   "files": {
     "pdf": "void_isw_signflip_v2.1.pdf",
     "readme": "README.md",
@@ -63,5 +103,6 @@
     "source": "src/void_isw.py",
     "data": "data/void_isw_data.json",
     "demo": "examples/demo_void_isw.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942677"
 }

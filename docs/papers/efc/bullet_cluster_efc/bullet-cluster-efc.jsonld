@@ -16,11 +16,7 @@
   },
   "datePublished": "2026-04",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "identifier": [
-    {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.6084/m9.figshare.31963668"},
-    {"@type": "PropertyValue", "propertyID": "report_id", "value": "EFC-VAL-2026-004"},
-    {"@type": "PropertyValue", "propertyID": "ledger_version", "value": "v3.11"}
-  ],
+  "identifier": "https://doi.org/10.6084/m9.figshare.31963668",
   "about": [
     "Energy-Flow Cosmology",
     "Bullet Cluster 1E 0657-56",
@@ -45,14 +41,48 @@
     "pre-registered test"
   ],
   "citation": [
-    {"@type": "CreativeWork", "name": "Cha et al. 2025", "identifier": "arXiv:2503.21870"},
-    {"@type": "CreativeWork", "name": "Rihtarsic et al. 2026", "identifier": "arXiv:2601.22245"},
-    {"@type": "CreativeWork", "name": "Cho et al. 2025", "identifier": "arXiv:2512.03150"},
-    {"@type": "CreativeWork", "name": "EFC Cluster merger geometry", "identifier": "10.6084/m9.figshare.31173850"},
-    {"@type": "CreativeWork", "name": "EFC Directional lensing residuals", "identifier": "10.6084/m9.figshare.31222900"},
-    {"@type": "CreativeWork", "name": "EFC Regime Transition Test", "identifier": "10.6084/m9.figshare.31941543"},
-    {"@type": "CreativeWork", "name": "EFC Relativistic Action", "identifier": "10.6084/m9.figshare.31876324"},
-    {"@type": "CreativeWork", "name": "Multi-epoch fsigma8 growth test", "identifier": "10.6084/m9.figshare.31955871"}
+    {
+      "@type": "CreativeWork",
+      "name": "Cha et al. 2025",
+      "identifier": "arXiv:2503.21870"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rihtarsic et al. 2026",
+      "identifier": "arXiv:2601.22245"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Cho et al. 2025",
+      "identifier": "arXiv:2512.03150"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "EFC Cluster merger geometry",
+      "identifier": "10.6084/m9.figshare.31173850"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "EFC Directional lensing residuals",
+      "identifier": "10.6084/m9.figshare.31222900"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "EFC Regime Transition Test",
+      "identifier": "10.6084/m9.figshare.31941543"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "EFC Relativistic Action",
+      "identifier": "10.6084/m9.figshare.31876324"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Multi-epoch fsigma8 growth test",
+      "identifier": "10.6084/m9.figshare.31955871"
+    }
   ],
-  "abstract": "The Bullet Cluster (1E 0657-56) is re-examined under Energy-Flow Cosmology (EFC) in light of three JWST-era studies (Cha et al. 2025, Rihtarsic et al. 2026, Cho et al. 2025) providing the highest-resolution mass map, the first spectroscopically anchored parametric lens model, and the definitive ~10:1 minor merger mass ratio. We confront these results with EFC across four axes: (i) cluster merger geometry structural constraint under the revised mass ratio; (ii) the pre-registered A_sig directional lensing residual estimator; (iii) the tightened SIDM bound sigma/m < 0.5 cm^2 g^-1 within EFC's no-particle ontology; (iv) qualitative confrontation of the regime-transition prediction (mu ~ 1.1, Sigma ~ 1.2 at cluster scales). All three studies are consistent with EFC's structural predictions; the 10:1 ratio simplifies the geometric exclusion argument. A PIEMD A_sig 2D baseline yields A_sig = -6.9e-4, p = 0.98, validating the test operator (not the physical hypothesis). The pre-registered A_sig test on the free-form delta_kappa = kappa_obs - kappa_PIEMD residual remains the only observable capable of directly discriminating between EFC and LCDM at this scale. No new parameters are introduced."
+  "abstract": "The Bullet Cluster (1E 0657-56) is re-examined under Energy-Flow Cosmology (EFC) in light of three JWST-era studies (Cha et al. 2025, Rihtarsic et al. 2026, Cho et al. 2025) providing the highest-resolution mass map, the first spectroscopically anchored parametric lens model, and the definitive ~10:1 minor merger mass ratio. We confront these results with EFC across four axes: (i) cluster merger geometry structural constraint under the revised mass ratio; (ii) the pre-registered A_sig directional lensing residual estimator; (iii) the tightened SIDM bound sigma/m < 0.5 cm^2 g^-1 within EFC's no-particle ontology; (iv) qualitative confrontation of the regime-transition prediction (mu ~ 1.1, Sigma ~ 1.2 at cluster scales). All three studies are consistent with EFC's structural predictions; the 10:1 ratio simplifies the geometric exclusion argument. A PIEMD A_sig 2D baseline yields A_sig = -6.9e-4, p = 0.98, validating the test operator (not the physical hypothesis). The pre-registered A_sig test on the free-form delta_kappa = kappa_obs - kappa_PIEMD residual remains the only observable capable of directly discriminating between EFC and LCDM at this scale. No new parameters are introduced.",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31963668",
+  "doi": "10.6084/m9.figshare.31963668"
 }

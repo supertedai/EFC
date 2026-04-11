@@ -11,15 +11,13 @@
   "license": "CC-BY-4.0",
   "category": "structural",
   "track": "perturbation_sector",
-
   "abstract": "Single-parameter, directly falsifiable test of scale-localised modified gravity derived from the EFC relativistic action. The model modifies perturbation growth and lensing through a band-pass stiffness response R(k) that peaks at k_c = 0.05 h/Mpc and vanishes in IR and UV limits, recovering GR on super-horizon and galactic scales.",
-
   "key_equations": {
     "stiffness_response": {
       "label": "Eq. 1",
       "latex": "R(k,a) = R_0 \\frac{(k/k_c)^2}{(1+(k/k_c)^2)^3} a^4",
       "parameters": {
-        "R_0": 0.510,
+        "R_0": 0.51,
         "k_c": 0.05,
         "k_c_unit": "h/Mpc"
       },
@@ -38,8 +36,11 @@
       "label": "Eq. 3",
       "latex": "\\eta(k,z) = 1 + 2 \\varepsilon_{\\mathrm{tot}} \\frac{(k/k_c)^2}{(1+(k/k_c)^2)^2} a^2",
       "parameters": {
-        "eps_tot_range": [0.38, 0.42],
-        "eps_tot_best": 0.40
+        "eps_tot_range": [
+          0.38,
+          0.42
+        ],
+        "eps_tot_best": 0.4
       },
       "result": "eta > 1 (anisotropic potentials)"
     },
@@ -56,61 +57,112 @@
       "efc_property": "scale-dependent bump at k ~ k_c"
     }
   },
-
   "reference_point": {
     "k": 0.05,
     "k_unit": "h/Mpc",
     "z": 0,
-    "mu": 0.940,
-    "eta": 1.200,
+    "mu": 0.94,
+    "eta": 1.2,
     "Sigma": 1.034
   },
-
   "observational_tests": {
-    "eps_tot": 0.40,
+    "eps_tot": 0.4,
     "tests": [
-      {"name": "BOSS P(k) shape", "delta_chi2": -0.07, "precision": "~3%/bin", "status": "PASS"},
-      {"name": "CMB ISW (low-l)", "delta_chi2": null, "precision": "~10%", "status": "PASS (8%)"},
-      {"name": "CMB lensing A_lens", "delta_chi2": 3.3, "precision": "5.5%", "status": "EFC better"},
-      {"name": "KiDS shear S_WL", "delta_chi2": 0.04, "precision": "2.5%", "status": "Neutral"},
-      {"name": "E_G (current)", "delta_chi2": -1.9, "precision": "~15%", "status": "GR preferred"},
-      {"name": "Joint (net)", "delta_chi2": 1.4, "precision": null, "status": "EFC marginal"}
+      {
+        "name": "BOSS P(k) shape",
+        "delta_chi2": -0.07,
+        "precision": "~3%/bin",
+        "status": "PASS"
+      },
+      {
+        "name": "CMB ISW (low-l)",
+        "delta_chi2": null,
+        "precision": "~10%",
+        "status": "PASS (8%)"
+      },
+      {
+        "name": "CMB lensing A_lens",
+        "delta_chi2": 3.3,
+        "precision": "5.5%",
+        "status": "EFC better"
+      },
+      {
+        "name": "KiDS shear S_WL",
+        "delta_chi2": 0.04,
+        "precision": "2.5%",
+        "status": "Neutral"
+      },
+      {
+        "name": "E_G (current)",
+        "delta_chi2": -1.9,
+        "precision": "~15%",
+        "status": "GR preferred"
+      },
+      {
+        "name": "Joint (net)",
+        "delta_chi2": 1.4,
+        "precision": null,
+        "status": "EFC marginal"
+      }
     ]
   },
-
   "eg_prediction": {
     "redshift": 0.3,
     "data": [
-      {"k": 0.01, "EG_GR": 0.460, "EG_EFC": 0.466, "delta_pct": 1.2, "Sigma_over_mu": 1.012},
-      {"k": 0.03, "EG_GR": 0.460, "EG_EFC": 0.488, "delta_pct": 5.9, "Sigma_over_mu": 1.059},
-      {"k": 0.05, "EG_GR": 0.460, "EG_EFC": 0.494, "delta_pct": 7.4, "Sigma_over_mu": 1.072},
-      {"k": 0.10, "EG_GR": 0.460, "EG_EFC": 0.481, "delta_pct": 4.6, "Sigma_over_mu": 1.046},
-      {"k": 0.20, "EG_GR": 0.460, "EG_EFC": 0.468, "delta_pct": 1.6, "Sigma_over_mu": 1.016}
+      {
+        "k": 0.01,
+        "EG_GR": 0.46,
+        "EG_EFC": 0.466,
+        "delta_pct": 1.2,
+        "Sigma_over_mu": 1.012
+      },
+      {
+        "k": 0.03,
+        "EG_GR": 0.46,
+        "EG_EFC": 0.488,
+        "delta_pct": 5.9,
+        "Sigma_over_mu": 1.059
+      },
+      {
+        "k": 0.05,
+        "EG_GR": 0.46,
+        "EG_EFC": 0.494,
+        "delta_pct": 7.4,
+        "Sigma_over_mu": 1.072
+      },
+      {
+        "k": 0.1,
+        "EG_GR": 0.46,
+        "EG_EFC": 0.481,
+        "delta_pct": 4.6,
+        "Sigma_over_mu": 1.046
+      },
+      {
+        "k": 0.2,
+        "EG_GR": 0.46,
+        "EG_EFC": 0.468,
+        "delta_pct": 1.6,
+        "Sigma_over_mu": 1.016
+      }
     ],
     "peak_bump_pct": 7.4,
     "detection_significance_sigma": "2.5-3.5",
     "instrument": "DESI x Planck lensing cross-correlations"
   },
-
   "degeneracy_breaking": {
-    "growth_sigma8": 0.810,
-    "shear_sigma8": 0.850,
+    "growth_sigma8": 0.81,
+    "shear_sigma8": 0.85,
     "mismatch_pct": 3,
     "mechanism": "Sigma != mu breaks LCDM + sigma8 rescaling degeneracy"
   },
-
   "physical_interpretation": "Band-pass structure arises from interplay between entropy stiffness (mu < 1, peaks at k_c) and delta-Lambda counter-term (eta > 1, boosting Weyl potential and lensing). IR recovery reflects transition from quasi-static to dynamical regime.",
-
   "limitations": "Simplified likelihoods (diagonal covariance, single tomographic bin, approximate band powers). Full validation requires EFCLASS/MGCAMB integration with Planck TTTEEE + lensing, BOSS/DESI full-shape, and KiDS/DES tomographic cosmic shear.",
-
   "conclusion": "Tightly constrained but not yet excluded. Single observable E_G(k) provides definitive near-term test. Viable window ~10% wide; single improved E_G(k) measurement at k ~ 0.05 h/Mpc will either confirm the predicted anisotropy or falsify the model.",
-
   "dependencies": {
     "no_go_theorem": "10.6084/m9.figshare.31985163",
     "relativistic_action": "10.6084/m9.figshare.31876324",
     "cmb_localization": "10.6084/m9.figshare.31368433"
   },
-
   "files": [
     "Scale_Localised_Modified_Gravity.pdf",
     "README.md",
@@ -124,6 +176,6 @@
     "src/scale_localised_gravity.py",
     "examples/demo_eg_bump.py"
   ],
-
-  "see_also": "ai_manifest.json"
+  "see_also": "ai_manifest.json",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31985313"
 }

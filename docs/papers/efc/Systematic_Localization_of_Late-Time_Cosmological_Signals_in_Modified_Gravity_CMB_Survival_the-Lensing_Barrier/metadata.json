@@ -8,11 +8,25 @@
   "updated": "2026-02",
   "license": "CC-BY-4.0",
   "keywords": [
-    "cosmology", "modified gravity", "CMB constraints", "gravitational slip",
-    "fσ₈", "A_L anomaly", "dark energy perturbations", "Planck 2018",
-    "DESI BAO", "SDSS DR12", "Pantheon+", "MGCAMB", "CLASS",
-    "μ–Σ parametrization", "lensing barrier", "S₈ tension",
-    "growth rate", "energy-flow cosmology", "EFC"
+    "cosmology",
+    "modified gravity",
+    "CMB constraints",
+    "gravitational slip",
+    "fσ₈",
+    "A_L anomaly",
+    "dark energy perturbations",
+    "Planck 2018",
+    "DESI BAO",
+    "SDSS DR12",
+    "Pantheon+",
+    "MGCAMB",
+    "CLASS",
+    "μ–Σ parametrization",
+    "lensing barrier",
+    "S₈ tension",
+    "growth rate",
+    "energy-flow cosmology",
+    "EFC"
   ],
   "authors": [
     {
@@ -27,10 +41,23 @@
     "url": "https://github.com/supertedai/EFC"
   },
   "data": {
-    "CMB": {"survey": "Planck 2018", "likelihoods": 4},
-    "BAO": {"surveys": ["DESI 2024", "SDSS DR12"]},
-    "supernovae": {"survey": "Pantheon+"},
-    "growth_rate": {"points": 7, "z_range": "0.38–0.85"}
+    "CMB": {
+      "survey": "Planck 2018",
+      "likelihoods": 4
+    },
+    "BAO": {
+      "surveys": [
+        "DESI 2024",
+        "SDSS DR12"
+      ]
+    },
+    "supernovae": {
+      "survey": "Pantheon+"
+    },
+    "growth_rate": {
+      "points": 7,
+      "z_range": "0.38–0.85"
+    }
   },
   "methods": {
     "phases": 5,
@@ -72,5 +99,9 @@
     "surviving_signal_spec_documented": true,
     "theory_gap_documented": true,
     "reference_implementation_provided": true
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31368433",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31368433"
   }
 }

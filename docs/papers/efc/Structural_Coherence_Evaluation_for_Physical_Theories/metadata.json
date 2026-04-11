@@ -38,8 +38,14 @@
     "jsonld": "structural_coherence.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/structural_coherence.py"],
+    "src_modules": [
+      "src/structural_coherence.py"
+    ],
     "data": "data/sce_case_studies.json",
     "demo": "examples/demo_sce.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31293745",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31293745"
   }
 }

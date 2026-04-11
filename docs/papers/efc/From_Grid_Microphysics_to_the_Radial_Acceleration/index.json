@@ -15,10 +15,20 @@
   "status": "working_paper",
   "framework": "EFC",
   "keywords": [
-    "grid microphysics", "radial acceleration relation", "RAR",
-    "Bose-Einstein", "gradient coupling", "excitation energy",
-    "lattice derivation", "a0", "MOND", "discrete gravity",
-    "microphysical bridge", "EFC", "Graph-AQUAL", "KT3"
+    "grid microphysics",
+    "radial acceleration relation",
+    "RAR",
+    "Bose-Einstein",
+    "gradient coupling",
+    "excitation energy",
+    "lattice derivation",
+    "a0",
+    "MOND",
+    "discrete gravity",
+    "microphysical bridge",
+    "EFC",
+    "Graph-AQUAL",
+    "KT3"
   ],
   "abstract": "A precise structural gap exists in Energy-Flow Cosmology: the covariant EFT requires a gravitational enhancement function mu(g) = 1/(exp(sqrt(g/a0))-1) that is formally identical to a Bose-Einstein occupation number, but this form cannot be derived from any classical local Lagrangian. We show that a minimal microscopic model — discrete degrees of freedom on a substrate (grid) with gradient-coupled excitation energy E proportional to sqrt(|nabla Phi|) — reproduces the observed functional form without free parameters beyond the measured scale a0. The key physical input is that excitation energy couples to local gravitational strain (gradient of the potential) rather than to the potential itself or to the density.",
   "epistemic_status": {
@@ -123,11 +133,36 @@
     }
   ],
   "references": [
-    {"key": "[1]", "citation": "McGaugh, Lelli, Schombert, PRL 117, 201101 (2016)", "topic": "SPARC RAR"},
-    {"key": "[2]", "doi": "10.6084/m9.figshare.31878334", "topic": "Covariant EFT"},
-    {"key": "[3]", "doi": "10.6084/m9.figshare.31876324", "topic": "EFC Relativistic Action"},
-    {"key": "[4]", "doi": "10.6084/m9.figshare.31348411", "topic": "Discrete Entropic Gravity (Graph-AQUAL)"},
-    {"key": "[5]", "doi": "10.6084/m9.figshare.30630500", "topic": "EFC Formal Master Specification"},
-    {"key": "[6]", "doi": "10.6084/m9.figshare.31564129", "topic": "Double-Slit Grid-Resolution"}
-  ]
+    {
+      "key": "[1]",
+      "citation": "McGaugh, Lelli, Schombert, PRL 117, 201101 (2016)",
+      "topic": "SPARC RAR"
+    },
+    {
+      "key": "[2]",
+      "doi": "10.6084/m9.figshare.31878334",
+      "topic": "Covariant EFT"
+    },
+    {
+      "key": "[3]",
+      "doi": "10.6084/m9.figshare.31876324",
+      "topic": "EFC Relativistic Action"
+    },
+    {
+      "key": "[4]",
+      "doi": "10.6084/m9.figshare.31348411",
+      "topic": "Discrete Entropic Gravity (Graph-AQUAL)"
+    },
+    {
+      "key": "[5]",
+      "doi": "10.6084/m9.figshare.30630500",
+      "topic": "EFC Formal Master Specification"
+    },
+    {
+      "key": "[6]",
+      "doi": "10.6084/m9.figshare.31564129",
+      "topic": "Double-Slit Grid-Resolution"
+    }
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878760"
 }

@@ -25,9 +25,20 @@
     "epistemic_layer": "B"
   },
   "key_results": [
-    {"prediction": "H0_structure", "value": 73.0, "unit": "km/s/Mpc", "agreement": "exact"},
-    {"parameter": "a_G", "value": 0.094},
-    {"parameter": "H0_ratio", "value": 1.083}
+    {
+      "prediction": "H0_structure",
+      "value": 73.0,
+      "unit": "km/s/Mpc",
+      "agreement": "exact"
+    },
+    {
+      "parameter": "a_G",
+      "value": 0.094
+    },
+    {
+      "parameter": "H0_ratio",
+      "value": 1.083
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -42,5 +53,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31224247",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31224247"
   }
 }
