@@ -21,6 +21,11 @@ Checks:
         the current number of directories).
   [C6]  No external arXiv IDs leak into evidence-register.json / ledger.json.
   [C7]  §4b externals in the HTML ledger carry the [external — ...] tag.
+  [C8]  Per-paper DOI consistency. Within each paper directory, every
+        source that registers a DOI (index.json, metadata.json,
+        CITATION.cff, citations.bib, *.jsonld) must carry the SAME
+        canonical Figshare DOI. Papers that register zero DOIs pass.
+        Conflicts are hard errors — run efc_sync_dois.py to reconcile.
 
 Usage: scripts/maintenance/efc_verify.py [--quiet]
 """
@@ -207,6 +212,31 @@ def check_c5_catalogue_fresh(issues, dirs):
                             severity="warn"))
 
 
+def check_c8_doi_consistency(issues, dirs):
+    """Every paper that registers a DOI must register the SAME DOI across
+    index.json / metadata.json / CITATION.cff / citations.bib / *.jsonld.
+    Papers that register zero DOIs pass. Conflicts are hard errors."""
+    try:
+        import efc_sync_dois  # local module in the same directory
+    except ImportError:
+        # Fallback: add this directory to sys.path
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        try:
+            import efc_sync_dois  # type: ignore
+        except ImportError:
+            issues.append(Issue("C8", "efc_sync_dois.py", "sync module not importable",
+                                severity="warn"))
+            return
+    for name in dirs:
+        paper_dir = os.path.join(PAPERS, name)
+        canonical, sources, conflicts = efc_sync_dois.discover_paper(paper_dir)
+        if conflicts:
+            issues.append(Issue(
+                "C8", name,
+                f"DOI conflict: canonical={canonical} vs {', '.join(conflicts)}"
+            ))
+
+
 def main():
     quiet = "--quiet" in sys.argv
     issues = []
@@ -215,6 +245,7 @@ def main():
     check_c3_c7_html_language(issues)
     check_c4_version_consistency(issues)
     check_c5_catalogue_fresh(issues, dirs)
+    check_c8_doi_consistency(issues, dirs)
 
     errors = [i for i in issues if i.severity == "error"]
     warns = [i for i in issues if i.severity == "warn"]

@@ -1,12 +1,23 @@
 name: EFC repo verify
 
+# Strict read-only verification that the EFC archive is self-consistent.
+# Runs on PRs and on push-to-main. Does NOT auto-commit corrections —
+# that's the job of .github/workflows/efc-sync.yml which runs on
+# development branches only. If this workflow fails on a PR, the PR
+# author should run `python3 scripts/maintenance/efc_maintain.py`
+# locally, commit the result, and push — the sync workflow will keep
+# them honest from that point on.
+
 on:
   pull_request:
     paths:
       - "docs/papers/efc/**"
       - "docs/validation-ledger/**"
       - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/public/EFC_Changelog.html"
+      - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
+      - "README.md"
       - ".github/workflows/efc-verify.yml"
   push:
     branches:
@@ -15,7 +26,10 @@ on:
       - "docs/papers/efc/**"
       - "docs/validation-ledger/**"
       - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/public/EFC_Changelog.html"
+      - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
+      - "README.md"
 
 jobs:
   verify:
@@ -27,12 +41,15 @@ jobs:
           python-version: "3.11"
       - name: Regenerate AI-friendly manifests
         run: python3 scripts/maintenance/efc_gen_ai_friendly.py
-      - name: Run EFC verifier
+      - name: Check DOI sync consistency (C8)
+        run: |
+          python3 scripts/maintenance/efc_sync_dois.py --check
+      - name: Run EFC verifier (C1–C8)
         run: python3 scripts/maintenance/efc_verify.py
       - name: Fail on uncommitted changes
         run: |
           if ! git diff --quiet; then
-            echo "::error::Generator produced changes. Run 'python3 scripts/maintenance/efc_maintain.py' locally and commit the result."
-            git --no-pager diff --stat
+            echo "::error::Maintenance scripts produced changes. Run 'python3 scripts/maintenance/efc_maintain.py' locally and commit the result."
+            git --no-pager diff --stat | head -40
             exit 1
           fi
