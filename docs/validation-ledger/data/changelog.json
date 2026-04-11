@@ -9,13 +9,14 @@
       "version": "v4.8",
       "type": "physics_test_addition",
       "summary": "Kill-Test v6 Universality (SPARC 175) added",
-      "details": "Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies with identical scipy.differential_evolution pipeline (seed=42, AIC model comparison). Single-component EFC wins 60.2% on 171/175 fitted galaxies (42.1% EFC_decisive). Median ΔAIC = +6.21. Mann-Whitney FLOW vs LATENT p ≈ 0. Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias). DDO 154 anchor cross-check: ΔAIC = +125.2. Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/.",
+      "details": "Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies with identical scipy.differential_evolution pipeline (seed=42, AIC model comparison). Single-component EFC wins 60.2% on 171/175 fitted galaxies (42.1% EFC_decisive). Median ΔAIC = +6.21. Mann-Whitney FLOW vs LATENT p ≈ 0. Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias). DDO 154 anchor cross-check: ΔAIC = +125.2. Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/. DOI 10.6084/m9.figshare.31986762.",
       "test_id": "conv_kill_test_v6_universality_sparc175_single_component",
       "related_paper": "efc-vs-lcdm-kill-test-v6",
       "stats_delta": {
         "physics_test": "+1",
         "total_public": "+1"
-      }
+      },
+      "doi": "10.6084/m9.figshare.31986762"
     },
     {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
