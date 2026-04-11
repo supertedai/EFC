@@ -87,11 +87,13 @@ relative path from other documents in the repository.
 
 ## Relationship to Other Directories
 
-- `docs/papers/efc/` -- AI-friendly paper packages (135 packages). Each contains
+- `docs/papers/efc/` -- AI-friendly paper packages (138 packages). Each contains
   README, metadata, index, schema, source code, data, and examples. Key packages:
   - `EFC_Background_NoGo_Theorem/` -- Three-pillar proof that background sector
     is structurally excluded for σ₈ suppression (sign lemma + CLASS + CMB+BAO).
   - `EFC_vs_LCDM_Kill_Test_v6_final/` -- Six-probe kill-test (Δχ² ≤ 0 across all).
+  - `Kill-Test v6 Universality_SPARC175/` -- Single-component EFC + NFW on all
+    175 SPARC galaxies; 60.2% EFC win rate; cherry-picking objection refuted.
   - `EFC_Phase_3__SPARC_Validation/` -- 174-galaxy SPARC screening model (k = 0.415).
 - `docs/notes/` -- Internal specifications that define the tests whose results
   appear in the Validation Ledger.
