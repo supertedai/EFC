@@ -2,6 +2,20 @@
 
 > **Core Principle**: Energy flows along entropy gradients — this generates spacetime, structure, and awareness.
 
+## In plain English (a 60-second version)
+
+Today's standard picture of the universe says **95%** of it is made of two invisible ingredients — **dark matter** (the glue that holds galaxies together) and **dark energy** (the pressure that makes space expand faster and faster) — neither ever detected in a laboratory. The 5% we can actually measure is the only part nobody argues about.
+
+**EFC proposes a simpler idea:** gravity adjusts itself where disorder (entropy) is still building up, and behaves like ordinary Einstein gravity everywhere else. **One mechanism, two numbers, no invisible particles required.**
+
+Across **103 independent tests** so far (galaxy rotation curves, the cosmic microwave background, galaxy cluster collisions, cosmic expansion), EFC has not been ruled out. It does not yet *outperform* the standard model — the margins are too small to call a winner — but it survives every test. The decisive experiments are pre-registered in the [Stage-IV Data Roadmap](./docs/public/EFC_Stage-IV_Data_Roadmap.html).
+
+**Status:** candidate theory under test. Non-rejectable. Not proven. Not falsified. Global verdict remains **OPEN**.
+
+**What EFC does NOT claim:** that it is proven correct, that standard cosmology is wrong, or that dark matter is "disproven." It only claims: *here is a simpler alternative that current data cannot rule out, with explicit kill criteria the next generation of surveys will test.*
+
+---
+
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
