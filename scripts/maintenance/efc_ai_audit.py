@@ -31,7 +31,7 @@ AUDIT_FILES = {
     "pipelines_README": os.path.join(REPO, "pipelines", "README.md"),
 }
 
-MODEL = os.environ.get("OPENAI_MODEL", "o3")  # Best reasoning model available
+MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")  # Best available reasoning model
 MAX_CHARS_PER_FILE = 12000  # Truncate large files for API context
 
 
