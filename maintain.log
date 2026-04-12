@@ -1,27 +1,19 @@
 [efc-gen] 139 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-sync] conflicts present — manual reconciliation required
 ========================================================================
 EFC DOI sync — 139 paper dirs scanned
 ========================================================================
   papers with registered DOI : 134
   papers without DOI         : 5
-  papers with conflicts      : 1
+  papers with conflicts      : 0
 
-CONFLICTS (must be reconciled manually):
-  EFC_Background_NoGo_Theorem
-      10.6084/m9.figshare.31333414
-      10.6084/m9.figshare.31985163
-        index.json: 10.6084/m9.figshare.31985163
-        metadata.json: 10.6084/m9.figshare.31333414
-        CITATION.cff: 10.6084/m9.figshare.31333414
-        *.jsonld: 10.6084/m9.figshare.31333414
+PROPAGATED DOIs into 1 papers:
+  EFC_Background_NoGo_Theorem -> index.json
 ========================================================================
 [efc-gen] 139 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 139 paper dirs · 1 errors · 0 warnings
-  [ERROR] C8 EFC_Background_NoGo_Theorem: DOI conflict: canonical=10.6084/m9.figshare.31333414 vs 10.6084/m9.figshare.31985163
+[efc-verify] 139 paper dirs · 0 errors · 0 warnings
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_sync_dois.py --apply…
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_verify.py …
-[efc-maintain] --- done (issues) ---
+[efc-maintain] --- done (clean) ---
