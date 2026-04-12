@@ -1,0 +1,37 @@
+name: EFC AI consistency audit
+
+# Runs on push to main when public pages change, and manually via workflow_dispatch.
+# Uses OpenAI API to cross-check all public-facing documents for consistency.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/public/**"
+      - "README.md"
+      - "pipelines/**/README.md"
+  workflow_dispatch:
+
+jobs:
+  ai-audit:
+    runs-on: ubuntu-latest
+    # Only run if OPENAI_API_KEY secret exists
+    if: ${{ vars.OPENAI_API_KEY != '' || secrets.OPENAI_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run AI consistency audit
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python3 scripts/maintenance/efc_ai_audit.py
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-audit-report
+          path: docs/audit_report.md
