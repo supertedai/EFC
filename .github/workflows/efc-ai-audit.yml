@@ -1,7 +1,12 @@
 name: EFC AI consistency audit
 
-# Runs on push to main when public pages change, and manually via workflow_dispatch.
-# Uses OpenAI API to cross-check all public-facing documents for consistency.
+# GPT council: independent cross-check of all public-facing documents.
+# Claude Code does the work; GPT validates the result.
+#
+# Triggers:
+#   - Push to main when public pages change
+#   - Manual dispatch (with optional model override)
+#   - Weekly on Wednesday 06:30 UTC (catches slow drift)
 
 on:
   push:
@@ -9,8 +14,16 @@ on:
     paths:
       - "docs/public/**"
       - "README.md"
+      - "AGENTS.md"
       - "pipelines/**/README.md"
   workflow_dispatch:
+    inputs:
+      model:
+        description: "OpenAI model (default: gpt-4o, or gpt-4.1, o3-mini, etc.)"
+        required: false
+        default: "gpt-4o"
+  schedule:
+    - cron: "30 6 * * 3"  # Wednesday 06:30 UTC
 
 jobs:
   ai-audit:
@@ -22,15 +35,26 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run AI consistency audit
+      - name: Run drift detector
+        run: python3 scripts/maintenance/efc_drift_detector.py || true
+
+      - name: Run AI consistency audit (GPT council)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ inputs.model || 'gpt-4o' }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "::warning::OPENAI_API_KEY secret not set. Skipping AI audit."
             exit 0
           fi
           python3 scripts/maintenance/efc_ai_audit.py
+
+      - name: Post audit to job summary
+        if: always()
+        run: |
+          if [ -f docs/audit_report.md ]; then
+            cat docs/audit_report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Upload audit report
         if: always()

@@ -46,6 +46,13 @@ jobs:
           python3 scripts/maintenance/efc_sync_dois.py --check
       - name: Run EFC verifier (C1–C8)
         run: python3 scripts/maintenance/efc_verify.py
+      - name: Run drift detector
+        run: |
+          python3 scripts/maintenance/efc_drift_detector.py
+          rc=$?
+          if [ $rc -eq 2 ]; then
+            echo "::warning::Drift detected in public pages. Run Claude Code session to auto-fix."
+          fi
       - name: Fail on uncommitted changes
         run: |
           if ! git diff --quiet; then
