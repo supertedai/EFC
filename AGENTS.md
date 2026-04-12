@@ -165,23 +165,73 @@ is correct by checking:
 The weekly GPT-5 council audit (efc-ai-audit.yml) provides an independent
 cross-check. If the council flags an issue, Claude must investigate and fix.
 
-### Gap analysis and strategic planning
+### Automatic Gap Analysis Protocol (every session)
 
-Claude should periodically (monthly or on request) produce a gap analysis
-comparing the current state of the project against:
+Claude MUST update the Gap Analysis at every session, not just monthly.
+The protocol is:
 
-1. **Kill criteria readiness** — Which KC1-KC5 have complete pipelines?
-   Which still need work? What's blocking each?
-2. **Data timeline** — When do Euclid DR1, DESI DR3, Rubin Y1, etc. arrive?
-   What must be ready before each deadline?
-3. **Theory gaps** — Which theoretical predictions lack Boltzmann-level
-   calibration? Which Horndeski mappings are unresolved?
-4. **External developments** — What has been published recently (arXiv, journals)
-   that is relevant to EFC? New data releases, competing MG analyses, etc.
+1. **Read the weekly scan report** — `docs/weekly_scan_report.json`
+   contains all flagged items from `efc_weekly_scan.py` (papers, pipeline
+   runs, commits, validation drift, theory files, KC changes).
 
-This analysis goes in the Stage-IV Roadmap as a living "Gap Analysis" section.
+2. **Query the symbiosis** — Use `get_research_status` (MCP) to get current:
+   - MCMC inference status (α-signal, robustness)
+   - Knowledge gaps (open, critical, stalled)
+   - Validation tests (passed/failed/planned)
+   - GRAV pipeline (kill-test results)
+   - Sealed predictions status
+   - Learning loop connectivity
 
-### Public pages that must stay in sync
+3. **Search the web** — Use WebSearch for:
+   - New arXiv papers on entropic gravity, modified gravity, EFC competitors
+   - Survey timeline updates (Euclid, DESI, Rubin, SO)
+   - New data releases relevant to KC1-KC5
+   - Deadline changes for pre-registration windows
+
+4. **Update all 7 public pages** — Based on findings:
+   - `EFC_Gap_Analysis.html` — update every section (landscape, KC readiness,
+     theory gaps, data timeline, priority actions, competitors, symbiosis status)
+   - `EFC_Validation_Ledger.html` — new test rows + evidence register entries
+   - `EFC_Stage-IV_Data_Roadmap.html` — update pipeline status, dates, §12
+   - `EFC_White_Paper_Series.html` — update sealed count if changed
+   - `EFC_Elevator_Pitch.html` — update summary if significant
+   - `EFC_Changelog.html` — add versioned entry (increment v3.XX)
+   - `README.md` — update counts and NEW banners
+
+5. **Process every flagged item** from the scan report:
+   - Unprocessed papers → classify and register (Ledger or Changelog)
+   - Pipeline runs → document in Changelog if significant
+   - Validation drift → fix JSON/HTML sync
+   - New theory files → add to Changelog if they represent new work
+   - KC changes → update Roadmap pipeline status
+
+6. **Commit, push, let GPT-5 council validate** — The CI workflow
+   (`efc-ai-audit.yml`) runs the GPT-5 council on every push to main.
+   The council independently cross-checks all public pages for:
+   - Consistency (counts, versions, DOIs match across pages)
+   - Language discipline (no "confirms EFC")
+   - Pre-registration integrity (prior DOI cited)
+   - Evidence layer separation (no external papers in evidence register)
+   If the council flags issues, Claude must fix them in the same session.
+
+### Quality gate: GPT-5 council audit
+
+The weekly GPT-5 council audit (efc-ai-audit.yml) runs:
+- Every push to main (when public pages change)
+- Wednesday 06:30 UTC (consistency audit)
+- Monday 07:00 UTC (full scan + classification)
+
+The council uses OpenAI GPT-5 to independently verify:
+1. All test counts match across HTML, JSON, and AGENTS.md
+2. All DOIs in evidence register are real and correctly linked
+3. Language rules are followed (no "confirms", "proves", etc.)
+4. Pre-registration citations are correct (prior DOI exists)
+5. Tier assignments are justified (T1 requires prior prediction DOI)
+
+Claude MUST check the audit results (GitHub Actions artifacts) and fix
+any findings before proceeding with other work.
+
+### Public pages that must stay in sync (7 pages)
 
 | Page | What it tracks |
 |------|---------------|
@@ -189,9 +239,9 @@ This analysis goes in the Stage-IV Roadmap as a living "Gap Analysis" section.
 | `docs/public/EFC_Stage-IV_Data_Roadmap.html` | Kill criteria, pipeline status, timeline |
 | `docs/public/EFC_White_Paper_Series.html` | Sealed predictions, falsifiability count |
 | `docs/public/EFC_Elevator_Pitch.html` | Plain-English summary, pipeline status |
+| `docs/public/EFC_Gap_Analysis.html` | Gaps, deadlines, competitors, symbiosis status |
 | `docs/public/EFC_Changelog.html` | Every structural/empirical update, versioned |
 | `README.md` | Paper count, test count, NEW banners, tree structure |
-| `AGENTS.md` | This file — package count, version, pipeline list |
 
 ### Language rules (never violate)
 
