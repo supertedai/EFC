@@ -1,5 +1,7 @@
 # EFC DESI Technical Note
 
+**DOI:** [10.6084/m9.figshare.31127380](https://doi.org/10.6084/m9.figshare.31127380)
+
 **EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis**
 
 ## Overview

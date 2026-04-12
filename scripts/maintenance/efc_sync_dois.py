@@ -513,6 +513,40 @@ def detect_readme_drift(paper_dir: str, doi: str) -> bool:
     return bare_doi_id(doi) not in text
 
 
+def fix_readme_doi(paper_dir: str, doi: str) -> bool:
+    """Insert DOI reference into package README.md if missing.
+
+    Inserts a **DOI:** line after the title (first # heading) or after
+    the **Author:** line. Returns True if the file was modified.
+    """
+    path = os.path.join(paper_dir, "README.md")
+    text = read_text(path)
+    if text is None:
+        return False
+    bare = bare_doi_id(doi)
+    if not bare or bare in text:
+        return False
+    doi_line = f"**DOI:** [10.6084/m9.figshare.{bare}](https://doi.org/10.6084/m9.figshare.{bare})"
+    # Strategy 1: insert after **Author:** line
+    m = re.search(r"(\*\*Author:\*\*[^\n]*\n)", text)
+    if m:
+        insert_pos = m.end()
+        text = text[:insert_pos] + doi_line + "\n" + text[insert_pos:]
+        write_text(path, text)
+        return True
+    # Strategy 2: insert after first # heading
+    m = re.search(r"(^#[^\n]*\n)", text, re.MULTILINE)
+    if m:
+        insert_pos = m.end()
+        text = text[:insert_pos] + "\n" + doi_line + "\n" + text[insert_pos:]
+        write_text(path, text)
+        return True
+    # Strategy 3: prepend to file
+    text = doi_line + "\n\n" + text
+    write_text(path, text)
+    return True
+
+
 def detect_top_readme_drift(doi: str) -> bool:
     text = read_text(os.path.join(REPO, "README.md")) or ""
     return bare_doi_id(doi) not in text
@@ -577,6 +611,8 @@ def propagate(doi_by_dir: Dict[str, str]) -> Dict[str, List[str]]:
             changes.append("CITATION.cff")
         if apply_jsonld(paper_dir, doi):
             changes.append("*.jsonld")
+        if fix_readme_doi(paper_dir, doi):
+            changes.append("README.md")
         if changes:
             touched[directory] = changes
     return touched

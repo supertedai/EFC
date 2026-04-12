@@ -1,5 +1,7 @@
 # EFC — v2.1 Modular Synthesis
 
+**DOI:** [10.6084/m9.figshare.30455237](https://doi.org/10.6084/m9.figshare.30455237)
+
 This directory contains the v2.1 Modular Synthesis paper, which presents
 the modular decomposition of the Energy-Flow Cosmology framework.
 It outlines how EFC separates into structural, dynamical, entropic, and

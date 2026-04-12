@@ -1,5 +1,7 @@
 # Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems
 
+**DOI:** [10.6084/m9.figshare.31864993](https://doi.org/10.6084/m9.figshare.31864993)
+
 > **AI-Friendly Paper Package** — structured metadata + reference implementation + runnable demo
 
 ## Quick Summary

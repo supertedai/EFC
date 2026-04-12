@@ -1,5 +1,7 @@
 # EFC — The Energy-Flow Interface
 
+**DOI:** [10.6084/m9.figshare.30468737](https://doi.org/10.6084/m9.figshare.30468737)
+
 This directory contains the paper introducing the concept of the
 Energy-Flow Interface: the boundary layer where the entropy field,
 grid field, and energy-flow field interact to produce observable

@@ -1,5 +1,7 @@
 # EFC Closure Conjectures
 
+**DOI:** [10.6084/m9.figshare.31224466](https://doi.org/10.6084/m9.figshare.31224466)
+
 ## AI-Friendly Package
 
 **Version**: 1.0

@@ -1,5 +1,7 @@
 # EFC — Unresolved Questions and Challenges: Entropy
 
+**DOI:** [10.6084/m9.figshare.28098326](https://doi.org/10.6084/m9.figshare.28098326)
+
 This directory contains the paper outlining the unresolved questions,
 open challenges, and areas requiring further development concerning the
 role of entropy in cosmic structure, dynamics, and evolution within the

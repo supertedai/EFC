@@ -1,5 +1,7 @@
 # textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)
 
+**DOI:** [10.6084/m9.figshare.30642497](https://doi.org/10.6084/m9.figshare.30642497)
+
 This directory contains the paper **“textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)”**, part of the EFC series.
 
 In Energy-Flow Cosmology (EFC), the effective speed of light is not a primitive constant but an emergent propagation lim...

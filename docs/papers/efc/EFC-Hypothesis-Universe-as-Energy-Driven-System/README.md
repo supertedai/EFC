@@ -1,5 +1,7 @@
 # EFC — Hypothesis: Universe as an Energy-Driven System
 
+**DOI:** [10.6084/m9.figshare.28098386](https://doi.org/10.6084/m9.figshare.28098386)
+
 This directory contains the paper proposing that the universe behaves as an
 energy-driven system where structure, dynamics, and evolution emerge from
 continuous energy flow interacting with entropy gradients and grid-level

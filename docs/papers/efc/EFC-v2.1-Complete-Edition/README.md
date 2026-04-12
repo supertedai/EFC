@@ -1,5 +1,7 @@
 # EFC — v2.1 Complete Edition
 
+**DOI:** [10.6084/m9.figshare.30478916](https://doi.org/10.6084/m9.figshare.30478916)
+
 This directory contains the v2.1 Complete Edition of the
 Energy-Flow Cosmology framework.  
 It includes the expanded, consolidated, and refined formulation of EFC,

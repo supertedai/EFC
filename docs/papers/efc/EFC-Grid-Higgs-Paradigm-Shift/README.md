@@ -1,5 +1,7 @@
 # EFC — Grid-Higgs Paradigm Shift
 
+**DOI:** [10.6084/m9.figshare.28560935](https://doi.org/10.6084/m9.figshare.28560935)
+
 This directory contains the paper describing how the Grid-Higgs model
 reframes mass, inertia, and spacetime interaction as emergent properties
 of energy flow, entropy gradients, and grid-level resistance. It outlines

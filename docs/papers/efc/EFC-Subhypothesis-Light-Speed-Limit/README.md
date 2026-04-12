@@ -1,5 +1,7 @@
 # EFC — Subhypothesis: Light Speed Limit
 
+**DOI:** [10.6084/m9.figshare.28112036](https://doi.org/10.6084/m9.figshare.28112036)
+
 This directory contains the paper presenting the subhypothesis that the
 speed of light acts as a thermodynamic limit emerging from the interplay
 between the entropy field, the energy-flow field, and the grid’s

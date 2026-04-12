@@ -1,5 +1,7 @@
 # EFC — Introduction to Entropy in Cosmic Evolution
 
+**DOI:** [10.6084/m9.figshare.28098320](https://doi.org/10.6084/m9.figshare.28098320)
+
 This directory contains the introductory paper explaining the role of
 entropy in the emergence, evolution, and organisation of the universe
 within the Energy-Flow Cosmology framework.  

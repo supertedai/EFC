@@ -1,5 +1,7 @@
 # EFC — v1.2 Foundational Framework
 
+**DOI:** [10.6084/m9.figshare.30563738](https://doi.org/10.6084/m9.figshare.30563738)
+
 This directory contains the v1.2 foundational framework paper for the
 Energy-Flow Cosmology project.  
 It outlines the core principles, field definitions, structural

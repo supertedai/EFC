@@ -1,5 +1,7 @@
 # EFC — Integrated Hypothesis: Time and Entropy
 
+**DOI:** [10.6084/m9.figshare.28578263](https://doi.org/10.6084/m9.figshare.28578263)
+
 This directory contains the paper presenting the integrated hypothesis
 that time emerges from entropy gradients and energy-flow directionality
 within the Energy-Flow Cosmology framework. The paper outlines how

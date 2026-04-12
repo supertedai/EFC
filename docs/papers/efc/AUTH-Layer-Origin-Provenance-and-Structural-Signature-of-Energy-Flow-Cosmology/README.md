@@ -1,5 +1,7 @@
 # AUTH Layer — Origin, Provenance and Structural Signature of Energy-Flow Cosmology
 
+**DOI:** [10.6084/m9.figshare.30656828](https://doi.org/10.6084/m9.figshare.30656828)
+
 This directory contains the full paper, metadata and citation files for the AUTH-Layer, which explains:
 
 * the origin of the Energy-Flow Cosmology (EFC) framework  
