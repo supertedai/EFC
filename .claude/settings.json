@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[efc-maintain] --- EFC maintenance pass ---' && python3 scripts/maintenance/efc_maintain.py && echo '[efc-drift] --- drift detection ---' && python3 scripts/maintenance/efc_drift_detector.py; true"
+            "command": "echo '[efc-maintain] --- EFC maintenance pass ---' && python3 scripts/maintenance/efc_maintain.py && echo '[efc-drift] --- drift detection ---' && python3 scripts/maintenance/efc_drift_detector.py; echo '[efc-unprocessed] --- unprocessed paper scan ---' && python3 scripts/maintenance/efc_unprocessed.py; true"
           }
         ]
       }

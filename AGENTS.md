@@ -52,22 +52,93 @@ Three evidence layers are kept **strictly separate** — violating this is claim
 ## Automated Maintenance Protocol (for Claude Code)
 
 The SessionStart hook runs `efc_maintain.py` + `efc_drift_detector.py` on every session.
-If drift is detected, Claude MUST fix it before doing anything else. The drift report
-is at `.claude/drift_report.json`.
+**Claude MUST act on the output before doing anything else.**
 
-### What Claude must do when drift is detected
+### Step 1: Fix drift (if any)
 
-1. **Paper count drift** — Update the number in the affected file (README.md badge,
-   AGENTS.md yaml, any HTML page that mentions a specific count).
-2. **Version drift** — Update stale version strings in AGENTS.md and elsewhere.
-3. **New paper uploaded** — When a new PDF appears in `docs/papers/efc/` without
-   a hand-curated package, Claude should:
-   a. Run `python3 scripts/maintenance/efc_maintain.py` (generates 10/10 package)
-   b. If the paper has validation results, add an entry to `EFC_Validation_Ledger.html`
-   c. If the paper relates to Euclid/Stage-IV, update `EFC_Stage-IV_Data_Roadmap.html`
-   d. Add a Changelog entry to `EFC_Changelog.html`
-   e. Update `README.md` if it's a significant result (NEW banner)
-   f. Commit with descriptive message and push to main
+The drift detector reports stale counts, versions, and missing DOIs.
+Fix every item it reports — update the number/version in the affected file.
+
+### Step 2: Scan for unprocessed papers
+
+After maintenance, Claude MUST check for papers that have a DOI but are
+not yet registered in the public pages. Run this check:
+
+```
+For each paper directory in docs/papers/efc/:
+  1. Read index.json — does it have a "doi" field?
+  2. If yes: is that DOI mentioned in EFC_Validation_Ledger.html?
+  3. If no: this paper needs processing.
+```
+
+### Step 3: Process each unregistered paper
+
+For each paper with a DOI that is NOT in the Ledger, Claude MUST:
+
+1. **Read the paper** — Read the PDF (or README.md + index.json if PDF not readable).
+   Extract: title, key results, what it tests, which kill criteria it relates to,
+   whether it is a new test / sealed prediction / methodology / theory paper.
+
+2. **Classify relevance** — Determine which public pages need updating:
+   - Does it contain a **new empirical test**? → Ledger entry (with tier T1/T2/T3)
+   - Does it relate to **kill criteria KC1-KC5**? → Roadmap update
+   - Does it contain a **sealed prediction**? → White Paper + Roadmap
+   - Does it change **pipeline status**? → Roadmap pipeline table
+   - Is it a **significant result**? → README NEW banner + Elevator Pitch
+
+3. **Decide the Ledger entry** — Determine:
+   - Which row it belongs in (new row, or update existing row?)
+   - Status: PASS / Planned / Completed / SEALED / Awaiting
+   - Tier: T1 (blind/pre-registered), T2 (post-diction), T3 (sealed/awaiting)
+   - Which regime columns to check (L0, L1, L2, L3)
+   - Whether any kill criteria can be ticked
+
+4. **Update ALL relevant pages** — Every page that should mention this DOI:
+   - `EFC_Validation_Ledger.html` — new or updated row with DOI link
+   - `EFC_Stage-IV_Data_Roadmap.html` — update pipeline status / kill criteria
+   - `EFC_White_Paper_Series.html` — update sealed count / prediction block
+   - `EFC_Elevator_Pitch.html` — update summary if significant
+   - `EFC_Changelog.html` — add versioned entry (increment v3.XX)
+   - `README.md` — add NEW banner if significant; update counts
+   - `AGENTS.md` — update counts if changed
+   - `docs/validation-ledger/data/evidence-register.json` — add DOI to empirical list
+   - `docs/validation-ledger/data/ledger.json` — mirror the evidence register
+
+5. **Propagate DOI** — Run `python3 scripts/maintenance/efc_sync_dois.py --apply`
+   to ensure DOI is in all package files.
+
+6. **Validate** — Run `python3 scripts/maintenance/efc_maintain.py` and
+   `python3 scripts/maintenance/efc_drift_detector.py`. Both must be clean.
+
+7. **Commit and push** — Single commit with descriptive message listing what
+   was updated and why. Push to main.
+
+### What counts as "relevant" for each page
+
+| Page | Include paper if... |
+|------|-------------------|
+| **Validation Ledger** | It contains ANY empirical test, comparison, or pre-registered prediction |
+| **Stage-IV Roadmap** | It relates to KC1-KC5, Euclid/DESI/Rubin, or pipeline readiness |
+| **White Paper Series** | It contains a sealed prediction or changes the falsifiability count |
+| **Elevator Pitch** | It is a top-3 most significant result (rare — most papers don't go here) |
+| **Changelog** | ALL papers with DOI get a Changelog entry — no exceptions |
+| **README NEW banner** | Only if it's a major milestone (new pipeline, new kill-test, sealed prediction) |
+
+### Decision rules for Ledger tiers
+
+| Tier | Criteria | Example |
+|------|----------|---------|
+| T1 | Blind prediction registered BEFORE data | DESI DR2 blind prediction |
+| T2 | Post-diction analysis, not pre-registered | KiDS-1000 Case A lensing |
+| T3 | Prediction sealed, awaiting future data | Euclid DR1 benchmark |
+
+### Decision rules for kill criteria
+
+- KC1 (P(k) full-shape): only tick if full-shape likelihood run with EFC growth
+- KC2 (fσ₈): only tick if growth rate measured and compared to EFC μ prediction
+- KC3 (S₈): only tick if weak lensing S₈ compared to EFC Σ prediction
+- KC4 (η slip): only tick if gravitational slip η measured or E_G computed
+- KC5 (w(z)): only tick if dynamical DE equation of state constrained
 
 ### Public pages that must stay in sync
 
@@ -87,6 +158,7 @@ is at `.claude/drift_report.json`.
 - Use: "consistent with", "within prediction band", "passes test"
 - External papers: "overlaps with EFC prediction", not "confirms"
 - Always cite the prior EFC DOI where a prediction was first stated
+- Pre-registration: always cite the PRIOR DOI where prediction was first stated
 
 ---
 
