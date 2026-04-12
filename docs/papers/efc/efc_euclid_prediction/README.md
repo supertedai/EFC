@@ -1,6 +1,7 @@
 # EFC Euclid DR1 Boltzmann Pre-Registration
 
 **Author:** Morten Magnusson (ORCID [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)) · Symbiose Research
+**DOI:** [10.6084/m9.figshare.31990053](https://doi.org/10.6084/m9.figshare.31990053)
 **License:** CC-BY-4.0 · **Track:** Cosmology (perturbation sector) · **Regimes:** linear, Horndeski scalar-tensor
 **Pipeline:** `pipelines/efc/euclid_dr1/`
 

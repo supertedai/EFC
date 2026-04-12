@@ -10,18 +10,38 @@
       "affiliation": "Symbiose Research"
     },
     "license": "CC-BY-4.0",
-    "date": "2026-04-12"
+    "date": "2026-04-12",
+    "doi": "10.6084/m9.figshare.31990053",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31990053"
   },
   "domain": {
     "track": "Cosmology (perturbation sector)",
-    "regimes": ["linear", "Horndeski scalar-tensor"]
+    "regimes": [
+      "linear",
+      "Horndeski scalar-tensor"
+    ]
   },
   "files": [
-    {"path": "efc_euclid_prediction.pdf", "bytes": 214090},
-    {"path": "src/efc_logistic_demo.py", "role": "reference implementation"},
-    {"path": "data/benchmark.json", "role": "benchmark prediction values"},
-    {"path": "data/parameter_scan.json", "role": "36-point parameter scan"},
-    {"path": "examples/run_benchmark.py", "role": "reproduction script"}
+    {
+      "path": "efc_euclid_prediction.pdf",
+      "bytes": 214090
+    },
+    {
+      "path": "src/efc_logistic_demo.py",
+      "role": "reference implementation"
+    },
+    {
+      "path": "data/benchmark.json",
+      "role": "benchmark prediction values"
+    },
+    {
+      "path": "data/parameter_scan.json",
+      "role": "36-point parameter scan"
+    },
+    {
+      "path": "examples/run_benchmark.py",
+      "role": "reproduction script"
+    }
   ],
   "primary_pdf": "efc_euclid_prediction.pdf"
 }
