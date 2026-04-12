@@ -1,0 +1,117 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-case-b-eigenmode",
+  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
+  "description": "Derives the observable eigenstructure of EFC in weak lensing (Case B). Shows that µ(k,z) in the growth ODE and Σ(k,z) in the lensing kernel produce destructive interference, with growth suppression cancelling 66% of lensing amplification. Weak lensing constrains only one effective parameter η_eff = 0.017. Proves E_G is the orthogonal probe that breaks the µ–Σ degeneracy, predicting E_G^EFC/E_G^GR = 1.086.",
+  "version": "1.0",
+  "date": "2026-04-12",
+  "doi": "10.6084/m9.figshare.31990194",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "weak lensing",
+    "modified gravity",
+    "mu-Sigma degeneracy",
+    "eigenmode",
+    "destructive interference",
+    "E_G statistic",
+    "cosmic shear",
+    "KiDS-1000",
+    "growth factor",
+    "lensing kernel",
+    "Case B",
+    "sealed prediction"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "modified_poisson_phi": {
+      "latex": "k^2 \\Phi = -4\\pi G a^2 \\mu(k,z) \\bar{\\rho} \\delta",
+      "description": "Modified Poisson equation for Newtonian potential (growth channel)"
+    },
+    "modified_poisson_weyl": {
+      "latex": "k^2 (\\Phi + \\Psi) = -8\\pi G a^2 \\Sigma(k,z) \\bar{\\rho} \\delta",
+      "description": "Modified Poisson equation for Weyl potential (lensing channel)"
+    },
+    "eta_eff": {
+      "latex": "\\eta_{\\text{eff}} = \\gamma(\\mu - 1) + (\\Sigma - 1) = 0.017",
+      "description": "The single effective parameter visible to weak lensing, where γ ≈ 0.55"
+    },
+    "E_G_ratio": {
+      "latex": "E_G = \\frac{\\Omega_m \\Sigma}{f \\mu}",
+      "description": "E_G statistic measures Σ/µ^γ — orthogonal to weak lensing"
+    },
+    "cancellation_ratio": {
+      "latex": "\\frac{\\gamma |\\mu - 1|}{|\\Sigma - 1|} = \\frac{0.033}{0.050} = 0.66",
+      "description": "Growth suppression cancels 66% of lensing amplification"
+    }
+  },
+  "key_results": {
+    "eta_eff": {
+      "value": 0.017,
+      "description": "Single observable parameter in weak lensing at EFC anchor"
+    },
+    "cancellation_fraction": {
+      "value": 0.66,
+      "description": "Fraction of Σ signal cancelled by µ drag (model-independent given γ ≈ 0.55)"
+    },
+    "E_G_enhancement": {
+      "value": 1.086,
+      "description": "E_G^EFC / E_G^GR — constructive interference gives +8.6%"
+    },
+    "expected_delta_chi2": {
+      "range": [-2, 2],
+      "description": "Expected Δχ² for Case B WL-only against KiDS-1000"
+    },
+    "expected_correlation": {
+      "range": [-0.95, -0.80],
+      "description": "Expected corr(µ₀, Σ₀) from Fisher eigenvector"
+    }
+  },
+  "sealed_predictions": [
+    {
+      "id": "SP1",
+      "statement": "η_eff = 0.017 at the EFC anchor",
+      "falsifiable_by": "Phase 1 minimisation"
+    },
+    {
+      "id": "SP2",
+      "statement": "corr(µ₀, Σ₀) ∈ [−0.95, −0.80]",
+      "falsifiable_by": "Phase 1 posterior"
+    },
+    {
+      "id": "SP3",
+      "statement": "Δχ²(Case B, WL only) ∈ [−2, +2]",
+      "falsifiable_by": "Phase 1 minimisation"
+    },
+    {
+      "id": "SP4",
+      "statement": "E_G^EFC / E_G^GR = 1.086",
+      "falsifiable_by": "KiDS × BOSS E_G measurement"
+    },
+    {
+      "id": "SP5",
+      "statement": "Cancellation ratio = 0.66",
+      "falsifiable_by": "Model-independent (follows from γ ≈ 0.55)"
+    }
+  ],
+  "related_packages": [
+    {
+      "id": "kill-test-v6",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "Bridge calibration anchor (K0=1.66, m²=0.0035)"
+    },
+    {
+      "id": "kids-lensing-response",
+      "doi": "10.6084/m9.figshare.31271917",
+      "role": "Case A comparison (phenomenological Σ² rescaling)"
+    }
+  ],
+  "files": {
+    "pdf": "efc_case_b_eigenmode.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990194"
+}

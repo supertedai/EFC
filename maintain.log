@@ -1,19 +1,28 @@
-[efc-gen] 139 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-auto-meta] all paper directories have index.json
+============================================================
+EFC PAPER PROCESSOR — AI-Powered Auto-Registration
+Model: gpt-5
+Mode: LIVE
+API key: NOT SET
+============================================================
+[SKIP] OPENAI_API_KEY not set. Cannot classify papers.
+[efc-gen] 141 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 139 paper dirs scanned
+EFC DOI sync — 141 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 134
+  papers with registered DOI : 136
   papers without DOI         : 5
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  EFC_Background_NoGo_Theorem -> index.json
 ========================================================================
-[efc-gen] 139 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 139 paper dirs · 0 errors · 0 warnings
+[efc-gen] 141 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 141 paper dirs · 0 errors · 0 warnings
+[efc-drift] 141 papers · no drift detected
 [efc-maintain] --- EFC maintenance pass ---
+[efc-maintain] running efc_auto_metadata.py …
+[efc-maintain] running efc_process_paper.py …
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_sync_dois.py --apply…
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_verify.py …
+[efc-maintain] running efc_drift_detector.py --fix…
 [efc-maintain] --- done (clean) ---

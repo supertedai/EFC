@@ -1,0 +1,107 @@
+name: EFC main auto-sync
+
+# Auto-fix maintenance issues on main when papers are uploaded directly.
+# Generates missing metadata (index.json, CITATION.cff, etc.) from bare
+# PDFs, fixes paper count drift, and propagates DOIs.
+#
+# This is the "everything automatic" workflow — covers the gap where
+# efc-sync.yml only runs on dev branches.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/papers/efc/**"
+  workflow_dispatch:
+
+concurrency:
+  group: efc-main-sync
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  auto-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install poppler-utils (for PDF text extraction)
+        run: sudo apt-get install -y poppler-utils
+
+      - name: Run full maintenance pipeline (with AI classification)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5
+        run: |
+          python3 scripts/maintenance/efc_maintain.py 2>&1 | tee maintain.log
+        continue-on-error: true
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes — main is already consistent."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected — will auto-commit."
+            git --no-pager diff --stat
+            git ls-files --others --exclude-standard
+          fi
+
+      - name: Auto-commit fixes to main
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "efc-sync[bot]"
+          git config user.email "efc-sync[bot]@users.noreply.github.com"
+          git add -A
+
+          {
+            echo "chore(efc-sync): auto-generate metadata and fix drift on main"
+            echo
+            echo "Triggered by push to main. Pipeline:"
+            echo "  efc_auto_metadata → efc_gen_ai_friendly → efc_sync_dois →"
+            echo "  efc_verify → efc_drift_detector --fix"
+            echo
+            echo "Files touched:"
+            git diff --cached --name-only | sed 's/^/  - /'
+          } > /tmp/commit_msg
+
+          git commit -F /tmp/commit_msg
+
+          for delay in 2 4 8 16; do
+            if git push; then
+              echo "Push succeeded."
+              break
+            fi
+            echo "Push failed; retrying in ${delay}s"
+            sleep "$delay"
+          done
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## EFC main auto-sync"
+            echo
+            echo "| Field | Value |"
+            echo "|---|---|"
+            echo "| Changes | \`${{ steps.diff.outputs.changed }}\` |"
+            echo
+            if [ -f maintain.log ]; then
+              echo '```'
+              tail -30 maintain.log
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
