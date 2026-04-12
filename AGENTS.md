@@ -17,7 +17,7 @@ license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger_public: v3.20
 validation_ledger_internal: v4.7
-ai_packages: 139 (100% coverage)
+ai_packages: 140 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (Euclid DR1)
@@ -328,7 +328,7 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 139 papers (139 with AI-friendly packages, 100%)
+│   ├── papers/efc/     # 140 papers (140 with AI-friendly packages, 100%)
 │   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
@@ -345,9 +345,9 @@ EFC/
 
 ---
 
-## AI-Friendly Paper Packages (139)
+## AI-Friendly Paper Packages (140)
 
-All 139 papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`):
+All 140 papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`):
 
 ### Consolidation
 | Paper | Module | DOI |

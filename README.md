@@ -22,7 +22,7 @@ Across **103 independent tests** so far (galaxy rotation curves, the cosmic micr
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-139-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-140-brightgreen)](#ai-friendly-paper-packages)
 
 > **NEW (April 12, 2026)**: **[Euclid DR1 Pre-Registration Pipeline](./pipelines/efc/euclid_dr1/)** ([DOI 10.6084/m9.figshare.31990053](https://doi.org/10.6084/m9.figshare.31990053)) — Complete Boltzmann-calibrated prediction pipeline using custom `efc_logistic` gravity model in hi_class. SHA-256 sealed benchmark (B0=0.02, M0=0.06): σ₈ +1.21%, P(k) +2.09%, lensing −6.01%, E_G −3.98%. 36-point parameter scan. Stability: M0≥3B0. Planck ISW: M0<0.1. Predictions frozen for Euclid DR1 (October 2026).
 
@@ -53,7 +53,7 @@ Across **103 independent tests** so far (galaxy rotation curves, the cosmic micr
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.17 public / v4.8 internal) |
-| **Papers** | 139 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **Papers** | 140 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
 | **AI Packages** | 138 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
@@ -284,13 +284,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 139 papers, all with AI-friendly packages (100% coverage). Eight hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 140 papers, all with AI-friendly packages (100% coverage). Eight hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 139 papers have AI-friendly packages (100% coverage as of April 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
+All 140 papers have AI-friendly packages (100% coverage as of April 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|
@@ -334,7 +334,7 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 139 papers with AI-friendly packages (100%)
+│   ├── papers/efc/     # 140 papers with AI-friendly packages (100%)
 │   ├── public/         # Validation Ledger (v3.15), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
