@@ -19,9 +19,9 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: "OpenAI model (default: gpt-4o, or gpt-4.1, o3-mini, etc.)"
+        description: "OpenAI model (default: o3)"
         required: false
-        default: "gpt-4o"
+        default: "o3"
   schedule:
     - cron: "30 6 * * 3"  # Wednesday 06:30 UTC
 
@@ -41,7 +41,7 @@ jobs:
       - name: Run AI consistency audit (GPT council)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: ${{ inputs.model || 'gpt-4o' }}
+          OPENAI_MODEL: ${{ inputs.model || 'o3' }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "::warning::OPENAI_API_KEY secret not set. Skipping AI audit."
