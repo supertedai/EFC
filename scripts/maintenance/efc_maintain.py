@@ -31,9 +31,11 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+AUTO_META = os.path.join(HERE, "efc_auto_metadata.py")
 GEN = os.path.join(HERE, "efc_gen_ai_friendly.py")
 SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
+DRIFT = os.path.join(HERE, "efc_drift_detector.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -44,6 +46,8 @@ def run(script: str, *args: str) -> int:
 
 def main() -> int:
     print("[efc-maintain] --- EFC maintenance pass ---")
+    # Step 0: auto-generate metadata for bare PDFs (uploaded without index.json)
+    run(AUTO_META)
     rc_gen = run(GEN)
     if rc_gen != 0:
         print(f"[efc-maintain] generator failed (rc={rc_gen})")
@@ -57,6 +61,8 @@ def main() -> int:
         print(f"[efc-maintain] generator (post-sync) failed (rc={rc_gen2})")
         return rc_gen2
     rc_verify = run(VERIFY)
+    # Step 5: auto-fix drift (paper counts in README/AGENTS/Changelog)
+    rc_drift = run(DRIFT, "--fix")
     status = "clean" if rc_verify == 0 and rc_sync == 0 else "issues"
     print(f"[efc-maintain] --- done ({status}) ---")
     # Return the worst of the three, capped at 1

@@ -126,7 +126,44 @@ def detect_drift():
     return drift, actual_papers
 
 
+def fix_drift(drift, actual_papers):
+    """Auto-fix paper/package count drift in public-facing files."""
+    fixed = 0
+    for d in drift:
+        if d["type"] not in ("paper_count", "badge_count", "agents_package_count"):
+            continue
+        path = CHECK_FILES.get(d["file"])
+        if not path or not os.path.isfile(path):
+            continue
+        text = read_file(path)
+        old = str(d["claimed"])
+        new = str(actual_papers)
+        # Replace whole-word occurrences of the old count with the new count
+        # Use word boundary to avoid replacing inside URLs/DOIs
+        updated = re.sub(
+            rf'(?<!\d){re.escape(old)}(?=\s*(?:papers?|packages?|paper dir))',
+            new, text
+        )
+        # Fix badge counts: AI_Packages-NNN
+        updated = re.sub(
+            rf'AI_Packages-{re.escape(old)}',
+            f'AI_Packages-{new}', updated
+        )
+        # Fix AGENTS.md ai_packages: NNN
+        updated = re.sub(
+            rf'(ai_packages:\s*){re.escape(old)}',
+            rf'\g<1>{new}', updated
+        )
+        if updated != text:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(updated)
+            fixed += 1
+            print(f"  [fixed] {d['file']}: {old} → {new}")
+    return fixed
+
+
 def main():
+    fix_mode = "--fix" in sys.argv
     drift, actual_papers = detect_drift()
 
     if not drift:
@@ -141,6 +178,18 @@ def main():
             print(f"  {d['file']}: version {d['claimed']} but latest is {d['actual']}")
         else:
             print(f"  {d['file']}: {d['type']} — {d.get('claimed')} vs {d.get('actual')}")
+
+    if fix_mode:
+        n = fix_drift(drift, actual_papers)
+        print(f"[efc-drift] auto-fixed {n} file(s)")
+        # Re-check after fix
+        drift2, _ = detect_drift()
+        remaining = len(drift2)
+        if remaining > 0:
+            print(f"[efc-drift] {remaining} drift(s) remain (need manual fix)")
+        else:
+            print(f"[efc-drift] all drift resolved")
+            return 0
 
     # Write machine-readable drift report
     report_path = os.path.join(REPO, ".claude", "drift_report.json")
