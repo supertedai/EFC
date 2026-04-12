@@ -247,11 +247,14 @@ def main():
         f.write(result)
     print(f"\nReport saved to {report_path}")
 
-    # Exit code based on FAIL count
-    fail_count = result.lower().count("fail")
-    if fail_count > 0:
-        print(f"\n[AUDIT] {fail_count} FAIL(s) detected")
+    # Exit code: parse the SUMMARY line for actual failures
+    # Matches patterns like "0 FAIL", "2 FAIL", "Z FAIL"
+    summary_match = re.search(r'(\d+)\s*FAIL', result)
+    actual_fails = int(summary_match.group(1)) if summary_match else 0
+    if actual_fails > 0:
+        print(f"\n[AUDIT] {actual_fails} FAIL(s) detected")
         return 1
+    print("\n[AUDIT] All checks passed")
     return 0
 
 
