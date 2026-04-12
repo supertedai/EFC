@@ -22,7 +22,9 @@ Across **103 independent tests** so far (galaxy rotation curves, the cosmic micr
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-138-brightgreen)](#ai-friendly-paper-packages)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-139-brightgreen)](#ai-friendly-paper-packages)
+
+> **NEW (April 12, 2026)**: **[Euclid DR1 Pre-Registration Pipeline](./pipelines/efc/euclid_dr1/)** — Complete Boltzmann-calibrated prediction pipeline using custom `efc_logistic` gravity model in hi_class. SHA-256 sealed benchmark (B0=0.02, M0=0.06): σ₈ +1.21%, P(k) +2.09%, lensing −6.01%, E_G −3.98%. 36-point parameter scan. Stability: M0≥3B0. Planck ISW: M0<0.1. Predictions frozen for Euclid DR1 (October 2026).
 
 > **NEW (April 11, 2026)**: **[Kill-Test v6 Universality on SPARC 175](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/)** ([DOI 10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762)) — Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies (identical `scipy.differential_evolution` pipeline, seed = 42, AIC model comparison). **EFC win rate 60.2%** on 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21 (favours EFC); median χ²_red 0.44 (EFC) vs 1.69 (NFW); Mann-Whitney FLOW vs LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2. **Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level.**
 
@@ -282,13 +284,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 138 papers, all with AI-friendly packages (100% coverage). Seven hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 139 papers, all with AI-friendly packages (100% coverage). Eight hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 138 papers have AI-friendly packages (100% coverage as of April 2026). Seven hand-curated 10/10 validation reports with full reproducible pipelines:
+All 139 papers have AI-friendly packages (100% coverage as of April 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|
@@ -299,8 +301,9 @@ All 138 papers have AI-friendly packages (100% coverage as of April 2026). Seven
 | **Multi-epoch fσ₈ Growth** | `efc_multi_epoch_v2.py` | Full linear growth ODE, μ(a) gate, 14-point fit |
 | **WP4 BOSS Transfer** | `wp4_transfer.py` | Regime gate, covariance diagnostics, Cholesky whitening |
 | **Consciousness Bridge** | `consciousness_bridge.py` | Three-equation system, non-separable C, regime mapping |
+| **Euclid DR1 Pre-Registration** | `efc_logistic_demo.py`, `run_benchmark.py` | hi_class Boltzmann with custom `efc_logistic` gravity model, SHA-256 sealed predictions |
 
-Plus 128 auto-generated packages each containing:
+Plus 127 auto-generated packages each containing:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -346,9 +349,16 @@ EFC/
 │       ├── validation/ # Validation routines & SPARC I/O
 │       └── meta/       # Co-field simulator
 ├── pipelines/
-│   └── efc/native_v2_graph/  # Graph-AQUAL pipeline
-│       ├── kernel/     # AQUAL, energy, fields, operators
-│       └── tests/      # Kill tests (KT1–KT5)
+│   └── efc/
+│       ├── native_v2_graph/  # Graph-AQUAL pipeline
+│       │   ├── kernel/     # AQUAL, energy, fields, operators
+│       │   └── tests/      # Kill tests (KT1–KT5)
+│       └── euclid_dr1/      # Euclid DR1 pre-registration pipeline
+│           ├── src/        # mu/eta/Sigma, hi_class bridge, mock likelihood
+│           ├── config/     # hi_class .ini, cobaya .yaml
+│           ├── data/       # Alpha table, benchmark, parameter scan, hi_class patch
+│           ├── tests/      # 6 sanity checks (A–F)
+│           └── docs/       # RCMP compliance matrix
 ├── schema/             # Ontology & JSON-LD contexts
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files
