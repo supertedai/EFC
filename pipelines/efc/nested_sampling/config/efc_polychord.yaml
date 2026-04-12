@@ -1,0 +1,160 @@
+# EFC Nested Sampling — PolyChord via Cobaya (Full MGCAMB)
+# =========================================================
+#
+# Full Bayesian posterior + evidence (ln Z) for EFC vs ΛCDM.
+# Derived from tools/cobaya_bridge/efc_bridge_K0m2.yaml with sampler
+# swapped from MCMC to PolyChord nested sampling.
+#
+# Sampled parameters (8):
+#     6 × ΛCDM (logA, ns, theta_MC_100, ombh2, omch2, tau)
+#     2 × EFC  (K0, m_sq)
+#
+# Bridge: (K0, m_sq) → (mu0, Sigma0) via tools/cobaya_bridge/bridge_theory.py
+# These are pushed into MGCAMB at every theory call.
+#
+# Datasets: same as Kill-Test v6
+#     Planck 2018 high-ℓ plik_lite TTTEEE + low-ℓ TT + EE + lensing
+#     DESI 2024 BAO (full sample)
+#     Pantheon+ supernovae
+#
+# REQUIRES: MGCAMB fork installed as the "camb" theory module
+#   pip install git+https://github.com/sfu-cosmo/MGCAMB.git@v1.5.2
+#
+# Run:
+#   mpirun -n 32 cobaya-run config/efc_polychord.yaml
+#
+# Hardware: 32 cores, ~32 GB RAM, 48-96h wall time
+#
+# Author: Morten Magnusson / Symbiose Research
+# Date:   2026-04-12
+
+theory:
+  camb:
+    extra_args:
+      MG_flag: 3            # MGCAMB pure mu-Sigma parametrisation
+      pure_MG_flag: 2       # time-dependence tracks Omega_DE(a)
+      lmax: 2700
+      lens_potential_accuracy: 4
+      AccuracyBoost: 1.2
+      lAccuracyBoost: 1.2
+      dark_energy_model: fluid
+      w: -1.0
+      num_massive_neutrinos: 1
+      mnu: 0.06
+      nnu: 3.044
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE_lite:
+  planck_2018_lowl.TT:
+  planck_2018_lowl.EE:
+  planck_2018_lensing.clik:
+  bao.desi_2024_bao_all:
+  sn.pantheonplus:
+
+params:
+  # -------------------- standard cosmology --------------------
+  logA:
+    prior: {min: 2.6, max: 3.5}
+    ref: {dist: norm, loc: 3.044, scale: 0.02}
+    proposal: 0.015
+    latex: \log(10^{10} A_\mathrm{s})
+    drop: true
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_\mathrm{s}
+  ns:
+    prior: {min: 0.9, max: 1.05}
+    ref: {dist: norm, loc: 0.9649, scale: 0.005}
+    proposal: 0.004
+    latex: n_\mathrm{s}
+  theta_MC_100:
+    prior: {min: 1.03, max: 1.05}
+    ref: {dist: norm, loc: 1.04109, scale: 0.0005}
+    proposal: 0.0004
+    latex: 100\theta_\mathrm{MC}
+    drop: true
+    renames: theta
+  cosmomc_theta:
+    value: "lambda theta_MC_100: 1.e-2*theta_MC_100"
+    derived: false
+  H0:
+    latex: H_0
+  ombh2:
+    prior: {min: 0.019, max: 0.025}
+    ref: {dist: norm, loc: 0.02237, scale: 0.0002}
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omch2:
+    prior: {min: 0.095, max: 0.145}
+    ref: {dist: norm, loc: 0.1200, scale: 0.002}
+    proposal: 0.0015
+    latex: \Omega_\mathrm{c} h^2
+  tau:
+    prior: {dist: norm, loc: 0.0544, scale: 0.0073}
+    ref:   {dist: norm, loc: 0.0544, scale: 0.006}
+    proposal: 0.005
+    latex: \tau_\mathrm{reio}
+
+  # -------------------- EFC field parameters --------------------
+  # Flat priors centred on the Kill-Test v5 calibration anchor.
+  # K0_ref = 1.66, msq_ref = 0.0035 (Localization paper sweet spot).
+  K0:
+    prior: {min: 0.5, max: 3.0}
+    ref:   {dist: norm, loc: 1.66, scale: 0.05}
+    proposal: 0.04
+    latex: K_0
+    drop: true
+  m_sq:
+    prior: {min: 0.001, max: 0.010}
+    ref:   {dist: norm, loc: 0.0035, scale: 0.0003}
+    proposal: 0.0002
+    latex: m^2
+    drop: true
+
+  # -------------------- bridge: (K0, m^2) -> (mu0, sigma0) --------------------
+  # Closed-form from tools/cobaya_bridge/bridge_theory.py.
+  # Constants: gamma_phi_sq = (0.049 * 0.01)^2 = 2.401e-7, k_lens = 0.05 h/Mpc
+  #            eta_ref = 1.23, f_ref = 0.156627
+  mu0:
+    value: "lambda K0: 1.0 / (1.0 + K0 * 2.401e-7 / 0.05**4)"
+    latex: \mu_0
+  sigma0:
+    value: "lambda K0, m_sq: 0.5 * (1.0 + 1.0 + (1.23 - 1.0) / 0.156627 * (1.0 - m_sq / (K0 * 0.05**2))) * (1.0 / (1.0 + K0 * 2.401e-7 / 0.05**4))"
+    latex: \Sigma_0
+
+  # -------------------- derived diagnostics --------------------
+  sigma8:
+    latex: \sigma_8
+  S8:
+    derived: "lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5"
+    latex: S_8
+  omegam:
+    latex: \Omega_\mathrm{m}
+  age:
+    latex: "{\\rm{Age}}/\\mathrm{Gyr}"
+  rdrag:
+    latex: r_\mathrm{drag}
+
+# --- Sampler: PolyChord nested sampling ---
+# ndim = 8, so nlive = 500 ≈ 62 × ndim, num_repeats = 60 ≈ 7.5 × ndim
+sampler:
+  polychord:
+    path: null
+    nlive: 500
+    num_repeats: 60
+    precision_criterion: 0.01
+    max_ndead: -1
+    boost_posterior: 10
+    feedback: 1
+    do_clustering: true
+    read_resume: true
+    base_dir: polychord_output
+    file_root: efc_nested_mgcamb
+
+output: chains/efc_polychord
+
+# --- Metadata ---
+# Paper:       Kill-Test v5 (Session Note v5), Magnusson (2026)
+# Bridge:      bridge_theory.py: (K0=1.66, m²=0.0035) → (mu0=0.94, Sigma0=1.05)
+# Evidence:    Compare ln(Z) against ΛCDM reference (lcdm_polychord.yaml)
+# Bayes factor: ln(B) = ln(Z_EFC) - ln(Z_ΛCDM) on Kass & Raftery (1995) scale
