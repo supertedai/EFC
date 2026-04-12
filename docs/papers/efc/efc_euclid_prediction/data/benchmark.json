@@ -1,0 +1,21 @@
+{
+  "model": "efc_logistic",
+  "params": {
+    "B0": 0.02,
+    "M0": 0.06,
+    "a_t": 0.3,
+    "Delta": 0.3,
+    "alpha_K": 1.0,
+    "alpha_T": 0.0
+  },
+  "cs2_safe_smg": 1e-06,
+  "sigma8_lcdm": 0.82274,
+  "sigma8_efc": 0.83268,
+  "dsigma8_pct": 1.207,
+  "dPk_kc_z05_pct": 2.091,
+  "dClTT_ell66_pct": 1.675,
+  "dClpp_ell66_pct": -6.012,
+  "stability": "M0/B0 = 3.0 >= 3 (stable)",
+  "planck_isw": "dClTT(ell=30) = +0.3% (within Planck tolerance)",
+  "status": "READY FOR FREEZE"
+}

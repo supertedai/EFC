@@ -226,6 +226,76 @@ the schema reference; this directory follows the same conventions.
     if write_if_absent(os.path.join(d, "README.md"), readme):
         created.append("README.md")
 
+    # ── Additional 10/10 standard files ──────────────────
+    # CITATION.cff
+    cff = f"""cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "{title}"
+type: software
+authors:
+  - family-names: "Magnusson"
+    given-names: "Morten"
+    orcid: "https://orcid.org/0009-0002-4860-5095"
+    affiliation: "Symbiose Research, Norway"
+version: "1.0"
+date-released: "{TODAY}"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/supertedai/EFC"
+keywords:
+  - "Energy-Flow Cosmology"
+{chr(10).join('  - "' + r + '"' for r in regs) if regs else '  - "EFC"'}
+abstract: >
+  {title}. Part of the Energy-Flow Cosmology research programme.
+"""
+    if write_if_absent(os.path.join(d, "CITATION.cff"), cff):
+        created.append("CITATION.cff")
+
+    # LICENSE
+    lic = """Creative Commons Attribution 4.0 International (CC-BY-4.0)
+
+Copyright (c) 2026 Morten Magnusson
+
+You are free to share and adapt this material for any purpose, including
+commercially, as long as you give appropriate credit.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+"""
+    if write_if_absent(os.path.join(d, "LICENSE"), lic):
+        created.append("LICENSE")
+
+    # citations.bib
+    bib = f"""@misc{{magnusson2026_{slug.replace('-', '_')[:40]},
+  author = {{Magnusson, Morten}},
+  title = {{{title}}},
+  year = {{2026}},
+  publisher = {{Figshare}},
+  url = {{https://github.com/supertedai/EFC}},
+  note = {{Energy-Flow Cosmology research programme}}
+}}
+"""
+    if write_if_absent(os.path.join(d, "citations.bib"), bib):
+        created.append("citations.bib")
+
+    # schema.json
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": f"{title} Schema",
+        "type": "object",
+        "properties": {
+            "paper_id": {"type": "string"},
+            "title": {"type": "string"},
+            "version": {"type": "string"},
+            "doi": {"type": ["string", "null"]},
+            "key_results": {"type": "array", "items": {"type": "object"}},
+            "parameters": {"type": "object"},
+            "predictions": {"type": "array"},
+        },
+        "required": ["paper_id", "title"],
+    }
+    if write_if_absent(os.path.join(d, "schema.json"),
+                       json.dumps(schema, indent=2, ensure_ascii=False) + "\n"):
+        created.append("schema.json")
+
     return {
         "name": name, "title": title, "track": track, "regimes": regs,
         "primary_pdf": pkg["primary_pdf"], "created": created, "n_files": len(files),
