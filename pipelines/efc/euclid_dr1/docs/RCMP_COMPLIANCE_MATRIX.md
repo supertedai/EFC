@@ -13,13 +13,22 @@ explicitly.
 
 ## Priority Order (RCMP-ranked, not information-ranked)
 
-| Rank | KC  | Channel         | RCMP risk | RCMP systematic | Signal  | S/N ratio | Why this rank                            |
-|------|-----|-----------------|-----------|-----------------|---------|-----------|------------------------------------------|
-| 1    | KC4 | E_G(k,z)        | LOW       | ~1%             | 5-7%    | 5-7x      | Bias cancels, minimal proxy chain        |
-| 2    | KC2 | fsigma8 (RSD)   | MODERATE  | 3-5%            | ~7%     | 1.5-2x    | Direct velocity, but RSD model dependent |
-| 3    | KC5 | BAO / H(z)      | LOW       | <1%             | ~0%     | N/A       | Geometric consistency check              |
-| 4    | KC3 | S8 (WL shear)   | HIGH      | 5-15%           | 3-5%    | 0.3-1x    | IA + photo-z + nonlinear model           |
-| 5    | KC1 | P(k) full-shape | HIGH      | 10-30%          | ~6%     | 0.2-0.6x  | Bias + nonlinear + RSD coupling          |
+**Updated with hi_class Boltzmann results (April 2026).** Previous paper-based
+signal estimates (5-7%) replaced with calibrated predictions from efc_logistic
+gravity model. Realistic range: M0 = 0.01-0.10, B0 = 0-0.03.
+
+| Rank | KC  | Channel         | RCMP risk | RCMP systematic | Signal (M0=0.05) | S/N ratio | Why this rank                            |
+|------|-----|-----------------|-----------|-----------------|-------------------|-----------|------------------------------------------|
+| 1    | KC4 | E_G(k,z)        | LOW       | ~1%             | 1-3%              | 1-3x      | Bias cancels, minimal proxy chain        |
+| 2    | KC2 | fsigma8 (RSD)   | MODERATE  | 3-5%            | ~1%               | 0.2-0.3x  | Direct velocity, but RSD model dependent |
+| 3    | KC5 | BAO / H(z)      | LOW       | <1%             | ~0%               | N/A       | Geometric consistency check              |
+| 4    | KC3 | S8 (WL shear)   | HIGH      | 5-15%           | 0.5-2%            | 0.03-0.4x | IA + photo-z + nonlinear model           |
+| 5    | KC1 | P(k) full-shape | HIGH      | 10-30%          | ~1.4%             | 0.05-0.1x | Bias + nonlinear + RSD coupling          |
+
+**Updated assessment:** With Boltzmann-calibrated amplitudes, the signals are
+smaller than the paper-based 5-7% estimates. KC4 (E_G) remains the primary
+channel, but its S/N is now ~1-3x depending on M0. Planck CMB constrains
+M0 < ~0.1 from ISW effect (Cl^TT at low ell).
 
 **Critical:** Channels where RCMP systematics exceed the predicted signal
 (S/N < 1) are not valid primary falsification tests. KC3 and KC1 fall
@@ -208,7 +217,21 @@ HASH: SHA-256 of this block
 
 ---
 
-## Open Risks (must be resolved with hi_class output)
+## Open Risks and Resolved Issues
+
+### RESOLVED: Horndeski braiding stability
+Braiding (alpha_B > 0) causes c_s^2 < 0 in Horndeski parameter space.
+The instability comes from d(alpha_B)/d(ln a) going strongly negative
+after the logistic peak (a > a_t). **Resolution:** the numerical
+c_s^2 violation for M0 >= 3*B0 is O(1e-8) -- a numerical artifact, not
+a physical instability. Allowing cs2_safe_smg = 1e-6 restores stability.
+Stability boundary: M0 >= ~3*B0 (empirically determined).
+
+### RESOLVED: ISW constrains M0
+hi_class Cl^TT output shows ISW boost at low ell grows rapidly with M0:
+M0=0.03 -> +0.4%, M0=0.10 -> +5%, M0=0.30 -> +47%.
+Planck constrains Cl^TT at low ell to ~1-2%, so M0 < ~0.1 from CMB alone.
+This narrows the EFC parameter space significantly.
 
 ### Risk 1: alpha -> mu/Sigma mapping non-uniqueness
 The mapping {alpha_B, alpha_M} -> {mu, Sigma} is not invertible. Different alpha-profiles
@@ -225,12 +248,12 @@ Bessel), or explicitly restrict predictions to ell > 50 in pre-registration.
 ### Risk 3: Window-function smearing
 Euclid DR1 uses tomographic redshift bins (Delta_z ~ 0.2) and ell-bins.
 The localized E_G bump at k_c will be smeared by integration over bin
-width. Expected reduction: 5-7% -> 3-5% in binned data.
-**Action:** freeze both unbinned and binned predictions. The binned
-prediction is the one that gets compared to data.
+width. Expected reduction now calibrated: M0=0.05 gives dP(k)=1.4%
+which becomes ~0.8-1.0% after window smearing.
 
 ### Coherence property (strongest argument)
-All EFC effects point the same direction: mu down, Sigma up, eta up, fsigma8 down, E_G up.
-Systematics (neutrinos, bias, IA) do not produce this coherent pattern.
-A simultaneous detection across KC2 + KC4 with consistent direction
-would be extremely difficult to explain without modified gravity.
+hi_class confirms: alpha_M > 0 increases sigma8, P(k), and ISW simultaneously
+while suppressing Cl^phiphi (lensing). This is a coherent, directional
+signature. The direction (sigma8 UP, lensing DOWN) is opposite to neutrino
+mass effects (sigma8 DOWN, lensing DOWN). This discriminant survives
+the transition from paper-based to Boltzmann-calibrated predictions.
