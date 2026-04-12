@@ -1,19 +1,8 @@
 {
   "name": "EFC Frontier Research Gaps",
   "version": "3.0",
-  "generated_at": "2026-04-10T19:46:41Z",
+  "generated_at": "2026-04-12T13:49:48Z",
   "gaps": [
-    {
-      "question": "Can the EFC background coupling channel (β·T(a) modification to Friedmann equation) suppress σ₈ and resolve the S₈ tension?",
-      "domain": "efc_theory.background_sector",
-      "severity": "HIGH",
-      "status": "CLOSED_NOGO",
-      "approach": "Three-pillar proof: (1) Sign lemma ΔE²≤0 analytically, (2) CLASS v3.3.4 numerical verification, (3) Observational α→0 under CMB+BAO. Background sector is structurally excluded and observationally empty.",
-      "efc_prediction": "All late-time EFC effects must enter through perturbation sector (μ, Σ, η), not background H(z).",
-      "source": "EFC_Background_NoGo_Theorem (DOI: 31333414)",
-      "created_at": "2026-02-13T00:00:00+00:00",
-      "closed_at": "2026-04-10T00:00:00+00:00"
-    },
     {
       "question": "Applying the 'inference_cluster_tng' module from domain 'unknown' to Bullet Cluster data should result in a chi2 value less than 2.0 within 30 days of testing.",
       "domain": "project.bullet cluster efc test",

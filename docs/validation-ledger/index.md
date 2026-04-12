@@ -88,7 +88,7 @@ _**These modules do NOT run EFC physics.** They use standard ΛCDM engines as in
 | shear_kids1000 | ❌ poor fit | 10.389 | Yes | alpha_lens=0.1, k_trans=0.1, z_activ=0.5, delta_k=0.05 |
 
 
-The modules bao_boss_dr12, bao_desi_y1, fs8_extended, hz_chronometers, and shear_kids1000 are ΛCDM placeholders, and their fit statistics do not reflect EFC performance, with all showing poor fit status. In contrast, the cluster_tng module demonstrates a successful fit with a chi2_reduced value of 0.000, indicating a good fit. The shear_kids1000 module, however, has a chi2_reduced of 10.389, categorizing it as a poor fit.
+The modules bao_boss_dr12, bao_desi_y1, fs8_extended, hz_chronometers, and shear_kids1000 are ΛCDM placeholders, with chi2 values reported as N/A, indicating that fit statistics do not reflect EFC performance and all are classified as poor fits. In contrast, the cluster_tng module demonstrates a successful fit with a chi2_reduced value of 0.000, while the shear_kids1000 module shows a poor fit with a chi2_reduced value of 10.389. Overall, the results highlight the need for EFC physics implementation in the stub modules to assess their fitting performance accurately.
 
 
 ---
@@ -96,8 +96,6 @@ The modules bao_boss_dr12, bao_desi_y1, fs8_extended, hz_chronometers, and shear
 ## 2. EFC-Native Cosmological Pipeline
 
 EFC modifies late-time cosmology via a Hubble friction term: H(a) = H_ΛCDM(a) · [1 + α · g(a)], where α is the coupling strength and g(a) is a gate function activating at low redshift (z ≲ 2). This modification affects expansion history, growth of structure, and distance measures. The α parameter is constrained by joint fits to BAO, H(z), fσ₈, and Type Ia supernovae.
-
-**Background No-Go Theorem (DOI: [31333414](https://doi.org/10.6084/m9.figshare.31333414)):** The background coupling channel is structurally excluded for σ₈ suppression. Three independent proofs: (1) Sign lemma — ΔE²(z) ≤ 0 for all z > 0 under closure normalisation, implying H_EFC ≤ H_ΛCDM and enhanced (not suppressed) growth; (2) CLASS v3.3.4 verification — ΔH/H = −0.3% to −1.1%, negative everywhere; (3) Observational — α collapses to ≈0 under all Planck+BAO combinations. **All late-time EFC effects must enter through the perturbation sector (μ, Σ, η).**
 
 
 ### Autonomous MCMC Results
@@ -108,7 +106,7 @@ _Dual-sampler autonomous pipeline: emcee (CPU, 6h cycle) + NUTS (GPU, continuous
 
 | Sampler | α (mean ± std) | Significance | ΔAIC | ΔBIC | P(α<0) | Verdict |
 |---------|----------------|-------------|------|------|--------|---------|
-| emcee | -0.141 ± 0.208 | 0.68σ | +1.59 | +3.83 | 74.7% | STOPPED_DEGENERACY_PERSISTS |
+| emcee | -0.141 ± 0.208 | 0.68σ | +1.59 | +3.83 | 74.7% | DEGENERACY_LIMITED |
 
 ### Robustness Diagnostics
 
@@ -140,7 +138,7 @@ _Quantitative fits against real observational data._
 | 5 | Scale-dependent μ(k,z): first constraint on EFC characteristic scale k* | Modified growth ODE with k-dependent source μ(k,z)=1-B·g(a)·h(k/k*), existing RSD data | If EFC modifies gravity via a grid mechanism with characteristic scale, k* should be finite and related to the grid/entropy scale. If k* → ∞ (no scale), EFC operates as effective field theory without  | Planned |
 | 6 | 2D mu-Sigma Planck constraint: degeneracy stripe at Sigma~1.05 | Planck 2018 TTTEEE_lite + lowl + lensing, MGCAMB v1.5.2 MG_flag=6 | mu=0.94 Sigma=1.05 achieves dchi2(full)=+2.49 with 6.4% sigma8 suppression. Degeneracy stripe exists at Sigma~1.05. Perturbation sector CAN carry EFC signal. | MARGINAL |
 | 7 | MGCAMB mu-Sigma perturbation scan (constant mu, Sigma=1) | MGCAMB v1.5.2 + cobaya 3.6.1 + Planck 2018 (TTTEEE_lite + lowl TT + lowl EE + lensing) | EFC predicts mu less than 1 (weaker late-time gravity) to suppress sigma8. The test finds that mu=0.93 gives the right suppression (-7.3%) but at unacceptable Planck cost (Dchi2=+19). Only mu=0.99 is  | MARGINAL |
-| 8 | EFC Baseline α-signal | emcee MCMC, 69 data points, emcee sampler | α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence) | {"alpha_mean": -0.1412, "alpha_std": 0.2084, "significance_sigma": 0.68, "daic": 1.59, "dbic": 3.83, "verdict": "STOPPED_DEGENERACY_PERSISTS"} |
+| 8 | EFC Baseline α-signal | emcee MCMC, 69 data points, emcee sampler | α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence) | {"alpha_mean": -0.1412, "alpha_std": 0.2084, "significance_sigma": 0.68, "daic": 1.59, "dbic": 3.83, "verdict": "DEGENERACY_LIMITED"} |
 | 9 | Phi/Psi Shadow-Mode v1.0: C=2.32, k_lambda=0.0014 | — | — | — |
 | 10 | CMB Planck constraint on EFC background gate α | Planck 2018 plik_lite TTTEEE + lowl TT + lowl EE + lensing (via cobaya 3.6.1), DESI 2024 BAO, Pantheon+ SN, modified CLASS 3.3.4 with EFC gate in background.c | EFC predicts that α≠0 modifies H(z) via the gate function, shifting θ* and DA(z*). With fixed Planck params, α=-0.7 is killed (Δχ²=+2624). With free params, Planck absorbs α via H0 shift (Δχ²≈0 for al | COLLAPSED |
 | 11 | CMB+BAO Joint Fit: Background α-gate null result | Planck 2018 (plik_lite + lowl_TT + lowl_EE + lensing) + DESI 2024 BAO + Pantheon+ SN via EFCLASS/cobaya | If α≈−0.7 is real background physics, joint fit should find α significantly negative with improved total χ². Instead: α→−0.045, confirming background gate is proxy, not fundamental. | COLLAPSED |
@@ -349,7 +347,7 @@ _Ŝ(z) = log₁₀(ρ_SFR) + log₁₀(f_gas) + C₀.  Sources locked: Madau-Dic
 
 The EFC-GRAV pipeline tests whether MOND-like phenomenology emerges from a discrete graph functional (Grid-AQUAL). A 3D Poisson/AQUAL solver on a lattice recovers both Newtonian and MOND limits from one equation, with an emergent prefactor C ≈ 2.32 arising from discrete IR renormalization. Kill-tests (KT1–KT5) quantify convergence of slopes, prefactors, and scaling laws. The regime bridge tests whether G_eff(k,a) from the GRAV sector is compatible with cosmological growth via a linear growth ODE at multiple screening scales.
 
-_Latest run: `2026-04-09_133550_aqual` (—) — Verdict: **NEEDS_REVIEW** — Integration: **PARTIAL_BRIDGE**_
+_Latest run: `2026-04-11_201649_aqual` (—) — Verdict: **NEEDS_REVIEW** — Integration: **PARTIAL_BRIDGE**_
 
 
 ### Kill-Test Results
@@ -359,7 +357,7 @@ _Deterministic pass/fail tests with explicit numerical thresholds. All values fr
 | Kill Test | Description | Status | Key Metric | Result |
 |-----------|-------------|--------|------------|--------|
 | KT1 Newton MOND Limits | Newton limit (slope ~ -2) when g/a0 >> 1; MOND limit (slo... | ✅ PASSED | Slope recovery | MOND: -1.050, Newton: -2.029 |
-| KT2 Prefactor Convergence | Prefactor C = g_AQUAL / sqrt(a0 * g_N) convergence with g... | ✅ PASSED | Prefactor C convergence | C = 2.3052 |
+| KT2 Prefactor Convergence | Prefactor C = g_AQUAL / sqrt(a0 * g_N) convergence with g... | ✅ PASSED | Prefactor C convergence | C = 2.2960 |
 | KT3 Mass Scaling | Transition radius scales as sqrt(M): r_trans ~ M^beta wit... | ⚠️ MARGINAL | Mass-scaling β | β = 0.305 (target: 0.5) |
 | KT4 Superposition | Non-linear superposition: gravity from two sources != sum... | 🔲 Not implemented | — | — |
 | KT5 EFE | External Field Effect: presence of uniform external field... | 🔲 Not implemented | — | — |
@@ -395,9 +393,9 @@ _Tests whether G_eff(k,a) from the GRAV sector is compatible with cosmological l
 |---|------|---------|----------------|--------|
 | 1 | GRAV-to-cosmo μ_eff regime bridge test | Existing GRAV Graph-AQUAL runs (10 completed) + WP1a reference model | EFC regime framework predicts μ>1 at galactic scales (L2-L3) transitioning to μ<1 at cosmological linear scales (L1-L2). The transition should occur at scales k~0.01-0.1 h/Mpc where structure goes fro | Planned |
 | 2 | Grid-AQUAL Newton/MOND limits (KT1) | Grid-AQUAL solver, spherical point mass, N=41 grid | Inner slope → -2 (Newton) as a0→0; Outer slope → -1 (MOND) as a0→∞ | MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0) |
-| 3 | Grid-AQUAL prefactor convergence (KT2) | Grid-AQUAL solver, N ∈ {21, 31, 41}, spherical point mass M=50 | C converges to a finite value; residual between N-steps < 0.1 | C_vw = 2.3052 (converged) |
+| 3 | Grid-AQUAL prefactor convergence (KT2) | Grid-AQUAL solver, N ∈ {21, 31, 41}, spherical point mass M=50 | C converges to a finite value; residual between N-steps < 0.1 | C_vw = 2.2960 (converged) |
 | 4 | 2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip | MGCAMB v1.5.2, 25-point (μ,Σ) grid, Planck 2018 TTTEEE+lowl+lensing | If EFC entropy gradients modify Ψ (matter potential) more than Φ+Ψ (lensing potential), the framework naturally produces μ&lt;1 with Σ≈1.05 — exactly the viable region found in this scan. | MARGINAL |
-| 5 | EFC×Graph-AQUAL regime bridge (growth sector) | G_eff gate × linear growth ODE, 4 screening scales, C from KT2 | LCDM baseline survives; screening at k < 0.01 h/Mpc keeps σ₈ and γ within 5% of ΛCDM | C=2.31: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE. |
+| 5 | EFC×Graph-AQUAL regime bridge (growth sector) | G_eff gate × linear growth ODE, 4 screening scales, C from KT2 | LCDM baseline survives; screening at k < 0.01 h/Mpc keeps σ₈ and γ within 5% of ΛCDM | C=2.30: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE. |
 | 6 | Freeze v3: E_G(z=0.7) gravitational slip prediction | β=f/b from growth ODE + linear bias model, frozen α=-0.689 | EFC predicts E_G(z=0.7) differs from ΛCDM due to μ≠Σ. If μ<1 and Σ≈1, E_G should be systematically higher than ΛCDM. Exact value sealed with hash. | MARGINAL |
 | 7 | Grid-AQUAL mass-scaling exponent (KT3) | Grid-AQUAL solver, M ∈ {10, 25, 50, 100, 200}, N=41, a₀=2.0 | β = 0.50 ± 0.15 for isolated spherical sources | β = 0.3047 (target: 0.5 for √(GM/a₀)) |
 
@@ -431,7 +429,7 @@ _Tests whether G_eff(k,a) from the GRAV sector is compatible with cosmological l
 | Primitive Assumptions | 2 | 2 | 2 |
 
 
-The efc_v3.0 version demonstrates a significant improvement in compression, achieving a score of 1.0, which indicates a more explanatory framework with fewer primitives compared to efc_v1.0 and efc_v2.0, both of which have a compression score of 0.0. However, efc_v3.0 also exhibits a higher mismatch of 0.5, suggesting some disagreement with the data, while all versions share the same FP coverage of 0.8235, indicating no coverage gaps in tested phenomena. Notably, efc_v1.0 and efc_v2.0 have not been tested against any phenomena, which limits their practical applicability.
+The efc_v3.0 version demonstrates higher compression compared to both efc_v1.0 and efc_v2.0, indicating it is more explanatory with fewer primitives. However, it also exhibits a higher mismatch of 0.5, suggesting a greater disagreement with the data compared to the earlier versions, which have a mismatch of 0.0. All versions share the same FP coverage of 0.8235, but efc_v2.0 has not tested any phenomena, while efc_v3.0 has tested 2 out of 5, revealing some coverage gaps.
 
 
 ### Framework Constraints (21)
@@ -463,7 +461,7 @@ _Internal coherence mechanisms and structural exclusion arguments._
 | 21 | χ(x,t) = \|∇δS\|/S_global as universal regime control parameter | SPARC rotation curves (L2), Bullet Cluster (L2-L3 transition), Solar System PPN (L3), CMB (L0) | χ ≪ 1 in L0 (CMB), χ ~ 10⁻³-10⁻¹ in L1/L2 (galaxies, clusters), χ ≫ 1 in L3 (strong fields, black holes). Single scalar provides continuous regime transition. Density saturation Θ(ρ) should be express | Planned |
 
 
-### Planned Pipeline Tests (14)
+### Planned Pipeline Tests (15)
 
 _Fully specified tests awaiting execution._
 
@@ -475,14 +473,15 @@ _Fully specified tests awaiting execution._
 | 4 | CMB power spectrum | Planck 2018 (TT) | ⚪ | GR recovery expected (Boltzmann validation pending) |
 | 5 | Cluster abundance / mass function N(M,z) | eROSITA / SPT / Planck SZ | ⚪ | Planned – methodology defined |
 | 6 | Cluster shock-front lensing asymmetry | JWST κ maps + Chandra kT, ne(Bullet, Abell 2146) | ⚪ | Pre-registered – data analysis pending |
-| 7 | Global parameter-lock cross-probe test | BAO + RSD + lensing + ISW + Lyα | ⚪ | Planned – full joint likelihood with frozen parameters |
-| 8 | Linear & quasi-linear matter power spectrum shape P(k,z) | BOSS full-shape, eBOSS QSO, DESI full-shape | ⚪ | Planned – full-shape likelihood implementation required |
-| 9 | Multi-epoch RSD growth trajectory | 6dF, SDSS MGS, BOSS, eBOSS, DESI ELG | ⚪ | Planned – cross-survey joint trajectory fit |
-| 10 | Regime response surface R(k,S,ρ) | DES Y6 regime structure (multi-probe L2) | ⚪ | Framework defined – quantitative tests pending |
-| 11 | Small-scale structure | Rubin LSST / Euclid | ⚪ | Planned |
-| 12 | hi_class scalar-tensor EFC falsification test | hi_class numerical code + Planck 2018 CMB + DESI Y1 BAO + BOSS RSD (fσ8) | EFC predicts: a viable region {B0>0, M0<0} exists where mu≈0.925, eta≳1.2, Sigma≳1.05 at z~0.7, recovering mu=eta=Sigma=1 at z≳10. If no such region exists, the scalar-tensor ansatz is falsified as an | PIPELINE_NOT_READY |
-| 13 | Blind Prediction Freeze (nuts_20260220_221940) | — | — | — |
-| 14 | Blind Prediction Freeze v1 (NUTS cycle 20260217) | — | — | — |
+| 7 | Euclid DR1 pre-registration pipeline via hi_class | Euclid DR1 (21 October 2026): ~2100 deg^2 wide survey, 10 WL tomographic bins, 4 GC spectroscopic bins. Pre-validation against Planck 2018 + DESI BAO + KiDS-1000. | EFC predicts: mu(k_c=0.05, z=0) = 0.940, eta = 1.200, Sigma = 1.034. E_G bump of +5.5% at k_c, z=0.35, detectable at 2.5-3.5 sigma with Euclid WL x GC cross-correlation. Gravitational slip \|eta-1\| > | PIPELINE_NOT_READY |
+| 8 | Global parameter-lock cross-probe test | BAO + RSD + lensing + ISW + Lyα | ⚪ | Planned – full joint likelihood with frozen parameters |
+| 9 | Linear & quasi-linear matter power spectrum shape P(k,z) | BOSS full-shape, eBOSS QSO, DESI full-shape | ⚪ | Planned – full-shape likelihood implementation required |
+| 10 | Multi-epoch RSD growth trajectory | 6dF, SDSS MGS, BOSS, eBOSS, DESI ELG | ⚪ | Planned – cross-survey joint trajectory fit |
+| 11 | Regime response surface R(k,S,ρ) | DES Y6 regime structure (multi-probe L2) | ⚪ | Framework defined – quantitative tests pending |
+| 12 | Small-scale structure | Rubin LSST / Euclid | ⚪ | Planned |
+| 13 | hi_class scalar-tensor EFC falsification test | hi_class numerical code + Planck 2018 CMB + DESI Y1 BAO + BOSS RSD (fσ8) | EFC predicts: a viable region {B0>0, M0<0} exists where mu≈0.925, eta≳1.2, Sigma≳1.05 at z~0.7, recovering mu=eta=Sigma=1 at z≳10. If no such region exists, the scalar-tensor ansatz is falsified as an | PIPELINE_NOT_READY |
+| 14 | Blind Prediction Freeze (nuts_20260220_221940) | — | — | — |
+| 15 | Blind Prediction Freeze v1 (NUTS cycle 20260217) | — | — | — |
 
 
 ### Structural Constraints
@@ -571,21 +570,21 @@ _Chronological record of autonomous pipeline diagnostics. Numbers only — no in
 
 | Date | Diagnostic | Verdict | Description |
 |------|-----------|---------|-------------|
-| 2026-04-10 | None | **PASS** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-10 | None | **NO_SIGNAL** | None |
-| 2026-04-10 | None | **FAIL** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-10 | None | **COLLAPSED** | None |
-| 2026-04-09 | None | **PASS** | None |
-| 2026-04-09 | None | **COLLAPSED** | None |
-| 2026-04-09 | None | **NO_SIGNAL** | None |
-| 2026-04-09 | None | **FAIL** | None |
-| 2026-04-09 | None | **COLLAPSED** | None |
-| 2026-04-09 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **PASS** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **NO_SIGNAL** | None |
+| 2026-04-12 | None | **FAIL** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-12 | None | **COLLAPSED** | None |
+| 2026-04-11 | None | **PASS** | None |
+| 2026-04-11 | None | **COLLAPSED** | None |
+| 2026-04-11 | None | **NO_SIGNAL** | None |
+| 2026-04-11 | None | **FAIL** | None |
+| 2026-04-11 | None | **COLLAPSED** | None |
+| 2026-04-11 | None | **COLLAPSED** | None |
 
 
 ### Observational Environment (Science Domain Signals)
@@ -675,6 +674,7 @@ _Autonomous signal detection from 13 data daemons. Only science/cosmology/physic
 
 ## Recent Changes (last 7 days)
 
+- **2026-04-12** — Euclid DR1 pre-registration pipeline via hi_class: status=_pending_
 - **2026-04-08** — Axiom 0: S_hat(z) Regime Boundary Test: status=_pending_
 - **2026-04-07** — Action Integral Gap — k* derivability test: status=_pending_
 - **2026-04-07** — KT3b: Environmental mass-scaling test β(ρ_env): status=_planned_
