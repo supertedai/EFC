@@ -2,11 +2,31 @@
 
 > **Core Principle**: Energy flows along entropy gradients — this generates spacetime, structure, and awareness.
 
+## In plain English (a 60-second version)
+
+Today's standard picture of the universe says **95%** of it is made of two invisible ingredients — **dark matter** (the glue that holds galaxies together) and **dark energy** (the pressure that makes space expand faster and faster) — neither ever detected in a laboratory. The 5% we can actually measure is the only part nobody argues about.
+
+**EFC proposes a simpler idea:** gravity adjusts itself where disorder (entropy) is still building up, and behaves like ordinary Einstein gravity everywhere else. **One mechanism, two numbers, no invisible particles required.**
+
+But the deepest difference is **ontological, not parametric.** ΛCDM treats spacetime as a fixed stage and dark matter / dark energy as *ingredients* populating it. EFC treats **energy and entropy as primary** — spacetime, the effective gravitational response, and even *time itself* (as an index over irreversible Grid transitions, *Axiom 0*) emerge from energy flowing along entropy gradients through a discrete substrate. The "dark sector" is not a set of missing particles; it is what a coarse-grained observer measures when cross-regime physics is read with single-regime rulers (*Regime-Consistent Measurement Principle*). Same observations, fewer primitives, different picture of what the universe is made of. See the [Elevator Pitch](./docs/public/EFC_Elevator_Pitch.html) for the full side-by-side.
+
+Across **103 independent tests** so far (galaxy rotation curves, the cosmic microwave background, galaxy cluster collisions, cosmic expansion), EFC has not been ruled out. It does not yet *outperform* the standard model — the margins are too small to call a winner — but it survives every test. The decisive experiments are pre-registered in the [Stage-IV Data Roadmap](./docs/public/EFC_Stage-IV_Data_Roadmap.html).
+
+**Status:** candidate theory under test. Non-rejectable. Not proven. Not falsified. Global verdict remains **OPEN**.
+
+**What EFC does NOT claim:** that it is proven correct, that standard cosmology is wrong, or that dark matter is "disproven." It only claims: *here is a simpler alternative that current data cannot rule out, with explicit kill criteria the next generation of surveys will test.*
+
+---
+
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.16-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-137-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-139-brightgreen)](#ai-friendly-paper-packages)
+
+> **NEW (April 12, 2026)**: **[Euclid DR1 Pre-Registration Pipeline](./pipelines/efc/euclid_dr1/)** ([DOI 10.6084/m9.figshare.31990053](https://doi.org/10.6084/m9.figshare.31990053)) — Complete Boltzmann-calibrated prediction pipeline using custom `efc_logistic` gravity model in hi_class. SHA-256 sealed benchmark (B0=0.02, M0=0.06): σ₈ +1.21%, P(k) +2.09%, lensing −6.01%, E_G −3.98%. 36-point parameter scan. Stability: M0≥3B0. Planck ISW: M0<0.1. Predictions frozen for Euclid DR1 (October 2026).
+
+> **NEW (April 11, 2026)**: **[Kill-Test v6 Universality on SPARC 175](./docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175/)** ([DOI 10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762)) — Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies (identical `scipy.differential_evolution` pipeline, seed = 42, AIC model comparison). **EFC win rate 60.2%** on 171 successfully fitted galaxies (42.1% EFC_decisive); median ΔAIC = +6.21 (favours EFC); median χ²_red 0.44 (EFC) vs 1.69 (NFW); Mann-Whitney FLOW vs LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2. **Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level.**
 
 > **NEW (April 9, 2026)**: **[EFC White Paper Series (Parts 1-4)](./docs/papers/efc/efc_white_paper_part_1_to_4/)** — Canonical four-part reference. [Part 1](https://doi.org/10.6084/m9.figshare.31970886): Recovery conditions (EFC ⊃ ΛCDM). [Part 2](https://doi.org/10.6084/m9.figshare.31970898): Field equations & observable mapping. [Part 3](https://doi.org/10.6084/m9.figshare.31970904): Validation ledger & falsification protocol (102 tests, 5 kill criteria). [Part 4](https://doi.org/10.6084/m9.figshare.31970907): Regime susceptibility T(S) & dynamical dark energy.
 
@@ -32,9 +52,9 @@
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.16 public / v4.7 internal) |
-| **Papers** | 137 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
-| **AI Packages** | 137 with executable Python + structured data (100% coverage) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.17 public / v4.8 internal) |
+| **Papers** | 139 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **AI Packages** | 138 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
 | **Consolidation** | [ΛCDM as Special Case of EFC](https://doi.org/10.6084/m9.figshare.31943361) — single reference for full programme |
@@ -157,7 +177,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 internal) tracks 102 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.17 / v4.8 internal) tracks 103 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
 ### EFC White Paper Series (Canonical Reference)
 
@@ -178,6 +198,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.16 / v4.7 
 | **EFC-VAL-2026-005** | KT3b Cross-Regime Failure | RCMP violations V1/V2/V3; 3 valid architectures proposed | [31963821](https://doi.org/10.6084/m9.figshare.31963821) |
 | **EFC-VAL-2026-006** | EFC vs ΛCDM Kill-Test v6 | 4/4 cobaya Δχ² ≤ 0; K₀ = 1.552, m² = 0.00318 | [31964847](https://doi.org/10.6084/m9.figshare.31964847) |
 | **EFC-VAL-2026-007** | EFC Consciousness Bridge | Three-equation system; 1 free param (γ); 5/5 propofol consistent | [31969983](https://doi.org/10.6084/m9.figshare.31969983) |
+| **EFC-VAL-2026-008** | Kill-Test v6 Universality (SPARC 175) | 60.2% EFC win rate on 171/175; median ΔAIC = +6.21; cherry-picking refuted | [31986762](https://doi.org/10.6084/m9.figshare.31986762) |
 
 ### Selected Earlier Results
 | Test | Status | Reference |
@@ -263,24 +284,26 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 137 papers, all with AI-friendly packages (100% coverage). Six hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 139 papers, all with AI-friendly packages (100% coverage). Eight hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 137 papers have AI-friendly packages (100% coverage as of April 2026). Six hand-curated 10/10 validation reports with full reproducible pipelines:
+All 139 papers have AI-friendly packages (100% coverage as of April 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|
 | **EFC vs ΛCDM Kill-Test v6** | `kill_test_suite.py`, `k_rho_bridge.py`, `gravitational_slip.py`, `cobaya_minimize.py` | Six-probe kill-test, K(ρ) bridge, sector decomposition |
+| **Kill-Test v6 Universality (SPARC 175)** | `sparc175_killtest_universality.py` | Single-component EFC + NFW on all 175 SPARC galaxies; 60.2% EFC win rate |
 | **Bullet Cluster Under EFC** | `asig_2d_piemd.py` | PIEMD 4-halo A_sig operator, bootstrap null test |
 | **KT3b Cross-Regime** | `rcmp_check.py` | RCMP linter for V1/V2/V3 violations, 4 architecture factories |
 | **Multi-epoch fσ₈ Growth** | `efc_multi_epoch_v2.py` | Full linear growth ODE, μ(a) gate, 14-point fit |
 | **WP4 BOSS Transfer** | `wp4_transfer.py` | Regime gate, covariance diagnostics, Cholesky whitening |
 | **Consciousness Bridge** | `consciousness_bridge.py` | Three-equation system, non-separable C, regime mapping |
+| **Euclid DR1 Pre-Registration** | `efc_logistic_demo.py`, `run_benchmark.py` | hi_class Boltzmann with custom `efc_logistic` gravity model, SHA-256 sealed predictions |
 
-Plus 128 auto-generated packages each containing:
+Plus 127 auto-generated packages each containing:
 
 | Package | Module | Key Classes |
 |---------|--------|-------------|
@@ -311,7 +334,7 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 134 papers with AI-friendly packages (100%)
+│   ├── papers/efc/     # 139 papers with AI-friendly packages (100%)
 │   ├── public/         # Validation Ledger (v3.15), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
@@ -326,9 +349,16 @@ EFC/
 │       ├── validation/ # Validation routines & SPARC I/O
 │       └── meta/       # Co-field simulator
 ├── pipelines/
-│   └── efc/native_v2_graph/  # Graph-AQUAL pipeline
-│       ├── kernel/     # AQUAL, energy, fields, operators
-│       └── tests/      # Kill tests (KT1–KT5)
+│   └── efc/
+│       ├── native_v2_graph/  # Graph-AQUAL pipeline
+│       │   ├── kernel/     # AQUAL, energy, fields, operators
+│       │   └── tests/      # Kill tests (KT1–KT5)
+│       └── euclid_dr1/      # Euclid DR1 pre-registration pipeline
+│           ├── src/        # mu/eta/Sigma, hi_class bridge, mock likelihood
+│           ├── config/     # hi_class .ini, cobaya .yaml
+│           ├── data/       # Alpha table, benchmark, parameter scan, hi_class patch
+│           ├── tests/      # 6 sanity checks (A–F)
+│           └── docs/       # RCMP compliance matrix
 ├── schema/             # Ontology & JSON-LD contexts
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files

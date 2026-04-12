@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_Cosmic_Dipole_Working_Note.pdf",
@@ -17,8 +17,16 @@
   ],
   "files": [
     {
+      "path": "CITATION.cff",
+      "bytes": 594
+    },
+    {
       "path": "EFC_Cosmic_Dipole_Working_Note.pdf",
       "bytes": 282384
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 298
     },
     {
       "path": "README.md",
@@ -26,7 +34,7 @@
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 1681
+      "bytes": 1612
     },
     {
       "path": "citations.bib",
@@ -34,7 +42,7 @@
     },
     {
       "path": "cosmic_dipole.jsonld",
-      "bytes": 1227
+      "bytes": 1508
     },
     {
       "path": "data/cosmic_dipole_data.json",
@@ -42,7 +50,7 @@
     },
     {
       "path": "efc-cosmic-dipole-working-note.jsonld",
-      "bytes": 497
+      "bytes": 662
     },
     {
       "path": "examples/demo_cosmic_dipole.py",
@@ -50,11 +58,11 @@
     },
     {
       "path": "index.json",
-      "bytes": 2990
+      "bytes": 3336
     },
     {
       "path": "metadata.json",
-      "bytes": 1240
+      "bytes": 1510
     },
     {
       "path": "schema.json",
@@ -69,6 +77,6 @@
       "bytes": 9135
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

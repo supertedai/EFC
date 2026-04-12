@@ -12,7 +12,6 @@
   "framework": "Energy-Flow Cosmology (EFC) v3.7",
   "license": "CC-BY-4.0",
   "language": "en",
-
   "classification": {
     "domain": "theoretical_physics",
     "track": "galactic_cosmological",
@@ -20,7 +19,6 @@
     "category": "microphysical_derivation",
     "level": "foundational"
   },
-
   "methodology": {
     "approach": "Lagrangian field theory",
     "techniques": [
@@ -40,7 +38,6 @@
       "Occupation → μ(g) screening"
     ]
   },
-
   "parameters": {
     "m_eff": {
       "description": "Effective mass of grid DOF",
@@ -59,13 +56,11 @@
       "role": "regime boundary"
     }
   },
-
   "open_questions": [
     "Grid DOF existence (L3 assumption)",
     "Coupling form uniqueness within operator class",
     "Hierarchy condition κ₀/(αa₀) ≪ 1"
   ],
-
   "related_papers": [
     {
       "doi": "10.6084/m9.figshare.31878760",
@@ -92,5 +87,9 @@
       "title": "Discrete Gravity on Entropy Graphs",
       "relation": "references"
     }
-  ]
+  ],
+  "paper": {
+    "doi": "10.6084/m9.figshare.31941465",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31941465"
+  }
 }

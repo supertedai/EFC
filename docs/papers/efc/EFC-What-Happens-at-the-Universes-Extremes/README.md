@@ -1,5 +1,7 @@
 # EFC — What Happens at the Universe’s Extremes?
 
+**DOI:** [10.6084/m9.figshare.28098380](https://doi.org/10.6084/m9.figshare.28098380)
+
 This directory contains the paper examining the behaviour of energy,
 entropy, structure, and spacetime near the extreme boundaries of the
 universe within the Energy-Flow Cosmology framework.  

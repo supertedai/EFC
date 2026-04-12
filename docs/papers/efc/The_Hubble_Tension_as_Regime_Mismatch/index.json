@@ -28,13 +28,20 @@
     "background": {
       "description": "Linear, smooth cosmological background",
       "effective_G": "G₀",
-      "probes": ["CMB", "BAO"],
+      "probes": [
+        "CMB",
+        "BAO"
+      ],
       "h0_inferred": "~67 km/s/Mpc"
     },
     "structure": {
       "description": "Nonlinear, collapsed structures",
       "effective_G": "G₀ exp(a_G · ΔΦ)",
-      "probes": ["SN Ia + Cepheids", "TRGB", "Masers"],
+      "probes": [
+        "SN Ia + Cepheids",
+        "TRGB",
+        "Masers"
+      ],
       "h0_inferred": "~73 km/s/Mpc"
     }
   },
@@ -69,5 +76,6 @@
       "doi": "10.6084/m9.figshare.31223503",
       "relationship": "mathematical_foundation"
     }
-  ]
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224247"
 }

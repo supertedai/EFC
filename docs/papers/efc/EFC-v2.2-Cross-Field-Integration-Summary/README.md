@@ -1,5 +1,7 @@
 # EFC — v2.2 Cross-Field Integration Summary
 
+**DOI:** [10.6084/m9.figshare.30530156](https://doi.org/10.6084/m9.figshare.30530156)
+
 This directory contains the v2.2 Cross-Field Integration Summary for the
 Energy-Flow Cosmology project.  
 It outlines how the thermodynamic, structural, dynamical, entropic, and

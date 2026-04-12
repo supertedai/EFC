@@ -1,5 +1,7 @@
 # EFC — Formal Specification
 
+**DOI:** [10.6084/m9.figshare.30630500](https://doi.org/10.6084/m9.figshare.30630500)
+
 This directory contains the formal specification of the Energy-Flow
 Cosmology framework.  
 It defines the mathematical objects, field equations, structural

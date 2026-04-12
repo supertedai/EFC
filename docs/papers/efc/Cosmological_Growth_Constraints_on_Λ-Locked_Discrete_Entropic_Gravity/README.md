@@ -1,5 +1,7 @@
 # Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity
 
+**DOI:** [10.6084/m9.figshare.31348414](https://doi.org/10.6084/m9.figshare.31348414)
+
 ## AI-Friendly Package
 
 **Version**: 1.0

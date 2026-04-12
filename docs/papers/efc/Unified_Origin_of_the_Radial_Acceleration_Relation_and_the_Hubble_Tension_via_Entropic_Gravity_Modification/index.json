@@ -71,10 +71,33 @@
   ],
   "files": {
     "paper": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification.pdf",
-    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
-    "metadata": ["CITATION.cff", "index.json", "H0Unification.jsonld", "schema.json"],
-    "source_code": ["src/entropy_mapping.py", "src/phase_calculator.py", "src/h0_predictor.py", "src/mond_interpolation.py", "src/unification.py"],
-    "data": ["data/h0_measurements.json", "data/mond_table.json", "data/parameters.json"],
-    "examples": ["examples/h0_prediction.py", "examples/unification_demo.py"]
-  }
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "H0Unification.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/entropy_mapping.py",
+      "src/phase_calculator.py",
+      "src/h0_predictor.py",
+      "src/mond_interpolation.py",
+      "src/unification.py"
+    ],
+    "data": [
+      "data/h0_measurements.json",
+      "data/mond_table.json",
+      "data/parameters.json"
+    ],
+    "examples": [
+      "examples/h0_prediction.py",
+      "examples/unification_demo.py"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223908"
 }

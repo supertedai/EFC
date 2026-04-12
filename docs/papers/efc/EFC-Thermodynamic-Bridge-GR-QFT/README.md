@@ -1,5 +1,7 @@
 # EFC — The Thermodynamic Bridge Between GR and QFT
 
+**DOI:** [10.6084/m9.figshare.30402427](https://doi.org/10.6084/m9.figshare.30402427)
+
 This directory contains the paper outlining the thermodynamic bridge
 between General Relativity (GR) and Quantum Field Theory (QFT) within the
 Energy-Flow Cosmology framework.  

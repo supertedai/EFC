@@ -1,5 +1,7 @@
 # EFC — CMB Thermodynamic Gradient
 
+**DOI:** [10.6084/m9.figshare.28570088](https://doi.org/10.6084/m9.figshare.28570088)
+
 This directory contains the paper describing the thermodynamic gradient
 interpretation of the Cosmic Microwave Background (CMB) in
 Energy-Flow Cosmology. It explains how entropy flow, energy gradients,

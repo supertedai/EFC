@@ -1,5 +1,7 @@
 # Regime Structure and Entropic Flow Ontology in Discrete Gravity Models
 
+**DOI:** [10.6084/m9.figshare.31348417](https://doi.org/10.6084/m9.figshare.31348417)
+
 ## AI-Friendly Package
 
 **Version**: 1.0

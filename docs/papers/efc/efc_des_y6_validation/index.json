@@ -10,7 +10,10 @@
   "license": "CC-BY-4.0",
   "type": "validation-update",
   "track": "Spor 1 — Galactic/Cosmological",
-  "regimes": ["L1", "L0"],
+  "regimes": [
+    "L1",
+    "L0"
+  ],
   "key_result": {
     "test": "P3 lensing consistency",
     "status": "PASS",
@@ -19,24 +22,73 @@
     "predicted_ratio": 0.95,
     "predicted_uncertainty": 0.03,
     "agreement_sigma": 0.3,
-    "preregistered_window": [0.90, 1.00]
+    "preregistered_window": [
+      0.9,
+      1.0
+    ]
   },
   "data": {
-    "S8_DES_Y6": {"value": 0.789, "uncertainty": 0.012, "source": "arXiv:2601.14559", "model": "LCDM 3x2pt"},
-    "S8_CMB_2026": {"value": 0.836, "uncertainty": 0.012, "source": "Qu et al. 2026 (Planck+ACT DR6+SPT-3G)"},
-    "DES_Y6_survey": {"area_deg2": 5000, "source_galaxies_M": 140, "lens_galaxies_M": 9, "n_eff_arcmin2": 8.22}
+    "S8_DES_Y6": {
+      "value": 0.789,
+      "uncertainty": 0.012,
+      "source": "arXiv:2601.14559",
+      "model": "LCDM 3x2pt"
+    },
+    "S8_CMB_2026": {
+      "value": 0.836,
+      "uncertainty": 0.012,
+      "source": "Qu et al. 2026 (Planck+ACT DR6+SPT-3G)"
+    },
+    "DES_Y6_survey": {
+      "area_deg2": 5000,
+      "source_galaxies_M": 140,
+      "lens_galaxies_M": 9,
+      "n_eff_arcmin2": 8.22
+    }
   },
   "efc_parameters": {
-    "screening_exponent_k": {"value": 0.415, "uncertainty": 0.05, "source": "SPARC Phase 3"},
-    "cosmological_coupling_aG": {"value": 0.094, "uncertainty": 0.01, "source": "H0 analysis"},
+    "screening_exponent_k": {
+      "value": 0.415,
+      "uncertainty": 0.05,
+      "source": "SPARC Phase 3"
+    },
+    "cosmological_coupling_aG": {
+      "value": 0.094,
+      "uncertainty": 0.01,
+      "source": "H0 analysis"
+    },
     "gravitational_slip_eta": 1.0,
     "Sigma_EFC_lensing": 0.95
   },
   "validation_table": [
-    {"test": "P1", "name": "Closure g† = cH0/e", "predicted": "2.5e-10 m/s^2", "observed": "2.51 ± 0.60", "status": "consistent"},
-    {"test": "P2", "name": "Cross-scale C stability", "predicted": "C ≈ 4.4", "observed": null, "status": "untested"},
-    {"test": "P3", "name": "Lensing S8 ratio", "predicted": "0.95 ± 0.03", "observed": "0.944 ± 0.018", "status": "PASS"},
-    {"test": "A3", "name": "η = 1 assumption", "predicted": "η = 1", "observed": null, "status": "not tested here"}
+    {
+      "test": "P1",
+      "name": "Closure g† = cH0/e",
+      "predicted": "2.5e-10 m/s^2",
+      "observed": "2.51 ± 0.60",
+      "status": "consistent"
+    },
+    {
+      "test": "P2",
+      "name": "Cross-scale C stability",
+      "predicted": "C ≈ 4.4",
+      "observed": null,
+      "status": "untested"
+    },
+    {
+      "test": "P3",
+      "name": "Lensing S8 ratio",
+      "predicted": "0.95 ± 0.03",
+      "observed": "0.944 ± 0.018",
+      "status": "PASS"
+    },
+    {
+      "test": "A3",
+      "name": "η = 1 assumption",
+      "predicted": "η = 1",
+      "observed": null,
+      "status": "not tested here"
+    }
   ],
   "limitations": [
     "1D test — single-number compression; needs full Cℓ comparison",
@@ -46,8 +98,16 @@
     "k = 0.415 inherits SPARC systematics"
   ],
   "predecessors": [
-    {"role": "lensing prediction", "doi": "10.6084/m9.figshare.31188193", "title": "EFC Weak Lensing Phenomenology"},
-    {"role": "SPARC validation", "doi": "10.6084/m9.figshare.31224538", "title": "EFC Phase 3 SPARC Validation"}
+    {
+      "role": "lensing prediction",
+      "doi": "10.6084/m9.figshare.31188193",
+      "title": "EFC Weak Lensing Phenomenology"
+    },
+    {
+      "role": "SPARC validation",
+      "doi": "10.6084/m9.figshare.31224538",
+      "title": "EFC Phase 3 SPARC Validation"
+    }
   ],
   "next_steps": [
     "Euclid DR1 (October 2026) — independent S8 measurement",
@@ -64,5 +124,6 @@
     "module": "src/des_y6_validation.py",
     "data": "data/des_y6_data.json",
     "demo": "examples/demo.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31951992"
 }

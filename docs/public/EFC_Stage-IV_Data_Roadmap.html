@@ -144,6 +144,7 @@
 <h1>Energy-Flow Cosmology (EFC) &mdash; Stage-IV Data Roadmap</h1>
 
 <div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Elevator Pitch</a>
   <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation Ledger</a>
   <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper Series</a>
   <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:700;">Stage-IV Roadmap</a>
@@ -155,6 +156,39 @@ Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
 ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
 April 2026 &middot; CC-BY-4.0
 </p>
+
+<!-- Plain-English elevator pitch (shared across the three public EFC pages) -->
+<div style="background-color:#fffaf0; border:1px solid #d4a76a; border-left:6px solid #c57b2a; padding:16px 22px; margin:18px 0; border-radius:6px;">
+  <p style="margin:0 0 8px 0; font-size:17px; font-weight:700; color:#5b3a0e;">
+    What is Energy-Flow Cosmology? A 60-second version.
+  </p>
+  <p style="margin:0 0 10px 0; font-size:14.5px; color:#2e2e2e; line-height:1.65;">
+    Today's standard picture of the universe says <strong>95%</strong> of it is made
+    of two invisible ingredients &mdash; <strong>dark matter</strong> and
+    <strong>dark energy</strong> &mdash; neither ever detected in a laboratory.
+    EFC proposes a simpler alternative: <strong>gravity adjusts itself where
+    disorder (entropy) is still building up, and behaves like ordinary Einstein
+    gravity everywhere else.</strong> One mechanism, two numbers, no invisible
+    particles required.
+  </p>
+  <p style="margin:0 0 10px 0; font-size:14.5px; color:#2e2e2e; line-height:1.65;">
+    The difference is <strong>ontological, not parametric</strong>. ΛCDM treats
+    spacetime as a fixed stage with dark matter + dark energy as ingredients. EFC
+    treats energy and entropy as primary &mdash; spacetime, gravity, and time
+    itself (an index over irreversible Grid transitions) emerge from them. The
+    "dark" sector is not a set of missing particles; it is a consequence of how
+    a single-regime observer reads cross-regime physics. See the
+    <a href="EFC_Elevator_Pitch.html">elevator pitch</a> for the full
+    side-by-side.
+  </p>
+  <p style="margin:0; font-size:14.5px; color:#2e2e2e; line-height:1.65;">
+    This roadmap lists the next-generation surveys that will decide whether EFC
+    survives or falls. Each row is a kill criterion frozen <em>before</em> the
+    relevant data arrives, so no result can be back-fitted.
+    <a href="EFC_Validation_Ledger.html">See the Validation Ledger</a> for the
+    103 tests already completed.
+  </p>
+</div>
 
 <!-- Executive Summary -->
 <div style="background-color:#f8f9fa; border-left:4px solid #007bff; padding:15px; margin:20px 0;">
@@ -381,10 +415,10 @@ as primary decision criteria due to prior sensitivity.</p>
   <td>40M redshifts; definitive RSD trajectory; BAO anisotropic split</td>
 </tr>
 <tr>
-  <td>CMB-S4</td>
-  <td>First data</td>
-  <td>~2030+</td>
-  <td>Sub-percent CMB lensing; definitive A<sub>L</sub>; primordial B-modes</td>
+  <td><s>CMB-S4</s> &rarr; Simons Observatory</td>
+  <td>SO science data / LiteBIRD (2032+)</td>
+  <td>SO: ~2026&ndash;2028; LiteBIRD: 2032+</td>
+  <td>CMB-S4 cancelled July 2025. SO LAT operational (first light Feb 2025): CMB lensing, E/B polarisation, ISW. LiteBIRD: primordial B-modes, full-sky &tau;.</td>
 </tr>
 <tr>
   <td>Einstein Telescope</td>
@@ -705,10 +739,10 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <table>
 <thead><tr><th>Priority</th><th>Item</th><th>Required For</th><th>Deadline</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td><strong>1</strong></td><td>Euclid DR1 S<sub>8</sub> extraction pipeline</td><td>KC3; P3 replication</td><td>2026 Oct</td><td><span class="pipeline-badge">IN PROGRESS</span></td></tr>
-<tr><td><strong>2</strong></td><td>ISW cross-correlation (A<sub>ISW</sub>)</td><td>F1</td><td>2026 H2</td><td><span class="pipeline-badge">PREDICTION READY</span></td></tr>
-<tr><td><strong>3</strong></td><td>E<sub>G</sub> estimator implementation</td><td>KC4; FA4</td><td>~2028</td><td><span class="pipeline-badge">METHOD DEFINED</span></td></tr>
-<tr><td><strong>4</strong></td><td>Full-shape P(k) likelihood with EFC growth</td><td>KC1; F4</td><td>~2027</td><td><span class="pipeline-badge">PIPELINE NEEDED</span></td></tr>
+<tr><td><strong>1</strong></td><td>Euclid DR1 S<sub>8</sub> extraction pipeline</td><td>KC3; P3 replication</td><td>2026 Oct</td><td><span class="pipeline-badge">PREDICTION READY</span> hi_class + efc_logistic; benchmark frozen (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>, SHA-256 sealed 2026-04-12)</td></tr>
+<tr><td><strong>2</strong></td><td>ISW cross-correlation (A<sub>ISW</sub>)</td><td>F1</td><td>2026 H2</td><td><span class="pipeline-badge">PREDICTION READY</span> Cl<sup>TT</sup>(&ell;=30): +1.88% at benchmark</td></tr>
+<tr><td><strong>3</strong></td><td>E<sub>G</sub> estimator implementation</td><td>KC4; FA4</td><td>~2028</td><td><span class="pipeline-badge">PREDICTION READY</span> E<sub>G</sub>(&ell;=66): &minus;3.98% from Cl<sup>&phi;&phi;</sup>/P(k) ratio</td></tr>
+<tr><td><strong>4</strong></td><td>Full-shape P(k) likelihood with EFC growth</td><td>KC1; F4</td><td>~2027</td><td><span class="pipeline-badge">PREDICTION READY</span> P(k<sub>c</sub>,z=0.5): +2.09% via hi_class Boltzmann</td></tr>
 <tr><td><strong>5</strong></td><td>Void catalogue + ISW stacking</td><td>Void ISW sign-flip</td><td>~2028</td><td><span class="pipeline-badge">METHOD DEFINED</span></td></tr>
 <tr><td><strong>6</strong></td><td>Cluster shock-front &kappa; analysis</td><td>F3</td><td>2026&ndash;2027</td><td><span class="pipeline-badge">PRE-REGISTERED</span></td></tr>
 <tr><td><strong>7</strong></td><td>EFCLASS Boltzmann solver</td><td>Full C<sub>&ell;</sub>; ADM Hamiltonian</td><td>~2028</td><td><span class="pipeline-badge">PLANNED</span></td></tr>
@@ -746,6 +780,74 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 
 <hr>
 
+<h2>12. Gap Analysis (April 2026)</h2>
+
+<p>Living assessment of what the project needs vs what exists. Updated monthly or on significant external events. Last update: 2026-04-12.</p>
+
+<h3>12.1 External Landscape Changes Since Last Roadmap Version</h3>
+
+<table>
+<thead><tr><th>Event</th><th>Date</th><th>Impact on EFC</th><th>Action Required</th></tr></thead>
+<tbody>
+<tr><td><strong>CMB-S4 cancelled</strong></td><td>July 2025</td><td>Primary future CMB lensing instrument lost. Sub-percent CMB lensing now depends on Simons Observatory + LiteBIRD (2032+).</td><td>Update all CMB-S4 references in roadmap. Simons Observatory is the effective near-term replacement.</td></tr>
+<tr><td><strong>Simons Observatory LAT first light</strong></td><td>Feb&ndash;Mar 2025</td><td>CMB lensing reconstruction capability now operational. First SO &times; Euclid cross-correlation data expected ~2027.</td><td>Pre-register EFC prediction for SO &times; Euclid E<sub>G</sub> cross-correlation (gravitational slip &eta; = 1 test).</td></tr>
+<tr><td><strong>Rubin/LSST first photons</strong></td><td>Apr 2025</td><td>Survey now operational. DP2 expected Jul&ndash;Sep 2026. DR1 ~early 2028.</td><td>Pre-register EFC cosmic shear predictions before DP2 (target: July 2026).</td></tr>
+<tr><td><strong>DES Year 6 3&times;2pt released</strong></td><td>Jan 2026</td><td>S<sub>8</sub> = 0.789 &plusmn; 0.012. P3 PASS at 0.3&sigma;. 2.6&sigma; tension with CMB.</td><td>Completed. Result logged in Ledger v3.9.</td></tr>
+<tr><td><strong>DESI DR2 BAO released</strong></td><td>Mar 2025</td><td>2.8&ndash;4.2&sigma; preference for w&#8320;w<sub>a</sub>CDM over &Lambda;CDM. f(R) models strongly preferred.</td><td>Verify &alpha;<sub>L2</sub> against DR2 chains. EFC regime fit shows &Delta;AIC = &minus;18.01 (31230703).</td></tr>
+<tr><td><strong>DESI DR1 peculiar velocity f&sigma;<sub>8</sub></strong></td><td>Dec 2025</td><td>f&sigma;<sub>8</sub>(z=0.07) = 0.450 &plusmn; 0.055. Low-z, low discriminating power for EFC.</td><td>Monitor. DR2 full-shape RSD at z~0.5&ndash;0.7 is the key pending test.</td></tr>
+<tr><td><strong>Entropic gravity competitors</strong></td><td>2025&ndash;2026</td><td>Multiple arXiv papers (2503.19056, 2503.08236, 2512.22103, 2508.13260) show entropic cosmology models statistically preferred over &Lambda;CDM with DESI DR2. Competitive landscape intensifying.</td><td>Differentiate EFC via the perturbation-sector discriminant signature (&mu;&lt;1, &Sigma;&gt;1, &eta;&asymp;1.10) which competitors lack.</td></tr>
+</tbody>
+</table>
+
+<h3>12.2 Kill Criteria Readiness</h3>
+
+<table>
+<thead><tr><th>KC</th><th>Pipeline Status</th><th>Gap</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td><span class="kill-badge">KC1</span> P(k) full-shape</td><td><span class="pass-badge">PREDICTION READY</span></td><td>None &mdash; hi_class + efc_logistic sealed (31990053). Awaiting DESI DR3 (~2027).</td><td>Low (pipeline complete)</td></tr>
+<tr><td><span class="kill-badge">KC2</span> f&sigma;<sub>8</sub> trajectory</td><td><span class="seal-badge">SEALED</span></td><td>None &mdash; sealed prediction z<sub>cross</sub> = 2.042. Awaiting DESI DR3 Ly&alpha; + high-z RSD.</td><td>Low (prediction locked)</td></tr>
+<tr><td><span class="kill-badge">KC3</span> S<sub>8</sub> convergence</td><td><span class="pass-badge">P3 PASS</span></td><td>DES Y6 passed (0.3&sigma;). KiDS Legacy divergence unresolved. <strong>Euclid DR1 (Oct 2026) will arbitrate.</strong></td><td>Medium (Euclid pipeline ready, need to monitor KiDS Legacy release ~2027)</td></tr>
+<tr><td><span class="kill-badge">KC4</span> Gravitational slip &eta;</td><td><span class="pipeline-badge">PREDICTION READY</span></td><td>E<sub>G</sub> estimator prediction ready via hi_class. <strong>Gap: no SO &times; Euclid cross-correlation prediction pre-registered.</strong></td><td><strong>HIGH</strong> &mdash; pre-register before SO CMB lensing maps available (~2026)</td></tr>
+<tr><td><span class="kill-badge">KC5</span> Dark energy w(z)</td><td>Monitoring</td><td>DESI DR2 shows 2.3&sigma; for w&#8320;w<sub>a</sub>CDM. EFC consistent. Gap: need formal w(a) = &minus;&beta;(S)&middot;a prediction confronted with Euclid DR1 chains.</td><td>Medium &mdash; derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility</td></tr>
+</tbody>
+</table>
+
+<h3>12.3 Theory Gaps</h3>
+
+<table>
+<thead><tr><th>Gap</th><th>Status</th><th>Blocking</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>Bellini-Sawicki &alpha;-function mapping</td><td>Not started</td><td>Euclid EFT pipeline compatibility</td><td><strong>HIGH</strong> &mdash; needed before Euclid DR1 (Oct 2026)</td></tr>
+<tr><td>Full non-linear ADM Hamiltonian stability</td><td>Passed at 2nd order; full non-linear pending</td><td>FA6</td><td>Medium</td></tr>
+<tr><td>EFCLASS Boltzmann solver</td><td>Partial (hi_class patch exists)</td><td>Full C<sub>&ell;</sub> predictions</td><td>Medium &mdash; hi_class efc_logistic covers the key regime</td></tr>
+<tr><td>Multi-component 175-galaxy SPARC universality</td><td>Single-component completed (60.2% win rate). Full multi-component pending.</td><td>Final rotation-curve validation</td><td>Medium</td></tr>
+</tbody>
+</table>
+
+<h3>12.4 Priority Actions</h3>
+
+<ol>
+<li><strong>IMMEDIATE (Apr&ndash;Jun 2026):</strong> Monitor DESI for release of DR2 full-shape RSD paper at z~0.5&ndash;0.7. This is the only currently pending direct test of the sealed prediction f&sigma;<sub>8</sub>(z=0.7) = 0.430. Also: derive Bellini-Sawicki &alpha;-functions from EFC action for Euclid EFT pipeline.</li>
+<li><strong>BY JULY 2026:</strong> Pre-register EFC predictions for Rubin/LSST DP2 cosmic shear. LSST S<sub>8</sub> precision will exceed DES Y6 fivefold.</li>
+<li><strong>BY SEPTEMBER 2026:</strong> Pre-register EFC predictions for Simons Observatory &times; Euclid E<sub>G</sub> cross-correlation. First direct next-generation test of &eta; = 1.</li>
+<li><strong>BEFORE OCTOBER 2026:</strong> Euclid DR1 pre-registration is sealed (31990053). Verify pipeline scripts and Boltzmann outputs are version-controlled and DOI-stamped.</li>
+<li><strong>2027:</strong> Derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility T(S) for confrontation with Euclid DR1 + DESI DR3 joint chains.</li>
+</ol>
+
+<h3>12.5 Competitor Landscape</h3>
+
+<table>
+<thead><tr><th>Model</th><th>arXiv</th><th>Key Claim</th><th>EFC Differentiator</th></tr></thead>
+<tbody>
+<tr><td>Modified entropic gravity (Odintsov+)</td><td>2503.08236</td><td>Modified Friedmann from extended entropy; fits Pantheon+BAO+Planck</td><td>EFC has perturbation-sector predictions (&mu;&lt;1, &Sigma;&gt;1, &eta;); competitor is background-only</td></tr>
+<tr><td>Mass-to-horizon entropic cosmology</td><td>2508.13260, 2512.22103</td><td>Bayesian analysis vs DESI DR2 BAO; preferred over &Lambda;CDM</td><td>EFC has galactic-scale RAR (k=0.415) and cross-scale P3 link; competitor lacks galactic sector</td></tr>
+<tr><td>f(R) gravity (DESI DR2)</td><td>2504.05432</td><td>Starobinsky/Exponential f(R) strongly preferred with DESI DR2</td><td>EFC has &mu;&lt;1 (f(R) has &mu;&gt;1); sign of &mu; is the discriminant (FA2)</td></tr>
+<tr><td>Ray-traced screened MG for LSST</td><td>2604.08393</td><td>LSST weak-lensing predictions for screened MG</td><td>Methodological template &mdash; EFC should adapt for its own LSST predictions</td></tr>
+</tbody>
+</table>
+
+<hr>
+
 <h2>Bottom Line</h2>
 
 <table class="bottom-line">
@@ -754,7 +856,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <tr><td>Next critical date</td><td><strong>2026 Oct 21</strong> &mdash; Euclid DR1: tests KC3, KC5, FA2, P3 replication</td></tr>
 <tr><td>Sealed predictions</td><td>2 cryptographic freezes; 6 quantitative values; testable by DESI DR3 (~2027&ndash;2028)</td></tr>
 <tr><td>Kill criteria</td><td>5 (KC1&ndash;KC5) + 6 action-level (FA1&ndash;FA6) + 6 standing (F1&ndash;F6) = <strong>17 falsification conditions</strong></td></tr>
-<tr><td>Pipeline gaps</td><td>4 items before data arrival (E<sub>G</sub>, full-shape likelihood, EFCLASS, void stacking)</td></tr>
+<tr><td>Pipeline gaps</td><td>1 item before data arrival (void stacking); E<sub>G</sub>, full-shape P(k), and S<sub>8</sub> pipelines now complete via hi_class efc_logistic (2026-04-12)</td></tr>
 <tr><td>Statistical framework</td><td>Survey-provided likelihoods/covariance; &Delta;&chi;&sup2; / &Delta;AIC primary; no EFC nuisance parameters</td></tr>
 <tr><td>Key discriminant</td><td>&eta; &asymp; 1.10 &mdash; rules out massive neutrinos, f(R), w&#8320;w<sub>a</sub>CDM if confirmed</td></tr>
 <tr><td>Failure protocol</td><td>KC = hard kill; FA = action revision; F = tension. No reclassification post-data.</td></tr>

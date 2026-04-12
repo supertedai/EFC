@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 Hypothesis: Interrelation Between Energy and Entropy",
+  "title": "EFC — Hypothesis: Interrelation Between Energy and Entropy",
   "short_id": "efc-hypothesis-energy-entropy-interrelation",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -38,8 +38,14 @@
     "jsonld": "EFC-Hypothesis-Interrelation-Energy-Entropy.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/energy_entropy_interrelation.py"],
+    "src_modules": [
+      "src/energy_entropy_interrelation.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_energy_entropy.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28557281",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28557281"
   }
 }

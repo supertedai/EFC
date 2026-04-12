@@ -1,5 +1,7 @@
 # EFC — Observational Evidence for Entropy in Cosmic Evolution
 
+**DOI:** [10.6084/m9.figshare.28098299](https://doi.org/10.6084/m9.figshare.28098299)
+
 This directory contains the paper reviewing observational signatures that
 support an entropy-driven model of cosmic evolution within the
 Energy-Flow Cosmology framework.  

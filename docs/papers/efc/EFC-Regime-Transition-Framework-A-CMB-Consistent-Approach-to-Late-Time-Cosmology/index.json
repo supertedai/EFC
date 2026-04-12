@@ -12,12 +12,31 @@
   "type": "theoretical_framework",
   "status": "published",
   "abstract_short": "Landau theory provides CMB safety through dynamical gating: G(z=1100)≈10⁻¹² (8 orders below threshold), G(z=0)≈0.9999.",
-  "keywords": ["EFC", "CMB safety", "Landau theory", "regime transition", "gating function", "CLASS integration"],
+  "keywords": [
+    "EFC",
+    "CMB safety",
+    "Landau theory",
+    "regime transition",
+    "gating function",
+    "CLASS integration"
+  ],
   "key_results": {
-    "G_CMB": {"value": 1e-12, "description": "8 orders below 10⁻⁴ threshold"},
-    "G_z10": {"value": 9.2e-16, "description": "Intermediate-z suppressed"},
-    "G_z2": {"value": 0.25, "description": "Partial activation"},
-    "G_z0": {"value": 0.9999, "description": "Full activation today"}
+    "G_CMB": {
+      "value": 1e-12,
+      "description": "8 orders below 10⁻⁴ threshold"
+    },
+    "G_z10": {
+      "value": 9.2e-16,
+      "description": "Intermediate-z suppressed"
+    },
+    "G_z2": {
+      "value": 0.25,
+      "description": "Partial activation"
+    },
+    "G_z0": {
+      "value": 0.9999,
+      "description": "Full activation today"
+    }
   },
   "core_equations": [
     {
@@ -40,5 +59,6 @@
     "paper": "paper/magnusson2026_efc_regime_transitions.pdf",
     "code": "code/",
     "data": "data/"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31096951"
 }

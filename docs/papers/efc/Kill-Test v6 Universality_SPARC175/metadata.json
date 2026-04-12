@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "package_type": "ai-friendly-paper",
+  "paper": {
+    "title": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
+    "short_title": "Kill-Test v6 Universality (SPARC 175)",
+    "directory": "Kill-Test v6 Universality_SPARC175",
+    "version": "1.0",
+    "date": "2026-04-11",
+    "doi": "10.6084/m9.figshare.31986762",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31986762",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    },
+    "license": "CC-BY-4.0",
+    "type": "technical_note",
+    "epistemic_layer": "B-C"
+  },
+  "domain": {
+    "track": "Spor 1 — Galactic/Cosmological",
+    "regimes": ["L3"],
+    "primary_scale": "galactic rotation curves",
+    "sample": {
+      "name": "SPARC 175",
+      "reference": "Lelli, McGaugh & Schombert 2016 (AJ 152, 157)",
+      "n_galaxies": 175,
+      "n_fitted": 171,
+      "n_failed": 4
+    }
+  },
+  "models": {
+    "target": {
+      "name": "EFC single-component rotation curve",
+      "formula": "v(r) = v_flat · sqrt(1 - exp(-(r/r_turnon)^sharpness))",
+      "n_parameters": 3,
+      "parameters": ["v_flat", "r_turnon", "sharpness"],
+      "bounds": {
+        "v_flat_km_s": [10.0, 350.0],
+        "r_turnon_kpc": [0.05, 50.0],
+        "sharpness": [0.3, 6.0]
+      }
+    },
+    "reference": {
+      "name": "NFW halo (Navarro-Frenk-White 1997)",
+      "formula": "v²(r) = V200² · [ln(1+s) - s/(1+s)] / [ln(1+c) - c/(1+c)] / (r/r200)",
+      "n_parameters": 2,
+      "parameters": ["V200", "c"],
+      "bounds": {
+        "V200_km_s": [10.0, 400.0],
+        "c": [1.0, 50.0]
+      },
+      "H0_km_s_Mpc": 67.4
+    }
+  },
+  "procedure": {
+    "optimiser": "scipy.optimize.differential_evolution",
+    "seed": 42,
+    "tolerance": 1e-8,
+    "maxiter": 500,
+    "init": "sobol",
+    "polish": true,
+    "loss": "χ² = Σ ((v_obs - v_model) / max(σ_v, 0.5·σ_min))²",
+    "aic": "AIC = χ² + 2k",
+    "delta_aic": "AIC_NFW - AIC_EFC (positive = EFC wins)"
+  },
+  "results": {
+    "efc_win_rate_percent": 60.2,
+    "lcdm_win_rate_percent": 12.9,
+    "tie_rate_percent": 26.9,
+    "median_delta_aic": 6.213,
+    "mean_delta_aic": 40.347,
+    "median_chi2_red_efc": 0.4402,
+    "median_chi2_red_nfw": 1.6866,
+    "universality_verdict": "CONFIRMED",
+    "cherry_picking_refuted": true,
+    "verdict_distribution": {
+      "EFC_decisive": 72,
+      "EFC": 31,
+      "tied": 46,
+      "LCDM": 6,
+      "LCDM_decisive": 16
+    },
+    "regime_distribution": {
+      "FLOW": 71,
+      "TRANSITION": 84,
+      "LATENT": 16
+    },
+    "statistical_tests": {
+      "mann_whitney_flow_vs_latent_p": 0.0,
+      "spearman_delta_aic_vs_vmax": 0.1106,
+      "spearman_p": 0.1497
+    }
+  },
+  "files": [
+    {"path": "README.md", "role": "documentation"},
+    {"path": "QUICKSTART.md", "role": "documentation"},
+    {"path": "MANIFEST.md", "role": "documentation"},
+    {"path": "CITATION.cff", "role": "citation_metadata"},
+    {"path": "index.json", "role": "machine_readable_metadata"},
+    {"path": "metadata.json", "role": "schema_aligned_metadata"},
+    {"path": "kill-test-v6-universality-sparc175.jsonld", "role": "semantic_metadata"},
+    {"path": "citations.bib", "role": "bibtex_references"},
+    {"path": "data/sparc175_killtest_results.json", "role": "primary_result"},
+    {"path": "data/summary.json", "role": "aggregated_summary"},
+    {"path": "data/verdict_distribution.json", "role": "verdict_counts"},
+    {"path": "data/top_galaxies.json", "role": "top_wins_lookup"},
+    {"path": "src/sparc175_killtest_universality.py", "role": "pipeline_implementation"},
+    {"path": "examples/reproduce.py", "role": "reproduction_wrapper"}
+  ],
+  "provenance": {
+    "parent_paper": "EFC_vs_LCDM_Kill_Test_v6_final",
+    "parent_doi": "10.6084/m9.figshare.31964847",
+    "data_source_paper": "Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling",
+    "data_source_doi": "10.6084/m9.figshare.31045126",
+    "code_runtime": "numpy + scipy only; single core; ~2 minutes",
+    "reproducibility": "deterministic at seed=42",
+    "generated": "2026-04-11"
+  }
+}

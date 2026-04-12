@@ -1,5 +1,7 @@
 # Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity
 
+**DOI:** [10.6084/m9.figshare.31564123](https://doi.org/10.6084/m9.figshare.31564123)
+
 | Field | Value |
 |-------|-------|
 | Author | Morten Magnusson |

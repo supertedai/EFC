@@ -29,11 +29,29 @@
     "name": "Energy-Flow Cosmology Paper Series",
     "url": "https://github.com/supertedai/EFC"
   },
-  "keywords": ["Energy-Flow Cosmology", "ΛCDM", "special case", "regime structure", "DESI DR2", "entropy gradients", "modified gravity", "perturbation survival valley", "screening model", "Graph-AQUAL", "validation ledger", "falsification"],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "ΛCDM",
+    "special case",
+    "regime structure",
+    "DESI DR2",
+    "entropy gradients",
+    "modified gravity",
+    "perturbation survival valley",
+    "screening model",
+    "Graph-AQUAL",
+    "validation ledger",
+    "falsification"
+  ],
   "description": "Demonstrates that ΛCDM arises as the special-case limit of EFC when K(ρ)→∞, T(a)→0, ξ≫1. Confirmed empirically by DESI DR2: α = −0.14 ± 0.21 (0.65σ). Consolidates 14 months of development (204 publications, 100 registered tests, 5 historical falsifications).",
   "efc_context": {
     "track": "Synthesis",
-    "regimes": ["L0", "L1", "L2", "L3"],
+    "regimes": [
+      "L0",
+      "L1",
+      "L2",
+      "L3"
+    ],
     "role": "Consolidation paper — single reference for the entire EFC programme",
     "central_thesis": "ΛCDM is to EFC what the ideal gas law is to statistical mechanics",
     "core_reduction": "K(ρ)→∞, T(a)→0, ξ≫1 ⟹ μ,Σ,η→1 ⟹ Friedmann+Poisson (Eq. 6)",
@@ -46,7 +64,22 @@
   "ai_package": {
     "completeness": "10/10",
     "module": "lcdm_special_case.py",
-    "classes": ["RegimeDriver", "ConstitutiveLaw", "EffectiveCoupling", "LCDMReduction", "BackgroundModification", "DESIDR2Result", "PerturbationValley", "GasLawAnalogy", "KillTestSuite", "HistoricalFalsifications"],
+    "classes": [
+      "RegimeDriver",
+      "ConstitutiveLaw",
+      "EffectiveCoupling",
+      "LCDMReduction",
+      "BackgroundModification",
+      "DESIDR2Result",
+      "PerturbationValley",
+      "GasLawAnalogy",
+      "KillTestSuite",
+      "HistoricalFalsifications"
+    ],
     "demo": "examples/demo_lcdm_special_case.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31943361",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31943361"
   }
 }

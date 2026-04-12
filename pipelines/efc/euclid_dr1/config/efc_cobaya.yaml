@@ -1,0 +1,79 @@
+# EFC Euclid DR1 Pipeline -- cobaya configuration
+# Uses hi_class for Boltzmann integration with EFC alpha-functions
+
+theory:
+  classy_hiclass:
+    path: null  # auto-detect
+    extra_args:
+      gravity_model: propto_omega
+      # EFC alpha functions at z=0:
+      # alpha_M_0: 0.982246
+      # alpha_B_0: 0.058129
+      non_linear: hmcode
+      l_max_scalars: 5000
+      lensing: 'yes'
+
+params:
+  # Standard cosmology
+  h:
+    prior: {min: 0.60, max: 0.80}
+    ref: {dist: norm, loc: 0.6736, scale: 0.005}
+    latex: H_0/100
+  omega_b:
+    prior: {min: 0.020, max: 0.024}
+    ref: {dist: norm, loc: 0.02237, scale: 0.00015}
+    latex: \Omega_b h^2
+  omega_cdm:
+    prior: {min: 0.10, max: 0.14}
+    ref: {dist: norm, loc: 0.1200, scale: 0.001}
+    latex: \Omega_c h^2
+  n_s:
+    prior: {min: 0.92, max: 1.00}
+    ref: {dist: norm, loc: 0.9649, scale: 0.004}
+    latex: n_s
+  logA:
+    prior: {min: 2.8, max: 3.3}
+    ref: {dist: norm, loc: 3.044, scale: 0.014}
+    latex: \ln(10^{10} A_s)
+  tau_reio:
+    prior: {min: 0.02, max: 0.10}
+    ref: {dist: norm, loc: 0.0544, scale: 0.007}
+    latex: \tau_{reio}
+
+  # EFC parameters (perturbation sector)
+  B0:
+    prior: {min: 0.0, max: 3.0}
+    ref: {dist: norm, loc: 1.0, scale: 0.3}
+    latex: B_0
+  M0:
+    prior: {min: 0.0, max: 3.0}
+    ref: {dist: norm, loc: 1.0, scale: 0.3}
+    latex: M_0
+
+sampler:
+  polychord:
+    path: null
+    nlive: 500
+    precision_criterion: 0.01
+    # For quick test, use:
+    # nlive: 100
+    # precision_criterion: 0.1
+
+# Likelihood placeholder -- replace with real Euclid data
+likelihood:
+  # For mock testing:
+  # euclid_dr1_mock:
+  #   python_path: /path/to/src
+  #   class: EuclidDR1MockLikelihood
+
+  # For real data (October 2026):
+  # euclid_dr1:
+  #   external: true
+
+  # For now, use Planck as baseline:
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_NPIPE_highl_CamSpec.TTTEEE: null
+  planck_2018_lensing.clik: null
+
+output: chains/efc_euclid_dr1

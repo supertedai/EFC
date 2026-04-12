@@ -2,11 +2,7 @@
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
   "@id": "https://doi.org/10.6084/m9.figshare.31061872",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "DOI",
-    "value": "10.6084/m9.figshare.31061872"
-  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31061872",
   "name": "Energy-Flow Cosmology and Regime-Dependent Structure Formation",
   "headline": "Paper III: A Thermodynamic Framework for Galaxy Formation Anomalies",
   "description": "Introduces Energy-Flow Cosmology (EFC) as a physical framework consistent with empirical regime structure in galaxy dynamics (SPARC) and early universe structure formation (JWST COSMOS-Web). The phenomenological decomposition E_total = E_flow + E_latent provides a unified interpretation without replacing ΛCDM.",
@@ -44,7 +40,7 @@
       "name": "Cosmology"
     },
     {
-      "@type": "Thing", 
+      "@type": "Thing",
       "name": "Galaxy Formation"
     },
     {
@@ -107,8 +103,6 @@
     "name": "Figshare"
   },
   "url": "https://energyflow-cosmology.com/papers/paper3-regime-synthesis",
-  "sameAs": [
-    "https://figshare.com/articles/31061872",
-    "https://github.com/supertedai/EFC"
-  ]
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31061872",
+  "doi": "10.6084/m9.figshare.31061872"
 }

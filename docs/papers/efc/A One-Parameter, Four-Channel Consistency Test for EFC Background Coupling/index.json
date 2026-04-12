@@ -77,7 +77,11 @@
   "four_channel_results": {
     "bao_distances": {
       "data": "BOSS DR12",
-      "redshifts": [0.38, 0.51, 0.61],
+      "redshifts": [
+        0.38,
+        0.51,
+        0.61
+      ],
       "chi2": 1.93,
       "chi2_lcdm": 5.58,
       "delta_chi2": -3.65,
@@ -92,9 +96,24 @@
       "status": "PASS",
       "role": "Detection",
       "measurements": [
-        {"z": 0.38, "fsigma8_efc": 0.464, "fsigma8_obs": "0.497 ± 0.045", "pull": "-0.73σ"},
-        {"z": 0.51, "fsigma8_efc": 0.463, "fsigma8_obs": "0.458 ± 0.038", "pull": "+0.13σ"},
-        {"z": 0.61, "fsigma8_efc": 0.460, "fsigma8_obs": "0.436 ± 0.034", "pull": "+0.71σ"}
+        {
+          "z": 0.38,
+          "fsigma8_efc": 0.464,
+          "fsigma8_obs": "0.497 ± 0.045",
+          "pull": "-0.73σ"
+        },
+        {
+          "z": 0.51,
+          "fsigma8_efc": 0.463,
+          "fsigma8_obs": "0.458 ± 0.038",
+          "pull": "+0.13σ"
+        },
+        {
+          "z": 0.61,
+          "fsigma8_efc": 0.46,
+          "fsigma8_obs": "0.436 ± 0.034",
+          "pull": "+0.71σ"
+        }
       ]
     },
     "cmb_lensing": {
@@ -118,26 +137,110 @@
     }
   },
   "regime_consistency": {
-    "boss": {"z": 0.51, "T_z": 0.990, "mu_minus_1": 0.340, "margin": "Detection channel"},
-    "lya_p1d": {"z": 3.0, "T_z": 0.107, "mu_minus_1": 0.037, "margin": "~10× suppressed"},
-    "cmb_recombination": {"z": 1100, "T_z": "9.7e-11", "mu_minus_1": "3.3e-11", "margin": ">10⁸× below bound"},
-    "bbn": {"z": "~10⁸", "T_z": "<10⁻³⁰", "mu_minus_1": "<10⁻²⁵", "margin": ">10²³× below bound"}
+    "boss": {
+      "z": 0.51,
+      "T_z": 0.99,
+      "mu_minus_1": 0.34,
+      "margin": "Detection channel"
+    },
+    "lya_p1d": {
+      "z": 3.0,
+      "T_z": 0.107,
+      "mu_minus_1": 0.037,
+      "margin": "~10× suppressed"
+    },
+    "cmb_recombination": {
+      "z": 1100,
+      "T_z": "9.7e-11",
+      "mu_minus_1": "3.3e-11",
+      "margin": ">10⁸× below bound"
+    },
+    "bbn": {
+      "z": "~10⁸",
+      "T_z": "<10⁻³⁰",
+      "mu_minus_1": "<10⁻²⁵",
+      "margin": ">10²³× below bound"
+    }
   },
   "sigma8_landscape": [
-    {"probe": "Planck 2018 primary", "sigma8": 0.811, "error": 0.006, "efc_pull": "-1.0σ", "z": 1100},
-    {"probe": "Planck PR4 primary", "sigma8": 0.807, "error": 0.006, "efc_pull": "-0.33σ", "z": 1100},
-    {"probe": "CMB lensing combined", "sigma8": 0.811, "error": 0.019, "efc_pull": "-0.32σ", "z": "0.5-5"},
-    {"probe": "BOSS RSD (derived)", "sigma8": 0.805, "error": 0.020, "efc_pull": "+0.00σ", "z": "~0.5"},
-    {"probe": "KiDS Legacy", "sigma8": 0.748, "error": 0.022, "efc_pull": "+2.6σ", "z": "~0.5"},
-    {"probe": "DES Y3", "sigma8": 0.765, "error": 0.023, "efc_pull": "+1.7σ", "z": "~0.5"},
-    {"probe": "EFC prediction", "sigma8": 0.805}
+    {
+      "probe": "Planck 2018 primary",
+      "sigma8": 0.811,
+      "error": 0.006,
+      "efc_pull": "-1.0σ",
+      "z": 1100
+    },
+    {
+      "probe": "Planck PR4 primary",
+      "sigma8": 0.807,
+      "error": 0.006,
+      "efc_pull": "-0.33σ",
+      "z": 1100
+    },
+    {
+      "probe": "CMB lensing combined",
+      "sigma8": 0.811,
+      "error": 0.019,
+      "efc_pull": "-0.32σ",
+      "z": "0.5-5"
+    },
+    {
+      "probe": "BOSS RSD (derived)",
+      "sigma8": 0.805,
+      "error": 0.02,
+      "efc_pull": "+0.00σ",
+      "z": "~0.5"
+    },
+    {
+      "probe": "KiDS Legacy",
+      "sigma8": 0.748,
+      "error": 0.022,
+      "efc_pull": "+2.6σ",
+      "z": "~0.5"
+    },
+    {
+      "probe": "DES Y3",
+      "sigma8": 0.765,
+      "error": 0.023,
+      "efc_pull": "+1.7σ",
+      "z": "~0.5"
+    },
+    {
+      "probe": "EFC prediction",
+      "sigma8": 0.805
+    }
   ],
   "falsification_criteria": [
-    {"id": "F1", "observation": "Large μ − 1 at z > 2 where Ωₘ ≈ 1", "implication": "Coupling not epoch-governed", "type": "Hard kill"},
-    {"id": "F2", "observation": "Growth enhancement at z < 1", "implication": "Background channel wrong", "type": "Hard kill"},
-    {"id": "F3", "observation": "Poisson μ > 1 detected at α_L2 level", "implication": "Architecture violated", "type": "Hard kill"},
-    {"id": "F4", "observation": "BAO–growth β split > 3σ", "implication": "Single-channel fails", "type": "Hard kill"},
-    {"id": "F5", "observation": "CMB lensing σ₈ > 3σ from EFC", "implication": "Background inconsistent", "type": "Hard kill"}
+    {
+      "id": "F1",
+      "observation": "Large μ − 1 at z > 2 where Ωₘ ≈ 1",
+      "implication": "Coupling not epoch-governed",
+      "type": "Hard kill"
+    },
+    {
+      "id": "F2",
+      "observation": "Growth enhancement at z < 1",
+      "implication": "Background channel wrong",
+      "type": "Hard kill"
+    },
+    {
+      "id": "F3",
+      "observation": "Poisson μ > 1 detected at α_L2 level",
+      "implication": "Architecture violated",
+      "type": "Hard kill"
+    },
+    {
+      "id": "F4",
+      "observation": "BAO–growth β split > 3σ",
+      "implication": "Single-channel fails",
+      "type": "Hard kill"
+    },
+    {
+      "id": "F5",
+      "observation": "CMB lensing σ₈ > 3σ from EFC",
+      "implication": "Background inconsistent",
+      "type": "Hard kill"
+    }
   ],
   "falsification_status": {
     "triggered": [],
@@ -156,5 +259,6 @@
     "paper": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
     "schema": "schema.json",
     "citations": "citations.bib"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304980"
 }

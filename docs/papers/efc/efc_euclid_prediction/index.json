@@ -1,0 +1,78 @@
+{
+  "id": "efc-euclid-prediction",
+  "doi": "10.6084/m9.figshare.31990053",
+  "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
+  "author": "Morten Magnusson",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research",
+  "license": "CC-BY-4.0",
+  "track": "Cosmology (perturbation sector)",
+  "regimes": [
+    "linear",
+    "Horndeski scalar-tensor"
+  ],
+  "primary_pdf": "efc_euclid_prediction.pdf",
+  "date": "2026-04-12",
+  "key_results": [
+    {
+      "observable": "sigma8",
+      "shift_pct": 1.207,
+      "benchmark": {
+        "B0": 0.02,
+        "M0": 0.06
+      }
+    },
+    {
+      "observable": "P(k_c,z=0.5)",
+      "shift_pct": 2.091
+    },
+    {
+      "observable": "Cl^pp(ell=66)",
+      "shift_pct": -6.012
+    },
+    {
+      "observable": "E_G(ell=66)",
+      "shift_pct": -3.981
+    },
+    {
+      "observable": "Cl^TT(ell=30)",
+      "shift_pct": 1.875
+    }
+  ],
+  "parameters": {
+    "B0": {
+      "value": 0.02,
+      "range": [
+        0,
+        0.03
+      ]
+    },
+    "M0": {
+      "value": 0.06,
+      "range": [
+        0.01,
+        0.1
+      ]
+    },
+    "a_t": 0.3,
+    "Delta": 0.3,
+    "alpha_K": 1.0,
+    "alpha_T": 0.0
+  },
+  "constraints": {
+    "stability": "M0 >= 3*B0",
+    "planck_isw": "M0 < 0.1"
+  },
+  "sha256": "dbc737979d8a773f56c620759ddded38139157fd9a2dbb321a8ffdb6e68135d2",
+  "tool": "hi_class 3.0 + efc_logistic patch",
+  "pipeline": "pipelines/efc/euclid_dr1/",
+  "files": [
+    "efc_euclid_prediction.pdf",
+    "src/efc_logistic_demo.py",
+    "data/benchmark.json",
+    "data/parameter_scan.json",
+    "examples/run_benchmark.py"
+  ],
+  "see_also": "ai_manifest.json",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990053"
+}

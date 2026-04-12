@@ -233,8 +233,16 @@ print(slip.f)                 # 0.15 (sweet spot)
 
 1. **Full MCMC posterior**. Sample `(K0, m², H0, Ω_b, Ω_cdm, A_s, n_s, τ)` against
    `plik_lite + lowl + lensing + BAO + Pantheon+`. Cobaya yaml ready; requires ≥ 16 GB RAM.
-2. **175-galaxy universality**. Multi-component refit on 5 of 175 SPARC galaxies.
-   Extension with single `(K0, m²)` tests universality.
+2. ~~**175-galaxy universality**. Multi-component refit on 5 of 175 SPARC galaxies.
+   Extension with single `(K0, m²)` tests universality.~~
+   → **Partially resolved (2026-04-11)**: single-component extension to all 175 SPARC
+   galaxies gives an EFC win rate of **60.2 %** (42.1 % EFC_decisive), median ΔAIC =
+   +6.21, Mann-Whitney p ≈ 0 between FLOW and LATENT regimes, and ρ(ΔAIC, v_max) =
+   0.11 (no mass bias). Cherry-picking objection against probe-2 is refuted. See
+   [`../Kill-Test v6 Universality_SPARC175/`](../Kill-Test%20v6%20Universality_SPARC175/)
+   (DOI [10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762)).
+   Full multi-component universality with fixed `(K0, m²)` across all galaxies is
+   still open.
 3. **Physical origin of m²**. `m² ≈ 0.0032–0.0038` (`m/H₀ ≈ 0.06`) is analogous to Λ.
    Derivation from inflation or stability conditions is open.
 4. **A_lens/Σ₀ degeneracy**. A proper MGCAMB run with `(μ₀, Σ₀)` as primary MG
@@ -256,6 +264,7 @@ print(slip.f)                 # 0.15 (sweet spot)
 - [Discrete Entropic Gravity](../Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/) — Graph-AQUAL operator (DOI: 10.6084/m9.figshare.31348411)
 - [Bullet Cluster EFC](../bullet_cluster_efc/) — Cluster confrontation
 - [SPARC 175](../Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/) — Rotation curve database
+- [**Kill-Test v6 Universality (SPARC 175)**](../Kill-Test%20v6%20Universality_SPARC175/) — **Probe-2 universality extension to all 175 galaxies; cherry-picking objection refuted (2026-04-11)** (DOI: 10.6084/m9.figshare.31986762)
 - [Regime Transition Test](../Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test/) — L1→L2 μ(k,a) consistency
 
 ## Citation

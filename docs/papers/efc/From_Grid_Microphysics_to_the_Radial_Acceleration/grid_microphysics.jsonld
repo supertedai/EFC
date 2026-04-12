@@ -14,25 +14,49 @@
     "identifier": "https://orcid.org/0009-0002-4860-5095"
   },
   "datePublished": "2026-03-28",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "DOI",
-    "value": "10.6084/m9.figshare.31878760"
-  },
+  "identifier": "https://doi.org/10.6084/m9.figshare.31878760",
   "isPartOf": {
     "@type": "CreativeWorkSeries",
     "name": "Energy-Flow Cosmology Paper Series"
   },
   "about": [
-    {"@type": "DefinedTerm", "name": "Grid Microphysics", "@id": "efc:GridMicrophysics"},
-    {"@type": "DefinedTerm", "name": "Radial Acceleration Relation", "@id": "efc:RAR"},
-    {"@type": "DefinedTerm", "name": "Bose-Einstein Statistics", "@id": "efc:BoseEinstein"},
-    {"@type": "DefinedTerm", "name": "Gradient Coupling", "@id": "efc:GradientCoupling"},
-    {"@type": "DefinedTerm", "name": "Microphysical Bridge", "@id": "efc:MicrophysicalBridge"}
+    {
+      "@type": "DefinedTerm",
+      "name": "Grid Microphysics",
+      "@id": "efc:GridMicrophysics"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Radial Acceleration Relation",
+      "@id": "efc:RAR"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Bose-Einstein Statistics",
+      "@id": "efc:BoseEinstein"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Gradient Coupling",
+      "@id": "efc:GradientCoupling"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Microphysical Bridge",
+      "@id": "efc:MicrophysicalBridge"
+    }
   ],
   "citation": [
-    {"@id": "https://doi.org/10.6084/m9.figshare.31878334"},
-    {"@id": "https://doi.org/10.6084/m9.figshare.31876324"},
-    {"@id": "https://doi.org/10.6084/m9.figshare.31348411"}
-  ]
+    {
+      "@id": "https://doi.org/10.6084/m9.figshare.31878334"
+    },
+    {
+      "@id": "https://doi.org/10.6084/m9.figshare.31876324"
+    },
+    {
+      "@id": "https://doi.org/10.6084/m9.figshare.31348411"
+    }
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31878760",
+  "doi": "10.6084/m9.figshare.31878760"
 }

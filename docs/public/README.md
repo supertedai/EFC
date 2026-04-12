@@ -24,6 +24,7 @@ the KT test suite before figures or ledger entries are updated.
 
 ```
 docs/public/
+├── EFC_Elevator_Pitch.html               # 60-second layman introduction
 ├── EFC_Changelog.html                    # Version history and change log
 ├── EFC_Master_v1.1.html                  # Master Specification document
 ├── EFC_Stage-IV_Data_Roadmap.html        # Stage-IV Data Roadmap
@@ -46,6 +47,7 @@ docs/public/
 
 | File | Description |
 |------|-------------|
+| **EFC_Elevator_Pitch.html** | A 60-second plain-English introduction for non-specialists: what EFC is, why it exists, what it solves, what it does not claim, and where to go next. The recommended landing page for anyone arriving at the repository for the first time. |
 | **EFC_Validation_Ledger.html** | The central accountability document. Records every key test (KT1-KT5 and beyond), their pass/fail criteria, observed outcomes, pipeline versions, and dates. External reviewers and AI agents should start here to assess the empirical standing of EFC predictions. |
 | **EFC_Master_v1.1.html** | The Master Specification (v1.1) presenting the full EFC theoretical framework: foundational postulates, energy functional, field equations, emergent limits, and the relationship between entropy geometry and gravitational dynamics. The primary reference for understanding what EFC claims. |
 | **EFC_White_Paper_Series.html** | The four-part canonical reference for EFC: recovery conditions, field equations, validation protocol, and regime susceptibility. Includes sealed blind predictions and kill criteria. |
@@ -87,11 +89,13 @@ relative path from other documents in the repository.
 
 ## Relationship to Other Directories
 
-- `docs/papers/efc/` -- AI-friendly paper packages (135 packages). Each contains
+- `docs/papers/efc/` -- AI-friendly paper packages (138 packages). Each contains
   README, metadata, index, schema, source code, data, and examples. Key packages:
   - `EFC_Background_NoGo_Theorem/` -- Three-pillar proof that background sector
     is structurally excluded for σ₈ suppression (sign lemma + CLASS + CMB+BAO).
   - `EFC_vs_LCDM_Kill_Test_v6_final/` -- Six-probe kill-test (Δχ² ≤ 0 across all).
+  - `Kill-Test v6 Universality_SPARC175/` -- Single-component EFC + NFW on all
+    175 SPARC galaxies; 60.2% EFC win rate; cherry-picking objection refuted.
   - `EFC_Phase_3__SPARC_Validation/` -- 174-galaxy SPARC screening model (k = 0.415).
 - `docs/notes/` -- Internal specifications that define the tests whose results
   appear in the Validation Ledger.

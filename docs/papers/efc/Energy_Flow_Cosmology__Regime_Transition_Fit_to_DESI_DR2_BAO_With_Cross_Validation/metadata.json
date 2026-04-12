@@ -26,11 +26,35 @@
     "epistemic_layer": "A"
   },
   "key_results": [
-    {"test": "BAO primary", "n": 13, "delta_chi2": -22.01, "status": "Pass"},
-    {"test": "Hold-out (conditional)", "n": 3, "delta_chi2": -18.65, "status": "Pass"},
-    {"test": "SN shape test", "n": 277, "status": "Pass"},
-    {"test": "CC consistency", "n": 34, "delta_chi2": -0.17, "status": "Pass"},
-    {"test": "Combined", "n": 47, "delta_chi2": -22.17, "status": "Pass"}
+    {
+      "test": "BAO primary",
+      "n": 13,
+      "delta_chi2": -22.01,
+      "status": "Pass"
+    },
+    {
+      "test": "Hold-out (conditional)",
+      "n": 3,
+      "delta_chi2": -18.65,
+      "status": "Pass"
+    },
+    {
+      "test": "SN shape test",
+      "n": 277,
+      "status": "Pass"
+    },
+    {
+      "test": "CC consistency",
+      "n": 34,
+      "delta_chi2": -0.17,
+      "status": "Pass"
+    },
+    {
+      "test": "Combined",
+      "n": 47,
+      "delta_chi2": -22.17,
+      "status": "Pass"
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -44,5 +68,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31230703",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31230703"
   }
 }

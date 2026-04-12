@@ -12,7 +12,14 @@
   "type": "observational_analysis",
   "status": "published",
   "abstract_short": "8,447 massive galaxies (log M*/Msun > 9) at z > 5 from COSMOS-Web exceed ΛCDM halo-limited predictions.",
-  "keywords": ["COSMOS-Web", "high-z galaxies", "galaxy abundances", "JWST", "stellar mass function", "halo mass function"],
+  "keywords": [
+    "COSMOS-Web",
+    "high-z galaxies",
+    "galaxy abundances",
+    "JWST",
+    "stellar mass function",
+    "halo mass function"
+  ],
   "data": {
     "sample_size": 8447,
     "mass_cut": "log M*/Msun > 9",
@@ -20,18 +27,40 @@
     "source": "COSMOS2025 catalog (Shuntov et al. 2025)"
   },
   "columns": [
-    {"name": "id", "description": "COSMOS2025 source identifier"},
-    {"name": "ra", "description": "Right ascension (J2000, degrees)"},
-    {"name": "dec", "description": "Declination (J2000, degrees)"},
-    {"name": "z_phot", "description": "Photometric redshift (LePhare)"},
-    {"name": "mass_med", "description": "Stellar mass, median (log Msun)"},
-    {"name": "sfr_med", "description": "Star formation rate, median (log Msun/yr)"},
-    {"name": "log_ssfr", "description": "Specific SFR = SFR/M* (log Gyr^-1)"}
+    {
+      "name": "id",
+      "description": "COSMOS2025 source identifier"
+    },
+    {
+      "name": "ra",
+      "description": "Right ascension (J2000, degrees)"
+    },
+    {
+      "name": "dec",
+      "description": "Declination (J2000, degrees)"
+    },
+    {
+      "name": "z_phot",
+      "description": "Photometric redshift (LePhare)"
+    },
+    {
+      "name": "mass_med",
+      "description": "Stellar mass, median (log Msun)"
+    },
+    {
+      "name": "sfr_med",
+      "description": "Star formation rate, median (log Msun/yr)"
+    },
+    {
+      "name": "log_ssfr",
+      "description": "Specific SFR = SFR/M* (log Gyr^-1)"
+    }
   ],
   "files": {
     "pdf": "Magnusson_2026_COSMOS_Galaxy_Excess.pdf",
     "data": "supplementary_data.csv",
     "code": "analysis_code.py",
     "figure": "figure1_stress_test.png"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31059964"
 }

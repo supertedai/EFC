@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_Entropy_Budget_Working_Note.pdf",
@@ -17,8 +17,16 @@
   ],
   "files": [
     {
+      "path": "CITATION.cff",
+      "bytes": 596
+    },
+    {
       "path": "EFC_Entropy_Budget_Working_Note.pdf",
       "bytes": 305998
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 298
     },
     {
       "path": "README.md",
@@ -26,7 +34,7 @@
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 1691
+      "bytes": 1623
     },
     {
       "path": "citations.bib",
@@ -38,11 +46,11 @@
     },
     {
       "path": "efc-entropy-budget-working-note.jsonld",
-      "bytes": 498
+      "bytes": 663
     },
     {
       "path": "entropy_budget.jsonld",
-      "bytes": 1132
+      "bytes": 1413
     },
     {
       "path": "examples/demo_entropy_budget.py",
@@ -50,11 +58,11 @@
     },
     {
       "path": "index.json",
-      "bytes": 1921
+      "bytes": 2249
     },
     {
       "path": "metadata.json",
-      "bytes": 948
+      "bytes": 1188
     },
     {
       "path": "schema.json",
@@ -69,6 +77,6 @@
       "bytes": 16094
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

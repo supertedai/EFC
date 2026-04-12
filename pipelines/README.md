@@ -1,6 +1,6 @@
 # EFC Computational Pipelines
 
-Computational validation pipelines for Energy-Flow Cosmology (EFC). This directory contains the numerical solvers, test suites, and analysis tools that translate EFC theoretical predictions into quantitative, falsifiable results. The two main pipeline systems are the Native v2 Graph solver for galactic-scale AQUAL/MOND predictions and the HCP Bridge B1 pipeline for neural connectome validation.
+Computational validation pipelines for Energy-Flow Cosmology (EFC). This directory contains the numerical solvers, test suites, and analysis tools that translate EFC theoretical predictions into quantitative, falsifiable results. The three pipeline systems are the Native v2 Graph solver for galactic-scale AQUAL/MOND predictions, the HCP Bridge B1 pipeline for neural connectome validation, and the Euclid DR1 pipeline for Stage-IV cosmological survey pre-registration.
 
 **Author:** Morten Magnusson (ORCID [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)), Symbiose Research, Sandnes, Norway
 **License:** CC-BY-4.0
@@ -21,28 +21,46 @@ pipelines/
     │   ├── literature_connectome.py # Literature-based connectome construction
     │   └── .gitignore              # Ignores large data files
     │
-    └── native_v2_graph/            # Graph-based AQUAL solver
-        ├── run_efc_graph.py        # Main entry point
-        ├── configs/
-        │   ├── base.yaml           # Default simulation parameters
-        │   └── sweeps.yaml         # Parameter sweep definitions
-        ├── kernel/                 # Core computational kernel
-        │   ├── __init__.py         # Package init (documents primitives)
-        │   ├── aqual.py            # AQUAL equation solver
-        │   ├── energy.py           # Energy field computations
-        │   ├── fields.py           # Field initialization and management
-        │   ├── graph.py            # Graph construction (V, E)
-        │   ├── observables.py      # Observable extraction (profiles, slopes)
-        │   ├── operators.py        # Discrete differential operators
-        │   └── solver.py           # Iterative AQUAL solver
-        ├── tests/                  # Key-test suite (KT1-KT5)
-        │   ├── kt1_limits.py       # Newton/MOND limit recovery
-        │   ├── kt2_C_convergence.py # C-parameter convergence
-        │   ├── kt3_mass_scaling.py  # Mass scaling relations
-        │   ├── kt4_superposition.py # Field superposition tests
-        │   └── kt5_EFE.py          # External Field Effect
-        └── outputs/
-            └── runs/               # Timestamped run results (JSON)
+    ├── native_v2_graph/            # Graph-based AQUAL solver
+    │   ├── run_efc_graph.py        # Main entry point
+    │   ├── configs/
+    │   │   ├── base.yaml           # Default simulation parameters
+    │   │   └── sweeps.yaml         # Parameter sweep definitions
+    │   ├── kernel/                 # Core computational kernel
+    │   │   ├── __init__.py         # Package init (documents primitives)
+    │   │   ├── aqual.py            # AQUAL equation solver
+    │   │   ├── energy.py           # Energy field computations
+    │   │   ├── fields.py           # Field initialization and management
+    │   │   ├── graph.py            # Graph construction (V, E)
+    │   │   ├── observables.py      # Observable extraction (profiles, slopes)
+    │   │   ├── operators.py        # Discrete differential operators
+    │   │   └── solver.py           # Iterative AQUAL solver
+    │   ├── tests/                  # Key-test suite (KT1-KT5)
+    │   │   ├── kt1_limits.py       # Newton/MOND limit recovery
+    │   │   ├── kt2_C_convergence.py # C-parameter convergence
+    │   │   ├── kt3_mass_scaling.py  # Mass scaling relations
+    │   │   ├── kt4_superposition.py # Field superposition tests
+    │   │   └── kt5_EFE.py          # External Field Effect
+    │   └── outputs/
+    │       └── runs/               # Timestamped run results (JSON)
+    │
+    └── euclid_dr1/                 # Euclid DR1 pre-registration pipeline
+        ├── README.md               # Pipeline overview + critical path
+        ├── RUN_CHECKLIST.sh        # 7-step execution checklist
+        ├── config/
+        │   ├── efc_cobaya.yaml     # Cobaya + PolyChord sampler config
+        │   └── efc_hiclass.ini     # hi_class input file
+        ├── data/
+        │   └── efc_hiclass_alphas.dat  # Tabulated Horndeski alpha-functions
+        ├── docs/
+        │   └── RCMP_COMPLIANCE_MATRIX.md  # RCMP compliance per kill criterion
+        ├── src/
+        │   ├── __init__.py
+        │   ├── efc_mg_functions.py     # Canonical mu/eta/Sigma (verified)
+        │   ├── efc_hiclass_bridge.py   # EFC -> Horndeski alpha mapping
+        │   └── euclid_mock_likelihood.py  # Simplified Euclid mock
+        └── tests/
+            └── test_sanity.py      # 6 automated sanity checks (A-F)
 ```
 
 ## Pipeline 1: Native v2 Graph Solver
@@ -145,6 +163,42 @@ output/
 └── results.json      # Model comparison (AIC, BIC, r-values)
 ```
 
+## Pipeline 3: Euclid DR1 Pre-Registration
+
+Tests EFC modified gravity predictions (mu, eta, Sigma) against Euclid Stage-IV survey data via the hi_class Boltzmann solver. The primary falsification channel is E_G (gravitational slip statistic), ranked first by RCMP compliance.
+
+**Core modules:** Canonical mu(k,z)/eta(k,z)/Sigma(k,z) functions, EFC-to-Horndeski alpha mapping, Euclid mock likelihood, and 6 automated sanity checks.
+
+**Kill criteria covered:** KC1 (P(k)), KC3 (S8), KC4 (E_G, primary), KC5 (BAO). KC2 (fsigma8) is already covered by Kill-Test v6.
+
+### Running the Pipeline
+
+```bash
+cd pipelines/efc/euclid_dr1
+
+# Run sanity checks (must pass before anything else)
+PYTHONPATH=. python tests/test_sanity.py
+
+# Generate hi_class config
+PYTHONPATH=. python src/efc_hiclass_bridge.py --write-ini --write-yaml
+
+# Full checklist
+bash RUN_CHECKLIST.sh
+```
+
+### Sanity Checks (A-F)
+
+| Check | What It Validates | Pass Criteria |
+|-------|-------------------|---------------|
+| A | Early-time GR recovery | mu -> 1/F, eta -> 1 for z > 50 |
+| B | Stability (no-ghost) | Q_S > 0 for all a |
+| C | k-unit consistency | k[h/Mpc] = k[1/Mpc] / h end-to-end |
+| D | Finiteness + positivity | All functions finite, positive |
+| E | Smoothness | Gradients << 100 (Boltzmann-safe) |
+| F | Neutrino discriminant | EFC slip is scale-localized |
+
+See `docs/RCMP_COMPLIANCE_MATRIX.md` for the full regime-consistency analysis.
+
 ## Dependencies
 
 - Python 3.10+
@@ -152,6 +206,8 @@ output/
 - PyYAML (for config parsing)
 - Matplotlib (optional, for figure generation)
 - NiBabel, dipy (for HCP pipeline neuroimaging I/O)
+- hi_class (for Euclid pipeline Boltzmann integration)
+- cobaya, PolyChord (for Euclid pipeline MCMC sampling)
 
 ## Related Directories
 

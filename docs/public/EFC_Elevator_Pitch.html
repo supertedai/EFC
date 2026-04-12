@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology — Elevator Pitch</title>
+  <meta name="description" content="Energy-Flow Cosmology in plain English: one mechanism, two numbers, no dark matter particles. A 60-second layman introduction." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #1a3a6b;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff;
+      padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a4a7f;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr {
+      border: none;
+      border-top: 1px solid #d0d7e3;
+      margin: 2rem 0;
+    }
+    ul { padding-left: 1.6rem; }
+    li { margin-bottom: 0.5rem; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #d0d7e3;
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f4fa;
+      font-weight: 600;
+      color: #1a3a6b;
+    }
+    .pitch-box {
+      background-color: #fffaf0;
+      border: 1px solid #d4a76a;
+      border-left: 6px solid #c57b2a;
+      padding: 18px 24px;
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+    .pitch-box p { font-size: 15px; color: #2e2e2e; line-height: 1.7; }
+    .pitch-box .lead {
+      font-size: 18px;
+      font-weight: 700;
+      color: #5b3a0e;
+      margin-bottom: 10px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .two-col .card {
+      background: #f8faff;
+      border: 1px solid #d0d7e3;
+      border-left: 5px solid #007bff;
+      border-radius: 8px;
+      padding: 1rem 1.3rem;
+    }
+    .two-col .card.standard { border-left-color: #6c757d; }
+    .two-col .card.efc { border-left-color: #28a745; }
+    .two-col h3 { margin-top: 0; }
+    .status-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .status-pill.open { background: #e7f0ff; color: #1b4db1; }
+    .status-pill.survived { background: #e6ffe6; color: #166534; }
+    .status-pill.warn { background: #fff8e1; color: #856404; }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Energy-Flow Cosmology &mdash; A 60-Second Version</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:700;">Elevator Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation Ledger</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper Series</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Stage-IV Roadmap</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.92rem; color:#555;">
+  Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+  ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+  April 2026 &middot; CC-BY-4.0
+</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- The pitch                                                                -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="pitch-box">
+  <p class="lead">What is Energy-Flow Cosmology?</p>
+  <p>
+    The standard picture of the universe says <strong>95%</strong> of it is made
+    of two invisible ingredients &mdash; <strong>dark matter</strong> (the glue
+    that holds galaxies together) and <strong>dark energy</strong> (the pressure
+    that makes space expand faster and faster). Neither has ever been detected
+    in a laboratory. The 5% we <em>can</em> actually measure &mdash; stars, gas,
+    planets, people &mdash; is the only part nobody argues about.
+  </p>
+  <p>
+    EFC proposes a simpler idea: <strong>gravity adjusts itself where disorder
+    (entropy) is still building up, and behaves like ordinary Einstein gravity
+    everywhere else.</strong> One mechanism, two numbers. No invisible particles
+    required.
+  </p>
+  <p>
+    <strong>The test:</strong> Can this one rule reproduce what we see &mdash;
+    spinning galaxies, the cosmic microwave background, the accelerating
+    expansion, galaxy cluster collisions &mdash; without those two invisible
+    ingredients? Across <strong>103 independent probes</strong> so far, EFC has
+    not been ruled out. It does not yet <em>outperform</em> the standard model
+    &mdash; the margins are too small to call a winner &mdash; but it survives
+    every test, and the decisive experiments are pre-registered in the
+    <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Data Roadmap</a>.
+  </p>
+  <p>
+    <strong>Status:</strong> <span class="status-pill open">Global verdict OPEN</span>
+    &nbsp;<span class="status-pill survived">103/103 survived</span>
+    &nbsp;<span class="status-pill warn">Not proven. Not falsified.</span>
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- A different ontology, not just a different parameter                    -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<h2>A different picture — not just a different parameter</h2>
+
+<p>
+  The 60-second pitch above compresses EFC into "gravity adjusts itself
+  where entropy is still rising." That's the observable signature. But
+  <strong>the ontology underneath is fundamentally different from ΛCDM</strong>,
+  and the signature is a consequence, not the whole story. Without this
+  second layer the pitch reads like a parameter tweak. It isn't.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:24%;">Question</th>
+      <th style="width:38%;">Standard Model (&Lambda;CDM)</th>
+      <th style="width:38%;">Energy-Flow Cosmology (EFC)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>What is primary?</strong></td>
+      <td>Spacetime is a fixed stage. Matter, dark matter, and dark energy are ingredients populating that stage.</td>
+      <td><strong>Energy and entropy are primary.</strong> Spacetime, matter-like structure, and the effective gravitational response <em>emerge</em> from energy flowing along entropy gradients.</td>
+    </tr>
+    <tr>
+      <td><strong>What is gravity?</strong></td>
+      <td>The curvature of spacetime caused by stress-energy (Einstein 1915).</td>
+      <td>The response of a discrete entropic substrate ("Grid") to entropy gradients. Einstein gravity is the saturated limit.</td>
+    </tr>
+    <tr>
+      <td><strong>What is entropy?</strong></td>
+      <td>A statistical consequence of microstates. Derivative.</td>
+      <td>A primary field. The thing whose gradients the universe actually follows.</td>
+    </tr>
+    <tr>
+      <td><strong>What is time?</strong></td>
+      <td>A primary coordinate in the metric.</td>
+      <td><strong>Secondary.</strong> An index over irreversible Grid configuration transitions (<em>Axiom 0</em>). "Now" is where entropy production is currently happening.</td>
+    </tr>
+    <tr>
+      <td><strong>What is "dark matter"?</strong></td>
+      <td>A particle species yet to be detected in a laboratory (~27% of the universe).</td>
+      <td>Not a particle. The "missing" gravity is entropy-driven, not substance-driven. EFC does not require any new particle — only a different accounting of what the observed gravity is responding to.</td>
+    </tr>
+    <tr>
+      <td><strong>What is "dark energy"?</strong></td>
+      <td>A cosmological constant &Lambda; — a number inserted into the action (~68% of the universe).</td>
+      <td>Emergent. Late-time acceleration is a regime transition in the same mechanism that gives galactic rotation curves, not a separate substance or a hand-tuned constant.</td>
+    </tr>
+    <tr>
+      <td><strong>How many scales?</strong></td>
+      <td>One physics everywhere; dark ingredients cover the gaps.</td>
+      <td>Four <strong>regimes</strong> (L0–L3) where the dominant mechanism shifts. A single action contains all four as limits of the same equation.</td>
+    </tr>
+    <tr>
+      <td><strong>Measurement</strong></td>
+      <td>The same rulers apply at every scale.</td>
+      <td>Rulers must match the regime (<em>Regime-Consistent Measurement Principle, RCMP</em>). Some "anomalies" are artefacts of measuring cross-regime phenomena with tools calibrated for the wrong regime.</td>
+    </tr>
+    <tr>
+      <td><strong>How many free parameters?</strong></td>
+      <td>Six baseline cosmological + dark matter + dark energy + per-galaxy halo parameters for rotation curves.</td>
+      <td>Six baseline cosmological + two EFC parameters (K&sub;0</sub>, m&sup2;). <strong>Zero</strong> per-galaxy halo parameters.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <strong>The deepest difference is not the numbers. It is the primitives.</strong>
+  ΛCDM treats dark matter and dark energy as <em>things</em> that exist and need to be
+  detected. EFC treats them as <em>symptoms of how we currently measure</em> &mdash;
+  the question shifts from "where is the dark matter?" to "are we measuring the same
+  quantity across regimes where the same quantity even makes sense?" The universe EFC
+  describes is one where energy and entropy are the fundamental bookkeeping, and
+  spacetime, gravity, and "time" itself are derived quantities that appear when you
+  coarse-grain the Grid far enough.
+</p>
+
+<p>
+  <strong>Same observations. Different picture of what the universe is made of.
+  Fewer primitives, not more.</strong>
+</p>
+
+<p style="font-size:0.9rem; color:#555;">
+  For the full formal development of the ontology, see the
+  <a href="EFC_White_Paper_Series.html">White Paper Series</a>
+  (especially Part&nbsp;2 "Field Equations and Observable Mapping" and
+  Part&nbsp;4 "Regime Susceptibility and Cross-Scale Mapping"), the
+  <a href="https://doi.org/10.6084/m9.figshare.31876324">Relativistic Action</a>,
+  and the
+  <a href="https://doi.org/10.6084/m9.figshare.31943361">&Lambda;CDM as a Special Case consolidation paper</a>.
+</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- Side-by-side comparison                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<h2>The two worldviews, side by side</h2>
+
+<div class="two-col">
+  <div class="card standard">
+    <h3>Standard Cosmological Model (&Lambda;CDM)</h3>
+    <p style="font-size:0.95rem;">
+      Gravity is Einstein gravity. The universe is 5% ordinary matter, 27% dark
+      matter (invisible, never detected in a lab), and 68% dark energy (a
+      constant pressure filling all of space).
+    </p>
+    <ul style="font-size:0.9rem;">
+      <li>Explains spinning galaxies by adding a halo of dark-matter particles around each one.</li>
+      <li>Explains accelerating expansion with a cosmological constant &Lambda;.</li>
+      <li>Needs six baseline parameters plus two halo parameters per galaxy in rotation-curve fits.</li>
+      <li>Has known tensions: H<sub>0</sub> disagrees by ~5&sigma; between early and late universe; &sigma;<sub>8</sub> disagrees at ~2&sigma;.</li>
+    </ul>
+  </div>
+  <div class="card efc">
+    <h3>Energy-Flow Cosmology (EFC)</h3>
+    <p style="font-size:0.95rem;">
+      Gravity adjusts itself where entropy (disorder) is still rising, and
+      behaves like ordinary Einstein gravity everywhere else. No invisible
+      particles, no cosmological constant added by hand.
+    </p>
+    <ul style="font-size:0.9rem;">
+      <li>Explains spinning galaxies through a density-dependent screening of gravity.</li>
+      <li>Explains late-time acceleration as a regime transition in the same mechanism.</li>
+      <li>Uses one extra global parameter (K<sub>0</sub>, m&sup2;) &mdash; and <em>zero</em> per-galaxy halo parameters.</li>
+      <li>Points toward the known tensions as <em>consequences</em> of the theory, not fit targets.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- What EFC does NOT claim                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<h2>What EFC does <em>not</em> claim</h2>
+
+<p>
+  Claim discipline is the whole point of the validation ledger. EFC claims
+  the following and nothing more:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:50%;">EFC claims</th>
+      <th style="width:50%;">EFC does NOT claim</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The standard model needs two invisible ingredients that have never been detected in a laboratory.</td>
+      <td>The standard model is wrong.</td>
+    </tr>
+    <tr>
+      <td>There exists a simpler alternative (one rule, two numbers) that current data cannot rule out.</td>
+      <td>EFC is proven correct.</td>
+    </tr>
+    <tr>
+      <td>EFC survives every independent probe tested so far (103 and counting).</td>
+      <td>EFC <em>outperforms</em> the standard model &mdash; the current margins are sub-statistical.</td>
+    </tr>
+    <tr>
+      <td>A specific set of kill criteria is frozen <em>before</em> the next generation of surveys reports.</td>
+      <td>Dark matter is "disproven" &mdash; particulate candidates remain viable; EFC only says they are not <em>required</em>.</td>
+    </tr>
+    <tr>
+      <td>&Lambda;CDM is contained as a limiting case (three independent recovery conditions).</td>
+      <td>Full cosmological validation is complete &mdash; that requires full MCMC posteriors (≥ 16 GB RAM) not yet run.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- How EFC can die                                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<h2>How EFC can die</h2>
+
+<p>
+  A theory that can't be killed isn't science. EFC has five pre-registered
+  kill criteria, frozen before the relevant data arrived. Any one of them,
+  if realised, falsifies the current formulation:
+</p>
+
+<ol>
+  <li><strong>Full MCMC Bayes factor &gt; 3 against EFC</strong> on Planck + BAO + Pantheon+ &mdash; decisive statistical rejection.</li>
+  <li><strong>Solar-system deviation &gt; 10<sup>-4</sup></strong> in the gravitational coupling &mu;(k = 5 h/Mpc) &mdash; would fail the Parametrized Post-Newtonian (PPN) bounds.</li>
+  <li><strong>&eta; outside [1.20, 1.27]</strong> at m&sup2; = 0.0035 &mdash; would fail the gravitational-slip calibration window.</li>
+  <li><strong>Any cobaya minimize run returning &Delta;&chi;&sup2; &gt; 0</strong> in the EFC direction &mdash; currently 4/4 runs pass; a 5th failing run would break consistency.</li>
+  <li><strong>&Sigma;-signal absent from high-&ell; TT+TE+EE</strong> after plik_lite inclusion &mdash; would eliminate the slip mechanism.</li>
+</ol>
+
+<p style="font-size:0.9rem; color:#555;">
+  See the <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Data Roadmap</a>
+  for the full list of kill criteria and which surveys will decide each one.
+</p>
+
+<p>
+  <strong>Pipeline status (April 2026):</strong> The Euclid DR1 pre-registration pipeline is complete
+  (<a href="https://doi.org/10.6084/m9.figshare.31990053">DOI 31990053</a>).
+  A custom <code>efc_logistic</code> gravity model in the hi_class Boltzmann solver produces
+  full C<sub>&ell;</sub> and P(k) predictions calibrated against &Lambda;CDM. Benchmark prediction
+  (SHA-256 sealed): &sigma;<sub>8</sub>&nbsp;+1.2%, lensing&nbsp;&minus;6%, E<sub>G</sub>&nbsp;&minus;4%.
+  Awaiting Euclid DR1 data release (21&nbsp;October&nbsp;2026).
+</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- Where to go next                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<h2>Where to go next</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:30%;">If you want&hellip;</th>
+      <th>Go here</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The 103-test validation status</td>
+      <td><a href="EFC_Validation_Ledger.html">EFC Validation Ledger</a> &mdash; every test, its outcome, and its epistemic tier.</td>
+    </tr>
+    <tr>
+      <td>The four-part canonical write-up</td>
+      <td><a href="EFC_White_Paper_Series.html">EFC White Paper Series</a> &mdash; recovery conditions, field equations, falsification protocol, regime susceptibility.</td>
+    </tr>
+    <tr>
+      <td>The pre-registered kill criteria</td>
+      <td><a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Data Roadmap</a> &mdash; one row per survey, one kill criterion each, all frozen.</td>
+    </tr>
+    <tr>
+      <td>The full revision history</td>
+      <td><a href="EFC_Changelog.html">Changelog</a> &mdash; every structural and empirical update since inception.</td>
+    </tr>
+    <tr>
+      <td>The code, data, and reproducers</td>
+      <td><a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a> &mdash; 138 AI-friendly paper packages, 103 tests, full reproducible pipelines.</td>
+    </tr>
+    <tr>
+      <td>The single-reference consolidation</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31943361">&Lambda;CDM as a Special Case of Energy-Flow Cosmology</a> (DOI 31943361) &mdash; 14 months and 204 publications in one reference.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Elevator Pitch v1.0 (April 2026) &middot;
+<a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>

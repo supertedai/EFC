@@ -3,6 +3,7 @@
 
 **Date:** January 29, 2026  
 **Author:** Morten Magnusson / Symbiose AI
+**DOI:** [10.6084/m9.figshare.31190233](https://doi.org/10.6084/m9.figshare.31190233)
 
 ---
 

@@ -15,9 +15,17 @@
   "status": "working_paper",
   "framework": "EFC",
   "keywords": [
-    "EFC action", "field equations", "perturbation theory", "modified gravity",
-    "mu-Sigma-eta", "gravitational waves", "scalar-tensor", "entropy flow",
-    "kinetic stiffness", "flow constraint", "conformal Newtonian gauge"
+    "EFC action",
+    "field equations",
+    "perturbation theory",
+    "modified gravity",
+    "mu-Sigma-eta",
+    "gravitational waves",
+    "scalar-tensor",
+    "entropy flow",
+    "kinetic stiffness",
+    "flow constraint",
+    "conformal Newtonian gauge"
   ],
   "abstract": "We derive the complete field equations for the EFC relativistic action, which couples an entropy-flow scalar field phi non-minimally to gravity via F(phi)R, with density-dependent kinetic stiffness K(rho) and a Lagrange-multiplier flow constraint. We perform the full linearisation in conformal Newtonian gauge around an FRW background, and extract closed-form expressions for the effective gravitational couplings mu(k,z) and Sigma(k,z), and the gravitational slip eta(k,z). We show that the combination of non-minimal coupling, kinetic stiffness, and flow constraint naturally produces mu<1, Sigma>1, and eta!=1, consistent with the survival valley identified in the EFC Validation Ledger.",
   "epistemic_status": {
@@ -28,7 +36,10 @@
     "self_contained": true,
     "regime_validity": "quasi-static, sub-horizon (k >> aH)",
     "falsification_conditions": 6,
-    "open_items": ["full ADM Hamiltonian analysis", "numerical EFCLASS implementation"]
+    "open_items": [
+      "full ADM Hamiltonian analysis",
+      "numerical EFCLASS implementation"
+    ]
   },
   "action": {
     "name": "EFC relativistic action",
@@ -60,7 +71,11 @@
         "symbol": "Gamma(rho)",
         "concrete_form": "Gamma(rho) = gamma_0 * (rho/rho_crit) / (1 + rho/rho_crit)",
         "derivative": "Gamma'(rho) = gamma_0 / (rho_crit * (1 + rho/rho_crit)^2)",
-        "properties": ["vanishes in vacuum", "grows with density", "saturates at rho_crit"]
+        "properties": [
+          "vanishes in vacuum",
+          "grows with density",
+          "saturates at rho_crit"
+        ]
       }
     },
     "departures_from_GR": [
@@ -110,9 +125,18 @@
       "interpretation": "Entropy perturbation is slaved to matter perturbation"
     },
     "dimensionless_parameters": {
-      "epsilon_F": {"formula": "F'(phi_bar) a^2 Gamma' / (F k^2)", "equation": 24},
-      "epsilon_lambda": {"formula": "lambda_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)", "equation": 25},
-      "epsilon_K": {"formula": "K(rho_bar) phi_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)", "equation": 26}
+      "epsilon_F": {
+        "formula": "F'(phi_bar) a^2 Gamma' / (F k^2)",
+        "equation": 24
+      },
+      "epsilon_lambda": {
+        "formula": "lambda_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)",
+        "equation": 25
+      },
+      "epsilon_K": {
+        "formula": "K(rho_bar) phi_dot_bar a^2 Gamma' / (M_Pl^2 F k^2)",
+        "equation": 26
+      }
     }
   },
   "observables": {
@@ -132,7 +156,7 @@
       "equation_number": 27,
       "prediction": "> 1 (flow anisotropy)",
       "mechanism": "Three slip sources: scalar-tensor, flow-constraint, response-field",
-      "typical_value": 1.10
+      "typical_value": 1.1
     },
     "sigma": {
       "name": "Effective lensing coupling",
@@ -162,7 +186,11 @@
       "formula": "d_L^GW(z) = d_L^EM(z) * sqrt(F(phi_0)/F(phi(z)))",
       "equation_number": 40,
       "approximation": "d_L^GW/d_L^EM ≈ 1 - (alpha/2)(phi(z) - phi_0)",
-      "testable_with": ["Einstein Telescope", "LISA", "Cosmic Explorer"]
+      "testable_with": [
+        "Einstein Telescope",
+        "LISA",
+        "Cosmic Explorer"
+      ]
     },
     "friction_constraint": {
       "requirement": "|F_dot/F| << H",
@@ -194,25 +222,86 @@
     }
   },
   "falsification_conditions": [
-    {"id": "FA1", "condition": "R(k,z) < 0 for any k,z", "consequence": "Stiffness mechanism fails; mu > 1 generically", "status": "open"},
-    {"id": "FA2", "condition": "Ghost in (delta_phi, delta_lambda) sector", "consequence": "Theory UV-unstable; action must be modified", "status": "open"},
-    {"id": "FA3", "condition": "c_T != c", "consequence": "GW170817 violated", "status": "PASSED"},
-    {"id": "FA4", "condition": "eta = 1 identically", "consequence": "Flow constraint does not generate anisotropic stress", "status": "open"},
-    {"id": "FA5", "condition": "No parameter region gives mu in [0.93,0.96], Sigma in [1.03,1.07]", "consequence": "Action doesn't reproduce observed signatures", "status": "open"},
-    {"id": "FA6", "condition": "|F_dot/F| >= H at any z < 2", "consequence": "GW friction too large; violates LIGO/Virgo amplitude constraints", "status": "open"}
+    {
+      "id": "FA1",
+      "condition": "R(k,z) < 0 for any k,z",
+      "consequence": "Stiffness mechanism fails; mu > 1 generically",
+      "status": "open"
+    },
+    {
+      "id": "FA2",
+      "condition": "Ghost in (delta_phi, delta_lambda) sector",
+      "consequence": "Theory UV-unstable; action must be modified",
+      "status": "open"
+    },
+    {
+      "id": "FA3",
+      "condition": "c_T != c",
+      "consequence": "GW170817 violated",
+      "status": "PASSED"
+    },
+    {
+      "id": "FA4",
+      "condition": "eta = 1 identically",
+      "consequence": "Flow constraint does not generate anisotropic stress",
+      "status": "open"
+    },
+    {
+      "id": "FA5",
+      "condition": "No parameter region gives mu in [0.93,0.96], Sigma in [1.03,1.07]",
+      "consequence": "Action doesn't reproduce observed signatures",
+      "status": "open"
+    },
+    {
+      "id": "FA6",
+      "condition": "|F_dot/F| >= H at any z < 2",
+      "consequence": "GW friction too large; violates LIGO/Virgo amplitude constraints",
+      "status": "open"
+    }
   ],
   "survival_valley": {
-    "mu_range": [0.93, 0.96],
-    "sigma_range": [1.03, 1.07],
-    "eta_typical": 1.10,
+    "mu_range": [
+      0.93,
+      0.96
+    ],
+    "sigma_range": [
+      1.03,
+      1.07
+    ],
+    "eta_typical": 1.1,
     "source": "Systematic localisation analysis (Magnusson 2026, Figshare 10.6084/m9.figshare.31368433)"
   },
   "cross_sector_summary": [
-    {"sector": "Growth", "observable": "mu(k,z)", "prediction": "< 1", "source": "K(rho) stiffness"},
-    {"sector": "Lensing", "observable": "Sigma(k,z)", "prediction": "> 1", "source": "lambda-anisotropy"},
-    {"sector": "Slip", "observable": "eta(k,z)", "prediction": "!= 1", "source": "F' + lambda + phi"},
-    {"sector": "GW speed", "observable": "c_T", "prediction": "= c", "source": "No Weyl coupling"},
-    {"sector": "GW amplitude", "observable": "d_L^GW/d_L^EM", "prediction": "!= 1", "source": "F(phi) friction"}
+    {
+      "sector": "Growth",
+      "observable": "mu(k,z)",
+      "prediction": "< 1",
+      "source": "K(rho) stiffness"
+    },
+    {
+      "sector": "Lensing",
+      "observable": "Sigma(k,z)",
+      "prediction": "> 1",
+      "source": "lambda-anisotropy"
+    },
+    {
+      "sector": "Slip",
+      "observable": "eta(k,z)",
+      "prediction": "!= 1",
+      "source": "F' + lambda + phi"
+    },
+    {
+      "sector": "GW speed",
+      "observable": "c_T",
+      "prediction": "= c",
+      "source": "No Weyl coupling"
+    },
+    {
+      "sector": "GW amplitude",
+      "observable": "d_L^GW/d_L^EM",
+      "prediction": "!= 1",
+      "source": "F(phi) friction"
+    }
   ],
   "references": {
     "count": 11,
@@ -240,5 +329,6 @@
     "source": "src/efc_relativistic.py",
     "data": "data/framework.json",
     "demo": "examples/demo_efc_relativistic.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31876324"
 }

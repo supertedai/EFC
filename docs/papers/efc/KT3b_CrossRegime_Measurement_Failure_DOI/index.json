@@ -13,24 +13,77 @@
   "ledger_version_at_publication": "v3.12",
   "type": "null result + methodological diagnosis",
   "track": "Spor 1 — Galactic/Cosmological",
-  "regimes": ["L1", "L2", "L1/L2 boundary"],
+  "regimes": [
+    "L1",
+    "L2",
+    "L1/L2 boundary"
+  ],
   "target": {
     "test": "KT3b environmental mass-scaling test",
     "original_coupling": "rho_eff = rho_gal(r) + alpha * rho_env",
     "original_observable": "R = g_obs / g_bar at g_bar ~ a_0"
   },
   "run_history": [
-    {"run": 1, "env_proxy": "log(L/D^2)",           "n_galaxies": 60, "slope": -0.21, "diagnosis": "mass artefact"},
-    {"run": 2, "env_proxy": "Karachentsev Theta_1", "n_galaxies": 17, "slope":  0.01, "diagnosis": "N too small"},
-    {"run": 3, "env_proxy": "Tully N_mem (raw)",    "n_galaxies": 70, "slope": -0.07, "diagnosis": "mass bias"},
-    {"run": 4, "env_proxy": "Tully (mass-matched pairs)", "n_galaxies": 23, "slope": 0.0, "diagnosis": "null"}
+    {
+      "run": 1,
+      "env_proxy": "log(L/D^2)",
+      "n_galaxies": 60,
+      "slope": -0.21,
+      "diagnosis": "mass artefact"
+    },
+    {
+      "run": 2,
+      "env_proxy": "Karachentsev Theta_1",
+      "n_galaxies": 17,
+      "slope": 0.01,
+      "diagnosis": "N too small"
+    },
+    {
+      "run": 3,
+      "env_proxy": "Tully N_mem (raw)",
+      "n_galaxies": 70,
+      "slope": -0.07,
+      "diagnosis": "mass bias"
+    },
+    {
+      "run": 4,
+      "env_proxy": "Tully (mass-matched pairs)",
+      "n_galaxies": 23,
+      "slope": 0.0,
+      "diagnosis": "null"
+    }
   ],
   "regime_assignment": [
-    {"component": "D_eff(rho)",          "type": "theory",     "regime": "L2",             "why": "Non-linear galactic dynamics; grid-mode activation at g < a_0"},
-    {"component": "rho_env",             "type": "driver",     "regime": "L1",             "why": "Large-scale structure; Mpc-scale density field; linear perturbation theory"},
-    {"component": "R at a_0",            "type": "observable", "regime": "L1/L2 boundary", "why": "Transition point where the regime changes; maximally unstable"},
-    {"component": "rotation curve",      "type": "data",       "regime": "L2",             "why": "kpc-scale circular velocities"},
-    {"component": "Upsilon_star",        "type": "mass model", "regime": "L1 assumption",  "why": "Stellar population synthesis assumes universal IMF and standard gravity"}
+    {
+      "component": "D_eff(rho)",
+      "type": "theory",
+      "regime": "L2",
+      "why": "Non-linear galactic dynamics; grid-mode activation at g < a_0"
+    },
+    {
+      "component": "rho_env",
+      "type": "driver",
+      "regime": "L1",
+      "why": "Large-scale structure; Mpc-scale density field; linear perturbation theory"
+    },
+    {
+      "component": "R at a_0",
+      "type": "observable",
+      "regime": "L1/L2 boundary",
+      "why": "Transition point where the regime changes; maximally unstable"
+    },
+    {
+      "component": "rotation curve",
+      "type": "data",
+      "regime": "L2",
+      "why": "kpc-scale circular velocities"
+    },
+    {
+      "component": "Upsilon_star",
+      "type": "mass model",
+      "regime": "L1 assumption",
+      "why": "Stellar population synthesis assumes universal IMF and standard gravity"
+    }
   ],
   "rcmp_violations": [
     {
@@ -81,7 +134,9 @@
       "observable": "fsigma8(z) from RSD or void-cluster growth rate comparison",
       "driver": "L1 environmental density field",
       "free_parameters": 1,
-      "free_parameter_names": ["alpha_L1"],
+      "free_parameter_names": [
+        "alpha_L1"
+      ],
       "current_measurement": "alpha_L1 = -0.14 +/- 0.21",
       "data_available_now": "Partial (fsigma8)",
       "rcmp_consistent": true,
@@ -124,5 +179,6 @@
     "architectures": "data/test_architectures.json",
     "src_rcmp_check": "src/rcmp_check.py",
     "example": "examples/check_kt3b_and_alternatives.py"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31963821"
 }

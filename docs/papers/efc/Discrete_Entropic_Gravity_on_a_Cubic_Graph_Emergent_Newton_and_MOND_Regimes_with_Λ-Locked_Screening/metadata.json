@@ -1,5 +1,5 @@
 {
-  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newton and MOND Regimes with \u039b-Locked Screening",
+  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newton and MOND Regimes with Λ-Locked Screening",
   "short_id": "discrete-entropic-gravity-cubic-graph",
   "version": "v1.0",
   "date": "2026-02-16",
@@ -10,14 +10,14 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31348411",
-  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Numerically recovers Newtonian 1/r\u00b2 and MOND-like 1/r scaling, \u039b-locked regime transitions, broken superposition (13.7% violation), and the external field effect. An emergent prefactor C \u2248 2.32 yields a\u2080,eff \u2248 5.4 a\u2080, and mass scaling follows r_trans \u221d M^0.18 (vs MOND M^0.5).",
+  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Numerically recovers Newtonian 1/r² and MOND-like 1/r scaling, Λ-locked regime transitions, broken superposition (13.7% violation), and the external field effect. An emergent prefactor C ≈ 2.32 yields a₀,eff ≈ 5.4 a₀, and mass scaling follows r_trans ∝ M^0.18 (vs MOND M^0.5).",
   "keywords": [
     "discrete gravity",
     "cubic graph",
     "AQUAL",
     "MOND",
     "entropic gravity",
-    "\u039b-locking",
+    "Λ-locking",
     "cosmological constant",
     "graph topology",
     "Newtonian limit",
@@ -38,7 +38,7 @@
     "External field effect confirmed on cubic graph"
   ],
   "file_manifest": {
-    "pdf": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_\u039b-Locked_Screening.pdf",
+    "pdf": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening.pdf",
     "readme": "README.md",
     "index": "index.json",
     "schema": "schema.json",
@@ -61,5 +61,9 @@
       "examples/run_kill_tests.py",
       "examples/prefactor_convergence.py"
     ]
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31348411",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31348411"
   }
 }

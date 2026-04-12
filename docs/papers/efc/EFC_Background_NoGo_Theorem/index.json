@@ -8,9 +8,17 @@
   "doi": "10.6084/m9.figshare.31985163",
   "source_dois": ["10.6084/m9.figshare.31333414", "10.6084/m9.figshare.31368433"],
   "keywords": [
-    "Energy-Flow Cosmology", "no-go theorem", "background coupling",
-    "Friedmann equation", "sign lemma", "sigma8 tension", "CLASS",
-    "CMB", "BAO", "perturbation sector", "structural boundary"
+    "Energy-Flow Cosmology",
+    "no-go theorem",
+    "background coupling",
+    "Friedmann equation",
+    "sign lemma",
+    "sigma8 tension",
+    "CLASS",
+    "CMB",
+    "BAO",
+    "perturbation sector",
+    "structural boundary"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -66,7 +74,7 @@
         "description": "Physical baryon density"
       },
       "omega_cdm": {
-        "value": 0.1200,
+        "value": 0.12,
         "description": "Physical CDM density"
       }
     },
@@ -86,7 +94,7 @@
         "description": "Lensing potential modifier"
       },
       "eta": {
-        "value": 1.10,
+        "value": 1.1,
         "description": "Gravitational slip η = Φ/Ψ"
       }
     }
@@ -103,16 +111,51 @@
     "numerical": {
       "name": "CLASS v3.3.4 Verification",
       "results": [
-        {"z": 0.3, "delta_H_over_H_pct": -0.291, "sign_ok": true},
-        {"z": 0.5, "delta_H_over_H_pct": -0.569, "sign_ok": true},
-        {"z": 1.0, "delta_H_over_H_pct": -1.124, "sign_ok": true},
-        {"z": 2.0, "delta_H_over_H_pct": -0.739, "sign_ok": true},
-        {"z": 5.0, "delta_H_over_H_pct": -0.107, "sign_ok": true}
+        {
+          "z": 0.3,
+          "delta_H_over_H_pct": -0.291,
+          "sign_ok": true
+        },
+        {
+          "z": 0.5,
+          "delta_H_over_H_pct": -0.569,
+          "sign_ok": true
+        },
+        {
+          "z": 1.0,
+          "delta_H_over_H_pct": -1.124,
+          "sign_ok": true
+        },
+        {
+          "z": 2.0,
+          "delta_H_over_H_pct": -0.739,
+          "sign_ok": true
+        },
+        {
+          "z": 5.0,
+          "delta_H_over_H_pct": -0.107,
+          "sign_ok": true
+        }
       ],
       "growth_enhancement": [
-        {"z": 0.38, "fsigma8_lcdm": 0.4749, "fsigma8_efc": 0.4773, "change_pct": 0.50},
-        {"z": 0.51, "fsigma8_lcdm": 0.4731, "fsigma8_efc": 0.4762, "change_pct": 0.65},
-        {"z": 0.61, "fsigma8_lcdm": 0.4679, "fsigma8_efc": 0.4715, "change_pct": 0.76}
+        {
+          "z": 0.38,
+          "fsigma8_lcdm": 0.4749,
+          "fsigma8_efc": 0.4773,
+          "change_pct": 0.5
+        },
+        {
+          "z": 0.51,
+          "fsigma8_lcdm": 0.4731,
+          "fsigma8_efc": 0.4762,
+          "change_pct": 0.65
+        },
+        {
+          "z": 0.61,
+          "fsigma8_lcdm": 0.4679,
+          "fsigma8_efc": 0.4715,
+          "change_pct": 0.76
+        }
       ],
       "conclusion": "Growth is enhanced at all redshifts — opposite direction from S₈ tension amelioration",
       "reference_doi": "10.6084/m9.figshare.31333414"
@@ -131,7 +174,12 @@
       },
       "four_channel_test": {
         "beta": 0.08,
-        "channels": ["BAO distances", "Growth rate", "CMB lensing", "SN Ia"],
+        "channels": [
+          "BAO distances",
+          "Growth rate",
+          "CMB lensing",
+          "SN Ia"
+        ],
         "combined_delta_chi2": -3.89,
         "significance": "~2σ preference",
         "note": "Background coupling consistent but not sufficient for σ₈ suppression"
@@ -144,9 +192,19 @@
     "active_channel": "Perturbation sector (μ, Σ, η modifications)",
     "reason": "Sign lemma proves background enhancement; observational α-collapse confirms emptiness",
     "survival_valley": {
-      "mu_range": [0.93, 0.96],
-      "Sigma_range": [1.03, 1.07],
-      "best_fit": {"mu": 0.94, "Sigma": 1.05, "delta_chi2": -0.45}
+      "mu_range": [
+        0.93,
+        0.96
+      ],
+      "Sigma_range": [
+        1.03,
+        1.07
+      ],
+      "best_fit": {
+        "mu": 0.94,
+        "Sigma": 1.05,
+        "delta_chi2": -0.45
+      }
     },
     "testable_predictions": [
       "μ ≈ 0.94 (growth suppression via Poisson equation)",
@@ -176,16 +234,41 @@
     }
   ],
   "related_packages": [
-    {"id": "efclass-sign-structure", "doi": "10.6084/m9.figshare.31333414", "role": "Source of analytical proof"},
-    {"id": "cmb-systematic-localization", "doi": "10.6084/m9.figshare.31368433", "role": "Source of observational α-collapse"},
-    {"id": "four-channel-consistency", "doi": "10.6084/m9.figshare.31304980", "role": "β = 0.08 four-probe test"},
-    {"id": "perturbation-sigma8", "doi": "10.6084/m9.figshare.31333600", "role": "Perturbation-sector alternative"},
-    {"id": "kill-test-v6", "doi": "10.6084/m9.figshare.31964847", "role": "Full six-probe validation"},
-    {"id": "efc-relativistic-action", "doi": "10.6084/m9.figshare.31876324", "role": "Derivation of μ, Σ, η from variational action"}
+    {
+      "id": "efclass-sign-structure",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Source of analytical proof"
+    },
+    {
+      "id": "cmb-systematic-localization",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "Source of observational α-collapse"
+    },
+    {
+      "id": "four-channel-consistency",
+      "doi": "10.6084/m9.figshare.31304980",
+      "role": "β = 0.08 four-probe test"
+    },
+    {
+      "id": "perturbation-sigma8",
+      "doi": "10.6084/m9.figshare.31333600",
+      "role": "Perturbation-sector alternative"
+    },
+    {
+      "id": "kill-test-v6",
+      "doi": "10.6084/m9.figshare.31964847",
+      "role": "Full six-probe validation"
+    },
+    {
+      "id": "efc-relativistic-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Derivation of μ, Σ, η from variational action"
+    }
   ],
   "files": {
     "readme": "README.md",
     "schema": "schema.json",
     "citations": "citations.bib"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31333414"
 }

@@ -6,38 +6,174 @@
     "subtitle": "fσ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
     "report_id": "EFC-VAL-2026-003",
     "doi": "10.6084/m9.figshare.31955871",
-    "author": {"name": "Morten Magnusson", "orcid": "0009-0002-4860-5095", "affiliation": "Symbiose Research"},
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research"
+    },
     "date": "2026-04-07",
-    "license": "CC-BY-4.0"
+    "license": "CC-BY-4.0",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31955871"
   },
-  "domain": {"track": "Spor 1 — Galactic/Cosmological", "regimes": ["L1", "L2"], "sector": "perturbation / growth of structure"},
+  "domain": {
+    "track": "Spor 1 — Galactic/Cosmological",
+    "regimes": [
+      "L1",
+      "L2"
+    ],
+    "sector": "perturbation / growth of structure"
+  },
   "datasets": [
-    {"survey": "6dFGS", "tracer": "Galaxies", "z": 0.067, "fsigma8": 0.423, "sigma": 0.055, "ref": "Beutler+ 2012"},
-    {"survey": "DESI DR1 PV", "tracer": "FP+TF", "z": 0.070, "fsigma8": 0.450, "sigma": 0.055, "ref": "Turner+ 2025"},
-    {"survey": "DESI DR1 BGS", "tracer": "BGS", "z": 0.295, "fsigma8": 0.408, "sigma": 0.040, "ref": "DESI 2024 V"},
-    {"survey": "BOSS DR12", "tracer": "LOWZ", "z": 0.380, "fsigma8": 0.497, "sigma": 0.045, "ref": "Alam+ 2017"},
-    {"survey": "BOSS DR12", "tracer": "CMASS", "z": 0.510, "fsigma8": 0.458, "sigma": 0.038, "ref": "Alam+ 2017"},
-    {"survey": "DESI DR1", "tracer": "LRGz0", "z": 0.510, "fsigma8": 0.449, "sigma": 0.032, "ref": "DESI 2024 V"},
-    {"survey": "BOSS DR12", "tracer": "CMASS", "z": 0.610, "fsigma8": 0.436, "sigma": 0.034, "ref": "Alam+ 2017"},
-    {"survey": "eBOSS DR16", "tracer": "LRG", "z": 0.700, "fsigma8": 0.473, "sigma": 0.041, "ref": "Gil-Marín+ 2020"},
-    {"survey": "DESI DR1", "tracer": "LRGz1", "z": 0.706, "fsigma8": 0.413, "sigma": 0.029, "ref": "DESI 2024 V"},
-    {"survey": "eBOSS DR16", "tracer": "ELG", "z": 0.850, "fsigma8": 0.315, "sigma": 0.095, "ref": "de Mattia+ 2021"},
-    {"survey": "DESI DR1", "tracer": "LRG+ELG", "z": 0.930, "fsigma8": 0.381, "sigma": 0.034, "ref": "DESI 2024 V"},
-    {"survey": "DESI DR1", "tracer": "ELG", "z": 1.317, "fsigma8": 0.396, "sigma": 0.062, "ref": "DESI 2024 V"},
-    {"survey": "eBOSS DR16", "tracer": "QSO", "z": 1.480, "fsigma8": 0.462, "sigma": 0.045, "ref": "Neveux+ 2020"},
-    {"survey": "DESI DR1", "tracer": "QSO", "z": 1.491, "fsigma8": 0.318, "sigma": 0.076, "ref": "DESI 2024 V"}
+    {
+      "survey": "6dFGS",
+      "tracer": "Galaxies",
+      "z": 0.067,
+      "fsigma8": 0.423,
+      "sigma": 0.055,
+      "ref": "Beutler+ 2012"
+    },
+    {
+      "survey": "DESI DR1 PV",
+      "tracer": "FP+TF",
+      "z": 0.07,
+      "fsigma8": 0.45,
+      "sigma": 0.055,
+      "ref": "Turner+ 2025"
+    },
+    {
+      "survey": "DESI DR1 BGS",
+      "tracer": "BGS",
+      "z": 0.295,
+      "fsigma8": 0.408,
+      "sigma": 0.04,
+      "ref": "DESI 2024 V"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "LOWZ",
+      "z": 0.38,
+      "fsigma8": 0.497,
+      "sigma": 0.045,
+      "ref": "Alam+ 2017"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "CMASS",
+      "z": 0.51,
+      "fsigma8": 0.458,
+      "sigma": 0.038,
+      "ref": "Alam+ 2017"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRGz0",
+      "z": 0.51,
+      "fsigma8": 0.449,
+      "sigma": 0.032,
+      "ref": "DESI 2024 V"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "CMASS",
+      "z": 0.61,
+      "fsigma8": 0.436,
+      "sigma": 0.034,
+      "ref": "Alam+ 2017"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "LRG",
+      "z": 0.7,
+      "fsigma8": 0.473,
+      "sigma": 0.041,
+      "ref": "Gil-Marín+ 2020"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRGz1",
+      "z": 0.706,
+      "fsigma8": 0.413,
+      "sigma": 0.029,
+      "ref": "DESI 2024 V"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "ELG",
+      "z": 0.85,
+      "fsigma8": 0.315,
+      "sigma": 0.095,
+      "ref": "de Mattia+ 2021"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRG+ELG",
+      "z": 0.93,
+      "fsigma8": 0.381,
+      "sigma": 0.034,
+      "ref": "DESI 2024 V"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "ELG",
+      "z": 1.317,
+      "fsigma8": 0.396,
+      "sigma": 0.062,
+      "ref": "DESI 2024 V"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "QSO",
+      "z": 1.48,
+      "fsigma8": 0.462,
+      "sigma": 0.045,
+      "ref": "Neveux+ 2020"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "QSO",
+      "z": 1.491,
+      "fsigma8": 0.318,
+      "sigma": 0.076,
+      "ref": "DESI 2024 V"
+    }
   ],
   "model": {
     "name": "EFC regime-dependent gravitational coupling",
     "mu_of_a": "1 - B * 1/(1 + (a_t/a)^n)",
-    "free_params_EFC": ["sigma8_0", "B", "z_t"],
-    "fixed": {"Omega_m": 0.3019, "n": 2},
-    "baseline_LCDM": {"free": ["Omega_m", "sigma8_0"]}
+    "free_params_EFC": [
+      "sigma8_0",
+      "B",
+      "z_t"
+    ],
+    "fixed": {
+      "Omega_m": 0.3019,
+      "n": 2
+    },
+    "baseline_LCDM": {
+      "free": [
+        "Omega_m",
+        "sigma8_0"
+      ]
+    }
   },
   "results": {
-    "LCDM": {"Omega_m": 0.3019, "sigma8_0": 0.7739, "chi2": 12.07, "dof": 12},
-    "EFC":  {"sigma8_0": 0.7916, "B": 0.078, "z_t": 3.00, "mu0": 0.922, "chi2": 11.98, "dof": 11},
-    "delta_chi2": 0.10, "sigma": 0.06, "delta_AIC": -1.90,
+    "LCDM": {
+      "Omega_m": 0.3019,
+      "sigma8_0": 0.7739,
+      "chi2": 12.07,
+      "dof": 12
+    },
+    "EFC": {
+      "sigma8_0": 0.7916,
+      "B": 0.078,
+      "z_t": 3.0,
+      "mu0": 0.922,
+      "chi2": 11.98,
+      "dof": 11
+    },
+    "delta_chi2": 0.1,
+    "sigma": 0.06,
+    "delta_AIC": -1.9,
     "verdict": "Null result; LCDM marginally preferred. EFC consistent within 1σ."
   },
   "links": {

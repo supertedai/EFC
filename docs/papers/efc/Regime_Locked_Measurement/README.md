@@ -1,5 +1,7 @@
 # Regime-Locked Measurement as a General Structural Constraint
 
+**DOI:** [10.6084/m9.figshare.31833076](https://doi.org/10.6084/m9.figshare.31833076)
+
 **Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring**
 
 | Field | Value |

@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "CMB-Thermodynamic-Interpretation/CMB_Thermodynamic_Interpretation.pdf",
@@ -16,6 +16,10 @@
     "CMB-Thermodynamic-Interpretation/CMB_Thermodynamic_Interpretation.pdf"
   ],
   "files": [
+    {
+      "path": "CITATION.cff",
+      "bytes": 598
+    },
     {
       "path": "CMB-Thermodynamic-Interpretation/CITATION.cff",
       "bytes": 1643
@@ -61,12 +65,16 @@
       "bytes": 5244
     },
     {
+      "path": "LICENSE",
+      "bytes": 298
+    },
+    {
       "path": "README.md",
       "bytes": 2913
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 2790
+      "bytes": 2717
     },
     {
       "path": "citations.bib",
@@ -74,11 +82,11 @@
     },
     {
       "path": "cmb-thermodynamic-interpretation.jsonld",
-      "bytes": 519
+      "bytes": 684
     },
     {
       "path": "cmb_thermodynamic.jsonld",
-      "bytes": 1976
+      "bytes": 2225
     },
     {
       "path": "data/cmb_thermodynamic_data.json",
@@ -90,11 +98,11 @@
     },
     {
       "path": "index.json",
-      "bytes": 3671
+      "bytes": 3738
     },
     {
       "path": "metadata.json",
-      "bytes": 1769
+      "bytes": 2030
     },
     {
       "path": "schema.json",
@@ -109,6 +117,6 @@
       "bytes": 12271
     }
   ],
-  "n_files": 23,
+  "n_files": 25,
   "n_pdfs": 1
 }

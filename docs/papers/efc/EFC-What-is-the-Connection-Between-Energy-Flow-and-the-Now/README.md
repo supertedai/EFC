@@ -1,5 +1,7 @@
 # EFC — What is the Connection Between Energy Flow and the Now?
 
+**DOI:** [10.6084/m9.figshare.28098311](https://doi.org/10.6084/m9.figshare.28098311)
+
 This directory contains the paper examining how the experience of “the
 Now” emerges from energy flow, entropy gradients, and temporal ordering
 within the Energy-Flow Cosmology framework.  

@@ -1,0 +1,67 @@
+PREDICTION BLOCK — EFC Euclid DR1 Pre-Registration
+====================================================
+Model: efc_logistic (Energy-Flow Cosmology)
+Benchmark: B0 = 0.02, M0 = 0.06, a_t = 0.3, Delta = 0.3
+Tool: hi_class 3.0 with custom efc_logistic gravity model
+Date: 2026-04-12
+Author: Morten Magnusson (ORCID: 0009-0002-4860-5095)
+
+COSMOLOGY: Planck 2018 LCDM (h=0.6736, omega_b=0.02237, omega_cdm=0.12)
+
+PREDICTION 1: sigma8
+  EFC:  0.83268
+  LCDM: 0.82274
+  Shift: +1.21%
+  REGIME: z=0, linear scales
+  RCMP: growth rate from hi_class Boltzmann, no proxy chain
+  FALSIFICATION: if |dsigma8| < 0.3% at 3sigma -> M0 < 0.01 (model marginal)
+
+PREDICTION 2: P(k=0.05 h/Mpc, z=0.5)
+  Shift: +2.09% relative to LCDM
+  REGIME: k=0.05 h/Mpc (linear), z=0.5
+  RCMP: matter power from hi_class, no bias model needed
+  FALSIFICATION: if |dP/P| < 0.5% at k_c -> Planck mass running negligible
+
+PREDICTION 3: Cl^{phi-phi}(ell=66)
+  Shift: -6.01% relative to LCDM
+  REGIME: ell=66 (linear, Limber valid), lensing potential
+  RCMP: direct Boltzmann output, no galaxy proxy
+  FALSIFICATION: if |dCl^pp| < 1.5% -> alpha_M effect on lensing ruled out
+
+PREDICTION 4: E_G shift at ell=66
+  Shift: -3.98% relative to LCDM
+  REGIME: ell=66, z~0.5, linear
+  RCMP: E_G cancels galaxy bias; IA subdominant at ell<200
+  FALSIFICATION: if |dE_G| < 1% -> mu-Sigma coupling in EFC falsified
+
+PREDICTION 5: Cl^TT(ell=30) ISW
+  Shift: +1.88% relative to LCDM
+  REGIME: ell=30, ISW effect from late-time potential decay
+  RCMP: CMB directly observed, minimal systematic
+  NOTE: this is a CONSISTENCY CHECK, not primary test.
+  Planck already constrains this to < ~3%.
+
+COHERENCE SIGNATURE:
+  sigma8 UP, P(k) UP, lensing DOWN, ISW UP, E_G DOWN
+  This pattern is OPPOSITE to neutrino mass (sigma8 DOWN, lensing DOWN)
+  and cannot be produced by galaxy bias, IA, or photo-z systematics.
+
+STABILITY:
+  cs2_safe_smg = 1e-6 (numerical regularization, O(1e-8) violation)
+  D = alpha_K + 3/2*alpha_B^2 > 0 everywhere (verified)
+  M0/B0 = 3.0 (at stability boundary)
+  ISW constraint: M0 < 0.1 from Planck Cl^TT
+
+PARAMETER RANGE (allowed):
+  B0: [0, 0.03]
+  M0: [0.01, 0.10]
+  Constraint: M0 >= 3*B0
+
+ALLOWED SIGNAL RANGE:
+  dsigma8:  +0.2% to +1.6%
+  dP(k,z=0.5): +0.3% to +2.8%
+  dCl^pp(66): -1.1% to -10.8%
+  dE_G(66): -0.7% to -4.0% (estimated)
+
+SHA-256: dbc737979d8a773f56c620759ddded38139157fd9a2dbb321a8ffdb6e68135d2
+Timestamp: 2026-04-12T14:27:26.081257Z

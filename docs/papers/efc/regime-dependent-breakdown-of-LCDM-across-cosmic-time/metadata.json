@@ -41,10 +41,22 @@
       "p_value": "1.3e-9"
     },
     "jwst_excess": {
-      "z_5_6": {"ratio_behroozi": 23, "ratio_halo_limit": 3.1},
-      "z_7_8": {"ratio_behroozi": 124, "ratio_halo_limit": 7.7},
-      "z_8_9": {"ratio_behroozi": 259, "ratio_halo_limit": 10.4},
-      "z_9_10": {"ratio_behroozi": 529, "ratio_halo_limit": 10.6}
+      "z_5_6": {
+        "ratio_behroozi": 23,
+        "ratio_halo_limit": 3.1
+      },
+      "z_7_8": {
+        "ratio_behroozi": 124,
+        "ratio_halo_limit": 7.7
+      },
+      "z_8_9": {
+        "ratio_behroozi": 259,
+        "ratio_halo_limit": 10.4
+      },
+      "z_9_10": {
+        "ratio_behroozi": 529,
+        "ratio_halo_limit": 10.6
+      }
     }
   },
   "claims": {
@@ -66,5 +78,9 @@
     "jsonld": "metadata.jsonld"
   },
   "license": "CC-BY-4.0",
-  "repository": "https://github.com/mortenmagnusson/efc-papers"
+  "repository": "https://github.com/mortenmagnusson/efc-papers",
+  "paper": {
+    "doi": "10.6084/m9.figshare.31061665",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665"
+  }
 }

@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [
     "L0",
@@ -21,6 +21,10 @@
     "SPARC175_COMPLETE_PAPER.pdf"
   ],
   "files": [
+    {
+      "path": "CITATION.cff",
+      "bytes": 782
+    },
     {
       "path": "COMPLETE_EVIDENCE_PACKAGE.md",
       "bytes": 9394
@@ -54,12 +58,16 @@
       "bytes": 6323
     },
     {
+      "path": "LICENSE",
+      "bytes": 298
+    },
+    {
       "path": "PACKAGE_MANIFEST.md",
       "bytes": 3274
     },
     {
       "path": "README.md",
-      "bytes": 7126
+      "bytes": 7827
     },
     {
       "path": "SPARC175_COMPLETE_PAPER.html",
@@ -83,7 +91,7 @@
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 6029
+      "bytes": 6150
     },
     {
       "path": "citations.bib",
@@ -91,7 +99,7 @@
     },
     {
       "path": "comprehensive-analysis-of-175-sparc-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling.jsonld",
-      "bytes": 638
+      "bytes": 803
     },
     {
       "path": "data/sparc175_classified.json",
@@ -175,7 +183,7 @@
     },
     {
       "path": "index.json",
-      "bytes": 4574
+      "bytes": 4641
     },
     {
       "path": "index.tex",
@@ -183,11 +191,15 @@
     },
     {
       "path": "metadata.json",
-      "bytes": 1292
+      "bytes": 1420
     },
     {
       "path": "minimal_spec.tex",
       "bytes": 3697
+    },
+    {
+      "path": "results/sparc175_killtest_results.json",
+      "bytes": 118813
     },
     {
       "path": "schema.json",
@@ -222,6 +234,10 @@
       "bytes": 5883
     },
     {
+      "path": "scripts/sparc175_killtest_universality.py",
+      "bytes": 18963
+    },
+    {
       "path": "sparc-n175-extended/README.md",
       "bytes": 1033
     },
@@ -247,7 +263,7 @@
     },
     {
       "path": "sparc175-regime-analysis.jsonld",
-      "bytes": 2647
+      "bytes": 2712
     },
     {
       "path": "sparc175_aic_vs_latent.png",
@@ -270,6 +286,6 @@
       "bytes": 9684
     }
   ],
-  "n_files": 62,
+  "n_files": 66,
   "n_pdfs": 1
 }

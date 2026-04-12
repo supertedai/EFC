@@ -29,9 +29,19 @@
     "epistemic_layer": "revision"
   },
   "key_results": [
-    {"finding": "Original A_ISW values withdrawn", "original": "0.56-0.15", "revised": "0.87-0.92"},
-    {"finding": "Uniform suppression", "value": "~11%", "z_dependence": "negligible"},
-    {"finding": "Cancellation metric C not applicable under growth-driven ISW"}
+    {
+      "finding": "Original A_ISW values withdrawn",
+      "original": "0.56-0.15",
+      "revised": "0.87-0.92"
+    },
+    {
+      "finding": "Uniform suppression",
+      "value": "~11%",
+      "z_dependence": "negligible"
+    },
+    {
+      "finding": "Cancellation metric C not applicable under growth-driven ISW"
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -46,5 +56,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31329082",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31329082"
   }
 }

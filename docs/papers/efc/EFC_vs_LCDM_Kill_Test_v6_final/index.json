@@ -38,12 +38,12 @@
   "abstract": "Comprehensive kill-test of Energy-Flow Cosmology against ΛCDM across six independent probes spanning galactic to cosmological scales. A single action with two field parameters (K0, m²) produces μ = 0.94, η = 1.23, Σ = 1.05 from one mechanism — stiffness and slip are not independent. All four cobaya minimize runs against Planck 2018 plik_lite + lowl + lensing + BAO + Pantheon+ return Δχ² ≤ 0 in the EFC direction. EFC cannot be rejected on current data.",
   "headline_result": {
     "runs_with_delta_chi2_le_0": "4 / 4",
-    "total_delta_chi2": -0.300,
+    "total_delta_chi2": -0.3,
     "K0_minimum": 1.552,
     "m2_minimum": 0.00318,
     "mu0_minimum": 0.9437,
     "Sigma0_minimum": 1.069,
-    "H0_delta_km_s_Mpc": 0.90,
+    "H0_delta_km_s_Mpc": 0.9,
     "sigma8_shift": -0.014,
     "Omega_m_shift": -0.003
   },
@@ -59,11 +59,26 @@
   "parameters": {
     "K0_reference_v5": 1.66,
     "m2_reference_v5": 0.0035,
-    "K0_sweet_spot": [1.55, 1.68],
-    "m2_sweet_spot": [0.0032, 0.0038],
-    "mu0_window": [0.93, 0.96],
-    "Sigma0_window": [1.03, 1.07],
-    "f_window": [0.12, 0.18],
+    "K0_sweet_spot": [
+      1.55,
+      1.68
+    ],
+    "m2_sweet_spot": [
+      0.0032,
+      0.0038
+    ],
+    "mu0_window": [
+      0.93,
+      0.96
+    ],
+    "Sigma0_window": [
+      1.03,
+      1.07
+    ],
+    "f_window": [
+      0.12,
+      0.18
+    ],
     "f_window_width_percent": 25,
     "k_anchor_h_per_Mpc": 0.05,
     "mu_k_at_anchor": 0.94,
@@ -72,10 +87,30 @@
     "cobaya_version": "3.6.2"
   },
   "regime_architecture": [
-    {"regime": "L0", "redshift": "z > 1100", "coupling": "α_S → 0", "physics": "Standard GR + Standard Model"},
-    {"regime": "L1", "redshift": "30 < z < 1100", "coupling": "linear growth", "physics": "post-recombination"},
-    {"regime": "L2", "redshift": "0.5 < z < 30", "coupling": "α_L2 ≠ 0", "physics": "late-time modification"},
-    {"regime": "L3", "redshift": "z ~ 0", "coupling": "full entropy-flow", "physics": "galactic / local"}
+    {
+      "regime": "L0",
+      "redshift": "z > 1100",
+      "coupling": "α_S → 0",
+      "physics": "Standard GR + Standard Model"
+    },
+    {
+      "regime": "L1",
+      "redshift": "30 < z < 1100",
+      "coupling": "linear growth",
+      "physics": "post-recombination"
+    },
+    {
+      "regime": "L2",
+      "redshift": "0.5 < z < 30",
+      "coupling": "α_L2 ≠ 0",
+      "physics": "late-time modification"
+    },
+    {
+      "regime": "L3",
+      "redshift": "z ~ 0",
+      "coupling": "full entropy-flow",
+      "physics": "galactic / local"
+    }
   ],
   "probe_results": [
     {
@@ -125,7 +160,10 @@
       "id": "probe-6",
       "name": "Cobaya minimize full chain",
       "regime": "L2",
-      "delta_chi2_range": [-0.81, -0.30],
+      "delta_chi2_range": [
+        -0.81,
+        -0.3
+      ],
       "runs_passed": 4,
       "runs_total": 4,
       "verdict": "EFC"
@@ -135,39 +173,79 @@
     {
       "run": "MGCAMB",
       "dataset": "plik_lite + lowl + lensing (free cosmo)",
-      "parameters": ["mu0", "Sigma0"],
+      "parameters": [
+        "mu0",
+        "Sigma0"
+      ],
       "delta_chi2": -0.45,
       "engine": "direct_eval"
     },
     {
       "run": "A_lens proxy",
       "dataset": "plik_lite + lowl + lensing (fixed cosmo)",
-      "parameters": ["A_lens"],
+      "parameters": [
+        "A_lens"
+      ],
       "delta_chi2": -0.81,
       "engine": "cobaya_minimize"
     },
     {
       "run": "A_lens free",
       "dataset": "plik_lite + lowl + lensing (free cosmo)",
-      "parameters": ["A_lens"],
-      "delta_chi2": -0.70,
+      "parameters": [
+        "A_lens"
+      ],
+      "delta_chi2": -0.7,
       "engine": "cobaya_minimize"
     },
     {
       "run": "K0 m²",
       "dataset": "lowl + lensing + BAO + Pantheon+",
-      "parameters": ["K0", "m2"],
-      "delta_chi2": -0.30,
+      "parameters": [
+        "K0",
+        "m2"
+      ],
+      "delta_chi2": -0.3,
       "engine": "cobaya_bobyqa"
     }
   ],
   "sector_decomposition": [
-    {"sector": "lowl TT", "gr": 20.130, "efc": 19.941, "delta": -0.189},
-    {"sector": "lowl EE", "gr": 395.831, "efc": 395.761, "delta": -0.070},
-    {"sector": "Lensing", "gr": 9.547, "efc": 9.218, "delta": -0.329},
-    {"sector": "BAO", "gr": 13.216, "efc": 13.037, "delta": -0.179},
-    {"sector": "Pantheon+", "gr": 1405.744, "efc": 1406.212, "delta": 0.468},
-    {"sector": "Total", "gr": 1844.468, "efc": 1844.168, "delta": -0.300}
+    {
+      "sector": "lowl TT",
+      "gr": 20.13,
+      "efc": 19.941,
+      "delta": -0.189
+    },
+    {
+      "sector": "lowl EE",
+      "gr": 395.831,
+      "efc": 395.761,
+      "delta": -0.07
+    },
+    {
+      "sector": "Lensing",
+      "gr": 9.547,
+      "efc": 9.218,
+      "delta": -0.329
+    },
+    {
+      "sector": "BAO",
+      "gr": 13.216,
+      "efc": 13.037,
+      "delta": -0.179
+    },
+    {
+      "sector": "Pantheon+",
+      "gr": 1405.744,
+      "efc": 1406.212,
+      "delta": 0.468
+    },
+    {
+      "sector": "Total",
+      "gr": 1844.468,
+      "efc": 1844.168,
+      "delta": -0.3
+    }
   ],
   "parameter_structure": {
     "lcdm": {
@@ -193,9 +271,19 @@
   ],
   "open_questions": [
     "Full MCMC posterior with all 7+2 parameters (≥ 16 GB RAM required)",
-    "175-galaxy universality (only 5 refitted so far)",
+    "Full multi-component 175-galaxy universality with fixed (K0, m²) — single-component extension completed 2026-04-11, see Kill-Test v6 Universality_SPARC175",
     "Physical origin of m² ≈ 0.0035 (m/H₀ ≈ 0.06)",
     "A_lens / Σ₀ degeneracy disentanglement via MGCAMB primary MG run"
+  ],
+  "resolved_questions": [
+    {
+      "id": "probe2-cherry-picking",
+      "resolved_date": "2026-04-11",
+      "resolved_by": "kill-test-v6-universality-sparc175",
+      "resolved_path": "../Kill-Test v6 Universality_SPARC175",
+      "summary": "Single-component extension of probe-2 to all 175 SPARC galaxies gives EFC win rate 60.2% (42.1% EFC_decisive), median ΔAIC = +6.21, Mann-Whitney p ≈ 0 (FLOW vs LATENT), Spearman ρ(ΔAIC, v_max) = 0.11. Cherry-picking objection refuted.",
+      "doi": "10.6084/m9.figshare.31986762"
+    }
   ],
   "related_papers": [
     {
@@ -220,12 +308,28 @@
     {
       "id": "sparc-175",
       "relationship": "probe_2_dataset"
+    },
+    {
+      "id": "kill-test-v6-universality-sparc175",
+      "directory": "Kill-Test v6 Universality_SPARC175",
+      "relationship": "probe_2_universality_extension",
+      "date": "2026-04-11",
+      "doi": "10.6084/m9.figshare.31986762"
     }
   ],
   "files": {
     "paper": "EFC_vs_LCDM_Kill_Test_v6_final.pdf",
-    "documentation": ["README.md", "QUICKSTART.md", "MANIFEST.md"],
-    "metadata": ["CITATION.cff", "index.json", "EFCvsLCDMKillTest.jsonld", "schema.json"],
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "EFCvsLCDMKillTest.jsonld",
+      "schema.json"
+    ],
     "source_code": [
       "src/__init__.py",
       "src/k_rho_bridge.py",
@@ -244,5 +348,6 @@
       "examples/run_kill_tests.py",
       "examples/slip_window_scan.py"
     ]
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31964847"
 }

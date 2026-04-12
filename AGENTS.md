@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.5 | **Updated**: 2026-04-09
+**Version**: 3.6 | **Updated**: 2026-04-12
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -15,10 +15,12 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v4.7 (internal) / v3.16 (public HTML)
-ai_packages: 137 (100% coverage)
+validation_ledger_public: v3.20
+validation_ledger_internal: v4.7
+ai_packages: 139 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
+pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (Euclid DR1)
 ```
 
 | Resource | Location |
@@ -44,6 +46,160 @@ Three evidence layers are kept **strictly separate** — violating this is claim
 **Pre-registration discipline:** predictions must cite the **prior** EFC DOI where the prediction was first stated, in the same sentence, to prevent post-diction.
 
 **Run maintenance manually:** `python3 scripts/maintenance/efc_maintain.py`. See [`scripts/maintenance/README.md`](./scripts/maintenance/README.md) for the full algorithm.
+
+---
+
+## Automated Maintenance Protocol (for Claude Code)
+
+The SessionStart hook runs `efc_maintain.py` + `efc_drift_detector.py` on every session.
+**Claude MUST act on the output before doing anything else.**
+
+### Step 1: Fix drift (if any)
+
+The drift detector reports stale counts, versions, and missing DOIs.
+Fix every item it reports — update the number/version in the affected file.
+
+### Step 2: Scan for unprocessed papers
+
+After maintenance, Claude MUST check for papers that have a DOI but are
+not yet registered in the public pages. Run this check:
+
+```
+For each paper directory in docs/papers/efc/:
+  1. Read index.json — does it have a "doi" field?
+  2. If yes: is that DOI mentioned in EFC_Validation_Ledger.html?
+  3. If no: this paper needs processing.
+```
+
+### Step 3: Process each unregistered paper
+
+For each paper with a DOI that is NOT in the Ledger, Claude MUST:
+
+1. **Read the paper** — Read the PDF (or README.md + index.json if PDF not readable).
+   Extract: title, key results, what it tests, which kill criteria it relates to,
+   whether it is a new test / sealed prediction / methodology / theory paper.
+
+2. **Classify relevance** — Determine which public pages need updating:
+   - Does it contain a **new empirical test**? → Ledger entry (with tier T1/T2/T3)
+   - Does it relate to **kill criteria KC1-KC5**? → Roadmap update
+   - Does it contain a **sealed prediction**? → White Paper + Roadmap
+   - Does it change **pipeline status**? → Roadmap pipeline table
+   - Is it a **significant result**? → README NEW banner + Elevator Pitch
+
+3. **Decide the Ledger entry** — Determine:
+   - Which row it belongs in (new row, or update existing row?)
+   - Status: PASS / Planned / Completed / SEALED / Awaiting
+   - Tier: T1 (blind/pre-registered), T2 (post-diction), T3 (sealed/awaiting)
+   - Which regime columns to check (L0, L1, L2, L3)
+   - Whether any kill criteria can be ticked
+
+4. **Update ALL relevant pages** — Every page that should mention this DOI:
+   - `EFC_Validation_Ledger.html` — new or updated row with DOI link
+   - `EFC_Stage-IV_Data_Roadmap.html` — update pipeline status / kill criteria
+   - `EFC_White_Paper_Series.html` — update sealed count / prediction block
+   - `EFC_Elevator_Pitch.html` — update summary if significant
+   - `EFC_Changelog.html` — add versioned entry (increment v3.XX)
+   - `README.md` — add NEW banner if significant; update counts
+   - `AGENTS.md` — update counts if changed
+   - `docs/validation-ledger/data/evidence-register.json` — add DOI to empirical list
+   - `docs/validation-ledger/data/ledger.json` — mirror the evidence register
+
+5. **Propagate DOI** — Run `python3 scripts/maintenance/efc_sync_dois.py --apply`
+   to ensure DOI is in all package files.
+
+6. **Validate** — Run `python3 scripts/maintenance/efc_maintain.py` and
+   `python3 scripts/maintenance/efc_drift_detector.py`. Both must be clean.
+
+7. **Commit and push** — Single commit with descriptive message listing what
+   was updated and why. Push to main.
+
+### What counts as "relevant" for each page
+
+| Page | Include paper if... |
+|------|-------------------|
+| **Validation Ledger** | It contains ANY empirical test, comparison, or pre-registered prediction |
+| **Stage-IV Roadmap** | It relates to KC1-KC5, Euclid/DESI/Rubin, or pipeline readiness |
+| **White Paper Series** | It contains a sealed prediction or changes the falsifiability count |
+| **Elevator Pitch** | It is a top-3 most significant result (rare — most papers don't go here) |
+| **Changelog** | ALL papers with DOI get a Changelog entry — no exceptions |
+| **README NEW banner** | Only if it's a major milestone (new pipeline, new kill-test, sealed prediction) |
+
+### Decision rules for Ledger tiers
+
+| Tier | Criteria | Example |
+|------|----------|---------|
+| T1 | Blind prediction registered BEFORE data | DESI DR2 blind prediction |
+| T2 | Post-diction analysis, not pre-registered | KiDS-1000 Case A lensing |
+| T3 | Prediction sealed, awaiting future data | Euclid DR1 benchmark |
+
+### Decision rules for kill criteria
+
+- KC1 (P(k) full-shape): only tick if full-shape likelihood run with EFC growth
+- KC2 (fσ₈): only tick if growth rate measured and compared to EFC μ prediction
+- KC3 (S₈): only tick if weak lensing S₈ compared to EFC Σ prediction
+- KC4 (η slip): only tick if gravitational slip η measured or E_G computed
+- KC5 (w(z)): only tick if dynamical DE equation of state constrained
+
+### Classification rules: NOT everything goes in the Ledger
+
+Many papers are theory, methodology, meta-architecture, or philosophy.
+These do NOT get Ledger entries. Only add to the Ledger if the paper:
+
+- Contains a **quantitative empirical test** against observational data
+- Contains a **sealed prediction** with falsification criteria
+- Contains a **pipeline result** (e.g. Boltzmann output, MCMC posterior)
+- Contains a **cross-validation** (e.g. parameter transfer between surveys)
+
+Papers that are theory derivations, frameworks, or methodology get
+a Changelog entry ONLY (no Ledger row). This keeps the Ledger clean.
+
+### Quality gate: GPT council validation
+
+For Ledger entries, before committing Claude SHOULD verify the classification
+is correct by checking:
+1. Does the paper actually contain the claimed test? (read the PDF/README)
+2. Is the tier assignment correct? (T1 requires prior DOI with prediction)
+3. Is the status assignment correct? (PASS requires specific numerical agreement)
+4. Are the regime columns correct? (only tick regimes actually tested)
+
+The weekly GPT-5 council audit (efc-ai-audit.yml) provides an independent
+cross-check. If the council flags an issue, Claude must investigate and fix.
+
+### Gap analysis and strategic planning
+
+Claude should periodically (monthly or on request) produce a gap analysis
+comparing the current state of the project against:
+
+1. **Kill criteria readiness** — Which KC1-KC5 have complete pipelines?
+   Which still need work? What's blocking each?
+2. **Data timeline** — When do Euclid DR1, DESI DR3, Rubin Y1, etc. arrive?
+   What must be ready before each deadline?
+3. **Theory gaps** — Which theoretical predictions lack Boltzmann-level
+   calibration? Which Horndeski mappings are unresolved?
+4. **External developments** — What has been published recently (arXiv, journals)
+   that is relevant to EFC? New data releases, competing MG analyses, etc.
+
+This analysis goes in the Stage-IV Roadmap as a living "Gap Analysis" section.
+
+### Public pages that must stay in sync
+
+| Page | What it tracks |
+|------|---------------|
+| `docs/public/EFC_Validation_Ledger.html` | Every test, every DOI, tier status |
+| `docs/public/EFC_Stage-IV_Data_Roadmap.html` | Kill criteria, pipeline status, timeline |
+| `docs/public/EFC_White_Paper_Series.html` | Sealed predictions, falsifiability count |
+| `docs/public/EFC_Elevator_Pitch.html` | Plain-English summary, pipeline status |
+| `docs/public/EFC_Changelog.html` | Every structural/empirical update, versioned |
+| `README.md` | Paper count, test count, NEW banners, tree structure |
+| `AGENTS.md` | This file — package count, version, pipeline list |
+
+### Language rules (never violate)
+
+- NEVER write "confirms EFC", "proves EFC", "validates EFC"
+- Use: "consistent with", "within prediction band", "passes test"
+- External papers: "overlaps with EFC prediction", not "confirms"
+- Always cite the prior EFC DOI where a prediction was first stated
+- Pre-registration: always cite the PRIOR DOI where prediction was first stated
 
 ---
 
@@ -122,10 +278,10 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 137 papers (137 with AI-friendly packages, 100%)
-│   └── public/         # Validation Ledger (v3.8), Master Spec
+│   ├── papers/efc/     # 139 papers (139 with AI-friendly packages, 100%)
+│   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
-├── pipelines/          # Graph-AQUAL pipeline + kill tests
+├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
 ├── schema/             # Ontology, JSON-LD contexts (20 files)
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files
@@ -139,9 +295,9 @@ EFC/
 
 ---
 
-## AI-Friendly Paper Packages (137)
+## AI-Friendly Paper Packages (139)
 
-All 137 papers have full executable Python packages (`src/`, `data/`, `examples/`):
+All 139 papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`):
 
 ### Consolidation
 | Paper | Module | DOI |

@@ -36,10 +36,22 @@
       "interpretation": "+6.4% more clusters than ΛCDM"
     },
     "growth_enhancement": {
-      "z_0": {"D_ratio": 1.016, "delta": "+1.6%"},
-      "z_0.2": {"D_ratio": 1.007, "delta": "+0.7%"},
-      "z_0.4": {"D_ratio": 1.002, "delta": "+0.2%"},
-      "z_0.6": {"D_ratio": 1.000, "delta": "+0.0%"}
+      "z_0": {
+        "D_ratio": 1.016,
+        "delta": "+1.6%"
+      },
+      "z_0.2": {
+        "D_ratio": 1.007,
+        "delta": "+0.7%"
+      },
+      "z_0.4": {
+        "D_ratio": 1.002,
+        "delta": "+0.2%"
+      },
+      "z_0.6": {
+        "D_ratio": 1.0,
+        "delta": "+0.0%"
+      }
     },
     "shape_signature": {
       "description": "z-dependent tilt in cluster redshift distribution",
@@ -79,7 +91,12 @@
     "A_s": "Fixed across models"
   },
   "systematic_considerations": {
-    "robust_against": ["Uniform mass-bias offsets", "Overall survey completeness", "Redshift-independent selection"],
+    "robust_against": [
+      "Uniform mass-bias offsets",
+      "Overall survey completeness",
+      "Redshift-independent selection"
+    ],
     "sensitive_to": "Strongly redshift-dependent systematics"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31292827"
 }

@@ -36,25 +36,45 @@
     "schema": "schema.json"
   },
   "relations": {
-    "extends": ["EFC-Field-Equations-for-Entropy-Driven-Spacetime"],
-    "relates_to": ["EFC-H0-S8-Tensions"],
-    "validates": ["regime-dependent validity", "entropy gradient dynamics"]
+    "extends": [
+      "EFC-Field-Equations-for-Entropy-Driven-Spacetime"
+    ],
+    "relates_to": [
+      "EFC-H0-S8-Tensions"
+    ],
+    "validates": [
+      "regime-dependent validity",
+      "entropy gradient dynamics"
+    ]
   },
   "key_results": {
     "sample_size": 20,
-    "overall_success_rate": 0.80,
+    "overall_success_rate": 0.8,
     "spearman_rho": 0.705,
     "p_value": 0.0005,
     "efc_chi2_red": 26.2,
     "lcdm_chi2_red": 69.6,
     "mean_entropy_gradient": "8.20e-2 kpc^-1",
     "morphology_breakdown": {
-      "LSB": {"n": 5, "success_rate": 1.0},
-      "dwarf_irregular": {"n": 5, "success_rate": 0.8},
-      "spiral": {"n": 8, "success_rate": 0.75},
-      "barred_disturbed": {"n": 2, "success_rate": 0.0}
+      "LSB": {
+        "n": 5,
+        "success_rate": 1.0
+      },
+      "dwarf_irregular": {
+        "n": 5,
+        "success_rate": 0.8
+      },
+      "spiral": {
+        "n": 8,
+        "success_rate": 0.75
+      },
+      "barred_disturbed": {
+        "n": 2,
+        "success_rate": 0.0
+      }
     }
   },
   "created_at": "2026-01-06T00:00:00Z",
-  "updated_at": "2026-01-06T00:00:00Z"
+  "updated_at": "2026-01-06T00:00:00Z",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31007248"
 }

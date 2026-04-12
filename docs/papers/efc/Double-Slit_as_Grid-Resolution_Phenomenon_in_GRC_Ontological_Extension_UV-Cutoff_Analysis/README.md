@@ -1,5 +1,7 @@
 # Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology
 
+**DOI:** [10.6084/m9.figshare.31564129](https://doi.org/10.6084/m9.figshare.31564129)
+
 **Ontological Extension, UV-Cutoff Analysis, and Open Gaps toward Quantum Testability**
 
 | Field | Value |

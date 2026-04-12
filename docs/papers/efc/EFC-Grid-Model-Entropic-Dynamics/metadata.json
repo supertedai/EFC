@@ -1,5 +1,5 @@
 {
-  "title": "EFC \u2014 Grid Model for Entropic Dynamics",
+  "title": "EFC — Grid Model for Entropic Dynamics",
   "short_id": "efc-grid-model-entropic-dynamics",
   "version": "v1.0",
   "date": "2025-01-01",
@@ -39,8 +39,14 @@
     "jsonld": "EFC-Grid-Model-Entropic-Dynamics.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/entropic_dynamics.py"],
+    "src_modules": [
+      "src/entropic_dynamics.py"
+    ],
     "data": "data/parameters.json",
     "demo": "examples/demo_entropic_dynamics.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.28559423",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.28559423"
   }
 }

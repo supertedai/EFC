@@ -11,7 +11,6 @@
   "framework": "Energy-Flow Cosmology (EFC)",
   "license": "CC-BY-4.0",
   "language": "en",
-
   "classification": {
     "domain": "theoretical_cosmology",
     "track": "galactic_cosmological",
@@ -19,7 +18,6 @@
     "category": "parameterization",
     "level": "degeneracy_analysis"
   },
-
   "methodology": {
     "approach": "First-order Taylor expansion of grid response on effective propagation speed",
     "techniques": [
@@ -30,16 +28,25 @@
       "Falsification criteria"
     ]
   },
-
   "numerical_parameters": {
     "beta": 0.08,
-    "epsilon_range": [0.01, 0.1],
+    "epsilon_range": [
+      0.01,
+      0.1
+    ],
     "z_peak": 0.441,
-    "max_dc_over_c_percent": 0.80,
+    "max_dc_over_c_percent": 0.8,
     "cddr_constraint_epsilon_max": 1.9
   },
-
   "related_papers": [
-    {"doi": "10.6084/m9.figshare.31304980", "title": "Four-Channel Consistency Test", "relation": "source_of_beta"}
-  ]
+    {
+      "doi": "10.6084/m9.figshare.31304980",
+      "title": "Four-Channel Consistency Test",
+      "relation": "source_of_beta"
+    }
+  ],
+  "paper": {
+    "doi": "10.6084/m9.figshare.31305421",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31305421"
+  }
 }

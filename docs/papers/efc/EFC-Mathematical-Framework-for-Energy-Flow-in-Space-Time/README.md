@@ -1,5 +1,7 @@
 # EFC — Mathematical Framework for Energy Flow in Space-Time
 
+**DOI:** [10.6084/m9.figshare.28098314](https://doi.org/10.6084/m9.figshare.28098314)
+
 This directory contains the paper presenting the mathematical foundations
 for energy flow, entropy gradients, and grid-level resistance in the
 Energy-Flow Cosmology framework.  

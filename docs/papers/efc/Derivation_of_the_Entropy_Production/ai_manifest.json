@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "Derivation_of_the_Entropy_Production.pdf",
@@ -17,8 +17,16 @@
   ],
   "files": [
     {
+      "path": "CITATION.cff",
+      "bytes": 606
+    },
+    {
       "path": "Derivation_of_the_Entropy_Production.pdf",
       "bytes": 370889
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 298
     },
     {
       "path": "README.md",
@@ -26,7 +34,7 @@
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 1748
+      "bytes": 1675
     },
     {
       "path": "citations.bib",
@@ -38,11 +46,11 @@
     },
     {
       "path": "derivation-of-the-entropy-production.jsonld",
-      "bytes": 503
+      "bytes": 668
     },
     {
       "path": "entropy_production.jsonld",
-      "bytes": 1138
+      "bytes": 1303
     },
     {
       "path": "examples/demo_entropy_production.py",
@@ -50,11 +58,11 @@
     },
     {
       "path": "index.json",
-      "bytes": 1194
+      "bytes": 1260
     },
     {
       "path": "metadata.json",
-      "bytes": 1254
+      "bytes": 1382
     },
     {
       "path": "schema.json",
@@ -69,6 +77,6 @@
       "bytes": 12652
     }
   ],
-  "n_files": 13,
+  "n_files": 15,
   "n_pdfs": 1
 }

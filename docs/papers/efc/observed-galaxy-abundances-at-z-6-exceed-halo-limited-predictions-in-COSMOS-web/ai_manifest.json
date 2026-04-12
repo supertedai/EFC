@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "Magnusson_2026_COSMOS_Galaxy_Excess.pdf",
@@ -18,12 +18,20 @@
   ],
   "files": [
     {
+      "path": "CITATION.cff",
+      "bytes": 692
+    },
+    {
       "path": "COSMOSWeb_EFC_highz_z_gt_4.csv",
       "bytes": 12144677
     },
     {
       "path": "COSMOSWeb_EFC_highz_z_gt_5.csv",
       "bytes": 4425399
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 298
     },
     {
       "path": "Magnusson_2026_COSMOS_Galaxy_Excess.pdf",
@@ -39,7 +47,7 @@
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 2912
+      "bytes": 2840
     },
     {
       "path": "analysis_code.py",
@@ -51,7 +59,7 @@
     },
     {
       "path": "cosmos-galaxy-abundances.jsonld",
-      "bytes": 583
+      "bytes": 768
     },
     {
       "path": "cosmos2025_efc_analyzed.csv",
@@ -95,15 +103,15 @@
     },
     {
       "path": "index.json",
-      "bytes": 1547
+      "bytes": 1767
     },
     {
       "path": "metadata.json",
-      "bytes": 1177
+      "bytes": 1305
     },
     {
       "path": "observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-cosmos-web.jsonld",
-      "bytes": 566
+      "bytes": 731
     },
     {
       "path": "schema.json",
@@ -122,6 +130,6 @@
       "bytes": 921593
     }
   ],
-  "n_files": 26,
+  "n_files": 28,
   "n_pdfs": 2
 }

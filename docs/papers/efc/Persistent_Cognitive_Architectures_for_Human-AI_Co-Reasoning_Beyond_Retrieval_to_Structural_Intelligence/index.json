@@ -22,7 +22,10 @@
     "components": {
       "graph_database": "Neo4j 5.x",
       "vector_store": "Qdrant 1.7.x",
-      "llm_layer": ["GPT-4o", "Claude Sonnet 4.5"],
+      "llm_layer": [
+        "GPT-4o",
+        "Claude Sonnet 4.5"
+      ],
       "backend": "Python 3.11, FastAPI",
       "embedding_model": "OpenAI text-embedding-3-large"
     },
@@ -73,25 +76,38 @@
       "name": "Canonical",
       "description": "Ground truth from authoritative sources",
       "certainty": "Known with certainty",
-      "sources": ["neo4j_canonical", "Life Contract", "sensor data"]
+      "sources": [
+        "neo4j_canonical",
+        "Life Contract",
+        "sensor data"
+      ]
     },
     "L1": {
       "name": "Derived",
       "description": "Facts logically derived from L0",
       "certainty": "True given L0 premises",
-      "sources": ["causal inferences", "mathematical consequences"]
+      "sources": [
+        "causal inferences",
+        "mathematical consequences"
+      ]
     },
     "L2": {
       "name": "Supported",
       "description": "Claims backed by evidence but not fully verified",
       "certainty": "Probable given evidence",
-      "sources": ["RAG-retrieved", "LLM with citations"]
+      "sources": [
+        "RAG-retrieved",
+        "LLM with citations"
+      ]
     },
     "L3": {
       "name": "Inferred",
       "description": "LLM-generated content without explicit grounding",
       "certainty": "Plausible but unverified",
-      "sources": ["synthesis", "analogies"]
+      "sources": [
+        "synthesis",
+        "analogies"
+      ]
     }
   },
   "graph_schema": {
@@ -142,10 +158,22 @@
       "synthetic_insights": 47
     },
     "temporal_phases": [
-      {"weeks": "1-4", "phase": "Conceptual exploration"},
-      {"weeks": "5-12", "phase": "Hypothesis generation"},
-      {"weeks": "13-20", "phase": "Observational test design"},
-      {"weeks": "21+", "phase": "Refinement"}
+      {
+        "weeks": "1-4",
+        "phase": "Conceptual exploration"
+      },
+      {
+        "weeks": "5-12",
+        "phase": "Hypothesis generation"
+      },
+      {
+        "weeks": "13-20",
+        "phase": "Observational test design"
+      },
+      {
+        "weeks": "21+",
+        "phase": "Refinement"
+      }
     ]
   },
   "evaluation_results": {
@@ -164,7 +192,7 @@
       "accepted": 61,
       "acceptance_rate": 0.735,
       "exploration_phase_acceptance": 0.85,
-      "implementation_phase_acceptance": 0.60
+      "implementation_phase_acceptance": 0.6
     }
   },
   "key_distinction": "This is NOT AGI - Symbiose is a cognitive architecture for collaboration, not artificial general intelligence",
@@ -174,5 +202,6 @@
     "Bayesian priors require manual tuning",
     "L3 content vulnerable to hallucination",
     "Single-user architecture only"
-  ]
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31271707"
 }

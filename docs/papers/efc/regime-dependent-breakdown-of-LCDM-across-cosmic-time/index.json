@@ -12,18 +12,41 @@
   "type": "statistical_analysis",
   "status": "published",
   "abstract_short": "ΛCDM deviations cluster systematically across redshifts (χ²=47.3, df=4, p<10⁻⁸). JWST/COSMOS galaxies exceed predictions by 23-529× depending on redshift.",
-  "keywords": ["ΛCDM", "regime breakdown", "SPARC", "COSMOS-Web", "JWST", "high-z galaxies"],
+  "keywords": [
+    "ΛCDM",
+    "regime breakdown",
+    "SPARC",
+    "COSMOS-Web",
+    "JWST",
+    "high-z galaxies"
+  ],
   "key_result": {
     "chi2": 47.3,
     "df": 4,
-    "p_value": 1.3e-9,
+    "p_value": 1.3e-09,
     "confidence": ">99.99%"
   },
   "high_z_excess": [
-    {"z_range": "5-6", "ratio_behroozi": "23x", "ratio_halo": "3.1x"},
-    {"z_range": "7-8", "ratio_behroozi": "124x", "ratio_halo": "7.7x"},
-    {"z_range": "8-9", "ratio_behroozi": "259x", "ratio_halo": "10.4x"},
-    {"z_range": "9-10", "ratio_behroozi": "529x", "ratio_halo": "10.6x"}
+    {
+      "z_range": "5-6",
+      "ratio_behroozi": "23x",
+      "ratio_halo": "3.1x"
+    },
+    {
+      "z_range": "7-8",
+      "ratio_behroozi": "124x",
+      "ratio_halo": "7.7x"
+    },
+    {
+      "z_range": "8-9",
+      "ratio_behroozi": "259x",
+      "ratio_halo": "10.4x"
+    },
+    {
+      "z_range": "9-10",
+      "ratio_behroozi": "529x",
+      "ratio_halo": "10.6x"
+    }
   ],
   "disclaimers": [
     "Does NOT falsify ΛCDM",
@@ -31,10 +54,19 @@
     "Does NOT identify unique mechanism"
   ],
   "data_sources": [
-    {"name": "SPARC", "N": 175, "z": "~0"},
-    {"name": "COSMOS2025", "N": 26288, "z": ">5"}
+    {
+      "name": "SPARC",
+      "N": 175,
+      "z": "~0"
+    },
+    {
+      "name": "COSMOS2025",
+      "N": 26288,
+      "z": ">5"
+    }
   ],
   "files": {
     "pdf": "Regime_Dependent_Breakdown.pdf"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665"
 }

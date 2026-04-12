@@ -1,5 +1,7 @@
 # EFC Regime-Transition Fit to DESI DR2 BAO
 
+**DOI:** [10.6084/m9.figshare.31230703](https://doi.org/10.6084/m9.figshare.31230703)
+
 ## AI-Friendly Package
 
 **Version**: 1.0

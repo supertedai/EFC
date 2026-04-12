@@ -37,8 +37,14 @@
     "jsonld": "isw_cross_correlation.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/isw_cross_correlation.py"],
+    "src_modules": [
+      "src/isw_cross_correlation.py"
+    ],
     "data": "data/isw_predictions.json",
     "demo": "examples/demo_isw.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31301953",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31301953"
   }
 }

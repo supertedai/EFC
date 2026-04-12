@@ -1,5 +1,7 @@
 # EFC Ontological Foundations v1.0
 
+**DOI:** [10.6084/m9.figshare.31223668](https://doi.org/10.6084/m9.figshare.31223668)
+
 **The Co-Primary Structure: Energy-Flow and Entropy as Differentiated Aspects of Pre-Geometric Potential**
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)

@@ -1,5 +1,7 @@
 # EFC — Introduction to Energy Flow in Space-Time
 
+**DOI:** [10.6084/m9.figshare.28098341](https://doi.org/10.6084/m9.figshare.28098341)
+
 This directory contains the introductory paper explaining how energy flow
 acts as the fundamental driver of structure, motion, and information
 propagation in spacetime within the Energy-Flow Cosmology framework.  

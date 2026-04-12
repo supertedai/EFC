@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-11",
+  "generated": "2026-04-12",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_Closure_Conjectures.pdf",
@@ -16,6 +16,10 @@
     "EFC_Closure_Conjectures.pdf"
   ],
   "files": [
+    {
+      "path": "CITATION.cff",
+      "bytes": 580
+    },
     {
       "path": "EFC_Closure_Conjectures.pdf",
       "bytes": 313585
@@ -26,11 +30,11 @@
     },
     {
       "path": "README.md",
-      "bytes": 4358
+      "bytes": 4445
     },
     {
       "path": "ai_manifest.json",
-      "bytes": 1607
+      "bytes": 1569
     },
     {
       "path": "citations.bib",
@@ -38,7 +42,7 @@
     },
     {
       "path": "closure_conjectures.jsonld",
-      "bytes": 625
+      "bytes": 790
     },
     {
       "path": "data/closure_parameters.json",
@@ -46,7 +50,7 @@
     },
     {
       "path": "efc-closure-conjectures.jsonld",
-      "bytes": 490
+      "bytes": 655
     },
     {
       "path": "examples/test_conjectures.py",
@@ -54,11 +58,11 @@
     },
     {
       "path": "index.json",
-      "bytes": 2178
+      "bytes": 2245
     },
     {
       "path": "metadata.json",
-      "bytes": 1861
+      "bytes": 1989
     },
     {
       "path": "schema.json",
@@ -73,6 +77,6 @@
       "bytes": 4777
     }
   ],
-  "n_files": 14,
+  "n_files": 15,
   "n_pdfs": 1
 }

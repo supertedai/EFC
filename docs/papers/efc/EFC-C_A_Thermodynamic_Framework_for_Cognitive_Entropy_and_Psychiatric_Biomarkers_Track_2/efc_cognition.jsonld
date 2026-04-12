@@ -1,16 +1,40 @@
 {
-  "@context": {"@vocab": "https://schema.org/", "efc": "https://energyflow-cosmology.com/ontology#"},
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
   "@type": "ScholarlyArticle",
   "@id": "https://doi.org/10.6084/m9.figshare.31940505",
   "name": "EFC-C: A Thermodynamic Framework for Cognitive Entropy and Psychiatric Biomarkers",
-  "author": {"@type": "Person", "name": "Morten Magnusson", "identifier": "https://orcid.org/0009-0002-4860-5095"},
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
   "datePublished": "2026-03-31",
-  "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.6084/m9.figshare.31940505"},
+  "identifier": "https://doi.org/10.6084/m9.figshare.31940505",
   "about": [
-    {"@type": "DefinedTerm", "name": "Cognitive Entropy"},
-    {"@type": "DefinedTerm", "name": "Psychiatric Biomarker"},
-    {"@type": "DefinedTerm", "name": "Entropy Gradient Dynamics"},
-    {"@type": "DefinedTerm", "name": "Default Mode Network"},
-    {"@type": "DefinedTerm", "name": "Entropic Brain Hypothesis"}
-  ]
+    {
+      "@type": "DefinedTerm",
+      "name": "Cognitive Entropy"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Psychiatric Biomarker"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Entropy Gradient Dynamics"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Default Mode Network"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Entropic Brain Hypothesis"
+    }
+  ],
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31940505",
+  "doi": "10.6084/m9.figshare.31940505"
 }

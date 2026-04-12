@@ -27,9 +27,21 @@
     "epistemic_layer": "A"
   },
   "key_results": [
-    {"test": "Transfer test (no refit)", "delta_chi2": -7.77, "status": "Transfer supported"},
-    {"test": "Diagonal covariance", "delta_chi2": -4.24, "status": "Improvement persists"},
-    {"test": "Eigenmode analysis", "low_lambda_gain": -5.50, "high_lambda_gain": -2.27}
+    {
+      "test": "Transfer test (no refit)",
+      "delta_chi2": -7.77,
+      "status": "Transfer supported"
+    },
+    {
+      "test": "Diagonal covariance",
+      "delta_chi2": -4.24,
+      "status": "Improvement persists"
+    },
+    {
+      "test": "Eigenmode analysis",
+      "low_lambda_gain": -5.5,
+      "high_lambda_gain": -2.27
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -44,5 +56,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31231522",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31231522"
   }
 }

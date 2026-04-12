@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-04-12T13:49:48Z",
+  "generated_at": "2026-04-11T08:38:22Z",
   "categories": {
     "physics_test": [
       {
@@ -513,6 +513,25 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "failure"
+      },
+      {
+        "test_id": "conv_kill_test_v6_universality_sparc175_single_component",
+        "name": "Kill-Test v6 Universality — SPARC 175 single-component extension",
+        "description": "Extends Kill-Test v6 probe-2 (5 hand-refitted SPARC galaxies) to all 175 SPARC galaxies with identical methodology (differential_evolution + AIC, seed=42). Fits single-component EFC (v(r) = v_flat·sqrt(1 - exp(-(r/r_turnon)^sharpness))) and NFW reference to each galaxy, computes ΔAIC = AIC_NFW − AIC_EFC, classifies FLOW/TRANSITION/LATENT, assigns Kill-Test verdict. Tests whether the probe-2 EFC advantage is universal or a cherry-picking artefact.",
+        "result": "EFC decisive (non-rejection)",
+        "status": "success",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "SPARC rotation curves (Lelli+2016 Rotmod_LTG) — 175 galaxies, 3391 data points",
+        "prediction": "EFC win rate > 50% on full 175 sample if probe-2 is representative",
+        "observation": "EFC win rate = 60.2% (103/171 fitted; 42.1% EFC_decisive, 18.1% EFC); median ΔAIC = +6.21; median χ²_red: EFC 0.44, NFW 1.69; Mann-Whitney FLOW>LATENT p ≈ 0; Spearman ρ(ΔAIC, v_max) = 0.11 (p = 0.15, no mass bias); DDO 154 anchor cross-check: ΔAIC = +125.2 (sign convention verified)",
+        "verdict": "cherry-picking refuted; universality CONFIRMED at single-component level",
+        "notes": "Full multi-component universality with fixed (K0, m²) across all galaxies remains open. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/ for full pipeline, per-galaxy results, and reproduction script.",
+        "paper_directory": "Kill-Test v6 Universality_SPARC175",
+        "related_test": "conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_",
+        "related_paper": "efc-vs-lcdm-kill-test-v6",
+        "date_added": "2026-04-11",
+        "doi": "10.6084/m9.figshare.31986762"
       }
     ],
     "consistency_check": [

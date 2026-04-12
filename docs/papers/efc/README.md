@@ -61,6 +61,9 @@ These papers develop specific aspects of the EFC model:
 ## Observational Evidence
 - **EFC-Observational-Evidence-for-Energy-Flow/**  
 - **EFC-Observational-Evidence-Entropy-Cosmic-Evolution/**  
+- **EFC_vs_LCDM_Kill_Test_v6_final/** — Complete kill-test across six probes (DOI 10.6084/m9.figshare.31964847)  
+- **Kill-Test v6 Universality_SPARC175/** — Extension of the kill-test to all 175 SPARC galaxies (EFC win rate 60.2 %, 2026-04-11; DOI [10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762))  
+- **Comprehensive-analysis-of-175-SPARC-galaxies-.../** — Regime-dependent validity analysis (DOI 10.6084/m9.figshare.31045126)  
 
 ---
 
@@ -91,13 +94,15 @@ without scraping the PDFs:
 - `*.jsonld` — schema.org `ScholarlyArticle` JSON-LD record
 - `README.md` — human-readable summary with file inventory
 
-A directory-level catalogue lives in `ai_friendly_index.json` (130+ packages,
+A directory-level catalogue lives in `ai_friendly_index.json` (138 packages,
 auto-generated). Hand-curated reference packages with full reproducer code:
 
 - `WP4_BOSS_transfer_validation/` — DESI DR2 → BOSS DR12 cross-survey transfer (Δχ² = −7.77)
 - `Multi_epoch_Growth_Rate_Test_of_EFC/` — 14-point fσ8 multi-epoch test (EFC-VAL-2026-003)
+- `EFC_vs_LCDM_Kill_Test_v6_final/` — Six-probe kill-test with full cobaya pipeline
+- `Kill-Test v6 Universality_SPARC175/` — Kill-test extended to all 175 SPARC galaxies (2026-04-11, DOI [10.6084/m9.figshare.31986762](https://doi.org/10.6084/m9.figshare.31986762))
 
-These two follow the same conventions as the auto-generated packages but add
+These follow the same conventions as the auto-generated packages but add
 `src/`, `data/`, `examples/`, `schema.json`, and `citations.bib`.
 
 ---

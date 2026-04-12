@@ -11,7 +11,14 @@
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31305550",
   "abstract": "Stage-III cosmology update reframing EFC from tension resolution to precision structural competitor in the post-tension weak-lensing landscape.",
-  "keywords": ["Energy-Flow Cosmology", "S8 tension", "weak lensing", "Stage-III surveys", "KiDS Legacy", "HSC Y3"],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "S8 tension",
+    "weak lensing",
+    "Stage-III surveys",
+    "KiDS Legacy",
+    "HSC Y3"
+  ],
   "efc_context": {
     "track": "Validation Update / Stage-III Assessment",
     "regime_relevance": "Weak-lensing landscape z ~ 0.5",
@@ -30,8 +37,14 @@
     "jsonld": "state_vs_stage3.jsonld",
     "citations": "citations.bib",
     "src_init": "src/__init__.py",
-    "src_modules": ["src/state_vs_stage3.py"],
+    "src_modules": [
+      "src/state_vs_stage3.py"
+    ],
     "data": "data/stage3_observations.json",
     "demo": "examples/demo_stage3.py"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31305550",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31305550"
   }
 }

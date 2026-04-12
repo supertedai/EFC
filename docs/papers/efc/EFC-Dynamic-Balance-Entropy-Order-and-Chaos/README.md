@@ -1,5 +1,7 @@
 # EFC — Dynamic Balance: Entropy, Order, and Chaos
 
+**DOI:** [10.6084/m9.figshare.28098344](https://doi.org/10.6084/m9.figshare.28098344)
+
 This directory contains the paper exploring how entropy flow, structure,
 and disorder co-evolve in a dynamically balanced system within
 Energy-Flow Cosmology. It describes the transition mechanisms between

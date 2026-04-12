@@ -27,9 +27,20 @@
     "epistemic_layer": "infrastructure"
   },
   "key_results": [
-    {"metric": "Causal reasoning accuracy", "symbiose": 0.94, "gpt4_zero_shot": 0.76, "rag_alone": 0.68},
-    {"metric": "Memory query speedup", "factor": 14},
-    {"metric": "Proactive suggestion acceptance rate", "value": 0.735}
+    {
+      "metric": "Causal reasoning accuracy",
+      "symbiose": 0.94,
+      "gpt4_zero_shot": 0.76,
+      "rag_alone": 0.68
+    },
+    {
+      "metric": "Memory query speedup",
+      "factor": 14
+    },
+    {
+      "metric": "Proactive suggestion acceptance rate",
+      "value": 0.735
+    }
   ],
   "file_manifest": {
     "README.md": "Documentation",
@@ -43,5 +54,9 @@
     "src/": "Source code",
     "data/": "Data files",
     "examples/": "Example scripts"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.31271707",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31271707"
   }
 }
