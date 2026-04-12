@@ -15,8 +15,6 @@ on:
 jobs:
   ai-audit:
     runs-on: ubuntu-latest
-    # Only run if OPENAI_API_KEY secret exists
-    if: ${{ vars.OPENAI_API_KEY != '' || secrets.OPENAI_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -27,7 +25,12 @@ jobs:
       - name: Run AI consistency audit
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python3 scripts/maintenance/efc_ai_audit.py
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::warning::OPENAI_API_KEY secret not set. Skipping AI audit."
+            exit 0
+          fi
+          python3 scripts/maintenance/efc_ai_audit.py
 
       - name: Upload audit report
         if: always()

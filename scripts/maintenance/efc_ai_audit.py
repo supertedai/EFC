@@ -31,7 +31,7 @@ AUDIT_FILES = {
     "pipelines_README": os.path.join(REPO, "pipelines", "README.md"),
 }
 
-MODEL = "gpt-4.1"  # Best reasoning model
+MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o")  # Override via env var if needed
 MAX_CHARS_PER_FILE = 12000  # Truncate large files for API context
 
 
@@ -158,6 +158,7 @@ def call_openai(prompt):
     except ImportError:
         # Minimal HTTP fallback
         import urllib.request
+        import urllib.error
         import ssl
 
         ctx = ssl.create_default_context()
@@ -175,9 +176,14 @@ def call_openai(prompt):
             },
         )
         try:
-            with urllib.request.urlopen(req, context=ctx, timeout=120) as resp:
-                data = json.loads(resp.read())
+            with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+                body = resp.read()
+                data = json.loads(body)
                 return data["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            body = e.read().decode(errors="replace")
+            print(f"[ERROR] OpenAI API HTTP {e.code}: {body[:500]}")
+            sys.exit(1)
         except Exception as e:
             print(f"[ERROR] OpenAI API call failed: {e}")
             sys.exit(1)
