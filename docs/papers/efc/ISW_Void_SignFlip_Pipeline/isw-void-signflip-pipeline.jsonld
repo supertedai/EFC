@@ -1,23 +1,13 @@
 {
-  "@context": {
-    "@vocab": "https://schema.org/",
-    "efc": "https://github.com/supertedai/EFC/ontology#"
-  },
+  "@context": {"@vocab": "https://schema.org/", "efc": "https://github.com/supertedai/EFC/ontology#"},
   "@type": "ScholarlyArticle",
-  "name": "ISW Void Sign-Flip Observational Pipeline From EFC Theory to Data Confrontation",
-  "author": {
-    "@type": "Person",
-    "name": "Morten Magnusson",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Symbiose Research",
-      "address": "Sandnes, Norway"
-    },
-    "identifier": "https://orcid.org/0009-0002-4860-5095"
-  },
+  "@id": "doi:10.6084/m9.figshare.31990212",
+  "name": "ISW Void Sign-Flip Observational Pipeline: From EFC Theory to Data Confrontation",
+  "headline": "Complete 6-stage pipeline for testing the EFC void ISW sign-flip prediction using DESIVAST DR1 + Planck PR4",
+  "author": {"@type": "Person", "name": "Morten Magnusson", "affiliation": {"@type": "Organization", "name": "Symbiose Research", "address": "Sandnes, Norway"}, "identifier": "https://orcid.org/0009-0002-4860-5095"},
   "datePublished": "2026-04-12",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "@id": "doi:10.6084/m9.figshare.31990212",
+  "citation": [{"@type": "ScholarlyArticle", "name": "EFC Void ISW Sign-Flip v2.1", "author": "Magnusson, M.", "identifier": "doi:10.6084/m9.figshare.31942677"}],
   "identifier": "https://doi.org/10.6084/m9.figshare.31990212",
   "sameAs": "https://doi.org/10.6084/m9.figshare.31990212",
   "doi": "10.6084/m9.figshare.31990212"
