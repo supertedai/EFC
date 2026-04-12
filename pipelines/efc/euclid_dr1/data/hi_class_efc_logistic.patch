@@ -1,0 +1,145 @@
+diff --git a/gravity_smg/gravity_models_smg.c b/gravity_smg/gravity_models_smg.c
+index aaabb1a5..b68037b5 100644
+--- a/gravity_smg/gravity_models_smg.c
++++ b/gravity_smg/gravity_models_smg.c
+@@ -99,6 +99,24 @@ int gravity_models_gravity_properties_smg(
+      class_read_list_of_doubles("parameters_smg",pba->parameters_2_smg,pba->parameters_2_size_smg);
+    }
+ 
++  if (strcmp(string1,"efc_logistic") == 0) {
++     /* EFC logistic model: alpha_i driven by logistic entropy field S(a).
++      * 6 params: B0, M0, a_t, Delta, alpha_K, alpha_T
++      * alpha_B(a) = B0 * dS/dlna(a),  alpha_M(a) = M0 * S(a)
++      * S(a) = 1 / (1 + exp(-(ln a - ln a_t)/Delta))
++      * dS/dlna = S*(1-S)/Delta
++      * delta_M2 computed analytically (no ODE integration needed):
++      *   ln(1+delta_M2) = M0*Delta * [ln(1+exp(x)) - ln(1+exp(x0))]
++      *   where x = (ln a - ln a_t)/Delta, x0 = (ln a_ini - ln a_t)/Delta
++      * See: DOI 10.6084/m9.figshare.31368433 */
++     pba->gravity_model_smg = efc_logistic;
++     pba->field_evolution_smg = _FALSE_;
++     pba->M2_evolution_smg = _FALSE_;  /* delta_M2 computed analytically */
++     flag2=_TRUE_;
++     pba->parameters_2_size_smg = 6;
++     class_read_list_of_doubles("parameters_smg",pba->parameters_2_smg,pba->parameters_2_size_smg);
++   }
++
+   if (strncmp("quintessence", string1, strlen("quintessence")) == 0) {
+      // Check if gravity_model has quintessence as prefix.
+      // Add here all variables common to quintessence.
+@@ -489,7 +507,7 @@ int gravity_models_gravity_properties_smg(
+ 
+   class_test(flag2==_FALSE_,
+              errmsg,
+-             "could not identify gravity_theory value, check that it is one of 'propto_omega', 'propto_scale', 'constant_alphas', 'eft_alphas_power_law', 'eft_gammas_power_law', 'eft_gammas_exponential', 'brans_dicke', 'galileon', 'nKGB', 'quintessence_monomial', 'quintessence_tracker', 'alpha_attractor_canonical' ...");
++             "could not identify gravity_theory value, check that it is one of 'propto_omega', 'propto_scale', 'constant_alphas', 'eft_alphas_power_law', 'eft_gammas_power_law', 'eft_gammas_exponential', 'efc_logistic', 'brans_dicke', 'galileon', 'nKGB', 'quintessence_monomial', 'quintessence_tracker', 'alpha_attractor_canonical' ...");
+ 
+   return _SUCCESS_;
+ }
+@@ -896,6 +914,54 @@ int gravity_models_get_alphas_par_smg(
+     pvecback[pba->index_bg_M2_smg] = 1.+delta_M2;
+   }
+ 
++  else if (pba->gravity_model_smg == efc_logistic) {
++
++    double B0    = pba->parameters_2_smg[0];
++    double M0    = pba->parameters_2_smg[1];
++    double a_t   = pba->parameters_2_smg[2];
++    double Delta = pba->parameters_2_smg[3];
++    double c_k   = pba->parameters_2_smg[4];
++    double c_t   = pba->parameters_2_smg[5];
++
++    /* Logistic entropy field S(a) = 1/(1+exp(-(ln a - ln a_t)/Delta)) */
++    double x = (log(a) - log(a_t)) / Delta;
++    double S_a, dS_dlna;
++    if (x > 20.) {
++      S_a = 1.;
++      dS_dlna = 0.;
++    } else if (x < -20.) {
++      S_a = 0.;
++      dS_dlna = 0.;
++    } else {
++      S_a = 1. / (1. + exp(-x));
++      dS_dlna = S_a * (1. - S_a) / Delta;
++    }
++
++    /* Analytical delta_M2 from integrating alpha_M = M0*S(a):
++     * d(ln M*2)/d(ln a) = alpha_M = M0*S(a)
++     * integral of S(a) d(ln a) = Delta * ln(1+exp(x)) + const
++     * => M*2(a) = exp(M0*Delta*[log1p(exp(x)) - log1p(exp(x_ini))])
++     * At early times x_ini << -20, log1p(exp(x_ini)) ~ 0
++     */
++    double log1p_exp_x;
++    if (x > 20.) {
++      log1p_exp_x = x;  /* log(1+exp(x)) ~ x for large x */
++    } else if (x < -20.) {
++      log1p_exp_x = 0.;
++    } else {
++      log1p_exp_x = log(1. + exp(x));
++    }
++    double M2_val = exp(M0 * Delta * log1p_exp_x);
++    double dM2 = M2_val - 1.;
++
++    pvecback[pba->index_bg_kineticity_smg] = c_k;
++    pvecback[pba->index_bg_braiding_smg] = B0 * dS_dlna;
++    pvecback[pba->index_bg_tensor_excess_smg] = c_t;
++    pvecback[pba->index_bg_M2_running_smg] = M0 * S_a;
++    pvecback[pba->index_bg_delta_M2_smg] = dM2;
++    pvecback[pba->index_bg_M2_smg] = M2_val;
++  }
++
+   else if ((pba->gravity_model_smg == eft_gammas_power_law) || (pba->gravity_model_smg == eft_gammas_exponential)) {
+ 
+     double Omega=0., g1=0., g2=0., g3=0., Omega_p=0., Omega_pp=0., g3_p=0.;
+@@ -1168,6 +1234,10 @@ int gravity_models_initial_conditions_smg(
+ 			pvecback_integration[pba->index_bi_delta_M2_smg] = pba->parameters_2_smg[0]*pow(a, pba->parameters_2_smg[4]);
+ 			break;
+ 
++	  case efc_logistic:
++			/* delta_M2 computed analytically in gravity_models_get_back_par, no ODE needed */
++			break;
++
+ 	  case eft_gammas_power_law:
+ 			pvecback_integration[pba->index_bi_delta_M2_smg] = pba->parameters_2_smg[0]*pow(a,pba->parameters_2_smg[4]) + pba->parameters_2_smg[3]*pow(a,pba->parameters_2_smg[7]);
+ 			break;
+@@ -1275,6 +1345,13 @@ int gravity_models_print_stdout_smg(
+ 	      pba->parameters_2_smg[4]);
+     break;
+ 
++    case efc_logistic:
++      printf("Modified gravity: efc_logistic (Energy-Flow Cosmology) with parameters: \n");
++      printf(" -> B0 = %g, M0 = %g, a_t = %g, Delta = %g, alpha_K = %g, alpha_T = %g \n",
++	      pba->parameters_2_smg[0],pba->parameters_2_smg[1],pba->parameters_2_smg[2],pba->parameters_2_smg[3],
++	      pba->parameters_2_smg[4],pba->parameters_2_smg[5]);
++    break;
++
+     case eft_alphas_power_law:
+       printf("Modified gravity: eft_alphas_power_law with parameters: \n");
+       printf(" -> M_*^2_0 = %g, c_K = %g, c_B = %g, c_T = %g, M_*^2_exp = %g, c_K_exp = %g, c_B_exp = %g, c_T_exp = %g\n",
+diff --git a/include/background.h b/include/background.h
+index 1280d4d3..1aaf371b 100644
+--- a/include/background.h
++++ b/include/background.h
+@@ -24,6 +24,7 @@ enum equation_of_state {CLP,EDE};
+ enum gravity_model {propto_omega, propto_scale,
+     constant_alphas,
+     eft_alphas_power_law, eft_gammas_power_law, eft_gammas_exponential,
++    efc_logistic,
+     galileon, nkgb,
+     brans_dicke,
+     quintessence_monomial, quintessence_tracker,
+diff --git a/python/classy.pyx b/python/classy.pyx
+index 3af72e0d..e94baf01 100644
+--- a/python/classy.pyx
++++ b/python/classy.pyx
+@@ -32,8 +32,8 @@ def viewdictitems(d):
+     else:
+         return d.viewitems()
+ 
+-ctypedef np.float_t DTYPE_t
+-ctypedef np.int_t DTYPE_i
++ctypedef np.float64_t DTYPE_t
++ctypedef np.intp_t DTYPE_i
+ 
+ 
+ 
