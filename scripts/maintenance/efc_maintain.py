@@ -32,6 +32,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 AUTO_META = os.path.join(HERE, "efc_auto_metadata.py")
+PROCESS = os.path.join(HERE, "efc_process_paper.py")
 GEN = os.path.join(HERE, "efc_gen_ai_friendly.py")
 SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
@@ -48,6 +49,9 @@ def main() -> int:
     print("[efc-maintain] --- EFC maintenance pass ---")
     # Step 0: auto-generate metadata for bare PDFs (uploaded without index.json)
     run(AUTO_META)
+    # Step 0b: AI-classify unprocessed papers and update public pages
+    # (requires OPENAI_API_KEY; skips gracefully if not set)
+    run(PROCESS)
     rc_gen = run(GEN)
     if rc_gen != 0:
         print(f"[efc-maintain] generator failed (rc={rc_gen})")
