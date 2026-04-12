@@ -53,7 +53,7 @@ Across **103 independent tests** so far (galaxy rotation curves, the cosmic micr
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
 | **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.17 public / v4.8 internal) |
-| **Papers** | 138 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **Papers** | 139 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
 | **AI Packages** | 138 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
@@ -334,7 +334,7 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 134 papers with AI-friendly packages (100%)
+│   ├── papers/efc/     # 139 papers with AI-friendly packages (100%)
 │   ├── public/         # Validation Ledger (v3.15), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks

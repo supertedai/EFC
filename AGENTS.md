@@ -1,6 +1,6 @@
 # AI Agents Guide for Energy-Flow Cosmology
 
-**Version**: 3.5 | **Updated**: 2026-04-09
+**Version**: 3.6 | **Updated**: 2026-04-12
 
 This document provides comprehensive instructions for AI agents working with the EFC repository.
 
@@ -15,10 +15,12 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger: v4.7 (internal) / v3.16 (public HTML)
-ai_packages: 137 (100% coverage)
+validation_ledger_public: v3.20
+validation_ledger_internal: v4.7
+ai_packages: 139 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
+pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (Euclid DR1)
 ```
 
 | Resource | Location |
@@ -44,6 +46,47 @@ Three evidence layers are kept **strictly separate** — violating this is claim
 **Pre-registration discipline:** predictions must cite the **prior** EFC DOI where the prediction was first stated, in the same sentence, to prevent post-diction.
 
 **Run maintenance manually:** `python3 scripts/maintenance/efc_maintain.py`. See [`scripts/maintenance/README.md`](./scripts/maintenance/README.md) for the full algorithm.
+
+---
+
+## Automated Maintenance Protocol (for Claude Code)
+
+The SessionStart hook runs `efc_maintain.py` + `efc_drift_detector.py` on every session.
+If drift is detected, Claude MUST fix it before doing anything else. The drift report
+is at `.claude/drift_report.json`.
+
+### What Claude must do when drift is detected
+
+1. **Paper count drift** — Update the number in the affected file (README.md badge,
+   AGENTS.md yaml, any HTML page that mentions a specific count).
+2. **Version drift** — Update stale version strings in AGENTS.md and elsewhere.
+3. **New paper uploaded** — When a new PDF appears in `docs/papers/efc/` without
+   a hand-curated package, Claude should:
+   a. Run `python3 scripts/maintenance/efc_maintain.py` (generates 10/10 package)
+   b. If the paper has validation results, add an entry to `EFC_Validation_Ledger.html`
+   c. If the paper relates to Euclid/Stage-IV, update `EFC_Stage-IV_Data_Roadmap.html`
+   d. Add a Changelog entry to `EFC_Changelog.html`
+   e. Update `README.md` if it's a significant result (NEW banner)
+   f. Commit with descriptive message and push to main
+
+### Public pages that must stay in sync
+
+| Page | What it tracks |
+|------|---------------|
+| `docs/public/EFC_Validation_Ledger.html` | Every test, every DOI, tier status |
+| `docs/public/EFC_Stage-IV_Data_Roadmap.html` | Kill criteria, pipeline status, timeline |
+| `docs/public/EFC_White_Paper_Series.html` | Sealed predictions, falsifiability count |
+| `docs/public/EFC_Elevator_Pitch.html` | Plain-English summary, pipeline status |
+| `docs/public/EFC_Changelog.html` | Every structural/empirical update, versioned |
+| `README.md` | Paper count, test count, NEW banners, tree structure |
+| `AGENTS.md` | This file — package count, version, pipeline list |
+
+### Language rules (never violate)
+
+- NEVER write "confirms EFC", "proves EFC", "validates EFC"
+- Use: "consistent with", "within prediction band", "passes test"
+- External papers: "overlaps with EFC prediction", not "confirms"
+- Always cite the prior EFC DOI where a prediction was first stated
 
 ---
 
@@ -122,10 +165,10 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 137 papers (137 with AI-friendly packages, 100%)
-│   └── public/         # Validation Ledger (v3.8), Master Spec
+│   ├── papers/efc/     # 139 papers (139 with AI-friendly packages, 100%)
+│   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
-├── pipelines/          # Graph-AQUAL pipeline + kill tests
+├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
 ├── schema/             # Ontology, JSON-LD contexts (20 files)
 ├── api/                # Semantic REST API
 ├── jsonld/             # Linked data files
@@ -139,9 +182,9 @@ EFC/
 
 ---
 
-## AI-Friendly Paper Packages (137)
+## AI-Friendly Paper Packages (139)
 
-All 137 papers have full executable Python packages (`src/`, `data/`, `examples/`):
+All 139 papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`):
 
 ### Consolidation
 | Paper | Module | DOI |
