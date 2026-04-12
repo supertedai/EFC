@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) – Gap Analysis</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #1a3a6b;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff;
+      padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a4a7f;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    thead { background-color: #eaf0f9; }
+    th {
+      border: 1px solid #d0d7e3;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #1a3a6b;
+    }
+    td {
+      border: 1px solid #e2e6ed;
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.90em;
+      background: #f0f2f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .badge-high { display:inline-block; background:#c22; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-med  { display:inline-block; background:#d4a017; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-low  { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-done { display:inline-block; background:#555; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Gap Analysis</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Elevator Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation Ledger</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper Series</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Stage-IV Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:700;">Gap Analysis</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+April 2026 &middot; CC-BY-4.0
+</p>
+
+<div style="background-color:#f8f9fa; border-left:4px solid #007bff; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Purpose:</strong> Living assessment of what EFC needs vs what exists. Identifies gaps in pipeline readiness, theory, data timelines, and competitive landscape. Updated monthly or on significant external events. <strong>Last update: 2026-04-12.</strong>
+</p>
+</div>
+
+<hr>
+
+<h2>1. External Landscape Changes</h2>
+
+<p>Major events since the <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Roadmap</a> was last frozen.</p>
+
+<table>
+<thead><tr><th>Event</th><th>Date</th><th>Impact on EFC</th><th>Action Required</th></tr></thead>
+<tbody>
+<tr><td><strong>CMB-S4 cancelled</strong></td><td>July 2025</td><td>Primary future CMB lensing instrument lost. Sub-percent CMB lensing now depends on Simons Observatory + LiteBIRD (2032+).</td><td><span class="badge-done">DONE</span> Roadmap updated. SO is the near-term replacement.</td></tr>
+<tr><td><strong>Simons Observatory LAT first light</strong></td><td>Feb&ndash;Mar 2025</td><td>CMB lensing reconstruction now operational. First SO &times; Euclid cross-correlation data expected ~2027.</td><td><span class="badge-high">HIGH</span> Pre-register EFC prediction for SO &times; Euclid E<sub>G</sub> (&eta; = 1 test).</td></tr>
+<tr><td><strong>Rubin/LSST survey start</strong></td><td>Early 2026</td><td>Survey operational. DP2 expected Jul&ndash;Sep 2026. DR1 ~early 2028.</td><td><span class="badge-high">HIGH</span> Pre-register EFC cosmic shear predictions before DP2.</td></tr>
+<tr><td><strong>DES Year 6 3&times;2pt released</strong></td><td>Jan 2026</td><td>S<sub>8</sub> = 0.789 &plusmn; 0.012. P3 PASS at 0.3&sigma;. 2.6&sigma; tension with CMB.</td><td><span class="badge-done">DONE</span> Logged in Ledger v3.9.</td></tr>
+<tr><td><strong>DESI DR2 BAO released</strong></td><td>Mar 2025</td><td>2.8&ndash;4.2&sigma; preference for w&#8320;w<sub>a</sub>CDM over &Lambda;CDM. f(R) models strongly preferred.</td><td><span class="badge-done">DONE</span> EFC regime fit &Delta;AIC = &minus;18.01 (<a href="https://doi.org/10.6084/m9.figshare.31230703">31230703</a>).</td></tr>
+<tr><td><strong>DESI DR1 peculiar velocity f&sigma;<sub>8</sub></strong></td><td>Dec 2025</td><td>f&sigma;<sub>8</sub>(z=0.07) = 0.450 &plusmn; 0.055. Low-z, low discriminating power.</td><td><span class="badge-med">MED</span> Monitor. DR2 full-shape RSD at z~0.5&ndash;0.7 is the key test.</td></tr>
+<tr><td><strong>Entropic gravity competitors on arXiv</strong></td><td>2025&ndash;2026</td><td>Multiple models (2503.19056, 2503.08236, 2512.22103, 2508.13260) preferred over &Lambda;CDM with DESI DR2.</td><td><span class="badge-med">MED</span> Differentiate via perturbation-sector discriminant (&mu;&lt;1, &Sigma;&gt;1, &eta;&asymp;1.10).</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>2. Kill Criteria Readiness</h2>
+
+<table>
+<thead><tr><th>KC</th><th>Pipeline Status</th><th>Gap</th><th>Priority</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>KC1</strong> P(k) full-shape</td>
+  <td><span class="badge-done">PREDICTION READY</span></td>
+  <td>None &mdash; hi_class + efc_logistic sealed (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>). Awaiting DESI DR3 (~2027).</td>
+  <td><span class="badge-low">LOW</span></td>
+</tr>
+<tr>
+  <td><strong>KC2</strong> f&sigma;<sub>8</sub> trajectory</td>
+  <td><span class="badge-done">SEALED</span></td>
+  <td>None &mdash; sealed z<sub>cross</sub> = 2.042. Awaiting DESI DR3 Ly&alpha; + high-z RSD.</td>
+  <td><span class="badge-low">LOW</span></td>
+</tr>
+<tr>
+  <td><strong>KC3</strong> S<sub>8</sub> convergence</td>
+  <td><span class="badge-done">P3 PASS</span></td>
+  <td>DES Y6 passed (0.3&sigma;). KiDS Legacy divergence unresolved. <strong>Euclid DR1 (Oct 2026) will arbitrate.</strong></td>
+  <td><span class="badge-med">MED</span></td>
+</tr>
+<tr>
+  <td><strong>KC4</strong> Gravitational slip &eta;</td>
+  <td><span class="badge-done">PREDICTION READY</span></td>
+  <td><strong>No SO &times; Euclid cross-correlation prediction pre-registered.</strong></td>
+  <td><span class="badge-high">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>KC5</strong> Dark energy w(z)</td>
+  <td>Monitoring</td>
+  <td>Need formal w(a) = &minus;&beta;(S)&middot;a confronted with Euclid DR1 chains.</td>
+  <td><span class="badge-med">MED</span></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>3. Theory Gaps</h2>
+
+<table>
+<thead><tr><th>Gap</th><th>Status</th><th>Blocking</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>Bellini-Sawicki &alpha;-function mapping</td><td>Not started</td><td>Euclid EFT pipeline compatibility</td><td><span class="badge-high">HIGH</span> Before Euclid DR1 (Oct 2026)</td></tr>
+<tr><td>Full non-linear ADM Hamiltonian stability</td><td>Passed at 2nd order; full non-linear pending</td><td>FA6</td><td><span class="badge-med">MED</span></td></tr>
+<tr><td>EFCLASS Boltzmann solver</td><td>Partial (hi_class patch exists)</td><td>Full C<sub>&ell;</sub> predictions</td><td><span class="badge-med">MED</span></td></tr>
+<tr><td>Multi-component 175-galaxy SPARC universality</td><td>Single-component completed (60.2% win rate)</td><td>Final rotation-curve validation</td><td><span class="badge-med">MED</span></td></tr>
+<tr><td>Neutrino mass degeneracy analysis</td><td>Not started</td><td>EFC+DESI &nu;-mass differs from &Lambda;CDM+DESI</td><td><span class="badge-med">MED</span></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>4. Data Timeline &amp; Deadlines</h2>
+
+<table>
+<thead><tr><th>Dataset</th><th>Release</th><th>Key EFC Observables</th><th>EFC Status</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><strong>DES Y6</strong></td><td>Jan 2026 <span class="badge-done">RELEASED</span></td><td>S<sub>8</sub> = 0.789 &plusmn; 0.012</td><td>P3 PASS (0.3&sigma;)</td><td>None</td></tr>
+<tr><td><strong>DESI DR2 BAO</strong></td><td>Mar 2025 <span class="badge-done">RELEASED</span></td><td>BAO D<sub>M</sub>/D<sub>H</sub>; DE preference</td><td>Consistent</td><td>Verify &alpha;<sub>L2</sub> against chains</td></tr>
+<tr><td><strong>DESI DR2 full-shape RSD</strong></td><td>~2026 <span class="badge-high">PENDING</span></td><td>f&sigma;<sub>8</sub>(z=0.5&ndash;0.7)</td><td><strong>Sealed: 0.430 at z=0.7</strong></td><td><span class="badge-high">MONITOR</span></td></tr>
+<tr><td><strong>Euclid Q2</strong></td><td>Jun 24, 2026</td><td>Shape validation</td><td>Precursor</td><td>Monitor shear calibration</td></tr>
+<tr><td><strong>Rubin DP2</strong></td><td>Jul&ndash;Sep 2026</td><td>Early shear catalogue</td><td>Not pre-registered</td><td><span class="badge-high">PRE-REGISTER by Jul 2026</span></td></tr>
+<tr><td><strong>Euclid DR1</strong></td><td><strong>Oct 21, 2026</strong></td><td>f&sigma;<sub>8</sub>, S<sub>8</sub>, E<sub>G</sub>, P(k), &eta;</td><td><span class="badge-done">SEALED</span> (31990053)</td><td>Verify pipeline scripts</td></tr>
+<tr><td><strong>SO CMB lensing</strong></td><td>~2026&ndash;2027</td><td>C<sub>&ell;</sub><sup>&phi;&phi;</sup>, SO&times;Euclid E<sub>G</sub></td><td>Not pre-registered</td><td><span class="badge-high">PRE-REGISTER by Sep 2026</span></td></tr>
+<tr><td><strong>KiDS Legacy</strong></td><td>~2027</td><td>Resolves DES vs KiDS S<sub>8</sub> split</td><td>Monitoring</td><td>None until release</td></tr>
+<tr><td><strong>DESI DR3</strong></td><td>~2027&ndash;2028</td><td>Full RSD + BAO 5-year</td><td>Sealed predictions locked</td><td>Long-term planning</td></tr>
+<tr><td><strong>Rubin DR1</strong></td><td>~early 2028</td><td>S<sub>8</sub> &gt;5&times; DES precision</td><td>Not pre-registered</td><td>Pre-register by ~2027</td></tr>
+<tr><td><strong>Euclid DR2</strong></td><td>~2028</td><td>&eta; to percent level, E<sub>G</sub></td><td>KC4 decisive test</td><td>Requires Bellini-Sawicki mapping</td></tr>
+<tr><td><strong>LiteBIRD</strong></td><td>2032+</td><td>Primordial B-modes, &tau;</td><td>CMB baseline update</td><td>No action before 2030</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>5. Priority Actions</h2>
+
+<table>
+<thead><tr><th>#</th><th>Action</th><th>Deadline</th><th>Blocking</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Monitor DESI for DR2 full-shape RSD paper at z~0.5&ndash;0.7. Only pending direct test of sealed f&sigma;<sub>8</sub>(z=0.7) = 0.430.</td><td>Now (ongoing)</td><td>KC2 early check</td><td><span class="badge-high">ACTIVE</span></td></tr>
+<tr><td><strong>2</strong></td><td>Derive Bellini-Sawicki &alpha;-functions from EFC relativistic action for Euclid EFT pipeline.</td><td>Jul 2026</td><td>Euclid DR1 EFT compatibility</td><td><span class="badge-high">NOT STARTED</span></td></tr>
+<tr><td><strong>3</strong></td><td>Pre-register EFC predictions for Rubin/LSST DP2 cosmic shear. LSST S<sub>8</sub> precision will exceed DES Y6 fivefold.</td><td>Jul 2026</td><td>Rubin DP2</td><td><span class="badge-high">NOT STARTED</span></td></tr>
+<tr><td><strong>4</strong></td><td>Pre-register EFC predictions for SO &times; Euclid E<sub>G</sub> cross-correlation. First direct next-gen test of &eta; = 1.</td><td>Sep 2026</td><td>KC4</td><td><span class="badge-high">NOT STARTED</span></td></tr>
+<tr><td><strong>5</strong></td><td>Verify Euclid DR1 pipeline scripts version-controlled and DOI-stamped. Prediction already sealed.</td><td>Oct 2026</td><td>KC3, FA2</td><td><span class="badge-done">SEALED</span></td></tr>
+<tr><td><strong>6</strong></td><td>Derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility T(S) for Euclid DR1 + DESI DR3 joint chains.</td><td>2027</td><td>KC5</td><td><span class="badge-med">PLANNED</span></td></tr>
+<tr><td><strong>7</strong></td><td>Complete multi-component 175-galaxy SPARC universality with fixed (K<sub>0</sub>, m&sup2;).</td><td>2027</td><td>F5 galactic sector</td><td><span class="badge-med">PLANNED</span></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>6. Competitor Landscape</h2>
+
+<table>
+<thead><tr><th>Model</th><th>arXiv</th><th>Key Claim</th><th>EFC Differentiator</th></tr></thead>
+<tbody>
+<tr><td>Modified entropic gravity (Odintsov+)</td><td>2503.08236</td><td>Modified Friedmann from extended entropy; fits Pantheon+BAO+Planck</td><td>EFC has perturbation-sector predictions (&mu;&lt;1, &Sigma;&gt;1, &eta;); competitor is background-only</td></tr>
+<tr><td>Mass-to-horizon entropic cosmology</td><td>2508.13260, 2512.22103</td><td>Bayesian analysis vs DESI DR2 BAO; preferred over &Lambda;CDM</td><td>EFC has galactic-scale RAR (k=0.415) and cross-scale P3 link; competitor lacks galactic sector</td></tr>
+<tr><td>f(R) gravity (DESI DR2)</td><td>2504.05432</td><td>Starobinsky/Exponential f(R) strongly preferred with DESI DR2</td><td>EFC has &mu;&lt;1 (f(R) has &mu;&gt;1); sign of &mu; is the discriminant (FA2)</td></tr>
+<tr><td>Ray-traced screened MG for LSST</td><td>2604.08393</td><td>LSST-specific predictions for screened MG</td><td>Methodological template &mdash; EFC should adapt for its own LSST predictions</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>7. Inference &amp; Symbiosis Status</h2>
+
+<p>Summary from the Symbiosis research pipeline (neo4j + qdrant + GNN):</p>
+
+<table>
+<thead><tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td>Overall EFC health</td><td><strong>62/100</strong></td><td>Room for improvement; degeneracy limits signal</td></tr>
+<tr><td>&alpha;-signal</td><td>0.7&sigma; (&alpha; = &minus;0.141 &plusmn; 0.208)</td><td>Sub-detection; degeneracy-limited</td></tr>
+<tr><td>Validation tests</td><td>30/104 passed (29%)</td><td>14 candidates awaiting approval</td></tr>
+<tr><td>Knowledge gaps</td><td>2 critical open, 293 needs review</td><td>Top: entropy gradient morphology, JWST+&alpha; predictions</td></tr>
+<tr><td>GRAV pipeline (Grid-AQUAL)</td><td>KT1/KT2 PASSED, KT3 MARGINAL</td><td>10 runs; latest needs review</td></tr>
+<tr><td>Sealed blind predictions</td><td>2 (SHA-256 frozen)</td><td>&alpha; = &minus;0.689 (v1), &minus;0.702 (v2)</td></tr>
+<tr><td>Learning loops</td><td>5/7 connected</td><td>gap_to_fill and inference_to_learning disconnected</td></tr>
+<tr><td>Escalated cases</td><td>3 (degeneracy_persists)</td><td>Need cross-probe data to break degeneracy</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Bottom Line</h2>
+
+<table>
+<tbody>
+<tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">Biggest gap right now</td><td><strong>Bellini-Sawicki &alpha;-function mapping</strong> &mdash; needed for Euclid EFT pipeline before Oct 2026</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Most urgent monitor</td><td><strong>DESI DR2 full-shape RSD</strong> &mdash; only pending direct test of sealed f&sigma;<sub>8</sub> prediction</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Most urgent pre-registration</td><td><strong>Rubin DP2 cosmic shear</strong> + <strong>SO &times; Euclid E<sub>G</sub></strong> &mdash; both by Jul&ndash;Sep 2026</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Key differentiator vs competitors</td><td>&eta; &asymp; 1.10 &mdash; no competitor model predicts this specific combination</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Automated monitoring</td><td><code>efc_weekly_scan.py</code> runs every Monday 07:00 UTC via GitHub Actions</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Gap Analysis &mdash; auto-updated by weekly scan
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>
