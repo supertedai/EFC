@@ -739,10 +739,10 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <table>
 <thead><tr><th>Priority</th><th>Item</th><th>Required For</th><th>Deadline</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td><strong>1</strong></td><td>Euclid DR1 S<sub>8</sub> extraction pipeline</td><td>KC3; P3 replication</td><td>2026 Oct</td><td><span class="pipeline-badge">IN PROGRESS</span></td></tr>
-<tr><td><strong>2</strong></td><td>ISW cross-correlation (A<sub>ISW</sub>)</td><td>F1</td><td>2026 H2</td><td><span class="pipeline-badge">PREDICTION READY</span></td></tr>
-<tr><td><strong>3</strong></td><td>E<sub>G</sub> estimator implementation</td><td>KC4; FA4</td><td>~2028</td><td><span class="pipeline-badge">METHOD DEFINED</span></td></tr>
-<tr><td><strong>4</strong></td><td>Full-shape P(k) likelihood with EFC growth</td><td>KC1; F4</td><td>~2027</td><td><span class="pipeline-badge">PIPELINE NEEDED</span></td></tr>
+<tr><td><strong>1</strong></td><td>Euclid DR1 S<sub>8</sub> extraction pipeline</td><td>KC3; P3 replication</td><td>2026 Oct</td><td><span class="pipeline-badge">PREDICTION READY</span> hi_class + efc_logistic; benchmark frozen (SHA-256 sealed 2026-04-12)</td></tr>
+<tr><td><strong>2</strong></td><td>ISW cross-correlation (A<sub>ISW</sub>)</td><td>F1</td><td>2026 H2</td><td><span class="pipeline-badge">PREDICTION READY</span> Cl<sup>TT</sup>(&ell;=30): +1.88% at benchmark</td></tr>
+<tr><td><strong>3</strong></td><td>E<sub>G</sub> estimator implementation</td><td>KC4; FA4</td><td>~2028</td><td><span class="pipeline-badge">PREDICTION READY</span> E<sub>G</sub>(&ell;=66): &minus;3.98% from Cl<sup>&phi;&phi;</sup>/P(k) ratio</td></tr>
+<tr><td><strong>4</strong></td><td>Full-shape P(k) likelihood with EFC growth</td><td>KC1; F4</td><td>~2027</td><td><span class="pipeline-badge">PREDICTION READY</span> P(k<sub>c</sub>,z=0.5): +2.09% via hi_class Boltzmann</td></tr>
 <tr><td><strong>5</strong></td><td>Void catalogue + ISW stacking</td><td>Void ISW sign-flip</td><td>~2028</td><td><span class="pipeline-badge">METHOD DEFINED</span></td></tr>
 <tr><td><strong>6</strong></td><td>Cluster shock-front &kappa; analysis</td><td>F3</td><td>2026&ndash;2027</td><td><span class="pipeline-badge">PRE-REGISTERED</span></td></tr>
 <tr><td><strong>7</strong></td><td>EFCLASS Boltzmann solver</td><td>Full C<sub>&ell;</sub>; ADM Hamiltonian</td><td>~2028</td><td><span class="pipeline-badge">PLANNED</span></td></tr>
@@ -788,7 +788,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <tr><td>Next critical date</td><td><strong>2026 Oct 21</strong> &mdash; Euclid DR1: tests KC3, KC5, FA2, P3 replication</td></tr>
 <tr><td>Sealed predictions</td><td>2 cryptographic freezes; 6 quantitative values; testable by DESI DR3 (~2027&ndash;2028)</td></tr>
 <tr><td>Kill criteria</td><td>5 (KC1&ndash;KC5) + 6 action-level (FA1&ndash;FA6) + 6 standing (F1&ndash;F6) = <strong>17 falsification conditions</strong></td></tr>
-<tr><td>Pipeline gaps</td><td>4 items before data arrival (E<sub>G</sub>, full-shape likelihood, EFCLASS, void stacking)</td></tr>
+<tr><td>Pipeline gaps</td><td>1 item before data arrival (void stacking); E<sub>G</sub>, full-shape P(k), and S<sub>8</sub> pipelines now complete via hi_class efc_logistic (2026-04-12)</td></tr>
 <tr><td>Statistical framework</td><td>Survey-provided likelihoods/covariance; &Delta;&chi;&sup2; / &Delta;AIC primary; no EFC nuisance parameters</td></tr>
 <tr><td>Key discriminant</td><td>&eta; &asymp; 1.10 &mdash; rules out massive neutrinos, f(R), w&#8320;w<sub>a</sub>CDM if confirmed</td></tr>
 <tr><td>Failure protocol</td><td>KC = hard kill; FA = action revision; F = tension. No reclassification post-data.</td></tr>
