@@ -1,4 +1,11 @@
 [efc-auto-meta] all paper directories have index.json
+============================================================
+EFC PAPER PROCESSOR — AI-Powered Auto-Registration
+Model: gpt-5
+Mode: LIVE
+API key: NOT SET
+============================================================
+[SKIP] OPENAI_API_KEY not set. Cannot classify papers.
 [efc-gen] 140 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
 EFC DOI sync — 140 paper dirs scanned
@@ -12,6 +19,7 @@ EFC DOI sync — 140 paper dirs scanned
 [efc-drift] 140 papers · no drift detected
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
+[efc-maintain] running efc_process_paper.py …
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_sync_dois.py --apply…
 [efc-maintain] running efc_gen_ai_friendly.py …
