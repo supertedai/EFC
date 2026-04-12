@@ -23,7 +23,8 @@ on:
         required: false
         default: "gpt-5"
   schedule:
-    - cron: "30 6 * * 3"  # Wednesday 06:30 UTC
+    - cron: "30 6 * * 3"  # Wednesday 06:30 UTC — consistency audit
+    - cron: "0 7 * * 1"   # Monday 07:00 UTC — weekly full scan
 
 jobs:
   ai-audit:
@@ -37,6 +38,9 @@ jobs:
 
       - name: Run drift detector
         run: python3 scripts/maintenance/efc_drift_detector.py || true
+
+      - name: Run unprocessed paper scan
+        run: python3 scripts/maintenance/efc_unprocessed.py || true
 
       - name: Run AI consistency audit (GPT council)
         env:

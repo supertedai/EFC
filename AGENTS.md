@@ -140,6 +140,47 @@ For each paper with a DOI that is NOT in the Ledger, Claude MUST:
 - KC4 (η slip): only tick if gravitational slip η measured or E_G computed
 - KC5 (w(z)): only tick if dynamical DE equation of state constrained
 
+### Classification rules: NOT everything goes in the Ledger
+
+Many papers are theory, methodology, meta-architecture, or philosophy.
+These do NOT get Ledger entries. Only add to the Ledger if the paper:
+
+- Contains a **quantitative empirical test** against observational data
+- Contains a **sealed prediction** with falsification criteria
+- Contains a **pipeline result** (e.g. Boltzmann output, MCMC posterior)
+- Contains a **cross-validation** (e.g. parameter transfer between surveys)
+
+Papers that are theory derivations, frameworks, or methodology get
+a Changelog entry ONLY (no Ledger row). This keeps the Ledger clean.
+
+### Quality gate: GPT council validation
+
+For Ledger entries, before committing Claude SHOULD verify the classification
+is correct by checking:
+1. Does the paper actually contain the claimed test? (read the PDF/README)
+2. Is the tier assignment correct? (T1 requires prior DOI with prediction)
+3. Is the status assignment correct? (PASS requires specific numerical agreement)
+4. Are the regime columns correct? (only tick regimes actually tested)
+
+The weekly GPT-5 council audit (efc-ai-audit.yml) provides an independent
+cross-check. If the council flags an issue, Claude must investigate and fix.
+
+### Gap analysis and strategic planning
+
+Claude should periodically (monthly or on request) produce a gap analysis
+comparing the current state of the project against:
+
+1. **Kill criteria readiness** — Which KC1-KC5 have complete pipelines?
+   Which still need work? What's blocking each?
+2. **Data timeline** — When do Euclid DR1, DESI DR3, Rubin Y1, etc. arrive?
+   What must be ready before each deadline?
+3. **Theory gaps** — Which theoretical predictions lack Boltzmann-level
+   calibration? Which Horndeski mappings are unresolved?
+4. **External developments** — What has been published recently (arXiv, journals)
+   that is relevant to EFC? New data releases, competing MG analyses, etc.
+
+This analysis goes in the Stage-IV Roadmap as a living "Gap Analysis" section.
+
 ### Public pages that must stay in sync
 
 | Page | What it tracks |
