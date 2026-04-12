@@ -167,7 +167,6 @@ def call_openai(prompt):
             data=json.dumps({
                 "model": MODEL,
                 "messages": [{"role": "user", "content": prompt}],
-                "temperature": 0.1,
                 "max_completion_tokens": 4000,
             }).encode(),
             headers={
@@ -192,7 +191,6 @@ def call_openai(prompt):
     resp = client.chat.completions.create(
         model=MODEL,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.1,
         max_completion_tokens=4000,
     )
     return resp.choices[0].message.content

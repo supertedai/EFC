@@ -135,7 +135,6 @@ Classify this paper and respond with ONLY valid JSON (no markdown, no explanatio
             data=json.dumps({
                 "model": MODEL,
                 "messages": [{"role": "user", "content": prompt}],
-                "temperature": 0.1,
                 "max_completion_tokens": 2000,
             }).encode(),
             headers={
