@@ -83,6 +83,116 @@
 <h2>2026</h2>
 
 <ul>
+  <!-- v3.21 entry — Complete backlog processing: 85 papers + gap analysis + weekly scan -->
+  <li><strong>2026-04-12 (v3.21)</strong> &mdash; <strong>Complete backlog processing: 85 unregistered papers catalogued.</strong> Council-reviewed classification of all papers with Figshare DOIs not previously referenced in public pages. Six new empirical entries added to the Validation Ledger evidence register; remaining 79 papers classified as theory, methodology, or synthesis (Changelog-only per AGENTS.md &sect;Classification rules). Gap Analysis section added to Stage-IV Data Roadmap incorporating CMB-S4 cancellation (July 2025), Simons Observatory first light (Feb 2025), Rubin/LSST survey start (early 2026), DES Y6 3&times;2pt release (Jan 2026), and DESI DR2 BAO (Mar 2025). Weekly automated scan script added (<code>scripts/maintenance/efc_weekly_scan.py</code>) to prevent future backlog accumulation.
+    <br><br>
+    <em>New empirical entries (Ledger &sect;4 evidence register):</em>
+    Regime-Transition Fit to DESI DR2 BAO with Cross-Validation (<a href="https://doi.org/10.6084/m9.figshare.31230703">31230703</a>; &chi;&sup2;<sub>EFC</sub>&nbsp;=&nbsp;9.33 vs &chi;&sup2;<sub>&Lambda;CDM</sub>&nbsp;=&nbsp;31.34, &Delta;AIC&nbsp;=&nbsp;&minus;18.01, hold-out &Delta;&chi;&sup2;&nbsp;=&nbsp;&minus;18.65, combined n=47: &chi;&sup2;<sub>EFC</sub>&nbsp;=&nbsp;24.19 vs &chi;&sup2;<sub>&Lambda;CDM</sub>&nbsp;=&nbsp;46.36);
+    From RSD to Clusters: Parameter-Locked Test of Late-Time Structure Growth (<a href="https://doi.org/10.6084/m9.figshare.31292827">31292827</a>; &alpha;<sub>L2</sub>&nbsp;=&nbsp;0.34&nbsp;&plusmn;&nbsp;0.16 from BOSS DR12 RSD propagated to eRASS1 clusters, N<sub>EFC</sub>/N<sub>&Lambda;CDM</sub>&nbsp;=&nbsp;1.064, 2&ndash;3&sigma; discrimination power, pre-registered against eRASS1);
+    Triangulation Test for Thermodynamic Lensing (<a href="https://doi.org/10.6084/m9.figshare.31267297">31267297</a>; Bullet Cluster &rho;<sub>Pearson</sub>&nbsp;=&nbsp;&minus;0.129, p&nbsp;=&nbsp;0.21 (under-powered); sealed speculative prediction &delta;z&nbsp;~&nbsp;10<sup>&minus;6</sup>&ndash;10<sup>&minus;5</sup>, correlated with entropy structure, null in &Lambda;CDM);
+    Unified Origin of RAR and Hubble Tension (<a href="https://doi.org/10.6084/m9.figshare.31223908">31223908</a>; a<sub>G</sub>(H<sub>0</sub>&nbsp;tension)&nbsp;=&nbsp;0.094 vs a<sub>G</sub>(MOND)&nbsp;=&nbsp;0.107, 14% discrepancy; H<sub>0</sub>&nbsp;predicted&nbsp;=&nbsp;73.9&nbsp;km/s/Mpc);
+    Hubble Tension as Regime Mismatch (<a href="https://doi.org/10.6084/m9.figshare.31224247">31224247</a>; H<sub>structure</sub>/H<sub>background</sub>&nbsp;=&nbsp;exp(0.5&nbsp;&middot;&nbsp;0.094&nbsp;&middot;&nbsp;1.71)&nbsp;=&nbsp;1.083; sealed falsification: SNe&nbsp;Ia in voids should give lower H<sub>0</sub> than in clusters, &Delta;M&nbsp;~&nbsp;0.02&nbsp;mag);
+    Directional Lensing Residuals at Cluster Merger Shock Fronts (<a href="https://doi.org/10.6084/m9.figshare.31288063">31288063</a>; pre-registered decision criteria: A<sub>sig</sub>&nbsp;&gt;&nbsp;3 AND p<sub>rot</sub>&nbsp;&lt;&nbsp;0.05 in &ge;&nbsp;2 clusters; pipeline ready, awaiting JWST &kappa; data; predicted &delta;&kappa;&nbsp;=&nbsp;0.03, 2&ndash;6&sigma; significance range).
+    <br><br>
+    <em>Changelog DOI backfill (22 papers already in Ledger, DOI now in Changelog):</em>
+    Comprehensive SPARC-175 Analysis (<a href="https://doi.org/10.6084/m9.figshare.31045126">31045126</a>),
+    EBE SPARC175 (<a href="https://doi.org/10.6084/m9.figshare.31047703">31047703</a>),
+    COSMOS-Web z&gt;6 Abundances (<a href="https://doi.org/10.6084/m9.figshare.31059964">31059964</a>),
+    &Lambda;CDM Regime-Dependent Breakdown (<a href="https://doi.org/10.6084/m9.figshare.31061665">31061665</a>),
+    CMB Thermodynamic Interpretation (<a href="https://doi.org/10.6084/m9.figshare.31064929">31064929</a>),
+    CMB Null Results / Degeneracies (<a href="https://doi.org/10.6084/m9.figshare.31095466">31095466</a>),
+    EFC-R SPARC Regime Validity (<a href="https://doi.org/10.6084/m9.figshare.31007248">31007248</a>),
+    H<sub>0</sub> and S<sub>8</sub> Inference Separation (<a href="https://doi.org/10.6084/m9.figshare.31026151">31026151</a>),
+    EFC vs DESI DR2 BAO Phenomenology (<a href="https://doi.org/10.6084/m9.figshare.31127380">31127380</a>),
+    Growth Robustness LOO (<a href="https://doi.org/10.6084/m9.figshare.31332730">31332730</a>),
+    Discrete Entropic Gravity (<a href="https://doi.org/10.6084/m9.figshare.31348411">31348411</a>),
+    Cosmological Growth Constraints &Lambda;-Locked (<a href="https://doi.org/10.6084/m9.figshare.31348414">31348414</a>),
+    Regime Structure Ontology (<a href="https://doi.org/10.6084/m9.figshare.31348417">31348417</a>),
+    R(k,S) Response Surface (<a href="https://doi.org/10.6084/m9.figshare.31211437">31211437</a>),
+    Structural Constraints Cluster Merger (<a href="https://doi.org/10.6084/m9.figshare.31173850">31173850</a>),
+    RCMP Framework (<a href="https://doi.org/10.6084/m9.figshare.31222900">31222900</a>),
+    Consciousness Field Resonance (<a href="https://doi.org/10.6084/m9.figshare.31289806">31289806</a>),
+    Connectome Degree Heterogeneity (<a href="https://doi.org/10.6084/m9.figshare.31940370">31940370</a>),
+    Bullet Cluster EFC (<a href="https://doi.org/10.6084/m9.figshare.31963668">31963668</a>),
+    KT3b Cross-Regime Measurement Failure (<a href="https://doi.org/10.6084/m9.figshare.31963821">31963821</a>),
+    EFC Phenomenology vs DESI DR2 BAO (<a href="https://doi.org/10.6084/m9.figshare.31127380">31127380</a>),
+    Regime-Dependent Breakdown (<a href="https://doi.org/10.6084/m9.figshare.31061665">31061665</a>).
+    <br><br>
+    <em>Early Foundational Series (25 theory papers, Changelog-only):</em>
+    Introduction to Entropy in Cosmic Evolution (<a href="https://doi.org/10.6084/m9.figshare.28098320">28098320</a>),
+    Observational Evidence for Entropy (<a href="https://doi.org/10.6084/m9.figshare.28098299">28098299</a>),
+    Why Is Light Speed a Cosmic Limit (<a href="https://doi.org/10.6084/m9.figshare.28098305">28098305</a>),
+    Applications and Implications (<a href="https://doi.org/10.6084/m9.figshare.28098308">28098308</a>),
+    Connection Between Energy Flow and the Now (<a href="https://doi.org/10.6084/m9.figshare.28098311">28098311</a>),
+    Mathematical Framework for Energy Flow (<a href="https://doi.org/10.6084/m9.figshare.28098314">28098314</a>),
+    Unresolved Questions: Entropy (<a href="https://doi.org/10.6084/m9.figshare.28098326">28098326</a>),
+    Technical Documentation (<a href="https://doi.org/10.6084/m9.figshare.28098332">28098332</a>),
+    How Does Balance Shape Universal Structures (<a href="https://doi.org/10.6084/m9.figshare.28098338">28098338</a>),
+    Introduction to Energy Flow in Space-Time (<a href="https://doi.org/10.6084/m9.figshare.28098341">28098341</a>),
+    Dynamic Balance: Entropy, Order, and Chaos (<a href="https://doi.org/10.6084/m9.figshare.28098344">28098344</a>),
+    Is Consciousness Linked to Entropy (<a href="https://doi.org/10.6084/m9.figshare.28098347">28098347</a>),
+    Can Energy Flow Be Observed in Galactic Clusters (<a href="https://doi.org/10.6084/m9.figshare.28098350">28098350</a>),
+    Can Entropy Drive Cosmic Evolution (<a href="https://doi.org/10.6084/m9.figshare.28098353">28098353</a>),
+    Observational Evidence for Energy Flow (<a href="https://doi.org/10.6084/m9.figshare.28098365">28098365</a>),
+    How Energy Flow Sustains Spacetime (<a href="https://doi.org/10.6084/m9.figshare.28098371">28098371</a>),
+    What Happens at the Universe&rsquo;s Extremes (<a href="https://doi.org/10.6084/m9.figshare.28098380">28098380</a>),
+    Hypothesis: Universe as Energy-Driven System (<a href="https://doi.org/10.6084/m9.figshare.28098386">28098386</a>),
+    Light Speed as a Regulator (<a href="https://doi.org/10.6084/m9.figshare.28111925">28111925</a>),
+    Subhypothesis: Light Speed Limit (<a href="https://doi.org/10.6084/m9.figshare.28112036">28112036</a>),
+    Flow, Entropy, and Spacetime Distortion (<a href="https://doi.org/10.6084/m9.figshare.28112096">28112096</a>),
+    Energy Flow as Fundamental Dynamic (<a href="https://doi.org/10.6084/m9.figshare.28113542">28113542</a>),
+    A Deep Dive into the Halo Concept (<a href="https://doi.org/10.6084/m9.figshare.28114370">28114370</a>),
+    Hypothesis: Interrelation Energy-Entropy (<a href="https://doi.org/10.6084/m9.figshare.28557281">28557281</a>),
+    Integrated Hypothesis: Time and Entropy (<a href="https://doi.org/10.6084/m9.figshare.28578263">28578263</a>).
+    <br><br>
+    <em>Grid, Higgs, and CMB Theory (4 papers):</em>
+    Grid Model for Entropic Dynamics (<a href="https://doi.org/10.6084/m9.figshare.28559423">28559423</a>),
+    Grid-Higgs Framework (<a href="https://doi.org/10.6084/m9.figshare.28559510">28559510</a>),
+    Grid-Higgs Paradigm Shift (<a href="https://doi.org/10.6084/m9.figshare.28560935">28560935</a>),
+    CMB Thermodynamic Gradient (<a href="https://doi.org/10.6084/m9.figshare.28570088">28570088</a>).
+    <br><br>
+    <em>Framework Editions and Specifications (6 papers):</em>
+    v1.2 Foundational Framework (<a href="https://doi.org/10.6084/m9.figshare.30563738">30563738</a>),
+    v2.1 Modular Synthesis (<a href="https://doi.org/10.6084/m9.figshare.30455237">30455237</a>),
+    v2.1 Complete Edition (<a href="https://doi.org/10.6084/m9.figshare.30478916">30478916</a>),
+    v2.2 Cross-Field Integration (<a href="https://doi.org/10.6084/m9.figshare.30530156">30530156</a>),
+    Formal Specification (<a href="https://doi.org/10.6084/m9.figshare.30630500">30630500</a>),
+    Variable Effective Light Speed s<sub>0</sub>/s<sub>1</sub> (<a href="https://doi.org/10.6084/m9.figshare.30642497">30642497</a>).
+    <br><br>
+    <em>Theory, Interface, Provenance (4 papers):</em>
+    Thermodynamic Bridge GR&ndash;QFT (<a href="https://doi.org/10.6084/m9.figshare.30402427">30402427</a>),
+    Field Equations for Entropy-Driven Spacetime (<a href="https://doi.org/10.6084/m9.figshare.30421807">30421807</a>),
+    The Energy-Flow Interface (<a href="https://doi.org/10.6084/m9.figshare.30468737">30468737</a>),
+    AUTH Layer &mdash; Origin and Provenance (<a href="https://doi.org/10.6084/m9.figshare.30656828">30656828</a>).
+    <br><br>
+    <em>AI, Meta-Architecture, Consciousness (5 papers):</em>
+    CEM &mdash; Consciousness Ego Mirror (<a href="https://doi.org/10.6084/m9.figshare.30275947">30275947</a>),
+    AI-Augmented Scientific Workflow (<a href="https://doi.org/10.6084/m9.figshare.30636863">30636863</a>),
+    Symbiosis Human&ndash;AI Co-Reflection Architecture (<a href="https://doi.org/10.6084/m9.figshare.30773684">30773684</a>),
+    Validity-Aware AI (<a href="https://doi.org/10.6084/m9.figshare.31122970">31122970</a>),
+    Persistent Cognitive Architectures (<a href="https://doi.org/10.6084/m9.figshare.31271707">31271707</a>).
+    <br><br>
+    <em>Methodology and Framework Papers (9 papers):</em>
+    Bridging Scales: EFC and FEP (<a href="https://doi.org/10.6084/m9.figshare.31042678">31042678</a>),
+    L0&ndash;L3 Regime Architecture (<a href="https://doi.org/10.6084/m9.figshare.31112536">31112536</a>),
+    Foundations of EFC (<a href="https://doi.org/10.6084/m9.figshare.31135597">31135597</a>),
+    Regime-Based World Modeling (<a href="https://doi.org/10.6084/m9.figshare.31223650">31223650</a>),
+    Structural Coherence Evaluation (<a href="https://doi.org/10.6084/m9.figshare.31293745">31293745</a>),
+    Regime-Bound Measurement (<a href="https://doi.org/10.6084/m9.figshare.31564123">31564123</a>),
+    Double-Slit as Grid-Resolution Phenomenon (<a href="https://doi.org/10.6084/m9.figshare.31564129">31564129</a>),
+    Regime-Locked Measurement (<a href="https://doi.org/10.6084/m9.figshare.31833076">31833076</a>),
+    Natural and Mechanical Entropy (<a href="https://doi.org/10.6084/m9.figshare.31864993">31864993</a>).
+    <br><br>
+    <em>Theory and Derivation (5 papers, Changelog-only):</em>
+    Regime-Dependent Structure Formation Paper III (<a href="https://doi.org/10.6084/m9.figshare.31061872">31061872</a>),
+    Dynamical Regime Transitions: CMB-Safe Framework (<a href="https://doi.org/10.6084/m9.figshare.31096951">31096951</a>),
+    Regime-Dependent Growth Enhancement (<a href="https://doi.org/10.6084/m9.figshare.31140000">31140000</a>),
+    Regime Structure and Entropic Flow Ontology (<a href="https://doi.org/10.6084/m9.figshare.31348417">31348417</a>),
+    Effective Phenomenological Law for Gravitational Response (<a href="https://doi.org/10.6084/m9.figshare.30563738">30563738</a>).
+    <br><br>
+    <em>Infrastructure:</em> added <code>scripts/maintenance/efc_weekly_scan.py</code> (automated paper classification + report generation); added Gap Analysis section to <code>EFC_Stage-IV_Data_Roadmap.html</code> (CMB-S4 cancellation noted, Simons Observatory as replacement, 5 priority actions identified, competitor analyses tracked); updated AGENTS.md with weekly scan instructions.
+  </li>
+
   <!-- v3.20 entry — Euclid DR1 pipeline + DOI drift fix + generator upgrade -->
   <li><strong>2026-04-12 (v3.20)</strong> &mdash; <strong>Euclid DR1 Boltzmann pre-registration pipeline</strong> (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>). Built custom <code>efc_logistic</code> gravity model in hi_class 3.0 (81 lines C, analytical &delta;M&sup2;). 36-point parameter scan: allowed region M<sub>0</sub>&isin;[0.01,&thinsp;0.10], B<sub>0</sub>&isin;[0,&thinsp;0.03], stability M<sub>0</sub>&ge;3B<sub>0</sub>, Planck ISW M<sub>0</sub>&lt;0.1. <strong>SHA-256 sealed benchmark</strong> (B<sub>0</sub>=0.02, M<sub>0</sub>=0.06): &sigma;<sub>8</sub>&nbsp;+1.21%, P(k<sub>c</sub>,z=0.5)&nbsp;+2.09%, C<sub>&ell;</sub><sup>&phi;&phi;</sup>(&ell;=66)&nbsp;&minus;6.01%, E<sub>G</sub>(&ell;=66)&nbsp;&minus;3.98%. Coherence signature: &sigma;<sub>8</sub>&uarr; P(k)&uarr; lensing&darr; ISW&uarr; E<sub>G</sub>&darr; &mdash; opposite to &nu;-mass. RCMP matrix updated with Boltzmann-calibrated signal levels (1&ndash;3%, replacing paper-based 5&ndash;7%). Full pipeline at <code>pipelines/efc/euclid_dr1/</code> with 6 sanity checks, RCMP compliance matrix, cobaya+PolyChord config. AI-friendly package at <code>docs/papers/efc/efc_euclid_prediction/</code> (10/10 standard). Propagated to all 4 public pages (Roadmap: 4 items &rarr; PREDICTION READY; Ledger: new T3 SEALED entry; White Paper: SEALED badge; Elevator Pitch: pipeline status). Also: upgraded AI-friendly generator to produce CITATION.cff, LICENSE, citations.bib, schema.json for all packages (219 new files across 139 packages). Fixed 53 paper README DOI drift (efc_sync_dois.py now auto-fixes README DOI references). Added AI consistency auditor (<code>efc_ai_audit.py</code>) using OpenAI API for cross-page verification (10/10 PASS on first run). Paper count 138&rarr;139, package count 138&rarr;139.</li>
 
