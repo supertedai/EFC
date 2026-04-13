@@ -67,25 +67,41 @@ SKIP_TOP = {
 # PDF + repo scanning
 # ═══════════════════════════════════════════════════════════
 
+def _find_pdftotext():
+    """Find pdftotext binary, checking common paths."""
+    import shutil
+    path = shutil.which("pdftotext")
+    if path:
+        return path
+    # Fallback: common install locations
+    for p in ["/usr/bin/pdftotext", "/usr/local/bin/pdftotext"]:
+        if os.path.isfile(p):
+            return p
+    return None
+
+
 def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
     pdfs = [f for f in os.listdir(paper_dir) if f.lower().endswith(".pdf")]
     if not pdfs:
+        return ""
+    pdftotext_bin = _find_pdftotext()
+    if not pdftotext_bin:
+        print("    [FAIL] pdftotext not found (poppler-utils)")
         return ""
     for f in pdfs:
         pdf_path = os.path.join(paper_dir, f)
         try:
             result = subprocess.run(
-                ["pdftotext", pdf_path, "-"],
+                [pdftotext_bin, pdf_path, "-"],
                 capture_output=True, text=True, timeout=15)
             if result.returncode == 0 and result.stdout.strip():
                 return result.stdout[:max_chars]
             if result.returncode != 0:
-                print(f"    [WARN] pdftotext rc={result.returncode} for {f}")
-        except FileNotFoundError:
-            print("    [FAIL] pdftotext not installed (poppler-utils)")
-            return ""
+                print(f"    [WARN] pdftotext rc={result.returncode} for {f}: {result.stderr[:100]}")
         except subprocess.TimeoutExpired:
             print(f"    [WARN] pdftotext timeout for {f}")
+        except Exception as e:
+            print(f"    [WARN] pdftotext failed: {type(e).__name__}: {e}")
     return ""
 
 
@@ -225,6 +241,12 @@ def call_gpt5(prompt, max_tokens=4000, retries=3):
             with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
                 data = json.loads(resp.read())
                 content = data["choices"][0]["message"]["content"]
+                if not content:
+                    print(f"    [WARN] GPT-5 returned empty content (attempt {attempt}/{retries})")
+                    if attempt < retries:
+                        _time.sleep(2 ** attempt)
+                        continue
+                    return None
                 # Strip markdown fences
                 content = re.sub(r'^```(?:json)?\s*', '', content.strip())
                 content = re.sub(r'\s*```$', '', content.strip())
@@ -681,11 +703,14 @@ def main():
 
     api_key = os.environ.get("OPENAI_API_KEY", "")
 
+    pdftotext_bin = _find_pdftotext()
+
     print("=" * 60)
     print("EFC AI BRAIN — Full Autonomous Processing")
     print(f"Model: {MODEL}")
     print(f"Mode: {'DRY-RUN' if dry_run else 'LIVE'}")
     print(f"API key: {'SET' if api_key else 'NOT SET'}")
+    print(f"pdftotext: {pdftotext_bin or 'NOT FOUND'}")
     print("=" * 60)
 
     if not api_key and not dry_run:
