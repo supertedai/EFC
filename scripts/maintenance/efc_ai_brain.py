@@ -68,16 +68,24 @@ SKIP_TOP = {
 # ═══════════════════════════════════════════════════════════
 
 def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
-    for f in os.listdir(paper_dir):
-        if f.lower().endswith(".pdf"):
-            try:
-                result = subprocess.run(
-                    ["pdftotext", os.path.join(paper_dir, f), "-"],
-                    capture_output=True, text=True, timeout=15)
-                if result.returncode == 0:
-                    return result.stdout[:max_chars]
-            except (FileNotFoundError, subprocess.TimeoutExpired):
-                pass
+    pdfs = [f for f in os.listdir(paper_dir) if f.lower().endswith(".pdf")]
+    if not pdfs:
+        return ""
+    for f in pdfs:
+        pdf_path = os.path.join(paper_dir, f)
+        try:
+            result = subprocess.run(
+                ["pdftotext", pdf_path, "-"],
+                capture_output=True, text=True, timeout=15)
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout[:max_chars]
+            if result.returncode != 0:
+                print(f"    [WARN] pdftotext rc={result.returncode} for {f}")
+        except FileNotFoundError:
+            print("    [ERROR] pdftotext not installed (poppler-utils)")
+            return ""
+        except subprocess.TimeoutExpired:
+            print(f"    [WARN] pdftotext timeout for {f}")
     return ""
 
 
@@ -192,16 +200,18 @@ def write_page(key, text):
 def call_gpt5(prompt, max_tokens=4000):
     api_key = os.environ.get("OPENAI_API_KEY", "")
     if not api_key:
+        print("    [ERROR] OPENAI_API_KEY empty at call time")
         return None
     import urllib.request, urllib.error, ssl
     ctx = ssl.create_default_context()
+    body = json.dumps({
+        "model": MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_completion_tokens": max_tokens,
+    })
     req = urllib.request.Request(
         "https://api.openai.com/v1/chat/completions",
-        data=json.dumps({
-            "model": MODEL,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_completion_tokens": max_tokens,
-        }).encode(),
+        data=body.encode(),
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
@@ -215,8 +225,16 @@ def call_gpt5(prompt, max_tokens=4000):
             content = re.sub(r'^```(?:json)?\s*', '', content.strip())
             content = re.sub(r'\s*```$', '', content.strip())
             return content
+    except urllib.error.HTTPError as e:
+        body_text = ""
+        try:
+            body_text = e.read().decode()[:300]
+        except Exception:
+            pass
+        print(f"    [ERROR] GPT-5 HTTP {e.code}: {e.reason} — {body_text}")
+        return None
     except Exception as e:
-        print(f"    [ERROR] GPT-5: {e}")
+        print(f"    [ERROR] GPT-5: {type(e).__name__}: {e}")
         return None
 
 
@@ -229,10 +247,11 @@ def enrich_metadata(dirname, dirpath, title, doi, missing_fields=None):
 
     Merges GPT-5 output with existing index.json — never overwrites
     fields that are already populated and valid.
+    Falls back to title+existing metadata if PDF text extraction fails.
     """
     text = extract_pdf_text(dirpath)
     if not text:
-        return None
+        print(f"    [INFO] No PDF text extracted — using title + existing metadata")
 
     # Load existing index.json to preserve good data
     existing = {}
@@ -246,6 +265,10 @@ def enrich_metadata(dirname, dirpath, title, doi, missing_fields=None):
 
     missing_str = ", ".join(missing_fields) if missing_fields else "all fields"
 
+    # Build context from what we have
+    source_text = text if text else ""
+    existing_context = json.dumps(existing, indent=2)[:4000] if existing else "{}"
+
     prompt = f"""You are processing an EFC (Energy-Flow Cosmology) research paper for the AI-friendly archive.
 
 PAPER TITLE: {title}
@@ -255,10 +278,9 @@ DIRECTORY: {dirname}
 FIELDS THAT NEED FILLING: {missing_str}
 
 EXISTING index.json (preserve anything already good):
-{json.dumps(existing, indent=2)[:3000]}
+{existing_context}
 
-PAPER TEXT (first {MAX_PDF_CHARS} chars):
-{text}
+{"PAPER TEXT (first " + str(MAX_PDF_CHARS) + " chars):" + chr(10) + source_text if source_text else "NOTE: No PDF text available. Generate metadata based on the title, directory name, and existing index.json above. For fields you cannot determine from the title alone, use reasonable defaults based on the EFC framework context."}
 
 Generate a COMPLETE, RICH index.json for this paper. Respond with ONLY valid JSON:
 
@@ -315,11 +337,12 @@ IMPORTANT:
 
     result = call_gpt5(prompt)
     if not result:
+        print(f"    [ERROR] GPT-5 returned no response")
         return None
     try:
         enriched = json.loads(result)
     except json.JSONDecodeError:
-        print(f"    [WARN] GPT-5 returned invalid JSON, skipping enrichment")
+        print(f"    [WARN] GPT-5 returned invalid JSON: {result[:200]}")
         return None
 
     # Merge: GPT-5 output fills gaps, existing data takes priority
