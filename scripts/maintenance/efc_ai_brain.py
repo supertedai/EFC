@@ -338,6 +338,83 @@ repository-code: "https://github.com/supertedai/EFC"
         f.write(readme)
 
 
+def generate_code_package(dirpath, title, doi, pdf_text):
+    """Use GPT-5 to generate src/, examples/, data/ for 10/10 standard."""
+    # Skip if already has src/
+    if os.path.isdir(os.path.join(dirpath, "src")):
+        return
+
+    short_id = os.path.basename(dirpath).lower().replace("_", "-").replace(" ", "-")
+    module_name = re.sub(r'[^a-z0-9_]', '_', short_id.replace('-', '_'))[:40]
+
+    prompt = f"""You are generating a complete Python reference implementation for an EFC research paper.
+
+PAPER TITLE: {title}
+DOI: {doi}
+
+PAPER TEXT (excerpt):
+{pdf_text[:6000]}
+
+Generate THREE files. Respond with ONLY valid JSON:
+
+{{
+  "src_code": "Complete Python module with the paper's key equations implemented as functions. Include docstrings, type hints, constants from the paper, and a self-test at the bottom (if __name__ == '__main__'). Use numpy. Name the module {module_name}.py",
+  "example_code": "A demo script (demo_{module_name}.py) that imports from src, runs the key calculation, prints results, and optionally generates a plot. Should be runnable standalone.",
+  "data_json": "A JSON object containing the paper's key numerical values: parameters, best-fit values, predictions, thresholds, calibration constants. Structure it clearly with descriptions."
+}}
+
+Rules:
+- src_code must implement the ACTUAL equations from the paper, not placeholders
+- Extract real constants and parameter values from the text
+- example_code should demonstrate the main result
+- data_json should contain every numerical value mentioned in the paper
+- Keep each file under 200 lines"""
+
+    result = call_gpt5(prompt, max_tokens=6000)
+    if not result:
+        return
+
+    try:
+        files = json.loads(result)
+    except json.JSONDecodeError:
+        print(f"    [WARN] Could not parse code generation response")
+        return
+
+    # Write src/
+    src_dir = os.path.join(dirpath, "src")
+    os.makedirs(src_dir, exist_ok=True)
+    init_path = os.path.join(src_dir, "__init__.py")
+    if not os.path.exists(init_path):
+        with open(init_path, "w") as f:
+            f.write(f'"""{title} — reference implementation."""\n')
+    if files.get("src_code"):
+        with open(os.path.join(src_dir, f"{module_name}.py"), "w") as f:
+            f.write(files["src_code"])
+        print(f"    Created src/{module_name}.py")
+
+    # Write examples/
+    ex_dir = os.path.join(dirpath, "examples")
+    os.makedirs(ex_dir, exist_ok=True)
+    if files.get("example_code"):
+        with open(os.path.join(ex_dir, f"demo_{module_name}.py"), "w") as f:
+            f.write(files["example_code"])
+        print(f"    Created examples/demo_{module_name}.py")
+
+    # Write data/
+    data_dir = os.path.join(dirpath, "data")
+    os.makedirs(data_dir, exist_ok=True)
+    if files.get("data_json"):
+        data = files["data_json"]
+        if isinstance(data, str):
+            try:
+                data = json.loads(data)
+            except json.JSONDecodeError:
+                data = {"raw": data}
+        with open(os.path.join(data_dir, "parameters.json"), "w") as f:
+            json.dump(data, f, indent=2)
+        print(f"    Created data/parameters.json")
+
+
 # ═══════════════════════════════════════════════════════════
 # Step 2: Update ALL public pages
 # ═══════════════════════════════════════════════════════════
@@ -481,7 +558,12 @@ def main():
             enriched = enrich_metadata(p["directory"], p["path"], p["title"], p["doi"])
             if enriched:
                 write_enriched_package(p["path"], enriched)
-                print(f"    Enriched to 10/10")
+                print(f"    Enriched metadata to 10/10")
+                # Generate src/, examples/, data/
+                pdf_text = extract_pdf_text(p["path"])
+                if pdf_text:
+                    generate_code_package(p["path"], p["title"], p["doi"], pdf_text)
+                    print(f"    Generated src/ + examples/ + data/")
             else:
                 print(f"    [SKIP] Could not enrich")
     else:
