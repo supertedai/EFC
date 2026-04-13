@@ -81,8 +81,29 @@ def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
     return ""
 
 
+def _is_10_10(idx, dirpath):
+    """Check if a package meets the full 10/10 standard."""
+    has_key_results = bool(idx.get("key_results"))
+    has_kill_criteria = bool(idx.get("kill_criteria"))
+    has_paper_type = bool(idx.get("paper_type"))
+    has_tier = bool(idx.get("tier"))
+    has_src = os.path.isdir(os.path.join(dirpath, "src"))
+    has_examples = os.path.isdir(os.path.join(dirpath, "examples"))
+    has_data = os.path.isdir(os.path.join(dirpath, "data"))
+    desc = idx.get("description", "")
+    no_auto = "Auto-generated" not in desc
+    return all([has_key_results, has_kill_criteria, has_paper_type,
+                has_tier, has_src, has_examples, has_data, no_auto])
+
+
 def find_papers_needing_enrichment():
-    """Find papers with bare/skeleton metadata (no key_results)."""
+    """Find papers not yet at 10/10 standard.
+
+    10/10 requires ALL of:
+      - key_results, kill_criteria, paper_type, tier in index.json
+      - src/, examples/, data/ directories
+      - No 'Auto-generated' placeholder description
+    """
     needs_work = []
     for name in sorted(os.listdir(PAPERS)):
         if name in SKIP_TOP:
@@ -99,17 +120,30 @@ def find_papers_needing_enrichment():
         except (json.JSONDecodeError, OSError) as e:
             print(f"  [WARN] Skipping {name}: {e}")
             continue
-        # Needs enrichment if no key_results or description says "Auto-generated"
-        desc = idx.get("description", "")
-        has_results = "key_results" in idx and idx["key_results"]
-        if not has_results or "Auto-generated" in desc:
+        if not _is_10_10(idx, d):
             doi = idx.get("doi", "")
+            missing = []
+            if not idx.get("key_results"):
+                missing.append("key_results")
+            if not idx.get("kill_criteria"):
+                missing.append("kill_criteria")
+            if not idx.get("paper_type"):
+                missing.append("paper_type")
+            if not idx.get("tier"):
+                missing.append("tier")
+            if not os.path.isdir(os.path.join(d, "src")):
+                missing.append("src/")
+            if not os.path.isdir(os.path.join(d, "examples")):
+                missing.append("examples/")
+            if not os.path.isdir(os.path.join(d, "data")):
+                missing.append("data/")
             needs_work.append({
                 "directory": name,
                 "path": d,
                 "title": idx.get("title", name),
                 "doi": doi,
                 "has_pdf": any(f.endswith(".pdf") for f in os.listdir(d)),
+                "missing": missing,
             })
     return needs_work
 
@@ -180,17 +214,38 @@ def call_gpt5(prompt, max_tokens=4000):
 # Step 1: Enrich metadata to 10/10
 # ═══════════════════════════════════════════════════════════
 
-def enrich_metadata(dirname, dirpath, title, doi):
-    """Send PDF to GPT-5, get back 10/10 index.json content."""
+def enrich_metadata(dirname, dirpath, title, doi, missing_fields=None):
+    """Send PDF to GPT-5, get back 10/10 index.json content.
+
+    Merges GPT-5 output with existing index.json — never overwrites
+    fields that are already populated and valid.
+    """
     text = extract_pdf_text(dirpath)
     if not text:
         return None
+
+    # Load existing index.json to preserve good data
+    existing = {}
+    idx_path = os.path.join(dirpath, "index.json")
+    if os.path.exists(idx_path):
+        try:
+            with open(idx_path) as f:
+                existing = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    missing_str = ", ".join(missing_fields) if missing_fields else "all fields"
 
     prompt = f"""You are processing an EFC (Energy-Flow Cosmology) research paper for the AI-friendly archive.
 
 PAPER TITLE: {title}
 DOI: {doi}
 DIRECTORY: {dirname}
+
+FIELDS THAT NEED FILLING: {missing_str}
+
+EXISTING index.json (preserve anything already good):
+{json.dumps(existing, indent=2)[:3000]}
 
 PAPER TEXT (first {MAX_PDF_CHARS} chars):
 {text}
@@ -228,7 +283,7 @@ Generate a COMPLETE, RICH index.json for this paper. Respond with ONLY valid JSO
   "sealed_predictions": [
     {{"id": "P1", "statement": "prediction", "falsifiable_by": "what test"}}
   ],
-  "kill_criteria": ["KC1", "KC2", etc. or empty],
+  "kill_criteria": ["KC1: specific condition that would kill EFC", "KC2: another kill condition"],
   "tier": "T1 | T2 | T3 | N/A",
   "paper_type": "empirical_test | sealed_prediction | methodology | theory | infrastructure | observational_pipeline",
   "related_packages": [
@@ -241,16 +296,34 @@ Generate a COMPLETE, RICH index.json for this paper. Respond with ONLY valid JSO
   "figshare_url": "https://doi.org/{doi}"
 }}
 
-Be precise. Extract real equations, real results, real predictions from the paper text. Do not invent data."""
+IMPORTANT:
+- kill_criteria MUST be a non-empty list of specific falsification conditions
+- paper_type MUST be one of: empirical_test, sealed_prediction, methodology, theory, infrastructure, observational_pipeline
+- tier MUST be one of: T1, T2, T3, N/A
+- Extract REAL equations, results, predictions from the paper text. Do not invent data.
+- Preserve any existing good data from the EXISTING index.json above."""
 
     result = call_gpt5(prompt)
     if not result:
         return None
     try:
-        return json.loads(result)
+        enriched = json.loads(result)
     except json.JSONDecodeError:
         print(f"    [WARN] GPT-5 returned invalid JSON, skipping enrichment")
         return None
+
+    # Merge: GPT-5 output fills gaps, existing data takes priority
+    merged = dict(enriched)
+    for key, val in existing.items():
+        if key in ("$schema", "id", "doi", "author", "files", "figshare_url"):
+            # Always keep existing for identity fields
+            merged[key] = val
+        elif val and key not in merged:
+            merged[key] = val
+        elif val and isinstance(val, (dict, list)) and val and not merged.get(key):
+            merged[key] = val
+
+    return merged
 
 
 def write_enriched_package(dirpath, idx):
@@ -567,9 +640,12 @@ def main():
     print(f"API key: {'SET' if api_key else 'NOT SET'}")
     print("=" * 60)
 
-    if not api_key:
+    if not api_key and not dry_run:
         print("[SKIP] OPENAI_API_KEY not set.")
         return 0
+
+    if not api_key and dry_run:
+        print("[DRY-RUN] OPENAI_API_KEY not set — showing what would be processed.\n")
 
     # Step 1: Find papers needing 10/10 enrichment
     needs_enrichment = find_papers_needing_enrichment()
@@ -577,24 +653,38 @@ def main():
 
     if needs_enrichment:
         print(f"\n>>> Step 1: Enriching {len(needs_enrichment)} paper(s) to 10/10 <<<\n")
+        enriched_count = 0
         for p in needs_enrichment:
-            print(f"  {p['directory']}")
+            missing = p.get("missing", [])
+            print(f"  {p['directory']}  (missing: {', '.join(missing)})")
             if dry_run:
                 print("    [DRY-RUN] Would enrich with GPT-5")
                 continue
-            enriched = enrich_metadata(p["directory"], p["path"], p["title"], p["doi"])
-            if enriched:
-                write_enriched_package(p["path"], enriched)
-                print(f"    Enriched metadata to 10/10")
-                # Generate src/, examples/, data/
+            # Only call GPT-5 for metadata if index.json fields are missing
+            meta_missing = [m for m in missing if m not in ("src/", "examples/", "data/")]
+            if meta_missing:
+                enriched = enrich_metadata(
+                    p["directory"], p["path"], p["title"], p["doi"],
+                    missing_fields=meta_missing)
+                if enriched:
+                    write_enriched_package(p["path"], enriched)
+                    print(f"    Enriched metadata ({', '.join(meta_missing)})")
+                    enriched_count += 1
+                else:
+                    print(f"    [SKIP] Could not enrich metadata")
+            # Generate src/, examples/, data/ if missing
+            dir_missing = [m for m in missing if m in ("src/", "examples/", "data/")]
+            if dir_missing:
                 pdf_text = extract_pdf_text(p["path"])
                 if pdf_text:
                     generate_code_package(p["path"], p["title"], p["doi"], pdf_text)
-                    print(f"    Generated src/ + examples/ + data/")
-            else:
-                print(f"    [SKIP] Could not enrich")
+                    print(f"    Generated {', '.join(dir_missing)}")
+                    enriched_count += 1
+                else:
+                    print(f"    [SKIP] No PDF text for code generation")
+        print(f"\n  Enriched: {enriched_count}/{len(needs_enrichment)}")
     else:
-        print("\n>>> Step 1: All papers have 10/10 metadata <<<")
+        print("\n>>> Step 1: All papers at 10/10 <<<")
 
     # Step 2: Find papers not in public pages
     unprocessed = load_unprocessed_for_pages()
