@@ -93,8 +93,12 @@ def find_papers_needing_enrichment():
         idx_path = os.path.join(d, "index.json")
         if not os.path.exists(idx_path):
             continue
-        with open(idx_path) as f:
-            idx = json.load(f)
+        try:
+            with open(idx_path) as f:
+                idx = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"  [WARN] Skipping {name}: {e}")
+            continue
         # Needs enrichment if no key_results or description says "Auto-generated"
         desc = idx.get("description", "")
         has_results = "key_results" in idx and idx["key_results"]
