@@ -51,7 +51,7 @@ PUBLIC_PAGES = {
 }
 
 MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")
-MAX_PDF_CHARS = 12000
+MAX_PDF_CHARS = 8000
 AUTHOR = "Morten Magnusson"
 ORCID = "0009-0002-4860-5095"
 AFFILIATION = "Symbiose Research, Sandnes, Norway"
@@ -213,8 +213,11 @@ def write_page(key, text):
 # GPT-5 API
 # ═══════════════════════════════════════════════════════════
 
-def call_gpt5(prompt, max_tokens=4000, retries=3):
-    """Call GPT-5 API with retry logic for transient failures."""
+def call_gpt5(prompt, max_tokens=8000, retries=4):
+    """Call GPT-5 API with retry logic for transient failures.
+
+    Uses exponential backoff: 5s, 10s, 20s, 40s between retries.
+    """
     api_key = os.environ.get("OPENAI_API_KEY", "")
     if not api_key:
         print("    [FAIL] OPENAI_API_KEY empty at call time")
@@ -238,13 +241,16 @@ def call_gpt5(prompt, max_tokens=4000, retries=3):
             },
         )
         try:
-            with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+            with urllib.request.urlopen(req, context=ctx, timeout=300) as resp:
                 data = json.loads(resp.read())
-                content = data["choices"][0]["message"]["content"]
+                choice = data["choices"][0]
+                content = choice.get("message", {}).get("content")
+                finish = choice.get("finish_reason", "")
                 if not content:
-                    print(f"    [WARN] GPT-5 returned empty content (attempt {attempt}/{retries})")
+                    reason = f"finish_reason={finish}" if finish else "no content"
+                    print(f"    [WARN] GPT-5 empty ({reason}) attempt {attempt}/{retries}")
                     if attempt < retries:
-                        _time.sleep(2 ** attempt)
+                        _time.sleep(5 * (2 ** (attempt - 1)))
                         continue
                     return None
                 # Strip markdown fences
@@ -257,22 +263,52 @@ def call_gpt5(prompt, max_tokens=4000, retries=3):
                 body_text = e.read().decode()[:300]
             except Exception:
                 pass
-            # Retry on 429 (rate limit) and 5xx (server errors)
             if e.code in (429, 500, 502, 503) and attempt < retries:
-                wait = 2 ** attempt
-                print(f"    [RETRY] GPT-5 HTTP {e.code} — waiting {wait}s (attempt {attempt}/{retries})")
+                wait = 5 * (2 ** (attempt - 1))
+                print(f"    [RETRY] HTTP {e.code} — waiting {wait}s ({attempt}/{retries})")
                 _time.sleep(wait)
                 continue
             print(f"    [FAIL] GPT-5 HTTP {e.code}: {e.reason} -- {body_text}")
             return None
         except Exception as e:
             if attempt < retries:
-                wait = 2 ** attempt
-                print(f"    [RETRY] GPT-5 {type(e).__name__} — waiting {wait}s (attempt {attempt}/{retries})")
+                wait = 5 * (2 ** (attempt - 1))
+                print(f"    [RETRY] {type(e).__name__} — waiting {wait}s ({attempt}/{retries})")
                 _time.sleep(wait)
                 continue
             print(f"    [FAIL] GPT-5: {type(e).__name__}: {e}")
-        return None
+    return None
+
+
+def _repair_json(text):
+    """Try to fix truncated JSON from GPT-5 (missing closing braces)."""
+    text = text.strip()
+    # Count unmatched braces/brackets
+    opens = text.count('{') + text.count('[')
+    closes = text.count('}') + text.count(']')
+    if opens > closes:
+        # Try adding missing closers
+        diff = opens - closes
+        # Remove any trailing partial key/value
+        last_comma = text.rfind(',')
+        last_brace = max(text.rfind('}'), text.rfind(']'))
+        if last_comma > last_brace:
+            text = text[:last_comma]
+        # Add closers in reverse order
+        for ch in reversed(text):
+            if diff <= 0:
+                break
+            if ch == '{':
+                text += '}'
+                diff -= 1
+            elif ch == '[':
+                text += ']'
+                diff -= 1
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
+            pass
+    return None
 
 
 # ═══════════════════════════════════════════════════════════
@@ -379,8 +415,13 @@ IMPORTANT:
     try:
         enriched = json.loads(result)
     except json.JSONDecodeError:
-        print(f"    [WARN] GPT-5 returned invalid JSON: {result[:200]}")
-        return None
+        # Try to repair truncated JSON (GPT-5 sometimes cuts off)
+        repaired = _repair_json(result)
+        if repaired:
+            enriched = repaired
+        else:
+            print(f"    [WARN] GPT-5 returned invalid JSON: {result[:200]}")
+            return None
 
     # Merge: GPT-5 output fills gaps, existing data takes priority
     merged = dict(enriched)
@@ -725,9 +766,13 @@ def main():
     needs_enrichment = [p for p in needs_enrichment if p["has_pdf"]][:max_papers]
 
     if needs_enrichment:
+        import time as _time
         print(f"\n>>> Step 1: Enriching {len(needs_enrichment)} paper(s) to 10/10 <<<\n")
         enriched_count = 0
-        for p in needs_enrichment:
+        for idx_num, p in enumerate(needs_enrichment):
+            # Rate limit: 3s pause between API calls to avoid empty responses
+            if idx_num > 0 and not dry_run:
+                _time.sleep(3)
             missing = p.get("missing", [])
             print(f"  {p['directory']}  (missing: {', '.join(missing)})")
             if dry_run:
