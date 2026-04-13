@@ -139,7 +139,7 @@ def build_for_dir(name: str):
         "regimes": regs,
         "primary_pdf": pdfs[0] if pdfs else None,
         "all_pdfs": pdfs,
-        "files": [{"path": p, "bytes": s} for p, s in files],
+        "files": [{"path": p, "bytes": s} for p, s in files if p != "ai_manifest.json"],
         "n_files": len(files),
         "n_pdfs": len(pdfs),
     }

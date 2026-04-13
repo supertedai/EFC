@@ -442,7 +442,7 @@ Rules:
 
 def main():
     dry_run = "--dry-run" in sys.argv
-    max_papers = 10
+    max_papers = 100
     for i, arg in enumerate(sys.argv):
         if arg == "--max" and i + 1 < len(sys.argv):
             try:
