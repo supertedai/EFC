@@ -45,6 +45,9 @@ jobs:
       - name: Run weekly classification scan
         run: python3 scripts/maintenance/efc_weekly_scan.py || true
 
+      - name: Scan for new external datasets
+        run: python3 scripts/maintenance/efc_dataset_scanner.py || true
+
       - name: Run AI consistency audit (GPT council)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

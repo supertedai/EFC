@@ -39,12 +39,17 @@ jobs:
       - name: Install poppler-utils (for PDF text extraction)
         run: sudo apt-get install -y poppler-utils
 
-      - name: Run full maintenance pipeline (with AI classification)
+      - name: Run full maintenance pipeline (with AI Brain)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5
         run: |
           python3 scripts/maintenance/efc_maintain.py 2>&1 | tee maintain.log
+        continue-on-error: true
+
+      - name: Scan for new external datasets
+        run: |
+          python3 scripts/maintenance/efc_dataset_scanner.py 2>&1 | tee -a maintain.log
         continue-on-error: true
 
       - name: Check for changes
