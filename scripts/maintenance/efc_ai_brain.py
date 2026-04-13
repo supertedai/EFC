@@ -81,16 +81,26 @@ def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
     return ""
 
 
+def _has_field(idx, *aliases):
+    """Check if index.json has any of the given field names (schema compat)."""
+    return any(bool(idx.get(a)) for a in aliases)
+
+
 def _is_10_10(idx, dirpath):
-    """Check if a package meets the full 10/10 standard."""
-    has_key_results = bool(idx.get("key_results"))
-    has_kill_criteria = bool(idx.get("kill_criteria"))
-    has_paper_type = bool(idx.get("paper_type"))
-    has_tier = bool(idx.get("tier"))
+    """Check if a package meets the full 10/10 standard.
+
+    Accepts both schema variants:
+      - Standard: key_results, kill_criteria, paper_type, tier
+      - Legacy:   tests/falsification_criteria, type, status
+    """
+    has_key_results = _has_field(idx, "key_results", "tests", "numerical_table")
+    has_kill_criteria = _has_field(idx, "kill_criteria", "falsification_criteria")
+    has_paper_type = _has_field(idx, "paper_type", "type")
+    has_tier = _has_field(idx, "tier", "status")
     has_src = os.path.isdir(os.path.join(dirpath, "src"))
     has_examples = os.path.isdir(os.path.join(dirpath, "examples"))
     has_data = os.path.isdir(os.path.join(dirpath, "data"))
-    desc = idx.get("description", "")
+    desc = idx.get("description", idx.get("abstract", ""))
     no_auto = "Auto-generated" not in desc
     return all([has_key_results, has_kill_criteria, has_paper_type,
                 has_tier, has_src, has_examples, has_data, no_auto])
@@ -123,13 +133,13 @@ def find_papers_needing_enrichment():
         if not _is_10_10(idx, d):
             doi = idx.get("doi", "")
             missing = []
-            if not idx.get("key_results"):
+            if not _has_field(idx, "key_results", "tests", "numerical_table"):
                 missing.append("key_results")
-            if not idx.get("kill_criteria"):
+            if not _has_field(idx, "kill_criteria", "falsification_criteria"):
                 missing.append("kill_criteria")
-            if not idx.get("paper_type"):
+            if not _has_field(idx, "paper_type", "type"):
                 missing.append("paper_type")
-            if not idx.get("tier"):
+            if not _has_field(idx, "tier", "status"):
                 missing.append("tier")
             if not os.path.isdir(os.path.join(d, "src")):
                 missing.append("src/")
@@ -623,7 +633,7 @@ Generate ONE specific HTML snippet to INSERT and specify WHERE (which HTML tag/m
 
 def main():
     dry_run = "--dry-run" in sys.argv
-    max_papers = 100
+    max_papers = 200
     for i, arg in enumerate(sys.argv):
         if arg == "--max" and i + 1 < len(sys.argv):
             try:
