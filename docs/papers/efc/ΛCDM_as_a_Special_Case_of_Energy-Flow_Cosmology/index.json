@@ -12,63 +12,273 @@
   },
   "license": "CC-BY-4.0",
   "abstract": "Energy-Flow Cosmology (EFC) treats the universe as a continuous energy-flow system governed by entropy gradients. This paper demonstrates that the standard ΛCDM model arises as the special-case limit of EFC in the linear, homogeneous, high-density regime (L0/L1), analogous to the ideal gas law emerging from statistical mechanics. DESI DR2 multi-probe analysis confirms this limit empirically: α = −0.14 ± 0.21 (0.65σ from null). Beyond L0/L1, EFC produces testable predictions that ΛCDM does not.",
-  "keywords": ["Energy-Flow Cosmology", "ΛCDM", "special case", "regime structure", "DESI DR2", "entropy gradients", "modified gravity", "perturbation survival valley", "screening model", "Graph-AQUAL", "validation ledger", "falsification", "gas-law analogy"],
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "ΛCDM",
+    "special case",
+    "regime structure",
+    "DESI DR2",
+    "entropy gradients",
+    "modified gravity",
+    "perturbation survival valley",
+    "screening model",
+    "Graph-AQUAL",
+    "validation ledger",
+    "falsification",
+    "gas-law analogy"
+  ],
   "track": "Synthesis",
-  "regime": ["L0", "L1", "L2", "L3"],
+  "regime": [
+    "L0",
+    "L1",
+    "L2",
+    "L3"
+  ],
   "sections": [
-    {"number": 1, "title": "Introduction: Why ΛCDM Is Not Fundamental"},
-    {"number": 2, "title": "The EFC Framework in Five Equations"},
-    {"number": 3, "title": "The Regime Structure: L0–L3"},
-    {"number": 4, "title": "Empirical Confrontation: Background Sector (L0/L1)"},
-    {"number": 5, "title": "Where EFC Goes Beyond ΛCDM"},
-    {"number": 6, "title": "The Discrete Gravity Sector (Graph-AQUAL)"},
-    {"number": 7, "title": "Cross-Domain Extensions"},
-    {"number": 8, "title": "Historical Falsifications and Transparent Failure"},
-    {"number": 9, "title": "The Gas-Law Analogy Made Precise"},
-    {"number": 10, "title": "Open Tests and Falsification Criteria"},
-    {"number": 11, "title": "Discussion"}
+    {
+      "number": 1,
+      "title": "Introduction: Why ΛCDM Is Not Fundamental"
+    },
+    {
+      "number": 2,
+      "title": "The EFC Framework in Five Equations"
+    },
+    {
+      "number": 3,
+      "title": "The Regime Structure: L0–L3"
+    },
+    {
+      "number": 4,
+      "title": "Empirical Confrontation: Background Sector (L0/L1)"
+    },
+    {
+      "number": 5,
+      "title": "Where EFC Goes Beyond ΛCDM"
+    },
+    {
+      "number": 6,
+      "title": "The Discrete Gravity Sector (Graph-AQUAL)"
+    },
+    {
+      "number": 7,
+      "title": "Cross-Domain Extensions"
+    },
+    {
+      "number": 8,
+      "title": "Historical Falsifications and Transparent Failure"
+    },
+    {
+      "number": 9,
+      "title": "The Gas-Law Analogy Made Precise"
+    },
+    {
+      "number": 10,
+      "title": "Open Tests and Falsification Criteria"
+    },
+    {
+      "number": 11,
+      "title": "Discussion"
+    }
   ],
   "key_results": [
-    {"id": "lcdm-reduction", "description": "ΛCDM reduction: K(ρ)→∞, T(a)→0, ξ≫1 ⟹ μ,Σ,η→1 ⟹ Friedmann+Poisson", "equation": 6, "type": "structural"},
-    {"id": "desi-dr2-alpha", "description": "DESI DR2 background coupling", "value": -0.14, "uncertainty": 0.21, "unit": "dimensionless", "significance_sigma": 0.65, "delta_AIC": 1.59},
-    {"id": "perturbation-valley", "description": "Perturbation-sector survival valley", "mu_range": [0.93, 0.96], "sigma_range": [1.03, 1.07], "eta_neq_1": true},
-    {"id": "screening-k", "description": "SPARC screening parameter", "value": 0.415, "uncertainty": 0.029, "g_dagger": 2.51e-10, "C_constant": 4.4},
-    {"id": "kill-tests", "description": "Discrete gravity sector: 4/5 kill-tests pass", "KT1": "PASS", "KT2": "PASS", "KT3": "OPEN", "KT4": "PASS", "KT5": "PARTIAL"},
-    {"id": "validation-ledger", "description": "Validation Ledger v3.7", "publications": 204, "registered_tests": 100, "historical_falsifications": 5}
+    {
+      "id": "lcdm-reduction",
+      "description": "ΛCDM reduction: K(ρ)→∞, T(a)→0, ξ≫1 ⟹ μ,Σ,η→1 ⟹ Friedmann+Poisson",
+      "equation": 6,
+      "type": "structural"
+    },
+    {
+      "id": "desi-dr2-alpha",
+      "description": "DESI DR2 background coupling",
+      "value": -0.14,
+      "uncertainty": 0.21,
+      "unit": "dimensionless",
+      "significance_sigma": 0.65,
+      "delta_AIC": 1.59
+    },
+    {
+      "id": "perturbation-valley",
+      "description": "Perturbation-sector survival valley",
+      "mu_range": [
+        0.93,
+        0.96
+      ],
+      "sigma_range": [
+        1.03,
+        1.07
+      ],
+      "eta_neq_1": true
+    },
+    {
+      "id": "screening-k",
+      "description": "SPARC screening parameter",
+      "value": 0.415,
+      "uncertainty": 0.029,
+      "g_dagger": 2.51e-10,
+      "C_constant": 4.4
+    },
+    {
+      "id": "kill-tests",
+      "description": "Discrete gravity sector: 4/5 kill-tests pass",
+      "KT1": "PASS",
+      "KT2": "PASS",
+      "KT3": "OPEN",
+      "KT4": "PASS",
+      "KT5": "PARTIAL"
+    },
+    {
+      "id": "validation-ledger",
+      "description": "Validation Ledger v3.7",
+      "publications": 204,
+      "registered_tests": 100,
+      "historical_falsifications": 5
+    }
   ],
   "equations": [
-    {"number": 1, "name": "Regime driver", "latex": "\\chi = \\ell |\\nabla S| / S_*"},
-    {"number": 2, "name": "Constitutive law", "latex": "E_f = -\\kappa(\\chi) \\nabla S"},
-    {"number": 3, "name": "Modified Poisson", "latex": "\\nabla^2 \\Phi = 4\\pi G_N \\mu(\\chi,k,z) \\rho_m \\delta"},
-    {"number": 4, "name": "Effective coupling", "latex": "\\mu(\\chi,k,z) = 1 + \\epsilon(k) F(\\chi)"},
-    {"number": 5, "name": "Relativistic action", "latex": "S_{EFC} = \\int d^4x \\sqrt{-g} [F(\\phi)R/2 - K(\\rho)(\\nabla\\phi)^2/2 - V(\\phi) + \\lambda C[\\phi,\\nabla\\phi]] + S_m"},
-    {"number": 6, "name": "ΛCDM reduction", "latex": "K(\\rho)\\to\\infty, T(a)\\to 0, \\xi\\gg 1 \\Rightarrow \\mu,\\Sigma,\\eta\\to 1"},
-    {"number": 7, "name": "Background modification", "latex": "E^2(a) = \\Omega_m a^{-3} + (1-\\Omega_m) + \\alpha[g(a)-g(1)]"},
-    {"number": 9, "name": "Perturbation valley", "latex": "\\mu\\in[0.93,0.96],\\; \\Sigma\\in[1.03,1.07],\\; \\eta\\neq 1"}
+    {
+      "number": 1,
+      "name": "Regime driver",
+      "latex": "\\chi = \\ell |\\nabla S| / S_*"
+    },
+    {
+      "number": 2,
+      "name": "Constitutive law",
+      "latex": "E_f = -\\kappa(\\chi) \\nabla S"
+    },
+    {
+      "number": 3,
+      "name": "Modified Poisson",
+      "latex": "\\nabla^2 \\Phi = 4\\pi G_N \\mu(\\chi,k,z) \\rho_m \\delta"
+    },
+    {
+      "number": 4,
+      "name": "Effective coupling",
+      "latex": "\\mu(\\chi,k,z) = 1 + \\epsilon(k) F(\\chi)"
+    },
+    {
+      "number": 5,
+      "name": "Relativistic action",
+      "latex": "S_{EFC} = \\int d^4x \\sqrt{-g} [F(\\phi)R/2 - K(\\rho)(\\nabla\\phi)^2/2 - V(\\phi) + \\lambda C[\\phi,\\nabla\\phi]] + S_m"
+    },
+    {
+      "number": 6,
+      "name": "ΛCDM reduction",
+      "latex": "K(\\rho)\\to\\infty, T(a)\\to 0, \\xi\\gg 1 \\Rightarrow \\mu,\\Sigma,\\eta\\to 1"
+    },
+    {
+      "number": 7,
+      "name": "Background modification",
+      "latex": "E^2(a) = \\Omega_m a^{-3} + (1-\\Omega_m) + \\alpha[g(a)-g(1)]"
+    },
+    {
+      "number": 9,
+      "name": "Perturbation valley",
+      "latex": "\\mu\\in[0.93,0.96],\\; \\Sigma\\in[1.03,1.07],\\; \\eta\\neq 1"
+    }
   ],
   "diagnostics": [
-    {"id": "N1", "name": "Sound horizon freedom", "verdict": "COLLAPSED", "interpretation": "α does not survive rd freedom"},
-    {"id": "N2", "name": "σ8 sweep", "verdict": "COLLAPSED", "interpretation": "α unstable under σ8 variation"},
-    {"id": "N3", "name": "Gate freedom", "verdict": "COLLAPSED", "interpretation": "Gate parameters absorb α signal"},
-    {"id": "N4", "name": "μ0 sweep", "verdict": "COLLAPSED", "interpretation": "α moves < 1σ across μ0 ∈ [0.8, 1.2]"},
-    {"id": "N5", "name": "rd prior", "verdict": "PASS", "interpretation": "corr(α, rd) ≈ 0; not rd-driven"},
-    {"id": "N6", "name": "Safety Δrd", "verdict": "SAFETY_FAIL", "interpretation": "Δrd = −0.507% trips 0.5% threshold by 0.007%"},
-    {"id": "N7", "name": "Geff growth", "verdict": "MARGINAL", "interpretation": "Weak growth-sector signal"},
-    {"id": "VG", "name": "Variant gravity", "verdict": "WEAK", "interpretation": "μ-amplitude 0.06–5.5%; Δlog L_growth < 0"}
+    {
+      "id": "N1",
+      "name": "Sound horizon freedom",
+      "verdict": "COLLAPSED",
+      "interpretation": "α does not survive rd freedom"
+    },
+    {
+      "id": "N2",
+      "name": "σ8 sweep",
+      "verdict": "COLLAPSED",
+      "interpretation": "α unstable under σ8 variation"
+    },
+    {
+      "id": "N3",
+      "name": "Gate freedom",
+      "verdict": "COLLAPSED",
+      "interpretation": "Gate parameters absorb α signal"
+    },
+    {
+      "id": "N4",
+      "name": "μ0 sweep",
+      "verdict": "COLLAPSED",
+      "interpretation": "α moves < 1σ across μ0 ∈ [0.8, 1.2]"
+    },
+    {
+      "id": "N5",
+      "name": "rd prior",
+      "verdict": "PASS",
+      "interpretation": "corr(α, rd) ≈ 0; not rd-driven"
+    },
+    {
+      "id": "N6",
+      "name": "Safety Δrd",
+      "verdict": "SAFETY_FAIL",
+      "interpretation": "Δrd = −0.507% trips 0.5% threshold by 0.007%"
+    },
+    {
+      "id": "N7",
+      "name": "Geff growth",
+      "verdict": "MARGINAL",
+      "interpretation": "Weak growth-sector signal"
+    },
+    {
+      "id": "VG",
+      "name": "Variant gravity",
+      "verdict": "WEAK",
+      "interpretation": "μ-amplitude 0.06–5.5%; Δlog L_growth < 0"
+    }
   ],
   "kill_tests": [
-    {"id": "KT1", "test": "Newton recovery (ξ ≫ 1)", "status": "PASS", "result": "Slopes −2.03 (Newton), −1.05 (MOND)"},
-    {"id": "KT2", "test": "Prefactor C (ξ ∼ 1)", "status": "PASS", "result": "C = 2.32 (structural; not fitted)"},
-    {"id": "KT3", "test": "Mass scaling β (ξ < 1)", "status": "OPEN", "result": "Classical β ≈ 0.29; BE predicts 0.50"},
-    {"id": "KT4", "test": "Superposition (ξ ∼ 1)", "status": "PASS", "result": "Non-linear superposition handled"},
-    {"id": "KT5", "test": "External field effect", "status": "PARTIAL", "result": "EFE present; amplitude partially reproduced"}
+    {
+      "id": "KT1",
+      "test": "Newton recovery (ξ ≫ 1)",
+      "status": "PASS",
+      "result": "Slopes −2.03 (Newton), −1.05 (MOND)"
+    },
+    {
+      "id": "KT2",
+      "test": "Prefactor C (ξ ∼ 1)",
+      "status": "PASS",
+      "result": "C = 2.32 (structural; not fitted)"
+    },
+    {
+      "id": "KT3",
+      "test": "Mass scaling β (ξ < 1)",
+      "status": "OPEN",
+      "result": "Classical β ≈ 0.29; BE predicts 0.50"
+    },
+    {
+      "id": "KT4",
+      "test": "Superposition (ξ ∼ 1)",
+      "status": "PASS",
+      "result": "Non-linear superposition handled"
+    },
+    {
+      "id": "KT5",
+      "test": "External field effect",
+      "status": "PARTIAL",
+      "result": "EFE present; amplitude partially reproduced"
+    }
   ],
   "gas_law_analogy": {
-    "effective_theory": {"thermodynamics": "Ideal gas law (PV = nRT)", "cosmology": "ΛCDM (Friedmann + Λ)"},
-    "valid_regime": {"thermodynamics": "Gas phase (low density, high T)", "cosmology": "L0/L1 (linear, homogeneous, ξ ≫ 1)"},
-    "deeper_framework": {"thermodynamics": "Statistical mechanics", "cosmology": "EFC (entropy-flow action)"},
-    "reduction_mechanism": {"thermodynamics": "Intermolecular forces → 0", "cosmology": "K(ρ) → ∞, T(a) → 0, ξ ≫ 1"},
-    "new_predictions": {"thermodynamics": "Phase transitions, critical phenomena", "cosmology": "μ–Σ valley, regime transitions, MOND-like emergence"}
+    "effective_theory": {
+      "thermodynamics": "Ideal gas law (PV = nRT)",
+      "cosmology": "ΛCDM (Friedmann + Λ)"
+    },
+    "valid_regime": {
+      "thermodynamics": "Gas phase (low density, high T)",
+      "cosmology": "L0/L1 (linear, homogeneous, ξ ≫ 1)"
+    },
+    "deeper_framework": {
+      "thermodynamics": "Statistical mechanics",
+      "cosmology": "EFC (entropy-flow action)"
+    },
+    "reduction_mechanism": {
+      "thermodynamics": "Intermolecular forces → 0",
+      "cosmology": "K(ρ) → ∞, T(a) → 0, ξ ≫ 1"
+    },
+    "new_predictions": {
+      "thermodynamics": "Phase transitions, critical phenomena",
+      "cosmology": "μ–Σ valley, regime transitions, MOND-like emergence"
+    }
   },
   "files": {
     "pdf": "ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology.pdf",
@@ -84,5 +294,6 @@
     "demo": "examples/demo_lcdm_special_case.py"
   },
   "references_count": 27,
-  "consolidates": "14 months, 204 publications, 100 registered tests, 5 historical falsifications"
+  "consolidates": "14 months, 204 publications, 100 registered tests, 5 historical falsifications",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31943361"
 }

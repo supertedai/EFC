@@ -3,31 +3,9 @@
 EFC AI BRAIN — Full Autonomous Processing
 Model: gpt-5
 Mode: LIVE
-API key: SET
+API key: NOT SET
 ============================================================
-Traceback (most recent call last):
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 507, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 467, in main
-    needs_enrichment = find_papers_needing_enrichment()
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 97, in find_papers_needing_enrichment
-    idx = json.load(f)
-          ^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/__init__.py", line 293, in load
-    return loads(fp.read(),
-           ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/__init__.py", line 346, in loads
-    return _default_decoder.decode(s)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 353, in raw_decode
-    obj, end = self.scan_once(s, idx)
-               ^^^^^^^^^^^^^^^^^^^^^^
-json.decoder.JSONDecodeError: Invalid \escape: line 47 column 80 (char 4018)
+[SKIP] OPENAI_API_KEY not set.
 [efc-gen] 141 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
 EFC DOI sync — 141 paper dirs scanned
@@ -35,6 +13,9 @@ EFC DOI sync — 141 paper dirs scanned
   papers with registered DOI : 136
   papers without DOI         : 5
   papers with conflicts      : 0
+
+PROPAGATED DOIs into 1 papers:
+  ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology -> index.json
 ========================================================================
 [efc-gen] 141 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 141 paper dirs · 0 errors · 0 warnings
@@ -48,27 +29,3 @@ EFC DOI sync — 141 paper dirs scanned
 [efc-maintain] running efc_verify.py …
 [efc-maintain] running efc_drift_detector.py --fix…
 [efc-maintain] --- done (clean) ---
-============================================================
-EFC DATASET SCANNER
-Date: 2026-04-13
-============================================================
-
-Known datasets in Roadmap: 9
-  - DES Y6
-  - DESI DR1
-  - DESI DR2
-  - DESI DR3
-  - Euclid DR1
-  - Euclid DR2
-  - Euclid DR3
-  - KiDS Legacy
-  - Simons Observatory
-
-Scanning 4 sources...
-  Euclid: could not fetch https://www.euclid-ec.org/science-results/
-
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
-
-Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
