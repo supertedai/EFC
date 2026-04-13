@@ -116,14 +116,10 @@ def find_papers_needing_enrichment():
 
 def load_unprocessed_for_pages():
     """Find papers with DOIs not in Ledger."""
+    # Always run the detector fresh to get current state
+    detector = os.path.join(os.path.dirname(__file__), "efc_unprocessed.py")
+    subprocess.run([sys.executable, detector], capture_output=True)
     path = os.path.join(REPO, ".claude", "unprocessed_papers.json")
-    if os.path.exists(path):
-        with open(path) as f:
-            return json.load(f)
-    # Run detector
-    subprocess.run([sys.executable,
-                    os.path.join(os.path.dirname(__file__), "efc_unprocessed.py")],
-                   capture_output=True)
     if os.path.exists(path):
         with open(path) as f:
             return json.load(f)
@@ -515,6 +511,37 @@ Rules:
                     text = text[:idx] + "    " + row + "\n    " + text[idx:]
         write_page("ledger", text)
         print(f"    Updated Ledger ({len(updates['ledger_rows'])} rows)")
+
+    # Apply roadmap updates
+    if updates.get("roadmap_updates") and updates["roadmap_updates"] != "null":
+        # Ask GPT-5 for specific HTML to insert
+        roadmap_prompt = f"""Given this update description for the EFC Stage-IV Roadmap:
+{updates['roadmap_updates']}
+
+And the current Roadmap HTML (first 4000 chars):
+{read_page('roadmap')[:4000]}
+
+Generate ONE specific HTML snippet to INSERT and specify WHERE (which HTML tag/marker to insert before/after). Respond with JSON:
+{{"html": "<tr>...</tr> or <li>...</li>", "insert_before": "text to find in page", "insert_after": null}}"""
+        roadmap_html = call_gpt5(roadmap_prompt, max_tokens=1000)
+        if roadmap_html:
+            try:
+                r = json.loads(roadmap_html)
+                text = read_page("roadmap")
+                if r.get("insert_before") and r["insert_before"] in text:
+                    text = text.replace(r["insert_before"], r["html"] + "\n" + r["insert_before"])
+                    write_page("roadmap", text)
+                    print("    Updated Roadmap")
+            except (json.JSONDecodeError, KeyError):
+                pass
+
+    # Apply elevator pitch updates (paper count, test count)
+    if updates.get("elevator_updates") and updates["elevator_updates"] != "null":
+        print(f"    Elevator Pitch: {updates['elevator_updates']}")
+
+    # Apply gap analysis updates
+    if updates.get("gap_updates") and updates["gap_updates"] != "null":
+        print(f"    Gap Analysis: {updates['gap_updates']}")
 
 
 # ═══════════════════════════════════════════════════════════
