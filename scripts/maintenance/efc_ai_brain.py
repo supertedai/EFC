@@ -82,7 +82,7 @@ def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
             if result.returncode != 0:
                 print(f"    [WARN] pdftotext rc={result.returncode} for {f}")
         except FileNotFoundError:
-            print("    [ERROR] pdftotext not installed (poppler-utils)")
+            print("    [FAIL] pdftotext not installed (poppler-utils)")
             return ""
         except subprocess.TimeoutExpired:
             print(f"    [WARN] pdftotext timeout for {f}")
@@ -197,44 +197,59 @@ def write_page(key, text):
 # GPT-5 API
 # ═══════════════════════════════════════════════════════════
 
-def call_gpt5(prompt, max_tokens=4000):
+def call_gpt5(prompt, max_tokens=4000, retries=3):
+    """Call GPT-5 API with retry logic for transient failures."""
     api_key = os.environ.get("OPENAI_API_KEY", "")
     if not api_key:
-        print("    [ERROR] OPENAI_API_KEY empty at call time")
+        print("    [FAIL] OPENAI_API_KEY empty at call time")
         return None
     import urllib.request, urllib.error, ssl
+    import time as _time
     ctx = ssl.create_default_context()
-    body = json.dumps({
-        "model": MODEL,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_completion_tokens": max_tokens,
-    })
-    req = urllib.request.Request(
-        "https://api.openai.com/v1/chat/completions",
-        data=body.encode(),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-    )
-    try:
-        with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
-            data = json.loads(resp.read())
-            content = data["choices"][0]["message"]["content"]
-            # Strip markdown fences
-            content = re.sub(r'^```(?:json)?\s*', '', content.strip())
-            content = re.sub(r'\s*```$', '', content.strip())
-            return content
-    except urllib.error.HTTPError as e:
-        body_text = ""
+
+    for attempt in range(1, retries + 1):
+        body = json.dumps({
+            "model": MODEL,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_completion_tokens": max_tokens,
+        })
+        req = urllib.request.Request(
+            "https://api.openai.com/v1/chat/completions",
+            data=body.encode(),
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+        )
         try:
-            body_text = e.read().decode()[:300]
-        except Exception:
-            pass
-        print(f"    [ERROR] GPT-5 HTTP {e.code}: {e.reason} — {body_text}")
-        return None
-    except Exception as e:
-        print(f"    [ERROR] GPT-5: {type(e).__name__}: {e}")
+            with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+                data = json.loads(resp.read())
+                content = data["choices"][0]["message"]["content"]
+                # Strip markdown fences
+                content = re.sub(r'^```(?:json)?\s*', '', content.strip())
+                content = re.sub(r'\s*```$', '', content.strip())
+                return content
+        except urllib.error.HTTPError as e:
+            body_text = ""
+            try:
+                body_text = e.read().decode()[:300]
+            except Exception:
+                pass
+            # Retry on 429 (rate limit) and 5xx (server errors)
+            if e.code in (429, 500, 502, 503) and attempt < retries:
+                wait = 2 ** attempt
+                print(f"    [RETRY] GPT-5 HTTP {e.code} — waiting {wait}s (attempt {attempt}/{retries})")
+                _time.sleep(wait)
+                continue
+            print(f"    [FAIL] GPT-5 HTTP {e.code}: {e.reason} -- {body_text}")
+            return None
+        except Exception as e:
+            if attempt < retries:
+                wait = 2 ** attempt
+                print(f"    [RETRY] GPT-5 {type(e).__name__} — waiting {wait}s (attempt {attempt}/{retries})")
+                _time.sleep(wait)
+                continue
+            print(f"    [FAIL] GPT-5: {type(e).__name__}: {e}")
         return None
 
 
@@ -337,7 +352,7 @@ IMPORTANT:
 
     result = call_gpt5(prompt)
     if not result:
-        print(f"    [ERROR] GPT-5 returned no response")
+        print(f"    [FAIL] GPT-5 returned no response")
         return None
     try:
         enriched = json.loads(result)
