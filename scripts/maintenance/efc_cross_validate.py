@@ -20,6 +20,7 @@ Exit codes:
   2 = warnings only (publish OK but review recommended)
 """
 from __future__ import annotations
+import html as _html
 import json
 import os
 import re
@@ -319,6 +320,83 @@ def validate_consistency(repo, stats, result):
         result.ok(f"{repo['with_sealed']} papers have sealed predictions ({repo['sealed_total']} total)")
 
 
+def validate_gap_bottom_line(result):
+    """Check Gap Analysis 'Bottom Line' is coherent with Theory Gaps /
+    Priority Actions tables above.
+
+    Catches the specific failure mode where an individual gap row gets
+    flipped to CLOSED/DONE but the hardcoded summary in 'Bottom Line'
+    still cites that same gap as the biggest outstanding one.
+    """
+    print("\n--- Gap Analysis Coherence ---")
+    html = read_page("gap")
+    if not html:
+        result.warn("Gap Analysis page not found")
+        return
+
+    bl_pos = html.find("Bottom Line")
+    if bl_pos < 0:
+        result.warn("Gap Analysis: no Bottom Line section")
+        return
+
+    body = html[:bl_pos]
+    bottom = html[bl_pos:]
+
+    # Gather topics that have been CLOSED/DONE/SEALED in the tables above.
+    # Walk row-by-row: any <tr> whose status column carries a badge-done
+    # with CLOSED/DONE/SEALED wording is considered closed.
+    closed_topics = []
+    for row in re.findall(r"<tr>(.*?)</tr>", body, flags=re.DOTALL):
+        if not re.search(r"badge-done", row):
+            continue
+        if not re.search(r"\b(CLOSED|DONE|SEALED|PREDICTION READY|P3 PASS)\b",
+                         row, flags=re.IGNORECASE):
+            continue
+        first_td = re.search(r"<td[^>]*>(.*?)</td>", row, flags=re.DOTALL)
+        if not first_td:
+            continue
+        topic = _html.unescape(re.sub(r"<[^>]+>", " ", first_td.group(1)))
+        topic = re.sub(r"\s+", " ", topic).strip()
+        if 3 <= len(topic) <= 160:
+            closed_topics.append(topic.lower())
+
+    # Extract the "Biggest gap right now" cell content.
+    m = re.search(
+        r"Biggest gap right now</td>\s*<td>(.+?)</td>",
+        bottom,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    if not m:
+        result.warn("Gap Analysis: could not parse 'Biggest gap right now'")
+        return
+
+    biggest_raw = _html.unescape(re.sub(r"<[^>]+>", " ", m.group(1))).lower()
+
+    def _normalize(s):
+        # Collapse any non-alphanumeric (hyphens, Greek, HTML entities) to spaces.
+        return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", s)).strip()
+
+    biggest_norm = _normalize(biggest_raw)
+    biggest_says_closed = any(
+        tok in biggest_norm for tok in ("closed", "done", "sealed"))
+
+    # Any CLOSED topic still cited as the biggest gap?  That's stale.
+    for topic in closed_topics:
+        tokens = _normalize(topic).split()
+        tokens = [t for t in tokens if len(t) > 2 and t not in {
+            "and", "the", "for", "with", "mapping", "function", "analysis"}]
+        if len(tokens) < 2:
+            continue
+        key = " ".join(tokens[:2])
+        if key in biggest_norm and not biggest_says_closed:
+            result.error(
+                f"Gap Analysis 'Biggest gap right now' still cites "
+                f"'{key}' but that row is marked CLOSED/DONE in the tables above")
+            return
+
+    result.ok(f"Gap Analysis Bottom Line coherent ({len(closed_topics)} closed rows checked)")
+
+
 def validate_symbiose(repo, stats, result):
     """Cross-check against Symbiose snapshot (graph + Qdrant + GNN)."""
     print("\n--- Symbiose Council ---")
@@ -416,6 +494,7 @@ def main():
     validate_all_pages_numbers(stats, result)
     validate_inference_doi(result)
     validate_consistency(repo, stats, result)
+    validate_gap_bottom_line(result)
     validate_symbiose(repo, stats, result)
 
     print(f"\n{'=' * 60}")
