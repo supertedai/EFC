@@ -49,11 +49,6 @@ jobs:
           python3 scripts/maintenance/efc_maintain.py 2>&1 | tee maintain.log
         continue-on-error: true
 
-      - name: Scan for new external datasets
-        run: |
-          python3 scripts/maintenance/efc_dataset_scanner.py 2>&1 | tee -a maintain.log
-        continue-on-error: true
-
       - name: Check for changes
         id: diff
         run: |
