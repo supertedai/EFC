@@ -84,6 +84,7 @@
 <h2>2026</h2>
 
 <ul>
+  <li><strong>2026-04-14</strong> &mdash; Public pages updated: Changelog.</li>
   <li><strong>2026-04-14</strong> &mdash; Public pages updated: Changelog; Ledger data: changelog.json; Maintenance scripts: efc_maintain.py.</li>
   <!-- v4.9 entry — DOI anchoring, cross-validation gate, α-signal transparency -->
   <li><strong>2026-04-14 (v4.9)</strong> &mdash; <strong>Major data-integrity overhaul: DOI anchoring, cross-validation gate, &alpha;-signal transparency.</strong>
@@ -100,7 +101,7 @@
     <em>New automated infrastructure:</em>
     (1)&nbsp;<code>efc_cross_validate.py</code> &mdash; pre-publish validation gate that blocks auto-commit if public pages contradict repo/ledger/Symbiose data (checks paper counts, test counts, survival claims, &alpha;-signal dual reporting, inference DOI anchoring);
     (2)&nbsp;<code>efc_symbiose_snapshot.py</code> &mdash; captures Symbiose ground truth (Neo4j graph, Qdrant vectors, GNN) for cross-validation;
-    (3)&nbsp;<code>efc_ai_brain.py</code> refactored &mdash; 128/131 paper packages enriched to 10/10 standard via GPT-5, public page updates split into 6 separate API calls (was 1 monolithic prompt hitting <code>finish_reason=length</code>);
+    (3)&nbsp;<code>efc_ai_brain.py</code> refactored &mdash; 128/141 paper packages enriched to 10/10 standard via GPT-5, public page updates split into 6 separate API calls (was 1 monolithic prompt hitting <code>finish_reason=length</code>);
     (4)&nbsp;Maintain pipeline expanded to 10 steps including Symbiose snapshot, dataset scanner, and cross-validation gate.
     <br><br>
     <em>Ledger data fixes:</em>
