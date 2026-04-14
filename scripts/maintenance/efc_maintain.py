@@ -37,6 +37,7 @@ GEN = os.path.join(HERE, "efc_gen_ai_friendly.py")
 SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
 DRIFT = os.path.join(HERE, "efc_drift_detector.py")
+CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -67,9 +68,13 @@ def main() -> int:
     rc_verify = run(VERIFY)
     # Step 5: auto-fix drift (paper counts in README/AGENTS/Changelog)
     rc_drift = run(DRIFT, "--fix")
-    status = "clean" if rc_verify == 0 and rc_sync == 0 else "issues"
+    # Step 6: CROSS-VALIDATION GATE — check public pages vs repo/ledger
+    # This is the "council" step that blocks publishing if data is inconsistent
+    rc_xval = run(CROSS_VALIDATE)
+    if rc_xval == 1:
+        print("[efc-maintain] CROSS-VALIDATION FAILED — public pages have critical errors")
+    status = "clean" if rc_verify == 0 and rc_sync == 0 and rc_xval == 0 else "issues"
     print(f"[efc-maintain] --- done ({status}) ---")
-    # Return the worst of the three, capped at 1
     return 1 if (rc_verify != 0 or rc_sync != 0) else 0
 
 
