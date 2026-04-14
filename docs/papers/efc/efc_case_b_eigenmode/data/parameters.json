@@ -1,0 +1,58 @@
+{
+  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The \u00b5\u2013\u03a3 Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
+  "key_results": {
+    "eta_eff": {
+      "value": 0.017,
+      "description": "Single observable parameter in weak lensing at EFC anchor"
+    },
+    "cancellation_fraction": {
+      "value": 0.66,
+      "description": "Fraction of \u03a3 signal cancelled by \u00b5 drag (model-independent given \u03b3 \u2248 0.55)"
+    },
+    "E_G_enhancement": {
+      "value": 1.086,
+      "description": "E_G^EFC / E_G^GR \u2014 constructive interference gives +8.6%"
+    },
+    "expected_delta_chi2": {
+      "range": [
+        -2,
+        2
+      ],
+      "description": "Expected \u0394\u03c7\u00b2 for Case B WL-only against KiDS-1000"
+    },
+    "expected_correlation": {
+      "range": [
+        -0.95,
+        -0.8
+      ],
+      "description": "Expected corr(\u00b5\u2080, \u03a3\u2080) from Fisher eigenvector"
+    }
+  },
+  "sealed_predictions": [
+    {
+      "id": "SP1",
+      "statement": "\u03b7_eff = 0.017 at the EFC anchor",
+      "falsifiable_by": "Phase 1 minimisation"
+    },
+    {
+      "id": "SP2",
+      "statement": "corr(\u00b5\u2080, \u03a3\u2080) \u2208 [\u22120.95, \u22120.80]",
+      "falsifiable_by": "Phase 1 posterior"
+    },
+    {
+      "id": "SP3",
+      "statement": "\u0394\u03c7\u00b2(Case B, WL only) \u2208 [\u22122, +2]",
+      "falsifiable_by": "Phase 1 minimisation"
+    },
+    {
+      "id": "SP4",
+      "statement": "E_G^EFC / E_G^GR = 1.086",
+      "falsifiable_by": "KiDS \u00d7 BOSS E_G measurement"
+    },
+    {
+      "id": "SP5",
+      "statement": "Cancellation ratio = 0.66",
+      "falsifiable_by": "Model-independent (follows from \u03b3 \u2248 0.55)"
+    }
+  ]
+}
