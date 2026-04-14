@@ -600,20 +600,19 @@ Rules:
 # ═══════════════════════════════════════════════════════════
 
 def update_all_pages(paper_list):
-    """Send paper list + current page content to GPT-5 for updates."""
+    """Update each public page separately with targeted GPT-5 calls.
+
+    Instead of one massive prompt for all 6 pages, makes separate focused
+    calls: Changelog, Ledger, Elevator, Roadmap, Whitepaper, Gap.
+    """
     if not paper_list:
         return
 
-    # Build context: current state of all pages (truncated)
-    page_summaries = {}
-    for key, path in PUBLIC_PAGES.items():
-        text = read_page(key)
-        if text:
-            page_summaries[key] = text[:6000]
+    import time as _time
 
-    # Build paper descriptions
+    # Build paper descriptions (shared context)
     paper_descs = []
-    for p in paper_list[:10]:  # Max 10 at a time
+    for p in paper_list[:20]:
         dirpath = os.path.join(PAPERS, p["directory"])
         idx_path = os.path.join(dirpath, "index.json")
         if os.path.exists(idx_path):
@@ -623,109 +622,190 @@ def update_all_pages(paper_list):
                 "directory": p["directory"],
                 "title": idx.get("title", ""),
                 "doi": idx.get("doi", ""),
-                "description": idx.get("description", ""),
-                "paper_type": idx.get("paper_type", "unknown"),
-                "key_results": idx.get("key_results", {}),
-                "sealed_predictions": idx.get("sealed_predictions", []),
-                "kill_criteria": idx.get("kill_criteria", []),
-                "tier": idx.get("tier", "N/A"),
+                "description": idx.get("description", "")[:200],
+                "paper_type": idx.get("paper_type", idx.get("type", "unknown")),
+                "tier": idx.get("tier", idx.get("status", "N/A")),
             })
 
-    prompt = f"""You are updating the EFC public-facing HTML pages with new paper registrations.
+    papers_json = json.dumps(paper_descs, indent=2)[:6000]
+    today = date.today().isoformat()
 
-TODAY: {date.today().isoformat()}
+    # --- 1. CHANGELOG ---
+    changelog_text = read_page("changelog")
+    if changelog_text:
+        prompt = f"""Add a changelog entry for {len(paper_descs)} new EFC papers registered on {today}.
 
-NEW PAPERS TO REGISTER ({len(paper_descs)}):
-{json.dumps(paper_descs, indent=2)[:8000]}
+PAPERS:
+{papers_json}
 
-CURRENT PAGE STATE (first 6000 chars each):
+Respond with ONLY the HTML <li> element to insert. Example format:
+<li><strong>{today}</strong> &mdash; Registered {len(paper_descs)} papers: [list titles with DOI links].</li>
 
-CHANGELOG (current):
-{page_summaries.get('changelog', 'N/A')[:4000]}
+Use &mdash; not —. DOI links: <a href="https://doi.org/DOI">short-id</a>"""
 
-LEDGER (current):
-{page_summaries.get('ledger', 'N/A')[:4000]}
+        result = call_gpt5(prompt, max_tokens=2000)
+        if result:
+            result = result.strip()
+            if result.startswith("<li"):
+                if "<ol reversed>" in changelog_text:
+                    changelog_text = changelog_text.replace(
+                        "<ol reversed>", "<ol reversed>\n  " + result)
+                    write_page("changelog", changelog_text)
+                    print("    Updated Changelog")
 
-Respond with ONLY valid JSON containing the HTML snippets to INSERT:
+    _time.sleep(3)
 
-{{
-  "changelog_entry": "<li><strong>{date.today().isoformat()}</strong> &mdash; summary of all new papers with DOI links</li>",
-  "ledger_rows": ["<tr>...</tr> for each empirical test paper, matching existing table format"],
-  "roadmap_updates": "description of what to update in Roadmap, or null",
-  "whitepaper_updates": "description of sealed prediction updates, or null",
-  "elevator_updates": "updated test count and paper count if changed, or null",
-  "gap_updates": "gaps closed by these papers, or null"
-}}
+    # --- 2. LEDGER (only empirical tests) ---
+    empirical = [p for p in paper_descs if p.get("paper_type") in
+                 ("empirical_test", "sealed_prediction")]
+    if empirical:
+        ledger_text = read_page("ledger")
+        if ledger_text:
+            # Find existing table format
+            last_tr = ledger_text.rfind("<tr>")
+            sample_row = ledger_text[last_tr:last_tr + 500] if last_tr > 0 else ""
 
-Rules:
-- Changelog entry: one <li> summarizing ALL new papers
-- Ledger rows: ONLY for papers with paper_type = empirical_test or sealed_prediction
-- Use &mdash; not —, use &Delta; not Δ in HTML
-- DOI links: <a href="https://doi.org/10.6084/m9.figshare.NNNNN">NNNNN</a>
-- Keep it concise"""
+            prompt = f"""Add rows to the EFC Validation Ledger HTML table for these empirical test papers.
 
-    result = call_gpt5(prompt, max_tokens=4000)
-    if not result:
-        return
+PAPERS TO ADD:
+{json.dumps(empirical, indent=2)}
 
-    try:
-        updates = json.loads(result)
-    except json.JSONDecodeError:
-        print("    [WARN] GPT-5 returned invalid JSON for page updates")
-        return
+EXISTING TABLE ROW FORMAT (match this exactly):
+{sample_row[:300]}
 
-    # Apply changelog
-    if updates.get("changelog_entry"):
-        text = read_page("changelog")
-        marker = "<!-- v3.21 entry"
-        if marker in text:
-            text = text.replace(marker, updates["changelog_entry"] + "\n\n  " + marker)
-        else:
-            text = text.replace("<ol reversed>", "<ol reversed>\n  " + updates["changelog_entry"])
-        write_page("changelog", text)
-        print("    Updated Changelog")
+Respond with ONLY the <tr>...</tr> elements, one per paper. Use &Delta; not Δ, &mdash; not —."""
 
-    # Apply ledger rows
-    if updates.get("ledger_rows"):
-        text = read_page("ledger")
-        for row in updates["ledger_rows"]:
-            if row and row.strip():
-                idx = text.rfind("</tbody>")
-                if idx >= 0:
-                    text = text[:idx] + "    " + row + "\n    " + text[idx:]
-        write_page("ledger", text)
-        print(f"    Updated Ledger ({len(updates['ledger_rows'])} rows)")
+            result = call_gpt5(prompt, max_tokens=3000)
+            if result and "<tr>" in result:
+                idx_pos = ledger_text.rfind("</tbody>")
+                if idx_pos >= 0:
+                    ledger_text = ledger_text[:idx_pos] + result + "\n" + ledger_text[idx_pos:]
+                    write_page("ledger", ledger_text)
+                    print(f"    Updated Ledger ({len(empirical)} papers)")
 
-    # Apply roadmap updates
-    if updates.get("roadmap_updates") and updates["roadmap_updates"] != "null":
-        # Ask GPT-5 for specific HTML to insert
-        roadmap_prompt = f"""Given this update description for the EFC Stage-IV Roadmap:
-{updates['roadmap_updates']}
+    _time.sleep(3)
 
-And the current Roadmap HTML (first 4000 chars):
-{read_page('roadmap')[:4000]}
+    # --- 3. ELEVATOR PITCH (update stats) ---
+    elevator_text = read_page("elevator")
+    if elevator_text:
+        # Count current papers and tests
+        import re as _re
+        paper_count = len([d for d in os.listdir(PAPERS)
+                          if os.path.isdir(os.path.join(PAPERS, d))
+                          and d not in SKIP_TOP])
 
-Generate ONE specific HTML snippet to INSERT and specify WHERE (which HTML tag/marker to insert before/after). Respond with JSON:
-{{"html": "<tr>...</tr> or <li>...</li>", "insert_before": "text to find in page", "insert_after": null}}"""
-        roadmap_html = call_gpt5(roadmap_prompt, max_tokens=1000)
-        if roadmap_html:
+        prompt = f"""Update the paper count and test count in this EFC Elevator Pitch HTML.
+
+Current paper count in archive: {paper_count}
+New papers just registered: {len(paper_descs)}
+
+Current Elevator Pitch HTML (first 3000 chars):
+{elevator_text[:3000]}
+
+Find any number that represents the paper count or test count and update it.
+Respond with JSON: {{"old_text": "text to find", "new_text": "replacement text"}}
+If no update needed, respond with {{"old_text": null, "new_text": null}}"""
+
+        result = call_gpt5(prompt, max_tokens=500)
+        if result:
             try:
-                r = json.loads(roadmap_html)
-                text = read_page("roadmap")
-                if r.get("insert_before") and r["insert_before"] in text:
-                    text = text.replace(r["insert_before"], r["html"] + "\n" + r["insert_before"])
-                    write_page("roadmap", text)
-                    print("    Updated Roadmap")
+                upd = json.loads(result)
+                if upd.get("old_text") and upd["old_text"] in elevator_text:
+                    elevator_text = elevator_text.replace(upd["old_text"], upd["new_text"])
+                    write_page("elevator", elevator_text)
+                    print("    Updated Elevator Pitch")
             except (json.JSONDecodeError, KeyError):
                 pass
 
-    # Apply elevator pitch updates (paper count, test count)
-    if updates.get("elevator_updates") and updates["elevator_updates"] != "null":
-        print(f"    Elevator Pitch: {updates['elevator_updates']}")
+    _time.sleep(3)
 
-    # Apply gap analysis updates
-    if updates.get("gap_updates") and updates["gap_updates"] != "null":
-        print(f"    Gap Analysis: {updates['gap_updates']}")
+    # --- 4. ROADMAP (if pipeline/prediction papers) ---
+    pipeline_papers = [p for p in paper_descs if p.get("paper_type") in
+                       ("observational_pipeline", "sealed_prediction")]
+    if pipeline_papers:
+        roadmap_text = read_page("roadmap")
+        if roadmap_text:
+            prompt = f"""These new EFC papers may need Roadmap updates:
+{json.dumps(pipeline_papers, indent=2)}
+
+Current Roadmap HTML (first 3000 chars):
+{roadmap_text[:3000]}
+
+If any paper adds a new dataset, pipeline, or prediction to track, respond with:
+{{"html": "<tr>new row HTML</tr>", "insert_before": "exact text to find in page"}}
+
+If no update needed: {{"html": null}}"""
+
+            result = call_gpt5(prompt, max_tokens=1000)
+            if result:
+                try:
+                    r = json.loads(result)
+                    if r.get("html") and r.get("insert_before"):
+                        if r["insert_before"] in roadmap_text:
+                            roadmap_text = roadmap_text.replace(
+                                r["insert_before"], r["html"] + "\n" + r["insert_before"])
+                            write_page("roadmap", roadmap_text)
+                            print("    Updated Roadmap")
+                except (json.JSONDecodeError, KeyError):
+                    pass
+
+    _time.sleep(3)
+
+    # --- 5. WHITE PAPER SERIES (sealed predictions) ---
+    sealed_papers = [p for p in paper_descs if p.get("paper_type") == "sealed_prediction"]
+    if sealed_papers:
+        wp_text = read_page("whitepaper")
+        if wp_text:
+            prompt = f"""These EFC papers contain sealed predictions for the White Paper Series:
+{json.dumps(sealed_papers, indent=2)}
+
+Current White Paper Series HTML (first 3000 chars):
+{wp_text[:3000]}
+
+If any paper should be added, respond with:
+{{"html": "<li>new entry HTML</li>", "insert_before": "exact text to find"}}
+
+If no update: {{"html": null}}"""
+
+            result = call_gpt5(prompt, max_tokens=1000)
+            if result:
+                try:
+                    r = json.loads(result)
+                    if r.get("html") and r.get("insert_before"):
+                        if r["insert_before"] in wp_text:
+                            wp_text = wp_text.replace(
+                                r["insert_before"], r["html"] + "\n" + r["insert_before"])
+                            write_page("whitepaper", wp_text)
+                            print("    Updated White Paper Series")
+                except (json.JSONDecodeError, KeyError):
+                    pass
+
+    _time.sleep(3)
+
+    # --- 6. GAP ANALYSIS ---
+    gap_text = read_page("gap")
+    if gap_text and paper_descs:
+        prompt = f"""Review these new EFC papers against the Gap Analysis:
+{papers_json[:3000]}
+
+Current Gap Analysis HTML (first 3000 chars):
+{gap_text[:3000]}
+
+If any paper closes a known gap, respond with:
+{{"old_text": "gap text to find", "new_text": "updated text marking gap as closed"}}
+
+If no gaps closed: {{"old_text": null}}"""
+
+        result = call_gpt5(prompt, max_tokens=1000)
+        if result:
+            try:
+                r = json.loads(result)
+                if r.get("old_text") and r["old_text"] in gap_text:
+                    gap_text = gap_text.replace(r["old_text"], r["new_text"])
+                    write_page("gap", gap_text)
+                    print("    Updated Gap Analysis")
+            except (json.JSONDecodeError, KeyError):
+                pass
 
 
 # ═══════════════════════════════════════════════════════════
