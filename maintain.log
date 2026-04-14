@@ -7,7 +7,7 @@ API key: SET
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 2 paper(s) to 10/10 <<<
+>>> Step 1: Enriching 3 paper(s) to 10/10 <<<
 
   EFC_Effective_Horndeski_Reduction  (missing: src/, examples/, data/)
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
@@ -21,10 +21,17 @@ pdftotext: /usr/bin/pdftotext
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
     Generated src/, examples/, data/
+  Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
+    Enriched metadata (key_results, kill_criteria, paper_type, tier)
+    [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
+    [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
+    [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
+    [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
+    Generated src/, examples/, data/
 
-  Enriched: 2/2
+  Enriched: 4/3
 
->>> Step 2: Registering 61 paper(s) in public pages <<<
+>>> Step 2: Registering 62 paper(s) in public pages <<<
 
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
@@ -34,30 +41,35 @@ pdftotext: /usr/bin/pdftotext
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
+    Added 59 DOI(s) to evidence register
+    Added 2 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 143 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 144 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 143 paper dirs scanned
+EFC DOI sync — 144 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 140
+  papers with registered DOI : 141
   papers without DOI         : 3
   papers with conflicts      : 0
+
+PROPAGATED DOIs into 1 papers:
+  Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM -> *.jsonld
 ========================================================================
-[efc-gen] 143 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 143 paper dirs · 0 errors · 1 warnings
-  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '4.10', 'index.md': '4.8'}
-[efc-drift] 143 papers · no drift detected
+[efc-gen] 144 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 144 paper dirs · 0 errors · 1 warnings
+  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
+[efc-drift] 144 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 106 total, 80 survived, 9 falsified
-  Papers: 143 (140 DOIs)
+  Tests: 116 total, 89 survived, 9 falsified
+  Papers: 144 (141 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -85,55 +97,67 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] 1 paper package enriched; Ledger data: evidence-register.json.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 143 papers, 140 DOIs
-Ledger: 106 tests, 9 falsified
+Repo: 144 papers, 141 DOIs
+Ledger: 116 tests, 9 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 141 close to repo 143
-  [OK]       Paper count 143 close to repo 143
-  [OK]       Survival count 80/89 matches ledger
+  [OK]       Paper count 141 close to repo 144
+  [OK]       Paper count 144 close to repo 144
+  [WARNING]  Test count '89' != total 116 or active 98
+  [WARNING]  Test count '88' != total 116 or active 98
+  [WARNING]  Test count '106' != total 116 or active 98
+  [WARNING]  Test count '89' != total 116 or active 98
+  [WARNING]  Survived 80/89 but expected 89/98 (total=116, falsified=9, pipeline=18)
 
 --- Validation Ledger ---
-  [OK]       Test count 106 matches ledger 106
+  [WARNING]  '106-test' in Ledger HTML != 116 in stats
 
 --- All Pages Number Check ---
 
 --- Inference DOI Anchoring ---
-  [OK]       EFC Inference: bao_boss_dr12: DOI-anchored (m9.figshare.31954125, m9.figshare.31231522)
-  [OK]       EFC Inference: bao_desi_y1: DOI-anchored (m9.figshare.31230703, m9.figshare.31127380)
-  [OK]       EFC Inference: cluster_tng: DOI-anchored (m9.figshare.31963668, m9.figshare.31173850)
-  [OK]       EFC Inference: fs8_extended: DOI-anchored (m9.figshare.31332730, m9.figshare.31955871)
-  [OK]       EFC Inference: hz_chronometers: DOI-anchored (m9.figshare.31230703, m9.figshare.31314922)
+  [OK]       EFC Inference: bao_boss_dr12: active
+  [OK]       EFC Inference: bao_desi_y1: DOI-anchored (m9.figshare.31230703, m9.figshare.31231522)
+  [OK]       EFC Inference: cluster_tng: self_consistent
+  [OK]       EFC Inference: fs8_extended: DOI-anchored (m9.figshare.31955871, m9.figshare.31292827)
+  [OK]       EFC Inference: hz_chronometers: DOI-anchored (m9.figshare.31215613, m9.figshare.31304980)
   [WARNING]  EFC Inference: shear_kids1000: active but poor fit (χ²=10.4)
-  [OK]       All 5 inference modules DOI-anchored
+  [OK]       All 3 inference modules DOI-anchored
 
 --- Cross-consistency ---
-  [OK]       README paper count 143 matches repo 143
-  [OK]       README paper count 143 matches repo 143
-  [OK]       README paper count 143 matches repo 143
-  [OK]       README paper count 143 matches repo 143
-  [OK]       Stats categories sum to 106 = total_public
-  [OK]       DOI sync script present, 140/143 papers have DOIs
-  [OK]       99 papers have sealed predictions (290 total)
+  [OK]       README paper count 144 matches repo 144
+  [OK]       README paper count 144 matches repo 144
+  [OK]       README paper count 144 matches repo 144
+  [OK]       README paper count 144 matches repo 144
+  [OK]       Stats categories sum to 116 = total_public
+  [OK]       DOI sync script present, 141/144 papers have DOIs
+  [OK]       100 papers have sealed predictions (295 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (11 closed rows checked)
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 106 matches ledger
-  [OK]       Symbiose paper count 143 matches repo
+  [OK]       Symbiose test count 116 matches ledger
+  [OK]       Symbiose paper count 144 matches repo
   [OK]       Sealed freeze_1: α=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: α=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 0 errors, 1 warnings
+RESULT: 0 errors, 7 warnings
 VERDICT: PASS with warnings
+  - Test count '89' != total 116 or active 98
+  - Test count '88' != total 116 or active 98
+  - Test count '106' != total 116 or active 98
+  - Test count '89' != total 116 or active 98
+  - Survived 80/89 but expected 89/98 (total=116, falsified=9, pipeline=18)
+  - '106-test' in Ledger HTML != 116 in stats
   - EFC Inference: shear_kids1000: active but poor fit (χ²=10.4)
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …

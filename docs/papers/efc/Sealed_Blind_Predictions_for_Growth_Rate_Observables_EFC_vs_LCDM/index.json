@@ -1,26 +1,88 @@
 {
   "$schema": "./schema.json",
   "id": "sealed-blind-predictions-for-growth-rate-observables-efc-vs-lcdm",
-  "title": "Sealed Blind Predictions For Growth Rate Observables Efc Vs Lcdm",
-  "description": "Auto-generated package for Sealed Blind Predictions For Growth Rate Observables Efc Vs Lcdm.",
+  "title": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs \u039bCDM",
+  "description": "This paper presents pre-registered, cryptographically sealed predictions from Energy-Flow Cosmology (EFC) for the large-scale structure growth observable f\u03c38(z) and the Hubble distance ratio DH/rd(z) at z = 0.7 and z = 1.0, prior to DESI DR2 full-shape RSD unblinding. Two independent NUTS-MCMC freezes predict suppressed growth relative to \u039bCDM (e.g., f\u03c38(0.7)=0.430 vs 0.449), providing falsifiable, multi-observable tests once DR2 is released.",
   "version": "1.0",
   "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.32013156",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Sealed",
-    "Blind",
-    "Predictions",
-    "Growth",
-    "Rate",
-    "Observables"
+    "EFC",
+    "\u039bCDM",
+    "growth rate of structure",
+    "f\u03c38",
+    "Hubble distance ratio DH/rd",
+    "redshift-space distortions (RSD)",
+    "DESI DR2",
+    "BAO",
+    "MCMC",
+    "NUTS sampler",
+    "pre-registered predictions"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Sealed EFC predictions indicate suppressed late-time growth relative to \u039bCDM, with f\u03c38(0.7)=0.430 vs 0.449 (2.0\u03c3), and DH/rd lower than \u039bCDM at z=0.7 and z=1.0 (2.3\u20133.1\u03c3 separations), to be tested by DESI DR2 full-shape RSD/BAO.",
+    "delta_chi2": null,
+    "significance_sigma": 2.0,
+    "parameters_tested": [
+      "EFC coupling alpha (\u03b1)",
+      "f\u03c38(z)",
+      "DH/rd(z)"
+    ],
+    "datasets_used": [
+      "6dFGS",
+      "BOSS DR12",
+      "eBOSS DR16",
+      "DESI DR1"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Primary freeze (2026-02-18; \u03b1 = \u22120.689) predicts f\u03c38(z=0.7) = 0.430, compared to \u039bCDM\u2019s 0.449 (2.0\u03c3 separation).",
+      "falsifiable_by": "DESI DR2 full-shape RSD measurement of f\u03c38 at z\u22480.7 (LRG/ELG), with quoted statistical/systematic errors."
+    },
+    {
+      "id": "P2",
+      "statement": "Primary freeze predicts DH/rd(z=0.7) = 19.797, below \u039bCDM\u2019s 20.719 (\u22482.3\u03c3 separation).",
+      "falsifiable_by": "DESI DR2 BAO/full-shape distance constraints at z\u22480.7."
+    },
+    {
+      "id": "P3",
+      "statement": "Primary freeze predicts DH/rd(z=1.0) = 16.527, below \u039bCDM\u2019s 17.466 (\u22483.1\u03c3 separation).",
+      "falsifiable_by": "DESI DR2 BAO/full-shape distance constraints at z\u22481.0."
+    },
+    {
+      "id": "P4",
+      "statement": "Both sealed freezes yield \u03b1 < 0 (\u22120.689 and \u22120.702), implying suppressed growth at z \u2272 1 relative to \u039bCDM.",
+      "falsifiable_by": "Joint DESI DR2 growth/BAO likelihood showing \u03b1 \u2265 0 (or consistent with 0) at high confidence."
+    },
+    {
+      "id": "P5",
+      "statement": "Primary freeze reports an f\u03c38 crossover redshift at z \u2248 2.042.",
+      "falsifiable_by": "Combined high-z growth measurements (e.g., DESI QSO/LYA-era constraints) mapping f\u03c38(z) behavior above z\u22481.5."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: DESI DR2 full-shape f\u03c38 at z\u22480.7 is consistent with \u039bCDM\u2019s 0.449 within 1\u03c3 and inconsistent with EFC\u2019s 0.430 at \u22652\u03c3 across independent tracers (LRG/ELG).",
+    "KC2: DESI DR2 DH/rd at z=0.7 and/or z=1.0 is consistent with \u039bCDM expectations within 1\u03c3 and inconsistent with EFC predictions at \u22652\u03c3, removing the predicted downward trend versus \u039bCDM.",
+    "KC3: Joint DR2 analysis returns a posterior for the EFC coupling \u03b1 centered at or above 0 such that \u03b1 < 0 is disfavored at \u226595% confidence.",
+    "KC4: Cross-tracer inconsistency: if only a single tracer marginally supports EFC while the combined multi-tracer DR2 dataset rejects EFC predictions at \u22652\u03c3, the EFC growth-suppression mechanism is disfavored.",
+    "KC5: Cryptographic verification fails (sealed MCMC chain hashes or timestamps do not match the published SHA-256 values), invalidating the pre-registration claim."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [],
   "files": {
     "pdf": "Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013156"
 }
