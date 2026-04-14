@@ -908,8 +908,16 @@ def update_evidence_register(paper_list):
         doi = idx.get("doi", "")
         if not doi:
             continue
-        # Extract just the figshare ID
-        doi_id = doi.split("/")[-1] if "/" in doi else doi
+        # Extract the bare numeric Figshare article ID.  The evidence
+        # register and efc_verify.py (C2) require 7–9 digits only — any
+        # prefix like "10.6084/m9.figshare." must be stripped.  Using
+        # split("/")[-1] here silently leaked "m9.figshare.XXX" strings
+        # whenever the input was the canonical DOI form, so match the
+        # numeric tail explicitly.
+        m = re.search(r"(\d{7,9})", doi)
+        doi_id = m.group(1) if m else ""
+        if not doi_id:
+            continue
         if doi_id not in existing_dois:
             paper_type = idx.get("paper_type", idx.get("type", "unknown"))
             cat = "empirical" if paper_type in ("empirical_test", "sealed_prediction") else "structural"
