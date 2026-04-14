@@ -72,7 +72,7 @@ def build_changelog_entry(cats):
     parts = []
 
     if cats["papers_enriched"] > 0:
-        parts.append(f"{cats['papers_enriched']} paper packages enriched via GPT-5 AI Brain")
+        parts.append(f"{cats['papers_enriched']} paper package{'s' if cats['papers_enriched'] != 1 else ''} enriched")
 
     if cats["public_pages"]:
         pages = ", ".join(cats["public_pages"])
