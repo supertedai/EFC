@@ -10,56 +10,25 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31985163",
-  "abstract": "Consolidation package establishing the background sector no-go theorem for Energy-Flow Cosmology. Three independent lines of evidence — an analytical sign lemma (ΔE² ≤ 0 for all z > 0), numerical CLASS v3.3.4 verification, and observational CMB+BAO joint constraints (α → 0) — demonstrate that the EFC background coupling channel cannot suppress σ₈ and is observationally empty. This structural boundary redirects all late-time EFC effects to the perturbation sector (μ, Σ, η), producing sharper and independently testable predictions.",
+  "abstract": "Research note establishing a no-go result for observable background-level modifications in Energy-Flow Cosmology (EFC) under joint Planck 2018 CMB distance priors and DESI DR1 BAO constraints. Three independent parameterisations (linear \u03b1\u00b7T(a), exponential Geff = G0 exp(aG S), and a regime-aware piecewise H(z)) all show that BAO-improving low\u2011z changes to H(z) necessarily shift the CMB angular diameter distance DA(z\u2217) and are ruled out. The result closes Level 3 (background H(z)) at current precision and redirects EFC phenomenology to the perturbation sector (\u00b5, \u03a3).",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
     "no-go theorem",
-    "background coupling",
-    "Friedmann equation",
-    "sign lemma",
-    "sigma8 tension",
-    "S8 tension",
-    "CLASS",
-    "CMB",
+    "background expansion",
+    "Hubble rate H(z)",
     "BAO",
-    "perturbation sector",
-    "modified gravity",
-    "structural boundary"
+    "CMB distance priors",
+    "Planck 2018",
+    "DESI DR1",
+    "angular diameter distance",
+    "regime separation",
+    "entropy sigmoid",
+    "Geff"
   ],
-  "efc_context": {
-    "track": "Galactic/Cosmological",
-    "regime_relevance": "L0–L2 background sector; establishes that background gate is structurally excluded for growth suppression, redirecting EFC to perturbation sector",
-    "epistemic_layer": "Layer B (analytical theorem + numerical verification + observational confirmation)"
-  },
-  "key_results": [
-    "Sign lemma: ΔE²(z) = A·[g(z) − g(0)] ≤ 0 for all z > 0 under closure normalisation E(0) = 1",
-    "Corollary: H_EFC(z) ≤ H_ΛCDM(z) → background modification enhances growth, cannot suppress σ₈",
-    "CLASS v3.3.4 verification: ΔH/H = −0.3% to −1.1%, negative everywhere",
-    "Growth enhancement: fσ₈ increased by +0.50% to +0.76% (opposite direction from S₈ tension)",
-    "Observational: α collapses to ≈ 0 under all Planck+BAO combinations (|Δχ²| < 2σ)",
-    "α–H₀ degeneracy correlation = 0.975; CMB is blind to α, BAO breaks the degeneracy",
-    "Background sector is structurally excluded and observationally empty",
-    "All EFC effects must enter through perturbation sector: μ ≈ 0.94, Σ ≈ 1.05, η ≈ 1.10"
-  ],
-  "file_manifest": {
+  "files": {
     "readme": "README.md",
-    "index": "index.json",
     "schema": "schema.json",
-    "jsonld": "efc-background-nogo-theorem.jsonld",
-    "citations": "citations.bib",
-    "citation_cff": "CITATION.cff",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/background_nogo.py"
-    ],
-    "data": [
-      "data/sign_lemma_verification.json",
-      "data/observational_constraints.json"
-    ],
-    "demo": [
-      "examples/verify_nogo.py"
-    ]
+    "citations": "citations.bib"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31985163",
