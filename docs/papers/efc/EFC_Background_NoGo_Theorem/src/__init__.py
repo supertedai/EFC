@@ -12,7 +12,7 @@ BackgroundNoGo : class
     Sign lemma verification and growth enhancement computation.
 
 Version: 1.0
-DOI: 10.6084/m9.figshare.31333414
+DOI: 10.6084/m9.figshare.31985163
 License: CC-BY-4.0
 """
 

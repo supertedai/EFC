@@ -2,23 +2,26 @@
   "$schema": "./schema.json",
   "id": "efc-background-nogo-theorem",
   "title": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
-  "description": "Shows that any EFC background-level modification to H(z) large enough to improve DESI DR1 BAO fits is decisively ruled out by Planck 2018 CMB distance priors. Using three independent parametrisations (linear \u03b1\u00b7T(a), exponential Geff = G0 exp(aG S(a)), and regime-aware piecewise H), the paper demonstrates a structural BAO\u2013CMB tradeoff and concludes the EFC background is effectively \u039bCDM at current precision, redirecting EFC to the perturbation sector.",
+  "description": "Consolidation of three independent proofs that the EFC background coupling channel (β·T(a) modification to Friedmann equation) cannot suppress σ₈ and is observationally empty under CMB+BAO constraints. Establishes a structural boundary redirecting EFC to the perturbation sector.",
   "version": "1.0",
   "date": "2026-04-10",
   "doi": "10.6084/m9.figshare.31985163",
+  "source_dois": [
+    "10.6084/m9.figshare.31333414",
+    "10.6084/m9.figshare.31368433"
+  ],
   "keywords": [
     "Energy-Flow Cosmology",
     "no-go theorem",
-    "background expansion",
-    "H(z)",
+    "background coupling",
+    "Friedmann equation",
+    "sign lemma",
+    "sigma8 tension",
+    "CLASS",
+    "CMB",
     "BAO",
-    "CMB distance priors",
-    "DESI DR1",
-    "Planck 2018",
-    "entropy sigmoid",
-    "effective Newton constant",
-    "Geff",
-    "perturbation sector"
+    "perturbation sector",
+    "structural boundary"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -26,86 +29,31 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "core_equations": {
-    "modified_friedmann_linear": {
-      "latex": "H^2(a) = H_{\\Lambda\\mathrm{CDM}}^2(a)\\,[1 + \\alpha\\,T(a)],\\quad T(a) = 1 - \\Omega_m(a)",
-      "description": "Linear background coupling tested against CMB+BAO; \u03b1 controls late-time modification localized to z < 1."
+    "modified_friedmann": {
+      "latex": "H^2(a) = H_0^2 [\\Omega_m a^{-3} + \\Omega_\\Lambda (1 + \\beta \\cdot T(a))]",
+      "description": "EFC background modification with coupling amplitude β and transition function T(a)"
     },
-    "exponential_geff": {
-      "latex": "G_{\\mathrm{eff}}(a) = G_0\\,\\exp\\big(a_G\\,S(a)\\big)",
-      "description": "Exponential coupling to the entropy sigmoid S(a) (center a_t, width \\sigma) producing localized z < 1 background changes."
+    "gate_function": {
+      "latex": "g(z) = \\frac{1}{1 + (a_t / a)^n}",
+      "description": "Monotonically activating gate function; g(z) ≤ g(0) for all z > 0"
     },
-    "bao_cmb_distances": {
-      "latex": "D_M(z) = c\\int_0^z \\frac{dz'}{H(z')},\\quad D_H(z) = \\frac{c}{H(z)},\\quad D_A(z_*) = \\frac{D_M(z_*)}{1+z_*}",
-      "description": "BAO and CMB distance measures; BAO constrains D_M/r_d and D_H/r_d, while CMB distance priors constrain D_A(z_*)."
+    "closure_normalisation": {
+      "latex": "\\Omega'_\\Lambda = \\Omega_\\Lambda - A \\cdot g(0)",
+      "description": "Closure condition enforcing E(0) = 1"
     },
-    "cmb_priors": {
-      "latex": "\\ell_a = \\pi\\,\\frac{D_A(z_*)}{r_d},\\quad R = \\Omega_m H_0^2\\,\\frac{D_A(z_*)}{c}",
-      "description": "Planck 2018 CMB distance prior summary parameters used in the joint fits."
+    "sign_lemma": {
+      "latex": "\\Delta E^2(z) = A \\cdot [g(z) - g(0)] \\leq 0 \\quad \\forall z > 0",
+      "description": "The no-go theorem: ΔE² is non-positive everywhere, so background modification enhances growth"
     },
-    "da_split_integral": {
-      "latex": "D_A(z_*) = \\frac{1}{1+z_*}\\left[ \\int_0^{z_{\\mathrm{sw}}} \\frac{c\\,dz'}{H_{\\mathrm{EFC}}(z')} + \\int_{z_{\\mathrm{sw}}}^{z_*} \\frac{c\\,dz'}{H_{\\Lambda\\mathrm{CDM}}(z')} \\right]",
-      "description": "Even with regime separation (unmodified early-time physics), D_A(z_*) integrates through the modified low-z regime, enforcing the BAO\u2013CMB tradeoff."
+    "growth_ode": {
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} = 4\\pi G \\rho_m \\delta",
+      "description": "Growth equation with H_EFC ≤ H_ΛCDM → reduced Hubble friction → enhanced growth"
+    },
+    "perturbation_alternative": {
+      "latex": "\\mu_{\\text{EFC}}(k,z) = \\frac{1}{1 + R(k)}, \\quad R(k) = \\frac{K_0 \\Theta(\\rho) (\\Gamma' \\dot{\\phi})^2 a^4}{M_{\\text{Pl}}^2 F k^4}",
+      "description": "Perturbation-sector modification: μ < 1 suppresses growth via Poisson equation, not Friedmann"
     }
   },
-  "key_results": {
-    "main_finding": "Any EFC background H(z) modification large enough to improve BAO (\u0394\u03c72_BAO \u2272 \u22125) is decisively excluded by CMB distance priors, yielding \u0394\u03c72_total > 0; the EFC background is effectively \u039bCDM at current precision.",
-    "delta_chi2": 98.3,
-    "significance_sigma": 5.0,
-    "parameters_tested": [
-      "\u03b1 (linear background coupling)",
-      "aG (exponential amplitude)",
-      "a_t (sigmoid center)",
-      "\u03c3 (sigmoid width)",
-      "z_switch (piecewise regime boundary)"
-    ],
-    "datasets_used": [
-      "DESI DR1 BAO (14 points: DM/rd, DH/rd, 0.3 < z < 2.3)",
-      "Planck 2018 CMB distance priors (\u2113a, R) at z* = 1089.92"
-    ],
-    "verdict": "SEALED"
-  },
-  "sealed_predictions": [
-    {
-      "id": "P1",
-      "statement": "For Planck 2018 distance priors combined with DESI DR1 BAO, any background-only EFC model f(S(a)) that achieves \u0394\u03c72_BAO \u2264 \u22125 at z < 1 will incur \u0394\u03c72_CMB \u2265 +10, giving \u0394\u03c72_total > 0.",
-      "falsifiable_by": "Finding a background-only EFC fit to the stated datasets with \u0394\u03c72_total \u2264 0 relative to \u039bCDM."
-    },
-    {
-      "id": "P2",
-      "statement": "A \u22482\u20133% fractional change in H(z) near z \u2248 0.5 necessarily induces a \u22650.2\u20130.4% shift in D_A(z*) that Planck-quality data detect at \u22655\u03c3.",
-      "falsifiable_by": "A jointly consistent reconstruction showing \u03b4H/H \u2273 2% at z ~ 0.5 with \u03b4D_A/D_A < 0.1% using Planck-equivalent CMB distance precision."
-    }
-  ],
-  "kill_criteria": [
-    "KC1: Demonstrate a background-only EFC model (no perturbation-sector changes) that improves DESI DR1 BAO by \u0394\u03c72_BAO \u2264 \u22125 while keeping Planck 2018 distance priors within \u0394\u03c72_CMB \u2264 +5 (i.e., \u0394\u03c72_total \u2264 0).",
-    "KC2: Independent reconstruction of H(z) from cosmic chronometers and time-delay lenses showing a \u22652% deviation at 0.3 < z < 1 that is simultaneously consistent with Planck-level D_A(z*) constraints (|\u03b4D_A|/D_A < 0.1%).",
-    "KC3: Evidence that the entropy sigmoid S(a) or gate function effectively modifies physics at recombination (S(z*) \u2260 0) as inferred from primary CMB spectra, contradicting the regime separation assumed by EFC.",
-    "KC4: A robust BAO analysis forward-modeled with EFC perturbations (\u00b5=\u03a3=1 fixed) that attributes the observed BAO preference to background-only changes without incurring the predicted CMB penalty."
-  ],
-  "tier": "T3",
-  "paper_type": "empirical_test",
-  "related_packages": [
-    {
-      "id": "efc-track1-validation",
-      "doi": "10.6084/m9.figshare.31333414",
-      "role": "Track 1 empirical validation and sigmoid coupling context used for exponential Geff tests"
-    },
-    {
-      "id": "efc-cmb-localization",
-      "doi": "10.6084/m9.figshare.31368433",
-      "role": "CMB localization and linear \u03b1\u00b7T(a) background coupling constraints referenced here"
-    }
-  ],
-  "files": {
-    "readme": "README.md",
-    "schema": "schema.json",
-    "citations": "citations.bib"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31985163",
-  "source_dois": [
-    "10.6084/m9.figshare.31333414",
-    "10.6084/m9.figshare.31368433"
-  ],
   "parameters": {
     "sign_lemma_inputs": {
       "A": {
@@ -150,17 +98,17 @@
       },
       "eta": {
         "value": 1.1,
-        "description": "Gravitational slip \u03b7 = \u03a6/\u03a8"
+        "description": "Gravitational slip η = Φ/Ψ"
       }
     }
   },
   "three_pillars": {
     "analytical": {
       "name": "Sign Lemma",
-      "statement": "\u0394E\u00b2(z) = A\u00b7[g(z) \u2212 g(0)] \u2264 0 for all z > 0",
-      "proof": "Under closure normalisation E(0) = 1, the gate g(z) is monotonically decreasing for z > 0 (activates at late times). Therefore g(z) \u2264 g(0) for all z > 0, and with A > 0, \u0394E\u00b2 \u2264 0.",
-      "corollary": "H_EFC(z) \u2264 H_\u039bCDM(z) \u2192 reduced Hubble friction \u2192 enhanced structure growth",
-      "implication": "Background-level EFC structurally excluded for \u03c3\u2088 suppression",
+      "statement": "ΔE²(z) = A·[g(z) − g(0)] ≤ 0 for all z > 0",
+      "proof": "Under closure normalisation E(0) = 1, the gate g(z) is monotonically decreasing for z > 0 (activates at late times). Therefore g(z) ≤ g(0) for all z > 0, and with A > 0, ΔE² ≤ 0.",
+      "corollary": "H_EFC(z) ≤ H_ΛCDM(z) → reduced Hubble friction → enhanced structure growth",
+      "implication": "Background-level EFC structurally excluded for σ₈ suppression",
       "reference_doi": "10.6084/m9.figshare.31333414"
     },
     "numerical": {
@@ -212,20 +160,20 @@
           "change_pct": 0.76
         }
       ],
-      "conclusion": "Growth is enhanced at all redshifts \u2014 opposite direction from S\u2088 tension amelioration",
+      "conclusion": "Growth is enhanced at all redshifts — opposite direction from S₈ tension amelioration",
       "reference_doi": "10.6084/m9.figshare.31333414"
     },
     "observational": {
       "name": "CMB + BAO Joint Constraint",
       "alpha_collapse": {
         "dataset": "Planck 2018 TT/TE/EE + BOSS/eBOSS BAO",
-        "result": "\u03b1 \u2192 0 under all combinations",
-        "significance": "|\u0394\u03c7\u00b2| < 2\u03c3 in all combinations",
+        "result": "α → 0 under all combinations",
+        "significance": "|Δχ²| < 2σ in all combinations",
         "status": "CONFIRMED"
       },
       "alpha_H0_degeneracy": {
         "correlation": 0.975,
-        "interpretation": "CMB is blind to \u03b1; BAO breaks the degeneracy"
+        "interpretation": "CMB is blind to α; BAO breaks the degeneracy"
       },
       "four_channel_test": {
         "beta": 0.08,
@@ -236,16 +184,16 @@
           "SN Ia"
         ],
         "combined_delta_chi2": -3.89,
-        "significance": "~2\u03c3 preference",
-        "note": "Background coupling consistent but not sufficient for \u03c3\u2088 suppression"
+        "significance": "~2σ preference",
+        "note": "Background coupling consistent but not sufficient for σ₈ suppression"
       },
       "reference_doi": "10.6084/m9.figshare.31368433"
     }
   },
   "architectural_consequence": {
     "excluded_channel": "Background (Friedmann equation modification)",
-    "active_channel": "Perturbation sector (\u03bc, \u03a3, \u03b7 modifications)",
-    "reason": "Sign lemma proves background enhancement; observational \u03b1-collapse confirms emptiness",
+    "active_channel": "Perturbation sector (μ, Σ, η modifications)",
+    "reason": "Sign lemma proves background enhancement; observational α-collapse confirms emptiness",
     "survival_valley": {
       "mu_range": [
         0.93,
@@ -262,30 +210,68 @@
       }
     },
     "testable_predictions": [
-      "\u03bc \u2248 0.94 (growth suppression via Poisson equation)",
-      "\u03a3 \u2248 1.05 (lensing enhancement via anisotropic stress)",
-      "\u03b7 \u2248 1.10 (gravitational slip, most discriminating observable)",
-      "All testable by Euclid DR1/DR2 (2026\u20132028) and DESI DR3 (~2027\u20132028)"
+      "μ ≈ 0.94 (growth suppression via Poisson equation)",
+      "Σ ≈ 1.05 (lensing enhancement via anisotropic stress)",
+      "η ≈ 1.10 (gravitational slip, most discriminating observable)",
+      "All testable by Euclid DR1/DR2 (2026–2028) and DESI DR3 (~2027–2028)"
     ]
   },
   "falsification_criteria": [
     {
       "id": "NOGO-F1",
-      "condition": "Mechanism found where \u0394E\u00b2 > 0 with E(0) = 1",
+      "condition": "Mechanism found where ΔE² > 0 with E(0) = 1",
       "implication": "Sign lemma violated; requires non-monotonic gate",
       "status": "Not viable"
     },
     {
       "id": "NOGO-F2",
-      "condition": "Background-only modification produces \u03c3\u2088 suppression",
+      "condition": "Background-only modification produces σ₈ suppression",
       "implication": "Analytical proof contains an error",
       "status": "Not viable"
     },
     {
       "id": "NOGO-F3",
-      "condition": "\u03b1 \u2260 0 detected at > 3\u03c3 in CMB + BAO joint fit",
+      "condition": "α ≠ 0 detected at > 3σ in CMB + BAO joint fit",
       "implication": "Background gate not empty; observational pillar fails",
       "status": "Not viable"
     }
-  ]
+  ],
+  "related_packages": [
+    {
+      "id": "efclass-sign-structure",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Source of analytical proof"
+    },
+    {
+      "id": "cmb-systematic-localization",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "Source of observational α-collapse"
+    },
+    {
+      "id": "four-channel-consistency",
+      "doi": "10.6084/m9.figshare.31304980",
+      "role": "β = 0.08 four-probe test"
+    },
+    {
+      "id": "perturbation-sigma8",
+      "doi": "10.6084/m9.figshare.31333600",
+      "role": "Perturbation-sector alternative"
+    },
+    {
+      "id": "kill-test-v6",
+      "doi": "10.6084/m9.figshare.31964847",
+      "role": "Full six-probe validation"
+    },
+    {
+      "id": "efc-relativistic-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Derivation of μ, Σ, η from variational action"
+    }
+  ],
+  "files": {
+    "readme": "README.md",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31985163"
 }

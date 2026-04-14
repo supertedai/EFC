@@ -1,18 +1,94 @@
 {
   "@context": {
-    "@vocab": "https://schema.org/"
+    "@vocab": "https://schema.org/",
+    "efc": "https://github.com/supertedai/EFC/ontology#",
+    "doi": "https://doi.org/"
   },
   "@type": "ScholarlyArticle",
+  "@id": "doi:10.6084/m9.figshare.31985163",
   "name": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
+  "headline": "Analytical proof, numerical verification, and observational confirmation that the EFC background coupling cannot suppress σ₈",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095"
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Symbiose Research, Sandnes, Norway"
+    },
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "0009-0002-4860-5095"
+    }
   },
   "datePublished": "2026-04-10",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "@id": "doi:10.6084/m9.figshare.31985163",
+  "version": "1.0",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "no-go theorem",
+    "background coupling",
+    "Friedmann equation",
+    "sign lemma",
+    "sigma8 tension",
+    "structural boundary"
+  ],
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:BackgroundNoGo",
+      "name": "Background No-Go Theorem",
+      "description": "ΔE²(z) = A·[g(z) − g(0)] ≤ 0 for all z > 0 under closure normalisation. Background-level EFC modification enhances growth, cannot suppress σ₈."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:AlphaCollapse",
+      "name": "Observational α-Collapse",
+      "description": "Under joint CMB+BAO constraints, the background coupling parameter α collapses to ≈ 0 with perfect α–H₀ degeneracy (r = 0.975)."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:PerturbationRedirection",
+      "name": "Perturbation Sector Redirection",
+      "description": "Background no-go forces all EFC effects into the perturbation sector: μ ≈ 0.94, Σ ≈ 1.05, η ≈ 1.10."
+    }
+  ],
+  "mainEntity": {
+    "@type": "Claim",
+    "name": "Background Sector Structural Exclusion",
+    "description": "The EFC background coupling channel is structurally excluded for σ₈ suppression (sign lemma) and observationally empty (α → 0 under CMB+BAO). This is a constructive boundary that redirects EFC to the perturbation sector."
+  },
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Framework",
+    "url": "https://github.com/supertedai/EFC"
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Sign structure of an additive gate-function modification to the Friedmann equation",
+      "author": "Magnusson, M.",
+      "datePublished": "2026",
+      "identifier": "doi:10.6084/m9.figshare.31333414"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity",
+      "author": "Magnusson, M.",
+      "datePublished": "2026",
+      "identifier": "doi:10.6084/m9.figshare.31368433"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling",
+      "author": "Magnusson, M.",
+      "datePublished": "2026",
+      "identifier": "doi:10.6084/m9.figshare.31304980"
+    }
+  ],
+  "epistemicStatus": "Layer B — Analytical theorem with numerical verification and observational confirmation; structural boundary (closed result)",
   "identifier": "https://doi.org/10.6084/m9.figshare.31985163",
-  "doi": "10.6084/m9.figshare.31985163",
-  "sameAs": "https://doi.org/10.6084/m9.figshare.31985163"
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31985163",
+  "doi": "10.6084/m9.figshare.31985163"
 }
