@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-04-14T17:19:57Z",
+  "generated_at": "2026-04-14T19:54:09Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 40,
-    "consistency_check": 19,
+    "consistency_check": 20,
     "phenomenological": 14,
-    "framework_constraint": 25,
+    "framework_constraint": 26,
     "planned_pipeline": 18,
-    "total_public": 116,
+    "total_public": 118,
     "n_falsified": 9,
     "inference_count": 6,
     "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,9 +18,9 @@
     "tcs_compression": 1.5,
     "tcs_mismatch": 0.3333,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 63,
+    "pillar_2_native": 64,
     "pillar_3_grav": 13,
-    "pillar_4_cross": 40,
+    "pillar_4_cross": 41,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -208,7 +208,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1412, \"alpha_std\": 0.2084, \"significance_sigma\": 0.68, \"daic\": 1.59, \"dbic\": 3.83, \"verdict\": \"DEGENERACY_LIMITED\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -918,6 +918,21 @@
         "quantitative_result": null,
         "last_synced": "2026-02-19T12:17:45.743000000+00:00",
         "status_detail": "success"
+      },
+      {
+        "test_id": "global_parameter_lock",
+        "name": null,
+        "description": "Parameter-lock test: 4 probes, verdict=TENSION, max degradation=0.001 logL/pt, worst=snia, ΔlogL_total=+2.59.",
+        "result": null,
+        "status": "partial",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": "All probes should show <1 logL/pt degradation under EFC vs ΛCDM with frozen best-fit parameters.",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "partial"
       }
     ],
     "phenomenological": [
@@ -1479,6 +1494,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "forbidden_pattern_distance",
+        "name": null,
+        "description": "Distance-to-trigger for 5 EFC Forbidden Patterns. Min distance: 1.2σ. Status: 3 safe, 2 warning, 0 critical, 0 triggered, 0 unavailable.",
+        "result": null,
+        "status": "pending",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": "All 5 FPs should show >2σ distance to trigger. If any FP < 1σ, highest-priority investigation target.",
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": null,
+        "status_detail": "pending"
+      },
+      {
         "test_id": "efc_signal_locus_update_dr2_v1",
         "name": null,
         "description": "DESI DR2 BAO constrains α to [-0.57, +0.32] (95% CI). Combined with per-bin analysis showing EFC wins at z=0.706 (χ²=1.0 vs 8.2 for ΛCDM) but loses catastrophically at z > 0.9 with strong α, this updates the EFC signal locus: any EFC effect must be weak in BAO/background (|α| < 0.4) and must primarily manifest in growth/regime/gravitational transition sector (fσ8, lensing, KT3 β-convergence). This makes KT3 v2 the primary evidence carrier.",
@@ -1921,7 +1951,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-14T16:21:46.674734+00:00"
+      "timestamp": "2026-04-14T19:21:49.457441+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -1935,7 +1965,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-14T16:21:46.715026+00:00"
+      "timestamp": "2026-04-14T19:21:49.484034+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -1949,7 +1979,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-14T16:21:46.729670+00:00"
+      "timestamp": "2026-04-14T19:21:49.497712+00:00"
     }
   },
   "parameters": {
