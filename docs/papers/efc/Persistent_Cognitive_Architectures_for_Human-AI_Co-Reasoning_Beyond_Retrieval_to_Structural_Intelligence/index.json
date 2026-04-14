@@ -1,21 +1,74 @@
 {
+  "$schema": "./schema.json",
+  "id": "persistent-cognitive-architectures-for-human-ai-co-reasoning-beyond-retrieval-to-structural-intelligence",
   "title": "Persistent Cognitive Architectures for Human-AI Co-Reasoning: Beyond Retrieval to Structural Intelligence",
-  "short_title": "Symbiose Cognitive Architecture",
-  "author": "Morten Magnusson",
-  "affiliation": "Independent Researcher, Norway",
-  "date": "2026-02",
+  "description": "Introduces Symbiose, a persistent cognitive architecture that integrates knowledge graphs, vector search, causal tracking, hierarchical memory consolidation, and proactive triggers via the Quantum Leap (QL) orchestration layer. The system provides epistemic honesty through an L0\u2013L3 tagging framework and demonstrates emergent, persistent co-reasoning capabilities in a longitudinal Energy-Flow Cosmology (EFC) use case beyond stateless RAG baselines.",
+  "version": "1.0",
+  "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31271707",
   "keywords": [
     "Human-AI collaboration",
     "cognitive architecture",
     "knowledge graphs",
+    "graph\u2013vector fusion",
     "causal reasoning",
     "persistent memory",
+    "hierarchical memory consolidation",
     "proactive autonomy",
-    "Quantum Leap",
-    "epistemic framework"
+    "epistemic tagging (L0\u2013L3)",
+    "Quantum Leap orchestration",
+    "retrieval-augmented generation",
+    "Energy-Flow Cosmology"
   ],
-  "abstract": "While retrieval-augmented generation (RAG) enables large language models to access external knowledge, it remains fundamentally reactive and stateless. We present Symbiose, a cognitive architecture that combines graph-based causal reasoning, temporal pattern recognition, and proactive autonomy to enable persistent, evolving collaboration between humans and AI. Components are integrated through Quantum Leap (QL), a persistent cognitive orchestration layer. Every response is tagged via an L0–L3 epistemic framework distinguishing canonical facts from LLM-generated hypotheses.",
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "fused_relevance_score": {
+      "latex": "s_{\\mathrm{fused}} = 0.6\\, s_{\\mathrm{semantic}} + 0.4\\, s_{\\mathrm{structural}}",
+      "description": "Hybrid ranking that combines embedding similarity with graph-structural relevance in Graph\u2013Vector Fusion."
+    },
+    "structural_score": {
+      "latex": "s_{\\mathrm{structural}} = \\max\\left\\{ \\frac{1}{|p|} : p \\in G,\\ r \\in p \\right\\}",
+      "description": "Structural contribution to the fused score, rewarding shorter graph paths connecting the query to a retrieved result."
+    }
+  },
+  "key_results": {
+    "main_finding": "Symbiose demonstrates persistent, proactive, and provenance-tagged co-reasoning\u2014enabling cross-session identity linking, hierarchical memory consolidation, proactive suggestions, and explicit L0\u2013L3 epistemic tagging beyond stateless RAG.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Cross-session identity linking",
+      "Hierarchical memory consolidation (daily/weekly/monthly)",
+      "Graph\u2013Vector Fusion hybrid retrieval",
+      "Causal tracking and queries",
+      "Proactive trigger-based suggestions",
+      "L0\u2013L3 epistemic tagging and provenance"
+    ],
+    "datasets_used": [
+      "Longitudinal interaction logs from a year-long Energy-Flow Cosmology (EFC) theory-development deployment",
+      "Project knowledge graph (Neo4j) and vector store (Qdrant) content used during the deployment"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If a stateless RAG baseline reproduces the same set of emergent behaviors (cross-session identity linking, proactive suggestions, and explicit provenance) under identical tasks without external persistent structure, the claim that persistence is required is falsified.",
+    "KC2: If any system responses in evaluation lack L0\u2013L3 epistemic tags, the claim that every response is epistemically tagged is falsified.",
+    "KC3: If L0/L1/L2 claims cannot be traced to verifiable sources or derivations upon audit, the epistemic honesty/provenance claim is falsified.",
+    "KC4: If Graph\u2013Vector Fusion does not outperform pure vector retrieval on multi-hop or causal-retrieval tasks (e.g., discovers no additional correct connections), the structural-intelligence claim is falsified.",
+    "KC5: If proactive triggers fail to produce any user-accepted suggestions during sustained operation on comparable tasks, the proactive autonomy claim is falsified.",
+    "KC6: If hierarchical memory consolidation yields no cross-session reuse of consolidated memories during longitudinal operation, the temporal cognition claim is falsified."
+  ],
+  "tier": "T3",
+  "paper_type": "infrastructure",
+  "related_packages": [],
+  "files": {
+    "pdf": "Persistent_Cognitive_Architectures_for_Human-AI_Co-Reasoning_Beyond_Retrieval_to_Structural_Intelligence.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31271707",
+  "short_title": "Symbiose Cognitive Architecture",
+  "affiliation": "Independent Researcher, Norway",
+  "abstract": "While retrieval-augmented generation (RAG) enables large language models to access external knowledge, it remains fundamentally reactive and stateless. We present Symbiose, a cognitive architecture that combines graph-based causal reasoning, temporal pattern recognition, and proactive autonomy to enable persistent, evolving collaboration between humans and AI. Components are integrated through Quantum Leap (QL), a persistent cognitive orchestration layer. Every response is tagged via an L0\u2013L3 epistemic framework distinguishing canonical facts from LLM-generated hypotheses.",
   "system_name": "Symbiose",
   "orchestration_layer": "Quantum Leap (QL)",
   "architecture": {
@@ -202,6 +255,5 @@
     "Bayesian priors require manual tuning",
     "L3 content vulnerable to hallucination",
     "Single-user architecture only"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31271707"
+  ]
 }

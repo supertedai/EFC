@@ -8,7 +8,7 @@
       "date": "2026-04-14",
       "version": "v4.9",
       "type": "data_integrity_overhaul",
-      "summary": "DOI anchoring of inference modules, cross-validation gate, \u03b1-signal transparency, public page corrections Public pages updated: Changelog; Ledger data: changelog.json; Maintenance scripts: efc_maintain.py. Public pages updated: Changelog. 1 paper packages enriched . 1 paper packages enriched ; Public pages updated: Changelog, Elevator_Pitch. 1 paper package enriched.",
+      "summary": "DOI anchoring of inference modules, cross-validation gate, \u03b1-signal transparency, public page corrections Public pages updated: Changelog; Ledger data: changelog.json; Maintenance scripts: efc_maintain.py. Public pages updated: Changelog. 1 paper packages enriched . 1 paper packages enriched ; Public pages updated: Changelog, Elevator_Pitch. 1 paper package enriched. 9 paper packages enriched; Public pages updated: Validation_Ledger.",
       "details": "Corrected false claims in Elevator Pitch (204\u2192141 papers, 103/103\u219279/88 survived). Replaced 4 LCDM-stub inference modules with DOI-published chi2 values. Added automated cross-validation gate that blocks publishing on data inconsistencies. Added \u03b1-signal transparency panel showing both LOO (2.2\u03c3) and MCMC (0.7\u03c3) results. Expanded maintain pipeline to 10 steps with Symbiose council integration.",
       "stats_delta": {
         "inference_modules_anchored": "+4 (from lcdm_stub to doi_anchored)",

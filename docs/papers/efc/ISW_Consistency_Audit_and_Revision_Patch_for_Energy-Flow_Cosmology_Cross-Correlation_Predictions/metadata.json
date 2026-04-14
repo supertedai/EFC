@@ -1,8 +1,8 @@
 {
   "title": "ISW Paper Revision Patch: Proposed Corrections to ISW Cross-Correlation Predictions for EFC with DESI DR1 Tracers",
-  "short_id": "isw-revision-patch",
+  "short_id": "isw-consistency-audit-and-revision-patch-for-energy-flow-cosmology-cross-correlation-predictions",
   "version": "1.0",
-  "date": "2026-02",
+  "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,52 +10,22 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31329082",
-  "abstract": "Proposes minimal corrections to ISW paper preserving core predictions while correcting quantitative A_ISW claims. Original A_ISW values (0.56 to 0.15) cannot be reproduced; revised prediction is A_ISW approximately 0.89 plus-or-minus 0.03 (uniform 11% suppression).",
+  "abstract": "This internal note issues a minimal correction patch to the previously published ISW cross-correlation predictions for Energy-Flow Cosmology (EFC) with DESI DR1 tracers. It clarifies the growth-driven vs potential-driven channel interpretation, withdraws irreproducible redshift-dependent AISW values, and replaces them with a uniform AISW \u2248 0.89 \u00b1 0.03 suppression across all bins, while retiring an inapplicable cancellation metric.",
   "keywords": [
-    "ISW effect",
-    "integrated Sachs-Wolfe",
-    "cross-correlation",
-    "DESI DR1",
+    "Integrated Sachs-Wolfe",
+    "ISW cross-correlation",
     "Energy-Flow Cosmology",
-    "EFC",
-    "revision patch",
-    "consistency audit",
-    "growth-driven",
-    "A_ISW"
+    "DESI DR1",
+    "CMB-LSS",
+    "growth rate",
+    "mu(a) parameterization",
+    "tomographic analysis",
+    "A_ISW amplitude",
+    "modified gravity channel"
   ],
-  "efc_context": {
-    "track": "WP2 Internal Note",
-    "regime_relevance": "ISW cross-correlation predictions",
-    "epistemic_layer": "revision"
-  },
-  "key_results": [
-    {
-      "finding": "Original A_ISW values withdrawn",
-      "original": "0.56-0.15",
-      "revised": "0.87-0.92"
-    },
-    {
-      "finding": "Uniform suppression",
-      "value": "~11%",
-      "z_dependence": "negligible"
-    },
-    {
-      "finding": "Cancellation metric C not applicable under growth-driven ISW"
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation",
-    "CITATION.cff": "Citation metadata",
-    "LICENSE": "License",
-    "index.json": "Machine-readable metadata",
-    "isw_revision_patch.pdf": "Original paper",
-    "schema.json": "JSON Schema",
-    "metadata.json": "This file",
-    "isw_revision_patch.jsonld": "Linked data",
-    "citations.bib": "BibTeX references",
-    "src/": "Source code",
-    "data/": "Data files",
-    "examples/": "Example scripts"
+  "files": {
+    "pdf": "ISW_Paper_Revision_Patch.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31329082",

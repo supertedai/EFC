@@ -2,26 +2,124 @@
   "$schema": "./schema.json",
   "id": "efc-effective-horndeski-reduction",
   "title": "Effective Horndeski Reduction of the EFC Perturbation Sector",
-  "description": "Auto-generated package for Effective Horndeski Reduction of the EFC Perturbation Sector.",
+  "description": "Shows that, on an FRW background in the quasi-static sub-horizon regime, the linear perturbation equations of Energy-Flow Cosmology (EFC) admit an effective mapping to the Bellini\u2013Sawicki Horndeski \u03b1-function basis. Identifies \u03b1T = 0, derives \u03b1M \u221d S(a) and \u03b1B \u221d dS/d ln a from the EFC dynamics, and isolates a scale-dependent stiffness response R(k, z) with no direct BS analogue that suppresses \u00b5(k) on cosmological scales. This closes the formal gap between the EFC action and Euclid\u2019s EFT/hi_class pipeline for linear perturbations.",
   "version": "1.0",
   "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.32011407",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Effective",
     "Horndeski",
-    "Reduction",
-    "Perturbation",
-    "Sector"
+    "Bellini\u2013Sawicki alpha functions",
+    "quasi-static sub-horizon",
+    "linear perturbations",
+    "Planck-mass running",
+    "braiding",
+    "kineticity",
+    "gravitational slip",
+    "effective Newton constant",
+    "stiffness response",
+    "FRW background"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "efc_action": {
+      "latex": "S_{\\rm EFC} = \\int d^4x\\,\\sqrt{-g}\\,\\Big[\\tfrac{1}{2} M_{\\rm Pl}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho) g^{\\mu\\nu}\\partial_\\mu\\phi\\,\\partial_\\nu\\phi - V(\\phi) - \\lambda\\, (\\Box\\phi - \\Gamma(\\rho))\\Big]",
+      "description": "EFC relativistic action with density-dependent kinetic stiffness K(\\rho) and a Lagrange-multiplier flow constraint enforcing \\Box\\phi = \\Gamma(\\rho)."
+    },
+    "background_constraint": {
+      "latex": "\\Box\\bar\\phi = \\Gamma(\\bar\\rho)",
+      "description": "Background evolution constraint on FRW; fixes \\bar\\phi via the entropy production rate evaluated on the background density."
+    },
+    "subhorizon_delta_phi": {
+      "latex": "\\delta\\phi \\simeq \\frac{a^2}{k^2}\\,\\Gamma'(\\bar\\rho)\\,\\delta\\rho \\quad (k \\gg aH)",
+      "description": "In the quasi-static sub-horizon regime the scalar perturbation is slaved to the matter perturbation by the flow constraint."
+    },
+    "epsilon_parameters": {
+      "latex": "\\epsilon_F \\equiv \\frac{F'(\\bar\\phi)\\,a^2\\,\\Gamma'}{F\\,k^2}\\,,\\qquad \\epsilon_\\lambda \\equiv \\frac{\\dot{\\bar\\lambda}\\,a^2\\,\\Gamma'}{2 F\\,k^2\\,M_{\\rm Pl}^2}\\,,\\qquad \\epsilon_K \\equiv \\frac{K(\\bar\\rho)\\,\\dot{\\bar\\phi}\\,a^2\\,\\Gamma'}{2 F\\,k^2\\,M_{\\rm Pl}^2}",
+      "description": "Dimensionless control parameters for the EFC perturbation sector on sub-horizon scales."
+    },
+    "stiffness_response": {
+      "latex": "R(k,z) \\equiv \\frac{K(\\bar\\rho)\\,a^4\\,(\\Gamma')^2\\,\\dot{\\bar\\phi}^{\\,2}}{2 F\\,k^4\\,M_{\\rm Pl}^2}",
+      "description": "Scale-dependent stiffness response arising from the density dependence of K(\\rho); produces a suppression in \\mu(k, z)."
+    },
+    "observables_eta_mu_sigma": {
+      "latex": "\\eta \\approx \\frac{1 + \\epsilon_F + \\epsilon_\\lambda + \\epsilon_\\lambda^{\\rm (resp)}}{1 - \\epsilon_F - \\epsilon_\\lambda - \\epsilon_\\lambda^{\\rm (resp)}}\\,,\\qquad \\mu = \\frac{1 + \\epsilon_F + \\epsilon_K}{F(1+R)}\\,,\\qquad \\Sigma = \\frac{\\mu(1+\\eta)}{2}",
+      "description": "Closed-form expressions for gravitational slip \\eta, effective Newton coupling \\mu, and lensing combination \\Sigma at leading order in the quasi-static expansion."
+    },
+    "alphaM_definition": {
+      "latex": "\\alpha_M \\equiv \\frac{d\\ln M_*^2}{d\\ln a}\\,,\\qquad M_*^2 = M_{\\rm Pl}^2 F(\\phi)\\quad\\Rightarrow\\quad \\alpha_M = \\frac{F_{,\\phi}}{F}\\,\\frac{d\\phi}{d\\ln a}",
+      "description": "Bellini\u2013Sawicki Planck-mass running; for F(\\phi)=1+\\alpha_\\phi\\phi this links directly to the background solution for \\phi(a)."
+    },
+    "alphaB_effective": {
+      "latex": "\\alpha_B^{\\rm eff} \\propto \\dot{\\bar\\lambda}\\,\\Gamma'(\\bar\\rho) \\propto \\frac{dS}{d\\ln a}",
+      "description": "Effective braiding induced by the flow-constraint term; peaks where the entropy sigmoid S(a) transitions."
+    },
+    "alphaK_effective": {
+      "latex": "\\alpha_K^{\\rm eff} \\sim \\frac{K(\\bar\\rho)\\,\\dot{\\bar\\phi}^{\\,2}}{M_*^2 H^2}",
+      "description": "EFC kineticity sourced by the density-dependent kinetic stiffness and scalar background velocity."
+    },
+    "alphaT_zero": {
+      "latex": "\\alpha_T = 0",
+      "description": "Tensor speed equals light speed (c_T=c), consistent with GWs; in BS language the tensor sector is standard (no excess)."
+    }
+  },
+  "key_results": {
+    "main_finding": "In the FRW quasi-static sub-horizon limit, EFC linear perturbations map to an effective Bellini\u2013Sawicki representation with \u03b1T=0, \u03b1M \u221d S(a), and \u03b1B \u221d dS/d ln a, while a distinct stiffness response R(k, z) produces scale-dependent \u00b5 suppression beyond standard Horndeski.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "epsilon_F",
+      "epsilon_lambda",
+      "epsilon_K",
+      "R(k,z)",
+      "alpha_M",
+      "alpha_B",
+      "alpha_K",
+      "alpha_T"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Tensor propagation speed equals the speed of light at late times (\u03b1T = 0, c_T = c) in the EFC effective description.",
+      "falsifiable_by": "Multi-messenger GW\u2013EM timing constraints (e.g., binary neutron star mergers) at z < 1 detecting |c_T/c \u2212 1| > 10^-15."
+    },
+    {
+      "id": "P2",
+      "statement": "The effective braiding parameter peaks during the entropy-flow transition, with \u03b1B(z) tracking dS/d ln a (single-peaked around the transition scale factor).",
+      "falsifiable_by": "Tomographic LSS and lensing analyses constraining the time profile of \u03b1B(z), e.g., Euclid/LSST EFT fits inconsistent with a single-peaked derivative-of-sigmoid profile."
+    },
+    {
+      "id": "P3",
+      "statement": "On linear sub-horizon scales, \u00b5(k, z) shows a scale-dependent suppression below unity at cosmological k that relaxes to GR (\u00b5 \u2192 1) toward galactic/solar scales due to R(k, z) \u2192 0.",
+      "falsifiable_by": "Joint RSD\u2013weak lensing\u2013CMB lensing constraints on \u00b5(k, z) detecting no suppression or an opposite trend (\u00b5 \u2265 1 with no k-dependence) across 0.01 < k < 1 h Mpc^-1."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Detection of a non-luminal tensor speed at low redshift (|c_T/c \u2212 1| > 10^-15) implying \u03b1T \u2260 0, inconsistent with the EFC effective tensor sector.",
+    "KC2: Tomographic reconstructions of \u03b1M(z) that are inconsistent at >3\u03c3 with a monotonic sigmoid-like evolution S(a) driven by the background flow constraint (e.g., multiple disjoint transitions or opposite overall sign).",
+    "KC3: Joint RSD and lensing constraints showing \u00b5(k, z) \u2265 1 with no significant scale dependence (or increasing with k) across 0.01 < k < 0.5 h Mpc^-1 at >3\u03c3, contradicting the predicted R(k, z)-induced suppression and \u00b5 \u2192 1 at high k.",
+    "KC4: High-density and Solar-System tests detecting |\u00b5 \u2212 1| > 10^-5 where R(k, z) \u2192 0 should recover GR, indicating failure of the EFC stiffness-screening behavior.",
+    "KC5: Numerical pipeline validation fails: the mapped BS \u03b1-functions cannot reproduce EFC linear observables {\u03b7(k, z), \u00b5(k, z), \u03a3(k, z)} within 1% over 0 < z < 2 and 0.01 < k < 1 h Mpc^-1 in the quasi-static regime."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "efc-relativistic-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Foundational EFC action and perturbation framework referenced as Ref. [1]."
+    }
+  ],
   "files": {
     "pdf": "EFC_Effective_Horndeski_Reduction.pdf",
     "readme": "README.md"
   },
-  "doi": "10.6084/m9.figshare.32011407",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32011407"
 }

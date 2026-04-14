@@ -1,22 +1,65 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-How-Does-Balance-Shape-Universal-Structures",
-  "title": "EFC — How Does Balance Shape Universal Structures?",
+  "title": "EFC \u2014 How Does Balance Shape Universal Structures?",
+  "description": "This core-principles paper in Energy-Flow Cosmology argues that universal structures emerge from a dynamic balance between ordering forces (gravity, directed energy flow) and dispersive processes (entropy and expansion). It highlights fractal-like organization and resonance-driven stability as signatures of such balance, illustrated by galaxies, supernovae, and turbulent star-forming clouds, and outlines observational and simulation steps to probe dynamic equilibrium in the cosmos.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098338",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "dynamic equilibrium",
+    "energy flow",
+    "entropy",
+    "structure formation",
+    "fractal geometry",
+    "resonance",
+    "galactic dynamics",
+    "supernovae",
+    "interstellar turbulence",
+    "cosmic expansion",
+    "stability"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Universal structures arise and persist through a dynamic balance between ordering forces (gravity and energy flow) and dispersive processes (entropy and expansion), with resonance enabling stable configurations.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "gravitational forces",
+      "energy flow",
+      "entropy",
+      "cosmic expansion",
+      "angular momentum",
+      "resonant interactions"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Demonstration that observed structure formation and long-term stability across relevant cosmic scales can be reproduced without any balancing interplay between ordering and dispersive processes (e.g., accurate simulations matching observed statistics using purely monotonic gravitational collapse with no countervailing dispersive or feedback terms).",
+    "KC2: Robust, bias-corrected analyses showing an absence of fractal-like or scale-free organization in cosmic structures across scales where the principle claims such patterns are common.",
+    "KC3: Empirical evidence that resonant interactions are neither necessary nor contributory to the stability of systems historically attributed to resonance (e.g., planetary mean-motion resonances, persistent galactic spiral patterns), across multiple well-observed cases.",
+    "KC4: High-fidelity simulations in regimes of strong imbalance (overwhelming entropy production or energy flow) that nonetheless reproduce the observed prevalence and stability of structures indistinguishably from real data.",
+    "KC5: Observational surveys failing to identify regions of dynamic equilibrium (balance between ordering and dispersive processes) in environments where the framework specifically expects them (e.g., star-forming molecular clouds with sustained turbulence-driven local order)."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-How-Does-Balance-Shape-Universal-Structures.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098338",
   "path": "docs/papers/efc/EFC-How-Does-Balance-Shape-Universal-Structures",
   "pdf": "EFC-How-Does-Balance-Shape-Universal-Structures.pdf",
   "md": "EFC-How-Does-Balance-Shape-Universal-Structures.md",
-  "keywords": [
-    "EFC",
-    "Balance",
-    "Universal Structures",
-    "Symmetry",
-    "Energy Flow",
-    "Equilibrium",
-    "Entropy Gradient",
-    "Structure Formation"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098338",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098338"
+  "type": "paper"
 }

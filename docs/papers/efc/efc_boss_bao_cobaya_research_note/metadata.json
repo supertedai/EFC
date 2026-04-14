@@ -2,7 +2,7 @@
   "title": "Covariance-Aware BAO Consistency Test of Energy-Flow Cosmology Using the BOSS DR12 Consensus Likelihood",
   "short_id": "efc-boss-bao-cobaya-research-note",
   "version": "1.0.0",
-  "date": "2026-02",
+  "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,40 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31314922",
-  "type": "Research Note",
-  "abstract": "Fixed-parameter consistency test of EFC modified background expansion against precision BAO data using the official BOSS DR12 consensus likelihood with full 6x6 covariance matrix.",
+  "abstract": "This research note tests the Energy-Flow Cosmology (EFC) modified background expansion against precision BAO data using the official BOSS DR12 consensus likelihood with the full 6\u00d76 covariance matrix. With DESI DR2-calibrated EFC parameters held fixed (no refitting), EFC attains a modest improvement over \u039bCDM (\u0394\u03c7\u00b2 \u2248 \u22122.36) and passes a stringent, reproducible covariance-aware BAO consistency test; results are cross-checked with cosmic chronometer H(z) data.",
   "keywords": [
-    "BAO",
+    "baryon acoustic oscillations",
     "BOSS DR12",
-    "Cobaya",
+    "consensus likelihood",
     "covariance matrix",
     "Energy-Flow Cosmology",
-    "model comparison"
+    "modified Friedmann equation",
+    "background expansion",
+    "cosmic chronometers",
+    "CosmoMC",
+    "Cobaya",
+    "model comparison",
+    "geometric probes"
   ],
-  "efc_context": {
-    "track": "Empirical Validation / BAO",
-    "regime_relevance": "Background geometry z=0.38-0.61",
-    "epistemic_layer": "Layer B (fixed-parameter consistency)"
-  },
-  "key_results": [
-    "BOSS BAO: Delta_chi2 = -2.36 (EFC preferred)",
-    "Cosmic Chronometers: Delta_chi2 = -0.63",
-    "Combined geometric: Delta_chi2 = -2.99",
-    "No parameter retuning (pure transfer)"
-  ],
-  "file_manifest": {
-    "pdf": "efc_boss_bao_cobaya_research_note.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "bao_cobaya.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/bao_cobaya_test.py"
-    ],
-    "data": "data/boss_bao_cobaya.json",
-    "demo": "examples/demo_bao_cobaya.py"
+  "files": {
+    "paper": "efc_boss_bao_cobaya_research_note.pdf",
+    "schema": "schema.json"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31314922",
