@@ -1,0 +1,79 @@
+{
+  "source": "symbiose_live",
+  "generated_at": "2026-04-14T07:17:37.963397Z",
+  "tests": {
+    "total": 104,
+    "passed": 30,
+    "partial": 8,
+    "failed": 10,
+    "planned": 28,
+    "active": 76,
+    "survived": 66,
+    "falsified": 10
+  },
+  "papers": {
+    "total": 141,
+    "with_doi": 138,
+    "sealed_predictions_total": 275
+  },
+  "grav": {
+    "kt1": "PASSED",
+    "kt2": "PASSED",
+    "kt3": "MARGINAL",
+    "integration_exploded": 2,
+    "latest_status": "NEEDS_REVIEW"
+  },
+  "alpha_signal": {
+    "current_value": -0.141,
+    "current_sigma": 0.677,
+    "current_uncertainty": 0.208,
+    "status": "STOPPED_DEGENERACY_PERSISTS",
+    "delta_aic": 1.595,
+    "loo_value": -1.0,
+    "loo_sigma": 2.2,
+    "note": "Current 0.7\u03c3 much weaker than LOO 2.2\u03c3"
+  },
+  "sealed_predictions": {
+    "freeze_1": {
+      "alpha": -0.689,
+      "hash_prefix": "7a850cfa",
+      "date": "2026-02-18",
+      "fs8_crossover_z": 2.042,
+      "DH_rd_z10": {
+        "efc": 16.527,
+        "lcdm": 17.466,
+        "sigma": 3.1
+      },
+      "DH_rd_z07": {
+        "efc": 19.797,
+        "lcdm": 20.719,
+        "sigma": 2.3
+      },
+      "fs8_z07": {
+        "efc": 0.43,
+        "lcdm": 0.449,
+        "sigma": 2.0
+      }
+    },
+    "freeze_2": {
+      "alpha": -0.702,
+      "hash_prefix": "dbccda15",
+      "date": "2026-02-21"
+    }
+  },
+  "learning_loops": {
+    "connected": 5,
+    "total": 7,
+    "missing": [
+      "gap_to_fill",
+      "inference_to_learning"
+    ]
+  },
+  "tcs": {
+    "compression": 1.0,
+    "mismatch": 0.5
+  },
+  "health_score": 62,
+  "escalated_cases": 3,
+  "validation_candidates_pending": 14
+}

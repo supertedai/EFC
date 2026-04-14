@@ -29,6 +29,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 PUBLIC = os.path.join(REPO, "docs", "public")
 LEDGER_DATA = os.path.join(REPO, "docs", "validation-ledger", "data")
+SYMBIOSE_SNAPSHOT = os.path.join(REPO, ".claude", "symbiose_snapshot.json")
 
 SKIP_TOP = {
     "README.md", "cover_letter-2.pdf", "efc_graph_edges.json",
@@ -111,6 +112,14 @@ def load_ledger_stats():
             data = json.load(f)
             return data.get("stats", data)
     return {}
+
+
+def load_symbiose_snapshot():
+    """Load Symbiose ground truth snapshot if available."""
+    if os.path.exists(SYMBIOSE_SNAPSHOT):
+        with open(SYMBIOSE_SNAPSHOT) as f:
+            return json.load(f)
+    return None
 
 
 def read_page(key):
@@ -239,12 +248,77 @@ def validate_consistency(repo, stats, result):
         result.ok(f"{repo['with_sealed']} papers have sealed predictions ({repo['sealed_total']} total)")
 
 
+def validate_symbiose(repo, stats, result):
+    """Cross-check against Symbiose snapshot (graph + Qdrant + GNN)."""
+    print("\n--- Symbiose Council ---")
+    snap = load_symbiose_snapshot()
+    if not snap:
+        result.warn("No Symbiose snapshot — run efc_symbiose_snapshot.py first")
+        return
+
+    source = snap.get("source", "unknown")
+    print(f"  Snapshot source: {source}")
+
+    # Compare test counts
+    sym_tests = snap.get("tests", {})
+    sym_total = sym_tests.get("total", 0)
+    ledger_total = stats.get("total_public", 0)
+    if sym_total != ledger_total and sym_total > 0:
+        result.warn(
+            f"Symbiose tests={sym_total} vs ledger total_public={ledger_total}")
+    elif sym_total > 0:
+        result.ok(f"Symbiose test count {sym_total} matches ledger")
+
+    # Compare falsified count
+    sym_falsified = sym_tests.get("falsified", 0)
+    ledger_falsified = stats.get("n_falsified", 0)
+    if sym_falsified != ledger_falsified and sym_falsified > 0:
+        result.warn(
+            f"Symbiose falsified={sym_falsified} vs ledger n_falsified={ledger_falsified}")
+
+    # Compare paper count
+    sym_papers = snap.get("papers", {}).get("total", 0)
+    if sym_papers > 0 and abs(sym_papers - repo["total"]) > 2:
+        result.error(
+            f"Symbiose papers={sym_papers} vs repo={repo['total']}")
+    elif sym_papers > 0:
+        result.ok(f"Symbiose paper count {sym_papers} matches repo")
+
+    # Sealed prediction hashes
+    sealed = snap.get("sealed_predictions", {})
+    for key, pred in sealed.items():
+        h = pred.get("hash_prefix", "")
+        if h:
+            result.ok(f"Sealed {key}: α={pred.get('alpha')}, hash={h}...")
+
+    # α-signal status
+    alpha = snap.get("alpha_signal", {})
+    if alpha.get("status") == "STOPPED_DEGENERACY_PERSISTS":
+        result.warn(
+            f"α-signal STOPPED: {alpha.get('current_value')} ± "
+            f"{alpha.get('current_uncertainty')} "
+            f"({alpha.get('current_sigma')}σ) — "
+            f"weaker than LOO {alpha.get('loo_sigma', '?')}σ")
+
+    # GRAV pipeline
+    grav = snap.get("grav", {})
+    if grav.get("kt3") == "MARGINAL":
+        result.warn("GRAV KT3 still MARGINAL — resolution path needed")
+
+    # Health score
+    health = snap.get("health_score")
+    if health and health < 50:
+        result.error(f"Symbiose health score {health}/100 — below threshold")
+    elif health:
+        result.ok(f"Symbiose health score {health}/100")
+
+
 def main():
     do_fix = "--fix" in sys.argv
     strict = "--strict" in sys.argv
 
     print("=" * 60)
-    print("EFC CROSS-VALIDATION GATE")
+    print("EFC CROSS-VALIDATION GATE (with Symbiose Council)")
     print("=" * 60)
 
     repo = count_repo_papers()
@@ -258,6 +332,7 @@ def main():
     validate_elevator_pitch(repo, stats, result)
     validate_ledger_page(repo, stats, result)
     validate_consistency(repo, stats, result)
+    validate_symbiose(repo, stats, result)
 
     print(f"\n{'=' * 60}")
     print(f"RESULT: {len(result.errors)} errors, {len(result.warnings)} warnings")
