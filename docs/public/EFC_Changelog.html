@@ -84,6 +84,32 @@
 <h2>2026</h2>
 
 <ul>
+  <li><strong>2026-04-14</strong> &mdash; Public pages updated: Changelog; Ledger data: changelog.json; Maintenance scripts: efc_maintain.py.</li>
+  <!-- v4.9 entry — DOI anchoring, cross-validation gate, α-signal transparency -->
+  <li><strong>2026-04-14 (v4.9)</strong> &mdash; <strong>Major data-integrity overhaul: DOI anchoring, cross-validation gate, &alpha;-signal transparency.</strong>
+    <br><br>
+    <em>Critical corrections to public pages:</em>
+    Elevator Pitch: &ldquo;204 publications&rdquo; corrected to <strong>141</strong> (actual repo count); &ldquo;103/103 survived&rdquo; corrected to <strong>79/88 survived, 9 falsified, 16 in pipeline</strong>; false claim &ldquo;survives every test&rdquo; removed. All numbers now sourced from ledger <code>stats.json</code> and verified by automated cross-validation gate.
+    <br><br>
+    <em>&alpha;-signal transparency panel added:</em>
+    Elevator Pitch now shows full signal picture &mdash; published LOO result (&alpha;&nbsp;=&nbsp;&minus;1.00&nbsp;&plusmn;&nbsp;0.46, 2.20&sigma;, <a href="https://doi.org/10.6084/m9.figshare.31332730">DOI&nbsp;31332730</a>), both sealed freeze values (&alpha;&nbsp;=&nbsp;&minus;0.689 SHA&nbsp;<code>7a850cfa</code>, &alpha;&nbsp;=&nbsp;&minus;0.702 SHA&nbsp;<code>dbccda15</code>), AND the weaker autonomous MCMC result (&alpha;&nbsp;=&nbsp;&minus;0.141&nbsp;&plusmn;&nbsp;0.208, 0.68&sigma;, degeneracy-limited). Interpretation text explains both are correct at different prior volumes.
+    <br><br>
+    <em>Inference modules DOI-anchored (v4.0):</em>
+    Four of six Symbiose inference modules were running on &Lambda;CDM stubs (<code>chi2=null</code>, <code>engine=lcdm_stub</code>). Replaced with actual published chi-squared values: <code>bao_boss_dr12</code>&nbsp;&rarr;&nbsp;&Delta;&chi;&sup2;=&minus;7.77 (<a href="https://doi.org/10.6084/m9.figshare.31954125">31954125</a>); <code>bao_desi_y1</code>&nbsp;&rarr;&nbsp;&Delta;&chi;&sup2;=&minus;22.01 (<a href="https://doi.org/10.6084/m9.figshare.31230703">31230703</a>); <code>fs8_extended</code>&nbsp;&rarr;&nbsp;2.20&sigma;&nbsp;LOO (<a href="https://doi.org/10.6084/m9.figshare.31332730">31332730</a>); <code>hz_chronometers</code>&nbsp;&rarr;&nbsp;&Delta;&chi;&sup2;=&minus;0.17. <code>chi2_summary</code> updated from <code>N/A, N/A, 0.00, N/A, N/A, 10.39</code> to <code>&minus;7.77, &minus;22.01, 0.00, &minus;4.91, &minus;0.17, 10.39</code>. Neo4j nodes updated in Symbiose.
+    <br><br>
+    <em>New automated infrastructure:</em>
+    (1)&nbsp;<code>efc_cross_validate.py</code> &mdash; pre-publish validation gate that blocks auto-commit if public pages contradict repo/ledger/Symbiose data (checks paper counts, test counts, survival claims, &alpha;-signal dual reporting, inference DOI anchoring);
+    (2)&nbsp;<code>efc_symbiose_snapshot.py</code> &mdash; captures Symbiose ground truth (Neo4j graph, Qdrant vectors, GNN) for cross-validation;
+    (3)&nbsp;<code>efc_ai_brain.py</code> refactored &mdash; 128/131 paper packages enriched to 10/10 standard via GPT-5, public page updates split into 6 separate API calls (was 1 monolithic prompt hitting <code>finish_reason=length</code>);
+    (4)&nbsp;Maintain pipeline expanded to 10 steps including Symbiose snapshot, dataset scanner, and cross-validation gate.
+    <br><br>
+    <em>Ledger data fixes:</em>
+    <code>planned_pipeline</code> corrected 15&rarr;16 (<code>total_public</code> 103&rarr;104). Validation Ledger HTML updated to match (104-test, 88 active).
+    <br><br>
+    <em>CI/CD fixes:</em>
+    <code>poppler-utils</code> added to <code>efc-sync.yml</code> (was missing &mdash; caused 0/131 enrichment in run&nbsp;#22); GPT-5 rate limiting (3s pause between calls); <code>git pull --rebase</code> before push retry (run&nbsp;#24 enriched 128/131 but push was rejected by concurrent commit).
+  </li>
+
   <li><strong>2026-04-13</strong> &mdash; Registered 10 papers to the public catalog (non-empirical; no Ledger rows added). Designated 1 CANONICAL synthesis: Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks (<a href="https://doi.org/10.6084/m9.figshare.31042678">31042678</a>). Also registered: AUTH Layer &mdash; Origin, Provenance, and Structural Signature of Energy-Flow Cosmology (<a href="https://doi.org/10.6084/m9.figshare.30656828">30656828</a>); CEM &mdash; Consciousness Ego Mirror (<a href="https://doi.org/10.6084/m9.figshare.30275947">30275947</a>); Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology (<a href="https://doi.org/10.6084/m9.figshare.31564129">31564129</a>); EFC &mdash; A Deep Dive into the Halo Concept (<a href="https://doi.org/10.6084/m9.figshare.28114370">28114370</a>); EFC &mdash; AI-Augmented Scientific Workflow Framework (<a href="https://doi.org/10.6084/m9.figshare.30636863">30636863</a>); EFC &mdash; Applications and Implications (<a href="https://doi.org/10.6084/m9.figshare.28098308">28098308</a>); EFC &mdash; CMB Thermodynamic Gradient (<a href="https://doi.org/10.6084/m9.figshare.28570088">28570088</a>); EFC &mdash; Can Energy Flow Be Observed in Galactic Clusters? (<a href="https://doi.org/10.6084/m9.figshare.28098350">28098350</a>); EFC &mdash; Can Entropy Drive Cosmic Evolution? (<a href="https://doi.org/10.6084/m9.figshare.28098353">28098353</a>).</li>
 
   <!-- v3.21 entry — Complete backlog processing: 85 papers + gap analysis + weekly scan -->

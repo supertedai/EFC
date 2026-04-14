@@ -38,6 +38,7 @@ SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
 DRIFT = os.path.join(HERE, "efc_drift_detector.py")
 SYMBIOSE = os.path.join(HERE, "efc_symbiose_snapshot.py")
+AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
 DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
 
@@ -74,7 +75,9 @@ def main() -> int:
     run(SYMBIOSE, "--from-ledger")
     # Step 7: Scan for new external datasets (Euclid, DESI, KiDS, Simons)
     run(DATASET_SCANNER)
-    # Step 8: CROSS-VALIDATION GATE — check public pages vs repo/ledger/Symbiose
+    # Step 8: Auto-changelog — detect and log all changes before commit
+    run(AUTO_CHANGELOG)
+    # Step 9: CROSS-VALIDATION GATE — check public pages vs repo/ledger/Symbiose
     # This is the "council" step that blocks publishing if data is inconsistent
     rc_xval = run(CROSS_VALIDATE)
     if rc_xval == 1:

@@ -1,15 +1,29 @@
 {
   "name": "Recent Changes",
-  "version": "v4.8",
+  "version": "v4.9",
   "generated_at": "2026-04-11T08:48:32Z",
   "period_days": 7,
   "changes": [
+    {
+      "date": "2026-04-14",
+      "version": "v4.9",
+      "type": "data_integrity_overhaul",
+      "summary": "DOI anchoring of inference modules, cross-validation gate, \u03b1-signal transparency, public page corrections Public pages updated: Changelog; Ledger data: changelog.json; Maintenance scripts: efc_maintain.py.",
+      "details": "Corrected false claims in Elevator Pitch (204\u2192141 papers, 103/103\u219279/88 survived). Replaced 4 LCDM-stub inference modules with DOI-published chi2 values. Added automated cross-validation gate that blocks publishing on data inconsistencies. Added \u03b1-signal transparency panel showing both LOO (2.2\u03c3) and MCMC (0.7\u03c3) results. Expanded maintain pipeline to 10 steps with Symbiose council integration.",
+      "stats_delta": {
+        "inference_modules_anchored": "+4 (from lcdm_stub to doi_anchored)",
+        "chi2_summary": "N/A\u2192-7.77, N/A\u2192-22.01, 0.00, N/A\u2192-4.91, N/A\u2192-0.17, 10.39",
+        "planned_pipeline": "15\u219216",
+        "total_public": "103\u2192104",
+        "packages_enriched": "128/141 to 10/10 standard"
+      }
+    },
     {
       "date": "2026-04-11",
       "version": "v4.8",
       "type": "physics_test_addition",
       "summary": "Kill-Test v6 Universality (SPARC 175) added",
-      "details": "Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies with identical scipy.differential_evolution pipeline (seed=42, AIC model comparison). Single-component EFC wins 60.2% on 171/175 fitted galaxies (42.1% EFC_decisive). Median ΔAIC = +6.21. Mann-Whitney FLOW vs LATENT p ≈ 0. Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias). DDO 154 anchor cross-check: ΔAIC = +125.2. Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/. DOI 10.6084/m9.figshare.31986762.",
+      "details": "Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies with identical scipy.differential_evolution pipeline (seed=42, AIC model comparison). Single-component EFC wins 60.2% on 171/175 fitted galaxies (42.1% EFC_decisive). Median \u0394AIC = +6.21. Mann-Whitney FLOW vs LATENT p \u2248 0. Spearman \u03c1(\u0394AIC, v_max) = 0.11 (no mass bias). DDO 154 anchor cross-check: \u0394AIC = +125.2. Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/. DOI 10.6084/m9.figshare.31986762.",
       "test_id": "conv_kill_test_v6_universality_sparc175_single_component",
       "related_paper": "efc-vs-lcdm-kill-test-v6",
       "stats_delta": {
@@ -29,7 +43,7 @@
       ]
     },
     {
-      "name": "Action Integral Gap — k* derivability test",
+      "name": "Action Integral Gap \u2014 k* derivability test",
       "status": "pending",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-04-07T08:04:46.088000000+00:00",
@@ -39,7 +53,7 @@
       ]
     },
     {
-      "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
+      "name": "KT3b: Environmental mass-scaling test \u03b2(\u03c1_env)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-07T07:57:37.851000000+00:00",
