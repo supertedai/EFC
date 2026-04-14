@@ -211,6 +211,41 @@ def validate_ledger_page(repo, stats, result):
             f"Ledger claims 'survives every test' but n_falsified={n_falsified}")
 
 
+def validate_all_pages_numbers(stats, result):
+    """Check public pages intro sections for stale numbers.
+
+    Only checks the FIRST 5000 chars of each page (intro/header section).
+    Historical changelog entries and ledger version history are excluded
+    because they record what was true at the time of writing.
+    """
+    print("\n--- All Pages Number Check ---")
+    total_public = stats.get("total_public", 0)
+    n_falsified = stats.get("n_falsified", 0)
+
+    # Only check intro sections (Elevator, White Paper, Roadmap, Gap)
+    # Skip Changelog and Ledger body (they contain historical entries)
+    for key in ["elevator", "whitepaper", "roadmap", "gap"]:
+        html = read_page(key)
+        if not html:
+            continue
+
+        # Only check first 5000 chars (intro section)
+        intro = html[:5000]
+        page_name = key.capitalize()
+
+        if "survives every" in intro.lower() and n_falsified > 0:
+            result.error(
+                f"{page_name}: claims 'survives every test' but n_falsified={n_falsified}")
+
+        if "204 publications" in intro or "204 papers" in intro:
+            result.error(f"{page_name}: still says '204 publications'")
+
+        # Check test count in intro (not in historical entries)
+        if re.search(r'\b103\b.*test', intro) and total_public != 103:
+            result.warn(
+                f"{page_name}: intro says '103 tests' but total_public={total_public}")
+
+
 def validate_inference_doi(result):
     """Check that inference modules are anchored to DOI data, not stubs."""
     print("\n--- Inference DOI Anchoring ---")
@@ -378,6 +413,7 @@ def main():
 
     validate_elevator_pitch(repo, stats, result)
     validate_ledger_page(repo, stats, result)
+    validate_all_pages_numbers(stats, result)
     validate_inference_doi(result)
     validate_consistency(repo, stats, result)
     validate_symbiose(repo, stats, result)
