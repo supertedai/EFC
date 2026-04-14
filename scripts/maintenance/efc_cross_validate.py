@@ -211,6 +211,42 @@ def validate_ledger_page(repo, stats, result):
             f"Ledger claims 'survives every test' but n_falsified={n_falsified}")
 
 
+def validate_inference_doi(result):
+    """Check that inference modules are anchored to DOI data, not stubs."""
+    print("\n--- Inference DOI Anchoring ---")
+    inf_path = os.path.join(LEDGER_DATA, "inference.json")
+    if not os.path.exists(inf_path):
+        result.warn("inference.json missing")
+        return
+    with open(inf_path) as f:
+        inf = json.load(f)
+
+    stubs = 0
+    anchored = 0
+    for m in inf.get("modules", []):
+        name = m.get("name", "?")
+        engine = m.get("engine_status", "unknown")
+        doi_sources = m.get("doi_sources", [])
+        if engine == "lcdm_stub":
+            stubs += 1
+            result.error(f"{name}: still LCDM stub — no DOI data")
+        elif engine == "doi_anchored" and doi_sources:
+            anchored += 1
+            dois = ", ".join(s.get("doi", "?").split("/")[-1] for s in doi_sources[:2])
+            result.ok(f"{name}: DOI-anchored ({dois})")
+        elif engine in ("active", "self_consistent"):
+            chi2 = m.get("chi2_reduced")
+            if chi2 is not None and chi2 > 5.0:
+                result.warn(f"{name}: active but poor fit (χ²={chi2:.1f})")
+            else:
+                result.ok(f"{name}: {engine}")
+
+    if stubs > 0:
+        result.error(f"{stubs} inference modules still on LCDM stubs")
+    else:
+        result.ok(f"All {anchored} inference modules DOI-anchored")
+
+
 def validate_consistency(repo, stats, result):
     """Cross-check repo paper count vs README vs stats."""
     print("\n--- Cross-consistency ---")
@@ -342,6 +378,7 @@ def main():
 
     validate_elevator_pitch(repo, stats, result)
     validate_ledger_page(repo, stats, result)
+    validate_inference_doi(result)
     validate_consistency(repo, stats, result)
     validate_symbiose(repo, stats, result)
 
