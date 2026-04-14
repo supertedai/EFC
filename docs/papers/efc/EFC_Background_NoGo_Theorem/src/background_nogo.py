@@ -5,7 +5,7 @@ Implements the sign lemma and growth enhancement computation demonstrating
 that additive background gate modifications to the Friedmann equation cannot
 suppress σ₈.
 
-Reference: Magnusson (2026), doi:10.6084/m9.figshare.31333414
+Reference: Magnusson (2026), doi:10.6084/m9.figshare.31985163
 """
 
 import math

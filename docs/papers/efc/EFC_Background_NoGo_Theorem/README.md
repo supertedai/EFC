@@ -5,6 +5,7 @@
 - **DOI:** [10.6084/m9.figshare.31333414](https://doi.org/10.6084/m9.figshare.31333414) (EFCLASS Sign Structure)
 - **Version:** 1.0
 - **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+**DOI:** [10.6084/m9.figshare.31985163](https://doi.org/10.6084/m9.figshare.31985163)
 - **Affiliation:** Symbiose Research, Sandnes, Norway
 - **Date:** 2026-04-10
 - **License:** CC-BY-4.0
