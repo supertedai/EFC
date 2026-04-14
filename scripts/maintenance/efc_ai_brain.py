@@ -782,30 +782,150 @@ If no update: {{"html": null}}"""
 
     _time.sleep(3)
 
-    # --- 6. GAP ANALYSIS ---
+    # --- 6. GAP ANALYSIS + ROADMAP GAP CLOSURE ---
+    # This is the CONTEXTUAL step — checks if any new paper closes a known gap.
+    # Needs full description (not truncated) and the actual gap table.
     gap_text = read_page("gap")
+    roadmap_text = read_page("roadmap")
+
     if gap_text and paper_descs:
-        prompt = f"""Review these new EFC papers against the Gap Analysis:
-{papers_json[:3000]}
+        # Build richer paper context for gap matching
+        rich_descs = []
+        for p in paper_list[:20]:
+            dirpath = os.path.join(PAPERS, p["directory"])
+            idx_path = os.path.join(dirpath, "index.json")
+            if os.path.exists(idx_path):
+                with open(idx_path) as f:
+                    idx = json.load(f)
+                rich_descs.append({
+                    "directory": p["directory"],
+                    "title": idx.get("title", ""),
+                    "doi": idx.get("doi", ""),
+                    "description": idx.get("description", "")[:500],
+                    "paper_type": idx.get("paper_type", idx.get("type", "")),
+                    "key_results": {
+                        "main_finding": idx.get("key_results", {}).get("main_finding", "") if isinstance(idx.get("key_results"), dict) else "",
+                    },
+                    "kill_criteria": idx.get("kill_criteria", [])[:3],
+                    "keywords": idx.get("keywords", [])[:8],
+                })
 
-Current Gap Analysis HTML (first 3000 chars):
-{gap_text[:3000]}
+        # Extract gap table section specifically
+        gap_table = ""
+        for marker in ["<thead><tr><th>Gap</th>", "Theory Gaps", "Gap Analysis"]:
+            pos = gap_text.find(marker)
+            if pos > 0:
+                gap_table = gap_text[pos:pos + 3000]
+                break
+        if not gap_table:
+            gap_table = gap_text[3000:6000]  # fallback to middle section
 
-If any paper closes a known gap, respond with:
-{{"old_text": "gap text to find", "new_text": "updated text marking gap as closed"}}
+        # Also extract roadmap gap table
+        roadmap_gaps = ""
+        if roadmap_text:
+            for marker in ["<thead><tr><th>Gap</th>", "Theory Gaps"]:
+                pos = roadmap_text.find(marker)
+                if pos > 0:
+                    roadmap_gaps = roadmap_text[pos:pos + 2000]
+                    break
 
-If no gaps closed: {{"old_text": null}}"""
+        prompt = f"""You are checking if any new EFC paper CLOSES a known gap in the Gap Analysis or Roadmap.
 
-        result = call_gpt5(prompt, max_tokens=1000)
+NEW PAPERS (with full descriptions and keywords):
+{json.dumps(rich_descs, indent=2)[:6000]}
+
+CURRENT GAP TABLE (from Gap Analysis):
+{gap_table[:3000]}
+
+CURRENT ROADMAP GAPS:
+{roadmap_gaps[:2000]}
+
+IMPORTANT: A paper closes a gap if its description, keywords, or key_results directly address the gap's topic.
+For example: a paper about "Bellini-Sawicki alpha functions" closes the gap "Bellini-Sawicki α-function mapping: Not started".
+
+For EACH gap that is closed by a new paper, respond with a JSON array of updates:
+[
+  {{
+    "page": "gap" or "roadmap",
+    "old_text": "exact text to find in the HTML (the gap row or cell text)",
+    "new_text": "replacement with CLOSED status and DOI link",
+    "reason": "why this paper closes this gap"
+  }}
+]
+
+If no gaps are closed: respond with []
+Be precise with old_text — it must match exactly."""
+
+        result = call_gpt5(prompt, max_tokens=2000)
         if result:
             try:
-                r = json.loads(result)
-                if r.get("old_text") and r["old_text"] in gap_text:
-                    gap_text = gap_text.replace(r["old_text"], r["new_text"])
-                    write_page("gap", gap_text)
-                    print("    Updated Gap Analysis")
+                updates = json.loads(result)
+                if isinstance(updates, list):
+                    for upd in updates:
+                        page = upd.get("page", "gap")
+                        old = upd.get("old_text", "")
+                        new = upd.get("new_text", "")
+                        reason = upd.get("reason", "")
+                        if old and new:
+                            text = gap_text if page == "gap" else (roadmap_text or "")
+                            if old in text:
+                                text = text.replace(old, new)
+                                if page == "gap":
+                                    gap_text = text
+                                    write_page("gap", gap_text)
+                                else:
+                                    roadmap_text = text
+                                    write_page("roadmap", roadmap_text)
+                                print(f"    Closed gap ({page}): {reason[:60]}")
             except (json.JSONDecodeError, KeyError):
                 pass
+
+
+# ═══════════════════════════════════════════════════════════
+# Auto-register DOIs in evidence register
+# ═══════════════════════════════════════════════════════════
+
+def update_evidence_register(paper_list):
+    """Add new DOIs to the evidence register if not already present."""
+    er_path = os.path.join(REPO, "docs", "validation-ledger", "data", "evidence-register.json")
+    if not os.path.exists(er_path):
+        return
+
+    with open(er_path) as f:
+        er = json.load(f)
+
+    empirical = er.get("categories", {}).get("empirical", [])
+    existing_dois = {e.get("doi") for e in empirical}
+
+    added = 0
+    for p in paper_list:
+        dirpath = os.path.join(PAPERS, p["directory"])
+        idx_path = os.path.join(dirpath, "index.json")
+        if not os.path.exists(idx_path):
+            continue
+        with open(idx_path) as f:
+            idx = json.load(f)
+        doi = idx.get("doi", "")
+        if not doi:
+            continue
+        # Extract just the figshare ID
+        doi_id = doi.split("/")[-1] if "/" in doi else doi
+        if doi_id not in existing_dois:
+            paper_type = idx.get("paper_type", idx.get("type", "unknown"))
+            cat = "empirical" if paper_type in ("empirical_test", "sealed_prediction") else "structural"
+            empirical.append({
+                "doi": doi_id,
+                "name": idx.get("title", p["directory"])[:80],
+                "category": cat,
+            })
+            existing_dois.add(doi_id)
+            added += 1
+
+    if added > 0:
+        er["categories"]["empirical"] = empirical
+        with open(er_path, "w") as f:
+            json.dump(er, f, indent=2)
+        print(f"    Added {added} DOI(s) to evidence register")
 
 
 # ═══════════════════════════════════════════════════════════
@@ -892,11 +1012,17 @@ def main():
         print(f"\n>>> Step 2: Registering {len(page_papers)} paper(s) in public pages <<<\n")
         if not dry_run:
             update_all_pages(page_papers)
+            update_evidence_register(page_papers)
         else:
             for p in page_papers:
                 print(f"  [DRY-RUN] Would register: {p['directory']}")
     else:
         print("\n>>> Step 2: All papers registered in public pages <<<")
+
+    # Step 3: Register DOIs from enriched papers (even if already in public pages)
+    all_papers = load_unprocessed_for_pages() or []
+    if not dry_run and needs_enrichment:
+        update_evidence_register(needs_enrichment)
 
     print(f"\n{'=' * 60}")
     print("EFC AI BRAIN — done")
