@@ -1,99 +1,26 @@
 # Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry
 
-**Falsification of Local Couplings and Predictive Tests of Non-Local Formulations**
+## AI-Friendly Package
 
-**Author:** Morten Magnusson  
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)  
-**DOI:** [10.6084/m9.figshare.31173850](https://doi.org/10.6084/m9.figshare.31173850)  
-**Type:** Reproducible Technical Constraint Study  
-**Version:** 1.0.0  
-**Date:** 2026-01-28  
-**License:** CC-BY 4.0  
+- **DOI:** [10.6084/m9.figshare.31173850](https://doi.org/10.6084/m9.figshare.31173850)
+- **Version:** 1.0.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-28
+- **License:** CC-BY-4.0
 
 ---
 
-## Summary
+## Overview
 
-This dataset provides a falsifiable test framework for entropy-gradient gravity theories (specifically Energy-Flow Cosmology, EFC) using galaxy cluster merger geometry. The work establishes:
+Reproducible constraint study testing whether Energy-Flow Cosmology (EFC) entropy-gradient formulations can reproduce Bullet Cluster lensing geometry without particle dark matter. The paper falsifies purely local gradient couplings (0/42 pass) and shows that a non-local, component-sensitive response with L0≈200 kpc and strong collisionless weighting (w≈20) can conditionally match the observed mass–gas separation, yielding falsifiable a priori predictions for MACS J0025 and Abell 520.
 
-1. **A hard constraint (BC-001):** Local entropy-gradient couplings are ruled out at cluster-merger scales
-2. **Structural requirements (BC-002):** Any viable EFC-type theory must have non-local response and collisionless-component dominance  
-3. **A predictive model (BC-003):** A minimal w(M,t) formulation with one global parameter
-4. **Falsifiable predictions (BC-004):** Predicted parameters for MACS J0025 and Abell 520
+## Key Result
 
-## What This Is
+Local gradient coupling is falsified (0/42 pass); a non-local, component-sensitive formulation conditionally reproduces Bullet Cluster geometry with best parameters α=1.5, L0≈200 kpc, w≈20.
 
-- A **structural constraint study** establishing necessary conditions for entropy-based gravity
-- A **reproducible pipeline** for testing gravitational theories against cluster merger geometry
-- **Falsifiable predictions** ready for validation against real lensing data
+## Sealed Predictions
 
-## What This Is NOT
-
-- An empirical validation against observed κ-maps (we use synthetic reconstructions)
-- A complete alternative to dark matter
-- A proof that EFC explains cluster dynamics
-
-## Contents
-
-| File | Description |
-|------|-------------|
-| `EFC_Bullet_Cluster_Constraint_Note.pdf` | Main technical document |
-| `EFC_Bullet_Cluster_Constraint_Note.tex` | LaTeX source |
-| `code/` | Complete Python pipeline (17 scripts) |
-| `figures/` | All generated visualizations |
-| `data/` | Synthetic test data documentation |
-
-## Key Results
-
-### Falsified (BC-001)
-Local gradient coupling: G_eff ∝ |∇ln ρ_b|  
-Result: 0/42 parameter combinations pass geometric criteria
-
-### Required Structure (BC-002)
-- Non-local scale: L₀ ~ 200 kpc (~ 0.8 × R_core)
-- Component weighting: w ~ 20 (collisionless >> collisional)
-
-### Predictions (BC-003, BC-004)
-Using locked η = 66.2:
-
-| Cluster | w_pred | L₀ (kpc) | Test Status |
-|---------|--------|----------|-------------|
-| Bullet | 20.0 | 200 | calibration |
-| MACS J0025 | 23.9 | 120 | PASS (synthetic) |
-| Abell 520 | 28.2 | 160 | PASS geometry (synthetic) |
-
-## Reproducibility
-
-```bash
-# Install dependencies
-pip install numpy scipy matplotlib astropy
-
-# Run full test suite
-cd code/
-python run_all_tests.py
-```
-
-## Data Limitations
-
-All κ-maps are **synthetic reconstructions** from published parameters (Brownstein & Moffat 2007, Bradač et al. 2006). Real FITS lensing data validation is pending.
-
-## Citation
-
-```bibtex
-@misc{magnusson2026efc,
-  author = {Magnusson, Morten},
-  title = {Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry},
-  year = {2026},
-  publisher = {Figshare},
-  doi = {10.6084/m9.figshare.31173850},
-  url = {https://doi.org/10.6084/m9.figshare.31173850}
-}
-```
-
-## Contact
-
-Morten Magnusson — ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-
----
-
-*This work represents methodology development, not observational confirmation. The value lies in establishing what any entropy-based gravity theory must satisfy to explain cluster mergers.*
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Using locked parameters (η=66.2, α=1.5, β=0.3, c=0.8 so L0=0.8 Rcore, σv=500 km/s), the model will reproduce κ-peak geometry in MACS J0025 with w≈23.9 and L0≈120 kpc: two peaks, each within 50 kpc of the galaxy centroids and offset >100 kpc from gas; peak ratio between 0.9 and 1.2. | Reconstruction from real shear catalogs and X-ray maps; fail if any criterion is violated. |
+| P2 | With the same locked parameters, the model will reproduce κ-peak geometry in Abell 520 with w≈28.2 and L0≈160 kpc under the same geometric criteria. | Joint lensing (shear) and X-ray analysis on real data; fail if peak count, offsets, proximity, or peak ratio criteria are not met without parameter retuning. |

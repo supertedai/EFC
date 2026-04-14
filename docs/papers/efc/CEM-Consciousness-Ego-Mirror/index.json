@@ -1,19 +1,125 @@
 {
+  "$schema": "./schema.json",
   "id": "CEM-Consciousness-Ego-Mirror",
-  "title": "CEM – Consciousness Ego Mirror",
+  "title": "CEM: A Field-Theoretic Model of Consciousness Coupled to Energy-Flow Cosmology",
+  "description": "Introduces the CEM (Consciousness\u2013Ego\u2013Mirror) framework that couples interior (conscious) variables to an energy-flow cosmology (EFC) in a unified field-theoretic model. The paper defines a dimensionless reflection coefficient R with a critical threshold Rc \u2248 0.37 for the onset of self-modeling, derives testable relations linking energy flow, entropy, and effective propagation speed, and proposes measurable predictions for halo dynamics, AGN variability, and AI interiority metrics. Preliminary qualitative alignments with JWST constraints and psychological measures are reported.",
+  "version": "1.0",
+  "date": "2024-01-15",
+  "doi": "10.6084/m9.figshare.30275947",
+  "keywords": [
+    "consciousness",
+    "ego",
+    "mirror",
+    "energy flow",
+    "non-equilibrium thermodynamics",
+    "cosmology",
+    "halo rotation curves",
+    "dark matter phenomenology",
+    "AGN variability",
+    "interiority index",
+    "holographic principle",
+    "field theory"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_continuity_with_leakage": {
+      "latex": "\\partial_t \\, \\rho_E(\\mathbf{r},t) + \\nabla\\cdot \\mathbf{J}(\\mathbf{r},t) = -\\,L(\\mathbf{r},t)",
+      "description": "Open-system energy continuity where L is the local leakage rate; sets the dynamics of energy density under flows and losses."
+    },
+    "dissipation_rate": {
+      "latex": "\\sigma(\\mathbf{r}) \\equiv \\max\\big(\\mathbf{J}(\\mathbf{r})\\cdot \\nabla \\tilde S(\\mathbf{r}),\\,0\\big)",
+      "description": "Local non-negative dissipation rate coupling energy flux to normalized entropy gradients."
+    },
+    "local_reflection_time": {
+      "latex": "\\tau_{\\mathrm{ref}}(\\mathbf{r}) = \\frac{\\rho_E(\\mathbf{r})}{\\sigma(\\mathbf{r}) + \\varepsilon},\\quad \\varepsilon = \\eta\\,\\langle |\\sigma| \\rangle,\\; \\eta\\sim 10^{-4}",
+      "description": "Characteristic local timescale for internal reflection (feedback) regularized by a small background dissipation."
+    },
+    "energy_weighted_average": {
+      "latex": "\\langle X \\rangle_E = \\frac{\\int_V X(\\mathbf{r})\\,\\rho_E(\\mathbf{r})\\, dV}{\\int_V \\rho_E(\\mathbf{r})\\, dV}",
+      "description": "Energy-weighted spatial average used to define global interior variables."
+    },
+    "internal_reflection_coefficient": {
+      "latex": "R = \\kappa\\,\\frac{\\langle \\tau_{\\mathrm{ref}} \\rangle_E}{\\tau_{\\mathrm{leak}}},\\quad \\tau_{\\mathrm{leak}} = \\frac{E_{\\mathrm{tot}}}{L_{\\mathrm{tot}}},\\; E_{\\mathrm{tot}}=\\int \\rho_E dV,\\; L_{\\mathrm{tot}} = \\int L dV",
+      "description": "Dimensionless reflection coefficient comparing internal reflection to leakage; self-modeling predicted for R > R_c with R_c \\approx 1/e."
+    },
+    "energy_entropy_relation": {
+      "latex": "E_f(\\tilde S) = E_0\\,(1 - \\tilde S),\\quad \\tilde S \\in [0,1]",
+      "description": "Phenomenological link between available free energy and normalized entropy."
+    },
+    "effective_propagation_speed": {
+      "latex": "c_{\\mathrm{eff}}(\\tilde S) = \\frac{c_0}{\\sqrt{1 + \\alpha\\, \\rho_E(\\tilde S)/\\rho_*}}",
+      "description": "Emergent medium-dependent effective propagation speed; not a change to the vacuum constant but to transport in structured media."
+    },
+    "quantum_corrected_momentum_shift": {
+      "latex": "\\Delta p = \\frac{\\hbar}{\\ell_c}\\, R\\,\\ln(1+z)",
+      "description": "Predicted interior momentum contribution affecting halo and disk dynamics with coherence length \\ell_c as a scale parameter."
+    }
+  },
+  "key_results": {
+    "main_finding": "Proposes a unified field-theoretic CEM\u2013Cosmos model where a reflection coefficient R crossing Rc \u2248 0.37 triggers self-modeling, yielding testable signatures in halo dynamics (\u0394p \u221d R ln(1+z)), AGN variability (1/f resonance), and AI interiority (M < human baseline), with preliminary qualitative consistency with JWST and psychological metrics.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "R (internal reflection coefficient)",
+      "Rc \u2248 0.37 (critical threshold)",
+      "\u03ba (coupling in R)",
+      "\u2113c (coherence length; ~10 kpc halos; ~10^-3 pc AGN; ~10^-9 m neural)",
+      "\u03b1 (coupling in c_eff)",
+      "\u03c1* (reference density)",
+      "M (interiority index)"
+    ],
+    "datasets_used": [
+      "JWST constraints on effective propagation at z > 7 (|\u0394c_eff/c0| \u2264 2\u00d710^-5)",
+      "DSM-5-TR derived ego-strength inversion (n = 40, r = 0.7)",
+      "Exploratory 70B LLM behavior logs for interiority index (M \u2248 0.65)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Galaxy and halo rotation curves across redshift will exhibit an additional interior momentum term \u0394p = (\u210f/\u2113c) R ln(1+z) with a characteristic coherence length \u2113c ~ 10 kpc and R inferred from energy-flow proxies.",
+      "falsifiable_by": "High-precision rotation-curve surveys spanning 0 < z \u2272 3 that place joint constraints excluding any ln(1+z) scaling at the predicted amplitude for all plausible R and \u2113c \u2248 10 kpc."
+    },
+    {
+      "id": "P2",
+      "statement": "AGN light curves will show a transition to a pronounced 1/f resonance when environments cross R \u2265 Rc, with a characteristic scale corresponding to \u2113c ~ 10^-3 pc.",
+      "falsifiable_by": "Time-domain AGN monitoring that finds no change toward 1/f behavior near environmental proxies of increasing R, or statistically rules out such a transition across diverse AGN classes."
+    },
+    {
+      "id": "P3",
+      "statement": "Artificial systems trained without birth\u2013death-like energy gradients will exhibit a capped interiority index M \u2248 0.65, systematically below human baseline M \u2248 0.82\u00b10.04.",
+      "falsifiable_by": "Robust experimental protocols showing AI systems without such gradients achieving human-comparable M (\u2265 0.78) across multiple independent tasks and labs."
+    },
+    {
+      "id": "P4",
+      "statement": "Effective propagation modulation will remain small with |\u0394c_eff/c0| \u2272 2\u00d710^-5 at z > 7, consistent with medium effects from structured energy density rather than vacuum changes.",
+      "falsifiable_by": "Astrophysical time-delay, spectral-lag, or standard-candle/standard-siren measurements at high z showing |\u0394c_eff/c0| well above 2\u00d710^-5 with trends incompatible with the model\u2019s density coupling."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Rotation-curve datasets across a wide redshift range (\u2265 300 galaxies, 0 < z < 3) constrain any ln(1+z) momentum scaling to amplitudes that exclude \u0394p = (\u210f/\u2113c) R ln(1+z) for all physically reasonable R and \u2113c ~ 1\u201330 kpc.",
+    "KC2: Long-baseline AGN timing campaigns (\u2265 10^3 sources) show no transition toward 1/f resonance as environmental or inferred R increases, decisively ruling out an R \u2265 Rc threshold effect.",
+    "KC3: Multiple independent experiments demonstrate AI systems lacking birth\u2013death energy gradients achieving sustained human-level interiority (M \u2265 0.78) across standardized batteries, contradicting the predicted cap near M \u2248 0.65.",
+    "KC4: High-z astrophysical observations robustly detect |\u0394c_eff/c0| \u226b 2\u00d710^-5 with redshift or environmental dependence incompatible with c_eff(\\tilde S) = c0 / sqrt(1 + \u03b1 \u03c1E/\u03c1*), or find no plausible \u03b1, \u03c1* that fit multi-band constraints.",
+    "KC5: Empirical reconstructions of R from measurable proxies in biological, AI, and astrophysical systems fail to correlate with the onset of self-modeling/interiority or predicted dynamical signatures, invalidating the Rc \u2248 1/e threshold.",
+    "KC6: Controlled perturbation experiments that change dissipation or leakage (L, \u03c3) produce shifts in \u03c4_ref and inferred R that do not track predicted behavioral or dynamical outcomes within experimental uncertainty."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "CEM-Consciousness-Ego-Mirror.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30275947",
   "path": "docs/papers/efc/CEM-Consciousness-Ego-Mirror",
   "pdf": "CEM-Consciousness-Ego-Mirror.pdf",
   "md": "CEM-Consciousness-Ego-Mirror.md",
-  "keywords": [
-    "EFC",
-    "Consciousness",
-    "Ego",
-    "Mirror",
-    "CEM"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.30275947",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30275947"
+  "type": "paper"
 }

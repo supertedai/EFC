@@ -1,6 +1,129 @@
 {
-  "paper_id": "efc_phenomenological_constraints_boss_dr12",
+  "$schema": "./schema.json",
+  "id": "phenomenological-constraints-on-entropy-flow-modifications-to-expansion-and-growth-from-boss-dr12",
   "title": "Phenomenological constraints on entropy-flow modifications to expansion and growth from BOSS DR12",
+  "description": "The paper introduces a single-parameter phenomenological extension to \u039bCDM motivated by Energy-Flow Cosmology (EFC), where an entropy-gradient coupling \u03b1_{L2} jointly modifies background distances, H(z), and linear growth f\u03c38(z). Using the BOSS DR12 consensus BAO+RSD measurements with the full 9\u00d79 covariance, it constrains \u03b1_{L2} and finds a mild (1.7\u03c3) preference for \u03b1_{L2}>0, alongside a characteristic anti-correlation between expansion and growth. The work highlights a sharp, falsifiable prediction \u03b7\u2261\u03a6/\u03a8=1 for linear scales and frames BAO\u2013RSD sign differences as a recasting of the S8 tension in EFC parameter space.",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31243828",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "\u039bCDM extension",
+    "BOSS DR12",
+    "BAO",
+    "RSD",
+    "growth rate",
+    "f\u03c38",
+    "S8 tension",
+    "comoving distance",
+    "Hubble parameter",
+    "gravitational slip",
+    "phenomenological constraints"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "FLRW_E_z": {
+      "latex": "E(z) \\equiv \\frac{H(z)}{H_0} = \\sqrt{\\Omega_m (1+z)^3 + (1-\\Omega_m)}",
+      "description": "\u039bCDM dimensionless Hubble rate for a spatially flat background."
+    },
+    "Omega_m_of_z": {
+      "latex": "\\Omega_m(z) = \\frac{\\Omega_m (1+z)^3}{E^2(z)}",
+      "description": "Redshift-dependent matter fraction used in the coupling functions."
+    },
+    "DM_modification": {
+      "latex": "D_M^{\\mathrm{EFC}}(z) = D_M^{\\Lambda\\mathrm{CDM}}(z)\\,\\big[1 + \\alpha_{L2}\\, g_D(z)\\big]",
+      "description": "Phenomenological modification of comoving distance induced by the entropy-flow coupling."
+    },
+    "H_modification": {
+      "latex": "H^{\\mathrm{EFC}}(z) = H^{\\Lambda\\mathrm{CDM}}(z)\\,\\big[1 + \\alpha_{L2}\\, g_H(z)\\big]",
+      "description": "Phenomenological modification of the Hubble parameter with the same single coupling \u03b1_{L2}."
+    },
+    "growth_modification": {
+      "latex": "f\\sigma_8^{\\mathrm{EFC}}(z) = f\\sigma_8^{\\Lambda\\mathrm{CDM}}(z)\\,\\big[1 + \\alpha_{L2}\\, g_{\\mathrm{growth}}(z)\\big]",
+      "description": "Linked modification to linear growth; anti-correlated in sign with the distance modification for z>0."
+    },
+    "gD": {
+      "latex": "g_D(z) = \\frac{1-\\Omega_m(z)}{1+z}\\,\\ln(1+z)",
+      "description": "Distance-coupling function that vanishes at z=0 and at high z, peaking near the DE-dominated era."
+    },
+    "gH": {
+      "latex": "g_H(z) = -\\frac{1-\\Omega_m(z)}{1+z}\\,\\big[1 - \\ln(1+z)\\big] \\left( 1 + 3\\,\\Omega_m(z) - \\frac{3\\,\\Omega_m (1+z)^3}{E^2(z)} \\right)",
+      "description": "Hubble-rate coupling chosen for approximate consistency with the DM\u2013H integral relation."
+    },
+    "g_growth": {
+      "latex": "g_{\\mathrm{growth}}(z) = -\\frac{\\big[1-\\Omega_m(z)\\big]^{3/2}\\,\\ln(1+z)}{(1+z)^{1/2}}",
+      "description": "Growth-rate coupling; negative for z>0, implying suppression of growth when distances increase."
+    },
+    "gravitational_slip": {
+      "latex": "\\eta(z,k) \\equiv \\frac{\\Phi}{\\Psi} = 1",
+      "description": "EFC prediction of no gravitational slip on linear scales, contrasting with many modified-gravity models."
+    }
+  },
+  "key_results": {
+    "main_finding": "BOSS DR12 yields a mild preference for \u03b1_{L2}>0 with \u03b1_{L2}=0.35\u00b10.16 and \u0394\u03c7\u00b2=3.01 (1.7\u03c3), indicating anti-correlated changes to expansion and growth consistent with the EFC phenomenology.",
+    "delta_chi2": 3.01,
+    "significance_sigma": 1.7,
+    "parameters_tested": [
+      "H0",
+      "Omega_m",
+      "sigma8",
+      "alpha_L2"
+    ],
+    "datasets_used": [
+      "BOSS DR12 consensus BAO+RSD (Alam et al. 2017), z = 0.38, 0.51, 0.61, full 9\u00d79 covariance"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "No gravitational slip on linear scales: \u03b7(z,k) = \u03a6/\u03a8 = 1 for 0.2 \u2272 z \u2272 1 and k \u2272 0.1 h/Mpc.",
+      "falsifiable_by": "Joint weak-lensing (\u03a6+\u03a8) and RSD/galaxy-clustering (\u03a8) analyses from Euclid and Rubin/LSST; a \u22653\u03c3 detection of \u03b7\u22601 would falsify this prediction."
+    },
+    {
+      "id": "P2",
+      "statement": "Built-in anti-correlation between distance and growth modifications: g_D(z) > 0 while g_growth(z) < 0 for z>0.",
+      "falsifiable_by": "Stage IV BAO+RSD tomography; a robust (>3\u03c3) requirement for same-sign distance and growth deviations from \u039bCDM across multiple redshift bins would rule out the model\u2019s coupling structure."
+    },
+    {
+      "id": "P3",
+      "statement": "Redshift dependence peaks in the DE-dominated era (z\u22480.5\u20130.7), with couplings vanishing at z=0 and at high z.",
+      "falsifiable_by": "Tomographic BAO+RSD and lensing measurements; significant deviations from the predicted redshift profile (e.g., peak at z\u226a0.3 or no decay at high z) at >3\u03c3 would contradict the ansatz."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A \u22653\u03c3 detection of gravitational slip \u03b7\u22601 on linear scales (k<0.1 h/Mpc) over 0.2<z<1 from joint WL+RSD would falsify the EFC prediction \u03b7=1.",
+    "KC2: Stage IV joint BAO+RSD analyses that robustly (>3\u03c3) require positively correlated deviations in distances and growth (i.e., enhanced f\u03c38 when D_M is increased) across multiple redshift bins, violating the model\u2019s predicted anti-correlation (g_D>0, g_growth<0 for z>0).",
+    "KC3: High-precision tomographic constraints yielding |\u03b1_{L2}| < 0.02 (95% CL) from combined distances and growth over 0<z<1 would rule out phenomenologically relevant entropy-flow effects at the L2 scale.",
+    "KC4: A consistent (>3\u03c3) preference for \u03b1_{L2}<0 with |\u03b1_{L2}|>0.1 together with no observed suppression of growth relative to \u039bCDM across 0.3<z<0.8 would contradict the EFC-motivated interpretation aimed at alleviating the S8 discrepancy."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "documentation": [
+      "README.md",
+      "CITATION.cff",
+      "LICENSE"
+    ],
+    "source": [
+      "src/efc_phenomenology.py",
+      "src/__init__.py"
+    ],
+    "data": [
+      "data/boss_dr12_consensus.json",
+      "data/fit_results.json"
+    ],
+    "examples": [
+      "examples/phenomenology_fit.py"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31243828",
+  "paper_id": "efc_phenomenological_constraints_boss_dr12",
   "authors": [
     {
       "name": "Morten Magnusson",
@@ -8,22 +131,10 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "date": "2026-02",
-  "doi": "10.6084/m9.figshare.31243828",
   "repository": "https://github.com/supertedai/EFC",
-  "abstract": "Single-parameter phenomenological extension of ΛCDM motivated by EFC, where entropy-gradient couplings at structure-formation scale modify both background expansion and linear growth rate. Best-fit α_L2 = 0.35 ± 0.16 with Δχ² = 3.01 (1.7σ preference). BAO-RSD sign conflict reflects S8 tension in EFC parameter space.",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "BOSS DR12",
-    "BAO",
-    "RSD",
-    "growth rate",
-    "S8 tension",
-    "phenomenological constraints",
-    "gravitational slip"
-  ],
+  "abstract": "Single-parameter phenomenological extension of \u039bCDM motivated by EFC, where entropy-gradient couplings at structure-formation scale modify both background expansion and linear growth rate. Best-fit \u03b1_L2 = 0.35 \u00b1 0.16 with \u0394\u03c7\u00b2 = 3.01 (1.7\u03c3 preference). BAO-RSD sign conflict reflects S8 tension in EFC parameter space.",
   "model": {
-    "description": "Single-parameter modification to ΛCDM",
+    "description": "Single-parameter modification to \u039bCDM",
     "parameters": [
       "H0",
       "Omega_m",
@@ -31,17 +142,17 @@
       "alpha_L2"
     ],
     "equations": {
-      "DM_modification": "D_M^EFC(z) = D_M^ΛCDM(z) × [1 + α_L2 × g_D(z)]",
-      "H_modification": "H^EFC(z) = H^ΛCDM(z) × [1 + α_L2 × g_H(z)]",
-      "fsigma8_modification": "fσ8^EFC(z) = fσ8^ΛCDM(z) × [1 + α_L2 × g_growth(z)]"
+      "DM_modification": "D_M^EFC(z) = D_M^\u039bCDM(z) \u00d7 [1 + \u03b1_L2 \u00d7 g_D(z)]",
+      "H_modification": "H^EFC(z) = H^\u039bCDM(z) \u00d7 [1 + \u03b1_L2 \u00d7 g_H(z)]",
+      "fsigma8_modification": "f\u03c38^EFC(z) = f\u03c38^\u039bCDM(z) \u00d7 [1 + \u03b1_L2 \u00d7 g_growth(z)]"
     },
     "coupling_functions": {
-      "g_D": "(1 - Ωm(z))/(1+z) × ln(1+z)",
-      "g_growth": "-[1 - Ωm(z)]^(3/2) × ln(1+z) / (1+z)^(1/2)",
+      "g_D": "(1 - \u03a9m(z))/(1+z) \u00d7 ln(1+z)",
+      "g_growth": "-[1 - \u03a9m(z)]^(3/2) \u00d7 ln(1+z) / (1+z)^(1/2)",
       "note": "g_D > 0 and g_growth < 0 for z > 0 (anti-correlation)"
     },
     "predictions": {
-      "gravitational_slip": "η ≡ Φ/Ψ = 1",
+      "gravitational_slip": "\u03b7 \u2261 \u03a6/\u03a8 = 1",
       "testable_with": [
         "Euclid",
         "Vera C. Rubin Observatory"
@@ -101,7 +212,7 @@
     },
     "model_comparison": {
       "delta_chi2": 3.01,
-      "significance": "1.7σ",
+      "significance": "1.7\u03c3",
       "p_value": 0.083,
       "delta_AIC": 1.01,
       "delta_BIC": 0.81
@@ -124,7 +235,7 @@
     "observables": [
       "DM(z)",
       "H(z)",
-      "fσ8(z)"
+      "f\u03c38(z)"
     ],
     "redshifts": [
       0.38,
@@ -132,29 +243,10 @@
       0.61
     ],
     "n_data_points": 9,
-    "covariance": "Full 9×9 matrix",
+    "covariance": "Full 9\u00d79 matrix",
     "fiducial_rs": {
       "value": 147.78,
       "unit": "Mpc"
     }
-  },
-  "files": {
-    "documentation": [
-      "README.md",
-      "CITATION.cff",
-      "LICENSE"
-    ],
-    "source": [
-      "src/efc_phenomenology.py",
-      "src/__init__.py"
-    ],
-    "data": [
-      "data/boss_dr12_consensus.json",
-      "data/fit_results.json"
-    ],
-    "examples": [
-      "examples/phenomenology_fit.py"
-    ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31243828"
+  }
 }

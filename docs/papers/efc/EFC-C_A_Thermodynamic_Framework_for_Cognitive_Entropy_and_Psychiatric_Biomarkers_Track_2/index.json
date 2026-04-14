@@ -1,6 +1,87 @@
 {
-  "paper_id": "efc-c-cognitive-entropy",
+  "$schema": "./schema.json",
+  "id": "efc-c-a-thermodynamic-framework-for-cognitive-entropy-and-psychiatric-biomarkers-track-2",
   "title": "EFC-C: A Thermodynamic Framework for Cognitive Entropy and Psychiatric Biomarkers",
+  "description": "Introduces EFC-C, a thermodynamic framework that models the brain as an open system governed by entropy-gradient dynamics. It defines a scalar neural entropy production rate and a gradient tensor over the connectome, yielding three falsifiable predictions on hub-to-periphery entropy topology, disorder-specific gradient signatures, and a cognitive threshold. The paper shows qualitative consistency with published EEG/fMRI findings and outlines a prospective validation protocol.",
+  "version": "v0.1",
+  "date": "2026-03-31",
+  "doi": "10.6084/m9.figshare.31940505",
+  "keywords": [
+    "EFC-C",
+    "cognitive entropy",
+    "entropy production",
+    "entropy gradient",
+    "default mode network",
+    "psychiatric biomarkers",
+    "schizophrenia",
+    "major depressive disorder",
+    "ADHD",
+    "EEG",
+    "fMRI",
+    "Lempel-Ziv complexity"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "total_entropy_production_rate": {
+      "latex": "\\dot S_{\\mathrm{neural}} = \\sum_i \\int_{R_i} \\dot s_i \\, dV",
+      "description": "Defines the total neural entropy production rate as the spatial integral of local entropy production density over brain regions, summed across a partition of the connectome."
+    },
+    "disorder_gradient_tensor": {
+      "latex": "\\Delta \\, \\nabla \\dot S_{\\mathrm{disorder}} = \\nabla \\dot S_{\\mathrm{patient}} - \\nabla \\dot S_{\\mathrm{healthy}}",
+      "description": "Characterizes psychiatric pathology as a deformation of the entropy-flow gradient tensor relative to healthy topology, measurable from resting-state EEG/fMRI-derived entropy maps."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC-C predicts a centrifugal hub-to-periphery entropy topology, disorder-specific gradient signatures, and a cognitive entropy-production threshold, and shows qualitative consistency with published EEG/fMRI literature.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "total neural entropy production rate (\\dot S_neural)",
+      "entropy-flow gradient tensor (\\nabla \\dot S)",
+      "disorder gradient deformation (\\Delta \\nabla \\dot S)"
+    ],
+    "datasets_used": [
+      "Published EEG/fMRI findings cited by the paper (e.g., Rosas 2023; Carhart-Harris 2018; Creel & Hartman 2025; Noroozi 2025; Pan 2025)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In healthy resting brains, entropy production is maximal in integrative hubs (e.g., DMN) and decreases centrifugally toward primary sensory cortices.",
+      "falsifiable_by": "Resting-state EEG/fMRI mapping (e.g., Lempel\u2013Ziv complexity, multiscale entropy) showing sensory-first maxima or a centripetal gradient across large cohorts with robust estimators."
+    },
+    {
+      "id": "P2",
+      "statement": "Psychiatric disorders exhibit disorder-specific gradient deformations: schizophrenia shows elevated anterior entropy and fragmented hub gradients; MDD shows reduced magnitude with posterior bias; ADHD shows fragmented gradient topology.",
+      "falsifiable_by": "Case-control EEG/fMRI studies across large cohorts failing to find these specific gradient signatures (or showing opposite patterns) with preregistered pipelines and cross-modal replication."
+    },
+    {
+      "id": "P3",
+      "statement": "There exists a system-dependent entropy-production threshold \\(\\dot S_*\\) below which coordinated cognition degrades or fails.",
+      "falsifiable_by": "Anesthesia/DoC datasets showing intact cognition with persistently sub-threshold entropy production (or unresponsive states with sustained supra-threshold entropy) across multiple estimators and modalities."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-quality resting-state EEG/fMRI consistently shows maximal entropy in primary sensory cortices with a stable centripetal gradient toward hubs in healthy adults, contradicting the predicted centrifugal hub-to-periphery topology.",
+    "KC2: In preregistered, multi-cohort analyses, schizophrenia does not exhibit elevated anterior entropy or hub-gradient fragmentation, and MDD does not show reduced magnitude with posterior bias; instead results consistently show no deformation or the opposite patterns under robust entropy estimators.",
+    "KC3: Across anesthesia and disorders-of-consciousness datasets, participants display sustained, verified cognitive function while neural entropy production remains persistently below any proposed \\(\\dot S_*\\), or conversely show persistent unresponsiveness with clearly supra-threshold entropy.",
+    "KC4: Cross-modal and cross-estimator robustness failure: independently derived \\nabla\\dot S fields from EEG and fMRI (e.g., MSE, LZC, spectral-entropy variants) are systematically inconsistent beyond methodological uncertainty, preventing stable tensor reconstruction.",
+    "KC5: A magnitude-only (scalar) entropy model fully explains state and disorder data and provides superior predictive accuracy to EFC-C\u2019s gradient model across held-out datasets, leaving no added value for topology or gradient direction."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940505",
+  "paper_id": "efc-c-cognitive-entropy",
   "short_title": "EFC-C Cognition Framework",
   "authors": [
     {
@@ -9,23 +90,8 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v0.1",
-  "date": "2026-03-31",
-  "doi": "10.6084/m9.figshare.31940505",
   "status": "research_note",
   "framework": "EFC-C",
-  "keywords": [
-    "EFC-C",
-    "cognitive entropy",
-    "psychiatric biomarker",
-    "entropy gradient",
-    "thermodynamic brain",
-    "entropic brain hypothesis",
-    "schizophrenia",
-    "MDD",
-    "default mode network",
-    "neural entropy production"
-  ],
   "abstract": "EFC-C models the brain as an open thermodynamic system governed by entropy-gradient dynamics. The framework produces a scalar observable S_dot_neural (total neural entropy production rate) and a gradient tensor nabla S_dot encoding directional entropy flow. Three falsifiable predictions distinguish EFC-C from the Entropic Brain Hypothesis: (1) centrifugal hub-to-periphery gradient, (2) disorder-specific gradient inversions, (3) entropy threshold for cognitive function.",
   "core_postulate": {
     "equation": "S_dot_neural = sum_i integral(s_dot_i dV) over regions R_i",
@@ -151,6 +217,5 @@
       "doi": "10.6084/m9.figshare.31224538",
       "topic": "EFC SPARC Phase 3"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940505"
+  ]
 }

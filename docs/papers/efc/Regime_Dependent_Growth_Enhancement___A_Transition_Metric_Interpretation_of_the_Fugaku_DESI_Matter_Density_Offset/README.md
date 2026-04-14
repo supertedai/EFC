@@ -1,37 +1,25 @@
-# Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku-DESI Matter Density Offset
+# Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku–DESI Matter Density Offset
+
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.31140000](https://doi.org/10.6084/m9.figshare.31140000)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-24
+- **License:** CC-BY-4.0
+
+---
 
 ## Overview
 
-Reinterprets the ~10% matter density offset in Fugaku N-body simulations as a transition estimator Delta_F measuring integrated regime transition strength rather than a fundamental density parameter.
+The paper reinterprets the ~10% matter-density offset seen in DESI-calibrated Fugaku N-body simulations as an integrated transition-strength estimator, ΔF ≈ 0.1, of a regime-dependent effective gravitational coupling μ(a) ≡ G_eff/G. It introduces a bounded transition kernel and an observational window W(a) to define ΔF, and shows a single μ(a) can satisfy CMB (μ≈1 at recombination), DESI/Fugaku growth (ΔF≈0.1 in the sensitivity band), and galaxy-scale (μ→1+Δμ) consistency simultaneously.
 
-**Author:** Morten Magnusson
-**Affiliation:** Symbiose Research, Sandnes, Norway
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-**DOI:** [10.6084/m9.figshare.31140000](https://doi.org/10.6084/m9.figshare.31140000)
-**License:** CC-BY-4.0
+## Key Result
 
----
+The DESI-calibrated Fugaku matter-density offset is best interpreted as an integrated transition metric with \Delta F \approx 0.1, realizable by a single \mu(a) that respects CMB, large-scale structure, and galaxy-scale constraints.
 
-## Key Results
+## Sealed Predictions
 
-- Delta_F ~ 0.1 from integrated transition kernel
-- Consistent with CMB (mu ~ 1 at recombination), DESI/Fugaku (transition band), and galaxy scales (mu > 1 asymptotically)
-- Reinterpretation: density offset = integrated transition strength, not fundamental parameter shift
-
----
-
-## Quick Start
-
-```python
-from src.transition_metric import TransitionMetric
-
-tm = TransitionMetric(delta_mu=0.1)
-delta_F = tm.compute_delta_F()
-print(f"Delta_F = {delta_F:.3f}")
-```
-
----
-
-## License
-
-This work is licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Independent implementations of the transition estimator in Boltzmann and structure-growth solvers, when fit to DESI DR2 BAO/RSD together with Fugaku-like N-body outputs, will recover a positive integrated transition strength consistent with \Delta F \approx 0.1 within the DESI sensitivity window. | Joint CMB+BAO/RSD+simulation-informed growth analyses that robustly favor \Delta F consistent with zero or negative values over the DESI/Fugaku window. |

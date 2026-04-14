@@ -2,40 +2,113 @@
   "$schema": "./schema.json",
   "id": "efc-state-vs-stageIII",
   "title": "EFC vs Stage-III Cosmology State Assessment",
-  "subtitle": "Structural Coherence Evaluation and Validation Update for Energy-Flow Cosmology in the Post-Tension Weak-Lensing Landscape",
-  "description": "Stage-III cosmology update to the EFC validation program addressing recent weak-lensing recalibrations (KiDS Legacy, HSC Y3 with DESI clustering-z). Reframes EFC's role from 'tension resolution' to 'precision structural competitor' and introduces SCE protocol for O-layer/M-layer distinction.",
-  "version": "1.0.0",
+  "description": "Stage-III weak-lensing recalibrations (KiDS Legacy; HSC Y3 with DESI clustering-z) move S8 upward and reduce prior LSS\u2013CMB growth tension to sub-1\u03c3. This methodology/validation update repositions Energy-Flow Cosmology (EFC) from a tension-resolution narrative to a precision structural competitor, introduces the Structural Coherence Evaluation (SCE) protocol distinguishing O-layer vs M-layer quantities, and notes that the BAO-locked background coupling \u03b2 = 0.08 yields \u03c38 \u2248 0.805, consistent with the converging Stage-III landscape.",
+  "version": "1.0",
   "date": "2026-02-10",
   "doi": "10.6084/m9.figshare.31305550",
-  "type": "Methodology note / Validation update / Theory-data interface framework",
-  "supersedes": "Prior S8-tension narrative in EFC validation documents",
-  "license": "CC-BY 4.0",
   "keywords": [
     "Energy-Flow Cosmology",
-    "S8 tension",
-    "weak lensing",
-    "Stage-III surveys",
+    "Stage-III weak lensing",
+    "S8",
     "KiDS Legacy",
-    "HSC Y3",
-    "DESI clustering-redshift",
-    "modified gravity",
-    "structural coherence evaluation",
-    "cosmological model comparison",
+    "HSC Year 3",
+    "DESI clustering-redshifts",
+    "CMB lensing",
+    "BAO distances",
+    "lensing response Sigma(k,z)",
+    "Structural Coherence Evaluation",
     "observation-native ontology",
-    "lensing response"
+    "model selection"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent researcher"
   },
+  "core_equations": {
+    "S8_definition": {
+      "latex": "S_8 \\equiv \\sigma_8 \\sqrt{\\Omega_m/0.3}",
+      "description": "Amplitude combination constrained by weak-lensing two-point statistics; used as the baseline growth comparison across Stage-III analyses."
+    },
+    "lensing_response": {
+      "latex": "\\Sigma(k,z)",
+      "description": "EFC\u2019s scale- and redshift-dependent mapping between matter fluctuations and lensing (matter-to-lensing response). In GR/\\LambdaCDM, \\Sigma=1; deviations provide a structural diagnostic."
+    },
+    "sigma8_from_beta": {
+      "latex": "\\sigma_8(\\beta=0.08) \\approx 0.805",
+      "description": "EFC background prediction for the present-day fluctuation amplitude when the coupling \\beta is fixed by BAO distances; matches converging Stage-III central values without post-hoc tuning."
+    },
+    "gr_recovery_high_z": {
+      "latex": "\\lim_{z\\to \\text{high}} \\Sigma(k,z) = 1",
+      "description": "EFC recovers GR at high redshift in its lensing response, serving as a falsifiable mapping-level expectation."
+    }
+  },
+  "key_results": {
+    "main_finding": "Stage-III recalibrations bring weak-lensing S8 into close agreement with CMB-inferred growth, and EFC\u2019s BAO-locked background coupling (\u03b2 = 0.08) predicts \u03c38 \u2248 0.805 consistent with KiDS Legacy and recalibrated HSC Y3, shifting EFC\u2019s focus to testing structured deviations via \u03a3(k,z).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b2 (background coupling, fixed by BAO)",
+      "\u03a3(k,z) (matter\u2013lensing response; locked vs free)",
+      "High-z GR recovery in lensing response"
+    ],
+    "datasets_used": [
+      "KiDS Legacy cosmic shear (Wright et al. 2025)",
+      "HSC Year 3 with DESI clustering-redshift calibration (Choppin de Janvry et al. 2025)",
+      "Combined Stage-III WL (KiDS+DES+HSC) per arXiv:2511.18134",
+      "Combined CMB lensing reference (arXiv:2511.18134)",
+      "BAO distances (BOSS DR12) for \u03b2 locking"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "With \u03b2 fixed by BAO-only distances, EFC predicts a present-day amplitude \u03c38 \u2248 0.805; future WL and CMB-lensing meta-analyses that control calibration systematics should remain statistically consistent with this value.",
+      "falsifiable_by": "A joint WL + CMB-lensing analysis (with validated n(z) and image simulations) yielding \u03c38 that is >3\u03c3 away from 0.805, sustained across independent pipelines."
+    },
+    {
+      "id": "P2",
+      "statement": "EFC\u2019s mapping-level lensing response recovers GR at high redshift (\u03a3(k,z) \u2192 1), while allowing structured, scale-dependent deviations on smaller, non-linear scales at low redshift.",
+      "falsifiable_by": "High-z (z \u2273 1) WL/RSD/CMB-lensing cross-checks showing robust, repeated evidence for non-GR lensing response (\u03a3 \u2260 1) at high z, or conversely low-z small-scale WL data that decisively prefer \u03a3=1 with no room for EFC-like structure once modeling is controlled."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A combined CMB-lensing analysis delivers \u03c38 that deviates from the EFC \u03b2-locked prediction (\u22480.805) by more than 3\u03c3, replicated across independent pipelines and systematics treatments.",
+    "KC2: After final calibration (validated n(z), image simulations, baryon modeling), O-layer shear two-point data across multiple surveys are better fit by GR/\u039bCDM with \u03a3=1 than by any EFC variant, with \u0394\u03c7\u00b2 \u2264 0 for EFC and AIC/BIC decisively favoring \u039bCDM in locked-vs-free \u03a3 model selection.",
+    "KC3: Updated BAO distance analyses exclude the \u03b2 value that underpins EFC\u2019s background (\u03b2 \u2248 0.08) at >3\u03c3 while \u039bCDM remains consistent, removing the background-channel basis for EFC.",
+    "KC4: High-redshift (z \u2273 1) growth and lensing datasets consistently detect non-GR lensing/dynamical behavior incompatible with EFC\u2019s GR-recovery regime, sustained across surveys and analyses."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "sce-framework-2026",
+      "doi": "10.6084/m9.figshare.31293745",
+      "role": "Structural Coherence Evaluation (O-layer/M-layer distinction and auditing protocol)"
+    },
+    {
+      "id": "efc-sigma-kz-2026",
+      "doi": "10.6084/m9.figshare.31271917",
+      "role": "EFC lensing response \u03a3(k,z) specification and mapping-level tests"
+    }
+  ],
+  "files": {
+    "paper": "efc_state_vs_stageIII.pdf",
+    "schema": "schema.json"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31305550",
+  "subtitle": "Structural Coherence Evaluation and Validation Update for Energy-Flow Cosmology in the Post-Tension Weak-Lensing Landscape",
+  "type": "Methodology note / Validation update / Theory-data interface framework",
+  "supersedes": "Prior S8-tension narrative in EFC validation documents",
+  "license": "CC-BY 4.0",
   "stage_III_observational_update": {
     "kids_legacy": {
       "probe": "cosmic shear",
       "S8": 0.815,
       "S8_error_plus": 0.016,
       "S8_error_minus": 0.021,
-      "planck_consistency": "0.73σ",
+      "planck_consistency": "0.73\u03c3",
       "reference": "Wright et al. (2025), A&A 703, A158"
     },
     "hsc_y3_desi": {
@@ -59,7 +132,7 @@
       "note": "Reference point for growth",
       "reference": "Choppin de Janvry et al. (2025), arXiv:2511.18134"
     },
-    "cause_of_shift": "Improved photo-z calibration and validation (including DESI-based clustering-redshifts for HSC), improved image simulations, and expanded calibration datasets — primarily attributed to improved control of calibration systematics rather than requiring new physics"
+    "cause_of_shift": "Improved photo-z calibration and validation (including DESI-based clustering-redshifts for HSC), improved image simulations, and expanded calibration datasets \u2014 primarily attributed to improved control of calibration systematics rather than requiring new physics"
   },
   "efc_impact_assessment": {
     "beta_background": {
@@ -77,8 +150,8 @@
     }
   },
   "narrative_update": {
-    "deprecated": "EFC resolves a 3σ S8 tension",
-    "current": "EFC's background coupling yields an amplitude (σ8 ≈ 0.805) consistent with the converging Stage-III lensing landscape; Σ(k,z) becomes a model-selection diagnostic for scale-dependent matter-lensing response"
+    "deprecated": "EFC resolves a 3\u03c3 S8 tension",
+    "current": "EFC's background coupling yields an amplitude (\u03c38 \u2248 0.805) consistent with the converging Stage-III lensing landscape; \u03a3(k,z) becomes a model-selection diagnostic for scale-dependent matter-lensing response"
   },
   "category_transition": {
     "from": "Alternative model that explains a tension",
@@ -89,8 +162,8 @@
       "name": "Observation-Native Ontology",
       "description": "Quantities extracted from data with minimal theoretical input",
       "weak_lensing_examples": [
-        "shear two-point correlations ξ±(θ)",
-        "convergence power spectra Clκκ",
+        "shear two-point correlations \u03be\u00b1(\u03b8)",
+        "convergence power spectra Cl\u03ba\u03ba",
         "tomographic bin statistics"
       ]
     },
@@ -98,11 +171,11 @@
       "name": "Mapping Transparency",
       "description": "Quantities produced by passing O-layer data through a model-dependent pipeline",
       "S8_assumptions": [
-        "GR lensing kernel (Σ = 1)",
+        "GR lensing kernel (\u03a3 = 1)",
         "GR linear perturbation theory",
-        "Friedmann + ΛCDM background",
+        "Friedmann + \u039bCDM background",
         "constant c",
-        "ΛCDM transfer function"
+        "\u039bCDM transfer function"
       ]
     },
     "T_layer": {
@@ -111,13 +184,13 @@
     }
   },
   "observation_level_test": {
-    "equation": "Clκiκj = ∫ dχ [Wi(χ) Wj(χ) / χ²] · Σ²(k,z) · Pδ(k,z)",
-    "lcdm_case": "Σ = 1 (locked)",
-    "efc_case": "Σ(k,z) free",
-    "falsification_criterion": "Additional mapping freedom must be statistically justified at O-layer (ΔAIC, ΔBIC)"
+    "equation": "Cl\u03bai\u03baj = \u222b d\u03c7 [Wi(\u03c7) Wj(\u03c7) / \u03c7\u00b2] \u00b7 \u03a3\u00b2(k,z) \u00b7 P\u03b4(k,z)",
+    "lcdm_case": "\u03a3 = 1 (locked)",
+    "efc_case": "\u03a3(k,z) free",
+    "falsification_criterion": "Additional mapping freedom must be statistically justified at O-layer (\u0394AIC, \u0394BIC)"
   },
   "strengths_in_new_landscape": [
-    "β = 0.08 → σ8 = 0.805 matches converging data without tuning",
+    "\u03b2 = 0.08 \u2192 \u03c38 = 0.805 matches converging data without tuning",
     "Growth suppression via Hubble friction (correct mechanism, correct direction)",
     "One transition function T(z) governs all regimes (no patches)",
     "Built-in predictions for scale-dependent and environment-dependent effects",
@@ -125,9 +198,9 @@
   ],
   "challenges_in_new_landscape": [
     "Reduced motivation from S8 tension (the 'problem' is smaller)",
-    "Σ channel needs re-validation against updated baselines",
+    "\u03a3 channel needs re-validation against updated baselines",
     "Must demonstrate second-order predictions are testable with current/upcoming data",
-    "Self-consistent EFC background (not ΛCDM-calibrated) still needed"
+    "Self-consistent EFC background (not \u039bCDM-calibrated) still needed"
   ],
   "stage_IV_discriminating_tests": [
     {
@@ -138,8 +211,8 @@
     },
     {
       "test": "Lensing vs dynamical mass",
-      "efc_prediction": "Σ ≠ 1 at low-z, small scales",
-      "lcdm_prediction": "Σ = 1 everywhere",
+      "efc_prediction": "\u03a3 \u2260 1 at low-z, small scales",
+      "lcdm_prediction": "\u03a3 = 1 everywhere",
       "data_source": "Euclid clusters, Rubin"
     },
     {
@@ -150,9 +223,9 @@
     },
     {
       "test": "ISW cross-correlation amplitude",
-      "efc_prediction": "Cancellation from μ/μ'",
+      "efc_prediction": "Cancellation from \u03bc/\u03bc'",
       "lcdm_prediction": "Standard ISW",
-      "data_source": "DESI tracers × Planck/ACT"
+      "data_source": "DESI tracers \u00d7 Planck/ACT"
     },
     {
       "test": "Cluster abundance N(M,z)",
@@ -162,12 +235,12 @@
     }
   ],
   "action_items": [
-    "Re-run Σ(k,z) fits against KiDS-Legacy data (Σ = 1 locked vs Σ free)",
-    "Compare Δχ², AIC, BIC for model selection",
+    "Re-run \u03a3(k,z) fits against KiDS-Legacy data (\u03a3 = 1 locked vs \u03a3 free)",
+    "Compare \u0394\u03c7\u00b2, AIC, BIC for model selection",
     "Update all paper introductions to reflect Stage-III convergence",
     "Add Stage-III update footnote to all existing/forthcoming papers"
   ],
-  "stage_III_update_footnote": "Since submission, the Stage-III weak-lensing landscape has shifted upward: KiDS Legacy reports S8 = 0.815 (+0.016/−0.021) (Wright et al. 2025), and HSC Y3 recalibrated with DESI clustering-redshifts yields S8 = 0.805 ± 0.018 (Choppin de Janvry et al. 2025). The EFC background-coupling prediction (σ8 ≈ 0.805) is consistent with these updated values. The S8 tension motivation discussed in this work should be read in light of this convergence; the structural predictions and falsification criteria remain unchanged.",
+  "stage_III_update_footnote": "Since submission, the Stage-III weak-lensing landscape has shifted upward: KiDS Legacy reports S8 = 0.815 (+0.016/\u22120.021) (Wright et al. 2025), and HSC Y3 recalibrated with DESI clustering-redshifts yields S8 = 0.805 \u00b1 0.018 (Choppin de Janvry et al. 2025). The EFC background-coupling prediction (\u03c38 \u2248 0.805) is consistent with these updated values. The S8 tension motivation discussed in this work should be read in light of this convergence; the structural predictions and falsification criteria remain unchanged.",
   "references": [
     {
       "id": 1,
@@ -191,22 +264,17 @@
     },
     {
       "id": 6,
-      "citation": "Magnusson, DOI: 10.6084/m9.figshare.31271917 (2026). Lensing response Σ(k,z)."
+      "citation": "Magnusson, DOI: 10.6084/m9.figshare.31271917 (2026). Lensing response \u03a3(k,z)."
     }
   ],
   "related_papers": [
     {
       "id": "efc-four-channel-consistency-test",
-      "relationship": "Validates against same β = 0.08"
+      "relationship": "Validates against same \u03b2 = 0.08"
     },
     {
       "id": "efc-regime-consistency-lya-bao-rsd-sce",
       "relationship": "Uses same SCE framework"
     }
-  ],
-  "files": {
-    "paper": "efc_state_vs_stageIII.pdf",
-    "schema": "schema.json"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31305550"
+  ]
 }

@@ -1,44 +1,111 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-unified-analysis-bao-sn-rsd",
   "title": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD",
-  "short_title": "EFC Unified BAO Analysis",
+  "description": "Unified empirical test of Energy-Flow Cosmology (EFC) against BAO, SN Ia, and RSD. The effective gravitational coupling \u03bc(a)=Geff/G is derived from the EFC field equation via an entropy field S(a), with background fixed to \u039bCDM (\u03b3=0). With one free amplitude (\u03b2=0.16) and fixed transition hyperparameters, EFC reproduces BAO/SN and yields a mildly worse but statistically compatible RSD fit (\u0394\u03c7\u00b2\u2248+1.7), showing no geometry\u2013growth tension in this first-pass regime-consistency check.",
   "version": "1.0",
-  "date": "2026-01",
+  "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31215613",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "effective gravitational coupling",
+    "mu(a)",
+    "entropy field",
+    "BAO",
+    "SN Ia",
+    "RSD",
+    "growth of structure",
+    "modified gravity",
+    "DESI DR2",
+    "Pantheon+",
+    "regime consistency"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Sola, Norway"
   },
-  "type": "empirical_analysis",
-  "status": "published",
-  "abstract_short": "First regime-consistency check: EFC with derived μ(a) achieves Δχ²=+1.7 vs ΛCDM across BAO, SN, RSD.",
-  "keywords": [
-    "EFC",
-    "unified analysis",
-    "BAO",
-    "SN Ia",
-    "RSD",
-    "μ(a)",
-    "entropy field",
-    "regime consistency",
-    "modified gravity"
-  ],
-  "core_equations": [
+  "core_equations": {
+    "EFC Field Equation": {
+      "latex": "G_{\\mu\\nu} = 8\\pi G\\,\\big(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}\\big) + \\Lambda_{\\mathrm{eff}}\\, g_{\\mu\\nu}",
+      "description": "Modification to Einstein\u2019s equations where an energy-flow sector contributes to curvature alongside matter and an effective cosmological term."
+    },
+    "Energy-flow Stress-Energy": {
+      "latex": "T^{(E_f)}_{\\mu\\nu} = \\alpha\\, \\nabla_{\\mu}E_f\\, \\nabla_{\\nu}E_f - \\tfrac{1}{2} g_{\\mu\\nu} (\\nabla E_f)^2",
+      "description": "Stress-energy of the energy-flow potential E_f, parameterized by coupling \\alpha, sourcing metric perturbations and effective gravity."
+    },
+    "Effective Gravitational Coupling": {
+      "latex": "\\mu(a) \\equiv \\frac{G_{\\mathrm{eff}}}{G} = 1 + \\beta\\, S(a)",
+      "description": "Derived modification to the Poisson equation for linear perturbations; growth responds to an entropy-governed enhancement of gravity."
+    },
+    "Entropy Field Evolution": {
+      "latex": "S(a) = \\frac{S_{\\infty}}{2}\\Big[1 + \\tanh\\!\\Big(\\frac{\\ln a - \\ln a_t}{\\sigma}\\Big)\\Big]",
+      "description": "Sigmoid evolution of the normalized entropy field from early-time equilibrium (S\\approx0) to late-time saturation (S\\to S_\\infty), with transition scale a_t and width \\sigma."
+    },
+    "Linear Growth Equation": {
+      "latex": "D'' + \\Big(2 + \\frac{H'}{H}\\Big) D' - \\frac{3}{2}\\, \\Omega_m(a)\\, \\mu(a)\\, D = 0",
+      "description": "Linear growth of matter perturbations in log-scale factor derivatives; \\mu(a) enhances or suppresses growth relative to GR/\\LambdaCDM."
+    }
+  },
+  "key_results": {
+    "main_finding": "With \u03b3=0 and a derived \u03bc(a)=1+\u03b2S(a), EFC matches BAO and SN Ia as in \u039bCDM and yields a mildly worse but statistically compatible RSD fit, indicating no geometry\u2013growth tension.",
+    "delta_chi2": 1.71,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b2 = 0.16 (free amplitude)",
+      "a_t = 0.55 (z_t \u2248 0.82, fixed)",
+      "\u03c3 = 0.10 (fixed)",
+      "S_\u221e = 1.0 (normalization)",
+      "\u03b3 = 0 (no background modification)"
+    ],
+    "datasets_used": [
+      "BAO: DESI DR2 (DM/rd at z = 0.51, 0.71, 0.93, 1.32, 1.49, 2.33)",
+      "SN Ia: Pantheon+ (16 binned distance-modulus points, z = 0.01\u20131.0, M marginalized)",
+      "RSD: f\u03c38 from BOSS DR12, eBOSS DR16, DESI Y1 (11 points, z = 0.30\u20131.52)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
     {
-      "name": "EFC Field Equation",
-      "latex": "G_{\\mu\\nu} = 8\\pi G(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}) + \\Lambda_{eff} g_{\\mu\\nu}"
+      "id": "P1",
+      "statement": "For fixed transition hyperparameters a_t=0.55 and \u03c3=0.10 with S_\u221e=1, \u03bc(a)=1+\u03b2S(a) rises monotonically from \u22481 at z\u22732 to \u22481+\u03b2 at z\u22480; with \u03b2\u22480.16 this implies a late-time Geff enhancement of ~16% and a specific f\u03c38(z) curve that exceeds \u039bCDM at 0\u2272z\u22721.5.",
+      "falsifiable_by": "Future high-precision RSD (e.g., final DESI) and cosmic shear tomography (e.g., LSST/Euclid) measuring f\u03c38(z) and the growth index; rejection occurs if the best-fit \u03b2 under fixed {a_t,\u03c3} fails goodness-of-fit at \u22653\u03c3."
     },
     {
-      "name": "Effective Gravitational Coupling",
-      "latex": "\\mu(a) = 1 + \\beta S(a)",
-      "symbol": "μ(a)"
-    },
-    {
-      "name": "Entropy Field",
-      "latex": "S(a) = \\frac{S_\\infty}{2}[1 + \\tanh((\\ln a - \\ln a_t)/\\sigma)]"
+      "id": "P2",
+      "statement": "With \u03b3=0, the background expansion (H(z), distances) is identical to \u039bCDM for any \u03b2; hence BAO DM/rd and SN Ia distance moduli must remain statistically indistinguishable from \u039bCDM.",
+      "falsifiable_by": "BAO+SN analyses detecting non-\u039bCDM background evolution at \u22655\u03c3 when growth-only EFC (\u03b3=0) is assumed."
     }
   ],
+  "kill_criteria": [
+    "KC1: Combined BAO+SN+RSD likelihoods with full covariances show that the 1-parameter EFC growth-only model (\u03b2 free; a_t=0.55, \u03c3=0.10 fixed; \u03b3=0) is disfavored relative to \u039bCDM at \u0394\u03c7\u00b2 \u2265 9 (\u22483\u03c3) for comparable degrees of freedom.",
+    "KC2: High-precision RSD in 0.5 < z < 1.5 (e.g., final DESI) exclude the EFC \u03bc(a) shape with fixed {a_t, \u03c3} by finding that no value of \u03b2 yields an acceptable fit (\u03c7\u00b2_min \u2212 \u03c7\u00b2_LCDM \u2265 9, or p-value < 0.003) to f\u03c38(z).",
+    "KC3: Joint weak-lensing + galaxy-clustering (e.g., LSST/Euclid) constrain the late-time enhancement to |\u03bc(z<1)\u22121| < 0.05 (95% CL), excluding the \u226510% enhancement implied by \u03b2 \u2248 0.16 at \u22653\u03c3 under fixed {a_t, \u03c3}.",
+    "KC4: Early-time probes (Planck primary+CMB lensing, high-z growth) detect \u03bc(a) \u2260 1 at z \u2273 2 at \u22653\u03c3 (e.g., |\u03bc\u22121| > 0.02), violating the EFC requirement S(a\u21920) \u2192 0 and hence \u03bc\u21921.",
+    "KC5: Regime-consistency failure: growth-inferred transition redshift z_t from RSD/weak lensing is inconsistent with the fixed a_t=0.55 (z_t\u22480.82) by |\u0394z_t| \u2265 0.2 at \u22653\u03c3 when adopting the EFC sigmoid S(a) form."
+  ],
+  "tier": "T3",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-v1.2",
+      "doi": "10.6084/m9.figshare.30563738",
+      "role": "theory baseline and prior EFC derivations"
+    }
+  ],
+  "files": {
+    "pdf": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf",
+    "tex": "efc_unified_preprint.tex",
+    "figures": [
+      "EFC_unified_analysis.png",
+      "EFC_mu_theoretical_derivation.png"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215613",
+  "short_title": "EFC Unified BAO Analysis",
+  "type": "empirical_analysis",
+  "status": "published",
+  "abstract_short": "First regime-consistency check: EFC with derived \u03bc(a) achieves \u0394\u03c7\u00b2=+1.7 vs \u039bCDM across BAO, SN, RSD.",
   "parameters": {
     "beta": {
       "value": 0.16,
@@ -104,9 +171,9 @@
     "verdict": "Compatible within statistical fluctuations, no internal tension"
   },
   "key_findings": [
-    "μ(a) derived from EFC field equations, not phenomenologically fitted",
-    "BAO and SN identical to ΛCDM by construction (γ=0)",
-    "RSD slightly worse (Δχ²=+1.7) but within fluctuations",
+    "\u03bc(a) derived from EFC field equations, not phenomenologically fitted",
+    "BAO and SN identical to \u039bCDM by construction (\u03b3=0)",
+    "RSD slightly worse (\u0394\u03c7\u00b2=+1.7) but within fluctuations",
     "Same S(a) describes geometry and growth without tension"
   ],
   "dependencies": [
@@ -114,14 +181,5 @@
       "id": "efc-v1.2",
       "doi": "10.6084/m9.figshare.30563738"
     }
-  ],
-  "files": {
-    "pdf": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf",
-    "tex": "efc_unified_preprint.tex",
-    "figures": [
-      "EFC_unified_analysis.png",
-      "EFC_mu_theoretical_derivation.png"
-    ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215613"
+  ]
 }

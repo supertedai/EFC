@@ -1,39 +1,13 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
 title: "Independent Validation of Energy-Flow Cosmology BAO Predictions: Cross-Survey Transfer from DESI DR2 to BOSS DR12"
-type: dataset
+message: "If you use this work, please cite it as below."
 authors:
   - family-names: "Magnusson"
     given-names: "Morten"
     orcid: "https://orcid.org/0009-0002-4860-5095"
     affiliation: "Symbiose Research, Sandnes, Norway"
-version: "1.0"
 date-released: "2026-02-02"
+version: "1.0"
+doi: "10.6084/m9.figshare.31231522"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/supertedai/EFC"
-doi: "10.6084/m9.figshare.31231522"
-keywords:
-  - "Energy-Flow Cosmology"
-  - "EFC"
-  - "BOSS DR12"
-  - "BAO"
-  - "transfer test"
-  - "cross-validation"
-  - "DESI DR2"
-abstract: >
-  Independent validation of EFC using BOSS DR12 BAO data.
-  DESI best-fit parameters (z_L1L2 = 1.01, α_L2 = 0.045) reduce
-  BOSS χ² from 20.83 to 13.06 (Δχ² = −7.77) without refitting.
-  Robustness confirmed via diagonal covariance (Δχ² = −4.24)
-  and eigenmode analysis. Combined BOSS+eBOSS yields
-  z_L1L2 ≈ 1.6, α_L2 ≈ 0.036, consistent with DESI constraints.
-references:
-  - type: article
-    authors:
-      - family-names: "Alam"
-        given-names: "S."
-    title: "The clustering of galaxies in the completed SDSS-III BOSS"
-    journal: "Mon. Not. Roy. Astron. Soc."
-    volume: 470
-    pages: 2617
-    year: 2017

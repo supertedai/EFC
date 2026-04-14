@@ -1,48 +1,32 @@
 {
-  "title": "EFC — Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
-  "short_id": "efc-flow-entropy-spacetime-distortion-clusters",
-  "version": "v1.0",
-  "date": "2025-01-01",
+  "title": "EFC \u2014 Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
+  "short_id": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
+  "version": "1.0",
+  "date": "2025-02-10",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "abstract": "Describes how energy flow, entropy gradients, and grid-level resistance produce observable spacetime distortions in cosmological clusters, including lensing, dynamics, temperature asymmetries, and cluster morphology as emergent thermodynamic processes.",
+  "doi": "10.6084/m9.figshare.28112096",
+  "abstract": "Analyzes three SDSS DR18 galaxy clusters to study how energy flow diminishes with redshift while entropy increases, incorporating spacetime distortion and gravitational lensing corrections. Reports a best-fit power-law index n = \u22120.33 for energy-flow evolution, a small negative spacetime-distortion parameter \u03b1 = \u22120.059, and a lensing factor of 0.636, with cluster entropies remaining homogeneous. The study argues these trends are consistent with stable halo dynamics across clusters.",
   "keywords": [
-    "EFC",
-    "energy flow",
-    "entropy",
-    "spacetime distortion",
-    "cosmological clusters",
-    "lensing",
-    "thermodynamics"
+    "Energy Flow",
+    "Entropy",
+    "Spacetime Distortion",
+    "Gravitational Lensing",
+    "Galaxy Clusters",
+    "Redshift Evolution",
+    "Halo Stability",
+    "Thermodynamics",
+    "SDSS DR18",
+    "Cosmology",
+    "Power-law Scaling"
   ],
-  "efc_context": {
-    "track": "Applied Cosmology",
-    "regime_relevance": "Cluster-scale spacetime distortion via entropy gradients",
-    "epistemic_layer": "Layer B (applied model)"
-  },
-  "key_results": [
-    "Spacetime distortion emerges from entropy gradients in cluster environments",
-    "Lensing effects explained through energy flow resistance without dark matter",
-    "Temperature asymmetries arise from thermodynamic flow imbalance",
-    "Cluster morphology predicted by entropy gradient topology"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/cluster_distortion.py"
-    ],
-    "data": "data/parameters.json",
-    "demo": "examples/demo_cluster_distortion.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28112096",

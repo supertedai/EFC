@@ -1,7 +1,7 @@
 {
   "title": "Regime Structure and Entropic Flow Ontology in Discrete Gravity Models",
-  "short_id": "RSEFO",
-  "version": "v1.0",
+  "short_id": "regime-structure-entropic-flow-ontology",
+  "version": "1.0",
   "date": "2026-02-16",
   "author": {
     "name": "Morten Magnusson",
@@ -9,48 +9,47 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": "none",
-  "abstract": "Formalizes the regime structure of discrete entropic gravity across three regimes: UV/Newtonian, IR/MOND-like, and Cosmological/Yukawa. Demonstrates the dual role of the cosmological constant, acting as the MOND acceleration scale a_0 locally and setting the cosmological length scale L_Lambda ~ 4.4 Gpc globally.",
+  "doi": "10.6084/m9.figshare.31348417",
+  "abstract": "Formalizes a regime-based ontology for discrete entropic gravity on graphs, showing how Newtonian (UV), MOND-like (IR), and cosmological (Yukawa-screened) behaviors arise from dominance switching between gradient, bulk, and source sectors of a single functional. Clarifies the role of the cosmological constant \u039b as a bulk entropic capacity parameter that sets both the local MOND transition scale and the global screening length, all without assuming a fundamental spacetime metric.",
   "keywords": [
-    "discrete gravity",
-    "entropic gravity",
     "regime structure",
+    "entropic flow ontology",
+    "discrete gravity",
+    "graph functionals",
+    "AQUAL",
     "MOND",
-    "Yukawa regime",
     "cosmological constant",
-    "UV-IR connection",
-    "acceleration scale"
+    "\u039b-locking",
+    "bulk entropic capacity",
+    "infrared screening",
+    "Yukawa screening",
+    "emergent spacetime"
   ],
-  "efc_context": {
-    "track": "Track 1 (Galactic/Cosmological)",
-    "regime_relevance": "Three-regime structure (UV/Newtonian, IR/MOND-like, Cosmological/Yukawa) with Lambda dual role",
-    "epistemic_layer": "Layer A (foundational framework)"
-  },
-  "key_results": [
-    "Three discrete gravity regimes: UV/Newtonian, IR/MOND-like, Cosmological/Yukawa",
-    "Cosmological constant dual role: a_0 locally and L_Lambda ~ 4.4 Gpc globally",
-    "Formal ontology for entropic flow across regime boundaries",
-    "Interpolating function connecting discrete regime sectors"
-  ],
-  "file_manifest": {
-    "pdf": "Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "RegimeStructureEntropicFlowOntology.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/discrete_functional.py",
+  "files": {
+    "paper": "Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "RegimeStructureEntropicFlowOntology.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/__init__.py",
       "src/interpolating_function.py",
+      "src/discrete_functional.py",
       "src/regime_classifier.py"
     ],
     "data": [
-      "data/functional_sectors.json",
       "data/parameters.json",
-      "data/regime_map.json"
+      "data/regime_map.json",
+      "data/functional_sectors.json"
     ],
-    "demo": [
+    "examples": [
       "examples/classify_regimes.py",
       "examples/functional_sectors.py"
     ]

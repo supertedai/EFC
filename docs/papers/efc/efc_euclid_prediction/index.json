@@ -1,8 +1,134 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-euclid-prediction",
-  "doi": "10.6084/m9.figshare.31990053",
   "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
+  "description": "Pre-registered, frozen predictions for Energy-Flow Cosmology (EFC) to be tested against Euclid DR1, computed via full Boltzmann integration in hi_class with a custom efc_logistic Horndeski implementation. At the benchmark (B0=0.02, M0=0.06), five linear observables exhibit a coherent growth\u2013lensing pattern (e.g., \u03c38 up, C_ell^{\u03d5\u03d5} down) that is hashed for integrity and claimed to be distinct from known systematics or massive neutrino effects.",
+  "version": "1.0",
+  "date": "2026-04-12",
+  "doi": "10.6084/m9.figshare.31990053",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Euclid DR1",
+    "Horndeski scalar-tensor",
+    "hi_class",
+    "Boltzmann integration",
+    "gravitational slip",
+    "EG statistic",
+    "lensing potential",
+    "ISW effect",
+    "sigma8",
+    "scale-localized features",
+    "modified gravity"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "entropy_sigmoid": {
+      "latex": "S(a) = \\left[1 + \\exp\\!\\left(-\\frac{\\ln a - \\ln a_t}{\\Delta}\\right)\\right]^{-1}",
+      "description": "Late-time entropy field that gates EFC modifications; S \u2192 0 at high redshift and transitions near a_t with sharpness \u0394."
+    },
+    "alphaB": {
+      "latex": "\\alpha_B(a) = B_0\\, \\frac{\\mathrm{d}S}{\\mathrm{d}\\ln a}",
+      "description": "Braiding function driven by the slope of the entropy sigmoid; controls kinetic mixing in Horndeski perturbations."
+    },
+    "alphaM": {
+      "latex": "\\alpha_M(a) = M_0\\, S(a)",
+      "description": "Planck-mass running proportional to the entropy activation; sources time-varying gravitational potentials."
+    },
+    "alphaT": {
+      "latex": "\\alpha_T = 0",
+      "description": "Tensor speed fixed to the speed of light in accordance with GW170817 constraints."
+    },
+    "slip_eta": {
+      "latex": "\\eta(k,z) = \\Phi/\\Psi",
+      "description": "Gravitational slip parameter; EFC predicts \\eta > 1 at late times, indicating unequal metric potentials."
+    },
+    "EG_statistic": {
+      "latex": "E_G(\\ell) = \\frac{C^{g\\kappa}_\\ell}{\\beta\\, C^{gg}_\\ell},\\quad \\beta = f/b",
+      "description": "Scale-dependent slip test combining galaxy\u2013lensing and galaxy\u2013galaxy angular spectra; leading-order bias cancels, leaving residual dependence via \\beta."
+    },
+    "stability_conditions": {
+      "latex": "c_s^2 > 0,\\quad Q_S > 0",
+      "description": "Horndeski scalar-sector gradient and no-ghost stability conditions satisfied in the stated benchmark region."
+    }
+  },
+  "key_results": {
+    "main_finding": "At (B0, M0) = (0.02, 0.06), EFC predicts a coherent five-observable signature decoupling growth and lensing (e.g., \u03c38 +1.21%, C_ell^{\u03d5\u03d5}(\u2113=66) \u22126.01%), sealed by a SHA-256 hash for Euclid DR1 falsification.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "B0 = 0.02",
+      "M0 = 0.06",
+      "a_t = 0.30",
+      "\u0394 = 0.30",
+      "\u03b1K = 1.0",
+      "\u03b1T = 0"
+    ],
+    "datasets_used": [
+      "None (sealed pre-registration; background set to Planck 2018 best-fit)",
+      "Planned test: Euclid DR1 (2026-10-21)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "\u03c38 is increased by +1.21% relative to \u039bCDM at the benchmark.",
+      "falsifiable_by": "Euclid DR1 growth measurements (e.g., RSD and clustering amplitudes) showing \u03c38 consistent with \u039bCDM within \u22641% at 2\u03c3."
+    },
+    {
+      "id": "P2",
+      "statement": "P(k=0.05 h/Mpc, z=0.5) is increased by +2.09% relative to \u039bCDM.",
+      "falsifiable_by": "Euclid DR1 galaxy clustering P(k) near k\u22480.05 h/Mpc at z\u22480.5 (with survey window convolution) consistent with \u039bCDM within the quoted amplitude at \u22652\u03c3."
+    },
+    {
+      "id": "P3",
+      "statement": "C_ell^{\u03d5\u03d5} (lensing potential) at \u2113=66 is decreased by \u22126.01% relative to \u039bCDM.",
+      "falsifiable_by": "Euclid DR1 tomographic weak-lensing power (\u03ba\u03ba) and/or CMB lensing reconstructions near \u2113\u224866 inconsistent with a \u2248\u22126% shift at \u22652\u03c3 after window-function effects."
+    },
+    {
+      "id": "P4",
+      "statement": "E_G(\u2113=66) is decreased by \u22123.98% relative to \u039bCDM.",
+      "falsifiable_by": "Euclid DR1 joint galaxy\u2013lensing and RSD analysis of E_G at \u2113\u224866 consistent with \u039bCDM within 1% at 2\u03c3 (including systematics)."
+    },
+    {
+      "id": "P5",
+      "statement": "C_ell^{TT} (ISW-dominated) at \u2113=30 is increased by +1.88% relative to \u039bCDM.",
+      "falsifiable_by": "Planck low-\u2113 TT (and Euclid ISW\u2013LSS cross-correlations) rejecting a positive \u2248+2% shift at \u22652\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Euclid DR1 measures |E_G(\u2113\u224866) \u2212 E_G^\u039bCDM| < 1% at 2\u03c3 (including systematics), i.e., consistent with zero shift\u2014this falsifies the EFC benchmark coupling.",
+    "KC2: Any of the five sealed observables shows an opposite-sign shift relative to \u039bCDM at \u22652\u03c3 after Euclid DR1 window/convolution corrections.",
+    "KC3: The joint Euclid DR1 growth and lensing analysis finds the growth and lensing sectors shift with the same sign near k\u22480.05 h/Mpc (or \u2113\u224866) at \u22652\u03c3, violating the EFC coherence property.",
+    "KC4: Independent reproduction with hi_class (including the supplied efc_logistic implementation) reveals violation of Horndeski stability (c_s^2 \u2264 0 or Q_S \u2264 0) on 0 < z < 3 for the stated benchmark."
+  ],
+  "tier": "T1",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-eg-forecast",
+      "doi": "10.6084/m9.figshare.31985313",
+      "role": "Theory/forecast background for scale-localized EG in EFC"
+    },
+    {
+      "id": "efc-kill-test-v6",
+      "doi": "10.6084/m9.figshare.31940505",
+      "role": "Kill-test protocol and falsification framework"
+    },
+    {
+      "id": "efc-eft-ansatz",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "Minimal EFC EFT ansatz with gravitational slip"
+    }
+  ],
+  "files": [
+    "efc_euclid_prediction.pdf",
+    "src/efc_logistic_demo.py",
+    "data/benchmark.json",
+    "data/parameter_scan.json",
+    "examples/run_benchmark.py"
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990053",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research",
   "license": "CC-BY-4.0",
@@ -12,33 +138,6 @@
     "Horndeski scalar-tensor"
   ],
   "primary_pdf": "efc_euclid_prediction.pdf",
-  "date": "2026-04-12",
-  "key_results": [
-    {
-      "observable": "sigma8",
-      "shift_pct": 1.207,
-      "benchmark": {
-        "B0": 0.02,
-        "M0": 0.06
-      }
-    },
-    {
-      "observable": "P(k_c,z=0.5)",
-      "shift_pct": 2.091
-    },
-    {
-      "observable": "Cl^pp(ell=66)",
-      "shift_pct": -6.012
-    },
-    {
-      "observable": "E_G(ell=66)",
-      "shift_pct": -3.981
-    },
-    {
-      "observable": "Cl^TT(ell=30)",
-      "shift_pct": 1.875
-    }
-  ],
   "parameters": {
     "B0": {
       "value": 0.02,
@@ -66,13 +165,5 @@
   "sha256": "dbc737979d8a773f56c620759ddded38139157fd9a2dbb321a8ffdb6e68135d2",
   "tool": "hi_class 3.0 + efc_logistic patch",
   "pipeline": "pipelines/efc/euclid_dr1/",
-  "files": [
-    "efc_euclid_prediction.pdf",
-    "src/efc_logistic_demo.py",
-    "data/benchmark.json",
-    "data/parameter_scan.json",
-    "examples/run_benchmark.py"
-  ],
-  "see_also": "ai_manifest.json",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990053"
+  "see_also": "ai_manifest.json"
 }

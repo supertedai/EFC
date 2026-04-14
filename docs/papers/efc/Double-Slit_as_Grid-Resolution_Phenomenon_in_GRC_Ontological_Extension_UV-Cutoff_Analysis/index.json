@@ -1,17 +1,111 @@
 {
   "$schema": "./schema.json",
-  "paper_id": "EFC-GRC-DoubleSlit-v02",
+  "id": "double-slit-as-grid-resolution-phenomenon-in-grc-ontological-extension-uv-cutoff-analysis",
   "title": "Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology",
-  "subtitle": "Ontological Extension, UV-Cutoff Analysis, and Open Gaps toward Quantum Testability",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
+  "description": "Working note extending Grid-Rendering Cosmology (GRC) to the double-slit experiment with an exact ultraviolet (UV) cutoff formulation arising from a discrete grid scale lg. It derives the deviation from standard QM as an omitted high-k band and shows that for Gaussian slit profiles the deviation is exponentially suppressed, withdrawing a prior polynomial ansatz. The paper relocates testable distinctions to entropy-sensitive decoherence via a clarity function C(S) and to higher-order measurement statistics, noting an open gap in the operational definition of local entropy S.",
   "version": "v0.2 (Revised)",
   "date": "2026-03-08",
+  "doi": "10.6084/m9.figshare.31564129",
+  "keywords": [
+    "Grid-Rendering Cosmology",
+    "double-slit",
+    "UV cutoff",
+    "grid resolution",
+    "discrete geometry",
+    "entropy-sensitive decoherence",
+    "clarity function",
+    "Gaussian aperture",
+    "interference",
+    "band-limited amplitude",
+    "higher-order statistics",
+    "quantum foundations"
+  ],
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "psi_manifest": {
+      "latex": "\\Psi_{\\text{manifest}}(x,t) = G(x) \\otimes E(x,t) \\cdot C\\big(S(x,t)\\big)",
+      "description": "Manifest structure: observable outcomes require the triad of grid geometry G, energy flow E, and clarity C(S)."
+    },
+    "clarity_function": {
+      "latex": "C(S) = \\exp\\!\\left(-\\frac{S}{S_{\\max}}\\right)",
+      "description": "Clarity function linking local entropy S to the sharpness of manifestation; higher S reduces clarity."
+    },
+    "registration_distribution": {
+      "latex": "P(x) = |A(x)|^2",
+      "description": "Screen registration probability from the net amplitude A(x); reduces to standard QM in the limits C\\to 1 and l_g/d \\to 0."
+    },
+    "mode_amplitude": {
+      "latex": "A(x) = \\sum_n a_n \\, \\phi_n(x) \\, C(S_n)",
+      "description": "Minimal-model amplitude over grid modes \\{\\phi_n\\} with local entropy-dependent weighting."
+    },
+    "uv_cutoff_grc": {
+      "latex": "A_{\\text{GRC}}(x) = \\int_{-k_{\\max}}^{k_{\\max}} \\tilde{a}(k)\\, e^{ikx} \\, dk,\\quad k_{\\max} = \\pi/l_g",
+      "description": "GRC amplitude is band-limited by the grid, implementing an exact UV cutoff at k_{\\max}."
+    },
+    "uv_cutoff_delta": {
+      "latex": "\\Delta A(x) = A_{\\text{QM}}(x) - A_{\\text{GRC}}(x) = \\int_{|k|>\\pi/l_g} \\tilde{a}(k)\\, e^{ikx} \\, dk",
+      "description": "Exact deviation from standard QM as the omitted high-k band beyond the grid cutoff."
+    },
+    "gaussian_profile_and_bound": {
+      "latex": "\\tilde{a}(k) = e^{-\\tfrac{1}{2}\\sigma^2 k^2} \\cos\\!\\left(\\tfrac{kD}{2}\\right),\\quad |\\Delta A| \\lesssim \\frac{l_g}{\\pi\\sigma^2}\\, \\exp\\!\\left(-\\frac{\\pi^2 \\sigma^2}{2 l_g^2}\\right)",
+      "description": "For Gaussian slit profiles, the UV-cutoff deviation is exponentially suppressed when \\sigma \\gg l_g."
+    }
+  },
+  "key_results": {
+    "main_finding": "In GRC the double-slit deviation from QM is exactly the omitted high-k band due to a grid UV cutoff, yielding exponentially suppressed differences for Gaussian apertures and withdrawing the prior O((l_g/d)^2) polynomial ansatz.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "l_g (grid scale)",
+      "\\sigma (Gaussian slit width)",
+      "D (slit separation)",
+      "d (slit width)",
+      "S (local entropy)",
+      "S_max (clarity scale)"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Continuum recovery: In the double limit C(S) \\to 1 and l_g/d \\to 0, the GRC registration distribution P(x) reproduces the standard QM double-slit interference pattern.",
+      "falsifiable_by": "High-visibility double-slit experiments with wide slits and negligible entropy injection that systematically deviate from standard QM beyond experimental systematics."
+    },
+    {
+      "id": "P3",
+      "statement": "Entropy-sensitive decoherence: Interference visibility is suppressed in proportion to local entropy increase near a slit via C(S) = exp(-S/S_max), even when no which-path information is recorded.",
+      "falsifiable_by": "Controlled entropy injection (e.g., engineered thermal/phonon load) at a slit without path information leakage that yields no measurable visibility change relative to a no-entropy-injection control."
+    },
+    {
+      "id": "P4",
+      "statement": "Higher-order statistics: Under controlled S histories, higher-order detection statistics (e.g., second-order correlations/cumulants) exhibit departures from standard QM predictions tied to C(S), beyond mean-intensity fringe visibility changes.",
+      "falsifiable_by": "Single-photon (or single-particle) double-slit with multiplexed detectors measuring higher-order correlations showing no S-dependent deviation from standard QM across varied entropy loads."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Entropy-neutral which-path couplings that preserve local S while fully destroying interference would contradict the claim that S (via C(S)) mediates decoherence.",
+    "KC2: Controlled local entropy injection at a slit (verifiably without which-path information leakage) that fails to reduce visibility in the direction and scale predicted by C(S) = exp(-S/S_max) would falsify P3.",
+    "KC3: Aperture-profile tomography using Gaussian slits across \\sigma values that cannot be fit by the GRC band-limited model with k_max = \\pi/l_g for any physically plausible l_g (i.e., residuals incompatible with the predicted exponential suppression) would falsify the UV-cutoff mechanism.",
+    "KC4: Demonstration of robust sub-grid spatial registration (effective localization) well below any finite l_g across multiple platforms without concomitant decoherence would force l_g \\to 0, contradicting the discrete-grid postulate A1/A5.",
+    "KC5: Observation of leading polynomial-in-(l_g/d) deviations in fringe patterns across geometries where GRC predicts exponential suppression for Gaussian profiles would refute the revised prediction and the UV-cutoff derivation."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "Double-Slit_as_Grid-Resolution_Phenomenon_in_GRC_Ontological_Extension_UV-Cutoff_Analysis.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31564129",
+  "paper_id": "EFC-GRC-DoubleSlit-v02",
+  "subtitle": "Ontological Extension, UV-Cutoff Analysis, and Open Gaps toward Quantum Testability",
+  "orcid": "0009-0002-4860-5095",
   "status": "Working note. Not peer-reviewed.",
   "scope": "Ontological and minimal-model extension of GRC to sub-L0 quantum regime. Not an empirical closure paper.",
   "abstract": "GRC treats quantum uncertainty as grid-resolution: Delta x >= l_g. UV-cutoff derivation shows geometric deviation from QM is exponentially suppressed: |Delta A| ~ exp(-pi^2 sigma^2 / 2 l_g^2). Primary testable distinction relocated to entropy-sensitive decoherence (P3) and higher-order measurement statistics (P4). Polynomial ansatz O((l_g/d)^2) withdrawn.",
   "manifest_triad": {
-    "equation": "Psi_manifest(x,t) = G(x) ⊗ E(x,t) · C(S(x,t))",
+    "equation": "Psi_manifest(x,t) = G(x) \u2297 E(x,t) \u00b7 C(S(x,t))",
     "G": "Discrete geometric substrate with node scale l_g",
     "E": "Energy flow through G (dynamic mode)",
     "C_S": "Clarity function: C(S) = exp(-S/S_max)"
@@ -35,7 +129,7 @@
     {
       "id": "A4",
       "name": "Manifest Structure",
-      "content": "Psi_manifest = G(x) ⊗ E(x,t) · C(S(x,t)); no registration without triad"
+      "content": "Psi_manifest = G(x) \u2297 E(x,t) \u00b7 C(S(x,t)); no registration without triad"
     },
     {
       "id": "A5",
@@ -308,7 +402,5 @@
       "doi": "10.6084/m9.figshare.31230703",
       "citation": "EFC DESI DR2 BAO"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31564129",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31564129"
+  ]
 }

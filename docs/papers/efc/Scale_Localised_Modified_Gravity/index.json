@@ -1,13 +1,127 @@
 {
+  "$schema": "./schema.json",
   "id": "scale-localised-modified-gravity",
-  "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via E_G(k,z)",
-  "short_title": "Scale-Localised Modified Gravity",
+  "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
+  "description": "Introduces a scale-localised modified-gravity response derived from the EFC relativistic action, producing a band-pass stiffness R(k) that recovers GR in both IR and UV limits. The single effective parameter \u03b5_tot controls gravitational slip, yielding a distinctive +5\u20137% bump in E_G(k) at k \u2248 0.05 h/Mpc and a marginal improvement to current CMB lensing fits. The paper provides directly falsifiable predictions for DESI \u00d7 Planck with a forecast 2.5\u20133.5\u03c3 detection significance.",
+  "version": "1.1",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31985313",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "gravitational slip",
+    "Poisson coupling mu",
+    "lensing Sigma",
+    "E_G statistic",
+    "scale-dependent effects",
+    "band-pass response",
+    "DESI",
+    "Planck lensing",
+    "BOSS full-shape",
+    "CMB ISW"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "stiffness_response": {
+      "latex": "R(k,a) = R_0 \\frac{(k/k_c)^2}{\\big(1+(k/k_c)^2\\big)^3} \\, a^4",
+      "description": "Band-pass stiffness from the EFC action; localises modifications near k_c, with GR recovered as k\u21920 (IR) and k\u2192\u221e (UV)."
+    },
+    "effective_coupling_mu": {
+      "latex": "\\mu(k,z) = \\frac{1}{F\\,[1+R(k,a)]}",
+      "description": "Effective Poisson coupling; R>0 suppresses growth (\\mu<1)."
+    },
+    "gravitational_slip_eta": {
+      "latex": "\\eta(k,z) = 1 + 2\\,\\varepsilon_{\\mathrm{tot}}\\, \\frac{(k/k_c)^2}{\\big(1+(k/k_c)^2\\big)^2} \\, a^2",
+      "description": "Gravitational slip induced by the \\delta\\lambda counter-term; controls anisotropy between metric potentials."
+    },
+    "lensing_combination_Sigma": {
+      "latex": "\\Sigma(k,z) = \\frac{\\mu(k,z)\\,[1+\\eta(k,z)]}{2}",
+      "description": "Lensing modification for the Weyl potential; typically \\Sigma>1 due to \\eta>1 despite \\mu<1."
+    },
+    "eg_statistic": {
+      "latex": "E_G(k,z) = \\frac{\\Omega_{m,0}}{f(z)}\\,\\frac{\\Sigma(k,z)}{\\mu(k,z)}",
+      "description": "Bias- and \\sigma_8-independent test combining growth and lensing; GR predicts a flat, scale-independent value, while EFC predicts a scale-localised bump near k_c."
+    }
+  },
+  "key_results": {
+    "main_finding": "A single-parameter (\u03b5_tot) EFC band-pass model predicts a +5\u20137% E_G(k) bump at k \u2248 0.05 h/Mpc, passes current individual tests within 2\u03c3, and marginally improves the joint fit (\u0394\u03c7\u00b2=+1.4) primarily via CMB lensing.",
+    "delta_chi2": 1.4,
+    "significance_sigma": 3.0,
+    "parameters_tested": [
+      "\u03b5_tot \u2208 [0.38, 0.42] (slip amplitude)",
+      "R_0 = 0.510 (fixed)",
+      "k_c = 0.05 h/Mpc (fixed)",
+      "F \u2248 1.00005 (fixed)"
+    ],
+    "datasets_used": [
+      "BOSS full-shape P(k)",
+      "Planck CMB ISW (low-\u2113)",
+      "Planck 2018 CMB lensing (A_lens)",
+      "KiDS-1000 cosmic shear",
+      "Current E_G compilations",
+      "Forecast: DESI \u00d7 Planck lensing cross-correlations"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At z \u2248 0.3, E_G(k) exhibits a scale-localised bump of +5\u20137% centered at k \u2248 0.05 h/Mpc, with \u03a3/\u03bc \u2248 1.07 at the peak and returning to GR on larger and smaller scales.",
+      "falsifiable_by": "DESI \u00d7 Planck lensing-galaxy cross-correlations measuring E_G(k) with \u22485% precision per k-bin."
+    },
+    {
+      "id": "P2",
+      "statement": "The slip-driven enhancement follows approximately (1+\u03b7)/2 \u2212 1 \u221d a^2, yielding a stronger E_G bump at lower redshift (e.g., z \u2272 0.5) compared to higher redshift (z \u2273 0.8).",
+      "falsifiable_by": "Tomographic E_G(k,z) from DESI \u00d7 Planck and Stage-IV weak-lensing surveys testing the predicted a^2 evolution."
+    },
+    {
+      "id": "P3",
+      "statement": "Growth is modestly suppressed (\u03bc<1) while lensing is enhanced (\u03a3>1), producing a growth\u2013shear mismatch at the few-percent level that cannot be mimicked by a scale-independent rescaling of \u03c38 or A_s.",
+      "falsifiable_by": "Joint fits to full-shape P(k), redshift-space distortions, and cosmic shear across 0.03 < k < 0.1 h/Mpc."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: DESI \u00d7 Planck measures E_G(k) at 0.03 < k < 0.1 h/Mpc with \u22645% fractional error per bin and finds no >3% excess over GR at k \u2248 0.05 h/Mpc (95% CL), i.e., no resolved bump\u2014rules out \u03b5_tot \u2208 [0.38, 0.42].",
+    "KC2: A global fit to Planck TTTEEE + lensing, BOSS/DESI full-shape, and KiDS/DES shear excludes the \u03b5_tot window [0.38, 0.42] at 95% CL (best-fit \u03b5_tot outside and the interval disfavoured).",
+    "KC3: The measured E_G(k) peak (from \u03a3/\u03bc) occurs outside 0.04 < k_peak < 0.06 h/Mpc at z \u2272 0.5 with \u22653\u03c3 significance, contradicting the fixed k_c = 0.05 h/Mpc prediction.",
+    "KC4: Tomographic E_G(k,z) shows no increase in the bump amplitude toward lower redshift (contrary to \u221d a^2 scaling) at \u22653\u03c3 significance."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-relativistic-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "theory base and perturbation-sector variational expressions for \u03bc, \u03a3, \u03b7"
+    },
+    {
+      "id": "efc-no-go-background",
+      "doi": "10.6084/m9.figshare.31985163",
+      "role": "constraint establishing \u039bCDM background (No-Go), confining EFC effects to perturbations"
+    },
+    {
+      "id": "signal-localization-method",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "methodology for systematic localisation of late-time signals in modified gravity"
+    }
+  ],
+  "files": [
+    "Scale_Localised_Modified_Gravity.pdf",
+    "README.md",
+    "index.json",
+    "metadata.json",
+    "schema.json",
+    "scale-localised-modified-gravity.jsonld",
+    "citations.bib",
+    "data/observational_tests.json",
+    "data/eg_prediction.json",
+    "src/scale_localised_gravity.py",
+    "examples/demo_eg_bump.py"
+  ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31985313",
+  "short_title": "Scale-Localised Modified Gravity",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research, Sandnes, Norway",
-  "date": "2026-04",
-  "version": "1.1",
-  "doi": "10.6084/m9.figshare.31985313",
   "license": "CC-BY-4.0",
   "category": "structural",
   "track": "perturbation_sector",
@@ -163,19 +277,5 @@
     "relativistic_action": "10.6084/m9.figshare.31876324",
     "cmb_localization": "10.6084/m9.figshare.31368433"
   },
-  "files": [
-    "Scale_Localised_Modified_Gravity.pdf",
-    "README.md",
-    "index.json",
-    "metadata.json",
-    "schema.json",
-    "scale-localised-modified-gravity.jsonld",
-    "citations.bib",
-    "data/observational_tests.json",
-    "data/eg_prediction.json",
-    "src/scale_localised_gravity.py",
-    "examples/demo_eg_bump.py"
-  ],
-  "see_also": "ai_manifest.json",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31985313"
+  "see_also": "ai_manifest.json"
 }

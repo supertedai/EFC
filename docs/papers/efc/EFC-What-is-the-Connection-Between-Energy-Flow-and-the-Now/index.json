@@ -1,20 +1,57 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now",
-  "title": "EFC — What is the Connection Between Energy Flow and the Now?",
+  "title": "EFC \u2014 What is the Connection Between Energy Flow and the Now?",
+  "description": "Conceptual paper proposing that the present moment (NOW) emerges as a dynamic equilibrium sustained by continuous energy flow across physical and neural scales. It outlines key concepts, thought experiments, and questions linking energy dynamics to temporal perception and time\u2013space coherence, and suggests next steps for modeling and empirical exploration.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098311",
+  "keywords": [
+    "Energy Flow",
+    "Present Moment",
+    "NOW",
+    "Temporal Perception",
+    "Time-Space Coherence",
+    "Entropy Gradient",
+    "Consciousness",
+    "Relativity",
+    "Simultaneity",
+    "Quantum Fluctuations",
+    "Neural Dynamics",
+    "Temporal Integration Window"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Proposes that the NOW is a dynamic equilibrium sustained by continuous energy flow, linking temporal perception and time\u2013space coherence across physical and neural domains.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: In controlled EEG/MEG or fMRI experiments, substantial, targeted modulation of neural energy consumption or oscillatory power (e.g., via metabolic load, pharmacological intervention, or noninvasive stimulation) produces no measurable change in psychophysical metrics of the perceived present (e.g., temporal integration window, simultaneity judgments) relative to controls.",
+    "KC2: Demonstration of normal, robust temporal perception in organisms or synthetic agents operating under near-zero net energy throughput (negligible metabolic/thermodynamic flow) indistinguishable from energetically active conditions.",
+    "KC3: Empirical identification of a physical regime exhibiting stable temporal ordering and operational \"now\" without any detectable energy gradients/flows or entropy production, while matching observational phenomena attributed to the present moment.",
+    "KC4: High-precision relativistic synchronization experiments show that differences in energy flow or motion between observers have no correlation with operational or experiential measures of \"now\" beyond standard time dilation effects, undermining the proposed tie between energy flow and observer-relative present."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now.pdf",
+    "readme": "EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098311",
   "path": "docs/papers/efc/EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now",
   "pdf": "EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now.pdf",
   "md": "EFC-What-is-the-Connection-Between-Energy-Flow-and-the-Now.md",
-  "keywords": [
-    "EFC",
-    "Now",
-    "Present Moment",
-    "Energy Flow",
-    "Entropy Gradient",
-    "Temporal Dynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098311",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098311"
+  "type": "paper"
 }

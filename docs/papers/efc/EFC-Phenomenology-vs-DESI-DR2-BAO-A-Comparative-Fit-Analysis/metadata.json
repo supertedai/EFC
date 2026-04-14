@@ -1,78 +1,33 @@
 {
   "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
-  "type": "technical-note",
-  "version": "1.0.0",
+  "short_id": "efc-phenomenology-desi-dr2-bao",
+  "version": "1.0",
   "date": "2026-01-22",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "orcid_url": "https://orcid.org/0009-0002-4860-5095"
-    }
-  ],
-  "abstract": "We test a phenomenological dark energy parameterization inspired by Energy-Flow Cosmology (EFC) against DESI DR2 BAO measurements. Within the models tested, the EFC-inspired form yields the lowest χ² (3.60), compared to w₀wₐCDM (4.49) and ΛCDM (23.71). This constitutes a necessary but not sufficient condition for EFC validation.",
-  "keywords": [
-    "cosmology",
-    "dark energy",
-    "Energy-Flow Cosmology",
-    "EFC",
-    "DESI",
-    "BAO",
-    "baryon acoustic oscillations",
-    "equation of state",
-    "w(z)",
-    "ΛCDM",
-    "CPL parameterization"
-  ],
-  "repository": "https://github.com/supertedai/EFC",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
-  "data_sources": [
-    {
-      "name": "DESI DR2 BAO",
-      "doi": "10.5281/zenodo.14733025",
-      "url": "https://doi.org/10.5281/zenodo.14733025"
-    }
+  "doi": "10.6084/m9.figshare.31127380",
+  "abstract": "This technical note fits a phenomenological dark-energy equation of state w(z), inspired by Energy-Flow Cosmology (EFC), to seven DESI DR2 BAO measurements using diagonal errors only. The EFC-inspired transition form achieves the lowest chi-squared among models tested (\u03c72=3.60) versus w0\u2013wa CDM (4.49) and \u039bCDM (23.71), providing a necessary but not sufficient consistency check. The work outlines next steps to derive w(z) from EFC field equations and perform multi-probe tests with full covariance.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "DESI DR2",
+    "BAO",
+    "dark energy",
+    "equation of state",
+    "CPL parameterization",
+    "phantom regime",
+    "entropy-driven transition",
+    "chi-squared comparison",
+    "multi-probe cosmology",
+    "covariance matrix"
   ],
-  "models": {
-    "ΛCDM": {
-      "description": "Standard cosmological constant",
-      "w": -1,
-      "chi_squared": 23.71
-    },
-    "w0waCDM": {
-      "description": "CPL parameterization",
-      "equation": "w(z) = w₀ + wₐ · z/(1+z)",
-      "chi_squared": 4.49
-    },
-    "EFC": {
-      "description": "Energy-Flow Cosmology inspired",
-      "equation": "w(z) = w_late + (w_early − w_late) · tanh[(z − z_trans)/Δz]",
-      "parameters": {
-        "w_late": -0.8,
-        "w_early": -1.41,
-        "z_trans": 1.07,
-        "delta_z": 0.5
-      },
-      "chi_squared": 3.6
-    }
+  "files": {
+    "pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
+    "tex": "EFC_DESI_Technical_Note.tex"
   },
-  "results": {
-    "best_fit_model": "EFC",
-    "delta_chi_squared_vs_LCDM": -20.11,
-    "conclusion": "EFC-inspired parameterization fits DESI DR2 BAO data at least as well as w₀wₐCDM"
-  },
-  "limitations": [
-    "Diagonal errors only—full covariance matrix not used",
-    "BAO data only—CMB and SN constraints not included",
-    "Post-hoc fitting rather than a priori prediction from EFC equations",
-    "Simplified χ² comparison—no Bayesian model selection"
-  ],
-  "next_steps": [
-    "Derive w(z) from EFC field equations",
-    "Multi-probe analysis (BAO + Pantheon+ SN + Planck CMB)",
-    "Identify unique EFC signatures",
-    "Bayesian model comparison (BIC, evidence ratio)"
-  ],
   "paper": {
     "doi": "10.6084/m9.figshare.31127380",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31127380"

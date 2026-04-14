@@ -1,33 +1,91 @@
 {
+  "$schema": "./schema.json",
   "id": "31061872",
-  "doi": "10.6084/m9.figshare.31061872",
   "title": "Energy-Flow Cosmology and Regime-Dependent Structure Formation (Paper III)",
-  "description": "Paper III of the EFC Regime Structure Series. Introduces Energy-Flow Cosmology as a physical framework consistent with empirical regime structure established in Papers I (SPARC) and II (JWST COSMOS-Web). Phenomenological decomposition E_total = E_flow + E_latent unifies galactic and cosmological anomalies.",
-  "version": 1,
-  "status": "public",
-  "created_date": "2026-01-13",
-  "modified_date": "2026-01-13",
-  "published_date": "2026-01-13",
-  "categories": [
-    "Astrophysics",
-    "Cosmology",
-    "Galactic Astronomy",
-    "Theoretical Physics"
-  ],
-  "tags": [
+  "description": "Paper III introduces Energy-Flow Cosmology (EFC), a thermodynamic framework in which entropy-gradient-driven energy flow governs regime-dependent structure formation across scales. Using a phenomenological decomposition E_total = E_flow + E_latent, the paper provides a unified interpretation consistent with the three-regime behavior seen in SPARC rotation curves (Paper I) and the early-time galaxy abundance excesses in JWST COSMOS-Web (Paper II), and it outlines testable predictions without replacing \u039bCDM.",
+  "version": "1.0",
+  "date": "2026-01-13",
+  "doi": "10.6084/m9.figshare.31061872",
+  "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
-    "regime structure",
     "entropy gradients",
+    "latent energy",
+    "regime structure",
     "galaxy rotation curves",
     "SPARC",
-    "JWST",
-    "structure formation",
-    "thermodynamic cosmology"
+    "JWST COSMOS-Web",
+    "early structure formation",
+    "thermodynamic cosmology",
+    "non-equilibrium dynamics",
+    "FLOW/TRANSITION/LATENT"
   ],
-  "references": [
-    "10.6084/m9.figshare.31045126",
-    "10.6084/m9.figshare.30478916"
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_potential": {
+      "latex": "E_f = \\rho\\,(1 - S)",
+      "description": "Operational proxy for local energy available for organized flow, where \\rho is local mass/energy density and S \\in [0,1] is normalized entropy; higher density and lower entropy increase E_f."
+    },
+    "energy_decomposition": {
+      "latex": "E_{\\text{total}} = E_{\\text{flow}} + E_{\\text{latent}}",
+      "description": "Phenomenological split of total energy into a smoothly flowing component driven by entropy gradients and a latent component stored in non-equilibrium structures (e.g., bars, arms, tidal features)."
+    },
+    "latent_fraction": {
+      "latex": "L = \\frac{E_{\\text{latent}}}{E_{\\text{total}}}",
+      "description": "Latent energy fraction that determines regime membership: FLOW (L < 0.25), TRANSITION (0.25 \\le L \\le 0.45), LATENT (L > 0.45), with boundaries empirically motivated from SPARC."
+    }
+  },
+  "key_results": {
+    "main_finding": "A single entropy-gradient-driven framework (EFC) consistently organizes both the three-regime behavior in galactic rotation curves and the accelerated early-universe structure formation seen by JWST.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "latent fraction L",
+      "E_flow/E_latent decomposition",
+      "energy-flow potential E_f"
+    ],
+    "datasets_used": [
+      "SPARC rotation curves (175 galaxies)",
+      "JWST COSMOS-Web galaxy sample (26,288 galaxies)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The three-regime classification based on latent fraction L (with empirically calibrated boundaries near 0.25 and 0.45) will reproducibly emerge in independent galaxy samples (e.g., LITTLE THINGS, DMS) and correlate with morphology/non-equilibrium features.",
+      "falsifiable_by": "Re-analysis of independent rotation-curve datasets showing no statistically significant regime separation (e.g., Mann\u2013Whitney or similar tests not rejecting the null at p < 0.01) or no correlation between L and morphological indicators (bar strength, tidal asymmetry)."
+    },
+    {
+      "id": "P2",
+      "statement": "The galaxy abundance excess over \u039bCDM will continue to increase monotonically with redshift beyond z > 10, persisting to z > 15 under conservative systematics.",
+      "falsifiable_by": "Deep wide-field JWST/NGRST surveys showing no monotonic increase, or consistency with \u039bCDM within 3\u03c3 across 8 < z < 15 after rigorous completeness and contamination corrections."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Independent galaxy samples (e.g., LITTLE THINGS, DMS) fail to exhibit a statistically significant three-regime separation tied to L after calibration (e.g., p \u2265 0.01 across multiple tests).",
+    "KC2: Barred/high-asymmetry systems (high latent energy) show high rates of simple rotation-curve model success comparable to LSB systems across controlled samples.",
+    "KC3: Robust high-z surveys (z > 8) find no monotonic increase in abundance excess with redshift, or show compatibility with \u039bCDM within 3\u03c3 from z \u2248 8 to z > 15 after stringent systematics treatment.",
+    "KC4: Quantitative proxies for entropy gradients (e.g., gas entropy, turbulence measures) do not correlate with predicted dynamical simplicity/complexity from E_f across diverse environments.",
+    "KC5: Systems classified as LATENT relax to core-like profiles on short timescales without corresponding decreases in latent energy content or non-equilibrium structure strength.",
+    "KC6: The empirically motivated regime boundaries for L fail to transfer (after reasonable recalibration) to multiple independent datasets, yielding inconsistent or non-reproducible classifications."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-paper-i",
+      "doi": "10.6084/m9.figshare.31045126",
+      "role": "Preceding paper (empirical): SPARC rotation-curve regime structure"
+    },
+    {
+      "id": "efc-paper-ii",
+      "doi": "10.6084/m9.figshare.30478916",
+      "role": "Preceding paper (empirical): JWST COSMOS-Web early structure formation excess"
+    }
   ],
   "files": [
     {
@@ -57,7 +115,32 @@
       "description": "Documentation"
     }
   ],
-  "funding": null,
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31061872",
+  "status": "public",
+  "created_date": "2026-01-13",
+  "modified_date": "2026-01-13",
+  "published_date": "2026-01-13",
+  "categories": [
+    "Astrophysics",
+    "Cosmology",
+    "Galactic Astronomy",
+    "Theoretical Physics"
+  ],
+  "tags": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "regime structure",
+    "entropy gradients",
+    "galaxy rotation curves",
+    "SPARC",
+    "JWST",
+    "structure formation",
+    "thermodynamic cosmology"
+  ],
+  "references": [
+    "10.6084/m9.figshare.31045126",
+    "10.6084/m9.figshare.30478916"
+  ],
   "license": {
     "value": "CC BY-NC-SA 4.0",
     "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
@@ -67,6 +150,5 @@
       "name": "Morten Magnusson",
       "orcid": "0009-0002-4860-5095"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31061872"
+  ]
 }

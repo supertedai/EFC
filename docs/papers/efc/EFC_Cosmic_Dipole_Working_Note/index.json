@@ -1,39 +1,144 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-cosmic-dipole",
   "title": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in Energy-Flow Cosmology",
-  "doi": "10.6084/m9.figshare.31942731",
+  "description": "Working note that proposes a natural EFC mechanism for the excess galaxy number-count dipole (2\u20133\u00d7 kinematic). In EFC, large-scale isotropy is a regime condition; a residual super-Hubble entropy gradient \u2207S modulates the effective coupling G_eff(S) and thus structure growth, yielding a dipole aligned with the CMB but with amplified amplitude. The note derives the leading-order dipole, estimates the required ~2% entropy gradient, and states falsifiable predictions and open gaps.",
   "version": "0.1",
-  "status": "working_note",
   "date": "2026-04-06",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Sola, Norway"
-  },
-  "framework": "Energy-Flow Cosmology (EFC)",
-  "license": "CC-BY-4.0",
-  "abstract": "Examines whether EFC contains a natural mechanism for the observed galaxy number count dipole excess (2-3x kinematic prediction). Identifies the key ingredient: isotropy is a regime condition valid in L0/L1, not an absolute postulate. Any residual entropy gradient ∇S imprints a preferred direction via G_eff(S). Required gradient is ~2% across the observable volume, consistent with CMB constraints.",
+  "doi": "10.6084/m9.figshare.31942731",
   "keywords": [
     "cosmic dipole",
     "number count dipole",
     "anisotropy",
     "entropy gradient",
+    "effective gravity",
     "regime-dependent isotropy",
-    "cosmological principle",
-    "CatWISE",
+    "EFC",
     "NVSS",
-    "EFC"
+    "CatWISE",
+    "CMB dipole",
+    "sigma8 anisotropy",
+    "bulk flow"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "core_equations": {
+    "G_eff": {
+      "latex": "G_{\\rm eff}(S) = G_N\\,\\big(1 + \\mu(S)\\big),\\quad \\mu(S) = \\mu_0\\, f(S)",
+      "description": "In EFC, the effective gravitational coupling depends on the entropy field S via an enhancement function f(S) with calibration amplitude \\mu_0."
+    },
+    "directional_G_eff": {
+      "latex": "\\Delta G_{\\rm eff}(\\hat{n}) \\simeq G_N\\, \\mu_0\\, f'(\\bar S)\\, (\\nabla S \\cdot \\hat{n})\\, L_{\\rm grad}",
+      "description": "A large-scale entropy gradient induces a directional modulation of G_eff across the sky with coherence scale L_grad."
+    },
+    "fractional_excess_counts": {
+      "latex": "\\frac{\\delta N}{N}(\\hat{n}) \\simeq b_{\\rm eff} \\, \\frac{\\partial \\ln \\sigma_8}{\\partial \\ln G_{\\rm eff}} \\, \\frac{\\Delta G_{\\rm eff}(\\hat{n})}{G_N}",
+      "description": "Leading-order fractional change in number counts from direction-dependent growth; in the linear regime \\sigma_8 \\propto G_{\\rm eff}^{1/2}."
+    },
+    "dipole_amplitude": {
+      "latex": "D_{\\rm EFC} \\simeq \\frac{b_{\\rm eff}}{2} \\, \\mu_0 \\, \\lvert f'(\\bar S)\\rvert \\, \\frac{\\lvert\\nabla S\\rvert \\, L_{\\rm grad}}{\\bar S}",
+      "description": "Predicted EFC contribution to the number-count dipole from a super-Hubble entropy gradient."
+    },
+    "required_gradient": {
+      "latex": "\\frac{\\lvert\\nabla S\\rvert \\, L_{\\rm grad}}{\\bar S} \\simeq 0.023 \\quad (\\text{for } D_{\\rm excess} \\simeq 0.007,\\ b_{\\rm eff}\\!\\approx\\!1.5,\\ \\mu_0\\!=\\!0.415,\\ \\lvert f'(\\bar S)\\rvert\\!\\sim\\!1)",
+      "description": "Order-of-magnitude entropy gradient across the observable volume needed to explain the observed dipole excess."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC naturally yields an intrinsic number-count dipole via a super-Hubble entropy gradient modulating G_eff(S), with the observed excess explained by an O(2%) gradient across the survey volume.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "mu0 = 0.415 (SPARC calibration)",
+      "b_eff ~ 1.5",
+      "f'(S\u0304) ~ O(1)",
+      "(|\u2207S| L_grad) / S\u0304 ~ 0.02"
+    ],
+    "datasets_used": [
+      "NVSS (literature constraints)",
+      "CatWISE2020 (literature constraints)",
+      "WISE\u2013SuperCOSMOS (literature constraints)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Dipole excess increases toward lower redshift (intrinsic component grows with decreasing z), unlike the redshift-independent kinematic dipole.",
+      "falsifiable_by": "Tomographic number-count dipole measurements showing no increase toward low z across multiple tracers after controlling systematics."
+    },
+    {
+      "id": "P2",
+      "statement": "Directional anisotropy in growth, f\u03c38, at ~2% level aligned with the number-count dipole.",
+      "falsifiable_by": "DESI/Euclid directional f\u03c38 constraints below ~0.5\u20131% in the dipole direction across 0.2 < z < 1 without corresponding signal."
+    },
+    {
+      "id": "P3",
+      "statement": "Dipole direction approximately aligns with CMB dipole and bulk-flow measurements, with amplitude exceeding pure kinematic prediction.",
+      "falsifiable_by": "Joint analyses showing alignment breaks (e.g., >30\u00b0 misalignment) or amplitude fully consistent with kinematic value after robust systematics control."
+    },
+    {
+      "id": "P4",
+      "statement": "Scale dependence: excess is stronger for tracers that probe larger volumes (k \u2272 0.01 Mpc\u207b\u00b9).",
+      "falsifiable_by": "Multi-tracer, multi-scale studies finding no increase of dipole amplitude with survey depth/volume or large-scale mode weighting."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Tomographic number-count dipole across independent tracers (radio, IR, optical) is fully consistent with the kinematic prediction (D \u2248 0.0045) at all redshifts 0 < z < 2 within \u00b110%, leaving no residual intrinsic component > 0.001.",
+    "KC2: Directional growth measurements constrain anisotropy in f\u03c38 below 0.5% (95% CL) along the observed dipole/CMB direction over 0.1 < z < 1, ruling out the ~2% modulation required by the EFC mechanism.",
+    "KC3: A rigorous multi-tracer aberration/Doppler analysis demonstrates that the observed dipole is entirely explained by observer motion after controlling for flux/calibration systematics, leaving D_excess < 0.001 (95% CL).",
+    "KC4: CMB large-scale isotropy and ISW/lensing cross-correlation bounds exclude any super-Hubble entropy (or equivalent potential) gradient at the level (|\u2207S| L_grad / S\u0304) \u2265 0.01, inconsistent with the ~0.02 required by EFC.",
+    "KC5: Independent calibration shows f'(S\u0304) \u2248 0 near the L1\u2192L2 regime transition or a value of \u03bc0 incompatible with SPARC (e.g., \u03bc0 < 0.05 at 95% CL), eliminating sufficient coupling sensitivity to generate the dipole.",
+    "KC6: The inferred dipole direction is robustly misaligned (>45\u00b0) with both the CMB dipole and bulk-flow direction across tracers, contradicting the predicted alignment pattern."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-screening-model",
+      "doi": "10.6084/m9.figshare.31940469",
+      "role": "builds_on"
+    },
+    {
+      "id": "systematic-cmb-localization",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "builds_on"
+    },
+    {
+      "id": "regime-transition-test",
+      "doi": "10.6084/m9.figshare.31941543",
+      "role": "builds_on"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Cosmic_Dipole_Working_Note.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "cosmic_dipole.jsonld",
+    "citations": "citations.bib",
+    "source": "src/cosmic_dipole.py",
+    "data": "data/cosmic_dipole_data.json",
+    "demo": "examples/demo_cosmic_dipole.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942731",
+  "status": "working_note",
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "license": "CC-BY-4.0",
+  "abstract": "Examines whether EFC contains a natural mechanism for the observed galaxy number count dipole excess (2-3x kinematic prediction). Identifies the key ingredient: isotropy is a regime condition valid in L0/L1, not an absolute postulate. Any residual entropy gradient \u2207S imprints a preferred direction via G_eff(S). Required gradient is ~2% across the observable volume, consistent with CMB constraints.",
   "key_equations": {
-    "G_eff": "G_eff(S) = G_N(1 + μ(S))",
-    "directional_G_eff": "ΔG_eff(n̂) ≈ G_N μ₀ f'(S̄) (∇S · n̂) L_grad",
-    "dipole_amplitude": "D_EFC ≈ (b_eff/2) μ₀ |f'(S̄)| |∇S| L_grad / S̄",
-    "required_gradient": "|∇S| L_grad / S̄ ≈ 0.023 (for D_excess ≈ 0.007)"
+    "G_eff": "G_eff(S) = G_N(1 + \u03bc(S))",
+    "directional_G_eff": "\u0394G_eff(n\u0302) \u2248 G_N \u03bc\u2080 f'(S\u0304) (\u2207S \u00b7 n\u0302) L_grad",
+    "dipole_amplitude": "D_EFC \u2248 (b_eff/2) \u03bc\u2080 |f'(S\u0304)| |\u2207S| L_grad / S\u0304",
+    "required_gradient": "|\u2207S| L_grad / S\u0304 \u2248 0.023 (for D_excess \u2248 0.007)"
   },
   "observational_context": {
-    "D_kinematic": "~0.0045 (from v ≈ 370 km/s)",
-    "D_observed": "0.008–0.015 (NVSS, CatWISE, WISE-SuperCOSMOS)",
-    "D_excess": "0.005–0.010 (2–3× kinematic)",
+    "D_kinematic": "~0.0045 (from v \u2248 370 km/s)",
+    "D_observed": "0.008\u20130.015 (NVSS, CatWISE, WISE-SuperCOSMOS)",
+    "D_excess": "0.005\u20130.010 (2\u20133\u00d7 kinematic)",
     "alignment": "Approximately aligned with CMB dipole"
   },
   "predictions": [
@@ -43,7 +148,7 @@
     },
     {
       "id": "P2",
-      "description": "Directional fσ₈ anisotropy at ~2% level"
+      "description": "Directional f\u03c3\u2088 anisotropy at ~2% level"
     },
     {
       "id": "P3",
@@ -57,7 +162,7 @@
   "open_gaps": [
     {
       "id": "G1",
-      "description": "Origin of ∇S (initial conditions / topology)"
+      "description": "Origin of \u2207S (initial conditions / topology)"
     },
     {
       "id": "G2",
@@ -87,17 +192,5 @@
         "title": "Regime Transition Test"
       }
     ]
-  },
-  "files": {
-    "pdf": "EFC_Cosmic_Dipole_Working_Note.pdf",
-    "readme": "README.md",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "cosmic_dipole.jsonld",
-    "citations": "citations.bib",
-    "source": "src/cosmic_dipole.py",
-    "data": "data/cosmic_dipole_data.json",
-    "demo": "examples/demo_cosmic_dipole.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942731"
+  }
 }

@@ -1,18 +1,18 @@
 {
   "$schema": "./schema.json",
   "id": "efc-four-channel-consistency-test",
-  "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (β · T(a))",
-  "description": "Consistency test of EFC's background coupling against four independent cosmological probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Demonstrates that Poisson-channel modification is excluded while background coupling shows mild preference.",
+  "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (\u03b2 \u00b7 T(a))",
+  "description": "Tests a single-parameter Energy-Flow Cosmology (EFC) background-coupling modification of the Friedmann equation against four independent probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Finds that a positive background coupling (\u03b2 \u2248 0.08) mildly improves BAO+RSD fits (\u0394\u03c72 = -3.89) while remaining consistent with CMB lensing and SN Ia, and that Poisson-channel modification is excluded by growth data. The transition function T(a) naturally suppresses deviations at high redshift, ensuring GR recovery at recombination and earlier.",
   "version": "1.0.0",
-  "date": "2026-02",
+  "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31304980",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
     "modified Friedmann equation",
     "background coupling",
+    "Poisson modification",
     "BAO",
-    "RSD",
+    "redshift-space distortions",
     "CMB lensing",
     "Type Ia supernovae",
     "S8 tension",
@@ -27,18 +27,76 @@
   },
   "core_equations": {
     "modified_friedmann": {
-      "latex": "H^2(a) = H_0^2 [\\Omega_m a^{-3} + \\Omega_\\Lambda (1 + \\beta \\cdot T(a))]",
-      "description": "EFC background modification with coupling amplitude β and transition function T(a)"
+      "latex": "H^2(a) = H_0^2\\,[\\Omega_m a^{-3} + \\Omega_\\Lambda\\,(1 + \\beta\\, T(a))]",
+      "description": "EFC background-coupling architecture: a single parameter \\beta rescales the dark-energy term by a fixed transition function T(a) that vanishes as \\Omega_m \\to 1."
     },
-    "transition_function": {
-      "latex": "g_D(z) = \\frac{1 - \\Omega_m(z)}{1+z} \\ln(1+z)",
-      "description": "Distance-coupling kernel, normalised to peak at unity"
+    "distance_coupling_kernel": {
+      "latex": "g_D(z) = \\frac{1 - \\Omega_m(z)}{1+z} \\, \\ln(1+z) \\quad (\\text{normalised to peak at unity})",
+      "description": "Kernel defining the standard EFC transition function; it ties coupling strength to the non-matter fraction and suppresses modifications at early times."
     },
     "growth_ode": {
-      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} = 4\\pi G \\rho_m \\delta",
-      "description": "Growth equation with enhanced Hubble friction from modified H(a)"
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} = 4\\pi G \\, \\rho_m \\, \\delta",
+      "description": "Linear growth equation; the EFC background modification alters H(a), increasing Hubble friction and suppressing late-time growth."
+    },
+    "poisson_channel_alternative": {
+      "latex": "k^2 \\Phi = -4\\pi G \\, a^2 \\, \\mu(a) \\, \\rho_m \\, \\delta",
+      "description": "Alternative (excluded) coupling route: \\mu>1 enhances growth and is disfavoured by BOSS DR12 RSD; EFC favours background (not Poisson) coupling."
     }
   },
+  "key_results": {
+    "main_finding": "Background coupling with a single parameter (\u03b2 \u2248 0.08) passes four independent probes and yields a mild BAO+RSD preference over \u039bCDM, while the Poisson-channel modification is excluded by growth data.",
+    "delta_chi2": -3.89,
+    "significance_sigma": 2.0,
+    "parameters_tested": [
+      "\u03b2 (background coupling amplitude)",
+      "T(a) (fixed transition function; vanishes as \u03a9m\u21921)",
+      "\u03b1 (Poisson-channel amplitude; excluded by RSD)"
+    ],
+    "datasets_used": [
+      "BOSS DR12 BAO distances (DM/rd, DH/rd at z = 0.38, 0.51, 0.61)",
+      "BOSS DR12 redshift-space distortions (f\u03c3\u2088)",
+      "ACT+SPT+Planck 2025 combined CMB lensing",
+      "Pantheon+ Type Ia supernovae"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "High-redshift Ly\u03b1 P1D (z \u2248 3) shows a null EFC background imprint (effect strongly suppressed as T(a) \u2192 small), delivering no detectable deviation from \u039bCDM within current precision.",
+      "falsifiable_by": "Ly\u03b1 1D flux-power measurements at z \u2248 3 detecting a robust (>3\u03c3) deviation attributable to background-only coupling."
+    },
+    {
+      "id": "P2",
+      "statement": "Primary CMB anisotropies remain consistent with GR at recombination, as T(a) \u2192 0 implies an effectively null EFC modification at z \u223c 1100.",
+      "falsifiable_by": "Next-generation CMB (e.g., Simons Observatory, CMB-S4) detecting a statistically significant early-time deviation consistent with an EFC-like background coupling at recombination."
+    },
+    {
+      "id": "P3",
+      "statement": "BAO+RSD datasets that probe z \u223c 0.4\u20130.7 mildly prefer \u03b2 > 0 with suppressed growth relative to \u039bCDM (directional test consistent with BOSS DR12).",
+      "falsifiable_by": "DESI/Euclid BAO+RSD combined likelihoods showing no improvement (or a negative preference) for \u03b2 > 0 and/or favouring \u03b2 \u2264 0."
+    },
+    {
+      "id": "P4",
+      "statement": "SN Ia Hubble-diagram residuals shift slightly negative, with |\u0394\u03bc| \u2264 0.032 mag over 0.1 \u2264 z \u2264 1, consistent with mildly smaller distances from the modified H(a).",
+      "falsifiable_by": "High-precision SN Ia samples (e.g., Pantheon++/Roman) measuring a residual pattern inconsistent in sign or amplitude with the predicted modest negative \u0394\u03bc."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: DESI/Euclid BAO+RSD jointly prefer no improvement for \u03b2>0 (e.g., \u0394\u03c72 \u2265 0 relative to \u039bCDM) and/or yield a best-fit \u03b2 \u2264 0 with >2\u03c3 significance.",
+    "KC2: Robust (>3\u03c3) detection of a non-null EFC background imprint in Ly\u03b1 P1D at z \u2248 3, contradicting the predicted strong suppression (practical null) at high redshift.",
+    "KC3: Statistically significant evidence for early-time (recombination-era) deviations attributable to EFC background coupling, contradicting the GR-recovery envelope implied by T(a) \u2192 0 at z \u223c 1100.",
+    "KC4: RSD measurements at z \u223c 0.4\u20130.7 favour growth enhancement (Poisson-channel \u03bc>1) over growth suppression with a >3\u03c3 preference, reversing the direction required by the EFC background-coupling test."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "paper": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304980",
   "parameters": {
     "beta": {
       "value": 0.08,
@@ -46,11 +104,11 @@
     },
     "sigma_8_efc": {
       "value": 0.805,
-      "description": "EFC prediction for σ₈"
+      "description": "EFC prediction for \u03c3\u2088"
     },
     "sigma_8_lcdm": {
       "value": 0.811,
-      "description": "ΛCDM baseline σ₈"
+      "description": "\u039bCDM baseline \u03c3\u2088"
     }
   },
   "channel_comparison": {
@@ -89,7 +147,7 @@
       "role": "Detection"
     },
     "growth_rate": {
-      "data": "BOSS DR12 fσ₈",
+      "data": "BOSS DR12 f\u03c3\u2088",
       "chi2": 1.09,
       "chi2_lcdm": 1.34,
       "delta_chi2": -0.25,
@@ -99,29 +157,29 @@
         {
           "z": 0.38,
           "fsigma8_efc": 0.464,
-          "fsigma8_obs": "0.497 ± 0.045",
-          "pull": "-0.73σ"
+          "fsigma8_obs": "0.497 \u00b1 0.045",
+          "pull": "-0.73\u03c3"
         },
         {
           "z": 0.51,
           "fsigma8_efc": 0.463,
-          "fsigma8_obs": "0.458 ± 0.038",
-          "pull": "+0.13σ"
+          "fsigma8_obs": "0.458 \u00b1 0.038",
+          "pull": "+0.13\u03c3"
         },
         {
           "z": 0.61,
           "fsigma8_efc": 0.46,
-          "fsigma8_obs": "0.436 ± 0.034",
-          "pull": "+0.71σ"
+          "fsigma8_obs": "0.436 \u00b1 0.034",
+          "pull": "+0.71\u03c3"
         }
       ]
     },
     "cmb_lensing": {
       "data": "ACT+SPT+Planck 2025",
-      "S8_observed": "0.825 ± 0.014",
+      "S8_observed": "0.825 \u00b1 0.014",
       "S8_efc": 0.815,
       "S8_lcdm": 0.821,
-      "pull": "-0.71σ",
+      "pull": "-0.71\u03c3",
       "status": "PASS",
       "role": "Neutral"
     },
@@ -133,7 +191,7 @@
     },
     "combined_bao_rsd": {
       "delta_chi2": -3.89,
-      "significance": "~2σ preference"
+      "significance": "~2\u03c3 preference"
     }
   },
   "regime_consistency": {
@@ -147,19 +205,19 @@
       "z": 3.0,
       "T_z": 0.107,
       "mu_minus_1": 0.037,
-      "margin": "~10× suppressed"
+      "margin": "~10\u00d7 suppressed"
     },
     "cmb_recombination": {
       "z": 1100,
       "T_z": "9.7e-11",
       "mu_minus_1": "3.3e-11",
-      "margin": ">10⁸× below bound"
+      "margin": ">10\u2078\u00d7 below bound"
     },
     "bbn": {
-      "z": "~10⁸",
-      "T_z": "<10⁻³⁰",
-      "mu_minus_1": "<10⁻²⁵",
-      "margin": ">10²³× below bound"
+      "z": "~10\u2078",
+      "T_z": "<10\u207b\u00b3\u2070",
+      "mu_minus_1": "<10\u207b\u00b2\u2075",
+      "margin": ">10\u00b2\u00b3\u00d7 below bound"
     }
   },
   "sigma8_landscape": [
@@ -167,42 +225,42 @@
       "probe": "Planck 2018 primary",
       "sigma8": 0.811,
       "error": 0.006,
-      "efc_pull": "-1.0σ",
+      "efc_pull": "-1.0\u03c3",
       "z": 1100
     },
     {
       "probe": "Planck PR4 primary",
       "sigma8": 0.807,
       "error": 0.006,
-      "efc_pull": "-0.33σ",
+      "efc_pull": "-0.33\u03c3",
       "z": 1100
     },
     {
       "probe": "CMB lensing combined",
       "sigma8": 0.811,
       "error": 0.019,
-      "efc_pull": "-0.32σ",
+      "efc_pull": "-0.32\u03c3",
       "z": "0.5-5"
     },
     {
       "probe": "BOSS RSD (derived)",
       "sigma8": 0.805,
       "error": 0.02,
-      "efc_pull": "+0.00σ",
+      "efc_pull": "+0.00\u03c3",
       "z": "~0.5"
     },
     {
       "probe": "KiDS Legacy",
       "sigma8": 0.748,
       "error": 0.022,
-      "efc_pull": "+2.6σ",
+      "efc_pull": "+2.6\u03c3",
       "z": "~0.5"
     },
     {
       "probe": "DES Y3",
       "sigma8": 0.765,
       "error": 0.023,
-      "efc_pull": "+1.7σ",
+      "efc_pull": "+1.7\u03c3",
       "z": "~0.5"
     },
     {
@@ -213,7 +271,7 @@
   "falsification_criteria": [
     {
       "id": "F1",
-      "observation": "Large μ − 1 at z > 2 where Ωₘ ≈ 1",
+      "observation": "Large \u03bc \u2212 1 at z > 2 where \u03a9\u2098 \u2248 1",
       "implication": "Coupling not epoch-governed",
       "type": "Hard kill"
     },
@@ -225,40 +283,34 @@
     },
     {
       "id": "F3",
-      "observation": "Poisson μ > 1 detected at α_L2 level",
+      "observation": "Poisson \u03bc > 1 detected at \u03b1_L2 level",
       "implication": "Architecture violated",
       "type": "Hard kill"
     },
     {
       "id": "F4",
-      "observation": "BAO–growth β split > 3σ",
+      "observation": "BAO\u2013growth \u03b2 split > 3\u03c3",
       "implication": "Single-channel fails",
       "type": "Hard kill"
     },
     {
       "id": "F5",
-      "observation": "CMB lensing σ₈ > 3σ from EFC",
+      "observation": "CMB lensing \u03c3\u2088 > 3\u03c3 from EFC",
       "implication": "Background inconsistent",
       "type": "Hard kill"
     }
   ],
   "falsification_status": {
     "triggered": [],
-    "tightest_constraint": "F5 (CMB lensing at −0.71σ)"
+    "tightest_constraint": "F5 (CMB lensing at \u22120.71\u03c3)"
   },
   "key_conclusions": [
-    "Poisson-equation coupling (μ > 1) is excluded by BOSS RSD",
+    "Poisson-equation coupling (\u03bc > 1) is excluded by BOSS RSD",
     "EFC enters through the Friedmann equation, not Poisson",
-    "β = 0.08 shows mild preference in combined BAO + RSD (Δχ² = −3.89, ~2σ)",
+    "\u03b2 = 0.08 shows mild preference in combined BAO + RSD (\u0394\u03c7\u00b2 = \u22123.89, ~2\u03c3)",
     "Independently consistent with CMB lensing and SN Ia",
     "Four channels, one parameter, zero kills",
-    "Regime passes at z = 3 and z = 1100 are automatic consequences of T(a) → 0"
+    "Regime passes at z = 3 and z = 1100 are automatic consequences of T(a) \u2192 0"
   ],
-  "architectural_constraint": "EFC behaves as a dynamical dark-energy-like background effect, not as classical modified gravity in the Poisson term",
-  "files": {
-    "paper": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
-    "schema": "schema.json",
-    "citations": "citations.bib"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304980"
+  "architectural_constraint": "EFC behaves as a dynamical dark-energy-like background effect, not as classical modified gravity in the Poisson term"
 }

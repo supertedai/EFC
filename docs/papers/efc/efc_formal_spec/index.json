@@ -1,21 +1,106 @@
 {
+  "$schema": "./schema.json",
   "id": "efc_formal_spec",
-  "title": "EFC — Formal Specification",
+  "title": "EFC \u2014 Formal Specification",
+  "description": "This paper presents the formal mathematical specification of Energy-Flow Cosmology (EFC). It defines the entropy field S(x), the energy\u2013flow field Ef(x), an entropy-coupled effective potential \u03a6(Ef, S), and an entropy-dependent effective light speed c(S), showing how rotation curves, light-travel times, and lensing emerge from their coupling.",
+  "version": "1.0",
+  "date": "2025-11-17",
+  "doi": "10.6084/m9.figshare.30630500",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy field",
+    "energy\u2013flow field",
+    "effective potential",
+    "variable speed of light",
+    "rotation curves",
+    "gravitational lensing",
+    "time-delay cosmography",
+    "thermodynamic framework",
+    "structure formation",
+    "propagation law",
+    "coupled dynamics"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropy_midpoint_and_span": {
+      "latex": "S_{\\mathrm{mid}} = \\tfrac{1}{2}(S_0 + S_1),\\quad \\Delta S = S_1 - S_0",
+      "description": "Defines the midpoint and span of the entropy domain."
+    },
+    "normalized_entropy_coordinate": {
+      "latex": "x(S) = \\dfrac{S - S_{\\mathrm{mid}}}{\\Delta S/2}",
+      "description": "Dimensionless coordinate that normalizes S to the interval [-1, 1]."
+    },
+    "effective_light_speed": {
+      "latex": "c(S) = c_0\\left(1 + a_{\\mathrm{edge}}\\,x(S)^2\\right)",
+      "description": "Entropy-dependent effective speed of light; minimal at mid-entropy and enhanced toward both endpoints."
+    },
+    "effective_potential": {
+      "latex": "\\Phi(E_f, S) = A_{\\Phi}\\,E_f\\,(1 + S)",
+      "description": "Baseline coupling of the energy\u2013flow field and entropy to produce the effective potential."
+    },
+    "circular_velocity": {
+      "latex": "v(r) = \\sqrt{\\,r\\,\\partial_r \\Phi\\,}",
+      "description": "Rotation-curve relation from the radial gradient of the effective potential."
+    },
+    "light_travel_time": {
+      "latex": "t_{\\mathrm{obs}} = \\int_{\\gamma} \\dfrac{dl}{c(S(l))}",
+      "description": "Observed photon travel time along trajectory \\gamma using the entropy-dependent propagation law."
+    }
+  },
+  "key_results": {
+    "main_finding": "Provides a self-contained formalism in which dynamics and observables co-emerge from an entropy field via \u03a6(Ef, S) and an entropy-dependent propagation law c(S).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_{\\Phi}",
+      "a_{\\mathrm{edge}}",
+      "S_0",
+      "S_1",
+      "c_0",
+      "\\beta"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The effective photon propagation speed is minimal in mid-entropy environments and increases toward both low-entropy/high-structure (S \u2192 S0) and high-entropy (S \u2192 S1) regimes, producing systematic shifts in strong-lensing time delays at fixed mass models.",
+      "falsifiable_by": "Comparative strong-lensing time-delay measurements across environments with matched lens mass reconstructions; absence of any environment-correlated time-delay residuals would falsify this."
+    },
+    {
+      "id": "P2",
+      "statement": "A mid-entropy minimum in c(S) yields a stability band for halo-like configurations and naturally flat rotation curves without adding dark components.",
+      "falsifiable_by": "High-precision rotation curves across diverse environments that cannot be reproduced using v(r) = sqrt(r \u2202r \u03a6(Ef, S)) with a shared functional form and consistent (A_\u03a6, a_edge, S0, S1, c0) across systems."
+    },
+    {
+      "id": "P3",
+      "statement": "Entropy-dependent propagation implies that redshift\u2013distance relations and lensing magnifications depend on S(x); lines of sight traversing endpoint-like regions exhibit faster effective propagation than mid-entropy lines of sight.",
+      "falsifiable_by": "Standard-candle/standard-siren Hubble diagrams and lensing magnification statistics conditioned on environmental entropy proxies; null dependence would refute the prediction."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Joint analyses of strong-lensing time delays, standard sirens, and standard candles find no measurable environmental dependence of photon (and GW) travel times, constraining a_edge \u2248 0 across the full x(S) range at \u22721% precision.",
+    "KC2: The functional pair \u03a6(E_f, S) = A_\u03a6 E_f (1 + S) and c(S) = c_0 (1 + a_edge x(S)^2) cannot simultaneously account for galaxy rotation curves and lensing observables across systems without object-specific parameter tuning.",
+    "KC3: Laboratory, Solar-System, or astrophysical tests bound any effective light-speed variation to be zero independent of environment at levels incompatible with the nonzero a_edge required by EFC phenomenology.",
+    "KC4: Empirical mappings of entropy proxies S(x) show that regions near S0 or S1 do not exhibit the predicted enhanced propagation relative to mid-entropy paths, contradicting the edge-enhanced c(S).",
+    "KC5: The coupled equations produce unphysical behavior (e.g., negative or imaginary c(S) or v(r)) within observationally required ranges of S, indicating internal inconsistency of the baseline model."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "efc_formal_spec.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30630500",
   "path": "docs/papers/efc/efc_formal_spec",
   "pdf": "efc_formal_spec.pdf",
   "md": "efc_formal_spec.md",
-  "keywords": [
-    "EFC",
-    "Formal Specification",
-    "Mathematical Framework",
-    "Field Equations",
-    "Energy Flow",
-    "Entropy",
-    "Grid"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.30630500",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30630500"
+  "type": "paper"
 }

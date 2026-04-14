@@ -1,25 +1,80 @@
 {
+  "$schema": "./schema.json",
   "id": "regime-dependent-breakdown-lcdm",
-  "title": "Regime-Dependent Breakdown of ΛCDM Across Cosmic Time",
-  "short_title": "ΛCDM Regime Breakdown",
+  "title": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+  "description": "Combines low-z galaxy dynamics (SPARC) with high-z galaxy abundances (JWST COSMOS-Web) to test whether deviations from standard \u039bCDM predictions cluster by observational regime. Using a descriptive L0\u2013L3 taxonomy and a pre-specified chi-squared/permutation framework, the paper finds significant, monotonic high-z excesses and structured low-z rotation-curve deviations, rejecting uniform randomness (\u03c7\u00b2=47.3, df=4, p\u22481.3e-9). The result is robust to photometric-redshift resampling and conservative systematic stress tests.",
   "version": "1.0",
-  "date": "2026-01",
+  "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31061665",
+  "keywords": [
+    "\u039bCDM",
+    "regime dependence",
+    "SPARC rotation curves",
+    "JWST COSMOS-Web",
+    "high-redshift galaxies",
+    "abundance excess",
+    "chi-squared test",
+    "halo mass function",
+    "Behroozi predictions",
+    "photometric redshift",
+    "cosmic variance",
+    "baryon\u2013dark matter coupling"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "chi_squared": {
+      "latex": "\\chi^2 = \\sum_{i=1}^{k} \\frac{(O_i - E_i)^2}{E_i}",
+      "description": "Test statistic used to assess whether observed deviations cluster non-uniformly across predefined regimes (O_i observed counts, E_i expected under uniform assignment; k is the number of regime cells)."
+    },
+    "velocity_ratio": {
+      "latex": "R_V = \\frac{V_{\\mathrm{obs}}}{V_{\\mathrm{bar}}}",
+      "description": "Rotation-curve deviation metric at the outer radius in SPARC galaxies, comparing observed circular velocity to the baryonic-predicted velocity."
+    },
+    "abundance_ratio": {
+      "latex": "R_n = \\frac{n_{\\mathrm{obs}}(z, M_*)}{n_{\\mathrm{pred}}^{\\mathrm{LCDM}}(z, M_*)}",
+      "description": "High-redshift abundance excess relative to forward-modeled \u039bCDM predictions (Behroozi et al. 2019) or to absolute halo-abundance limits."
+    }
+  },
+  "key_results": {
+    "main_finding": "Deviation signals cluster by regime with \u03c7\u00b2=47.3 (df=4, p\u22481.3\u00d710\u207b\u2079), and high-z galaxy abundances rise monotonically above predictions (\u224823\u2013529\u00d7 vs Behroozi; exceeding halo limits for z>8), robust to photo-z resampling and conservative systematics.",
+    "delta_chi2": null,
+    "significance_sigma": 5.9,
+    "parameters_tested": [
+      "Uniformity of deviations across L0\u2013L3 regimes",
+      "SPARC rotation-curve deviation classes by morphology/dynamics",
+      "High-z abundance ratios vs Behroozi (2019) predictions",
+      "Exceedance of absolute halo-abundance limits",
+      "Robustness to photometric-redshift resampling",
+      "Sensitivity to stellar-mass calibration shifts and cosmic variance"
+    ],
+    "datasets_used": [
+      "SPARC (175 disk galaxies; z\u22480)",
+      "COSMOS2025 (JWST COSMOS-Web; 26,288 galaxies with z>5)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Spectroscopic follow-up of COSMOS-Web high-z candidates (z>8) reduces the abundance excess such that the observed-to-halo-limit ratio R_n \u2264 1.0 in all z>8 bins after vetted completeness and Eddington-bias corrections.",
+    "KC2: A preregistered re-analysis using the same L0\u2013L3 regime boundaries and test statistic on updated COSMOS-Web and independent deep fields (e.g., JADES, CEERS, PRIMER) yields p \u2265 0.05 (chi-squared and permutation tests), failing to reject uniformity.",
+    "KC3: Independently validated systematics (photo-z errors, mass calibration, selection, and cosmic variance) jointly account for the high-z excess, bringing R_n \u2264 3 across all 5\u2264z\u226410 bins relative to Behroozi (2019), eliminating the reported monotonic trend.",
+    "KC4: A hierarchical re-analysis of SPARC with updated distances, inclinations, beam-smearing corrections, and stellar M/L shows no morphology/dynamics-dependent clustering in R_V (posterior consistent with uniform deviations across regimes at p \u2265 0.05).",
+    "KC5: Applying the preregistered regime test to future JWST/NGRST/Euclid datasets shows no transition to halo-limit exceedance (R_n \u2264 1.5) at z>8, contradicting the reported regime boundary."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "Regime_Dependent_Breakdown.pdf"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665",
+  "short_title": "\u039bCDM Regime Breakdown",
   "type": "statistical_analysis",
   "status": "published",
-  "abstract_short": "ΛCDM deviations cluster systematically across redshifts (χ²=47.3, df=4, p<10⁻⁸). JWST/COSMOS galaxies exceed predictions by 23-529× depending on redshift.",
-  "keywords": [
-    "ΛCDM",
-    "regime breakdown",
-    "SPARC",
-    "COSMOS-Web",
-    "JWST",
-    "high-z galaxies"
-  ],
+  "abstract_short": "\u039bCDM deviations cluster systematically across redshifts (\u03c7\u00b2=47.3, df=4, p<10\u207b\u2078). JWST/COSMOS galaxies exceed predictions by 23-529\u00d7 depending on redshift.",
   "key_result": {
     "chi2": 47.3,
     "df": 4,
@@ -49,7 +104,7 @@
     }
   ],
   "disclaimers": [
-    "Does NOT falsify ΛCDM",
+    "Does NOT falsify \u039bCDM",
     "Does NOT propose alternative dynamics",
     "Does NOT identify unique mechanism"
   ],
@@ -64,9 +119,5 @@
       "N": 26288,
       "z": ">5"
     }
-  ],
-  "files": {
-    "pdf": "Regime_Dependent_Breakdown.pdf"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665"
+  ]
 }

@@ -1,68 +1,125 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-perturbation-sigma8-suppression",
-  "title": "Perturbation-Level σ₈ Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications",
-  "short_title": "EFC σ₈ Perturbation Suppression",
+  "title": "Perturbation-Level \u03c38 Suppression via \u03bc(a) < 1: Structural Limits of Scale-Free Modifications",
+  "description": "This technical note studies a purely perturbation-level, scale-independent modification to the growth equation via \u03bc(a) = 1 \u2212 B g(a), with \u03bc < 1 weakening the Poisson source term. Scanning gate amplitude and width while holding \u03bc0 fixed, it finds a universal, geometric doubling of \u03c38 suppression when broadening the gate from n = 6 to n = 2. Within Planck 1\u03c3 on \u03bc0, a scale-free \u03bc(a) closes ~43% of the S8 gap; at ~1.5\u03c3 it closes ~73%, implying full resolution requires scale dependence or an additional channel.",
   "version": "1.0",
   "date": "2026-02-13",
   "doi": "10.6084/m9.figshare.31333600",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "sigma8",
+    "S8 tension",
+    "modified gravity",
+    "growth of structure",
+    "mu parameter",
+    "scale-independent",
+    "gate function",
+    "RSD",
+    "BOSS DR12",
+    "Planck constraints",
+    "CLASS"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "growth_equation": {
+      "latex": "f' + f^2 + \\left(\\tfrac{1}{2} - \\tfrac{3}{2} \\, \\tilde{\\Omega}_m\\right) f = \\tfrac{3}{2} \\, \\mu(a) \\, \\tilde{\\Omega}_m",
+      "description": "Modified linear-growth equation (scale-free) where \\mu(a) rescales the gravitational source term; f = d\\ln D/d\\ln a and \\tilde{\\Omega}_m(a) = \\Omega_m a^{-3}/E^2(a)."
+    },
+    "mu_definition": {
+      "latex": "\\mu(a) = 1 - B\\, g(a)",
+      "description": "Perturbation-level modification to the effective gravitational coupling (Geff/G); B sets amplitude at fixed gate g(a)."
+    },
+    "gate_function": {
+      "latex": "g(a) = \\frac{1}{1 + (a_t/a)^n}, \\quad a_t = \\frac{1}{1+z_t}",
+      "description": "Sigmoid gate controlling the temporal support of the \\mu-modification; n sets steepness and a_t the transition epoch."
+    },
+    "calibration": {
+      "latex": "B = \\frac{1 - \\mu_0}{g(1; n)}",
+      "description": "Calibration used in n-scans to hold \\mu(z=0) = \\mu_0 fixed while varying gate width n."
+    },
+    "suppression_integral": {
+      "latex": "\\Delta\\sigma_8 \\propto (1 - \\mu_0) \\int_{\\ln a_{\\min}}^{0} g(a; n)\\, d\\ln a",
+      "description": "\u03c38 suppression scales with the temporal support (in \\ln a) of the gate, explaining geometric control of growth suppression."
+    },
+    "universal_factor_2": {
+      "latex": "\\frac{\\Delta\\sigma_8(n=2)}{\\Delta\\sigma_8(n=6)} = 2.00 \\pm 0.01",
+      "description": "Central invariant: broadening the sigmoid from n=6 to n=2 doubles \u03c38 suppression at fixed \\mu_0; a geometric property of gate width."
+    }
+  },
+  "key_results": {
+    "main_finding": "Broadening the gate from n = 6 to n = 2 exactly doubles \u03c38 suppression at fixed \u03bc0 (2.00 \u00b1 0.01), implying a geometric ceiling: scale-free \u03bc(a) can close ~43% (1\u03c3) to ~73% (~1.5\u03c3) of the S8 gap but cannot fully resolve it.",
+    "delta_chi2": -19.8,
+    "significance_sigma": 1.5,
+    "parameters_tested": [
+      "A = 0 (background off)",
+      "B (perturbation amplitude)",
+      "n (gate steepness)",
+      "z_t (transition redshift; a_t = 1/(1+z_t))",
+      "mu_0 (present-day \u03bc)",
+      "Sigma = 1 (lensing potential setting)"
+    ],
+    "datasets_used": [
+      "BOSS DR12 RSD (3 points, full covariance)",
+      "Planck 2018 \u03bc\u2013\u03a3 constraints (approximate, \u039bCDM background)",
+      "Stage-III weak lensing S8 target (S8 \u2248 0.776 \u00b1 0.017) and Planck S8 baseline (0.834 \u00b1 0.016)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In a full Boltzmann treatment (CLASS) with scale-free \u03bc(a) and A = 0, the \u03c38 suppression ratio between n = 2 and n = 6 remains 2.00 \u00b1 0.02 across \u03bc0 \u2208 [0.80, 0.95].",
+      "falsifiable_by": "Direct computation of D(a) and \u03c38 in CLASS or CAMB showing a deviation > 0.02 from the factor-2 ratio when radiation, neutrinos, and ISW/CMB lensing are included."
+    },
+    {
+      "id": "P2",
+      "statement": "Within Planck 1\u03c3 on \u03bc0 (|\u03bc0 \u2212 1| \u2264 0.10), any scale-free \u03bc(a) model cannot close more than ~45% of the S8 gap at fixed \u03a9m \u2248 0.313.",
+      "falsifiable_by": "A joint Planck+RSD+WL analysis demonstrating \u226590% S8 gap closure with a scale-free \u03bc(a) (no k-dependence) while satisfying |\u03bc0 \u2212 1| \u2264 0.10."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A full Boltzmann global fit (Planck 2018 TTTEEE+lowE+lensing + BOSS/DESI RSD + WL) shows that the WP1a reference (\u03bc0 \u2248 0.85, n = 2, z_t \u2248 1.01, A = 0, \u03a3 = 1) worsens total \u03c7\u00b2 by > +10 relative to \u039bCDM; this rules out the proposed perturbation channel point.",
+    "KC2: The universal factor-2 claim fails in a full solver: \u0394\u03c38(n=2)/\u0394\u03c38(n=6) deviates from 2.00 by >10% across \u03bc0 \u2208 [0.80, 0.95]; this invalidates the geometric invariant central to the paper.",
+    "KC3: Under |\u03bc0 \u2212 1| \u2264 0.10, a robust analysis finds that scale-free \u03bc(a) closes \u226420% of the S8 gap (\u03c38 \u2265 0.807 at \u03a9m \u2248 0.313), contradicting the reported ~43% ceiling and falsifying the suppression-integral scaling.",
+    "KC4: High-precision RSD (e.g., DESI) constrains \u03bc0 \u2265 0.95 at >3\u03c3 over 0.3 < z < 1.1, leaving insufficient room for \u03bc < 1 to achieve \u226570% S8 amelioration; this kills the scale-free \u03bc(a) channel as a viable explanation.",
+    "KC5: Achieving \u22641\u03c3 compatibility with Planck and WL requires introducing more than one additional free parameter beyond \u03bc(a) (e.g., strong k-dependence plus extra time-evolution), violating the stated hard-stop rule and abandoning this EFC pathway."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efclass-sign-structure",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Background lemma and motivation; shows background gate cannot suppress \u03c38 (\u0394E^2 \u2264 0)."
+    }
+  ],
+  "files": {
+    "paper": "efc_technical_note_II.pdf",
+    "schema": "schema.json",
+    "citations": "citations.bib"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31333600",
+  "short_title": "EFC \u03c3\u2088 Perturbation Suppression",
   "type": "perturbation_analysis",
   "status": "published",
   "series": "EFCLASS Technical Note II",
-  "abstract_short": "Perturbation channel μ(a) = 1 − B g(a) with μ < 1 weakens the gravitational source term. Reducing gate steepness from n=6 to n=2 exactly doubles σ₈ suppression (universal factor-2). Within Planck 1σ, scale-free μ(a) closes ~43% of S₈ gap; at ~1.5σ it closes ~73%. Full resolution requires scale dependence or combined channel.",
-  "keywords": [
-    "EFC",
-    "sigma8",
-    "S8 tension",
-    "perturbation",
-    "mu parameter",
-    "gate function",
-    "growth suppression",
-    "scale-free",
-    "modified gravity",
-    "CLASS"
-  ],
+  "abstract_short": "Perturbation channel \u03bc(a) = 1 \u2212 B g(a) with \u03bc < 1 weakens the gravitational source term. Reducing gate steepness from n=6 to n=2 exactly doubles \u03c3\u2088 suppression (universal factor-2). Within Planck 1\u03c3, scale-free \u03bc(a) closes ~43% of S\u2088 gap; at ~1.5\u03c3 it closes ~73%. Full resolution requires scale dependence or combined channel.",
   "depends_on": {
     "technical_note_I": {
       "id": "efclass-sign-structure",
       "doi": "10.6084/m9.figshare.31333414",
-      "relationship": "Background sign lemma (ΔE² ≤ 0) rules out background channel"
-    }
-  },
-  "core_equations": {
-    "growth_equation": {
-      "latex": "f' + f^2 + (1/2 - 3/2 \\tilde{\\Omega}_m) f = 3/2 \\mu(a) \\tilde{\\Omega}_m",
-      "description": "Modified growth equation with μ(a) gravitational source term"
-    },
-    "mu_definition": {
-      "latex": "\\mu(a) = 1 - B\\, g(a)",
-      "description": "Perturbation-level modification: effective gravitational coupling"
-    },
-    "gate_function": {
-      "latex": "g(a) = 1 / (1 + (a_t/a)^n)",
-      "description": "Sigmoid gate function with transition scale factor a_t"
-    },
-    "calibration": {
-      "latex": "B = (1 - \\mu_0) / g(1; n)",
-      "description": "Calibration ensuring μ(z=0) = μ₀ when scanning n"
-    },
-    "suppression_integral": {
-      "latex": "\\Delta\\sigma_8 \\propto (1 - \\mu_0) \\int_{\\ln a_{min}}^{0} g(a; n)\\, d\\ln a",
-      "description": "σ₈ suppression proportional to temporal support of gate"
-    },
-    "universal_factor_2": {
-      "latex": "\\Delta\\sigma_8(n{=}2) / \\Delta\\sigma_8(n{=}6) = 2.00 \\pm 0.01",
-      "description": "Geometric invariant: broadening gate from n=6 to n=2 doubles suppression"
+      "relationship": "Background sign lemma (\u0394E\u00b2 \u2264 0) rules out background channel"
     }
   },
   "parameters": {
     "A": {
       "value": 0.0,
-      "description": "Background amplitude (set to 0 for pure μ-model)"
+      "description": "Background amplitude (set to 0 for pure \u03bc-model)"
     },
     "B": {
       "value": 0.187,
@@ -82,7 +139,7 @@
     },
     "mu_0": {
       "value": 0.85,
-      "description": "Present-day μ value (reference model)"
+      "description": "Present-day \u03bc value (reference model)"
     },
     "Sigma": {
       "value": 1.0,
@@ -107,7 +164,7 @@
     "sigma_8": 0.773,
     "S_8": 0.79,
     "gap_closed_percent": 73,
-    "planck_mu0_status": "~1.5σ",
+    "planck_mu0_status": "~1.5\u03c3",
     "delta_chi2_RSD": -19.8
   },
   "results": {
@@ -243,7 +300,7 @@
       ]
     },
     "universal_factor_2": {
-      "description": "Ratio of σ₈ suppression n=2 vs n=6 at fixed μ₀",
+      "description": "Ratio of \u03c3\u2088 suppression n=2 vs n=6 at fixed \u03bc\u2080",
       "data": [
         {
           "mu_0": 0.913,
@@ -291,21 +348,21 @@
           "n": 3,
           "sigma_8": 0.784,
           "gap_closed_percent": 52,
-          "planck_status": "~1.5σ"
+          "planck_status": "~1.5\u03c3"
         },
         {
           "mu_0": 0.85,
           "n": 2,
           "sigma_8": 0.773,
           "gap_closed_percent": 73,
-          "planck_status": "~1.5σ"
+          "planck_status": "~1.5\u03c3"
         },
         {
           "mu_0": 0.8,
           "n": 2,
           "sigma_8": 0.761,
           "gap_closed_percent": 97,
-          "planck_status": "2σ"
+          "planck_status": "2\u03c3"
         }
       ]
     }
@@ -313,9 +370,9 @@
   "key_conclusions": [
     "Background and perturbation channels are non-degenerate: A controls geometry (Hubble friction), B controls growth (Poisson source term)",
     "Temporal support matters more than instantaneous amplitude: universal factor-2 from gate broadening",
-    "Scale-free μ(a) has a structural ceiling: ~43% S₈ closure within Planck 1σ",
-    "73% amelioration at ~1.5σ with reference model (μ₀ = 0.85, n = 2)",
-    "Full resolution requires scale dependence μ(k,a) or combined channel"
+    "Scale-free \u03bc(a) has a structural ceiling: ~43% S\u2088 closure within Planck 1\u03c3",
+    "73% amelioration at ~1.5\u03c3 with reference model (\u03bc\u2080 = 0.85, n = 2)",
+    "Full resolution requires scale dependence \u03bc(k,a) or combined channel"
   ],
   "data_sources": {
     "RSD": "BOSS DR12 (3 redshift points, full covariance, Alam+ 2017)"
@@ -325,12 +382,6 @@
       "efc_wp1_mu_only_sweep.py",
       "efc_wp1_n_scan.py"
     ],
-    "background": "ΛCDM with Ωm = 0.3134, H0 = 67.4"
-  },
-  "files": {
-    "paper": "efc_technical_note_II.pdf",
-    "schema": "schema.json",
-    "citations": "citations.bib"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31333600"
+    "background": "\u039bCDM with \u03a9m = 0.3134, H0 = 67.4"
+  }
 }

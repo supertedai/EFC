@@ -1,26 +1,33 @@
 {
-  "name": "EFC-Observational-Evidence-for-Energy-Flow",
-  "title": "EFC — Observational Evidence for Energy Flow",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "license": "CC-BY-4.0",
+  "title": "EFC \u2014 Observational Evidence for Energy Flow",
+  "short_id": "EFC-Observational-Evidence-for-Energy-Flow",
   "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "date": "2024-12-25",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.28098365",
+  "abstract": "Qualitative synthesis arguing that multiple cosmological observations\u2014redshift-based expansion, CMB anisotropies, gravitational lensing, and galaxy-cluster energetics\u2014are consistent with a hypothesis that energy flow shapes space-time. The piece highlights evidence across scales, from cosmic voids to dark-matter halo edges, and outlines observational fronts where the energy-flow picture could be further tested.",
   "keywords": [
-    "EFC",
-    "Energy Flow",
-    "Observational Evidence",
-    "Cosmic Dynamics",
-    "Large-Scale Structure",
-    "CMB Signals"
+    "Energy-Flow Cosmology",
+    "accelerated expansion",
+    "redshift",
+    "cosmic microwave background",
+    "gravitational lensing",
+    "intracluster medium",
+    "cosmic voids",
+    "dark matter halos",
+    "large-scale structure",
+    "spacetime curvature",
+    "observational cosmology",
+    "universal expansion"
   ],
-  "description": "Observational indicators of large-scale and local energy flow across the universe within the Energy-Flow Cosmology framework, including empirical signatures in galaxies, clusters, background radiation, and anisotropic structures.",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/observational_evidence.py",
-    "data": "data/observational_evidence.json",
-    "demo": "examples/demo_observational_evidence.py"
+    "pdf": "EFC-Observational-Evidence-for-Energy-Flow.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28098365",

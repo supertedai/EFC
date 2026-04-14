@@ -1,20 +1,58 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Can-Entropy-Drive-Cosmic-Evolution",
-  "title": "EFC — Can Entropy Drive Cosmic Evolution?",
+  "title": "EFC \u2014 Can Entropy Drive Cosmic Evolution?",
+  "description": "Concept note proposing that entropy is not only a byproduct but a regulatory driver of cosmic evolution, mediating transitions between order and chaos. It argues that localized complexity (stars, galaxies, life) emerges and persists while global entropy increases, and outlines questions and next steps for testing this Energy-Flow Cosmology (EFC) perspective.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098353",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy",
+    "cosmic evolution",
+    "second law of thermodynamics",
+    "structure formation",
+    "star formation",
+    "black hole entropy",
+    "nonequilibrium thermodynamics",
+    "complexity",
+    "order\u2013chaos transition",
+    "heat death",
+    "galactic collisions"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Entropy may act as a regulatory mechanism that balances energy flow, enabling transient, localized increases in order and complexity while total universal entropy increases.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If thermodynamically consistent cosmological simulations that reproduce observed large-scale structure show a persistent anti-correlation (or no positive correlation) between net entropy production rate and complexity indicators (e.g., star-formation rate density, black-hole growth, baryonic network complexity) across cosmic time.",
+    "KC2: If observational entropy budgets (e.g., ICM/IGM entropy, black-hole entropy estimates) demonstrate that total cosmic entropy decreases during epochs when complex structures (stars/galaxies) measurably increase in abundance or organization.",
+    "KC3: If well-controlled nonequilibrium systems analogous to astrophysical energy-throughput conditions consistently exhibit increasing complexity without increased entropy export/production relative to simpler states.",
+    "KC4: Discovery of stable, long-lived complex astrophysical structures that do not dissipate energy or export entropy to their environments, contradicting the proposed link between complexity and entropy production.",
+    "KC5: Evidence that the universe maintains or forms complex structures during extended epochs with vanishing or negative net entropy production in the relevant comoving volume."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Can-Entropy-Drive-Cosmic-Evolution.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098353",
   "path": "docs/papers/efc/EFC-Can-Entropy-Drive-Cosmic-Evolution",
   "pdf": "EFC-Can-Entropy-Drive-Cosmic-Evolution.pdf",
   "md": "EFC-Can-Entropy-Drive-Cosmic-Evolution.md",
-  "keywords": [
-    "EFC",
-    "Entropy",
-    "Cosmic Evolution",
-    "Thermodynamics",
-    "Energy-Flow",
-    "Emergence"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098353",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098353"
+  "type": "paper"
 }

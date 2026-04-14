@@ -1,38 +1,34 @@
 {
   "title": "EFC-C: A Thermodynamic Framework for Cognitive Entropy and Psychiatric Biomarkers",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Symbiose Research, Sandnes, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
-  "date": "2026-03-31",
-  "doi": "10.6084/m9.figshare.31940505",
+  "short_id": "efc-c-a-thermodynamic-framework-for-cognitive-entropy-and-psychiatric-biomarkers-track-2",
   "version": "v0.1",
+  "date": "2026-03-31",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
-  "type": "research_note",
+  "doi": "10.6084/m9.figshare.31940505",
+  "abstract": "Introduces EFC-C, a thermodynamic framework that models the brain as an open system governed by entropy-gradient dynamics. It defines a scalar neural entropy production rate and a gradient tensor over the connectome, yielding three falsifiable predictions on hub-to-periphery entropy topology, disorder-specific gradient signatures, and a cognitive threshold. The paper shows qualitative consistency with published EEG/fMRI findings and outlines a prospective validation protocol.",
   "keywords": [
     "EFC-C",
     "cognitive entropy",
-    "psychiatric biomarker",
+    "entropy production",
     "entropy gradient",
-    "neural thermodynamics",
+    "default mode network",
+    "psychiatric biomarkers",
     "schizophrenia",
-    "MDD",
-    "DMN"
+    "major depressive disorder",
+    "ADHD",
+    "EEG",
+    "fMRI",
+    "Lempel-Ziv complexity"
   ],
-  "abstract": "EFC-C extends Energy-Flow Cosmology to neural systems, modeling the brain as an open thermodynamic system with entropy-gradient dynamics. Three falsifiable predictions: centrifugal gradient, disorder-specific inversions, entropy threshold for cognition.",
-  "related_papers": [
-    {
-      "doi": "10.6084/m9.figshare.31224538",
-      "relation": "EFC foundation (SPARC Phase 3)"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31940370",
-      "relation": "Connectome kappa (centrifugal entropy score)"
-    }
-  ],
+  "files": {
+    "pdf": "EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2.pdf",
+    "readme": "README.md"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31940505",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31940505"

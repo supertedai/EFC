@@ -1,13 +1,124 @@
 {
   "$schema": "./schema.json",
-  "paper_id": "EFC-EFT-Ansatz-v6",
+  "id": "minimal-efc-effective-field-theory-ansatz-scalar-tensor-and-vector-tensor-formulations-with-gravitational-slip-from-entropy-gradients",
   "title": "Minimal EFC Effective Field Theory Ansatz: Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
+  "description": "Proposes a minimal effective field theory completion for Energy-Flow Cosmology (EFC) in two formulations: a Horndeski-like scalar\u2013tensor EFT and a vector\u2013tensor EFT with a dynamical energy-flow 4-vector. Both are driven by a sigmoid entropy field S(a) that ensures GR recovery at high redshift and targets a mid\u2011z signature with weakened growth (mu < 1), gravitational slip (eta > 1), and enhanced lensing (Sigma > 1). The note defines the observables, derives the slip mechanism from entropy-gradient anisotropic stress, and specifies stability/consistency conditions, with numerical evaluation deferred to hi_class/EFTCosmoMC.",
   "version": "v6",
   "date": "2026-03-06",
   "doi": "10.6084/m9.figshare.31368433",
-  "status": "Proposed EFT completion — not canonical baseline EFC-D",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "effective field theory of dark energy",
+    "Horndeski",
+    "generalized Proca",
+    "gravitational slip",
+    "anisotropic stress",
+    "entropy gradients",
+    "modified gravity",
+    "weak lensing",
+    "growth of structure",
+    "Bellini\u2013Sawicki alpha-parameters",
+    "quasi-static limit"
+  ],
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "metric_perturbations": {
+      "latex": "ds^2 = -(1 + 2\\Psi)\\,dt^2 + a^2(1 - 2\\Phi)\\,dx^2",
+      "description": "Conformal Newtonian (longitudinal) gauge for scalar perturbations; in GR without anisotropic stress one has \\Phi = \\Psi."
+    },
+    "gravitational_slip": {
+      "latex": "\\eta \\equiv \\frac{\\Phi}{\\Psi}",
+      "description": "Definition of gravitational slip; GR corresponds to \\eta = 1. Here \\eta > 1 implies |\\Phi| > |\\Psi| and enhances the lensing potential."
+    },
+    "mu_definition": {
+      "latex": "\\mu(a,k) \\equiv \\frac{G_{\\rm eff}(a,k)}{G}",
+      "description": "Effective Newton's constant entering the matter growth equation; GR gives \\mu = 1."
+    },
+    "sigma_definition": {
+      "latex": "\\Sigma(a,k) \\equiv \\frac{G_{\\rm lens}(a,k)}{G} = \\mu(a,k)\\,\\frac{1 + \\eta(a,k)}{2}",
+      "description": "Effective lensing strength combining \\mu and slip \\eta; reduces to \\Sigma=1 in GR."
+    },
+    "slip_constraint_eq8": {
+      "latex": "\\eta > \\frac{2\\,\\Sigma}{\\mu} - 1",
+      "description": "Constraint linking \\eta, \\mu, and \\Sigma; with \\mu<1 and \\Sigma>1, this requires \\eta>1 in the transition regime."
+    },
+    "entropy_sigmoid": {
+      "latex": "S(a) = \\Big[1 + \\exp\\!\\big( - (\\ln a - \\ln a_t)/\\Delta \\big)\\Big]^{-1}",
+      "description": "EFC sigmoid entropy field governing the GR-to-modified-gravity transition; S\u21920 at early times, S\u21921 today, with peak derivative at a=a_t."
+    },
+    "growth_mu_ansatz": {
+      "latex": "\\mu(a) = 1 + \\delta\\mu\\,S(a),\\quad \\delta\\mu \\simeq -0.075",
+      "description": "Phenomenological growth-response used in the pipeline; yields \\mu<1 in the transition while recovering GR at high z."
+    },
+    "scalar_tensor_action": {
+      "latex": "\\mathcal{L}_{\\rm EFC}^{(S)} = \\frac{M_{\\rm Pl}^2}{2} R + K(S,X) + G_3(S,X)\\,\\Box S,\\quad X \\equiv -\\tfrac{1}{2}(\\nabla S)^2",
+      "description": "Minimal scalar\u2013tensor EFT (Horndeski/beyond-Horndeski sector) for EFC."
+    },
+    "alpha_parameter_ansatz": {
+      "latex": "\\alpha_T(a)=0,\\quad \\alpha_B(a) \\propto \\frac{dS}{d\\ln a},\\quad \\alpha_M(a) \\propto S(a)",
+      "description": "Bellini\u2013Sawicki parameterization consistent with GW170817 (\\alpha_T=0), with entropy-driven braiding and Planck-mass running."
+    },
+    "vector_tensor_action": {
+      "latex": "\\mathcal{L}_{\\rm EFC}^{(J)} = \\frac{M_{\\rm Pl}^2}{2} R - \\frac{1}{4} F_{\\mu\\nu}F^{\\mu\\nu} - \\frac{m^2}{2} J_\\mu J^\\mu + \\beta J^\\mu \\nabla_\\mu S,\\quad F_{\\mu\\nu} = \\nabla_\\mu J_\\nu - \\nabla_\\nu J_\\mu",
+      "description": "Vector\u2013tensor EFT where a dynamical 4-vector J^\\mu represents energy flow coupled to the entropy field."
+    },
+    "flow_anisotropic_stress": {
+      "latex": "T^{(\\nabla S)}_{\\mu\\nu} = \\beta^2\\Big[ \\nabla_\\mu S\\,\\nabla_\\nu S - \\tfrac{1}{4} g_{\\mu\\nu} (\\nabla S)^2 \\Big],\\quad \\pi \\sim \\beta^2\\, \\nabla \\bar S \\cdot \\nabla \\delta S",
+      "description": "Entropy-gradient contribution to anisotropic stress; scalar-mode shear sources slip via k^2(\\Phi-\\Psi)=8\\pi G a^2 \\Pi."
+    }
+  },
+  "key_results": {
+    "main_finding": "A minimal EFC EFT driven by a sigmoid entropy field can, in principle, realize the target mid\u2011z signature (mu < 1, eta > 1, Sigma > 1) either via Horndeski-like braiding/Planck-mass running or via entropy-gradient anisotropic stress in a vector\u2013tensor completion, subject to stability and CMB-compatibility constraints and pending numerical validation.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a_t",
+      "Delta",
+      "delta_mu",
+      "B0",
+      "M0",
+      "beta",
+      "m^2"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In the transition regime 0.5 < z < 1.5, the observables satisfy mu(z) \u2248 0.925 \u00b1 0.02, Sigma(z) \u2273 1.05, and consequently eta(z) \u2248 1.27 via eta > 2 Sigma / mu \u2212 1, with GR recovery (mu, Sigma, eta \u2192 1) at high redshift.",
+      "falsifiable_by": "Joint RSD (DESI) + cosmic shear and galaxy\u2013galaxy lensing (KiDS/DES/LSST) + CMB lensing (Planck/ACT/S4) tomographic reconstruction of {mu(z), Sigma(z)} in 0.5 < z < 1.5."
+    },
+    {
+      "id": "P2",
+      "statement": "The time profile of modifications follows the sigmoid S(a) with a transition at a_t \u2248 0.30 (z_t \u2248 2.3) and width Delta \u2248 0.3, implying dS/d ln a peaks near z \u2248 2.3 and drives nonzero braiding (alpha_B) and slip.",
+      "falsifiable_by": "Reconstruction of time-dependent EFT alphas from multi-probe data (hi_class/EFTCosmoMC fits) showing peak deviations inconsistent with a sigmoid centered at a_t \u2248 0.30."
+    },
+    {
+      "id": "P3",
+      "statement": "Vector\u2013tensor realization: a nonzero entropy\u2013flow coupling beta induces a positive gravitational slip (eta \u2212 1 > 0) correlated with the background entropy gradient amplitude, while respecting alpha_T = 0.",
+      "falsifiable_by": "Constraints on anisotropic stress from lensing\u2013clustering consistency tests that bound (eta \u2212 1) < 0.02 across 0.5 < z < 1.5, independent of screening and consistent with GR."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-precision multi-probe analyses find Sigma(z) \u2264 1.00 \u00b1 0.01 across 0.5 < z < 1.5 while mu(z) < 1, implying eta \u2264 1 and violating the EFC target inequality eta > 2 Sigma / mu \u2212 1.",
+    "KC2: Joint RSD + weak-lensing + CMB-lensing reconstructions constrain gravitational slip to eta(z) = 1.00 \u00b1 0.05 for 0.5 < z < 1.5, leaving no room for the required slip from entropy gradients.",
+    "KC3: Stable (no-ghost, c_s^2 > 0), luminal (alpha_T = 0) regions of parameter space in the scalar\u2013tensor EFT cannot produce mu < 1, eta > 1, and Sigma > 1 simultaneously in hi_class/EFTCosmoMC, for any {B0, M0, a_t, Delta} consistent with early-time GR recovery (S \u2192 0).",
+    "KC4: Vector\u2013tensor implementation yields negligible anisotropic stress with robust upper bounds implying (eta \u2212 1) < 0.02 throughout the transition regime, forcing beta effectively to zero or rendering the slip mechanism inoperative.",
+    "KC5: Early-universe constraints (BBN, primary CMB) require significant departures from GR at z \u2273 10 (i.e., S \u2260 0 or effective alpha's non-vanishing), contradicting the mandated GR recovery of the sigmoid construction.",
+    "KC6: Evidence that Alens and large-scale lensing amplitudes are \u2264 LCDM at the few\u2011percent level across relevant redshifts, closing the lensing \u2018barrier\u2019 and leaving no parameter space with Sigma > 1 compatible with mu < 1."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "Minimal_EFC_Effective_Field_Theory_Ansatz_Scalar_Tensor_and_Vector_Tensor_Formulations_with_Gravitational_Slip_from_Entropy_Gradients.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31368433",
+  "paper_id": "EFC-EFT-Ansatz-v6",
+  "orcid": "0009-0002-4860-5095",
+  "status": "Proposed EFT completion \u2014 not canonical baseline EFC-D",
   "abstract": "Two complementary EFT ansatze for EFC: scalar-tensor (Horndeski/EFT-DE) and vector-tensor (dynamical 4-vector J^mu). Both use sigmoid entropy field S(a) to govern GR-to-modified-gravity transition. Target: mu < 1, eta > 1, Sigma > 1.",
   "conventions": {
     "metric": "ds^2 = -(1+2Psi)dt^2 + a^2(1-2Phi)dx^2",
@@ -218,6 +329,5 @@
       "url": "https://energyflow-cosmology.com",
       "title": "EFC research notes"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31368433"
+  ]
 }

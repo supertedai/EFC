@@ -1,17 +1,58 @@
 {
+  "$schema": "./schema.json",
   "id": "ai_workflow_framework",
-  "title": "AI Workflow Framework — Energy-Flow Cosmology",
+  "title": "AI-Augmented Scientific Workflow Framework",
+  "description": "Defines a governance-centered framework for integrating large language models into scientific workflows while preserving human control, accountability, and reproducibility. It formalizes four core mechanisms\u2014Question Architecture, Entropy Navigation, Reflective Scaffolding, and Strict Separation of Roles\u2014and couples them with provenance, versioning, and machine-readable metadata to enable transparent, traceable research.",
+  "version": "1.2",
+  "date": "",
+  "doi": "10.6084/m9.figshare.30636863",
+  "keywords": [
+    "AI-Augmented Workflow",
+    "Large Language Models",
+    "Question Architecture (QA)",
+    "Entropy Navigation (EN)",
+    "Reflective Scaffolding (RS)",
+    "Separation of Roles (SR)",
+    "Reproducibility",
+    "Provenance Tracking",
+    "FAIR Principles",
+    "Open Science Infrastructure",
+    "Metadata Architecture",
+    "Uncertainty-Guided Exploration"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Version 1.2 formalizes a human-governed AI workflow built on QA, EN, RS, and SR to deliver transparent, reproducible, and accountable scientific research outputs.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: The workflow fails to produce full provenance (version-controlled reflective history and checksum-verified artifacts) for AI-assisted content in an end-to-end run.",
+    "KC2: AI-generated outputs bypass the Human Validation Gate and reach publication or archival status without explicit human sign-off.",
+    "KC3: Schema validation and metadata pipelines cannot generate machine-readable, reproducible documentation that rebuilds identically across environments.",
+    "KC4: Reflective Scaffolding cannot ground AI reasoning in external formal systems (e.g., causal models, state machines) when required, yielding unresolved inconsistencies.",
+    "KC5: Entropy Navigation provides no measurable advantage over a random or naive exploration baseline in controlled evaluations designed to detect novelty discovery."
+  ],
+  "tier": "T3",
+  "paper_type": "infrastructure",
+  "related_packages": [],
+  "files": {
+    "pdf": "ai_workflow_framework.pdf",
+    "readme": "ai_workflow_framework.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30636863",
   "path": "docs/papers/efc/ai_workflow_framework",
   "pdf": "ai_workflow_framework.pdf",
   "md": "ai_workflow_framework.md",
-  "keywords": [
-    "AI Workflow",
-    "Scientific Infrastructure",
-    "LLM Integration",
-    "Open Science",
-    "Metadata Architecture"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0"
+  "type": "paper"
 }

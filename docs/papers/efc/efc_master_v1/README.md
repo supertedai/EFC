@@ -1,26 +1,25 @@
-# EFC — Master Specification (v1 Archive)
+# Energy-Flow Cosmology (EFC) Master Specification v1.1
 
-This directory contains the archived v1 master specification of the
-Energy-Flow Cosmology framework.  
-This version represents the earliest complete formulation of the theory,
-including initial field definitions, conceptual structure, and primary
-thermodynamic foundations.
+## AI-Friendly Package
 
-The v1 archive is preserved for:
-- historical reference  
-- reproducibility  
-- validation of theory development  
-- comparison with v2.x and later specifications  
+- **DOI:** [10.6084/m9.figshare.30630500](https://doi.org/10.6084/m9.figshare.30630500)
+- **Version:** 1.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-16
+- **License:** CC-BY-4.0
 
-All newer work supersedes this version, but it remains an essential part
-of the EFC development record.
+---
 
-**Included files**
-- PDF (archived authoritative version)
-- Markdown (mirrors PDF)
-- JSON-LD metadata
-- Local schema
-- Machine index
-- Citations file
+## Overview
 
-Version: 1.0 (archived)
+Canonical master specification of Energy-Flow Cosmology (EFC), which models the universe as a thermodynamic-information system driven by energy-flow and entropy gradients. It formalizes three base layers—EFC-S (structure/halos), EFC-D (energy-flow dynamics), and EFC-C0 (entropy–information mapping)—and fixes baseline fields, notation, and equations to enable unambiguous higher-level models and simulations.
+
+## Key Result
+
+Establishes a compact, explicit core specification for EFC across structure, dynamics, and entropy–information mapping with Ef = \rho(1 - S) as the central field.
+
+## Sealed Predictions
+
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | At fixed mass density, measurable information-capacity proxies decrease approximately linearly with increasing entropy, consistent with I(S) ∝ (1 − S). | Cross-population studies of astrophysical systems (e.g., galactic environments) where proxies for information capacity (phase-space granularity, coherent structure fraction) are measured versus independently estimated entropy. |

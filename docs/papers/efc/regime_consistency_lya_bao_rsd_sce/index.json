@@ -1,24 +1,24 @@
 {
   "$schema": "./schema.json",
   "id": "efc-regime-consistency-lya-bao-rsd-sce",
-  "title": "Regime Consistency of an Entropy-Gradient Coupling: Lyα, BAO and RSD Tests within a Structural Coherence Framework",
-  "description": "Structural regime consistency test of EFC's coupling function T(z) across three independent cosmological probes (Lyα P1D, BOSS BAO, BOSS RSD), evaluated using the Structural Coherence Evaluation (SCE) framework against ΛCDM.",
+  "title": "Regime Consistency of an Entropy-Gradient Coupling: Ly\u03b1, BAO and RSD Tests within a Structural Coherence Framework",
+  "description": "Empirical regime-consistency test of an entropy-gradient coupling T(z) in Energy-Flow Cosmology across three independent probes: DESI Ly\u03b1 P1D (z=3), BOSS DR12 BAO distances, and BOSS DR12 RSD growth. Using a single coupling calibrated near z\u22480.5 and evaluated within the Structural Coherence Evaluation framework, the study finds a near-null Ly\u03b1 effect, improved BAO fits, and marginally improved RSD, yielding a combined \u0394\u03c7\u00b2 \u2248 \u22123.89 with one added parameter.",
   "version": "1.0.0",
   "date": "2026-02-10",
   "doi": "10.6084/m9.figshare.31304995",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
-    "regime consistency",
-    "Lyα P1D",
+    "entropy-gradient coupling",
+    "transition function T(z)",
+    "Ly\u03b1 P1D",
     "BAO",
     "RSD",
     "BOSS DR12",
     "DESI",
     "Structural Coherence Evaluation",
-    "SCE",
-    "transition function",
-    "entropy-gradient coupling"
+    "\u039bCDM comparison",
+    "growth suppression",
+    "late-time H(z) modification"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -28,17 +28,69 @@
   "core_equations": {
     "transition_kernel": {
       "latex": "g_D(z) = \\frac{1 - \\Omega_m(z)}{1+z} \\ln(1+z)",
-      "description": "Distance-coupling kernel"
+      "description": "Distance-coupling kernel that sets the redshift dependence of the entropy-gradient coupling."
     },
     "transition_function": {
-      "latex": "T(z) = g_D(z) / g_D(z_{peak}), \\quad z_{peak} = 0.441",
-      "description": "Normalised transition function, peaks at unity"
+      "latex": "T(z) = \\frac{g_D(z)}{g_D(z_{\\text{peak}})},\\quad z_{\\text{peak}} = 0.441",
+      "description": "Normalized transition function peaking at unity; used to propagate a single coupling across redshift regimes."
     },
     "modified_friedmann": {
-      "latex": "H^2(a) = H_0^2 [\\Omega_m a^{-3} + \\Omega_\\Lambda (1 + \\beta \\cdot T(a))]",
-      "description": "EFC background modification"
+      "latex": "H^2(a) = H_0^2\\left[\\Omega_m a^{-3} + \\Omega_\\Lambda\\,\\big(1 + \\beta\\,T(a)\\big)\\right]",
+      "description": "Background modification used for BAO and RSD tests; late-time H(z) enhanced by a single parameter \u03b2 scaled by T(a)."
+    },
+    "omega_m_of_z": {
+      "latex": "\\Omega_m(z) = \\frac{\\Omega_m (1+z)^3}{E^2(z)},\\quad E(z)=H(z)/H_0",
+      "description": "Redshift evolution of the matter fraction used to compute g_D(z) and T(z) on a \u039bCDM-calibrated background."
     }
   },
+  "key_results": {
+    "main_finding": "A single T(z) calibrated near z\u22480.5 yields regime-consistent predictions across Ly\u03b1 P1D, BAO, and RSD without dataset-specific tuning.",
+    "delta_chi2": -3.89,
+    "significance_sigma": 2.0,
+    "parameters_tested": [
+      "alpha_L2 = 0.34 \u00b1 0.16",
+      "beta = 0.08",
+      "z_peak = 0.441"
+    ],
+    "datasets_used": [
+      "DESI Ly\u03b1 P1D (arXiv:2601.21432)",
+      "BOSS DR12 BAO distances (Alam et al. 2017)",
+      "BOSS DR12 RSD f\u03c38"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At z = 3, Ly\u03b1 P1D shows a near-null EFC effect with A\u00b7T(z) = \u03b1_L2\u00b7T(z) \u2248 0.037 (range \u2248 0.02\u20130.06 for \u03b1_L2 \u00b11\u03c3), yielding amplitude and slope pulls < 0.5\u03c3 relative to \u039bCDM.",
+      "falsifiable_by": "Higher-precision DESI/WEAVE Ly\u03b1 P1D measurements of \u0394\u2605 and n\u2605 at z \u2248 3."
+    },
+    {
+      "id": "P2",
+      "statement": "At z \u2248 0.4\u20130.6, a single background parameter \u03b2 > 0 produces correlated shifts that reduce \u039bCDM\u2019s DM overprediction and mildly suppress growth; BAO+RSD jointly prefer \u03b2 \u2248 0.08 over \u03b2 = 0.",
+      "falsifiable_by": "DESI DR2/DR3 BAO+RSD joint fits with full covariance and percent-level systematics control."
+    },
+    {
+      "id": "P3",
+      "statement": "At recombination (z \u2248 1100) the coupling vanishes, T(z) \u2248 10^-10, implying GR recovery and no detectable early-time deviations from \u039bCDM background.",
+      "falsifiable_by": "CMB primary/secondary anisotropy and early-time expansion constraints (Planck, Simons Observatory, CMB-S4)."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: DESI/WEAVE Ly\u03b1 P1D at z \u2248 3 requires |A\u00b7T(z=3)| \u2265 0.08 at \u22655\u03c3, incompatible with T(z)=0.107 and \u03b1_L2=0.34\u00b10.16 (even \u03b1_L2=0.51 gives A\u00b7T\u22480.055).",
+    "KC2: Joint BAO+RSD analysis with full covariance (e.g., DESI) returns \u03b2 = 0.00 \u00b1 0.02 (68% CL) and no improvement over \u039bCDM (\u0394\u03c7\u00b2 \u2265 0), excluding \u03b2 \u2248 0.08 at \u22653\u03c3.",
+    "KC3: High-precision RSD at z = 0.5\u20130.7 robustly finds f\u03c38 higher than \u039bCDM by \u22653\u03c3, contradicting the EFC prediction of growth suppression from enhanced Hubble friction.",
+    "KC4: Early-Universe constraints demand a non-vanishing late-time coupling at z \u2273 1100, e.g., \u03b2\u00b7T(z=1100) \u2265 10^-4, violating the T(z) \u221d (1 \u2212 \u03a9_m(z)) suppression and GR recovery.",
+    "KC5: A single \u03b1_L2 calibrated at z \u2248 0.5, when propagated via T(z), leads to \u22653\u03c3 tension with either Ly\u03b1 P1D or RSD in the tested redshift range, breaking regime consistency."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "paper": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
+    "schema": "schema.json"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304995",
   "parameters": {
     "alpha_L2": {
       "value": 0.34,
@@ -74,14 +126,14 @@
       "omega_m_z": 0.945,
       "g_D": 0.0201,
       "T_z": 0.188,
-      "regime": "BAO Lyα"
+      "regime": "BAO Ly\u03b1"
     },
     {
       "z": 3.0,
       "omega_m_z": 0.967,
       "g_D": 0.0114,
       "T_z": 0.107,
-      "regime": "Lyα P1D"
+      "regime": "Ly\u03b1 P1D"
     },
     {
       "z": 1100,
@@ -96,10 +148,10 @@
       "z": 3.0,
       "T_z": 0.107,
       "data": "DESI arXiv:2601.21432",
-      "prediction": "Near-null effect (A·T = 0.037)",
+      "prediction": "Near-null effect (A\u00b7T = 0.037)",
       "results": {
-        "amplitude_pull": "-0.27σ",
-        "slope_pull": "+0.01σ"
+        "amplitude_pull": "-0.27\u03c3",
+        "slope_pull": "+0.01\u03c3"
       },
       "status": "PASS",
       "note": "Consistent with predicted null"
@@ -119,23 +171,23 @@
         "pulls": [
           {
             "z": 0.38,
-            "DM_pull": "+0.29σ",
-            "DH_pull": "-1.10σ"
+            "DM_pull": "+0.29\u03c3",
+            "DH_pull": "-1.10\u03c3"
           },
           {
             "z": 0.51,
-            "DM_pull": "-0.26σ",
-            "DH_pull": "+0.12σ"
+            "DM_pull": "-0.26\u03c3",
+            "DH_pull": "+0.12\u03c3"
           },
           {
             "z": 0.61,
-            "DM_pull": "+0.14σ",
-            "DH_pull": "+0.74σ"
+            "DM_pull": "+0.14\u03c3",
+            "DH_pull": "+0.74\u03c3"
           }
         ]
       },
       "status": "PASS",
-      "note": "EFC corrects systematic ΛCDM DM overprediction"
+      "note": "EFC corrects systematic \u039bCDM DM overprediction"
     },
     "rsd_boss_dr12": {
       "z_range": [
@@ -143,7 +195,7 @@
         0.51,
         0.61
       ],
-      "data": "BOSS DR12 fσ₈",
+      "data": "BOSS DR12 f\u03c3\u2088",
       "results": {
         "chi2_efc": 1.09,
         "chi2_lcdm": 1.34,
@@ -152,23 +204,23 @@
           {
             "z": 0.38,
             "fsigma8_efc": 0.464,
-            "fsigma8_obs": "0.497 ± 0.045",
-            "efc_pull": "-0.73σ",
-            "lcdm_pull": "-0.46σ"
+            "fsigma8_obs": "0.497 \u00b1 0.045",
+            "efc_pull": "-0.73\u03c3",
+            "lcdm_pull": "-0.46\u03c3"
           },
           {
             "z": 0.51,
             "fsigma8_efc": 0.463,
-            "fsigma8_obs": "0.458 ± 0.038",
-            "efc_pull": "+0.13σ",
-            "lcdm_pull": "+0.43σ"
+            "fsigma8_obs": "0.458 \u00b1 0.038",
+            "efc_pull": "+0.13\u03c3",
+            "lcdm_pull": "+0.43\u03c3"
           },
           {
             "z": 0.61,
             "fsigma8_efc": 0.46,
-            "fsigma8_obs": "0.436 ± 0.034",
-            "efc_pull": "+0.71σ",
-            "lcdm_pull": "+0.97σ"
+            "fsigma8_obs": "0.436 \u00b1 0.034",
+            "efc_pull": "+0.71\u03c3",
+            "lcdm_pull": "+0.97\u03c3"
           }
         ]
       },
@@ -185,8 +237,8 @@
       "chi2_efc": 3.02,
       "chi2_lcdm": 6.92,
       "delta_chi2": -3.89,
-      "significance": "~2σ preference",
-      "note": "Δχ² = 3.84 corresponds to 95% CL for 1 DOF"
+      "significance": "~2\u03c3 preference",
+      "note": "\u0394\u03c7\u00b2 = 3.84 corresponds to 95% CL for 1 DOF"
     }
   },
   "regime_coherence_summary": [
@@ -195,15 +247,15 @@
       "z": "0.4-0.6",
       "T_z": "0.95-1.0",
       "prediction": "Enhanced H, suppressed growth",
-      "data": "BAO + fσ₈",
+      "data": "BAO + f\u03c3\u2088",
       "result": "PASS"
     },
     {
-      "regime": "Lyα",
+      "regime": "Ly\u03b1",
       "z": 3.0,
       "T_z": 0.107,
       "prediction": "Near-null effect",
-      "data": "Δ²★, n★",
+      "data": "\u0394\u00b2\u2605, n\u2605",
       "result": "PASS"
     },
     {
@@ -219,20 +271,20 @@
     "metrics": {
       "explanatory_compression": {
         "lcdm": {
-          "primitives": "2 (Λ, CDM)",
+          "primitives": "2 (\u039b, CDM)",
           "FDOF": 2,
           "phenomena": 4,
           "C_core": 2.0,
           "C_tensions": 1.7
         },
         "efc_l2": {
-          "primitives": "3 (S, μ, T)",
+          "primitives": "3 (S, \u03bc, T)",
           "FDOF": 1,
           "phenomena": 4,
           "C_core": 1.3,
           "C_tensions": "1.7-2.0"
         },
-        "winner": "ΛCDM (core)"
+        "winner": "\u039bCDM (core)"
       },
       "anomaly_burden": {
         "lcdm": {
@@ -258,7 +310,7 @@
         },
         "efc_l2": {
           "variant_proliferation": "Moderate",
-          "parameter_growth": "Decreasing (3→1 FDOF)",
+          "parameter_growth": "Decreasing (3\u21921 FDOF)",
           "special_case_rules": "None",
           "ad_hoc_patches": "None"
         },
@@ -275,32 +327,32 @@
         "winner": "EFC"
       }
     },
-    "summary": "Neither framework dominates the full SCE profile. ΛCDM wins on raw compression; EFC wins on structural discipline."
+    "summary": "Neither framework dominates the full SCE profile. \u039bCDM wins on raw compression; EFC wins on structural discipline."
   },
   "forbidden_patterns": [
     {
       "id": "EFC-FP-P1D",
-      "definition": "If T(z=3)/T(peak) > 0.5 AND (|amplitude pull| > 3σ OR |slope pull| > 3σ), then regime-transition logic is inconsistent",
+      "definition": "If T(z=3)/T(peak) > 0.5 AND (|amplitude pull| > 3\u03c3 OR |slope pull| > 3\u03c3), then regime-transition logic is inconsistent",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-HIGHZ",
-      "definition": "If Boltzmann solver with μ(z) = 1 + A·T(z) produces CMB Cl residuals exceeding Planck error bars",
+      "definition": "If Boltzmann solver with \u03bc(z) = 1 + A\u00b7T(z) produces CMB Cl residuals exceeding Planck error bars",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-RSD",
-      "definition": "If fσ₈ deviates > 3σ at any BOSS z while αL2 within ±2σ of best-fit",
+      "definition": "If f\u03c3\u2088 deviates > 3\u03c3 at any BOSS z while \u03b1L2 within \u00b12\u03c3 of best-fit",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-BAO",
-      "definition": "If β > 0 simultaneously worsens both BAO and fσ₈ vs ΛCDM",
+      "definition": "If \u03b2 > 0 simultaneously worsens both BAO and f\u03c3\u2088 vs \u039bCDM",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-4CH",
-      "definition": "If β passes BAO+RSD but fails CMB lensing or SN Ia > 3σ",
+      "definition": "If \u03b2 passes BAO+RSD but fails CMB lensing or SN Ia > 3\u03c3",
       "status": "Not triggered"
     }
   ],
@@ -308,27 +360,22 @@
     "Full MCMC joint fit with proper covariance matrices between BAO and RSD",
     "Neutrino mass degeneracies",
     "Non-linear regime (L3) analysis",
-    "Self-consistent EFC background (T(z) currently uses ΛCDM Ωm(z))",
+    "Self-consistent EFC background (T(z) currently uses \u039bCDM \u03a9m(z))",
     "Full Boltzmann CMB power spectrum calculation",
-    "First-principles derivation of β"
+    "First-principles derivation of \u03b2"
   ],
   "key_conclusions": [
     "Single coupling function T(z) produces consistent predictions across three cosmological regimes",
-    "One-parameter modification (β = 0.08) simultaneously improves BAO and growth (Δχ² = −3.89)",
-    "High-z null prediction at z = 3 consistent with DESI Lyα P1D data",
-    "GR recovery at z = 1100 guaranteed by T(z) → 0 with margins > 10⁸",
-    "EFC shows higher Layer Consistency and lower Model Plasticity than ΛCDM",
+    "One-parameter modification (\u03b2 = 0.08) simultaneously improves BAO and growth (\u0394\u03c7\u00b2 = \u22123.89)",
+    "High-z null prediction at z = 3 consistent with DESI Ly\u03b1 P1D data",
+    "GR recovery at z = 1100 guaranteed by T(z) \u2192 0 with margins > 10\u2078",
+    "EFC shows higher Layer Consistency and lower Model Plasticity than \u039bCDM",
     "Neither framework dominates full SCE structural profile"
   ],
   "related_papers": [
     {
       "id": "efc-four-channel-consistency-test",
-      "relationship": "Companion - four-channel test using same β = 0.08"
+      "relationship": "Companion - four-channel test using same \u03b2 = 0.08"
     }
-  ],
-  "files": {
-    "paper": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
-    "schema": "schema.json"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31304995"
+  ]
 }

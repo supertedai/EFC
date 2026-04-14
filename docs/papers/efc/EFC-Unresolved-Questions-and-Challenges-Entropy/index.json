@@ -1,19 +1,67 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Unresolved-Questions-and-Challenges-Entropy",
-  "title": "EFC — Unresolved Questions and Challenges: Entropy",
+  "title": "EFC \u2014 Unresolved Questions and Challenges: Entropy",
+  "description": "This position paper outlines unresolved questions about how entropy interacts with energy flow in Energy-Flow Cosmology (EFC) and how this interplay might sustain localized order and the stability of space-time\u2019s present moment. It proposes observational and modeling avenues\u2014such as gravitational-wave analyses, CMB entropy proxies, edge-of-universe (halo) observations, and spectral-shift studies\u2014to probe entropy\u2013energy dynamics near cosmic extremes.",
+  "version": "1.0",
+  "date": "2024-12-26",
+  "doi": "10.6084/m9.figshare.28098326",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy",
+    "energy flow",
+    "space-time dynamics",
+    "singularity",
+    "altularity",
+    "gravitational waves",
+    "Cosmic Microwave Background",
+    "redshift",
+    "wave\u2013particle duality",
+    "dark energy",
+    "observable halo"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "singularity_entropy": {
+      "latex": "S = 0",
+      "description": "Defines the proposed entropy state associated with a singularity in the EFC framing."
+    },
+    "altularity_entropy": {
+      "latex": "S = 1",
+      "description": "Defines the proposed maximal entropy state (\"altularity\") in the EFC framing."
+    }
+  },
+  "key_results": {
+    "main_finding": "Identifies key open questions on entropy\u2013energy-flow coupling in EFC and outlines empirical approaches to probe these dynamics near cosmic extremes.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If multi-messenger observations of strong-gravity events (e.g., black-hole/neutron-star mergers) show no detectable correlation between entropy proxies (such as horizon-area change inferred from quasinormal modes) and local energy flux beyond standard GR expectations across stacked events, the proposed EFC-specific entropy\u2013energy-flow coupling is falsified.",
+    "KC2: If high-precision CMB measurements (e.g., Simons Observatory/CMB-S4) and large-scale structure surveys place tight bounds that exclude any additional entropy\u2013energy-flow coupling signatures beyond \u039bCDM + GR across relevant multipoles and scales, the EFC entropy coupling posited here is ruled out.",
+    "KC3: If edge-of-observable-universe (halo) studies\u2014after controlling for systematics\u2014find no spectral, redshift, or statistical anomalies attributable to entropy\u2013energy interactions, the paper\u2019s edge-observation pathway and its underpinning EFC claim are falsified.",
+    "KC4: If rigorous theoretical and experimental work demonstrates that stability of the present moment and perceived flow of time can be fully explained without any entropy\u2013energy feedback (consistent with all observations), the EFC linkage between entropy and sustaining the 'now' is refuted.",
+    "KC5: If thermodynamic accounting in astrophysical and cosmological systems cannot be coherently mapped to the proposed normalized bounds (S=0 at singularity, S=1 at altularity) without contradiction or redefinition, the EFC entropy parameterization fails."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Unresolved-Questions-and-Challenges-Entropy.pdf",
+    "readme": "EFC-Unresolved-Questions-and-Challenges-Entropy.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098326",
   "path": "docs/papers/efc/EFC-Unresolved-Questions-and-Challenges-Entropy",
   "pdf": "EFC-Unresolved-Questions-and-Challenges-Entropy.pdf",
   "md": "EFC-Unresolved-Questions-and-Challenges-Entropy.md",
-  "keywords": [
-    "EFC",
-    "Entropy",
-    "Open Problems",
-    "Challenges",
-    "Thermodynamic Cosmology"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098326",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098326"
+  "type": "paper"
 }

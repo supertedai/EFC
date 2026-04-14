@@ -1,18 +1,132 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-v2.1-Modular-Synthesis",
-  "title": "EFC v2.1 – Modular Synthesis",
+  "title": "Energy-Flow Cosmology (EFC v2.1): Modular Synthesis across Structure, Dynamics, and Cognition",
+  "description": "Formalizes Energy-Flow Cosmology v2.1 as a modular framework linking structural (halos in a Grid\u2013Higgs medium), dynamical (energy flow\u2013entropy\u2013time relations), and cognitive (informational coupling) domains. Replaces dark components with a measurable energy-flow field Ef governed by entropic gradients, proposes a variable light velocity c(S) tied to energy density, and interprets the CMB as a steady-state thermodynamic equilibrium.",
+  "version": "2.1",
+  "date": "2025-10-01",
+  "doi": "10.6084/m9.figshare.30455237",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Halo Model of Entropy",
+    "Grid\u2013Higgs Field",
+    "energy flow",
+    "entropy",
+    "variable speed of light",
+    "CMB equilibrium",
+    "emergent time",
+    "cosmic structure",
+    "thermodynamics",
+    "lensing without dark matter",
+    "cognitive field"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "structural_field_relation": {
+      "latex": "\\nabla \\cdot [k(S) \\, \\nabla E_f] = \\frac{\\partial V(E_f, S)}{\\partial S}",
+      "description": "EFC-S field equation: entropic permeability k(S) and effective potential V(Ef,S) determine stationary halo configurations in the Grid\u2013Higgs medium."
+    },
+    "energy_flow_linear_law": {
+      "latex": "E_f(S) = E_0\\,(1 - S)",
+      "description": "EFC-D fundamental relation: energy flow decreases linearly with normalized entropy."
+    },
+    "temporal_mapping": {
+      "latex": "S(t) \\propto e^{t}",
+      "description": "Emergent time mapping: apparent curvature in Ef(t) arises from an exponential growth of entropy with time."
+    },
+    "variable_light_velocity": {
+      "latex": "c(S) \\propto \\frac{1}{\\rho(S)}",
+      "description": "Light speed emerges from GH medium properties, inversely related to local energy density; locally constant, cosmologically variable."
+    },
+    "cognitive_field_equation": {
+      "latex": "\\Psi_{\\mathrm{CEM}} \\sim f\\!\\left(E_f, S, t\\right)",
+      "description": "EFC-C coupling: a reflective informational field co-varies with energy flow, entropy, and time, linking cognition to thermodynamic dynamics."
+    }
+  },
+  "key_results": {
+    "main_finding": "Presents a unified, modular thermodynamic framework where a measurable energy-flow field Ef links structure, dynamics, and cognition, offering entropic alternatives to dark components and a steady-state interpretation of the CMB.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Ef\u2013S linearity (Eq. 2)",
+      "Temporal mapping S(t) \u221d e^t (Eq. 3)",
+      "Variable light velocity c(S) \u221d 1/\u03c1(S) (Eq. 4)",
+      "Entropic halo field equation (Eq. 1)",
+      "Cognitive field coupling \u03a8_CEM \u223c f(Ef, S, t) (Eq. 5)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The effective speed of light c varies cosmologically and correlates inversely with large-scale energy density \u03c1(S).",
+      "falsifiable_by": "Joint constraints from high-redshift time-of-flight measurements of transients (FRBs, GRBs) after plasma-dispersion correction, plus spectral-line and fine-structure-constant measurements across redshift showing no correlated variation."
+    },
+    {
+      "id": "P2",
+      "statement": "Galaxy rotation curves and weak-lensing mass profiles can be reproduced from Eq. (1) using baryonic matter only via k(S) and V(Ef,S), without invoking non-baryonic dark matter.",
+      "falsifiable_by": "A representative galaxy/cluster sample where no physically plausible k(S), V(Ef,S) can simultaneously fit rotation curves and lensing maps given observed baryon distributions."
+    },
+    {
+      "id": "P3",
+      "statement": "The CMB arises from a steady-state thermodynamic equilibrium between S\u21920 emission and S\u21921 recirculation rather than a relic recombination surface.",
+      "falsifiable_by": "CMB temperature/polarization spectra whose acoustic peak phases, damping tail, and TE/EE correlations unambiguously require a recombination-era last-scattering surface and are irreconcilable with steady-state recirculation."
+    },
+    {
+      "id": "P4",
+      "statement": "Offsets between mass and baryons in merging clusters (e.g., Bullet-like systems) are reproducible as entropy-gradient responses within Eq. (1) without dark matter.",
+      "falsifiable_by": "Robust lensing/baryon maps of multiple mergers demonstrating systematic mass\u2013baryon separations that cannot be produced by any solution of Eq. (1) with physically admissible k(S) and V(Ef,S)."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Direct detection of non-baryonic dark matter with properties (abundance, interaction cross-section, and clustering) that quantitatively account for galaxy/cluster dynamics and lensing without room for the entropic-halo mechanism of Eq. (1).",
+    "KC2: Cosmological and local constraints demonstrating that c is constant to a level that excludes any viable c(S) \u221d 1/\u03c1(S) variation sufficient to impact large-scale dynamics (e.g., null time-of-flight, spectral-line, and fine-structure-constant evolution across redshift inconsistent with Eq. (4)).",
+    "KC3: Inability of Eq. (1), for any physically reasonable k(S) and V(Ef,S), to reproduce both rotation curves and weak/strong lensing profiles across a statistically significant galaxy and cluster sample using only observed baryons.",
+    "KC4: CMB observations whose temperature and polarization spectra (including acoustic peak phases, damping tail, and TE/EE correlations) are demonstrably incompatible with a steady-state equilibrium origin and can only be explained by a recombination-era last-scattering surface.",
+    "KC5: Demonstration that no parameterization of \u03c1(S) and k(S) can yield a locally constant yet cosmologically varying c(S) without violating precision Lorentz-invariance bounds or multi-messenger arrival-time constraints."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-field-equations-v2.1",
+      "doi": "10.6084/m9.figshare.30421807",
+      "role": "prior preprint: entropy-driven spacetime field equations (EFC core)"
+    },
+    {
+      "id": "efc-bridge-gr-thermo",
+      "doi": "10.6084/m9.figshare.30402427",
+      "role": "prior preprint: bridge between GR and a thermodynamic field model"
+    },
+    {
+      "id": "cem-cosmos-coupling",
+      "doi": "10.6084/m9.figshare.30275947",
+      "role": "prior preprint: CEM-Cosmos cognitive coupling to EFC"
+    },
+    {
+      "id": "emergent-time-hypothesis",
+      "doi": "10.6084/m9.figshare.28578263",
+      "role": "prior preprint: emergence of time from energy flow and entropy"
+    },
+    {
+      "id": "grid-higgs-framework",
+      "doi": "10.6084/m9.figshare.28559510",
+      "role": "prior preprint: Grid\u2013Higgs framework for gravity, dark matter, and black holes"
+    }
+  ],
+  "files": {
+    "pdf": "EFC-v2.1-Modular-Synthesis.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30455237",
   "path": "docs/papers/efc/EFC-v2.1-Modular-Synthesis",
   "pdf": "EFC-v2.1-Modular-Synthesis.pdf",
   "md": "EFC-v2.1-Modular-Synthesis.md",
-  "keywords": [
-    "EFC",
-    "Modular",
-    "Synthesis",
-    "Version 2.1"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "2.1",
-  "doi": "10.6084/m9.figshare.30455237",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30455237"
+  "type": "paper"
 }

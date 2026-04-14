@@ -1,76 +1,27 @@
-# Density of States of Gravitationally Active Grid Modes — AI-Friendly Package
+# Density of States of Gravitationally Active Grid Modes: Derivation of Deff (ρ) and Completion of the Γ(ρ) Bridge
 
-**Paper**: Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge
-**Author**: Morten Magnusson (Independent Researcher, Sola, Norway)
-**DOI**: [10.6084/m9.figshare.31942800](https://doi.org/10.6084/m9.figshare.31942800)
-**Version**: 1.0 (April 2026)
-**Framework**: Energy-Flow Cosmology (EFC) v3.7
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.31942800](https://doi.org/10.6084/m9.figshare.31942800)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-06
+- **License:** CC-BY-4.0
+
+---
+
+## Overview
+
+Derives the effective density of states Deff(ρ) for gravitationally active grid modes from microphysical boundary-mode activation on a finite lattice. The derivation yields Deff(ρ) ∝ √(ρ/ρcrit) with ρcrit = a0/(GN lg), leading to a microphysically fixed entropy-production bridge Γ(ρ) = Γ0 y/(1+y) with y = √(ρ/ρcrit), thereby upgrading the Γ(ρ) status to Scenario B+ and eliminating free functional degrees of freedom.
 
 ## Key Result
 
-Derives the effective density of gravitationally active grid modes D_eff(ρ) ∝ √(ρ/ρ_crit) from first principles (discrete lattice + Higgs-stabilised nodes + activation dynamics). Combined with per-mode BE entropy production, the microphysically derived entropy production function is:
+Boundary-mode activation on a finite gravitational well yields Deff(ρ) ∝ √(ρ/ρcrit) with ρcrit = a0/(GN lg), implying Γ(ρ) = Γ0 √(ρ/ρcrit)/(1+√(ρ/ρcrit)) and upgrading the bridge to Scenario B+.
 
-```
-Γ(ρ) = Γ₀ √(ρ/ρ_crit) / (1 + √(ρ/ρ_crit))    with ρ_crit = a₀/(G_N l_g)
-```
+## Sealed Predictions
 
-This differs from the phenomenological ansatz ρ/(ρ + ρ_crit) but agrees to ~20% over the cosmologically relevant range. Scenario classification: **B+** (microphysically derived, correct saturation, emergent ρ_crit).
-
-## Package Contents
-
-| File | Description |
-|------|-------------|
-| `README.md` | This file |
-| `index.json` | Machine-readable entry point |
-| `schema.json` | JSON Schema for data validation |
-| `metadata.json` | Dublin Core + DataCite metadata |
-| `density_of_states.jsonld` | JSON-LD linked data |
-| `citations.bib` | BibTeX references |
-| `src/__init__.py` | Python package init |
-| `src/density_of_states.py` | Core implementation |
-| `data/density_of_states_data.json` | Tables, equations, scenarios |
-| `examples/demo_density_of_states.py` | Executable demonstration |
-
-## Key Equations
-
-- **Activation condition**: G_N ρ l_g² > σ₀ l_g → ρ > ρ_crit
-- **D_eff(ρ)**: ∝ √(ρ/ρ_crit) (boundary-mode mechanism, Eq. 26)
-- **ρ_crit**: a₀/(G_N l_g) — emergent from microphysics (Eq. 5)
-- **Per-mode entropy**: Γ_per-mode ∝ 1/ρ at low ρ (from BE statistics)
-- **ρ̇ rescue**: Γ_t ∝ ρ^(-1/2) × ρ = ρ^(1/2) (cosmological trajectory, Eq. 45)
-- **Final form**: Γ(ρ) = Γ₀ √(ρ/ρ_crit) / (1 + √(ρ/ρ_crit)) (Eq. 48)
-
-## Scenario Classification
-
-| Scenario | Form | Status |
-|----------|------|--------|
-| A | ρ/(ρ + ρ_crit) — phenomenological | Target (not derived) |
-| B | ρ^(3/2)/(ρ + ρ_crit) — partial | Previous |
-| **B+** | **√(ρ/ρ_crit) / (1 + √(ρ/ρ_crit))** | **Derived (this paper)** |
-
-## Quick Start
-
-```python
-from src.density_of_states import (
-    GridActivation,
-    DensityOfStates,
-    EntropyProductionFunction,
-    ScenarioComparison,
-)
-
-# Derived Γ(ρ) vs phenomenological
-gamma = EntropyProductionFunction()
-print(f"Γ(ρ/ρ_crit=0.1) = {gamma.gamma_derived(0.1):.4f}")
-print(f"Γ_phenom(0.1)   = {gamma.gamma_phenomenological(0.1):.4f}")
-```
-
-## Citation
-
-```bibtex
-@article{magnusson2026densityofstates,
-  author  = {Magnusson, Morten},
-  title   = {Density of States of Gravitationally Active Grid Modes},
-  year    = {2026},
-  doi     = {10.6084/m9.figshare.31942800}
-}
-```
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | The entropy-production function follows Γ(ρ) = Γ0 y/(1+y) with y = √(ρ/ρcrit) over cosmologically relevant densities, with a fixed ρcrit = a0/(G_N l_g) and no additional shape parameters. | Reconstruction of Γ(ρ) from cosmological background and growth data (e.g., EFC fits to H(z), structure growth, lensing) showing a shape inconsistent with the √ρ saturation (deviations >20% across ρ range). |
+| P2 | The low-density scaling of the effective density of states is Deff(ρ) ∝ √ρ. | First-principles simulations of grid-lattice microdynamics or indirect reconstruction of active-mode counts versus ρ demonstrating a different low-ρ power-law index. |
+| P3 | At ρ = ρcrit the shortest-wavelength mode (λ = l_g) transitions to activation, providing the saturation pivot for Γ(ρ). | Any consistent EFC cosmology inference requiring a saturation pivot density that is not constant or not equal to a0/(G_N l_g), or exhibits significant redshift evolution. |

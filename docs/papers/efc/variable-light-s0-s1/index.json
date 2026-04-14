@@ -1,7 +1,88 @@
 {
+  "$schema": "./schema.json",
   "id": "variable-light-s0-s1",
+  "title": "Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the s0 / s1 Structure in Energy-Flow Cosmology (EFC)",
+  "description": "Presents a formal EFC framework where the effective speed of light is an emergent, state-dependent limit governed by two entropic phases (s0 rigidity and s1 dissipation). Derives a minimal bell-shaped model ceff(S) with a peak at intermediate entropy S* and introduces collapse dynamics at both extremes, yielding a path-integral redshift law and natural observational horizons without invoking metric expansion.",
+  "version": "2.0",
+  "date": "2025-11-01",
+  "doi": "10.6084/m9.figshare.30642497",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "variable speed of light",
+    "effective light speed",
+    "entropic states",
+    "s0 state",
+    "s1 state",
+    "entropic gradient",
+    "redshift integral",
+    "collapse dynamics",
+    "information propagation",
+    "cosmological horizons",
+    "emergent curvature"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "effective_speed_vs_entropy": {
+      "latex": "c_{\\mathrm{eff}}(S) = c_0 \\\\exp\\!\\left[-\\alpha\\, (S - S^{\\ast})^{2}\\right]",
+      "description": "Bell-shaped minimal model: the effective propagation speed peaks at an optimal intermediate entropy S* and decreases toward both low-entropy (s0) rigidity and high-entropy (s1) dissipation."
+    },
+    "redshift_entropic_integral": {
+      "latex": "z = \\int_{\\gamma} g\\big(S(\\mathbf{x}), \\, \\nabla S(\\mathbf{x}), \\, c_{\\mathrm{eff}}(S)\\big)\\, ds",
+      "description": "Redshift expressed as a path integral over entropic drag along the photon trajectory; explains high-z phenomena via spatial variations in c_eff without requiring metric expansion."
+    },
+    "photon_energy_frequency": {
+      "latex": "E_{\\gamma} = h \\, \\nu, \\quad \\nu = \\frac{c_{\\mathrm{eff}}}{\\lambda}",
+      "description": "Photon frequency and energy track the local effective propagation limit; decreasing c_eff along the path reduces frequency and produces redshift."
+    }
+  },
+  "key_results": {
+    "main_finding": "In EFC, the effective speed of light is a bell-shaped function of entropy with a maximum at S*, collapsing toward both s0 and s1 extremes, which yields a path-integral redshift law and natural observational horizons without invoking metric expansion.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "c0",
+      "\u03b1",
+      "S*"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Strong-lensing time delays are modulated by line-of-sight entropy structure via c_eff(S), leading to systematic departures from constant-c GR predictions in entropy-rich or highly turbulent sightlines.",
+      "falsifiable_by": "Comparing time delays from multiple strong-lens systems across environments with differing entropy structure; absence of any correlation with environmental entropy would falsify."
+    },
+    {
+      "id": "P2",
+      "statement": "Apparent extreme high-redshift sources preferentially trace regions with low c_eff (high entropic drag), producing anisotropies in redshift distributions tied to large-scale entropy gradients.",
+      "falsifiable_by": "Cross-correlating sky maps of redshift outliers with independent proxies of entropy structure; lack of correlation after controlling for known systematics would falsify."
+    },
+    {
+      "id": "P3",
+      "statement": "The CMB surface corresponds to an s1-collapse boundary beyond which coherent information propagation fails (c_eff \u2192 0), implying no coherent signals from pre-CMB epochs.",
+      "falsifiable_by": "Robust detection of coherent, pre-CMB signals (beyond last scattering) inconsistent with foreground/systematic explanations would falsify."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: After accounting for known systematics, cosmological redshift is fully explained by metric expansion with constant c and shows no residual dependence on line-of-sight entropy structure as predicted by the entropic integral.",
+    "KC2: Strong-lensing time delays across diverse environments show no correlation with entropy structure and remain fully consistent with constant-c GR within uncertainties.",
+    "KC3: Observation of coherent information propagation from epochs earlier than the CMB last-scattering surface, contradicting the s1-collapse horizon.",
+    "KC4: Empirical evidence that the effective propagation limit varies monotonically with entropy (or not at all), ruling out a peak at intermediate S as required by the bell-shaped c_eff(S) model."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "variable-light-s0-s1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30642497",
   "slug": "variable-light-s0-s1",
-  "title": "textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)",
   "path": "docs/papers/efc/variable-light-s0-s1",
   "pdf": "variable-light-s0-s1.pdf",
   "tex": "variable-light-s0-s1.tex",
@@ -9,11 +90,7 @@
   "layer": "docs",
   "domain": "META-systems",
   "type": "paper",
-  "version": "1.0.0",
-  "keywords": [],
   "summary": "In Energy-Flow Cosmology (EFC), the effective speed of light is not a primitive constant but an emergent propagation limit determined by the entropic state of the grid. Two fundamental entropic phases---a low-entropy constraining state ($s_0$) and a high-entropy dissipative state ($s_1$)---govern th",
   "created": "2025-12-04",
-  "updated": "2025-12-04",
-  "doi": "10.6084/m9.figshare.30642497",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30642497"
+  "updated": "2025-12-04"
 }

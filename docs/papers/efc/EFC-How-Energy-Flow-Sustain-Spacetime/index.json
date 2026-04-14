@@ -1,9 +1,11 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-How-Energy-Flow-Sustain-Spacetime",
-  "title": "EFC — How Energy Flow Sustains Spacetime",
-  "path": "docs/papers/efc/EFC-How-Energy-Flow-Sustain-Spacetime",
-  "pdf": "EFC-How-Energy-Flow-Sustain-Spacetime.pdf",
-  "md": "EFC-How-Energy-Flow-Sustain-Spacetime.md",
+  "title": "EFC \u2014 How Energy Flow Sustains Spacetime",
+  "description": "Proposes Energy-Flow Cosmology (EFC), the hypothesis that a globally conserved yet locally dynamic energy flow\u2014modulated by entropy and matter distribution\u2014acts as the scaffolding that sustains and shapes spacetime curvature. The paper outlines a research program to relate energy-flow and entropy gradients to observed gravitational phenomena across scales and calls for simulations and comparisons to gravitational lensing and CMB data. Its contribution is a conceptual framework and test agenda rather than new empirical results.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098371",
   "keywords": [
     "EFC",
     "Energy Flow",
@@ -11,11 +13,45 @@
     "Entropy Gradient",
     "Dynamic Structure",
     "Grid Field",
-    "Entropy Field"
+    "Entropy Field",
+    "Gravitational Lensing",
+    "Cosmic Microwave Background",
+    "Black Holes",
+    "Cosmic Voids",
+    "General Relativity"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Articulates the hypothesis that global energy flow, locally modulated by entropy and matter distribution, sustains and shapes spacetime curvature across scales.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Cross-scale analyses (from black-hole environments to cosmic voids) show no correlation between measured local energy flux or entropy gradients and spacetime curvature once mass\u2013energy density (GR stress\u2013energy) is controlled for, within observational uncertainties.",
+    "KC2: Gravitational lensing maps and CMB anisotropies are fully accounted for by standard GR+\u039bCDM with no systematic residuals attributable to an energy-flow or entropy-gradient term across the tested scales.",
+    "KC3: Simulations that implement the proposed energy-flow scaffolding fail to improve or match fits to observed large-scale structure, lensing, or expansion history compared to baseline GR+\u039bCDM.",
+    "KC4: Operational definitions or proxies for \"energy flow\" and associated entropy gradients cannot be made consistent with conservation laws or yield non-reproducible measurements across independent instruments and surveys."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-How-Energy-Flow-Sustain-Spacetime.pdf",
+    "readme": "EFC-How-Energy-Flow-Sustain-Spacetime.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098371",
+  "path": "docs/papers/efc/EFC-How-Energy-Flow-Sustain-Spacetime",
+  "pdf": "EFC-How-Energy-Flow-Sustain-Spacetime.pdf",
+  "md": "EFC-How-Energy-Flow-Sustain-Spacetime.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098371",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098371"
+  "type": "paper"
 }

@@ -1,7 +1,7 @@
 {
   "title": "EFC vs Stage-III Cosmology State Assessment",
   "short_id": "efc-state-vs-stageIII",
-  "version": "1.0.0",
+  "version": "1.0",
   "date": "2026-02-10",
   "author": {
     "name": "Morten Magnusson",
@@ -10,38 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31305550",
-  "abstract": "Stage-III cosmology update reframing EFC from tension resolution to precision structural competitor in the post-tension weak-lensing landscape.",
+  "abstract": "Stage-III weak-lensing recalibrations (KiDS Legacy; HSC Y3 with DESI clustering-z) move S8 upward and reduce prior LSS\u2013CMB growth tension to sub-1\u03c3. This methodology/validation update repositions Energy-Flow Cosmology (EFC) from a tension-resolution narrative to a precision structural competitor, introduces the Structural Coherence Evaluation (SCE) protocol distinguishing O-layer vs M-layer quantities, and notes that the BAO-locked background coupling \u03b2 = 0.08 yields \u03c38 \u2248 0.805, consistent with the converging Stage-III landscape.",
   "keywords": [
     "Energy-Flow Cosmology",
-    "S8 tension",
-    "weak lensing",
-    "Stage-III surveys",
+    "Stage-III weak lensing",
+    "S8",
     "KiDS Legacy",
-    "HSC Y3"
+    "HSC Year 3",
+    "DESI clustering-redshifts",
+    "CMB lensing",
+    "BAO distances",
+    "lensing response Sigma(k,z)",
+    "Structural Coherence Evaluation",
+    "observation-native ontology",
+    "model selection"
   ],
-  "efc_context": {
-    "track": "Validation Update / Stage-III Assessment",
-    "regime_relevance": "Weak-lensing landscape z ~ 0.5",
-    "epistemic_layer": "Layer B (validation and narrative update)"
-  },
-  "key_results": [
-    "EFC sigma8=0.805 matches converging Stage-III lensing (S8=0.805-0.815)",
-    "Narrative shift from tension resolution to precision competitor",
-    "SCE O-layer/M-layer protocol for observation-level testing"
-  ],
-  "file_manifest": {
-    "pdf": "efc_state_vs_stageIII.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "state_vs_stage3.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/state_vs_stage3.py"
-    ],
-    "data": "data/stage3_observations.json",
-    "demo": "examples/demo_stage3.py"
+  "files": {
+    "paper": "efc_state_vs_stageIII.pdf",
+    "schema": "schema.json"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31305550",

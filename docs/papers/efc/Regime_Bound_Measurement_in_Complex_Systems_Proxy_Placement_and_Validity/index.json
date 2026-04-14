@@ -1,13 +1,97 @@
 {
   "$schema": "./schema.json",
-  "paper_id": "EFC-Regime-Measurement",
+  "id": "regime-bound-measurement-in-complex-systems-proxy-placement-and-validity",
   "title": "Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity",
+  "description": "Formalizes a general, validity-aware measurement framework in which analysis is cartography\u2014mapping outputs on a structured response surface\u2014rather than a single verdict. It introduces five operative concepts (regime, proxy, placement, episenter, compression) and applies them to two domains (cosmology via WP3/R(k,S) and AI evaluation), deriving falsifiable predictions and criteria that distinguish regime-stable claims from locally coherent artifacts.",
+  "version": "1.0",
+  "date": "2026-03-07",
+  "doi": "10.6084/m9.figshare.31564123",
+  "keywords": [
+    "regime-bound measurement",
+    "proxy validity",
+    "epistemic placement",
+    "response surface",
+    "episenter",
+    "compression",
+    "cosmology",
+    "EFC WP3",
+    "AI evaluation",
+    "measurement theory",
+    "falsifiability",
+    "Hubble tension"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "S_hat_z": {
+      "latex": "\\hat{S}(z) = \\log_{10}\\!\\big(\\rho_{\\mathrm{SFR}}(z)\\big) + \\log_{10}\\!\\big(f_{\\mathrm{gas}}(z)\\big) + C_0",
+      "description": "Declared proxy for structural state used in the cosmology case; combines star-formation rate density and gas fraction with a constant offset, explicitly blind to local environments."
+    },
+    "R_k_S": {
+      "latex": "R(k, S)",
+      "description": "Response surface mapping scale k and structural state S to observable structure (WP3/R(k,S)); used to analyze regime-dependent behavior."
+    }
+  },
+  "key_results": {
+    "main_finding": "Across cosmology (WP3/R(k,S)) and AI evaluation, apparent model conflicts are shown to be regime mismatches; proxy choice and observer placement systematically reshape residual structure, supporting a cartographic approach to measurement with explicit falsifiable predictions.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "regime (interior vs boundary behavior)",
+      "proxy substitution effects",
+      "observer placement (physical/instrument/interpretive)",
+      "episenter shifts",
+      "compression losses",
+      "EFC structural regimes: FLOW / TRANSITION / LATENT",
+      "proxy components: rho_SFR, f_gas, C0"
+    ],
+    "datasets_used": [
+      "Case 1: cosmological structure analysis (WP3/R(k,S))",
+      "Case 2: AI evaluation metrics and human ratings"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Residuals at regime boundaries will be systematically larger and less coherent than residuals within regime interiors when analyzed on R(k,S).",
+      "falsifiable_by": "Show that boundary and interior residual distributions are indistinguishable across multiple datasets after controlling for noise and sampling."
+    },
+    {
+      "id": "P2",
+      "statement": "Substituting proxies (e.g., alternative constructions of \\hat{S}(z) or swapping AI metrics) will induce structured, directionally consistent drift in fitted parameters or model rankings within the same regime.",
+      "falsifiable_by": "Demonstrate no systematic drift beyond statistical noise under controlled proxy substitutions across independent datasets."
+    },
+    {
+      "id": "P3",
+      "statement": "Shifting the episenter (e.g., z-space vs S-space, or accuracy vs calibration) will reorganize apparent signal and residual structure in predictable ways without changing the raw data.",
+      "falsifiable_by": "Show invariance of residual maps and rankings under episenter shifts across distinct analyses."
+    },
+    {
+      "id": "P4",
+      "statement": "Placement matching (aligning physical, instrument, and interpretive placement) will reduce apparent conflicts between models or measurements.",
+      "falsifiable_by": "Provide repeated cases where conflicts persist unchanged after rigorous placement matching and calibration checks."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: No detectable difference between boundary and interior residual structures under regime-partitioned analyses (R(k,S)) across multiple cosmology datasets.",
+    "KC2: Proxy substitutions (including alternative constructions of \\hat{S}(z) and swaps between standard AI metrics and human ratings) yield no systematic, reproducible drift beyond noise across independent studies.",
+    "KC3: Episenter shifts fail to produce any structured redistribution of signal and residuals; residual maps remain invariant across episenter choices in both domains.",
+    "KC4: Placement matching does not reduce conflicts among measurements or model comparisons in repeated, pre-registered tests with adequate power.",
+    "KC5: A single undeclared episenter and proxy set are demonstrated to be universally valid across all tested regimes without degradation in fit quality or predictive performance."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "Regime_Bound_Measurement_in_Complex_Systems_Proxy_Placement_and_Validity.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31564123",
+  "paper_id": "EFC-Regime-Measurement",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research, Sandnes, Norway",
-  "date": "2026-03-07",
   "status": "working_paper",
-  "abstract": "Formalises a general measurement framework where analysis is cartography — mapping outputs as coordinates on a structured response surface — rather than verdict. Five operative concepts (regime, proxy, placement, episenter, compression) applied to cosmological structure analysis (WP3/R(k,S)) and AI evaluation. 13 testable predictions with falsification criteria.",
+  "abstract": "Formalises a general measurement framework where analysis is cartography \u2014 mapping outputs as coordinates on a structured response surface \u2014 rather than verdict. Five operative concepts (regime, proxy, placement, episenter, compression) applied to cosmological structure analysis (WP3/R(k,S)) and AI evaluation. 13 testable predictions with falsification criteria.",
   "core_thesis": "Observed outputs in complex systems are not direct reads of the underlying phenomenon, but regime-conditioned products of proxy choice, instrument logic, observer placement, and interpretive compression.",
   "core_concepts": [
     {
@@ -250,7 +334,7 @@
         "Annotation regime",
         "Deployment context"
       ],
-      "key_insight": "Explainability is not validity — explainability measures internal routing, validity measures output quality",
+      "key_insight": "Explainability is not validity \u2014 explainability measures internal routing, validity measures output quality",
       "validity_profile": [
         "Regime declaration",
         "Proxy declaration",
@@ -489,7 +573,5 @@
       "doi": "10.6084/m9.figshare.31562200",
       "title": "EFC EFT Ansatz"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31564123",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31564123"
+  ]
 }

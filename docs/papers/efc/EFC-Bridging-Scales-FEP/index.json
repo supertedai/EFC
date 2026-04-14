@@ -1,39 +1,135 @@
 {
-  "name": "EFC-Bridging-Scales-FEP",
-  "type": "EFC-Paper",
-  "collection": "efc",
-  "document_id": "EFC-Bridging-Scales-FEP",
+  "$schema": "./schema.json",
+  "id": "efc-bridging-scales-fep",
   "title": "Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0006-5904-4032",
+  "description": "Presents a formal bridge between Energy-Flow Cosmology (EFC) and the Free Energy Principle (FEP) by identifying variational free energy with a blanket-integral of a physically measurable energy-flow field. The paper reinterprets Markov blankets as zero-flux energy-flow surfaces, proposes a universal emergence threshold Rc \u2248 0.37, and locks six falsifiable predictions with explicit decision criteria and operational definitions.",
+  "version": "1.0",
   "date": "2026-01-10",
   "doi": "10.6084/m9.figshare.31042678",
-  "figshare_id": "31042678",
-  "tier": "CANONICAL",
-  "layer": "THEORY",
-  "domain": "cognition",
-  "status": "published",
-  "version": "1.0",
-  "abstract": "This work presents a formally constrained bridge between the Free Energy Principle and Energy-Flow Cosmology, linking variational free energy to measurable energy flow dynamics across entropy gradients.",
   "keywords": [
     "Energy-Flow Cosmology",
     "Free Energy Principle",
     "Variational Free Energy",
-    "Non-equilibrium thermodynamics",
     "Markov blankets",
-    "Active Inference"
+    "Non-equilibrium thermodynamics",
+    "Active Inference",
+    "Effective temperature",
+    "Emergence threshold",
+    "Entropy gradients",
+    "S-duality",
+    "Metabolic gradients",
+    "SPARC rotation curves"
   ],
-  "categories": [
-    "Complex systems",
-    "Theoretical physics",
-    "Cognitive science"
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "energy_flow_field": {
+      "latex": "E_f(\\mathbf{x}, t) = \\frac{P_0}{L_0} \\, \\phi(S) \\, \\nabla S \\quad [\\mathrm{W\\, m^{-2}}]",
+      "description": "Defines the physical energy-flow field coupling entropy gradients to measurable energy flux densities via characteristic power P0, length L0, and a dimensionless flow function \u03c6(S)."
+    },
+    "blanket_integral_free_energy": {
+      "latex": "F(t) = -\\frac{1}{k_B T_{\\mathrm{eff}}} \\, \\frac{d}{dt} \\oint_{\\mathcal{M}} E_f \\cdot d\\mathbf{n}",
+      "description": "Defines blanket-integral free energy as the time derivative of total energy flux through the Markov blanket surface M, scaled to information units by kB and effective temperature."
+    },
+    "effective_temperature": {
+      "latex": "T_{\\mathrm{eff}} = \\frac{\\mathrm{Var}(\\mu)}{\\chi_{\\mu}}",
+      "description": "Operational definition of effective temperature via the fluctuation\u2013dissipation relation: variance of internal states over their susceptibility."
+    },
+    "resonance_parameter": {
+      "latex": "R = \\frac{\\lvert E_f^{\\mathrm{int}} \\rvert}{\\lvert E_f^{\\mathrm{ext}} \\rvert} \\cdot \\frac{1}{1 + \\lvert \\nabla S \\rvert / S_c}, \\quad R_c = 0.37 \\pm 0.05",
+      "description": "Resonance parameter controlling blanket stability; stability is predicted when R > Rc with Rc estimated from SPARC galaxy fits and hypothesized to generalize to neural systems."
+    },
+    "s_duality": {
+      "latex": "\\phi(S) = -\\phi(1 - S), \\quad S \\in [0.1, 0.9]",
+      "description": "S-duality symmetry constraint on the flow function across mid-entropy values, with predicted symmetry breaking near extremes."
+    },
+    "efc_fep_correspondence": {
+      "latex": "\\mathcal{F}_{\\mathrm{FEP}} = F_{\\mathrm{blanket}} + \\mathcal{O}(\\epsilon)",
+      "description": "Core correspondence asserting variational free energy equals the blanket-integral free energy up to quasi-steady-state corrections \u03b5."
+    }
+  },
+  "key_results": {
+    "main_finding": "Variational free energy equals a blanket-integral of the energy-flow field at quasi-steady state, yielding physical Markov blankets and a universal emergence threshold Rc \u2248 0.37 with six locked, falsifiable predictions.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "P0",
+      "L0",
+      "S",
+      "phi(S)",
+      "T_eff",
+      "R",
+      "S_c",
+      "epsilon"
+    ],
+    "datasets_used": [
+      "SPARC galaxy rotation curves (for Rc estimate)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Dimensional consistency: the EFC mapping yields unit-consistent energy flux and dimensionless free-energy after scaling.",
+      "falsifiable_by": "Chi-square ratio for dimensional checks outside [0.95, 1.05] across calibrated benchmark systems."
+    },
+    {
+      "id": "P2",
+      "statement": "Blanket-integral free energy time series correlates strongly with variational free energy in systems with identifiable Markov blankets.",
+      "falsifiable_by": "Pearson correlation Corr(F_blanket, F_variational) \u2264 0.90 over matched time windows with correct blanket identification."
+    },
+    {
+      "id": "P3",
+      "statement": "Cross-scale universality of the emergence threshold Rc at the onset of stable Markov blankets.",
+      "falsifiable_by": "Pooled cross-domain estimate with |z| \u2265 3 against Rc = 0.37 \u00b1 0.05 (e.g., galaxies and neural ensembles)."
+    },
+    {
+      "id": "P4",
+      "statement": "Effective temperature predicts precision (inverse variance) under fluctuation\u2013dissipation scaling.",
+      "falsifiable_by": "Explained variance r^2 \u2264 0.30 between T_eff and precision across agents or neural ensembles."
+    },
+    {
+      "id": "P5",
+      "statement": "Metabolic/energy gradient enrichment at Markov blanket boundaries.",
+      "falsifiable_by": "Mean gradient ratio at blankets \u2264 1.2 compared to adjacent non-blanket regions."
+    },
+    {
+      "id": "P6",
+      "statement": "Symmetry breaking of the S-duality of the flow function at entropy extremes.",
+      "falsifiable_by": "Measured deviation of \u03c6(S) from \u2212\u03c6(1\u2212S) \u2264 10% for S < 0.1 or S > 0.9."
+    }
   ],
+  "kill_criteria": [
+    "KC1: Failure to observe Corr(F_blanket, F_variational) > 0.90 in controlled systems with independently identified blankets (e.g., active inference agents or neural cultures) using validated E_f measurements and blanket geometry.",
+    "KC2: Cross-scale analyses of the resonance parameter R show no clustering around Rc = 0.37 \u00b1 0.05 and yield a pooled |z| \u2265 3 against this value, or stable blankets consistently occur with R outside [0.2, 0.6] across multiple domains.",
+    "KC3: No energetic signature of blankets: maxima of |\u2207E_f| fail to coincide with independently inferred Markov blanket boundaries, and metabolic/energy gradient ratios at blankets do not exceed 1.2 relative to adjacent regions.",
+    "KC4: Zero-flux condition is not borne out at candidate blankets: divergence \u2207\u00b7J at putative blanket surfaces is not significantly lower than in non-blanket control surfaces at NESS.",
+    "KC5: Dimensional mapping inconsistency: the scaled blanket-integral definition of F produces system-dependent unit discrepancies (chi-square ratio outside [0.95, 1.05]) that cannot be resolved by parameter calibration within stated definitions."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [],
   "files": {
     "pdf": "EFC-Bridging-Scales-FEP.pdf",
     "jsonld": "EFC-Bridging-Scales-FEP.jsonld",
     "citations": "citations.bib",
     "schema": "schema.json"
   },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31042678",
+  "name": "EFC-Bridging-Scales-FEP",
+  "type": "EFC-Paper",
+  "collection": "efc",
+  "document_id": "EFC-Bridging-Scales-FEP",
+  "orcid": "0009-0006-5904-4032",
+  "figshare_id": "31042678",
+  "layer": "THEORY",
+  "domain": "cognition",
+  "status": "published",
+  "abstract": "This work presents a formally constrained bridge between the Free Energy Principle and Energy-Flow Cosmology, linking variational free energy to measurable energy flow dynamics across entropy gradients.",
+  "categories": [
+    "Complex systems",
+    "Theoretical physics",
+    "Cognitive science"
+  ],
   "relations": {
     "extends": [
       "EFC-v2.2-Cross-Field-Integration-Summary"
@@ -48,6 +144,5 @@
     ]
   },
   "created_at": "2026-01-10T14:40:12Z",
-  "updated_at": "2026-01-10T14:40:13Z",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31042678"
+  "updated_at": "2026-01-10T14:40:13Z"
 }

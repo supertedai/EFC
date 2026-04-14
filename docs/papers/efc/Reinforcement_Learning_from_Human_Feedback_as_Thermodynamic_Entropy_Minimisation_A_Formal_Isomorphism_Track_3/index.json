@@ -1,6 +1,113 @@
 {
-  "paper_id": "rlhf-thermodynamic-isomorphism",
+  "$schema": "./schema.json",
+  "id": "reinforcement-learning-from-human-feedback-as-thermodynamic-entropy-minimisation-a-formal-isomorphism-track-3",
   "title": "Reinforcement Learning from Human Feedback as Thermodynamic Entropy Minimisation: A Formal Isomorphism and Testable Predictions",
+  "description": "The paper shows that the RLHF objective with a KL penalty is algebraically identical to minimizing Helmholtz free energy in statistical mechanics, mapping reward to negative energy, policy to a Boltzmann distribution, and the KL coefficient to temperature. From this formal isomorphism it derives three falsifiable predictions about optimal temperature scaling with task entropy, grokking as a first\u2011order phase transition, and a universal alignment\u2013capability bound, offering testable thermodynamic design principles for RLHF.",
+  "version": "v1.0",
+  "date": "2026-03-31",
+  "doi": "10.6084/m9.figshare.31940535",
+  "keywords": [
+    "RLHF",
+    "thermodynamics",
+    "statistical mechanics",
+    "entropy",
+    "Helmholtz free energy",
+    "Boltzmann distribution",
+    "KL divergence",
+    "PPO",
+    "alignment",
+    "grokking",
+    "phase transition",
+    "jailbreaking"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "rlhf_objective": {
+      "latex": "J(\\theta) = \\mathbb{E}_{s\\sim d^{\\pi},\\, a\\sim \\pi_\\theta}[R(s,a)] - \\beta_{\\mathrm{KL}}\\, D_{\\mathrm{KL}}\\!\\left(\\pi_\\theta\\,\\Vert\\,\\pi_{\\mathrm{ref}}\\right)",
+      "description": "RLHF objective with KL regularization to a reference policy; maximizing J trades off reward and divergence from the reference."
+    },
+    "kl_divergence": {
+      "latex": "D_{\\mathrm{KL}}\\!\\left(\\pi_\\theta\\,\\Vert\\,\\pi_{\\mathrm{ref}}\\right) = \\sum_{a} \\pi_\\theta(a\\mid s) \\ln \\frac{\\pi_\\theta(a\\mid s)}{\\pi_{\\mathrm{ref}}(a\\mid s)}",
+      "description": "Definition of the KL divergence between the learned policy and the reference policy at a state s."
+    },
+    "optimal_policy_boltzmann": {
+      "latex": "\\pi^*(a\\mid s) = \\frac{\\pi_{\\mathrm{ref}}(a\\mid s)\\, \\exp\\!\\left(\\tfrac{R(s,a)}{\\beta_{\\mathrm{KL}}}\\right)}{Z(s)},\\quad Z(s)=\\sum_a \\pi_{\\mathrm{ref}}(a\\mid s)\\, \\exp\\!\\left(\\tfrac{R(s,a)}{\\beta_{\\mathrm{KL}}}\\right)",
+      "description": "Closed-form optimal policy under the KL-regularized objective; a Boltzmann distribution with energy \u2212R and temperature T = \\beta_{KL}."
+    },
+    "free_energy_equivalence": {
+      "latex": "J = \\mathbb{E}[R] + \\beta_{\\mathrm{KL}}\\, H(\\pi) + \\beta_{\\mathrm{KL}}\\, \\mathbb{E}[\\ln \\pi_{\\mathrm{ref}}] = -F + \\text{const},\\quad F=\\langle E\\rangle - T S",
+      "description": "Exact identity mapping the RLHF objective to negative Helmholtz free energy with substitutions R\\to -E and \\beta_{KL}\\to T (k_B=1)."
+    },
+    "jailbreak_rate": {
+      "latex": "\\Pr(\\mathrm{jailbreak}\\mid p) \\propto \\exp\\!\\left(-\\tfrac{\\Delta F(p)}{T_{\\mathrm{eff}}}\\right)",
+      "description": "Arrhenius/Kramers-like escape probability over a free-energy barrier \\Delta F for prompt p with effective temperature T_eff."
+    },
+    "alignment_capability_bound": {
+      "latex": "A \\cdot C \\;\\le\\; 1 - \\exp\\!\\left(-\\tfrac{F_0 - F^*}{T}\\right)",
+      "description": "Proposed universal trade-off bound between alignment (A) and capability (C) governed by free-energy improvements at temperature T."
+    },
+    "grokking_latency": {
+      "latex": "\\Delta t_{\\mathrm{grok}} \\;\\propto\\; \\frac{H_{\\mathrm{mem}} - H_{\\mathrm{gen}}}{T_{\\mathrm{eff}}}",
+      "description": "Prediction that the grokking stall period scales with the entropy gap between memorization and generalization basins, modulated by effective temperature."
+    }
+  },
+  "key_results": {
+    "main_finding": "RLHF with a KL penalty is exactly isomorphic to thermodynamic free-energy minimization, yielding Boltzmann-optimal policies and three falsifiable predictions about temperature scaling, grokking dynamics, and an alignment\u2013capability bound.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "beta_KL (temperature)",
+      "R(s,a) (negative energy)",
+      "pi_ref (prior state)",
+      "H(pi) (policy entropy)",
+      "Z(s) (partition function)",
+      "T_eff (effective temperature)",
+      "Delta F (free-energy barrier)",
+      "A (alignment metric)",
+      "C (capability metric)"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Optimal KL temperature scales with task entropy: \\beta_{\\mathrm{KL}}^* \\propto H_{\\mathrm{task}}^{-1/2}.",
+      "falsifiable_by": "Train comparable models across task families with systematically varied entropy; if the optimum \\beta_{KL} shows no dependence on H_task (or opposite scaling), the prediction is falsified."
+    },
+    {
+      "id": "P2",
+      "statement": "Grokking is a first-order-like transition with a latent period that scales as \\Delta t_{\\mathrm{grok}} \\propto (H_{\\mathrm{mem}} - H_{\\mathrm{gen}})/T_{\\mathrm{eff}}.",
+      "falsifiable_by": "Construct controlled datasets (e.g., modular arithmetic with varying modulus) and measure stall periods; a correlation r < 0.3 between predicted and observed latencies falsifies the claim."
+    },
+    {
+      "id": "P3",
+      "statement": "A universal alignment\u2013capability bound holds: A\\cdot C \\le 1 - \\exp(-(F_0 - F^*)/T), setting a maximum attainable product across \\beta_{KL} sweeps.",
+      "falsifiable_by": "Across families of models varying \\beta_{KL}, if empirical A\\cdot C reliably exceeds the bound (beyond uncertainty) or grows monotonically without saturating below the bound, the prediction is falsified."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Systematic failure of the Boltzmann optimal policy form (Eq. 3): for RLHF with a KL penalty, if fitted policies across diverse states cannot be well-approximated by \\pi^*(a|s) \\propto \\pi_ref(a|s)\\exp(R/\\beta_{KL}) with any global temperature (out-of-sample KL improvement < 1% over non-Boltzmann baselines), the isomorphism is falsified.",
+    "KC2: Breakdown of the free-energy identity (Eq. 4): if measured J, E[R], H(\\pi), and E[\\ln \\pi_ref] disagree with J = E[R] + \\beta_{KL}H(\\pi) + \\beta_{KL}E[\\ln \\pi_ref] to within estimation error, or do not transform as \u2212F + const under R\\to -E and \\beta_{KL}\\to T, the mapping fails.",
+    "KC3: Temperature non-equivalence: if varying \\beta_{KL} does not produce the same policy reweighting as changing sampling temperature in the Boltzmann form (after accounting for \\pi_ref), i.e., no consistent global T maps \\beta_{KL} to temperature, the mapping is falsified.",
+    "KC4: P1 falsified at scale: across multiple task families with quantifiably different H_task, the optimal \\beta_{KL} shows no dependence on H_task (|slope| not significantly different from 0; pooled r^2 < 0.1), invalidating the temperature\u2013entropy scaling.",
+    "KC5: P2 falsified: measured grokking stall periods across controlled datasets exhibit correlation r < 0.3 with the predicted (H_mem \u2212 H_gen)/T_eff, contradicting the phase-transition account.",
+    "KC6: P3 falsified: observed A\u00b7C exceeds the proposed bound 1 \u2212 exp(\u2212(F0 \u2212 F*)/T) by a statistically significant margin across a \\beta_{KL} sweep, or increases monotonically without saturating below the bound.",
+    "KC7: Jailbreak Arrhenius breakdown: when \\Delta F is manipulated via controlled reward shaping or constitutional constraints, jailbreak probability fails to show an approximately exponential dependence on \u2212\\Delta F/T_eff."
+  ],
+  "tier": "T3",
+  "paper_type": "sealed_prediction",
+  "related_packages": [],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940535",
+  "paper_id": "rlhf-thermodynamic-isomorphism",
   "short_title": "RLHF as Thermodynamic Entropy Minimisation",
   "authors": [
     {
@@ -9,23 +116,7 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v1.0",
-  "date": "2026-03-31",
-  "doi": "10.6084/m9.figshare.31940535",
   "status": "research_note",
-  "keywords": [
-    "RLHF",
-    "thermodynamics",
-    "statistical mechanics",
-    "entropy",
-    "alignment",
-    "grokking",
-    "phase transition",
-    "free energy",
-    "Boltzmann",
-    "jailbreaking",
-    "PPO"
-  ],
   "abstract": "RLHF is formally isomorphic to statistical-mechanical entropy minimisation. Reward maps to negative energy, policy to Boltzmann distribution, beta_KL to temperature, RLHF objective to negative Helmholtz free energy. Three falsifiable predictions: optimal temperature scaling, grokking as first-order phase transition, and universal alignment-capability bound.",
   "foundational_identity": {
     "optimal_policy": "pi*(a|s) = pi_ref(a|s) * exp(R(s,a)/beta_KL) / Z(s)",
@@ -146,6 +237,5 @@
       "key": "[8]",
       "citation": "Jaynes (1957) Information theory and statistical mechanics. Phys Rev 106."
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940535"
+  ]
 }

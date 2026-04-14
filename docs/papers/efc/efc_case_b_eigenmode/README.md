@@ -1,11 +1,10 @@
-# Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology
+# Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe
 
 ## AI-Friendly Package
 
 - **DOI:** [10.6084/m9.figshare.31990194](https://doi.org/10.6084/m9.figshare.31990194)
 - **Version:** 1.0
 - **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
-- **Affiliation:** Symbiose Research, Sandnes, Norway
 - **Date:** 2026-04-12
 - **License:** CC-BY-4.0
 
@@ -13,29 +12,18 @@
 
 ## Overview
 
-Derives the observable eigenstructure of EFC in weak lensing, moving from the phenomenological Case A (P_eff = P_LCDM x Sigma^2) to the consistent Case B where mu(k,z) enters the growth equations and Sigma(k,z) enters the lensing kernel.
+Derives the observable eigenstructure of Energy-Flow Cosmology (EFC) for weak lensing in a consistent modified-gravity setup (Case B) where µ(k,z) affects growth and Σ(k,z) affects the lensing kernel. Shows analytically that weak lensing constrains only a single effective parameter η_eff = γ(µ−1) + (Σ−1), with growth suppression cancelling 66% of the lensing boost. Proves that E_G measures Σ/µ^γ and is orthogonal to weak lensing, predicting E_G^EFC/E_G^GR = 1.086.
 
-## Key Results
+## Key Result
 
-1. **Single observable parameter:** Weak lensing constrains only eta_eff = gamma(mu-1) + (Sigma-1) = 0.017
-2. **Destructive interference:** Growth suppression from mu < 1 cancels 66% of lensing amplification from Sigma > 1
-3. **E_G breaks the degeneracy:** E_G measures Sigma/mu^gamma (ratio, not product), predicting E_G^EFC/E_G^GR = 1.086 (+8.6%)
-4. **Expected Delta chi^2:** Between -2 and +2 for Case B WL-only against KiDS-1000
+Weak lensing constrains only η_eff = γ(µ−1) + (Σ−1), leading to destructive interference where µ<1 cancels 66% of the Σ>1 lensing boost; EG is the orthogonal probe predicting E_G^EFC/E_G^GR = 1.086.
 
 ## Sealed Predictions
 
-Five sealed predictions registered prior to any Case B run:
-
 | ID | Prediction | Falsifiable by |
-|----|-----------|---------------|
-| SP1 | eta_eff = 0.017 | Phase 1 minimisation |
-| SP2 | corr(mu, Sigma) in [-0.95, -0.80] | Phase 1 posterior |
-| SP3 | Delta chi^2(Case B, WL) in [-2, +2] | Phase 1 minimisation |
-| SP4 | E_G^EFC/E_G^GR = 1.086 | KiDS x BOSS |
-| SP5 | Cancellation ratio = 0.66 | Model-independent |
-
-## Hull References
-
-- **Hull #3:** Nested sampling — eigenmode analysis informs optimal parameter basis
-- **Hull #4:** Case B weak lensing — this paper
-- **Hull #6:** ISW void stacking — probes unique combination (1+eta)mu
+|---|---|---|
+| P1 | η_eff = 0.017 at the EFC anchor (k ≈ 0.05 h/Mpc, low z). | Phase 1 weak-lensing-only minimisation (Case B) on KiDS-1000 scales. |
+| P2 | corr(µ0, Σ0) ∈ [−0.95, −0.80] in the WL-only posterior/eigenvector. | Phase 1 WL-only posterior/Fisher analysis in (µ0, Σ0). |
+| P3 | Δχ²(Case B, WL only vs GR) ∈ [−2, +2]. | Phase 1 WL-only goodness-of-fit comparison to GR on KiDS-1000. |
+| P4 | E_G^EFC / E_G^GR = 1.086 (constructive interference). | KiDS × BOSS (or equivalent) EG measurement at k ≈ 0.05 h/Mpc, z ≲ 0.5. |
+| P5 | Cancellation ratio |γ(µ−1)|/|Σ−1| = 0.66 at the anchor. | Model-independent consistency given γ ≈ 0.55 and inferred (µ0, Σ0). |

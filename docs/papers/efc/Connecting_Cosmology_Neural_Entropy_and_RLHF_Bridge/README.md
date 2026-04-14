@@ -1,46 +1,25 @@
-# Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF
+# Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics
 
-**Author:** Morten Magnusson  
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)  
-**DOI:** [10.6084/m9.figshare.31940547](https://doi.org/10.6084/m9.figshare.31940547)  
-**Date:** April 2026 (v0.2)
+## AI-Friendly Package
 
-## Summary
+- **DOI:** [10.6084/m9.figshare.31940547](https://doi.org/10.6084/m9.figshare.31940547)
+- **Version:** v0.2
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-01
+- **License:** CC-BY-4.0
 
-Two formal bridge equations connect EFC's three tracks via dissipative gradient-flow dynamics. Bridge B1 maps cosmological entropy-production density onto a neural analogue using local degree heterogeneity. Bridge B2 maps the neural entropy tensor onto RLHF reward-landscape curvature. Both instantiate a single universal dynamics: dF/dt = -integral |nabla s_dot|^2 dV + B, with dF/dt <= 0.
+---
 
-## Unified Dynamical Postulate (Eq. 2)
+## Overview
 
-dF/dt = -integral_Omega |nabla s_dot(x,t)|^2 dV + B[s_dot]
+Derives two formal bridge equations that connect EFC’s three tracks—cosmology, cortical entropy, and RLHF—under a single dissipative gradient-flow with a Lyapunov free energy. Bridge B1 maps cosmological entropy-production density to a neural analogue via a dimensionless effective free-energy gradient and revises the driver from global Fiedler connectivity to local degree heterogeneity. Bridge B2 identifies the neural entropy tensor with the RLHF reward-landscape curvature and sets a temperature mapping β_KL ↔ 1/T_cog, yielding three new cross-domain predictions.
 
-F = Helmholtz free energy (Lyapunov functional for all three regimes).
+## Key Result
 
-## Bridge B1: Cosmology -> Neural (Revised B1**)
+A single Lyapunov gradient-flow unifies EFC’s cosmology, neural, and RLHF regimes; Bridge B1 is revised to degree-heterogeneity control of neural entropy gradients and yields a parameter-free α_N ≈ 44 K bit^{-1} m^2 s^{-1}, while Bridge B2 ties neural entropy tensors to RLHF reward curvature and β_KL to 1/T_cog.
 
-eta = C_eff / D_ratio^gamma
+## Sealed Predictions
 
-- D_ratio = <k_hub> / <k_periph> (hub-to-periphery degree ratio)
-- C_eff = kappa * C = kappa * k / a_G ~ 1.9-2.2
-- gamma ~ 0.5-0.6 (empirical)
-- Replaces Fiedler eigenvalue (r~0.16) with degree ratio (r~-0.97)
-
-## Bridge B2: Neural -> RLHF (Eq. 10-11)
-
-nabla S_neural  <->  nabla^2 R(s,a)
-S_neural / (k_B * T_cog)  <->  H(pi_theta | s)
-
-## Three Cross-Domain Predictions
-
-1. **P4**: eta = C_eff / D_ratio^gamma; no free parameters (HCP SC + MSE test)
-2. **P5**: T_cog from fMRI calibrates optimal beta_KL without grid search
-3. **P6**: DMN entropy-gradient topology <-> reward landscape curvature in trained LLMs
-
-## File Structure
-
-```
-├── README.md, index.json, schema.json, metadata.json
-├── bridge_equations.jsonld, citations.bib
-├── src/bridge_equations.py    # Python implementation
-├── data/bridge_mappings.json  # Observable dictionary and mappings
-└── examples/demo_bridge.py    # Executable demonstration
-```
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P4** | Hub-to-periphery entropy-production ratio obeys η = C_eff / D_ratio^γ with γ ∈ [0.5, 0.6] and C_eff fixed by Spor 1 (no free parameters); degree heterogeneity, not the Fiedler eigenvalue, predicts the cortical entropy gradient. | Empirical test on HCP structural connectomes paired with multiscale entropy (MSE) maps: primary threshold |r| > 0.40 (p < 0.05) for η vs D_ratio^{-γ}; strong confirmation |r| > 0.60; failure to exceed |r| = 0.40 falsifies B1**. |

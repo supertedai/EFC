@@ -1,8 +1,8 @@
 {
-  "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the S8 Tension",
-  "short_id": "kids1000-lensing-response",
-  "version": "1.0",
-  "date": "2026-02",
+  "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the Interpretation of S8",
+  "short_id": "a-regime-activated-lensing-response-improves-the-fit-to-kids-1000-cosmic-shear-and-reframes",
+  "version": "2.0",
+  "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,47 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31271917",
-  "abstract": "Introduces a regime-activated lensing response that modifies matter-light coupling, achieving a likelihood improvement of delta(-2lnL) ~ -50.9 over LCDM for KiDS-1000 cosmic shear. The S8 tension is reframed as a lensing coupling difference rather than a sigma8 discrepancy.",
+  "abstract": "Tests a phenomenological, regime-activated lensing response \u03a3(k,z) that modifies how matter fluctuations source shear, applied to KiDS-1000 cosmic shear. Finds a large maximum-likelihood improvement over \u039bCDM at fixed cosmology that cannot be mimicked by a simple amplitude rescaling, with a distinct low-redshift tomographic signature that reframes the S8 tension as a response effect.",
   "keywords": [
+    "cosmic shear",
     "weak gravitational lensing",
     "KiDS-1000",
-    "cosmic shear",
     "S8 tension",
+    "large-scale structure",
     "lensing response",
-    "Energy-Flow Cosmology",
-    "matter-light coupling",
-    "entropy gradients",
-    "cosmological tensions"
+    "phenomenological gravity",
+    "\u039bCDM",
+    "scale dependence",
+    "redshift dependence",
+    "tomographic analysis",
+    "growth\u2013response decomposition"
   ],
-  "efc_context": {
-    "track": "cosmological-test",
-    "regime_relevance": "cosmic shear / weak lensing regime",
-    "epistemic_layer": "A"
-  },
-  "key_results": [
-    {
-      "description": "Likelihood improvement over LCDM baseline",
-      "delta_minus2lnL": -50.9,
-      "additional_parameters": 3
-    },
-    {
-      "description": "S8 tension resolved when lensing response accounted for",
-      "residual_tension": "< 1 sigma"
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation and overview",
-    "index.json": "Structured paper metadata",
-    "schema.json": "JSON Schema for package validation",
-    "metadata.json": "Machine-readable metadata",
-    "lensing_response.jsonld": "Linked data descriptor",
-    "citations.bib": "BibTeX citation",
-    "CITATION.cff": "Citation file format",
-    "LICENSE": "CC-BY-4.0 license",
-    "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes_the_Interpretation_of_S_.pdf": "Paper PDF",
-    "src/lensing_response.py": "Core analysis source code",
-    "data/kids1000_results.json": "KiDS-1000 fit results",
-    "examples/": "Usage examples"
+  "files": {
+    "pdf": "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31271917",

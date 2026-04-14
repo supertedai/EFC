@@ -1,19 +1,63 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-A-Deep-Dive-into-the-Halo-Concept",
-  "title": "EFC — A Deep Dive into the Halo Concept",
+  "title": "EFC \u2014 A Deep Dive into the Halo Concept",
+  "description": "Conceptual overview of the halo in cosmology, emphasizing its role as a stabilizer and regulator of energy and mass flow around galaxies and clusters. Synthesizes evidence from rotation curves, gravitational lensing, X-ray intracluster emissions, and simulations to motivate halos as dynamic, dark-matter-dominated envelopes that preserve structure and large-scale symmetry within the Energy-Flow Cosmology framing.",
+  "version": "1.0",
+  "date": null,
+  "doi": "10.6084/m9.figshare.28114370",
+  "keywords": [
+    "Dark matter halos",
+    "Gravitational lensing",
+    "Galaxy rotation curves",
+    "Intracluster medium (ICM)",
+    "Energy flow regulation",
+    "Galactic stability",
+    "Large-scale structure",
+    "Cosmic microwave background (CMB)",
+    "X-ray emissions",
+    "Numerical simulations",
+    "Entropy",
+    "Spacetime distortion"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Argues that dark-matter-dominated halos act as dynamic regulators and stabilizers of galactic and cluster-scale energy and mass flows, consistent with rotation curves, lensing, and ICM X-ray observations.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [
+      "Galaxy rotation curve observations",
+      "Gravitational lensing measurements (weak/strong)",
+      "X-ray observations of the intracluster medium",
+      "Numerical simulations of galaxy and cluster formation"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: High-precision weak+strong lensing mass maps for a representative sample of spiral galaxies and clusters show mass profiles that truncate at or within the luminous radius, with no extended halo component (e.g., NFW-like) at >95% confidence.",
+    "KC2: Spatially resolved HI/stellar rotation curves extending to >10 exponential scale lengths are simultaneously fit by baryonic mass models without any dark halo across a broad population of galaxies.",
+    "KC3: Deep X-ray and Sunyaev\u2013Zel'dovich measurements of cluster ICM temperature and pressure profiles require no additional gravitating mass beyond baryons (i.e., are inconsistent with confinement by extended halos).",
+    "KC4: Cosmological simulations omitting dark matter halos (or any extended mass component) successfully and simultaneously reproduce observed galaxy stability, satellite kinematics, and lensing statistics.",
+    "KC5: Large-scale structure and CMB anisotropy analyses find that models without extended halos provide equal or better fits to observations across multiple probes without fine-tuning."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-A-Deep-Dive-into-the-Halo-Concept.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28114370",
   "path": "docs/papers/efc/EFC-A-Deep-Dive-into-the-Halo-Concept",
   "pdf": "EFC-A-Deep-Dive-into-the-Halo-Concept.pdf",
   "md": "EFC-A-Deep-Dive-into-the-Halo-Concept.md",
-  "keywords": [
-    "EFC",
-    "Halo Concept",
-    "Entropy Shells",
-    "Energy-Flow",
-    "Galactic Dynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28114370",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28114370"
+  "type": "paper"
 }

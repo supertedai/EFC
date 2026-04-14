@@ -1,7 +1,7 @@
 {
   "title": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
-  "short_id": "H0-RAR-Unification",
-  "version": "v1.0",
+  "short_id": "efc-h0-unification",
+  "version": "1.0",
   "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
@@ -10,41 +10,38 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31223908",
-  "abstract": "Identifies a common origin for the Hubble tension and the Radial Acceleration Relation (RAR) via entropy-driven gravity modification. Predicts H_0 ~ 73.9 km/s/Mpc from galaxy rotation data, matching the SH0ES measurement to 1.2%. The MOND acceleration scale a_G is recovered with agreement within 14%.",
+  "abstract": "Presents an Energy-Flow Cosmology (EFC) mechanism in which an entropy-driven modification of the effective gravitational coupling unifies the galaxy-scale Radial Acceleration Relation (RAR) with the cosmological Hubble tension. The paper derives a consistent coupling a_G \u2248 0.1 from both MOND/RAR phenomenology and the H0 discrepancy via a Friedmann-based constraint a_{H0} = 1/2 a_G, predicting H0 \u2248 73.9 km/s/Mpc from galactic dynamics alone within 1.2% of observations.",
   "keywords": [
     "Hubble tension",
     "radial acceleration relation",
-    "entropic gravity",
-    "H0 prediction",
     "MOND",
+    "entropic gravity",
+    "modified gravity",
+    "Energy-Flow Cosmology",
+    "Friedmann equation",
+    "SPARC",
+    "gravitational coupling",
     "galaxy rotation curves",
-    "entropy-driven modification",
-    "unification"
+    "cosmic web"
   ],
-  "efc_context": {
-    "track": "Track 1",
-    "regime_relevance": "Unifies galactic-scale RAR with cosmological H0 tension through entropy-driven gravity modification",
-    "epistemic_layer": "Layer B (empirical prediction)"
-  },
-  "key_results": [
-    "H_0 ~ 73.9 km/s/Mpc predicted from galaxy rotation data (1.2% match to SH0ES)",
-    "Common entropy-driven origin for Hubble tension and RAR",
-    "MOND acceleration scale a_G recovered within 14% agreement",
-    "Cross-scale unification linking kpc dynamics to Gpc expansion"
-  ],
-  "file_manifest": {
-    "pdf": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "H0Unification.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
+  "files": {
+    "paper": "Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "H0Unification.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
       "src/entropy_mapping.py",
+      "src/phase_calculator.py",
       "src/h0_predictor.py",
       "src/mond_interpolation.py",
-      "src/phase_calculator.py",
       "src/unification.py"
     ],
     "data": [
@@ -52,7 +49,7 @@
       "data/mond_table.json",
       "data/parameters.json"
     ],
-    "demo": [
+    "examples": [
       "examples/h0_prediction.py",
       "examples/unification_demo.py"
     ]

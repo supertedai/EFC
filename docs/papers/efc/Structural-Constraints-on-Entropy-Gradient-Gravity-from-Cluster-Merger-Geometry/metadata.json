@@ -1,26 +1,34 @@
 {
-  "id": "structural-constraints-cluster-merger",
   "title": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
-  "short_title": "EFC Cluster Merger Constraints",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095"
-  },
-  "license": "CC-BY-4.0",
+  "short_id": "structural-constraints-cluster-merger",
   "version": "1.0.0",
   "date": "2026-01-28",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31173850",
+  "abstract": "Reproducible constraint study testing whether Energy-Flow Cosmology (EFC) entropy-gradient formulations can reproduce Bullet Cluster lensing geometry without particle dark matter. The paper falsifies purely local gradient couplings (0/42 pass) and shows that a non-local, component-sensitive response with L0\u2248200 kpc and strong collisionless weighting (w\u224820) can conditionally match the observed mass\u2013gas separation, yielding falsifiable a priori predictions for MACS J0025 and Abell 520.",
   "keywords": [
-    "EFC",
+    "Energy-Flow Cosmology",
     "Bullet Cluster",
     "cluster mergers",
+    "gravitational lensing",
     "entropy-gradient gravity",
-    "falsification",
-    "non-local coupling"
+    "non-local coupling",
+    "component-sensitive weighting",
+    "kappa-map geometry",
+    "Rankine\u2013Hugoniot compression",
+    "mixing timescale"
   ],
-  "description": "Falsification of local entropy-gradient couplings at cluster-merger scales. Establishes non-local response scale L0~200 kpc and collisionless weighting w~20 as structural requirements.",
-  "type": "constraint_study",
-  "layer": "docs",
+  "files": {
+    "pdf": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry.pdf",
+    "tex": "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry.tex",
+    "code": "code/",
+    "data": "data/"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31173850",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31173850"

@@ -1,34 +1,111 @@
 {
+  "$schema": "./schema.json",
+  "id": "efc-v1-3-ppn-recovery-via-density-saturation",
   "title": "GR Recovery in Energy-Flow Cosmology via Density Saturation: Quantitative PPN Analysis for the Solar System",
-  "short_title": "EFC v1.3 PPN Recovery",
+  "description": "Derives the Solar System post-Newtonian limit of Energy-Flow Cosmology (EFC) and shows that the modified Einstein equation acts as a scalar rescaling of GN, yielding \u03a6 = \u03a8 and thus \u03b3 = 1 at linear order. Introduces a precise effective-density definition for the density saturation gate and demonstrates that dual screening (acceleration- and density-based) suppresses EFC modifications by 4\u20138 orders of magnitude below the Cassini bound.",
   "version": "2.1",
-  "series": "EFC v1.3",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31244827",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Parametrized Post-Newtonian",
+    "Solar System tests",
+    "Shapiro time delay",
+    "Cassini bound",
+    "gravitational slip",
+    "density screening",
+    "acceleration screening",
+    "effective density",
+    "modified Einstein equations",
+    "equivalence principle",
+    "linearized gravity"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "affiliation": "Energy-Flow Cosmology Project | Symbiose Research Infrastructure",
     "orcid": "0009-0002-4860-5095"
   },
-  "date": "2026-02",
-  "doi": "10.6084/m9.figshare.31244827",
+  "core_equations": {
+    "modified_einstein_equation": {
+      "latex": "G_{\\mu\\nu} = 8\\pi G_N\\,[1 + \\mu(S)]\\,T_{\\mu\\nu}",
+      "description": "EFC field equation: a scalar rescaling of Newton's constant by a function of the entropy field S (modulated by density screening), which couples uniformly to the full stress-energy tensor."
+    },
+    "density_saturation": {
+      "latex": "\\Theta(\\rho_{\\mathrm{eff}}) = \\exp\\!\\left[-\\left(\\frac{\\rho_{\\mathrm{eff}}}{\\rho_*}\\right)^{n}\\right]",
+      "description": "Density-based screening gate that suppresses EFC modifications in high effective-density environments and activates them in low-density regimes."
+    },
+    "effective_density": {
+      "latex": "\\rho_{\\mathrm{eff}}(r) = \\frac{3\\,M_{\\mathrm{enc}}(r)}{4\\pi r^{3}}",
+      "description": "Mean enclosed density that sources the local Newtonian potential; identified as the physically relevant density entering the screening function."
+    },
+    "acceleration_screening": {
+      "latex": "\\mu(\\bar g) = \\left(1 + \\frac{g^{\\dagger}}{\\bar g}\\right)^{k}",
+      "description": "Acceleration-based screening calibrated on galactic data (SPARC), driving EFC enhancements when local baryonic acceleration is low compared to the transition acceleration g\u2020."
+    },
+    "modified_poisson_phi": {
+      "latex": "\\nabla^{2}\\Phi = 4\\pi G_N\\,[1 + \\Theta\\,\\mu_0]\\,\\rho",
+      "description": "Linearized 00-component in Newtonian gauge: the same scalar rescaling multiplies the matter source in the Poisson equation for \u03a6."
+    },
+    "modified_poisson_psi": {
+      "latex": "\\nabla^{2}\\Psi = 4\\pi G_N\\,[1 + \\Theta\\,\\mu_0]\\,\\rho",
+      "description": "Linearized spatial-trace equation: identical sourcing for \u03a8 implies no induced anisotropic stress at 1PN order and hence \u03b3 \u2261 \u03a8/\u03a6 = 1."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC yields \u03b3 = 1 exactly at linear order (no gravitational slip) with higher-order deviations bounded by |\u03b4\u03b3| < 1e-19, and dual screening suppresses Solar System modifications 10^4\u201310^8 below the Cassini |\u03b3 \u2212 1| bound.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "g_dagger = 1.2e-10 m s^-2",
+      "k = 0.415 \u00b1 0.029",
+      "rho_star = 1e-22 kg m^-3",
+      "n = 2"
+    ],
+    "datasets_used": [
+      "Cassini Shapiro time-delay bound (|\u03b3 \u2212 1| < 2.3e-5)",
+      "Lunar Laser Ranging Nordtvedt parameter (|\u03b7| < 4.4e-4)",
+      "SPARC galaxy rotation-curve fits (for g_dagger and rho_star calibration)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "All Solar System 1PN observables sensitive to gravitational slip will yield \u03b3 = 1 with no detectable deviation; any \u03b3 \u2212 1 arises only beyond linear order and remains below 1e-19.",
+      "falsifiable_by": "Next-generation Shapiro time-delay or light-deflection measurements during solar conjunctions (e.g., precision radio science, VLBI) that robustly detect \u03b3 \u2212 1 above 1e-19."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A robust Solar System detection of gravitational slip (\u03a8 \u2260 \u03a6) at 1PN order, i.e., \u03b3 \u2212 1 \u2260 0 inconsistent with zero within systematics.",
+    "KC2: A confirmed measurement of |\u03b3 \u2212 1| \u2265 1e-7 in Solar System experiments (e.g., Shapiro delay, light deflection), contradicting the EFC bound |\u03b4\u03b3| < 1e-19 from its scalar-rescaling structure.",
+    "KC3: Observation of spatial or density-correlated variation of the effective Newton's constant within the inner Solar System at levels incompatible with \u0398(\u03c1_eff) \u2248 0 and \u03bc(\u011d) \u2248 1 (i.e., unsuppressed modifications where the model predicts saturation).",
+    "KC4: Detection of composition-dependent free fall or a nonzero Nordtvedt parameter inconsistent with a universal scalar rescaling of GN at the current or improved LLR precision, attributable to metric-sector modifications."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "readme": "README.md",
+    "source": "src/efc_ppn_screening.py",
+    "data": [
+      "data/acceleration_screening.json",
+      "data/density_screening.json"
+    ],
+    "examples": "examples/solar_system_screening.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31244827",
+  "short_title": "EFC v1.3 PPN Recovery",
+  "series": "EFC v1.3",
   "repository": "https://github.com/supertedai/EFC",
   "license": "CC-BY-4.0",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "PPN formalism",
-    "Solar System tests",
-    "screening mechanisms",
-    "general relativity",
-    "Cassini bound",
-    "equivalence principle"
-  ],
-  "abstract": "Demonstrates EFC compatibility with Solar System precision tests through dual screening mechanisms. Derives γ = 1 from field equations with |δγ| < 10^-19 at higher order.",
-  "key_result": "EFC modifications suppressed 10^4-10^8 below Cassini bound; γ = 1 derived as theorem",
+  "abstract": "Demonstrates EFC compatibility with Solar System precision tests through dual screening mechanisms. Derives \u03b3 = 1 from field equations with |\u03b4\u03b3| < 10^-19 at higher order.",
+  "key_result": "EFC modifications suppressed 10^4-10^8 below Cassini bound; \u03b3 = 1 derived as theorem",
   "acceleration_screening": {
-    "formula": "μ(g_bar) = (1 + g†/g_bar)^k",
+    "formula": "\u03bc(g_bar) = (1 + g\u2020/g_bar)^k",
     "parameters": {
       "g_dagger": {
         "value": 1.2e-10,
-        "unit": "m/s²",
+        "unit": "m/s\u00b2",
         "description": "Transition acceleration (from SPARC)"
       },
       "k": {
@@ -76,12 +153,12 @@
     ]
   },
   "density_screening": {
-    "formula": "Θ(ρ_eff) = exp[-(ρ_eff/ρ*)^n]",
-    "effective_density": "ρ_eff(r) = 3 M_enc(r) / (4π r³)",
+    "formula": "\u0398(\u03c1_eff) = exp[-(\u03c1_eff/\u03c1*)^n]",
+    "effective_density": "\u03c1_eff(r) = 3 M_enc(r) / (4\u03c0 r\u00b3)",
     "parameters": {
       "rho_star": {
         "value": 1e-22,
-        "unit": "kg/m³",
+        "unit": "kg/m\u00b3",
         "description": "Transition density (from SPARC)"
       },
       "n": {
@@ -129,12 +206,12 @@
     ]
   },
   "ppn_analysis": {
-    "modified_einstein_equation": "G_μν = 8πG_N [1 + μ(S)] T_μν",
+    "modified_einstein_equation": "G_\u03bc\u03bd = 8\u03c0G_N [1 + \u03bc(S)] T_\u03bc\u03bd",
     "key_property": "Scalar rescaling of G_N (not anisotropic coupling)",
     "linearized_result": {
-      "phi_equation": "∇²Φ = 4πG_N [1 + Θ·μ₀] ρ",
-      "psi_equation": "∇²Ψ = 4πG_N [1 + Θ·μ₀] ρ",
-      "conclusion": "Φ = Ψ ⟹ γ = 1"
+      "phi_equation": "\u2207\u00b2\u03a6 = 4\u03c0G_N [1 + \u0398\u00b7\u03bc\u2080] \u03c1",
+      "psi_equation": "\u2207\u00b2\u03a8 = 4\u03c0G_N [1 + \u0398\u00b7\u03bc\u2080] \u03c1",
+      "conclusion": "\u03a6 = \u03a8 \u27f9 \u03b3 = 1"
     },
     "gamma": {
       "value": 1,
@@ -142,17 +219,17 @@
       "higher_order_bound": "<1e-19"
     },
     "cassini_bound": {
-      "constraint": "|γ - 1| < 2.3e-5",
+      "constraint": "|\u03b3 - 1| < 2.3e-5",
       "efc_margin": ">1e14"
     }
   },
   "equivalence_principle": {
     "wep": {
       "status": "preserved",
-      "mechanism": "Universal coupling to T_μν (source-dependent, not test-body-dependent)"
+      "mechanism": "Universal coupling to T_\u03bc\u03bd (source-dependent, not test-body-dependent)"
     },
     "sep_nordtvedt": {
-      "formula": "|η|_EFC ≤ Θ(ρ_eff) · |ε| · (E_grav/Mc²)",
+      "formula": "|\u03b7|_EFC \u2264 \u0398(\u03c1_eff) \u00b7 |\u03b5| \u00b7 (E_grav/Mc\u00b2)",
       "earth_bound": "<1e-17",
       "llr_constraint": "<4.4e-4",
       "status": "satisfied"
@@ -161,27 +238,27 @@
   "experimental_constraints": [
     {
       "test": "Shapiro time delay (Cassini)",
-      "bound": "|γ-1| < 2.3e-5",
-      "efc_acceleration": "|μ-1| ~ 8e-9",
-      "efc_density": "γ = 1 (derived)",
+      "bound": "|\u03b3-1| < 2.3e-5",
+      "efc_acceleration": "|\u03bc-1| ~ 8e-9",
+      "efc_density": "\u03b3 = 1 (derived)",
       "status": "pass"
     },
     {
       "test": "Lunar Laser Ranging (Nordtvedt)",
-      "bound": "|η| < 4.4e-4",
+      "bound": "|\u03b7| < 4.4e-4",
       "efc_acceleration": "<1e-17",
-      "efc_density": "≈0",
+      "efc_density": "\u22480",
       "status": "pass"
     },
     {
       "test": "Mercury perihelion",
-      "bound": "42.98 ± 0.04 arcsec/century",
+      "bound": "42.98 \u00b1 0.04 arcsec/century",
       "efc_deviation": "~1e-7 arcsec/century",
       "status": "pass"
     },
     {
       "test": "Weak equivalence principle",
-      "bound": "|Δa/a| < 1e-13",
+      "bound": "|\u0394a/a| < 1e-13",
       "efc_deviation": "0 (by construction)",
       "status": "pass"
     }
@@ -192,24 +269,14 @@
     "vainshtein": "EFC advantage: Algebraic screening, not kinetic"
   },
   "validation_status": {
-    "EFC-S": "✓ (acceleration screening |μ-1| < 1e-8 at 1 AU)",
-    "EFC-D": "✓ (γ = 1 derived; |δγ| < 1e-19)",
-    "ΛCDM": "✓ (reference)"
+    "EFC-S": "\u2713 (acceleration screening |\u03bc-1| < 1e-8 at 1 AU)",
+    "EFC-D": "\u2713 (\u03b3 = 1 derived; |\u03b4\u03b3| < 1e-19)",
+    "\u039bCDM": "\u2713 (reference)"
   },
   "open_questions": [
-    "Covariant action → field equation formal derivation",
+    "Covariant action \u2192 field equation formal derivation",
     "Strong-field regime (binary pulsars)",
     "Gravitational wave speed (c_T = c verification)",
     "Formal SEP proof at all orders"
-  ],
-  "files": {
-    "readme": "README.md",
-    "source": "src/efc_ppn_screening.py",
-    "data": [
-      "data/acceleration_screening.json",
-      "data/density_screening.json"
-    ],
-    "examples": "examples/solar_system_screening.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31244827"
+  ]
 }

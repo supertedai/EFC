@@ -1,182 +1,43 @@
 {
-  "schema_version": "1.0",
-  "package_type": "ai-friendly-validation",
+  "title": "Cross-Regime Measurement Failure in the KT3b Environmental Test",
+  "short_id": "kt3b-cross-regime-measurement-failure",
+  "version": "v1.0",
+  "date": "2026-04-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31963821",
+  "abstract": "Analyzes the null result of the KT3b environmental mass-scaling test in Energy-Flow Cosmology and shows that the monotonic signal collapse across increasingly rigorous runs is explained by a cross-regime measurement inconsistency. It identifies explicit violations of the Regime-Consistent Measurement Principle (driver\u2013response mismatch, boundary observation, and mass-model mixing), and proposes three RCMP-consistent test architectures as a methodological diagnosis stronger than the null result itself.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Regime-Consistent Measurement Principle",
+    "KT3b",
+    "environmental coupling",
+    "L1/L2 boundary",
+    "RAR (MDAR)",
+    "deep-MOND regime",
+    "SPARC rotation curves",
+    "Karachentsev Theta1",
+    "Tully group catalog",
+    "alpha coupling operator",
+    "cross-regime mapping"
+  ],
+  "files": {
+    "paper_pdf": "KT3b_CrossRegime_Measurement_Failure_DOI.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "kt3b-crossregime-measurement-failure-doi.jsonld",
+    "citations": "citations.bib",
+    "run_history": "data/kt3b_run_history.json",
+    "architectures": "data/test_architectures.json",
+    "src_rcmp_check": "src/rcmp_check.py",
+    "example": "examples/check_kt3b_and_alternatives.py"
+  },
   "paper": {
-    "title": "Cross-Regime Measurement Failure in the KT3b Environmental Test",
-    "report_id": "EFC-VAL-2026-005",
     "doi": "10.6084/m9.figshare.31963821",
-    "author": {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Independent Researcher, Sola, Norway"
-    },
-    "date": "2026-04",
-    "version": "v1.0",
-    "license": "CC-BY-4.0",
-    "ledger_version_at_publication": "v3.12",
-    "paper_class": "methodological diagnosis (null + architectural failure analysis)",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31963821"
-  },
-  "domain": {
-    "track": "Spor 1 — Galactic/Cosmological",
-    "regimes": [
-      "L1",
-      "L2",
-      "L1/L2 boundary"
-    ],
-    "sector": "cross-regime measurement design",
-    "target": "KT3b environmental mass-scaling test"
-  },
-  "kt3b_measurement_chain": {
-    "original_coupling": "rho_eff = rho_gal(r) + alpha * rho_env",
-    "original_observable": "R = g_obs / g_bar at g_bar ~ a_0",
-    "original_driver": "tidal environment Theta_1 or group membership N_mem",
-    "run_history": [
-      {
-        "run": 1,
-        "env_proxy": "log(L/D^2)",
-        "n": 60,
-        "slope": -0.21,
-        "diagnosis": "mass artefact"
-      },
-      {
-        "run": 2,
-        "env_proxy": "Karachentsev Theta_1",
-        "n": 17,
-        "slope": 0.01,
-        "diagnosis": "N too small"
-      },
-      {
-        "run": 3,
-        "env_proxy": "Tully N_mem (raw)",
-        "n": 70,
-        "slope": -0.07,
-        "diagnosis": "mass bias"
-      },
-      {
-        "run": 4,
-        "env_proxy": "Tully (mass-matched pairs)",
-        "n": 23,
-        "slope": 0.0,
-        "diagnosis": "null"
-      }
-    ],
-    "signal_collapse_pattern": "monotonic collapse as confounders are removed; standard interpretation 'effect too small for SPARC' rejected in favour of structural diagnosis"
-  },
-  "regime_mismatch": [
-    {
-      "component": "D_eff(rho)",
-      "type": "theory",
-      "regime": "L2",
-      "why": "Non-linear galactic dynamics; grid-mode activation at g < a_0"
-    },
-    {
-      "component": "rho_env",
-      "type": "driver",
-      "regime": "L1",
-      "why": "Large-scale structure; Mpc-scale density field; linear perturbation theory"
-    },
-    {
-      "component": "R at a_0",
-      "type": "observable",
-      "regime": "L1/L2 boundary",
-      "why": "Transition point where the regime changes; maximally unstable"
-    },
-    {
-      "component": "rotation curve",
-      "type": "data",
-      "regime": "L2",
-      "why": "kpc-scale circular velocities"
-    },
-    {
-      "component": "Upsilon_star",
-      "type": "mass model",
-      "regime": "L1 assumption",
-      "why": "Stellar population synthesis assumes universal IMF and standard gravity"
-    }
-  ],
-  "boundary_physics_at_a0": {
-    "R_of_k_transition": "R >> 1 (L1, suppressed growth) -> R << 1 (L2, enhanced gravity)",
-    "Gamma_of_rho": "crosses its inflection point",
-    "effective_poisson_coupling": "mu(k) swings from < 1 to > 1",
-    "rar_scatter": "maximal at g ~ a_0 (McGaugh, Lelli & Schombert 2016)",
-    "analogy": "measuring a phase transition at the critical temperature: fluctuations diverge and S/N collapses",
-    "fisher_information": "R(a_0) has intrinsically low Fisher information with respect to cross-regime parameters such as alpha, because mu(k) fluctuations dominate over the mean signal from any cross-regime coupling"
-  },
-  "rcmp_violations": [
-    {
-      "id": "V1",
-      "name": "Driver-response mismatch",
-      "statement": "rho_env (L1) drives D_eff (L2) through an underived alpha operator"
-    },
-    {
-      "id": "V2",
-      "name": "Boundary observation",
-      "statement": "R at a_0 sits on the L1/L2 boundary where both regimes contribute and neither dominates"
-    },
-    {
-      "id": "V3",
-      "name": "Implicit regime mixing in mass model",
-      "statement": "Upsilon_star = 0.5 M_sun/L_sun assumes L1-regime stellar physics applied to L2-regime gravitational dynamics"
-    }
-  ],
-  "rcmp_violation_sufficiency": "Any one of V1/V2/V3 is sufficient to degrade the measurement; together they explain the systematic collapse of the signal across all four runs.",
-  "undefined_alpha_operator": {
-    "required_kernel": "K(k, rho_env)",
-    "missing_properties": [
-      "scale dependence",
-      "mode dependence",
-      "physical mechanism from Mpc-scale density to kpc-scale mode activation",
-      "uniqueness of the mapping rho_env -> D_eff"
-    ],
-    "consequence": "alpha is not a physical parameter; it is an effective fit coefficient absorbing all cross-regime effects indiscriminately"
-  },
-  "valid_test_architectures": {
-    "A_pure_L2": {
-      "regime": "L2",
-      "observable": "RAR slope d log(g_obs/g_bar) / d log g_bar at 1e-2 < g_bar/a_0 < 1e-1",
-      "driver": "Theta_1 or N_mem",
-      "free_parameters": 0,
-      "data_available_now": true,
-      "rcmp_consistent": true,
-      "discriminates_efc_mond": "shape",
-      "status": "recommended immediate next step"
-    },
-    "B_pure_L1": {
-      "regime": "L1",
-      "observable": "fsigma8(z) from RSD or void-cluster growth rate comparison",
-      "driver": "L1 environmental density field",
-      "free_parameters": 1,
-      "current_constraint_alpha_L1": "-0.14 +/- 0.21",
-      "data_available_now": "partial",
-      "rcmp_consistent": true,
-      "discriminates_efc_mond": "growth",
-      "link_to_existing_work": "10.6084/m9.figshare.31955871 (multi-epoch fsigma8)"
-    },
-    "C_derived_mapping": {
-      "regime": "derived L1 -> L2",
-      "observable": "same as KT3b but with derived alpha(k, z) rather than free parameter",
-      "requirement": "solve the coupled (g_mu_nu, S) system across scales",
-      "free_parameters": 0,
-      "data_available_now": false,
-      "rcmp_consistent": true,
-      "discriminates_efc_mond": "amplitude",
-      "status": "open problem in EFC"
-    }
-  },
-  "scope_of_diagnosis": {
-    "applies_to": [
-      "EFC KT3b test",
-      "MOND External Field Effect tests using R at a_0",
-      "Verlinde emergent gravity environmental tests",
-      "any framework where a_0 marks a regime boundary and environmental coupling is measured at that boundary"
-    ],
-    "why_stronger_than_null": "The diagnosis identifies a structural constraint on any test that attempts to connect large-scale environment to galactic dynamics in a regime-structured theory. It applies independently of which specific cross-regime theory (EFC, MOND EFE, Verlinde, ...) is being tested."
-  },
-  "links": {
-    "scale_dependent_gravitational_response": "10.6084/m9.figshare.31941543",
-    "rcmp_definition": "10.6084/m9.figshare.31222900",
-    "multi_epoch_fsigma8": "10.6084/m9.figshare.31955871",
-    "external_mcgaugh_lelli_schombert_2016": "PRL 117, 201101"
   }
 }

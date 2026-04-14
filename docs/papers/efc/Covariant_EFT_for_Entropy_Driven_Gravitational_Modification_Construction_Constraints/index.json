@@ -1,24 +1,16 @@
 {
-  "paper_id": "covariant-eft-entropy-driven-gravity",
+  "$schema": "./schema.json",
+  "id": "covariant-eft-for-entropy-driven-gravitational-modification-construction-constraints",
   "title": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme",
-  "short_title": "Covariant EFT for Entropy-Driven Gravity",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Independent Researcher, Sola, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
+  "description": "Presents a covariant scalar\u2013tensor EFT in which an entropy-like scalar S modifies gravity via an acceleration-dependent response, developed and stress-tested through 17 falsification iterations. The work derives five structural results that hold independent of the specific response function, and identifies a critical gap: the classical action yields a correction that increases with acceleration, opposite to the RAR, motivating an EFT with the empirical \u00b5(g) postulated.",
   "version": "v1",
   "date": "2026-03-28",
   "doi": "10.6084/m9.figshare.31878334",
-  "status": "working_paper",
-  "framework": "EFC",
   "keywords": [
     "covariant EFT",
     "scalar-tensor",
     "entropy-driven gravity",
-    "RAR",
+    "Radial Acceleration Relation",
     "Bose-Einstein",
     "gravitational waves",
     "gravitational slip",
@@ -28,7 +20,122 @@
     "iterative falsification",
     "microphysical gap"
   ],
-  "abstract": "We present the complete results of a systematic 17-iteration programme to construct and test a covariant scalar-tensor effective field theory (EFT) in which gravitational dynamics are modified by an entropy-like scalar field S via an acceleration-dependent response function. Five structural results hold independently of the specific mu(g): (i) c_gw = c exactly; (ii) gravitational slip eta ≈ 1 with O(Phi*mu) suppression; (iii) solar-system constraints satisfied by exponential amplitude suppression; (iv) ghost-free, tachyon-free, hyperbolic; (v) the RAR is formally identical to a Bose-Einstein occupation number. A critical negative result: the classical field equation produces a correction increasing with acceleration, whereas RAR requires a decreasing correction, identifying a microphysical gap.",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "core_equations": {
+    "rar_interpolation": {
+      "latex": "g_{\\mathrm{obs}} = \\frac{g_{\\mathrm{bar}}}{1 - \\exp\\!\\left(-\\sqrt{g_{\\mathrm{bar}}/a_0}\\right)}",
+      "description": "Empirical Radial Acceleration Relation (RAR) connecting observed acceleration to that predicted from baryons with a single acceleration scale a0."
+    },
+    "mu_be": {
+      "latex": "\\mu(g) \\equiv \\frac{g_{\\mathrm{obs}}}{g_{\\mathrm{bar}}} - 1 = \\frac{1}{\\exp\\!\\left(\\sqrt{g/a_0}\\right) - 1}",
+      "description": "Gravitational enhancement is formally identical to a Bose\u2013Einstein occupation number with dimensionless energy x = \\sqrt{g/a0}."
+    },
+    "efc_action": {
+      "latex": "S = \\int d^4x\\,\\sqrt{-g}\\,\\Big[ \\frac{R}{16\\pi G_N} + \\tfrac{1}{2} g^{\\mu\\nu} \\partial_\\mu S\\, \\partial_\\nu S - V(S) - \\beta\\, \\lvert \\partial S \\rvert_{\\epsilon}\\, S^2 + \\mathcal{L}_m \\Big]",
+      "description": "Minimal covariant action with one scalar S, no non-minimal metric coupling; the modification enters via a gradient\u2013field coupling term."
+    },
+    "regularised_gradient": {
+      "latex": "\\lvert \\partial S \\rvert_{\\epsilon} = \\sqrt{ (\\partial_\\mu S)(\\partial^\\mu S) + \\epsilon^2 }",
+      "description": "Regularized gradient norm providing a vacuum floor regulator for the S-field coupling."
+    },
+    "potential": {
+      "latex": "V(S) = \\tfrac{1}{2} m_S^2\\,(S - S_0)^2",
+      "description": "Quadratic stabilizing potential; m_S sets a galactic-scale screening length \\lambda_S = 1/m_S."
+    },
+    "gw_speed": {
+      "latex": "c_{\\mathrm{gw}} = c",
+      "description": "For actions of the form R/(16\\pi G) + F(g, S, \\partial S) with no metric derivatives in F, the tensor kinetic operator is identical to GR, implying exactly luminal GW speed."
+    },
+    "slip": {
+      "latex": "\\eta \\equiv \\Phi/\\Psi = 1 + \\mathcal{O}(\\Phi\\,\\mu)",
+      "description": "Gravitational slip is unity up to corrections suppressed by the weak-field potential times the response \\mu."
+    },
+    "a0_value": {
+      "latex": "a_0 = 1.2 \\times 10^{-10}\\ \\mathrm{m\\,s^{-2}}",
+      "description": "Empirically measured acceleration scale from SPARC/RAR, used as the single effective parameter in the EFT response."
+    }
+  },
+  "key_results": {
+    "main_finding": "Five structural results (c_gw=c, \\eta\\approx1 with O(\\Phi\\mu) suppression, solar-system amplitude suppression, stability, and RAR\\equivBose\u2013Einstein form) hold, but the classical action\u2019s field equation yields the wrong sign versus RAR, necessitating an EFT with postulated \\mu(g).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "beta",
+      "m_S",
+      "epsilon",
+      "a0"
+    ],
+    "datasets_used": [
+      "SPARC rotation curves (RAR)",
+      "GW170817/GRB170817A speed bound"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Gravitational-wave propagation speed equals c exactly in vacuum across astrophysical frequencies (tensor sector identical to GR).",
+      "falsifiable_by": "Multi-messenger time-of-flight constraints from GW\u2013EM coincidences (e.g., future GW170817-like events) or broadband dispersion analyses."
+    },
+    {
+      "id": "P2",
+      "statement": "Gravitational slip remains near unity in weak-field galactic environments: |eta - 1| = O(Phi*mu) with |eta - 1| <~ 1e-6 for Phi ~ 1e-6.",
+      "falsifiable_by": "Joint weak-lensing and dynamical mass measurements in low-Phi galaxies/clusters showing |eta - 1| >> 1e-3."
+    },
+    {
+      "id": "P3",
+      "statement": "Solar-system fifth-force amplitudes from S are exponentially amplitude-suppressed, remaining far below current bounds and PPN limits.",
+      "falsifiable_by": "Improved ephemerides/spacecraft ranging (e.g., next-gen Cassini/Shapiro time-delay) detecting deviations inconsistent with exponential suppression."
+    },
+    {
+      "id": "P4",
+      "statement": "The RAR follows the Bose\u2013Einstein form \u00b5(g) = 1/(exp(\\sqrt{g/a0}) - 1) with a single universal a0.",
+      "falsifiable_by": "A coherent, high-precision RAR dataset across galaxy types requiring a non\u2013Bose\u2013Einstein functional form or multiple a0 values."
+    },
+    {
+      "id": "P5",
+      "statement": "No extra tensor polarizations and no frequency-dependent modifications of the tensor kinetic operator.",
+      "falsifiable_by": "Polarization-resolving GW detector networks or PTAs detecting extra polarizations/dispersion inconsistent with GR."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A confirmed deviation of the gravitational-wave speed from c in vacuum at O(10\u20131000 Hz) above the ~1e-15 fractional level (GW\u2013EM coincidences) would falsify the minimal-coupling class used by this EFC EFT.",
+    "KC2: Robust galaxy- or cluster-scale measurements showing |eta - 1| \u2265 1e-3 in low-potential (Phi ~ 1e-6) systems from joint lensing+kinematics would contradict the structural slip prediction eta = 1 + O(Phi*mu).",
+    "KC3: Detection of a solar-system fifth force or PPN parameter deviation (e.g., |gamma - 1| > 1e-5) incompatible with exponential amplitude suppression would rule out the proposed coupling structure.",
+    "KC4: High-precision RAR measurements demonstrating that the gravitational enhancement increases with acceleration over \u22652 decades in g (opposite the monotonic-decreasing Bose\u2013Einstein form) would kill the EFT response postulate.",
+    "KC5: Observation of frequency-dependent GW dispersion or extra tensor polarizations inconsistent with GR would falsify the tensor-sector identity central to this framework."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "Covariant_EFT.jsonld",
+    "citations": "citations.bib",
+    "source": "src/covariant_eft.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_covariant_eft.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878334",
+  "paper_id": "covariant-eft-entropy-driven-gravity",
+  "short_title": "Covariant EFT for Entropy-Driven Gravity",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Independent Researcher, Sola, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "status": "working_paper",
+  "framework": "EFC",
+  "abstract": "We present the complete results of a systematic 17-iteration programme to construct and test a covariant scalar-tensor effective field theory (EFT) in which gravitational dynamics are modified by an entropy-like scalar field S via an acceleration-dependent response function. Five structural results hold independently of the specific mu(g): (i) c_gw = c exactly; (ii) gravitational slip eta \u2248 1 with O(Phi*mu) suppression; (iii) solar-system constraints satisfied by exponential amplitude suppression; (iv) ghost-free, tachyon-free, hyperbolic; (v) the RAR is formally identical to a Bose-Einstein occupation number. A critical negative result: the classical field equation produces a correction increasing with acceleration, whereas RAR requires a decreasing correction, identifying a microphysical gap.",
   "epistemic_status": {
     "type": "working_paper",
     "peer_reviewed": false,
@@ -71,7 +178,7 @@
       "result": "c_gw = c exactly",
       "type": "theorem",
       "proof": "For actions S = int sqrt(-g)[R/16piG + F(g,S,dS)] with no metric derivatives in F, the tensor kinetic operator is identical to GR. Delta_c/c ~ 10^-54, 10^39 times below GW170817 bound.",
-      "comparison": "Horndeski theories with G4(X)R modify tensor kinetic operator — EFC avoids this"
+      "comparison": "Horndeski theories with G4(X)R modify tensor kinetic operator \u2014 EFC avoids this"
     },
     {
       "id": "SR2",
@@ -104,7 +211,7 @@
           "mu": 0.58
         }
       },
-      "note": "Not chameleon/Vainshtein screening — functional amplitude suppression"
+      "note": "Not chameleon/Vainshtein screening \u2014 functional amplitude suppression"
     },
     {
       "id": "SR4",
@@ -144,7 +251,7 @@
   "self_consistent_solution": {
     "tracking_ansatz": "dS/dr = kappa g / c^2",
     "without_potential": "Tracking fails: delta_kappa/kappa = 225% (v13)",
-    "with_potential": "V(S) = (1/2) m_S^2 (S - S_0)^2, m_S ~ 10^-28 eV — tracking holds to ~0.1% from 1-100 kpc (v14)"
+    "with_potential": "V(S) = (1/2) m_S^2 (S - S_0)^2, m_S ~ 10^-28 eV \u2014 tracking holds to ~0.1% from 1-100 kpc (v14)"
   },
   "construction_programme": {
     "total_iterations": 17,
@@ -154,7 +261,7 @@
       13,
       17
     ],
-    "methodology": "Iterative falsification — each version tests a specific hypothesis"
+    "methodology": "Iterative falsification \u2014 each version tests a specific hypothesis"
   },
   "comparison_table": [
     {
@@ -201,15 +308,15 @@
     }
   ],
   "outstanding_tests": [
-    "Weak lensing consistency: mu_lens = mu_dyn predicted by eta ≈ 1",
+    "Weak lensing consistency: mu_lens = mu_dyn predicted by eta \u2248 1",
     "Structure growth: f*sigma_8(z) from modified growth equation",
     "CMB: ISW effect and peak shifts vs Planck",
     "Cluster-scale: mu(g) lensing mass in Bullet Cluster-type systems",
-    "Strong lensing: time-delay compatibility via eta ≈ 1",
+    "Strong lensing: time-delay compatibility via eta \u2248 1",
     "Cosmological background: H(z) vs DESI BAO/Pantheon+"
   ],
   "limitations": [
-    "mu(g) not derived from classical action — microphysical gap",
+    "mu(g) not derived from classical action \u2014 microphysical gap",
     "Slip result only in weak-field spherically symmetric regime",
     "Not tested against CMB, f*sigma_8, Bullet Cluster, H(z)",
     "Does not address cosmological constant problem directly"
@@ -217,30 +324,18 @@
   "references": {
     "count": 12,
     "key_refs": [
-      "McGaugh, Lelli, Schombert (2016) — RAR discovery",
-      "Lelli et al. (2017) — RAR analysis",
-      "Milgrom (1983) — MOND",
-      "Bekenstein (2004) — TeVeS",
-      "Magnusson (2025) — EFC Formal Master Specification",
-      "Magnusson (2025) — The Energy-Flow Interface",
-      "Magnusson (2026) — EFC Closure Conjectures",
-      "Magnusson (2026) — DESI DR2 BAO regime-transition fit",
-      "Magnusson (2026) — SPARC Phase 3 Validation",
-      "Magnusson (2026) — x4800 Problem",
-      "Magnusson (2026) — Cluster Merger Structural Constraints",
-      "Magnusson (2026) — EFC Weak Lensing Phenomenology"
+      "McGaugh, Lelli, Schombert (2016) \u2014 RAR discovery",
+      "Lelli et al. (2017) \u2014 RAR analysis",
+      "Milgrom (1983) \u2014 MOND",
+      "Bekenstein (2004) \u2014 TeVeS",
+      "Magnusson (2025) \u2014 EFC Formal Master Specification",
+      "Magnusson (2025) \u2014 The Energy-Flow Interface",
+      "Magnusson (2026) \u2014 EFC Closure Conjectures",
+      "Magnusson (2026) \u2014 DESI DR2 BAO regime-transition fit",
+      "Magnusson (2026) \u2014 SPARC Phase 3 Validation",
+      "Magnusson (2026) \u2014 x4800 Problem",
+      "Magnusson (2026) \u2014 Cluster Merger Structural Constraints",
+      "Magnusson (2026) \u2014 EFC Weak Lensing Phenomenology"
     ]
-  },
-  "files": {
-    "pdf": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf",
-    "readme": "README.md",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "Covariant_EFT.jsonld",
-    "citations": "citations.bib",
-    "source": "src/covariant_eft.py",
-    "data": "data/framework.json",
-    "demo": "examples/demo_covariant_eft.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878334"
+  }
 }

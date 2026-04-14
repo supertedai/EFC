@@ -1,75 +1,28 @@
-# EFC Lensing Validation Update: DES Year 6 Is Consistent With S₈ Suppression Prediction
+# EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction
 
-**Author:** Morten Magnusson (ORCID: 0009-0002-4860-5095)
-**Document ID:** EFC-VAL-2026-002
-**DOI:** [10.6084/m9.figshare.31951992](https://doi.org/10.6084/m9.figshare.31951992)
-**Date:** April 7, 2026
-**License:** CC-BY 4.0
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.31951992](https://doi.org/10.6084/m9.figshare.31951992)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-07
+- **License:** CC-BY-4.0
+
+---
+
+## Overview
+
+This validation update compares the DES Year 6 (3×2pt) weak-lensing S8 measurement to an a priori EFC prediction for the lensing-to-CMB S8 ratio. The observed ratio 0.944 ± 0.018 agrees with the EFC-predicted 0.95 ± 0.03 within ~0.2σ, constituting a preregistered PASS for the P3 lensing consistency test while noting 1D-compression and non-uniqueness caveats.
 
 ## Key Result
 
-The DES Y6 lensing-to-CMB S₈ ratio **0.944 ± 0.018** agrees with the EFC pre-registered prediction
-**0.95 ± 0.03** to within **0.3σ**. This is a **PASS** of the P3 lensing consistency test.
+DES Y6 vs CMB yields S8 ratio 0.944 ± 0.018, consistent with the EFC prediction 0.95 ± 0.03 and passing the preregistered P3 window [0.90, 1.00].
 
-| Quantity | Value | Source |
+## Sealed Predictions
+
+| ID | Prediction | Falsifiable by |
 |---|---|---|
-| S₈ (DES Y6, 3×2pt) | 0.789 ± 0.012 | arXiv:2601.14559 |
-| S₈ (CMB 2026, Planck+ACT+SPT) | 0.836 ± 0.012 | Qu et al. 2026 |
-| Observed ratio | 0.944 ± 0.018 | This work |
-| EFC prediction | 0.95 ± 0.03 | Magnusson 2026a |
-| Agreement | within 0.2–0.3σ | PASS |
-
-## Why This Matters
-
-- **Pre-registered**: Prediction (DOI 10.6084/m9.figshare.31188193) and pass criterion
-  (ratio ∈ [0.90, 1.00]) were deposited prior to DES Y6 release (Jan 21, 2026).
-- **Cross-scale consistency**: Ties galactic SPARC fits (k = 0.415 ± 0.05) to cosmological
-  weak lensing — same parameter, two scales.
-- **Mechanism for S₈ tension**: EFC density-dependent screening Σ_EFC ≈ 0.95 reproduces
-  the observed lensing suppression without invoking massive neutrinos or new dark sector.
-
-## Pre-Registered Pass/Fail Criteria
-
-- **PASS**: S₈ˡᵉⁿˢ / S₈ᶜᴹᴮ ∈ [0.90, 1.00]
-- **FAIL**: η ≠ 1 at > 3σ (E_G statistic or equivalent)
-
-Observed 0.944 falls inside the PASS window.
-
-## Limitations (See §5 of paper)
-
-1. **1D test** — single-number compression of Σ(k, z); needs full Cℓ comparison.
-2. **Not unique** — massive ν, f(R), decaying DM, baryonic feedback can also produce suppression.
-3. **DES vs KiDS divergence** — KiDS Legacy gives S₈ ≈ 0.82 (< 1σ from CMB).
-4. **η = 1 untested here** — A3 ansatz still requires direct E_G validation.
-5. **k = 0.415 from SPARC** — strength (no fine-tuning) but inherits SPARC systematics.
-
-## Updated Validation Status (April 2026)
-
-| Test | Prediction | Observed | Status |
-|---|---|---|---|
-| P1: Closure g† = cH₀/e | 2.5 × 10⁻¹⁰ m/s² | 2.51 ± 0.60 | Consistent |
-| P2: Cross-scale C stability | C ≈ 4.4 | — | Untested |
-| **P3: Lensing S₈ ratio** | **0.95 ± 0.03** | **0.944 ± 0.018** | **PASS** |
-| A3: η = 1 | η = 1 | — | Not tested |
-
-## File Manifest
-
-| File | Purpose |
-|---|---|
-| `efc_des_y6_validation.pdf` | Source preprint (8 pages) |
-| `README.md` | This document |
-| `index.json` | Machine-readable index |
-| `metadata.json` | Schema.org metadata + EFC context |
-| `schema.json` | JSON Schema for validation |
-| `efc_des_y6_validation.jsonld` | JSON-LD linked data |
-| `citations.bib` | BibTeX references |
-| `src/__init__.py` | Python module exports |
-| `src/des_y6_validation.py` | Reproducible computation classes |
-| `data/des_y6_data.json` | Numerical data (DES Y6, CMB, EFC prediction) |
-| `examples/demo.py` | End-to-end demo with assertions |
-
-## Next Steps
-
-1. **Oct 2026** — Euclid DR1 cosmology release (independent S₈ at comparable precision).
-2. **Hierarchical SPARC** — direct test of P2 (C stability across galaxy subsamples).
-3. **E_G statistic** — direct test of η = 1 via galaxy-galaxy lensing + RSD.
+| P3 | For Stage-III/IV cosmic shear at z ≈ 0.3–0.9, the lensing-to-CMB S8 ratio lies in [0.90, 1.00] with central expectation 0.95 ± 0.03 under η = 1 and k ≈ 0.415. | Independent cosmic-shear measurements (DES Y6, KiDS Legacy, HSC, Euclid DR1/DR2) reporting S8_lens/S8_CMB > 1.00 or < 0.90 by >3σ, or full-shape Cℓ analyses inconsistent with a ~5% suppression. |
+| A3 | No gravitational slip: η ≡ Φ/Ψ = 1 on 0.1 < k < 1 h Mpc⁻¹ at 0.3 ≲ z ≲ 1. | EG statistic or equivalent joint lensing+RSD analyses showing η ≠ 1 at >3σ over the relevant scales/redshifts. |
+| P2 | Cross-scale C stability: a single screening exponent k (≈0.415) inferred from galaxy rotation curves also governs the cosmological lensing suppression. | Hierarchical SPARC analyses finding k inconsistent with 0.415 by >3σ, or cosmological fits requiring a k inconsistent with SPARC at >3σ. |
+| P1 | Closure relation g† = c H0 / e ≈ 2.5×10⁻¹⁰ m s⁻² holds across galaxy samples. | Galaxy dynamics datasets (e.g., SPARC extensions) measuring a closure value deviating from c H0 / e by >5σ after systematics control. |

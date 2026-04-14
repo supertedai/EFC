@@ -1,29 +1,77 @@
 {
+  "$schema": "./schema.json",
   "id": "regime-based-world-modeling",
   "title": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex Systems",
-  "shortTitle": "RBWM",
-  "path": "docs/papers/efc/Regime-Based_World_Modeling_A_Layered_Epistemic_Architecture_for_Complex_System",
-  "pdf": "Regime_Based_World_Modeling__A_Layered_Epistemic_Architecture_for_Complex_Systems-1.pdf",
+  "description": "Introduces Regime-Based World Modeling (RBWM), a meta-epistemic framework that maps scientific claims onto a two-axis coordinate system: the Regime axis (R) for emergent complexity levels and the Epistemic Layer axis (L) for derivation distance from observation. It generalizes the Regime-Gating Principle, asserting that claims are valid only when expressed in driver-near variables for the operative regime, thereby preventing regime leakage and clarifying conflicts between models operating at different epistemic coordinates.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31223650",
+  "keywords": [
+    "regime-gating principle",
+    "driver proximity",
+    "regime leakage",
+    "epistemic layering",
+    "R-axis",
+    "L-axis",
+    "validity domain",
+    "(R,L) coordinate mapping",
+    "multi-scale modeling",
+    "complex adaptive systems",
+    "world models",
+    "conflict resolution"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "RBWM formalizes a two-axis (R,L) mapping with a regime-gating rule that enforces driver-near variables for validity, exposing regime leakage and reconciling apparent theory conflicts as coordinate mismatches.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: In preregistered, cross-domain benchmarks (\u22653 domains spanning R1\u2013R2), models constrained to driver-near L2 variables do not outperform matched L3-construct baselines in out-of-sample prediction (aggregate effect size \u2264 0 with 95% CI excluding positive improvement), falsifying the practical advantage implied by the Regime-Gating Principle.",
+    "KC2: Applying the (R,L) coordinate mapping and regime-gated variable selection to established anomaly sets (e.g., rotation curves in galactic dynamics, macroeconomic regime shifts, neural population responses) fails to reduce phantom anomaly rates by at least 20% versus standard pipelines under identical data and calibration, indicating no mitigation of regime leakage.",
+    "KC3: Independent expert annotators (\u22655) assigning (R,L) coordinates to a diverse corpus (\u2265200 claims) achieve inter-annotator agreement below Cohen\u2019s kappa 0.6 for both axes after training, demonstrating that the mapping is not operationalizable or reproducible.",
+    "KC4: For a canonical cross-regime conflict (e.g., \u039bCDM vs MOND rotation-curve claims), re-expression at matched (R,L) coordinates does not alter comparative conclusions or reduce contradictions in prospective tests, showing the coordinate framework does not improve epistemic comparability.",
+    "KC5: Demonstrated counterexample where an L3 theoretical construct produces consistent first-order causal control in a fixed regime while all candidate L2 variables are inert under intervention (no first-order effects), violating the driver-proximity requirement central to RGP."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "l0-l3-regime-architecture",
+      "doi": "10.6084/m9.figshare.31112536",
+      "role": "extends"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "related"
+    },
+    {
+      "id": "symbiosis",
+      "doi": "10.6084/m9.figshare.30773684",
+      "role": "related"
+    }
+  ],
+  "files": {
+    "pdf": "Regime_Based_World_Modeling__A_Layered_Epistemic_Architecture_for_Complex_Systems-1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223650",
+  "shortTitle": "RBWM",
+  "path": "docs/papers/efc/Regime-Based_World_Modeling_A_Layered_Epistemic_Architecture_for_Complex_System",
+  "pdf": "Regime_Based_World_Modeling__A_Layered_Epistemic_Architecture_for_Complex_Systems-1.pdf",
   "license": "CC-BY-4.0",
   "layer": "methodology",
   "type": "paper",
   "status": "published",
-  "keywords": [
-    "emergence",
-    "multi-scale modeling",
-    "epistemic layering",
-    "regime-gating",
-    "driver proximity",
-    "complexity architecture",
-    "world models"
-  ],
   "concepts": {
     "primary": [
       "R-axis",
@@ -99,6 +147,5 @@
         "doi": "10.6084/m9.figshare.30773684"
       }
     ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223650"
+  }
 }

@@ -1,37 +1,41 @@
 {
-  "dc.title": "Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge",
-  "dc.creator": "Morten Magnusson",
-  "dc.date": "2026-04-06",
-  "dc.type": "Working Paper",
-  "dc.format": "application/pdf",
-  "dc.identifier": "10.6084/m9.figshare.31942800",
-  "dc.language": "en",
-  "dc.rights": "CC-BY-4.0",
-  "dc.publisher": "Figshare",
-  "dc.subject": [
+  "title": "Density of States of Gravitationally Active Grid Modes: Derivation of Deff (\u03c1) and Completion of the \u0393(\u03c1) Bridge",
+  "short_id": "density-of-states-of-gravitationally",
+  "version": "1.0",
+  "date": "2026-04-06",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31942800",
+  "abstract": "Derives the effective density of states Deff(\u03c1) for gravitationally active grid modes from microphysical boundary-mode activation on a finite lattice. The derivation yields Deff(\u03c1) \u221d \u221a(\u03c1/\u03c1crit) with \u03c1crit = a0/(GN lg), leading to a microphysically fixed entropy-production bridge \u0393(\u03c1) = \u03930 y/(1+y) with y = \u221a(\u03c1/\u03c1crit), thereby upgrading the \u0393(\u03c1) status to Scenario B+ and eliminating free functional degrees of freedom.",
+  "keywords": [
     "density of states",
-    "gravitationally active modes",
-    "grid microphysics",
-    "entropy production function",
-    "Bose-Einstein statistics",
-    "activation dynamics",
-    "EFC",
-    "cosmology"
+    "boundary-mode mechanism",
+    "grid modes",
+    "entropy production",
+    "\u0393(\u03c1) bridge",
+    "MOND scale a0",
+    "activation threshold",
+    "microphysical saturation",
+    "EFC Scenario B+",
+    "effective microphysics",
+    "gravitational potential wells",
+    "grid spacing lg"
   ],
-  "dc.description": "Derives D_eff(ρ) ∝ √(ρ/ρ_crit) from boundary-mode mechanism on a Higgs-stabilised grid lattice. Combined with BE per-mode entropy, gives Γ(ρ) = Γ₀√(ρ/ρ_crit)/(1+√(ρ/ρ_crit)) with ρ_crit = a₀/(G_N l_g). Scenario B+: microphysically derived, correct saturation, emergent ρ_crit, ~20% agreement with phenomenological ansatz.",
-  "dc.relation": [
-    "10.6084/m9.figshare.31878760",
-    "10.6084/m9.figshare.31941465",
-    "10.6084/m9.figshare.31876324",
-    "10.6084/m9.figshare.31941543"
-  ],
-  "datacite.resourceType": "Text/WorkingPaper",
-  "datacite.version": "1.0",
-  "datacite.fundingReference": "Independent research",
-  "efc.track": "Spor 1",
-  "efc.sector": "Discrete Gravity / Grid Microphysics",
-  "efc.regime": "L2 (galactic)",
-  "efc.scenario": "B+",
+  "files": {
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "density_of_states.jsonld",
+    "citations": "citations.bib",
+    "source": "src/density_of_states.py",
+    "init": "src/__init__.py",
+    "data": "data/density_of_states_data.json",
+    "demo": "examples/demo_density_of_states.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31942800",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31942800"

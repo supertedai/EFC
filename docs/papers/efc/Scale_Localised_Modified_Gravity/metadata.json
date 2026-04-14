@@ -1,100 +1,45 @@
 {
-  "schema_version": "1.0",
-  "package_type": "ai-friendly-paper",
-  "paper": {
-    "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via E_G(k,z)",
-    "directory": "Scale_Localised_Modified_Gravity",
-    "author": {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Symbiose Research"
-    },
-    "date": "2026-04",
-    "doi": "10.6084/m9.figshare.31985313",
-    "license": "CC-BY-4.0",
-    "category": "structural",
-    "track": "perturbation_sector",
-    "figshare_url": "https://doi.org/10.6084/m9.figshare.31985313"
+  "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
+  "short_id": "scale-localised-modified-gravity",
+  "version": "1.1",
+  "date": "2026-04-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "domain": {
-    "track": "perturbation_sector",
-    "regimes": [
-      "L1",
-      "L2"
-    ],
-    "probes": [
-      "E_G",
-      "mu",
-      "eta",
-      "Sigma",
-      "BOSS_Pk",
-      "CMB_ISW",
-      "CMB_lensing",
-      "KiDS_shear"
-    ]
-  },
-  "key_numbers": {
-    "k_c": {
-      "value": 0.05,
-      "unit": "h/Mpc"
-    },
-    "R_0": 0.51,
-    "eps_tot_range": [
-      0.38,
-      0.42
-    ],
-    "mu_at_kc": 0.94,
-    "eta_at_kc": 1.2,
-    "Sigma_at_kc": 1.034,
-    "joint_delta_chi2": 1.4,
-    "EG_bump_pct": 7.4,
-    "detection_sigma": "2.5-3.5"
-  },
-  "files": [
-    {
-      "path": "Scale_Localised_Modified_Gravity.pdf",
-      "bytes": 270153
-    },
-    {
-      "path": "README.md",
-      "role": "human_summary"
-    },
-    {
-      "path": "index.json",
-      "role": "machine_metadata"
-    },
-    {
-      "path": "metadata.json",
-      "role": "extended_metadata"
-    },
-    {
-      "path": "schema.json",
-      "role": "json_schema"
-    },
-    {
-      "path": "scale-localised-modified-gravity.jsonld",
-      "role": "linked_data"
-    },
-    {
-      "path": "citations.bib",
-      "role": "references"
-    },
-    {
-      "path": "data/observational_tests.json",
-      "role": "data"
-    },
-    {
-      "path": "data/eg_prediction.json",
-      "role": "data"
-    },
-    {
-      "path": "src/scale_localised_gravity.py",
-      "role": "source"
-    },
-    {
-      "path": "examples/demo_eg_bump.py",
-      "role": "example"
-    }
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31985313",
+  "abstract": "Introduces a scale-localised modified-gravity response derived from the EFC relativistic action, producing a band-pass stiffness R(k) that recovers GR in both IR and UV limits. The single effective parameter \u03b5_tot controls gravitational slip, yielding a distinctive +5\u20137% bump in E_G(k) at k \u2248 0.05 h/Mpc and a marginal improvement to current CMB lensing fits. The paper provides directly falsifiable predictions for DESI \u00d7 Planck with a forecast 2.5\u20133.5\u03c3 detection significance.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "gravitational slip",
+    "Poisson coupling mu",
+    "lensing Sigma",
+    "E_G statistic",
+    "scale-dependent effects",
+    "band-pass response",
+    "DESI",
+    "Planck lensing",
+    "BOSS full-shape",
+    "CMB ISW"
   ],
-  "primary_pdf": "Scale_Localised_Modified_Gravity.pdf"
+  "files": [
+    "Scale_Localised_Modified_Gravity.pdf",
+    "README.md",
+    "index.json",
+    "metadata.json",
+    "schema.json",
+    "scale-localised-modified-gravity.jsonld",
+    "citations.bib",
+    "data/observational_tests.json",
+    "data/eg_prediction.json",
+    "src/scale_localised_gravity.py",
+    "examples/demo_eg_bump.py"
+  ],
+  "paper": {
+    "doi": "10.6084/m9.figshare.31985313",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31985313"
+  }
 }

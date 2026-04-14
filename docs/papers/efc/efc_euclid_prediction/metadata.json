@@ -1,47 +1,39 @@
 {
-  "schema_version": "1.0",
-  "package_type": "ai-friendly-paper",
+  "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
+  "short_id": "efc-euclid-prediction",
+  "version": "1.0",
+  "date": "2026-04-12",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31990053",
+  "abstract": "Pre-registered, frozen predictions for Energy-Flow Cosmology (EFC) to be tested against Euclid DR1, computed via full Boltzmann integration in hi_class with a custom efc_logistic Horndeski implementation. At the benchmark (B0=0.02, M0=0.06), five linear observables exhibit a coherent growth\u2013lensing pattern (e.g., \u03c38 up, C_ell^{\u03d5\u03d5} down) that is hashed for integrity and claimed to be distinct from known systematics or massive neutrino effects.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Euclid DR1",
+    "Horndeski scalar-tensor",
+    "hi_class",
+    "Boltzmann integration",
+    "gravitational slip",
+    "EG statistic",
+    "lensing potential",
+    "ISW effect",
+    "sigma8",
+    "scale-localized features",
+    "modified gravity"
+  ],
+  "files": [
+    "efc_euclid_prediction.pdf",
+    "src/efc_logistic_demo.py",
+    "data/benchmark.json",
+    "data/parameter_scan.json",
+    "examples/run_benchmark.py"
+  ],
   "paper": {
-    "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
-    "directory": "efc_euclid_prediction",
-    "author": {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Symbiose Research"
-    },
-    "license": "CC-BY-4.0",
-    "date": "2026-04-12",
     "doi": "10.6084/m9.figshare.31990053",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31990053"
-  },
-  "domain": {
-    "track": "Cosmology (perturbation sector)",
-    "regimes": [
-      "linear",
-      "Horndeski scalar-tensor"
-    ]
-  },
-  "files": [
-    {
-      "path": "efc_euclid_prediction.pdf",
-      "bytes": 214090
-    },
-    {
-      "path": "src/efc_logistic_demo.py",
-      "role": "reference implementation"
-    },
-    {
-      "path": "data/benchmark.json",
-      "role": "benchmark prediction values"
-    },
-    {
-      "path": "data/parameter_scan.json",
-      "role": "36-point parameter scan"
-    },
-    {
-      "path": "examples/run_benchmark.py",
-      "role": "reproduction script"
-    }
-  ],
-  "primary_pdf": "efc_euclid_prediction.pdf"
+  }
 }

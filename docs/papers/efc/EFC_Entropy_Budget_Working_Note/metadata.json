@@ -1,40 +1,36 @@
 {
   "title": "The Cosmic Entropy Budget as Constraint on the EFC S-Field",
+  "short_id": "efc-entropy-budget",
+  "version": "0.1",
+  "date": "2026-04-06",
   "author": {
     "name": "Morten Magnusson",
-    "orcid": "https://orcid.org/0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Sola, Norway"
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "doi": "10.6084/m9.figshare.31942734",
-  "date_published": "2026-04-06",
-  "version": "0.1",
-  "status": "working_note",
-  "framework": "Energy-Flow Cosmology (EFC) v3.7",
   "license": "CC-BY-4.0",
-  "classification": {
-    "domain": "theoretical_cosmology",
-    "track": "galactic_cosmological",
-    "track_number": 1,
-    "category": "working_note",
-    "level": "structural_consistency"
-  },
-  "related_papers": [
-    {
-      "doi": "10.6084/m9.figshare.31876324",
-      "title": "EFC Relativistic Action",
-      "relation": "source_action"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31223668",
-      "title": "EFC Ontological Foundations",
-      "relation": "GRC_triad"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31230703",
-      "title": "DESI DR2 BAO Fit",
-      "relation": "S(z)_calibration"
-    }
+  "doi": "10.6084/m9.figshare.31942734",
+  "abstract": "This working note argues that the observed cosmic entropy budget\u2014overwhelmingly dominated by supermassive black holes (SMBHs)\u2014is structurally consistent with Energy-Flow Cosmology (EFC). It maps Bekenstein\u2013Hawking entropy to the EFC S-field normalization, places SMBHs at S = S_max (grid-collapse boundary) while the CMB approaches S_max from the thermal side, and proposes that the decline of AGN accretion drives the sigmoid transition in S(z) near z ~ 1.",
+  "keywords": [
+    "cosmic entropy budget",
+    "Bekenstein\u2013Hawking entropy",
+    "supermassive black holes",
+    "EFC S-field",
+    "thermostat conjecture",
+    "AGN luminosity density",
+    "CMB",
+    "grid collapse",
+    "Geff",
+    "RAR environmental dependence",
+    "entropy production",
+    "quasar epoch"
   ],
+  "files": {
+    "pdf": "EFC_Entropy_Budget_Working_Note.pdf",
+    "source": "src/entropy_budget.py",
+    "data": "data/entropy_budget_data.json",
+    "demo": "examples/demo_entropy_budget.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31942734",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31942734"

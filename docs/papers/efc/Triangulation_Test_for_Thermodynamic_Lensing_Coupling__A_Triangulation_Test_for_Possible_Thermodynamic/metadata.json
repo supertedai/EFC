@@ -1,8 +1,8 @@
 {
   "title": "A Triangulation Test for Possible Thermodynamic Contributions to Gravitational Lensing in Galaxy Clusters",
-  "short_id": "triangulation-test-thermodynamic-lensing",
+  "short_id": "triangulation-test-for-thermodynamic-lensing-coupling--a-triangulation-test-for-possible-thermodynamic",
   "version": "1.0",
-  "date": "2026-02",
+  "date": "2026-02-05",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,51 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31267297",
-  "abstract": "Introduces a triangulation methodology to test whether gravitational lensing in galaxy clusters exhibits residual structure correlated with ICM thermodynamics beyond what is expected from mass alone. Pilot results on the Bullet Cluster and Abell 1835 are consistent with the null hypothesis, establishing methodology for future high-precision tests.",
+  "abstract": "Introduces a triangulation methodology that compares lensing mass, hydrostatic mass, and ICM entropy gradients to test for small thermodynamic contributions to gravitational lensing in galaxy clusters. Applies the method to the Bullet Cluster and Abell 1835, finding no significant correlation at current sensitivity and outlining consistency requirements and detection thresholds for future stacked analyses.",
   "keywords": [
     "gravitational lensing",
     "galaxy clusters",
-    "intracluster medium",
-    "entropy",
     "hydrostatic equilibrium",
-    "mass discrepancy",
-    "thermodynamic gravity"
+    "intracluster medium",
+    "entropy gradient",
+    "weak lensing",
+    "strong lensing",
+    "X-ray astronomy",
+    "JWST",
+    "Chandra",
+    "thermodynamic coupling",
+    "null test"
   ],
-  "efc_context": {
-    "track": "observational_test",
-    "regime_relevance": "thermodynamic-lensing coupling in galaxy clusters",
-    "epistemic_layer": "methodology"
-  },
-  "key_results": [
-    {
-      "cluster": "Bullet Cluster",
-      "pearson_rho": -0.129,
-      "p_value": 0.21,
-      "significant": false
-    },
-    {
-      "cluster": "Abell 1835",
-      "pearson_rho": -0.052,
-      "p_value": 0.7,
-      "significant": false
-    },
-    {
-      "finding": "Methodology validated; larger samples needed for decisive sensitivity"
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation",
-    "CITATION.cff": "Citation metadata",
-    "LICENSE": "CC-BY-4.0 license",
-    "index.json": "Machine-readable metadata",
-    "Triangulation-Test-for-Thermodynamic-Lensing-Coupling.pdf": "Original paper",
-    "schema.json": "JSON Schema",
-    "metadata.json": "This file",
-    "triangulation_test.jsonld": "Linked data",
-    "citations.bib": "BibTeX references",
-    "src/": "Source code",
-    "data/": "Data files",
-    "examples/": "Example scripts"
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31267297",

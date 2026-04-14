@@ -1,36 +1,35 @@
 {
-  "id": "entropy-bounded-empiricism-ebe-sparc175",
-  "slug": "entropy-bounded-empiricism-EBE-SPARC175-complete-documentation",
   "title": "Entropy-Bounded Empiricism: Regime-Dependent Validity in Galaxy Rotation Curves",
-  "description": "EBE framework applied to SPARC175 galaxy rotation curves. Demonstrates 100% EFC success in FLOW regime (62/62 galaxies) with Mann-Whitney p<0.0001, Cliff's delta=0.371, and CMB null test pass (p=0.251).",
-  "domain": "empirical_analysis",
-  "keywords": [
-    "EBE",
-    "entropy-bounded empiricism",
-    "SPARC",
-    "rotation curves",
-    "regime validity",
-    "L parameter",
-    "S entropy"
-  ],
+  "short_id": "entropy-bounded-empiricism-ebe-sparc175",
   "version": "1.0",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "https://orcid.org/0009-0002-4860-5095"
-    }
-  ],
-  "license": "CC-BY-4.0",
-  "files": {
-    "pdf": "EBE_SPARC175_Complete_Documentation.pdf",
-    "readme": "README.md",
-    "jsonld": "entropy-bounded-empiricism.jsonld",
-    "schema": "schema.json",
-    "citations": "citations.bib"
+  "date": "2026-01-12",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31047703",
-  "created": "2026-01-12",
-  "updated": "2026-01-12",
+  "abstract": "Complete documentation of the Entropy-Bounded Empiricism (EBE) framework applied to the SPARC175 galaxy rotation curves. The paper reports regime-dependent model validity with 100% EFC success in the FLOW regime (62/62) and strong nonparametric evidence (Mann-Whitney p < 0.0001, Cliff's \u03b4 = 0.371), while a CMB null test (p = 0.251) shows no regime structure, supporting the framework's specificity to non-equilibrium systems.",
+  "keywords": [
+    "Entropy-Bounded Empiricism",
+    "Energy-Flow Cosmology",
+    "SPARC",
+    "galaxy rotation curves",
+    "regime classification",
+    "L structural proxy",
+    "entropy S",
+    "Mann-Whitney U",
+    "Cliff's delta",
+    "Kruskal-Wallis",
+    "permutation test",
+    "CMB null test"
+  ],
+  "files": {
+    "dataset": "sparc175_master_dataset.csv",
+    "thresholds": "regime_thresholds_validation.txt",
+    "analysis": "statistical_analysis_summary.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31047703",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31047703"

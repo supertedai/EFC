@@ -1,7 +1,59 @@
 {
+  "$schema": "./schema.json",
   "id": "symbiosis_method",
+  "title": "Symbiosis: A Human\u2013AI Co-Reflection Architecture Using Graph\u2013Vector Memory for Long-Horizon Thinking",
+  "description": "Symbiosis presents a human\u2013AI co-reflection architecture that couples large language models with a hybrid memory substrate\u2014Neo4j for knowledge graphs, Qdrant for vector search\u2014and a unified API with structured reflection/logging. The system is designed to enable persistent, traceable, and metacognitively informed long-horizon reasoning, demonstrated through multi-year Energy-Flow Cosmology (EFC) research use.",
+  "version": "1.0.0",
+  "date": "2025-12-04",
+  "doi": "10.6084/m9.figshare.30773684",
+  "keywords": [
+    "human\u2013AI collaboration",
+    "long-horizon reasoning",
+    "co-reflection",
+    "knowledge graph",
+    "Neo4j",
+    "vector database",
+    "Qdrant",
+    "hybrid memory",
+    "retrieval-augmented generation",
+    "metacognition",
+    "reflection logging",
+    "Energy-Flow Cosmology (EFC)"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Introduces and operationalizes a hybrid graph\u2013vector memory architecture with structured reflection/logging that supports persistent, traceable human\u2013AI co-reasoning over long time scales, demonstrated on multi-year EFC research.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [
+      "Energy-Flow Cosmology (EFC) research materials and long-horizon dialogues (descriptive)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Inability to reconstruct full provenance (source documents/conversations and transformation steps) for any stored hypothesis node from graph + logs across a multi-month window.",
+    "KC2: Hybrid retrieval (graph + vector) shows no measurable improvement over a vector-only baseline on a predefined relevance benchmark for project queries (e.g., equal or worse recall/precision across the benchmark).",
+    "KC3: Failure to replay a logged reasoning episode end-to-end with consistent retrieved context snapshots and stable summaries upon rerun, indicating inadequate reflection/logging integrity.",
+    "KC4: Missing or broken temporal linkage (e.g., updated_at, derived_from) for \u226510% of hypothesis edits over a quarter, preventing traceable evolution of ideas.",
+    "KC5: Inability to export and independently inspect the complete state (graph, embeddings, logs) using external tools, violating the inspectability/reproducibility goal.",
+    "KC6: The system autonomously forms or modifies goals without explicit human prompts or approval, violating the human-centered control constraint."
+  ],
+  "tier": "T3",
+  "paper_type": "infrastructure",
+  "related_packages": [],
+  "files": {
+    "pdf": "symbiosis_method.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30773684",
   "slug": "symbiosis_method",
-  "title": "Symbiosis: A Human--AI Co-Reflection Architecture Using Graph--Vector Memory for Long-Horizon Thinking",
   "path": "docs/papers/efc/symbiosis_method",
   "pdf": "symbiosis_method.pdf",
   "tex": "symbiosis_method.tex",
@@ -9,11 +61,7 @@
   "layer": "docs",
   "domain": "META-systems",
   "type": "paper",
-  "version": "1.0.0",
-  "keywords": [],
   "summary": "This paper presents Symbiosis, a human--AI co-reflection architecture designed to support long-horizon thinking, traceable theory development, and structured cognitive work across extended timescales. The system integrates large language models (LLMs) with a hybrid memory substrate consisting of a k",
   "created": "2025-12-04",
-  "updated": "2025-12-04",
-  "doi": "10.6084/m9.figshare.30773684",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30773684"
+  "updated": "2025-12-04"
 }

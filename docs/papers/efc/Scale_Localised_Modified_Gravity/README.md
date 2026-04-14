@@ -1,64 +1,27 @@
-# Scale-Localised Modified Gravity from the EFC Action
+# Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)
 
-**A Single-Parameter Forecast via E_G(k,z)**
+## AI-Friendly Package
 
-Author: Morten Magnusson (ORCID [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
-Symbiose Research, Sandnes, Norway | April 2026 — v1.1
-DOI: [10.6084/m9.figshare.31985313](https://doi.org/10.6084/m9.figshare.31985313)
-License: CC-BY-4.0
+- **DOI:** [10.6084/m9.figshare.31985313](https://doi.org/10.6084/m9.figshare.31985313)
+- **Version:** 1.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-01
+- **License:** CC-BY-4.0
 
 ---
 
-## TL;DR
+## Overview
 
-| Aspect | Value |
-|--------|-------|
-| **Model** | Band-pass stiffness response R(k,a) localises gravity modification to k ~ k_c |
-| **Free parameter** | eps_tot in [0.38, 0.42] (slip amplitude from delta-Lambda counter-term) |
-| **Characteristic scale** | k_c = 0.05 h/Mpc |
-| **Key observables** | mu < 1 (suppressed growth), eta > 1 (anisotropic potentials), Sigma > 1 (enhanced lensing) |
-| **Reference point** | (k_c, z=0): mu=0.940, eta=1.200, Sigma=1.034 |
-| **Definitive test** | E_G(k) bump of ~7% at k ~ k_c, testable at 2.5-3.5 sigma with DESI x Planck |
-| **Joint chi-squared** | Delta-chi^2 = +1.4 (EFC marginal preference) |
-| **Category** | Structural / forecast (not a validation report) |
+Introduces a scale-localised modified-gravity response derived from the EFC relativistic action, producing a band-pass stiffness R(k) that recovers GR in both IR and UV limits. The single effective parameter ε_tot controls gravitational slip, yielding a distinctive +5–7% bump in E_G(k) at k ≈ 0.05 h/Mpc and a marginal improvement to current CMB lensing fits. The paper provides directly falsifiable predictions for DESI × Planck with a forecast 2.5–3.5σ detection significance.
 
-## Abstract
+## Key Result
 
-Single-parameter, directly falsifiable test of scale-localised modified gravity derived from
-the EFC relativistic action. The model modifies perturbation growth and lensing through a
-band-pass stiffness response R(k) that peaks at k_c = 0.05 h/Mpc and vanishes in IR and UV
-limits, recovering GR on super-horizon and galactic scales. Combined with gravitational slip
-from the delta-Lambda counter-term, this yields mu < 1, eta > 1, and Sigma > 1 — simultaneously
-satisfying the No-Go constraint on background modifications, BOSS full-shape P(k), CMB ISW
-limits, and Planck perturbation-sector tests. The entire model reduces to a single effective
-parameter eps_tot controlling slip amplitude, with a viable window eps_tot in [0.38, 0.42].
+A single-parameter (ε_tot) EFC band-pass model predicts a +5–7% E_G(k) bump at k ≈ 0.05 h/Mpc, passes current individual tests within 2σ, and marginally improves the joint fit (Δχ²=+1.4) primarily via CMB lensing.
 
-## Key Equations
+## Sealed Predictions
 
-1. **Stiffness response:** R(k,a) = R_0 * (k/k_c)^2 / (1 + (k/k_c)^2)^3 * a^4
-2. **Effective coupling:** mu(k,z) = 1 / (F * (1 + R(k,a)))
-3. **Gravitational slip:** eta(k,z) = 1 + 2 * eps_tot * (k/k_c)^2 / (1 + (k/k_c)^2)^2 * a^2
-4. **Lensing combination:** Sigma(k,z) = mu * (1 + eta) / 2
-5. **E_G statistic:** E_G(k,z) = (Omega_m,0 / f(z)) * (Sigma(k,z) / mu(k,z))
-
-## Observational Tests (Table 1)
-
-| Test | Delta-chi^2 | Precision | Status |
-|------|------------|-----------|--------|
-| BOSS P(k) shape | -0.07 | ~3%/bin | PASS |
-| CMB ISW (low-l) | — | ~10% | PASS (8%) |
-| CMB lensing A_lens | +3.3 | 5.5% | EFC better |
-| KiDS shear S_WL | +0.04 | 2.5% | Neutral |
-| E_G (current) | -1.9 | ~15% | GR preferred |
-| **Joint (net)** | **+1.4** | — | **EFC marginal** |
-
-## AI-Friendly Package Contents
-
-- `index.json` — Machine-readable structured metadata
-- `metadata.json` — Extended metadata
-- `schema.json` — JSON Schema for key data objects
-- `*.jsonld` — Schema.org linked data
-- `citations.bib` — BibTeX references
-- `data/` — Observational tests and E_G predictions as JSON
-- `src/` — Python implementation of band-pass model
-- `examples/` — Demo script reproducing key results
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | At z ≈ 0.3, E_G(k) exhibits a scale-localised bump of +5–7% centered at k ≈ 0.05 h/Mpc, with Σ/μ ≈ 1.07 at the peak and returning to GR on larger and smaller scales. | DESI × Planck lensing-galaxy cross-correlations measuring E_G(k) with ≈5% precision per k-bin. |
+| P2 | The slip-driven enhancement follows approximately (1+η)/2 − 1 ∝ a^2, yielding a stronger E_G bump at lower redshift (e.g., z ≲ 0.5) compared to higher redshift (z ≳ 0.8). | Tomographic E_G(k,z) from DESI × Planck and Stage-IV weak-lensing surveys testing the predicted a^2 evolution. |
+| P3 | Growth is modestly suppressed (μ<1) while lensing is enhanced (Σ>1), producing a growth–shear mismatch at the few-percent level that cannot be mimicked by a scale-independent rescaling of σ8 or A_s. | Joint fits to full-shape P(k), redshift-space distortions, and cosmic shear across 0.03 < k < 0.1 h/Mpc. |

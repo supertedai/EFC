@@ -1,7 +1,7 @@
 {
-  "title": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+  "title": "Cosmological Growth Constraints on \u039b-Locked Discrete Entropic Gravity",
   "short_id": "cosmological-growth-constraints-lambda-locked",
-  "version": "v1.0",
+  "version": "1.0",
   "date": "2026-02-16",
   "author": {
     "name": "Morten Magnusson",
@@ -9,42 +9,37 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "Stress-tests the cosmological viability of discrete entropic gravity with Λ-locked screening by comparing three transition-scale scenarios against linear structure-formation observables. Only the Λ-locked scenario (L_Λ = 4.4 Gpc) preserves a realistic σ₈ ≈ 0.8, while sub-Hubble transitions at 10 Mpc and 1 Mpc produce catastrophic overgrowth (σ₈ >> 1). Establishes Λ-locking (L_Λ ≳ H₀⁻¹) as a necessary condition for cosmological consistency.",
+  "doi": "10.6084/m9.figshare.31348414",
+  "abstract": "Tests whether a discrete entropic gravity operator with MOND-like infrared enhancement remains compatible with cosmological structure growth when its transition scale is \u039b-locked. Embeds a scale-dependent Geff(k) into the linear growth equation and compares \u039b-locked (super-Hubble) versus sub-Hubble transition scales. Finds that only \u039b-locking (L\u039b \u2273 H0\u22121) preserves realistic \u03c38 \u2248 0.81; sub-Hubble transitions cause catastrophic overgrowth.",
   "keywords": [
     "cosmological growth",
     "structure formation",
-    "σ₈",
-    "Λ-locking",
+    "\u03c38",
+    "\u039b-locking",
     "discrete gravity",
     "modified gravity",
-    "AQUAL",
     "MOND",
+    "AQUAL",
     "infrared screening",
     "linear perturbation theory",
+    "effective gravitational coupling",
     "EFC"
   ],
-  "efc_context": {
-    "track": "Track 1 (Galactic/Cosmological)",
-    "regime_relevance": "Cosmological scales; viability of discrete gravity under linear growth",
-    "epistemic_layer": "Layer B (numerical validation)"
-  },
-  "key_results": [
-    "Λ-locked scenario (4.4 Gpc) yields σ₈ = 0.814 with only 0.4% excess over ΛCDM",
-    "10 Mpc transition produces σ₈ = 367 (factor 452 overshoot)",
-    "1 Mpc transition produces σ₈ = 24098 (factor 29714 overshoot)",
-    "Viability condition: L_Λ ≳ H₀⁻¹",
-    "Emergent prefactor C = 2.32 (C² = 5.38)"
-  ],
-  "file_manifest": {
-    "pdf": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "CosmologicalGrowthConstraints.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
+  "files": {
+    "paper": "Cosmological_Growth_Constraints_on_\u039b-Locked_Discrete_Entropic_Gravity.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "CosmologicalGrowthConstraints.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/__init__.py",
       "src/geff_coupling.py",
       "src/growth_equation.py",
       "src/scenario_runner.py"
@@ -54,7 +49,7 @@
       "data/scenario_results.json",
       "data/geff_profiles.json"
     ],
-    "demo": [
+    "examples": [
       "examples/run_scenarios.py",
       "examples/geff_profile.py"
     ]

@@ -1,7 +1,7 @@
 {
-  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newton and MOND Regimes with Λ-Locked Screening",
+  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with \u039b-Locked Screening",
   "short_id": "discrete-entropic-gravity-cubic-graph",
-  "version": "v1.0",
+  "version": "1.0",
   "date": "2026-02-16",
   "author": {
     "name": "Morten Magnusson",
@@ -10,42 +10,36 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31348411",
-  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Numerically recovers Newtonian 1/r² and MOND-like 1/r scaling, Λ-locked regime transitions, broken superposition (13.7% violation), and the external field effect. An emergent prefactor C ≈ 2.32 yields a₀,eff ≈ 5.4 a₀, and mass scaling follows r_trans ∝ M^0.18 (vs MOND M^0.5).",
+  "abstract": "Constructs a discrete AQUAL-like gravity operator on a cubic graph with entropic flux weighting that reproduces Newtonian (g \u221d r\u207b\u00b2) and MOND-like (g \u221d r\u207b\u00b9) regimes without assuming a continuum metric. A \u039b-locked bulk entropic reservoir sets the transition scale (L_\u039b \u221d \u039b\u207b\u00b9\u141f\u00b2), yielding a convergent deep-MOND prefactor C \u2248 2.32 (implying a0,eff \u2248 5.4 a0), broken superposition, an external field effect, and a weak mass-scaling exponent r_trans \u221d M^0.18. A minimal cosmological stability check shows ~0.7\u20130.8% suppression in \u03c38/f\u03c38 via background-only modification.",
   "keywords": [
     "discrete gravity",
     "cubic graph",
+    "entropic gravity",
     "AQUAL",
     "MOND",
-    "entropic gravity",
-    "Λ-locking",
+    "\u039b-locking",
     "cosmological constant",
-    "graph topology",
-    "Newtonian limit",
+    "screening length",
     "external field effect",
-    "modified gravity",
+    "broken superposition",
+    "Newtonian limit",
     "EFC"
   ],
-  "efc_context": {
-    "track": "Track 1 (Galactic/Cosmological)",
-    "regime_relevance": "Galactic-scale gravity; Newton-to-MOND transition on discrete graph",
-    "epistemic_layer": "Layer B (numerical construction)"
-  },
-  "key_results": [
-    "Newton slope recovery: -2.00; MOND slope recovery: -0.99 to -1.01",
-    "Emergent prefactor C = 2.32, giving a0_eff = C^2 * a0 ~ 5.4 a0",
-    "Mass-scaling exponent 0.18 +/- 0.03 (structural departure from MOND 0.5)",
-    "Broken superposition: 13.7% violation",
-    "External field effect confirmed on cubic graph"
-  ],
-  "file_manifest": {
-    "pdf": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "DiscreteEntropicGravity.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
+  "files": {
+    "paper": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_\u039b-Locked_Screening.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "DiscreteEntropicGravity.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/__init__.py",
       "src/cubic_graph.py",
       "src/aqual_operator.py",
       "src/lambda_screening.py",
@@ -57,7 +51,7 @@
       "data/kill_test_results.json",
       "data/convergence_table.json"
     ],
-    "demo": [
+    "examples": [
       "examples/run_kill_tests.py",
       "examples/prefactor_convergence.py"
     ]

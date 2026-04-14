@@ -1,48 +1,33 @@
 {
-  "title": "EFC — How Energy Flow Sustains Spacetime",
-  "short_id": "efc-energy-flow-sustains-spacetime",
-  "version": "v1.0",
-  "date": "2025-01-01",
+  "title": "EFC \u2014 How Energy Flow Sustains Spacetime",
+  "short_id": "EFC-How-Energy-Flow-Sustain-Spacetime",
+  "version": "1.0",
+  "date": "2024-12-25",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "abstract": "Explains how continuous energy flow maintains the structural, geometric, and dynamical properties of spacetime within the EFC framework. Outlines how entropy gradients, resistance fields, and distributed flows provide the underlying support for spacetime stability and large-scale structure.",
+  "doi": "10.6084/m9.figshare.28098371",
+  "abstract": "Proposes Energy-Flow Cosmology (EFC), the hypothesis that a globally conserved yet locally dynamic energy flow\u2014modulated by entropy and matter distribution\u2014acts as the scaffolding that sustains and shapes spacetime curvature. The paper outlines a research program to relate energy-flow and entropy gradients to observed gravitational phenomena across scales and calls for simulations and comparisons to gravitational lensing and CMB data. Its contribution is a conceptual framework and test agenda rather than new empirical results.",
   "keywords": [
     "EFC",
-    "energy flow",
-    "spacetime stability",
-    "entropy gradient",
-    "dynamic structure",
-    "grid field",
-    "entropy field"
+    "Energy Flow",
+    "Spacetime Stability",
+    "Entropy Gradient",
+    "Dynamic Structure",
+    "Grid Field",
+    "Entropy Field",
+    "Gravitational Lensing",
+    "Cosmic Microwave Background",
+    "Black Holes",
+    "Cosmic Voids",
+    "General Relativity"
   ],
-  "efc_context": {
-    "track": "Fundamental Theory",
-    "regime_relevance": "Spacetime sustained by continuous energy flow",
-    "epistemic_layer": "Layer A (theoretical foundation)"
-  },
-  "key_results": [
-    "Spacetime stability requires continuous energy flow",
-    "Geometric properties emerge from entropy-flow equilibrium",
-    "Resistance fields maintain structural coherence",
-    "Large-scale structure supported by distributed flow networks"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-How-Energy-Flow-Sustain-Spacetime.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "EFC-How-Energy-Flow-Sustain-Spacetime.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/spacetime_sustain.py"
-    ],
-    "data": "data/parameters.json",
-    "demo": "examples/demo_spacetime_sustain.py"
+    "readme": "EFC-How-Energy-Flow-Sustain-Spacetime.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28098371",

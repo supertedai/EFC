@@ -1,21 +1,97 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Hypothesis-Interrelation-Energy-Entropy",
-  "title": "EFC — Hypothesis: Interrelation Between Energy and Entropy",
+  "title": "EFC \u2014 Hypothesis: Interrelation Between Energy and Entropy",
+  "description": "Proposes Energy-Flow Cosmology (EFC), a framework in which universal expansion, structure formation, and phenomena attributed to dark matter/energy emerge from a universal energy Grid composed of Higgs-boson nodes, with energy flow declining linearly as entropy increases. The model treats the speed of light as an emergent property regulated by energy-flow gradients and makes falsifiable predictions in redshift profiles, gravitational lensing, and CMB anisotropies that can distinguish it from \u039bCDM.",
+  "version": "1.0",
+  "date": null,
+  "doi": "10.6084/m9.figshare.28557281",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Entropy",
+    "Higgs field",
+    "Dark matter",
+    "Speed of light",
+    "Gravitational lensing",
+    "Redshift anomalies",
+    "Cosmic microwave background",
+    "Black holes",
+    "String theory",
+    "Halos",
+    "Cosmic expansion"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_entropy_linear_decline": {
+      "latex": "E_f = E_0\\,(1 - S),\\quad S\\in[0,1]",
+      "description": "Energy flow declines linearly with entropy from a singular state (S=0) to a maximum entropy state (S=1), posited to drive spacetime expansion."
+    },
+    "emergent_speed_of_light": {
+      "latex": "c = c\\big(E_f,\\,\\nabla E_f\\big)",
+      "description": "The effective speed of light is treated as an emergent property regulated by local energy-flow magnitude and gradients rather than a fundamental constant in all regimes."
+    },
+    "grid_collapse_black_hole_condition": {
+      "latex": "\\rho_{E_f} > \\rho_{\\mathrm{crit}} \\;\\Rightarrow\\; \\text{Grid collapse} \\to \\text{black hole}",
+      "description": "When energy-flow concentration surpasses a critical threshold, the Grid nodes collapse, destabilizing spacetime locally and forming black holes."
+    },
+    "hubble_dependence_on_energy_flow": {
+      "latex": "H = \\mathcal{H}(E_f)",
+      "description": "The Hubble expansion rate is proposed to be a function of the global energy-flow state rather than a constant term (\u039b)."
+    }
+  },
+  "key_results": {
+    "main_finding": "Introduces a unified hypothesis in which entropy-driven energy flow across a Higgs-node Grid explains cosmic expansion, dark matter phenomenology, and an emergent speed of light, and outlines empirical tests via redshift, lensing, and CMB signatures.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Redshift\u2013distance relations in cosmic voids show nonlinear deviations from \u039bCDM that correlate with regions of low energy flow (low E_f).",
+      "falsifiable_by": "Cross-comparing SDSS void catalogs with galaxy and supernova redshift\u2013distance measurements; testing for residuals after \u039bCDM fits."
+    },
+    {
+      "id": "P2",
+      "statement": "Weak and strong gravitational lensing strengths exhibit environment-dependent anomalies tied to energy-flow gradients, beyond what baryons + \u039bCDM predict.",
+      "falsifiable_by": "Measuring lensing convergence and shear in SDSS/JWST fields, testing for residual correlations with environmental indicators (e.g., voids/halos) after \u039bCDM modeling."
+    },
+    {
+      "id": "P3",
+      "statement": "CMB temperature anisotropies contain scale-dependent deviations consistent with entropy-driven structure formation from the Grid, distinct from \u039bCDM fits.",
+      "falsifiable_by": "Fitting Planck CMB spectra including EFC-motivated terms and testing whether they are required by the data or constrained to zero."
+    },
+    {
+      "id": "P4",
+      "statement": "Higgs-field stability metrics correlate with large-scale energy-flow anomalies if dark matter arises from non-resonant energy states in the Grid.",
+      "falsifiable_by": "Joint analyses combining LHC Higgs property measurements with large-scale structure maps (SDSS/JWST) to search for predicted correlations."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Precision redshift\u2013distance measurements in low-density voids (SDSS and follow-ups) show no statistically significant nonlinear deviations from \u039bCDM after accounting for known systematics, eliminating the proposed E_f correlation.",
+    "KC2: Gravitational lensing convergence and shear maps (SDSS/JWST) are fully explained by baryonic matter + standard cold dark matter with no residual dependence on environmental proxies of energy flow or entropy gradients.",
+    "KC3: Planck CMB temperature and lensing power spectra are consistent with \u039bCDM across all relevant multipoles, with any EFC-motivated parameters constrained to null values and providing no improvement in fit quality.",
+    "KC4: Direct detection of dark matter as a particle with electromagnetic interactions or scattering properties incompatible with the non-resonant Higgs-node energy-state interpretation (e.g., confirmed EM-coupling inconsistent with EFC).",
+    "KC5: High-precision measurements of Higgs properties (mass, self-coupling, potential shape) from LHC/HL-LHC exclude the stability and non-resonant behavior required for Higgs bosons to serve as discrete Grid nodes at cosmological scales.",
+    "KC6: Time-of-flight constraints from multi-messenger events (e.g., LIGO\u2013EM counterparts) and astrophysical propagation tests find no environment-dependent propagation effects where EFC requires an emergent, gradient-regulated effective c."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Hypothesis-Interrelation-Energy-Entropy.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28557281",
   "path": "docs/papers/efc/EFC-Hypothesis-Interrelation-Energy-Entropy",
   "pdf": "EFC-Hypothesis-Interrelation-Energy-Entropy.pdf",
   "md": "EFC-Hypothesis-Interrelation-Energy-Entropy.md",
-  "keywords": [
-    "EFC",
-    "Energy",
-    "Entropy",
-    "Thermodynamics",
-    "Energy Flow",
-    "Entropy Gradient",
-    "Unified Field Hypothesis"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28557281",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28557281"
+  "type": "paper"
 }

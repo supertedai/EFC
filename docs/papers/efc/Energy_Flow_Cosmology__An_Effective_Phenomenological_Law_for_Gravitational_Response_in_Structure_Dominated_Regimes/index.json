@@ -1,14 +1,112 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-effective-phenomenological-law",
   "title": "Energy-Flow Cosmology: An Effective Phenomenological Law for Gravitational Response in Structure-Dominated Regimes",
-  "short_title": "EFC Effective Phenomenological Law",
+  "description": "Introduces EFC v4.1, a frozen effective response law that maps baryonic to observed gravitational acceleration via a universal response function R(x) and a fixed acceleration scale a0. With fixed mass-to-light ratios, it accurately predicts galaxy rotation curves across the SPARC sample and is consistent with strong-lensing Einstein radii using the same a0, while specifying explicit domain limits and fail conditions.",
   "version": "1.0",
-  "date": "2026-01",
+  "date": "2026-01-31",
+  "doi": "10.6084/m9.figshare.30563738",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "response function R(x)",
+    "acceleration scale a0",
+    "galaxy rotation curves",
+    "SPARC",
+    "strong gravitational lensing",
+    "mass-to-light ratio",
+    "MOND-like regime",
+    "structure-dominated gravity",
+    "phenomenological law",
+    "regime decoupling",
+    "falsification criteria"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Sola, Norway"
   },
+  "core_equations": {
+    "fundamental_relation": {
+      "latex": "g_{\\rm obs} = g_{\\rm bar}\\, R\\!\\left(\\frac{g_{\\rm bar}}{a_0}\\right)",
+      "description": "Defines observed gravitational acceleration as a baryonic acceleration modulated by a universal response function of x = g_bar/a0."
+    },
+    "response_function": {
+      "latex": "R(x) = \\frac{1}{\\sqrt{1 - e^{-x}}}",
+      "description": "Frozen interpolation law: approaches 1 in the Newtonian limit (x >> 1) and 1/\\sqrt{x} in the deep-MOND limit (x << 1)."
+    },
+    "characteristic_acceleration": {
+      "latex": "a_0 = 1.2\\times 10^{-10}\\,\\mathrm{m\\,s^{-2}}",
+      "description": "Universal acceleration scale calibrated on 30% of SPARC and then frozen; no recalibration permitted."
+    },
+    "baryonic_acceleration": {
+      "latex": "g_{\\rm bar}(r) = \\frac{G\\, M_{\\rm bar}(<r)}{r^2}",
+      "description": "Baryonic contribution from stars (disk and bulge with frozen M/L) and gas (including helium correction)."
+    },
+    "rotation_curve_prediction": {
+      "latex": "V_{\\rm pred}(r) = \\sqrt{r\\, g_{\\rm obs}(r)}",
+      "description": "Maps the predicted acceleration profile to a rotation-curve velocity for direct comparison to observations."
+    },
+    "lensing_effective_mass": {
+      "latex": "M_{\\rm eff}(<R_E) = \\int_0^{R_E} \\rho_{\\rm bar}(r)\\, R\\!\\left(\\frac{g_{\\rm bar}(r)}{a_0}\\right)\\, 4\\pi r^2\\, dr",
+      "description": "Defines an effective enclosed mass for strong lensing by weighting the baryonic density with the same response function."
+    },
+    "einstein_radius_prediction": {
+      "latex": "\\theta_{E,\\rm pred} = \\frac{4 G M_{\\rm eff}}{c^2 D_{\\rm eff}}",
+      "description": "Predicts Einstein-radius scaling for lensing consistency tests using the same a0 and R(x) as for dynamics."
+    }
+  },
+  "key_results": {
+    "main_finding": "With R(x) and a0 frozen, EFC v4.1 fits SPARC rotation curves with median \u03c7\u00b2_\u03bd = 0.76 and shows lensing consistency using the same a0; clusters remain an open problem.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a0 = 1.2e-10 m/s^2 (frozen)",
+      "R(x) = 1/\u221a(1 \u2212 e^{\u2212x}) (frozen)",
+      "M/L_disk = 0.5 (3.6\u03bcm)",
+      "M/L_bulge = 0.7 (3.6\u03bcm)"
+    ],
+    "datasets_used": [
+      "SPARC rotation-curve database (Lelli et al. 2016)",
+      "SLACS strong-lens sample (Einstein radii)",
+      "Published time-delay lenses (Einstein radii)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A single frozen a0 and the frozen response function R(x) fit all SPARC galaxies without per-galaxy tuning, achieving median \u03c7\u00b2_\u03bd \u2264 2.0 and |median(\u0394 log g)| \u2264 0.05 dex across the full sample.",
+      "falsifiable_by": "Reanalysis of SPARC or larger rotation-curve samples showing thresholds exceeded."
+    },
+    {
+      "id": "P2",
+      "statement": "Strong-lensing Einstein-radius ratios predicted with the same a0 used for SPARC fall within 0.85\u20131.15 across well-modeled lenses.",
+      "falsifiable_by": "Compilation of SLACS/time-delay lenses demonstrating systematic deviation of predicted-to-observed \u03b8E beyond 0.85\u20131.15."
+    },
+    {
+      "id": "P3",
+      "statement": "The same R(x) functional form and the same a0 apply across dynamics and lensing domains (no recalibration, no environment dependence).",
+      "falsifiable_by": "Any statistically significant detection of a domain-dependent a0 or need for a different R(x) to match data."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: SPARC median \u03c7\u00b2_\u03bd > 2.0 (FC-S1) using the frozen a0 and R(x).",
+    "KC2: Fraction of SPARC galaxies with \u03c7\u00b2_\u03bd \u2264 3.0 drops below 80% (FC-S1b).",
+    "KC3: |median(\u0394 log g)| > 0.05 dex across SPARC (FC-S2).",
+    "KC4: \u03c3(\u0394 log g) via MAD > 0.12 dex across SPARC (FC-S3).",
+    "KC5: Lensing requires a different a0 than SPARC (FC-L2: Same a0 violated).",
+    "KC6: Cross-domain universality violated: a different response function R(x) is needed in any regime (FC-X1).",
+    "KC7: Cross-domain universality violated: a0 varies across datasets, redshift, or environments (FC-X2).",
+    "KC8: Any requirement to recalibrate a0 after being frozen on the calibration subset."
+  ],
+  "tier": "T1",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes.pdf"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30563738",
+  "short_title": "EFC Effective Phenomenological Law",
   "type": "formal",
   "status": "published",
   "validation": {
@@ -19,33 +117,7 @@
     "ledger_status": "Validated",
     "ledger_entry": "Foundational framework"
   },
-  "abstract_short": "Theoretical derivation of the effective gravitational coupling μ(a) = 1 + βS(a) from EFC field equations, governing gravitational response in structure-dominated cosmological regimes.",
-  "keywords": [
-    "EFC",
-    "effective gravitational coupling",
-    "phenomenological law",
-    "structure formation",
-    "entropy field",
-    "modified gravity",
-    "regime transition",
-    "L1-L2",
-    "μ(a)"
-  ],
-  "core_equations": [
-    {
-      "name": "EFC Field Equation",
-      "latex": "G_{\\mu\\nu} = 8\\pi G(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}) + \\Lambda_{eff} g_{\\mu\\nu}"
-    },
-    {
-      "name": "Effective Gravitational Coupling",
-      "latex": "\\mu(a) = \\frac{G_{eff}}{G} = 1 + \\beta S(a)",
-      "symbol": "μ(a)"
-    },
-    {
-      "name": "Entropy Field",
-      "latex": "S(a) = \\frac{S_\\infty}{2}[1 + \\tanh((\\ln a - \\ln a_t)/\\sigma)]"
-    }
-  ],
+  "abstract_short": "Theoretical derivation of the effective gravitational coupling \u03bc(a) = 1 + \u03b2S(a) from EFC field equations, governing gravitational response in structure-dominated cosmological regimes.",
   "parameters": {
     "beta": {
       "value": 0.16,
@@ -68,7 +140,7 @@
   "regime_applicability": {
     "L0": {
       "active": false,
-      "description": "GR limit, μ ≈ 1"
+      "description": "GR limit, \u03bc \u2248 1"
     },
     "L1": {
       "active": true,
@@ -76,7 +148,7 @@
     },
     "L2": {
       "active": true,
-      "description": "Structure-dominated, μ > 1"
+      "description": "Structure-dominated, \u03bc > 1"
     },
     "L3": {
       "active": true,
@@ -84,10 +156,10 @@
     }
   },
   "key_findings": [
-    "μ(a) derived from EFC field equations, not phenomenologically fitted",
+    "\u03bc(a) derived from EFC field equations, not phenomenologically fitted",
     "Automatic GR recovery in early universe via dynamic suppression",
     "Single entropy field S(a) governs both geometry and growth",
-    "Transition occurs at z ≈ 0.82 with sharp width σ = 0.10"
+    "Transition occurs at z \u2248 0.82 with sharp width \u03c3 = 0.10"
   ],
   "dependencies": [
     {
@@ -111,10 +183,5 @@
       "doi": "10.6084/m9.figshare.31215259",
       "relation": "supports"
     }
-  ],
-  "files": {
-    "pdf": "Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes.pdf"
-  },
-  "doi": "10.6084/m9.figshare.30563738",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30563738"
+  ]
 }

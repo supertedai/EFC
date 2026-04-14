@@ -1,18 +1,95 @@
 {
+  "$schema": "./schema.json",
   "id": "kt3b-cross-regime-measurement-failure",
   "title": "Cross-Regime Measurement Failure in the KT3b Environmental Test",
+  "description": "Analyzes the null result of the KT3b environmental mass-scaling test in Energy-Flow Cosmology and shows that the monotonic signal collapse across increasingly rigorous runs is explained by a cross-regime measurement inconsistency. It identifies explicit violations of the Regime-Consistent Measurement Principle (driver\u2013response mismatch, boundary observation, and mass-model mixing), and proposes three RCMP-consistent test architectures as a methodological diagnosis stronger than the null result itself.",
+  "version": "v1.0",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31963821",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Regime-Consistent Measurement Principle",
+    "KT3b",
+    "environmental coupling",
+    "L1/L2 boundary",
+    "RAR (MDAR)",
+    "deep-MOND regime",
+    "SPARC rotation curves",
+    "Karachentsev Theta1",
+    "Tully group catalog",
+    "alpha coupling operator",
+    "cross-regime mapping"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "effective_density": {
+      "latex": "\\rho_{\\mathrm{eff}}(r) = \\rho_{\\mathrm{gal}}(r) + \\alpha\\, \\rho_{\\mathrm{env}}",
+      "description": "Working KT3b hypothesis: an environmental coupling with strength \\alpha adds an L1 environmental term to the L2 galactic effective density."
+    },
+    "rar_residual_at_a0": {
+      "latex": "R \\equiv \\frac{g_{\\mathrm{obs}}}{g_{\\mathrm{bar}}} \\quad \\text{evaluated at} \\quad g_{\\mathrm{bar}} \\approx a_0",
+      "description": "The KT3b observable used to probe environmental modulation; it lies on the L1/L2 transition where measurement is intrinsically unstable."
+    },
+    "deep_L2_slope": {
+      "latex": "S_{\\mathrm{L2}} \\equiv \\left. \\frac{\\mathrm{d}\\ln(g_{\\mathrm{obs}}/g_{\\mathrm{bar}})}{\\mathrm{d}\\ln g_{\\mathrm{bar}}} \\right|_{g_{\\mathrm{bar}} \\ll a_0}",
+      "description": "Proposed RCMP-consistent L2 observable (Architecture A): the deep-regime RAR slope that should correlate with environment if Deff is environmentally modulated."
+    },
+    "cross_regime_kernel": {
+      "latex": "D_{\\mathrm{eff}}(k) = \\int K(k, k', z)\\, \\rho_{\\mathrm{env}}(k', z)\\, \\mathrm{d}k'",
+      "description": "Required but undefined L1\u2192L2 coupling operator in KT3b: a scale- and mode-dependent kernel K that maps L1 density fields to L2 dynamical response."
+    }
+  },
+  "key_results": {
+    "main_finding": "The KT3b signal\u2019s monotonic collapse to null across four increasingly controlled runs is best explained by a cross-regime measurement inconsistency (RCMP violation), not by statistics alone.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "alpha (effective L1\u2192L2 environmental coupling)",
+      "slope dR/dEnv at g_bar \u2248 a0"
+    ],
+    "datasets_used": [
+      "SPARC galaxy rotation curves",
+      "Karachentsev tidal index (Theta1)",
+      "Tully group catalog (N_mem, memberships)",
+      "log(L/D^2) environmental proxy"
+    ],
+    "verdict": "FAIL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In a pure L2 architecture, the deep-regime RAR slope S_L2 correlates with environment (e.g., Theta1 or group richness) when evaluated at g_bar/a0 ~ 0.01\u20130.1, after mass-matching and systematics control.",
+      "falsifiable_by": "Re-analysis of SPARC (or deeper samples) measuring S_L2 vs. environment in mass- and radius-matched subsamples with robust systematics control."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Architecture A (pure L2) finds no correlation between the deep-regime RAR slope S_L2 and environment (Theta1 or N_mem) at |slope| < 0.01 (95% CI) across a mass- and radius-matched sample of N \u2265 100 galaxies; this falsifies environment-modulated Deff and kills the KT3b-style environmental coupling within EFC.",
+    "KC2: Architecture B (pure L1) constrains the L1 growth coupling to alpha_L1 = 0.00 \u00b1 0.05 with no detectable scale or redshift dependence over 0 < z < 1; this rules out the predicted L1 modulation of \u0393(\u03c1) in EFC.",
+    "KC3: A derived L1\u2192L2 mapping (Architecture C) yields a specific non-zero \u03b1(k, z) whose predicted trend in KT3b-like observables is not observed at \u2265 3\u03c3 in mass- and systematics-controlled samples; this falsifies the derived EFC coupling implementation."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "paper_pdf": "KT3b_CrossRegime_Measurement_Failure_DOI.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "kt3b-crossregime-measurement-failure-doi.jsonld",
+    "citations": "citations.bib",
+    "run_history": "data/kt3b_run_history.json",
+    "architectures": "data/test_architectures.json",
+    "src_rcmp_check": "src/rcmp_check.py",
+    "example": "examples/check_kt3b_and_alternatives.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31963821",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Independent Researcher, Sola, Norway",
   "report_id": "EFC-VAL-2026-005",
-  "doi": "10.6084/m9.figshare.31963821",
   "doi_url": "https://doi.org/10.6084/m9.figshare.31963821",
-  "date": "2026-04",
-  "version": "v1.0",
   "license": "CC-BY-4.0",
   "ledger_version_at_publication": "v3.12",
   "type": "null result + methodological diagnosis",
-  "track": "Spor 1 — Galactic/Cosmological",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
   "regimes": [
     "L1",
     "L2",
@@ -161,24 +238,12 @@
     "The L1/L2 boundary is the worst place to measure any cross-regime effect",
     "The alpha coupling is not a physical parameter but an effective fit coefficient absorbing all cross-regime effects indiscriminately",
     "Architecture A (pure L2, RAR slope at 10^-2 < g_bar/a_0 < 10^-1) is the recommended immediate next step: existing SPARC data, zero free parameters, single regime",
-    "The diagnosis applies to MOND's External Field Effect, Verlinde's emergent gravity, and any framework in which the transition scale a_0 marks a regime boundary — it is stronger than the null result itself"
+    "The diagnosis applies to MOND's External Field Effect, Verlinde's emergent gravity, and any framework in which the transition scale a_0 marks a regime boundary \u2014 it is stronger than the null result itself"
   ],
   "limitations": [
     "The analysis is structural, not numerical: it does not re-derive the KT3b slope values, only diagnoses why they collapse",
     "The Fisher-information argument for low S/N at the L1/L2 boundary is qualitative; a quantitative bound requires the full mu(k) fluctuation spectrum",
-    "Architecture C is described as an open problem — no explicit path to the derived alpha(k, z) is provided",
+    "Architecture C is described as an open problem \u2014 no explicit path to the derived alpha(k, z) is provided",
     "The package includes no re-analysis of SPARC or Tully group catalogues; it is a methodological paper"
-  ],
-  "files": {
-    "paper_pdf": "KT3b_CrossRegime_Measurement_Failure_DOI.pdf",
-    "metadata": "metadata.json",
-    "schema": "schema.json",
-    "jsonld": "kt3b-crossregime-measurement-failure-doi.jsonld",
-    "citations": "citations.bib",
-    "run_history": "data/kt3b_run_history.json",
-    "architectures": "data/test_architectures.json",
-    "src_rcmp_check": "src/rcmp_check.py",
-    "example": "examples/check_kt3b_and_alternatives.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31963821"
+  ]
 }

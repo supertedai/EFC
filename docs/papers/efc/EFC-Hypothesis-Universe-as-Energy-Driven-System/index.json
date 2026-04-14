@@ -1,21 +1,95 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Hypothesis-Universe-as-Energy-Driven-System",
-  "title": "EFC — Hypothesis: Universe as an Energy-Driven System",
+  "title": "Hypothesis: The Universe as an Energy-Driven System \u2013 Integrating Time, Space, Consciousness, and Thermodynamics",
+  "description": "Proposes Energy-Flow Cosmology (EFC), a framework in which energy flow and the second law of thermodynamics govern the emergence and collapse of time, space, and consciousness. Introduces an entropy-scaled state variable S with boundaries at S=0 (singularity) and S=1 (\"altular\" maximum entropy), and outlines qualitative predictions for redshift behavior, time dilation, and consciousness thresholds.",
+  "version": "1.0",
+  "date": "2024-12-27",
+  "doi": "10.6084/m9.figshare.28098386",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Energy-Driven Universe",
+    "Thermodynamics",
+    "Second Law of Thermodynamics",
+    "Entropy Gradient",
+    "Singularity (S=0)",
+    "Altular (S=1)",
+    "Time-Space Emergence",
+    "Consciousness and Energy",
+    "Redshift",
+    "Time Dilation",
+    "Non-Equilibrium Cosmology"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropy_bounds": {
+      "latex": "0 < S < 1",
+      "description": "Halo region: the observable universe exists between the singular (S=0) and altular (S=1) limits."
+    },
+    "singularity_state": {
+      "latex": "S = 0",
+      "description": "Singular boundary: maximal energy density, minimal entropy; time and space are locked/potential."
+    },
+    "altular_state": {
+      "latex": "S = 1",
+      "description": "Altular boundary: maximal entropy, minimal energy density; time-space collapses toward thermodynamic equilibrium."
+    },
+    "second_law_global": {
+      "latex": "\\frac{dS}{dt} \\ge 0",
+      "description": "Entropy in an isolated system does not decrease; EFC posits cosmic evolution is governed by increasing entropy."
+    }
+  },
+  "key_results": {
+    "main_finding": "Time, space, and consciousness are emergent phenomena regulated by energy flow under an entropy-scaled state variable S, with qualitative predictions at S\u21920 and S\u21921.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Entropy state S",
+      "Energy density (qualitative)",
+      "Entropy gradient (qualitative)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "As regions approach S \u2192 1 (altular limit), emitted light exhibits increasing redshift correlated with decreasing energy density and rising entropy.",
+      "falsifiable_by": "Cross-correlating redshift maps with independent proxies of energy density/entropy gradients near the cosmic edge or low-density voids; absence of correlation would falsify."
+    },
+    {
+      "id": "P2",
+      "statement": "Near S \u2192 0 (extreme energy density), time dilates toward a locked state.",
+      "falsifiable_by": "High-precision timing and spectroscopy of clocks and signals near compact-object horizons; failure to observe increasing time dilation toward higher energy density would falsify."
+    },
+    {
+      "id": "P3",
+      "statement": "Consciousness requires a minimum energy-flow threshold and ceases when energy throughput falls below this critical level.",
+      "falsifiable_by": "Demonstration of sustained, verifiable conscious processing in systems with negligible or zero metabolic/energy throughput over relevant timescales."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Empirical confirmation of persistent, stable time-space structure in regions demonstrated to be at maximal entropy (S \u2248 1) with no measurable energy gradients.",
+    "KC2: Robust, replicated evidence of conscious awareness persisting without measurable energy throughput (metabolic or equivalent) over relevant durations.",
+    "KC3: Cosmological observations indicating a net decrease of entropy over time in an effectively isolated cosmic volume.",
+    "KC4: No detectable correlation between increasing redshift and indicators of decreasing energy density/rising entropy at putative halo or edge regions when observational systematics are controlled.",
+    "KC5: Reliable observations that contradict gravitational/time-dilation growth toward higher energy density (e.g., near horizons), after accounting for general relativistic effects and measurement biases."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Hypothesis-Universe-as-Energy-Driven-System.pdf",
+    "readme": "EFC-Hypothesis-Universe-as-Energy-Driven-System.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098386",
   "path": "docs/papers/efc/EFC-Hypothesis-Universe-as-Energy-Driven-System",
   "pdf": "EFC-Hypothesis-Universe-as-Energy-Driven-System.pdf",
   "md": "EFC-Hypothesis-Universe-as-Energy-Driven-System.md",
-  "keywords": [
-    "EFC",
-    "Energy-Driven Universe",
-    "Thermodynamics",
-    "Entropy Gradient",
-    "Energy Flow",
-    "Non-Equilibrium Cosmology",
-    "Grid Field"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098386",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098386"
+  "type": "paper"
 }

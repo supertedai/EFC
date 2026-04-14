@@ -1,26 +1,33 @@
 {
-  "name": "EFC-Subhypothesis-Light-Speed-Limit",
-  "title": "EFC — Subhypothesis: Light Speed Limit",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "license": "CC-BY-4.0",
+  "title": "EFC \u2014 Subhypothesis: Light Speed Limit",
+  "short_id": "EFC-Subhypothesis-Light-Speed-Limit",
   "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "date": "2025-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.28112036",
+  "abstract": "Proposes that the universal light-speed limit (c) is an emergent property of underlying energy-flow dynamics, rather than a primary boundary condition. It frames c as meaningful only within regimes where energy gradients sustain space-time, becoming irrelevant at the entropy extremes S=0 (singularity) and S=1 (ultimate dispersion), with maximal dynamical complexity at intermediate entropy.",
   "keywords": [
-    "EFC",
-    "Light Speed Limit",
-    "Thermodynamics",
+    "Energy-Flow Cosmology",
+    "Speed of Light",
+    "Emergent Constant",
     "Entropy",
-    "Energy Flow",
-    "Grid Resistance"
+    "Energy Gradients",
+    "Space-Time Dynamics",
+    "Relativity",
+    "Event Horizon",
+    "Halo Boundary",
+    "Consciousness",
+    "Causality",
+    "Cosmic Balance"
   ],
-  "description": "Subhypothesis that the speed of light emerges as a thermodynamic limit from the interplay between the entropy field, energy-flow field, and the grid's resistance structure.",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/light_speed_limit.py",
-    "data": "data/light_speed_limit.json",
-    "demo": "examples/demo_light_speed_limit.py"
+    "pdf": "EFC-Subhypothesis-Light-Speed-Limit.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28112036",

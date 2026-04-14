@@ -1,40 +1,108 @@
 {
-  "name": "EFC-R-SPARC-Regime-Validity",
-  "type": "EFC-Paper",
-  "collection": "efc",
-  "document_id": "EFC-R-SPARC-Regime-Validity",
+  "$schema": "./schema.json",
+  "id": "efc-r-sparc-regime-validity",
   "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0006-5904-4032",
+  "description": "Pilot-scale empirical test of Energy-Flow Cosmology (EFC) on 20 SPARC galaxies spanning LSB, dwarf irregular, spiral, and barred/disturbed morphologies. The study finds regime-dependent validity\u2014EFC excels in low-complexity systems (LSB, diffuse dwarfs) and underperforms in structurally complex galaxies\u2014motivating the EFC-R meta-framework with the decomposition E_total = E_flow + E_latent.",
+  "version": "1.0",
   "date": "2026-01-06",
   "doi": "10.6084/m9.figshare.31007248",
-  "figshare_id": "31007248",
-  "tier": "CANONICAL",
-  "layer": "APPLIED",
-  "domain": "cosmology",
-  "status": "published",
-  "version": "1.0",
-  "abstract": "We analyze 20 galaxies from the SPARC database using the EFC framework, finding systematic patterns in where EFC succeeds versus fails. We develop EFC-R (Regime): a meta-framework that operationalizes regime-dependent validity through the decomposition E_total = E_flow + E_latent.",
   "keywords": [
-    "Energy-Flow Cosmology",
-    "Dark Matter Alternatives",
-    "Galaxy Rotation Curves",
-    "SPARC",
-    "Regime Theory",
-    "Non-equilibrium Dynamics",
-    "EFC-R"
+    "Energy-Flow Cosmology (EFC)",
+    "EFC-R (Regime Framework)",
+    "Galaxy rotation curves",
+    "SPARC database",
+    "Regime-dependent validity",
+    "Entropy gradient",
+    "Latent field proxy",
+    "AIC model comparison",
+    "Low surface brightness (LSB) galaxies",
+    "Barred/disturbed spirals",
+    "Non-equilibrium dynamics",
+    "FIRE simulations"
   ],
-  "categories": [
-    "Galactic astronomy",
-    "Cosmology and extragalactic astronomy",
-    "Thermodynamics and statistical physics"
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "effective_energy_field": {
+      "latex": "E_f = \\rho\\,(1 - S)",
+      "description": "Defines the effective energy field in EFC as local energy density \u03c1 suppressed by a normalized entropy field S \u2208 [0,1]."
+    },
+    "rotation_velocity": {
+      "latex": "V_{\\mathrm{rot}}^{2}(r) = r\\,\\frac{\\partial \\Phi_{\\mathrm{eff}}}{\\partial r}",
+      "description": "Circular velocity predicted from the radial derivative of the effective energy-flow potential \u03a6_eff."
+    },
+    "delta_AIC": {
+      "latex": "\\Delta \\mathrm{AIC} = \\mathrm{AIC}_{\\mathrm{EFC}} - \\mathrm{AIC}_{\\Lambda \\mathrm{CDM}}",
+      "description": "Model comparison metric: negative values favor EFC; positive values favor \u039bCDM."
+    },
+    "regime_decomposition": {
+      "latex": "E_{\\mathrm{total}} = E_{\\mathrm{flow}} + E_{\\mathrm{latent}}",
+      "description": "EFC-R meta-framework decomposition separating flow-governed and latent (structural/non-equilibrium) contributions."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC shows regime-dependent validity: competitive or preferred in 80% of the 20-galaxy SPARC pilot (especially LSB/diffuse dwarfs), with performance degrading in structurally complex (barred/disturbed) systems; EFC fits exhibit a significant correlation with a latent-field complexity proxy (Spearman \u03c1 = 0.705, p = 0.0005).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u2207S (entropy gradient, kpc^-1)",
+      "A_Ef (energy-flow amplitude)",
+      "r_entropy (entropy scale radius)",
+      "alpha (power-law index)"
+    ],
+    "datasets_used": [
+      "SPARC (Lelli et al., 2016)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "On an expanded SPARC-like sample (N > 100), the EFC success rate (\u0394AIC \u2264 2 vs \u039bCDM) will be significantly higher for low-L (low-complexity) galaxies\u2014LSB and diffuse dwarfs\u2014than for high-L (barred/disturbed) systems.",
+      "falsifiable_by": "Compute \u0394AIC per galaxy on a preregistered, enlarged sample and test for a statistically significant difference in success rates between low-L and high-L subsets."
+    },
+    {
+      "id": "P2",
+      "statement": "The latent field proxy L will positively correlate with EFC misfit (e.g., \u0394AIC or \u03c72_red difference) with Spearman \u03c1 \u2273 0.5 at p < 0.01 on larger samples after bootstrap resampling.",
+      "falsifiable_by": "Estimate L and EFC performance metrics for a larger, quality-controlled sample and evaluate Spearman \u03c1 with uncertainty via bootstrap."
+    },
+    {
+      "id": "P3",
+      "statement": "In dynamically relaxed LSB galaxies (low L), best-fit entropy gradients \u2207S will cluster around the reported mean (\u223c8.20\u00d710^-2 kpc^-1) with modest scatter (\u22482.44\u00d710^-2 kpc^-1).",
+      "falsifiable_by": "Fit EFC to a larger LSB subset and test whether the \u2207S distribution mean and scatter match the reported values within uncertainties."
+    }
   ],
+  "kill_criteria": [
+    "KC1: In an expanded, high-quality SPARC sample (N \u2265 100) with uniform mass modeling, \u2264 30% of low-complexity galaxies (LSB/diffuse dwarfs) yield \u0394AIC \u2264 2 for EFC (binomial p < 0.01 versus the pilot\u2019s ~80% rate).",
+    "KC2: The latent field proxy L shows no robust positive correlation with EFC misfit on a larger sample (|\u03c1| \u2264 0.2 with p \u2265 0.1 after bootstrap and controls), contradicting the reported \u03c1 = 0.705 (p = 0.0005).",
+    "KC3: Physically invalid entropy solutions are systematically required in low-complexity systems: S outside [0,1] or widespread sign-inconsistent \u2207S across radii in \u2265 20% of relaxed LSB/diffuse dwarfs with high-quality data.",
+    "KC4: In a preregistered analysis of structurally complex (barred/disturbed) galaxies, introducing an E_latent term (EFC-R) fails to improve penalized fit quality (AIC/BIC) over base EFC in \u2265 70% of cases.",
+    "KC5: Across regimes, reduced chi-squared systematically favors \u039bCDM by a large margin (e.g., \u03c72_red,\u039bCDM \u2212 \u03c72_red,EFC \u2264 0 or > +5 in the majority of low-complexity galaxies) when using the same baryonic inputs and error models."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
   "files": {
     "pdf": "EFC-R-SPARC-Regime-Validity.pdf",
     "jsonld": "EFC-R-SPARC-Regime-Validity.jsonld",
     "citations": "citations.bib",
     "schema": "schema.json"
   },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31007248",
+  "name": "EFC-R-SPARC-Regime-Validity",
+  "type": "EFC-Paper",
+  "collection": "efc",
+  "document_id": "EFC-R-SPARC-Regime-Validity",
+  "orcid": "0009-0006-5904-4032",
+  "figshare_id": "31007248",
+  "layer": "APPLIED",
+  "domain": "cosmology",
+  "status": "published",
+  "abstract": "We analyze 20 galaxies from the SPARC database using the EFC framework, finding systematic patterns in where EFC succeeds versus fails. We develop EFC-R (Regime): a meta-framework that operationalizes regime-dependent validity through the decomposition E_total = E_flow + E_latent.",
+  "categories": [
+    "Galactic astronomy",
+    "Cosmology and extragalactic astronomy",
+    "Thermodynamics and statistical physics"
+  ],
   "relations": {
     "extends": [
       "EFC-Field-Equations-for-Entropy-Driven-Spacetime"
@@ -47,34 +115,6 @@
       "entropy gradient dynamics"
     ]
   },
-  "key_results": {
-    "sample_size": 20,
-    "overall_success_rate": 0.8,
-    "spearman_rho": 0.705,
-    "p_value": 0.0005,
-    "efc_chi2_red": 26.2,
-    "lcdm_chi2_red": 69.6,
-    "mean_entropy_gradient": "8.20e-2 kpc^-1",
-    "morphology_breakdown": {
-      "LSB": {
-        "n": 5,
-        "success_rate": 1.0
-      },
-      "dwarf_irregular": {
-        "n": 5,
-        "success_rate": 0.8
-      },
-      "spiral": {
-        "n": 8,
-        "success_rate": 0.75
-      },
-      "barred_disturbed": {
-        "n": 2,
-        "success_rate": 0.0
-      }
-    }
-  },
   "created_at": "2026-01-06T00:00:00Z",
-  "updated_at": "2026-01-06T00:00:00Z",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31007248"
+  "updated_at": "2026-01-06T00:00:00Z"
 }

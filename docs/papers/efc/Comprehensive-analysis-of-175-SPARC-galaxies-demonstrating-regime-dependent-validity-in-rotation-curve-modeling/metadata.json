@@ -1,41 +1,56 @@
 {
-  "title": "Comprehensive Analysis of 175 SPARC Galaxies Demonstrating Regime-Dependent Validity in Rotation Curve Modeling",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Symbiose Research, Sandnes, Norway",
-      "corresponding": true
-    }
-  ],
+  "title": "Regime-Dependent Validity in Galaxy Rotation Curve Modeling: Comprehensive Analysis of 175 SPARC Galaxies",
+  "short_id": "comprehensive-analysis-of-175-sparc-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling",
   "version": "1.0",
   "date": "2026-01-11",
-  "doi": "10.6084/m9.figshare.31045126",
-  "license": "CC-BY-4.0",
-  "type": "empirical_analysis",
-  "series": {
-    "name": "EFC Regime Structure Series",
-    "paper_number": 1,
-    "total_papers": 3
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "abstract": "Comprehensive regime-dependent validity analysis of 175 SPARC galaxies. Models achieve 100% success in low-complexity FLOW regime but systematically fail in high-complexity LATENT regime. Regime separation is statistically significant (Mann-Whitney U, p < 0.0001).",
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31045126",
+  "abstract": "Analyzes 175 galaxies from the SPARC database using an ultra-phenomenological EFC-fit and a simplified \u039bCDM-NFW baseline to test the Energy-Flow Cosmology Regime (EFC-R) framework. Finds a strongly significant regime-dependent validity: EFC-fit succeeds in low-complexity FLOW systems (35%) and systematically fails in high-complexity LATENT systems (15%), with reproducible methods and full data/code release.",
   "keywords": [
     "galaxy rotation curves",
     "SPARC",
     "regime theory",
-    "model validity",
-    "complexity classification",
+    "model selection",
+    "\u039bCDM",
+    "NFW",
+    "AIC",
+    "reduced chi-squared",
+    "residual diagnostics",
     "Energy-Flow Cosmology",
-    "EFC-R"
+    "Mann-Whitney U test",
+    "complexity classification"
   ],
-  "data_source": {
-    "name": "SPARC Database",
-    "reference": "Lelli et al. (2016), AJ, 152, 157",
-    "n_galaxies": 175,
-    "n_datapoints": 3391
+  "files": {
+    "paper": {
+      "markdown": "SPARC175_COMPLETE_PAPER.md",
+      "pdf": "SPARC175_COMPLETE_PAPER.pdf",
+      "summary": "SPARC175_SUMMARY.md"
+    },
+    "data": {
+      "qc": "sparc175_qc.json",
+      "clean": "sparc175_clean.json",
+      "fits": "sparc175_fits.json",
+      "classified": "sparc175_classified.json",
+      "statistics": "sparc175_statistics.json"
+    },
+    "figures": {
+      "regime_distribution": "sparc175_regime_distribution.png",
+      "aic_vs_latent": "sparc175_aic_vs_latent.png",
+      "success_by_bins": "sparc175_success_by_bins.png"
+    },
+    "scripts": {
+      "qc": "sparc175_day1_qc.py",
+      "fit": "sparc175_day2_fit.py",
+      "classify": "sparc175_day3_classify.py",
+      "visualize": "sparc175_day4_visualize.py",
+      "document": "sparc175_day5_document.py"
+    }
   },
-  "repository": "https://github.com/supertedai/EFC",
-  "website": "https://energyflow-cosmology.com/",
   "paper": {
     "doi": "10.6084/m9.figshare.31045126",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31045126"

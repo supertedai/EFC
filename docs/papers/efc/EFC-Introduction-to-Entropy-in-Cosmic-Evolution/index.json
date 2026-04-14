@@ -1,20 +1,58 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
-  "title": "EFC — Introduction to Entropy in Cosmic Evolution",
-  "path": "docs/papers/efc/EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
-  "pdf": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.pdf",
-  "md": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.md",
+  "title": "EFC \u2014 Introduction to Entropy in Cosmic Evolution",
+  "description": "Introductory overview of entropy\u2019s role in cosmic evolution within the Energy-Flow Cosmology (EFC) framework. It outlines how entropy underpins the arrow of time, informs the formation of large-scale structure and black hole thermodynamics, and guides the universe toward thermodynamic equilibrium, linking these themes to energy flow and time\u2013space dynamics.",
+  "version": "1.0",
+  "date": "2024-12-26",
+  "doi": "10.6084/m9.figshare.28098320",
   "keywords": [
-    "EFC",
     "Entropy",
     "Cosmic Evolution",
     "Energy Flow",
-    "Entropy Gradient",
-    "Thermodynamic Systems"
+    "Arrow of Time",
+    "Cosmic Microwave Background",
+    "Black Hole Entropy",
+    "Bekenstein\u2013Hawking",
+    "Heat Death",
+    "Large-Scale Structure",
+    "Thermodynamics",
+    "EFC",
+    "Time-Space Dynamics"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Entropy is presented as the directional driver of cosmic evolution, shaping structure formation, black-hole thermodynamics, and the universe\u2019s progression toward thermodynamic equilibrium within the EFC framework.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: High-precision CMB and early-universe probes demonstrate the initial cosmic state was near maximum entropy rather than low entropy, contradicting the paper\u2019s premise.",
+    "KC2: Observations across black-hole mass scales falsify the area\u2013entropy relation (e.g., entropy does not scale with event-horizon area), undermining the claim that black holes are maximal-entropy objects.",
+    "KC3: A comprehensive cosmic entropy inventory shows a sustained net decrease in total entropy from high to low redshift, violating the asserted global increase and arrow of time in cosmic evolution.",
+    "KC4: Joint simulation\u2013observation studies establish that matter clustering proceeds without associated increases in coarse-grained entropy or energy dispersal, contradicting the claim that entropy drives large-scale structure formation.",
+    "KC5: Empirical evidence of a long-term cosmic engine enabling indefinite extraction of usable work without entropy production, invalidating the heat-death end state."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.pdf",
+    "readme": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098320",
+  "path": "docs/papers/efc/EFC-Introduction-to-Entropy-in-Cosmic-Evolution",
+  "pdf": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.pdf",
+  "md": "EFC-Introduction-to-Entropy-in-Cosmic-Evolution.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098320",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098320"
+  "type": "paper"
 }

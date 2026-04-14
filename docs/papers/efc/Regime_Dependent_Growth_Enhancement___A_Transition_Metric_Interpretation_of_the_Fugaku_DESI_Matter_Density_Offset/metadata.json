@@ -1,8 +1,8 @@
 {
-  "title": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku-DESI Matter Density Offset",
+  "title": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku\u2013DESI Matter Density Offset",
   "short_id": "regime-dependent-growth-enhancement-fugaku-desi",
   "version": "1.0",
-  "date": "2026",
+  "date": "2026-01-24",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,38 +10,25 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31140000",
-  "abstract": "Reinterprets ~10% matter density offset in Fugaku N-body simulations as transition estimator Delta_F measuring integrated regime transition strength.",
+  "abstract": "The paper reinterprets the ~10% matter-density offset seen in DESI-calibrated Fugaku N-body simulations as an integrated transition-strength estimator, \u0394F \u2248 0.1, of a regime-dependent effective gravitational coupling \u03bc(a) \u2261 G_eff/G. It introduces a bounded transition kernel and an observational window W(a) to define \u0394F, and shows a single \u03bc(a) can satisfy CMB (\u03bc\u22481 at recombination), DESI/Fugaku growth (\u0394F\u22480.1 in the sensitivity band), and galaxy-scale (\u03bc\u21921+\u0394\u03bc) consistency simultaneously.",
   "keywords": [
-    "DESI",
-    "Fugaku",
-    "N-body simulations",
+    "DESI DR2",
+    "Fugaku simulations",
+    "N-body",
+    "effective gravitational coupling",
     "transition metric",
-    "matter density offset",
-    "regime transition"
+    "growth enhancement",
+    "BAO and RSD",
+    "Planck 2018",
+    "modified gravity phenomenology",
+    "galaxy rotation curves",
+    "regime transition",
+    "Energy-Flow Cosmology"
   ],
-  "efc_context": {
-    "track": "Empirical Analysis",
-    "regime_relevance": "Transition band between CMB and galaxy formation regimes",
-    "epistemic_layer": "Layer B (empirical reinterpretation)"
-  },
-  "key_results": [
-    "Delta_F = 0.1 from integrated transition kernel",
-    "CMB, DESI/Fugaku, and galaxy regimes all consistent",
-    "Density offset reinterpreted as integrated transition strength"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "transition_metric.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/transition_metric.py"
-    ],
-    "data": "data/fugaku_desi_data.json",
-    "demo": "examples/demo_transition_metric.py"
+    "tex": "efc_transition_metric.tex",
+    "toolkit": "efc-toolkit/"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31140000",

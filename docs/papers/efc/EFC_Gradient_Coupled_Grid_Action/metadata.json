@@ -1,93 +1,41 @@
 {
   "title": "EFC Gradient-Coupled Grid Action",
-  "subtitle": "Minimal Lagrangian Derivation of E ∝ √g",
+  "short_id": "efc-gradient-coupled-grid-action",
+  "version": "0.1",
+  "date": "2026-04-05",
   "author": {
     "name": "Morten Magnusson",
-    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "doi": "10.6084/m9.figshare.31941465",
-  "date_published": "2026-04-05",
-  "version": "1.0",
-  "framework": "Energy-Flow Cosmology (EFC) v3.7",
   "license": "CC-BY-4.0",
-  "language": "en",
-  "classification": {
-    "domain": "theoretical_physics",
-    "track": "galactic_cosmological",
-    "track_number": 1,
-    "category": "microphysical_derivation",
-    "level": "foundational"
-  },
-  "methodology": {
-    "approach": "Lagrangian field theory",
-    "techniques": [
-      "Euler-Lagrange variational calculus",
-      "WKB approximation",
-      "Operator classification and elimination",
-      "Bosonic canonical quantisation",
-      "Bose-Einstein statistical mechanics"
-    ],
-    "derivation_chain": [
-      "S_grid (three-term action)",
-      "Euler-Lagrange → κ_eff = κ₀ + αg",
-      "WKB plane-wave → ω²(k,g)",
-      "Gravitational limit → E ∝ √g",
-      "Canonical quantisation → Fock space",
-      "Bose-Einstein → thermal occupation",
-      "Occupation → μ(g) screening"
-    ]
-  },
-  "parameters": {
-    "m_eff": {
-      "description": "Effective mass of grid DOF",
-      "role": "kinetic term coefficient"
-    },
-    "kappa_0": {
-      "description": "Bare elastic stiffness",
-      "role": "vacuum dispersion"
-    },
-    "alpha": {
-      "description": "Gradient coupling constant",
-      "role": "gravity-grid coupling strength"
-    },
-    "g_cross": {
-      "description": "Crossover acceleration κ₀/α",
-      "role": "regime boundary"
-    }
-  },
-  "open_questions": [
-    "Grid DOF existence (L3 assumption)",
-    "Coupling form uniqueness within operator class",
-    "Hierarchy condition κ₀/(αa₀) ≪ 1"
+  "doi": "10.6084/m9.figshare.31941465",
+  "abstract": "Presents a minimal three-term Lagrangian for a discrete grid coupled to gravity via a gradient interaction |\u2207\u03a6|(\u2207\u03be)\u00b2. The coupling yields a position-dependent stiffness \u03ba_eff = \u03ba0 + \u03b1 g and a local dispersion relation that, in the gravitational regime, implies E = \u210f\u03c9 \u221d \u221ag, deriving the EFC screening relation from first principles and establishing operator uniqueness within a defined class.",
+  "keywords": [
+    "grid action",
+    "gradient coupling",
+    "effective stiffness",
+    "dispersion relation",
+    "operator uniqueness",
+    "Bose\u2013Einstein statistics",
+    "screening relation",
+    "EFC",
+    "Lagrangian mechanics",
+    "WKB approximation",
+    "lattice continuum limit",
+    "dark matter alternative"
   ],
-  "related_papers": [
-    {
-      "doi": "10.6084/m9.figshare.31878760",
-      "title": "Grid Microphysics to RAR",
-      "relation": "builds_on"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31878334",
-      "title": "Covariant EFT for EFC",
-      "relation": "builds_on"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31940469",
-      "title": "EFC Screening Model (Track 1)",
-      "relation": "informs"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31211437",
-      "title": "Minimal EFC EFT Ansatz",
-      "relation": "references"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31224466",
-      "title": "Discrete Gravity on Entropy Graphs",
-      "relation": "references"
-    }
-  ],
+  "files": {
+    "pdf": "EFC_Gradient_Coupled_Grid_Action.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "grid_action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/grid_action.py",
+    "data": "data/grid_action_data.json",
+    "demo": "examples/demo_grid_action.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31941465",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31941465"

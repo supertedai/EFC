@@ -1,20 +1,106 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe",
-  "title": "EFC — Light Speed as a Regulator of Energy Flow in the Universe",
+  "title": "EFC \u2014 Light Speed as a Regulator of Energy Flow in the Universe",
+  "description": "Proposes an Energy-Flow Cosmology (EFC) framework in which the invariant speed of light c regulates energy flow, spacetime distortion, and entropy across three interacting components: Main Clusters, Small Clusters, and the Halo. The paper outlines qualitative parameter ranges for energy flow and gravitational lensing in each component and reports consistency with Sloan Digital Sky Survey (SDSS) correlations between redshift, lensing, and energy-flow gradients toward the halo.",
+  "version": "1.0",
+  "date": null,
+  "doi": "10.6084/m9.figshare.28111925",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "speed of light c",
+    "gravitational lensing",
+    "galaxy clusters",
+    "small clusters",
+    "cosmic halo",
+    "entropy",
+    "energy flow",
+    "redshift",
+    "spacetime distortion",
+    "Sloan Digital Sky Survey",
+    "cosmic structure"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "halo_entropy_limit": {
+      "latex": "S_{\\mathrm{halo}} = 1",
+      "description": "Entropy saturates at the halo boundary, representing the entropic limit of the system."
+    },
+    "energy_flow_halo": {
+      "latex": "E_f^{\\mathrm{halo}} \\approx 0.01",
+      "description": "Energy flow diminishes toward zero near the halo boundary."
+    },
+    "energy_flow_main": {
+      "latex": "E_f^{\\mathrm{main}} \\approx 240\\text{\u2013}250",
+      "description": "High energy flow characteristic of main clusters (units not specified in the manuscript)."
+    },
+    "energy_flow_small": {
+      "latex": "E_f^{\\mathrm{small}} \\approx 0.31\\text{\u2013}0.336",
+      "description": "Moderate energy flow characteristic of small clusters."
+    },
+    "lensing_main": {
+      "latex": "g_{\\mathrm{lens}}^{\\mathrm{main}} \\approx 1.0",
+      "description": "Minimal gravitational lensing associated with main clusters."
+    },
+    "lensing_small": {
+      "latex": "g_{\\mathrm{lens}}^{\\mathrm{small}} \\approx 1.27\\text{\u2013}1.28",
+      "description": "Peak gravitational lensing observed in small clusters."
+    }
+  },
+  "key_results": {
+    "main_finding": "SDSS redshift and lensing correlations are reported to be consistent with the EFC prediction of decreasing energy flow and increasing spacetime distortion from main clusters through small clusters toward the halo, supporting the role of c as a regulator of energy flow.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "energy flow gradient (main clusters \u2192 small clusters \u2192 halo)",
+      "gravitational lensing amplitude across structure classes",
+      "entropy behavior approaching the halo boundary",
+      "correlation of redshift with energy-flow and lensing patterns"
+    ],
+    "datasets_used": [
+      "Sloan Digital Sky Survey (SDSS)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "After controlling for mass and redshift, small clusters will exhibit systematically higher gravitational lensing than main clusters (with mean lensing factor in the 1.27\u20131.28 range vs. ~1.0 for main clusters).",
+      "falsifiable_by": "Weak-lensing analyses from DES, HSC, KiDS, or LSST comparing lensing amplitudes for mass- and redshift-matched samples of main vs. small clusters."
+    },
+    {
+      "id": "P2",
+      "statement": "Energy-flow proxies will monotonically decline from main clusters through small clusters toward the halo, approaching E_f \u2248 0.01 at the boundary, while entropy/spacetime-distortion proxies increase.",
+      "falsifiable_by": "Joint X-ray/SZ measurements and weak-lensing tomography mapping energy-flow and entropy proxies radially and environmentally from cluster interiors to intercluster/outer regions."
+    },
+    {
+      "id": "P3",
+      "statement": "A 3D relationship between redshift, lensing, and energy-flow proxies will trace a continuous gradient from main clusters to halo regions with no population exhibiting high energy flow and low entropy at the halo boundary.",
+      "falsifiable_by": "Cross-correlation of SDSS (or DESI) redshifts with lensing maps and multiwavelength energy-flow proxies; detection of a significant population at the halo boundary with high energy flow and low entropy would refute this."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: In a mass- and redshift-controlled sample, main clusters exhibit equal or greater gravitational lensing than small clusters at high statistical significance, contradicting the predicted lensing peak in small clusters.",
+    "KC2: Observations of outer/halo-adjacent regions show sustained high energy-flow levels (e.g., E_f >> 0.01) without corresponding increases in entropy or spacetime distortion, violating the predicted approach to the entropic limit.",
+    "KC3: Robust measurements fail to find a monotonic decline in energy-flow proxies from main clusters to halo regions, or detect a reversal of the gradient.",
+    "KC4: Detection of superluminal energy or information transport in astrophysical systems that bypasses c as a propagation limit, invalidating the core regulator premise.",
+    "KC5: The reported SDSS correlations between redshift, lensing, and energy-flow proxies are not reproducible with independent surveys (e.g., Hubble Deep Field, DES), or are shown to arise from methodological/systematic biases."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28111925",
   "path": "docs/papers/efc/EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe",
   "pdf": "EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe.pdf",
   "md": "EFC-Light-Speed-as-a-Regulator-of-Energy-Flow-in-the-Universe.md",
-  "keywords": [
-    "EFC",
-    "Speed of Light",
-    "Energy Flow",
-    "Entropy",
-    "Propagation Constraints",
-    "Grid Field"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28111925",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28111925"
+  "type": "paper"
 }

@@ -1,186 +1,43 @@
 {
-  "schema_version": "1.0",
-  "package_type": "ai-friendly-validation",
-  "paper": {
-    "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling",
-    "subtitle": "fσ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
-    "report_id": "EFC-VAL-2026-003",
-    "doi": "10.6084/m9.figshare.31955871",
-    "author": {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Symbiose Research"
-    },
-    "date": "2026-04-07",
-    "license": "CC-BY-4.0",
-    "figshare_url": "https://doi.org/10.6084/m9.figshare.31955871"
+  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f \u03c38(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+  "short_id": "multi-epoch-growth-rate-test-efc",
+  "version": "1.0",
+  "date": "2026-04-07",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "domain": {
-    "track": "Spor 1 — Galactic/Cosmological",
-    "regimes": [
-      "L1",
-      "L2"
-    ],
-    "sector": "perturbation / growth of structure"
-  },
-  "datasets": [
-    {
-      "survey": "6dFGS",
-      "tracer": "Galaxies",
-      "z": 0.067,
-      "fsigma8": 0.423,
-      "sigma": 0.055,
-      "ref": "Beutler+ 2012"
-    },
-    {
-      "survey": "DESI DR1 PV",
-      "tracer": "FP+TF",
-      "z": 0.07,
-      "fsigma8": 0.45,
-      "sigma": 0.055,
-      "ref": "Turner+ 2025"
-    },
-    {
-      "survey": "DESI DR1 BGS",
-      "tracer": "BGS",
-      "z": 0.295,
-      "fsigma8": 0.408,
-      "sigma": 0.04,
-      "ref": "DESI 2024 V"
-    },
-    {
-      "survey": "BOSS DR12",
-      "tracer": "LOWZ",
-      "z": 0.38,
-      "fsigma8": 0.497,
-      "sigma": 0.045,
-      "ref": "Alam+ 2017"
-    },
-    {
-      "survey": "BOSS DR12",
-      "tracer": "CMASS",
-      "z": 0.51,
-      "fsigma8": 0.458,
-      "sigma": 0.038,
-      "ref": "Alam+ 2017"
-    },
-    {
-      "survey": "DESI DR1",
-      "tracer": "LRGz0",
-      "z": 0.51,
-      "fsigma8": 0.449,
-      "sigma": 0.032,
-      "ref": "DESI 2024 V"
-    },
-    {
-      "survey": "BOSS DR12",
-      "tracer": "CMASS",
-      "z": 0.61,
-      "fsigma8": 0.436,
-      "sigma": 0.034,
-      "ref": "Alam+ 2017"
-    },
-    {
-      "survey": "eBOSS DR16",
-      "tracer": "LRG",
-      "z": 0.7,
-      "fsigma8": 0.473,
-      "sigma": 0.041,
-      "ref": "Gil-Marín+ 2020"
-    },
-    {
-      "survey": "DESI DR1",
-      "tracer": "LRGz1",
-      "z": 0.706,
-      "fsigma8": 0.413,
-      "sigma": 0.029,
-      "ref": "DESI 2024 V"
-    },
-    {
-      "survey": "eBOSS DR16",
-      "tracer": "ELG",
-      "z": 0.85,
-      "fsigma8": 0.315,
-      "sigma": 0.095,
-      "ref": "de Mattia+ 2021"
-    },
-    {
-      "survey": "DESI DR1",
-      "tracer": "LRG+ELG",
-      "z": 0.93,
-      "fsigma8": 0.381,
-      "sigma": 0.034,
-      "ref": "DESI 2024 V"
-    },
-    {
-      "survey": "DESI DR1",
-      "tracer": "ELG",
-      "z": 1.317,
-      "fsigma8": 0.396,
-      "sigma": 0.062,
-      "ref": "DESI 2024 V"
-    },
-    {
-      "survey": "eBOSS DR16",
-      "tracer": "QSO",
-      "z": 1.48,
-      "fsigma8": 0.462,
-      "sigma": 0.045,
-      "ref": "Neveux+ 2020"
-    },
-    {
-      "survey": "DESI DR1",
-      "tracer": "QSO",
-      "z": 1.491,
-      "fsigma8": 0.318,
-      "sigma": 0.076,
-      "ref": "DESI 2024 V"
-    }
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31955871",
+  "abstract": "First multi-epoch empirical test of the Energy-Flow Cosmology (EFC) perturbation-sector coupling using 14 f\u03c38(z) measurements from 6dFGS, BOSS DR12, eBOSS DR16, and DESI DR1. The study solves the full linear growth ODE with a regime-dependent gate \u03bc(a)=1\u2212B\u00b7T(a) and finds a null result: \u039bCDM fits slightly better than EFC while EFC remains consistent within current errors, highlighting a strong \u03a9m\u2013B degeneracy that requires BAO to break.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "f\u03c38",
+    "growth rate of structure",
+    "redshift-space distortions",
+    "BOSS DR12",
+    "eBOSS DR16",
+    "DESI DR1",
+    "modified gravity",
+    "linear growth equation",
+    "mu(a) coupling",
+    "profile likelihood",
+    "AIC model comparison"
   ],
-  "model": {
-    "name": "EFC regime-dependent gravitational coupling",
-    "mu_of_a": "1 - B * 1/(1 + (a_t/a)^n)",
-    "free_params_EFC": [
-      "sigma8_0",
-      "B",
-      "z_t"
-    ],
-    "fixed": {
-      "Omega_m": 0.3019,
-      "n": 2
-    },
-    "baseline_LCDM": {
-      "free": [
-        "Omega_m",
-        "sigma8_0"
-      ]
-    }
+  "files": {
+    "paper_pdf": "efc_multi_epoch_note.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "Multi_epoch_Growth_Rate_Test_of_EFC.jsonld",
+    "citations": "citations.bib",
+    "data_table": "data/fsigma8_compilation.csv",
+    "results": "data/efc_multi_epoch_results.json",
+    "src": "src/efc_multi_epoch_v2.py",
+    "example": "examples/reproduce_minimal.py"
   },
-  "results": {
-    "LCDM": {
-      "Omega_m": 0.3019,
-      "sigma8_0": 0.7739,
-      "chi2": 12.07,
-      "dof": 12
-    },
-    "EFC": {
-      "sigma8_0": 0.7916,
-      "B": 0.078,
-      "z_t": 3.0,
-      "mu0": 0.922,
-      "chi2": 11.98,
-      "dof": 11
-    },
-    "delta_chi2": 0.1,
-    "sigma": 0.06,
-    "delta_AIC": -1.9,
-    "verdict": "Null result; LCDM marginally preferred. EFC consistent within 1σ."
-  },
-  "links": {
-    "pilot_BOSS_DR12": "10.6084/m9.figshare.31243828",
-    "WP1a_reference": "10.6084/m9.figshare.31333600",
-    "CMB_LSS_localisation": "10.6084/m9.figshare.31368433",
-    "regime_transition_test": "10.6084/m9.figshare.31941543",
-    "EFC_relativistic_action": "10.6084/m9.figshare.31876324"
+  "paper": {
+    "doi": "10.6084/m9.figshare.31955871",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31955871"
   }
 }

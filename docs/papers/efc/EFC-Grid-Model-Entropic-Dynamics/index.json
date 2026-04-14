@@ -1,22 +1,111 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Grid-Model-Entropic-Dynamics",
-  "title": "EFC — Grid Model for Entropic Dynamics",
+  "title": "Grid Model: An Entropic and Dynamic Theory for Emergent Gravity in Cosmology",
+  "description": "Proposes an Energy-Flow Cosmology (EFC) Grid Model in which gravity emerges from entropy-regulated energy flow rather than from dark matter or a cosmological constant. The paper links entropy, energy-flow gradients, and a dynamic effective gravity to observed rotation curves, gravitational lensing trends, high-\u2113 CMB anisotropy deviations, and environment-dependent gravitational-wave propagation, supported by simulations and comparisons to JWST, SDSS/eFEDS, Planck, HST, and LIGO data.",
+  "version": "1.0",
+  "date": "2025-01-01",
+  "doi": "10.6084/m9.figshare.28559423",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Entropic dynamics",
+    "Emergent gravity",
+    "Energy flow",
+    "Entropy gradient",
+    "Dynamic gravitational constant",
+    "Gravitational lensing",
+    "CMB anisotropies",
+    "Galaxy rotation curves",
+    "Gravitational-wave speed",
+    "JWST",
+    "Bullet Cluster"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropy_energy_flow_relation": {
+      "latex": "E_f(S) = E_{f0} \\, e^{-\\alpha S},\\quad S\\in[0,1]",
+      "description": "Linear increases in entropy correspond to an exponential decrease in energy flow, stabilizing or collapsing spacetime at the entropy extrema."
+    },
+    "emergent_speed_of_light": {
+      "latex": "c(S,\\nabla E_f) \\propto \\lvert \\nabla E_f \\rvert,\\quad \\lim_{S\\to 0,1} c(S,\\nabla E_f)=0,\\quad c\\approx c_0\\;\\text{for}\\;S\\in(\\varepsilon,1-\\varepsilon)",
+      "description": "The effective speed of light emerges from energy-flow gradients, remains approximately constant at intermediate entropy, and diminishes toward zero near entropy extremes."
+    },
+    "effective_gravity_scaling": {
+      "latex": "G_{\\mathrm{eff}}(S) = G_0\\, g(S),\\quad \\frac{\\mathrm{d}g}{\\mathrm{d}S} < 0",
+      "description": "Gravity is dynamically weakened in higher-entropy environments via an entropy-dependent effective gravitational coupling."
+    },
+    "cmb_damping_factor": {
+      "latex": "C_{\\ell}^{\\mathrm{EFC}} = \\gamma(S)\\, C_{\\ell}^{\\Lambda\\mathrm{CDM}},\\quad \\ell \\gtrsim 1000,\\; \\gamma(S) \\approx 0.93",
+      "description": "A thermodynamic damping factor modifies high-\u2113 CMB anisotropies, predicting an O(7%) deviation relative to \u039bCDM at multipoles above ~1000."
+    }
+  },
+  "key_results": {
+    "main_finding": "An entropy-regulated energy-flow framework reproduces galaxy rotation trends, predicts an anti-correlation of lensing strength with entropy, allows ~7% high-\u2113 CMB deviations, and remains consistent with current gravitational-wave speed limits via environmental dependence, without invoking dark matter or \u039b.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b1 (entropy\u2013energy-flow coupling)",
+      "g(S) (entropy-scaling of effective gravity)",
+      "\u03b3(S) (CMB thermodynamic damping factor)",
+      "Halo regulator model for energy-flow stabilization",
+      "\u0394c_g(S) (environmental GW speed deviation)"
+    ],
+    "datasets_used": [
+      "JWST (JADES)",
+      "SDSS DR18",
+      "eFEDS",
+      "Planck",
+      "HST",
+      "LIGO/Virgo/KAGRA"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "CMB temperature/polarization power spectra exhibit a \u22487% suppression at \u2113 > 1000 relative to \u039bCDM due to a thermodynamic damping factor \u03b3(S).",
+      "falsifiable_by": "High-precision ACT/SPT-3G/Simons Observatory + Planck spectra showing no such suppression beyond systematic/modeling uncertainties."
+    },
+    {
+      "id": "P2",
+      "statement": "Gravitational lensing convergence and shear statistically anti-correlate with independent entropy proxies; lensing is amplified in low-entropy clusters and diminished in high-entropy voids.",
+      "falsifiable_by": "Weak-lensing tomography cross-correlated with X-ray/SZ entropy maps and IGM thermodynamic tracers failing to show a robust anti-correlation."
+    },
+    {
+      "id": "P3",
+      "statement": "Environment-dependent deviations in gravitational-wave propagation speed are negligible in low-entropy regions but measurably larger in high-entropy environments (e.g., massive clusters, BH mergers), while remaining consistent with existing neutron-star constraints.",
+      "falsifiable_by": "Multimessenger GW-EM timing across environments consistently yielding |\u0394c_g/c| < 10^-15 with no entropy dependence."
+    },
+    {
+      "id": "P4",
+      "statement": "Galaxy rotation curves can be fit without cold dark matter using G_eff(S) governed by halo-regulated energy flow.",
+      "falsifiable_by": "A representative sample of high-quality HI/optical rotation curves and vertical dispersions that cannot be fit under any plausible \u03b1 and g(S) within the model."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-\u2113 (\u2113 > 1000) CMB measurements (ACT/SPT/Simons/Planck) show no \u22487% deviation or show a deviation with opposite sign after foreground/systematic control.",
+    "KC2: Multimessenger GW-EM observations in high-entropy environments (e.g., cluster-hosted BH mergers) constrain |\u0394c_g/c| below 10^-16 with no measurable dependence on entropy proxies.",
+    "KC3: Weak-lensing maps fail to show an anti-correlation between lensing strength and independent entropy indicators (X-ray/SZ/IGM), or show a positive correlation inconsistent with model predictions.",
+    "KC4: Galaxy rotation curves across low-entropy systems require substantial cold dark matter to fit, with no consistent G_eff(S) solution across the sample.",
+    "KC5: Bullet Cluster\u2013like mergers robustly require collisionless dark matter to explain mass\u2013gas separation and lensing maps, with the proposed entropic interaction term unable to reproduce observations.",
+    "KC6: Precision tests find G_eff to be invariant with environmental entropy across scales where the model predicts variation.",
+    "KC7: Observational evidence shows gravitational lensing does not diminish in high-entropy voids relative to comparable-mass lower-entropy environments."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Grid-Model-Entropic-Dynamics.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28559423",
   "path": "docs/papers/efc/EFC-Grid-Model-Entropic-Dynamics",
   "pdf": "EFC-Grid-Model-Entropic-Dynamics.pdf",
   "md": "EFC-Grid-Model-Entropic-Dynamics.md",
-  "keywords": [
-    "EFC",
-    "Grid Model",
-    "Entropic Dynamics",
-    "Energy Flow",
-    "Entropy Gradient",
-    "Dynamic Structure",
-    "Grid Field",
-    "Spacetime Resistance"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28559423",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28559423"
+  "type": "paper"
 }

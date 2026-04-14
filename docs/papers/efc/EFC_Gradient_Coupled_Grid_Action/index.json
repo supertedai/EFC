@@ -1,72 +1,160 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-gradient-coupled-grid-action",
   "title": "EFC Gradient-Coupled Grid Action",
-  "subtitle": "Minimal Lagrangian Derivation of E ∝ √g",
-  "doi": "10.6084/m9.figshare.31941465",
-  "version": "1.0",
+  "description": "Presents a minimal three-term Lagrangian for a discrete grid coupled to gravity via a gradient interaction |\u2207\u03a6|(\u2207\u03be)\u00b2. The coupling yields a position-dependent stiffness \u03ba_eff = \u03ba0 + \u03b1 g and a local dispersion relation that, in the gravitational regime, implies E = \u210f\u03c9 \u221d \u221ag, deriving the EFC screening relation from first principles and establishing operator uniqueness within a defined class.",
+  "version": "0.1",
   "date": "2026-04-05",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095",
-    "affiliation": "Symbiose Research, Sandnes, Norway"
-  },
-  "framework": "Energy-Flow Cosmology (EFC)",
-  "framework_version": "3.7",
-  "license": "CC-BY-4.0",
-  "abstract": "Derives the EFC screening relation E ∝ √g from a minimal three-term Lagrangian S_grid. The gradient coupling ½α|∇Φ|(∇ξ)² produces an effective stiffness κ_eff = κ₀ + αg, yielding a local dispersion relation whose gravitational-regime limit recovers E ∝ √g as a theorem. Operator uniqueness is established by systematically eliminating four alternative couplings.",
+  "doi": "10.6084/m9.figshare.31941465",
   "keywords": [
     "grid action",
     "gradient coupling",
     "effective stiffness",
     "dispersion relation",
     "operator uniqueness",
-    "bosonic quantisation",
-    "Bose-Einstein",
+    "Bose\u2013Einstein statistics",
     "screening relation",
     "EFC",
-    "dark matter alternative",
     "Lagrangian mechanics",
-    "WKB approximation"
+    "WKB approximation",
+    "lattice continuum limit",
+    "dark matter alternative"
   ],
-  "key_equations": {
-    "grid_action": "S_grid = ∫ dt d³x [½m_eff(∂_t ξ)² − ½κ₀(∇ξ)² − ½α|∇Φ|(∇ξ)²]",
-    "effective_stiffness": "κ_eff(x) = κ₀ + α g(x)",
-    "dispersion": "ω²(k,g) = (κ₀ + αg)/m_eff · k²",
-    "theorem_1": "E = ℏω ∝ √g  (when αg ≫ κ₀)",
-    "crossover": "g_cross = κ₀/α",
-    "hamiltonian": "H = Σ_k ℏω_k (a†_k a_k + ½)",
-    "thermal_occupation": "⟨n_k⟩ = 1/(exp(ℏω_k/k_BT) − 1)"
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "key_results": [
+  "core_equations": {
+    "grid_action": {
+      "latex": "S_{\\rm grid} = \\int dt\\, d^{3}x\\, \\Big[ \\tfrac{1}{2} m_{\\rm eff} (\\partial_t \\xi)^2 - \\tfrac{1}{2} \\kappa_0 (\\nabla \\xi)^2 - \\tfrac{1}{2} \\, \\alpha \\, |\\nabla \\Phi| \\, (\\nabla \\xi)^2 \\Big]",
+      "description": "Minimal local action for grid displacement \u03be with kinetic, bare elastic, and gradient-coupling terms to the gravitational field."
+    },
+    "effective_stiffness": {
+      "latex": "\\kappa_{\\rm eff}(x) = \\kappa_0 + \\alpha\\, g(x), \\quad g(x) = |\\nabla \\Phi(x)|",
+      "description": "Position-dependent stiffness induced by the gradient coupling to gravity."
+    },
+    "euler_lagrange": {
+      "latex": "m_{\\rm eff} \\, \\ddot{\\xi} = \\nabla \\cdot \\big[ (\\kappa_0 + \\alpha g(x)) \\, \\nabla \\xi \\big]",
+      "description": "Equation of motion showing wave propagation with spatially varying stiffness."
+    },
+    "dispersion_continuum": {
+      "latex": "\\omega^{2}(k,g) = \\frac{\\kappa_0 + \\alpha g}{m_{\\rm eff}}\\, k^{2} \\quad (k\\, l_g \\ll 1)",
+      "description": "Local WKB/long-wavelength dispersion relation."
+    },
+    "dispersion_lattice": {
+      "latex": "\\omega^{2}(k,g) = \\frac{\\kappa_0 + \\alpha g}{m_{\\rm eff}}\\, \\frac{4}{l_g^{2}} \\, \\sin^{2}\\!\\Big(\\tfrac{k l_g}{2}\\Big)",
+      "description": "Lattice dispersion with the standard sinusoidal form and gravity-modulated stiffness."
+    },
+    "fundamental_mode": {
+      "latex": "\\omega_{\\rm fund}^{2} = \\frac{4\\, (\\kappa_0 + \\alpha g)}{m_{\\rm eff} \\, l_g^{2}}",
+      "description": "Frequency of the fundamental cell mode (k \\approx \\pi/l_g)."
+    },
+    "gravitational_regime": {
+      "latex": "E = \\hbar \\omega \\;\\propto\\; \\sqrt{g} \\quad \\text{when} \\quad \\alpha g \\gg \\kappa_0",
+      "description": "Gradient-coupling theorem: excitation energy scales with the square root of the local acceleration in the gravitational regime."
+    },
+    "crossover": {
+      "latex": "g_{\\rm cross} = \\kappa_0 / \\alpha",
+      "description": "Acceleration scale where the transition between bare-elastic and gravitational regimes occurs."
+    },
+    "hamiltonian": {
+      "latex": "H = \\sum_{k} \\hbar \\omega_k \\left(a^{\\dagger}_k a_k + \\tfrac{1}{2}\\right)",
+      "description": "Quantized Hamiltonian of grid excitations."
+    },
+    "thermal_occupation": {
+      "latex": "\\langle n_k \\rangle = \\frac{1}{\\exp(\\hbar \\omega_k / k_B T) - 1}",
+      "description": "Bose\u2013Einstein occupation number used to connect dispersion to the macroscopic screening function."
+    },
+    "mu_be_form": {
+      "latex": "\\mu(g) = \\frac{1}{\\exp\\!\\big(\\sqrt{g/a_0}\\big) - 1}",
+      "description": "BE-type screening function emerging when E \\propto \\sqrt{g} with a single acceleration scale a0."
+    }
+  },
+  "key_results": {
+    "main_finding": "Within a minimal EFT, the unique leading-order local scalar coupling |\u2207\u03a6|(\u2207\u03be)\u00b2 yields \u03ba_eff = \u03ba0 + \u03b1 g and E \u221d \u221ag in the gravitational regime, providing a first-principles derivation of the EFC screening relation and eliminating alternative operators by symmetry, dimensional, and data-consistency arguments.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "m_eff",
+      "kappa_0",
+      "alpha",
+      "l_g",
+      "a_0"
+    ],
+    "datasets_used": [
+      "Conceptual consistency with SPARC rotation curves (referenced; no new fit performed)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
     {
-      "id": "theorem-1",
-      "description": "E ∝ √g derived from minimal Lagrangian in gravitational regime",
-      "equation": "E = ℏ√(αg/m_eff) · k"
+      "id": "P1",
+      "statement": "Bare stiffness bound: kappa_0 / (alpha a_0) \u226a 1, implying a crossover g_cross = kappa_0/alpha well below a_0 so that the gravitational regime dominates over most galaxy radii.",
+      "falsifiable_by": "Global fits of high-quality rotation curves and vertical kinematics that jointly constrain the transition scale; a robust inference g_cross \u2273 a_0 (i.e., kappa_0/(alpha a_0) \u2273 1) would falsify this prediction."
     },
     {
-      "id": "operator-uniqueness",
-      "description": "Only C5 = |∇Φ| coupling survives dimensional, symmetry, and locality constraints",
-      "eliminated": [
-        "C1: ρ(x)",
-        "C2: Φ(x)",
-        "C3: g²",
-        "C4: ∇²Φ"
-      ]
-    },
-    {
-      "id": "three-regimes",
-      "description": "Bare elastic (κ₀ ≫ αg), gravitational (αg ≫ κ₀), transition (αg ~ κ₀)",
-      "crossover": "g_cross = κ₀/α"
-    },
-    {
-      "id": "derivation-chain",
-      "description": "Complete chain: S_grid → E-L → WKB → E ∝ √g → BE → μ(g)"
+      "id": "P2",
+      "statement": "Sub-kpc dispersion signature: local wave/perturbation speeds follow \u03c9^2(k,g) = [(kappa_0 + alpha g)/m_eff] k^2 (or its lattice form), predicting a \u221ag scaling of phase speed at fixed k in regions where alpha g \u226b kappa_0.",
+      "falsifiable_by": "Measurements of small-scale fluctuation spectra (e.g., HI/ionized-gas waves, stellar vertical oscillations) across environments with different g showing no \u221ag dependence (or a conflicting g or \u03a6 dependence) at fixed k."
     }
   ],
+  "kill_criteria": [
+    "KC1: Robust, bias-controlled galaxy data demonstrate that the preferred screening form is \u00b5(g) = 1/(exp(g/a0) \u2212 1) (linear g in the exponent) and significantly exclude the \u221ag form across diverse systems at \u22655\u03c3.",
+    "KC2: Direct probes of local dispersion (or analogous laboratory/astrophysical wave phenomena) show \u03c9 \u221d g (or \u03c9 \u221d |\u03a6| or \u03c1) rather than \u03c9 \u221d \u221ag in regimes where \u03b1 g \u226b \u03ba0, contradicting the gradient-coupling theorem.",
+    "KC3: Clear, reproducible departures from g-only universality: systems matched in local acceleration g but with different density profiles exhibit systematically different \u00b5 beyond established scatter, implying dependence on \u03c1, \u03a6, or \u2207\u00b2\u03a6 at leading order.",
+    "KC4: Inferred stiffness mapping falsifies \u03ba_eff(x) = \u03ba0 + \u03b1 g(x): measurements favor zero or opposite-sign correlation between effective stiffness and g, or require leading-order operators other than |\u2207\u03a6|(\u2207\u03be)\u00b2.",
+    "KC5: Strong constraints from rotation curves and vertical dynamics yield kappa_0/(alpha a_0) \u2265 1, placing the crossover at or above a0 and removing the gravitational regime where E \u221d \u221ag should hold."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "grid-microphysics",
+      "doi": "10.6084/m9.figshare.31878760",
+      "role": "builds_on"
+    },
+    {
+      "id": "covariant-eft",
+      "doi": "10.6084/m9.figshare.31878334",
+      "role": "builds_on"
+    },
+    {
+      "id": "efc-screening",
+      "doi": "10.6084/m9.figshare.31940469",
+      "role": "informs"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Gradient_Coupled_Grid_Action.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "grid_action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/grid_action.py",
+    "data": "data/grid_action_data.json",
+    "demo": "examples/demo_grid_action.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31941465",
+  "subtitle": "Minimal Lagrangian Derivation of E \u221d \u221ag",
+  "framework": "Energy-Flow Cosmology (EFC)",
+  "framework_version": "3.7",
+  "license": "CC-BY-4.0",
+  "abstract": "Derives the EFC screening relation E \u221d \u221ag from a minimal three-term Lagrangian S_grid. The gradient coupling \u00bd\u03b1|\u2207\u03a6|(\u2207\u03be)\u00b2 produces an effective stiffness \u03ba_eff = \u03ba\u2080 + \u03b1g, yielding a local dispersion relation whose gravitational-regime limit recovers E \u221d \u221ag as a theorem. Operator uniqueness is established by systematically eliminating four alternative couplings.",
+  "key_equations": {
+    "grid_action": "S_grid = \u222b dt d\u00b3x [\u00bdm_eff(\u2202_t \u03be)\u00b2 \u2212 \u00bd\u03ba\u2080(\u2207\u03be)\u00b2 \u2212 \u00bd\u03b1|\u2207\u03a6|(\u2207\u03be)\u00b2]",
+    "effective_stiffness": "\u03ba_eff(x) = \u03ba\u2080 + \u03b1 g(x)",
+    "dispersion": "\u03c9\u00b2(k,g) = (\u03ba\u2080 + \u03b1g)/m_eff \u00b7 k\u00b2",
+    "theorem_1": "E = \u210f\u03c9 \u221d \u221ag  (when \u03b1g \u226b \u03ba\u2080)",
+    "crossover": "g_cross = \u03ba\u2080/\u03b1",
+    "hamiltonian": "H = \u03a3_k \u210f\u03c9_k (a\u2020_k a_k + \u00bd)",
+    "thermal_occupation": "\u27e8n_k\u27e9 = 1/(exp(\u210f\u03c9_k/k_BT) \u2212 1)"
+  },
   "predictions": [
     {
       "id": "P1",
-      "description": "Bare stiffness bound: κ₀/(αa₀) ≪ 1",
+      "description": "Bare stiffness bound: \u03ba\u2080/(\u03b1a\u2080) \u226a 1",
       "status": "testable"
     },
     {
@@ -102,17 +190,5 @@
         "doi": "10.6084/m9.figshare.31224466"
       }
     ]
-  },
-  "files": {
-    "pdf": "EFC_Gradient_Coupled_Grid_Action.pdf",
-    "readme": "README.md",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "grid_action.jsonld",
-    "citations": "citations.bib",
-    "source": "src/grid_action.py",
-    "data": "data/grid_action_data.json",
-    "demo": "examples/demo_grid_action.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31941465"
+  }
 }

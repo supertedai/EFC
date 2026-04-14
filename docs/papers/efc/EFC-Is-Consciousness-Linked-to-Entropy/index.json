@@ -1,20 +1,73 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Is-Consciousness-Linked-to-Entropy",
-  "title": "EFC — Is Consciousness Linked to Entropy?",
+  "title": "EFC \u2014 Is Consciousness Linked to Entropy?",
+  "description": "Conceptual paper proposing that consciousness emerges at the interface between low-entropy order and high-entropy chaos sustained by continuous energy flow. It frames consciousness as an adaptive, information-efficient process in non-equilibrium systems and outlines empirical, theoretical, and artificial-system avenues to test correlations among energy flow, entropy production, and conscious function.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098347",
+  "keywords": [
+    "Consciousness",
+    "Entropy",
+    "Energy Flow",
+    "Information Processing",
+    "Thermodynamics",
+    "Complex Systems",
+    "Informational Efficiency",
+    "Neural Entropy",
+    "Metabolic Rate",
+    "Order\u2013Chaos Balance",
+    "Emergence",
+    "Artificial Neural Networks"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Consciousness is hypothesized to arise in non-equilibrium systems where sustained energy flow maintains ordered structure while entropy provides variability, yielding maximally efficient information processing at the order\u2013chaos interface.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Across organisms and tasks, conscious states will positively correlate with both energy consumption (e.g., brain metabolic rate) and neural entropy/variability, reflecting a balance between order and randomness.",
+      "falsifiable_by": "Large-scale studies showing no positive correlation (or a robust negative correlation) between validated consciousness markers and concurrent measures of metabolic rate and signal entropy after controlling for arousal, task difficulty, and anatomy."
+    },
+    {
+      "id": "P2",
+      "statement": "Artificial neural systems will exhibit maximal adaptability and learning at intermediate (balanced) levels of injected noise/entropy rather than at the extremes.",
+      "falsifiable_by": "Benchmarks across architectures and tasks demonstrating strictly monotonic performance with noise (no interior optimum) or consistent optima at zero or maximal noise."
+    },
+    {
+      "id": "P3",
+      "statement": "Sustained consciousness requires continuous energy flow far from thermodynamic equilibrium.",
+      "falsifiable_by": "Demonstration of sustained, reportable conscious processing in a closed, near-equilibrium system with negligible energy throughput over relevant timescales."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Demonstrate sustained, reportable conscious processing in a closed, near-equilibrium system with negligible energy throughput, contradicting the need for continuous energy flow.",
+    "KC2: Show that validated neural/behavioral markers of consciousness are uncorrelated or negatively correlated with both metabolic rate and neural entropy across species and tasks after appropriate controls.",
+    "KC3: Show that modulating entropy/noise over wide ranges in biological or artificial networks leaves adaptability, learning, and consciousness-related metrics unchanged (no dependence on balance between order and randomness).",
+    "KC4: Provide robust evidence that information-processing efficiency (e.g., bits per joule, predictive coding efficiency) is systematically lower in conscious states than in matched unconscious or automated states across multiple modalities and tasks."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Is-Consciousness-Linked-to-Entropy.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098347",
   "path": "docs/papers/efc/EFC-Is-Consciousness-Linked-to-Entropy",
   "pdf": "EFC-Is-Consciousness-Linked-to-Entropy.pdf",
   "md": "EFC-Is-Consciousness-Linked-to-Entropy.md",
-  "keywords": [
-    "EFC",
-    "Consciousness",
-    "Entropy",
-    "Information Flow",
-    "Energy Flow",
-    "Cognitive Emergence"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098347",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098347"
+  "type": "paper"
 }

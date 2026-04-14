@@ -1,20 +1,13 @@
 {
-  "paper_id": "efc-screening-rar-validation",
+  "$schema": "./schema.json",
+  "id": "energy-flow-cosmology-empirical-validation-of-the-efc-screening-model-track-1",
   "title": "Energy-Flow Cosmology: Empirical Validation of the EFC Screening Model Against the Radial Acceleration Relation",
-  "short_title": "EFC Screening Model Validation",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Symbiose Research, Sandnes, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
+  "description": "This paper empirically tests the Energy-Flow Cosmology (EFC) screening model against the SPARC Radial Acceleration Relation (RAR), obtaining k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, and intrinsic scatter \u22480.14 dex via an unbinned likelihood with bootstrap uncertainties. It extends the analysis to KiDS-1000 weak lensing showing a substantial likelihood improvement (\u0394[-2 ln L] = \u221250.9) and demonstrates a cross-scale consistency through the phase-gain C = k/a_G = 4.4 \u00b1 0.6 with a_G independently inferred from the H0 tension.",
   "version": "v2.0",
-  "date": "2026-03",
+  "date": "2026-03-01",
   "doi": "10.6084/m9.figshare.31940469",
-  "status": "working_paper",
-  "framework": "EFC",
   "keywords": [
+    "Energy-Flow Cosmology",
     "radial acceleration relation",
     "RAR",
     "SPARC",
@@ -26,10 +19,95 @@
     "phase-gain",
     "modified gravity"
   ],
-  "abstract": "Multi-scale empirical validation of the EFC screening model: SPARC RAR fit (k=0.415, g†=2.51e-10 m/s², sigma_int~0.14 dex), KiDS-1000 lensing (Delta(-2lnL)=-50.9), Bullet Cluster entropy-gradient interpretation, and H0 tension via a_G=0.094. Phase-gain C=k/a_G=4.4 connects galactic and cosmological scales.",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "efc_screening_rar": {
+      "latex": "\\ln \\mu = k \\, \\ln\\!\\left(1 + \\frac{g^{\\dagger}}{g_{\\rm bar}}\\right) \\quad \\Leftrightarrow \\quad \\mu = \\left(1 + \\frac{g^{\\dagger}}{g_{\\rm bar}}\\right)^{k}",
+      "description": "EFC screening form for the RAR, where \\mu = g_{\\rm obs}/g_{\\rm bar}, k is the screening exponent, and g^{\\dagger} is the transition acceleration scale."
+    },
+    "lensing_response": {
+      "latex": "P_{\\rm EFC}(k,z) = P_{\\Lambda\\mathrm{CDM}}(k,z)\\, \\Sigma^2(k,z)",
+      "description": "Phenomenological regime-activated lensing response used to fit KiDS-1000 cosmic shear, where \\Sigma(k,z) encodes late-time, scale-dependent enhancement."
+    },
+    "geff_entropy": {
+      "latex": "G_{\\rm eff}(S) = G_0 \\exp\\!\\left[a_G\\, \\Delta \\Phi(S)\\right]",
+      "description": "Entropy-gradient modulation of the effective gravitational coupling; a_G is a universal coupling inferred from H0 tension analyses."
+    },
+    "effective_potential": {
+      "latex": "\\Phi_{\\rm eff} = \\Phi_N + \\alpha \\, \\nabla S",
+      "description": "Effective potential including an entropy-gradient contribution (qualitative mechanism applied to merging clusters such as the Bullet Cluster)."
+    }
+  },
+  "key_results": {
+    "main_finding": "The EFC screening model fits the SPARC RAR with k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, \u03c3_int \u2248 0.14 dex, achieves \u0394(\u22122 ln L) = \u221250.9 against \u039bCDM in KiDS-1000, and yields a cross-scale phase-gain C = 4.4 \u00b1 0.6 consistent with an independently inferred a_G = 0.094 \u00b1 0.01.",
+    "delta_chi2": -50.9,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "k (screening exponent)",
+      "g_dagger (transition acceleration)",
+      "sigma_int (intrinsic scatter in ln mu)",
+      "a_G (universal coupling from H0 analysis)",
+      "C = k/a_G (phase-gain)",
+      "alpha_L2 (lensing coupling for KiDS-1000)"
+    ],
+    "datasets_used": [
+      "SPARC RAR (174 galaxies; 3264 data points; Q \u2264 2; i > 30\u00b0)",
+      "KiDS-1000 cosmic shear two-point functions (1006 deg^2)",
+      "H0 tension inputs (SH0ES vs Planck)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In merging clusters with strong shocks (e.g., Bullet Cluster analogs), lensing mass peaks will preferentially align with collisionless galaxy concentrations and be offset from the shocked gas peak by O(100 kpc), typically ~150 kpc.",
+      "falsifiable_by": "Joint weak+strong lensing reconstructions with X-ray/SZ pressure maps; a consistent coincidence of mass and gas peaks within <50 kpc across such systems would falsify."
+    },
+    {
+      "id": "P2",
+      "statement": "Tomographic cosmic shear will show a stronger low-z enhancement relative to \u039bCDM than at high z, consistent with late-time activation of \u03a3(k,z).",
+      "falsifiable_by": "Stage-IV (Euclid, Rubin/LSST) shear analyses; absence of preferential low-z deviation with \u03b1_L2 consistent with 0 \u00b1 0.02 would falsify."
+    },
+    {
+      "id": "P3",
+      "statement": "Independent future estimates of k (from expanded RAR samples) and a_G (from H0/growth probes) will maintain C = k/a_G within 4.4 \u00b1 0.6.",
+      "falsifiable_by": "If |C \u2212 4.4| > 1.8 (\u22483\u03c3) using independent determinations of k and a_G, the cross-scale consistency is violated."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A SPARC-quality or larger RAR dataset, with robust systematics and unbinned likelihood including intrinsic scatter, rules out the functional form ln mu = k ln(1 + g\u2020/g_bar) (strong residual curvature) with \u0394BIC \u2265 10 in favor of alternative forms.",
+    "KC2: Recovered screening exponent k persistently falls outside 0.30\u20130.55 or the required intrinsic scatter exceeds 0.25 dex after consistent treatment of measurement uncertainties and quality cuts.",
+    "KC3: Independent constraints on a_G yield a phase-gain C = k/a_G deviating from 4.4 by more than 3\u03c3 (i.e., |C \u2212 4.4| > 1.8) when combined with updated k from RAR analyses.",
+    "KC4: Tomographic weak-lensing analyses (KiDS Legacy, HSC Y3/Y6, DES Y6, Euclid, LSST) find no late-time lensing activation: \u03b1_L2 consistent with 0 \u00b1 0.02 and no improvement over \u039bCDM (|\u0394[\u22122 ln L]| \u2264 6) after accounting for model complexity.",
+    "KC5: In shock-dominated cluster mergers (Mach \u2273 2), stacked lensing maps show mass peaks tracking X-ray gas peaks with <50 kpc offsets rather than galaxy concentrations, contradicting the entropy-gradient mechanism."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940469",
+  "paper_id": "efc-screening-rar-validation",
+  "short_title": "EFC Screening Model Validation",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Symbiose Research, Sandnes, Norway",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "status": "working_paper",
+  "framework": "EFC",
+  "abstract": "Multi-scale empirical validation of the EFC screening model: SPARC RAR fit (k=0.415, g\u2020=2.51e-10 m/s\u00b2, sigma_int~0.14 dex), KiDS-1000 lensing (Delta(-2lnL)=-50.9), Bullet Cluster entropy-gradient interpretation, and H0 tension via a_G=0.094. Phase-gain C=k/a_G=4.4 connects galactic and cosmological scales.",
   "screening_model": {
-    "equation": "ln mu = k * ln(1 + g†/g_bar)",
-    "equivalent": "mu = (1 + g†/g_bar)^k",
+    "equation": "ln mu = k * ln(1 + g\u2020/g_bar)",
+    "equivalent": "mu = (1 + g\u2020/g_bar)^k",
     "parameters": {
       "k": {
         "value": 0.415,
@@ -107,7 +185,7 @@
   "closure_conjectures": [
     {
       "id": "CC1",
-      "formula": "g† = c*H0/e",
+      "formula": "g\u2020 = c*H0/e",
       "H0_predicted": "70.2 +/- 16.8 km/s/Mpc",
       "status": "consistent but imprecise"
     },
@@ -149,7 +227,7 @@
     },
     {
       "id": "F2",
-      "condition": "g† inconsistent with c*H0/e at >3 sigma with improved precision"
+      "condition": "g\u2020 inconsistent with c*H0/e at >3 sigma with improved precision"
     },
     {
       "id": "F3",
@@ -194,6 +272,5 @@
       "doi": "10.6084/m9.figshare.31223908",
       "topic": "Unified RAR + H0 tension"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940469"
+  ]
 }

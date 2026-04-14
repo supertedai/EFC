@@ -1,30 +1,128 @@
 {
+  "$schema": "./schema.json",
   "id": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
   "title": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology",
+  "description": "Introduces a state-dependent gravitational response surface R(k,S) that extends EFC phenomenology from time/redshift dependence to dependence on a structural maturity variable S. The paper unifies prior \u00b5(a) and \u00b5(k,z) approaches, defines S operationally from the nonlinear-to-linear variance ratio, and formulates a falsifiable framework where a single global surface must describe all late-universe probes. It specifies DES Y6-oriented falsification criteria and posits that the L1\u2192L2 transition explains the S8 tension.",
+  "version": "1.0",
+  "date": "2026-01-30",
+  "doi": "10.6084/m9.figshare.31211437",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Regime Response Surface",
+    "Modified Gravity",
+    "S8 tension",
+    "Structure formation",
+    "Gravitational coupling",
+    "Cosmological perturbations",
+    "DES Y6",
+    "Weak lensing",
+    "L1\u2013L2 transition",
+    "Tomography"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "transition_estimator_DeltaF": {
+      "latex": "\\Delta F \\equiv \\int W(a)\\,[\\mu(a)-1]\\, d\\ln a",
+      "description": "Regime-dependent transition strength integrating deviations from GR over the observational sensitivity window."
+    },
+    "modified_Poisson": {
+      "latex": "k^2 \\Phi = -4\\pi G a^2 \\, \\mu(k,z) \\, \\bar{\\rho} \\, \\delta",
+      "description": "Operational closure for EFC in standard perturbation theory; \u00b5 modifies the effective gravitational coupling in the Poisson equation."
+    },
+    "state_variable_S_def": {
+      "latex": "S(z) \\equiv \\ln\\!\\left[\\frac{\\sigma^2(R_8,z)}{\\sigma_{\\rm lin}^2(R_8,z)}\\right]",
+      "description": "Structural maturity variable measuring accumulated nonlinear structure relative to linear theory at scale R8."
+    },
+    "S_operational": {
+      "latex": "S(z) = \\ln\\!\\left[\\frac{\\sigma_8^2(z)}{\\sigma_{8,\\rm lin}^2(z)}\\right] = \\ln\\!\\left[\\frac{D^2(z)\\,\\sigma_8^2(z=0)}{D_{\\rm lin}^2(z)\\,\\sigma_8^2(z=0)}\\right]",
+      "description": "Operational form for S using growth factors and the conventional \u03c38 normalization."
+    },
+    "mu_response_surface": {
+      "latex": "\\mu(k,S) = 1 + R(k,S)",
+      "description": "Defines the regime response surface R(k,S) as deviations of the effective gravitational coupling from GR."
+    },
+    "R_Taylor_expansion": {
+      "latex": "R(k,S) = R_0\\,\\Big[ 1 + a\\,\\ln\\!\\left(\\frac{k}{k_0}\\right) + b\\,(S - S_0) + c\\,\\ln\\!\\left(\\frac{k}{k_0}\\right)(S - S_0) \\Big]",
+      "description": "Local first-order phenomenological expansion of the response surface around a reference point (k0,S0), capturing scale, state, and interaction terms."
+    }
+  },
+  "key_results": {
+    "main_finding": "A single, structure-dependent response surface R(k,S) with \u00b5\u22481 at S\u22480 and \u00b5>1 for S>0 can unify late-universe gravitational deviations and attributes the S8 tension to the L1\u2192L2 transition rather than probe-specific systematics.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "R0",
+      "a",
+      "b",
+      "c",
+      "k0",
+      "S0"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Tomographic bins of DES Y6 3\u00d72pt mapped to S(z) can be jointly fit by a single smooth R(k,S) surface (shared {R0,a,b,c}) without probe- or bin-specific \u00b5.",
+      "falsifiable_by": "A joint \u00b5(k,S) analysis of DES Y6 showing that no single parameter set fits all tomographic bins simultaneously within acceptable goodness-of-fit."
+    },
+    {
+      "id": "P2",
+      "statement": "Probes that sample overlapping (k,S) regions (e.g., weak lensing and RSD) will infer the same sign of deviation R(k,S) across those overlaps.",
+      "falsifiable_by": "Observations where lensing prefers \u00b5<1 while RSD prefers \u00b5>1 (or vice versa) over the same (k,S) ranges after consistent systematics treatment."
+    },
+    {
+      "id": "P3",
+      "statement": "The redshift evolution of the S8 offset follows the predicted S-gradient: as S increases with decreasing z, the inferred deviation remains consistent with the same R(k,S) surface.",
+      "falsifiable_by": "Tomographic S8(z) measurements whose trend with S cannot be accommodated by any smooth R(k,S) consistent with other probes."
+    },
+    {
+      "id": "P4",
+      "statement": "CMB-era (S\u22480) observables require R(k,S\u22480)\u22480, i.e., \u00b5\u22481 at recombination.",
+      "falsifiable_by": "Robust CMB analyses indicating statistically significant \u00b5\u22601 at recombination beyond allowed early-universe bounds."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Tomographic inconsistency\u2014if DES Y6 3\u00d72pt redshift bins cannot be fit by a single R(k,S) surface (shared {R0,a,b,c}) within joint constraints, the framework is falsified.",
+    "KC2: Opposite-sign trend\u2014if two late-universe probes sampling the same (k,S) region require opposite signs of R (one \u00b5>1, another \u00b5<1) after harmonized systematics, the single-surface hypothesis fails.",
+    "KC3: S-gradient failure\u2014if the measured redshift evolution of S8 cannot be reconciled with any monotonic S-driven response consistent with other probes, the S-controlled response is invalidated.",
+    "KC4: Early-universe violation\u2014if CMB data demand \u00b5\u22601 (R\u22600) at S\u22480 at high significance, the regime separation (L1 with GR) is ruled out."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "fugaku-desi-transition-metric",
+      "doi": "10.6084/m9.figshare.31144030.v1",
+      "role": "foundation: regime-dependent \u00b5(a) transition estimator"
+    },
+    {
+      "id": "efc-weak-lensing-phenomenology",
+      "doi": "10.6084/m9.figshare.31188193.v1",
+      "role": "foundation: operational \u00b5(k,z) closure for lensing"
+    }
+  ],
+  "files": {
+    "pdf": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31211437",
   "subtitle": "A Unified Framework for Structure-Dependent Gravitational Response",
   "path": "docs/papers/efc/R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology",
   "pdf": "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology.pdf",
   "md": "R_kS_Regime_Response_Surface.md",
   "tex": "R_kS_paper.tex",
-  "doi": "10.6084/m9.figshare.31211437",
-  "keywords": [
-    "EFC",
-    "Regime Response Surface",
-    "Modified Gravity",
-    "S8 Tension",
-    "Structure Formation",
-    "Gravitational Coupling",
-    "Cosmological Perturbations",
-    "DES Y6",
-    "Weak Lensing",
-    "L1-L2 Transition"
-  ],
   "concepts": {
     "R_k_S": "Regime response function encoding gravitational deviation from GR as function of scale k and structural state S",
     "S_state_variable": "Structural maturity parameter measuring nonlinear structure accumulation",
-    "mu_modification": "μ(k,S) = 1 + R(k,S) modifying Poisson equation",
-    "L1_regime": "CMB epoch with S≈0 and μ≈1 (standard GR)",
-    "L2_regime": "Late universe with S>0 and μ>1 (enhanced growth)"
+    "mu_modification": "\u03bc(k,S) = 1 + R(k,S) modifying Poisson equation",
+    "L1_regime": "CMB epoch with S\u22480 and \u03bc\u22481 (standard GR)",
+    "L2_regime": "Late universe with S>0 and \u03bc>1 (enhanced growth)"
   },
   "falsification_criteria": [
     "Tomographic consistency: All redshift bins must follow single R(k,S) surface",
@@ -36,8 +134,5 @@
     "EFC Weak Lensing Phenomenology (doi:10.6084/m9.figshare.31188193.v1)"
   ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "date": "2026-01-30",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31211437"
+  "type": "paper"
 }

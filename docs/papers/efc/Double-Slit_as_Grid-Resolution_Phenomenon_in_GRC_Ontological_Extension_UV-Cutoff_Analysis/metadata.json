@@ -1,96 +1,33 @@
 {
-  "package_format": "efc-ai-friendly-v1",
-  "paper_id": "EFC-GRC-DoubleSlit-v02",
   "title": "Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology",
-  "subtitle": "Ontological Extension, UV-Cutoff Analysis, and Open Gaps toward Quantum Testability",
+  "short_id": "double-slit-as-grid-resolution-phenomenon-in-grc-ontological-extension-uv-cutoff-analysis",
+  "version": "v0.2 (Revised)",
+  "date": "2026-03-08",
   "author": {
     "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095"
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "version": "v0.2",
-  "date": "2026-03-08",
-  "status": "working_note",
   "license": "CC-BY-4.0",
-  "topics": [
-    "grid-rendering cosmology",
+  "doi": "10.6084/m9.figshare.31564129",
+  "abstract": "Working note extending Grid-Rendering Cosmology (GRC) to the double-slit experiment with an exact ultraviolet (UV) cutoff formulation arising from a discrete grid scale lg. It derives the deviation from standard QM as an omitted high-k band and shows that for Gaussian slit profiles the deviation is exponentially suppressed, withdrawing a prior polynomial ansatz. The paper relocates testable distinctions to entropy-sensitive decoherence via a clarity function C(S) and to higher-order measurement statistics, noting an open gap in the operational definition of local entropy S.",
+  "keywords": [
+    "Grid-Rendering Cosmology",
     "double-slit",
     "UV cutoff",
-    "quantum uncertainty",
+    "grid resolution",
     "discrete geometry",
-    "entropy decoherence"
+    "entropy-sensitive decoherence",
+    "clarity function",
+    "Gaussian aperture",
+    "interference",
+    "band-limited amplitude",
+    "higher-order statistics",
+    "quantum foundations"
   ],
-  "ai_metadata": {
-    "ai_parseable": true,
-    "structured_data": [
-      "index.json",
-      "data/model_parameters.json"
-    ],
-    "executable_code": [
-      "src/grc_double_slit.py",
-      "examples/double_slit_demo.py"
-    ],
-    "linked_data": [
-      "EFC-GRC-DoubleSlit.jsonld"
-    ],
-    "validation": [
-      "schema.json"
-    ]
-  },
-  "files": [
-    {
-      "path": "README.md",
-      "type": "documentation",
-      "format": "markdown"
-    },
-    {
-      "path": "index.json",
-      "type": "structured_data",
-      "format": "json"
-    },
-    {
-      "path": "schema.json",
-      "type": "validation",
-      "format": "json-schema"
-    },
-    {
-      "path": "metadata.json",
-      "type": "metadata",
-      "format": "json"
-    },
-    {
-      "path": "EFC-GRC-DoubleSlit.jsonld",
-      "type": "linked_data",
-      "format": "json-ld"
-    },
-    {
-      "path": "citations.bib",
-      "type": "references",
-      "format": "bibtex"
-    },
-    {
-      "path": "src/__init__.py",
-      "type": "source",
-      "format": "python"
-    },
-    {
-      "path": "src/grc_double_slit.py",
-      "type": "source",
-      "format": "python"
-    },
-    {
-      "path": "data/model_parameters.json",
-      "type": "data",
-      "format": "json"
-    },
-    {
-      "path": "examples/double_slit_demo.py",
-      "type": "example",
-      "format": "python"
-    }
-  ],
-  "dependencies": {
-    "python": ">=3.8",
-    "numpy": ">=1.20"
+  "files": {
+    "pdf": "Double-Slit_as_Grid-Resolution_Phenomenon_in_GRC_Ontological_Extension_UV-Cutoff_Analysis.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31564129",

@@ -1,32 +1,118 @@
 {
-  "paper_id": "lcdm-special-case",
-  "title": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
-  "short_title": "ΛCDM as Special Case of EFC",
+  "$schema": "./schema.json",
+  "id": "\u03bbcdm-as-a-special-case-of-energy-flow-cosmology",
+  "title": "\u039bCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
+  "description": "Presents Energy-Flow Cosmology (EFC) as a unified framework in which \u039bCDM arises as the special-case limit in the linear, homogeneous, high-density regime (L0/L1), derived directly from the EFC variational action. Using DESI DR2, the background coupling \u03b1 = \u22120.14 \u00b1 0.21 is found consistent with \u039bCDM, while the paper delineates testable beyond-\u039bCDM predictions in L2/L3 including a perturbation-sector survival valley, a universal screening parameter for rotation curves, and a deep-void ISW sign-flip.",
   "version": "1.0",
   "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.31943361",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "\u039bCDM",
+    "special-case reduction",
+    "regime structure L0\u2013L3",
+    "DESI DR2",
+    "entropy gradients",
+    "modified Poisson",
+    "gravitational slip",
+    "Graph-AQUAL",
+    "SPARC rotation curves",
+    "screening parameter",
+    "void ISW sign-flip"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "license": "CC-BY-4.0",
-  "abstract": "Energy-Flow Cosmology (EFC) treats the universe as a continuous energy-flow system governed by entropy gradients. This paper demonstrates that the standard ΛCDM model arises as the special-case limit of EFC in the linear, homogeneous, high-density regime (L0/L1), analogous to the ideal gas law emerging from statistical mechanics. DESI DR2 multi-probe analysis confirms this limit empirically: α = −0.14 ± 0.21 (0.65σ from null). Beyond L0/L1, EFC produces testable predictions that ΛCDM does not.",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "ΛCDM",
-    "special case",
-    "regime structure",
-    "DESI DR2",
-    "entropy gradients",
-    "modified gravity",
-    "perturbation survival valley",
-    "screening model",
-    "Graph-AQUAL",
-    "validation ledger",
-    "falsification",
-    "gas-law analogy"
+  "core_equations": {
+    "regime_driver": {
+      "latex": "\\chi = \\ell \\, |\\nabla S| / S_*",
+      "description": "Dimensionless entropy-gradient intensity that drives regime classification; large \u03c7 indicates strong-gradient (nonlinear) behavior."
+    },
+    "constitutive_law": {
+      "latex": "E_f = -\\kappa(\\chi) \\, \\nabla S",
+      "description": "Material (transport) response of the energy-flow field to entropy gradients; \u03ba(\u03c7) encodes regime-dependent conductivity."
+    },
+    "modified_poisson": {
+      "latex": "\\nabla^2 \\Phi = 4\\pi G_N \\, \\mu(\\chi, k, z) \\, \\rho_m \\, \\delta",
+      "description": "EFC-modified Poisson equation with an effective gravitational coupling \u03bc controlling deviations from GR in structure growth."
+    },
+    "effective_mu": {
+      "latex": "\\mu(\\chi, k, z) = 1 + \\varepsilon(k) \\, F(\\chi)",
+      "description": "Scale- and regime-dependent enhancement/suppression of gravity, with \u03b5(k) anchored by the discrete gravity sector and F(\u03c7) an activation function."
+    },
+    "relativistic_action": {
+      "latex": "S_{\\rm EFC} = \\int d^4x \\, \\sqrt{-g} \\, \\left[ \\frac{F(\\phi)}{2} R - \\frac{K(\\rho)}{2} (\\nabla \\phi)^2 - V(\\phi) + \\lambda \\, C[\\phi, \\nabla \\phi] + S_m \\right]",
+      "description": "Variational action coupling an entropy-flow scalar to curvature with density-dependent stiffness and a flow constraint; yields \u03bc, \u03a3, \u03b7 dynamics with c_T = c."
+    },
+    "lcdm_limit": {
+      "latex": "K(\\rho) \\to \\infty,\\; T(a) \\to 0,\\; \\xi \\gg 1 \\; \\Rightarrow \\; \\mu,\\,\\Sigma,\\,\\eta \\to 1 \\; \\Rightarrow \\; \\text{Friedmann + Poisson}",
+      "description": "Formal reduction showing \u039bCDM as the L0/L1 limit: high density, early/linear regime, and strong acceleration suppress all EFC corrections."
+    }
+  },
+  "key_results": {
+    "main_finding": "\u039bCDM is recovered as the exact special-case limit of EFC in L0/L1, and DESI DR2 yields \u03b1 = \u22120.14 \u00b1 0.21 (0.65\u03c3 from null), consistent with \u039bCDM in the background sector.",
+    "delta_chi2": null,
+    "significance_sigma": 0.65,
+    "parameters_tested": [
+      "alpha",
+      "mu",
+      "Sigma",
+      "eta",
+      "k"
+    ],
+    "datasets_used": [
+      "DESI DR2 multi-probe",
+      "SPARC rotation curves"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Deep cosmic voids (\u03b4 \u2272 \u22120.8) produce an ISW temperature sign-flip relative to \u039bCDM.",
+      "falsifiable_by": "Stacked CMB\u2013void cross-correlation using DESI/SDSS void catalogs and Planck/Simons Observatory maps."
+    },
+    {
+      "id": "P2",
+      "statement": "A narrow perturbation-sector survival valley with \u03bc \u2248 0.93\u20130.96, \u03a3 \u2248 1.03\u20131.07, and \u03b7 \u2260 1 (\u22481.10) at intermediate scales.",
+      "falsifiable_by": "Joint weak-lensing + galaxy clustering + RSD tomography (e.g., DESI, KiDS, HSC, LSST, Euclid) measuring {\u03bc, \u03a3, \u03b7} across 0.1 < k < 0.5 h Mpc\u207b\u00b9 and 0.3 < z < 1."
+    },
+    {
+      "id": "P3",
+      "statement": "Galaxy rotation curves can be fit without particle dark matter using a single universal screening parameter k \u2248 0.415 \u00b1 0.029.",
+      "falsifiable_by": "High-precision rotation curves for new, homogeneous samples (SPARC-like) testing the universality and predicted scatter of k."
+    }
   ],
+  "kill_criteria": [
+    "KC1: No ISW sign-flip detected for deep voids (\u03b4 \u2264 \u22120.8) at >5\u03c3 in stacked CMB\u2013void analyses over 50\u2013200 h\u207b\u00b9 Mpc scales would falsify EFC\u2019s gradient-driven regime behavior.",
+    "KC2: Stage-IV joint analyses constrain \u03bc = 1.00 \u00b1 0.01, \u03a3 = 1.00 \u00b1 0.02, and \u03b7 = 1.00 \u00b1 0.02 across 0.1 < k < 0.5 h Mpc\u207b\u00b9 and 0.3 < z < 0.8, excluding the survival valley (\u03bc \u2248 0.94, \u03a3 \u2248 1.05, \u03b7 \u2248 1.10) at >5\u03c3, thereby falsifying the perturbation-sector mechanism.",
+    "KC3: A large, homogeneous SPARC-quality sample cannot be fit with a single universal k (post-systematics intrinsic scatter > 25%) or yields \u0394AIC > 50 in favor of CDM/NFW over EFC\u2019s screening model, falsifying the discrete gravity/screening sector.",
+    "KC4: Failure of exact GR recovery in the Solar System (e.g., measured |\u03b3 \u2212 1| > 1e\u22125 or |\u03b2 \u2212 1| > 1e\u22125 attributable to EFC corrections) would falsify the L3 limit of the theory.",
+    "KC5: Independent laboratory/astrophysical bounds require \u03b5(k\u21920) far below the Graph-AQUAL anchor (e.g., \u03b5(k\u21920) \u226a C^2 \u2212 1 \u2248 4.4), incompatible with the amplitude needed for EFC\u2019s L2 phenomenology."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "\u039bCDM_as_a_Special_Case_of_Energy-Flow_Cosmology.pdf",
+    "readme": "README.md",
+    "index": "index.json",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "LCDM-special-case.jsonld",
+    "citations": "citations.bib",
+    "src_init": "src/__init__.py",
+    "src_module": "src/lcdm_special_case.py",
+    "data": "data/lcdm_special_case_data.json",
+    "demo": "examples/demo_lcdm_special_case.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31943361",
+  "paper_id": "lcdm-special-case",
+  "short_title": "\u039bCDM as Special Case of EFC",
+  "license": "CC-BY-4.0",
+  "abstract": "Energy-Flow Cosmology (EFC) treats the universe as a continuous energy-flow system governed by entropy gradients. This paper demonstrates that the standard \u039bCDM model arises as the special-case limit of EFC in the linear, homogeneous, high-density regime (L0/L1), analogous to the ideal gas law emerging from statistical mechanics. DESI DR2 multi-probe analysis confirms this limit empirically: \u03b1 = \u22120.14 \u00b1 0.21 (0.65\u03c3 from null). Beyond L0/L1, EFC produces testable predictions that \u039bCDM does not.",
   "track": "Synthesis",
   "regime": [
     "L0",
@@ -37,7 +123,7 @@
   "sections": [
     {
       "number": 1,
-      "title": "Introduction: Why ΛCDM Is Not Fundamental"
+      "title": "Introduction: Why \u039bCDM Is Not Fundamental"
     },
     {
       "number": 2,
@@ -45,7 +131,7 @@
     },
     {
       "number": 3,
-      "title": "The Regime Structure: L0–L3"
+      "title": "The Regime Structure: L0\u2013L3"
     },
     {
       "number": 4,
@@ -53,7 +139,7 @@
     },
     {
       "number": 5,
-      "title": "Where EFC Goes Beyond ΛCDM"
+      "title": "Where EFC Goes Beyond \u039bCDM"
     },
     {
       "number": 6,
@@ -78,60 +164,6 @@
     {
       "number": 11,
       "title": "Discussion"
-    }
-  ],
-  "key_results": [
-    {
-      "id": "lcdm-reduction",
-      "description": "ΛCDM reduction: K(ρ)→∞, T(a)→0, ξ≫1 ⟹ μ,Σ,η→1 ⟹ Friedmann+Poisson",
-      "equation": 6,
-      "type": "structural"
-    },
-    {
-      "id": "desi-dr2-alpha",
-      "description": "DESI DR2 background coupling",
-      "value": -0.14,
-      "uncertainty": 0.21,
-      "unit": "dimensionless",
-      "significance_sigma": 0.65,
-      "delta_AIC": 1.59
-    },
-    {
-      "id": "perturbation-valley",
-      "description": "Perturbation-sector survival valley",
-      "mu_range": [
-        0.93,
-        0.96
-      ],
-      "sigma_range": [
-        1.03,
-        1.07
-      ],
-      "eta_neq_1": true
-    },
-    {
-      "id": "screening-k",
-      "description": "SPARC screening parameter",
-      "value": 0.415,
-      "uncertainty": 0.029,
-      "g_dagger": 2.51e-10,
-      "C_constant": 4.4
-    },
-    {
-      "id": "kill-tests",
-      "description": "Discrete gravity sector: 4/5 kill-tests pass",
-      "KT1": "PASS",
-      "KT2": "PASS",
-      "KT3": "OPEN",
-      "KT4": "PASS",
-      "KT5": "PARTIAL"
-    },
-    {
-      "id": "validation-ledger",
-      "description": "Validation Ledger v3.7",
-      "publications": 204,
-      "registered_tests": 100,
-      "historical_falsifications": 5
     }
   ],
   "equations": [
@@ -162,7 +194,7 @@
     },
     {
       "number": 6,
-      "name": "ΛCDM reduction",
+      "name": "\u039bCDM reduction",
       "latex": "K(\\rho)\\to\\infty, T(a)\\to 0, \\xi\\gg 1 \\Rightarrow \\mu,\\Sigma,\\eta\\to 1"
     },
     {
@@ -181,37 +213,37 @@
       "id": "N1",
       "name": "Sound horizon freedom",
       "verdict": "COLLAPSED",
-      "interpretation": "α does not survive rd freedom"
+      "interpretation": "\u03b1 does not survive rd freedom"
     },
     {
       "id": "N2",
-      "name": "σ8 sweep",
+      "name": "\u03c38 sweep",
       "verdict": "COLLAPSED",
-      "interpretation": "α unstable under σ8 variation"
+      "interpretation": "\u03b1 unstable under \u03c38 variation"
     },
     {
       "id": "N3",
       "name": "Gate freedom",
       "verdict": "COLLAPSED",
-      "interpretation": "Gate parameters absorb α signal"
+      "interpretation": "Gate parameters absorb \u03b1 signal"
     },
     {
       "id": "N4",
-      "name": "μ0 sweep",
+      "name": "\u03bc0 sweep",
       "verdict": "COLLAPSED",
-      "interpretation": "α moves < 1σ across μ0 ∈ [0.8, 1.2]"
+      "interpretation": "\u03b1 moves < 1\u03c3 across \u03bc0 \u2208 [0.8, 1.2]"
     },
     {
       "id": "N5",
       "name": "rd prior",
       "verdict": "PASS",
-      "interpretation": "corr(α, rd) ≈ 0; not rd-driven"
+      "interpretation": "corr(\u03b1, rd) \u2248 0; not rd-driven"
     },
     {
       "id": "N6",
-      "name": "Safety Δrd",
+      "name": "Safety \u0394rd",
       "verdict": "SAFETY_FAIL",
-      "interpretation": "Δrd = −0.507% trips 0.5% threshold by 0.007%"
+      "interpretation": "\u0394rd = \u22120.507% trips 0.5% threshold by 0.007%"
     },
     {
       "id": "N7",
@@ -223,31 +255,31 @@
       "id": "VG",
       "name": "Variant gravity",
       "verdict": "WEAK",
-      "interpretation": "μ-amplitude 0.06–5.5%; Δlog L_growth < 0"
+      "interpretation": "\u03bc-amplitude 0.06\u20135.5%; \u0394log L_growth < 0"
     }
   ],
   "kill_tests": [
     {
       "id": "KT1",
-      "test": "Newton recovery (ξ ≫ 1)",
+      "test": "Newton recovery (\u03be \u226b 1)",
       "status": "PASS",
-      "result": "Slopes −2.03 (Newton), −1.05 (MOND)"
+      "result": "Slopes \u22122.03 (Newton), \u22121.05 (MOND)"
     },
     {
       "id": "KT2",
-      "test": "Prefactor C (ξ ∼ 1)",
+      "test": "Prefactor C (\u03be \u223c 1)",
       "status": "PASS",
       "result": "C = 2.32 (structural; not fitted)"
     },
     {
       "id": "KT3",
-      "test": "Mass scaling β (ξ < 1)",
+      "test": "Mass scaling \u03b2 (\u03be < 1)",
       "status": "OPEN",
-      "result": "Classical β ≈ 0.29; BE predicts 0.50"
+      "result": "Classical \u03b2 \u2248 0.29; BE predicts 0.50"
     },
     {
       "id": "KT4",
-      "test": "Superposition (ξ ∼ 1)",
+      "test": "Superposition (\u03be \u223c 1)",
       "status": "PASS",
       "result": "Non-linear superposition handled"
     },
@@ -261,39 +293,25 @@
   "gas_law_analogy": {
     "effective_theory": {
       "thermodynamics": "Ideal gas law (PV = nRT)",
-      "cosmology": "ΛCDM (Friedmann + Λ)"
+      "cosmology": "\u039bCDM (Friedmann + \u039b)"
     },
     "valid_regime": {
       "thermodynamics": "Gas phase (low density, high T)",
-      "cosmology": "L0/L1 (linear, homogeneous, ξ ≫ 1)"
+      "cosmology": "L0/L1 (linear, homogeneous, \u03be \u226b 1)"
     },
     "deeper_framework": {
       "thermodynamics": "Statistical mechanics",
       "cosmology": "EFC (entropy-flow action)"
     },
     "reduction_mechanism": {
-      "thermodynamics": "Intermolecular forces → 0",
-      "cosmology": "K(ρ) → ∞, T(a) → 0, ξ ≫ 1"
+      "thermodynamics": "Intermolecular forces \u2192 0",
+      "cosmology": "K(\u03c1) \u2192 \u221e, T(a) \u2192 0, \u03be \u226b 1"
     },
     "new_predictions": {
       "thermodynamics": "Phase transitions, critical phenomena",
-      "cosmology": "μ–Σ valley, regime transitions, MOND-like emergence"
+      "cosmology": "\u03bc\u2013\u03a3 valley, regime transitions, MOND-like emergence"
     }
   },
-  "files": {
-    "pdf": "ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "LCDM-special-case.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_module": "src/lcdm_special_case.py",
-    "data": "data/lcdm_special_case_data.json",
-    "demo": "examples/demo_lcdm_special_case.py"
-  },
   "references_count": 27,
-  "consolidates": "14 months, 204 publications, 100 registered tests, 5 historical falsifications",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31943361"
+  "consolidates": "14 months, 204 publications, 100 registered tests, 5 historical falsifications"
 }

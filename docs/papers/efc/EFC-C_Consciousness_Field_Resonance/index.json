@@ -1,15 +1,11 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-c-consciousness-field-resonance",
   "title": "Consciousness as Field Resonance: From Ego-Filtered Ontology to Differentiation-Dominant Dynamics",
-  "doi": "10.6084/m9.figshare.31289806",
+  "description": "Proposes a field-based ontology of consciousness in which awareness corresponds to a differentiation-dominant resonance regime constrained by regional feedback. Re-analyzing propofol EEG (Chennu et al. 2016), the study finds spectral differentiation (Omega) tracks conscious state with a double dissociation, while global causal integration (kappa) is weak and a pre-registered multiplicative model C = Omega \u00d7 kappa is falsified. An exploratory parietal product shows a strong effect, and a negative Omega\u2013kappa correlation supports a balance (trade-off) constraint.",
   "version": "1.0",
   "date": "2026-02-08",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Sandnes, Norway"
-  },
-  "abstract": "The ontology of consciousness remains constrained by a hidden assumption: that awareness is a local property generated inside isolated systems. This paper argues that consciousness is best understood as a resonant regime within a universal dynamical field, where systems differ by their capacity to form differentiated, self-referential dynamical structures. Empirical analysis of EEG under propofol sedation shows spectral differentiation (Omega) tracks conscious state with a double dissociation. A pre-registered multiplicative model is falsified (F1). A differentiation-dominant, regionally constrained resonance model is supported.",
+  "doi": "10.6084/m9.figshare.31289806",
   "keywords": [
     "consciousness",
     "spectral entropy",
@@ -24,65 +20,85 @@
     "CEM framework",
     "resonance regime"
   ],
-  "framework": "Consciousness-Ego-Mirror (CEM)",
-  "core_equations": [
-    {
-      "name": "Spectral Differentiation",
-      "symbol": "Omega",
-      "description": "Spectral entropy measuring internal differentiation/structured complexity"
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sandnes, Norway"
+  },
+  "core_equations": {
+    "Omega_spectral_differentiation": {
+      "latex": "\\Omega",
+      "description": "Spectral differentiation (spectral entropy) indexing internal structured complexity."
     },
-    {
-      "name": "Causal Integration",
-      "symbol": "kappa",
-      "description": "Transfer entropy measuring regional causal closure"
+    "kappa_causal_integration": {
+      "latex": "\\kappa",
+      "description": "Causal integration measured via transfer entropy (regional or global)."
     },
-    {
-      "name": "Product Measure",
+    "product_measure_C": {
       "latex": "C = \\Omega \\times \\kappa",
-      "status": "FALSIFIED (F1)"
+      "description": "Pre-registered multiplicative model of consciousness (F1) \u2014 falsified in this analysis."
     },
-    {
-      "name": "Balance Constraint",
-      "latex": "\\text{corr}(\\Omega, \\kappa) < 0",
-      "description": "Trade-off between complexity and binding"
-    }
-  ],
-  "key_results": {
-    "differentiation_effect": {
-      "measure": "Omega (full band)",
-      "cohens_d": 1.5,
-      "p_value": 0.073,
-      "interpretation": "Strong - primary marker of consciousness"
-    },
-    "integration_effect": {
-      "measure": "kappa (global TE)",
-      "cohens_d": 0.42,
-      "p_value": 0.53,
-      "interpretation": "Weak, not significant"
-    },
-    "product_test_F1": {
-      "measure": "C = Omega(4-40 Hz) x kappa",
-      "cohens_d": 0.63,
-      "p_value": 0.432,
-      "status": "FALSIFIED - no improvement over Omega alone"
-    },
-    "regional_posterior": {
-      "measure": "C(parietal)",
-      "cohens_d": 2.1,
-      "p_value": 0.018,
-      "status": "Exploratory - candidate for replication"
-    },
-    "balance_signal": {
-      "measure": "corr(Omega, kappa)",
-      "value": -0.27,
-      "interpretation": "Trade-off: higher differentiation = lower integration"
-    },
-    "double_dissociation": {
-      "responsive": "+0.054 (p=0.001)",
-      "drowsy": "-0.063 (p=0.016)",
-      "interpretation": "Drug does not determine direction - consciousness does"
+    "balance_constraint": {
+      "latex": "\\mathrm{corr}(\\Omega,\\kappa) < 0",
+      "description": "Balance (trade-off) between differentiation and integration in conscious regimes."
     }
   },
+  "key_results": {
+    "main_finding": "Omega strongly tracks conscious state with a double dissociation; global kappa is weak, and the pre-registered product C = Omega \u00d7 kappa is falsified; exploratory parietal product is strong and the Omega\u2013kappa correlation is negative.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Omega (spectral entropy, full band 0.5\u201345 Hz)",
+      "Omega (delta-free 4\u201340 Hz)",
+      "kappa (global transfer entropy)",
+      "C = Omega \u00d7 kappa (global)",
+      "C(parietal) exploratory",
+      "corr(Omega, kappa)"
+    ],
+    "datasets_used": [
+      "Chennu et al. 2016 propofol EEG (N=20)",
+      "Overlap-12 subset (7 responsive, 5 drowsy; dose-matched)"
+    ],
+    "verdict": "FAIL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In independent, dose-matched propofol datasets with responsive vs drowsy subgroups, Omega (full band) will exhibit a double dissociation (responsive increases; drowsy decreases) with a large between-group effect (Cohen's d \u2273 1.0).",
+      "falsifiable_by": "Failure to observe opposite-signed Omega changes across matched responsive vs drowsy groups in at least two preregistered replications."
+    },
+    {
+      "id": "P2",
+      "statement": "Across moderate sedation at matched doses, corr(Omega, kappa) will be negative (trade-off) at the group level.",
+      "falsifiable_by": "Consistently positive corr(Omega, kappa) (> +0.2) in two or more independent, preregistered datasets."
+    },
+    {
+      "id": "P3",
+      "statement": "A parietal/posterior regional product C(parietal) = Omega \u00d7 kappa will outperform Omega alone in classifying conscious state (Cohen's d > 1.5) in a preregistered replication.",
+      "falsifiable_by": "C(parietal) failing to exceed Omega\u2019s effect size (by \u2265 0.3 d units) in a preregistered, independently collected dataset."
+    },
+    {
+      "id": "P4",
+      "statement": "Removing delta (using 4\u201340 Hz) will reduce Omega\u2019s effect size relative to full-band Omega in sedation paradigms.",
+      "falsifiable_by": "Equal or larger effect sizes for Omega(4\u201340 Hz) compared to full-band Omega in two or more independent sedation datasets."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: In at least two preregistered, independent datasets spanning anesthesia or comparable perturbations, global or regional integration metrics (e.g., transfer entropy, Granger, phi-like measures) consistently outperform Omega in predicting conscious state (each with Cohen's d \u2265 0.8) while Omega shows weak effects (|d| \u2264 0.2), and corr(Omega, kappa) is positive (> +0.2), contradicting the differentiation-dominant, balance-regime claim.",
+    "KC2: The dose-matched double dissociation for Omega fails to replicate twice (no opposite-signed changes between responsive and drowsy groups; or both groups change in the same direction), undermining the claim that consciousness, not drug level, determines Omega\u2019s direction.",
+    "KC3: A preregistered replication of the exploratory regional effect shows that C(parietal) does not exceed Omega (difference in d < 0.3) and/or reverses direction in two independent datasets, undermining the regional-feedback constraint.",
+    "KC4: Closed-loop or stimulation interventions that selectively increase kappa (integration) without increasing Omega lead to reliable increases in conscious report or behavioral responsiveness, overturning the differentiation-dominant priority.",
+    "KC5: Across diverse states (wake, NREM/REM sleep, anesthesia, psychedelics), pooled analyses demonstrate a robust positive relationship between Omega and kappa (meta-analytic r \u2265 +0.2 with p < 0.01), contradicting the balance (trade-off) constraint central to the model."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-C_Consciousness_Field_Resonance_FINAL.pdf"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31289806",
+  "abstract": "The ontology of consciousness remains constrained by a hidden assumption: that awareness is a local property generated inside isolated systems. This paper argues that consciousness is best understood as a resonant regime within a universal dynamical field, where systems differ by their capacity to form differentiated, self-referential dynamical structures. Empirical analysis of EEG under propofol sedation shows spectral differentiation (Omega) tracks conscious state with a double dissociation. A pre-registered multiplicative model is falsified (F1). A differentiation-dominant, regionally constrained resonance model is supported.",
+  "framework": "Consciousness-Ego-Mirror (CEM)",
   "empirical_pillars": [
     "Pillar 1: Differentiation is primary (Omega d=1.50, double dissociation)",
     "Pillar 2: Global integration not detected; regional integration candidate (kappa d=0.42, Parietal C d=2.10)",
@@ -140,14 +156,10 @@
     "overlap_cohort": 12,
     "paradigm": "Propofol sedation EEG"
   },
-  "files": {
-    "pdf": "EFC-C_Consciousness_Field_Resonance_FINAL.pdf"
-  },
   "related_papers": [
     "CEM-Consciousness-Ego-Mirror",
-    "L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
+    "L0\u2013L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
     "validity-aware-ai"
   ],
-  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one.",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31289806"
+  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one."
 }

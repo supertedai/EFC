@@ -1,18 +1,11 @@
 {
+  "$schema": "./schema.json",
   "id": "regime-structure-entropic-flow-ontology",
   "title": "Regime Structure and Entropic Flow Ontology in Discrete Gravity Models",
-  "short_title": "Regime Structure and Entropic Flow Ontology",
+  "description": "Formalizes a regime-based ontology for discrete entropic gravity on graphs, showing how Newtonian (UV), MOND-like (IR), and cosmological (Yukawa-screened) behaviors arise from dominance switching between gradient, bulk, and source sectors of a single functional. Clarifies the role of the cosmological constant \u039b as a bulk entropic capacity parameter that sets both the local MOND transition scale and the global screening length, all without assuming a fundamental spacetime metric.",
   "version": "1.0",
   "date": "2026-02-16",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Norway"
-  },
-  "license": "CC-BY-4.0",
-  "type": "foundational_framework",
-  "epistemic_layer": "A",
-  "epistemic_status": "Foundational framework establishing regime-based ontology for discrete entropic gravity models",
+  "doi": "10.6084/m9.figshare.31348417",
   "keywords": [
     "regime structure",
     "entropic flow ontology",
@@ -21,101 +14,105 @@
     "AQUAL",
     "MOND",
     "cosmological constant",
-    "Λ-locking",
+    "\u039b-locking",
     "bulk entropic capacity",
     "infrared screening",
-    "emergent spacetime",
-    "EFC"
+    "Yukawa screening",
+    "emergent spacetime"
   ],
-  "abstract": "Formalises the regime structure underlying discrete entropic gravity models based on graph-defined functionals. Distinct physical behaviours (UV/Newtonian, IR/MOND-like, Cosmological/Yukawa) emerge from dominance transitions between gradient, bulk, and source sectors of a discrete entropic functional. Λ functions as a bulk capacity parameter governing large-scale screening. Provides regime-based foundation without assuming a fundamental spacetime metric.",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "core_equations": {
+    "discrete_functional": {
+      "latex": "F[\\Phi] = \\sum_{\\langle i,j\\rangle} \\kappa_{ij}\\, F\\!\\left(\\frac{|\\Phi_i - \\Phi_j|}{a_0}\\right) + \\sum_i \\frac{1}{2}\\,\\mu_{\\Lambda}\\,(\\Phi_i - \\Phi_V)^2 + \\sum_i \\lambda_i\\,\\rho_i\\,\\Phi_i,\\quad F(x)=\\int_0^x y\\,\\mu(y)\\,dy",
+      "description": "Graph-defined entropic functional with gradient (nearest-neighbor), bulk (\u039b-locked), and source sectors; AQUAL kinetic integrand F(x) built from interpolating function \u03bc(x)."
+    },
+    "euler_lagrange_discrete": {
+      "latex": "\\sum_{j\\sim i} \\kappa_{ij}\\, \\mu\\!\\left(\\frac{|\\Phi_i - \\Phi_j|}{a_0 a}\\right) (\\Phi_j - \\Phi_i) - \\mu_{\\Lambda}\\,(\\Phi_i - \\Phi_V) = 4\\pi G\\,\\rho_i",
+      "description": "Stationary condition on the graph obtained by varying the discrete functional; exhibits competition between gradient and bulk sectors with local sources."
+    },
+    "continuum_equation": {
+      "latex": "\\nabla\\!\\cdot\\!\\big[\\mu(|\\nabla\\Phi|/a_0)\\,\\nabla\\Phi\\big] - \\mu_{\\Lambda}(\\Phi - \\Phi_V) = 4\\pi G\\,\\rho",
+      "description": "Continuum limit of the discrete Euler\u2013Lagrange equation; reduces to Poisson, deep-MOND, or Yukawa-screened equations depending on regime."
+    },
+    "poisson_limit": {
+      "latex": "\\nabla^2\\!\\Phi = 4\\pi G\\,\\rho",
+      "description": "UV/strong-field (|\u2207\u03a6| \u226b a0) Newtonian limit when \u03bc \u2192 1 and bulk term is negligible."
+    },
+    "deep_mond_limit": {
+      "latex": "\\nabla\\!\\cdot\\!\\left(\\frac{|\\nabla\\Phi|}{a_0}\\,\\nabla\\Phi\\right) = 4\\pi G\\,\\rho",
+      "description": "IR/weak-field limit (|\u2207\u03a6| \u226a a0) producing MOND-like scaling from the nonlinear gradient sector."
+    },
+    "yukawa_screened": {
+      "latex": "\\nabla^2\\!\\Phi - \\mu_{\\Lambda}\\,\\Phi = 4\\pi G\\,\\rho",
+      "description": "Cosmological regime with bulk dominance; linearized equation yields Yukawa screening."
+    },
+    "screening_length": {
+      "latex": "L_{\\Lambda} = \\mu_{\\Lambda}^{-1/2} \\propto \\Lambda^{-1/2} \\approx 4.4\\,\\mathrm{Gpc}",
+      "description": "Screening scale set by the \u039b-proportional bulk coupling; ties large-scale gravitational behavior to the cosmological constant."
+    },
+    "regime_ratios": {
+      "latex": "\\xi = \\frac{|\\nabla\\Phi|}{a_0},\\qquad \\eta = \\frac{\\mu_{\\Lambda}\\,\\Phi}{|\\nabla^2\\!\\Phi|}",
+      "description": "Dimensionless ratios mapping regime dominance: UV (\u03be \u226b 1, \u03b7 \u226a 1), IR (\u03be \u226a 1, \u03b7 \u226a 1), cosmological (\u03b7 \u226b 1)."
+    },
+    "interpolating_mu": {
+      "latex": "\\mu(x) = \\frac{x}{\\sqrt{1+x^2}}",
+      "description": "Standard AQUAL interpolating function governing the smooth transition between Newtonian and MOND-like behavior."
+    }
+  },
   "key_results": {
-    "regimes": [
-      {
-        "name": "UV (Newtonian)",
-        "condition_xi": ">> 1",
-        "condition_eta": "<< 1",
-        "behaviour": "g ∝ r⁻²",
-        "field_equation": "∇²Φ = 4πGρ",
-        "dominant_sector": "gradient"
-      },
-      {
-        "name": "IR (MOND-like)",
-        "condition_xi": "<< 1",
-        "condition_eta": "<< 1",
-        "behaviour": "g ∝ r⁻¹",
-        "field_equation": "∇·(|∇Φ|/a₀ ∇Φ) = 4πGρ",
-        "dominant_sector": "gradient (nonlinear)"
-      },
-      {
-        "name": "Cosmological",
-        "condition_xi": "any",
-        "condition_eta": ">> 1",
-        "behaviour": "Yukawa screening",
-        "field_equation": "∇²Φ − μ_Λ Φ = 4πGρ",
-        "dominant_sector": "bulk"
-      }
+    "main_finding": "A single graph-defined entropic functional yields three exhaustive regimes\u2014Newtonian, MOND-like, and Yukawa-screened\u2014via dominance switching between gradient and bulk sectors, with \u039b setting both a0 and the Gpc-scale screening length.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a0",
+      "\u039b (via \u03bc_\u039b)",
+      "\u03bc(x)",
+      "\u03ba_ij",
+      "\u03a6_V"
     ],
-    "transitions": {
-      "UV_to_IR": "ξ ~ 1 (g ~ a₀)",
-      "IR_to_cosmological": "η ~ 1 (scales approaching L_Λ)"
-    },
-    "lambda_dual_role": {
-      "local": "a₀ ∝ c² √Λ (MOND transition scale)",
-      "global": "L_Λ ∝ Λ⁻¹/² ~ 4.4 Gpc (screening length)"
-    },
-    "screening_scale_Gpc": 4.4,
-    "structural_features": [
-      "Three regimes are exhaustive",
-      "Transitions are smooth via μ(x)",
-      "No free functions beyond μ(x) and μ_Λ ∝ Λ",
-      "Defined on graph topology; no continuum metric assumed"
-    ]
+    "datasets_used": [],
+    "verdict": "N/A"
   },
-  "key_equations": {
-    "discrete_functional": "F[Φ] = Σ κ_ij F(|Φ_i−Φ_j|/a₀) + Σ ½μ_Λ(Φ_i−Φ_V)² + Σ λ_i ρ_i Φ_i",
-    "interpolating_function": "μ(x) = x/√(1+x²)",
-    "euler_lagrange_discrete": "Σ_{j~i} κ_ij μ(|Φ_i−Φ_j|/(a₀ a))(Φ_j−Φ_i) − μ_Λ(Φ_i−Φ_V) = 4πGρ_i",
-    "euler_lagrange_continuum": "∇·[μ(|∇Φ|/a₀)∇Φ] − μ_Λ(Φ−Φ_V) = 4πGρ",
-    "screening_scale": "L_Λ = 1/√μ_Λ, μ_Λ ∝ Λ → L_Λ ∝ Λ⁻¹/² ~ 4.4 Gpc",
-    "regime_ratios": "ξ = |∇Φ|/a₀, η = μ_Λ Φ/|∇²Φ|"
-  },
-  "parameters": {
-    "G": 6.674e-11,
-    "G_unit": "m³ kg⁻¹ s⁻²",
-    "c": 299800000.0,
-    "c_unit": "m/s",
-    "Lambda_m2": 1.11e-52,
-    "a0_m_s2": 1.2e-10,
-    "L_Lambda_Gpc": 4.4,
-    "interpolating_function": "standard (x/√(1+x²))"
-  },
-  "ontological_commitments": {
-    "entropy": "Functional capacity of the discrete network, not thermodynamic entropy",
-    "energy_flow": "Gradient energy redistribution on the graph",
-    "lambda": "Bulk entropic capacity — anchoring strength to cosmological background Φ_V",
-    "spacetime": "Emergent from graph structure, not fundamental",
-    "time": "Equilibrium condition δF/δΦ_i = 0; dynamics is relaxation"
-  },
-  "open_problems": [
-    "Derivation of temporal dynamics from functional",
-    "Full time-as-emergent derivation"
-  ],
-  "falsification_criteria": [
-    "Three regimes fail to be exhaustive for any field configuration",
-    "Transitions require additional free functions beyond μ(x) and μ_Λ ∝ Λ",
-    "Λ cannot simultaneously set a₀ and L_Λ consistently",
-    "Numerical verification in companion papers becomes inconsistent"
-  ],
-  "related_papers": [
+  "sealed_predictions": [
     {
-      "id": "discrete-entropic-gravity-cubic-graph",
+      "id": "P1",
+      "statement": "The cosmological screening length obeys L_\u039b = \u03bc_\u039b^{-1/2} \u221d \u039b^{-1/2}, numerically of order 4.4 Gpc, producing Yukawa-like suppression of gravitational potentials on horizon scales.",
+      "falsifiable_by": "Detection of unscreened gravitational potentials on multi-Gpc scales inconsistent with any \u039b^{-1/2} scaling, e.g., growth/lensing measurements showing no large-scale suppression at k \u2272 1/L_\u039b."
+    },
+    {
+      "id": "P2",
+      "statement": "In the deep-IR regime, the discrete operator implies an effective MOND scale a0,eff \u2248 C^2 a0 with C \u2248 2.32, i.e., a0,eff \u2248 5.4 a0, yielding MOND-like scaling from the same functional.",
+      "falsifiable_by": "High-precision low-acceleration galaxy dynamics requiring a redshift- or system-dependent a0,eff inconsistent with a constant factor relative to a0."
+    },
+    {
+      "id": "P3",
+      "statement": "Transition between Newtonian (g \u221d r^{-2}) and MOND-like (g \u221d r^{-1}) behavior occurs at \u03be \u2243 1 (|\u2207\u03a6| \u2243 a0) with smooth \u03bc(x)-governed crossover and no additional free functions.",
+      "falsifiable_by": "Systematic absence of a universal acceleration-scale transition in isolated low-EFE systems, or requirement of extra free functions beyond \u03bc(x) to match the slope change."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Empirical evidence that the gravitational potential is not Yukawa-screened on multi-Gpc scales and that no \u039b^{-1/2} scaling for the screening length is compatible with data (e.g., large-scale lensing/growth) at high significance.",
+    "KC2: Robust demonstrations that the MOND-like IR behavior does not emerge at accelerations |g| \u226a a0 in isolated galaxies, contradicting the predicted regime transition at \u03be ~ 1.",
+    "KC3: Measurements indicating that a0 is independent of or significantly deviates from any \u039b-linked scaling across redshift, falsifying the claimed \u039b control of the local transition scale.",
+    "KC4: Necessity of introducing additional free functions beyond \u03bc(x) and the \u039b-proportional bulk coupling to jointly fit galactic and cosmological phenomena within this framework.",
+    "KC5: Detection of strong-field deviations from Poisson\u2019s equation (\u03bc \u2192 1 limit) inconsistent with the UV/Newtonian regime predicted by the functional."
+  ],
+  "tier": "T1",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "discrete-entropic-gravity-cubic",
       "doi": "10.6084/m9.figshare.31348411",
-      "relationship": "numerical_verification"
+      "role": "Companion: numerical verification of Newtonian and MOND-like regimes with \u039b-locked screening"
     },
     {
       "id": "cosmological-growth-constraints-lambda-locked",
       "doi": "10.6084/m9.figshare.31348414",
-      "relationship": "cosmological_stress_test"
+      "role": "Companion: cosmological growth and \u03c38 constraints for \u039b-locked discrete entropic gravity"
     }
   ],
   "files": {
@@ -147,6 +144,58 @@
       "examples/functional_sectors.py"
     ]
   },
-  "doi": "10.6084/m9.figshare.31348417",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348417"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348417",
+  "short_title": "Regime Structure and Entropic Flow Ontology",
+  "license": "CC-BY-4.0",
+  "type": "foundational_framework",
+  "epistemic_layer": "A",
+  "epistemic_status": "Foundational framework establishing regime-based ontology for discrete entropic gravity models",
+  "abstract": "Formalises the regime structure underlying discrete entropic gravity models based on graph-defined functionals. Distinct physical behaviours (UV/Newtonian, IR/MOND-like, Cosmological/Yukawa) emerge from dominance transitions between gradient, bulk, and source sectors of a discrete entropic functional. \u039b functions as a bulk capacity parameter governing large-scale screening. Provides regime-based foundation without assuming a fundamental spacetime metric.",
+  "key_equations": {
+    "discrete_functional": "F[\u03a6] = \u03a3 \u03ba_ij F(|\u03a6_i\u2212\u03a6_j|/a\u2080) + \u03a3 \u00bd\u03bc_\u039b(\u03a6_i\u2212\u03a6_V)\u00b2 + \u03a3 \u03bb_i \u03c1_i \u03a6_i",
+    "interpolating_function": "\u03bc(x) = x/\u221a(1+x\u00b2)",
+    "euler_lagrange_discrete": "\u03a3_{j~i} \u03ba_ij \u03bc(|\u03a6_i\u2212\u03a6_j|/(a\u2080 a))(\u03a6_j\u2212\u03a6_i) \u2212 \u03bc_\u039b(\u03a6_i\u2212\u03a6_V) = 4\u03c0G\u03c1_i",
+    "euler_lagrange_continuum": "\u2207\u00b7[\u03bc(|\u2207\u03a6|/a\u2080)\u2207\u03a6] \u2212 \u03bc_\u039b(\u03a6\u2212\u03a6_V) = 4\u03c0G\u03c1",
+    "screening_scale": "L_\u039b = 1/\u221a\u03bc_\u039b, \u03bc_\u039b \u221d \u039b \u2192 L_\u039b \u221d \u039b\u207b\u00b9/\u00b2 ~ 4.4 Gpc",
+    "regime_ratios": "\u03be = |\u2207\u03a6|/a\u2080, \u03b7 = \u03bc_\u039b \u03a6/|\u2207\u00b2\u03a6|"
+  },
+  "parameters": {
+    "G": 6.674e-11,
+    "G_unit": "m\u00b3 kg\u207b\u00b9 s\u207b\u00b2",
+    "c": 299800000.0,
+    "c_unit": "m/s",
+    "Lambda_m2": 1.11e-52,
+    "a0_m_s2": 1.2e-10,
+    "L_Lambda_Gpc": 4.4,
+    "interpolating_function": "standard (x/\u221a(1+x\u00b2))"
+  },
+  "ontological_commitments": {
+    "entropy": "Functional capacity of the discrete network, not thermodynamic entropy",
+    "energy_flow": "Gradient energy redistribution on the graph",
+    "lambda": "Bulk entropic capacity \u2014 anchoring strength to cosmological background \u03a6_V",
+    "spacetime": "Emergent from graph structure, not fundamental",
+    "time": "Equilibrium condition \u03b4F/\u03b4\u03a6_i = 0; dynamics is relaxation"
+  },
+  "open_problems": [
+    "Derivation of temporal dynamics from functional",
+    "Full time-as-emergent derivation"
+  ],
+  "falsification_criteria": [
+    "Three regimes fail to be exhaustive for any field configuration",
+    "Transitions require additional free functions beyond \u03bc(x) and \u03bc_\u039b \u221d \u039b",
+    "\u039b cannot simultaneously set a\u2080 and L_\u039b consistently",
+    "Numerical verification in companion papers becomes inconsistent"
+  ],
+  "related_papers": [
+    {
+      "id": "discrete-entropic-gravity-cubic-graph",
+      "doi": "10.6084/m9.figshare.31348411",
+      "relationship": "numerical_verification"
+    },
+    {
+      "id": "cosmological-growth-constraints-lambda-locked",
+      "doi": "10.6084/m9.figshare.31348414",
+      "relationship": "cosmological_stress_test"
+    }
+  ]
 }

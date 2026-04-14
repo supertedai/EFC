@@ -10,52 +10,27 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31231522",
-  "abstract": "Independent validation of EFC using BOSS DR12 BAO data. DESI best-fit parameters (z_L1L2 = 1.01, alpha_L2 = 0.045) reduce BOSS chi-squared from 20.83 to 13.06 (Delta-chi-squared = -7.77) without refitting. Robustness confirmed under diagonal covariance and eigenmode analysis.",
+  "abstract": "Independent cross-survey validation of Energy-Flow Cosmology (EFC) using BOSS DR12 BAO data, applying DESI DR2 best-fit parameters without refitting. The study finds a robust improvement in BOSS DR12 chi-squared (\u0394\u03c7\u00b2 = \u22127.77) under EFC, confirmed via whitening, eigenmode, and diagonal-covariance diagnostics, and shows complementary constraints when combining BOSS with eBOSS.",
   "keywords": [
     "Energy-Flow Cosmology",
     "EFC",
-    "BOSS DR12",
     "BAO",
+    "BOSS DR12",
+    "DESI DR2",
     "transfer test",
-    "cross-validation",
     "regime gating",
-    "Hubble rate"
+    "Hubble rate",
+    "covariance diagnostics",
+    "eigenmode analysis",
+    "whitening",
+    "AICc/BIC"
   ],
-  "efc_context": {
-    "track": "empirical_validation",
-    "regime_relevance": "cross-survey transfer from DESI DR2 to BOSS DR12",
-    "epistemic_layer": "A"
-  },
-  "key_results": [
-    {
-      "test": "Transfer test (no refit)",
-      "delta_chi2": -7.77,
-      "status": "Transfer supported"
-    },
-    {
-      "test": "Diagonal covariance",
-      "delta_chi2": -4.24,
-      "status": "Improvement persists"
-    },
-    {
-      "test": "Eigenmode analysis",
-      "low_lambda_gain": -5.5,
-      "high_lambda_gain": -2.27
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation",
-    "CITATION.cff": "Citation metadata",
-    "LICENSE": "CC-BY-4.0 license",
-    "index.json": "Machine-readable metadata",
-    "WP4_BOSS_validation.pdf": "Original paper",
-    "schema.json": "JSON Schema",
-    "metadata.json": "This file",
-    "wp4_boss_validation.jsonld": "Linked data",
-    "citations.bib": "BibTeX references",
-    "src/": "Source code",
-    "data/": "Data files",
-    "examples/": "Example scripts"
+  "files": {
+    "paper": "WP4_BOSS_validation.pdf",
+    "readme": "README.md",
+    "code": "src/efc_boss_transfer.py",
+    "data": "data/boss_dr12_bao.json",
+    "example": "examples/transfer_test.py"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31231522",

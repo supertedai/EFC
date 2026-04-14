@@ -1,140 +1,43 @@
 {
-  "schema_version": "1.0",
-  "package_type": "structural_derivation",
-  "paper": {
-    "title": "Closing the EFC Consciousness Bridge: Dimensionless, Scale-Invariant Unification of Entropy, Dynamics, and Awareness",
-    "author": "Morten Magnusson",
-    "date": "2026-04",
-    "doi": "10.6084/m9.figshare.31969983",
-    "pages": 9,
-    "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983"
+  "title": "Closing the EFC Consciousness Bridge: Dimensionless, Scale-Invariant Unification of Entropy, Dynamics, and Awareness",
+  "short_id": "closing-the-efc-consciousness-bridge",
+  "version": "1.0",
+  "date": "2026-04-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "domain": {
-    "field": "theoretical physics / consciousness science",
-    "track": "EFC-C (consciousness branch)",
-    "regimes": [
-      "L0",
-      "L1",
-      "L2",
-      "L3"
-    ],
-    "scope": "Cross-domain unification of cosmological entropy field S with cognitive observables (Omega, kappa)"
-  },
-  "three_problems_resolved": [
-    {
-      "problem": "C = Omega * kappa is a separable product; coupling is external, not intrinsic",
-      "resolution": "Non-separable functional C = Omega_hat * kappa_hat * (1 - exp(-gamma * Omega_hat * kappa_hat))",
-      "equation_number": "Eq. 6 / Eq. III"
-    },
-    {
-      "problem": "No dynamical equation for Omega_dot or kappa_dot",
-      "resolution": "Coupled ODEs: Eq. I (entropic drift + diffusion) and Eq. II (energy-flow source + suppression)",
-      "equation_numbers": [
-        "Eq. 10 / Eq. I",
-        "Eq. 11 / Eq. II"
-      ]
-    },
-    {
-      "problem": "Variables not dimensionally connected to cosmological entropy field S",
-      "resolution": "Regime-indexed dimensionless variables Omega_hat_l = S(rho)/S_l and kappa_hat_l = (alpha_l/rho_l)|grad(delta S/delta rho)|",
-      "equation_numbers": [
-        "Eq. 3",
-        "Eq. 4"
-      ]
-    }
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31969983",
+  "abstract": "Introduces a dimensionless, regime-indexed mapping from the EFC entropy field S to cognitive variables (Omega-hat, kappa-hat), derives coupled dynamical equations that make the Omega\u2013kappa anti-correlation intrinsic, and replaces the separable product C=Omega*kappa with a single-parameter non-separable functional. The framework closes the cosmology-to-cognition bridge, inherits a cross-domain constant K=4.4\u00b10.6 from SPARC rotation curves, and shows qualitative consistency with propofol sedation EEG.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC-C",
+    "entropy field",
+    "spectral differentiation",
+    "causal integration",
+    "non-separable functional",
+    "dimensionless variables",
+    "cross-domain constant K",
+    "transfer entropy",
+    "propofol sedation EEG",
+    "dynamical systems",
+    "consciousness metrics"
   ],
-  "cross_domain_constant_K": {
-    "value": 4.4,
-    "uncertainty": 0.6,
-    "source": "SPARC galactic rotation curve data via B1* bridge equation (EFC-C v2)",
-    "neural_parameters_fitted": 0,
-    "bridge_equation": "kappa_hat_healthy = K / (1 + lambda_2(W) * tau_c)",
-    "lambda_2_W": "Fiedler eigenvalue of connectivity matrix W",
-    "tau_c": "correlation time"
+  "files": {
+    "paper_pdf": "Closing_the_EFC_Consciousness_Bridge.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "closing-the-efc-consciousness-bridge.jsonld",
+    "citations": "citations.bib",
+    "regime_mapping": "data/regime_mapping.json",
+    "propofol_consistency": "data/propofol_consistency.json",
+    "src_bridge": "src/consciousness_bridge.py",
+    "example": "examples/evaluate_bridge.py"
   },
-  "efc_mechanisms": {
-    "entropy_field": "S(rho) from EFC field equation G_mu_nu + Lambda g_mu_nu = kappa_G T_mu_nu + alpha S_mu_nu",
-    "spectral_differentiation": "Omega = H(p) / H_max (normalised spectral entropy)",
-    "causal_integration": "kappa = <T(X -> Y)> (mean transfer entropy between subsystem pairs)",
-    "non_separable_coupling": "gamma > 0 is the single new coupling constant; exponential factor prevents factorisation",
-    "anti_correlation_mechanism": "At steady state, kappa_hat_ss = J_flow / (mu * Omega_hat) ~ 1/Omega_hat; derived, not imposed"
-  },
-  "propofol_sedation_support": {
-    "source_paper_doi": "10.6084/m9.figshare.31289806",
-    "external_dataset": "Chennu et al. 2016, PLoS Comput. Biol. 12(1), e1004669",
-    "N_subjects": 20,
-    "overlap_cohort": 12,
-    "results": [
-      {
-        "observable": "Omega waking > sedated",
-        "effect_size": "d = 1.50",
-        "status": "supported"
-      },
-      {
-        "observable": "kappa anti-correlated with Omega",
-        "effect_size": "r = -0.27",
-        "status": "supported"
-      },
-      {
-        "observable": "Global C = Omega*kappa fails",
-        "test": "F1 falsified, p = 0.43",
-        "status": "supported"
-      },
-      {
-        "observable": "Parietal C > 0",
-        "effect_size": "d = 2.10, p = 0.018",
-        "status": "supported"
-      },
-      {
-        "observable": "Double dissociation",
-        "values": "Resp. +0.054, drowsy -0.063",
-        "status": "supported"
-      }
-    ],
-    "caveat": "Qualitative structure consistent; not a direct test of full model (requires grad(delta S/delta rho) estimation)"
-  },
-  "symbiotic_derivation": {
-    "framework": "Symbiotic Insight Framework (SIF)",
-    "human_agent": "M. Magnusson (physical direction and constraints)",
-    "computational_agent": "Claude, Anthropic (equation retrieval, functional form proposals, dimensional verification)",
-    "rounds": [
-      "Audit: AI identified three structural gaps",
-      "Construction: human required same S across scales, AI proposed dimensionless variables + non-separable C",
-      "Critique: human tested falsifiability, AI verified limiting behaviour"
-    ]
-  },
-  "links": {
-    "consciousness_field_resonance": {
-      "doi": "10.6084/m9.figshare.31289806",
-      "role": "Source of propofol sedation EEG analysis and EFC-C framework definition"
-    },
-    "efc_field_equations": {
-      "doi": "10.6084/m9.figshare.30421807",
-      "role": "Source of entropy field S and field equation"
-    },
-    "cem_cosmos": {
-      "doi": "10.6084/m9.figshare.30275947",
-      "role": "Earlier consciousness-cosmology coupling model"
-    },
-    "sparc_mass_models": {
-      "citation": "Lelli, McGaugh, Schombert 2016, AJ 152, 157",
-      "role": "Source of cross-domain constant K = 4.4 +/- 0.6"
-    },
-    "iit": {
-      "citation": "Tononi 2004, BMC Neuroscience 5, 42",
-      "role": "Context: Integrated Information Theory comparison"
-    },
-    "pci": {
-      "citation": "Casali et al. 2013, Sci. Transl. Med. 5, 198ra105",
-      "role": "Candidate dataset for gamma estimation"
-    }
-  },
-  "results": {
-    "verdict": "structural derivation completed",
-    "new_free_parameters": 1,
-    "parameter_name": "gamma",
-    "problems_closed": 3,
-    "qualitative_consistency_with_data": "5/5 directional predictions supported by propofol sedation EEG",
-    "status": "theoretical framework; empirical gamma estimation pending"
+  "paper": {
+    "doi": "10.6084/m9.figshare.31969983",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983"
   }
 }

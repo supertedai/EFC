@@ -1,85 +1,29 @@
-# Covariant Effective Field Theory for Entropy-Driven Gravitational Modification
+# Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme
 
-> **AI-Friendly Paper Package** — structured metadata + reference implementation + runnable demo
+## AI-Friendly Package
 
-## Quick Summary
+- **DOI:** [10.6084/m9.figshare.31878334](https://doi.org/10.6084/m9.figshare.31878334)
+- **Version:** v1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-03-28
+- **License:** CC-BY-4.0
 
-| Field | Value |
-|-------|-------|
-| **Authors** | Morten Magnusson |
-| **Affiliation** | Independent Researcher, Sola, Norway |
-| **ORCID** | 0009-0002-4860-5095 |
-| **DOI** | 10.6084/m9.figshare.31878334 |
-| **Date** | March 28, 2026 |
-| **Status** | Working paper |
-| **Framework** | EFC (Energy-Flow Cosmology) |
-| **Keywords** | covariant EFT, scalar-tensor, entropy-driven gravity, RAR, Bose-Einstein, gravitational waves, gravitational slip |
+---
 
-## Core Idea
+## Overview
 
-Systematic 17-iteration programme to construct and test a covariant scalar-tensor EFT where gravity is modified by an entropy-like scalar field S via acceleration-dependent response. Five structural results hold independently of the specific mu(g) form. A critical negative result identifies a microphysical gap.
+Presents a covariant scalar–tensor EFT in which an entropy-like scalar S modifies gravity via an acceleration-dependent response, developed and stress-tested through 17 falsification iterations. The work derives five structural results that hold independent of the specific response function, and identifies a critical gap: the classical action yields a correction that increases with acceleration, opposite to the RAR, motivating an EFT with the empirical µ(g) postulated.
 
-## The Action
+## Key Result
 
-```
-S = int d^4x sqrt(-g) [ R/(16piG) + (1/2)(dS)^2 - V(S) - beta|dS|_eps S^2 + L_m ]
-```
+Five structural results (c_gw=c, \eta\approx1 with O(\Phi\mu) suppression, solar-system amplitude suppression, stability, and RAR\equivBose–Einstein form) hold, but the classical action’s field equation yields the wrong sign versus RAR, necessitating an EFT with postulated \mu(g).
 
-- One scalar field S with parameters: beta (coupling), m_S (mass), epsilon (regulator)
-- All combine into one observable scale: a_0 = 1.2 x 10^-10 m/s^2
+## Sealed Predictions
 
-## Five Structural Results
-
-| # | Result | Status |
-|---|--------|--------|
-| I | GW speed c_gw = c exactly (theorem) | Shown |
-| II | Gravitational slip eta = 1 + O(Phi*mu) | Shown |
-| III | Solar-system: exponential amplitude suppression | Shown |
-| IV | Ghost-free, tachyon-free, hyperbolic | Shown |
-| V | RAR formally identical to Bose-Einstein: mu = 1/(exp(sqrt(g/a_0)) - 1) | Identified |
-
-## Critical Gap
-
-The classical field equation from -beta|dS|S^2 produces a correction that **increases** with acceleration, whereas RAR requires a **decreasing** correction. This identifies a microphysical gap requiring quantum treatment or non-local coupling.
-
-## 17-Iteration Programme
-
-See `data/framework.json` for the complete iteration table with test, result, and status for each of the 17 versions.
-
-## Quick Start
-
-```python
-from src.covariant_eft import (
-    CovEFTAction, BoseEinsteinRAR, SolarSystemTest,
-    StabilityAnalysis, run_eft_demo
-)
-run_eft_demo()
-```
-
-Or run standalone:
-```bash
-python examples/demo_covariant_eft.py
-```
-
-## Package Contents
-
-| File | Description |
-|------|-------------|
-| `README.md` | This file |
-| `index.json` | Full machine-readable metadata |
-| `schema.json` | JSON Schema for index.json |
-| `metadata.json` | Package metadata with AI parsability flags |
-| `Covariant_EFT.jsonld` | Schema.org linked data |
-| `citations.bib` | BibTeX references |
-| `src/__init__.py` | Package init with exports |
-| `src/covariant_eft.py` | Reference implementation |
-| `data/framework.json` | Complete framework data (17 iterations, 5 results, gap) |
-| `examples/demo_covariant_eft.py` | Runnable demo |
-
-## Caveats
-
-- **Working paper**: Not peer-reviewed
-- mu(g) is postulated as effective relation, not derived from classical action
-- Slip result demonstrated only in weak-field spherically symmetric regime
-- Not yet tested against CMB, f*sigma_8, Bullet Cluster, or H(z)
-- Reference implementation is pedagogical, not production-ready
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Gravitational-wave propagation speed equals c exactly in vacuum across astrophysical frequencies (tensor sector identical to GR). | Multi-messenger time-of-flight constraints from GW–EM coincidences (e.g., future GW170817-like events) or broadband dispersion analyses. |
+| P2 | Gravitational slip remains near unity in weak-field galactic environments: |eta - 1| = O(Phi*mu) with |eta - 1| <~ 1e-6 for Phi ~ 1e-6. | Joint weak-lensing and dynamical mass measurements in low-Phi galaxies/clusters showing |eta - 1| >> 1e-3. |
+| P3 | Solar-system fifth-force amplitudes from S are exponentially amplitude-suppressed, remaining far below current bounds and PPN limits. | Improved ephemerides/spacecraft ranging (e.g., next-gen Cassini/Shapiro time-delay) detecting deviations inconsistent with exponential suppression. |
+| P4 | The RAR follows the Bose–Einstein form µ(g) = 1/(exp(\sqrt{g/a0}) - 1) with a single universal a0. | A coherent, high-precision RAR dataset across galaxy types requiring a non–Bose–Einstein functional form or multiple a0 values. |
+| P5 | No extra tensor polarizations and no frequency-dependent modifications of the tensor kinetic operator. | Polarization-resolving GW detector networks or PTAs detecting extra polarizations/dispersion inconsistent with GR. |

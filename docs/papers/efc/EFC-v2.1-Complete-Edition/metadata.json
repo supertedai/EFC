@@ -1,49 +1,33 @@
 {
-  "title": "EFC v2.1 -- Complete Edition",
+  "title": "EFC v2.1 \u2013 Complete Edition",
   "short_id": "EFC-v2.1-Complete-Edition",
   "version": "2.1",
-  "date": "2025",
+  "date": "2025-10-30",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "Complete consolidated edition of Energy-Flow Cosmology v2.1. Integrates structure, dynamics, entropy behaviour, grid interactions, field mappings, and the full conceptual architecture into a unified version-controlled specification. Supersedes v1.x foundational series.",
+  "doi": "10.6084/m9.figshare.30478916",
+  "abstract": "Presents the Complete Edition of Energy-Flow Cosmology (EFC v2.1), a unified thermodynamic framework where a continuous energy\u2013entropy flow field Ef generates spacetime structure, cosmic dynamics, and reflexive cognition. The paper adds an Energy-Flow Ontology, explicit continuity and conservation laws, cognitive thermodynamics, an Intelligence\u2013Matter Exchange (IMX) model, observational links with testable predictions, and a computational implementation plan.",
   "keywords": [
-    "EFC",
-    "Complete Edition",
-    "Version 2.1",
-    "Unified Theory",
-    "Energy Flow",
-    "Entropy",
-    "Grid",
-    "Field Equations",
-    "Dynamics"
+    "Energy-Flow Cosmology",
+    "thermodynamics",
+    "entropy gradients",
+    "energy flow field",
+    "continuity equation",
+    "emergent light-speed regulation",
+    "Einstein field equations",
+    "cognitive thermodynamics",
+    "Intelligence\u2013Matter Exchange",
+    "CMB anisotropies",
+    "H0 tension",
+    "weak gravitational lensing"
   ],
-  "efc_context": {
-    "track": "Core Theory",
-    "regime_relevance": "All regimes (L0-L3)",
-    "epistemic_layer": "Consolidated specification superseding v1.x"
-  },
-  "key_results": [
-    "Unified field equation: G_uv = 8piG(T_uv + T^(Ef)_uv) + Lambda_eff g_uv",
-    "Entropy sigmoid S(a) with transition at a_t=0.55, sigma=0.10",
-    "Effective gravitational coupling mu(a) = 1 + beta*S(a)",
-    "Modified Friedmann dynamics with entropy-driven acceleration",
-    "Complete regime architecture with L0-L3 transitions"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-v2.1-Complete-Edition.pdf",
-    "jsonld": "EFC-v2.1-Complete-Edition.jsonld",
-    "schema": "schema.json",
-    "index": "index.json",
-    "citations": "citations.bib",
-    "metadata": "metadata.json",
-    "src": "src/",
-    "data": "data/",
-    "examples": "examples/"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.30478916",

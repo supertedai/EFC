@@ -1,8 +1,8 @@
 {
   "$schema": "./schema.json",
   "id": "efc-case-b-eigenmode",
-  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
-  "description": "Derives the observable eigenstructure of EFC in weak lensing (Case B). Shows that µ(k,z) in the growth ODE and Σ(k,z) in the lensing kernel produce destructive interference, with growth suppression cancelling 66% of lensing amplification. Weak lensing constrains only one effective parameter η_eff = 0.017. Proves E_G is the orthogonal probe that breaks the µ–Σ degeneracy, predicting E_G^EFC/E_G^GR = 1.086.",
+  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The \u00b5\u2013\u03a3 Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
+  "description": "Derives the observable eigenstructure of Energy-Flow Cosmology (EFC) for weak lensing in a consistent modified-gravity setup (Case B) where \u00b5(k,z) affects growth and \u03a3(k,z) affects the lensing kernel. Shows analytically that weak lensing constrains only a single effective parameter \u03b7_eff = \u03b3(\u00b5\u22121) + (\u03a3\u22121), with growth suppression cancelling 66% of the lensing boost. Proves that E_G measures \u03a3/\u00b5^\u03b3 and is orthogonal to weak lensing, predicting E_G^EFC/E_G^GR = 1.086.",
   "version": "1.0",
   "date": "2026-04-12",
   "doi": "10.6084/m9.figshare.31990194",
@@ -16,10 +16,9 @@
     "E_G statistic",
     "cosmic shear",
     "KiDS-1000",
-    "growth factor",
+    "growth index",
     "lensing kernel",
-    "Case B",
-    "sealed prediction"
+    "Case B"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -28,85 +27,105 @@
   },
   "core_equations": {
     "modified_poisson_phi": {
-      "latex": "k^2 \\Phi = -4\\pi G a^2 \\mu(k,z) \\bar{\\rho} \\delta",
-      "description": "Modified Poisson equation for Newtonian potential (growth channel)"
+      "latex": "k^2 \\Phi = -4\\pi G a^2 \\, \\mu(k,z) \\, \\bar{\\rho} \\, \\delta",
+      "description": "Modified Poisson equation for the Newtonian potential that controls structure growth."
     },
     "modified_poisson_weyl": {
-      "latex": "k^2 (\\Phi + \\Psi) = -8\\pi G a^2 \\Sigma(k,z) \\bar{\\rho} \\delta",
-      "description": "Modified Poisson equation for Weyl potential (lensing channel)"
+      "latex": "k^2 (\\Phi + \\Psi) = -8\\pi G a^2 \\, \\Sigma(k,z) \\, \\bar{\\rho} \\, \\delta",
+      "description": "Modified Poisson equation for the Weyl potential that sources lensing."
+    },
+    "gravitational_slip": {
+      "latex": "\\eta \\equiv \\Psi/\\Phi = 2\\Sigma/\\mu - 1",
+      "description": "Gravitational slip relation implied by the modified Poisson equations."
+    },
+    "wl_ratio": {
+      "latex": "\\frac{C_\\ell^{\\mathrm{EFC}}}{C_\\ell^{\\mathrm{GR}}} \\approx \\Sigma^2 \\, \\mu^{2\\gamma}",
+      "description": "Leading-order response of cosmic shear power to EFC modifications with growth index \\gamma \\approx 0.55."
     },
     "eta_eff": {
-      "latex": "\\eta_{\\text{eff}} = \\gamma(\\mu - 1) + (\\Sigma - 1) = 0.017",
-      "description": "The single effective parameter visible to weak lensing, where γ ≈ 0.55"
+      "latex": "\\eta_{\\mathrm{eff}} \\equiv \\gamma(\\mu - 1) + (\\Sigma - 1) = 0.017",
+      "description": "Single effective parameter visible to weak lensing at the EFC anchor."
     },
-    "E_G_ratio": {
-      "latex": "E_G = \\frac{\\Omega_m \\Sigma}{f \\mu}",
-      "description": "E_G statistic measures Σ/µ^γ — orthogonal to weak lensing"
+    "eta_deg": {
+      "latex": "\\eta_{\\mathrm{deg}} \\equiv (\\Sigma - 1) - \\gamma(\\mu - 1)",
+      "description": "Degenerate (invisible) direction to weak lensing; along this line C_\\ell^{\\mathrm{EFC}} = C_\\ell^{\\mathrm{GR}} to leading order."
+    },
+    "growth_index": {
+      "latex": "D(\\mu; z) \\simeq D_{\\mathrm{GR}}(z) \\, \\mu^{\\gamma}, \\quad \\gamma \\approx 0.55",
+      "description": "Approximate parametrization of the growth factor under small deviations from GR."
+    },
+    "eg_ratio": {
+      "latex": "E_G \\propto \\frac{\\Sigma}{\\mu^{\\gamma}}",
+      "description": "EG statistic is orthogonal to the weak-lensing product eigenmode; in GR, E_G = \\Omega_m/f."
     },
     "cancellation_ratio": {
       "latex": "\\frac{\\gamma |\\mu - 1|}{|\\Sigma - 1|} = \\frac{0.033}{0.050} = 0.66",
-      "description": "Growth suppression cancels 66% of lensing amplification"
+      "description": "Quantifies destructive interference: growth suppression cancels 66% of lensing amplification at the anchor."
+    },
+    "bridge_Rka": {
+      "latex": "R(k,a) = K_0 \\, \\Theta\\!\\left(\\frac{\\rho_m(a)}{\\rho_*}\\right) \\, (\\Gamma' \\dot{\\phi})^2 \\, \\frac{a^4}{k^4}, \\quad \\Theta(x) = e^{-(x)^2}",
+      "description": "EFC bridge strength controlling scale and density dependence; ensures GR recovery at high density and small scales."
     }
   },
   "key_results": {
-    "eta_eff": {
-      "value": 0.017,
-      "description": "Single observable parameter in weak lensing at EFC anchor"
-    },
-    "cancellation_fraction": {
-      "value": 0.66,
-      "description": "Fraction of Σ signal cancelled by µ drag (model-independent given γ ≈ 0.55)"
-    },
-    "E_G_enhancement": {
-      "value": 1.086,
-      "description": "E_G^EFC / E_G^GR — constructive interference gives +8.6%"
-    },
-    "expected_delta_chi2": {
-      "range": [-2, 2],
-      "description": "Expected Δχ² for Case B WL-only against KiDS-1000"
-    },
-    "expected_correlation": {
-      "range": [-0.95, -0.80],
-      "description": "Expected corr(µ₀, Σ₀) from Fisher eigenvector"
-    }
+    "main_finding": "Weak lensing constrains only \u03b7_eff = \u03b3(\u00b5\u22121) + (\u03a3\u22121), leading to destructive interference where \u00b5<1 cancels 66% of the \u03a3>1 lensing boost; EG is the orthogonal probe predicting E_G^EFC/E_G^GR = 1.086.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u00b50 = 0.94 (anchor k = 0.05 h/Mpc)",
+      "\u03a30 = 1.05 (anchor k = 0.05 h/Mpc)",
+      "\u03b7_eff = 0.017",
+      "cancellation ratio = 0.66",
+      "E_G^EFC/E_G^GR = 1.086"
+    ],
+    "datasets_used": [
+      "KiDS-1000 cosmic shear (planned WL-only Case B test)",
+      "KiDS \u00d7 BOSS EG (planned)",
+      "Kill-Test v6 calibration/validation (bridge checks)"
+    ],
+    "verdict": "SEALED"
   },
   "sealed_predictions": [
     {
-      "id": "SP1",
-      "statement": "η_eff = 0.017 at the EFC anchor",
-      "falsifiable_by": "Phase 1 minimisation"
+      "id": "P1",
+      "statement": "\u03b7_eff = 0.017 at the EFC anchor (k \u2248 0.05 h/Mpc, low z).",
+      "falsifiable_by": "Phase 1 weak-lensing-only minimisation (Case B) on KiDS-1000 scales."
     },
     {
-      "id": "SP2",
-      "statement": "corr(µ₀, Σ₀) ∈ [−0.95, −0.80]",
-      "falsifiable_by": "Phase 1 posterior"
+      "id": "P2",
+      "statement": "corr(\u00b50, \u03a30) \u2208 [\u22120.95, \u22120.80] in the WL-only posterior/eigenvector.",
+      "falsifiable_by": "Phase 1 WL-only posterior/Fisher analysis in (\u00b50, \u03a30)."
     },
     {
-      "id": "SP3",
-      "statement": "Δχ²(Case B, WL only) ∈ [−2, +2]",
-      "falsifiable_by": "Phase 1 minimisation"
+      "id": "P3",
+      "statement": "\u0394\u03c7\u00b2(Case B, WL only vs GR) \u2208 [\u22122, +2].",
+      "falsifiable_by": "Phase 1 WL-only goodness-of-fit comparison to GR on KiDS-1000."
     },
     {
-      "id": "SP4",
-      "statement": "E_G^EFC / E_G^GR = 1.086",
-      "falsifiable_by": "KiDS × BOSS E_G measurement"
+      "id": "P4",
+      "statement": "E_G^EFC / E_G^GR = 1.086 (constructive interference).",
+      "falsifiable_by": "KiDS \u00d7 BOSS (or equivalent) EG measurement at k \u2248 0.05 h/Mpc, z \u2272 0.5."
     },
     {
-      "id": "SP5",
-      "statement": "Cancellation ratio = 0.66",
-      "falsifiable_by": "Model-independent (follows from γ ≈ 0.55)"
+      "id": "P5",
+      "statement": "Cancellation ratio |\u03b3(\u00b5\u22121)|/|\u03a3\u22121| = 0.66 at the anchor.",
+      "falsifiable_by": "Model-independent consistency given \u03b3 \u2248 0.55 and inferred (\u00b50, \u03a30)."
     }
   ],
+  "kill_criteria": [
+    "KC1: Weak-lensing-only Case B analysis (KiDS-1000 scales, \u2113 \u2272 100) yields \u03b7_eff inconsistent with 0.017 by >3\u03c3 at the EFC anchor.",
+    "KC2: The WL-only posterior correlation corr(\u00b50, \u03a30) falls outside [\u22120.95, \u22120.80], indicating the predicted \u00b5\u2013\u03a3 eigenmode is not realized.",
+    "KC3: A robust EG measurement finds E_G^EFC/E_G^GR inconsistent with 1.086 by >3\u03c3 at k \u2248 0.05 h/Mpc and z \u2272 0.5.",
+    "KC4: Case B WL-only fit prefers EFC over GR (or vice versa) with |\u0394\u03c7\u00b2| > 6, contradicting the predicted near-null WL signal (\u22122 \u2264 \u0394\u03c7\u00b2 \u2264 +2).",
+    "KC5: The observed WL scale/redshift dependence contradicts the EFC localization (signal concentrated at \u2113 \u2272 100 and \u03be+(\u03b8 > 1\u00b0), with negligible effect in \u03be\u2212 and at \u2113 \u2273 200)."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
   "related_packages": [
     {
       "id": "kill-test-v6",
       "doi": "10.6084/m9.figshare.31368433",
-      "role": "Bridge calibration anchor (K0=1.66, m²=0.0035)"
-    },
-    {
-      "id": "kids-lensing-response",
-      "doi": "10.6084/m9.figshare.31271917",
-      "role": "Case A comparison (phenomenological Σ² rescaling)"
+      "role": "Bridge calibration and validation for mapping (K0, m2) \u2192 (\u00b50, \u03a30) and multi-scale consistency checks."
     }
   ],
   "files": {

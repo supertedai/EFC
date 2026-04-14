@@ -1,51 +1,35 @@
 {
-  "title": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+  "title": "Resolving the H0 and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
   "short_id": "efc-h0-s8-tensions",
-  "version": "v1.0",
+  "version": "1.0",
   "date": "2026-01-09",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31026151",
-  "abstract": "The Hubble tension and S8 tension represent the most significant challenges to LCDM. We demonstrate that both tensions can be resolved simultaneously through entropy-dependent modification of local-to-global parameter inference within the EFC framework.",
+  "abstract": "Introduces an Energy-Flow Cosmology (EFC) mechanism that separates local and global inference using an entropy-dependent mapping, resolving both the H0 and S8 tensions without altering the cosmic expansion history, sound horizon, or early-universe physics. The paper demonstrates a \u2206\u03c72 = 40.29 improvement for H0 consistency and reduces the S8 tension from 3.3\u03c3 to 0.3\u03c3 while remaining consistent with BAO, SNe Ia, and CMB constraints.",
   "keywords": [
     "Hubble tension",
     "H0",
     "S8 tension",
-    "LCDM",
     "Energy-Flow Cosmology",
-    "CMB",
+    "entropy field",
+    "effective gravitational coupling",
+    "weak lensing",
     "BAO",
+    "CMB",
     "SPARC",
-    "thermodynamic cosmology"
+    "growth suppression",
+    "local-global inference"
   ],
-  "efc_context": {
-    "track": "Applied Cosmology",
-    "regime_relevance": "Resolving H0 and S8 tensions via entropy-dependent coupling",
-    "epistemic_layer": "Layer B (applied model)"
-  },
-  "key_results": [
-    "H0 tension resolved with chi-squared improvement of 40.29",
-    "S8 tension reduced from 3.3 sigma to 0.3 sigma",
-    "BAO, SNe Ia, and CMB distance constraints fully preserved",
-    "Effective gravitational coupling G_eff(S) = G_N(1 + beta*S) with beta < 0"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-H0-S8-Tensions.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
     "jsonld": "EFC-H0-S8-Tensions.jsonld",
     "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/h0_s8_tensions.py"
-    ],
-    "data": "data/parameters.json",
-    "demo": "examples/demo_h0_s8.py"
+    "schema": "schema.json"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31026151",

@@ -1,8 +1,8 @@
 {
-  "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling",
+  "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (\u03b2 \u00b7 T(a))",
   "short_id": "efc-four-channel-consistency-test",
   "version": "1.0.0",
-  "date": "2026-02",
+  "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,42 +10,25 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31304980",
-  "abstract": "Consistency test of EFC's background coupling against four independent cosmological probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Demonstrates that Poisson-channel modification is excluded while background coupling shows mild preference with beta=0.08 yielding combined Delta_chi2=-3.89.",
+  "abstract": "Tests a single-parameter Energy-Flow Cosmology (EFC) background-coupling modification of the Friedmann equation against four independent probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Finds that a positive background coupling (\u03b2 \u2248 0.08) mildly improves BAO+RSD fits (\u0394\u03c72 = -3.89) while remaining consistent with CMB lensing and SN Ia, and that Poisson-channel modification is excluded by growth data. The transition function T(a) naturally suppresses deviations at high redshift, ensuring GR recovery at recombination and earlier.",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
+    "modified Friedmann equation",
     "background coupling",
+    "Poisson modification",
     "BAO",
-    "RSD",
+    "redshift-space distortions",
     "CMB lensing",
     "Type Ia supernovae",
     "S8 tension",
+    "BOSS DR12",
+    "Pantheon+",
     "consistency test"
   ],
-  "efc_context": {
-    "track": "Empirical Validation",
-    "regime_relevance": "Four independent cosmological channels at z=0.38-1100",
-    "epistemic_layer": "Layer B (cross-probe consistency)"
-  },
-  "key_results": [
-    "Poisson-equation coupling (mu > 1) excluded by BOSS RSD (chi2 = 18.2)",
-    "Background coupling beta=0.08 favoured (chi2_RSD = 1.09 vs 1.34 for LCDM)",
-    "Combined BAO+RSD: Delta_chi2 = -3.89 (~2sigma preference)",
-    "All four channels PASS with zero falsification criteria triggered"
-  ],
-  "file_manifest": {
-    "pdf": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
-    "readme": "README.md",
-    "index": "index.json",
+  "files": {
+    "paper": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling.pdf",
     "schema": "schema.json",
-    "jsonld": "four_channel_test.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/four_channel_test.py"
-    ],
-    "data": "data/channel_results.json",
-    "demo": "examples/demo_four_channel.py"
+    "citations": "citations.bib"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31304980",

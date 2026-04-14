@@ -1,29 +1,112 @@
 {
+  "$schema": "./schema.json",
   "id": "isw-cross-correlation-desi-dr1",
   "title": "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers",
+  "description": "This paper computes the CMB\u2013galaxy ISW cross-correlation C_ell^{Tg} for Energy-Flow Cosmology (EFC) using linear perturbation theory and DESI DR1\u2013motivated tracer windows over multipoles ell=2\u201360. It introduces a bounded cancellation index C that isolates opposite-sign contributions from the standard ISW kernel and an EFC transition kernel driven by a time-varying gravitational coupling mu(a). The key prediction is a strong, redshift-dependent suppression of the ISW amplitude near the EFC transition epoch (z_t \u2248 0.82), providing clear falsifiable tests against \u039bCDM.",
+  "version": "1.0",
+  "date": "2025-02-01",
   "doi": "10.6084/m9.figshare.31301953",
+  "keywords": [
+    "integrated Sachs\u2013Wolfe effect",
+    "CMB\u2013galaxy cross-correlation",
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "time-varying gravitational coupling",
+    "DESI DR1",
+    "Limber approximation",
+    "Eisenstein\u2013Hu transfer function",
+    "cosmological perturbations",
+    "tomographic large-scale structure"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Energy-Flow Cosmology Project"
   },
-  "keywords": [
-    "integrated Sachs-Wolfe effect",
-    "ISW",
-    "CMB cross-correlation",
-    "DESI",
-    "modified gravity",
-    "large-scale structure",
-    "cosmological perturbations"
-  ],
-  "abstract": "Computes ISW-galaxy cross-correlation C_ℓ^Tg for EFC using linear perturbation theory, introducing the cancellation metric C to quantify opposite-sign contributions from standard and transition kernels.",
   "core_equations": {
-    "growth_equation": "D_xx + (2 + d ln H/dx) D_x - (3/2) Ω_m(a) μ(a) D = 0",
-    "modified_poisson": "∇²Φ = 4πG μ(a) ρ̄ δ",
-    "mu_parameterization": "μ(a) = 1 + β S(a), S(a) = ½[1 + tanh((ln a - ln a_t)/σ_cos)]",
-    "isw_kernel": "K(a) ∝ d/d ln a [μ D/a] = K_μ + K_μ'",
-    "cancellation_metric": "C = 1 - |Σ_ℓ C_ℓ,tot^Tg| / (|Σ_ℓ C_ℓ,μ^Tg| + |Σ_ℓ C_ℓ,μ'^Tg|)"
+    "growth_equation": {
+      "latex": "D'' + \\left(2 + \\frac{d\\ln H}{dx}\\right) D' - \\frac{3}{2} \\/ \\Omega_m(a)\\, \\mu(a)\\, D = 0, \\quad x \\equiv \\ln a",
+      "description": "Linear growth of matter perturbations in EFC, where the effective Poisson coupling mu(a) modifies the source term."
+    },
+    "modified_poisson": {
+      "latex": "\\nabla^2 \\Phi = 4\\pi G\\, \\mu(a)\\, \\bar{\\rho}\\, \\delta",
+      "description": "Modified Poisson equation encoding the time-dependent gravitational coupling mu(a) in EFC."
+    },
+    "mu_parameterization": {
+      "latex": "\\mu(a) = 1 + \\beta\\, S(a), \\quad S(a) = \\tfrac{1}{2}\\left[1 + \\tanh\\!\\left(\\frac{\\ln a - \\ln a_t}{\\sigma_{\\mathrm{cos}}}\\right)\\right]",
+      "description": "Transition parameterization for the effective coupling mu(a), centered at a_t with width sigma_cos and amplitude beta."
+    },
+    "isw_kernel_decomposition": {
+      "latex": "K(a) \\propto \\frac{d}{d\\ln a}\\!\\left[\\frac{\\mu(a) D(a)}{a}\\right] = \\underbrace{\\mu(a)\\, \\frac{d\\,(D/a)}{d\\ln a}}_{K_{\\mu}} + \\underbrace{\\frac{d\\mu}{d\\ln a}\\, \\frac{D}{a}}_{K_{\\mu'}}",
+      "description": "Decomposition of the ISW kernel into a standard term K_mu and an EFC transition term K_mu' arising from time variation of mu(a)."
+    },
+    "cancellation_metric": {
+      "latex": "C = 1 - \\frac{\\left|\\sum_{\\ell} C^{Tg}_{\\ell,\\, \\mathrm{tot}}\\right|}{\\left|\\sum_{\\ell} C^{Tg}_{\\ell,\\, \\mu}\\right| + \\left|\\sum_{\\ell} C^{Tg}_{\\ell,\\, \\mu'}\\right|}, \\quad C \\in [0,1]",
+      "description": "Bounded metric quantifying opposite-sign cancellation between the standard ISW and transition contributions; C\u21921 indicates near-total cancellation."
+    },
+    "w_background_perturbation": {
+      "latex": "w(a) = -1 + \\delta w\\, \\mathrm{sigmoid}\\!\\left(\\frac{a - a_t}{\\sigma_w}\\right), \\quad \\delta w \\le 0.05",
+      "description": "Smooth, percent-level background perturbation used for sensitivity checks; results found stable with max \\Delta\\chi^2 < 1 on 14 RSD points."
+    }
   },
+  "key_results": {
+    "main_finding": "EFC predicts strong redshift-dependent cancellation (high C) between K_mu and K_mu' near z_t \u2248 0.82, suppressing the ISW amplitude (AISW \u2248 0.3\u20130.6) relative to \u039bCDM, with current measurements consistent within ~1.6\u03c3.",
+    "delta_chi2": 1.0,
+    "significance_sigma": 1.6,
+    "parameters_tested": [
+      "beta = 0.16",
+      "a_t = 0.55 (z_t \u2248 0.82)",
+      "sigma_cos \u2208 [0.20, 0.30]",
+      "multipole range \u2113 \u2208 [2, 60]",
+      "\u03b4w \u2264 0.05 (background sensitivity)"
+    ],
+    "datasets_used": [
+      "DESI DR1-motivated tracer windows (LRGz0, LRG+ELG, ELG)",
+      "Galaxy bias from DESI DR1 full-shape analyses (Adame et al. 2025)",
+      "Planck temperature maps (for benchmarking with published results)",
+      "DESI Legacy Survey \u00d7 Planck ISW (Hang et al. 2021)",
+      "ATLAS LRG \u00d7 Planck redshift-binned ISW (Ansarinejad et al. 2020)",
+      "RSD compilation (14 points) for sensitivity checks"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The cancellation index C increases monotonically with tracer overlap with the transition epoch z_t \u2248 0.82: C \u2248 0.59 (LRGz0, z_eff \u2248 0.51), C \u2248 0.79 (LRG+ELG, z_eff \u2248 0.93), and C \u2248 0.96 (ELG, z_eff \u2248 1.32).",
+      "falsifiable_by": "Tomographic DESI \u00d7 Planck (or equivalent CMB T) ISW cross-correlation across spectroscopic bins spanning z\u22480.4\u20131.4, testing monotonic C(z_eff)."
+    },
+    {
+      "id": "P2",
+      "statement": "ISW amplitude is suppressed for tracers overlapping z_t, with AISW \u2248 0.3\u20130.6 over \u2113=2\u201360, while \u039bCDM predicts AISW = 1 for all tracers.",
+      "falsifiable_by": "Amplitude fits to tomographic DESI spectroscopic bins overlapping z_t that yield AISW \u2248 1.0 \u00b1 0.1 (or higher) with C \u2248 0."
+    },
+    {
+      "id": "P3",
+      "statement": "The ISW signal shape in \u2113 is only mildly altered relative to \u039bCDM; the distinctive signature is an amplitude suppression and large C near z_t rather than a strong \u2113-dependent distortion.",
+      "falsifiable_by": "Multipole-resolved C_ell^{Tg} measurements in \u2113=2\u201360 showing \u039bCDM-like amplitudes across all bins overlapping z_t without suppression."
+    },
+    {
+      "id": "P4",
+      "statement": "Opposite-sign contributions from K_mu and K_mu' near z_t produce partial cancellation, with the signed fraction from K_mu' exceeding unity in magnitude when near-cancellation occurs (bounded by C, not by signed fraction).",
+      "falsifiable_by": "Template-decomposition or parameter-inference analyses that robustly exclude opposite-sign kernel contributions near z_t when fitting EFC parameterization to tomographic C_ell^{Tg}."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Tomographic DESI spectroscopic bins overlapping z_t \u2248 0.82 yield AISW = 1.0 \u00b1 0.1 with C \u2248 0 over \u2113=2\u201360.",
+    "KC2: The measured cancellation index C does not increase with tracer effective redshift across bins bracketing z_t (monotonicity violated at >3\u03c3).",
+    "KC3: A joint fit to tomographic C_ell^{Tg} near z_t prefers \u03b2 \u2248 0 (i.e., \u03bc(a) \u2248 1 with no transition) and rejects \u03b2 = 0.16, a_t \u2248 0.55 for all \u03c3_cos with \u0394\u03c7^2 \u226b 10.",
+    "KC4: High-precision measurements show AISW \u2265 0.9 in bins centered near z_t with uncertainties \u2264 0.1, inconsistent with the predicted 0.3\u20130.6 suppression."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [],
+  "files": {
+    "pdf": "ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31301953",
+  "abstract": "Computes ISW-galaxy cross-correlation C_\u2113^Tg for EFC using linear perturbation theory, introducing the cancellation metric C to quantify opposite-sign contributions from standard and transition kernels.",
   "parameters": {
     "beta": 0.16,
     "a_t": 0.55,
@@ -31,73 +114,43 @@
     "sigma_cos": "[0.20, 0.30]",
     "multipole_range": "[2, 60]"
   },
-  "key_results": {
-    "cancellation_trend": {
-      "description": "C increases monotonically with tracer overlap with z_t",
-      "LRGz0": {
-        "z_eff": 0.51,
-        "C": 0.59,
-        "A_ISW": 0.56
-      },
-      "LRG_ELG": {
-        "z_eff": 0.93,
-        "C": 0.79,
-        "A_ISW": 0.29
-      },
-      "ELG": {
-        "z_eff": 1.32,
-        "C": 0.96
-      }
-    },
-    "amplitude_suppression": {
-      "EFC_range": "A_ISW = 0.29-0.56",
-      "LCDM_expectation": "A_ISW = 1 for all tracers",
-      "current_status": "Consistent within 1.6σ"
-    },
-    "kernel_decomposition": {
-      "K_mu": "Standard ISW term (potential decay in accelerating universe)",
-      "K_mu_prime": "EFC transition term (temporal variation of μ)",
-      "signature": "Opposite-sign contributions near z_t cause suppression"
-    }
-  },
   "predictions_vs_lcdm": {
     "EFC": {
-      "cancellation": "C ≳ 0.6 for z_eff ≳ 0.5, monotonically increasing",
-      "amplitude": "Suppressed near z_t (A ≈ 0.3-0.6)",
-      "redshift_dependence": "Strong: suppression peaks at z_t ≈ 0.82"
+      "cancellation": "C \u2273 0.6 for z_eff \u2273 0.5, monotonically increasing",
+      "amplitude": "Suppressed near z_t (A \u2248 0.3-0.6)",
+      "redshift_dependence": "Strong: suppression peaks at z_t \u2248 0.82"
     },
     "LCDM": {
       "cancellation": "C = 0 by construction",
       "amplitude": "A_ISW = 1 for all tracers",
-      "redshift_dependence": "Weak: varies only via Ω_Λ(z)"
+      "redshift_dependence": "Weak: varies only via \u03a9_\u039b(z)"
     }
   },
   "observational_benchmark": {
     "desi_legacy_planck": {
-      "A_ISW": "0.984 ± 0.349",
+      "A_ISW": "0.984 \u00b1 0.349",
       "source": "Hang et al. 2021"
     },
     "atlas_lrg_planck": {
-      "note": "Null detected at z̄ = 0.68",
+      "note": "Null detected at z\u0304 = 0.68",
       "source": "Ansarinejad et al. 2020"
     }
   },
   "falsification_criteria": {
-    "EFC_falsified_if": "Tomographic bins overlapping z_t yield A_ISW = 1.0 ± 0.1 and C ≈ 0",
-    "LCDM_challenged_if": "A_ISW ≪ 1 with high C at z_t",
-    "decisive_test": "Tomographic C_ℓ^Tg in DESI spectroscopic bins overlapping z_t"
+    "EFC_falsified_if": "Tomographic bins overlapping z_t yield A_ISW = 1.0 \u00b1 0.1 and C \u2248 0",
+    "LCDM_challenged_if": "A_ISW \u226a 1 with high C at z_t",
+    "decisive_test": "Tomographic C_\u2113^Tg in DESI spectroscopic bins overlapping z_t"
   },
   "methodology": {
     "power_spectrum": "Eisenstein & Hu (1998) no-wiggle transfer function",
-    "angular_projection": "Extended Limber approximation, k = (ℓ + 1/2)/χ",
+    "angular_projection": "Extended Limber approximation, k = (\u2113 + 1/2)/\u03c7",
     "tracer_windows": "DESI DR1-motivated W_g(z) = b_g(z) dN/dz",
     "galaxy_bias": "From DESI DR1 full-shape analyses"
   },
   "caveats": [
-    "Limber approximation degrades for ℓ ≲ 10",
+    "Limber approximation degrades for \u2113 \u2272 10",
     "Smooth parametric n(z) approximations used",
-    "No mask/pseudo-C_ℓ correction applied",
-    "σ_8,0 fitted as nuisance parameter"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31301953"
+    "No mask/pseudo-C_\u2113 correction applied",
+    "\u03c3_8,0 fitted as nuisance parameter"
+  ]
 }

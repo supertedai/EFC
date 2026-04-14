@@ -1,26 +1,33 @@
 {
-  "name": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
-  "title": "EFC — Technical Documentation: Energy Flow in Space-Time",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "license": "CC-BY-4.0",
+  "title": "EFC \u2014 Technical Documentation: Energy Flow in Space-Time",
+  "short_id": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
   "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "date": "2024-12-27",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.28098332",
+  "abstract": "Technical documentation outlining the Energy-Flow Cosmology (EFC) view that ongoing energy flow sustains and shapes space-time. It organizes the framework\u2019s core principles, references observational touchpoints (redshift and the CMB), sketches a mathematical program (with entropy and c as boundary conditions), and lists applications and open challenges.",
   "keywords": [
-    "EFC",
-    "Technical Documentation",
-    "Energy Flow",
-    "Spacetime",
-    "Field Specification",
-    "Simulation"
+    "Energy-Flow Cosmology",
+    "spacetime dynamics",
+    "entropy",
+    "speed of light",
+    "redshift",
+    "cosmic microwave background",
+    "cosmic expansion",
+    "time evolution",
+    "boundary conditions",
+    "theoretical framework",
+    "cosmology",
+    "observational evidence"
   ],
-  "description": "Formal, computational, and structural aspects of energy flow in spacetime: definitions, field specifications, variable sets, mathematical operators, and integration rules for simulation and analysis.",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/energy_flow_spacetime.py",
-    "data": "data/energy_flow_spacetime.json",
-    "demo": "examples/demo_energy_flow_spacetime.py"
+    "pdf": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.pdf",
+    "readme": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28098332",

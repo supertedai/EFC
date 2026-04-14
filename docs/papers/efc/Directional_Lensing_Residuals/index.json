@@ -1,4 +1,94 @@
 {
+  "$schema": "./schema.json",
+  "id": "directional-lensing-residuals",
+  "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
+  "description": "Pre-registered observational pipeline to test for a directional asymmetry in lensing convergence residuals across galaxy cluster merger shock fronts. It defines a locally normalized estimator Asig using a rotation null to isolate shock-locked signals and fits a mass+gas-pressure model outside the shock aperture to avoid circularity. Mock Bullet Cluster analogues show correct sign separation between EFC-like and \u039bCDM cases with zero false positives, and the pipeline is ready for JWST \u03ba-maps combined with Chandra thermodynamics.",
+  "version": "1.0",
+  "date": "2026-02-07",
+  "doi": "10.6084/m9.figshare.31288063",
+  "keywords": [
+    "gravitational lensing",
+    "convergence kappa",
+    "galaxy clusters",
+    "merger shock fronts",
+    "intracluster medium",
+    "entropy",
+    "modified gravity",
+    "JWST",
+    "Chandra",
+    "Bullet Cluster",
+    "Abell 2146",
+    "rotation null test"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sandnes, Norway"
+  },
+  "core_equations": {
+    "effective_speed_entropy": {
+      "latex": "c_{\\mathrm{eff}}(S) = c_0\\,[1 + \\mu(S)]",
+      "description": "EFC-motivated coupling: effective speed of light depends on local entropy S via a monotonically decreasing function \\mu(S), implying extra convergence in low-entropy regions."
+    },
+    "kappa_model": {
+      "latex": "\\kappa_{\\mathrm{model}}(\\mathbf{r}) = \\kappa_{\\mathrm{NFW}}(\\mathbf{r}) + \\kappa_{\\mathrm{gas}}(\\mathbf{r})",
+      "description": "Projected convergence model combining dark matter (two NFW halos) and a gas component."
+    },
+    "kappa_gas": {
+      "latex": "\\kappa_{\\mathrm{gas}}(\\mathbf{r}) = \\frac{\\alpha\\,\\Sigma_{\\mathrm{gas}}(\\mathbf{r}) + \\beta\\,\\Sigma_{P}(\\mathbf{r})}{\\Sigma_{\\mathrm{crit}}}",
+      "description": "Gas contribution includes a surface-density term and a pressure-proxy term, with coefficients (\\alpha, \\beta) fitted outside the shock aperture."
+    },
+    "delta_kappa": {
+      "latex": "\\Delta\\kappa(\\mathbf{r}) = \\kappa_{\\mathrm{obs}}(\\mathbf{r}) - \\kappa_{\\mathrm{model}}(\\mathbf{r})",
+      "description": "Convergence residual used to test for departures from symmetric mass-only models."
+    },
+    "A_shock": {
+      "latex": "A_{\\mathrm{shock}} = \\frac{\\langle \\Delta\\kappa \\rangle_{\\mathrm{pre}} - \\langle \\Delta\\kappa \\rangle_{\\mathrm{post}}}{\\sigma_{\\mathrm{diff}}},\\quad \\sigma_{\\mathrm{diff}} = \\sigma_{\\Delta\\kappa}\\,\\sqrt{\\tfrac{1}{N_{\\mathrm{pre}}} + \\tfrac{1}{N_{\\mathrm{post}}}}",
+      "description": "Raw directional asymmetry across the shock; positive values indicate excess residual convergence on the low-entropy (pre-shock) side."
+    },
+    "A_sig": {
+      "latex": "A_{\\mathrm{sig}} = \\frac{A_{\\mathrm{shock}} - \\mathrm{median}(A_{\\mathrm{rot}})}{\\sigma_{\\mathrm{MAD}}},\\quad \\sigma_{\\mathrm{MAD}} = 1.4826\\,\\mathrm{MAD}[A_{\\mathrm{rot}}]",
+      "description": "Primary locally normalized statistic using a rotation-null distribution of A_shock to isolate shock-locked asymmetry and provide robust significance."
+    }
+  },
+  "key_results": {
+    "main_finding": "Pre-registered pipeline validated on synthetic Bullet Cluster analogues shows correct sign separation between EFC-like (positive) and \u039bCDM-like (negative/null) cases with zero false positives; ready for JWST+Chandra application.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_sig",
+      "A_shock",
+      "alpha",
+      "beta",
+      "p_rot",
+      "sigma_MAD"
+    ],
+    "datasets_used": [
+      "Synthetic Bullet Cluster analogues (beta-model ICM + two NFW halos)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At well-resolved merger shock fronts (e.g., Bullet Cluster, Abell 2146), the pre-shock (low-entropy) side will exhibit a positive directional convergence residual, yielding A_sig > 0 and preferably A_sig > 3 with p_rot < 0.05 when JWST \u03ba-maps are combined with Chandra thermodynamics using the pre-registered pipeline.",
+      "falsifiable_by": "Applying the pipeline to JWST \u03ba-maps and Chandra thermodynamic maps at published shock fronts and measuring A_sig \u2264 0 or failing to reach significance (p_rot \u2265 0.05) across multiple fronts."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: In at least two independent, high-quality cluster shock fronts (e.g., Bullet Cluster and Abell 2146) that meet the pre-registered data and geometry cuts, the measured asymmetry is non-positive and non-significant: A_sig \u2264 0 with p_rot \u2265 0.05 for each front (95% CI), ruling out a systematic low-entropy excess.",
+    "KC2: Observation of a statistically significant reversed signal at any qualifying front: A_sig \u2264 -3 with p_rot < 0.05 using the pre-registered rotation-null and anti-circularity fit, contradicting the predicted pre-shock excess.",
+    "KC3: The apparent asymmetry disappears when the shock aperture is defined purely from X-ray data (blind to \u03ba) and persists only when geometry is tuned to \u03ba, indicating circularity; specifically, Asig drops by \u2265 3\u03c3 when reverting to the pre-registered X-ray-defined geometry.",
+    "KC4: Robustness failure: materially different \u03ba reconstructions (independent teams or methods) applied to the same shock yield consistent null or negative Asig (all with p_rot \u2265 0.05), indicating the effect is not reconstruction-robust."
+  ],
+  "tier": "T2",
+  "paper_type": "observational_pipeline",
+  "related_packages": [],
+  "files": {
+    "pdf": "Directional_Lensing_Residuals.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31288063",
   "paper": {
     "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
     "author": "Morten Magnusson",
@@ -244,7 +334,5 @@
     "examples": "examples/directional_lensing_demo.py",
     "citation": "CITATION.cff",
     "license": "LICENSE"
-  },
-  "doi": "10.6084/m9.figshare.31288063",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31288063"
+  }
 }

@@ -1,8 +1,8 @@
 {
-  "title": "EFC -- v1.2 Foundational Framework",
+  "title": "Energy\u2013Flow Cosmology v1.2: Foundational Framework and Cross-Field Continuity",
   "short_id": "EFC-v1.2-Foundational-Framework",
   "version": "1.2",
-  "date": "2025",
+  "date": "2025-11-07",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,38 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.30563738",
-  "abstract": "Foundational framework document for Energy-Flow Cosmology (EFC). Defines core principles, field definitions (Energy Flow, Entropy, Grid), structural relationships, thermodynamic foundations, canonical terminology, and conceptual architecture forming the basis of the entire EFC project.",
+  "abstract": "Presents Energy\u2013Flow Cosmology (EFC), a covariant non-equilibrium thermodynamic field framework that extends General Relativity with a scalar energy-flow potential Ef, disformal matter coupling, and a Lyapunov-consistent dissipation structure. The theory reduces to GR in equilibrium, proposes a parsimonious parameter hierarchy with mild scale dependence, and outlines pre-registered Bayesian cross-prediction tests across rotation curves, weak lensing, SNe-Ia, and BAO. It also provides a functional bridge to variational free energy, enabling continuity to informational and biological systems, and introduces a unique observable: the Entropic Halo Temperature.",
   "keywords": [
-    "EFC",
-    "Foundations",
-    "Energy Flow",
-    "Entropy",
-    "Thermodynamics",
-    "Field Definitions",
-    "Conceptual Architecture",
-    "Cosmic Structure"
+    "Energy\u2013Flow Cosmology",
+    "non-equilibrium thermodynamics",
+    "scalar field",
+    "disformal coupling",
+    "Lyapunov stability",
+    "Maxwell\u2013Cattaneo",
+    "galaxy rotation curves",
+    "weak lensing",
+    "BAO",
+    "SNe-Ia",
+    "variational free energy",
+    "dark matter alternatives"
   ],
-  "efc_context": {
-    "track": "Core Theory",
-    "regime_relevance": "All regimes (L0-L3)",
-    "epistemic_layer": "Foundational definitions and first-principles logic"
-  },
-  "key_results": [
-    "Defines the four fundamental EFC fields: Energy Flow, Entropy, Grid, and Information",
-    "Establishes thermodynamic first principles as the basis for cosmological dynamics",
-    "Introduces regime architecture (L0-L3) for scale-dependent physics",
-    "Maps structural relationships between entropy production and cosmic evolution"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-v1.2-Foundational-Framework.pdf",
-    "jsonld": "EFC-v1.2-Foundational-Framework.jsonld",
-    "schema": "schema.json",
-    "index": "index.json",
-    "citations": "citations.bib",
-    "metadata": "metadata.json",
-    "src": "src/",
-    "data": "data/",
-    "examples": "examples/"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.30563738",

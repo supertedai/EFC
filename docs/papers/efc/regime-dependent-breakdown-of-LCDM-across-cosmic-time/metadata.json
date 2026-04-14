@@ -1,84 +1,33 @@
 {
   "title": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Energy-Flow Cosmology Initiative"
-    }
-  ],
-  "date": "2026-01-13",
+  "short_id": "regime-dependent-breakdown-lcdm",
   "version": "1.0",
-  "doi": "10.6084/m9.figshare.31061665",
-  "keywords": [
-    "cosmology: observations",
-    "galaxies: high-redshift",
-    "galaxies: kinematics",
-    "dark matter",
-    "LCDM tensions",
-    "regime analysis"
-  ],
-  "abstract": "Multiple observational tensions with LCDM have been reported across disparate redshifts. We present a systematic analysis combining low-redshift galaxy dynamics (SPARC, z ~ 0) with high-redshift galaxy abundances (COSMOS-Web/JWST, z > 6) to test whether deviations from standard predictions cluster in identifiable regimes. Using a descriptive taxonomy (L0-L3), we find that deviations cluster systematically: chi-squared = 47.3, df = 4, p < 10^-8. These results establish structured regime dependence without proposing alternative physics.",
-  "datasets": {
-    "low_redshift": {
-      "name": "SPARC",
-      "source": "Lelli et al. 2016",
-      "n_galaxies": 175,
-      "redshift": "z ~ 0"
-    },
-    "high_redshift": {
-      "name": "COSMOS2025",
-      "source": "Shuntov et al. 2025",
-      "n_galaxies": 26288,
-      "redshift": "z > 5",
-      "area_deg2": 0.54
-    }
-  },
-  "results": {
-    "statistical_test": {
-      "chi_squared": 47.3,
-      "df": 4,
-      "p_value": "1.3e-9"
-    },
-    "jwst_excess": {
-      "z_5_6": {
-        "ratio_behroozi": 23,
-        "ratio_halo_limit": 3.1
-      },
-      "z_7_8": {
-        "ratio_behroozi": 124,
-        "ratio_halo_limit": 7.7
-      },
-      "z_8_9": {
-        "ratio_behroozi": 259,
-        "ratio_halo_limit": 10.4
-      },
-      "z_9_10": {
-        "ratio_behroozi": 529,
-        "ratio_halo_limit": 10.6
-      }
-    }
-  },
-  "claims": {
-    "positive": [
-      "Deviations cluster systematically by regime",
-      "Pattern observed independently at low-z and high-z",
-      "Statistical significance: p < 10^-8"
-    ],
-    "negative": [
-      "Does NOT falsify LCDM",
-      "Does NOT propose alternative dynamics",
-      "Does NOT identify unique physical mechanism"
-    ]
-  },
-  "files": {
-    "pdf": "Paper2_Regime_Dependent_Breakdown.pdf",
-    "docx": "Paper2_Regime_Dependent_Breakdown.docx",
-    "metadata": "metadata.json",
-    "jsonld": "metadata.jsonld"
+  "date": "2026-01-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "repository": "https://github.com/mortenmagnusson/efc-papers",
+  "doi": "10.6084/m9.figshare.31061665",
+  "abstract": "Combines low-z galaxy dynamics (SPARC) with high-z galaxy abundances (JWST COSMOS-Web) to test whether deviations from standard \u039bCDM predictions cluster by observational regime. Using a descriptive L0\u2013L3 taxonomy and a pre-specified chi-squared/permutation framework, the paper finds significant, monotonic high-z excesses and structured low-z rotation-curve deviations, rejecting uniform randomness (\u03c7\u00b2=47.3, df=4, p\u22481.3e-9). The result is robust to photometric-redshift resampling and conservative systematic stress tests.",
+  "keywords": [
+    "\u039bCDM",
+    "regime dependence",
+    "SPARC rotation curves",
+    "JWST COSMOS-Web",
+    "high-redshift galaxies",
+    "abundance excess",
+    "chi-squared test",
+    "halo mass function",
+    "Behroozi predictions",
+    "photometric redshift",
+    "cosmic variance",
+    "baryon\u2013dark matter coupling"
+  ],
+  "files": {
+    "pdf": "Regime_Dependent_Breakdown.pdf"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31061665",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665"

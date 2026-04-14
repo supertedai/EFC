@@ -1,48 +1,33 @@
 {
-  "title": "EFC — Hypothesis: Interrelation Between Energy and Entropy",
-  "short_id": "efc-hypothesis-energy-entropy-interrelation",
-  "version": "v1.0",
-  "date": "2025-01-01",
+  "title": "EFC \u2014 Hypothesis: Interrelation Between Energy and Entropy",
+  "short_id": "EFC-Hypothesis-Interrelation-Energy-Entropy",
+  "version": "1.0",
+  "date": null,
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "abstract": "Presents the hypothesis that energy flow and entropy gradients are interdependent components of a unified thermodynamic field. Outlines how their interaction shapes structure, dynamics, information propagation, and spacetime behaviour within the EFC framework.",
+  "doi": "10.6084/m9.figshare.28557281",
+  "abstract": "Proposes Energy-Flow Cosmology (EFC), a framework in which universal expansion, structure formation, and phenomena attributed to dark matter/energy emerge from a universal energy Grid composed of Higgs-boson nodes, with energy flow declining linearly as entropy increases. The model treats the speed of light as an emergent property regulated by energy-flow gradients and makes falsifiable predictions in redshift profiles, gravitational lensing, and CMB anisotropies that can distinguish it from \u039bCDM.",
   "keywords": [
-    "EFC",
-    "energy",
-    "entropy",
-    "thermodynamics",
-    "energy flow",
-    "entropy gradient",
-    "unified field hypothesis"
+    "Energy-Flow Cosmology",
+    "Entropy",
+    "Higgs field",
+    "Dark matter",
+    "Speed of light",
+    "Gravitational lensing",
+    "Redshift anomalies",
+    "Cosmic microwave background",
+    "Black holes",
+    "String theory",
+    "Halos",
+    "Cosmic expansion"
   ],
-  "efc_context": {
-    "track": "Fundamental Theory",
-    "regime_relevance": "Unified energy-entropy field hypothesis",
-    "epistemic_layer": "Layer A (theoretical foundation)"
-  },
-  "key_results": [
-    "Energy flow and entropy gradients form a unified thermodynamic field",
-    "Interdependence relation: dEf/dS = -kappa * grad_S",
-    "Information propagation bounded by entropy production rate",
-    "Spacetime behaviour emerges from energy-entropy coupling"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-Hypothesis-Interrelation-Energy-Entropy.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "EFC-Hypothesis-Interrelation-Energy-Entropy.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/energy_entropy_interrelation.py"
-    ],
-    "data": "data/parameters.json",
-    "demo": "examples/demo_energy_entropy.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28557281",

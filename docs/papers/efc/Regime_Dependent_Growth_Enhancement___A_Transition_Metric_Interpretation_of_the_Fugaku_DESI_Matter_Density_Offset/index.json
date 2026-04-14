@@ -1,64 +1,89 @@
 {
+  "$schema": "./schema.json",
   "id": "regime-dependent-growth-enhancement-fugaku-desi",
-  "title": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku-DESI Matter Density Offset",
-  "short_title": "Fugaku-DESI Transition Metric",
+  "title": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku\u2013DESI Matter Density Offset",
+  "description": "The paper reinterprets the ~10% matter-density offset seen in DESI-calibrated Fugaku N-body simulations as an integrated transition-strength estimator, \u0394F \u2248 0.1, of a regime-dependent effective gravitational coupling \u03bc(a) \u2261 G_eff/G. It introduces a bounded transition kernel and an observational window W(a) to define \u0394F, and shows a single \u03bc(a) can satisfy CMB (\u03bc\u22481 at recombination), DESI/Fugaku growth (\u0394F\u22480.1 in the sensitivity band), and galaxy-scale (\u03bc\u21921+\u0394\u03bc) consistency simultaneously.",
   "version": "1.0",
-  "date": "2026",
+  "date": "2026-01-24",
   "doi": "10.6084/m9.figshare.31140000",
+  "keywords": [
+    "DESI DR2",
+    "Fugaku simulations",
+    "N-body",
+    "effective gravitational coupling",
+    "transition metric",
+    "growth enhancement",
+    "BAO and RSD",
+    "Planck 2018",
+    "modified gravity phenomenology",
+    "galaxy rotation curves",
+    "regime transition",
+    "Energy-Flow Cosmology"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "effective_gravitational_coupling": {
+      "latex": "\\mu(a) \\equiv \\frac{G_{\\rm eff}(a)}{G}",
+      "description": "Dimensionless, time-dependent effective gravitational coupling encoding growth modifications without altering the homogeneous background."
+    },
+    "transition_kernel": {
+      "latex": "\\mu(a) = 1 + \\Delta\\mu\\, R\\!\\left(\\frac{\\ln a - \\ln a_t}{\\sigma}\\right)",
+      "description": "Smooth, bounded transition in log-scale factor; R(x) is a monotonic regulator with R(-\\infty)=0 and R(+\\infty)=1, centered at a_t with width \\sigma and amplitude \\Delta\\mu."
+    },
+    "transition_estimator": {
+      "latex": "\\Delta F = \\int_{a_{\\min}}^{a_{\\max}} W(a)\\,[\\mu(a)-1] \\, d\\ln a",
+      "description": "Integrated transition strength over the DESI/Fugaku observational sensitivity window W(a); empirically calibrated to \\Delta F \\approx 0.1."
+    }
+  },
+  "key_results": {
+    "main_finding": "The DESI-calibrated Fugaku matter-density offset is best interpreted as an integrated transition metric with \\Delta F \\approx 0.1, realizable by a single \\mu(a) that respects CMB, large-scale structure, and galaxy-scale constraints.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Delta_F",
+      "Delta_mu",
+      "a_t",
+      "sigma",
+      "mu(a)"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO/RSD",
+      "Planck 2018 (CMB)",
+      "Fugaku/Uchuu-class N-body simulations"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Independent implementations of the transition estimator in Boltzmann and structure-growth solvers, when fit to DESI DR2 BAO/RSD together with Fugaku-like N-body outputs, will recover a positive integrated transition strength consistent with \\Delta F \\approx 0.1 within the DESI sensitivity window.",
+      "falsifiable_by": "Joint CMB+BAO/RSD+simulation-informed growth analyses that robustly favor \\Delta F consistent with zero or negative values over the DESI/Fugaku window."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Independent re-analyses of Fugaku-class N-body outputs calibrated to DESI DR2, using at least two distinct Boltzmann/structure solvers implementing the estimator, fail to recover a positive integrated transition strength and instead prefer Delta_F consistent with zero across the DESI window.",
+    "KC2: High-precision CMB analyses allowing time-dependent \\mu(a) detect a statistically significant deviation from a recombination-era plateau (i.e., \\mu(a \\ll a_t) \\neq 1), violating the required CMB consistency condition.",
+    "KC3: A comprehensive, regime-aware meta-analysis of galaxy rotation curves demonstrates that late-time asymptotic enhancement (\\mu \\to 1+\\Delta\\mu > 1) is disfavored, or requires \\mu \\leq 1, contradicting the galaxy-scale consistency condition.",
+    "KC4: The ~10% matter-density proxy observed in DESI-calibrated Fugaku-class simulations is shown to be a numerical or pipeline artifact (e.g., eliminated by higher resolution, alternative force solvers, or improved systematics control), removing the empirical basis for mapping the offset to \\Delta F \\approx 0.1.",
+    "KC5: Cross-redshift and multi-probe fits demonstrate that no smooth, bounded regulator R(x) with any (a_t, \\sigma, \\Delta\\mu) can simultaneously satisfy the three consistency conditions (CMB plateau, \\Delta F in the DESI window, and late-time \\mu>1), invalidating the single-transition-kernel hypothesis.",
+    "KC6: Joint BAO+RSD+weak-lensing growth measurements robustly indicate growth suppression in the DESI sensitivity band (i.e., significantly negative \\Delta F), contradicting the regime-dependent growth enhancement claim."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset.pdf",
+    "tex": "efc_transition_metric.tex",
+    "toolkit": "efc-toolkit/"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31140000",
+  "short_title": "Fugaku-DESI Transition Metric",
   "type": "empirical_analysis",
   "status": "published",
   "abstract_short": "Reinterprets ~10% matter density offset in Fugaku N-body simulations as transition estimator Delta_F approx 0.1 measuring integrated regime transition strength rather than fundamental density parameter.",
-  "keywords": [
-    "DESI",
-    "Fugaku",
-    "N-body simulations",
-    "transition metric",
-    "matter density offset",
-    "regime transition",
-    "structure formation"
-  ],
-  "core_equations": [
-    {
-      "name": "Effective gravitational coupling",
-      "formula": "mu(a) = G_eff(a)/G",
-      "description": "Time-dependent effective gravitational coupling"
-    },
-    {
-      "name": "Transition kernel",
-      "formula": "mu(a) = 1 + Delta_mu * R((ln a - ln a_t)/sigma)",
-      "description": "Smooth bounded transition function"
-    },
-    {
-      "name": "Transition estimator",
-      "formula": "Delta_F = integral W(a)[mu(a)-1] d ln a",
-      "description": "Integrated transition strength"
-    }
-  ],
-  "key_results": {
-    "delta_F": 0.1,
-    "interpretation": "10% matter density offset = integrated transition strength",
-    "consistency_conditions": [
-      {
-        "regime": "CMB",
-        "requirement": "mu approx 1 at recombination",
-        "status": "satisfied"
-      },
-      {
-        "regime": "DESI/Fugaku",
-        "requirement": "Delta_F approx 0.1 in transition band",
-        "status": "satisfied"
-      },
-      {
-        "regime": "Galaxy",
-        "requirement": "mu > 1 asymptotically",
-        "status": "satisfied"
-      }
-    ]
-  },
   "data_sources": [
     {
       "name": "DESI DR2 BAO",
@@ -90,11 +115,5 @@
       "doi": "10.6084/m9.figshare.31112536",
       "title": "L0-L3 Regime Architecture"
     }
-  ],
-  "files": {
-    "pdf": "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset.pdf",
-    "tex": "efc_transition_metric.tex",
-    "toolkit": "efc-toolkit/"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31140000"
+  ]
 }

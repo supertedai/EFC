@@ -1,34 +1,111 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-desi-dr2-bao",
   "title": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO",
-  "subtitle": "With Cross-Validation Against Pantheon+ and H(z) Chronometers",
+  "description": "Validates a minimal Energy-Flow Cosmology (EFC) regime-transition parameterization against DESI DR2 BAO using a transparent manual likelihood and a covariance-aware conditional hold-out test. The model modifies E^2(z) by a tanh transition modulated by (1+z)^{-1}, achieves a large \u0394\u03c7^2 = \u221222.01 improvement over \u039bCDM for two extra parameters, and remains consistent with Pantheon+ SNe (after M-marginalization) and cosmic chronometers. Combined BAO+CC information criteria favor the EFC transition model (\u0394BIC \u2248 \u221214.5).",
   "version": "1.0",
   "date": "2026-02-02",
+  "doi": "10.6084/m9.figshare.31230703",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "DESI DR2",
+    "BAO",
+    "regime transition",
+    "tanh transition",
+    "information criteria",
+    "AIC",
+    "BIC",
+    "conditional hold-out",
+    "Pantheon+",
+    "cosmic chronometers",
+    "H(z)"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "SupertedAI, Norway",
     "email": "morten@supertedai.tech"
   },
+  "core_equations": {
+    "modified_friedmann_transition": {
+      "latex": "E^2(z) \\;\\to\\; E^2(z)\\,\\big[1 + \\alpha_{L2}\\, f(z)\\, \\Theta(z)\\big]",
+      "description": "Minimal EFC regime-transition parameterization that rescales the background expansion; reduces exactly to \u039bCDM when \\alpha_{L2}=0."
+    },
+    "coupling_function": {
+      "latex": "f(z) = (1+z)^{-1}",
+      "description": "Phenomenological redshift dependence of the energy-flow coupling."
+    },
+    "transition_function": {
+      "latex": "\\Theta(z) = \\tfrac{1}{2}\\left[1 + \\tanh\\!\\left(\\frac{z_{L1L2} - z}{\\Delta z}\\right)\\right], \\quad \\Delta z = 0.3",
+      "description": "Smooth tanh transition centered at z_{L1L2} with fixed width \u0394z."
+    },
+    "bao_likelihood": {
+      "latex": "\\chi^2_{\\rm BAO} = (\\mathbf{d}_{\\rm obs} - \\mathbf{d}_{\\rm th})^{\\top}\\, \\mathbf{C}^{-1} \\, (\\mathbf{d}_{\\rm obs} - \\mathbf{d}_{\\rm th})",
+      "description": "Covariance-aware \u03c7^2 for DESI DR2 BAO using DV/rs, DM/rs, DH/rs."
+    },
+    "sn_marginalized_likelihood": {
+      "latex": "\\chi^2_{\\rm SN,\\,marg} = A - \\frac{B^2}{E},\\quad A = \\mathbf{r}^{\\top}\\mathbf{C}^{-1}\\mathbf{r},\\; B = \\mathbf{1}^{\\top}\\mathbf{C}^{-1}\\mathbf{r},\\; E = \\mathbf{1}^{\\top}\\mathbf{C}^{-1}\\mathbf{1}",
+      "description": "Analytic marginalization over the absolute magnitude M for supernovae."
+    },
+    "conditional_holdout": {
+      "latex": "\\mathbf{C}_{h|t} = \\mathbf{C}_{hh} - \\mathbf{C}_{ht}\\mathbf{C}_{tt}^{-1}\\mathbf{C}_{th},\\quad \\mathbf{r}_{h|t} = \\mathbf{r}_{h} - \\mathbf{C}_{ht}\\mathbf{C}_{tt}^{-1}\\mathbf{r}_{t},\\quad \\chi^2_{h|t} = \\mathbf{r}_{h|t}^{\\top} \\, \\mathbf{C}_{h|t} \\, \\mathbf{r}_{h|t}",
+      "description": "Covariance-aware conditional hold-out test accounting for cross-covariance between training (t) and hold-out (h) subsets."
+    }
+  },
+  "key_results": {
+    "main_finding": "DESI DR2 BAO strongly favor an EFC tanh-transition at z_L1L2 \u2248 1 with coupling \u03b1_L2 \u2248 0.045, yielding \u0394\u03c7^2 = \u221222.01 for two extra parameters and surviving a covariance-aware conditional hold-out (\u0394\u03c7^2_h|t = \u221218.65), while Pantheon+ and H(z) chronometers remain consistent.",
+    "delta_chi2": -22.01,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "z_L1L2",
+      "alpha_L2"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO (13 points; DV/rs, DM/rs, DH/rs)",
+      "Pantheon+ SNe Ia (277; M-marginalized)",
+      "Cosmic Chronometers H(z) (34; diagonal errors)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Independent BAO compilations (e.g., DESI DR3/DR4, BOSS/eBOSS reanalyses) fit with the same two-parameter EFC model (\u0394z = 0.3, Planck 2018 priors) will prefer a single transition near z_L1L2 = 1.0 \u00b1 0.2 with a positive coupling 0.03 \u2264 \u03b1_L2 \u2264 0.06 and yield \u0394BIC \u2264 \u22126 relative to \u039bCDM.",
+      "falsifiable_by": "Re-fitting future or independent BAO datasets with identical likelihood and priors; failure to achieve \u0394BIC \u2264 \u22126 or preference for \u03b1_L2 \u2248 0 within uncertainties falsifies this prediction."
+    },
+    {
+      "id": "P2",
+      "statement": "After analytic M-marginalization, the supernova distance-modulus residual shape relative to \u039bCDM, \u0394\u03bc_shape(z), remains |\u0394\u03bc_shape(z)| < 0.002 mag over 0.01 < z < 2.3 for the EFC best-fit parameters.",
+      "falsifiable_by": "A Pantheon+-like reanalysis with full covariance showing |\u0394\u03bc_shape(z)| \u2265 0.002 mag over any contiguous \u0394z \u2265 0.3 interval."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Independent BAO datasets (e.g., DESI DR3/DR4, BOSS/eBOSS) analyzed with the same EFC parameterization (\u0394z = 0.3) and Planck-informed priors yield \u0394BIC \u2265 0 (or \u0394AIC \u2265 0) versus \u039bCDM, indicating no improvement once parameter penalty is applied.",
+    "KC2: Covariance-aware conditional hold-out or K-fold cross-validation on DESI DR2 (or successor datasets) shows average \u0394\u03c7^2_h|t \u2265 \u22124 for EFC relative to \u039bCDM across multiple random partitions, indicating no robust generalization gain.",
+    "KC3: High-precision H(z) measurements (e.g., improved CC or standard sirens) with \u03c3_H/H \u2264 3% over 0.5 < z < 1.5 constrain the EFC coupling to |\u03b1_L2| < 0.01 (95% CL), placing \u03b1_L2 = 0.045 outside 3\u03c3 when combined with BAO.",
+    "KC4: Supernova datasets with full covariance and absolute calibration, after M-marginalization, exhibit a redshift-dependent residual shape |\u0394\u03bc_shape(z)| \u2265 0.01 mag over 0.1 < z < 1.5 that is inconsistent with the EFC f(z)\u0398(z) modulation, or strongly prefers \u039bCDM over the fixed-\u0394z EFC model by \u0394BIC \u2265 0.",
+    "KC5: Joint BAO+CC fits allowing H0 and r_d to vary within Planck 2018 priors eliminate the EFC advantage (\u0394AIC \u2265 0 or \u0394BIC \u2265 0) and constrain \u03b1_L2 consistent with zero at \u2265 3\u03c3.",
+    "KC6: Cross-probe consistency fails: best-fit z_L1L2 values inferred from low-z (z < 0.8) and high-z (z > 1.2) BAO subsets disagree at > 3\u03c3, ruling out a single-transition EFC with fixed width \u0394z = 0.3."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31230703",
+  "subtitle": "With Cross-Validation Against Pantheon+ and H(z) Chronometers",
   "license": "CC-BY-4.0",
   "type": "empirical_validation",
   "epistemic_layer": "A",
   "epistemic_status": "Empirical validation against multiple probes",
-  "keywords": [
-    "DESI DR2",
-    "BAO",
-    "regime transition",
-    "Pantheon+",
-    "cosmic chronometers",
-    "cross-validation",
-    "EFC"
-  ],
   "model": {
-    "parameterization": "E²(z) → E²(z) × [1 + α_L2 × f(z) × Θ(z)]",
-    "coupling_function": "f(z) = (1+z)⁻¹",
-    "transition_function": "Θ(z) = ½[1 + tanh((z_L1L2 - z)/Δz)]",
+    "parameterization": "E\u00b2(z) \u2192 E\u00b2(z) \u00d7 [1 + \u03b1_L2 \u00d7 f(z) \u00d7 \u0398(z)]",
+    "coupling_function": "f(z) = (1+z)\u207b\u00b9",
+    "transition_function": "\u0398(z) = \u00bd[1 + tanh((z_L1L2 - z)/\u0394z)]",
     "transition_width": 0.3,
-    "reduces_to_LCDM": "when α_L2 = 0"
+    "reduces_to_LCDM": "when \u03b1_L2 = 0"
   },
   "best_fit": {
     "z_L1L2": 1.01,
@@ -150,7 +227,5 @@
       "delta_chi2": -22.17,
       "status": "Pass"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31230703",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31230703"
+  ]
 }
