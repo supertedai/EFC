@@ -7,61 +7,39 @@ API key: SET
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 10 paper(s) to 10/10 <<<
+>>> Step 1: Enriching 4 paper(s) to 10/10 <<<
 
-  EBE-Core-Principles  (missing: key_results, kill_criteria)
-    Enriched metadata (key_results, kill_criteria)
-  EFC-How-Does-Balance-Shape-Universal-Structures  (missing: key_results, kill_criteria, tier)
-    Enriched metadata (key_results, kill_criteria, tier)
-  EFC_Effective_Horndeski_Reduction  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
+  EFC_Effective_Horndeski_Reduction  (missing: src/, examples/, data/)
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
     Generated src/, examples/, data/
-  EFC_PreRegistered_Predictions  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
+  EFC_PreRegistered_Predictions  (missing: src/, examples/, data/)
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
     Generated src/, examples/, data/
-  ISW_Consistency_Audit_and_Revision_Patch_for_Energy-Flow_Cosmology_Cross-Correlation_Predictions  (missing: key_results, kill_criteria, paper_type, tier)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
   Kill-Test v6 Universality_SPARC175  (missing: key_results, tier)
-    [WARN] GPT-5 returned invalid JSON: {
-  "$schema": "./schema.json",
-  "id": "kill-test-v6-universality-sparc175",
-  "title": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
-  "descripti
-    [SKIP] Could not enrich metadata
-  Persistent_Cognitive_Architectures_for_Human-AI_Co-Reasoning_Beyond_Retrieval_to_Structural_Intelligence  (missing: key_results, kill_criteria, paper_type, tier)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-  Structural_Coherence_Evaluation_for_Physical_Theories  (missing: key_results, kill_criteria, paper_type, tier)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
+    Enriched metadata (key_results, tier)
   WP4_BOSS_transfer_validation  (missing: key_results, kill_criteria, tier)
-    [WARN] GPT-5 returned invalid JSON: {
-  "$schema": "./schema.json",
-  "id": "wp4-boss-transfer-validation",
-  "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO W
-    [SKIP] Could not enrich metadata
-  efc_boss_bao_cobaya_research_note  (missing: key_results, kill_criteria, tier)
     Enriched metadata (key_results, kill_criteria, tier)
 
-  Enriched: 10/10
+  Enriched: 4/4
 
->>> Step 2: Registering 64 paper(s) in public pages <<<
+>>> Step 2: Registering 61 paper(s) in public pages <<<
 
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
-    Updated Ledger (1 papers)
     [WARN] GPT-5 empty (finish_reason=length) attempt 1/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 2/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 3/4
     [WARN] GPT-5 empty (finish_reason=length) attempt 4/4
+    Added 58 DOI(s) to evidence register
+    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -74,18 +52,75 @@ EFC DOI sync — 143 paper dirs scanned
   papers without DOI         : 3
   papers with conflicts      : 0
 
-PROPAGATED DOIs into 8 papers:
-  EBE-Core-Principles -> *.jsonld
-  EFC-How-Does-Balance-Shape-Universal-Structures -> *.jsonld
-  EFC_Effective_Horndeski_Reduction -> *.jsonld
-  EFC_PreRegistered_Predictions -> *.jsonld
-  ISW_Consistency_Audit_and_Revision_Patch_for_Energy-Flow_Cosmology_Cross-Correlation_Predictions -> *.jsonld
-  Persistent_Cognitive_Architectures_for_Human-AI_Co-Reasoning_Beyond_Retrieval_to_Structural_Intelligence -> *.jsonld
-  Structural_Coherence_Evaluation_for_Physical_Theories -> *.jsonld
-  efc_boss_bao_cobaya_research_note -> *.jsonld
+PROPAGATED DOIs into 2 papers:
+  Kill-Test v6 Universality_SPARC175 -> *.jsonld
+  WP4_BOSS_transfer_validation -> *.jsonld
 ========================================================================
 [efc-gen] 143 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 143 paper dirs · 0 errors · 0 warnings
+[efc-verify] 143 paper dirs · 62 errors · 1 warnings
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30656828'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30275947'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31564129'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28114370'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30636863'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098308'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31042678'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28570088'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098350'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098353'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098344'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28113542'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30421807'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28559510'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28560935'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28559423'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098338'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098371'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28557281'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098386'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28578263'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098341'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098320'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098347'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28111925'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098314'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098299'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098365'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31096951'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28112036'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098332'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30468737'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30402427'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098326'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098380'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098311'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.28098305'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30563738'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30478916'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30455237'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30530156'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31985163'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31135597'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31990212'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31112536'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31864993'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31271707'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31223650'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31564123'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31140000'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31833076'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31293745'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30773684'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31990194'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30630500'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31061872'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31122970'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.30642497'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.32011407'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.32010399'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31986762'
+  [ERROR] C2 data/evidence-register.json: non-Figshare DOI in empirical: 'm9.figshare.31954125'
+  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '4.10', 'index.md': '4.8'}
 [efc-drift] 143 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -93,7 +128,7 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 104 total, 79 survived, 9 falsified
+  Tests: 106 total, 80 survived, 9 falsified
   Papers: 143 (140 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -115,14 +150,14 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
+1 potential new dataset(s):
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 9 paper packages enriched; Public pages updated: Validation_Ledger.
+[efc-auto-changelog] 2 paper packages enriched; Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -130,15 +165,15 @@ EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 143 papers, 140 DOIs
-Ledger: 104 tests, 9 falsified
+Ledger: 106 tests, 9 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 141 close to repo 143
   [OK]       Paper count 143 close to repo 143
-  [OK]       Survival count 79/88 matches ledger
+  [OK]       Survival count 80/89 matches ledger
 
 --- Validation Ledger ---
-  [OK]       Test count 104 matches ledger 104
+  [OK]       Test count 106 matches ledger 106
 
 --- All Pages Number Check ---
 
@@ -156,13 +191,13 @@ Ledger: 104 tests, 9 falsified
   [OK]       README paper count 143 matches repo 143
   [OK]       README paper count 143 matches repo 143
   [OK]       README paper count 143 matches repo 143
-  [OK]       Stats categories sum to 104 = total_public
+  [OK]       Stats categories sum to 106 = total_public
   [OK]       DOI sync script present, 140/143 papers have DOIs
   [OK]       99 papers have sealed predictions (290 total)
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 104 matches ledger
+  [OK]       Symbiose test count 106 matches ledger
   [OK]       Symbiose paper count 143 matches repo
   [OK]       Sealed freeze_1: α=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: α=-0.702, hash=dbccda15...
@@ -183,4 +218,4 @@ VERDICT: PASS with warnings
 [efc-maintain] running efc_dataset_scanner.py …
 [efc-maintain] running efc_auto_changelog.py …
 [efc-maintain] running efc_cross_validate.py …
-[efc-maintain] --- done (clean) ---
+[efc-maintain] --- done (issues) ---
