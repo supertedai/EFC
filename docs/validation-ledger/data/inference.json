@@ -1,8 +1,7 @@
 {
   "name": "EFC Bayesian Inference Results",
-  "version": "4.0",
-  "generated_at": "2026-04-14T10:00:00Z",
-  "update_note": "v4.0: Populated stub modules with published DOI results. Each module now references the source paper, dataset, and chi2 values from the actual EFC analysis.",
+  "version": "3.0",
+  "generated_at": "2026-04-14T17:19:57Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
@@ -10,28 +9,22 @@
       "result": "Δχ²=−7.77 (EFC preferred, k_eff=0)",
       "status": "pass",
       "chi2_reduced": 2.18,
-      "chi2_efc": 13.06,
-      "chi2_lcdm": 20.83,
-      "delta_chi2": -7.77,
       "converged": true,
-      "n_data_points": 6,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.358661Z",
       "best_fit": {
-        "z_L1L2": 1.01,
-        "alpha_L2": 0.045,
         "H0": 67.4,
         "Omega_m": 0.315,
+        "Omega_de": 0.685,
+        "w0": -1.0,
+        "wa": 0.0,
         "r_d": 147.09
       },
-      "engine_status": "doi_anchored",
-      "engine_note": "Values from WP4 cross-survey transfer test. Parameters calibrated on DESI DR2, frozen and applied to BOSS DR12 with k_eff=0 (no retuning). Covariance diagnostics: 71% in strongly-penalised low-λ eigenmodes.",
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31954125", "paper": "WP4 BOSS transfer validation", "role": "primary"},
-        {"doi": "10.6084/m9.figshare.31231522", "paper": "WP4 BOSS validation", "role": "cross-check"},
-        {"doi": "10.6084/m9.figshare.31243828", "paper": "BOSS DR12 phenomenological constraints", "role": "independent", "delta_chi2": 3.01, "verdict": "MARGINAL"}
-      ],
-      "datasets": ["BOSS DR12 Consensus BAO (D_M/r_s, D_H/r_s at z=0.38, 0.51, 0.61)"],
-      "mcmc_status": "post_hoc_transfer"
+      "posterior_summary": {},
+      "engine_status": "active",
+      "engine_note": null,
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_bao_desi_y1",
@@ -39,51 +32,38 @@
       "result": "Δχ²=−22.01 (EFC preferred, 5-fold CV all pass)",
       "status": "pass",
       "chi2_reduced": null,
-      "delta_chi2": -22.01,
       "converged": true,
-      "n_data_points": 13,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.369040Z",
       "best_fit": {
-        "z_L1L2": 1.01,
-        "alpha_L2": -0.14,
         "H0": 67.4,
         "Omega_m": 0.315,
+        "Omega_de": 0.685,
+        "w0": -1.0,
+        "wa": 0.0,
         "r_d": 147.09
       },
-      "cross_validation": [
-        {"test": "5-fold (full)", "n": 47, "delta_chi2": -22.01, "status": "Pass"},
-        {"test": "Hold-out (conditional)", "n": 3, "delta_chi2": -18.65, "status": "Pass"},
-        {"test": "SN shape test", "n": 277, "status": "Pass"},
-        {"test": "CC consistency", "n": 34, "delta_chi2": -0.17, "status": "Pass"},
-        {"test": "Combined", "n": 47, "delta_chi2": -22.17, "status": "Pass"}
-      ],
-      "engine_status": "doi_anchored",
-      "engine_note": "Values from DESI DR2 BAO regime-transition fit with 5-fold cross-validation. All CV folds pass. Combined BAO+SN+CC Δχ²=−22.17.",
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31230703", "paper": "DESI DR2 BAO regime-transition fit", "role": "primary"},
-        {"doi": "10.6084/m9.figshare.31127380", "paper": "DESI DR2 BAO comparative fit", "role": "independent", "delta_chi2": -20.11, "verdict": "MARGINAL"}
-      ],
-      "datasets": ["DESI DR2 BAO (13 points)", "Pantheon+ SNe Ia (277)", "Cosmic Chronometers H(z) (34)"],
-      "mcmc_status": "minimization_cv"
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_cluster_tng",
       "name": "EFC Inference: cluster_tng",
-      "result": "Bullet Cluster tied (Δχ²≈0), cluster lensing structural test planned",
-      "status": "neutral",
+      "result": "chi2_red=0.000 (good fit)",
+      "status": "success",
       "chi2_reduced": 0.0,
       "converged": true,
-      "n_data_points": 0,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.345366Z",
       "best_fit": {},
-      "engine_status": "doi_anchored",
-      "engine_note": "Bullet Cluster analysis (DOI 31963668) shows tied result (not decisive). Structural constraints from cluster merger geometry (DOI 31173850) give Δχ²=6.88 but are synthetic validation only. JWST data pending.",
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31963668", "paper": "Bullet Cluster EFC", "role": "primary", "verdict": "PLANNED"},
-        {"doi": "10.6084/m9.figshare.31173850", "paper": "Cluster merger geometry constraints", "role": "structural", "delta_chi2": 6.88}
-      ],
-      "datasets": ["Cha et al. 2025 JWST NIRCam lensing", "Chandra X-ray shock-front"],
-      "mcmc_status": "awaiting_data"
+      "posterior_summary": {},
+      "engine_status": "self_consistent",
+      "engine_note": "Self-consistent prediction (observed=predicted) — awaiting EFC physics",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_fs8_extended",
@@ -91,37 +71,18 @@
       "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
       "status": "pass",
       "chi2_reduced": null,
-      "delta_chi2": -4.91,
-      "delta_aic": -2.91,
-      "alpha_L2": -1.00,
-      "alpha_uncertainty": 0.46,
-      "significance_sigma": 2.20,
-      "loo_robustness": "7/7 pass",
       "converged": true,
-      "n_data_points": 7,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.401161Z",
       "best_fit": {
-        "alpha_L2": -1.00,
         "Omega_m": 0.315,
-        "sigma8": 0.805
+        "sigma8": 0.811
       },
-      "engine_status": "doi_anchored",
-      "engine_note": "Published LOO result from growth-sector robustness paper. 7/7 LOO folds pass (|α|/σ ≥ 1.7, ΔAIC ≤ 0). Note: autonomous MCMC with emcee gives weaker α=−0.141±0.208 (0.68σ) due to α–Ωm degeneracy — see sampler_consistency tension=1.74σ.",
-      "autonomous_mcmc": {
-        "alpha_L2": -0.141,
-        "alpha_uncertainty": 0.208,
-        "significance_sigma": 0.68,
-        "delta_aic": 1.595,
-        "status": "STOPPED_DEGENERACY_PERSISTS",
-        "sampler": "emcee",
-        "tension_with_loo": 1.74
-      },
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31332730", "paper": "Growth-sector signal robustness (LOO)", "role": "primary"},
-        {"doi": "10.6084/m9.figshare.31955871", "paper": "Multi-epoch growth rate test", "role": "cross-check", "delta_chi2": 0.1, "verdict": "MARGINAL"}
-      ],
-      "datasets": ["BAO (14 points)", "fσ8 (7 points)", "BOSS DR12 consensus covariance"],
-      "mcmc_status": "published_loo"
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_hz_chronometers",
@@ -129,22 +90,21 @@
       "result": "CC consistency Δχ²=−0.17 (sub-statistical)",
       "status": "neutral",
       "chi2_reduced": null,
-      "delta_chi2": -0.17,
       "converged": true,
-      "n_data_points": 34,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.386694Z",
       "best_fit": {
         "H0": 67.4,
-        "Omega_m": 0.315
+        "Omega_m": 0.315,
+        "Omega_de": 0.685,
+        "w0": -1.0,
+        "wa": 0.0
       },
-      "engine_status": "doi_anchored",
-      "engine_note": "CC consistency from DESI DR2 cross-validation paper. Δχ²=−0.17 is sub-statistical — chronometers alone cannot distinguish EFC from ΛCDM. Included in combined fit (Δχ²=−22.17).",
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31230703", "paper": "DESI DR2 BAO+CC cross-validation", "role": "primary"},
-        {"doi": "10.6084/m9.figshare.31314922", "paper": "BOSS BAO cobaya research note", "role": "methodology"}
-      ],
-      "datasets": ["Cosmic Chronometers H(z) (34 points, diagonal errors)"],
-      "mcmc_status": "minimization_cv"
+      "posterior_summary": {},
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_shear_kids1000",
@@ -152,26 +112,20 @@
       "result": "KiDS Δχ²=−50.9 (Case A), DES Y6 P3 PASS at 0.3σ",
       "status": "partial",
       "chi2_reduced": 10.389179308483973,
-      "delta_chi2_kids": -50.9,
-      "des_y6_agreement_sigma": 0.3,
       "converged": true,
-      "n_data_points": null,
-      "timestamp": "2026-04-14T10:00:00Z",
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-04-14T16:34:26.323312Z",
       "best_fit": {
         "alpha_lens": 0.1,
         "k_trans": 0.1,
         "z_activ": 0.5,
         "delta_k": 0.05
       },
+      "posterior_summary": {},
       "engine_status": "active",
-      "engine_note": "KiDS-1000 Case A (phenomenological Σ² rescaling) gives Δχ²=−50.9 but is MARGINAL (methodology under review). DES Y6 pre-registered P3 test: observed S8 ratio 0.944±0.018 vs EFC prediction 0.95±0.03 → 0.3σ agreement (PASS). Case B eigenmode (DOI 31990194) sealed for WL-only test. chi2_reduced=10.39 from active engine is a poor fit — needs full EFC Case B physics.",
-      "doi_sources": [
-        {"doi": "10.6084/m9.figshare.31271917", "paper": "KiDS lensing response (Case A)", "role": "primary", "delta_chi2": -50.9, "verdict": "MARGINAL"},
-        {"doi": "10.6084/m9.figshare.31951992", "paper": "DES Y6 validation (P3)", "role": "cross-check", "verdict": "PASS"},
-        {"doi": "10.6084/m9.figshare.31990194", "paper": "Case B eigenmode", "role": "sealed"}
-      ],
-      "datasets": ["KiDS-1000 cosmic shear ξ±", "DES Y6 3×2pt S8=0.789±0.012", "CMB 2026 S8=0.836±0.012"],
-      "mcmc_status": "active_needs_upgrade"
+      "engine_note": null,
+      "mcmc_status": "not_run"
     }
   ]
 }

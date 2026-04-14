@@ -1,57 +1,25 @@
 {
   "name": "Summary Statistics",
   "version": "3.0",
-  "generated_at": "2026-04-14T13:20:18Z",
+  "generated_at": "2026-04-14T17:19:57Z",
   "stats": {
-    "physics_test": 35,
-    "consistency_check": 17,
-    "phenomenological": 13,
-    "framework_constraint": 24,
-    "planned_pipeline": 17,
-    "total_public": 106,
+    "physics_test": 40,
+    "consistency_check": 19,
+    "phenomenological": 14,
+    "framework_constraint": 25,
+    "planned_pipeline": 18,
+    "total_public": 116,
     "n_falsified": 9,
     "inference_count": 6,
-    "chi2_summary": "-7.77, -22.01, 0.00, -4.91, -0.17, 10.39",
-    "chi2_detail": {
-      "bao_boss_dr12": {
-        "delta_chi2": -7.77,
-        "source": "DOI 31954125",
-        "status": "pass"
-      },
-      "bao_desi_y1": {
-        "delta_chi2": -22.01,
-        "source": "DOI 31230703",
-        "status": "pass"
-      },
-      "cluster_tng": {
-        "chi2": 0.0,
-        "source": "self_consistent",
-        "status": "neutral"
-      },
-      "fs8_extended": {
-        "delta_chi2": -4.91,
-        "source": "DOI 31332730",
-        "status": "pass"
-      },
-      "hz_chronometers": {
-        "delta_chi2": -0.17,
-        "source": "DOI 31230703",
-        "status": "neutral"
-      },
-      "shear_kids1000": {
-        "chi2_reduced": 10.39,
-        "source": "active engine",
-        "status": "partial"
-      }
-    },
+    "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
     "frontier_count": 3,
-    "tcs_compression": 1.0,
-    "tcs_mismatch": 0.5,
+    "tcs_compression": 1.5,
+    "tcs_mismatch": 0.3333,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 54,
+    "pillar_2_native": 63,
     "pillar_3_grav": 13,
-    "pillar_4_cross": 36,
+    "pillar_4_cross": 40,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
