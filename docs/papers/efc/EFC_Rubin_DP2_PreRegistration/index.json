@@ -1,0 +1,120 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-rubin-dp2-preregistration",
+  "title": "Pre-Registered Predictions for the Energy-Flow Cosmology Model Against the Rubin Observatory LSST DP2 Cosmic Shear Dataset",
+  "description": "This pre-registration seals quantitative, falsifiable predictions of the Energy-Flow Cosmology (EFC) model for Rubin Observatory LSST Data Preview 2 (DP2) cosmic shear. It forecasts an ~8\u201310% large-scale lensing enhancement and S8 = 0.847 \u00b1 0.015 driven by a gravitational slip \u03b7 \u2248 1.10, and specifies explicit falsification thresholds against the forthcoming DP2 measurements.",
+  "version": "1.0",
+  "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.32013738",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "Rubin Observatory",
+    "LSST DP2",
+    "cosmic shear",
+    "weak lensing",
+    "S8",
+    "gravitational slip",
+    "modified gravity",
+    "two-point correlation function",
+    "convergence power spectrum",
+    "mu-Sigma parameterization"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "mu_param": {
+      "latex": "\\mu(a,k) = 1 + \\alpha_\\mu \\, G(a)",
+      "description": "Effective modification to the Newtonian clustering potential in EFC, activated by the regime gate G(a)."
+    },
+    "Sigma_param": {
+      "latex": "\\Sigma(a,k) = 1 + \\alpha_\\Sigma \\, G(a)",
+      "description": "Effective modification to the Weyl (lensing) potential in EFC, controlling lensing amplitude."
+    },
+    "eta_slip": {
+      "latex": "\\eta(a) \\equiv \\frac{\\Phi}{\\Psi} = \\frac{1 + \\alpha_\\Sigma \\, G(a)}{1 + \\alpha_\\mu \\, G(a)}",
+      "description": "Gravitational slip (ratio of lensing to Newtonian potentials) predicted to be > 1 at late times in EFC."
+    },
+    "S8_def": {
+      "latex": "S_8 \\equiv \\sigma_8 \\left(\\frac{\\Omega_m}{0.3}\\right)^{0.5}",
+      "description": "Shear amplitude parameter used to summarize cosmic shear constraints."
+    },
+    "xi_plus_ratio": {
+      "latex": "\\frac{\\xi_+^{\\mathrm{EFC}}(\\theta)}{\\xi_+^{\\Lambda\\mathrm{CDM}}(\\theta)} \\simeq \\Sigma^2(z_{\\mathrm{eff}})",
+      "description": "Approximate scaling of the large-scale shear correlation enhancement in EFC relative to \u039bCDM."
+    },
+    "cl_enhancement": {
+      "latex": "\\frac{\\Delta C_\\ell}{C_\\ell} \\approx 0.08 \\quad (\\ell \\lesssim 300)",
+      "description": "Predicted EFC enhancement of the convergence power spectrum on large angular scales relevant for DP2."
+    }
+  },
+  "key_results": {
+    "main_finding": "Sealed EFC predictions for Rubin LSST DP2: S8 = 0.847 \u00b1 0.015 and ~8% enhancement of \u03be+(\u03b8) at 20\u2032\u2013300\u2032 driven by \u03b7 \u2248 1.10, with explicit >2\u03c3 falsification thresholds.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "S8",
+      "\u03a3(z_eff\u22480.65)",
+      "\u00b5(z_eff\u22480.65)",
+      "\u03b7(z=0)",
+      "\u03be+(\u03b8) amplitude at 20\u2032\u2013300\u2032",
+      "\u0394C_\u2113/C_\u2113 at \u2113 \u2272 300"
+    ],
+    "datasets_used": [
+      "Rubin Observatory LSST DP2 cosmic shear (planned)",
+      "Planck 2018 \u039bCDM baseline (for comparison)",
+      "DESI DR2 BAO prior on \u03a9m (sealed, as referenced)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Cosmic shear amplitude S8 = 0.847 \u00b1 0.015 (EFC KC4), implying \u0394S8 \u2248 +0.015 relative to \u039bCDM.",
+      "falsifiable_by": "Rubin LSST DP2 shear-only or joint 3\u00d72pt S8 measurement."
+    },
+    {
+      "id": "P2",
+      "statement": "Large-scale shear correlation enhancement: \u03be+^EFC(\u03b8)/\u03be+^\u039bCDM(\u03b8) \u2248 \u03a3^2(z_eff) \u2248 1.08 for \u03b8 \u2208 [20\u2032, 300\u2032].",
+      "falsifiable_by": "DP2 tomographic \u03be\u00b1(\u03b8) with standard scale cuts and covariance."
+    },
+    {
+      "id": "P3",
+      "statement": "Lensing modification \u03a3(z_eff\u22480.65) = 1.04 \u00b1 0.02 and convergence power enhancement \u0394C_\u2113/C_\u2113 \u2248 +0.08 at \u2113 \u2272 300.",
+      "falsifiable_by": "DP2 C_\u2113^\u03ba\u03ba or Hankel-transformed \u03be\u00b1 with validated systematics treatment."
+    },
+    {
+      "id": "P4",
+      "statement": "Gravitational slip \u03b7(z=0) = 1.10 \u00b1 0.05 (KC4 constraint), with \u00b5(z_eff\u22480.65) = 0.97 \u00b1 0.03.",
+      "falsifiable_by": "Joint (\u00b5, \u03a3) constraints from DP2 shear combined with spectroscopic clustering/RSD."
+    },
+    {
+      "id": "P5",
+      "statement": "If \u03be+_obs(\u03b8)/\u03be+_\u039bCDM(\u03b8) < 1.00 at \u03b8 > 30\u2032 with >2\u03c3 significance, the predicted large-scale enhancement is excluded.",
+      "falsifiable_by": "DP2 \u03be+(\u03b8) comparison to \u039bCDM baseline with official covariance."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If DP2 measures S8 < 0.820 at >2\u03c3 confidence, the KC4 EFC lensing sector (\u03b7 \u2248 1.10) is ruled out.",
+    "KC2: If \u03be+_obs(\u03b8)/\u03be+_\u039bCDM(\u03b8) < 1.00 at \u03b8 > 30\u2032 with >2\u03c3 significance, the predicted large-scale lensing enhancement is falsified.",
+    "KC3: If a joint (\u00b5, \u03a3) analysis (DP2 shear + spectroscopic data) is inconsistent with \u03b7 > 1.05 at >2\u03c3, the gravitational slip prediction is falsified.",
+    "KC4: If \u03a3(z_eff\u22480.65) \u2264 1.00 at >2\u03c3 (i.e., no positive lensing enhancement), the EFC large-scale lensing prediction is falsified."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-prereg-parent",
+      "doi": "10.6084/m9.figshare.32010399",
+      "role": "Parent sealed pre-registration covering BAO/RSD/growth constraints (KC4 level)."
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Rubin_DP2_PreRegistration_32013738.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013738"
+}
