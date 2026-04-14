@@ -35,6 +35,7 @@ config/
 src/
   launch_polychord.py          # PolyChord pipeline: run → evidence → corners → ledger
   launch_dynesty.py            # dynesty pipeline (cobaya-backed, no placeholder)
+  launch_nautilus.py           # nautilus pipeline (cobaya-backed, low-RAM, degeneracy-tolerant)
 tests/
   (sanity checks)
 setup_environment.sh           # Install all deps on Symbiose machine
@@ -56,6 +57,10 @@ mpirun -n 32 python src/launch_polychord.py --reduced # vanilla CAMB
 # 2b. dynesty (no MPI needed):
 python src/launch_dynesty.py --ncpu 16 --model both
 python src/launch_dynesty.py --ncpu 16 --model both --reduced
+
+# 2c. nautilus (low-RAM, degeneracy-tolerant, no MPI):
+python src/launch_nautilus.py --ncpu 8 --model both
+python src/launch_nautilus.py --ncpu 8 --model both --reduced
 
 # Or directly via cobaya:
 cobaya-run config/efc_polychord.yaml
@@ -103,7 +108,14 @@ Scale: Kass & Raftery (1995).
 
 ## Compute
 
-| Sampler | Cores | RAM | Wall Time |
-|---------|-------|-----|-----------|
-| PolyChord | 32 | 32 GB | 48-96h |
-| dynesty | 16 | 8 GB | 72-120h |
+| Sampler | Cores | RAM | Wall Time | Notes |
+|---------|-------|-----|-----------|-------|
+| PolyChord | 32 | 32 GB | 48-96h | Best, needs MPI |
+| dynesty | 16 | 8-16 GB | 72-120h | Pure Python |
+| nautilus | 4-8 | 2-4 GB | 24-48h | Lowest RAM, best for degenerate posteriors (Lange & Tessore 2023) |
+
+**Which sampler to pick?** If emcee has reported `DEGENERACY_LIMITED` or
+dynesty has stalled on a curved likelihood ridge, use **nautilus** — its
+flow-based proposals handle these geometries natively and it requires the
+least RAM. Use PolyChord when MPI and ≥32 GB are available; use dynesty
+as the middle-ground pure-Python option.

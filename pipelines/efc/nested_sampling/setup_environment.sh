@@ -46,7 +46,7 @@ pip install camb cobaya getdist
 # Step 4: Nested samplers
 echo ""
 echo ">>> Step 4: Nested samplers..."
-pip install dynesty
+pip install dynesty nautilus-sampler
 
 if command -v mpicc &> /dev/null; then
     echo "MPI found: $(mpicc --version 2>&1 | head -1)"
@@ -78,9 +78,13 @@ import cobaya; print(f'cobaya {cobaya.__version__}')
 import dynesty; print(f'dynesty {dynesty.__version__}')
 import getdist; print(f'GetDist {getdist.__version__}')
 try:
+    import nautilus; print(f'nautilus {nautilus.__version__}')
+except ImportError:
+    print('nautilus: NOT INSTALLED (use dynesty)')
+try:
     import pypolychord; print('PolyChord: OK')
 except ImportError:
-    print('PolyChord: NOT INSTALLED (use dynesty)')
+    print('PolyChord: NOT INSTALLED (use dynesty or nautilus)')
 try:
     from mpi4py import MPI; print(f'MPI: {MPI.Get_library_version().strip()}')
 except ImportError:
@@ -101,5 +105,10 @@ echo "  source $VENV_PATH/bin/activate"
 echo "  export COBAYA_PACKAGES_PATH=$PACKAGES_PATH"
 echo "  python src/launch_dynesty.py --ncpu 16 --model both"
 echo ""
-echo "Expected: 48-96h (PolyChord), 72-120h (dynesty)"
+echo "nautilus (low-RAM, degeneracy-tolerant):"
+echo "  source $VENV_PATH/bin/activate"
+echo "  export COBAYA_PACKAGES_PATH=$PACKAGES_PATH"
+echo "  python src/launch_nautilus.py --ncpu 8 --model both"
+echo ""
+echo "Expected: 48-96h (PolyChord), 72-120h (dynesty), 24-48h (nautilus)"
 echo "============================================"
