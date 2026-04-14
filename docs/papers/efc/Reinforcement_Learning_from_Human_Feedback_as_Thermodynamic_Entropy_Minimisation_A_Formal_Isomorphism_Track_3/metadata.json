@@ -1,45 +1,34 @@
 {
   "title": "Reinforcement Learning from Human Feedback as Thermodynamic Entropy Minimisation: A Formal Isomorphism and Testable Predictions",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Symbiose Research, Sandnes, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
+  "short_id": "reinforcement-learning-from-human-feedback-as-thermodynamic-entropy-minimisation-a-formal-isomorphism-track-3",
+  "version": "v1.0",
   "date": "2026-03-31",
-  "version": "1.0",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31940535",
-  "type": "research-note",
-  "status": "preprint",
-  "track": "Track 3 — AI Architecture & Alignment",
-  "abstract": "RLHF is formally isomorphic to statistical-mechanical free energy minimisation. The mapping is algebraically exact: reward maps to negative energy, the KL penalty coefficient maps to temperature, and the RLHF objective equals negative Helmholtz free energy. Three falsifiable predictions follow: optimal temperature scaling as H_task^{-1/2}, grokking latent period proportional to entropy gap over effective temperature, and a universal alignment-capability bound from free-energy constraints.",
+  "abstract": "The paper shows that the RLHF objective with a KL penalty is algebraically identical to minimizing Helmholtz free energy in statistical mechanics, mapping reward to negative energy, policy to a Boltzmann distribution, and the KL coefficient to temperature. From this formal isomorphism it derives three falsifiable predictions about optimal temperature scaling with task entropy, grokking as a first\u2011order phase transition, and a universal alignment\u2013capability bound, offering testable thermodynamic design principles for RLHF.",
   "keywords": [
     "RLHF",
     "thermodynamics",
     "statistical mechanics",
+    "entropy",
     "Helmholtz free energy",
     "Boltzmann distribution",
+    "KL divergence",
+    "PPO",
+    "alignment",
     "grokking",
     "phase transition",
-    "jailbreaking",
-    "alignment",
-    "entropy minimisation"
+    "jailbreaking"
   ],
-  "categories": [
-    "Machine Learning",
-    "Statistical Physics",
-    "AI Safety"
-  ],
-  "license": "CC-BY 4.0",
-  "repository": "https://github.com/supertedai/EFC",
-  "related_efc_papers": [
-    {
-      "title": "EFC-C: A Thermodynamic Framework for Cognitive Entropy",
-      "doi": "10.6084/m9.figshare.31940505",
-      "relation": "Shares entropy-based framework; EFC-C applies to neural systems, this paper to AI training"
-    }
-  ],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31940535",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31940535"

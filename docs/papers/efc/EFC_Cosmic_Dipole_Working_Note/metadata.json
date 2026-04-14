@@ -1,49 +1,41 @@
 {
   "title": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in Energy-Flow Cosmology",
+  "short_id": "efc-cosmic-dipole",
+  "version": "0.1",
+  "date": "2026-04-06",
   "author": {
     "name": "Morten Magnusson",
-    "orcid": "https://orcid.org/0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Sola, Norway"
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "doi": "10.6084/m9.figshare.31942731",
-  "date_published": "2026-04-06",
-  "version": "0.1",
-  "status": "working_note",
-  "framework": "Energy-Flow Cosmology (EFC) v3.7",
   "license": "CC-BY-4.0",
-  "classification": {
-    "domain": "observational_cosmology",
-    "track": "galactic_cosmological",
-    "track_number": 1,
-    "category": "working_note",
-    "level": "exploratory"
-  },
-  "methodology": {
-    "approach": "Analytical derivation of intrinsic dipole from entropy gradient",
-    "techniques": [
-      "Regime-dependent isotropy analysis",
-      "Leading-order dipole from ∇S",
-      "Order-of-magnitude estimate",
-      "Comparison with kinematic prediction"
-    ]
-  },
-  "related_papers": [
-    {
-      "doi": "10.6084/m9.figshare.31940469",
-      "title": "EFC Screening Model",
-      "relation": "mu_0 calibration"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31368433",
-      "title": "Systematic CMB Localization",
-      "relation": "CMB constraints"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31941543",
-      "title": "Regime Transition Test",
-      "relation": "R(k) mechanism"
-    }
+  "doi": "10.6084/m9.figshare.31942731",
+  "abstract": "Working note that proposes a natural EFC mechanism for the excess galaxy number-count dipole (2\u20133\u00d7 kinematic). In EFC, large-scale isotropy is a regime condition; a residual super-Hubble entropy gradient \u2207S modulates the effective coupling G_eff(S) and thus structure growth, yielding a dipole aligned with the CMB but with amplified amplitude. The note derives the leading-order dipole, estimates the required ~2% entropy gradient, and states falsifiable predictions and open gaps.",
+  "keywords": [
+    "cosmic dipole",
+    "number count dipole",
+    "anisotropy",
+    "entropy gradient",
+    "effective gravity",
+    "regime-dependent isotropy",
+    "EFC",
+    "NVSS",
+    "CatWISE",
+    "CMB dipole",
+    "sigma8 anisotropy",
+    "bulk flow"
   ],
+  "files": {
+    "pdf": "EFC_Cosmic_Dipole_Working_Note.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "cosmic_dipole.jsonld",
+    "citations": "citations.bib",
+    "source": "src/cosmic_dipole.py",
+    "data": "data/cosmic_dipole_data.json",
+    "demo": "examples/demo_cosmic_dipole.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31942731",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31942731"

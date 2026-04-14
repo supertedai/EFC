@@ -1,6 +1,102 @@
 {
-  "paper_id": "efc-cross-domain-bridge",
+  "$schema": "./schema.json",
+  "id": "connecting-cosmology-neural-entropy-and-rlhf-bridge",
   "title": "Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics",
+  "description": "Derives two formal bridge equations that connect EFC\u2019s three tracks\u2014cosmology, cortical entropy, and RLHF\u2014under a single dissipative gradient-flow with a Lyapunov free energy. Bridge B1 maps cosmological entropy-production density to a neural analogue via a dimensionless effective free-energy gradient and revises the driver from global Fiedler connectivity to local degree heterogeneity. Bridge B2 identifies the neural entropy tensor with the RLHF reward-landscape curvature and sets a temperature mapping \u03b2_KL \u2194 1/T_cog, yielding three new cross-domain predictions.",
+  "version": "v0.2",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31940547",
+  "keywords": [
+    "EFC",
+    "bridge equations",
+    "gradient flow",
+    "entropy production",
+    "free energy",
+    "Lyapunov functional",
+    "cosmology",
+    "neural entropy",
+    "RLHF",
+    "degree heterogeneity",
+    "connectome"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "free_energy_functional": {
+      "latex": "F[\\dot{s}] = \\langle E \\rangle - T \\int_{\\Omega} \\dot{s} \\, dV",
+      "description": "Defines the Helmholtz free energy for an open dissipative system in terms of the entropy-production rate density."
+    },
+    "unified_dynamics": {
+      "latex": "\\frac{dF}{dt} = - \\int_{\\Omega} \\|\\nabla \\dot{s}(x,t)\\|^2 \\, dV + B[\\dot{s}],\\quad \\text{with } \\frac{dF}{dt} \\le 0",
+      "description": "Wasserstein-like gradient-flow on entropy-production fields; F is a Lyapunov functional when volume dissipation dominates boundary fluxes."
+    },
+    "b1_effective_gradient": {
+      "latex": "g_{\\mathrm{eff},i} = \\frac{\\lvert \\nabla \\Phi_{\\mathrm{eff},i} \\rvert}{c_m^2},\\quad \\Phi_{\\mathrm{eff},i} = \\Phi_{\\mathrm{met},i} + \\Phi_{\\mathrm{syn},i} + \\Phi_{\\mathrm{info},i}",
+      "description": "Neural analogue of the cosmological driving gradient: a dimensionless local free-energy gradient combining metabolic, synaptic, and information-flow potentials."
+    },
+    "b1_entropy_production": {
+      "latex": "\\dot{s}_i = \\alpha_N \\, g_{\\mathrm{eff},i} \\, \\sigma_{\\mathrm{syn},i} \\, \\Gamma_i",
+      "description": "Local neural entropy-production rate driven by the effective gradient, synaptic coupling, and information throughput."
+    },
+    "alphaN_constraint": {
+      "latex": "\\alpha_N = \\frac{k}{a_G \\, L_{\\mathrm{cortex}}^3} \\approx 44~\\mathrm{K\\,bit^{-1}\\,m^2\\,s^{-1}}",
+      "description": "Parameter-free neural coupling constant inherited from EFC Spor 1 parameters (k, a_G) and cortical scale."
+    },
+    "b1_starstar_degree_heterogeneity": {
+      "latex": "\\eta \\equiv \\frac{\\langle \\dot{S}_{\\mathrm{hub}} \\rangle}{\\langle \\dot{S}_{\\mathrm{periph}} \\rangle} = \\frac{C_{\\mathrm{eff}}}{D_{\\mathrm{ratio}}^{\\gamma}},\\quad D_{\\mathrm{ratio}} = \\frac{\\langle k_{\\mathrm{hub}} \\rangle}{\\langle k_{\\mathrm{periph}} \\rangle},\\; \\gamma \\in [0.5,0.6]",
+      "description": "Revised Bridge B1**: entropy-production ratio scales with local degree heterogeneity; replaces the non-predictive Fiedler-eigenvalue formulation."
+    },
+    "b2_tensor_identification": {
+      "latex": "\\nabla S_{\\mathrm{neural}} \\; \\longleftrightarrow \\; \\nabla^2 R(s,a)",
+      "description": "Bridge B2 maps the neural entropy tensor to RLHF reward-landscape curvature."
+    },
+    "b2_scalar_temperature": {
+      "latex": "\\frac{S_{\\mathrm{neural}}}{k_B T_{\\mathrm{cog}}} \\; \\longleftrightarrow \\; H(\\pi_{\\theta} \\mid s), \\qquad \\beta_{\\mathrm{KL}} \\; \\longleftrightarrow \\; \\frac{1}{T_{\\mathrm{cog}}}, \\quad T_{\\mathrm{cog}} = \\frac{S_{\\mathrm{neural}}^{\\star}}{k_B I_{\\mathrm{net}}}",
+      "description": "Identifies policy entropy with a normalized neural entropy and maps the RLHF KL temperature to the inverse cognitive temperature."
+    }
+  },
+  "key_results": {
+    "main_finding": "A single Lyapunov gradient-flow unifies EFC\u2019s cosmology, neural, and RLHF regimes; Bridge B1 is revised to degree-heterogeneity control of neural entropy gradients and yields a parameter-free \u03b1_N \u2248 44 K bit^{-1} m^2 s^{-1}, while Bridge B2 ties neural entropy tensors to RLHF reward curvature and \u03b2_KL to 1/T_cog.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "k (Spor 1)",
+      "a_G (Spor 1)",
+      "L_cortex",
+      "gamma in [0.5, 0.6]",
+      "C_eff"
+    ],
+    "datasets_used": [
+      "N/A (theory)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P4**",
+      "statement": "Hub-to-periphery entropy-production ratio obeys \u03b7 = C_eff / D_ratio^\u03b3 with \u03b3 \u2208 [0.5, 0.6] and C_eff fixed by Spor 1 (no free parameters); degree heterogeneity, not the Fiedler eigenvalue, predicts the cortical entropy gradient.",
+      "falsifiable_by": "Empirical test on HCP structural connectomes paired with multiscale entropy (MSE) maps: primary threshold |r| > 0.40 (p < 0.05) for \u03b7 vs D_ratio^{-\u03b3}; strong confirmation |r| > 0.60; failure to exceed |r| = 0.40 falsifies B1**."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Violations of dF/dt \u2264 0 in regimes where boundary fluxes are controlled to be negligible (i.e., volume dissipation does not dominate) for any of the three domains.",
+    "KC2: Bridge B1** fails on independent datasets: the correlation between \u03b7 and D_ratio^{-\u03b3} is |r| < 0.40 (p \u2265 0.05) using HCP SC + MSE or equivalent, across standard parcellations.",
+    "KC3: The parameter-free magnitude of \u03b1_N = k/(a_G L_cortex^3) disagrees with cortical metabolic entropy-production measurements by \u2265 10\u00d7 across regions in PET/fMRI-derived estimates.",
+    "KC4: Bridge B2 temperature mapping fails: varying \u03b2_KL during RLHF training does not produce the predicted inverse relation to an effective cognitive temperature (no systematic alignment between policy entropy and 1/\u03b2_KL).",
+    "KC5: Contrary evidence that global algebraic connectivity (Fiedler \u03bb2) reliably outperforms degree heterogeneity in predicting cortical entropy gradients across multiple cohorts would overturn the B1** revision."
+  ],
+  "tier": "T3",
+  "paper_type": "Theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940547",
+  "paper_id": "efc-cross-domain-bridge",
   "short_title": "EFC Bridge Equations",
   "authors": [
     {
@@ -9,23 +105,7 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v0.2",
-  "date": "2026-04",
-  "doi": "10.6084/m9.figshare.31940547",
   "status": "research_note",
-  "keywords": [
-    "EFC",
-    "bridge equations",
-    "gradient flow",
-    "entropy production",
-    "cosmology",
-    "neural entropy",
-    "RLHF",
-    "free energy",
-    "Lyapunov",
-    "degree heterogeneity",
-    "connectome"
-  ],
   "abstract": "Two formal bridge equations connect EFC's three tracks (cosmology, neural entropy, RLHF) via dissipative gradient-flow dynamics. Bridge B1 maps cosmological entropy-production density onto a neural analogue using local degree heterogeneity. Bridge B2 maps the neural entropy tensor onto RLHF reward-landscape curvature. Both instantiate dF/dt = -integral |nabla s_dot|^2 dV + B with dF/dt <= 0. Three new cross-domain predictions are derived.",
   "unified_dynamics": {
     "equation": "dF/dt = -integral_Omega |nabla s_dot(x,t)|^2 dV + B[s_dot]",
@@ -149,6 +229,5 @@
       "citation": "Magnusson (2026) RLHF Thermodynamic Isomorphism",
       "doi": "10.6084/m9.figshare.31940535"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940547"
+  ]
 }

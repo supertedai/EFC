@@ -1,81 +1,28 @@
 # Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids
 
-**DOI:** [10.6084/m9.figshare.31942677](https://doi.org/10.6084/m9.figshare.31942677)  
-**Author:** Morten Magnusson (ORCID: 0009-0002-4860-5095)  
-**Framework:** Energy-Flow Cosmology (EFC) v3.7  
-**License:** CC-BY-4.0
-
-## Summary
-
-EFC's density-dependent gravitational coupling mu(rho) produces a non-linear
-ISW (Rees-Sciama) contribution with **opposite sign** to the standard linear
-ISW effect in cosmic voids. The standard ISW makes cold spots from voids
-(Phi_dot < 0). In EFC, the additional term delta * d_mu/dt is positive in voids,
-partially cancelling or reversing the signal. For deep voids (delta < -0.8),
-the net ISW signal **flips sign** -- a void produces a hot spot instead of
-the expected cold spot.
-
-## Key Results
-
-- **ISW decomposition:** dPhi/dt = mu * (d_delta/dt) + delta * (d_mu/dt)
-  - First term: standard linear ISW (cold spot in voids)
-  - Second term: Rees-Sciama from d_mu/dρ > 0 (hot spot in voids)
-- **Sign robustness:** RS term sign follows from d_mu/d_rho > 0,
-  a structural consequence of Gamma(rho) from BE statistics
-- **Amplitude ratio:** A_total = Delta_T_EFC / Delta_T_LCDM
-  - delta = -0.3: A_total = +0.93 (7% correction)
-  - delta = -0.7: A_total = +0.19 (81% cancellation)
-  - delta = -0.8: A_total = -0.83 (sign flip!)
-  - delta = -0.9: A_total = -4.88 (strong hot spot)
-- **Sign-flip threshold:** A_total crosses zero near delta ~ -0.7
-- **ISW excess:** EFC predicts A < 1 in deep voids; observed excess (A ~ 5)
-  likely from systematics
-
-## Predictions
-
-- **P1:** Depth-dependent ISW turnover in void-CMB stacking (BOSS DR12/DESI)
-- **P2:** Scale dependence — sign-flip at shallower |delta| for larger voids
-- **P3:** Redshift evolution — RS/ISW ratio increases at lower z
-- **Falsification:** If void ISW increases monotonically with |delta|
-
 ## AI-Friendly Package
 
-```
-void_isw_signflip_v2.1_final/
-├── README.md                # This file
-├── index.json               # Machine-readable index
-├── schema.json              # Validation schema
-├── metadata.json            # Structured metadata
-├── void_isw.jsonld           # JSON-LD linked data
-├── citations.bib            # BibTeX references
-├── src/
-│   ├── __init__.py          # Package init
-│   └── void_isw.py          # Core implementation
-├── data/
-│   └── void_isw_data.json   # Parameters and results (Table 1)
-└── examples/
-    └── demo_void_isw.py     # Executable demo
-```
+- **DOI:** [10.6084/m9.figshare.31942677](https://doi.org/10.6084/m9.figshare.31942677)
+- **Version:** 2.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-06
+- **License:** CC-BY-4.0
 
-## Quick Start
+---
 
-```python
-from src.void_isw import (
-    ISWDecomposition, ReesSciamaTerm, AmplitudeRatio,
-    VoidProfile, SignFlipAnalysis, Predictions
-)
+## Overview
 
-# Compute ISW decomposition for a void
-isw = ISWDecomposition()
-result = isw.compute(delta=-0.5, z=0.5)
+Derives how Energy-Flow Cosmology (EFC), with an effective Poisson coupling µ that increases with density, adds a non-linear Rees–Sciama term to the ISW signal that is positive in voids. This term partially cancels the standard linear ISW cold spot and forces a sign flip (net hot spot) for sufficiently deep voids, with the turnover near δ ≈ −0.7 for typical supervoid scales. The paper provides concrete, depth-binned stacking tests using BOSS/DESI void catalogs and Planck CMB data.
 
-# Find sign-flip threshold
-analysis = SignFlipAnalysis()
-delta_flip = analysis.find_sign_flip()
-```
+## Key Result
 
-## Related Papers
+EFC predicts that the void ISW signal flips sign (net hot spot) for deep voids, with A_total crossing zero near δ ≈ −0.7 and becoming strongly negative by δ ≲ −0.8 (e.g., A_total ≈ −0.83 at δ = −0.8).
 
-- [EFC Relativistic Action](../EFC_Relativistic_Action/) (DOI: 31876324) -- Source action
-- [Regime Transition Test](../Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test/) (DOI: 31941543)
-- [Grid Microphysics to RAR](../From_Grid_Microphysics_to_the_Radial_Acceleration/) (DOI: 31878760)
+## Sealed Predictions
+
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Depth-dependent turnover: stacked void ISW amplitude weakens with increasing |δ_v| and crosses zero for the deepest voids (|δ_v| ≳ 0.7). | Depth-binned void–CMB stacking (Planck SMICA) for BOSS DR12 or DESI shows monotonically increasing |ΔT| with |δ_v| across all bins, with no turnover. |
+| P2 | Scale dependence: the sign-flip occurs at shallower |δ_v| for larger voids (lower k), due to R(k) ∝ k^{-4}. | Cross-binning by size and depth finds no trend (or the opposite trend) in turnover depth with R_v at ≥2σ. |
+| P3 | Redshift evolution: the RS/ISW ratio increases toward lower z; the turnover (or sign-flip) occurs at shallower |δ_v| at lower redshift. | Comparing stacks at z ≈ 0.7 vs z ≈ 0.3 shows no shift toward shallower |δ_v| at lower z within uncertainties. |
+| P4 | Deepest-void sign: for |δ_v| ≳ 0.8 supervoids (R_v ~ 100–150 Mpc), the net stack should be a hot spot (A_total < 0). | Deepest-bin stacks remain cold (A_total ≥ 0) at >3σ across independent surveys (e.g., BOSS DR12, DESI) with validated systematics. |

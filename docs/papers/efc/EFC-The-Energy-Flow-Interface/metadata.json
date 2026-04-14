@@ -1,26 +1,33 @@
 {
-  "name": "EFC-The-Energy-Flow-Interface",
-  "title": "EFC — The Energy-Flow Interface",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
+  "title": "The Energy\u2013Flow Interface: A Unified Thermodynamic Interpretation of Dark Matter, Dark Energy, and the CMB \u2014 within the Grid\u2013Higgs Field Framework",
+  "short_id": "EFC-The-Energy-Flow-Interface",
+  "version": "1.1",
+  "date": "2025-10-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
-  "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "doi": "10.6084/m9.figshare.30468737",
+  "abstract": "Proposes Energy\u2013Flow Cosmology (EFC), in which dark matter, dark energy, and the CMB are thermodynamic phases of a single Grid\u2013Higgs medium governed by an energy\u2013flux field coupled to local entropy. The paper identifies convergent (DM), divergent (DE), and isothermal interface (CMB) regimes and outlines testable predictions linking CMB anisotropies, large\u2011scale structure, and the dark\u2011energy equation of state.",
   "keywords": [
-    "EFC",
-    "Energy-Flow Interface",
-    "Entropy",
-    "Grid Field",
-    "Field Interaction",
-    "Boundary Dynamics"
+    "Energy\u2013Flow Cosmology",
+    "Grid\u2013Higgs field",
+    "thermodynamic phases",
+    "entropy coupling",
+    "energy flux divergence",
+    "dark matter",
+    "dark energy",
+    "cosmic microwave background",
+    "CMB anisotropies",
+    "ISW effect",
+    "equation of state w(z)",
+    "isothermal interface"
   ],
-  "description": "The boundary layer where the entropy field, grid field, and energy-flow field interact to produce observable structure, dynamics, and information transfer.",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/energy_flow_interface.py",
-    "data": "data/energy_flow_interface.json",
-    "demo": "examples/demo_energy_flow_interface.py"
+    "pdf": "EFC-The-Energy-Flow-Interface.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.30468737",

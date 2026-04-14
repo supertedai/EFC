@@ -1,62 +1,28 @@
-# Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis
+# Resolving the H0 and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis
 
-**DOI:** [10.6084/m9.figshare.31026151](https://doi.org/10.6084/m9.figshare.31026151)  
-**Published:** 2026-01-09  
-**Author:** Morten Magnusson
+## AI-Friendly Package
 
-## Abstract
+- **DOI:** [10.6084/m9.figshare.31026151](https://doi.org/10.6084/m9.figshare.31026151)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-09
+- **License:** CC-BY-4.0
 
-The Hubble tension (H₀ = 73.0 ± 1.0 km/s/Mpc locally vs. 67.4 ± 0.5 km/s/Mpc from CMB) and the S8 tension (σ₈ suppression in late-universe probes) represent the most significant challenges to the standard ΛCDM cosmological model.
+---
 
-We present an analysis within the Energy-Flow Cosmology (EFC) framework demonstrating that both tensions can be resolved simultaneously through a single physical mechanism: **entropy-dependent modification of how local observations are mapped to global cosmological parameters**.
+## Overview
 
-### Key Insight
+Introduces an Energy-Flow Cosmology (EFC) mechanism that separates local and global inference using an entropy-dependent mapping, resolving both the H0 and S8 tensions without altering the cosmic expansion history, sound horizon, or early-universe physics. The paper demonstrates a ∆χ2 = 40.29 improvement for H0 consistency and reduces the S8 tension from 3.3σ to 0.3σ while remaining consistent with BAO, SNe Ia, and CMB constraints.
 
-The tensions arise not from different expansion rates or gravitational strengths in different regions, but from **systematic biases in inferring global parameters from local measurements when entropy gradients are present**.
+## Key Result
 
-### Results
+An entropy-dependent local-global inference separation within EFC simultaneously resolves the H0 and S8 tensions without altering H(z), r_d, or early-universe physics, remaining consistent with BAO, SNe Ia, and CMB.
 
-Using the validated EFC sector—comprising an effective gravitational coupling G_eff(S) = G_N(1+βS) with β < 0 and entropy-dependent growth damping—we achieve:
+## Sealed Predictions
 
-| Metric | Result |
-|--------|--------|
-| H₀ tension resolution | Δχ² = 40.29 improvement |
-| S8 tension reduction | 3.3σ → 0.3σ |
-| BAO consistency | ✓ Full |
-| SNe Ia consistency | ✓ Full |
-| CMB distance constraints | ✓ Full |
-
-### Critical Note
-
-This is accomplished **without modifying**:
-- The cosmic expansion history H(z)
-- The sound horizon r_d
-- Early-universe physics
-
-The approach explicitly separates the validated core of EFC from experimental extensions, providing a falsifiable framework with clear domain of validity.
-
-## Keywords
-
-- Hubble tension (H₀)
-- S8 tension
-- ΛCDM
-- Energy-Flow Cosmology
-- CMB
-- BAO
-- SPARC
-- Thermodynamic cosmology
-- Galaxy rotation curves
-
-## Categories
-
-- Cosmology and extragalactic astronomy
-- Thermodynamics and statistical physics
-- Galactic astronomy
-
-## Files
-
-- `EFC-H0-S8-Tensions.pdf` - Main paper
-- `EFC-H0-S8-Tensions.jsonld` - Structured metadata
-- `index.json` - Paper index
-- `schema.json` - Validation schema
-- `citations.bib` - BibTeX references
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | After controlling for calibration and selection systematics, locally inferred H0 residuals will anti-correlate with smoothed large-scale matter overdensity δ_m on 20–50 Mpc scales with slope consistent with γ_S ≈ 0.20 (i.e., underdense regions yield higher H0). | Cross-correlation of H0 residual maps from SNe Ia/Cepheid calibrators with reconstructed density fields from galaxy surveys (e.g., DESI, SDSS) at 20–50 Mpc smoothing. |
+| P2 | The late-time amplitude of matter fluctuations is S8(z≈0) = 0.766 ± 0.020 with β = −0.08 and η = 0.05. | Stage-III/IV weak-lensing and galaxy–galaxy lensing measurements (e.g., KiDS, DES, HSC, Euclid, Rubin-LSST) combined with clustering and CMB lensing. |
+| P3 | BAO and CMB acoustic scales, including the sound horizon r_d and CMB peak positions, remain unchanged relative to ΛCDM within current uncertainties. | DESI BAO distance ladder and Planck/Simons Observatory/CMB-S4 acoustic scale measurements showing statistically significant shifts in r_d or peak positions. |
+| P4 | Galaxy-scale coupling α inferred from rotation curves is consistent in sign with cosmological β (<0) and within a factor of ≲2 in magnitude when mapped via S(r). | Joint fits to large SPARC samples and independent rotation-curve datasets comparing α to β from growth data. |

@@ -1,6 +1,106 @@
 {
-  "paper_id": "grid-microphysics-rar",
+  "$schema": "./schema.json",
+  "id": "from-grid-microphysics-to-the-radial-acceleration",
   "title": "From Grid Microphysics to the Radial Acceleration Relation: A Minimal Gradient-Coupled Excitation Model",
+  "description": "Proposes a minimal microphysical model in which discrete bosonic modes on a substrate (grid) have excitation energies that couple to the local gravitational strain, yielding E \u221d sqrt(|\u2207\u03a6|). With Bose\u2013Einstein occupancy and a single emergent scale a0, the model reproduces the gravitational enhancement function \u03bc(g) = 1/(exp(sqrt(g/a0)) \u2212 1) required by the RAR within the EFC framework. This provides a concrete microphysical bridge between the covariant EFT macro-results and observed galactic phenomenology without new free parameters beyond a0.",
+  "version": "v1",
+  "date": "2026-03-28",
+  "doi": "10.6084/m9.figshare.31878760",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "radial acceleration relation",
+    "RAR",
+    "Bose\u2013Einstein statistics",
+    "gradient coupling",
+    "gravitational strain",
+    "excitation energy",
+    "lattice derivation",
+    "a0 acceleration scale",
+    "MOND phenomenology",
+    "discrete gravity",
+    "microphysical bridge"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sola, Norway"
+  },
+  "core_equations": {
+    "enhancement_function_mu": {
+      "latex": "\\mu(g) = \\frac{1}{\\exp\\!\\left(\\sqrt{g/a_0}\\right) - 1}",
+      "description": "Gravitational enhancement function identified with a Bose\u2013Einstein occupation number evaluated at an effective argument set by the local acceleration g=|\u2207\u03a6| and the scale a0."
+    },
+    "bose_einstein_occupancy": {
+      "latex": "\\langle n \\rangle = \\frac{1}{e^{E/(k_B T_{\\rm grid})} - 1}",
+      "description": "Mean occupation number of bosonic modes on the grid at temperature T_grid."
+    },
+    "gradient_coupled_energy": {
+      "latex": "E(\\mathbf{x}) = \\hbar \\, \\omega_0 \\, \\sqrt{\\frac{|\\nabla \\Phi(\\mathbf{x})|}{g_*}}",
+      "description": "Minimal gradient-coupled excitation energy: node energy responds to local gravitational strain rather than to potential or density."
+    },
+    "single_scale_definition": {
+      "latex": "a_0 \\equiv g_* \\left(\\frac{k_B T_{\\rm grid}}{\\hbar \\omega_0}\\right)^2",
+      "description": "Combination of micro-parameters that yields the single observable acceleration scale a0 \u2248 1.2\u00d710^{-10} m s^{-2}."
+    },
+    "lattice_frequency_energy": {
+      "latex": "\\omega = \\sqrt{\\frac{k_{\\rm eff}}{m_{\\rm eff}}},\\quad k_{\\rm eff} \\sim \\frac{g}{\\ell_g},\\quad E=\\hbar\\omega \\propto \\sqrt{g}",
+      "description": "Lattice-based heuristic: a restoring force set by the gravitational gradient implies mode frequency scaling as \u221ag, hence E \u221d \u221ag."
+    }
+  },
+  "key_results": {
+    "main_finding": "A gradient-coupled bosonic lattice model yields \u03bc(g) = 1/(exp(\u221a(g/a0)) \u2212 1) with a single scale a0, providing a concrete microphysical derivation of the RAR within EFC.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a0 (fixed)",
+      "g_* (combined into a0)",
+      "\u03c90 (combined into a0)",
+      "T_grid (combined into a0)"
+    ],
+    "datasets_used": [
+      "None (theoretical derivation)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Across disk galaxies, the gravitational enhancement obeys \u03bc(g) = 1/(exp(\u221a(g/a0)) \u2212 1) with a single, universal a0 independent of galaxy properties and redshift.",
+      "falsifiable_by": "High-precision RAR meta-analyses showing statistically significant, systematic deviations from the BE\u2013\u221ag form or requiring environment-dependent a0."
+    },
+    {
+      "id": "P2",
+      "statement": "In the deep-acceleration regime (g \u226a a0), \u03bc(g) \u2248 \u221a(a0/g), implying the baryonic Tully\u2013Fisher relation with slope 4 and no additional hidden parameters.",
+      "falsifiable_by": "Robust observations finding a systematic BTFR slope different from 4 or requiring extra galaxy-dependent parameters beyond baryonic mass and geometry."
+    },
+    {
+      "id": "P3",
+      "statement": "At fixed local acceleration g, the enhancement is independent of local density \u03c1 and potential depth |\u03a6| (pure gradient dependence).",
+      "falsifiable_by": "Detection of RAR residuals that correlate with |\u03a6| or \u03c1 at fixed g beyond observational systematics."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A joint analysis of diverse galaxy samples demonstrates that no single a0 can fit \u03bc(g) = 1/(exp(\u221a(g/a0)) \u2212 1) across systems, with >5\u03c3 evidence for non-universality.",
+    "KC2: Statistically significant correlations of RAR residuals with potential depth |\u03a6| or density \u03c1 at fixed g, indicating dependence beyond the local gradient.",
+    "KC3: Evidence for redshift evolution or environment dependence of a0 at >5\u03c3 (e.g., consistent shifts in a0 with z or halo mass not attributable to systematics).",
+    "KC4: Laboratory, Solar-system, or binary-pulsar constraints reveal anomalous gravitational enhancements inconsistent with the predicted exponential suppression at g \u226b a0.",
+    "KC5: Confirmed galactic dynamics require an enhancement function whose asymptotics are incompatible with \u03bc(g) \u2192 e^{-\u221a(g/a0)} at high g or \u03bc(g) \u2192 \u221a(a0/g) at low g."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "covariant-efc-17-iterations",
+      "doi": "10.6084/m9.figshare.31878334",
+      "role": "Companion macro-EFT derivation establishing structural constraints and identifying the required \u03bc(g) form."
+    }
+  ],
+  "files": {
+    "pdf": "From_Grid_Microphysics_to_the_Radial_Acceleration.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878760",
+  "paper_id": "grid-microphysics-rar",
   "short_title": "Grid Microphysics to RAR",
   "authors": [
     {
@@ -9,28 +109,9 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v1",
-  "date": "2026-03-28",
-  "doi": "10.6084/m9.figshare.31878760",
   "status": "working_paper",
   "framework": "EFC",
-  "keywords": [
-    "grid microphysics",
-    "radial acceleration relation",
-    "RAR",
-    "Bose-Einstein",
-    "gradient coupling",
-    "excitation energy",
-    "lattice derivation",
-    "a0",
-    "MOND",
-    "discrete gravity",
-    "microphysical bridge",
-    "EFC",
-    "Graph-AQUAL",
-    "KT3"
-  ],
-  "abstract": "A precise structural gap exists in Energy-Flow Cosmology: the covariant EFT requires a gravitational enhancement function mu(g) = 1/(exp(sqrt(g/a0))-1) that is formally identical to a Bose-Einstein occupation number, but this form cannot be derived from any classical local Lagrangian. We show that a minimal microscopic model — discrete degrees of freedom on a substrate (grid) with gradient-coupled excitation energy E proportional to sqrt(|nabla Phi|) — reproduces the observed functional form without free parameters beyond the measured scale a0. The key physical input is that excitation energy couples to local gravitational strain (gradient of the potential) rather than to the potential itself or to the density.",
+  "abstract": "A precise structural gap exists in Energy-Flow Cosmology: the covariant EFT requires a gravitational enhancement function mu(g) = 1/(exp(sqrt(g/a0))-1) that is formally identical to a Bose-Einstein occupation number, but this form cannot be derived from any classical local Lagrangian. We show that a minimal microscopic model \u2014 discrete degrees of freedom on a substrate (grid) with gradient-coupled excitation energy E proportional to sqrt(|nabla Phi|) \u2014 reproduces the observed functional form without free parameters beyond the measured scale a0. The key physical input is that excitation energy couples to local gravitational strain (gradient of the potential) rather than to the potential itself or to the density.",
   "epistemic_status": {
     "type": "working_paper",
     "peer_reviewed": false,
@@ -114,7 +195,7 @@
     {
       "id": "FC1",
       "condition": "mu must have exact BE form, not Fermi-Dirac, not classical Boltzmann, not power law",
-      "threshold": "Deviation from BE form at ≤5% level (galaxy-survey precision)"
+      "threshold": "Deviation from BE form at \u22645% level (galaxy-survey precision)"
     },
     {
       "id": "FC2",
@@ -163,6 +244,5 @@
       "doi": "10.6084/m9.figshare.31564129",
       "topic": "Double-Slit Grid-Resolution"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31878760"
+  ]
 }

@@ -1,78 +1,27 @@
-# LCDM as a Special Case of Energy-Flow Cosmology
+# ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing
 
-**Full title:** LCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing
+## AI-Friendly Package
 
-**Author:** Morten Magnusson
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-**Affiliation:** Symbiose Research, Sandnes, Norway
-**Date:** April 6, 2026 -- v1.0
-**DOI:** [10.6084/m9.figshare.31943361](https://doi.org/10.6084/m9.figshare.31943361)
-**License:** CC-BY-4.0
+- **DOI:** [10.6084/m9.figshare.31943361](https://doi.org/10.6084/m9.figshare.31943361)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-06
+- **License:** CC-BY-4.0
 
-## Abstract
+---
 
-Energy-Flow Cosmology (EFC) treats the universe as a continuous energy-flow system governed by entropy gradients, in which gravitational dynamics, structure formation, and regime transitions emerge from a single variational action. This paper demonstrates that the standard LCDM model arises as the *special-case limit* of EFC in the linear, homogeneous, high-density regime (L0/L1), analogous to the ideal gas law emerging from statistical mechanics. The EFC relativistic action structurally reduces to Friedmann-Poisson dynamics when the stiffness response K(rho) tends to infinity, the transition function T(a) tends to zero, and the gradient coordinate xi is much greater than one. DESI DR2 multi-probe analysis confirms this limit empirically: alpha = -0.14 +/- 0.21 (0.65 sigma from null), with Delta-AIC = +1.59 favouring LCDM in the background sector.
+## Overview
 
-Beyond L0/L1, EFC produces testable predictions that LCDM does not: a narrow perturbation-sector survival valley (mu approximately 0.94, Sigma approximately 1.05, eta approximately 1.10), SPARC rotation-curve fits from a single screening parameter (k = 0.415 +/- 0.029) without dark matter, a void ISW sign-flip for deep voids (delta less than approximately -0.8), and a regime transition mu < 1 to mu > 1 from the same action. The validation ledger (v3.7, 204 publications, 100 registered tests) documents five historical falsifications, sealed blind predictions, and pre-registered falsification conditions. This consolidation paper brings together 14 months of systematic development, pipeline confrontation, and transparent failure documentation into a single reference.
+Presents Energy-Flow Cosmology (EFC) as a unified framework in which ΛCDM arises as the special-case limit in the linear, homogeneous, high-density regime (L0/L1), derived directly from the EFC variational action. Using DESI DR2, the background coupling α = −0.14 ± 0.21 is found consistent with ΛCDM, while the paper delineates testable beyond-ΛCDM predictions in L2/L3 including a perturbation-sector survival valley, a universal screening parameter for rotation curves, and a deep-void ISW sign-flip.
 
-## Core Equations
+## Key Result
 
-1. **Regime driver (Eq. 1):** chi = ell |grad S| / S_*
-2. **Constitutive law (Eq. 2):** E_f = -kappa(chi) grad S
-3. **Modified Poisson (Eq. 3):** nabla^2 Phi = 4 pi G_N mu(chi,k,z) rho_m delta
-4. **Effective coupling (Eq. 4):** mu(chi,k,z) = 1 + epsilon(k) F(chi)
-5. **Relativistic action (Eq. 5):** S_EFC = integral d^4x sqrt(-g) [F(phi)R/2 - K(rho)(nabla phi)^2/2 - V(phi) + lambda C[phi, nabla phi]] + S_m
+ΛCDM is recovered as the exact special-case limit of EFC in L0/L1, and DESI DR2 yields α = −0.14 ± 0.21 (0.65σ from null), consistent with ΛCDM in the background sector.
 
-## LCDM Reduction (Eq. 6)
+## Sealed Predictions
 
-K(rho) -> infinity, T(a) -> 0, xi >> 1 implies mu, Sigma, eta -> 1 implies Friedmann + Poisson
-
-Three physical conditions (high density, early time, strong acceleration) collapse all EFC modifications to zero, recovering standard LCDM identically.
-
-## Regime Structure (Table 1)
-
-| Regime | Physical Domain | LCDM Status | EFC Prediction |
-|--------|----------------|-------------|----------------|
-| L0 | Global background (FLRW, H(z)) | Exact effective description | Suppressed by design: T(a) -> 0 |
-| L1 | Linear perturbations (BAO, f sigma_8) | Excellent fit | Survival valley: mu ~ 0.94, Sigma ~ 1.05 |
-| L2 | Non-linear structure (haloes, clusters) | Requires DM particle (undetected) | Emergent MOND-like; mu > 1 |
-| L3 | Local dynamics (Solar System) | Exact via G_N | Theta(rho) -> 0: GR recovery |
-
-## DESI DR2 Result
-
-- Background coupling: alpha = -0.14 +/- 0.21 (0.65 sigma)
-- Delta-AIC = +1.59 (LCDM preferred)
-- Pre-DR2 alpha approximately -0.67 collapsed to approximately 0 under DR2 precision
-- Seven robustness diagnostics (N1-N7) plus variant gravity (VG) test
-
-## Gas-Law Analogy (Table 5)
-
-The ideal gas law is to thermodynamics what LCDM is to cosmology: a correct and useful special case valid in one regime, embedded within a richer structure that becomes necessary when the system moves outside that regime.
-
-## File Manifest
-
-| File | Description |
-|------|-------------|
-| README.md | This documentation |
-| index.json | Machine-readable structured index |
-| schema.json | JSON Schema for package validation |
-| metadata.json | Full metadata with EFC context |
-| LCDM-special-case.jsonld | JSON-LD linked data descriptor |
-| citations.bib | BibTeX references (27 entries) |
-| src/lcdm_special_case.py | Python reference implementation |
-| src/__init__.py | Package initialisation |
-| data/lcdm_special_case_data.json | All tables, parameters, diagnostics |
-| examples/demo_lcdm_special_case.py | Six demonstration scripts |
-
-## Citation
-
-```bibtex
-@misc{magnusson2026lcdmspecialcase,
-  author = {Magnusson, Morten},
-  title = {{$\Lambda$CDM} as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing},
-  year = {2026},
-  publisher = {Figshare},
-  doi = {10.6084/m9.figshare.31943361},
-  url = {https://doi.org/10.6084/m9.figshare.31943361}
-}
-```
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Deep cosmic voids (δ ≲ −0.8) produce an ISW temperature sign-flip relative to ΛCDM. | Stacked CMB–void cross-correlation using DESI/SDSS void catalogs and Planck/Simons Observatory maps. |
+| P2 | A narrow perturbation-sector survival valley with μ ≈ 0.93–0.96, Σ ≈ 1.03–1.07, and η ≠ 1 (≈1.10) at intermediate scales. | Joint weak-lensing + galaxy clustering + RSD tomography (e.g., DESI, KiDS, HSC, LSST, Euclid) measuring {μ, Σ, η} across 0.1 < k < 0.5 h Mpc⁻¹ and 0.3 < z < 1. |
+| P3 | Galaxy rotation curves can be fit without particle dark matter using a single universal screening parameter k ≈ 0.415 ± 0.029. | High-precision rotation curves for new, homogeneous samples (SPARC-like) testing the universality and predicted scatter of k. |

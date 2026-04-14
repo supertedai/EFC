@@ -1,20 +1,57 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
-  "title": "EFC — Technical Documentation: Energy Flow in Space-Time",
+  "title": "EFC \u2014 Technical Documentation: Energy Flow in Space-Time",
+  "description": "Technical documentation outlining the Energy-Flow Cosmology (EFC) view that ongoing energy flow sustains and shapes space-time. It organizes the framework\u2019s core principles, references observational touchpoints (redshift and the CMB), sketches a mathematical program (with entropy and c as boundary conditions), and lists applications and open challenges.",
+  "version": "1.0",
+  "date": "2024-12-27",
+  "doi": "10.6084/m9.figshare.28098332",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "spacetime dynamics",
+    "entropy",
+    "speed of light",
+    "redshift",
+    "cosmic microwave background",
+    "cosmic expansion",
+    "time evolution",
+    "boundary conditions",
+    "theoretical framework",
+    "cosmology",
+    "observational evidence"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "The document presents a conceptual framework in which energy flow sustains and shapes spacetime, drives the present moment, interacts with entropy, and is bounded by the speed of light, with qualitative links to redshift and CMB observations.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: High-precision cosmological measurements (e.g., SN Ia Hubble diagram, BAO distances, and the CMB angular power spectrum) show no unexplained residuals beyond \u039bCDM within current sensitivity and explicitly exclude any additional dynamical contribution attributable to an energy-flow mechanism to spacetime evolution.",
+    "KC2: Verified superluminal information or causal signal propagation in vacuum, contradicting the model\u2019s use of the speed of light as a strict boundary condition for dynamics.",
+    "KC3: Empirical demonstration of sustained entropy decrease in an isolated macroscopic system without compensating energy inflow or outflow, falsifying the posited coupling between energy flow and entropy.",
+    "KC4: Time-resolved experiments reveal that physical evolution (\u201cthe present moment\u201d) proceeds identically when net energy flow is nullified in a truly isolated system, contradicting the claim that energy flow drives temporal evolution."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.pdf",
+    "readme": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098332",
   "path": "docs/papers/efc/EFC-Technical-Documentation-Energy-Flow-in-Space-Time",
   "pdf": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.pdf",
   "md": "EFC-Technical-Documentation-Energy-Flow-in-Space-Time.md",
-  "keywords": [
-    "EFC",
-    "Technical Documentation",
-    "Energy Flow",
-    "Spacetime",
-    "Field Specification",
-    "Simulation"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098332",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098332"
+  "type": "paper"
 }

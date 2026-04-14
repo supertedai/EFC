@@ -1,19 +1,91 @@
 {
+  "$schema": "./schema.json",
   "id": "efc_master_v1",
-  "title": "EFC — Master Specification (v1 Archive)",
+  "title": "Energy-Flow Cosmology (EFC) Master Specification v1.1",
+  "description": "Canonical master specification of Energy-Flow Cosmology (EFC), which models the universe as a thermodynamic-information system driven by energy-flow and entropy gradients. It formalizes three base layers\u2014EFC-S (structure/halos), EFC-D (energy-flow dynamics), and EFC-C0 (entropy\u2013information mapping)\u2014and fixes baseline fields, notation, and equations to enable unambiguous higher-level models and simulations.",
+  "version": "1.1",
+  "date": "2025-11-16",
+  "doi": "10.6084/m9.figshare.30630500",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "energy-flow potential",
+    "entropy gradients",
+    "information capacity",
+    "halo model",
+    "structure formation",
+    "rotation curves",
+    "projected surface density",
+    "expansion history",
+    "thermodynamic cosmology",
+    "Ef field",
+    "entropy\u2013cognition mapping"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_potential": {
+      "latex": "E_f(\\mathbf{x}) = \\rho(\\mathbf{x})\\,\\bigl(1 - S(\\mathbf{x})\\bigr)",
+      "description": "Baseline local energy-flow potential coupling mass density and dimensionless entropy; high density and low entropy yield large flow capacity."
+    },
+    "low_entropy_anchor": {
+      "latex": "\\langle s \\rangle_{A} \\ll \\langle s \\rangle_{\\text{background}}",
+      "description": "Definition of a low-entropy anchor region A that seeds halo formation in EFC-S."
+    },
+    "halo_profiles_parametrized": {
+      "latex": "\\rho_h(r) = \\rho_0\\, f\\!\\left(\\frac{r}{r_s}\\right),\\quad S_h(r) = S_0 + (1 - S_0)\\, g\\!\\left(\\frac{r}{r_c}\\right)",
+      "description": "Joint mass-density and entropy halo profiles parameterized by scale radii r_s and r_c with shape functions f and g defining halo classes."
+    },
+    "mass_density_definition": {
+      "latex": "\\rho = \\frac{m}{V}",
+      "description": "Standard definition of mass density used within the EFC-D layer."
+    }
+  },
+  "key_results": {
+    "main_finding": "Establishes a compact, explicit core specification for EFC across structure, dynamics, and entropy\u2013information mapping with Ef = \\rho(1 - S) as the central field.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "rho(x)",
+      "S(x)",
+      "rho_0",
+      "r_s",
+      "S_0",
+      "r_c",
+      "f(\u00b7)",
+      "g(\u00b7)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At fixed mass density, measurable information-capacity proxies decrease approximately linearly with increasing entropy, consistent with I(S) \u221d (1 \u2212 S).",
+      "falsifiable_by": "Cross-population studies of astrophysical systems (e.g., galactic environments) where proxies for information capacity (phase-space granularity, coherent structure fraction) are measured versus independently estimated entropy."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Galaxy rotation curves and strong/weak lensing maps cannot be jointly reproduced using EFC-D with observed baryonic density \u03c1(x) and plausible entropy fields S(x) (no dark matter allowed), across a representative sample of galaxies and clusters.",
+    "KC2: Empirical dynamics at fixed mass density show no suppression with increasing entropy (i.e., no dependence on the (1 \u2212 S) factor), contradicting Ef = \u03c1(1 \u2212 S).",
+    "KC3: The observed expansion history H(z) from SNe Ia, BAO, and CMB cannot be matched by any EFC-D flow/entropy solution without introducing an explicit dark-energy term, while \u039bCDM fits the same data.",
+    "KC4: Independent entropy estimators for the same systems yield mutually incompatible S(x) fields that lead to irreconcilable EFC predictions beyond stated uncertainties.",
+    "KC5: The EFC-D evolution equations imply violations of energy conservation or the second law in closed systems when confronted with laboratory/astrophysical tests.",
+    "KC6: The predicted monotonic decrease of information capacity with entropy (I \u221d 1 \u2212 S at fixed \u03c1) is robustly falsified by observations showing equal or higher information capacity in higher-entropy states after controlling for density."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "efc_master_v1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30630500",
   "path": "docs/papers/efc/efc_master_v1",
   "pdf": "efc_master_v1.pdf",
   "md": "efc_master_v1.md",
-  "keywords": [
-    "EFC",
-    "Master Specification",
-    "Version 1",
-    "Foundational Theory",
-    "Energy Flow",
-    "Entropy",
-    "Grid"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0"
+  "type": "paper"
 }

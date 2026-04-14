@@ -1,28 +1,34 @@
 {
-  "id": "EFC-Field-Equations-for-Entropy-Driven-Spacetime",
-  "title": "EFC -- Field Equations for Entropy-Driven Spacetime",
+  "title": "Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime",
+  "short_id": "EFC-Field-Equations-for-Entropy-Driven-Spacetime",
+  "version": "1.0",
+  "date": "2025-01-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Symbiose Research",
-    "location": "Sandnes, Norway"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "doi": "10.6084/m9.figshare.30421807",
+  "abstract": "Proposes a covariant field-theoretic framework where a normalized entropy field S(x) and an energy-flow four-vector J^\u03bc source spacetime curvature alongside the metric. The action yields modified Einstein equations that reduce to GR when entropy gradients vanish, with cosmological and galactic-scale phenomenology that can mimic dark matter and alter late-time expansion.",
   "keywords": [
-    "EFC",
-    "Field Equations",
-    "Entropy-Driven Spacetime",
-    "Energy Flow",
-    "Spacetime Dynamics",
-    "Thermodynamics",
-    "Emergence"
+    "energy-flow cosmology",
+    "entropy field",
+    "emergent gravity",
+    "modified gravity",
+    "thermodynamics of spacetime",
+    "variational principle",
+    "FRW cosmology",
+    "Friedmann equations",
+    "dark matter phenomenology",
+    "gravitational lensing",
+    "galaxy rotation curves",
+    "H0 tension"
   ],
-  "abstract": "Presents the proposed field equations of Energy-Flow Cosmology: a formulation where spacetime structure and dynamics arise from entropy gradients, energy flow, and grid-level resistance rather than curvature alone.",
-  "created": "2026-04-06",
-  "framework": "Energy-Flow Cosmology",
+  "files": {
+    "pdf": "EFC-Field-Equations-for-Entropy-Driven-Spacetime.pdf",
+    "readme": "README.md"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.30421807",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.30421807"

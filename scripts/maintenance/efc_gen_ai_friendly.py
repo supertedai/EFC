@@ -115,16 +115,22 @@ def build_for_dir(name: str):
     d = os.path.join(ROOT, name)
     if not os.path.isdir(d):
         return None
-    files = list_files(d)
-    pdfs = find_pdfs(files)
-    excerpts = find_text_excerpts(d, files)
+    # We need the PDF list + excerpts before writing anything, but the
+    # full ``files`` snapshot (used by ai_manifest.json) must come LAST,
+    # after every other idempotent write below.  Otherwise the first run
+    # on a fresh paper directory writes a stale manifest that omits the
+    # LICENSE / citations.bib / schema.json we are about to create, and
+    # a second pass produces a diff.  See issue traced in PR #155 follow-up.
+    initial_files = list_files(d)
+    pdfs = find_pdfs(initial_files)
+    excerpts = find_text_excerpts(d, initial_files)
     excerpt_blob = " ".join(excerpts.values())
     title = humanize(name)
     slug = slugify(name)
     regs = regime_guess(excerpt_blob + " " + name)
     track = track_guess(name, excerpt_blob)
 
-    pkg = {
+    pkg_base = {
         "id": slug,
         "directory": name,
         "title": title,
@@ -139,25 +145,20 @@ def build_for_dir(name: str):
         "regimes": regs,
         "primary_pdf": pdfs[0] if pdfs else None,
         "all_pdfs": pdfs,
-        "files": [{"path": p, "bytes": s} for p, s in files],
-        "n_files": len(files),
-        "n_pdfs": len(pdfs),
     }
-    write_always(os.path.join(d, "ai_manifest.json"),
-                 json.dumps(pkg, indent=2, ensure_ascii=False) + "\n")
 
     created = []
     idx = {
         "id": slug,
         "title": title,
-        "author": pkg["author"],
-        "orcid": pkg["orcid"],
-        "affiliation": pkg["affiliation"],
-        "license": pkg["license"],
+        "author": pkg_base["author"],
+        "orcid": pkg_base["orcid"],
+        "affiliation": pkg_base["affiliation"],
+        "license": pkg_base["license"],
         "track": track,
         "regimes": regs,
-        "primary_pdf": pkg["primary_pdf"],
-        "files": [p for p, _ in files],
+        "primary_pdf": pkg_base["primary_pdf"],
+        "files": [p for p, _ in initial_files],
         "see_also": "ai_manifest.json",
     }
     if write_if_absent(os.path.join(d, "index.json"),
@@ -170,12 +171,12 @@ def build_for_dir(name: str):
         "paper": {
             "title": title,
             "directory": name,
-            "author": {"name": pkg["author"], "orcid": pkg["orcid"], "affiliation": pkg["affiliation"]},
-            "license": pkg["license"],
+            "author": {"name": pkg_base["author"], "orcid": pkg_base["orcid"], "affiliation": pkg_base["affiliation"]},
+            "license": pkg_base["license"],
         },
         "domain": {"track": track, "regimes": regs},
-        "files": [{"path": p, "bytes": s} for p, s in files],
-        "primary_pdf": pkg["primary_pdf"],
+        "files": [{"path": p, "bytes": s} for p, s in initial_files],
+        "primary_pdf": pkg_base["primary_pdf"],
     }
     if write_if_absent(os.path.join(d, "metadata.json"),
                        json.dumps(meta, indent=2, ensure_ascii=False) + "\n"):
@@ -187,9 +188,9 @@ def build_for_dir(name: str):
         "name": title,
         "author": {
             "@type": "Person",
-            "name": pkg["author"],
-            "identifier": "https://orcid.org/" + pkg["orcid"],
-            "affiliation": {"@type": "Organization", "name": pkg["affiliation"]},
+            "name": pkg_base["author"],
+            "identifier": "https://orcid.org/" + pkg_base["orcid"],
+            "affiliation": {"@type": "Organization", "name": pkg_base["affiliation"]},
         },
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "keywords": ["Energy-Flow Cosmology", "EFC"] + regs,
@@ -199,10 +200,10 @@ def build_for_dir(name: str):
                        json.dumps(jsonld, indent=2, ensure_ascii=False) + "\n"):
         created.append(slug + ".jsonld")
 
-    pdf_line = f"**Primary PDF:** `{pkg['primary_pdf']}`\n\n" if pkg["primary_pdf"] else ""
-    files_md = "\n".join(f"- `{p}` ({s} B)" for p, s in files[:50])
-    if len(files) > 50:
-        files_md += f"\n- … ({len(files)-50} more)"
+    pdf_line = f"**Primary PDF:** `{pkg_base['primary_pdf']}`\n\n" if pkg_base["primary_pdf"] else ""
+    files_md = "\n".join(f"- `{p}` ({s} B)" for p, s in initial_files[:50])
+    if len(initial_files) > 50:
+        files_md += f"\n- … ({len(initial_files)-50} more)"
     readme = f"""# {title}
 
 **Author:** Morten Magnusson (ORCID 0009-0002-4860-5095) · Symbiose Research
@@ -296,9 +297,21 @@ Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
                        json.dumps(schema, indent=2, ensure_ascii=False) + "\n"):
         created.append("schema.json")
 
+    # Re-scan NOW so ai_manifest.json reflects every file we just wrote.
+    # This is the fix: previously the manifest was written before the
+    # LICENSE / citations.bib / schema.json calls, leaving a stale snapshot
+    # on first run.
+    final_files = list_files(d)
+    pkg = dict(pkg_base)
+    pkg["files"] = [{"path": p, "bytes": s} for p, s in final_files if p != "ai_manifest.json"]
+    pkg["n_files"] = len(final_files)
+    pkg["n_pdfs"] = len(pdfs)
+    write_always(os.path.join(d, "ai_manifest.json"),
+                 json.dumps(pkg, indent=2, ensure_ascii=False) + "\n")
+
     return {
         "name": name, "title": title, "track": track, "regimes": regs,
-        "primary_pdf": pkg["primary_pdf"], "created": created, "n_files": len(files),
+        "primary_pdf": pkg["primary_pdf"], "created": created, "n_files": len(final_files),
     }
 
 

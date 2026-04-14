@@ -1,21 +1,104 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe",
-  "title": "EFC — Energy Flow as the Fundamental Dynamic of the Universe",
+  "title": "EFC \u2014 Energy Flow as the Fundamental Dynamic of the Universe",
+  "description": "Introduces Energy-Flow Cosmology (EFC), a framework that posits energy flow (Ef) as the fundamental driver sustaining spacetime, regulating entropy, and modulating an effective speed of light tied to energy-density gradients. The paper replaces the cosmological constant with dynamic energy flow, offers qualitative simulations, and proposes falsifiable predictions for gravitational lensing, redshift in voids, and CMB temperature patterns to address dark energy, the Hubble tension, and CMB anomalies.",
+  "version": "1.0",
+  "date": "N/A",
+  "doi": "10.6084/m9.figshare.28113542",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy",
+    "variable speed of light",
+    "dark energy",
+    "Hubble tension",
+    "gravitational lensing",
+    "cosmic voids",
+    "CMB anomalies",
+    "energy density gradients",
+    "spacetime stability",
+    "thermodynamics",
+    "emergent constants"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "effective_speed_of_light_from_energy_gradient": {
+      "latex": "c_{\\mathrm{eff}} \\propto \\frac{\\Delta E}{\\rho_E}",
+      "description": "The effective speed of light emerges from energy-density gradients, scaling with the ratio of the gradient \u0394E to the local energy density \u03c1_E (\u03b1 an empirical proportionality factor in the text)."
+    },
+    "energy_flow_entropy_relation": {
+      "latex": "E_f(S) \\propto e^{-S}",
+      "description": "Simulations indicate energy flow decays exponentially with increasing entropy, capturing the claimed Ef decrease as S grows."
+    },
+    "energy_flow_entropy_limit": {
+      "latex": "\\lim_{S \\to 1} E_f = 0",
+      "description": "As entropy approaches its maximal state, the model posits energy flow tends to zero, impacting voids and halo structures."
+    },
+    "local_global_hubble_relation": {
+      "latex": "H_{0,\\,\\text{local}} > H_{0,\\,\\text{global}} \\quad \\text{in regions of higher } E_f",
+      "description": "EFC asserts local H0 can exceed global estimates in regions with higher energy flow due to enhanced entropy production."
+    }
+  },
+  "key_results": {
+    "main_finding": "Energy flow (Ef) as a dynamical field can replace \u039b, linking spacetime stability, entropy growth, and an environment-dependent effective speed of light to explain dark energy, Hubble-tension, and certain CMB anomalies, with concrete observational predictions in halos and voids.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "E_f (energy flow)",
+      "S (entropy)",
+      "\u0394E (energy-density gradient)",
+      "\u03c1_E (local energy density)",
+      "c_eff (effective speed of light)",
+      "H0_local vs H0_global"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Regions with low energy flow (e.g., certain halo environments) exhibit increased gravitational lensing time delays and magnification anomalies relative to standard mass models.",
+      "falsifiable_by": "Strong-lensing time-delay measurements and magnification statistics from JWST/HST compared against \u039bCDM-informed lens models controlling for baryonic systematics."
+    },
+    {
+      "id": "P2",
+      "statement": "Cosmic voids with minimal energy flow show non-linear, enhanced redshift profiles (excess redshift) beyond \u039bCDM expectations.",
+      "falsifiable_by": "DESI/Euclid void catalogs and stacked void-galaxy cross-correlations testing redshift\u2013distance residuals versus \u039bCDM predictions."
+    },
+    {
+      "id": "P3",
+      "statement": "CMB temperature maps are measurably more homogeneous inside identified large voids than predicted by standard models.",
+      "falsifiable_by": "Stacked analyses of Planck and Simons Observatory temperature maps on void positions testing for reduced temperature variance relative to \u039bCDM simulations."
+    },
+    {
+      "id": "P4",
+      "statement": "An effective environmental variation in the speed of light at the level of ~10^-3 may occur in extreme halo/void conditions.",
+      "falsifiable_by": "Constraints from astrophysical timing (e.g., lensed quasar time delays, FRB dispersion and lensing, pulsar timing near halos/voids) limiting |\u0394c/c| in those environments."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-precision astrophysical timing and lensing constraints limit environmental variations in the speed of light to |\u0394c/c| < 1e-6 in galaxy halos and voids, contradicting the ~1e-3 level posited by EFC.",
+    "KC2: Strong-lensing time-delay and magnification measurements, after robust mass-modeling and systematics control, show no excess delays or magnification anomalies correlated with low-density/low-Ef regions beyond \u039bCDM expectations.",
+    "KC3: DESI/Euclid void redshift\u2013distance relations and stacked void profiles exhibit no significant non-linear excess redshift relative to \u039bCDM predictions within observational uncertainties.",
+    "KC4: Stacked CMB temperature variance inside large voids matches \u039bCDM simulations with no statistically significant increase in homogeneity, ruling out the EFC-predicted effect.",
+    "KC5: A joint analysis that simultaneously fits H0 (local and global) with large-scale structure, lensing, and CMB data finds no residuals attributable to spatial Ef variations, eliminating EFC\u2019s explanation of the Hubble tension.",
+    "KC6: N-body and radiative-transfer simulations augmented with any reasonable Ef\u2013S prescriptions fail to reproduce the qualitative trends (Ef decay with S, lensing delay enhancement at low Ef) claimed by the hypothesis."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28113542",
   "path": "docs/papers/efc/EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe",
   "pdf": "EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe.pdf",
   "md": "EFC-Energy-Flow-as-the-Fundamental-Dynamic-of-the-Universe.md",
-  "keywords": [
-    "EFC",
-    "Energy Flow",
-    "Fundamental Dynamics",
-    "Cosmology",
-    "Thermodynamics",
-    "Entropy",
-    "Emergence"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28113542",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28113542"
+  "type": "paper"
 }

@@ -1,21 +1,58 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
-  "title": "EFC — Dynamic Balance: Entropy, Order, and Chaos",
-  "path": "docs/papers/efc/EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
-  "pdf": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos.pdf",
-  "md": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos.md",
+  "title": "Dynamic Balance: How Entropy Governs the Balance Between Order and Chaos in Cosmic Evolution",
+  "description": "Conceptual EFC paper arguing that entropy acts as a universal regulator balancing local order formation (e.g., via gravitational collapse) against global disorder. It links the arrow of time, cosmic structure formation, and the universe\u2019s accelerating expansion to entropy-driven energy flows within time-space.",
+  "version": "1.0",
+  "date": "2024-12-26",
+  "doi": "10.6084/m9.figshare.28098344",
   "keywords": [
-    "EFC",
+    "Energy-Flow Cosmology",
     "Entropy",
     "Order",
     "Chaos",
     "Dynamic Balance",
-    "Energy-Flow",
-    "Emergence"
+    "Arrow of Time",
+    "Gravitational Collapse",
+    "Cosmic Microwave Background",
+    "Dark Energy",
+    "Heat Death",
+    "Large-Scale Structure",
+    "Time-Space Dynamics"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Entropy regulates a dynamic balance between local order creation and global disorder, setting the arrow of time and shaping cosmic evolution, structure formation, and expansion.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Robust observational evidence of a sustained net decrease of entropy in an isolated macroscopic cosmic region over cosmological timescales without compensating increases elsewhere.",
+    "KC2: Measurements of star/galaxy formation demonstrating no net export or production of entropy to the surroundings (e.g., radiation, turbulence, neutrinos), implying local order is achieved without global entropy increase.",
+    "KC3: High-precision CMB or early-universe probes showing the initial conditions were not low-entropy relative to later epochs, contradicting the claimed entropy-defined arrow of time.",
+    "KC4: Empirical observation of macroscopic time-asymmetric processes proceeding opposite to the entropy gradient (i.e., a reversed arrow of time) in natural cosmic settings.",
+    "KC5: Cosmological analyses demonstrating that the universe\u2019s accelerating expansion is fully decoupled from entropy production (e.g., acceleration persists unchanged while the cosmic entropy production rate trends to zero across epochs)."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098344",
+  "path": "docs/papers/efc/EFC-Dynamic-Balance-Entropy-Order-and-Chaos",
+  "pdf": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos.pdf",
+  "md": "EFC-Dynamic-Balance-Entropy-Order-and-Chaos.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098344",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098344"
+  "type": "paper"
 }

@@ -55,12 +55,20 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install poppler-utils (for PDF text extraction)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          which pdftotext && pdftotext -v 2>&1 | head -1 || echo "WARNING: pdftotext not found after install"
+
       - name: Record baseline commit
         id: baseline
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Run EFC maintenance pass
         id: maintain
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5
         run: |
           set -o pipefail
           python3 scripts/maintenance/efc_maintain.py 2>&1 | tee maintain.log
@@ -113,15 +121,33 @@ jobs:
 
           git commit -F /tmp/commit_msg
 
-          # Retry with exponential backoff — network flakes are common
+          # Retry with exponential backoff — pull --rebase if remote diverged
           for delay in 2 4 8 16; do
             if git push origin HEAD:"${GITHUB_REF_NAME:-${{ github.ref_name }}}"; then
               echo "Push succeeded."
               break
             fi
-            echo "Push failed; retrying in ${delay}s"
+            echo "Push failed; pulling --rebase and retrying in ${delay}s"
+            git pull --rebase origin "${GITHUB_REF_NAME:-${{ github.ref_name }}}" || true
             sleep "$delay"
           done
+
+      - name: Notify Symbiose QA webhook
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          # Trigger Symbiose quality assurance cross-check
+          # Symbiose independently verifies ledger data against Neo4j/Qdrant
+          if [ -n "$SYMBIOSE_WEBHOOK_URL" ]; then
+            curl -s -X POST "$SYMBIOSE_WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d "{\"event\":\"efc_push\",\"commit\":\"$(git rev-parse HEAD)\",\"papers\":$(python3 -c 'import os; print(sum(1 for d in os.listdir(\"docs/papers/efc\") if os.path.isdir(os.path.join(\"docs/papers/efc\",d)) and d not in {\"README.md\"}))')}" \
+              --max-time 10 || echo "Symbiose webhook not reachable — QA will run on next cron cycle"
+          else
+            echo "SYMBIOSE_WEBHOOK_URL not set — Symbiose QA runs via cron"
+          fi
+        env:
+          SYMBIOSE_WEBHOOK_URL: ${{ secrets.SYMBIOSE_WEBHOOK_URL }}
+        continue-on-error: true
 
       - name: Job summary
         if: always()

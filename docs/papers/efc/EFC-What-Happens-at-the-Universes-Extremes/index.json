@@ -1,22 +1,67 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-What-Happens-at-the-Universes-Extremes",
-  "title": "EFC — What Happens at the Universe’s Extremes?",
-  "path": "docs/papers/efc/EFC-What-Happens-at-the-Universes-Extremes",
-  "pdf": "EFC-What-Happens-at-the-Universes-Extremes.pdf",
-  "md": "EFC-What-Happens-at-the-Universes-Extremes.md",
+  "title": "EFC \u2014 What Happens at the Universe\u2019s Extremes?",
+  "description": "Concept paper in Energy-Flow Cosmology (EFC) proposing that the universe\u2019s boundary conditions are set by two extremes: singularities (T=0), where spacetime collapses, and ultimate dispersion (T=1), where entropy is maximal and structures dissolve. It argues that cosmic structure emerges from energy flow dynamically balancing between these limits and outlines observational and modeling avenues (black holes, expansion/voids) to probe dynamics near the extremes.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098380",
   "keywords": [
     "EFC",
-    "Entropy Limits",
-    "Cosmic Extremes",
+    "Singularities",
+    "Ultimate Dispersion",
+    "Heat Death",
     "Energy Flow",
+    "Entropy",
     "Spacetime",
     "S=0",
     "S=1",
-    "Information Collapse"
+    "Black Holes",
+    "Event Horizons",
+    "Cosmic Expansion"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "singularity_boundary": {
+      "latex": "T = 0",
+      "description": "Boundary condition representing the singularity extreme where spacetime collapses and conventional physics breaks down."
+    },
+    "dispersion_boundary": {
+      "latex": "T = 1",
+      "description": "Boundary condition representing ultimate dispersion (maximum entropy, minimal energy density) where cosmic structure dissolves."
+    }
+  },
+  "key_results": {
+    "main_finding": "The paper posits that spacetime ceases to exist at two energy-flow-defined extremes\u2014singularities (T=0) and ultimate dispersion (T=1)\u2014with cosmic structure maintained by dynamic energy flow between them.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Robust observational evidence that black-hole interiors are nonsingular and spacetime remains regular (e.g., confirmation of horizonless or explicitly nonsingular compact objects that replace singularities) would falsify the T=0 singularity boundary claim.",
+    "KC2: Compelling evidence that the universe will not approach maximum entropy (e.g., strong observational support for eventual recollapse/cyclic reset that avoids heat death without compensating entropy budget) would falsify the T=1 ultimate-dispersion boundary.",
+    "KC3: High-precision tests showing absence of gravitational time dilation near extreme gravitational fields would contradict the claimed time behavior near the T=0 extreme.",
+    "KC4: Observations of energy transport near extremes (e.g., in accretion flows at event horizons or energy distribution in deep cosmic voids) that systematically conflict with the model\u2019s premise that energy flow dynamically balances to maintain structure would refute the central energy-flow mechanism.",
+    "KC5: Empirical confirmation of a well-defined spacetime metric persisting beyond the proposed boundaries (e.g., signals implying regular continuation through classical singularities or persistent structured spacetime in the far-future limit without breakdown) would falsify the claim that spacetime ceases to exist at the extremes."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-What-Happens-at-the-Universes-Extremes.pdf",
+    "readme": "EFC-What-Happens-at-the-Universes-Extremes.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098380",
+  "path": "docs/papers/efc/EFC-What-Happens-at-the-Universes-Extremes",
+  "pdf": "EFC-What-Happens-at-the-Universes-Extremes.pdf",
+  "md": "EFC-What-Happens-at-the-Universes-Extremes.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098380",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098380"
+  "type": "paper"
 }

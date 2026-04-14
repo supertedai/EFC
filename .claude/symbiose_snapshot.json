@@ -1,0 +1,53 @@
+{
+  "source": "ledger_fallback",
+  "generated_at": "2026-04-14T17:49:21.183005Z",
+  "tests": {
+    "total": 116,
+    "active": 98,
+    "survived": 89,
+    "falsified": 9,
+    "planned_pipeline": 18,
+    "physics_test": 40,
+    "consistency_check": 19,
+    "phenomenological": 14,
+    "framework_constraint": 25
+  },
+  "papers": {
+    "total": 144,
+    "with_doi": 141,
+    "sealed_predictions_total": 293
+  },
+  "grav": {
+    "kt1": "unknown",
+    "kt2": "unknown",
+    "kt3": "unknown",
+    "integration_exploded": 2
+  },
+  "alpha_signal": {
+    "current_value": null,
+    "current_sigma": null,
+    "status": "unknown",
+    "note": "Symbiose unavailable \u2014 no live \u03b1 data"
+  },
+  "sealed_predictions": {
+    "freeze_1": {
+      "alpha": -0.689,
+      "hash_prefix": "7a850cfa",
+      "date": "2026-02-18"
+    },
+    "freeze_2": {
+      "alpha": -0.702,
+      "hash_prefix": "dbccda15",
+      "date": "2026-02-21"
+    }
+  },
+  "learning_loops": {
+    "connected": null,
+    "total": 7
+  },
+  "tcs": {
+    "compression": 1.5,
+    "mismatch": 0.3333
+  },
+  "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39"
+}

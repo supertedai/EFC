@@ -1,41 +1,163 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-vs-lcdm-kill-test-v6",
-  "title": "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
-  "short_title": "EFC vs ΛCDM Kill-Test v6",
+  "title": "EFC vs \u039bCDM: Complete Kill-Test \u2014 From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
+  "description": "Comprehensive kill-test of Energy-Flow Cosmology (EFC) versus \u039bCDM across six probes from galaxy rotation curves to CMB, BAO, and SNe. Using a single action with two global field parameters (K0, m^2), EFC jointly predicts \u03bc\u22480.94 and \u03a3\u22481.05 from one mechanism (stiffness + slip) and achieves \u0394\u03c7^2 \u2264 0 across four cobaya minimize runs. The results indicate EFC cannot be rejected by current data; full MCMC with Bayes evidence is identified as the remaining decisive test.",
   "version": "6.0",
   "date": "2026-04-08",
   "doi": "10.6084/m9.figshare.31964847",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "\u039bCDM",
+    "modified gravity",
+    "gravitational slip",
+    "\u03bc\u2013\u03a3 parameterization",
+    "Planck 2018",
+    "BAO",
+    "Pantheon+",
+    "MGCAMB",
+    "CAMB",
+    "rotation curves",
+    "Bullet Cluster"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "mu_of_k": {
+      "latex": "\\mu(k) = \\frac{1}{1 + R(k)}",
+      "description": "Scale-dependent modification of the Poisson equation; stiffness suppresses the effective gravitational coupling."
+    },
+    "R_k": {
+      "latex": "R(k) = \\frac{K_0\\,\\Theta(\\rho)\\,(\\Gamma'\\,\\dot{\\phi})^2\\,a^4}{M_{\\rm Pl}^2\\,F\\,k^4}",
+      "description": "Stiffness response controlling \\mu(k); yields R \\propto k^{-4} so GR is recovered on small (galactic/solar-system) scales."
+    },
+    "theta_rho": {
+      "latex": "\\Theta(\\rho) = \\exp\\!\\left[-\\left(\\frac{\\rho}{\\rho_*}\\right)^2\\right]",
+      "description": "Density regulator bridging cosmological and galactic regimes; \\Theta \\to 1 at low densities, \\Theta \\to 0 in dense environments."
+    },
+    "slip_fraction_f": {
+      "latex": "f = 1 - \\frac{V''(\\bar{\\phi})}{K(\\bar{\\rho})\\,k^2/a^2}",
+      "description": "Gravitational slip fraction induced by the restoring potential versus stiffness; controls \\eta and \\Sigma."
+    },
+    "predictive_chain": {
+      "latex": "K_0 \\Rightarrow \\mu(k)\\,\\,(\\text{stiffness}),\\quad m^2 \\Rightarrow f \\Rightarrow \\eta \\Rightarrow \\Sigma\\,\\,(\\text{slip})",
+      "description": "Two field parameters drive the complete observable chain: K0 fixes \\mu; m^2 sets slip f which determines \\eta and \\Sigma."
+    }
+  },
+  "key_results": {
+    "main_finding": "Across six probes and four cobaya minimize runs, EFC with two global parameters (K0 \u2248 1.55\u20131.68, m^2 \u2248 0.0032\u20130.0038) delivers \u03bc\u22480.94 and \u03a3\u22481.05 and achieves \u0394\u03c7^2 \u2264 0 versus GR/\u039bCDM; EFC cannot be rejected by current data.",
+    "delta_chi2": -0.3,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "K0",
+      "m^2",
+      "\u03bc0",
+      "\u03a30",
+      "A_lens",
+      "H0",
+      "\u03a9m",
+      "\u03c38"
+    ],
+    "datasets_used": [
+      "Planck 2018 plik_lite TTTEEE",
+      "Planck low-\u2113 TT",
+      "Planck low-\u2113 EE",
+      "Planck lensing",
+      "BAO",
+      "Pantheon+"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "High-\u2113 CMB TT+TE+EE analyses with MG-enabled pipelines will prefer a non-GR slip with \u03a30 \u2248 1.05 (and \u03b7 \u2248 1.23) corresponding to f \u2248 0.15.",
+      "falsifiable_by": "High-precision high-\u2113 CMB likelihoods (e.g., Planck reanalyses, SPT/ACT/CMB-S4) jointly fitting (\u03bc0, \u03a30) or (K0, m^2)."
+    },
+    {
+      "id": "P2",
+      "statement": "BAO + CMB lensing + growth-rate data analyzed without high-\u2113 TTTEEE will recover a stiffness signal \u03bc(k=0.05 h/Mpc) \u2248 0.94.",
+      "falsifiable_by": "Joint BAO + CMB lensing + RSD datasets with MG parameterization, excluding high-\u2113 temperature/polarization."
+    },
+    {
+      "id": "P3",
+      "statement": "At the EFC best fit, the amplitude of matter fluctuations is suppressed by \u22481.4% relative to GR (\u03c38 \u2193), with a small H0 upshift (~+0.9 km s\u207b\u00b9 Mpc\u207b\u00b9) and \u03a9m slightly reduced.",
+      "falsifiable_by": "Combined weak-lensing (cosmic shear) and RSD constraints on \u03c38 and \u03a9m, and CMB+distance-ladder constraints on H0."
+    },
+    {
+      "id": "P4",
+      "statement": "GR is recovered in dense/short-scale regimes (\u03bc\u21921, \u03a3\u21921) due to \u0398(\u03c1)\u21920, implying no measurable deviations in Solar System tests.",
+      "falsifiable_by": "Solar System PPN constraints (e.g., Cassini, tracking, ephemerides) or strong-field tests detecting |\u03bc\u22121| > 10\u207b\u2075 at k \u2273 50 h/Mpc."
+    },
+    {
+      "id": "P5",
+      "statement": "A single global pair (K0, m^2) fits rotation curves across SPARC galaxies without per-galaxy halo parameters.",
+      "falsifiable_by": "Multi-galaxy rotation-curve refits (SPARC) failing to achieve acceptable AIC/\u03c7\u00b2 with one global (K0, m^2)."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Full MCMC with Bayes evidence on Planck 2018 (plik_lite + low\u2113 + lensing) + BAO + Pantheon+ decisively prefers GR/\u039bCDM over EFC (e.g., \u0394\u03c7\u00b2 > 0 and Bayes factor strong against EFC).",
+    "KC2: SPARC rotation-curve ensemble cannot be fit with a single global pair (K0, m^2) at acceptable \u03c7\u00b2/AIC without per-galaxy halo parameters.",
+    "KC3: Joint constraints tightly exclude \u03bc(k=0.05 h/Mpc)=0.94 and \u03a30\u22481.05 at \u22653\u03c3 (i.e., \u03bc\u21921 and \u03a3\u21921 favored with sufficient precision).",
+    "KC4: Inconsistency of (K0, m^2) estimates across independent probe subsets (e.g., BAO+lensing vs high-\u2113 CMB) beyond quoted uncertainties, violating the low-dimensional global-parameter claim.",
+    "KC5: Detection of non-GR effects in Solar System regimes implying \u0398(\u03c1)\u22600 at high densities (e.g., |\u03bc\u22121| > 10\u207b\u2075 at k \u2273 50 h/Mpc), contradicting GR recovery."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-relativistic-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Underlying relativistic action for EFC"
+    },
+    {
+      "id": "efc-localization-mgcamb",
+      "doi": "10.6084/m9.figshare.31368433",
+      "role": "Localization and MGCAMB implementation establishing (\u03bc, \u03a3) mapping"
+    }
+  ],
+  "files": {
+    "paper": "EFC_vs_LCDM_Kill_Test_v6_final.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "EFCvsLCDMKillTest.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/__init__.py",
+      "src/k_rho_bridge.py",
+      "src/gravitational_slip.py",
+      "src/kill_test_suite.py",
+      "src/cobaya_minimize.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/cobaya_runs.json",
+      "data/sector_decomposition.json",
+      "data/probe_results.json",
+      "data/mu_k_table.json"
+    ],
+    "examples": [
+      "examples/run_kill_tests.py",
+      "examples/slip_window_scan.py"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31964847",
+  "short_title": "EFC vs \u039bCDM Kill-Test v6",
   "license": "CC-BY-4.0",
   "type": "technical_note",
   "epistemic_layer": "B-C",
-  "epistemic_status": "Comprehensive kill-test across six probes; Δχ² ≤ 0 in EFC direction across all four cobaya runs; awaiting full MCMC for Layer C",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "EFC",
-    "ΛCDM",
-    "kill test",
-    "cobaya",
-    "MGCAMB",
-    "CAMB",
-    "Planck 2018",
-    "BAO",
-    "Pantheon+",
-    "gravitational slip",
-    "mu Sigma parametrization",
-    "K(rho) bridge",
-    "SPARC",
-    "DDO 154",
-    "rotation curves",
-    "Bullet Cluster",
-    "Hubble tension",
-    "modified gravity"
-  ],
-  "abstract": "Comprehensive kill-test of Energy-Flow Cosmology against ΛCDM across six independent probes spanning galactic to cosmological scales. A single action with two field parameters (K0, m²) produces μ = 0.94, η = 1.23, Σ = 1.05 from one mechanism — stiffness and slip are not independent. All four cobaya minimize runs against Planck 2018 plik_lite + lowl + lensing + BAO + Pantheon+ return Δχ² ≤ 0 in the EFC direction. EFC cannot be rejected on current data.",
+  "epistemic_status": "Comprehensive kill-test across six probes; \u0394\u03c7\u00b2 \u2264 0 in EFC direction across all four cobaya runs; awaiting full MCMC for Layer C",
+  "abstract": "Comprehensive kill-test of Energy-Flow Cosmology against \u039bCDM across six independent probes spanning galactic to cosmological scales. A single action with two field parameters (K0, m\u00b2) produces \u03bc = 0.94, \u03b7 = 1.23, \u03a3 = 1.05 from one mechanism \u2014 stiffness and slip are not independent. All four cobaya minimize runs against Planck 2018 plik_lite + lowl + lensing + BAO + Pantheon+ return \u0394\u03c7\u00b2 \u2264 0 in the EFC direction. EFC cannot be rejected on current data.",
   "headline_result": {
     "runs_with_delta_chi2_le_0": "4 / 4",
     "total_delta_chi2": -0.3,
@@ -48,13 +170,13 @@
     "Omega_m_shift": -0.003
   },
   "key_equations": {
-    "mu_k": "μ(k) = 1 / (1 + R(k))",
-    "R_k": "R(k) = K0 · Θ(ρ) · (Γ'φ̇)² · a⁴ / (M_Pl² · F · k⁴)",
-    "theta_rho": "Θ(ρ) = exp(−(ρ/ρ*)²)",
-    "slip_f": "f = 1 − V''(φ̄) / (K(ρ̄) · k²/a²)",
-    "eta": "η = 1.23 at f = 0.15",
-    "Sigma": "Σ = 1.05 at f = 0.15",
-    "predictive_chain": "K0 → μ (stiffness); m² → f → η → Σ (slip)"
+    "mu_k": "\u03bc(k) = 1 / (1 + R(k))",
+    "R_k": "R(k) = K0 \u00b7 \u0398(\u03c1) \u00b7 (\u0393'\u03c6\u0307)\u00b2 \u00b7 a\u2074 / (M_Pl\u00b2 \u00b7 F \u00b7 k\u2074)",
+    "theta_rho": "\u0398(\u03c1) = exp(\u2212(\u03c1/\u03c1*)\u00b2)",
+    "slip_f": "f = 1 \u2212 V''(\u03c6\u0304) / (K(\u03c1\u0304) \u00b7 k\u00b2/a\u00b2)",
+    "eta": "\u03b7 = 1.23 at f = 0.15",
+    "Sigma": "\u03a3 = 1.05 at f = 0.15",
+    "predictive_chain": "K0 \u2192 \u03bc (stiffness); m\u00b2 \u2192 f \u2192 \u03b7 \u2192 \u03a3 (slip)"
   },
   "parameters": {
     "K0_reference_v5": 1.66,
@@ -90,7 +212,7 @@
     {
       "regime": "L0",
       "redshift": "z > 1100",
-      "coupling": "α_S → 0",
+      "coupling": "\u03b1_S \u2192 0",
       "physics": "Standard GR + Standard Model"
     },
     {
@@ -102,7 +224,7 @@
     {
       "regime": "L2",
       "redshift": "0.5 < z < 30",
-      "coupling": "α_L2 ≠ 0",
+      "coupling": "\u03b1_L2 \u2260 0",
       "physics": "late-time modification"
     },
     {
@@ -149,7 +271,7 @@
     },
     {
       "id": "probe-5",
-      "name": "A_L / (μ, Σ) Lensing Anomaly",
+      "name": "A_L / (\u03bc, \u03a3) Lensing Anomaly",
       "regime": "L2",
       "delta_chi2": -0.45,
       "mu": 0.94,
@@ -199,7 +321,7 @@
       "engine": "cobaya_minimize"
     },
     {
-      "run": "K0 m²",
+      "run": "K0 m\u00b2",
       "dataset": "lowl + lensing + BAO + Pantheon+",
       "parameters": [
         "K0",
@@ -252,28 +374,28 @@
       "baseline": 6,
       "model_specific": 0,
       "per_galaxy": 2,
-      "note": "Ω_Λ enforced by flatness; M200, c per galaxy"
+      "note": "\u03a9_\u039b enforced by flatness; M200, c per galaxy"
     },
     "efc": {
       "baseline": 5,
       "model_specific": 2,
       "per_galaxy": 0,
-      "note": "K0, m²; no per-galaxy halo parameters"
+      "note": "K0, m\u00b2; no per-galaxy halo parameters"
     },
     "extra_global_parameters_for_efc": 1
   },
   "falsification_criteria": [
-    "Full MCMC returning Δχ² > 0 with Bayes factor > 3 against EFC",
-    "Any cobaya run returning Δχ² > 0 in EFC direction (all four currently pass)",
-    "μ(k=5 h/Mpc) deviating from 1 by more than 10⁻⁴ (Solar System PPN violation)",
-    "η outside [1.20, 1.27] at m²=0.0035",
-    "Σ-signal absent from high-ℓ TT+TE+EE after plik_lite inclusion"
+    "Full MCMC returning \u0394\u03c7\u00b2 > 0 with Bayes factor > 3 against EFC",
+    "Any cobaya run returning \u0394\u03c7\u00b2 > 0 in EFC direction (all four currently pass)",
+    "\u03bc(k=5 h/Mpc) deviating from 1 by more than 10\u207b\u2074 (Solar System PPN violation)",
+    "\u03b7 outside [1.20, 1.27] at m\u00b2=0.0035",
+    "\u03a3-signal absent from high-\u2113 TT+TE+EE after plik_lite inclusion"
   ],
   "open_questions": [
-    "Full MCMC posterior with all 7+2 parameters (≥ 16 GB RAM required)",
-    "Full multi-component 175-galaxy universality with fixed (K0, m²) — single-component extension completed 2026-04-11, see Kill-Test v6 Universality_SPARC175",
-    "Physical origin of m² ≈ 0.0035 (m/H₀ ≈ 0.06)",
-    "A_lens / Σ₀ degeneracy disentanglement via MGCAMB primary MG run"
+    "Full MCMC posterior with all 7+2 parameters (\u2265 16 GB RAM required)",
+    "Full multi-component 175-galaxy universality with fixed (K0, m\u00b2) \u2014 single-component extension completed 2026-04-11, see Kill-Test v6 Universality_SPARC175",
+    "Physical origin of m\u00b2 \u2248 0.0035 (m/H\u2080 \u2248 0.06)",
+    "A_lens / \u03a3\u2080 degeneracy disentanglement via MGCAMB primary MG run"
   ],
   "resolved_questions": [
     {
@@ -281,7 +403,7 @@
       "resolved_date": "2026-04-11",
       "resolved_by": "kill-test-v6-universality-sparc175",
       "resolved_path": "../Kill-Test v6 Universality_SPARC175",
-      "summary": "Single-component extension of probe-2 to all 175 SPARC galaxies gives EFC win rate 60.2% (42.1% EFC_decisive), median ΔAIC = +6.21, Mann-Whitney p ≈ 0 (FLOW vs LATENT), Spearman ρ(ΔAIC, v_max) = 0.11. Cherry-picking objection refuted.",
+      "summary": "Single-component extension of probe-2 to all 175 SPARC galaxies gives EFC win rate 60.2% (42.1% EFC_decisive), median \u0394AIC = +6.21, Mann-Whitney p \u2248 0 (FLOW vs LATENT), Spearman \u03c1(\u0394AIC, v_max) = 0.11. Cherry-picking objection refuted.",
       "doi": "10.6084/m9.figshare.31986762"
     }
   ],
@@ -316,38 +438,5 @@
       "date": "2026-04-11",
       "doi": "10.6084/m9.figshare.31986762"
     }
-  ],
-  "files": {
-    "paper": "EFC_vs_LCDM_Kill_Test_v6_final.pdf",
-    "documentation": [
-      "README.md",
-      "QUICKSTART.md",
-      "MANIFEST.md"
-    ],
-    "metadata": [
-      "CITATION.cff",
-      "index.json",
-      "EFCvsLCDMKillTest.jsonld",
-      "schema.json"
-    ],
-    "source_code": [
-      "src/__init__.py",
-      "src/k_rho_bridge.py",
-      "src/gravitational_slip.py",
-      "src/kill_test_suite.py",
-      "src/cobaya_minimize.py"
-    ],
-    "data": [
-      "data/parameters.json",
-      "data/cobaya_runs.json",
-      "data/sector_decomposition.json",
-      "data/probe_results.json",
-      "data/mu_k_table.json"
-    ],
-    "examples": [
-      "examples/run_kill_tests.py",
-      "examples/slip_window_scan.py"
-    ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31964847"
+  ]
 }

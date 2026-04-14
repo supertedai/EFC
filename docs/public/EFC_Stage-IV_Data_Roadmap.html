@@ -187,7 +187,7 @@ April 2026 &middot; CC-BY-4.0
     survives or falls. Each row is a kill criterion frozen <em>before</em> the
     relevant data arrives, so no result can be back-fitted.
     <a href="EFC_Validation_Ledger.html">See the Validation Ledger</a> for the
-    103 tests already completed.
+    106 tests registered (89 active, 80 survived, 9 falsified, 17 in pipeline).
   </p>
 </div>
 
@@ -728,7 +728,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <tbody>
 <tr><td><strong>&mu;(k,z), &Sigma;(k,z)</strong></td><td>At linear scales &mu; &asymp; 0.94, &Sigma; &asymp; 1.05, &eta; &asymp; 1.10. Scale dependence via stiffness response R &prop; k<sup>&minus;4</sup>.</td><td>Directly comparable to Euclid MG pipeline. See <a href="https://doi.org/10.6084/m9.figshare.31876324">31876324</a>.</td></tr>
 <tr><td><strong>w&#8320;w<sub>a</sub>CDM</strong></td><td>EFC: w(a) = &minus;&beta;(S)&middot;a. Not a free fit &mdash; derived from susceptibility T(S). Effective w&#8320;, w<sub>a</sub> extractable by Taylor expansion.</td><td>See <a href="https://doi.org/10.6084/m9.figshare.31970907">WP Part 4</a>.</td></tr>
-<tr><td><strong>EFT of DE (&alpha;-functions)</strong></td><td>Not yet derived. &alpha;<sub>T</sub> = 0 exactly. Full Bellini-Sawicki mapping is a planned theoretical task.</td><td>Priority: medium. Required for Euclid EFT pipeline.</td></tr>
+<tr><td><strong>EFT of DE (&alpha;-functions)</strong></td><td><strong>DERIVED</strong> (<a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>). &alpha;<sub>T</sub>&nbsp;=&nbsp;0; &alpha;<sub>M</sub>&nbsp;&prop;&nbsp;S(a); &alpha;<sub>B</sub>&nbsp;&prop;&nbsp;dS/d&thinsp;ln&thinsp;a. Stiffness response R(k,z) beyond standard Horndeski.</td><td>DONE. Predictions sealed in <a href="https://doi.org/10.6084/m9.figshare.32010399">32010399</a>.</td></tr>
 <tr><td><strong>&Sigma;m<sub>&nu;</sub></strong></td><td>EFC growth suppression partially degenerates with neutrino mass. EFC&rsquo;s &eta; &ne; 1 breaks the degeneracy.</td><td>Neutrino mass constraints from EFC+DESI will differ from &Lambda;CDM+DESI.</td></tr>
 </tbody>
 </table>
@@ -818,7 +818,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <table>
 <thead><tr><th>Gap</th><th>Status</th><th>Blocking</th><th>Priority</th></tr></thead>
 <tbody>
-<tr><td>Bellini-Sawicki &alpha;-function mapping</td><td>Not started</td><td>Euclid EFT pipeline compatibility</td><td><strong>HIGH</strong> &mdash; needed before Euclid DR1 (Oct 2026)</td></tr>
+<tr><td>Bellini&ndash;Sawicki &alpha;-function mapping</td><td><strong>CLOSED</strong> (<a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>)</td><td>Euclid EFT pipeline compatibility</td><td><strong>DONE</strong> &mdash; &alpha;<sub>T</sub>=0, &alpha;<sub>M</sub>&prop;S(a), &alpha;<sub>B</sub>&prop;dS/d&thinsp;ln&thinsp;a</td></tr>
 <tr><td>Full non-linear ADM Hamiltonian stability</td><td>Passed at 2nd order; full non-linear pending</td><td>FA6</td><td>Medium</td></tr>
 <tr><td>EFCLASS Boltzmann solver</td><td>Partial (hi_class patch exists)</td><td>Full C<sub>&ell;</sub> predictions</td><td>Medium &mdash; hi_class efc_logistic covers the key regime</td></tr>
 <tr><td>Multi-component 175-galaxy SPARC universality</td><td>Single-component completed (60.2% win rate). Full multi-component pending.</td><td>Final rotation-curve validation</td><td>Medium</td></tr>
@@ -828,7 +828,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <h3>12.4 Priority Actions</h3>
 
 <ol>
-<li><strong>IMMEDIATE (Apr&ndash;Jun 2026):</strong> Monitor DESI for release of DR2 full-shape RSD paper at z~0.5&ndash;0.7. This is the only currently pending direct test of the sealed prediction f&sigma;<sub>8</sub>(z=0.7) = 0.430. Also: derive Bellini-Sawicki &alpha;-functions from EFC action for Euclid EFT pipeline.</li>
+<li><strong>IMMEDIATE (Apr&ndash;Jun 2026):</strong> Monitor DESI for release of DR2 full-shape RSD paper at z~0.5&ndash;0.7. This is the only currently pending direct test of the sealed prediction f&sigma;<sub>8</sub>(z=0.7) = 0.430. Bellini&ndash;Sawicki &alpha;-functions: <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>). Pre-registered predictions sealed (<a href="https://doi.org/10.6084/m9.figshare.32010399">32010399</a>).</li>
 <li><strong>BY JULY 2026:</strong> Pre-register EFC predictions for Rubin/LSST DP2 cosmic shear. LSST S<sub>8</sub> precision will exceed DES Y6 fivefold.</li>
 <li><strong>BY SEPTEMBER 2026:</strong> Pre-register EFC predictions for Simons Observatory &times; Euclid E<sub>G</sub> cross-correlation. First direct next-generation test of &eta; = 1.</li>
 <li><strong>BEFORE OCTOBER 2026:</strong> Euclid DR1 pre-registration is sealed (31990053). Verify pipeline scripts and Boltzmann outputs are version-controlled and DOI-stamped.</li>

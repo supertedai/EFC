@@ -1,22 +1,153 @@
 {
   "name": "Recent Changes",
-  "version": "v4.8",
-  "generated_at": "2026-04-11T08:48:32Z",
+  "version": "3.0",
+  "generated_at": "2026-04-14T17:19:57Z",
   "period_days": 7,
   "changes": [
     {
-      "date": "2026-04-11",
-      "version": "v4.8",
-      "type": "physics_test_addition",
-      "summary": "Kill-Test v6 Universality (SPARC 175) added",
-      "details": "Extended Kill-Test v6 probe-2 methodology to all 175 SPARC galaxies with identical scipy.differential_evolution pipeline (seed=42, AIC model comparison). Single-component EFC wins 60.2% on 171/175 fitted galaxies (42.1% EFC_decisive). Median ΔAIC = +6.21. Mann-Whitney FLOW vs LATENT p ≈ 0. Spearman ρ(ΔAIC, v_max) = 0.11 (no mass bias). DDO 154 anchor cross-check: ΔAIC = +125.2. Cherry-picking objection against probe-2 refuted; universality verdict CONFIRMED at single-component level. See docs/papers/efc/Kill-Test v6 Universality_SPARC175/. DOI 10.6084/m9.figshare.31986762.",
-      "test_id": "conv_kill_test_v6_universality_sparc175_single_component",
-      "related_paper": "efc-vs-lcdm-kill-test-v6",
-      "stats_delta": {
-        "physics_test": "+1",
-        "total_public": "+1"
-      },
-      "doi": "10.6084/m9.figshare.31986762"
+      "date": "2026-04-14",
+      "type": "auto_maintenance",
+      "summary": "1 paper package enriched; Ledger data: evidence-register.json."
+    },
+    {
+      "name": "DES Y6 vs KiDS-Legacy divergens som EFC-strukturprediksjon",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:34.681000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Whitening WP4 komponent w5 \u2014 hardest-constrained direction hit",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:33.273000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFC-C-003: \u03ba Universality Across Anesthetic Agents",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:31.288000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFC-C-002: C-measure Correlation with PCI_ST",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:29.903000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFC-C-001: \u2207S Correlation with Conscious State Transitions",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:28.018000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-05: Full Entropy Gradient Pipeline",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:26.581000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-04: Cross-Domain Constant K Consistency",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:19.582000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-03: Parietal Dominance Replication",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:18.448000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-02: Omega-Kappa Anti-Correlation Constraint",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:17.207000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-01: Entropy Gradient-Consciousness Correlation",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:15.248000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Asig shock-front lensing asymmetry \u2014 JWST-era execution",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:13.270000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "ISW Void Sign-Flip Observational Confrontation v1",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-14T17:05:11.975000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Euclid DR1 frozen benchmark (B0=0.02, M0=0.06) \u2014 Boltzmann-calibrated",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-12T14:30:14.520000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Euclid DR1 pre-registration pipeline via hi_class",
+      "status": "pending",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-04-12T11:45:15.593000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
     },
     {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
@@ -24,26 +155,6 @@
       "result": "Primary p=0.57688, Sign coherence p=0.01953125",
       "last_updated": "2026-04-08T11:14:55.051000000+00:00",
       "source": null,
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Action Integral Gap — k* derivability test",
-      "status": "pending",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-04-07T08:04:46.088000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "KT3b: Environmental mass-scaling test β(ρ_env)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-04-07T07:57:37.851000000+00:00",
-      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]

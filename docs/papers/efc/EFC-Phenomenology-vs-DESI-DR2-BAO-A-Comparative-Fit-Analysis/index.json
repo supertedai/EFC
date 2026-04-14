@@ -1,31 +1,78 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-phenomenology-desi-dr2-bao",
   "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
-  "short_title": "EFC vs DESI DR2 BAO",
+  "description": "This technical note fits a phenomenological dark-energy equation of state w(z), inspired by Energy-Flow Cosmology (EFC), to seven DESI DR2 BAO measurements using diagonal errors only. The EFC-inspired transition form achieves the lowest chi-squared among models tested (\u03c72=3.60) versus w0\u2013wa CDM (4.49) and \u039bCDM (23.71), providing a necessary but not sufficient consistency check. The work outlines next steps to derive w(z) from EFC field equations and perform multi-probe tests with full covariance.",
   "version": "1.0",
   "date": "2026-01-22",
+  "doi": "10.6084/m9.figshare.31127380",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "DESI DR2",
+    "BAO",
+    "dark energy",
+    "equation of state",
+    "CPL parameterization",
+    "phantom regime",
+    "entropy-driven transition",
+    "chi-squared comparison",
+    "multi-probe cosmology",
+    "covariance matrix"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
-  "type": "technical_note",
-  "status": "published",
-  "abstract_short": "EFC-inspired w(z) yields lowest χ²=3.60 vs w₀wₐCDM (4.49) and ΛCDM (23.71) against DESI DR2 BAO.",
-  "keywords": [
-    "EFC",
-    "DESI DR2",
-    "BAO",
-    "dark energy",
-    "w(z)",
-    "CPL parameterization",
-    "entropy transition"
+  "core_equations": {
+    "EFC_inspired_wz": {
+      "latex": "w(z) = w_{\\mathrm{late}} + \\big(w_{\\mathrm{early}} - w_{\\mathrm{late}}\\big) \\, \\tanh\\!\\left[\\frac{z - z_{\\mathrm{trans}}}{0.5}\\right]",
+      "description": "Phenomenological EFC-inspired equation of state with a smooth entropy-driven transition near z_trans; fitted post-hoc to BAO."
+    },
+    "CPL_wz": {
+      "latex": "w(z) = w_0 + w_a \\, \\frac{z}{1+z}",
+      "description": "Chevallier\u2013Polarski\u2013Linder parameterization used for the w0\u2013wa CDM comparison, with DESI-reported best-fit parameters."
+    }
+  },
+  "key_results": {
+    "main_finding": "Among models tested on DESI DR2 BAO (diagonal errors), the EFC-inspired w(z) achieves the lowest \u03c72 (3.60), outperforming w0\u2013wa CDM (4.49) and \u039bCDM (23.71).",
+    "delta_chi2": -20.11,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "EFC: w_late = -0.80, w_early = -1.41, z_trans = 1.07",
+      "w0waCDM: w0, wa (DESI DR2 best-fit values)",
+      "\u039bCDM: w = -1"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO DV/rd (7 points; 0.30 <= z <= 2.33; diagonal errors only)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: A full-covariance joint analysis (BAO + SN + CMB) shows decisive model selection against first-principles EFC (\u0394BIC \u2265 10 or equivalently strong Bayes factor) relative to \u039bCDM or w0\u2013wa CDM while using comparable priors.",
+    "KC2: Solving EFC field equations fails to yield a stable (no ghost/gradient instabilities) background expansion that can realize the phenomenologically required features (phantom-like w < -1 at z \u2273 1 and a smooth transition near z \u2248 1) consistent with causality and energy conditions.",
+    "KC3: With DESI DR3/DR4 BAO (full systematics and covariance), the preference for a transition in w(z) disappears and \u039bCDM attains a statistically acceptable fit (e.g., p-value > 0.1) with no significant \u0394\u03c72 improvement from transition models.",
+    "KC4: Combined SN (e.g., Pantheon+ or successor) + BAO + CMB constraints require w(z) \u2265 -1 at z > 1 at \u2265 3\u03c3, excluding the phantom-like behavior that the EFC-inspired fit uses to match DESI DR2.",
+    "KC5: Early-universe constraints (Planck or next-gen CMB) on the expansion history and sound horizon (r_d) cannot be simultaneously satisfied with the EFC best-fit parameter region while also fitting DESI BAO, leading to a global fit deterioration (e.g., \u0394\u03c72_total \u2273 25 relative to w0\u2013wa CDM)."
   ],
-  "core_equations": [
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
     {
-      "name": "EFC-inspired w(z)",
-      "latex": "w(z) = w_{late} + (w_{early} - w_{late}) \\cdot \\tanh[(z - z_{trans})/0.5]"
+      "id": "desi-dr2-bao",
+      "doi": "10.5281/zenodo.14733025",
+      "role": "BAO distance measurements used in the fits"
     }
   ],
+  "files": {
+    "pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
+    "tex": "EFC_DESI_Technical_Note.tex"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31127380",
+  "short_title": "EFC vs DESI DR2 BAO",
+  "type": "technical_note",
+  "status": "published",
+  "abstract_short": "EFC-inspired w(z) yields lowest \u03c7\u00b2=3.60 vs w\u2080w\u2090CDM (4.49) and \u039bCDM (23.71) against DESI DR2 BAO.",
   "parameters": {
     "w_late": {
       "value": -0.8,
@@ -74,11 +121,5 @@
     "Derive w(z) from EFC field equations",
     "Multi-probe analysis with full covariance",
     "Bayesian model comparison"
-  ],
-  "files": {
-    "pdf": "EFC_Phenomenology_vs_DESI_DR2_BAO__A_Comparative_Fit_Analysis.pdf",
-    "tex": "EFC_DESI_Technical_Note.tex"
-  },
-  "doi": "10.6084/m9.figshare.31127380",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31127380"
+  ]
 }

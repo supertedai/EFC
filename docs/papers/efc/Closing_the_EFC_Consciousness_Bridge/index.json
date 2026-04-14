@@ -1,17 +1,126 @@
 {
+  "$schema": "./schema.json",
   "id": "closing-the-efc-consciousness-bridge",
   "title": "Closing the EFC Consciousness Bridge: Dimensionless, Scale-Invariant Unification of Entropy, Dynamics, and Awareness",
+  "description": "Introduces a dimensionless, regime-indexed mapping from the EFC entropy field S to cognitive variables (Omega-hat, kappa-hat), derives coupled dynamical equations that make the Omega\u2013kappa anti-correlation intrinsic, and replaces the separable product C=Omega*kappa with a single-parameter non-separable functional. The framework closes the cosmology-to-cognition bridge, inherits a cross-domain constant K=4.4\u00b10.6 from SPARC rotation curves, and shows qualitative consistency with propofol sedation EEG.",
+  "version": "1.0",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31969983",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC-C",
+    "entropy field",
+    "spectral differentiation",
+    "causal integration",
+    "non-separable functional",
+    "dimensionless variables",
+    "cross-domain constant K",
+    "transfer entropy",
+    "propofol sedation EEG",
+    "dynamical systems",
+    "consciousness metrics"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "Omega_hat_def": {
+      "latex": "\\hat{\\Omega}_\\ell = \\frac{S(\\rho)}{S_\\ell}",
+      "description": "Dimensionless spectral differentiation derived from the EFC entropy field S normalized by the regime-specific characteristic entropy S_\\ell; reduces to H(p)/H_max at L3."
+    },
+    "kappa_hat_def": {
+      "latex": "\\hat{\\kappa}_\\ell = \\frac{\\alpha_\\ell}{\\rho_\\ell} \\, \\nabla\\!\\left( \\frac{\\delta S}{\\delta \\rho} \\right)",
+      "description": "Dimensionless causal integration proportional to the gradient of the functional derivative of entropy density; reduces to mean transfer entropy at L3 under the identification in EFC-C."
+    },
+    "eq_I": {
+      "latex": "\\frac{d \\hat{\\Omega}}{dt} = -\\lambda_{\\Omega} \\, \\nabla\\!\\left( \\frac{\\delta S}{\\delta \\rho} \\right) + D_{\\Omega} \\, \\nabla^2 \\hat{\\Omega}",
+      "description": "Dynamics of spectral differentiation: entropic drift driven by the same functional derivative that appears in the EFC field equation, stabilized by diffusion."
+    },
+    "eq_II": {
+      "latex": "\\frac{d \\hat{\\kappa}}{dt} = J_{\\text{flow}} - \\mu \\, \\hat{\\kappa} \\, \\hat{\\Omega}",
+      "description": "Dynamics of causal integration: energy-flow source opposed by a damping term coupling to differentiation, yielding an intrinsic anti-correlation."
+    },
+    "eq_III": {
+      "latex": "C = \\hat{\\Omega} \\, \\hat{\\kappa} \\, \\bigl(1 - e^{-\\gamma \\, \\hat{\\Omega} \\, \\hat{\\kappa}}\\bigr)",
+      "description": "Non-separable consciousness functional with a single free coupling constant \\gamma; quadratic at low \\hat{\\Omega}\\hat{\\kappa}, saturating to the product at high values."
+    },
+    "bridge_B1_star": {
+      "latex": "\\hat{\\kappa}_{\\text{healthy}} = \\frac{K}{1 + \\lambda_2(W) \\, \\tau_c},\\quad K = 4.4 \\pm 0.6",
+      "description": "Inherited cross-domain relation linking integration to network connectivity and correlation time, with K derived from SPARC galactic rotation curves (no neural parameter fitting)."
+    },
+    "steady_state_anti_corr": {
+      "latex": "\\hat{\\kappa}_{\\text{ss}} = \\frac{J_{\\text{flow}}}{\\mu \\, \\hat{\\Omega}} \\propto \\hat{\\Omega}^{-1}",
+      "description": "Steady-state anti-correlation between integration and differentiation emerges directly from Eq. II."
+    }
+  },
+  "key_results": {
+    "main_finding": "A closed, dimensionless EFC-to-cognition bridge yields an intrinsic Omega\u2013kappa anti-correlation and a one-parameter non-separable consciousness functional, qualitatively consistent with propofol EEG while inheriting K=4.4\u00b10.6 from SPARC.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "gamma (non-separable coupling constant)",
+      "K (cross-domain constant, 4.4 \u00b1 0.6)",
+      "lambda_Omega (= alpha_l, inherited)",
+      "D_Omega (diffusion coefficient, measurable)",
+      "mu (damping rate, measurable)"
+    ],
+    "datasets_used": [
+      "SPARC galactic rotation curve data (for K)",
+      "Chennu et al. 2016 propofol sedation EEG (N=20, overlap n=12)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In unequivocally conscious states, corr(\\hat{\\Omega}, \\hat{\\kappa}) is negative across time or regions, arising from \\hat{\\kappa}_{ss} \\propto 1/\\hat{\\Omega}.",
+      "falsifiable_by": "Simultaneous estimation of \\hat{\\Omega} (spectral entropy fraction) and \\hat{\\kappa} (mean transfer entropy) from EEG/MEG/ECoG with robust confound controls, testing correlation sign and 1/\\hat{\\Omega} scaling."
+    },
+    {
+      "id": "P2",
+      "statement": "The consciousness functional exhibits low-regime quadratic scaling C \\approx \\gamma \\, \\hat{\\Omega}^2 \\hat{\\kappa}^2 and saturates to C \\to \\hat{\\Omega}\\hat{\\kappa} at high \\hat{\\Omega}\\hat{\\kappa}, with a single \\gamma across tasks within a regime.",
+      "falsifiable_by": "State- or task-sweeps (e.g., graded anesthesia or cognitive load) mapping C vs. \\hat{\\Omega}\\hat{\\kappa} and fitting a single \\gamma; failure to capture both quadratic and saturation regimes invalidates the functional."
+    },
+    {
+      "id": "P3",
+      "statement": "Under approximately fixed energy-flow source J_flow, steady-state \\hat{\\kappa} scales as 1/\\hat{\\Omega} across conditions.",
+      "falsifiable_by": "Parametric manipulation of spectral differentiation (e.g., propofol titration) while estimating transfer entropy; regression of \\hat{\\kappa} against 1/\\hat{\\Omega} should yield linearity with slope J_flow/\\mu."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Robustly positive corr(\\hat{\\Omega}, \\hat{\\kappa}) in confirmed conscious wakefulness after controlling for confounds (contradicts Eq. II steady-state anti-correlation).",
+    "KC2: Observed C increases monotonically with \\hat{\\Omega} without concurrent suppression of \\hat{\\kappa} (no trade-off), violating the damping term \u2212\\mu \\hat{\\kappa} \\hat{\\Omega}.",
+    "KC3: Spatial or temporal gradients of \\delta S/\\delta \\rho at L3 (operationalized via cortical entropy gradients) show no association with \\hat{\\Omega} or awareness changes.",
+    "KC4: A single \\gamma cannot fit C vs. \\hat{\\Omega}\\hat{\\kappa} across multiple L3 datasets/tasks within statistical tolerance, requiring dataset-specific \\gamma values.",
+    "KC5: The cross-domain relation \\hat{\\kappa}_{healthy} = K/(1 + \\lambda_2(W)\\,\\tau_c) fails across healthy cohorts or reanalysis invalidates K \\approx 4.4 \\pm 0.6 derived from SPARC."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "consciousness-field-resonance",
+      "doi": "10.6084/m9.figshare.31289806",
+      "role": "Prior EFC-C analysis with propofol EEG re-analysis referenced for qualitative consistency"
+    }
+  ],
+  "files": {
+    "paper_pdf": "Closing_the_EFC_Consciousness_Bridge.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "closing-the-efc-consciousness-bridge.jsonld",
+    "citations": "citations.bib",
+    "regime_mapping": "data/regime_mapping.json",
+    "propofol_consistency": "data/propofol_consistency.json",
+    "src_bridge": "src/consciousness_bridge.py",
+    "example": "examples/evaluate_bridge.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research, Sandnes, Norway",
   "report_id": "EFC-VAL-2026-007",
-  "doi": "10.6084/m9.figshare.31969983",
   "doi_url": "https://doi.org/10.6084/m9.figshare.31969983",
-  "date": "2026-04",
   "license": "CC-BY-4.0",
   "ledger_version": "v3.14",
   "type": "structural derivation, cross-domain bridge, framework extension",
-  "track": "Spor 4 — Cross-Domain (EFC-C Consciousness)",
+  "track": "Spor 4 \u2014 Cross-Domain (EFC-C Consciousness)",
   "regimes": [
     "L0",
     "L1",
@@ -152,17 +261,5 @@
     "If gamma fixed from one dataset, model becomes fully predictive for all others",
     "Compute grad(delta S / delta rho) from high-density EEG or source-reconstructed MEG",
     "Test correlation between gradient magnitude and C across states (waking, sleep, anaesthesia, psychedelics)"
-  ],
-  "files": {
-    "paper_pdf": "Closing_the_EFC_Consciousness_Bridge.pdf",
-    "metadata": "metadata.json",
-    "schema": "schema.json",
-    "jsonld": "closing-the-efc-consciousness-bridge.jsonld",
-    "citations": "citations.bib",
-    "regime_mapping": "data/regime_mapping.json",
-    "propofol_consistency": "data/propofol_consistency.json",
-    "src_bridge": "src/consciousness_bridge.py",
-    "example": "examples/evaluate_bridge.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31969983"
+  ]
 }

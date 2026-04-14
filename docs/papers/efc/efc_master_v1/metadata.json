@@ -1,48 +1,36 @@
 {
-  "title": "EFC -- Master Specification (v1 Archive)",
+  "title": "Energy-Flow Cosmology (EFC) Master Specification v1.1",
   "short_id": "efc_master_v1",
-  "version": "1.0",
-  "date": "2025",
+  "version": "1.1",
+  "date": "2025-11-16",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "Archived v1 master specification of Energy-Flow Cosmology. Represents the earliest complete formulation including initial field definitions, conceptual structure, and primary thermodynamic foundations. Preserved for historical reference, reproducibility, and comparison with later versions.",
+  "doi": "10.6084/m9.figshare.30630500",
+  "abstract": "Canonical master specification of Energy-Flow Cosmology (EFC), which models the universe as a thermodynamic-information system driven by energy-flow and entropy gradients. It formalizes three base layers\u2014EFC-S (structure/halos), EFC-D (energy-flow dynamics), and EFC-C0 (entropy\u2013information mapping)\u2014and fixes baseline fields, notation, and equations to enable unambiguous higher-level models and simulations.",
   "keywords": [
-    "EFC",
-    "Master Specification",
-    "Version 1",
-    "Foundational Theory",
-    "Energy Flow",
-    "Entropy",
-    "Grid",
-    "Archive",
-    "Historical"
+    "Energy-Flow Cosmology",
+    "energy-flow potential",
+    "entropy gradients",
+    "information capacity",
+    "halo model",
+    "structure formation",
+    "rotation curves",
+    "projected surface density",
+    "expansion history",
+    "thermodynamic cosmology",
+    "Ef field",
+    "entropy\u2013cognition mapping"
   ],
-  "efc_context": {
-    "track": "Core Theory (Archived)",
-    "regime_relevance": "All regimes (L0-L3) -- earliest formulation",
-    "epistemic_layer": "Historical reference and reproducibility record"
-  },
-  "key_results": [
-    "First complete formulation of EFC field equations",
-    "Initial entropy field definition with sigmoid form",
-    "Original regime architecture (L0-L3)",
-    "Preliminary thermodynamic foundations",
-    "Baseline for comparison with v2.x and later versions"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "efc_master_v1.pdf",
-    "jsonld": "efc_master_v1.jsonld",
-    "schema": "schema.json",
-    "index": "index.json",
-    "citations": "citations.bib",
-    "metadata": "metadata.json",
-    "src": "src/",
-    "data": "data/",
-    "examples": "examples/"
+    "readme": "README.md"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.30630500",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.30630500"
   }
 }

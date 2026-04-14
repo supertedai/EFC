@@ -1,21 +1,91 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
-  "title": "EFC — Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
-  "path": "docs/papers/efc/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
-  "pdf": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.pdf",
-  "md": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.md",
+  "title": "EFC \u2014 Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
+  "description": "Analyzes three SDSS DR18 galaxy clusters to study how energy flow diminishes with redshift while entropy increases, incorporating spacetime distortion and gravitational lensing corrections. Reports a best-fit power-law index n = \u22120.33 for energy-flow evolution, a small negative spacetime-distortion parameter \u03b1 = \u22120.059, and a lensing factor of 0.636, with cluster entropies remaining homogeneous. The study argues these trends are consistent with stable halo dynamics across clusters.",
+  "version": "1.0",
+  "date": "2025-02-10",
+  "doi": "10.6084/m9.figshare.28112096",
   "keywords": [
-    "EFC",
     "Energy Flow",
     "Entropy",
     "Spacetime Distortion",
-    "Cosmological Clusters",
-    "Lensing",
-    "Thermodynamics"
+    "Gravitational Lensing",
+    "Galaxy Clusters",
+    "Redshift Evolution",
+    "Halo Stability",
+    "Thermodynamics",
+    "SDSS DR18",
+    "Cosmology",
+    "Power-law Scaling"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_trend": {
+      "latex": "\\frac{dE_f}{dz} < 0",
+      "description": "Empirical trend: cluster energy flow decreases with increasing redshift once lensing and spacetime distortion are accounted for."
+    },
+    "entropy_trend": {
+      "latex": "\\frac{dS}{dz} > 0",
+      "description": "Empirical trend: entropy increases with redshift across clusters, consistent with thermodynamic expectations."
+    },
+    "power_law_scaling": {
+      "latex": "E_f(z) \\propto (1+z)^{n}",
+      "description": "Observed energy-flow evolution parameterized by a power-law in (1+z) with best-fit index n = -0.33."
+    }
+  },
+  "key_results": {
+    "main_finding": "Energy flow in clusters declines with redshift (n = \u22120.33) after modeling spacetime distortion (\u03b1 = \u22120.059) and lensing (factor = 0.636), while entropy increases uniformly, indicating stable halo dynamics.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "E0=1.001",
+      "n=-0.33",
+      "alpha=-0.059",
+      "lens_factor=0.636",
+      "S_cluster1=0.738\u00b10.014",
+      "S_cluster2=0.738\u00b10.012",
+      "S_cluster3=0.727\u00b10.009"
+    ],
+    "datasets_used": [
+      "SDSS DR18 (three galaxy clusters within specified RA/Dec/redshift ranges)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "For additional high-redshift galaxy clusters analyzed with the same methodology, the inferred energy-flow evolution will remain decreasing with redshift (n < 0) after correcting for spacetime distortion and lensing.",
+      "falsifiable_by": "Aggregate measurements of E_f(z) for new clusters yielding a robust best-fit n \u2265 0 after lensing and spacetime-distortion corrections."
+    },
+    {
+      "id": "P2",
+      "statement": "Cluster entropy S will continue to increase with redshift across independently selected cluster samples.",
+      "falsifiable_by": "A statistically significant non-increasing or decreasing S\u2013z trend over multiple redshift bins in new datasets."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A robust positive or flat energy-flow evolution (n \u2265 0) persists after applying spacetime-distortion and lensing corrections across multiple independent cluster samples.",
+    "KC2: Entropy does not increase with redshift (dS/dz \u2264 0) or shows systematic decreases across well-characterized cluster sets.",
+    "KC3: Large intra-cluster variability in energy-flow rates incompatible with stable halo dynamics is observed across redshift (e.g., no consistent trend within clusters).",
+    "KC4: Gravitational lensing corrections fail to reconcile observed brightness/energy-flow discrepancies at higher redshifts in a way consistent across clusters.",
+    "KC5: The spacetime-distortion parameter is consistently estimated as zero or positive (\u03b1 \u2265 0) across independent analyses, contradicting the reported local damping."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28112096",
+  "path": "docs/papers/efc/EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters",
+  "pdf": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.pdf",
+  "md": "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28112096",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28112096"
+  "type": "paper"
 }

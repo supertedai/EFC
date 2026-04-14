@@ -1,37 +1,136 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-entropy-budget",
   "title": "The Cosmic Entropy Budget as Constraint on the EFC S-Field",
-  "doi": "10.6084/m9.figshare.31942734",
+  "description": "This working note argues that the observed cosmic entropy budget\u2014overwhelmingly dominated by supermassive black holes (SMBHs)\u2014is structurally consistent with Energy-Flow Cosmology (EFC). It maps Bekenstein\u2013Hawking entropy to the EFC S-field normalization, places SMBHs at S = S_max (grid-collapse boundary) while the CMB approaches S_max from the thermal side, and proposes that the decline of AGN accretion drives the sigmoid transition in S(z) near z ~ 1.",
   "version": "0.1",
-  "status": "working_note",
   "date": "2026-04-06",
+  "doi": "10.6084/m9.figshare.31942734",
+  "keywords": [
+    "cosmic entropy budget",
+    "Bekenstein\u2013Hawking entropy",
+    "supermassive black holes",
+    "EFC S-field",
+    "thermostat conjecture",
+    "AGN luminosity density",
+    "CMB",
+    "grid collapse",
+    "Geff",
+    "RAR environmental dependence",
+    "entropy production",
+    "quasar epoch"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "bekenstein_hawking_entropy": {
+      "latex": "S_{\\mathrm{BH}} = \\frac{k_B c^3 A}{4 G \\hbar} = \\frac{4 \\pi k_B G M^2}{\\hbar c}",
+      "description": "Entropy of a Schwarzschild black hole; establishes the dominant contribution of SMBHs to the cosmic entropy budget."
+    },
+    "s_field_mapping": {
+      "latex": "\\frac{S_{\\mathrm{EFC}}}{S_{\\max}} = \\frac{S_{\\mathrm{BH}}}{S_{\\mathrm{BH,max}}(M)}",
+      "description": "Normalization that identifies black holes as saturating the EFC S-field (S = S_max) at the grid-collapse boundary."
+    },
+    "efc_action_with_entropy_source": {
+      "latex": "S_{\\mathrm{EFC}} = \\int d^4x \\, \\sqrt{-g} \\, \\Big[ \\tfrac{1}{2} M_{\\mathrm{Pl}}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho) (\\nabla \\phi)^2 - V(\\phi) - \\lambda (\\Box \\phi - \\Gamma(\\rho)) \\Big]",
+      "description": "EFC action schematic including an entropy production source term \\Gamma(\\rho) that sources the S-field dynamics."
+    },
+    "accretion_luminosity": {
+      "latex": "L_{\\mathrm{acc}} = \\eta \\, \\dot{M} \\, c^2",
+      "description": "Luminosity from SMBH accretion with radiative efficiency \\eta \\approx 0.1; sets the power available for entropy production."
+    },
+    "entropy_production_rate": {
+      "latex": "\\dot{S}_{\\mathrm{acc}} \\simeq \\frac{L_{\\mathrm{acc}}}{T_{\\mathrm{acc}}}",
+      "description": "Approximate entropy production rate associated with accretion flows of effective temperature T_acc."
+    },
+    "smax_scaling": {
+      "latex": "S_{\\max} \\sim \\frac{4 \\pi G M_{\\mathrm{typical}}^{2}}{\\hbar c}",
+      "description": "Proposed scaling that ties the EFC S-field normalization S_max to the characteristic SMBH mass scale dominating the entropy budget."
+    }
+  },
+  "key_results": {
+    "main_finding": "SMBH-dominated cosmic entropy is consistent with EFC by identifying black holes at S = S_max and linking the S(z) sigmoid transition near z ~ 1 to the decline in AGN accretion-driven entropy production.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "S-field normalization S_max via BH entropy mapping",
+      "mu(S) saturation at S = S_max near SMBH horizons",
+      "transition redshift z_t \\approx 1 in S(z)",
+      "AGN-driven entropy production as source term \\Gamma(\\rho)"
+    ],
+    "datasets_used": [
+      "Cosmic entropy inventories: Egan & Lineweaver; Frampton & Kephart; Chiang & Vieira",
+      "AGN bolometric luminosity density: Hopkins et al. (2007)",
+      "DESI DR2 BAO (referenced for S(z) calibration in EFC)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "SMBH number/mass density correlates with local S, yielding weaker local gravitational enhancement (\\mu closer to 0) in regions rich in SMBHs/AGN.",
+      "falsifiable_by": "No detectable correlation between RAR residuals (or inferred \\mu) and local SMBH/AGN density when controlled for baryonic systematics."
+    },
+    {
+      "id": "P2",
+      "statement": "The sigmoid evolution S(z) tracks the cosmic AGN/quasar luminosity density, with an inflection near z \\approx 1\u20132.",
+      "falsifiable_by": "A robust, independent reconstruction of S(z) showing no correlation with AGN luminosity density and lacking an inflection near z ~ 1\u20132."
+    },
+    {
+      "id": "P3",
+      "statement": "Galaxies in voids (low-S environments) exhibit stronger gravitational enhancement (higher g_obs/g_bar) than analogous galaxies in denser regions.",
+      "falsifiable_by": "Environmental RAR analyses finding no excess enhancement in void galaxies relative to matched controls at high significance."
+    },
+    {
+      "id": "P4",
+      "statement": "The EFC S-field normalization S_max scales with the Bekenstein\u2013Hawking entropy for characteristic SMBH masses (M ~ 10^8\u201310^10 M_\\odot).",
+      "falsifiable_by": "An independently inferred S_max normalization inconsistent with BH entropy scaling by more than an order of magnitude across multiple probes."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A revised cosmic entropy census demonstrating that SMBHs do not dominate the entropy budget (e.g., CMB or other components exceed SMBH entropy by orders of magnitude), invalidating the S = S_max mapping.",
+    "KC2: Independent reconstructions of S(z) from cosmological observations fail to show a transition near z ~ 1\u20132 and exhibit no correlation with AGN luminosity density evolution.",
+    "KC3: High-precision environmental tests of galaxy dynamics show either the opposite trend (stronger enhancement where SMBHs/AGN are denser) or no correlation between \\mu (or RAR residuals) and SMBH/AGN environment at >5\\sigma.",
+    "KC4: Multiple, independent determinations of the S-field normalization contradict the proposed S_max \\propto M_{\\mathrm{typical}}^{2} (BH entropy) scaling by >1 dex, with consistent direction across datasets.",
+    "KC5: Empirical evidence that black holes do not saturate the Bekenstein\u2013Hawking bound (e.g., validated violations of BH thermodynamics) breaking the core S = S_max identification."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-core-sfield",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "builds_on"
+    },
+    {
+      "id": "efc-gravity-coupling",
+      "doi": "10.6084/m9.figshare.31223668",
+      "role": "builds_on"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Entropy_Budget_Working_Note.pdf",
+    "source": "src/entropy_budget.py",
+    "data": "data/entropy_budget_data.json",
+    "demo": "examples/demo_entropy_budget.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942734",
+  "status": "working_note",
   "framework": "Energy-Flow Cosmology (EFC)",
   "license": "CC-BY-4.0",
   "abstract": "Shows the observed cosmic entropy budget (SMBH-dominated) is structurally consistent with EFC's S-field: SMBHs at S=S_max (grid collapse), CMB at S_max (thermal limit), and AGN activity decline driving the S(z) sigmoid transition at z~1.",
-  "keywords": [
-    "entropy budget",
-    "Bekenstein-Hawking",
-    "supermassive black holes",
-    "S-field",
-    "thermostat conjecture",
-    "AGN",
-    "grid collapse",
-    "EFC"
-  ],
   "key_equations": {
-    "bekenstein_hawking": "S_BH = 4πGM²k_B/(ℏc)",
+    "bekenstein_hawking": "S_BH = 4\u03c0GM\u00b2k_B/(\u210fc)",
     "s_field_mapping": "S_EFC/S_max = S_BH/S_BH,max(M)",
-    "accretion_luminosity": "L_acc = η Ṁ c²",
-    "entropy_production": "Ṡ_acc ≈ L_acc/T_acc"
+    "accretion_luminosity": "L_acc = \u03b7 \u1e40 c\u00b2",
+    "entropy_production": "\u1e60_acc \u2248 L_acc/T_acc"
   },
   "predictions": [
     {
       "id": "P1",
-      "description": "SMBH density correlates with local μ"
+      "description": "SMBH density correlates with local \u03bc"
     },
     {
       "id": "P2",
@@ -39,7 +138,7 @@
     },
     {
       "id": "P3",
-      "description": "Void galaxies show enhanced μ"
+      "description": "Void galaxies show enhanced \u03bc"
     },
     {
       "id": "P4",
@@ -49,7 +148,7 @@
   "open_gaps": [
     {
       "id": "G1",
-      "description": "Quantitative S(z)–AGN derivation"
+      "description": "Quantitative S(z)\u2013AGN derivation"
     },
     {
       "id": "G2",
@@ -73,12 +172,5 @@
         "doi": "10.6084/m9.figshare.31223668"
       }
     ]
-  },
-  "files": {
-    "pdf": "EFC_Entropy_Budget_Working_Note.pdf",
-    "source": "src/entropy_budget.py",
-    "data": "data/entropy_budget_data.json",
-    "demo": "examples/demo_entropy_budget.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942734"
+  }
 }

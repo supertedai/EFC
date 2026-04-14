@@ -1,21 +1,91 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
-  "title": "EFC — Observational Evidence for Entropy in Cosmic Evolution",
+  "title": "EFC \u2014 Observational Evidence for Entropy in Cosmic Evolution",
+  "description": "This paper surveys observational indicators that entropy gradients play a central role in cosmic evolution. It synthesizes evidence from the CMB, galaxy clusters, the cosmic web, and black hole environments, and argues that entropy gradients modulate structure formation and local space-time expansion/compression.",
+  "version": "1.0",
+  "date": "2024-12-26",
+  "doi": "10.6084/m9.figshare.28098299",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy gradients",
+    "CMB anisotropies",
+    "CMB polarization",
+    "galaxy clusters",
+    "intracluster medium",
+    "cosmic web",
+    "baryon acoustic oscillations",
+    "void dynamics",
+    "space-time expansion",
+    "black holes",
+    "relativistic jets"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "cmb_temperature_fluctuation": {
+      "latex": "\\delta T/T \\sim 10^{-5}",
+      "description": "Characteristic amplitude of primordial CMB temperature anisotropies, interpreted here as encoding initial entropy variations around recombination."
+    }
+  },
+  "key_results": {
+    "main_finding": "Multi-band observations of the CMB, galaxy clusters, and large-scale structure are consistent with entropy gradients shaping structure growth and modulating local space-time expansion and compression.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "CMB temperature anisotropy amplitude (\u03b4T/T)",
+      "CMB polarization patterns",
+      "intracluster entropy radial gradients",
+      "entropy\u2013void expansion correlation",
+      "BAO-linked clustering scales"
+    ],
+    "datasets_used": [
+      "CMB temperature and polarization maps",
+      "X-ray observations of intracluster gas",
+      "redshift surveys of galaxies",
+      "baryon acoustic oscillation measurements",
+      "observations of accretion disks and relativistic jets"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "High-entropy cosmic voids exhibit measurably faster local expansion than the cosmic mean, with expansion rate correlating with entropy proxies.",
+      "falsifiable_by": "Precision measurements of void expansion from redshift-space distortions and peculiar velocity catalogs, cross-correlated with entropy proxy maps (e.g., density/temperature in low-density environments)."
+    },
+    {
+      "id": "P2",
+      "statement": "Galaxy clusters show monotonically increasing entropy profiles from core to outskirts due to merger-driven shocks and dissipation.",
+      "falsifiable_by": "Stacked X-ray/SZ-derived entropy profiles for large, mass-selected cluster samples; a robust prevalence of flat or inverted profiles after systematics control would falsify this."
+    },
+    {
+      "id": "P3",
+      "statement": "CMB polarization contains signatures attributable to entropy gradients influencing photon scattering beyond temperature anisotropies alone.",
+      "falsifiable_by": "High-SNR E/B-mode polarization data (e.g., from Simons Observatory/CMB-S4) showing no statistically significant correlation between polarization patterns and independent tracers of entropy gradients in large-scale structure."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-precision CMB temperature\u2013polarization analyses demonstrate that observed anisotropies are fully explained by purely adiabatic perturbations with no detectable entropy (isocurvature or gradient-driven) contributions beyond noise/systematics.",
+    "KC2: Void dynamics studies find no measurable acceleration of local expansion relative to the cosmic mean and no correlation between void kinematics and any reasonable entropy proxies.",
+    "KC3: After accounting for feedback and selection effects, the majority of well-observed galaxy clusters exhibit flat or inverted entropy profiles (higher core entropy than outskirts), contradicting merger/shock-driven entropy gradients.",
+    "KC4: Large-scale redshift surveys show that BAO scales and coherent matter flows are independent of entropy variations, with no statistically significant link between inferred entropy gradients and clustering/flow patterns.",
+    "KC5: Observations of accretion disks and relativistic jets near black holes reveal no entropy-related dissipation or boundary effects consistent with the proposed entropy-driven space-time compression/collapse."
+  ],
+  "tier": "T3",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.pdf",
+    "readme": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098299",
   "path": "docs/papers/efc/EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
   "pdf": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.pdf",
   "md": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.md",
-  "keywords": [
-    "EFC",
-    "Entropy",
-    "Observational Evidence",
-    "Cosmic Evolution",
-    "Structure Formation",
-    "CMB",
-    "Galaxy Dynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098299",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098299"
+  "type": "paper"
 }

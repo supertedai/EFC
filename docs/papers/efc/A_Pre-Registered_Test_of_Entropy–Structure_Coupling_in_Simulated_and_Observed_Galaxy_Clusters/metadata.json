@@ -1,8 +1,8 @@
 {
-  "title": "A Pre-Registered Test of Entropy-Structure Coupling in Simulated and Observed Galaxy Clusters",
-  "short_id": "entropy-structure-coupling",
-  "version": "1.0",
-  "date": "2026-02",
+  "title": "A Pre-Registered Test of Entropy\u2013Structure Coupling in Simulated and Observed Galaxy Clusters",
+  "short_id": "a-pre-registered-test-of-entropy\u2013structure-coupling-in-simulated-and-observed-galaxy-clusters",
+  "version": "pre-print v1",
+  "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,45 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31286368",
-  "abstract": "Tests whether the observed positive correlation between entropy profile steepness and cool-core state in ACCEPT X-ray clusters is reproduced in TNG-Cluster simulations. Finds a strong negative correlation (sign flip), robust against mass confounding.",
+  "abstract": "Pre-registered analysis comparing the coupling between entropy-profile steepness and cool-core state in TNG-Cluster simulations versus the ACCEPT X-ray sample. Finds a strong negative correlation between density-slope-based entropy proxy and central entropy in TNG-Cluster, opposite in sign to the positive correlation reported in ACCEPT, and registers a decisive full-profile fit to resolve remaining systematics.",
   "keywords": [
     "galaxy clusters",
     "intracluster medium",
     "cool cores",
     "entropy profiles",
+    "entropy\u2013structure coupling",
     "cosmological simulations",
     "TNG-Cluster",
-    "pre-registered analysis"
+    "ACCEPT",
+    "Spearman correlation",
+    "pre-registered analysis",
+    "AGN feedback",
+    "central entropy K0"
   ],
-  "efc_context": {
-    "track": "observational-test",
-    "regime_relevance": "cluster-scale ICM thermodynamics",
-    "epistemic_layer": "A"
-  },
-  "key_results": [
-    {
-      "description": "Sign flip in entropy-structure coupling between TNG-Cluster simulation and ACCEPT observations",
-      "tng_correlation": -0.872,
-      "accept_correlation": 0.36,
-      "p_value": "8e-111"
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation and overview",
-    "index.json": "Structured paper metadata",
-    "schema.json": "JSON Schema for package validation",
-    "metadata.json": "Machine-readable metadata",
-    "entropy_structure_coupling.jsonld": "Linked data descriptor",
-    "citations.bib": "BibTeX citation",
-    "CITATION.cff": "Citation file format",
-    "LICENSE": "CC-BY-4.0 license",
-    "BESR3_paper.pdf": "Paper PDF",
-    "BESR3_methods_section_draft.md": "Methods section draft",
-    "BESR3_results_prewritten.md": "Pre-written results",
-    "besr3_path_a_alpha_fit.py": "Path A alpha fitting script",
-    "src/entropy_structure_coupling.py": "Core analysis source code",
-    "data/tng_cluster_results.json": "TNG-Cluster analysis results",
-    "examples/": "Usage examples"
+  "files": {
+    "pdf": "A_Pre-Registered_Test_of_Entropy\u2013Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31286368",

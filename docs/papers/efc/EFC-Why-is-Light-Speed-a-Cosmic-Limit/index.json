@@ -1,18 +1,67 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Why-is-Light-Speed-a-Cosmic-Limit",
-  "title": "EFC – Why Is Light Speed a Cosmic Limit?",
+  "title": "EFC \u2013 Why Is Light Speed a Cosmic Limit?",
+  "description": "This core EFC principle argues that the speed of light is the maximum permissible rate of energy flow in space-time, thereby enforcing causality and structuring cosmic dynamics. It motivates this limit via relativity, mass\u2013energy equivalence, and observed phenomena such as time dilation, gravitational lensing, and cosmic horizons, and outlines open questions about the interplay of c with universal expansion and dark energy.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098305",
+  "keywords": [
+    "EFC",
+    "speed of light",
+    "light-speed limit",
+    "relativity",
+    "causality",
+    "energy flow",
+    "mass\u2013energy equivalence",
+    "time dilation",
+    "gravitational lensing",
+    "cosmic expansion",
+    "cosmic horizons",
+    "Delta-V"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "mass_energy_equivalence": {
+      "latex": "E = mc^2",
+      "description": "Links mass m and energy E with the invariant speed c as the conversion factor, highlighting c\u2019s role in energy\u2013mass interchange."
+    },
+    "subluminal_constraint": {
+      "latex": "v < c",
+      "description": "Expresses the hypothesis that energy, matter, and information cannot exceed the invariant speed c in vacuum."
+    }
+  },
+  "key_results": {
+    "main_finding": "Within EFC, c is posited as the universal maximum rate of energy flow in space-time, enforcing causality and explaining relativistic effects near light speed.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: A reproducible, loophole-free demonstration of superluminal information transfer in vacuum (faster-than-light signaling) under standard conditions.",
+    "KC2: Laboratory acceleration of any particle with nonzero rest mass to v \u2265 c with finite input energy and without exotic media or modified space-time.",
+    "KC3: Robust, frame-dependent variation of c in vacuum (i.e., measured different invariant speeds between inertial frames) after controlling for media and gravitational potentials.",
+    "KC4: Astrophysical time-of-flight measurements in vacuum showing unambiguous superluminal signal propagation (e.g., photons or neutrinos arriving earlier than causal limits allow) after accounting for dispersion, source physics, and gravitational delays.",
+    "KC5: Verified Lorentz-violating effects that enable causal paradoxes (e.g., closed causal loops permitting messaging to the emitter\u2019s past) via standard interactions."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Why-is-Light-Speed-a-Cosmic-Limit.pdf",
+    "readme": "EFC-Why-is-Light-Speed-a-Cosmic-Limit.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098305",
   "path": "docs/papers/efc/EFC-Why-is-Light-Speed-a-Cosmic-Limit",
   "pdf": "EFC-Why-is-Light-Speed-a-Cosmic-Limit.pdf",
   "md": "EFC-Why-is-Light-Speed-a-Cosmic-Limit.md",
-  "keywords": [
-    "EFC",
-    "Light Speed",
-    "Entropy",
-    "Limits"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098305",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098305"
+  "type": "paper"
 }

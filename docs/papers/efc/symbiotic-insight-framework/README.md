@@ -1,40 +1,18 @@
-# textbf{Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning
+# Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning
 
-This directory contains the paper **“textbf{Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning”**, part of the EFC series.
+## AI-Friendly Package
 
-The Symbiotic Insight Framework (SIF) describes how high-velocity, cross-domain scientific insight can be stabilised thr...
-
----
-
-## Context in the EFC framework
-- Framework: Energy-Flow Cosmology (EFC)
-- Domain: META-systems
-- Role: Links entropic structure, information flow and observable cosmological behaviour.
-- DOI: pending
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-01
+- **License:** CC-BY-4.0
 
 ---
 
-## Abstract
-The Symbiotic Insight Framework (SIF) describes how high-velocity, cross-domain scientific insight can be stabilised through continuous interaction between a human thinker and an adaptive computational system. The framework treats insight production as a coupled process: the human generates parallel conceptual fields at high speed, while the computational system stabilises, structures and preserves these fields into scientific output.
+## Overview
 
----
+This paper introduces the Symbiotic Insight Framework (SIF), a structural methodology in which a human thinker and an adaptive computational system jointly produce stable scientific structure from high-velocity, parallel reasoning. SIF formalizes a closed-loop process of immediate externalization, structural consolidation, semantic indexing (e.g., JSON-LD), and version-locked preservation to maintain coherence across domains. The key contribution is a reproducible architecture that scales conceptual velocity into durable, cross-domain scientific artefacts.
 
-## Keywords
+## Key Result
 
-
----
-
-## Files
-- symbiotic-insight-framework.tex
-- symbiotic-insight-framework.pdf
-- symbiotic-insight-framework.jsonld
-- metadata.json
-- index.json
-- citations.bib
-
----
-
-## Citation
-Magnusson, M. (2025). *textbf{Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning*.  
-DOI: pending  
-GitHub: docs/papers/efc/symbiotic-insight-framework/symbiotic-insight-framework.pdf
+SIF formalizes a human–system symbiosis that stabilizes rapid, parallel cross-domain insight into reproducible scientific artefacts via structural consolidation, semantic integration, and version-locked pipelines.

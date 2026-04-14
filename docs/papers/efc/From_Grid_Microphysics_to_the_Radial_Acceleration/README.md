@@ -1,53 +1,27 @@
 # From Grid Microphysics to the Radial Acceleration Relation: A Minimal Gradient-Coupled Excitation Model
 
-**Author:** Morten Magnusson  
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)  
-**DOI:** [10.6084/m9.figshare.31878760](https://doi.org/10.6084/m9.figshare.31878760)  
-**Date:** March 2026  
-**Framework:** Energy-Flow Cosmology (EFC)
+## AI-Friendly Package
 
-## Summary
+- **DOI:** [10.6084/m9.figshare.31878760](https://doi.org/10.6084/m9.figshare.31878760)
+- **Version:** v1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-03-28
+- **License:** CC-BY-4.0
 
-This paper closes the microphysical gap identified in the Covariant EFT construction: a classical local Lagrangian cannot produce the Bose–Einstein form of the RAR. The solution is a minimal microscopic model where discrete degrees of freedom on a substrate (grid) have gradient-coupled excitation energy E ∝ √|∇Φ|. This single physical input, combined with Bose–Einstein statistics, reproduces the observed RAR μ(g) = 1/(exp(√(g/a₀)) − 1) with no free parameters beyond the measured scale a₀.
+---
 
-## Key Results
+## Overview
 
-1. **Bridge established**: Grid DOF → gradient coupling → E ∝ √g → BE statistics → μ(g) → G_eff → RAR
-2. **Three assumptions only**: Bosonic statistics, gradient-coupled excitation energy, single scale a₀
-3. **Lattice derivation**: k_eff = g/l_g from gravitational gradient restoring force → ω ∝ √g → E ∝ √g
-4. **KT3 resolution pathway**: Statistical occupation (not classical operator) should restore β = 0.5
-5. **Falsification conditions**: BE form exact (not FD/Boltzmann), coupling to g (not ρ or Φ), E ∝ √g (α = 1/2 exactly)
+Proposes a minimal microphysical model in which discrete bosonic modes on a substrate (grid) have excitation energies that couple to the local gravitational strain, yielding E ∝ sqrt(|∇Φ|). With Bose–Einstein occupancy and a single emergent scale a0, the model reproduces the gravitational enhancement function μ(g) = 1/(exp(sqrt(g/a0)) − 1) required by the RAR within the EFC framework. This provides a concrete microphysical bridge between the covariant EFT macro-results and observed galactic phenomenology without new free parameters beyond a0.
 
-## Three Assumptions
+## Key Result
 
-| # | Assumption | Content |
-|---|-----------|---------|
-| 1 | Bosonic statistics | Grid modes obey BE: ⟨n⟩ = 1/(exp(E/k_B T_grid) − 1) |
-| 2 | Gradient-coupled energy | E(x) = ℏω₀ √(|∇Φ(x)|/g*) |
-| 3 | Single scale | a₀ ≡ g* (k_B T_grid / ℏω₀)² = 1.2 × 10⁻¹⁰ m/s² |
+A gradient-coupled bosonic lattice model yields μ(g) = 1/(exp(√(g/a0)) − 1) with a single scale a0, providing a concrete microphysical derivation of the RAR within EFC.
 
-## What This Model Does NOT Do
+## Sealed Predictions
 
-- No dynamics (kinematic only)
-- No grid topology assumed
-- No quantum field theory (BE used as input, not derived from path integral)
-- No cosmological derivation (static, weak-field limit only)
-- No derivation of a₀ (measured, not predicted)
-
-## File Structure
-
-```
-├── README.md           # This file
-├── index.json          # Machine-readable index
-├── schema.json         # Validation schema
-├── metadata.json       # Structured metadata
-├── citations.bib       # BibTeX references
-├── grid_microphysics.jsonld  # JSON-LD linked data
-├── src/
-│   ├── __init__.py
-│   └── grid_microphysics.py  # Python implementation
-├── data/
-│   └── model.json      # Model parameters and results
-└── examples/
-    └── demo_bridge.py  # Executable demonstration
-```
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Across disk galaxies, the gravitational enhancement obeys μ(g) = 1/(exp(√(g/a0)) − 1) with a single, universal a0 independent of galaxy properties and redshift. | High-precision RAR meta-analyses showing statistically significant, systematic deviations from the BE–√g form or requiring environment-dependent a0. |
+| P2 | In the deep-acceleration regime (g ≪ a0), μ(g) ≈ √(a0/g), implying the baryonic Tully–Fisher relation with slope 4 and no additional hidden parameters. | Robust observations finding a systematic BTFR slope different from 4 or requiring extra galaxy-dependent parameters beyond baryonic mass and geometry. |
+| P3 | At fixed local acceleration g, the enhancement is independent of local density ρ and potential depth |Φ| (pure gradient dependence). | Detection of RAR residuals that correlate with |Φ| or ρ at fixed g beyond observational systematics. |

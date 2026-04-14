@@ -1,13 +1,92 @@
 {
-  "package": "density-of-states-grid-modes",
-  "version": "1.0.0",
-  "title": "Density of States of Gravitationally Active Grid Modes: Derivation of D_eff(ρ) and Completion of the Γ(ρ) Bridge",
+  "$schema": "./schema.json",
+  "id": "density-of-states-of-gravitationally",
+  "title": "Density of States of Gravitationally Active Grid Modes: Derivation of Deff (\u03c1) and Completion of the \u0393(\u03c1) Bridge",
+  "description": "Derives the effective density of states Deff(\u03c1) for gravitationally active grid modes from microphysical boundary-mode activation on a finite lattice. The derivation yields Deff(\u03c1) \u221d \u221a(\u03c1/\u03c1crit) with \u03c1crit = a0/(GN lg), leading to a microphysically fixed entropy-production bridge \u0393(\u03c1) = \u03930 y/(1+y) with y = \u221a(\u03c1/\u03c1crit), thereby upgrading the \u0393(\u03c1) status to Scenario B+ and eliminating free functional degrees of freedom.",
+  "version": "1.0",
+  "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.31942800",
+  "keywords": [
+    "density of states",
+    "boundary-mode mechanism",
+    "grid modes",
+    "entropy production",
+    "\u0393(\u03c1) bridge",
+    "MOND scale a0",
+    "activation threshold",
+    "microphysical saturation",
+    "EFC Scenario B+",
+    "effective microphysics",
+    "gravitational potential wells",
+    "grid spacing lg"
+  ],
   "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "framework": "EFC v3.7",
-  "license": "CC-BY-4.0",
-  "created": "2026-04-06",
+  "core_equations": {
+    "activation_condition": {
+      "latex": "G_N \\, \\rho \\, l_g^2 > \\sigma_0 \\, l_g",
+      "description": "Grid node activation criterion: local gravitational energy across a node exceeds the node tension threshold."
+    },
+    "sigma_equals_a0": {
+      "latex": "\\sigma_0 = a_0",
+      "description": "Identification of node tension with the MOND scale from the gradient-coupled grid action."
+    },
+    "rho_crit": {
+      "latex": "\\rho_{\\rm crit} = \\frac{a_0}{G_N \\, l_g}",
+      "description": "Critical density emerging from microphysics; sets the activation scale for shortest-wavelength grid modes."
+    },
+    "boundary_mode_counting": {
+      "latex": "j_{\\max} = 2 r \\, \\sqrt{\\frac{G_N \\, \\rho}{a_0 \\, l_g}}",
+      "description": "Maximum active standing-wave mode in a potential well of size r; follows from requiring mode energy to exceed the activation threshold."
+    },
+    "deff_scaling": {
+      "latex": "D_{\\rm eff}(\\rho) \\propto N_{\\rm active}(\\rho) \\propto \\sqrt{\\rho/\\rho_{\\rm crit}}",
+      "description": "Effective density of active grid modes grows as the square root of density due to boundary-mode activation."
+    },
+    "gamma_bridge": {
+      "latex": "\\Gamma(\\rho) = \\Gamma_0 \\, \\frac{y}{1+y}, \\quad y \\equiv \\sqrt{\\rho/\\rho_{\\rm crit}}",
+      "description": "Microphysically determined entropy-production bridge with correct low-\u03c1 rise and high-\u03c1 saturation; no free functional form."
+    }
+  },
+  "key_results": {
+    "main_finding": "Boundary-mode activation on a finite gravitational well yields Deff(\u03c1) \u221d \u221a(\u03c1/\u03c1crit) with \u03c1crit = a0/(GN lg), implying \u0393(\u03c1) = \u03930 \u221a(\u03c1/\u03c1crit)/(1+\u221a(\u03c1/\u03c1crit)) and upgrading the bridge to Scenario B+.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a0",
+      "G_N",
+      "l_g",
+      "\u03c1crit",
+      "\u03930"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The entropy-production function follows \u0393(\u03c1) = \u03930 y/(1+y) with y = \u221a(\u03c1/\u03c1crit) over cosmologically relevant densities, with a fixed \u03c1crit = a0/(G_N l_g) and no additional shape parameters.",
+      "falsifiable_by": "Reconstruction of \u0393(\u03c1) from cosmological background and growth data (e.g., EFC fits to H(z), structure growth, lensing) showing a shape inconsistent with the \u221a\u03c1 saturation (deviations >20% across \u03c1 range)."
+    },
+    {
+      "id": "P2",
+      "statement": "The low-density scaling of the effective density of states is Deff(\u03c1) \u221d \u221a\u03c1.",
+      "falsifiable_by": "First-principles simulations of grid-lattice microdynamics or indirect reconstruction of active-mode counts versus \u03c1 demonstrating a different low-\u03c1 power-law index."
+    },
+    {
+      "id": "P3",
+      "statement": "At \u03c1 = \u03c1crit the shortest-wavelength mode (\u03bb = l_g) transitions to activation, providing the saturation pivot for \u0393(\u03c1).",
+      "falsifiable_by": "Any consistent EFC cosmology inference requiring a saturation pivot density that is not constant or not equal to a0/(G_N l_g), or exhibits significant redshift evolution."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A robust observational reconstruction of \u0393(\u03c1) (from background expansion and growth) that rules out the \u221a\u03c1 saturation form \u0393(\u03c1) = \u03930 y/(1+y), y = \u221a(\u03c1/\u03c1crit), by >20% across the relevant density range.",
+    "KC2: Evidence that \u03c1crit is not equal to a0/(G_N l_g) or that \u03c1crit varies with redshift or environment beyond a few percent, contradicting the microphysical derivation.",
+    "KC3: First-principles simulations of the grid microphysics demonstrating Deff(\u03c1) scales with a power of \u03c1 different from 1/2 at low densities.",
+    "KC4: Empirical requirements for additional free shape parameters in \u0393(\u03c1) (beyond the overall amplitude \u03930) to fit data, contradicting the 'no free function' claim of the microphysical bridge."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
   "files": {
     "readme": "README.md",
     "metadata": "metadata.json",
@@ -19,6 +98,12 @@
     "data": "data/density_of_states_data.json",
     "demo": "examples/demo_density_of_states.py"
   },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942800",
+  "package": "density-of-states-grid-modes",
+  "orcid": "0009-0002-4860-5095",
+  "framework": "EFC v3.7",
+  "license": "CC-BY-4.0",
+  "created": "2026-04-06",
   "entry_point": "src/density_of_states.py",
   "classes": [
     "GridActivation",
@@ -28,15 +113,5 @@
     "ScenarioComparison",
     "Predictions"
   ],
-  "key_result": "D_eff(ρ) ∝ √(ρ/ρ_crit) from boundary-mode mechanism; Γ(ρ) = Γ₀√(ρ/ρ_crit)/(1+√(ρ/ρ_crit)) — Scenario B+",
-  "keywords": [
-    "density of states",
-    "grid modes",
-    "entropy production",
-    "Bose-Einstein",
-    "activation dynamics",
-    "microphysics",
-    "EFC"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942800"
+  "key_result": "D_eff(\u03c1) \u221d \u221a(\u03c1/\u03c1_crit) from boundary-mode mechanism; \u0393(\u03c1) = \u0393\u2080\u221a(\u03c1/\u03c1_crit)/(1+\u221a(\u03c1/\u03c1_crit)) \u2014 Scenario B+"
 }

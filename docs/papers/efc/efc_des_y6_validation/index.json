@@ -1,15 +1,126 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-des-y6-validation",
-  "document_id": "EFC-VAL-2026-002",
   "title": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "doi": "10.6084/m9.figshare.31951992",
-  "doi_url": "https://doi.org/10.6084/m9.figshare.31951992",
+  "description": "This validation update compares the DES Year 6 (3\u00d72pt) weak-lensing S8 measurement to an a priori EFC prediction for the lensing-to-CMB S8 ratio. The observed ratio 0.944 \u00b1 0.018 agrees with the EFC-predicted 0.95 \u00b1 0.03 within ~0.2\u03c3, constituting a preregistered PASS for the P3 lensing consistency test while noting 1D-compression and non-uniqueness caveats.",
+  "version": "1.0",
   "date": "2026-04-07",
+  "doi": "10.6084/m9.figshare.31951992",
+  "keywords": [
+    "weak lensing",
+    "S8 tension",
+    "DES Y6",
+    "Energy-Flow Cosmology",
+    "gravitational screening",
+    "Sigma_EFC",
+    "gravitational slip",
+    "cosmic shear",
+    "CMB lensing",
+    "SPARC",
+    "pre-registered test",
+    "cosmological parameter inference"
+  ],
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "kappa_suppression": {
+      "latex": "\\kappa_{\\rm eff} = \\Sigma_{\\rm EFC} \\, \\kappa_{\\rm GR}",
+      "description": "EFC predicts an effective convergence suppressed relative to GR by a scale/redshift-dependent factor \\Sigma_{\\rm EFC}."
+    },
+    "s8_definition": {
+      "latex": "S_8 \\equiv \\sigma_8\\left(\\Omega_m/0.3\\right)^{0.5}",
+      "description": "Definition of S8 used to compare late-time weak lensing and early-time CMB inferences."
+    },
+    "s8_ratio_prediction": {
+      "latex": "\\frac{S_8^{\\rm lens}}{S_8^{\\rm CMB}} \\simeq 0.95 \\pm 0.03",
+      "description": "EFC Stage-III cosmic-shear prediction for the lensing-to-CMB S8 ratio based on \\eta=1 and screening exponent k = 0.415 from SPARC."
+    },
+    "observed_ratio": {
+      "latex": "\\frac{S_8^{\\rm DES\\,Y6}}{S_8^{\\rm CMB\\,2026}} = \\frac{0.789}{0.836} = 0.944 \\pm 0.018",
+      "description": "Observed ratio using DES Y6 (3\u00d72pt) and the 2026 combined CMB baseline (Planck+ACT DR6+SPT-3G), with uncorrelated error propagation."
+    }
+  },
+  "key_results": {
+    "main_finding": "DES Y6 vs CMB yields S8 ratio 0.944 \u00b1 0.018, consistent with the EFC prediction 0.95 \u00b1 0.03 and passing the preregistered P3 window [0.90, 1.00].",
+    "delta_chi2": null,
+    "significance_sigma": 0.2,
+    "parameters_tested": [
+      "gravitational_slip_eta = 1 (Ansatz A3)",
+      "screening_exponent_k = 0.415 \u00b1 0.05 (SPARC Phase 3)",
+      "cosmological_coupling_aG = 0.094 \u00b1 0.01",
+      "Sigma_EFC \u2248 0.95 at Stage-III shear scales"
+    ],
+    "datasets_used": [
+      "DES Year 6 3\u00d72pt: S8 = 0.789 \u00b1 0.012 (arXiv:2601.14559)",
+      "Combined CMB 2026: Planck + ACT DR6 + SPT-3G, S8 = 0.836 \u00b1 0.012 (Qu et al. 2026)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P3",
+      "statement": "For Stage-III/IV cosmic shear at z \u2248 0.3\u20130.9, the lensing-to-CMB S8 ratio lies in [0.90, 1.00] with central expectation 0.95 \u00b1 0.03 under \u03b7 = 1 and k \u2248 0.415.",
+      "falsifiable_by": "Independent cosmic-shear measurements (DES Y6, KiDS Legacy, HSC, Euclid DR1/DR2) reporting S8_lens/S8_CMB > 1.00 or < 0.90 by >3\u03c3, or full-shape C\u2113 analyses inconsistent with a ~5% suppression."
+    },
+    {
+      "id": "A3",
+      "statement": "No gravitational slip: \u03b7 \u2261 \u03a6/\u03a8 = 1 on 0.1 < k < 1 h Mpc\u207b\u00b9 at 0.3 \u2272 z \u2272 1.",
+      "falsifiable_by": "EG statistic or equivalent joint lensing+RSD analyses showing \u03b7 \u2260 1 at >3\u03c3 over the relevant scales/redshifts."
+    },
+    {
+      "id": "P2",
+      "statement": "Cross-scale C stability: a single screening exponent k (\u22480.415) inferred from galaxy rotation curves also governs the cosmological lensing suppression.",
+      "falsifiable_by": "Hierarchical SPARC analyses finding k inconsistent with 0.415 by >3\u03c3, or cosmological fits requiring a k inconsistent with SPARC at >3\u03c3."
+    },
+    {
+      "id": "P1",
+      "statement": "Closure relation g\u2020 = c H0 / e \u2248 2.5\u00d710\u207b\u00b9\u2070 m s\u207b\u00b2 holds across galaxy samples.",
+      "falsifiable_by": "Galaxy dynamics datasets (e.g., SPARC extensions) measuring a closure value deviating from c H0 / e by >5\u03c3 after systematics control."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Euclid DR1/DR2 or an equivalent Stage-IV lensing analysis measures S8_lens/S8_CMB \u2265 1.00 \u00b1 0.02 (or \u2264 0.90 \u00b1 0.02) such that the ratio departs from [0.90, 1.00] by >3\u03c3.",
+    "KC2: EG statistic (or equivalent) robustly detects gravitational slip \u03b7 \u2260 1 at >3\u03c3 over 0.1 < k < 1 h Mpc\u207b\u00b9 and 0.3 \u2272 z \u2272 1.",
+    "KC3: Full tomographic shear C\u2113 and galaxy\u2013galaxy lensing analyses constrain a suppression factor consistent with GR (\u03a3 = 1.00 \u00b1 0.01) across relevant multipoles, excluding the ~5% EFC suppression by >3\u03c3.",
+    "KC4: Hierarchical SPARC re-analyses or independent galaxy samples determine the screening exponent k outside [0.30, 0.55] at >3\u03c3, invalidating the k \u2248 0.415 required for the predicted cosmological suppression.",
+    "KC5: Multiple independent weak-lensing surveys (e.g., DES, KiDS, HSC, Euclid) converge on S8 consistent with the CMB baseline such that the combined ratio is 1.00 \u00b1 0.02, excluding a ~5% suppression by >3\u03c3."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-weak-lensing-phenomenology",
+      "doi": "10.6084/m9.figshare.31188193",
+      "role": "Lensing suppression prediction and preregistration of P3 window"
+    },
+    {
+      "id": "efc-sparc-phase3-validation",
+      "doi": "10.6084/m9.figshare.31224538",
+      "role": "SPARC-based determination of screening exponent k used in the prediction"
+    },
+    {
+      "id": "efc-des-y6-validation-module",
+      "doi": "10.6084/m9.figshare.31951992",
+      "role": "Code and data used in this validation note"
+    }
+  ],
+  "files": {
+    "pdf": "efc_des_y6_validation.pdf",
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "efc_des_y6_validation.jsonld",
+    "citations": "citations.bib",
+    "module": "src/des_y6_validation.py",
+    "data": "data/des_y6_data.json",
+    "demo": "examples/demo.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31951992",
+  "document_id": "EFC-VAL-2026-002",
+  "orcid": "0009-0002-4860-5095",
+  "doi_url": "https://doi.org/10.6084/m9.figshare.31951992",
   "license": "CC-BY-4.0",
   "type": "validation-update",
-  "track": "Spor 1 — Galactic/Cosmological",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
   "regimes": [
     "L1",
     "L0"
@@ -63,38 +174,38 @@
   "validation_table": [
     {
       "test": "P1",
-      "name": "Closure g† = cH0/e",
+      "name": "Closure g\u2020 = cH0/e",
       "predicted": "2.5e-10 m/s^2",
-      "observed": "2.51 ± 0.60",
+      "observed": "2.51 \u00b1 0.60",
       "status": "consistent"
     },
     {
       "test": "P2",
       "name": "Cross-scale C stability",
-      "predicted": "C ≈ 4.4",
+      "predicted": "C \u2248 4.4",
       "observed": null,
       "status": "untested"
     },
     {
       "test": "P3",
       "name": "Lensing S8 ratio",
-      "predicted": "0.95 ± 0.03",
-      "observed": "0.944 ± 0.018",
+      "predicted": "0.95 \u00b1 0.03",
+      "observed": "0.944 \u00b1 0.018",
       "status": "PASS"
     },
     {
       "test": "A3",
-      "name": "η = 1 assumption",
-      "predicted": "η = 1",
+      "name": "\u03b7 = 1 assumption",
+      "predicted": "\u03b7 = 1",
       "observed": null,
       "status": "not tested here"
     }
   ],
   "limitations": [
-    "1D test — single-number compression; needs full Cℓ comparison",
-    "Suppression signature not unique to EFC (massive ν, f(R), feedback)",
-    "DES vs KiDS divergence (KiDS Legacy < 1σ from CMB)",
-    "η = 1 not directly tested here",
+    "1D test \u2014 single-number compression; needs full C\u2113 comparison",
+    "Suppression signature not unique to EFC (massive \u03bd, f(R), feedback)",
+    "DES vs KiDS divergence (KiDS Legacy < 1\u03c3 from CMB)",
+    "\u03b7 = 1 not directly tested here",
     "k = 0.415 inherits SPARC systematics"
   ],
   "predecessors": [
@@ -110,20 +221,8 @@
     }
   ],
   "next_steps": [
-    "Euclid DR1 (October 2026) — independent S8 measurement",
-    "Hierarchical SPARC — P2 (C stability)",
-    "E_G statistic — direct η = 1 test"
-  ],
-  "files": {
-    "pdf": "efc_des_y6_validation.pdf",
-    "readme": "README.md",
-    "metadata": "metadata.json",
-    "schema": "schema.json",
-    "jsonld": "efc_des_y6_validation.jsonld",
-    "citations": "citations.bib",
-    "module": "src/des_y6_validation.py",
-    "data": "data/des_y6_data.json",
-    "demo": "examples/demo.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31951992"
+    "Euclid DR1 (October 2026) \u2014 independent S8 measurement",
+    "Hierarchical SPARC \u2014 P2 (C stability)",
+    "E_G statistic \u2014 direct \u03b7 = 1 test"
+  ]
 }

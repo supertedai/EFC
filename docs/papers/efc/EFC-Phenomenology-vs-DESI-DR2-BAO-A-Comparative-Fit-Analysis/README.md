@@ -1,52 +1,19 @@
-# EFC DESI Technical Note
+# EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis
 
-**DOI:** [10.6084/m9.figshare.31127380](https://doi.org/10.6084/m9.figshare.31127380)
+## AI-Friendly Package
 
-**EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis**
+- **DOI:** [10.6084/m9.figshare.31127380](https://doi.org/10.6084/m9.figshare.31127380)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-22
+- **License:** CC-BY-4.0
+
+---
 
 ## Overview
 
-This repository contains the technical note comparing an Energy-Flow Cosmology (EFC) inspired dark energy parameterization against DESI DR2 BAO measurements.
+This technical note fits a phenomenological dark-energy equation of state w(z), inspired by Energy-Flow Cosmology (EFC), to seven DESI DR2 BAO measurements using diagonal errors only. The EFC-inspired transition form achieves the lowest chi-squared among models tested (χ2=3.60) versus w0–wa CDM (4.49) and ΛCDM (23.71), providing a necessary but not sufficient consistency check. The work outlines next steps to derive w(z) from EFC field equations and perform multi-probe tests with full covariance.
 
-## Key Results
+## Key Result
 
-| Model | χ² | Δχ² vs ΛCDM | Assessment |
-|-------|-----|-------------|------------|
-| ΛCDM | 23.71 | — | Poor fit |
-| w₀wₐCDM (DESI) | 4.49 | −19.22 | Good fit |
-| EFC (best-fit) | 3.60 | −20.11 | Best fit* |
-
-*Within the models tested.
-
-## EFC Best-Fit Parameters
-
-- `w_late = −0.80` (dark energy equation of state today)
-- `w_early = −1.41` (at high z)
-- `z_trans = 1.07` (transition redshift)
-
-## EFC w(z) Form
-
-```
-w(z) = w_late + (w_early − w_late) · tanh[(z − z_trans)/Δz]
-```
-
-## Files
-
-- `EFC_DESI_Technical_Note.tex` — LaTeX source
-- `metadata.json` — Machine-readable metadata
-- `codemeta.json` — CodeMeta for software/data citation
-- `schema.jsonld` — JSON-LD structured data (Schema.org)
-- `CITATION.cff` — Citation File Format
-
-## Author
-
-**Morten Magnusson**  
-ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-
-## Data Sources
-
-- DESI DR2: [doi:10.5281/zenodo.14733025](https://doi.org/10.5281/zenodo.14733025)
-
-## License
-
-CC-BY-4.0
+Among models tested on DESI DR2 BAO (diagonal errors), the EFC-inspired w(z) achieves the lowest χ2 (3.60), outperforming w0–wa CDM (4.49) and ΛCDM (23.71).

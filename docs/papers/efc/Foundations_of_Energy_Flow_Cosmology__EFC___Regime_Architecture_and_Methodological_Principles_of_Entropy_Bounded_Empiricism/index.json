@@ -1,38 +1,67 @@
 {
+  "$schema": "./schema.json",
   "id": "foundations-efc-regime-architecture",
   "title": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
-  "short_title": "EFC Foundations",
+  "description": "This paper canonically defines Energy-Flow Cosmology (EFC) as a thermodynamic meta-framework where dynamics and structure emerge from regulated energy flow and entropy gradients. It formalizes the L0\u2013L3 regime architecture, S0\u2013S1 observational regimes, and Entropy-Bounded Empiricism (EBE) as methodological constraints on inference and model validity, providing a stable reference for subsequent EFC-based theoretical and empirical work.",
   "version": "1.0",
-  "date": "2026",
+  "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31135597",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "regime architecture",
+    "L0-L3 regimes",
+    "S0-S1 observational regimes",
+    "Entropy-Bounded Empiricism",
+    "entropy gradients",
+    "energy flow",
+    "emergent gravity",
+    "regime gating",
+    "thermodynamic cosmology",
+    "methodological framework"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "Effective gravitational coupling": {
+      "latex": "\\mu(a) = \\frac{G_{\\mathrm{eff}}}{G} = 1 + \\beta\\,S(a)",
+      "description": "Scale/entropy-dependent modification of the effective gravitational coupling, parameterized by an entropy measure S(a) and coupling coefficient \\beta."
+    },
+    "Regime Response Surface": {
+      "latex": "\\mu(k, S) = 1 + R(k, S)",
+      "description": "Two-dimensional response surface encoding how effective coupling varies across wavenumber k and entropy state S, organizing transitions between L-regimes."
+    }
+  },
+  "key_results": {
+    "main_finding": "Establishes the canonical EFC framework, locking the L0\u2013L3 regime architecture and Entropy-Bounded Empiricism as methodological gates for valid inference.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Demonstration that a single, scale- and entropy-independent dynamical law (e.g., GR+\u039bCDM with fixed parameters and \\mu\\equiv1) jointly and pre-registrationally fits CMB, BAO, SNe Ia, weak lensing, galaxy clustering/RSD, galaxy rotation curves, strong lensing, and cluster dynamics with residuals consistent with noise (no cross-scale systematics >2\u03c3), eliminating the need for regime gating.",
+    "KC2: Cross-environment tests show no correlation between entropy production/entropy gradients and dynamical response: e.g., low-entropy dwarfs vs high-entropy clusters exhibit statistically identical residual dynamics after mass\u2013light accounting, with differences consistent with zero at >5\u03c3.",
+    "KC3: Three or more independent, pre-registered EFC regime-threshold predictions (e.g., L1\u2192L2 onset tied to specified entropy/flux markers) are falsified at >3\u03c3 each with validated systematics, indicating the L-regime architecture does not map onto observed transitions.",
+    "KC4: High-precision constraints establish \u03b2=0\u00b11e\u22123 (95% CL) in \\mu(a)=1+\\beta S(a) across all probed scales and environments, and R(k,S)=0 within 1e\u22123, demonstrating no entropy-dependent modification of effective coupling anywhere EFC claims applicability.",
+    "KC5: Robust, reproducible recovery of full, lossless state information from S1 (indirect, model-dependent) regimes in contradiction to entropy/information-capacity limits, thereby invalidating the core Entropy-Bounded Empiricism principle."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "Foundations.pdf",
+    "tex": "foundations.tex"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31135597",
+  "short_title": "EFC Foundations",
   "type": "foundational_framework",
   "status": "published",
-  "abstract_short": "Foundational framework for Energy-Flow Cosmology establishing regime architecture (L0-L3), methodological principles of Entropy-Bounded Empiricism, and core equation μ(a) = 1 + βS(a).",
-  "keywords": [
-    "EFC",
-    "Energy-Flow Cosmology",
-    "regime architecture",
-    "L0-L3",
-    "entropy-bounded empiricism",
-    "methodological framework"
-  ],
+  "abstract_short": "Foundational framework for Energy-Flow Cosmology establishing regime architecture (L0-L3), methodological principles of Entropy-Bounded Empiricism, and core equation \u03bc(a) = 1 + \u03b2S(a).",
   "core_principle": "Theoretical models must specify their validity regimes and are not permitted to extrapolate beyond empirically constrained boundaries.",
-  "core_equations": [
-    {
-      "name": "Effective gravitational coupling",
-      "formula": "μ(a) = G_eff/G = 1 + βS(a)",
-      "description": "Scale-dependent modification of gravitational coupling"
-    },
-    {
-      "name": "Regime Response Surface",
-      "formula": "μ(k,S) = 1 + R(k,S)",
-      "description": "Two-dimensional surface encoding regime transitions"
-    }
-  ],
   "regime_architecture": {
     "L0": {
       "state": "Latent",
@@ -71,10 +100,5 @@
       "doi": "10.6084/m9.figshare.31127380",
       "title": "EFC vs DESI DR2 BAO"
     }
-  ],
-  "files": {
-    "pdf": "Foundations.pdf",
-    "tex": "foundations.tex"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31135597"
+  ]
 }

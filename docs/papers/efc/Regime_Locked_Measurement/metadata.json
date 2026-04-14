@@ -1,82 +1,34 @@
 {
-  "package_format": "efc-ai-friendly-v1",
-  "paper_id": "EFC-Regime-Locked-Measurement",
-  "title": "Regime-Locked Measurement as a General Structural Constraint",
+  "title": "Regime-Locked Measurement as a General Structural Constraint: Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
+  "short_id": "regime-locked-measurement",
+  "version": "1.0",
+  "date": "2026-03-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "date": "2026-03",
   "license": "CC-BY-4.0",
-  "topics": [
+  "doi": "10.6084/m9.figshare.31833076",
+  "abstract": "Formalizes regime-locked measurement as a general structural constraint and identifies a shared structural pattern across six domains. Introduces a quantitative regime-appropriateness score \u03b1(\u03d5, R) \u2208 [0,1], a blind-set taxonomy (ontological, methodological, instrumental), and a five-step meta-regime protocol with residual-based blind-set inference. A worked example in AI alignment highlights a previously invisible class of change (\u201cconvergence drift\u201d), and the paper states explicit falsification criteria and self-applies its constraints.",
+  "keywords": [
     "regime-locked measurement",
-    "blind set taxonomy",
-    "meta-regime protocol",
-    "alpha score",
-    "CDVC",
+    "validity domain",
+    "blind set",
+    "alpha-score",
+    "meta-regime",
+    "cross-disciplinary vector convergence (CDVC)",
+    "residual analysis",
+    "measurement theory",
+    "instrument sensitivity",
     "AI alignment",
-    "convergence drift"
+    "cosmology",
+    "S0/S1 observational equivalence"
   ],
-  "ai_metadata": {
-    "ai_parseable": true,
-    "structured_data": [
-      "index.json",
-      "data/framework.json"
-    ],
-    "executable_code": [
-      "src/regime_locked.py",
-      "examples/regime_locked_demo.py"
-    ],
-    "linked_data": [
-      "EFC-Regime-Locked.jsonld"
-    ],
-    "validation": [
-      "schema.json"
-    ]
+  "files": {
+    "pdf": "Regime_Locked_Measurement.pdf",
+    "readme": "README.md"
   },
-  "files": [
-    {
-      "path": "README.md",
-      "type": "documentation"
-    },
-    {
-      "path": "index.json",
-      "type": "structured_data"
-    },
-    {
-      "path": "schema.json",
-      "type": "validation"
-    },
-    {
-      "path": "metadata.json",
-      "type": "metadata"
-    },
-    {
-      "path": "EFC-Regime-Locked.jsonld",
-      "type": "linked_data"
-    },
-    {
-      "path": "citations.bib",
-      "type": "references"
-    },
-    {
-      "path": "src/__init__.py",
-      "type": "source"
-    },
-    {
-      "path": "src/regime_locked.py",
-      "type": "source"
-    },
-    {
-      "path": "data/framework.json",
-      "type": "data"
-    },
-    {
-      "path": "examples/regime_locked_demo.py",
-      "type": "example"
-    }
-  ],
   "paper": {
     "doi": "10.6084/m9.figshare.31833076",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31833076"

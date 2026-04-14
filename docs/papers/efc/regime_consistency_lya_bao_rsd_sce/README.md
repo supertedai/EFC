@@ -1,46 +1,27 @@
-# Regime Consistency of an Entropy-Gradient Coupling: Lya, BAO and RSD Tests within a Structural Coherence Framework
+# Regime Consistency of an Entropy-Gradient Coupling: Lyα, BAO and RSD Tests within a Structural Coherence Framework
+
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.31304995](https://doi.org/10.6084/m9.figshare.31304995)
+- **Version:** 1.0.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-02-10
+- **License:** CC-BY-4.0
+
+---
 
 ## Overview
 
-Structural regime consistency test of EFC's coupling function T(z) across three independent cosmological probes (Lya P1D, BOSS BAO, BOSS RSD), evaluated using the Structural Coherence Evaluation (SCE) framework against LCDM.
+Empirical regime-consistency test of an entropy-gradient coupling T(z) in Energy-Flow Cosmology across three independent probes: DESI Lyα P1D (z=3), BOSS DR12 BAO distances, and BOSS DR12 RSD growth. Using a single coupling calibrated near z≈0.5 and evaluated within the Structural Coherence Evaluation framework, the study finds a near-null Lyα effect, improved BAO fits, and marginally improved RSD, yielding a combined Δχ² ≈ −3.89 with one added parameter.
 
-**Author:** Morten Magnusson
-**Affiliation:** Symbiose Research, Sandnes, Norway
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-**DOI:** [10.6084/m9.figshare.31304995](https://doi.org/10.6084/m9.figshare.31304995)
-**Date:** February 10, 2026
-**License:** CC-BY-4.0
+## Key Result
 
----
+A single T(z) calibrated near z≈0.5 yields regime-consistent predictions across Lyα P1D, BAO, and RSD without dataset-specific tuning.
 
-## Key Results
+## Sealed Predictions
 
-| Regime | z | T(z) | Prediction | Result |
-|--------|---|------|------------|--------|
-| Growth (BAO) | 0.38-0.61 | 0.95-1.0 | Enhanced H, suppressed growth | PASS |
-| Lya P1D | 3.0 | 0.107 | Near-null effect | PASS |
-| CMB | 1100 | ~1e-10 | GR recovery | PASS |
-
-- BAO + RSD combined: Delta_chi2 = -3.89 (~2sigma preference for EFC)
-- Single coupling function T(z) consistent across all three regimes
-- Five pre-registered forbidden patterns, none triggered
-- SCE evaluation: neither framework dominates; LCDM wins on compression, EFC wins on structural discipline
-
----
-
-## Quick Start
-
-```python
-from src.regime_consistency import RegimeConsistencyTest
-
-test = RegimeConsistencyTest(beta=0.08)
-results = test.run_all_tests()
-for regime, outcome in results['regime_summary'].items():
-    print(f"{regime}: {outcome['status']}")
-```
-
----
-
-## License
-
-This work is licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | At z = 3, Lyα P1D shows a near-null EFC effect with A·T(z) = α_L2·T(z) ≈ 0.037 (range ≈ 0.02–0.06 for α_L2 ±1σ), yielding amplitude and slope pulls < 0.5σ relative to ΛCDM. | Higher-precision DESI/WEAVE Lyα P1D measurements of Δ★ and n★ at z ≈ 3. |
+| P2 | At z ≈ 0.4–0.6, a single background parameter β > 0 produces correlated shifts that reduce ΛCDM’s DM overprediction and mildly suppress growth; BAO+RSD jointly prefer β ≈ 0.08 over β = 0. | DESI DR2/DR3 BAO+RSD joint fits with full covariance and percent-level systematics control. |
+| P3 | At recombination (z ≈ 1100) the coupling vanishes, T(z) ≈ 10^-10, implying GR recovery and no detectable early-time deviations from ΛCDM background. | CMB primary/secondary anisotropy and early-time expansion constraints (Planck, Simons Observatory, CMB-S4). |

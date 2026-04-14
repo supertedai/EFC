@@ -1,20 +1,75 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Observational-Evidence-for-Energy-Flow",
-  "title": "EFC — Observational Evidence for Energy Flow",
+  "title": "EFC \u2014 Observational Evidence for Energy Flow",
+  "description": "Qualitative synthesis arguing that multiple cosmological observations\u2014redshift-based expansion, CMB anisotropies, gravitational lensing, and galaxy-cluster energetics\u2014are consistent with a hypothesis that energy flow shapes space-time. The piece highlights evidence across scales, from cosmic voids to dark-matter halo edges, and outlines observational fronts where the energy-flow picture could be further tested.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098365",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "accelerated expansion",
+    "redshift",
+    "cosmic microwave background",
+    "gravitational lensing",
+    "intracluster medium",
+    "cosmic voids",
+    "dark matter halos",
+    "large-scale structure",
+    "spacetime curvature",
+    "observational cosmology",
+    "universal expansion"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Survey of existing observations indicates that redshift trends, CMB temperature variations, gravitational lensing, and cluster-scale energetics are qualitatively consistent with an energy-flow-driven shaping of space-time and structure formation.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "accelerated cosmic expansion",
+      "CMB temperature/energy-density variations",
+      "gravitational lensing curvature",
+      "intra-cluster medium temperatures",
+      "galaxy cluster velocity dispersions",
+      "cosmic void dynamics",
+      "halo\u2013dark matter\u2013baryon interactions",
+      "large-scale energy redistribution across low-density regions"
+    ],
+    "datasets_used": [
+      "galaxy redshift observations",
+      "CMB temperature anisotropy maps",
+      "gravitational lensing observations",
+      "X-ray and SZ measurements of galaxy clusters",
+      "kinematics of galaxies in clusters",
+      "void catalog observations"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: High-precision SNe Ia and BAO distance\u2013redshift measurements jointly indicate no accelerated expansion or energy redistribution consistent with the proposed energy-flow interpretation across low-density regions.",
+    "KC2: CMB temperature and polarization data (including ISW cross-correlations with large-scale structure) are fully explained by standard \u039bCDM initial conditions with no residuals requiring energy-flow-driven contributions to structure seeding or evolution.",
+    "KC3: Weak-lensing shear and convergence statistics across tomographic bins match GR+\u039bCDM predictions without systematic residuals, eliminating the need for additional energy-flow-induced curvature effects.",
+    "KC4: X-ray and SZ observations of the intra-cluster medium show energy budgets, temperature profiles, and turbulence fully accounted for by gravitational infall/feedback alone, with no evidence of sustained non-gravitational energy flows.",
+    "KC5: Peculiar velocity fields in and around cosmic voids reveal no coherent inflow/outflow patterns beyond standard gravitational evacuation, contradicting the proposed balancing role of energy flow.",
+    "KC6: Observations of halo edges and dark matter\u2013baryon interactions (e.g., rotation curves and halo profiles) show no stabilizing effects attributable to energy flow beyond conventional dynamics."
+  ],
+  "tier": "T3",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Observational-Evidence-for-Energy-Flow.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098365",
   "path": "docs/papers/efc/EFC-Observational-Evidence-for-Energy-Flow",
   "pdf": "EFC-Observational-Evidence-for-Energy-Flow.pdf",
   "md": "EFC-Observational-Evidence-for-Energy-Flow.md",
-  "keywords": [
-    "EFC",
-    "Energy Flow",
-    "Observational Evidence",
-    "Cosmic Dynamics",
-    "Large-Scale Structure",
-    "CMB Signals"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098365",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098365"
+  "type": "paper"
 }

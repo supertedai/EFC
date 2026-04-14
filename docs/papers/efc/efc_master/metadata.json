@@ -1,49 +1,33 @@
 {
-  "title": "EFC -- Master Specification",
+  "title": "EFC \u2014 Master Specification",
   "short_id": "efc_master",
   "version": "1.0",
-  "date": "2025",
+  "date": "2025-11-15",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "The canonical, authoritative, and complete reference for Energy-Flow Cosmology. Integrates thermodynamic foundations, entropy/grid/energy-flow fields, spacetime behaviour, dynamic laws, structural architecture, cognitive and informational layers, and cross-field consistency rules. All other EFC papers, modules, and tools reference this document.",
+  "doi": "",
+  "abstract": "Formal master specification of Energy-Flow Cosmology (EFC), defining the dynamical energy-flow field, an effective potential coupled to entropy, an entropy-modulated expansion rate, and an entropy-dependent effective light speed. The paper unifies rotation curves, lensing behavior, and late-time acceleration as emergent thermodynamic effects without invoking non-baryonic dark matter or an external dark-energy component.",
   "keywords": [
+    "Energy-Flow Cosmology",
     "EFC",
-    "Master Specification",
-    "Energy Flow",
     "Entropy Field",
-    "Grid Field",
-    "Thermodynamic Cosmology",
-    "Unified Framework",
-    "Field Equations",
-    "Core Architecture"
+    "Energy-Flow Field",
+    "Effective Potential",
+    "Variable Speed of Light",
+    "Expansion Rate",
+    "Rotation Curves",
+    "Gravitational Lensing",
+    "Structure Formation",
+    "Thermodynamics",
+    "Unified Framework"
   ],
-  "efc_context": {
-    "track": "Core Theory",
-    "regime_relevance": "All regimes (L0-L3) -- authoritative reference",
-    "epistemic_layer": "Canonical master specification"
-  },
-  "key_results": [
-    "Authoritative definitions of all EFC terms and symbols",
-    "Complete field equation set with energy-flow stress-energy tensor",
-    "Entropy sigmoid with canonical parameters (a_t=0.55, sigma=0.10, beta=0.16)",
-    "Grid field microphysics to emergent geometry pathway",
-    "Cognitive and informational layer specifications",
-    "Cross-field consistency rules ensuring global coherence"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "efc_master.pdf",
-    "jsonld": "efc_master.jsonld",
-    "schema": "schema.json",
-    "index": "index.json",
-    "citations": "citations.bib",
-    "metadata": "metadata.json",
-    "src": "src/",
-    "data": "data/",
-    "examples": "examples/"
-  }
+    "readme": "README.md"
+  },
+  "paper": {}
 }

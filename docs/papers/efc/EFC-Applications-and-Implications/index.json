@@ -1,17 +1,83 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Applications-and-Implications",
-  "title": "EFC – Applications and Implications",
+  "title": "EFC \u2013 Applications and Implications",
+  "description": "Outlines how Energy-Flow Cosmology (EFC) posits entropy as a primary driver of cosmic expansion and structure, linking accelerating expansion and galactic clustering/dispersion to entropy dynamics. Introduces boundary states S=0 (singularity) and S=1 (altularity) as limiting regimes for time\u2013space behavior, and highlights observational venues\u2014CMB, gravitational waves, and edge-of-universe \u201cHalo\u201d observations\u2014to probe these claims and their practical implications across disciplines.",
+  "version": "1.0",
+  "date": "2024-12-26",
+  "doi": "10.6084/m9.figshare.28098308",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy",
+    "cosmic expansion",
+    "dark energy",
+    "galactic clustering",
+    "dispersion",
+    "singularity",
+    "altularity",
+    "time-space collapse",
+    "Halo (cosmic boundary)",
+    "CMB",
+    "gravitational waves"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "singularity_entropy": {
+      "latex": "S = 0",
+      "description": "Defines the minimal-entropy limit (singularity) where energy is maximally concentrated and time\u2013space collapses."
+    },
+    "altularity_entropy": {
+      "latex": "S = 1",
+      "description": "Defines the maximal-entropy limit (altularity) where energy is fully dispersed, time\u2013space is maximally stretched, and dynamic processes cease (thermodynamic equilibrium)."
+    }
+  },
+  "key_results": {
+    "main_finding": "Conceptual claim that increasing entropy catalyzes the universe\u2019s accelerating expansion and governs structure formation and limiting time\u2013space regimes (S=0, S=1).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Edge-of-observable-universe (\u201cHalo\u201d) observations will exhibit entropy-linked limits on wave\u2013particle duality and energy-flow capacity at the boundary of detectability.",
+      "falsifiable_by": "Deep-field, horizon-scale measurements (e.g., CMB anisotropy/polarization, high-z surveys) showing no deviation from standard \u039bCDM+QFT expectations in wave\u2013particle behavior or energy-flow limits at instrument sensitivities sufficient to detect the proposed effects."
+    },
+    {
+      "id": "P2",
+      "statement": "Near S\u22480 regimes associated with black holes, signatures of time\u2013space collapse will manifest as constrained energy flow consistent with minimal entropy behavior.",
+      "falsifiable_by": "Precision observations of black-hole environments (e.g., EHT imaging, gravitational-wave ringdowns) and black-hole thermodynamics showing no evidence for entropy-minimization signatures beyond standard GR and black-hole thermodynamics."
+    },
+    {
+      "id": "P3",
+      "statement": "The acceleration of cosmic expansion will correlate with net entropy increase over cosmic time.",
+      "falsifiable_by": "Joint constraints from CMB, BAO, SNe Ia, and large-scale structure demonstrating that the expansion history H(z) is uncorrelated or anti-correlated with empirical proxies of cosmic entropy production."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Robust observational inference that the universe\u2019s acceleration history H(z) is uncorrelated or anti-correlated with empirical measures/proxies of entropy production across redshift (CMB+BAO+SNe+LSS), contradicting the claim that increasing entropy catalyzes expansion.",
+    "KC2: Horizon/\u2018Halo\u2019 observations detect no entropy-related limits on wave\u2013particle duality or energy-flow behavior beyond standard \u039bCDM+QFT predictions at sensitivities adequate to reveal the proposed effects.",
+    "KC3: High-precision tests of black-hole thermodynamics confirm exclusively maximal-entropy behavior consistent with standard theory (including Hawking radiation properties) with no observable regime consistent with S \u2192 0 time\u2013space collapse, falsifying the S=0-in-black-holes claim.",
+    "KC4: Galaxy clustering and dispersion statistics over cosmic time are fully explained by \u039bCDM gravity and baryonic physics, and adding any entropy-driven dispersion term yields no improvement (or significantly worsens) fits to data, refuting entropy-driven clustering/dispersion.",
+    "KC5: Dark energy phenomenology is tightly constrained to be independent of entropy (e.g., constant w = \u22121 with no observational signatures of coupling to entropy production) across multiple probes, contradicting the proposed entropy\u2013dark-energy link."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Applications-and-Implications.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098308",
   "path": "docs/papers/efc/EFC-Applications-and-Implications",
   "pdf": "EFC-Applications-and-Implications.pdf",
   "md": "EFC-Applications-and-Implications.md",
-  "keywords": [
-    "EFC",
-    "Applications",
-    "Implications"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098308",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098308"
+  "type": "paper"
 }

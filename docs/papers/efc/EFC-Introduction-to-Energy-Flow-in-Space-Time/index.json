@@ -1,20 +1,58 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Introduction-to-Energy-Flow-in-Space-Time",
-  "title": "EFC — Introduction to Energy Flow in Space-Time",
-  "path": "docs/papers/efc/EFC-Introduction-to-Energy-Flow-in-Space-Time",
-  "pdf": "EFC-Introduction-to-Energy-Flow-in-Space-Time.pdf",
-  "md": "EFC-Introduction-to-Energy-Flow-in-Space-Time.md",
+  "title": "EFC \u2014 Introduction to Energy Flow in Space-Time",
+  "description": "Introductory overview of the Energy-Flow Cosmology (EFC) idea that energy flow across space and time underpins the stability of space-time, drives cosmic evolution, and relates to entropy and the experiential 'now'. The paper frames core questions and points to forthcoming technical documentation that will formalize the dynamics.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098341",
   "keywords": [
     "EFC",
     "Energy Flow",
     "Spacetime",
     "Thermodynamics",
+    "Entropy",
     "Entropy Gradient",
-    "Fundamental Dynamics"
+    "Gravity",
+    "Cosmic Expansion",
+    "Cosmic Evolution",
+    "Black Holes",
+    "Galaxies",
+    "Time Perception"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Conceptually proposes that dynamic energy flow sustains space-time, drives cosmic structure and evolution, and interfaces with entropy to enable localized complexity while maintaining global balance.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Failure to produce a mathematically consistent formulation in which energy\u2013momentum is locally conserved (i.e., no viable T_{\u03bc\u03bd} with \u2207_{\u03bc}T^{\u03bc\u03bd} = 0 or well-defined modification) within curved spacetime.",
+    "KC2: Any mature EFC formulation that does not reduce to General Relativity predictions in the weak-field/PPN regime within current experimental bounds (e.g., light deflection, Shapiro delay, perihelion precession) is falsified.",
+    "KC3: If the derived cosmological dynamics of EFC cannot simultaneously fit the observed expansion history H(z) and structure growth (e.g., BAO, SNe Ia, CMB primary anisotropies) within current uncertainties, the framework is ruled out.",
+    "KC4: If EFC necessarily entails sustained macroscopic entropy decrease in a closed system or requires violations of the second law of thermodynamics under controlled laboratory tests, the hypothesis is falsified.",
+    "KC5: If EFC\u2019s account of the experiential 'now' requires a preferred frame that leads to observable Lorentz-invariance violations inconsistent with high-precision null results (e.g., Michelson\u2013Morley\u2013type experiments, high-energy photon dispersion constraints), the hypothesis is invalid."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Introduction-to-Energy-Flow-in-Space-Time.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098341",
+  "path": "docs/papers/efc/EFC-Introduction-to-Energy-Flow-in-Space-Time",
+  "pdf": "EFC-Introduction-to-Energy-Flow-in-Space-Time.pdf",
+  "md": "EFC-Introduction-to-Energy-Flow-in-Space-Time.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098341",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098341"
+  "type": "paper"
 }

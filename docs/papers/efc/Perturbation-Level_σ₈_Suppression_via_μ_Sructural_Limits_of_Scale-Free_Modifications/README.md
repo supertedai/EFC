@@ -1,79 +1,26 @@
-# EFCLASS Technical Note II: Perturbation-Level σ₈ Suppression via μ(a) < 1
+# Perturbation-Level σ8 Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications
 
-Structural limits of scale-free modifications to the gravitational source term in the growth equation. Builds on Technical Note I, which proved that background-level EFC cannot suppress σ₈.
+## AI-Friendly Package
 
-**DOI:** 10.6084/m9.figshare.31333600
+- **DOI:** [10.6084/m9.figshare.31333600](https://doi.org/10.6084/m9.figshare.31333600)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-02-13
+- **License:** CC-BY-4.0
 
-**Date:** February 13, 2026
+---
 
-## Summary
+## Overview
 
-The perturbation channel μ(a) = 1 − B g(a) with μ < 1 weakens the gravitational source term in the growth equation. A systematic scan over gate amplitude (B) and temporal support (steepness n) at fixed μ₀ reveals:
+This technical note studies a purely perturbation-level, scale-independent modification to the growth equation via μ(a) = 1 − B g(a), with μ < 1 weakening the Poisson source term. Scanning gate amplitude and width while holding μ0 fixed, it finds a universal, geometric doubling of σ8 suppression when broadening the gate from n = 6 to n = 2. Within Planck 1σ on μ0, a scale-free μ(a) closes ~43% of the S8 gap; at ~1.5σ it closes ~73%, implying full resolution requires scale dependence or an additional channel.
 
-1. **Universal factor-2:** Reducing n from 6 to 2 exactly doubles σ₈ suppression at any μ₀. This is geometric, not parametric.
-2. **Structural ceiling:** Within Planck 1σ (μ₀ > 0.90), scale-free μ(a) closes at most ~43% of the S₈ gap.
-3. **Reference model (WP1a):** A=0, B=0.187, n=2, z_t=1.01 → μ₀=0.85, σ₈=0.773, S₈=0.790 (73% gap closure at ~1.5σ).
+## Key Result
 
-## Contents
+Broadening the gate from n = 6 to n = 2 exactly doubles σ8 suppression at fixed μ0 (2.00 ± 0.01), implying a geometric ceiling: scale-free μ(a) can close ~43% (1σ) to ~73% (~1.5σ) of the S8 gap but cannot fully resolve it.
 
-| File | Description |
-|------|-------------|
-| `efc_technical_note_II.pdf` | Authoritative PDF (5 pages) |
-| `index.json` | Machine-readable metadata and results |
-| `schema.json` | JSON Schema validation |
-| `Perturbation-Level-sigma8-Suppression.jsonld` | JSON-LD semantic metadata |
-| `metadata.json` | Comprehensive project metadata |
-| `citations.bib` | BibTeX references |
-| `README.md` | This file |
+## Sealed Predictions
 
-## Core Equations
-
-- **Growth equation:** f' + f² + (1/2 − 3/2 Ω̃_m) f = 3/2 μ(a) Ω̃_m
-- **μ modification:** μ(a) = 1 − B g(a), where g(a) = 1/(1 + (a_t/a)^n)
-- **Calibration:** B = (1 − μ₀) / g(1; n)
-- **Suppression integral:** Δσ₈ ∝ (1 − μ₀) ∫ g(a; n) d ln a
-
-## Key Results
-
-### Universal Factor-2
-
-| μ₀ | Δσ₈(n=6) | Δσ₈(n=2) | Ratio |
-|----|-----------|-----------|-------|
-| 0.913 | −0.011 | −0.022 | 2.01 |
-| 0.850 | −0.019 | −0.038 | 2.00 |
-| 0.800 | −0.025 | −0.050 | 2.00 |
-
-### S₈ Gap Closure
-
-| μ₀ | n | σ₈ | Gap closed | Planck status |
-|----|---|-----|------------|---------------|
-| 0.913 | 6 | 0.800 | 21% | OK |
-| 0.913 | 2 | 0.789 | 43% | OK |
-| **0.850** | **2** | **0.773** | **73%** | **~1.5σ** |
-| 0.800 | 2 | 0.761 | 97% | 2σ |
-
-## Structural Conclusions
-
-1. Background (A) and perturbation (B) channels are non-degenerate
-2. Temporal support matters more than instantaneous amplitude
-3. Scale-free μ(a) has a structural ceiling within Planck 1σ
-4. Full resolution requires scale dependence μ(k,a) or combined channel
-
-## Reproducibility
-
-- **Code:** `efc_wp1_mu_only_sweep.py` (B-sweep), `efc_wp1_n_scan.py` (n-sweep)
-- **Data:** BOSS DR12 RSD (3 points, full covariance, Alam+ 2017)
-- **Background:** ΛCDM with Ω_m = 0.3134, H₀ = 67.4
-
-## Citation
-
-```bibtex
-@misc{magnusson2026perturbation,
-  author = {Magnusson, Morten},
-  title  = {Perturbation-Level σ₈ Suppression via μ(a) < 1},
-  year   = {2026},
-  doi    = {10.6084/m9.figshare.31333600}
-}
-```
-
-Version: 1.0
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | In a full Boltzmann treatment (CLASS) with scale-free μ(a) and A = 0, the σ8 suppression ratio between n = 2 and n = 6 remains 2.00 ± 0.02 across μ0 ∈ [0.80, 0.95]. | Direct computation of D(a) and σ8 in CLASS or CAMB showing a deviation > 0.02 from the factor-2 ratio when radiation, neutrinos, and ISW/CMB lensing are included. |
+| P2 | Within Planck 1σ on μ0 (|μ0 − 1| ≤ 0.10), any scale-free μ(a) model cannot close more than ~45% of the S8 gap at fixed Ωm ≈ 0.313. | A joint Planck+RSD+WL analysis demonstrating ≥90% S8 gap closure with a scale-free μ(a) (no k-dependence) while satisfying |μ0 − 1| ≤ 0.10. |

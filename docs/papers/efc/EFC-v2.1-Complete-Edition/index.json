@@ -1,18 +1,135 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-v2.1-Complete-Edition",
-  "title": "EFC v2.1 – Complete Edition",
+  "title": "EFC v2.1 \u2013 Complete Edition",
+  "description": "Presents the Complete Edition of Energy-Flow Cosmology (EFC v2.1), a unified thermodynamic framework where a continuous energy\u2013entropy flow field Ef generates spacetime structure, cosmic dynamics, and reflexive cognition. The paper adds an Energy-Flow Ontology, explicit continuity and conservation laws, cognitive thermodynamics, an Intelligence\u2013Matter Exchange (IMX) model, observational links with testable predictions, and a computational implementation plan.",
+  "version": "2.1",
+  "date": "2025-10-30",
+  "doi": "10.6084/m9.figshare.30478916",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "thermodynamics",
+    "entropy gradients",
+    "energy flow field",
+    "continuity equation",
+    "emergent light-speed regulation",
+    "Einstein field equations",
+    "cognitive thermodynamics",
+    "Intelligence\u2013Matter Exchange",
+    "CMB anisotropies",
+    "H0 tension",
+    "weak gravitational lensing"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_continuity": {
+      "latex": "\\frac{\\partial \\rho_E}{\\partial t} + \\nabla \\cdot \\mathbf{E}_f = 0",
+      "description": "Explicit conservation of energy flow: changes in energy density are balanced by the divergence of the energy-flow field."
+    },
+    "constitutive_Ef": {
+      "latex": "\\mathbf{E}_f(S) = E_0\\,(1 - S)",
+      "description": "Minimal constitutive relation coupling the energy-flow field to entropy, decreasing linearly with increasing entropy."
+    },
+    "c_regulation": {
+      "latex": "c(S) \\propto \\frac{1}{\\rho(S)}",
+      "description": "Emergent regulation of the effective local light speed by the thermodynamic state (energy density)."
+    },
+    "geometry_coupling": {
+      "latex": "G_{\\mu\\nu} = 8\\pi G \\left(T^{(m)}_{\\mu\\nu} + T^{(S,J)}_{\\mu\\nu}\\right)",
+      "description": "Gravitational field equations including additional stress-energy from entropy gradients and flow currents."
+    },
+    "symmetry_principle": {
+      "latex": "\\mathbf{E}_f(S) = -\\mathbf{E}_f(1 - S)",
+      "description": "Bidirectional thermodynamic symmetry linking entropic expansion and informational (inward) evolution."
+    },
+    "cem_definition": {
+      "latex": "\\Psi_{\\mathrm{CEM}} = f(\\mathbf{E}_f, S, t)",
+      "description": "Cognitive thermodynamics: consciousness modeled as resonance in non-equilibrium gradients of Ef and entropy."
+    },
+    "imx_definition": {
+      "latex": "\\mathrm{IMX} = \\frac{d\\Psi_{\\mathrm{CEM}}}{dE_f} = \\left.\\frac{\\partial \\Psi_{\\mathrm{CEM}}}{\\partial E_f}\\right|_{S,t}",
+      "description": "Defines Intelligence\u2013Matter Exchange as the sensitivity of cognitive state to changes in energy flow."
+    },
+    "imx_continuity": {
+      "latex": "\\frac{\\partial\\, \\mathrm{IMX}}{\\partial t} + \\nabla \\cdot (\\mathrm{IMX}\\, \\mathbf{v}_\\Psi) = \\alpha\\, \\nabla \\cdot \\mathbf{E}_f - \\beta\\, \\frac{\\partial S}{\\partial t}",
+      "description": "Continuity-like equation for IMX, balancing propagation and dissipation with coupling to energy-flow divergence and entropy production."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC v2.1 consolidates a falsifiable, thermodynamic cosmology linking structure, dynamics, and cognition via a conserved energy\u2013entropy flow field and provides concrete, dataset-specific predictions.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "E0 (energy\u2013entropy coupling amplitude)",
+      "alpha (IMX\u2013Ef coupling)",
+      "beta (informational dissipation)",
+      "Rc \u2248 0.37 (resonance threshold)",
+      "Lambda_eff(S\u0307, Ef) functional form",
+      "c(S) regulation parameterization"
+    ],
+    "datasets_used": [
+      "Planck",
+      "ACT",
+      "JWST (ancillary for structure context)",
+      "DESI",
+      "SH0ES",
+      "SDSS",
+      "Euclid",
+      "LIGO",
+      "NANOGrav"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "CMB shows a ~0.05% excess in temperature anisotropy at multipole \u2113 \u2248 2500 as a thermal residual of \u0394S relative to \u039bCDM baselines.",
+      "falsifiable_by": "High-\u2113 CMB TT/TE/EE spectra from Planck/ACT (and ancillary analyses cited) showing no such excess after foreground/systematic controls."
+    },
+    {
+      "id": "P2",
+      "statement": "Local H0 measurements differ by ~5\u20137% from the global value due to spatial Ef gradients correlated with large-scale entropy environments.",
+      "falsifiable_by": "Cross-correlation of environment metrics with distance-ladder H0 (SH0ES/TRGB) and DESI BAO+RSD analyses showing |\u0394H0| < 1% with no environment dependence."
+    },
+    {
+      "id": "P3",
+      "statement": "Weak-lensing shear \u03b3 is reduced in high-entropy (high-S) regions (\u2018entropic halos\u2019) relative to mass-only expectations.",
+      "falsifiable_by": "Tomographic weak-lensing (SDSS, Euclid, LSST) finding no systematic \u03b3 suppression in high-S environments at <1% precision after baryonic corrections."
+    },
+    {
+      "id": "P4",
+      "statement": "Redshift-drift exhibits a nonlinear z(S) signature diverging from \u039bCDM over decade-long baselines.",
+      "falsifiable_by": "Direct redshift-drift measurements (ELT/Euclid programs) consistent with \u039bCDM and excluding the EFC z(S) trend at \u22655\u03c3."
+    },
+    {
+      "id": "P5",
+      "statement": "Gravitational-wave arrival times acquire path-dependent delays proportional to \u2207S across void/halo transits.",
+      "falsifiable_by": "Multi-messenger timing (LIGO/Virgo/KAGRA) and PTA (NANOGrav) showing no correlation between GW timing residuals and mapped entropy/flow gradients at predicted amplitudes."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-\u2113 CMB analyses (Planck/ACT and successors) show no ~0.05% excess at \u2113 \u2248 2500 after rigorous foreground/systematics treatment, decisively favoring \u039bCDM at \u22655\u03c3.",
+    "KC2: Environmental cross-checks find |\u0394H0| < 1% with no statistically significant correlation between local H0 estimates and large-scale entropy/flow gradients.",
+    "KC3: Weak-lensing tomography detects no reduction of shear \u03b3 in high-S regions beyond baryonic effects, with shear\u2013mass relations matching \u039bCDM at <1% across environments.",
+    "KC4: Redshift-drift measurements over \u226510 years match \u039bCDM and exclude the EFC-predicted nonlinear z(S) evolution at \u22655\u03c3.",
+    "KC5: Gravitational-wave timing residuals show no correlation with mapped \u2207S along lines of sight through voids/halos at the amplitudes required by EFC.",
+    "KC6: Implementations of EFC in CLASS/RAMSES/GADGET-4 fail to jointly fit CMB+BAO+SNe observables without extreme fine-tuning and are disfavored by AIC/BIC relative to \u039bCDM."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-v2.1-Complete-Edition.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30478916",
   "path": "docs/papers/efc/EFC-v2.1-Complete-Edition",
   "pdf": "EFC-v2.1-Complete-Edition.pdf",
   "md": "EFC-v2.1-Complete-Edition.md",
-  "keywords": [
-    "EFC",
-    "Complete",
-    "Edition",
-    "Version 2.1"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "2.1",
-  "doi": "10.6084/m9.figshare.30478916",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30478916"
+  "type": "paper"
 }

@@ -1,20 +1,108 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-CMB-Thermodynamic-Gradient",
-  "title": "EFC — CMB Thermodynamic Gradient",
+  "title": "Hypothesis on Cosmic Microwave Background as a Thermodynamic Temperature Gradient",
+  "description": "Proposes that the CMB (~2.725 K) is an actively maintained thermodynamic equilibrium sustained by a Planck-scale quantum vacuum gradient, rather than relic radiation from a Big Bang. Using an Energy-Entropy framework with a Grid-Higgs amplification of vacuum fluctuations, the paper quantifies a universal energy flow (~2.79\u00d710^35 J/s) and makes falsifiable predictions in CMB anisotropies, nano-Hz gravitational waves, and galaxy clustering.",
+  "version": "1.0",
+  "date": "2025-01-15",
+  "doi": "10.6084/m9.figshare.28570088",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Cosmic Microwave Background",
+    "Thermodynamic Gradient",
+    "Quantum Vacuum",
+    "Planck Scale",
+    "Grid-Higgs Framework",
+    "Entropy",
+    "Dark Energy",
+    "Dark Matter",
+    "Gravitational Waves",
+    "CMB Anisotropy",
+    "Large-Scale Structure"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "universal_energy_flow": {
+      "latex": "\\frac{dE}{dt} = -\\,\\gamma\\, V\\, \\frac{\\Delta P}{\\Delta S}",
+      "description": "Defines the net cosmic energy flow driven by a vacuum\u2013CMB thermodynamic pressure gradient, modulated by a coupling \u03b3 over volume V and entropy difference \u0394S."
+    },
+    "gamma_definition": {
+      "latex": "\\gamma = \\frac{G\\, \\rho^{\\mathrm{CMB}}}{c^{3}} \\approx 1.67\\times 10^{-129}\\ \\mathrm{kg^{-1}\\, m^{-1}\\, s}",
+      "description": "Effective coupling parameter linking gravitational mediation to the CMB-scaled vacuum energy density; encapsulates how relativistic fluctuations propagate."
+    },
+    "pressure_gradient": {
+      "latex": "\\Delta P = \\rho_{\\mathrm{Planck}} - \\rho_{\\mathrm{CMB}} \\approx 4.64\\times 10^{113}\\ \\mathrm{J\\, m^{-3}}",
+      "description": "Thermodynamic pressure (energy density) gradient between Planck-scale vacuum energy and the CMB energy density."
+    },
+    "entropy_difference": {
+      "latex": "\\Delta S \\approx \\rho_{T}^{\\mathrm{CMB}}\\, V \\approx 9.92\\times 10^{66}\\ \\mathrm{J\\, K^{-1}}",
+      "description": "Approximate entropy scale for the CMB within the Hubble volume; vacuum entropy is assumed negligible at Planck densities."
+    },
+    "hubble_volume": {
+      "latex": "V \\approx 3.57\\times 10^{80}\\ \\mathrm{m^{3}}",
+      "description": "Approximate observable Hubble volume used in the energy-flow estimate."
+    },
+    "numerical_energy_flow": {
+      "latex": "\\frac{dE}{dt} \\approx 2.79\\times 10^{35}\\ \\mathrm{J\\, s^{-1}}",
+      "description": "Predicted magnitude of the vacuum-driven cosmic energy flow, argued to be sufficient to power observed expansion."
+    }
+  },
+  "key_results": {
+    "main_finding": "A Planck-scale vacuum\u2013CMB thermodynamic gradient can sustain the CMB as an active equilibrium and drive cosmic expansion with a quantified energy flow of ~2.79\u00d710^35 J/s, leading to specific, falsifiable observational predictions.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b3 (vacuum\u2013gravity coupling)",
+      "\u0394P = \u03c1_Planck \u2212 \u03c1_CMB",
+      "\u0394S (CMB entropy proxy)",
+      "V (Hubble volume)",
+      "Grid\u2013Higgs amplification factor (10^5\u201310^10)"
+    ],
+    "datasets_used": [
+      "None (theory only; proposes comparison with Planck 2018 CMB, NANOGrav/IPTA PTA data, and LSST LSS)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A distinct ~0.05% excess in the CMB anisotropy power spectrum peaking near multipole \u2113 \u2248 2500, not mimicked by standard \u039bCDM-inflationary features.",
+      "falsifiable_by": "High-\u2113 CMB measurements (Planck high-\u2113 TT/TE/EE, ACT, SPT, Simons Observatory, CMB-S4) showing no such excess within uncertainties."
+    },
+    {
+      "id": "P2",
+      "statement": "A nano-Hz gravitational-wave background with amplitude ~1e\u221223 peaking around f \u2248 5 nHz.",
+      "falsifiable_by": "PTA upper limits (NANOGrav, EPTA, PPTA, IPTA) excluding a background at or above ~1e\u221223 near 3\u201310 nHz after accounting for astrophysical foregrounds."
+    },
+    {
+      "id": "P3",
+      "statement": "O(10%) deviations in large-scale galaxy clustering due to entropy-related vacuum clustering mechanisms.",
+      "falsifiable_by": "Two-point correlation function and power-spectrum measurements from DESI/LSST finding consistency with \u039bCDM at <3% on 10\u2013100 Mpc/h scales after systematic corrections."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: No detectable ~0.05% excess in the CMB power spectrum near \u2113 \u2248 2500 at >3\u03c3 significance in combined Planck/ACT/SPT/Simons Observatory/CMB-S4 analyses.",
+    "KC2: PTA analyses (NANOGrav/EPTA/PPTA/IPTA) set robust 95% CL upper limits below ~1\u00d710^\u221223 for the stochastic background at 3\u201310 nHz, incompatible with the predicted peak near 5 nHz.",
+    "KC3: LSST/DESI find galaxy-clustering statistics (P(k), \u03be(r)) consistent with \u039bCDM to within <3% on 10\u2013100 Mpc/h scales, ruling out the predicted ~10% deviations after controlling for systematics.",
+    "KC4: The required cosmic energy-flow scale (~2.79\u00d710^35 J/s) is shown to be incompatible with the observed expansion history (H(z), SN Ia, BAO, CMB) for any \u03b3 within the framework\u2019s stated assumptions.",
+    "KC5: Independent theoretical or experimental constraints (e.g., Casimir/precision tests, high-energy astrophysical limits) rule out the Grid\u2013Higgs vacuum fluctuation amplification in the stated 10^5\u201310^10 range.",
+    "KC6: High-precision CMB anisotropy and lensing reconstructions show no evidence for the specific signature shapes implied by a sustained vacuum\u2013CMB gradient, with model-to-data residuals consistent with noise."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-CMB-Thermodynamic-Gradient.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28570088",
   "path": "docs/papers/efc/EFC-CMB-Thermodynamic-Gradient",
   "pdf": "EFC-CMB-Thermodynamic-Gradient.pdf",
   "md": "EFC-CMB-Thermodynamic-Gradient.md",
-  "keywords": [
-    "EFC",
-    "CMB",
-    "Thermodynamic Gradient",
-    "Entropy",
-    "Energy-Flow",
-    "Cosmology"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28570088",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28570088"
+  "type": "paper"
 }

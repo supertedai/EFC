@@ -1,22 +1,98 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Grid-Higgs-Paradigm-Shift",
-  "title": "EFC — Grid-Higgs Paradigm Shift",
+  "title": "Paradigm Shift in Cosmology: Continuous Energy Recycling Through the Grid-Higgs Framework",
+  "description": "The paper synthesizes the Energy-Flow (EFC) and Grid-Higgs frameworks to propose a cosmology with continuous energy recycling, reinterpreting the CMB as an ongoing process rather than a relic. It replaces dark matter with entropy-driven \"entropic tension\" between Higgs-anchored spacetime nodes and argues for near-standard behavior except at entropy extremes, offering quantitative, testable deviations in CMB anisotropies and lensing.",
+  "version": "1.0",
+  "date": "N/A",
+  "doi": "10.6084/m9.figshare.28560935",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Grid-Higgs framework",
+    "entropy dynamics",
+    "CMB recycling",
+    "dark matter alternatives",
+    "gravitational lensing",
+    "galactic rotation curves",
+    "variable speed of light",
+    "primordial nucleosynthesis",
+    "quantum gravity"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropy_wave_driver": {
+      "latex": "\\delta E_{\\mathrm{f}} = \\alpha\\, S\\, T^{4}",
+      "description": "Postulated relation for early-universe entropy waves coupling energy flow to entropy S and temperature T, used to set thermal conditions for primordial abundances."
+    },
+    "linear_energy_flow": {
+      "latex": "E_{\\mathrm{f}}(S) = \\rho_{0}\\,(1 - S),\\quad S\\in[0,1]",
+      "description": "Stated linear decline of energy flow from the singular (S=0) to the Altular maximum-entropy state (S=1), with \\rho_0 the initial reference density."
+    }
+  },
+  "key_results": {
+    "main_finding": "Using 10 free parameters (including entropy gradients and Higgs-node density), the model reports \u03c7\u00b2 \u2248 0 over \u2113 = 100\u20131500 for ACT/WMAP CMB fits and claims natural reproduction of rotation curves and specific, testable deviations in lensing and high-\u2113 CMB anisotropies.",
+    "delta_chi2": 1.2,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "entropy gradient amplitude",
+      "Higgs-node (grid) density",
+      "\u03b1 (entropy-wave coupling in \u03b4Ef = \u03b1 S T^4)"
+    ],
+    "datasets_used": [
+      "ACT",
+      "WMAP",
+      "Planck",
+      "JWST",
+      "SDSS",
+      "LIGO"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "High-\u2113 CMB anisotropies will show systematic 7\u201310% deviations from \u039bCDM for \u2113 > 1000 due to continuous CMB recycling at the Altular boundary.",
+      "falsifiable_by": "Precise TT/TE/EE spectra from ACT, SPT-3G, and Simons Observatory up to \u2113 \u2273 3000."
+    },
+    {
+      "id": "P2",
+      "statement": "Weak-lensing signals in low-entropy (void-like) environments will deviate by up to 15% from GR+\u039bCDM predictions because of entropic-tension effects across Higgs-node gradients.",
+      "falsifiable_by": "Tomographic weak-lensing and galaxy\u2013galaxy lensing in voids from DES, HSC, KiDS, and LSST Y1\u2013Y10 analyses."
+    },
+    {
+      "id": "P3",
+      "statement": "Galactic rotation curves can be fit without invoking particle dark matter, using entropic tension from the Grid-Higgs structure.",
+      "falsifiable_by": "Meta-analysis of large rotation-curve samples (e.g., SPARC) showing systematic residuals that still require dark halos after applying the EFC entropic-tension prescription."
+    },
+    {
+      "id": "P4",
+      "statement": "Gravitational-wave propagation matches GR under typical conditions but exhibits measurable deviations only near entropy extremes (S\u22480 or S\u22481).",
+      "falsifiable_by": "Joint GW\u2013EM constraints on dispersion and speed from LIGO\u2013Virgo\u2013KAGRA events, especially those near SMBH environments or extreme-density regions."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-precision CMB measurements (ACT/SPT/Simons Observatory) show <1\u20132% agreement with \u039bCDM at \u2113 > 1000, ruling out the predicted 7\u201310% deviations.",
+    "KC2: Weak-lensing maps in low-entropy/void regions exhibit <5% deviation from GR+\u039bCDM, contradicting the model's up-to-15% prediction.",
+    "KC3: Comprehensive rotation-curve datasets (e.g., SPARC) continue to require dark halos after implementing the entropic-tension prescription, with statistically significant residuals.",
+    "KC4: Big Bang Nucleosynthesis abundances (H/He/Li) cannot be matched within 5% for any choice of \u03b1 in \u03b4Ef = \u03b1 S T^4 under the model's thermal history.",
+    "KC5: Multimessenger GW events impose bounds inconsistent with the model by showing no entropy-dependent propagation effects even near putative S-extreme environments.",
+    "KC6: High-fidelity CMB isotropy and polarization results demand standard inflationary initial conditions with no evidence for continuous recycling, contradicting the model's mechanism."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Grid-Higgs-Paradigm-Shift.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28560935",
   "path": "docs/papers/efc/EFC-Grid-Higgs-Paradigm-Shift",
   "pdf": "EFC-Grid-Higgs-Paradigm-Shift.pdf",
   "md": "EFC-Grid-Higgs-Paradigm-Shift.md",
-  "keywords": [
-    "EFC",
-    "Grid-Higgs",
-    "Paradigm Shift",
-    "Mass Emergence",
-    "Entropy Field",
-    "Energy Flow",
-    "Spacetime Resistance",
-    "Fundamental Physics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28560935",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28560935"
+  "type": "paper"
 }

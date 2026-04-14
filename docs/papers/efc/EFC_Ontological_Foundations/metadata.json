@@ -1,7 +1,7 @@
 {
   "title": "EFC Ontological Foundations v1.0: The Co-Primary Structure",
   "short_id": "efc-ontological-foundations",
-  "version": "v1.0",
+  "version": "1.0",
   "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
@@ -9,48 +9,25 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "Tests three hypotheses for energy-entropy primacy within Energy-Flow Cosmology: H1 (energy-flow primacy), H2 (entropy primacy), and H3 (co-primary structure). H1 and H2 each fail circularity tests. Only H3, the co-primary structure, passes all consistency checks. Energy-flow and entropy are co-primary, with differentiation occurring at the Planck transition from a pre-geometric potential.",
+  "doi": "10.6084/m9.figshare.31223668",
+  "abstract": "Establishes the ontological basis for Energy-Flow Cosmology (EFC) by arguing that energy-flow and entropy are co-primary, differentiated aspects of a single pre-geometric potential that separates at the Planck transition. Resolves circularity in monistic ontologies and integrates coherently with EFC\u2019s Core Lock dynamics, EBE epistemic framework, and RCMP measurement protocol, aligning with insights from Wheeler, Verlinde, and Prigogine.",
   "keywords": [
     "ontology",
     "co-primacy",
-    "pre-Planck physics",
+    "pre-geometric potential",
+    "Planck transition",
+    "emergent spacetime",
     "entropy",
     "energy-flow",
-    "emergence",
-    "EFC",
-    "differentiation",
-    "Planck transition",
-    "circularity test"
+    "Core Lock",
+    "EBE",
+    "RCMP",
+    "holographic principle",
+    "dissipative structures"
   ],
-  "efc_context": {
-    "track": "Foundational/Ontology",
-    "regime_relevance": "Pre-Planck to post-Planck; foundational for all EFC architecture",
-    "epistemic_layer": "Layer C (coherence argument)"
-  },
-  "key_results": [
-    "H1 (energy-flow primacy) fails circularity test: entropy required to define energy flow",
-    "H2 (entropy primacy) fails circularity test: energy flow required to define entropy changes",
-    "H3 (co-primary structure) passes all consistency checks",
-    "Energy-flow and entropy are co-primary, differentiating at the Planck transition",
-    "Pre-Planck phase described as undifferentiated pre-geometric potential"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "Ontology.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/circularity_tester.py",
-      "src/hypothesis_analyzer.py",
-      "src/ontology_model.py",
-      "src/phase_classifier.py"
-    ],
-    "data": "data/hypotheses.json",
-    "demo": "examples/circularity_analysis.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31223668",

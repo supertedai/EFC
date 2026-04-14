@@ -1,5 +1,5 @@
 {
-  "title": "EFC Closure Conjectures: Proposed Relations g-dagger = cH0/e and C = 2e - 1",
+  "title": "EFC Closure Conjectures",
   "short_id": "efc-closure-conjectures",
   "version": "1.0",
   "date": "2026-02-01",
@@ -9,45 +9,25 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "doi": null,
-  "abstract": "Proposes two closure relations for EFC transition parameters motivated by Euler's number e appearing in the Core Lock structure: the transition acceleration g-dagger = c H0 / e and the phase factor C = 2e - 1. Both are consistent with current data but not derived from first principles.",
+  "doi": "10.6084/m9.figshare.31224466",
+  "abstract": "Proposes two closure relations for Energy-Flow Cosmology (EFC): the transition acceleration g\u2020 = c H0 / e and a galactic phase factor C = 2e \u2212 1, both motivated by the Core Lock exponential structure. Using SPARC-derived g\u2020, the paper predicts H0 = 70.2 \u00b1 16.8 km/s/Mpc, consistent with Planck, SH0ES, and TRGB within current uncertainties. The conjectures are framed with explicit falsification criteria and remain to be validated by higher-precision measurements.",
   "keywords": [
     "Energy-Flow Cosmology",
-    "radial acceleration relation",
-    "Hubble tension",
+    "EFC",
+    "Radial Acceleration Relation",
     "transition acceleration",
-    "closure relations",
-    "Euler number"
+    "Hubble constant",
+    "Euler number e",
+    "Core Lock",
+    "screening exponent k",
+    "phase factor C",
+    "SPARC rotation curves",
+    "cosmological phase",
+    "exponential stiffness"
   ],
-  "efc_context": {
-    "track": "theoretical-conjecture",
-    "regime_relevance": "galactic-to-cosmological transition",
-    "epistemic_layer": "C"
-  },
-  "key_results": [
-    {
-      "description": "Transition acceleration conjecture",
-      "formula": "g-dagger = c * H0 / e",
-      "numerical_value": "2.51e-10 m/s^2 for H0 = 70.2"
-    },
-    {
-      "description": "Phase factor conjecture",
-      "formula": "C = 2e - 1",
-      "numerical_value": 4.437
-    }
-  ],
-  "file_manifest": {
-    "README.md": "Documentation and overview",
-    "index.json": "Structured paper metadata",
-    "schema.json": "JSON Schema for package validation",
-    "metadata.json": "Machine-readable metadata",
-    "closure_conjectures.jsonld": "Linked data descriptor",
-    "citations.bib": "BibTeX citation",
-    "LICENSE": "CC-BY-4.0 license",
-    "EFC_Closure_Conjectures.pdf": "Paper PDF",
-    "src/__init__.py": "Python package init",
-    "src/closure_relations.py": "Core source code",
-    "examples/": "Usage examples"
+  "files": {
+    "pdf": "EFC_Closure_Conjectures.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31224466",

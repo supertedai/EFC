@@ -1,53 +1,27 @@
-# Structural Coherence Evaluation for Physical Theories
+# Structural Coherence Evaluation for Physical Theories: A Theory-Agnostic Framework with Observation-Native Ontology and Self-Imposed Falsifiability
 
-## A Theory-Agnostic Framework with Observation-Native Ontology and Self-Imposed Falsifiability
+## AI-Friendly Package
 
-**Author:** Morten Magnusson
-**Affiliation:** Symbiose Research, Sandnes, Norway
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-**DOI:** [10.6084/m9.figshare.31293745](https://doi.org/10.6084/m9.figshare.31293745)
-**License:** CC-BY-4.0
+- **DOI:** [10.6084/m9.figshare.31293745](https://doi.org/10.6084/m9.figshare.31293745)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-14
+- **License:** CC-BY-4.0
 
 ---
 
 ## Overview
 
-A theory-agnostic evaluation framework for assessing structural coherence and falsifiability of physical theories. Introduces four operational principles and five structural metrics for cross-paradigm comparison without privileging any specific ontology.
+Presents a theory-agnostic evaluation framework to assess structural coherence and falsifiability of physical theories without privileging any paradigm. It operationalizes four principles (observation-native ontology, declared structural vulnerability, priced adaptation, primitive transparency) via five structural metrics and a graph-based implementation, including self-imposed falsifiability through forbidden observational patterns.
 
----
+## Key Result
 
-## Four Principles
+Introduces and demonstrates a cross-paradigm, observation-native framework that operationalizes self-imposed falsifiability and structural coherence metrics, with illustrative case studies across ΛCDM, EFC, and MOND.
 
-1. **Observation-Native Ontology (I):** Phenomena defined as measured observables
-2. **Declared Structural Vulnerability (II):** Theories must specify forbidden patterns
-3. **Priced Adaptation (III):** Survival through modification carries epistemic cost
-4. **Primitive Transparency (IV):** Independent assumptions declared explicitly
+## Sealed Predictions
 
-## Five Metrics
-
-1. Explanatory Compression: C = |tested phenomena| / |primitive assumptions|
-2. Anomaly Burden: Mismatch Rate + Coverage Penalty
-3. Model Plasticity: Variant proliferation, parameter growth, special-case rules
-4. Layer Consistency: Mechanism unity, parameter coherence, transition smoothness
-5. Forbidden Pattern Coverage: Effective coverage weighted by observational reach
-
----
-
-## Quick Start
-
-```python
-from src.structural_coherence import SCEFramework, TheoryProfile
-
-lcdm = TheoryProfile(name="LCDM", primitives=3, phenomena=6)
-efc = TheoryProfile(name="EFC", primitives=2, phenomena=4, forbidden_patterns=5)
-
-sce = SCEFramework()
-comparison = sce.compare(lcdm, efc)
-print(comparison)
-```
-
----
-
-## License
-
-This work is licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Framework rankings and metric scores remain stable under reasonable variations of counting choices and ontology-independent data encodings. | Show that small, reasonable changes to observation-native counting or encoding materially reorder theory rankings (Robustness Failure; TCS-F1). |
+| P2 | Framework coherence profiles correlate with domain-expert comparative judgments across diverse benchmark sets. | Demonstrate systematic anti-correlation between framework outputs and independent expert panels across multiple controlled benchmarks (Epistemic Divergence; TCS-F2). |
+| P3 | Scoring incentivizes deeper, theory-internal forbidden patterns over vacuous or trivial declarations. | Construct a toy theory that maximizes scores via trivial or vacuous forbidden patterns while a mature theory with deeper constraints is penalized (Performative Falsifiability; TCS-F3). |

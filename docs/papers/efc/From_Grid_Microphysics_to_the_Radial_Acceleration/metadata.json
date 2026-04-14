@@ -1,56 +1,34 @@
 {
   "title": "From Grid Microphysics to the Radial Acceleration Relation: A Minimal Gradient-Coupled Excitation Model",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Independent Researcher, Sola, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
-  "date": "2026-03-28",
-  "doi": "10.6084/m9.figshare.31878760",
+  "short_id": "from-grid-microphysics-to-the-radial-acceleration",
   "version": "v1",
+  "date": "2026-03-28",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
-  "framework": "EFC",
-  "paper_series": "EFC Paper Series",
-  "type": "working_paper",
-  "peer_reviewed": false,
+  "doi": "10.6084/m9.figshare.31878760",
+  "abstract": "Proposes a minimal microphysical model in which discrete bosonic modes on a substrate (grid) have excitation energies that couple to the local gravitational strain, yielding E \u221d sqrt(|\u2207\u03a6|). With Bose\u2013Einstein occupancy and a single emergent scale a0, the model reproduces the gravitational enhancement function \u03bc(g) = 1/(exp(sqrt(g/a0)) \u2212 1) required by the RAR within the EFC framework. This provides a concrete microphysical bridge between the covariant EFT macro-results and observed galactic phenomenology without new free parameters beyond a0.",
   "keywords": [
-    "grid microphysics",
+    "Energy-Flow Cosmology",
     "radial acceleration relation",
-    "Bose-Einstein",
+    "RAR",
+    "Bose\u2013Einstein statistics",
     "gradient coupling",
+    "gravitational strain",
     "excitation energy",
     "lattice derivation",
-    "MOND",
-    "a0",
+    "a0 acceleration scale",
+    "MOND phenomenology",
     "discrete gravity",
     "microphysical bridge"
   ],
-  "abstract": "A precise structural gap exists in Energy-Flow Cosmology: the covariant EFT requires a gravitational enhancement function mu(g) = 1/(exp(sqrt(g/a0))-1) formally identical to a Bose-Einstein occupation number, but this form cannot be derived from any classical local Lagrangian. We show that a minimal microscopic model with gradient-coupled excitation energy E proportional to sqrt(|nabla Phi|) reproduces the observed functional form without free parameters beyond the measured scale a0.",
-  "significance": "Closes the microphysical gap identified in the Covariant EFT (31878334); bridges macro-framework (covariant action) to micro-interpretation (grid nodes, bosonic modes, thermodynamic occupation)",
-  "related_papers": [
-    {
-      "doi": "10.6084/m9.figshare.31878334",
-      "relation": "parent (identifies the gap this paper closes)"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31876324",
-      "relation": "sibling (EFC Relativistic Action)"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31348411",
-      "relation": "sibling (Discrete Entropic Gravity / Graph-AQUAL)"
-    },
-    {
-      "doi": "10.6084/m9.figshare.31564129",
-      "relation": "related (Double-Slit Grid-Resolution)"
-    },
-    {
-      "doi": "10.6084/m9.figshare.30630500",
-      "relation": "foundation (EFC Formal Master Spec)"
-    }
-  ],
+  "files": {
+    "pdf": "From_Grid_Microphysics_to_the_Radial_Acceleration.pdf",
+    "readme": "README.md"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31878760",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31878760"

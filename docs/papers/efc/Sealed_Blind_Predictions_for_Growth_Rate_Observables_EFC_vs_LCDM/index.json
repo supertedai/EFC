@@ -1,0 +1,88 @@
+{
+  "$schema": "./schema.json",
+  "id": "sealed-blind-predictions-for-growth-rate-observables-efc-vs-lcdm",
+  "title": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs \u039bCDM",
+  "description": "Pre-registered, cryptographically sealed predictions from Energy-Flow Cosmology (EFC) are provided for the growth-rate observable f\u03c38(z) and the Hubble distance ratio DH/rd(z) at z = 0.7 and z = 1.0, prior to the unblinding of DESI DR2 full-shape RSD results. The key prediction f\u03c38(z=0.7)=0.430 contrasts with \u039bCDM\u2019s 0.449 (\u22482.0\u03c3), with DH/rd also systematically lower than \u039bCDM at both redshifts, enabling a direct, falsifiable test with forthcoming DESI DR2 data.",
+  "version": "1.0",
+  "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.32013156",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "\u039bCDM",
+    "growth rate",
+    "f\u03c38",
+    "redshift-space distortions",
+    "DESI DR2",
+    "BAO",
+    "Hubble distance",
+    "DH/rd",
+    "MCMC",
+    "NUTS sampler",
+    "sealed pre-registration"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "f_sigma8": {
+      "latex": "f\\sigma_8(z) = f(z)\\,\\sigma_8(z)",
+      "description": "Definition of the growth-rate observable: the product of the logarithmic growth rate f(z) and the rms amplitude of matter fluctuations on 8 h^{-1} Mpc scales."
+    },
+    "growth_rate_f": {
+      "latex": "f(z) = \\frac{\\mathrm{d}\\ln D}{\\mathrm{d}\\ln a}",
+      "description": "Standard definition of the logarithmic growth rate in terms of the linear growth factor D(a)."
+    },
+    "hubble_distance_ratio": {
+      "latex": "\\frac{D_H(z)}{r_d} = \\frac{c}{H(z)\\,r_d}",
+      "description": "Hubble distance ratio used in BAO analyses, where D_H(z)=c/H(z) and r_d is the sound horizon at the drag epoch."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC predicts systematically lower growth and distances than \u039bCDM, with f\u03c38(z=0.7)=0.430 vs 0.449 (\u22482.0\u03c3) and DH/rd lower at z=0.7 and z=1.0 (2.3\u03c3 and 3.1\u03c3 separations), sealed prior to DESI DR2 unblinding.",
+    "delta_chi2": null,
+    "significance_sigma": 2.0,
+    "parameters_tested": [
+      "EFC coupling \u03b1 (entropy-driven modification to Hubble friction in growth equation)"
+    ],
+    "datasets_used": [
+      "6dFGS",
+      "BOSS DR12",
+      "eBOSS DR16",
+      "DESI DR1"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At z = 0.7, the growth-rate observable is f\u03c38 = 0.430 (EFC) versus \u039bCDM\u2019s 0.449, implying \u22482.0\u03c3 lower growth under EFC.",
+      "falsifiable_by": "DESI DR2 full-shape RSD measurement of f\u03c38 at z\u22480.7; falsified if result is consistent with 0.449 (\u039bCDM) within <1\u03c3 or excludes 0.430 at \u22652\u03c3."
+    },
+    {
+      "id": "P2",
+      "statement": "At z = 0.7, the Hubble distance ratio is DH/rd = 19.797 (EFC) versus \u039bCDM\u2019s 20.719 (\u22482.3\u03c3 lower in EFC).",
+      "falsifiable_by": "DESI DR2 BAO full-shape constraints on DH/rd at z\u22480.7; falsified if DH/rd agrees with \u039bCDM within <1\u03c3 or jointly excludes the EFC trend toward lower values."
+    },
+    {
+      "id": "P3",
+      "statement": "At z = 1.0, the Hubble distance ratio is DH/rd = 16.527 (EFC) versus \u039bCDM\u2019s 17.466 (\u22483.1\u03c3 lower in EFC).",
+      "falsifiable_by": "DESI DR2/DR3 BAO and full-shape constraints at z\u22481.0; falsified if measurements align with \u039bCDM within <1\u03c3 or exclude the EFC prediction at \u22652\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: DESI DR2 full-shape RSD at z\u22480.7 yields f\u03c38 consistent with \u039bCDM\u2019s 0.449 within <1\u03c3, or excludes the EFC prediction f\u03c38=0.430 at \u22652\u03c3.",
+    "KC2: DESI DR2 multi-tracer (LRG, ELG) analysis shows no systematic suppression of growth at z\u22721 and jointly favors \u039bCDM over EFC, such that the inferred EFC coupling \u03b1 is consistent with 0 and excludes \u03b1<0 at \u22652\u03c3.",
+    "KC3: DESI DR2/DR3 BAO distances at z=0.7 and z=1.0 yield DH/rd consistent with \u039bCDM (20.719 and 17.466, respectively) within <1\u03c3, jointly excluding the lower EFC values.",
+    "KC4: Independent pipeline replication of the EFC inference using the stated baseline datasets fails to reproduce the sealed predictions (e.g., mismatched f\u03c38 or DH/rd at the quoted redshifts) when chain hashes and configurations are verified."
+  ],
+  "tier": "T1",
+  "paper_type": "sealed_prediction",
+  "related_packages": [],
+  "files": {
+    "pdf": "Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013156"
+}

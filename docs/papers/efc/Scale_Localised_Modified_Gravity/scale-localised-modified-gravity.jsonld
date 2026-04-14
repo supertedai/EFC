@@ -1,48 +1,18 @@
 {
-  "@context": "https://schema.org",
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
   "@type": "ScholarlyArticle",
-  "@id": "https://doi.org/10.6084/m9.figshare.31985313",
-  "name": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via E_G(k,z)",
+  "name": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
   "author": {
     "@type": "Person",
-    "@id": "https://orcid.org/0009-0002-4860-5095",
     "name": "Morten Magnusson",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Symbiose Research, Sandnes, Norway"
-    }
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
   },
-  "datePublished": "2026-04",
-  "version": "1.1",
-  "identifier": "https://doi.org/10.6084/m9.figshare.31985313",
+  "datePublished": "2026-04-01",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "isPartOf": {
-    "@type": "ResearchProject",
-    "@id": "https://energyflow-cosmology.com/",
-    "name": "Energy-Flow Cosmology (EFC)"
-  },
-  "about": [
-    {
-      "@type": "DefinedTerm",
-      "name": "Band-Pass Stiffness Response",
-      "description": "R(k,a) localises gravitational modification to a finite band in Fourier space around k_c = 0.05 h/Mpc"
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "E_G Statistic",
-      "description": "Model-independent measurement of Sigma/mu isolating gravitational anisotropy; EFC predicts a ~7% scale-dependent bump at k ~ k_c"
-    }
-  ],
-  "keywords": [
-    "modified gravity",
-    "scale-localised",
-    "band-pass response",
-    "E_G statistic",
-    "gravitational slip",
-    "perturbation sector",
-    "DESI",
-    "Planck lensing"
-  ],
-  "sameAs": "https://doi.org/10.6084/m9.figshare.31985313",
-  "doi": "10.6084/m9.figshare.31985313"
+  "@id": "doi:10.6084/m9.figshare.31985313",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31985313",
+  "doi": "10.6084/m9.figshare.31985313",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31985313"
 }

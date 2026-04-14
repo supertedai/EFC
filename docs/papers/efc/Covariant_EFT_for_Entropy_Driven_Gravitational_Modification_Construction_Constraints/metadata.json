@@ -1,31 +1,40 @@
 {
-  "package_format": "ai-friendly-paper",
-  "package_version": "1.0",
-  "created": "2026-03-28",
-  "generator": "Claude (Anthropic)",
-  "paper_title": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification",
-  "ai_parsability": {
-    "machine_readable_metadata": true,
-    "json_schema_validated": true,
-    "linked_data": true,
-    "reference_implementation": true,
-    "runnable_demo": true,
-    "structured_citations": true
+  "title": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme",
+  "short_id": "covariant-eft-for-entropy-driven-gravitational-modification-construction-constraints",
+  "version": "v1",
+  "date": "2026-03-28",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31878334",
+  "abstract": "Presents a covariant scalar\u2013tensor EFT in which an entropy-like scalar S modifies gravity via an acceleration-dependent response, developed and stress-tested through 17 falsification iterations. The work derives five structural results that hold independent of the specific response function, and identifies a critical gap: the classical action yields a correction that increases with acceleration, opposite to the RAR, motivating an EFT with the empirical \u00b5(g) postulated.",
+  "keywords": [
+    "covariant EFT",
+    "scalar-tensor",
+    "entropy-driven gravity",
+    "Radial Acceleration Relation",
+    "Bose-Einstein",
+    "gravitational waves",
+    "gravitational slip",
+    "solar-system constraints",
+    "acceleration scale",
+    "a0",
+    "iterative falsification",
+    "microphysical gap"
+  ],
   "files": {
-    "index": "index.json",
+    "pdf": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf",
+    "readme": "README.md",
     "schema": "schema.json",
+    "metadata": "metadata.json",
     "jsonld": "Covariant_EFT.jsonld",
     "citations": "citations.bib",
     "source": "src/covariant_eft.py",
     "data": "data/framework.json",
     "demo": "examples/demo_covariant_eft.py"
-  },
-  "dependencies": {
-    "python": ">=3.8",
-    "packages": [
-      "numpy"
-    ]
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31878334",

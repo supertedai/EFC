@@ -1,113 +1,104 @@
 {
+  "$schema": "./schema.json",
   "id": "cosmological-growth-constraints-lambda-locked",
-  "title": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
-  "short_title": "Growth Constraints on Λ-Locked Gravity",
+  "title": "Cosmological Growth Constraints on \u039b-Locked Discrete Entropic Gravity",
+  "description": "Tests whether a discrete entropic gravity operator with MOND-like infrared enhancement remains compatible with cosmological structure growth when its transition scale is \u039b-locked. Embeds a scale-dependent Geff(k) into the linear growth equation and compares \u039b-locked (super-Hubble) versus sub-Hubble transition scales. Finds that only \u039b-locking (L\u039b \u2273 H0\u22121) preserves realistic \u03c38 \u2248 0.81; sub-Hubble transitions cause catastrophic overgrowth.",
   "version": "1.0",
   "date": "2026-02-16",
+  "doi": "10.6084/m9.figshare.31348414",
+  "keywords": [
+    "cosmological growth",
+    "structure formation",
+    "\u03c38",
+    "\u039b-locking",
+    "discrete gravity",
+    "modified gravity",
+    "MOND",
+    "AQUAL",
+    "infrared screening",
+    "linear perturbation theory",
+    "effective gravitational coupling",
+    "EFC"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Norway"
   },
-  "license": "CC-BY-4.0",
-  "type": "technical_note",
-  "epistemic_layer": "B",
-  "epistemic_status": "Stress test establishing Λ-locking as necessary condition for cosmological consistency",
-  "keywords": [
-    "cosmological growth",
-    "structure formation",
-    "σ₈",
-    "Λ-locking",
-    "discrete gravity",
-    "modified gravity",
-    "AQUAL",
-    "MOND",
-    "infrared screening",
-    "linear perturbation theory",
-    "EFC"
-  ],
-  "abstract": "Tests cosmological viability of discrete entropic gravity with Λ-locked screening. Three transition-scale scenarios compared: Λ-locked (4.4 Gpc), 10 Mpc, and 1 Mpc. Only Λ-locking preserves realistic σ₈ ≈ 0.8. Sub-Hubble transitions produce catastrophic overgrowth (σ₈ >> 1). Establishes Λ-locking as necessary condition for cosmological consistency.",
+  "core_equations": {
+    "deep_mond_enhancement": {
+      "latex": "g = C\\,\\sqrt{a_0\\, g_N}",
+      "description": "Deep-MOND scaling from the discrete entropic operator, with enhancement prefactor C \u2248 2.32 relating true acceleration g to Newtonian g_N."
+    },
+    "geff_scale_dependence": {
+      "latex": "\\frac{G_{\\mathrm{eff}}(k)}{G} = 1 + \\frac{C^2 - 1}{1 + (k/k_{\\Lambda})^2}",
+      "description": "Lorentzian window parameterization of the scale-dependent effective coupling from the discrete operator with \u039b-locked screening."
+    },
+    "transition_scale": {
+      "latex": "k_{\\Lambda} = \\frac{1}{L_{\\Lambda}},\\quad L_{\\Lambda} \\propto \\Lambda^{-1/2}",
+      "description": "Defines the infrared transition wavenumber and its scaling with the cosmological constant in the \u039b-locked scenario."
+    },
+    "linear_growth": {
+      "latex": "\\delta'' + \\left(2 + \\frac{H'}{H}\\right)\\delta' - \\frac{3}{2} \\, \\Omega_m(a)\\,\\left[\\frac{G_{\\mathrm{eff}}(k)}{G}\\right] \\delta = 0",
+      "description": "Linear growth equation for matter perturbations with a scale-dependent effective gravitational coupling."
+    },
+    "viability_condition": {
+      "latex": "L_{\\Lambda} \\gtrsim H_0^{-1}",
+      "description": "Cosmological viability condition: the infrared enhancement must be screened at or above the Hubble scale to avoid overgrowth."
+    }
+  },
   "key_results": {
-    "scenarios": [
-      {
-        "name": "ΛCDM",
-        "transition_scale": null,
-        "k_transition": null,
-        "sigma8": 0.811,
-        "gamma": 0.554,
-        "viable": true
-      },
-      {
-        "name": "Graph-AQUAL (Λ-locked)",
-        "transition_scale_Gpc": 4.4,
-        "k_transition_h_per_Mpc": 0.0014,
-        "sigma8": 0.814,
-        "gamma": 0.554,
-        "sigma8_excess_percent": 0.4,
-        "viable": true
-      },
-      {
-        "name": "Graph-AQUAL (10 Mpc)",
-        "transition_scale_Mpc": 10,
-        "k_transition_h_per_Mpc": 0.1,
-        "sigma8": 367,
-        "gamma": 0.541,
-        "sigma8_excess_factor": 452,
-        "viable": false
-      },
-      {
-        "name": "Graph-AQUAL (1 Mpc)",
-        "transition_scale_Mpc": 1,
-        "k_transition_h_per_Mpc": 1.0,
-        "sigma8": 24098,
-        "gamma": 0.536,
-        "sigma8_excess_factor": 29714,
-        "viable": false
-      }
+    "main_finding": "Only the \u039b-locked transition (L\u039b \u2248 4.4 Gpc, k\u039b \u2248 0.0014 h/Mpc) preserves \u03c38 \u2248 0.81 (0.4% above \u039bCDM), while sub-Hubble transitions (10 Mpc and 1 Mpc) produce explosive overgrowth (\u03c38 \u226b 1), establishing L\u039b \u2273 H0\u22121 as necessary for viability.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Transition scale L\u039b (\u039b-locked \u2248 4.4 Gpc; sub-Hubble: 10 Mpc, 1 Mpc)",
+      "Transition wavenumber k\u039b (\u2248 0.0014, 0.1, 1.0 h/Mpc)",
+      "Enhancement prefactor C \u2248 2.32",
+      "Background parameters fixed to Planck 2018 (\u03a9m=0.315, H0=67.4 km/s/Mpc)"
     ],
-    "viability_condition": "L_Λ ≳ H₀⁻¹",
-    "lambda_locked_scale_Gpc": 4.4,
-    "prefactor_C": 2.32,
-    "C_squared": 5.38,
-    "sigma8_observed": "0.811 ± 0.006"
+    "datasets_used": [
+      "Planck 2018 background cosmology (\u03a9m, H0, \u03c38,\u039bCDM)",
+      "\u03c38 observational benchmark: 0.811 \u00b1 0.006"
+    ],
+    "verdict": "PASS"
   },
-  "key_equations": {
-    "deep_mond_enhancement": "g = C √(a₀ g_N)",
-    "geff_ratio": "G_eff(k)/G = 1 + (C²−1) / (1 + (k/k_Λ)²)",
-    "transition_wavenumber": "k_Λ = 1/L_Λ, L_Λ ∝ Λ^{-1/2}",
-    "growth_equation": "δ'' + (2 + H'/H)δ' − (3/2)Ω_m(a)[G_eff(k)/G]δ = 0",
-    "viability_condition": "L_Λ ≳ H₀⁻¹"
-  },
-  "parameters": {
-    "Omega_m": 0.315,
-    "H0_km_s_Mpc": 67.4,
-    "sigma8_LCDM": 0.811,
-    "C": 2.32,
-    "Lambda_m2": 1.11e-52,
-    "L_Lambda_Gpc": 4.4,
-    "k_Lambda_h_per_Mpc": 0.0014
-  },
-  "limitations": [
-    "Linear growth only; no nonlinear corrections or N-body verification",
-    "No CMB angular power spectrum computed",
-    "No full Boltzmann integration (CLASS/CAMB)",
-    "G_eff(k) is Lorentzian approximation to full discrete operator",
-    "Poisson-channel modification μ(a) < 1 not activated"
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "With \u039b-locking, late-time growth remains \u039bCDM-like: \u03c38(z=0) will agree with \u039bCDM within \u22481% and show no statistically significant k-dependence for 0.01 \u2272 k \u2272 0.2 h/Mpc.",
+      "falsifiable_by": "Stage-IV RSD and weak-lensing tomography (e.g., DESI+Euclid+LSST) measuring f\u03c38(k,z) and \u03bc(k,z) at the percent level."
+    },
+    {
+      "id": "P2",
+      "statement": "The growth index remains \u039bCDM-like, \u03b3 \u2248 0.55 \u00b1 0.02, across z \u2272 1 for linear scales if \u039b-locking holds.",
+      "falsifiable_by": "Joint fits to growth-rate data (RSD) and background expansion; significant deviation of \u03b3 beyond \u00b10.02 at linear scales would falsify."
+    },
+    {
+      "id": "P3",
+      "statement": "Any inferred transition scale from gravity tests will be super-Hubble: k\u039b \u2272 0.003 h/Mpc (L\u039b \u2273 3.3 Gpc).",
+      "falsifiable_by": "Constraints on \u03bc(k,z) or \u03a3(k,z) from lensing\u2013clustering cross-correlations and ISW\u2013lensing that localize a transition at k\u039b \u2273 0.005 h/Mpc."
+    }
   ],
-  "companion_paper": {
-    "id": "discrete-entropic-gravity-cubic-graph",
-    "doi": "10.6084/m9.figshare.31348411",
-    "relationship": "defines the operator tested here"
-  },
-  "related_papers": [
+  "kill_criteria": [
+    "KC1: Robust evidence for enhanced linear growth on sub-Hubble linear scales\u2014e.g., \u03bc(k,z) = Geff/G \u2212 1 \u2265 0.1 at 0.05 \u2264 k \u2264 0.2 h/Mpc and z \u2272 1 from combined RSD+lensing\u2014contradicting \u039b-locked screening (Geff \u2248 G on these scales).",
+    "KC2: Inference of a transition scale significantly below the Hubble scale\u2014e.g., L\u039b < 2 Gpc (k\u039b > 0.005 h/Mpc)\u2014from any scale-dependent gravity probe (\u03bc or \u03a3), which would imply catastrophic overgrowth ruled out by observations.",
+    "KC3: High-precision determination of \u03c38(z=0) \u2265 0.90 or \u2264 0.72 under a \u039bCDM-like background (\u03a9m \u2248 0.315, H0 \u2248 67\u201370 km/s/Mpc), inconsistent with the \u039b-locked prediction \u03c38 \u2248 0.81 \u00b1 0.01.",
+    "KC4: Boltzmann/N-body implementations of the full discrete entropic operator (beyond the Lorentzian approximation) failing to reproduce \u039bCDM-like growth (|\u0394\u03c38| \u2272 1%) under \u039b-locking, indicating the operator necessarily induces sub-Hubble enhancement.",
+    "KC5: Detection of strong scale dependence in f\u03c38(k) at 0.01 \u2264 k \u2264 0.2 h/Mpc (variation > 3% after systematics control), implying a sub-Hubble active infrared sector incompatible with \u039b-locking.",
+    "KC6: Empirical evidence that L\u039b does not scale as \u039b^{-1/2} (e.g., from varying-\u039b or modified background tests) breaking the \u039b-locked linkage central to the screening mechanism."
+  ],
+  "tier": "T3",
+  "paper_type": "empirical_test",
+  "related_packages": [
     {
       "id": "discrete-entropic-gravity-cubic-graph",
       "doi": "10.6084/m9.figshare.31348411",
-      "relationship": "companion_operator_paper"
+      "role": "companion_operator_paper defining the discrete operator used here"
     }
   ],
   "files": {
-    "paper": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity.pdf",
+    "paper": "Cosmological_Growth_Constraints_on_\u039b-Locked_Discrete_Entropic_Gravity.pdf",
     "documentation": [
       "README.md",
       "QUICKSTART.md",
@@ -135,6 +126,46 @@
       "examples/geff_profile.py"
     ]
   },
-  "doi": "10.6084/m9.figshare.31348414",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348414"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348414",
+  "short_title": "Growth Constraints on \u039b-Locked Gravity",
+  "license": "CC-BY-4.0",
+  "type": "technical_note",
+  "epistemic_layer": "B",
+  "epistemic_status": "Stress test establishing \u039b-locking as necessary condition for cosmological consistency",
+  "abstract": "Tests cosmological viability of discrete entropic gravity with \u039b-locked screening. Three transition-scale scenarios compared: \u039b-locked (4.4 Gpc), 10 Mpc, and 1 Mpc. Only \u039b-locking preserves realistic \u03c3\u2088 \u2248 0.8. Sub-Hubble transitions produce catastrophic overgrowth (\u03c3\u2088 >> 1). Establishes \u039b-locking as necessary condition for cosmological consistency.",
+  "key_equations": {
+    "deep_mond_enhancement": "g = C \u221a(a\u2080 g_N)",
+    "geff_ratio": "G_eff(k)/G = 1 + (C\u00b2\u22121) / (1 + (k/k_\u039b)\u00b2)",
+    "transition_wavenumber": "k_\u039b = 1/L_\u039b, L_\u039b \u221d \u039b^{-1/2}",
+    "growth_equation": "\u03b4'' + (2 + H'/H)\u03b4' \u2212 (3/2)\u03a9_m(a)[G_eff(k)/G]\u03b4 = 0",
+    "viability_condition": "L_\u039b \u2273 H\u2080\u207b\u00b9"
+  },
+  "parameters": {
+    "Omega_m": 0.315,
+    "H0_km_s_Mpc": 67.4,
+    "sigma8_LCDM": 0.811,
+    "C": 2.32,
+    "Lambda_m2": 1.11e-52,
+    "L_Lambda_Gpc": 4.4,
+    "k_Lambda_h_per_Mpc": 0.0014
+  },
+  "limitations": [
+    "Linear growth only; no nonlinear corrections or N-body verification",
+    "No CMB angular power spectrum computed",
+    "No full Boltzmann integration (CLASS/CAMB)",
+    "G_eff(k) is Lorentzian approximation to full discrete operator",
+    "Poisson-channel modification \u03bc(a) < 1 not activated"
+  ],
+  "companion_paper": {
+    "id": "discrete-entropic-gravity-cubic-graph",
+    "doi": "10.6084/m9.figshare.31348411",
+    "relationship": "defines the operator tested here"
+  },
+  "related_papers": [
+    {
+      "id": "discrete-entropic-gravity-cubic-graph",
+      "doi": "10.6084/m9.figshare.31348411",
+      "relationship": "companion_operator_paper"
+    }
+  ]
 }

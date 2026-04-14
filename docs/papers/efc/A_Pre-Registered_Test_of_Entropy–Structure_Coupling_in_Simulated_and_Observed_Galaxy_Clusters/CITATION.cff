@@ -1,33 +1,13 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
-type: article
 title: "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters"
+message: "If you use this work, please cite it as below."
 authors:
   - family-names: "Magnusson"
     given-names: "Morten"
     orcid: "https://orcid.org/0009-0002-4860-5095"
-date-released: 2026-02-01
+    affiliation: "Symbiose Research, Sandnes, Norway"
+date-released: "2026-02-01"
+version: "pre-print v1"
 doi: "10.6084/m9.figshare.31286368"
-identifiers:
-  - type: doi
-    value: "10.6084/m9.figshare.31286368"
-    description: "Figshare DOI"
-repository: "https://github.com/supertedai/EFC"
-keywords:
-  - galaxy clusters
-  - intracluster medium
-  - cool cores
-  - entropy profiles
-  - cosmological simulations
-  - TNG-Cluster
-  - pre-registered analysis
-  - ACCEPT
-abstract: >-
-  We test whether the observed positive correlation between entropy profile
-  steepness and cool-core state reported in the ACCEPT X-ray cluster sample
-  (ρ(α, y_CCT) ~ +0.36) is reproduced in the TNG-Cluster cosmological MHD
-  simulation (352 halos). Using pre-registered statistical tests, we find a
-  strong negative correlation ρ(n_e-slope, K0) = -0.872 (p ~ 10^-111), robust
-  against mass confounding. This potential sim-obs mismatch raises questions
-  about ICM physics in modern ΛCDM hydrodynamic simulations.
-license: MIT
+license: "CC-BY-4.0"
+repository-code: "https://github.com/supertedai/EFC"

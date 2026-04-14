@@ -1,22 +1,69 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-v2.2-Cross-Field-Integration-Summary",
-  "title": "EFC — v2.2 Cross-Field Integration Summary",
+  "title": "EFC \u2014 v2.2 Cross-Field Integration Summary",
+  "description": "This paper presents Energy-Flow Cosmology (EFC) as a cross-disciplinary framework in which energy flow and entropy are treated as universal variables that generate structure and constrain stability across physical, biological, and socio-technical systems. It synthesizes non-equilibrium thermodynamics, synergetics, and energy-rate density scaling to propose an adaptive window of energy throughput for sustained complexity, and illustrates applications in climate/urban heat, AI systems, and economic networks.",
+  "version": "2.2",
+  "date": "2025-11-01",
+  "doi": "10.6084/m9.figshare.30530156",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Non-equilibrium thermodynamics",
+    "Dissipative structures",
+    "Energy rate density",
+    "Entropy",
+    "Synergetics",
+    "Complexity scaling",
+    "Anthropogenic heat flux",
+    "Urban heat island",
+    "Thermodynamics of AI",
+    "Entropic gravity",
+    "Systems science"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_rate_density": {
+      "latex": "\\phi = \\frac{1}{M}\\,\\frac{\\mathrm{d}E}{\\mathrm{d}t}",
+      "description": "Energy rate density: the rate of energy flow per unit mass (or functional unit), used as a cross-scale proxy for complexity and organizational stability."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC argues that continuous energy flow and entropy production generate geometry and constrain complexity via an adaptive window of energy throughput that applies across physical, biological, and artificial systems.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Across diverse systems (e.g., stars, ecosystems, cities, data centers), stability and sustained complexity will exhibit an inverted-U dependence on energy rate density, with failure modes appearing at both too-low and too-high throughput.",
+      "falsifiable_by": "Cross-domain meta-analyses showing no bounded optimum\u2014i.e., long-lived, complex systems remain stable across arbitrarily low or high energy rate densities without increased failure rates."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Cross-domain empirical studies (astrophysical, biological, urban, computational) fail to find any bounded optimal range between energy rate density and sustained complexity; long-lived systems remain stable at both extremely low and extremely high energy throughput without increased failure or collapse.",
+    "KC2: Controlled experiments demonstrate persistent generation and maintenance of ordered, low-entropy structures in closed systems without exporting entropy to an environment, contradicting the dissipative-structure basis of EFC.",
+    "KC3: Urban-scale interventions that reduce anthropogenic heat flux (AHF) by \u226550% (with albedo, morphology, and meteorology held constant) produce no measurable reduction in urban heat island intensity or microclimatic instability, refuting EFC\u2019s claim that AHF acts as a local entropy amplifier.",
+    "KC4: Large-scale AI training runs show monotonic gains in information efficiency and stability as power density increases by orders of magnitude (without architectural or algorithmic changes), with no onset of instability, saturation, or error blow-up, contradicting the EFC adaptive-window prediction.",
+    "KC5: Observations or analog-gravity experiments reveal no correlation between local entropy/flow gradients and the dynamical regime (smooth GR-like vs turbulent/quantum-like behavior), undermining EFC\u2019s claim that entropy gradients generatively shape effective geometry and dynamics."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-v2.2-Cross-Field-Integration-Summary.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30530156",
   "path": "docs/papers/efc/EFC-v2.2-Cross-Field-Integration-Summary",
   "pdf": "EFC-v2.2-Cross-Field-Integration-Summary.pdf",
   "md": "EFC-v2.2-Cross-Field-Integration-Summary.md",
-  "keywords": [
-    "EFC",
-    "Field Integration",
-    "Unified Model",
-    "Entropy",
-    "Energy Flow",
-    "Grid",
-    "Information Field",
-    "Version 2.2"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "2.2",
-  "doi": "10.6084/m9.figshare.30530156",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30530156"
+  "type": "paper"
 }

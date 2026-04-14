@@ -1,0 +1,137 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-preregistered-predictions",
+  "title": "Pre-Registered Predictions for the Entropy Flow Cosmology (EFC) Model",
+  "description": "This preregistration freezes and publicly archives the Energy-Flow Cosmology (EFC) model\u2019s benchmark parameters, EFT mapping, and a sealed set of testable observational predictions prior to Euclid DR1, Rubin DP2, and SO\u00d7Euclid releases. It specifies percent-level shifts of key observables relative to \u039bCDM on Euclid quasi-linear scales, the characteristic \u00b5<1, \u03a3>1, \u03b7>1 signature, and explicit kill criteria, all anchored by DOIs and a SHA-256 hash.",
+  "version": "1.0",
+  "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.32010399",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy flow",
+    "modified gravity",
+    "Horndeski EFT",
+    "Euclid DR1",
+    "Rubin DP2",
+    "Simons Observatory",
+    "EG statistic",
+    "weak lensing",
+    "RSD growth",
+    "BAO",
+    "hi_class"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "core_equations": {
+    "EFC_action": {
+      "latex": "S_{\\mathrm{EFC}} = \\int d^4x\\,\\sqrt{-g}\\,\\Big[ \\tfrac{1}{2} M_{\\rm Pl}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho)\\, g^{\\mu\\nu} \\partial_{\\mu}\\phi\\,\\partial_{\\nu}\\phi - V(\\phi) - \\lambda\\, \\Box \\phi - \\Gamma(\\rho) \\Big],\\quad F(\\phi)=1+\\alpha_\\phi\\,\\phi",
+      "description": "Relativistic action defining EFC with a non-minimal coupling F(\u03d5), density-dependent kinetic stiffness K(\u03c1), potential V(\u03d5), a Lagrange multiplier \u03bb enforcing the flow constraint, and an entropy-flow term \u0393(\u03c1)."
+    },
+    "alpha_functions": {
+      "latex": "\\alpha_M(a) = M_0\\, S(a),\\quad \\alpha_B(a) = B_0\\, \\frac{dS}{d\\ln a},\\quad \\alpha_T=0,\\quad S(a) = \\big[1+\\exp\\!\\big(-\\tfrac{\\ln a - \\ln a_t}{\\Delta}\\big)\\big]^{-1}",
+      "description": "Bellini\u2013Sawicki EFT functions used in the Boltzmann integration via a logistic (sigmoid) transition S(a); the tensor speed excess is set to zero (c_T=c)."
+    },
+    "modified_gravity_observables": {
+      "latex": "\\mu(k,z),\\quad \\Sigma(k,z),\\quad \\eta(k,z)=\\Phi/\\Psi",
+      "description": "Scale- and redshift-dependent effective gravitational coupling (\u00b5), lensing modification (\u03a3), and gravitational slip (\u03b7) computed from EFC perturbations in conformal Newtonian gauge."
+    }
+  },
+  "key_results": {
+    "main_finding": "All EFC benchmark parameters and opposite-sign growth\u2013lensing predictions are preregistered and sealed, with specific percent-level shifts (P1\u2013P5) vs. \u039bCDM on Euclid DR1 scales and the characteristic signature \u00b5<1, \u03a3>1, \u03b7\u22481.10.",
+    "delta_chi2": -22.01,
+    "significance_sigma": 2.2,
+    "parameters_tested": [
+      "B0 = 0.02",
+      "M0 = 0.06",
+      "a_t = 0.30",
+      "\u0394 = 0.30",
+      "\u03b1K = 1.0",
+      "\u03b1T = 0.0",
+      "Stability: M0 \u2265 3 B0; c_s^2 > 0; Q_S > 0"
+    ],
+    "datasets_used": [
+      "Euclid DR1 (planned)",
+      "Rubin DP2 (planned)",
+      "SO \u00d7 Euclid EG cross-correlation (planned)",
+      "DESI DR2 BAO (context for regime-transition fit)",
+      "Planck 2018 background (baseline for \u039bCDM comparison)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "SV1",
+      "statement": "Survival valley signature on 0.5 \u2272 z \u2272 1: \u00b5(z) < 1 (\u2248 0.94), \u03a3(z) > 1 (\u2248 1.05), and \u03b7(z) \u2248 1.10 (positive slip), distinguishing EFC from f(R) (\u00b5>1) and \u039bCDM (\u03b7=1).",
+      "falsifiable_by": "Combined Euclid DR1 growth and lensing consistency tests of \u00b5, \u03a3, and \u03b7 on quasi-linear scales."
+    },
+    {
+      "id": "P1",
+      "statement": "\u03c38 shift relative to \u039bCDM at fixed background: +1.21% at the EFC benchmark.",
+      "falsifiable_by": "Euclid DR1 growth (RSD/clustering) with matched background and systematics corrections."
+    },
+    {
+      "id": "P2",
+      "statement": "Matter power spectrum at k = 0.05 h/Mpc, z = 0.5: +2.09% vs. \u039bCDM.",
+      "falsifiable_by": "Euclid DR1 galaxy clustering on quasi-linear scales with window/convolution corrections."
+    },
+    {
+      "id": "P3",
+      "statement": "Lensing potential power C_\u2113^{\u03d5\u03d5} at \u2113 = 66: \u22126.01% vs. \u039bCDM.",
+      "falsifiable_by": "Weak-lensing and CMB-lensing measurements (Euclid \u00d7 CMB) on matched multipoles."
+    },
+    {
+      "id": "P4",
+      "statement": "EG statistic at \u2113 = 66: \u22123.98% vs. \u039bCDM.",
+      "falsifiable_by": "Galaxy\u2013lensing + RSD joint EG analysis (Simons Observatory \u00d7 Euclid)."
+    },
+    {
+      "id": "P5",
+      "statement": "ISW contribution C_\u2113^{TT} at \u2113 = 30: +1.88% vs. \u039bCDM.",
+      "falsifiable_by": "Planck low-\u2113 TT and ISW\u2013LSS cross-correlations with consistent masks and calibrations."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If EG(\u2113\u224866) is consistent with \u039bCDM within |\u0394EG| < 1% at \u22652\u03c3 (including systematics), i.e., no \u2248 \u22123.98% shift, the EFC benchmark coupling is falsified.",
+    "KC2: Any sealed observable P1\u2013P5 exhibits an opposite-sign shift relative to \u039bCDM at \u22652\u03c3 after window/convolution and systematic corrections.",
+    "KC3: Euclid DR1 growth and lensing sectors shift with the same sign near k\u22480.05 h/Mpc (or \u2113\u224866) at \u22652\u03c3, violating the EFC coherence pattern (\u00b5<1 with \u03a3>1).",
+    "KC4: Independent reproduction with hi_class + efc_logistic shows Horndeski stability violation (c_s^2 \u2264 0 or Q_S \u2264 0) on 0 < z < 3 at the benchmark."
+  ],
+  "tier": "T1",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "EFC relativistic action, perturbation theory, and extraction of \u00b5, \u03a3, \u03b7"
+    },
+    {
+      "id": "efc-boltzmann-prereg",
+      "doi": "10.6084/m9.figshare.31990053",
+      "role": "Boltzmann pipeline preregistration (hi_class 3.0 + efc_logistic Horndeski patch) used to seal P1\u2013P5"
+    },
+    {
+      "id": "efc-fsigma8-loo",
+      "doi": "10.6084/m9.figshare.31332730",
+      "role": "Leave-one-out growth (f\u03c38) analysis referenced for context"
+    },
+    {
+      "id": "efc-desi-bao-regime",
+      "doi": "10.6084/m9.figshare.31230703",
+      "role": "Regime-transition fit to DESI DR2 BAO (\u0394AIC and \u03c72 context)"
+    },
+    {
+      "id": "rcmp-principle",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Regime-Consistent Measurement Principle underpinning EFC interpretation"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_PreRegistered_Predictions.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32010399"
+}

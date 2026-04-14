@@ -1,42 +1,145 @@
 {
-  "name": "EFC-H0-S8-Tensions",
-  "type": "EFC-Paper",
-  "collection": "efc",
-  "document_id": "EFC-H0-S8-Tensions",
-  "title": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0006-5904-4032",
+  "$schema": "./schema.json",
+  "id": "efc-h0-s8-tensions",
+  "title": "Resolving the H0 and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+  "description": "Introduces an Energy-Flow Cosmology (EFC) mechanism that separates local and global inference using an entropy-dependent mapping, resolving both the H0 and S8 tensions without altering the cosmic expansion history, sound horizon, or early-universe physics. The paper demonstrates a \u2206\u03c72 = 40.29 improvement for H0 consistency and reduces the S8 tension from 3.3\u03c3 to 0.3\u03c3 while remaining consistent with BAO, SNe Ia, and CMB constraints.",
+  "version": "1.0",
   "date": "2026-01-09",
   "doi": "10.6084/m9.figshare.31026151",
-  "figshare_id": "31026151",
-  "tier": "CANONICAL",
-  "layer": "APPLIED",
-  "domain": "cosmology",
-  "status": "published",
-  "version": "1.0",
-  "abstract": "The Hubble tension and S8 tension represent the most significant challenges to ΛCDM. We present an analysis within the EFC framework demonstrating that both tensions can be resolved simultaneously through entropy-dependent modification of local-to-global parameter inference.",
   "keywords": [
     "Hubble tension",
     "H0",
     "S8 tension",
-    "ΛCDM",
     "Energy-Flow Cosmology",
-    "CMB",
+    "entropy field",
+    "effective gravitational coupling",
+    "weak lensing",
     "BAO",
+    "CMB",
     "SPARC",
-    "thermodynamic cosmology"
+    "growth suppression",
+    "local-global inference"
   ],
-  "categories": [
-    "Cosmology and extragalactic astronomy",
-    "Thermodynamics and statistical physics",
-    "Galactic astronomy"
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "energy_flow_potential": {
+      "latex": "E_f(\\mathbf{x}) = \\rho(\\mathbf{x})\\,\\bigl(1 - S(\\mathbf{x})\\bigr)",
+      "description": "Defines the Energy-Flow potential coupling matter density to a dimensionless entropy field S in [0,1]."
+    },
+    "mean_entropy_evolution": {
+      "latex": "\\bar S(z) = S_{\\infty}\\left[1 - \\exp\\!\\left(-\\frac{1}{(1+z)\\,a_S}\\right)\\right]",
+      "description": "Phenomenological evolution of the cosmic-mean entropy with asymptote S_\u221e and timescale a_S."
+    },
+    "modified_friedmann": {
+      "latex": "H^2(z) = H_0^2\\,\\Bigl[\\Omega_m(1+z)^3 + \\Omega_r(1+z)^4 + \\Omega_S(z)\\Bigr]",
+      "description": "Background expansion including an entropy-sector energy density contribution \u03a9_S(z)."
+    },
+    "entropy_density_contribution": {
+      "latex": "\\Omega_S(z) = \\Omega_{S0}\\,\\bigl(1 - \\bar S(z)\\bigr)^{n}",
+      "description": "Parametrization of the entropy-sector contribution to the expansion as a function of mean entropy."
+    },
+    "effective_gravitational_coupling": {
+      "latex": "G_{\\mathrm{eff}}(S) = G_N\\,\\bigl(1 + \\beta S\\bigr),\\quad \\beta < 0",
+      "description": "Entropy-dependent effective Newton constant; negative \u03b2 suppresses late-time structure growth."
+    },
+    "local_entropy": {
+      "latex": "S_{\\mathrm{local}}(\\mathbf{x}) = \\bar S(z) - \\gamma_S\\,\\delta_m(\\mathbf{x})",
+      "description": "Environmental modulation of entropy by local matter overdensity \u03b4_m with coupling \u03b3_S."
+    },
+    "local_h0_inference": {
+      "latex": "H_{0,\\mathrm{local}} = H_{0,\\mathrm{cosmic}}\\,\\sqrt{\\dfrac{\\Omega_m + \\Omega_S\\bigl(S_{\\mathrm{local}}\\bigr)}{\\Omega_m + \\Omega_S\\bigl(\\bar S\\bigr)}}",
+      "description": "Bias in locally inferred H0 when interpreting data assuming cosmic-average entropy."
+    },
+    "modified_growth": {
+      "latex": "\\ddot{\\delta} + 2H\\dot{\\delta} + \\eta\\,\\bar S\\,\\dot{\\delta} = 4\\pi G_N\\bigl(1 + \\beta\\,\\bar S\\bigr)\\bar\\rho\\,\\delta",
+      "description": "Linear growth with entropy-induced damping (\u03b7) and modified strength via \u03b2."
+    },
+    "halo_entropy_profile": {
+      "latex": "S(r) = S_c + (S_{\\infty} - S_c)\\,\\Bigl[1 - e^{-r/r_S}\\Bigr]",
+      "description": "Spherically symmetric entropy profile for galactic halos transitioning over scale r_S."
+    },
+    "effective_potential_galaxies": {
+      "latex": "\\Phi_{\\mathrm{eff}}(r) = \\Phi_N(r)\\,\\bigl(1 + \\alpha\\,S(r)\\bigr)",
+      "description": "Entropy-coupled effective gravitational potential at galactic scales; \u03b1 consistent with cosmological \u03b2."
+    }
+  },
+  "key_results": {
+    "main_finding": "An entropy-dependent local-global inference separation within EFC simultaneously resolves the H0 and S8 tensions without altering H(z), r_d, or early-universe physics, remaining consistent with BAO, SNe Ia, and CMB.",
+    "delta_chi2": 40.29,
+    "significance_sigma": 0.3,
+    "parameters_tested": [
+      "S_infty = 0.73",
+      "a_S = 0.5",
+      "Omega_S0 = 1.857",
+      "gamma_S = 0.20",
+      "beta = -0.08",
+      "eta = 0.05"
+    ],
+    "datasets_used": [
+      "Planck CMB",
+      "SH0ES (Cepheid-calibrated SNe Ia)",
+      "BAO",
+      "Type Ia Supernovae (Hubble diagram)",
+      "Weak lensing",
+      "SPARC galaxy rotation curves (pilot N=20)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "After controlling for calibration and selection systematics, locally inferred H0 residuals will anti-correlate with smoothed large-scale matter overdensity \u03b4_m on 20\u201350 Mpc scales with slope consistent with \u03b3_S \u2248 0.20 (i.e., underdense regions yield higher H0).",
+      "falsifiable_by": "Cross-correlation of H0 residual maps from SNe Ia/Cepheid calibrators with reconstructed density fields from galaxy surveys (e.g., DESI, SDSS) at 20\u201350 Mpc smoothing."
+    },
+    {
+      "id": "P2",
+      "statement": "The late-time amplitude of matter fluctuations is S8(z\u22480) = 0.766 \u00b1 0.020 with \u03b2 = \u22120.08 and \u03b7 = 0.05.",
+      "falsifiable_by": "Stage-III/IV weak-lensing and galaxy\u2013galaxy lensing measurements (e.g., KiDS, DES, HSC, Euclid, Rubin-LSST) combined with clustering and CMB lensing."
+    },
+    {
+      "id": "P3",
+      "statement": "BAO and CMB acoustic scales, including the sound horizon r_d and CMB peak positions, remain unchanged relative to \u039bCDM within current uncertainties.",
+      "falsifiable_by": "DESI BAO distance ladder and Planck/Simons Observatory/CMB-S4 acoustic scale measurements showing statistically significant shifts in r_d or peak positions."
+    },
+    {
+      "id": "P4",
+      "statement": "Galaxy-scale coupling \u03b1 inferred from rotation curves is consistent in sign with cosmological \u03b2 (<0) and within a factor of \u22722 in magnitude when mapped via S(r).",
+      "falsifiable_by": "Joint fits to large SPARC samples and independent rotation-curve datasets comparing \u03b1 to \u03b2 from growth data."
+    }
   ],
+  "kill_criteria": [
+    "KC1: No negative correlation between local H0 residuals and large-scale overdensity \u03b4_m is observed at \u22652\u03c3 when analyzed on 20\u201350 Mpc smoothing scales; specifically, dH0/d\u03b4_m \u2265 0 or |\u03b3_S| < 0.05 in joint SN+density-field analyses would falsify the local-global inference mechanism.",
+    "KC2: Combined growth measurements (RSD, weak lensing, CMB lensing) in 0 < z < 1 statistically exclude \u03b2 < 0 at \u226595% CL (i.e., favor \u03b2 \u2265 0 or |\u03b2| \u226a 0.02), contradicting the required late-time growth suppression.",
+    "KC3: High-precision BAO and CMB analyses detect a shift in the sound horizon r_d or acoustic peak positions inconsistent with \u039bCDM at >1% that cannot be absorbed by inference effects (the model asserts r_d and early-universe physics are unchanged).",
+    "KC4: Type Ia SN Hubble diagram and cosmic chronometer data require a modified H(z) at z < 1 beyond \u039bCDM at >1% level to reconcile datasets, violating the paper\u2019s assumption that the expansion history is unchanged and only inference is modified.",
+    "KC5: A comprehensive SPARC/rotation-curve fit demands a galaxy-scale coupling \u03b1 with sign opposite to \u03b2 or a magnitude irreconcilable with the cosmological \u03b2 (e.g., |\u03b1/\u03b2| \u226b 2 or \u03b1 > 0 with \u03b2 < 0) at \u22653\u03c3, breaking cross-regime coherence.",
+    "KC6: Next-generation weak-lensing surveys robustly measure S8(z\u22480) \u2265 0.82 \u00b1 0.01, inconsistent with the EFC-predicted late-time suppression to S8 \u2248 0.766 under the calibrated parameters."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
   "files": {
     "pdf": "EFC-H0-S8-Tensions.pdf",
     "jsonld": "EFC-H0-S8-Tensions.jsonld",
     "citations": "citations.bib",
     "schema": "schema.json"
   },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31026151",
+  "name": "EFC-H0-S8-Tensions",
+  "type": "EFC-Paper",
+  "collection": "efc",
+  "document_id": "EFC-H0-S8-Tensions",
+  "orcid": "0009-0006-5904-4032",
+  "figshare_id": "31026151",
+  "layer": "APPLIED",
+  "domain": "cosmology",
+  "status": "published",
+  "abstract": "The Hubble tension and S8 tension represent the most significant challenges to \u039bCDM. We present an analysis within the EFC framework demonstrating that both tensions can be resolved simultaneously through entropy-dependent modification of local-to-global parameter inference.",
+  "categories": [
+    "Cosmology and extragalactic astronomy",
+    "Thermodynamics and statistical physics",
+    "Galactic astronomy"
+  ],
   "relations": {
     "extends": [
       "EFC-R-SPARC-Regime-Validity"
@@ -48,15 +151,6 @@
       "entropy-dependent gravitational coupling"
     ]
   },
-  "key_results": {
-    "h0_chi2_improvement": 40.29,
-    "s8_tension_before": "3.3σ",
-    "s8_tension_after": "0.3σ",
-    "bao_consistent": true,
-    "sne_ia_consistent": true,
-    "cmb_consistent": true
-  },
   "created_at": "2026-01-09T08:19:09Z",
-  "updated_at": "2026-01-09T08:19:10Z",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31026151"
+  "updated_at": "2026-01-09T08:19:10Z"
 }

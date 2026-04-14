@@ -1,14 +1,90 @@
 {
+  "$schema": "./schema.json",
   "id": "wp4-boss-transfer-validation",
   "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
+  "description": "Post-hoc cross-survey validation of Energy-Flow Cosmology (EFC) by transferring parameters calibrated on DESI DR2 BAO to independent BOSS/eBOSS BAO data without refitting. The study finds a robust chi-square improvement on BOSS DR12 (\u0394\u03c7\u00b2 = \u22127.77, k_eff = 0) that persists under whitening, eigenmode, and covariance-robustness diagnostics, supporting parameter stability across surveys without claiming a detection.",
+  "version": "1.0",
+  "date": "2026-04-01",
   "doi": "10.6084/m9.figshare.31954125",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "BAO",
+    "DESI DR2",
+    "BOSS DR12",
+    "eBOSS",
+    "parameter transfer",
+    "cross-survey validation",
+    "LambdaCDM baseline",
+    "covariance analysis",
+    "whitening analysis",
+    "eigenmode decomposition",
+    "robustness sweep"
+  ],
+  "author": "Morten Magnusson",
+  "core_equations": {
+    "EFC_Hz": {
+      "latex": "H_{\\mathrm{EFC}}(z) = H_{\\Lambda\\mathrm{CDM}}(z) \\, \\sqrt{1 + \\alpha_{\\mathrm{L2}} \\, \\Theta\\!\\big(z < z_{\\mathrm{L1L2}}\\big)}",
+      "description": "Regime-gated modification to the expansion rate; an L2 entropy-flow contribution activates below the transition redshift z_{L1L2} with amplitude \\alpha_{L2}."
+    },
+    "BAO_DH_over_rs": {
+      "latex": "\\frac{D_H(z)}{r_s} = \\frac{c}{H(z)\\, r_s}",
+      "description": "Radial BAO distance ratio; directly sensitive to H(z) and thus to the EFC modification."
+    },
+    "BAO_DM_over_rs": {
+      "latex": "\\frac{D_M(z)}{r_s} = \\frac{(1+z)\\,D_A(z)}{r_s} = \\frac{1}{r_s} \\int_0^z \\frac{c\\,dz'}{H(z')}",
+      "description": "Transverse BAO distance ratio; integrates over H(z) and is indirectly affected by the EFC modification."
+    },
+    "Covariance_interpolation": {
+      "latex": "C(\\rho) = (1-\\rho)\\,\\mathrm{diag}(C) + \\rho\\, C, \\quad \\rho \\in [0,1]",
+      "description": "Robustness sweep interpolating between diagonal and full covariance to test sensitivity of results to off-diagonal correlations."
+    }
+  },
+  "key_results": {
+    "main_finding": "DESI-DR2\u2013calibrated EFC parameters applied to BOSS DR12 BAO reduce \u03c7\u00b2 by 7.77 relative to \u039bCDM with no refitting, and the improvement is robust to multiple covariance diagnostics.",
+    "delta_chi2": -7.77,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "z_L1L2 = 1.01 (frozen from DESI DR2)",
+      "alpha_L2 = 0.045 (frozen from DESI DR2)",
+      "Planck 2018 baseline: H0 = 67.4, Omega_m = 0.315, r_s = 147.09",
+      "no refit on BOSS/eBOSS (k_eff = 0)"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO (calibration only)",
+      "BOSS DR12 BAO (6 measurements, 6\u00d76 covariance)",
+      "eBOSS BAO (LRG/ELG/QSO/Ly\u03b1; reference comparisons)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Transfer failure on BOSS DR12 \u2014 Using the Planck 2018 baseline and the full published 6\u00d76 covariance, the fixed DESI parameters (z_L1L2=1.01, alpha_L2=0.045) yield \u0394\u03c7\u00b2 \u2265 0 (no improvement) relative to \u039bCDM; this falsifies cross-survey invariance for the L2 EFC modification.",
+    "KC2: Whitening/eigenmode misuse \u2014 In a repeat whitening/eigenmode analysis, the strongly constrained (low-\u03bb) subspace shows \u0394\u03c7\u00b2_strong \u2265 0 while any apparent gains occur only in weak (high-\u03bb) modes; this indicates covariance exploitation rather than physical improvement and kills the claimed stability.",
+    "KC3: Covariance robustness breakdown \u2014 In the interpolation sweep C(\u03c1) for \u03c1 \u2208 {0, 0.25, 0.5, 0.75, 1}, EFC does not outperform \u039bCDM for a majority of \u03c1 values or is worse by \u2265 2 in \u03c7\u00b2 for any \u03c1; this negates robustness of the transfer.",
+    "KC4: eBOSS transfer failure \u2014 Applying the same fixed DESI parameters to the eBOSS BAO block results in \u0394\u03c7\u00b2 \u2265 0 (no improvement) under the published covariance; this contradicts cross-survey parameter stability.",
+    "KC5: Joint-fit parsimony check \u2014 In a joint BOSS+eBOSS BAO fit allowing (z_L1L2, alpha_L2) to vary, the EFC extension is disfavored by information criteria (\u0394BIC \u2265 0 versus \u039bCDM) or alpha_L2 is consistent with zero at \u2265 95% CL; this eliminates support for the L2 EFC term."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "p3-efc-lensing",
+      "doi": "10.6084/m9.figshare.31951992",
+      "role": "Pre-registered EFC prediction (companion test); referenced for context"
+    }
+  ],
+  "files": {
+    "pdf": "WP4_BOSS_transfer_validation.pdf",
+    "module": "src/wp4_transfer.py",
+    "data": "data/wp4_data.json",
+    "demo": "examples/demo.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31954125",
+  "orcid": "0009-0002-4860-5095",
   "doi_url": "https://doi.org/10.6084/m9.figshare.31954125",
-  "date": "2026-04",
   "license": "CC-BY-4.0",
   "type": "post-hoc validation",
-  "track": "Spor 1 — Galactic/Cosmological",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
   "regimes": [
     "L1",
     "L2"
@@ -110,27 +186,20 @@
     "Post-hoc, NOT pre-registered (unlike P3)",
     "Not a discovery claim",
     "Does not rule out LCDM",
-    "Improvement Δχ²=−7.77 not claimed as detection"
+    "Improvement \u0394\u03c7\u00b2=\u22127.77 not claimed as detection"
   ],
   "companion_tests": [
     {
       "id": "P3",
       "doi": "10.6084/m9.figshare.31951992",
       "type": "pre-registered prediction",
-      "result": "0.3σ PASS"
+      "result": "0.3\u03c3 PASS"
     },
     {
       "id": "WP4",
       "doi": "10.6084/m9.figshare.31954125",
       "type": "post-hoc parameter transfer",
-      "result": "Δχ²=−7.77"
+      "result": "\u0394\u03c7\u00b2=\u22127.77"
     }
-  ],
-  "files": {
-    "pdf": "WP4_BOSS_transfer_validation.pdf",
-    "module": "src/wp4_transfer.py",
-    "data": "data/wp4_data.json",
-    "demo": "examples/demo.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31954125"
+  ]
 }

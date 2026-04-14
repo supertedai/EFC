@@ -1,46 +1,40 @@
 {
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  "name": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
-  "headline": "DES Y6 PASS: lensing-to-CMB S8 ratio 0.944 ± 0.018 vs EFC prediction 0.95 ± 0.03",
+  "title": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
+  "short_id": "efc-des-y6-validation",
+  "version": "1.0",
+  "date": "2026-04-07",
   "author": {
-    "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095"
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "datePublished": "2026-04-07",
-  "identifier": "10.6084/m9.figshare.31951992",
-  "url": "https://doi.org/10.6084/m9.figshare.31951992",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "inLanguage": "en",
-  "isPartOf": {
-    "@type": "CreativeWorkSeries",
-    "name": "Energy-Flow Cosmology — Validation Series"
-  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31951992",
+  "abstract": "This validation update compares the DES Year 6 (3\u00d72pt) weak-lensing S8 measurement to an a priori EFC prediction for the lensing-to-CMB S8 ratio. The observed ratio 0.944 \u00b1 0.018 agrees with the EFC-predicted 0.95 \u00b1 0.03 within ~0.2\u03c3, constituting a preregistered PASS for the P3 lensing consistency test while noting 1D-compression and non-uniqueness caveats.",
   "keywords": [
+    "weak lensing",
     "S8 tension",
     "DES Y6",
-    "weak lensing",
-    "EFC",
-    "modified gravity",
-    "validation",
-    "pre-registered"
+    "Energy-Flow Cosmology",
+    "gravitational screening",
+    "Sigma_EFC",
+    "gravitational slip",
+    "cosmic shear",
+    "CMB lensing",
+    "SPARC",
+    "pre-registered test",
+    "cosmological parameter inference"
   ],
-  "efc_context": {
-    "track": "Spor 1 — Galactic/Cosmological",
-    "regimes_tested": [
-      "L1 linear perturbations",
-      "L0 background normalization"
-    ],
-    "test_id": "P3",
-    "test_status": "PASS",
-    "preregistration": {
-      "predicted_in": "10.6084/m9.figshare.31188193",
-      "deposited": "January 2026",
-      "data_released": "2026-01-21",
-      "criteria": "ratio ∈ [0.90, 1.00]"
-    },
-    "ledger_impact": "P3 lensing consistency tickbox closed; Validation Ledger advances to v3.9"
+  "files": {
+    "pdf": "efc_des_y6_validation.pdf",
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "efc_des_y6_validation.jsonld",
+    "citations": "citations.bib",
+    "module": "src/des_y6_validation.py",
+    "data": "data/des_y6_data.json",
+    "demo": "examples/demo.py"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31951992",

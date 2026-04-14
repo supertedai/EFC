@@ -1,104 +1,28 @@
-# A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling
+# A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (β · T(a))
+
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.31304980](https://doi.org/10.6084/m9.figshare.31304980)
+- **Version:** 1.0.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-02-01
+- **License:** CC-BY-4.0
+
+---
 
 ## Overview
 
-Consistency test of EFC's background coupling against four independent cosmological probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Demonstrates that Poisson-channel modification is excluded while background coupling shows mild preference.
+Tests a single-parameter Energy-Flow Cosmology (EFC) background-coupling modification of the Friedmann equation against four independent probes: BAO distances, redshift-space distortions, CMB lensing, and Type Ia supernovae. Finds that a positive background coupling (β ≈ 0.08) mildly improves BAO+RSD fits (Δχ2 = -3.89) while remaining consistent with CMB lensing and SN Ia, and that Poisson-channel modification is excluded by growth data. The transition function T(a) naturally suppresses deviations at high redshift, ensuring GR recovery at recombination and earlier.
 
-**Author:** Morten Magnusson
-**Affiliation:** Symbiose Research, Sandnes, Norway
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
-**DOI:** [10.6084/m9.figshare.31304980](https://doi.org/10.6084/m9.figshare.31304980)
-**Date:** February 2026
-**License:** CC-BY-4.0
+## Key Result
 
----
+Background coupling with a single parameter (β ≈ 0.08) passes four independent probes and yields a mild BAO+RSD preference over ΛCDM, while the Poisson-channel modification is excluded by growth data.
 
-## Key Results
+## Sealed Predictions
 
-### Channel Comparison
-
-| Channel | Parameter | chi2_RSD | sigma_8 | Status |
-|---------|-----------|----------|---------|--------|
-| Poisson | alpha=0.34 | 18.2 | 0.879 | Excluded |
-| Background | beta=0.08 | 1.09 | 0.805 | Favoured |
-| LCDM | -- | 1.34 | 0.811 | Baseline |
-
-### Four-Channel Results (beta = 0.08)
-
-| Channel | Data | Delta_chi2 | Status |
-|---------|------|------------|--------|
-| BAO distances | BOSS DR12 | -3.65 | PASS |
-| Growth rate | BOSS DR12 fsigma8 | -0.25 | PASS |
-| CMB lensing | ACT+SPT+Planck | -0.71sigma | PASS |
-| SN Ia | Pantheon+ | delta_mu < 0.032 | PASS |
-
-### Combined Result
-
-- BAO + RSD combined: Delta_chi2 = -3.89 (~2sigma preference)
-- Four channels, one parameter, zero kills
-
----
-
-## Core Equations
-
-### Modified Friedmann Equation
-
-```
-H^2(a) = H0^2 [Omega_m a^{-3} + Omega_Lambda (1 + beta * T(a))]
-```
-
-### Transition Function
-
-```
-g_D(z) = (1 - Omega_m(z)) / (1+z) * ln(1+z)
-T(z) = g_D(z) / g_D(z_peak)
-```
-
----
-
-## Quick Start
-
-```python
-from src.four_channel_test import FourChannelTest
-
-test = FourChannelTest(beta=0.08)
-results = test.run_all_channels()
-for channel, result in results.items():
-    print(f"{channel}: status={result['status']}, Delta_chi2={result.get('delta_chi2', 'N/A')}")
-```
-
----
-
-## File Structure
-
-```
-.
-├── README.md
-├── index.json
-├── schema.json
-├── metadata.json
-├── four_channel_test.jsonld
-├── citations.bib
-├── src/
-│   ├── __init__.py
-│   └── four_channel_test.py
-├── data/
-│   └── channel_results.json
-└── examples/
-    └── demo_four_channel.py
-```
-
----
-
-## References
-
-1. Alam et al. (2017), MNRAS 470, 2617 (BOSS DR12)
-2. Brout et al. (2022), ApJ 938, 110 (Pantheon+)
-3. Qu et al. (2025), arXiv:2504.20038 (CMB lensing)
-4. Planck Collaboration (2020), A&A 641, A6
-
----
-
-## License
-
-This work is licensed under [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/).
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | High-redshift Lyα P1D (z ≈ 3) shows a null EFC background imprint (effect strongly suppressed as T(a) → small), delivering no detectable deviation from ΛCDM within current precision. | Lyα 1D flux-power measurements at z ≈ 3 detecting a robust (>3σ) deviation attributable to background-only coupling. |
+| P2 | Primary CMB anisotropies remain consistent with GR at recombination, as T(a) → 0 implies an effectively null EFC modification at z ∼ 1100. | Next-generation CMB (e.g., Simons Observatory, CMB-S4) detecting a statistically significant early-time deviation consistent with an EFC-like background coupling at recombination. |
+| P3 | BAO+RSD datasets that probe z ∼ 0.4–0.7 mildly prefer β > 0 with suppressed growth relative to ΛCDM (directional test consistent with BOSS DR12). | DESI/Euclid BAO+RSD combined likelihoods showing no improvement (or a negative preference) for β > 0 and/or favouring β ≤ 0. |
+| P4 | SN Ia Hubble-diagram residuals shift slightly negative, with |Δμ| ≤ 0.032 mag over 0.1 ≤ z ≤ 1, consistent with mildly smaller distances from the modified H(a). | High-precision SN Ia samples (e.g., Pantheon++/Roman) measuring a residual pattern inconsistent in sign or amplitude with the predicted modest negative Δμ. |

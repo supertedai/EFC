@@ -1,0 +1,33 @@
+{
+  "title": "ISW Void Sign-Flip Observational Pipeline: From EFC Theory to Data Confrontation",
+  "key_results": {
+    "main_finding": "Complete observational pipeline for testing the EFC void ISW sign-flip prediction using DESIVAST DR1 + Planck PR4",
+    "sealed_predictions": [
+      {
+        "id": "P1",
+        "statement": "Depth turnover: A_ISW peaks then flips at delta_c ~ -0.8",
+        "kill": "No sign-flip at any delta"
+      },
+      {
+        "id": "P2",
+        "statement": "Scale: larger R_v amplifies RS term, R_v > 100 h^-1 Mpc",
+        "kill": "No scale trend"
+      },
+      {
+        "id": "P3",
+        "statement": "Redshift: stronger signal at z < 0.5",
+        "kill": "No z-evolution"
+      }
+    ],
+    "pipeline_stages": 6,
+    "data_sources": [
+      "DESIVAST DR1",
+      "Planck PR4 SMICA/SEVEM/NILC/Commander",
+      "Planck 2018 kappa map",
+      "BOSS DR12 supervoids",
+      "DES Y3 supervoids"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": []
+}

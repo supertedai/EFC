@@ -1,13 +1,102 @@
 {
+  "$schema": "./schema.json",
+  "id": "triangulation-test-for-thermodynamic-lensing-coupling--a-triangulation-test-for-possible-thermodynamic",
   "title": "A Triangulation Test for Possible Thermodynamic Contributions to Gravitational Lensing in Galaxy Clusters",
-  "short_title": "Triangulation Test for Thermodynamic-Lensing Coupling",
+  "description": "Introduces a triangulation methodology that compares lensing mass, hydrostatic mass, and ICM entropy gradients to test for small thermodynamic contributions to gravitational lensing in galaxy clusters. Applies the method to the Bullet Cluster and Abell 1835, finding no significant correlation at current sensitivity and outlining consistency requirements and detection thresholds for future stacked analyses.",
+  "version": "1.0",
+  "date": "2026-02-05",
+  "doi": "10.6084/m9.figshare.31267297",
+  "keywords": [
+    "gravitational lensing",
+    "galaxy clusters",
+    "hydrostatic equilibrium",
+    "intracluster medium",
+    "entropy gradient",
+    "weak lensing",
+    "strong lensing",
+    "X-ray astronomy",
+    "JWST",
+    "Chandra",
+    "thermodynamic coupling",
+    "null test"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "lensing_mass": {
+      "latex": "M_{\\rm lens}(<r) = \\pi r^{2} \\, \\Sigma_{\\rm crit} \\, \\bar{\\kappa}(<r)",
+      "description": "Projected enclosed mass from gravitational lensing using the mean convergence within radius r."
+    },
+    "critical_surface_density": {
+      "latex": "\\Sigma_{\\rm crit} = \\frac{c^{2}}{4\\pi G} \\frac{D_{s}}{D_{l} D_{ls}}",
+      "description": "Critical surface density that sets the geometric lensing efficiency for a lens at D_l and sources at D_s."
+    },
+    "hydrostatic_equilibrium": {
+      "latex": "\\frac{\\mathrm{d}P}{\\mathrm{d}r} = - \\, \\rho_{\\rm gas} \\, \\frac{G M(<r)}{r^{2}}",
+      "description": "Equation of hydrostatic equilibrium relating pressure gradient to enclosed mass and gas density."
+    },
+    "hydrostatic_mass": {
+      "latex": "M_{\\rm HSE}(<r) = -\\, \\frac{k T(r) \\, r}{\\mu m_{p} G} \\left[ \\frac{\\mathrm{d} \\ln n_{e}}{\\mathrm{d} \\ln r} + \\frac{\\mathrm{d} \\ln T}{\\mathrm{d} \\ln r} \\right]",
+      "description": "Enclosed mass inferred from X-ray temperature and density profiles under hydrostatic equilibrium."
+    },
+    "mass_residual": {
+      "latex": "R(r) = M_{\\rm lens}(r) - M_{\\rm HSE}(r)",
+      "description": "Residual mass profile used to search for structure not captured by hydrostatic modeling."
+    },
+    "entropy": {
+      "latex": "K(r) = T(r) \\, n_{e}(r)^{-2/3}",
+      "description": "ICM entropy proxy proportional to specific entropy for an ideal gas."
+    },
+    "entropy_gradient": {
+      "latex": "\\left| \\nabla K(r) \\right| \\simeq \\left| \\frac{\\mathrm{d}K}{\\mathrm{d}r} \\right|",
+      "description": "Magnitude of the entropy gradient used as a tracer of ICM thermodynamic structure (e.g., shocks, mixing)."
+    }
+  },
+  "key_results": {
+    "main_finding": "No statistically significant correlation is found between the mass residual R(r) and the ICM entropy gradient |\u2207K(r)| in either the Bullet Cluster (\u03c1 = \u22120.129, p = 0.21) or Abell 1835 (\u03c1 = \u22120.052, p = 0.7), consistent with current sensitivity limits.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Pearson/Spearman correlation \u03c1(R_norm, G_norm)",
+      "Residual mass profile R(r) = M_lens(r) \u2212 M_HSE(r)",
+      "Entropy gradient magnitude |\u2207K(r)|"
+    ],
+    "datasets_used": [
+      "1E 0657-56 (Bullet Cluster): JWST NIRCam lensing; Chandra (500 ks) X-ray; ACCEPT catalog profiles",
+      "Abell 1835: HST + Subaru lensing; Chandra X-ray; ACCEPT catalog profiles"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In a stacked sample of \u226520 clusters (n_eff \u2273 1100 radial bins) with current-quality WL+X-ray data, a true thermodynamic\u2013lensing coupling at the \u03c1 \u2248 0.1 level will be detectable at \u22653\u03c3; absence of such a signal will constrain |\u03c1| < 0.06 at 3\u03c3.",
+      "falsifiable_by": "Stacked analysis of normalized correlations \u03c1(R_norm, G_norm) across \u226520 clusters combining strong+weak lensing and deprojected X-ray profiles."
+    },
+    {
+      "id": "P2",
+      "statement": "Any phenomenological thermodynamic\u2013lensing coupling that is viable must preserve achromaticity of gravitational lensing and time delays to current limits.",
+      "falsifiable_by": "Multi-wavelength lensing and time-delay measurements (e.g., lensed quasars) showing wavelength dependence beyond current bounds."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Stacked cluster analysis with n_eff \u2265 1000 finds |\u03c1(R_norm, G_norm)| < 0.06 at 3\u03c3 for both merging and relaxed subsamples, ruling out percent-level thermodynamic\u2013lensing coupling.",
+    "KC2: After accounting for non-thermal pressure, clumping, and projection with state-of-the-art HSE modeling and simulations, residuals R(r) are consistent with zero at all radii (|R|/M_lens < 3%) and show no spatial correlation with |\u2207K|.",
+    "KC3: Detection of wavelength-dependent lensing or time delays exceeding current achromaticity limits, indicating non-metric photon propagation incompatible with the assumed coupling class.",
+    "KC4: High-precision spectroscopic tests targeting lines-of-sight across strong ICM entropy gradients find no correlated line-of-sight redshift or asymmetry signal at instrument-limited precision, excluding proposed LOS signatures tied to |\u2207K|.",
+    "KC5: Independent constraints from CMB spectral distortions, BBN, and WEP tests require any additional coupling to be negligible; demonstration that a coupling large enough to explain any observed \u03c1 would violate these bounds would kill the model class."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31267297",
+  "short_title": "Triangulation Test for Thermodynamic-Lensing Coupling",
   "affiliation": "Independent Researcher",
   "orcid": "0009-0002-4860-5095",
-  "date": "2026-02",
-  "doi": "10.6084/m9.figshare.31267297",
   "journal": "MNRAS",
-  "version": "1.0",
   "methodology": {
     "name": "Triangulation Test",
     "description": "Compare three independent observables to test for thermodynamic-lensing coupling",
@@ -16,7 +105,7 @@
         "name": "Lensing Mass",
         "symbol": "M_lens",
         "type": "geometric",
-        "formula": "M_lens(<r) = π r² Σ_crit κ̄(<r)",
+        "formula": "M_lens(<r) = \u03c0 r\u00b2 \u03a3_crit \u03ba\u0304(<r)",
         "data_sources": [
           "JWST NIRCam",
           "HST ACS/WFC3",
@@ -28,7 +117,7 @@
         "name": "Hydrostatic Mass",
         "symbol": "M_HSE",
         "type": "dynamic",
-        "formula": "M_HSE(<r) = -(kTr)/(μm_pG)[d ln n_e/d ln r + d ln T/d ln r]",
+        "formula": "M_HSE(<r) = -(kTr)/(\u03bcm_pG)[d ln n_e/d ln r + d ln T/d ln r]",
         "data_sources": [
           "Chandra ACIS",
           "XMM-Newton EPIC",
@@ -38,7 +127,7 @@
       },
       {
         "name": "Entropy Gradient",
-        "symbol": "|∇K|",
+        "symbol": "|\u2207K|",
         "type": "thermodynamic",
         "formula": "K(r) = T(r) n_e(r)^(-2/3)",
         "data_sources": [
@@ -50,8 +139,8 @@
     "test_statistic": {
       "mass_residual": "R(r) = M_lens(r) - M_HSE(r)",
       "normalized_residual": "R_norm(r) = R(r)/M_lens(r)",
-      "normalized_gradient": "G_norm(r) = |∇K(r)|/max|∇K|",
-      "correlation": "ρ(R_norm, G_norm)"
+      "normalized_gradient": "G_norm(r) = |\u2207K(r)|/max|\u2207K|",
+      "correlation": "\u03c1(R_norm, G_norm)"
     }
   },
   "pilot_results": {
@@ -81,37 +170,37 @@
     "achromaticity": {
       "test": "Lensing independent of wavelength",
       "data": "H0LiCOW (6 lensed quasars)",
-      "result": "χ²/dof = 0.91",
+      "result": "\u03c7\u00b2/dof = 0.91",
       "status": "consistent"
     },
     "cmb_spectrum": {
       "test": "Standard blackbody at z ~ 1000",
       "data": "COBE/FIRAS",
-      "result": "|Δy| < 1.5e-5, |Δμ| < 9e-5",
+      "result": "|\u0394y| < 1.5e-5, |\u0394\u03bc| < 9e-5",
       "status": "assumed"
     },
     "wep": {
       "test": "Composition-independent free fall",
       "data": "LLR + MICROSCOPE",
-      "result": "ε < 1e-15",
+      "result": "\u03b5 < 1e-15",
       "status": "assumed"
     },
     "bbn": {
       "test": "Standard expansion at z ~ 1e9",
       "data": "Planck + D/H",
-      "result": "N_eff = 2.99 ± 0.17",
+      "result": "N_eff = 2.99 \u00b1 0.17",
       "status": "assumed"
     },
     "time_delays": {
       "test": "Achromatic gravitational delays",
       "data": "H0LiCOW + TDCOSMO",
-      "result": "Δχ²/dof = 8.7e-4",
+      "result": "\u0394\u03c7\u00b2/dof = 8.7e-4",
       "status": "consistent"
     },
     "void_lensing": {
       "test": "Underdensity lensing signal",
       "data": "DES Y3",
-      "result": "κ_void/κ_ΛCDM = 0.79 ± 0.15",
+      "result": "\u03ba_void/\u03ba_\u039bCDM = 0.79 \u00b1 0.15",
       "status": "intriguing"
     }
   },
@@ -142,14 +231,14 @@
   },
   "speculative_prediction": {
     "name": "Line-of-sight redshift signal",
-    "magnitude": "Δz_LOS ~ 1e-6 to 1e-5",
+    "magnitude": "\u0394z_LOS ~ 1e-6 to 1e-5",
     "properties": [
       "Frequency-independent",
       "Correlated with entropy structure",
       "Detectable by stacking cluster-quasar sightlines"
     ],
     "test_method": "VLT/UVES (R~40000) or stacked DESI spectra",
-    "null_hypothesis": "ΛCDM predicts no such correlation"
+    "null_hypothesis": "\u039bCDM predicts no such correlation"
   },
   "key_caveats": [
     "Pilot results consistent with null hypothesis",
@@ -162,15 +251,5 @@
     "Projection effects (LOS integration)",
     "Non-thermal pressure (cosmic rays, magnetic fields, turbulence)",
     "Mass-sheet degeneracy"
-  ],
-  "keywords": [
-    "gravitational lensing",
-    "galaxy clusters",
-    "intracluster medium",
-    "entropy",
-    "hydrostatic equilibrium",
-    "mass discrepancy",
-    "thermodynamic gravity"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31267297"
+  ]
 }

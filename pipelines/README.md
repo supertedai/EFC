@@ -1,6 +1,6 @@
 # EFC Computational Pipelines
 
-Computational validation pipelines for Energy-Flow Cosmology (EFC). This directory contains the numerical solvers, test suites, and analysis tools that translate EFC theoretical predictions into quantitative, falsifiable results. The three pipeline systems are the Native v2 Graph solver for galactic-scale AQUAL/MOND predictions, the HCP Bridge B1 pipeline for neural connectome validation, and the Euclid DR1 pipeline for Stage-IV cosmological survey pre-registration.
+Computational validation pipelines for Energy-Flow Cosmology (EFC). This directory contains the numerical solvers, test suites, and analysis tools that translate EFC theoretical predictions into quantitative, falsifiable results. Five pipeline systems: the Native v2 Graph solver for galactic-scale AQUAL/MOND predictions, the HCP Bridge B1 pipeline for neural connectome validation, the Euclid DR1 pipeline for Stage-IV cosmological survey pre-registration, the Nested Sampling pipeline for full Bayesian evidence (Hull #3), and the Weak Lensing Case B pipeline for growth-modified lensing constraints (Hull #4).
 
 **Author:** Morten Magnusson (ORCID [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)), Symbiose Research, Sandnes, Norway
 **License:** CC-BY-4.0

@@ -1,31 +1,40 @@
 {
-  "package_format": "ai-friendly-paper",
-  "package_version": "1.0",
-  "created": "2026-03-26",
-  "generator": "Claude (Anthropic)",
-  "paper_title": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems",
-  "ai_parsability": {
-    "machine_readable_metadata": true,
-    "json_schema_validated": true,
-    "linked_data": true,
-    "reference_implementation": true,
-    "runnable_demo": true,
-    "structured_citations": true
+  "title": "Natural and Mechanical Entropy: Intention Detection via Episenter\u2013Resonance Analysis in Information Systems",
+  "short_id": "natural-and-mechanical-entropy-intention-detection-via-episenter-resonance analysis-in-information-systems",
+  "version": "v2",
+  "date": "2026-03-26",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31864993",
+  "abstract": "Defines an operational, agent-free measure of structural intention as the KL-divergence between observed outputs and a system\u2019s own baseline dynamics. Proposes an episenter\u2013resonance detection framework with three diagnostics (episenter concentration, resonance spectrum ratio, cross-regime asymmetry) to distinguish natural from mechanically injected entropy, and outlines case studies and an empirical protocol for LLMs with falsifiable predictions.",
+  "keywords": [
+    "natural entropy",
+    "mechanical entropy",
+    "structural intention",
+    "episenter concentration",
+    "resonance spectrum",
+    "cross-regime asymmetry",
+    "regime-bound measurement",
+    "KL-divergence",
+    "mutual information",
+    "alignment bias",
+    "information manipulation",
+    "EFC"
+  ],
   "files": {
-    "index": "index.json",
+    "pdf": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems.pdf",
+    "readme": "README.md",
     "schema": "schema.json",
+    "metadata": "metadata.json",
     "jsonld": "Natural_and_Mechanical_Entropy.jsonld",
     "citations": "citations.bib",
     "source": "src/entropy_intention.py",
     "data": "data/framework.json",
     "demo": "examples/demo_entropy_intention.py"
-  },
-  "dependencies": {
-    "python": ">=3.8",
-    "packages": [
-      "numpy"
-    ]
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31864993",

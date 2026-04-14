@@ -1,29 +1,118 @@
 {
+  "$schema": "./schema.json",
   "id": "ebe-core-lock",
   "title": "EBE Core Lock v1.0: The S-Dynamic Foundation",
-  "shortTitle": "Core Lock",
-  "path": "docs/papers/efc/Core-Lock",
-  "pdf": "Core_Lock.pdf",
+  "description": "Specifies the Core Lock dynamical engine for Entropy-Bounded Empiricism (EBE): a running grid-state parameter f(S) with constant negative beta function that uniquely yields an exponential form and a conserved information length. Physical observables project through an accumulated phase \u03a6(S), producing a proxy-independent, falsifiable prediction that any detected variations in constants must exhibit a constant log\u2013log correlation slope d ln v / d ln c = constant. Current null results constrain couplings but do not falsify the framework absent a specified projection.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31223503",
+  "keywords": [
+    "entropy-bounded empiricism",
+    "RG-flow",
+    "running constants",
+    "grid state function",
+    "beta-constraint",
+    "information length",
+    "projection laws",
+    "phase accumulation",
+    "correlation signature",
+    "falsifiable prediction",
+    "varying alpha",
+    "emergent constants"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "beta_constraint": {
+      "latex": "\\frac{d\\ln f}{dS} = -\\frac{1}{\\Delta S}",
+      "description": "Constant negative beta function along the entropy axis S that fixes the running of the grid-state stiffness f(S)."
+    },
+    "grid_state_solution": {
+      "latex": "f(S) = f_0 \\, \\exp\\!\\left(-\\frac{S}{\\Delta S}\\right)",
+      "description": "Unique exponential solution for the grid state function implied by the constant beta constraint."
+    },
+    "running_phase": {
+      "latex": "\\Phi(S) = \\int_0^S \\frac{dS'}{f(S')} = \\frac{\\Delta S}{f_0} \\left[\\exp\\!\\left(\\frac{S}{\\Delta S}\\right) - 1\\right]",
+      "description": "Accumulated information length (phase) that drives observable projections."
+    },
+    "information_invariant": {
+      "latex": "I = \\Phi(S_1) = \\text{constant}",
+      "description": "Total information length over the physical domain is an invariant."
+    },
+    "projection_law": {
+      "latex": "\\ln\\!\\left(\\frac{X}{X_0}\\right) = a_X \\, \\Phi(S)",
+      "description": "Observable X projects from the hidden phase with coupling coefficient a_X."
+    },
+    "correlation_test": {
+      "latex": "\\frac{d \\ln v}{d \\ln c} = \\frac{a_v}{a_c} = \\text{constant}",
+      "description": "Proxy-independent prediction: ratios of log-derivatives between any two varying observables are constant."
+    }
+  },
+  "key_results": {
+    "main_finding": "A constant beta function in S enforces an exponential f(S) and yields a falsifiable, proxy-independent correlation prediction d ln v / d ln c = constant, with current null results constraining couplings but not the engine.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Constant beta constraint: d ln f/dS = -1/\u0394S",
+      "Exponential grid state: f(S) = f0 exp(-S/\u0394S)",
+      "Finite information length invariant I",
+      "Correlation slope: d ln v / d ln c = a_v/a_c"
+    ],
+    "datasets_used": [
+      "Analytic derivation (closed-form solution for f and \u03a6)",
+      "Internal numerical verification (simulation of slope stability)",
+      "Literature constraints on \u0394\u03b1/\u03b1 and \u0394\u03bc/\u03bc (quasar absorption, H2, methanol, JWST)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "If any variations of fundamental constants are detected, the log\u2013log slope between any two independently varying observables must be constant (d ln v / d ln c = a_v/a_c) across redshift, time, and environment.",
+      "falsifiable_by": "Joint measurements of two or more varying constants across multiple bins (e.g., redshift or time) demonstrating a statistically significant (>3\u03c3) change in the slope d ln v / d ln c or inconsistent slopes across subsets."
+    },
+    {
+      "id": "P2",
+      "statement": "Any confirmed variation in one constant must be accompanied by co-variation in at least one other independent observable consistent with a single constant slope ratio.",
+      "falsifiable_by": "High-confidence detection of variation in one constant with simultaneous measurements showing no co-variation in all tested second observables, such that any constant-slope model is excluded at >3\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Observation of two or more varying constants with a redshift/time/environment-dependent slope d ln v / d ln c that cannot be fit by a single constant ratio (excluded at >5\u03c3 after systematics).",
+    "KC2: Three or more observables exhibit pairwise slopes that are mutually inconsistent with any single set of constant couplings {a_i} (global constant-ratio fit rejected at >5\u03c3).",
+    "KC3: Empirical reconstruction from multi-observable data requires a non-exponential f(S) (i.e., an S-dependent beta function) at high significance, invalidating the constant-\u03b2 constraint.",
+    "KC4: Robust evidence of oscillatory or sign-changing variations in constants across ordered datasets that cannot be produced by a monotonic accumulated phase \u03a6(S) implied by constant \u03b2 (excluded by model-independent tests at >5\u03c3).",
+    "KC5: Detection of variation in one constant with simultaneous bounds on another that exclude any constant finite slope between them across the same sample (i.e., constant-correlation models ruled out at >5\u03c3)."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "dependency"
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "protocol/methodology"
+    }
+  ],
+  "files": {
+    "pdf": "Core_Lock.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223503",
+  "shortTitle": "Core Lock",
+  "path": "docs/papers/efc/Core-Lock",
+  "pdf": "Core_Lock.pdf",
   "license": "CC-BY-4.0",
   "layer": "theory",
   "type": "paper",
   "status": "hypothetical",
   "epistemicStatus": "Layer B - Mathematical engine compatible with current null results",
-  "keywords": [
-    "entropy-bounded empiricism",
-    "RG-flow",
-    "emergent constants",
-    "correlation signature",
-    "falsifiable prediction",
-    "grid state function"
-  ],
   "concepts": {
     "primary": [
       "grid-state-function",
@@ -32,9 +121,9 @@
       "projection-laws"
     ],
     "equations": {
-      "beta_function": "β_f(S) = -1/ΔS",
-      "grid_state": "f(S) = f₀ exp(-S/ΔS)",
-      "phase": "Φ(S) = ∫dS'/f(S')",
+      "beta_function": "\u03b2_f(S) = -1/\u0394S",
+      "grid_state": "f(S) = f\u2080 exp(-S/\u0394S)",
+      "phase": "\u03a6(S) = \u222bdS'/f(S')",
       "correlation_test": "d ln v / d ln c = a_v/a_c = constant"
     }
   },
@@ -91,6 +180,5 @@
   "figures": [
     "core_lock_survival_test.png",
     "ebe_core_lock_v1_simulation.png"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223503"
+  ]
 }

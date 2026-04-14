@@ -1,7 +1,7 @@
 {
   "title": "Entropy-Bounded Empiricism: Core Principles",
   "short_id": "ebe-core-principles",
-  "version": "v1.0",
+  "version": "1.0",
   "date": "2026-01-01",
   "author": {
     "name": "Morten Magnusson",
@@ -10,51 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31222903",
-  "abstract": "Foundational methodology paper for Entropy-Bounded Empiricism (EBE). Defines the S-axis (physical regime hierarchy: Low-S, Mid-S, High-S), the L-axis (epistemic layer hierarchy L0-L3), and the Regime-Consistent Measurement Protocol (RCMP). Introduces regime-gating, proxy-chain transparency requirements, and epistemic degradation principles that prevent cross-regime extrapolation errors.",
+  "abstract": "Foundational specification of Entropy-Bounded Empiricism (EBE), a regime-aware epistemic framework for interpreting measurements in entropy- and energy-flow-governed systems. It introduces the S-axis (physical regime hierarchy) and L-axis (epistemic layer hierarchy) and formalizes the Regime-Consistent Measurement Protocol (RCMP) to prevent regime leakage and interpretive overreach. The paper codifies regime gating and proxy-chain transparency to make assumptions traceable and claims comparable across regimes.",
   "keywords": [
     "entropy-bounded empiricism",
     "regime architecture",
     "epistemic layering",
-    "measurement protocol",
-    "energy-flow cosmology",
     "S-axis",
     "L-axis",
     "RCMP",
-    "regime-gating",
-    "proxy-chain transparency"
+    "regime gating",
+    "proxy-chain transparency",
+    "epistemic degradation",
+    "emergent systems",
+    "measurement protocol",
+    "energy-flow cosmology"
   ],
-  "efc_context": {
-    "track": "Methodology/EBE",
-    "regime_relevance": "All regimes; defines the regime classification itself",
-    "epistemic_layer": "Layer A (foundational methodology)"
-  },
-  "key_results": [
-    "S-axis regime hierarchy (Low-S, Mid-S, High-S) for physical scale classification",
-    "L-axis epistemic layers L0 (direct measurement) through L3 (model-dependent inference)",
-    "Regime-Consistent Measurement Protocol (RCMP) preventing cross-regime extrapolation",
-    "Regime-gating principle: claims valid only within their originating regime",
-    "Proxy-chain transparency: all inferential steps must be explicitly declared",
-    "Epistemic degradation: confidence decreases with each proxy step"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EBE_Core_Principles_v1_0-1.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "EBE.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/ebe_classifier.py",
-      "src/l_axis.py",
-      "src/regime_gating.py",
-      "src/s_axis.py"
-    ],
-    "data": [
-      "data/l_layers.json",
-      "data/s_regimes.json"
-    ],
-    "demo": "examples/basic_classification.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31222903",

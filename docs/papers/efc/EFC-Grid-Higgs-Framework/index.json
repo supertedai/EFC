@@ -1,20 +1,127 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Grid-Higgs-Framework",
-  "title": "EFC — Grid-Higgs Framework",
+  "title": "EFC \u2014 Grid-Higgs Framework",
+  "description": "Introduces the Grid-Higgs Framework, which models spacetime as a dynamic grid whose structural nodes are Higgs-field excitations. In this entropic, energy-flow-based theory, dark matter effects arise from grid tension driven by entropy gradients and black holes are grid-collapse regions; the framework yields testable predictions for lensing, CMB high-\u2113 spectra, and gravitational-wave propagation.",
+  "version": "1.0",
+  "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.28559510",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Grid-Higgs Framework",
+    "Entropic gravity",
+    "Higgs field nodes",
+    "Dark matter as entropic tension",
+    "Variable speed of light",
+    "Dynamic gravitational constant",
+    "Black hole grid collapse",
+    "Gravitational lensing",
+    "CMB anisotropies",
+    "Gravitational waves",
+    "Galaxy rotation curves"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow": {
+      "latex": "E_{\\mathrm{f}} = \\mathcal{F}\\big(S, \\, \\rho_H; \\, k_k\\big)",
+      "description": "Energy flow through the spacetime grid is a function of normalized entropy S (0 \u2264 S \u2264 1), Higgs node density \u03c1_H, and a coupling k_k; higher node density and entropy structure regulate flow."
+    },
+    "effective_dm_from_entropy_gradient": {
+      "latex": "\\rho_{\\mathrm{DM}}^{\\mathrm{eff}} \\propto \\lambda \\, \\nabla S",
+      "description": "Apparent dark matter arises as an effective density sourced by entropic stress in the grid; \u03bb\u2207S encodes network tension due to entropy gradients between Higgs nodes."
+    },
+    "variable_c": {
+      "latex": "c(S) = c_0 \\, g(S)",
+      "description": "The effective speed of light varies with entropy S via a dimensionless function g(S), leading to deviations near strong-entropy-gradient regions (e.g., near event horizons)."
+    },
+    "dynamic_gravitational_constant": {
+      "latex": "G_{\\mathrm{grid}}(S) = \\alpha(S) \\, G_N",
+      "description": "The gravitational coupling emerges entropically and varies with entropy through a modulation factor \u03b1(S), reducing to Newton\u2019s constant G_N in appropriate limits."
+    },
+    "cmb_high_ell_deviation": {
+      "latex": "\\frac{\\Delta C_\\ell}{C_\\ell} \\simeq 0.07\\text{--}0.10 \\quad (\\ell > 1000)",
+      "description": "Predicted 7\u201310% deviation in CMB temperature/polarization power at high multipoles due to entropy damping in the grid."
+    },
+    "bh_entropy": {
+      "latex": "S_{\\mathrm{BH}} = \\frac{k_B c^3 A}{4 G \\hbar}",
+      "description": "Grid-collapse regions reproduce the Bekenstein\u2013Hawking area law for black hole entropy in simulations, linking grid failure to black hole thermodynamics."
+    },
+    "gw_speed_constraint": {
+      "latex": "\\left| \\frac{\\Delta c_g}{c} \\right| < 10^{-15} \\quad \\text{(moderate-entropy regions)}",
+      "description": "Gravitational-wave speeds match c to better than 10^-15 where entropy gradients are modest; deviations are expected only in high-entropy environments."
+    }
+  },
+  "key_results": {
+    "main_finding": "An entropic, Higgs-anchored spacetime grid can reproduce dark-matter-like lensing and galaxy rotation curves and reinterpret black holes as grid-collapse points, with specific, testable entropy-dependent signatures in CMB and gravitational-wave observables.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "S (entropy)",
+      "\u03c1_H (Higgs node density)",
+      "k_k (energy-flow coupling)",
+      "\u03bb (entropic tension coefficient)",
+      "\u03b1(S) (gravity modulation)",
+      "g(S) (light-speed modulation)"
+    ],
+    "datasets_used": [
+      "JWST",
+      "SDSS (DR18)",
+      "Planck",
+      "LIGO",
+      "HST"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "CMB power spectra exhibit a 7\u201310% suppression/enhancement at multipoles \u2113 > 1000 relative to \u039bCDM due to entropy damping in the grid.",
+      "falsifiable_by": "High-\u2113 measurements from Planck reanalysis, ACT, SPT, or CMB-S4 that constrain |\u0394C\u2113/C\u2113| at \u2113 > 1000 to <3% with systematics controlled."
+    },
+    {
+      "id": "P2",
+      "statement": "Weak/strong lensing amplitudes anti-correlate with local entropy S: lensing is enhanced in low-entropy clusters and reduced in high-entropy voids per G_grid(S).",
+      "falsifiable_by": "Tomographic lensing maps from JWST, Euclid, and LSST showing no statistically significant correlation between inferred convergence and entropy proxies."
+    },
+    {
+      "id": "P3",
+      "statement": "Gravitational-wave propagation speed deviates from c in high-entropy environments while remaining |\u0394c_g/c| < 10^-15 in moderate-entropy regions.",
+      "falsifiable_by": "Multi-messenger GW events or GW lensing/time-delay measurements near dense environments showing no entropy-dependent deviation at the predicted level."
+    },
+    {
+      "id": "P4",
+      "statement": "Galaxy rotation curves can be matched without particle dark matter, with shapes correlating with spatial variations in \u03c1_H and \u2207S rather than NFW-like halo parameters.",
+      "falsifiable_by": "Comprehensive rotation-curve samples (e.g., JWST/HST kinematics) demonstrating no correlation between curve shape and entropy/Higgs-node proxies while requiring standard CDM halos."
+    },
+    {
+      "id": "P5",
+      "statement": "Mass\u2013light separation in merging clusters (e.g., Bullet Cluster analogs) follows the entropic tension term \u03bb\u2207S rather than collisionless particle offsets.",
+      "falsifiable_by": "Joint X-ray/SZ/lensing reconstructions where entropy-gradient maps fail to predict lensing-mass peaks and offsets across multiple mergers."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-precision CMB measurements at \u2113 > 1000 find |\u0394C\u2113/C\u2113| \u2264 3% with systematics controlled, inconsistent with the predicted 7\u201310% entropy-damping signature.",
+    "KC2: Multi-messenger gravitational-wave events in demonstrably high-entropy environments show |\u0394c_g/c| < 10^-15 with no environment-dependent trend.",
+    "KC3: Lensing convergence maps across clusters and voids show no statistically significant correlation with entropy proxies, contradicting G_grid(S) dependence.",
+    "KC4: Robust detection of a cold, collisionless dark-matter particle with abundance and interaction properties that uniquely explain rotation curves, lensing, and cluster dynamics without entropic-tension terms.",
+    "KC5: Event-horizon-scale observations (e.g., EHT) and time-delay measurements show no measurable deviations from constant c or GR predictions attributable to entropy dependence near horizons.",
+    "KC6: Numerical grid-collapse models fail to reproduce the Bekenstein\u2013Hawking area law across parameter space, contradicting the claimed black-hole correspondence."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Grid-Higgs-Framework.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28559510",
   "path": "docs/papers/efc/EFC-Grid-Higgs-Framework",
   "pdf": "EFC-Grid-Higgs-Framework.pdf",
   "md": "EFC-Grid-Higgs-Framework.md",
-  "keywords": [
-    "EFC",
-    "Grid-Higgs Framework",
-    "Mass Emergence",
-    "Energy Flow",
-    "Entropy",
-    "Spacetime Resistance"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28559510",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28559510"
+  "type": "paper"
 }

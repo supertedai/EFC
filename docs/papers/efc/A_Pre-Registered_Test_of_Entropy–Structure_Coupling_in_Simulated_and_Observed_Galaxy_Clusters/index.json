@@ -1,6 +1,97 @@
 {
+  "$schema": "./schema.json",
+  "id": "a-pre-registered-test-of-entropy\u2013structure-coupling-in-simulated-and-observed-galaxy-clusters",
+  "title": "A Pre-Registered Test of Entropy\u2013Structure Coupling in Simulated and Observed Galaxy Clusters",
+  "description": "Pre-registered analysis comparing the coupling between entropy-profile steepness and cool-core state in TNG-Cluster simulations versus the ACCEPT X-ray sample. Finds a strong negative correlation between density-slope-based entropy proxy and central entropy in TNG-Cluster, opposite in sign to the positive correlation reported in ACCEPT, and registers a decisive full-profile fit to resolve remaining systematics.",
+  "version": "pre-print v1",
+  "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31286368",
+  "keywords": [
+    "galaxy clusters",
+    "intracluster medium",
+    "cool cores",
+    "entropy profiles",
+    "entropy\u2013structure coupling",
+    "cosmological simulations",
+    "TNG-Cluster",
+    "ACCEPT",
+    "Spearman correlation",
+    "pre-registered analysis",
+    "AGN feedback",
+    "central entropy K0"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "cavagnolo_entropy_profile": {
+      "latex": "K(r) = K_0 + K_{100} \\left( \\frac{r}{100\\,\\mathrm{kpc}} \\right)^{\\alpha}",
+      "description": "Parametric model used by ACCEPT to fit deprojected ICM entropy profiles; K0 is central entropy, K100 a normalization, and alpha the entropy gradient steepness."
+    },
+    "entropy_slope_decomposition": {
+      "latex": "\\alpha = \\frac{d\\ln K}{d\\ln r} = \\frac{d\\ln T}{d\\ln r} + \\frac{2}{3}\\left(-\\frac{d\\ln n_e}{d\\ln r}\\right)",
+      "description": "Decomposition of the logarithmic entropy slope into temperature and density gradient contributions."
+    },
+    "alpha_proxy_definition": {
+      "latex": "\\alpha_{\\mathrm{proxy}} = \\frac{2}{3}\\, n_{e,\\mathrm{slope}}",
+      "description": "Lower-bound proxy for the entropy slope using only the electron-density logarithmic slope; used for the pre-registered Path B proxy test."
+    }
+  },
+  "key_results": {
+    "main_finding": "TNG-Cluster shows a strong negative correlation between entropy-gradient proxy and central entropy (rho = -0.872), opposite in sign to the positive coupling reported in ACCEPT (rho ~ +0.36).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "rho(ne_slope, K0) in TNG-Cluster",
+      "rho(alpha_proxy, K0) in TNG-Cluster",
+      "partial_rho(ne_slope, K0 | log M500c)",
+      "mass-binned rho(ne_slope, K0)",
+      "reference rho(alpha, yCCT) in ACCEPT"
+    ],
+    "datasets_used": [
+      "TNG-Cluster (Nelson et al. 2024)",
+      "Lehle et al. 2024 supplementary catalogue",
+      "ACCEPT (Cavagnolo et al. 2009)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Using the pre-registered Path A full-profile fit over 20\u2013400 kpc with the Cavagnolo model, the TNG-Cluster correlation rho(alpha_fit, K0) will be negative and significant, confirming the sign flip relative to ACCEPT.",
+      "falsifiable_by": "Execute the Path A fit exactly as pre-registered; compute Spearman rho(alpha_fit, K0) over all 352 halos and test for rho >= 0 at p < 0.01."
+    },
+    {
+      "id": "P2",
+      "statement": "The negative correlation between entropy-gradient measure and K0 in TNG-Cluster will persist within each of four mass bins spanning 10^14\u201310^15.5 Msun.",
+      "falsifiable_by": "Recompute mass-binned Spearman correlations for alpha_fit or alpha_proxy vs K0 in the predefined four M500c bins; rejection if any bin shows rho >= 0 with p < 0.05 after multiple-testing correction."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: The pre-registered Path A full-profile fit yields a non-negative correlation between alpha_fit and K0 in TNG-Cluster (rho >= 0) with p < 0.01, eliminating the reported sign flip.",
+    "KC2: After matching the ACCEPT measurement pipeline (same radial range, deprojection weighting, and center choice), the TNG-Cluster correlation sign becomes positive and consistent with ACCEPT (e.g., rho >= +0.2 with p < 0.05).",
+    "KC3: Independent measurements show that core temperature gradients are sufficiently negative in a majority of halos (>= 50%), invalidating the monotonic lower-bound property of alpha_proxy and reversing rank ordering; proxy-based conclusions would then be withdrawn.",
+    "KC4: A re-analysis of ACCEPT with updated calibration and selection finds no positive coupling (rho(alpha, yCCT) ~ 0 with p > 0.1), removing the observational target and nullifying the claimed sim\u2013obs mismatch.",
+    "KC5: Robust mass-control analyses (e.g., conditional randomization tests or stratified permutations) demonstrate that the negative correlation in TNG-Cluster is fully explained by mass confounding, reducing |rho| below 0.2 with p > 0.1."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "entropy-structure-pre-reg",
+      "doi": "10.6084/m9.figshare.31286368",
+      "role": "Data and code archive for the pre-registered analysis"
+    }
+  ],
+  "files": {
+    "pdf": "A_Pre-Registered_Test_of_Entropy\u2013Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31286368",
   "paper": {
-    "title": "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters",
+    "title": "A Pre-Registered Test of Entropy\u2013Structure Coupling in Simulated and Observed Galaxy Clusters",
     "short_title": "Entropy-Structure Coupling Test",
     "author": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -260,7 +351,7 @@
       "TNG: mass-selected sample",
       "ACCEPT: X-ray selected, flux-limited sample"
     ],
-    "implications": "Framework-independent question: Why do modern ΛCDM hydrodynamic simulations not reproduce the observed entropy-structure coupling?"
+    "implications": "Framework-independent question: Why do modern \u039bCDM hydrodynamic simulations not reproduce the observed entropy-structure coupling?"
   },
   "package_contents": {
     "source_code": "src/entropy_structure_coupling.py",
@@ -301,7 +392,5 @@
       "key": "Weinberger2017",
       "citation": "Weinberger, R., et al. 2017, MNRAS, 465, 3291"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31286368",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31286368"
+  ]
 }

@@ -1,49 +1,33 @@
 {
-  "title": "EFC — Grid Model for Entropic Dynamics",
-  "short_id": "efc-grid-model-entropic-dynamics",
-  "version": "v1.0",
+  "title": "Grid Model: An Entropic and Dynamic Theory for Emergent Gravity in Cosmology",
+  "short_id": "EFC-Grid-Model-Entropic-Dynamics",
+  "version": "1.0",
   "date": "2025-01-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "license": "CC-BY-4.0",
-  "abstract": "Describes how entropic dynamics emerge from the interaction between the Grid field, the entropy field S, and the energy-flow field Ef. Explains how local and global structure form through gradients, resistance, and distributed energy propagation.",
+  "doi": "10.6084/m9.figshare.28559423",
+  "abstract": "Proposes an Energy-Flow Cosmology (EFC) Grid Model in which gravity emerges from entropy-regulated energy flow rather than from dark matter or a cosmological constant. The paper links entropy, energy-flow gradients, and a dynamic effective gravity to observed rotation curves, gravitational lensing trends, high-\u2113 CMB anisotropy deviations, and environment-dependent gravitational-wave propagation, supported by simulations and comparisons to JWST, SDSS/eFEDS, Planck, HST, and LIGO data.",
   "keywords": [
-    "EFC",
-    "grid model",
-    "entropic dynamics",
-    "energy flow",
-    "entropy gradient",
-    "dynamic structure",
-    "grid field",
-    "spacetime resistance"
+    "Energy-Flow Cosmology",
+    "Entropic dynamics",
+    "Emergent gravity",
+    "Energy flow",
+    "Entropy gradient",
+    "Dynamic gravitational constant",
+    "Gravitational lensing",
+    "CMB anisotropies",
+    "Galaxy rotation curves",
+    "Gravitational-wave speed",
+    "JWST",
+    "Bullet Cluster"
   ],
-  "efc_context": {
-    "track": "Fundamental Theory",
-    "regime_relevance": "Entropic dynamics from grid-entropy-flow interaction",
-    "epistemic_layer": "Layer A (theoretical foundation)"
-  },
-  "key_results": [
-    "Entropic dynamics emerge from Grid-S-Ef field interaction",
-    "Local structure forms through entropy gradient topology",
-    "Global structure from distributed energy propagation and resistance",
-    "Dynamic equilibrium between flow and entropy production"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "EFC-Grid-Model-Entropic-Dynamics.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "EFC-Grid-Model-Entropic-Dynamics.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/entropic_dynamics.py"
-    ],
-    "data": "data/parameters.json",
-    "demo": "examples/demo_entropic_dynamics.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28559423",

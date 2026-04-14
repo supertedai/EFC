@@ -1,38 +1,115 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-phase3-sparc-validation",
   "title": "EFC Phase 3: SPARC Validation",
-  "subtitle": "Empirical Test of Energy-Flow Cosmology Against the Radial Acceleration Relation",
+  "description": "Unbinned maximum-likelihood fit with intrinsic scatter of the EFC screening form ln \u03bc = k ln(1 + g\u2020/gbar) to 174 SPARC galaxies (3264 points). The analysis finds k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, and \u03c3_int \u2248 0.14 dex, and\u2014using an independently obtained aG = 0.094 \u00b1 0.01\u2014infers a cross-scale phase-gain parameter C = 4.4 \u00b1 0.6. This establishes empirical compatibility of EFC with the RAR and provides a quantitative cross-scale consistency check.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31224538",
+  "keywords": [
+    "radial acceleration relation",
+    "SPARC",
+    "rotation curves",
+    "modified gravity",
+    "MOND",
+    "Energy-Flow Cosmology",
+    "screening function",
+    "intrinsic scatter",
+    "transition acceleration scale",
+    "bootstrap",
+    "cross-scale consistency",
+    "phase-gain parameter"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Norway"
   },
+  "core_equations": {
+    "screening_form_mu": {
+      "latex": "\\mu = \\left(1 + \\frac{g^{\\dagger}}{g_{\\rm bar}}\\right)^{k}",
+      "description": "EFC screening form for the gravitational enhancement factor relating observed to baryonic acceleration."
+    },
+    "log_screening": {
+      "latex": "\\ln \\mu = k\\, \\ln\\!\\left(1 + \\frac{g^{\\dagger}}{g_{\\rm bar}}\\right)",
+      "description": "Log-linear form used for unbinned maximum-likelihood fitting of the RAR."
+    },
+    "likelihood_with_scatter": {
+      "latex": "\\ln \\mathcal{L} = -\\tfrac{1}{2}\\sum_i \\left[ \\frac{\\left(y_i - k\\,\\ln\\!\\left(1 + \\tfrac{g^{\\dagger}}{g_{{\\rm bar},i}}\\right)\\right)^2}{\\sigma_{y,i}^2 + \\sigma_{\\rm int}^2} + \\ln\\!\\left(\\sigma_{y,i}^2 + \\sigma_{\\rm int}^2\\right) \\right]",
+      "description": "Unbinned maximum-likelihood with intrinsic scatter for y_i = ln(g_obs,i / g_bar,i)."
+    },
+    "geff_expansion": {
+      "latex": "G_{\\rm eff} = G_0\\,\\exp\\!\\left(a_G\\, \\Delta\\Phi\\right)",
+      "description": "Core Lock relation linking effective gravity to entropy-phase accumulation with universal coupling a_G."
+    },
+    "phase_gain_relation": {
+      "latex": "\\Delta\\Phi = C\\,\\ln\\!\\left(1 + \\tfrac{g^{\\dagger}}{g_{\\rm bar}}\\right),\\quad k = a_G\\,C",
+      "description": "EFC phase accumulation ansatz connecting galactic and cosmological scales; k factors into a universal coupling a_G and a phase-gain parameter C."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC\u2019s screening form provides an excellent empirical fit to the SPARC RAR with k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, and \u03c3_int \u2248 0.14 dex, and\u2014combined with aG = 0.094 \u00b1 0.01\u2014implies a cross-scale phase-gain C = 4.4 \u00b1 0.6.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "k (screening exponent)",
+      "g\u2020 (transition acceleration scale)",
+      "\u03c3_int (intrinsic scatter in ln \u03bc)",
+      "a_G (universal coupling; independent input)",
+      "C = k/a_G (phase-gain parameter; derived)"
+    ],
+    "datasets_used": [
+      "SPARC (Lelli et al. 2016): 174 galaxies, 3264 points, quality Q \u2264 2, inclination > 30\u00b0"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: In an expanded SPARC-quality sample (>= 300 galaxies) analyzed with the same unbinned MLE and intrinsic-scatter framework, the EFC screening form ln \u03bc = k ln(1 + g\u2020/gbar) exhibits a statistically significant residual trend with gbar (nonzero residual slope) at >5\u03c3, indicating the functional form is incompatible with the RAR.",
+    "KC2: The asymptotic low-acceleration slope measured from stacked or binned RAR data is inconsistent with the EFC prediction d(ln \u03bc)/d(ln gbar) = \u2212k by >5\u03c3 when k is obtained from the global fit.",
+    "KC3: Independent H0-scale analyses converge on a universal coupling a_G that is inconsistent with 0.094 \u00b1 0.01 by >5\u03c3 and lead to mutually incompatible values of C = k/a_G between the RAR fit and H0-inferred a_G (no single C fits both within 3\u03c3), breaking EFC\u2019s cross-scale consistency.",
+    "KC4: Across multiple high-quality rotation-curve datasets, model selection decisively favors an alternative parametric form (e.g., \u0394AIC > 20) that cannot be recast as ln \u03bc \u221d ln(1 + g\u2020/gbar) with a single global k and g\u2020.",
+    "KC5: The inferred transition scale g\u2020 is found to correlate strongly with galaxy properties (e.g., central surface density) with |\u03c1| > 0.7, contradicting the assumption of a single global acceleration scale in the EFC screening ansatz."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "h0-rar-unification",
+      "doi": "10.6084/m9.figshare.31223908",
+      "role": "Independent source of a_G used to derive C"
+    },
+    {
+      "id": "h0-regime-mismatch",
+      "doi": "10.6084/m9.figshare.31224247",
+      "role": "Regime interpretation and cross-scale context"
+    },
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "role": "Mathematical foundation (G_eff = G0 exp(a_G \u0394\u03a6))"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Phase_3__SPARC_Validation.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224538",
+  "subtitle": "Empirical Test of Energy-Flow Cosmology Against the Radial Acceleration Relation",
   "license": "CC-BY-4.0",
   "type": "empirical_validation",
   "epistemic_layer": "A",
   "epistemic_status": "Empirical fit to observational data",
-  "keywords": [
-    "radial acceleration relation",
-    "MOND",
-    "modified gravity",
-    "Hubble tension",
-    "SPARC",
-    "EFC",
-    "cross-scale consistency"
-  ],
   "data_source": {
     "name": "SPARC",
     "reference": "Lelli et al. 2016",
     "galaxies": 174,
     "data_points": 3264,
-    "quality_cuts": "Q ≤ 2, inclination > 30°"
+    "quality_cuts": "Q \u2264 2, inclination > 30\u00b0"
   },
   "screening_form": {
-    "equation": "μ = (1 + g†/g_bar)^k",
-    "log_form": "ln μ = k × ln(1 + g†/g_bar)"
+    "equation": "\u03bc = (1 + g\u2020/g_bar)^k",
+    "log_form": "ln \u03bc = k \u00d7 ln(1 + g\u2020/g_bar)"
   },
   "fit_results": {
     "k": {
@@ -44,13 +121,13 @@
     "g_dagger": {
       "value": 2.51e-10,
       "error": 6e-11,
-      "unit": "m/s²",
+      "unit": "m/s\u00b2",
       "description": "Transition acceleration scale",
       "source": "SPARC fit"
     },
     "sigma_int": {
       "value": 0.33,
-      "unit": "ln μ",
+      "unit": "ln \u03bc",
       "dex": 0.14,
       "description": "Intrinsic scatter",
       "source": "SPARC fit"
@@ -61,7 +138,7 @@
       "value": 0.094,
       "error": 0.01,
       "description": "Universal coupling coefficient",
-      "source": "H₀ analysis (independent)"
+      "source": "H\u2080 analysis (independent)"
     },
     "C": {
       "value": 4.4,
@@ -102,6 +179,5 @@
       "doi": "10.6084/m9.figshare.31223503",
       "relationship": "mathematical foundation"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224538"
+  ]
 }

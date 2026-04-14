@@ -1,7 +1,7 @@
 {
   "title": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex Systems",
-  "short_id": "RBWM",
-  "version": "v1.0",
+  "short_id": "regime-based-world-modeling",
+  "version": "1.0",
   "date": "2026-02-01",
   "author": {
     "name": "Morten Magnusson",
@@ -10,46 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31223650",
-  "abstract": "Generalizes the EBE regime architecture beyond physics to biology, economics, and AI. Introduces the (R, L) coordinate system for regime classification, regime-gating mechanisms, driver proximity analysis, and validity domains as a cross-domain epistemic framework for complex systems.",
+  "abstract": "Introduces Regime-Based World Modeling (RBWM), a meta-epistemic framework that maps scientific claims onto a two-axis coordinate system: the Regime axis (R) for emergent complexity levels and the Epistemic Layer axis (L) for derivation distance from observation. It generalizes the Regime-Gating Principle, asserting that claims are valid only when expressed in driver-near variables for the operative regime, thereby preventing regime leakage and clarifying conflicts between models operating at different epistemic coordinates.",
   "keywords": [
-    "regime-based modeling",
-    "epistemic architecture",
-    "complex systems",
-    "R-L coordinate system",
-    "regime-gating",
+    "regime-gating principle",
     "driver proximity",
-    "validity domains",
-    "cross-domain framework"
+    "regime leakage",
+    "epistemic layering",
+    "R-axis",
+    "L-axis",
+    "validity domain",
+    "(R,L) coordinate mapping",
+    "multi-scale modeling",
+    "complex adaptive systems",
+    "world models",
+    "conflict resolution"
   ],
-  "efc_context": {
-    "track": "Methodology",
-    "regime_relevance": "Cross-domain regime architecture generalizing EBE to biology, economics, and AI",
-    "epistemic_layer": "Layer A (cross-domain framework)"
-  },
-  "key_results": [
-    "(R, L) coordinate system for regime classification across domains",
-    "Regime-gating mechanism for validity-bounded inference",
-    "Driver proximity metric for causal attribution",
-    "Formal validity domains applicable to physics, biology, economics, and AI"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "Regime_Based_World_Modeling__A_Layered_Epistemic_Architecture_for_Complex_Systems-1.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "RBWM.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/claim.py",
-      "src/driver_proximity.py",
-      "src/l_axis.py",
-      "src/r_axis.py",
-      "src/regime_gate.py",
-      "src/world_model.py"
-    ],
-    "data": "data/r_regimes.json",
-    "demo": "examples/physics_example.py"
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31223650",

@@ -1,35 +1,41 @@
 {
-  "dc.title": "Derivation of the Entropy Production Function Γ(ρ) from Grid-Mode Bose–Einstein Statistics",
-  "dc.creator": "Morten Magnusson",
-  "dc.date": "2026-04-06",
-  "dc.type": "Working Paper",
-  "dc.format": "application/pdf",
-  "dc.identifier": "10.6084/m9.figshare.31942821",
-  "dc.language": "en",
-  "dc.rights": "CC-BY-4.0",
-  "dc.publisher": "Figshare",
-  "dc.subject": [
-    "entropy production function",
-    "Bose-Einstein statistics",
+  "title": "Derivation of the Entropy Production Function \u0393(\u03c1) from Grid-Mode Bose\u2013Einstein Statistics",
+  "short_id": "derivation-of-the-entropy-production",
+  "version": "1.0",
+  "date": "2026-04-06",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31942821",
+  "abstract": "Derives the entropy production function \u0393(\u03c1) from first principles using Bose\u2013Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form \u0393(\u03c1) = \u03930 \u00b7 \u03c1/(\u03c1 + \u03c1crit) with \u03c1crit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that \u0393(\u03c1) and the gravitational response \u03bcBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+  "keywords": [
+    "entropy production",
+    "Bose\u2013Einstein statistics",
     "von Neumann entropy",
     "grid modes",
-    "micro-to-macro bridge",
-    "EFC",
-    "cosmology"
+    "critical density",
+    "MOND acceleration a0",
+    "cosmological dynamics",
+    "flow constraint",
+    "gravitational response",
+    "double-counting",
+    "EFC v3.7",
+    "micro-to-macro bridge"
   ],
-  "dc.description": "First derivation of Γ(ρ) from BE statistics + von Neumann entropy. Result: Γ ∝ ρ^(3/2)/(ρ+ρ_crit) with emergent ρ_crit = a₀/(G_N l_g). Scenario B: correct qualitative structure, exponent 3/2 vs phenomenological 1. Double-counting μ_BE vs Γ resolved.",
-  "dc.relation": [
-    "10.6084/m9.figshare.31876324",
-    "10.6084/m9.figshare.31941465",
-    "10.6084/m9.figshare.31878760",
-    "10.6084/m9.figshare.31942800"
-  ],
-  "datacite.resourceType": "Text/WorkingPaper",
-  "datacite.version": "1.0",
-  "efc.track": "Spor 1",
-  "efc.sector": "Discrete Gravity / Grid Microphysics",
-  "efc.regime": "L1→L2 (cosmological → galactic)",
-  "efc.scenario": "B",
+  "files": {
+    "readme": "README.md",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "entropy_production.jsonld",
+    "citations": "citations.bib",
+    "source": "src/entropy_production.py",
+    "init": "src/__init__.py",
+    "data": "data/entropy_production_data.json",
+    "demo": "examples/demo_entropy_production.py"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31942821",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31942821"

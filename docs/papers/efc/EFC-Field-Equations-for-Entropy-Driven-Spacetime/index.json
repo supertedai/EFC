@@ -1,21 +1,123 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Field-Equations-for-Entropy-Driven-Spacetime",
-  "title": "EFC — Field Equations for Entropy-Driven Spacetime",
+  "title": "Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime",
+  "description": "Proposes a covariant field-theoretic framework where a normalized entropy field S(x) and an energy-flow four-vector J^\u03bc source spacetime curvature alongside the metric. The action yields modified Einstein equations that reduce to GR when entropy gradients vanish, with cosmological and galactic-scale phenomenology that can mimic dark matter and alter late-time expansion.",
+  "version": "1.0",
+  "date": "2025-01-01",
+  "doi": "10.6084/m9.figshare.30421807",
+  "keywords": [
+    "energy-flow cosmology",
+    "entropy field",
+    "emergent gravity",
+    "modified gravity",
+    "thermodynamics of spacetime",
+    "variational principle",
+    "FRW cosmology",
+    "Friedmann equations",
+    "dark matter phenomenology",
+    "gravitational lensing",
+    "galaxy rotation curves",
+    "H0 tension"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "core_equations": {
+    "action": {
+      "latex": "S = \\int d^4x\\,\\sqrt{-g}\\,\\Big[\\frac{1}{16\\pi G} R - \\frac{\\kappa_S}{2}(\\nabla S)^2 - V(S) - \\frac{\\kappa_J}{2} J_\\mu J^\\mu + \\gamma\\, \\nabla_\\mu S\\, J^\\mu + \\lambda\\,(\\nabla_\\mu J^\\mu - \\Sigma)\\Big]",
+      "description": "Covariant action coupling the metric g_{\\mu\\nu} to an entropy potential S and an energy-flow four-vector J^\\mu, with a Lagrange multiplier enforcing non-negative entropy production."
+    },
+    "potential": {
+      "latex": "V(S) = V_0 + \\tfrac{1}{2} m_S^2 (S - S_0)^2",
+      "description": "Simple entropic potential that yields a cosmological constant term in the homogeneous (equilibrium) limit."
+    },
+    "einstein_like": {
+      "latex": "G_{\\mu\\nu} = 8\\pi G \\left(T^{(m)}_{\\mu\\nu} + T^{(S,J)}_{\\mu\\nu}\\right)",
+      "description": "Einstein equations sourced by standard matter plus effective stress-energy from the entropy and energy-flow fields."
+    },
+    "stress_energy_SJ": {
+      "latex": "T^{(S,J)}_{\\mu\\nu} = \\kappa_S \\, \\nabla_\\mu S \\, \\nabla_\\nu S - \\tfrac{1}{2} g_{\\mu\\nu} (\\nabla S)^2 - g_{\\mu\\nu} V(S) + \\kappa_J J_\\mu J_\\nu - \\tfrac{1}{2} g_{\\mu\\nu} J_\\alpha J^\\alpha + \\gamma \\, \\nabla_{(\\mu} S \\, J_{\\nu)} - \\tfrac{1}{2} g_{\\mu\\nu} \\, \\nabla_\\alpha S \\, J^\\alpha",
+      "description": "Effective stress-energy tensor arising from gradients of S, the flow J^\\mu, and their coupling."
+    },
+    "s_eom": {
+      "latex": "\\kappa_S \\, \\Box S - V'(S) + \\gamma \\, \\nabla_\\mu J^\\mu = 0",
+      "description": "Equation of motion for the entropy field S sourced by the divergence of the flow J^\\mu."
+    },
+    "j_eom": {
+      "latex": "\\kappa_J J_\\mu = \\gamma \\, \\nabla_\\mu S + \\nabla_\\mu \\lambda",
+      "description": "Constitutive relation connecting the energy-flow current J^\\mu to gradients of S and the Lagrange multiplier."
+    },
+    "entropy_production": {
+      "latex": "\\nabla_\\mu J^\\mu = \\Sigma \\ge 0",
+      "description": "Entropy production constraint consistent with the second law of thermodynamics."
+    },
+    "rho_eff_newtonian": {
+      "latex": "\\rho^{S,J}_{\\mathrm{eff}} = \\tfrac{\\kappa_S}{2} (\\nabla S)^2 + \\tfrac{\\kappa_J}{2} J^2 + \\tfrac{\\gamma}{2} (\\nabla S \\cdot J) + V(S)",
+      "description": "Effective energy density in the weak-field limit that modifies gravitational potentials and can mimic dark matter effects."
+    },
+    "friedmann_bg": {
+      "latex": "H^2 = \\tfrac{8\\pi G}{3} (\\rho_m + \\rho_r + \\rho_{S,J}),\\quad \\dot H = -4\\pi G\\,[\\rho_m + p_m + \\rho_r + \\tfrac{4}{3}\\rho_r + \\rho_{S,J} + p_{S,J}]",
+      "description": "Modified Friedmann equations for a flat FRW background with homogeneous S(t) and J^0(t)."
+    },
+    "rho_p_SJ": {
+      "latex": "\\rho_{S,J} = \\tfrac{\\kappa_S}{2} \\dot S^2 + V(S) + \\tfrac{\\kappa_J}{2} (J^0)^2 - \\tfrac{\\gamma}{2} \\dot S \\, J^0,\\quad p_{S,J} = \\tfrac{\\kappa_S}{2} \\dot S^2 - V(S) + \\tfrac{\\kappa_J}{2} (J^0)^2 - \\tfrac{\\gamma}{2} \\dot S \\, J^0",
+      "description": "Background effective energy density and pressure contributed by S and J^0 in cosmology."
+    }
+  },
+  "key_results": {
+    "main_finding": "Introduces a covariant entropy\u2013flow sector that sources curvature, recovers GR when \u2207S \u2192 0, and yields testable modifications to galactic dynamics, lensing, and the expansion history without invoking particle dark matter or dark energy.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "kappa_S",
+      "kappa_J",
+      "gamma",
+      "V0",
+      "m_S",
+      "S0"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In galaxies, a single parameter set (kappa_S, kappa_J, gamma, V(S)) that fits rotation curves using baryons only will predict the corresponding weak-lensing convergence profile via \u03c1_eff^{S,J} without additional dark matter.",
+      "falsifiable_by": "Joint kinematics\u2013lensing samples (e.g., SPARC + KiDS/DES/LSST) showing inconsistent lensing-kinematics predictions across radii at >5\u03c3 for any parameter set satisfying Solar-System bounds."
+    },
+    {
+      "id": "P2",
+      "statement": "A homogeneous S(t) and J^0(t) background can fit Planck CMB, BAO, and SNe expansion data without \u039b and CDM by adjusting {kappa_S, kappa_J, gamma, V(S)}.",
+      "falsifiable_by": "Global fit to Planck TTTEEE+lensing + BAO + SNe showing \u0394\u03c7\u00b2 \u2265 50 degradation versus \u039bCDM for all stable (no-ghost, no-gradient-instability) parameter choices."
+    },
+    {
+      "id": "P3",
+      "statement": "Solar-system PPN parameters reduce to GR values in regions with negligible \u2207S and J^\u03bc, implying |\u03b3_PPN\u22121|, |\u03b2_PPN\u22121| \u2272 10\u207b\u2075.",
+      "falsifiable_by": "Shapiro-delay, light-deflection, and perihelion-precession measurements improving or matching Cassini bounds but detecting deviations inconsistent with any allowed small-gradient EFC limit."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: No GR limit \u2014 if Solar-System PPN bounds (e.g., |\u03b3_PPN\u22121| < 2.3\u00d710\u207b\u2075) cannot be satisfied simultaneously with any cosmologically viable {kappa_S, kappa_J, gamma, V(S)}.",
+    "KC2: Global cosmology failure \u2014 if Planck TTTEEE+lensing + BAO + SNe fits require \u0394\u03c7\u00b2 \u2265 50 worse than \u039bCDM across the full stable EFC parameter space.",
+    "KC3: Instabilities \u2014 if linear perturbation analysis shows ghosts (negative kinetic terms) or gradient instabilities (c_s^2 < 0) in the late Universe for parameter regions needed to match background expansion or structure growth.",
+    "KC4: Second-law violation \u2014 if fitting observations necessitates negative entropy production (\u03a3 < 0) over sustained cosmological epochs.",
+    "KC5: Scale inconsistency \u2014 if parameters that fit the FRW background and CMB cannot reproduce galaxy/cluster lensing\u2013dynamics relations without dark matter across multiple systems.",
+    "KC6: Early-Universe constraints \u2014 if Big Bang Nucleosynthesis or CMB damping-tail inferences of H(t) imply \u0394N_eff or expansion rates incompatible with EFC modifications at >3\u03c3 when using the same parameter set."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Field-Equations-for-Entropy-Driven-Spacetime.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30421807",
   "path": "docs/papers/efc/EFC-Field-Equations-for-Entropy-Driven-Spacetime",
   "pdf": "EFC-Field-Equations-for-Entropy-Driven-Spacetime.pdf",
   "md": "EFC-Field-Equations-for-Entropy-Driven-Spacetime.md",
-  "keywords": [
-    "EFC",
-    "Field Equations",
-    "Entropy-Driven Spacetime",
-    "Energy Flow",
-    "Spacetime Dynamics",
-    "Thermodynamics",
-    "Emergence"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.30421807",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30421807"
+  "type": "paper"
 }

@@ -1,85 +1,18 @@
 {
-  "@context": "https://schema.org",
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
   "@type": "ScholarlyArticle",
   "name": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
-  "headline": "Single-component EFC wins 60.2% of 171/175 SPARC galaxies against an NFW reference; cherry-picking objection refuted.",
-  "identifier": "https://doi.org/10.6084/m9.figshare.31986762",
-  "sameAs": "https://doi.org/10.6084/m9.figshare.31986762",
-  "doi": "10.6084/m9.figshare.31986762",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Symbiose Research, Sandnes, Norway"
-    }
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
   },
   "datePublished": "2026-04-11",
-  "inLanguage": "en",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "EFC",
-    "ΛCDM",
-    "kill test",
-    "universality",
-    "SPARC",
-    "SPARC 175",
-    "rotation curves",
-    "NFW",
-    "AIC",
-    "regime classification",
-    "FLOW",
-    "LATENT",
-    "DDO 154",
-    "L3"
-  ],
-  "about": [
-    "Spor 1 — Galactic/Cosmological",
-    "L3",
-    "Rotation curve universality",
-    "Kill-Test v6 probe-2 extension"
-  ],
-  "isBasedOn": [
-    {
-      "@type": "ScholarlyArticle",
-      "name": "EFC vs ΛCDM: Complete Kill-Test (v6 final)",
-      "identifier": "10.6084/m9.figshare.31964847"
-    },
-    {
-      "@type": "Dataset",
-      "name": "Comprehensive analysis of 175 SPARC galaxies",
-      "identifier": "10.6084/m9.figshare.31045126"
-    }
-  ],
-  "citation": [
-    {
-      "@type": "CreativeWork",
-      "name": "Lelli, McGaugh & Schombert 2016, AJ 152, 157 — SPARC database"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Navarro, Frenk & White 1997, ApJ 490, 493 — NFW profile"
-    }
-  ],
-  "encodingFormat": [
-    "application/json",
-    "text/markdown",
-    "text/x-python"
-  ],
-  "softwareRequirements": [
-    "Python >= 3.10",
-    "numpy >= 1.24",
-    "scipy >= 1.10"
-  ],
-  "variableMeasured": [
-    "χ²_red (EFC, NFW)",
-    "AIC (EFC, NFW)",
-    "ΔAIC = AIC_NFW - AIC_EFC",
-    "Kill-Test verdict ∈ {EFC_decisive, EFC, tied, LCDM, LCDM_decisive}",
-    "Regime ∈ {FLOW, TRANSITION, LATENT}"
-  ],
-  "measurementTechnique": "Differential evolution global optimisation (scipy) with Akaike information criterion model comparison",
-  "mainEntityOfPage": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/Kill-Test%20v6%20Universality_SPARC175"
+  "@id": "doi:10.6084/m9.figshare.31986762",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31986762",
+  "doi": "10.6084/m9.figshare.31986762",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.31986762"
 }

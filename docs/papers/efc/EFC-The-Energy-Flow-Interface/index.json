@@ -1,20 +1,92 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-The-Energy-Flow-Interface",
-  "title": "EFC — The Energy-Flow Interface",
+  "title": "The Energy\u2013Flow Interface: A Unified Thermodynamic Interpretation of Dark Matter, Dark Energy, and the CMB \u2014 within the Grid\u2013Higgs Field Framework",
+  "description": "Proposes Energy\u2013Flow Cosmology (EFC), in which dark matter, dark energy, and the CMB are thermodynamic phases of a single Grid\u2013Higgs medium governed by an energy\u2013flux field coupled to local entropy. The paper identifies convergent (DM), divergent (DE), and isothermal interface (CMB) regimes and outlines testable predictions linking CMB anisotropies, large\u2011scale structure, and the dark\u2011energy equation of state.",
+  "version": "1.1",
+  "date": "2025-10-01",
+  "doi": "10.6084/m9.figshare.30468737",
+  "keywords": [
+    "Energy\u2013Flow Cosmology",
+    "Grid\u2013Higgs field",
+    "thermodynamic phases",
+    "entropy coupling",
+    "energy flux divergence",
+    "dark matter",
+    "dark energy",
+    "cosmic microwave background",
+    "CMB anisotropies",
+    "ISW effect",
+    "equation of state w(z)",
+    "isothermal interface"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "grid_higgs_lagrangian": {
+      "latex": "\\mathcal{L} = \\tfrac{1}{2} (\\partial_\\mu \\Phi)^2 - V(\\Phi, S)",
+      "description": "Effective Lagrangian for the Grid\u2013Higgs field \\Phi with potential V that depends on the field and local entropy S, providing a thermodynamic degree of freedom."
+    },
+    "energy_entropy_coupling": {
+      "latex": "\\nabla_\\mu J^{\\mu} = \\frac{\\partial V(\\Phi, S)}{\\partial S}",
+      "description": "Divergence of the energy\u2013flux field J^\\mu equals the entropy derivative of the potential, partitioning spacetime into convergent (DM-like), null-flux (CMB-like), and divergent (DE-like) regimes."
+    }
+  },
+  "key_results": {
+    "main_finding": "DM, DE, and the CMB emerge as convergent, divergent, and isothermal-interface phases of a single entropy-coupled energy\u2013flow field embedded in a Grid\u2013Higgs medium.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "None (no parameter estimation performed)"
+    ],
+    "datasets_used": [
+      "Planck 2018/2020 CMB",
+      "DESI",
+      "SPARC",
+      "KiDS",
+      "CFHTLenS",
+      "Pantheon+"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "CMB temperature anisotropies exhibit a scale-dependent cross-correlation with mapped dark-matter density fields beyond \u039bCDM expectations, due to interface oscillations coupling convergent and divergent zones.",
+      "falsifiable_by": "Joint CMB\u2013LSS analyses (e.g., Planck/Simons Observatory/ACT \u00d7 DESI/KiDS/LSST) showing no excess cross-correlation after accounting for \u039bCDM ISW and lensing templates."
+    },
+    {
+      "id": "P2",
+      "statement": "There is a weak but nonzero coupling between the present CMB temperature (TCMB) and the dark-energy equation-of-state w(z), producing correlated temporal or environmental modulations at the interface.",
+      "falsifiable_by": "Precision constraints on TCMB\u2013w(z) covariance from multi-probe reconstructions (SN, BAO, RSD, lensing) showing consistency with zero coupling within uncertainties."
+    },
+    {
+      "id": "P3",
+      "statement": "The ISW signal is phase-shifted relative to dark-matter surface/overdensity maps, reflecting interface dynamics between convergent and divergent flows.",
+      "falsifiable_by": "Tomographic ISW\u2013LSS cross-correlation phase analyses (e.g., with DESI/LSST) finding no measurable phase shift beyond \u039bCDM predictions."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: High-SNR (\u226510) CMB\u2013LSS cross-correlation studies across 100 \u2264 \u2113 \u2264 1000 find no residual correlation beyond \u039bCDM ISW+lensing templates at |r| < 0.01, ruling out interface-induced anisotropy coupling.",
+    "KC2: Joint constraints on TCMB and w(z) over 0 \u2264 z \u2264 2 show TCMB\u2013w(z) coupling consistent with exactly zero (and not merely weak) at high significance (\u22655\u03c3), contradicting the predicted nonzero coupling.",
+    "KC3: Tomographic ISW\u2013LSS analyses detect phase alignment fully consistent with \u039bCDM and exclude any additional phase shift at \u22655\u03c3 across multiple redshift bins.",
+    "KC4: A concrete EFC implementation in CLASS/GADGET-4 fails to simultaneously match the observed CMB power spectra and the matter power spectrum for any plausible V(\u03a6,S) and initial conditions, indicating internal inconsistency of the framework.",
+    "KC5: Robust null results for cross-correlations between CMB small-scale anisotropies and independently reconstructed dark-matter convergence maps (from weak lensing) after foreground and systematic mitigation, across multiple surveys and pipelines."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-The-Energy-Flow-Interface.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30468737",
   "path": "docs/papers/efc/EFC-The-Energy-Flow-Interface",
   "pdf": "EFC-The-Energy-Flow-Interface.pdf",
   "md": "EFC-The-Energy-Flow-Interface.md",
-  "keywords": [
-    "EFC",
-    "Energy-Flow Interface",
-    "Entropy",
-    "Grid Field",
-    "Field Interaction",
-    "Boundary Dynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.30468737",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30468737"
+  "type": "paper"
 }

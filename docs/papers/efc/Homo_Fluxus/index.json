@@ -1,6 +1,115 @@
 {
+  "$schema": "./schema.json",
+  "id": "homo-fluxus-v2",
+  "title": "Homo Fluxus v2.0 \u2014 A Civilization Map Through Energy-Flow Cosmology: From Grid to Governance \u2014 One Gradient, All Regimes",
+  "description": "Systems-level map extending Energy-Flow Cosmology (EFC) across biology, cognition, economy, governance, and AI, defining Homo Fluxus as a dynamic entropy-gradient process rather than a static entity. v2.0 anchors the framework empirically: in human connectomes, local structure (degree ratio) predicts the functional variability gradient (\u03ba) with r \u2248 \u22120.97, while a global graph metric (Fiedler eigenvalue \u03bb\u2082) fails (r \u2248 0.16), supporting the EFC principle that local structure governs energy/information flow.",
+  "version": "v2.0",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31940604",
+  "keywords": [
+    "Homo Fluxus",
+    "Energy-Flow Cosmology",
+    "entropy gradient",
+    "connectome",
+    "functional variability",
+    "degree ratio",
+    "Fiedler eigenvalue",
+    "cognition",
+    "governance",
+    "thermodynamics",
+    "RLHF",
+    "neg-entropy"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "efc_chain": {
+      "latex": "\\text{Grid} \\to EF \\to S \\to D \\to C",
+      "description": "The EFC causal chain: substrate (Grid) shapes energy flow (EF), which forms structure (S), driving dynamics (D), culminating in cognition (C)."
+    },
+    "hf_definition": {
+      "latex": "\\mathrm{Homo\\,Fluxus} := C\\,\\text{recognizing itself as}\\,EF\\,\\text{operating through}\\,S, D",
+      "description": "Operational definition of Homo Fluxus as cognition aware of and aligned with its underlying energy-flow through structure and dynamics."
+    },
+    "local_structure_anchor": {
+      "latex": "r\\big(\\kappa,\\; \\text{degree ratio}\\big) \\approx -0.97",
+      "description": "Empirical anchor: the functional variability gradient \\kappa is strongly (negatively) correlated with a local structural metric (degree ratio) at the individual subject level."
+    },
+    "global_metric_failure": {
+      "latex": "r\\big(\\kappa,\\; \\lambda_2\\big) \\approx 0.16",
+      "description": "Global graph connectivity (Fiedler eigenvalue \\lambda_2) shows negligible predictive power for \\kappa, indicating locality of governing structure."
+    }
+  },
+  "key_results": {
+    "main_finding": "Local structure (degree ratio) predicts the brain\u2019s functional variability gradient (\u03ba) with r \u2248 \u22120.97, while a global metric (\u03bb\u2082) is not predictive (r \u2248 0.16), supporting the EFC principle that local structure governs flow.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "functional variability gradient (\u03ba)",
+      "local degree ratio (structural connectome)",
+      "global connectivity (Fiedler eigenvalue \u03bb\u2082)"
+    ],
+    "datasets_used": [
+      "Human structural connectomes and functional variability gradients (DOI: 10.6084/m9.figshare.31940370)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In independent human connectome datasets, local structural metrics (e.g., degree ratio or closely related local measures) will robustly outperform global graph metrics (e.g., \u03bb\u2082) in predicting the functional variability gradient \u03ba, with strong negative correlations (|r| > 0.8).",
+      "falsifiable_by": "Compute correlations between \u03ba and both local and global structural metrics across new cohorts; if global metrics match or exceed local metrics, P1 is falsified."
+    },
+    {
+      "id": "P2",
+      "statement": "Targeted alterations to local structural connectivity that modify degree ratio will produce directionally consistent shifts in regional functional variability \u03ba.",
+      "falsifiable_by": "Pre/post intervention studies (e.g., lesion models, stimulation-modulated connectivity, or longitudinal plasticity) measuring structural degree ratio and \u03ba; absence of predicted shifts falsifies P2."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Across independent connectome datasets, local structural metrics (e.g., degree ratio) fail to predict \u03ba (|r| < 0.3) and are consistently outperformed by global metrics such as \u03bb\u2082.",
+    "KC2: Direct physiological measurements demonstrate sustained cognitive function without net entropy export or neg-entropic maintenance at the organismal level, contradicting EFC\u2019s requirement that cognition is a neg-entropic process.",
+    "KC3: Thermodynamic flow models cannot reproduce galaxy rotation curves without dark matter and are decisively disfavored versus \u039bCDM (e.g., overwhelming model-comparison evidence), undermining the cross-regime EFC principle.",
+    "KC4: Empirical studies show reward shaping in RLHF does not track entropy minimization across architectures and tasks, breaking the proposed RLHF\u2013thermodynamics isomorphism."
+  ],
+  "tier": "T1",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-empirical-validation",
+      "doi": "10.6084/m9.figshare.31940469",
+      "role": "empirical_validation (Spor 1)"
+    },
+    {
+      "id": "efc-cognitive-entropy",
+      "doi": "10.6084/m9.figshare.31940505",
+      "role": "cognitive_entropy_and_biomarkers (Spor 2)"
+    },
+    {
+      "id": "rlhf-thermo-isomorphism",
+      "doi": "10.6084/m9.figshare.31940535",
+      "role": "rlhf_as_entropy_minimisation (Spor 3)"
+    },
+    {
+      "id": "cross-domain-bridge",
+      "doi": "10.6084/m9.figshare.31940547",
+      "role": "bridge_equations"
+    },
+    {
+      "id": "connectome-functional-variability",
+      "doi": "10.6084/m9.figshare.31940370",
+      "role": "empirical_anchor_connectome"
+    }
+  ],
+  "files": {
+    "pdf": "Homo_Fluxus/Homo_Fluxus_v2.0.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940604",
   "paper_id": "homo-fluxus-v2",
-  "title": "Homo Fluxus v2.0 — A Civilization Map Through Energy-Flow Cosmology: From Grid to Governance — One Gradient, All Regimes",
   "short_title": "Homo Fluxus",
   "authors": [
     {
@@ -9,24 +118,8 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v2.0",
-  "date": "2026-04",
-  "doi": "10.6084/m9.figshare.31940604",
   "status": "research_note",
   "license": "CC-BY-NC-SA 4.0",
-  "keywords": [
-    "Homo Fluxus",
-    "EFC",
-    "energy flow",
-    "entropy gradient",
-    "civilization",
-    "cognition",
-    "governance",
-    "ASI",
-    "symbiosis",
-    "RLHF",
-    "thermodynamics"
-  ],
   "abstract": "Homo Fluxus defines the human as a dynamic gradient system embedded in the same entropy-flow dynamics that govern the cosmos. The EFC chain Grid->EF->S->D->C is applied across biology, cognition, economy, energy, governance, and AI. v2.0 adds empirical anchor: degree ratio determines functional variability in the human brain (r~-0.97).",
   "efc_chain": {
     "layers": [
@@ -46,7 +139,7 @@
   },
   "ego_thermodynamic_function": {
     "principle": "Ego is a local entropy-regulation mechanism maintaining system boundaries",
-    "analogy": "Ego is to cognition what dark matter is to cosmology — a placeholder for unresolved dynamics",
+    "analogy": "Ego is to cognition what dark matter is to cosmology \u2014 a placeholder for unresolved dynamics",
     "dsm_reframe": [
       {
         "condition": "Anxiety",
@@ -179,6 +272,5 @@
       "key": "[9]",
       "citation": "Friston (2010) Free-energy principle. Nat Rev Neurosci 11, 127-138."
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31940604"
+  ]
 }

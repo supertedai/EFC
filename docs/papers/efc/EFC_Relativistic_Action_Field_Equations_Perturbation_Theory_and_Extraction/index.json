@@ -1,19 +1,11 @@
 {
-  "paper_id": "efc-relativistic-action-field-equations",
-  "title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of mu, Sigma, eta",
-  "short_title": "EFC Relativistic Action",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Energy-Flow Cosmology Initiative",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
+  "$schema": "./schema.json",
+  "id": "efc-relativistic-action-field-equations-perturbation-theory-and-extraction",
+  "title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of \u00b5, \u03a3, \u03b7",
+  "description": "Derives the full field equations of the EFC relativistic action with a non-minimal coupling F(\u03d5)R, density-dependent kinetic stiffness K(\u03c1), and a flow constraint enforced by a Lagrange multiplier. Performs linear perturbation theory in conformal Newtonian gauge and provides closed-form, quasi-static expressions for the effective couplings \u00b5(k, z), \u03a3(k, z), and slip \u03b7(k, z), while showing cT = c and predicting a modified GW amplitude (dL^GW \u2260 dL^EM).",
   "version": "v0.5",
-  "date": "2026-03",
+  "date": "2026-03-01",
   "doi": "10.6084/m9.figshare.31876324",
-  "status": "working_paper",
-  "framework": "EFC",
   "keywords": [
     "EFC action",
     "field equations",
@@ -25,8 +17,119 @@
     "entropy flow",
     "kinetic stiffness",
     "flow constraint",
-    "conformal Newtonian gauge"
+    "conformal Newtonian gauge",
+    "quasi-static sub-horizon"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "action": {
+      "latex": "S_{\\mathrm{EFC}} = \\int d^4x \\, \\sqrt{-g} \\left[ \\tfrac{1}{2} M_{\\rm Pl}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho) \\, g^{\\mu\\nu} \\partial_{\\mu} \\phi \\, \\partial_{\\nu} \\phi - V(\\phi) - \\lambda (\\Box \\phi - \\Gamma(\\rho)) \\right]",
+      "description": "EFC relativistic action coupling an entropy-flow scalar to gravity with non-minimal coupling, density-stiffened kinetics, and a Lagrange-multiplier flow constraint."
+    },
+    "modified_einstein": {
+      "latex": "M_{\\rm Pl}^2 F(\\phi) \\, G_{\\mu\\nu} = T^{(m)}_{\\mu\\nu} + T^{(\\phi)}_{\\mu\\nu} + T^{(V)}_{\\mu\\nu} + T^{(\\lambda)}_{\\mu\\nu} - M_{\\rm Pl}^2 (\\nabla_{\\mu} \\nabla_{\\nu} F - g_{\\mu\\nu} \\, \\Box F)",
+      "description": "Field equations including standard matter, scalar kinetic and potential terms, a tensorial contribution from the flow constraint, and the non-minimal coupling terms."
+    },
+    "constraint": {
+      "latex": "\\Box \\phi = \\Gamma(\\rho)",
+      "description": "Flow constraint enforced by the Lagrange multiplier; the entropy field\u2019s d\u2019Alembertian is fixed by the matter density."
+    },
+    "response_field": {
+      "latex": "\\Box \\lambda = V'(\\phi) - \\tfrac{1}{2} M_{\\rm Pl}^2 F'(\\phi) R - \\nabla_{\\mu} K(\\rho) \\, \\nabla^{\\mu} \\phi",
+      "description": "Equation for the response field \u03bb capturing the cost of maintaining the entropy ledger in curved spacetime."
+    },
+    "qs_delta_phi": {
+      "latex": "\\delta \\phi \\simeq \\frac{a^2}{k^2} \\, \\Gamma'(\\bar{\\rho}) \\, \\delta \\rho \\quad (k \\gg aH)",
+      "description": "Quasi-static, sub-horizon slaving of entropy perturbations to matter density perturbations."
+    },
+    "slip": {
+      "latex": "\\Phi - \\Psi = \\frac{F'}{F} \\, \\delta \\phi + \\frac{2 \\, \\dot{\\bar{\\lambda}}}{M_{\\rm Pl}^2 F} \\, \\delta \\phi + \\frac{2 \\, \\dot{\\bar{\\phi}}}{M_{\\rm Pl}^2 F} \\, \\delta \\lambda",
+      "description": "Gravitational slip sourced by non-minimal coupling and unique EFC flow-constraint/response-field contributions."
+    },
+    "mu_sigma_eta_defs": {
+      "latex": "\\frac{k^2}{a^2} \\, \\Psi = -4\\pi G \\, \\mu(k,z) \\, \\delta \\rho_m, \\qquad \\frac{k^2}{a^2} (\\Phi + \\Psi) = -8\\pi G \\, \\Sigma(k,z) \\, \\delta \\rho_m, \\qquad \\eta(k,z) = \\frac{\\Phi}{\\Psi}",
+      "description": "Operational definitions of the effective gravitational couplings and slip in the quasi-static regime."
+    }
+  },
+  "key_results": {
+    "main_finding": "In the quasi-static sub-horizon regime, EFC yields \u00b5 < 1, \u03a3 > 1, and \u03b7 \u2260 1 from a single action, with cT = c exactly and a predicted GW amplitude modification (dL^GW \u2260 dL^EM).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b1 (non-minimal coupling in F(\u03d5)=1+\u03b1\u03d5)",
+      "K0 (kinetic stiffness amplitude)",
+      "\u03c1crit (critical density in K(\u03c1))",
+      "\u03b30 (entropy-production amplitude in \u0393(\u03c1))",
+      "V(\u03d5) parameters"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Exact luminal tensor speed: cT = c for all backgrounds in EFC.",
+      "falsifiable_by": "Time-of-flight constraints from multimessenger events (e.g., BNS) comparing GW\u2013EM arrival times at z \u2272 0.1 to |cT/c \u2212 1| > 10^{-15}."
+    },
+    {
+      "id": "P2",
+      "statement": "Quasi-static modified growth and lensing: \u00b5(k,z) < 1 while \u03a3(k,z) > 1 for k \u226b aH, with \u03b7(k,z) \u2260 1 driven by flow-constraint terms.",
+      "falsifiable_by": "Joint weak-lensing + RSD + clustering analyses inferring \u00b5 \u2265 1 and/or \u03a3 \u2264 1 and \u03b7 \u2248 1 across 0.05 < k < 0.5 h Mpc^{-1}, 0.2 < z < 1."
+    },
+    {
+      "id": "P3",
+      "statement": "Modified GW amplitude propagation leading to d_L^{GW} \u2260 d_L^{EM} due to effective friction from non-minimal/flow sectors.",
+      "falsifiable_by": "Standard-siren H0 and cosmology using GW\u2013EM counterparts that constrain |d_L^{GW}/d_L^{EM} \u2212 1| < 0.01 over 0.1 < z < 1."
+    },
+    {
+      "id": "P4",
+      "statement": "Automatic screening at high density (\u03c1 \u2192 \u03c1crit) via K(\u03c1) \u2192 \u221e, recovering GR locally.",
+      "falsifiable_by": "Detection of a long-range fifth force or PPN deviations inconsistent with GR in Solar-System/lab tests at levels exceeding current bounds despite high-density environments."
+    },
+    {
+      "id": "P5",
+      "statement": "Entropy perturbations are slaved to matter perturbations on sub-horizon scales: \u03b4\u03d5 \u221d (a^2/k^2) \u0393'(\u03c1\u0304) \u03b4\u03c1.",
+      "falsifiable_by": "Evidence for scale-independent clustering or slip inconsistent with the predicted k^{-2} scaling in galaxy\u2013lensing cross-correlations."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Any confirmed deviation of GW propagation speed from c at |cT/c \u2212 1| > 10^{-15} from multimessenger events (e.g., BNS) at z \u2272 0.1.",
+    "KC2: Standard-siren analyses demonstrating |d_L^{GW}/d_L^{EM} \u2212 1| < 0.01 across 0.1 < z < 1 with systematics under control, incompatible with the predicted amplitude modification.",
+    "KC3: Robust joint WL+RSD+clustering inference showing \u00b5(k,z) \u2265 1 over 0.05 < k < 0.5 h Mpc^{-1} and 0.2 < z < 1 at >3\u03c3, contradicting the EFC prediction \u00b5 < 1.",
+    "KC4: Consistent results across surveys indicating \u03a3(k,z) \u2264 1 over 0.05 < k < 0.5 h Mpc^{-1} and 0.2 < z < 1 at >3\u03c3, contradicting \u03a3 > 1.",
+    "KC5: Measurements finding \u03b7(k,z) = 1 within \u00b10.02 over the same quasi-static scales and redshifts while \u00b5 and \u03a3 show no EFC-like pattern, indicating no EFC slip.",
+    "KC6: Failure of screening: detection of PPN deviations (e.g., |\u03b3 \u2212 1| > 2\u00d710^{-5}) or fifth forces in high-density environments inconsistent with GR recovery despite K(\u03c1)\u2192\u221e."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "EFC_Relativistic_Action.jsonld",
+    "citations": "citations.bib",
+    "source": "src/efc_relativistic.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_efc_relativistic.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31876324",
+  "paper_id": "efc-relativistic-action-field-equations",
+  "short_title": "EFC Relativistic Action",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "affiliation": "Energy-Flow Cosmology Initiative",
+      "orcid": "0009-0002-4860-5095"
+    }
+  ],
+  "status": "working_paper",
+  "framework": "EFC",
   "abstract": "We derive the complete field equations for the EFC relativistic action, which couples an entropy-flow scalar field phi non-minimally to gravity via F(phi)R, with density-dependent kinetic stiffness K(rho) and a Lagrange-multiplier flow constraint. We perform the full linearisation in conformal Newtonian gauge around an FRW background, and extract closed-form expressions for the effective gravitational couplings mu(k,z) and Sigma(k,z), and the gravitational slip eta(k,z). We show that the combination of non-minimal coupling, kinetic stiffness, and flow constraint naturally produces mu<1, Sigma>1, and eta!=1, consistent with the survival valley identified in the EFC Validation Ledger.",
   "epistemic_status": {
     "type": "working_paper",
@@ -185,7 +288,7 @@
     "gw_amplitude": {
       "formula": "d_L^GW(z) = d_L^EM(z) * sqrt(F(phi_0)/F(phi(z)))",
       "equation_number": 40,
-      "approximation": "d_L^GW/d_L^EM ≈ 1 - (alpha/2)(phi(z) - phi_0)",
+      "approximation": "d_L^GW/d_L^EM \u2248 1 - (alpha/2)(phi(z) - phi_0)",
       "testable_with": [
         "Einstein Telescope",
         "LISA",
@@ -207,7 +310,7 @@
   "closure": {
     "delta_lambda": {
       "equation_number": 44,
-      "formula": "delta_lambda ≈ -K(rho_bar) (a^2 Gamma'/k^2) delta_rho - M_Pl^2 F' (a^2/(2k^2)) delta_R",
+      "formula": "delta_lambda \u2248 -K(rho_bar) (a^2 Gamma'/k^2) delta_rho - M_Pl^2 F' (a^2/(2k^2)) delta_R",
       "status": "Algebraically determined (not dynamically independent)"
     },
     "degree_of_freedom_count": {
@@ -306,29 +409,17 @@
   "references": {
     "count": 11,
     "key_refs": [
-      "Magnusson (2026) — EFC Validation Ledger",
-      "Magnusson (2026) — Systematic Localization in CMB+LSS Parameter Space",
-      "Magnusson (2026) — EFCLASS Sign Structure",
-      "Magnusson (2026) — Perturbation-Level sigma_8 Suppression",
-      "Magnusson (2026) — Four-Channel Background Coupling",
-      "Magnusson (2026) — GR Recovery via Density Saturation",
-      "Magnusson (2026) — Discrete Entropic Gravity",
-      "Brans & Dicke (1961) — Mach's Principle and Relativistic Gravitation",
-      "Horndeski (1974) — Second-Order Scalar-Tensor Field Equations",
-      "Abbott et al. (2017) — GW170817",
-      "Blas, Lesgourgues & Tram (2011) — CLASS"
+      "Magnusson (2026) \u2014 EFC Validation Ledger",
+      "Magnusson (2026) \u2014 Systematic Localization in CMB+LSS Parameter Space",
+      "Magnusson (2026) \u2014 EFCLASS Sign Structure",
+      "Magnusson (2026) \u2014 Perturbation-Level sigma_8 Suppression",
+      "Magnusson (2026) \u2014 Four-Channel Background Coupling",
+      "Magnusson (2026) \u2014 GR Recovery via Density Saturation",
+      "Magnusson (2026) \u2014 Discrete Entropic Gravity",
+      "Brans & Dicke (1961) \u2014 Mach's Principle and Relativistic Gravitation",
+      "Horndeski (1974) \u2014 Second-Order Scalar-Tensor Field Equations",
+      "Abbott et al. (2017) \u2014 GW170817",
+      "Blas, Lesgourgues & Tram (2011) \u2014 CLASS"
     ]
-  },
-  "files": {
-    "pdf": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf",
-    "readme": "README.md",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "EFC_Relativistic_Action.jsonld",
-    "citations": "citations.bib",
-    "source": "src/efc_relativistic.py",
-    "data": "data/framework.json",
-    "demo": "examples/demo_efc_relativistic.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31876324"
+  }
 }

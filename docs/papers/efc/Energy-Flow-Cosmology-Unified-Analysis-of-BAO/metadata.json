@@ -2,7 +2,7 @@
   "title": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD",
   "short_id": "efc-unified-analysis-bao-sn-rsd",
   "version": "1.0",
-  "date": "2026-01",
+  "date": "2026-01-01",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,47 +10,28 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31215613",
-  "abstract": "Unified cosmological analysis testing Energy-Flow Cosmology against combined BAO, SN Ia, and RSD observations. The effective gravitational coupling mu(a) is derived from EFC field equations, not phenomenologically fitted. With beta=0.16 and fixed transition hyperparameters, EFC achieves chi2_total=51.1 vs LCDM chi2=49.4 (Delta chi2=+1.7), demonstrating regime consistency without internal tension.",
+  "abstract": "Unified empirical test of Energy-Flow Cosmology (EFC) against BAO, SN Ia, and RSD. The effective gravitational coupling \u03bc(a)=Geff/G is derived from the EFC field equation via an entropy field S(a), with background fixed to \u039bCDM (\u03b3=0). With one free amplitude (\u03b2=0.16) and fixed transition hyperparameters, EFC reproduces BAO/SN and yields a mildly worse but statistically compatible RSD fit (\u0394\u03c7\u00b2\u2248+1.7), showing no geometry\u2013growth tension in this first-pass regime-consistency check.",
   "keywords": [
-    "EFC",
-    "unified analysis",
+    "Energy-Flow Cosmology",
+    "effective gravitational coupling",
+    "mu(a)",
+    "entropy field",
     "BAO",
     "SN Ia",
     "RSD",
-    "mu(a)",
-    "entropy field",
-    "regime consistency",
+    "growth of structure",
     "modified gravity",
-    "DESI",
-    "Pantheon+"
+    "DESI DR2",
+    "Pantheon+",
+    "regime consistency"
   ],
-  "efc_context": {
-    "track": "Empirical Validation",
-    "regime_relevance": "L2-L3 (late-time cosmological probes)",
-    "epistemic_layer": "First regime-consistency check against combined cosmological data"
-  },
-  "key_results": [
-    "mu(a) derived from EFC field equations, not phenomenologically fitted",
-    "BAO and SN identical to LCDM by construction (gamma=0)",
-    "RSD slightly worse (Delta chi2=+1.7) but within statistical fluctuations",
-    "Same S(a) describes geometry and growth without tension",
-    "EFC total chi2=51.06 vs LCDM chi2=49.35"
-  ],
-  "file_manifest": {
+  "files": {
     "pdf": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.pdf",
     "tex": "efc_unified_preprint.tex",
-    "jsonld": "Energy-Flow-Cosmology-Unified-Analysis-of-BAO.jsonld",
-    "schema": "schema.json",
-    "index": "index.json",
-    "citations": "citations.bib",
-    "metadata": "metadata.json",
     "figures": [
       "EFC_unified_analysis.png",
       "EFC_mu_theoretical_derivation.png"
-    ],
-    "src": "src/",
-    "data": "data/",
-    "examples": "examples/"
+    ]
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31215613",

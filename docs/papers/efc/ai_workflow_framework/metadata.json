@@ -1,25 +1,36 @@
 {
-  "id": "ai_workflow_framework",
-  "slug": "ai_workflow_framework",
-  "title": "AI Workflow Framework -- Energy-Flow Cosmology",
-  "description": "Describes the AI-augmented workflow framework used in the Energy-Flow Cosmology project, covering roles, boundaries, data flow, validation structure, versioning, and machine-integration steps that define how AI contributes to structuring, stabilising, and documenting the scientific process.",
-  "domain": "scientific_infrastructure",
-  "keywords": ["AI Workflow", "Scientific Infrastructure", "LLM Integration", "Open Science", "Metadata Architecture"],
-  "version": "1.0",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "https://orcid.org/0009-0002-4860-5095"
-    }
-  ],
+  "title": "AI-Augmented Scientific Workflow Framework",
+  "short_id": "ai_workflow_framework",
+  "version": "1.2",
+  "date": "",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.30636863",
+  "abstract": "Defines a governance-centered framework for integrating large language models into scientific workflows while preserving human control, accountability, and reproducibility. It formalizes four core mechanisms\u2014Question Architecture, Entropy Navigation, Reflective Scaffolding, and Strict Separation of Roles\u2014and couples them with provenance, versioning, and machine-readable metadata to enable transparent, traceable research.",
+  "keywords": [
+    "AI-Augmented Workflow",
+    "Large Language Models",
+    "Question Architecture (QA)",
+    "Entropy Navigation (EN)",
+    "Reflective Scaffolding (RS)",
+    "Separation of Roles (SR)",
+    "Reproducibility",
+    "Provenance Tracking",
+    "FAIR Principles",
+    "Open Science Infrastructure",
+    "Metadata Architecture",
+    "Uncertainty-Guided Exploration"
+  ],
   "files": {
     "pdf": "ai_workflow_framework.pdf",
-    "readme": "README.md",
-    "jsonld": "ai_workflow_framework.jsonld",
-    "schema": "schema.json",
-    "citations": "citations.bib"
+    "readme": "ai_workflow_framework.md"
   },
-  "created": "2025-12-04",
-  "updated": "2025-12-04"
+  "paper": {
+    "doi": "10.6084/m9.figshare.30636863",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.30636863"
+  }
 }

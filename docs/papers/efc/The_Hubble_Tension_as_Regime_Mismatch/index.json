@@ -1,33 +1,123 @@
 {
+  "$schema": "./schema.json",
   "id": "hubble-tension-regime-mismatch",
   "title": "The Hubble Tension as Regime Mismatch: Background Gravity vs Structure Gravity in Energy-Flow Cosmology",
-  "short_title": "Hubble Tension as Regime Mismatch",
+  "description": "Proposes that the Hubble tension is an environmental regime mismatch: early-universe background probes (CMB/BAO) measure G0, while late-universe distance-ladder probes inside collapsed structures measure Geff = G0 exp(aG\u00b7\u0394\u03a6) > G0. Using the Friedmann scaling, the model predicts ln(Hstructure/Hbackground) = 0.5 aG \u0394\u03a6, yielding a ratio 1.083 and H0,structure = 73.0 km/s/Mpc from H0,background = 67.4, without invoking a global time variation of G.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31224247",
+  "keywords": [
+    "Hubble tension",
+    "Energy-Flow Cosmology",
+    "regime-dependent gravity",
+    "background vs structure",
+    "entropic gravity",
+    "MOND",
+    "Radial Acceleration Relation (RAR)",
+    "Friedmann equation",
+    "effective gravitational coupling",
+    "standard candles",
+    "CMB",
+    "BAO"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Norway"
   },
+  "core_equations": {
+    "regime_dependent_G": {
+      "latex": "G_{\\mathrm{eff}}(R) = \\begin{cases} G_0, & R=\\text{background} \\\\ G_0\\,\\exp\\!\\left(a_G\\,\\Delta\\Phi\\right), & R=\\text{structure} \\end{cases}",
+      "description": "Environment-effective gravitational coupling: the smooth background follows G0, while collapsed, entropy-producing structures experience an enhanced coupling Geff."
+    },
+    "friedmann_scaling": {
+      "latex": "H^{2} \\propto G_{\\mathrm{eff}}\\,\\rho",
+      "description": "Friedmann relation indicating that, at fixed energy density, changes in the effective coupling map into changes in the Hubble rate."
+    },
+    "log_slope_relation": {
+      "latex": "\\frac{\\Delta H}{H} = \\tfrac{1}{2}\\,\\frac{\\Delta G}{G}",
+      "description": "From H^2 \u221d G, a fractional change in H is half the fractional change in G; used to connect Geff to the inferred H0."
+    },
+    "h0_ratio_prediction": {
+      "latex": "\\ln\\!\\left(\\frac{H_{\\mathrm{structure}}}{H_{\\mathrm{background}}}\\right) = \\tfrac{1}{2}\\,a_G\\,\\Delta\\Phi",
+      "description": "Key quantitative prediction of the model linking the background-to-structure H0 offset to the entropy-phase \u0394\u03a6 and coupling slope aG."
+    }
+  },
+  "key_results": {
+    "main_finding": "Interpreting the Hubble tension as a regime mismatch yields Hstructure/Hbackground = exp(0.5 aG \u0394\u03a6) = 1.083, predicting H0,structure = 73.0 km/s/Mpc from 67.4 km/s/Mpc with aG \u2248 0.094 and \u0394\u03a6 \u2248 1.71.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a_G",
+      "\u0394\u03a6",
+      "H0_background"
+    ],
+    "datasets_used": [
+      "Planck 2018 (CMB)",
+      "SH0ES 2022 (SNe Ia + Cepheids)",
+      "McGaugh et al. 2016 RAR phenomenology",
+      "Core Lock (entropy phase \u0394\u03a6 mapping)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The ratio of Hubble constants inferred by structure vs background probes is fixed by ln(Hstructure/Hbackground) = 0.5 aG \u0394\u03a6; numerically Hstructure/Hbackground = 1.083 and H0,structure = 73.0 km/s/Mpc given H0,background = 67.4.",
+      "falsifiable_by": "Improved background-only (CMB+BAO) and structure-only (distance-ladder inside galaxies) measurements that yield a ratio inconsistent with 1.083 by >3\u03c3 after systematics control."
+    },
+    {
+      "id": "P2",
+      "statement": "Standardized SN Ia absolute magnitudes exhibit an environment-dependent residual of \u0394M \u2248 0.02 mag between high-density (cluster) and low-density (void) hosts.",
+      "falsifiable_by": "Environment-split Hubble diagram of SNe Ia controlling for host mass, metallicity, and selection effects; failure to detect \u0394M at the \u22480.02 mag level falsifies."
+    },
+    {
+      "id": "P3",
+      "statement": "All background probes cluster near H0 \u2248 67 km/s/Mpc while structure probes cluster near H0 \u2248 73 km/s/Mpc, with mixed probes lying in between.",
+      "falsifiable_by": "Meta-analysis that, after reclassification by environment, fails to show a bimodal split consistent with 67 vs 73 km/s/Mpc."
+    },
+    {
+      "id": "P4",
+      "statement": "Galaxy rotation-curve fits with Geff = G0 exp(aG \u0394\u03a6) recover aG \u2248 0.10 \u00b1 0.02 across SPARC-like samples.",
+      "falsifiable_by": "Global fits to SPARC rotation curves preferring aG far from 0.1 (e.g., |aG \u2212 0.1| > 0.06) or consistent with aG = 0."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: After controlling for host mass, metallicity, and selection, SN Ia standardized magnitudes show no environment-dependent residual at the predicted level (|\u0394M| < 0.01\u20130.02 mag between void and cluster hosts).",
+    "KC2: A background-only synthesis (CMB+BAO) yields H0 \u2265 70 km/s/Mpc or a structure-only synthesis (SNe Ia/Cepheids/TRGB/masers) yields H0 \u2264 69 km/s/Mpc at 1\u03c3, eliminating the regime split.",
+    "KC3: SPARC or equivalent rotation-curve fits to Geff = G0 exp(aG \u0394\u03a6) exclude aG \u2248 0.1 by >5\u03c3 or prefer aG = 0.",
+    "KC4: A combined probe classification by environment fails to produce the predicted bimodality (\u223c67 vs \u223c73 km/s/Mpc) in H0 in a large, bias-corrected sample."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "h0-rar-unification",
+      "doi": "10.6084/m9.figshare.31223908",
+      "role": "companion-theory (derives aG from MOND/RAR)"
+    },
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "role": "mathematical-foundation (entropy phase mapping \u0394\u03a6)"
+    }
+  ],
+  "files": {
+    "pdf": "The_Hubble_Tension_as_Regime_Mismatch.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224247",
+  "short_title": "Hubble Tension as Regime Mismatch",
   "license": "CC-BY-4.0",
   "type": "research_paper",
   "epistemic_layer": "B",
   "epistemic_status": "Regime-reinterpretation hypothesis, not yet independent measurement",
-  "keywords": [
-    "Hubble tension",
-    "regime-dependent gravity",
-    "entropic gravity",
-    "background vs structure",
-    "EFC",
-    "environment-effective theory"
-  ],
-  "abstract": "Proposes that the Hubble tension arises from regime mismatch: early-universe probes measure background gravity G₀, while late-universe probes operate in structure-dominated environments with G_eff ≠ G₀. Predicts H₀_structure = 73 km/s/Mpc exactly.",
+  "abstract": "Proposes that the Hubble tension arises from regime mismatch: early-universe probes measure background gravity G\u2080, while late-universe probes operate in structure-dominated environments with G_eff \u2260 G\u2080. Predicts H\u2080_structure = 73 km/s/Mpc exactly.",
   "key_insight": "The distinction between background and structure is not purely temporal but environmental",
   "two_regimes": {
     "background": {
       "description": "Linear, smooth cosmological background",
-      "effective_G": "G₀",
+      "effective_G": "G\u2080",
       "probes": [
         "CMB",
         "BAO"
@@ -36,7 +126,7 @@
     },
     "structure": {
       "description": "Nonlinear, collapsed structures",
-      "effective_G": "G₀ exp(a_G · ΔΦ)",
+      "effective_G": "G\u2080 exp(a_G \u00b7 \u0394\u03a6)",
       "probes": [
         "SN Ia + Cepheids",
         "TRGB",
@@ -46,9 +136,9 @@
     }
   },
   "key_equations": {
-    "regime_dependent_G": "G_eff(R) = G₀ for background, G₀ exp(a_G · ΔΦ) for structure",
-    "friedmann_constraint": "a_H₀ = ½ a_G",
-    "h0_ratio": "H_structure / H_background = exp(½ a_G ΔΦ) = 1.083"
+    "regime_dependent_G": "G_eff(R) = G\u2080 for background, G\u2080 exp(a_G \u00b7 \u0394\u03a6) for structure",
+    "friedmann_constraint": "a_H\u2080 = \u00bd a_G",
+    "h0_ratio": "H_structure / H_background = exp(\u00bd a_G \u0394\u03a6) = 1.083"
   },
   "numerical_result": {
     "aG": 0.094,
@@ -59,12 +149,12 @@
     "agreement": "exact"
   },
   "falsification_criteria": [
-    "Environment dependence: SNe in voids should give lower H₀ than SNe in clusters",
-    "Standard candle systematics: SN Ia magnitude residuals ΔM ~ 0.02 mag by environment",
-    "Probe consistency: All background probes → ~67; all structure probes → ~73",
-    "a_G from SPARC: Direct fitting must yield a_G ≈ 0.1 ± 0.02"
+    "Environment dependence: SNe in voids should give lower H\u2080 than SNe in clusters",
+    "Standard candle systematics: SN Ia magnitude residuals \u0394M ~ 0.02 mag by environment",
+    "Probe consistency: All background probes \u2192 ~67; all structure probes \u2192 ~73",
+    "a_G from SPARC: Direct fitting must yield a_G \u2248 0.1 \u00b1 0.02"
   ],
-  "fail_condition": "If SN Ia residuals show NO environmental dependence at ΔM ~ 0.02 mag level",
+  "fail_condition": "If SN Ia residuals show NO environmental dependence at \u0394M ~ 0.02 mag level",
   "related_papers": [
     {
       "id": "h0-rar-unification",
@@ -76,6 +166,5 @@
       "doi": "10.6084/m9.figshare.31223503",
       "relationship": "mathematical_foundation"
     }
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224247"
+  ]
 }

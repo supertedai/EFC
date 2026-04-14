@@ -1,30 +1,103 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-ontological-foundations",
   "title": "EFC Ontological Foundations v1.0: The Co-Primary Structure",
-  "shortTitle": "EFC Ontology",
-  "path": "docs/papers/efc/EFC_Ontological_Foundations",
-  "pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
+  "description": "Establishes the ontological basis for Energy-Flow Cosmology (EFC) by arguing that energy-flow and entropy are co-primary, differentiated aspects of a single pre-geometric potential that separates at the Planck transition. Resolves circularity in monistic ontologies and integrates coherently with EFC\u2019s Core Lock dynamics, EBE epistemic framework, and RCMP measurement protocol, aligning with insights from Wheeler, Verlinde, and Prigogine.",
   "version": "1.0",
   "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31223668",
+  "keywords": [
+    "ontology",
+    "co-primacy",
+    "pre-geometric potential",
+    "Planck transition",
+    "emergent spacetime",
+    "entropy",
+    "energy-flow",
+    "Core Lock",
+    "EBE",
+    "RCMP",
+    "holographic principle",
+    "dissipative structures"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095"
   },
+  "core_equations": {
+    "beta_function": {
+      "latex": "\\beta = -\\frac{1}{\\Delta S}",
+      "description": "Constant beta-function in the Core Lock RG-flow connecting differentiation dynamics to entropy change; implies exponential relaxation from the pre-Planck undifferentiated potential to post-Planck differentiated regimes."
+    },
+    "information_length": {
+      "latex": "\\Phi(S) = \\int \\frac{dS'}{f(S')}",
+      "description": "Accumulated phase (information length) defined by the entropy flow f(S); proposed invariant bridging the undifferentiated potential to observables via projection laws."
+    },
+    "correlated_variation_signature": {
+      "latex": "\\frac{d\\ln C_i}{d\\ln C_j} = k_{ij} = \\text{const}",
+      "description": "Predicted correlation for any time or environment variation of fundamental constants: log\u2013log slopes between pairs of constants are constant across epochs and datasets."
+    }
+  },
+  "key_results": {
+    "main_finding": "Energy-flow and entropy are co-primary, differentiated aspects of a single pre-geometric potential, providing a non-circular ontological foundation that coherently integrates with all EFC sub-frameworks.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Circularity resolution",
+      "Pre-Planck coherence",
+      "Compatibility with Wheeler (information ontology)",
+      "Compatibility with Verlinde (entropic gravity)",
+      "Compatibility with Prigogine (dissipative structures)",
+      "Integration with EFC (Core Lock, EBE, RCMP)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "If any fundamental constants vary over time or environment, their variations will be mutually correlated with constant log\u2013log slopes between pairs (d ln C_i / d ln C_j = const) across epochs and instruments.",
+      "falsifiable_by": "Detect statistically significant epoch- or environment-dependent changes in the slopes d ln C_i / d ln C_j, or uncorrelated variations where one constant varies while others do not, beyond systematic uncertainties."
+    },
+    {
+      "id": "P2",
+      "statement": "An invariant information length \u03a6 reconstructed from independent observables via appropriate projection laws will agree across probes within uncertainties.",
+      "falsifiable_by": "Reconstruct \u03a6 from multiple independent datasets (e.g., different cosmological or laboratory observables) and find irreconcilable discrepancies exceeding combined uncertainties and plausible systematics."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Observation of time or environment variation in two or more fundamental constants where the log\u2013log slope d ln C_i / d ln C_j is not constant (varies with redshift, environment, or dataset) beyond systematic uncertainties.",
+    "KC2: Robust detection of variation in one fundamental constant with no corresponding co-variation in others, such that no fixed proportionality (constant log\u2013log slope) can reconcile the data across independent probes.",
+    "KC3: High-confidence evidence for a primordial, ontologically primary pre-geometric grid/lattice (e.g., persistent Lorentz-violating dispersion or preferred directions implying a fundamental lattice scale) that cannot be interpreted as emergent and that supplies a non-circular monistic ontology.",
+    "KC4: Cross-probe reconstructions of the information-length invariant \u03a6 that are mutually inconsistent beyond combined uncertainties, indicating the proposed invariant bridging ontology to observables does not exist."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "role": "foundation"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "foundation"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223668",
+  "shortTitle": "EFC Ontology",
+  "path": "docs/papers/efc/EFC_Ontological_Foundations",
+  "pdf": "EFC_Ontological_Foundations_v1_0_2-1.pdf",
   "license": "CC-BY-4.0",
   "layer": "ontology",
   "type": "paper",
   "status": "methodological",
   "epistemicStatus": "Layer C - Coherence argument, not empirical claim",
-  "keywords": [
-    "ontology",
-    "co-primacy",
-    "pre-Planck physics",
-    "entropy",
-    "energy-flow",
-    "emergence",
-    "EFC",
-    "differentiation"
-  ],
   "concepts": {
     "primary": [
       "co-primary-structure",
@@ -94,8 +167,5 @@
         "doi": "10.6084/m9.figshare.27315821"
       }
     ]
-  },
-  "efcArchitectureLayer": 0,
-  "doi": "10.6084/m9.figshare.31223668",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223668"
+  }
 }

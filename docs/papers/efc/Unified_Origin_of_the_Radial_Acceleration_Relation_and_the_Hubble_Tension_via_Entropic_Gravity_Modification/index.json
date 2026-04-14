@@ -1,72 +1,114 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-h0-unification",
   "title": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
-  "short_title": "H0-RAR Unification",
+  "description": "Presents an Energy-Flow Cosmology (EFC) mechanism in which an entropy-driven modification of the effective gravitational coupling unifies the galaxy-scale Radial Acceleration Relation (RAR) with the cosmological Hubble tension. The paper derives a consistent coupling a_G \u2248 0.1 from both MOND/RAR phenomenology and the H0 discrepancy via a Friedmann-based constraint a_{H0} = 1/2 a_G, predicting H0 \u2248 73.9 km/s/Mpc from galactic dynamics alone within 1.2% of observations.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31223908",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095",
-    "affiliation": "Independent Researcher, Norway"
-  },
-  "license": "CC-BY-4.0",
-  "type": "research_paper",
-  "epistemic_layer": "B",
-  "epistemic_status": "Mathematical prediction compatible with current observations",
   "keywords": [
     "Hubble tension",
     "radial acceleration relation",
     "MOND",
     "entropic gravity",
     "modified gravity",
-    "EFC",
-    "gravitational coupling"
+    "Energy-Flow Cosmology",
+    "Friedmann equation",
+    "SPARC",
+    "gravitational coupling",
+    "galaxy rotation curves",
+    "cosmic web"
   ],
-  "abstract": "Demonstrates that the Hubble tension and RAR arise from the same mechanism: entropy-driven modification of effective gravity. Predicts H₀ ≈ 74 km/s/Mpc from galaxy rotation data, matching observations within 1.2%.",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Norway"
+  },
+  "core_equations": {
+    "running_parameter": {
+      "latex": "f(S) = f_0 \\exp\\!\\left(-\\frac{S}{\\Delta S}\\right)",
+      "description": "Core Lock running parameter with constant negative beta function along the entropy axis S."
+    },
+    "accumulated_phase": {
+      "latex": "\\Phi(S) = \\frac{\\Delta S}{f_0} \\left[\\exp\\!\\left(\\frac{S}{\\Delta S}\\right) - 1\\right]",
+      "description": "Entropy-accumulated phase controlling projection of observables; with \\Delta S=f_0=1, this reduces to e^S - 1."
+    },
+    "entropy_mapping": {
+      "latex": "S(z) = \\tfrac{1}{2}\\!\\left[1 - \\tanh\\!\\left(\\frac{\\ln(1+z) - \\ln(1+z_{\\mathrm{trans}})}{\\Delta}\\right)\\right]",
+      "description": "Sigmoid map from redshift to entropy coordinate, modeling structure-formation history (z_trans \u2248 3, \\Delta \u2248 0.5)."
+    },
+    "effective_gravity": {
+      "latex": "G_{\\mathrm{eff}}(S) = G_0 \\exp\\!\\left(a_G \\cdot \\Delta \\Phi\\right)",
+      "description": "Entropy-driven modification of the effective gravitational coupling between epochs separated by phase difference \\Delta\\Phi."
+    },
+    "friedmann_constraint": {
+      "latex": "a_{H_0} = \\tfrac{1}{2} a_G",
+      "description": "From H^2 \\propto G_{\\mathrm{eff}}\\,\\rho with fixed \\rho, a factor-of-two relation links H0 coupling to the gravity coupling."
+    },
+    "mond_mapping": {
+      "latex": "a_G = \\frac{\\ln(\\mu^{-1})}{\\Delta \\Phi}",
+      "description": "Relates MOND interpolation-induced enhancement \\mu^{-1} in the RAR transition regime to the EFC coupling a_G."
+    },
+    "h0_prediction": {
+      "latex": "H_0^{\\mathrm{pred}} = H_0^{\\mathrm{CMB}} \\exp\\!\\left(\\tfrac{a_G}{2} \\, \\Delta \\Phi\\right)",
+      "description": "Predicts the locally inferred H0 from CMB H0 using the EFC coupling and phase gap between CMB and today."
+    }
+  },
   "key_results": {
-    "aG_from_h0_tension": 0.094,
-    "aG_from_mond_transition": 0.107,
-    "discrepancy": "14%",
-    "h0_predicted": 73.9,
-    "h0_observed": 73.0,
-    "prediction_accuracy": "1.2%"
+    "main_finding": "A single entropy-driven coupling a_G \u2248 0.1 inferred from MOND/RAR and the Friedmann relation a_{H0} = 1/2 a_G predicts H0 \u2248 73.9 km/s/Mpc, matching local measurements within 1.2% and unifying the RAR and H0 tension.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a_G",
+      "a_{H_0}",
+      "\u0394\u03a6",
+      "z_trans",
+      "\u0394 (sigmoid width)",
+      "a0 (MOND)",
+      "H0_CMB",
+      "H0_local"
+    ],
+    "datasets_used": [
+      "Planck 2018 cosmological parameters (H0_CMB = 67.4 km/s/Mpc)",
+      "SH0ES 2022 distance-ladder H0 (73.0 km/s/Mpc)",
+      "SPARC RAR phenomenology (Lelli+2016; McGaugh+2016)"
+    ],
+    "verdict": "MARGINAL"
   },
-  "key_equations": {
-    "grid_state_function": "f(S) = f₀ exp(-S/ΔS)",
-    "accumulated_phase": "Φ(S) = (ΔS/f₀)[exp(S/ΔS) - 1]",
-    "entropy_mapping": "S(z) = ½[1 - tanh((ln(1+z) - ln(1+z_trans))/Δ)]",
-    "effective_gravity": "G_eff(S) = G₀ exp(a_G · ΔΦ)",
-    "friedmann_constraint": "a_H₀ = ½ a_G",
-    "mond_aG": "a_G = ln(μ⁻¹) / ΔΦ"
-  },
-  "parameters": {
-    "z_trans": 3,
-    "delta": 0.5,
-    "delta_phi": 1.71,
-    "a0_mond": "1.2e-10 m/s²",
-    "h0_cmb": "67.4 km/s/Mpc",
-    "h0_local": "73.0 km/s/Mpc"
-  },
-  "falsification_criteria": [
-    "a_G from SPARC fits must yield ~0.1",
-    "Correlation signature d ln v / d ln c must be constant"
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Meta-analysis of SPARC (and successor) rotation curves will recover an EFC gravity coupling a_G \u2248 0.10 in the RAR transition regime (g_bar/a0 \u2248 few), consistent across galaxy types.",
+      "falsifiable_by": "Global rotation-curve fits yielding a stable a_G inconsistent with ~0.1 (e.g., consistent with 0 or systematically far from 0.1) across the transition regime."
+    },
+    {
+      "id": "P2",
+      "statement": "Using a_G inferred from RAR alone and the measured phase gap \u0394\u03a6 \u2248 1.71, the relation a_{H0} = 1/2 a_G will predict the local H0 without introducing new free parameters.",
+      "falsifiable_by": "Independent determinations of a_G from RAR and \u0394\u03a6 from structure-growth proxies that, when combined via a_{H0}=1/2 a_G, fail to reproduce local H0 within observational uncertainties."
+    }
   ],
-  "related_papers": [
+  "kill_criteria": [
+    "KC1: Robust rotation-curve analyses (e.g., SPARC) show no consistent gravitational enhancement in the RAR transition zone, returning an a_G consistent with zero across systems.",
+    "KC2: Empirical determinations of a_G from RAR and from the H0 tension disagree irreconcilably (beyond systematic allowances), eliminating the proposed common value near 0.1.",
+    "KC3: The predicted correlation signature d(ln v)/d(ln c) being approximately constant across radii and galaxy surface densities is not observed in high-quality kinematic samples."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [
     {
       "id": "core-lock",
       "doi": "10.6084/m9.figshare.31223503",
-      "relationship": "mathematical_foundation"
+      "role": "mathematical_foundation"
     },
     {
       "id": "ebe-core-principles",
       "doi": "10.6084/m9.figshare.31222903",
-      "relationship": "methodological_framework"
+      "role": "methodological_framework"
     },
     {
       "id": "rcmp",
       "doi": "10.6084/m9.figshare.31222900",
-      "relationship": "measurement_protocol"
+      "role": "measurement_protocol"
     }
   ],
   "files": {
@@ -99,5 +141,48 @@
       "examples/unification_demo.py"
     ]
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223908"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31223908",
+  "short_title": "H0-RAR Unification",
+  "license": "CC-BY-4.0",
+  "type": "research_paper",
+  "epistemic_layer": "B",
+  "epistemic_status": "Mathematical prediction compatible with current observations",
+  "abstract": "Demonstrates that the Hubble tension and RAR arise from the same mechanism: entropy-driven modification of effective gravity. Predicts H\u2080 \u2248 74 km/s/Mpc from galaxy rotation data, matching observations within 1.2%.",
+  "key_equations": {
+    "grid_state_function": "f(S) = f\u2080 exp(-S/\u0394S)",
+    "accumulated_phase": "\u03a6(S) = (\u0394S/f\u2080)[exp(S/\u0394S) - 1]",
+    "entropy_mapping": "S(z) = \u00bd[1 - tanh((ln(1+z) - ln(1+z_trans))/\u0394)]",
+    "effective_gravity": "G_eff(S) = G\u2080 exp(a_G \u00b7 \u0394\u03a6)",
+    "friedmann_constraint": "a_H\u2080 = \u00bd a_G",
+    "mond_aG": "a_G = ln(\u03bc\u207b\u00b9) / \u0394\u03a6"
+  },
+  "parameters": {
+    "z_trans": 3,
+    "delta": 0.5,
+    "delta_phi": 1.71,
+    "a0_mond": "1.2e-10 m/s\u00b2",
+    "h0_cmb": "67.4 km/s/Mpc",
+    "h0_local": "73.0 km/s/Mpc"
+  },
+  "falsification_criteria": [
+    "a_G from SPARC fits must yield ~0.1",
+    "Correlation signature d ln v / d ln c must be constant"
+  ],
+  "related_papers": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "relationship": "mathematical_foundation"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "relationship": "methodological_framework"
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "relationship": "measurement_protocol"
+    }
+  ]
 }

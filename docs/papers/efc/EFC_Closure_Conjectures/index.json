@@ -1,31 +1,131 @@
 {
+  "$schema": "./schema.json",
   "id": "efc-closure-conjectures",
   "title": "EFC Closure Conjectures",
-  "subtitle": "Proposed Relations: g† = cH₀/e and C ≈ 2e - 1",
+  "description": "Proposes two closure relations for Energy-Flow Cosmology (EFC): the transition acceleration g\u2020 = c H0 / e and a galactic phase factor C = 2e \u2212 1, both motivated by the Core Lock exponential structure. Using SPARC-derived g\u2020, the paper predicts H0 = 70.2 \u00b1 16.8 km/s/Mpc, consistent with Planck, SH0ES, and TRGB within current uncertainties. The conjectures are framed with explicit falsification criteria and remain to be validated by higher-precision measurements.",
   "version": "1.0",
   "date": "2026-02-01",
+  "doi": "10.6084/m9.figshare.31224466",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "Radial Acceleration Relation",
+    "transition acceleration",
+    "Hubble constant",
+    "Euler number e",
+    "Core Lock",
+    "screening exponent k",
+    "phase factor C",
+    "SPARC rotation curves",
+    "cosmological phase",
+    "exponential stiffness"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Norway"
   },
+  "core_equations": {
+    "efc_screening_log": {
+      "latex": "\\ln\\mu = k\\,\\ln\\!\\left(1 + \\frac{g^{\\dagger}}{g_{\\mathrm{bar}}}\\right)",
+      "description": "EFC screening form for the RAR: the logarithm of the gravitational enhancement factor scales with the logarithm of 1 + g\u2020/gbar with exponent k."
+    },
+    "efc_screening_power": {
+      "latex": "\\mu = \\left(1 + \\frac{g^{\\dagger}}{g_{\\mathrm{bar}}}\\right)^{k}",
+      "description": "Equivalent power-law form of the EFC screening relation relating observed-to-baryonic acceleration ratio to g\u2020 and k."
+    },
+    "transition_acceleration": {
+      "latex": "g^{\\dagger} = \\frac{c\\,H_{0}}{e}",
+      "description": "Conjectured closure linking the galactic transition acceleration to the cosmological expansion rate via a single e-fold threshold."
+    },
+    "h0_from_gdagger": {
+      "latex": "H_{0} = \\frac{e\\,g^{\\dagger}}{c}",
+      "description": "Non-circular test: infer H0 directly from a measured g\u2020 without using cosmological data."
+    },
+    "phase_factor": {
+      "latex": "C = 2e - 1",
+      "description": "Conjectured galactic phase factor; compact two-term expression matching current inferences."
+    },
+    "k_via_aG": {
+      "latex": "k = a_{G}\\,C",
+      "description": "Links the screening exponent k to the universal coupling aG via the phase factor C."
+    },
+    "core_lock_stiffness": {
+      "latex": "f(S) = f_{0}\\,\\exp\\!\\left(-\\frac{S}{\\Delta S}\\right)",
+      "description": "Core Lock exponential structure; one e-fold decrease at S = \\Delta S motivates the appearance of e in closure relations."
+    },
+    "cosmological_phase": {
+      "latex": "\\Delta\\Phi_{\\mathrm{cosmo}} \\approx e^{S_{\\mathrm{today}}} - 1\\;\\;\\text{(for }S_{\\mathrm{today}}\\!\\approx\\!1\\text{)}",
+      "description": "Heuristic mapping of cosmological phase difference from the Core Lock S-dynamics."
+    },
+    "friedmann_offset": {
+      "latex": "a_{H0} = 21\\,a_{G}",
+      "description": "Stated relation between the H0 offset parameter and the universal coupling aG within the EFC framework."
+    }
+  },
+  "key_results": {
+    "main_finding": "The closures g\u2020 = cH0/e and C = 2e \u2212 1 are consistent with SPARC-inferred g\u2020 and yield H0 = 70.2 \u00b1 16.8 km/s/Mpc, within 1\u03c3 of Planck, SH0ES, and TRGB.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "g_dagger",
+      "C",
+      "k",
+      "a_G"
+    ],
+    "datasets_used": [
+      "SPARC rotation curves (Lelli et al. 2016)",
+      "RAR (McGaugh et al. 2016) summary relation",
+      "Comparative H0 values: Planck, SH0ES, TRGB"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Across independent galaxy samples, the transition acceleration satisfies g\u2020 = c H0 / e within 10% once both g\u2020 and H0 are measured to <5\u201310% precision.",
+      "falsifiable_by": "High-precision RAR analyses (e.g., upgraded SPARC-like surveys) plus independent H0 determinations; fail if |g\u2020 \u2212 cH0/e| > 3\u03c3."
+    },
+    {
+      "id": "P2",
+      "statement": "The independently inferred galactic phase factor satisfies C = 2e \u2212 1 within \u00b120% when marginalized over per-galaxy systematics.",
+      "falsifiable_by": "Hierarchical fits extracting C and k/aG from resolved rotation curves; fail if |C \u2212 (2e \u2212 1)|/(2e \u2212 1) > 0.2."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Improved g\u2020 measurements with <10% uncertainty are inconsistent with c H0 / e at >3\u03c3 using an independent H0.",
+    "KC2: Independent hierarchical inferences of the phase factor yield |C \u2212 (2e \u2212 1)|/(2e \u2212 1) > 0.2.",
+    "KC3: Alternative non-exponential f(S) forms (e.g., power-law or Lorentzian without natural factors of e) provide significantly better RAR fits and predictive performance."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "role": "EFC exponential structure (Core Lock) underpinning the e-fold motivation"
+    },
+    {
+      "id": "sparc-validation",
+      "doi": "10.6084/m9.figshare.31224397",
+      "role": "SPARC-based inference of g\u2020 used for the non-circular H0 prediction"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Closure_Conjectures.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224466",
+  "subtitle": "Proposed Relations: g\u2020 = cH\u2080/e and C \u2248 2e - 1",
   "license": "CC-BY-4.0",
   "type": "theoretical_conjecture",
   "epistemic_layer": "C",
   "epistemic_status": "Conjectured closure. Consistent with data but not derived from first principles. Testable.",
-  "keywords": [
-    "Energy-Flow Cosmology",
-    "radial acceleration relation",
-    "Hubble tension",
-    "transition acceleration",
-    "closure relations",
-    "Euler number"
-  ],
   "conjectures": {
     "transition_acceleration": {
-      "formula": "g† = c × H₀ / e",
-      "motivation": "One e-fold drop in grid stiffness at S = ΔS",
-      "numerical_value": "2.51e-10 m/s² for H₀ = 70.2"
+      "formula": "g\u2020 = c \u00d7 H\u2080 / e",
+      "motivation": "One e-fold drop in grid stiffness at S = \u0394S",
+      "numerical_value": "2.51e-10 m/s\u00b2 for H\u2080 = 70.2"
     },
     "phase_factor": {
       "formula": "C = 2e - 1",
@@ -34,18 +134,18 @@
     }
   },
   "key_prediction": {
-    "formula": "H₀ = e × g† / c",
+    "formula": "H\u2080 = e \u00d7 g\u2020 / c",
     "using_sparc": {
-      "g_dagger": "2.51e-10 m/s²",
-      "g_dagger_error": "0.60e-10 m/s²",
+      "g_dagger": "2.51e-10 m/s\u00b2",
+      "g_dagger_error": "0.60e-10 m/s\u00b2",
       "h0_predicted": 70.2,
       "h0_error": 16.8,
       "unit": "km/s/Mpc"
     },
     "consistency": {
-      "planck": "within 1σ",
-      "sh0es": "within 1σ",
-      "trgb": "within 1σ"
+      "planck": "within 1\u03c3",
+      "sh0es": "within 1\u03c3",
+      "trgb": "within 1\u03c3"
     }
   },
   "irreducible_parameter": {
@@ -54,7 +154,7 @@
     "note": "Cannot currently be derived from simpler quantities"
   },
   "falsification_conditions": [
-    "g† measurements with <10% uncertainty inconsistent with cH₀/e at >3σ",
+    "g\u2020 measurements with <10% uncertainty inconsistent with cH\u2080/e at >3\u03c3",
     "Phase factor C deviates from 2e-1 by more than 20%",
     "Alternative f(S) forms fit RAR better without factors of e"
   ],
@@ -67,9 +167,7 @@
     {
       "id": "sparc-validation",
       "doi": "10.6084/m9.figshare.31224397",
-      "relationship": "source of g† measurement"
+      "relationship": "source of g\u2020 measurement"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31224466",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31224466"
+  ]
 }

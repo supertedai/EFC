@@ -1,16 +1,118 @@
 {
+  "$schema": "./schema.json",
   "id": "multi-epoch-growth-rate-test-efc",
-  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: fσ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f \u03c38(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+  "description": "First multi-epoch empirical test of the Energy-Flow Cosmology (EFC) perturbation-sector coupling using 14 f\u03c38(z) measurements from 6dFGS, BOSS DR12, eBOSS DR16, and DESI DR1. The study solves the full linear growth ODE with a regime-dependent gate \u03bc(a)=1\u2212B\u00b7T(a) and finds a null result: \u039bCDM fits slightly better than EFC while EFC remains consistent within current errors, highlighting a strong \u03a9m\u2013B degeneracy that requires BAO to break.",
+  "version": "1.0",
+  "date": "2026-04-07",
+  "doi": "10.6084/m9.figshare.31955871",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "f\u03c38",
+    "growth rate of structure",
+    "redshift-space distortions",
+    "BOSS DR12",
+    "eBOSS DR16",
+    "DESI DR1",
+    "modified gravity",
+    "linear growth equation",
+    "mu(a) coupling",
+    "profile likelihood",
+    "AIC model comparison"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "growth_ode": {
+      "latex": "D''(a) + \\frac{3}{2a}\\big[1 + \\Omega_{\\rm DE}(a)\\big] D'(a) = \\frac{3}{2a^2}\\,\\Omega_m(a)\\,\\mu(a)\\,D(a)",
+      "description": "Linear growth ODE for matter perturbations with an effective gravitational coupling \u03bc(a); primes denote derivatives with respect to scale factor a."
+    },
+    "mu_of_a": {
+      "latex": "\\mu(a) = 1 - B\\,T(a)",
+      "description": "EFC perturbation-sector modification parameterized by amplitude B and a gate function T(a); \u039bCDM corresponds to B=0."
+    },
+    "gate_function": {
+      "latex": "T(a) = \\frac{1}{1 + (a_t/a)^n},\\quad a_t = \\frac{1}{1+z_t},\\quad n=2\\ \\text{(fixed)}",
+      "description": "Regime-dependent gate controlling when the modification turns on; n is fixed to 2 as in the WP1a reference."
+    },
+    "background": {
+      "latex": "E^2(a) = \\Omega_{m,0} a^{-3} + (1-\\Omega_{m,0}),\\quad \\Omega_m(a) = \\frac{\\Omega_{m,0} a^{-3}}{E^2(a)},\\quad \\Omega_{\\rm DE}(a) = \\frac{1-\\Omega_{m,0}}{E^2(a)}",
+      "description": "Flat \u039bCDM background expansion used in the growth calculation."
+    },
+    "growth_rate": {
+      "latex": "f(a) = \\frac{\\mathrm{d}\\ln D}{\\mathrm{d}\\ln a} = \\frac{a}{D(a)} D'(a)",
+      "description": "Definition of the logarithmic growth rate f(a) in terms of the growth factor D(a)."
+    },
+    "fsigma8": {
+      "latex": "f\\sigma_8(z) = f(z)\\,\\sigma_{8,0}\\,\\frac{D(z)}{D(0)},\\quad a=\\frac{1}{1+z}",
+      "description": "Observable combination compared to RSD and PV measurements across redshift."
+    }
+  },
+  "key_results": {
+    "main_finding": "\u039bCDM provides an excellent fit and is marginally preferred over EFC, while EFC with \u03bc0 in the survival valley remains fully consistent with current f\u03c38(z) data.",
+    "delta_chi2": 0.1,
+    "significance_sigma": 0.06,
+    "parameters_tested": [
+      "\u03c38,0",
+      "B",
+      "z_t (with n=2 fixed)",
+      "\u03bc0 = 1 \u2212 B",
+      "\u03a9m (fixed at 0.3019 for EFC fit)"
+    ],
+    "datasets_used": [
+      "6dFGS",
+      "BOSS DR12",
+      "eBOSS DR16",
+      "DESI DR1 full-shape",
+      "DESI DR1 peculiar velocities"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A joint BAO + full-shape + RSD analysis with DESI DR2/DR3 (\u03a9m free) will localize \u03bc0 within the EFC survival valley 0.93\u20130.96 if the EFC perturbation-sector coupling is correct.",
+      "falsifiable_by": "DESI DR2/DR3 BAO+RSD joint likelihood constraints on (\u03bc0, \u03a9m, B, z_t) showing \u03bc0 outside 0.93\u20130.96 at \u22652\u03c3."
+    },
+    {
+      "id": "P2",
+      "statement": "Including BAO to break the \u03a9m\u2013B degeneracy will prefer a late-time activation z_t \u2273 1 for any viable B > 0 solution.",
+      "falsifiable_by": "Combined BAO+RSD profile likelihood for z_t peaking at z_t < 0.5 with B > 0 at \u22652\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A combined BAO+RSD+PV analysis with full covariance and \u03a9m free constrains \u03bc0 outside the survival valley [0.93, 0.96] at \u22653\u03c3.",
+    "KC2: High-precision DESI DR2+/Stage-IV growth measurements exclude B > 0 at \u22653\u03c3 (i.e., favor B \u2264 0), implying \u03bc(a) \u2265 1 and ruling out the required EFC growth suppression.",
+    "KC3: Tomographic f\u03c38(z) with \u22642% total uncertainty across 0.1 \u2264 z \u2264 1.0 is consistent with \u039bCDM such that any \u03bc0 \u2208 [0.93, 0.96] is excluded at \u22653\u03c3 over the range.",
+    "KC4: A global BAO+SN+CMB-distance+RSD fit shows that all EFC solutions keeping \u03bc0 in [0.93, 0.96] require \u03a9m values inconsistent with background geometry at \u22653\u03c3 (e.g., \u03a9m > 0.40), indicating internal inconsistency of the EFC gate model."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-multi-epoch",
+      "doi": "10.6084/m9.figshare.31955871",
+      "role": "Code and data to reproduce the multi-epoch growth fits (EFC vs \u039bCDM)."
+    }
+  ],
+  "files": {
+    "paper_pdf": "efc_multi_epoch_note.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "Multi_epoch_Growth_Rate_Test_of_EFC.jsonld",
+    "citations": "citations.bib",
+    "data_table": "data/fsigma8_compilation.csv",
+    "results": "data/efc_multi_epoch_results.json",
+    "src": "src/efc_multi_epoch_v2.py",
+    "example": "examples/reproduce_minimal.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31955871",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research",
   "report_id": "EFC-VAL-2026-003",
-  "doi": "10.6084/m9.figshare.31955871",
   "doi_url": "https://doi.org/10.6084/m9.figshare.31955871",
-  "date": "2026-04-07",
   "license": "CC-BY-4.0",
   "type": "multi-epoch validation, null result",
-  "track": "Spor 1 — Galactic/Cosmological",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
   "regimes": [
     "L1",
     "L2"
@@ -70,31 +172,19 @@
     "significance_sigma": 0.06,
     "delta_AIC": -1.9,
     "preferred": "LCDM (marginally)",
-    "verdict": "EFC consistent but not preferred; B=0 within 1σ profile"
+    "verdict": "EFC consistent but not preferred; B=0 within 1\u03c3 profile"
   },
   "key_findings": [
-    "Null result for growth sector: fσ8 data alone do not require modified mu(a)",
-    "Survival valley μ0 ∈ [0.93, 0.96] lies within the 1σ profile contour",
-    "Strong Ωm–B degeneracy: with Ωm free, optimizer drifts to Ωm≈0.45, B≈0.48",
+    "Null result for growth sector: f\u03c38 data alone do not require modified mu(a)",
+    "Survival valley \u03bc0 \u2208 [0.93, 0.96] lies within the 1\u03c3 profile contour",
+    "Strong \u03a9m\u2013B degeneracy: with \u03a9m free, optimizer drifts to \u03a9m\u22480.45, B\u22480.48",
     "z_t unconstrained (hits boundary at 3.0)",
     "Cross-probe combination with BAO required to break degeneracy"
   ],
   "limitations": [
     "Diagonal covariance (cross-survey overlap not modelled)",
-    "Ωm fixed at LCDM best-fit",
-    "Scale-independent μ(a); no k-dependence",
-    "z_t unconstrained by fσ8 alone"
-  ],
-  "files": {
-    "paper_pdf": "efc_multi_epoch_note.pdf",
-    "metadata": "metadata.json",
-    "schema": "schema.json",
-    "jsonld": "Multi_epoch_Growth_Rate_Test_of_EFC.jsonld",
-    "citations": "citations.bib",
-    "data_table": "data/fsigma8_compilation.csv",
-    "results": "data/efc_multi_epoch_results.json",
-    "src": "src/efc_multi_epoch_v2.py",
-    "example": "examples/reproduce_minimal.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31955871"
+    "\u03a9m fixed at LCDM best-fit",
+    "Scale-independent \u03bc(a); no k-dependence",
+    "z_t unconstrained by f\u03c38 alone"
+  ]
 }

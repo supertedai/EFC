@@ -1,81 +1,34 @@
 {
-  "name": "efc-growth-sector-robustness",
-  "version": "1.0.0",
   "title": "Robustness of the EFC Growth-Sector Signal: Leave-One-Out, Sound-Horizon, and Amplitude-Prior Controls for the Hubble-Friction Channel",
-  "description": "Three independent robustness controls for the EFC growth-sector α = −1.00 ± 0.46 (2.20σ) signal: sound-horizon independence, amplitude-prior sensitivity, and leave-one-out analysis. All controls pass. Sub-detection-threshold hint for late-time growth suppression.",
-  "doi": "10.6084/m9.figshare.31332730",
-  "created": "2026-02",
-  "updated": "2026-02",
+  "short_id": "efc-growth-sector-robustness",
+  "version": "1.0",
+  "date": "2026-02-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
   "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31332730",
+  "abstract": "This paper performs a joint Bayesian fit of the EFC coupling \u03b1 to 14 BAO distance points and 7 f\u03c38 growth-rate measurements in the Hubble-friction channel, finding \u03b1 = \u22121.00 \u00b1 0.46 (2.20\u03c3). It subjects the signal to three robustness controls\u2014sound-horizon variation (N1), \u03c38 prior sensitivity (N2), and leave-one-out tests over all seven f\u03c38 points (T7)\u2014and shows the signal is distributed, stable, and not driven by calibration or a single datum.",
   "keywords": [
-    "cosmology",
+    "Energy-Flow Cosmology",
+    "Hubble friction channel",
     "growth rate",
-    "fσ₈",
+    "f\u03c38",
     "BAO",
     "leave-one-out",
-    "robustness",
-    "energy-flow cosmology",
-    "EFC",
-    "Hubble friction",
-    "Bayesian analysis",
+    "robustness analysis",
+    "sound horizon",
+    "\u03c38 prior",
+    "AIC/BIC",
     "BOSS DR12",
-    "6dFGS",
-    "SDSS",
-    "eBOSS"
+    "Bayesian fit"
   ],
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "role": "principal investigator",
-      "affiliation": "Independent Researcher, Sandnes, Norway"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/supertedai/EFC"
-  },
-  "data": {
-    "BAO": {
-      "points": 14,
-      "z_range": "0.106–2.334"
-    },
-    "growth_rate": {
-      "points": 7,
-      "z_range": "0.02–0.85"
-    }
-  },
-  "methods": {
-    "pipeline": "MVP-G1 Hubble Friction Channel",
-    "fitting": "Joint Bayesian fit",
-    "controls": [
-      "N1: Sound-horizon independence",
-      "N2: Amplitude-prior sensitivity",
-      "T7: Leave-one-out"
-    ],
-    "nuisance": "N2a mode (r_d fixed, tight σ₈ prior)"
-  },
-  "results": {
-    "signal": "α = −1.00 ± 0.46 (2.20σ)",
-    "robustness_score": "3/3 controls passed",
-    "LOO_score": "7/7 (100%)",
-    "alpha_range_LOO": "[-1.11, -0.88]",
-    "status": "Robust sub-detection-threshold hint"
-  },
   "files": {
     "paper": "EFC_Growth_Sector_Robustness_DOI_31332730.pdf",
-    "index": "index.json",
     "schema": "schema.json",
-    "jsonld": "EFC-Growth-Sector-Robustness.jsonld",
-    "citations": "citations.bib",
-    "readme": "README.md"
-  },
-  "ai_metadata": {
-    "machine_readable": true,
-    "structured_results": true,
-    "loo_data_tabulated": true,
-    "fsigma8_data_provided": true,
-    "degeneracy_structure_documented": true
+    "citations": "citations.bib"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31332730",

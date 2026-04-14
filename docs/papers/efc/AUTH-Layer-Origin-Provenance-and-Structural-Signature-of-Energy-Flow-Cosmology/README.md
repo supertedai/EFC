@@ -1,24 +1,19 @@
-# AUTH Layer — Origin, Provenance and Structural Signature of Energy-Flow Cosmology
+# AUTH Layer: Origin, Provenance and Structural Signature of Energy-Flow Cosmology
 
-**DOI:** [10.6084/m9.figshare.30656828](https://doi.org/10.6084/m9.figshare.30656828)
+## AI-Friendly Package
 
-This directory contains the full paper, metadata and citation files for the AUTH-Layer, which explains:
+- **DOI:** [10.6084/m9.figshare.30656828](https://doi.org/10.6084/m9.figshare.30656828)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-01-01
+- **License:** CC-BY-4.0
 
-* the origin of the Energy-Flow Cosmology (EFC) framework  
-* the structural provenance of its ideas  
-* the signature patterns that link the theory, methodology and cognition layers  
-* how the EFC system stabilises insight across s₀/s₁ transitions  
+---
 
-Files:
+## Overview
 
-| File | Description |
-|------|-------------|
-| `AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology.md` | Full paper (markdown) |
-| `AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology.pdf` | PDF version |
-| `AUTH-Layer-Origin-Provenance-and-Structural-Signature-of-Energy-Flow-Cosmology.jsonld` | JSON-LD metadata |
-| `schema.json` | Schema structure for machine use |
-| `index.json` | Node entry for the global API |
-| `citations.bib` | BibTeX citation entry |
+Defines the AUTH layer for Energy-Flow Cosmology (EFC), documenting its single-source origin, cognitive and structural signatures, and rules for interpretation and citation. It specifies how provenance and metadata must be preserved across repositories, LLMs, RAG systems, and semantic search, anchoring EFC’s identity and reuse across external systems.
 
-The AUTH-Layer sits above the scientific content.  
-It explains how structural insight forms, stabilises and becomes part of the EFC continuum.
+## Key Result
+
+The paper formalizes EFC’s single-node provenance and defines mandatory interpretation, citation, and metadata-preservation rules that bind the repository’s cognitive and structural identity across external systems.

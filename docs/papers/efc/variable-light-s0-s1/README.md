@@ -1,42 +1,27 @@
-# textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)
+# Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the s0 / s1 Structure in Energy-Flow Cosmology (EFC)
 
-**DOI:** [10.6084/m9.figshare.30642497](https://doi.org/10.6084/m9.figshare.30642497)
+## AI-Friendly Package
 
-This directory contains the paper **“textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)”**, part of the EFC series.
-
-In Energy-Flow Cosmology (EFC), the effective speed of light is not a primitive constant but an emergent propagation lim...
-
----
-
-## Context in the EFC framework
-- Framework: Energy-Flow Cosmology (EFC)
-- Domain: META-systems
-- Role: Links entropic structure, information flow and observable cosmological behaviour.
-- DOI: pending
+- **DOI:** [10.6084/m9.figshare.30642497](https://doi.org/10.6084/m9.figshare.30642497)
+- **Version:** 2.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-01
+- **License:** CC-BY-4.0
 
 ---
 
-## Abstract
-In Energy-Flow Cosmology (EFC), the effective speed of light is not a primitive constant but an emergent propagation limit determined by the entropic state of the grid. Two fundamental entropic phases---a low-entropy constraining state ($s_0$) and a high-entropy dissipative state ($s_1$)---govern the information capacity, local curvature, and energy-flow geometry. This paper provides a formal description of variable light speed as a function of the entropic gradient, derives a minimal model for $c_{eff}(S)$, and introduces the collapse mechanisms at both ends of the spectrum that shape observational horizons and redshift behaviour.
+## Overview
 
----
+Presents a formal EFC framework where the effective speed of light is an emergent, state-dependent limit governed by two entropic phases (s0 rigidity and s1 dissipation). Derives a minimal bell-shaped model ceff(S) with a peak at intermediate entropy S* and introduces collapse dynamics at both extremes, yielding a path-integral redshift law and natural observational horizons without invoking metric expansion.
 
-## Keywords
+## Key Result
 
+In EFC, the effective speed of light is a bell-shaped function of entropy with a maximum at S*, collapsing toward both s0 and s1 extremes, which yields a path-integral redshift law and natural observational horizons without invoking metric expansion.
 
----
+## Sealed Predictions
 
-## Files
-- variable-light-s0-s1.tex
-- variable-light-s0-s1.pdf
-- variable-light-s0-s1.jsonld
-- metadata.json
-- index.json
-- citations.bib
-
----
-
-## Citation
-Magnusson, M. (2025). *textbf{Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the $s_0$ / $s_1$ Structure in Energy-Flow Cosmology (EFC)*.  
-DOI: pending  
-GitHub: docs/papers/efc/variable-light-s0-s1/variable-light-s0-s1.pdf
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Strong-lensing time delays are modulated by line-of-sight entropy structure via c_eff(S), leading to systematic departures from constant-c GR predictions in entropy-rich or highly turbulent sightlines. | Comparing time delays from multiple strong-lens systems across environments with differing entropy structure; absence of any correlation with environmental entropy would falsify. |
+| P2 | Apparent extreme high-redshift sources preferentially trace regions with low c_eff (high entropic drag), producing anisotropies in redshift distributions tied to large-scale entropy gradients. | Cross-correlating sky maps of redshift outliers with independent proxies of entropy structure; lack of correlation after controlling for known systematics would falsify. |
+| P3 | The CMB surface corresponds to an s1-collapse boundary beyond which coherent information propagation fails (c_eff → 0), implying no coherent signals from pre-CMB epochs. | Robust detection of coherent, pre-CMB signals (beyond last scattering) inconsistent with foreground/systematic explanations would falsify. |

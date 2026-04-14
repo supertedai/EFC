@@ -1,30 +1,102 @@
 {
+  "$schema": "./schema.json",
   "id": "ebe-core-principles",
   "title": "Entropy-Bounded Empiricism: Core Principles",
-  "shortTitle": "EBE Core Principles",
-  "path": "docs/papers/efc/EBE-Core-Principles",
-  "pdf": "EBE_Core_Principles_v1_0-1.pdf",
+  "description": "Foundational specification of Entropy-Bounded Empiricism (EBE), a regime-aware epistemic framework for interpreting measurements in entropy- and energy-flow-governed systems. It introduces the S-axis (physical regime hierarchy) and L-axis (epistemic layer hierarchy) and formalizes the Regime-Consistent Measurement Protocol (RCMP) to prevent regime leakage and interpretive overreach. The paper codifies regime gating and proxy-chain transparency to make assumptions traceable and claims comparable across regimes.",
   "version": "1.0",
   "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31222903",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095"
-  },
-  "license": "CC-BY-4.0",
-  "layer": "methodology",
-  "type": "paper",
-  "status": "published",
   "keywords": [
     "entropy-bounded empiricism",
     "regime architecture",
     "epistemic layering",
-    "measurement protocol",
-    "energy-flow cosmology",
     "S-axis",
     "L-axis",
-    "RCMP"
+    "RCMP",
+    "regime gating",
+    "proxy-chain transparency",
+    "epistemic degradation",
+    "emergent systems",
+    "measurement protocol",
+    "energy-flow cosmology"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "core_equations": {
+    "s_axis_regime_classification": {
+      "latex": "S: S \\in [0,1] \\;\\longrightarrow\\; \\{\\text{Low-S},\\, \\text{Mid-S},\\, \\text{High-S}\\}",
+      "description": "Maps normalized entropy state to physical regime classes, establishing where different physical descriptions are appropriate."
+    },
+    "l_axis_layers": {
+      "latex": "\\begin{aligned}\nL_0 &:\\ \\text{Raw data (direct observation)}\\\\\nL_1 &:\\ \\text{Calibrated observables (instrument-corrected)}\\\\\nL_2 &:\\ \\text{Derived physical quantities (regime-near physics)}\\\\\nL_3 &:\\ \\text{Theoretical constructs (model-dependent)}\n\\end{aligned}",
+      "description": "Defines the epistemic layer hierarchy from minimally assumed measurements to fully model-dependent constructs."
+    },
+    "layer_transparency_chain": {
+      "latex": "L_0 \\xrightarrow[\\text{calibration}]{} L_1 \\xrightarrow[\\text{derivation}]{} L_2 \\xrightarrow[\\text{modeling}]{} L_3",
+      "description": "Axiom of Layer Transparency: each step up the L-axis introduces assumptions that must be documented."
+    },
+    "rcmp_coupling_rule": {
+      "latex": "\\mathrm{RCMP}(S) = \\min\\{\\,L\\;|\\; L\\ \\text{is driver-near in regime}\\ S\\,\\}",
+      "description": "Anchors interpretation at the lowest epistemic layer that remains directly coupled to the physical driver for a given S-regime."
+    },
+    "regime_gating_validity": {
+      "latex": "\\mathrm{Validity}(M) = \\{\\, S \\;|\\; \\text{primary variables of } M \\text{ are driver-near in } S \\,\\}",
+      "description": "Formal statement of the Regime-Gating Principle: a model is epistemically valid only within regimes where its primary variables are driver-near."
+    },
+    "proxy_chain_transparency": {
+      "latex": "D \\xrightarrow[A_1]{} O \\xrightarrow[A_2]{} Q \\xrightarrow[A_3]{} T",
+      "description": "Proxy-chain decomposition from raw data (D) to calibrated observables (O), derived quantities (Q), and theoretical constructs (T), with explicit assumption sets A_i."
+    }
+  },
+  "key_results": {
+    "main_finding": "EBE establishes a regime-aware mapping between physical entropy regimes (S-axis) and epistemic layers (L-axis) via RCMP, enforcing regime-gated interpretation and proxy-chain transparency to prevent interpretive overreach.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Systematic cross-domain evidence that L3 (model-dependent) claims exhibit lower total uncertainty and higher out-of-sample predictive accuracy than L1/L2 for the same S-regime after full proxy-chain accounting, contradicting Principle 4.1 (Epistemic Degradation).",
+    "KC2: Verified cases where a model whose primary variables are not driver-near in a given S-regime consistently outperforms driver-near models across that regime without added assumption load, violating Principle 6.1 (Regime Gating).",
+    "KC3: Demonstration that bypassing RCMP anchoring (e.g., interpreting High-S phenomena primarily at L3 while skipping L1/L2) systematically yields more reliable and reproducible inferences than the RCMP-recommended L1/L2 anchoring across independent datasets, falsifying Definition 5.1/Principle 5.1.",
+    "KC4: Widespread reproducible findings that omission of documented assumption sets (A1\u2013A3) has no measurable impact on interpretability, reproducibility, or uncertainty quantification across regimes, showing Proxy-Chain Transparency provides no epistemic benefit.",
+    "KC5: Identification of a single universal model whose primary variables remain driver-near and require no regime-specific recalibration across Low-S, Mid-S, and High-S domains while retaining stable performance, nullifying the need for S-axis regime partitioning."
+  ],
+  "tier": "N/A",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "l0-l3-regime-architecture",
+      "doi": "10.6084/m9.figshare.31112536",
+      "role": "extends"
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "companion protocol"
+    },
+    {
+      "id": "energy-flow-cosmology",
+      "doi": "10.6084/m9.figshare.27315821",
+      "role": "parent framework"
+    }
+  ],
+  "files": {
+    "pdf": "EBE_Core_Principles_v1_0-1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31222903",
+  "shortTitle": "EBE Core Principles",
+  "path": "docs/papers/efc/EBE-Core-Principles",
+  "pdf": "EBE_Core_Principles_v1_0-1.pdf",
+  "license": "CC-BY-4.0",
+  "layer": "methodology",
+  "type": "paper",
+  "status": "published",
   "concepts": {
     "primary": [
       "S-axis",
@@ -110,6 +182,5 @@
         "doi": "10.6084/m9.figshare.27315821"
       }
     ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31222903"
+  }
 }

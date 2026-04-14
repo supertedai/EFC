@@ -1,37 +1,35 @@
 {
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  "name": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
+  "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
+  "short_id": "wp4-boss-transfer-validation",
+  "version": "1.0",
+  "date": "2026-04-01",
   "author": {
-    "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095"
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "datePublished": "2026-04",
-  "identifier": "10.6084/m9.figshare.31954125",
-  "url": "https://doi.org/10.6084/m9.figshare.31954125",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31954125",
+  "abstract": "Post-hoc cross-survey validation of Energy-Flow Cosmology (EFC) by transferring parameters calibrated on DESI DR2 BAO to independent BOSS/eBOSS BAO data without refitting. The study finds a robust chi-square improvement on BOSS DR12 (\u0394\u03c7\u00b2 = \u22127.77, k_eff = 0) that persists under whitening, eigenmode, and covariance-robustness diagnostics, supporting parameter stability across surveys without claiming a detection.",
   "keywords": [
+    "Energy-Flow Cosmology",
     "BAO",
-    "BOSS",
-    "eBOSS",
     "DESI DR2",
-    "EFC",
+    "BOSS DR12",
+    "eBOSS",
     "parameter transfer",
     "cross-survey validation",
-    "regime gating"
+    "LambdaCDM baseline",
+    "covariance analysis",
+    "whitening analysis",
+    "eigenmode decomposition",
+    "robustness sweep"
   ],
-  "efc_context": {
-    "track": "Spor 1 — Galactic/Cosmological",
-    "regimes_tested": [
-      "L1",
-      "L2"
-    ],
-    "test_type": "post-hoc parameter transfer",
-    "preregistered": false,
-    "headline_metric": "Δχ² = −7.77 with k_eff = 0",
-    "alpha_L2_consistency": "0.036–0.045 across BOSS, BOSS+eBOSS, DESI DR2",
-    "ledger_impact": "WP4 row added under transfer-test category; Validation Ledger advances to v3.10"
+  "files": {
+    "pdf": "WP4_BOSS_transfer_validation.pdf",
+    "module": "src/wp4_transfer.py",
+    "data": "data/wp4_data.json",
+    "demo": "examples/demo.py"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31954125",

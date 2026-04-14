@@ -1,20 +1,59 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-AI-Augmented-Scientific-Workflow-Framework",
-  "title": "EFC — AI-Augmented Scientific Workflow Framework",
-  "path": "docs/papers/efc/EFC-AI-Augmented-Scientific-Workflow-Framework",
-  "pdf": "EFC-AI-Augmented-Scientific-Workflow-Framework.pdf",
-  "md": "EFC-AI-Augmented-Scientific-Workflow-Framework.md",
+  "title": "EFC \u2014 AI-Augmented Scientific Workflow Framework",
+  "description": "Defines a structured framework for integrating large language models into scientific workflows while preserving human control, accountability, and reproducibility. It formalizes four core mechanisms\u2014Question Architecture (QA), Entropy Navigation (EN), Reflective Scaffolding (RS), and Strict Separation of Roles (SR)\u2014to ensure transparent provenance, machine-readable intent, entropy-guided exploration, and external grounding of AI reflections. The work aligns with FAIR principles and emphasizes a human validation gate for all scientific claims.",
+  "version": "1.2",
+  "date": "2026-04-14",
+  "doi": "10.6084/m9.figshare.30636863",
   "keywords": [
     "EFC",
     "AI-Augmented Science",
     "Scientific Workflow",
     "Open Science",
     "LLM Integration",
-    "Reproducibility"
+    "Reproducibility",
+    "Question Architecture",
+    "Entropy Navigation",
+    "Reflective Scaffolding",
+    "Separation of Roles",
+    "Provenance",
+    "FAIR Principles"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "The paper formalizes a human-governed AI workflow centered on QA, EN, RS, and SR to deliver reproducible, traceable, and accountable AI-assisted research.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Reproducibility failure \u2014 given a fixed QA object, fixed prompts, seeds, and environment, repeated pipeline runs produce non-identical artifacts (checksum mismatch) beyond predefined tolerances.",
+    "KC2: RS grounding failure \u2014 for a benchmark set of tasks with known external formal models (e.g., causal diagrams or state machines), Reflective Scaffolding cannot map AI claims to external constraints with \u226595% coverage and \u22645% contradiction rate across N trials.",
+    "KC3: Provenance gap \u2014 mandatory artifacts (version history, reflective logs, and machine-readable metadata) are missing or unverifiable for >1% of outputs over a validated run set.",
+    "KC4: Role leakage \u2014 audit shows AI-generated interpretive conclusions included in final claims without passing the documented human validation gate in \u22651% of evaluated cases.",
+    "KC5: EN inefficacy \u2014 on pre-registered literature discovery or hypothesis expansion benchmarks, Entropy Navigation does not outperform random/baseline heuristic search on agreed novelty/precision metrics by a statistically significant margin.",
+    "KC6: QA breakdown \u2014 the Question Architecture cannot consistently produce machine-readable question objects that pass schema validation in \u226599% of attempts on a standardized test suite."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-AI-Augmented-Scientific-Workflow-Framework.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30636863",
+  "path": "docs/papers/efc/EFC-AI-Augmented-Scientific-Workflow-Framework",
+  "pdf": "EFC-AI-Augmented-Scientific-Workflow-Framework.pdf",
+  "md": "EFC-AI-Augmented-Scientific-Workflow-Framework.md",
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.30636863",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30636863"
+  "type": "paper"
 }

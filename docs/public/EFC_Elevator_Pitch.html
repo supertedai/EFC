@@ -160,16 +160,64 @@
     <strong>The test:</strong> Can this one rule reproduce what we see &mdash;
     spinning galaxies, the cosmic microwave background, the accelerating
     expansion, galaxy cluster collisions &mdash; without those two invisible
-    ingredients? Across <strong>103 independent probes</strong> so far, EFC has
-    not been ruled out. It does not yet <em>outperform</em> the standard model
-    &mdash; the margins are too small to call a winner &mdash; but it survives
-    every test, and the decisive experiments are pre-registered in the
+    ingredients? Across <strong>89 active probes</strong> (106 total, 17 in pipeline), EFC has
+    survived 80. Nine probes have been falsified &mdash; showing that
+    the framework is genuinely testable. It does not yet <em>outperform</em> the standard model
+    &mdash; the margins are too small to call a winner &mdash; and the decisive experiments
+    are pre-registered in the
     <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Data Roadmap</a>.
   </p>
   <p>
     <strong>Status:</strong> <span class="status-pill open">Global verdict OPEN</span>
-    &nbsp;<span class="status-pill survived">103/103 survived</span>
-    &nbsp;<span class="status-pill warn">Not proven. Not falsified.</span>
+    &nbsp;<span class="status-pill survived">80/89 survived</span>
+    &nbsp;<span class="status-pill warn">9 falsified &middot; 16 in pipeline</span>
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- Live signal dashboard — auto-synced with Symbiose + Ledger             -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div style="background:#f0f4f8; border:1px solid #b0c4de; border-radius:8px; padding:16px 20px; margin:20px 0; font-size:13.5px; line-height:1.7;">
+  <strong>&alpha;-signal status (growth sector)</strong>
+  <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:13px;">
+    <tr style="background:#e8eef4;">
+      <th style="text-align:left; padding:4px 8px;">Source</th>
+      <th style="text-align:center; padding:4px 8px;">&alpha;<sub>L2</sub></th>
+      <th style="text-align:center; padding:4px 8px;">Significance</th>
+      <th style="text-align:center; padding:4px 8px;">Status</th>
+    </tr>
+    <tr>
+      <td style="padding:4px 8px;"><a href="https://doi.org/10.6084/m9.figshare.31332730">DOI 31332730</a> (LOO, N2a, 7 f&sigma;<sub>8</sub> probes)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;1.00 &plusmn; 0.46</td>
+      <td style="text-align:center; padding:4px 8px;"><strong>2.20&sigma;</strong></td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill survived">Published &middot; LOO 7/7</span></td>
+    </tr>
+    <tr style="background:#f8f8f8;">
+      <td style="padding:4px 8px;">Sealed freeze v1 (2026-02-18, SHA <code>7a850cfa</code>)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.689</td>
+      <td style="text-align:center; padding:4px 8px;">&mdash;</td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill warn">Sealed &middot; pre-data</span></td>
+    </tr>
+    <tr>
+      <td style="padding:4px 8px;">Sealed freeze v2 (2026-02-21, SHA <code>dbccda15</code>)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.702</td>
+      <td style="text-align:center; padding:4px 8px;">&mdash;</td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill warn">Sealed &middot; pre-data</span></td>
+    </tr>
+    <tr style="background:#fff0f0;">
+      <td style="padding:4px 8px;">Autonomous MCMC (emcee, broad priors, DESI DR2)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.141 &plusmn; 0.208</td>
+      <td style="text-align:center; padding:4px 8px;"><strong>0.68&sigma;</strong></td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill open">Degeneracy &middot; &alpha;&ndash;&Omega;<sub>m</sub></span></td>
+    </tr>
+  </table>
+  <p style="margin:8px 0 0 0; font-size:12px; color:#666;">
+    <strong>Interpretation:</strong> The published LOO result (2.2&sigma;) is a directional signal, not a detection.
+    The autonomous MCMC with broader priors finds the signal collapses to 0.7&sigma; due to
+    &alpha;&ndash;&Omega;<sub>m</sub> degeneracy (r&nbsp;=&nbsp;+0.6). Both results are correct &mdash; they probe different
+    prior volumes. DESI DR2 full-shape RSD (expected late 2026) will break the degeneracy.
+    Sampler consistency: tension&nbsp;=&nbsp;1.74&sigma; (within 2&sigma;).
   </p>
 </div>
 
@@ -335,7 +383,7 @@
       <td>EFC is proven correct.</td>
     </tr>
     <tr>
-      <td>EFC survives every independent probe tested so far (103 and counting).</td>
+      <td>Of 88 active probes, EFC survives 79 (9 falsified, 16 in pipeline).</td>
       <td>EFC <em>outperforms</em> the standard model &mdash; the current margins are sub-statistical.</td>
     </tr>
     <tr>
@@ -398,7 +446,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>The 103-test validation status</td>
+      <td>The 104-test validation status</td>
       <td><a href="EFC_Validation_Ledger.html">EFC Validation Ledger</a> &mdash; every test, its outcome, and its epistemic tier.</td>
     </tr>
     <tr>
@@ -415,11 +463,11 @@
     </tr>
     <tr>
       <td>The code, data, and reproducers</td>
-      <td><a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a> &mdash; 138 AI-friendly paper packages, 103 tests, full reproducible pipelines.</td>
+      <td><a href="https://github.com/supertedai/EFC">github.com/supertedai/EFC</a> &mdash; 141 AI-friendly paper packages, 106 tests (89 active, 9 falsified, 17 pipeline), full reproducible pipelines.</td>
     </tr>
     <tr>
       <td>The single-reference consolidation</td>
-      <td><a href="https://doi.org/10.6084/m9.figshare.31943361">&Lambda;CDM as a Special Case of Energy-Flow Cosmology</a> (DOI 31943361) &mdash; 14 months and 204 publications in one reference.</td>
+      <td><a href="https://doi.org/10.6084/m9.figshare.31943361">&Lambda;CDM as a Special Case of Energy-Flow Cosmology</a> (DOI 31943361) &mdash; 14 months and 144 papers in one reference.</td>
     </tr>
   </tbody>
 </table>

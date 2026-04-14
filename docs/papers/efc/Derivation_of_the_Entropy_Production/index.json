@@ -1,13 +1,84 @@
 {
-  "package": "entropy-production-derivation",
-  "version": "1.0.0",
-  "title": "Derivation of the Entropy Production Function Γ(ρ) from Grid-Mode Bose–Einstein Statistics",
+  "$schema": "./schema.json",
+  "id": "derivation-of-the-entropy-production",
+  "title": "Derivation of the Entropy Production Function \u0393(\u03c1) from Grid-Mode Bose\u2013Einstein Statistics",
+  "description": "Derives the entropy production function \u0393(\u03c1) from first principles using Bose\u2013Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form \u0393(\u03c1) = \u03930 \u00b7 \u03c1/(\u03c1 + \u03c1crit) with \u03c1crit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that \u0393(\u03c1) and the gravitational response \u03bcBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+  "version": "1.0",
+  "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.31942821",
+  "keywords": [
+    "entropy production",
+    "Bose\u2013Einstein statistics",
+    "von Neumann entropy",
+    "grid modes",
+    "critical density",
+    "MOND acceleration a0",
+    "cosmological dynamics",
+    "flow constraint",
+    "gravitational response",
+    "double-counting",
+    "EFC v3.7",
+    "micro-to-macro bridge"
+  ],
   "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "framework": "EFC v3.7",
-  "license": "CC-BY-4.0",
-  "created": "2026-04-06",
+  "core_equations": {
+    "flow_constraint": {
+      "latex": "\\Box\\phi = \\Gamma(\\rho)",
+      "description": "EFC flow constraint where the entropy production function \u0393(\u03c1) sources the scalar flow."
+    },
+    "be_occupation": {
+      "latex": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp(g/a_0) - 1}",
+      "description": "Bose\u2013Einstein occupation number for grid modes at gravitational acceleration g with characteristic scale a0."
+    },
+    "g_of_rho": {
+      "latex": "g(\\rho) = \\frac{4\\pi G_N}{3} \\, \\rho \\, r_\\ast \\equiv \\beta \\, \\rho",
+      "description": "Characteristic gravitational acceleration at scale r\u2217, defining \u03b2 = 4\u03c0G_N r\u2217/3."
+    },
+    "x_of_rho": {
+      "latex": "x(\\rho) = \\frac{g}{a_0} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
+      "description": "Dimensionless energy variable controlling the BE occupation."
+    },
+    "vn_entropy_per_mode": {
+      "latex": "s(n) = (1+n)\\ln(1+n) - n\\ln n",
+      "description": "Von Neumann entropy per bosonic mode with occupation n."
+    },
+    "entropy_marginal": {
+      "latex": "\\frac{ds}{dn} = x = \\frac{g}{a_0}",
+      "description": "Marginal entropy per mode for the BE-distributed grid modes; a key step in the derivation."
+    },
+    "gamma_result": {
+      "latex": "\\Gamma(\\rho) = \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}",
+      "description": "Derived functional form: linear at low density and saturating at high density, with an emergent critical density \u03c1crit set by the grid microphysics via a0."
+    }
+  },
+  "key_results": {
+    "main_finding": "From BE occupation plus von Neumann entropy, \u0393(\u03c1) takes the saturating form \u03930\u00b7\u03c1/(\u03c1+\u03c1crit) with \u03c1crit emerging from the a0 grid-mode scale, and \u0393 is shown to be distinct from \u03bcBE(g), resolving double-counting.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03930",
+      "\u03c1crit (set by a0)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In any EFC implementation using this microphysical bridge, the inferred \u0393(\u03c1) from cosmological evolution must be linear in \u03c1 at low densities and saturate to a constant at high densities, with the transition density correlated with the MOND scale a0.",
+      "falsifiable_by": "Reconstruction of \u0393(\u03c1) from EFC-consistent simulations or observationally constrained background+perturbation evolution that demands sub/super-linear low-\u03c1 scaling or non-saturating high-\u03c1 behavior, or a \u03c1crit uncorrelated with a0."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Empirical or simulation-based reconstruction of \u0393(\u03c1) in an EFC-consistent cosmology shows no high-density saturation (\u0393 \u2192 const fails) at >5\u03c3 significance.",
+    "KC2: The transition (critical) density \u03c1crit inferred from fits is inconsistent with the a0-determined microphysical scale by more than an order of magnitude without compensating model changes; i.e., \u03c1crit cannot be tied to a0.",
+    "KC3: Joint fits to galactic dynamics (\u03bcBE(g)) and cosmological evolution (\u0393(\u03c1)) require identifying \u03bcBE and \u0393 as the same effective quantity to succeed, indicating unresolved double-counting in contradiction with the paper\u2019s separation.",
+    "KC4: Robust EFC simulations with the derived \u0393(\u03c1) yield negative total entropy production (dS/dt < 0) under monotonic density decrease, violating the second law.",
+    "KC5: Observational constraints decisively rule out \u03bcBE(g) = 1/(e^{g/a0}\u22121) as the grid-mode response, thereby invalidating the shared statistical basis used to derive \u0393(\u03c1)."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
   "files": {
     "readme": "README.md",
     "metadata": "metadata.json",
@@ -19,6 +90,12 @@
     "data": "data/entropy_production_data.json",
     "demo": "examples/demo_entropy_production.py"
   },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942821",
+  "package": "entropy-production-derivation",
+  "orcid": "0009-0002-4860-5095",
+  "framework": "EFC v3.7",
+  "license": "CC-BY-4.0",
+  "created": "2026-04-06",
   "entry_point": "src/entropy_production.py",
   "classes": [
     "BEOccupation",
@@ -28,14 +105,5 @@
     "ScenarioClassification",
     "Predictions"
   ],
-  "key_result": "Γ(ρ) ∝ ρ^(3/2)/(ρ+ρ_crit) from BE+vN entropy — Scenario B; double-counting resolved",
-  "keywords": [
-    "entropy production",
-    "Bose-Einstein statistics",
-    "von Neumann entropy",
-    "grid modes",
-    "microphysics",
-    "EFC"
-  ],
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31942821"
+  "key_result": "\u0393(\u03c1) \u221d \u03c1^(3/2)/(\u03c1+\u03c1_crit) from BE+vN entropy \u2014 Scenario B; double-counting resolved"
 }

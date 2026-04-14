@@ -1,28 +1,33 @@
 {
-  "name": "EFC-What-Happens-at-the-Universes-Extremes",
-  "title": "EFC — What Happens at the Universe's Extremes?",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "license": "CC-BY-4.0",
+  "title": "EFC \u2014 What Happens at the Universe\u2019s Extremes?",
+  "short_id": "EFC-What-Happens-at-the-Universes-Extremes",
   "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "date": "2024-12-25",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.28098380",
+  "abstract": "Concept paper in Energy-Flow Cosmology (EFC) proposing that the universe\u2019s boundary conditions are set by two extremes: singularities (T=0), where spacetime collapses, and ultimate dispersion (T=1), where entropy is maximal and structures dissolve. It argues that cosmic structure emerges from energy flow dynamically balancing between these limits and outlines observational and modeling avenues (black holes, expansion/voids) to probe dynamics near the extremes.",
   "keywords": [
     "EFC",
-    "Entropy Limits",
-    "Cosmic Extremes",
+    "Singularities",
+    "Ultimate Dispersion",
+    "Heat Death",
     "Energy Flow",
+    "Entropy",
     "Spacetime",
     "S=0",
     "S=1",
-    "Information Collapse"
+    "Black Holes",
+    "Event Horizons",
+    "Cosmic Expansion"
   ],
-  "description": "Behaviour of energy, entropy, structure, and spacetime near the extreme boundaries S=0 (maximal order) and S=1 (maximal disorder), and how these limits shape cosmic dynamics.",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/universe_extremes.py",
-    "data": "data/universe_extremes.json",
-    "demo": "examples/demo_universe_extremes.py"
+    "pdf": "EFC-What-Happens-at-the-Universes-Extremes.pdf",
+    "readme": "EFC-What-Happens-at-the-Universes-Extremes.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.28098380",

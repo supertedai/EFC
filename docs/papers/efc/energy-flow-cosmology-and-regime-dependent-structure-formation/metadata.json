@@ -1,67 +1,57 @@
 {
-  "title": "Energy-Flow Cosmology and Regime-Dependent Structure Formation",
-  "subtitle": "Paper III: A Thermodynamic Framework for Galaxy Formation Anomalies",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Energy-Flow Cosmology Initiative, Norway",
-      "orcid": "0009-0002-4860-5095",
-      "email": "morten@energyflow-cosmology.com",
-      "corresponding": true
-    }
-  ],
-  "version": "1.0.0",
+  "title": "Energy-Flow Cosmology and Regime-Dependent Structure Formation (Paper III)",
+  "short_id": "31061872",
+  "version": "1.0",
   "date": "2026-01-13",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31061872",
-  "series": {
-    "name": "EFC Regime Structure Series",
-    "paper_number": 3,
-    "total_papers": 3
-  },
-  "related_papers": {
-    "paper_1": {
-      "title": "Regime-Dependent Validity in Galaxy Rotation Curves: SPARC N=175 Analysis",
-      "doi": "10.6084/m9.figshare.31045126",
-      "type": "empirical"
-    },
-    "paper_2": {
-      "title": "Galaxy Abundance Excess at z > 6: JWST COSMOS-Web Analysis",
-      "doi": "10.6084/m9.figshare.31055XXX",
-      "type": "empirical"
-    }
-  },
-  "abstract": "Papers I and II of this series established empirical regime structure in two independent datasets: (I) morphology-dependent rotation curve behavior in 175 SPARC galaxies, and (II) order-of-magnitude galaxy abundance excesses at z > 6 in JWST COSMOS-Web data. This third paper introduces Energy-Flow Cosmology (EFC) as a physical framework consistent with both findings. The core mechanism is entropy-gradient-driven energy flow, introduced through the phenomenological decomposition E_total = E_flow + E_latent. We show that this framework is consistent with: (i) the three-regime classification (FLOW, TRANSITION, LATENT) observed in galactic dynamics, and (ii) accelerated structure formation in the early universe. The interpretation is offered as an organizing framework, not a replacement for ΛCDM. Four testable predictions are provided.",
+  "abstract": "Paper III introduces Energy-Flow Cosmology (EFC), a thermodynamic framework in which entropy-gradient-driven energy flow governs regime-dependent structure formation across scales. Using a phenomenological decomposition E_total = E_flow + E_latent, the paper provides a unified interpretation consistent with the three-regime behavior seen in SPARC rotation curves (Paper I) and the early-time galaxy abundance excesses in JWST COSMOS-Web (Paper II), and it outlines testable predictions without replacing \u039bCDM.",
   "keywords": [
-    "regime-dependent validity",
+    "Energy-Flow Cosmology",
     "entropy gradients",
+    "latent energy",
+    "regime structure",
     "galaxy rotation curves",
+    "SPARC",
+    "JWST COSMOS-Web",
     "early structure formation",
     "thermodynamic cosmology",
-    "Energy-Flow Cosmology",
-    "SPARC",
-    "JWST",
-    "COSMOS-Web"
+    "non-equilibrium dynamics",
+    "FLOW/TRANSITION/LATENT"
   ],
-  "classification": {
-    "type": "interpretive",
-    "epistemic_status": "framework_proposal",
-    "scope": "limited_to_papers_1_2"
-  },
-  "claims": {
-    "made": [
-      "EFC framework is consistent with empirical regime structure",
-      "Single mechanism explains galactic and cosmological anomalies",
-      "Cross-scale correspondence exists between kpc and Gpc phenomena"
-    ],
-    "not_made": [
-      "EFC replaces ΛCDM",
-      "Framework derived from first principles",
-      "Universal applicability"
-    ]
-  },
-  "license": "CC-BY-NC-SA-4.0",
-  "repository": "https://github.com/supertedai/EFC",
-  "website": "https://energyflow-cosmology.com",
+  "files": [
+    {
+      "name": "Paper3_EFC_Regime_Synthesis_FINAL.pdf",
+      "type": "application/pdf",
+      "size_bytes": null,
+      "description": "Main paper PDF"
+    },
+    {
+      "name": "Paper3_EFC_Submission_Draft_v03.docx",
+      "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "description": "Editable Word document"
+    },
+    {
+      "name": "metadata.json",
+      "type": "application/json",
+      "description": "Structured metadata"
+    },
+    {
+      "name": "schema.jsonld",
+      "type": "application/ld+json",
+      "description": "Schema.org structured data"
+    },
+    {
+      "name": "README.md",
+      "type": "text/markdown",
+      "description": "Documentation"
+    }
+  ],
   "paper": {
     "doi": "10.6084/m9.figshare.31061872",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31061872"

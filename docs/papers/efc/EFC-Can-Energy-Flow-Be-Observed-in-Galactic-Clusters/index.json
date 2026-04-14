@@ -1,20 +1,78 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters",
-  "title": "EFC — Can Energy Flow Be Observed in Galactic Clusters?",
+  "title": "EFC \u2014 Can Energy Flow Be Observed in Galactic Clusters?",
+  "description": "This core-principle note outlines the Energy-Flow Cosmology (EFC) hypothesis that energy flow within galaxy clusters should be observable via galaxy motions, intra-cluster medium (ICM) thermal structure, and gravitational lensing. It proposes using X-ray and lensing observations alongside simulations to relate energy distribution to cluster mass, size, and dark matter, and poses concrete questions and next steps for empirical tests.",
+  "version": "1.0",
+  "date": "2024-12-25",
+  "doi": "10.6084/m9.figshare.28098350",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "Galaxy Clusters",
+    "Intra-Cluster Medium (ICM)",
+    "Gravitational Lensing",
+    "Dark Matter",
+    "Peculiar Velocities",
+    "X-ray Emission",
+    "Temperature Gradients",
+    "Entropy Gradient",
+    "Cluster Dynamics",
+    "Structure Formation",
+    "Simulation"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Sets out the hypothesis that cluster-scale energy flow should be detectable through galaxy kinematics, ICM thermal gradients, and gravitational lensing, and outlines observational and simulation-based steps to test it; no empirical results are reported.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Galaxy peculiar velocities within clusters",
+      "ICM temperature and entropy gradients",
+      "Gravitational lensing mass distribution"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In dynamically relaxed clusters, radial ICM temperature/entropy gradients will correlate with the mass profile inferred from weak gravitational lensing (deeper potentials correspond to steeper thermal gradients).",
+      "falsifiable_by": "A statistically powered sample (e.g., relaxed clusters) showing no significant correlation between X-ray/SZ-derived thermal gradients and weak-lensing mass profiles after controlling for mergers and AGN feedback."
+    },
+    {
+      "id": "P2",
+      "statement": "The spatial pattern of galaxy peculiar velocities within clusters will align with gradients in the ICM pressure/temperature indicative of directed energy flow.",
+      "falsifiable_by": "Joint redshift-survey kinematics and X-ray/SZ pressure maps revealing no alignment or correlation beyond chance across a representative cluster sample."
+    },
+    {
+      "id": "P3",
+      "statement": "Regions of strong lensing convergence will coincide with enhanced ICM heating signatures (e.g., higher temperature or entropy) compared to adjacent lower-convergence regions at similar radii.",
+      "falsifiable_by": "High-resolution lensing maps and X-ray spectroscopy showing no systematic co-location between convergence peaks and ICM heating signatures in well-characterized clusters."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Across a large, bias-controlled sample of dynamically relaxed clusters, there is no statistically significant correlation between weak-lensing\u2013inferred mass profiles and ICM temperature/entropy gradients (after accounting for mergers, AGN, and projection), contradicting the claim that energy flow tracks the gravitational potential.",
+    "KC2: Galaxy peculiar velocity fields (from redshift surveys) show no reproducible alignment or correlation with ICM pressure/temperature gradients in clusters where such measurements are reliable, indicating no coherent energy-flow signature in dynamics.",
+    "KC3: Simulations incorporating the proposed energy-flow mechanisms fail to reproduce observed X-ray or lensing patterns, while standard \u039bCDM hydrodynamical models without additional energy-flow prescriptions match the data as well or better.",
+    "KC4: Gravitational lensing convergence maps show no association with localized ICM heating signatures beyond statistical noise when tested with high-quality X-ray/SZ and lensing data for a representative sample.",
+    "KC5: Multiwavelength cross-checks (X-ray, SZ, optical, and lensing) demonstrate that observed gradients can be fully explained by known processes (e.g., mergers, AGN feedback, turbulence) without invoking additional directed energy flow, leaving no residual signal attributable to EFC."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters.pdf",
+    "readme": "EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098350",
   "path": "docs/papers/efc/EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters",
   "pdf": "EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters.pdf",
   "md": "EFC-Can-Energy-Flow-Be-Observed-in-Galactic-Clusters.md",
-  "keywords": [
-    "EFC",
-    "Galaxy Clusters",
-    "Energy Flow",
-    "Lensing",
-    "Entropy Gradient",
-    "Cluster Dynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.0",
-  "doi": "10.6084/m9.figshare.28098350",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098350"
+  "type": "paper"
 }

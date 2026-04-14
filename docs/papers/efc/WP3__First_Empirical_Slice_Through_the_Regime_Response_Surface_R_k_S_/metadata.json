@@ -1,31 +1,38 @@
 {
-  "id": "wp3-first-empirical-slice-rks",
-  "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k,S)",
-  "short_title": "WP3 R(k,S) Slice",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095"
-  },
-  "license": "CC-BY-4.0",
+  "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k, S)",
+  "short_id": "wp3-first-empirical-slice-rks",
   "version": "1.0",
   "date": "2026-01-30",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31215259",
+  "abstract": "First cartographic measurement of the gravitational response coordinate R(k,S) along the RSD trajectory using 12 f\u03c38(z) points from BOSS DR12, eBOSS DR16, and DESI Y1. The analysis finds R(k\u22480.13 h/Mpc, S\u22480.30) \u2248 +0.30, while \u039bCDM (R=0) remains preferred by AIC (\u0394AIC = \u22123.8). This work inaugurates an atlas of the response surface, emphasizing mapping over model validation.",
   "keywords": [
     "R(k,S)",
     "regime response surface",
-    "fσ8",
-    "RSD",
+    "f\u03c38",
+    "redshift-space distortions",
     "BOSS",
     "eBOSS",
     "DESI",
     "modified gravity",
+    "\u039bCDM",
+    "AIC",
     "cartography"
   ],
-  "description": "First empirical R(k,S) coordinate from RSD data: R(k~0.13, S~0.30) ~ +0.30. LCDM preferred by AIC. This is cartography, not validation.",
-  "type": "empirical_analysis",
-  "layer": "docs",
-  "series": "EFC Response Atlas",
-  "series_entry": "WP3",
+  "files": {
+    "pdf": "wp3_rks_article.pdf",
+    "tex": "wp3_rks_article.tex",
+    "figures": [
+      "wp3_rks_final.png",
+      "rks_wp3_trajectory.png",
+      "wp3_v1_clean.png"
+    ]
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31215259",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31215259"

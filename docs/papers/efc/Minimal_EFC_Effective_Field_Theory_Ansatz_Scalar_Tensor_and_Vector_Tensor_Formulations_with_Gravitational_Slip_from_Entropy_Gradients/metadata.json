@@ -1,110 +1,34 @@
 {
-  "package_format": "efc-ai-friendly-v1",
-  "paper_id": "EFC-EFT-Ansatz-v6",
-  "title": "Minimal EFC Effective Field Theory Ansatz",
-  "subtitle": "Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
+  "title": "Minimal EFC Effective Field Theory Ansatz: Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
+  "short_id": "minimal-efc-effective-field-theory-ansatz-scalar-tensor-and-vector-tensor-formulations-with-gravitational-slip-from-entropy-gradients",
+  "version": "v6",
+  "date": "2026-03-06",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
-    "affiliation": "Energy-Flow Cosmology Initiative"
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "version": "v6",
-  "date": "2026-03-06",
-  "doi": "10.6084/m9.figshare.31368433",
   "license": "CC-BY-4.0",
-  "status": "research_note",
-  "canonical_status": "proposed (not canonical baseline EFC-D)",
-  "topics": [
-    "effective field theory",
-    "modified gravity",
-    "scalar-tensor gravity",
-    "vector-tensor gravity",
-    "Horndeski theory",
+  "doi": "10.6084/m9.figshare.31368433",
+  "abstract": "Proposes a minimal effective field theory completion for Energy-Flow Cosmology (EFC) in two formulations: a Horndeski-like scalar\u2013tensor EFT and a vector\u2013tensor EFT with a dynamical energy-flow 4-vector. Both are driven by a sigmoid entropy field S(a) that ensures GR recovery at high redshift and targets a mid\u2011z signature with weakened growth (mu < 1), gravitational slip (eta > 1), and enhanced lensing (Sigma > 1). The note defines the observables, derives the slip mechanism from entropy-gradient anisotropic stress, and specifies stability/consistency conditions, with numerical evaluation deferred to hi_class/EFTCosmoMC.",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "effective field theory of dark energy",
+    "Horndeski",
+    "generalized Proca",
     "gravitational slip",
+    "anisotropic stress",
     "entropy gradients",
-    "CMB lensing",
-    "energy-flow cosmology"
+    "modified gravity",
+    "weak lensing",
+    "growth of structure",
+    "Bellini\u2013Sawicki alpha-parameters",
+    "quasi-static limit"
   ],
-  "ai_metadata": {
-    "ai_parseable": true,
-    "structured_data": [
-      "index.json",
-      "data/eft_parameters.json"
-    ],
-    "executable_code": [
-      "src/efc_eft_ansatz.py",
-      "examples/eft_demo.py"
-    ],
-    "linked_data": [
-      "EFC-EFT-Ansatz.jsonld"
-    ],
-    "validation": [
-      "schema.json"
-    ]
+  "files": {
+    "pdf": "Minimal_EFC_Effective_Field_Theory_Ansatz_Scalar_Tensor_and_Vector_Tensor_Formulations_with_Gravitational_Slip_from_Entropy_Gradients.pdf",
+    "readme": "README.md"
   },
-  "files": [
-    {
-      "path": "README.md",
-      "type": "documentation",
-      "format": "markdown"
-    },
-    {
-      "path": "index.json",
-      "type": "structured_data",
-      "format": "json"
-    },
-    {
-      "path": "schema.json",
-      "type": "validation",
-      "format": "json-schema"
-    },
-    {
-      "path": "metadata.json",
-      "type": "metadata",
-      "format": "json"
-    },
-    {
-      "path": "EFC-EFT-Ansatz.jsonld",
-      "type": "linked_data",
-      "format": "json-ld"
-    },
-    {
-      "path": "citations.bib",
-      "type": "references",
-      "format": "bibtex"
-    },
-    {
-      "path": "src/__init__.py",
-      "type": "source",
-      "format": "python"
-    },
-    {
-      "path": "src/efc_eft_ansatz.py",
-      "type": "source",
-      "format": "python"
-    },
-    {
-      "path": "data/eft_parameters.json",
-      "type": "data",
-      "format": "json"
-    },
-    {
-      "path": "examples/eft_demo.py",
-      "type": "example",
-      "format": "python"
-    }
-  ],
-  "dependencies": {
-    "python": ">=3.8",
-    "numpy": ">=1.20"
-  },
-  "related_papers": [
-    {
-      "id": "EFC-CMB-Localization",
-      "title": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity",
-      "relation": "Provides the mu-Sigma survival valley that motivates this EFT ansatz"
-    }
-  ],
   "paper": {
     "doi": "10.6084/m9.figshare.31368433",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31368433"

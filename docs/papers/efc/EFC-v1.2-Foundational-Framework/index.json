@@ -1,19 +1,130 @@
 {
+  "$schema": "./schema.json",
   "id": "EFC-v1.2-Foundational-Framework",
-  "title": "EFC — v1.2 Foundational Framework",
+  "title": "Energy\u2013Flow Cosmology v1.2: Foundational Framework and Cross-Field Continuity",
+  "description": "Presents Energy\u2013Flow Cosmology (EFC), a covariant non-equilibrium thermodynamic field framework that extends General Relativity with a scalar energy-flow potential Ef, disformal matter coupling, and a Lyapunov-consistent dissipation structure. The theory reduces to GR in equilibrium, proposes a parsimonious parameter hierarchy with mild scale dependence, and outlines pre-registered Bayesian cross-prediction tests across rotation curves, weak lensing, SNe-Ia, and BAO. It also provides a functional bridge to variational free energy, enabling continuity to informational and biological systems, and introduces a unique observable: the Entropic Halo Temperature.",
+  "version": "1.2",
+  "date": "2025-11-07",
+  "doi": "10.6084/m9.figshare.30563738",
+  "keywords": [
+    "Energy\u2013Flow Cosmology",
+    "non-equilibrium thermodynamics",
+    "scalar field",
+    "disformal coupling",
+    "Lyapunov stability",
+    "Maxwell\u2013Cattaneo",
+    "galaxy rotation curves",
+    "weak lensing",
+    "BAO",
+    "SNe-Ia",
+    "variational free energy",
+    "dark matter alternatives"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "action": {
+      "latex": "S = \\int d^4x\\, \\sqrt{-g} \\Big[ \\tfrac{M_P^2}{2} R + \\tfrac{1}{2} K(S)\\, g^{\\mu\\nu} \\partial_\\mu E_f \\partial_\\nu E_f - V(E_f,S) \\Big] + S_m[\\psi; g_{\\mu\\nu}]",
+      "description": "Conservative action: Einstein\u2013Hilbert term plus an entropy-coupled scalar energy-flow field E_f with kinetic prefactor K(S) and potential V(E_f,S); matter couples via a disformal metric."
+    },
+    "disformal_metric": {
+      "latex": "\\tilde{g}_{\\mu\\nu} = A(E_f,S)\\, g_{\\mu\\nu} + B(E_f,S)\\, \\partial_\\mu E_f \\partial_\\nu E_f",
+      "description": "Matter fields experience a disformal geometry controlled by the energy-flow field and entropy, sourcing effective dynamics without explicit DM/DE."
+    },
+    "field_equation_covariant": {
+      "latex": "\\nabla_\\mu\\big[ K(S)\\, \\nabla^\\mu E_f \\big] - \\frac{\\partial V}{\\partial E_f} = J[E_f,S;\\psi], \\quad \\frac{\\partial V}{\\partial E_f} = \\lambda\\, \\sigma(E_f,S),\\; \\sigma \\equiv \\frac{\\partial S}{\\partial V}",
+      "description": "Scalar field equation linking the potential slope to an entropic driver \u03c3; J encapsulates source terms induced by disformal coupling."
+    },
+    "elliptic_core": {
+      "latex": "-\\nabla \\cdot \\big[ K(S) \\, \\nabla E_f \\big] = F(E_f,S), \\quad F \\equiv \\lambda\\, \\sigma - J",
+      "description": "Quasi-static, weak-field elliptic limit that generalizes Poisson\u2019s equation and admits MOND-like p-Laplace regimes via K(S)."
+    },
+    "einstein_equation": {
+      "latex": "M_P^2 G_{\\mu\\nu} = T^{(m)}_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}, \\quad T^{(E_f)}_{\\mu\\nu} = K(S)\\, \\partial_\\mu E_f \\partial_\\nu E_f - g_{\\mu\\nu} \\Big[ \\tfrac{1}{2} K(S) (\\partial E_f)^2 - V(E_f,S) \\Big]",
+      "description": "Backreaction of the E_f field on spacetime curvature enters Einstein\u2019s equations through its stress\u2013energy tensor."
+    },
+    "rayleigh_dissipation": {
+      "latex": "R = \\int d^4x\\, \\sqrt{-g}\\, \\tfrac{1}{2} \\, \\tau\\, (\\partial_t E_f)^2",
+      "description": "Rayleigh dissipation functional introducing irreversibility; yields a finite-speed (Maxwell\u2013Cattaneo) relaxation for E_f."
+    },
+    "maxwell_cattaneo": {
+      "latex": "\\tau\\, \\partial_t E_f - \\nabla \\cdot [ K(S) \\, \\nabla E_f ] = \\lambda\\, \\sigma(E_f,S) - J",
+      "description": "Causal, time-asymmetric evolution equation ensuring a thermodynamic arrow and GENERIC/Onsager consistency."
+    },
+    "effective_lambda": {
+      "latex": "3 H^2 \\simeq 8\\pi G \\, \\rho_b + \\Lambda_{\\mathrm{eff}}(t), \\quad \\Lambda_{\\mathrm{eff}}(t) = \\frac{\\langle \\lambda\\, \\sigma \\rangle}{K_0}",
+      "description": "FLRW background with an emergent, time-dependent effective cosmological term from volume-averaged entropy production."
+    },
+    "lyapunov_functional": {
+      "latex": "E[E_f] = \\int_\\Omega d^3x\\, \\Big[ \\tfrac{1}{2} K(S) |\\nabla E_f|^2 - V(E_f,S) \\Big], \\quad \\frac{dE}{dt} \\le 0",
+      "description": "Lyapunov functional demonstrating well-posedness and second-law consistency under the dissipative dynamics."
+    },
+    "scaling_hierarchy": {
+      "latex": "\\Theta(\\mu) = \\Theta_0 + A\\, \\log\\!\\left( \\frac{\\mu}{\\mu_0} \\right), \\quad K(S)=K_0 (1+\\beta S)^p, \\; F(E_f,S)=a_0\\, \\rho + a_1\\, \\rho^{\\gamma}",
+      "description": "Minimal scale dependence and parsimonious parameterization shared across astrophysical datasets for true cross-prediction."
+    },
+    "entropic_halo_temperature": {
+      "latex": "k_B T_h(r) \\equiv \\frac{1}{n(r)} \\frac{1}{2} K(S) \\, |\\nabla E_f|^2",
+      "description": "Unique, directly testable EFC observable predicted from baryonic density without particle dark matter, comparable to X-ray/SZ profiles."
+    }
+  },
+  "key_results": {
+    "main_finding": "Establishes a mathematically well-posed, Lyapunov-consistent, covariant non-equilibrium thermodynamic extension of GR with a single scalar energy-flow field, a parsimonious cross-scale parameter hierarchy, and explicit, pre-registered cross-dataset tests including a unique Entropic Halo Temperature signature.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "K0",
+      "beta",
+      "p",
+      "a0",
+      "a1",
+      "gamma",
+      "Theta0",
+      "A",
+      "mu0",
+      "lambda",
+      "tau"
+    ],
+    "datasets_used": [
+      "SPARC rotation curves (calibration)",
+      "CFHTLenS weak lensing (holdout)",
+      "SNe-Ia (progenitor-age corrected, holdout)",
+      "BAO (holdout)",
+      "Cluster/halo X-ray and SZ profiles (for Th)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "The Entropic Halo Temperature Th(r) derived from Eqs. (5), (13), and (14) matches X-ray/SZ temperature profiles when computed solely from baryonic density \u03c1(r), without invoking particle dark matter.",
+      "falsifiable_by": "Joint X-ray and SZ profile measurements across a representative halo sample compared to Th(r) predicted from observed baryonic \u03c1(r)."
+    },
+    {
+      "id": "P2",
+      "statement": "A single parameter vector \u0398(\u03bc), calibrated on SPARC rotation curves, will cross-predict CFHTLenS weak lensing, SNe-Ia, and BAO statistics without re-tuning.",
+      "falsifiable_by": "Holdout Bayesian model comparison showing >3\u03c3 failure or decisively worse AIC/BIC/ln BF on CFHTLenS, SNe-Ia, or BAO using the SPARC-calibrated \u0398(\u03bc)."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Cross-prediction failure (NG-1) \u2014 The parameter vector \u0398(\u03bc) calibrated on SPARC rotation curves fails at >3\u03c3 on CFHTLenS weak lensing in true holdout testing without any re-tuning.",
+    "KC2: Thermodynamic halo test (NG-2) \u2014 The Entropic Halo Temperature Th(r) predicted from baryonic \u03c1(r) via Eqs. (5), (13), and (14) shows systematic disagreement with stacked X-ray/SZ temperature profiles across halos at fixed \u03c1(r).",
+    "KC3: Variational isomorphy break (NG-3) \u2014 The functional isomorphy to variational free energy is invalidated (e.g., required convexity fails), breaking the GENERIC/Onsager-consistent structure of the theory."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "EFC-v1.2-Foundational-Framework.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30563738",
   "path": "docs/papers/efc/EFC-v1.2-Foundational-Framework",
   "pdf": "EFC-v1.2-Foundational-Framework.pdf",
   "md": "EFC-v1.2-Foundational-Framework.md",
-  "keywords": [
-    "EFC",
-    "Foundations",
-    "Energy Flow",
-    "Entropy",
-    "Thermodynamics"
-  ],
   "layer": "docs",
-  "type": "paper",
-  "version": "1.2",
-  "doi": "10.6084/m9.figshare.30563738",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.30563738"
+  "type": "paper"
 }

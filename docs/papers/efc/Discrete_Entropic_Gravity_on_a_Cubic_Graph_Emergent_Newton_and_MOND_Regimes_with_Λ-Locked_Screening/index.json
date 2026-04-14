@@ -1,57 +1,187 @@
 {
+  "$schema": "./schema.json",
   "id": "discrete-entropic-gravity-cubic-graph",
-  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
-  "short_title": "Discrete Graph Gravity",
+  "title": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with \u039b-Locked Screening",
+  "description": "Constructs a discrete AQUAL-like gravity operator on a cubic graph with entropic flux weighting that reproduces Newtonian (g \u221d r\u207b\u00b2) and MOND-like (g \u221d r\u207b\u00b9) regimes without assuming a continuum metric. A \u039b-locked bulk entropic reservoir sets the transition scale (L_\u039b \u221d \u039b\u207b\u00b9\u141f\u00b2), yielding a convergent deep-MOND prefactor C \u2248 2.32 (implying a0,eff \u2248 5.4 a0), broken superposition, an external field effect, and a weak mass-scaling exponent r_trans \u221d M^0.18. A minimal cosmological stability check shows ~0.7\u20130.8% suppression in \u03c38/f\u03c38 via background-only modification.",
   "version": "1.0",
   "date": "2026-02-16",
   "doi": "10.6084/m9.figshare.31348411",
+  "keywords": [
+    "discrete gravity",
+    "cubic graph",
+    "entropic gravity",
+    "AQUAL",
+    "MOND",
+    "\u039b-locking",
+    "cosmological constant",
+    "screening length",
+    "external field effect",
+    "broken superposition",
+    "Newtonian limit",
+    "EFC"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Independent Researcher, Norway"
   },
+  "core_equations": {
+    "discrete_gradient": {
+      "latex": "\\left|\\nabla \\Phi\\right|_{ij} = \\frac{|\\Phi_i - \\Phi_j|}{a}",
+      "description": "Discrete gradient magnitude between nearest-neighbor nodes i and j on a cubic lattice with spacing a."
+    },
+    "interpolating_function": {
+      "latex": "\\mu(x) = \\frac{x}{\\sqrt{1 + x^2}}",
+      "description": "AQUAL-type interpolating function governing the transition between Newtonian and MOND-like regimes."
+    },
+    "aqual_weight": {
+      "latex": "w_{ij} = \\mu\\!\\left(\\frac{|\\Phi_i - \\Phi_j|}{a_0\\, a}\\right)",
+      "description": "Edge weight between nodes i and j used in the discrete AQUAL operator."
+    },
+    "discrete_field_equation": {
+      "latex": "\\sum_{j \\sim i} w_{ij}\\,(\\Phi_j - \\Phi_i) = 4\\pi G\\,\\rho_i",
+      "description": "Graph-based discrete field equation analogous to AQUAL; sum over neighbors j of node i."
+    },
+    "bulk_entropic_reservoir": {
+      "latex": "F_{\\mathrm{bulk}} = \\tfrac{1}{2}\\,\\mu_{\\Lambda}\\,(S_i - S_V)^2,\\quad \\mu_{\\Lambda} \\propto \\Lambda",
+      "description": "\u039b-locked bulk entropic term coupling local entropy S_i to a volume-averaged reference S_V, setting the screening scale."
+    },
+    "screening_length": {
+      "latex": "L_{\\Lambda} \\propto \\Lambda^{-1/2}",
+      "description": "Yukawa-like screening length induced by the \u039b-locked reservoir."
+    },
+    "acceleration_scale": {
+      "latex": "a_0 = \\frac{c^2}{L_{\\Lambda}} \\propto c^2\\sqrt{\\Lambda}",
+      "description": "Acceleration scale associated with the \u039b-locked screening length."
+    },
+    "deep_mond_relation_graph": {
+      "latex": "g_{\\mathrm{graph}} = C\\,\\sqrt{a_0\\,g_N}",
+      "description": "Graph-measured deep-MOND-like relation with a nontrivial prefactor C from discrete topology."
+    },
+    "effective_a0": {
+      "latex": "a_{0,\\mathrm{eff}} = C^2\\,a_0",
+      "description": "Effective acceleration scale implied by the discrete prefactor in the deep-MOND regime."
+    },
+    "growth_equation": {
+      "latex": "\\ddot{\\delta} + 2H(a)\\,\\dot{\\delta} - \\tfrac{3}{2}\\,\\Omega_m H_0^2\\,(1+z)^3\\,\\delta = 0",
+      "description": "Linear growth ODE used for a background-only cosmological stability check with \u039b-locked coupling."
+    }
+  },
+  "key_results": {
+    "main_finding": "The cubic-graph entropic operator reproduces Newtonian and MOND-like scalings with a \u039b-locked transition and yields a convergent prefactor C \u2248 2.32 (a0,eff \u2248 5.4 a0) and weak mass scaling r_trans \u221d M^0.18, while passing internal kill-tests and showing ~0.7\u20130.8% growth suppression in a minimal cosmology check.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "lattice_sizes: 21, 31, 41",
+      "convergence_tolerance: 1e-4 (||\u0394\u03a6||_\u221e)",
+      "a0 (lattice units): 0.001, 0.5, 2.0",
+      "beta_background: 0.08 (background-only channel)",
+      "superposition_separation: d = 8a",
+      "\u039b source: Planck 2018"
+    ],
+    "datasets_used": [
+      "BOSS DR12 f\u03c38",
+      "Planck 2018 \u039b"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "In the deep-MOND regime on increasingly refined cubic lattices, the prefactor converges to C = 2.32 \u00b1 0.02, independent of spherical vs cubic binning.",
+      "falsifiable_by": "Resolution-refinement studies on larger lattices (N > 41) showing non-convergence or a limit C \u2260 2.32."
+    },
+    {
+      "id": "P2",
+      "statement": "The transition radius scales with mass as r_trans \u221d M^{0.18\u00b10.03} when \u039b-locking is active.",
+      "falsifiable_by": "Galaxy-scale tests of the inferred transition radius vs baryonic mass showing a slope consistent with 0.5 (MOND) and inconsistent with 0.18\u00b10.03."
+    },
+    {
+      "id": "P3",
+      "statement": "Effective deep-MOND relation on the graph is g = C\u221a(a0 g_N), implying a0,eff = C^2 a0 \u2248 5.4 a0.",
+      "falsifiable_by": "Direct numerical measurement of g vs \u221a(a0 g_N) on larger lattices or alternative boundary conditions yielding C \u2248 1."
+    },
+    {
+      "id": "P4",
+      "statement": "Background-only \u039b-locked coupling leads to a mild suppression in growth, \u03b50 \u2248 0.8% at z \u2248 0.5 relative to \u039bCDM.",
+      "falsifiable_by": "Reproducing the growth-ODE with the specified background channel and finding \u03b50 inconsistent with ~0.5\u20131.0%."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Failure to recover log\u2013log slopes of \u22122.0 (Newtonian) and \u22121.0 (deep-MOND) within numerical precision in KT1.",
+    "KC2: Prefactor C fails to converge under lattice refinement or shows strong dependence on binning geometry (KT2).",
+    "KC3: External field effect absent or non-monotonic after radial projection under controlled boundary conditions (KT5).",
+    "KC4: Superposition violation inconsistent with smooth nonlinear structure expected from the \u03bc-function (KT4).",
+    "KC5: Mass scaling strongly tracks M^{1/2} when \u039b-locking is active, contradicting r_trans \u221d M^{0.18\u00b10.03} (KT3)."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "core-lock",
+      "doi": "10.6084/m9.figshare.31223503",
+      "role": "mathematical_foundation"
+    },
+    {
+      "id": "ebe-core-principles",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "methodological_framework"
+    },
+    {
+      "id": "efc-h0-unification",
+      "doi": "10.6084/m9.figshare.31223908",
+      "role": "entropic_gravity_context"
+    }
+  ],
+  "files": {
+    "paper": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_\u039b-Locked_Screening.pdf",
+    "documentation": [
+      "README.md",
+      "QUICKSTART.md",
+      "MANIFEST.md"
+    ],
+    "metadata": [
+      "CITATION.cff",
+      "index.json",
+      "DiscreteEntropicGravity.jsonld",
+      "schema.json"
+    ],
+    "source_code": [
+      "src/__init__.py",
+      "src/cubic_graph.py",
+      "src/aqual_operator.py",
+      "src/lambda_screening.py",
+      "src/kill_tests.py",
+      "src/growth_check.py"
+    ],
+    "data": [
+      "data/parameters.json",
+      "data/kill_test_results.json",
+      "data/convergence_table.json"
+    ],
+    "examples": [
+      "examples/run_kill_tests.py",
+      "examples/prefactor_convergence.py"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348411",
+  "short_title": "Discrete Graph Gravity",
   "license": "CC-BY-4.0",
   "type": "technical_note",
   "epistemic_layer": "B",
   "epistemic_status": "Technical construction with controlled numerical tests; does not claim MOND equivalence",
-  "keywords": [
-    "discrete gravity",
-    "cubic graph",
-    "AQUAL",
-    "MOND",
-    "entropic gravity",
-    "Λ-locking",
-    "cosmological constant",
-    "graph topology",
-    "Newtonian limit",
-    "external field effect",
-    "modified gravity",
-    "EFC"
-  ],
-  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Reproduces Newtonian 1/r² and MOND-like 1/r scaling, Λ-locked transition, broken superposition, and external field effect. A nontrivial prefactor C ≈ 2.32 emerges (a₀,eff ≈ 5.4 a₀), and mass scaling is weak (r_trans ∝ M^0.18 vs MOND M^0.5).",
-  "key_results": {
-    "newton_slope": -2.0,
-    "mond_slope_a0_2": -0.99,
-    "mond_slope_a0_05": -1.01,
-    "prefactor_C": 2.32,
-    "a0_eff_ratio": 5.4,
-    "mass_scaling_exponent": 0.18,
-    "mass_scaling_uncertainty": 0.03,
-    "superposition_violation": "13.7%",
-    "sigma8_suppression": "0.7%",
-    "growth_suppression_epsilon0": "0.8%"
-  },
+  "abstract": "Constructs a discrete gravity operator on a cubic graph with entropic flux weighting. Reproduces Newtonian 1/r\u00b2 and MOND-like 1/r scaling, \u039b-locked transition, broken superposition, and external field effect. A nontrivial prefactor C \u2248 2.32 emerges (a\u2080,eff \u2248 5.4 a\u2080), and mass scaling is weak (r_trans \u221d M^0.18 vs MOND M^0.5).",
   "key_equations": {
-    "discrete_gradient": "|∇Φ|_ij = |Φ_i − Φ_j| / a",
-    "interpolating_function": "μ(x) = x / √(1 + x²)",
-    "aqual_weight": "w_ij = μ(|Φ_i − Φ_j| / (a₀·a))",
-    "field_equation": "Σ_{j~i} w_ij(Φ_j − Φ_i) = 4πGρ_i",
-    "bulk_entropic_term": "F_bulk = ½ μ_Λ (S_i − S_V)²",
-    "screening_length": "L_Λ ∝ Λ^{-1/2}",
-    "acceleration_scale": "a₀ = c²/L_Λ ∝ c²√Λ",
-    "graph_deep_mond": "g_graph = C √(a₀ g_N)",
-    "effective_a0": "a₀,eff = C² a₀ ≈ 5.4 a₀",
-    "growth_ode": "δ̈ + 2H(a)δ̇ − (3/2)Ω_m H₀²(1+z)³ δ = 0"
+    "discrete_gradient": "|\u2207\u03a6|_ij = |\u03a6_i \u2212 \u03a6_j| / a",
+    "interpolating_function": "\u03bc(x) = x / \u221a(1 + x\u00b2)",
+    "aqual_weight": "w_ij = \u03bc(|\u03a6_i \u2212 \u03a6_j| / (a\u2080\u00b7a))",
+    "field_equation": "\u03a3_{j~i} w_ij(\u03a6_j \u2212 \u03a6_i) = 4\u03c0G\u03c1_i",
+    "bulk_entropic_term": "F_bulk = \u00bd \u03bc_\u039b (S_i \u2212 S_V)\u00b2",
+    "screening_length": "L_\u039b \u221d \u039b^{-1/2}",
+    "acceleration_scale": "a\u2080 = c\u00b2/L_\u039b \u221d c\u00b2\u221a\u039b",
+    "graph_deep_mond": "g_graph = C \u221a(a\u2080 g_N)",
+    "effective_a0": "a\u2080,eff = C\u00b2 a\u2080 \u2248 5.4 a\u2080",
+    "growth_ode": "\u03b4\u0308 + 2H(a)\u03b4\u0307 \u2212 (3/2)\u03a9_m H\u2080\u00b2(1+z)\u00b3 \u03b4 = 0"
   },
   "parameters": {
     "lattice_sizes_tested": [
@@ -95,9 +225,9 @@
     }
   ],
   "falsification_criteria": [
-    "Operator must recover g ∝ r⁻² (Newton) and g ∝ r⁻¹ (deep MOND)",
+    "Operator must recover g \u221d r\u207b\u00b2 (Newton) and g \u221d r\u207b\u00b9 (deep MOND)",
     "Prefactor C must converge under resolution refinement",
-    "Rotation curve comparisons must use a₀,eff = C²a₀",
+    "Rotation curve comparisons must use a\u2080,eff = C\u00b2a\u2080",
     "Mass-scaling exponent 0.18 is testable against galaxy-scale data"
   ],
   "related_papers": [
@@ -116,37 +246,5 @@
       "doi": "10.6084/m9.figshare.31223908",
       "relationship": "entropic_gravity_modification"
     }
-  ],
-  "files": {
-    "paper": "Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening.pdf",
-    "documentation": [
-      "README.md",
-      "QUICKSTART.md",
-      "MANIFEST.md"
-    ],
-    "metadata": [
-      "CITATION.cff",
-      "index.json",
-      "DiscreteEntropicGravity.jsonld",
-      "schema.json"
-    ],
-    "source_code": [
-      "src/__init__.py",
-      "src/cubic_graph.py",
-      "src/aqual_operator.py",
-      "src/lambda_screening.py",
-      "src/kill_tests.py",
-      "src/growth_check.py"
-    ],
-    "data": [
-      "data/parameters.json",
-      "data/kill_test_results.json",
-      "data/convergence_table.json"
-    ],
-    "examples": [
-      "examples/run_kill_tests.py",
-      "examples/prefactor_convergence.py"
-    ]
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31348411"
+  ]
 }

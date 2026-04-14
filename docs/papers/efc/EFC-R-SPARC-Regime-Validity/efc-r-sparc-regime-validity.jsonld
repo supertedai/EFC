@@ -1,25 +1,55 @@
 {
-  "@context": "https://schema.org",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://schema.org/identifier",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
   "@type": "ScholarlyArticle",
-  "name": "EFC R SPARC Regime Validity",
+  "name": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+  "description": "Analysis of 20 SPARC galaxies revealing systematic regime-dependent validity patterns in EFC, leading to the development of the EFC-R meta-framework.",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Symbiose Research"
-    }
+    "identifier": "https://orcid.org/0009-0006-5904-4032"
   },
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "datePublished": "2026-01-06",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31007248",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC"
+    "Dark Matter Alternatives",
+    "Galaxy Rotation Curves",
+    "SPARC",
+    "Regime Theory",
+    "Non-equilibrium Dynamics",
+    "EFC-R"
   ],
   "about": [
-    "Spor 1 — Galactic/Cosmological"
+    {
+      "@type": "DefinedTerm",
+      "name": "EFC-R Framework",
+      "description": "Meta-framework for understanding regime-dependent validity through E_total = E_flow + E_latent decomposition"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "SPARC Database",
+      "description": "Spitzer Photometry and Accurate Rotation Curves - 175 disk galaxies with high-quality rotation curves"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Latent Energy Field",
+      "description": "Non-equilibrium component capturing structural complexity and dynamical disturbance"
+    }
   ],
-  "identifier": "https://doi.org/10.6084/m9.figshare.31007248",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers",
+    "identifier": "efc-papers"
+  },
+  "url": "https://doi.org/10.6084/m9.figshare.31007248",
+  "efc:tier": "CANONICAL",
+  "efc:layer": "APPLIED",
+  "efc:domain": "cosmology",
+  "efc:collection": "efc",
   "sameAs": "https://doi.org/10.6084/m9.figshare.31007248",
   "doi": "10.6084/m9.figshare.31007248"
 }

@@ -1,25 +1,58 @@
 {
-  "@context": "https://schema.org",
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "doi": "https://schema.org/identifier",
+    "efc": "https://energyflow-cosmology.com/ontology#"
+  },
   "@type": "ScholarlyArticle",
-  "name": "EFC H0 S8 Tensions",
+  "name": "Resolving the H₀ and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+  "description": "Analysis demonstrating simultaneous resolution of H₀ and S8 tensions through entropy-dependent modification of local-to-global parameter inference within the EFC framework.",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
-    "identifier": "https://orcid.org/0009-0002-4860-5095",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Symbiose Research"
-    }
+    "identifier": "https://orcid.org/0009-0006-5904-4032"
   },
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "datePublished": "2026-01-09",
+  "identifier": "https://doi.org/10.6084/m9.figshare.31026151",
   "keywords": [
+    "Hubble tension",
+    "H0",
+    "S8 tension",
+    "ΛCDM",
     "Energy-Flow Cosmology",
-    "EFC"
+    "CMB",
+    "BAO",
+    "SPARC",
+    "thermodynamic cosmology",
+    "galaxy rotation curves"
   ],
   "about": [
-    "Spor general"
+    {
+      "@type": "DefinedTerm",
+      "name": "Hubble tension",
+      "description": "Discrepancy between local (73.0 km/s/Mpc) and CMB-derived (67.4 km/s/Mpc) Hubble constant measurements"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "S8 tension",
+      "description": "Discrepancy in matter clustering amplitude between early and late universe probes"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Local-Global Inference Separation",
+      "description": "Framework for understanding how entropy gradients bias parameter inference from local to global scales"
+    }
   ],
-  "identifier": "https://doi.org/10.6084/m9.figshare.31026151",
+  "isPartOf": {
+    "@type": "CreativeWorkSeries",
+    "name": "Energy-Flow Cosmology Papers",
+    "identifier": "efc-papers"
+  },
+  "url": "https://doi.org/10.6084/m9.figshare.31026151",
+  "efc:tier": "CANONICAL",
+  "efc:layer": "APPLIED",
+  "efc:domain": "cosmology",
+  "efc:collection": "efc",
   "sameAs": "https://doi.org/10.6084/m9.figshare.31026151",
   "doi": "10.6084/m9.figshare.31026151"
 }

@@ -1,31 +1,40 @@
 {
-  "package_format": "ai-friendly-paper",
-  "package_version": "1.0",
-  "created": "2026-03-27",
-  "generator": "Claude (Anthropic)",
-  "paper_title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of mu, Sigma, eta",
-  "ai_parsability": {
-    "machine_readable_metadata": true,
-    "json_schema_validated": true,
-    "linked_data": true,
-    "reference_implementation": true,
-    "runnable_demo": true,
-    "structured_citations": true
+  "title": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of \u00b5, \u03a3, \u03b7",
+  "short_id": "efc-relativistic-action-field-equations-perturbation-theory-and-extraction",
+  "version": "v0.5",
+  "date": "2026-03-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.31876324",
+  "abstract": "Derives the full field equations of the EFC relativistic action with a non-minimal coupling F(\u03d5)R, density-dependent kinetic stiffness K(\u03c1), and a flow constraint enforced by a Lagrange multiplier. Performs linear perturbation theory in conformal Newtonian gauge and provides closed-form, quasi-static expressions for the effective couplings \u00b5(k, z), \u03a3(k, z), and slip \u03b7(k, z), while showing cT = c and predicting a modified GW amplitude (dL^GW \u2260 dL^EM).",
+  "keywords": [
+    "EFC action",
+    "field equations",
+    "perturbation theory",
+    "modified gravity",
+    "mu-Sigma-eta",
+    "gravitational waves",
+    "scalar-tensor",
+    "entropy flow",
+    "kinetic stiffness",
+    "flow constraint",
+    "conformal Newtonian gauge",
+    "quasi-static sub-horizon"
+  ],
   "files": {
-    "index": "index.json",
+    "pdf": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf",
+    "readme": "README.md",
     "schema": "schema.json",
+    "metadata": "metadata.json",
     "jsonld": "EFC_Relativistic_Action.jsonld",
     "citations": "citations.bib",
     "source": "src/efc_relativistic.py",
     "data": "data/framework.json",
     "demo": "examples/demo_efc_relativistic.py"
-  },
-  "dependencies": {
-    "python": ">=3.8",
-    "packages": [
-      "numpy"
-    ]
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31876324",

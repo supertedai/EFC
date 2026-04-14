@@ -1,70 +1,27 @@
 # Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework
 
-**DOI:** [10.6084/m9.figshare.31007248](https://doi.org/10.6084/m9.figshare.31007248)  
-**Published:** 2026-01-06  
-**Author:** Morten Magnusson
+## AI-Friendly Package
 
-## Abstract
+- **DOI:** [10.6084/m9.figshare.31007248](https://doi.org/10.6084/m9.figshare.31007248)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-06
+- **License:** CC-BY-4.0
 
-We analyze 20 galaxies from the SPARC database using the Energy-Flow Cosmology (EFC) framework, finding systematic patterns in where EFC succeeds versus fails. Rather than treating mixed results as theoretical failure, we develop **EFC-R (Regime)**: a meta-framework that operationalizes regime-dependent validity through the decomposition:
+---
 
-```
-E_total = E_flow + E_latent
-```
+## Overview
 
-This provides a principled structure for understanding when and why EFC succeeds or fails.
+Pilot-scale empirical test of Energy-Flow Cosmology (EFC) on 20 SPARC galaxies spanning LSB, dwarf irregular, spiral, and barred/disturbed morphologies. The study finds regime-dependent validity—EFC excels in low-complexity systems (LSB, diffuse dwarfs) and underperforms in structurally complex galaxies—motivating the EFC-R meta-framework with the decomposition E_total = E_flow + E_latent.
 
-### Key Findings
+## Key Result
 
-| Galaxy Category | N | Success Rate | Representative Galaxies |
-|-----------------|---|--------------|------------------------|
-| LSB galaxies | 5 | 100% | F568-3, F563-1, F571-8 |
-| Dwarf irregulars | 5 | 80% | DDO154, DDO168, DDO064 |
-| Spiral galaxies | 8 | 75% | NGC2403, NGC6503, NGC3198 |
-| Barred/disturbed | 2 | 0% | NGC2841, DDO170 |
-| **Total** | **20** | **80%** | |
+EFC shows regime-dependent validity: competitive or preferred in 80% of the 20-galaxy SPARC pilot (especially LSB/diffuse dwarfs), with performance degrading in structurally complex (barred/disturbed) systems; EFC fits exhibit a significant correlation with a latent-field complexity proxy (Spearman ρ = 0.705, p = 0.0005).
 
-### Statistical Results
+## Sealed Predictions
 
-- **Spearman ρ = 0.705** (p = 0.0005): Strong rank correlation between structural complexity and model preference
-- **EFC mean χ²_red: 26.2** vs **ΛCDM mean χ²_red: 69.6**
-- Mean entropy gradient: ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹
-
-### FIRE Simulation Convergence
-
-EFC-R's regime-dependent pattern aligns with independent findings from FIRE hydrodynamical simulations:
-
-| FIRE Finding | EFC-R Interpretation |
-|--------------|---------------------|
-| Bursty star formation → non-equilibrium | High E_latent, α→0 |
-| Dark matter cores in late-forming systems | Regime transition S₀→S₁ |
-| Stable cusps in early-forming systems | Stable α≈1 regime |
-| Oscillating inner slopes | Tipping point dynamics |
-
-### Scope Limitations
-
-This is a **pilot study (N=20)**. Results are hypothesis-generating and motivate, but do not complete, a full theoretical treatment of EFC-R. Independent validation on larger samples is essential.
-
-## Keywords
-
-- Energy-Flow Cosmology
-- Dark Matter Alternatives
-- Galaxy Rotation Curves
-- SPARC
-- Regime Theory
-- Non-equilibrium Dynamics
-- EFC-R
-
-## Categories
-
-- Galactic astronomy
-- Cosmology and extragalactic astronomy
-- Thermodynamics and statistical physics
-
-## Files
-
-- `EFC-R-SPARC-Regime-Validity.pdf` - Main paper
-- `EFC-R-SPARC-Regime-Validity.jsonld` - Structured metadata
-- `index.json` - Paper index
-- `schema.json` - Validation schema
-- `citations.bib` - BibTeX references
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | On an expanded SPARC-like sample (N > 100), the EFC success rate (ΔAIC ≤ 2 vs ΛCDM) will be significantly higher for low-L (low-complexity) galaxies—LSB and diffuse dwarfs—than for high-L (barred/disturbed) systems. | Compute ΔAIC per galaxy on a preregistered, enlarged sample and test for a statistically significant difference in success rates between low-L and high-L subsets. |
+| P2 | The latent field proxy L will positively correlate with EFC misfit (e.g., ΔAIC or χ2_red difference) with Spearman ρ ≳ 0.5 at p < 0.01 on larger samples after bootstrap resampling. | Estimate L and EFC performance metrics for a larger, quality-controlled sample and evaluate Spearman ρ with uncertainty via bootstrap. |
+| P3 | In dynamically relaxed LSB galaxies (low L), best-fit entropy gradients ∇S will cluster around the reported mean (∼8.20×10^-2 kpc^-1) with modest scatter (≈2.44×10^-2 kpc^-1). | Fit EFC to a larger LSB subset and test whether the ∇S distribution mean and scatter match the reported values within uncertainties. |

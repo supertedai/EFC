@@ -1,8 +1,8 @@
 {
   "title": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
   "short_id": "rsd-to-clusters",
-  "version": "1.0.0",
-  "date": "2026",
+  "version": "1.0",
+  "date": "2026-04-14",
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -10,37 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31292827",
-  "abstract": "Cross-probe test propagating RSD constraints on effective gravitational coupling into galaxy cluster abundance predictions with zero free parameters fit to cluster data.",
+  "abstract": "Propagates redshift-space distortion (RSD) constraints on the effective gravitational coupling into parameter-locked predictions for galaxy cluster abundances under Energy-Flow Cosmology (EFC). With no parameters fit to cluster data and high-z (CMB) normalization, the paper predicts a +6.4% total cluster excess vs. \u039bCDM and a distinctive negative tilt in the redshift-distribution shape ratio R(z), providing sealed, falsifiable targets for eRASS1.",
   "keywords": [
+    "cosmology",
+    "dark energy",
     "galaxy clusters",
-    "RSD",
     "modified gravity",
+    "large-scale structure",
+    "redshift-space distortions",
     "eROSITA",
-    "cross-probe test"
+    "cross-probe test",
+    "halo mass function",
+    "shape ratio R(z)",
+    "BOSS DR12",
+    "primordial normalization"
   ],
-  "efc_context": {
-    "track": "Empirical Validation / Cluster Abundance",
-    "regime_relevance": "Late-time structure growth 0.1 < z < 0.8",
-    "epistemic_layer": "Layer B (parameter-locked cross-probe)"
-  },
-  "key_results": [
-    "N_EFC/N_LCDM = 1.064 (+6.4% cluster excess)",
-    "Shape signature: dR/dz < 0 with crossover at z ~ 0.3-0.4",
-    "Robust against uniform mass-calibration systematics"
-  ],
-  "file_manifest": {
-    "pdf": "paper_rsd_to_clusters.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "rsd_to_clusters.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/rsd_to_clusters.py"
-    ],
-    "data": "data/cluster_predictions.json",
-    "demo": "examples/demo_rsd_clusters.py"
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31292827",

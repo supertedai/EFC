@@ -1,12 +1,104 @@
 {
   "$schema": "./schema.json",
-  "paper_id": "EFC-Regime-Locked-Measurement",
-  "title": "Regime-Locked Measurement as a General Structural Constraint",
-  "subtitle": "Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
+  "id": "regime-locked-measurement",
+  "title": "Regime-Locked Measurement as a General Structural Constraint: Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
+  "description": "Formalizes regime-locked measurement as a general structural constraint and identifies a shared structural pattern across six domains. Introduces a quantitative regime-appropriateness score \u03b1(\u03d5, R) \u2208 [0,1], a blind-set taxonomy (ontological, methodological, instrumental), and a five-step meta-regime protocol with residual-based blind-set inference. A worked example in AI alignment highlights a previously invisible class of change (\u201cconvergence drift\u201d), and the paper states explicit falsification criteria and self-applies its constraints.",
+  "version": "1.0",
+  "date": "2026-03-01",
+  "doi": "10.6084/m9.figshare.31833076",
+  "keywords": [
+    "regime-locked measurement",
+    "validity domain",
+    "blind set",
+    "alpha-score",
+    "meta-regime",
+    "cross-disciplinary vector convergence (CDVC)",
+    "residual analysis",
+    "measurement theory",
+    "instrument sensitivity",
+    "AI alignment",
+    "cosmology",
+    "S0/S1 observational equivalence"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "regime_definition": {
+      "latex": "R = (I, V, B, G)",
+      "description": "Defines a regime as instrument I, validity domain V, blind set B, and gradient sensitivity G."
+    },
+    "regime_locked_measurement": {
+      "latex": "m \\in V(R_i) \\ \\text{and} \\ m \\notin V(R_j), \\quad i \\neq j",
+      "description": "A measurement is regime-locked if it falls within one regime\u2019s validity domain and outside another\u2019s."
+    },
+    "alpha_score": {
+      "latex": "\\alpha(\\phi, R_i) = \\frac{|\\phi \\cap V(R_i)|}{|\\phi|} \\in [0,1]",
+      "description": "Quantifies how appropriate regime R_i is for phenomenon \\phi; 1 is fully appropriate, 0 is entirely blind."
+    },
+    "alpha_selection_rule": {
+      "latex": "\\operatorname*{arg\\,max}_i\\ \\alpha(\\phi, R_i)",
+      "description": "Selects the regime with maximal appropriateness for a given phenomenon."
+    },
+    "cdvc": {
+      "latex": "\\sigma \\in \\bigcap_{k=1}^{N} V(R_k),\\quad N \\ge 3",
+      "description": "Cross-Disciplinary Vector Convergence: a signal present across at least three independent regimes/domains."
+    },
+    "meta_regime_mapping": {
+      "latex": "R^{*} : (R_i, \\phi) \\to \\alpha(\\phi, R_i) \\in [0,1]",
+      "description": "Defines a meta-regime that evaluates the appropriateness score for a regime-phenomenon pair."
+    },
+    "residual_definition": {
+      "latex": "r = \\text{data} - \\text{model}(I)",
+      "description": "Residuals as the difference between observed data and the instrument\u2019s model output."
+    },
+    "residual_inference_rule": {
+      "latex": "\\text{structured}(r) \\Rightarrow r \\in B_{\\text{inferred}}",
+      "description": "Structured residuals are treated as candidates for blind-set inference, subject to cross-regime testing."
+    }
+  },
+  "key_results": {
+    "main_finding": "Defines regime-locked measurement and delivers an operational toolkit\u2014\u03b1-scoring, blind-set taxonomy, and a meta-regime protocol\u2014that surfaces blind spots (e.g., convergence drift in AI alignment) otherwise invisible within fixed regimes.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "If residuals exhibit systematic structure (clustering, scale-dependence, or external correlation), then cross-regime remeasurement or model-switching will recover part of that structure and increase \\alpha(\\phi, R) relative to the original regime.",
+      "falsifiable_by": "Prospective tests where structured residuals are observed and multiple independently designed alternative regimes are applied, yet none increase \\alpha or recover the residual structure."
+    },
+    {
+      "id": "P2",
+      "statement": "Across tasks where ground-truth or strong external validation exists, continuous \\alpha-scoring will outperform binary regime selection in regime choice (e.g., predictive adequacy or out-of-sample performance).",
+      "falsifiable_by": "Prospective multi-domain evaluations showing no statistically significant improvement of \\alpha-based selection over a binary baseline (e.g., Bayes-factor thresholding)."
+    },
+    {
+      "id": "P3",
+      "statement": "A meta-regime protocol targeting AI alignment evaluations can detect convergence drift that deviation-focused instruments systematically miss.",
+      "falsifiable_by": "Operational deployment where cases flagged as convergence drift fail independent verification while existing deviation-focused tools identify equal or more such cases without higher false positives."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Demonstrate a reliable within-regime method (no change to instrument class or assumptions, i.e., fixed I and V) that detects phenomena previously classified as belonging to the blind set B; this contradicts the regime-locked unmeasurability claim.",
+    "KC2: In prospective, pre-registered evaluations across at least three independent domains, \\alpha(\\phi, R) fails to improve regime selection relative to a binary baseline (e.g., Bayes factors) on predictive adequacy or recovery of held-out structure.",
+    "KC3: Show that purported CDVC instances in the surveyed domains arise from cross-domain borrowing or shared bias and lack independent predictive content, eliminating CDVC as a useful indicator within this framework.",
+    "KC4: Provide counterexamples where absence of signal within a regime is reliably distinguishable from absence of phenomenon without altering regime parameters (I, V, B, G), thereby invalidating the key property that absence of signal is observationally indistinguishable from absence of phenomenon.",
+    "KC5: For the AI alignment case, show that convergence drift is fully detectable by existing deviation-focused instruments when properly configured, and the meta-regime protocol adds no unique detections or increases false positives."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "Regime_Locked_Measurement.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31833076",
+  "paper_id": "EFC-Regime-Locked-Measurement",
+  "subtitle": "Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Symbiose Research, Sandnes, Norway",
-  "date": "2026-03",
   "abstract": "Formalises regime-locked measurement as a general structural constraint. Shared structural pattern across six domains. Three contributions: alpha-score alpha(phi, R) in [0,1], blind-set taxonomy (ontological/methodological/instrumental), and five-step meta-regime protocol. Worked example identifies convergence drift in AI alignment.",
   "epistemic_status": [
     {
@@ -36,10 +128,10 @@
     },
     "regime_locked_measurement": {
       "definition": "m in V(R_i) and m not in V(R_j) for i != j",
-      "meaning": "Phenomena in B(R_i) are not merely unmeasured — they are unmeasurable within R_i"
+      "meaning": "Phenomena in B(R_i) are not merely unmeasured \u2014 they are unmeasurable within R_i"
     },
     "alpha_score": {
-      "equation": "alpha(phi, R_i) = |phi ∩ V(R_i)| / |phi| in [0, 1]",
+      "equation": "alpha(phi, R_i) = |phi \u2229 V(R_i)| / |phi| in [0, 1]",
       "at_1": "Regime fully appropriate",
       "at_0": "Phenomenon entirely in blind set",
       "estimation_methods": [
@@ -265,7 +357,5 @@
       "key": "[13]",
       "title": "Chalmers, Hard Problem (1995)"
     }
-  ],
-  "doi": "10.6084/m9.figshare.31833076",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31833076"
+  ]
 }

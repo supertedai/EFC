@@ -1,5 +1,5 @@
 {
-  "title": "Regime Consistency of an Entropy-Gradient Coupling: Lya, BAO and RSD Tests within a Structural Coherence Framework",
+  "title": "Regime Consistency of an Entropy-Gradient Coupling: Ly\u03b1, BAO and RSD Tests within a Structural Coherence Framework",
   "short_id": "efc-regime-consistency-lya-bao-rsd-sce",
   "version": "1.0.0",
   "date": "2026-02-10",
@@ -10,42 +10,24 @@
   },
   "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31304995",
-  "abstract": "Structural regime consistency test of EFC coupling function T(z) across three independent cosmological probes (Lya P1D, BOSS BAO, BOSS RSD), evaluated using the Structural Coherence Evaluation framework against LCDM.",
+  "abstract": "Empirical regime-consistency test of an entropy-gradient coupling T(z) in Energy-Flow Cosmology across three independent probes: DESI Ly\u03b1 P1D (z=3), BOSS DR12 BAO distances, and BOSS DR12 RSD growth. Using a single coupling calibrated near z\u22480.5 and evaluated within the Structural Coherence Evaluation framework, the study finds a near-null Ly\u03b1 effect, improved BAO fits, and marginally improved RSD, yielding a combined \u0394\u03c7\u00b2 \u2248 \u22123.89 with one added parameter.",
   "keywords": [
     "Energy-Flow Cosmology",
-    "regime consistency",
-    "Lya P1D",
+    "entropy-gradient coupling",
+    "transition function T(z)",
+    "Ly\u03b1 P1D",
     "BAO",
     "RSD",
     "BOSS DR12",
-    "SCE",
-    "transition function"
+    "DESI",
+    "Structural Coherence Evaluation",
+    "\u039bCDM comparison",
+    "growth suppression",
+    "late-time H(z) modification"
   ],
-  "efc_context": {
-    "track": "Empirical Validation / Multi-regime consistency",
-    "regime_relevance": "Three regimes: growth (z~0.5), Lya (z~3), CMB (z~1100)",
-    "epistemic_layer": "Layer B (cross-regime consistency test)"
-  },
-  "key_results": [
-    "BAO: Delta_chi2 = -3.65 (EFC preferred)",
-    "RSD: Delta_chi2 = -0.25 (neutral)",
-    "BAO+RSD combined: Delta_chi2 = -3.89 (~2sigma)",
-    "Lya P1D: amplitude pull -0.27sigma, slope +0.01sigma (consistent with null)",
-    "All 3 regimes PASS, 5 forbidden patterns not triggered"
-  ],
-  "file_manifest": {
-    "pdf": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
-    "readme": "README.md",
-    "index": "index.json",
-    "schema": "schema.json",
-    "jsonld": "regime_consistency.jsonld",
-    "citations": "citations.bib",
-    "src_init": "src/__init__.py",
-    "src_modules": [
-      "src/regime_consistency.py"
-    ],
-    "data": "data/regime_consistency_data.json",
-    "demo": "examples/demo_regime_consistency.py"
+  "files": {
+    "paper": "regime_consistency_lya_bao_rsd_sce_v1_0.pdf",
+    "schema": "schema.json"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.31304995",

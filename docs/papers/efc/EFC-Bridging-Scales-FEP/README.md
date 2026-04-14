@@ -1,47 +1,30 @@
 # Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks
 
-**DOI:** [10.6084/m9.figshare.31042678](https://doi.org/10.6084/m9.figshare.31042678)  
-**Published:** 2026-01-10  
-**Author:** Morten Magnusson
+## AI-Friendly Package
 
-## Abstract
+- **DOI:** [10.6084/m9.figshare.31042678](https://doi.org/10.6084/m9.figshare.31042678)
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-01-10
+- **License:** CC-BY-4.0
 
-This work presents a formally constrained bridge between the Free Energy Principle (FEP) and Energy-Flow Cosmology (EFC), linking variational free energy to measurable energy flow dynamics across entropy gradients.
+---
 
-We introduce an effective energy flow field with explicit dimensional meaning and show that a blanket-integrated scalar quantity is compatible with the extremization structure of variational free energy under non-equilibrium steady state conditions.
+## Overview
 
-### Key Contributions
+Presents a formal bridge between Energy-Flow Cosmology (EFC) and the Free Energy Principle (FEP) by identifying variational free energy with a blanket-integral of a physically measurable energy-flow field. The paper reinterprets Markov blankets as zero-flux energy-flow surfaces, proposes a universal emergence threshold Rc ≈ 0.37, and locks six falsifiable predictions with explicit decision criteria and operational definitions.
 
-- **Markov blankets reinterpreted** as physical energy flow interfaces, characterized by zero flux or extremal gradient conditions
-- **All core quantities explicitly defined**, dimensionally verified, and associated with clear falsification criteria
-- **Resonance parameter** empirically motivated and explicitly non-universal by assumption, proposed as a stability threshold for self-organizing structures
-- **Effective temperature** operationalized via fluctuation-dissipation relations
+## Key Result
 
-### Framework
+Variational free energy equals a blanket-integral of the energy-flow field at quasi-steady state, yielding physical Markov blankets and a universal emergence threshold Rc ≈ 0.37 with six locked, falsifiable predictions.
 
-The result is a theory-constrained and empirically testable framework that reframes the Free Energy Principle as an energetically grounded and scale-consistent analysis tool rather than a purely information-theoretic principle.
+## Sealed Predictions
 
-**No claims of empirical confirmation are made.** Instead, the work defines a minimal set of falsifiable predictions and measurement protocols that enable systematic empirical evaluation across biological, artificial, and physical systems.
-
-## Keywords
-
-- Energy-Flow Cosmology (EFC)
-- Free Energy Principle
-- Variational Free Energy
-- Non-equilibrium thermodynamics
-- Markov blankets
-- Active Inference
-
-## Categories
-
-- Complex systems
-- Theoretical physics
-- Cognitive science
-
-## Files
-
-- `EFC-Bridging-Scales-FEP.pdf` - Main paper
-- `EFC-Bridging-Scales-FEP.jsonld` - Structured metadata
-- `index.json` - Paper index
-- `schema.json` - Validation schema
-- `citations.bib` - BibTeX references
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Dimensional consistency: the EFC mapping yields unit-consistent energy flux and dimensionless free-energy after scaling. | Chi-square ratio for dimensional checks outside [0.95, 1.05] across calibrated benchmark systems. |
+| P2 | Blanket-integral free energy time series correlates strongly with variational free energy in systems with identifiable Markov blankets. | Pearson correlation Corr(F_blanket, F_variational) ≤ 0.90 over matched time windows with correct blanket identification. |
+| P3 | Cross-scale universality of the emergence threshold Rc at the onset of stable Markov blankets. | Pooled cross-domain estimate with |z| ≥ 3 against Rc = 0.37 ± 0.05 (e.g., galaxies and neural ensembles). |
+| P4 | Effective temperature predicts precision (inverse variance) under fluctuation–dissipation scaling. | Explained variance r^2 ≤ 0.30 between T_eff and precision across agents or neural ensembles. |
+| P5 | Metabolic/energy gradient enrichment at Markov blanket boundaries. | Mean gradient ratio at blankets ≤ 1.2 compared to adjacent non-blanket regions. |
+| P6 | Symmetry breaking of the S-duality of the flow function at entropy extremes. | Measured deviation of φ(S) from −φ(1−S) ≤ 10% for S < 0.1 or S > 0.9. |

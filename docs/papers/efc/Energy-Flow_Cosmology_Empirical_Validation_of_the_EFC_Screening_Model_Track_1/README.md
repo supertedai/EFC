@@ -1,55 +1,27 @@
 # Energy-Flow Cosmology: Empirical Validation of the EFC Screening Model Against the Radial Acceleration Relation
 
-**Author:** Morten Magnusson  
-**Affiliation:** Symbiose Research, Sandnes, Norway  
-**ORCID:** [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)  
-**DOI:** [10.6084/m9.figshare.31940469](https://doi.org/10.6084/m9.figshare.31940469)  
-**Date:** March 2026 (Version 2.0)  
-**Framework:** Energy-Flow Cosmology (EFC)
+## AI-Friendly Package
 
-## Summary
+- **DOI:** [10.6084/m9.figshare.31940469](https://doi.org/10.6084/m9.figshare.31940469)
+- **Version:** v2.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-03-01
+- **License:** CC-BY-4.0
 
-Multi-scale empirical validation of the EFC screening model across four observational domains:
+---
 
-1. **SPARC RAR** (174 galaxies, 3264 points): ln mu = k ln(1 + g†/g_bar) with k = 0.415 +/- 0.029, g† = (2.51 +/- 0.60) x 10^-10 m/s^2, sigma_int ~ 0.14 dex
-2. **Cross-scale consistency**: Phase-gain C = k/a_G = 4.4 +/- 0.6 connects galactic and cosmological scales
-3. **KiDS-1000 lensing**: Regime-activated response improves fit by Delta(-2 ln L) = -50.9 vs LCDM
-4. **Bullet Cluster**: Entropy-gradient interpretation produces correct lensing offset direction (qualitative)
-5. **Hubble tension**: a_G = 0.094 independently derived from both k (galactic) and H0 (cosmological)
+## Overview
 
-## Key Equations
+This paper empirically tests the Energy-Flow Cosmology (EFC) screening model against the SPARC Radial Acceleration Relation (RAR), obtaining k = 0.415 ± 0.029, g† = (2.51 ± 0.60) × 10^-10 m/s^2, and intrinsic scatter ≈0.14 dex via an unbinned likelihood with bootstrap uncertainties. It extends the analysis to KiDS-1000 weak lensing showing a substantial likelihood improvement (Δ[-2 ln L] = −50.9) and demonstrates a cross-scale consistency through the phase-gain C = k/a_G = 4.4 ± 0.6 with a_G independently inferred from the H0 tension.
 
-| Equation | Formula | Source |
-|----------|---------|--------|
-| Screening form | ln mu = k ln(1 + g†/g_bar) | Eq. (1) |
-| Lensing power | P_EFC = P_LCDM x Sigma^2(k,z) | Eq. (4) |
-| Effective potential | Phi_eff = Phi_N + alpha nabla S | Eq. (5) |
-| Hubble coupling | a_H0 = (1/2) a_G | Eq. (7) |
-| Closure: g† | g† = c H0 / e | Eq. (11) |
-| Closure: C | C = 2e - 1 ~ 4.44 | Eq. (12) |
+## Key Result
 
-## Falsification Criteria
+The EFC screening model fits the SPARC RAR with k = 0.415 ± 0.029, g† = (2.51 ± 0.60) × 10^-10 m/s^2, σ_int ≈ 0.14 dex, achieves Δ(−2 ln L) = −50.9 against ΛCDM in KiDS-1000, and yields a cross-scale phase-gain C = 4.4 ± 0.6 consistent with an independently inferred a_G = 0.094 ± 0.01.
 
-1. k outside [0.30, 0.55] from independent SPARC re-analysis
-2. g† inconsistent with cH0/e at >3 sigma
-3. No lensing response Sigma(k,z) in Stage-IV data (Euclid, LSST)
-4. C = k/a_G inconsistent with 2e-1 at >3 sigma
-5. Bullet Cluster offset explained without entropy-gradient coupling
+## Sealed Predictions
 
-## File Structure
-
-```
-├── README.md                 # This file
-├── index.json                # Machine-readable index
-├── schema.json               # Validation schema
-├── metadata.json             # Structured metadata
-├── efc_screening.jsonld      # JSON-LD linked data
-├── citations.bib             # BibTeX references
-├── src/
-│   ├── __init__.py
-│   └── efc_screening.py      # Python implementation
-├── data/
-│   └── results.json          # Fitted parameters and cross-scale results
-└── examples/
-    └── demo_screening.py     # Executable demonstration
-```
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | In merging clusters with strong shocks (e.g., Bullet Cluster analogs), lensing mass peaks will preferentially align with collisionless galaxy concentrations and be offset from the shocked gas peak by O(100 kpc), typically ~150 kpc. | Joint weak+strong lensing reconstructions with X-ray/SZ pressure maps; a consistent coincidence of mass and gas peaks within <50 kpc across such systems would falsify. |
+| P2 | Tomographic cosmic shear will show a stronger low-z enhancement relative to ΛCDM than at high z, consistent with late-time activation of Σ(k,z). | Stage-IV (Euclid, Rubin/LSST) shear analyses; absence of preferential low-z deviation with α_L2 consistent with 0 ± 0.02 would falsify. |
+| P3 | Independent future estimates of k (from expanded RAR samples) and a_G (from H0/growth probes) will maintain C = k/a_G within 4.4 ± 0.6. | If |C − 4.4| > 1.8 (≈3σ) using independent determinations of k and a_G, the cross-scale consistency is violated. |

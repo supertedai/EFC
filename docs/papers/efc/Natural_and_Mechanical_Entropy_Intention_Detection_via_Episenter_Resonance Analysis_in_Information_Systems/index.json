@@ -1,6 +1,99 @@
 {
+  "$schema": "./schema.json",
+  "id": "natural-and-mechanical-entropy-intention-detection-via-episenter-resonance analysis-in-information-systems",
+  "title": "Natural and Mechanical Entropy: Intention Detection via Episenter\u2013Resonance Analysis in Information Systems",
+  "description": "Defines an operational, agent-free measure of structural intention as the KL-divergence between observed outputs and a system\u2019s own baseline dynamics. Proposes an episenter\u2013resonance detection framework with three diagnostics (episenter concentration, resonance spectrum ratio, cross-regime asymmetry) to distinguish natural from mechanically injected entropy, and outlines case studies and an empirical protocol for LLMs with falsifiable predictions.",
+  "version": "v2",
+  "date": "2026-03-26",
+  "doi": "10.6084/m9.figshare.31864993",
+  "keywords": [
+    "natural entropy",
+    "mechanical entropy",
+    "structural intention",
+    "episenter concentration",
+    "resonance spectrum",
+    "cross-regime asymmetry",
+    "regime-bound measurement",
+    "KL-divergence",
+    "mutual information",
+    "alignment bias",
+    "information manipulation",
+    "EFC"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Independent Researcher, Sandnes, Norway"
+  },
+  "core_equations": {
+    "structural_intention_I": {
+      "latex": "I = D_{\\mathrm{KL}}\\big(q(x)\\,\\Vert\\,p(x\\mid D)\\big) = \\sum_x q(x)\\,\\ln\\frac{q(x)}{p(x\\mid D)}",
+      "description": "Operational, agent-free definition of structural intention as divergence between observed output distribution q(x) and the system\u2019s baseline dynamics p(x|D)."
+    },
+    "natural_entropy_S_N": {
+      "latex": "S_N = H(X\\mid D) = -\\sum_x p(x\\mid D)\\,\\ln p(x\\mid D)",
+      "description": "Entropy arising from intrinsic system dynamics; characterised by distributed episenter and organic resonance."
+    },
+    "mechanical_entropy_S_M": {
+      "latex": "S_M = H(X\\mid D, I) + \\lambda\\, I(X; I),\\quad \\lambda=1",
+      "description": "Entropy under external structural intervention; includes mutual information coupling to the intervention source. Recovers S_N when I=0."
+    },
+    "entropy_class_residual_DeltaS": {
+      "latex": "\\Delta S = S_{\\mathrm{observed}} - S_{N}^{\\mathrm{predicted}}",
+      "description": "Residual comparing observed entropy to baseline-predicted natural entropy; near-zero supports natural origin, positive residual with structural markers indicates mechanical injection."
+    },
+    "episenter_weight_wk": {
+      "latex": "w_k = I(X_k; X)",
+      "description": "Variable-wise weight defined by mutual information with the full output, used to assess episenter concentration."
+    },
+    "episenter_concentration_E": {
+      "latex": "E = \\dfrac{\\max_k I(X_k; X)}{\\sum_k I(X_k; X)}",
+      "description": "Episenter concentration index; higher values indicate a localised, mechanically structured source."
+    }
+  },
+  "key_results": {
+    "main_finding": "Introduces a three-diagnostic episenter\u2013resonance methodology that operationalises intention via KL-divergence and provides a falsifiable, regime-bound protocol to distinguish natural from mechanical entropy; empirical execution is proposed but not yet performed.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Episenter concentration E",
+      "Resonance spectrum ratio (vs bootstrap null)",
+      "Cross-regime asymmetry",
+      "Entropy class residual \u0394S",
+      "Structural intention I = D_KL(q||p)"
+    ],
+    "datasets_used": [
+      "N/A (methodology; protocol proposed, not executed)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: In controlled experiments with verified external interventions (e.g., RLHF vs pre-RLHF baseline), measured episenter concentration E does not increase relative to the natural baseline and remains statistically indistinguishable across conditions after preregistered power analysis.",
+    "KC2: Resonance spectrum ratio shows no enrichment over a properly specified bootstrap null in regimes with verified interventions, across multiple systems and replications.",
+    "KC3: Cross-regime asymmetry is absent (or symmetric under sign/phase/permutation controls) in settings where asymmetry is predicted a priori by the framework.",
+    "KC4: Structural intention I = D_KL(q(x) || p(x|D)) remains ~0 in regimes with logged, externally applied interventions despite a validated and held-constant baseline model p(x|D).",
+    "KC5: The entropy class residual \u0394S fails to deviate from zero in intervention regimes or shows equivalent deviations in natural controls beyond preregistered confidence bounds.",
+    "KC6: The full pipeline yields high false-positive rates on synthetic data generated exactly from the declared baseline dynamics D and the bootstrap null, exceeding preregistered Type I error thresholds.",
+    "KC7: Methodologically valid alternative baselines p(x|D) (declared ex ante) produce unstable or contradictory conclusions that fail preregistered robustness and sensitivity checks.",
+    "KC8: In synthetic tests where I=0 by construction, the framework fails the recovery check S_M = S_N (\u03bb=1), indicating model misspecification."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems.pdf",
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "Natural_and_Mechanical_Entropy.jsonld",
+    "citations": "citations.bib",
+    "source": "src/entropy_intention.py",
+    "data": "data/framework.json",
+    "demo": "examples/demo_entropy_intention.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31864993",
   "paper_id": "natural-mechanical-entropy-intention-detection",
-  "title": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems",
   "short_title": "Natural and Mechanical Entropy",
   "authors": [
     {
@@ -9,23 +102,10 @@
       "orcid": "0009-0002-4860-5095"
     }
   ],
-  "version": "v2",
-  "date": "2026-03-26",
   "status": "working_paper",
   "framework": "EFC",
   "subframework": "Regime-Bound Measurement",
-  "keywords": [
-    "natural entropy",
-    "mechanical entropy",
-    "intention detection",
-    "episenter analysis",
-    "regime-bound measurement",
-    "information manipulation",
-    "AI alignment bias",
-    "EFC",
-    "resonance signature"
-  ],
-  "abstract": "Information systems—from large language models (LLMs) to institutional paradigms—produce outputs that blend emergent signal with constructed bias. This paper formalises a distinction between natural entropy (emergent, intention-free, with distributed episenter and organic resonance) and mechanical entropy (constructed, intention-bearing, with localised episenter and imposed resonance frequency). We define intention operationally as the KL-divergence between the observed output distribution and the distribution predicted by the system's own dynamics, avoiding agent-theoretic assumptions. Three independent diagnostics—episenter concentration (via mutual information), resonance spectrum ratio (against a bootstrap null), and cross-regime asymmetry—form a combined detection criterion. Three case studies (LLM alignment bias, academic paradigm-guarding, information warfare) demonstrate the framework's generality. Thirteen falsifiable predictions and a concrete empirical protocol for the LLM case are provided.",
+  "abstract": "Information systems\u2014from large language models (LLMs) to institutional paradigms\u2014produce outputs that blend emergent signal with constructed bias. This paper formalises a distinction between natural entropy (emergent, intention-free, with distributed episenter and organic resonance) and mechanical entropy (constructed, intention-bearing, with localised episenter and imposed resonance frequency). We define intention operationally as the KL-divergence between the observed output distribution and the distribution predicted by the system's own dynamics, avoiding agent-theoretic assumptions. Three independent diagnostics\u2014episenter concentration (via mutual information), resonance spectrum ratio (against a bootstrap null), and cross-regime asymmetry\u2014form a combined detection criterion. Three case studies (LLM alignment bias, academic paradigm-guarding, information warfare) demonstrate the framework's generality. Thirteen falsifiable predictions and a concrete empirical protocol for the LLM case are provided.",
   "epistemic_status": {
     "type": "working_paper",
     "peer_reviewed": false,
@@ -84,8 +164,8 @@
         "formula": "E = max_k I(X_k; X) / sum_k I(X_k; X)",
         "weight_definition": "w_k = I(X_k; X) (mutual information)",
         "interpretation": {
-          "high_E": "Single variable dominates → mechanical signature",
-          "low_E": "Distributed organisation → natural signature"
+          "high_E": "Single variable dominates \u2192 mechanical signature",
+          "low_E": "Distributed organisation \u2192 natural signature"
         },
         "alternative_estimators": [
           "SHAP values",
@@ -99,7 +179,7 @@
         "symbol": "R(omega)",
         "formula": "R(omega) = P_observed(omega) / P_null(omega)",
         "null_model": "Bootstrap resampling (B permutations)",
-        "interpretation": "R(omega) >> 1 at specific frequencies → non-native periodicity"
+        "interpretation": "R(omega) >> 1 at specific frequencies \u2192 non-native periodicity"
       },
       {
         "id": "D3",
@@ -126,9 +206,9 @@
       "title": "LLM Alignment Bias as Mechanical Entropy",
       "domain": "AI/LLM",
       "description": "Alignment mechanisms (RLHF, constitutional AI) inject structure into response distributions. Alignment-induced conservatism constitutes mechanical entropy.",
-      "episenter": "Concentrated — training-data paradigm dominance + safety constraints",
-      "resonance": "Periodic pushback pattern: acknowledge → qualify → redirect → request evidence",
-      "cross_regime": "Bias regime-asymmetric — friction only where established paradigm has training-data dominance",
+      "episenter": "Concentrated \u2014 training-data paradigm dominance + safety constraints",
+      "resonance": "Periodic pushback pattern: acknowledge \u2192 qualify \u2192 redirect \u2192 request evidence",
+      "cross_regime": "Bias regime-asymmetric \u2014 friction only where established paradigm has training-data dominance",
       "multi_model": "Convergence observed across Gemini, GPT-4, Claude (qualitative)"
     },
     {
@@ -186,7 +266,7 @@
       },
       "detection": "R(omega) = P_obs(omega)/P_null(omega), test for peaks at 99% confidence"
     },
-    "expected_result": "Category (b) shows spectral peaks (A→H→R→E cycles) absent in category (a) and null; E higher for category (b)",
+    "expected_result": "Category (b) shows spectral peaks (A\u2192H\u2192R\u2192E cycles) absent in category (a) and null; E higher for category (b)",
     "falsification": "No significant spectral peaks in category (b), or identical peaks in both categories"
   },
   "falsifiable_predictions": [
@@ -233,7 +313,7 @@
     {
       "id": "P9",
       "domain": "General",
-      "prediction": "Natural entropy: A ≈ 0; mechanical: A >> 0"
+      "prediction": "Natural entropy: A \u2248 0; mechanical: A >> 0"
     },
     {
       "id": "P10",
@@ -258,7 +338,7 @@
   ],
   "regime_bound_extension": {
     "new_concept": "Entropy Class (sixth operative concept)",
-    "pipeline": "Regime → Proxy + Placement → Episenter → Entropy Class → Compression → Output",
+    "pipeline": "Regime \u2192 Proxy + Placement \u2192 Episenter \u2192 Entropy Class \u2192 Compression \u2192 Output",
     "original_concepts": [
       "regime",
       "proxy",
@@ -290,35 +370,22 @@
   ],
   "limitations": [
     "Thresholds must be calibrated empirically per domain",
-    "Natural/mechanical distinction not always binary — hybrid cases exist",
+    "Natural/mechanical distinction not always binary \u2014 hybrid cases exist",
     "Empirical protocol proposed but not yet executed",
     "Adversary aware of criteria can design evasive mechanical entropy"
   ],
   "references": {
     "count": 9,
     "key_refs": [
-      "Shannon (1948) — mathematical theory of communication",
-      "Kullback & Leibler (1951) — KL-divergence",
-      "Landauer (1961) — irreversibility and computing",
-      "Brillouin (1962) — science and information theory",
-      "Farquhar et al. (2024) — semantic entropy for LLM hallucination detection",
-      "Magnusson (2025) — CEM-Cosmos consciousness model",
-      "Magnusson (2026a) — Regime-Bound Measurement",
-      "Magnusson (2026b) — RCMP",
-      "Magnusson (2026c) — Entropy-Bounded Empiricism"
+      "Shannon (1948) \u2014 mathematical theory of communication",
+      "Kullback & Leibler (1951) \u2014 KL-divergence",
+      "Landauer (1961) \u2014 irreversibility and computing",
+      "Brillouin (1962) \u2014 science and information theory",
+      "Farquhar et al. (2024) \u2014 semantic entropy for LLM hallucination detection",
+      "Magnusson (2025) \u2014 CEM-Cosmos consciousness model",
+      "Magnusson (2026a) \u2014 Regime-Bound Measurement",
+      "Magnusson (2026b) \u2014 RCMP",
+      "Magnusson (2026c) \u2014 Entropy-Bounded Empiricism"
     ]
-  },
-  "files": {
-    "pdf": "Natural_and_Mechanical_Entropy_Intention_Detection_via_Episenter_Resonance Analysis_in_Information_Systems.pdf",
-    "readme": "README.md",
-    "schema": "schema.json",
-    "metadata": "metadata.json",
-    "jsonld": "Natural_and_Mechanical_Entropy.jsonld",
-    "citations": "citations.bib",
-    "source": "src/entropy_intention.py",
-    "data": "data/framework.json",
-    "demo": "examples/demo_entropy_intention.py"
-  },
-  "doi": "10.6084/m9.figshare.31864993",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31864993"
+  }
 }

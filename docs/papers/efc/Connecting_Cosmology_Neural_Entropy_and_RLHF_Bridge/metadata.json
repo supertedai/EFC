@@ -1,53 +1,33 @@
 {
   "title": "Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics",
-  "authors": [
-    {
-      "name": "Morten Magnusson",
-      "affiliation": "Symbiose Research, Sandnes, Norway",
-      "orcid": "0009-0002-4860-5095"
-    }
-  ],
-  "date": "2026-04",
-  "version": "0.2",
+  "short_id": "connecting-cosmology-neural-entropy-and-rlhf-bridge",
+  "version": "v0.2",
+  "date": "2026-04-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
   "doi": "10.6084/m9.figshare.31940547",
-  "type": "research-note",
-  "status": "preprint",
-  "track": "Cross-Domain Bridge (Spor 1-2-3)",
-  "abstract": "Two formal bridge equations connect EFC's three tracks via dissipative gradient-flow dynamics. Bridge B1 maps cosmological entropy-production onto neural analogue using local degree heterogeneity. Bridge B2 maps neural entropy tensor onto RLHF reward-landscape curvature. Three new cross-domain predictions derived.",
+  "abstract": "Derives two formal bridge equations that connect EFC\u2019s three tracks\u2014cosmology, cortical entropy, and RLHF\u2014under a single dissipative gradient-flow with a Lyapunov free energy. Bridge B1 maps cosmological entropy-production density to a neural analogue via a dimensionless effective free-energy gradient and revises the driver from global Fiedler connectivity to local degree heterogeneity. Bridge B2 identifies the neural entropy tensor with the RLHF reward-landscape curvature and sets a temperature mapping \u03b2_KL \u2194 1/T_cog, yielding three new cross-domain predictions.",
   "keywords": [
     "EFC",
     "bridge equations",
     "gradient flow",
     "entropy production",
-    "Helmholtz free energy",
+    "free energy",
     "Lyapunov functional",
-    "degree heterogeneity",
-    "connectome",
+    "cosmology",
+    "neural entropy",
     "RLHF",
-    "cognitive temperature"
+    "degree heterogeneity",
+    "connectome"
   ],
-  "categories": [
-    "Theoretical Physics",
-    "Computational Neuroscience",
-    "Machine Learning",
-    "Statistical Physics"
-  ],
-  "license": "CC-BY 4.0",
-  "repository": "https://github.com/supertedai/EFC",
-  "related_efc_papers": [
-    {
-      "title": "EFC Screening Model (Spor 1)",
-      "doi": "10.6084/m9.figshare.31940469"
-    },
-    {
-      "title": "EFC-C Cognitive Entropy (Spor 2)",
-      "doi": "10.6084/m9.figshare.31940505"
-    },
-    {
-      "title": "RLHF Thermodynamic Isomorphism (Spor 3)",
-      "doi": "10.6084/m9.figshare.31940535"
-    }
-  ],
+  "files": {
+    "pdf": "Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge.pdf",
+    "readme": "README.md"
+  },
   "paper": {
     "doi": "10.6084/m9.figshare.31940547",
     "figshare_url": "https://doi.org/10.6084/m9.figshare.31940547"

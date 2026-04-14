@@ -2,23 +2,23 @@
   "$schema": "./schema.json",
   "id": "efc-boss-bao-cobaya-research-note",
   "title": "Covariance-Aware BAO Consistency Test of Energy-Flow Cosmology Using the BOSS DR12 Consensus Likelihood",
-  "description": "Fixed-parameter consistency test of EFC modified background expansion against precision BAO data using the official BOSS DR12 consensus likelihood with full 6×6 covariance matrix. EFC yields Δχ² = -2.4 without parameter retuning.",
+  "description": "This research note tests the Energy-Flow Cosmology (EFC) modified background expansion against precision BAO data using the official BOSS DR12 consensus likelihood with the full 6\u00d76 covariance matrix. With DESI DR2-calibrated EFC parameters held fixed (no refitting), EFC attains a modest improvement over \u039bCDM (\u0394\u03c7\u00b2 \u2248 \u22122.36) and passes a stringent, reproducible covariance-aware BAO consistency test; results are cross-checked with cosmic chronometer H(z) data.",
   "version": "1.0.0",
-  "date": "2026-02",
+  "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31314922",
-  "type": "Research Note",
-  "license": "CC-BY-4.0",
   "keywords": [
     "baryon acoustic oscillations",
-    "modified gravity",
-    "dark energy",
-    "cosmological inference",
-    "Energy-Flow Cosmology",
     "BOSS DR12",
+    "consensus likelihood",
     "covariance matrix",
-    "model comparison",
+    "Energy-Flow Cosmology",
+    "modified Friedmann equation",
+    "background expansion",
+    "cosmic chronometers",
+    "CosmoMC",
     "Cobaya",
-    "CosmoMC"
+    "model comparison",
+    "geometric probes"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -27,18 +27,72 @@
   },
   "core_equations": {
     "efc_modified_friedmann": {
-      "latex": "E^2_{EFC}(z) = E^2_{ΛCDM}(z) × [1 + α_{L2} · f(z) · Θ(z)]",
-      "description": "EFC-modified Friedmann equation"
+      "latex": "E^2_{\\mathrm{EFC}}(z) = E^2_{\\Lambda\\mathrm{CDM}}(z) \\times \\big[1 + \\alpha_{L2}\\, f(z)\\, \\Theta(z)\\big]",
+      "description": "EFC modification to the background expansion rate relative to \u039bCDM."
+    },
+    "lcdm_background": {
+      "latex": "E^2_{\\Lambda\\mathrm{CDM}}(z) = \\Omega_m (1+z)^3 + \\Omega_r (1+z)^4 + \\Omega_\\Lambda",
+      "description": "Standard dimensionless Hubble parameter in \u039bCDM."
     },
     "coupling_function": {
-      "latex": "f(z) = 1/(1+z)",
-      "description": "Coupling function"
+      "latex": "f(z) = \\frac{1}{1+z}",
+      "description": "Redshift-dependent coupling governing the late-time EFC correction."
     },
     "regime_transition": {
-      "latex": "Θ(z) = ½[1 + tanh((z_{L1L2} - z)/Δz)]",
-      "description": "Regime transition function"
+      "latex": "\\Theta(z) = \\tfrac{1}{2}\\,\\big[1 + \\tanh\\big((z_{L1L2} - z)/\\Delta z\\big)\\big]",
+      "description": "Smooth transition function between regimes, centered at z_{L1L2} with width \u0394z."
+    },
+    "transverse_comoving_distance": {
+      "latex": "D_M(z) = \\frac{c}{H_0}\\int_0^z \\frac{dz'}{E(z')}",
+      "description": "Prediction for the BAO transverse distance observable given E(z)."
+    },
+    "chi_square_statistic": {
+      "latex": "\\chi^2 = (\\mathbf{d} - \\mathbf{m})^{\\top}\\, \\mathbf{C}^{-1}\\, (\\mathbf{d} - \\mathbf{m})",
+      "description": "Covariance-aware goodness-of-fit used for the BOSS DR12 consensus likelihood."
     }
   },
+  "key_results": {
+    "main_finding": "With parameters fixed to DESI DR2-calibrated values, EFC achieves a modest improvement over \u039bCDM on BOSS DR12 BAO with full covariance and passes this stringent consistency test without parameter retuning.",
+    "delta_chi2": -2.36,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "alpha_L2 = 0.045 (fixed)",
+      "z_L1L2 = 1.01 (fixed)",
+      "Delta_z = 0.3 (fixed)",
+      "H0 = 67.4 km/s/Mpc (Planck 2018)",
+      "Omega_m = 0.3134 (Planck 2018)",
+      "r_s = 147.09 Mpc"
+    ],
+    "datasets_used": [
+      "BOSS DR12 consensus BAO (DM,H at z = 0.38, 0.51, 0.61; full 6\u00d76 covariance; rs_fid = 147.78 Mpc)",
+      "Cosmic chronometers H(z), 25 points, 0.07 < z < 1.97 (Moresco et al. 2022)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Given f(z) = 1/(1+z) and the EFC transition centered at z \u2248 1, the EFC background modification becomes negligible at z > 2; thus BAO/Ly\u03b1 measurements at z > 2 should be consistent with \u039bCDM background geometry (for the same early-universe parameters).",
+      "falsifiable_by": "DESI Ly\u03b1 and high-z BAO analyses showing significant (>2\u03c3) background deviations from \u039bCDM at z > 2 with standard early-time calibration."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Using the official BOSS DR12 consensus likelihood with the full 6\u00d76 covariance and Planck-like base parameters, the fixed-parameter EFC background returns a penalty \u0394\u03c7\u00b2 \u2265 +5 (i.e., EFC worse than \u039bCDM) or \u03c7\u00b2_red \u2265 1.5 for 6 dof.",
+    "KC2: Independent BAO datasets with publicly released covariances (e.g., DESI anisotropic BAO) yield a cumulative geometric penalty \u0394\u03c7\u00b2 \u2265 +9 for the fixed EFC background across z \u2248 0.3\u20130.8.",
+    "KC3: Cosmic chronometer compilations (with vetted systematics and covariances) show a consistent EFC over/underprediction of H(z) at z \u2248 0.5\u20130.7 exceeding 2\u03c3 in at least three adjacent bins and producing \u0394\u03c7\u00b2 \u2265 +5 relative to \u039bCDM.",
+    "KC4: High-redshift (z > 2) BAO/Ly\u03b1 geometric measurements robustly detect a non-negligible deviation from \u039bCDM background inconsistent with the EFC claim that the modification is effectively zero at z > 2.",
+    "KC5: Once growth predictions are validated, f\u03c38 measurements from multiple surveys (BOSS/eBOSS/DESI) produce a \u22653\u03c3 aggregate tension with the EFC background-consistent growth sector without parameter retuning."
+  ],
+  "tier": "T1",
+  "paper_type": "empirical_test",
+  "related_packages": [],
+  "files": {
+    "paper": "efc_boss_bao_cobaya_research_note.pdf",
+    "schema": "schema.json"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31314922",
+  "type": "Research Note",
+  "license": "CC-BY-4.0",
   "parameters": {
     "alpha_L2": {
       "value": 0.045,
@@ -85,7 +139,7 @@
         0.51,
         0.61
       ],
-      "covariance": "Full 6×6 matrix from CobayaSampler (BAO_consensus_covtot_dM_Hz.txt)",
+      "covariance": "Full 6\u00d76 matrix from CobayaSampler (BAO_consensus_covtot_dM_Hz.txt)",
       "r_s_fid": 147.78
     },
     "cosmic_chronometers": {
@@ -205,7 +259,7 @@
   },
   "limitations": [
     "Tests only H(z) background geometry sector",
-    "Does not constrain structure growth (fσ8 requires CLASS/CAMB validation)",
+    "Does not constrain structure growth (f\u03c38 requires CLASS/CAMB validation)",
     "Does not address CMB physics",
     "Does not address gravitational lensing",
     "No DESI anisotropic BAO (requires separate likelihood)",
@@ -264,13 +318,8 @@
   ],
   "key_conclusions": [
     "EFC background modification passes the most stringent publicly available BAO consistency test",
-    "No validated geometric channel penalises EFC relative to ΛCDM",
+    "No validated geometric channel penalises EFC relative to \u039bCDM",
     "Result is fully reproducible using standard CosmoMC/Cobaya infrastructure",
     "Fixed-parameter test (no retuning) - pure transfer validation"
-  ],
-  "files": {
-    "paper": "efc_boss_bao_cobaya_research_note.pdf",
-    "schema": "schema.json"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31314922"
+  ]
 }

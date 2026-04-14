@@ -1,17 +1,138 @@
 {
+  "$schema": "./schema.json",
   "id": "bullet-cluster-efc",
   "title": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
+  "description": "Analytical confrontation of Energy-Flow Cosmology (EFC) with three JWST-era Bullet Cluster mass reconstructions: highest-resolution mass map, spectroscopically anchored lens model, and a revised ~10:1 minor-merger mass ratio. Paper tightens EFC\u2019s structural constraints, registers the A_sig shock-front asymmetry test, reports a null baseline on a PIEMD model, and assesses qualitative consistency of EFC\u2019s regime-transition (mu\u22481.1, Sigma\u22481.2) with new profiles without introducing new parameters.",
+  "version": "v3.11",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31963668",
+  "keywords": [
+    "Bullet Cluster",
+    "Energy-Flow Cosmology",
+    "gravitational lensing",
+    "JWST",
+    "strong lensing",
+    "weak lensing",
+    "entropy-gradient gravity",
+    "shock front",
+    "convergence residuals",
+    "PIEMD",
+    "SIDM constraint",
+    "regime transition"
+  ],
   "author": "Morten Magnusson",
+  "core_equations": {
+    "asig_operator": {
+      "latex": "A_{\\mathrm{sig}} = \\langle \\kappa \\rangle_{\\mathrm{front}} - \\langle \\kappa \\rangle_{\\mathrm{back}}",
+      "description": "Pre-registered directional lensing residual estimator measuring shock-locked asymmetry across the Chandra shock front after subtracting a density-based mass model."
+    },
+    "delta_kappa": {
+      "latex": "\\delta \\kappa(\\vec{x}) = \\kappa_{\\mathrm{obs}}(\\vec{x}) - \\kappa_{\\mathrm{density}}(\\vec{x})",
+      "description": "Definition of convergence residuals used in constructing A_sig."
+    },
+    "virial_masses": {
+      "latex": "M_{200c}^{\\mathrm{main}} = 15.11^{+2.48}_{-2.10} \\times 10^{14} \\, M_{\\odot}, \\quad M_{200c}^{\\mathrm{sub}} = 1.49^{+0.32}_{-0.25} \\times 10^{14} \\, M_{\\odot}",
+      "description": "JWST+DECam virial mass measurements (Cho et al. 2025) establishing a ~10:1 minor merger."
+    },
+    "sidm_bound": {
+      "latex": "\\sigma/m < 0.5 \\, \\mathrm{cm}^2 \\, \\mathrm{g}^{-1}",
+      "description": "Tightened self-interacting dark matter cross-section upper limit from Cha et al. (2025); EFC predicts no dark-matter particle (\\sigma/m = 0 by construction)."
+    },
+    "regime_transition": {
+      "latex": "\\mu_{\\mathrm{cluster}} \\approx 1.1, \\quad \\Sigma_{\\mathrm{cluster}} \\approx 1.2",
+      "description": "EFC\u2019s qualitative regime-transition expectation at cluster scales: mild gravitational enhancement (mu) and lensing response (Sigma) relative to GR."
+    }
+  },
+  "key_results": {
+    "main_finding": "JWST-era reconstructions and the confirmed ~10:1 merger tighten EFC\u2019s structural constraints; the pre-registered A_sig pipeline\u2019s PIEMD baseline yields a null (A_sig \u2248 \u22126.9\u00d710^\u22124, p=0.98), while regime-transition values (mu\u22481.1, Sigma\u22481.2) show qualitative consistency but remain insufficient alone to explain the full mass discrepancy.",
+    "delta_chi2": null,
+    "significance_sigma": 0.01,
+    "parameters_tested": [
+      "k",
+      "mu_cosmological",
+      "mu_cluster",
+      "Sigma_cosmological",
+      "Sigma_cluster",
+      "C",
+      "beta",
+      "alpha_L2",
+      "B_growth",
+      "mu0_growth"
+    ],
+    "datasets_used": [
+      "Cha et al. 2025 JWST NIRCam strong+weak lensing mass reconstruction",
+      "Rihtar\u0161i\u010d et al. 2026 spectroscopically anchored parametric lens model",
+      "Cho et al. 2025 JWST+DECam virial mass measurements",
+      "Chandra X-ray shock-front geometry for A_sig alignment"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "At cluster scales, EFC yields a mild regime transition with mu_cluster \u2248 1.1 and Sigma_cluster \u2248 1.2, leading to partial enhancement of gravity/lensing over GR without invoking particle dark matter.",
+      "falsifiable_by": "Relativistic EFC solution on the Cho et al. (2025) profiles and JWST mass maps; if the inferred mass discrepancy cannot be reduced without exceeding mu_cluster or Sigma_cluster beyond ~1.2, the prediction fails."
+    },
+    {
+      "id": "P2",
+      "statement": "Entropy-gradient lensing produces a non-zero A_sig aligned with the Chandra shock front after subtracting a density-only mass model.",
+      "falsifiable_by": "Application of the pre-registered A_sig operator to JWST-era reconstructions using the locked geometry and strip parameters; a robust A_sig \u2248 0 result at high significance would falsify the prediction."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Using the pre-registered A_sig pipeline (shock_line_x_kpc=480, shock_normal=[-1,0], strip_width=200 kpc, strip_length=400 kpc, 512x512 grid) on JWST-era mass maps (Cha 2025; Rihtar\u0161i\u010d 2026), the measured A_sig is consistent with zero at |A_sig| < 0.005 with \u22653\u03c3 significance (p \u2264 0.003) across at least two independent reconstructions and bootstrap resamples\u2014this falsifies EFC\u2019s entropy-gradient lensing.",
+    "KC2: With all EFC parameters frozen to Ledger v3.11 and no new parameters, a relativistic EFC solution on the Cho et al. (2025) profiles fails to account for the lensing/gas offsets and total mass discrepancy unless mu_cluster or Sigma_cluster exceed 1.25, or requires >10% shifts in frozen parameters (e.g., k from 0.415)\u2014this violates the frozen-parameter claim and kills the cluster-scale EFC regime.",
+    "KC3: Future high-precision reconstructions demonstrate that the observed lensing peaks are fully isotropic with respect to the Chandra shock discontinuity (no directional residuals) while maintaining ICL\u2013mass alignment <5 kpc RMS over the subcluster and all three main-cluster subclumps\u2014this contradicts EFC\u2019s component-sensitive, anisotropic response."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "structural-exclusion-bc",
+      "doi": "10.6084/m9.figshare.31173850",
+      "role": "Structural exclusion test for entropy-gradient operator classes under Bullet Cluster geometry"
+    },
+    {
+      "id": "asig-operator-baseline",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Pre-registered A_sig operator and PIEMD baseline validation"
+    },
+    {
+      "id": "regime-transition-P1",
+      "doi": "10.6084/m9.figshare.31941543",
+      "role": "EFC regime-transition prediction artifacts (mu_cluster\u22481.1, Sigma_cluster\u22481.2)"
+    },
+    {
+      "id": "wp4-boss-transfer",
+      "doi": "10.6084/m9.figshare.31954125",
+      "role": "WP4 BOSS transfer validation for frozen parameters (context for v3.11)"
+    },
+    {
+      "id": "growth-test-v311",
+      "doi": "10.6084/m9.figshare.31955871",
+      "role": "Multi-epoch f\u03c38 growth test (v3.11) showing null perturbation-sector detection"
+    }
+  ],
+  "files": {
+    "paper_pdf": "bullet_cluster_efc.pdf",
+    "metadata": "metadata.json",
+    "schema": "schema.json",
+    "jsonld": "bullet-cluster-efc.jsonld",
+    "citations": "citations.bib",
+    "asig_baseline": "data/asig_baseline_result.json",
+    "external_studies": "data/external_studies.json",
+    "src_pipeline": "src/asig_2d_piemd.py",
+    "example": "examples/reproduce_baseline.py"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31963668",
   "orcid": "0009-0002-4860-5095",
   "affiliation": "Energy-Flow Cosmology Initiative, Bergen, Norway",
   "report_id": "EFC-VAL-2026-004",
-  "doi": "10.6084/m9.figshare.31963668",
   "doi_url": "https://doi.org/10.6084/m9.figshare.31963668",
-  "date": "2026-04",
   "license": "CC-BY-4.0",
   "ledger_version": "v3.11",
   "type": "consistency check, analytical confrontation, pre-registered test pending",
-  "track": "Spor 1 — Galactic/Cosmological",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
   "regimes": [
     "L2"
   ],
@@ -115,7 +236,7 @@
   "main_result": {
     "asig_baseline": -0.00069,
     "bootstrap_p_value": 0.98,
-    "verdict": "null hypothesis validated — PIEMD parametric halos produce no directional asymmetry at shock front",
+    "verdict": "null hypothesis validated \u2014 PIEMD parametric halos produce no directional asymmetry at shock front",
     "discriminating_test": "A_sig on delta_kappa = kappa_obs - kappa_PIEMD (requires Cha et al. free-form kappa-map; pending)",
     "efc_prediction_full_residual": "A_sig != 0 aligned with Chandra shock front",
     "lcdm_prediction_full_residual": "A_sig = 0 (isotropic residuals)"
@@ -130,28 +251,16 @@
   ],
   "limitations": [
     "A_sig baseline uses PIEMD with placeholder parameters (not Rihtarsic et al. Table 4 best-fit values)",
-    "Baseline null validates the test operator, not the physical hypothesis — needs free-form kappa-map residual",
+    "Baseline null validates the test operator, not the physical hypothesis \u2014 needs free-form kappa-map residual",
     "Regime-transition P1 confronted qualitatively only; EFC field equations not solved on Cho et al. mass profile",
     "ICL directionality discriminator is speculative (sub-10 kpc Hausdorff precision not yet achieved)",
     "Non-perturbative effects in the shock-front region are not yet computed"
   ],
   "next_steps": [
     "Obtain Cha et al. (2025) free-form kappa-map FITS and compute delta_kappa = kappa_obs - kappa_PIEMD",
-    "Apply A_sig pipeline (src/asig_2d_piemd.py) to the residual — the decisive test",
+    "Apply A_sig pipeline (src/asig_2d_piemd.py) to the residual \u2014 the decisive test",
     "Replace placeholder PIEMD parameters with Rihtarsic et al. (2026) Table 4 best-fit values",
     "Cross-check with Abell 2146 (second pre-registered A_sig target)",
     "Solve EFC Relativistic Action field equations on Cho et al. virial mass profile to obtain quantitative mu(r), Sigma(r)"
-  ],
-  "files": {
-    "paper_pdf": "bullet_cluster_efc.pdf",
-    "metadata": "metadata.json",
-    "schema": "schema.json",
-    "jsonld": "bullet-cluster-efc.jsonld",
-    "citations": "citations.bib",
-    "asig_baseline": "data/asig_baseline_result.json",
-    "external_studies": "data/external_studies.json",
-    "src_pipeline": "src/asig_2d_piemd.py",
-    "example": "examples/reproduce_baseline.py"
-  },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31963668"
+  ]
 }

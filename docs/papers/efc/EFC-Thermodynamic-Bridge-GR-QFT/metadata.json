@@ -1,27 +1,33 @@
 {
-  "name": "EFC-Thermodynamic-Bridge-GR-QFT",
-  "title": "EFC — The Thermodynamic Bridge Between GR and QFT",
-  "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "license": "CC-BY-4.0",
+  "title": "Energy-Flow Cosmology: A Thermodynamic Bridge Between General Relativity and Quantum Field Theory",
+  "short_id": "EFC-Thermodynamic-Bridge-GR-QFT",
   "version": "1.0",
-  "type": "paper",
-  "domain": "cosmology",
+  "date": "2025-10-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.30402427",
+  "abstract": "Introduces Energy-Flow Cosmology (EFC), a thermodynamic framework in which a continuous energy-flow potential Ef and a normalized entropy field S \u2208 [0,1] jointly govern physics. GR and QFT emerge as limiting behaviors as S \u2192 0 and S \u2192 1, respectively, with an entropy-dependent effective light speed c(S) linking macroscopic curvature and microscopic quantization. The paper outlines observable implications for cosmology, including lensing without dark matter, Hubble-tension reinterpretation, and measurable deviations in c under extreme field conditions.",
   "keywords": [
-    "EFC",
-    "Thermodynamic Bridge",
-    "GR",
-    "QFT",
-    "Entropy",
-    "Energy Flow",
-    "Unification"
+    "energy-flow cosmology",
+    "entropy field",
+    "emergent spacetime",
+    "variable speed of light",
+    "thermodynamic unification",
+    "general relativity",
+    "quantum field theory",
+    "dark matter phenomenology",
+    "dark energy",
+    "Hubble tension",
+    "non-equilibrium thermodynamics",
+    "entropic stresses"
   ],
-  "description": "How entropy gradients, energy flow, and grid-level resistance create a unifying thermodynamic layer connecting spacetime curvature (GR) and quantised excitations (QFT).",
-  "created": "2026-04-06",
   "files": {
-    "source_module": "src/thermodynamic_bridge.py",
-    "data": "data/thermodynamic_bridge.json",
-    "demo": "examples/demo_thermodynamic_bridge.py"
+    "pdf": "EFC-Thermodynamic-Bridge-GR-QFT.pdf",
+    "readme": "README.md"
   },
   "paper": {
     "doi": "10.6084/m9.figshare.30402427",

@@ -1,46 +1,121 @@
 {
+  "$schema": "./schema.json",
   "id": "wp3-first-empirical-slice-rks",
-  "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k,S)",
-  "short_title": "WP3 R(k,S) Slice",
+  "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k, S)",
+  "description": "First cartographic measurement of the gravitational response coordinate R(k,S) along the RSD trajectory using 12 f\u03c38(z) points from BOSS DR12, eBOSS DR16, and DESI Y1. The analysis finds R(k\u22480.13 h/Mpc, S\u22480.30) \u2248 +0.30, while \u039bCDM (R=0) remains preferred by AIC (\u0394AIC = \u22123.8). This work inaugurates an atlas of the response surface, emphasizing mapping over model validation.",
   "version": "1.0",
   "date": "2026-01-30",
   "doi": "10.6084/m9.figshare.31215259",
-  "author": {
-    "name": "Morten Magnusson",
-    "orcid": "0009-0002-4860-5095"
-  },
-  "type": "empirical_analysis",
-  "status": "published",
-  "series": "EFC Response Atlas",
-  "series_entry": "WP3",
-  "abstract_short": "First empirical R(k,S) coordinate from RSD data: R(k≈0.13, S≈0.30) ≈ +0.30. ΛCDM preferred by AIC.",
   "keywords": [
     "R(k,S)",
     "regime response surface",
-    "fσ₈",
-    "RSD",
+    "f\u03c38",
+    "redshift-space distortions",
     "BOSS",
     "eBOSS",
     "DESI",
     "modified gravity",
+    "\u039bCDM",
+    "AIC",
     "cartography"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "core_equations": {
+    "response_mu": {
+      "latex": "\\mu(k,S) = 1 + R(k, S)",
+      "description": "Defines the gravitational response as a surface R(k,S) that modulates the effective growth coupling \u03bc relative to GR."
+    },
+    "structural_maturity_proxy": {
+      "latex": "S(z) = \\frac{1}{1 + (z / z_{\\text{mid}})^2},\\quad z_{\\text{mid}} \\approx 1.5",
+      "description": "Monotonic proxy mapping from redshift to structural maturity used in WP3; S increases from 0 (early) to 1 (late)."
+    },
+    "keff_trajectory": {
+      "latex": "k_{\\text{eff}}(z) \\simeq 0.1\\,[1 + 0.15\\,z]\\;h\\,\\mathrm{Mpc}^{-1}",
+      "description": "Approximate RSD sensitivity scale along the WP3 trajectory used to locate the measured response on R(k,S)."
+    },
+    "fs8_lcdm": {
+      "latex": "f\\sigma_8(z) = \\Omega_m(z)^{\\gamma}\\,\\sigma_8\\,D(z)",
+      "description": "Baseline \u039bCDM growth observable with free parameters {\\sigma_8, \\Omega_m, \\gamma}."
+    },
+    "fs8_rks": {
+      "latex": "f\\sigma_8(z) = \\Omega_m(z)^{\\gamma}\\,\\sqrt{\\mu(z)}\\,\\sigma_8\\,D(z)",
+      "description": "R(k,S) slice model where \u03bc encodes the response amplitude along the trajectory."
+    },
+    "mu_gaussian_basis": {
+      "latex": "\\mu(z) = 1 + \\Delta R\\,\\exp\\!\\left[-\\frac{(z - z_{\\text{peak}})^2}{2\\,(0.6)^2}\\right]",
+      "description": "Phenomenological Gaussian basis used to localize a response amplitude \u0394R at characteristic redshift z_peak along the trajectory."
+    }
+  },
+  "key_results": {
+    "main_finding": "Measured a cartographic coordinate on the response surface: R(k\u22480.13 h/Mpc, S\u22480.30) \u2248 +0.30, while \u039bCDM is preferred by AIC (\u0394AIC = \u22123.8).",
+    "delta_chi2": 0.24,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "sigma8",
+      "Omega_m",
+      "gamma",
+      "DeltaR",
+      "z_peak"
+    ],
+    "datasets_used": [
+      "BOSS DR12 f\u03c38(z)",
+      "eBOSS DR16 f\u03c38(z)",
+      "DESI Y1 f\u03c38(z)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If high-precision multi-probe reconstructions (RSD + weak lensing + clusters) at overlapping (k,S) consistently require \u03bc(k,S) < 0 (i.e., R(k,S) < \u22121) in any physical regime, the \u03bc = 1 + R(k,S) response formulation is invalidated.",
+    "KC2: If two or more independent probes mapping the same (k\u22480.1\u20130.15 h/Mpc, S\u22480.3) regime yield R estimates that disagree by >5\u03c3 after controlling for known systematics and using full covariances, the R(k,S) coordinate system fails empirical consistency.",
+    "KC3: If no operational, probe-independent structural maturity observable S can be constructed that is monotonic and yields consistent cross-probe mapping (within \u22642\u03c3) across 0 < z < 2, the R(k,S) decomposition (and hence the EFC response atlas program) is falsified.",
+    "KC4: If comprehensive atlas mapping across RSD, lensing, clusters, and CMB low-z extensions robustly finds R(k,S) = 0 within |R| < 0.02 over 0.01 < k < 1 h/Mpc and 0 < S < 1 (with full covariances) and no statistically significant non-zero regions remain, the EFC response surface provides no explanatory gain and is rejected as an unnecessary structure.",
+    "KC5: If Bayesian model comparison with full survey covariances shows overwhelming preference for \u039bCDM (e.g., \u0394AIC < \u221210 and Bayes factor > 150 against any R(k,S) slice) across all planned atlas trajectories, EFC\u2019s response formalism is disfavored."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "rks-framework",
+      "doi": "10.6084/m9.figshare.31211437",
+      "role": "theoretical_basis"
+    }
+  ],
+  "files": {
+    "pdf": "wp3_rks_article.pdf",
+    "tex": "wp3_rks_article.tex",
+    "figures": [
+      "wp3_rks_final.png",
+      "rks_wp3_trajectory.png",
+      "wp3_v1_clean.png"
+    ]
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215259",
+  "short_title": "WP3 R(k,S) Slice",
+  "type": "empirical_analysis",
+  "status": "published",
+  "series": "EFC Response Atlas",
+  "series_entry": "WP3",
+  "abstract_short": "First empirical R(k,S) coordinate from RSD data: R(k\u22480.13, S\u22480.30) \u2248 +0.30. \u039bCDM preferred by AIC.",
   "core_concepts": [
     {
       "name": "Response Coordinate",
       "symbol": "R(k,S)",
       "value": "+0.30",
-      "location": "k≈0.13 h/Mpc, S≈0.30"
+      "location": "k\u22480.13 h/Mpc, S\u22480.30"
     },
     {
       "name": "Structural Maturity",
       "symbol": "S(z)",
-      "formula": "S = 1/(1 + (z/z_mid)²)"
+      "formula": "S = 1/(1 + (z/z_mid)\u00b2)"
     },
     {
       "name": "Modified Growth",
-      "symbol": "μ",
-      "formula": "μ = 1 + R(k,S)"
+      "symbol": "\u03bc",
+      "formula": "\u03bc = 1 + R(k,S)"
     }
   ],
   "data_sources": [
@@ -80,7 +155,7 @@
       "AIC": 19.1,
       "params": 5
     },
-    "verdict": "ΛCDM preferred by ΔAIC = -3.8"
+    "verdict": "\u039bCDM preferred by \u0394AIC = -3.8"
   },
   "trajectory_coverage": {
     "k_range": [
@@ -98,7 +173,6 @@
     ]
   },
   "epistemic_status": "cartography",
-  "validation_claim": false,
   "dependencies": [
     {
       "id": "rks-framework",
@@ -106,16 +180,6 @@
       "relation": "theoretical_basis"
     }
   ],
-  "files": {
-    "pdf": "wp3_rks_article.pdf",
-    "tex": "wp3_rks_article.tex",
-    "figures": [
-      "wp3_rks_final.png",
-      "rks_wp3_trajectory.png",
-      "wp3_v1_clean.png"
-    ]
-  },
   "data_hash": "c76720490b99dbd6",
-  "run_id": "wp3_rks_v2.0",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31215259"
+  "run_id": "wp3_rks_v2.0"
 }
