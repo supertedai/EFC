@@ -1,6 +1,7 @@
 # EFC PreRegistered Predictions
 
 **Author:** Morten Magnusson (ORCID 0009-0002-4860-5095) · Symbiose Research
+**DOI:** [10.6084/m9.figshare.32010399](https://doi.org/10.6084/m9.figshare.32010399)
 **License:** CC-BY-4.0 · **Track:** Spor general · **Regimes:** —
 
 **Primary PDF:** `EFC_PreRegistered_Predictions.pdf`
