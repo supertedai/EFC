@@ -175,6 +175,53 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- Live signal dashboard — auto-synced with Symbiose + Ledger             -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<div style="background:#f0f4f8; border:1px solid #b0c4de; border-radius:8px; padding:16px 20px; margin:20px 0; font-size:13.5px; line-height:1.7;">
+  <strong>&alpha;-signal status (growth sector)</strong>
+  <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:13px;">
+    <tr style="background:#e8eef4;">
+      <th style="text-align:left; padding:4px 8px;">Source</th>
+      <th style="text-align:center; padding:4px 8px;">&alpha;<sub>L2</sub></th>
+      <th style="text-align:center; padding:4px 8px;">Significance</th>
+      <th style="text-align:center; padding:4px 8px;">Status</th>
+    </tr>
+    <tr>
+      <td style="padding:4px 8px;"><a href="https://doi.org/10.6084/m9.figshare.31332730">DOI 31332730</a> (LOO, N2a, 7 f&sigma;<sub>8</sub> probes)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;1.00 &plusmn; 0.46</td>
+      <td style="text-align:center; padding:4px 8px;"><strong>2.20&sigma;</strong></td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill survived">Published &middot; LOO 7/7</span></td>
+    </tr>
+    <tr style="background:#f8f8f8;">
+      <td style="padding:4px 8px;">Sealed freeze v1 (2026-02-18, SHA <code>7a850cfa</code>)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.689</td>
+      <td style="text-align:center; padding:4px 8px;">&mdash;</td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill warn">Sealed &middot; pre-data</span></td>
+    </tr>
+    <tr>
+      <td style="padding:4px 8px;">Sealed freeze v2 (2026-02-21, SHA <code>dbccda15</code>)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.702</td>
+      <td style="text-align:center; padding:4px 8px;">&mdash;</td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill warn">Sealed &middot; pre-data</span></td>
+    </tr>
+    <tr style="background:#fff0f0;">
+      <td style="padding:4px 8px;">Autonomous MCMC (emcee, broad priors, DESI DR2)</td>
+      <td style="text-align:center; padding:4px 8px;">&minus;0.141 &plusmn; 0.208</td>
+      <td style="text-align:center; padding:4px 8px;"><strong>0.68&sigma;</strong></td>
+      <td style="text-align:center; padding:4px 8px;"><span class="status-pill open">Degeneracy &middot; &alpha;&ndash;&Omega;<sub>m</sub></span></td>
+    </tr>
+  </table>
+  <p style="margin:8px 0 0 0; font-size:12px; color:#666;">
+    <strong>Interpretation:</strong> The published LOO result (2.2&sigma;) is a directional signal, not a detection.
+    The autonomous MCMC with broader priors finds the signal collapses to 0.7&sigma; due to
+    &alpha;&ndash;&Omega;<sub>m</sub> degeneracy (r&nbsp;=&nbsp;+0.6). Both results are correct &mdash; they probe different
+    prior volumes. DESI DR2 full-shape RSD (expected late 2026) will break the degeneracy.
+    Sampler consistency: tension&nbsp;=&nbsp;1.74&sigma; (within 2&sigma;).
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- A different ontology, not just a different parameter                    -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 

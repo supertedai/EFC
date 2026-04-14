@@ -291,14 +291,25 @@ def validate_symbiose(repo, stats, result):
         if h:
             result.ok(f"Sealed {key}: α={pred.get('alpha')}, hash={h}...")
 
-    # α-signal status
+    # α-signal: check that public pages show BOTH LOO and current MCMC
     alpha = snap.get("alpha_signal", {})
+    if alpha.get("current_value") is not None:
+        elevator_html = read_page("elevator")
+        has_loo = "2.20" in elevator_html or "LOO" in elevator_html
+        has_current = "0.68" in elevator_html or "0.141" in elevator_html or "degeneracy" in elevator_html.lower()
+        if has_loo and has_current:
+            result.ok("Elevator Pitch shows both LOO (2.2σ) and current MCMC (0.7σ)")
+        elif has_loo and not has_current:
+            result.error("Elevator Pitch shows LOO but NOT the weaker current MCMC result")
+        elif not has_loo:
+            result.warn("Elevator Pitch does not mention α-signal at all")
+
     if alpha.get("status") == "STOPPED_DEGENERACY_PERSISTS":
         result.warn(
-            f"α-signal STOPPED: {alpha.get('current_value')} ± "
+            f"α-signal: {alpha.get('current_value')} ± "
             f"{alpha.get('current_uncertainty')} "
             f"({alpha.get('current_sigma')}σ) — "
-            f"weaker than LOO {alpha.get('loo_sigma', '?')}σ")
+            f"LOO was {alpha.get('loo_sigma', '?')}σ — degeneracy unresolved")
 
     # GRAV pipeline
     grav = snap.get("grav", {})
