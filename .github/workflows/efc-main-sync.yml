@@ -92,7 +92,8 @@ jobs:
               echo "Push succeeded."
               break
             fi
-            echo "Push failed; retrying in ${delay}s"
+            echo "Push failed; pulling --rebase and retrying in ${delay}s"
+            git pull --rebase origin main || true
             sleep "$delay"
           done
 

@@ -121,13 +121,14 @@ jobs:
 
           git commit -F /tmp/commit_msg
 
-          # Retry with exponential backoff — network flakes are common
+          # Retry with exponential backoff — pull --rebase if remote diverged
           for delay in 2 4 8 16; do
             if git push origin HEAD:"${GITHUB_REF_NAME:-${{ github.ref_name }}}"; then
               echo "Push succeeded."
               break
             fi
-            echo "Push failed; retrying in ${delay}s"
+            echo "Push failed; pulling --rebase and retrying in ${delay}s"
+            git pull --rebase origin "${GITHUB_REF_NAME:-${{ github.ref_name }}}" || true
             sleep "$delay"
           done
 
