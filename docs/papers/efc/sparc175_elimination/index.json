@@ -1,22 +1,113 @@
 {
   "$schema": "./schema.json",
   "id": "sparc175-elimination",
-  "title": "Sparc175 Elimination",
-  "description": "Auto-generated package for Sparc175 Elimination.",
+  "title": "Systematic elimination of local gravitational models on the SPARC 175 sample: Evidence for an irreducible galaxy-specific degree of freedom",
+  "description": "This paper performs a systematic elimination study of baryon-based rotation-curve models on the SPARC 175 sample. It shows that all purely local multiplicative models with only global parameters fail in low-acceleration (FLOW) galaxies, while a minimal hybrid model with a single galaxy-specific amplitude matches NFW halo fit performance with half the per-galaxy parameters. The study finds the added amplitude is a stable, intrinsic galaxy property that cannot be predicted from standard baryonic observables.",
   "version": "1.0",
   "date": "2026-04-15",
+  "doi": "10.6084/m9.figshare.32029704",
   "keywords": [
-    "Energy-Flow Cosmology",
-    "Sparc175",
-    "Elimination"
+    "SPARC 175",
+    "galaxy rotation curves",
+    "radial acceleration relation",
+    "modified gravity",
+    "dark matter halos",
+    "NFW comparison",
+    "model selection",
+    "low-acceleration regime",
+    "mass-to-light ratios",
+    "per-galaxy degree of freedom",
+    "screening law",
+    "cross-validation stability"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "RAR_mapping": {
+      "latex": "g_{\\mathrm{obs}} = g_{\\mathrm{bar}}\\,\\mu\\!\\left(g_{\\mathrm{bar}}\\right)",
+      "description": "Empirical radial-acceleration relation used to test local multiplicative laws mapping baryonic to observed acceleration."
+    },
+    "baryonic_decomposition": {
+      "latex": "V_{\\mathrm{bar}}^{2} = V_{\\mathrm{gas}}^{2} + \\Upsilon_{d} V_{\\mathrm{disk}}^{2} + \\Upsilon_{b} V_{\\mathrm{bul}}^{2}",
+      "description": "Baryonic rotation curve with fixed mass-to-light ratios \\Upsilon_d = 0.5 and \\Upsilon_b = 0.7 at 3.6 µm."
+    },
+    "multiplicative_model": {
+      "latex": "V_{\\mathrm{obs}}^{2} = V_{\\mathrm{bar}}^{2}\\,\\mu(\\cdot)",
+      "description": "Generic local multiplicative class tested with various functional forms and local extensions."
+    },
+    "screening_law": {
+      "latex": "\\mu_{\\mathrm{scr}}(g) = 1 + \\left(\\frac{g^{\\dagger}}{g}\\right)^{k}",
+      "description": "Power-law screening interpolation used in both global tests and in the hybrid model; k locked to 0.415 during tests."
+    },
+    "hybrid_model": {
+      "latex": "V^{2}(r) = V_{\\mathrm{bar}}^{2}(r)\\,\\mu_{\\mathrm{scr}}(g; g^{\\dagger}) + A_{\\mathrm{gal}}\\,\\frac{r}{r + r_{0}}",
+      "description": "Minimal hybrid with one galaxy-specific amplitude A_gal and global g^{\\dagger}, r_0; achieves NFW-like performance with fewer per-galaxy parameters."
+    },
+    "gradient_scale": {
+      "latex": "L_{g} = \\frac{g}{\\left|\\frac{dg}{dr}\\right|}",
+      "description": "Gradient length scale used in the gradient-dependent extension of \\mu to test local structural information."
+    }
+  },
+  "key_results": {
+    "main_finding": "All purely local multiplicative models with only global parameters are falsified on SPARC 175 (FLOW win ≈ 27%), while a one-parameter-per-galaxy hybrid matches NFW performance (FLOW win 72.6%, median χ2/dof 2.71 vs 2.64).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "a0",
+      "g† (g^\\dagger)",
+      "k (locked 0.415)",
+      "ε (regularisation)",
+      "g_min (regularisation floor)",
+      "β",
+      "L0",
+      "k0",
+      "kΣ",
+      "Σ0",
+      "δ",
+      "V0",
+      "r_c",
+      "r_s",
+      "A_gal (per galaxy)",
+      "r0",
+      "V200 (NFW per galaxy)",
+      "c (NFW per galaxy)",
+      "Υd=0.5",
+      "Υb=0.7"
+    ],
+    "datasets_used": [
+      "SPARC 175 rotation curves (3391 radial points across 175 galaxies; Vobs, σV≥1 km s−1, Vgas, Vdisk, Vbul)"
+    ],
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "On independent low-acceleration (FLOW-like) galaxy samples, any purely local multiplicative model with only global parameters will win in ≤35% of galaxies against NFW at |ΔAIC| > 10.",
+      "falsifiable_by": "Blind application to new high-quality rotation-curve datasets (e.g., SPARC extensions or similar) with the same fitting protocol and AIC threshold."
+    },
+    {
+      "id": "P2",
+      "statement": "The per-galaxy amplitude A_gal will remain orthogonal to standard baryonic observables (R^2 ≤ 0.10) and retain stable sign (>70% agreement) under re-observation and radial-subset cross-validation.",
+      "falsifiable_by": "Re-fitting the hybrid model on new or deeper data and testing A_gal predictability from baryonic properties plus sign stability across radial subsets."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Demonstrate a zero per-galaxy local model µ(g, local info) with only global parameters that achieves FLOW win rate ≥70% and median χ2/dof comparable to or better than NFW on SPARC and an independent dataset, with shuffle tests confirming genuine use of the local variable(s).",
+    "KC2: Show that A_gal can be accurately predicted from baryonic observables (e.g., mass, size, surface density, gradients, angular velocity) with R^2 ≥ 0.5 and stable sign prediction, eliminating the need for a free per-galaxy amplitude.",
+    "KC3: Cross-validation instability: leave-one-out or radial-subset tests reduce A_gal stability to ρ < 0.2 or inflate median CV error to >50%, indicating A_gal is not an intrinsic property.",
+    "KC4: Allowing reasonable baryonic systematics (e.g., variable mass-to-light ratios within accepted ranges) removes the performance gap so that a global-parameter local model matches NFW (|ΔAIC| ≤ 10 in the majority of FLOW galaxies) without per-galaxy amplitudes.",
+    "KC5: On an independent high-quality rotation-curve sample, the hybrid model underperforms NFW decisively (|ΔAIC| > 10) in a majority of galaxies and/or exhibits unstable A_gal sign (<50% agreement), contradicting claims of robustness.",
+    "KC6: Replication shows the reported eliminations arise from numerical artefacts (e.g., smoothing, binning, noise handling), evidenced by results reversing under validated alternative pipelines or by failed shuffle controls (p < 0.01) for gradient/surface-density models."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [],
   "files": {
     "pdf": "sparc175_elimination.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32029704"
 }

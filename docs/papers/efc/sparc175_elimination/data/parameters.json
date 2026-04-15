@@ -1,0 +1,97 @@
+{
+  "paper": {
+    "title": "Sparc175 Elimination: Systematic elimination of local gravitational models on the SPARC 175 sample",
+    "author": "Morten Magnusson",
+    "year": 2026,
+    "doi": "10.6084/m9.figshare.32029704"
+  },
+  "dataset": {
+    "name": "SPARC 175",
+    "n_galaxies": 175,
+    "n_data_points": 3391,
+    "description": "Rotation curve dataset spanning three decades in luminosity and surface brightness"
+  },
+  "mass_to_light_ratios": {
+    "Upsilon_disk": {
+      "value": 0.5,
+      "unit": "M_sun/L_sun",
+      "band": "3.6 um"
+    },
+    "Upsilon_bulge": {
+      "value": 0.7,
+      "unit": "M_sun/L_sun",
+      "band": "3.6 um"
+    }
+  },
+  "sigma_floor": {
+    "value": 1.0,
+    "unit": "km/s",
+    "description": "Minimum measurement uncertainty"
+  },
+  "regime_classification": {
+    "FLOW": {
+      "n_galaxies": 62,
+      "description": "Low acceleration, gas-dominated"
+    },
+    "TRANSITION": {
+      "n_galaxies": 86,
+      "description": "Intermediate regime"
+    },
+    "LATENT": {
+      "n_galaxies": 27,
+      "description": "High acceleration, baryon-dominated"
+    }
+  },
+  "model_parameters": {
+    "screening_k": {
+      "value": 0.415,
+      "description": "Locked power-law index for screening mu (Eq 3)"
+    },
+    "a0_MOND_scale": {
+      "value": 1.2e-10,
+      "unit": "m/s^2",
+      "description": "Typical MOND acceleration scale (for BE function)"
+    }
+  },
+  "key_results": {
+    "global_models_FLOW_win_rate": {
+      "value": 0.27,
+      "description": "Win rate of purely global-parameter models against NFW in FLOW regime"
+    },
+    "global_models_FLOW_median_chi2_dof": {
+      "value": 10.0,
+      "description": "Approximate median chi^2/dof for global models in FLOW regime"
+    },
+    "hybrid_FLOW_win_rate": {
+      "value": 0.726,
+      "description": "Win rate of hybrid model (1 param/galaxy) against NFW in FLOW regime"
+    },
+    "hybrid_median_chi2_dof": {
+      "value": 2.71,
+      "description": "Median chi^2/dof for hybrid model"
+    },
+    "NFW_median_chi2_dof": {
+      "value": 2.64,
+      "description": "Median chi^2/dof for NFW halo fits (2 params/galaxy)"
+    },
+    "NFW_params_per_galaxy": 2,
+    "hybrid_params_per_galaxy": 1
+  },
+  "A_gal_stability": {
+    "radial_subset_correlation_rho": 0.74,
+    "leave_one_out_median_CV": 0.12,
+    "sign_agreement_fraction": 0.76,
+    "correlation_with_Vmax2": {
+      "rho": 0.53,
+      "description": "|A| vs Vmax^2"
+    },
+    "baryonic_predictability_R2": {
+      "value": 0.02,
+      "description": "R^2 of A_gal from baryonic observables \u2014 orthogonal"
+    }
+  },
+  "model_selection": {
+    "delta_AIC_decisive_threshold": 10.0,
+    "description": "|Delta AIC| > 10 considered decisive evidence"
+  }
+}
