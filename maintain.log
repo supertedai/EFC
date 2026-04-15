@@ -6,7 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 4 paper(s) to 10/10 <<<
+>>> Step 1: Enriching 2 paper(s) to 10/10 <<<
 
   EFC_Effective_Horndeski_Reduction  (missing: src/, examples/, data/)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -24,31 +24,10 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse code generation response
     Generated src/, examples/, data/
-  component_weighted_bias  (missing: src/, examples/, data/)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/component_weighted_bias.py
-    Created examples/demo_component_weighted_bias.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
-  efc_eg_preregistration  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/efc_eg_preregistration.py
-    Created examples/demo_efc_eg_preregistration.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
 
-  Enriched: 5/4
+  Enriched: 2/2
 
->>> Step 2: Registering 56 paper(s) in public pages <<<
+>>> Step 2: Registering 58 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -60,6 +39,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 2 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -68,13 +48,14 @@ EFC AI BRAIN — done
 ========================================================================
 EFC DOI sync — 147 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 142
-  papers without DOI         : 5
+  papers with registered DOI : 144
+  papers without DOI         : 3
   papers with conflicts      : 0
 ========================================================================
 [efc-gen] 147 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 147 paper dirs · 0 errors · 0 warnings
-[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
+[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32023788
+[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32023788
 [efc-drift] 147 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -83,7 +64,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 118 total, 91 survived, 9 falsified
-  Papers: 147 (142 DOIs)
+  Papers: 147 (144 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -104,21 +85,21 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-2 potential new dataset(s):
+1 potential new dataset(s):
   [DESI] data release — https://data.desi.lbl.gov/doc/releases/
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 2 paper packages enriched.
+[efc-auto-changelog] Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 147 papers, 142 DOIs
+Repo: 147 papers, 144 DOIs
 Ledger: 118 tests, 9 falsified
 
 --- Elevator Pitch ---
@@ -150,7 +131,7 @@ Ledger: 118 tests, 9 falsified
   [OK]       README paper count 147 matches repo 147
   [OK]       README paper count 147 matches repo 147
   [OK]       Stats categories sum to 118 = total_public
-  [OK]       DOI sync script present, 142/147 papers have DOIs
+  [OK]       DOI sync script present, 144/147 papers have DOIs
   [OK]       103 papers have sealed predictions (301 total)
 
 --- Gap Analysis Coherence ---
