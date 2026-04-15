@@ -41,6 +41,7 @@ SYMBIOSE = os.path.join(HERE, "efc_symbiose_snapshot.py")
 AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
 DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
+LEDGER_AUTOFILL = os.path.join(HERE, "efc_ledger_autofill.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -69,6 +70,11 @@ def main() -> int:
         print(f"[efc-maintain] generator (post-sync) failed (rc={rc_gen2})")
         return rc_gen2
     rc_verify = run(VERIFY)
+    # Step 4b: auto-fill Ledger + Changelog for any empirical/sealed DOI
+    # that isn't registered yet. Runs BEFORE drift/cross-validate/gate so
+    # the precommit gate never blocks on a paper whose HTML row we can
+    # generate deterministically from its index.json metadata.
+    run(LEDGER_AUTOFILL)
     # Step 5: auto-fix drift (paper counts in README/AGENTS/Changelog)
     rc_drift = run(DRIFT, "--fix")
     # Step 6: Generate Symbiose snapshot (ground truth for cross-validation)
