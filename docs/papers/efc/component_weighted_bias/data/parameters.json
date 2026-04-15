@@ -1,0 +1,104 @@
+{
+  "paper": {
+    "title": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of chi2-based DAIC statistics",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research",
+    "date": "April 2026",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "constants": {
+    "rc_default_kpc": {
+      "value": 3.0,
+      "unit": "kpc",
+      "description": "Default critical radius separating baryonic-inner from halo-outer regime"
+    },
+    "EFC_k": {
+      "value": 0.415,
+      "unit": "dimensionless",
+      "description": "EFC-R screening parameter calibrated on full SPARC sample with LSB weight"
+    },
+    "Bbulge_bias_threshold": {
+      "value": 0.4,
+      "unit": "dimensionless",
+      "description": "Threshold for Bbulge in the bias condition (Eq. 6)"
+    }
+  },
+  "sample": {
+    "N_total": 175,
+    "N_no_bulge": 143,
+    "N_with_bulge": 32,
+    "fraction_no_bulge_pct": 81.7,
+    "source": "SPARC catalogue (Lelli et al. 2016)",
+    "photometry": "Spitzer 3.6 micron"
+  },
+  "correlations": {
+    "full_sample": {
+      "spearman_rho": 0.176,
+      "p_value": 0.02,
+      "description": "Spearman correlation between Bbulge and DAIC for all 175 galaxies"
+    },
+    "LATENT_high_L": {
+      "spearman_rho": 0.474,
+      "p_value": 0.013,
+      "description": "Spearman correlation in the LATENT (high-L) regime"
+    }
+  },
+  "EFC_win_rates": {
+    "Bbulge_lt_0.1": {
+      "win_or_tie_fraction": 0.919,
+      "description": "EFC wins or ties in 91.9% of cases when Bbulge < 0.1"
+    },
+    "Bbulge_gt_0.2": {
+      "win_or_tie_fraction": 0.444,
+      "description": "EFC wins or ties in 44.4% of cases when Bbulge > 0.2"
+    }
+  },
+  "bias_condition": {
+    "equation": "Bbulge > 0.4 AND sign(DAIC_outer) != sign(DAIC_global)",
+    "description": "Condition under which a fit is classified as model-selection biased (Eq. 6)"
+  },
+  "thresholds": {
+    "B_inner_biased": {
+      "value": 0.5,
+      "description": "Galaxy is inner-biased when B > 0.5"
+    },
+    "Bbulge_low": {
+      "value": 0.1,
+      "description": "Low-bias bin upper edge"
+    },
+    "Bbulge_high": {
+      "value": 0.2,
+      "description": "High-bias bin lower edge"
+    }
+  },
+  "proxy_chain": {
+    "steps": [
+      "Phi_model(r)",
+      "V_model(r)",
+      "chi2",
+      "DAIC"
+    ],
+    "description": "Information is compressed at each step; single-number DAIC suppresses radial information"
+  },
+  "RCMB_protocol": {
+    "description": "Report DAIC_inner and DAIC_outer separately for inner vs outer radial regions",
+    "components": [
+      "DAIC_inner",
+      "DAIC_outer"
+    ]
+  },
+  "models_affected": [
+    "NFW",
+    "MOND/RAR",
+    "EFC"
+  ],
+  "references": {
+    "Rubin_Ford_1970": "Rotation curves origin",
+    "Oman_et_al_2015": "Inner-region diversity problem",
+    "Li_et_al_2020": "Inner-region disagreements",
+    "Sofue_2017": "Recommends dividing fitting radii by component",
+    "Lelli_et_al_2016": "SPARC catalogue",
+    "Pedrosa_et_al_2026": "ANN-based decomposition, bright-bulge galaxies problematic",
+    "Magnusson_2026b": "Kill-Test v6 DAIC values"
+  }
+}
