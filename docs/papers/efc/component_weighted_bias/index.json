@@ -1,0 +1,95 @@
+{
+  "$schema": "./schema.json",
+  "id": "component-weighted-bias",
+  "title": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of \u03c72-based \u2206AIC statistics",
+  "description": "Audits the standard rotation-curve model selection pipeline (\u03a6 \u2192 V(r) \u2192 \u03c72 \u2192 \u2206AIC) and shows that \u03c72 weighting induces a structural, component-weighted bias in bulge-dominated galaxies. Introduces a bulge-bias metric B_bulge, quantifies its impact across the SPARC 175 sample, and proposes an RCMB-compliant protocol that reports \u2206AICinner and \u2206AICouter separately to avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance.",
+  "version": "1.0",
+  "date": "2026-04-15",
+  "doi": "",
+  "keywords": [
+    "rotation curves",
+    "model selection",
+    "chi-squared weighting",
+    "Akaike Information Criterion",
+    "SPARC",
+    "bulge-dominated galaxies",
+    "component-weighted bias",
+    "Energy-Flow Cosmology",
+    "NFW",
+    "MOND/RAR",
+    "Spearman correlation",
+    "RCMB protocol"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "proxy_chain": {
+      "latex": "\\Phi_{\\mathrm{model}}(r) \\to V_{\\mathrm{model}}(r) \\to \\chi^2 \\to \\Delta\\mathrm{AIC}",
+      "description": "Evaluation pipeline mapping a gravitational potential hypothesis to a single-number model selection statistic."
+    },
+    "total_velocity": {
+      "latex": "V_{\\mathrm{total}}^2(r) = V_{\\mathrm{gas}}^2 + V_{\\mathrm{disk}}^2 + V_{\\mathrm{bulge}}^2 + V_{\\mathrm{model}}^2(r)",
+      "description": "Observed circular speed is the quadrature sum of baryonic components and the halo/modification under test."
+    },
+    "chi_squared": {
+      "latex": "\\chi^2 = \\sum_{i=1}^{N} \\frac{\\left(V_{\\mathrm{obs},i} - V_{\\mathrm{model},i}\\right)^2}{\\sigma_i^2}",
+      "description": "Standard weighted least-squares misfit with per-point weights w_i = \\sigma_i^{-2}."
+    },
+    "inner_weight_fraction_B": {
+      "latex": "B = \\frac{\\sum_{i: r_i < r_c} w_i}{\\sum_{i=1}^{N} w_i}, \\quad w_i = \\sigma_i^{-2}",
+      "description": "Fraction of total \\chi^2 weight contributed by inner radii r < r_c (default r_c = 3 kpc)."
+    },
+    "component_weighted_bias_Bbulge": {
+      "latex": "B_{\\mathrm{bulge}} = \\frac{\\sum_{i=1}^{N} w_i\\, \\frac{V_{\\mathrm{bulge},i}^2}{V_{\\mathrm{total},i}^2}}{\\sum_{i=1}^{N} w_i}",
+      "description": "Weighted average of bulge dominance per data point; estimates how much of \\chi^2 is 'spent' on bulge-dominated radii."
+    },
+    "bias_condition": {
+      "latex": "B_{\\mathrm{bulge}} > 0.4 \\;\\land\\; \\mathrm{sign}(\\Delta \\mathrm{AIC}_{\\mathrm{outer}}) \\neq \\mathrm{sign}(\\Delta \\mathrm{AIC}_{\\mathrm{global}})",
+      "description": "Operational criterion that flags model-selection bias when inner bulge dominance flips the outer-region model preference."
+    }
+  },
+  "key_results": {
+    "main_finding": "Bulge-driven component-weighting in \u03c72 compresses \u2206AIC toward baryonic inner regions, biasing model selection; B_bulge correlates with \u2206AIC over SPARC (\u03c1=0.176, p=0.020), rising to \u03c1=0.474 (p=0.013) in the LATENT regime, and EFC\u2019s win/tie rate drops from 91.9% (B_bulge<0.1) to 44.4% (B_bulge>0.2).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "B_bulge (component-weighted bulge bias)",
+      "B (inner-weight fraction)",
+      "rc = 3 kpc threshold",
+      "\u2206AIC_global",
+      "\u2206AIC_outer",
+      "Spearman \u03c1 correlations",
+      "EFC screening k = 0.415",
+      "NFW concentration parameter freedom"
+    ],
+    "datasets_used": [
+      "SPARC 175 decomposed rotation curves (Lelli et al. 2016)",
+      "Kill-Test v6 \u2206AIC catalog (Magnusson 2026b)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Adopting the RCMB-compliant protocol (reporting \u2206AICinner and \u2206AICouter separately) will reduce apparent NFW preference in galaxies flagged by B_bulge > 0.4, with outer-region comparisons shifting toward EFC or neutral (|\u2206AICouter| < 2) relative to global \u2206AIC.",
+      "falsifiable_by": "Recompute split \u2206AIC on SPARC and future RC datasets; if bulge-flagged systems continue to prefer NFW strongly (\u2206AICouter \u2265 +10) in the outer region, the prediction is falsified."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Low-bulge test. In galaxies with B_bulge < 0.1, an RCMB-compliant outer-region comparison (r > 3 kpc) shows strong, consistent preference for NFW over EFC: \u226570% of the sample with \u2206AIC_outer \u2265 +10 and median \u2206AIC_outer \u2265 +10. This would indicate an EFC dynamics mismatch outside the baryon-dominated regime.",
+    "KC2: Reweighting robustness. Using uniform weights (w_i = 1) or radially balanced weights that suppress inner dominance, EFC remains globally disfavored across low-bulge systems (\u226570% with \u2206AIC_global \u2265 +10). Persistence under de-biased weighting would falsify the bias-based rescue of EFC.",
+    "KC3: FLOW-regime failure. In the EFC FLOW regime and with B_bulge < 0.1, EFC\u2019s outer-region residual RMS exceeds NFW by \u226510 km s^-1 in median (or in \u226550% of galaxies), indicating systematically worse halo-scale fits where EFC is expected to perform best.",
+    "KC4: Cross-sample replication. On independent high-quality RC datasets beyond SPARC (similar depth and decomposition), the low-bulge outer-region analysis again yields \u226570% of galaxies with \u2206AIC_outer \u2265 +10 favoring NFW over EFC. Repeatable failure across samples would kill the EFC explanation."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "component_weighted_bias.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": ""
+}
