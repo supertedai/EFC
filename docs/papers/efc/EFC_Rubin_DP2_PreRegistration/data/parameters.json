@@ -1,0 +1,113 @@
+{
+  "_description": "Numerical values from Magnusson (2026), DOI 10.6084/m9.figshare.32013738. EFC pre-registered predictions for Rubin LSST DP2 cosmic shear.",
+  "frozen_parameters_KC4": {
+    "eta_z0": {
+      "value": 1.1,
+      "uncertainty": 0.05,
+      "description": "Gravitational slip eta = Phi/Psi at z=0"
+    },
+    "alpha_efc": {
+      "value": -0.695,
+      "uncertainty": 0.02,
+      "description": "EFC coupling constant alpha (mean of two sealed runs)"
+    },
+    "a_t": {
+      "value": 0.3,
+      "uncertainty": "fixed",
+      "description": "Regime-transition scale factor"
+    },
+    "delta_t": {
+      "value": 0.3,
+      "uncertainty": "fixed",
+      "description": "Transition width"
+    },
+    "sigma8_efc": {
+      "value": 0.833,
+      "uncertainty": 0.01,
+      "description": "EFC sigma_8 (Boltzmann benchmark)"
+    },
+    "omega_m": {
+      "value": 0.31,
+      "uncertainty": 0.008,
+      "description": "Matter density parameter (DESI DR2 BAO sealed)"
+    },
+    "omega_m_ref": {
+      "value": 0.3,
+      "description": "Reference Omega_m in S8 definition"
+    }
+  },
+  "predictions_table2": {
+    "S8_efc": {
+      "value": 0.847,
+      "uncertainty": 0.015,
+      "description": "EFC S8 prediction"
+    },
+    "S8_lcdm": {
+      "value": 0.832,
+      "uncertainty": 0.013,
+      "description": "LCDM S8 expectation (Planck 2018)"
+    },
+    "delta_S8": {
+      "value": 0.015,
+      "description": "S8^efc - S8^LCDM"
+    },
+    "Sigma_zeff": {
+      "value": 1.04,
+      "uncertainty": 0.02,
+      "description": "Sigma(z_eff=0.65)"
+    },
+    "xi_plus_ratio": {
+      "value": 1.08,
+      "uncertainty": 0.04,
+      "description": "xi+^efc / xi+^LCDM at theta in [20,300] arcmin"
+    },
+    "mu_zeff": {
+      "value": 0.97,
+      "uncertainty": 0.03,
+      "description": "mu(z_eff=0.65)"
+    },
+    "eta_z0": {
+      "value": 1.1,
+      "uncertainty": 0.05,
+      "description": "eta(z=0)"
+    },
+    "delta_Cl_over_Cl_percent": {
+      "value": 8.0,
+      "description": "Fractional Cl^kk enhancement at ell < 300 (%)"
+    },
+    "lensing_enhancement_percent": {
+      "value": 10.0,
+      "description": "Overall lensing amplitude enhancement vs LCDM (%)"
+    }
+  },
+  "angular_scales": {
+    "theta_min_arcmin": 20,
+    "theta_max_arcmin": 300,
+    "ell_boundary": 300,
+    "description": "Angular range where EFC enhancement is largest"
+  },
+  "survey_specifications": {
+    "area_deg2": 300,
+    "n_eff_arcmin2": 20,
+    "z_eff": 0.65,
+    "description": "Rubin LSST DP2 expected survey parameters"
+  },
+  "falsification_criteria": {
+    "primary": {
+      "threshold_S8": 0.82,
+      "confidence": "2sigma",
+      "description": "KC4 ruled out if S8_obs < 0.820 at > 2-sigma"
+    },
+    "shape_level": {
+      "theta_range_arcmin": [
+        20,
+        300
+      ],
+      "description": "If observed xi+(theta) lies below EFC band at > 2-sigma in [20,300] arcmin, KC4 lensing constraint is ruled out"
+    }
+  },
+  "sealed_hash_prefix": "7a850cfa58477701",
+  "sealed_date": "2026-02-18",
+  "pre_registration_date": "2026-04-14",
+  "companion_doi": "10.6084/m9.figshare.32010399"
+}

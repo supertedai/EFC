@@ -1,0 +1,166 @@
+{
+  "paper": {
+    "title": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs LCDM",
+    "doi": "10.6084/m9.figshare.32013156",
+    "date": "2026-04-14",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "cosmological_parameters": {
+    "Omega_m0": 0.3111,
+    "Omega_L0": 0.6889,
+    "H0_km_s_Mpc": 67.66,
+    "sigma8_0": 0.8102,
+    "rd_Mpc": 147.09
+  },
+  "efc_parameters": {
+    "primary_freeze": {
+      "alpha": -0.689,
+      "sha256_truncated": "7a850cfa58477701",
+      "timestamp_utc": "2026-02-18T05:07:13",
+      "fsigma8_crossover_z": 2.042,
+      "sampler": "NUTS"
+    },
+    "secondary_freeze": {
+      "alpha": -0.702,
+      "sha256_truncated": "dbccda150abca0e7",
+      "timestamp_utc": "2026-02-21T16:08:57.818002",
+      "sampler": "NUTS"
+    }
+  },
+  "sealed_predictions_table2": [
+    {
+      "observable": "fsigma8",
+      "redshift": 0.7,
+      "efc": 0.43,
+      "lcdm": 0.449,
+      "separation_sigma": 2.0
+    },
+    {
+      "observable": "DH_over_rd",
+      "redshift": 0.7,
+      "efc": 19.797,
+      "lcdm": 20.719,
+      "separation_sigma": 2.3
+    },
+    {
+      "observable": "DH_over_rd",
+      "redshift": 1.0,
+      "efc": 16.527,
+      "lcdm": 17.466,
+      "separation_sigma": 3.1
+    }
+  ],
+  "preliminary_comparison_table5": {
+    "DESI_DR1_LRGz1_zeff": 0.706,
+    "DESI_DR1_fsigma8": 0.413,
+    "DESI_DR1_fsigma8_err": 0.029,
+    "efc_predicted": 0.43,
+    "efc_delta_from_DR1": 0.017,
+    "lcdm_predicted": 0.449,
+    "lcdm_delta_from_DR1": 0.036
+  },
+  "observational_baseline_table4": [
+    {
+      "survey": "6dFGS",
+      "tracer": null,
+      "zeff": 0.067,
+      "fsigma8": 0.423,
+      "error": 0.055,
+      "reference": "Beutler+ 2012"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "LOWZ",
+      "zeff": 0.32,
+      "fsigma8": 0.427,
+      "error": 0.056,
+      "reference": "Alam+ 2017"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "CMASS",
+      "zeff": 0.51,
+      "fsigma8": 0.458,
+      "error": 0.038,
+      "reference": "Alam+ 2017"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRGz0",
+      "zeff": 0.51,
+      "fsigma8": 0.449,
+      "error": 0.032,
+      "reference": "DESI 2024 V"
+    },
+    {
+      "survey": "BOSS DR12",
+      "tracer": "CMASS",
+      "zeff": 0.61,
+      "fsigma8": 0.436,
+      "error": 0.034,
+      "reference": "Alam+ 2017"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "LRG",
+      "zeff": 0.7,
+      "fsigma8": 0.473,
+      "error": 0.041,
+      "reference": "Gil-Marin+ 2020"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRGz1",
+      "zeff": 0.706,
+      "fsigma8": 0.413,
+      "error": 0.029,
+      "reference": "DESI 2024 V"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "ELG",
+      "zeff": 0.85,
+      "fsigma8": 0.315,
+      "error": 0.095,
+      "reference": "de Mattia+ 2021"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRG+ELG",
+      "zeff": 0.93,
+      "fsigma8": 0.381,
+      "error": 0.034,
+      "reference": "DESI 2024 V"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "ELG",
+      "zeff": 1.317,
+      "fsigma8": 0.396,
+      "error": 0.062,
+      "reference": "DESI 2024 V"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "QSO",
+      "zeff": 1.48,
+      "fsigma8": 0.462,
+      "error": 0.045,
+      "reference": "Neveux+ 2020"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "QSO",
+      "zeff": 1.491,
+      "fsigma8": 0.318,
+      "error": 0.076,
+      "reference": "DESI 2024 V"
+    }
+  ],
+  "confirmation_criteria": {
+    "description": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+    "required_DH_rd_trend": "below LCDM at z=0.7 and z=1.0",
+    "multi_tracer_consistency": "LRG and ELG must agree"
+  }
+}
