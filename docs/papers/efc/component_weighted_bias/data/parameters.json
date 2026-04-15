@@ -1,0 +1,54 @@
+{
+  "_description": "Key numerical values from Magnusson (2026) \u2013 Component-weighted bias in rotation curve model selection",
+  "SPARC_sample": {
+    "total_galaxies": 175,
+    "galaxies_no_bulge": 143,
+    "galaxies_no_bulge_pct": 81.7,
+    "galaxies_with_bulge": 32
+  },
+  "critical_radius_kpc": 3.0,
+  "EFC_screening_parameter_k": 0.415,
+  "bias_thresholds": {
+    "Bbulge_bias_cutoff_eq6": 0.4,
+    "Bbulge_low": 0.1,
+    "Bbulge_high": 0.2
+  },
+  "Spearman_correlation_full_sample": {
+    "rho": 0.176,
+    "p_value": 0.02
+  },
+  "Spearman_correlation_LATENT_regime": {
+    "rho": 0.474,
+    "p_value": 0.013
+  },
+  "EFC_win_tie_fraction": {
+    "Bbulge_below_0.1": 0.919,
+    "Bbulge_above_0.2": 0.444
+  },
+  "inner_region_dominance_radius_kpc": 3.0,
+  "halo_dominance_radius_kpc": 5.0,
+  "affected_models": [
+    "NFW",
+    "MOND/RAR",
+    "EFC"
+  ],
+  "equations": {
+    "Eq2_total_velocity_squared": "V\u00b2_total = V\u00b2_gas + V\u00b2_disk + V\u00b2_bulge + V\u00b2_model",
+    "Eq3_chi_squared": "\u03c7\u00b2 = \u03a3 (V_obs,i - V_model,i)\u00b2 / \u03c3_i\u00b2",
+    "Eq4_inner_weight_fraction_B": "B = \u03a3_{r_i < r_c} w_i / \u03a3 w_i",
+    "Eq5_component_weighted_bias_Bbulge": "B_bulge = \u03a3 w_i\u00b7(V\u00b2_bulge,i / V\u00b2_total,i) / \u03a3 w_i",
+    "Eq6_bias_condition": "B_bulge > 0.4 AND sign(\u0394AIC_outer) \u2260 sign(\u0394AIC_global)"
+  },
+  "proxy_chain": [
+    "\u03a6_model(r)",
+    "V_model(r)",
+    "\u03c7\u00b2",
+    "\u0394AIC"
+  ],
+  "proposed_protocol": "RCMB-compliant: report \u0394AIC_inner and \u0394AIC_outer separately",
+  "Hubble_types_affected": [
+    "Sa",
+    "Sb"
+  ],
+  "photometry_band": "Spitzer 3.6 \u00b5m"
+}
