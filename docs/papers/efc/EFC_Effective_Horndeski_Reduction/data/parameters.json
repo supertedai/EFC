@@ -1,0 +1,16 @@
+{
+  "paper_id": "efc-effective-horndeski-reduction",
+  "doi": "10.6084/m9.figshare.32011407",
+  "note": "This methodology paper derives an effective Bellini-Sawicki Horndeski mapping of the EFC perturbation sector. There is no dataset attached; the benchmark numerics are inherited from the companion Relativistic Action package.",
+  "benchmark_parameters": {
+    "K0": 1.552,
+    "m_squared": 0.00318,
+    "alpha_T": 0.0,
+    "alpha_M_proportionality": "S(a)",
+    "alpha_B_proportionality": "dS/d ln a"
+  },
+  "regime": "quasi-static sub-horizon (k >> aH)",
+  "companion_packages": [
+    "10.6084/m9.figshare.31876324"
+  ]
+}

@@ -29,8 +29,8 @@
     {
       "test_id": "inference_bao_desi_y1",
       "name": "EFC Inference: bao_desi_y1",
-      "result": "Δχ²=−22.01 (EFC preferred, 5-fold CV all pass)",
-      "status": "pass",
+      "result": "Δχ²=−22.01 reported by LCDM fallback engine; not attributable to EFC physics",
+      "status": "pending",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -68,8 +68,8 @@
     {
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
-      "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
-      "status": "pass",
+      "result": "α=−1.00±0.46 reported from LCDM fallback engine; pending EFC physics implementation",
+      "status": "pending",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -87,8 +87,8 @@
     {
       "test_id": "inference_hz_chronometers",
       "name": "EFC Inference: hz_chronometers",
-      "result": "CC consistency Δχ²=−0.17 (sub-statistical)",
-      "status": "neutral",
+      "result": "CC consistency Δχ²=−0.17 reported from LCDM fallback engine; pending EFC physics implementation",
+      "status": "pending",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
