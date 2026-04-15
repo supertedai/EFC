@@ -56,6 +56,7 @@ def main():
 
     missing_ledger = []
     missing_changelog = []
+    missing_impact = []   # soft warning: empirical paper + DOI but no ledger_impact
 
     for name in sorted(os.listdir(PAPERS)):
         paper_dir = os.path.join(PAPERS, name)
@@ -101,11 +102,30 @@ def main():
                 "directory": name,
             })
 
+        # Soft gate: empirical/sealed papers with DOI should have a
+        # ledger_impact block. Currently a warning; flip to hard fail once
+        # all existing papers have been backfilled.
+        if paper_type in MUST_BE_IN_LEDGER and "ledger_impact" not in idx:
+            missing_impact.append({
+                "doi": bare,
+                "paper_type": paper_type,
+                "title": title,
+                "directory": name,
+            })
+
     if not missing_ledger:
         print(f"[efc-precommit] OK — no empirical papers missing from Ledger")
         if missing_changelog:
             print(f"[efc-precommit] NOTE: {len(missing_changelog)} paper(s) "
                   f"missing from Changelog (non-blocking)")
+        if missing_impact:
+            print(f"[efc-precommit] SOFT WARN: {len(missing_impact)} empirical "
+                  f"paper(s) missing ledger_impact block (non-blocking; "
+                  f"will become hard fail after backfill)")
+            for p in missing_impact[:5]:
+                print(f"    - {p['directory']} (DOI {p['doi']})")
+            if len(missing_impact) > 5:
+                print(f"    … and {len(missing_impact) - 5} more")
         return 0
 
     # HARD BLOCK

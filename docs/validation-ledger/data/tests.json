@@ -603,6 +603,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "failure"
+      },
+      {
+        "test_id": "sparc175_local_multiplicative_elimination",
+        "name": "SPARC 175: systematic elimination of local-multiplicative gravity models",
+        "description": "Systematic elimination study of baryon-only rotation-curve models on the full SPARC 175 sample. Tests whether any purely local multiplicative law V_obs^2 = V_bar^2 * mu(local info) with only global parameters can match NFW performance in the low-acceleration (FLOW) regime. Includes gradient-dependent and surface-density-dependent extensions, regularisation floors, and six independent kill-criteria controls.",
+        "result": "COLLAPSED",
+        "status": "failed",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "SPARC 175 rotation curves (3391 radial points; Vobs, sigma_V>=1 km/s, Vgas, Vdisk, Vbul; fixed M/L Upsilon_d=0.5, Upsilon_b=0.7 at 3.6 um)",
+        "prediction": "All purely local multiplicative models with only global parameters will fail in FLOW galaxies (win rate <= 35% vs NFW at |dAIC| > 10); a minimal hybrid with one per-galaxy amplitude A_gal matches NFW (FLOW win 72.6%, median chi2/dof 2.71 vs 2.64). A_gal is an irreducible galaxy-specific degree of freedom, orthogonal to standard baryonic observables (R^2 <= 0.10).",
+        "notes": "Added by ledger_impact_sync from paper sparc175_elimination",
+        "quantitative_result": null,
+        "last_synced": "2026-04-15T20:14:50Z",
+        "status_detail": "failed",
+        "source_paper": "sparc175_elimination"
       }
     ],
     "consistency_check": [

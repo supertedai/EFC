@@ -42,6 +42,7 @@ AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
 DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
 LEDGER_AUTOFILL = os.path.join(HERE, "efc_ledger_autofill.py")
+LEDGER_IMPACT_SYNC = os.path.join(HERE, "efc_ledger_impact_sync.py")
 FULL_SYNC = os.path.join(HERE, "efc_full_sync.py")
 
 
@@ -71,6 +72,16 @@ def main() -> int:
         print(f"[efc-maintain] generator (post-sync) failed (rc={rc_gen2})")
         return rc_gen2
     rc_verify = run(VERIFY)
+    # Step 4a: ledger_impact_sync — DOI-gated deterministic mutation of
+    # tests.json / stats.json / Gap_Analysis.html for every paper that
+    # declares a `ledger_impact` block and has a registered DOI. Idempotent:
+    # re-runs are no-ops once applied_by_doi is stamped. Papers without a
+    # DOI stay in "maintainer mode" — no ledger mutation, ever.
+    # rc codes: 0=no changes, 1=changes applied, 2=validation error
+    rc_impact = run(LEDGER_IMPACT_SYNC, "--apply")
+    if rc_impact == 2:
+        print("[efc-maintain] ledger_impact_sync validation FAILED "
+              "— see output above")
     # Step 4b: auto-fill Ledger + Changelog for any empirical/sealed DOI
     # that isn't registered yet. Runs BEFORE drift/cross-validate/gate so
     # the precommit gate never blocks on a paper whose HTML row we can
