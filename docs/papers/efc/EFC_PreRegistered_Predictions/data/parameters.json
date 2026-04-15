@@ -1,0 +1,26 @@
+{
+  "paper_id": "efc-preregistered-predictions",
+  "doi": "10.6084/m9.figshare.32010399",
+  "note": "Frozen benchmark parameters for the EFC pre-registration. These values were sealed prior to Euclid DR1, Rubin DP2, and SO x Euclid releases and are not re-tuned.",
+  "benchmark_parameters": {
+    "B0": 0.02,
+    "M0": 0.06,
+    "a_t": 0.30,
+    "Delta": 0.20
+  },
+  "predicted_shifts_vs_LCDM_percent": {
+    "sigma8": 1.2,
+    "lensing": -6.0,
+    "EG": -4.0
+  },
+  "kill_windows": {
+    "mu_lt_1": true,
+    "Sigma_gt_1": true,
+    "eta_approx": 1.10
+  },
+  "surveys": [
+    "Euclid DR1 (2026-10-21)",
+    "Rubin DP2",
+    "Simons Observatory x Euclid"
+  ]
+}
