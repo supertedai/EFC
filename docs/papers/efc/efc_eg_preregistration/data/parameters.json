@@ -1,0 +1,143 @@
+{
+  "title": "Pre-Registered EFC Prediction: EG Statistic from SO x Euclid Cross-Correlation",
+  "author": "Morten Magnusson",
+  "affiliation": "Symbiose Research, Sandnes, Norway",
+  "orcid": "0009-0002-4860-5095",
+  "preregistration_date": "2026-04-15",
+  "data_expected": "SO x Euclid DR2 (~2027-2028)",
+  "license": "CC-BY-4.0",
+  "frozen_efc_parameters": {
+    "mu0": {
+      "value": 0.94,
+      "description": "Growth suppression via entropy stiffness",
+      "source_doi": "31876324"
+    },
+    "Sigma0": {
+      "value": 1.05,
+      "description": "Lensing enhancement via flow anisotropy",
+      "source_doi": "31876324"
+    },
+    "eta0": {
+      "value": 1.1,
+      "description": "Gravitational slip",
+      "source_doi": "31876324"
+    },
+    "alphaT": {
+      "value": 0.0,
+      "description": "Tensor speed excess, exactly zero in EFC",
+      "source_doi": "32011407"
+    }
+  },
+  "survival_valley": {
+    "mu_range": [
+      0.93,
+      0.96
+    ],
+    "sigma_range": [
+      1.03,
+      1.07
+    ]
+  },
+  "prediction": {
+    "EG_EFC_over_EG_GR": {
+      "central": 1.086,
+      "sigma": 0.012,
+      "unit": "dimensionless"
+    },
+    "pivot_scale_kc": {
+      "value": 0.05,
+      "unit": "h Mpc^-1"
+    },
+    "pivot_redshift_zeff": {
+      "value": 0.5
+    }
+  },
+  "dataset_specification": {
+    "cmb_lensing": {
+      "survey": "Simons Observatory LAT",
+      "observable": "kappa reconstruction",
+      "ell_range": [
+        100,
+        2000
+      ]
+    },
+    "galaxy_sample": {
+      "survey": "Euclid DR2 photometric catalogue",
+      "z_range": [
+        0.3,
+        0.8
+      ],
+      "n_tomographic_bins": 5
+    },
+    "cross_correlation_ell_range": [
+      50,
+      500
+    ],
+    "max_k": 0.2,
+    "max_k_unit": "h Mpc^-1",
+    "bias_treatment": "Survey-provided NLA + linear bias marginalisation",
+    "covariance": "Survey-provided covariance matrices; no EFC nuisance parameters",
+    "tomographic_signal_reduction_percent": {
+      "low": 30,
+      "high": 40,
+      "note": "Pass/fail window defined for tomography-convolved observable"
+    }
+  },
+  "pass_fail_criteria": {
+    "KC_EG_PASS": {
+      "condition": "EG_obs/EG_GR in [1.03, 1.14] at >1sigma",
+      "lower_bound": 1.03,
+      "upper_bound": 1.14,
+      "significance": "1sigma",
+      "consequence": "Consistent with EFC prediction",
+      "regime": "FA4"
+    },
+    "KC_EG_FAIL": {
+      "condition": "EG_obs/EG_GR outside [1.03, 1.14] at stated significance",
+      "consequence": "EFC gravitational slip sector formally abandoned"
+    }
+  },
+  "equations": {
+    "Eq1_EG_definition": "EG(ell) = C_ell^{kappa g} / (beta * C_ell^{gg}),  beta = f/b",
+    "Eq1_GR": "EG_GR = Omega_m(z) / f(z)",
+    "Eq2_MG": "EG_MG = EG_GR * Sigma / (mu * f_MG/f_GR)",
+    "Eq3_EFC_action": "S_EFC = integral d4x sqrt(-g) [ (1/2) M_Pl^2 F(phi) R - (1/2) K(rho) g^{mu nu} d_mu phi d_nu phi - V(phi) - lambda (Box phi - Gamma(rho)) ]"
+  },
+  "table1_model_comparison": {
+    "EFC": {
+      "mu_lt_1": true,
+      "Sigma_gt_1": true,
+      "eta_ne_1": true,
+      "EG_ratio_gt_1": true
+    },
+    "massive_neutrinos": {
+      "mu_lt_1": true,
+      "Sigma_gt_1": false,
+      "eta_ne_1": false,
+      "EG_ratio_gt_1": false
+    },
+    "fR_gravity": {
+      "mu_lt_1": false,
+      "Sigma_gt_1": true,
+      "eta_ne_1": true,
+      "EG_ratio_gt_1": false
+    },
+    "Horndeski_general": {
+      "mu_lt_1": "possible",
+      "Sigma_gt_1": "possible",
+      "eta_ne_1": "possible",
+      "EG_ratio_gt_1": "possible"
+    },
+    "w0waCDM": {
+      "mu_lt_1": false,
+      "Sigma_gt_1": false,
+      "eta_ne_1": false,
+      "EG_ratio_gt_1": false
+    }
+  },
+  "source_dois": {
+    "Global_Parameter_Registry": "31876324",
+    "Case_B_eigenmode_analysis": "31990194",
+    "Bellini_Sawicki_mapping": "32011407"
+  }
+}

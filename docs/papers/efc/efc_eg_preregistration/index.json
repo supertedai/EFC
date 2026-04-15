@@ -1,21 +1,123 @@
 {
   "$schema": "./schema.json",
   "id": "efc-eg-preregistration",
-  "title": "Efc Eg Preregistration",
-  "description": "Auto-generated package for Efc Eg Preregistration.",
+  "title": "Pre-Registered EFC Prediction: EG Statistic from SO \u00d7 Euclid Cross-Correlation",
+  "description": "This sealed pre-registration specifies the Energy-Flow Cosmology (EFC) prediction for the EG gravitational-slip statistic to be tested with the Simons Observatory LAT \u00d7 Euclid DR2 cross-correlation. It forecasts an 8.6% enhancement of EG relative to the GR/\u039bCDM pipeline baseline from jointly predicted \u00b5 < 1 (growth suppression) and \u03a3 > 1 (lensing enhancement), and fixes pass/fail windows and a binding falsification (kill) criterion prior to data availability.",
   "version": "1.0",
   "date": "2026-04-15",
+  "doi": "",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Preregistration"
+    "EG statistic",
+    "gravitational slip",
+    "modified gravity",
+    "CMB lensing",
+    "galaxy clustering",
+    "redshift-space distortions",
+    "Simons Observatory",
+    "Euclid DR2",
+    "quasi-static regime",
+    "Bellini\u2013Sawicki EFT",
+    "preregistration"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "eg_statistic": {
+      "latex": "E_G(\\ell) = \\frac{C_\\ell^{\\kappa g}}{\\beta\\, C_\\ell^{gg}}, \\quad \\beta = \\frac{f}{b}",
+      "description": "Definition of the EG statistic combining CMB lensing\u2013galaxy cross-correlation and galaxy auto-correlation with the RSD parameter \\beta = f/b."
+    },
+    "mg_to_gr_ratio": {
+      "latex": "\\frac{E_G^{\\rm MG}}{E_G^{\\rm GR}} = \\frac{\\Sigma}{\\mu\\, (f/f^{\\rm GR})}",
+      "description": "Operational relation for modified gravity under quasi-static, sub-horizon conditions linking EG to ratios of lensing and dynamical modifications relative to the GR pipeline baseline."
+    },
+    "efc_action": {
+      "latex": "S_{\\rm EFC} = \\int d^4x\\, \\sqrt{-g} \\left[ \\tfrac{1}{2} M_{\\rm Pl}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho) \\, g^{\\mu\\nu} \\partial_\\mu \\phi \\, \\partial_\\nu \\phi - V(\\phi) - \\lambda \\, \\Box \\phi - \\Gamma(\\rho) \\right]",
+      "description": "Relativistic variational action for EFC yielding coupled background and perturbation dynamics, from which (\\mu, \\Sigma, \\eta) are obtained self-consistently."
+    },
+    "efc_prediction": {
+      "latex": "\\left. \\frac{E_G^{\\rm EFC}}{E_G^{\\rm GR}} \\right|_{k_c\\simeq 0.05\\,h\\,{\\rm Mpc}^{-1},\\, z\\simeq 0.5} = 1.086 \\pm 0.012",
+      "description": "Sealed numerical prediction for the EG enhancement at the stated pivot scale and redshift, defined in the survey pipeline frame including tomographic convolution."
+    },
+    "efc_mu_sigma_eta": {
+      "latex": "\\mu \\simeq 0.94, \\quad \\Sigma \\simeq 1.05, \\quad \\eta \\simeq 1.10",
+      "description": "EFC perturbation-sector predictions: growth suppression (\\mu<1), lensing enhancement (\\Sigma>1), and non-unity gravitational slip (\\eta\\neq 1)."
+    }
+  },
+  "key_results": {
+    "main_finding": "Sealed pre-registration of an EFC prediction that EG will be enhanced by 8.6% \u00b1 1.2% over the GR pipeline baseline in SO \u00d7 Euclid DR2, with fixed pass/fail windows and a binding kill criterion.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "mu0 = 0.94",
+      "Sigma0 = 1.05",
+      "eta = 1.10",
+      "alpha_T = 0 (exact)"
+    ],
+    "datasets_used": [
+      "Simons Observatory LAT CMB lensing (kappa reconstruction)",
+      "Euclid DR2 photometric galaxy catalog (z \u2208 [0.3, 0.8], 5 tomographic bins)",
+      "RSD-derived beta from Euclid DR2",
+      "\u2113 \u2208 [50, 500], pivot kc = 0.05 h Mpc^{-1}, z_eff = 0.5"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Survey-pipeline EG enhancement: (E_G^EFC / E_G^GR) = 1.086 \u00b1 0.012 at kc \u2248 0.05 h Mpc^{-1}, z_eff \u2248 0.5, \u2113 \u2208 [50, 500], including tomographic window functions.",
+      "falsifiable_by": "SO LAT \u00d7 Euclid DR2 CMB-lensing \u00d7 galaxy cross-correlation EG measurement in the stated configuration."
+    },
+    {
+      "id": "P2",
+      "statement": "Pass window: E_G^obs / E_G^GR \u2208 [1.03, 1.14] at > 1\u03c3 (tomography-convolved, survey pipeline definition).",
+      "falsifiable_by": "Primary SO \u00d7 Euclid DR2 EG analysis using survey-provided covariance, NLA + linear bias marginalization, and scale cuts k < 0.2 h Mpc^{-1}."
+    },
+    {
+      "id": "P3",
+      "statement": "Fail (kill) condition: E_G^obs / E_G^GR = 1.00 \u00b1 0.01 at > 3\u03c3 implies |\u03b7 \u2212 1| < 0.01 and falsifies the EFC gravitational-slip sector (FA4).",
+      "falsifiable_by": "A high-significance SO \u00d7 Euclid DR2 EG result consistent with GR/\u039bCDM within \u00b11% across the adopted pivot and \u2113-range."
+    }
+  ],
+  "kill_criteria": [
+    "KC1 (FA4): If the SO \u00d7 Euclid EG measurement yields E_G^obs / E_G^GR = 1.00 \u00b1 0.01 at > 3\u03c3 (pipeline definition; kc \u2248 0.05 h Mpc^{-1}, z_eff \u2248 0.5; \u2113 \u2208 [50, 500]), the EFC gravitational-slip sector is formally falsified and abandoned.",
+    "KC2 (FA4 equivalence): If |\u03b7 \u2212 1| < 0.01 is established at > 3\u03c3 from the SO \u00d7 Euclid EG analysis in the quasi-static, sub-horizon regime, the EFC perturbation sector is falsified and the result is permanently recorded in the Validation Ledger."
+  ],
+  "tier": "T3",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-global-parameter-registry",
+      "doi": "DOI 31876324",
+      "role": "Frozen EFC parameters (\u00b50, \u03a30, \u03b7) and governance registry referenced by this pre-registration."
+    },
+    {
+      "id": "efc-case-b-eigenmode",
+      "doi": "DOI 31990194",
+      "role": "Case B eigenmode analysis providing the parameter survival ranges used to derive the EG prediction uncertainty."
+    },
+    {
+      "id": "efc-bellini-sawicki-mapping",
+      "doi": "DOI 32011407",
+      "role": "Mapping of EFC to EFT-of-DE (Bellini\u2013Sawicki) confirming \u03b1_T = 0 and compatibility with Euclid EFT pipelines."
+    },
+    {
+      "id": "efc-stage-iv-roadmap",
+      "doi": "DOI 31970904",
+      "role": "Stage-IV roadmap defining the FA4 kill criterion adopted here."
+    },
+    {
+      "id": "rcmp-principle",
+      "doi": "DOI 31222900",
+      "role": "Regime-Consistent Measurement Principle used to declare the linear regime intersection and scale cuts."
+    }
+  ],
   "files": {
     "pdf": "efc_eg_preregistration.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": ""
 }

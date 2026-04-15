@@ -1,0 +1,68 @@
+{
+  "_description": "Key numerical values from Magnusson (2026) \u2014 Component-weighted bias in rotation curve model selection",
+  "sparc_sample": {
+    "total_galaxies": 175,
+    "galaxies_no_bulge": 143,
+    "galaxies_with_bulge": 32,
+    "fraction_no_bulge": 0.817
+  },
+  "critical_radius_kpc": 3.0,
+  "inner_bias_threshold_B": 0.5,
+  "bias_threshold_Bbulge": 0.4,
+  "efc_screening_parameter_k": 0.415,
+  "spearman_correlation": {
+    "all_galaxies": {
+      "rho": 0.176,
+      "p_value": 0.02,
+      "description": "Spearman correlation between Bbulge and \u0394AIC across 175 SPARC galaxies"
+    },
+    "latent_high_L_regime": {
+      "rho": 0.474,
+      "p_value": 0.013,
+      "description": "Spearman correlation in the LATENT (high-luminosity) sub-sample"
+    }
+  },
+  "efc_win_or_tie_rate": {
+    "Bbulge_lt_0.1": {
+      "rate": 0.919,
+      "description": "EFC model wins or ties for galaxies with Bbulge < 0.1"
+    },
+    "Bbulge_gt_0.2": {
+      "rate": 0.444,
+      "description": "EFC model wins or ties for galaxies with Bbulge > 0.2"
+    }
+  },
+  "equations": {
+    "eq2_Vtotal_squared": "V_gas^2 + V_disk^2 + V_bulge^2 + V_model^2",
+    "eq3_chi_squared": "sum_i [(V_obs_i - V_model_i)^2 / sigma_i^2]",
+    "eq4_B_inner_weight": "sum_{r_i < r_c} w_i / sum_all w_i, with w_i = sigma_i^{-2}",
+    "eq5_Bbulge": "sum_i [w_i * V_bulge_i^2 / V_total_i^2] / sum_i w_i",
+    "eq6_bias_condition": "Bbulge > 0.4 AND sign(\u0394AIC_outer) != sign(\u0394AIC_global)"
+  },
+  "proxy_chain": [
+    "Phi_model(r)",
+    "V_model(r)",
+    "chi_squared",
+    "delta_AIC"
+  ],
+  "bulge_dominated_regime": {
+    "description": "V_bulge^2 >> V_model^2 for r < 3 kpc in Sa-Sb type galaxies"
+  },
+  "rcmb_protocol": {
+    "report_separately": [
+      "\u0394AIC_inner",
+      "\u0394AIC_outer"
+    ],
+    "description": "RCMB-compliant protocol requires split reporting of inner and outer \u0394AIC"
+  },
+  "references": {
+    "SPARC_catalogue": "Lelli et al. 2016",
+    "diversity_problem": [
+      "Oman et al. 2015",
+      "Li et al. 2020"
+    ],
+    "component_fitting": "Sofue 2017",
+    "ANN_decomposition": "Pedrosa et al. 2026",
+    "kill_test_v6": "Magnusson 2026b"
+  }
+}

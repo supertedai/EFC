@@ -1,6 +1,4 @@
-[efc-auto-meta] 1 bare PDF(s) found, generating metadata:
-  component_weighted_bias: (no DOI found)
-[efc-auto-meta] generated 1 package(s)
+[efc-auto-meta] all paper directories have index.json
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -8,7 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 3 paper(s) to 10/10 <<<
+>>> Step 1: Enriching 4 paper(s) to 10/10 <<<
 
   EFC_Effective_Horndeski_Reduction  (missing: src/, examples/, data/)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -26,19 +24,31 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse code generation response
     Generated src/, examples/, data/
-  component_weighted_bias  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
+  component_weighted_bias  (missing: src/, examples/, data/)
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    Created src/component_weighted_bias.py
+    Created examples/demo_component_weighted_bias.py
+    Created data/parameters.json
+    Generated src/, examples/, data/
+  efc_eg_preregistration  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
     Enriched metadata (key_results, kill_criteria, paper_type, tier)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
+    Created src/efc_eg_preregistration.py
+    Created examples/demo_efc_eg_preregistration.py
+    Created data/parameters.json
     Generated src/, examples/, data/
 
-  Enriched: 4/3
+  Enriched: 5/4
 
->>> Step 2: Registering 58 paper(s) in public pages <<<
+>>> Step 2: Registering 56 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -54,35 +64,18 @@ pdftotext: /usr/bin/pdftotext
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 146 packages · 3 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 147 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 146 paper dirs scanned
+EFC DOI sync — 147 paper dirs scanned
 ========================================================================
   papers with registered DOI : 142
-  papers without DOI         : 4
+  papers without DOI         : 5
   papers with conflicts      : 0
 ========================================================================
-[efc-gen] 146 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 146 paper dirs · 0 errors · 1 warnings
-  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
-[efc-drift] 146 papers · 11 drift(s) detected:
-  README.md: claims 145 but actual is 146
-  README.md: claims 145 but actual is 146
-  README.md: claims 145 but actual is 146
-  README.md: claims 145 but actual is 146
-  README.md: claims 145 but actual is 146
-  AGENTS.md: claims 145 but actual is 146
-  AGENTS.md: claims 145 but actual is 146
-  Elevator_Pitch: claims 145 but actual is 146
-  Changelog: claims 145 but actual is 146
-  Changelog: claims 145 but actual is 146
-  AGENTS.md: claims 145 but actual is 146
-  [fixed] README.md: 145 → 146
-  [fixed] AGENTS.md: 145 → 146
-  [fixed] Elevator_Pitch: 145 → 146
-  [fixed] Changelog: 145 → 146
-[efc-drift] auto-fixed 4 file(s)
-[efc-drift] all drift resolved
+[efc-gen] 147 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 147 paper dirs · 0 errors · 0 warnings
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
+[efc-drift] 147 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -90,7 +83,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 118 total, 91 survived, 9 falsified
-  Papers: 146 (142 DOIs)
+  Papers: 147 (142 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -118,19 +111,19 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched; Public pages updated: Changelog, Elevator_Pitch.
+[efc-auto-changelog] 2 paper packages enriched.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 146 papers, 142 DOIs
+Repo: 147 papers, 142 DOIs
 Ledger: 118 tests, 9 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 141 close to repo 146
-  [OK]       Paper count 146 close to repo 146
+  [CRITICAL] Paper count '141' in Elevator Pitch != 147 in repo
+  [OK]       Paper count 147 close to repo 147
   [WARNING]  Test count '89' != total 118 or active 100
   [WARNING]  Test count '88' != total 118 or active 100
   [WARNING]  Test count '106' != total 118 or active 100
@@ -152,32 +145,35 @@ Ledger: 118 tests, 9 falsified
   [CRITICAL] 3 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
-  [OK]       README paper count 146 matches repo 146
-  [OK]       README paper count 146 matches repo 146
-  [OK]       README paper count 146 matches repo 146
-  [OK]       README paper count 146 matches repo 146
+  [OK]       README paper count 147 matches repo 147
+  [OK]       README paper count 147 matches repo 147
+  [OK]       README paper count 147 matches repo 147
+  [OK]       README paper count 147 matches repo 147
   [OK]       Stats categories sum to 118 = total_public
-  [OK]       DOI sync script present, 142/146 papers have DOIs
-  [OK]       102 papers have sealed predictions (298 total)
+  [OK]       DOI sync script present, 142/147 papers have DOIs
+  [OK]       103 papers have sealed predictions (301 total)
 
 --- Gap Analysis Coherence ---
-  [OK]       Gap Analysis Bottom Line coherent (11 closed rows checked)
+  [OK]       Gap Analysis Bottom Line coherent (13 closed rows checked)
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
   [OK]       Symbiose test count 118 matches ledger
-  [OK]       Symbiose paper count 146 matches repo
+  [OK]       Symbiose paper count 147 matches repo
   [OK]       Sealed freeze_1: α=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: α=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 4 errors, 7 warnings
+RESULT: 5 errors, 7 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
+  - Paper count '141' in Elevator Pitch != 147 in repo
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
+[full-sync] invariants: 0 error(s), 1 warning(s)
+  [WARN] §3 packages_below_10_10: expected=0 observed=2
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
@@ -185,10 +181,12 @@ Fix these before auto-commit:
 [efc-maintain] running efc_sync_dois.py --apply…
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_verify.py …
+[efc-maintain] running efc_ledger_autofill.py …
 [efc-maintain] running efc_drift_detector.py --fix…
 [efc-maintain] running efc_symbiose_snapshot.py --from-ledger…
 [efc-maintain] running efc_dataset_scanner.py …
 [efc-maintain] running efc_auto_changelog.py …
 [efc-maintain] running efc_cross_validate.py …
 [efc-maintain] CROSS-VALIDATION FAILED — public pages have critical errors
+[efc-maintain] running efc_full_sync.py --verify…
 [efc-maintain] --- done (issues) ---
