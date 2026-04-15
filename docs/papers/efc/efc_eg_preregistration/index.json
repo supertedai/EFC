@@ -1,21 +1,124 @@
 {
   "$schema": "./schema.json",
   "id": "efc-eg-preregistration",
-  "title": "Efc Eg Preregistration",
-  "description": "Auto-generated package for Efc Eg Preregistration.",
+  "title": "Pre-Registered EFC Prediction: EG Statistic from SO \u00d7 Euclid Cross-Correlation",
+  "description": "This preregistration freezes an Energy-Flow Cosmology (EFC) prediction for the EG gravitational-slip statistic to be tested with the Simons Observatory (SO) CMB lensing cross-correlated with Euclid DR2 galaxy data. It specifies the predicted enhancement EG^EFC / EG^GR = 1.086 \u00b1 0.012 at kc \u2248 0.05 h Mpc\u22121 and z \u2248 0.5, the dataset and estimator regime, and binding pass/fail (kill) criteria.",
   "version": "1.0",
   "date": "2026-04-15",
+  "doi": "",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Preregistration"
+    "EG statistic",
+    "gravitational slip",
+    "Simons Observatory",
+    "Euclid DR2",
+    "CMB lensing",
+    "galaxy clustering",
+    "redshift-space distortions",
+    "modified gravity",
+    "Horndeski EFT",
+    "Bellini\u2013Sawicki mapping",
+    "pre-registration"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "EG_statistic": {
+      "latex": "E_G(\\ell) = \\dfrac{C^{\\kappa g}_\\ell}{\\beta\\, C^{gg}_\\ell},\\quad \\beta = \\dfrac{f}{b}",
+      "description": "Operational definition of the EG statistic used in SO \u00d7 Euclid pipelines, combining CMB lensing\u2013galaxy cross-power, galaxy auto-power, and RSD via beta = f/b."
+    },
+    "EG_ratio_MG_to_GR": {
+      "latex": "\\dfrac{E_G^{\\rm MG}}{E_G^{\\rm GR}} = \\dfrac{\\Sigma}{\\mu\\, f/f_{\\rm GR}}",
+      "description": "In the quasi-static sub-horizon limit, EG in modified gravity depends on the ratio of lensing enhancement to growth suppression relative to GR."
+    },
+    "EFC_action": {
+      "latex": "S_{\\rm EFC} = \\int d^4x\\, \\sqrt{-g}\\, \\Big[ \\tfrac{1}{2} M_{\\rm Pl}^2 F(\\phi) R - \\tfrac{1}{2} K(\\rho) g^{\\mu\\nu} \\partial_\\mu \\phi \\, \\partial_\\nu \\phi - V(\\phi) - \\lambda \\, \\Box \\phi - \\Gamma(\\rho) \\Big]",
+      "description": "Relativistic EFC action yielding self-consistent growth (mu), lensing (Sigma), and slip (eta) modifications from a single variational principle."
+    },
+    "EFC_parameters": {
+      "latex": "\\mu \\simeq 0.94,\\quad \\Sigma \\simeq 1.05,\\quad \\eta \\simeq 1.10",
+      "description": "EFC benchmark values (frozen) producing growth suppression, lensing enhancement, and non-zero gravitational slip."
+    },
+    "EFC_prediction_ratio": {
+      "latex": "\\dfrac{E_G^{\\rm EFC}}{E_G^{\\rm GR}} = 1.086 \\pm 0.012 \\quad (k_c \\approx 0.05\\, h\\,\\mathrm{Mpc}^{-1},\\ z \\approx 0.5)",
+      "description": "Sealed quantitative prediction for the SO \u00d7 Euclid DR2 pipeline-weighted EG observable at the stated pivot scale and effective redshift."
+    }
+  },
+  "key_results": {
+    "main_finding": "Sealed preregistered prediction that SO \u00d7 Euclid DR2 will measure EG_obs / EG_GR = 1.086 \u00b1 0.012 at kc \u2248 0.05 h Mpc\u22121, z \u2248 0.5, with a pass window [1.03, 1.14] and a fail (kill) condition at EG_obs / EG_GR = 1.00 \u00b1 0.01 (>3\u03c3).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "mu0 = 0.94",
+      "Sigma0 = 1.05",
+      "eta = 1.10",
+      "alpha_T = 0",
+      "alpha_M \u221d S(a)",
+      "alpha_B \u221d dS/d ln a"
+    ],
+    "datasets_used": [
+      "Simons Observatory LAT CMB lensing reconstruction (\u03ba)",
+      "Euclid DR2 photometric galaxy catalogue (z \u2208 [0.3, 0.8], 5 tomographic bins)",
+      "\u2113-range: [50, 500]; pivot kc = 0.05 h Mpc\u22121; z_eff \u2248 0.5; survey-provided covariance and bias treatment"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Pipeline-level EG_obs / EG_GR = 1.086 \u00b1 0.012 at kc \u2248 0.05 h Mpc\u22121 and z_eff \u2248 0.5 (SO LAT \u03ba \u00d7 Euclid DR2, \u2113 \u2208 [50, 500], tomography-convolved).",
+      "falsifiable_by": "SO \u00d7 Euclid DR2 EG cross-correlation measurement with survey covariance and bias marginalisation as specified."
+    },
+    {
+      "id": "P2",
+      "statement": "Pass window: EG_obs / EG_GR \u2208 [1.03, 1.14] at \u2265 1\u03c3 indicates consistency with the preregistered EFC prediction.",
+      "falsifiable_by": "SO \u00d7 Euclid DR2 EG estimator result and reported uncertainty."
+    },
+    {
+      "id": "P3",
+      "statement": "Fail window (kill trigger): EG_obs / EG_GR = 1.00 \u00b1 0.01 at > 3\u03c3 indicates GR-like slip and falsifies the EFC gravitational-slip sector.",
+      "falsifiable_by": "SO \u00d7 Euclid DR2 EG measurement with total uncertainty yielding a >3\u03c3 consistency with unity."
+    }
+  ],
+  "kill_criteria": [
+    "KC1 (KC-EG-FAIL / FA4): If SO \u00d7 Euclid DR2 yields EG_obs / EG_GR = 1.00 \u00b1 0.01 at > 3\u03c3 (\u2113 \u2208 [50, 500], kc \u2248 0.05 h Mpc\u22121, z_eff \u2248 0.5; tomography-convolved), the EFC gravitational-slip sector is formally abandoned and recorded in the Validation Ledger.",
+    "KC2 (FA4 slip bound): If |eta \u2212 1| < 0.01 is established at > 3\u03c3 from the SO \u00d7 Euclid EG measurement (within the declared regime and pipeline), the EFC perturbation sector is falsified."
+  ],
+  "tier": "T1",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "gpr-efc",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "Global Parameter Registry freezing mu0, Sigma0, eta (governance source)"
+    },
+    {
+      "id": "case-b-eigenmodes",
+      "doi": "10.6084/m9.figshare.31990194",
+      "role": "Case B eigenmode analysis providing EG ratio at kc \u2248 0.05 h Mpc\u22121, z \u2248 0.5"
+    },
+    {
+      "id": "bs-mapping",
+      "doi": "10.6084/m9.figshare.32011407",
+      "role": "Bellini\u2013Sawicki EFT mapping confirming alpha_T = 0 and alpha_M, alpha_B evolution"
+    },
+    {
+      "id": "stage-iv-roadmap",
+      "doi": "10.6084/m9.figshare.31970904",
+      "role": "Stage-IV Roadmap defining FA4 kill criterion"
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Regime-Consistent Measurement Principle declaration"
+    }
+  ],
   "files": {
     "pdf": "efc_eg_preregistration.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/"
 }

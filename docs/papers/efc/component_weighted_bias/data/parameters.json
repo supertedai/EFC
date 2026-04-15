@@ -1,0 +1,95 @@
+{
+  "paper": {
+    "title": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of \u03c7\u00b2-based \u0394AIC statistics",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research",
+    "date": "April 2026",
+    "doi": null
+  },
+  "constants": {
+    "rc_default_kpc": {
+      "value": 3.0,
+      "unit": "kpc",
+      "description": "Default critical radius separating baryonic-inner from halo-outer regime"
+    },
+    "efc_screening_parameter_k": {
+      "value": 0.415,
+      "unit": "dimensionless",
+      "description": "EFC-R fixed screening parameter calibrated on full SPARC sample with LSB weight"
+    },
+    "bbulge_bias_threshold": {
+      "value": 0.4,
+      "unit": "dimensionless",
+      "description": "Threshold for bias condition (Eq. 6)"
+    }
+  },
+  "sparc_sample": {
+    "total_galaxies": 175,
+    "galaxies_no_bulge": {
+      "count": 143,
+      "fraction_percent": 81.7,
+      "description": "Galaxies with Bbulge = 0 (no bulge component in SPARC decomposition)"
+    },
+    "galaxies_with_bulge": {
+      "count": 32,
+      "description": "Galaxies with non-zero bulge component"
+    }
+  },
+  "statistical_results": {
+    "spearman_full_sample": {
+      "rho": 0.176,
+      "p_value": 0.02,
+      "description": "Spearman correlation between Bbulge and \u0394AIC for all 175 SPARC galaxies"
+    },
+    "spearman_latent_regime": {
+      "rho": 0.474,
+      "p_value": 0.013,
+      "description": "Spearman correlation in the LATENT (high-L) regime"
+    },
+    "efc_win_rate_low_bbulge": {
+      "threshold": "Bbulge < 0.1",
+      "win_or_tie_percent": 91.9,
+      "description": "EFC model wins or ties among galaxies with Bbulge < 0.1"
+    },
+    "efc_win_rate_high_bbulge": {
+      "threshold": "Bbulge > 0.2",
+      "win_or_tie_percent": 44.4,
+      "description": "EFC model wins or ties among galaxies with Bbulge > 0.2"
+    }
+  },
+  "equations": {
+    "eq1_proxy_chain": "\u03a6_model(r) \u2192 V_model(r) \u2192 \u03c7\u00b2 \u2192 \u0394AIC",
+    "eq2_component_mixing": "V_total\u00b2(r) = V_gas\u00b2 + V_disk\u00b2 + V_bulge\u00b2 + V_model\u00b2",
+    "eq3_chi_squared": "\u03c7\u00b2 = \u03a3_i (V_obs,i - V_model,i)\u00b2 / \u03c3_i\u00b2",
+    "eq4_inner_weight_fraction_B": "B = \u03a3_{r_i < r_c} w_i / \u03a3_i w_i,  w_i = \u03c3_i\u207b\u00b2",
+    "eq5_component_weighted_bias": "B_bulge = \u03a3_i w_i\u00b7(V_bulge,i\u00b2/V_total,i\u00b2) / \u03a3_i w_i",
+    "eq6_bias_condition": "Bbulge > 0.4 AND \u0394AIC_outer has opposite sign to \u0394AIC_global"
+  },
+  "physical_scales": {
+    "bulge_dominated_inner_radius_kpc": 3.0,
+    "halo_dominant_radius_kpc": 5.0,
+    "bulge_dominated_hubble_types": [
+      "Sa",
+      "Sb"
+    ]
+  },
+  "rcmb_protocol": {
+    "description": "Report \u0394AIC_inner and \u0394AIC_outer separately to diagnose component-weighted bias",
+    "split_radius_kpc": 3.0
+  },
+  "models_affected": [
+    "NFW",
+    "MOND/RAR",
+    "EFC"
+  ],
+  "data_source": {
+    "catalogue": "SPARC (Lelli et al. 2016)",
+    "photometry": "Spitzer 3.6 \u03bcm",
+    "components": [
+      "V_gas",
+      "V_disk",
+      "V_bulge"
+    ],
+    "cross_reference": "Kill-Test v6 (Magnusson 2026b)"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "_description": "Numerical values from 'EFC EG Pre-Registration' (Magnusson, April 2026)",
+  "frozen_parameters": {
+    "mu0": {
+      "value": 0.94,
+      "description": "Modified-gravity growth parameter (Poisson equation), entropy stiffness"
+    },
+    "Sigma0": {
+      "value": 1.05,
+      "description": "Modified-gravity lensing parameter, flow anisotropy"
+    },
+    "eta0": {
+      "value": 1.1,
+      "description": "Gravitational slip parameter"
+    },
+    "source": "Global Parameter Registry DOI 31876324"
+  },
+  "survival_valley": {
+    "mu_min": 0.93,
+    "mu_max": 0.96,
+    "Sigma_min": 1.03,
+    "Sigma_max": 1.07,
+    "description": "Parameter ranges spanning the EFC survival valley"
+  },
+  "prediction": {
+    "EG_EFC_over_EG_GR": {
+      "central": 1.086,
+      "uncertainty_1sigma": 0.012,
+      "description": "Eq. 7: frozen EFC prediction for EG ratio at kc=0.05 h/Mpc, z~0.5"
+    }
+  },
+  "pivot_point": {
+    "kc_hMpc": 0.05,
+    "z_eff": 0.5,
+    "description": "Pivot scale and effective redshift for the EG prediction"
+  },
+  "pass_fail_criteria": {
+    "KC_EG_PASS": {
+      "lower": 1.03,
+      "upper": 1.14,
+      "confidence": ">1sigma",
+      "regime": "FA4",
+      "consequence": "Consistent with EFC prediction",
+      "description": "Table 3: frozen pass/fail window for observed EG ratio"
+    }
+  },
+  "dataset_specification": {
+    "CMB_lensing": {
+      "instrument": "Simons Observatory LAT",
+      "observable": "kappa reconstruction",
+      "ell_range": [
+        100,
+        2000
+      ]
+    },
+    "galaxy_sample": {
+      "survey": "Euclid DR2 photometric catalogue",
+      "z_range": [
+        0.3,
+        0.8
+      ],
+      "tomographic_bins": 5
+    },
+    "analysis_ell_range": [
+      50,
+      500
+    ],
+    "k_max_hMpc": 0.2,
+    "tomographic_dilution_percent": "30-40",
+    "expected_date": "2027-2028"
+  },
+  "EFT_mapping": {
+    "alphaT": {
+      "value": 0.0,
+      "description": "Tensor speed excess, exactly zero in EFC (Bellini-Sawicki mapping DOI 32011407)"
+    },
+    "alphaM": "proportional to S(a) (entropy function)",
+    "alphaB": "proportional to dS/d(ln a)"
+  },
+  "cosmological_background": {
+    "description": "Standard LCDM background assumed for EG^GR reference",
+    "Omega_m0_fiducial": 0.315,
+    "growth_index_gamma_GR": 0.55
+  },
+  "EG_GR_definition": "Omega_m(z) / f(z)",
+  "EG_MG_relation": "EG^MG = EG^GR * Sigma / (mu * f/f_GR)  [Eq. 2]",
+  "discriminating_models": {
+    "EFC": {
+      "mu_lt_1": true,
+      "Sigma_gt_1": true,
+      "eta_ne_1": true,
+      "EG_ratio_gt_1": true
+    },
+    "massive_neutrinos": {
+      "mu_lt_1": true,
+      "Sigma_gt_1": false,
+      "eta_ne_1": false,
+      "EG_ratio_gt_1": false
+    },
+    "f_R_gravity": {
+      "mu_lt_1": false,
+      "Sigma_gt_1": true,
+      "eta_ne_1": true,
+      "EG_ratio_gt_1": false
+    },
+    "Horndeski_general": {
+      "mu_lt_1": "possible",
+      "Sigma_gt_1": "possible",
+      "eta_ne_1": "possible",
+      "EG_ratio_gt_1": "possible"
+    },
+    "w0waCDM": {
+      "mu_lt_1": false,
+      "Sigma_gt_1": false,
+      "eta_ne_1": false,
+      "EG_ratio_gt_1": false
+    }
+  },
+  "governance": {
+    "pre_registration_date": "2026-04-15",
+    "no_post_hoc_adjustment": true,
+    "falsification_binding": true,
+    "results_reported_in": "EFC Validation Ledger"
+  }
+}
