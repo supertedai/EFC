@@ -1,5 +1,5 @@
 {
-  "title": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of \u03c72-based \u2206AIC statistics",
+  "title": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of χ2-based ∆AIC statistics",
   "short_id": "component-weighted-bias",
   "version": "1.0",
   "date": "2026-04-15",
@@ -10,7 +10,7 @@
   },
   "license": "CC-BY-4.0",
   "doi": "",
-  "abstract": "Audits the standard rotation-curve model selection pipeline (\u03a6 \u2192 V(r) \u2192 \u03c72 \u2192 \u2206AIC) and shows that \u03c72 weighting induces a structural, component-weighted bias in bulge-dominated galaxies. Introduces a bulge-bias metric B_bulge, quantifies its impact across the SPARC 175 sample, and proposes an RCMB-compliant protocol that reports \u2206AICinner and \u2206AICouter separately to avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance.",
+  "abstract": "Audits the standard rotation-curve model selection pipeline (Φ → V(r) → χ2 → ∆AIC) and shows that χ2 weighting induces a structural, component-weighted bias in bulge-dominated galaxies. Introduces a bulge-bias metric B_bulge, quantifies its impact across the SPARC 175 sample, and proposes an RCMB-compliant protocol that reports ∆AICinner and ∆AICouter separately to avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance.",
   "keywords": [
     "rotation curves",
     "model selection",
@@ -29,5 +29,8 @@
     "pdf": "component_weighted_bias.pdf",
     "readme": "README.md"
   },
-  "paper": {}
+  "paper": {
+    "doi": "10.6084/m9.figshare.32019723",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.32019723"
+  }
 }
