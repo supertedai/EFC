@@ -21,8 +21,13 @@ The single script that does EVERYTHING when a PDF is uploaded:
    - Gap Analysis (if closes a gap)
 5. Updates README.md stats
 
-Requires: OPENAI_API_KEY environment variable.
+Requires: at least ONE of OPENAI_API_KEY or ANTHROPIC_API_KEY.
 Requires: poppler-utils (pdftotext) for PDF extraction.
+
+LLM providers (in priority order, picks whichever has a key):
+  1. OpenAI GPT-5     (env: OPENAI_API_KEY, model: OPENAI_MODEL=gpt-5)
+  2. Anthropic Claude (env: ANTHROPIC_API_KEY, model: ANTHROPIC_MODEL=claude-opus-4-6)
+Set EFC_LLM_PROVIDER=openai|anthropic to force one if both keys are set.
 
 Usage:
   python3 scripts/maintenance/efc_ai_brain.py
@@ -51,6 +56,8 @@ PUBLIC_PAGES = {
 }
 
 MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-6")
+LLM_PROVIDER_OVERRIDE = os.environ.get("EFC_LLM_PROVIDER", "").strip().lower()
 MAX_PDF_CHARS = 8000
 AUTHOR = "Morten Magnusson"
 ORCID = "0009-0002-4860-5095"
@@ -213,19 +220,17 @@ def write_page(key, text):
 # GPT-5 API
 # ═══════════════════════════════════════════════════════════
 
-def call_gpt5(prompt, max_tokens=8000, retries=4):
-    """Call GPT-5 API with retry logic for transient failures.
+def _strip_fences(content):
+    content = re.sub(r'^```(?:json)?\s*', '', content.strip())
+    content = re.sub(r'\s*```$', '', content.strip())
+    return content
 
-    Uses exponential backoff: 5s, 10s, 20s, 40s between retries.
-    """
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    if not api_key:
-        print("    [FAIL] OPENAI_API_KEY empty at call time")
-        return None
+
+def _call_openai(prompt, max_tokens, retries, api_key):
+    """POST to OpenAI chat/completions. Returns text or None."""
     import urllib.request, urllib.error, ssl
     import time as _time
     ctx = ssl.create_default_context()
-
     for attempt in range(1, retries + 1):
         body = json.dumps({
             "model": MODEL,
@@ -248,15 +253,12 @@ def call_gpt5(prompt, max_tokens=8000, retries=4):
                 finish = choice.get("finish_reason", "")
                 if not content:
                     reason = f"finish_reason={finish}" if finish else "no content"
-                    print(f"    [WARN] GPT-5 empty ({reason}) attempt {attempt}/{retries}")
+                    print(f"    [WARN] OpenAI empty ({reason}) attempt {attempt}/{retries}")
                     if attempt < retries:
                         _time.sleep(5 * (2 ** (attempt - 1)))
                         continue
                     return None
-                # Strip markdown fences
-                content = re.sub(r'^```(?:json)?\s*', '', content.strip())
-                content = re.sub(r'\s*```$', '', content.strip())
-                return content
+                return _strip_fences(content)
         except urllib.error.HTTPError as e:
             body_text = ""
             try:
@@ -265,19 +267,132 @@ def call_gpt5(prompt, max_tokens=8000, retries=4):
                 pass
             if e.code in (429, 500, 502, 503) and attempt < retries:
                 wait = 5 * (2 ** (attempt - 1))
-                print(f"    [RETRY] HTTP {e.code} — waiting {wait}s ({attempt}/{retries})")
+                print(f"    [RETRY] OpenAI HTTP {e.code} — waiting {wait}s ({attempt}/{retries})")
                 _time.sleep(wait)
                 continue
-            print(f"    [FAIL] GPT-5 HTTP {e.code}: {e.reason} -- {body_text}")
+            print(f"    [FAIL] OpenAI HTTP {e.code}: {e.reason} -- {body_text}")
             return None
         except Exception as e:
             if attempt < retries:
                 wait = 5 * (2 ** (attempt - 1))
-                print(f"    [RETRY] {type(e).__name__} — waiting {wait}s ({attempt}/{retries})")
+                print(f"    [RETRY] OpenAI {type(e).__name__} — waiting {wait}s ({attempt}/{retries})")
                 _time.sleep(wait)
                 continue
-            print(f"    [FAIL] GPT-5: {type(e).__name__}: {e}")
+            print(f"    [FAIL] OpenAI: {type(e).__name__}: {e}")
     return None
+
+
+def _call_anthropic(prompt, max_tokens, retries, api_key):
+    """POST to Anthropic messages API. Returns text or None."""
+    import urllib.request, urllib.error, ssl
+    import time as _time
+    ctx = ssl.create_default_context()
+    # Anthropic caps max_tokens per model; 8192 is safe across 4.x family.
+    req_max = min(max_tokens, 8192)
+    for attempt in range(1, retries + 1):
+        body = json.dumps({
+            "model": ANTHROPIC_MODEL,
+            "max_tokens": req_max,
+            "messages": [{"role": "user", "content": prompt}],
+        })
+        req = urllib.request.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=body.encode(),
+            headers={
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, context=ctx, timeout=300) as resp:
+                data = json.loads(resp.read())
+                # content is a list of blocks; collect text blocks
+                blocks = data.get("content", [])
+                text = "".join(
+                    b.get("text", "") for b in blocks if b.get("type") == "text"
+                )
+                stop = data.get("stop_reason", "")
+                if not text:
+                    print(f"    [WARN] Claude empty (stop_reason={stop}) attempt {attempt}/{retries}")
+                    if attempt < retries:
+                        _time.sleep(5 * (2 ** (attempt - 1)))
+                        continue
+                    return None
+                return _strip_fences(text)
+        except urllib.error.HTTPError as e:
+            body_text = ""
+            try:
+                body_text = e.read().decode()[:300]
+            except Exception:
+                pass
+            if e.code in (429, 500, 502, 503, 529) and attempt < retries:
+                wait = 5 * (2 ** (attempt - 1))
+                print(f"    [RETRY] Claude HTTP {e.code} — waiting {wait}s ({attempt}/{retries})")
+                _time.sleep(wait)
+                continue
+            print(f"    [FAIL] Claude HTTP {e.code}: {e.reason} -- {body_text}")
+            return None
+        except Exception as e:
+            if attempt < retries:
+                wait = 5 * (2 ** (attempt - 1))
+                print(f"    [RETRY] Claude {type(e).__name__} — waiting {wait}s ({attempt}/{retries})")
+                _time.sleep(wait)
+                continue
+            print(f"    [FAIL] Claude: {type(e).__name__}: {e}")
+    return None
+
+
+def _select_providers():
+    """Return ordered list of (name, api_key) tuples to try.
+
+    Priority: EFC_LLM_PROVIDER override > OpenAI > Anthropic.
+    Providers without a key are skipped. If override points at a
+    provider with no key, falls through to the other.
+    """
+    openai_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+    providers = []
+    if LLM_PROVIDER_OVERRIDE == "anthropic":
+        if anthropic_key:
+            providers.append(("anthropic", anthropic_key))
+        if openai_key:
+            providers.append(("openai", openai_key))
+    else:
+        if openai_key:
+            providers.append(("openai", openai_key))
+        if anthropic_key:
+            providers.append(("anthropic", anthropic_key))
+    return providers
+
+
+def call_llm(prompt, max_tokens=8000, retries=4):
+    """Call an LLM (OpenAI GPT-5 preferred, Anthropic Claude fallback).
+
+    Returns text content, or None if all configured providers fail.
+    Providers are selected based on which API keys are present; if
+    the primary provider errors out, the next one is tried with the
+    same prompt before giving up.
+    """
+    providers = _select_providers()
+    if not providers:
+        print("    [FAIL] No LLM key available (set OPENAI_API_KEY or ANTHROPIC_API_KEY)")
+        return None
+
+    for name, key in providers:
+        if name == "openai":
+            result = _call_openai(prompt, max_tokens, retries, key)
+        else:
+            result = _call_anthropic(prompt, max_tokens, retries, key)
+        if result:
+            return result
+        if len(providers) > 1:
+            print(f"    [INFO] {name} exhausted — trying fallback provider")
+    return None
+
+
+# Backward-compat alias so older imports still work.
+call_gpt5 = call_llm
 
 
 def _repair_json(text):
@@ -408,7 +523,7 @@ IMPORTANT:
 - Extract REAL equations, results, predictions from the paper text. Do not invent data.
 - Preserve any existing good data from the EXISTING index.json above."""
 
-    result = call_gpt5(prompt)
+    result = call_llm(prompt)
     if not result:
         print(f"    [FAIL] GPT-5 returned no response")
         return None
@@ -550,7 +665,7 @@ Rules:
 - data_json should contain every numerical value mentioned in the paper
 - Keep each file under 200 lines"""
 
-    result = call_gpt5(prompt, max_tokens=6000)
+    result = call_llm(prompt, max_tokens=6000)
     if not result:
         return
 
@@ -643,7 +758,7 @@ Respond with ONLY the HTML <li> element to insert. Example format:
 
 Use &mdash; not —. DOI links: <a href="https://doi.org/DOI">short-id</a>"""
 
-        result = call_gpt5(prompt, max_tokens=2000)
+        result = call_llm(prompt, max_tokens=2000)
         if result:
             result = result.strip()
             if result.startswith("<li"):
@@ -675,7 +790,7 @@ EXISTING TABLE ROW FORMAT (match this exactly):
 
 Respond with ONLY the <tr>...</tr> elements, one per paper. Use &Delta; not Δ, &mdash; not —."""
 
-            result = call_gpt5(prompt, max_tokens=3000)
+            result = call_llm(prompt, max_tokens=3000)
             if result and "<tr>" in result:
                 idx_pos = ledger_text.rfind("</tbody>")
                 if idx_pos >= 0:
@@ -706,7 +821,7 @@ Find any number that represents the paper count or test count and update it.
 Respond with JSON: {{"old_text": "text to find", "new_text": "replacement text"}}
 If no update needed, respond with {{"old_text": null, "new_text": null}}"""
 
-        result = call_gpt5(prompt, max_tokens=500)
+        result = call_llm(prompt, max_tokens=500)
         if result:
             try:
                 upd = json.loads(result)
@@ -736,7 +851,7 @@ If any paper adds a new dataset, pipeline, or prediction to track, respond with:
 
 If no update needed: {{"html": null}}"""
 
-            result = call_gpt5(prompt, max_tokens=1000)
+            result = call_llm(prompt, max_tokens=1000)
             if result:
                 try:
                     r = json.loads(result)
@@ -767,7 +882,7 @@ If any paper should be added, respond with:
 
 If no update: {{"html": null}}"""
 
-            result = call_gpt5(prompt, max_tokens=1000)
+            result = call_llm(prompt, max_tokens=1000)
             if result:
                 try:
                     r = json.loads(result)
@@ -856,7 +971,7 @@ For EACH gap that is closed by a new paper, respond with a JSON array of updates
 If no gaps are closed: respond with []
 Be precise with old_text — it must match exactly."""
 
-        result = call_gpt5(prompt, max_tokens=2000)
+        result = call_llm(prompt, max_tokens=2000)
         if result:
             try:
                 updates = json.loads(result)
@@ -950,24 +1065,28 @@ def main():
             except ValueError:
                 pass
 
-    api_key = os.environ.get("OPENAI_API_KEY", "")
+    providers = _select_providers()
+    has_any_key = bool(providers)
+    provider_labels = {"openai": f"OpenAI/{MODEL}", "anthropic": f"Anthropic/{ANTHROPIC_MODEL}"}
+    provider_summary = (
+        " → ".join(provider_labels[p] for p, _ in providers) if providers else "NONE"
+    )
 
     pdftotext_bin = _find_pdftotext()
 
     print("=" * 60)
     print("EFC AI BRAIN — Full Autonomous Processing")
-    print(f"Model: {MODEL}")
+    print(f"LLM providers: {provider_summary}")
     print(f"Mode: {'DRY-RUN' if dry_run else 'LIVE'}")
-    print(f"API key: {'SET' if api_key else 'NOT SET'}")
     print(f"pdftotext: {pdftotext_bin or 'NOT FOUND'}")
     print("=" * 60)
 
-    if not api_key and not dry_run:
-        print("[SKIP] OPENAI_API_KEY not set.")
+    if not has_any_key and not dry_run:
+        print("[SKIP] No LLM key set (need OPENAI_API_KEY or ANTHROPIC_API_KEY).")
         return 0
 
-    if not api_key and dry_run:
-        print("[DRY-RUN] OPENAI_API_KEY not set — showing what would be processed.\n")
+    if not has_any_key and dry_run:
+        print("[DRY-RUN] No LLM key set — showing what would be processed.\n")
 
     # Step 1: Find papers needing 10/10 enrichment
     needs_enrichment = find_papers_needing_enrichment()
@@ -984,7 +1103,7 @@ def main():
             missing = p.get("missing", [])
             print(f"  {p['directory']}  (missing: {', '.join(missing)})")
             if dry_run:
-                print("    [DRY-RUN] Would enrich with GPT-5")
+                print(f"    [DRY-RUN] Would enrich via {provider_summary}")
                 continue
             # Only call GPT-5 for metadata if index.json fields are missing
             meta_missing = [m for m in missing if m not in ("src/", "examples/", "data/")]
