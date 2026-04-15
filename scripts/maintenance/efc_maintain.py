@@ -42,6 +42,7 @@ AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
 DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
 LEDGER_AUTOFILL = os.path.join(HERE, "efc_ledger_autofill.py")
+FULL_SYNC = os.path.join(HERE, "efc_full_sync.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -88,6 +89,11 @@ def main() -> int:
     rc_xval = run(CROSS_VALIDATE)
     if rc_xval == 1:
         print("[efc-maintain] CROSS-VALIDATION FAILED — public pages have critical errors")
+    # Step 10: FULL-SYNC INVARIANTS — fixpoint convergence + 31-section audit.
+    # Non-blocking (warnings only); errors here are reported but do not change
+    # the maintain exit code, since efc_verify and efc_cross_validate are the
+    # authoritative gates. This step gives a forward-looking view of drift.
+    run(FULL_SYNC, "--verify")
     status = "clean" if rc_verify == 0 and rc_sync == 0 and rc_xval == 0 else "issues"
     print(f"[efc-maintain] --- done ({status}) ---")
     return 1 if (rc_verify != 0 or rc_sync != 0) else 0
