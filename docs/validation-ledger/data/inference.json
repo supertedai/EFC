@@ -1,12 +1,12 @@
 {
   "name": "EFC Bayesian Inference Results",
   "version": "3.0",
-  "generated_at": "2026-04-14T19:54:09Z",
+  "generated_at": "2026-04-15T01:54:44Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
       "name": "EFC Inference: bao_boss_dr12",
-      "result": "\u0394\u03c7\u00b2=\u22127.77 (EFC preferred, k_eff=0)",
+      "result": "Δχ²=−7.77 (EFC preferred, k_eff=0)",
       "status": "pass",
       "chi2_reduced": 2.18,
       "converged": true,
@@ -24,19 +24,12 @@
       "posterior_summary": {},
       "engine_status": "active",
       "engine_note": null,
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31314922",
-          "role": "primary",
-          "title": "Covariance-Aware BAO Consistency Test of EFC Using BOSS DR12"
-        }
-      ]
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_bao_desi_y1",
       "name": "EFC Inference: bao_desi_y1",
-      "result": "\u0394\u03c7\u00b2=\u221222.01 (EFC preferred, 5-fold CV all pass)",
+      "result": "Δχ²=−22.01 (EFC preferred, 5-fold CV all pass)",
       "status": "pass",
       "chi2_reduced": null,
       "converged": true,
@@ -52,21 +45,9 @@
         "r_d": 147.09
       },
       "posterior_summary": {},
-      "engine_status": "doi_anchored",
-      "engine_note": "DOI-anchored: results sourced from registered Figshare papers (see doi_sources). Native EFC physics implementation pending, but conclusions are supported by peer-reviewed DOI data.",
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31230703",
-          "role": "primary",
-          "title": "EFC: Regime-Transition Fit to DESI DR2 BAO"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31231522",
-          "role": "corroborating",
-          "title": "Independent Validation of EFC BAO Predictions (DESI Cross-check)"
-        }
-      ]
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_cluster_tng",
@@ -81,25 +62,13 @@
       "best_fit": {},
       "posterior_summary": {},
       "engine_status": "self_consistent",
-      "engine_note": "Self-consistent prediction (observed=predicted) \u2014 awaiting EFC physics",
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31286368",
-          "role": "primary",
-          "title": "Pre-Registered Test of Entropy-Structure Coupling in Simulated + Observed Galaxy Clusters"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31267297",
-          "role": "corroborating",
-          "title": "Triangulation Test for Thermodynamic Contributions to Gravitational Lensing"
-        }
-      ]
+      "engine_note": "Self-consistent prediction (observed=predicted) — awaiting EFC physics",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
-      "result": "\u03b1=\u22121.00\u00b10.46 (2.20\u03c3, LOO 7/7, \u0394AIC=\u22122.91)",
+      "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
       "status": "pass",
       "chi2_reduced": null,
       "converged": true,
@@ -111,26 +80,14 @@
         "sigma8": 0.811
       },
       "posterior_summary": {},
-      "engine_status": "doi_anchored",
-      "engine_note": "DOI-anchored: results sourced from registered Figshare papers (see doi_sources). Native EFC physics implementation pending, but conclusions are supported by peer-reviewed DOI data.",
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31955871",
-          "role": "primary",
-          "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f\u03c38"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31292827",
-          "role": "corroborating",
-          "title": "From RSD to Clusters: Parameter-Locked Test of Late-Time Structure Growth"
-        }
-      ]
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_hz_chronometers",
       "name": "EFC Inference: hz_chronometers",
-      "result": "CC consistency \u0394\u03c7\u00b2=\u22120.17 (sub-statistical)",
+      "result": "CC consistency Δχ²=−0.17 (sub-statistical)",
       "status": "neutral",
       "chi2_reduced": null,
       "converged": true,
@@ -145,26 +102,14 @@
         "wa": 0.0
       },
       "posterior_summary": {},
-      "engine_status": "doi_anchored",
-      "engine_note": "DOI-anchored: results sourced from registered Figshare papers (see doi_sources). Native EFC physics implementation pending, but conclusions are supported by peer-reviewed DOI data.",
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31215613",
-          "role": "primary",
-          "title": "EFC: Unified Analysis of BAO, SN Ia, and RSD"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31304980",
-          "role": "corroborating",
-          "title": "One-Parameter, Four-Channel Consistency Test for EFC Background Coupling"
-        }
-      ]
+      "engine_status": "lcdm_stub",
+      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_shear_kids1000",
       "name": "EFC Inference: shear_kids1000",
-      "result": "KiDS \u0394\u03c7\u00b2=\u221250.9 (Case A), DES Y6 P3 PASS at 0.3\u03c3",
+      "result": "KiDS Δχ²=−50.9 (Case A), DES Y6 P3 PASS at 0.3σ",
       "status": "partial",
       "chi2_reduced": 10.389179308483973,
       "converged": true,
@@ -180,24 +125,7 @@
       "posterior_summary": {},
       "engine_status": "active",
       "engine_note": null,
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31271917",
-          "role": "primary",
-          "title": "Regime-Activated Lensing Response Improves Fit to KiDS-1000 Cosmic Shear"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31951992",
-          "role": "corroborating",
-          "title": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31188193",
-          "role": "corroborating",
-          "title": "EFC Weak Lensing Phenomenology: \u03bc(k,z) Framework and DES Y6 Validation"
-        }
-      ]
+      "mcmc_status": "not_run"
     }
   ]
 }
