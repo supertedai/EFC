@@ -1,0 +1,364 @@
+\documentclass[11pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks,
+  pdftitle={EFC Pre-Registered Prediction: EG Statistic from SO x Euclid},
+  pdfauthor={Morten Magnusson}]{hyperref}
+
+\definecolor{eblue}{RGB}{0,70,140}
+\titleformat{\section}{\large\bfseries\color{eblue}}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{eblue}}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\small Magnusson --- EFC SO$\times$Euclid $E_G$ Pre-Registration --- Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% Title block
+\begin{center}
+{\LARGE\bfseries\color{eblue}
+Pre-Registered EFC Prediction:\\[4pt]
+$E_G$ Statistic from SO\,$\times$\,Euclid Cross-Correlation}
+
+\vspace{8pt}
+{\large Morten Magnusson}\\[2pt]
+{\small Symbiose Research, Sandnes, Norway\\
+ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095}\\
+April 2026 \quad CC-BY-4.0}
+
+\vspace{6pt}
+\textbf{Pre-registration date:} 15 April 2026\quad
+\textbf{Data expected:} SO\,$\times$\,Euclid DR2 ($\sim$2027--2028)
+\end{center}
+
+\vspace{6pt}
+\begin{quote}
+\textbf{Abstract.}
+Energy-Flow Cosmology (EFC) predicts a specific enhancement of the
+gravitational slip statistic $E_G$ relative to $\Lambda$CDM, arising
+from the simultaneous action of $\mu < 1$ (growth suppression) and
+$\Sigma > 1$ (lensing enhancement) derived self-consistently from a single variational
+action. We pre-register the quantitative prediction
+$E_G^{\rm EFC}/E_G^{\rm GR} = 1.086 \pm 0.012$, together with frozen
+pass/fail criteria, the dataset specification (Simons Observatory
+LAT\,$\times$\,Euclid DR2), and explicit falsification conditions.
+All numerical values are derived from independently archived,
+timestamped sources. This document constitutes a sealed prediction
+prior to the availability of the targeted observational data.
+\end{quote}
+
+\newpage
+\section{1\quad Scope and Governance}
+
+This document records a frozen, pre-registered prediction for the
+$E_G$ gravitational slip statistic, to be tested against the
+cross-correlation of Simons Observatory (SO) CMB lensing with
+Euclid DR2 galaxy clustering and weak lensing data.
+
+\textbf{Governance rules (frozen at pre-registration):}
+\begin{itemize}[itemsep=2pt]
+\item No post-hoc adjustment of the predicted value or pass/fail
+  window is permitted after this document is deposited.
+\item The EFC parameters ($\mu_0 = 0.94$, $\Sigma_0 = 1.05$,
+  $\eta = 1.10$) are frozen in the Global Parameter Registry
+  (\href{https://doi.org/10.6084/m9.figshare.31876324}{DOI 31876324}).
+\item Falsification is binding: if the kill criterion is met, the
+  EFC gravitational slip sector is formally abandoned.
+\item All results --- including failures --- will be reported in the
+  EFC Validation Ledger within one revision cycle.
+\end{itemize}
+
+\textbf{What this prediction does \emph{not} claim:}
+This is a consistency test, not a discovery claim. A result consistent
+with the EFC prediction does not constitute confirmation of EFC;
+it constitutes non-rejection of the gravitational-slip sector.
+
+\section{2\quad Physical Basis}
+
+\subsection{2.1\quad The $E_G$ Observable}
+
+The $E_G$ statistic combines CMB lensing, galaxy--galaxy lensing,
+and redshift-space distortions (RSD) to probe the ratio of the
+lensing potential to the velocity growth rate:
+
+\begin{equation}
+E_G(\ell) = \frac{C_\ell^{\kappa g}}{\beta \, C_\ell^{gg}},
+\qquad \beta = \frac{f}{b},
+\label{eq:EG}
+\end{equation}
+
+where $C_\ell^{\kappa g}$ is the CMB-lensing$\times$galaxy
+cross-power spectrum, $C_\ell^{gg}$ the galaxy auto-power,
+$f$ the linear growth rate, and $b$ the galaxy bias.
+In general relativity, $E_G^{\rm GR} = \Omega_m(z)/f(z)$.
+In practice, the observable corresponds to a survey-weighted
+estimator and may differ from this idealised expression; all
+predictions refer to the pipeline-level definition used in
+SO\,$\times$\,Euclid analyses.
+The reference quantity $E_G^{\rm GR}$ is evaluated within a
+standard $\Lambda$CDM background as used in survey pipelines.
+The EFC prediction is therefore defined relative to this
+operational baseline, not as a claim about the fundamental
+validity of the $\Lambda$CDM background itself.
+Both $E_G^{\rm obs}$ and $E_G^{\rm GR}$ are defined within
+the same survey pipeline and estimator framework to avoid
+inconsistencies arising from mixed definitions.
+For a modified gravity theory with $\mu \ne 1$ and $\Sigma \ne 1$:
+
+\begin{equation}
+E_G^{\rm MG} = E_G^{\rm GR} \times \frac{\Sigma}{\mu \, f / f_{\rm GR}},
+\label{eq:EGMG}
+\end{equation}
+
+making $E_G$ the \emph{orthogonal probe} to weak lensing alone:
+it is sensitive to the ratio $\Sigma/\mu$, not to each separately.
+This relation holds in the quasi-static, sub-horizon regime relevant
+for the adopted $\ell$-range, and follows from the modified Poisson
+and lensing equations in that limit; see Bellini \& Sawicki (2014)
+for the general EFT mapping.
+
+\subsection{2.2\quad EFC Prediction Derivation}
+
+The EFC Relativistic Action
+(\href{https://doi.org/10.6084/m9.figshare.31876324}{DOI 31876324})
+derives from a single variational principle:
+\begin{equation}
+S_{\rm EFC} = \int d^4x\,\sqrt{-g}\,\Bigl[
+\tfrac{1}{2}M_{\rm Pl}^2 F(\phi)\,R
+- \tfrac{1}{2}K(\rho)\,g^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi
+- V(\phi) - \lambda\bigl(\Box\phi - \Gamma(\rho)\bigr)
+\Bigr].
+\label{eq:action}
+\end{equation}
+
+This action produces simultaneously:
+\begin{align}
+\mu &\approx 0.94 \quad (\text{growth suppression via entropy stiffness}),\\
+\Sigma &\approx 1.05 \quad (\text{lensing enhancement via flow anisotropy}),\\
+\eta &\approx 1.10 \quad (\text{gravitational slip, non-zero}).
+\end{align}
+
+From the Case~B eigenmode analysis
+(\href{https://doi.org/10.6084/m9.figshare.31990194}{DOI 31990194}),
+the $E_G$ ratio at $k_c \approx 0.05\,h\,{\rm Mpc}^{-1}$ and
+$z \approx 0.5$ evaluates to:
+
+\begin{equation}
+\boxed{
+\frac{E_G^{\rm EFC}}{E_G^{\rm GR}} = 1.086 \pm 0.012
+}
+\label{eq:prediction}
+\end{equation}
+
+where the uncertainty covers the survival valley
+$\mu \in [0.93, 0.96]$, $\Sigma \in [1.03, 1.07]$.
+The Bellini--Sawicki mapping
+(\href{https://doi.org/10.6084/m9.figshare.32011407}{DOI 32011407})
+confirms $\alpha_T = 0$ exactly and derives
+$\alpha_M \propto S(a)$, $\alpha_B \propto dS/d\ln a$,
+establishing EFC compatibility with the Euclid EFT pipeline.
+
+\subsection{2.3\quad Why $E_G$ is the Key Discriminant}
+
+\begin{table}[!ht]
+\centering
+\caption{Discriminating power of $E_G$ across competing models.}
+\vspace{4pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & $\mu < 1$ & $\Sigma > 1$ & $\eta \ne 1$ &
+  $E_G^{\rm obs}/E_G^{\rm GR} > 1$ \\
+\midrule
+EFC                 & \checkmark & \checkmark & \checkmark & \checkmark \\
+Massive neutrinos   & \checkmark &            &            &            \\
+$f(R)$ gravity      &            &            &            &            \\
+Horndeski (general) & possible   & possible   &            & possible   \\
+$w_0 w_a$CDM        &            &            &            &            \\
+\bottomrule
+\end{tabular}
+\label{tab:discriminant}
+\end{table}
+
+No currently established model listed in Table~\ref{tab:discriminant} produces
+$\mu < 1$ \emph{and} $\Sigma > 1$ \emph{and} $\eta \ne 1$
+simultaneously from a single action. A detection of
+$E_G^{\rm obs}/E_G^{\rm GR} \approx 1.09$ would provide strong
+evidence in favour of EFC-class theories over all alternatives
+in the table.
+
+\newpage
+\section{3\quad Dataset Specification}
+
+\begin{table}[!ht]
+\centering
+\caption{Pre-registered dataset specification.}
+\vspace{4pt}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Element & Specification \\
+\midrule
+CMB lensing & Simons Observatory LAT $\kappa$ reconstruction,
+  $\ell \in [100, 2000]$ \\
+Galaxy sample & Euclid DR2 photometric catalogue,
+  $z \in [0.3, 0.8]$, 5 tomographic bins \\
+$\ell$-range & $\ell \in [50, 500]$ (linear regime; $k < 0.2\,h\,{\rm Mpc}^{-1}$) \\
+Pivot scale & $k_c = 0.05\,h\,{\rm Mpc}^{-1}$, $z_{\rm eff} = 0.5$ \\
+Bias treatment & Survey-provided NLA + linear bias marginalisation \\
+Covariance & Survey-provided covariance matrices; no EFC nuisance parameters \\
+Expected date & Euclid DR2 + SO cross-correlation $\sim$2027--2028 \\
+\bottomrule
+\end{tabular}
+\label{tab:dataset}
+\end{table}
+
+\textbf{Note on tomographic binning:} Euclid tomographic window
+functions are expected to reduce the intrinsic signal amplitude
+by $\sim 30$--$40\%$. The pass/fail window in
+Section~\ref{sec:criteria} is defined for the \emph{tomography-convolved}
+observable; no correction is applied post-hoc.
+
+\section{4\quad Pass/Fail Criteria}
+\label{sec:criteria}
+
+\begin{table}[!ht]
+\centering
+\caption{Pre-registered pass/fail criteria (frozen, no post-hoc revision).}
+\vspace{4pt}
+\begin{tabular}{@{}lp{5.0cm}p{4.3cm}p{2.0cm}@{}}
+\toprule
+Criterion & Threshold & Consequence & Regime \\
+\midrule
+\textbf{KC-EG-PASS} &
+  $E_G^{\rm obs}/E_G^{\rm GR} \in [1.03,\,1.14]$ at $> 1\sigma$ &
+  Consistent with EFC prediction & FA4 supported \\[4pt]
+\textbf{KC-EG-FAIL} &
+  $E_G^{\rm obs}/E_G^{\rm GR} = 1.00 \pm 0.01$ at $> 3\sigma$ &
+  EFC gravitational-slip sector \textbf{falsified} & FA4 triggered \\[4pt]
+\textbf{KC-EG-INC.} &
+  Result between pass and fail windows &
+  No action; await Euclid DR3 & --- \\
+\bottomrule
+\end{tabular}
+\label{tab:criteria}
+\end{table}
+
+\textbf{Kill criterion FA4} (from the Stage-IV Roadmap,
+\href{https://doi.org/10.6084/m9.figshare.31970904}{DOI 31970904}):
+if $|\eta - 1| < 0.01$ is established at $> 3\sigma$ from the
+SO\,$\times$\,Euclid EG measurement, the EFC perturbation sector
+is formally falsified and the result is permanently documented
+in the Validation Ledger.
+
+\textbf{Note on pass window width:} The pass window $[1.03, 1.14]$
+is intentionally broader than the $1\sigma$ prediction interval
+to account for survey window functions, tomographic convolution,
+and estimator-level effects that are not modelled post-hoc.
+This is a pre-registered design choice, not a soft target.
+
+\section{5\quad Regime Declaration and Systematics}
+
+\textbf{RCMP regime declaration.}
+Following the Regime-Consistent Measurement Principle
+(\href{https://doi.org/10.6084/m9.figshare.31222900}{DOI 31222900}),
+the three components of $E_G$ are classified by regime:
+CMB lensing (L1 linear, large-scale);
+galaxy clustering (L1/L2 boundary, bias-dependent);
+RSD (L1 growth sector).
+This declaration makes explicit a consistency condition that is
+typically implicit in standard analyses.
+Cross-regime mixing is declared here, not corrected for post-hoc.
+All predictions are evaluated at the intersection of these regimes
+at $k_c = 0.05\,h\,{\rm Mpc}^{-1}$, $z_{\rm eff} = 0.5$,
+where all three components remain in the linear regime.
+The prediction is stated at a representative pivot scale rather than
+as a full functional form, to maintain strict pre-registration
+without introducing additional model freedom.
+
+\begin{table}[!ht]
+\centering
+\caption{Known systematics and EFC response.}
+\vspace{4pt}
+\begin{tabular}{@{}lp{4cm}p{5cm}@{}}
+\toprule
+Systematic & Effect on $E_G$ & EFC robustness \\
+\midrule
+Intrinsic alignments & Shifts $C_\ell^{\kappa g}$ amplitude &
+  Marginalised; NLA model per survey spec \\[3pt]
+Photo-$z$ errors & Dilutes tomographic signal &
+  Scale cuts at $k < 0.2\,h\,{\rm Mpc}^{-1}$ applied \\[3pt]
+Galaxy bias & Enters via $\beta = f/b$ &
+  Cancels in $E_G$ ratio to leading order \\[3pt]
+Magnification bias & Sub-percent at $\ell < 500$ &
+  Below signal threshold \\[3pt]
+Baryonic feedback & Confined to $k > 0.5\,h\,{\rm Mpc}^{-1}$ &
+  Outside pre-registered $\ell$-range \\[3pt]
+Massive neutrinos & Suppress $\mu$ but $\eta = 1$ &
+  Discriminated by $\eta \ne 1$ measurement \\[3pt]
+RSD modelling & Affects $\beta = f/b$ estimation &
+  Mitigated via survey pipeline; cancels partially in $E_G$ ratio \\[3pt]
+CMB lensing reconstruction & Bias in $C_\ell^{\kappa g}$ from map filtering &
+  Mitigated via standard SO pipeline null tests and simulations \\
+\bottomrule
+\end{tabular}
+\label{tab:systematics}
+\end{table}
+
+\section{6\quad Reproducibility}
+
+\begin{sloppypar}
+\begin{itemize}[itemsep=2pt]
+\item \textbf{RCMP} (regime-consistent measurement principle):
+  \href{https://doi.org/10.6084/m9.figshare.31222900}{DOI 31222900}
+\item \textbf{EFC Relativistic Action} (derivation of $\mu$, $\Sigma$, $\eta$):
+  \href{https://doi.org/10.6084/m9.figshare.31876324}{DOI 31876324}
+\item \textbf{Case B eigenmode} ($E_G^{\rm EFC}/E_G^{\rm GR} = 1.086$):
+  \href{https://doi.org/10.6084/m9.figshare.31990194}{DOI 31990194}
+\item \textbf{Bellini--Sawicki mapping} (hi\_class compatibility):
+  \href{https://doi.org/10.6084/m9.figshare.32011407}{DOI 32011407}
+\item \textbf{Stage-IV Roadmap} (KC4 kill criterion):
+  \href{https://doi.org/10.6084/m9.figshare.31970904}{DOI 31970904}
+\item \textbf{EFC Pre-Registered Predictions} (sealed parameter set):
+  \href{https://doi.org/10.6084/m9.figshare.32010399}{DOI 32010399}
+\item \textbf{GitHub repository}:
+  \href{https://github.com/supertedai/EFC}{github.com/supertedai/EFC}
+\item \textbf{Validation Ledger}:
+  \href{https://supertedai.github.io/EFC/public/EFC_Validation_Ledger.html}{EFC Validation Ledger}
+\end{itemize}
+\end{sloppypar}
+
+All code and data are version-controlled. The git commit hash at the
+time of analysis will be recorded in the Validation Ledger entry.
+No code modification is permitted after unblinding.
+
+\vspace{8pt}
+\hrule
+\vspace{6pt}
+\begin{sloppypar}
+\small
+\textbf{Final statement.}
+This document constitutes a complete, frozen pre-registration for the
+EFC $E_G$ prediction prior to the availability of SO\,$\times$\,Euclid
+DR2 data. The predicted value $E_G^{\rm EFC}/E_G^{\rm GR} = 1.086 \pm 0.012$,
+the pass/fail window, the dataset specification, and the falsification
+conditions are not subject to modification. Pre-registration date:
+15 April 2026.
+
+\vspace{4pt}
+\copyright\ 2026 Morten Magnusson. Licensed under CC-BY-4.0.
+\end{sloppypar}
+
+\end{document}
