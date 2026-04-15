@@ -6,26 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 2 paper(s) to 10/10 <<<
-
-  EFC_Effective_Horndeski_Reduction  (missing: src/, examples/, data/)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
-    Generated src/, examples/, data/
-  EFC_PreRegistered_Predictions  (missing: src/, examples/, data/)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
-    Generated src/, examples/, data/
-
-  Enriched: 2/2
+>>> Step 1: All papers at 10/10 <<<
 
 >>> Step 2: Registering 57 paper(s) in public pages <<<
 
@@ -90,7 +71,9 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] 1 paper package enriched.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
@@ -99,16 +82,12 @@ Repo: 147 papers, 144 DOIs
 Ledger: 118 tests, 9 falsified
 
 --- Elevator Pitch ---
-  [CRITICAL] Paper count '141' in Elevator Pitch != 147 in repo
   [OK]       Paper count 147 close to repo 147
-  [WARNING]  Test count '89' != total 118 or active 100
-  [WARNING]  Test count '88' != total 118 or active 100
-  [WARNING]  Test count '106' != total 118 or active 100
-  [WARNING]  Test count '89' != total 118 or active 100
-  [WARNING]  Survived 80/89 but expected 91/100 (total=118, falsified=9, pipeline=18)
+  [OK]       Paper count 147 close to repo 147
+  [OK]       Survival count 91/100 matches ledger
 
 --- Validation Ledger ---
-  [WARNING]  '106-test' in Ledger HTML != 118 in stats
+  [OK]       Test count 118 matches ledger 118
 
 --- All Pages Number Check ---
 
@@ -141,16 +120,14 @@ Ledger: 118 tests, 9 falsified
   [OK]       Sealed freeze_2: α=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 5 errors, 7 warnings
+RESULT: 4 errors, 1 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Paper count '141' in Elevator Pitch != 147 in repo
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 0 error(s), 1 warning(s)
-  [WARN] §3 packages_below_10_10: expected=0 observed=2
+[full-sync] invariants: 0 error(s), 0 warning(s)
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
