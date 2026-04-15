@@ -6,23 +6,9 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
+>>> Step 1: All papers at 10/10 <<<
 
-  sparc175_elimination  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/sparc175_elimination.py
-    Created examples/demo_sparc175_elimination.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
-
-  Enriched: 2/1
-
->>> Step 2: Registering 58 paper(s) in public pages <<<
+>>> Step 2: Registering 57 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -34,7 +20,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 1 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -46,14 +31,10 @@ EFC DOI sync — 148 paper dirs scanned
   papers with registered DOI : 145
   papers without DOI         : 3
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  sparc175_elimination -> index.json, metadata.json, *.jsonld
 ========================================================================
 [efc-gen] 148 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 148 paper dirs · 0 errors · 0 warnings
-[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32029704
-[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32029704
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 [efc-drift] 148 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -83,16 +64,14 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
-  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-1 potential new dataset(s):
+2 potential new dataset(s):
+  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 2 paper packages enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
-[efc-auto-changelog] updated EFC_Changelog.html
-[efc-auto-changelog] updated changelog.json
+[efc-auto-changelog] only script/workflow changes — skipping changelog
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
