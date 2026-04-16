@@ -112,6 +112,339 @@ def extract_pdf_text(paper_dir, max_chars=MAX_PDF_CHARS):
     return ""
 
 
+# ── Holistic Impact Analysis (Step 1.5) ─────────────────────────────
+
+SYMBIOSE_API = os.environ.get("SYMBIOSE_API_URL", "http://localhost:3001")
+LEDGER_DATA = os.path.join(REPO, "docs", "validation-ledger", "data")
+
+
+def _query_neo4j(cypher, params=None):
+    """Query Neo4j via Symbiose API. Returns list of records or []."""
+    import urllib.request
+    import urllib.error
+    url = f"{SYMBIOSE_API}/api/v1/neo4j"
+    body = json.dumps({"cypher": cypher, "params": params or {}}).encode()
+    req = urllib.request.Request(
+        url, data=body,
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read())
+            return data.get("records", data.get("result", []))
+    except Exception:
+        return []
+
+
+def _query_graph_context(idx):
+    """Query Neo4j for 1-2 hop connections from this paper's concepts.
+
+    Returns dict with related_papers, related_validations, concept_cluster,
+    and bridge_potential. Gracefully returns empty dict if Neo4j unavailable.
+    """
+    doi = idx.get("doi", "")
+    if not doi:
+        return {}
+
+    result = {
+        "concepts": [],
+        "related_papers": [],
+        "related_validations": [],
+        "bridge_potential": [],
+    }
+
+    # 1-hop: What concepts does this DOI mention?
+    concepts = _query_neo4j(
+        "MATCH (d)-[:MENTIONS]->(c:Concept) "
+        "WHERE d.doi CONTAINS $doi "
+        "RETURN c.name AS name, c.domain AS domain, "
+        "c.concept_type AS type LIMIT 20",
+        {"doi": doi.split("/")[-1]},
+    )
+    result["concepts"] = [
+        {"name": r.get("name", "?"), "domain": r.get("domain", ""),
+         "type": r.get("type", "")}
+        for r in concepts
+    ]
+
+    if not result["concepts"]:
+        # Try keywords from index.json as fallback
+        kw = idx.get("keywords", [])
+        result["concepts"] = [{"name": k, "domain": "", "type": "keyword"}
+                              for k in kw[:10]]
+
+    # 2-hop: What other documents share these concepts?
+    related = _query_neo4j(
+        "MATCH (d)-[:MENTIONS]->(c:Concept)<-[:MENTIONS]-(other) "
+        "WHERE d.doi CONTAINS $doi AND other <> d "
+        "RETURN DISTINCT other.name AS name, other.doi AS doi, "
+        "c.name AS shared LIMIT 15",
+        {"doi": doi.split("/")[-1]},
+    )
+    result["related_papers"] = [
+        {"name": r.get("name", "?"), "doi": r.get("doi", ""),
+         "shared_concept": r.get("shared", "")}
+        for r in related
+    ]
+
+    # KC/Validation connections
+    validations = _query_neo4j(
+        "MATCH (d)-[:MENTIONS]->(c:Concept)<-[:TESTS]-(v:EFCValidation) "
+        "WHERE d.doi CONTAINS $doi "
+        "RETURN v.test_id AS test_id, v.name AS name, "
+        "c.name AS shared LIMIT 10",
+        {"doi": doi.split("/")[-1]},
+    )
+    result["related_validations"] = [
+        {"test_id": r.get("test_id", ""), "name": r.get("name", ""),
+         "shared": r.get("shared", "")}
+        for r in validations
+    ]
+
+    return result
+
+
+def _gather_efc_state():
+    """Read current EFC state from public HTML pages and ledger.json.
+
+    Uses data-*-id attributes for machine-readable extraction.
+    """
+    state = {
+        "kc_statuses": {},
+        "priority_actions": {},
+        "test_counts": {},
+        "open_gaps": [],
+        "bottom_line": "",
+    }
+
+    # Test counts from ledger.json
+    ledger_path = os.path.join(LEDGER_DATA, "ledger.json")
+    if os.path.exists(ledger_path):
+        with open(ledger_path, encoding="utf-8", errors="replace") as f:
+            ld = json.load(f)
+        s = ld.get("stats", {})
+        total = s.get("total_public", 0)
+        planned = s.get("planned_pipeline", 0)
+        falsified = s.get("n_falsified", 0)
+        state["test_counts"] = {
+            "total": total, "active": total - planned,
+            "survived": total - planned - falsified,
+            "falsified": falsified, "pipeline": planned,
+        }
+
+    # KC statuses from Gap Analysis
+    gap_path = PUBLIC_PAGES.get("gap", "")
+    if os.path.exists(gap_path):
+        with open(gap_path, encoding="utf-8", errors="replace") as f:
+            gap_html = f.read()
+        for m in re.finditer(
+            r'data-kc-id="(KC\d)"[^>]*>.*?'
+            r'(SEALED|DONE|PREDICTION READY|P3 PASS|PIPELINE NEEDED|'
+            r'NOT STARTED|Monitoring|HIGH|ACTIVE)',
+            gap_html, re.DOTALL | re.IGNORECASE,
+        ):
+            state["kc_statuses"][m.group(1)] = m.group(2)
+
+        # Priority actions
+        for m in re.finditer(
+            r'data-action-id="(action-\d)"[^>]*>.*?'
+            r'(DONE|ACTIVE|PLANNED|SEALED)',
+            gap_html, re.DOTALL | re.IGNORECASE,
+        ):
+            state["priority_actions"][m.group(1)] = m.group(2)
+
+        # Open theory gaps
+        for m in re.finditer(
+            r'data-gap-id="([^"]+)"[^>]*>(.*?)</tr>',
+            gap_html, re.DOTALL,
+        ):
+            if "CLOSED" not in m.group(2) and "DONE" not in m.group(2):
+                name_match = re.search(r'<td[^>]*>(.*?)</td>', m.group(2), re.DOTALL)
+                if name_match:
+                    name = re.sub(r'<[^>]+>', '', name_match.group(1)).strip()
+                    state["open_gaps"].append({"id": m.group(1), "name": name})
+
+        # Bottom line
+        bl_match = re.search(
+            r'data-section="bottom-line"[^>]*>.*?Biggest gap[^<]*</td>\s*<td>(.*?)</td>',
+            gap_html, re.DOTALL | re.IGNORECASE,
+        )
+        if bl_match:
+            state["bottom_line"] = re.sub(
+                r'<[^>]+>', '', bl_match.group(1)).strip()[:300]
+
+    return state
+
+
+def analyze_holistic_impact(idx, pdf_text, graph_ctx, efc_state):
+    """Single holistic LLM call that understands the full EFC picture.
+
+    Combines paper content + graph intelligence + current EFC state
+    to generate a complete ledger_impact with page_updates.
+    """
+    # Build context strings
+    concepts_str = ", ".join(
+        c["name"] for c in graph_ctx.get("concepts", [])[:10]
+    ) or "(no graph data)"
+
+    related_str = "\n".join(
+        f"  - {r['name']} (DOI {r.get('doi', '?')}) via '{r.get('shared_concept', '?')}'"
+        for r in graph_ctx.get("related_papers", [])[:8]
+    ) or "  (none found)"
+
+    validations_str = "\n".join(
+        f"  - {r['test_id']}: {r.get('name', '?')} (shared: {r.get('shared', '?')})"
+        for r in graph_ctx.get("related_validations", [])[:8]
+    ) or "  (none found)"
+
+    kc_str = "\n".join(
+        f"  - {kc}: {status}"
+        for kc, status in sorted(efc_state.get("kc_statuses", {}).items())
+    ) or "  (not available)"
+
+    actions_str = "\n".join(
+        f"  - {aid}: {status}"
+        for aid, status in sorted(efc_state.get("priority_actions", {}).items())
+    ) or "  (not available)"
+
+    tc = efc_state.get("test_counts", {})
+    tests_str = (
+        f"total={tc.get('total', '?')}, active={tc.get('active', '?')}, "
+        f"survived={tc.get('survived', '?')}, falsified={tc.get('falsified', '?')}, "
+        f"pipeline={tc.get('pipeline', '?')}"
+    )
+
+    gaps_str = "\n".join(
+        f"  - {g['id']}: {g['name']}"
+        for g in efc_state.get("open_gaps", [])[:10]
+    ) or "  (all closed)"
+
+    # Paper info
+    kr = idx.get("key_results", {})
+    sp_list = idx.get("sealed_predictions", [])
+    sp_str = "\n".join(
+        f"  - {sp.get('id', '?')}: {sp.get('statement', '')[:150]}"
+        for sp in sp_list[:5]
+    ) if sp_list else "  (none)"
+
+    kc_paper = idx.get("kill_criteria", [])
+    kc_paper_str = "\n".join(
+        f"  - {kc}" for kc in kc_paper[:5]
+    ) if kc_paper else "  (none)"
+
+    prompt = f"""You are the EFC (Energy-Flow Cosmology) project lead — Morten Magnusson.
+You know every paper, every kill criterion, every sealed prediction, every validation test.
+A new paper has just been deposited. You also have graph intelligence from Neo4j
+showing how this paper connects to the existing knowledge structure.
+
+Think like Morten: Where does this belong? What does it cover? What does it point toward?
+What does it prove? What is the goal? What is implicit?
+
+## Graph Intelligence (from Neo4j knowledge graph)
+Concepts this paper touches: {concepts_str}
+Related papers (1-2 hops):
+{related_str}
+Validation tests sharing observables:
+{validations_str}
+
+## Current EFC State
+Kill Criteria statuses:
+{kc_str}
+Priority Actions:
+{actions_str}
+Test counts: {tests_str}
+Bottom line biggest gap: {efc_state.get('bottom_line', '?')[:200]}
+Open theory gaps:
+{gaps_str}
+
+## New Paper
+Title: {idx.get('title', '?')}
+DOI: {idx.get('doi', '?')}
+Type: {idx.get('paper_type', '?')}
+Tier: {idx.get('tier', '?')}
+Description: {idx.get('description', '')[:400]}
+Key Result: {kr.get('main_finding', kr) if isinstance(kr, str) else kr.get('main_finding', '?') if isinstance(kr, dict) else '?'}
+Kill Criteria declared:
+{kc_paper_str}
+Sealed Predictions:
+{sp_str}
+
+PDF excerpt (first 4000 chars):
+{pdf_text[:4000]}
+
+## Your Analysis — Think Holistically
+
+1. What does this paper ESTABLISH or PROVE for EFC?
+2. Which Stage-IV KC (KC1-KC5) does it address? Does it CLOSE a KC gap?
+3. Does it close any theory gap (data-gap-id)?
+4. Does it complete any priority action (action-1 through action-7)?
+5. Should the "biggest gap" in Bottom Line change?
+6. What test-count changes does it imply (new tests added)?
+7. What are the IMPLICIT consequences — things the paper doesn't say
+   explicitly but that follow logically from the graph connections?
+8. Which public pages (gap, roadmap, elevator, whitepaper) need updating?
+
+Return ONLY a JSON object (no markdown, no explanation outside JSON):
+{{
+  "analysis": "2-3 sentence holistic summary of what this means for EFC",
+  "kc_addressed": ["KC4"],
+  "gaps_closed": ["theory-gap-id-here"],
+  "priority_actions_completed": ["action-4"],
+  "tests_added": [
+    {{
+      "test_id": "short_snake_case_id",
+      "category": "physics_test|consistency_check|phenomenological|framework_constraint|planned_pipeline",
+      "name": "Human-readable test name",
+      "description": "What this test validates",
+      "result": "PASS|MARGINAL|COLLAPSED|Planned",
+      "status": "success|partial|failed|pending",
+      "data_source": "Dataset used",
+      "prediction": "What EFC predicts"
+    }}
+  ],
+  "tests_updated": [],
+  "page_updates": [
+    {{
+      "page": "gap|roadmap|elevator|whitepaper",
+      "target": "data-kc-id=\\"KC4\\"",
+      "action": "update_badge|mark_done|update_text",
+      "new_badge": "SEALED",
+      "new_text": "Description with DOI refs",
+      "doi_refs": ["32023788"],
+      "reasoning": "Why this update is correct"
+    }}
+  ],
+  "implicit_consequences": ["consequence 1", "consequence 2"],
+  "bottom_line_change": null,
+  "graph_insights": ["insight from graph traversal"]
+}}
+
+If the paper does NOT affect any KC, gap, or action, return empty arrays.
+Be conservative — only declare changes you are CERTAIN about from the paper content.
+Do NOT invent test results or claim things the paper doesn't establish."""
+
+    result_text = call_llm(prompt, max_tokens=4000)
+    if not result_text:
+        return None
+
+    # Parse JSON from response
+    try:
+        # Strip markdown fences if present
+        clean = re.sub(r'^```(?:json)?\s*', '', result_text.strip())
+        clean = re.sub(r'\s*```$', '', clean)
+        return json.loads(clean)
+    except json.JSONDecodeError:
+        # Try to find JSON object in response
+        m = re.search(r'\{.*\}', result_text, re.DOTALL)
+        if m:
+            try:
+                return json.loads(m.group(0))
+            except json.JSONDecodeError:
+                pass
+        print(f"    [WARN] Could not parse holistic impact JSON")
+        return None
+
+
 def _has_field(idx, *aliases):
     """Check if index.json has any of the given field names (schema compat)."""
     return any(bool(idx.get(a)) for a in aliases)
@@ -156,7 +489,7 @@ def find_papers_needing_enrichment():
         if not os.path.exists(idx_path):
             continue
         try:
-            with open(idx_path) as f:
+            with open(idx_path, encoding="utf-8", errors="replace") as f:
                 idx = json.load(f)
         except (json.JSONDecodeError, OSError) as e:
             print(f"  [WARN] Skipping {name}: {e}")
@@ -446,7 +779,7 @@ def enrich_metadata(dirname, dirpath, title, doi, missing_fields=None):
     idx_path = os.path.join(dirpath, "index.json")
     if os.path.exists(idx_path):
         try:
-            with open(idx_path) as f:
+            with open(idx_path, encoding="utf-8", errors="replace") as f:
                 existing = json.load(f)
         except (json.JSONDecodeError, OSError):
             pass
@@ -731,7 +1064,7 @@ def update_all_pages(paper_list):
         dirpath = os.path.join(PAPERS, p["directory"])
         idx_path = os.path.join(dirpath, "index.json")
         if os.path.exists(idx_path):
-            with open(idx_path) as f:
+            with open(idx_path, encoding="utf-8", errors="replace") as f:
                 idx = json.load(f)
             paper_descs.append({
                 "directory": p["directory"],
@@ -910,7 +1243,7 @@ If no update: {{"html": null}}"""
             dirpath = os.path.join(PAPERS, p["directory"])
             idx_path = os.path.join(dirpath, "index.json")
             if os.path.exists(idx_path):
-                with open(idx_path) as f:
+                with open(idx_path, encoding="utf-8", errors="replace") as f:
                     idx = json.load(f)
                 rich_descs.append({
                     "directory": p["directory"],
@@ -1018,7 +1351,7 @@ def update_evidence_register(paper_list):
         idx_path = os.path.join(dirpath, "index.json")
         if not os.path.exists(idx_path):
             continue
-        with open(idx_path) as f:
+        with open(idx_path, encoding="utf-8", errors="replace") as f:
             idx = json.load(f)
         doi = idx.get("doi", "")
         if not doi:
@@ -1130,6 +1463,89 @@ def main():
         print(f"\n  Enriched: {enriched_count}/{len(needs_enrichment)}")
     else:
         print("\n>>> Step 1: All papers at 10/10 <<<")
+
+    # Step 1.5: Holistic Impact Analysis with Graph Intelligence
+    # Run on enriched papers that have DOIs but no ledger_impact yet
+    impact_candidates = []
+    for name in os.listdir(PAPERS):
+        if name in SKIP_TOP:
+            continue
+        d = os.path.join(PAPERS, name)
+        if not os.path.isdir(d):
+            continue
+        idx_path = os.path.join(d, "index.json")
+        if not os.path.exists(idx_path):
+            continue
+        try:
+            with open(idx_path, encoding="utf-8", errors="replace") as f:
+                idx_data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        # Only process papers with DOI, no existing ledger_impact,
+        # and paper_type that warrants impact analysis
+        if (idx_data.get("doi")
+                and not idx_data.get("ledger_impact")
+                and idx_data.get("paper_type") in (
+                    "sealed_prediction", "empirical_test",
+                    "empirical_analysis", "observational_pipeline",
+                    "empirical_validation")):
+            impact_candidates.append({
+                "directory": name, "path": d,
+                "idx_path": idx_path, "idx": idx_data,
+            })
+
+    impact_candidates = impact_candidates[:max_papers]
+
+    if impact_candidates and has_any_key and not dry_run:
+        import time as _time2
+        print(f"\n>>> Step 1.5: Holistic Impact Analysis for "
+              f"{len(impact_candidates)} paper(s) <<<\n")
+        efc_state = _gather_efc_state()
+        for ic in impact_candidates:
+            _time2.sleep(3)  # Rate limit
+            print(f"  {ic['directory']}:")
+            graph_ctx = _query_graph_context(ic["idx"])
+            n_concepts = len(graph_ctx.get("concepts", []))
+            n_related = len(graph_ctx.get("related_papers", []))
+            print(f"    Graph: {n_concepts} concepts, {n_related} related papers")
+
+            pdf_text = extract_pdf_text(ic["path"])
+            impact = analyze_holistic_impact(
+                ic["idx"], pdf_text, graph_ctx, efc_state)
+
+            if impact:
+                ic["idx"]["ledger_impact"] = {
+                    "status": "ready",
+                    "holistic_analysis": impact.get("analysis", ""),
+                    "graph_insights": impact.get("graph_insights", []),
+                    "kc_addressed": impact.get("kc_addressed", []),
+                    "gaps_closed": impact.get("gaps_closed", []),
+                    "priority_actions_completed": impact.get(
+                        "priority_actions_completed", []),
+                    "tests_added": impact.get("tests_added", []),
+                    "tests_updated": impact.get("tests_updated", []),
+                    "page_updates": impact.get("page_updates", []),
+                    "implicit_consequences": impact.get(
+                        "implicit_consequences", []),
+                    "bottom_line_change": impact.get("bottom_line_change"),
+                    "kill_criteria_addressed": impact.get("kc_addressed", []),
+                }
+                with open(ic["idx_path"], "w", encoding="utf-8") as f:
+                    json.dump(ic["idx"], f, indent=2, ensure_ascii=False)
+                n_updates = len(impact.get("page_updates", []))
+                n_tests = len(impact.get("tests_added", []))
+                print(f"    Impact: {impact.get('analysis', '?')[:100]}")
+                print(f"    KCs: {impact.get('kc_addressed', [])}, "
+                      f"page_updates: {n_updates}, tests: {n_tests}")
+            else:
+                print(f"    [SKIP] No impact generated")
+    elif impact_candidates and dry_run:
+        print(f"\n>>> Step 1.5: [DRY-RUN] Would analyze {len(impact_candidates)} "
+              f"paper(s) for holistic impact <<<")
+        for ic in impact_candidates:
+            print(f"  {ic['directory']} ({ic['idx'].get('paper_type', '?')})")
+    else:
+        print("\n>>> Step 1.5: No papers needing holistic impact analysis <<<")
 
     # Step 2: Find papers not in public pages
     unprocessed = load_unprocessed_for_pages()
