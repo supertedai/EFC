@@ -20,6 +20,9 @@ Data sources (all in-repo):
     - sparc_rotation_curves.dat  (175 galaxies, 3391 data points)
     - sparc175_master_dataset.csv (summary table)
     - sparc175_killtest_results.json (kill-test v6 results)
+
+Status: EFC is currently consistent with late-time data at ~2 sigma
+and remains a candidate extension of LCDM pending CMB validation.
 """
 
 from __future__ import annotations

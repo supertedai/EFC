@@ -1,5 +1,10 @@
 # EFC Core Hypotheses
 
+> **Status:** EFC is currently consistent with late-time data at the
+> ~2 sigma level and remains a candidate extension of LCDM pending
+> CMB validation.  The strongest signal (fsigma_8) is suggestive but
+> not decisive.
+
 ## H1: Entropy-driven gravitational modification
 
 Late-time cosmic entropy gradients modify the effective gravitational

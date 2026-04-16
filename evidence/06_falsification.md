@@ -1,5 +1,9 @@
 # EFC Falsification Criteria
 
+> **Status:** EFC is currently consistent with late-time data at the
+> ~2 sigma level and remains a candidate extension of LCDM pending
+> CMB validation.
+
 These are explicit, pre-registered conditions under which EFC would be
 considered falsified.  A testable model must define where it fails.
 

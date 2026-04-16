@@ -18,6 +18,9 @@ Dependencies: numpy, scipy (both in requirements.txt)
 Significance disclaimer: BAO results use diagonal errors only (no full
 covariance matrix).  This is a simplified reproduction.  Full analysis
 requires DESI DR2 covariance from Zenodo (10.5281/zenodo.14733025).
+
+Status: EFC is currently consistent with late-time data at ~2 sigma
+and remains a candidate extension of LCDM pending CMB validation.
 """
 
 from __future__ import annotations

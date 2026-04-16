@@ -15,6 +15,9 @@ What this proves:
     3. LOO robustness passes 7/7 (pre-computed, verified)
 
 Runtime: ~0.2 seconds.
+
+Status: EFC is currently consistent with late-time data at ~2 sigma
+and remains a candidate extension of LCDM pending CMB validation.
 """
 
 import json
