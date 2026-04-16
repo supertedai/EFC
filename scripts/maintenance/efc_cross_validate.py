@@ -83,7 +83,7 @@ def count_repo_papers():
         idx_path = os.path.join(d, "index.json")
         if os.path.exists(idx_path):
             try:
-                with open(idx_path) as f:
+                with open(idx_path, encoding="utf-8", errors="replace") as f:
                     idx = json.load(f)
                 if idx.get("doi"):
                     with_doi += 1
@@ -106,10 +106,24 @@ def count_repo_papers():
 
 
 def load_ledger_stats():
-    """Load stats from ledger data."""
+    """Load stats from ledger data.
+
+    Prefers ledger.json (authoritative) over stats.json (derived).
+    Falls back to stats.json if ledger.json has no stats block.
+    """
+    # Primary: ledger.json stats block
+    ledger_path = os.path.join(LEDGER_DATA, "ledger.json")
+    if os.path.exists(ledger_path):
+        with open(ledger_path, encoding="utf-8", errors="replace") as f:
+            data = json.load(f)
+            s = data.get("stats", {})
+            if s.get("total_public"):
+                return s
+
+    # Fallback: stats.json
     stats_path = os.path.join(LEDGER_DATA, "stats.json")
     if os.path.exists(stats_path):
-        with open(stats_path) as f:
+        with open(stats_path, encoding="utf-8", errors="replace") as f:
             data = json.load(f)
             return data.get("stats", data)
     return {}
@@ -273,7 +287,7 @@ def validate_inference_doi(result):
         elif engine in ("active", "self_consistent"):
             chi2 = m.get("chi2_reduced")
             if chi2 is not None and chi2 > 5.0:
-                result.warn(f"{name}: active but poor fit (χ²={chi2:.1f})")
+                result.warn(f"{name}: active but poor fit (chi2={chi2:.1f})")
             else:
                 result.ok(f"{name}: {engine}")
 
@@ -290,7 +304,7 @@ def validate_consistency(repo, stats, result):
     # README paper count
     readme_path = os.path.join(REPO, "README.md")
     if os.path.exists(readme_path):
-        with open(readme_path) as f:
+        with open(readme_path, encoding="utf-8", errors="replace") as f:
             readme = f.read()
         readme_nums = re.findall(r'(\d+)\s*paper', readme)
         for num_str in readme_nums:
@@ -318,6 +332,192 @@ def validate_consistency(repo, stats, result):
     # Sealed predictions
     if repo["sealed_total"] > 0:
         result.ok(f"{repo['with_sealed']} papers have sealed predictions ({repo['sealed_total']} total)")
+
+
+def validate_test_counts_all_pages(stats, result):
+    """Check that ALL public pages show the same test counts as ledger.json.
+
+    This catches the specific failure where ledger.json gets updated (e.g. by
+    efc_ledger_impact_sync) but the intro text in Roadmap, White Papers, or
+    Gap Analysis still carries stale numbers like '106 tests'.
+    """
+    print("\n--- Test Count Cross-Page Consistency ---")
+    total_public = stats.get("total_public", 0)
+    planned = stats.get("planned_pipeline", 0)
+    n_falsified = stats.get("n_falsified", 0)
+    active = total_public - planned
+    survived = active - n_falsified
+
+    if total_public == 0:
+        result.warn("Ledger total_public is 0 — skipping cross-page check")
+        return
+
+    # Patterns that capture test counts in natural-language contexts
+    # e.g. "118 tests registered", "100 active", "91 survived", "18 in pipeline"
+    PATTERNS = {
+        "total": [
+            r"(\d+)\s*(?:tests?\s*registered|registered\s*tests?|total\s*tests?)",
+            r"(\d+)\s*(?:tests?\s*\()",  # "118 tests ("
+        ],
+        "active": [r"(\d+)\s*active"],
+        "survived": [
+            r"(\d+)/\d+\s*survived",  # "91/100 survived" → 91
+            r"(?<!/)\b(\d+)\s*survived",  # "91 survived" but not "100 survived" after /
+        ],
+        "falsified": [r"(\d+)\s*falsified"],
+        "pipeline": [r"(\d+)\s*(?:in\s*)?pipeline"],
+    }
+
+    expected = {
+        "total": total_public,
+        "active": active,
+        "survived": survived,
+        "falsified": n_falsified,
+        "pipeline": planned,
+    }
+
+    # Only check pages with intro/summary text (skip changelog, skip ledger body)
+    for key in ["elevator", "whitepaper", "roadmap", "gap"]:
+        html = read_page(key)
+        if not html:
+            continue
+        page_name = {
+            "elevator": "Elevator Pitch",
+            "whitepaper": "White Paper Series",
+            "roadmap": "Stage-IV Roadmap",
+            "gap": "Gap Analysis",
+        }[key]
+
+        # Only check intro sections — not historical changelog tables
+        # For roadmap, also check §12 (embedded gap analysis)
+        intro = html[:8000]
+
+        for metric, patterns in PATTERNS.items():
+            for pat in patterns:
+                for m in re.finditer(pat, intro, re.IGNORECASE):
+                    found = int(m.group(1))
+                    exp = expected[metric]
+                    if found != exp and found > 10:  # ignore small numbers
+                        result.error(
+                            f"{page_name}: says {found} {metric} but "
+                            f"ledger has {exp}")
+
+
+def validate_kc_status_vs_dois(result):
+    """Check that KC rows marked 'NOT STARTED' or 'PIPELINE NEEDED' in
+    public pages don't have a sealed prediction DOI that closes them.
+
+    Catches the case where a sealed prediction is published but the
+    public page hasn't been updated to reflect it.
+    """
+    print("\n--- KC Status vs Sealed DOIs ---")
+
+    # Collect sealed prediction DOIs and their keywords
+    sealed_papers = []
+    for name in os.listdir(PAPERS):
+        d = os.path.join(PAPERS, name)
+        idx_path = os.path.join(d, "index.json")
+        if not os.path.isdir(d) or not os.path.exists(idx_path):
+            continue
+        try:
+            with open(idx_path, encoding="utf-8") as f:
+                idx = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        ptype = idx.get("paper_type", "")
+        if ptype in ("sealed_prediction", "observational_pipeline"):
+            sealed_papers.append({
+                "doi": idx.get("doi", ""),
+                "title": idx.get("title", name),
+                "keywords": " ".join(idx.get("keywords", [])).lower(),
+                "description": idx.get("description", "").lower(),
+                "dir": name.lower(),
+            })
+
+    if not sealed_papers:
+        result.ok("No sealed prediction papers found — nothing to check")
+        return
+
+    # Check Gap Analysis and Roadmap for stale KC rows
+    stale_kw = {
+        "kc4": ["eg", "e_g", "gravitational_slip", "gravitational slip",
+                "eta", "η", "slip"],
+        "kc1": ["full-shape", "full shape", "p(k)", "growth suppression"],
+        "kc2": ["fsigma", "fσ", "trajectory", "z_cross", "crossover"],
+        "kc3": ["s8", "s_8", "cosmic shear", "lensing"],
+        "kc5": ["dark energy", "w(z)", "w0", "w_0", "dynamical"],
+    }
+
+    for page_key in ["gap", "roadmap"]:
+        html = read_page(page_key)
+        if not html:
+            continue
+        page_name = "Gap Analysis" if page_key == "gap" else "Stage-IV Roadmap"
+
+        # Find rows with NOT STARTED or PIPELINE NEEDED
+        for row in re.findall(r"<tr>(.*?)</tr>", html, flags=re.DOTALL):
+            if not re.search(r"NOT\s*STARTED|PIPELINE\s*NEEDED", row, re.IGNORECASE):
+                continue
+            row_lower = row.lower()
+
+            # Which KC does this row belong to?
+            for kc, keywords in stale_kw.items():
+                if kc.upper() not in row.upper() and not any(
+                        kw in row_lower for kw in keywords):
+                    continue
+                # Check if any sealed paper covers this KC
+                for sp in sealed_papers:
+                    text = f"{sp['keywords']} {sp['description']} {sp['dir']}"
+                    if any(kw in text for kw in keywords):
+                        result.warn(
+                            f"{page_name}: {kc.upper()} marked NOT STARTED/"
+                            f"PIPELINE NEEDED but sealed DOI {sp['doi']} "
+                            f"({sp['title'][:60]}) appears to cover it")
+                        break
+
+
+def validate_section12_sync(result):
+    """Check that Roadmap §12 KC readiness matches Gap Analysis §2.
+
+    Both pages have KC status tables. If one gets updated and the other
+    doesn't, this catches the drift.
+    """
+    print("\n--- Roadmap §12 vs Gap Analysis Sync ---")
+    gap_html = read_page("gap")
+    road_html = read_page("roadmap")
+    if not gap_html or not road_html:
+        result.warn("Cannot compare — one or both pages missing")
+        return
+
+    # Extract KC badge statuses from each page
+    def extract_kc_badges(html):
+        badges = {}
+        for m in re.finditer(
+            r"(KC\d).*?(SEALED|DONE|PREDICTION READY|P3 PASS|"
+            r"PIPELINE NEEDED|NOT STARTED|Monitoring|PLANNED|HIGH|ACTIVE)",
+            html, re.DOTALL | re.IGNORECASE,
+        ):
+            kc = m.group(1).upper()
+            status = m.group(2).upper()
+            # Take the FIRST status found for each KC (most prominent)
+            if kc not in badges:
+                badges[kc] = status
+        return badges
+
+    gap_kc = extract_kc_badges(gap_html)
+    road_kc = extract_kc_badges(road_html)
+
+    mismatches = 0
+    for kc in sorted(set(gap_kc) | set(road_kc)):
+        g = gap_kc.get(kc, "MISSING")
+        r = road_kc.get(kc, "MISSING")
+        if g != r:
+            result.warn(
+                f"{kc}: Gap Analysis says '{g}' but Roadmap §12 says '{r}'")
+            mismatches += 1
+
+    if mismatches == 0:
+        result.ok(f"Roadmap §12 and Gap Analysis KC statuses match ({len(gap_kc)} KCs)")
 
 
 def validate_gap_bottom_line(result):
@@ -438,7 +638,7 @@ def validate_symbiose(repo, stats, result):
     for key, pred in sealed.items():
         h = pred.get("hash_prefix", "")
         if h:
-            result.ok(f"Sealed {key}: α={pred.get('alpha')}, hash={h}...")
+            result.ok(f"Sealed {key}: alpha={pred.get('alpha')}, hash={h}...")
 
     # α-signal: check that public pages show BOTH LOO and current MCMC
     alpha = snap.get("alpha_signal", {})
@@ -447,18 +647,18 @@ def validate_symbiose(repo, stats, result):
         has_loo = "2.20" in elevator_html or "LOO" in elevator_html
         has_current = "0.68" in elevator_html or "0.141" in elevator_html or "degeneracy" in elevator_html.lower()
         if has_loo and has_current:
-            result.ok("Elevator Pitch shows both LOO (2.2σ) and current MCMC (0.7σ)")
+            result.ok("Elevator Pitch shows both LOO (2.2s) and current MCMC (0.7s)")
         elif has_loo and not has_current:
             result.error("Elevator Pitch shows LOO but NOT the weaker current MCMC result")
         elif not has_loo:
-            result.warn("Elevator Pitch does not mention α-signal at all")
+            result.warn("Elevator Pitch does not mention alpha-signal at all")
 
     if alpha.get("status") == "STOPPED_DEGENERACY_PERSISTS":
         result.warn(
-            f"α-signal: {alpha.get('current_value')} ± "
+            f"alpha-signal: {alpha.get('current_value')} +/- "
             f"{alpha.get('current_uncertainty')} "
-            f"({alpha.get('current_sigma')}σ) — "
-            f"LOO was {alpha.get('loo_sigma', '?')}σ — degeneracy unresolved")
+            f"({alpha.get('current_sigma')}s) -- "
+            f"LOO was {alpha.get('loo_sigma', '?')}s -- degeneracy unresolved")
 
     # GRAV pipeline
     grav = snap.get("grav", {})
@@ -492,6 +692,9 @@ def main():
     validate_elevator_pitch(repo, stats, result)
     validate_ledger_page(repo, stats, result)
     validate_all_pages_numbers(stats, result)
+    validate_test_counts_all_pages(stats, result)
+    validate_kc_status_vs_dois(result)
+    validate_section12_sync(result)
     validate_inference_doi(result)
     validate_consistency(repo, stats, result)
     validate_gap_bottom_line(result)

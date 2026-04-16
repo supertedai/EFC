@@ -122,11 +122,15 @@ def handle_version_bump(change: Change) -> list[str]:
 
 
 def handle_sealed_prediction(change: Change) -> list[str]:
-    """T10 — New sealed prediction. Snapshot regenerate + Ledger autofill."""
+    """T10 — New sealed prediction. Snapshot regenerate + Ledger autofill +
+    cross-validate to catch stale KC badges in Gap Analysis / Roadmap."""
     _run("efc_ledger_autofill.py")
     _run("efc_symbiose_snapshot.py", "--from-ledger")
+    _run("efc_cross_validate.py")
     return [
         "docs/public/EFC_Validation_Ledger.html",
+        "docs/public/EFC_Gap_Analysis.html",
+        "docs/public/EFC_Stage-IV_Data_Roadmap.html",
         ".claude/symbiose_snapshot.json",
     ]
 

@@ -86,8 +86,58 @@ def read_file_truncated(path, max_chars=MAX_CHARS_PER_FILE):
     return content
 
 
+def load_ledger_stats_for_audit():
+    """Load ledger stats for ground truth."""
+    stats_path = os.path.join(REPO, "docs", "validation-ledger", "data", "stats.json")
+    if os.path.exists(stats_path):
+        with open(stats_path, encoding="utf-8") as f:
+            data = json.load(f)
+            return data.get("stats", data)
+    return {}
+
+
+def find_sealed_prediction_papers():
+    """Find all papers with paper_type: sealed_prediction and their DOIs."""
+    sealed = []
+    for name in os.listdir(PAPERS):
+        d = os.path.join(PAPERS, name)
+        idx_path = os.path.join(d, "index.json")
+        if not os.path.isdir(d) or not os.path.exists(idx_path):
+            continue
+        try:
+            with open(idx_path, encoding="utf-8") as f:
+                idx = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        if idx.get("paper_type") in ("sealed_prediction", "observational_pipeline"):
+            sealed.append({
+                "doi": idx.get("doi", ""),
+                "title": idx.get("title", name),
+                "keywords": idx.get("keywords", []),
+            })
+    return sealed
+
+
 def build_audit_prompt(file_contents, ground_truth):
     """Build the prompt for OpenAI."""
+    stats = ground_truth.get("ledger_stats", {})
+    sealed_papers = ground_truth.get("sealed_papers", [])
+
+    stats_block = ""
+    if stats:
+        total = stats.get("total_public", "?")
+        planned = stats.get("planned_pipeline", "?")
+        falsified = stats.get("n_falsified", "?")
+        active = total - planned if isinstance(total, int) and isinstance(planned, int) else "?"
+        survived = active - falsified if isinstance(active, int) and isinstance(falsified, int) else "?"
+        stats_block = f"""- Test counts from ledger.json: total={total}, active={active}, survived={survived}, falsified={falsified}, pipeline={planned}
+"""
+
+    sealed_block = ""
+    if sealed_papers:
+        lines = [f"  - {sp['doi']} — {sp['title'][:80]}" for sp in sealed_papers[:10]]
+        sealed_block = f"- Sealed prediction DOIs ({len(sealed_papers)} total):\n" + "\n".join(lines) + "\n"
+
     prompt = f"""You are a scientific repository auditor. Your job is to verify
 that all public-facing documents in the EFC (Energy-Flow Cosmology) repository
 are internally consistent — that numbers, claims, status badges, predictions,
@@ -96,7 +146,7 @@ and kill criteria match across all pages.
 ## Ground Truth (from filesystem)
 - Paper directories on disk: {ground_truth['paper_count']}
 - Date: {ground_truth['date']}
-
+{stats_block}{sealed_block}
 ## Documents to Audit
 
 """
@@ -136,12 +186,23 @@ Check the following and report PASS, WARN, or FAIL for each:
 10. **LANGUAGE COMPLIANCE**: No page claims EFC is "proven" or "confirmed"
     (forbidden language per RCMP).
 
+11. **TEST COUNT CROSS-PAGE CONSISTENCY**: Every public page that mentions
+    test counts must show the SAME numbers as the ground truth from
+    ledger.json. Check Elevator Pitch, White Paper Series, Stage-IV Roadmap,
+    and Gap Analysis intro sections. Stale numbers (e.g. "106 tests" when
+    ledger says 118) are a FAIL.
+
+12. **KC STATUS vs SEALED DOIs**: For each Kill Criterion (KC1-KC5) that is
+    marked "NOT STARTED" or "PIPELINE NEEDED" in any public page, check if a
+    sealed prediction DOI exists (listed in ground truth above) that should
+    have closed it. A KC marked stale when a sealed DOI covers it is a FAIL.
+
 For each check, state:
 - PASS / WARN / FAIL
 - Brief explanation (1-2 sentences)
 - If FAIL: what specifically is wrong and in which file
 
-End with a SUMMARY line: X/10 PASS, Y WARN, Z FAIL.
+End with a SUMMARY line: X/12 PASS, Y WARN, Z FAIL.
 """
     return prompt
 
@@ -217,10 +278,20 @@ def main():
               + (f", papers mentioned: {nums.get('paper_counts', [])}" if nums.get('paper_counts') else "")
               + (f", tests: {nums.get('test_counts', [])}" if nums.get('test_counts') else ""))
 
-    # Build prompt
+    # Build prompt with extended ground truth
+    ledger_stats = load_ledger_stats_for_audit()
+    sealed_papers = find_sealed_prediction_papers()
+    if ledger_stats:
+        print(f"  Ledger: total_public={ledger_stats.get('total_public', '?')}, "
+              f"n_falsified={ledger_stats.get('n_falsified', '?')}, "
+              f"planned_pipeline={ledger_stats.get('planned_pipeline', '?')}")
+    print(f"  Sealed prediction papers: {len(sealed_papers)}")
+
     ground_truth = {
         "paper_count": paper_count,
         "date": datetime.date.today().isoformat(),
+        "ledger_stats": ledger_stats,
+        "sealed_papers": sealed_papers,
     }
     prompt = build_audit_prompt(file_contents, ground_truth)
     print(f"\nPrompt size: {len(prompt)} chars")
