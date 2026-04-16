@@ -142,31 +142,31 @@ April 2026 &middot; CC-BY-4.0
 <table>
 <thead><tr><th>KC</th><th>Pipeline Status</th><th>Gap</th><th>Priority</th></tr></thead>
 <tbody>
-<tr>
+<tr data-kc-id="KC1">
   <td><strong>KC1</strong> P(k) full-shape</td>
   <td><span class="badge-done">PREDICTION READY</span></td>
   <td>None &mdash; hi_class + efc_logistic sealed (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>). Awaiting DESI DR3 (~2027).</td>
   <td><span class="badge-low">LOW</span></td>
 </tr>
-<tr>
+<tr data-kc-id="KC2">
   <td><strong>KC2</strong> f&sigma;<sub>8</sub> trajectory</td>
   <td><span class="badge-done">SEALED</span></td>
   <td>None &mdash; sealed z<sub>cross</sub> = 2.042. Awaiting DESI DR3 Ly&alpha; + high-z RSD.</td>
   <td><span class="badge-low">LOW</span></td>
 </tr>
-<tr>
+<tr data-kc-id="KC3">
   <td><strong>KC3</strong> S<sub>8</sub> convergence</td>
   <td><span class="badge-done">P3 PASS</span></td>
   <td>DES Y6 passed (0.3&sigma;). KiDS Legacy divergence unresolved. <strong>Euclid DR1 (Oct 2026) will arbitrate.</strong></td>
   <td><span class="badge-med">MED</span></td>
 </tr>
-<tr>
+<tr data-kc-id="KC4">
   <td><strong>KC4</strong> Gravitational slip &eta;</td>
   <td><span class="badge-done">SEALED</span></td>
   <td>Rubin DP2 cosmic shear sealed (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>: S<sub>8</sub>=0.847&plusmn;0.015, &xi;<sub>+</sub> ~8% enhancement), &mu;&ndash;&Sigma; eigenmode response sealed (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>), and SO &times; Euclid E<sub>G</sub> cross-correlation sealed (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>: E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012, kill at 1.00 &plusmn; 0.01 &gt;3&sigma;). All KC4 channels now pre-registered.</td>
   <td><span class="badge-done">DONE</span></td>
 </tr>
-<tr>
+<tr data-kc-id="KC5">
   <td><strong>KC5</strong> Dark energy w(z)</td>
   <td>Monitoring</td>
   <td>Need formal w(a) = &minus;&beta;(S)&middot;a confronted with Euclid DR1 chains.</td>
@@ -220,13 +220,13 @@ April 2026 &middot; CC-BY-4.0
 <table>
 <thead><tr><th>#</th><th>Action</th><th>Deadline</th><th>Blocking</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td><strong>1</strong></td><td>Monitor DESI for DR2 full-shape RSD paper at z~0.5&ndash;0.7. Only pending direct test of sealed f&sigma;<sub>8</sub>(z=0.7) = 0.430.</td><td>Now (ongoing)</td><td>KC2 early check</td><td><span class="badge-high">ACTIVE</span></td></tr>
-<tr><td><strong>2</strong></td><td><s>Derive Bellini&ndash;Sawicki &alpha;-functions from EFC relativistic action for Euclid EFT pipeline.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>). Pre-registered predictions sealed in <a href="https://doi.org/10.6084/m9.figshare.32010399">32010399</a>.</td><td>Jul 2026</td><td>Euclid DR1 EFT compatibility</td><td><span class="badge-done">DONE</span></td></tr>
-<tr><td><strong>3</strong></td><td><s>Pre-register EFC predictions for Rubin/LSST DP2 cosmic shear.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>): S<sub>8</sub>=0.847&plusmn;0.015, &xi;<sub>+</sub> ~8% large-scale enhancement (20&prime;&ndash;300&prime;) sealed with SHA-256 falsifiers.</td><td>Jul 2026</td><td>Rubin DP2</td><td><span class="badge-done">DONE</span></td></tr>
-<tr><td><strong>4</strong></td><td><s>Pre-register EFC predictions for SO &times; Euclid E<sub>G</sub> cross-correlation.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>): E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012 at k<sub>c</sub> &asymp; 0.05&thinsp;h&thinsp;Mpc<sup>&minus;1</sup>, z<sub>eff</sub> &asymp; 0.5. Pass window [1.03,&thinsp;1.14], kill at 1.00 &plusmn; 0.01 (&gt;3&sigma;). Sealed 15 Apr 2026.</td><td>Sep 2026</td><td>KC4</td><td><span class="badge-done">DONE</span></td></tr>
-<tr><td><strong>5</strong></td><td>Verify Euclid DR1 pipeline scripts version-controlled and DOI-stamped. Prediction already sealed.</td><td>Oct 2026</td><td>KC3, FA2</td><td><span class="badge-done">SEALED</span></td></tr>
-<tr><td><strong>6</strong></td><td>Derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility T(S) for Euclid DR1 + DESI DR3 joint chains.</td><td>2027</td><td>KC5</td><td><span class="badge-med">PLANNED</span></td></tr>
-<tr><td><strong>7</strong></td><td>Complete multi-component 175-galaxy SPARC universality with fixed (K<sub>0</sub>, m&sup2;).</td><td>2027</td><td>F5 galactic sector</td><td><span class="badge-med">PLANNED</span></td></tr>
+<tr data-action-id="action-1"><td><strong>1</strong></td><td>Monitor DESI for DR2 full-shape RSD paper at z~0.5&ndash;0.7. Only pending direct test of sealed f&sigma;<sub>8</sub>(z=0.7) = 0.430.</td><td>Now (ongoing)</td><td>KC2 early check</td><td><span class="badge-high">ACTIVE</span></td></tr>
+<tr data-action-id="action-2"><td><strong>2</strong></td><td><s>Derive Bellini&ndash;Sawicki &alpha;-functions from EFC relativistic action for Euclid EFT pipeline.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>). Pre-registered predictions sealed in <a href="https://doi.org/10.6084/m9.figshare.32010399">32010399</a>.</td><td>Jul 2026</td><td>Euclid DR1 EFT compatibility</td><td><span class="badge-done">DONE</span></td></tr>
+<tr data-action-id="action-3"><td><strong>3</strong></td><td><s>Pre-register EFC predictions for Rubin/LSST DP2 cosmic shear.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>): S<sub>8</sub>=0.847&plusmn;0.015, &xi;<sub>+</sub> ~8% large-scale enhancement (20&prime;&ndash;300&prime;) sealed with SHA-256 falsifiers.</td><td>Jul 2026</td><td>Rubin DP2</td><td><span class="badge-done">DONE</span></td></tr>
+<tr data-action-id="action-4"><td><strong>4</strong></td><td><s>Pre-register EFC predictions for SO &times; Euclid E<sub>G</sub> cross-correlation.</s> <strong>DONE</strong> (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>): E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012 at k<sub>c</sub> &asymp; 0.05&thinsp;h&thinsp;Mpc<sup>&minus;1</sup>, z<sub>eff</sub> &asymp; 0.5. Pass window [1.03,&thinsp;1.14], kill at 1.00 &plusmn; 0.01 (&gt;3&sigma;). Sealed 15 Apr 2026.</td><td>Sep 2026</td><td>KC4</td><td><span class="badge-done">DONE</span></td></tr>
+<tr data-action-id="action-5"><td><strong>5</strong></td><td>Verify Euclid DR1 pipeline scripts version-controlled and DOI-stamped. Prediction already sealed.</td><td>Oct 2026</td><td>KC3, FA2</td><td><span class="badge-done">SEALED</span></td></tr>
+<tr data-action-id="action-6"><td><strong>6</strong></td><td>Derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility T(S) for Euclid DR1 + DESI DR3 joint chains.</td><td>2027</td><td>KC5</td><td><span class="badge-med">PLANNED</span></td></tr>
+<tr data-action-id="action-7"><td><strong>7</strong></td><td>Complete multi-component 175-galaxy SPARC universality with fixed (K<sub>0</sub>, m&sup2;).</td><td>2027</td><td>F5 galactic sector</td><td><span class="badge-med">PLANNED</span></td></tr>
 </tbody>
 </table>
 
@@ -271,7 +271,7 @@ followed by <code>python3 scripts/maintenance/efc_cross_validate.py</code>.</p>
 
 <h2>Bottom Line</h2>
 
-<table>
+<table data-section="bottom-line">
 <tbody>
 <tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">Biggest gap right now</td><td><strong>DESI DR2 full-shape RSD rapid-response pipeline</strong> &mdash; sealed prediction exists (f&sigma;<sub>8</sub>(z=0.7) = 0.430, <a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a>) but no single-entry-point verification script is assembled. Paper could drop any time. Secondary: Euclid DR1 pipeline verification (Oct 2026). All HIGH-priority pre-registrations now CLOSED (SO &times; Euclid E<sub>G</sub> in <a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>; Rubin DP2 in <a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>; Bellini&ndash;Sawicki in <a href="https://doi.org/10.6084/m9.figshare.32011407">32011407</a>; Background-modification viability in <a href="https://doi.org/10.6084/m9.figshare.31985163">31985163</a>.)</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Most urgent monitor</td><td><strong>DESI DR2 full-shape RSD</strong> &mdash; direct test of sealed f&sigma;<sub>8</sub>(z=0.7) = 0.430 prediction (<a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a>). Rapid-response pipeline needs assembly.</td></tr>

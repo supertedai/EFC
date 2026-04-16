@@ -327,6 +327,203 @@ def apply_gaps_closed(html_text, gaps, bare_doi):
     return new_html, changed
 
 
+# ── Page update support (council-gated) ──────────────────────────────
+
+PAGE_UPDATE_ROW_RE = re.compile(
+    r'(<(?:tr|td|table|div|strong)\s+[^>]*data-(?:kc-id|action-id|section|landscape-id)='
+    r'"(?P<id>[^"]+)"[^>]*>)(?P<body>.*?)(</(?:tr|td|table|div|strong)>)',
+    re.DOTALL,
+)
+
+BADGE_RE = re.compile(
+    r'<span\s+class="(?:badge-done|badge-high|badge-med|badge-low|'
+    r'seal-badge|pipeline-badge|pass-badge|kill-badge)">'
+    r'[^<]*</span>',
+)
+
+PAGE_FILE_MAP = {
+    "gap": os.path.join(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..")),
+        "docs", "public", "EFC_Gap_Analysis.html"),
+    "roadmap": os.path.join(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..")),
+        "docs", "public", "EFC_Stage-IV_Data_Roadmap.html"),
+    "elevator": os.path.join(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..")),
+        "docs", "public", "EFC_Elevator_Pitch.html"),
+    "whitepaper": os.path.join(os.path.abspath(os.path.join(
+        os.path.dirname(__file__), "..", "..")),
+        "docs", "public", "EFC_White_Paper_Series.html"),
+}
+
+
+def _load_council():
+    """Import council gate, return validate function or None."""
+    try:
+        here = os.path.dirname(__file__)
+        sys.path.insert(0, here)
+        from efc_council_gate import council_validate_page_update
+        return council_validate_page_update
+    except ImportError:
+        return None
+
+
+def apply_page_updates(updates, bare_doi, idx, apply_mode):
+    """Apply page_updates from ledger_impact, gated by GPT-5 council.
+
+    Returns (list of planned actions, list of errors, dict of changed pages).
+    """
+    planned = []
+    errors = []
+    changed_pages = {}  # page_key -> new_html
+
+    council_fn = _load_council()
+    paper_doi = idx.get("doi", "")
+    paper_title = idx.get("title", "?")
+    paper_kc = idx.get("kill_criteria", [])
+    paper_sp = idx.get("sealed_predictions", [])
+    paper_desc = idx.get("description", "")
+
+    for upd in updates:
+        page_key = upd.get("page", "")
+        target = upd.get("target", "")
+        action = upd.get("action", "")
+        new_badge = upd.get("new_badge", "")
+        new_text = upd.get("new_text", "")
+        doi_refs = upd.get("doi_refs", [])
+
+        page_path = PAGE_FILE_MAP.get(page_key)
+        if not page_path or not os.path.exists(page_path):
+            errors.append(f"page_updates: unknown page '{page_key}'")
+            continue
+
+        # Load page HTML (use cached if already modified)
+        if page_key in changed_pages:
+            html = changed_pages[page_key]
+        else:
+            with open(page_path, encoding="utf-8", errors="replace") as f:
+                html = f.read()
+
+        # Find target element
+        target_attr = target.replace('"', '"')
+        target_re = re.compile(
+            r'(<[^>]+' + re.escape(target_attr) + r'[^>]*>)(.*?)(</[^>]+>)',
+            re.DOTALL,
+        )
+        match = target_re.search(html)
+        if not match:
+            errors.append(
+                f"page_updates: target {target} not found in {page_key}")
+            continue
+
+        old_element = match.group(0)
+
+        # Generate proposed new HTML based on action type
+        if action == "update_badge":
+            badge_class = {
+                "SEALED": "seal-badge", "DONE": "badge-done",
+                "PREDICTION READY": "pass-badge", "P3 PASS": "pass-badge",
+                "PIPELINE NEEDED": "pipeline-badge", "HIGH": "badge-high",
+                "PLANNED": "badge-med", "ACTIVE": "badge-high",
+            }.get(new_badge, "badge-done")
+            new_badge_html = f'<span class="{badge_class}">{new_badge}</span>'
+            new_body = match.group(2)
+            # Replace existing badge
+            if BADGE_RE.search(new_body):
+                new_body = BADGE_RE.sub(new_badge_html, new_body, count=1)
+            else:
+                new_body = new_badge_html + " " + new_body
+            if new_text:
+                # Replace text after badge in the same <td>
+                # Find the <td> containing the badge and replace its content
+                td_re = re.compile(r'(<td[^>]*>)(.*?)(</td>)', re.DOTALL)
+                tds = list(td_re.finditer(new_body))
+                if len(tds) >= 2:
+                    # Replace second <td> content (status column)
+                    td = tds[1]
+                    doi_links = " ".join(
+                        f'(<a href="https://doi.org/10.6084/m9.figshare.{d}">'
+                        f'{d}</a>)' for d in doi_refs
+                    )
+                    new_body = (
+                        new_body[:td.start(2)]
+                        + f'{new_badge_html} {new_text} {doi_links}'
+                        + new_body[td.end(2):]
+                    )
+            new_element = match.group(1) + new_body + match.group(3)
+
+        elif action == "mark_done":
+            done_text = upd.get("done_text", "DONE")
+            doi_links = " ".join(
+                f'(<a href="https://doi.org/10.6084/m9.figshare.{d}">{d}</a>)'
+                for d in doi_refs
+            )
+            new_body = match.group(2)
+            # Wrap existing text in <s> and append DONE
+            new_body = re.sub(
+                r'(<td[^>]*>)(.*?)(</td>)',
+                lambda m: (
+                    f'{m.group(1)}<s>{m.group(2)}</s> '
+                    f'<strong>DONE</strong> {doi_links} {done_text}'
+                    f'{m.group(3)}'
+                ),
+                new_body,
+                count=1,
+            )
+            new_element = match.group(1) + new_body + match.group(3)
+
+        elif action == "update_text":
+            new_element = match.group(1) + new_text + match.group(3)
+
+        else:
+            errors.append(f"page_updates: unknown action '{action}'")
+            continue
+
+        desc = f"{action} {target} on {page_key}"
+        planned.append(desc)
+
+        if not apply_mode:
+            continue
+
+        # Council gate
+        if council_fn:
+            approved, reason = council_fn(
+                page_name=page_key,
+                action=action,
+                target_id=target,
+                old_html=old_element[:1500],
+                new_html=new_element[:1500],
+                paper_doi=paper_doi,
+                paper_title=paper_title,
+                paper_kill_criteria=paper_kc,
+                paper_sealed_predictions=paper_sp,
+                paper_description=paper_desc,
+            )
+            if not approved:
+                errors.append(
+                    f"page_updates: council REJECTED {desc}: {reason[:200]}")
+                continue
+        else:
+            # No council available — reject (safe default)
+            errors.append(
+                f"page_updates: council module not available — "
+                f"REJECTED {desc} (safe default)")
+            continue
+
+        # Apply the change
+        html = html[:match.start()] + new_element + html[match.end():]
+        changed_pages[page_key] = html
+
+    # Write changed pages to disk
+    if apply_mode:
+        for page_key, new_html in changed_pages.items():
+            page_path = PAGE_FILE_MAP[page_key]
+            with open(page_path, "w", encoding="utf-8") as f:
+                f.write(new_html)
+
+    return planned, errors, changed_pages
+
+
 def process_paper(paper_name, idx_path, idx, tests_data, stats_data,
                   gap_html, gap_ids, apply_mode):
     """Process one paper. Returns dict with actions + updated artifacts."""
@@ -403,6 +600,12 @@ def process_paper(paper_name, idx_path, idx, tests_data, stats_data,
     for gid in impact.get("gaps_closed", []):
         report["planned"].append(f"CLOSE gap {gid}")
 
+    # page_updates (council-gated)
+    page_updates = impact.get("page_updates", [])
+    if page_updates:
+        pu_planned, _, _ = apply_page_updates(page_updates, bare, idx, False)
+        report["planned"].extend(pu_planned)
+
     if not report["planned"]:
         report["reason"] = "ledger_impact block is empty — nothing to do"
         return report, tests_data, stats_data, gap_html
@@ -426,6 +629,17 @@ def process_paper(paper_name, idx_path, idx, tests_data, stats_data,
             report["errors"].append(
                 f"gaps_closed: could not mark {sorted(missed)} (already closed?)"
             )
+
+    # page_updates (council-gated)
+    page_updates = impact.get("page_updates", [])
+    if page_updates:
+        pu_planned, pu_errors, pu_changed = apply_page_updates(
+            page_updates, bare, idx, True
+        )
+        report["errors"].extend(pu_errors)
+        if pu_changed:
+            report["planned"].extend(
+                [f"COUNCIL APPROVED: {p}" for p in pu_changed.keys()])
 
     # Stamp idempotence markers in the paper's index.json
     impact["applied_at"] = now_iso()

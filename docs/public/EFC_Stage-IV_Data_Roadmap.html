@@ -459,7 +459,7 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr data-kc-id="KC1">
   <td><span class="kill-badge">KC1</span></td>
   <td>Growth suppression absent</td>
   <td>|&alpha;<sub>L2</sub>| &lt; 0.1 at 3&sigma;</td>
@@ -467,7 +467,7 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
   <td>~2027&ndash;2028</td>
   <td><span class="pipeline-badge">PIPELINE NEEDED</span> Full-shape likelihood</td>
 </tr>
-<tr>
+<tr data-kc-id="KC2">
   <td><span class="kill-badge">KC2</span></td>
   <td>Wrong f&sigma;<sub>8</sub> trajectory</td>
   <td>|z<sub>cross</sub> &minus; 2.042| &gt; 3&sigma;</td>
@@ -475,7 +475,7 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
   <td>~2027&ndash;2028</td>
   <td><span class="seal-badge">SEALED</span> Freeze v1 hash: <code>7a850cfa...</code></td>
 </tr>
-<tr>
+<tr data-kc-id="KC3">
   <td><span class="kill-badge">KC3</span></td>
   <td>S<sub>8</sub> converges to &Lambda;CDM</td>
   <td>S<sub>8</sub> = S<sub>8,&Lambda;CDM</sub> &plusmn; 0.005</td>
@@ -483,7 +483,7 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
   <td><strong>2026 Oct</strong></td>
   <td><span class="pass-badge">P3 PASS</span> on DES Y6 (0.3&sigma;); Euclid will arbitrate</td>
 </tr>
-<tr>
+<tr data-kc-id="KC4">
   <td><span class="kill-badge">KC4</span></td>
   <td>Gravitational slip absent</td>
   <td>|&eta; &minus; 1| &lt; 0.01 (Euclid)</td>
@@ -491,7 +491,7 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
   <td>~2028</td>
   <td><span class="seal-badge">SEALED</span> E<sub>G</sub> pre-registration (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>), Rubin DP2 cosmic shear (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>), &mu;&ndash;&Sigma; eigenmode (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>)</td>
 </tr>
-<tr>
+<tr data-kc-id="KC5">
   <td><span class="kill-badge">KC5</span></td>
   <td>No dynamical dark energy</td>
   <td>|w&#8320; + 1| &lt; 0.02 (Euclid)</td>
@@ -806,11 +806,11 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <table>
 <thead><tr><th>KC</th><th>Pipeline Status</th><th>Gap</th><th>Priority</th></tr></thead>
 <tbody>
-<tr><td><span class="kill-badge">KC1</span> P(k) full-shape</td><td><span class="pass-badge">PREDICTION READY</span></td><td>None &mdash; hi_class + efc_logistic sealed (31990053). Awaiting DESI DR3 (~2027).</td><td>Low (pipeline complete)</td></tr>
-<tr><td><span class="kill-badge">KC2</span> f&sigma;<sub>8</sub> trajectory</td><td><span class="seal-badge">SEALED</span></td><td>None &mdash; sealed prediction z<sub>cross</sub> = 2.042. Awaiting DESI DR3 Ly&alpha; + high-z RSD.</td><td>Low (prediction locked)</td></tr>
-<tr><td><span class="kill-badge">KC3</span> S<sub>8</sub> convergence</td><td><span class="pass-badge">P3 PASS</span></td><td>DES Y6 passed (0.3&sigma;). KiDS Legacy divergence unresolved. <strong>Euclid DR1 (Oct 2026) will arbitrate.</strong></td><td>Medium (Euclid pipeline ready, need to monitor KiDS Legacy release ~2027)</td></tr>
-<tr><td><span class="kill-badge">KC4</span> Gravitational slip &eta;</td><td><span class="seal-badge">SEALED</span></td><td>All KC4 channels pre-registered: SO &times; Euclid E<sub>G</sub> (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>: E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012, kill at 1.00 &plusmn; 0.01 &gt;3&sigma;), Rubin DP2 cosmic shear (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>), &mu;&ndash;&Sigma; eigenmode (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>).</td><td><strong>DONE</strong></td></tr>
-<tr><td><span class="kill-badge">KC5</span> Dark energy w(z)</td><td>Monitoring</td><td>DESI DR2 shows 2.3&sigma; for w&#8320;w<sub>a</sub>CDM. EFC consistent. Gap: need formal w(a) = &minus;&beta;(S)&middot;a prediction confronted with Euclid DR1 chains.</td><td>Medium &mdash; derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility</td></tr>
+<tr data-kc-id="KC1-s12"><td><span class="kill-badge">KC1</span> P(k) full-shape</td><td><span class="pass-badge">PREDICTION READY</span></td><td>None &mdash; hi_class + efc_logistic sealed (31990053). Awaiting DESI DR3 (~2027).</td><td>Low (pipeline complete)</td></tr>
+<tr data-kc-id="KC2-s12"><td><span class="kill-badge">KC2</span> f&sigma;<sub>8</sub> trajectory</td><td><span class="seal-badge">SEALED</span></td><td>None &mdash; sealed prediction z<sub>cross</sub> = 2.042. Awaiting DESI DR3 Ly&alpha; + high-z RSD.</td><td>Low (prediction locked)</td></tr>
+<tr data-kc-id="KC3-s12"><td><span class="kill-badge">KC3</span> S<sub>8</sub> convergence</td><td><span class="pass-badge">P3 PASS</span></td><td>DES Y6 passed (0.3&sigma;). KiDS Legacy divergence unresolved. <strong>Euclid DR1 (Oct 2026) will arbitrate.</strong></td><td>Medium (Euclid pipeline ready, need to monitor KiDS Legacy release ~2027)</td></tr>
+<tr data-kc-id="KC4-s12"><td><span class="kill-badge">KC4</span> Gravitational slip &eta;</td><td><span class="seal-badge">SEALED</span></td><td>All KC4 channels pre-registered: SO &times; Euclid E<sub>G</sub> (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>: E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012, kill at 1.00 &plusmn; 0.01 &gt;3&sigma;), Rubin DP2 cosmic shear (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>), &mu;&ndash;&Sigma; eigenmode (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>).</td><td><strong>DONE</strong></td></tr>
+<tr data-kc-id="KC5-s12"><td><span class="kill-badge">KC5</span> Dark energy w(z)</td><td>Monitoring</td><td>DESI DR2 shows 2.3&sigma; for w&#8320;w<sub>a</sub>CDM. EFC consistent. Gap: need formal w(a) = &minus;&beta;(S)&middot;a prediction confronted with Euclid DR1 chains.</td><td>Medium &mdash; derive effective w&#8320;, w<sub>a</sub> from EFC susceptibility</td></tr>
 </tbody>
 </table>
 
