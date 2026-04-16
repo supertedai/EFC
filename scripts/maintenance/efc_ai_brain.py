@@ -153,20 +153,29 @@ def _query_graph_context(idx):
         "bridge_potential": [],
     }
 
+    # Filter out personal/generic concepts that pollute graph traversal
+    NOISE_CONCEPTS = {
+        "morten magnusson", "symbiose research", "sandnes", "norway",
+        "cc-by-4.0", "figshare", "energy-flow cosmology", "efc",
+        "morten", "author", "researcher",
+    }
+
     # 1-hop: What concepts does this DOI document?
     # Graph uses DOCUMENTS (not MENTIONS) for DOI→Concept edges
     concepts = _query_neo4j(
         "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept) "
         "WHERE d.doi CONTAINS $doi "
+        "AND NOT c:User "
         "RETURN c.name AS name, c.domain AS domain, "
-        "c.concept_type AS type LIMIT 20",
+        "c.concept_type AS type LIMIT 30",
         {"doi": doi.split("/")[-1]},
     )
     result["concepts"] = [
         {"name": r.get("name", "?"), "domain": r.get("domain", ""),
          "type": r.get("type", "")}
         for r in concepts
-    ]
+        if r.get("name", "").lower().strip() not in NOISE_CONCEPTS
+    ][:20]
 
     if not result["concepts"]:
         # Try keywords from index.json as fallback
@@ -175,13 +184,17 @@ def _query_graph_context(idx):
                               for k in kw[:10]]
 
     # 2-hop: What other documents share these concepts?
+    # Exclude personal/generic concepts to avoid "everything connects via author"
     related = _query_neo4j(
         "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept)"
         "<-[:DOCUMENTS|MENTIONS]-(other) "
         "WHERE d.doi CONTAINS $doi AND other <> d "
+        "AND NOT c:User "
+        "AND toLower(c.name) NOT IN $noise "
         "RETURN DISTINCT other.name AS name, other.doi AS doi, "
         "c.name AS shared LIMIT 15",
-        {"doi": doi.split("/")[-1]},
+        {"doi": doi.split("/")[-1],
+         "noise": list(NOISE_CONCEPTS)},
     )
     result["related_papers"] = [
         {"name": r.get("name", "?"), "doi": r.get("doi", ""),
@@ -189,14 +202,17 @@ def _query_graph_context(idx):
         for r in related
     ]
 
-    # KC/Validation connections
+    # KC/Validation connections (filtered for noise)
     validations = _query_neo4j(
         "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept)"
         "<-[:TESTS|VALIDATES]-(v:EFCValidation) "
         "WHERE d.doi CONTAINS $doi "
+        "AND NOT c:User "
+        "AND toLower(c.name) NOT IN $noise "
         "RETURN v.test_id AS test_id, v.name AS name, "
         "c.name AS shared LIMIT 10",
-        {"doi": doi.split("/")[-1]},
+        {"doi": doi.split("/")[-1],
+         "noise": list(NOISE_CONCEPTS)},
     )
     result["related_validations"] = [
         {"test_id": r.get("test_id", ""), "name": r.get("name", ""),
