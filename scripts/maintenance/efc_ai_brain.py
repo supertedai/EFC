@@ -153,9 +153,10 @@ def _query_graph_context(idx):
         "bridge_potential": [],
     }
 
-    # 1-hop: What concepts does this DOI mention?
+    # 1-hop: What concepts does this DOI document?
+    # Graph uses DOCUMENTS (not MENTIONS) for DOI→Concept edges
     concepts = _query_neo4j(
-        "MATCH (d)-[:MENTIONS]->(c:Concept) "
+        "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept) "
         "WHERE d.doi CONTAINS $doi "
         "RETURN c.name AS name, c.domain AS domain, "
         "c.concept_type AS type LIMIT 20",
@@ -175,7 +176,8 @@ def _query_graph_context(idx):
 
     # 2-hop: What other documents share these concepts?
     related = _query_neo4j(
-        "MATCH (d)-[:MENTIONS]->(c:Concept)<-[:MENTIONS]-(other) "
+        "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept)"
+        "<-[:DOCUMENTS|MENTIONS]-(other) "
         "WHERE d.doi CONTAINS $doi AND other <> d "
         "RETURN DISTINCT other.name AS name, other.doi AS doi, "
         "c.name AS shared LIMIT 15",
@@ -189,7 +191,8 @@ def _query_graph_context(idx):
 
     # KC/Validation connections
     validations = _query_neo4j(
-        "MATCH (d)-[:MENTIONS]->(c:Concept)<-[:TESTS]-(v:EFCValidation) "
+        "MATCH (d)-[:DOCUMENTS|MENTIONS]->(c:Concept)"
+        "<-[:TESTS|VALIDATES]-(v:EFCValidation) "
         "WHERE d.doi CONTAINS $doi "
         "RETURN v.test_id AS test_id, v.name AS name, "
         "c.name AS shared LIMIT 10",
