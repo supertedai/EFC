@@ -51,9 +51,9 @@
       "verdict": "MARGINAL",
       "significance": "Best: (mu=0.94, Sigma=1.05) at Dchi2=+2.49 with 6.4% sigma8 suppression",
       "source": "MGCAMB 2D scan",
-      "reproducible": false,
-      "script": null,
-      "note": "Perturbation sector viable only with gravitational slip (Sigma != 1)"
+      "reproducible": "sanity_only",
+      "script": "reproduce_cmb_sanity.py",
+      "note": "Sanity checks pass (24/24): GR recovery, stability, ISW. NOT a likelihood test. Full Boltzmann validation (plik_lite TTTEEE) is the single most critical pending test."
     },
     {
       "observable": "SPARC rotation curves",

@@ -16,9 +16,15 @@ This script verifies that the EFC modification is:
     5. Consistent with ISW bounds (dClTT(ell~30) < 1%)
     6. Cross-checked against frozen parameter scan from hi_class
 
-This is NOT a replacement for a full CMB analysis.  It verifies the
-*necessary conditions* that EFC must satisfy to be CMB-compatible.
-If any check fails, EFC is falsified at the CMB level (F1 kill).
+IMPORTANT LIMITATIONS:
+    - This is NOT a likelihood test.  It does NOT prove CMB consistency.
+    - Planck sensitivity is much finer than the ~1-2% tolerances used here,
+      especially at high multipoles (ell > 1000).
+    - A full plik_lite TTTEEE likelihood analysis with a Boltzmann solver
+      (hi_class / CLASS) is required to establish actual CMB compatibility.
+    - This script only tests that EFC does not *obviously* break CMB physics.
+    If any check fails, EFC is falsified at the CMB level (F1 kill).
+    If all checks pass, EFC is "not obviously wrong" — not "confirmed".
 
 Dependencies: numpy (in requirements.txt)
 
@@ -374,9 +380,10 @@ def main():
     print(f"  {s['passed']}/{s['total']} checks passed  [{tag}]  ({elapsed:.2f}s)")
     print()
     print("  Interpretation:")
-    print("    ALL PASS -> EFC satisfies necessary CMB conditions")
+    print("    ALL PASS -> EFC does not introduce obvious instabilities or")
+    print("                large deviations.  NOT equivalent to 'passes Planck'.")
     print("    ANY FAIL -> potential F1 kill (CMB falsification)")
-    print("    Full validation still requires Boltzmann solver run")
+    print("    Full Boltzmann likelihood (plik_lite TTTEEE) still required.")
 
     # Output JSON
     output = {

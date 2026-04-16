@@ -20,7 +20,11 @@ to recover LCDM exactly.  Any modification at CMB scales means the
 regime boundary is wrong.
 
 **Data needed:** Planck 2018 + future CMB-S4.
-**Status:** Not yet tested with full Boltzmann code (hi_class integration pending).
+**Status:** Sanity checks pass (GR recovery at z=1100, ISW +0.3%,
+dClTT ~1% at ell=66).  However, sanity checks verify necessary
+conditions only — they are NOT a likelihood test.  Full Boltzmann
+analysis (plik_lite TTTEEE) is pending.  This remains the single
+most critical unresolved test for EFC.
 
 ## F2: mu > 1 at late times (KILL)
 
