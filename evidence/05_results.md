@@ -3,6 +3,12 @@
 Each result below links to the specific ledger entry, code function,
 and DOI that produced it.
 
+**Significance disclaimer:** The strongest current signal is 2.2 sigma
+(fsigma_8 growth suppression).  This is below the 3-sigma threshold
+for a firm detection.  All results should be read as *suggestive
+indications*, not established claims.  Decisive tests require Stage-IV
+data (DESI DR3, Euclid DR1, CMB-S4).
+
 ## R1: fsigma_8 growth suppression
 
 | Metric | Value |
@@ -67,7 +73,8 @@ and DOI that produced it.
 
 - **Ledger:** `docs/validation-ledger/data/inference.json`
 - **DOI:** Unified Analysis paper (figshare)
-- **Note:** Requires cobaya + external likelihoods; not in minimal reproduce script
+- **Reproduce:** `python reproduce_bao.py` (diagonal covariance; direction matches published)
+- **Note:** Full reproduction with covariance matrix requires DESI DR2 data from Zenodo
 
 ## R6: SPARC 175 rotation curves
 
@@ -80,7 +87,8 @@ and DOI that produced it.
 
 - **Ledger:** Kill-Test v6 papers
 - **DOI:** 10.6084/m9.figshare.31986762
-- **Note:** Requires SPARC data files; validated in pipeline
+- **Reproduce:** `python reproduce_sparc.py` (loads 175 galaxies, fits 5 representative, verifies kill-test stats)
+- **Note:** Full 175-galaxy re-fit takes ~60s; kill-test results verified from archived JSON
 
 ## Summary: reproduce_efc.py output hash
 

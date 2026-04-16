@@ -1,7 +1,7 @@
 {
   "name": "EFC vs LCDM Benchmark Table",
   "description": "Hard comparison per observable. Not 'compatible' — explicitly better/worse/equal.",
-  "generated_by": "reproduce_efc.py + validation ledger",
+  "generated_by": "reproduce_efc.py + reproduce_bao.py + reproduce_sparc.py + validation ledger",
   "note": "Values from published analyses. Dchi2 < 0 = EFC preferred; > 0 = LCDM preferred.",
   "benchmarks": [
     {
@@ -11,7 +11,7 @@
       "value": -2.91,
       "unit": "chi2",
       "verdict": "EFC_BETTER",
-      "significance": "2.20 sigma, DAIC = -2.91",
+      "significance": "2.20 sigma (suggestive, below 3-sigma threshold), DAIC = -2.91",
       "source": "DOI:10.6084/m9.figshare.31332730",
       "reproducible": true,
       "script": "reproduce_efc.py"
@@ -25,9 +25,9 @@
       "verdict": "EFC_BETTER",
       "significance": "chi2_EFC=6.8 (5 dof) vs chi2_LCDM=15.2 (6 dof)",
       "source": "DESI DR2 regime transition fit",
-      "reproducible": false,
-      "script": null,
-      "note": "Requires cobaya + DESI likelihood"
+      "reproducible": true,
+      "script": "reproduce_bao.py",
+      "note": "Diagonal covariance only (chi2 inflated); direction matches published. Full reproduction needs DESI covariance from Zenodo."
     },
     {
       "observable": "Unified (BAO + SN + RSD)",
@@ -64,9 +64,9 @@
       "verdict": "EFC_BETTER",
       "significance": "k=0.415+/-0.029, C=4.4 cross-scale consistency",
       "source": "DOI:10.6084/m9.figshare.31986762",
-      "reproducible": false,
-      "script": null,
-      "note": "Requires SPARC data files"
+      "reproducible": true,
+      "script": "reproduce_sparc.py",
+      "note": "Loads 175 galaxies from repo data, fits 5 representative, verifies kill-test stats from archived results"
     },
     {
       "observable": "sigma_8 (S8 tension)",

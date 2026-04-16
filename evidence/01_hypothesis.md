@@ -10,7 +10,10 @@ growth (sigma_8) without altering early-universe physics.
 the Planck LCDM prediction; fsigma_8(z) at z < 1 is systematically
 below the LCDM curve.
 
-**Status:** Supported (2.2 sigma, DAIC = -2.91).
+**Status:** Suggestive but not decisive (2.2 sigma, DAIC = -2.91).
+Below the 3-sigma threshold for a firm detection; currently an indication,
+not a claim.  Requires Stage-IV data (DESI DR3, Euclid DR1) to reach
+decisive significance.
 
 ## H2: Regime-dependent validity
 

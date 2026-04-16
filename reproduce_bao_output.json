@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "script": "reproduce_bao.py",
+    "timestamp": "2026-04-16T14:47:32Z",
+    "note": "Diagonal covariance only; full reproduction requires DESI covariance matrix"
+  },
+  "parameters": {
+    "z_L1L2": 1.01,
+    "alpha_L2": 0.045,
+    "delta_z": 0.3,
+    "Omega_m": 0.3134
+  },
+  "results": {
+    "chi2_lcdm": 85.14060783975864,
+    "chi2_efc": 70.06737586214484,
+    "delta_chi2": -15.073231977613801,
+    "published_delta_chi2": -8.4,
+    "predictions_lcdm": [
+      {
+        "z": 0.3,
+        "DM_rd": 8.408697824527529,
+        "DH_rd": 25.78561036535301
+      },
+      {
+        "z": 0.51,
+        "DM_rd": 13.50146420039977,
+        "DH_rd": 22.755254087468835
+      },
+      {
+        "z": 0.71,
+        "DM_rd": 17.785898671222245,
+        "DH_rd": 20.14031755337879
+      },
+      {
+        "z": 0.93,
+        "DM_rd": 21.933836563105576,
+        "DH_rd": 17.633674018374993
+      },
+      {
+        "z": 1.32,
+        "DM_rd": 28.086055521638556,
+        "DH_rd": 14.095297995271352
+      },
+      {
+        "z": 1.49,
+        "DM_rd": 30.375019298785592,
+        "DH_rd": 12.861125776611965
+      },
+      {
+        "z": 2.33,
+        "DM_rd": 39.2210511226356,
+        "DH_rd": 8.632739937155053
+      }
+    ],
+    "predictions_efc": [
+      {
+        "z": 0.3,
+        "DM_rd": 8.248003729097201,
+        "DH_rd": 25.354281863718228
+      },
+      {
+        "z": 0.51,
+        "DM_rd": 13.262281179250243,
+        "DH_rd": 22.4347651634408
+      },
+      {
+        "z": 0.71,
+        "DM_rd": 17.491799522417598,
+        "DH_rd": 19.910883547189773
+      },
+      {
+        "z": 0.93,
+        "DM_rd": 21.600363769188924,
+        "DH_rd": 17.505519675692014
+      },
+      {
+        "z": 1.32,
+        "DM_rd": 27.729466305849428,
+        "DH_rd": 14.079960830137107
+      },
+      {
+        "z": 1.49,
+        "DM_rd": 30.016911714677228,
+        "DH_rd": 12.85657654731679
+      },
+      {
+        "z": 2.33,
+        "DM_rd": 38.862331416287475,
+        "DH_rd": 8.63273114633519
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "lcdm_chi2_finite",
+      "passed": "True",
+      "detail": "chi2 = 85.14"
+    },
+    {
+      "name": "lcdm_chi2_reasonable",
+      "passed": "True",
+      "detail": "chi2 = 85.14 (14 observables, diagonal-only; inflated vs published 15.2 due to DM-DH correlations)"
+    },
+    {
+      "name": "efc_chi2_finite",
+      "passed": "True",
+      "detail": "chi2 = 70.07"
+    },
+    {
+      "name": "efc_improves_bao",
+      "passed": "True",
+      "detail": "Dchi2 = -15.07 (negative = EFC preferred)"
+    },
+    {
+      "name": "theta_z0_near_1",
+      "passed": "True",
+      "detail": "Theta(z=0) = 0.9988 (should be ~1)"
+    },
+    {
+      "name": "theta_high_z_near_0",
+      "passed": "True",
+      "detail": "Theta(z=3) = 0.0000 (should be ~0)"
+    },
+    {
+      "name": "theta_monotonic",
+      "passed": "True",
+      "detail": "Theta decreasing with z"
+    },
+    {
+      "name": "E_lcdm_z0",
+      "passed": "True",
+      "detail": "E(0) = 1.0000000000"
+    },
+    {
+      "name": "E_efc_z0_positive",
+      "passed": "True",
+      "detail": "E_EFC(0) = 1.022226"
+    },
+    {
+      "name": "direction_matches_published",
+      "passed": "True",
+      "detail": "Both say EFC preferred (Dchi2 < 0)"
+    },
+    {
+      "name": "deterministic",
+      "passed": "True",
+      "detail": "identical on re-run"
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "passed": 11,
+    "failed": 0
+  },
+  "content_hash": "e0267af9056b6cd0d5d14984c684dd7783d8ae52c1c4e5104151e98fc35c7ae6"
+}
