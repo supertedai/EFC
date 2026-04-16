@@ -403,77 +403,105 @@ def validate_test_counts_all_pages(stats, result):
                             f"ledger has {exp}")
 
 
+def _extract_stage4_kcs_from_paper(idx):
+    """Extract Stage-IV KC references (KC1-KC5, FA1-FA6) from a paper's
+    index.json by reading structured fields, not guessing from keywords.
+
+    Priority order:
+    1. ledger_impact.kill_criteria_addressed (explicit, highest trust)
+    2. kill_criteria text array (parse "KC1", "KC4", "FA4" labels)
+    3. sealed_predictions[].falsifiable_by (parse KC refs)
+
+    Returns a set of normalized labels like {"KC4", "FA4"}.
+    """
+    kcs = set()
+
+    # Source 1: ledger_impact.kill_criteria_addressed (most authoritative)
+    li = idx.get("ledger_impact", {})
+    if isinstance(li, dict):
+        for kc in li.get("kill_criteria_addressed", []):
+            kcs.add(kc.upper().strip())
+
+    # Source 2: kill_criteria text array — parse KC/FA labels
+    for text in idx.get("kill_criteria", []):
+        for m in re.finditer(r"\b(KC\d|FA\d)\b", text, re.IGNORECASE):
+            kcs.add(m.group(1).upper())
+
+    # Source 3: sealed_predictions[].falsifiable_by
+    for sp in idx.get("sealed_predictions", []):
+        fb = sp.get("falsifiable_by", "")
+        for m in re.finditer(r"\b(KC\d|FA\d)\b", fb, re.IGNORECASE):
+            kcs.add(m.group(1).upper())
+
+    return kcs
+
+
 def validate_kc_status_vs_dois(result):
     """Check that KC rows marked 'NOT STARTED' or 'PIPELINE NEEDED' in
-    public pages don't have a sealed prediction DOI that closes them.
+    public pages don't have a sealed prediction DOI that addresses them.
 
-    Catches the case where a sealed prediction is published but the
-    public page hasn't been updated to reflect it.
+    Uses DOI-semantic parsing: reads kill_criteria fields from paper
+    index.json and ledger_impact.kill_criteria_addressed to determine
+    which KCs each sealed prediction covers. No keyword guessing.
     """
-    print("\n--- KC Status vs Sealed DOIs ---")
+    print("\n--- KC Status vs Sealed DOIs (semantic) ---")
 
-    # Collect sealed prediction DOIs and their keywords
-    sealed_papers = []
+    # Build map: KC label -> list of covering DOIs
+    kc_to_dois = {}  # e.g. {"KC4": [{"doi": "...", "title": "..."}]}
     for name in os.listdir(PAPERS):
         d = os.path.join(PAPERS, name)
         idx_path = os.path.join(d, "index.json")
         if not os.path.isdir(d) or not os.path.exists(idx_path):
             continue
         try:
-            with open(idx_path, encoding="utf-8") as f:
+            with open(idx_path, encoding="utf-8", errors="replace") as f:
                 idx = json.load(f)
         except (json.JSONDecodeError, OSError):
             continue
         ptype = idx.get("paper_type", "")
-        if ptype in ("sealed_prediction", "observational_pipeline"):
-            sealed_papers.append({
-                "doi": idx.get("doi", ""),
+        if ptype not in ("sealed_prediction", "observational_pipeline",
+                         "empirical_test", "empirical_analysis"):
+            continue
+        doi = idx.get("doi", "")
+        if not doi:
+            continue
+
+        kcs = _extract_stage4_kcs_from_paper(idx)
+        for kc in kcs:
+            kc_to_dois.setdefault(kc, []).append({
+                "doi": doi,
                 "title": idx.get("title", name),
-                "keywords": " ".join(idx.get("keywords", [])).lower(),
-                "description": idx.get("description", "").lower(),
-                "dir": name.lower(),
             })
 
-    if not sealed_papers:
-        result.ok("No sealed prediction papers found — nothing to check")
+    if not kc_to_dois:
+        result.ok("No papers with KC/FA references found")
         return
 
-    # Check Gap Analysis and Roadmap for stale KC rows
-    stale_kw = {
-        "kc4": ["eg", "e_g", "gravitational_slip", "gravitational slip",
-                "eta", "η", "slip"],
-        "kc1": ["full-shape", "full shape", "p(k)", "growth suppression"],
-        "kc2": ["fsigma", "fσ", "trajectory", "z_cross", "crossover"],
-        "kc3": ["s8", "s_8", "cosmic shear", "lensing"],
-        "kc5": ["dark energy", "w(z)", "w0", "w_0", "dynamical"],
-    }
+    covered = sorted(kc_to_dois.keys())
+    result.ok(f"Sealed/empirical DOIs cover: {', '.join(covered)}")
 
+    # Check Gap Analysis and Roadmap for stale KC rows
     for page_key in ["gap", "roadmap"]:
         html = read_page(page_key)
         if not html:
             continue
         page_name = "Gap Analysis" if page_key == "gap" else "Stage-IV Roadmap"
 
-        # Find rows with NOT STARTED or PIPELINE NEEDED
         for row in re.findall(r"<tr>(.*?)</tr>", html, flags=re.DOTALL):
             if not re.search(r"NOT\s*STARTED|PIPELINE\s*NEEDED", row, re.IGNORECASE):
                 continue
-            row_lower = row.lower()
 
-            # Which KC does this row belong to?
-            for kc, keywords in stale_kw.items():
-                if kc.upper() not in row.upper() and not any(
-                        kw in row_lower for kw in keywords):
-                    continue
-                # Check if any sealed paper covers this KC
-                for sp in sealed_papers:
-                    text = f"{sp['keywords']} {sp['description']} {sp['dir']}"
-                    if any(kw in text for kw in keywords):
-                        result.warn(
-                            f"{page_name}: {kc.upper()} marked NOT STARTED/"
-                            f"PIPELINE NEEDED but sealed DOI {sp['doi']} "
-                            f"({sp['title'][:60]}) appears to cover it")
-                        break
+            # Which KC does this HTML row reference?
+            row_kcs = set(m.group(1).upper()
+                          for m in re.finditer(r"\b(KC\d|FA\d)\b", row, re.IGNORECASE))
+
+            for kc in row_kcs:
+                if kc in kc_to_dois:
+                    dois = kc_to_dois[kc]
+                    doi_list = ", ".join(d["doi"].split("/")[-1] for d in dois[:3])
+                    result.warn(
+                        f"{page_name}: {kc} marked NOT STARTED/PIPELINE NEEDED "
+                        f"but {len(dois)} sealed DOI(s) address it: {doi_list}")
 
 
 def validate_section12_sync(result):
