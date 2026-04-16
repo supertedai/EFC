@@ -3,7 +3,9 @@
 > **Status:** EFC is currently consistent with late-time data at the
 > ~2 sigma level and remains a candidate extension of LCDM pending
 > CMB validation.  The strongest signal (fsigma_8) is suggestive but
-> not decisive.
+> not decisive.  Following DESI DR2, the background-sector signal
+> collapsed from 2.2 sigma to 0.68 sigma; the perturbation sector
+> (mu, Sigma, eta) is now the primary channel.
 
 ## H1: Entropy-driven gravitational modification
 
@@ -19,6 +21,12 @@ below the LCDM curve.
 Below the 3-sigma threshold for a firm detection; currently an indication,
 not a claim.  Requires Stage-IV data (DESI DR3, Euclid DR1) to reach
 decisive significance.
+
+**DESI DR2 update:** The background coupling parameter alpha collapsed
+from -1.00 +/- 0.46 (2.2 sigma) to -0.14 +/- 0.21 (0.68 sigma),
+eliminating the background-sector signal.  The Variant H MCMC growth
+test (S_0 = 0.21 +/- 0.14, DAIC = +4.05) shows no current data
+preference for the entropy-gradient growth mechanism.
 
 ## H2: Regime-dependent validity
 
@@ -57,6 +65,30 @@ at any redshift.
 
 **Status:** Proven analytically (Lemma 1) and verified numerically.
 
+## H5: Constraint-driven gravitational slip (mu < 1, Sigma >= 1)
+
+The EFC Lagrange-multiplier flow constraint generates anisotropic stress
+absent in standard Horndeski theories, enabling a regime where mu < 1
+(growth suppression) and Sigma >= 1 (lensing enhancement) simultaneously.
+
+Standard quasi-static Horndeski with alpha_T = 0 CANNOT produce this
+signature (proven: Sigma <= mu universally in that framework).
+
+**Testable consequence:** A redshift-dependent lensing crossover at
+z ~ 0.44 with percent-level amplitude.  Sigma_eff > 1 at z < 0.4
+(enhanced lensing), Sigma_eff < 1 at z > 0.5 (suppressed lensing).
+This non-monotonic tomographic signature is absent in LCDM.
+
+**Status:** Structural mechanism derived from action (DOI:10.6084/m9.figshare.32037990).
+Parameter sweep finds 15 viable solutions out of 135,000 scanned.
+Robustness: mu < 1 robust (100%), Sigma > 1 semi-robust (61%),
+exact valley fragile (0%).  Reformulated as structural prediction
+(mu < 1 AND Sigma >= 1) rather than point prediction.
+
+**Negative result (Variant H):** Current growth-rate data show no
+preference for the extension (DAIC = +4.05, S_0 = 0.21 +/- 0.14 at
+1.5 sigma).  Signal may be below current sensitivity.
+
 ---
 
 ## Mapping to code
@@ -67,3 +99,4 @@ at any redshift.
 | H2 | `reproduce_efc.py` test 8 | `mu_of_a()` at a=0.01 -> 1.0 |
 | H3 | `reproduce_efc.py` test 8 | `mu_less_than_1`, `mu_positive` |
 | H4 | `reproduce_efc.py` test 1,6 | `verify_sign_lemma()`, `delta_E2()` |
+| H5 | `reproduce_cmb_sanity.py` test 2-3 | `mu_efc()`, `sigma_efc()`, `eta_efc()` |

@@ -37,7 +37,7 @@ This document provides the explicit binding.
 
 ## Perturbation sector
 
-### Effective gravitational coupling
+### Phenomenological gate model (Technical Notes)
 
     mu(a) = 1 - B g(a)
 
@@ -47,6 +47,38 @@ This document provides the explicit binding.
 | Calibration | B = (1 - mu_0) / g(1; n) via `gate.py:calibrate_B()` |
 | WP1a | B = 0.187, mu_0 = 0.85 |
 | Reference | Technical Note II, Eq. 2, DOI:10.6084/m9.figshare.31333600 |
+
+### Action-derived (mu, Sigma, eta) system (Perturbation Sector paper)
+
+Derived from the EFC relativistic action with Lagrange-multiplier flow constraint:
+
+    R(k,z) = K(rho) a^4 (Gamma')^2 phi_dot^2 / (M_Pl^2 F k^4)  [stiffness response]
+    mu(k,z) = (1 + eps_F) / [F (1 + R)]                           [Eq. 8]
+    eta(k,z) = (1 + eps_F + eps_lambda + eps_lambda_resp) /
+               (1 - eps_F - eps_lambda - eps_lambda_resp)          [Eq. 9]
+    Sigma(k,z) = mu (1 + eta) / 2                                  [Eq. 10]
+
+The Horndeski no-go (Result 1): standard QS Horndeski with alpha_T = 0
+cannot produce mu < 1 AND Sigma > 1.  The EFC flow constraint breaks this.
+
+| Property | Value |
+|----------|-------|
+| Code | `pipelines/efc/euclid_dr1/src/efc_mg_functions.py` |
+| Stiffness | `stiffness_response()`, `mu_efc()`, `eta_efc()`, `sigma_efc()` |
+| Parameters | R_0 = 0.510, K_C = 0.05 h/Mpc, F = 1.00005, EPS_TOT = 0.40 |
+| Reference | DOI:10.6084/m9.figshare.32037990, Eq. 7-10 |
+
+### Lensing crossover prediction
+
+    Sigma_eff(z) = [integral W(k) Sigma^2(k,z) dk / integral W(k) dk]^{1/2}
+
+Crosses unity at z ~ 0.44: enhanced lensing (+2.6%) at z < 0.4,
+suppressed lensing (-1.5%) at z > 0.5.
+
+| Property | Value |
+|----------|-------|
+| Reference | DOI:10.6084/m9.figshare.32037990, Result 3, Fig. 1 |
+| Testable by | Euclid DR1 / Rubin LSST tomographic lensing |
 
 ### Growth equation
 

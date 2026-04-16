@@ -3,21 +3,24 @@
 Each result below links to the specific ledger entry, code function,
 and DOI that produced it.
 
-**Significance disclaimer:** The strongest current signal is 2.2 sigma
-(fsigma_8 growth suppression).  This is below the 3-sigma threshold
-for a firm detection.  All results should be read as *suggestive
-indications*, not established claims.  Decisive tests require Stage-IV
-data (DESI DR3, Euclid DR1, CMB-S4).
+**Significance disclaimer:** The strongest historical signal was 2.2 sigma
+(fsigma_8 growth suppression, pre-DESI DR2).  Following DESI DR2, the
+background coupling collapsed to 0.68 sigma.  The perturbation-sector
+Variant H test gives DAIC = +4.05 (LCDM preferred).  All results should
+be read as *suggestive indications*, not established claims.  Decisive
+tests require Stage-IV lensing data (Euclid DR1, Rubin LSST).
 
 ## R1: fsigma_8 growth suppression
 
 | Metric | Value |
 |--------|-------|
-| alpha | -1.00 +/- 0.46 |
-| Significance | 2.20 sigma |
-| DAIC | -2.91 |
+| alpha (pre-DESI DR2) | -1.00 +/- 0.46 |
+| Significance (pre-DESI DR2) | 2.20 sigma |
+| **alpha (DESI DR2)** | **-0.14 +/- 0.21** |
+| **Significance (DESI DR2)** | **0.68 sigma** |
+| DAIC (pre-DESI DR2) | -2.91 |
 | DBIC | -0.91 |
-| p-value (one-sided) | 0.028 |
+| p-value (one-sided, pre-DESI DR2) | 0.028 |
 
 - **Ledger:** `robustness.py:REFERENCE_FIT`
 - **DOI:** 10.6084/m9.figshare.31332730
@@ -89,6 +92,51 @@ data (DESI DR3, Euclid DR1, CMB-S4).
 - **DOI:** 10.6084/m9.figshare.31986762
 - **Reproduce:** `python reproduce_sparc.py` (loads 175 galaxies, fits 5 representative, verifies kill-test stats)
 - **Note:** Full 175-galaxy re-fit takes ~60s; kill-test results verified from archived JSON
+
+## R7: Variant H MCMC (NEGATIVE RESULT)
+
+| Metric | Value |
+|--------|-------|
+| S_0 | 0.210 +/- 0.141 |
+| beta_0 | 2.98 +/- 1.30 |
+| DAIC | +4.05 |
+| DBIC | +3.94 |
+| sigma_8 shift | -1.2% |
+| Interpretation | **LCDM preferred** |
+
+- **DOI:** 10.6084/m9.figshare.32037990, Result 4
+- **Data:** DESI DR2 BAO (13 pts) + fsigma_8 (7 pts, BOSS DR12 cov) + H(z) (9 pts) + SNIa (40 bins)
+- **Interpretation:** Current data show no preference for the entropy-gradient
+  growth mechanism.  S_0 is consistent with zero at 1.5 sigma.  This does NOT
+  falsify EFC (signal may be below current sensitivity) but establishes a
+  quantitative baseline.
+
+## R8: Lensing crossover prediction (UNTESTED)
+
+| z | Sigma_eff | Deviation |
+|---|-----------|-----------|
+| 0.10 | 1.026 | +2.6% |
+| 0.29 | 1.008 | +0.8% |
+| 0.44 | 1.000 | crossover |
+| 0.58 | 0.994 | -0.6% |
+| 0.87 | 0.988 | -1.2% |
+| 1.21 | 0.985 | -1.5% |
+
+- **DOI:** 10.6084/m9.figshare.32037990, Result 3, Fig. 1
+- **Prediction:** Non-monotonic, sign-changing lensing response.
+  Enhanced at z < 0.4, suppressed at z > 0.5, crossover at z ~ 0.44.
+  Absent in LCDM and most modified gravity models.
+- **Testable by:** Euclid DR1 / Rubin LSST tomographic cosmic shear
+- **Sensitivity needed:** Percent-level in Sigma_eff per tomographic bin
+
+## R9: Horndeski no-go (STRUCTURAL)
+
+Standard QS Horndeski with alpha_T = 0 and c_s^2 > 0 cannot produce
+mu < 1 and Sigma > 1 simultaneously (Sigma <= mu universally).
+EFC breaks this via the Lagrange-multiplier flow constraint.
+
+- **DOI:** 10.6084/m9.figshare.32037990, Result 1
+- **Verified by:** Full numerical scan of (alpha_B, alpha_M) parameter space
 
 ## Summary: reproduce_efc.py output hash
 

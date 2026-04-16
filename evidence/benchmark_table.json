@@ -2,19 +2,33 @@
   "name": "EFC vs LCDM Benchmark Table",
   "description": "Hard comparison per observable. Not 'compatible' — explicitly better/worse/equal.",
   "generated_by": "reproduce_efc.py + reproduce_bao.py + reproduce_sparc.py + validation ledger",
-  "note": "Values from published analyses. Dchi2 < 0 = EFC preferred; > 0 = LCDM preferred.",
+  "note": "Values from published analyses. Dchi2 < 0 = EFC preferred; > 0 = LCDM preferred. Updated for DESI DR2 and perturbation-sector paper (DOI:10.6084/m9.figshare.32037990).",
   "benchmarks": [
     {
-      "observable": "fsigma_8 (growth rate)",
+      "observable": "fsigma_8 (growth rate, pre-DESI DR2)",
       "n_data": 7,
-      "metric": "Dchi2 (EFC - LCDM)",
+      "metric": "DAIC (EFC - LCDM)",
       "value": -2.91,
-      "unit": "chi2",
+      "unit": "AIC",
       "verdict": "EFC_BETTER",
-      "significance": "2.20 sigma (suggestive, below 3-sigma threshold), DAIC = -2.91",
+      "significance": "2.20 sigma (suggestive, below 3-sigma threshold)",
       "source": "DOI:10.6084/m9.figshare.31332730",
       "reproducible": true,
-      "script": "reproduce_efc.py"
+      "script": "reproduce_efc.py",
+      "superseded_by": "DESI DR2 collapsed background alpha to 0.68 sigma"
+    },
+    {
+      "observable": "Variant H growth MCMC (DESI DR2)",
+      "n_data": 69,
+      "metric": "DAIC (EFC - LCDM)",
+      "value": 4.05,
+      "unit": "AIC",
+      "verdict": "LCDM_BETTER",
+      "significance": "S_0 = 0.21 +/- 0.14 (1.5 sigma from zero). LCDM preferred.",
+      "source": "DOI:10.6084/m9.figshare.32037990, Result 4",
+      "reproducible": false,
+      "script": null,
+      "note": "Negative result. Current data show no preference for entropy-gradient growth. Does not falsify EFC (signal may be below sensitivity)."
     },
     {
       "observable": "BAO (DESI DR2)",
@@ -27,7 +41,7 @@
       "source": "DESI DR2 regime transition fit",
       "reproducible": true,
       "script": "reproduce_bao.py",
-      "note": "Diagonal covariance only (chi2 inflated); direction matches published. Full reproduction needs DESI covariance from Zenodo."
+      "note": "Diagonal covariance only. Full reproduction needs DESI covariance from Zenodo."
     },
     {
       "observable": "Unified (BAO + SN + RSD)",
@@ -49,11 +63,11 @@
       "value": 2.49,
       "unit": "Dchi2 from LCDM",
       "verdict": "MARGINAL",
-      "significance": "Best: (mu=0.94, Sigma=1.05) at Dchi2=+2.49 with 6.4% sigma8 suppression",
+      "significance": "Best: (mu=0.94, Sigma=1.05) at Dchi2=+2.49",
       "source": "MGCAMB 2D scan",
       "reproducible": "sanity_only",
       "script": "reproduce_cmb_sanity.py",
-      "note": "Sanity checks pass (24/24): GR recovery, stability, ISW. NOT a likelihood test. Full Boltzmann validation (plik_lite TTTEEE) is the single most critical pending test."
+      "note": "Sanity checks pass (24/24). NOT a likelihood test. Full Boltzmann validation is the single most critical pending test."
     },
     {
       "observable": "SPARC rotation curves",
@@ -66,7 +80,7 @@
       "source": "DOI:10.6084/m9.figshare.31986762",
       "reproducible": true,
       "script": "reproduce_sparc.py",
-      "note": "Loads 175 galaxies from repo data, fits 5 representative, verifies kill-test stats from archived results"
+      "note": "Loads 175 galaxies, fits 5 representative, verifies kill-test stats"
     },
     {
       "observable": "sigma_8 (S8 tension)",
@@ -81,16 +95,30 @@
       "script": "reproduce_efc.py"
     },
     {
-      "observable": "Sign lemma (H(z) behaviour)",
+      "observable": "Horndeski no-go (structural)",
       "n_data": null,
-      "metric": "DE2 <= 0 for all z > 0",
+      "metric": "mu < 1 AND Sigma > 1 achievable",
       "value": true,
       "unit": "boolean",
-      "verdict": "CONSISTENT",
-      "significance": "Proven analytically (Lemma 1), verified numerically",
-      "source": "DOI:10.6084/m9.figshare.31333414",
-      "reproducible": true,
-      "script": "reproduce_efc.py"
+      "verdict": "EFC_UNIQUE",
+      "significance": "Standard QS Horndeski (alpha_T=0) has Sigma <= mu universally. EFC breaks this via flow constraint.",
+      "source": "DOI:10.6084/m9.figshare.32037990, Result 1",
+      "reproducible": false,
+      "script": null,
+      "note": "Proven analytically and by numerical (alpha_B, alpha_M) scan"
+    },
+    {
+      "observable": "Lensing crossover prediction",
+      "n_data": null,
+      "metric": "Sigma_eff crossover redshift",
+      "value": 0.44,
+      "unit": "redshift",
+      "verdict": "UNTESTED_PREDICTION",
+      "significance": "Non-monotonic: +2.6% at z=0.1, -1.5% at z=1.2. Absent in LCDM.",
+      "source": "DOI:10.6084/m9.figshare.32037990, Result 3",
+      "reproducible": false,
+      "script": null,
+      "note": "Pre-registered. Testable by Euclid DR1 / Rubin LSST tomographic cosmic shear at percent level."
     },
     {
       "observable": "Weak lensing (KiDS-1000)",
@@ -109,8 +137,10 @@
     "EFC_BETTER": 3,
     "EQUAL": 1,
     "MARGINAL": 1,
-    "CONSISTENT": 1,
-    "PENDING": 2,
-    "LCDM_BETTER": 0
+    "EFC_UNIQUE": 1,
+    "UNTESTED_PREDICTION": 1,
+    "PENDING": 1,
+    "LCDM_BETTER": 1,
+    "note": "The LCDM_BETTER entry (Variant H, DAIC=+4.05) is a negative result honestly recorded"
   }
 }

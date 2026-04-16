@@ -96,18 +96,62 @@ of the entropy-structure coupling mechanism.
 **Data needed:** SPARC + MaNGA extended sample.
 **Status:** Current win rate: 60.2%.
 
+## F7: Gravitational slip eta = 1 (KILL for perturbation sector)
+
+**Condition:** If Stage-IV data establish eta = 1 at > 3 sigma
+across all scales and redshifts.
+
+**Threshold:** eta consistent with 1.00 at 3 sigma in Euclid/Rubin
+tomographic bins.
+
+**Why this kills EFC perturbation sector:** The EFC mechanism
+requires anisotropic stress (eta != 1) from the Lagrange-multiplier
+flow constraint.  If eta = 1, the slip sector is falsified.
+
+**Data needed:** Euclid DR1 + Rubin LSST weak lensing + galaxy clustering.
+**Status:** Untested.  Source: DOI:10.6084/m9.figshare.32037990, FA4.
+
+## F8: No viable (mu, Sigma) region (KILL for perturbation sector)
+
+**Condition:** If parameter sweeps find zero physical solutions
+satisfying mu in [0.93, 0.96] and Sigma in [1.03, 1.07] simultaneously.
+
+**Why this kills EFC:** The action must admit a region where growth
+is suppressed (mu < 1) while lensing is enhanced (Sigma > 1).
+Without this, the perturbation sector mechanism fails.
+
+**Status:** Currently 15 solutions found in 135,000-point scan.
+Mu < 1 robust (100%), Sigma > 1 semi-robust (61%).
+Source: DOI:10.6084/m9.figshare.32037990, FA5.
+
+## F9: Sigma_eff(z) monotonic (KILL for lensing crossover)
+
+**Condition:** If Sigma_eff(z) is monotonically decreasing or
+increasing across all redshifts, with no sign change.
+
+**Why this kills the prediction:** The lensing crossover at z ~ 0.44
+is the distinctive observable signature of EFC.  A monotonic profile
+is degenerate with standard modified gravity models.
+
+**Data needed:** Euclid DR1 tomographic cosmic shear (4+ z-bins).
+**Status:** Pre-registered prediction.  Untested.
+Source: DOI:10.6084/m9.figshare.32037990, FA-new.
+
 ---
 
 ## Summary table
 
 | ID | Type | Observable | Threshold | Status |
 |----|------|-----------|-----------|--------|
-| F1 | KILL | CMB C_l | DC_l/C_l > 0.1% | Pending |
+| F1 | KILL | CMB C_l | DC_l/C_l > 0.1% | Sanity pass, likelihood pending |
 | F2 | KILL | mu_0 | mu_0 > 1 at 3sigma | Excluded |
 | F3 | KILL | Void ISW/lensing | >5% LCDM deviation | Planned |
 | F4 | DAMAGE | S8 tension | <1 sigma | Monitoring |
 | F5 | DAMAGE | Unified chi^2 | Dchi^2 > +5 | Current +1.72 |
 | F6 | DAMAGE | SPARC win rate | <40% | Current 60.2% |
+| F7 | KILL | Grav. slip eta | eta = 1 at 3sigma | Untested |
+| F8 | KILL | (mu, Sigma) region | Zero solutions | 15 found (semi-robust) |
+| F9 | KILL | Sigma_eff monotonic | No crossover | Pre-registered |
 
 ## Interpretation
 
