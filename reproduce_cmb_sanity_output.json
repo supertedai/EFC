@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "script": "reproduce_cmb_sanity.py",
+    "timestamp": "2026-04-16T15:05:18Z",
+    "note": "Necessary conditions only; full CMB validation requires Boltzmann solver"
+  },
+  "parameters": {
+    "R_0": 0.51,
+    "K_C": 0.05,
+    "F": 1.00005,
+    "EPS_TOT": 0.4,
+    "B0": 0.02,
+    "M0": 0.06,
+    "OMEGA_M": 0.3153
+  },
+  "results": {
+    "gr_recovery": {
+      "mu_at_z1100": 0.9999500024998316,
+      "eta_at_z1100": 1.0000001649891397
+    },
+    "late_time": {
+      "mu_at_z0": 0.940023504112691,
+      "eta_at_z0": 1.2,
+      "sigma_at_z0": 1.0340258545239602
+    },
+    "hi_class_benchmark": {
+      "B0": 0.0,
+      "M0": 0.05,
+      "sigma8": 0.82964,
+      "dsigma8_pct": 0.838,
+      "dPk_pct": 1.427,
+      "dClTT_ell66_pct": 1.147,
+      "dClpp_ell66_pct": -5.502,
+      "status": "OK"
+    }
+  },
+  "checks": [
+    {
+      "name": "gr_recovery_mu",
+      "passed": true,
+      "detail": "max |mu - 1/F| = 9.42e-09 at z >= 50"
+    },
+    {
+      "name": "gr_recovery_eta",
+      "passed": true,
+      "detail": "max |eta - 1| = 7.69e-05 at z >= 50"
+    },
+    {
+      "name": "cmb_decoupling_gr",
+      "passed": true,
+      "detail": "mu(k_c, z=1100) = 0.99995000, eta = 1.00000016"
+    },
+    {
+      "name": "mu_z0_modified",
+      "passed": true,
+      "detail": "mu(k_c, z=0) = 0.940024 (modified from 1/F = 0.999950)"
+    },
+    {
+      "name": "eta_z0_slip",
+      "passed": true,
+      "detail": "eta(k_c, z=0) = 1.2000 (gravitational slip present)"
+    },
+    {
+      "name": "mu_bounded",
+      "passed": true,
+      "detail": "mu(k_c, z=0) = 0.940024 within [0.5, 1.5]"
+    },
+    {
+      "name": "sigma_bounded",
+      "passed": true,
+      "detail": "Sigma(k_c, z=0) = 1.034026 within [0.5, 1.5]"
+    },
+    {
+      "name": "localised_low_k",
+      "passed": true,
+      "detail": "mu(k=0.001, z=0) = 0.999746, |dev from 1/F| = 2.04e-04"
+    },
+    {
+      "name": "localised_high_k",
+      "passed": true,
+      "detail": "mu(k=10, z=0) = 0.999950 (near 1/F)"
+    },
+    {
+      "name": "localised_peak",
+      "passed": true,
+      "detail": "peak at k_c: |mu(k_c)-1/F| = 0.0599 > |mu(0.001)-1/F| = 0.000204"
+    },
+    {
+      "name": "slip_localised",
+      "passed": true,
+      "detail": "eta slip at k_c (1.2000) >> at k=10 (1.000020)"
+    },
+    {
+      "name": "all_finite_positive",
+      "passed": true,
+      "detail": "80 (k, z) points checked"
+    },
+    {
+      "name": "smooth_k",
+      "passed": true,
+      "detail": "max |dmu/dk| = 3.0959"
+    },
+    {
+      "name": "smooth_time",
+      "passed": "True",
+      "detail": "max |dmu/d(ln a)| = 0.2536"
+    },
+    {
+      "name": "stability_m0_3b0",
+      "passed": true,
+      "detail": "M0/B0 = 3.0 >= 3 (stable)"
+    },
+    {
+      "name": "stability_b0_small",
+      "passed": true,
+      "detail": "B0 = 0.02 < 0.1 (perturbative)"
+    },
+    {
+      "name": "scan_has_entries",
+      "passed": true,
+      "detail": "36 parameter points"
+    },
+    {
+      "name": "scan_has_viable_points",
+      "passed": true,
+      "detail": "22 OK + 14 FAIL out of 36 (FAIL = unstable configurations, expected)"
+    },
+    {
+      "name": "nearest_scan_found",
+      "passed": true,
+      "detail": "nearest: B0=0.0, M0=0.05"
+    },
+    {
+      "name": "cltt_within_planck",
+      "passed": true,
+      "detail": "|dClTT(ell=66)| = 1.147% < 2.0%"
+    },
+    {
+      "name": "lensing_potential",
+      "passed": true,
+      "detail": "dClpp(ell=66) = -5.502%"
+    },
+    {
+      "name": "sigma8_shift_small",
+      "passed": true,
+      "detail": "dsigma8 = 0.838%"
+    },
+    {
+      "name": "isw_constraint",
+      "passed": true,
+      "detail": "ISW: dClTT(ell=30) = +0.3% (within Planck tolerance)"
+    },
+    {
+      "name": "efc_distinct_from_neutrinos",
+      "passed": true,
+      "detail": "eta(k_c) = 1.0889 vs eta(k=1) = 1.000884 (EFC: scale-localized slip; neutrinos: uniform)"
+    }
+  ],
+  "summary": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0
+  },
+  "content_hash": "10f91ea3703ab983ca7a2ce44abad748db6e12167e60fe9db61b5d18f85bbf9f"
+}

@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "script": "reproduce_sparc.py",
+    "timestamp": "2026-04-16T14:50:24Z",
+    "n_galaxies_loaded": 175,
+    "n_galaxies_fitted": 5
+  },
+  "published": {
+    "n_galaxies": 175,
+    "n_fitted": 171,
+    "efc_win_rate": 60.2,
+    "lcdm_win_rate": 12.9,
+    "median_chi2_red_efc": 0.4402,
+    "median_chi2_red_nfw": 1.6866,
+    "screening_k": 0.415
+  },
+  "results": {
+    "n_galaxies": 175,
+    "total_data_points": 3391,
+    "regime_distribution": {
+      "FLOW": 62,
+      "TRANSITION": 86,
+      "LATENT": 27
+    },
+    "efc_success_master": 62,
+    "lcdm_success_master": 80,
+    "fit_results": [
+      {
+        "galaxy": "DDO154",
+        "regime": "FLOW",
+        "n_pts": 12,
+        "chi2_efc": 6.386139123764659,
+        "chi2_nfw": 224.17006783678687,
+        "chi2red_efc": 0.7095710137516288,
+        "chi2red_nfw": 22.417006783678687,
+        "daic": 215.78392871302222,
+        "winner": "EFC"
+      },
+      {
+        "galaxy": "F563-1",
+        "regime": "FLOW",
+        "n_pts": 17,
+        "chi2_efc": 3.9220560651593463,
+        "chi2_nfw": 23.97601593157048,
+        "chi2red_efc": 0.2801468617970962,
+        "chi2red_nfw": 1.5984010621046987,
+        "daic": 18.053959866411134,
+        "winner": "EFC"
+      },
+      {
+        "galaxy": "NGC3198",
+        "regime": "FLOW",
+        "n_pts": 43,
+        "chi2_efc": 52.14469371697356,
+        "chi2_nfw": 81.58701446355695,
+        "chi2red_efc": 1.3036173429243392,
+        "chi2red_nfw": 1.9899271820379745,
+        "daic": 27.44232074658339,
+        "winner": "EFC"
+      },
+      {
+        "galaxy": "NGC2841",
+        "regime": "FLOW",
+        "n_pts": 50,
+        "chi2_efc": 460.08018670907774,
+        "chi2_nfw": 705.3928631789288,
+        "chi2red_efc": 9.788940142746334,
+        "chi2red_nfw": 14.695684649561016,
+        "daic": 243.31267646985106,
+        "winner": "EFC"
+      },
+      {
+        "galaxy": "NGC5033",
+        "regime": "FLOW",
+        "n_pts": 22,
+        "chi2_efc": 282.710824477218,
+        "chi2_nfw": 170.53638417056268,
+        "chi2red_efc": 14.879517077748316,
+        "chi2red_nfw": 8.526819208528135,
+        "daic": -114.17444030665533,
+        "winner": "NFW"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "rc_175_galaxies",
+      "passed": true,
+      "detail": "loaded 175 galaxies"
+    },
+    {
+      "name": "rc_data_points",
+      "passed": true,
+      "detail": "3391 total data points"
+    },
+    {
+      "name": "master_175_rows",
+      "passed": true,
+      "detail": "master dataset: 175 rows"
+    },
+    {
+      "name": "regime_distribution",
+      "passed": true,
+      "detail": "FLOW=62, TRANSITION=86, LATENT=27"
+    },
+    {
+      "name": "master_has_both_metrics",
+      "passed": true,
+      "detail": "EFC success=62, LCDM success=80; kill-test v6 (AIC-based) gives 60.2% EFC win rate \u2014 master uses simpler binary criterion"
+    },
+    {
+      "name": "kt_n_galaxies",
+      "passed": true,
+      "detail": "N = 175"
+    },
+    {
+      "name": "kt_efc_win_rate",
+      "passed": true,
+      "detail": "win rate = 60.2%"
+    },
+    {
+      "name": "kt_universality",
+      "passed": true,
+      "detail": "universality CONFIRMED"
+    },
+    {
+      "name": "kt_cherry_picking_refuted",
+      "passed": true,
+      "detail": "cherry-picking refuted"
+    },
+    {
+      "name": "kt_mann_whitney",
+      "passed": true,
+      "detail": "p = 0.0"
+    },
+    {
+      "name": "fits_completed",
+      "passed": true,
+      "detail": "fitted 5 galaxies"
+    },
+    {
+      "name": "fits_deterministic",
+      "passed": true,
+      "detail": "fits reproducible with seed=42"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "content_hash": "349fe5482bc55e8df0740897470b067e9ede16fff25e720cab4e76c7de6396e9"
+}
