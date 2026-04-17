@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) – Predictions</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #1a3a6b;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff;
+      padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a4a7f;
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    thead { background-color: #eaf0f9; }
+    th {
+      border: 1px solid #d0d7e3;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #1a3a6b;
+    }
+    td {
+      border: 1px solid #e2e6ed;
+      padding: 8px 12px;
+      vertical-align: top;
+    }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.90em;
+      background: #f0f2f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .badge-kill   { display:inline-block; background:#c22; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-damage { display:inline-block; background:#d4a017; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-sealed { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-open   { display:inline-block; background:#555; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .pred-card {
+      background: #fafbfd;
+      border: 1px solid #d0d7e3;
+      border-left: 4px solid #007bff;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 1rem 0 1.5rem;
+    }
+    .pred-card h3 { margin-top: 0; }
+    .pred-card table { margin-bottom: 0.6rem; }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Predictions</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Elevator Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation Ledger</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper Series</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Stage-IV Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gap Analysis</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:700;">Predictions</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+April 2026 &middot; CC-BY-4.0
+</p>
+
+<div style="background-color:#fff8e1; border-left:4px solid #d4a017; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Status:</strong> EFC is currently consistent with late-time data at the ~2&sigma; level and
+remains a candidate extension of &Lambda;CDM pending CMB likelihood validation.
+Predictions below are <strong>pre-registered</strong>: each has an observable, a quantitative
+threshold, a reproducible test script or DOI-sealed artefact, and a falsification criterion.
+A testable model must define where it fails &mdash; the dedicated <a href="#falsification">falsification section</a>
+below lists F7&ndash;F9 that kill the perturbation sector cleanly.
+</p>
+</div>
+
+<hr>
+
+<h2>1. Why a Predictions page?</h2>
+
+<p>
+The <a href="EFC_Gap_Analysis.html">Gap Analysis</a> says what we do not yet know.
+The <a href="EFC_Validation_Ledger.html">Validation Ledger</a> says what has already been tested.
+This page says <strong>what we claim will happen</strong> &mdash; in Stage-IV data &mdash; so that external reviewers
+can test EFC without reading the full theory stack. Each prediction is structured as:
+</p>
+
+<ol>
+<li><strong>Observable</strong> &mdash; what is measured (numerical, in a specific survey).</li>
+<li><strong>EFC value</strong> &mdash; what EFC predicts, with uncertainty.</li>
+<li><strong>&Lambda;CDM value</strong> &mdash; the null baseline.</li>
+<li><strong>Test</strong> &mdash; how to compare, in which data release.</li>
+<li><strong>Falsifier</strong> &mdash; the quantitative outcome that kills the prediction.</li>
+<li><strong>Seal / DOI</strong> &mdash; SHA-256 locked artefact on figshare.</li>
+</ol>
+
+<p>
+Grounded in <code>evidence/</code> (<a href="https://github.com/supertedai/EFC/tree/main/evidence">GitHub</a>):
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/01_hypothesis.md">01_hypothesis</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/05_results.md">05_results</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/06_falsification.md">06_falsification</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/benchmark_table.json">benchmark_table.json</a>.
+</p>
+
+<hr>
+
+<h2>2. Headline predictions</h2>
+
+<table>
+<thead>
+<tr><th>ID</th><th>Observable</th><th>EFC</th><th>&Lambda;CDM</th><th>Arbiter</th><th>Type</th><th>Seal</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>P1</strong></td>
+  <td>&Sigma;<sub>eff</sub>(z) lensing crossover</td>
+  <td>Sign change at z &asymp; 0.44</td>
+  <td>Monotonic</td>
+  <td>Euclid DR1 tomography</td>
+  <td><span class="badge-kill">KILL</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a></td>
+</tr>
+<tr>
+  <td><strong>P2</strong></td>
+  <td>f&sigma;<sub>8</sub>(z = 0.7)</td>
+  <td>0.430</td>
+  <td>0.449</td>
+  <td>DESI DR2 full-shape RSD</td>
+  <td><span class="badge-damage">DAMAGE</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a></td>
+</tr>
+<tr>
+  <td><strong>P3</strong></td>
+  <td>E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup></td>
+  <td>1.086 &plusmn; 0.012 at k<sub>c</sub> &asymp; 0.05 h/Mpc</td>
+  <td>1.000 &plusmn; 0.01</td>
+  <td>SO &times; Euclid DR2</td>
+  <td><span class="badge-kill">KILL</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a></td>
+</tr>
+<tr>
+  <td><strong>P4</strong></td>
+  <td>Cosmic shear S<sub>8</sub> (DP2)</td>
+  <td>0.847 &plusmn; 0.015</td>
+  <td>0.811 &plusmn; 0.006 (Planck)</td>
+  <td>Rubin LSST DP2</td>
+  <td><span class="badge-damage">DAMAGE</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a></td>
+</tr>
+<tr>
+  <td><strong>P5</strong></td>
+  <td>Horndeski no-go</td>
+  <td>&mu; &lt; 1 &and; &Sigma; &gt; 1 forbidden with &alpha;<sub>T</sub>=0</td>
+  <td>Allowed</td>
+  <td>Parameter scan (done)</td>
+  <td><span class="badge-sealed">STRUCTURAL</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a></td>
+</tr>
+<tr>
+  <td><strong>P6</strong></td>
+  <td>Background sign lemma</td>
+  <td>&Delta;E&sup2;(z) &le; 0 &forall; z &gt; 0</td>
+  <td>Neutral</td>
+  <td><code>reproduce_efc.py</code></td>
+  <td><span class="badge-sealed">PROVEN</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a></td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>3. Prediction details</h2>
+
+<div class="pred-card" id="P1">
+<h3>P1 &mdash; Lensing crossover at z &asymp; 0.44 <span class="badge-kill">KILL</span></h3>
+
+<p><strong>Claim.</strong> The effective lensing amplitude &Sigma;<sub>eff</sub>(z) is
+<em>non-monotonic</em> with a sign change at z &asymp; 0.44. EFC predicts <em>enhanced</em>
+lensing at z &lt; 0.4 and <em>suppressed</em> lensing at z &gt; 0.5. This profile is
+absent in &Lambda;CDM and in standard QS Horndeski models with &alpha;<sub>T</sub>=0.</p>
+
+<table>
+<thead><tr><th>z</th><th>&Sigma;<sub>eff</sub></th><th>Deviation</th></tr></thead>
+<tbody>
+<tr><td>0.10</td><td>1.026</td><td>+2.6%</td></tr>
+<tr><td>0.29</td><td>1.008</td><td>+0.8%</td></tr>
+<tr><td><strong>0.44</strong></td><td><strong>1.000</strong></td><td><strong>crossover</strong></td></tr>
+<tr><td>0.58</td><td>0.994</td><td>&minus;0.6%</td></tr>
+<tr><td>0.87</td><td>0.988</td><td>&minus;1.2%</td></tr>
+<tr><td>1.21</td><td>0.985</td><td>&minus;1.5%</td></tr>
+</tbody>
+</table>
+
+<p><strong>Test.</strong> Euclid DR1 tomographic cosmic shear (4+ z-bins, Oct 21, 2026).
+<strong>Falsifier (F9).</strong> A monotonic &Sigma;<sub>eff</sub>(z) across all bins with no sign change
+inside z &isin; [0.3, 0.6] falsifies the prediction.
+<strong>Source:</strong> evidence/05_results.md R8 &middot; DOI
+<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>, Result 3, Fig. 1.</p>
+</div>
+
+<div class="pred-card" id="P2">
+<h3>P2 &mdash; f&sigma;<sub>8</sub>(z = 0.7) = 0.430 <span class="badge-damage">DAMAGE</span></h3>
+
+<p><strong>Claim.</strong> The regime-transition growth model predicts f&sigma;<sub>8</sub>(z=0.7) = 0.430
+vs &Lambda;CDM 0.449. Joint BAO distance prediction: D<sub>H</sub>/r<sub>d</sub>(z=0.7) = 19.797 vs 20.719;
+D<sub>H</sub>/r<sub>d</sub>(z=1.0) = 16.527 vs 17.466.</p>
+
+<p><strong>Test.</strong> DESI DR2 full-shape RSD at z &sim; 0.5&ndash;0.7 (release pending 2026).
+<strong>Falsifier.</strong> Measured f&sigma;<sub>8</sub>(z=0.7) &gt; 0.449 at &gt; 3&sigma; &mdash; i.e. consistent with
+&Lambda;CDM at high significance &mdash; damages but does not kill EFC (point prediction, not structural).
+<strong>Source:</strong> evidence/05_results.md R5, R8 &middot; DOI
+<a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a>.</p>
+</div>
+
+<div class="pred-card" id="P3">
+<h3>P3 &mdash; E<sub>G</sub> enhancement: E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012 <span class="badge-kill">KILL</span></h3>
+
+<p><strong>Claim.</strong> Galaxy&ndash;CMB-lensing cross-correlation combined with RSD produces the
+gravitational slip estimator E<sub>G</sub>. EFC predicts
+E<sub>G</sub><sup>EFC</sup>/E<sub>G</sub><sup>GR</sup> = 1.086 &plusmn; 0.012 at k<sub>c</sub> &asymp; 0.05 h/Mpc
+and z<sub>eff</sub> &asymp; 0.5, driven by the combination &mu; &lt; 1 with &Sigma; &gt; 1.</p>
+
+<p><strong>Pass window:</strong> [1.03, 1.14].
+<strong>Kill condition:</strong> measurement = 1.00 &plusmn; 0.01 at &gt; 3&sigma; (GR recovery).
+<strong>Test.</strong> Simons Observatory CMB lensing &times; Euclid DR2 galaxy catalogue (~2027&ndash;2028).
+<strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>,
+sealed 15 Apr 2026 with SHA-256 falsifier.</p>
+</div>
+
+<div class="pred-card" id="P4">
+<h3>P4 &mdash; Rubin DP2 cosmic shear S<sub>8</sub> = 0.847 &plusmn; 0.015 <span class="badge-damage">DAMAGE</span></h3>
+
+<p><strong>Claim.</strong> Large-scale cosmic shear &xi;<sub>+</sub> enhancement of ~8% at
+angular scales 20&prime;&ndash;300&prime;, producing S<sub>8</sub> = 0.847 &plusmn; 0.015.
+Discriminates EFC from f(R) (which predicts &mu; &gt; 1) and from background-only
+entropic gravity models.</p>
+
+<p><strong>Test.</strong> Rubin LSST DP2 (Jul&ndash;Sep 2026).
+<strong>Falsifier (F4).</strong> DP2 + Euclid DR1 combined return S<sub>8</sub> consistent with Planck &Lambda;CDM
+(0.811 &plusmn; 0.006) at &lt; 1&sigma; &mdash; the S<sub>8</sub> tension dissolves and EFC loses its primary motivation.
+<strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>,
+sealed with SHA-256 falsifier.</p>
+</div>
+
+<div class="pred-card" id="P5">
+<h3>P5 &mdash; Horndeski no-go (structural) <span class="badge-sealed">STRUCTURAL</span></h3>
+
+<p><strong>Claim.</strong> Standard quasi-static Horndeski with &alpha;<sub>T</sub>=0 and c<sub>s</sub>&sup2; &gt; 0
+<em>cannot</em> produce &mu; &lt; 1 and &Sigma; &gt; 1 simultaneously &mdash; the action forces &Sigma; &le; &mu;
+universally. EFC breaks this via the Lagrange-multiplier flow constraint.</p>
+
+<p><strong>Test.</strong> Full numerical scan of (&alpha;<sub>B</sub>, &alpha;<sub>M</sub>) parameter space (done,
+135,000 points; 0 Horndeski solutions vs 15 EFC solutions).
+<strong>Implication.</strong> If P1+P3 (lensing enhancement with growth suppression) is confirmed,
+standard Horndeski is excluded as the mechanism; EFC or an equivalent slip-extension is required.
+<strong>Source:</strong> evidence/05_results.md R9 &middot; DOI
+<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>, Result 1.</p>
+</div>
+
+<div class="pred-card" id="P6">
+<h3>P6 &mdash; Background sign lemma <span class="badge-sealed">PROVEN</span></h3>
+
+<p><strong>Claim.</strong> &Delta;E&sup2;(z) &le; 0 for all z &gt; 0, i.e. H<sub>EFC</sub>(z) &le; H<sub>&Lambda;CDM</sub>(z).
+Reduced Hubble friction enhances growth; analytically proven (Lemma 1) and numerically verified at
+A &isin; {0.01, 0.1, 1.0, 5.0}.</p>
+
+<p><strong>Reproducibility.</strong> <code>python reproduce_efc.py</code> &mdash; test <code>sign_lemma_A=*</code>.
+<strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>, Lemma 1.</p>
+</div>
+
+<hr>
+
+<h2>4. Known negative result (Variant H)</h2>
+
+<p>
+Included here explicitly for honesty: the Variant H entropy-gradient MCMC against
+DESI DR2 BAO + f&sigma;<sub>8</sub> + H(z) + SNIa (40 bins) returns &Delta;AIC = +4.05,
+&Delta;BIC = +3.94. <strong>&Lambda;CDM is preferred by current background data.</strong>
+S<sub>0</sub> = 0.210 &plusmn; 0.141 is consistent with zero at 1.5&sigma;. The &sigma;<sub>8</sub> shift
+is only &minus;1.2%. This does not falsify EFC (the signal may sit below present sensitivity,
+and the perturbation-sector discriminants P1/P3 remain untested), but it sets a quantitative
+baseline: <em>background-only tests at current precision do not favour EFC</em>.
+Source: evidence/05_results.md R7 &middot; DOI
+<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>, Result 4.
+</p>
+
+<hr>
+
+<h2 id="falsification">5. Falsification criteria for these predictions</h2>
+
+<p>
+Each prediction is tied to an explicit falsifier. The KILL-level entries (F1, F7&ndash;F9)
+would invalidate the perturbation-sector mechanism; DAMAGE-level entries (F4&ndash;F6) would
+reduce scope without disproving the framework. Full definitions live in
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/06_falsification.md">evidence/06_falsification.md</a>.
+</p>
+
+<table>
+<thead>
+<tr><th>ID</th><th>Type</th><th>Observable</th><th>Threshold</th><th>Kills which prediction</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>F1</strong></td><td><span class="badge-kill">KILL</span></td><td>CMB C<sub>&ell;</sub></td><td>|&Delta;C<sub>&ell;</sub>/C<sub>&ell;</sub>| &gt; 0.1%</td><td>Framework (L0 limit)</td><td>Sanity pass, likelihood pending</td></tr>
+<tr><td><strong>F2</strong></td><td><span class="badge-kill">KILL</span></td><td>&mu;<sub>0</sub></td><td>&mu;<sub>0</sub> &gt; 1 at 3&sigma;</td><td>Entropy mechanism</td><td>Excluded by existing data</td></tr>
+<tr><td><strong>F3</strong></td><td><span class="badge-kill">KILL</span></td><td>Void ISW / lensing</td><td>&gt;5% deviation</td><td>Regime boundary (L0/L1)</td><td>Planned</td></tr>
+<tr><td><strong>F4</strong></td><td><span class="badge-damage">DAMAGE</span></td><td>S<sub>8</sub> tension</td><td>&lt; 1&sigma; across Stage-IV</td><td>P4 motivation</td><td>Monitoring (2&ndash;3&sigma; now)</td></tr>
+<tr><td><strong>F5</strong></td><td><span class="badge-damage">DAMAGE</span></td><td>Unified &chi;&sup2;</td><td>&Delta;&chi;&sup2; &gt; +5</td><td>Global fit</td><td>Current +1.72</td></tr>
+<tr><td><strong>F6</strong></td><td><span class="badge-damage">DAMAGE</span></td><td>SPARC win rate</td><td>&lt; 40%</td><td>Galactic sector</td><td>Current 60.2%</td></tr>
+<tr><td><strong>F7</strong></td><td><span class="badge-kill">KILL</span></td><td>Gravitational slip &eta;</td><td>&eta; = 1 at 3&sigma; across Stage-IV</td><td>P1, P3 (slip sector)</td><td>Untested</td></tr>
+<tr><td><strong>F8</strong></td><td><span class="badge-kill">KILL</span></td><td>(&mu;, &Sigma;) region</td><td>Zero solutions in scan</td><td>P3, P5 (mechanism)</td><td>15 solutions found</td></tr>
+<tr><td><strong>F9</strong></td><td><span class="badge-kill">KILL</span></td><td>&Sigma;<sub>eff</sub>(z) profile</td><td>Monotonic, no crossover</td><td>P1 (distinctive signature)</td><td>Pre-registered, awaiting Euclid DR1</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>6. Stage-IV test schedule</h2>
+
+<table>
+<thead>
+<tr><th>Survey / Release</th><th>Date</th><th>Tests</th><th>Prediction at stake</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>DESI DR2 full-shape RSD</strong></td><td>2026</td><td>f&sigma;<sub>8</sub>(z=0.5&ndash;0.7), D<sub>H</sub>/r<sub>d</sub></td><td>P2</td></tr>
+<tr><td><strong>Rubin LSST DP2</strong></td><td>Jul&ndash;Sep 2026</td><td>Early shear, S<sub>8</sub>, &xi;<sub>+</sub></td><td>P4</td></tr>
+<tr><td><strong>Euclid DR1</strong></td><td>Oct 21, 2026</td><td>Tomographic &Sigma;<sub>eff</sub>(z), &eta;, E<sub>G</sub></td><td>P1, P3, F7</td></tr>
+<tr><td><strong>SO &times; Euclid</strong></td><td>~2027&ndash;2028</td><td>E<sub>G</sub> at k<sub>c</sub> &asymp; 0.05 h/Mpc</td><td>P3</td></tr>
+<tr><td><strong>DESI DR3</strong></td><td>~2027&ndash;2028</td><td>Full RSD, Ly&alpha; BAO, high-z growth</td><td>P2 (extended)</td></tr>
+<tr><td><strong>Planck plik_lite TTTEEE</strong></td><td>Ongoing</td><td>Full CMB likelihood</td><td>F1 (framework-level)</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>7. Reproducibility</h2>
+
+<p>
+Every prediction above either reproduces deterministically from the repository
+(<a href="https://github.com/supertedai/EFC/blob/main/reproduce_efc.py">reproduce_efc.py</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/reproduce_bao.py">reproduce_bao.py</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/reproduce_sparc.py">reproduce_sparc.py</a>,
+<a href="https://github.com/supertedai/EFC/blob/main/reproduce_cmb_sanity.py">reproduce_cmb_sanity.py</a>)
+or is SHA-256 sealed on figshare with the falsifier locked pre-data. Full binding:
+<a href="https://github.com/supertedai/EFC/blob/main/evidence/benchmark_table.json">evidence/benchmark_table.json</a>.
+</p>
+
+<p>
+Coverage today: <strong>88/88 reproducibility checks</strong> across four scripts
+(fs&sigma;<sub>8</sub> 31/31, BAO 11/11 diagonal, SPARC 12/12, CMB sanity 24/24,
+plus the minimal <code>simple/run.py</code> 10/10).
+Full Boltzmann-solver CMB likelihood remains the single outstanding KILL-level gap &mdash; see
+<a href="EFC_Gap_Analysis.html">Gap Analysis &sect;2 KC</a>.
+</p>
+
+<hr>
+
+<h2>Bottom line</h2>
+
+<table data-section="bottom-line">
+<tbody>
+<tr>
+  <td style="font-weight:bold; width:30%; background:#f8f9fa;">Strongest prediction</td>
+  <td><strong>P1 &mdash; lensing crossover at z &asymp; 0.44.</strong> Structurally distinctive, absent in &Lambda;CDM and in QS Horndeski with &alpha;<sub>T</sub>=0. Directly testable in Euclid DR1 (Oct 2026).</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Soonest test</td>
+  <td><strong>P2 (DESI DR2 RSD, 2026)</strong>. First opportunity to check a sealed EFC point prediction against fresh data.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Cleanest falsifier</td>
+  <td><strong>F9 &mdash; monotonic &Sigma;<sub>eff</sub>(z).</strong> If Euclid DR1 sees no sign change, P1 is dead.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Known weakness</td>
+  <td>Variant H MCMC (R7): &Delta;AIC = +4.05 against DESI DR2 background data. &Lambda;CDM is preferred on current background-only tests.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Single outstanding gate</td>
+  <td>Full CMB likelihood (F1). Sanity checks pass, but plik_lite TTTEEE with hi_class/CLASS patch is required before any of P1&ndash;P4 can be considered &ldquo;accepted&rdquo;.</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Predictions &mdash; pre-registered, SHA-256 sealed, reproducible
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>
