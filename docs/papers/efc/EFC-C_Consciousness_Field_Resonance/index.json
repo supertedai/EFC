@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-c-consciousness-field-resonance",
   "title": "Consciousness as Field Resonance: From Ego-Filtered Ontology to Differentiation-Dominant Dynamics",
-  "description": "Proposes a field-based ontology of consciousness in which awareness corresponds to a differentiation-dominant resonance regime constrained by regional feedback. Re-analyzing propofol EEG (Chennu et al. 2016), the study finds spectral differentiation (Omega) tracks conscious state with a double dissociation, while global causal integration (kappa) is weak and a pre-registered multiplicative model C = Omega \u00d7 kappa is falsified. An exploratory parietal product shows a strong effect, and a negative Omega\u2013kappa correlation supports a balance (trade-off) constraint.",
+  "description": "Proposes a field-based ontology of consciousness in which awareness corresponds to a differentiation-dominant resonance regime constrained by regional feedback. Re-analyzing propofol EEG (Chennu et al. 2016), the study finds spectral differentiation (Omega) tracks conscious state with a double dissociation, while global causal integration (kappa) is weak and a pre-registered multiplicative model C = Omega × kappa is falsified. An exploratory parietal product shows a strong effect, and a negative Omega–kappa correlation supports a balance (trade-off) constraint.",
   "version": "1.0",
   "date": "2026-02-08",
   "doi": "10.6084/m9.figshare.31289806",
@@ -36,7 +36,7 @@
     },
     "product_measure_C": {
       "latex": "C = \\Omega \\times \\kappa",
-      "description": "Pre-registered multiplicative model of consciousness (F1) \u2014 falsified in this analysis."
+      "description": "Pre-registered multiplicative model of consciousness (F1) — falsified in this analysis."
     },
     "balance_constraint": {
       "latex": "\\mathrm{corr}(\\Omega,\\kappa) < 0",
@@ -44,14 +44,14 @@
     }
   },
   "key_results": {
-    "main_finding": "Omega strongly tracks conscious state with a double dissociation; global kappa is weak, and the pre-registered product C = Omega \u00d7 kappa is falsified; exploratory parietal product is strong and the Omega\u2013kappa correlation is negative.",
+    "main_finding": "Omega strongly tracks conscious state with a double dissociation; global kappa is weak, and the pre-registered product C = Omega × kappa is falsified; exploratory parietal product is strong and the Omega–kappa correlation is negative.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "Omega (spectral entropy, full band 0.5\u201345 Hz)",
-      "Omega (delta-free 4\u201340 Hz)",
+      "Omega (spectral entropy, full band 0.5–45 Hz)",
+      "Omega (delta-free 4–40 Hz)",
       "kappa (global transfer entropy)",
-      "C = Omega \u00d7 kappa (global)",
+      "C = Omega × kappa (global)",
       "C(parietal) exploratory",
       "corr(Omega, kappa)"
     ],
@@ -64,7 +64,7 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "In independent, dose-matched propofol datasets with responsive vs drowsy subgroups, Omega (full band) will exhibit a double dissociation (responsive increases; drowsy decreases) with a large between-group effect (Cohen's d \u2273 1.0).",
+      "statement": "In independent, dose-matched propofol datasets with responsive vs drowsy subgroups, Omega (full band) will exhibit a double dissociation (responsive increases; drowsy decreases) with a large between-group effect (Cohen's d ≳ 1.0).",
       "falsifiable_by": "Failure to observe opposite-signed Omega changes across matched responsive vs drowsy groups in at least two preregistered replications."
     },
     {
@@ -74,21 +74,21 @@
     },
     {
       "id": "P3",
-      "statement": "A parietal/posterior regional product C(parietal) = Omega \u00d7 kappa will outperform Omega alone in classifying conscious state (Cohen's d > 1.5) in a preregistered replication.",
-      "falsifiable_by": "C(parietal) failing to exceed Omega\u2019s effect size (by \u2265 0.3 d units) in a preregistered, independently collected dataset."
+      "statement": "A parietal/posterior regional product C(parietal) = Omega × kappa will outperform Omega alone in classifying conscious state (Cohen's d > 1.5) in a preregistered replication.",
+      "falsifiable_by": "C(parietal) failing to exceed Omega’s effect size (by ≥ 0.3 d units) in a preregistered, independently collected dataset."
     },
     {
       "id": "P4",
-      "statement": "Removing delta (using 4\u201340 Hz) will reduce Omega\u2019s effect size relative to full-band Omega in sedation paradigms.",
-      "falsifiable_by": "Equal or larger effect sizes for Omega(4\u201340 Hz) compared to full-band Omega in two or more independent sedation datasets."
+      "statement": "Removing delta (using 4–40 Hz) will reduce Omega’s effect size relative to full-band Omega in sedation paradigms.",
+      "falsifiable_by": "Equal or larger effect sizes for Omega(4–40 Hz) compared to full-band Omega in two or more independent sedation datasets."
     }
   ],
   "kill_criteria": [
-    "KC1: In at least two preregistered, independent datasets spanning anesthesia or comparable perturbations, global or regional integration metrics (e.g., transfer entropy, Granger, phi-like measures) consistently outperform Omega in predicting conscious state (each with Cohen's d \u2265 0.8) while Omega shows weak effects (|d| \u2264 0.2), and corr(Omega, kappa) is positive (> +0.2), contradicting the differentiation-dominant, balance-regime claim.",
-    "KC2: The dose-matched double dissociation for Omega fails to replicate twice (no opposite-signed changes between responsive and drowsy groups; or both groups change in the same direction), undermining the claim that consciousness, not drug level, determines Omega\u2019s direction.",
+    "KC1: In at least two preregistered, independent datasets spanning anesthesia or comparable perturbations, global or regional integration metrics (e.g., transfer entropy, Granger, phi-like measures) consistently outperform Omega in predicting conscious state (each with Cohen's d ≥ 0.8) while Omega shows weak effects (|d| ≤ 0.2), and corr(Omega, kappa) is positive (> +0.2), contradicting the differentiation-dominant, balance-regime claim.",
+    "KC2: The dose-matched double dissociation for Omega fails to replicate twice (no opposite-signed changes between responsive and drowsy groups; or both groups change in the same direction), undermining the claim that consciousness, not drug level, determines Omega’s direction.",
     "KC3: A preregistered replication of the exploratory regional effect shows that C(parietal) does not exceed Omega (difference in d < 0.3) and/or reverses direction in two independent datasets, undermining the regional-feedback constraint.",
     "KC4: Closed-loop or stimulation interventions that selectively increase kappa (integration) without increasing Omega lead to reliable increases in conscious report or behavioral responsiveness, overturning the differentiation-dominant priority.",
-    "KC5: Across diverse states (wake, NREM/REM sleep, anesthesia, psychedelics), pooled analyses demonstrate a robust positive relationship between Omega and kappa (meta-analytic r \u2265 +0.2 with p < 0.01), contradicting the balance (trade-off) constraint central to the model."
+    "KC5: Across diverse states (wake, NREM/REM sleep, anesthesia, psychedelics), pooled analyses demonstrate a robust positive relationship between Omega and kappa (meta-analytic r ≥ +0.2 with p < 0.01), contradicting the balance (trade-off) constraint central to the model."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -158,8 +158,171 @@
   },
   "related_papers": [
     "CEM-Consciousness-Ego-Mirror",
-    "L0\u2013L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
+    "L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
     "validity-aware-ai"
   ],
-  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one."
+  "conclusion": "Consciousness is best described as a high-differentiation resonance regime within a universal dynamical field, stabilised by regional feedback rather than global integration. The ego is not the origin of awareness but a structured expression within this regime. Consciousness is becoming a physics problem, not a metaphysical one.",
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper opens EFC's consciousness arm ('Consciousness-Ego-Mirror') with a first empirical test, establishing that spectral differentiation (Omega) — not global integration (kappa) — tracks conscious state under propofol, consistent with the field-resonance ontology derived from EFC's energy-flow substrate. It does not close any Stage-IV cosmological KC or any of the three open theory gaps, but it deposits four sealed predictions and five paper-internal kill criteria that create a self-contained falsification scaffold for the consciousness extension. The pre-registered multiplicative model C = Omega × kappa was honestly falsified (F1), demonstrating the programme's willingness to kill its own hypotheses — a credibility asset for the broader EFC project.",
+    "graph_insights": [
+      "The graph shows zero prior connections to any existing EFC paper or validation test — this paper is a founding node for the Consciousness-Ego-Mirror cluster. All future consciousness-arm papers will radiate from this DOI.",
+      "The concept overlap (field ontology, Energy-Flow Cosmology) with the core cosmological papers exists at the ontological level but not yet at the quantitative level — the first quantitative bridge will require mapping Omega/kappa dynamics onto EFC field equations, which is an implicit new theory gap.",
+      "No validation tests currently share observables with this paper, meaning the consciousness arm is empirically isolated from the cosmology arm. The first cross-arm observable would be a thermodynamic or information-theoretic quantity computable in both domains."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "cem_omega_double_dissociation_propofol",
+        "category": "phenomenological",
+        "name": "Omega double dissociation under dose-matched propofol",
+        "description": "Tests whether spectral differentiation (Omega) shows opposite-signed entropy changes in responsive vs drowsy groups at identical propofol concentrations, establishing that conscious state — not drug level — drives the signal.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "EFC field-resonance model predicts that Omega tracks the differentiation-dominant resonance regime, not the pharmacological perturbation per se."
+      },
+      {
+        "test_id": "cem_omega_effect_size_propofol",
+        "category": "phenomenological",
+        "name": "Omega effect size for conscious-state classification",
+        "description": "Validates that Omega discriminates conscious states with large effect size (reported Cohen's d = 1.50).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "Omega d ≥ 0.8 for conscious vs sedated contrast."
+      },
+      {
+        "test_id": "cem_kappa_weak_global",
+        "category": "phenomenological",
+        "name": "Global integration (kappa) weak effect on conscious state",
+        "description": "Tests whether global transfer-entropy-based integration fails to independently track conscious state (reported d = 0.42).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "In the differentiation-dominant regime, global kappa should not rival Omega for conscious-state discrimination."
+      },
+      {
+        "test_id": "cem_preregistered_product_falsified",
+        "category": "framework_constraint",
+        "name": "Pre-registered multiplicative model C = Omega × kappa falsified",
+        "description": "The pre-registered hypothesis that a global product C = Omega × kappa outperforms Omega alone was tested and honestly falsified (F1).",
+        "result": "COLLAPSED",
+        "status": "failed",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "C(global) should outperform Omega alone. FALSIFIED — Omega alone dominates."
+      },
+      {
+        "test_id": "cem_parietal_product_exploratory",
+        "category": "phenomenological",
+        "name": "Regional parietal product C(parietal) exploratory effect",
+        "description": "Exploratory finding that a posterior/parietal regional product C(parietal) = Omega × kappa yields d = 2.10, outperforming global Omega. Requires pre-registered replication (sealed prediction P3).",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "Regional feedback constraint localised to posterior cortex should amplify classification. Exploratory — awaiting replication."
+      },
+      {
+        "test_id": "cem_omega_kappa_negative_correlation",
+        "category": "phenomenological",
+        "name": "Negative Omega–kappa correlation under sedation",
+        "description": "Tests whether differentiation and integration trade off (negative correlation) during sedation, as predicted by the balance-regime model (reported r = −0.27).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Chennu et al. 2016 propofol EEG (N=12)",
+        "prediction": "corr(Omega, kappa) < 0 at group level under moderate sedation (sealed prediction P2)."
+      },
+      {
+        "test_id": "cem_sealed_p1_replication",
+        "category": "planned_pipeline",
+        "name": "Sealed P1 — Omega double dissociation independent replication",
+        "description": "Sealed prediction that Omega double dissociation replicates in independent dose-matched propofol datasets.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Independent propofol EEG datasets (TBD)",
+        "prediction": "Responsive group: Omega increases; Drowsy group: Omega decreases at matched dose."
+      },
+      {
+        "test_id": "cem_sealed_p3_parietal_replication",
+        "category": "planned_pipeline",
+        "name": "Sealed P3 — Parietal product pre-registered replication",
+        "description": "Sealed prediction that C(parietal) outperforms Omega alone (d > 1.5) in a pre-registered independent dataset.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Independent EEG dataset (TBD)",
+        "prediction": "C(parietal) Cohen's d > 1.5 for conscious-state classification."
+      },
+      {
+        "test_id": "cem_sealed_p4_delta_removal",
+        "category": "planned_pipeline",
+        "name": "Sealed P4 — Delta removal reduces Omega effect",
+        "description": "Sealed prediction that restricting Omega to 4–40 Hz reduces its effect size relative to full-band in sedation paradigms.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Sedation EEG datasets (TBD)",
+        "prediction": "Full-band Omega d > 4–40 Hz Omega d in sedation contrasts."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "consciousness-ego-mirror",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Consciousness arm launched: first empirical test deposited (10.6084/m9.figshare.31289806). Omega tracks conscious state (d = 1.50, double dissociation); global multiplicative model honestly falsified; 4 sealed predictions deposited; 5 paper-internal kill criteria defined. Awaiting independent replication datasets.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31289806"
+        ],
+        "reasoning": "The consciousness-ego-mirror track had no entries; this paper inaugurates it with empirical data, sealed predictions, and its own kill scaffold."
+      },
+      {
+        "page": "whitepaper",
+        "target": "consciousness-extension-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Section 'Consciousness as Field Resonance' should be added or expanded. The field-based ontology (Levels 1–2) maps directly to EFC's energy-flow substrate. Empirical grounding via propofol EEG: Omega d = 1.50, kappa d = 0.42, parietal product d = 2.10 (exploratory). Pre-registered product model falsified (F1). Reference: 10.6084/m9.figshare.31289806.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31289806"
+        ],
+        "reasoning": "The whitepaper currently lacks empirical content for the consciousness extension; this paper provides the first quantitative anchoring."
+      },
+      {
+        "page": "elevator",
+        "target": "test-count",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Test count increases by 9 (6 completed + 3 pipeline). New totals: total ≈ 128, active ≈ 107, survived ≈ 96, falsified = 11, pipeline ≈ 21. The honest falsification of the pre-registered product model (F1) is counted among falsified tests.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31289806"
+        ],
+        "reasoning": "The paper adds 6 completed tests (4 pass, 1 marginal/partial, 1 collapsed) and 3 pipeline tests; the falsified count increments by 1."
+      },
+      {
+        "page": "gap",
+        "target": "consciousness-empirical-gap",
+        "action": "update_text",
+        "new_badge": "ACTIVE",
+        "new_text": "New gap identified: consciousness-arm-independent-replication. The Chennu et al. 2016 dataset (N=12) provides proof of concept but independent replication on larger samples and alternative perturbations (sleep, psychedelics) is required to elevate from T2 to T1. Three sealed predictions (P1, P3, P4) await external data.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31289806"
+        ],
+        "reasoning": "The paper explicitly flags its own sample-size limitation and registers replication predictions. This creates a trackable gap."
+      }
+    ],
+    "implicit_consequences": [
+      "The 'Level 1 — The Field' ontology explicitly identifies the EFC universal energy-flow substrate as the dynamical background for consciousness, creating a formal bridge between the cosmological and consciousness arms of the programme. Any future constraint on the EFC field (e.g., from DESI DR2 or CMB data) propagates as a constraint on what field properties the consciousness model may invoke.",
+      "The honest falsification of the pre-registered multiplicative model (F1) strengthens EFC's overall credibility posture: the programme demonstrably kills its own predictions, which is the exact epistemic norm the kill-criterion architecture is designed to showcase.",
+      "The negative Omega–kappa correlation (r = −0.27) implies a trade-off (balance) regime. If the cosmological EFC field has an analogous dissipation–coherence trade-off at macroscopic scales, this becomes a cross-scale structural prediction that could eventually be tested in non-equilibrium thermodynamic systems.",
+      "The paper's five internal kill criteria (KC1–KC5) are structurally independent of the Stage-IV cosmological KCs but follow the same falsification protocol, establishing a unified methodological identity across the two arms of EFC.",
+      "The regional (parietal) finding implicitly constrains where future EEG/MEG replication studies must focus electrodes, creating a concrete experimental design filter for collaborators.",
+      "The delta-band sensitivity (sealed P4) connects to known neurophysiology of slow-wave sleep and anaesthesia, implying that future sleep-EEG tests could simultaneously validate P4 and extend the model to NREM/REM contrasts — a two-for-one test opportunity."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:16:06Z",
+    "applied_by_doi": "31289806"
+  }
 }

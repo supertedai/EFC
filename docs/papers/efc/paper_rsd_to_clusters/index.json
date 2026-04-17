@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "rsd-to-clusters",
   "title": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
-  "description": "Propagates redshift-space distortion (RSD) constraints on the effective gravitational coupling into parameter-locked predictions for galaxy cluster abundances under Energy-Flow Cosmology (EFC). With no parameters fit to cluster data and high-z (CMB) normalization, the paper predicts a +6.4% total cluster excess vs. \u039bCDM and a distinctive negative tilt in the redshift-distribution shape ratio R(z), providing sealed, falsifiable targets for eRASS1.",
+  "description": "Propagates redshift-space distortion (RSD) constraints on the effective gravitational coupling into parameter-locked predictions for galaxy cluster abundances under Energy-Flow Cosmology (EFC). With no parameters fit to cluster data and high-z (CMB) normalization, the paper predicts a +6.4% total cluster excess vs. ΛCDM and a distinctive negative tilt in the redshift-distribution shape ratio R(z), providing sealed, falsifiable targets for eRASS1.",
   "version": "1.0",
   "date": "2026-04-14",
   "doi": "10.6084/m9.figshare.31292827",
@@ -32,7 +32,7 @@
     },
     "shape_ratio": {
       "latex": "R(z) = \\frac{R_{\\mathrm{EFC}}(z)}{R_{\\Lambda\\mathrm{CDM}}(z)}",
-      "description": "Redshift-distribution shape ratio comparing EFC to \u039bCDM, used to isolate redshift-dependent growth signatures."
+      "description": "Redshift-distribution shape ratio comparing EFC to ΛCDM, used to isolate redshift-dependent growth signatures."
     },
     "fractional_distribution": {
       "latex": "R(z) = \\frac{N(z)}{N_{\\mathrm{total}}}",
@@ -44,7 +44,7 @@
     }
   },
   "key_results": {
-    "main_finding": "With \\alpha_{L2}=0.34 from BOSS DR12 RSD and high-z normalization, EFC predicts N_EFC/N_\\LambdaCDM = 1.064 and a negative dR/dz shape tilt (\u223c+5% at z\u22480.15 to \u223c\u22126% at z\u22480.7) for eRASS1-like cluster samples, without fitting any parameters to cluster data.",
+    "main_finding": "With \\alpha_{L2}=0.34 from BOSS DR12 RSD and high-z normalization, EFC predicts N_EFC/N_\\LambdaCDM = 1.064 and a negative dR/dz shape tilt (∼+5% at z≈0.15 to ∼−6% at z≈0.7) for eRASS1-like cluster samples, without fitting any parameters to cluster data.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -60,30 +60,30 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Total abundance enhancement N_EFC / N_\\LambdaCDM = 1.064 \u00b1 0.02 for M > 10^{14} M_\\odot and 0.1 < z < 0.8 under CMB-consistent normalization.",
+      "statement": "Total abundance enhancement N_EFC / N_\\LambdaCDM = 1.064 ± 0.02 for M > 10^{14} M_\\odot and 0.1 < z < 0.8 under CMB-consistent normalization.",
       "falsifiable_by": "eRASS1 total cluster counts after weak-lensing mass calibration (DES Y3/KiDS-1000/HSC)."
     },
     {
       "id": "P2",
-      "statement": "Negative redshift-gradient in the shape ratio: R(z) transitions from \u22481.05 at z\u22480.15 to \u22480.94 at z\u22480.7 (dR/dz < 0), robust to uniform mass-calibration errors.",
+      "statement": "Negative redshift-gradient in the shape ratio: R(z) transitions from ≈1.05 at z≈0.15 to ≈0.94 at z≈0.7 (dR/dz < 0), robust to uniform mass-calibration errors.",
       "falsifiable_by": "Binned redshift-distribution shape test using eRASS1 clusters with uniform mass calibration."
     },
     {
       "id": "P3",
-      "statement": "Crossover near z \u2248 0.3\u20130.4 where R(z) \u2248 1, separating low-z excess from high-z deficit.",
-      "falsifiable_by": "Detection (or lack) of the R(z) \u2248 1 crossing in eRASS1 redshift-binned counts."
+      "statement": "Crossover near z ≈ 0.3–0.4 where R(z) ≈ 1, separating low-z excess from high-z deficit.",
+      "falsifiable_by": "Detection (or lack) of the R(z) ≈ 1 crossing in eRASS1 redshift-binned counts."
     },
     {
       "id": "P4",
-      "statement": "Per-bin shape ratios (eRASS1-like binning): R[0.1,0.2]=1.050\u00b10.032; R[0.2,0.3]=1.011\u00b10.029; R[0.3,0.4]=0.979\u00b10.032; R[0.4,0.5]=0.957\u00b10.039; R[0.5,0.6]=0.946\u00b10.053; R[0.6,0.8]=0.941\u00b10.068.",
+      "statement": "Per-bin shape ratios (eRASS1-like binning): R[0.1,0.2]=1.050±0.032; R[0.2,0.3]=1.011±0.029; R[0.3,0.4]=0.979±0.032; R[0.4,0.5]=0.957±0.039; R[0.5,0.6]=0.946±0.053; R[0.6,0.8]=0.941±0.068.",
       "falsifiable_by": "Comparison of measured binned redshift fractions to the sealed bin-by-bin predictions using eRASS1."
     }
   ],
   "kill_criteria": [
-    "KC1: Observed total eRASS1 cluster abundance (after mass calibration) is less than or equal to \u039bCDM predictions, contradicting the predicted +5\u20138% excess.",
-    "KC2: The measured shape ratio R(z) exhibits a positive gradient dR/dz \u2265 0 or is consistent with a flat trend at the \u22641% level across 0.1 < z < 0.8.",
-    "KC3: No observed crossover near z \u2248 0.3\u20130.4 where R(z) \u2248 1, contrary to the predicted tilt pattern.",
-    "KC4: Strong inconsistency between independent RSD constraints and the required growth enhancement (e.g., updated RSD rejecting \\alpha_{L2} \u2248 0.34 within stated uncertainty), breaking the parameter lock."
+    "KC1: Observed total eRASS1 cluster abundance (after mass calibration) is less than or equal to ΛCDM predictions, contradicting the predicted +5–8% excess.",
+    "KC2: The measured shape ratio R(z) exhibits a positive gradient dR/dz ≥ 0 or is consistent with a flat trend at the ≤1% level across 0.1 < z < 0.8.",
+    "KC3: No observed crossover near z ≈ 0.3–0.4 where R(z) ≈ 1, contrary to the predicted tilt pattern.",
+    "KC4: Strong inconsistency between independent RSD constraints and the required growth enhancement (e.g., updated RSD rejecting \\alpha_{L2} ≈ 0.34 within stated uncertainty), breaking the parameter lock."
   ],
   "tier": "T1",
   "paper_type": "sealed_prediction",
@@ -96,37 +96,37 @@
   "abstract": "A cross-probe test of late-time structure growth propagating RSD constraints on effective gravitational coupling into galaxy cluster abundance predictions with zero free parameters fit to cluster data.",
   "methodology": {
     "approach": "Parameter-locked cross-probe",
-    "inference_chain": "RSD \u2192 Growth history D(z) \u2192 Mass function \u2192 Cluster counts",
+    "inference_chain": "RSD → Growth history D(z) → Mass function → Cluster counts",
     "key_feature": "No parameters fit to cluster data"
   },
   "input_constraint": {
-    "parameter": "\u03b1_L2",
+    "parameter": "α_L2",
     "value": 0.34,
     "uncertainty": 0.16,
     "source": "BOSS DR12 RSD measurements",
-    "equation": "\u03bc_EFC(a) = 1 + \u03b1_L2 \u00d7 f_transition(a)"
+    "equation": "μ_EFC(a) = 1 + α_L2 × f_transition(a)"
   },
   "shape_observable": {
-    "definition": "R(z) = R_EFC(z) / R_\u039bCDM(z), where R(z) = N(z)/N_total",
+    "definition": "R(z) = R_EFC(z) / R_ΛCDM(z), where R(z) = N(z)/N_total",
     "advantage": "Robust against uniform multiplicative mass-calibration errors",
-    "statistical_power": "~2-3\u03c3 discrimination"
+    "statistical_power": "~2-3σ discrimination"
   },
   "falsification_criteria": {
     "falsified_if": [
-      "Fewer total clusters than \u039bCDM (after mass calibration)",
+      "Fewer total clusters than ΛCDM (after mass calibration)",
       "Positive dR/dz (more high-z fraction than low-z)",
-      "Flat R(z) at \u22641% level"
+      "Flat R(z) at ≤1% level"
     ],
     "consistent_if": [
-      "~5-8% cluster excess relative to \u039bCDM",
+      "~5-8% cluster excess relative to ΛCDM",
       "Negative dR/dz with amplitude ~0.05-0.10",
       "Crossover near z ~ 0.3-0.4"
     ]
   },
   "data_context": {
     "target_survey": "eRASS1",
-    "cluster_sample": "N \u2248 5259 (cosmology sample)",
-    "mass_range": "M > 10^14 M_\u2609",
+    "cluster_sample": "N ≈ 5259 (cosmology sample)",
+    "mass_range": "M > 10^14 M_☉",
     "redshift_range": "0.1 < z < 0.8",
     "mass_calibration": "DES Y3, KiDS-1000, HSC weak lensing"
   },
@@ -142,5 +142,126 @@
       "Redshift-independent selection"
     ],
     "sensitive_to": "Strongly redshift-dependent systematics"
+  },
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes the first parameter-locked cross-probe prediction chain in EFC: RSD → growth → clusters, with zero free parameters fit to cluster data. It deposits four quantitative sealed predictions (total abundance excess, shape-ratio tilt, crossover redshift, per-bin R(z)) that are directly falsifiable by eRASS1 cluster catalogues. It does not close any existing KC or theory gap but opens a new high-value falsification surface and strengthens EFC's claim to be a genuinely predictive framework rather than a post-hoc fitting exercise.",
+    "graph_insights": [
+      "No existing graph nodes were found within 2 hops, indicating this paper opens an entirely new observational branch (galaxy clusters / halo mass function) in the EFC knowledge graph — it should seed new concept nodes for 'shape ratio R(z)', 'parameter-locked prediction', 'cross-probe chain', and 'eRASS1 cluster validation', all connected to the existing 'redshift-space distortions' and 'BOSS DR12' nodes.",
+      "The absence of related validation tests in the graph means the 5 new planned-pipeline tests above represent net-new coverage; test count should move from 119 total to 124, with pipeline count from 18 to 23.",
+      "The concept 'cross-probe test' touched by this paper is structurally significant: it is the first graph edge connecting the RSD/growth observable family to the cluster-count observable family, creating a bridge that will propagate constraints (or kills) bidirectionally when either data source updates."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "erass1_total_cluster_excess",
+        "category": "planned_pipeline",
+        "name": "eRASS1 total cluster abundance vs EFC prediction",
+        "description": "Compare observed eRASS1 cluster counts (M>1e14 Msun, 0.1<z<0.8) after mass calibration to the sealed prediction N_EFC/N_LCDM = 1.064 ± 0.02.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "eRASS1 cluster catalogue (Bulbul et al. 2024 + mass-calibration updates)",
+        "prediction": "N_EFC/N_LCDM = 1.064 ± 0.02 (+5–8% excess over LCDM)"
+      },
+      {
+        "test_id": "erass1_shape_ratio_tilt",
+        "category": "planned_pipeline",
+        "name": "eRASS1 shape-ratio redshift gradient dR/dz",
+        "description": "Measure the shape ratio R(z) = (dN_obs/dz) / (dN_LCDM/dz) across 0.1<z<0.8 and test for the predicted negative gradient dR/dz < 0.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "eRASS1 cluster redshift distribution",
+        "prediction": "R(z) falls from ~1.05 at z≈0.15 to ~0.94 at z≈0.7; dR/dz < 0"
+      },
+      {
+        "test_id": "erass1_shape_ratio_crossover",
+        "category": "planned_pipeline",
+        "name": "eRASS1 R(z) crossover at z ≈ 0.3–0.4",
+        "description": "Identify crossover redshift where R(z) ≈ 1, separating low-z excess from high-z deficit.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "eRASS1 cluster redshift distribution",
+        "prediction": "Crossover near z ≈ 0.3–0.4 where R(z) passes through unity"
+      },
+      {
+        "test_id": "erass1_perbin_shape_ratios",
+        "category": "planned_pipeline",
+        "name": "eRASS1 per-bin shape ratios (6-bin)",
+        "description": "Compare per-bin R(z) values to the sealed per-bin predictions (P4) in eRASS1-like Δz=0.1 bins from z=0.1 to z=0.7.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "eRASS1 cluster catalogue with redshift binning",
+        "prediction": "R[0.1,0.2]=1.050±0.032; R[0.2,0.3]=1.011±0.029; R[0.3,0.4]=0.979±0.032; R[0.4,0.5]=0.957±0.039; R[0.5,0.6] as specified in P4"
+      },
+      {
+        "test_id": "rsd_cluster_parameter_lock_consistency",
+        "category": "consistency_check",
+        "name": "RSD–cluster parameter-lock internal consistency",
+        "description": "Verify that alpha_L2 = 0.34 ± 0.16 from BOSS DR12 RSD remains consistent when DESI or updated RSD data arrive; break in lock falsifies the cross-probe chain.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "BOSS DR12 RSD (current), DESI DR1/DR2 RSD (future)",
+        "prediction": "alpha_L2 remains within [0.18, 0.50] (1σ) from updated RSD analyses"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "cross-probe-predictions",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "RSD → cluster cross-probe chain deposited with four sealed predictions (total excess, shape tilt, crossover, per-bin R(z)). Parameter-locked: alpha_L2 = 0.34 from BOSS DR12, zero cluster-fit parameters. Awaiting eRASS1 validation. DOI: 10.6084/m9.figshare.31292827",
+        "doi_refs": [
+          "10.6084/m9.figshare.31292827"
+        ],
+        "reasoning": "The paper establishes a new cross-probe prediction lane that should appear on the roadmap as a sealed milestone awaiting observational confrontation."
+      },
+      {
+        "page": "gap",
+        "target": "data-gap-erass1-clusters",
+        "action": "update_text",
+        "new_badge": "PREDICTION SEALED",
+        "new_text": "eRASS1 cluster abundance and shape-ratio predictions sealed (P1–P4). Four kill criteria declared. Validation pending eRASS1 public mass-calibrated catalogue. DOI: 10.6084/m9.figshare.31292827",
+        "doi_refs": [
+          "10.6084/m9.figshare.31292827"
+        ],
+        "reasoning": "A new data-gap entry (or update to existing cluster gap) is needed to track the sealed prediction against upcoming eRASS1 data."
+      },
+      {
+        "page": "elevator",
+        "target": "falsifiability-highlight",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC now has a parameter-locked RSD→cluster prediction chain: with growth amplitude fixed by BOSS DR12 RSD and CMB normalization, it predicts +6.4% cluster excess and a distinctive z-dependent shape tilt — falsifiable with eRASS1 data and no tuning available.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31292827"
+        ],
+        "reasoning": "The zero-free-parameter cross-probe chain is one of the strongest falsifiability claims in EFC and should feature in the elevator pitch."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section-cluster-predictions",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Cross-probe sealed prediction: alpha_L2 = 0.34 (BOSS DR12 RSD) propagated to Tinker HMF under CMB normalization yields N_EFC/N_LCDM = 1.064 ± 0.02 and a negative shape-ratio gradient R(z) from +5% (z≈0.15) to −6% (z≈0.7). Four paper-level kill criteria declared. DOI: 10.6084/m9.figshare.31292827",
+        "doi_refs": [
+          "10.6084/m9.figshare.31292827"
+        ],
+        "reasoning": "The whitepaper needs to incorporate the cluster prediction chain as a new section or subsection alongside existing structure-growth predictions."
+      }
+    ],
+    "implicit_consequences": [
+      "The shape-ratio tilt dR/dz < 0 is a smoking-gun signature that cannot be mimicked by uniform mass-calibration bias, giving EFC a systematics-robust discriminant against LCDM — this implicitly raises the evidential weight of cluster tests relative to total-count tests.",
+      "If DESI DR2 RSD data shift alpha_L2 significantly away from 0.34, the entire cluster prediction chain collapses simultaneously (paper KC4), creating a correlated kill channel between the DESI rapid-response pipeline (existing biggest gap) and this new cluster test — the two are now logically entangled.",
+      "The paper implicitly constrains the EFC transition function f_transition(a) shape: the crossover at z≈0.3–0.4 means any future theoretical refinement of the transition scale (e.g., from ADM Hamiltonian analysis, theory-adm-hamiltonian-stability) must preserve activation below z~0.5 or the cluster predictions are invalidated.",
+      "Using the Tinker HMF calibrated in LCDM N-body simulations is an explicit approximation noted in the paper — this creates a theory gap for EFC-specific N-body halo-finding that, if pursued, could shift the central prediction; future simulations addressing theory-adm-hamiltonian-stability could feed back here.",
+      "The sealed per-bin predictions (P4) at Δz=0.1 resolution effectively provide a 6-point template that can be cross-correlated with weak-lensing mass calibration bins, implicitly linking this test to future Euclid/Rubin cluster weak-lensing analyses.",
+      "The f·sigma8(z=0.7) sealed prediction (action-5 / DESI pipeline) and the cluster R(z≈0.7)≈0.94 prediction are now two independent observables probing the same underlying growth enhancement at the same redshift — a joint pass or joint fail would be highly constraining."
+    ],
+    "bottom_line_change": "Biggest gap remains DESI DR2 full-shape RSD rapid-response pipeline, but add secondary urgency note: eRASS1 mass-calibrated cluster catalogue validation pipeline also needed — the two are now correlated via alpha_L2 parameter lock, and a joint verification script covering both the fsigma8 sealed prediction and the cluster shape-ratio predictions would maximise EFC's falsification surface when either dataset drops.",
+    "kill_criteria_addressed": []
   }
 }

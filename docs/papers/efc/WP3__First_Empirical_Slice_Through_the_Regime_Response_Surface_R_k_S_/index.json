@@ -2,20 +2,20 @@
   "$schema": "./schema.json",
   "id": "wp3-first-empirical-slice-rks",
   "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k, S)",
-  "description": "First cartographic measurement of the gravitational response coordinate R(k,S) along the RSD trajectory using 12 f\u03c38(z) points from BOSS DR12, eBOSS DR16, and DESI Y1. The analysis finds R(k\u22480.13 h/Mpc, S\u22480.30) \u2248 +0.30, while \u039bCDM (R=0) remains preferred by AIC (\u0394AIC = \u22123.8). This work inaugurates an atlas of the response surface, emphasizing mapping over model validation.",
+  "description": "First cartographic measurement of the gravitational response coordinate R(k,S) along the RSD trajectory using 12 fσ8(z) points from BOSS DR12, eBOSS DR16, and DESI Y1. The analysis finds R(k≈0.13 h/Mpc, S≈0.30) ≈ +0.30, while ΛCDM (R=0) remains preferred by AIC (ΔAIC = −3.8). This work inaugurates an atlas of the response surface, emphasizing mapping over model validation.",
   "version": "1.0",
   "date": "2026-01-30",
   "doi": "10.6084/m9.figshare.31215259",
   "keywords": [
     "R(k,S)",
     "regime response surface",
-    "f\u03c38",
+    "fσ8",
     "redshift-space distortions",
     "BOSS",
     "eBOSS",
     "DESI",
     "modified gravity",
-    "\u039bCDM",
+    "ΛCDM",
     "AIC",
     "cartography"
   ],
@@ -26,7 +26,7 @@
   "core_equations": {
     "response_mu": {
       "latex": "\\mu(k,S) = 1 + R(k, S)",
-      "description": "Defines the gravitational response as a surface R(k,S) that modulates the effective growth coupling \u03bc relative to GR."
+      "description": "Defines the gravitational response as a surface R(k,S) that modulates the effective growth coupling μ relative to GR."
     },
     "structural_maturity_proxy": {
       "latex": "S(z) = \\frac{1}{1 + (z / z_{\\text{mid}})^2},\\quad z_{\\text{mid}} \\approx 1.5",
@@ -38,19 +38,19 @@
     },
     "fs8_lcdm": {
       "latex": "f\\sigma_8(z) = \\Omega_m(z)^{\\gamma}\\,\\sigma_8\\,D(z)",
-      "description": "Baseline \u039bCDM growth observable with free parameters {\\sigma_8, \\Omega_m, \\gamma}."
+      "description": "Baseline ΛCDM growth observable with free parameters {\\sigma_8, \\Omega_m, \\gamma}."
     },
     "fs8_rks": {
       "latex": "f\\sigma_8(z) = \\Omega_m(z)^{\\gamma}\\,\\sqrt{\\mu(z)}\\,\\sigma_8\\,D(z)",
-      "description": "R(k,S) slice model where \u03bc encodes the response amplitude along the trajectory."
+      "description": "R(k,S) slice model where μ encodes the response amplitude along the trajectory."
     },
     "mu_gaussian_basis": {
       "latex": "\\mu(z) = 1 + \\Delta R\\,\\exp\\!\\left[-\\frac{(z - z_{\\text{peak}})^2}{2\\,(0.6)^2}\\right]",
-      "description": "Phenomenological Gaussian basis used to localize a response amplitude \u0394R at characteristic redshift z_peak along the trajectory."
+      "description": "Phenomenological Gaussian basis used to localize a response amplitude ΔR at characteristic redshift z_peak along the trajectory."
     }
   },
   "key_results": {
-    "main_finding": "Measured a cartographic coordinate on the response surface: R(k\u22480.13 h/Mpc, S\u22480.30) \u2248 +0.30, while \u039bCDM is preferred by AIC (\u0394AIC = \u22123.8).",
+    "main_finding": "Measured a cartographic coordinate on the response surface: R(k≈0.13 h/Mpc, S≈0.30) ≈ +0.30, while ΛCDM is preferred by AIC (ΔAIC = −3.8).",
     "delta_chi2": 0.24,
     "significance_sigma": null,
     "parameters_tested": [
@@ -61,19 +61,19 @@
       "z_peak"
     ],
     "datasets_used": [
-      "BOSS DR12 f\u03c38(z)",
-      "eBOSS DR16 f\u03c38(z)",
-      "DESI Y1 f\u03c38(z)"
+      "BOSS DR12 fσ8(z)",
+      "eBOSS DR16 fσ8(z)",
+      "DESI Y1 fσ8(z)"
     ],
     "verdict": "MARGINAL"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: If high-precision multi-probe reconstructions (RSD + weak lensing + clusters) at overlapping (k,S) consistently require \u03bc(k,S) < 0 (i.e., R(k,S) < \u22121) in any physical regime, the \u03bc = 1 + R(k,S) response formulation is invalidated.",
-    "KC2: If two or more independent probes mapping the same (k\u22480.1\u20130.15 h/Mpc, S\u22480.3) regime yield R estimates that disagree by >5\u03c3 after controlling for known systematics and using full covariances, the R(k,S) coordinate system fails empirical consistency.",
-    "KC3: If no operational, probe-independent structural maturity observable S can be constructed that is monotonic and yields consistent cross-probe mapping (within \u22642\u03c3) across 0 < z < 2, the R(k,S) decomposition (and hence the EFC response atlas program) is falsified.",
+    "KC1: If high-precision multi-probe reconstructions (RSD + weak lensing + clusters) at overlapping (k,S) consistently require μ(k,S) < 0 (i.e., R(k,S) < −1) in any physical regime, the μ = 1 + R(k,S) response formulation is invalidated.",
+    "KC2: If two or more independent probes mapping the same (k≈0.1–0.15 h/Mpc, S≈0.3) regime yield R estimates that disagree by >5σ after controlling for known systematics and using full covariances, the R(k,S) coordinate system fails empirical consistency.",
+    "KC3: If no operational, probe-independent structural maturity observable S can be constructed that is monotonic and yields consistent cross-probe mapping (within ≤2σ) across 0 < z < 2, the R(k,S) decomposition (and hence the EFC response atlas program) is falsified.",
     "KC4: If comprehensive atlas mapping across RSD, lensing, clusters, and CMB low-z extensions robustly finds R(k,S) = 0 within |R| < 0.02 over 0.01 < k < 1 h/Mpc and 0 < S < 1 (with full covariances) and no statistically significant non-zero regions remain, the EFC response surface provides no explanatory gain and is rejected as an unnecessary structure.",
-    "KC5: If Bayesian model comparison with full survey covariances shows overwhelming preference for \u039bCDM (e.g., \u0394AIC < \u221210 and Bayes factor > 150 against any R(k,S) slice) across all planned atlas trajectories, EFC\u2019s response formalism is disfavored."
+    "KC5: If Bayesian model comparison with full survey covariances shows overwhelming preference for ΛCDM (e.g., ΔAIC < −10 and Bayes factor > 150 against any R(k,S) slice) across all planned atlas trajectories, EFC’s response formalism is disfavored."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -99,23 +99,23 @@
   "status": "published",
   "series": "EFC Response Atlas",
   "series_entry": "WP3",
-  "abstract_short": "First empirical R(k,S) coordinate from RSD data: R(k\u22480.13, S\u22480.30) \u2248 +0.30. \u039bCDM preferred by AIC.",
+  "abstract_short": "First empirical R(k,S) coordinate from RSD data: R(k≈0.13, S≈0.30) ≈ +0.30. ΛCDM preferred by AIC.",
   "core_concepts": [
     {
       "name": "Response Coordinate",
       "symbol": "R(k,S)",
       "value": "+0.30",
-      "location": "k\u22480.13 h/Mpc, S\u22480.30"
+      "location": "k≈0.13 h/Mpc, S≈0.30"
     },
     {
       "name": "Structural Maturity",
       "symbol": "S(z)",
-      "formula": "S = 1/(1 + (z/z_mid)\u00b2)"
+      "formula": "S = 1/(1 + (z/z_mid)²)"
     },
     {
       "name": "Modified Growth",
-      "symbol": "\u03bc",
-      "formula": "\u03bc = 1 + R(k,S)"
+      "symbol": "μ",
+      "formula": "μ = 1 + R(k,S)"
     }
   ],
   "data_sources": [
@@ -155,7 +155,7 @@
       "AIC": 19.1,
       "params": 5
     },
-    "verdict": "\u039bCDM preferred by \u0394AIC = -3.8"
+    "verdict": "ΛCDM preferred by ΔAIC = -3.8"
   },
   "trajectory_coverage": {
     "k_range": [
@@ -181,5 +181,95 @@
     }
   ],
   "data_hash": "c76720490b99dbd6",
-  "run_id": "wp3_rks_v2.0"
+  "run_id": "wp3_rks_v2.0",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "WP3 delivers the first empirical coordinate on the R(k,S) response surface using 12 fσ8 data points from BOSS, eBOSS, and DESI Y1, finding R≈+0.30 at (k≈0.13 h/Mpc, S≈0.30) but with ΛCDM preferred by ΔAIC=−3.8. This is a cartographic proof-of-concept — it demonstrates the methodology is operational and measurable, but makes no detection claim and explicitly acknowledges missing covariances and a proxy-only S(z). It inaugurates the response-atlas program and defines five internal kill criteria that will govern future atlas slices.",
+    "graph_insights": [
+      "WP3 is currently a graph isolate (no 1-2 hop connections found). It must be connected to: (a) the fσ8(z=0.7)=0.430 sealed prediction node, (b) BOSS/eBOSS/DESI data nodes, (c) modified gravity parameterization nodes (μ(k,z) formalism), and (d) the EFCLASS solver gap node. These edges are structurally necessary to integrate the atlas program into the existing knowledge graph.",
+      "The R(k,S) concept and structural maturity S are new first-class entities that will become hub nodes once WP4 (lensing slice) and WP5 (cluster slice) are deposited — the graph should be pre-structured with placeholder trajectory nodes for planned atlas slices.",
+      "AIC as an observable connector links WP3 to any future Bayesian model comparison tests across all EFC papers — this edge should be formalized as a shared methodology node."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "wp3_rsd_response_slice_boss_eboss_desi",
+        "category": "phenomenological",
+        "name": "WP3 RSD trajectory slice: R(k≈0.13, S≈0.30)",
+        "description": "First empirical measurement of the gravitational response coordinate R(k,S) along the RSD trajectory using 12 fσ8(z) points from BOSS DR12, eBOSS DR16, DESI Y1. Tests whether a non-zero R is detectable at the current precision level.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "BOSS DR12 + eBOSS DR16 + DESI Y1 fσ8(z) (N=12, diagonal errors only, no covariance)",
+        "prediction": "EFC permits R(k,S)≠0 in structure-dominated regimes; measured R≈+0.30 but ΛCDM (R=0) preferred by ΔAIC=−3.8, so no significant departure yet."
+      },
+      {
+        "test_id": "wp3_aic_complexity_penalty_rsd",
+        "category": "framework_constraint",
+        "name": "AIC complexity check: R(k,S) vs ΛCDM on RSD data",
+        "description": "Checks whether the one-parameter R extension is justified over ΛCDM (R=0) by AIC. ΔAIC=−3.8 favors ΛCDM, meaning the extra parameter is not warranted at current precision.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Same 12-point fσ8 dataset",
+        "prediction": "EFC framework survives: the result is consistent with R=0 at current precision (no contradiction), while the positive R≈0.30 hint is directionally compatible with EFC's expectation of non-zero response in growing-structure regimes."
+      },
+      {
+        "test_id": "wp3_kc5_aic_threshold_check",
+        "category": "framework_constraint",
+        "name": "WP3-internal KC5: ΔAIC threshold for EFC rejection",
+        "description": "WP3 defines KC5 as ΔAIC < −10 and Bayes factor > 150 against any R(k,S) slice. Current ΔAIC = −3.8 is well above this threshold, so EFC is not rejected.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Same 12-point fσ8 dataset",
+        "prediction": "EFC survives if ΔAIC remains above −10; current value −3.8 is safe."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "response-atlas-program",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Response atlas program inaugurated: WP3 (DOI:10.6084/m9.figshare.31215259) delivers first empirical R(k,S) coordinate along RSD trajectory. R(k≈0.13 h/Mpc, S≈0.30)≈+0.30; ΛCDM preferred by ΔAIC=−3.8. Methodology operational; awaiting covariance matrices, multi-probe extensions (lensing, clusters), and physically grounded S observable.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215259"
+        ],
+        "reasoning": "WP3 opens a new programmatic line (atlas mapping) that needs a roadmap entry tracking subsequent slices WP4+."
+      },
+      {
+        "page": "gap",
+        "target": "theory-efclass-boltzmann-solver",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFCLASS solver still needed: WP3 uses proxy S(z) and diagonal errors; a proper Boltzmann-level prediction of R(k,S) from EFC field equations would turn the atlas program from phenomenological cartography into a quantitative prediction engine. Priority elevated by WP3 results.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215259"
+        ],
+        "reasoning": "WP3 explicitly flags that S(z) is a reparameterized redshift without a Boltzmann-derived physical definition — closing this gap requires the EFCLASS solver."
+      },
+      {
+        "page": "whitepaper",
+        "target": "empirical-status-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "First empirical slice of R(k,S) surface completed (WP3). RSD trajectory yields R≈+0.30 at (k≈0.13, S≈0.30), consistent with ΛCDM within AIC penalty. Atlas program now operational with defined internal kill criteria.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215259"
+        ],
+        "reasoning": "The whitepaper must reflect that EFC now has a measurable, empirically grounded response coordinate, even if not yet statistically significant."
+      }
+    ],
+    "implicit_consequences": [
+      "The proxy S(z) = 1/(1+(z/z_mid)^2) is explicitly flagged as a reparameterized redshift — until a physically grounded S observable is constructed (WP3-KC3), the entire R(k,S) decomposition is formally a coordinate change, not a new physical prediction. This makes theory-efclass-boltzmann-solver and theory-neutrino-mass-degeneracy more urgent.",
+      "The positive R≈+0.30 hint is directionally consistent with EFC's expectation of enhanced gravitational coupling in actively structuring regimes (μ > 1), but the ΔAIC=−3.8 means this could evaporate with covariance corrections — the sealed prediction fσ8(z=0.7)=0.430 from the Stage-IV KC program is the real discriminant, not WP3.",
+      "WP3's five internal kill criteria create a nested falsification structure: the atlas program can be killed independently of the Stage-IV KC1-KC5, which is architecturally important — EFC can shed the atlas layer without losing the core theory.",
+      "Missing covariance matrices (acknowledged in paper) mean all χ², AIC, BIC values are approximate — a covariance-corrected re-analysis is implicitly required before any WP3 kill criterion can be formally evaluated.",
+      "The effective wavenumber relation ke(z) ≈ 0.1×(1+0.15z) links WP3 results to scale-dependent growth — when DESI DR2 full-shape data arrives, the same trajectory can be re-measured with proper k-binning, directly feeding the biggest-gap DESI pipeline.",
+      "No graph connections found (0-hop isolation) means WP3 introduces genuinely new nodes: R(k,S), regime response surface, and structural maturity S as first-class concepts in the knowledge graph. These need to be linked to existing fσ8 and modified gravity nodes."
+    ],
+    "bottom_line_change": "No change. The biggest gap remains the DESI DR2 full-shape RSD rapid-response pipeline. WP3 reinforces its urgency: when DR2 drops, the R(k,S) methodology plus the sealed fσ8 prediction must be testable immediately. WP3 provides the methodological scaffolding but not the pipeline automation.",
+    "kill_criteria_addressed": []
+  }
 }

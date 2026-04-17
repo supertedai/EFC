@@ -2,21 +2,74 @@
   "$schema": "./schema.json",
   "id": "efc-perturbation-sector",
   "title": "Efc Perturbation Sector",
-  "description": "Auto-generated package for Efc Perturbation Sector.",
+  "description": "This note presents the perturbation-sector prediction of Energy-Flow Cosmology (EFC) for weak-lensing amplitude as a function of redshift, summarized by an effective ratio eff(z) relative to a CDM baseline set to unity. EFC predicts a single redshift crossover at z \u2243 0.42 separating enhanced (eff > 1) from suppressed (eff < 1) lensing, with percent-level deviations bounded at approximately \u00b12% over 0.2 \u2272 z \u2272 1.4. The result is posed as a sealed, falsifiable target for upcoming weak-lensing tomography.",
   "version": "1.0",
   "date": "2026-04-16",
+  "doi": "",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Perturbation",
-    "Sector"
+    "perturbation sector",
+    "weak gravitational lensing",
+    "lensing efficiency",
+    "cosmic shear",
+    "redshift crossover",
+    "percent-level deviation",
+    "LambdaCDM comparison",
+    "tomography",
+    "EFC prediction",
+    "lensing amplitude ratio",
+    "structure growth"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "cdm_baseline": {
+      "latex": "e_{\\mathrm{ff}}^{\\mathrm{CDM}}(z) = 1",
+      "description": "CDM reference for the effective lensing amplitude ratio eff(z), as indicated by the \"CDM (= 1)\" baseline."
+    },
+    "efc_crossover_condition": {
+      "latex": "e_{\\mathrm{ff}}^{\\mathrm{EFC}}(z_{\\times}) = 1,\\quad z_{\\times} \\simeq 0.42",
+      "description": "EFC predicts a crossover redshift where the effective lensing matches CDM, near z \u2248 0.42."
+    },
+    "efc_percent_bound": {
+      "latex": "0.98 \\lesssim e_{\\mathrm{ff}}^{\\mathrm{EFC}}(z) \\lesssim 1.02\\quad \\text{for } 0.2 \\lesssim z \\lesssim 1.4",
+      "description": "Percent-level EFC deviation band (\u00b12%) over the plotted redshift range, separating enhanced (above 1) and suppressed (below 1) lensing regions."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC predicts a weak-lensing efficiency ratio eff(z) that crosses unity at z \u2248 0.42 with deviations confined to about \u00b12% over 0.2 \u2272 z \u2272 1.4, implying enhanced lensing below the crossover and suppressed lensing above it relative to CDM.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A single sign-changing crossover in the weak-lensing efficiency ratio eff(z) relative to CDM occurs at z \u2248 0.42, with enhanced lensing (eff > 1) at lower z and suppressed lensing (eff < 1) at higher z.",
+      "falsifiable_by": "Tomographic cosmic-shear and galaxy\u2013galaxy lensing measurements (e.g., DES, KiDS, HSC, LSST, Euclid) that reconstruct the redshift dependence of the lensing amplitude ratio relative to CDM."
+    },
+    {
+      "id": "P2",
+      "statement": "Across 0.2 \u2272 z \u2272 1.4, the magnitude of the deviation in eff(z) from unity remains within \u00b12%.",
+      "falsifiable_by": "High-precision weak-lensing tomography and joint analyses with CMB lensing that constrain percent-level deviations in the lensing amplitude as a function of redshift."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: No crossover of eff(z) near z = 0.42 is observed\u2014specifically, if tomographic weak-lensing measurements show no crossing within 0.30 < z < 0.55 at \u22653\u03c3 significance.",
+    "KC2: The measured deviation of eff(z) from unity exceeds \u00b12% anywhere within 0.2 < z < 1.4 at \u22653\u03c3, or remains on one side of unity across the entire range at \u22653\u03c3, contradicting the predicted sign change.",
+    "KC3: Independent tomographic CMB lensing or joint cosmic-shear \u00d7 CMB-lensing reconstructions show a crossover redshift inconsistent with 0.42 by more than \u0394z \u2248 0.1 at \u22653\u03c3."
+  ],
+  "tier": "T3",
+  "paper_type": "sealed_prediction",
+  "related_packages": [],
   "files": {
     "pdf": "sigma_eff_crossover.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/"
 }

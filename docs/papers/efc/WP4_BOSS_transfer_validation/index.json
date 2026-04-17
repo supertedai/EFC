@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "wp4-boss-transfer-validation",
   "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
-  "description": "Post-hoc cross-survey validation of Energy-Flow Cosmology (EFC) by transferring parameters calibrated on DESI DR2 BAO to independent BOSS/eBOSS BAO data without refitting. The study finds a robust chi-square improvement on BOSS DR12 (\u0394\u03c7\u00b2 = \u22127.77, k_eff = 0) that persists under whitening, eigenmode, and covariance-robustness diagnostics, supporting parameter stability across surveys without claiming a detection.",
+  "description": "Post-hoc cross-survey validation of Energy-Flow Cosmology (EFC) by transferring parameters calibrated on DESI DR2 BAO to independent BOSS/eBOSS BAO data without refitting. The study finds a robust chi-square improvement on BOSS DR12 (Δχ² = −7.77, k_eff = 0) that persists under whitening, eigenmode, and covariance-robustness diagnostics, supporting parameter stability across surveys without claiming a detection.",
   "version": "1.0",
   "date": "2026-04-01",
   "doi": "10.6084/m9.figshare.31954125",
@@ -40,7 +40,7 @@
     }
   },
   "key_results": {
-    "main_finding": "DESI-DR2\u2013calibrated EFC parameters applied to BOSS DR12 BAO reduce \u03c7\u00b2 by 7.77 relative to \u039bCDM with no refitting, and the improvement is robust to multiple covariance diagnostics.",
+    "main_finding": "DESI-DR2–calibrated EFC parameters applied to BOSS DR12 BAO reduce χ² by 7.77 relative to ΛCDM with no refitting, and the improvement is robust to multiple covariance diagnostics.",
     "delta_chi2": -7.77,
     "significance_sigma": null,
     "parameters_tested": [
@@ -51,18 +51,18 @@
     ],
     "datasets_used": [
       "DESI DR2 BAO (calibration only)",
-      "BOSS DR12 BAO (6 measurements, 6\u00d76 covariance)",
-      "eBOSS BAO (LRG/ELG/QSO/Ly\u03b1; reference comparisons)"
+      "BOSS DR12 BAO (6 measurements, 6×6 covariance)",
+      "eBOSS BAO (LRG/ELG/QSO/Lyα; reference comparisons)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: Transfer failure on BOSS DR12 \u2014 Using the Planck 2018 baseline and the full published 6\u00d76 covariance, the fixed DESI parameters (z_L1L2=1.01, alpha_L2=0.045) yield \u0394\u03c7\u00b2 \u2265 0 (no improvement) relative to \u039bCDM; this falsifies cross-survey invariance for the L2 EFC modification.",
-    "KC2: Whitening/eigenmode misuse \u2014 In a repeat whitening/eigenmode analysis, the strongly constrained (low-\u03bb) subspace shows \u0394\u03c7\u00b2_strong \u2265 0 while any apparent gains occur only in weak (high-\u03bb) modes; this indicates covariance exploitation rather than physical improvement and kills the claimed stability.",
-    "KC3: Covariance robustness breakdown \u2014 In the interpolation sweep C(\u03c1) for \u03c1 \u2208 {0, 0.25, 0.5, 0.75, 1}, EFC does not outperform \u039bCDM for a majority of \u03c1 values or is worse by \u2265 2 in \u03c7\u00b2 for any \u03c1; this negates robustness of the transfer.",
-    "KC4: eBOSS transfer failure \u2014 Applying the same fixed DESI parameters to the eBOSS BAO block results in \u0394\u03c7\u00b2 \u2265 0 (no improvement) under the published covariance; this contradicts cross-survey parameter stability.",
-    "KC5: Joint-fit parsimony check \u2014 In a joint BOSS+eBOSS BAO fit allowing (z_L1L2, alpha_L2) to vary, the EFC extension is disfavored by information criteria (\u0394BIC \u2265 0 versus \u039bCDM) or alpha_L2 is consistent with zero at \u2265 95% CL; this eliminates support for the L2 EFC term."
+    "KC1: Transfer failure on BOSS DR12 — Using the Planck 2018 baseline and the full published 6×6 covariance, the fixed DESI parameters (z_L1L2=1.01, alpha_L2=0.045) yield Δχ² ≥ 0 (no improvement) relative to ΛCDM; this falsifies cross-survey invariance for the L2 EFC modification.",
+    "KC2: Whitening/eigenmode misuse — In a repeat whitening/eigenmode analysis, the strongly constrained (low-λ) subspace shows Δχ²_strong ≥ 0 while any apparent gains occur only in weak (high-λ) modes; this indicates covariance exploitation rather than physical improvement and kills the claimed stability.",
+    "KC3: Covariance robustness breakdown — In the interpolation sweep C(ρ) for ρ ∈ {0, 0.25, 0.5, 0.75, 1}, EFC does not outperform ΛCDM for a majority of ρ values or is worse by ≥ 2 in χ² for any ρ; this negates robustness of the transfer.",
+    "KC4: eBOSS transfer failure — Applying the same fixed DESI parameters to the eBOSS BAO block results in Δχ² ≥ 0 (no improvement) under the published covariance; this contradicts cross-survey parameter stability.",
+    "KC5: Joint-fit parsimony check — In a joint BOSS+eBOSS BAO fit allowing (z_L1L2, alpha_L2) to vary, the EFC extension is disfavored by information criteria (ΔBIC ≥ 0 versus ΛCDM) or alpha_L2 is consistent with zero at ≥ 95% CL; this eliminates support for the L2 EFC term."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -84,7 +84,7 @@
   "doi_url": "https://doi.org/10.6084/m9.figshare.31954125",
   "license": "CC-BY-4.0",
   "type": "post-hoc validation",
-  "track": "Spor 1 \u2014 Galactic/Cosmological",
+  "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [
     "L1",
     "L2"
@@ -186,20 +186,99 @@
     "Post-hoc, NOT pre-registered (unlike P3)",
     "Not a discovery claim",
     "Does not rule out LCDM",
-    "Improvement \u0394\u03c7\u00b2=\u22127.77 not claimed as detection"
+    "Improvement Δχ²=−7.77 not claimed as detection"
   ],
   "companion_tests": [
     {
       "id": "P3",
       "doi": "10.6084/m9.figshare.31951992",
       "type": "pre-registered prediction",
-      "result": "0.3\u03c3 PASS"
+      "result": "0.3σ PASS"
     },
     {
       "id": "WP4",
       "doi": "10.6084/m9.figshare.31954125",
       "type": "post-hoc parameter transfer",
-      "result": "\u0394\u03c7\u00b2=\u22127.77"
+      "result": "Δχ²=−7.77"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "Post-hoc but stringent cross-survey validation: DESI DR2–calibrated EFC parameters, frozen and transferred, deliver a robust Δχ² = −7.77 improvement over ΛCDM on BOSS DR12 BAO, surviving whitening/eigenmode and covariance-interpolation diagnostics. This supports parameter stability and argues against covariance exploitation, adding empirical weight to EFC without constituting a preregistered prediction.",
+    "graph_insights": [
+      "New empirical bridge from DESI DR2 calibration node to BOSS DR12 BAO via parameter-transfer edge, with supporting edges to covariance and whitening analysis nodes.",
+      "Fills a previously empty cross-survey validation slot in the BAO subgraph, increasing connectivity between DESI and BOSS ecosystems."
+    ],
+    "kc_addressed": [
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "boss_dr12_bao_param_transfer_no_refit",
+        "category": "consistency_check",
+        "name": "BOSS DR12 BAO cross-survey parameter transfer (no refit)",
+        "description": "Apply DESI DR2–calibrated EFC parameters (z_L1L2=1.01, alpha_L2=0.045) to BOSS DR12 BAO with the published 6×6 covariance, comparing χ² to ΛCDM with no extra dof.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 BAO",
+        "prediction": "Transferred parameters should yield Δχ² < 0 vs ΛCDM without refitting."
+      },
+      {
+        "test_id": "boss_dr12_bao_whitening_eigenmode_robustness",
+        "category": "consistency_check",
+        "name": "Whitening/eigenmode diagnostic of transfer gains",
+        "description": "Verify that χ² gains from transferred EFC parameters reside in strongly constrained (low-λ) whitened modes rather than weak, noise-dominated modes.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 BAO (whitened by published covariance)",
+        "prediction": "Improvement should concentrate in low-λ (strong) modes; no reliance on high-λ (weak) modes."
+      },
+      {
+        "test_id": "boss_dr12_bao_covariance_interpolation_sweep",
+        "category": "consistency_check",
+        "name": "Covariance-interpolation robustness of transfer gains",
+        "description": "Test robustness of Δχ² improvement under covariance interpolation C(ρ) from diagonal (ρ=0) to full published (ρ=1).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 BAO with C(ρ), ρ ∈ [0,1]",
+        "prediction": "Transferred-parameter improvement should persist across the C(ρ) sweep; not driven by a narrow covariance choice."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": "EVIDENCE",
+        "new_text": "Cross-survey parameter transfer validation added: DESI DR2–calibrated EFC parameters (z_L1L2=1.01, α_L2=0.045) improve BOSS DR12 BAO χ² by 7.77 without refitting and pass whitening/eigenmode and covariance-interpolation robustness checks.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31954125"
+        ],
+        "reasoning": "KC5 (monitoring) concerns generalization and robustness versus covariance/overfitting; this paper provides positive evidence without constituting a preregistered prediction."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section:validation-cross-survey",
+        "action": "update_text",
+        "new_badge": "EVIDENCE",
+        "new_text": "Evidence for cross-survey invariance: fixed DESI DR2 EFC parameters yield robust Δχ² improvement on BOSS DR12 BAO under whitening/eigenmode and covariance-interpolation diagnostics, indicating stability beyond a single survey.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31954125"
+        ],
+        "reasoning": "The whitepaper’s validation section should reflect new empirical support for transfer robustness."
+      }
+    ],
+    "implicit_consequences": [
+      "Reduces the likelihood that EFC’s BAO gains are covariance-tuning or dataset-specific overfitting.",
+      "Strengthens the case to prioritize the DESI DR2 full-shape RSD rapid-response pipeline since parameters show cross-survey stability on BAO.",
+      "Enables joint-survey synthesis using fixed EFC parameters for BAO blocks, improving comparability of constraints across datasets."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC5"
+    ]
+  }
 }

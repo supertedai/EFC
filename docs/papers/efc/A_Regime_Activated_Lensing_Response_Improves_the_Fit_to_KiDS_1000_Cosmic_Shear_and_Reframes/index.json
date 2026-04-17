@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "a-regime-activated-lensing-response-improves-the-fit-to-kids-1000-cosmic-shear-and-reframes",
   "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the Interpretation of S8",
-  "description": "Tests a phenomenological, regime-activated lensing response \u03a3(k,z) that modifies how matter fluctuations source shear, applied to KiDS-1000 cosmic shear. Finds a large maximum-likelihood improvement over \u039bCDM at fixed cosmology that cannot be mimicked by a simple amplitude rescaling, with a distinct low-redshift tomographic signature that reframes the S8 tension as a response effect.",
+  "description": "Tests a phenomenological, regime-activated lensing response Σ(k,z) that modifies how matter fluctuations source shear, applied to KiDS-1000 cosmic shear. Finds a large maximum-likelihood improvement over ΛCDM at fixed cosmology that cannot be mimicked by a simple amplitude rescaling, with a distinct low-redshift tomographic signature that reframes the S8 tension as a response effect.",
   "version": "2.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31271917",
@@ -14,11 +14,11 @@
     "large-scale structure",
     "lensing response",
     "phenomenological gravity",
-    "\u039bCDM",
+    "ΛCDM",
     "scale dependence",
     "redshift dependence",
     "tomographic analysis",
-    "growth\u2013response decomposition"
+    "growth–response decomposition"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -28,11 +28,11 @@
   "core_equations": {
     "S8_definition": {
       "latex": "S_8 = \\sigma_8\\,\\sqrt{\\Omega_m/0.3}",
-      "description": "Standard cosmic shear amplitude compression used in \u039bCDM analyses."
+      "description": "Standard cosmic shear amplitude compression used in ΛCDM analyses."
     },
     "Effective_power": {
       "latex": "P_{\\mathrm{eff}}(k,z) = P_{\\Lambda\\mathrm{CDM}}(k,z)\\,\\Sigma^2(k,z)",
-      "description": "Phenomenological modification of the lensing power via a scale- and redshift-dependent response \u03a3(k,z)."
+      "description": "Phenomenological modification of the lensing power via a scale- and redshift-dependent response Σ(k,z)."
     },
     "Sigma_factor": {
       "latex": "\\Sigma(k,z) = \\Sigma_k(k)\\,\\Sigma_z(z),\\quad \\Sigma_k(k) = 1 + \\alpha\\,\\tanh\\!\\left(\\frac{k-k_{\\mathrm{trans}}}{0.05}\\right),\\quad \\Sigma_z(z) = \\begin{cases} 1 + \\alpha\\,\\left(1 - \\frac{z}{z_{\\mathrm{activ}}}\\right), & z< z_{\\mathrm{activ}} \\\\ 1, & z \\ge z_{\\mathrm{activ}} \\end{cases}",
@@ -40,11 +40,11 @@
     },
     "Reframed_shear_amplitude": {
       "latex": "S_{\\mathrm{WL}} = \\sigma_8\\,\\Sigma",
-      "description": "Decomposition of the observed shear amplitude into growth (\u03c38) and lensing response (\u03a3) factors at a representative pivot."
+      "description": "Decomposition of the observed shear amplitude into growth (σ8) and lensing response (Σ) factors at a representative pivot."
     }
   },
   "key_results": {
-    "main_finding": "Including a late-time, small-scale lensing response \u03a3(k,z) improves the KiDS-1000 cosmic shear likelihood by \u0394(\u22122 ln L) \u2248 \u221250.9 at fixed Planck-2018 cosmology, with a distinct low-z tomographic signature and robustness to scale cuts, and cannot be replicated by simple amplitude rescaling.",
+    "main_finding": "Including a late-time, small-scale lensing response Σ(k,z) improves the KiDS-1000 cosmic shear likelihood by Δ(−2 ln L) ≈ −50.9 at fixed Planck-2018 cosmology, with a distinct low-z tomographic signature and robustness to scale cuts, and cannot be replicated by simple amplitude rescaling.",
     "delta_chi2": -50.9,
     "significance_sigma": null,
     "parameters_tested": [
@@ -54,7 +54,7 @@
       "A_s (amplitude-equivalence control)"
     ],
     "datasets_used": [
-      "KiDS-1000 cosmic shear \u03be\u00b1 (Asgari et al. 2021) with public covariance and n(z)",
+      "KiDS-1000 cosmic shear ξ± (Asgari et al. 2021) with public covariance and n(z)",
       "Planck 2018 best-fit cosmology as baseline"
     ],
     "verdict": "MARGINAL"
@@ -62,22 +62,22 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Across independent weak-lensing surveys (e.g., DES-Y3, HSC), freeing a \u03a3(k,z) of the same functional form will yield a concentrated likelihood improvement in low-z tomographic bins (z \u2272 0.5) with negligible preference at high z (z \u2273 0.7).",
-      "falsifiable_by": "Reanalysis of DES-Y3/HSC tomographic \u03be\u00b1 showing no low-z\u2013localized improvement and a best-fit \u03b1 consistent with zero within \u00b10.02."
+      "statement": "Across independent weak-lensing surveys (e.g., DES-Y3, HSC), freeing a Σ(k,z) of the same functional form will yield a concentrated likelihood improvement in low-z tomographic bins (z ≲ 0.5) with negligible preference at high z (z ≳ 0.7).",
+      "falsifiable_by": "Reanalysis of DES-Y3/HSC tomographic ξ± showing no low-z–localized improvement and a best-fit α consistent with zero within ±0.02."
     },
     {
       "id": "P2",
-      "statement": "CMB lensing \u00d7 galaxy lensing cross-correlations at effective z \u2273 0.7 will prefer \u03a3 \u2248 1, while galaxy lensing auto/cross at z \u2248 0.2\u20130.5 and k \u2273 0.1 h Mpc\u22121 will prefer \u03a3 > 1 by O(10%).",
-      "falsifiable_by": "Joint analysis of CMB lensing (Planck/ACT/SPT) with low-z shear that constrains \u03a3 to unity at both low and high redshift with \u22645% precision at k \u2273 0.1 h Mpc\u22121."
+      "statement": "CMB lensing × galaxy lensing cross-correlations at effective z ≳ 0.7 will prefer Σ ≈ 1, while galaxy lensing auto/cross at z ≈ 0.2–0.5 and k ≳ 0.1 h Mpc−1 will prefer Σ > 1 by O(10%).",
+      "falsifiable_by": "Joint analysis of CMB lensing (Planck/ACT/SPT) with low-z shear that constrains Σ to unity at both low and high redshift with ≤5% precision at k ≳ 0.1 h Mpc−1."
     }
   ],
   "kill_criteria": [
-    "KC1: Full posterior analyses (with standard WL nuisance marginalization: IA, m-calibration, photo-z, baryons) show no preference for \u03a3 (best-fit \u03b1 \u2192 0 with |\u03b1| < 0.02 at 95% CL) and negligible model selection support (evidence \u0394lnZ \u2264 1) in KiDS-1000.",
-    "KC2: Cross-survey replication (DES-Y3, HSC, KiDS) with a common pipeline finds that allowing \u03a3(k,z) yields no low-z\u2013localized improvement and total \u0394(\u22122 ln L) improvement < 10 over \u039bCDM amplitude changes alone.",
-    "KC3: Tomographic split tests contradict the predicted fingerprint, with high-z bins (z \u2273 0.7) showing equal or larger preference for \u03a3 > 1 than low-z bins.",
-    "KC4: CMB lensing auto and CMB lensing \u00d7 galaxy lensing jointly constrain the response at 0.1 \u2272 k/(h Mpc\u22121) \u2272 0.3 and 0.2 \u2272 z \u2272 0.5 to \u03a3 = 1.00 \u00b1 0.05, excluding the inferred \u03a3 \u2248 1.13 pivot response.",
-    "KC5: Shear-ratio and E/B-mode null tests within KiDS-1000 limit any scale- or redshift-dependent lensing response to <3% across the model\u2019s active regime, inconsistent with the required O(10%) response.",
-    "KC6: The observed improvement is fully absorbed by physically motivated baryonic feedback and/or intrinsic alignment models under standard priors, eliminating the need for \u03a3(k,z)."
+    "KC1: Full posterior analyses (with standard WL nuisance marginalization: IA, m-calibration, photo-z, baryons) show no preference for Σ (best-fit α → 0 with |α| < 0.02 at 95% CL) and negligible model selection support (evidence ΔlnZ ≤ 1) in KiDS-1000.",
+    "KC2: Cross-survey replication (DES-Y3, HSC, KiDS) with a common pipeline finds that allowing Σ(k,z) yields no low-z–localized improvement and total Δ(−2 ln L) improvement < 10 over ΛCDM amplitude changes alone.",
+    "KC3: Tomographic split tests contradict the predicted fingerprint, with high-z bins (z ≳ 0.7) showing equal or larger preference for Σ > 1 than low-z bins.",
+    "KC4: CMB lensing auto and CMB lensing × galaxy lensing jointly constrain the response at 0.1 ≲ k/(h Mpc−1) ≲ 0.3 and 0.2 ≲ z ≲ 0.5 to Σ = 1.00 ± 0.05, excluding the inferred Σ ≈ 1.13 pivot response.",
+    "KC5: Shear-ratio and E/B-mode null tests within KiDS-1000 limit any scale- or redshift-dependent lensing response to <3% across the model’s active regime, inconsistent with the required O(10%) response.",
+    "KC6: The observed improvement is fully absorbed by physically motivated baryonic feedback and/or intrinsic alignment models under standard priors, eliminating the need for Σ(k,z)."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -104,30 +104,30 @@
     "type": "working_paper"
   },
   "abstract": {
-    "problem": "KiDS-1000 and other weak lensing surveys measure S8 values 2-3\u03c3 below Planck-CMB predictions",
-    "method": "Introduce regime-activated lensing response \u03a3(k,z) that modifies matter-light coupling",
-    "result": "Likelihood improvement \u0394(-2lnL) \u2248 -50.9, S8 tension effectively resolved",
-    "interpretation": "Tension reframed as lensing coupling difference, not \u03c38 discrepancy"
+    "problem": "KiDS-1000 and other weak lensing surveys measure S8 values 2-3σ below Planck-CMB predictions",
+    "method": "Introduce regime-activated lensing response Σ(k,z) that modifies matter-light coupling",
+    "result": "Likelihood improvement Δ(-2lnL) ≈ -50.9, S8 tension effectively resolved",
+    "interpretation": "Tension reframed as lensing coupling difference, not σ8 discrepancy"
   },
   "model": {
     "name": "Regime-Activated Lensing Response",
-    "effective_power_spectrum": "P_eff(k,z) = P_\u039bCDM(k,z) \u00d7 \u03a3\u00b2(k,z)",
+    "effective_power_spectrum": "P_eff(k,z) = P_ΛCDM(k,z) × Σ²(k,z)",
     "lensing_response": {
-      "formula": "\u03a3(k,z) = \u03a3_k(k) \u00d7 \u03a3_z(z)",
+      "formula": "Σ(k,z) = Σ_k(k) × Σ_z(z)",
       "scale_dependence": {
-        "formula": "\u03a3_k(k) = 1 + \u03b1 \u00d7 tanh((k - k_trans) / \u03b4k)",
+        "formula": "Σ_k(k) = 1 + α × tanh((k - k_trans) / δk)",
         "delta_k": 0.05,
         "description": "Smooth transition at k_trans"
       },
       "redshift_dependence": {
-        "formula_active": "\u03a3_z(z) = 1 + \u03b1 \u00d7 (1 - z/z_activ) for z < z_activ",
-        "formula_inactive": "\u03a3_z(z) = 1 for z \u2265 z_activ",
+        "formula_active": "Σ_z(z) = 1 + α × (1 - z/z_activ) for z < z_activ",
+        "formula_inactive": "Σ_z(z) = 1 for z ≥ z_activ",
         "description": "Linear ramp below activation redshift"
       }
     },
     "parameters": {
       "alpha": {
-        "symbol": "\u03b1",
+        "symbol": "α",
         "description": "Lensing response amplitude",
         "best_fit": 0.1,
         "unit": "dimensionless"
@@ -149,7 +149,7 @@
   "results": {
     "likelihood_improvement": {
       "delta_minus2lnL": -50.9,
-      "description": "Improvement over \u039bCDM baseline",
+      "description": "Improvement over ΛCDM baseline",
       "additional_parameters": 3
     },
     "sigma_at_pivot": {
@@ -176,15 +176,15 @@
     },
     "tension_standard": {
       "sigma": "2-3",
-      "interpretation": "\u03c38 discrepancy"
+      "interpretation": "σ8 discrepancy"
     },
     "reframing": {
-      "definition": "S_WL = \u03c38 \u00d7 \u03a3",
+      "definition": "S_WL = σ8 × Σ",
       "sigma8_true": 0.734,
       "sigma_pivot": 1.13,
       "s_wl_reframed": 0.829,
       "planck_s8": 0.834,
-      "residual_tension": "< 1\u03c3",
+      "residual_tension": "< 1σ",
       "interpretation": "Tension dissolves when lensing response is accounted for"
     }
   },
@@ -195,7 +195,7 @@
       "Wavenumber k > k_trans (nonlinear clustering regime)",
       "Redshift z < z_activ (late-time structure formation)"
     ],
-    "relation_to_galaxy_scales": "\u03a3(k,z) is cosmological analog of \u03bc(g_bar) at galaxy scales"
+    "relation_to_galaxy_scales": "Σ(k,z) is cosmological analog of μ(g_bar) at galaxy scales"
   },
   "data_sources": {
     "primary": {
@@ -218,7 +218,7 @@
     "additional_parameters": 3,
     "chi2_improvement": -50.9,
     "tension_status": {
-      "lcdm": "2-3\u03c3",
+      "lcdm": "2-3σ",
       "with_sigma": "resolved"
     }
   },
@@ -234,9 +234,130 @@
       "relation": "Independent validation"
     },
     {
-      "title": "Phenomenological constraints on \u03b1_L2",
+      "title": "Phenomenological constraints on α_L2",
       "doi": "10.6084/m9.figshare.31243828",
       "relation": "Growth constraints"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper is an EFC-authored phenomenological test establishing that KiDS-1000 cosmic shear data strongly prefer a late-time, scale-dependent lensing response Σ(k,z) over ΛCDM at fixed cosmology (Δ(−2 ln L) ≈ −50.9), with a distinctive low-z tomographic fingerprint. It reframes S8 tension as a potential response effect rather than a growth-amplitude conflict, directly aligned with EFC's prediction that modified gravitational response emerges at late times and moderate nonlinear scales. However, as the paper itself states, these are maximum-likelihood evaluations — not full posterior inference — so no KC is closed; rather, paper-specific kill criteria are now defined and the sealed predictions await cross-survey replication.",
+    "graph_insights": [
+      "This paper creates a new cluster node in the graph connecting 'S8 tension', 'cosmic shear', 'KiDS-1000', and 'phenomenological gravity' — none of which previously had a direct EFC empirical anchor. It is currently an orphan in the 1-2 hop neighborhood (no related EFC papers found), meaning it seeds a new observational validation branch that future DES-Y3/HSC and CMB lensing papers will connect to.",
+      "The concept 'lensing response' and 'scale dependence' + 'redshift dependence' together form a composite observable fingerprint that, if linked to the EFCLASS Boltzmann solver (theory gap), would create a theory→prediction→observation chain completing a full validation loop for the Weyl-sector modification.",
+      "The absence of any existing validation tests sharing these observables confirms this is genuinely new empirical territory for the EFC test suite — the 6 new tests above represent the first entries in the weak-lensing response category."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "kids1000_lensing_response_sigma_kz",
+        "category": "phenomenological",
+        "name": "KiDS-1000 regime-activated lensing response Σ(k,z) fit",
+        "description": "Tests whether a phenomenological regime-activated lensing response Σ(k,z) improves the fit to KiDS-1000 cosmic shear over ΛCDM at fixed Planck-2018 cosmology. Evaluates scale-cut robustness, tomographic localization, and non-degeneracy with simple amplitude rescaling.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "KiDS-1000 cosmic shear (band powers, 5 tomographic bins)",
+        "prediction": "EFC predicts a late-time, small-scale enhancement of lensing response relative to ΛCDM, localized to z < 0.5 and k > 0.1 h/Mpc, with Σ ≈ 1.10–1.15 at the pivot."
+      },
+      {
+        "test_id": "kids1000_sigma_vs_amplitude_rescaling",
+        "category": "consistency_check",
+        "name": "Σ(k,z) non-degeneracy with simple S8 rescaling",
+        "description": "Checks that the lensing response improvement cannot be replicated by a uniform amplitude shift (constant rescaling of S8), establishing that the signal has genuine scale- and redshift-dependent structure.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "KiDS-1000 cosmic shear",
+        "prediction": "Σ(k,z) should produce a distinct tomographic pattern that a uniform amplitude change cannot mimic."
+      },
+      {
+        "test_id": "kids1000_sigma_lowz_tomographic_signature",
+        "category": "phenomenological",
+        "name": "Low-z tomographic localization of Σ response",
+        "description": "Verifies that the lensing response preference is concentrated in low-redshift tomographic bins (z ≲ 0.5) and absent in high-z bins, consistent with a late-time activation.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "KiDS-1000 tomographic bin splits",
+        "prediction": "EFC predicts response activation only at late times; high-z bins should show Σ ≈ 1."
+      },
+      {
+        "test_id": "sigma_kz_cross_survey_replication",
+        "category": "planned_pipeline",
+        "name": "Cross-survey replication of Σ(k,z) (DES-Y3, HSC)",
+        "description": "Sealed prediction P1: freeing Σ(k,z) of the same functional form in DES-Y3 and HSC should yield concentrated low-z likelihood improvement consistent with KiDS-1000 findings.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DES-Y3, HSC cosmic shear (forthcoming)",
+        "prediction": "Cross-survey analyses will reproduce concentrated low-z Σ preference with consistent pivot amplitude."
+      },
+      {
+        "test_id": "cmb_lensing_galaxy_lensing_sigma_redshift_split",
+        "category": "planned_pipeline",
+        "name": "CMB lensing × galaxy lensing redshift-split Σ constraint",
+        "description": "Sealed prediction P2: CMB lensing cross-correlations at z ≳ 0.7 should prefer Σ ≈ 1, while galaxy lensing at z ≈ 0.2–0.5, k ≳ 0.1 h/Mpc should show Σ > 1.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck/ACT CMB lensing × KiDS/DES galaxy lensing",
+        "prediction": "Redshift-dependent response: Σ ≈ 1 at high z, Σ ≈ 1.10–1.15 at low z."
+      },
+      {
+        "test_id": "kids1000_sigma_full_posterior_nuisance_marg",
+        "category": "planned_pipeline",
+        "name": "Full posterior with WL nuisance marginalization for Σ(k,z)",
+        "description": "Paper-internal KC1: full posterior analysis marginalizing over IA, m-calibration, photo-z, baryon feedback must still prefer Σ > 0 at 95% CL and show positive Bayesian evidence.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "KiDS-1000 (full MCMC pipeline)",
+        "prediction": "Posterior preference for Σ survives full nuisance marginalization with ΔlnZ > 1."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-observable=\"S8_tension\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KiDS-1000 cosmic shear analysis shows Δ(−2 ln L) ≈ −50.9 for regime-activated Σ(k,z) over ΛCDM at fixed Planck cosmology. S8 tension reframed as potential lensing-response effect. Maximum-likelihood only; full posterior and cross-survey replication pending. DOI: 10.6084/m9.figshare.31271917",
+        "doi_refs": [
+          "10.6084/m9.figshare.31271917"
+        ],
+        "reasoning": "First direct empirical test of EFC-motivated lensing response against survey data; roadmap should reflect this milestone and its caveats."
+      },
+      {
+        "page": "gap",
+        "target": "data-observable=\"weak_lensing_response\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Phenomenological lensing response Σ(k,z) tested against KiDS-1000. ML fit strongly prefers response (Δχ² ≈ −50.9). Full posterior, cross-survey replication (DES-Y3, HSC), and CMB lensing cross-checks remain open. DOI: 10.6084/m9.figshare.31271917",
+        "doi_refs": [
+          "10.6084/m9.figshare.31271917"
+        ],
+        "reasoning": "New empirical anchor for the weak-lensing observable gap; defines concrete next steps and paper-internal KCs."
+      },
+      {
+        "page": "elevator",
+        "target": "data-section=\"observational_evidence\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KiDS-1000 cosmic shear now tested: a late-time lensing response Σ(k,z) improves the fit by Δ(−2 ln L) ≈ −50.9 over ΛCDM, with a distinct low-z tomographic fingerprint that reframes S8 tension as a response effect. Awaiting full posterior and multi-survey confirmation.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31271917"
+        ],
+        "reasoning": "Elevator pitch should highlight this as the first survey-level empirical test with a strong signal."
+      }
+    ],
+    "implicit_consequences": [
+      "If the Σ(k,z) response is physical and confirmed in full posteriors, it implies that existing S8 constraints from all Stage-III lensing surveys are biased by absorbing response variation into σ8, which would systematically shift the inferred growth history and could reconcile Planck–lensing S8 offsets without new dark-sector physics.",
+      "The functional form Σ(k,z) with tanh activation maps directly onto EFC's prediction of a scale- and epoch-dependent effective gravitational coupling in the Weyl sector; confirmation would provide the first survey-scale evidence for a non-trivial lensing Poisson ratio Σ ≠ 1, a key discriminant between EFC and ΛCDM+GR.",
+      "The paper's Case A vs Case B distinction (response-only vs self-consistent modified growth) implicitly defines the next theory milestone: coupling the Σ(k,z) response into the perturbation equations inside EFCLASS, which connects directly to the open theory gap 'theory-efclass-boltzmann-solver'.",
+      "Cross-survey replication (sealed prediction P1) will also serve as a blinded test of survey-specific systematics (PSF modeling, photo-z calibration); if the Σ fingerprint is survey-universal, it strongly disfavors systematics explanations.",
+      "The CMB lensing cross-check (sealed prediction P2) ties directly into Planck and ACT/SO lensing pipelines, meaning the upcoming Simons Observatory lensing data release becomes a high-priority external validation target for EFC."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:15:21Z",
+    "applied_by_doi": "31271917"
+  }
 }

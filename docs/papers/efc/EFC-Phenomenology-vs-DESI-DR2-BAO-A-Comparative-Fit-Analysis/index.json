@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-phenomenology-desi-dr2-bao",
   "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
-  "description": "This technical note fits a phenomenological dark-energy equation of state w(z), inspired by Energy-Flow Cosmology (EFC), to seven DESI DR2 BAO measurements using diagonal errors only. The EFC-inspired transition form achieves the lowest chi-squared among models tested (\u03c72=3.60) versus w0\u2013wa CDM (4.49) and \u039bCDM (23.71), providing a necessary but not sufficient consistency check. The work outlines next steps to derive w(z) from EFC field equations and perform multi-probe tests with full covariance.",
+  "description": "This technical note fits a phenomenological dark-energy equation of state w(z), inspired by Energy-Flow Cosmology (EFC), to seven DESI DR2 BAO measurements using diagonal errors only. The EFC-inspired transition form achieves the lowest chi-squared among models tested (χ2=3.60) versus w0–wa CDM (4.49) and ΛCDM (23.71), providing a necessary but not sufficient consistency check. The work outlines next steps to derive w(z) from EFC field equations and perform multi-probe tests with full covariance.",
   "version": "1.0",
   "date": "2026-01-22",
   "doi": "10.6084/m9.figshare.31127380",
@@ -30,17 +30,17 @@
     },
     "CPL_wz": {
       "latex": "w(z) = w_0 + w_a \\, \\frac{z}{1+z}",
-      "description": "Chevallier\u2013Polarski\u2013Linder parameterization used for the w0\u2013wa CDM comparison, with DESI-reported best-fit parameters."
+      "description": "Chevallier–Polarski–Linder parameterization used for the w0–wa CDM comparison, with DESI-reported best-fit parameters."
     }
   },
   "key_results": {
-    "main_finding": "Among models tested on DESI DR2 BAO (diagonal errors), the EFC-inspired w(z) achieves the lowest \u03c72 (3.60), outperforming w0\u2013wa CDM (4.49) and \u039bCDM (23.71).",
+    "main_finding": "Among models tested on DESI DR2 BAO (diagonal errors), the EFC-inspired w(z) achieves the lowest χ2 (3.60), outperforming w0–wa CDM (4.49) and ΛCDM (23.71).",
     "delta_chi2": -20.11,
     "significance_sigma": null,
     "parameters_tested": [
       "EFC: w_late = -0.80, w_early = -1.41, z_trans = 1.07",
       "w0waCDM: w0, wa (DESI DR2 best-fit values)",
-      "\u039bCDM: w = -1"
+      "ΛCDM: w = -1"
     ],
     "datasets_used": [
       "DESI DR2 BAO DV/rd (7 points; 0.30 <= z <= 2.33; diagonal errors only)"
@@ -49,11 +49,11 @@
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: A full-covariance joint analysis (BAO + SN + CMB) shows decisive model selection against first-principles EFC (\u0394BIC \u2265 10 or equivalently strong Bayes factor) relative to \u039bCDM or w0\u2013wa CDM while using comparable priors.",
-    "KC2: Solving EFC field equations fails to yield a stable (no ghost/gradient instabilities) background expansion that can realize the phenomenologically required features (phantom-like w < -1 at z \u2273 1 and a smooth transition near z \u2248 1) consistent with causality and energy conditions.",
-    "KC3: With DESI DR3/DR4 BAO (full systematics and covariance), the preference for a transition in w(z) disappears and \u039bCDM attains a statistically acceptable fit (e.g., p-value > 0.1) with no significant \u0394\u03c72 improvement from transition models.",
-    "KC4: Combined SN (e.g., Pantheon+ or successor) + BAO + CMB constraints require w(z) \u2265 -1 at z > 1 at \u2265 3\u03c3, excluding the phantom-like behavior that the EFC-inspired fit uses to match DESI DR2.",
-    "KC5: Early-universe constraints (Planck or next-gen CMB) on the expansion history and sound horizon (r_d) cannot be simultaneously satisfied with the EFC best-fit parameter region while also fitting DESI BAO, leading to a global fit deterioration (e.g., \u0394\u03c72_total \u2273 25 relative to w0\u2013wa CDM)."
+    "KC1: A full-covariance joint analysis (BAO + SN + CMB) shows decisive model selection against first-principles EFC (ΔBIC ≥ 10 or equivalently strong Bayes factor) relative to ΛCDM or w0–wa CDM while using comparable priors.",
+    "KC2: Solving EFC field equations fails to yield a stable (no ghost/gradient instabilities) background expansion that can realize the phenomenologically required features (phantom-like w < -1 at z ≳ 1 and a smooth transition near z ≈ 1) consistent with causality and energy conditions.",
+    "KC3: With DESI DR3/DR4 BAO (full systematics and covariance), the preference for a transition in w(z) disappears and ΛCDM attains a statistically acceptable fit (e.g., p-value > 0.1) with no significant Δχ2 improvement from transition models.",
+    "KC4: Combined SN (e.g., Pantheon+ or successor) + BAO + CMB constraints require w(z) ≥ -1 at z > 1 at ≥ 3σ, excluding the phantom-like behavior that the EFC-inspired fit uses to match DESI DR2.",
+    "KC5: Early-universe constraints (Planck or next-gen CMB) on the expansion history and sound horizon (r_d) cannot be simultaneously satisfied with the EFC best-fit parameter region while also fitting DESI BAO, leading to a global fit deterioration (e.g., Δχ2_total ≳ 25 relative to w0–wa CDM)."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -72,7 +72,7 @@
   "short_title": "EFC vs DESI DR2 BAO",
   "type": "technical_note",
   "status": "published",
-  "abstract_short": "EFC-inspired w(z) yields lowest \u03c7\u00b2=3.60 vs w\u2080w\u2090CDM (4.49) and \u039bCDM (23.71) against DESI DR2 BAO.",
+  "abstract_short": "EFC-inspired w(z) yields lowest χ²=3.60 vs w₀wₐCDM (4.49) and ΛCDM (23.71) against DESI DR2 BAO.",
   "parameters": {
     "w_late": {
       "value": -0.8,
@@ -121,5 +121,73 @@
     "Derive w(z) from EFC field equations",
     "Multi-probe analysis with full covariance",
     "Bayesian model comparison"
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This T2 technical note shows that a smooth, EFC-inspired transition w(z) achieves a low chi-squared on DESI DR2 BAO (diagonal-only), slightly outperforming CPL and strongly beating ΛCDM, so BAO alone does not disfavor the EFC phenomenology. However, it is explicitly post-hoc and single-probe without covariance, so it does not close any KC or theory gaps; instead it sharpens what EFC must realize from first principles (mild phantom at z>1 and a smooth transition near z~1) and prioritizes multi-probe, full-covariance tests.",
+    "graph_insights": [
+      "This paper adds a direct edge between EFC and DESI DR2 BAO via a transition w(z), linking to CPL and phantom-regime nodes while currently lacking connections to RSD and SN nodes—highlighting the need to integrate growth and multi-probe constraints."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "desi_dr2_bao_diagonal_efc_inspired_wz_fit",
+        "category": "phenomenological",
+        "name": "DESI DR2 BAO diagonal-only fit: EFC-inspired w(z) vs ΛCDM/CPL",
+        "description": "Verify that a smooth EFC-inspired transition in w(z) achieves χ2≈3.60 on the seven DESI DR2 BAO DV/rd points (diagonal errors), outperforming CPL (w0–wa) and ΛCDM in this limited setup.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO (7 points DV/rd, diagonal-only), doi:10.5281/zenodo.14733025",
+        "prediction": "Post-hoc phenomenological fit; no sealed prediction"
+      },
+      {
+        "test_id": "multiprobe_fullcov_bao_sn_cmb_bic_compare_transition_vs_cpl",
+        "category": "planned_pipeline",
+        "name": "Multi-probe full-covariance BAO+SN+CMB Bayesian model comparison (transition w(z) vs CPL vs ΛCDM)",
+        "description": "Implement a joint full-covariance analysis to compute ΔBIC / Bayes factors among ΛCDM, CPL (w0–wa), and first-principles EFC-derived transition w(z), addressing whether the BAO-only preference persists and penalizing extra parameters.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2/DR3 BAO + Pantheon+ (or successor) + Planck",
+        "prediction": "EFC-derived transition remains competitive with CPL and improves over ΛCDM without excessive complexity penalties"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "milestone:desi_dr2_bao",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Added T2 phenomenology checkpoint: an EFC-inspired smooth transition w(z) achieves χ2=3.60 on DESI DR2 BAO (diagonal-only), slightly outperforming CPL and strongly improving over ΛCDM; necessary but not sufficient, pending full-covariance multi-probe tests.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31127380"
+        ],
+        "reasoning": "Places the empirical T2 check along the DESI DR2 BAO branch without implying closure of any KC."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section:phenomenology_vs_data",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "A phenomenological, entropy-driven transition w(z) inspired by EFC yields a good fit to DESI DR2 BAO (diagonal) with χ2=3.60 versus 4.49 (CPL) and 23.71 (ΛCDM). This motivates deriving the same transition from first principles and testing with full covariance across BAO+SN+CMB.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31127380"
+        ],
+        "reasoning": "Summarizes the paper’s result and limitations, aligning with the whitepaper’s evidence hierarchy."
+      }
+    ],
+    "implicit_consequences": [
+      "First-principles EFC must realize a mild phantom regime at z≳1 and a smooth transition near z≈1 while remaining stable, directly stressing the ADM/Hamiltonian stability program (KC2 interface).",
+      "If DR3/DR4 with full covariance remove the transition preference, the EFC-inspired feature would be disfavored, making the planned multi-probe test a high-value falsification path.",
+      "The BAO-only improvement suggests potential shifts in r_d and growth history; accelerating the DR2 full-shape RSD verification becomes more critical to cross-check consistency with fσ8.",
+      "The result creates a new bridge in the knowledge graph between EFC and mainstream CPL analyses, enabling targeted comparisons and priors in upcoming Bayesian model selection.",
+      "Post-hoc nature means no credit as a sealed prediction; subsequent work must convert the functional form into a derived EFC solution with fixed parameters to claim predictive power."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:16:31Z",
+    "applied_by_doi": "31127380"
+  }
 }

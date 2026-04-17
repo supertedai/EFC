@@ -1,0 +1,79 @@
+[
+  {
+    "timestamp": "2026-04-17T00:15:21.237132Z",
+    "page": "gap",
+    "target": "theory-adm-hamiltonian-stability",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31941543",
+    "verdict": "REJECTED",
+    "reason": "- Check 1 failed: The DOI summary provided does not mention ADM Hamiltonian stability, an analytic stability proof, Eq.(5), Γ'(ρ), “BE microphysics,” or Section 7.2d. These claims are not supported by the available DOI content.\n- Check 2 passed: Updating gap text to state the item remains open is an appropriate action type.\n- Check 3 passed: No factual information from the minimal original text is lost; the new text adds context.\n- Check 4 failed: Although the DOI is valid, the internal referenc",
+    "model": "gpt-5",
+    "full_response_length": 924
+  },
+  {
+    "timestamp": "2026-04-17T00:15:30.259665Z",
+    "page": "gap",
+    "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31348414",
+    "verdict": "REJECTED",
+    "reason": "",
+    "model": "gpt-5",
+    "full_response_length": 0
+  },
+  {
+    "timestamp": "2026-04-17T00:15:52.228604Z",
+    "page": "elevator",
+    "target": "test-count",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31289806",
+    "verdict": "REJECTED",
+    "reason": "- Check 1 failed: The DOI content supports that a pre-registered multiplicative model (C = Omega × kappa) was falsified, but it does not support repository-wide test-count changes or totals (increase by 9, totals ≈ 128, etc.). These claims cannot be validated from the paper’s content.\n- Check 4 failed: The reference to “(F1)” is not present in the DOI content provided, so the specific label is not traceable to this paper.\n- Check 5 failed: The numerical counts and breakdowns (6 completed + 3 pip",
+    "model": "gpt-5",
+    "full_response_length": 842
+  },
+  {
+    "timestamp": "2026-04-17T00:16:06.019172Z",
+    "page": "gap",
+    "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.28098299",
+    "verdict": "REJECTED",
+    "reason": "",
+    "model": "gpt-5",
+    "full_response_length": 0
+  },
+  {
+    "timestamp": "2026-04-17T00:16:31.415065Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC4\"",
+    "action": "update_badge",
+    "doi": "10.6084/m9.figshare.32013738",
+    "verdict": "APPROVED",
+    "reason": "1) The DOI content describes a pre-registration that explicitly seals predictions and kill criteria including KC4, so adding a SEALED badge to KC4 is supported. \n2) The action type (update_badge to “SEALED”) is appropriate for a sealed pre-registration item, not indicating completion or results. \n3) No existing factual content is removed; the update only adds a badge. \n4) There are no DOI references in the new text; thus nothing invalid or untraceable is introduced. \n5) No numbers/values are add",
+    "model": "gpt-5",
+    "full_response_length": 678
+  },
+  {
+    "timestamp": "2026-04-17T00:16:44.749749Z",
+    "page": "roadmap",
+    "target": "data-kc-id=\"KC4\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.32013738",
+    "verdict": "REJECTED",
+    "reason": "- Check 1 failed: The proposed text introduces claims not supported by the DOI content, specifically “Four pipeline tests queued” and a “Q3 2026 DP2 release” timeline, and mentions a “companion” paper not described in the provided DOI info.\n- Check 3 failed: The change removes the existing KC4 badge/text and alters structure, resulting in loss of the explicit KC4 label and malformed HTML (closing </span> without an opening tag).\n- Check 4 failed: The reference “DOI 32013738” is incomplete (missi",
+    "model": "gpt-5",
+    "full_response_length": 967
+  },
+  {
+    "timestamp": "2026-04-17T00:17:05.460316Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC1\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31244827",
+    "verdict": "REJECTED",
+    "reason": "",
+    "model": "gpt-5",
+    "full_response_length": 0
+  }
+]

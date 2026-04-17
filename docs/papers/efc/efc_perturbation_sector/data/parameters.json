@@ -1,0 +1,80 @@
+{
+  "paper": {
+    "title": "EFC Perturbation Sector",
+    "description": "Key numerical values extracted from the EFC Perturbation Sector paper, describing the effective lensing ratio Sigma_eff(z)/Sigma_CDM."
+  },
+  "parameters": {
+    "alpha_LCDM": {
+      "value": 1.0,
+      "description": "EFC coupling parameter value that recovers the LCDM limit."
+    },
+    "tolerance_band": {
+      "value": 0.02,
+      "description": "Plus/minus 2% tolerance band around Sigma_eff/Sigma_CDM = 1."
+    }
+  },
+  "predictions": {
+    "crossover_redshift": {
+      "value": 0.42,
+      "description": "Redshift at which Sigma_eff/Sigma_CDM = 1 (crossover from enhanced to suppressed lensing)."
+    },
+    "regime_enhanced": {
+      "z_range": "z < 0.42",
+      "description": "Gravitational lensing is enhanced (Sigma_eff > Sigma_CDM) at low redshift."
+    },
+    "regime_suppressed": {
+      "z_range": "z > 0.42",
+      "description": "Gravitational lensing is suppressed (Sigma_eff < Sigma_CDM) at high redshift."
+    }
+  },
+  "calibration_points": [
+    {
+      "z": 0.2,
+      "deviation_percent": 0.8,
+      "sigma_ratio": 1.008,
+      "note": "peak enhancement"
+    },
+    {
+      "z": 0.42,
+      "deviation_percent": 0.0,
+      "sigma_ratio": 1.0,
+      "note": "crossover"
+    },
+    {
+      "z": 0.6,
+      "deviation_percent": -0.3,
+      "sigma_ratio": 0.997,
+      "note": "mild suppression"
+    },
+    {
+      "z": 0.8,
+      "deviation_percent": -0.9,
+      "sigma_ratio": 0.991,
+      "note": "suppressed"
+    },
+    {
+      "z": 1.0,
+      "deviation_percent": -1.2,
+      "sigma_ratio": 0.988,
+      "note": "suppressed"
+    },
+    {
+      "z": 1.2,
+      "deviation_percent": -1.4,
+      "sigma_ratio": 0.986,
+      "note": "near-maximum suppression"
+    },
+    {
+      "z": 1.4,
+      "deviation_percent": -1.4,
+      "sigma_ratio": 0.986,
+      "note": "maximum suppression"
+    }
+  ],
+  "figure_axis_ranges": {
+    "z_min": 0.2,
+    "z_max": 1.4,
+    "ratio_min": 0.98,
+    "ratio_max": 1.03
+  }
+}

@@ -2,12 +2,12 @@
   "$schema": "./schema.json",
   "id": "regime-dependent-breakdown-lcdm",
   "title": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
-  "description": "Combines low-z galaxy dynamics (SPARC) with high-z galaxy abundances (JWST COSMOS-Web) to test whether deviations from standard \u039bCDM predictions cluster by observational regime. Using a descriptive L0\u2013L3 taxonomy and a pre-specified chi-squared/permutation framework, the paper finds significant, monotonic high-z excesses and structured low-z rotation-curve deviations, rejecting uniform randomness (\u03c7\u00b2=47.3, df=4, p\u22481.3e-9). The result is robust to photometric-redshift resampling and conservative systematic stress tests.",
+  "description": "Combines low-z galaxy dynamics (SPARC) with high-z galaxy abundances (JWST COSMOS-Web) to test whether deviations from standard ΛCDM predictions cluster by observational regime. Using a descriptive L0–L3 taxonomy and a pre-specified chi-squared/permutation framework, the paper finds significant, monotonic high-z excesses and structured low-z rotation-curve deviations, rejecting uniform randomness (χ²=47.3, df=4, p≈1.3e-9). The result is robust to photometric-redshift resampling and conservative systematic stress tests.",
   "version": "1.0",
   "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31061665",
   "keywords": [
-    "\u039bCDM",
+    "ΛCDM",
     "regime dependence",
     "SPARC rotation curves",
     "JWST COSMOS-Web",
@@ -18,7 +18,7 @@
     "Behroozi predictions",
     "photometric redshift",
     "cosmic variance",
-    "baryon\u2013dark matter coupling"
+    "baryon–dark matter coupling"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -35,15 +35,15 @@
     },
     "abundance_ratio": {
       "latex": "R_n = \\frac{n_{\\mathrm{obs}}(z, M_*)}{n_{\\mathrm{pred}}^{\\mathrm{LCDM}}(z, M_*)}",
-      "description": "High-redshift abundance excess relative to forward-modeled \u039bCDM predictions (Behroozi et al. 2019) or to absolute halo-abundance limits."
+      "description": "High-redshift abundance excess relative to forward-modeled ΛCDM predictions (Behroozi et al. 2019) or to absolute halo-abundance limits."
     }
   },
   "key_results": {
-    "main_finding": "Deviation signals cluster by regime with \u03c7\u00b2=47.3 (df=4, p\u22481.3\u00d710\u207b\u2079), and high-z galaxy abundances rise monotonically above predictions (\u224823\u2013529\u00d7 vs Behroozi; exceeding halo limits for z>8), robust to photo-z resampling and conservative systematics.",
+    "main_finding": "Deviation signals cluster by regime with χ²=47.3 (df=4, p≈1.3×10⁻⁹), and high-z galaxy abundances rise monotonically above predictions (≈23–529× vs Behroozi; exceeding halo limits for z>8), robust to photo-z resampling and conservative systematics.",
     "delta_chi2": null,
     "significance_sigma": 5.9,
     "parameters_tested": [
-      "Uniformity of deviations across L0\u2013L3 regimes",
+      "Uniformity of deviations across L0–L3 regimes",
       "SPARC rotation-curve deviation classes by morphology/dynamics",
       "High-z abundance ratios vs Behroozi (2019) predictions",
       "Exceedance of absolute halo-abundance limits",
@@ -51,18 +51,18 @@
       "Sensitivity to stellar-mass calibration shifts and cosmic variance"
     ],
     "datasets_used": [
-      "SPARC (175 disk galaxies; z\u22480)",
+      "SPARC (175 disk galaxies; z≈0)",
       "COSMOS2025 (JWST COSMOS-Web; 26,288 galaxies with z>5)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: Spectroscopic follow-up of COSMOS-Web high-z candidates (z>8) reduces the abundance excess such that the observed-to-halo-limit ratio R_n \u2264 1.0 in all z>8 bins after vetted completeness and Eddington-bias corrections.",
-    "KC2: A preregistered re-analysis using the same L0\u2013L3 regime boundaries and test statistic on updated COSMOS-Web and independent deep fields (e.g., JADES, CEERS, PRIMER) yields p \u2265 0.05 (chi-squared and permutation tests), failing to reject uniformity.",
-    "KC3: Independently validated systematics (photo-z errors, mass calibration, selection, and cosmic variance) jointly account for the high-z excess, bringing R_n \u2264 3 across all 5\u2264z\u226410 bins relative to Behroozi (2019), eliminating the reported monotonic trend.",
-    "KC4: A hierarchical re-analysis of SPARC with updated distances, inclinations, beam-smearing corrections, and stellar M/L shows no morphology/dynamics-dependent clustering in R_V (posterior consistent with uniform deviations across regimes at p \u2265 0.05).",
-    "KC5: Applying the preregistered regime test to future JWST/NGRST/Euclid datasets shows no transition to halo-limit exceedance (R_n \u2264 1.5) at z>8, contradicting the reported regime boundary."
+    "KC1: Spectroscopic follow-up of COSMOS-Web high-z candidates (z>8) reduces the abundance excess such that the observed-to-halo-limit ratio R_n ≤ 1.0 in all z>8 bins after vetted completeness and Eddington-bias corrections.",
+    "KC2: A preregistered re-analysis using the same L0–L3 regime boundaries and test statistic on updated COSMOS-Web and independent deep fields (e.g., JADES, CEERS, PRIMER) yields p ≥ 0.05 (chi-squared and permutation tests), failing to reject uniformity.",
+    "KC3: Independently validated systematics (photo-z errors, mass calibration, selection, and cosmic variance) jointly account for the high-z excess, bringing R_n ≤ 3 across all 5≤z≤10 bins relative to Behroozi (2019), eliminating the reported monotonic trend.",
+    "KC4: A hierarchical re-analysis of SPARC with updated distances, inclinations, beam-smearing corrections, and stellar M/L shows no morphology/dynamics-dependent clustering in R_V (posterior consistent with uniform deviations across regimes at p ≥ 0.05).",
+    "KC5: Applying the preregistered regime test to future JWST/NGRST/Euclid datasets shows no transition to halo-limit exceedance (R_n ≤ 1.5) at z>8, contradicting the reported regime boundary."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -71,10 +71,10 @@
     "pdf": "Regime_Dependent_Breakdown.pdf"
   },
   "figshare_url": "https://doi.org/10.6084/m9.figshare.31061665",
-  "short_title": "\u039bCDM Regime Breakdown",
+  "short_title": "ΛCDM Regime Breakdown",
   "type": "statistical_analysis",
   "status": "published",
-  "abstract_short": "\u039bCDM deviations cluster systematically across redshifts (\u03c7\u00b2=47.3, df=4, p<10\u207b\u2078). JWST/COSMOS galaxies exceed predictions by 23-529\u00d7 depending on redshift.",
+  "abstract_short": "ΛCDM deviations cluster systematically across redshifts (χ²=47.3, df=4, p<10⁻⁸). JWST/COSMOS galaxies exceed predictions by 23-529× depending on redshift.",
   "key_result": {
     "chi2": 47.3,
     "df": 4,
@@ -104,7 +104,7 @@
     }
   ],
   "disclaimers": [
-    "Does NOT falsify \u039bCDM",
+    "Does NOT falsify ΛCDM",
     "Does NOT propose alternative dynamics",
     "Does NOT identify unique mechanism"
   ],
@@ -119,5 +119,125 @@
       "N": 26288,
       "z": ">5"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes a rigorous, model-agnostic empirical baseline: ΛCDM deviations are not random scatter but cluster by observational regime (low-z dynamics vs high-z abundances) with overwhelming statistical significance (p≈1.3×10⁻⁹). For EFC, this is foundational infrastructure — it documents the structured pattern that any successor framework (including EFC) must reproduce, and it pre-registers five falsifiable kill criteria that future data (JADES, CEERS, spectroscopic follow-up) can trigger. It does not prove EFC correct, but it sharpens the empirical target EFC must hit and provides the regime taxonomy (L0–L3) that downstream EFC predictions can be mapped onto.",
+    "graph_insights": [
+      "This paper has no 1-2 hop connections in the current graph, indicating it is a new entry node that should become a hub: it touches ΛCDM (core framework comparison), SPARC rotation curves (galactic-scale observable), JWST COSMOS-Web (high-z observable), halo mass function, and chi-squared test methodology — all of which are likely to connect to multiple existing EFC test nodes once the graph is updated.",
+      "The absence of matching validation tests sharing observables suggests the SPARC rotation curve tests and JWST high-z abundance tests currently in the test suite (if any) are not yet linked to the regime-dependent framework. Graph edges should be created connecting this paper's L0–L3 taxonomy to any existing SPARC or JWST-related test nodes.",
+      "The Behroozi predictions node is a critical comparison anchor: any EFC prediction for galaxy stellar mass functions should be benchmarked against both Behroozi (2019) and this paper's observed excesses, creating a triangular validation structure in the graph."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "regime_chi2_lcdm_uniformity",
+        "category": "phenomenological",
+        "name": "Regime-dependent ΛCDM deviation clustering (χ² test)",
+        "description": "Tests whether ΛCDM deviations across the L0–L3 taxonomy are uniformly distributed or cluster by regime. Null hypothesis: uniform distribution. Result: χ²=47.3, df=4, p≈1.3×10⁻⁹, rejecting uniformity at >99.99% CL.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC (z~0) + COSMOS-Web/JWST (z>6)",
+        "prediction": "EFC's scale-dependent energy-flow dynamics predict regime-structured deviations from ΛCDM; structured clustering is consistent with EFC expectations."
+      },
+      {
+        "test_id": "highz_abundance_monotonic_excess",
+        "category": "phenomenological",
+        "name": "Monotonic high-z galaxy abundance excess vs Behroozi predictions",
+        "description": "Tests whether observed galaxy abundances at z>6 exceed Behroozi (2019) halo mass function predictions monotonically with redshift. Observed-to-predicted ratios range ≈23–529× for z>8, exceeding halo limits.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "COSMOS-Web/JWST COSMOS2025 catalog (z>6)",
+        "prediction": "EFC predicts enhanced early structure formation relative to ΛCDM hierarchical assembly; monotonically increasing excess with redshift is qualitatively consistent."
+      },
+      {
+        "test_id": "sparc_morphology_deviation_clustering",
+        "category": "phenomenological",
+        "name": "SPARC rotation curve deviation clustering by morphology/dynamics",
+        "description": "Tests whether SPARC rotation curve residuals relative to ΛCDM predictions cluster in specific morphological and dynamical classes rather than being uniformly distributed.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC database (175 galaxies, z~0)",
+        "prediction": "EFC energy-flow formalism predicts morphology-dependent rotation curve signatures; structured deviations are expected."
+      },
+      {
+        "test_id": "photoz_resampling_robustness",
+        "category": "consistency_check",
+        "name": "Photo-z Monte Carlo resampling robustness",
+        "description": "Verifies that the regime-dependent clustering signal survives 1000 Monte Carlo resamplings of photometric redshift uncertainties. Median p < 0.01 across all resamples.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "COSMOS-Web photo-z posteriors",
+        "prediction": "Signal is astrophysical, not a photo-z artifact."
+      },
+      {
+        "test_id": "kc_highz_spectroscopic_followup",
+        "category": "planned_pipeline",
+        "name": "KC1: Spectroscopic follow-up of z>8 COSMOS-Web candidates",
+        "description": "Kill criterion: if spectroscopic confirmation reduces R_n ≤ 1.0 in all z>8 bins after completeness and Eddington-bias corrections, the regime-dependent excess is falsified.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Future NIRSpec/PRISM spectroscopy of COSMOS-Web candidates",
+        "prediction": "EFC expects R_n to remain >1.0 at z>8 after spectroscopic vetting."
+      },
+      {
+        "test_id": "kc_independent_field_replication",
+        "category": "planned_pipeline",
+        "name": "KC2: Independent deep-field replication (JADES/CEERS/PRIMER)",
+        "description": "Kill criterion: if the same L0–L3 regime test on independent fields yields p ≥ 0.05, the clustering signal is not replicated.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "JADES, CEERS, PRIMER catalogs",
+        "prediction": "EFC expects regime clustering to replicate across independent fields."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "empirical-baseline",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "New T2 empirical test deposited: regime-dependent ΛCDM breakdown across cosmic time (DOI: 10.6084/m9.figshare.31061665). Establishes structured deviation pattern (χ²=47.3, p≈1.3×10⁻⁹) combining SPARC low-z dynamics with JWST COSMOS-Web high-z abundances. Five paper-level kill criteria registered. Two pipeline tests (spectroscopic follow-up, independent-field replication) queued.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31061665"
+        ],
+        "reasoning": "Roadmap needs to reflect the new empirical baseline paper and its pipeline kill criteria, which define near-term falsification checkpoints."
+      },
+      {
+        "page": "gap",
+        "target": "observational-regime-taxonomy",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "L0–L3 descriptive regime taxonomy introduced and validated against SPARC + COSMOS-Web data (DOI: 10.6084/m9.figshare.31061665). EFC must now demonstrate that its energy-flow dynamics naturally reproduce the regime boundaries rather than requiring ad hoc tuning. Pending: map EFC predicted deviations onto L0–L3 bins and compare predicted vs observed χ² distribution.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31061665"
+        ],
+        "reasoning": "This paper creates a new empirical constraint that EFC theory must address — a data gap for mapping EFC predictions onto the L0–L3 regime structure."
+      },
+      {
+        "page": "whitepaper",
+        "target": "empirical-evidence-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Regime-dependent analysis combining SPARC (z~0) and JWST COSMOS-Web (z>6) rejects uniform ΛCDM deviations at p≈1.3×10⁻⁹. High-z abundances exceed halo-limited predictions by 23–529× at z>8 with monotonic redshift dependence. Robust to photo-z resampling (median p<0.01, N=1000). See DOI: 10.6084/m9.figshare.31061665.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31061665"
+        ],
+        "reasoning": "Whitepaper empirical evidence section must cite the strongest model-agnostic result showing structured ΛCDM deviations that EFC aims to explain."
+      }
+    ],
+    "implicit_consequences": [
+      "The L0–L3 regime taxonomy creates a universal scoring framework: any EFC prediction can now be binned by regime level and compared against the empirical χ² baseline. This means future EFC papers should report deviation classifications in L0–L3 terms for direct comparability.",
+      "The monotonic increase of high-z abundance excess with redshift (23× at z~6 to 529× at z>8) provides a quantitative calibration target for the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver gap): EFC's modified structure formation must reproduce this specific scaling, not just generic early excess.",
+      "The SPARC morphology-dependent clustering constrains EFC's galactic-scale predictions: the energy-flow modification to rotation curves must predict which morphological/dynamical classes show the strongest deviations, connecting to the existing SPARC rotation curves observable in the graph.",
+      "The paper's kill criteria (especially KC1 and KC2) create time-pressure: NIRSpec spectroscopic campaigns on COSMOS-Web targets are already scheduled, and JADES/CEERS catalogs are being released. If these falsify the regime pattern, EFC loses a key empirical motivation pillar within 12–18 months.",
+      "The absence of sealed predictions in this paper is deliberate — it is an empirical baseline, not a forecasting paper — but it creates an urgent need: EFC should now deposit a sealed prediction for the expected R_n values at z>8 before spectroscopic follow-up data become public, to avoid post-hoc fitting accusations.",
+      "The halo mass function exceedance at z>8 (R_n >> 1) directly challenges standard hierarchical assembly timescales, which is precisely the regime where EFC's energy-flow-driven accelerated structure formation should be most distinctive. This paper quantifies the size of the anomaly EFC must match."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }

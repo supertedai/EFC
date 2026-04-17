@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "scale-localised-modified-gravity",
   "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
-  "description": "Introduces a scale-localised modified-gravity response derived from the EFC relativistic action, producing a band-pass stiffness R(k) that recovers GR in both IR and UV limits. The single effective parameter \u03b5_tot controls gravitational slip, yielding a distinctive +5\u20137% bump in E_G(k) at k \u2248 0.05 h/Mpc and a marginal improvement to current CMB lensing fits. The paper provides directly falsifiable predictions for DESI \u00d7 Planck with a forecast 2.5\u20133.5\u03c3 detection significance.",
+  "description": "Introduces a scale-localised modified-gravity response derived from the EFC relativistic action, producing a band-pass stiffness R(k) that recovers GR in both IR and UV limits. The single effective parameter ε_tot controls gravitational slip, yielding a distinctive +5–7% bump in E_G(k) at k ≈ 0.05 h/Mpc and a marginal improvement to current CMB lensing fits. The paper provides directly falsifiable predictions for DESI × Planck with a forecast 2.5–3.5σ detection significance.",
   "version": "1.1",
   "date": "2026-04-01",
   "doi": "10.6084/m9.figshare.31985313",
@@ -24,7 +24,7 @@
   "core_equations": {
     "stiffness_response": {
       "latex": "R(k,a) = R_0 \\frac{(k/k_c)^2}{\\big(1+(k/k_c)^2\\big)^3} \\, a^4",
-      "description": "Band-pass stiffness from the EFC action; localises modifications near k_c, with GR recovered as k\u21920 (IR) and k\u2192\u221e (UV)."
+      "description": "Band-pass stiffness from the EFC action; localises modifications near k_c, with GR recovered as k→0 (IR) and k→∞ (UV)."
     },
     "effective_coupling_mu": {
       "latex": "\\mu(k,z) = \\frac{1}{F\\,[1+R(k,a)]}",
@@ -44,47 +44,47 @@
     }
   },
   "key_results": {
-    "main_finding": "A single-parameter (\u03b5_tot) EFC band-pass model predicts a +5\u20137% E_G(k) bump at k \u2248 0.05 h/Mpc, passes current individual tests within 2\u03c3, and marginally improves the joint fit (\u0394\u03c7\u00b2=+1.4) primarily via CMB lensing.",
+    "main_finding": "A single-parameter (ε_tot) EFC band-pass model predicts a +5–7% E_G(k) bump at k ≈ 0.05 h/Mpc, passes current individual tests within 2σ, and marginally improves the joint fit (Δχ²=+1.4) primarily via CMB lensing.",
     "delta_chi2": 1.4,
     "significance_sigma": 3.0,
     "parameters_tested": [
-      "\u03b5_tot \u2208 [0.38, 0.42] (slip amplitude)",
+      "ε_tot ∈ [0.38, 0.42] (slip amplitude)",
       "R_0 = 0.510 (fixed)",
       "k_c = 0.05 h/Mpc (fixed)",
-      "F \u2248 1.00005 (fixed)"
+      "F ≈ 1.00005 (fixed)"
     ],
     "datasets_used": [
       "BOSS full-shape P(k)",
-      "Planck CMB ISW (low-\u2113)",
+      "Planck CMB ISW (low-ℓ)",
       "Planck 2018 CMB lensing (A_lens)",
       "KiDS-1000 cosmic shear",
       "Current E_G compilations",
-      "Forecast: DESI \u00d7 Planck lensing cross-correlations"
+      "Forecast: DESI × Planck lensing cross-correlations"
     ],
     "verdict": "MARGINAL"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "At z \u2248 0.3, E_G(k) exhibits a scale-localised bump of +5\u20137% centered at k \u2248 0.05 h/Mpc, with \u03a3/\u03bc \u2248 1.07 at the peak and returning to GR on larger and smaller scales.",
-      "falsifiable_by": "DESI \u00d7 Planck lensing-galaxy cross-correlations measuring E_G(k) with \u22485% precision per k-bin."
+      "statement": "At z ≈ 0.3, E_G(k) exhibits a scale-localised bump of +5–7% centered at k ≈ 0.05 h/Mpc, with Σ/μ ≈ 1.07 at the peak and returning to GR on larger and smaller scales.",
+      "falsifiable_by": "DESI × Planck lensing-galaxy cross-correlations measuring E_G(k) with ≈5% precision per k-bin."
     },
     {
       "id": "P2",
-      "statement": "The slip-driven enhancement follows approximately (1+\u03b7)/2 \u2212 1 \u221d a^2, yielding a stronger E_G bump at lower redshift (e.g., z \u2272 0.5) compared to higher redshift (z \u2273 0.8).",
-      "falsifiable_by": "Tomographic E_G(k,z) from DESI \u00d7 Planck and Stage-IV weak-lensing surveys testing the predicted a^2 evolution."
+      "statement": "The slip-driven enhancement follows approximately (1+η)/2 − 1 ∝ a^2, yielding a stronger E_G bump at lower redshift (e.g., z ≲ 0.5) compared to higher redshift (z ≳ 0.8).",
+      "falsifiable_by": "Tomographic E_G(k,z) from DESI × Planck and Stage-IV weak-lensing surveys testing the predicted a^2 evolution."
     },
     {
       "id": "P3",
-      "statement": "Growth is modestly suppressed (\u03bc<1) while lensing is enhanced (\u03a3>1), producing a growth\u2013shear mismatch at the few-percent level that cannot be mimicked by a scale-independent rescaling of \u03c38 or A_s.",
+      "statement": "Growth is modestly suppressed (μ<1) while lensing is enhanced (Σ>1), producing a growth–shear mismatch at the few-percent level that cannot be mimicked by a scale-independent rescaling of σ8 or A_s.",
       "falsifiable_by": "Joint fits to full-shape P(k), redshift-space distortions, and cosmic shear across 0.03 < k < 0.1 h/Mpc."
     }
   ],
   "kill_criteria": [
-    "KC1: DESI \u00d7 Planck measures E_G(k) at 0.03 < k < 0.1 h/Mpc with \u22645% fractional error per bin and finds no >3% excess over GR at k \u2248 0.05 h/Mpc (95% CL), i.e., no resolved bump\u2014rules out \u03b5_tot \u2208 [0.38, 0.42].",
-    "KC2: A global fit to Planck TTTEEE + lensing, BOSS/DESI full-shape, and KiDS/DES shear excludes the \u03b5_tot window [0.38, 0.42] at 95% CL (best-fit \u03b5_tot outside and the interval disfavoured).",
-    "KC3: The measured E_G(k) peak (from \u03a3/\u03bc) occurs outside 0.04 < k_peak < 0.06 h/Mpc at z \u2272 0.5 with \u22653\u03c3 significance, contradicting the fixed k_c = 0.05 h/Mpc prediction.",
-    "KC4: Tomographic E_G(k,z) shows no increase in the bump amplitude toward lower redshift (contrary to \u221d a^2 scaling) at \u22653\u03c3 significance."
+    "KC1: DESI × Planck measures E_G(k) at 0.03 < k < 0.1 h/Mpc with ≤5% fractional error per bin and finds no >3% excess over GR at k ≈ 0.05 h/Mpc (95% CL), i.e., no resolved bump—rules out ε_tot ∈ [0.38, 0.42].",
+    "KC2: A global fit to Planck TTTEEE + lensing, BOSS/DESI full-shape, and KiDS/DES shear excludes the ε_tot window [0.38, 0.42] at 95% CL (best-fit ε_tot outside and the interval disfavoured).",
+    "KC3: The measured E_G(k) peak (from Σ/μ) occurs outside 0.04 < k_peak < 0.06 h/Mpc at z ≲ 0.5 with ≥3σ significance, contradicting the fixed k_c = 0.05 h/Mpc prediction.",
+    "KC4: Tomographic E_G(k,z) shows no increase in the bump amplitude toward lower redshift (contrary to ∝ a^2 scaling) at ≥3σ significance."
   ],
   "tier": "T2",
   "paper_type": "sealed_prediction",
@@ -92,12 +92,12 @@
     {
       "id": "efc-relativistic-action",
       "doi": "10.6084/m9.figshare.31876324",
-      "role": "theory base and perturbation-sector variational expressions for \u03bc, \u03a3, \u03b7"
+      "role": "theory base and perturbation-sector variational expressions for μ, Σ, η"
     },
     {
       "id": "efc-no-go-background",
       "doi": "10.6084/m9.figshare.31985163",
-      "role": "constraint establishing \u039bCDM background (No-Go), confining EFC effects to perturbations"
+      "role": "constraint establishing ΛCDM background (No-Go), confining EFC effects to perturbations"
     },
     {
       "id": "signal-localization-method",
@@ -277,5 +277,176 @@
     "relativistic_action": "10.6084/m9.figshare.31876324",
     "cmb_localization": "10.6084/m9.figshare.31368433"
   },
-  "see_also": "ai_manifest.json"
+  "see_also": "ai_manifest.json",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes the first single-parameter, scale-localised modified-gravity forecast derived from the EFC relativistic action, converting perturbation-sector physics into a directly falsifiable E_G(k,z) prediction with a sharp ε_tot window. It provides four new paper-level kill criteria and three sealed predictions targeting DESI × Planck cross-correlations, bridging the gap between the EFC action formalism and near-term Stage-IV observables. It does not close any existing Stage-IV KC or theory gap but creates a new falsification surface and strengthens the perturbation-sector programme.",
+    "graph_insights": [
+      "This paper is currently an orphan in the graph (no 1-hop or 2-hop connections found), yet it explicitly references the No-Go result (Figshare 31985163) and the relativistic action (Figshare 31876324) — these edges should be added to connect it to the action-formalism and no-go constraint nodes.",
+      "The E_G statistic node connects to both DESI and Planck lensing nodes, creating a new bridge between the background-sector validation chain (Planck) and the growth-sector chain (DESI RSD) — this is the first paper that explicitly couples both chains through a single observable.",
+      "The band-pass stiffness R(k) introduces a new concept node that should link to the existing 'stiffness screening' and 'quasi-static limit' concepts from the UV action papers, completing a scale-dependent chain from IR (GR recovery) through the bump to UV (screening)."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "eg_bump_boss_pk_shape",
+        "category": "phenomenological",
+        "name": "BOSS P(k) shape vs band-pass µ(k)",
+        "description": "Checks whether the band-pass µ(k) suppression at k~0.05 h/Mpc is compatible with BOSS DR12 full-shape P(k) at ~3%/bin precision.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 P(k)",
+        "prediction": "µ<1 suppression at k_c yields Δχ²=−0.07 relative to GR, indistinguishable at current precision."
+      },
+      {
+        "test_id": "eg_bump_cmb_isw",
+        "category": "phenomenological",
+        "name": "CMB ISW low-ℓ consistency",
+        "description": "Verifies that the band-pass R(k) does not violate low-ℓ ISW constraints from Planck.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 low-ℓ TT",
+        "prediction": "ISW signal shifts by <8%, within ~10% measurement uncertainty."
+      },
+      {
+        "test_id": "eg_bump_cmb_lensing_alens",
+        "category": "phenomenological",
+        "name": "CMB lensing A_lens improvement",
+        "description": "Tests whether Σ>1 from the EFC slip improves the Planck A_lens anomaly.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 lensing",
+        "prediction": "Σ≈1.034 at k_c yields Δχ²=+3.3 improvement over GR for A_lens."
+      },
+      {
+        "test_id": "eg_bump_kids_shear",
+        "category": "phenomenological",
+        "name": "KiDS cosmic shear S_WL consistency",
+        "description": "Checks EFC Σ>1 lensing enhancement against KiDS-1000 cosmic shear.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "KiDS-1000",
+        "prediction": "Δχ²=+0.04, effectively neutral—Σ enhancement is within current shear error bars."
+      },
+      {
+        "test_id": "eg_bump_current_eg_data",
+        "category": "phenomenological",
+        "name": "Current E_G aggregate data",
+        "description": "Confronts the predicted +5–7% E_G bump with existing (low-precision ~15%) E_G measurements.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "BOSS × Planck E_G (existing)",
+        "prediction": "Predicted bump is within 2σ of current data but GR is mildly preferred (Δχ²=−1.9)."
+      },
+      {
+        "test_id": "eg_bump_joint_fit",
+        "category": "phenomenological",
+        "name": "Joint Δχ² (all five probes)",
+        "description": "Global fit combining BOSS P(k), ISW, CMB lensing, KiDS shear, and E_G.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "Combined",
+        "prediction": "Net Δχ²=+1.4 marginally favouring EFC, driven by CMB lensing."
+      },
+      {
+        "test_id": "eg_kz_desi_planck_bump",
+        "category": "planned_pipeline",
+        "name": "DESI × Planck E_G(k) bump detection at k≈0.05 h/Mpc",
+        "description": "Planned Stage-IV test: measures E_G(k) in 0.03–0.1 h/Mpc bins with ≤5% error to resolve +5–7% bump. Addresses paper KC1.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2 × Planck PR4 lensing",
+        "prediction": "EFC: +5–7% E_G excess at k≈0.05 h/Mpc; GR: flat E_G(k)."
+      },
+      {
+        "test_id": "eg_global_fit_epsilon_window",
+        "category": "planned_pipeline",
+        "name": "Global fit ε_tot window [0.38,0.42] exclusion test",
+        "description": "Planned: joint Planck TTTEEE+lensing + BOSS/DESI full-shape + KiDS/DES shear fit to test whether ε_tot window survives. Addresses paper KC2.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck + DESI + KiDS/DES",
+        "prediction": "ε_tot best-fit inside [0.38, 0.42] if EFC is correct."
+      },
+      {
+        "test_id": "eg_peak_location_kc",
+        "category": "planned_pipeline",
+        "name": "E_G(k) peak location at z≲0.5",
+        "description": "Planned: verify E_G peak falls within 0.04–0.06 h/Mpc. Addresses paper KC3.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI × Planck",
+        "prediction": "Peak at k_peak = 0.05 ± 0.01 h/Mpc."
+      },
+      {
+        "test_id": "eg_tomographic_a2_scaling",
+        "category": "planned_pipeline",
+        "name": "Tomographic E_G(k,z) ∝ a² redshift scaling",
+        "description": "Planned: tomographic E_G(k,z) should show increasing bump amplitude toward lower z, scaling as a². Addresses paper KC4.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI tomographic × Planck lensing",
+        "prediction": "Bump amplitude ∝ a² — stronger at z~0.3 than z~0.7."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "perturbation-sector-forecasts",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Scale-localised E_G(k,z) forecast deposited (DOI 10.6084/m9.figshare.31985313). Single-parameter ε_tot model with four paper-level kill criteria and three sealed predictions. Awaiting DESI DR2 × Planck cross-correlation data for decisive test at 2.5–3.5σ.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31985313"
+        ],
+        "reasoning": "The roadmap should reflect that the perturbation-sector programme now has a concrete, falsifiable Stage-IV forecast with sealed predictions."
+      },
+      {
+        "page": "gap",
+        "target": "data-gap-desi-eg-cross",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "E_G(k,z) sealed predictions deposited: +5–7% bump at k≈0.05 h/Mpc, ε_tot ∈ [0.38,0.42], a² tomographic scaling. Four kill criteria defined (DOI 10.6084/m9.figshare.31985313). Awaiting DESI × Planck data release.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31985313"
+        ],
+        "reasoning": "A new observational gap entry (or update to an existing DESI-related gap) is needed to track the E_G cross-correlation sealed prediction and its kill criteria."
+      },
+      {
+        "page": "elevator",
+        "target": "falsifiability-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC now carries a single-parameter perturbation-sector forecast predicting a scale-localised +5–7% bump in E_G(k) at k≈0.05 h/Mpc, testable at 2.5–3.5σ with DESI × Planck (DOI 10.6084/m9.figshare.31985313). Four explicit kill criteria are registered.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31985313"
+        ],
+        "reasoning": "The elevator pitch should highlight this as a marquee falsifiability claim — single parameter, narrow window, near-term data."
+      },
+      {
+        "page": "whitepaper",
+        "target": "modified-gravity-observables",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The perturbation sector is now characterised by µ<1, η>1, Σ>1 from a band-pass stiffness R(k) peaking at k_c=0.05 h/Mpc with a single free parameter ε_tot ∈ [0.38,0.42]. The definitive observable is E_G(k,z) = Ω_m Σ/(fµ). See DOI 10.6084/m9.figshare.31985313.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31985313"
+        ],
+        "reasoning": "The whitepaper's modified-gravity section should reference the finalised band-pass model and its observable predictions."
+      }
+    ],
+    "implicit_consequences": [
+      "The band-pass R(k) formalism implicitly constrains the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver): any future solver must reproduce µ, η, Σ from Eqs 2–4 as the perturbation-sector limit, providing a concrete numerical target for validation.",
+      "The ∝ a² time dependence of the slip ties the E_G prediction to the ADM Hamiltonian stability analysis (theory-adm-hamiltonian-stability): if the non-linear ADM analysis shows the a² scaling is unstable or modified, the sealed E_G predictions would need revision—creating a cross-link between two open theory gaps.",
+      "Because the model predicts µ<1 (suppressed growth) simultaneously with Σ>1 (enhanced lensing), the sealed fσ8 prediction at z=0.7 from action-1 / action-5 is now implicitly constrained: the E_G model requires fσ8 suppression at the ~3% level relative to Planck-ΛCDM, which must be consistent with the sealed fσ8(z=0.7)=0.430 prediction.",
+      "The Δχ²=+3.3 improvement in A_lens implies that if the Planck lensing anomaly is resolved by systematics in future data releases, the primary statistical driver of the joint preference vanishes, making the ε_tot window even more tightly constrained and the model more fragile—this should be monitored as a risk.",
+      "The narrow ε_tot ∈ [0.38,0.42] window combined with four kill criteria means this paper effectively creates a 'one-shot' falsification surface: a single high-precision E_G(k) measurement at k~0.05 h/Mpc can simultaneously address KC1, KC3, and partially KC4, making the DESI × Planck cross-correlation pipeline the highest-leverage single dataset for the perturbation sector.",
+      "The neutrino mass degeneracy gap (theory-neutrino-mass-degeneracy) is implicitly relevant: massive neutrinos suppress growth (mimicking µ<1) and could partially absorb or mimic the ε_tot signal, meaning the E_G forecast's discriminating power depends on breaking this degeneracy."
+    ],
+    "bottom_line_change": "The biggest gap should be expanded: alongside the DESI DR2 full-shape RSD pipeline, the DESI × Planck E_G(k,z) cross-correlation pipeline is now equally critical — the E_G paper deposits four kill criteria and three sealed predictions that cannot be verified without it. Both pipelines should be flagged as co-priority.",
+    "kill_criteria_addressed": []
+  }
 }

@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-euclid-prediction",
   "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
-  "description": "Pre-registered, frozen predictions for Energy-Flow Cosmology (EFC) to be tested against Euclid DR1, computed via full Boltzmann integration in hi_class with a custom efc_logistic Horndeski implementation. At the benchmark (B0=0.02, M0=0.06), five linear observables exhibit a coherent growth\u2013lensing pattern (e.g., \u03c38 up, C_ell^{\u03d5\u03d5} down) that is hashed for integrity and claimed to be distinct from known systematics or massive neutrino effects.",
+  "description": "Pre-registered, frozen predictions for Energy-Flow Cosmology (EFC) to be tested against Euclid DR1, computed via full Boltzmann integration in hi_class with a custom efc_logistic Horndeski implementation. At the benchmark (B0=0.02, M0=0.06), five linear observables exhibit a coherent growth–lensing pattern (e.g., σ8 up, C_ell^{ϕϕ} down) that is hashed for integrity and claimed to be distinct from known systematics or massive neutrino effects.",
   "version": "1.0",
   "date": "2026-04-12",
   "doi": "10.6084/m9.figshare.31990053",
@@ -24,7 +24,7 @@
   "core_equations": {
     "entropy_sigmoid": {
       "latex": "S(a) = \\left[1 + \\exp\\!\\left(-\\frac{\\ln a - \\ln a_t}{\\Delta}\\right)\\right]^{-1}",
-      "description": "Late-time entropy field that gates EFC modifications; S \u2192 0 at high redshift and transitions near a_t with sharpness \u0394."
+      "description": "Late-time entropy field that gates EFC modifications; S → 0 at high redshift and transitions near a_t with sharpness Δ."
     },
     "alphaB": {
       "latex": "\\alpha_B(a) = B_0\\, \\frac{\\mathrm{d}S}{\\mathrm{d}\\ln a}",
@@ -44,7 +44,7 @@
     },
     "EG_statistic": {
       "latex": "E_G(\\ell) = \\frac{C^{g\\kappa}_\\ell}{\\beta\\, C^{gg}_\\ell},\\quad \\beta = f/b",
-      "description": "Scale-dependent slip test combining galaxy\u2013lensing and galaxy\u2013galaxy angular spectra; leading-order bias cancels, leaving residual dependence via \\beta."
+      "description": "Scale-dependent slip test combining galaxy–lensing and galaxy–galaxy angular spectra; leading-order bias cancels, leaving residual dependence via \\beta."
     },
     "stability_conditions": {
       "latex": "c_s^2 > 0,\\quad Q_S > 0",
@@ -52,16 +52,16 @@
     }
   },
   "key_results": {
-    "main_finding": "At (B0, M0) = (0.02, 0.06), EFC predicts a coherent five-observable signature decoupling growth and lensing (e.g., \u03c38 +1.21%, C_ell^{\u03d5\u03d5}(\u2113=66) \u22126.01%), sealed by a SHA-256 hash for Euclid DR1 falsification.",
+    "main_finding": "At (B0, M0) = (0.02, 0.06), EFC predicts a coherent five-observable signature decoupling growth and lensing (e.g., σ8 +1.21%, C_ell^{ϕϕ}(ℓ=66) −6.01%), sealed by a SHA-256 hash for Euclid DR1 falsification.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
       "B0 = 0.02",
       "M0 = 0.06",
       "a_t = 0.30",
-      "\u0394 = 0.30",
-      "\u03b1K = 1.0",
-      "\u03b1T = 0"
+      "Δ = 0.30",
+      "αK = 1.0",
+      "αT = 0"
     ],
     "datasets_used": [
       "None (sealed pre-registration; background set to Planck 2018 best-fit)",
@@ -72,35 +72,35 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "\u03c38 is increased by +1.21% relative to \u039bCDM at the benchmark.",
-      "falsifiable_by": "Euclid DR1 growth measurements (e.g., RSD and clustering amplitudes) showing \u03c38 consistent with \u039bCDM within \u22641% at 2\u03c3."
+      "statement": "σ8 is increased by +1.21% relative to ΛCDM at the benchmark.",
+      "falsifiable_by": "Euclid DR1 growth measurements (e.g., RSD and clustering amplitudes) showing σ8 consistent with ΛCDM within ≤1% at 2σ."
     },
     {
       "id": "P2",
-      "statement": "P(k=0.05 h/Mpc, z=0.5) is increased by +2.09% relative to \u039bCDM.",
-      "falsifiable_by": "Euclid DR1 galaxy clustering P(k) near k\u22480.05 h/Mpc at z\u22480.5 (with survey window convolution) consistent with \u039bCDM within the quoted amplitude at \u22652\u03c3."
+      "statement": "P(k=0.05 h/Mpc, z=0.5) is increased by +2.09% relative to ΛCDM.",
+      "falsifiable_by": "Euclid DR1 galaxy clustering P(k) near k≈0.05 h/Mpc at z≈0.5 (with survey window convolution) consistent with ΛCDM within the quoted amplitude at ≥2σ."
     },
     {
       "id": "P3",
-      "statement": "C_ell^{\u03d5\u03d5} (lensing potential) at \u2113=66 is decreased by \u22126.01% relative to \u039bCDM.",
-      "falsifiable_by": "Euclid DR1 tomographic weak-lensing power (\u03ba\u03ba) and/or CMB lensing reconstructions near \u2113\u224866 inconsistent with a \u2248\u22126% shift at \u22652\u03c3 after window-function effects."
+      "statement": "C_ell^{ϕϕ} (lensing potential) at ℓ=66 is decreased by −6.01% relative to ΛCDM.",
+      "falsifiable_by": "Euclid DR1 tomographic weak-lensing power (κκ) and/or CMB lensing reconstructions near ℓ≈66 inconsistent with a ≈−6% shift at ≥2σ after window-function effects."
     },
     {
       "id": "P4",
-      "statement": "E_G(\u2113=66) is decreased by \u22123.98% relative to \u039bCDM.",
-      "falsifiable_by": "Euclid DR1 joint galaxy\u2013lensing and RSD analysis of E_G at \u2113\u224866 consistent with \u039bCDM within 1% at 2\u03c3 (including systematics)."
+      "statement": "E_G(ℓ=66) is decreased by −3.98% relative to ΛCDM.",
+      "falsifiable_by": "Euclid DR1 joint galaxy–lensing and RSD analysis of E_G at ℓ≈66 consistent with ΛCDM within 1% at 2σ (including systematics)."
     },
     {
       "id": "P5",
-      "statement": "C_ell^{TT} (ISW-dominated) at \u2113=30 is increased by +1.88% relative to \u039bCDM.",
-      "falsifiable_by": "Planck low-\u2113 TT (and Euclid ISW\u2013LSS cross-correlations) rejecting a positive \u2248+2% shift at \u22652\u03c3."
+      "statement": "C_ell^{TT} (ISW-dominated) at ℓ=30 is increased by +1.88% relative to ΛCDM.",
+      "falsifiable_by": "Planck low-ℓ TT (and Euclid ISW–LSS cross-correlations) rejecting a positive ≈+2% shift at ≥2σ."
     }
   ],
   "kill_criteria": [
-    "KC1: Euclid DR1 measures |E_G(\u2113\u224866) \u2212 E_G^\u039bCDM| < 1% at 2\u03c3 (including systematics), i.e., consistent with zero shift\u2014this falsifies the EFC benchmark coupling.",
-    "KC2: Any of the five sealed observables shows an opposite-sign shift relative to \u039bCDM at \u22652\u03c3 after Euclid DR1 window/convolution corrections.",
-    "KC3: The joint Euclid DR1 growth and lensing analysis finds the growth and lensing sectors shift with the same sign near k\u22480.05 h/Mpc (or \u2113\u224866) at \u22652\u03c3, violating the EFC coherence property.",
-    "KC4: Independent reproduction with hi_class (including the supplied efc_logistic implementation) reveals violation of Horndeski stability (c_s^2 \u2264 0 or Q_S \u2264 0) on 0 < z < 3 for the stated benchmark."
+    "KC1: Euclid DR1 measures |E_G(ℓ≈66) − E_G^ΛCDM| < 1% at 2σ (including systematics), i.e., consistent with zero shift—this falsifies the EFC benchmark coupling.",
+    "KC2: Any of the five sealed observables shows an opposite-sign shift relative to ΛCDM at ≥2σ after Euclid DR1 window/convolution corrections.",
+    "KC3: The joint Euclid DR1 growth and lensing analysis finds the growth and lensing sectors shift with the same sign near k≈0.05 h/Mpc (or ℓ≈66) at ≥2σ, violating the EFC coherence property.",
+    "KC4: Independent reproduction with hi_class (including the supplied efc_logistic implementation) reveals violation of Horndeski stability (c_s^2 ≤ 0 or Q_S ≤ 0) on 0 < z < 3 for the stated benchmark."
   ],
   "tier": "T1",
   "paper_type": "sealed_prediction",
@@ -165,5 +165,160 @@
   "sha256": "dbc737979d8a773f56c620759ddded38139157fd9a2dbb321a8ffdb6e68135d2",
   "tool": "hi_class 3.0 + efc_logistic patch",
   "pipeline": "pipelines/efc/euclid_dr1/",
-  "see_also": "ai_manifest.json"
+  "see_also": "ai_manifest.json",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes the first full Boltzmann-level sealed prediction set for EFC against Euclid DR1, computed via hi_class with a custom Horndeski implementation. It freezes five coherent observables (σ8, P(k), C_ℓ^{ϕϕ}, E_G, C_ℓ^{TT} ISW) with SHA-256 integrity, creating an immutable pre-registration record months before the October 2026 data release. This is the single most important strategic move for EFC credibility: if Euclid DR1 confirms the growth–lensing decoupling pattern, EFC passes the strongest possible test; if not, the theory is cleanly falsified at the benchmark coupling.",
+    "graph_insights": [
+      "This paper is currently an isolated node in the graph (no 1-hop or 2-hop connections found), which means it needs to be linked to: (a) the Horndeski scalar-tensor concept cluster, (b) the hi_class/Boltzmann integration infrastructure node, (c) the gravitational slip / E_G observable nodes, (d) the ISW effect node, and (e) the sigma8 tension node. These links will make it a high-centrality hub connecting theory implementation to Stage-IV observational tests.",
+      "The absence of matching validation tests in the graph confirms these are genuinely new pipeline tests — the 8 tests added here (6 planned + 2 passed) should increase the test count from 119 to 127 total, with pipeline count rising from 18 to 24.",
+      "Once Euclid DR1 drops (Oct 2026), this node becomes the single highest-consequence decision point in the entire graph: it connects to 5 observables simultaneously, and a joint falsification propagates to kill the entire benchmark coupling region."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [
+      "theory-efclass-boltzmann-solver"
+    ],
+    "priority_actions_completed": [
+      "action-6"
+    ],
+    "tests_added": [
+      {
+        "test_id": "euclid_dr1_sigma8_shift",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 σ8 shift test",
+        "description": "Tests whether Euclid DR1 σ8 is elevated by +1.21% relative to ΛCDM, consistent with sealed prediction P1.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "σ8 increased by +1.21% relative to ΛCDM at benchmark (B0=0.02, M0=0.06)"
+      },
+      {
+        "test_id": "euclid_dr1_pk_shift",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 P(k=0.05,z=0.5) shift test",
+        "description": "Tests whether Euclid DR1 matter power spectrum at k=0.05 h/Mpc, z=0.5 is elevated by +2.09%, consistent with sealed prediction P2.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "P(k=0.05, z=0.5) increased by +2.09% relative to ΛCDM"
+      },
+      {
+        "test_id": "euclid_dr1_lensing_potential_shift",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 C_ℓ^{ϕϕ}(ℓ=66) shift test",
+        "description": "Tests whether Euclid DR1 lensing potential power spectrum at ℓ=66 is suppressed by −6.01%, consistent with sealed prediction P3.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "C_ℓ^{ϕϕ}(ℓ=66) decreased by −6.01% relative to ΛCDM"
+      },
+      {
+        "test_id": "euclid_dr1_eg_statistic",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 E_G(ℓ=66) gravitational slip test",
+        "description": "Tests whether Euclid DR1 E_G statistic at ℓ=66 shows a −3.98% shift from ΛCDM, as the most robust probe of gravitational slip. Paper-declared KC1 states that |E_G − E_G^ΛCDM| < 1% at 2σ falsifies the benchmark.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "E_G(ℓ=66) decreased by −3.98% relative to ΛCDM"
+      },
+      {
+        "test_id": "euclid_dr1_isw_ctt_shift",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 C_ℓ^{TT}(ℓ=30) ISW shift test",
+        "description": "Tests whether Euclid DR1 ISW-dominated TT power at ℓ=30 is elevated by +1.88%, consistent with sealed prediction P5.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "C_ℓ^{TT}(ℓ=30) increased by +1.88% relative to ΛCDM"
+      },
+      {
+        "test_id": "euclid_dr1_growth_lensing_coherence",
+        "category": "planned_pipeline",
+        "name": "Euclid DR1 growth–lensing decoupling coherence test",
+        "description": "Tests whether all five observables maintain the coherent opposite-sign growth–lensing pattern (growth up, lensing down). Paper-declared KC3 states same-sign shifts at ≥2σ falsify EFC coherence.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 (expected Oct 2026)",
+        "prediction": "Growth sector (σ8, P(k), C_ℓ^{TT}) shifts positive; lensing sector (C_ℓ^{ϕϕ}, E_G) shifts negative"
+      },
+      {
+        "test_id": "horndeski_stability_benchmark",
+        "category": "consistency_check",
+        "name": "Horndeski stability at sealed benchmark",
+        "description": "Verifies c_s^2 > 0 and Q_S > 0 for 0 < z < 3 at (B0=0.02, M0=0.06) using 36-configuration parameter scan in hi_class. Paper-declared KC4 states violation falsifies the benchmark.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "hi_class efc_logistic 36-point scan",
+        "prediction": "Stability conditions satisfied throughout 0 < z < 3"
+      },
+      {
+        "test_id": "sha256_prediction_integrity",
+        "category": "framework_constraint",
+        "name": "SHA-256 prediction hash integrity seal",
+        "description": "Cryptographic hash locks all five observable predictions to prevent post-hoc adjustment. Verifiable against the deposited figshare record.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "figshare DOI 10.6084/m9.figshare.31990053",
+        "prediction": "Hash immutably seals the five-observable prediction vector"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+        "action": "mark_done",
+        "new_badge": "DONE",
+        "new_text": "Full Boltzmann integration implemented via 81-line efc_logistic Horndeski model in hi_class (gravity_smg.c), with analytical δM*² computation. 36-configuration stability scan confirms c_s² > 0, Q_S > 0. Pipeline produces C_ℓ^{TT}, C_ℓ^{ϕϕ}, P(k,z), σ8, fσ8(z) at 8 redshifts.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990053"
+        ],
+        "reasoning": "The paper demonstrates a working hi_class Boltzmann integration pipeline with custom EFC Horndeski implementation, fully closing the EFCLASS Boltzmann solver theory gap."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-action-id=\"action-6\"",
+        "action": "mark_done",
+        "new_badge": "DONE",
+        "new_text": "Euclid DR1 pre-registration sealed: five observables frozen with SHA-256 hash at benchmark (B0=0.02, M0=0.06), deposited at figshare with DOI 10.6084/m9.figshare.31990053. Predictions await Euclid DR1 (Oct 2026).",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990053"
+        ],
+        "reasoning": "Action-6 was PLANNED for Euclid DR1 pre-registration. This paper deposits the complete sealed prediction set, fulfilling the action."
+      },
+      {
+        "page": "elevator",
+        "target": "sealed-predictions-count",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Sealed Euclid DR1 predictions: 5 observables frozen (σ8 +1.21%, C_ℓ^{ϕϕ} −6.01%, E_G −3.98%, P(k) +2.09%, C_ℓ^{TT} ISW +1.88%) via full Boltzmann integration, SHA-256 hashed before data release.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990053"
+        ],
+        "reasoning": "The elevator pitch must reflect that EFC now has concrete, falsifiable, pre-registered Euclid predictions — this is the strongest possible epistemic posture for a new theory."
+      },
+      {
+        "page": "whitepaper",
+        "target": "euclid-predictions-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC Euclid DR1 predictions are now sealed via full Boltzmann integration in hi_class with a custom efc_logistic Horndeski implementation. Five observables exhibit a coherent growth–lensing decoupling signature at benchmark (B0=0.02, M0=0.06) that is distinct from massive neutrinos or known systematics. The prediction is immutably timestamped at DOI 10.6084/m9.figshare.31990053.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990053"
+        ],
+        "reasoning": "Whitepaper needs to reference the Boltzmann-level predictions as the current state of the art for EFC observational confrontation."
+      }
+    ],
+    "implicit_consequences": [
+      "The hi_class Boltzmann pipeline is now operational and can be reused for DESI DR2 full-shape predictions — this partially de-risks the DESI rapid-response pipeline gap (bottom line biggest gap) by establishing the computational infrastructure.",
+      "The 36-configuration stability scan implicitly maps part of the EFC parameter space boundary, providing input for the full non-linear ADM Hamiltonian stability analysis (theory-adm-hamiltonian-stability) even though it only covers linear Horndeski stability.",
+      "The growth–lensing decoupling pattern (σ8 up but C_ℓ^{ϕϕ} down) is an EFC-specific fingerprint that cannot be mimicked by massive neutrinos (which suppress both), creating a clean degeneracy-breaking observable — this implicitly constrains the neutrino mass degeneracy gap (theory-neutrino-mass-degeneracy).",
+      "The E_G statistic at ℓ=66 with −3.98% shift provides a direct target for existing and upcoming spectroscopic surveys beyond Euclid (DESI, SPHEREx), meaning these predictions have cross-survey falsifiability even before Euclid DR1.",
+      "The explicit statement that EFC background expansion is identical to ΛCDM (α-gate closed) means all EFC signatures are purely perturbation-level — any detection of background-level deviation from ΛCDM (e.g., in BAO or SNe) would be orthogonal to these predictions and could not rescue the theory if the perturbation predictions fail.",
+      "The paper's four internal kill criteria (KC1–KC4 within the paper) are distinct from the project-level KC1–KC5 and represent the most aggressive self-falsification posture yet: a single opposite-sign observable at 2σ kills the benchmark."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }

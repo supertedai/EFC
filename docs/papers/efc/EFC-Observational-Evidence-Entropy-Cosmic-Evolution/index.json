@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "id": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution",
-  "title": "EFC \u2014 Observational Evidence for Entropy in Cosmic Evolution",
+  "title": "EFC — Observational Evidence for Entropy in Cosmic Evolution",
   "description": "This paper surveys observational indicators that entropy gradients play a central role in cosmic evolution. It synthesizes evidence from the CMB, galaxy clusters, the cosmic web, and black hole environments, and argues that entropy gradients modulate structure formation and local space-time expansion/compression.",
   "version": "1.0",
   "date": "2024-12-26",
@@ -36,10 +36,10 @@
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "CMB temperature anisotropy amplitude (\u03b4T/T)",
+      "CMB temperature anisotropy amplitude (δT/T)",
       "CMB polarization patterns",
       "intracluster entropy radial gradients",
-      "entropy\u2013void expansion correlation",
+      "entropy–void expansion correlation",
       "BAO-linked clustering scales"
     ],
     "datasets_used": [
@@ -69,7 +69,7 @@
     }
   ],
   "kill_criteria": [
-    "KC1: High-precision CMB temperature\u2013polarization analyses demonstrate that observed anisotropies are fully explained by purely adiabatic perturbations with no detectable entropy (isocurvature or gradient-driven) contributions beyond noise/systematics.",
+    "KC1: High-precision CMB temperature–polarization analyses demonstrate that observed anisotropies are fully explained by purely adiabatic perturbations with no detectable entropy (isocurvature or gradient-driven) contributions beyond noise/systematics.",
     "KC2: Void dynamics studies find no measurable acceleration of local expansion relative to the cosmic mean and no correlation between void kinematics and any reasonable entropy proxies.",
     "KC3: After accounting for feedback and selection effects, the majority of well-observed galaxy clusters exhibit flat or inverted entropy profiles (higher core entropy than outskirts), contradicting merger/shock-driven entropy gradients.",
     "KC4: Large-scale redshift surveys show that BAO scales and coherent matter flows are independent of entropy variations, with no statistically significant link between inferred entropy gradients and clustering/flow patterns.",
@@ -87,5 +87,105 @@
   "pdf": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.pdf",
   "md": "EFC-Observational-Evidence-Entropy-Cosmic-Evolution.md",
   "layer": "docs",
-  "type": "paper"
+  "type": "paper",
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This is a Tier-3 empirical survey that collates existing multi-band observations (CMB, galaxy clusters, cosmic web, voids, black hole environments) and interprets them through the EFC entropy-gradient lens. It does not deliver new quantitative measurements or close any Stage-IV kill criterion, but it establishes a structured observational argument that entropy gradients are consistent with EFC predictions across multiple scales, and it registers five paper-level kill criteria and three sealed predictions that feed directly into the validation pipeline.",
+    "graph_insights": [
+      "The paper touches 10 core EFC concepts (entropy gradients, CMB anisotropies, CMB polarization, galaxy clusters, ICM, cosmic web, BAO, void dynamics, space-time expansion, EFC itself) yet has zero 1- or 2-hop related papers in the graph — it acts as a hub node that should be linked to every existing observational-test paper; adding these edges will significantly increase graph connectivity and reveal cross-test dependencies.",
+      "No existing validation tests share observables with this paper, meaning the five new pipeline tests above are genuinely novel additions to the test matrix and will raise the pipeline count from 18 to 23.",
+      "The absence of graph neighbours suggests this paper fills a structural gap: it is the first dedicated multi-observable empirical survey paper in the EFC corpus and should be tagged as a bridge document connecting CMB, LSS, and compact-object sub-graphs."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "cmb_entropy_gradient_polarization",
+        "category": "phenomenological",
+        "name": "CMB polarization entropy-gradient signature",
+        "description": "Checks whether CMB polarization patterns carry signatures attributable to entropy gradients beyond standard adiabatic perturbations, as claimed by EFC sealed prediction P3.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck PR4 / Simons Observatory",
+        "prediction": "CMB polarization contains detectable entropy-gradient imprint beyond temperature anisotropies alone"
+      },
+      {
+        "test_id": "void_expansion_entropy_correlation",
+        "category": "phenomenological",
+        "name": "Void local expansion vs entropy proxy correlation",
+        "description": "Tests whether high-entropy cosmic voids expand measurably faster than the cosmic mean, with rate correlating to an entropy proxy (sealed prediction P1).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI / Euclid void catalogues",
+        "prediction": "Positive correlation between void entropy proxy and local expansion rate excess over cosmic mean"
+      },
+      {
+        "test_id": "cluster_entropy_profile_monotonicity",
+        "category": "physics_test",
+        "name": "Galaxy cluster entropy profile monotonicity",
+        "description": "Verifies that well-observed clusters show monotonically increasing entropy from core to outskirts due to merger shocks/dissipation (sealed prediction P2, paper KC3 survival check).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Chandra / XMM-Newton archival X-ray cluster data",
+        "prediction": "Monotonically rising entropy profiles in relaxed and merging clusters alike"
+      },
+      {
+        "test_id": "bao_entropy_gradient_coupling",
+        "category": "phenomenological",
+        "name": "BAO scale & coherent flow vs entropy gradient link",
+        "description": "Tests whether BAO scales and coherent matter flows show statistically significant dependence on inferred entropy gradients (paper KC4 survival check).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR1+ / SDSS BOSS",
+        "prediction": "Statistically significant correlation between entropy gradient proxies and BAO/flow residuals"
+      },
+      {
+        "test_id": "bh_accretion_entropy_dissipation",
+        "category": "phenomenological",
+        "name": "Black hole accretion disk entropy-boundary dissipation",
+        "description": "Checks for entropy-related dissipation or boundary effects in accretion disks and relativistic jets consistent with entropy-driven space-time compression (paper KC5 survival check).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "EHT / IXPE polarimetric observations",
+        "prediction": "Detectable entropy-driven dissipation signatures at space-time compression boundaries near black holes"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-tier=\"T3\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "T3 empirical survey paper deposited (DOI 10.6084/m9.figshare.28098299). Surveys CMB, cluster, void, and BH observational evidence for entropy-gradient-driven cosmic evolution. Five paper-level KCs and three sealed predictions registered; five new pipeline tests queued.",
+        "doi_refs": [
+          "10.6084/m9.figshare.28098299"
+        ],
+        "reasoning": "Roadmap should reflect the new T3 paper and the pipeline tests it spawns."
+      },
+      {
+        "page": "gap",
+        "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFCLASS solver remains the bottleneck: the T3 entropy-evidence paper (28098299) claims CMB polarization carries entropy-gradient imprints, but quantitative verification requires the EFCLASS Boltzmann chain to produce EFC-specific Cℓ spectra. Priority elevated.",
+        "doi_refs": [
+          "10.6084/m9.figshare.28098299"
+        ],
+        "reasoning": "Paper's CMB polarization claim (P3) and KC1 survival both depend on an EFCLASS run; this tightens the urgency of the theory gap."
+      }
+    ],
+    "implicit_consequences": [
+      "The CMB polarization sealed prediction P3 creates a direct dependency on the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver): without EFC-specific Cℓ predictions, P3 cannot be quantitatively tested against Planck PR4 or Simons Observatory data.",
+      "Sealed prediction P1 (void expansion–entropy correlation) overlaps with the DESI DR2 pipeline gap: the same void catalogues needed for the fsigma8 RSD rapid-response pipeline will supply the entropy-proxy vs expansion-rate test, so the two pipelines should be co-developed.",
+      "The paper's KC4 (BAO independence from entropy) is the mirror image of EFC's BAO-scale predictions; a single DESI full-shape analysis could simultaneously adjudicate KC4 here and the Stage-IV KC4 (done). Cross-referencing these avoids redundant work.",
+      "Cluster entropy-profile monotonicity (P2) is already well-supported by existing Chandra/XMM archival data; this could be the fastest sealed prediction to formally verify, giving a quick confidence boost.",
+      "The paper does not provide quantitative error budgets or statistical significance thresholds for its claims; converting its qualitative assertions into testable Δχ² or Bayesian-evidence thresholds is an implicit next step before any KC can move from 'Monitoring' to 'done'."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:16:31Z",
+    "applied_by_doi": "28098299"
+  }
 }

@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-cmb-constraints-null-results",
   "title": "Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results",
-  "description": "Implements two Energy-Flow Cosmology (EFC) mechanisms in CLASS\u2014(i) a smooth modification to the photon\u2013baryon coupling \\dot{\\kappa}(z) and (ii) a Gaussian-windowed, radiation-like background energy fraction \\epsilon at recombination\u2014and tests them against the Planck 2018 CMB TT spectrum with amplitude marginalization. A 2D parameter analysis shows both mechanisms yield null results once degeneracies with h are accounted for, turning an apparent 1D \u201cdetection\u201d into a parameter-degeneracy artifact.",
+  "description": "Implements two Energy-Flow Cosmology (EFC) mechanisms in CLASS—(i) a smooth modification to the photon–baryon coupling \\dot{\\kappa}(z) and (ii) a Gaussian-windowed, radiation-like background energy fraction \\epsilon at recombination—and tests them against the Planck 2018 CMB TT spectrum with amplitude marginalization. A 2D parameter analysis shows both mechanisms yield null results once degeneracies with h are accounted for, turning an apparent 1D “detection” into a parameter-degeneracy artifact.",
   "version": "1.0",
   "date": "2026-01-20",
   "doi": "10.6084/m9.figshare.31095466",
@@ -27,7 +27,7 @@
   "core_equations": {
     "kappa_dot_mod": {
       "latex": "\\dot{\\kappa}(z) = \\dot{\\kappa}_{\\rm std}(z)\\,\\big[1 + b\\,\\tanh\\big((z-700)/200\\big)\\big],\\quad b\\equiv \\text{boost}",
-      "description": "Smooth, localized modification to the photon\u2013baryon coupling rate around z\u2248700; b is scanned in percent to test deviations from standard Thomson scattering."
+      "description": "Smooth, localized modification to the photon–baryon coupling rate around z≈700; b is scanned in percent to test deviations from standard Thomson scattering."
     },
     "rho_EFC_window": {
       "latex": "\\rho_{\\rm EFC}(a) = \\epsilon\\,\\rho_{\\rm tot}(a)\\,\\exp\\!\\left[-\\frac{(a-a_t)^2}{2\\,\\Delta^2}\\right],\\quad w_{\\rm EFC}=\\tfrac{1}{3}",
@@ -39,25 +39,25 @@
     }
   },
   "key_results": {
-    "main_finding": "Both tested EFC mechanisms are rejected by Planck 2018 TT once parameter covariances are accounted for; the apparent 1D signal for \\epsilon vanishes in a 2D (\\epsilon, h) analysis with the minimum at \\epsilon\u22480.",
+    "main_finding": "Both tested EFC mechanisms are rejected by Planck 2018 TT once parameter covariances are accounted for; the apparent 1D signal for \\epsilon vanishes in a 2D (\\epsilon, h) analysis with the minimum at \\epsilon≈0.",
     "delta_chi2": -1.26,
     "significance_sigma": null,
     "parameters_tested": [
-      "kappa-dot boost b (%) around z\u2248700",
+      "kappa-dot boost b (%) around z≈700",
       "epsilon (fractional, radiation-like energy near recombination)",
       "h (H0/100 km s^-1 Mpc^-1)"
     ],
     "datasets_used": [
-      "Planck 2018 CMB TT spectrum (\u2113=2\u20132508, N=2507)"
+      "Planck 2018 CMB TT spectrum (ℓ=2–2508, N=2507)"
     ],
     "verdict": "FAIL"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: A joint full-likelihood TTTEEE+lensing analysis (Planck18+ACT+SPT), marginalizing over standard \u039bCDM parameters including h and \u03c4, prefers a non-zero kappa-dot boost at z\u2248700 with |boost| \u2265 0.3% and \u0394\u03c7\u00b2 \u2264 -9 (\u22483\u03c3) relative to \u039bCDM, replicated across independent high-\u2113 datasets\u2014this would falsify the EFC-R expectation that the CMB epoch is an L0\u2013L1 (standard-physics) regime.",
-    "KC2: The same joint analysis prefers a non-zero Gaussian-windowed, radiation-like component at recombination with |\u03b5| \u2265 0.5% and \u0394\u03c7\u00b2 \u2264 -9 after marginalizing h and other correlated parameters, and the result is stable under TT-only \u2192 TTTEEE and high-\u2113 dataset swaps\u2014this would falsify the EFC-R claim of no recombination-era modification.",
-    "KC3: A combined CMB (TTTEEE+lensing) + BAO + BBN + SNe fit requires a localized recombination-era excess radiation (w\u22481/3) at \u22653\u03c3 to simultaneously match r_s and D_A, with consistent posteriors across likelihood choices\u2014this would kill the EFC-R regime assignment that predicts standard physics during the CMB epoch.",
-    "KC4: Direct constraints on time-variation of the Thomson coupling from CMB anisotropies and damping-tail measurements detect a non-standard \\dot{\\kappa}(z) feature centered near z\u2248700 at \u22653\u03c3 independent of foreground modeling systematics\u2014this would falsify the EFC-R assumption of standard microphysics in the CMB regime."
+    "KC1: A joint full-likelihood TTTEEE+lensing analysis (Planck18+ACT+SPT), marginalizing over standard ΛCDM parameters including h and τ, prefers a non-zero kappa-dot boost at z≈700 with |boost| ≥ 0.3% and Δχ² ≤ -9 (≈3σ) relative to ΛCDM, replicated across independent high-ℓ datasets—this would falsify the EFC-R expectation that the CMB epoch is an L0–L1 (standard-physics) regime.",
+    "KC2: The same joint analysis prefers a non-zero Gaussian-windowed, radiation-like component at recombination with |ε| ≥ 0.5% and Δχ² ≤ -9 after marginalizing h and other correlated parameters, and the result is stable under TT-only → TTTEEE and high-ℓ dataset swaps—this would falsify the EFC-R claim of no recombination-era modification.",
+    "KC3: A combined CMB (TTTEEE+lensing) + BAO + BBN + SNe fit requires a localized recombination-era excess radiation (w≈1/3) at ≥3σ to simultaneously match r_s and D_A, with consistent posteriors across likelihood choices—this would kill the EFC-R regime assignment that predicts standard physics during the CMB epoch.",
+    "KC4: Direct constraints on time-variation of the Thomson coupling from CMB anisotropies and damping-tail measurements detect a non-standard \\dot{\\kappa}(z) feature centered near z≈700 at ≥3σ independent of foreground modeling systematics—this would falsify the EFC-R assumption of standard microphysics in the CMB regime."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -74,24 +74,24 @@
   "short_title": "EFC CMB Null Results",
   "type": "constraint_analysis",
   "status": "published",
-  "abstract_short": "Both \u03ba\u0307 and H(z) EFC mechanisms REJECTED against Planck 2018 CMB. 1D 'signal' was parameter degeneracy artifact. CMB epoch = L0-L1 regime where standard physics expected.",
+  "abstract_short": "Both κ̇ and H(z) EFC mechanisms REJECTED against Planck 2018 CMB. 1D 'signal' was parameter degeneracy artifact. CMB epoch = L0-L1 regime where standard physics expected.",
   "mechanisms_tested": {
     "kappa_dot": {
       "status": "REJECTED",
       "chi2_min": "boost=0%",
-      "delta_chi2": "+5.4 at \u00b11%"
+      "delta_chi2": "+5.4 at ±1%"
     },
     "Hz": {
       "status": "REJECTED",
-      "true_min": "\u03b5\u22480, \u0394\u03c7\u00b2\u2248-1",
-      "1D_artifact": "\u03b5\u2248+3% was degeneracy"
+      "true_min": "ε≈0, Δχ²≈-1",
+      "1D_artifact": "ε≈+3% was degeneracy"
     }
   },
   "key_lesson": "Parameter degeneracies can create false signals. Multi-dimensional analysis essential.",
   "regime_interpretation": {
     "cmb_epoch": "L0-L1 regime",
     "expected": "Standard physics dominant",
-    "result": "\u039bCDM provides best fit",
+    "result": "ΛCDM provides best fit",
     "implication": "Consistent with EFC-R framework"
   },
   "data": {
@@ -105,5 +105,77 @@
   "tools": [
     "CLASS v3.2.0 (modified)",
     "Python"
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper implements two recombination-era EFC mechanisms in CLASS and shows that, once h–epsilon covariances are properly accounted for with amplitude marginalization, Planck 2018 TT prefers no modification: both the kappa-dot boost and a Gaussian-windowed radiation-like epsilon at recombination collapse to null. It strengthens the EFC-R stance that the CMB epoch is an L0–L1 (standard-physics) regime and cautions against 1D scans that ignore parameter degeneracies.",
+    "graph_insights": [
+      "No linked prior tests share these Planck TT observables in the graph, so adding explicit TT null-result tests will close a traceability gap.",
+      "The paper sits at the EFC-R validation node, linking early-universe mechanism prototypes (kappa-dot, epsilon) to Planck18 constraints and highlighting h–epsilon degeneracy edges."
+    ],
+    "kc_addressed": [
+      "KC1",
+      "KC2",
+      "KC4"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "planck2018_tt_kappadot_tanh_null_result",
+        "category": "physics_test",
+        "name": "Planck18 TT: Smooth kappa-dot(z) tanh boost yields null preference after amplitude marginalization",
+        "description": "Evaluates whether a smooth ±(0.3–3)% tanh boost to the Thomson coupling around z≈700 improves the Planck18 TT fit beyond noise when amplitude-marginalized.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 PR3 TT power spectrum",
+        "prediction": "EFC-R predicts no statistically significant preference for recombination-era microphysics modifications; best fit should be near zero boost with Δχ² consistent with noise."
+      },
+      {
+        "test_id": "planck2018_tt_eps_gaussian_with_h_marg_null",
+        "category": "physics_test",
+        "name": "Planck18 TT: Gaussian-windowed radiation-like epsilon at recombination collapses after (epsilon,h) 2D analysis",
+        "description": "Checks that an apparent 1D TT preference for epsilon vanishes when jointly varying epsilon and h with amplitude marginalization, yielding a minimum near epsilon≈0 and Δχ² consistent with noise.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 PR3 TT power spectrum",
+        "prediction": "EFC-R predicts no robust TT-only improvement from a localized radiation-like background at recombination once correlated parameters (notably h) are marginalized."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "whitepaper",
+        "target": "data-kc-id=\"KC2\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "A TT-only, amplitude-marginalized CLASS analysis of a Gaussian-windowed, radiation-like epsilon at recombination finds that the apparent 1D preference disappears in a joint (epsilon, h) treatment, with the minimum at epsilon≈0 and Δχ² consistent with noise (DOI:10.6084/m9.figshare.31095466). Full KC2 requires TTTEEE+lensing+high-ℓ; TT results are supportive but not decisive.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31095466"
+        ],
+        "reasoning": "The paper directly tests the KC2 mechanism on TT and finds a null once degeneracies are accounted for; it informs but does not fulfill the KC2 joint-likelihood requirement."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "TT-only constraints on a smooth kappa-dot(z) boost centered at z≈700 yield a null result under amplitude marginalization (DOI:10.6084/m9.figshare.31095466). KC4 demands ≥3σ detections robust to foreground/high-ℓ choices; current TT evidence supports standard microphysics at recombination.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31095466"
+        ],
+        "reasoning": "This specifically targets time-variation of the Thomson coupling and finds no evidence in TT; it contextually supports KC4 without completing the full multi-spectrum requirement."
+      }
+    ],
+    "implicit_consequences": [
+      "Any prior 1D epsilon hints from TT are methodological artifacts of neglecting h covariance and should be retired from consideration.",
+      "Priority for full-likelihood TTTEEE+lensing and high-ℓ replication remains; EFCLASS development is still required to scale these tests beyond TT."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC1",
+      "KC2",
+      "KC4"
+    ]
+  }
 }

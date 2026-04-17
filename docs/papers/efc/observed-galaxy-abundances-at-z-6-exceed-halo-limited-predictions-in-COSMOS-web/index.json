@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "cosmos-galaxy-abundances-z6",
   "title": "Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions in COSMOS-Web",
-  "description": "Using the COSMOS2025 JWST COSMOS-Web catalog, this paper measures the abundance of massive galaxies (log M*/Msun > 9) at z > 5 and compares them to both forward-modeled expectations and the absolute upper limit implied by the halo mass function assuming \u03b5 = 1 baryon-to-star conversion. The authors find that at z > 8, observed galaxy counts exceed even the halo-limited cap by factors of 3\u201310, with the tension increasing with redshift and remaining robust to extreme assumptions about contamination, mass systematics, and cosmic variance.",
+  "description": "Using the COSMOS2025 JWST COSMOS-Web catalog, this paper measures the abundance of massive galaxies (log M*/Msun > 9) at z > 5 and compares them to both forward-modeled expectations and the absolute upper limit implied by the halo mass function assuming ε = 1 baryon-to-star conversion. The authors find that at z > 8, observed galaxy counts exceed even the halo-limited cap by factors of 3–10, with the tension increasing with redshift and remaining robust to extreme assumptions about contamination, mass systematics, and cosmic variance.",
   "version": "1.0",
   "date": "2026-01-13",
   "doi": "10.6084/m9.figshare.31059964",
@@ -25,15 +25,15 @@
   "core_equations": {
     "star_formation_efficiency": {
       "latex": "\\epsilon \\equiv \\frac{M_*}{f_b \\, M_h} \\le 1",
-      "description": "Definition of the baryon-to-star conversion efficiency, where M_* is stellar mass, M_h is halo mass, and f_b is the cosmic baryon fraction; \u03b5 = 1 sets the maximal (halo-limited) case used to define an absolute upper bound."
+      "description": "Definition of the baryon-to-star conversion efficiency, where M_* is stellar mass, M_h is halo mass, and f_b is the cosmic baryon fraction; ε = 1 sets the maximal (halo-limited) case used to define an absolute upper bound."
     },
     "halo_limited_cap": {
       "latex": "n_{\\rm gal}(>M_*, z) \\;\\le\\; n_{\\rm halo}(>M_h, z)\\quad\\text{for}\\quad M_* = f_b \\, M_h",
-      "description": "Cumulative number density of galaxies cannot exceed the cumulative halo abundance when assuming 100% conversion of baryons into stars (\u03b5 = 1); used as the absolute ceiling for observed galaxy counts."
+      "description": "Cumulative number density of galaxies cannot exceed the cumulative halo abundance when assuming 100% conversion of baryons into stars (ε = 1); used as the absolute ceiling for observed galaxy counts."
     }
   },
   "key_results": {
-    "main_finding": "At z > 8, observed galaxy abundances (log M*/Msun > 9) in COSMOS-Web exceed the \u03b5 = 1 halo-limited cap by factors of 3\u201310, with the discrepancy strengthening toward higher redshift and remaining under extreme robustness tests.",
+    "main_finding": "At z > 8, observed galaxy abundances (log M*/Msun > 9) in COSMOS-Web exceed the ε = 1 halo-limited cap by factors of 3–10, with the discrepancy strengthening toward higher redshift and remaining under extreme robustness tests.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -41,7 +41,7 @@
       "feedback strength (assumed minimal at epsilon=1)",
       "duty cycle effects",
       "redshift evolution of abundance excess",
-      "specific sSFR\u2013redshift correlation robustness",
+      "specific sSFR–redshift correlation robustness",
       "photometric contamination and mass systematics",
       "cosmic variance impact"
     ],
@@ -55,7 +55,7 @@
   "kill_criteria": [
     "KC1: Secure spectroscopy for a representative (>=70%) subsample of z > 8 candidates shows that interlopers reduce the number density of log M*/Msun > 9 galaxies by >=3x such that counts fall below the epsilon=1 halo cap across all relevant masses.",
     "KC2: Re-analysis with alternative SPS models (including nebular emission, dust laws, and IMFs) reduces inferred stellar masses at z > 8 by >=0.5 dex, bringing cumulative abundances under the halo-limited ceiling.",
-    "KC3: Updated completeness, selection, and Eddington-bias corrections from end-to-end forward modeling decrease the z > 8 number densities by factors of 3\u201310, fully reconciling measurements with the halo-limit.",
+    "KC3: Updated completeness, selection, and Eddington-bias corrections from end-to-end forward modeling decrease the z > 8 number densities by factors of 3–10, fully reconciling measurements with the halo-limit.",
     "KC4: Independent wide-area JWST fields (e.g., PRIMER, JADES, CEERS) fail to reproduce the reported excess; a combined, cosmic-variance-weighted meta-analysis yields abundances consistent with the halo cap at z > 8.",
     "KC5: Revised high-z halo mass functions or cosmological parameters (e.g., from CMB/lensing) increase the halo-limited abundance cap by >=10x at z > 8, eliminating the need for epsilon > 1 to match observed counts."
   ],
@@ -72,7 +72,7 @@
   "short_title": "COSMOS Galaxy Excess z>6",
   "type": "observational_analysis",
   "status": "published",
-  "abstract_short": "8,447 massive galaxies (log M*/Msun > 9) at z > 5 from COSMOS-Web exceed \u039bCDM halo-limited predictions.",
+  "abstract_short": "8,447 massive galaxies (log M*/Msun > 9) at z > 5 from COSMOS-Web exceed ΛCDM halo-limited predictions.",
   "data": {
     "sample_size": 8447,
     "mass_cut": "log M*/Msun > 9",
@@ -108,5 +108,60 @@
       "name": "log_ssfr",
       "description": "Specific SFR = SFR/M* (log Gyr^-1)"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "COSMOS-Web (COSMOS2025) reports a robust 3–10x excess of massive (log M*/Msun > 9) galaxies at z > 8 above the halo-limited (ε=1) cap, strengthening with redshift and persisting under extreme systematics. For EFC this is a high-leverage, model-agnostic constraint on early halo growth and baryon conversion that we must ingest as a benchmark testbed; it does not close an EFC KC but it sharpens the need for sealed predictions and a replication pipeline tied to our high-z HMF and sSFR modeling.",
+    "graph_insights": [
+      "No existing validation tests in the graph share these observables; this is a new, uncovered constraint linking JWST, halo mass function, baryon conversion efficiency, and sSFR.",
+      "The paper forms a new evidence hub around early-universe galaxy abundances and LambdaCDM tension, suggesting new validation edges from EFC’s high-z HMF and star-formation modules."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "cosmosweb_zgt8_massive_counts_vs_halo_cap",
+        "category": "consistency_check",
+        "name": "COSMOS-Web z>8 massive galaxy abundances vs halo-limited cap",
+        "description": "Replicate and track the reported 3–10x excess of log M*/Msun > 9 galaxies at z>8 over the ε=1 halo-abundance ceiling using COSMOS2025, including completeness and Eddington-bias corrections.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "COSMOS2025 JWST COSMOS-Web catalog (DOI:10.6084/m9.figshare.31059964)",
+        "prediction": "TBD (no sealed EFC prediction yet)"
+      },
+      {
+        "test_id": "cosmosweb_highz_ssfr_trend",
+        "category": "phenomenological",
+        "name": "COSMOS-Web high-z sSFR trend and correlation with abundance excess",
+        "description": "Assess the elevated specific star formation rates and their correlation with the abundance excess at z>6 as reported (e.g., Spearman correlation), providing a joint constraint for early galaxy formation in EFC.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "COSMOS2025 JWST COSMOS-Web catalog (DOI:10.6084/m9.figshare.31059964)",
+        "prediction": "TBD (no sealed EFC prediction yet)"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "section=jwst-early-universe",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Add COSMOS-Web (COSMOS2025) T2 empirical benchmark: massive galaxy abundances at z>8 exceed the ε=1 halo-limited cap by 3–10x; instantiate replication and constraint tests (abundance vs halo cap; sSFR trend) and prioritize generating EFC sealed predictions.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31059964"
+        ],
+        "reasoning": "This introduces a high-leverage, model-agnostic early-universe constraint with no existing EFC validation coverage; it should be a roadmap item for prediction and replication."
+      }
+    ],
+    "implicit_consequences": [
+      "EFC must quantify how energy-flow dynamics modify early halo growth and/or the baryon-to-star mapping to avoid requiring ε > 1 at z > 8.",
+      "Prioritizes delivering EFCLASS Boltzmann/halo-mass-function predictions at high z to enable sealed comparisons to JWST counts and sSFR.",
+      "A cross-field meta-analysis pipeline (PRIMER/JADES/CEERS) should be planned to test field-to-field robustness analogous to the paper’s KC4.",
+      "Neutrino mass effects that suppress small-scale power would exacerbate the tension, tightening EFC’s allowed Σmν within early-structure constraints."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }

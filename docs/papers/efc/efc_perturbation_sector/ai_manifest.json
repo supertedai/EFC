@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-16",
+  "generated": "2026-04-17",
   "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "efc_perturbation_sector.pdf",
@@ -19,7 +19,7 @@
   "files": [
     {
       "path": "CITATION.cff",
-      "bytes": 414
+      "bytes": 412
     },
     {
       "path": "LICENSE",
@@ -27,15 +27,19 @@
     },
     {
       "path": "README.md",
-      "bytes": 374
+      "bytes": 1770
     },
     {
       "path": "citations.bib",
       "bytes": 256
     },
     {
+      "path": "data/parameters.json",
+      "bytes": 2010
+    },
+    {
       "path": "efc-perturbation-sector.jsonld",
-      "bytes": 540
+      "bytes": 353
     },
     {
       "path": "efc_perturbation_engine.py",
@@ -50,12 +54,16 @@
       "bytes": 19310
     },
     {
+      "path": "examples/demo_efc_perturbation_sector.py",
+      "bytes": 3731
+    },
+    {
       "path": "horndeski_consistency.py",
       "bytes": 9932
     },
     {
       "path": "index.json",
-      "bytes": 529
+      "bytes": 4188
     },
     {
       "path": "lensing.py",
@@ -63,7 +71,7 @@
     },
     {
       "path": "metadata.json",
-      "bytes": 459
+      "bytes": 1284
     },
     {
       "path": "schema.json",
@@ -74,6 +82,14 @@
       "bytes": 29260
     },
     {
+      "path": "src/__init__.py",
+      "bytes": 60
+    },
+    {
+      "path": "src/efc_perturbation_sector.py",
+      "bytes": 5448
+    },
+    {
       "path": "valley_robustness_test.py",
       "bytes": 6033
     },
@@ -82,6 +98,6 @@
       "bytes": 887
     }
   ],
-  "n_files": 17,
+  "n_files": 21,
   "n_pdfs": 2
 }

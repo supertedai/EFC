@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "structural-constraints-cluster-merger",
   "title": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
-  "description": "Reproducible constraint study testing whether Energy-Flow Cosmology (EFC) entropy-gradient formulations can reproduce Bullet Cluster lensing geometry without particle dark matter. The paper falsifies purely local gradient couplings (0/42 pass) and shows that a non-local, component-sensitive response with L0\u2248200 kpc and strong collisionless weighting (w\u224820) can conditionally match the observed mass\u2013gas separation, yielding falsifiable a priori predictions for MACS J0025 and Abell 520.",
+  "description": "Reproducible constraint study testing whether Energy-Flow Cosmology (EFC) entropy-gradient formulations can reproduce Bullet Cluster lensing geometry without particle dark matter. The paper falsifies purely local gradient couplings (0/42 pass) and shows that a non-local, component-sensitive response with L0≈200 kpc and strong collisionless weighting (w≈20) can conditionally match the observed mass–gas separation, yielding falsifiable a priori predictions for MACS J0025 and Abell 520.",
   "version": "1.0.0",
   "date": "2026-01-28",
   "doi": "10.6084/m9.figshare.31173850",
@@ -15,7 +15,7 @@
     "non-local coupling",
     "component-sensitive weighting",
     "kappa-map geometry",
-    "Rankine\u2013Hugoniot compression",
+    "Rankine–Hugoniot compression",
     "mixing timescale"
   ],
   "author": {
@@ -25,11 +25,11 @@
   "core_equations": {
     "Geff_local": {
       "latex": "G_{\\mathrm{eff}} = 1 + \\alpha \\, L_0 \\, \\left\\lvert \\nabla \\ln \\Sigma_b \\right\\rvert",
-      "description": "Local entropy-gradient coupling (v1.0) that modifies the effective gravitational response from the baryonic surface density \u03a3_b via its local logarithmic gradient."
+      "description": "Local entropy-gradient coupling (v1.0) that modifies the effective gravitational response from the baryonic surface density Σ_b via its local logarithmic gradient."
     },
     "kappa_EFC": {
       "latex": "\\kappa_{\\mathrm{EFC}} = \\dfrac{\\Sigma_b \\, G_{\\mathrm{eff}}}{\\Sigma_c}",
-      "description": "EFC-predicted convergence map from baryons with modified effective coupling; \u03a3_c is the critical surface density for lensing."
+      "description": "EFC-predicted convergence map from baryons with modified effective coupling; Σ_c is the critical surface density for lensing."
     },
     "q_grad": {
       "latex": "q_{\\nabla} = \\left\\lvert \\nabla \\ln \\Sigma_b \\right\\rvert",
@@ -41,7 +41,7 @@
     },
     "q_mix": {
       "latex": "q = (1 - \\beta)\\, q_{\\Delta} + \\beta \\, q_{\\nabla} \\quad (\\beta = 0.3 \\; \\text{fixed})",
-      "description": "Component-blended structural signal combining center and edge responses with fixed mixing parameter \u03b2."
+      "description": "Component-blended structural signal combining center and edge responses with fixed mixing parameter β."
     },
     "qbar_nonlocal": {
       "latex": "\\bar{q} = G(L_0) * q",
@@ -53,11 +53,11 @@
     },
     "r_Mach": {
       "latex": "r(M) = \\dfrac{(\\gamma + 1) M^2}{(\\gamma - 1) M^2 + 2} \\qquad (\\gamma = 5/3)",
-      "description": "Rankine\u2013Hugoniot compression ratio as a function of Mach number M for the intracluster medium."
+      "description": "Rankine–Hugoniot compression ratio as a function of Mach number M for the intracluster medium."
     },
     "tau_mix": {
       "latex": "\\tau_{\\mathrm{mix}} = \\eta \\; \\dfrac{L_0}{\\sigma_v}",
-      "description": "Mixing timescale tying non-local scale L0 to a velocity dispersion \u03c3_v with a single global parameter \u03b7."
+      "description": "Mixing timescale tying non-local scale L0 to a velocity dispersion σ_v with a single global parameter η."
     },
     "w_saturating": {
       "latex": "w(M,t) = r(M) \\, \\Bigl(1 + \\dfrac{t}{\\tau_{\\mathrm{mix}}}\\Bigr)",
@@ -65,20 +65,20 @@
     }
   },
   "key_results": {
-    "main_finding": "Local gradient coupling is falsified (0/42 pass); a non-local, component-sensitive formulation conditionally reproduces Bullet Cluster geometry with best parameters \u03b1=1.5, L0\u2248200 kpc, w\u224820.",
+    "main_finding": "Local gradient coupling is falsified (0/42 pass); a non-local, component-sensitive formulation conditionally reproduces Bullet Cluster geometry with best parameters α=1.5, L0≈200 kpc, w≈20.",
     "delta_chi2": 6.88,
     "significance_sigma": null,
     "parameters_tested": [
-      "\u03b1",
+      "α",
       "L0",
       "w",
-      "\u03b2 (fixed=0.3)",
-      "\u03b7 (global=66.2)",
-      "c (L0=c\u00d7Rcore, c=0.8)",
-      "\u03c3v (fixed=500 km/s)"
+      "β (fixed=0.3)",
+      "η (global=66.2)",
+      "c (L0=c×Rcore, c=0.8)",
+      "σv (fixed=500 km/s)"
     ],
     "datasets_used": [
-      "Synthetic \u03ba-maps reconstructed from published Bullet Cluster baryonic distributions",
+      "Synthetic κ-maps reconstructed from published Bullet Cluster baryonic distributions",
       "A priori predictions for MACS J0025 (synthetic validation)",
       "A priori predictions for Abell 520 (geometry-only synthetic validation)"
     ],
@@ -87,21 +87,21 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Using locked parameters (\u03b7=66.2, \u03b1=1.5, \u03b2=0.3, c=0.8 so L0=0.8 Rcore, \u03c3v=500 km/s), the model will reproduce \u03ba-peak geometry in MACS J0025 with w\u224823.9 and L0\u2248120 kpc: two peaks, each within 50 kpc of the galaxy centroids and offset >100 kpc from gas; peak ratio between 0.9 and 1.2.",
+      "statement": "Using locked parameters (η=66.2, α=1.5, β=0.3, c=0.8 so L0=0.8 Rcore, σv=500 km/s), the model will reproduce κ-peak geometry in MACS J0025 with w≈23.9 and L0≈120 kpc: two peaks, each within 50 kpc of the galaxy centroids and offset >100 kpc from gas; peak ratio between 0.9 and 1.2.",
       "falsifiable_by": "Reconstruction from real shear catalogs and X-ray maps; fail if any criterion is violated."
     },
     {
       "id": "P2",
-      "statement": "With the same locked parameters, the model will reproduce \u03ba-peak geometry in Abell 520 with w\u224828.2 and L0\u2248160 kpc under the same geometric criteria.",
+      "statement": "With the same locked parameters, the model will reproduce κ-peak geometry in Abell 520 with w≈28.2 and L0≈160 kpc under the same geometric criteria.",
       "falsifiable_by": "Joint lensing (shear) and X-ray analysis on real data; fail if peak count, offsets, proximity, or peak ratio criteria are not met without parameter retuning."
     }
   ],
   "kill_criteria": [
-    "KC1: Bullet Cluster re-analysis on real shear catalogs cannot achieve two \u03ba peaks within 50 kpc of galaxy centroids while maintaining >100 kpc offsets from gas using the v1.1 non-local model (\u03b1=1.5, \u03b2=0.3) even after calibration on Bullet; this falsifies the non-local EFC formulation for mergers.",
-    "KC2: Using locked global parameters (\u03b7=66.2, \u03b1=1.5, \u03b2=0.3, c=0.8, \u03c3v=500 km/s) and no per-cluster retuning, both MACS J0025 and Abell 520 fail any of the four geometry criteria (peak count=2, gas offset>100 kpc, galaxy proximity<50 kpc, peak ratio 0.9\u20131.2) on real data; this rejects the working hypothesis.",
-    "KC3: Best fits for any tested merger require collisionless weighting w\u22641 (gas-coupling stronger than collisionless) or w\u226550, or require L0 outside [0.3, 1.2]\u00d7Rcore; such requirements are deemed physically implausible and kill the model.",
-    "KC4: Reconstructed time-series (systems at different merger stages) demands w(M,t) decreasing with increasing Mach number or favors an exponential mixing law decisively (e.g., \u0394\u03c7\u00b2>10 over the saturating law) across multiple systems; this contradicts the stated physical motivation.",
-    "KC5: The local gradient model (Geff \u221d |\u2207ln\u03a3b|) passes the four geometry criteria in any well-observed dissociative cluster using real data; this overturns Claim BC-001 and invalidates the primary constraint of the paper."
+    "KC1: Bullet Cluster re-analysis on real shear catalogs cannot achieve two κ peaks within 50 kpc of galaxy centroids while maintaining >100 kpc offsets from gas using the v1.1 non-local model (α=1.5, β=0.3) even after calibration on Bullet; this falsifies the non-local EFC formulation for mergers.",
+    "KC2: Using locked global parameters (η=66.2, α=1.5, β=0.3, c=0.8, σv=500 km/s) and no per-cluster retuning, both MACS J0025 and Abell 520 fail any of the four geometry criteria (peak count=2, gas offset>100 kpc, galaxy proximity<50 kpc, peak ratio 0.9–1.2) on real data; this rejects the working hypothesis.",
+    "KC3: Best fits for any tested merger require collisionless weighting w≤1 (gas-coupling stronger than collisionless) or w≥50, or require L0 outside [0.3, 1.2]×Rcore; such requirements are deemed physically implausible and kill the model.",
+    "KC4: Reconstructed time-series (systems at different merger stages) demands w(M,t) decreasing with increasing Mach number or favors an exponential mixing law decisively (e.g., Δχ²>10 over the saturating law) across multiple systems; this contradicts the stated physical motivation.",
+    "KC5: The local gradient model (Geff ∝ |∇lnΣb|) passes the four geometry criteria in any well-observed dissociative cluster using real data; this overturns Claim BC-001 and invalidates the primary constraint of the paper."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -109,7 +109,7 @@
     {
       "id": "efc-cluster-geometry-code",
       "doi": "10.6084/m9.figshare.31173850",
-      "role": "Analysis code and synthetic \u03ba-map reconstructions used for the constraint study"
+      "role": "Analysis code and synthetic κ-map reconstructions used for the constraint study"
     }
   ],
   "files": {
@@ -122,7 +122,7 @@
   "short_title": "EFC Cluster Merger Constraints",
   "type": "constraint_study",
   "status": "published",
-  "abstract_short": "Local entropy-gradient couplings falsified (0/42 pass). Required: non-local L\u2080~200 kpc, collisionless weighting w~20.",
+  "abstract_short": "Local entropy-gradient couplings falsified (0/42 pass). Required: non-local L₀~200 kpc, collisionless weighting w~20.",
   "predictions": [
     {
       "cluster": "Bullet",
@@ -144,6 +144,128 @@
     }
   ],
   "limitations": [
-    "Synthetic \u03ba-maps, not real FITS data"
-  ]
+    "Synthetic κ-maps, not real FITS data"
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper definitively falsifies local entropy-gradient couplings for cluster merger geometry (0/42 pass) and establishes the minimal structural requirements (non-local smoothing L0≈200 kpc, component-sensitive weighting w≈20) for any viable EFC formulation to reproduce Bullet Cluster κ-map offsets. It is a T2 constraint study on synthetic reconstructions — not observational validation — so it narrows the EFC parameter space and generates two sealed, falsifiable predictions (MACS J0025, Abell 520) but does not close any Stage-IV kill criterion or theory gap. The w(M,t) saturating mixing model with one global parameter η=66.2 is a significant theoretical commitment that future real-shear-catalog tests will either confirm or kill.",
+    "graph_insights": [
+      "No existing papers or validation tests connect to this paper in the graph — it opens a completely new cluster-merger branch in the EFC knowledge structure. The concepts 'Bullet Cluster', 'cluster mergers', 'gravitational lensing', 'kappa-map geometry', and 'Rankine–Hugoniot compression' are all new graph nodes, meaning the EFC validation network now extends into astrophysical structure formation phenomenology for the first time.",
+      "The 'non-local coupling' and 'component-sensitive weighting' concepts introduced here will become hub nodes once the MACS J0025 and Abell 520 follow-up papers are deposited — these should be pre-registered as planned graph edges.",
+      "The 'entropy-gradient gravity' node now has its first empirical constraint edge (falsification of local coupling), which strengthens the graph's evidential structure by showing EFC engages with adversarial tests rather than only seeking confirmations.",
+      "The 'mixing timescale' concept connects implicitly to any future EFC treatment of galaxy cluster relaxation, cool-core vs. non-cool-core classification, and ICM thermodynamics — these are downstream graph paths that don't yet exist but will become relevant if the merger program succeeds."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "bullet_local_gradient_falsification",
+        "category": "framework_constraint",
+        "name": "Bullet Cluster local gradient coupling (v1.0)",
+        "description": "Tests whether Geff ∝ |∇lnΣb| local coupling can reproduce κ-peak geometry offset from X-ray gas in the Bullet Cluster using synthetic baryonic reconstructions. 42 parameter combinations scanned.",
+        "result": "COLLAPSED",
+        "status": "failed",
+        "data_source": "Synthetic κ-maps from published Bullet Cluster baryonic parameters (Clowe+ 2006, Bradač+ 2006)",
+        "prediction": "EFC local gradient model predicts κ peaks at gas positions, not galaxy positions — fails all 42 combinations."
+      },
+      {
+        "test_id": "bullet_nonlocal_component_sensitive",
+        "category": "framework_constraint",
+        "name": "Bullet Cluster non-local component-sensitive coupling (v1.1)",
+        "description": "Tests whether non-local smoothing with component-sensitive collisionless weighting (v1.1 formulation) reproduces two κ peaks within 50 kpc of galaxy centroids with >100 kpc gas offset. Best fit: α=1.5, L0≈200 kpc, w≈20.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Synthetic κ-maps from published Bullet Cluster baryonic parameters",
+        "prediction": "Non-local v1.1 with α=1.5, β=0.3, L0≈200 kpc, w≈20 reproduces observed κ-peak geometry conditionally."
+      },
+      {
+        "test_id": "bullet_w_mt_saturating_model",
+        "category": "phenomenological",
+        "name": "Saturating w(M,t) mixing timescale model",
+        "description": "Tests that a single-parameter (η=66.2) saturating mixing law for collisionless weighting w as a function of Mach number and post-merger time produces physically consistent w values across merger stages. Exponential alternative disfavored on physical grounds.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Bullet Cluster Rankine–Hugoniot compression parameters",
+        "prediction": "w saturates at high Mach number; exponential law over-predicts w for strong shocks."
+      },
+      {
+        "test_id": "macs_j0025_geometry_prediction",
+        "category": "planned_pipeline",
+        "name": "MACS J0025 κ-peak geometry (sealed prediction P1)",
+        "description": "Locked parameters (η=66.2, α=1.5, β=0.3, c=0.8, σv=500 km/s) predict w≈23.9 reproducing κ-peak geometry in MACS J0025. Awaits real shear catalog validation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "MACS J0025 real shear catalogs (Bradač+ 2008)",
+        "prediction": "Two κ peaks within 50 kpc of galaxy centroids, >100 kpc from gas, peak ratio 0.9–1.2, with w≈23.9."
+      },
+      {
+        "test_id": "abell_520_geometry_prediction",
+        "category": "planned_pipeline",
+        "name": "Abell 520 κ-peak geometry (sealed prediction P2)",
+        "description": "Locked parameters predict w≈28.2 and L0≈160 kpc reproducing κ-peak geometry in Abell 520. Awaits real shear catalog validation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Abell 520 real shear catalogs (Clowe+ 2012, Jee+ 2014)",
+        "prediction": "Two κ peaks within 50 kpc of galaxy centroids, >100 kpc from gas, peak ratio 0.9–1.2, with w≈28.2 and L0≈160 kpc."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "cluster-mergers",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Local entropy-gradient coupling definitively falsified for dissociative mergers (0/42, DOI 10.6084/m9.figshare.31173850). Non-local v1.1 formulation conditionally passes Bullet Cluster geometry. Two sealed predictions registered for MACS J0025 (w≈23.9) and Abell 520 (w≈28.2). Real shear catalog validation is next gate.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31173850"
+        ],
+        "reasoning": "Paper establishes first systematic cluster-merger constraint results for EFC; roadmap should reflect that local coupling is dead and the viable formulation is now structurally specified."
+      },
+      {
+        "page": "gap",
+        "target": "theory-gaps",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "NEW GAP: Non-local kernel physical derivation — the L0≈200 kpc smoothing scale and collisionless weighting w≈20 are phenomenologically constrained but lack first-principles derivation from the EFC action. The w(M,t) saturating law (η=66.2) needs micro-physical justification from entropy-flow dynamics.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31173850"
+        ],
+        "reasoning": "The paper explicitly notes this is a constraint study, not a derivation. The non-local kernel and w parameter are fitted phenomenology — deriving them from EFC fundamentals is now a clear open theory gap."
+      },
+      {
+        "page": "whitepaper",
+        "target": "bullet-cluster-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Bullet Cluster analysis (DOI 10.6084/m9.figshare.31173850) rules out local Geff ∝ |∇lnΣb| formulations and identifies non-local component-sensitive coupling (α=1.5, L0≈0.8Rcore, w≈20) as the minimal viable structure. Two out-of-sample predictions sealed for MACS J0025 and Abell 520.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31173850"
+        ],
+        "reasoning": "Whitepaper Bullet Cluster discussion should reflect that EFC now has a concrete, constrained formulation for mergers rather than a vague claim."
+      },
+      {
+        "page": "elevator",
+        "target": "cluster-mergers-bullet",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Bullet Cluster: local gradient gravity ruled out; non-local formulation with specific structural parameters conditionally reproduces lensing geometry. Sealed predictions for two additional mergers await real-data testing.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31173850"
+        ],
+        "reasoning": "Elevator pitch should note that EFC confronted the Bullet Cluster challenge directly and has a constrained answer with falsifiable follow-ups."
+      }
+    ],
+    "implicit_consequences": [
+      "The non-local kernel scale L0≈200 kpc and collisionless weighting w≈20 impose hard constraints on any future EFC Lagrangian derivation — the action must naturally produce a smoothing scale of order 0.8×Rcore and a coupling ratio that exponentially favors collisionless over collisional baryons post-shock.",
+      "The saturating w(M,t) model with global η=66.2 ties cluster-merger phenomenology to Rankine–Hugoniot shock physics, implying EFC's entropy-gradient formalism must interface cleanly with standard hydrodynamic shock jump conditions — this is a non-trivial consistency requirement not yet verified in the Boltzmann solver (EFCLASS).",
+      "Falsification of local gradient coupling (v1.0) means any EFC cosmological simulation code must implement non-local convolution kernels for gravitational response — purely local mesh-based gravity solvers are insufficient, constraining future N-body/hydro implementations.",
+      "The locked-parameter predictions for MACS J0025 and Abell 520 create a two-strike kill structure: if both fail on real shear catalogs, the entire non-local merger formulation is dead. If one passes and one fails, the w(M,t) universality claim is killed while the kernel structure may survive with modifications.",
+      "Abell 520's anomalous dark core (mass peak coincident with gas, no galaxies) is the hardest test — the paper's prediction of w≈28.2 for that system implicitly bets that the dark core is reproduced by very strong collisionless weighting, which is physically counterintuitive for a system where mass appears to track gas. This is where the model is most likely to fail.",
+      "The β=0.3 fixed split between Laplacian (center) and gradient (edge) signals has no first-principles justification yet; any shift in β would propagate into all derived w and L0 values, creating a hidden systematic that the paper acknowledges but does not resolve."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }

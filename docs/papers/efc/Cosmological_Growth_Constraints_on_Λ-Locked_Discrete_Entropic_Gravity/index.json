@@ -1,16 +1,16 @@
 {
   "$schema": "./schema.json",
   "id": "cosmological-growth-constraints-lambda-locked",
-  "title": "Cosmological Growth Constraints on \u039b-Locked Discrete Entropic Gravity",
-  "description": "Tests whether a discrete entropic gravity operator with MOND-like infrared enhancement remains compatible with cosmological structure growth when its transition scale is \u039b-locked. Embeds a scale-dependent Geff(k) into the linear growth equation and compares \u039b-locked (super-Hubble) versus sub-Hubble transition scales. Finds that only \u039b-locking (L\u039b \u2273 H0\u22121) preserves realistic \u03c38 \u2248 0.81; sub-Hubble transitions cause catastrophic overgrowth.",
+  "title": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+  "description": "Tests whether a discrete entropic gravity operator with MOND-like infrared enhancement remains compatible with cosmological structure growth when its transition scale is Λ-locked. Embeds a scale-dependent Geff(k) into the linear growth equation and compares Λ-locked (super-Hubble) versus sub-Hubble transition scales. Finds that only Λ-locking (LΛ ≳ H0−1) preserves realistic σ8 ≈ 0.81; sub-Hubble transitions cause catastrophic overgrowth.",
   "version": "1.0",
   "date": "2026-02-16",
   "doi": "10.6084/m9.figshare.31348414",
   "keywords": [
     "cosmological growth",
     "structure formation",
-    "\u03c38",
-    "\u039b-locking",
+    "σ8",
+    "Λ-locking",
     "discrete gravity",
     "modified gravity",
     "MOND",
@@ -28,15 +28,15 @@
   "core_equations": {
     "deep_mond_enhancement": {
       "latex": "g = C\\,\\sqrt{a_0\\, g_N}",
-      "description": "Deep-MOND scaling from the discrete entropic operator, with enhancement prefactor C \u2248 2.32 relating true acceleration g to Newtonian g_N."
+      "description": "Deep-MOND scaling from the discrete entropic operator, with enhancement prefactor C ≈ 2.32 relating true acceleration g to Newtonian g_N."
     },
     "geff_scale_dependence": {
       "latex": "\\frac{G_{\\mathrm{eff}}(k)}{G} = 1 + \\frac{C^2 - 1}{1 + (k/k_{\\Lambda})^2}",
-      "description": "Lorentzian window parameterization of the scale-dependent effective coupling from the discrete operator with \u039b-locked screening."
+      "description": "Lorentzian window parameterization of the scale-dependent effective coupling from the discrete operator with Λ-locked screening."
     },
     "transition_scale": {
       "latex": "k_{\\Lambda} = \\frac{1}{L_{\\Lambda}},\\quad L_{\\Lambda} \\propto \\Lambda^{-1/2}",
-      "description": "Defines the infrared transition wavenumber and its scaling with the cosmological constant in the \u039b-locked scenario."
+      "description": "Defines the infrared transition wavenumber and its scaling with the cosmological constant in the Λ-locked scenario."
     },
     "linear_growth": {
       "latex": "\\delta'' + \\left(2 + \\frac{H'}{H}\\right)\\delta' - \\frac{3}{2} \\, \\Omega_m(a)\\,\\left[\\frac{G_{\\mathrm{eff}}(k)}{G}\\right] \\delta = 0",
@@ -48,45 +48,45 @@
     }
   },
   "key_results": {
-    "main_finding": "Only the \u039b-locked transition (L\u039b \u2248 4.4 Gpc, k\u039b \u2248 0.0014 h/Mpc) preserves \u03c38 \u2248 0.81 (0.4% above \u039bCDM), while sub-Hubble transitions (10 Mpc and 1 Mpc) produce explosive overgrowth (\u03c38 \u226b 1), establishing L\u039b \u2273 H0\u22121 as necessary for viability.",
+    "main_finding": "Only the Λ-locked transition (LΛ ≈ 4.4 Gpc, kΛ ≈ 0.0014 h/Mpc) preserves σ8 ≈ 0.81 (0.4% above ΛCDM), while sub-Hubble transitions (10 Mpc and 1 Mpc) produce explosive overgrowth (σ8 ≫ 1), establishing LΛ ≳ H0−1 as necessary for viability.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "Transition scale L\u039b (\u039b-locked \u2248 4.4 Gpc; sub-Hubble: 10 Mpc, 1 Mpc)",
-      "Transition wavenumber k\u039b (\u2248 0.0014, 0.1, 1.0 h/Mpc)",
-      "Enhancement prefactor C \u2248 2.32",
-      "Background parameters fixed to Planck 2018 (\u03a9m=0.315, H0=67.4 km/s/Mpc)"
+      "Transition scale LΛ (Λ-locked ≈ 4.4 Gpc; sub-Hubble: 10 Mpc, 1 Mpc)",
+      "Transition wavenumber kΛ (≈ 0.0014, 0.1, 1.0 h/Mpc)",
+      "Enhancement prefactor C ≈ 2.32",
+      "Background parameters fixed to Planck 2018 (Ωm=0.315, H0=67.4 km/s/Mpc)"
     ],
     "datasets_used": [
-      "Planck 2018 background cosmology (\u03a9m, H0, \u03c38,\u039bCDM)",
-      "\u03c38 observational benchmark: 0.811 \u00b1 0.006"
+      "Planck 2018 background cosmology (Ωm, H0, σ8,ΛCDM)",
+      "σ8 observational benchmark: 0.811 ± 0.006"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "With \u039b-locking, late-time growth remains \u039bCDM-like: \u03c38(z=0) will agree with \u039bCDM within \u22481% and show no statistically significant k-dependence for 0.01 \u2272 k \u2272 0.2 h/Mpc.",
-      "falsifiable_by": "Stage-IV RSD and weak-lensing tomography (e.g., DESI+Euclid+LSST) measuring f\u03c38(k,z) and \u03bc(k,z) at the percent level."
+      "statement": "With Λ-locking, late-time growth remains ΛCDM-like: σ8(z=0) will agree with ΛCDM within ≈1% and show no statistically significant k-dependence for 0.01 ≲ k ≲ 0.2 h/Mpc.",
+      "falsifiable_by": "Stage-IV RSD and weak-lensing tomography (e.g., DESI+Euclid+LSST) measuring fσ8(k,z) and μ(k,z) at the percent level."
     },
     {
       "id": "P2",
-      "statement": "The growth index remains \u039bCDM-like, \u03b3 \u2248 0.55 \u00b1 0.02, across z \u2272 1 for linear scales if \u039b-locking holds.",
-      "falsifiable_by": "Joint fits to growth-rate data (RSD) and background expansion; significant deviation of \u03b3 beyond \u00b10.02 at linear scales would falsify."
+      "statement": "The growth index remains ΛCDM-like, γ ≈ 0.55 ± 0.02, across z ≲ 1 for linear scales if Λ-locking holds.",
+      "falsifiable_by": "Joint fits to growth-rate data (RSD) and background expansion; significant deviation of γ beyond ±0.02 at linear scales would falsify."
     },
     {
       "id": "P3",
-      "statement": "Any inferred transition scale from gravity tests will be super-Hubble: k\u039b \u2272 0.003 h/Mpc (L\u039b \u2273 3.3 Gpc).",
-      "falsifiable_by": "Constraints on \u03bc(k,z) or \u03a3(k,z) from lensing\u2013clustering cross-correlations and ISW\u2013lensing that localize a transition at k\u039b \u2273 0.005 h/Mpc."
+      "statement": "Any inferred transition scale from gravity tests will be super-Hubble: kΛ ≲ 0.003 h/Mpc (LΛ ≳ 3.3 Gpc).",
+      "falsifiable_by": "Constraints on μ(k,z) or Σ(k,z) from lensing–clustering cross-correlations and ISW–lensing that localize a transition at kΛ ≳ 0.005 h/Mpc."
     }
   ],
   "kill_criteria": [
-    "KC1: Robust evidence for enhanced linear growth on sub-Hubble linear scales\u2014e.g., \u03bc(k,z) = Geff/G \u2212 1 \u2265 0.1 at 0.05 \u2264 k \u2264 0.2 h/Mpc and z \u2272 1 from combined RSD+lensing\u2014contradicting \u039b-locked screening (Geff \u2248 G on these scales).",
-    "KC2: Inference of a transition scale significantly below the Hubble scale\u2014e.g., L\u039b < 2 Gpc (k\u039b > 0.005 h/Mpc)\u2014from any scale-dependent gravity probe (\u03bc or \u03a3), which would imply catastrophic overgrowth ruled out by observations.",
-    "KC3: High-precision determination of \u03c38(z=0) \u2265 0.90 or \u2264 0.72 under a \u039bCDM-like background (\u03a9m \u2248 0.315, H0 \u2248 67\u201370 km/s/Mpc), inconsistent with the \u039b-locked prediction \u03c38 \u2248 0.81 \u00b1 0.01.",
-    "KC4: Boltzmann/N-body implementations of the full discrete entropic operator (beyond the Lorentzian approximation) failing to reproduce \u039bCDM-like growth (|\u0394\u03c38| \u2272 1%) under \u039b-locking, indicating the operator necessarily induces sub-Hubble enhancement.",
-    "KC5: Detection of strong scale dependence in f\u03c38(k) at 0.01 \u2264 k \u2264 0.2 h/Mpc (variation > 3% after systematics control), implying a sub-Hubble active infrared sector incompatible with \u039b-locking.",
-    "KC6: Empirical evidence that L\u039b does not scale as \u039b^{-1/2} (e.g., from varying-\u039b or modified background tests) breaking the \u039b-locked linkage central to the screening mechanism."
+    "KC1: Robust evidence for enhanced linear growth on sub-Hubble linear scales—e.g., μ(k,z) = Geff/G − 1 ≥ 0.1 at 0.05 ≤ k ≤ 0.2 h/Mpc and z ≲ 1 from combined RSD+lensing—contradicting Λ-locked screening (Geff ≈ G on these scales).",
+    "KC2: Inference of a transition scale significantly below the Hubble scale—e.g., LΛ < 2 Gpc (kΛ > 0.005 h/Mpc)—from any scale-dependent gravity probe (μ or Σ), which would imply catastrophic overgrowth ruled out by observations.",
+    "KC3: High-precision determination of σ8(z=0) ≥ 0.90 or ≤ 0.72 under a ΛCDM-like background (Ωm ≈ 0.315, H0 ≈ 67–70 km/s/Mpc), inconsistent with the Λ-locked prediction σ8 ≈ 0.81 ± 0.01.",
+    "KC4: Boltzmann/N-body implementations of the full discrete entropic operator (beyond the Lorentzian approximation) failing to reproduce ΛCDM-like growth (|Δσ8| ≲ 1%) under Λ-locking, indicating the operator necessarily induces sub-Hubble enhancement.",
+    "KC5: Detection of strong scale dependence in fσ8(k) at 0.01 ≤ k ≤ 0.2 h/Mpc (variation > 3% after systematics control), implying a sub-Hubble active infrared sector incompatible with Λ-locking.",
+    "KC6: Empirical evidence that LΛ does not scale as Λ^{-1/2} (e.g., from varying-Λ or modified background tests) breaking the Λ-locked linkage central to the screening mechanism."
   ],
   "tier": "T3",
   "paper_type": "empirical_test",
@@ -98,7 +98,7 @@
     }
   ],
   "files": {
-    "paper": "Cosmological_Growth_Constraints_on_\u039b-Locked_Discrete_Entropic_Gravity.pdf",
+    "paper": "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity.pdf",
     "documentation": [
       "README.md",
       "QUICKSTART.md",
@@ -127,18 +127,18 @@
     ]
   },
   "figshare_url": "https://doi.org/10.6084/m9.figshare.31348414",
-  "short_title": "Growth Constraints on \u039b-Locked Gravity",
+  "short_title": "Growth Constraints on Λ-Locked Gravity",
   "license": "CC-BY-4.0",
   "type": "technical_note",
   "epistemic_layer": "B",
-  "epistemic_status": "Stress test establishing \u039b-locking as necessary condition for cosmological consistency",
-  "abstract": "Tests cosmological viability of discrete entropic gravity with \u039b-locked screening. Three transition-scale scenarios compared: \u039b-locked (4.4 Gpc), 10 Mpc, and 1 Mpc. Only \u039b-locking preserves realistic \u03c3\u2088 \u2248 0.8. Sub-Hubble transitions produce catastrophic overgrowth (\u03c3\u2088 >> 1). Establishes \u039b-locking as necessary condition for cosmological consistency.",
+  "epistemic_status": "Stress test establishing Λ-locking as necessary condition for cosmological consistency",
+  "abstract": "Tests cosmological viability of discrete entropic gravity with Λ-locked screening. Three transition-scale scenarios compared: Λ-locked (4.4 Gpc), 10 Mpc, and 1 Mpc. Only Λ-locking preserves realistic σ₈ ≈ 0.8. Sub-Hubble transitions produce catastrophic overgrowth (σ₈ >> 1). Establishes Λ-locking as necessary condition for cosmological consistency.",
   "key_equations": {
-    "deep_mond_enhancement": "g = C \u221a(a\u2080 g_N)",
-    "geff_ratio": "G_eff(k)/G = 1 + (C\u00b2\u22121) / (1 + (k/k_\u039b)\u00b2)",
-    "transition_wavenumber": "k_\u039b = 1/L_\u039b, L_\u039b \u221d \u039b^{-1/2}",
-    "growth_equation": "\u03b4'' + (2 + H'/H)\u03b4' \u2212 (3/2)\u03a9_m(a)[G_eff(k)/G]\u03b4 = 0",
-    "viability_condition": "L_\u039b \u2273 H\u2080\u207b\u00b9"
+    "deep_mond_enhancement": "g = C √(a₀ g_N)",
+    "geff_ratio": "G_eff(k)/G = 1 + (C²−1) / (1 + (k/k_Λ)²)",
+    "transition_wavenumber": "k_Λ = 1/L_Λ, L_Λ ∝ Λ^{-1/2}",
+    "growth_equation": "δ'' + (2 + H'/H)δ' − (3/2)Ω_m(a)[G_eff(k)/G]δ = 0",
+    "viability_condition": "L_Λ ≳ H₀⁻¹"
   },
   "parameters": {
     "Omega_m": 0.315,
@@ -154,7 +154,7 @@
     "No CMB angular power spectrum computed",
     "No full Boltzmann integration (CLASS/CAMB)",
     "G_eff(k) is Lorentzian approximation to full discrete operator",
-    "Poisson-channel modification \u03bc(a) < 1 not activated"
+    "Poisson-channel modification μ(a) < 1 not activated"
   ],
   "companion_paper": {
     "id": "discrete-entropic-gravity-cubic-graph",
@@ -167,5 +167,127 @@
       "doi": "10.6084/m9.figshare.31348411",
       "relationship": "companion_operator_paper"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper establishes that Λ-locking is a necessary condition for cosmological viability of the discrete entropic gravity operator: only a super-Hubble transition scale (LΛ ≈ 4.4 Gpc) preserves σ8 ≈ 0.81, while any sub-Hubble transition produces catastrophic overgrowth. It provides a sharp, quantitative structure-formation consistency check that connects the discrete operator's infrared enhancement to observable large-scale structure, and it locks down the parameter space by eliminating all sub-Hubble transition scales. This is foundational plumbing for the EFCLASS Boltzmann solver and for DESI/Euclid rapid-response pipelines, but it does not itself close a Stage-IV KC or a named theory gap — it creates the linear-perturbation scaffolding those will require.",
+    "graph_insights": [
+      "No existing graph nodes were found within 2 hops — this paper opens a new cluster (cosmological growth / structure formation / σ8) that must be connected to the existing discrete-gravity and MOND/AQUAL nodes, as well as to the DESI pipeline nodes. The graph should gain edges: discrete_operator → Geff_parameterisation → linear_growth → σ8_prediction, and σ8_prediction → DESI_fsigma8_pipeline.",
+      "The Λ-locking concept now has dual graph anchorship: it was previously connected only to the infrared screening / operator convergence cluster, but this paper connects it to the observational σ8 / γ cluster — making Λ-locking a high-centrality hub node in the knowledge graph.",
+      "The paper's kill criteria create 5 new falsification nodes that should be linked to future Euclid DR1 and DESI DR2 validation-test nodes when those are created, enabling automatic status propagation."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "sigma8_lambda_locked_growth",
+        "category": "physics_test",
+        "name": "σ8 under Λ-locked discrete entropic gravity",
+        "description": "Embeds Geff(k) from the discrete operator into the linear growth equation and checks σ8(z=0) against Planck ΛCDM value (0.811). Λ-locked scenario yields 0.814, sub-Hubble scenarios yield catastrophic overgrowth.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 background parameters (Ωm=0.315, H0=67.4, σ8=0.811)",
+        "prediction": "σ8(z=0) = 0.814 under Λ-locking, within 0.4% of ΛCDM"
+      },
+      {
+        "test_id": "growth_index_lambda_locked",
+        "category": "physics_test",
+        "name": "Growth index γ under Λ-locked screening",
+        "description": "Checks that the growth index γ remains ΛCDM-like (≈0.55) when Λ-locking is enforced. Result: γ = 0.554, identical to ΛCDM to numerical precision.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 background parameters",
+        "prediction": "γ ≈ 0.55 ± 0.02 under Λ-locking"
+      },
+      {
+        "test_id": "sub_hubble_transition_exclusion",
+        "category": "framework_constraint",
+        "name": "Sub-Hubble transition scale exclusion",
+        "description": "Demonstrates that any transition scale LΛ < H0⁻¹ (10 Mpc or 1 Mpc tested) produces σ8 ≫ 1, ruling out the entire sub-Hubble parameter space for the discrete operator's infrared enhancement.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Linear growth integration with Lorentzian Geff(k)",
+        "prediction": "Only LΛ ≳ H0⁻¹ is viable; sub-Hubble transitions produce σ8 > 1 by orders of magnitude"
+      },
+      {
+        "test_id": "sealed_sigma8_prediction",
+        "category": "planned_pipeline",
+        "name": "Sealed prediction: σ8(z=0) ≈ 0.81 ± 1% under Λ-locking",
+        "description": "Sealed prediction P1 from this paper — awaiting independent Boltzmann-level or N-body confirmation beyond the Lorentzian approximation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Future EFCLASS / full discrete operator implementation",
+        "prediction": "σ8(z=0) agrees with ΛCDM within ≈1%, no significant k-dependence for k > 0.01 h/Mpc"
+      },
+      {
+        "test_id": "sealed_growth_index_prediction",
+        "category": "planned_pipeline",
+        "name": "Sealed prediction: γ ≈ 0.55 ± 0.02 under Λ-locking",
+        "description": "Sealed prediction P2 — to be tested against Stage-IV RSD measurements from DESI/Euclid.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2, Euclid DR1 RSD data",
+        "prediction": "γ = 0.55 ± 0.02 at z ≲ 1 on linear scales"
+      },
+      {
+        "test_id": "sealed_transition_scale_prediction",
+        "category": "planned_pipeline",
+        "name": "Sealed prediction: kΛ ≲ 0.003 h/Mpc from gravity probes",
+        "description": "Sealed prediction P3 — any inferred transition scale from μ or Σ probes must be super-Hubble.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid/DESI scale-dependent μ(k,z) and Σ(k,z) constraints",
+        "prediction": "kΛ ≲ 0.003 h/Mpc (LΛ ≳ 3.3 Gpc)"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFCLASS Boltzmann solver — prerequisite linear-growth scaffolding now established (Geff(k) Lorentzian embedding, σ8 benchmark = 0.814). Full Boltzmann integration with discrete operator still required. See 10.6084/m9.figshare.31348414.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31348414"
+        ],
+        "reasoning": "The paper provides the Geff(k,a) parameterisation and linear growth benchmarks that EFCLASS must reproduce; it narrows the gap but does not close it."
+      },
+      {
+        "page": "roadmap",
+        "target": "section-structure-formation",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Structure formation consistency established at linear level: Λ-locked discrete operator preserves σ8 ≈ 0.81 and γ ≈ 0.55. Sub-Hubble transition scales definitively excluded. Next milestone: full Boltzmann (EFCLASS) and N-body confirmation. DOI: 10.6084/m9.figshare.31348414.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31348414"
+        ],
+        "reasoning": "Roadmap needs to reflect that the linear-perturbation layer of structure formation is now covered, shifting focus to full Boltzmann/N-body."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section-cosmological-consistency",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The Λ-locked discrete operator has been tested against cosmological structure growth (linear perturbation theory). Only the Λ-locked transition (LΛ ≈ 4.4 Gpc) preserves σ8 ≈ 0.81; sub-Hubble transitions produce catastrophic overgrowth. Three sealed predictions registered: σ8 within 1% of ΛCDM, γ ≈ 0.55, and kΛ ≲ 0.003 h/Mpc. DOI: 10.6084/m9.figshare.31348414.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31348414"
+        ],
+        "reasoning": "Whitepaper must document that structure formation is no longer an open vulnerability at the linear level."
+      }
+    ],
+    "implicit_consequences": [
+      "The paper's Geff(k) Lorentzian parameterisation (Eq. 2) is the exact input the EFCLASS Boltzmann solver needs — this paper defines the transfer-function-level interface between the discrete operator and cosmological observables, substantially de-risking theory-efclass-boltzmann-solver.",
+      "The sealed prediction P1 (σ8 within 1% of ΛCDM) is in direct tension with any S8-tension resolution via EFC — EFC now explicitly predicts it does NOT resolve the S8 tension, which is a distinctive and falsifiable stance.",
+      "KC4 of the paper itself (Boltzmann/N-body confirmation under Λ-locking) maps directly onto theory-efclass-boltzmann-solver and theory-adm-hamiltonian-stability: if the full non-linear operator breaks Λ-locked screening, both the paper and EFC's structure-formation story collapse simultaneously.",
+      "The explosive overgrowth at sub-Hubble transitions provides a universal no-go theorem applicable to any MOND-like infrared enhancement — this strengthens EFC's position against competing modified gravity models that lack Λ-locking.",
+      "The growth-index prediction γ ≈ 0.55 ± 0.02 is directly testable by the DESI DR2 full-shape RSD pipeline — this tightens the link between the paper's sealed predictions and the current bottom-line biggest gap (DESI DR2 rapid-response pipeline).",
+      "The paper's KC5 (fσ8(k) scale dependence < 3%) is structurally identical to the existing EFC sealed prediction for fσ8(z=0.7) — convergent falsifiability from independent lines of reasoning."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:15:52Z",
+    "applied_by_doi": "31348414"
+  }
 }

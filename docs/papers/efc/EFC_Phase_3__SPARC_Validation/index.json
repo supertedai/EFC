@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-phase3-sparc-validation",
   "title": "EFC Phase 3: SPARC Validation",
-  "description": "Unbinned maximum-likelihood fit with intrinsic scatter of the EFC screening form ln \u03bc = k ln(1 + g\u2020/gbar) to 174 SPARC galaxies (3264 points). The analysis finds k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, and \u03c3_int \u2248 0.14 dex, and\u2014using an independently obtained aG = 0.094 \u00b1 0.01\u2014infers a cross-scale phase-gain parameter C = 4.4 \u00b1 0.6. This establishes empirical compatibility of EFC with the RAR and provides a quantitative cross-scale consistency check.",
+  "description": "Unbinned maximum-likelihood fit with intrinsic scatter of the EFC screening form ln μ = k ln(1 + g†/gbar) to 174 SPARC galaxies (3264 points). The analysis finds k = 0.415 ± 0.029, g† = (2.51 ± 0.60) × 10^-10 m/s^2, and σ_int ≈ 0.14 dex, and—using an independently obtained aG = 0.094 ± 0.01—infers a cross-scale phase-gain parameter C = 4.4 ± 0.6. This establishes empirical compatibility of EFC with the RAR and provides a quantitative cross-scale consistency check.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31224538",
@@ -48,28 +48,28 @@
     }
   },
   "key_results": {
-    "main_finding": "EFC\u2019s screening form provides an excellent empirical fit to the SPARC RAR with k = 0.415 \u00b1 0.029, g\u2020 = (2.51 \u00b1 0.60) \u00d7 10^-10 m/s^2, and \u03c3_int \u2248 0.14 dex, and\u2014combined with aG = 0.094 \u00b1 0.01\u2014implies a cross-scale phase-gain C = 4.4 \u00b1 0.6.",
+    "main_finding": "EFC’s screening form provides an excellent empirical fit to the SPARC RAR with k = 0.415 ± 0.029, g† = (2.51 ± 0.60) × 10^-10 m/s^2, and σ_int ≈ 0.14 dex, and—combined with aG = 0.094 ± 0.01—implies a cross-scale phase-gain C = 4.4 ± 0.6.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
       "k (screening exponent)",
-      "g\u2020 (transition acceleration scale)",
-      "\u03c3_int (intrinsic scatter in ln \u03bc)",
+      "g† (transition acceleration scale)",
+      "σ_int (intrinsic scatter in ln μ)",
       "a_G (universal coupling; independent input)",
       "C = k/a_G (phase-gain parameter; derived)"
     ],
     "datasets_used": [
-      "SPARC (Lelli et al. 2016): 174 galaxies, 3264 points, quality Q \u2264 2, inclination > 30\u00b0"
+      "SPARC (Lelli et al. 2016): 174 galaxies, 3264 points, quality Q ≤ 2, inclination > 30°"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: In an expanded SPARC-quality sample (>= 300 galaxies) analyzed with the same unbinned MLE and intrinsic-scatter framework, the EFC screening form ln \u03bc = k ln(1 + g\u2020/gbar) exhibits a statistically significant residual trend with gbar (nonzero residual slope) at >5\u03c3, indicating the functional form is incompatible with the RAR.",
-    "KC2: The asymptotic low-acceleration slope measured from stacked or binned RAR data is inconsistent with the EFC prediction d(ln \u03bc)/d(ln gbar) = \u2212k by >5\u03c3 when k is obtained from the global fit.",
-    "KC3: Independent H0-scale analyses converge on a universal coupling a_G that is inconsistent with 0.094 \u00b1 0.01 by >5\u03c3 and lead to mutually incompatible values of C = k/a_G between the RAR fit and H0-inferred a_G (no single C fits both within 3\u03c3), breaking EFC\u2019s cross-scale consistency.",
-    "KC4: Across multiple high-quality rotation-curve datasets, model selection decisively favors an alternative parametric form (e.g., \u0394AIC > 20) that cannot be recast as ln \u03bc \u221d ln(1 + g\u2020/gbar) with a single global k and g\u2020.",
-    "KC5: The inferred transition scale g\u2020 is found to correlate strongly with galaxy properties (e.g., central surface density) with |\u03c1| > 0.7, contradicting the assumption of a single global acceleration scale in the EFC screening ansatz."
+    "KC1: In an expanded SPARC-quality sample (>= 300 galaxies) analyzed with the same unbinned MLE and intrinsic-scatter framework, the EFC screening form ln μ = k ln(1 + g†/gbar) exhibits a statistically significant residual trend with gbar (nonzero residual slope) at >5σ, indicating the functional form is incompatible with the RAR.",
+    "KC2: The asymptotic low-acceleration slope measured from stacked or binned RAR data is inconsistent with the EFC prediction d(ln μ)/d(ln gbar) = −k by >5σ when k is obtained from the global fit.",
+    "KC3: Independent H0-scale analyses converge on a universal coupling a_G that is inconsistent with 0.094 ± 0.01 by >5σ and lead to mutually incompatible values of C = k/a_G between the RAR fit and H0-inferred a_G (no single C fits both within 3σ), breaking EFC’s cross-scale consistency.",
+    "KC4: Across multiple high-quality rotation-curve datasets, model selection decisively favors an alternative parametric form (e.g., ΔAIC > 20) that cannot be recast as ln μ ∝ ln(1 + g†/gbar) with a single global k and g†.",
+    "KC5: The inferred transition scale g† is found to correlate strongly with galaxy properties (e.g., central surface density) with |ρ| > 0.7, contradicting the assumption of a single global acceleration scale in the EFC screening ansatz."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -87,7 +87,7 @@
     {
       "id": "core-lock",
       "doi": "10.6084/m9.figshare.31223503",
-      "role": "Mathematical foundation (G_eff = G0 exp(a_G \u0394\u03a6))"
+      "role": "Mathematical foundation (G_eff = G0 exp(a_G ΔΦ))"
     }
   ],
   "files": {
@@ -105,11 +105,11 @@
     "reference": "Lelli et al. 2016",
     "galaxies": 174,
     "data_points": 3264,
-    "quality_cuts": "Q \u2264 2, inclination > 30\u00b0"
+    "quality_cuts": "Q ≤ 2, inclination > 30°"
   },
   "screening_form": {
-    "equation": "\u03bc = (1 + g\u2020/g_bar)^k",
-    "log_form": "ln \u03bc = k \u00d7 ln(1 + g\u2020/g_bar)"
+    "equation": "μ = (1 + g†/g_bar)^k",
+    "log_form": "ln μ = k × ln(1 + g†/g_bar)"
   },
   "fit_results": {
     "k": {
@@ -121,13 +121,13 @@
     "g_dagger": {
       "value": 2.51e-10,
       "error": 6e-11,
-      "unit": "m/s\u00b2",
+      "unit": "m/s²",
       "description": "Transition acceleration scale",
       "source": "SPARC fit"
     },
     "sigma_int": {
       "value": 0.33,
-      "unit": "ln \u03bc",
+      "unit": "ln μ",
       "dex": 0.14,
       "description": "Intrinsic scatter",
       "source": "SPARC fit"
@@ -138,7 +138,7 @@
       "value": 0.094,
       "error": 0.01,
       "description": "Universal coupling coefficient",
-      "source": "H\u2080 analysis (independent)"
+      "source": "H₀ analysis (independent)"
     },
     "C": {
       "value": 4.4,
@@ -179,5 +179,71 @@
       "doi": "10.6084/m9.figshare.31223503",
       "relationship": "mathematical foundation"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper establishes that EFC’s screening ansatz ln μ = k ln(1 + g†/gbar) provides an excellent, low-scatter empirical description of the SPARC RAR and yields a concrete cross-scale link C = k/a_G when combined with an independently measured a_G from the H0 regime. It anchors EFC’s galaxy-scale phenomenology with calibrated parameters (k, g†, σ_int) and sets up falsifiable RAR-specific kill criteria for future, larger samples and cross-dataset model selection. It does not resolve theory gaps but strengthens the empirical bridge between galaxy dynamics and cosmological coupling.",
+    "graph_insights": [
+      "Introduces the first direct EFC linkage to SPARC/RAR and rotation curves in the graph, connecting EFC’s screening function node to empirical galaxy dynamics.",
+      "Defines new parameter nodes (k, g†, C) with edges to both galaxy-scale (SPARC) and cosmological-scale (a_G from H0) observables, tightening cross-domain constraints."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "sparc_rar_unbinned_mle_screening_form",
+        "category": "phenomenological",
+        "name": "SPARC RAR fit of EFC screening form (unbinned MLE with intrinsic scatter)",
+        "description": "Validate that ln μ = k ln(1 + g†/gbar) provides a global fit to the SPARC RAR with low intrinsic scatter and extract k and g†.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC rotation curves (174 galaxies, 3264 points)",
+        "prediction": "Empirical compatibility of ln μ = k ln(1 + g†/gbar) with a single global k and g† and σ_int consistent with ~0.13–0.15 dex."
+      },
+      {
+        "test_id": "cross_scale_consistency_c_from_rar_and_h0",
+        "category": "consistency_check",
+        "name": "Cross-scale consistency: C = k/a_G from SPARC + H0-scale a_G",
+        "description": "Using k from the SPARC RAR fit and independently derived a_G from H0-scale analyses, verify that the implied phase-gain parameter C is well-constrained and free of tension.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC RAR (this paper) + independent H0-scale a_G",
+        "prediction": "A single C should be consistent across galaxy and H0 scales (no >3σ inconsistency)."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "whitepaper",
+        "target": "section=galaxy_rar_screening",
+        "action": "update_text",
+        "new_text": "An unbinned MLE fit with intrinsic scatter of the EFC screening form ln μ = k ln(1 + g†/gbar) to SPARC (174 galaxies; 3264 points) yields k = 0.415 ± 0.029, g† = (2.51 ± 0.60) × 10^-10 m s^-2, and σ_int ≈ 0.14 dex. Combining with an independently inferred a_G = 0.094 ± 0.01 (H0-regime) implies a cross-scale phase-gain C = 4.4 ± 0.6, establishing empirical cross-scale compatibility within the EFC projection framework.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31224538"
+        ],
+        "reasoning": "The paper provides new calibrated parameters and a cross-scale link that belong in the formal exposition of EFC’s galaxy-scale phenomenology."
+      },
+      {
+        "page": "roadmap",
+        "target": "milestone=phase3_sparc_validation",
+        "action": "update_text",
+        "new_text": "Phase 3 SPARC validation completed: EFC screening ansatz fits the SPARC RAR with low intrinsic scatter and yields a cross-scale C consistent with the independently measured a_G from H0-scale analyses.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31224538"
+        ],
+        "reasoning": "This is a concrete milestone demonstrating galaxy-scale empirical compatibility and cross-scale consistency."
+      }
+    ],
+    "implicit_consequences": [
+      "The measured k implies a low-acceleration RAR slope d(ln μ)/d(ln gbar) = −0.415 ± 0.029, defining a clear target for independent slope extractions (stacked/binned) to test KC2-style failures.",
+      "The inferred global g† distinct from MOND’s a0 provides a discriminant in model selection across high-quality rotation-curve datasets.",
+      "C = 4.4 ± 0.6 now serves as a cross-scale anchor; future updates to a_G or galaxy-scale fits must maintain a single consistent C to avoid KC3-type cross-scale inconsistency.",
+      "The achieved σ_int ≈ 0.14 dex indicates EFC’s screening form does not inflate RAR scatter, supporting viability for broader samples and enabling KC5-style correlation checks of g† against galaxy properties."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:16:31Z",
+    "applied_by_doi": "31224538"
+  }
 }

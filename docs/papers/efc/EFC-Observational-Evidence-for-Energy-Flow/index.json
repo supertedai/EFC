@@ -1,8 +1,8 @@
 {
   "$schema": "./schema.json",
   "id": "EFC-Observational-Evidence-for-Energy-Flow",
-  "title": "EFC \u2014 Observational Evidence for Energy Flow",
-  "description": "Qualitative synthesis arguing that multiple cosmological observations\u2014redshift-based expansion, CMB anisotropies, gravitational lensing, and galaxy-cluster energetics\u2014are consistent with a hypothesis that energy flow shapes space-time. The piece highlights evidence across scales, from cosmic voids to dark-matter halo edges, and outlines observational fronts where the energy-flow picture could be further tested.",
+  "title": "EFC — Observational Evidence for Energy Flow",
+  "description": "Qualitative synthesis arguing that multiple cosmological observations—redshift-based expansion, CMB anisotropies, gravitational lensing, and galaxy-cluster energetics—are consistent with a hypothesis that energy flow shapes space-time. The piece highlights evidence across scales, from cosmic voids to dark-matter halo edges, and outlines observational fronts where the energy-flow picture could be further tested.",
   "version": "1.0",
   "date": "2024-12-25",
   "doi": "10.6084/m9.figshare.28098365",
@@ -37,7 +37,7 @@
       "intra-cluster medium temperatures",
       "galaxy cluster velocity dispersions",
       "cosmic void dynamics",
-      "halo\u2013dark matter\u2013baryon interactions",
+      "halo–dark matter–baryon interactions",
       "large-scale energy redistribution across low-density regions"
     ],
     "datasets_used": [
@@ -52,12 +52,12 @@
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: High-precision SNe Ia and BAO distance\u2013redshift measurements jointly indicate no accelerated expansion or energy redistribution consistent with the proposed energy-flow interpretation across low-density regions.",
-    "KC2: CMB temperature and polarization data (including ISW cross-correlations with large-scale structure) are fully explained by standard \u039bCDM initial conditions with no residuals requiring energy-flow-driven contributions to structure seeding or evolution.",
-    "KC3: Weak-lensing shear and convergence statistics across tomographic bins match GR+\u039bCDM predictions without systematic residuals, eliminating the need for additional energy-flow-induced curvature effects.",
+    "KC1: High-precision SNe Ia and BAO distance–redshift measurements jointly indicate no accelerated expansion or energy redistribution consistent with the proposed energy-flow interpretation across low-density regions.",
+    "KC2: CMB temperature and polarization data (including ISW cross-correlations with large-scale structure) are fully explained by standard ΛCDM initial conditions with no residuals requiring energy-flow-driven contributions to structure seeding or evolution.",
+    "KC3: Weak-lensing shear and convergence statistics across tomographic bins match GR+ΛCDM predictions without systematic residuals, eliminating the need for additional energy-flow-induced curvature effects.",
     "KC4: X-ray and SZ observations of the intra-cluster medium show energy budgets, temperature profiles, and turbulence fully accounted for by gravitational infall/feedback alone, with no evidence of sustained non-gravitational energy flows.",
     "KC5: Peculiar velocity fields in and around cosmic voids reveal no coherent inflow/outflow patterns beyond standard gravitational evacuation, contradicting the proposed balancing role of energy flow.",
-    "KC6: Observations of halo edges and dark matter\u2013baryon interactions (e.g., rotation curves and halo profiles) show no stabilizing effects attributable to energy flow beyond conventional dynamics."
+    "KC6: Observations of halo edges and dark matter–baryon interactions (e.g., rotation curves and halo profiles) show no stabilizing effects attributable to energy flow beyond conventional dynamics."
   ],
   "tier": "T3",
   "paper_type": "empirical_test",
@@ -71,5 +71,52 @@
   "pdf": "EFC-Observational-Evidence-for-Energy-Flow.pdf",
   "md": "EFC-Observational-Evidence-for-Energy-Flow.md",
   "layer": "docs",
-  "type": "paper"
+  "type": "paper",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "Qualitative synthesis arguing that multiple observables (redshift, CMB anisotropies, lensing, ICM energetics, void/halo phenomena) are consistent with the EFC energy-flow framing. It mirrors our Stage‑IV kill criteria across those fronts but contributes no new sealed predictions or quantitative validation. Net effect: codifies observational fronts and strengthens the narrative motivation without closing gaps or actions.",
+    "graph_insights": [
+      "The node bridges CMB, lensing, ICM, voids, and halo edges but has no 1–2 hop quantitative validation links, marking it as an aggregator/narrative hub.",
+      "No shared-observable validation tests are attached, underscoring the need to connect this synthesis to existing pipelines (ISW, weak lensing, void kinematics)."
+    ],
+    "kc_addressed": [
+      "KC1",
+      "KC2",
+      "KC3",
+      "KC4",
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "whitepaper",
+        "target": "section=Empirical Motivation",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Added a cross-scale observational synthesis (DOI: 10.6084/m9.figshare.28098365) summarizing qualitative consistency of energy-flow framing with redshift trends, CMB anisotropies, weak lensing, and cluster energetics, and explicitly enumerating corresponding falsification fronts.",
+        "doi_refs": [
+          "10.6084/m9.figshare.28098365"
+        ],
+        "reasoning": "The paper provides a qualitative integrative overview directly relevant to the whitepaper’s empirical motivation section without altering KC statuses."
+      }
+    ],
+    "implicit_consequences": [
+      "Commits EFC to quantify how energy-flow terms map onto SNe Ia+BAO distance calibrations if accelerated expansion is cited as supporting evidence.",
+      "Highlights need for an explicit EFC ISW prediction and LSS cross-correlation pipeline to turn the qualitative claim into a test.",
+      "Raises expectation for void peculiar-velocity profiles and coherence scales as a decisive discriminant for KC5.",
+      "Suggests lensing shear/convergence residual shapes across tomographic bins should be specified under EFC rather than asserted qualitatively.",
+      "Points toward ICM non-gravitational energy budget parameterization in EFC to separate from feedback-only explanations."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC1",
+      "KC2",
+      "KC3",
+      "KC4",
+      "KC5"
+    ]
+  }
 }

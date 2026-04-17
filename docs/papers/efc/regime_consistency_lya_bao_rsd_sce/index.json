@@ -1,8 +1,8 @@
 {
   "$schema": "./schema.json",
   "id": "efc-regime-consistency-lya-bao-rsd-sce",
-  "title": "Regime Consistency of an Entropy-Gradient Coupling: Ly\u03b1, BAO and RSD Tests within a Structural Coherence Framework",
-  "description": "Empirical regime-consistency test of an entropy-gradient coupling T(z) in Energy-Flow Cosmology across three independent probes: DESI Ly\u03b1 P1D (z=3), BOSS DR12 BAO distances, and BOSS DR12 RSD growth. Using a single coupling calibrated near z\u22480.5 and evaluated within the Structural Coherence Evaluation framework, the study finds a near-null Ly\u03b1 effect, improved BAO fits, and marginally improved RSD, yielding a combined \u0394\u03c7\u00b2 \u2248 \u22123.89 with one added parameter.",
+  "title": "Regime Consistency of an Entropy-Gradient Coupling: Lyα, BAO and RSD Tests within a Structural Coherence Framework",
+  "description": "Empirical regime-consistency test of an entropy-gradient coupling T(z) in Energy-Flow Cosmology across three independent probes: DESI Lyα P1D (z=3), BOSS DR12 BAO distances, and BOSS DR12 RSD growth. Using a single coupling calibrated near z≈0.5 and evaluated within the Structural Coherence Evaluation framework, the study finds a near-null Lyα effect, improved BAO fits, and marginally improved RSD, yielding a combined Δχ² ≈ −3.89 with one added parameter.",
   "version": "1.0.0",
   "date": "2026-02-10",
   "doi": "10.6084/m9.figshare.31304995",
@@ -10,13 +10,13 @@
     "Energy-Flow Cosmology",
     "entropy-gradient coupling",
     "transition function T(z)",
-    "Ly\u03b1 P1D",
+    "Lyα P1D",
     "BAO",
     "RSD",
     "BOSS DR12",
     "DESI",
     "Structural Coherence Evaluation",
-    "\u039bCDM comparison",
+    "ΛCDM comparison",
     "growth suppression",
     "late-time H(z) modification"
   ],
@@ -36,52 +36,52 @@
     },
     "modified_friedmann": {
       "latex": "H^2(a) = H_0^2\\left[\\Omega_m a^{-3} + \\Omega_\\Lambda\\,\\big(1 + \\beta\\,T(a)\\big)\\right]",
-      "description": "Background modification used for BAO and RSD tests; late-time H(z) enhanced by a single parameter \u03b2 scaled by T(a)."
+      "description": "Background modification used for BAO and RSD tests; late-time H(z) enhanced by a single parameter β scaled by T(a)."
     },
     "omega_m_of_z": {
       "latex": "\\Omega_m(z) = \\frac{\\Omega_m (1+z)^3}{E^2(z)},\\quad E(z)=H(z)/H_0",
-      "description": "Redshift evolution of the matter fraction used to compute g_D(z) and T(z) on a \u039bCDM-calibrated background."
+      "description": "Redshift evolution of the matter fraction used to compute g_D(z) and T(z) on a ΛCDM-calibrated background."
     }
   },
   "key_results": {
-    "main_finding": "A single T(z) calibrated near z\u22480.5 yields regime-consistent predictions across Ly\u03b1 P1D, BAO, and RSD without dataset-specific tuning.",
+    "main_finding": "A single T(z) calibrated near z≈0.5 yields regime-consistent predictions across Lyα P1D, BAO, and RSD without dataset-specific tuning.",
     "delta_chi2": -3.89,
     "significance_sigma": 2.0,
     "parameters_tested": [
-      "alpha_L2 = 0.34 \u00b1 0.16",
+      "alpha_L2 = 0.34 ± 0.16",
       "beta = 0.08",
       "z_peak = 0.441"
     ],
     "datasets_used": [
-      "DESI Ly\u03b1 P1D (arXiv:2601.21432)",
+      "DESI Lyα P1D (arXiv:2601.21432)",
       "BOSS DR12 BAO distances (Alam et al. 2017)",
-      "BOSS DR12 RSD f\u03c38"
+      "BOSS DR12 RSD fσ8"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "At z = 3, Ly\u03b1 P1D shows a near-null EFC effect with A\u00b7T(z) = \u03b1_L2\u00b7T(z) \u2248 0.037 (range \u2248 0.02\u20130.06 for \u03b1_L2 \u00b11\u03c3), yielding amplitude and slope pulls < 0.5\u03c3 relative to \u039bCDM.",
-      "falsifiable_by": "Higher-precision DESI/WEAVE Ly\u03b1 P1D measurements of \u0394\u2605 and n\u2605 at z \u2248 3."
+      "statement": "At z = 3, Lyα P1D shows a near-null EFC effect with A·T(z) = α_L2·T(z) ≈ 0.037 (range ≈ 0.02–0.06 for α_L2 ±1σ), yielding amplitude and slope pulls < 0.5σ relative to ΛCDM.",
+      "falsifiable_by": "Higher-precision DESI/WEAVE Lyα P1D measurements of Δ★ and n★ at z ≈ 3."
     },
     {
       "id": "P2",
-      "statement": "At z \u2248 0.4\u20130.6, a single background parameter \u03b2 > 0 produces correlated shifts that reduce \u039bCDM\u2019s DM overprediction and mildly suppress growth; BAO+RSD jointly prefer \u03b2 \u2248 0.08 over \u03b2 = 0.",
+      "statement": "At z ≈ 0.4–0.6, a single background parameter β > 0 produces correlated shifts that reduce ΛCDM’s DM overprediction and mildly suppress growth; BAO+RSD jointly prefer β ≈ 0.08 over β = 0.",
       "falsifiable_by": "DESI DR2/DR3 BAO+RSD joint fits with full covariance and percent-level systematics control."
     },
     {
       "id": "P3",
-      "statement": "At recombination (z \u2248 1100) the coupling vanishes, T(z) \u2248 10^-10, implying GR recovery and no detectable early-time deviations from \u039bCDM background.",
+      "statement": "At recombination (z ≈ 1100) the coupling vanishes, T(z) ≈ 10^-10, implying GR recovery and no detectable early-time deviations from ΛCDM background.",
       "falsifiable_by": "CMB primary/secondary anisotropy and early-time expansion constraints (Planck, Simons Observatory, CMB-S4)."
     }
   ],
   "kill_criteria": [
-    "KC1: DESI/WEAVE Ly\u03b1 P1D at z \u2248 3 requires |A\u00b7T(z=3)| \u2265 0.08 at \u22655\u03c3, incompatible with T(z)=0.107 and \u03b1_L2=0.34\u00b10.16 (even \u03b1_L2=0.51 gives A\u00b7T\u22480.055).",
-    "KC2: Joint BAO+RSD analysis with full covariance (e.g., DESI) returns \u03b2 = 0.00 \u00b1 0.02 (68% CL) and no improvement over \u039bCDM (\u0394\u03c7\u00b2 \u2265 0), excluding \u03b2 \u2248 0.08 at \u22653\u03c3.",
-    "KC3: High-precision RSD at z = 0.5\u20130.7 robustly finds f\u03c38 higher than \u039bCDM by \u22653\u03c3, contradicting the EFC prediction of growth suppression from enhanced Hubble friction.",
-    "KC4: Early-Universe constraints demand a non-vanishing late-time coupling at z \u2273 1100, e.g., \u03b2\u00b7T(z=1100) \u2265 10^-4, violating the T(z) \u221d (1 \u2212 \u03a9_m(z)) suppression and GR recovery.",
-    "KC5: A single \u03b1_L2 calibrated at z \u2248 0.5, when propagated via T(z), leads to \u22653\u03c3 tension with either Ly\u03b1 P1D or RSD in the tested redshift range, breaking regime consistency."
+    "KC1: DESI/WEAVE Lyα P1D at z ≈ 3 requires |A·T(z=3)| ≥ 0.08 at ≥5σ, incompatible with T(z)=0.107 and α_L2=0.34±0.16 (even α_L2=0.51 gives A·T≈0.055).",
+    "KC2: Joint BAO+RSD analysis with full covariance (e.g., DESI) returns β = 0.00 ± 0.02 (68% CL) and no improvement over ΛCDM (Δχ² ≥ 0), excluding β ≈ 0.08 at ≥3σ.",
+    "KC3: High-precision RSD at z = 0.5–0.7 robustly finds fσ8 higher than ΛCDM by ≥3σ, contradicting the EFC prediction of growth suppression from enhanced Hubble friction.",
+    "KC4: Early-Universe constraints demand a non-vanishing late-time coupling at z ≳ 1100, e.g., β·T(z=1100) ≥ 10^-4, violating the T(z) ∝ (1 − Ω_m(z)) suppression and GR recovery.",
+    "KC5: A single α_L2 calibrated at z ≈ 0.5, when propagated via T(z), leads to ≥3σ tension with either Lyα P1D or RSD in the tested redshift range, breaking regime consistency."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -126,14 +126,14 @@
       "omega_m_z": 0.945,
       "g_D": 0.0201,
       "T_z": 0.188,
-      "regime": "BAO Ly\u03b1"
+      "regime": "BAO Lyα"
     },
     {
       "z": 3.0,
       "omega_m_z": 0.967,
       "g_D": 0.0114,
       "T_z": 0.107,
-      "regime": "Ly\u03b1 P1D"
+      "regime": "Lyα P1D"
     },
     {
       "z": 1100,
@@ -148,10 +148,10 @@
       "z": 3.0,
       "T_z": 0.107,
       "data": "DESI arXiv:2601.21432",
-      "prediction": "Near-null effect (A\u00b7T = 0.037)",
+      "prediction": "Near-null effect (A·T = 0.037)",
       "results": {
-        "amplitude_pull": "-0.27\u03c3",
-        "slope_pull": "+0.01\u03c3"
+        "amplitude_pull": "-0.27σ",
+        "slope_pull": "+0.01σ"
       },
       "status": "PASS",
       "note": "Consistent with predicted null"
@@ -171,23 +171,23 @@
         "pulls": [
           {
             "z": 0.38,
-            "DM_pull": "+0.29\u03c3",
-            "DH_pull": "-1.10\u03c3"
+            "DM_pull": "+0.29σ",
+            "DH_pull": "-1.10σ"
           },
           {
             "z": 0.51,
-            "DM_pull": "-0.26\u03c3",
-            "DH_pull": "+0.12\u03c3"
+            "DM_pull": "-0.26σ",
+            "DH_pull": "+0.12σ"
           },
           {
             "z": 0.61,
-            "DM_pull": "+0.14\u03c3",
-            "DH_pull": "+0.74\u03c3"
+            "DM_pull": "+0.14σ",
+            "DH_pull": "+0.74σ"
           }
         ]
       },
       "status": "PASS",
-      "note": "EFC corrects systematic \u039bCDM DM overprediction"
+      "note": "EFC corrects systematic ΛCDM DM overprediction"
     },
     "rsd_boss_dr12": {
       "z_range": [
@@ -195,7 +195,7 @@
         0.51,
         0.61
       ],
-      "data": "BOSS DR12 f\u03c3\u2088",
+      "data": "BOSS DR12 fσ₈",
       "results": {
         "chi2_efc": 1.09,
         "chi2_lcdm": 1.34,
@@ -204,23 +204,23 @@
           {
             "z": 0.38,
             "fsigma8_efc": 0.464,
-            "fsigma8_obs": "0.497 \u00b1 0.045",
-            "efc_pull": "-0.73\u03c3",
-            "lcdm_pull": "-0.46\u03c3"
+            "fsigma8_obs": "0.497 ± 0.045",
+            "efc_pull": "-0.73σ",
+            "lcdm_pull": "-0.46σ"
           },
           {
             "z": 0.51,
             "fsigma8_efc": 0.463,
-            "fsigma8_obs": "0.458 \u00b1 0.038",
-            "efc_pull": "+0.13\u03c3",
-            "lcdm_pull": "+0.43\u03c3"
+            "fsigma8_obs": "0.458 ± 0.038",
+            "efc_pull": "+0.13σ",
+            "lcdm_pull": "+0.43σ"
           },
           {
             "z": 0.61,
             "fsigma8_efc": 0.46,
-            "fsigma8_obs": "0.436 \u00b1 0.034",
-            "efc_pull": "+0.71\u03c3",
-            "lcdm_pull": "+0.97\u03c3"
+            "fsigma8_obs": "0.436 ± 0.034",
+            "efc_pull": "+0.71σ",
+            "lcdm_pull": "+0.97σ"
           }
         ]
       },
@@ -237,8 +237,8 @@
       "chi2_efc": 3.02,
       "chi2_lcdm": 6.92,
       "delta_chi2": -3.89,
-      "significance": "~2\u03c3 preference",
-      "note": "\u0394\u03c7\u00b2 = 3.84 corresponds to 95% CL for 1 DOF"
+      "significance": "~2σ preference",
+      "note": "Δχ² = 3.84 corresponds to 95% CL for 1 DOF"
     }
   },
   "regime_coherence_summary": [
@@ -247,15 +247,15 @@
       "z": "0.4-0.6",
       "T_z": "0.95-1.0",
       "prediction": "Enhanced H, suppressed growth",
-      "data": "BAO + f\u03c3\u2088",
+      "data": "BAO + fσ₈",
       "result": "PASS"
     },
     {
-      "regime": "Ly\u03b1",
+      "regime": "Lyα",
       "z": 3.0,
       "T_z": 0.107,
       "prediction": "Near-null effect",
-      "data": "\u0394\u00b2\u2605, n\u2605",
+      "data": "Δ²★, n★",
       "result": "PASS"
     },
     {
@@ -271,20 +271,20 @@
     "metrics": {
       "explanatory_compression": {
         "lcdm": {
-          "primitives": "2 (\u039b, CDM)",
+          "primitives": "2 (Λ, CDM)",
           "FDOF": 2,
           "phenomena": 4,
           "C_core": 2.0,
           "C_tensions": 1.7
         },
         "efc_l2": {
-          "primitives": "3 (S, \u03bc, T)",
+          "primitives": "3 (S, μ, T)",
           "FDOF": 1,
           "phenomena": 4,
           "C_core": 1.3,
           "C_tensions": "1.7-2.0"
         },
-        "winner": "\u039bCDM (core)"
+        "winner": "ΛCDM (core)"
       },
       "anomaly_burden": {
         "lcdm": {
@@ -310,7 +310,7 @@
         },
         "efc_l2": {
           "variant_proliferation": "Moderate",
-          "parameter_growth": "Decreasing (3\u21921 FDOF)",
+          "parameter_growth": "Decreasing (3→1 FDOF)",
           "special_case_rules": "None",
           "ad_hoc_patches": "None"
         },
@@ -327,32 +327,32 @@
         "winner": "EFC"
       }
     },
-    "summary": "Neither framework dominates the full SCE profile. \u039bCDM wins on raw compression; EFC wins on structural discipline."
+    "summary": "Neither framework dominates the full SCE profile. ΛCDM wins on raw compression; EFC wins on structural discipline."
   },
   "forbidden_patterns": [
     {
       "id": "EFC-FP-P1D",
-      "definition": "If T(z=3)/T(peak) > 0.5 AND (|amplitude pull| > 3\u03c3 OR |slope pull| > 3\u03c3), then regime-transition logic is inconsistent",
+      "definition": "If T(z=3)/T(peak) > 0.5 AND (|amplitude pull| > 3σ OR |slope pull| > 3σ), then regime-transition logic is inconsistent",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-HIGHZ",
-      "definition": "If Boltzmann solver with \u03bc(z) = 1 + A\u00b7T(z) produces CMB Cl residuals exceeding Planck error bars",
+      "definition": "If Boltzmann solver with μ(z) = 1 + A·T(z) produces CMB Cl residuals exceeding Planck error bars",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-RSD",
-      "definition": "If f\u03c3\u2088 deviates > 3\u03c3 at any BOSS z while \u03b1L2 within \u00b12\u03c3 of best-fit",
+      "definition": "If fσ₈ deviates > 3σ at any BOSS z while αL2 within ±2σ of best-fit",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-BAO",
-      "definition": "If \u03b2 > 0 simultaneously worsens both BAO and f\u03c3\u2088 vs \u039bCDM",
+      "definition": "If β > 0 simultaneously worsens both BAO and fσ₈ vs ΛCDM",
       "status": "Not triggered"
     },
     {
       "id": "EFC-FP-4CH",
-      "definition": "If \u03b2 passes BAO+RSD but fails CMB lensing or SN Ia > 3\u03c3",
+      "definition": "If β passes BAO+RSD but fails CMB lensing or SN Ia > 3σ",
       "status": "Not triggered"
     }
   ],
@@ -360,22 +360,194 @@
     "Full MCMC joint fit with proper covariance matrices between BAO and RSD",
     "Neutrino mass degeneracies",
     "Non-linear regime (L3) analysis",
-    "Self-consistent EFC background (T(z) currently uses \u039bCDM \u03a9m(z))",
+    "Self-consistent EFC background (T(z) currently uses ΛCDM Ωm(z))",
     "Full Boltzmann CMB power spectrum calculation",
-    "First-principles derivation of \u03b2"
+    "First-principles derivation of β"
   ],
   "key_conclusions": [
     "Single coupling function T(z) produces consistent predictions across three cosmological regimes",
-    "One-parameter modification (\u03b2 = 0.08) simultaneously improves BAO and growth (\u0394\u03c7\u00b2 = \u22123.89)",
-    "High-z null prediction at z = 3 consistent with DESI Ly\u03b1 P1D data",
-    "GR recovery at z = 1100 guaranteed by T(z) \u2192 0 with margins > 10\u2078",
-    "EFC shows higher Layer Consistency and lower Model Plasticity than \u039bCDM",
+    "One-parameter modification (β = 0.08) simultaneously improves BAO and growth (Δχ² = −3.89)",
+    "High-z null prediction at z = 3 consistent with DESI Lyα P1D data",
+    "GR recovery at z = 1100 guaranteed by T(z) → 0 with margins > 10⁸",
+    "EFC shows higher Layer Consistency and lower Model Plasticity than ΛCDM",
     "Neither framework dominates full SCE structural profile"
   ],
   "related_papers": [
     {
       "id": "efc-four-channel-consistency-test",
-      "relationship": "Companion - four-channel test using same \u03b2 = 0.08"
+      "relationship": "Companion - four-channel test using same β = 0.08"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper is the first multi-regime empirical consistency test of the EFC entropy-gradient coupling T(z), demonstrating that a single parameter calibrated at z≈0.5 propagates without dataset-specific tuning across Lyα P1D (z=3), BAO distances, and RSD growth (z≈0.4–0.6). It does not statistically kill ΛCDM nor claim EFC superiority, but it establishes the structural discipline that T(z) does not break when extrapolated across three independent cosmological regimes. The SCE framework evaluation shows EFC trades higher Layer Consistency and lower Model Plasticity against ΛCDM's superior Explanatory Compression — neither framework dominates.",
+    "graph_insights": [
+      "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it needs to be linked to: (a) the T(z) derivation paper, (b) the BOSS DR12 calibration source, (c) the SCE framework definition paper, and (d) the sealed prediction registry entries for fσ8(z=0.7)=0.430.",
+      "The paper touches both BOSS DR12 and DESI observables, placing it at the junction between current-generation and Stage-IV validation — it should be a hub node connecting the BOSS-era calibration cluster to the DESI-era prediction cluster.",
+      "No validation tests sharing observables were found in the graph, yet this paper introduces at least 8 testable results — the graph's validation-test layer is significantly under-populated and needs bulk ingestion from this paper's results.",
+      "The concept 'Structural Coherence Evaluation' appears for the first time in the graph via this paper — it should be established as a framework-level methodology node connected to all future EFC papers that use SCE scoring."
+    ],
+    "kc_addressed": [
+      "KC1",
+      "KC3",
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "lya_p1d_null_effect_z3",
+        "category": "phenomenological",
+        "name": "Lyα P1D near-null EFC effect at z=3",
+        "description": "Tests whether T(z=3)=0.107 yields a near-null coupling effect on DESI Lyα P1D amplitude and slope, with pulls below 0.5σ",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI Lyα P1D z≈3",
+        "prediction": "A·T(z=3) ≈ 0.037 (range 0.02–0.06), amplitude and slope pulls < 0.5σ"
+      },
+      {
+        "test_id": "boss_dr12_bao_beta_improvement",
+        "category": "phenomenological",
+        "name": "BOSS DR12 BAO distance improvement with β=0.08",
+        "description": "Tests whether a single background parameter β=0.08 improves BAO distance fits over ΛCDM using BOSS DR12 distance ratios",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 BAO",
+        "prediction": "β=0.08 reduces DM overprediction and yields Δχ² improvement over ΛCDM"
+      },
+      {
+        "test_id": "boss_dr12_rsd_growth_suppression",
+        "category": "phenomenological",
+        "name": "BOSS DR12 RSD growth suppression consistency",
+        "description": "Tests whether T(z) coupling produces mild fσ8 suppression consistent with BOSS DR12 RSD data at z≈0.4–0.6 via enhanced Hubble friction",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "BOSS DR12 RSD",
+        "prediction": "Mild growth suppression from enhanced Hubble friction, marginal improvement over ΛCDM"
+      },
+      {
+        "test_id": "joint_bao_rsd_delta_chi2",
+        "category": "consistency_check",
+        "name": "Joint BAO+RSD Δχ² on 9 data points",
+        "description": "Combined BAO+RSD fit yields Δχ²=−3.89 over ΛCDM on 9 data points with one-parameter modification; channels tested independently (no cross-covariance)",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 BAO + RSD",
+        "prediction": "Correlated distance and growth shifts from single β reduce combined χ²"
+      },
+      {
+        "test_id": "gr_recovery_z1100",
+        "category": "framework_constraint",
+        "name": "GR recovery at recombination z≈1100",
+        "description": "Confirms T(z≈1100)≈10^-10 ensures vanishing coupling and GR recovery at early times",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Analytic evaluation of T(z)",
+        "prediction": "T(z=1100)≈10^-10, no detectable early-time deviation from ΛCDM"
+      },
+      {
+        "test_id": "regime_consistency_single_coupling",
+        "category": "consistency_check",
+        "name": "Three-regime consistency of single T(z) calibration",
+        "description": "Tests whether αL2=0.34±0.16 calibrated at z≈0.5 propagates consistently to z=3 (Lyα) and z≈1100 (CMB) without dataset-specific tuning",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS DR12 + DESI Lyα P1D + analytic CMB limit",
+        "prediction": "No ≥3σ tension between any pair of regimes under single calibration"
+      },
+      {
+        "test_id": "sce_layer_consistency_comparison",
+        "category": "framework_constraint",
+        "name": "SCE Layer Consistency: EFC vs ΛCDM",
+        "description": "Structural Coherence Evaluation comparing Layer Consistency scores; EFC scores higher (one mechanism across three regimes, no regime-specific patches)",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SCE framework evaluation",
+        "prediction": "EFC Layer Consistency > ΛCDM Layer Consistency; ΛCDM Explanatory Compression > EFC"
+      },
+      {
+        "test_id": "model_plasticity_decrease",
+        "category": "framework_constraint",
+        "name": "EFC Model Plasticity decreasing across publications",
+        "description": "Confirms parameter count reduced from 3 to 1 across successive EFC publications, indicating decreasing model plasticity",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Cross-publication parameter tracking",
+        "prediction": "Monotonically decreasing free parameter count"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC1\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC1 reinforced: Paper-specific KC1 declares DESI/WEAVE Lyα P1D at z≈3 requiring |A·T(z=3)|≥0.08 at ≥5σ as kill condition. Current data show near-null effect consistent with T(z=3)=0.107. Monitoring for future DESI/WEAVE precision.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31304995"
+        ],
+        "reasoning": "KC1 (Stage-IV, already done) gets additional observable-specific kill criterion from this paper's Lyα test. The paper-level KC1 is distinct from the project-level KC1 but reinforces it with a concrete falsifiable threshold."
+      },
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC5 monitoring: Regime consistency test passed — single αL2 calibrated at z≈0.5 propagated to z=3 and z≈1100 without ≥3σ tension. Paper-level KC5 explicitly tests this: would be killed if single calibration leads to ≥3σ tension between Lyα P1D and RSD. Currently survived.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31304995"
+        ],
+        "reasoning": "KC5 at project level is in Monitoring status. This paper directly tests regime consistency (its own KC5) and finds no tension, providing the first multi-probe evidence that KC5 is not currently triggered."
+      },
+      {
+        "page": "roadmap",
+        "target": "regime-consistency-multi-probe",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "First three-regime consistency test completed: Lyα P1D (z=3), BAO (z≈0.4–0.6), RSD (z≈0.4–0.6) all consistent with single T(z) calibration. No full MCMC joint fit yet — channels tested independently. Next: full covariance joint BAO+RSD fit (paper-level KC2 threshold).",
+        "doi_refs": [
+          "10.6084/m9.figshare.31304995"
+        ],
+        "reasoning": "This is a major roadmap milestone: EFC's coupling has now been tested across three independent cosmological probes for the first time."
+      },
+      {
+        "page": "elevator",
+        "target": "empirical-status",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "A single entropy-gradient coupling calibrated at z≈0.5 has been tested across Lyα forest (z=3), BAO distances, and RSD growth rates. All three regimes are consistent with no dataset-specific tuning. ΛCDM also fits; the advantage is structural discipline, not statistical knockout.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31304995"
+        ],
+        "reasoning": "Elevator pitch should now reflect that EFC has multi-probe regime consistency, which is the paper's central claim."
+      },
+      {
+        "page": "whitepaper",
+        "target": "empirical-validation-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Added: Regime consistency across Lyα P1D, BAO, and RSD (Magnusson 2026). SCE framework comparison with ΛCDM shows EFC advantage in Layer Consistency and Model Plasticity; ΛCDM retains advantage in Explanatory Compression. Neither framework dominates full SCE profile.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31304995"
+        ],
+        "reasoning": "Whitepaper empirical section needs to reflect this as the most comprehensive multi-probe test to date."
+      }
+    ],
+    "implicit_consequences": [
+      "The near-null Lyα result at z=3 implicitly validates the T(z) suppression mechanism at high redshift — EFC automatically becomes conservative where data are sparse, unlike ad-hoc models that might overfit high-z regimes.",
+      "The paper's explicit caveat that BAO+RSD channels are tested independently (no cross-covariance) creates an implicit priority: the next paper must perform a full joint MCMC with BOSS/DESI covariance matrices to test paper-level KC2.",
+      "The SCE framework comparison, while not a statistical test, implicitly establishes EFC's decreasing parameter trajectory (3→1) as a structural constraint on future modifications — any EFC extension that adds parameters will face its own Model Plasticity penalty.",
+      "GR recovery at z≈1100 with T(z)≈10^-10 implicitly means CMB power spectrum predictions are identical to ΛCDM at current Planck precision — CMB cannot currently distinguish the two frameworks, which is a feature not a bug.",
+      "The sealed prediction P1 (A·T≈0.037 at z=3) becomes testable with DESI Year-3+ Lyα P1D precision — if DESI measures a non-null effect at z=3 exceeding the 0.06 upper bound, it would trigger paper-level KC1.",
+      "The Δχ²=−3.89 on 9 data points with one parameter is suggestive but not decisive (roughly 2σ equivalent); this implicitly means DESI DR2 full-shape analysis is the make-or-break dataset, reinforcing the current bottom-line gap.",
+      "The paper's T(z) table provides concrete numerical anchors that any future EFCLASS Boltzmann solver must reproduce — this implicitly constrains the theory-efclass-boltzmann-solver gap by defining boundary conditions."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC1",
+      "KC3",
+      "KC5"
+    ]
+  }
 }

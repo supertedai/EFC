@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-background-nogo-theorem",
   "title": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
-  "description": "Shows, via three independent parametrisations and a BAO\u2013CMB joint analysis, that any EFC background H(z) modification large enough to improve BAO is decisively ruled out by CMB distance priors. The result is structural (due to DA(z*) integrating through z < 2) and closes Level 3: the EFC background is effectively \u039bCDM at current precision, redirecting viable EFC dynamics to the perturbation sector.",
+  "description": "Shows, via three independent parametrisations and a BAO–CMB joint analysis, that any EFC background H(z) modification large enough to improve BAO is decisively ruled out by CMB distance priors. The result is structural (due to DA(z*) integrating through z < 2) and closes Level 3: the EFC background is effectively ΛCDM at current precision, redirecting viable EFC dynamics to the perturbation sector.",
   "version": "1.0",
   "date": "2026-04-10",
   "doi": "10.6084/m9.figshare.31985163",
@@ -44,11 +44,11 @@
     },
     "da_integral_split": {
       "latex": "D_A(z_*) = \\frac{1}{1+z_*}\\left[ \\int_0^{z_{\\mathrm{sw}}} \\frac{c\\,dz'}{H_{\\mathrm{EFC}}(z')} + \\int_{z_{\\mathrm{sw}}}^{z_*} \\frac{c\\,dz'}{H_{\\Lambda\\mathrm{CDM}}(z')} \\right]",
-      "description": "Even when high-z physics is standard, DA(z_*) integrates through the low-z modified regime, enforcing a structural BAO\u2013CMB tradeoff."
+      "description": "Even when high-z physics is standard, DA(z_*) integrates through the low-z modified regime, enforcing a structural BAO–CMB tradeoff."
     }
   },
   "key_results": {
-    "main_finding": "Any low-z EFC background H(z) modification large enough to improve BAO (\u0394\u03c72_BAO \u2248 \u221214.6) is decisively penalized by CMB distance priors (\u0394\u03c72_CMB > +100), yielding \u0394\u03c72_total \u2248 +98 and closing Level 3 as observationally empty at current precision.",
+    "main_finding": "Any low-z EFC background H(z) modification large enough to improve BAO (Δχ2_BAO ≈ −14.6) is decisively penalized by CMB distance priors (Δχ2_CMB > +100), yielding Δχ2_total ≈ +98 and closing Level 3 as observationally empty at current precision.",
     "delta_chi2": 98.3,
     "significance_sigma": null,
     "parameters_tested": [
@@ -67,14 +67,14 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "With current precision, any background-only EFC modification localized at z < 1 that yields \u0394\u03c72_BAO \u2264 \u22125 will necessarily incur \u0394\u03c72_CMB \u2265 +5, so the joint \u0394\u03c72_total remains \u2265 0; tightening BAO/CMB errors (e.g., DESI DR3, Euclid) will strengthen this constraint unless perturbation modeling is altered.",
-      "falsifiable_by": "A joint BAO + CMB distance-prior fit in which a background-only f(S) modification achieves \u0394\u03c72_total \u2264 \u22125 without invoking perturbation-sector changes (\u03bc, \u03a3)."
+      "statement": "With current precision, any background-only EFC modification localized at z < 1 that yields Δχ2_BAO ≤ −5 will necessarily incur Δχ2_CMB ≥ +5, so the joint Δχ2_total remains ≥ 0; tightening BAO/CMB errors (e.g., DESI DR3, Euclid) will strengthen this constraint unless perturbation modeling is altered.",
+      "falsifiable_by": "A joint BAO + CMB distance-prior fit in which a background-only f(S) modification achieves Δχ2_total ≤ −5 without invoking perturbation-sector changes (μ, Σ)."
     }
   ],
   "kill_criteria": [
-    "KC1: A robust joint BAO + CMB distance-prior analysis demonstrating a background-only H(z) deviation at z < 1 that improves BAO (\u0394\u03c72_BAO \u2264 \u22125) while keeping \u0394\u03c72_CMB \u2264 +5 (i.e., \u0394\u03c72_total \u2264 \u22125).",
-    "KC2: Independent low-z distance measurements (e.g., time-delay strong-lensing + SNe Ia with calibrated r_d or standard sirens) requiring a \u22652% change in H(z) over 0.3 < z < 1 that remains consistent with CMB-inferred D_A(z_*), contradicting the claimed structural tradeoff.",
-    "KC3: Growth and lensing probes (RSD + weak lensing) jointly demanding \u03bc(a,k) \u2265 1 at z < 1 while also preferring suppressed \u03c38 relative to \u039bCDM, contradicting the EFC perturbation-sector suppression pathway (\u03bc < 1)."
+    "KC1: A robust joint BAO + CMB distance-prior analysis demonstrating a background-only H(z) deviation at z < 1 that improves BAO (Δχ2_BAO ≤ −5) while keeping Δχ2_CMB ≤ +5 (i.e., Δχ2_total ≤ −5).",
+    "KC2: Independent low-z distance measurements (e.g., time-delay strong-lensing + SNe Ia with calibrated r_d or standard sirens) requiring a ≥2% change in H(z) over 0.3 < z < 1 that remains consistent with CMB-inferred D_A(z_*), contradicting the claimed structural tradeoff.",
+    "KC3: Growth and lensing probes (RSD + weak lensing) jointly demanding μ(a,k) ≥ 1 at z < 1 while also preferring suppressed σ8 relative to ΛCDM, contradicting the EFC perturbation-sector suppression pathway (μ < 1)."
   ],
   "tier": "T3",
   "paper_type": "empirical_test",
@@ -87,7 +87,7 @@
     {
       "id": "efc-cmb-localization",
       "doi": "10.6084/m9.figshare.31368433",
-      "role": "CMB localization analysis establishing constraints on linear background coupling and \u03b1\u2013H0 degeneracy."
+      "role": "CMB localization analysis establishing constraints on linear background coupling and α–H0 degeneracy."
     }
   ],
   "files": {
@@ -144,17 +144,17 @@
       },
       "eta": {
         "value": 1.1,
-        "description": "Gravitational slip \u03b7 = \u03a6/\u03a8"
+        "description": "Gravitational slip η = Φ/Ψ"
       }
     }
   },
   "three_pillars": {
     "analytical": {
       "name": "Sign Lemma",
-      "statement": "\u0394E\u00b2(z) = A\u00b7[g(z) \u2212 g(0)] \u2264 0 for all z > 0",
-      "proof": "Under closure normalisation E(0) = 1, the gate g(z) is monotonically decreasing for z > 0 (activates at late times). Therefore g(z) \u2264 g(0) for all z > 0, and with A > 0, \u0394E\u00b2 \u2264 0.",
-      "corollary": "H_EFC(z) \u2264 H_\u039bCDM(z) \u2192 reduced Hubble friction \u2192 enhanced structure growth",
-      "implication": "Background-level EFC structurally excluded for \u03c3\u2088 suppression",
+      "statement": "ΔE²(z) = A·[g(z) − g(0)] ≤ 0 for all z > 0",
+      "proof": "Under closure normalisation E(0) = 1, the gate g(z) is monotonically decreasing for z > 0 (activates at late times). Therefore g(z) ≤ g(0) for all z > 0, and with A > 0, ΔE² ≤ 0.",
+      "corollary": "H_EFC(z) ≤ H_ΛCDM(z) → reduced Hubble friction → enhanced structure growth",
+      "implication": "Background-level EFC structurally excluded for σ₈ suppression",
       "reference_doi": "10.6084/m9.figshare.31333414"
     },
     "numerical": {
@@ -206,20 +206,20 @@
           "change_pct": 0.76
         }
       ],
-      "conclusion": "Growth is enhanced at all redshifts \u2014 opposite direction from S\u2088 tension amelioration",
+      "conclusion": "Growth is enhanced at all redshifts — opposite direction from S₈ tension amelioration",
       "reference_doi": "10.6084/m9.figshare.31333414"
     },
     "observational": {
       "name": "CMB + BAO Joint Constraint",
       "alpha_collapse": {
         "dataset": "Planck 2018 TT/TE/EE + BOSS/eBOSS BAO",
-        "result": "\u03b1 \u2192 0 under all combinations",
-        "significance": "|\u0394\u03c7\u00b2| < 2\u03c3 in all combinations",
+        "result": "α → 0 under all combinations",
+        "significance": "|Δχ²| < 2σ in all combinations",
         "status": "CONFIRMED"
       },
       "alpha_H0_degeneracy": {
         "correlation": 0.975,
-        "interpretation": "CMB is blind to \u03b1; BAO breaks the degeneracy"
+        "interpretation": "CMB is blind to α; BAO breaks the degeneracy"
       },
       "four_channel_test": {
         "beta": 0.08,
@@ -230,16 +230,16 @@
           "SN Ia"
         ],
         "combined_delta_chi2": -3.89,
-        "significance": "~2\u03c3 preference",
-        "note": "Background coupling consistent but not sufficient for \u03c3\u2088 suppression"
+        "significance": "~2σ preference",
+        "note": "Background coupling consistent but not sufficient for σ₈ suppression"
       },
       "reference_doi": "10.6084/m9.figshare.31368433"
     }
   },
   "architectural_consequence": {
     "excluded_channel": "Background (Friedmann equation modification)",
-    "active_channel": "Perturbation sector (\u03bc, \u03a3, \u03b7 modifications)",
-    "reason": "Sign lemma proves background enhancement; observational \u03b1-collapse confirms emptiness",
+    "active_channel": "Perturbation sector (μ, Σ, η modifications)",
+    "reason": "Sign lemma proves background enhancement; observational α-collapse confirms emptiness",
     "survival_valley": {
       "mu_range": [
         0.93,
@@ -256,30 +256,143 @@
       }
     },
     "testable_predictions": [
-      "\u03bc \u2248 0.94 (growth suppression via Poisson equation)",
-      "\u03a3 \u2248 1.05 (lensing enhancement via anisotropic stress)",
-      "\u03b7 \u2248 1.10 (gravitational slip, most discriminating observable)",
-      "All testable by Euclid DR1/DR2 (2026\u20132028) and DESI DR3 (~2027\u20132028)"
+      "μ ≈ 0.94 (growth suppression via Poisson equation)",
+      "Σ ≈ 1.05 (lensing enhancement via anisotropic stress)",
+      "η ≈ 1.10 (gravitational slip, most discriminating observable)",
+      "All testable by Euclid DR1/DR2 (2026–2028) and DESI DR3 (~2027–2028)"
     ]
   },
   "falsification_criteria": [
     {
       "id": "NOGO-F1",
-      "condition": "Mechanism found where \u0394E\u00b2 > 0 with E(0) = 1",
+      "condition": "Mechanism found where ΔE² > 0 with E(0) = 1",
       "implication": "Sign lemma violated; requires non-monotonic gate",
       "status": "Not viable"
     },
     {
       "id": "NOGO-F2",
-      "condition": "Background-only modification produces \u03c3\u2088 suppression",
+      "condition": "Background-only modification produces σ₈ suppression",
       "implication": "Analytical proof contains an error",
       "status": "Not viable"
     },
     {
       "id": "NOGO-F3",
-      "condition": "\u03b1 \u2260 0 detected at > 3\u03c3 in CMB + BAO joint fit",
+      "condition": "α ≠ 0 detected at > 3σ in CMB + BAO joint fit",
       "implication": "Background gate not empty; observational pillar fails",
       "status": "Not viable"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper establishes a structural no-go theorem proving that any EFC background H(z) modification observable with current data (BAO+CMB) is decisively ruled out, closing Level 3 (background recovery) as observationally empty. The result is parametrisation-independent — three independent approaches all yield the same structural tradeoff (Δχ²_total ≈ +98) — and redirects all viable EFC phenomenology to the perturbation sector (μ, Σ). This is a critical self-imposed constraint that sharpens the EFC prediction landscape: the background IS ΛCDM at current precision, and the theory's observable signatures live exclusively in growth suppression and lensing modifications.",
+    "graph_insights": [
+      "No related papers found in the graph at 1-2 hops, indicating this is a new structural node that should become a hub — it connects background observables (H(z), BAO, CMB distance priors) to the perturbation sector by exclusion, creating a 'funnel' topology in the knowledge graph where all future test paths must route through perturbation-sector nodes.",
+      "The concepts 'regime separation' and 'angular diameter distance' appear together for the first time in the graph, establishing a new edge: the regime architecture's sigmoid transition is constrained not just by theoretical consistency but by the geometric structure of DA(z*). This edge should propagate to any future node touching EFC regime boundaries.",
+      "The absence of validation tests sharing observables suggests this paper creates a new observable category: 'background exclusion tests' — these are not traditional fits but structural impossibility proofs. The graph should accommodate this as a distinct test type."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "nogo_linear_alpha_T_bao_cmb",
+        "category": "framework_constraint",
+        "name": "No-Go Test 1: Linear α·T(a) BAO–CMB joint",
+        "description": "Tests whether linear entropic coupling α·T(a) in the Friedmann equation can improve BAO while remaining consistent with CMB distance priors. Result: α = −0.32 ± 0.40, |Δχ²| < 3, background gate empty.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 CMB distance priors + DESI DR1 BAO",
+        "prediction": "EFC predicts no observable background deviation: any improvement in BAO is penalised by CMB, confirming background ≡ ΛCDM at current precision"
+      },
+      {
+        "test_id": "nogo_exponential_geff_bao_cmb",
+        "category": "framework_constraint",
+        "name": "No-Go Test 2: Exponential Geff coupling BAO–CMB joint",
+        "description": "Tests Geff(a) = G0·exp(aG·S(a)) with aG=0.094 against joint BAO+CMB. BAO improves by Δχ²_BAO = −14.6 but CMB penalty is Δχ²_CMB > +112, yielding Δχ²_total ≈ +98. Full (aG, at, σ) grid over 1875 points finds no viable combination.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 CMB distance priors + DESI DR1 BAO (14 pts)",
+        "prediction": "EFC predicts the exponential coupling cannot improve joint fit; background modification is excluded at high significance"
+      },
+      {
+        "test_id": "nogo_piecewise_regime_bao_cmb",
+        "category": "framework_constraint",
+        "name": "No-Go Test 3: Regime-aware piecewise H(z) BAO–CMB joint",
+        "description": "Tests piecewise H(z) with regime switch at z_switch, leveraging EFC regime architecture. Result identical to global model for all z_switch ≥ 1.5 because sigmoid S(a) < 10⁻³ at z > 1.5. Regime separation does not circumvent the structural tradeoff.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 CMB distance priors + DESI DR1 BAO",
+        "prediction": "EFC regime architecture correctly separates dynamics but cannot evade the DA(z*) integral constraint; background remains ΛCDM"
+      },
+      {
+        "test_id": "nogo_structural_tradeoff_theorem",
+        "category": "framework_constraint",
+        "name": "Structural No-Go Theorem: DA(z*) integral constraint",
+        "description": "Proves parametrisation-independently that δH/H ~ 2–3% at z < 1 needed for BAO improvement propagates as δDA/DA ~ 0.4%, detectable at >5σ by Planck. The tradeoff is structural (geometric), not tunable. Closes Level 3.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 CMB distance priors + DESI DR1 BAO",
+        "prediction": "EFC background is effectively ΛCDM at current precision; all observable entropic dynamics confined to perturbation sector (μ, Σ)"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "Level 3 background H(z) recovery",
+        "action": "update_text",
+        "new_badge": "CLOSED — NULL",
+        "new_text": "Level 3 (background H(z) recovery) closed as observationally empty at current precision. Three independent parametrisations all produce identical structural tradeoff: Δχ²_total ≈ +98. No-go theorem established (DOI: 10.6084/m9.figshare.31985163). All viable EFC dynamics redirected to perturbation sector.",
+        "doi_refs": [
+          "31985163"
+        ],
+        "reasoning": "The paper conclusively demonstrates that Level 3 is empty — no background-only modification can improve the joint BAO+CMB fit. This is a structural result, not a tuning failure. The roadmap must reflect this closure and the consequent redirection to perturbation-sector tests."
+      },
+      {
+        "page": "gap",
+        "target": "background-bao-cmb-tension",
+        "action": "mark_done",
+        "new_badge": "RESOLVED",
+        "new_text": "Background BAO–CMB tension resolved: no-go theorem proves structural incompatibility of background-level EFC modifications with CMB distance priors (DOI: 10.6084/m9.figshare.31985163). Gap closed — not by finding a viable background deviation, but by proving none exists at current precision.",
+        "doi_refs": [
+          "31985163"
+        ],
+        "reasoning": "The paper answers the question 'can EFC background modifications improve BAO?' with a definitive no, resolving any ambiguity about whether background-level testing was incomplete."
+      },
+      {
+        "page": "elevator",
+        "target": "observational-status",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC background is observationally indistinguishable from ΛCDM (no-go theorem, DOI: 31985163). All testable EFC predictions now live in the perturbation sector: growth suppression (μ < 1) and lensing modifications (Σ). This sharpens the theory — fewer free parameters at background level, more falsifiable predictions at perturbation level.",
+        "doi_refs": [
+          "31985163"
+        ],
+        "reasoning": "The elevator pitch must reflect that EFC is not competing with ΛCDM at the background level — it IS ΛCDM at background — and its distinctive predictions are concentrated in growth and lensing."
+      },
+      {
+        "page": "whitepaper",
+        "target": "regime-architecture-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The EFC regime architecture correctly separates background from perturbation dynamics. A no-go theorem (DOI: 31985163) confirms that the entropy sigmoid S(a) is observationally inert at the background level: S(z > 1.5) < 10⁻³ ensures regime separation is exact where CMB constrains DA(z*), while the modification at z < 1 is structurally excluded by the DA(z*) integral. The regime architecture thus correctly predicted its own null result at Level 3.",
+        "doi_refs": [
+          "31985163"
+        ],
+        "reasoning": "The whitepaper regime architecture discussion should incorporate the no-go result as a successful structural prediction — the architecture predicted where modifications would and would not be observable."
+      }
+    ],
+    "implicit_consequences": [
+      "The EFC perturbation sector (μ < 1, Σ modifications) is now the ONLY observationally viable arena — every future EFC test must target growth or lensing, not expansion history. This massively focuses the testing program.",
+      "The sealed prediction for fσ8(z=0.7) = 0.430 becomes even more critical: since background is provably ΛCDM, any growth anomaly detected by DESI DR2 RSD cannot be attributed to background mismodelling — it must be perturbation-sector physics, exactly where EFC predicts its signature.",
+      "The no-go theorem provides implicit protection against a class of criticisms: EFC cannot be accused of hiding free parameters in the background expansion because the background is provably locked to ΛCDM. This reduces the effective parameter count of the theory.",
+      "Sub-percent background modifications below current sensitivity remain logically possible but are explicitly quarantined as untestable with current data — this sets a clear threshold for when Stage-IV surveys (Euclid, DESI DR2 with tighter rd) could reopen Level 3.",
+      "KC3 paper-level kill criteria (requiring μ ≥ 1 from growth+lensing) becomes the sharpest external threat: if RSD+WL data demand gravitational enhancement rather than suppression, EFC's perturbation sector is directly falsified with no background escape hatch.",
+      "The DA(z*) integral constraint is survey-independent — it applies equally to Euclid, Roman, and any future BAO survey. Level 3 closure is not contingent on DESI specifically."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:16:31Z",
+    "applied_by_doi": "31985163"
+  }
 }

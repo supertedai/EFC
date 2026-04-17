@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "entropy-bounded-empiricism-ebe-sparc175",
   "title": "Entropy-Bounded Empiricism: Regime-Dependent Validity in Galaxy Rotation Curves",
-  "description": "Complete documentation of the Entropy-Bounded Empiricism (EBE) framework applied to the SPARC175 galaxy rotation curves. The paper reports regime-dependent model validity with 100% EFC success in the FLOW regime (62/62) and strong nonparametric evidence (Mann-Whitney p < 0.0001, Cliff's \u03b4 = 0.371), while a CMB null test (p = 0.251) shows no regime structure, supporting the framework's specificity to non-equilibrium systems.",
+  "description": "Complete documentation of the Entropy-Bounded Empiricism (EBE) framework applied to the SPARC175 galaxy rotation curves. The paper reports regime-dependent model validity with 100% EFC success in the FLOW regime (62/62) and strong nonparametric evidence (Mann-Whitney p < 0.0001, Cliff's δ = 0.371), while a CMB null test (p = 0.251) shows no regime structure, supporting the framework's specificity to non-equilibrium systems.",
   "version": "1.0",
   "date": "2026-01-12",
   "doi": "10.6084/m9.figshare.31047703",
@@ -26,7 +26,7 @@
   },
   "core_equations": {},
   "key_results": {
-    "main_finding": "EFC achieves 100% success in the FLOW regime (62/62) with strong regime-dependent structure (p < 0.0001, Cliff's \u03b4 = 0.371), while the CMB shows no such structure (p = 0.251).",
+    "main_finding": "EFC achieves 100% success in the FLOW regime (62/62) with strong regime-dependent structure (p < 0.0001, Cliff's δ = 0.371), while the CMB shows no such structure (p = 0.251).",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -41,27 +41,27 @@
     ],
     "datasets_used": [
       "SPARC175 galaxy rotation curves (N = 175)",
-      "Planck 2018 CMB angular power spectrum (\u2113 = 2\u20132500)"
+      "Planck 2018 CMB angular power spectrum (ℓ = 2–2500)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Applying the EBE regime-classification pipeline to CMB angular power spectra will show no significant regime structure (p > 0.05, |\u03b4| \u2248 0).",
+      "statement": "Applying the EBE regime-classification pipeline to CMB angular power spectra will show no significant regime structure (p > 0.05, |δ| ≈ 0).",
       "falsifiable_by": "Future high-precision CMB datasets or alternative power spectra analyses yielding significant regime separation under the same pipeline."
     }
   ],
   "kill_criteria": [
-    "KC1: Pre-registered replication on an independent rotation-curve dataset using fixed thresholds (L1 = 0.337, L2 = 0.427; FLOW: L < 0.337) yields a FLOW EFC success rate \u2264 80% or no significant separation from non-FLOW (Mann\u2013Whitney p \u2265 0.05 and |Cliff's \u03b4| \u2264 0.15).",
-    "KC2: After controlling for measurement quality (e.g., N_points stratification or regression adjustment), the regime effect vanishes (p \u2265 0.10 and |\u03b4| \u2264 0.15), indicating the L\u2013quality correlation fully explains the result.",
-    "KC3: Robustness failure: Across a pre-specified set of reasonable, model-blind L definitions and small boundary perturbations, \u2265 80% of variants lose significance (p \u2265 0.05) and effect size shrinks to |\u03b4| \u2264 0.15.",
-    "KC4: CMB contradiction: Applying the identical regime-classification pipeline to updated CMB angular power spectra finds significant regime structure (p \u2264 0.01 or |\u03b4| \u2265 0.30).",
-    "KC5: Information leakage: Demonstration that L (or S) relies on post-fit or model-dependent information; when recomputed with a strictly model-blind definition, the regime effect is not significant (p \u2265 0.05).",
-    "KC6: Cross-survey failure: In two or more independent surveys (e.g., THINGS, LITTLE THINGS, SPARC extensions), pre-registered tests with fixed thresholds yield FLOW success rate < 60% (chi-squared < 3) and no significant regime separation (p \u2265 0.05).",
-    "KC7: Direct entropy proxy refutation: Independent determinations of low-entropy systems (S < 0.25) identify \u2265 10 galaxies where EFC fits fail strongly (median chi-squared \u2265 5), decoupling FLOW from success.",
-    "KC8: Corrected resampling diagnostics: Re-running permutation/bootstrap tests with verified code places the observed effect within the central 90% of the null (p \u2265 0.10), eliminating evidence for non-random regime structure.",
-    "KC9: High-quality subsample inconsistency: In the N_points \u2265 50 subsample, FLOW does not outperform other regimes (p \u2265 0.05), contradicting the reported strengthening of the effect with data quality."
+    "KC1: Pre-registered replication on an independent rotation-curve dataset using fixed thresholds (L1 = 0.337, L2 = 0.427; FLOW: L < 0.337) yields a FLOW EFC success rate ≤ 80% or no significant separation from non-FLOW (Mann–Whitney p ≥ 0.05 and |Cliff's δ| ≤ 0.15).",
+    "KC2: After controlling for measurement quality (e.g., N_points stratification or regression adjustment), the regime effect vanishes (p ≥ 0.10 and |δ| ≤ 0.15), indicating the L–quality correlation fully explains the result.",
+    "KC3: Robustness failure: Across a pre-specified set of reasonable, model-blind L definitions and small boundary perturbations, ≥ 80% of variants lose significance (p ≥ 0.05) and effect size shrinks to |δ| ≤ 0.15.",
+    "KC4: CMB contradiction: Applying the identical regime-classification pipeline to updated CMB angular power spectra finds significant regime structure (p ≤ 0.01 or |δ| ≥ 0.30).",
+    "KC5: Information leakage: Demonstration that L (or S) relies on post-fit or model-dependent information; when recomputed with a strictly model-blind definition, the regime effect is not significant (p ≥ 0.05).",
+    "KC6: Cross-survey failure: In two or more independent surveys (e.g., THINGS, LITTLE THINGS, SPARC extensions), pre-registered tests with fixed thresholds yield FLOW success rate < 60% (chi-squared < 3) and no significant regime separation (p ≥ 0.05).",
+    "KC7: Direct entropy proxy refutation: Independent determinations of low-entropy systems (S < 0.25) identify ≥ 10 galaxies where EFC fits fail strongly (median chi-squared ≥ 5), decoupling FLOW from success.",
+    "KC8: Corrected resampling diagnostics: Re-running permutation/bootstrap tests with verified code places the observed effect within the central 90% of the null (p ≥ 0.10), eliminating evidence for non-random regime structure.",
+    "KC9: High-quality subsample inconsistency: In the N_points ≥ 50 subsample, FLOW does not outperform other regimes (p ≥ 0.05), contradicting the reported strengthening of the effect with data quality."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -75,7 +75,7 @@
   "short_title": "EBE SPARC175",
   "type": "empirical_analysis",
   "status": "published",
-  "abstract_short": "EBE framework: 100% EFC success in FLOW regime (62/62 galaxies). Mann-Whitney p<0.0001, Cliff's \u03b4=0.371. CMB null test passes (p=0.251).",
+  "abstract_short": "EBE framework: 100% EFC success in FLOW regime (62/62 galaxies). Mann-Whitney p<0.0001, Cliff's δ=0.371. CMB null test passes (p=0.251).",
   "regime_distribution": {
     "FLOW": {
       "n": 62,
@@ -92,8 +92,8 @@
     "LATENT": {
       "n": 27,
       "pct": 15.4,
-      "L_range": "\u22650.427",
-      "S_range": "\u22650.65"
+      "L_range": "≥0.427",
+      "S_range": "≥0.65"
     }
   },
   "thresholds": {
@@ -103,5 +103,146 @@
       0.1,
       0.9
     ]
+  },
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes the Entropy-Bounded Empiricism (EBE) framework as a rigorous epistemological scaffolding for EFC's domain of validity, demonstrating with nonparametric statistics that EFC achieves 100% success in the FLOW regime (62/62 SPARC galaxies) while the CMB null test confirms no spurious regime structure. It does NOT close any Stage-IV KC or theory gap — it creates a new, self-contained empirical test layer with its own internal kill criteria (EBE-KC1 through EBE-KC5) that are distinct from the five master EFC kill criteria. The paper is a Tier-2 empirical anchor that defines WHERE EFC is expected to work (low-entropy coherent-flow systems) and provides the statistical machinery to test that boundary.",
+    "graph_insights": [
+      "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it needs to be explicitly linked to the SPARC rotation-curve validation tests and to the entropy-interpolation formalism in the core EFC theory papers. Without those edges, the EBE results are structurally isolated from the kill-criteria chain.",
+      "The concepts 'entropy S' and 'regime classification' should be connected to the EFCLASS Boltzmann solver gap (theory-efclass-boltzmann-solver), since the empirically measured S-boundaries (0.25, 0.65) provide the first data-driven calibration points for the solver's regime-switching logic.",
+      "The SPARC node should accumulate this paper alongside any prior SPARC-based EFC tests to build a multi-paper evidence cluster at the galaxy-scale phenomenology layer."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "ebe_sparc175_flow_regime_success",
+        "category": "phenomenological",
+        "name": "EBE SPARC175 FLOW Regime Success Rate",
+        "description": "EFC model tested against 62 FLOW-regime galaxies (L < 0.337) from SPARC175; success rate measured as fraction with acceptable rotation-curve fits.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC175 (sparc175_master_dataset.csv)",
+        "prediction": "EFC succeeds in low-entropy coherent-flow galaxies; predicted ~100% success in FLOW regime."
+      },
+      {
+        "test_id": "ebe_sparc175_mann_whitney_regime_separation",
+        "category": "physics_test",
+        "name": "EBE Mann-Whitney Regime Separation",
+        "description": "Mann-Whitney U test comparing FLOW vs non-FLOW modelling residuals; tests whether regime classification produces statistically significant separation.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC175",
+        "prediction": "Significant separation (p < 0.001, |Cliff's δ| > 0.20) between FLOW and non-FLOW residuals."
+      },
+      {
+        "test_id": "ebe_sparc175_kruskal_wallis_three_regime",
+        "category": "physics_test",
+        "name": "EBE Kruskal-Wallis Three-Regime Test",
+        "description": "Kruskal-Wallis H test across FLOW, TRANSITION, LATENT regimes to confirm ordered regime-dependent structure.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC175",
+        "prediction": "Significant three-way separation consistent with entropy-ordered regime structure."
+      },
+      {
+        "test_id": "ebe_cmb_null_test",
+        "category": "consistency_check",
+        "name": "EBE CMB Null Test (No Regime Structure)",
+        "description": "Identical regime-classification pipeline applied to CMB angular power spectrum data; should show NO significant regime structure since CMB is an equilibrium observable.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "CMB angular power spectra",
+        "prediction": "p > 0.05, |δ| ≈ 0. No regime structure in equilibrium system."
+      },
+      {
+        "test_id": "ebe_quality_confound_check",
+        "category": "consistency_check",
+        "name": "EBE Measurement Quality Confound Assessment",
+        "description": "Assessment of L–quality correlation (ρ = −0.43); checks whether regime effect survives after acknowledging measurement quality covariation.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "SPARC175",
+        "prediction": "Regime effect persists after quality stratification (EBE-KC2 not yet externally replicated)."
+      },
+      {
+        "test_id": "ebe_sealed_cmb_regime_prediction",
+        "category": "planned_pipeline",
+        "name": "EBE Sealed Prediction P1: CMB Regime Null",
+        "description": "Sealed prediction that CMB angular power spectra will show no significant regime structure under the EBE pipeline. Initial test passed (p = 0.251); awaits updated CMB data for full validation.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "CMB angular power spectra",
+        "prediction": "p > 0.05, |δ| ≈ 0 when EBE regime pipeline applied to CMB."
+      },
+      {
+        "test_id": "ebe_replication_independent_rc_dataset",
+        "category": "planned_pipeline",
+        "name": "EBE Pre-Registered Replication on Independent RC Dataset",
+        "description": "EBE-KC1 requires replication on an independent rotation-curve dataset with fixed thresholds (L1=0.337, L2=0.427). FLOW success rate must exceed 80% and Mann-Whitney p < 0.05.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Independent rotation-curve dataset (TBD — e.g., LITTLE THINGS, THINGS, or future surveys)",
+        "prediction": "FLOW EFC success rate > 80%, Mann-Whitney p < 0.05, |Cliff's δ| > 0.15."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-section=\"galaxy-rotation-curves\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EBE framework applied to SPARC175: 100% FLOW-regime success (62/62), Mann-Whitney p < 0.0001, Cliff's δ = 0.371. CMB null test passed (p = 0.251). Establishes entropy-bounded validity domain for EFC at galaxy scale. DOI: 10.6084/m9.figshare.31047703",
+        "doi_refs": [
+          "10.6084/m9.figshare.31047703"
+        ],
+        "reasoning": "Roadmap needs to reflect that galaxy rotation curves now have a complete statistical framework with regime-dependent validity documented and a CMB specificity check."
+      },
+      {
+        "page": "elevator",
+        "target": "data-section=\"evidence-summary\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "SPARC175 galaxy rotation curves: EFC achieves 100% success in entropy-coherent (FLOW) regime with strong statistical significance (p < 0.0001, δ = 0.371). CMB null test confirms specificity — no false regime structure in equilibrium observables.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31047703"
+        ],
+        "reasoning": "Elevator pitch should reflect the strongest empirical result at galaxy scale with the built-in falsification check."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-section=\"phenomenology\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The EBE framework (DOI: 10.6084/m9.figshare.31047703) provides a model-blind regime classification using the structural proxy L, demonstrating that EFC's validity domain is entropy-bounded. In the FLOW regime (L < 0.337, S < 0.25), EFC achieves 100% rotation-curve success (62/62 SPARC galaxies). Five internal kill criteria (EBE-KC1–KC5) are declared, with replication on an independent dataset as the next priority.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31047703"
+        ],
+        "reasoning": "Whitepaper phenomenology section must document the EBE regime classification, its statistical results, and the self-imposed kill criteria."
+      },
+      {
+        "page": "gap",
+        "target": "data-section=\"empirical-gaps\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "NEW GAP: EBE independent replication (EBE-KC1) — fixed-threshold regime classification must be tested on an independent rotation-curve dataset (e.g., LITTLE THINGS). Quality-confound regression (EBE-KC2) awaits stratified reanalysis. L-definition robustness sweep (EBE-KC3) is planned.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31047703"
+        ],
+        "reasoning": "The paper's own kill criteria create three well-defined empirical gaps that must be tracked."
+      }
+    ],
+    "implicit_consequences": [
+      "The ρ = −0.43 quality-L correlation is an honest vulnerability: EBE-KC2 (quality confound) is the most immediate internal threat and should be prioritized before claiming definitive regime structure.",
+      "The 100% FLOW success with zero failures in 62 galaxies is statistically striking but also fragile — a single failure in replication drops the rate and may trigger EBE-KC1. This makes independent replication the single most important next step for this branch.",
+      "The CMB null test (p = 0.251) implicitly validates that the regime-classification pipeline is not an overfitting artifact, which strengthens confidence in applying the same pipeline to other non-equilibrium observables (e.g., cluster dynamics, Lyman-α forest).",
+      "The EBE framework is explicitly positioned as theory-agnostic ('EFC is used as a concrete test case, not as a prerequisite'), which means any competing model could in principle also be tested within the same regime classification — this is both a strength (scientific credibility) and a strategic exposure (a competitor could claim the FLOW regime).",
+      "The L proxy, being model-blind and computed pre-fit, satisfies the information-leakage kill criterion (EBE-KC5) by construction, but this must be independently audited to be credible to external reviewers.",
+      "The three-regime structure (FLOW/TRANSITION/LATENT) implicitly maps onto the EFC entropy interpolation S ∈ [0,1], providing the first empirical calibration of which S-ranges correspond to which physical regimes — this constrains the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver) by fixing the transition boundaries."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
   }
 }

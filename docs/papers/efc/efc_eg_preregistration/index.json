@@ -120,5 +120,76 @@
     "pdf": "efc_eg_preregistration.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.32023788"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32023788",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper formally seals a Tier-1, preregistered EFC prediction for the EG gravitational-slip statistic to be tested with SO CMB lensing cross Euclid DR2 galaxies, with a binding pass window and explicit kill triggers. It operationalizes the EFC slip sector (µ < 1, Σ > 1, η ≠ 1) into a single pipeline-level observable that is orthogonal to lensing-only tests and ties directly to Stage‑IV data. While it does not close any existing theory gaps, it establishes a high-stakes, machine-auditable falsification path under KC5 monitoring.",
+    "graph_insights": [
+      "This is the first T1 sealed prediction linked to the EG statistic node, bridging CMB lensing (SO) and Euclid DR2 galaxy clustering without existing 1–2 hop predecessors.",
+      "No current validation tests share this observable, so the graph gains a new, orthogonal edge to gravitational slip and Horndeski EFT nodes, highlighting a fresh pathway not yet covered by active tests."
+    ],
+    "kc_addressed": [
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "eg_so_euclid_dr2_preregistered",
+        "category": "planned_pipeline",
+        "name": "EG statistic from SO κ × Euclid DR2 galaxies (ℓ=50–500, z≈0.5)",
+        "description": "Pre-registered pipeline-level test of EFC gravitational slip using SO LAT CMB lensing cross-correlation with Euclid DR2 galaxy data; validates Σ/µ-driven enhancement relative to GR with binding pass/fail windows.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Simons Observatory LAT CMB lensing (κ) × Euclid DR2 galaxy clustering and RSD (β); tomography-convolved, ℓ ∈ [50, 500], k_c ≈ 0.05 h Mpc⁻1, z_eff ≈ 0.5",
+        "prediction": "EG_obs / EG_GR = 1.086 ± 0.012; pass window [1.03, 1.14]; kill if 1.00 ± 0.01 at >3σ"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_badge",
+        "new_badge": "SEALED",
+        "new_text": null,
+        "doi_refs": [
+          "32023788"
+        ],
+        "reasoning": "A Stage‑IV EG test with explicit pass/fail and kill triggers is now preregistered and sealed, qualifying for a SEALED badge under KC5 monitoring."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Sealed preregistered EG prediction for SO LAT κ × Euclid DR2 galaxies: EG_obs / EG_GR = 1.086 ± 0.012 at k_c ≈ 0.05 h Mpc⁻1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger at 1.00 ± 0.01 (>3σ). DOI: 10.6084/m9.figshare.32023788.",
+        "doi_refs": [
+          "32023788"
+        ],
+        "reasoning": "Roadmap KC5 section should reflect the concrete, DOI-referenced sealed test and its binding falsification conditions."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC gravitational-slip validation via EG (SO κ × Euclid DR2) is preregistered and sealed, defining an orthogonal probe to weak lensing (sensitive to Σ/µ) with binding pass/fail windows and an explicit kill criterion. DOI: 10.6084/m9.figshare.32023788.",
+        "doi_refs": [
+          "32023788"
+        ],
+        "reasoning": "Whitepaper needs to document the sealed EG validation pathway and its role in falsifying the slip sector."
+      }
+    ],
+    "implicit_consequences": [
+      "Commits EFC to a Stage‑IV prediction requiring Σ/µ > 1 at z ≈ 0.5, tightening cross-consistency pressure on µ- and Σ-sensitive analyses (RSD, CMB lensing, galaxy–galaxy lensing).",
+      "Introduces a binding falsification hook: a GR-like EG result (1.00 ± 0.01) at >3σ would force retirement of the EFC slip sector in the Validation Ledger.",
+      "Necessitates estimator-consistent pipeline interfaces (RSD β, κ×g, gg) and reinforces the need for an EFCLASS or equivalent mapping to survey-level EG definitions.",
+      "Creates an orthogonal observable path in the validation graph, linking CMB lensing and galaxy clustering to the Horndeski/EFT slip parameter η and the Σ/µ ratio."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC5"
+    ]
+  }
 }

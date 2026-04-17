@@ -1,15 +1,15 @@
 {
   "$schema": "./schema.json",
   "id": "kill-test-v6-universality-sparc175",
-  "title": "Kill-Test v6 Universality \u2014 Extension of the EFC vs \u039bCDM Kill-Test to the Full SPARC 175 Sample",
-  "description": "Extends Kill-Test v6 (probe-2) from 5 hand-refitted SPARC galaxies to the full SPARC 175 sample, fitting a 3-parameter EFC phenomenological rotation-curve model against a 2-parameter NFW halo using differential evolution and AIC for model comparison. On 171 galaxies with \u22655 data points, EFC wins 60.2% (median \u0394AIC = +6.21), ties 26.9%, and loses 12.9%, with median \u03c7\u00b2_red of 0.44 (EFC) vs 1.69 (NFW). Regime separation (FLOW > LATENT) is highly significant and no mass-scale dependence of \u0394AIC is detected, refuting cherry-picking and supporting single-component universality.",
+  "title": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
+  "description": "Extends Kill-Test v6 (probe-2) from 5 hand-refitted SPARC galaxies to the full SPARC 175 sample, fitting a 3-parameter EFC phenomenological rotation-curve model against a 2-parameter NFW halo using differential evolution and AIC for model comparison. On 171 galaxies with ≥5 data points, EFC wins 60.2% (median ΔAIC = +6.21), ties 26.9%, and loses 12.9%, with median χ²_red of 0.44 (EFC) vs 1.69 (NFW). Regime separation (FLOW > LATENT) is highly significant and no mass-scale dependence of ΔAIC is detected, refuting cherry-picking and supporting single-component universality.",
   "version": "1.0",
   "date": "2026-04-11",
   "doi": "10.6084/m9.figshare.31986762",
   "keywords": [
     "Energy-Flow Cosmology",
     "EFC",
-    "\u039bCDM",
+    "ΛCDM",
     "SPARC",
     "rotation curves",
     "NFW halo",
@@ -48,7 +48,7 @@
     }
   },
   "key_results": {
-    "main_finding": "Across 171 SPARC galaxies (\u22655 points), the 3-parameter EFC curve outperforms 2-parameter NFW in 60.2% of cases by AIC (median \u0394AIC = +6.21), ties 26.9%, and loses 12.9%, with median \u03c7\u00b2_red of 0.44 (EFC) vs 1.69 (NFW) and strong FLOW>LATENT separation (Mann\u2013Whitney p \u2248 0) without mass dependence (\u03c1 = 0.11, p = 0.15).",
+    "main_finding": "Across 171 SPARC galaxies (≥5 points), the 3-parameter EFC curve outperforms 2-parameter NFW in 60.2% of cases by AIC (median ΔAIC = +6.21), ties 26.9%, and loses 12.9%, with median χ²_red of 0.44 (EFC) vs 1.69 (NFW) and strong FLOW>LATENT separation (Mann–Whitney p ≈ 0) without mass dependence (ρ = 0.11, p = 0.15).",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -60,18 +60,18 @@
     ],
     "datasets_used": [
       "SPARC Rotmod 175 galaxy sample (Lelli, McGaugh & Schombert 2016)",
-      "DDO 154 (probe-2 anchor; \u0394AIC \u2248 +125.2 sanity check)"
+      "DDO 154 (probe-2 anchor; ΔAIC ≈ +125.2 sanity check)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: On the full SPARC 175 sample (or a comparably large, independent sample) under the same single-component protocol and AIC convention, the median \u0394AIC \u2264 0 together with an EFC win rate \u2264 40% would kill the single-component EFC universality claim.",
-    "KC2: In an upgraded comparison using NFW + baryons (disc+bulge with standard mass-to-light priors; 4\u20135 parameters) and proper AIC/BIC penalties, if \u2265 60% of galaxies favor NFW+baryons with median \u0394AIC \u2264 \u22122, the EFC phenomenological advantage would be rejected.",
-    "KC3: Bayesian model comparison (e.g., nested sampling) yielding a decisive majority with ln Bayes factor ln B_{NFW,EFC} \u2265 5 in favor of NFW (with or without baryons) across the sample would falsify the reported EFC compression advantage.",
-    "KC4: If, in out-of-sample evaluation, FLOW vs LATENT \u0394AIC distributions are not separable (Mann\u2013Whitney p > 0.05), the regime-dependent universality claim would be rejected.",
-    "KC5: Discovery of strong mass-scale dependence (|\u03c1(\u0394AIC, v_max)| \u2265 0.3 with p < 0.01), indicating the effect is confined to dwarfs or a narrow mass range, would invalidate the universality claim.",
-    "KC6: Re-analysis of the probe-2 anchor (e.g., DDO 154) with the same data and protocol yielding \u0394AIC \u2264 0 (no EFC advantage) would undermine the internal consistency and sign-convention check of the study."
+    "KC1: On the full SPARC 175 sample (or a comparably large, independent sample) under the same single-component protocol and AIC convention, the median ΔAIC ≤ 0 together with an EFC win rate ≤ 40% would kill the single-component EFC universality claim.",
+    "KC2: In an upgraded comparison using NFW + baryons (disc+bulge with standard mass-to-light priors; 4–5 parameters) and proper AIC/BIC penalties, if ≥ 60% of galaxies favor NFW+baryons with median ΔAIC ≤ −2, the EFC phenomenological advantage would be rejected.",
+    "KC3: Bayesian model comparison (e.g., nested sampling) yielding a decisive majority with ln Bayes factor ln B_{NFW,EFC} ≥ 5 in favor of NFW (with or without baryons) across the sample would falsify the reported EFC compression advantage.",
+    "KC4: If, in out-of-sample evaluation, FLOW vs LATENT ΔAIC distributions are not separable (Mann–Whitney p > 0.05), the regime-dependent universality claim would be rejected.",
+    "KC5: Discovery of strong mass-scale dependence (|ρ(ΔAIC, v_max)| ≥ 0.3 with p < 0.01), indicating the effect is confined to dwarfs or a narrow mass range, would invalidate the universality claim.",
+    "KC6: Re-analysis of the probe-2 anchor (e.g., DDO 154) with the same data and protocol yielding ΔAIC ≤ 0 (no EFC advantage) would undermine the internal consistency and sign-convention check of the study."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -121,13 +121,13 @@
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
   "type": "technical_note",
-  "track": "Spor 1 \u2014 Galactic/Cosmological",
+  "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [
     "L3"
   ],
   "epistemic_layer": "B-C",
   "epistemic_status": "Non-rejection of single-component EFC against NFW reference on 171/175 SPARC galaxies; cherry-picking objection refuted; universality verdict CONFIRMED at the single-component level.",
-  "abstract": "Kill-Test v6 (probe-2) established a decisive EFC advantage on five hand-refitted SPARC galaxies against a single-component NFW reference. This package extends the same methodology to all 175 SPARC galaxies, refuting the cherry-picking objection. On 171/175 galaxies (4 dropped for n<5 data points), single-component EFC wins 60.2% (42.1% EFC_decisive, 18.1% EFC), ties 26.9%, and loses 12.9% (9.4% LCDM_decisive, 3.5% LCDM). Median \u0394AIC = +6.21 (favours EFC; AIC_NFW \u2212 AIC_EFC convention). Median \u03c7\u00b2_red: EFC 0.44 vs NFW 1.69. Mann-Whitney test for FLOW (71 gal.) vs LATENT (16 gal.) gives p \u2248 0, ruling out the null hypothesis that the two regimes share a \u0394AIC distribution. Spearman \u03c1(\u0394AIC, v_max) = 0.11 (p = 0.15) rules out mass-scale selection bias. Kill-Test v6 probe-2 anchor DDO 154 reproduces at \u0394AIC = +125.2 (sign convention verified). Universality verdict: CONFIRMED at the single-component level.",
+  "abstract": "Kill-Test v6 (probe-2) established a decisive EFC advantage on five hand-refitted SPARC galaxies against a single-component NFW reference. This package extends the same methodology to all 175 SPARC galaxies, refuting the cherry-picking objection. On 171/175 galaxies (4 dropped for n<5 data points), single-component EFC wins 60.2% (42.1% EFC_decisive, 18.1% EFC), ties 26.9%, and loses 12.9% (9.4% LCDM_decisive, 3.5% LCDM). Median ΔAIC = +6.21 (favours EFC; AIC_NFW − AIC_EFC convention). Median χ²_red: EFC 0.44 vs NFW 1.69. Mann-Whitney test for FLOW (71 gal.) vs LATENT (16 gal.) gives p ≈ 0, ruling out the null hypothesis that the two regimes share a ΔAIC distribution. Spearman ρ(ΔAIC, v_max) = 0.11 (p = 0.15) rules out mass-scale selection bias. Kill-Test v6 probe-2 anchor DDO 154 reproduces at ΔAIC = +125.2 (sign convention verified). Universality verdict: CONFIRMED at the single-component level.",
   "headline_result": {
     "n_galaxies_total": 175,
     "n_fitted": 171,
@@ -157,17 +157,17 @@
   },
   "statistical_tests": {
     "mann_whitney_flow_vs_latent": {
-      "alternative": "FLOW > LATENT (\u0394AIC)",
+      "alternative": "FLOW > LATENT (ΔAIC)",
       "U_statistic": 1136.0,
       "p_value": 0.0,
       "n_flow": 71,
       "n_latent": 16,
-      "interpretation": "Rejects null hypothesis that FLOW and LATENT galaxies share a \u0394AIC distribution"
+      "interpretation": "Rejects null hypothesis that FLOW and LATENT galaxies share a ΔAIC distribution"
     },
     "spearman_delta_aic_vs_vmax": {
       "rho": 0.1106,
       "p_value": 0.1497,
-      "interpretation": "No significant correlation between EFC advantage and galaxy v_max \u2014 not a dwarf-galaxy artefact"
+      "interpretation": "No significant correlation between EFC advantage and galaxy v_max — not a dwarf-galaxy artefact"
     }
   },
   "methodology": {
@@ -178,10 +178,10 @@
     "maxiter": 500,
     "init": "sobol",
     "polish": true,
-    "efc_model": "v(r) = v_flat \u00b7 sqrt(1 - exp(-(r/r_turnon)^sharpness))",
-    "nfw_model": "v\u00b2(r) = V200\u00b2 \u00b7 [ln(1+s) - s/(1+s)] / [ln(1+c) - c/(1+c)] / (r/r200),  s = c\u00b7r/r200,  r200 = V200 / (10\u00b7H0\u00b71e-3)",
+    "efc_model": "v(r) = v_flat · sqrt(1 - exp(-(r/r_turnon)^sharpness))",
+    "nfw_model": "v²(r) = V200² · [ln(1+s) - s/(1+s)] / [ln(1+c) - c/(1+c)] / (r/r200),  s = c·r/r200,  r200 = V200 / (10·H0·1e-3)",
     "H0": 67.4,
-    "delta_aic_convention": "AIC_NFW - AIC_EFC (positive = EFC wins; matches Kill-Test v6 probe-2 where DDO 154 has \u0394AIC = +35.4)",
+    "delta_aic_convention": "AIC_NFW - AIC_EFC (positive = EFC wins; matches Kill-Test v6 probe-2 where DDO 154 has ΔAIC = +35.4)",
     "efc_bounds": {
       "v_flat_km_s": [
         10.0,
@@ -207,16 +207,16 @@
       ]
     },
     "regime_thresholds": {
-      "FLOW": "\u0394AIC \u2265 +10 AND \u03c7\u00b2_red,EFC < 20",
-      "LATENT": "\u0394AIC \u2264 -10 OR \u03c7\u00b2_red,EFC > 50",
+      "FLOW": "ΔAIC ≥ +10 AND χ²_red,EFC < 20",
+      "LATENT": "ΔAIC ≤ -10 OR χ²_red,EFC > 50",
       "TRANSITION": "otherwise"
     },
     "verdict_thresholds": {
-      "EFC_decisive": "\u0394AIC > +10",
-      "EFC": "+2 < \u0394AIC \u2264 +10",
-      "tied": "-2 \u2264 \u0394AIC \u2264 +2",
-      "LCDM": "-10 \u2264 \u0394AIC < -2",
-      "LCDM_decisive": "\u0394AIC < -10"
+      "EFC_decisive": "ΔAIC > +10",
+      "EFC": "+2 < ΔAIC ≤ +10",
+      "tied": "-2 ≤ ΔAIC ≤ +2",
+      "LCDM": "-10 ≤ ΔAIC < -2",
+      "LCDM_decisive": "ΔAIC < -10"
     }
   },
   "data_source": {
@@ -313,7 +313,7 @@
     {
       "regime": "L0",
       "redshift": "z > 1100",
-      "coupling": "\u03b1_S \u2192 0",
+      "coupling": "α_S → 0",
       "physics": "Standard GR + Standard Model"
     },
     {
@@ -325,25 +325,25 @@
     {
       "regime": "L2",
       "redshift": "0.5 < z < 30",
-      "coupling": "\u03b1_L2 \u2260 0",
+      "coupling": "α_L2 ≠ 0",
       "physics": "late-time modification"
     },
     {
       "regime": "L3",
       "redshift": "z ~ 0",
       "coupling": "full entropy-flow",
-      "physics": "galactic / local \u2014 this paper"
+      "physics": "galactic / local — this paper"
     }
   ],
   "falsification_criteria": [
     "Independent re-run returning EFC win rate < 50% on identical input data with seed = 42",
-    "DDO 154 returning \u0394AIC < 0 (sign convention test)",
+    "DDO 154 returning ΔAIC < 0 (sign convention test)",
     "Mann-Whitney FLOW vs LATENT returning p > 0.05",
-    "Replacement of differential_evolution with basin hopping or SHGO changing the median \u0394AIC by > factor of 2 in absolute value"
+    "Replacement of differential_evolution with basin hopping or SHGO changing the median ΔAIC by > factor of 2 in absolute value"
   ],
   "open_questions": [
-    "Multi-component 175-galaxy universality with single fixed (K0, m\u00b2) across all galaxies",
-    "Structural predictor for LATENT regime assignment (bulge fraction, central density, \u0398(\u03c1) crossing)",
+    "Multi-component 175-galaxy universality with single fixed (K0, m²) across all galaxies",
+    "Structural predictor for LATENT regime assignment (bulge fraction, central density, Θ(ρ) crossing)",
     "Retest of the four n<5 galaxies (D512-2, NGC 6789, UGC 00634, UGC 07232)"
   ],
   "related_papers": [
@@ -370,5 +370,96 @@
       "relationship": "methodological_framework"
     }
   ],
-  "see_also": "ai_manifest.json"
+  "see_also": "ai_manifest.json",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper eliminates the cherry-picking objection against EFC's L3 rotation-curve phenomenology by extending probe-2 from 5 galaxies to the full SPARC 175 sample, demonstrating that a 3-parameter EFC-motivated fitting function outperforms 2-parameter NFW in 60.2% of cases by AIC with strong regime separation and no mass dependence. It is explicitly a model-compression test, not a theory validation — it establishes that the EFC entropy-gradient functional form has superior empirical economy at galactic scales. The paper is self-aware about its limitations (no baryonic coupling in NFW, point estimates not posteriors, post-hoc LATENT classification) and specifies concrete upgrades that map directly onto its own internal kill criteria KC2–KC3.",
+    "graph_insights": [
+      "No existing graph connections were found, indicating this paper creates a new L3-galactic node in the knowledge graph. It should be linked to: (a) Kill-Test v6 (DOI 28550047) as parent, (b) SPARC 175 analysis (DOI 28358629) as data parent, (c) the FLOW/TRANSITION/LATENT regime classification concept, and (d) future NFW+baryons and nested-sampling tests as downstream upgrade nodes.",
+      "The universality concept touched by this paper currently has no other empirical anchors in the graph at L3 — this is the first sample-wide test. It should be cross-linked to any future THINGS, LITTLE THINGS, or MaNGA kinematic tests to form a universality validation cluster.",
+      "The AIC model comparison methodology node should connect to the CMB and BAO model-comparison tests at L1–L2 for methodological consistency tracking across scales."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "sparc175_efc_vs_nfw_aic_universality",
+        "category": "phenomenological",
+        "name": "SPARC 175 EFC vs NFW AIC universality test",
+        "description": "Fits 3-param EFC phenomenological rotation curve and 2-param NFW halo to all 171 SPARC galaxies (≥5 points) using differential evolution; compares via AIC with +2 penalty on EFC for extra parameter. EFC wins 60.2%, ties 26.9%, loses 12.9%; median ΔAIC = +6.21; median χ²_red 0.44 (EFC) vs 1.69 (NFW).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC Rotmod database (Lelli, McGaugh & Schombert 2016), 171 of 175 galaxies",
+        "prediction": "EFC phenomenological curve provides better or comparable data compression than NFW across the majority of late-type galaxy rotation curves"
+      },
+      {
+        "test_id": "sparc175_flow_latent_regime_separation",
+        "category": "phenomenological",
+        "name": "SPARC 175 FLOW/LATENT regime separation (Mann-Whitney)",
+        "description": "Tests whether ΔAIC distributions for FLOW-classified vs LATENT-classified galaxies are statistically separable. Mann-Whitney p ≈ 0 confirms strong regime-dependent separation.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC Rotmod database, regime classification from EFC phenomenology",
+        "prediction": "FLOW-regime galaxies show systematically stronger EFC advantage (higher ΔAIC) than LATENT-regime galaxies"
+      },
+      {
+        "test_id": "sparc175_mass_independence",
+        "category": "phenomenological",
+        "name": "SPARC 175 mass-independence of EFC advantage",
+        "description": "Tests for correlation between ΔAIC and v_max (proxy for halo mass). Spearman ρ = 0.11, p = 0.15 — no significant mass dependence, supporting universality across dwarf-to-massive late-type galaxies.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "SPARC Rotmod database, v_max range ~20–300 km/s",
+        "prediction": "EFC compression advantage is not confined to a narrow mass range"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "probe-2-sparc-universality",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Kill-Test v6 probe-2 extended to full SPARC 175 sample (171 galaxies with ≥5 points). EFC wins 60.2% by AIC, median ΔAIC = +6.21, no mass dependence. Cherry-picking objection eliminated. DOI: 10.6084/m9.figshare.31986762. Pending upgrades: NFW+baryons (paper-internal KC2), nested sampling (KC3), predictive LATENT criterion (KC4).",
+        "doi_refs": [
+          "31986762",
+          "28550047",
+          "28358629"
+        ],
+        "reasoning": "This is the direct extension of probe-2 from v6; the roadmap must reflect the sample-wide result and specify remaining upgrade path the paper itself defines."
+      },
+      {
+        "page": "elevator",
+        "target": "L3-galactic-regime",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "At galactic scales (L3), a 3-parameter EFC-motivated rotation curve outperforms the standard 2-parameter NFW halo on 60% of 171 SPARC galaxies by AIC, with no mass dependence and clear FLOW/LATENT regime separation (DOI: 10.6084/m9.figshare.31986762). This is a compression advantage, not yet a theory test.",
+        "doi_refs": [
+          "31986762"
+        ],
+        "reasoning": "The elevator pitch should reflect that EFC now has a sample-wide L3 result, but must preserve the paper's own caveat that this is phenomenological compression, not theory validation."
+      },
+      {
+        "page": "gap",
+        "target": "sparc-nfw-baryons-upgrade",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "NEW GAP: NFW+baryons comparison on SPARC 175 — the current result uses bare NFW (2 params). Paper-internal KC2 requires NFW+disc+bulge (4–5 params) with standard M/L priors. If ≥60% favor NFW+baryons with median ΔAIC ≤ −2, the EFC compression advantage is rejected. This is now the highest-priority L3 upgrade.",
+        "doi_refs": [
+          "31986762"
+        ],
+        "reasoning": "The paper explicitly identifies the baryonic-coupling absence as its main limitation and defines KC2 around it. This should be surfaced as a formal data gap so it enters the action pipeline."
+      }
+    ],
+    "implicit_consequences": [
+      "The 60.2% win rate with AIC penalty already accounting for EFC's extra parameter means the functional form v_flat·sqrt(1−exp(−(r/r_turn)^s)) is an empirically preferred compression of late-type galaxy kinematics — any future EFC action-derived rotation curve must recover or improve on this functional form, providing a concrete calibration target for the theory-sector derivation.",
+      "The FLOW/LATENT separation surviving at full-sample scale implies the regime classification is not an artifact of galaxy selection; if LATENT galaxies are consistently those where the energy-flow gradient is suppressed (e.g., by environment or formation history), this is an implicit prediction that can be tested against galaxy environment catalogs (e.g., tidal index, group membership).",
+      "The median χ²_red of 0.44 for EFC suggests systematic over-fitting or over-estimated SPARC error bars — this must be investigated before claiming goodness-of-fit superiority, as it implies the model has residual flexibility the AIC penalty does not fully capture.",
+      "Because the paper's own KC2 (NFW+baryons) and KC3 (Bayesian nested sampling) are still open, the current result should NOT be used to update any Stage-IV kill criterion status; it strengthens the phenomenological case but leaves the decisive comparison unfinished.",
+      "The absence of sealed predictions in this paper means it contributes to the survived-test count but not to the sealed-prediction ledger — the next action should be sealing a prediction for the NFW+baryons comparison outcome before running it."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }

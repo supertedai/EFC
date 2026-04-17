@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-growth-sector-robustness",
   "title": "Robustness of the EFC Growth-Sector Signal: Leave-One-Out, Sound-Horizon, and Amplitude-Prior Controls for the Hubble-Friction Channel",
-  "description": "This paper performs a joint Bayesian fit of the EFC coupling \u03b1 to 14 BAO distance points and 7 f\u03c38 growth-rate measurements in the Hubble-friction channel, finding \u03b1 = \u22121.00 \u00b1 0.46 (2.20\u03c3). It subjects the signal to three robustness controls\u2014sound-horizon variation (N1), \u03c38 prior sensitivity (N2), and leave-one-out tests over all seven f\u03c38 points (T7)\u2014and shows the signal is distributed, stable, and not driven by calibration or a single datum.",
+  "description": "This paper performs a joint Bayesian fit of the EFC coupling α to 14 BAO distance points and 7 fσ8 growth-rate measurements in the Hubble-friction channel, finding α = −1.00 ± 0.46 (2.20σ). It subjects the signal to three robustness controls—sound-horizon variation (N1), σ8 prior sensitivity (N2), and leave-one-out tests over all seven fσ8 points (T7)—and shows the signal is distributed, stable, and not driven by calibration or a single datum.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31332730",
@@ -10,12 +10,12 @@
     "Energy-Flow Cosmology",
     "Hubble friction channel",
     "growth rate",
-    "f\u03c38",
+    "fσ8",
     "BAO",
     "leave-one-out",
     "robustness analysis",
     "sound horizon",
-    "\u03c38 prior",
+    "σ8 prior",
     "AIC/BIC",
     "BOSS DR12",
     "Bayesian fit"
@@ -28,11 +28,11 @@
   "core_equations": {
     "efc_friedmann": {
       "latex": "E^2(a) = E^2_{\\Lambda\\mathrm{CDM}}(a)\\,[1 + \\alpha\\,T(a)]",
-      "description": "Background-level EFC modification to the Friedmann equation with a single late-time coupling \u03b1 and gate function T(a) that activates at low redshift (z \u2272 2) to leave early-time \u039bCDM intact."
+      "description": "Background-level EFC modification to the Friedmann equation with a single late-time coupling α and gate function T(a) that activates at low redshift (z ≲ 2) to leave early-time ΛCDM intact."
     }
   },
   "key_results": {
-    "main_finding": "A joint BAO+growth fit yields \u03b1 = \u22121.00 \u00b1 0.46 (2.20\u03c3), robust to sound-horizon variation, \u03c38 prior choice, and 7/7 leave-one-out tests.",
+    "main_finding": "A joint BAO+growth fit yields α = −1.00 ± 0.46 (2.20σ), robust to sound-horizon variation, σ8 prior choice, and 7/7 leave-one-out tests.",
     "delta_chi2": -4.91,
     "significance_sigma": 2.2,
     "parameters_tested": [
@@ -43,25 +43,25 @@
       "r_d"
     ],
     "datasets_used": [
-      "BAO (14 points: 6dFGS, SDSS MGS, BOSS DR12, eBOSS LRG/QSO/ELG, Ly-\u03b1)",
-      "Growth rate f\u03c38 (7 points: 6dFGS, SDSS MGS, BOSS DR12\u00d73, VIPERS, FastSound)",
-      "BOSS DR12 6\u00d76 consensus covariance (where applicable)"
+      "BAO (14 points: 6dFGS, SDSS MGS, BOSS DR12, eBOSS LRG/QSO/ELG, Ly-α)",
+      "Growth rate fσ8 (7 points: 6dFGS, SDSS MGS, BOSS DR12×3, VIPERS, FastSound)",
+      "BOSS DR12 6×6 consensus covariance (where applicable)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "In the Hubble-friction channel, tighter external constraints on \u03c38 (e.g., from weak lensing) will maintain a non-positive \u03b1, with any combined BAO+f\u03c38+lensing analysis continuing to prefer \u03b1 \u2264 0 if the hinted late-time growth suppression is real.",
-      "falsifiable_by": "Joint DESI f\u03c38 + Stage-III/IV weak-lensing (S8) + BAO analysis yielding \u03b1 > 0 at \u2265 3\u03c3 significance."
+      "statement": "In the Hubble-friction channel, tighter external constraints on σ8 (e.g., from weak lensing) will maintain a non-positive α, with any combined BAO+fσ8+lensing analysis continuing to prefer α ≤ 0 if the hinted late-time growth suppression is real.",
+      "falsifiable_by": "Joint DESI fσ8 + Stage-III/IV weak-lensing (S8) + BAO analysis yielding α > 0 at ≥ 3σ significance."
     }
   ],
   "kill_criteria": [
-    "KC1: Expanded BAO+RSD (e.g., DESI DR1/DR2) analysis with the same MVP-G1 pipeline and comparable priors returns \u03b1 = 0 \u00b1 0.20 (|\u03b1|/\u03c3 < 1) and \u0394BIC \u2265 6 in favor of \u039bCDM, eliminating the need for the \u03b1 parameter.",
-    "KC2: Growth-only constraints with tight external priors on \u03a9m and \u03c38 (from CMB+lensing) find \u03b1 \u2265 0 at \u2265 3\u03c3, contradicting the EFC late-time growth-suppression prediction.",
-    "KC3: Sound-horizon robustness fails decisively: varying r_d within the Planck posterior shifts the best-fit \u03b1 by |\u0394\u03b1| \u2265 0.3 or flips its sign in high-precision datasets, indicating calibration dependence incompatible with the EFC formulation.",
-    "KC4: Leave-one-out and survey-split tests on an expanded (N \u2265 20) f\u03c38 set show instability\u2014multiple removals yield |\u03b1|/\u03c3 < 1.0 or sign flips\u2014with \u0394AIC \u2265 0 overall, indicating the signal was a single-survey/systematics artefact.",
-    "KC5: Independent probes of late-time growth (e.g., ISW tomography or weak-lensing cosmic shear) jointly constrain the EFC parameter to \u03b1 = 0 \u00b1 0.15 with \u0394BIC \u2265 6 favoring \u039bCDM across cross-correlated datasets."
+    "KC1: Expanded BAO+RSD (e.g., DESI DR1/DR2) analysis with the same MVP-G1 pipeline and comparable priors returns α = 0 ± 0.20 (|α|/σ < 1) and ΔBIC ≥ 6 in favor of ΛCDM, eliminating the need for the α parameter.",
+    "KC2: Growth-only constraints with tight external priors on Ωm and σ8 (from CMB+lensing) find α ≥ 0 at ≥ 3σ, contradicting the EFC late-time growth-suppression prediction.",
+    "KC3: Sound-horizon robustness fails decisively: varying r_d within the Planck posterior shifts the best-fit α by |Δα| ≥ 0.3 or flips its sign in high-precision datasets, indicating calibration dependence incompatible with the EFC formulation.",
+    "KC4: Leave-one-out and survey-split tests on an expanded (N ≥ 20) fσ8 set show instability—multiple removals yield |α|/σ < 1.0 or sign flips—with ΔAIC ≥ 0 overall, indicating the signal was a single-survey/systematics artefact.",
+    "KC5: Independent probes of late-time growth (e.g., ISW tomography or weak-lensing cosmic shear) jointly constrain the EFC parameter to α = 0 ± 0.15 with ΔBIC ≥ 6 favoring ΛCDM across cross-correlated datasets."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -75,7 +75,7 @@
   "short_title": "EFC Growth Robustness LOO",
   "type": "robustness_analysis",
   "status": "published",
-  "abstract_short": "Joint Bayesian fit to 14 BAO + 7 f\u03c3\u2088 points yields \u03b1 = \u22121.00 \u00b1 0.46 (2.20\u03c3). Three robustness controls pass: sound-horizon independence (N1), amplitude-prior control (N2), leave-one-out 7/7 (T7). Signal is distributed, robust, sub-detection-threshold hint for late-time growth suppression.",
+  "abstract_short": "Joint Bayesian fit to 14 BAO + 7 fσ₈ points yields α = −1.00 ± 0.46 (2.20σ). Three robustness controls pass: sound-horizon independence (N1), amplitude-prior control (N2), leave-one-out 7/7 (T7). Signal is distributed, robust, sub-detection-threshold hint for late-time growth suppression.",
   "efc_channel": {
     "name": "Hubble Friction Channel",
     "regime": "EFC-D, L2",
@@ -123,7 +123,7 @@
         "SDSS MGS",
         "BOSS DR12",
         "eBOSS LRG/QSO/ELG",
-        "Ly-\u03b1"
+        "Ly-α"
       ],
       "z_range": [
         0.106,
@@ -133,7 +133,7 @@
     },
     "growth_rate": {
       "points": 7,
-      "observable": "f\u03c3\u2088(z)",
+      "observable": "fσ₈(z)",
       "surveys_and_redshifts": [
         {
           "survey": "6dFGS",
@@ -184,7 +184,7 @@
     "base_signal": {
       "alpha": -1.0,
       "sigma": 0.46,
-      "significance": "2.20\u03c3",
+      "significance": "2.20σ",
       "delta_AIC": -2.91,
       "delta_BIC": -0.91,
       "p_value_one_sided": 0.028
@@ -192,17 +192,17 @@
     "robustness_controls": {
       "N1_sound_horizon": {
         "description": "Vary r_d within Planck posterior range",
-        "result": "|\u0394\u03b1| < 0.05",
+        "result": "|Δα| < 0.05",
         "status": "PASSED"
       },
       "N2_amplitude_prior": {
-        "description": "Tight \u03c3\u2088 prior vs flat prior",
-        "result": "Signal strengthens from ~1.7\u03c3 to 2.20\u03c3",
+        "description": "Tight σ₈ prior vs flat prior",
+        "result": "Signal strengthens from ~1.7σ to 2.20σ",
         "status": "PASSED"
       },
       "T7_leave_one_out": {
-        "description": "Remove each f\u03c3\u2088 point and refit",
-        "pass_criterion": "|\u03b1|/\u03c3 \u2265 1.7 AND \u0394AIC \u2264 0",
+        "description": "Remove each fσ₈ point and refit",
+        "pass_criterion": "|α|/σ ≥ 1.7 AND ΔAIC ≤ 0",
         "score": "7/7 (100%)",
         "alpha_range": [
           -1.11,
@@ -293,23 +293,101 @@
     "degeneracy_structure": {
       "r_alpha_Omega_m": 0.59,
       "r_alpha_sigma8": -0.27,
-      "interpretation": "Positive r(\u03b1,\u03a9_m): geometric degeneracy. Negative r(\u03b1,\u03c3\u2088): growth suppression trades off against lower \u03c3\u2088."
+      "interpretation": "Positive r(α,Ω_m): geometric degeneracy. Negative r(α,σ₈): growth suppression trades off against lower σ₈."
     },
     "caveats": [
-      "2.20\u03c3 is sub-detection-threshold (p \u2248 0.028, below 3\u03c3 evidence criterion)",
-      "\u0394BIC = \u22120.91: Bayesian penalty nearly cancels \u03c7\u00b2 improvement",
-      "Data consistent with \u03b1 \u2260 0 but do not demand it"
+      "2.20σ is sub-detection-threshold (p ≈ 0.028, below 3σ evidence criterion)",
+      "ΔBIC = −0.91: Bayesian penalty nearly cancels χ² improvement",
+      "Data consistent with α ≠ 0 but do not demand it"
     ]
   },
   "key_conclusions": [
-    "~2\u03c3 preference for \u03b1 < 0 (late-time growth suppression) is NOT driven by sound-horizon calibration",
-    "Signal is NOT an artefact of \u03c3\u2088 prior width",
-    "Signal is NOT carried by any single f\u03c3\u2088 measurement",
-    "Signal distributed across full redshift range z = 0.02\u20130.85",
+    "~2σ preference for α < 0 (late-time growth suppression) is NOT driven by sound-horizon calibration",
+    "Signal is NOT an artefact of σ₈ prior width",
+    "Signal is NOT carried by any single fσ₈ measurement",
+    "Signal distributed across full redshift range z = 0.02–0.85",
     "Robust sub-detection-threshold hint awaiting confirmation by forthcoming surveys"
   ],
   "validation_ledger": {
     "sector": "Growth/Dynamics (EFC-D, L2 regime)",
     "status": "Completed (robust hint)"
+  },
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper consolidates the ∼2.2σ negative-α hint in the EFC Hubble-friction channel and demonstrates it is not an artefact of sound-horizon calibration, σ8 priors, or any single growth datum. It directly executes and passes three robustness controls (N1/N2/T7), tightening confidence that the observed growth suppression signal is distributed and calibration-independent pending DESI RSD confirmation. It strengthens the growth-sector validation layer without altering the current bottom-line priority.",
+    "graph_insights": [
+      "This node strengthens the Hubble-friction channel by adding robust edges to calibration controls (rd) and amplitude priors (σ8), reducing dependence on early-universe calibration.",
+      "Absence of direct links to DESI DR2 or full-shape RSD highlights that the critical rapid-response verification pipeline remains the key missing connection."
+    ],
+    "kc_addressed": [
+      "KC3",
+      "KC4"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "efc_hubble_friction_sound_horizon_robustness_n1",
+        "category": "consistency_check",
+        "name": "Sound-horizon robustness of α in the Hubble-friction channel (N1)",
+        "description": "Vary rd across the Planck posterior and verify the best-fit α and its significance remain stable, indicating calibration independence.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BAO 14-point compilation (6dFGS, SDSS MGS, BOSS DR12, eBOSS LRG/QSO/ELG, Ly-α xcorr) + 7 fσ8 points",
+        "prediction": "EFC predicts that the inferred α remains non-positive and does not shift significantly under rd variations consistent with Planck."
+      },
+      {
+        "test_id": "efc_sigma8_prior_sensitivity_n2",
+        "category": "consistency_check",
+        "name": "σ8 prior sensitivity control for α (N2)",
+        "description": "Compare α under flat vs. tight σ8 priors to confirm the growth-suppression signal is not prior-driven and strengthens with tighter external amplitude information.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Same BAO+fσ8 set with σ8 ∼ N(0.81, 0.02) vs. flat prior",
+        "prediction": "EFC predicts α ≤ 0 and a stable or strengthened constraint when external σ8 information is tightened."
+      },
+      {
+        "test_id": "efc_growth_leave_one_out_t7",
+        "category": "consistency_check",
+        "name": "Leave-one-out stability across 7 fσ8 points (T7)",
+        "description": "Remove each of the 7 growth-rate points in turn and refit; verify all runs maintain |α|/σ ≥ 1.7 and ΔAIC ≤ 0, demonstrating a distributed signal not driven by any single datum.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "7 fσ8 points (6dFGS, SDSS MGS, BOSS DR12 x3, VIPERS, FastSound) with BAO 14-point set",
+        "prediction": "EFC predicts the negative-α preference persists under all single-point removals, indicating distributed support."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC3\"",
+        "action": "update_text",
+        "new_text": "KC3 (Sound-horizon robustness): Passed on current BAO+growth dataset. Varying rd across the Planck posterior leaves the α constraint stable; no sign flips or |Δα| ≥ 0.3 observed. See DOI:10.6084/m9.figshare.31332730.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31332730"
+        ],
+        "reasoning": "Paper explicitly performs N1 and reports stability to rd variation, directly addressing KC3 failure mode."
+      },
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_text": "KC4 (Leave-one-out stability): Passed on 7-point fσ8 set; all 7 LOO removals yield |α|/σ ≥ 1.84 and ΔAIC ≤ 0 with α in [−1.11, −0.88]. See DOI:10.6084/m9.figshare.31332730.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31332730"
+        ],
+        "reasoning": "Paper executes T7 leave-one-out with explicit pass criteria and results meeting them."
+      }
+    ],
+    "implicit_consequences": [
+      "The growth-suppression hint is distributed across surveys and redshifts, so expanding the fσ8 set (e.g., with DESI RSD) is likely to sharpen significance rather than dissolve it if systematics remain comparable.",
+      "σ8-prior robustness supports the sealed prediction that tighter external σ8 constraints (e.g., weak lensing) should maintain α ≤ 0 in the friction channel, though full multi-probe confirmation remains pending."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC3",
+      "KC4"
+    ]
   }
 }

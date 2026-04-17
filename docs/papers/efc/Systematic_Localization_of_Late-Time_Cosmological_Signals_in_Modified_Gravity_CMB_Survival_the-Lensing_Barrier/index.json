@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-cmb-localization",
   "title": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival, the Lensing Barrier, and a Growth-Sector Sign Constraint",
-  "description": "Five-phase localization study of where late-time modified-gravity signals can reside, using Energy-Flow Cosmology (EFC) as a case study. The background gate collapses (alpha consistent with zero) under joint CMB+BAO+SNe, pure growth modification (mu<1 with Sigma=1) is blocked by CMB lensing, and a narrow perturbation-sector slip window survives Planck with mu\u22480.94 and Sigma\u22481.05. The surviving valley is degenerate with the Planck AL anomaly, but f\u03c38 growth data independently favor mu<1, providing a growth-sector sign constraint.",
+  "description": "Five-phase localization study of where late-time modified-gravity signals can reside, using Energy-Flow Cosmology (EFC) as a case study. The background gate collapses (alpha consistent with zero) under joint CMB+BAO+SNe, pure growth modification (mu<1 with Sigma=1) is blocked by CMB lensing, and a narrow perturbation-sector slip window survives Planck with mu≈0.94 and Sigma≈1.05. The surviving valley is degenerate with the Planck AL anomaly, but fσ8 growth data independently favor mu<1, providing a growth-sector sign constraint.",
   "version": "1.0",
   "date": "2026-02-01",
   "doi": "10.6084/m9.figshare.31368433",
@@ -11,11 +11,11 @@
     "modified gravity",
     "CMB lensing",
     "gravitational slip",
-    "mu\u2013Sigma parametrization",
+    "mu–Sigma parametrization",
     "Planck 2018",
     "DESI 2024 BAO",
     "Pantheon+ supernovae",
-    "f\u03c38 growth rate",
+    "fσ8 growth rate",
     "A_L anomaly",
     "S8 tension",
     "ISW effect"
@@ -28,27 +28,27 @@
   "core_equations": {
     "efc_friedmann": {
       "latex": "E^2(a) = E^2_{\\Lambda \\mathrm{CDM}}(a) + \\alpha\\, g(a)",
-      "description": "EFC late-time background modification to the Friedmann equation via an additive gate of strength \u03b1."
+      "description": "EFC late-time background modification to the Friedmann equation via an additive gate of strength α."
     },
     "logistic_gate": {
       "latex": "g(a) = \\left[1 + \\exp\\!\\left(-\\frac{a - a_t}{\\delta_a}\\right)\\right]^{-1}",
-      "description": "Logistic gate activating near scale factor a_t with width \u03b4_a, confining modifications to late times."
+      "description": "Logistic gate activating near scale factor a_t with width δ_a, confining modifications to late times."
     },
     "mu_parametrization": {
       "latex": "-k^2 \\\\Psi = 4\\pi G a^2 \\\\mu(a,k) \\\\rho \\\\Delta",
-      "description": "Modified Poisson equation for the Newtonian potential; \u00b5 encodes effective clustering strength (growth coupling)."
+      "description": "Modified Poisson equation for the Newtonian potential; µ encodes effective clustering strength (growth coupling)."
     },
     "sigma_parametrization": {
       "latex": "-k^2 (\\\\Phi + \\\\Psi) = 8\\pi G a^2 \\\\Sigma(a,k) \\\\rho \\\\Delta",
-      "description": "Modification to the lensing potential; \u03a3 directly controls CMB and galaxy-lensing deflections."
+      "description": "Modification to the lensing potential; Σ directly controls CMB and galaxy-lensing deflections."
     },
     "gravitational_slip": {
       "latex": "\\\\eta(a,k) = \\\\Phi/\\\\Psi = \\\\Sigma/\\\\mu",
-      "description": "Gravitational slip parameter; \u03b7 \u2260 1 requires two independent metric potentials and implies anisotropic stress."
+      "description": "Gravitational slip parameter; η ≠ 1 requires two independent metric potentials and implies anisotropic stress."
     }
   },
   "key_results": {
-    "main_finding": "The background channel is observationally empty (\u03b1 \u2192 0), pure growth-modification is excluded by the CMB lensing barrier, and a narrow perturbation-sector slip window survives Planck at (\u00b5\u22480.94, \u03a3\u22481.05), degenerate with AL but supported in sign by f\u03c38.",
+    "main_finding": "The background channel is observationally empty (α → 0), pure growth-modification is excluded by the CMB lensing barrier, and a narrow perturbation-sector slip window survives Planck at (µ≈0.94, Σ≈1.05), degenerate with AL but supported in sign by fσ8.",
     "delta_chi2": -0.45,
     "significance_sigma": null,
     "parameters_tested": [
@@ -71,21 +71,21 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Future joint CMB lensing + RSD analyses will prefer a weakened-growth, enhanced-lensing slip regime with \u00b5 < 1 and \u03a3 > 1 (approximately \u00b5 \u2208 [0.93, 0.96], \u03a3 \u2208 [1.03, 1.07]) yielding \u03b7 > 1 at late times.",
-      "falsifiable_by": "Simultaneous constraints from Stage-III/IV CMB lensing reconstructions (ACT/SPT/SO/Planck-legacy) and DESI/Euclid RSD that find \u00b5 \u2265 1 or \u03a3 \u2264 1 at >3\u03c3 over 0.3 < z < 1.5."
+      "statement": "Future joint CMB lensing + RSD analyses will prefer a weakened-growth, enhanced-lensing slip regime with µ < 1 and Σ > 1 (approximately µ ∈ [0.93, 0.96], Σ ∈ [1.03, 1.07]) yielding η > 1 at late times.",
+      "falsifiable_by": "Simultaneous constraints from Stage-III/IV CMB lensing reconstructions (ACT/SPT/SO/Planck-legacy) and DESI/Euclid RSD that find µ ≥ 1 or Σ ≤ 1 at >3σ over 0.3 < z < 1.5."
     },
     {
       "id": "P2",
-      "statement": "The growth-sector sign constraint will persist: f\u03c38 measurements will continue to prefer suppressed growth relative to GR (consistent with \u00b5 < 1) at z \u2248 0.3\u20131.0.",
-      "falsifiable_by": "DESI full-shape RSD and Euclid Year-1/Year-3 reporting f\u03c38 consistent with GR to \u22722% precision and excluding \u00b5 < 0.96 at >3\u03c3 across 0.3 < z < 1.2."
+      "statement": "The growth-sector sign constraint will persist: fσ8 measurements will continue to prefer suppressed growth relative to GR (consistent with µ < 1) at z ≈ 0.3–1.0.",
+      "falsifiable_by": "DESI full-shape RSD and Euclid Year-1/Year-3 reporting fσ8 consistent with GR to ≲2% precision and excluding µ < 0.96 at >3σ across 0.3 < z < 1.2."
     }
   ],
   "kill_criteria": [
-    "KC1: Joint Planck/ACT/SPT/SO CMB lensing + TTTEEE + ISW constraints that exclude the slip window \u00b5 \u2208 [0.93, 0.96] and \u03a3 \u2208 [1.03, 1.07] at >3\u03c3 after profiling over \u039bCDM parameters.",
-    "KC2: DESI full-shape RSD and Euclid growth-rate measurements consistent with GR (\u00b5 = 1) to \u22722% over 0.3 < z < 1.2, excluding \u00b5 < 0.96 at >3\u03c3.",
-    "KC3: High-precision CMB lensing reconstructions yield \u03a3 = 1.00 \u00b1 0.01 at z ~ 1 scales (modes contributing to C\u2113^{\u03d5\u03d5}), excluding \u03a3 > 1.03 at >3\u03c3 when marginalizing over \u00b5.",
-    "KC4: Robust resolution of the Planck AL anomaly to AL \u2192 1 by improved beam/calibration and cross-experiments, combined with RSD consistent with GR, such that the (\u00b5\u22480.94, \u03a3\u22481.05) configuration worsens the full CMB likelihood by \u0394\u03c7\u00b2 > +5 relative to GR.",
-    "KC5: Late-time relativistic probes of anisotropic stress (e.g., relativistic galaxy-bispectrum or lensing\u2013ISW cross) constrain gravitational slip to \u03b7 = 1.00 \u00b1 0.02 for 0.3 < z < 1.0 and k ~ 0.05\u20130.2 h Mpc\u207b\u00b9, excluding \u03b7 \u2273 1.08 at >3\u03c3."
+    "KC1: Joint Planck/ACT/SPT/SO CMB lensing + TTTEEE + ISW constraints that exclude the slip window µ ∈ [0.93, 0.96] and Σ ∈ [1.03, 1.07] at >3σ after profiling over ΛCDM parameters.",
+    "KC2: DESI full-shape RSD and Euclid growth-rate measurements consistent with GR (µ = 1) to ≲2% over 0.3 < z < 1.2, excluding µ < 0.96 at >3σ.",
+    "KC3: High-precision CMB lensing reconstructions yield Σ = 1.00 ± 0.01 at z ~ 1 scales (modes contributing to Cℓ^{ϕϕ}), excluding Σ > 1.03 at >3σ when marginalizing over µ.",
+    "KC4: Robust resolution of the Planck AL anomaly to AL → 1 by improved beam/calibration and cross-experiments, combined with RSD consistent with GR, such that the (µ≈0.94, Σ≈1.05) configuration worsens the full CMB likelihood by Δχ² > +5 relative to GR.",
+    "KC5: Late-time relativistic probes of anisotropic stress (e.g., relativistic galaxy-bispectrum or lensing–ISW cross) constrain gravitational slip to η = 1.00 ± 0.02 for 0.3 < z < 1.0 and k ~ 0.05–0.2 h Mpc⁻¹, excluding η ≳ 1.08 at >3σ."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -104,9 +104,9 @@
   "short_title": "EFC CMB Localization Study",
   "type": "localization_analysis",
   "status": "published",
-  "abstract_short": "Five-phase localization study testing EFC against Planck 2018 CMB, DESI 2024 BAO, SDSS DR12 BAO, and Pantheon+ SNe. Background sector is observationally empty (\u03b1 \u2192 0 under joint constraints). Perturbation sector survives Planck within a narrow slip window (\u03bc \u2208 [0.93, 0.96], \u03a3 \u2208 [1.03, 1.07]). The (\u03bc, \u03a3) valley is degenerate with the A_L anomaly (cos = 0.93), but f\u03c3\u2088 data independently confirm \u03bc < 1 at > 2\u03c3, breaking the degeneracy.",
+  "abstract_short": "Five-phase localization study testing EFC against Planck 2018 CMB, DESI 2024 BAO, SDSS DR12 BAO, and Pantheon+ SNe. Background sector is observationally empty (α → 0 under joint constraints). Perturbation sector survives Planck within a narrow slip window (μ ∈ [0.93, 0.96], Σ ∈ [1.03, 1.07]). The (μ, Σ) valley is degenerate with the A_L anomaly (cos = 0.93), but fσ₈ data independently confirm μ < 1 at > 2σ, breaking the degeneracy.",
   "efc_channel": {
-    "name": "Perturbation Sector (\u03bc\u2013\u03a3)",
+    "name": "Perturbation Sector (μ–Σ)",
     "regime": "EFC-D, Cosmological perturbations",
     "pipeline": "EFCLASS + MGCAMB + cobaya"
   },
@@ -123,7 +123,7 @@
         0.93,
         0.96
       ],
-      "description": "Poisson equation modification (\u03bc < 1 = weakened gravity)"
+      "description": "Poisson equation modification (μ < 1 = weakened gravity)"
     },
     "sigma_sweet_spot": {
       "value": 1.05,
@@ -131,20 +131,20 @@
         1.03,
         1.07
       ],
-      "description": "Lensing potential modification (\u03a3 > 1 = enhanced lensing)"
+      "description": "Lensing potential modification (Σ > 1 = enhanced lensing)"
     },
     "eta_slip": {
       "value": 1.12,
-      "description": "Gravitational slip \u03b7 = \u03a3/\u03bc \u2248 1.05/0.94 at sweet spot"
+      "description": "Gravitational slip η = Σ/μ ≈ 1.05/0.94 at sweet spot"
     },
     "sigma_lensing_fit": {
       "value": 1.047,
       "uncertainty": 0.013,
-      "description": "Parabolic fit to lensing likelihood at \u03bc = 0.94"
+      "description": "Parabolic fit to lensing likelihood at μ = 0.94"
     },
     "corr_alpha_H0": {
       "value": 0.975,
-      "description": "Near-perfect degeneracy between \u03b1 and H\u2080 in Planck-only fit"
+      "description": "Near-perfect degeneracy between α and H₀ in Planck-only fit"
     }
   },
   "data": {
@@ -171,7 +171,7 @@
     },
     "growth_rate": {
       "points": 7,
-      "observable": "f\u03c3\u2088(z)",
+      "observable": "fσ₈(z)",
       "z_range": [
         0.38,
         0.85
@@ -190,7 +190,7 @@
       "planck_only": {
         "alpha": -0.32,
         "sigma": 0.4,
-        "significance": "0.82\u03c3",
+        "significance": "0.82σ",
         "corr_alpha_H0": 0.975
       },
       "joint_fits": [
@@ -223,7 +223,7 @@
           "delta_chi2": -2.1
         }
       ],
-      "conclusion": "No dataset combination exceeds 2\u03c3. Background gate is observationally empty."
+      "conclusion": "No dataset combination exceeds 2σ. Background gate is observationally empty."
     },
     "phase2_perturbation": {
       "description": "Perturbation-sector constraints",
@@ -352,14 +352,14 @@
           "dof": 1
         },
         {
-          "model": "(\u03bc,\u03a3) + A_L = 1",
+          "model": "(μ,Σ) + A_L = 1",
           "chi2_min": 1014.33,
           "delta_chi2": -0.45,
           "AL_bf": 1.0,
           "dof": 2
         },
         {
-          "model": "(\u03bc,\u03a3) + A_L free",
+          "model": "(μ,Σ) + A_L free",
           "chi2_min": 1016.37,
           "delta_chi2": 1.59,
           "AL_bf": 0.976,
@@ -368,7 +368,7 @@
       ],
       "fisher_flattest_eigenvector_cos_AL": 0.81,
       "gradient_cos_sigma_AL": 0.93,
-      "conclusion": "The (\u03bc, \u03a3) valley is the A_L anomaly expressed through physical metric potentials."
+      "conclusion": "The (μ, Σ) valley is the A_L anomaly expressed through physical metric potentials."
     },
     "phase4_growth_sign": {
       "description": "Growth-sector sign constraint (B0 bridge test)",
@@ -379,7 +379,7 @@
       ],
       "filters": [
         {
-          "name": "\u039bCDM",
+          "name": "ΛCDM",
           "direction": null,
           "delta_sigma8_pct": null,
           "chi2": 66.62,
@@ -392,7 +392,7 @@
           "delta_sigma8_pct": -0.54,
           "chi2": 61.4,
           "delta_chi2": -5.22,
-          "verdict": "> 2\u03c3 improvement"
+          "verdict": "> 2σ improvement"
         },
         {
           "name": "F2 gauss",
@@ -427,46 +427,180 @@
           "verdict": "Killed"
         }
       ],
-      "sign_constraint": "\u03bc < 1 (weakened gravity) at > 2\u03c3, independent of A_L",
-      "relevant_scales": "k \u2248 0.05\u20130.1 h/Mpc (original k_\u039b = 0.0014 h/Mpc has zero effect)"
+      "sign_constraint": "μ < 1 (weakened gravity) at > 2σ, independent of A_L",
+      "relevant_scales": "k ≈ 0.05–0.1 h/Mpc (original k_Λ = 0.0014 h/Mpc has zero effect)"
     },
     "phase5_theory_gap": {
-      "description": "Theory\u2013observation gap analysis",
+      "description": "Theory–observation gap analysis",
       "incompatibilities": [
         {
           "issue": "Wrong sign",
-          "detail": "Grid-AQUAL gives \u03bc_GRAV > 1, CMB+f\u03c3\u2088 require \u03bc < 1"
+          "detail": "Grid-AQUAL gives μ_GRAV > 1, CMB+fσ₈ require μ < 1"
         },
         {
           "issue": "No gravitational slip",
-          "detail": "Single potential implies \u03a6 = \u03a8 (\u03b7 = 1), CMB requires \u03b7 \u2248 1.12"
+          "detail": "Single potential implies Φ = Ψ (η = 1), CMB requires η ≈ 1.12"
         },
         {
           "issue": "Fourier screening",
-          "detail": "At k_\u039b = 0.0014 h/Mpc, modification < 0.1% at k > 0.01 h/Mpc"
+          "detail": "At k_Λ = 0.0014 h/Mpc, modification < 0.1% at k > 0.01 h/Mpc"
         }
       ],
-      "requirement": "Relativistic EFC perturbation theory with two independent metric potentials, \u03bc < 1, \u03a3 > 1"
+      "requirement": "Relativistic EFC perturbation theory with two independent metric potentials, μ < 1, Σ > 1"
     }
   },
   "surviving_signal_spec": {
-    "sign": "\u03bc < 1 (weakened matter-potential coupling)",
-    "magnitude": "~6% effective weakening (\u03bc \u2248 0.94)",
-    "lensing": "\u03a3 \u2248 1.05; gravitational slip \u03b7 \u2260 1 is essential",
-    "scales": "k \u2248 0.05\u20130.1 h/Mpc",
-    "epoch": "Late-time (z < 1), dark-energy\u2013dominated era"
+    "sign": "μ < 1 (weakened matter-potential coupling)",
+    "magnitude": "~6% effective weakening (μ ≈ 0.94)",
+    "lensing": "Σ ≈ 1.05; gravitational slip η ≠ 1 is essential",
+    "scales": "k ≈ 0.05–0.1 h/Mpc",
+    "epoch": "Late-time (z < 1), dark-energy–dominated era"
   },
   "key_conclusions": [
-    "EFC background sector is observationally empty: \u03b1 \u2192 0 under joint CMB+BAO+SNe constraints",
-    "Pure growth-modification (\u03bc < 1, \u03a3 = 1) is excluded by CMB lensing",
-    "A narrow \u03bc\u2013\u03a3 degeneracy valley survives Planck at (\u03bc \u2248 0.94, \u03a3 \u2248 1.05) with \u0394\u03c7\u00b2 = \u22120.45",
-    "The (\u03bc, \u03a3) valley is degenerate with the Planck A_L anomaly (cos = 0.93)",
-    "f\u03c3\u2088 data independently confirm \u03bc < 1 at > 2\u03c3, breaking the A_L degeneracy",
+    "EFC background sector is observationally empty: α → 0 under joint CMB+BAO+SNe constraints",
+    "Pure growth-modification (μ < 1, Σ = 1) is excluded by CMB lensing",
+    "A narrow μ–Σ degeneracy valley survives Planck at (μ ≈ 0.94, Σ ≈ 1.05) with Δχ² = −0.45",
+    "The (μ, Σ) valley is degenerate with the Planck A_L anomaly (cos = 0.93)",
+    "fσ₈ data independently confirm μ < 1 at > 2σ, breaking the A_L degeneracy",
     "A relativistic EFC perturbation theory producing gravitational slip is required",
     "Results are largely model-independent and applicable to any late-time MG framework"
   ],
   "validation_ledger": {
     "sector": "CMB + Perturbations (EFC-D, Cosmological regime)",
     "status": "Completed (localization study)"
+  },
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper is the first systematic CMB-level constraint analysis for EFC. It conclusively closes the background channel (α→0), identifies the unique surviving perturbation-sector window (µ≈0.94, Σ≈1.05), demonstrates its degeneracy with A_L, and uses fσ8 sign information to partially break that degeneracy. It establishes that EFC's observable future lives entirely in the perturbation sector and that a relativistic slip theory (η≠1) is now mandatory — not optional — for the framework to connect to data.",
+    "graph_insights": [
+      "No existing papers in the graph share the mu–Sigma parametrization or CMB lensing observables, meaning this paper creates a new subgraph cluster that should become the anchor node for all future perturbation-sector work.",
+      "The fσ8 growth-rate observable now connects this paper to the sealed prediction (fσ8(z=0.7)=0.430, hash 32013156) and to DESI DR2 pipeline work — a two-hop path from CMB constraints through fσ8 to the sealed prediction that did not previously exist.",
+      "The A_L anomaly node should be created as a phenomenological concept in the graph, linked to both Planck 2018 and this paper, because it will become a critical junction when ACT DR6/SO data arrive.",
+      "The concepts 'gravitational slip' and 'mu–Sigma parametrization' should be promoted to first-class nodes in the graph — they are now the primary observable language for EFC at cosmological scales."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [
+      "action-6"
+    ],
+    "tests_added": [
+      {
+        "test_id": "background_gate_cmb_bao_sne",
+        "category": "framework_constraint",
+        "name": "Background gate joint CMB+BAO+SNe constraint",
+        "description": "Tests whether the EFC additive background modification α·g(a) survives joint Planck 2018 TTTEEE + DESI 2024 BAO + SDSS DR12 BAO + Pantheon+ constraints",
+        "result": "COLLAPSED",
+        "status": "success",
+        "data_source": "Planck 2018, DESI 2024 BAO, SDSS DR12 BAO, Pantheon+",
+        "prediction": "α consistent with zero; background channel observationally empty"
+      },
+      {
+        "test_id": "pure_growth_lensing_barrier",
+        "category": "framework_constraint",
+        "name": "Pure growth modification (µ<1, Σ=1) CMB lensing exclusion",
+        "description": "Tests whether pure growth-only modification survives CMB lensing power spectrum constraints",
+        "result": "COLLAPSED",
+        "status": "success",
+        "data_source": "Planck 2018 lensing likelihood",
+        "prediction": "Pure µ<1 with Σ=1 excluded by lensing barrier"
+      },
+      {
+        "test_id": "slip_window_planck_survival",
+        "category": "phenomenological",
+        "name": "Perturbation-sector slip window Planck survival",
+        "description": "Tests whether a narrow slip configuration (µ≈0.94, Σ≈1.05) survives full Planck TTTEEE+lensing via MGCAMB",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 TTTEEE + lensing (MGCAMB)",
+        "prediction": "Δχ²=−0.45 relative to GR; slip window µ∈[0.93,0.96], Σ∈[1.03,1.07] survives"
+      },
+      {
+        "test_id": "al_degeneracy_identification",
+        "category": "consistency_check",
+        "name": "Slip window – A_L anomaly degeneracy quantification",
+        "description": "Quantifies degeneracy between the surviving (µ,Σ) slip window and the phenomenological A_L parameter",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018",
+        "prediction": "Cosine similarity 0.93 between slip direction and A_L direction in data space"
+      },
+      {
+        "test_id": "fsigma8_sign_constraint",
+        "category": "phenomenological",
+        "name": "fσ8 growth-sector sign constraint (µ<1 direction)",
+        "description": "Tests whether compiled fσ8 data independently prefer suppressed growth (µ<1) consistent with the slip window, breaking A_L degeneracy",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Compiled fσ8 measurements (SDSS, BOSS, eBOSS)",
+        "prediction": "fσ8 prefers µ<1 at >2σ, confirming slip window sign"
+      },
+      {
+        "test_id": "alpha_h0_degeneracy",
+        "category": "consistency_check",
+        "name": "α–H0 background degeneracy identification",
+        "description": "Documents the near-perfect correlation (r=0.975) between α and H0 in background-only fits, explaining why background gate collapses under CMB constraints",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 + BAO",
+        "prediction": "Degeneracy direction corr=0.975; CMB acoustic peaks break it"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-action-id=\"action-6\"",
+        "action": "mark_done",
+        "new_badge": "DONE",
+        "new_text": "CMB localization study complete: background gate collapsed (α→0), lensing barrier blocks pure growth, narrow slip window (µ≈0.94, Σ≈1.05) survives Planck, fσ8 confirms sign. DOI: 10.6084/m9.figshare.31368433",
+        "doi_refs": [
+          "10.6084/m9.figshare.31368433"
+        ],
+        "reasoning": "action-6 was PLANNED and corresponds to the CMB-level constraint analysis. This paper delivers exactly that systematic localization."
+      },
+      {
+        "page": "gap",
+        "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFCLASS used for background-sector CLASS modifications; perturbation sector handled via MGCAMB µ–Σ parametrization. Full native EFCLASS Boltzmann integration (replacing MGCAMB proxy) remains open.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31368433"
+        ],
+        "reasoning": "Paper uses CLASS with EFC modifications for background and MGCAMB as proxy for perturbations. This partially addresses but does not close the EFCLASS gap — a native Boltzmann solver integrating EFC's slip from first principles is still needed."
+      },
+      {
+        "page": "elevator",
+        "target": "cmb-status-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC has been tested against Planck 2018 CMB (TTTEEE + lensing), DESI 2024 BAO, and Pantheon+ SNe. The background sector is observationally empty (α→0). A narrow perturbation-sector slip window (µ≈0.94, Σ≈1.05) survives all current CMB constraints and is independently supported in sign by fσ8 growth-rate data.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31368433"
+        ],
+        "reasoning": "The elevator pitch must now reflect that EFC has survived CMB-level testing and that the surviving signal lives exclusively in the perturbation sector."
+      },
+      {
+        "page": "whitepaper",
+        "target": "observational-status-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "CMB localization complete: five-phase analysis using Planck 2018 + DESI BAO + Pantheon+ collapses the background channel and identifies a narrow slip window (µ∈[0.93,0.96], Σ∈[1.03,1.07]) as the sole surviving perturbation-sector signal, degenerate with A_L but sign-confirmed by fσ8. Five paper-specific kill criteria defined targeting Stage-IV resolution.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31368433"
+        ],
+        "reasoning": "Whitepaper observational section needs to reflect this is now the most constraining dataset combination EFC has been tested against."
+      }
+    ],
+    "implicit_consequences": [
+      "EFC's entire observational programme now pivots to the perturbation sector: any future work on background modifications (H(z) deviations, dark energy equation of state w≠−1) is deprioritized as the background gate is observationally dead.",
+      "The mandatory requirement for a relativistic perturbation theory producing gravitational slip (η≠1) elevates theory-adm-hamiltonian-stability from a formal gap to a critical-path dependency — without it, there is no first-principles derivation of the (µ,Σ) values the data selects.",
+      "The A_L degeneracy (cos=0.93) means that resolution of the Planck A_L anomaly by ACT/SPT/Simons Observatory will simultaneously serve as a high-leverage test of the EFC slip window — this is a free ride that requires no EFC-specific observation.",
+      "The sealed prediction for fσ8(z=0.7)=0.430 (hash 32013156) is now contextually strengthened: the paper shows fσ8 data already prefer µ<1, so DESI DR2 full-shape RSD will test both the sealed prediction and the slip window simultaneously.",
+      "The neutrino mass degeneracy gap (theory-neutrino-mass-degeneracy) becomes more urgent because µ–Σ constraints are known to be degenerate with Σmν in CMB lensing analyses — the paper does not marginalize over neutrino mass in the slip window fit.",
+      "Paper-specific KC1–KC5 are distinct from the project-level KC1–KC5; they define the Stage-IV falsification envelope for the slip window and should be tracked as sub-criteria under the project KC framework."
+    ],
+    "bottom_line_change": "Biggest gap should be updated to reflect two co-equal priorities: (1) DESI DR2 full-shape RSD rapid-response pipeline (unchanged), and (2) Relativistic perturbation theory deriving gravitational slip (η≠1) from EFC first principles — this paper proves the entire observable signal lives in the slip sector, making the theory derivation critical-path.",
+    "kill_criteria_addressed": []
   }
 }

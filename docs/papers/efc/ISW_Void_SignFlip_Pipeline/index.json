@@ -29,15 +29,35 @@
   "key_results": {
     "main_finding": "Complete observational pipeline for testing the EFC void ISW sign-flip prediction using DESIVAST DR1 + Planck PR4",
     "sealed_predictions": [
-      {"id": "P1", "statement": "Depth turnover: A_ISW peaks then flips at delta_c ~ -0.8", "kill": "No sign-flip at any delta"},
-      {"id": "P2", "statement": "Scale: larger R_v amplifies RS term, R_v > 100 h^-1 Mpc", "kill": "No scale trend"},
-      {"id": "P3", "statement": "Redshift: stronger signal at z < 0.5", "kill": "No z-evolution"}
+      {
+        "id": "P1",
+        "statement": "Depth turnover: A_ISW peaks then flips at delta_c ~ -0.8",
+        "kill": "No sign-flip at any delta"
+      },
+      {
+        "id": "P2",
+        "statement": "Scale: larger R_v amplifies RS term, R_v > 100 h^-1 Mpc",
+        "kill": "No scale trend"
+      },
+      {
+        "id": "P3",
+        "statement": "Redshift: stronger signal at z < 0.5",
+        "kill": "No z-evolution"
+      }
     ],
     "pipeline_stages": 6,
-    "data_sources": ["DESIVAST DR1", "Planck PR4 SMICA/SEVEM/NILC/Commander", "Planck 2018 kappa map", "BOSS DR12 supervoids", "DES Y3 supervoids"],
+    "data_sources": [
+      "DESIVAST DR1",
+      "Planck PR4 SMICA/SEVEM/NILC/Commander",
+      "Planck 2018 kappa map",
+      "BOSS DR12 supervoids",
+      "DES Y3 supervoids"
+    ],
     "verdict": "PLANNED"
   },
-  "kill_criteria": ["KC2"],
+  "kill_criteria": [
+    "KC2"
+  ],
   "tier": "T3",
   "paper_type": "observational_pipeline",
   "related_packages": [
@@ -51,5 +71,85 @@
     "pdf": "ISW_Void_SignFlip_Pipeline_FINAL.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990212"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990212",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper operationalizes the EFC void ISW sign-flip prediction into a reproducible, single-entry observational pipeline using DESIVAST DR1 and Planck PR4, with an explicit kill criterion (no sign-flip at any void depth falsifies the EFC void sector). It does not report measurements, but it seals the path from theory to data and specifies depth, scale, and redshift trend checks needed to decisively discriminate EFC from ΛCDM.",
+    "graph_insights": [
+      "This paper anchors a new edge between EFC’s RS-based ISW prediction and the Planck PR4 × DESIVAST void-stacking observable, filling a previously uninstantiated link in the graph.",
+      "It forges explicit connections to the supervoid literature (BOSS/DES Y3) as secondary datasets for scale and redshift trend validation, preparing future multi-survey corroboration nodes."
+    ],
+    "kc_addressed": [
+      "KC2"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "void_isw_sign_flip_desivast_pr4",
+        "category": "planned_pipeline",
+        "name": "Void ISW sign-flip with DESIVAST DR1 × Planck PR4",
+        "description": "End-to-end stack of CMB temperature on DESIVAST DR1 voids with aperture photometry to measure A_ISW(δ) and detect the predicted sign-flip near δc ≈ −0.8.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESIVAST DR1 void catalog + Planck PR4 temperature maps",
+        "prediction": "A_ISW(δ) turns positive (hot) for deep voids with δ ≲ −0.8; absence of a sign-flip at any δ falsifies the EFC void sector."
+      },
+      {
+        "test_id": "void_isw_scale_trend_supervoids",
+        "category": "planned_pipeline",
+        "name": "Scale dependence of void ISW amplitude",
+        "description": "Measure the trend of A_ISW with void radius Rv to test whether larger supervoids amplify the RS contribution as predicted.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESIVAST DR1 (primary), with supplementary BOSS DR12/DES Y3 supervoid catalogs + Planck PR4",
+        "prediction": "A_ISW increases with Rv; lack of positive scale trend would contradict the EFC RS-enhanced scaling."
+      },
+      {
+        "test_id": "void_isw_redshift_evolution",
+        "category": "planned_pipeline",
+        "name": "Redshift evolution of void ISW effect",
+        "description": "Compare A_ISW in low-z bins versus higher-z to test the predicted stronger effect at lower redshift.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESIVAST DR1 (z ≲ 0.5) with higher-z voids from BOSS/DES Y3 + Planck PR4",
+        "prediction": "Stronger A_ISW at lower z; null or inverted z-trend would disfavor EFC’s RS term behavior."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC2\"",
+        "action": "update_badge",
+        "new_badge": "SEALED",
+        "new_text": "ISW Void Sign-Flip Observational Pipeline (T3) specified; single-entry reproducible test harness with explicit KC2 kill: absence of a sign-flip at any void depth falsifies the EFC void sector.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990212"
+        ],
+        "reasoning": "This paper defines the complete executable pipeline and kill criterion for the KC2 void ISW sign-flip, sealing the path from prediction to data without yet reporting outcomes."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-kc-id=\"KC2\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Operational pipeline for the void ISW sign-flip is specified (DESIVAST DR1 × Planck PR4), including depth-binned A_ISW(δ), scale and redshift trend tests, and an explicit kill criterion: no sign-flip at any δ falsifies the EFC void sector.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990212"
+        ],
+        "reasoning": "Whitepaper should reflect the availability of a full observational pipeline and the decisive kill condition now formalized."
+      }
+    ],
+    "implicit_consequences": [
+      "The void sector of EFC now has an immediate, decisive falsifiability channel that can be executed on a workstation, accelerating time-to-result.",
+      "Cross-survey consistency (DESIVAST primary, BOSS/DES Y3 secondary) is now built into the test plan, enabling robustness checks of depth, scale, and redshift trends.",
+      "A null result in the deepest available void bins would directly threaten EFC’s RS-driven mechanism, not just ΛCDM tension claims.",
+      "The pipeline specification facilitates rapid community replication using public datasets (Planck PR4, public void catalogs)."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC2"
+    ]
+  }
 }

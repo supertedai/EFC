@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-desi-dr2-bao",
   "title": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO",
-  "description": "Validates a minimal Energy-Flow Cosmology (EFC) regime-transition parameterization against DESI DR2 BAO using a transparent manual likelihood and a covariance-aware conditional hold-out test. The model modifies E^2(z) by a tanh transition modulated by (1+z)^{-1}, achieves a large \u0394\u03c7^2 = \u221222.01 improvement over \u039bCDM for two extra parameters, and remains consistent with Pantheon+ SNe (after M-marginalization) and cosmic chronometers. Combined BAO+CC information criteria favor the EFC transition model (\u0394BIC \u2248 \u221214.5).",
+  "description": "Validates a minimal Energy-Flow Cosmology (EFC) regime-transition parameterization against DESI DR2 BAO using a transparent manual likelihood and a covariance-aware conditional hold-out test. The model modifies E^2(z) by a tanh transition modulated by (1+z)^{-1}, achieves a large Δχ^2 = −22.01 improvement over ΛCDM for two extra parameters, and remains consistent with Pantheon+ SNe (after M-marginalization) and cosmic chronometers. Combined BAO+CC information criteria favor the EFC transition model (ΔBIC ≈ −14.5).",
   "version": "1.0",
   "date": "2026-02-02",
   "doi": "10.6084/m9.figshare.31230703",
@@ -29,7 +29,7 @@
   "core_equations": {
     "modified_friedmann_transition": {
       "latex": "E^2(z) \\;\\to\\; E^2(z)\\,\\big[1 + \\alpha_{L2}\\, f(z)\\, \\Theta(z)\\big]",
-      "description": "Minimal EFC regime-transition parameterization that rescales the background expansion; reduces exactly to \u039bCDM when \\alpha_{L2}=0."
+      "description": "Minimal EFC regime-transition parameterization that rescales the background expansion; reduces exactly to ΛCDM when \\alpha_{L2}=0."
     },
     "coupling_function": {
       "latex": "f(z) = (1+z)^{-1}",
@@ -37,11 +37,11 @@
     },
     "transition_function": {
       "latex": "\\Theta(z) = \\tfrac{1}{2}\\left[1 + \\tanh\\!\\left(\\frac{z_{L1L2} - z}{\\Delta z}\\right)\\right], \\quad \\Delta z = 0.3",
-      "description": "Smooth tanh transition centered at z_{L1L2} with fixed width \u0394z."
+      "description": "Smooth tanh transition centered at z_{L1L2} with fixed width Δz."
     },
     "bao_likelihood": {
       "latex": "\\chi^2_{\\rm BAO} = (\\mathbf{d}_{\\rm obs} - \\mathbf{d}_{\\rm th})^{\\top}\\, \\mathbf{C}^{-1} \\, (\\mathbf{d}_{\\rm obs} - \\mathbf{d}_{\\rm th})",
-      "description": "Covariance-aware \u03c7^2 for DESI DR2 BAO using DV/rs, DM/rs, DH/rs."
+      "description": "Covariance-aware χ^2 for DESI DR2 BAO using DV/rs, DM/rs, DH/rs."
     },
     "sn_marginalized_likelihood": {
       "latex": "\\chi^2_{\\rm SN,\\,marg} = A - \\frac{B^2}{E},\\quad A = \\mathbf{r}^{\\top}\\mathbf{C}^{-1}\\mathbf{r},\\; B = \\mathbf{1}^{\\top}\\mathbf{C}^{-1}\\mathbf{r},\\; E = \\mathbf{1}^{\\top}\\mathbf{C}^{-1}\\mathbf{1}",
@@ -53,7 +53,7 @@
     }
   },
   "key_results": {
-    "main_finding": "DESI DR2 BAO strongly favor an EFC tanh-transition at z_L1L2 \u2248 1 with coupling \u03b1_L2 \u2248 0.045, yielding \u0394\u03c7^2 = \u221222.01 for two extra parameters and surviving a covariance-aware conditional hold-out (\u0394\u03c7^2_h|t = \u221218.65), while Pantheon+ and H(z) chronometers remain consistent.",
+    "main_finding": "DESI DR2 BAO strongly favor an EFC tanh-transition at z_L1L2 ≈ 1 with coupling α_L2 ≈ 0.045, yielding Δχ^2 = −22.01 for two extra parameters and surviving a covariance-aware conditional hold-out (Δχ^2_h|t = −18.65), while Pantheon+ and H(z) chronometers remain consistent.",
     "delta_chi2": -22.01,
     "significance_sigma": null,
     "parameters_tested": [
@@ -70,22 +70,22 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Independent BAO compilations (e.g., DESI DR3/DR4, BOSS/eBOSS reanalyses) fit with the same two-parameter EFC model (\u0394z = 0.3, Planck 2018 priors) will prefer a single transition near z_L1L2 = 1.0 \u00b1 0.2 with a positive coupling 0.03 \u2264 \u03b1_L2 \u2264 0.06 and yield \u0394BIC \u2264 \u22126 relative to \u039bCDM.",
-      "falsifiable_by": "Re-fitting future or independent BAO datasets with identical likelihood and priors; failure to achieve \u0394BIC \u2264 \u22126 or preference for \u03b1_L2 \u2248 0 within uncertainties falsifies this prediction."
+      "statement": "Independent BAO compilations (e.g., DESI DR3/DR4, BOSS/eBOSS reanalyses) fit with the same two-parameter EFC model (Δz = 0.3, Planck 2018 priors) will prefer a single transition near z_L1L2 = 1.0 ± 0.2 with a positive coupling 0.03 ≤ α_L2 ≤ 0.06 and yield ΔBIC ≤ −6 relative to ΛCDM.",
+      "falsifiable_by": "Re-fitting future or independent BAO datasets with identical likelihood and priors; failure to achieve ΔBIC ≤ −6 or preference for α_L2 ≈ 0 within uncertainties falsifies this prediction."
     },
     {
       "id": "P2",
-      "statement": "After analytic M-marginalization, the supernova distance-modulus residual shape relative to \u039bCDM, \u0394\u03bc_shape(z), remains |\u0394\u03bc_shape(z)| < 0.002 mag over 0.01 < z < 2.3 for the EFC best-fit parameters.",
-      "falsifiable_by": "A Pantheon+-like reanalysis with full covariance showing |\u0394\u03bc_shape(z)| \u2265 0.002 mag over any contiguous \u0394z \u2265 0.3 interval."
+      "statement": "After analytic M-marginalization, the supernova distance-modulus residual shape relative to ΛCDM, Δμ_shape(z), remains |Δμ_shape(z)| < 0.002 mag over 0.01 < z < 2.3 for the EFC best-fit parameters.",
+      "falsifiable_by": "A Pantheon+-like reanalysis with full covariance showing |Δμ_shape(z)| ≥ 0.002 mag over any contiguous Δz ≥ 0.3 interval."
     }
   ],
   "kill_criteria": [
-    "KC1: Independent BAO datasets (e.g., DESI DR3/DR4, BOSS/eBOSS) analyzed with the same EFC parameterization (\u0394z = 0.3) and Planck-informed priors yield \u0394BIC \u2265 0 (or \u0394AIC \u2265 0) versus \u039bCDM, indicating no improvement once parameter penalty is applied.",
-    "KC2: Covariance-aware conditional hold-out or K-fold cross-validation on DESI DR2 (or successor datasets) shows average \u0394\u03c7^2_h|t \u2265 \u22124 for EFC relative to \u039bCDM across multiple random partitions, indicating no robust generalization gain.",
-    "KC3: High-precision H(z) measurements (e.g., improved CC or standard sirens) with \u03c3_H/H \u2264 3% over 0.5 < z < 1.5 constrain the EFC coupling to |\u03b1_L2| < 0.01 (95% CL), placing \u03b1_L2 = 0.045 outside 3\u03c3 when combined with BAO.",
-    "KC4: Supernova datasets with full covariance and absolute calibration, after M-marginalization, exhibit a redshift-dependent residual shape |\u0394\u03bc_shape(z)| \u2265 0.01 mag over 0.1 < z < 1.5 that is inconsistent with the EFC f(z)\u0398(z) modulation, or strongly prefers \u039bCDM over the fixed-\u0394z EFC model by \u0394BIC \u2265 0.",
-    "KC5: Joint BAO+CC fits allowing H0 and r_d to vary within Planck 2018 priors eliminate the EFC advantage (\u0394AIC \u2265 0 or \u0394BIC \u2265 0) and constrain \u03b1_L2 consistent with zero at \u2265 3\u03c3.",
-    "KC6: Cross-probe consistency fails: best-fit z_L1L2 values inferred from low-z (z < 0.8) and high-z (z > 1.2) BAO subsets disagree at > 3\u03c3, ruling out a single-transition EFC with fixed width \u0394z = 0.3."
+    "KC1: Independent BAO datasets (e.g., DESI DR3/DR4, BOSS/eBOSS) analyzed with the same EFC parameterization (Δz = 0.3) and Planck-informed priors yield ΔBIC ≥ 0 (or ΔAIC ≥ 0) versus ΛCDM, indicating no improvement once parameter penalty is applied.",
+    "KC2: Covariance-aware conditional hold-out or K-fold cross-validation on DESI DR2 (or successor datasets) shows average Δχ^2_h|t ≥ −4 for EFC relative to ΛCDM across multiple random partitions, indicating no robust generalization gain.",
+    "KC3: High-precision H(z) measurements (e.g., improved CC or standard sirens) with σ_H/H ≤ 3% over 0.5 < z < 1.5 constrain the EFC coupling to |α_L2| < 0.01 (95% CL), placing α_L2 = 0.045 outside 3σ when combined with BAO.",
+    "KC4: Supernova datasets with full covariance and absolute calibration, after M-marginalization, exhibit a redshift-dependent residual shape |Δμ_shape(z)| ≥ 0.01 mag over 0.1 < z < 1.5 that is inconsistent with the EFC f(z)Θ(z) modulation, or strongly prefers ΛCDM over the fixed-Δz EFC model by ΔBIC ≥ 0.",
+    "KC5: Joint BAO+CC fits allowing H0 and r_d to vary within Planck 2018 priors eliminate the EFC advantage (ΔAIC ≥ 0 or ΔBIC ≥ 0) and constrain α_L2 consistent with zero at ≥ 3σ.",
+    "KC6: Cross-probe consistency fails: best-fit z_L1L2 values inferred from low-z (z < 0.8) and high-z (z > 1.2) BAO subsets disagree at > 3σ, ruling out a single-transition EFC with fixed width Δz = 0.3."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -101,11 +101,11 @@
   "epistemic_layer": "A",
   "epistemic_status": "Empirical validation against multiple probes",
   "model": {
-    "parameterization": "E\u00b2(z) \u2192 E\u00b2(z) \u00d7 [1 + \u03b1_L2 \u00d7 f(z) \u00d7 \u0398(z)]",
-    "coupling_function": "f(z) = (1+z)\u207b\u00b9",
-    "transition_function": "\u0398(z) = \u00bd[1 + tanh((z_L1L2 - z)/\u0394z)]",
+    "parameterization": "E²(z) → E²(z) × [1 + α_L2 × f(z) × Θ(z)]",
+    "coupling_function": "f(z) = (1+z)⁻¹",
+    "transition_function": "Θ(z) = ½[1 + tanh((z_L1L2 - z)/Δz)]",
     "transition_width": 0.3,
-    "reduces_to_LCDM": "when \u03b1_L2 = 0"
+    "reduces_to_LCDM": "when α_L2 = 0"
   },
   "best_fit": {
     "z_L1L2": 1.01,
@@ -227,5 +227,167 @@
       "delta_chi2": -22.17,
       "status": "Pass"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper is the first direct empirical confrontation of the EFC regime-transition parameterization with DESI DR2 BAO data, establishing a strong statistical preference (Δχ² = −22.01, ΔBIC = −14.5) over ΛCDM and demonstrating robustness via covariance-aware conditional hold-out validation. It cross-validates against Pantheon+ (shape residual |Δμ_shape| < 0.002 mag) and cosmic chronometers (consistent, no tension), anchoring the tanh transition at z_L1L2 ≈ 1.01 with α_L2 ≈ 0.045. This is a Tier-2 empirical milestone that survives multiple internal consistency checks but explicitly defers to future independent BAO datasets and higher-precision H(z) for definitive KC closure.",
+    "graph_insights": [
+      "This paper has no 1-2 hop connections in the current graph, indicating it is the founding empirical node for the DESI DR2 BAO observable cluster — all future DESI-related EFC papers will connect through it.",
+      "The absence of related validation tests sharing observables means this paper creates new observable categories (DV/rs, DM/rs, DH/rs at multiple redshift bins) that should be registered as observable nodes in the graph, enabling automatic linking when DESI DR3/DR4 or BOSS/eBOSS reanalysis papers arrive.",
+      "The tanh transition parameterization with Planck-fixed background creates a natural graph bridge between the CMB-era constraints (Planck node) and late-time BAO/SNe probes — this bridge should be explicitly represented as an edge type in the knowledge graph.",
+      "The sealed predictions P1 (independent BAO ΔBIC < 0) and P2 (|Δμ_shape| < 0.002 mag) need to be registered as prediction nodes linked to KC1 and KC4 respectively, enabling automatic verification tracking when relevant data papers are ingested."
+    ],
+    "kc_addressed": [
+      "KC1",
+      "KC2",
+      "KC4"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "desi_dr2_bao_efc_tanh_fit",
+        "category": "physics_test",
+        "name": "DESI DR2 BAO EFC tanh-transition fit",
+        "description": "Fit of two-parameter EFC regime-transition model (z_L1L2, α_L2) to 13-point DESI DR2 BAO data with full covariance, compared to ΛCDM via Δχ², ΔAIC, ΔBIC",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO (13×13 covariance)",
+        "prediction": "EFC predicts Δχ² < 0 relative to ΛCDM; observed Δχ² = −22.01, ΔAIC = −18.2, ΔBIC = −14.5"
+      },
+      {
+        "test_id": "desi_dr2_bao_conditional_holdout",
+        "category": "consistency_check",
+        "name": "Covariance-aware conditional hold-out validation (DESI DR2 BAO)",
+        "description": "Conditional hold-out test accounting for cross-covariance between training and hold-out partitions of DESI DR2 BAO, checking generalization of EFC improvement",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO",
+        "prediction": "EFC predicts Δχ²_h|t < −4 indicating genuine generalization gain; observed Δχ²_h|t = −18.65"
+      },
+      {
+        "test_id": "pantheonplus_efc_shape_test",
+        "category": "consistency_check",
+        "name": "Pantheon+ SNe Ia distance-modulus shape test",
+        "description": "After analytic M-marginalization, verifies that the EFC-predicted distance-modulus residual relative to ΛCDM has |Δμ_shape(z)| < 0.01 mag over 0.1 < z < 1.5, confirming the EFC modulation is a near-constant offset absorbed by M",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Pantheon+ (1701 SNe Ia)",
+        "prediction": "EFC predicts |Δμ_shape(z)| < 0.002 mag; observed max |Δμ_shape| < 0.002 mag"
+      },
+      {
+        "test_id": "cosmic_chronometers_efc_consistency",
+        "category": "consistency_check",
+        "name": "Cosmic chronometer H(z) consistency with EFC BAO best-fit",
+        "description": "34-point CC compilation compared against EFC best-fit (z_L1L2=1.01, α_L2=0.045); checks for tension with BAO-derived parameters",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Cosmic chronometers (N=34, mean σ_H/H ~22%)",
+        "prediction": "EFC predicts CC data consistent with BAO best-fit; observed: consistent, no tension introduced"
+      },
+      {
+        "test_id": "bao_cc_joint_aic_bic",
+        "category": "physics_test",
+        "name": "Joint BAO+CC information-criteria test",
+        "description": "Combined BAO+CC fit evaluated via AIC and BIC to check whether EFC advantage persists when CC data are added",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO + CC (N=34)",
+        "prediction": "EFC predicts ΔAIC < 0 and ΔBIC < 0 in combined fit; observed ΔAIC = −18.2, ΔBIC = −14.5"
+      },
+      {
+        "test_id": "lambdacdm_null_reproduction",
+        "category": "consistency_check",
+        "name": "ΛCDM null reproduction exactness check",
+        "description": "Verifies that the manual likelihood code exactly reproduces ΛCDM χ² (difference < 1e-10), establishing pipeline fidelity",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO",
+        "prediction": "Pipeline must reproduce ΛCDM χ² to machine precision; achieved δχ² < 1e-10"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC1\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC1 now supported by DESI DR2 BAO fit: Δχ² = −22.01 (Δk=2), ΔBIC = −14.5 favoring EFC. Independent BAO datasets (DESI DR3/DR4, BOSS/eBOSS reanalyses) remain the definitive closure criterion.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "Paper directly tests KC1's domain (BAO dataset preference over ΛCDM) but uses the same DESI DR2 data that motivated the model, so KC1 is strongly supported but not independently closed until DR3/DR4 or BOSS/eBOSS reanalysis confirms."
+      },
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC2\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC2 conditional hold-out: Δχ²_h|t = −18.65 on DESI DR2 BAO, far exceeding the −4 threshold. Awaiting multiple random partitions and K-fold cross-validation on successor datasets for full closure.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "Paper performs one covariance-aware conditional hold-out partition; KC2 specifies 'multiple random partitions' for robust closure. Strongly supportive but not fully closed."
+      },
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC4 Pantheon+ shape test: max |Δμ_shape(z)| < 0.002 mag over 0.1 < z < 1.5, well within the < 0.01 mag consistency bound. SNe statistically indistinguishable from ΛCDM after M-marginalization. Full covariance SN analysis with absolute calibration still needed for definitive closure.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "Paper demonstrates Pantheon+ consistency with EFC, addressing KC4's supernova criterion. The kill condition (|Δμ_shape| ≥ 0.01 mag AND ΔBIC ≥ 0 for ΛCDM) is clearly not triggered. However, full covariance treatment and absolute calibration tests are noted as future work."
+      },
+      {
+        "page": "roadmap",
+        "target": null,
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "DESI DR2 BAO empirical validation complete (T2). Next milestones: (1) independent BAO reanalysis (BOSS/eBOSS with same parameterization), (2) K-fold cross-validation on DR2, (3) DESI DR2 full-shape RSD pipeline for f·σ8 sealed prediction verification, (4) improved CC/standard siren H(z) for KC3.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "Paper establishes the first major DESI DR2 BAO result and defines the immediate next steps on the roadmap."
+      },
+      {
+        "page": "elevator",
+        "target": null,
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC's tanh regime-transition model now fits DESI DR2 BAO with Δχ² = −22 over ΛCDM (2 extra parameters, ΔBIC = −14.5), survives covariance-aware hold-out validation, and is consistent with Pantheon+ SNe and cosmic chronometers.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "This is a headline empirical result that strengthens the elevator pitch."
+      },
+      {
+        "page": "whitepaper",
+        "target": null,
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Add Section: 'DESI DR2 BAO Validation' — regime-transition fit (z_L1L2=1.01, α_L2=0.045), full covariance likelihood, information criteria, conditional hold-out, Pantheon+ shape test, CC consistency. Reference DOI: 10.6084/m9.figshare.31230703.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31230703"
+        ],
+        "reasoning": "This is a primary empirical result that must be incorporated into the whitepaper's evidence base."
+      }
+    ],
+    "implicit_consequences": [
+      "The best-fit z_L1L2 ≈ 1.01 with α_L2 ≈ 0.045 directly constrains the EFC regime transition epoch, providing the first quantitative anchor for the L1→L2 transition redshift from real data — this feeds into all downstream structure-formation predictions including the sealed f·σ8(z=0.7) prediction.",
+      "The Pantheon+ shape-test result (|Δμ_shape| < 0.002 mag) implies the EFC modification is nearly degenerate with the SN absolute magnitude M at current precision, meaning future SN constraints on EFC will require either much larger lever arms (z > 1.5) or calibration breakthroughs (e.g., standard sirens).",
+      "The CC dataset's ~22% mean fractional uncertainty means KC3 (|α_L2| < 0.01 at 95% CL from H(z)) is far from being testable with current chronometer compilations — standard sirens from LIGO/Virgo/KAGRA O5 or improved CC methods are necessary.",
+      "The strong ΔBIC = −14.5 in favor of EFC over ΛCDM on DESI DR2, if replicated on independent BAO data, would effectively rule out ΛCDM as the preferred background model at the BAO level — this has profound implications for the entire cosmological parameter estimation pipeline.",
+      "The conditional hold-out methodology established here (covariance-aware partitioning) sets a reusable validation protocol for all future EFC fits to correlated datasets, becoming part of the EFC analysis standard.",
+      "Since the paper fixes H0, Ωm, and r_d to Planck 2018 values, the EFC improvement is entirely from the two transition parameters — KC5 (joint fit allowing H0, r_d to vary) remains untested and could either strengthen or weaken the preference depending on parameter degeneracies."
+    ],
+    "bottom_line_change": "The biggest gap should be updated to reflect that DESI DR2 BAO validation is now complete and the priority shifts to: (1) DESI DR2 full-shape RSD rapid-response pipeline for the sealed f·σ8(z=0.7) prediction, AND (2) independent BAO reanalysis (BOSS/eBOSS) with the same EFC parameterization to close KC1 definitively. The RSD pipeline gap remains but is now joined by the need for independent BAO confirmation as the two co-primary gaps.",
+    "kill_criteria_addressed": [
+      "KC1",
+      "KC2",
+      "KC4"
+    ]
+  }
 }

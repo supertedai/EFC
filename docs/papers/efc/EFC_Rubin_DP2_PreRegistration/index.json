@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-rubin-dp2-preregistration",
   "title": "Pre-Registered Predictions for the Energy-Flow Cosmology Model Against the Rubin Observatory LSST DP2 Cosmic Shear Dataset",
-  "description": "This pre-registration seals quantitative, falsifiable predictions of the Energy-Flow Cosmology (EFC) model for Rubin Observatory LSST Data Preview 2 (DP2) cosmic shear. It forecasts an ~8\u201310% large-scale lensing enhancement and S8 = 0.847 \u00b1 0.015 driven by a gravitational slip \u03b7 \u2248 1.10, and specifies explicit falsification thresholds against the forthcoming DP2 measurements.",
+  "description": "This pre-registration seals quantitative, falsifiable predictions of the Energy-Flow Cosmology (EFC) model for Rubin Observatory LSST Data Preview 2 (DP2) cosmic shear. It forecasts an ~8–10% large-scale lensing enhancement and S8 = 0.847 ± 0.015 driven by a gravitational slip η ≈ 1.10, and specifies explicit falsification thresholds against the forthcoming DP2 measurements.",
   "version": "1.0",
   "date": "2026-04-14",
   "doi": "10.6084/m9.figshare.32013738",
@@ -44,7 +44,7 @@
     },
     "xi_plus_ratio": {
       "latex": "\\frac{\\xi_+^{\\mathrm{EFC}}(\\theta)}{\\xi_+^{\\Lambda\\mathrm{CDM}}(\\theta)} \\simeq \\Sigma^2(z_{\\mathrm{eff}})",
-      "description": "Approximate scaling of the large-scale shear correlation enhancement in EFC relative to \u039bCDM."
+      "description": "Approximate scaling of the large-scale shear correlation enhancement in EFC relative to ΛCDM."
     },
     "cl_enhancement": {
       "latex": "\\frac{\\Delta C_\\ell}{C_\\ell} \\approx 0.08 \\quad (\\ell \\lesssim 300)",
@@ -52,56 +52,56 @@
     }
   },
   "key_results": {
-    "main_finding": "Sealed EFC predictions for Rubin LSST DP2: S8 = 0.847 \u00b1 0.015 and ~8% enhancement of \u03be+(\u03b8) at 20\u2032\u2013300\u2032 driven by \u03b7 \u2248 1.10, with explicit >2\u03c3 falsification thresholds.",
+    "main_finding": "Sealed EFC predictions for Rubin LSST DP2: S8 = 0.847 ± 0.015 and ~8% enhancement of ξ+(θ) at 20′–300′ driven by η ≈ 1.10, with explicit >2σ falsification thresholds.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
       "S8",
-      "\u03a3(z_eff\u22480.65)",
-      "\u00b5(z_eff\u22480.65)",
-      "\u03b7(z=0)",
-      "\u03be+(\u03b8) amplitude at 20\u2032\u2013300\u2032",
-      "\u0394C_\u2113/C_\u2113 at \u2113 \u2272 300"
+      "Σ(z_eff≈0.65)",
+      "µ(z_eff≈0.65)",
+      "η(z=0)",
+      "ξ+(θ) amplitude at 20′–300′",
+      "ΔC_ℓ/C_ℓ at ℓ ≲ 300"
     ],
     "datasets_used": [
       "Rubin Observatory LSST DP2 cosmic shear (planned)",
-      "Planck 2018 \u039bCDM baseline (for comparison)",
-      "DESI DR2 BAO prior on \u03a9m (sealed, as referenced)"
+      "Planck 2018 ΛCDM baseline (for comparison)",
+      "DESI DR2 BAO prior on Ωm (sealed, as referenced)"
     ],
     "verdict": "SEALED"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Cosmic shear amplitude S8 = 0.847 \u00b1 0.015 (EFC KC4), implying \u0394S8 \u2248 +0.015 relative to \u039bCDM.",
-      "falsifiable_by": "Rubin LSST DP2 shear-only or joint 3\u00d72pt S8 measurement."
+      "statement": "Cosmic shear amplitude S8 = 0.847 ± 0.015 (EFC KC4), implying ΔS8 ≈ +0.015 relative to ΛCDM.",
+      "falsifiable_by": "Rubin LSST DP2 shear-only or joint 3×2pt S8 measurement."
     },
     {
       "id": "P2",
-      "statement": "Large-scale shear correlation enhancement: \u03be+^EFC(\u03b8)/\u03be+^\u039bCDM(\u03b8) \u2248 \u03a3^2(z_eff) \u2248 1.08 for \u03b8 \u2208 [20\u2032, 300\u2032].",
-      "falsifiable_by": "DP2 tomographic \u03be\u00b1(\u03b8) with standard scale cuts and covariance."
+      "statement": "Large-scale shear correlation enhancement: ξ+^EFC(θ)/ξ+^ΛCDM(θ) ≈ Σ^2(z_eff) ≈ 1.08 for θ ∈ [20′, 300′].",
+      "falsifiable_by": "DP2 tomographic ξ±(θ) with standard scale cuts and covariance."
     },
     {
       "id": "P3",
-      "statement": "Lensing modification \u03a3(z_eff\u22480.65) = 1.04 \u00b1 0.02 and convergence power enhancement \u0394C_\u2113/C_\u2113 \u2248 +0.08 at \u2113 \u2272 300.",
-      "falsifiable_by": "DP2 C_\u2113^\u03ba\u03ba or Hankel-transformed \u03be\u00b1 with validated systematics treatment."
+      "statement": "Lensing modification Σ(z_eff≈0.65) = 1.04 ± 0.02 and convergence power enhancement ΔC_ℓ/C_ℓ ≈ +0.08 at ℓ ≲ 300.",
+      "falsifiable_by": "DP2 C_ℓ^κκ or Hankel-transformed ξ± with validated systematics treatment."
     },
     {
       "id": "P4",
-      "statement": "Gravitational slip \u03b7(z=0) = 1.10 \u00b1 0.05 (KC4 constraint), with \u00b5(z_eff\u22480.65) = 0.97 \u00b1 0.03.",
-      "falsifiable_by": "Joint (\u00b5, \u03a3) constraints from DP2 shear combined with spectroscopic clustering/RSD."
+      "statement": "Gravitational slip η(z=0) = 1.10 ± 0.05 (KC4 constraint), with µ(z_eff≈0.65) = 0.97 ± 0.03.",
+      "falsifiable_by": "Joint (µ, Σ) constraints from DP2 shear combined with spectroscopic clustering/RSD."
     },
     {
       "id": "P5",
-      "statement": "If \u03be+_obs(\u03b8)/\u03be+_\u039bCDM(\u03b8) < 1.00 at \u03b8 > 30\u2032 with >2\u03c3 significance, the predicted large-scale enhancement is excluded.",
-      "falsifiable_by": "DP2 \u03be+(\u03b8) comparison to \u039bCDM baseline with official covariance."
+      "statement": "If ξ+_obs(θ)/ξ+_ΛCDM(θ) < 1.00 at θ > 30′ with >2σ significance, the predicted large-scale enhancement is excluded.",
+      "falsifiable_by": "DP2 ξ+(θ) comparison to ΛCDM baseline with official covariance."
     }
   ],
   "kill_criteria": [
-    "KC1: If DP2 measures S8 < 0.820 at >2\u03c3 confidence, the KC4 EFC lensing sector (\u03b7 \u2248 1.10) is ruled out.",
-    "KC2: If \u03be+_obs(\u03b8)/\u03be+_\u039bCDM(\u03b8) < 1.00 at \u03b8 > 30\u2032 with >2\u03c3 significance, the predicted large-scale lensing enhancement is falsified.",
-    "KC3: If a joint (\u00b5, \u03a3) analysis (DP2 shear + spectroscopic data) is inconsistent with \u03b7 > 1.05 at >2\u03c3, the gravitational slip prediction is falsified.",
-    "KC4: If \u03a3(z_eff\u22480.65) \u2264 1.00 at >2\u03c3 (i.e., no positive lensing enhancement), the EFC large-scale lensing prediction is falsified."
+    "KC1: If DP2 measures S8 < 0.820 at >2σ confidence, the KC4 EFC lensing sector (η ≈ 1.10) is ruled out.",
+    "KC2: If ξ+_obs(θ)/ξ+_ΛCDM(θ) < 1.00 at θ > 30′ with >2σ significance, the predicted large-scale lensing enhancement is falsified.",
+    "KC3: If a joint (µ, Σ) analysis (DP2 shear + spectroscopic data) is inconsistent with η > 1.05 at >2σ, the gravitational slip prediction is falsified.",
+    "KC4: If Σ(z_eff≈0.65) ≤ 1.00 at >2σ (i.e., no positive lensing enhancement), the EFC large-scale lensing prediction is falsified."
   ],
   "tier": "T2",
   "paper_type": "sealed_prediction",
@@ -116,5 +116,124 @@
     "pdf": "EFC_Rubin_DP2_PreRegistration_32013738.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013738"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013738",
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper seals quantitative, falsifiable EFC predictions for the Rubin LSST DP2 cosmic shear dataset, directly targeting the KC4 lensing/gravitational-slip sector. It does not close KC4 — it arms it with explicit pre-registered thresholds (S8 = 0.847 ± 0.015, η ≈ 1.10, ~8% ξ+ enhancement) that will be adjudicated when DP2 data drops (expected July–September 2026). This is the weak-lensing companion to the BAO/RSD/growth sealed prediction (DOI 32010399), completing the Stage-IV pre-registration coverage across both clustering and lensing sectors.",
+    "graph_insights": [
+      "This paper is currently an orphan node in the graph (no 1-2 hop connections found), indicating it should be linked to the parent pre-registration (DOI 32010399), the KC4 constraint node, and the EFC parameter archive (DOI 31876324) mentioned in the theoretical framework section.",
+      "The concepts 'S8', 'gravitational slip', and 'modified gravity' create natural bridge edges to future Euclid and DES Y6 weak-lensing nodes — when those datasets arrive, the same sealed η ≈ 1.10 prediction can be tested independently without requiring a new pre-registration.",
+      "No existing validation tests share observables with this paper, confirming these four tests are genuinely new pipeline entries rather than duplicates."
+    ],
+    "kc_addressed": [
+      "KC4"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "dp2_s8_cosmic_shear",
+        "category": "planned_pipeline",
+        "name": "Rubin DP2 S8 cosmic shear test",
+        "description": "Compare EFC-predicted S8 = 0.847 ± 0.015 against Rubin DP2 cosmic shear measurement. Falsified if DP2 measures S8 < 0.820 at >2σ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Rubin LSST DP2 (expected Q3 2026)",
+        "prediction": "S8 = 0.847 ± 0.015 (ΔS8 ≈ +0.015 over ΛCDM)"
+      },
+      {
+        "test_id": "dp2_xi_plus_enhancement",
+        "category": "planned_pipeline",
+        "name": "Rubin DP2 ξ+(θ) large-scale enhancement test",
+        "description": "Test whether ξ+_obs(θ)/ξ+_ΛCDM(θ) ≈ 1.08 at θ ∈ [20′, 300′]. Falsified if ratio < 1.00 at >2σ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Rubin LSST DP2 (expected Q3 2026)",
+        "prediction": "ξ+^EFC/ξ+^ΛCDM ≈ 1.08 at θ ∈ [20′, 300′]"
+      },
+      {
+        "test_id": "dp2_gravitational_slip_eta",
+        "category": "planned_pipeline",
+        "name": "Rubin DP2 gravitational slip η test",
+        "description": "Joint (µ, Σ) analysis using DP2 shear + spectroscopic data to test η > 1.05. Falsified if inconsistent at >2σ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Rubin LSST DP2 + spectroscopic cross-correlation",
+        "prediction": "η(z=0) = 1.10 ± 0.05, µ(z_eff≈0.65) = 0.97 ± 0.03"
+      },
+      {
+        "test_id": "dp2_sigma_lensing_modification",
+        "category": "planned_pipeline",
+        "name": "Rubin DP2 Σ(z_eff) lensing modification test",
+        "description": "Test Σ(z_eff≈0.65) = 1.04 ± 0.02 and ΔC_ℓ/C_ℓ ≈ +0.08 at ℓ ≲ 300. Falsified if Σ ≤ 1.00 at >2σ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Rubin LSST DP2 (expected Q3 2026)",
+        "prediction": "Σ(z_eff≈0.65) = 1.04 ± 0.02"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_badge",
+        "new_badge": "SEALED",
+        "new_text": "KC4 lensing-sector predictions sealed for Rubin DP2 cosmic shear: S8 = 0.847 ± 0.015, η = 1.10 ± 0.05, ξ+ enhancement ~8% at 20′–300′. Explicit >2σ falsification thresholds locked. DOI: 10.6084/m9.figshare.32013738. Awaiting DP2 data (Q3 2026).",
+        "doi_refs": [
+          "32013738"
+        ],
+        "reasoning": "KC4 now has a sealed, SHA-256-hashed pre-registration with four explicit kill criteria targeting the weak-lensing sector. Status moves from 'done' (core constraint) to armed with a Stage-IV sealed prediction awaiting confrontation."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Rubin DP2 cosmic shear pre-registration sealed (DOI 32013738). Four pipeline tests queued for Q3 2026 DP2 release. Companion to BAO/RSD/growth sealed prediction (DOI 32010399).",
+        "doi_refs": [
+          "32013738",
+          "32010399"
+        ],
+        "reasoning": "Roadmap should reflect that KC4 now has both a sealed prediction and queued validation pipeline, with an explicit timeline tied to the Rubin DP2 release."
+      },
+      {
+        "page": "elevator",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "EFC predicts an 8–10% cosmic shear enhancement at large scales (S8 = 0.847 ± 0.015, η ≈ 1.10) — pre-registered against Rubin LSST DP2 before data exists.",
+        "doi_refs": [
+          "32013738"
+        ],
+        "reasoning": "Elevator pitch should highlight that EFC has a locked, falsifiable weak-lensing prediction awaiting Stage-IV data — this is a strong credibility signal."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "KC4 lensing sector: Sealed pre-registration (DOI 32013738) freezes EFC cosmic shear predictions for Rubin DP2 — S8 = 0.847 ± 0.015, Σ(z_eff≈0.65) = 1.04 ± 0.02, η(z=0) = 1.10 ± 0.05. Four falsification thresholds specified at >2σ. Complements the BAO/RSD/growth pre-registration (DOI 32010399).",
+        "doi_refs": [
+          "32013738",
+          "32010399"
+        ],
+        "reasoning": "Whitepaper must document the full parameter set and falsification logic of the KC4 sealed prediction."
+      }
+    ],
+    "implicit_consequences": [
+      "EFC now has sealed pre-registrations covering BOTH the clustering sector (BAO/RSD/fσ8 via DOI 32010399) AND the lensing sector (cosmic shear/S8/η via this paper) — meaning every major Stage-IV observable channel has a locked, falsifiable EFC prediction before data.",
+      "The η ≈ 1.10 prediction creates a direct tension test with Planck ΛCDM (η = 1.00 exactly), meaning any Rubin DP2 measurement of η will simultaneously test ΛCDM and EFC — the two models make non-overlapping predictions at the 2σ level.",
+      "The frozen µ(z_eff≈0.65) = 0.97 ± 0.03 value implies EFC predicts slightly suppressed clustering growth relative to ΛCDM at the same redshift where lensing is enhanced — this anti-correlated µ-Σ signature is a unique EFC fingerprint that generic modified gravity models do not generically produce.",
+      "The explicit dependence on the regime gate function G(a) activating at a ≳ 0.3 ties the lensing prediction to the same transition epoch constrained by BAO/RSD tests, creating an internal consistency web: if the transition epoch shifts under DESI DR2 constraints, the lensing predictions shift in a calculable, correlated way.",
+      "The four pipeline tests added here bring the total pipeline count from 18 to 22, strengthening the pre-data coverage before the Q3 2026 data wave.",
+      "A future EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver gap) would allow direct computation of C_ℓ^κκ from first principles rather than the µ-Σ parameterisation, providing an independent cross-check on P3."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC4"
+    ],
+    "applied_at": "2026-04-17T00:17:05Z",
+    "applied_by_doi": "32013738"
+  }
 }

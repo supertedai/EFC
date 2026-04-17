@@ -2,17 +2,17 @@
   "$schema": "./schema.json",
   "id": "efc-void-isw-signflip",
   "title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
-  "description": "Derives how Energy-Flow Cosmology (EFC), with an effective Poisson coupling \u00b5 that increases with density, adds a non-linear Rees\u2013Sciama term to the ISW signal that is positive in voids. This term partially cancels the standard linear ISW cold spot and forces a sign flip (net hot spot) for sufficiently deep voids, with the turnover near \u03b4 \u2248 \u22120.7 for typical supervoid scales. The paper provides concrete, depth-binned stacking tests using BOSS/DESI void catalogs and Planck CMB data.",
+  "description": "Derives how Energy-Flow Cosmology (EFC), with an effective Poisson coupling µ that increases with density, adds a non-linear Rees–Sciama term to the ISW signal that is positive in voids. This term partially cancels the standard linear ISW cold spot and forces a sign flip (net hot spot) for sufficiently deep voids, with the turnover near δ ≈ −0.7 for typical supervoid scales. The paper provides concrete, depth-binned stacking tests using BOSS/DESI void catalogs and Planck CMB data.",
   "version": "2.1",
   "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.31942677",
   "keywords": [
     "ISW effect",
-    "Rees\u2013Sciama",
+    "Rees–Sciama",
     "cosmic voids",
     "sign flip",
     "density-dependent gravity",
-    "Bose\u2013Einstein statistics",
+    "Bose–Einstein statistics",
     "CMB stacking",
     "supervoids",
     "modified gravity",
@@ -56,15 +56,15 @@
     }
   },
   "key_results": {
-    "main_finding": "EFC predicts that the void ISW signal flips sign (net hot spot) for deep voids, with A_total crossing zero near \u03b4 \u2248 \u22120.7 and becoming strongly negative by \u03b4 \u2272 \u22120.8 (e.g., A_total \u2248 \u22120.83 at \u03b4 = \u22120.8).",
+    "main_finding": "EFC predicts that the void ISW signal flips sign (net hot spot) for deep voids, with A_total crossing zero near δ ≈ −0.7 and becoming strongly negative by δ ≲ −0.8 (e.g., A_total ≈ −0.83 at δ = −0.8).",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "void depth \u03b4_v",
+      "void depth δ_v",
       "void radius R_v",
       "redshift z",
       "IR cutoff k_*",
-      "\u0393'(\u03c1) \u221d \u03c1^{-1/2} scaling"
+      "Γ'(ρ) ∝ ρ^{-1/2} scaling"
     ],
     "datasets_used": [],
     "verdict": "PLANNED"
@@ -72,31 +72,31 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Depth-dependent turnover: stacked void ISW amplitude weakens with increasing |\u03b4_v| and crosses zero for the deepest voids (|\u03b4_v| \u2273 0.7).",
-      "falsifiable_by": "Depth-binned void\u2013CMB stacking (Planck SMICA) for BOSS DR12 or DESI shows monotonically increasing |\u0394T| with |\u03b4_v| across all bins, with no turnover."
+      "statement": "Depth-dependent turnover: stacked void ISW amplitude weakens with increasing |δ_v| and crosses zero for the deepest voids (|δ_v| ≳ 0.7).",
+      "falsifiable_by": "Depth-binned void–CMB stacking (Planck SMICA) for BOSS DR12 or DESI shows monotonically increasing |ΔT| with |δ_v| across all bins, with no turnover."
     },
     {
       "id": "P2",
-      "statement": "Scale dependence: the sign-flip occurs at shallower |\u03b4_v| for larger voids (lower k), due to R(k) \u221d k^{-4}.",
-      "falsifiable_by": "Cross-binning by size and depth finds no trend (or the opposite trend) in turnover depth with R_v at \u22652\u03c3."
+      "statement": "Scale dependence: the sign-flip occurs at shallower |δ_v| for larger voids (lower k), due to R(k) ∝ k^{-4}.",
+      "falsifiable_by": "Cross-binning by size and depth finds no trend (or the opposite trend) in turnover depth with R_v at ≥2σ."
     },
     {
       "id": "P3",
-      "statement": "Redshift evolution: the RS/ISW ratio increases toward lower z; the turnover (or sign-flip) occurs at shallower |\u03b4_v| at lower redshift.",
-      "falsifiable_by": "Comparing stacks at z \u2248 0.7 vs z \u2248 0.3 shows no shift toward shallower |\u03b4_v| at lower z within uncertainties."
+      "statement": "Redshift evolution: the RS/ISW ratio increases toward lower z; the turnover (or sign-flip) occurs at shallower |δ_v| at lower redshift.",
+      "falsifiable_by": "Comparing stacks at z ≈ 0.7 vs z ≈ 0.3 shows no shift toward shallower |δ_v| at lower z within uncertainties."
     },
     {
       "id": "P4",
-      "statement": "Deepest-void sign: for |\u03b4_v| \u2273 0.8 supervoids (R_v ~ 100\u2013150 Mpc), the net stack should be a hot spot (A_total < 0).",
-      "falsifiable_by": "Deepest-bin stacks remain cold (A_total \u2265 0) at >3\u03c3 across independent surveys (e.g., BOSS DR12, DESI) with validated systematics."
+      "statement": "Deepest-void sign: for |δ_v| ≳ 0.8 supervoids (R_v ~ 100–150 Mpc), the net stack should be a hot spot (A_total < 0).",
+      "falsifiable_by": "Deepest-bin stacks remain cold (A_total ≥ 0) at >3σ across independent surveys (e.g., BOSS DR12, DESI) with validated systematics."
     }
   ],
   "kill_criteria": [
-    "KC1: Depth-binned void\u2013CMB stacking with Planck SMICA (or equivalent) for BOSS DR12 and/or DESI shows a strictly monotonic increase of |\u0394T| with |\u03b4_v| across all bins (no weakening or turnover) at \u22653\u03c3, contradicting the d\u00b5/d\u03c1 > 0 prediction.",
-    "KC2: In the deepest quartile (|\u03b4_v| \u2265 0.8, R_v \u2273 100 Mpc), the stacked signal remains a cold spot with A_total \u2265 0 at >3\u03c3 after thorough null/systematics tests (rotations, randoms, lensing-leakage control) in at least two independent surveys.",
-    "KC3: Cross depth\u00d7size analysis finds that larger voids require deeper |\u03b4_v| to approach turnover (or show the opposite trend) at \u22652\u03c3, violating the predicted R(k) \u221d k^{-4} scaling that pushes the sign-flip to shallower |\u03b4_v| for larger R_v.",
-    "KC4: Redshift-binned analyses (e.g., z \u2248 0.7 vs z \u2248 0.3) detect no increase in RS/ISW ratio toward lower redshift (or observe the opposite trend) at \u22652\u03c3, falsifying the predicted evolution.",
-    "KC5: A comprehensive reanalysis attributes any observed turnover to identified systematics (e.g., selection, photometric z-bias, foregrounds), and after correction the stacks revert to \u039bCDM-like monotonic behavior across depth and size bins at \u22652\u03c3, removing support for density-dependent \u00b5 effects."
+    "KC1: Depth-binned void–CMB stacking with Planck SMICA (or equivalent) for BOSS DR12 and/or DESI shows a strictly monotonic increase of |ΔT| with |δ_v| across all bins (no weakening or turnover) at ≥3σ, contradicting the dµ/dρ > 0 prediction.",
+    "KC2: In the deepest quartile (|δ_v| ≥ 0.8, R_v ≳ 100 Mpc), the stacked signal remains a cold spot with A_total ≥ 0 at >3σ after thorough null/systematics tests (rotations, randoms, lensing-leakage control) in at least two independent surveys.",
+    "KC3: Cross depth×size analysis finds that larger voids require deeper |δ_v| to approach turnover (or show the opposite trend) at ≥2σ, violating the predicted R(k) ∝ k^{-4} scaling that pushes the sign-flip to shallower |δ_v| for larger R_v.",
+    "KC4: Redshift-binned analyses (e.g., z ≈ 0.7 vs z ≈ 0.3) detect no increase in RS/ISW ratio toward lower redshift (or observe the opposite trend) at ≥2σ, falsifying the predicted evolution.",
+    "KC5: A comprehensive reanalysis attributes any observed turnover to identified systematics (e.g., selection, photometric z-bias, foregrounds), and after correction the stacks revert to ΛCDM-like monotonic behavior across depth and size bins at ≥2σ, removing support for density-dependent µ effects."
   ],
   "tier": "T1",
   "paper_type": "sealed_prediction",
@@ -114,7 +114,7 @@
     {
       "id": "grid-microphysics",
       "doi": "10.6084/m9.figshare.31878760",
-      "role": "builds_on: grid-mode Bose\u2013Einstein microphysics for \u0393(\u03c1)"
+      "role": "builds_on: grid-mode Bose–Einstein microphysics for Γ(ρ)"
     }
   ],
   "files": {
@@ -132,14 +132,14 @@
   "framework": "Energy-Flow Cosmology (EFC)",
   "framework_version": "3.7",
   "license": "CC-BY-4.0",
-  "abstract": "Shows that EFC's density-dependent \u03bc(\u03c1) produces a non-linear ISW (Rees-Sciama) contribution with opposite sign to the standard linear ISW in cosmic voids. For deep voids (\u03b4 \u2272 \u22120.8), the net ISW signal flips sign: a void produces a hot spot instead of the expected cold spot. The sign follows structurally from d\u03bc/d\u03c1 > 0 (BE statistics). Testable via depth-binned void-CMB stacking.",
+  "abstract": "Shows that EFC's density-dependent μ(ρ) produces a non-linear ISW (Rees-Sciama) contribution with opposite sign to the standard linear ISW in cosmic voids. For deep voids (δ ≲ −0.8), the net ISW signal flips sign: a void produces a hot spot instead of the expected cold spot. The sign follows structurally from dμ/dρ > 0 (BE statistics). Testable via depth-binned void-CMB stacking.",
   "key_equations": {
-    "isw_decomposition": "d\u03a6/dt = \u03bc\u00b7(d\u03b4/dt) + \u03b4\u00b7(d\u03bc/dt)",
-    "mu_density": "\u03bc(k,\u03c1) = (1+\u03b5_F)/(F(1+R(k,\u03c1)))",
-    "chain_rule": "d\u03bc/dt = (d\u03bc/d\u03c1)\u00b7(d\u03c1/dt)",
-    "rs_term": "RS = \u03b4\u00b7(d\u03bc/dt) > 0 in voids",
-    "amplitude_ratio": "A_total = \u0394T_EFC/\u0394T_\u039bCDM = (ISW_lin + RS)/ISW_\u039bCDM",
-    "scaling": "|RS/ISW_lin| \u221d |\u03b4|\u00b7\u03c1^{-1/2}"
+    "isw_decomposition": "dΦ/dt = μ·(dδ/dt) + δ·(dμ/dt)",
+    "mu_density": "μ(k,ρ) = (1+ε_F)/(F(1+R(k,ρ)))",
+    "chain_rule": "dμ/dt = (dμ/dρ)·(dρ/dt)",
+    "rs_term": "RS = δ·(dμ/dt) > 0 in voids",
+    "amplitude_ratio": "A_total = ΔT_EFC/ΔT_ΛCDM = (ISW_lin + RS)/ISW_ΛCDM",
+    "scaling": "|RS/ISW_lin| ∝ |δ|·ρ^{-1/2}"
   },
   "predictions": [
     {
@@ -149,8 +149,8 @@
     },
     {
       "id": "P2",
-      "description": "Scale dependence: sign-flip at shallower |\u03b4| for larger voids",
-      "test": "Cross depth\u00d7size bins"
+      "description": "Scale dependence: sign-flip at shallower |δ| for larger voids",
+      "test": "Cross depth×size bins"
     },
     {
       "id": "P3",
@@ -159,7 +159,7 @@
     },
     {
       "id": "falsification",
-      "description": "Monotonically increasing |\u0394T| with |\u03b4| falsifies d\u03bc/d\u03c1 > 0"
+      "description": "Monotonically increasing |ΔT| with |δ| falsifies dμ/dρ > 0"
     }
   ],
   "connections": {
@@ -177,5 +177,126 @@
         "doi": "10.6084/m9.figshare.31878760"
       }
     ]
+  },
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper establishes a new, falsifiable ISW sign-flip prediction that is a structural consequence of EFC's density-dependent gravitational coupling (dµ/dρ > 0). It deposits four sealed predictions (depth-dependent turnover, scale dependence, redshift evolution, deepest-void hot spot) with five explicit kill criteria, opening a fresh observational front — void–CMB stacking — that has no overlap with existing EFC validation tests. It does not close any existing theory gap or KC but creates a new high-value test cluster whose data (BOSS DR12, DESI voids, Planck SMICA) are already public or imminent.",
+    "graph_insights": [
+      "This paper is currently an island in the graph — no 1-hop or 2-hop connections to existing papers — indicating it opens an entirely new observational axis (void ISW stacking) that has not been previously addressed in the EFC corpus.",
+      "The concepts 'Bose–Einstein statistics' and 'density-dependent gravity' connect this prediction back to the foundational EFC microphysics; confirming or falsifying the sign-flip would propagate constraints to every node that depends on Γ(ρ) and µ(ρ).",
+      "The 'modified gravity' and 'CMB stacking' concept nodes suggest future graph edges to f(R) and DGP void ISW literature — EFC's prediction is distinct (sign flip, not just amplitude enhancement), creating a three-way discriminator (ΛCDM vs MG vs EFC)."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "isw_depth_binned_void_stacking",
+        "category": "planned_pipeline",
+        "name": "Depth-binned void–CMB ISW stacking (BOSS DR12 / DESI)",
+        "description": "Stack Planck SMICA patches on void centers binned by void depth |δ_v|; check whether |ΔT| turns over and reverses sign for deepest bins, as EFC predicts, versus monotonic increase in ΛCDM.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck SMICA + BOSS DR12 / DESI void catalogs",
+        "prediction": "A_total decreases with |δ_v|, crosses zero near δ ≈ −0.7, becomes negative (hot spot) for |δ_v| ≳ 0.8"
+      },
+      {
+        "test_id": "isw_deep_void_sign_flip",
+        "category": "planned_pipeline",
+        "name": "Deep supervoid ISW sign test (|δ_v| ≥ 0.8, R_v ≳ 100 Mpc)",
+        "description": "Isolate deepest-quartile supervoids and test whether net stacked signal is a hot spot (A_total < 0) at ≥3σ, as sealed prediction P4 requires.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck SMICA + BOSS DR12 / DESI void catalogs",
+        "prediction": "A_total ≈ −0.83 at δ = −0.8; net hot spot for deepest supervoids"
+      },
+      {
+        "test_id": "isw_void_scale_dependence",
+        "category": "planned_pipeline",
+        "name": "Void size × depth ISW cross-analysis",
+        "description": "Check whether sign-flip occurs at shallower |δ_v| for larger voids (lower k), as predicted by R(k) ∝ k^{-4} scaling (sealed prediction P2).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck SMICA + BOSS DR12 / DESI void catalogs",
+        "prediction": "Turnover δ shifts toward shallower |δ_v| for larger R_v"
+      },
+      {
+        "test_id": "isw_redshift_evolution_rs_ratio",
+        "category": "planned_pipeline",
+        "name": "Redshift-binned RS/ISW ratio evolution",
+        "description": "Compare void ISW stacks at z ≈ 0.3 vs z ≈ 0.7; EFC predicts RS/ISW ratio increases toward lower z, so turnover appears at shallower |δ_v| at lower redshift (sealed prediction P3).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck SMICA + BOSS DR12 / DESI void catalogs",
+        "prediction": "RS/ISW ratio larger at z ≈ 0.3 than z ≈ 0.7; sign-flip threshold shallower at lower z"
+      },
+      {
+        "test_id": "isw_systematics_null_tests",
+        "category": "planned_pipeline",
+        "name": "Void ISW null / systematics suite (rotations, randoms, lensing leakage)",
+        "description": "Run standard null tests (rotated patches, random void positions, lensing-leakage subtraction) to ensure any observed turnover is not a systematic artifact, as required by KC5.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Planck SMICA + BOSS DR12 / DESI void catalogs",
+        "prediction": "Turnover survives all null tests; residual signal consistent with density-dependent µ"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "sealed-predictions-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "New sealed prediction cluster: ISW sign-flip in deep voids (P1–P4). Turnover at δ ≈ −0.7; hot-spot prediction for |δ_v| ≥ 0.8 supervoids. Five paper-specific kill criteria (KC1–KC5_void). Testable with existing Planck SMICA + BOSS DR12 void catalogs. DOI: 10.6084/m9.figshare.31942677",
+        "doi_refs": [
+          "10.6084/m9.figshare.31942677"
+        ],
+        "reasoning": "Four new sealed predictions with quantitative thresholds need to appear on the roadmap alongside existing predictions (e.g., fσ8)."
+      },
+      {
+        "page": "gap",
+        "target": "observational-gaps",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "New observational gap: depth-binned void–CMB stacking pipeline. Requires BOSS DR12 void catalog construction, Planck SMICA cutout stacking, and depth/size/redshift cross-binning. No existing pipeline covers this observable.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31942677"
+        ],
+        "reasoning": "Graph intelligence confirms no existing validation tests share these observables — this is a genuinely new test axis for EFC."
+      },
+      {
+        "page": "whitepaper",
+        "target": "testable-predictions",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Added: ISW sign-flip prediction — EFC's density-dependent µ forces net hot spot for supervoids with |δ_v| ≳ 0.8 (R_v ∼ 100–150 Mpc). Critical discriminator from ΛCDM which predicts monotonic cold-spot deepening. See DOI: 10.6084/m9.figshare.31942677.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31942677"
+        ],
+        "reasoning": "This is a qualitative ΛCDM-vs-EFC discriminator (sign flip vs monotonic) — among the sharpest predictions in the program and must be highlighted in the whitepaper."
+      },
+      {
+        "page": "elevator",
+        "target": "predictions-bullet",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC now predicts: (i) modified fσ8 growth history, (ii) ISW sign-flip for deep cosmic voids — the deepest supervoids should appear as hot spots on the CMB, opposite to ΛCDM.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31942677"
+        ],
+        "reasoning": "The void ISW sign-flip is the most visually striking and conceptually clean prediction — ideal for elevator-pitch level communication."
+      }
+    ],
+    "implicit_consequences": [
+      "The sign-flip prediction provides a qualitative (not merely quantitative) discriminator between EFC and ΛCDM — ΛCDM cannot produce a hot-spot from an expanding void at the linear+RS level, making this a structural fork.",
+      "Existing anomalous supervoid ISW detections (e.g., Szapudi et al. 2015 Cold Spot, Kovács et al. 2019 DES supervoid excess) may already contain marginal hints; a re-analysis binned by void depth could yield early evidence before DESI void catalogs arrive.",
+      "The dµ/dρ > 0 condition that drives the sign-flip is the same condition underlying EFC's suppressed growth in underdense regions — any future RSD-in-voids measurement (void velocity profiles) would provide a cross-check on the same microphysics.",
+      "If the sign-flip is confirmed, it would simultaneously validate the Bose–Einstein grid-mode statistics (Γ′(ρ) ∝ ρ^{−1/2}) at low density, providing direct evidence for the quantum-statistical foundation of EFC.",
+      "The paper's kill criteria (especially KC5 — systematics reanalysis) implicitly set the standard for any future claim that the prediction has been falsified, pre-empting post-hoc dismissal.",
+      "The predicted redshift evolution (P3) creates a natural link to the DESI DR2 pipeline priority action — void catalogs from DESI at z ≈ 0.3 and z ≈ 0.7 can test both fσ8 and ISW predictions simultaneously from the same dataset."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
   }
 }

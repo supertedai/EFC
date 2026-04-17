@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-unified-analysis-bao-sn-rsd",
   "title": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD",
-  "description": "Unified empirical test of Energy-Flow Cosmology (EFC) against BAO, SN Ia, and RSD. The effective gravitational coupling \u03bc(a)=Geff/G is derived from the EFC field equation via an entropy field S(a), with background fixed to \u039bCDM (\u03b3=0). With one free amplitude (\u03b2=0.16) and fixed transition hyperparameters, EFC reproduces BAO/SN and yields a mildly worse but statistically compatible RSD fit (\u0394\u03c7\u00b2\u2248+1.7), showing no geometry\u2013growth tension in this first-pass regime-consistency check.",
+  "description": "Unified empirical test of Energy-Flow Cosmology (EFC) against BAO, SN Ia, and RSD. The effective gravitational coupling μ(a)=Geff/G is derived from the EFC field equation via an entropy field S(a), with background fixed to ΛCDM (γ=0). With one free amplitude (β=0.16) and fixed transition hyperparameters, EFC reproduces BAO/SN and yields a mildly worse but statistically compatible RSD fit (Δχ²≈+1.7), showing no geometry–growth tension in this first-pass regime-consistency check.",
   "version": "1.0",
   "date": "2026-01-01",
   "doi": "10.6084/m9.figshare.31215613",
@@ -28,7 +28,7 @@
   "core_equations": {
     "EFC Field Equation": {
       "latex": "G_{\\mu\\nu} = 8\\pi G\\,\\big(T_{\\mu\\nu} + T^{(E_f)}_{\\mu\\nu}\\big) + \\Lambda_{\\mathrm{eff}}\\, g_{\\mu\\nu}",
-      "description": "Modification to Einstein\u2019s equations where an energy-flow sector contributes to curvature alongside matter and an effective cosmological term."
+      "description": "Modification to Einstein’s equations where an energy-flow sector contributes to curvature alongside matter and an effective cosmological term."
     },
     "Energy-flow Stress-Energy": {
       "latex": "T^{(E_f)}_{\\mu\\nu} = \\alpha\\, \\nabla_{\\mu}E_f\\, \\nabla_{\\nu}E_f - \\tfrac{1}{2} g_{\\mu\\nu} (\\nabla E_f)^2",
@@ -48,41 +48,41 @@
     }
   },
   "key_results": {
-    "main_finding": "With \u03b3=0 and a derived \u03bc(a)=1+\u03b2S(a), EFC matches BAO and SN Ia as in \u039bCDM and yields a mildly worse but statistically compatible RSD fit, indicating no geometry\u2013growth tension.",
+    "main_finding": "With γ=0 and a derived μ(a)=1+βS(a), EFC matches BAO and SN Ia as in ΛCDM and yields a mildly worse but statistically compatible RSD fit, indicating no geometry–growth tension.",
     "delta_chi2": 1.71,
     "significance_sigma": null,
     "parameters_tested": [
-      "\u03b2 = 0.16 (free amplitude)",
-      "a_t = 0.55 (z_t \u2248 0.82, fixed)",
-      "\u03c3 = 0.10 (fixed)",
-      "S_\u221e = 1.0 (normalization)",
-      "\u03b3 = 0 (no background modification)"
+      "β = 0.16 (free amplitude)",
+      "a_t = 0.55 (z_t ≈ 0.82, fixed)",
+      "σ = 0.10 (fixed)",
+      "S_∞ = 1.0 (normalization)",
+      "γ = 0 (no background modification)"
     ],
     "datasets_used": [
       "BAO: DESI DR2 (DM/rd at z = 0.51, 0.71, 0.93, 1.32, 1.49, 2.33)",
-      "SN Ia: Pantheon+ (16 binned distance-modulus points, z = 0.01\u20131.0, M marginalized)",
-      "RSD: f\u03c38 from BOSS DR12, eBOSS DR16, DESI Y1 (11 points, z = 0.30\u20131.52)"
+      "SN Ia: Pantheon+ (16 binned distance-modulus points, z = 0.01–1.0, M marginalized)",
+      "RSD: fσ8 from BOSS DR12, eBOSS DR16, DESI Y1 (11 points, z = 0.30–1.52)"
     ],
     "verdict": "PASS"
   },
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "For fixed transition hyperparameters a_t=0.55 and \u03c3=0.10 with S_\u221e=1, \u03bc(a)=1+\u03b2S(a) rises monotonically from \u22481 at z\u22732 to \u22481+\u03b2 at z\u22480; with \u03b2\u22480.16 this implies a late-time Geff enhancement of ~16% and a specific f\u03c38(z) curve that exceeds \u039bCDM at 0\u2272z\u22721.5.",
-      "falsifiable_by": "Future high-precision RSD (e.g., final DESI) and cosmic shear tomography (e.g., LSST/Euclid) measuring f\u03c38(z) and the growth index; rejection occurs if the best-fit \u03b2 under fixed {a_t,\u03c3} fails goodness-of-fit at \u22653\u03c3."
+      "statement": "For fixed transition hyperparameters a_t=0.55 and σ=0.10 with S_∞=1, μ(a)=1+βS(a) rises monotonically from ≈1 at z≳2 to ≈1+β at z≈0; with β≈0.16 this implies a late-time Geff enhancement of ~16% and a specific fσ8(z) curve that exceeds ΛCDM at 0≲z≲1.5.",
+      "falsifiable_by": "Future high-precision RSD (e.g., final DESI) and cosmic shear tomography (e.g., LSST/Euclid) measuring fσ8(z) and the growth index; rejection occurs if the best-fit β under fixed {a_t,σ} fails goodness-of-fit at ≥3σ."
     },
     {
       "id": "P2",
-      "statement": "With \u03b3=0, the background expansion (H(z), distances) is identical to \u039bCDM for any \u03b2; hence BAO DM/rd and SN Ia distance moduli must remain statistically indistinguishable from \u039bCDM.",
-      "falsifiable_by": "BAO+SN analyses detecting non-\u039bCDM background evolution at \u22655\u03c3 when growth-only EFC (\u03b3=0) is assumed."
+      "statement": "With γ=0, the background expansion (H(z), distances) is identical to ΛCDM for any β; hence BAO DM/rd and SN Ia distance moduli must remain statistically indistinguishable from ΛCDM.",
+      "falsifiable_by": "BAO+SN analyses detecting non-ΛCDM background evolution at ≥5σ when growth-only EFC (γ=0) is assumed."
     }
   ],
   "kill_criteria": [
-    "KC1: Combined BAO+SN+RSD likelihoods with full covariances show that the 1-parameter EFC growth-only model (\u03b2 free; a_t=0.55, \u03c3=0.10 fixed; \u03b3=0) is disfavored relative to \u039bCDM at \u0394\u03c7\u00b2 \u2265 9 (\u22483\u03c3) for comparable degrees of freedom.",
-    "KC2: High-precision RSD in 0.5 < z < 1.5 (e.g., final DESI) exclude the EFC \u03bc(a) shape with fixed {a_t, \u03c3} by finding that no value of \u03b2 yields an acceptable fit (\u03c7\u00b2_min \u2212 \u03c7\u00b2_LCDM \u2265 9, or p-value < 0.003) to f\u03c38(z).",
-    "KC3: Joint weak-lensing + galaxy-clustering (e.g., LSST/Euclid) constrain the late-time enhancement to |\u03bc(z<1)\u22121| < 0.05 (95% CL), excluding the \u226510% enhancement implied by \u03b2 \u2248 0.16 at \u22653\u03c3 under fixed {a_t, \u03c3}.",
-    "KC4: Early-time probes (Planck primary+CMB lensing, high-z growth) detect \u03bc(a) \u2260 1 at z \u2273 2 at \u22653\u03c3 (e.g., |\u03bc\u22121| > 0.02), violating the EFC requirement S(a\u21920) \u2192 0 and hence \u03bc\u21921.",
-    "KC5: Regime-consistency failure: growth-inferred transition redshift z_t from RSD/weak lensing is inconsistent with the fixed a_t=0.55 (z_t\u22480.82) by |\u0394z_t| \u2265 0.2 at \u22653\u03c3 when adopting the EFC sigmoid S(a) form."
+    "KC1: Combined BAO+SN+RSD likelihoods with full covariances show that the 1-parameter EFC growth-only model (β free; a_t=0.55, σ=0.10 fixed; γ=0) is disfavored relative to ΛCDM at Δχ² ≥ 9 (≈3σ) for comparable degrees of freedom.",
+    "KC2: High-precision RSD in 0.5 < z < 1.5 (e.g., final DESI) exclude the EFC μ(a) shape with fixed {a_t, σ} by finding that no value of β yields an acceptable fit (χ²_min − χ²_LCDM ≥ 9, or p-value < 0.003) to fσ8(z).",
+    "KC3: Joint weak-lensing + galaxy-clustering (e.g., LSST/Euclid) constrain the late-time enhancement to |μ(z<1)−1| < 0.05 (95% CL), excluding the ≥10% enhancement implied by β ≈ 0.16 at ≥3σ under fixed {a_t, σ}.",
+    "KC4: Early-time probes (Planck primary+CMB lensing, high-z growth) detect μ(a) ≠ 1 at z ≳ 2 at ≥3σ (e.g., |μ−1| > 0.02), violating the EFC requirement S(a→0) → 0 and hence μ→1.",
+    "KC5: Regime-consistency failure: growth-inferred transition redshift z_t from RSD/weak lensing is inconsistent with the fixed a_t=0.55 (z_t≈0.82) by |Δz_t| ≥ 0.2 at ≥3σ when adopting the EFC sigmoid S(a) form."
   ],
   "tier": "T3",
   "paper_type": "empirical_test",
@@ -105,7 +105,7 @@
   "short_title": "EFC Unified BAO Analysis",
   "type": "empirical_analysis",
   "status": "published",
-  "abstract_short": "First regime-consistency check: EFC with derived \u03bc(a) achieves \u0394\u03c7\u00b2=+1.7 vs \u039bCDM across BAO, SN, RSD.",
+  "abstract_short": "First regime-consistency check: EFC with derived μ(a) achieves Δχ²=+1.7 vs ΛCDM across BAO, SN, RSD.",
   "parameters": {
     "beta": {
       "value": 0.16,
@@ -171,9 +171,9 @@
     "verdict": "Compatible within statistical fluctuations, no internal tension"
   },
   "key_findings": [
-    "\u03bc(a) derived from EFC field equations, not phenomenologically fitted",
-    "BAO and SN identical to \u039bCDM by construction (\u03b3=0)",
-    "RSD slightly worse (\u0394\u03c7\u00b2=+1.7) but within fluctuations",
+    "μ(a) derived from EFC field equations, not phenomenologically fitted",
+    "BAO and SN identical to ΛCDM by construction (γ=0)",
+    "RSD slightly worse (Δχ²=+1.7) but within fluctuations",
     "Same S(a) describes geometry and growth without tension"
   ],
   "dependencies": [
@@ -181,5 +181,142 @@
       "id": "efc-v1.2",
       "doi": "10.6084/m9.figshare.30563738"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper is the first unified multi-probe empirical test of EFC's derived μ(a) against BAO, SN Ia, and RSD simultaneously. It establishes that the one-parameter growth-only EFC model (β=0.16, γ=0) is statistically compatible with ΛCDM (Δχ²=+1.7), demonstrating no geometry–growth tension — a necessary regime-consistency check. It does not close any existing KC at the Stage-IV level but provides the T3-tier baseline against which future DESI/Euclid/LSST data will be compared, and it formally defines five paper-level kill criteria that map onto the project-wide KC structure.",
+    "graph_insights": [
+      "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it must be linked to the EFC master node, the μ(a) concept cluster, and the DESI DR2 / Pantheon+ / BOSS data nodes. It also needs edges to the sealed prediction fσ8(z=0.7)=0.430 and to the three open theory gaps (EFCLASS solver produces the S(a) that this paper parameterizes; ADM stability underpins the S(a→0)→0 boundary condition; neutrino mass degeneracy could shift the β calibration).",
+      "The absence of related papers at 1-2 hops suggests the graph has not yet ingested the foundational EFC theory paper (Magnusson 2025a cited in the text) — this is a graph maintenance issue that should be resolved immediately to restore connectivity."
+    ],
+    "kc_addressed": [
+      "KC1",
+      "KC3"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "unified_bao_sn_rsd_chi2",
+        "category": "empirical_test",
+        "name": "Unified BAO+SN Ia+RSD χ² test (γ=0, β free)",
+        "description": "Combined likelihood fit of EFC μ(a)=1+βS(a) with fixed transition hyperparameters (a_t=0.55, σ=0.10) against DESI DR2 BAO, Pantheon+ SN Ia, and BOSS/eBOSS RSD. Tests whether Δχ² relative to ΛCDM exceeds 9.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO (6 pts), Pantheon+ SN Ia (16 binned pts), BOSS/eBOSS RSD fσ8",
+        "prediction": "EFC predicts Δχ² < 9 for combined probes; observed Δχ²=+1.7"
+      },
+      {
+        "test_id": "geometry_growth_consistency",
+        "category": "consistency_check",
+        "name": "Geometry–growth regime-consistency check",
+        "description": "Verifies that the same entropy field S(a) driving μ(a) does not introduce internal tension between geometry probes (BAO, SN) and growth probes (RSD) when γ=0.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO, Pantheon+ SN Ia, BOSS/eBOSS RSD",
+        "prediction": "No statistically significant tension between geometry and growth sectors under EFC; confirmed (Δχ²=+1.7, compatible within fluctuations)"
+      },
+      {
+        "test_id": "rsd_mu_shape_current",
+        "category": "phenomenological",
+        "name": "RSD fσ8 fit under EFC μ(a) shape (current data)",
+        "description": "Tests whether the sigmoid μ(a) shape with fixed {a_t, σ} and free β can fit current fσ8(z) data without catastrophic failure (paper KC2 at current-data level).",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "BOSS/eBOSS fσ8 compilation",
+        "prediction": "EFC predicts acceptable fσ8 fit for β≈0.16; fit is mildly worse than ΛCDM but within statistical tolerance"
+      },
+      {
+        "test_id": "bao_sn_gamma0_identity",
+        "category": "framework_constraint",
+        "name": "BAO/SN identity with ΛCDM under γ=0",
+        "description": "Confirms that with γ=0 the EFC background is exactly ΛCDM, so BAO DM/rd and SN distance moduli are identical — validating sealed prediction P2.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "DESI DR2 BAO, Pantheon+ SN Ia",
+        "prediction": "BAO and SN observables indistinguishable from ΛCDM when γ=0; confirmed by construction and by fit"
+      },
+      {
+        "test_id": "mu_late_time_enhancement_10pct",
+        "category": "phenomenological",
+        "name": "Late-time μ enhancement ≈10–16% (β≈0.16)",
+        "description": "Tests whether current data are consistent with a late-time μ(z<1)−1 ≈ 0.16 enhancement, relevant to future Stage-IV constraint (paper KC3).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "BOSS/eBOSS RSD",
+        "prediction": "β≈0.16 implies μ−1≈0.16 at z≈0; current data do not exclude this at ≥3σ"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC1\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC1 (done): T3-tier unified BAO+SN+RSD test completed. Δχ²=+1.7 vs ΛCDM, well below Δχ²≥9 kill threshold. Awaits Stage-IV full-covariance replication. DOI: 10.6084/m9.figshare.31215613",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215613"
+        ],
+        "reasoning": "Paper directly addresses the combined-probe kill criterion at T3 level; KC1 project-level remains 'done' but the new paper provides an additional documented pass."
+      },
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC3\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "KC3 (done): Current RSD data consistent with β≈0.16 (μ−1≈16% at z<1). Paper KC3 defines the Stage-IV kill line: |μ(z<1)−1|<0.05 at 95% CL from LSST/Euclid would exclude β≈0.16 at ≥3σ. No Stage-IV data yet. DOI: 10.6084/m9.figshare.31215613",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215613"
+        ],
+        "reasoning": "Paper's KC3 sharpens the existing KC3 by quantifying the exact exclusion threshold for Stage-IV weak-lensing+clustering."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-action-id=\"action-6\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "action-6 (PLANNED): DESI DR2 full-shape RSD rapid-response pipeline. The unified paper provides the baseline χ² and μ(a) implementation against which the pipeline will compare. Sealed prediction fσ8(z=0.7)=0.430 remains active.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215613"
+        ],
+        "reasoning": "Paper's RSD analysis and code structure feed directly into the rapid-response pipeline; it narrows the gap but does not close it since no single-entry-point verification script is assembled."
+      },
+      {
+        "page": "elevator",
+        "target": "empirical_status",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC has now passed a unified BAO+SN Ia+RSD test with Δχ²=+1.7 vs ΛCDM (1 free parameter, β=0.16). No geometry–growth tension detected. 91 of 101 active tests survived. DOI: 10.6084/m9.figshare.31215613",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215613"
+        ],
+        "reasoning": "Elevator pitch should reflect the latest empirical milestone."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section_empirical_tests",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Added unified multi-probe test: BAO (DESI DR2) + SN Ia (Pantheon+) + RSD (BOSS/eBOSS) under γ=0, β=0.16 with derived μ(a)=1+βS(a). Result: χ²_EFC=51.1 vs χ²_ΛCDM=49.4. Five paper-level kill criteria defined mapping to project KC1-KC5. DOI: 10.6084/m9.figshare.31215613",
+        "doi_refs": [
+          "10.6084/m9.figshare.31215613"
+        ],
+        "reasoning": "Whitepaper empirical section needs the new combined-probe result and the paper-level KC definitions."
+      }
+    ],
+    "implicit_consequences": [
+      "The β≈0.16 value now serves as the fiducial EFC coupling for all downstream predictions (CMB lensing, weak lensing Σ, ISW); any future paper using a different β must justify deviation from this calibrated value.",
+      "With γ=0 validated as geometry-safe, the next logical step is to open γ as a free parameter against DESI DR2 w0-wa constraints — this directly targets the Λeff(a) sector and could resolve or sharpen the DESI dark-energy evolution hint.",
+      "The sigmoid hyperparameters (a_t=0.55, σ=0.10) are now frozen at T3 level; if the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver gap) produces a different S(a) shape from first principles, the discrepancy would either vindicate or falsify these fixed values.",
+      "The ≈16% late-time μ enhancement is in the regime currently probed by S8 tension analyses; EFC now implicitly predicts that the S8 discrepancy should partially resolve under μ(a)>1 at z<1, which is a testable but unstated consequence.",
+      "Paper KC4 (early-time μ=1 requirement) connects directly to the Planck CMB lensing pipeline — if the ADM Hamiltonian stability analysis (theory-adm-hamiltonian-stability gap) confirms S(a→0)→0 from the action level, the early-time boundary condition becomes theory-protected rather than merely assumed.",
+      "The Δχ²=+1.7 margin means EFC is within ~1σ of ΛCDM on current data; Stage-IV data with ~3× smaller error bars could either push this to Δχ²≥9 (kill) or pull it toward 0 or negative (preference for EFC). The sealed prediction fσ8(z=0.7)=0.430 is the single most decisive discriminant."
+    ],
+    "bottom_line_change": "Biggest gap remains the DESI DR2 full-shape RSD rapid-response pipeline, but the unified paper now provides the baseline μ(a) implementation and χ² reference point. The gap description should note that the analysis framework exists in this paper and only the automated single-entry-point verification script is missing.",
+    "kill_criteria_addressed": [
+      "KC1",
+      "KC3"
+    ]
+  }
 }

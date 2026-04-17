@@ -1,16 +1,16 @@
 {
   "$schema": "./schema.json",
   "id": "sealed-blind-predictions-for-growth-rate-observables-efc-vs-lcdm",
-  "title": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs \u039bCDM",
-  "description": "Pre-registered, cryptographically sealed predictions from Energy-Flow Cosmology (EFC) are provided for the growth-rate observable f\u03c38(z) and the Hubble distance ratio DH/rd(z) at z = 0.7 and z = 1.0, prior to the unblinding of DESI DR2 full-shape RSD results. The key prediction f\u03c38(z=0.7)=0.430 contrasts with \u039bCDM\u2019s 0.449 (\u22482.0\u03c3), with DH/rd also systematically lower than \u039bCDM at both redshifts, enabling a direct, falsifiable test with forthcoming DESI DR2 data.",
+  "title": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs ΛCDM",
+  "description": "Pre-registered, cryptographically sealed predictions from Energy-Flow Cosmology (EFC) are provided for the growth-rate observable fσ8(z) and the Hubble distance ratio DH/rd(z) at z = 0.7 and z = 1.0, prior to the unblinding of DESI DR2 full-shape RSD results. The key prediction fσ8(z=0.7)=0.430 contrasts with ΛCDM’s 0.449 (≈2.0σ), with DH/rd also systematically lower than ΛCDM at both redshifts, enabling a direct, falsifiable test with forthcoming DESI DR2 data.",
   "version": "1.0",
   "date": "2026-04-14",
   "doi": "10.6084/m9.figshare.32013156",
   "keywords": [
     "Energy-Flow Cosmology",
-    "\u039bCDM",
+    "ΛCDM",
     "growth rate",
-    "f\u03c38",
+    "fσ8",
     "redshift-space distortions",
     "DESI DR2",
     "BAO",
@@ -40,11 +40,11 @@
     }
   },
   "key_results": {
-    "main_finding": "EFC predicts systematically lower growth and distances than \u039bCDM, with f\u03c38(z=0.7)=0.430 vs 0.449 (\u22482.0\u03c3) and DH/rd lower at z=0.7 and z=1.0 (2.3\u03c3 and 3.1\u03c3 separations), sealed prior to DESI DR2 unblinding.",
+    "main_finding": "EFC predicts systematically lower growth and distances than ΛCDM, with fσ8(z=0.7)=0.430 vs 0.449 (≈2.0σ) and DH/rd lower at z=0.7 and z=1.0 (2.3σ and 3.1σ separations), sealed prior to DESI DR2 unblinding.",
     "delta_chi2": null,
     "significance_sigma": 2.0,
     "parameters_tested": [
-      "EFC coupling \u03b1 (entropy-driven modification to Hubble friction in growth equation)"
+      "EFC coupling α (entropy-driven modification to Hubble friction in growth equation)"
     ],
     "datasets_used": [
       "6dFGS",
@@ -57,25 +57,25 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "At z = 0.7, the growth-rate observable is f\u03c38 = 0.430 (EFC) versus \u039bCDM\u2019s 0.449, implying \u22482.0\u03c3 lower growth under EFC.",
-      "falsifiable_by": "DESI DR2 full-shape RSD measurement of f\u03c38 at z\u22480.7; falsified if result is consistent with 0.449 (\u039bCDM) within <1\u03c3 or excludes 0.430 at \u22652\u03c3."
+      "statement": "At z = 0.7, the growth-rate observable is fσ8 = 0.430 (EFC) versus ΛCDM’s 0.449, implying ≈2.0σ lower growth under EFC.",
+      "falsifiable_by": "DESI DR2 full-shape RSD measurement of fσ8 at z≈0.7; falsified if result is consistent with 0.449 (ΛCDM) within <1σ or excludes 0.430 at ≥2σ."
     },
     {
       "id": "P2",
-      "statement": "At z = 0.7, the Hubble distance ratio is DH/rd = 19.797 (EFC) versus \u039bCDM\u2019s 20.719 (\u22482.3\u03c3 lower in EFC).",
-      "falsifiable_by": "DESI DR2 BAO full-shape constraints on DH/rd at z\u22480.7; falsified if DH/rd agrees with \u039bCDM within <1\u03c3 or jointly excludes the EFC trend toward lower values."
+      "statement": "At z = 0.7, the Hubble distance ratio is DH/rd = 19.797 (EFC) versus ΛCDM’s 20.719 (≈2.3σ lower in EFC).",
+      "falsifiable_by": "DESI DR2 BAO full-shape constraints on DH/rd at z≈0.7; falsified if DH/rd agrees with ΛCDM within <1σ or jointly excludes the EFC trend toward lower values."
     },
     {
       "id": "P3",
-      "statement": "At z = 1.0, the Hubble distance ratio is DH/rd = 16.527 (EFC) versus \u039bCDM\u2019s 17.466 (\u22483.1\u03c3 lower in EFC).",
-      "falsifiable_by": "DESI DR2/DR3 BAO and full-shape constraints at z\u22481.0; falsified if measurements align with \u039bCDM within <1\u03c3 or exclude the EFC prediction at \u22652\u03c3."
+      "statement": "At z = 1.0, the Hubble distance ratio is DH/rd = 16.527 (EFC) versus ΛCDM’s 17.466 (≈3.1σ lower in EFC).",
+      "falsifiable_by": "DESI DR2/DR3 BAO and full-shape constraints at z≈1.0; falsified if measurements align with ΛCDM within <1σ or exclude the EFC prediction at ≥2σ."
     }
   ],
   "kill_criteria": [
-    "KC1: DESI DR2 full-shape RSD at z\u22480.7 yields f\u03c38 consistent with \u039bCDM\u2019s 0.449 within <1\u03c3, or excludes the EFC prediction f\u03c38=0.430 at \u22652\u03c3.",
-    "KC2: DESI DR2 multi-tracer (LRG, ELG) analysis shows no systematic suppression of growth at z\u22721 and jointly favors \u039bCDM over EFC, such that the inferred EFC coupling \u03b1 is consistent with 0 and excludes \u03b1<0 at \u22652\u03c3.",
-    "KC3: DESI DR2/DR3 BAO distances at z=0.7 and z=1.0 yield DH/rd consistent with \u039bCDM (20.719 and 17.466, respectively) within <1\u03c3, jointly excluding the lower EFC values.",
-    "KC4: Independent pipeline replication of the EFC inference using the stated baseline datasets fails to reproduce the sealed predictions (e.g., mismatched f\u03c38 or DH/rd at the quoted redshifts) when chain hashes and configurations are verified."
+    "KC1: DESI DR2 full-shape RSD at z≈0.7 yields fσ8 consistent with ΛCDM’s 0.449 within <1σ, or excludes the EFC prediction fσ8=0.430 at ≥2σ.",
+    "KC2: DESI DR2 multi-tracer (LRG, ELG) analysis shows no systematic suppression of growth at z≲1 and jointly favors ΛCDM over EFC, such that the inferred EFC coupling α is consistent with 0 and excludes α<0 at ≥2σ.",
+    "KC3: DESI DR2/DR3 BAO distances at z=0.7 and z=1.0 yield DH/rd consistent with ΛCDM (20.719 and 17.466, respectively) within <1σ, jointly excluding the lower EFC values.",
+    "KC4: Independent pipeline replication of the EFC inference using the stated baseline datasets fails to reproduce the sealed predictions (e.g., mismatched fσ8 or DH/rd at the quoted redshifts) when chain hashes and configurations are verified."
   ],
   "tier": "T1",
   "paper_type": "sealed_prediction",
@@ -84,5 +84,132 @@
     "pdf": "Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013156"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32013156",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper is the sealed prediction document itself — the pre-registered, cryptographically hashed EFC predictions for fσ8(z=0.7)=0.430 and DH/rd at z=0.7 and z=1.0, deposited before DESI DR2 unblinding. It does not PROVE anything about nature; it establishes the epistemic precondition for a genuine pre-registered test. It converts EFC from a framework that could be accused of post-hoc fitting into one with falsifiable, time-stamped forecasts that will be adjudicated by external data. The paper also defines its own internal kill criteria (KC1–KC4 within the document), which map onto the project-level KC5 monitoring posture and the DESI DR2 rapid-response pipeline gap.",
+    "graph_insights": [
+      "The graph shows no connected papers or validation tests yet — this paper is currently an isolated node. It MUST be linked to the EFC core framework papers (the ones establishing the α coupling and the modified growth equation) and to any existing BAO/fσ8 validation tests to form the inference chain. Without these edges, the knowledge graph cannot trace the logical path from EFC theory → MCMC inference → sealed prediction → observational adjudication.",
+      "The concepts 'DESI DR2', 'BAO', 'DH/rd', and 'fσ8' should create edges to planned pipeline tests and to KC5 monitoring, forming a subgraph that represents the entire pre-registration-to-adjudication workflow.",
+      "The absence of related papers at 1–2 hops is a graph hygiene issue: the MCMC inference methodology, the EFC field equations, and the α-coupling derivation papers should all be within 1 hop of this deposit."
+    ],
+    "kc_addressed": [
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [
+      "action-1"
+    ],
+    "tests_added": [
+      {
+        "test_id": "sealed_fsigma8_z07",
+        "category": "planned_pipeline",
+        "name": "Sealed fσ8(z=0.7) vs DESI DR2 RSD",
+        "description": "Compare sealed EFC prediction fσ8(z=0.7)=0.430 against DESI DR2 full-shape RSD measurement when unblinded. ΛCDM predicts 0.449; a ≈2.0σ separation exists.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2 full-shape RSD (not yet unblinded)",
+        "prediction": "fσ8(z=0.7) = 0.430 ± ~0.010 (EFC), systematically lower than ΛCDM 0.449"
+      },
+      {
+        "test_id": "sealed_dh_rd_z07",
+        "category": "planned_pipeline",
+        "name": "Sealed DH/rd(z=0.7) vs DESI DR2 BAO",
+        "description": "Compare sealed EFC prediction DH/rd(z=0.7)=19.797 against DESI DR2/DR3 BAO measurement. ΛCDM predicts 20.719; ≈2.3σ separation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2/DR3 BAO",
+        "prediction": "DH/rd(z=0.7) = 19.797 (EFC), systematically lower than ΛCDM 20.719"
+      },
+      {
+        "test_id": "sealed_dh_rd_z10",
+        "category": "planned_pipeline",
+        "name": "Sealed DH/rd(z=1.0) vs DESI DR2 BAO",
+        "description": "Compare sealed EFC prediction DH/rd(z=1.0)=16.527 against DESI DR2/DR3 BAO measurement. ΛCDM predicts 17.466; ≈3.1σ separation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "DESI DR2/DR3 BAO",
+        "prediction": "DH/rd(z=1.0) = 16.527 (EFC), systematically lower than ΛCDM 17.466"
+      },
+      {
+        "test_id": "sealed_chain_reproducibility",
+        "category": "consistency_check",
+        "name": "MCMC chain hash reproducibility check",
+        "description": "Verify that independent pipeline replication of EFC inference reproduces the sealed predictions when chain hashes and configurations are matched (internal KC4 of the paper).",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Baseline datasets: BOSS DR12, eBOSS DR16, DESI DR1",
+        "prediction": "Reproduced fσ8 and DH/rd values match sealed hashes within numerical tolerance"
+      },
+      {
+        "test_id": "sealed_dual_freeze_consistency",
+        "category": "consistency_check",
+        "name": "Primary/secondary freeze cross-consistency",
+        "description": "Two independent MCMC freezes (Feb 18 and Feb 21, 2026) yield α=−0.689 and α=−0.702 respectively; checks internal consistency of the inference pipeline.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Internal MCMC chains (NUTS sampler)",
+        "prediction": "Both freezes yield consistent α < 0 with <2% scatter"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Sealed predictions deposited: fσ8(z=0.7)=0.430, DH/rd(z=0.7)=19.797, DH/rd(z=1.0)=16.527. SHA-256 hashed, timestamped Feb 2026, prior to DESI DR2 unblinding. Awaiting DESI DR2 full-shape RSD release for adjudication.",
+        "doi_refs": [
+          "32013156"
+        ],
+        "reasoning": "KC5 is in Monitoring status; this paper is the sealed prediction that KC5 monitoring depends on. The badge should reflect that the prediction side is complete and locked — only the observational adjudication remains."
+      },
+      {
+        "page": "roadmap",
+        "target": "action-1",
+        "action": "mark_done",
+        "new_badge": "DONE",
+        "new_text": "Sealed blind predictions for fσ8 and DH/rd deposited on Figshare with CC-BY-4.0, cryptographic hashes, and UTC timestamps. DOI: 10.6084/m9.figshare.32013156",
+        "doi_refs": [
+          "32013156"
+        ],
+        "reasoning": "action-1 was listed as 'sealed' — this paper IS the sealed prediction deposit. The action is now complete: the predictions exist, are public, and are immutable."
+      },
+      {
+        "page": "elevator",
+        "target": "predictions-section",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Three sealed, pre-registered predictions contrast EFC against ΛCDM at 2.0–3.1σ separation, testable by DESI DR2 full-shape RSD and BAO. DOI: 10.6084/m9.figshare.32013156",
+        "doi_refs": [
+          "32013156"
+        ],
+        "reasoning": "The elevator pitch should now reference concrete, falsifiable predictions with a DOI — this is the strongest rhetorical asset EFC has."
+      },
+      {
+        "page": "whitepaper",
+        "target": "predictions-and-falsifiability",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Pre-registered predictions sealed February 2026 (DOI: 10.6084/m9.figshare.32013156): fσ8(z=0.7)=0.430 vs ΛCDM 0.449 (2.0σ), DH/rd(z=0.7)=19.797 vs 20.719 (2.3σ), DH/rd(z=1.0)=16.527 vs 17.466 (3.1σ). Two independent NUTS chains with SHA-256 hashes. Kill criteria defined: if DESI DR2 favors ΛCDM within 1σ or excludes EFC at ≥2σ, the framework is falsified at these observables.",
+        "doi_refs": [
+          "32013156"
+        ],
+        "reasoning": "The whitepaper's falsifiability section must reference the sealed predictions document as the primary evidence that EFC is a genuinely testable framework."
+      }
+    ],
+    "implicit_consequences": [
+      "The 3.1σ separation at z=1.0 for DH/rd is the sharpest discriminator — if DESI DR2/DR3 BAO at z=1.0 lands near 16.5, it would be strong evidence for EFC's entropy-driven coupling and would effectively rule out vanilla ΛCDM at that redshift bin.",
+      "The crossover redshift z=2.042 (where EFC and ΛCDM fσ8 predictions converge) implies that high-z tracers like Lyman-α and QSOs should show negligible EFC deviation — this is an implicit consistency check against existing eBOSS Lyman-α results.",
+      "The dual-freeze consistency (α=−0.689 vs α=−0.702) constrains the posterior width of α and implies the coupling is robustly negative — any future dataset that pushes α≥0 at ≥2σ would also falsify EFC.",
+      "The paper implicitly prioritizes building the DESI DR2 rapid-response verification script (the stated 'biggest gap'), because without it the sealed predictions cannot be adjudicated promptly when data drops.",
+      "The baseline data table (Table 4) effectively defines the EFC training set — any accusation of overfitting can be checked against this explicit, frozen input catalog, making the reproducibility kill criterion (paper-internal KC4) auditable by third parties.",
+      "The systematic pattern of EFC predicting LOWER values for both growth and distances implies a consistent physical picture: the entropy-driven coupling α<0 simultaneously suppresses structure growth and reduces the expansion rate contribution to DH, which is non-trivially self-consistent and would be very difficult to reproduce by ad-hoc parameter tuning in ΛCDM extensions."
+    ],
+    "bottom_line_change": "The biggest gap description remains correct but should be sharpened: the sealed prediction now EXISTS (DOI 32013156) and is locked — the gap is purely the absence of the single-entry-point verification script that will ingest DESI DR2 data and compare against the sealed values. Priority should escalate: once DESI DR2 drops, the community window for rapid adjudication is narrow.",
+    "kill_criteria_addressed": [
+      "KC5"
+    ]
+  }
 }

@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "directional-lensing-residuals",
   "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
-  "description": "Pre-registered observational pipeline to test for a directional asymmetry in lensing convergence residuals across galaxy cluster merger shock fronts. It defines a locally normalized estimator Asig using a rotation null to isolate shock-locked signals and fits a mass+gas-pressure model outside the shock aperture to avoid circularity. Mock Bullet Cluster analogues show correct sign separation between EFC-like and \u039bCDM cases with zero false positives, and the pipeline is ready for JWST \u03ba-maps combined with Chandra thermodynamics.",
+  "description": "Pre-registered observational pipeline to test for a directional asymmetry in lensing convergence residuals across galaxy cluster merger shock fronts. It defines a locally normalized estimator Asig using a rotation null to isolate shock-locked signals and fits a mass+gas-pressure model outside the shock aperture to avoid circularity. Mock Bullet Cluster analogues show correct sign separation between EFC-like and ΛCDM cases with zero false positives, and the pipeline is ready for JWST κ-maps combined with Chandra thermodynamics.",
   "version": "1.0",
   "date": "2026-02-07",
   "doi": "10.6084/m9.figshare.31288063",
@@ -52,7 +52,7 @@
     }
   },
   "key_results": {
-    "main_finding": "Pre-registered pipeline validated on synthetic Bullet Cluster analogues shows correct sign separation between EFC-like (positive) and \u039bCDM-like (negative/null) cases with zero false positives; ready for JWST+Chandra application.",
+    "main_finding": "Pre-registered pipeline validated on synthetic Bullet Cluster analogues shows correct sign separation between EFC-like (positive) and ΛCDM-like (negative/null) cases with zero false positives; ready for JWST+Chandra application.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -71,15 +71,15 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "At well-resolved merger shock fronts (e.g., Bullet Cluster, Abell 2146), the pre-shock (low-entropy) side will exhibit a positive directional convergence residual, yielding A_sig > 0 and preferably A_sig > 3 with p_rot < 0.05 when JWST \u03ba-maps are combined with Chandra thermodynamics using the pre-registered pipeline.",
-      "falsifiable_by": "Applying the pipeline to JWST \u03ba-maps and Chandra thermodynamic maps at published shock fronts and measuring A_sig \u2264 0 or failing to reach significance (p_rot \u2265 0.05) across multiple fronts."
+      "statement": "At well-resolved merger shock fronts (e.g., Bullet Cluster, Abell 2146), the pre-shock (low-entropy) side will exhibit a positive directional convergence residual, yielding A_sig > 0 and preferably A_sig > 3 with p_rot < 0.05 when JWST κ-maps are combined with Chandra thermodynamics using the pre-registered pipeline.",
+      "falsifiable_by": "Applying the pipeline to JWST κ-maps and Chandra thermodynamic maps at published shock fronts and measuring A_sig ≤ 0 or failing to reach significance (p_rot ≥ 0.05) across multiple fronts."
     }
   ],
   "kill_criteria": [
-    "KC1: In at least two independent, high-quality cluster shock fronts (e.g., Bullet Cluster and Abell 2146) that meet the pre-registered data and geometry cuts, the measured asymmetry is non-positive and non-significant: A_sig \u2264 0 with p_rot \u2265 0.05 for each front (95% CI), ruling out a systematic low-entropy excess.",
-    "KC2: Observation of a statistically significant reversed signal at any qualifying front: A_sig \u2264 -3 with p_rot < 0.05 using the pre-registered rotation-null and anti-circularity fit, contradicting the predicted pre-shock excess.",
-    "KC3: The apparent asymmetry disappears when the shock aperture is defined purely from X-ray data (blind to \u03ba) and persists only when geometry is tuned to \u03ba, indicating circularity; specifically, Asig drops by \u2265 3\u03c3 when reverting to the pre-registered X-ray-defined geometry.",
-    "KC4: Robustness failure: materially different \u03ba reconstructions (independent teams or methods) applied to the same shock yield consistent null or negative Asig (all with p_rot \u2265 0.05), indicating the effect is not reconstruction-robust."
+    "KC1: In at least two independent, high-quality cluster shock fronts (e.g., Bullet Cluster and Abell 2146) that meet the pre-registered data and geometry cuts, the measured asymmetry is non-positive and non-significant: A_sig ≤ 0 with p_rot ≥ 0.05 for each front (95% CI), ruling out a systematic low-entropy excess.",
+    "KC2: Observation of a statistically significant reversed signal at any qualifying front: A_sig ≤ -3 with p_rot < 0.05 using the pre-registered rotation-null and anti-circularity fit, contradicting the predicted pre-shock excess.",
+    "KC3: The apparent asymmetry disappears when the shock aperture is defined purely from X-ray data (blind to κ) and persists only when geometry is tuned to κ, indicating circularity; specifically, Asig drops by ≥ 3σ when reverting to the pre-registered X-ray-defined geometry.",
+    "KC4: Robustness failure: materially different κ reconstructions (independent teams or methods) applied to the same shock yield consistent null or negative Asig (all with p_rot ≥ 0.05), indicating the effect is not reconstruction-robust."
   ],
   "tier": "T2",
   "paper_type": "observational_pipeline",
@@ -334,5 +334,72 @@
     "examples": "examples/directional_lensing_demo.py",
     "citation": "CITATION.cff",
     "license": "LICENSE"
+  },
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper delivers a pre-registered, rotation-null lensing pipeline targeted at merger shock fronts, designed to isolate any entropy-locked directional excess in κ beyond symmetric mass-only expectations. It demonstrates on synthetic Bullet Cluster analogues that the Asig estimator cleanly separates EFC-like positive signals from ΛCDM-like null/negative cases with zero false positives, and is now ready for JWST κ-maps plus Chandra thermodynamics. This creates a decisive, low-circularity cluster-scale test of EFC’s entropy-coupled photon propagation without requiring new theory advances.",
+    "graph_insights": [
+      "This introduces a new bridge between gravitational lensing and intracluster thermodynamics via entropy, tightly focused on Bullet Cluster–like shocks.",
+      "It targets an environment-locked, directional signal not degenerate with symmetric mass models, complementing standard cluster and cosmic-shear tests."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "shock_front_asymmetry_bullet_cluster",
+        "category": "planned_pipeline",
+        "name": "Directional κ-residual asymmetry at the Bullet Cluster shock front",
+        "description": "Apply the pre-registered Asig rotation-null pipeline to JWST κ-reconstructions and Chandra-defined shock geometry to test for a positive pre-shock excess in κ-residuals.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "JWST κ-maps (Cha et al. 2025) + Chandra thermodynamic/shock maps",
+        "prediction": "Positive Asig on the pre-shock (low-entropy) side; detection if Asig > 3 with rotation-null p_rot < 0.05."
+      },
+      {
+        "test_id": "shock_front_asymmetry_abell_2146",
+        "category": "planned_pipeline",
+        "name": "Directional κ-residual asymmetry at the Abell 2146 shock fronts",
+        "description": "Run the same pre-registered Asig rotation-null pipeline on Abell 2146 using independent κ reconstructions and Chandra shock geometry to seek a replicated positive pre-shock excess.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "JWST/HLT κ-maps (as available) + Chandra thermodynamic/shock maps",
+        "prediction": "Positive Asig on the pre-shock side; detection if Asig > 3 with rotation-null p_rot < 0.05, robust across κ reconstructions."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "section=cluster_shock_front_lensing",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Add a sealed, pre-registered pipeline for directional κ-residual asymmetry across merger shock fronts (Bullet Cluster, Abell 2146). Pipeline includes rotation-null, outside-aperture mass+pressure fit, and robustness criteria; ready for JWST κ + Chandra thermodynamics application.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31288063"
+        ],
+        "reasoning": "The paper finalizes a pre-registered, implementation-ready pipeline with explicit decision criteria and robustness checks."
+      },
+      {
+        "page": "whitepaper",
+        "target": "section=cluster_tests_entropy_coupling",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "Document the shock-front Asig estimator and rotation-null methodology to isolate entropy-locked lensing signals predicted by EFC. Include kill criteria for null/reversed/robustness-failure outcomes and note mock validation showing correct sign separation and zero false positives.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31288063"
+        ],
+        "reasoning": "The method operationalizes an EFC-specific prediction and defines falsifiable outcomes; it should be captured in the core methods narrative."
+      }
+    ],
+    "implicit_consequences": [
+      "A positive detection would directly calibrate the μ(S) amplitude governing ceff(S) in EFC using the measured Asig, constraining cluster-scale parameter space.",
+      "Execution will necessitate independent JWST κ reconstructions to meet the pipeline’s robustness criterion, effectively creating a cross-team reproducibility requirement.",
+      "A null or reversed result at two qualifying fronts would sharply constrain or falsify the entropy-coupled photon propagation sub-hypothesis within EFC."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:15:52Z",
+    "applied_by_doi": "31288063"
   }
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "./schema.json",
   "id": "efc-case-b-eigenmode",
-  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The \u00b5\u2013\u03a3 Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
-  "description": "Derives the observable eigenstructure of Energy-Flow Cosmology (EFC) for weak lensing in a consistent modified-gravity setup (Case B) where \u00b5(k,z) affects growth and \u03a3(k,z) affects the lensing kernel. Shows analytically that weak lensing constrains only a single effective parameter \u03b7_eff = \u03b3(\u00b5\u22121) + (\u03a3\u22121), with growth suppression cancelling 66% of the lensing boost. Proves that E_G measures \u03a3/\u00b5^\u03b3 and is orthogonal to weak lensing, predicting E_G^EFC/E_G^GR = 1.086.",
+  "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
+  "description": "Derives the observable eigenstructure of Energy-Flow Cosmology (EFC) for weak lensing in a consistent modified-gravity setup (Case B) where µ(k,z) affects growth and Σ(k,z) affects the lensing kernel. Shows analytically that weak lensing constrains only a single effective parameter η_eff = γ(µ−1) + (Σ−1), with growth suppression cancelling 66% of the lensing boost. Proves that E_G measures Σ/µ^γ and is orthogonal to weak lensing, predicting E_G^EFC/E_G^GR = 1.086.",
   "version": "1.0",
   "date": "2026-04-12",
   "doi": "10.6084/m9.figshare.31990194",
@@ -68,19 +68,19 @@
     }
   },
   "key_results": {
-    "main_finding": "Weak lensing constrains only \u03b7_eff = \u03b3(\u00b5\u22121) + (\u03a3\u22121), leading to destructive interference where \u00b5<1 cancels 66% of the \u03a3>1 lensing boost; EG is the orthogonal probe predicting E_G^EFC/E_G^GR = 1.086.",
+    "main_finding": "Weak lensing constrains only η_eff = γ(µ−1) + (Σ−1), leading to destructive interference where µ<1 cancels 66% of the Σ>1 lensing boost; EG is the orthogonal probe predicting E_G^EFC/E_G^GR = 1.086.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "\u00b50 = 0.94 (anchor k = 0.05 h/Mpc)",
-      "\u03a30 = 1.05 (anchor k = 0.05 h/Mpc)",
-      "\u03b7_eff = 0.017",
+      "µ0 = 0.94 (anchor k = 0.05 h/Mpc)",
+      "Σ0 = 1.05 (anchor k = 0.05 h/Mpc)",
+      "η_eff = 0.017",
       "cancellation ratio = 0.66",
       "E_G^EFC/E_G^GR = 1.086"
     ],
     "datasets_used": [
       "KiDS-1000 cosmic shear (planned WL-only Case B test)",
-      "KiDS \u00d7 BOSS EG (planned)",
+      "KiDS × BOSS EG (planned)",
       "Kill-Test v6 calibration/validation (bridge checks)"
     ],
     "verdict": "SEALED"
@@ -88,36 +88,36 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "\u03b7_eff = 0.017 at the EFC anchor (k \u2248 0.05 h/Mpc, low z).",
+      "statement": "η_eff = 0.017 at the EFC anchor (k ≈ 0.05 h/Mpc, low z).",
       "falsifiable_by": "Phase 1 weak-lensing-only minimisation (Case B) on KiDS-1000 scales."
     },
     {
       "id": "P2",
-      "statement": "corr(\u00b50, \u03a30) \u2208 [\u22120.95, \u22120.80] in the WL-only posterior/eigenvector.",
-      "falsifiable_by": "Phase 1 WL-only posterior/Fisher analysis in (\u00b50, \u03a30)."
+      "statement": "corr(µ0, Σ0) ∈ [−0.95, −0.80] in the WL-only posterior/eigenvector.",
+      "falsifiable_by": "Phase 1 WL-only posterior/Fisher analysis in (µ0, Σ0)."
     },
     {
       "id": "P3",
-      "statement": "\u0394\u03c7\u00b2(Case B, WL only vs GR) \u2208 [\u22122, +2].",
+      "statement": "Δχ²(Case B, WL only vs GR) ∈ [−2, +2].",
       "falsifiable_by": "Phase 1 WL-only goodness-of-fit comparison to GR on KiDS-1000."
     },
     {
       "id": "P4",
       "statement": "E_G^EFC / E_G^GR = 1.086 (constructive interference).",
-      "falsifiable_by": "KiDS \u00d7 BOSS (or equivalent) EG measurement at k \u2248 0.05 h/Mpc, z \u2272 0.5."
+      "falsifiable_by": "KiDS × BOSS (or equivalent) EG measurement at k ≈ 0.05 h/Mpc, z ≲ 0.5."
     },
     {
       "id": "P5",
-      "statement": "Cancellation ratio |\u03b3(\u00b5\u22121)|/|\u03a3\u22121| = 0.66 at the anchor.",
-      "falsifiable_by": "Model-independent consistency given \u03b3 \u2248 0.55 and inferred (\u00b50, \u03a30)."
+      "statement": "Cancellation ratio |γ(µ−1)|/|Σ−1| = 0.66 at the anchor.",
+      "falsifiable_by": "Model-independent consistency given γ ≈ 0.55 and inferred (µ0, Σ0)."
     }
   ],
   "kill_criteria": [
-    "KC1: Weak-lensing-only Case B analysis (KiDS-1000 scales, \u2113 \u2272 100) yields \u03b7_eff inconsistent with 0.017 by >3\u03c3 at the EFC anchor.",
-    "KC2: The WL-only posterior correlation corr(\u00b50, \u03a30) falls outside [\u22120.95, \u22120.80], indicating the predicted \u00b5\u2013\u03a3 eigenmode is not realized.",
-    "KC3: A robust EG measurement finds E_G^EFC/E_G^GR inconsistent with 1.086 by >3\u03c3 at k \u2248 0.05 h/Mpc and z \u2272 0.5.",
-    "KC4: Case B WL-only fit prefers EFC over GR (or vice versa) with |\u0394\u03c7\u00b2| > 6, contradicting the predicted near-null WL signal (\u22122 \u2264 \u0394\u03c7\u00b2 \u2264 +2).",
-    "KC5: The observed WL scale/redshift dependence contradicts the EFC localization (signal concentrated at \u2113 \u2272 100 and \u03be+(\u03b8 > 1\u00b0), with negligible effect in \u03be\u2212 and at \u2113 \u2273 200)."
+    "KC1: Weak-lensing-only Case B analysis (KiDS-1000 scales, ℓ ≲ 100) yields η_eff inconsistent with 0.017 by >3σ at the EFC anchor.",
+    "KC2: The WL-only posterior correlation corr(µ0, Σ0) falls outside [−0.95, −0.80], indicating the predicted µ–Σ eigenmode is not realized.",
+    "KC3: A robust EG measurement finds E_G^EFC/E_G^GR inconsistent with 1.086 by >3σ at k ≈ 0.05 h/Mpc and z ≲ 0.5.",
+    "KC4: Case B WL-only fit prefers EFC over GR (or vice versa) with |Δχ²| > 6, contradicting the predicted near-null WL signal (−2 ≤ Δχ² ≤ +2).",
+    "KC5: The observed WL scale/redshift dependence contradicts the EFC localization (signal concentrated at ℓ ≲ 100 and ξ+(θ > 1°), with negligible effect in ξ− and at ℓ ≳ 200)."
   ],
   "tier": "T2",
   "paper_type": "sealed_prediction",
@@ -125,12 +125,135 @@
     {
       "id": "kill-test-v6",
       "doi": "10.6084/m9.figshare.31368433",
-      "role": "Bridge calibration and validation for mapping (K0, m2) \u2192 (\u00b50, \u03a30) and multi-scale consistency checks."
+      "role": "Bridge calibration and validation for mapping (K0, m2) → (µ0, Σ0) and multi-scale consistency checks."
     }
   ],
   "files": {
     "pdf": "efc_case_b_eigenmode.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990194"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31990194",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This T2 sealed-prediction paper formalizes the consistent (Case B) weak-lensing response of EFC in modified gravity, proving that cosmic shear constrains only the µ–Σ eigenmode η_eff = γ(µ−1) + (Σ−1), with a 66% destructive cancellation of the naïve lensing boost. It identifies E_G as the orthogonal probe (measuring Σ/µ^γ) and registers five sealed numerical predictions, including a near-null WL-only Δχ² and a precise E_G ratio of 1.086. This reframes WL expectations for EFC, redirects emphasis to low-ℓ shear and E_G, and sets concrete falsifiers without closing existing theory or priority gaps.",
+    "graph_insights": [
+      "Introduces the explicit µ–Σ eigenmode in EFC with destructive interference, aligning with concepts: weak lensing, mu–Sigma degeneracy, eigenmode, destructive interference.",
+      "Positions E_G as the orthogonal observable linking cosmic shear, growth index γ, and RSD, creating a bridge to growth-based validations.",
+      "No prior related papers at 1–2 hops: this is the first consistent WL Case B derivation in the EFC corpus, defining new test vectors in the graph."
+    ],
+    "kc_addressed": [
+      "KC5"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "efc_case_b_wl_eta_eff_anchor",
+        "category": "planned_pipeline",
+        "name": "WL-only Case B η_eff at the EFC anchor",
+        "description": "Validate that weak-lensing-only (KiDS-1000-like scales, ℓ ≲ 100) constrains the single eigenmode η_eff and matches the sealed value.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "KiDS-1000 cosmic shear (low-ℓ subset) or equivalent Stage-III/IV WL sample",
+        "prediction": "η_eff = 0.017 at k ≈ 0.05 h/Mpc and low z"
+      },
+      {
+        "test_id": "efc_case_b_wl_mu_sigma_corr",
+        "category": "planned_pipeline",
+        "name": "WL-only posterior µ0–Σ0 correlation",
+        "description": "Estimate the WL-only posterior covariance in Case B and test if the µ–Σ eigenmode produces the predicted strong negative correlation.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "KiDS-1000 cosmic shear (Case B likelihood)",
+        "prediction": "corr(µ0, Σ0) ∈ [−0.95, −0.80]"
+      },
+      {
+        "test_id": "efc_case_b_wl_delta_chi2_near_null",
+        "category": "planned_pipeline",
+        "name": "WL-only Case B vs GR near-null Δχ²",
+        "description": "Compare consistent Case B EFC to GR using WL-only data and verify near-null preference as predicted.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "KiDS-1000 cosmic shear (ℓ ≲ 100 focus), Case B modeling",
+        "prediction": "Δχ² ∈ [−2, +2]"
+      },
+      {
+        "test_id": "efc_eg_ratio_prediction_anchor",
+        "category": "planned_pipeline",
+        "name": "E_G orthogonal probe ratio at anchor",
+        "description": "Measure E_G and test the sealed constructive-interference prediction for E_G^EFC/E_G^GR at the specified scales.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Galaxy-galaxy lensing × RSD cross-measurement at k ≈ 0.05 h/Mpc, z ≲ 0.5 (Stage-III/IV overlap)",
+        "prediction": "E_G^EFC / E_G^GR = 1.086"
+      },
+      {
+        "test_id": "efc_case_b_cancellation_ratio",
+        "category": "planned_pipeline",
+        "name": "µ–Σ cancellation ratio at anchor",
+        "description": "From the WL+growth modeling, extract |γ(µ−1)|/|Σ−1| at the anchor to verify the destructive interference magnitude.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Joint modeling using WL kernel (Σ) and growth response (µ) at k ≈ 0.05 h/Mpc",
+        "prediction": "Cancellation ratio |γ(µ−1)|/|Σ−1| = 0.66"
+      },
+      {
+        "test_id": "efc_wl_scale_localization_pattern",
+        "category": "planned_pipeline",
+        "name": "WL scale/redshift localization pattern",
+        "description": "Test that EFC Case B signal localizes to low multipoles and ξ+ at degree scales, with negligible effect in ξ− and at high-ℓ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Two-point shear statistics from KiDS-1000 (or similar), binned in ℓ and θ",
+        "prediction": "Signal concentrated at ℓ ≲ 100 and ξ+(θ > 1°); negligible in ξ− and at ℓ ≳ 200"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "whitepaper",
+        "target": "data-doi-collection",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Added T2 sealed-prediction white paper on consistent modified-gravity weak lensing (Case B) defining the µ–Σ eigenmode, destructive interference, and E_G as the orthogonal probe with five sealed numerical predictions.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990194"
+        ],
+        "reasoning": "New derivations and sealed predictions constitute a core reference for WL and E_G validation."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC5\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "KC5 (scale/redshift WL localization) now has sealed predictions for low-ℓ concentration and ξ+ dominance under Case B; implement WL low-ℓ and E_G pipelines to test.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990194"
+        ],
+        "reasoning": "Paper formalizes testable localization pattern and orthogonal E_G check relevant to KC5 monitoring."
+      },
+      {
+        "page": "gap",
+        "target": "data-section=\"observational-wl\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Case B WL expectations sealed: near-null Δχ², strong µ–Σ anticorrelation, low-ℓ localization; EG ratio prediction set to 1.086 to break degeneracy.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31990194"
+        ],
+        "reasoning": "Clarifies what the WL module should and should not see in a consistent MG treatment."
+      }
+    ],
+    "implicit_consequences": [
+      "Any large WL-only fit improvement from a phenomenological Σ-rescaling (Case A) is expected to disappear under consistent Case B due to µ–Σ cancellation.",
+      "WL alone cannot separate µ and Σ; E_G becomes decisive for breaking the degeneracy and testing EFC at low z and k ≈ 0.05 h/Mpc.",
+      "Analysis priority shifts to low-ℓ shear and ξ+ scales for sensitivity; ξ− and high-ℓ contribute negligible EFC signal and should be de-emphasized for detection power.",
+      "Strong WL-only preference for either EFC or GR would contradict the Case B prediction and trigger a kill condition.",
+      "RSD-quality pipelines gain higher priority since E_G requires robust fσ8 inputs; this reinforces urgency for RSD/EG cross-pipeline readiness."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC5"
+    ]
+  }
 }

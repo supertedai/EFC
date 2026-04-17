@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
-  "id": "a-pre-registered-test-of-entropy\u2013structure-coupling-in-simulated-and-observed-galaxy-clusters",
-  "title": "A Pre-Registered Test of Entropy\u2013Structure Coupling in Simulated and Observed Galaxy Clusters",
+  "id": "a-pre-registered-test-of-entropy–structure-coupling-in-simulated-and-observed-galaxy-clusters",
+  "title": "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters",
   "description": "Pre-registered analysis comparing the coupling between entropy-profile steepness and cool-core state in TNG-Cluster simulations versus the ACCEPT X-ray sample. Finds a strong negative correlation between density-slope-based entropy proxy and central entropy in TNG-Cluster, opposite in sign to the positive correlation reported in ACCEPT, and registers a decisive full-profile fit to resolve remaining systematics.",
   "version": "pre-print v1",
   "date": "2026-02-01",
@@ -11,7 +11,7 @@
     "intracluster medium",
     "cool cores",
     "entropy profiles",
-    "entropy\u2013structure coupling",
+    "entropy–structure coupling",
     "cosmological simulations",
     "TNG-Cluster",
     "ACCEPT",
@@ -60,12 +60,12 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "Using the pre-registered Path A full-profile fit over 20\u2013400 kpc with the Cavagnolo model, the TNG-Cluster correlation rho(alpha_fit, K0) will be negative and significant, confirming the sign flip relative to ACCEPT.",
+      "statement": "Using the pre-registered Path A full-profile fit over 20–400 kpc with the Cavagnolo model, the TNG-Cluster correlation rho(alpha_fit, K0) will be negative and significant, confirming the sign flip relative to ACCEPT.",
       "falsifiable_by": "Execute the Path A fit exactly as pre-registered; compute Spearman rho(alpha_fit, K0) over all 352 halos and test for rho >= 0 at p < 0.01."
     },
     {
       "id": "P2",
-      "statement": "The negative correlation between entropy-gradient measure and K0 in TNG-Cluster will persist within each of four mass bins spanning 10^14\u201310^15.5 Msun.",
+      "statement": "The negative correlation between entropy-gradient measure and K0 in TNG-Cluster will persist within each of four mass bins spanning 10^14–10^15.5 Msun.",
       "falsifiable_by": "Recompute mass-binned Spearman correlations for alpha_fit or alpha_proxy vs K0 in the predefined four M500c bins; rejection if any bin shows rho >= 0 with p < 0.05 after multiple-testing correction."
     }
   ],
@@ -73,7 +73,7 @@
     "KC1: The pre-registered Path A full-profile fit yields a non-negative correlation between alpha_fit and K0 in TNG-Cluster (rho >= 0) with p < 0.01, eliminating the reported sign flip.",
     "KC2: After matching the ACCEPT measurement pipeline (same radial range, deprojection weighting, and center choice), the TNG-Cluster correlation sign becomes positive and consistent with ACCEPT (e.g., rho >= +0.2 with p < 0.05).",
     "KC3: Independent measurements show that core temperature gradients are sufficiently negative in a majority of halos (>= 50%), invalidating the monotonic lower-bound property of alpha_proxy and reversing rank ordering; proxy-based conclusions would then be withdrawn.",
-    "KC4: A re-analysis of ACCEPT with updated calibration and selection finds no positive coupling (rho(alpha, yCCT) ~ 0 with p > 0.1), removing the observational target and nullifying the claimed sim\u2013obs mismatch.",
+    "KC4: A re-analysis of ACCEPT with updated calibration and selection finds no positive coupling (rho(alpha, yCCT) ~ 0 with p > 0.1), removing the observational target and nullifying the claimed sim–obs mismatch.",
     "KC5: Robust mass-control analyses (e.g., conditional randomization tests or stratified permutations) demonstrate that the negative correlation in TNG-Cluster is fully explained by mass confounding, reducing |rho| below 0.2 with p > 0.1."
   ],
   "tier": "T2",
@@ -86,12 +86,12 @@
     }
   ],
   "files": {
-    "pdf": "A_Pre-Registered_Test_of_Entropy\u2013Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters.pdf",
+    "pdf": "A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters.pdf",
     "readme": "README.md"
   },
   "figshare_url": "https://doi.org/10.6084/m9.figshare.31286368",
   "paper": {
-    "title": "A Pre-Registered Test of Entropy\u2013Structure Coupling in Simulated and Observed Galaxy Clusters",
+    "title": "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters",
     "short_title": "Entropy-Structure Coupling Test",
     "author": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
@@ -351,7 +351,7 @@
       "TNG: mass-selected sample",
       "ACCEPT: X-ray selected, flux-limited sample"
     ],
-    "implications": "Framework-independent question: Why do modern \u039bCDM hydrodynamic simulations not reproduce the observed entropy-structure coupling?"
+    "implications": "Framework-independent question: Why do modern ΛCDM hydrodynamic simulations not reproduce the observed entropy-structure coupling?"
   },
   "package_contents": {
     "source_code": "src/entropy_structure_coupling.py",
@@ -392,5 +392,85 @@
       "key": "Weinberger2017",
       "citation": "Weinberger, R., et al. 2017, MNRAS, 465, 3291"
     }
-  ]
+  ],
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This is my own pre-registered ICM entropy–structure paper. It establishes a robust sim–obs sign-flip in entropy–cool-core coupling (TNG-Cluster rho = -0.872 vs ACCEPT rho ~ +0.36), which is a novel empirical anomaly that does not directly close any EFC Stage-IV kill criterion or theory gap but opens a new observational tension in ΛCDM hydrodynamic simulations. The paper is methodologically relevant to EFC's broader strategy of cataloguing ΛCDM tensions, and the pre-registered Path A full-profile fit remains pending as a decisive follow-up. This is a standalone ICM-sector contribution that strengthens the empirical anomaly inventory but does not yet connect to EFC's core cosmological predictions (H0, fσ8, S8, BAO).",
+    "graph_insights": [
+      "The Neo4j graph shows no 1–2 hop connections to existing EFC papers or validation tests, confirming this is a new sector entry point. A 'galaxy-cluster-icm' node should be created and linked to the broader 'lcdm-tensions' cluster.",
+      "The absence of connected validation tests means this paper seeds a new observational domain for EFC. Future work should connect it to any EFC predictions about baryon thermodynamics or cluster-scale structure formation.",
+      "The pre-registered design with sealed predictions mirrors EFC's own methodology (sealed predictions for DESI, Euclid, etc.), making this paper a methodological template node that should be linked to the project's 'pre-registration-protocol' governance node."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "entropy_structure_coupling_tng_accept",
+        "category": "phenomenological",
+        "name": "Entropy–Structure Coupling: TNG-Cluster vs ACCEPT Sign-Flip",
+        "description": "Pre-registered test comparing the sign of the correlation between entropy-gradient proxy and central entropy in TNG-Cluster simulations versus the ACCEPT X-ray cluster sample. TNG-Cluster yields rho = -0.872 (negative), ACCEPT reports rho ~ +0.36 (positive). The sign flip is robust against mass confounding (rho_partial|M = -0.880) and persists across all four mass bins.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "TNG-Cluster (352 halos, z=0) + ACCEPT (Cavagnolo et al. 2009)",
+        "prediction": "If ΛCDM sub-grid physics (AGN feedback, cooling) faithfully reproduces ICM thermodynamics, simulated and observed entropy–structure correlations should share the same sign. The observed sign flip is a candidate anomaly consistent with EFC's expectation that ΛCDM simulations may require fine-tuned sub-grid models to match ICM observations."
+      },
+      {
+        "test_id": "entropy_structure_mass_confounding_control",
+        "category": "consistency_check",
+        "name": "Mass-Confounding Control for Entropy–Structure Correlation",
+        "description": "Partial-correlation and mass-binned analysis confirming the TNG-Cluster negative correlation is not driven by mass confounding. rho_partial|M = -0.880, and the sign persists in all four mass bins (10^14–10^15.5 Msun).",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "TNG-Cluster (352 halos, z=0)",
+        "prediction": "The negative correlation is intrinsic to ICM entropy–structure physics, not a mass-selection artifact."
+      },
+      {
+        "test_id": "entropy_structure_path_a_full_profile_fit",
+        "category": "planned_pipeline",
+        "name": "Path A Full Cavagnolo-Model Profile Fit (Pre-Registered Decisive Test)",
+        "description": "Pre-registered full-profile fit of K(r) = K0 + K100*(r/100 kpc)^alpha over [20, 400] kpc to TNG-Cluster halos, designed to eliminate proxy-based systematic ambiguities and provide a direct alpha_fit vs K0 correlation for comparison with ACCEPT.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "TNG-Cluster (352 halos, z=0)",
+        "prediction": "Sealed prediction P1: rho(alpha_fit, K0) will be negative in TNG-Cluster. P2: The negative correlation will persist within each of four mass bins."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "data-sector=\"icm-anomalies\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "New pre-registered sim–obs anomaly identified: entropy–structure coupling sign flip between TNG-Cluster (rho = -0.872) and ACCEPT (rho ~ +0.36). Paper deposited with sealed Path A follow-up. DOI: 10.6084/m9.figshare.31286368",
+        "doi_refs": [
+          "10.6084/m9.figshare.31286368"
+        ],
+        "reasoning": "The roadmap should record this as a new empirical anomaly in the ICM sector. It does not close any existing KC but adds to the inventory of ΛCDM tensions that EFC tracks."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-section=\"empirical-anomalies\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "ICM entropy–structure coupling: A pre-registered analysis reveals that TNG-Cluster produces a strong negative correlation (rho = -0.872) between entropy-gradient steepness and central entropy, opposite in sign to the positive correlation (rho ~ +0.36) reported in the ACCEPT X-ray sample. The mismatch is robust against mass confounding and persists across all mass bins. A decisive Path A full-profile fit is pre-registered. DOI: 10.6084/m9.figshare.31286368",
+        "doi_refs": [
+          "10.6084/m9.figshare.31286368"
+        ],
+        "reasoning": "The whitepaper anomaly inventory should include this result as a documented sim–obs tension in cluster-scale thermodynamics."
+      }
+    ],
+    "implicit_consequences": [
+      "If the Path A decisive test confirms the sign flip with full Cavagnolo-model fits, this becomes a hard quantitative tension between state-of-the-art ΛCDM MHD simulations and X-ray observations at the cluster scale — potentially implicating AGN feedback prescriptions or missing physics in the TNG model.",
+      "The sign flip, if validated, provides indirect support for EFC's broader thesis that ΛCDM requires increasingly fine-tuned sub-grid prescriptions to match multi-scale observations; however, this remains circumstantial until a direct EFC prediction for ICM entropy profiles is formulated.",
+      "The pre-registration methodology sets a precedent for all future EFC empirical tests — every claimed anomaly should have locked analysis plans before examining results, strengthening the project's epistemic credibility.",
+      "The paper's internal kill criteria (KC1–KC5) are self-contained and distinct from EFC's Stage-IV KC1–KC5; they should be tracked separately to avoid confusion in the knowledge graph.",
+      "No existing EFC sealed prediction covers ICM entropy profiles, so this paper identifies a gap where EFC should eventually produce a quantitative prediction for entropy–structure coupling under energy-flow cosmology, connecting it to the theory-gap inventory."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-17T00:15:21Z",
+    "applied_by_doi": "31286368"
+  }
 }

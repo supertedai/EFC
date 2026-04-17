@@ -1,14 +1,14 @@
 {
   "$schema": "./schema.json",
   "id": "multi-epoch-growth-rate-test-efc",
-  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f \u03c38(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
-  "description": "First multi-epoch empirical test of the Energy-Flow Cosmology (EFC) perturbation-sector coupling using 14 f\u03c38(z) measurements from 6dFGS, BOSS DR12, eBOSS DR16, and DESI DR1. The study solves the full linear growth ODE with a regime-dependent gate \u03bc(a)=1\u2212B\u00b7T(a) and finds a null result: \u039bCDM fits slightly better than EFC while EFC remains consistent within current errors, highlighting a strong \u03a9m\u2013B degeneracy that requires BAO to break.",
+  "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f σ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+  "description": "First multi-epoch empirical test of the Energy-Flow Cosmology (EFC) perturbation-sector coupling using 14 fσ8(z) measurements from 6dFGS, BOSS DR12, eBOSS DR16, and DESI DR1. The study solves the full linear growth ODE with a regime-dependent gate μ(a)=1−B·T(a) and finds a null result: ΛCDM fits slightly better than EFC while EFC remains consistent within current errors, highlighting a strong Ωm–B degeneracy that requires BAO to break.",
   "version": "1.0",
   "date": "2026-04-07",
   "doi": "10.6084/m9.figshare.31955871",
   "keywords": [
     "Energy-Flow Cosmology",
-    "f\u03c38",
+    "fσ8",
     "growth rate of structure",
     "redshift-space distortions",
     "BOSS DR12",
@@ -24,11 +24,11 @@
   "core_equations": {
     "growth_ode": {
       "latex": "D''(a) + \\frac{3}{2a}\\big[1 + \\Omega_{\\rm DE}(a)\\big] D'(a) = \\frac{3}{2a^2}\\,\\Omega_m(a)\\,\\mu(a)\\,D(a)",
-      "description": "Linear growth ODE for matter perturbations with an effective gravitational coupling \u03bc(a); primes denote derivatives with respect to scale factor a."
+      "description": "Linear growth ODE for matter perturbations with an effective gravitational coupling μ(a); primes denote derivatives with respect to scale factor a."
     },
     "mu_of_a": {
       "latex": "\\mu(a) = 1 - B\\,T(a)",
-      "description": "EFC perturbation-sector modification parameterized by amplitude B and a gate function T(a); \u039bCDM corresponds to B=0."
+      "description": "EFC perturbation-sector modification parameterized by amplitude B and a gate function T(a); ΛCDM corresponds to B=0."
     },
     "gate_function": {
       "latex": "T(a) = \\frac{1}{1 + (a_t/a)^n},\\quad a_t = \\frac{1}{1+z_t},\\quad n=2\\ \\text{(fixed)}",
@@ -36,7 +36,7 @@
     },
     "background": {
       "latex": "E^2(a) = \\Omega_{m,0} a^{-3} + (1-\\Omega_{m,0}),\\quad \\Omega_m(a) = \\frac{\\Omega_{m,0} a^{-3}}{E^2(a)},\\quad \\Omega_{\\rm DE}(a) = \\frac{1-\\Omega_{m,0}}{E^2(a)}",
-      "description": "Flat \u039bCDM background expansion used in the growth calculation."
+      "description": "Flat ΛCDM background expansion used in the growth calculation."
     },
     "growth_rate": {
       "latex": "f(a) = \\frac{\\mathrm{d}\\ln D}{\\mathrm{d}\\ln a} = \\frac{a}{D(a)} D'(a)",
@@ -48,15 +48,15 @@
     }
   },
   "key_results": {
-    "main_finding": "\u039bCDM provides an excellent fit and is marginally preferred over EFC, while EFC with \u03bc0 in the survival valley remains fully consistent with current f\u03c38(z) data.",
+    "main_finding": "ΛCDM provides an excellent fit and is marginally preferred over EFC, while EFC with μ0 in the survival valley remains fully consistent with current fσ8(z) data.",
     "delta_chi2": 0.1,
     "significance_sigma": 0.06,
     "parameters_tested": [
-      "\u03c38,0",
+      "σ8,0",
       "B",
       "z_t (with n=2 fixed)",
-      "\u03bc0 = 1 \u2212 B",
-      "\u03a9m (fixed at 0.3019 for EFC fit)"
+      "μ0 = 1 − B",
+      "Ωm (fixed at 0.3019 for EFC fit)"
     ],
     "datasets_used": [
       "6dFGS",
@@ -70,20 +70,20 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "A joint BAO + full-shape + RSD analysis with DESI DR2/DR3 (\u03a9m free) will localize \u03bc0 within the EFC survival valley 0.93\u20130.96 if the EFC perturbation-sector coupling is correct.",
-      "falsifiable_by": "DESI DR2/DR3 BAO+RSD joint likelihood constraints on (\u03bc0, \u03a9m, B, z_t) showing \u03bc0 outside 0.93\u20130.96 at \u22652\u03c3."
+      "statement": "A joint BAO + full-shape + RSD analysis with DESI DR2/DR3 (Ωm free) will localize μ0 within the EFC survival valley 0.93–0.96 if the EFC perturbation-sector coupling is correct.",
+      "falsifiable_by": "DESI DR2/DR3 BAO+RSD joint likelihood constraints on (μ0, Ωm, B, z_t) showing μ0 outside 0.93–0.96 at ≥2σ."
     },
     {
       "id": "P2",
-      "statement": "Including BAO to break the \u03a9m\u2013B degeneracy will prefer a late-time activation z_t \u2273 1 for any viable B > 0 solution.",
-      "falsifiable_by": "Combined BAO+RSD profile likelihood for z_t peaking at z_t < 0.5 with B > 0 at \u22652\u03c3."
+      "statement": "Including BAO to break the Ωm–B degeneracy will prefer a late-time activation z_t ≳ 1 for any viable B > 0 solution.",
+      "falsifiable_by": "Combined BAO+RSD profile likelihood for z_t peaking at z_t < 0.5 with B > 0 at ≥2σ."
     }
   ],
   "kill_criteria": [
-    "KC1: A combined BAO+RSD+PV analysis with full covariance and \u03a9m free constrains \u03bc0 outside the survival valley [0.93, 0.96] at \u22653\u03c3.",
-    "KC2: High-precision DESI DR2+/Stage-IV growth measurements exclude B > 0 at \u22653\u03c3 (i.e., favor B \u2264 0), implying \u03bc(a) \u2265 1 and ruling out the required EFC growth suppression.",
-    "KC3: Tomographic f\u03c38(z) with \u22642% total uncertainty across 0.1 \u2264 z \u2264 1.0 is consistent with \u039bCDM such that any \u03bc0 \u2208 [0.93, 0.96] is excluded at \u22653\u03c3 over the range.",
-    "KC4: A global BAO+SN+CMB-distance+RSD fit shows that all EFC solutions keeping \u03bc0 in [0.93, 0.96] require \u03a9m values inconsistent with background geometry at \u22653\u03c3 (e.g., \u03a9m > 0.40), indicating internal inconsistency of the EFC gate model."
+    "KC1: A combined BAO+RSD+PV analysis with full covariance and Ωm free constrains μ0 outside the survival valley [0.93, 0.96] at ≥3σ.",
+    "KC2: High-precision DESI DR2+/Stage-IV growth measurements exclude B > 0 at ≥3σ (i.e., favor B ≤ 0), implying μ(a) ≥ 1 and ruling out the required EFC growth suppression.",
+    "KC3: Tomographic fσ8(z) with ≤2% total uncertainty across 0.1 ≤ z ≤ 1.0 is consistent with ΛCDM such that any μ0 ∈ [0.93, 0.96] is excluded at ≥3σ over the range.",
+    "KC4: A global BAO+SN+CMB-distance+RSD fit shows that all EFC solutions keeping μ0 in [0.93, 0.96] require Ωm values inconsistent with background geometry at ≥3σ (e.g., Ωm > 0.40), indicating internal inconsistency of the EFC gate model."
   ],
   "tier": "T2",
   "paper_type": "empirical_test",
@@ -91,7 +91,7 @@
     {
       "id": "efc-multi-epoch",
       "doi": "10.6084/m9.figshare.31955871",
-      "role": "Code and data to reproduce the multi-epoch growth fits (EFC vs \u039bCDM)."
+      "role": "Code and data to reproduce the multi-epoch growth fits (EFC vs ΛCDM)."
     }
   ],
   "files": {
@@ -112,7 +112,7 @@
   "doi_url": "https://doi.org/10.6084/m9.figshare.31955871",
   "license": "CC-BY-4.0",
   "type": "multi-epoch validation, null result",
-  "track": "Spor 1 \u2014 Galactic/Cosmological",
+  "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [
     "L1",
     "L2"
@@ -172,19 +172,121 @@
     "significance_sigma": 0.06,
     "delta_AIC": -1.9,
     "preferred": "LCDM (marginally)",
-    "verdict": "EFC consistent but not preferred; B=0 within 1\u03c3 profile"
+    "verdict": "EFC consistent but not preferred; B=0 within 1σ profile"
   },
   "key_findings": [
-    "Null result for growth sector: f\u03c38 data alone do not require modified mu(a)",
-    "Survival valley \u03bc0 \u2208 [0.93, 0.96] lies within the 1\u03c3 profile contour",
-    "Strong \u03a9m\u2013B degeneracy: with \u03a9m free, optimizer drifts to \u03a9m\u22480.45, B\u22480.48",
+    "Null result for growth sector: fσ8 data alone do not require modified mu(a)",
+    "Survival valley μ0 ∈ [0.93, 0.96] lies within the 1σ profile contour",
+    "Strong Ωm–B degeneracy: with Ωm free, optimizer drifts to Ωm≈0.45, B≈0.48",
     "z_t unconstrained (hits boundary at 3.0)",
     "Cross-probe combination with BAO required to break degeneracy"
   ],
   "limitations": [
     "Diagonal covariance (cross-survey overlap not modelled)",
-    "\u03a9m fixed at LCDM best-fit",
-    "Scale-independent \u03bc(a); no k-dependence",
-    "z_t unconstrained by f\u03c38 alone"
-  ]
+    "Ωm fixed at LCDM best-fit",
+    "Scale-independent μ(a); no k-dependence",
+    "z_t unconstrained by fσ8 alone"
+  ],
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper delivers the first multi-epoch empirical test of EFC's perturbation-sector coupling μ(a) against 14 fσ8(z) data points spanning z=0.067–1.491. The result is a clean null: ΛCDM fits marginally better (Δχ²=0.10) but EFC with μ0 in the survival valley [0.93,0.96] remains fully consistent — the framework survives but is not yet preferred. Critically, the paper identifies the Ωm–B degeneracy as the key obstacle, confirming that fσ8 alone cannot constrain the gate and that BAO cross-probe combination (exactly the DESI DR2 rapid-response pipeline) is the decisive next step.",
+    "graph_insights": [
+      "This paper has zero graph connections to existing papers or validation tests — it is the first node in the fσ8/RSD/growth-rate cluster. It should be linked to the sealed prediction 32013156 (fσ8(z=0.7)=0.430) and to the WP1a reference model paper, creating a three-node perturbation-sector subgraph.",
+      "The mu(a) coupling concept touched by this paper is currently an orphan in the graph — it needs bidirectional edges to the CMB lensing Σ constraint and gravitational slip η concepts from the survival-valley mapping, forming the complete {μ, Σ, η} perturbation triad.",
+      "The BOSS DR12 and eBOSS DR16 data sources used here overlap with BAO distance measurements used in background-sector tests — these shared data provenance edges should be added to track covariance exposure across the test suite."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "fsigma8_multi_epoch_boss_eboss_desi",
+        "category": "physics_test",
+        "name": "Multi-epoch fσ8(z) growth-rate test (BOSS DR12 + eBOSS DR16 + DESI DR1)",
+        "description": "Fits the full linear growth ODE with EFC gate μ(a)=1−B·T(a) to 14 fσ8(z) measurements from 6dFGS, BOSS DR12, eBOSS DR16, and DESI DR1. Tests whether the EFC perturbation-sector coupling is required or excluded by current RSD data.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "6dFGS, BOSS DR12, eBOSS DR16, DESI DR1 (full-shape + PV)",
+        "prediction": "EFC with μ0 ∈ [0.93, 0.96] produces fσ8(z) consistent with observations; B=0 (ΛCDM) lies within 1σ profile interval"
+      },
+      {
+        "test_id": "omega_m_B_degeneracy_identification",
+        "category": "consistency_check",
+        "name": "Ωm–B degeneracy diagnostic from fσ8-only fit",
+        "description": "Demonstrates that fσ8(z) data alone cannot break the degeneracy between Ωm and the EFC gate amplitude B, confirming that cross-probe (BAO) combination is required to localize μ0 within the survival valley.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Same 14-point fσ8 compilation",
+        "prediction": "Degeneracy direction allows B>0 solutions to mimic ΛCDM by adjusting Ωm; BAO needed to break degeneracy"
+      },
+      {
+        "test_id": "lcdm_efc_model_comparison_fsigma8",
+        "category": "phenomenological",
+        "name": "ΛCDM vs EFC Δχ² model comparison on fσ8(z)",
+        "description": "Compares ΛCDM (χ²=12.07/12 dof) vs EFC (χ²=11.98/11 dof, 2 extra parameters). Δχ²=0.10 (0.06σ) — no preference for EFC, but EFC not excluded.",
+        "result": "MARGINAL",
+        "status": "partial",
+        "data_source": "14-point fσ8(z) compilation",
+        "prediction": "EFC is not yet distinguishable from ΛCDM with current error bars; distinction requires ≤2% precision"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-gap-id=\"bottom-line\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "DESI DR2 full-shape RSD rapid-response pipeline — sealed prediction exists (fσ8(z=0.7) = 0.430, 32013156) but no single-entry-point verification script is assembled. Paper EFC-VAL-2026-003 (10.6084/m9.figshare.31955871) now confirms the Ωm–B degeneracy as the critical blocker: fσ8 alone cannot constrain μ0 within the survival valley, making the BAO+RSD joint pipeline even more urgent.",
+        "doi_refs": [
+          "31955871",
+          "32013156"
+        ],
+        "reasoning": "The paper explicitly demonstrates that fσ8-only analysis cannot break the Ωm–B degeneracy, reinforcing that the DESI DR2 BAO+RSD joint pipeline is the single most important next deliverable. The biggest gap remains the same but is now empirically substantiated."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-action-id=\"action-6\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "action-6 (PLANNED): Cross-probe BAO+RSD combination to break Ωm–B degeneracy. EFC-VAL-2026-003 (DOI: 10.6084/m9.figshare.31955871) empirically confirms this is required — fσ8 alone leaves B unconstrained along the degeneracy ridge. Two sealed predictions (P1: μ0 localization with DESI DR2/DR3 BAO+RSD; P2: late-time activation z_t ≳ 1 preferred when BAO included) are now registered.",
+        "doi_refs": [
+          "31955871"
+        ],
+        "reasoning": "The paper's primary conclusion — that BAO is needed to break the Ωm–B degeneracy — maps directly onto action-6. The sealed predictions P1 and P2 define the success criteria for that action."
+      },
+      {
+        "page": "elevator",
+        "target": "data-section=\"empirical-status\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "91 tests survived out of 101 active (10 falsified). The perturbation sector has now been tested against 14 fσ8(z) data points across four surveys (6dFGS, BOSS DR12, eBOSS DR16, DESI DR1): EFC remains fully consistent with current growth-rate data (Δχ²=0.10 vs ΛCDM). The decisive test awaits DESI DR2 BAO+RSD joint analysis.",
+        "doi_refs": [
+          "31955871"
+        ],
+        "reasoning": "The elevator pitch should reflect that the perturbation sector has now been empirically tested with real multi-survey RSD data and survived."
+      },
+      {
+        "page": "whitepaper",
+        "target": "data-section=\"perturbation-sector\"",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The EFC perturbation-sector coupling μ(a)=1−B·T(a) has been tested against 14 fσ8(z) measurements spanning z=0.067–1.491 (EFC-VAL-2026-003, DOI: 10.6084/m9.figshare.31955871). ΛCDM is marginally preferred (Δχ²=0.10) but EFC with μ0∈[0.93,0.96] is not excluded. A strong Ωm–B degeneracy prevents fσ8-only constraints on the gate parameters; BAO cross-combination is required. Four paper-level kill criteria and two sealed predictions are registered.",
+        "doi_refs": [
+          "31955871"
+        ],
+        "reasoning": "The whitepaper's perturbation-sector discussion should now cite the first dedicated multi-epoch growth-rate test."
+      }
+    ],
+    "implicit_consequences": [
+      "The Ωm–B degeneracy ridge confirmed by this paper means the sealed prediction fσ8(z=0.7)=0.430 (32013156) cannot be tested in isolation — it must be evaluated within a joint BAO+RSD fit, reinforcing that the rapid-response pipeline must ingest both channels simultaneously.",
+      "The paper's KC1 (μ0 outside [0.93,0.96] at ≥3σ from combined BAO+RSD+PV) and KC4 (Ωm inconsistency at ≥3σ) together define a two-pronged falsification envelope that maps onto exactly the DESI DR2 deliverable — if either triggers, EFC's perturbation sector is killed.",
+      "The null result (B=0 within 1σ) implies that any future EFC preference signal must emerge from the cross-probe combination, not from growth-rate data alone — this shifts the discriminating power entirely to the BAO+RSD joint pipeline (action-6/action-7).",
+      "The paper's gate function with n=2 fixed and best-fit B=0.078 (μ0=0.922) sits just below the survival valley floor of 0.93, suggesting that when BAO priors on Ωm are applied, B will be pulled slightly lower, potentially centering μ0 within [0.93,0.96] — this is exactly what sealed prediction P1 tests.",
+      "The successful multi-survey consistency (no outlier survey drives the fit) implicitly validates that the EFC gate parameterization is not fine-tuned to any single dataset, strengthening the framework's robustness claim even in the absence of a detection.",
+      "Paper-level KC2 (B>0 excluded at ≥3σ by Stage-IV data) is logically entangled with the master KC5 (monitoring status): if DESI DR2 triggers paper-KC2, it simultaneously advances the master KC5 toward resolution."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }
