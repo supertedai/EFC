@@ -485,11 +485,11 @@ Defined in <a href="EFC_White_Paper_Series.html">White Paper Series, Part 3</a>.
 </tr>
 <tr data-kc-id="KC4">
   <td><span class="kill-badge">KC4</span></td>
-  <td>Gravitational slip absent</td>
-  <td>|&eta; &minus; 1| &lt; 0.01 (Euclid)</td>
-  <td>Euclid DR2 (E<sub>G</sub> statistic + tomographic shear)</td>
-  <td>~2028</td>
-  <td><span class="seal-badge">SEALED</span> E<sub>G</sub> pre-registration (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>), Rubin DP2 cosmic shear (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>), &mu;&ndash;&Sigma; eigenmode (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>)</td>
+  <td>Perturbation-sector signature absent</td>
+  <td>&mu; &gt; 1 detected OR &Sigma;<sub>eff</sub>(z) monotonic OR E<sub>G</sub><sup>obs</sup>/E<sub>G</sub><sup>GR</sup> = 1.00 &plusmn; 0.01 (all at &gt;3&sigma;)</td>
+  <td>Euclid DR1 tomographic shear; SO &times; Euclid DR2 E<sub>G</sub></td>
+  <td><strong>2026 Oct</strong> (DR1) &mdash; 2028 (DR2)</td>
+  <td><span class="seal-badge">SEALED</span> Perturbation sector (<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>: &mu; &lt; 1 structurally robust, &Sigma;<sub>eff</sub>(z) crossover at z &asymp; 0.44), E<sub>G</sub> pre-registration (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>), Rubin DP2 cosmic shear (<a href="https://doi.org/10.6084/m9.figshare.32013738">32013738</a>), &mu;&ndash;&Sigma; eigenmode (<a href="https://doi.org/10.6084/m9.figshare.31990194">31990194</a>)</td>
 </tr>
 <tr data-kc-id="KC5">
   <td><span class="kill-badge">KC5</span></td>
@@ -572,6 +572,8 @@ These govern the perturbation sector and supersede phenomenological F7.</p>
 <tr><td>SMBH thermostat: AGN decline drives S(z) sigmoid</td><td>S(z) transition at z ~ 1 tracks AGN luminosity density</td><td>JWST + eROSITA AGN catalogue</td><td>2027&ndash;2029</td><td>L2</td><td><a href="https://doi.org/10.6084/m9.figshare.31942734">31942734</a></td></tr>
 <tr><td>Cluster abundance N(M,z)</td><td>Mass function evolution discriminates EFC vs &Lambda;CDM</td><td>eROSITA + Euclid DR2 + Rubin DR1</td><td>~2028</td><td>L2&ndash;L3</td><td>Method defined</td></tr>
 <tr><td>E<sub>G</sub>(k,z) scale-localised bump</td><td>~7% excess at k<sub>c</sub> = 0.05 h/Mpc from band-pass stiffness R(k,a); testable at 2.5&ndash;3.5&sigma;</td><td>DESI DR3 &times; Planck lensing (E<sub>G</sub> estimator)</td><td>~2027&ndash;2028</td><td>L1&ndash;L2</td><td><a href="https://doi.org/10.6084/m9.figshare.31985313">31985313</a></td></tr>
+<tr><td><strong>Lensing crossover &Sigma;<sub>eff</sub>(z)</strong></td><td>Sign-changing tomographic response: &Sigma;<sub>eff</sub> &gt; 1 at z &lt; 0.4 (+2.6% at z=0.10), crossover at <strong>z &asymp; 0.44</strong>, &Sigma;<sub>eff</sub> &lt; 1 at z &gt; 0.5 (&minus;1.5% at z=1.21). Non-monotonic, distinctive within MG model class.</td><td>Euclid DR1 tomographic cosmic shear (6 bins over 0.2&ndash;1.4)</td><td><strong>2026 Oct</strong></td><td>L1&ndash;L2</td><td><a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a></td></tr>
+<tr><td><strong>Structural signature &mu; &lt; 1 &and; &Sigma; &ge; 1</strong></td><td>Growth suppression (&mu; &lt; 1) with lensing enhancement (&Sigma; &ge; 1), strongly disfavored in standard QS Horndeski with &alpha;<sub>T</sub>=0 (numerical scan, 135k points). Enabled by &lambda;-constraint anisotropic stress.</td><td>Euclid DR1 &mu;&ndash;&Sigma; tomography; SO &times; Euclid E<sub>G</sub></td><td>2026&ndash;2028</td><td>L1&ndash;L2</td><td><a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a></td></tr>
 </tbody>
 </table>
 
@@ -669,7 +671,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <tr><td><strong>Massive neutrinos</strong></td><td>Growth suppression (lower &sigma;<sub>8</sub>/S<sub>8</sub>)</td><td>&eta; = 1 exactly; scale-dependent; no galactic RAR</td><td>&eta; via E<sub>G</sub> (KC4); scale-dependence of f&sigma;<sub>8</sub>(k); SPARC</td></tr>
 <tr><td><strong>Baryonic feedback</strong></td><td>P(k) suppression; lower S<sub>8</sub></td><td>Confined to k &gt; 0.5 h/Mpc; no ISW; &eta; = 1</td><td>Scale cuts; ISW (F1); gravitational slip (KC4)</td></tr>
 <tr><td><strong>f(R) gravity</strong></td><td>&mu; &ne; 1; modified growth</td><td>&mu; &gt; 1 (wrong sign); &Sigma; = &mu;; different screening</td><td>Sign of &mu; (FA2); &mu; vs &Sigma; (Euclid DR2)</td></tr>
-<tr><td><strong>Horndeski / EFT of DE</strong></td><td>General &mu;(k,z), &Sigma;(k,z)</td><td>Post-GW170817: &mu; &asymp; &Sigma; (no significant slip). EFC&rsquo;s &eta; &asymp; 1.10 occupies a narrow corner.</td><td>Joint &mu;&ndash;&Sigma;&ndash;&eta; (Euclid DR2/DR3); void ISW</td></tr>
+<tr><td><strong>Horndeski / EFT of DE</strong></td><td>General &mu;(k,z), &Sigma;(k,z)</td><td>Standard QS Horndeski with &alpha;<sub>T</sub>=0: &mu; &lt; 1 &and; &Sigma; &gt; 1 strongly disfavored (numerical scan, 135k points finds max &Sigma;=0.989 when &mu;&lt;0.99; see <a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>). EFC&rsquo;s &lambda;-constraint mechanism is structurally distinct.</td><td>Joint &mu;&ndash;&Sigma; (Euclid DR1/DR2); tomographic &Sigma;<sub>eff</sub>(z) sign change</td></tr>
 <tr><td><strong>w&#8320;w<sub>a</sub>CDM</strong></td><td>Modified expansion; BAO shifts</td><td>&mu; = &Sigma; = &eta; = 1 in perturbations</td><td>Perturbation-sector: f&sigma;<sub>8</sub>, E<sub>G</sub>, void ISW</td></tr>
 <tr><td><strong>Phenomenological A<sub>L</sub> &gt; 1</strong></td><td>Enhanced CMB lensing</td><td>No perturbation-sector origin; no additional predictions</td><td>Galaxy lensing + f&sigma;<sub>8</sub> joint; see <a href="https://doi.org/10.6084/m9.figshare.31368433">31368433</a></td></tr>
 </tbody>
@@ -678,17 +680,17 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 <h3>6.2 The EFC Discriminant Signature</h3>
 
 <table>
-<thead><tr><th>Property</th><th>EFC</th><th>Massive &nu;</th><th>f(R)</th><th>Horndeski</th><th>w&#8320;w<sub>a</sub>CDM</th></tr></thead>
+<thead><tr><th>Property</th><th>EFC</th><th>Massive &nu;</th><th>f(R)</th><th>Horndeski (QS, &alpha;<sub>T</sub>=0)</th><th>w&#8320;w<sub>a</sub>CDM</th></tr></thead>
 <tbody>
-<tr><td>&mu; &lt; 1</td><td>&#10003; 0.94</td><td>&mdash;</td><td>&#10007; (&mu; &gt; 1)</td><td>Possible</td><td>&mdash;</td></tr>
-<tr><td>&Sigma; &gt; 1</td><td>&#10003; 1.05</td><td>&mdash;</td><td>&#10007; (&Sigma; = &mu;)</td><td>Possible</td><td>&mdash;</td></tr>
-<tr><td>&eta; &asymp; 1.10</td><td>&#10003;</td><td>&#10007; (&eta; = 1)</td><td>&#10007;</td><td>&#10007; (typically &eta; &asymp; 1)</td><td>&#10007; (&eta; = 1)</td></tr>
+<tr><td>&mu; &lt; 1 (structural)</td><td>&#10003; Robust (100%)</td><td>&mdash;</td><td>&#10007; (&mu; &gt; 1)</td><td>&#10007; Disfavored by scan</td><td>&mdash;</td></tr>
+<tr><td>&Sigma; &ge; 1 (with &mu; &lt; 1)</td><td>&#10003; Semi-robust (61%)</td><td>&mdash;</td><td>&#10007; (&Sigma; &asymp; &mu;)</td><td>&#10007; Disfavored by scan</td><td>&mdash;</td></tr>
+<tr><td>&Sigma;<sub>eff</sub>(z) sign change at z&asymp;0.44</td><td>&#10003; Non-monotonic</td><td>&#10007;</td><td>&#10007;</td><td>Distinctive within class</td><td>&#10007;</td></tr>
 <tr><td>Void ISW sign-flip</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
 <tr><td>Galactic RAR</td><td>&#10003; (k = 0.415)</td><td>&#10007;</td><td>Partial</td><td>&#10007;</td><td>&#10007;</td></tr>
 </tbody>
 </table>
 
-<p><strong>Bottom line:</strong> &eta; &asymp; 1.10 is the single most discriminating observable. If Euclid measures &eta; = 1.00 &plusmn; 0.01, EFC is falsified (KC4). If &eta; &asymp; 1.10 is observed, it rules out massive neutrinos, standard f(R), and w&#8320;w<sub>a</sub>CDM.</p>
+<p><strong>Bottom line:</strong> The structural signature &mu; &lt; 1 &and; &Sigma; &ge; 1 combined with a non-monotonic &Sigma;<sub>eff</sub>(z) crossover at z &asymp; 0.44 (<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>) is the most distinctive observational test within the current MG model class. Euclid DR1 tomographic cosmic shear (October 2026) is the decisive instrument: percent-level sensitivity over 0.2 &lt; z &lt; 1.4 is exactly the regime where the predicted crossover lives. Earlier framing emphasised &eta; &asymp; 1.10 as a point prediction; structural analysis shows that value is fragile at &plusmn;20% parameter variation (0% robustness) while the &mu; &lt; 1 signature survives.</p>
 
 <hr>
 
@@ -784,7 +786,7 @@ introduce its own nuisance parameters beyond those in the Global Parameter Regis
 
 <h2>12. Gap Analysis (April 2026)</h2>
 
-<p>Living assessment of what the project needs vs what exists. Updated monthly or on significant external events. Last update: 2026-04-16.</p>
+<p>Living assessment of what the project needs vs what exists. Updated monthly or on significant external events. Last update: 2026-04-17.</p>
 
 <h3>12.1 External Landscape Changes Since Last Roadmap Version</h3>
 

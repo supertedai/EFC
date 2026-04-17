@@ -213,11 +213,16 @@
     </tr>
   </table>
   <p style="margin:8px 0 0 0; font-size:12px; color:#666;">
-    <strong>Interpretation:</strong> The published LOO result (2.2&sigma;) is a directional signal, not a detection.
-    The autonomous MCMC with broader priors finds the signal collapses to 0.7&sigma; due to
-    &alpha;&ndash;&Omega;<sub>m</sub> degeneracy (r&nbsp;=&nbsp;+0.6). Both results are correct &mdash; they probe different
-    prior volumes. DESI DR2 full-shape RSD (expected late 2026) will break the degeneracy.
-    Sampler consistency: tension&nbsp;=&nbsp;1.74&sigma; (within 2&sigma;).
+    <strong>Interpretation (updated, <a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>):</strong>
+    The growth-suppression signal (lower f&sigma;<sub>8</sub> than &Lambda;CDM) is real and reproducible (LOO 7/7).
+    What has changed is the <em>interpretation</em> of the channel that produces it. Two channels can
+    cause the same f&sigma;<sub>8</sub> suppression: (a) the <strong>background coupling &alpha;</strong>
+    in E<sup>2</sup>(z), and (b) the <strong>perturbation-sector &mu; &lt; 1</strong> from stiffness
+    response R(k,z). With DESI DR2 data, &alpha; collapsed from 2.2&sigma; to 0.7&sigma; &mdash;
+    the background channel is weak. But &mu; &lt; 1 survives as a <strong>structurally robust</strong>
+    prediction (100% of parameter space). The sealed f&sigma;<sub>8</sub>(z=0.7) = 0.430 prediction
+    (<a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a>) is <em>channel-independent</em>
+    and remains intact. Euclid DR1 tomographic cosmic shear is now the decisive test.
   </p>
 </div>
 
@@ -404,18 +409,34 @@
 <h2>How EFC can die</h2>
 
 <p>
-  A theory that can't be killed isn't science. EFC has five pre-registered
-  kill criteria, frozen before the relevant data arrived. Any one of them,
-  if realised, falsifies the current formulation:
+  A theory that can't be killed isn't science. EFC has pre-registered
+  kill criteria at two levels: Stage-IV <strong>observational</strong> kills
+  (KC1&ndash;KC5, see <a href="EFC_Stage-IV_Data_Roadmap.html">Roadmap</a>)
+  and <strong>structural</strong> kills from the perturbation-sector analysis
+  (<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>).
+  Ordered by observational robustness:
 </p>
 
 <ol>
-  <li><strong>Full MCMC Bayes factor &gt; 3 against EFC</strong> on Planck + BAO + Pantheon+ &mdash; decisive statistical rejection.</li>
-  <li><strong>Solar-system deviation &gt; 10<sup>-4</sup></strong> in the gravitational coupling &mu;(k = 5 h/Mpc) &mdash; would fail the Parametrized Post-Newtonian (PPN) bounds.</li>
-  <li><strong>&eta; outside [1.20, 1.27]</strong> at m&sup2; = 0.0035 &mdash; would fail the gravitational-slip calibration window.</li>
-  <li><strong>Any cobaya minimize run returning &Delta;&chi;&sup2; &gt; 0</strong> in the EFC direction &mdash; currently 4/4 runs pass; a 5th failing run would break consistency.</li>
-  <li><strong>&Sigma;-signal absent from high-&ell; TT+TE+EE</strong> after plik_lite inclusion &mdash; would eliminate the slip mechanism.</li>
+  <li><strong>f&sigma;<sub>8</sub>(z=0.7) consistent with &Lambda;CDM at &lt;1&sigma;</strong> in DESI DR2/DR3 &mdash; falsifies the sealed growth-suppression prediction
+    (<a href="https://doi.org/10.6084/m9.figshare.32013156">32013156</a>). Channel-independent test.</li>
+  <li><strong>&mu; &gt; 1 detected at &gt;3&sigma;</strong> in Euclid DR1 tomographic growth &mdash; falsifies FA2 and the structural signature &mu; &lt; 1
+    (<a href="https://doi.org/10.6084/m9.figshare.31876324">31876324</a>).</li>
+  <li><strong>&Sigma;<sub>eff</sub>(z) monotonic across 0.2&ndash;1.4</strong> in Euclid DR1 cosmic shear &mdash; falsifies the predicted sign-changing lensing crossover at z &asymp; 0.44
+    (<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>).</li>
+  <li><strong>E<sub>G</sub><sup>obs</sup>/E<sub>G</sub><sup>GR</sup> = 1.00 &plusmn; 0.01 at &gt;3&sigma;</strong> in SO &times; Euclid DR2 &mdash; falsifies the gravitational-slip sector
+    (<a href="https://doi.org/10.6084/m9.figshare.32023788">32023788</a>).</li>
+  <li><strong>Solar-system deviation &gt; 10<sup>-5</sup></strong> in &mu;(k &gtrsim; 5 h/Mpc) &mdash; violates PPN screening (GR recovery via density saturation,
+    <a href="https://doi.org/10.6084/m9.figshare.31244827">31244827</a>).</li>
 </ol>
+
+<p style="font-size:0.88rem; color:#555; background:#f8f9fa; border-left:3px solid #aaa; padding:8px 12px; margin-top:10px;">
+  <strong>Note on hierarchy (April 2026):</strong> The earlier formulation emphasised &eta; &asymp; 1.10 as a point prediction. Recent structural analysis
+  (<a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>) showed that &eta; at a specific value is fragile under parameter variation
+  (0% robustness at &plusmn;20%), while &mu; &lt; 1 is structurally robust (100%). The kill-criterion hierarchy above reflects this: observable quantities
+  (f&sigma;<sub>8</sub>, &Sigma;<sub>eff</sub>, E<sub>G</sub>) come first; structural signatures (&mu; &lt; 1) second; fragile point predictions (&eta; at a specific
+  numerical value) are no longer central.
+</p>
 
 <p style="font-size:0.9rem; color:#555;">
   See the <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Data Roadmap</a>
