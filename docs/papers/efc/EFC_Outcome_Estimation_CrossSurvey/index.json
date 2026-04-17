@@ -1,0 +1,132 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-outcome-estimation-crosssurvey",
+  "title": "Expected Outcomes for Energy-Flow Cosmology Cross-Survey Invariance and BIG-SPARC Tests",
+  "description": "Pre-data working note estimating expected outcomes for the pre-registered Energy-Flow Cosmology (EFC) cross-survey invariance tests (P1\u2013P8). Using the SPARC-175 Kill-Test v6 baseline and structural AIC/BIC analysis, it projects Tier-1 (THINGS, LITTLE THINGS) and Tier-2 (WALLABY DR2) win rates, overlap consistency, regime fractions, and the likely role of BIG-SPARC as the decisive tiebreaker. The most probable result is partial support (Scenario B), with modest AIC/BIC win rates and robust overlap on decisive cases.",
+  "version": "1.0",
+  "date": "2026-04-17",
+  "doi": "10.6084/m9.figshare.32045592",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "cross-survey invariance",
+    "AIC",
+    "BIC",
+    "SPARC",
+    "THINGS",
+    "LITTLE THINGS",
+    "WALLABY DR2",
+    "BIG-SPARC",
+    "win rate",
+    "screening parameter k",
+    "regime fractions"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "delta_AIC": {
+      "latex": "\\Delta \\mathrm{AIC} = \\Delta \\chi^2 + 2\\,\\Delta k_{\\mathrm{params}}",
+      "description": "Information criterion used for model comparison; penalizes additional parameters with a constant factor of 2 per parameter."
+    },
+    "delta_BIC": {
+      "latex": "\\Delta \\mathrm{BIC} = \\Delta \\chi^2 + \\ln(N)\\,\\Delta k_{\\mathrm{params}}",
+      "description": "Stronger penalty than AIC for model complexity; here N is the number of data points in the fit."
+    },
+    "extra_penalty_per_galaxy": {
+      "latex": "\\Delta_{\\mathrm{BIC-AIC}} = \\ln(N_{\\mathrm{pts}}) - 2",
+      "description": "Approximate additional per-galaxy penalty BIC applies relative to AIC given the number of rotation-curve points."
+    },
+    "win_rate": {
+      "latex": "\\mathrm{WR} = \\frac{N_{\\mathrm{EFC\\ wins}}}{N_{\\mathrm{total}}}",
+      "description": "Win rate: fraction of galaxies where EFC is preferred over the comparator under a given criterion (AIC/BIC)."
+    }
+  },
+  "key_results": {
+    "main_finding": "Pre-data projection favors Scenario B (partial support): Tier-1 AIC WR \u2248 58% (BIC \u2248 53%), WALLABY AIC WR \u2248 43% (BIC \u2248 35%), overlap consistency 10\u201312/14, with decisive SPARC wins expected to remain robust; BIG-SPARC is anticipated to be the decisive tiebreaker.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "screening parameter k",
+      "AIC vs BIC model selection penalty",
+      "win rate (WR)",
+      "overlap consistency across surveys",
+      "regime fractions (FLOW / TRANSITION / LATENT)",
+      "Wilson interval for WR",
+      "k secondary-dependence (null)"
+    ],
+    "datasets_used": [
+      "SPARC-175 Kill-Test v6 (calibration)",
+      "THINGS (N=34)",
+      "LITTLE THINGS (N=26)",
+      "WALLABY DR2 (N=203)",
+      "BIG-SPARC (planned)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Cross-survey k invariance (proxied by Tier-1 non-SPARC AIC win rate) holds with WR > 55% and BIC remaining above 50%.",
+      "falsifiable_by": "Compute WR on THINGS+LITTLE THINGS per preregistered pipeline; if AIC WR \u2264 55% or BIC WR \u2264 50% with Wilson 95% CI not overlapping thresholds, prediction fails."
+    },
+    {
+      "id": "P2",
+      "statement": "Overlap consistency: for the 14 SPARC\u2013THINGS galaxies, the model-preference sign and strength agree in \u2265 10/14, with decisive cases showing |\u0394AIC_SP\u2212\u0394AIC_TH| < 3.",
+      "falsifiable_by": "Count consistent outcomes; if < 10/14 or systematic flips of decisive cases occur, prediction fails."
+    },
+    {
+      "id": "P3",
+      "statement": "Regime fractions (FLOW / TRANSITION / LATENT) in Tier-1 match SPARC baseline within \u00b115 percentage points.",
+      "falsifiable_by": "Estimate regime fractions via \u03c72-ratio proxy; if any regime deviates by > 15 pp from SPARC baseline (41.5%, 49.1%, 9.4%), prediction fails."
+    },
+    {
+      "id": "P4",
+      "statement": "WALLABY DR2 AIC win rate for EFC is \u2265 45%.",
+      "falsifiable_by": "Compute AIC WR on WALLABY DR2; if WR < 45% with Wilson 95% CI upper bound \u2264 45%, prediction fails."
+    },
+    {
+      "id": "P5",
+      "statement": "BIG-SPARC yields k_BIG = 0.415 \u00b1 0.015, consistent with the SPARC baseline (k = 0.415 \u00b1 0.029) within 3\u03c3.",
+      "falsifiable_by": "Fit k on BIG-SPARC; if |k_BIG \u2212 0.415| > 3\u03c3_combined, prediction fails."
+    },
+    {
+      "id": "P6",
+      "statement": "BIG-SPARC global win rate is \u2265 50% (AIC and corroborated by BIC).",
+      "falsifiable_by": "Compute AIC/BIC WR on BIG-SPARC; if both metrics yield WR < 50% with Wilson 95% CI upper \u2264 50%, prediction fails."
+    },
+    {
+      "id": "P7",
+      "statement": "FLOW-regime galaxies in BIG-SPARC show WR \u2265 85%.",
+      "falsifiable_by": "Stratify BIG-SPARC by regime; if FLOW WR < 85% with Wilson 95% CI lower < 85%, prediction fails."
+    },
+    {
+      "id": "P8",
+      "statement": "No secondary dependence of k on galaxy properties (e.g., mass, size, gas fraction) at > 3\u03c3 significance.",
+      "falsifiable_by": "Regression or hierarchical modeling on BIG-SPARC; detection of > 3\u03c3 correlation between k and secondary properties falsifies."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Tier-1 non-SPARC cross-survey invariance fails decisively: AIC and BIC WR both < 50% with Wilson 95% CI upper bounds \u2264 50%, and overlap consistency < 7/14.",
+    "KC2: BIG-SPARC screening parameter estimate inconsistent with SPARC baseline at > 3\u03c3: |k_BIG \u2212 0.415| > 3\u03c3_combined or k_BIG outside 0.415 \u00b1 0.045.",
+    "KC3: BIG-SPARC global performance fail: AIC and BIC WR both < 50% with Wilson 95% CI upper bounds \u2264 50%.",
+    "KC4: FLOW-regime failure on BIG-SPARC: FLOW WR < 85% with Wilson 95% CI lower bound < 85%.",
+    "KC5: Regime-fraction inconsistency: Any of FLOW/TRANSITION/LATENT fractions deviate by more than \u00b115 percentage points from SPARC baseline in Tier-1 or BIG-SPARC.",
+    "KC6: Robust evidence of secondary dependence: Detection at > 3\u03c3 of k varying systematically with galaxy properties (mass, size, surface brightness, gas fraction), contradicting invariance."
+  ],
+  "tier": "N/A",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-kill-test-v6",
+      "doi": "10.6084/m9.figshare.31986762",
+      "role": "Baseline calibration for universality and decisive/marginal win characterization used in projections"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_Outcome_Estimation_CrossSurvey.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32045592"
+}
