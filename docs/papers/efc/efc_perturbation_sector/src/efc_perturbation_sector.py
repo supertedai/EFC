@@ -8,11 +8,12 @@ that characterizes enhanced vs. suppressed gravitational lensing as
 a function of redshift.
 
 Key predictions from the paper:
-  - Crossover redshift z_cross ~ 0.42 where Sigma_eff = Sigma_CDM
+  - Crossover redshift z_cross ~ 0.44 where Sigma_eff = Sigma_CDM
+    (Euclid DR1 tomographic bin centre; see Table in Sec. 3 of the paper)
   - Enhanced lensing (Sigma_eff/Sigma_CDM > 1) for z < z_cross
   - Suppressed lensing (Sigma_eff/Sigma_CDM < 1) for z > z_cross
-  - Peak enhancement ~ +0.8% near z ~ 0.2
-  - Maximum suppression ~ -1.4% near z ~ 1.4
+  - Peak enhancement ~ +2.6% at z ~ 0.10
+  - Maximum suppression ~ -1.5% at z ~ 1.21
   - LCDM recovered when alpha = 1
 """
 
@@ -23,15 +24,16 @@ from typing import Union, Tuple
 # Constants extracted from the paper
 # ---------------------------------------------------------------------------
 
-Z_CROSSOVER: float = 0.42          # crossover redshift
+Z_CROSSOVER: float = 0.44          # crossover redshift (Euclid DR1 bin centre)
 ALPHA_LCDM: float = 1.0            # LCDM limit
 TOLERANCE_BAND: float = 0.02       # +/- 2% tolerance band
 
-# Calibration data points read from Figure: (z, Sigma_eff/Sigma_CDM - 1)
-# These anchor the interpolation / model fit.
-_CALIBRATION_Z = np.array([0.2, 0.42, 0.6, 0.8, 1.0, 1.2, 1.4])
-_CALIBRATION_DEV = np.array([0.008, 0.0, -0.003, -0.009, -0.012, -0.014, -0.014])
-# i.e. +0.8%, 0%, -0.3%, -0.9%, -1.2%, -1.4%, -1.4%
+# Calibration data points from Table in Sec. 3 of the paper.
+# Redshifts are Euclid DR1 tomographic bin centres.
+# Pairs: (z, Sigma_eff/Sigma_CDM - 1)
+_CALIBRATION_Z = np.array([0.10, 0.29, 0.44, 0.58, 0.87, 1.21])
+_CALIBRATION_DEV = np.array([0.026, 0.008, 0.0, -0.006, -0.012, -0.015])
+# i.e. +2.6%, +0.8%, 0%, -0.6%, -1.2%, -1.5%
 
 # ---------------------------------------------------------------------------
 # Model parametrisation

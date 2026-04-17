@@ -32,8 +32,8 @@ def main() -> None:
     print(f"Tolerance band            = +/-{TOLERANCE_BAND*100:.0f}%")
     print()
 
-    # Print a small table
-    z_table = np.array([0.2, 0.3, 0.42, 0.6, 0.8, 1.0, 1.2, 1.4])
+    # Print a small table (Euclid DR1 tomographic bin centres)
+    z_table = np.array([0.10, 0.29, 0.44, 0.58, 0.87, 1.21])
     print(f"{'z':>6s}  {'Sigma_eff/Sigma_CDM':>20s}  {'deviation':>10s}")
     print("-" * 42)
     for zi in z_table:
@@ -70,10 +70,10 @@ def main() -> None:
                     arrowprops=dict(arrowstyle="->", color="crimson"),
                     fontsize=9, color="crimson")
 
-        # Data-point annotations from the paper
+        # Data-point annotations from the paper (Euclid DR1 bin centres)
         annots = {
-            0.2: "+0.8%", 0.6: "-0.3%", 0.8: "-0.9%",
-            1.0: "-1.2%", 1.2: "-1.4%", 1.4: "-1.4%",
+            0.10: "+2.6%", 0.29: "+0.8%",
+            0.58: "-0.6%", 0.87: "-1.2%", 1.21: "-1.5%",
         }
         for za, txt in annots.items():
             ra = float(sigma_eff_ratio_efc(za))

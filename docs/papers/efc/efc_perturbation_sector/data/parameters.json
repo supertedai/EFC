@@ -1,7 +1,7 @@
 {
   "paper": {
     "title": "EFC Perturbation Sector",
-    "description": "Key numerical values extracted from the EFC Perturbation Sector paper, describing the effective lensing ratio Sigma_eff(z)/Sigma_CDM."
+    "description": "Key numerical values extracted from the EFC Perturbation Sector paper, describing the effective lensing ratio Sigma_eff(z)/Sigma_CDM. Redshifts below correspond to Euclid DR1 tomographic bin centres."
   },
   "parameters": {
     "alpha_LCDM": {
@@ -15,65 +15,59 @@
   },
   "predictions": {
     "crossover_redshift": {
-      "value": 0.42,
-      "description": "Redshift at which Sigma_eff/Sigma_CDM = 1 (crossover from enhanced to suppressed lensing)."
+      "value": 0.44,
+      "description": "Redshift at which Sigma_eff/Sigma_CDM = 1 (crossover from enhanced to suppressed lensing). Value corresponds to the Euclid DR1 tomographic bin centre identified in the paper (Table, Sec. 3)."
     },
     "regime_enhanced": {
-      "z_range": "z < 0.42",
+      "z_range": "z < 0.44",
       "description": "Gravitational lensing is enhanced (Sigma_eff > Sigma_CDM) at low redshift."
     },
     "regime_suppressed": {
-      "z_range": "z > 0.42",
+      "z_range": "z > 0.44",
       "description": "Gravitational lensing is suppressed (Sigma_eff < Sigma_CDM) at high redshift."
     }
   },
   "calibration_points": [
     {
-      "z": 0.2,
-      "deviation_percent": 0.8,
-      "sigma_ratio": 1.008,
+      "z": 0.10,
+      "deviation_percent": 2.6,
+      "sigma_ratio": 1.026,
       "note": "peak enhancement"
     },
     {
-      "z": 0.42,
+      "z": 0.29,
+      "deviation_percent": 0.8,
+      "sigma_ratio": 1.008,
+      "note": "enhanced"
+    },
+    {
+      "z": 0.44,
       "deviation_percent": 0.0,
       "sigma_ratio": 1.0,
       "note": "crossover"
     },
     {
-      "z": 0.6,
-      "deviation_percent": -0.3,
-      "sigma_ratio": 0.997,
+      "z": 0.58,
+      "deviation_percent": -0.6,
+      "sigma_ratio": 0.994,
       "note": "mild suppression"
     },
     {
-      "z": 0.8,
-      "deviation_percent": -0.9,
-      "sigma_ratio": 0.991,
-      "note": "suppressed"
-    },
-    {
-      "z": 1.0,
+      "z": 0.87,
       "deviation_percent": -1.2,
       "sigma_ratio": 0.988,
       "note": "suppressed"
     },
     {
-      "z": 1.2,
-      "deviation_percent": -1.4,
-      "sigma_ratio": 0.986,
-      "note": "near-maximum suppression"
-    },
-    {
-      "z": 1.4,
-      "deviation_percent": -1.4,
-      "sigma_ratio": 0.986,
+      "z": 1.21,
+      "deviation_percent": -1.5,
+      "sigma_ratio": 0.985,
       "note": "maximum suppression"
     }
   ],
   "figure_axis_ranges": {
-    "z_min": 0.2,
-    "z_max": 1.4,
+    "z_min": 0.10,
+    "z_max": 1.21,
     "ratio_min": 0.98,
     "ratio_max": 1.03
   }
