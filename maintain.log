@@ -8,7 +8,7 @@ pdftotext: /usr/bin/pdftotext
 
 >>> Step 1: All papers at 10/10 <<<
 
->>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
+>>> Step 1.5: Holistic Impact Analysis for 2 paper(s) <<<
 
   Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1:
     Graph: 10 concepts, 0 related papers
@@ -17,17 +17,8 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  efc_perturbation_sector:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper delivers the first sealed, quantitative perturbation-sector prediction for EFC weak lensi
-    KCs: ['KC4'], page_updates: 4, tests: 3
+    Impact: This paper establishes the first rigorous empirical anchor for the EFC screening model at galactic s
+    KCs: ['KC1', 'KC2', 'KC3', 'KC4', 'KC5'], page_updates: 5, tests: 8
   EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -38,7 +29,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 58 paper(s) in public pages <<<
+>>> Step 2: Registering 57 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -50,7 +41,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 1 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -62,9 +52,6 @@ EFC DOI sync — 149 paper dirs scanned
   papers with registered DOI : 146
   papers without DOI         : 3
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  efc_perturbation_sector -> metadata.json, CITATION.cff, *.jsonld, README.md
 ========================================================================
 [efc-gen] 149 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 149 paper dirs · 0 errors · 1 warnings
@@ -72,7 +59,7 @@ PROPAGATED DOIs into 1 papers:
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
-Known gap IDs in HTML: 6
+Known gap IDs in HTML: 7
 Traceback (most recent call last):
   File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 744, in <module>
     sys.exit(main())
@@ -87,8 +74,7 @@ Traceback (most recent call last):
     target_attr = target.replace('"', '"')
                   ^^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'replace'
-[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32037990
-[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32037990
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 [efc-drift] 149 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -125,7 +111,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
+[efc-auto-changelog] 1 paper package enriched.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -154,6 +140,7 @@ Ledger: 119 tests, 10 falsified
   [WARNING]  KC1: Gap Analysis says 'DONE' but Roadmap §12 says 'PIPELINE NEEDED'
   [WARNING]  KC2: Gap Analysis says 'DONE' but Roadmap §12 says 'SEALED'
   [WARNING]  KC3: Gap Analysis says 'DONE' but Roadmap §12 says 'P3 PASS'
+  [WARNING]  KC4: Gap Analysis says 'DONE' but Roadmap §12 says 'SEALED'
 
 --- Inference DOI Anchoring ---
   [OK]       EFC Inference: bao_boss_dr12: active
@@ -184,17 +171,18 @@ Ledger: 119 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 4 errors, 4 warnings
+RESULT: 4 errors, 5 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 0 error(s), 3 warning(s)
+[full-sync] invariants: 1 error(s), 3 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32029704: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32037990: expected='present' observed='absent'
+  [ERROR] §5 forbidden_phrase:confirms efc: expected='absent' observed='docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/index.json'
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
