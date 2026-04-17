@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-perturbation-sector",
   "title": "EFC Perturbation Sector: Constraint-Driven Gravitational Slip and a Testable Lensing Crossover",
-  "description": "This note presents the perturbation-sector prediction of Energy-Flow Cosmology (EFC) for weak-lensing amplitude as a function of redshift, summarized by an effective ratio eff(z) relative to a CDM baseline set to unity. EFC predicts a single redshift crossover at z \u2243 0.42 separating enhanced (eff > 1) from suppressed (eff < 1) lensing, with percent-level deviations bounded at approximately \u00b12% over 0.2 \u2272 z \u2272 1.4. The result is posed as a sealed, falsifiable target for upcoming weak-lensing tomography.",
+  "description": "This note presents the perturbation-sector prediction of Energy-Flow Cosmology (EFC) for weak-lensing amplitude as a function of redshift, summarized by an effective ratio eff(z) relative to a CDM baseline set to unity. EFC predicts a single redshift crossover at z ≃ 0.42 separating enhanced (eff > 1) from suppressed (eff < 1) lensing, with percent-level deviations bounded at approximately ±2% over 0.2 ≲ z ≲ 1.4. The result is posed as a sealed, falsifiable target for upcoming weak-lensing tomography.",
   "version": "1.0",
   "date": "2026-04-16",
   "doi": "10.6084/m9.figshare.32037990",
@@ -32,15 +32,15 @@
     },
     "efc_crossover_condition": {
       "latex": "e_{\\mathrm{ff}}^{\\mathrm{EFC}}(z_{\\times}) = 1,\\quad z_{\\times} \\simeq 0.42",
-      "description": "EFC predicts a crossover redshift where the effective lensing matches CDM, near z \u2248 0.42."
+      "description": "EFC predicts a crossover redshift where the effective lensing matches CDM, near z ≈ 0.42."
     },
     "efc_percent_bound": {
       "latex": "0.98 \\lesssim e_{\\mathrm{ff}}^{\\mathrm{EFC}}(z) \\lesssim 1.02\\quad \\text{for } 0.2 \\lesssim z \\lesssim 1.4",
-      "description": "Percent-level EFC deviation band (\u00b12%) over the plotted redshift range, separating enhanced (above 1) and suppressed (below 1) lensing regions."
+      "description": "Percent-level EFC deviation band (±2%) over the plotted redshift range, separating enhanced (above 1) and suppressed (below 1) lensing regions."
     }
   },
   "key_results": {
-    "main_finding": "EFC predicts a weak-lensing efficiency ratio eff(z) that crosses unity at z \u2248 0.42 with deviations confined to about \u00b12% over 0.2 \u2272 z \u2272 1.4, implying enhanced lensing below the crossover and suppressed lensing above it relative to CDM.",
+    "main_finding": "EFC predicts a weak-lensing efficiency ratio eff(z) that crosses unity at z ≈ 0.42 with deviations confined to about ±2% over 0.2 ≲ z ≲ 1.4, implying enhanced lensing below the crossover and suppressed lensing above it relative to CDM.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [],
@@ -50,19 +50,19 @@
   "sealed_predictions": [
     {
       "id": "P1",
-      "statement": "A single sign-changing crossover in the weak-lensing efficiency ratio eff(z) relative to CDM occurs at z \u2248 0.42, with enhanced lensing (eff > 1) at lower z and suppressed lensing (eff < 1) at higher z.",
-      "falsifiable_by": "Tomographic cosmic-shear and galaxy\u2013galaxy lensing measurements (e.g., DES, KiDS, HSC, LSST, Euclid) that reconstruct the redshift dependence of the lensing amplitude ratio relative to CDM."
+      "statement": "A single sign-changing crossover in the weak-lensing efficiency ratio eff(z) relative to CDM occurs at z ≈ 0.42, with enhanced lensing (eff > 1) at lower z and suppressed lensing (eff < 1) at higher z.",
+      "falsifiable_by": "Tomographic cosmic-shear and galaxy–galaxy lensing measurements (e.g., DES, KiDS, HSC, LSST, Euclid) that reconstruct the redshift dependence of the lensing amplitude ratio relative to CDM."
     },
     {
       "id": "P2",
-      "statement": "Across 0.2 \u2272 z \u2272 1.4, the magnitude of the deviation in eff(z) from unity remains within \u00b12%.",
+      "statement": "Across 0.2 ≲ z ≲ 1.4, the magnitude of the deviation in eff(z) from unity remains within ±2%.",
       "falsifiable_by": "High-precision weak-lensing tomography and joint analyses with CMB lensing that constrain percent-level deviations in the lensing amplitude as a function of redshift."
     }
   ],
   "kill_criteria": [
-    "KC1: No crossover of eff(z) near z = 0.42 is observed\u2014specifically, if tomographic weak-lensing measurements show no crossing within 0.30 < z < 0.55 at \u22653\u03c3 significance.",
-    "KC2: The measured deviation of eff(z) from unity exceeds \u00b12% anywhere within 0.2 < z < 1.4 at \u22653\u03c3, or remains on one side of unity across the entire range at \u22653\u03c3, contradicting the predicted sign change.",
-    "KC3: Independent tomographic CMB lensing or joint cosmic-shear \u00d7 CMB-lensing reconstructions show a crossover redshift inconsistent with 0.42 by more than \u0394z \u2248 0.1 at \u22653\u03c3."
+    "KC1: No crossover of eff(z) near z = 0.42 is observed—specifically, if tomographic weak-lensing measurements show no crossing within 0.30 < z < 0.55 at ≥3σ significance.",
+    "KC2: The measured deviation of eff(z) from unity exceeds ±2% anywhere within 0.2 < z < 1.4 at ≥3σ, or remains on one side of unity across the entire range at ≥3σ, contradicting the predicted sign change.",
+    "KC3: Independent tomographic CMB lensing or joint cosmic-shear × CMB-lensing reconstructions show a crossover redshift inconsistent with 0.42 by more than Δz ≈ 0.1 at ≥3σ."
   ],
   "tier": "T3",
   "paper_type": "sealed_prediction",
@@ -71,5 +71,109 @@
     "pdf": "sigma_eff_crossover.pdf",
     "readme": "README.md"
   },
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.32037990"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32037990",
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "This paper delivers the first sealed, quantitative perturbation-sector prediction for EFC weak lensing: a single crossover in eff(z) at z ≈ 0.42 with ±2 % bounded deviations over 0.2 ≲ z ≲ 1.4. It fills the previously empty perturbation/lensing prediction slot, gives Stage-IV surveys (Euclid, Rubin LSST, Roman) a concrete falsifiable target, and directly services KC4 (lensing observables) by providing the sealed numerical envelope against which forthcoming tomographic cosmic-shear data will be compared. No KC is closed—the predictions await data—but the prediction side of KC4 is now locked.",
+    "graph_insights": [
+      "No existing papers or validation tests were found within 1–2 hops, confirming this is the first perturbation-sector document in the EFC graph; it seeds a new sub-cluster (lensing/perturbation) that future cosmic-shear and CMB-lensing nodes will attach to.",
+      "The concepts 'redshift crossover' and 'percent-level deviation' are new graph nodes; they will become shared connection points once the EFCLASS Boltzmann solver and the Euclid/Rubin rapid-response pipelines are added, linking the theory-gap and engineering-gap branches.",
+      "The absence of connected validation tests underlines that pipeline actions (action-6, action-7 both PLANNED) should prioritise a lensing-specific verification script analogous to the RSD rapid-response pipeline flagged in the biggest-gap note."
+    ],
+    "kc_addressed": [
+      "KC4"
+    ],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "lensing_crossover_z042",
+        "category": "planned_pipeline",
+        "name": "Weak-lensing eff(z) crossover at z ≈ 0.42",
+        "description": "Verify that tomographic cosmic-shear measurements show a single sign-changing crossover of eff(z) relative to ΛCDM within 0.30 < z < 0.55 at ≥ 3σ.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 / Rubin LSST Y1 tomographic cosmic shear",
+        "prediction": "Single crossover at z ≈ 0.42; eff > 1 below, eff < 1 above"
+      },
+      {
+        "test_id": "lensing_deviation_bound_pm2pct",
+        "category": "planned_pipeline",
+        "name": "Weak-lensing eff(z) deviation bounded within ±2 %",
+        "description": "Confirm that over 0.2 < z < 1.4 the measured eff(z) never deviates from unity by more than 2 % at ≥ 3σ, and exhibits a sign change.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "Euclid DR1 / Rubin LSST Y1 tomographic cosmic shear",
+        "prediction": "|eff(z) − 1| ≤ 0.02 everywhere in 0.2–1.4, with sign flip"
+      },
+      {
+        "test_id": "cmb_lensing_crossover_consistency",
+        "category": "planned_pipeline",
+        "name": "CMB-lensing × cosmic-shear crossover consistency",
+        "description": "Cross-check that joint CMB-lensing and cosmic-shear reconstructions locate the crossover at z = 0.42 ± 0.10.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "SO/CMB-S4 × Euclid/Rubin joint lensing",
+        "prediction": "Crossover redshift consistent with 0.42 within Δz ≈ 0.1"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "gap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_badge",
+        "new_badge": "SEALED",
+        "new_text": "Perturbation-sector lensing prediction sealed: eff(z) crossover at z ≈ 0.42, ±2 % envelope over 0.2–1.4. Three kill criteria (crossover location, amplitude bound, CMB-lensing cross-check) registered. Awaiting Stage-IV tomographic data. DOI 10.6084/m9.figshare.32037990.",
+        "doi_refs": [
+          "32037990"
+        ],
+        "reasoning": "KC4 was marked SEALED in the state table; this paper is the document that actually locks the sealed prediction numbers for lensing. The gap page should now reflect that a concrete, falsifiable prediction exists and cite the DOI."
+      },
+      {
+        "page": "roadmap",
+        "target": "data-kc-id=\"KC4\"",
+        "action": "update_text",
+        "new_badge": "SEALED",
+        "new_text": "Sealed lensing prediction deposited (DOI 10.6084/m9.figshare.32037990). Next milestone: build rapid-response verification pipeline for Euclid DR1 / Rubin Y1 cosmic-shear tomography to test eff(z) crossover at z ≈ 0.42.",
+        "doi_refs": [
+          "32037990"
+        ],
+        "reasoning": "Roadmap should show that KC4's prediction side is complete and flag the next concrete engineering step."
+      },
+      {
+        "page": "elevator",
+        "target": "perturbation-sector",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC now carries a sealed, percent-level lensing prediction (crossover at z ≈ 0.42) testable by Euclid/Rubin tomographic shear.",
+        "doi_refs": [
+          "32037990"
+        ],
+        "reasoning": "The elevator pitch should note that EFC predictions now extend beyond the background sector into perturbations/lensing."
+      },
+      {
+        "page": "whitepaper",
+        "target": "perturbation-sector",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The perturbation sector of EFC produces a constraint-driven gravitational slip that yields a single crossover in the weak-lensing efficiency ratio eff(z) at z ≈ 0.42, with deviations from ΛCDM confined to ±2 % over 0.2 ≲ z ≲ 1.4. Three explicit kill criteria are registered. See DOI 10.6084/m9.figshare.32037990.",
+        "doi_refs": [
+          "32037990"
+        ],
+        "reasoning": "Whitepaper must incorporate the first quantitative perturbation-level result and its falsifiability conditions."
+      }
+    ],
+    "implicit_consequences": [
+      "The ±2 % amplitude bound implicitly constrains the EFC coupling function ξ(a) at the perturbation level far more tightly than the background fit alone; any future modification to ξ(a) that survives background tests but violates this lensing envelope is pre-falsified.",
+      "A crossover at z ≈ 0.42 in eff(z) implies a corresponding, correlated signature in the galaxy–galaxy lensing ratio and in the Σ(z) = Φ+Ψ Weyl potential growth rate, meaning additional independent observables (e.g., DES Y6 or KiDS-1000 galaxy–galaxy lensing) become indirect tests of the same prediction without a new sealed deposit.",
+      "Because eff(z) > 1 at low z, EFC predicts a slightly higher S₈ when inferred from shear below z ≈ 0.42 and a slightly lower S₈ above it, providing a natural, parameter-free explanation for the observed S₈ tension trend between low-z and CMB-calibrated analyses.",
+      "The percent-level deviation envelope means that any EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver gap) must achieve sub-percent numerical accuracy in the lensing kernel to be useful for verification—this tightens the solver specification.",
+      "The three paper-internal kill criteria (KC1–KC3 of the paper) map onto sub-tests under the project-level KC4, but do not retire KC4 itself; KC4 remains SEALED until Stage-IV data arrives."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [
+      "KC4"
+    ]
+  }
 }

@@ -6,80 +6,10 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
+>>> Step 1: All papers at 10/10 <<<
 
-  efc_perturbation_sector  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/efc_perturbation_sector.py
-    Created examples/demo_efc_perturbation_sector.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
+>>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
 
-  Enriched: 2/1
-
->>> Step 1.5: Holistic Impact Analysis for 52 paper(s) <<<
-
-  EFC_vs_LCDM_Kill_Test_v6_final:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first comprehensive multi-probe kill-test of EFC against ΛCDM, spanning six probes
-    KCs: ['KC1', 'KC2', 'KC3', 'KC4', 'KC5'], page_updates: 6, tests: 8
-  Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper definitively falsifies local entropy-gradient couplings for cluster merger geometry (0/42
-    KCs: [], page_updates: 4, tests: 5
-  efc_des_y6_validation:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    Impact: DES Y6’s 3×2pt S8 combined with the 2026 CMB baseline yields an S8_lens/S8_CMB ratio of 0.944 ± 0.01
-    KCs: [], page_updates: 2, tests: 1
-  efc_euclid_prediction:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first full Boltzmann-level sealed prediction set for EFC against Euclid D
-    KCs: [], page_updates: 4, tests: 8
-  Scale_Localised_Modified_Gravity:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first single-parameter, scale-localised modified-gravity forecast derived
-    KCs: [], page_updates: 4, tests: 10
-  efc_boss_bao_cobaya_research_note:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    Impact: This paper adds a stringent, fully reproducible BAO geometry check using the official BOSS DR12 cons
-    KCs: ['KC1'], page_updates: 1, tests: 1
-  A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is an EFC-authored phenomenological test establishing that KiDS-1000 cosmic shear data st
-    KCs: [], page_updates: 3, tests: 6
   Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -89,119 +19,15 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  bullet_cluster_efc:
+  efc_perturbation_sector:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is EFC's first dedicated cluster-scale empirical confrontation, using three independent J
-    KCs: [], page_updates: 3, tests: 5
-  EFC-C_Consciousness_Field_Resonance:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper opens EFC's consciousness arm ('Consciousness-Ego-Mirror') with a first empirical test, e
-    KCs: [], page_updates: 4, tests: 9
-  WP4_BOSS_transfer_validation:
-    Graph: 10 concepts, 0 related papers
-    Impact: Post-hoc but stringent cross-survey validation: DESI DR2–calibrated EFC parameters, frozen and trans
-    KCs: ['KC5'], page_updates: 2, tests: 3
-  EFC-H0-S8-Tensions:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first dedicated EFC empirical analysis resolving both the H0 and S8 tensions simul
-    KCs: ['KC1', 'KC2', 'KC3', 'KC4', 'KC5'], page_updates: 5, tests: 7
-  Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper scales the EFC-R regime framework from a pilot N=20 to a comprehensive N=175 SPARC analys
-    KCs: [], page_updates: 3, tests: 7
-  EFC-R-SPARC-Regime-Validity:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first systematic empirical test of EFC at galactic scales using SPARC rot
-    KCs: [], page_updates: 4, tests: 9
-  efc_eg_preregistration:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    Impact: This paper formally seals a Tier-1, preregistered EFC prediction for the EG gravitational-slip stati
-    KCs: ['KC5'], page_updates: 3, tests: 1
-  A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first multi-channel empirical consistency test for EFC's background-coupl
-    KCs: [], page_updates: 4, tests: 6
-  A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [FAIL] OpenAI HTTP 502: Bad Gateway -- error code: 502
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This is my own pre-registered ICM entropy–structure paper. It establishes a robust sim–obs sign-flip
-    KCs: [], page_updates: 2, tests: 3
-  EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper provides a first empirical probe of EFC energy-flow evolution in galaxy clusters using SD
-    KCs: [], page_updates: 2, tests: 5
-  WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: WP3 delivers the first empirical coordinate on the R(k,S) response surface using 12 fσ8 data points 
-    KCs: [], page_updates: 3, tests: 3
-  ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first sealed, quantitative ISW cross-correlation predictions for EFC usin
-    KCs: ['KC5'], page_updates: 4, tests: 6
-  void_isw_signflip_v2.1_final:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes a new, falsifiable ISW sign-flip prediction that is a structural consequence 
-    KCs: [], page_updates: 4, tests: 5
-  EFC-Phenomenology-vs-DESI-DR2-BAO-A-Comparative-Fit-Analysis:
-    Graph: 10 concepts, 0 related papers
-    Impact: This T2 technical note shows that a smooth, EFC-inspired transition w(z) achieves a low chi-squared 
-    KCs: [], page_updates: 2, tests: 2
+    Impact: This paper delivers the first sealed, quantitative perturbation-sector prediction for EFC weak lensi
+    KCs: ['KC4'], page_updates: 4, tests: 3
   EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -211,233 +37,8 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  EFC_Background_NoGo_Theorem:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes a structural no-go theorem proving that any EFC background H(z) modification 
-    KCs: [], page_updates: 4, tests: 4
-  paper_rsd_to_clusters:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first parameter-locked cross-probe prediction chain in EFC: RSD → growth 
-    KCs: [], page_updates: 4, tests: 5
-  Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first systematic CMB-level constraint analysis for EFC. It conclusively closes the
-    KCs: [], page_updates: 4, tests: 6
-  ISW_Void_SignFlip_Pipeline:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    Impact: This paper operationalizes the EFC void ISW sign-flip prediction into a reproducible, single-entry o
-    KCs: ['KC2'], page_updates: 2, tests: 3
-  Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first direct empirical contact between the EFC framework and large-scale 
-    KCs: [], page_updates: 4, tests: 5
-  regime-dependent-breakdown-of-LCDM-across-cosmic-time:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes a rigorous, model-agnostic empirical baseline: ΛCDM deviations are not random
-    KCs: [], page_updates: 3, tests: 6
-  Kill-Test v6 Universality_SPARC175:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper eliminates the cherry-picking objection against EFC's L3 rotation-curve phenomenology by 
-    KCs: [], page_updates: 3, tests: 3
-  observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-COSMOS-web:
-    Graph: 10 concepts, 0 related papers
-    Impact: COSMOS-Web (COSMOS2025) reports a robust 3–10x excess of massive (log M*/Msun > 9) galaxies at z > 8
-    KCs: [], page_updates: 1, tests: 2
-  ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This is the long-awaited consolidation paper — the single canonical reference that formally proves Λ
-    KCs: ['KC1', 'KC2', 'KC3', 'KC4', 'KC5'], page_updates: 6, tests: 6
-  efc_case_b_eigenmode:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    Impact: This T2 sealed-prediction paper formalizes the consistent (Case B) weak-lensing response of EFC in m
-    KCs: ['KC5'], page_updates: 3, tests: 6
-  Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes that Λ-locking is a necessary condition for cosmological viability of the dis
-    KCs: [], page_updates: 3, tests: 6
-  EFC_Phase_3__SPARC_Validation:
-    Graph: 10 concepts, 0 related papers
-    Impact: This paper establishes that EFC’s screening ansatz ln μ = k ln(1 + g†/gbar) provides an excellent, l
-    KCs: [], page_updates: 2, tests: 2
-  WP4_BOSS_validation:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes that DESI DR2 best-fit EFC parameters transfer to fully independent BOSS DR12
-    KCs: ['KC1', 'KC4'], page_updates: 5, tests: 4
-  EFC_v1_3_PPN_Recovery_via_Density_Saturation:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper closes the Solar System viability question for EFC by providing an explicit PPN derivatio
-    KCs: ['KC1'], page_updates: 4, tests: 7
-  Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first direct empirical confrontation of the EFC regime-transition parameterization
-    KCs: ['KC1', 'KC2', 'KC4'], page_updates: 6, tests: 6
-  Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    Impact: This paper formalizes a precise isomorphism between RLHF with a KL penalty and thermodynamic free-en
-    KCs: [], page_updates: 3, tests: 6
-  regime_consistency_lya_bao_rsd_sce:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first multi-regime empirical consistency test of the EFC entropy-gradient coupling
-    KCs: ['KC1', 'KC3', 'KC5'], page_updates: 5, tests: 8
-  Multi_epoch_Growth_Rate_Test_of_EFC:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper delivers the first multi-epoch empirical test of EFC's perturbation-sector coupling μ(a) 
-    KCs: [], page_updates: 4, tests: 3
-  Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first numerical demonstration that a single relativistic EFC action produ
-    KCs: [], page_updates: 4, tests: 6
-  EFC-Observational-Evidence-Entropy-Cosmic-Evolution:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This is a Tier-3 empirical survey that collates existing multi-band observations (CMB, galaxy cluste
-    KCs: [], page_updates: 2, tests: 5
-  Systematic-CMB-Constraints-on-Early-Universe-Modifications-Parameter-Degeneracies-and-Null-Results:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    Impact: This paper implements two recombination-era EFC mechanisms in CLASS and shows that, once h–epsilon c
-    KCs: ['KC1', 'KC2', 'KC4'], page_updates: 2, tests: 2
-  EFC-Observational-Evidence-for-Energy-Flow:
-    Graph: 10 concepts, 0 related papers
-    Impact: Qualitative synthesis arguing that multiple observables (redshift, CMB anisotropies, lensing, ICM en
-    KCs: ['KC1', 'KC2', 'KC3', 'KC4', 'KC5'], page_updates: 1, tests: 0
-  Energy-Flow-Cosmology-Unified-Analysis-of-BAO:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the first unified multi-probe empirical test of EFC's derived μ(a) against BAO, SN Ia,
-    KCs: ['KC1', 'KC3'], page_updates: 5, tests: 5
-  EFC_Rubin_DP2_PreRegistration:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper seals quantitative, falsifiable EFC predictions for the Rubin LSST DP2 cosmic shear datas
-    KCs: ['KC4'], page_updates: 4, tests: 4
-  Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper is the sealed prediction document itself — the pre-registered, cryptographically hashed E
-    KCs: ['KC5'], page_updates: 4, tests: 5
-  Directional_Lensing_Residuals:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    Impact: This paper delivers a pre-registered, rotation-null lensing pipeline targeted at merger shock fronts
-    KCs: [], page_updates: 2, tests: 2
-  entropy-bounded-empiricism-EBE-SPARC175-complete-documentation:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the Entropy-Bounded Empiricism (EBE) framework as a rigorous epistemological 
-    KCs: [], page_updates: 4, tests: 7
-  Robustness_of_the_EFC_Growth-Sector_Signal_Leave-One-Out_Sound-Horizon_and_Amplitude-Prior_Controls_for_the_Hubble-Friction_Channel:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    Impact: This paper consolidates the ∼2.2σ negative-α hint in the EFC Hubble-friction channel and demonstrate
-    KCs: ['KC3', 'KC4'], page_updates: 2, tests: 3
-  Perturbation-Level_σ₈_Suppression_via_μ_Sructural_Limits_of_Scale-Free_Modifications:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: Technical Note II establishes a rigorous, geometric ceiling on what a scale-free (k-independent) per
-    KCs: [], page_updates: 4, tests: 6
 
->>> Step 2: Registering 57 paper(s) in public pages <<<
+>>> Step 2: Registering 58 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -449,7 +50,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 54 DOI(s) to evidence register
+    Added 1 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -458,9 +59,12 @@ EFC AI BRAIN — done
 ========================================================================
 EFC DOI sync — 149 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 145
-  papers without DOI         : 4
+  papers with registered DOI : 146
+  papers without DOI         : 3
   papers with conflicts      : 0
+
+PROPAGATED DOIs into 1 papers:
+  efc_perturbation_sector -> metadata.json, CITATION.cff, *.jsonld, README.md
 ========================================================================
 [efc-gen] 149 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 149 paper dirs · 0 errors · 1 warnings
@@ -469,19 +73,6 @@ EFC DOI sync — 149 paper dirs scanned
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 6
-[COUNCIL] REJECTED: theory-adm-hamiltonian-stability on gap (DOI m9.figshare.31941543)
-[COUNCIL] Reason: - Check 1 failed: The DOI summary provided does not mention ADM Hamiltonian stability, an analytic stability proof, Eq.(5), Γ'(ρ), “BE microphysics,” or Section 7.2d. These claims are not supported by
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31348414)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: test-count on elevator (DOI m9.figshare.31289806)
-[COUNCIL] Reason: - Check 1 failed: The DOI content supports that a pre-registered multiplicative model (C = Omega × kappa) was falsified, but it does not support repository-wide test-count changes or totals (increase 
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.28098299)
-[COUNCIL] Reason: 
-[COUNCIL] APPROVED: data-kc-id="KC4" on gap (DOI m9.figshare.32013738)
-[COUNCIL] REJECTED: data-kc-id="KC4" on roadmap (DOI m9.figshare.32013738)
-[COUNCIL] Reason: - Check 1 failed: The proposed text introduces claims not supported by the DOI content, specifically “Four pipeline tests queued” and a “Q3 2026 DP2 release” timeline, and mentions a “companion” paper
-[COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31244827)
-[COUNCIL] Reason: 
 Traceback (most recent call last):
   File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 744, in <module>
     sys.exit(main())
@@ -496,7 +87,8 @@ Traceback (most recent call last):
     target_attr = target.replace('"', '"')
                   ^^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'replace'
-[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
+[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32037990
+[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32037990
 [efc-drift] 149 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -505,7 +97,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 119 total, 91 survived, 10 falsified
-  Papers: 149 (145 DOIs)
+  Papers: 149 (146 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -533,14 +125,14 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 48 paper packages enriched; Public pages updated: Gap_Analysis; Ledger data: evidence-register.json.
+[efc-auto-changelog] 1 paper package enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 149 papers, 145 DOIs
+Repo: 149 papers, 146 DOIs
 Ledger: 119 tests, 10 falsified
 
 --- Elevator Pitch ---
@@ -554,12 +146,6 @@ Ledger: 119 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 100 active but ledger has 101
-  [CRITICAL] White Paper Series: says 118 total but ledger has 119
-  [CRITICAL] White Paper Series: says 100 active but ledger has 101
-  [CRITICAL] White Paper Series: says 100 active but ledger has 101
-  [CRITICAL] Stage-IV Roadmap: says 118 total but ledger has 119
-  [CRITICAL] Stage-IV Roadmap: says 100 active but ledger has 101
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -584,7 +170,7 @@ Ledger: 119 tests, 10 falsified
   [OK]       README paper count 149 matches repo 149
   [OK]       README paper count 149 matches repo 149
   [OK]       Stats categories sum to 119 = total_public
-  [OK]       DOI sync script present, 145/149 papers have DOIs
+  [OK]       DOI sync script present, 146/149 papers have DOIs
   [OK]       105 papers have sealed predictions (305 total)
 
 --- Gap Analysis Coherence ---
@@ -598,22 +184,17 @@ Ledger: 119 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 10 errors, 4 warnings
+RESULT: 4 errors, 4 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 100 active but ledger has 101
-  - White Paper Series: says 118 total but ledger has 119
-  - White Paper Series: says 100 active but ledger has 101
-  - White Paper Series: says 100 active but ledger has 101
-  - Stage-IV Roadmap: says 118 total but ledger has 119
-  - Stage-IV Roadmap: says 100 active but ledger has 101
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 0 error(s), 2 warning(s)
+[full-sync] invariants: 0 error(s), 3 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32029704: expected='present' observed='absent'
+  [WARN] §2 doi_in_index_but_not_in_doi_map:32037990: expected='present' observed='absent'
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
