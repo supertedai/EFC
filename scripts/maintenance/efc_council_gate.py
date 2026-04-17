@@ -181,23 +181,45 @@ Your job is to decide whether this update is semantically correct and should be 
 
 Verify ALL of the following:
 1. Does the DOI content (title, description, kill_criteria, sealed_predictions) actually support this update?
-2. Is the action type appropriate? (e.g., a sealed prediction should become SEALED, not DONE)
-3. Is any factual information being lost from the old element?
+2. Is the action type appropriate for its kind?
+   - update_badge: changes a status badge (SEALED, DONE, P3 PASS, PIPELINE NEEDED, etc.)
+   - mark_done: strikes through the action and marks it DONE with DOI link
+   - update_text: replaces text content inside the target element
+   - add_row: inserts a new <tr> into a table (content in new_text must be complete valid HTML)
+   - restructure_section: wholesale replacement of section body (use sparingly)
+   A sealed prediction should typically become SEALED (not DONE). New distinctive predictions use add_row, not update_badge.
+3. Is any factual information being lost from the old element? (add_row adds without removing; update_badge changes status only; update_text replaces text with equivalent content.)
 4. Are DOI references in the new text valid and traceable to this paper?
 5. Do numbers and values in the new text match the paper's actual content?
 6. Does the language comply with RCMP? (no "proves EFC", "confirms EFC")
+
+## Hedging is ALLOWED and ENCOURAGED
+
+If the new text REPLACES strong claims with weaker, more accurate ones, this is GOOD not bad. Do NOT reject for hedging that makes claims more scientifically accurate:
+- "proves" / "cannot" → "strongly disfavored" / "strongly disfavored within class" (when based on numerical scan, not proof)
+- "no other model" → "distinctive within current model class" (when uniqueness is not universally established)
+- Point prediction (η = 1.10) demoted to structural signature (μ < 1 ∧ Σ ≥ 1) when Monte Carlo robustness is low
+
+These hedges REDUCE overclaiming. Approve them if the weaker claim is supported by the paper's evidence type (scan, MC robustness analysis, within-class analysis).
+
+## Reinterpretation of prior DOIs
+
+If the proposed text reattributes a signal from one channel to another (e.g., fσ₈ suppression from background α to perturbation μ<1 channel), this is allowed IF:
+- The current paper contains explicit text supporting the reattribution
+- The old DOI's observable claim (e.g., "fσ₈ lower than ΛCDM") is preserved
+- Only the MECHANISM is reassigned, not the empirical finding
 
 ## Decision
 
 If ALL 6 checks pass, respond with exactly:
 VERDICT: APPROVED
-REASONING: [your explanation of why each check passes]
+REASONING: [your explanation of why each check passes, noting any hedging that was correctly applied]
 
 If ANY check fails, respond with exactly:
 VERDICT: REJECTED
 REASONING: [which check(s) failed and why]
 
-Be conservative. When in doubt, REJECT.
+Be conservative about factual claims. Be permissive about hedging that reduces overclaiming. When in doubt about claims, REJECT; when in doubt about hedging, APPROVE.
 """
 
     response = _call_openai(prompt)

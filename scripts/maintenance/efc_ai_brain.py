@@ -393,6 +393,7 @@ PDF excerpt (first 4000 chars):
 
 ## Your Analysis — Think Holistically
 
+### Forward coupling (paper → existing elements)
 1. What does this paper ESTABLISH or PROVE for EFC?
 2. Which Stage-IV KC (KC1-KC5) does it address? Does it CLOSE a KC gap?
 3. Does it close any theory gap (data-gap-id)?
@@ -403,9 +404,50 @@ PDF excerpt (first 4000 chars):
    explicitly but that follow logically from the graph connections?
 8. Which public pages (gap, roadmap, elevator, whitepaper) need updating?
 
+### Backward coupling (paper → earlier results)
+9. Does this paper CHANGE the interpretation of any EXISTING published
+   DOI? (e.g., reattribution between channels, mechanism shift,
+   robustness downgrade of a previous point prediction)
+10. For each affected prior DOI, specify what was the OLD interpretation,
+    what is the NEW interpretation, and why the shift follows from this
+    paper's content.
+
+### Language discipline
+11. Inspect the paper's strong claims. For each, check:
+    - Is it a PROOF or a numerical SCAN? → hedge "proves / cannot" to
+      "strongly disfavored / strongly disfavored within class"
+    - Is it a UNIVERSALITY claim or a WITHIN-CLASS claim? → hedge
+      "no other model" to "distinctive within current class"
+    - Is it a POINT prediction or a STRUCTURAL one? → if the point
+      value is fragile under Monte Carlo (<50% robustness), demote
+      it from central role
+12. Return `language_hedges` array documenting each hedge applied.
+
+### Hierarchy effects
+13. Does the PREDICTION HIERARCHY change? Rank existing + new kill
+    criteria by observational robustness (observables > structural
+    signatures > fragile point predictions).
+14. Does the "most distinctive observable" shift? If the earlier
+    central prediction becomes fragile, what replaces it as the
+    primary discriminator?
+
+### Narrative framing
+15. Is this result NEGATIVE, POSITIVE, CLARIFYING, or RESTRUCTURING
+    for EFC? Choose one and justify in one sentence.
+16. What ONE sentence captures the essence for the Bottom Line?
+
+### Structural changes, not just updates
+17. What NEW rows/items need ADDING to which tables? (distinct from
+    UPDATING existing rows — use action="add_row")
+18. What SECTIONS need restructuring (reordering lists, splitting
+    sections, merging tables) rather than sentence-level edits?
+
 Return ONLY a JSON object (no markdown, no explanation outside JSON):
 {{
   "analysis": "2-3 sentence holistic summary of what this means for EFC",
+  "narrative_frame": "clarifying|restructuring|positive|negative",
+  "narrative_frame_reason": "one sentence justification",
+  "bottom_line_sentence": "one sentence for the Bottom Line table",
   "kc_addressed": ["KC4"],
   "gaps_closed": ["theory-gap-id-here"],
   "priority_actions_completed": ["action-4"],
@@ -422,15 +464,59 @@ Return ONLY a JSON object (no markdown, no explanation outside JSON):
     }}
   ],
   "tests_updated": [],
+  "reinterpreted_dois": [
+    {{
+      "doi": "10.6084/m9.figshare.XXXXXXXX",
+      "old_interpretation": "what that paper was understood to show",
+      "new_interpretation": "what it means in light of the new paper",
+      "reason": "why this reattribution follows"
+    }}
+  ],
+  "language_hedges": [
+    {{
+      "raw_claim": "verbatim quote or close paraphrase from paper",
+      "hedged_version": "how it should be written in public pages",
+      "reason": "proof vs scan / universal vs within-class / point vs structural"
+    }}
+  ],
+  "new_hierarchy": [
+    "1. Most robust observational criterion (DOI ref)",
+    "2. Structural signature (DOI ref)",
+    "3. ...",
+    "N. Previously-central but now-fragile prediction (DOI ref)"
+  ],
+  "primary_discriminator_shift": {{
+    "old": "what was the central distinctive prediction",
+    "new": "what replaces it",
+    "reason": "why"
+  }},
   "page_updates": [
     {{
       "page": "gap|roadmap|elevator|whitepaper",
       "target": "data-kc-id=\\"KC4\\"",
-      "action": "update_badge|mark_done|update_text",
+      "action": "update_badge|mark_done|update_text|add_row|restructure_section",
       "new_badge": "SEALED",
       "new_text": "Description with DOI refs",
       "doi_refs": ["32023788"],
-      "reasoning": "Why this update is correct"
+      "reasoning": "Why this update is correct",
+      "hedges_applied": ["if any hedges from language_hedges apply here"]
+    }}
+  ],
+  "new_rows": [
+    {{
+      "page": "roadmap",
+      "table_id": "section-2-5-predictions",
+      "content_html": "<tr>...full new row HTML...</tr>",
+      "reason": "why a new row (not an update) is needed"
+    }}
+  ],
+  "structural_edits": [
+    {{
+      "page": "elevator",
+      "section": "kill-criteria-list",
+      "change_type": "reorder|split|merge|demote_item",
+      "description": "what changes structurally",
+      "reason": "why"
     }}
   ],
   "implicit_consequences": ["consequence 1", "consequence 2"],
@@ -438,9 +524,21 @@ Return ONLY a JSON object (no markdown, no explanation outside JSON):
   "graph_insights": ["insight from graph traversal"]
 }}
 
-If the paper does NOT affect any KC, gap, or action, return empty arrays.
-Be conservative — only declare changes you are CERTAIN about from the paper content.
-Do NOT invent test results or claim things the paper doesn't establish."""
+Guardrails:
+- If the paper does NOT affect any KC, gap, or action, return empty arrays.
+- Be conservative about *claims*; be honest about *hedging*. Hedging
+  REDUCES overclaiming and should not be omitted to avoid rejection.
+- For `reinterpreted_dois`, require clear textual evidence from THIS
+  paper that the reinterpretation follows. If the paper only *mentions*
+  an earlier DOI without restructuring its meaning, do NOT list it.
+- For `language_hedges`, quote or closely paraphrase the raw claim; the
+  hedged version should preserve the scientific content but remove
+  universal/proof language not supported by scan-based evidence.
+- For `new_rows`, provide complete valid HTML matching the table's
+  existing row structure.
+- For `structural_edits`, the change_type must be one of the listed
+  types; arbitrary restructuring is not supported.
+- Do NOT invent test results or claim things the paper doesn't establish."""
 
     result_text = call_llm(prompt, max_tokens=4000)
     if not result_text:
@@ -1544,6 +1642,18 @@ def main():
                     "tests_added": impact.get("tests_added", []),
                     "tests_updated": impact.get("tests_updated", []),
                     "page_updates": impact.get("page_updates", []),
+                    "new_rows": impact.get("new_rows", []),
+                    "structural_edits": impact.get("structural_edits", []),
+                    "reinterpreted_dois": impact.get("reinterpreted_dois", []),
+                    "language_hedges": impact.get("language_hedges", []),
+                    "new_hierarchy": impact.get("new_hierarchy", []),
+                    "primary_discriminator_shift": impact.get(
+                        "primary_discriminator_shift"),
+                    "narrative_frame": impact.get("narrative_frame"),
+                    "narrative_frame_reason": impact.get(
+                        "narrative_frame_reason", ""),
+                    "bottom_line_sentence": impact.get(
+                        "bottom_line_sentence", ""),
                     "implicit_consequences": impact.get(
                         "implicit_consequences", []),
                     "bottom_line_change": impact.get("bottom_line_change"),

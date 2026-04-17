@@ -475,6 +475,23 @@ def apply_page_updates(updates, bare_doi, idx, apply_mode):
         elif action == "update_text":
             new_element = match.group(1) + new_text + match.group(3)
 
+        elif action == "add_row":
+            # Insert new <tr> at end of target <tbody> or <table>
+            # The target should point to a table container with data-section
+            # or data-table-id. new_text contains the full <tr>...</tr> HTML.
+            body = match.group(2)
+            # Insert before closing </tbody> if present, else at end
+            if "</tbody>" in body:
+                new_body = body.replace("</tbody>", f"{new_text}\n</tbody>", 1)
+            else:
+                new_body = body + "\n" + new_text
+            new_element = match.group(1) + new_body + match.group(3)
+
+        elif action == "restructure_section":
+            # Wholesale replace section body with pre-built HTML in new_text.
+            # Use with extreme caution — council gate must approve.
+            new_element = match.group(1) + new_text + match.group(3)
+
         else:
             errors.append(f"page_updates: unknown action '{action}'")
             continue
@@ -600,11 +617,37 @@ def process_paper(paper_name, idx_path, idx, tests_data, stats_data,
     for gid in impact.get("gaps_closed", []):
         report["planned"].append(f"CLOSE gap {gid}")
 
-    # page_updates (council-gated)
-    page_updates = impact.get("page_updates", [])
-    if page_updates:
-        pu_planned, _, _ = apply_page_updates(page_updates, bare, idx, False)
+    # Merge new_rows into page_updates as add_row actions
+    # (the prompt returns them separately for clarity, we apply them uniformly)
+    all_updates = list(impact.get("page_updates", []))
+    for nr in impact.get("new_rows", []):
+        all_updates.append({
+            "page": nr.get("page", ""),
+            "target": nr.get("table_id", ""),
+            "action": "add_row",
+            "new_text": nr.get("content_html", ""),
+            "doi_refs": [bare] if bare else [],
+            "reasoning": nr.get("reason", ""),
+        })
+
+    # page_updates (council-gated, includes merged new_rows)
+    if all_updates:
+        pu_planned, _, _ = apply_page_updates(all_updates, bare, idx, False)
         report["planned"].extend(pu_planned)
+
+    # structural_edits are reported but NOT auto-applied (require human review)
+    for se in impact.get("structural_edits", []):
+        report["planned"].append(
+            f"STRUCTURAL {se.get('page','?')}/{se.get('section','?')}: "
+            f"{se.get('change_type','?')} (human review required)"
+        )
+
+    # reinterpretations and language_hedges are informational/reporting only
+    for rd in impact.get("reinterpreted_dois", []):
+        report["planned"].append(
+            f"REINTERPRET DOI {rd.get('doi','?').split('/')[-1]}: "
+            f"{rd.get('reason','?')[:80]}"
+        )
 
     if not report["planned"]:
         report["reason"] = "ledger_impact block is empty — nothing to do"
@@ -630,11 +673,20 @@ def process_paper(paper_name, idx_path, idx, tests_data, stats_data,
                 f"gaps_closed: could not mark {sorted(missed)} (already closed?)"
             )
 
-    # page_updates (council-gated)
-    page_updates = impact.get("page_updates", [])
-    if page_updates:
+    # page_updates (council-gated, includes merged new_rows)
+    all_updates = list(impact.get("page_updates", []))
+    for nr in impact.get("new_rows", []):
+        all_updates.append({
+            "page": nr.get("page", ""),
+            "target": nr.get("table_id", ""),
+            "action": "add_row",
+            "new_text": nr.get("content_html", ""),
+            "doi_refs": [bare] if bare else [],
+            "reasoning": nr.get("reason", ""),
+        })
+    if all_updates:
         pu_planned, pu_errors, pu_changed = apply_page_updates(
-            page_updates, bare, idx, True
+            all_updates, bare, idx, True
         )
         report["errors"].extend(pu_errors)
         if pu_changed:
