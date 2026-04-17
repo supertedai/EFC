@@ -1,0 +1,164 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "EFC External Research Watchlist",
+  "identifier": "efc-external-research-watch",
+  "description": "Delta-scan of external cosmology datasets and theory preprints that impact Energy-Flow Cosmology (EFC). Used to route new evidence into the Validation Ledger, Stage-IV Data Roadmap, Gap Analysis, and Changelog.",
+  "version": "0.1",
+  "last_updated": "2026-04-17T00:00:00Z",
+  "baseline_cutoff": "2025-11-01T00:00:00Z",
+  "bootstrap": true,
+  "bootstrap_note": "First populated on 2026-04-17. Prior to this the delta-scan ran without a persistent SEEN set; all items below are initial entries, not deltas.",
+  "efc_doi": "10.6084/m9.figshare.30656828",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "maintainer": {
+    "@type": "SoftwareApplication",
+    "name": "Symbiose AGI Research Watch",
+    "url": "https://github.com/supertedai/AGI"
+  },
+  "sources": {
+    "stage_iv": ["DESI", "Euclid", "DES", "KiDS", "ACT", "SPT-3G", "Simons Observatory"],
+    "galactic": ["SPARC", "BIG-SPARC"],
+    "clusters": ["JWST strong+weak lensing"],
+    "theory": ["entropic gravity", "emergent gravity", "informational gravity"],
+    "citing_efc": ["arxiv", "figshare", "zenodo", "preprints.org"]
+  },
+  "items": [
+    {
+      "key": "desi-dr2-bao-nature-2025",
+      "title": "Dynamical dark energy in light of the DESI DR2 BAO measurements",
+      "url": "https://www.nature.com/articles/s41550-025-02669-6",
+      "arxiv": "2503.14738",
+      "published": "2025-11-20",
+      "domain": "background",
+      "efc_relevance": "w0>-1, wa<0 preference in DR2 BAO sharpens the constraint that EFC must explain any apparent w(z) evolution via the perturbation sector, not background — directly engages the Background No-Go Theorem (three-pillar proof).",
+      "ledger_action": "Add evidence-register row under Pillar-1 (background/LCDM) with status=support_nogo; cross-link to EFC_Background_NoGo_Theorem/ and bind to Stage-IV Roadmap milestone DESI-DR2."
+    },
+    {
+      "key": "desi-mapping-milestone-2026-04-15",
+      "title": "DESI Reaches Mapping Milestone, Surpassing Expectations",
+      "url": "https://www.desi.lbl.gov/2026/04/15/desi-reaches-mapping-milestone-surpassing-expectations/",
+      "published": "2026-04-15",
+      "domain": "background",
+      "efc_relevance": "DESI on track for DR3 / 5-year cosmology release (2027). Confirms the timeline for which EFC must pre-register w(z) and f(z)σ8(z) curves.",
+      "ledger_action": "Update EFC_Stage-IV_Data_Roadmap.html: mark DESI-DR3 milestone as on-schedule; freeze EFC DR3 prediction before release."
+    },
+    {
+      "key": "des-y6-3x2pt-2026",
+      "title": "DES Year 6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing",
+      "url": "https://www.darkenergysurvey.org/des-y6-cosmology-results-papers/",
+      "arxiv": "2601.14559",
+      "published": "2026-01-22",
+      "domain": "perturbation_shear",
+      "efc_relevance": "S8 = 0.789 ± 0.012, Ωm = 0.333, with 1.8σ tension vs Planck+ACT-DR6+SPT-3G combined CMB. Directly tests the EFC-predicted 'DES Y6 vs KiDS-Legacy divergens som EFC-strukturprediksjon' entry already on the planned list. Low-side S8 is the sign predicted by entropy-geometry suppression.",
+      "ledger_action": "Promote planned changelog entry to empirical/supported; add KT entry DES-Y6_S8 with observed vs EFC prediction; update Pillar-4 cross-probe statistics."
+    },
+    {
+      "key": "kids-legacy-cosmic-shear-2025",
+      "title": "KiDS-Legacy: Cosmological constraints from cosmic shear with the complete Kilo-Degree Survey",
+      "url": "https://www.aanda.org/articles/aa/full_html/2025/11/aa54908-25/aa54908-25.html",
+      "arxiv": "2503.19441",
+      "published": "2025-11-01",
+      "domain": "perturbation_shear",
+      "efc_relevance": "S8 = 0.81 ± 0.018, only 0.73σ from Planck — upward shift vs KiDS-1000. Creates a DES-Y6 (low) ↔ KiDS-Legacy (CMB-consistent) bifurcation. EFC must reproduce this bifurcation as a footprint-/zB-dependent shear response, not an average S8 shift.",
+      "ledger_action": "Open new KT test (KT-shear-bifurcation): required EFC behaviour is footprint-dependent w4/w5 whitening component, not a global σ8 shift. Bind to existing 'Whitening WP4 komponent w5' planned entry."
+    },
+    {
+      "key": "s8-tension-review-2026",
+      "title": "Status of the S8 Tension: A 2026 Review of Probe Discrepancies",
+      "url": "https://arxiv.org/abs/2602.12238",
+      "arxiv": "2602.12238",
+      "published": "2026-02-17",
+      "domain": "perturbation_shear",
+      "efc_relevance": "New Combined-CMB baseline (Planck + ACT-DR6 + SPT-3G): S8 = 0.836 ± 0.013. Documents the DES-Y6 (2.4–2.7σ low) vs KiDS-Legacy (consistent) bifurcation. Provides an external, peer-style reference point for the EFC shear-bifurcation prediction.",
+      "ledger_action": "Add to evidence-register as external review; cite in EFC_Validation_Ledger.html S8 section; use its Combined-CMB S8 as EFC's high-side reference and DES-Y6 as the low-side reference."
+    },
+    {
+      "key": "spt3g-d1-camphuis-2025",
+      "title": "SPT-3G D1: CMB T and E-mode power spectra and cosmology (2019–2020 Main field)",
+      "url": "https://arxiv.org/abs/2506.20707",
+      "arxiv": "2506.20707",
+      "published": "2025-12-11",
+      "domain": "background",
+      "efc_relevance": "SPT-3G alone: H0 = 66.66 ± 0.60 (6.2σ from SH0ES). CMB+CMB combination: σ8 = 0.8137 ± 0.0037. 2.8σ LCDM tension between combined CMB and DESI-DR2 BAO drives preferences for modified recombination / electron-mass variation — alternative explanations EFC must either reproduce or rule out in its regime matrix.",
+      "ledger_action": "Add regime-matrix row for modified-recombination/electron-mass escape hatch; document EFC's native prediction for σ8 and H0 as a standalone row in inference.json."
+    },
+    {
+      "key": "act-dr6-final-2025-03",
+      "title": "ACT DR6 final release (endings and beginnings)",
+      "url": "https://www.eurekalert.org/news-releases/1106637",
+      "published": "2025-03-18",
+      "domain": "background",
+      "efc_relevance": "ACT DR6 is the final major ACT release — note that there is no DR7. DR6 CMB lensing: S8 = 0.818 ± 0.022 (alone), 0.813 ± 0.018 with Planck NPIPE. Establishes the Combined-CMB anchor used in the 2026 S8 review.",
+      "ledger_action": "Correct internal references from 'ACT DR7' → 'ACT DR6 (final)'; update Stage-IV Data Roadmap timeline."
+    },
+    {
+      "key": "so-lat-first-light-2025",
+      "title": "Simons Observatory Large Aperture Telescope achieves first light",
+      "url": "https://www.simonsfoundation.org/2025/03/17/simons-observatory-large-aperture-telescope-achieves-first-light-milestone/",
+      "published": "2025-03-17",
+      "domain": "background",
+      "efc_relevance": "LAT now producing science data; UK-SATs first light expected within 2026. Pre-registration window for EFC CMB-lensing and delensing predictions closes as SO ramps up.",
+      "ledger_action": "Add Stage-IV Roadmap milestone SO-LAT-Year1; open planned KT for EFC vs SO forecast cross-check."
+    },
+    {
+      "key": "jwst-bullet-cluster-high-caliber-2025",
+      "title": "A High-Caliber View of the Bullet Cluster via JWST Strong and Weak Lensing",
+      "url": "https://arxiv.org/abs/2503.21870",
+      "arxiv": "2503.21870",
+      "published": "2025-11-15",
+      "domain": "clusters",
+      "efc_relevance": "Highest-resolution mass reconstruction of 1E 0657-56 (146 strong-lensing constraints from 37 systems + dense weak lensing). Directly addresses the open gap 'Applying inference_cluster_tng to Bullet Cluster data should result in chi2 < 2.0'. Decisive for whether EFC's entropy-geometry reproduces the gas/galaxy offset without particulate DM.",
+      "ledger_action": "Promote the Bullet-Cluster frontier-gap from NEEDS_REVIEW to ACTIVE with explicit input dataset = JWST high-caliber reconstruction; allocate pipeline run and freeze chi2<2.0 threshold."
+    },
+    {
+      "key": "mond-bullet-cluster-2026-04",
+      "title": "A consistent MOND modelling of the Bullet Cluster",
+      "url": "https://arxiv.org/abs/2604.10811",
+      "arxiv": "2604.10811",
+      "published": "2026-04-14",
+      "domain": "clusters",
+      "efc_relevance": "Provides a same-dataset MOND benchmark against which EFC's entropy-sourced lensing can be compared head-to-head. Crucial because EFC's MOND-limit (AQUAL-like non-linear term) must not reduce to pure MOND in cluster regime.",
+      "ledger_action": "Add to regime-matrix as external comparison row; ensure EFC Bullet-Cluster KT reports delta-chi2 vs this MOND baseline, not only vs LCDM."
+    },
+    {
+      "key": "big-sparc-database-2024",
+      "title": "BIG-SPARC: The new SPARC database (~4000 galaxies)",
+      "url": "https://arxiv.org/abs/2411.13329",
+      "arxiv": "2411.13329",
+      "published": "2024-11-20",
+      "domain": "galactic",
+      "efc_relevance": "20× expansion of SPARC175 with HI datacubes from APERTIF/ASKAP/ATCA/GMRT/MeerKAT/VLA/WSRT + WISE NIR photometry. EFC's current Kill-Test v6 Universality result (60.2% win rate on SPARC175) is a 175-galaxy claim; BIG-SPARC turns it into a 4000-galaxy claim or falsifies it. This is the highest-leverage pending galactic test.",
+      "ledger_action": "Open planned-pipeline row 'EFC vs BIG-SPARC universality'; freeze the 60.2% win-rate threshold before running on the full database; pre-register screening-model k = 0.415 with no per-galaxy tuning."
+    },
+    {
+      "key": "ieg-informational-entropic-gravity-2026-01",
+      "title": "Informational Entropic Gravity (IEG): Gravity as Informational Symmetry from Entropy",
+      "url": "https://www.preprints.org/manuscript/202601.2277",
+      "published": "2026-01-29",
+      "domain": "theory",
+      "efc_relevance": "Independent construction that treats gravity as an equilibrium state of irreversible informational entropy on holographic boundaries. Formal neighbour to EFC's energy-functional + entropy-geometry approach; useful for cross-citation and for benchmarking distinct predictions (rotation curves, lensing).",
+      "ledger_action": "Add to evidence-register as 'parallel framework'; open Gap Analysis row to list overlapping vs distinguishing predictions between EFC and IEG."
+    },
+    {
+      "key": "entropic-force-matrix-2508-12921",
+      "title": "Entropic force in matrix (Matrix-theory derivation of emergent gravity)",
+      "url": "https://arxiv.org/abs/2508.12921",
+      "arxiv": "2508.12921",
+      "published": "2025-08-18",
+      "domain": "theory",
+      "efc_relevance": "Shows the gravitational force law in BFSS-style matrix theory equals an entropic force from thermal fast/slow mode separation. Provides a microphysical underpinning of the class of theories EFC sits in and sharpens what 'entropy-sourced gravity' must look like at short scales.",
+      "ledger_action": "Cite in EFC_White_Paper_Series theory-foundations section; add to evidence-register under theory/emergent-gravity."
+    },
+    {
+      "key": "thermodynamic-gravity-nonextensive-2602-20430",
+      "title": "Thermodynamic Gravity with Non-Extensive Horizon Entropy and Topological Calibration",
+      "url": "https://arxiv.org/html/2602.20430v2",
+      "arxiv": "2602.20430",
+      "published": "2026-02-28",
+      "domain": "theory",
+      "efc_relevance": "Introduces a Topological Calibration Principle (Gauss-Bonnet-based) to constrain deviations from extensivity in emergent-gravity settings. Directly overlaps with EFC's graph-topological entropy / area-law scaling diagnostics (efc_information_capacity_vs_S).",
+      "ledger_action": "Open structural-constraints row: EFC must pass the topological calibration bound; check efc_information_capacity_vs_S.png data against its non-extensivity window."
+    }
+  ]
+}
