@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.0",
-  "last_updated": "2026-04-17",
+  "version": "1.1",
+  "last_updated": "2026-04-18",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -149,6 +149,17 @@
       "date_published": "2026-01",
       "efc_relevance": "Closest ontological relative published in 2026; gravity as macroscopic equilibrium of informational entropy on holographic boundaries.",
       "ledger_action": "List in Elevator Pitch 'related frameworks' and compare recovery conditions in WP1.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.14327",
+      "title": "The Atacama Cosmology Telescope: A Test of the Gravitational Force Law on Cosmological Scales Using the Kinematic Sunyaev-Zeldovich Effect",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.14327",
+      "date_seen": "2026-04-18",
+      "date_published": "2026-04-17",
+      "efc_relevance": "kSZ pairwise-velocity test constrains g \u221d 1/r^n with n = 2.1 \u00b1 0.3 on 30\u2013230 Mpc (Newtonian preferred, MOND poor fit); bounds any large-scale deviation EFC's L2\u2192L3 transition could introduce.",
+      "ledger_action": "Add to Validation Ledger as blocking constraint for EFC's inter-cluster regime; require EFC L3 predictions to preserve 1/r\u00b2 at 30\u2013230 Mpc within \u00b10.3 in n. Cross-reference in WP3 Falsification Protocol and competitor-landscape table.",
       "status": "new"
     }
   ]
