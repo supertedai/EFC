@@ -662,6 +662,16 @@ def read_page(key):
 def write_page(key, text):
     path = PUBLIC_PAGES.get(key, "")
     if path:
+        # Defensive: ensure nav block is canonical (short labels +
+        # External Research link) on every HTML write. Idempotent.
+        try:
+            import sys as _sys
+            import os as _os
+            _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+            from _nav_helper import ensure_nav as _ensure_nav
+            text = _ensure_nav(text)
+        except Exception:
+            pass  # never let nav sanitation block a real write
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
 
