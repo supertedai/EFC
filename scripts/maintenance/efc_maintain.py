@@ -44,7 +44,6 @@ DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
 LEDGER_AUTOFILL = os.path.join(HERE, "efc_ledger_autofill.py")
 LEDGER_IMPACT_SYNC = os.path.join(HERE, "efc_ledger_impact_sync.py")
 FULL_SYNC = os.path.join(HERE, "efc_full_sync.py")
-BUILD_WIKI = os.path.join(HERE, "efc_build_wiki.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -94,8 +93,6 @@ def main() -> int:
     run(SYMBIOSE, "--from-ledger")
     # Step 7: Scan for new external datasets (Euclid, DESI, KiDS, Simons)
     run(DATASET_SCANNER)
-    # Step 7b: Regenerate wiki Papers-by-Topic index from index.json files
-    run(BUILD_WIKI)
     # Step 8: Auto-changelog — detect and log all changes before commit
     run(AUTO_CHANGELOG)
     # Step 9: CROSS-VALIDATION GATE — check public pages vs repo/ledger/Symbiose
