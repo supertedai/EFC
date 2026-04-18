@@ -2,6 +2,8 @@
 
 > **Core Principle**: Energy flows along entropy gradients — this generates spacetime, structure, and awareness.
 
+> 🧭 **New here?** Start at the [**EFC Wiki → Home**](./docs/wiki/Home.md) — role-based routing for readers, physicists, reproducers, and AI agents.
+
 ## In plain English (a 60-second version)
 
 Today's standard picture of the universe says **95%** of it is made of two invisible ingredients — **dark matter** (the glue that holds galaxies together) and **dark energy** (the pressure that makes space expand faster and faster) — neither ever detected in a laboratory. The 5% we can actually measure is the only part nobody argues about.
