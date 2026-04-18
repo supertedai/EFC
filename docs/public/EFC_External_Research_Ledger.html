@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Energy-Flow Cosmology — External Research Ledger</title>
+  <meta name="description" content="EFC External Research Ledger — third-party research that informs, constrains, competes with, or awaits EFC validation tests." />
   <style>
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 16px; }
@@ -36,48 +37,131 @@ a:hover { text-decoration: underline; color: #003d80; }
 .pub-meta code { background: #eef1f7; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85rem; }
 .doc-synthesis { margin: 0.7rem 0; padding: 0.7rem 0.9rem; background: #fff;
                   border-left: 2px solid #007bff; }
-.xref { font-size: 0.9rem; margin-top: 0.5rem; }
-.xref ul { margin: 0.3rem 0 0.3rem 1.5rem; padding: 0; }
-.xref li { margin: 0.15rem 0; }
+.impact-table { width: 100%; border-collapse: collapse; margin: 0.7rem 0;
+                font-size: 0.92rem; background: #fff; }
+.impact-table th { text-align: left; background: #eef3fa; padding: 0.45rem 0.7rem;
+                   width: 25%; font-weight: 600; color: #2a4a7f; vertical-align: top;
+                   border: 1px solid #d0d7e3; }
+.impact-table td { padding: 0.45rem 0.7rem; border: 1px solid #d0d7e3; vertical-align: top; }
+.impact-table code { background: #eef1f7; padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.85rem; }
+.impact-heading { font-weight: 700; color: #0d1b3e; margin-top: 0.9rem; font-size: 0.95rem;
+                   border-bottom: 1px solid #d0d7e3; padding-bottom: 0.2rem; }
+.summary-matrix { width: 100%; border-collapse: collapse; margin: 1rem 0;
+                   font-size: 0.92rem; }
+.summary-matrix th, .summary-matrix td { border: 1px solid #d0d7e3; padding: 0.5rem 0.7rem;
+                                         text-align: left; vertical-align: top; }
+.summary-matrix th { background: #eef3fa; font-weight: 600; color: #2a4a7f; }
+.summary-matrix tr:nth-child(even) { background: #fafcff; }
 .badge { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 10px;
          font-size: 0.75rem; font-weight: 600; margin-left: 0.3rem; }
 .badge-confirmed { background: #d1e7dd; color: #0a3622; }
 .badge-proposed { background: #fff3cd; color: #664d03; }
 .badge-framework { background: #e7d6ff; color: #38166c; }
 .badge-external { background: #e1ecf7; color: #0d3c70; }
+.top-nav { background: #f8f9fa; border: 1px solid #d0d7e3; border-radius: 6px;
+           padding: 12px 18px; margin-bottom: 1.5rem; font-size: 0.92rem; }
+.top-nav a { margin-right: 1.5rem; font-weight: 600; }
+.top-nav a.current { font-weight: 700; }
+.meta-line { font-size: 0.92rem; color: #555; margin-bottom: 1.5rem; }
 footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
          font-size: 0.85rem; color: #666; }
 </style>
 </head>
 <body>
-  <header>
-    <h1>EFC External Research Ledger</h1>
-    <p class="pub-meta">
-      Version 1.0 ·
-      Last verified by Morten: Morten Magnusson ·
-      Generated: 2026-04-18T12:34:52.652173Z
-    </p>
-  </header>
+
+<h1>EFC External Research Ledger</h1>
+
+
+<div class="top-nav">
+  <a href="EFC_Elevator_Pitch.html">Elevator Pitch</a>
+  <a href="EFC_Validation_Ledger.html">Validation Ledger</a>
+  <a href="EFC_White_Paper_Series.html">White Paper Series</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Roadmap</a>
+  <a href="EFC_Gap_Analysis.html">Gap Analysis</a>
+  <a href="EFC_External_Research_Ledger.html" class="current">External Research</a>
+  <a href="EFC_Predictions.html">Predictions</a>
+  <a href="EFC_Changelog.html">Changelog</a>
+</div>
+
+
+
+<p class="meta-line">
+  Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+  ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+  April 2026 &middot; CC-BY-4.0
+</p>
+
+
+<p class="meta-line">
+  Version 1.0 &middot;
+  Last verified: Morten Magnusson &middot;
+  Generated: 2026-04-18T13:20:33.446606Z
+</p>
 
   <section class="intro">
     <p><strong>What this ledger is.</strong> A curated record of third-party
-    research that informs, constrains, competes with, or awaits EFC's validation
-    tests. Entries are materialized as typed graph relations
-    (<code>INFORMS</code>, <code>COMPETES_WITH</code>, <code>INFORMS_GAP</code>,
-    <code>BLOCKS_RESOLUTION_OF</code>) from the curated watchlist mapping.</p>
-    <p><strong>How to read it.</strong> Entries are grouped into thematic
-    clusters. Each cluster has a short editorial synthesis (when verified).
-    Each publication has its own AI-drafted synthesis (when verified). Until
-    Morten reviews, draft text is replaced with a placeholder — nothing
-    unverified is published here.</p>
+    research that informs, constrains, competes with, or awaits EFC validation
+    tests. Each external paper is materialized in Neo4j as a
+    <code>Publication</code> node (multi-labeled <code>:External</code>, and
+    <code>:Framework</code> when it represents a competing theoretical
+    framework) and linked via typed edges:
+    <code>INFORMS</code> (paper provides data for an EFC test),
+    <code>COMPETES_WITH</code> (alternative theoretical framework), and
+    <code>INFORMS_GAP</code>/<code>BLOCKS_RESOLUTION_OF</code> (affects an EFC
+    knowledge gap).</p>
+
+    <p><strong>How to read it.</strong> The matrix below gives a one-screen
+    overview. Each thematic cluster then has a short editorial synthesis,
+    followed by individual publication entries with a structured
+    <em>Impact on EFC</em> table, a verified EFC synthesis, and the full
+    cross-reference list into the validation-ledger test graph.</p>
+
+    <p><strong>Evidential separation.</strong> External papers live here, in
+    this ledger. EFC's own publications (Figshare DOIs) live in the
+    <a href="EFC_Validation_Ledger.html">Validation Ledger</a> evidence
+    register. These two layers never mix — a rule enforced both in the graph
+    schema (<code>tier = 'external'</code> vs own) and in this renderer.</p>
+
     <p><strong>Synthesis source.</strong> AI-drafted by claude-opus-4-7 from watchlist metadata fields only — title, efc_relevance, ledger_action, source_type. NOT based on full-text reading of referenced papers or abstracts.</p>
-    <p><strong>Language policy.</strong> English only. Norwegian reasoning/notes
-    live in internal working notes, not in this public ledger.</p>
-    <p><strong>Statistics.</strong>
-       12 publications in graph ·
-       12 verified syntheses ·
-       7/7 verified cluster commentaries.</p>
+
+    <p><strong>Language policy.</strong> English only.
+    <strong>Claim discipline.</strong> Consistency is not confirmation.
+    Phrasing uses "informs", "tightens", "constrains", "challenges" —
+    never "supports"/"confirms" unless backed by a sealed blind test.</p>
   </section>
+
+  <h2 style="margin-top:1.5rem;">Overview matrix</h2>
+  
+    <table class="summary-matrix">
+      <thead>
+        <tr>
+          <th style="width:38%">Theme / cluster</th>
+          <th style="width:8%; text-align:center">Papers</th>
+          <th style="width:16%; text-align:center">Graph edges</th>
+          <th>Primary EFC aspect</th>
+        </tr>
+      </thead>
+      <tbody><tr><td><a href="#desi_dr2_de_evolution">DESI DR2 and dynamical dark energy (w₀wₐ)</a></td><td style="text-align:center">2</td><td style="text-align:center"><span class="badge badge-confirmed">4</span></td><td>Dark energy evolution w(z); EFC α background parameter</td></tr><tr><td><a href="#s8_tension_des_y6">DES Y6 and the S8 tension (2026 series)</a></td><td style="text-align:center">3</td><td style="text-align:center"><span class="badge badge-confirmed">5</span> <span class="badge badge-proposed">5</span></td><td>Perturbation-sector S8; EFC μ(a) &lt; 1 prediction</td></tr><tr><td><a href="#cmb_lensing_high_precision">High-precision CMB lensing (ACT + SPT + Planck)</a></td><td style="text-align:center">1</td><td style="text-align:center"><span class="badge badge-confirmed">2</span></td><td>CMB lensing S8; gravitational slip η; hi_class solver</td></tr><tr><td><a href="#jwst_bullet_cluster">JWST Bullet Cluster — independent mass reconstructions</a></td><td style="text-align:center">2</td><td style="text-align:center"><span class="badge badge-confirmed">3</span> <span class="badge badge-proposed">1</span></td><td>Shock-front lensing asymmetry δκ (pre-registered EFC test)</td></tr><tr><td><a href="#rotation_curves_and_competitors">Rotation curves — data and competing models</a></td><td style="text-align:center">2</td><td style="text-align:center"><span class="badge badge-confirmed">3</span></td><td>Galaxy rotation curves; Kill-Test v6 universality</td></tr><tr><td><a href="#future_arbiters">Future arbiters (awaiting data)</a></td><td style="text-align:center">1</td><td style="text-align:center"><span class="badge badge-confirmed">3</span></td><td>Sealed blind test; Euclid DR1 (FROZEN until 2026-10-21)</td></tr><tr><td><a href="#competing_frameworks">Competing theoretical frameworks</a></td><td style="text-align:center">2</td><td style="text-align:center"><span class="badge badge-confirmed">2</span></td><td>Alternative theoretical frameworks; recovery-condition comparison</td></tr></tbody>
+      <tfoot>
+        <tr style="font-weight:700; background:#eef3fa;">
+          <td>Total across all themes</td>
+          <td style="text-align:center">13</td>
+          <td style="text-align:center">
+            <span class="badge badge-confirmed">22</span> <span class="badge badge-proposed">6</span>
+          </td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    
+
+  <p style="font-size:0.88rem; color:#555; margin-top:-0.3rem;">
+    <em>Graph edges column shows confirmed (green) and proposed (yellow)
+    edge counts per cluster. Proposed edges are medium/low-confidence
+    mappings awaiting follow-up review before auto-promotion.</em>
+  </p>
+
+  <h2 style="margin-top:2.5rem;">Thematic clusters</h2>
 
   
     <section class="cluster" id="desi_dr2_de_evolution">
@@ -85,17 +169,19 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">DESI DR2 shows a 3.1σ preference for w₀wₐ over a pure cosmological constant, independently reproduced by the Nature Astronomy reanalysis. The direction is compatible with EFC&#x27;s L2→L3 regime transition and with α = −0.14 ± 0.21. The same signal is, however, also predicted by holographic dark energy, quintessence, and several other frameworks — the field is moving away from ΛCDM, but it does not select EFC over competitors.</div>
       
     <article class="publication" id="arXiv:2503.14738">
-      <h3>DESI DR2 Results II: BAO Measurements and Cosmological Constraints <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2503.14738</code> · Published: 2025-03-19 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2503.14738" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">DESI DR2 reports 2.3σ tension with ΛCDM and a 3.1σ preference for w₀wₐ dynamical dark energy over a pure cosmological constant. The w(z) signature is directionally consistent with EFC&#x27;s L2→L3 regime transition and with α = −0.14 ± 0.21. The same signal is, however, accommodated by several competing frameworks — it constrains ΛCDM more than it selects EFC.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_darkenergy_evolution_wz</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3.1σ preference for w0wa directly informs dark-energy evolution w(z) test.</span></li><li><strong>INFORMS</strong> → <code>conv_desi_dr2_bao_constraint_post_prediction_</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Direct subject match: DESI DR2 BAO α-constraint.</span></li></ul></div>
+      <h3>DESI DR2 Results II: BAO Measurements and Cosmological Constraints <span class="badge badge-confirmed">2 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2503.14738</code> &middot; Published: 2025-03-19 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2503.14738" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Dark energy evolution w(z); EFC α background parameter</td></tr><tr><th>External claim (verbatim)</th><td>2.3σ ΛCDM tension, 3.1σ preference for w0wa; supports EFC L2→L3 regime transition and WP4 T(S).</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_desi_dr2_bao_constraint_post_prediction_</code></li><li><code>ledger_darkenergy_evolution_wz</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">2 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Add L2 row to Validation Ledger; update gap theory-background-hz-modification to &#x27;decision-ready&#x27;.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">DESI DR2 reports 2.3σ tension with ΛCDM and a 3.1σ preference for w₀wₐ dynamical dark energy over a pure cosmological constant. The w(z) signature is directionally consistent with EFC&#x27;s L2→L3 regime transition and with α = −0.14 ± 0.21. The same signal is, however, accommodated by several competing frameworks — it constrains ΛCDM more than it selects EFC.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_darkenergy_evolution_wz</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3.1σ preference for w0wa directly informs dark-energy evolution w(z) test.</span></li><li><strong>INFORMS</strong> → <code>conv_desi_dr2_bao_constraint_post_prediction_</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Direct subject match: DESI DR2 BAO α-constraint.</span></li></ul></div>
     </article>
     
     <article class="publication" id="DOI:10.1038/s41550-025-02669-6">
-      <h3>Dynamical dark energy in light of DESI DR2 BAO (Nature Astronomy) <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">DOI: <code>10.1038/s41550-025-02669-6</code> · Published: 2025-10-06 · First seen: 2026-04-17 · <a href="https://www.nature.com/articles/s41550-025-02669-6" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">Nature Astronomy reanalysis independently reproduces DESI DR2&#x27;s w₀wₐ preference. This strengthens the empirical case that dark energy is not a simple cosmological constant, leaving EFC&#x27;s α estimate (−0.14 ± 0.21) consistent with the preferred direction. It is independent confirmation of the signal, not selective evidence for EFC over alternative dynamical-DE frameworks.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_darkenergy_evolution_wz</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Nature Astronomy paper on w0wa preference directly informs dark-energy evolution test.</span></li><li><strong>INFORMS</strong> → <code>desi_dr2_bao_alpha_constraint_v1</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance cites α = −0.14 ± 0.21, the exact parameter of this test.</span></li></ul></div>
+      <h3>Dynamical dark energy in light of DESI DR2 BAO (Nature Astronomy) <span class="badge badge-confirmed">2 confirmed</span></h3>
+      <div class="pub-meta">DOI: <code>10.1038/s41550-025-02669-6</code> &middot; Published: 2025-10-06 &middot; First seen: 2026-04-17 &middot; <a href="https://www.nature.com/articles/s41550-025-02669-6" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Dark energy evolution w(z); EFC α background parameter</td></tr><tr><th>External claim (verbatim)</th><td>Independent confirmation of w0wa preference; bolsters EFC &#x27;LCDM as special case&#x27; (α = −0.14 ± 0.21).</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>desi_dr2_bao_alpha_constraint_v1</code></li><li><code>ledger_darkenergy_evolution_wz</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">2 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Cite in WP1 recovery conditions section.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">Nature Astronomy reanalysis independently reproduces DESI DR2&#x27;s w₀wₐ preference. This strengthens the empirical case that dark energy is not a simple cosmological constant, leaving EFC&#x27;s α estimate (−0.14 ± 0.21) consistent with the preferred direction. It is independent confirmation of the signal, not selective evidence for EFC over alternative dynamical-DE frameworks.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_darkenergy_evolution_wz</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Nature Astronomy paper on w0wa preference directly informs dark-energy evolution test.</span></li><li><strong>INFORMS</strong> → <code>desi_dr2_bao_alpha_constraint_v1</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance cites α = −0.14 ± 0.21, the exact parameter of this test.</span></li></ul></div>
     </article>
     
     </section>
@@ -106,24 +192,27 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">DES Y6 delivers S8 ≈ 0.79 from both cosmic shear and 3×2pt — 2.4–2.7σ lower than Planck+ACT+SPT (0.836), while KiDS-Legacy sits close to Planck. The 2026 review paper consolidates the picture: the probe split is a real feature, not an artifact. EFC&#x27;s pre-registered DES Y6 P3 PASS (0.944 ± 0.018) and μ(a)&lt;1 prediction survive the published numbers, but the observed tension admits multiple explanations beyond EFC — including baryonic feedback, intrinsic-alignment systematics, and other μ&lt;1 models.</div>
       
     <article class="publication" id="arXiv:2602.10065">
-      <h3>Dark Energy Survey Year 6: Cosmological Constraints from Cosmic Shear <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2602.10065</code> · Published: 2026-02 · First seen: 2026-04-17 · Probe: <code>cosmic_shear_only</code> · <a href="https://arxiv.org/abs/2602.10065" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">DES Y6 cosmic shear delivers S8 = 0.798 (NLA), carrying 2.6σ tension against Planck CMB. EFC&#x27;s pre-registered DES Y6 P3 PASS (0.944 ± 0.018) and μ(a)&lt;1 prediction survive under the published values. The observed tension is shared with multiple μ&lt;1 models and baryonic-feedback scenarios — it tightens the baseline but does not discriminate among them.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance cites &#x27;EFC logged DES Y6 P3 PASS (0.944 ± 0.018)&#x27;.</span></li><li><strong>INFORMS</strong> → <code>ledger_weaklensing_shear_case_a</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Graph has 4 Case A variants, no distinguishing evidence in watchlist. Needs Morten&#x27;s pick.</span></li><li><strong>INFORMS</strong> → <code>conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Theory-shared μ&lt;1 but not data-shared with B0 bridge test.</span></li></ul></div>
+      <h3>Dark Energy Survey Year 6: Cosmological Constraints from Cosmic Shear <span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">2 proposed</span></h3>
+      <div class="pub-meta">arXiv: <code>2602.10065</code> &middot; Published: 2026-02 &middot; First seen: 2026-04-17 &middot; Probe: <code>cosmic_shear_only</code> &middot; <a href="https://arxiv.org/abs/2602.10065" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Perturbation-sector S8; EFC μ(a) &lt; 1 prediction</td></tr><tr><th>External claim (verbatim)</th><td>S8 = 0.798 (NLA); 2.6σ CMB tension validates EFC logged DES Y6 P3 PASS (0.944 ± 0.018) and μ(a) &lt; 1 prediction.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1</code></li><li><code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code></li><li><code>ledger_weaklensing_shear_case_a</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">2 proposed</span></td></tr><tr><th>Ledger action required</th><td>Replace preliminary DES Y6 row in Validation Ledger with published values.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">DES Y6 cosmic shear delivers S8 = 0.798 (NLA), carrying 2.6σ tension against Planck CMB. EFC&#x27;s pre-registered DES Y6 P3 PASS (0.944 ± 0.018) and μ(a)&lt;1 prediction survive under the published values. The observed tension is shared with multiple μ&lt;1 models and baryonic-feedback scenarios — it tightens the baseline but does not discriminate among them.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance cites &#x27;EFC logged DES Y6 P3 PASS (0.944 ± 0.018)&#x27;.</span></li><li><strong>INFORMS</strong> → <code>ledger_weaklensing_shear_case_a</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Graph has 4 Case A variants, no distinguishing evidence in watchlist. Needs Morten&#x27;s pick.</span></li><li><strong>INFORMS</strong> → <code>conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Theory-shared μ&lt;1 but not data-shared with B0 bridge test.</span></li></ul></div>
     </article>
     
     <article class="publication" id="arXiv:2601.14559">
-      <h3>DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3×2pt) <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2601.14559</code> · Published: 2026-01 · First seen: 2026-04-17 · Probe: <code>3x2pt</code> · <a href="https://arxiv.org/abs/2601.14559" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">DES Y6 3×2pt reports S8 = 0.789 ± 0.012, Ωm = 0.333, and wCDM w = −1.12. This is primary perturbation-sector data for EFC confrontation — combining galaxy clustering, cosmic shear, and galaxy-galaxy lensing into joint constraints on μ and Σ. No EFC analysis against this specific dataset has been executed yet.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">DES Y6 3×2pt is the primary S8 probe referenced in P3 test.</span></li><li><strong>INFORMS</strong> → <code>conv_efc_physics_localization_perturbation_sector_not_background</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3×2pt IS perturbation-sector data.</span></li><li><strong>INFORMS</strong> → <code>conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">One step more specific (&#x27;with_grav&#x27;) than raw 3×2pt data provides.</span></li><li><strong>INFORMS</strong> → <code>conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">MGCAMB is analytical tool for interpreting 3×2pt.</span></li><li><strong>INFORMS</strong> → <code>ledger_perturbationsector_valley</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3×2pt constrains joint μ-Σ degeneracy valley.</span></li></ul></div>
+      <h3>DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3×2pt) <span class="badge badge-confirmed">3 confirmed</span> <span class="badge badge-proposed">2 proposed</span></h3>
+      <div class="pub-meta">arXiv: <code>2601.14559</code> &middot; Published: 2026-01 &middot; First seen: 2026-04-17 &middot; Probe: <code>3x2pt</code> &middot; <a href="https://arxiv.org/abs/2601.14559" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Perturbation-sector S8; EFC μ(a) &lt; 1 prediction</td></tr><tr><th>External claim (verbatim)</th><td>S8 = 0.789 ± 0.012, Ωm = 0.333; wCDM: w = −1.12. Direct 3×2pt anchor for EFC perturbation sector tests.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav</code></li><li><code>conv_efc_physics_localization_perturbation_sector_not_background</code></li><li><code>conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_</code></li><li><code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code></li><li><code>ledger_perturbationsector_valley</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">3 confirmed</span> <span class="badge badge-proposed">2 proposed</span></td></tr><tr><th>Ledger action required</th><td>Add to Validation Ledger (perturbation probes); cross-reference in WP3 Falsification Protocol.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">DES Y6 3×2pt reports S8 = 0.789 ± 0.012, Ωm = 0.333, and wCDM w = −1.12. This is primary perturbation-sector data for EFC confrontation — combining galaxy clustering, cosmic shear, and galaxy-galaxy lensing into joint constraints on μ and Σ. No EFC analysis against this specific dataset has been executed yet.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">DES Y6 3×2pt is the primary S8 probe referenced in P3 test.</span></li><li><strong>INFORMS</strong> → <code>conv_efc_physics_localization_perturbation_sector_not_background</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3×2pt IS perturbation-sector data.</span></li><li><strong>INFORMS</strong> → <code>conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">One step more specific (&#x27;with_grav&#x27;) than raw 3×2pt data provides.</span></li><li><strong>INFORMS</strong> → <code>conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">MGCAMB is analytical tool for interpreting 3×2pt.</span></li><li><strong>INFORMS</strong> → <code>ledger_perturbationsector_valley</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">3×2pt constrains joint μ-Σ degeneracy valley.</span></li></ul></div>
     </article>
     
     <article class="publication" id="arXiv:2602.12238">
-      <h3>Status of the S8 Tension: A 2026 Review of Probe Discrepancies <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2602.12238</code> · Published: 2026-02 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2602.12238" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">Review consolidating the S8 cross-probe picture: Planck+ACT+SPT = 0.836, DES Y6 2.4–2.7σ below Planck, KiDS-Legacy &lt;1σ from Planck. Confirms the probe split as a stable feature of the 2026 data landscape, not a transient artifact. Informs EFC&#x27;s L1→L2 transition framing — but offers no discriminating evidence against alternative μ&lt;1 explanations.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance summarizes the DES Y6 vs KiDS divergence this test is named after.</span></li><li><strong>INFORMS</strong> → <code>conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Review paper — transitive only.</span></li></ul></div>
+      <h3>Status of the S8 Tension: A 2026 Review of Probe Discrepancies <span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">1 proposed</span></h3>
+      <div class="pub-meta">arXiv: <code>2602.12238</code> &middot; Published: 2026-02 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2602.12238" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Perturbation-sector S8; EFC μ(a) &lt; 1 prediction</td></tr><tr><th>External claim (verbatim)</th><td>Canonical S8 cross-probe table: Planck+ACT+SPT 0.836; DES Y6 2.4–2.7σ; KiDS &lt;1σ. Sharpens L1→L2 transition evidence.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey</code></li><li><code>conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">1 proposed</span></td></tr><tr><th>Ledger action required</th><td>Cite in WP3 Falsification Protocol and Validation Ledger preamble.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">Review consolidating the S8 cross-probe picture: Planck+ACT+SPT = 0.836, DES Y6 2.4–2.7σ below Planck, KiDS-Legacy &lt;1σ from Planck. Confirms the probe split as a stable feature of the 2026 data landscape, not a transient artifact. Informs EFC&#x27;s L1→L2 transition framing — but offers no discriminating evidence against alternative μ&lt;1 explanations.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">efc_relevance summarizes the DES Y6 vs KiDS divergence this test is named after.</span></li><li><strong>INFORMS</strong> → <code>conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey</code> (Test) <span class="badge badge-proposed">low · proposed</span><br/><span style="color:#555">Review paper — transitive only.</span></li></ul></div>
     </article>
     
     </section>
@@ -134,10 +223,11 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">Joint ACT + SPT + Planck CMB lensing reaches S8 = 0.825 at 1.6% precision (SNR 61). The precision exceeds what EFC&#x27;s current Boltzmann-based pipeline handles numerically. This elevates the theory-efclass-boltzmann-solver gap to blocking: without a production-ready hi_class integration, EFC cannot meet this precision level head-to-head.</div>
       
     <article class="publication" id="arXiv:2504.20038">
-      <h3>Unified structure growth from joint ACT, SPT and Planck CMB lensing <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2504.20038</code> · Published: 2025-04 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2504.20038" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">Joint CMB-lensing analysis reaches S8 = 0.825 at 1.6% precision (SNR 61). The precision exceeds what EFC&#x27;s current Boltzmann pipeline handles numerically, making theory-efclass-boltzmann-solver the binding gap. To compete at this regime EFC must deliver a production-grade hi_class integration.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_hi_class_scalar_tensor_efc_falsification_test</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">hi_class / Boltzmann-solver pipeline is what ledger_action promotes to blocking.</span></li><li><strong>INFORMS</strong> → <code>ledger_cmb_lensing_gravitational_slip</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Joint ACT+SPT+Planck CMB-lensing is primary data for CMB-lensing + slip test.</span></li></ul></div>
+      <h3>Unified structure growth from joint ACT, SPT and Planck CMB lensing <span class="badge badge-confirmed">2 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2504.20038</code> &middot; Published: 2025-04 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2504.20038" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>CMB lensing S8; gravitational slip η; hi_class solver</td></tr><tr><th>External claim (verbatim)</th><td>S8 = 0.825 at 1.6% precision (SNR 61); tightens baseline for Kill-Test v6 probe-6 and makes gap theory-efclass-boltzmann-solver binding.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_hi_class_scalar_tensor_efc_falsification_test</code></li><li><code>ledger_cmb_lensing_gravitational_slip</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">2 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Update Stage-IV Roadmap CMB-lensing row; promote Boltzmann-solver gap to blocking.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">Joint CMB-lensing analysis reaches S8 = 0.825 at 1.6% precision (SNR 61). The precision exceeds what EFC&#x27;s current Boltzmann pipeline handles numerically, making theory-efclass-boltzmann-solver the binding gap. To compete at this regime EFC must deliver a production-grade hi_class integration.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_hi_class_scalar_tensor_efc_falsification_test</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">hi_class / Boltzmann-solver pipeline is what ledger_action promotes to blocking.</span></li><li><strong>INFORMS</strong> → <code>ledger_cmb_lensing_gravitational_slip</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Joint ACT+SPT+Planck CMB-lensing is primary data for CMB-lensing + slip test.</span></li></ul></div>
     </article>
     
     </section>
@@ -148,17 +238,19 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">Two independent JWST mass reconstructions of the Bullet Cluster are now available: 146 strong-lensing constraints with dense weak-lensing source density (Cha/Jee/Finner) and 135 multiple images across 27 spectroscopic systems (Rihtaršič/Bradač). EFC&#x27;s pre-registered δκ shock-front test (figshare 31963668) therefore has the observational data it requires. The bottleneck is EFC&#x27;s internal pipeline, not the data — delivery responsibility lies with us, not with the field.</div>
       
     <article class="publication" id="arXiv:2503.21870">
-      <h3>A High-Caliber View of the Bullet Cluster through JWST Strong and Weak Lensing <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2503.21870</code> · Published: 2025-03 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2503.21870" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">High-caliber JWST analysis of the Bullet Cluster combines 146 strong-lensing constraints with dense weak-lensing source density (398/arcmin²). Provides the observational dataset required for EFC&#x27;s pre-registered δκ shock-front test (figshare 31963668). The data are available; the bottleneck is EFC&#x27;s internal test pipeline.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_asig_shock_front_lensing_asymmetry_jwst_era_execution</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">JWST-era Asig shock-front execution — literal match.</span></li><li><strong>INFORMS</strong> → <code>ledger_cluster_shockfront_lensing_asymmetry</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Direct match: &#x27;pre-registered EFC δκ shock-front test&#x27;.</span></li></ul></div>
+      <h3>A High-Caliber View of the Bullet Cluster through JWST Strong and Weak Lensing <span class="badge badge-confirmed">2 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2503.21870</code> &middot; Published: 2025-03 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2503.21870" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Shock-front lensing asymmetry δκ (pre-registered EFC test)</td></tr><tr><th>External claim (verbatim)</th><td>146 SL constraints + dense WL; decisive dataset for the pre-registered EFC δκ shock-front test (figshare 31963668).</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_asig_shock_front_lensing_asymmetry_jwst_era_execution</code></li><li><code>ledger_cluster_shockfront_lensing_asymmetry</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">2 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Move JWST Bullet δκ test up in Stage-IV Roadmap priority; data is available, test pipeline is now the bottleneck.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">High-caliber JWST analysis of the Bullet Cluster combines 146 strong-lensing constraints with dense weak-lensing source density (398/arcmin²). Provides the observational dataset required for EFC&#x27;s pre-registered δκ shock-front test (figshare 31963668). The data are available; the bottleneck is EFC&#x27;s internal test pipeline.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_asig_shock_front_lensing_asymmetry_jwst_era_execution</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">JWST-era Asig shock-front execution — literal match.</span></li><li><strong>INFORMS</strong> → <code>ledger_cluster_shockfront_lensing_asymmetry</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Direct match: &#x27;pre-registered EFC δκ shock-front test&#x27;.</span></li></ul></div>
     </article>
     
     <article class="publication" id="arXiv:2601.22245">
-      <h3>Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2601.22245</code> · Published: 2026-01 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2601.22245" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">Independent spectroscopically anchored JWST lens model with 135 multiple images across 27 systems (z_spec 0.9–6.7). Cross-checks arXiv:2503.21870&#x27;s mass reconstruction, reducing the probability that both studies share systematic biases in the same direction. Strengthens the observational backing for EFC&#x27;s δκ prediction test.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_cluster_merger_geometry</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">Mass reconstruction constrains merger geometry.</span></li><li><strong>INFORMS</strong> → <code>ledger_cluster_shockfront_lensing_asymmetry</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Second JWST Bullet mass reconstruction; cross-check.</span></li></ul></div>
+      <h3>Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy <span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">1 proposed</span></h3>
+      <div class="pub-meta">arXiv: <code>2601.22245</code> &middot; Published: 2026-01 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2601.22245" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Shock-front lensing asymmetry δκ (pre-registered EFC test)</td></tr><tr><th>External claim (verbatim)</th><td>Second JWST Bullet mass reconstruction; provides cross-check for EFC δκ pre-registration.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>ledger_cluster_merger_geometry</code></li><li><code>ledger_cluster_shockfront_lensing_asymmetry</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span> <span class="badge badge-proposed">1 proposed</span></td></tr><tr><th>Ledger action required</th><td>Link alongside 2503.21870 in Bullet Cluster under EFC paper.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">Independent spectroscopically anchored JWST lens model with 135 multiple images across 27 systems (z_spec 0.9–6.7). Cross-checks arXiv:2503.21870&#x27;s mass reconstruction, reducing the probability that both studies share systematic biases in the same direction. Strengthens the observational backing for EFC&#x27;s δκ prediction test.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_cluster_merger_geometry</code> (Test) <span class="badge badge-proposed">medium · proposed</span><br/><span style="color:#555">Mass reconstruction constrains merger geometry.</span></li><li><strong>INFORMS</strong> → <code>ledger_cluster_shockfront_lensing_asymmetry</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Second JWST Bullet mass reconstruction; cross-check.</span></li></ul></div>
     </article>
     
     </section>
@@ -169,17 +261,19 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">BIG-SPARC extends rotation-curve data beyond the 175-galaxy SPARC sample. In parallel, arXiv:2601.00522 presents a new empirical model claiming to outperform both MOND and CDM halos. Both point to the same next step: execute Kill-Test v6 universality on the expanded data, then run head-to-head ΔAIC comparison against the competitor. No EFC analysis has yet run against these new resources.</div>
       
     <article class="publication" id="arXiv:2411.13329">
-      <h3>BIG-SPARC: The new SPARC database <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">arXiv: <code>2411.13329</code> · Published: 2024-11 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2411.13329" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">BIG-SPARC extends rotation-curve galaxy coverage beyond the 175-galaxy SPARC sample. Enables direct extension of EFC&#x27;s Kill-Test v6 universality claim to a larger population. The scipy.differential_evolution pipeline (seed=42) has not yet been executed against BIG-SPARC; closing gap theory-multicomponent-sparc-universality awaits that run.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_galaxy_rotation_curves_sparc</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Expanded SPARC dataset.</span></li><li><strong>INFORMS</strong> → <code>conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Kill-Test v6 universality extension.</span></li></ul></div>
+      <h3>BIG-SPARC: The new SPARC database <span class="badge badge-confirmed">2 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2411.13329</code> &middot; Published: 2024-11 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2411.13329" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Galaxy rotation curves; Kill-Test v6 universality</td></tr><tr><th>External claim (verbatim)</th><td>Expanded SPARC; enables direct extension of Kill-Test v6 Universality beyond 175 galaxies.</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_</code></li><li><code>ledger_galaxy_rotation_curves_sparc</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">2 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Re-run scipy.differential_evolution pipeline (seed=42) on BIG-SPARC; closes gap theory-multicomponent-sparc-universality.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">BIG-SPARC extends rotation-curve galaxy coverage beyond the 175-galaxy SPARC sample. Enables direct extension of EFC&#x27;s Kill-Test v6 universality claim to a larger population. The scipy.differential_evolution pipeline (seed=42) has not yet been executed against BIG-SPARC; closing gap theory-multicomponent-sparc-universality awaits that run.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>ledger_galaxy_rotation_curves_sparc</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Expanded SPARC dataset.</span></li><li><strong>INFORMS</strong> → <code>conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Kill-Test v6 universality extension.</span></li></ul></div>
     </article>
     
     <article class="publication" id="arXiv:2601.00522">
-      <h3>A New Empirical Fit to Galaxy Rotation Curves <span class="badge badge-external">external</span> <span class="badge badge-framework">framework</span></h3>
-      <div class="pub-meta">arXiv: <code>2601.00522</code> · Published: 2026-01 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2601.00522" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">An empirical rotation-curve model claiming to outperform both MOND and CDM halos. A competitor to EFC in the SPARC regime that must be subjected to head-to-head ΔAIC comparison on SPARC 175 before any relative assessment can be made. This is a competing framing, not confirmatory evidence.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
+      <h3>A New Empirical Fit to Galaxy Rotation Curves <span class="badge badge-confirmed">1 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2601.00522</code> &middot; Published: 2026-01 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2601.00522" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Galaxy rotation curves; Kill-Test v6 universality</td></tr><tr><th>External claim (verbatim)</th><td>Competitor empirical model claiming to outperform MOND and CDM halos; must be AIC-compared against EFC Kill-Test v6.</td></tr><tr><th>Competes with theory</th><td>Energy-Flow Cosmology (EFC)</td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Add to WP3 competitor-landscape table; run head-to-head ΔAIC on SPARC 175.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">An empirical rotation-curve model claiming to outperform both MOND and CDM halos. A competitor to EFC in the SPARC regime that must be subjected to head-to-head ΔAIC comparison on SPARC 175 before any relative assessment can be made. This is a competing framing, not confirmatory evidence.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
     </article>
     
     </section>
@@ -190,10 +284,11 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">Euclid DR1 (2100 deg² cosmic shear) lands on 2026-10-21 and is expected to arbitrate the DES Y6 vs KiDS-Legacy S8 disagreement. EFC holds a sealed pre-registered pipeline (figshare 31990053, B0=0.02, M0=0.06). No directional assessment is to be written before DR1 is publicly released — this is a genuine blind test, not a consistency check.</div><p class="pub-meta"><em>Frozen until 2026-10-21 — no directional assessment before data release.</em></p>
       
     <article class="publication" id="ESA:EuclidDR1-2026-10-21">
-      <h3>Euclid Data Release 1 (2100 deg² cosmic shear) <span class="badge badge-external">external</span></h3>
-      <div class="pub-meta">Published: 2026-10-21 · First seen: 2026-04-17 · <a href="https://euclid.caltech.edu/page/data-release-timeline" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">Euclid DR1 (2100 deg² cosmic shear) is the scheduled arbiter of the DES Y6 vs KiDS-Legacy S8 disagreement. EFC holds a sealed pre-registered pipeline (figshare 31990053, B0=0.02, M0=0.06) frozen until release. No directional assessment will be written until data are publicly available on 2026-10-21 — this is a genuine blind test, not a consistency check.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_euclid_dr1_pre_registration_pipeline_via_hi_class</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Execution vehicle for DR1 frozen test.</span></li><li><strong>INFORMS</strong> → <code>conv_euclid_dr1_frozen_benchmark_b0_0_02_m0_0_06_boltzmann_calibr</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Sealed EFC pipeline (B0=0.02, M0=0.06).</span></li><li><strong>INFORMS</strong> → <code>ledger_euclid_dr1_boltzmann_preregistration</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Public-ledger counterpart of frozen benchmark.</span></li></ul></div>
+      <h3>Euclid Data Release 1 (2100 deg² cosmic shear) <span class="badge badge-confirmed">3 confirmed</span></h3>
+      <div class="pub-meta">Published: 2026-10-21 &middot; First seen: 2026-04-17 &middot; <a href="https://euclid.caltech.edu/page/data-release-timeline" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Sealed blind test; Euclid DR1 (FROZEN until 2026-10-21)</td></tr><tr><th>External claim (verbatim)</th><td>Arbitrates DES Y6 vs KiDS S8 disagreement; tests sealed EFC pipeline (figshare 31990053, B0=0.02, M0=0.06).</td></tr><tr><th>EFC tests informed</th><td><ul style="margin:0.2rem 0 0.2rem 1.2rem;padding:0"><li><code>conv_euclid_dr1_frozen_benchmark_b0_0_02_m0_0_06_boltzmann_calibr</code></li><li><code>conv_euclid_dr1_pre_registration_pipeline_via_hi_class</code></li><li><code>ledger_euclid_dr1_boltzmann_preregistration</code></li></ul></td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">3 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Keep predictions FROZEN; mark Gap Analysis row &#x27;awaiting DR1&#x27;. No action until Oct 21 2026.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">Euclid DR1 (2100 deg² cosmic shear) is the scheduled arbiter of the DES Y6 vs KiDS-Legacy S8 disagreement. EFC holds a sealed pre-registered pipeline (figshare 31990053, B0=0.02, M0=0.06) frozen until release. No directional assessment will be written until data are publicly available on 2026-10-21 — this is a genuine blind test, not a consistency check.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>INFORMS</strong> → <code>conv_euclid_dr1_pre_registration_pipeline_via_hi_class</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Execution vehicle for DR1 frozen test.</span></li><li><strong>INFORMS</strong> → <code>conv_euclid_dr1_frozen_benchmark_b0_0_02_m0_0_06_boltzmann_calibr</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Sealed EFC pipeline (B0=0.02, M0=0.06).</span></li><li><strong>INFORMS</strong> → <code>ledger_euclid_dr1_boltzmann_preregistration</code> (Test) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Public-ledger counterpart of frozen benchmark.</span></li></ul></div>
     </article>
     
     </section>
@@ -204,26 +299,37 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0d7e3;
       <div class="cluster-commentary">Informational Entropic Gravity (2026 preprint) is the closest ontological relative to EFC published this year — an alternative formulation of gravity as macroscopic informational-entropy equilibrium on holographic boundaries. arXiv:2601.00522 represents an empirical competitor on the rotation-curve front. Both require formal recovery-conditions comparison (WP1) and head-to-head ΔAIC evaluation before any relative assessment. These are positions EFC must be chosen over, not mere consistency checks.</div>
       
     <article class="publication" id="preprints.org:202601.2277">
-      <h3>Informational Entropic Gravity (IEG) <span class="badge badge-external">external</span> <span class="badge badge-framework">framework</span></h3>
-      <div class="pub-meta">Published: 2026-01 · First seen: 2026-04-17 · <a href="https://www.preprints.org/manuscript/202601.2277" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">The closest ontological relative to EFC published in 2026 — formulating gravity as macroscopic informational-entropy equilibrium on holographic boundaries. A theoretical competitor rather than empirical data; requires formal recovery-conditions comparison against EFC in WP1 before either framework can claim priority. A position EFC must be chosen over, not merely a consistency check.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Closest ontological relative in 2026 literature. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
+      <h3>Informational Entropic Gravity (IEG) <span class="badge badge-confirmed">1 confirmed</span></h3>
+      <div class="pub-meta">Published: 2026-01 &middot; First seen: 2026-04-17 &middot; <a href="https://www.preprints.org/manuscript/202601.2277" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Alternative theoretical frameworks; recovery-condition comparison</td></tr><tr><th>External claim (verbatim)</th><td>Closest ontological relative published in 2026; gravity as macroscopic equilibrium of informational entropy on holographic boundaries.</td></tr><tr><th>Competes with theory</th><td>Energy-Flow Cosmology (EFC)</td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span></td></tr><tr><th>Ledger action required</th><td>List in Elevator Pitch &#x27;related frameworks&#x27; and compare recovery conditions in WP1.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">The closest ontological relative to EFC published in 2026 — formulating gravity as macroscopic informational-entropy equilibrium on holographic boundaries. A theoretical competitor rather than empirical data; requires formal recovery-conditions comparison against EFC in WP1 before either framework can claim priority. A position EFC must be chosen over, not merely a consistency check.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Closest ontological relative in 2026 literature. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
     </article>
     
     <article class="publication" id="arXiv:2601.00522">
-      <h3>A New Empirical Fit to Galaxy Rotation Curves <span class="badge badge-external">external</span> <span class="badge badge-framework">framework</span></h3>
-      <div class="pub-meta">arXiv: <code>2601.00522</code> · Published: 2026-01 · First seen: 2026-04-17 · <a href="https://arxiv.org/abs/2601.00522" target="_blank" rel="noopener">Link</a></div>
-      <div class="doc-synthesis">An empirical rotation-curve model claiming to outperform both MOND and CDM halos. A competitor to EFC in the SPARC regime that must be subjected to head-to-head ΔAIC comparison on SPARC 175 before any relative assessment can be made. This is a competing framing, not confirmatory evidence.</div>
-      <div class="xref"><strong>Cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
+      <h3>A New Empirical Fit to Galaxy Rotation Curves <span class="badge badge-confirmed">1 confirmed</span></h3>
+      <div class="pub-meta">arXiv: <code>2601.00522</code> &middot; Published: 2026-01 &middot; First seen: 2026-04-17 &middot; <a href="https://arxiv.org/abs/2601.00522" target="_blank" rel="noopener">Link</a></div>
+      <div class="impact-heading">Impact on EFC</div><table class="impact-table"><tbody><tr><th>EFC aspect probed</th><td>Galaxy rotation curves; Kill-Test v6 universality</td></tr><tr><th>External claim (verbatim)</th><td>Competitor empirical model claiming to outperform MOND and CDM halos; must be AIC-compared against EFC Kill-Test v6.</td></tr><tr><th>Competes with theory</th><td>Energy-Flow Cosmology (EFC)</td></tr><tr><th>Edges to graph</th><td><span class="badge badge-confirmed">1 confirmed</span></td></tr><tr><th>Ledger action required</th><td>Add to WP3 competitor-landscape table; run head-to-head ΔAIC on SPARC 175.</td></tr></tbody></table>
+      <div class="impact-heading">EFC synthesis (verified)</div><div class="doc-synthesis">An empirical rotation-curve model claiming to outperform both MOND and CDM halos. A competitor to EFC in the SPARC regime that must be subjected to head-to-head ΔAIC comparison on SPARC 175 before any relative assessment can be made. This is a competing framing, not confirmatory evidence.</div>
+      <div class="xref"><strong>All cross-references:</strong><ul><li><strong>COMPETES_WITH</strong> → <code>Energy-Flow Cosmology (EFC)</code> (Theory) <span class="badge badge-confirmed">high</span><br/><span style="color:#555">Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.</span></li></ul></div>
     </article>
     
     </section>
     
 
   <footer>
-    <p>Generated by <code>tools/external_research_ledger_publisher.py</code>.
-       Source graph: Neo4j (labels :Publication:External).
-       Source mapping: <code>docs/public/external_research_watch_mapping.json</code>.</p>
+    <p><strong>Provenance.</strong> Rendered by
+       <code>tools/external_research_ledger_publisher.py</code> from live
+       Neo4j (labels <code>:Publication:External</code>) joined with the
+       verified mapping at
+       <code>docs/public/external_research_watch_mapping.json</code>.
+       Ingest pipeline: Claude Code on PC → watchlist update → git commit →
+       <code>efc-repo-sync</code> → parser creates Publication + typed edges →
+       this renderer publishes the HTML.</p>
+    <p><strong>Statistics.</strong>
+       12 external publications &middot;
+       12 verified per-publication syntheses &middot;
+       7/7 verified cluster commentaries.</p>
   </footer>
 </body>
 </html>
