@@ -22,6 +22,14 @@ import subprocess
 import sys
 from datetime import date
 
+# Defensive nav sanitizer — ensures short labels + External Research link
+# survive every HTML write. Idempotent; no-op if nav already canonical.
+try:
+    from _nav_helper import ensure_nav  # type: ignore
+except ImportError:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from _nav_helper import ensure_nav  # type: ignore
+
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PUBLIC = os.path.join(REPO, "docs", "public")
 LEDGER_DATA = os.path.join(REPO, "docs", "validation-ledger", "data")
@@ -111,6 +119,7 @@ def update_html_changelog(html_entry):
             if ul_idx > 0:
                 insert_point = ul_idx + len("<ul>")
                 text = text[:insert_point] + "\n  " + html_entry + text[insert_point:]
+                text = ensure_nav(text)  # normalize nav block (idempotent)
                 with open(CHANGELOG_HTML, "w", encoding="utf-8") as f:
                     f.write(text)
                 return True

@@ -219,8 +219,19 @@ def main():
         print("[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI")
         return 0
 
+    # Defensive nav sanitizer: guarantees short labels + External Research
+    # link on every write. Idempotent; no-op if nav already canonical.
+    try:
+        import sys as _sys
+        import os as _os
+        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+        from _nav_helper import ensure_nav as _ensure_nav
+    except Exception:
+        _ensure_nav = lambda x: x  # noqa: E731 — fallback no-op
+
     if missing_ledger_items:
         new_ledger = insert_into_ledger(ledger_text, missing_ledger_items)
+        new_ledger = _ensure_nav(new_ledger)
         with open(LEDGER, "w", encoding="utf-8") as f:
             f.write(new_ledger)
         print(f"[efc-ledger-autofill] Ledger: added {len(missing_ledger_items)} "
@@ -228,6 +239,7 @@ def main():
 
     if missing_changelog_items:
         new_changelog = insert_into_changelog(changelog_text, missing_changelog_items, year)
+        new_changelog = _ensure_nav(new_changelog)
         with open(CHANGELOG, "w", encoding="utf-8") as f:
             f.write(new_changelog)
         print(f"[efc-ledger-autofill] Changelog: added {len(missing_changelog_items)} "
