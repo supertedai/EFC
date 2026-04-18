@@ -2,7 +2,7 @@
   "id": "efc-external-research-watch-mapping",
   "title": "External Research Watchlist → EFC Graph Target Mapping (DRAFT)",
   "purpose": "Human-curated mapping from watchlist canonical keys to EFCValidation test_ids, gap_ids, or competing-framework relations. Consumed by the external_watchlist_to_graph parser when constructing Publication→Test/Gap/Framework edges.",
-  "version": "0.1",
+  "version": "0.2",
   "schema_version": "1",
   "generated": "2026-04-18",
   "generated_by": "claude-opus-4-7 (AGI-Test audit session, Morten co-piloted)",
@@ -10,6 +10,19 @@
   "last_verified_orcid": null,
   "watchlist_source": "docs/public/external_research_watch.json @ d09b1e25 (cosmos-repo origin/main)",
   "test_id_source": "Neo4j EFCValidation nodes, 2026-04-18 snapshot (288 entries, 233 with non-null test_id)",
+
+  "audit_history": [
+    {
+      "version": "0.1",
+      "date": "2026-04-18",
+      "summary": "Initial draft; 30 targets across 12 items (22 high / 7 medium / 0 low / 3 gap not_found)."
+    },
+    {
+      "version": "0.2",
+      "date": "2026-04-18",
+      "summary": "Morten review round 1. (a) Re-audited all medium-confidence targets against 'can I argue equally for another test_id' test — 3 downgraded to low. (b) Added 2 better-fitting high-confidence targets for arXiv:2601.14559 (3×2pt) discovered via perturbation-scoped search. (c) Removed test dual-target on arXiv:2601.00522; kept framework kind only per Morten — added followup_required metadata for future Evaluation-node creation when ΔAIC runs. (d) Added probe_subtype annotations for DES Y6 cosmic-shear vs 3×2pt to distinguish which data stream informs each test. (e) Confirmed via KnowledgeGap search (42,874 nodes) that the three watchlist gap_ids have no graph counterpart under any label — Alt A exhausted; Alt B (dedicated ledger-update path) is next action for gap materialization."
+    }
+  ],
 
   "parser_safety_contract": {
     "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null. Write a single WARN log line and exit non-zero.",
@@ -20,8 +33,8 @@
 
   "confidence_scale": {
     "high": "ledger_action or efc_relevance explicitly names a graph-known identifier",
-    "medium": "thematically clear; multiple plausible candidates or light inference",
-    "low": "speculative; needs domain judgement — do not auto-confirm"
+    "medium": "thematically clear; single plausible candidate and no equally strong alternative",
+    "low": "multiple plausible candidates OR indirect linkage (review papers, theory-shared predictions without shared data) — do not auto-confirm"
   },
 
   "kind_semantics": {
@@ -32,8 +45,17 @@
 
   "graph_status_legend": {
     "confirmed": "Target node verified present in Neo4j at generation time (test_id matched EFCValidation.test_id)",
-    "not_found": "Target not found in current graph. For gaps this is expected (Gap labels may not yet be materialized). Parser logs warning and skips edge.",
+    "not_found": "Target not found in current graph. For gaps this is expected (three canonical gap_ids from watchlist have no counterpart under any label as of 2026-04-18). Parser logs warning and skips edge.",
+    "not_applicable": "Framework kind — target is implicit EFC Theory node, not a specific test/gap identifier",
     "multiple_candidates": "Several plausible matches; human picks"
+  },
+
+  "gap_materialization_note": {
+    "status": "BLOCKED ON DEDICATED LEDGER-UPDATE",
+    "searched_labels": ["KnowledgeGap (42874 nodes)", "Gap (1 node)", "FrontierGap (absent)", "TheoryGap (absent)"],
+    "found_under_matching_patterns": 2,
+    "found_were_relevant": false,
+    "interpretation": "The KnowledgeGap label is dominated by conversation-derived hash-ID gaps (gap_meta_*, gap_*). The three canonical gap_ids referenced in watchlist ledger_action (theory-background-hz-modification, theory-efclass-boltzmann-solver, theory-multicomponent-sparc-universality) do not exist in the graph under any label. Recommended next action: create them via docs/validation-ledger/data/ flow as part of the normal ledger-update cycle, NOT as a side-effect of this parser. Parser logs WARN and skips gap edges until they are materialized."
   },
 
   "mappings": [
@@ -61,7 +83,7 @@
           "gap_id": "theory-background-hz-modification",
           "confidence": "high",
           "graph_status": "not_found",
-          "reasoning": "ledger_action explicitly: 'update gap theory-background-hz-modification to decision-ready'. Gap node absent in graph; parser should skip with warning until gap is materialized."
+          "reasoning": "ledger_action explicitly: 'update gap theory-background-hz-modification to decision-ready'. Gap node absent in graph; parser skips with WARN until gap is materialized via dedicated ledger update."
         }
       ]
     },
@@ -90,6 +112,7 @@
     {
       "watchlist_key": "arXiv:2602.10065",
       "title": "Dark Energy Survey Year 6: Cosmological Constraints from Cosmic Shear",
+      "probe_subtype": "cosmic_shear_only",
       "targets": [
         {
           "kind": "test",
@@ -101,16 +124,16 @@
         {
           "kind": "test",
           "test_id": "ledger_weaklensing_shear_case_a",
-          "confidence": "medium",
+          "confidence": "low",
           "graph_status": "confirmed",
-          "reasoning": "DES Y6 cosmic shear is primary data stream for weak-lensing Case A."
+          "reasoning": "DOWNGRADED v0.2. DES Y6 cosmic shear IS weak-lensing shear data, but graph has 4 Case A variants (ledger_weaklensing_case_a, _phenomenological_case_a, ledger_case_a_s_direction_v14) with no distinguishing evidence in watchlist. Needs Morten's pick of which Case A variant this measures. Status='proposed' until confirmed."
         },
         {
           "kind": "test",
           "test_id": "conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1",
-          "confidence": "medium",
+          "confidence": "low",
           "graph_status": "confirmed",
-          "reasoning": "efc_relevance references 'μ(a) < 1 prediction' — this is B0 bridge test's sign constraint."
+          "reasoning": "DOWNGRADED v0.2. Watchlist references 'μ(a)<1 prediction validation', but this test shares only the theoretical prediction, not the data stream. Equally plausible alternatives: ledger_lensing_barrier_pure_1_excluded, ledger_perturbationlevel_8suppression_via_a_1_wp1a_reference_model. Needs Morten judgement."
         }
       ]
     },
@@ -118,6 +141,7 @@
     {
       "watchlist_key": "arXiv:2601.14559",
       "title": "DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3×2pt)",
+      "probe_subtype": "3x2pt",
       "targets": [
         {
           "kind": "test",
@@ -128,17 +152,31 @@
         },
         {
           "kind": "test",
+          "test_id": "conv_efc_physics_localization_perturbation_sector_not_background",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "ADDED v0.2. 3×2pt IS perturbation-sector data (not background). This test explicitly names perturbation-sector localization — exact match for ledger_action's 'perturbation probes' framing."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_perturbationsector_valley",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "ADDED v0.2. 3×2pt constrains the joint μ-Σ degeneracy valley (perturbation sector, success-status test). Stronger fit than the 'with_grav' variant given DES Y6 3×2pt measures μ and Σ together."
+        },
+        {
+          "kind": "test",
           "test_id": "conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav",
           "confidence": "medium",
           "graph_status": "confirmed",
-          "reasoning": "ledger_action: 'perturbation probes'. 3×2pt is canonical perturbation-sector data."
+          "reasoning": "3×2pt also informs degeneracy-valley viability with gravitational slip, but the 'with_grav' flavor is one step more specific than raw 3×2pt data provides. Kept as medium."
         },
         {
           "kind": "test",
           "test_id": "conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_",
           "confidence": "medium",
           "graph_status": "confirmed",
-          "reasoning": "3×2pt Ωm, S8 inform μ-Σ perturbation-scan constraints."
+          "reasoning": "MGCAMB is analytical tool for interpreting 3×2pt; data-tool relationship is indirect but reasonable."
         }
       ]
     },
@@ -167,7 +205,7 @@
           "confidence": "high",
           "graph_status": "not_found",
           "suggested_edge": "BLOCKS_RESOLUTION_OF",
-          "reasoning": "ledger_action explicit: 'promote Boltzmann-solver gap to blocking'. Gap node absent in graph; parser should skip with warning until gap is materialized."
+          "reasoning": "ledger_action explicit: 'promote Boltzmann-solver gap to blocking'. Gap node absent in graph; parser skips with WARN until gap is materialized via dedicated ledger update."
         }
       ]
     },
@@ -186,9 +224,9 @@
         {
           "kind": "test",
           "test_id": "conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey",
-          "confidence": "medium",
+          "confidence": "low",
           "graph_status": "confirmed",
-          "reasoning": "Multi-survey cross-probe table — matches the multi-survey trajectory reconstruction test."
+          "reasoning": "DOWNGRADED v0.2. Review papers summarize other measurements rather than providing primary data. The σ8(z) trajectory reconstruction is informed by it only transitively. Status='proposed' until Morten confirms review-paper-level citations count as edge evidence."
         }
       ]
     },
@@ -230,7 +268,7 @@
           "test_id": "ledger_cluster_merger_geometry",
           "confidence": "medium",
           "graph_status": "confirmed",
-          "reasoning": "Mass reconstruction also constrains merger geometry."
+          "reasoning": "Direct data linkage: mass reconstruction constrains merger geometry. Legitimately medium — only one plausible candidate and data relationship is direct."
         }
       ]
     },
@@ -258,7 +296,7 @@
           "gap_id": "theory-multicomponent-sparc-universality",
           "confidence": "high",
           "graph_status": "not_found",
-          "reasoning": "ledger_action explicit: 'closes gap theory-multicomponent-sparc-universality'. Gap node absent in graph."
+          "reasoning": "ledger_action explicit: 'closes gap theory-multicomponent-sparc-universality'. Gap node absent in graph; parser skips with WARN."
         }
       ]
     },
@@ -271,14 +309,13 @@
           "kind": "framework",
           "confidence": "high",
           "graph_status": "not_applicable",
-          "reasoning": "efc_relevance: 'Competitor empirical model claiming to outperform MOND and CDM halos'. Parser multi-labels Publication as Framework and creates COMPETES_WITH edge to EFC Theory node."
-        },
-        {
-          "kind": "test",
-          "test_id": "ledger_galaxy_rotation_curves_sparc",
-          "confidence": "medium",
-          "graph_status": "confirmed",
-          "reasoning": "ledger_action: 'run head-to-head ΔAIC on SPARC 175'. Competitor framework will be measured against same test EFC runs."
+          "reasoning": "efc_relevance: 'Competitor empirical model claiming to outperform MOND and CDM halos'. ledger_action: 'run head-to-head ΔAIC on SPARC 175'. Parser multi-labels Publication as Framework and creates COMPETES_WITH edge to EFC Theory node.",
+          "followup_required": {
+            "action": "run_aic_comparison",
+            "dataset": "SPARC_175",
+            "metric": "delta_AIC",
+            "when_complete_create": "Evaluation node that links both frameworks (EFC and this competitor). This is where the actual test relationship materializes, NOT at mapping time. Dual-target test-kind was REMOVED in v0.2 per Morten: a test-edge from a competitor-publication to an EFC-test would imply the competitor tests EFC, which is not true until an Evaluation actually runs."
+          }
         }
       ]
     },
@@ -329,12 +366,23 @@
 
   "unmapped_items": [],
 
+  "statistics_v0_2": {
+    "items": 12,
+    "total_targets": 32,
+    "by_kind": {"test": 27, "gap": 3, "framework": 2},
+    "by_confidence": {"high": 26, "medium": 3, "low": 3},
+    "by_graph_status": {"confirmed": 27, "not_found": 3, "not_applicable": 2},
+    "auto_confirmed_edges_at_parse_time": 24,
+    "proposed_edges_for_later_review": 6,
+    "skipped_with_warning": 3
+  },
+
   "human_review_guidance": {
     "high_priority_review": [
-      "Confirm gap_ids that flagged not_found — do the gaps exist under different labels, should they be materialized as Gap nodes, or should ledger_action references be updated?",
-      "Item #3/#4 (DES Y6 papers) — I mapped both to ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered. Is that right, or should they point to distinct DES Y6 tests?",
-      "Item #10 (arXiv:2601.00522) — dual target (framework + test). Confirm this is correct framing, or prefer single 'framework' kind with test linkage only through later comparison Evaluation node."
+      "3 low-confidence items need Morten's pick: (a) arXiv:2602.10065 → which Case A variant? (b) arXiv:2602.10065 → is B0 bridge test the right μ<1 test? (c) arXiv:2602.12238 → should review papers create INFORMS edges at all, or only reference edges?",
+      "3 gap_ids are graph-absent. Gap materialization is BLOCKED until you either (i) create them via docs/validation-ledger/data/ ledger-update flow, or (ii) explicitly decide they are covered by existing KnowledgeGap hash-IDs (unlikely — those are conversation-derived).",
+      "Item #10 dual-target was removed; framework-only with followup_required. Verify this matches your intent."
     ],
-    "how_to_approve": "Review each mapping. Edit targets as needed. Set last_verified_by_morten to your name and last_verified_orcid to your ORCID. Increment version to 1.0 on first verified commit."
+    "how_to_approve": "Review each mapping. Edit targets as needed. Set last_verified_by_morten to your name and last_verified_orcid to your ORCID. Bump version to 1.0. Commit on this feature branch, then merge to main (or have Claude do merge after your verified commit)."
   }
 }
