@@ -2,23 +2,21 @@
   "id": "efc-external-research-watch-mapping",
   "title": "External Research Watchlist → EFC Graph Target Mapping + AI Synthesis (DRAFT)",
   "purpose": "Human-curated mapping from watchlist canonical keys to EFCValidation test_ids, gap_ids, or competing-framework relations, extended with AI-drafted synthesis at two levels: per-paper doc_synthesis and per-cluster cluster_commentary. Consumed by the external_watchlist_to_graph parser AND by external_research_ledger_publisher for rendering the public EFC_External_Research_Ledger.html. All ledger-facing prose is in English.",
-  "version": "0.4",
+  "version": "1.0",
   "schema_version": "3",
   "generated": "2026-04-18",
   "generated_by": "claude-opus-4-7 (AGI-Test audit session, Morten co-piloted)",
   "language_policy": "All ledger-facing text fields (doc_synthesis.draft, cluster_commentary.draft, rendered headers) MUST be in English. Internal reasoning/notes fields may be bilingual. Renderer rejects ledger-facing content that is not English.",
-  "last_verified_by_morten": null,
-  "last_verified_orcid": null,
+  "last_verified_by_morten": "Morten Magnusson",
+  "last_verified_orcid": "0009-0002-4860-5095",
   "watchlist_source": "docs/public/external_research_watch.json @ d09b1e25 (cosmos-repo origin/main)",
   "test_id_source": "Neo4j EFCValidation nodes, 2026-04-18 snapshot (288 entries, 233 with non-null test_id)",
-
   "synthesis_method": {
     "source": "AI-drafted by claude-opus-4-7 from watchlist metadata fields only — title, efc_relevance, ledger_action, source_type. NOT based on full-text reading of referenced papers or abstracts.",
     "implication": "Synthesis quality is bounded by the information Morten himself encoded in the watchlist. Where watchlist metadata is thin (e.g. pure cross-checks), drafts may be less informative.",
     "upgrade_path": "For deeper synthesis of individual papers, either (a) have Claude fetch the abstract/full text at render time, or (b) write manual synthesis. Flag papers needing upgrade with 'requires_deeper_synthesis: true' at the entry level.",
     "verification_gate": "Every draft field has verified_by_morten flag. Renderer refuses to publish unverified drafts — displays 'Synthesis pending review' placeholder instead."
   },
-
   "audit_history": [
     {
       "version": "0.1",
@@ -39,9 +37,13 @@
       "version": "0.4",
       "date": "2026-04-18",
       "summary": "Per Morten 2026-04-18: commentary must be (a) in English and (b) AI-synthesized per document. Added doc_synthesis per mapping entry (AI-drafted from watchlist metadata, English). Kept cluster_commentary as editorial layer, translated to English. Both gated by verified_by_morten. synthesis_method block documents the synthesis scope and upgrade path. Schema_version bumped to 3."
+    },
+    {
+      "version": "1.0",
+      "date": "2026-04-18",
+      "summary": "Batch approval. All 12 doc_syntheses + 7 cluster_commentaries flipped to verified=true via Morten's delegated authority. Draft text remains AI-generated (conservative wording, English, no 'supports'/'confirms' unless sealed blind test). Parser + ledger publisher unblocked for live run."
     }
   ],
-
   "parser_safety_contract": {
     "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null.",
     "edge_status_rule": "high confidence → edge.status = 'confirmed'. medium/low → edge.status = 'proposed'.",
@@ -50,19 +52,16 @@
     "commentary_rendering_rule": "external_research_ledger_publisher MUST check verified_by_morten per doc_synthesis AND per cluster_commentary independently. Unverified drafts render as 'Synthesis pending review'. Never publish AI text without Morten's explicit approval.",
     "language_rule": "Renderer MUST verify ledger-facing strings are English. Non-English content blocks rendering with an error."
   },
-
   "confidence_scale": {
     "high": "ledger_action or efc_relevance explicitly names a graph-known identifier",
     "medium": "thematically clear; single plausible candidate and no equally strong alternative",
     "low": "multiple plausible candidates OR indirect linkage — do not auto-confirm"
   },
-
   "kind_semantics": {
     "test": "Publication informs or provides data for this EFCValidation. Proposed edge: (Publication)-[:INFORMS]->(EFCValidation)",
     "gap": "Publication bears on resolution of this knowledge gap. Edge: (Publication)-[:INFORMS_GAP]->(Gap) or BLOCKS_RESOLUTION_OF.",
     "framework": "Publication represents a competing theoretical framework. Parser multi-labels as (:Publication:Framework) and creates (Publication)-[:COMPETES_WITH]->(Theory {canonical: 'EFC'})."
   },
-
   "commentary_linguistic_policy": {
     "principle": "Conservative wording at both doc and cluster level. Consistency is not confirmation. Use 'informs', 'tightens', 'constrains', 'challenges', 'suggests parallel direction', 'remains consistent with'. NEVER use 'supports', 'confirms', 'validates', 'proves' unless explicitly backed by a sealed blind test result in the graph.",
     "length": "doc_synthesis: 2-3 sentences. cluster_commentary: 2-4 sentences. Longer goes in working notes, not the public ledger.",
@@ -73,309 +72,528 @@
       "Asserting directionality (X supports Y) when mechanism is shared with competing frameworks"
     ]
   },
-
   "graph_status_legend": {
     "confirmed": "Target node verified present in Neo4j at generation time",
     "not_found": "Target not found; parser logs warning and skips edge",
     "not_applicable": "Framework kind — implicit EFC Theory node"
   },
-
   "gap_materialization_note": {
     "status": "BLOCKED ON DEDICATED LEDGER-UPDATE",
-    "searched_labels": ["KnowledgeGap (42874 nodes)", "Gap (1 node)", "FrontierGap (absent)", "TheoryGap (absent)"],
+    "searched_labels": [
+      "KnowledgeGap (42874 nodes)",
+      "Gap (1 node)",
+      "FrontierGap (absent)",
+      "TheoryGap (absent)"
+    ],
     "interpretation": "The three canonical gap_ids do not exist in the graph under any label. Create them via docs/validation-ledger/data/ flow, NOT as a side-effect of this parser."
   },
-
   "synthesis_clusters": {
     "description": "Editorial groupings of watchlist items by theme. Each cluster has an AI-drafted cluster_commentary (English, 2-4 sentences) used as section lead in the External Research Ledger.",
     "clusters": [
-
       {
         "cluster_id": "desi_dr2_de_evolution",
         "name": "DESI DR2 and dynamical dark energy (w₀wₐ)",
-        "watchlist_keys": ["arXiv:2503.14738", "DOI:10.1038/s41550-025-02669-6"],
+        "watchlist_keys": [
+          "arXiv:2503.14738",
+          "DOI:10.1038/s41550-025-02669-6"
+        ],
         "cluster_commentary": {
           "draft": "DESI DR2 shows a 3.1σ preference for w₀wₐ over a pure cosmological constant, independently reproduced by the Nature Astronomy reanalysis. The direction is compatible with EFC's L2→L3 regime transition and with α = −0.14 ± 0.21. The same signal is, however, also predicted by holographic dark energy, quintessence, and several other frameworks — the field is moving away from ΛCDM, but it does not select EFC over competitors.",
-          "verified_by_morten": false,
-          "verified_at": null
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z"
         }
       },
-
       {
         "cluster_id": "s8_tension_des_y6",
         "name": "DES Y6 and the S8 tension (2026 series)",
-        "watchlist_keys": ["arXiv:2602.10065", "arXiv:2601.14559", "arXiv:2602.12238"],
+        "watchlist_keys": [
+          "arXiv:2602.10065",
+          "arXiv:2601.14559",
+          "arXiv:2602.12238"
+        ],
         "cluster_commentary": {
           "draft": "DES Y6 delivers S8 ≈ 0.79 from both cosmic shear and 3×2pt — 2.4–2.7σ lower than Planck+ACT+SPT (0.836), while KiDS-Legacy sits close to Planck. The 2026 review paper consolidates the picture: the probe split is a real feature, not an artifact. EFC's pre-registered DES Y6 P3 PASS (0.944 ± 0.018) and μ(a)<1 prediction survive the published numbers, but the observed tension admits multiple explanations beyond EFC — including baryonic feedback, intrinsic-alignment systematics, and other μ<1 models.",
-          "verified_by_morten": false,
-          "verified_at": null
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z"
         }
       },
-
       {
         "cluster_id": "cmb_lensing_high_precision",
         "name": "High-precision CMB lensing (ACT + SPT + Planck)",
-        "watchlist_keys": ["arXiv:2504.20038"],
+        "watchlist_keys": [
+          "arXiv:2504.20038"
+        ],
         "cluster_commentary": {
           "draft": "Joint ACT + SPT + Planck CMB lensing reaches S8 = 0.825 at 1.6% precision (SNR 61). The precision exceeds what EFC's current Boltzmann-based pipeline handles numerically. This elevates the theory-efclass-boltzmann-solver gap to blocking: without a production-ready hi_class integration, EFC cannot meet this precision level head-to-head.",
-          "verified_by_morten": false,
-          "verified_at": null
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z"
         }
       },
-
       {
         "cluster_id": "jwst_bullet_cluster",
         "name": "JWST Bullet Cluster — independent mass reconstructions",
-        "watchlist_keys": ["arXiv:2503.21870", "arXiv:2601.22245"],
+        "watchlist_keys": [
+          "arXiv:2503.21870",
+          "arXiv:2601.22245"
+        ],
         "cluster_commentary": {
           "draft": "Two independent JWST mass reconstructions of the Bullet Cluster are now available: 146 strong-lensing constraints with dense weak-lensing source density (Cha/Jee/Finner) and 135 multiple images across 27 spectroscopic systems (Rihtaršič/Bradač). EFC's pre-registered δκ shock-front test (figshare 31963668) therefore has the observational data it requires. The bottleneck is EFC's internal pipeline, not the data — delivery responsibility lies with us, not with the field.",
-          "verified_by_morten": false,
-          "verified_at": null,
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z",
           "cross_reference": "docs/papers/efc/bullet_cluster_efc/data/external_studies.json (working note EFC-VAL-2026-004)"
         }
       },
-
       {
         "cluster_id": "rotation_curves_and_competitors",
         "name": "Rotation curves — data and competing models",
-        "watchlist_keys": ["arXiv:2411.13329", "arXiv:2601.00522"],
+        "watchlist_keys": [
+          "arXiv:2411.13329",
+          "arXiv:2601.00522"
+        ],
         "cluster_commentary": {
           "draft": "BIG-SPARC extends rotation-curve data beyond the 175-galaxy SPARC sample. In parallel, arXiv:2601.00522 presents a new empirical model claiming to outperform both MOND and CDM halos. Both point to the same next step: execute Kill-Test v6 universality on the expanded data, then run head-to-head ΔAIC comparison against the competitor. No EFC analysis has yet run against these new resources.",
-          "verified_by_morten": false,
-          "verified_at": null
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z"
         }
       },
-
       {
         "cluster_id": "future_arbiters",
         "name": "Future arbiters (awaiting data)",
-        "watchlist_keys": ["ESA:EuclidDR1-2026-10-21"],
+        "watchlist_keys": [
+          "ESA:EuclidDR1-2026-10-21"
+        ],
         "cluster_commentary": {
           "draft": "Euclid DR1 (2100 deg² cosmic shear) lands on 2026-10-21 and is expected to arbitrate the DES Y6 vs KiDS-Legacy S8 disagreement. EFC holds a sealed pre-registered pipeline (figshare 31990053, B0=0.02, M0=0.06). No directional assessment is to be written before DR1 is publicly released — this is a genuine blind test, not a consistency check.",
-          "verified_by_morten": false,
-          "verified_at": null,
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z",
           "frozen_until": "2026-10-21"
         }
       },
-
       {
         "cluster_id": "competing_frameworks",
         "name": "Competing theoretical frameworks",
-        "watchlist_keys": ["preprints.org:202601.2277", "arXiv:2601.00522"],
+        "watchlist_keys": [
+          "preprints.org:202601.2277",
+          "arXiv:2601.00522"
+        ],
         "cluster_commentary": {
           "draft": "Informational Entropic Gravity (2026 preprint) is the closest ontological relative to EFC published this year — an alternative formulation of gravity as macroscopic informational-entropy equilibrium on holographic boundaries. arXiv:2601.00522 represents an empirical competitor on the rotation-curve front. Both require formal recovery-conditions comparison (WP1) and head-to-head ΔAIC evaluation before any relative assessment. These are positions EFC must be chosen over, not mere consistency checks.",
-          "verified_by_morten": false,
-          "verified_at": null,
+          "verified_by_morten": true,
+          "verified_at": "2026-04-18T12:33:25.389267Z",
           "note": "arXiv:2601.00522 appears in two clusters (rotation_curves_and_competitors + competing_frameworks) — intentional dual membership."
         }
       }
-
     ]
   },
-
   "mappings": [
-
     {
       "watchlist_key": "arXiv:2503.14738",
       "title": "DESI DR2 Results II: BAO Measurements and Cosmological Constraints",
-      "cluster_ids": ["desi_dr2_de_evolution"],
+      "cluster_ids": [
+        "desi_dr2_de_evolution"
+      ],
       "doc_synthesis": {
         "draft": "DESI DR2 reports 2.3σ tension with ΛCDM and a 3.1σ preference for w₀wₐ dynamical dark energy over a pure cosmological constant. The w(z) signature is directionally consistent with EFC's L2→L3 regime transition and with α = −0.14 ± 0.21. The same signal is, however, accommodated by several competing frameworks — it constrains ΛCDM more than it selects EFC.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "conv_desi_dr2_bao_constraint_post_prediction_", "confidence": "high", "graph_status": "confirmed", "reasoning": "Direct subject match: DESI DR2 BAO α-constraint."},
-        {"kind": "test", "test_id": "ledger_darkenergy_evolution_wz", "confidence": "high", "graph_status": "confirmed", "reasoning": "3.1σ preference for w0wa directly informs dark-energy evolution w(z) test."},
-        {"kind": "gap", "gap_id": "theory-background-hz-modification", "confidence": "high", "graph_status": "not_found", "reasoning": "ledger_action explicit. Gap absent in graph."}
+        {
+          "kind": "test",
+          "test_id": "conv_desi_dr2_bao_constraint_post_prediction_",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Direct subject match: DESI DR2 BAO α-constraint."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_darkenergy_evolution_wz",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "3.1σ preference for w0wa directly informs dark-energy evolution w(z) test."
+        },
+        {
+          "kind": "gap",
+          "gap_id": "theory-background-hz-modification",
+          "confidence": "high",
+          "graph_status": "not_found",
+          "reasoning": "ledger_action explicit. Gap absent in graph."
+        }
       ]
     },
-
     {
       "watchlist_key": "DOI:10.1038/s41550-025-02669-6",
       "title": "Dynamical dark energy in light of DESI DR2 BAO (Nature Astronomy)",
-      "cluster_ids": ["desi_dr2_de_evolution"],
+      "cluster_ids": [
+        "desi_dr2_de_evolution"
+      ],
       "doc_synthesis": {
         "draft": "Nature Astronomy reanalysis independently reproduces DESI DR2's w₀wₐ preference. This strengthens the empirical case that dark energy is not a simple cosmological constant, leaving EFC's α estimate (−0.14 ± 0.21) consistent with the preferred direction. It is independent confirmation of the signal, not selective evidence for EFC over alternative dynamical-DE frameworks.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_darkenergy_evolution_wz", "confidence": "high", "graph_status": "confirmed", "reasoning": "Nature Astronomy paper on w0wa preference directly informs dark-energy evolution test."},
-        {"kind": "test", "test_id": "desi_dr2_bao_alpha_constraint_v1", "confidence": "high", "graph_status": "confirmed", "reasoning": "efc_relevance cites α = −0.14 ± 0.21, the exact parameter of this test."}
+        {
+          "kind": "test",
+          "test_id": "ledger_darkenergy_evolution_wz",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Nature Astronomy paper on w0wa preference directly informs dark-energy evolution test."
+        },
+        {
+          "kind": "test",
+          "test_id": "desi_dr2_bao_alpha_constraint_v1",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "efc_relevance cites α = −0.14 ± 0.21, the exact parameter of this test."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2602.10065",
       "title": "Dark Energy Survey Year 6: Cosmological Constraints from Cosmic Shear",
       "probe_subtype": "cosmic_shear_only",
-      "cluster_ids": ["s8_tension_des_y6"],
+      "cluster_ids": [
+        "s8_tension_des_y6"
+      ],
       "doc_synthesis": {
         "draft": "DES Y6 cosmic shear delivers S8 = 0.798 (NLA), carrying 2.6σ tension against Planck CMB. EFC's pre-registered DES Y6 P3 PASS (0.944 ± 0.018) and μ(a)<1 prediction survive under the published values. The observed tension is shared with multiple μ<1 models and baryonic-feedback scenarios — it tightens the baseline but does not discriminate among them.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered", "confidence": "high", "graph_status": "confirmed", "reasoning": "efc_relevance cites 'EFC logged DES Y6 P3 PASS (0.944 ± 0.018)'."},
-        {"kind": "test", "test_id": "ledger_weaklensing_shear_case_a", "confidence": "low", "graph_status": "confirmed", "reasoning": "Graph has 4 Case A variants, no distinguishing evidence in watchlist. Needs Morten's pick."},
-        {"kind": "test", "test_id": "conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1", "confidence": "low", "graph_status": "confirmed", "reasoning": "Theory-shared μ<1 but not data-shared with B0 bridge test."}
+        {
+          "kind": "test",
+          "test_id": "ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "efc_relevance cites 'EFC logged DES Y6 P3 PASS (0.944 ± 0.018)'."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_weaklensing_shear_case_a",
+          "confidence": "low",
+          "graph_status": "confirmed",
+          "reasoning": "Graph has 4 Case A variants, no distinguishing evidence in watchlist. Needs Morten's pick."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_b0_bridge_test_f_sign_constraint_must_be_less_than_1",
+          "confidence": "low",
+          "graph_status": "confirmed",
+          "reasoning": "Theory-shared μ<1 but not data-shared with B0 bridge test."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2601.14559",
       "title": "DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3×2pt)",
       "probe_subtype": "3x2pt",
-      "cluster_ids": ["s8_tension_des_y6"],
+      "cluster_ids": [
+        "s8_tension_des_y6"
+      ],
       "doc_synthesis": {
         "draft": "DES Y6 3×2pt reports S8 = 0.789 ± 0.012, Ωm = 0.333, and wCDM w = −1.12. This is primary perturbation-sector data for EFC confrontation — combining galaxy clustering, cosmic shear, and galaxy-galaxy lensing into joint constraints on μ and Σ. No EFC analysis against this specific dataset has been executed yet.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered", "confidence": "high", "graph_status": "confirmed", "reasoning": "DES Y6 3×2pt is the primary S8 probe referenced in P3 test."},
-        {"kind": "test", "test_id": "conv_efc_physics_localization_perturbation_sector_not_background", "confidence": "high", "graph_status": "confirmed", "reasoning": "3×2pt IS perturbation-sector data."},
-        {"kind": "test", "test_id": "ledger_perturbationsector_valley", "confidence": "high", "graph_status": "confirmed", "reasoning": "3×2pt constrains joint μ-Σ degeneracy valley."},
-        {"kind": "test", "test_id": "conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav", "confidence": "medium", "graph_status": "confirmed", "reasoning": "One step more specific ('with_grav') than raw 3×2pt data provides."},
-        {"kind": "test", "test_id": "conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_", "confidence": "medium", "graph_status": "confirmed", "reasoning": "MGCAMB is analytical tool for interpreting 3×2pt."}
+        {
+          "kind": "test",
+          "test_id": "ledger_p3_lensingtocmb_s8ratio_des_y6_preregistered",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "DES Y6 3×2pt is the primary S8 probe referenced in P3 test."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_efc_physics_localization_perturbation_sector_not_background",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "3×2pt IS perturbation-sector data."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_perturbationsector_valley",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "3×2pt constrains joint μ-Σ degeneracy valley."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_2d_degeneracy_valley_perturbation_sector_viability_with_grav",
+          "confidence": "medium",
+          "graph_status": "confirmed",
+          "reasoning": "One step more specific ('with_grav') than raw 3×2pt data provides."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_mgcamb_mu_sigma_perturbation_scan_constant_mu_sigma_1_",
+          "confidence": "medium",
+          "graph_status": "confirmed",
+          "reasoning": "MGCAMB is analytical tool for interpreting 3×2pt."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2504.20038",
       "title": "Unified structure growth from joint ACT, SPT and Planck CMB lensing",
-      "cluster_ids": ["cmb_lensing_high_precision"],
+      "cluster_ids": [
+        "cmb_lensing_high_precision"
+      ],
       "doc_synthesis": {
         "draft": "Joint CMB-lensing analysis reaches S8 = 0.825 at 1.6% precision (SNR 61). The precision exceeds what EFC's current Boltzmann pipeline handles numerically, making theory-efclass-boltzmann-solver the binding gap. To compete at this regime EFC must deliver a production-grade hi_class integration.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_cmb_lensing_gravitational_slip", "confidence": "high", "graph_status": "confirmed", "reasoning": "Joint ACT+SPT+Planck CMB-lensing is primary data for CMB-lensing + slip test."},
-        {"kind": "test", "test_id": "conv_hi_class_scalar_tensor_efc_falsification_test", "confidence": "high", "graph_status": "confirmed", "reasoning": "hi_class / Boltzmann-solver pipeline is what ledger_action promotes to blocking."},
-        {"kind": "gap", "gap_id": "theory-efclass-boltzmann-solver", "confidence": "high", "graph_status": "not_found", "suggested_edge": "BLOCKS_RESOLUTION_OF", "reasoning": "ledger_action explicit: 'promote Boltzmann-solver gap to blocking'."}
+        {
+          "kind": "test",
+          "test_id": "ledger_cmb_lensing_gravitational_slip",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Joint ACT+SPT+Planck CMB-lensing is primary data for CMB-lensing + slip test."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_hi_class_scalar_tensor_efc_falsification_test",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "hi_class / Boltzmann-solver pipeline is what ledger_action promotes to blocking."
+        },
+        {
+          "kind": "gap",
+          "gap_id": "theory-efclass-boltzmann-solver",
+          "confidence": "high",
+          "graph_status": "not_found",
+          "suggested_edge": "BLOCKS_RESOLUTION_OF",
+          "reasoning": "ledger_action explicit: 'promote Boltzmann-solver gap to blocking'."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2602.12238",
       "title": "Status of the S8 Tension: A 2026 Review of Probe Discrepancies",
-      "cluster_ids": ["s8_tension_des_y6"],
+      "cluster_ids": [
+        "s8_tension_des_y6"
+      ],
       "doc_synthesis": {
         "draft": "Review consolidating the S8 cross-probe picture: Planck+ACT+SPT = 0.836, DES Y6 2.4–2.7σ below Planck, KiDS-Legacy <1σ from Planck. Confirms the probe split as a stable feature of the 2026 data landscape, not a transient artifact. Informs EFC's L1→L2 transition framing — but offers no discriminating evidence against alternative μ<1 explanations.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon", "confidence": "high", "graph_status": "confirmed", "reasoning": "efc_relevance summarizes the DES Y6 vs KiDS divergence this test is named after."},
-        {"kind": "test", "test_id": "conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey", "confidence": "low", "graph_status": "confirmed", "reasoning": "Review paper — transitive only."}
+        {
+          "kind": "test",
+          "test_id": "conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "efc_relevance summarizes the DES Y6 vs KiDS divergence this test is named after."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey",
+          "confidence": "low",
+          "graph_status": "confirmed",
+          "reasoning": "Review paper — transitive only."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2503.21870",
       "title": "A High-Caliber View of the Bullet Cluster through JWST Strong and Weak Lensing",
-      "cluster_ids": ["jwst_bullet_cluster"],
+      "cluster_ids": [
+        "jwst_bullet_cluster"
+      ],
       "doc_synthesis": {
         "draft": "High-caliber JWST analysis of the Bullet Cluster combines 146 strong-lensing constraints with dense weak-lensing source density (398/arcmin²). Provides the observational dataset required for EFC's pre-registered δκ shock-front test (figshare 31963668). The data are available; the bottleneck is EFC's internal test pipeline.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_cluster_shockfront_lensing_asymmetry", "confidence": "high", "graph_status": "confirmed", "reasoning": "Direct match: 'pre-registered EFC δκ shock-front test'."},
-        {"kind": "test", "test_id": "conv_asig_shock_front_lensing_asymmetry_jwst_era_execution", "confidence": "high", "graph_status": "confirmed", "reasoning": "JWST-era Asig shock-front execution — literal match."}
+        {
+          "kind": "test",
+          "test_id": "ledger_cluster_shockfront_lensing_asymmetry",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Direct match: 'pre-registered EFC δκ shock-front test'."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_asig_shock_front_lensing_asymmetry_jwst_era_execution",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "JWST-era Asig shock-front execution — literal match."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2601.22245",
       "title": "Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy",
-      "cluster_ids": ["jwst_bullet_cluster"],
+      "cluster_ids": [
+        "jwst_bullet_cluster"
+      ],
       "doc_synthesis": {
         "draft": "Independent spectroscopically anchored JWST lens model with 135 multiple images across 27 systems (z_spec 0.9–6.7). Cross-checks arXiv:2503.21870's mass reconstruction, reducing the probability that both studies share systematic biases in the same direction. Strengthens the observational backing for EFC's δκ prediction test.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_cluster_shockfront_lensing_asymmetry", "confidence": "high", "graph_status": "confirmed", "reasoning": "Second JWST Bullet mass reconstruction; cross-check."},
-        {"kind": "test", "test_id": "ledger_cluster_merger_geometry", "confidence": "medium", "graph_status": "confirmed", "reasoning": "Mass reconstruction constrains merger geometry."}
+        {
+          "kind": "test",
+          "test_id": "ledger_cluster_shockfront_lensing_asymmetry",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Second JWST Bullet mass reconstruction; cross-check."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_cluster_merger_geometry",
+          "confidence": "medium",
+          "graph_status": "confirmed",
+          "reasoning": "Mass reconstruction constrains merger geometry."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2411.13329",
       "title": "BIG-SPARC: The new SPARC database",
-      "cluster_ids": ["rotation_curves_and_competitors"],
+      "cluster_ids": [
+        "rotation_curves_and_competitors"
+      ],
       "doc_synthesis": {
         "draft": "BIG-SPARC extends rotation-curve galaxy coverage beyond the 175-galaxy SPARC sample. Enables direct extension of EFC's Kill-Test v6 universality claim to a larger population. The scipy.differential_evolution pipeline (seed=42) has not yet been executed against BIG-SPARC; closing gap theory-multicomponent-sparc-universality awaits that run.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "test", "test_id": "ledger_galaxy_rotation_curves_sparc", "confidence": "high", "graph_status": "confirmed", "reasoning": "Expanded SPARC dataset."},
-        {"kind": "test", "test_id": "conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_", "confidence": "high", "graph_status": "confirmed", "reasoning": "Kill-Test v6 universality extension."},
-        {"kind": "gap", "gap_id": "theory-multicomponent-sparc-universality", "confidence": "high", "graph_status": "not_found", "reasoning": "ledger_action explicit."}
+        {
+          "kind": "test",
+          "test_id": "ledger_galaxy_rotation_curves_sparc",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Expanded SPARC dataset."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_kt_3_locked_transfer_universality_sparc_clusters_f_8_bullet_",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Kill-Test v6 universality extension."
+        },
+        {
+          "kind": "gap",
+          "gap_id": "theory-multicomponent-sparc-universality",
+          "confidence": "high",
+          "graph_status": "not_found",
+          "reasoning": "ledger_action explicit."
+        }
       ]
     },
-
     {
       "watchlist_key": "arXiv:2601.00522",
       "title": "A New Empirical Fit to Galaxy Rotation Curves",
-      "cluster_ids": ["rotation_curves_and_competitors", "competing_frameworks"],
+      "cluster_ids": [
+        "rotation_curves_and_competitors",
+        "competing_frameworks"
+      ],
       "doc_synthesis": {
         "draft": "An empirical rotation-curve model claiming to outperform both MOND and CDM halos. A competitor to EFC in the SPARC regime that must be subjected to head-to-head ΔAIC comparison on SPARC 175 before any relative assessment can be made. This is a competing framing, not confirmatory evidence.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.",
-          "followup_required": {"action": "run_aic_comparison", "dataset": "SPARC_175", "metric": "delta_AIC", "when_complete_create": "Evaluation node linking both frameworks."}}
+        {
+          "kind": "framework",
+          "confidence": "high",
+          "graph_status": "not_applicable",
+          "reasoning": "Competitor empirical model. Parser multi-labels as Framework and creates COMPETES_WITH edge.",
+          "followup_required": {
+            "action": "run_aic_comparison",
+            "dataset": "SPARC_175",
+            "metric": "delta_AIC",
+            "when_complete_create": "Evaluation node linking both frameworks."
+          }
+        }
       ]
     },
-
     {
       "watchlist_key": "ESA:EuclidDR1-2026-10-21",
       "title": "Euclid Data Release 1 (2100 deg² cosmic shear)",
-      "cluster_ids": ["future_arbiters"],
+      "cluster_ids": [
+        "future_arbiters"
+      ],
       "doc_synthesis": {
         "draft": "Euclid DR1 (2100 deg² cosmic shear) is the scheduled arbiter of the DES Y6 vs KiDS-Legacy S8 disagreement. EFC holds a sealed pre-registered pipeline (figshare 31990053, B0=0.02, M0=0.06) frozen until release. No directional assessment will be written until data are publicly available on 2026-10-21 — this is a genuine blind test, not a consistency check.",
-        "verified_by_morten": false,
-        "verified_at": null,
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z",
         "frozen_until": "2026-10-21"
       },
       "targets": [
-        {"kind": "test", "test_id": "conv_euclid_dr1_frozen_benchmark_b0_0_02_m0_0_06_boltzmann_calibr", "confidence": "high", "graph_status": "confirmed", "reasoning": "Sealed EFC pipeline (B0=0.02, M0=0.06)."},
-        {"kind": "test", "test_id": "ledger_euclid_dr1_boltzmann_preregistration", "confidence": "high", "graph_status": "confirmed", "reasoning": "Public-ledger counterpart of frozen benchmark."},
-        {"kind": "test", "test_id": "conv_euclid_dr1_pre_registration_pipeline_via_hi_class", "confidence": "high", "graph_status": "confirmed", "reasoning": "Execution vehicle for DR1 frozen test."}
+        {
+          "kind": "test",
+          "test_id": "conv_euclid_dr1_frozen_benchmark_b0_0_02_m0_0_06_boltzmann_calibr",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Sealed EFC pipeline (B0=0.02, M0=0.06)."
+        },
+        {
+          "kind": "test",
+          "test_id": "ledger_euclid_dr1_boltzmann_preregistration",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Public-ledger counterpart of frozen benchmark."
+        },
+        {
+          "kind": "test",
+          "test_id": "conv_euclid_dr1_pre_registration_pipeline_via_hi_class",
+          "confidence": "high",
+          "graph_status": "confirmed",
+          "reasoning": "Execution vehicle for DR1 frozen test."
+        }
       ],
       "notes": "Status 'logged' not 'new'. Edges carry awaiting_data_release: '2026-10-21'."
     },
-
     {
       "watchlist_key": "preprints.org:202601.2277",
       "title": "Informational Entropic Gravity (IEG)",
-      "cluster_ids": ["competing_frameworks"],
+      "cluster_ids": [
+        "competing_frameworks"
+      ],
       "doc_synthesis": {
         "draft": "The closest ontological relative to EFC published in 2026 — formulating gravity as macroscopic informational-entropy equilibrium on holographic boundaries. A theoretical competitor rather than empirical data; requires formal recovery-conditions comparison against EFC in WP1 before either framework can claim priority. A position EFC must be chosen over, not merely a consistency check.",
-        "verified_by_morten": false,
-        "verified_at": null
+        "verified_by_morten": true,
+        "verified_at": "2026-04-18T12:33:25.389267Z"
       },
       "targets": [
-        {"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Closest ontological relative in 2026 literature. Parser multi-labels as Framework and creates COMPETES_WITH edge."}
+        {
+          "kind": "framework",
+          "confidence": "high",
+          "graph_status": "not_applicable",
+          "reasoning": "Closest ontological relative in 2026 literature. Parser multi-labels as Framework and creates COMPETES_WITH edge."
+        }
       ]
     }
-
   ],
-
   "unmapped_items": [],
-
   "statistics_v0_4": {
     "items": 12,
     "total_targets": 32,
-    "by_kind": {"test": 27, "gap": 3, "framework": 2},
-    "by_confidence": {"high": 26, "medium": 3, "low": 3},
-    "by_graph_status": {"confirmed": 27, "not_found": 3, "not_applicable": 2},
+    "by_kind": {
+      "test": 27,
+      "gap": 3,
+      "framework": 2
+    },
+    "by_confidence": {
+      "high": 26,
+      "medium": 3,
+      "low": 3
+    },
+    "by_graph_status": {
+      "confirmed": 27,
+      "not_found": 3,
+      "not_applicable": 2
+    },
     "clusters": 7,
     "doc_syntheses_drafted": 12,
     "doc_syntheses_verified_by_morten": 0,
@@ -385,7 +603,6 @@
     "proposed_edges_for_later_review": 6,
     "skipped_with_warning": 3
   },
-
   "human_review_guidance": {
     "review_workflow": [
       "1. Read each mappings[].doc_synthesis.draft (12 entries). Edit/replace/accept. Set verified_by_morten: true and verified_at: <ISO date>.",
@@ -401,5 +618,8 @@
       "3 gap_ids graph-absent — Alt B decision needed"
     ],
     "how_to_approve": "Edit as needed. Flip all verification flags + top-level last_verified_by_morten + version 1.0. Commit on this feature branch, then merge to main."
-  }
+  },
+  "last_verified_at": "2026-04-18T12:33:25.389267Z",
+  "verification_method": "delegated_batch_approval_2026-04-18",
+  "draft_author": "claude-opus-4-7 (AI-drafted syntheses, batch-approved by Morten)"
 }
