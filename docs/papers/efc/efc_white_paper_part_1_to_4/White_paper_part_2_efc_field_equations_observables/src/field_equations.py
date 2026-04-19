@@ -68,18 +68,24 @@ def mu_efc_kernel(S_bar: float, s_tilde_ratio: float) -> float:
 # --- Growth Equation ---
 
 def growth_ode(ln_a, y, Omega_m, mu_func):
-    """Modified growth ODE (Eq. 6).
+    """Modified growth ODE (Eq. 6, corrected).
 
-    f' + f^2 + (1/2 - 3/2 * Omega_m_tilde) * f = 3/2 * mu(a) * Omega_m_tilde
+    f' + f^2 + (2 - 3/2 * Omega_m_tilde) * f = 3/2 * mu(a) * Omega_m_tilde
 
     State: y = [f, ln_D] where f = d ln D / d ln a.
+
+    Note: the friction coefficient is [2 + d ln H / d ln a], which
+    reduces to (2 - 3/2 * Omega_m_tilde) for LCDM backgrounds. Earlier
+    revisions of this file (and the printed version of White Paper
+    Part 2, Eq. 6) used (1/2 - 3/2 * Omega_m_tilde), which is
+    mathematically incorrect. See docs/notes/growth_bug_2026.md.
     """
     f, ln_D = y
     a = np.exp(ln_a)
     E2 = Omega_m * a ** (-3) + (1.0 - Omega_m)
     Omega_m_tilde = Omega_m * a ** (-3) / E2
     mu = mu_func(a)
-    dfda = -f ** 2 - (0.5 - 1.5 * Omega_m_tilde) * f + 1.5 * mu * Omega_m_tilde
+    dfda = -f ** 2 - (2.0 - 1.5 * Omega_m_tilde) * f + 1.5 * mu * Omega_m_tilde
     return [dfda, f]
 
 

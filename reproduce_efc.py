@@ -229,6 +229,58 @@ def test_growth_relative(R: Result) -> dict:
         "identical output on re-run",
     )
 
+    # ------------------------------------------------------------------
+    # Absolute sanity bounds (added 2026-04-19 after the friction-bug
+    # retrospective). The previous qualitative checks above passed even
+    # when chi^2 was ~60x too large, because they only test sign and
+    # ordering. The bounds below break that tautology by anchoring the
+    # expected numerical scale.
+    #
+    # Design choice: ranged bounds (with ~10% rtol for reference checks)
+    # over strict absolute-equality checks. Ranged bounds catch the
+    # class of errors this retrospective found (factor-2+ deviations
+    # caused by wrong physics) without producing false positives from
+    # legitimate numerical drift (numpy/scipy version changes, solver
+    # tolerance, radiation-term treatment). See docs/notes/
+    # growth_bug_2026.md for the full rationale.
+    # ------------------------------------------------------------------
+    R.check(
+        "chi2_lcdm_physical_range",
+        0.0 < chi2_lcdm < 50.0,
+        f"chi2_LCDM = {chi2_lcdm:.2f} (expect 0-50 for 7 data points)",
+    )
+    R.check(
+        "lnD_lcdm_physical_range",
+        2.5 < lnD_lcdm < 5.0,
+        f"ln D(LCDM, a=1) = {lnD_lcdm:.4f} "
+        "(expect 2.5-5.0 from a_init=1/51 to a=1)",
+    )
+    R.check(
+        "delta_chi2_magnitude",
+        abs(delta) < 10.0,
+        f"|Dchi2| = {abs(delta):.2f} (expect < 10 for realistic EFC/LCDM tension)",
+    )
+    # Reference-anchored check (breaks tautology with an absolute number
+    # independent of solver re-runs).  3.67 is the post-fix LCDM value
+    # for the Planck-like cosmology used throughout WP1a.
+    LND_LCDM_REFERENCE = 3.67
+    R.check(
+        "lnD_lcdm_matches_reference",
+        abs(lnD_lcdm - LND_LCDM_REFERENCE) / LND_LCDM_REFERENCE < 0.10,
+        f"ln D(LCDM) = {lnD_lcdm:.4f} vs reference {LND_LCDM_REFERENCE} "
+        "(rtol < 10%)",
+    )
+    # Ratio invariant: EFC should be near LCDM (small mu-modification).
+    # Catches runaway growth, normalisation errors, and wrong mu-scaling
+    # that the individual bounds above might miss.
+    growth_ratio = float(np.exp(lnD_efc - lnD_lcdm))
+    R.check(
+        "efc_lcdm_growth_ratio",
+        0.9 < growth_ratio < 1.1,
+        f"D(EFC)/D(LCDM) at a=1 = {growth_ratio:.4f} "
+        "(expect 0.9-1.1 for mu_0 ~ 0.85)",
+    )
+
     return {
         "chi2_lcdm": float(chi2_lcdm),
         "chi2_efc": float(chi2_efc),

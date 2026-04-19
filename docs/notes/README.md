@@ -21,6 +21,7 @@ contain open questions, partial results, and provisional conclusions.
 ```
 docs/notes/
 ├── EFC_native_v2_graph_spec.md   # v2 graph kernel specification
+├── growth_bug_2026.md            # Growth ODE friction correction + reproducer audit (2026-04-19)
 └── README.md                     # This file
 ```
 
@@ -46,6 +47,23 @@ graph. The document covers the following topics in detail:
 | Test Suite (KT1-KT5) | Defines five key tests with quantitative pass/fail criteria, covering Newton and MOND slope recovery, prefactor convergence, mass-scaling of the transition radius, superposition violation, and the external field effect. |
 | Current Results | Reports v0.1 outcomes: KT1 passes (slopes -2.00 and -0.99), KT2 shows C ~ 2.32 converging slowly, KT3 fails due to Lambda-locked transition radius, KT4 passes with 13.7% violation, and KT5 is pending re-measurement after a v0.1 bug fix. |
 | Structural Diagnosis | Analyses the KT3 failure, identifying that the transition radius is set by the global bulk cutoff L_Lambda rather than the local acceleration balance g_N vs a0, yielding "screened MOND" rather than pure MOND behaviour. |
+
+### growth_bug_2026.md
+
+**Full title**: Growth ODE Friction-Coefficient Correction and Validation-Layer Gap
+**Status**: Closed retrospective (2026-04-19)
+
+Retrospective documentation of a friction-coefficient error in the f-form
+linear growth ODE (`src/efc/perturbation/growth.py`, and two additional
+sites including the demonstration code for *White Paper Part 2*).
+Documents the bug, its 3-file blast radius, cross-validation confirming
+the MCMC and sealed-blind-prediction pipelines are unaffected, and —
+more importantly — the validation-layer tautology that prevented the
+canonical reproducer from detecting the error for two months despite
+31/31 passing tests. Describes the mitigations: solver fix, regression
+tests anchored to Linder (2005) as an external reference, and five
+ranged absolute-value bounds in `reproduce_efc.py` that would catch a
+recurrence of the same class of error.
 | File Layout | Maps the specification onto the repository file structure under `pipelines/efc/native_v2_graph/`, listing the kernel modules (graph, fields, operators, energy, aqual, solver, observables), test scripts, configs, and the run orchestrator. |
 
 ## How Notes Relate to the Broader EFC Programme
