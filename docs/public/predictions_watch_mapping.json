@@ -1,0 +1,115 @@
+{
+  "id": "efc-predictions-watch-mapping",
+  "version": "0.1-DRAFT",
+  "last_verified_by_morten": null,
+  "verification_note": "SAFETY GATE: parser refuses to write until Morten sets last_verified_by_morten to a name and bumps version to 1.0. This ensures target mappings (which test_id each prediction informs, which theory it competes with, etc.) are reviewed before the graph writes happen.",
+  "synthesis_method": {
+    "source": "Hand-curated from EFC_Predictions.html, reviewed by Morten Magnusson",
+    "draft_by": "claude-code",
+    "model_version": "opus-4.7"
+  },
+  "language_policy": "English only",
+  "mappings": {
+    "P1": {
+      "cluster_ids": ["lensing_crossover", "euclid_dr1"],
+      "probe_subtype": "cosmic_shear_tomography",
+      "targets": [
+        {
+          "kind": "test",
+          "test_id": "euclid_dr1_sigma_eff_crossover",
+          "graph_status": "not_found",
+          "confidence": "low",
+          "reasoning": "Euclid DR1 not yet released (2026-10-21). No EFCValidation node exists for this test yet."
+        }
+      ]
+    },
+    "P2": {
+      "cluster_ids": ["growth_rate", "desi_dr2"],
+      "probe_subtype": "rsd_growth",
+      "targets": [
+        {
+          "kind": "test",
+          "test_id": "desi_dr2_fsigma8_z07",
+          "graph_status": "not_found",
+          "confidence": "medium",
+          "reasoning": "DESI DR2 RSD test maps directly to EFCValidation if one is created. Currently pre-registered only."
+        }
+      ]
+    },
+    "P3": {
+      "cluster_ids": ["gravitational_slip", "so_euclid"],
+      "probe_subtype": "eg_gravitational_slip",
+      "targets": [
+        {
+          "kind": "test",
+          "test_id": "so_euclid_eg_ratio",
+          "graph_status": "not_found",
+          "confidence": "low",
+          "reasoning": "SO × Euclid DR2 test 2027-2028 — no graph node yet."
+        }
+      ]
+    },
+    "P4": {
+      "cluster_ids": ["s8_tension", "rubin_dp2"],
+      "probe_subtype": "cosmic_shear",
+      "targets": [
+        {
+          "kind": "test",
+          "test_id": "rubin_dp2_cosmic_shear_s8",
+          "graph_status": "not_found",
+          "confidence": "low",
+          "reasoning": "Rubin LSST DP2 (Jul-Sep 2026) — no graph node yet."
+        }
+      ]
+    },
+    "P5": {
+      "cluster_ids": ["horndeski_no_go", "structural_claims"],
+      "probe_subtype": "parameter_scan",
+      "targets": [
+        {
+          "kind": "framework",
+          "theory_name": "Horndeski (quasi-static, α_T=0)",
+          "graph_status": "not_found",
+          "confidence": "medium",
+          "reasoning": "COMPETES_WITH edge to a Horndeski Theory node if/when one exists. Currently no dedicated Horndeski theory node."
+        }
+      ]
+    },
+    "P6": {
+      "cluster_ids": ["background_lemma", "analytical_proofs"],
+      "probe_subtype": "analytical",
+      "targets": []
+    }
+  },
+  "synthesis_clusters": {
+    "clusters": [
+      {
+        "cluster_id": "perturbation_sector",
+        "name": "Perturbation-sector predictions (P1, P3, P5)",
+        "watchlist_keys": ["P1", "P3", "P5"],
+        "cluster_commentary": {
+          "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), gravitational-slip enhancement (P3), and the Horndeski no-go (P5). All three are structural discriminators: they cannot be mimicked by ΛCDM + nuisance parameters. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test them.",
+          "verified_by_morten": false
+        }
+      },
+      {
+        "cluster_id": "background_point_predictions",
+        "name": "Background-sector point predictions (P2, P4)",
+        "watchlist_keys": ["P2", "P4"],
+        "cluster_commentary": {
+          "draft": "P2 (fσ8 at z=0.7) and P4 (Rubin DP2 S8) are DAMAGE-class: failure erodes motivation without falsifying the framework. Both are quantitative point predictions with explicit ΛCDM comparison.",
+          "verified_by_morten": false
+        }
+      },
+      {
+        "cluster_id": "structural_and_proven",
+        "name": "Structural and proven (P5, P6)",
+        "watchlist_keys": ["P5", "P6"],
+        "cluster_commentary": {
+          "draft": "P5 (Horndeski no-go) and P6 (background sign lemma) are closed — either analytically proven or exhaustively scanned. They are listed for completeness, not as open tests.",
+          "verified_by_morten": false
+        }
+      }
+    ]
+  }
+}
