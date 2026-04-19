@@ -2,9 +2,9 @@
   "id": "efc-external-research-watch-mapping",
   "title": "External Research Watchlist → EFC Graph Target Mapping + AI Synthesis (DRAFT)",
   "purpose": "Human-curated mapping from watchlist canonical keys to EFCValidation test_ids, gap_ids, or competing-framework relations, extended with AI-drafted synthesis at two levels: per-paper doc_synthesis and per-cluster cluster_commentary. Consumed by the external_watchlist_to_graph parser AND by external_research_ledger_publisher for rendering the public EFC_External_Research_Ledger.html. All ledger-facing prose is in English.",
-  "version": "1.0",
+  "version": "1.1",
   "schema_version": "3",
-  "generated": "2026-04-18",
+  "generated": "2026-04-19",
   "generated_by": "claude-opus-4-7 (AGI-Test audit session, Morten co-piloted)",
   "language_policy": "All ledger-facing text fields (doc_synthesis.draft, cluster_commentary.draft, rendered headers) MUST be in English. Internal reasoning/notes fields may be bilingual. Renderer rejects ledger-facing content that is not English.",
   "last_verified_by_morten": "Morten Magnusson",
@@ -42,6 +42,11 @@
       "version": "1.0",
       "date": "2026-04-18",
       "summary": "Batch approval. All 12 doc_syntheses + 7 cluster_commentaries flipped to verified=true via Morten's delegated authority. Draft text remains AI-generated (conservative wording, English, no 'supports'/'confirms' unless sealed blind test). Parser + ledger publisher unblocked for live run."
+    },
+    {
+      "version": "1.1",
+      "date": "2026-04-19",
+      "summary": "Added 34 competing-framework taxonomy entries (dark-energy parametrizations, modified gravity, emergent/entropic gravity, scalar-tensor/Horndeski sub-classes, alternative cosmologies, alternative DM). New cluster 'competing_frameworks_taxonomy' groups them. Morten approved via delegated batch authority (session prompt 2026-04-19 'ja dette, samt alle konkurrerende modeller av relevanse'). Parser will multi-label each as (:Publication:Framework) with COMPETES_WITH edge to Theory{canonical:'EFC'}."
     }
   ],
   "parser_safety_contract": {
@@ -181,6 +186,51 @@
           "verified_by_morten": true,
           "verified_at": "2026-04-18T12:33:25.389267Z",
           "note": "arXiv:2601.00522 appears in two clusters (rotation_curves_and_competitors + competing_frameworks) — intentional dual membership."
+        }
+      },
+      {
+        "cluster_id": "competing_frameworks_taxonomy",
+        "name": "Competing-framework taxonomy (seminal publications)",
+        "watchlist_keys": [
+          "framework:LCDM-Planck2018",
+          "framework:wCDM-CPL-Chevallier2001",
+          "framework:Quintessence-Caldwell1998",
+          "framework:EDE-Poulin2019",
+          "framework:HolographicDE-Li2004",
+          "framework:KaniadakisHDE-Drepanou2021",
+          "framework:Quintom-Feng2005",
+          "framework:CoupledDE-DM-Amendola2000",
+          "framework:ThawingQuintessence-curved-2025",
+          "framework:MOND-Milgrom1983",
+          "framework:TeVeS-Bekenstein2004",
+          "framework:RMOND-Skordis2021",
+          "framework:fR-Starobinsky2007",
+          "framework:DGP-Dvali2000",
+          "framework:Horndeski-Deffayet2011",
+          "framework:Galileon-Nicolis2009",
+          "framework:KGB-Deffayet2010",
+          "framework:Weyl-geometric-Harko2019",
+          "framework:BransDicke-1961",
+          "framework:MassiveGravity-dRGT-2010",
+          "framework:Jacobson-1995",
+          "framework:Padmanabhan-2009",
+          "framework:VerlindeEntropic-2010",
+          "framework:VerlindeEmergent-2016",
+          "framework:MassToHorizon-2025",
+          "framework:Machian-SPARC-2023",
+          "framework:CCC-Penrose2011",
+          "framework:Timescape-Wiltshire2007",
+          "framework:Ekpyrotic-Khoury2001",
+          "framework:MiHsC-McCulloch2016",
+          "framework:SIDM-Spergel2000",
+          "framework:FuzzyDM-Hu2000",
+          "framework:SuperfluidDM-Khoury2015",
+          "framework:PBH-Carr1974"
+        ],
+        "cluster_commentary": {
+          "draft": "A 34-entry taxonomy of canonical competing frameworks, spanning dark-energy parametrizations (ΛCDM, wCDM/CPL, quintessence, EDE, holographic DE, Kaniadakis, quintom, coupled DE/DM, thawing quintessence), modified gravity (MOND, TeVeS, RMOND, f(R), DGP, Weyl-geometric, Machian, massive gravity), scalar-tensor/Horndeski sub-classes (full Horndeski, Galileon, KGB, Brans-Dicke), emergent and entropic gravity (Jacobson, Padmanabhan, Verlinde 2010, Verlinde 2016, mass-to-horizon cosmology), alternative cosmologies (CCC, Timescape, Ekpyrotic, MiHsC), and particle-sector dark matter alternatives (SIDM, fuzzy DM, superfluid DM, PBH). Each is positioned by EFC's recovery-conditions or discriminator structure, never by superiority claims. Ontology-sharing members (Jacobson, Padmanabhan, Verlinde) are explicit ancestors; sign-discriminator members (f(R), Galileon, KGB) sit on the FA2 axis; particle-sector DM is flagged as orthogonal, not competing. The taxonomy provides Symbiose with a stable reference graph for future automated comparisons.",
+          "verified_by_morten": true,
+          "verified_at": "2026-04-19T00:00:00.000000Z"
         }
       }
     ]
@@ -573,6 +623,414 @@
           "reasoning": "Closest ontological relative in 2026 literature. Parser multi-labels as Framework and creates COMPETES_WITH edge."
         }
       ]
+    },
+    {
+      "watchlist_key": "framework:LCDM-Planck2018",
+      "title": "\u039bCDM (Planck 2018 baseline)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "The canonical baseline of modern cosmology. EFC does not compete with \u039bCDM in the naive sense \u2014 \u039bCDM is a limit of EFC when stiffness K(\u03c1)\u2192\u221e, transition T(a)\u21920, and \u03be\u226b1. Recovery is explicit in WP1 Consolidation Paper (DOI 31943361). Every data set is compared against \u039bCDM first; EFC is evaluated for whether it agrees where \u039bCDM does and deviates where \u039bCDM is tensioned.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Baseline framework. Parser creates (:Publication:Framework:Baseline) with COMPETES_WITH, and recovery-relation edge RECOVERED_BY_LIMIT_OF from EFC Theory node."}]
+    },
+    {
+      "watchlist_key": "framework:wCDM-CPL-Chevallier2001",
+      "title": "wCDM / w0waCDM (CPL parametrization)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Phenomenological dark-energy parametrization w(a) = w0 + wa(1\u2212a). DESI DR2 prefers it over \u039bCDM at 3.1\u03c3. EFC's L2\u2192L3 transition maps onto this (w0, wa) plane with directional consistency, but the signal is also reproduced by quintom, coupled DE/DM, and pre-recombination EDE \u2014 it constrains \u039bCDM, it does not select EFC.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Parametric DE competitor. COMPETES_WITH EFC in background sector."}]
+    },
+    {
+      "watchlist_key": "framework:Quintessence-Caldwell1998",
+      "title": "Quintessence (scalar-field DE)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Single canonical scalar \u03c6 with potential V(\u03c6) drives late-time acceleration (w > \u22121). Adds a new degree of freedom where EFC rederives DE dynamics from entropic flow on existing geometry. Discriminator: canonical quintessence cannot cross w = \u22121; EFC can if T(a) inverts.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Scalar-field DE competitor; distinct ontology."}]
+    },
+    {
+      "watchlist_key": "framework:EDE-Poulin2019",
+      "title": "Early Dark Energy (Poulin et al.)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Pre-recombination scalar-field injection targeting H0 tension. Pre-recombination EDE (arXiv:2511.16606) partially suppresses the DESI DR2 w0wa preference \u2014 a direct challenge to EFC's L2\u2192L3 evidence. Discriminator is CMB high-\u2113 residuals (EDE fits high-\u2113, worsens low-\u2113).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "H0-tension competitor with different CMB signature."}]
+    },
+    {
+      "watchlist_key": "framework:HolographicDE-Li2004",
+      "title": "Holographic Dark Energy (Li 2004)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "DE density bounded by holographic surfaces, \u03c1_de \u221d 1/L\u00b2. Ontological cousin to EFC \u2014 both derive DE from information-entropy on cosmological surfaces \u2014 but HDE fixes the IR scale phenomenologically while EFC derives it from K(\u03c1). Multiple HDE variants (future horizon, Hubble, Ricci) must each be compared.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Entropic-family relative; multi-variant competitor."}]
+    },
+    {
+      "watchlist_key": "framework:KaniadakisHDE-Drepanou2021",
+      "title": "Kaniadakis Holographic DE",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "\u03ba-generalised entropy variant of HDE. \u03ba\u21920 should reduce to standard HDE and ideally match the entropic term in EFC. Discriminator is the late-time growth-rate fingerprint f\u03c38(z).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Generalised-entropy DE sub-class of HDE."}]
+    },
+    {
+      "watchlist_key": "framework:Quintom-Feng2005",
+      "title": "Quintom Dark Energy",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Two-field (canonical + phantom) construction crossing w = \u22121. DESI DR2 quintom A/B analyses (arXiv:2601.02284) directionally compatible with EFC. Discriminator: EFC predicts correlated \u03bc(a)<1 at perturbation level; quintom does not.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Phantom-crossing DE competitor."}]
+    },
+    {
+      "watchlist_key": "framework:CoupledDE-DM-Amendola2000",
+      "title": "Coupled DE+DM",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Explicit Q-coupling in dark sector, revived post-DESI-DR2 (arXiv:2604.08449). Parallel mechanism to EFC's entropic coupling; distinguishing signal is clustering-rate residual on 30\u2013100 Mpc.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Dark-sector interaction competitor."}]
+    },
+    {
+      "watchlist_key": "framework:ThawingQuintessence-curved-2025",
+      "title": "Thawing Quintessence (curved background)",
+      "framework_category": "dark-energy-parametrization",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Canonical (non-phantom) quintessence remains viable in spatially curved FRW, countering claims that DESI DR2 forces phantom dynamics. Consistent with EFC if \u03a9_k absorbs the L2\u2192L3 residual.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "2025 non-phantom DE alternative."}]
+    },
+    {
+      "watchlist_key": "framework:MOND-Milgrom1983",
+      "title": "MOND (Milgrom 1983)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Interpolation \u03bc(x) at a0 \u2248 1.2\u00d710\u207b\u00b9\u2070 m/s\u00b2 fits SPARC rotation curves without DM. EFC contains MOND as low-acceleration limit via Grid-AQUAL. Shared phenomenology at galactic scales; discriminator is cluster scale (MOND underpredicts, EFC returns to Newtonian).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Galactic-scale mechanistic relative. EFC recovers MOND phenomenology as limit."}]
+    },
+    {
+      "watchlist_key": "framework:TeVeS-Bekenstein2004",
+      "title": "TeVeS (Bekenstein)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Original relativistic MOND extension with tensor/vector/scalar fields. Failed CMB peaks; superseded by RMOND. Kept for recovery-condition comparison in WP1.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Historical relativistic-MOND reference."}]
+    },
+    {
+      "watchlist_key": "framework:RMOND-Skordis2021",
+      "title": "RMOND (Skordis & Zlosnik)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "2021 relativistic MOND reproducing CMB, BAO, and rotation curves in one theory. Stronger competitor than TeVeS; required benchmark in any multi-probe EFC comparison.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Primary 2021+ relativistic-MOND competitor."}]
+    },
+    {
+      "watchlist_key": "framework:fR-Starobinsky2007",
+      "title": "f(R) Gravity (Starobinsky)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "f(R) generically gives \u03bc > 1; EFC predicts \u03bc < 1. Sign-level FA2 discriminator. DESI-DR2 (arXiv:2504.05432) favours f(R) over \u039bCDM \u2014 EFC and f(R) sit on opposite sides of the same data.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Primary MG competitor with sharp \u03bc-sign discriminator (FA2)."}]
+    },
+    {
+      "watchlist_key": "framework:DGP-Dvali2000",
+      "title": "DGP Braneworld",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "5D-bulk brane gravity. Self-accelerating branch ruled out; normal branch (nDGP) survives as \u03bc\u2013\u03a3 test bed. Canonical MG benchmark; required comparison against EFC on weak-lensing \u03a3 and growth f\u03c38.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Extra-dimensional MG benchmark."}]
+    },
+    {
+      "watchlist_key": "framework:Horndeski-Deffayet2011",
+      "title": "Horndeski (general scalar-tensor)",
+      "framework_category": "scalar-tensor-horndeski",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Most general second-order scalar-tensor theory. GW170817 eliminated \u03b1_T \u2260 0 branches. EFC's 135k-point scan (FA3) shows standard QS Horndeski with \u03b1_T = 0 cannot achieve \u03bc<1 AND \u03a3>1 simultaneously \u2014 EFC signature falsifies Horndeski-QS.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Encompassing scalar-tensor class; FA3 discriminator applies."}]
+    },
+    {
+      "watchlist_key": "framework:Galileon-Nicolis2009",
+      "title": "Galileon Gravity",
+      "framework_category": "scalar-tensor-horndeski",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Galilean-shift-symmetric scalar; self-accelerating with Vainshtein screening. Horndeski sub-class. Produces \u03bc > 1 (enhanced growth) \u2014 opposite sign to EFC prediction.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Horndeski sub-class with enhanced growth; FA2 applies."}]
+    },
+    {
+      "watchlist_key": "framework:KGB-Deffayet2010",
+      "title": "Kinetic Gravity Braiding",
+      "framework_category": "scalar-tensor-horndeski",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Derivative-coupled scalar-tensor (Horndeski sub-class). Produces enhanced growth, distinct cosmography. Benchmark entry in perturbation-sector comparison table.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Horndeski sub-class benchmark."}]
+    },
+    {
+      "watchlist_key": "framework:Weyl-geometric-Harko2019",
+      "title": "Weyl-geometric Gravity",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Geometric-rather-than-entropic route to MOND-like phenomenology via Weyl non-metricity. SPARC-tested (arXiv:2311.16893). Head-to-head \u0394AIC with EFC required on SPARC.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Geometric competitor on SPARC regime."}]
+    },
+    {
+      "watchlist_key": "framework:BransDicke-1961",
+      "title": "Brans\u2013Dicke Gravity",
+      "framework_category": "scalar-tensor-horndeski",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Classic scalar-tensor setting G_eff = 1/\u03c6. \u03c9_BD > 40 000 from Cassini. Historical anchor and Horndeski ancestor; EFC recovers Newtonian limit differently (via K(\u03c1) stiffness).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Horndeski ancestor; Solar-System sanity check."}]
+    },
+    {
+      "watchlist_key": "framework:MassiveGravity-dRGT-2010",
+      "title": "Massive Gravity (dRGT)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Ghost-free graviton-mass construction. Cosmologically viable branches tightly bounded by GW170817 constraint on c_T. Appears in same perturbation-sector tables as EFC.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Graviton-mass competitor; GW-bounded."}]
+    },
+    {
+      "watchlist_key": "framework:Jacobson-1995",
+      "title": "Jacobson: Einstein Equations as Equation of State",
+      "framework_category": "emergent-entropic-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Derives Einstein equations from local Rindler-horizon thermodynamics (\u03b4Q = T dS). Conceptual ancestor of every entropic-gravity programme including EFC. EFC replaces local horizon with global entropic field S(x).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Ontological ancestor. Explicit parent-citation in WP1."}]
+    },
+    {
+      "watchlist_key": "framework:Padmanabhan-2009",
+      "title": "Padmanabhan: Thermodynamic Gravity",
+      "framework_category": "emergent-entropic-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Systematic thermodynamic reformulation of gravity across Lanczos\u2013Lovelock theories. Shared scaffolding with EFC; discriminator is that Padmanabhan leaves matter intact, EFC couples entropy to \u03c1 through K(\u03c1).",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Emergent-gravity programme relative."}]
+    },
+    {
+      "watchlist_key": "framework:VerlindeEntropic-2010",
+      "title": "Verlinde 2010 (Entropic Gravity)",
+      "framework_category": "emergent-entropic-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Newton's law as entropic force on holographic screens. Direct conceptual predecessor of EFC; shared a0 \u223c cH0 emergence. EFC generalises the holographic screen to a dynamical S(x) on a lattice.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Closest direct predecessor in entropic-gravity lineage."}]
+    },
+    {
+      "watchlist_key": "framework:VerlindeEmergent-2016",
+      "title": "Verlinde 2016 (Emergent Gravity / de Sitter)",
+      "framework_category": "emergent-entropic-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "de Sitter volume-law entropy explains DM phenomenology without particle DM. Tested on RAR (1702.04355) and wide binaries. EFC's closest living competitor on dark-sector phenomenology; discriminator is cluster-scale behaviour.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Closest living competitor on dark-sector ontology."}]
+    },
+    {
+      "watchlist_key": "framework:MassToHorizon-2025",
+      "title": "Mass-to-Horizon Entropic Cosmology",
+      "framework_category": "emergent-entropic-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "2025 entropic-cosmology variant preferred over \u039bCDM on DESI DR2 BAO (Bayes-factor). Same entropic family as EFC but lacks galactic/perturbation sector. Already referenced in Gap Analysis \u00a76.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "2025 entropic-cosmology competitor."}]
+    },
+    {
+      "watchlist_key": "framework:Machian-SPARC-2023",
+      "title": "Machian Gravity (SPARC, 2023)",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Machian formulation fits SPARC with characteristic acceleration. Member of MOND-limit family. Head-to-head \u0394AIC on SPARC 175 required.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "SPARC-family MG competitor."}]
+    },
+    {
+      "watchlist_key": "framework:CCC-Penrose2011",
+      "title": "Conformal Cyclic Cosmology (Penrose)",
+      "framework_category": "alternative-cosmology",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Infinite sequence of conformally rescaled aeons. Orthogonal ontology to EFC \u2014 not directly comparable probe-by-probe. Distinct CMB-anomaly predictions. Reference only.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Orthogonal alternative-cosmology."}]
+    },
+    {
+      "watchlist_key": "framework:Timescape-Wiltshire2007",
+      "title": "Timescape Cosmology (Wiltshire)",
+      "framework_category": "alternative-cosmology",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Inhomogeneous backreaction as apparent DE. Revived by recent Pantheon+ and DES-SN5YR reanalyses. Competitor to all DE-based frameworks; discriminator is CMB-lensing \u03a3 enhancement.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Backreaction-based late-time alternative."}]
+    },
+    {
+      "watchlist_key": "framework:Ekpyrotic-Khoury2001",
+      "title": "Ekpyrotic / Bouncing Cosmology",
+      "framework_category": "alternative-cosmology",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Slow contraction + bounce replacing inflation. EFC is agnostic about pre-big-bang dynamics; kept for taxonomic completeness of alternative early-universe paradigms. Reference only.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Pre-CMB alternative; orthogonal to EFC scope."}]
+    },
+    {
+      "watchlist_key": "framework:MiHsC-McCulloch2016",
+      "title": "Quantized Inertia / MiHsC",
+      "framework_category": "modified-gravity",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Modified inertia via Unruh + Hubble-horizon cutoff; derives MOND a0 from first principles. Fringe-position competitor with wide-binary predictions. Reference for a0-emergence alternatives.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "a0-derivation alternative."}]
+    },
+    {
+      "watchlist_key": "framework:SIDM-Spergel2000",
+      "title": "Self-Interacting Dark Matter",
+      "framework_category": "alternative-dark-matter",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "DM self-scattering \u03c3/m \u223c 0.1\u20131 cm\u00b2/g addressing cusp-core, Bullet morphology, diversity. Orthogonal to EFC \u2014 EFC is gravity-sector, SIDM is particle-sector. AS1063 JWST (2602.15940) tests both.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Particle-sector DM alternative; orthogonal scope to EFC."}]
+    },
+    {
+      "watchlist_key": "framework:FuzzyDM-Hu2000",
+      "title": "Fuzzy / Ultralight Axion DM",
+      "framework_category": "alternative-dark-matter",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Ultralight scalar DM m \u223c 10\u207b\u00b2\u00b2 eV with de Broglie wavelength \u223c kpc. Orthogonal scope to EFC (gravity vs particle sector). Both can be simultaneously true or false.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Particle-sector DM alternative; scope-separated."}]
+    },
+    {
+      "watchlist_key": "framework:SuperfluidDM-Khoury2015",
+      "title": "Superfluid Dark Matter",
+      "framework_category": "alternative-dark-matter",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "BEC phase transition inside galaxies produces MOND-like force via phonons; CDM-like at clusters. Shares galactic MOND-limit regime with EFC but through different mechanism.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Hybrid DM-gravity competitor; shared galactic regime."}]
+    },
+    {
+      "watchlist_key": "framework:PBH-Carr1974",
+      "title": "Primordial Black Holes as Dark Matter",
+      "framework_category": "alternative-dark-matter",
+      "cluster_ids": ["competing_frameworks_taxonomy"],
+      "doc_synthesis": {
+        "draft": "Early-universe black holes as DM candidate; LIGO-Virgo reopened the asteroid-mass window. Orthogonal scope to EFC.",
+        "verified_by_morten": true,
+        "verified_at": "2026-04-19T00:00:00.000000Z"
+      },
+      "targets": [{"kind": "framework", "confidence": "high", "graph_status": "not_applicable", "reasoning": "Particle-equivalent DM candidate; scope-separated."}]
     }
   ],
   "unmapped_items": [],
@@ -603,6 +1061,29 @@
     "proposed_edges_for_later_review": 6,
     "skipped_with_warning": 3
   },
+  "statistics_v1_1": {
+    "items": 46,
+    "items_new_in_v1_1": 34,
+    "total_targets": 66,
+    "by_kind": {
+      "test": 27,
+      "gap": 3,
+      "framework": 36
+    },
+    "framework_by_category": {
+      "dark-energy-parametrization": 9,
+      "modified-gravity": 9,
+      "scalar-tensor-horndeski": 5,
+      "emergent-entropic-gravity": 6,
+      "alternative-cosmology": 3,
+      "alternative-dark-matter": 4
+    },
+    "clusters": 8,
+    "doc_syntheses_drafted_total": 46,
+    "doc_syntheses_verified_by_morten": 46,
+    "cluster_commentaries_drafted_total": 8,
+    "cluster_commentaries_verified_by_morten": 8
+  },
   "human_review_guidance": {
     "review_workflow": [
       "1. Read each mappings[].doc_synthesis.draft (12 entries). Edit/replace/accept. Set verified_by_morten: true and verified_at: <ISO date>.",
@@ -619,7 +1100,7 @@
     ],
     "how_to_approve": "Edit as needed. Flip all verification flags + top-level last_verified_by_morten + version 1.0. Commit on this feature branch, then merge to main."
   },
-  "last_verified_at": "2026-04-18T12:33:25.389267Z",
-  "verification_method": "delegated_batch_approval_2026-04-18",
-  "draft_author": "claude-opus-4-7 (AI-drafted syntheses, batch-approved by Morten)"
+  "last_verified_at": "2026-04-19T00:00:00.000000Z",
+  "verification_method": "delegated_batch_approval_2026-04-19",
+  "draft_author": "claude-opus-4-7 (AI-drafted syntheses, batch-approved by Morten via session prompt 2026-04-19)"
 }
