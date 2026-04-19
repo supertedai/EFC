@@ -93,7 +93,7 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 119 total, 91 survived, 10 falsified
+  Tests: 119 total, 90 survived, 11 falsified
   Papers: 150 (147 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -128,12 +128,12 @@ EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 150 papers, 147 DOIs
-Ledger: 119 tests, 10 falsified
+Ledger: 119 tests, 11 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 147 close to repo 150
   [OK]       Paper count 150 close to repo 150
-  [OK]       Survival count 91/100 matches ledger
+  [WARNING]  Survived 91/100 but expected 90/101 (total=119, falsified=11, pipeline=18)
 
 --- Validation Ledger ---
   [OK]       Test count 118 matches ledger 119
@@ -141,6 +141,9 @@ Ledger: 119 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
+  [CRITICAL] Elevator Pitch: says 91 survived but ledger has 90
+  [CRITICAL] White Paper Series: says 91 survived but ledger has 90
+  [CRITICAL] Stage-IV Roadmap: says 91 survived but ledger has 90
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -180,9 +183,12 @@ Ledger: 119 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 4 errors, 5 warnings
+RESULT: 7 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
+  - Elevator Pitch: says 91 survived but ledger has 90
+  - White Paper Series: says 91 survived but ledger has 90
+  - Stage-IV Roadmap: says 91 survived but ledger has 90
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
