@@ -1,10 +1,10 @@
 {
   "meta": {
     "script": "reproduce_efc.py",
-    "timestamp": "2026-04-16T14:34:45Z",
+    "timestamp": "2026-04-19T10:11:20Z",
     "numpy_version": "2.4.4",
     "python_version": "3.11.15",
-    "elapsed_seconds": 0.299
+    "elapsed_seconds": 0.292
   },
   "parameters": {
     "A": 0.0,
@@ -29,11 +29,11 @@
       "integral_n6": 0.10509482848789246
     },
     "growth_comparison": {
-      "chi2_lcdm": 333.7169564280212,
-      "chi2_efc": 303.9587389058853,
-      "delta_chi2": -29.758217522135908,
-      "lnD_lcdm": 6.433906482723981,
-      "lnD_efc": 6.3858735386979575
+      "chi2_lcdm": 5.4822719950432255,
+      "chi2_efc": 3.2256766219314246,
+      "delta_chi2": -2.256595373111801,
+      "lnD_lcdm": -0.26016010881724544,
+      "lnD_efc": -0.30877884948830797
     },
     "loo_robustness": {
       "total": 7,
@@ -106,17 +106,17 @@
     {
       "name": "efc_growth_suppressed",
       "passed": "True",
-      "detail": "ln D(EFC) = 6.3859 < ln D(LCDM) = 6.4339"
+      "detail": "ln D(EFC) = -0.3088 < ln D(LCDM) = -0.2602"
     },
     {
       "name": "growth_chi2_finite",
       "passed": "True",
-      "detail": "chi2_LCDM = 333.72, chi2_EFC = 303.96"
+      "detail": "chi2_LCDM = 5.48, chi2_EFC = 3.23"
     },
     {
       "name": "efc_chi2_improved",
       "passed": "True",
-      "detail": "Dchi2 = -29.76 (negative = EFC preferred)"
+      "detail": "Dchi2 = -2.26 (negative = EFC preferred)"
     },
     {
       "name": "growth_deterministic",
@@ -224,5 +224,5 @@
     "passed": 31,
     "failed": 0
   },
-  "content_hash": "028b5befdfecc759e77edbbc7dbb35e5a4b36cefcfafedaf4b57ecd0ebb8dcef"
+  "content_hash": "00b78e1a5f5baac76eaf5016fec11295b528ef4818a1d8b8088a87a35031eab0"
 }

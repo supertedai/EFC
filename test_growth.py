@@ -87,11 +87,30 @@ print()
 print("=" * 60)
 print("STEG G: B-sweep (mu-modifikasjon)")
 print("=" * 60)
+# LCDM reference for sigma8 scaling
+ref = solve_growth(Omega_m=0.30, A=0.0, B=0.0)
+# raw D at a=1 before normalization is inaccessible; instead we track
+# f(a=1) and growth-history integral as the B-signal.
+def growth_signal(res):
+    """Mean D(a) over a>=0.5 — sensitive to mu modification."""
+    a = np.asarray(res["a"])
+    D = np.asarray(res["D"])
+    mask = a >= 0.5
+    return float(np.trapezoid(D[mask], a[mask]) / (a[mask][-1] - a[mask][0]))
+
+sigma8_LCDM = 0.811
+ref_ln_D_raw_end = float(np.asarray(ref["ln_D_raw"])[-1])
+print(f"{'B':>6s}  {'D(a=1)':>10s}  {'f(a=1)':>10s}  "
+      f"{'D_raw(1)':>10s}  {'sigma8':>8s}")
 for B in [0.0, 0.05, 0.087, 0.1]:
     res = solve_growth(Omega_m=0.30, A=0.0, B=B)
     D1 = get_D1(res)
-    sig8 = res.get("sigma8", "N/A")
-    print(f"B={B:6.3f}  D(a=1)={D1}  sigma8={sig8}")
+    f1 = float(np.asarray(res["f"])[-1])
+    ln_D_raw_end = float(np.asarray(res["ln_D_raw"])[-1])
+    D_raw_end = float(np.exp(ln_D_raw_end))
+    sigma8 = sigma8_LCDM * np.exp(ln_D_raw_end - ref_ln_D_raw_end)
+    print(f"{B:6.3f}  {D1:10.6f}  {f1:10.6f}  {D_raw_end:10.6f}  "
+          f"{sigma8:8.4f}")
 print()
 
 print("=" * 60)

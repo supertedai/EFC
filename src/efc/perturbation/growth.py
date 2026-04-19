@@ -6,7 +6,7 @@ Solves the modified linear growth ODE with μ(a) ≠ 1 and
 optionally modified background H(z).
 
 Growth equation:
-    f' + f² + (1/2 − 3/2 Ω̃_m) f = 3/2 μ(a) Ω̃_m
+    f' + f² + (2 − 3/2 Ω̃_m) f = 3/2 μ(a) Ω̃_m
 
 where f = d ln D / d ln a and Ω̃_m(a) = Ω_m a^{-3} / E²(a).
 
@@ -33,7 +33,7 @@ def growth_ode(ln_a, f, Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0,
     """
     Right-hand side of the growth rate ODE: df/d(ln a).
 
-    f' = −f² − (1/2 − 3/2 Ω̃_m) f + 3/2 μ(a) Ω̃_m
+    f' = −f² − (2 − 3/2 Ω̃_m) f + 3/2 μ(a) Ω̃_m
 
     Parameters
     ----------
@@ -69,7 +69,7 @@ def growth_ode(ln_a, f, Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0,
     Om_tilde = _omega_m_tilde(a, E2_val, Omega_m)
     mu = mu_of_a(a, B, z_t=z_t, n=n) if B != 0 else 1.0
 
-    return -f**2 - (0.5 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    return -f**2 - (2.0 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
 
 
 def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
@@ -100,8 +100,9 @@ def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
     Returns
     -------
     dict
-        {"z": ndarray, "a": ndarray, "f": ndarray, "ln_D": ndarray}
-        where ln_D is the integrated log growth factor.
+        {"z": ndarray, "a": ndarray, "f": ndarray, "D": ndarray,
+         "ln_D": ndarray}
+        D is normalized so D(a=1) = 1; ln_D = log(D).
     """
     a_init = 1.0 / (1.0 + z_init)
     ln_a_arr = np.linspace(np.log(a_init), 0.0, n_points)
@@ -114,7 +115,8 @@ def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
     f_arr = np.zeros(n_points)
     ln_D_arr = np.zeros(n_points)
     f_arr[0] = f_val
-    ln_D_arr[0] = 0.0
+    # Matter-era IC: D ∝ a, so ln_D(a_init) = ln(a_init).
+    ln_D_arr[0] = np.log(a_init)
 
     def rhs(ln_a, f):
         return growth_ode(ln_a, f, Omega_m, A, B, z_t, n)
@@ -129,6 +131,11 @@ def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
         f_arr[i] = f_val
         ln_D_arr[i] = ln_D_arr[i - 1] + f_val * h
 
+    # Normalize so D(a=1) = 1; preserve raw log-amplitude for σ₈ scaling.
+    ln_D_raw = ln_D_arr.copy()
+    ln_D_arr = ln_D_arr - ln_D_arr[-1]
+    D_arr = np.exp(ln_D_arr)
+
     a_arr = np.exp(ln_a_arr)
     z_arr = 1.0 / a_arr - 1.0
 
@@ -136,7 +143,9 @@ def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
         "z": z_arr,
         "a": a_arr,
         "f": f_arr,
+        "D": D_arr,
         "ln_D": ln_D_arr,
+        "ln_D_raw": ln_D_raw,
     }
 
 

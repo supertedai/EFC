@@ -193,8 +193,8 @@ def test_growth_relative(R: Result) -> dict:
         Omega_m=WP1A["Omega_m"], A=WP1A["A"], B=WP1A["B"],
         z_t=WP1A["z_t"], n=WP1A["n"],
     )
-    lnD_lcdm = sol_lcdm["ln_D"][-1]
-    lnD_efc = sol_efc["ln_D"][-1]
+    lnD_lcdm = sol_lcdm["ln_D_raw"][-1]
+    lnD_efc = sol_efc["ln_D_raw"][-1]
 
     # Core check: EFC has less cumulative growth (ln D lower)
     R.check(
