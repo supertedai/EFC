@@ -103,7 +103,10 @@ def solve_growth(use_efc=False, mu_0=MU_0, z_t=Z_T, n=N_STEEP):
         E2 = max(E2_lcdm(z), 1e-30)
         Om = OMEGA_M * a**(-3) / E2
         mu_val = 1.0 - B * gate(a, z_t, n) if use_efc else 1.0
-        return -f_val**2 - (0.5 - 1.5 * Om) * f_val + 1.5 * mu_val * Om
+        # Friction coefficient is (2 - 1.5 * Om_tilde). Earlier revisions
+        # used (0.5 - 1.5 * Om_tilde), which is mathematically incorrect
+        # and damps growth ~30x too weakly. See docs/notes/growth_bug_2026.md.
+        return -f_val**2 - (2.0 - 1.5 * Om) * f_val + 1.5 * mu_val * Om
 
     for i in range(1, n_pts):
         la = ln_a[i - 1]
