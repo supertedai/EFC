@@ -1,62 +1,66 @@
 """
 Regression tests for the growth-ODE friction coefficient.
 
-These tests are committed FIRST (marked xfail) to provide an immune
+These tests were committed first (marked xfail) to provide an immune
 indicator that the bug in src/efc/perturbation/growth.py existed, and
 to establish the expected correct behaviour before the fix.
 
-Bug: line 72 of growth.py uses coefficient (0.5 - 1.5 * Om_tilde)
-in the f-form growth ODE
+Bug: earlier revisions of growth.py used the coefficient
+(0.5 - 1.5 * Om_tilde) in the f-form growth ODE
 
-    f' = -f^2 - (0.5 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    f' = -f**2 - (0.5 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
 
 The correct coefficient, derived from
     D'' + [2 + d ln H/d ln a] D' - (3/2) Om_tilde D = 0
 rewritten in f = d ln D / d ln a form, is (2 - 1.5 * Om_tilde):
 
-    f' = -f^2 - (2 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    f' = -f**2 - (2 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
 
-At Om_tilde = 1 (matter era) this makes a factor 1.5 difference in
-the friction term (0.5 wrong, -0.5 correct once signs applied).
-The buggy version damps growth ~30x too weakly.
-
-When the fix is committed, the xfail markers should be removed
-(or converted to xfail(strict=True) which turns green failures into
-errors, so nobody re-introduces the bug silently).
+Per-step effect: the two forms differ by exactly +1.5 * f in the
+friction term. In matter era (Om_tilde ~ 1, f ~ 1) this damps growth
+~30x too weakly in the buggy version.
 """
 
 import numpy as np
 import pytest
 
-from efc.perturbation.growth import growth_ode, solve_growth
+from efc.perturbation.background import E2_lcdm
+from efc.perturbation.growth import growth_ode, solve_growth, _omega_m_tilde
 
 
-@pytest.mark.xfail(
-    reason="growth.py:72 friction bug — fix pending in follow-up commit",
-    strict=False,
-)
-def test_friction_matter_era_fixed_point():
-    """In matter-dominated era (Om_tilde = 1, mu = 1) with f = 1,
-    the growth-rate ODE must have df/d(ln a) = 0 (fixed point)."""
-    # Einstein-de Sitter: Om = 1 makes Om_tilde = 1 at any scale factor.
-    ln_a = np.log(1e-3)
-    f = 1.0
-    df = growth_ode(ln_a, f, Omega_m=1.0, A=0.0, B=0.0)
+def test_friction_matches_correct_formula():
+    """Verify growth_ode returns the (2 - 1.5 Om_tilde) coefficient,
+    not (0.5 - 1.5 Om_tilde). We compute both candidate RHS values
+    analytically and assert the implementation matches the correct one.
 
-    # Correct: -1 - (2 - 1.5) * 1 + 1.5 = 0
-    # Buggy:   -1 - (0.5 - 1.5) * 1 + 1.5 = 1.5
-    assert abs(df) < 1e-6, (
-        f"Expected df/d(ln a) ~= 0 at matter-era fixed point, got {df:.6f}. "
-        "A value near 1.5 indicates the (0.5 - 1.5 Om_tilde) friction bug."
+    This test is agnostic to radiation / dark-energy contributions:
+    it uses whatever Om_tilde the implementation itself computes.
+    """
+    Om, a, f = 0.30, 0.1, 0.9
+    ln_a = np.log(a)
+    z = 1.0 / a - 1.0
+
+    E2 = E2_lcdm(z, Om)
+    Om_tilde = _omega_m_tilde(a, E2, Om)
+    mu = 1.0  # B = 0 implies mu = 1
+
+    df_correct = -f**2 - (2.0 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    df_buggy = -f**2 - (0.5 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    df_computed = growth_ode(ln_a, f, Omega_m=Om, A=0.0, B=0.0)
+
+    # The two candidate formulas must differ by exactly 1.5 * f:
+    assert abs((df_buggy - df_correct) - 1.5 * f) < 1e-12
+
+    # The implementation must match the correct one, not the buggy one.
+    assert abs(df_computed - df_correct) < 1e-12, (
+        f"growth_ode returned {df_computed:.6f}; "
+        f"correct formula gives {df_correct:.6f}, "
+        f"buggy formula gives {df_buggy:.6f}."
     )
 
 
-@pytest.mark.xfail(
-    reason="growth.py:72 friction bug — fix pending in follow-up commit",
-    strict=False,
-)
 def test_lcdm_growth_matches_linder_gamma():
-    """Linder (2005): f(z=0) ~ Omega_m^gamma with gamma ~ 0.55 for LCDM.
+    """Linder (2005): f(z=0) ~ Omega_m**gamma with gamma ~ 0.55 for LCDM.
 
     This is an *external* cross-check: the approximation does not
     depend on our solver, so it breaks the tautology risk in
@@ -76,3 +80,15 @@ def test_lcdm_growth_matches_linder_gamma():
         "by more than 0.02. The solver and a standard approximation "
         "cannot both be right."
     )
+
+
+def test_solve_growth_returns_normalised_D_ratio():
+    """solve_growth must expose D(a)/D(1) directly, so callers don't
+    mis-interpret raw ln_D as ln D(a)."""
+    sol = solve_growth(Omega_m=0.30, A=0.0, B=0.0)
+    assert "D_ratio" in sol, "solve_growth must return 'D_ratio' key"
+    assert abs(float(sol["D_ratio"][-1]) - 1.0) < 1e-12, (
+        "D_ratio(a=1) must equal 1.0 by construction."
+    )
+    # Monotonically increasing (growing mode)
+    assert np.all(np.diff(sol["D_ratio"]) > 0)

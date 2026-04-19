@@ -33,7 +33,12 @@ def growth_ode(ln_a, f, Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0,
     """
     Right-hand side of the growth rate ODE: df/d(ln a).
 
-    f' = −f² − (1/2 − 3/2 Ω̃_m) f + 3/2 μ(a) Ω̃_m
+    f' = −f² − (2 − 3/2 Ω̃_m) f + 3/2 μ(a) Ω̃_m
+
+    The friction coefficient (2 − 3/2 Ω̃_m) is [2 + d ln H/d ln a]
+    rewritten in terms of Ω̃_m. Earlier revisions of this file used
+    (1/2 − 3/2 Ω̃_m), which is incorrect and damps growth ~30× too
+    weakly in matter era.
 
     Parameters
     ----------
@@ -69,7 +74,7 @@ def growth_ode(ln_a, f, Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0,
     Om_tilde = _omega_m_tilde(a, E2_val, Omega_m)
     mu = mu_of_a(a, B, z_t=z_t, n=n) if B != 0 else 1.0
 
-    return -f**2 - (0.5 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
+    return -f**2 - (2.0 - 1.5 * Om_tilde) * f + 1.5 * mu * Om_tilde
 
 
 def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
@@ -132,11 +137,17 @@ def solve_growth(Omega_m=DEFAULT_OMEGA_M, A=0.0, B=0.0, z_t=1.01, n=6,
     a_arr = np.exp(ln_a_arr)
     z_arr = 1.0 / a_arr - 1.0
 
+    # Normalised growth factor D(a) / D(a=1). This is the quantity
+    # almost every caller needs; exposing it here avoids the footgun
+    # of treating raw ln_D (which is ln D(a)/D(a_init)) as ln D(a).
+    D_ratio = np.exp(ln_D_arr - ln_D_arr[-1])
+
     return {
         "z": z_arr,
         "a": a_arr,
         "f": f_arr,
         "ln_D": ln_D_arr,
+        "D_ratio": D_ratio,
     }
 
 
