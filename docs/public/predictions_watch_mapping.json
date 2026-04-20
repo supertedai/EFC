@@ -1,8 +1,21 @@
 {
   "id": "efc-predictions-watch-mapping",
-  "version": "0.1-DRAFT",
-  "last_verified_by_morten": null,
-  "verification_note": "SAFETY GATE: parser refuses to write until Morten sets last_verified_by_morten to a name and bumps version to 1.0. This ensures target mappings (which test_id each prediction informs, which theory it competes with, etc.) are reviewed before the graph writes happen.",
+  "version": "1.0",
+  "schema_version": "3",
+  "last_verified_by_morten": "Morten Magnusson",
+  "last_verified_orcid": "0009-0002-4860-5095",
+  "last_verified_at": "2026-04-20",
+  "verification_note": "v1.0 batch approval. All 6 prediction mappings (P1-P6) and 3 cluster commentaries verified via Morten's delegated batch-approval authority (2026-04-20). Draft text remains AI-generated (conservative wording, English). Parser writes 6 Prediction:Preregistered nodes with full payload but SKIPs edge creation when graph_status=not_found. Zero implicit node creation.",
+  "audit_history": [
+    {"version": "0.1-DRAFT", "date": "2026-04-18", "summary": "Initial draft; 6 mappings (P1-P6) + 3 cluster commentaries."},
+    {"version": "1.0", "date": "2026-04-20", "summary": "Batch approval. All doc_syntheses + cluster commentaries flipped to verified=true. 5 of 6 test targets remain graph_status=not_found (Euclid DR1, DESI DR2 fsigma8, SO×Euclid, Rubin DP2, Horndeski Theory) — parser writes Prediction:Preregistered nodes but SKIPs edge creation until target nodes materialize."}
+  ],
+  "parser_safety_contract": {
+    "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null.",
+    "graph_status_rule": "If graph_status = 'not_found', parser MUST log and SKIP — never create implicit EFCValidation/Theory/Gap nodes.",
+    "authority_rule": "This file is advisory. It never overrides explicit graph facts.",
+    "language_rule": "Renderer MUST verify ledger-facing strings are English."
+  },
   "synthesis_method": {
     "source": "Hand-curated from EFC_Predictions.html, reviewed by Morten Magnusson",
     "draft_by": "claude-code",
@@ -89,7 +102,9 @@
         "watchlist_keys": ["P1", "P3", "P5"],
         "cluster_commentary": {
           "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), gravitational-slip enhancement (P3), and the Horndeski no-go (P5). All three are structural discriminators: they cannot be mimicked by ΛCDM + nuisance parameters. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test them.",
-          "verified_by_morten": false
+          "verified_by_morten": true,
+          "verified_by_morten_name": "Morten Magnusson",
+          "verified_at": "2026-04-20"
         }
       },
       {
@@ -98,7 +113,9 @@
         "watchlist_keys": ["P2", "P4"],
         "cluster_commentary": {
           "draft": "P2 (fσ8 at z=0.7) and P4 (Rubin DP2 S8) are DAMAGE-class: failure erodes motivation without falsifying the framework. Both are quantitative point predictions with explicit ΛCDM comparison.",
-          "verified_by_morten": false
+          "verified_by_morten": true,
+          "verified_by_morten_name": "Morten Magnusson",
+          "verified_at": "2026-04-20"
         }
       },
       {
@@ -107,7 +124,9 @@
         "watchlist_keys": ["P5", "P6"],
         "cluster_commentary": {
           "draft": "P5 (Horndeski no-go) and P6 (background sign lemma) are closed — either analytically proven or exhaustively scanned. They are listed for completeness, not as open tests.",
-          "verified_by_morten": false
+          "verified_by_morten": true,
+          "verified_by_morten_name": "Morten Magnusson",
+          "verified_at": "2026-04-20"
         }
       }
     ]
