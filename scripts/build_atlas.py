@@ -245,14 +245,15 @@ HTML_TEMPLATE = r"""<!doctype html>
 
 <h1>Energy-Flow Cosmology (EFC) &mdash; Framework Atlas</h1>
 
-<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.2rem; font-size:0.92rem;">
-  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.3rem; font-weight:600;">Elevator Pitch</a>
-  <a href="EFC_Validation_Ledger.html" style="margin-right:1.3rem; font-weight:600;">Validation Ledger</a>
-  <a href="EFC_White_Paper_Series.html" style="margin-right:1.3rem; font-weight:600;">White Paper Series</a>
-  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.3rem; font-weight:600;">Stage-IV Roadmap</a>
-  <a href="EFC_Gap_Analysis.html" style="margin-right:1.3rem; font-weight:600;">Gap Analysis</a>
-  <a href="EFC_Predictions.html" style="margin-right:1.3rem; font-weight:600;">Predictions</a>
-  <a href="EFC_Atlas.html" style="margin-right:1.3rem; font-weight:700;">Atlas</a>
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Ledger</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
+  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
+  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
   <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
 </div>
 
