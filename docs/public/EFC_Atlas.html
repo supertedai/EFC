@@ -206,74 +206,282 @@ frameworks address it, with what mechanism, and with what role.
 </p>
 
 <div class="nav-tabs" role="tablist">
-  <button class="nav-tab active" data-tab="demo">Demo (KILL prediction)</button>
+  <button class="nav-tab active" data-tab="demo">Sealed predictions</button>
   <button class="nav-tab" data-tab="predictions">All predictions</button>
   <button class="nav-tab" data-tab="phenomena">Phenomena</button>
   <button class="nav-tab" data-tab="frameworks">Frameworks</button>
 </div>
 
 <!-- =========================================================
-     TAB 1: DEMO (P1 phi_psi_slip)
+     TAB 1: SEALED PREDICTIONS (all P1..P6 + KT-4, layer-grouped)
      ========================================================= -->
 <section class="tab-panel active" id="tab-demo">
 
-<div class="hero">
+<h2>Sealed predictions</h2>
+<p style="font-size:0.94rem; color:#1a3a6b;">
+7 preregistered EFC predictions with sealed DOIs, grouped by RCMP layer.
+Each card shows EFC's prediction, the full rival list from the
+atlas (every framework that addresses the same phenomenon with its own mechanism), a
+Stage-III empirical sandwich that brackets the prediction with already-observed survey
+data, and the arbiter instrument scheduled to resolve it.
+</p>
+<p style="font-size:0.92rem; color:#5b6a7a;">Badge mix: <span class="badge-damage">DAMAGE: 2</span> &middot; <span class="badge-kill">KILL: 3</span> &middot; <span class="badge-sealed">PROVEN: 1</span> &middot; <span class="badge-sealed">STRUCTURAL: 1</span></p>
+
+<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L0 &mdash; Background <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(1 prediction)</span></h3>
+
+<div class="hero" style="border-left-color:#1a7a1a;" id="pred-P6">
   <div style="margin-bottom:0.4rem;">
-    <span class="badge-kill">KILL</span>
-    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
-    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">Preregistered &middot; sealed DOI</span>
+    <span class="badge-sealed">PROVEN</span>
+    <span class="regime-chip L0">L0 &mdash; Background</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P6</strong> &middot; phenomenon: Background expansion sign lemma (ΔE²(z) ≤ 0) <code style="color:#5b6a7a;">background_expansion_sign_structure</code>
+    </span>
   </div>
-  <h2>Φ/Ψ slip: non-monotonic Σ_eff(z) with sign change near z≈0.44</h2>
-  <p style="margin-top:0.5rem; color:#1a3a6b;">
-    Energy-Flow Cosmology predicts a non-monotonic gravitational slip: Σ_eff(z) enhanced below z≈0.4, suppressed above z≈0.5, with a sealed crossover near z≈0.44. All 13 rival frameworks in the atlas predict monotonic behaviour with relative divergence = 1.0. GW-speed constraints structurally forbid the crossover for the entire QS Horndeski class — so a sign-change observation by Euclid DR1 would not just favour EFC, it would exclude the QS class as a whole.
-  </p>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Background sign lemma: ΔE²(z) ≤ 0 for all z &gt; 0</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">The background sign lemma is the only L0-level proven statement in the sealed set: it establishes that EFC's background Hubble function never exceeds ΛCDM's at late times. This is not a numerical fit but an action-level theorem, verified to sub-percent precision by CLASS. It is the scaffold that L1 growth enhancement lives on — without it, fsσ₈ suppression would be incoherent.</p>
 
-  <div class="hero-meta">
-    <div class="cell"><span class="lbl">EFC prediction</span><span class="val">η = 0.9993 (sealed); Σ_eff enhanced z&lt;0.4, suppressed z&gt;0.5</span></div>
-    <div class="cell"><span class="lbl">Mechanism</span><span class="val" style="font-size:0.82rem;">Sigma_eff_sign_change_non_monotonic</span></div>
-    <div class="cell"><span class="lbl">Hash</span><span class="val">7a850cfa58477701</span></div>
-    <div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.82rem;">2026-02-18T05:07:13Z</span></div>
-    <div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.82rem;"><a href="https://doi.org/10.6084/m9.figshare.32037990">10.6084/m9.figshare.32037990</a></span></div>
-    <div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.82rem;">Euclid DR1 (October 2026)</span></div>
-  </div>
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">ΔE²(z) ≤ 0 ∀ z &gt; 0</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">Neutral (baseline)</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.31333414">10.6084/m9.figshare.31333414</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">reproduce_efc.py (analytical + numerical)</span></div></div>
 
-  <h3 style="color:#0d1b3e;">Falsifier &mdash; F9</h3>
-  <p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
-    <strong>If observed:</strong> Monotonic Σ_eff(z) across [0.3, 0.6] in Stage-IV tomography &rarr; EFC killed on this prediction.
-  </p>
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> ΔE²(z) ≤ 0 for all z &gt; 0, i.e. H_EFC(z) ≤ H_ΛCDM(z). Reduced Hubble friction enhances growth; analytically proven (Lemma 1) and numerically verified at A ∈ {0.01, 0.1, 1.0, 5.0}.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F?</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> A counterexample at any z &gt; 0 with A in the tested range. Analytical proof currently closed.</p>
 
-  <h3 style="color:#0d1b3e;">Rival frameworks &mdash; 12 monotonic, relative divergence = 1.0</h3>
-  <table style="margin-top:0.5rem;">
-    <thead><tr><th>Framework</th><th>Role</th><th>Mechanism</th></tr></thead>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 0 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
     <tbody>
-    <tr><td>DGP</td><td>predicts_monotonic</td><td><span class="mechanism-pill">braneworld_Vainshtein_no_crossover</span></td></tr>
-    <tr><td>EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
-    <tr><td>Galileon</td><td>predicts_monotonic</td><td><span class="mechanism-pill">Vainshtein_screening_no_slip_sign_change</span></td></tr>
-    <tr><td>Horndeski</td><td>predicts_monotonic</td><td><span class="mechanism-pill">QS_alpha_T_zero_forces_Sigma_le_mu</span></td></tr>
-    <tr><td>LCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">GR_baseline_no_slip</span></td></tr>
-    <tr><td>MOND</td><td>predicts_monotonic</td><td><span class="mechanism-pill">modified_inertia_no_relativistic_slip</span></td></tr>
-    <tr><td>Multi_Field_EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
-    <tr><td>Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">minimally_coupled_scalar_no_slip</span></td></tr>
-    <tr><td>Thawing_Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">slow_roll_thawing_no_slip</span></td></tr>
-    <tr><td>Verlinde_2016</td><td>predicts_monotonic</td><td><span class="mechanism-pill">emergent_gravity_no_derived_slip_profile</span></td></tr>
-    <tr><td>fR_Starobinsky</td><td>predicts_monotonic</td><td><span class="mechanism-pill">chameleon_mu_gt_1_no_crossover</span></td></tr>
-    <tr><td>w0waCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">CPL_parametrization_background_only</span></td></tr>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>proves_structural</td><td><span class="mechanism-pill">action_level_sign_lemma_with_numerical_verification</span></td></tr>
     </tbody>
   </table>
 
-  <h3 style="color:#0d1b3e;">Exclusion lemma</h3>
-  <p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
-    GW-speed constraint (c_T=c) forces α_T=0 in Horndeski/QS class, which forces Σ ≤ μ pointwise; therefore no sign-change of Σ_eff is possible in that class.
-  </p>
+  
 
-  <h3 style="color:#0d1b3e;">Stage-III empirical sandwich</h3>
-  <ul>
-    <li><strong>KiDS-1000</strong> (lower bound): PASS on Σ≈1.10–1.15 at z&lt;0.5, k&gt;0.1 h/Mpc</li><li><strong>DES Y6</strong> (upper bound): PASS consistent with S₈=0.847 suppression at higher z</li><li><strong>BOSS+eBOSS+DESI fσ₈</strong> (side constraint): multi-epoch pattern suggests regime transition in z=0.3–0.7</li>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>CLASS vs analytical</strong> <em style="color:#5b6a7a;">(numerical verification)</em>: &lt; 0.3% agreement across 9 z-points z ∈ [0.3, 5.0]</li><li><strong>EFCLASS technical note</strong> <em style="color:#5b6a7a;">(reproducibility check)</em>: PASS at all tested A-values</li><li><strong>Parameter scan</strong> <em style="color:#5b6a7a;">(structural robustness)</em>: sign preserved under full primitive-set variation</li>
   </ul>
-  <p style="font-size:0.88rem; color:#5b6a7a;">
-    Lower- and upper-half of the &Sigma;<sub>eff</sub>(z) profile are already anchored by Stage-III
-    data. Euclid DR1 is expected to resolve the crossover position directly in October 2026.
-  </p>
+</div>
+
+<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L1 &mdash; Linear perturbations <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(2 predictions)</span></h3>
+
+<div class="hero" style="border-left-color:#d4a017;" id="pred-P2">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-damage">DAMAGE</span>
+    <span class="regime-chip L1">L1 &mdash; Linear perturbations</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P2</strong> &middot; phenomenon: fσ₈(z) Linear Growth <code style="color:#5b6a7a;">sigma8_growth</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">fσ₈(z = 0.7) = 0.430 vs ΛCDM 0.449</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">EFC predicts fσ₈ systematically lower than ΛCDM in the z=0.3–1.0 window because regime-transition dynamics damp linear growth in L1. The cross-survey pattern (BOSS + eBOSS + DESI DR1) already traces the lower trajectory. DESI DR2 at z ≈ 0.7 is the decisive arbiter — if it returns 0.45+ at &gt;3σ, this prediction is damaged (point-value, not structural).</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">0.430</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">0.449</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32013156">10.6084/m9.figshare.32013156</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">DESI DR2 full-shape RSD</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> The regime-transition growth model predicts fσ₈(z=0.7) = 0.430 vs ΛCDM 0.449. Joint BAO distance prediction: D_H/r_d(z=0.7) = 19.797 vs 20.719; D_H/r_d(z=1.0) = 16.527 vs 17.466.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F?</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> Measured fσ₈(z=0.7) &gt; 0.449 at &gt; 3σ — consistent with ΛCDM at high significance.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 6 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">linear_growth_with_entropy_damping</span></td></tr><tr><td>DGP</td><td>enhances_nDGP</td><td><span class="mechanism-pill">brane_localized_gravity</span></td></tr>
+<tr><td>Galileon</td><td>enhances</td><td><span class="mechanism-pill">G_X_braiding</span></td></tr>
+<tr><td>IEG</td><td>modifies</td><td><span class="mechanism-pill">holographic_bound</span></td></tr>
+<tr><td>KGB</td><td>enhances</td><td><span class="mechanism-pill">kinetic_braiding</span></td></tr>
+<tr><td>RMOND_Skordis</td><td>matches</td><td><span class="mechanism-pill">relativistic_MOND_growth</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>enhances</td><td><span class="mechanism-pill">mu_greater_than_1</span></td></tr>
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>BOSS DR12 CMASS</strong> <em style="color:#5b6a7a;">(anchor)</em>: fσ₈(0.61) ≈ 0.436 — consistent with EFC trajectory</li><li><strong>DESI DR1 LRG z1</strong> <em style="color:#5b6a7a;">(anchor)</em>: fσ₈(0.706) ≈ 0.413 — consistent with EFC 0.430</li><li><strong>eBOSS DR16</strong> <em style="color:#5b6a7a;">(side constraint)</em>: fσ₈(0.85) ≈ 0.399 — continuation of EFC low-growth trajectory</li><li><strong>BOSS DR12 LOWZ</strong> <em style="color:#5b6a7a;">(low-z consistency)</em>: fσ₈(0.32) ≈ 0.427 — EFC trajectory passes</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#c22;" id="pred-KT-4">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-kill">KILL</span>
+    <span class="regime-chip L1">L1 &mdash; Linear perturbations</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>KT-4</strong> &middot; phenomenon: fσ₈(z) Linear Growth <code style="color:#5b6a7a;">sigma8_growth</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">fσ₈ crossover at z_cross = 2.04 ± 0.07</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">KT-4 is the L1-growth companion to P1's L2-lensing crossover. The same primitive-chain that produces Σ_eff sign-change at z ≈ 0.44 produces fσ₈ crossover at z ≈ 2.04. This is not two independent predictions — it is one dynamical system evaluated at two scales. Cross-survey BAO transfer (BOSS ↔ DESI) already passes without refit, proving primitive rigidity.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">z_cross = 2.04 ± 0.07; D_H/r_d(1.0) = 16.527; D_H/r_d(0.7) = 19.797; fσ₈(0.7) = 0.430</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">no crossover; D_H/r_d(1.0) = 17.466; D_H/r_d(0.7) = 20.719; fσ₈(0.7) = 0.449</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32013156">10.6084/m9.figshare.32013156</a></span></div><div class="cell"><span class="lbl">Hash</span><span class="val" style="font-size:0.86rem;">7a850cfa58477701</span></div><div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.86rem;">2026-02-18T05:07:13Z</span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">DESI DR2+ (z &gt; 1.5) full-shape RSD + BAO</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> GRC Triad Contract v2 kill-test. fσ₈ trajectory crosses ΛCDM at z ≈ 2.04 with 3.1σ BAO distance separation at z=1.0 and 2.3σ at z=0.7. Sealed blind prediction with hash.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F?</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> No crossover observed in fσ₈(z) up to z=2.5 at &gt;2σ, OR DESI DR2 BAO at z&gt;1.5 consistent with ΛCDM at &gt;3σ</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 6 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">linear_growth_with_entropy_damping</span></td></tr><tr><td>DGP</td><td>enhances_nDGP</td><td><span class="mechanism-pill">brane_localized_gravity</span></td></tr>
+<tr><td>Galileon</td><td>enhances</td><td><span class="mechanism-pill">G_X_braiding</span></td></tr>
+<tr><td>IEG</td><td>modifies</td><td><span class="mechanism-pill">holographic_bound</span></td></tr>
+<tr><td>KGB</td><td>enhances</td><td><span class="mechanism-pill">kinetic_braiding</span></td></tr>
+<tr><td>RMOND_Skordis</td><td>matches</td><td><span class="mechanism-pill">relativistic_MOND_growth</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>enhances</td><td><span class="mechanism-pill">mu_greater_than_1</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Exclusion lemma</h4><p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;">KT-4 and P1 are two roots of the same dynamical system at different scales (growth vs lensing). They cannot be independently tuned — moving one moves the other by a fixed relation. This is the stiffness of the closed primitive-chain {α, K, T, ξ, S_flow, S_latent}.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>BOSS+eBOSS full-shape</strong> <em style="color:#5b6a7a;">(low-z anchor)</em>: BAO transfer PASS without refit (Δχ² = −7.77)</li><li><strong>DESI DR1</strong> <em style="color:#5b6a7a;">(mid-z anchor)</em>: fσ₈(0.706) ≈ 0.413 — on EFC trajectory</li><li><strong>DESI DR2 (pending)</strong> <em style="color:#5b6a7a;">(decisive test)</em>: z&gt;1.5 measurements will directly probe the crossover</li>
+  </ul>
+</div>
+
+<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L2 &mdash; LSS / lensing <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(4 predictions)</span></h3>
+
+<div class="hero" style="border-left-color:#c22;" id="pred-P1">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-kill">KILL</span>
+    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P1</strong> &middot; phenomenon: Φ/Ψ Slip (Lensing vs Dynamical Potential) <code style="color:#5b6a7a;">phi_psi_slip</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Φ/Ψ slip: non-monotonic Σ_eff(z) with sign change near z ≈ 0.44</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">Energy-Flow Cosmology predicts a non-monotonic gravitational slip: Σ_eff(z) enhanced below z ≈ 0.4, suppressed above z ≈ 0.5, with a sealed crossover near z ≈ 0.44. All 13 rival frameworks in the atlas predict monotonic behaviour with relative divergence = 1.0. GW-speed constraints structurally forbid the crossover for the entire QS Horndeski class — so a sign-change observation by Euclid DR1 would not just favour EFC, it would exclude the QS class as a whole.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">Sign change at z ≈ 0.44 (η = 0.9993 at reference)</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">Monotonic (no crossover)</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32037990">10.6084/m9.figshare.32037990</a></span></div><div class="cell"><span class="lbl">Hash</span><span class="val" style="font-size:0.86rem;">7a850cfa58477701</span></div><div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.86rem;">2026-02-18T05:07:13Z</span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">Euclid DR1 cosmic shear tomography (October 2026)</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">F9</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> The effective lensing amplitude Σ_eff(z) is non-monotonic with a sign change at z ≈ 0.44. EFC predicts enhanced lensing at z &lt; 0.4 and suppressed lensing at z &gt; 0.5. This profile is absent in ΛCDM and in standard QS Horndeski models with α_T = 0.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F9</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> Monotonic Σ_eff(z) across all bins with no sign change inside z ∈ [0.3, 0.6]</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 12 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_sealed</td><td><span class="mechanism-pill">preregistered_eta_eq_0.9993</span></td></tr><tr><td>DGP</td><td>predicts_monotonic</td><td><span class="mechanism-pill">braneworld_Vainshtein_no_crossover</span></td></tr>
+<tr><td>EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+<tr><td>Galileon</td><td>predicts_monotonic</td><td><span class="mechanism-pill">Vainshtein_screening_no_slip_sign_change</span></td></tr>
+<tr><td>Horndeski</td><td>predicts_monotonic</td><td><span class="mechanism-pill">QS_alpha_T_zero_forces_Sigma_le_mu</span></td></tr>
+<tr><td>LCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">GR_baseline_no_slip</span></td></tr>
+<tr><td>MOND</td><td>predicts_monotonic</td><td><span class="mechanism-pill">modified_inertia_no_relativistic_slip</span></td></tr>
+<tr><td>Multi_Field_EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+<tr><td>Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">minimally_coupled_scalar_no_slip</span></td></tr>
+<tr><td>Thawing_Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">slow_roll_thawing_no_slip</span></td></tr>
+<tr><td>Verlinde_2016</td><td>predicts_monotonic</td><td><span class="mechanism-pill">emergent_gravity_no_derived_slip_profile</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>predicts_monotonic</td><td><span class="mechanism-pill">chameleon_mu_gt_1_no_crossover</span></td></tr>
+<tr><td>w0waCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">CPL_parametrization_background_only</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Exclusion lemma</h4><p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;">GW-speed constraint (c_T = c) forces α_T = 0 in Horndeski/QS class, which forces Σ ≤ μ pointwise; therefore no sign-change of Σ_eff is possible in that class. P1 does not just discriminate EFC vs ΛCDM — it falsifies the entire QS class simultaneously.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>KiDS-1000 shear</strong> <em style="color:#5b6a7a;">(lower bound)</em>: PASS; Δχ² = −50.9 (Case A), Σ ≈ 1.10–1.15 at z&lt;0.5, k&gt;0.1 h/Mpc</li><li><strong>DES Y6</strong> <em style="color:#5b6a7a;">(upper bound)</em>: P3 Lensing-to-CMB S8-ratio PASS at 0.3σ (pre-registered)</li><li><strong>BOSS+eBOSS+DESI fσ₈</strong> <em style="color:#5b6a7a;">(side constraint)</em>: multi-epoch pattern in z=0.3–0.7 suggests regime transition</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#c22;" id="pred-P3">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-kill">KILL</span>
+    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P3</strong> &middot; phenomenon: E_G Gravitational Slip Statistic <code style="color:#5b6a7a;">EG_statistic</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">E_G enhancement: E_G^EFC / E_G^GR = 1.086 ± 0.012</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">The E_G statistic is skala-uavhengig by construction — it isolates the gravitational slip Σ/μ at a reference point. EFC predicts an 8.6% enhancement over GR because regime-transition dynamics produces μ &lt; 1 while S-flow coupling drives Σ &gt; 1. No QS Horndeski model can match this signature. SO × Euclid DR2 will measure E_G directly — a flat (GR) result falsifies the slip prediction.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">1.086 ± 0.012</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">1.000 ± 0.01</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32023788">10.6084/m9.figshare.32023788</a></span></div><div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.86rem;">2026-04-15</span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">SO × Euclid DR2</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">F7</span></div><div class="cell"><span class="lbl">PASS window</span><span class="val" style="font-size:0.86rem;">[1.03, 1.14]</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Galaxy–CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. EFC predicts E_G^EFC / E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5, driven by the combination μ &lt; 1 with Σ &gt; 1.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F7</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> Measurement = 1.00 ± 0.01 at &gt; 3σ (GR recovery)</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 0 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">scale_independent_slip</span></td></tr>
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>Reyes et al. 2010</strong> <em style="color:#5b6a7a;">(historical anchor)</em>: E_G ≈ 0.39 ± 0.06 at z = 0.32 (consistent with GR baseline)</li><li><strong>Planck × BOSS (Pullen 2015)</strong> <em style="color:#5b6a7a;">(CMB lensing × RSD)</em>: E_G consistent with GR within errors</li><li><strong>DES Y3 × Planck lensing</strong> <em style="color:#5b6a7a;">(pending)</em>: independent galaxy–CMB slip measurement expected</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#d4a017;" id="pred-P4">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-damage">DAMAGE</span>
+    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P4</strong> &middot; phenomenon: S₈ = σ₈√(Ω_m/0.3) Tension <code style="color:#5b6a7a;">S8_tension</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Rubin DP2 cosmic shear S₈ = 0.847 ± 0.015</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">EFC predicts a specific S₈ position that is higher than Planck but lower than naive μ&gt;1 modifications of gravity like f(R). The Stage-III triple (KiDS ↔ DES ↔ Planck) already brackets the EFC value from below and above via survey-dependent kernel integrals. Rubin DP2 is the first Stage-IV arbiter with precision to test the 0.847 point directly.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">0.847 ± 0.015</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">0.811 ± 0.006 (Planck)</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32013738">10.6084/m9.figshare.32013738</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">Rubin LSST DP2</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">F4</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Large-scale cosmic shear ξ_+ enhancement of ~8% at angular scales 20′–300′, producing S₈ = 0.847 ± 0.015. Discriminates EFC from f(R) (which predicts μ &gt; 1) and from background-only entropic gravity models.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F4</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> DP2 + Euclid DR1 combined return S₈ consistent with Planck ΛCDM (0.811 ± 0.006) at &lt; 1σ</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 1 rival framework tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_suppression</td><td><span class="mechanism-pill">mu_lt_1_in_L2</span></td></tr><tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">no_resolution_native</span></td></tr>
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>KiDS-1000</strong> <em style="color:#5b6a7a;">(Stage-III low side)</em>: S₈ = 0.759 (tension with Planck)</li><li><strong>DES Y3</strong> <em style="color:#5b6a7a;">(Stage-III mid)</em>: S₈ = 0.776 (tension with Planck)</li><li><strong>Planck 2018</strong> <em style="color:#5b6a7a;">(CMB anchor)</em>: S₈ = 0.811 (baseline)</li><li><strong>DES Y6</strong> <em style="color:#5b6a7a;">(Stage-III high)</em>: sync with EFC suppression trajectory</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#5b3a8a;" id="pred-P5">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-sealed">STRUCTURAL</span>
+    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P5</strong> &middot; phenomenon: μ(k,a) and Σ(k,a) Phenomenological MG Parameters <code style="color:#5b6a7a;">mu_sigma_plane</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Horndeski no-go: μ &lt; 1 ∧ Σ &gt; 1 forbidden with α_T = 0</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">P5 is the meta-prediction that makes P1 and P3 into exclusion lemmas. It says: no quasi-static Horndeski theory can occupy the quadrant EFC predicts. The proof is parameter-scan + GW170817 anchor. If P1 or P3 passes, the entire QS class is falsified simultaneously — not just ΛCDM.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">μ &lt; 1 ∧ Σ &gt; 1 achievable via flow-constraint</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">μ = Σ = 1 (GR)</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32037990">10.6084/m9.figshare.32037990</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">Parameter scan (completed)</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">F8</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Standard quasi-static Horndeski with α_T = 0 and c_s² &gt; 0 cannot produce μ &lt; 1 and Σ &gt; 1 simultaneously — the action forces Σ ≤ μ universally. EFC breaks this via the Lagrange-multiplier flow constraint.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; F8</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> If P1+P3 (lensing enhancement with growth suppression) is confirmed, standard Horndeski is excluded; EFC or an equivalent slip-extension is required.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 3 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_quadrant</td><td><span class="mechanism-pill">mu_lt_1_Sigma_gt_1_forbidden_Horndeski</span></td></tr><tr><td>DGP</td><td>modifies</td><td><span class="mechanism-pill">Vainshtein_transition</span></td></tr>
+<tr><td>Horndeski</td><td>parameterizes</td><td><span class="mechanism-pill">alpha_M_alpha_B</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>modifies</td><td><span class="mechanism-pill">chameleon_scalar</span></td></tr>
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>Horndeski parameter scan</strong> <em style="color:#5b6a7a;">(structural proof)</em>: no viable (μ&lt;1, Σ&gt;1) region found under α_T=0 + c_s²&gt;0</li><li><strong>GW170817</strong> <em style="color:#5b6a7a;">(constraint anchor)</em>: |c_T − c|/c &lt; 10^{-15} → α_T = 0 exactly</li><li><strong>MGCAMB 2D scan</strong> <em style="color:#5b6a7a;">(independent confirmation)</em>: degeneracy valley at (μ=0.94, Σ=1.05) accessible only via slip-extension</li>
+  </ul>
 </div>
 
 </section>
