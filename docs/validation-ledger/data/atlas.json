@@ -377,13 +377,13 @@
       "falsifier_condition": "No crossover observed in f\u03c3\u2088(z) up to z=2.5 at >2\u03c3, OR DESI DR2 BAO at z>1.5 consistent with \u039bCDM at >3\u03c3",
       "arbiter_instrument": "DESI DR2+ (z > 1.5) full-shape RSD + BAO",
       "source_evidence": "KT-4 sealed 2026-02-18",
-      "exclusion_lemma": "KT-4 and P1 are two roots of the same dynamical system at different scales (growth vs lensing). They cannot be independently tuned \u2014 moving one moves the other by a fixed relation. This is the stiffness of the closed primitive-chain {\u03b1, K, T, \u03be, S_flow, S_latent}.",
+      "exclusion_lemma": "KT-4 and P1 are hypothesized to share a dynamical root via the closed primitive-chain {\u03b1, K, T, \u03be, S_flow, S_latent}. Their empirical co-motion across surveys is consistent with \u2014 but does not yet prove \u2014 a shared mechanism. Independent falsification at either anchor (DESI DR2 at z\u22482.04 or Euclid DR1 at z\u22480.44) would constrain the hypothesis.",
       "stage_iii_sandwich": [
         {"survey": "BOSS+eBOSS full-shape", "role": "low-z anchor", "result": "BAO transfer PASS without refit (\u0394\u03c7\u00b2 = \u22127.77)"},
         {"survey": "DESI DR1", "role": "mid-z anchor", "result": "f\u03c3\u2088(0.706) \u2248 0.413 \u2014 on EFC trajectory"},
         {"survey": "DESI DR2 (pending)", "role": "decisive test", "result": "z>1.5 measurements will directly probe the crossover"}
       ],
-      "narrative_intro": "KT-4 is the L1-growth companion to P1's L2-lensing crossover. The same primitive-chain that produces \u03a3_eff sign-change at z \u2248 0.44 produces f\u03c3\u2088 crossover at z \u2248 2.04. This is not two independent predictions \u2014 it is one dynamical system evaluated at two scales. Cross-survey BAO transfer (BOSS \u2194 DESI) already passes without refit, proving primitive rigidity."
+      "narrative_intro": "KT-4 is the L1-growth companion to P1's L2-lensing crossover. A shared primitive-chain is hypothesized to produce both \u03a3_eff sign-change (L2) and f\u03c3\u2088 crossover (L1) as projections of the same underlying regime transition; the atlas treats this as a hypothesis consistent with both sector implementations, not a proven derivation. Cross-survey BAO transfer (BOSS \u2194 DESI) already passes without refit, which is consistent with primitive rigidity under tested surveys."
     }
   ]
 }
