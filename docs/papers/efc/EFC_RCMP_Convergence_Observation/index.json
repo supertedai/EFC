@@ -1,23 +1,83 @@
 {
   "$schema": "./schema.json",
   "id": "efc-rcmp-convergence-observation",
-  "title": "Efc Rcmp Convergence Observation",
-  "description": "Auto-generated package for Efc Rcmp Convergence Observation.",
-  "version": "1.0",
+  "title": "Methodological Convergence in Stage-IV Cosmology: The Emergence of Epistemic Holism Under Precision Constraints, and Its Operationalization via RCMP",
+  "description": "This note documents a 2023\u20132026 methodological convergence across cosmic shear, gravitational-slip (EG) estimators, and dark-energy inference: analyses increasingly report explicit proxy-chain and nuisance-model dependencies under Stage-IV precision. It interprets this shift as the practical emergence of Duhem\u2013Quine-style epistemic holism and outlines RCMP (Regime-Consistent Measurement Principle) as an operational framework, while making no claim about EFC or specific physical models. It flags quantitative EFC tests at the phenomenological (\u03bc, \u03a3) level as planned and gated by release conditions.",
+  "version": "v0.2",
   "date": "2026-04-22",
+  "doi": "10.6084/m9.figshare.32080080",
   "keywords": [
-    "Energy-Flow Cosmology",
-    "Rcmp",
-    "Convergence",
-    "Observation"
+    "Stage-IV cosmology",
+    "Regime-Consistent Measurement Principle",
+    "epistemic holism",
+    "Duhem\u2013Quine thesis",
+    "cosmic shear",
+    "S8 tension",
+    "intrinsic alignment",
+    "baryonic feedback",
+    "EG estimator",
+    "gravitational slip",
+    "RSD and kSZ velocities",
+    "DESI DR2"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Independent analyses in multiple cosmology subfields have converged on explicitly reporting proxy-chain and nuisance-model dependencies, consistent with RCMP-style methodology becoming practically necessary under Stage-IV precision.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "mu(z,k)",
+      "Sigma(z,k)",
+      "A_mu",
+      "A_Sigma",
+      "K0",
+      "V'",
+      "alpha"
+    ],
+    "datasets_used": [
+      "DES Y3 (cosmic shear)",
+      "KiDS-Legacy",
+      "DES Y6 (cosmic shear)",
+      "ACT DR6 \u00d7 SDSS BOSS (EG)",
+      "DESI DR2"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P4",
+      "statement": "Rubin DP2 cosmic-shear inference yields S8 = 0.847 under RCMP-compliant nuisance and baryonic modeling.",
+      "falsifiable_by": "Rubin LSST DP2 weak-lensing analysis with explicitly documented intrinsic-alignment and baryonic-feedback modeling showing S8 significantly different from 0.847 across RCMP-validated pipelines."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Future Stage-IV weak-lensing analyses (e.g., DES Y6 final, Rubin DP2/DP3) report S8 values that are stable (<0.3\u03c3 shift) across materially different intrinsic-alignment and baryonic-feedback models, indicating proxy-chain insensitivity and contradicting the claimed convergence toward explicit dependency reporting.",
+    "KC2: EG (gravitational-slip) measurements obtained via independent velocity reconstructions (RSD-derived \u03b2 and kSZ-based methods) agree within uncertainties and show GR-invariance independent of the \u03b2-extraction template, removing the proxy dependence highlighted in the paper.",
+    "KC3: Dark-energy evolution inferences (e.g., from DESI DR3/DR4) become robust to supernova compilation choice, with consistent w(z) results across SN datasets and calibration pipelines, eliminating the dataset-dependence central to the convergence claim.",
+    "KC4: A majority of new Stage-IV results explicitly revert to model-independent phrasing without proxy-chain caveats while maintaining precision, demonstrating that RCMP-type reasoning is not practically necessary under Stage-IV constraints."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Defines the Regime-Consistent Measurement Principle referenced and operationalized in this note."
+    },
+    {
+      "id": "efc-core",
+      "doi": "10.6084/m9.figshare.31112536",
+      "role": "EFC core/model context; this note clarifies that convergence does not endorse or refute EFC."
+    }
+  ],
   "files": {
     "pdf": "EFC_RCMP_Convergence_Observation.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32080080"
 }

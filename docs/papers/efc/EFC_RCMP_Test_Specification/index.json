@@ -1,23 +1,132 @@
 {
   "$schema": "./schema.json",
   "id": "efc-rcmp-test-specification",
-  "title": "Efc Rcmp Test Specification",
-  "description": "Auto-generated package for Efc Rcmp Test Specification.",
-  "version": "1.0",
-  "date": "2026-04-22",
+  "title": "EFC-\u039bCDM Comparative Test Specification v1.1: Pre-Registered Implementation Protocol for DES Y6 and KiDS Legacy Cosmic Shear",
+  "description": "Pre-registered, content-hash\u2013locked methodology specifying a three-stage, falsifiable comparative test of Energy-Flow Cosmology (EFC) versus \u039bCDM using Stage-III cosmic shear. It defines the phenomenological EFC extensions (\u00b5, \u03a3), fixed gates and scales, priors, scan procedures, nuisance handling, scale cuts, reporting outputs, and binding stopping/falsification rules for DES Y6 and KiDS Legacy pipelines.",
+  "version": "v1.1",
+  "date": "2026-04-21",
+  "doi": "10.6084/m9.figshare.32080083",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Rcmp",
-    "Test",
-    "Specification"
+    "EFC",
+    "LambdaCDM",
+    "cosmic shear",
+    "DES Y6",
+    "KiDS Legacy",
+    "modified gravity",
+    "MGCAMB",
+    "MGCLASS",
+    "Cobaya",
+    "CosmoSIS",
+    "pre-registered protocol"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "gate_function_g": {
+      "latex": "g(a) = \\tfrac{1}{2}\\big[1 + \\tanh\\big((a - a_t)/\\delta a\\big)\\big]",
+      "description": "Locked transition (in scale factor) gating the onset of EFC perturbations; sets when modifications become active."
+    },
+    "k_filter_fk": {
+      "latex": "f_k(k) = \\big[1 + (k/k_c)^2\\big]^{-1}",
+      "description": "Locked scale filter suppressing modifications at high k; controls the scale dependence of \u00b5 and \u03a3."
+    },
+    "mu_param": {
+      "latex": "\\mu(k,a) = 1 + A_\\mu\\, g(a)\\, f_k(k)",
+      "description": "Phenomenological modification to the Poisson equation entering growth; A_\\mu is free with sign predicted by EFC."
+    },
+    "sigma_param": {
+      "latex": "\\Sigma(k,a) = 1 + A_\\Sigma\\, g(a)\\, f_k(k)",
+      "description": "Phenomenological modification to the lensing potential; A_\\Sigma is free with sign predicted by EFC."
+    },
+    "variantH_slip": {
+      "latex": "\\Sigma(k,a) = 1 - \\alpha\\,\\big(\\mu(k,a) - 1\\big),\\quad \\alpha = 1\\;\\text{(locked)}",
+      "description": "Optional one-parameter slip relation (VariantH) reducing the model to a single amplitude degree of freedom."
+    },
+    "S8_definition": {
+      "latex": "S_8 \\equiv \\sigma_8\\, (\\Omega_m/0.3)^{0.5}",
+      "description": "Derived parameter used for comparison with weak-lensing constraints."
+    }
+  },
+  "key_results": {
+    "main_finding": "This paper provides a sealed, reproducible test protocol (not results) for comparing EFC against \u039bCDM on DES Y6 and KiDS Legacy cosmic shear, including fixed gates, priors, grid scans, MCMC, and binding stopping/falsification rules.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_mu",
+      "A_Sigma"
+    ],
+    "datasets_used": [
+      "DES Y6 cosmic shear \u03be\u00b1(\u03b8) with fiducial scale cuts",
+      "KiDS Legacy cosmic shear (C_ell or \u03be\u00b1) with fiducial scale cuts"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "SP1",
+      "statement": "EFC predicts the preferred phenomenological quadrant A_\\mu < 0 and A_\\Sigma > 0 when tested on Stage-III cosmic shear with the locked gate parameters (a_t=0.7, \\delta a=0.08, k_c=0.05 h/Mpc).",
+      "falsifiable_by": "Full DES Y6 and KiDS Legacy likelihood analyses showing statistically significant preference for A_\\mu \\ge 0 and/or A_\\Sigma \\le 0."
+    },
+    {
+      "id": "SP2",
+      "statement": "At A_\\mu = A_\\Sigma = 0 the EFC phenomenological model reduces identically to \u039bCDM, matching forward-model outputs (\u03be\u00b1, C_\\ell^{\\kappa\\kappa}, f(z), \\sigma_8) within \u22640.01% numerical precision.",
+      "falsifiable_by": "Pixel-level equivalence check in the likelihood pipeline; any measurable deviation indicates an implementation error and invalidates the run."
+    },
+    {
+      "id": "SP3",
+      "statement": "A background-fixed fast-scan around the \u039bCDM best-fit should exhibit a measurable response in DES Y6 \u03be\u00b1(\u03b8) along the EFC-like direction if the data are sensitive to the (A_\\mu, A_\\Sigma) perturbations.",
+      "falsifiable_by": "Fast-scan grid returning |\u0394\u03c7^2_best-fit| < 1 with negligible gradient at the origin, implying sub-sensitivity at this stage (protocol stop condition)."
+    },
+    {
+      "id": "SP4",
+      "statement": "Optional VariantH slip test with \u03a3 = 1 \u2212 (\u00b5 \u2212 1) (\u03b1 = 1 locked) provides a one-parameter EFC extension expected to prefer A_\\mu < 0 if EFC-like perturbations are supported.",
+      "falsifiable_by": "1D VariantH scan and MCMC preferring A_\\mu \\ge 0 or yielding no improvement relative to \u039bCDM under fiducial cuts."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Pixel-level equivalence failure at A_mu = A_Sigma = 0 (EFC should reduce exactly to \u039bCDM within \u22640.01% for \u03be\u00b1, C_ell^{\u03ba\u03ba}, f(z), \u03c38). Any deviation indicates an invalid implementation; runs must be stopped and results retracted.",
+    "KC2: DES Y6 full-marginalization prefers parameter regions inconsistent with EFC sign predictions (A_mu < 0 and A_Sigma > 0), i.e., the posterior significantly favors A_mu \u2265 0 and/or A_Sigma \u2264 0 under the locked gate and priors.",
+    "KC3: KiDS Legacy full-marginalization independently favors the opposite quadrant to EFC (A_mu \u2265 0 and/or A_Sigma \u2264 0), corroborating KC2 across an independent pipeline and scale cuts.",
+    "KC4: Cross-pipeline inconsistency of EFC parameters: DES Y6 and KiDS Legacy posteriors are mutually incompatible and do not overlap in the EFC-predicted quadrant under identical locked (a_t, \u03b4a, k_c); EFC fails the cross-pipeline stability requirement.",
+    "KC5: VariantH (\u03a3 = 1 \u2212 (\u00b5 \u2212 1), \u03b1=1) is excluded by DES Y6 (and reaffirmed by KiDS Legacy) after full marginalization or shows no improvement over \u039bCDM while preferring A_mu \u2265 0; this kills the VariantH one-parameter EFC extension.",
+    "KC6: Fast-scan and subsequent full analysis indicate any significant improvement over \u039bCDM occurs in the opposite quadrant (A_mu > 0, A_Sigma < 0); this contradicts EFC sign predictions under the locked gate and falsifies the tested phenomenological direction."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "efc-test-spec",
+      "doi": "10.6084/m9.figshare.32080083",
+      "role": "This sealed comparative test specification (current paper)."
+    },
+    {
+      "id": "efc-lensing-engine-p1",
+      "doi": "10.6084/m9.figshare.32037990",
+      "role": "P1 pre-registration and sealed lensing engine (lensing.py); provides transition control context for a_t."
+    },
+    {
+      "id": "efc-pre-reg-p3",
+      "doi": "10.6084/m9.figshare.32023788",
+      "role": "P3 pre-registration; source for locked k_c."
+    },
+    {
+      "id": "efc-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "EFC action-level formulation referenced in the phenomenology-to-action mapping disclosure."
+    },
+    {
+      "id": "efc-compound-paper",
+      "doi": "10.6084/m9.figshare.32080059",
+      "role": "Companion compound paper (P1\u00d7P2 cross-observable consistency) cited for mapping disclosure and scan analyses."
+    }
+  ],
   "files": {
     "pdf": "EFC_RCMP_Test_Specification.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32080083"
 }
