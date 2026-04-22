@@ -274,14 +274,14 @@ frameworks address it, with what mechanism, and with what role.
 </p>
 
 <div class="nav-tabs" role="tablist">
-  <button class="nav-tab active" data-tab="demo">Demo (KILL prediction)</button>
+  <button class="nav-tab active" data-tab="demo">Sealed predictions</button>
   <button class="nav-tab" data-tab="predictions">All predictions</button>
   <button class="nav-tab" data-tab="phenomena">Phenomena</button>
   <button class="nav-tab" data-tab="frameworks">Frameworks</button>
 </div>
 
 <!-- =========================================================
-     TAB 1: DEMO (P1 phi_psi_slip)
+     TAB 1: SEALED PREDICTIONS (all P1..P6 + KT-4, layer-grouped)
      ========================================================= -->
 <section class="tab-panel active" id="tab-demo">
 __DEMO_CONTENT__
@@ -500,79 +500,217 @@ def _result_badge(result: str) -> str:
     return f'<span class="badge-open">{_esc(result)}</span>'
 
 
-def render_demo(demo: dict, addressings: list, phenomena: dict) -> str:
-    phen_id = demo["phenomenon"]
-    phen_name = phenomena.get(phen_id, {}).get("name", phen_id)
+_BADGE_CLASS = {
+    "KILL": "badge-kill",
+    "DAMAGE": "badge-damage",
+    "PROVEN": "badge-sealed",
+    "STRUCTURAL": "badge-sealed",
+    "SEALED": "badge-sealed",
+}
 
-    # rival rows (exclude EFC itself)
-    rivals = [a for a in addressings if a["phenomenon"] == phen_id and a["framework"] != "EFC"]
-    rivals.sort(key=lambda x: x["framework"])
-    rows = []
+_HERO_BORDER = {
+    "KILL": "#c22",
+    "DAMAGE": "#d4a017",
+    "PROVEN": "#1a7a1a",
+    "STRUCTURAL": "#5b3a8a",
+    "SEALED": "#1a7a1a",
+}
+
+_LAYER_LABEL = {
+    "L0": "L0 &mdash; Background",
+    "L1": "L1 &mdash; Linear perturbations",
+    "L2": "L2 &mdash; LSS / lensing",
+    "L3": "L3 &mdash; Strong regime",
+}
+
+
+def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) -> str:
+    """Render one sealed prediction as a hero card: metadata + rivals from
+    atlas.addressings + Stage-III sandwich + narrative + exclusion lemma."""
+    pid = pred.get("id", "")
+    badge = (pred.get("badge") or "SEALED").upper()
+    badge_cls = _BADGE_CLASS.get(badge, "badge-sealed")
+    border = _HERO_BORDER.get(badge, "#1a7a1a")
+    layer = pred.get("rcmp_layer", "")
+    phen_id = pred.get("phenomenon", "")
+    phen = phenomena.get(phen_id, {})
+
+    # rivals for this phenomenon (exclude EFC)
+    rivals = sorted(
+        [a for a in addressings if a["phenomenon"] == phen_id and a["framework"] != "EFC"],
+        key=lambda x: x["framework"],
+    )
+    efc_entry = next((a for a in addressings if a["phenomenon"] == phen_id and a["framework"] == "EFC"), None)
+
+    rival_rows = []
     for r in rivals:
-        rows.append(
-            f'    <tr>'
-            f'<td>{_esc(r["framework"])}</td>'
+        rival_rows.append(
+            f'<tr><td>{_esc(r["framework"])}</td>'
             f'<td>{_esc(r["role"])}</td>'
-            f'<td><span class="mechanism-pill">{_esc(r["mechanism"])}</span></td>'
-            f'</tr>'
+            f'<td><span class="mechanism-pill">{_esc(r["mechanism"])}</span></td></tr>'
         )
-    rival_table = "\n".join(rows)
+    if efc_entry:
+        efc_row = (
+            f'<tr style="background:#f1f9f1;"><td><strong style="color:#1a7a1a;">EFC</strong></td>'
+            f'<td>{_esc(efc_entry["role"])}</td>'
+            f'<td><span class="mechanism-pill">{_esc(efc_entry["mechanism"])}</span></td></tr>'
+        )
+    else:
+        efc_row = ""
+    rival_rows_html = efc_row + "\n".join(rival_rows)
 
-    sandwich = "".join(
-        f'<li><strong>{_esc(s["survey"])}</strong> ({_esc(s["role"])}): '
-        f'{_esc(s["result"])}</li>'
-        for s in demo.get("stage_iii_sandwich", [])
+    rival_count_label = (
+        f"1 EFC + {len(rivals)} rival framework{'s' if len(rivals) != 1 else ''} tracked for this phenomenon"
     )
 
+    # metric cells (only render cells where we have a value)
+    cells = []
+    if pred.get("efc_value"):
+        cells.append(("EFC", pred["efc_value"]))
+    if pred.get("lcdm_value"):
+        cells.append(("\u039bCDM", pred["lcdm_value"]))
+    if pred.get("seal_doi"):
+        cells.append(("Seal DOI", f'<a href="https://doi.org/{_esc(pred["seal_doi"])}">{_esc(pred["seal_doi"])}</a>'))
+    if pred.get("hash"):
+        cells.append(("Hash", pred["hash"]))
+    if pred.get("frozen_at"):
+        cells.append(("Frozen at", pred["frozen_at"]))
+    if pred.get("arbiter_instrument"):
+        cells.append(("Arbiter", pred["arbiter_instrument"]))
+    if pred.get("falsifier_id"):
+        cells.append(("Falsifier", pred["falsifier_id"]))
+    if pred.get("pass_window"):
+        pw = pred["pass_window"]
+        cells.append(("PASS window", f"[{pw.get('low')}, {pw.get('high')}]"))
+
+    cell_html = "".join(
+        f'<div class="cell"><span class="lbl">{_esc(lbl)}</span>'
+        f'<span class="val" style="font-size:0.86rem;">{val if lbl=="Seal DOI" else _esc(val)}</span></div>'
+        for (lbl, val) in cells
+    )
+
+    # sandwich
+    sandwich_items = "".join(
+        f'<li><strong>{_esc(s["survey"])}</strong> <em style="color:#5b6a7a;">({_esc(s["role"])})</em>: {_esc(s["result"])}</li>'
+        for s in pred.get("stage_iii_sandwich", [])
+    )
+
+    # falsifier block
+    falsifier_block = ""
+    if pred.get("falsifier_condition"):
+        fid = pred.get("falsifier_id") or "F?"
+        falsifier_block = (
+            f'<h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; {_esc(fid)}</h4>'
+            f'<p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; '
+            f'border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;">'
+            f'<strong>If observed:</strong> {_esc(pred["falsifier_condition"])}</p>'
+        )
+
+    # exclusion lemma
+    excl_block = ""
+    if pred.get("exclusion_lemma"):
+        excl_block = (
+            '<h4 style="color:#0d1b3e; margin-top:1rem;">Exclusion lemma</h4>'
+            f'<p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; '
+            f'padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;">'
+            f'{_esc(pred["exclusion_lemma"])}</p>'
+        )
+
+    # claim
+    claim_block = ""
+    if pred.get("claim"):
+        claim_block = (
+            '<p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; '
+            'border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;">'
+            f'<strong>Claim:</strong> {_esc(pred["claim"])}</p>'
+        )
+
+    phen_name = _esc(phen.get("name", phen_id))
+    phen_code = _esc(phen_id)
+
     return f"""
-<div class="hero">
+<div class="hero" style="border-left-color:{border};" id="pred-{_esc(pid)}">
   <div style="margin-bottom:0.4rem;">
-    <span class="badge-kill">KILL</span>
-    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
-    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">Preregistered &middot; sealed DOI</span>
+    <span class="{badge_cls}">{_esc(badge)}</span>
+    <span class="regime-chip {_esc(layer)}">{_LAYER_LABEL.get(layer, _esc(layer))}</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>{_esc(pid)}</strong> &middot; phenomenon: {phen_name} <code style="color:#5b6a7a;">{phen_code}</code>
+    </span>
   </div>
-  <h2>{_esc(demo["title"])}</h2>
-  <p style="margin-top:0.5rem; color:#1a3a6b;">
-    {_esc(demo["narrative_intro"])}
-  </p>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">{_esc(pred["title"])}</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">{_esc(pred.get("narrative_intro", ""))}</p>
 
-  <div class="hero-meta">
-    <div class="cell"><span class="lbl">EFC prediction</span><span class="val">{_esc(demo["efc_value"])}</span></div>
-    <div class="cell"><span class="lbl">Mechanism</span><span class="val" style="font-size:0.82rem;">{_esc(demo["mechanism"])}</span></div>
-    <div class="cell"><span class="lbl">Hash</span><span class="val">{_esc(demo["hash"])}</span></div>
-    <div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.82rem;">{_esc(demo["frozen_at"])}</span></div>
-    <div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.82rem;"><a href="https://doi.org/{_esc(demo["seal_doi"])}">{_esc(demo["seal_doi"])}</a></span></div>
-    <div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.82rem;">{_esc(demo["arbiter_instrument"])}</span></div>
-  </div>
+  <div class="hero-meta">{cell_html}</div>
 
-  <h3 style="color:#0d1b3e;">Falsifier &mdash; {_esc(demo["falsifier_id"])}</h3>
-  <p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
-    <strong>If observed:</strong> {_esc(demo["falsifier_condition"])} &rarr; EFC killed on this prediction.
-  </p>
+  {claim_block}
+  {falsifier_block}
 
-  <h3 style="color:#0d1b3e;">Rival frameworks &mdash; {len(rivals)} monotonic, relative divergence = {_esc(demo["relative_divergence"])}</h3>
-  <table style="margin-top:0.5rem;">
-    <thead><tr><th>Framework</th><th>Role</th><th>Mechanism</th></tr></thead>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; {rival_count_label}</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
     <tbody>
-{rival_table}
+{rival_rows_html}
     </tbody>
   </table>
 
-  <h3 style="color:#0d1b3e;">Exclusion lemma</h3>
-  <p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
-    {_esc(demo["exclusion_lemma"])}
-  </p>
+  {excl_block}
 
-  <h3 style="color:#0d1b3e;">Stage-III empirical sandwich</h3>
-  <ul>
-    {sandwich}
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    {sandwich_items}
   </ul>
-  <p style="font-size:0.88rem; color:#5b6a7a;">
-    Lower- and upper-half of the &Sigma;<sub>eff</sub>(z) profile are already anchored by Stage-III
-    data. Euclid DR1 is expected to resolve the crossover position directly in October 2026.
-  </p>
 </div>
 """
+
+
+def render_demo(demos: list, addressings: list, phenomena: dict) -> str:
+    """Render all sealed predictions, grouped by RCMP layer (L0..L3)."""
+    if not demos:
+        return "<p><em>No sealed predictions registered.</em></p>"
+
+    # introduction
+    by_badge = {}
+    for d in demos:
+        b = (d.get("badge") or "SEALED").upper()
+        by_badge[b] = by_badge.get(b, 0) + 1
+    badge_summary = " &middot; ".join(
+        f'<span class="{_BADGE_CLASS.get(b, "badge-sealed")}">{b}: {n}</span>'
+        for b, n in sorted(by_badge.items())
+    )
+
+    intro = f"""
+<h2>Sealed predictions</h2>
+<p style="font-size:0.94rem; color:#1a3a6b;">
+{len(demos)} preregistered EFC predictions with sealed DOIs, grouped by RCMP layer.
+Each card shows EFC's prediction, the {_LAYER_LABEL.get("L2", "L2")[:0]}full rival list from the
+atlas (every framework that addresses the same phenomenon with its own mechanism), a
+Stage-III empirical sandwich that brackets the prediction with already-observed survey
+data, and the arbiter instrument scheduled to resolve it.
+</p>
+<p style="font-size:0.92rem; color:#5b6a7a;">Badge mix: {badge_summary}</p>
+"""
+
+    # group by layer
+    layers = ["L0", "L1", "L2", "L3"]
+    groups = {layer: [] for layer in layers}
+    for d in demos:
+        layer = d.get("rcmp_layer", "")
+        groups.setdefault(layer, []).append(d)
+
+    parts = [intro]
+    for layer in layers:
+        items = groups.get(layer, [])
+        if not items:
+            continue
+        parts.append(
+            f'<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">'
+            f'{_LAYER_LABEL.get(layer, layer)} <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">'
+            f'({len(items)} prediction{"s" if len(items) != 1 else ""})</span></h3>'
+        )
+        for pred in items:
+            parts.append(_render_single_prediction(pred, addressings, phenomena))
+
+    return "\n".join(parts)
 
 
 def render_ledger_rows(ledger: dict):
@@ -694,13 +832,12 @@ def main():
     phenomena = {p["id"]: p for p in phenomena_list}
     addressings = atlas["addressings"]
 
-    # Demo content (first tier-1 prediction; expect phi_psi_slip)
+    # Demo content — render ALL sealed predictions, grouped by RCMP layer
     demo_list = atlas.get("tier1_demo_predictions", [])
     if not demo_list:
         sys.stderr.write("ERROR: atlas.json missing tier1_demo_predictions\n")
         sys.exit(1)
-    demo = demo_list[0]
-    demo_content = render_demo(demo, addressings, phenomena)
+    demo_content = render_demo(demo_list, addressings, phenomena)
 
     ledger_rows, total, cats, cat_options = render_ledger_rows(ledger)
     phenomena_blocks = render_phenomena_blocks(phenomena, addressings)
