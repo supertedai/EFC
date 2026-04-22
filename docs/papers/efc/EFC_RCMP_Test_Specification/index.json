@@ -1,23 +1,116 @@
 {
   "$schema": "./schema.json",
   "id": "efc-rcmp-test-specification",
-  "title": "Efc Rcmp Test Specification",
-  "description": "Auto-generated package for Efc Rcmp Test Specification.",
-  "version": "1.0",
-  "date": "2026-04-22",
+  "title": "EFC-\u039bCDM Comparative Test Specification v1.1",
+  "description": "Pre-registered, content-hash\u2013locked protocol specifying a three-stage comparative test of Energy-Flow Cosmology (EFC) against \u039bCDM on Stage-III cosmic shear data. It defines the EFC phenomenological extensions (\u00b5, \u03a3), locked gate parameters, priors, scale cuts, and reporting requirements, with pixel-level verification and binding stopping/falsification rules. The specification targets DES Y6 as the primary dataset with KiDS Legacy for cross-pipeline validation using MGCAMB/MGCLASS within Cobaya or CosmoSIS.",
+  "version": "1.1",
+  "date": "2026-04-21",
+  "doi": "10.6084/m9.figshare.32080083",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Rcmp",
-    "Test",
-    "Specification"
+    "\u039bCDM",
+    "cosmic shear",
+    "DES Y6",
+    "KiDS Legacy",
+    "modified gravity",
+    "MGCAMB",
+    "MGCLASS",
+    "Cobaya",
+    "CosmoSIS",
+    "MCMC",
+    "S8"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "gate_function_g_a": {
+      "latex": "g(a) = \\tfrac{1}{2} \\left[1 + \\tanh\\!\\left(\\frac{a - a_t}{\\delta a}\\right)\\right]",
+      "description": "Late-time transition (\"gate\") controlling when EFC modifications turn on; parameters a_t=0.7 and \\delta a=0.08 are locked."
+    },
+    "scale_filter_fk_k": {
+      "latex": "f_k(k) = \\left[1 + \\left(\\frac{k}{k_c}\\right)^2\\right]^{-1}",
+      "description": "Scale filter modulating the k-dependence of perturbations; transition scale locked at k_c = 0.05\\,h\\,\\mathrm{Mpc}^{-1}."
+    },
+    "mu_ka": {
+      "latex": "\\mu(k,a) = 1 + A_{\\mu}\\, g(a)\\, f_k(k)",
+      "description": "Modification to the effective Newtonian coupling; free amplitude A_\\mu with prior [\u22120.20, 0.05] (EFC predicts A_\\mu < 0)."
+    },
+    "Sigma_ka": {
+      "latex": "\\Sigma(k,a) = 1 + A_{\\Sigma}\\, g(a)\\, f_k(k)",
+      "description": "Modification to the lensing potential; free amplitude A_\\Sigma with prior [\u22120.05, 0.20] (EFC predicts A_\\Sigma > 0)."
+    },
+    "S8_definition": {
+      "latex": "S_8 \\equiv \\sigma_8 \\left(\\frac{\\Omega_m}{0.3}\\right)^{0.5}",
+      "description": "Derived clustering amplitude parameter used for reporting consistency with weak-lensing constraints."
+    }
+  },
+  "key_results": {
+    "main_finding": "Pre-registered test protocol; no empirical results are reported in this specification.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_\u03bc",
+      "A_\u03a3"
+    ],
+    "datasets_used": [
+      "DES Y6 cosmic shear",
+      "KiDS Legacy weak lensing"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "SP1",
+      "statement": "EFC prefers the sign quadrant A_\u03bc < 0 and A_\u03a3 > 0 when confronted with Stage-III cosmic shear data (DES Y6; cross-checked with KiDS Legacy).",
+      "falsifiable_by": "DES Y6 fast-scan (grid over A_\u03bc, A_\u03a3) and full-likelihood MCMC posteriors excluding the A_\u03bc<0, A_\u03a3>0 quadrant."
+    },
+    {
+      "id": "SP2",
+      "statement": "Setting A_\u03bc = A_\u03a3 = 0 or forcing g(a) \u2192 0 (via a_t \u226b 1 or very small \u03b4a) recovers \u039bCDM predictions for \u03be\u00b1, C_\u2113^{\\kappa\\kappa}, f(z), and \u03c3_8 to within \u2264 0.01% numerical precision.",
+      "falsifiable_by": "Pixel-level forward-model verification prior to analysis."
+    },
+    {
+      "id": "SP3",
+      "statement": "Under the VariantH slip constraint (\u03a3 \u2212 1) = \u2212 (\u03bc \u2212 1) (\u03b1 = 1 locked), a one-parameter EFC extension along A_\u03bc \u2208 [\u22120.12, 0.0] yields any improvement localized near the EFC-predicted sign.",
+      "falsifiable_by": "1D VariantH scan of \u03c7\u00b2(A_\u03bc) showing no improvement or preference away from A_\u03bc < 0."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Combined DES Y6 and KiDS Legacy posteriors exclude the EFC sign quadrant (A_\u03bc < 0, A_\u03a3 > 0) at high credibility (e.g., the 95% credible region lies entirely outside that quadrant), indicating the phenomenological direction consistent with EFC is disfavored.",
+    "KC2: Across both datasets and independent pipelines (Cobaya/MGCAMB and CosmoSIS/MGCLASS), the best-fit EFC extension fails to improve over \u039bCDM (\u0394\u03c7\u00b2_best-fit \u2265 0 within numerical tolerance) and the posteriors are consistent with A_\u03bc = 0 and A_\u03a3 = 0, demonstrating no empirical support for EFC-like perturbations.",
+    "KC3: VariantH (\u03b1 = 1) one-parameter test shows no improvement over \u039bCDM and prefers A_\u03bc \u2248 0 with uncertainties excluding A_\u03bc < 0 at high credibility, falsifying this EFC variant.",
+    "KC4: Pixel-level \u039bCDM-recovery check fails (EFC with A_\u03bc = A_\u03a3 = 0 or with g(a) \u2192 0 does not reproduce \u039bCDM within \u2264 0.01%): test instance is invalid and all EFC claims under this implementation must be retracted."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "efc-p1-gate-lock",
+      "doi": "10.6084/m9.figshare.32037990",
+      "role": "P1 pre-registration: gate and lensing engine parameters (a_t lock, sealed lensing.py)"
+    },
+    {
+      "id": "efc-p3-kc-lock",
+      "doi": "10.6084/m9.figshare.32023788",
+      "role": "P3 pre-registration: k_c lock for scale filter"
+    },
+    {
+      "id": "efc-companion-compound",
+      "doi": "10.6084/m9.figshare.32080059",
+      "role": "Companion compound paper (cross-observable consistency and scans)"
+    },
+    {
+      "id": "efc-action-v3",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "EFC action-level description (not in one-to-one mapping with A_\u03bc, A_\u03a3)"
+    }
+  ],
   "files": {
     "pdf": "EFC_RCMP_Test_Specification.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32080083"
 }

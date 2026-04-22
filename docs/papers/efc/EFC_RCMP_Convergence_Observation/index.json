@@ -1,23 +1,78 @@
 {
   "$schema": "./schema.json",
   "id": "efc-rcmp-convergence-observation",
-  "title": "Efc Rcmp Convergence Observation",
-  "description": "Auto-generated package for Efc Rcmp Convergence Observation.",
-  "version": "1.0",
+  "title": "Methodological Convergence in Stage-IV Cosmology: The Emergence of Epistemic Holism Under Precision Constraints, and Its Operationalization via RCMP",
+  "description": "This note documents a 2023\u20132026 methodological convergence across cosmic shear, gravitational-slip (EG) estimation, and dark-energy inference: leading analyses now report results with explicit proxy-chain and nuisance-model dependence. The paper interprets this as the practical emergence of Duhem\u2013Quine epistemic holism under Stage-IV precision and highlights RCMP as a concrete operationalization, while making no claims about supporting or disfavouring EFC. It outlines that forthcoming quantitative EFC tests should be conducted at the phenomenological (\u03bc, \u03a3) level for likelihood compatibility.",
+  "version": "v0.2",
   "date": "2026-04-22",
+  "doi": "10.6084/m9.figshare.32080080",
   "keywords": [
-    "Energy-Flow Cosmology",
-    "Rcmp",
-    "Convergence",
-    "Observation"
+    "Stage-IV cosmology",
+    "methodological convergence",
+    "epistemic holism",
+    "Duhem\u2013Quine",
+    "RCMP",
+    "proxy-chain dependence",
+    "weak-lensing S8 tension",
+    "intrinsic alignments",
+    "baryonic feedback",
+    "EG estimator",
+    "gravitational slip",
+    "DESI DR2"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Independent Stage-IV analyses now explicitly condition key cosmological inferences (S8, EG, dark-energy hints) on proxy-chain and nuisance-model choices, consistent with RCMP-style reporting under precision constraints.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "S8 framing under IA and baryonic-feedback models",
+      "EG estimator dependence on velocity-reconstruction templates",
+      "\u03bc(k,z), \u03a3(k,z) phenomenological modifiers (test plan only)"
+    ],
+    "datasets_used": [
+      "DES Y6 (cosmic shear)",
+      "KiDS-Legacy (cosmic shear)",
+      "ACT DR6 \u00d7 SDSS BOSS (EG)",
+      "DESI DR2 (dark energy, SN dependence noted)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P4",
+      "statement": "Rubin DP2 weak-lensing will infer S8 = 0.847 under RCMP-compliant analysis.",
+      "falsifiable_by": "Rubin LSST DP2 cosmic-shear pipeline delivering an RCMP-compliant S8 measurement (with documented IA and baryonic-feedback modeling) that is statistically inconsistent with 0.847."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If Stage-IV weak-lensing analyses (e.g., DES Y6 reanalysis, KiDS-Legacy, Rubin DP2, or Euclid Y1) report S8 results that are invariant to intrinsic-alignment and baryonic-feedback model choices within their quoted statistical uncertainties, thereby demonstrating model-independence and contradicting the claimed trend toward explicit proxy dependence.",
+    "KC2: If EG measurements using independent velocity reconstructions (e.g., RSD-derived \u03b2 vs. kSZ-reconstructed velocities) yield mutually consistent results with negligible template dependence and confirm the GR-invariance of EG across methods, reversing the reported move to re-evaluate estimator assumptions.",
+    "KC3: If DESI DR2+ dark-energy evolution constraints become robust to the supernova compilation choice (i.e., consistent across SN datasets within statistical errors without requiring dataset-dependent caveats), eliminating the reported explicit dataset dependence.",
+    "KC4: If broad Stage-IV flagship papers revert to presenting key cosmological parameters as model-independent point estimates without proxy-chain documentation, contrary to RCMP-style coordinate humility and proxy accounting."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "RCMP framework: 5-point checklist and operational protocol referenced as an operationalization of the observed convergence"
+    },
+    {
+      "id": "efc-overview",
+      "doi": "10.6084/m9.figshare.31112536",
+      "role": "EFC overview referenced for context; action-level parameters (K0, V\u2032, \u03b1) noted as separate from phenomenological (\u03bc, \u03a3)"
+    }
+  ],
   "files": {
     "pdf": "EFC_RCMP_Convergence_Observation.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32080080"
 }
