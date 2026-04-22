@@ -1,0 +1,89 @@
+name: EFC Atlas verify
+
+# Strict verification that EFC_Atlas.html is a deterministic function of
+# atlas.json + ledger.json. Runs on PRs and push-to-main touching any of
+# the Atlas inputs or the build script. Does NOT auto-commit — that's
+# atlas-sync.yml on development branches. If this fails on a PR, run
+# `python3 scripts/build_atlas.py` locally, commit the regenerated HTML,
+# and push.
+
+on:
+  pull_request:
+    paths:
+      - "docs/validation-ledger/data/atlas.json"
+      - "docs/validation-ledger/data/ledger.json"
+      - "docs/public/EFC_Atlas.html"
+      - "scripts/build_atlas.py"
+      - ".github/workflows/atlas-verify.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/validation-ledger/data/atlas.json"
+      - "docs/validation-ledger/data/ledger.json"
+      - "docs/public/EFC_Atlas.html"
+      - "scripts/build_atlas.py"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Validate atlas.json is well-formed
+        run: |
+          python3 -c "
+          import json, sys
+          with open('docs/validation-ledger/data/atlas.json') as f:
+              atlas = json.load(f)
+          required = ['frameworks', 'phenomena', 'addressings', 'tier1_demo_predictions']
+          missing = [k for k in required if k not in atlas]
+          if missing:
+              print(f'::error::atlas.json missing required keys: {missing}')
+              sys.exit(1)
+          if not atlas['frameworks']:
+              print('::error::atlas.json has no frameworks'); sys.exit(1)
+          if not atlas['tier1_demo_predictions']:
+              print('::error::atlas.json has no tier1_demo_predictions'); sys.exit(1)
+          print(f\"atlas.json OK: {len(atlas['frameworks'])} frameworks, \"
+                f\"{len(atlas['phenomena'])} phenomena, \"
+                f\"{len(atlas['addressings'])} addressings\")
+          "
+
+      - name: Cross-check atlas addressings reference real frameworks/phenomena
+        run: |
+          python3 -c "
+          import json, sys
+          with open('docs/validation-ledger/data/atlas.json') as f:
+              atlas = json.load(f)
+          fw_ids = {f['id'] for f in atlas['frameworks']}
+          phen_ids = {p['id'] for p in atlas['phenomena']}
+          bad = []
+          for a in atlas['addressings']:
+              if a['framework'] not in fw_ids:
+                  bad.append(f\"unknown framework: {a['framework']}\")
+              if a['phenomenon'] not in phen_ids:
+                  bad.append(f\"unknown phenomenon: {a['phenomenon']}\")
+          if bad:
+              for b in bad[:20]:
+                  print(f'::error::{b}')
+              sys.exit(1)
+          print(f'All {len(atlas[\"addressings\"])} addressings reference valid IDs.')
+          "
+
+      - name: Regenerate Atlas HTML
+        run: python3 scripts/build_atlas.py
+
+      - name: Fail on uncommitted changes
+        run: |
+          if ! git diff --quiet docs/public/EFC_Atlas.html; then
+            echo "::error::EFC_Atlas.html is out of sync with atlas.json / ledger.json."
+            echo "::error::Run 'python3 scripts/build_atlas.py' locally and commit the result."
+            git --no-pager diff --stat docs/public/EFC_Atlas.html
+            exit 1
+          fi
+          echo "EFC_Atlas.html is up to date."

@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) &ndash; Framework Atlas</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.8rem; font-weight: 700; color: #0d1b3e;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 0.6rem; margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: 1.35rem; font-weight: 600; color: #1a3a6b;
+      margin-top: 2.2rem; margin-bottom: 0.8rem;
+      border-left: 4px solid #007bff; padding-left: 0.7rem;
+    }
+    h3 {
+      font-size: 1.1rem; font-weight: 600; color: #2a4a7f;
+      margin-top: 1.6rem; margin-bottom: 0.5rem;
+    }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table {
+      width: 100%; border-collapse: collapse;
+      margin-bottom: 1.5rem; font-size: 0.88rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-radius: 6px; overflow: hidden;
+    }
+    thead { background-color: #eaf0f9; }
+    th {
+      border: 1px solid #d0d7e3; padding: 10px 12px;
+      text-align: left; font-weight: 600; color: #1a3a6b;
+    }
+    td { border: 1px solid #e2e6ed; padding: 8px 12px; vertical-align: top; }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code {
+      font-family: 'Courier New', monospace; font-size: 0.90em;
+      background: #f0f2f5; padding: 1px 5px; border-radius: 3px;
+    }
+    .badge-kill   { display:inline-block; background:#c22;    color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; letter-spacing:0.3px; }
+    .badge-damage { display:inline-block; background:#d4a017; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; letter-spacing:0.3px; }
+    .badge-sealed { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; letter-spacing:0.3px; }
+    .badge-open   { display:inline-block; background:#555;    color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; letter-spacing:0.3px; }
+    .badge-pass   { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .badge-marginal { display:inline-block; background:#d4a017; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .badge-planned { display:inline-block; background:#5b6a7a; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .badge-fail   { display:inline-block; background:#c22; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+
+    .regime-L0 { color:#1a7a1a; }
+    .regime-L1 { color:#0056b3; }
+    .regime-L2 { color:#a8200d; }
+    .regime-L3 { color:#6d1a7a; }
+    .regime-chip {
+      display:inline-block; font-size:0.72em; font-weight:600;
+      padding:1px 6px; border-radius:3px; margin-right:6px;
+      background:#eef2f8; color:#1a3a6b; border:1px solid #c9d4e4;
+    }
+    .regime-chip.L0 { background:#e6f4e6; color:#1a5a1a; border-color:#b7d8b7; }
+    .regime-chip.L1 { background:#e3edf9; color:#0056b3; border-color:#b9ceea; }
+    .regime-chip.L2 { background:#f9e3df; color:#a8200d; border-color:#eac2bb; }
+    .regime-chip.L3 { background:#efe3f9; color:#6d1a7a; border-color:#d7bfea; }
+
+    .pred-card {
+      background: #fafbfd; border: 1px solid #d0d7e3;
+      border-left: 4px solid #007bff; border-radius: 6px;
+      padding: 14px 18px; margin: 1rem 0 1.5rem;
+    }
+    .pred-card.kill  { border-left-color:#c22; }
+    .pred-card.sealed { border-left-color:#1a7a1a; }
+    .pred-card h3 { margin-top: 0; }
+    .pred-card table { margin-bottom: 0.6rem; }
+
+    .hero {
+      background: linear-gradient(180deg, #f0f5fc 0%, #fafbfd 100%);
+      border: 1px solid #c9d4e4; border-left: 5px solid #c22;
+      border-radius: 8px; padding: 22px 26px; margin: 1rem 0 1.8rem;
+    }
+    .hero h2 {
+      margin-top: 0; border: none; padding: 0;
+      font-size: 1.5rem; color: #0d1b3e;
+    }
+    .hero-meta {
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px; margin: 1rem 0 1.2rem;
+    }
+    .hero-meta .cell {
+      background:#fff; border:1px solid #d0d7e3; border-radius:5px;
+      padding: 8px 12px; font-size: 0.86rem;
+    }
+    .hero-meta .cell .lbl {
+      display:block; font-size:0.70rem; text-transform:uppercase;
+      letter-spacing:0.5px; color:#5b6a7a; font-weight:600;
+    }
+    .hero-meta .cell .val {
+      display:block; font-size:1.0rem; color:#0d1b3e; font-weight:600;
+      font-family: 'Courier New', monospace;
+    }
+
+    .nav-tabs {
+      display: flex; gap: 2px; margin: 1rem 0 1.3rem;
+      border-bottom: 2px solid #d0d7e3;
+    }
+    .nav-tab {
+      background: #eaf0f9; color: #1a3a6b;
+      border: 1px solid #d0d7e3; border-bottom: none;
+      padding: 9px 16px; cursor: pointer; font-weight: 600;
+      font-size: 0.92rem; border-radius: 6px 6px 0 0;
+      font-family: inherit;
+    }
+    .nav-tab:hover { background: #dfe7f3; }
+    .nav-tab.active {
+      background: #ffffff; color: #0d1b3e;
+      border-bottom: 2px solid #ffffff; position: relative; top: 2px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .filter-row {
+      display:flex; flex-wrap:wrap; gap: 8px; align-items:center;
+      margin: 0.8rem 0 1rem;
+    }
+    .filter-row label { font-size: 0.85rem; color: #5b6a7a; font-weight: 600; }
+    .filter-row select, .filter-row input {
+      font-size: 0.88rem; padding: 5px 8px;
+      border: 1px solid #c9d4e4; border-radius: 4px;
+      font-family: inherit; background: #fff;
+    }
+
+    .framework-grid, .phenomenon-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px; margin: 1rem 0;
+    }
+    .fw-card, .phen-card {
+      background: #fafbfd; border: 1px solid #d0d7e3;
+      border-left: 4px solid #007bff; border-radius: 5px;
+      padding: 10px 14px; font-size: 0.86rem;
+    }
+    .fw-card.efc { border-left-color: #1a7a1a; background:#f1f9f1; }
+    .fw-card .fw-name { font-weight: 600; color:#0d1b3e; font-size:0.95rem; }
+    .fw-card .fw-meta { font-size:0.78rem; color:#5b6a7a; margin-top:4px; }
+
+    .mechanism-pill {
+      display:inline-block; font-size:0.74rem;
+      background:#eef2f8; color:#1a3a6b;
+      padding: 1px 6px; border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 6px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Framework Atlas</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.2rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.3rem; font-weight:600;">Elevator Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.3rem; font-weight:600;">Validation Ledger</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.3rem; font-weight:600;">White Paper Series</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.3rem; font-weight:600;">Stage-IV Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.3rem; font-weight:600;">Gap Analysis</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.3rem; font-weight:600;">Predictions</a>
+  <a href="EFC_Atlas.html" style="margin-right:1.3rem; font-weight:700;">Atlas</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.2em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+2026-04-22 &middot; CC-BY-4.0
+</p>
+
+<p style="font-size:0.93rem; color:#1a3a6b; background:#f0f5fc; border:1px solid #c9d4e4; border-radius:5px; padding:10px 14px;">
+The Atlas joins two data sources: the immutable sealed <strong>Validation Ledger</strong>
+(EFC's own predictions with DOI, hash, freeze-timestamp) and the
+<strong>Framework Atlas</strong> (<strong>42</strong> rival cosmology/gravity
+frameworks with their RCMP regime participation, ontological lens, and mechanism-level
+predictions across <strong>31</strong> phenomena). Together they make
+cross-framework discrimination explicit: for every phenomenon the Atlas records which
+frameworks address it, with what mechanism, and with what role.
+</p>
+
+<div class="nav-tabs" role="tablist">
+  <button class="nav-tab active" data-tab="demo">Demo (KILL prediction)</button>
+  <button class="nav-tab" data-tab="predictions">All predictions</button>
+  <button class="nav-tab" data-tab="phenomena">Phenomena</button>
+  <button class="nav-tab" data-tab="frameworks">Frameworks</button>
+</div>
+
+<!-- =========================================================
+     TAB 1: DEMO (P1 phi_psi_slip)
+     ========================================================= -->
+<section class="tab-panel active" id="tab-demo">
+
+<div class="hero">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-kill">KILL</span>
+    <span class="regime-chip L2">L2 &mdash; LSS / lensing</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">Preregistered &middot; sealed DOI</span>
+  </div>
+  <h2>Φ/Ψ slip: non-monotonic Σ_eff(z) with sign change near z≈0.44</h2>
+  <p style="margin-top:0.5rem; color:#1a3a6b;">
+    Energy-Flow Cosmology predicts a non-monotonic gravitational slip: Σ_eff(z) enhanced below z≈0.4, suppressed above z≈0.5, with a sealed crossover near z≈0.44. All 13 rival frameworks in the atlas predict monotonic behaviour with relative divergence = 1.0. GW-speed constraints structurally forbid the crossover for the entire QS Horndeski class — so a sign-change observation by Euclid DR1 would not just favour EFC, it would exclude the QS class as a whole.
+  </p>
+
+  <div class="hero-meta">
+    <div class="cell"><span class="lbl">EFC prediction</span><span class="val">η = 0.9993 (sealed); Σ_eff enhanced z&lt;0.4, suppressed z&gt;0.5</span></div>
+    <div class="cell"><span class="lbl">Mechanism</span><span class="val" style="font-size:0.82rem;">Sigma_eff_sign_change_non_monotonic</span></div>
+    <div class="cell"><span class="lbl">Hash</span><span class="val">7a850cfa58477701</span></div>
+    <div class="cell"><span class="lbl">Frozen at</span><span class="val" style="font-size:0.82rem;">2026-02-18T05:07:13Z</span></div>
+    <div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.82rem;"><a href="https://doi.org/10.6084/m9.figshare.32037990">10.6084/m9.figshare.32037990</a></span></div>
+    <div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.82rem;">Euclid DR1 (October 2026)</span></div>
+  </div>
+
+  <h3 style="color:#0d1b3e;">Falsifier &mdash; F9</h3>
+  <p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
+    <strong>If observed:</strong> Monotonic Σ_eff(z) across [0.3, 0.6] in Stage-IV tomography &rarr; EFC killed on this prediction.
+  </p>
+
+  <h3 style="color:#0d1b3e;">Rival frameworks &mdash; 12 monotonic, relative divergence = 1.0</h3>
+  <table style="margin-top:0.5rem;">
+    <thead><tr><th>Framework</th><th>Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+    <tr><td>DGP</td><td>predicts_monotonic</td><td><span class="mechanism-pill">braneworld_Vainshtein_no_crossover</span></td></tr>
+    <tr><td>EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+    <tr><td>Galileon</td><td>predicts_monotonic</td><td><span class="mechanism-pill">Vainshtein_screening_no_slip_sign_change</span></td></tr>
+    <tr><td>Horndeski</td><td>predicts_monotonic</td><td><span class="mechanism-pill">QS_alpha_T_zero_forces_Sigma_le_mu</span></td></tr>
+    <tr><td>LCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">GR_baseline_no_slip</span></td></tr>
+    <tr><td>MOND</td><td>predicts_monotonic</td><td><span class="mechanism-pill">modified_inertia_no_relativistic_slip</span></td></tr>
+    <tr><td>Multi_Field_EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+    <tr><td>Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">minimally_coupled_scalar_no_slip</span></td></tr>
+    <tr><td>Thawing_Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">slow_roll_thawing_no_slip</span></td></tr>
+    <tr><td>Verlinde_2016</td><td>predicts_monotonic</td><td><span class="mechanism-pill">emergent_gravity_no_derived_slip_profile</span></td></tr>
+    <tr><td>fR_Starobinsky</td><td>predicts_monotonic</td><td><span class="mechanism-pill">chameleon_mu_gt_1_no_crossover</span></td></tr>
+    <tr><td>w0waCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">CPL_parametrization_background_only</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:#0d1b3e;">Exclusion lemma</h3>
+  <p style="background:#f0f5fc; border:1px solid #c9d4e4; border-radius:4px; padding:8px 12px; margin:0.4rem 0 0.9rem;">
+    GW-speed constraint (c_T=c) forces α_T=0 in Horndeski/QS class, which forces Σ ≤ μ pointwise; therefore no sign-change of Σ_eff is possible in that class.
+  </p>
+
+  <h3 style="color:#0d1b3e;">Stage-III empirical sandwich</h3>
+  <ul>
+    <li><strong>KiDS-1000</strong> (lower bound): PASS on Σ≈1.10–1.15 at z&lt;0.5, k&gt;0.1 h/Mpc</li><li><strong>DES Y6</strong> (upper bound): PASS consistent with S₈=0.847 suppression at higher z</li><li><strong>BOSS+eBOSS+DESI fσ₈</strong> (side constraint): multi-epoch pattern suggests regime transition in z=0.3–0.7</li>
+  </ul>
+  <p style="font-size:0.88rem; color:#5b6a7a;">
+    Lower- and upper-half of the &Sigma;<sub>eff</sub>(z) profile are already anchored by Stage-III
+    data. Euclid DR1 is expected to resolve the crossover position directly in October 2026.
+  </p>
+</div>
+
+</section>
+
+<!-- =========================================================
+     TAB 2: ALL PREDICTIONS (from ledger.json)
+     ========================================================= -->
+<section class="tab-panel" id="tab-predictions">
+<h2>All validation tests</h2>
+<p>
+Sourced from the sealed <a href="EFC_Validation_Ledger.html">Validation Ledger</a>.
+<strong>119</strong> public tests across 5 categories.
+Filter by category, result or regime.
+</p>
+
+<div class="filter-row">
+  <label for="filter-category">Category:</label>
+  <select id="filter-category">
+    <option value="">All</option>
+        <option value="consistency_check">consistency_check</option>
+    <option value="framework_constraint">framework_constraint</option>
+    <option value="phenomenological">phenomenological</option>
+    <option value="physics_test">physics_test</option>
+    <option value="planned_pipeline">planned_pipeline</option>
+  </select>
+  <label for="filter-result">Result:</label>
+  <select id="filter-result">
+    <option value="">All</option>
+    <option value="PASS">PASS</option>
+    <option value="MARGINAL">MARGINAL</option>
+    <option value="FAIL">FAIL</option>
+    <option value="Planned">Planned</option>
+  </select>
+  <input type="text" id="filter-search" placeholder="Search name / prediction..." style="flex:1; min-width:180px;">
+</div>
+
+<table id="predictions-table">
+  <thead>
+    <tr>
+      <th>Result</th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Prediction</th>
+      <th>Data source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-category="physics_test" data-result="MARGINAL"><td><span class="badge-marginal">MARGINAL</span></td><td>physics_test</td><td><strong>2D mu-Sigma Planck constraint: degeneracy stripe at Sigma~1.05</strong></td><td>mu=0.94 Sigma=1.05 achieves dchi2(full)=+2.49 with 6.4% sigma8 suppression. Degeneracy stripe exists at Sigma~1.05. Perturbation sector CAN carry EFC signal.</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 TTTEEE_lite + lowl + lensing, MGCAMB v1.5.2 MG_flag=6</td></tr>
+    <tr data-category="physics_test" data-result="MARGINAL"><td><span class="badge-marginal">MARGINAL</span></td><td>physics_test</td><td><strong>2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip</strong></td><td>If EFC entropy gradients modify Ψ (matter potential) more than Φ+Ψ (lensing potential), the framework naturally produces μ&lt;1 with Σ≈1.05 — exactly the viable region found in this scan.</td><td style="font-size:0.82rem; color:#5b6a7a;">MGCAMB v1.5.2, 25-point (μ,Σ) grid, Planck 2018 TTTEEE+lowl+lensing</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>AQUAL void leakage: falsification test for L0/L1 regime screening</strong></td><td>EFC regime framework predicts AQUAL remains screened in voids because even void interiors have |∇Φ_background|/a₀ &gt;&gt; 1 from the total cosmological potential. If this fails (μ_eff &gt; 1.01 in voids at r &gt; 30 Mpc/h), then AQUAL leaks into linear cosmology and the ΛCDM-as-L0/L1-limit claim is falsified. Specific observable: ISW-void cross-correlation amplitude should match ΛCDM within 5%. Void lensing tangential shear profile should show no AQUAL enhancement at r &gt; 10 Mpc/h.</td><td style="font-size:0.82rem; color:#5b6a7a;">Void catalogs (BOSS/DESI void finder), ISW stacking on voids, weak lensing void profiles (DES Y6/KiDS), fσ₈ at k &lt; 0.02 h/Mpc from DESI ELG</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Asig shock-front lensing asymmetry — JWST-era execution</strong></td><td>EFC predicts Asig ≠ 0: lensing convergence residuals aligned with the Chandra shock front direction, produced by entropy-gradient coupling (Σ &gt; 1 anisotropy from the flow-constraint mechanism in the Relativistic Action). ΛCDM predicts Asig = 0 (isotropic residuals after mass model subtraction). Detection threshold: percent-level δκ/κ in the shock-front region.</td><td style="font-size:0.82rem; color:#5b6a7a;">Cha et al. 2025 (ApJ 987 L15, arXiv:2503.21870) κ-map; Rihtaršič et al. 2026 (arXiv:2601.22245) Lenstool parametric model; Cho et al. 2025 (arXiv:2512.03150) virial masses; Chandra 500 ks ACIS-I (Markevitch 2006); ACCEPT entropy profiles (Cavagnolo et al. 2009)</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>B0 Bridge Test: fσ₈ sign constraint — μ must be less than 1</strong></td><td>If EFC can produce μ(a,k) &lt; 1 at z&lt;1 and k≈0.05-0.1 h/Mpc with ~6% effective weakening, it will improve fσ₈ by Δχ²≈−5 without significantly affecting σ₈ (&lt;1% change). Next test (B1): physical gate parametrization. Next test (B2): joint Planck + fσ₈ with consistent μ-Σ.</td><td style="font-size:0.82rem; color:#5b6a7a;">fσ₈ compilation (7 datapoints, z=0.38-0.85) tested against ΛCDM + modified screening filters (F0-F3) with α_eff=0.06</td></tr>
+    <tr data-category="physics_test" data-result="COLLAPSED"><td><span class="badge-open">COLLAPSED</span></td><td>physics_test</td><td><strong>CMB Planck constraint on EFC background gate α</strong></td><td>EFC predicts that α≠0 modifies H(z) via the gate function, shifting θ* and DA(z*). With fixed Planck params, α=-0.7 is killed (Δχ²=+2624). With free params, Planck absorbs α via H0 shift (Δχ²≈0 for all α). Joint Planck+BAO collapses α from -0.7 to -0.05, because BAO breaks the α-H0 degeneracy.</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 plik_lite TTTEEE + lowl TT + lowl EE + lensing (via cobaya 3.6.1), DESI 2024 BAO, Pantheon+ SN, modified CLASS 3.3.4 with EFC gate in background.c</td></tr>
+    <tr data-category="physics_test" data-result="COLLAPSED"><td><span class="badge-open">COLLAPSED</span></td><td>physics_test</td><td><strong>CMB+BAO Joint Fit: Background α-gate null result</strong></td><td>If α≈−0.7 is real background physics, joint fit should find α significantly negative with improved total χ². Instead: α→−0.045, confirming background gate is proxy, not fundamental.</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 (plik_lite + lowl_TT + lowl_EE + lensing) + DESI 2024 BAO + Pantheon+ SN via EFCLASS/cobaya</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>CT-01: Entropy Gradient-Consciousness Correlation</strong></td><td>r(|∇(δS/δρ)|_cortex, C_measured) &gt; 0.5 at p &lt; 0.01 across &gt;= 4 consciousness states</td><td style="font-size:0.82rem; color:#5b6a7a;">High-density EEG (&gt;=64 ch) or source-reconstructed MEG; propofol/sevoflurane sedation datasets (Chennu et al. 2016), sleep polysomnography, psilocybin/LSD open datasets</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>CT-03: Parietal Dominance Replication</strong></td><td>d_parietal &gt; d_global with d_parietal &gt; 1.0 in an independent dataset</td><td style="font-size:0.82rem; color:#5b6a7a;">Independent propofol or sevoflurane sedation EEG dataset (N &gt;= 20, &gt;= 64 channels). Current baseline: Chennu Overlap-12 d_parietal = 2.10 vs d_global = 0.63</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Cluster TNG mass-only regime model: NOT SUPPORTED</strong></td><td>EFC predicts mass-driven regime transition producing sign flip in rho(ne_slope, K0). RESULT: Not observed within TNG mass bins [14.0-15.3 log M_sun]. All bins show rho ≈ -0.87 (constant). Regime variable must include core-state (cooling time, SCC/NCC) not mass alone.</td><td style="font-size:0.82rem; color:#5b6a7a;">TNG-Cluster 352 halos z=0, 4 mass bins. Grid: A_M [0.2-5.0], Xi_eff [-2.0-4.0], Delta_Xi [0.05-2.0]. Null models: constant, linear, step.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>DESI DR2 BAO α-constraint (post-prediction)</strong></td><td>EFC BAO-only: α consistent with 0. Strong α (|α| &gt; 0.4) excluded by DESI DR2 precision at z &gt; 0.9. EFC signal, if present, must live in growth/regime sector, not background expansion.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 BAO (arXiv:2503.14738), 13 measurements, 7 z-bins, full covariance</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EEG scalp entropy gradient dissipation test (Chennu propofol)</strong></td><td>EFC-C predicts corr(|∇S|², dS/dt) &lt; 0 in cortex during consciousness transitions. Under the mapping S → Ω̂ (spectral entropy of scalp EEG PSD, 0.5-45 Hz), with spatial gradient computed on parietal ROI (P3,P4,Pz,O1,O2,Oz), the prediction is r &lt; 0 with p &lt; 0.01 at group level.</td><td style="font-size:0.82rem; color:#5b6a7a;">Chennu et al. (2016) propofol sedation EEG dataset, DOI: 10.17863/CAM.690. N=20 subjects, 91-channel EGI HydroCel GSN, 250 Hz, 4 conditions per subject (baseline, mild sedation, moderate sedation, recovery). 80 recordings total.</td></tr>
+    <tr data-category="physics_test" data-result=""><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC Baseline α-signal</strong></td><td>α &lt; 0 at ≥2σ significance with ΔAIC &lt; -2 (moderate evidence)</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, 69 data points, emcee sampler</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC-C-001: ∇S Correlation with Conscious State Transitions</strong></td><td>The entropy gradient Ω = ||∇S|| is significantly higher during conscious states (wakefulness, REM) than unconscious states (NREM3, general anesthesia), with effect size Cohen's d &gt; 0.8 across subjects. KILL if d &lt; 0.5 on test partition (n ≥ 20 subjects).</td><td style="font-size:0.82rem; color:#5b6a7a;">Casarotto et al. (2016) PCI_ST dataset (n=150+ recordings across wake, sleep, anesthesia)</td></tr>
+    <tr data-category="physics_test" data-result="COLLAPSED"><td><span class="badge-open">COLLAPSED</span></td><td>physics_test</td><td><strong>EFCLASS sign test: ΔH² negative for additive gate</strong></td><td>Additive background gate with closure normalisation always gives ΔH&lt;0 at z&gt;0, increasing fσ₈. Only μ(k,z)&lt;1 or inverted gate can suppress growth.</td><td style="font-size:0.82rem; color:#5b6a7a;">EFCLASS v0.1 CLASS background output, BOSS DR12 fσ₈ comparison</td></tr>
+    <tr data-category="physics_test" data-result="C=2.30: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE."><td><span class="badge-marginal">MARGINAL</span></td><td>physics_test</td><td><strong>EFC×Graph-AQUAL regime bridge (growth sector)</strong></td><td>LCDM baseline survives; screening at k &lt; 0.01 h/Mpc keeps σ₈ and γ within 5% of ΛCDM</td><td style="font-size:0.82rem; color:#5b6a7a;">G_eff gate × linear growth ODE, 4 screening scales, C from KT2</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Euclid DR1 frozen benchmark (B0=0.02, M0=0.06) — Boltzmann-calibrated</strong></td><td>At B0=0.02, M0=0.06: sigma8 shift +1.21% vs LCDM, P(k=0.05,z=0.5) shift +2.09%, Cl^phiphi(ell=66) shift -6.01%, E_G(ell=66) shift -3.98%, Cl^TT(ell=30) ISW shift +1.88%. SHA-256: dbc737979d8a773f56c620759ddded38139157fd9a2dbb321a8ffdb6e68135d2. Kill: if Euclid DR1 shows |E_G shift| &lt; 1% at ell~66 with 2sigma precision, EFC perturbation sector falsified at this benchmark.</td><td style="font-size:0.82rem; color:#5b6a7a;">Euclid DR1 (21 October 2026): ~2100 deg² wide survey. Benchmark computed via hi_class efc_logistic (B0=0.02, M0=0.06, a_t=0.3, Delta=0.3, alpha_K=1.0). 36-config parameter scan + Boltzmann-calibrated output.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Freeze v2: fσ₈(z=1.5) blind prediction for DESI DR2 ELG</strong></td><td>EFC with α=-0.689 predicts fσ₈(z=1.5) will be lower than ΛCDM value, with separation growing compared to z=0.7. The exact numerical value will be sealed with hash.</td><td style="font-size:0.82rem; color:#5b6a7a;">Growth ODE solver with frozen parameters from freeze_20260218_050713</td></tr>
+    <tr data-category="physics_test" data-result="MARGINAL"><td><span class="badge-marginal">MARGINAL</span></td><td>physics_test</td><td><strong>Freeze v3: E_G(z=0.7) gravitational slip prediction</strong></td><td>EFC predicts E_G(z=0.7) differs from ΛCDM due to μ≠Σ. If μ&lt;1 and Σ≈1, E_G should be systematically higher than ΛCDM. Exact value sealed with hash.</td><td style="font-size:0.82rem; color:#5b6a7a;">β=f/b from growth ODE + linear bias model, frozen α=-0.689</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Freeze v4: Planck-independent H₀ from EFC BAO+SNIa</strong></td><td>EFC with α=-0.689 predicts H₀ from BAO+SNIa in range 69-71 km/s/Mpc (between Planck and SH0ES). If H₀ ≈ 67-68, no tension relief. If H₀ &gt; 71, strong tension relief claim.</td><td style="font-size:0.82rem; color:#5b6a7a;">cobaya minimize with BAO (BOSS+DESI) + Pantheon+ SNIa, no CMB prior</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Gravitational slip η(a,k,ρ) from grid tension ansatz</strong></td><td>η≠1 in L2 regime should: (1) resolve S₈ tension via differential Φ/Ψ coupling, (2) maintain strong lens time delay within observational bounds, (3) give specific η(z) profile derivable from χ control parameter. Expected η ≈ 0.95-0.99 in L2, η→1 in L0.</td><td style="font-size:0.82rem; color:#5b6a7a;">EFCLASS perturbation code + DES Y6 / KiDS Legacy weak lensing + H0LiCOW/TDCOSMO strong lens time delays</td></tr>
+    <tr data-category="physics_test" data-result="MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)"><td><span class="badge-open">MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)</span></td><td>physics_test</td><td><strong>Grid-AQUAL Newton/MOND limits (KT1)</strong></td><td>Inner slope → -2 (Newton) as a0→0; Outer slope → -1 (MOND) as a0→∞</td><td style="font-size:0.82rem; color:#5b6a7a;">Grid-AQUAL solver, spherical point mass, N=41 grid</td></tr>
+    <tr data-category="physics_test" data-result="β = 0.3047 (target: 0.5 for √(GM/a₀))"><td><span class="badge-open">β = 0.3047 (target: 0.5 for √(GM/a₀))</span></td><td>physics_test</td><td><strong>Grid-AQUAL mass-scaling exponent (KT3)</strong></td><td>β = 0.50 ± 0.15 for isolated spherical sources</td><td style="font-size:0.82rem; color:#5b6a7a;">Grid-AQUAL solver, M ∈ {10, 25, 50, 100, 200}, N=41, a₀=2.0</td></tr>
+    <tr data-category="physics_test" data-result="C_vw = 2.2960 (converged)"><td><span class="badge-open">C_vw = 2.2960 (converged)</span></td><td>physics_test</td><td><strong>Grid-AQUAL prefactor convergence (KT2)</strong></td><td>C converges to a finite value; residual between N-steps &lt; 0.1</td><td style="font-size:0.82rem; color:#5b6a7a;">Grid-AQUAL solver, N ∈ {21, 31, 41}, spherical point mass M=50</td></tr>
+    <tr data-category="physics_test" data-result="Completed (Quantitative Consistency Test — No Full Likelihood) — 𝒞 = 0.59–0.96 (monotonic); AISW = 0.29–0.56; all published data within 1.6σ"><td><span class="badge-open">Completed (Quantitative Consistency Test — No Full Likelihood) — 𝒞 = 0.59–0.96 (monotonic); AISW = 0.29–0.56; all published data within 1.6σ</span></td><td>physics_test</td><td><strong>ISW cancellation prediction (𝒞 metric)</strong></td><td>Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>KT-1: Ψ-dominance test (strong-lens time delay + weak-lensing shear)</strong></td><td>GRC predicts: Φ ≈ Φ_GR (ε &lt; 0.01) while Ψ = Ψ_GR(1+μ(S)) in L2 regime. Time delays should be consistent with GR within measurement uncertainty. Weak-lensing shear should show enhancement consistent with μ₀ = 0.415. Gravitational slip η = Φ/Ψ ≠ 1 in L2, with η → 1 in L0 and L3.</td><td style="font-size:0.82rem; color:#5b6a7a;">TDCOSMO/H0LiCOW 7-lens sample (public: imaging + kinematics + time delays). Secondary: eROSITA cluster sample for L2→L3 transition.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>KT-2: η-bound (strong-lens Φ consistency with GR)</strong></td><td>GRC predicts: |ΔΦ/Φ_GR| &lt; 10⁻³ (sample mean) in strong-lens systems. Time delay residuals Δt_predicted/Δt_observed = 1.0 ± measurement error. No systematic offset. ε (temporal suppression parameter) must be &lt; 0.01. If ε &gt; 0.1 is required to fit any system, the model fails.</td><td style="font-size:0.82rem; color:#5b6a7a;">TDCOSMO/H0LiCOW sample (≥5 lenses with mass-sheet degeneracy broken via stellar kinematics). Requires published time delays, lens models, and velocity dispersion measurements.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>KT-3: Locked transfer universality (SPARC → clusters → fσ8 → Bullet Cluster)</strong></td><td>GRC predicts: frozen μ₀ = 0.415 produces Δχ² &lt; 4 relative to best-fit in each independent channel. No systematic trend of increasing Δχ² with scale (kpc → Mpc). Cluster lensing profiles should show enhancement consistent with SPARC-derived μ₀. fσ8(z) should track the sealed crossover trajectory without parameter adjustment.</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC (source) → DESI/BOSS BAO (passing), Abell cluster lensing profiles, fσ8 at ≥3 z-bins (DESI DR2 LRG/ELG/QSO), Bullet Cluster offset geometry. All with frozen μ₀ = 0.415.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>KT-4: Sealed fσ8 crossover prediction (z_cross = 2.04)</strong></td><td>fσ8 crossover at z_cross = 2.04 ± 0.07. DH_rd(z=1.0): EFC = 16.527 vs ΛCDM = 17.466 (3.1σ separation). DH_rd(z=0.7): EFC = 19.797 vs ΛCDM = 20.719 (2.3σ). fσ8(z=0.7): EFC = 0.430 vs ΛCDM = 0.449 (2.0σ). Hash: 7a850cfa58477701.</td><td style="font-size:0.82rem; color:#5b6a7a;">Future fσ8 measurements at z &gt; 1.5 (DESI DR2+ ELG/QSO, Euclid, Roman). Sealed prediction hash: 7a850cfa58477701. Freeze timestamp: 2026-02-18T05:07:13.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>KT3b: Environmental mass-scaling test β(ρ_env)</strong></td><td>At fixed baryonic mass, void galaxies (ρ_env ≪ ρ_crit) show systematically weaker gravitational enhancement (lower g_obs/g_bar at g_bar ~ a₀) than galaxies in filaments/groups (ρ_env ~ ρ_crit). Estimated effect size: D_eff ratio between void (ρ/ρ_crit ~ 0.01) and filament (ρ/ρ_crit ~ 1) is √0.01 ≈ 0.1 vs 0.5, giving ~5× fewer active modes. This translates to ~15-30% suppression in enhancement for void galaxies. MOND predicts zero suppression. ΛCDM predicts uncorrelated scatter.</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC 175 galaxies (Lelli+ 2017) cross-matched with environment catalogs: Tully (2015) galaxy group catalog for nearest-neighbor density, or Eridanus/Fornax void catalogs. Key observables: V_flat, g_obs/g_bar at r where g_bar ~ a₀, and ρ_env from N-th nearest neighbor density estimator.</td></tr>
+    <tr data-category="physics_test" data-result="MARGINAL"><td><span class="badge-marginal">MARGINAL</span></td><td>physics_test</td><td><strong>MGCAMB mu-Sigma perturbation scan (constant mu, Sigma=1)</strong></td><td>EFC predicts mu less than 1 (weaker late-time gravity) to suppress sigma8. The test finds that mu=0.93 gives the right suppression (-7.3%) but at unacceptable Planck cost (Dchi2=+19). Only mu=0.99 is viable (Dchi2=+1.4) but gives insufficient suppression (1.1%). Lensing is NOT blind to mu unlike propto_omega — Sigma=1 does not decouple lensing from growth. CONCLUSION: constant mu with Sigma=1 cannot carry the EFC signal in the perturbation sector.</td><td style="font-size:0.82rem; color:#5b6a7a;">MGCAMB v1.5.2 + cobaya 3.6.1 + Planck 2018 (TTTEEE_lite + lowl TT + lowl EE + lensing)</td></tr>
+    <tr data-category="physics_test" data-result="PASS"><td><span class="badge-pass">PASS</span></td><td>physics_test</td><td><strong>MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)</strong></td><td>EFC predicts late-time growth suppression (α&lt;0) in Hubble friction channel. Signal should be distributed across redshift range, not concentrated in any single measurement. LOO robustness score should be ≥6/7 for the hint to qualify as non-artefactual.</td><td style="font-size:0.82rem; color:#5b6a7a;">fσ₈ extended compilation (7 points, z=0.02-0.85): 6dFGS, SDSS MGS, BOSS DR12 (3 bins), eBOSS, Vipers. BAO compilation (14 points). Pipeline: MVP-G1 Hubble Friction Channel with N2a nuisance controls.</td></tr>
+    <tr data-category="physics_test" data-result=""><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Phi/Psi Shadow-Mode v1.0: C=2.32, k_lambda=0.0014</strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Planck x_m scan: propto_omega cannot deliver S8 relief</strong></td><td>propto_omega with positive x_m gives enhanced growth (sigma8 UP) due to friction reduction dominating over Poisson weakening. Negative x_m triggers gradient instability. The CMB constraint is Δχ² = +5.3 at x_m=0.3, driven entirely by low-l TT (ISW effect). Lensing adds no constraint.</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 TTTEEE_lite + lowl TT/EE + lensing via cobaya 3.6.1 + hi_class v3.0</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Scale-dependent μ(k,z): first constraint on EFC characteristic scale k*</strong></td><td>If EFC modifies gravity via a grid mechanism with characteristic scale, k* should be finite and related to the grid/entropy scale. If k* → ∞ (no scale), EFC operates as effective field theory without fundamental scale. Expected range: k* ~ 0.01-0.3 h/Mpc.</td><td style="font-size:0.82rem; color:#5b6a7a;">Modified growth ODE with k-dependent source μ(k,z)=1-B·g(a)·h(k/k*), existing RSD data</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Shadow-mode v2: TDCOSMO PEMD+NFW time-delay consistency</strong></td><td>EFC predicts temporal potential deviation &lt; 0.1% from GR for all TDCOSMO lenses, with ε ~ 0.005 and η &gt; 0.95. The prediction is independent of lens profile choice (PL vs composite) because temporal saturation operates at the ontological level, not the profile level.</td><td style="font-size:0.82rem; color:#5b6a7a;">TDCOSMO-2025 (Shajib+2025, arXiv:2506.03023): 8 quadruply-lensed quasars with published γ', θ_E, σ_v, time delays, and NFW halo parameters.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Verlinde relation a₀~cH₀ emergent from bulk entropy</strong></td><td>EFC predicts Verlinde relation a₀ = c²√Λ emerges from graph functional with bulk entropy reservoir, without free parameters beyond Λ itself.</td><td style="font-size:0.82rem; color:#5b6a7a;">Bulk entropy reservoir term F_bulk with μ=β²Λ, tested over 7 Λ-values</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Whitening WP4 komponent w5 — hardest-constrained direction hit</strong></td><td>EFC forutsier at Δχ²_w5 skal være stor og negativ fordi den mest begrensede kovariansretningen i BOSS-data korresponderer med den skalaavhengige vekstmodifikasjonen μ(k,z) som EFC beskriver. Verdien Δχ²_w5 = −11.39 (fra 15.30 til 3.91) er konsistent med denne prediksjonen. En falsifisering ville vært at EFC primært forbedrer svakt begrensede retninger (w1-w3) mens w5 forblir uendret eller forverres.</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS DR12 full-shape power spectrum, whitening-dekomposisjon WP4 (se figshare 31304980)</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>χ-monotonicity in galaxy cluster radial profiles</strong></td><td>χ(r) is monotonically increasing (Spearman ρ &lt; -0.8 between r and χ) from 1.0 R₅₀₀ to 0.05 R₅₀₀ in both cool-core and non-cool-core clusters, with ≤1 sign change in dχ/dr after Savitzky-Golay smoothing. If this holds, χ is validated as universal regime index. If it fails, χ-concept dies but grid ontology, dual readout, and ×4800 resolution survive.</td><td style="font-size:0.82rem; color:#5b6a7a;">eROSITA ER1 cluster catalog + XMM/Chandra gold subsample for X-ray T(r) profiles. HSC/KiDS/DES cluster WL mass profiles for Φ_N(r) reconstruction. Classification: cool-core vs non-cool-core from X-ray concentration measure.</td></tr>
+    <tr data-category="physics_test" data-result=""><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong></strong></td><td>α consistent with 0 in BAO sector. Strong α (|α| &gt; 0.4) excluded.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 (arXiv:2503.14738), 13 measurements, 7 z-bins</td></tr>
+    <tr data-category="physics_test" data-result=""><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong></strong></td><td>Strong α ≈ -0.68 should be consistent with DESI DR2 BAO</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 BAO vs pre-existing NUTS posterior (α = -0.684 ± 0.405)</td></tr>
+    <tr data-category="consistency_check" data-result="T2Completed (consistency test)"><td><span class="badge-open">T2Completed (consistency test)</span></td><td>consistency_check</td><td><strong>BAO covariance-aware consistency test</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS DR12 consensus (6×6 cov) + cosmic chronometers</td></tr>
+    <tr data-category="consistency_check" data-result="T2Completed (transfer consistency)"><td><span class="badge-open">T2Completed (transfer consistency)</span></td><td>consistency_check</td><td><strong>BAO transfer test (DESI → BOSS/eBOSS; no refit)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS / eBOSS (transfer consistency check)</td></tr>
+    <tr data-category="consistency_check" data-result="DEGENERACY_LIMITED"><td><span class="badge-open">DEGENERACY_LIMITED</span></td><td>consistency_check</td><td><strong>BAO-RSD tension resolution via free σ8_0</strong></td><td>EFC predicts that freeing σ8_0 in the joint BAO+CC+RSD fit will shift best-fit to σ8_0 ≈ 0.78±0.03 with A ≈ 0.10±0.05, resolving the BAO-RSD tension. If σ8_0 remains at Planck value (0.811) while A&gt;0 is preferred, this indicates a genuine growth-geometry mismatch requiring modified growth coupling.</td><td style="font-size:0.82rem; color:#5b6a7a;">Phase 2.2 joint BAO+CC+RSD scan; BOSS DR12 fσ8; DESI DR2-like BAO</td></tr>
+    <tr data-category="consistency_check" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>CT-02: Omega-Kappa Anti-Correlation Constraint</strong></td><td>corr(Ω̂, κ̂) &lt; 0 in conscious states with |r| &gt; 0.2 at p &lt; 0.05</td><td style="font-size:0.82rem; color:#5b6a7a;">Same multi-state EEG/MEG as CT-01; current baseline: Chennu et al. Overlap-12 cohort (r = -0.27, N = 12)</td></tr>
+    <tr data-category="consistency_check" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>EFC-C-002: C-measure Correlation with PCI_ST</strong></td><td>The integrated consciousness measure C correlates with PCI_ST with Spearman ρ &gt; 0.7 across all recordings in the test partition. KILL if Spearman ρ &lt; 0.5.</td><td style="font-size:0.82rem; color:#5b6a7a;">Casarotto et al. (2016) PCI_ST dataset, test partition (50%)</td></tr>
+    <tr data-category="consistency_check" data-result="T2Completed (interpretation-dependent)"><td><span class="badge-open">T2Completed (interpretation-dependent)</span></td><td>consistency_check</td><td><strong>Early galaxies (JWST)</strong></td><td>✅</td><td style="font-size:0.82rem; color:#5b6a7a;">COSMOS-Web z &gt; 6–10</td></tr>
+    <tr data-category="consistency_check" data-result="T2Completed (null-prediction consistency check)"><td><span class="badge-open">T2Completed (null-prediction consistency check)</span></td><td>consistency_check</td><td><strong>High-z null regime consistency</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI Lyα P1D (z ≈ 3)</td></tr>
+    <tr data-category="consistency_check" data-result="T2Completed (Consistency Check)"><td><span class="badge-open">T2Completed (Consistency Check)</span></td><td>consistency_check</td><td><strong>H₀ tension</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">SH0ES / JWST</td></tr>
+    <tr data-category="consistency_check" data-result="T3Completed (self-consistent prediction; awaiting observational confrontation)"><td><span class="badge-open">T3Completed (self-consistent prediction; awaiting observational confrontation)</span></td><td>consistency_check</td><td><strong>ISW cross-correlation</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck × DESI DR1 tracers</td></tr>
+    <tr data-category="consistency_check" data-result="T1Completed (multi-channel consistency)"><td><span class="badge-open">T1Completed (multi-channel consistency)</span></td><td>consistency_check</td><td><strong>Late-time background coupling architecture (β·T(a))</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO (BOSS), RSD (BOSS), CMB lensing, SN Ia</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N1 Sound Horizon Control</strong></td><td>α significance survives within 0.5σ of baseline under both rd treatments</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, N1a (fixed rd) + N1b (free rd)</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N2 σ8 Prior Sweep</strong></td><td>α significance stable (within 0.5σ) across all σ₈ prior widths</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, 3 σ₈ prior configurations</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N3 Gate Freedom</strong></td><td>α identifiable: no α–a_t degeneracy, A_eff consistent with fixed-gate baseline</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, EFCVariantB with free gate</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N4 Modified Poisson μ≠1</strong></td><td>μ₀ consistent with 1.0; no tension with growth data</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, EFCVariantC with free μ₀</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N5 Flat rd Prior</strong></td><td>α significance survives flat rd prior</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, uniform rd prior [100, 200] Mpc</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>N7 Power-law Gate Shape-Robustness</strong></td><td>α survives at ≥1.5σ with power-law gate; A_eff consistent with logistic baseline</td><td style="font-size:0.82rem; color:#5b6a7a;">NUTS HMC, EFCVariantE (power-law gate, n=2)</td></tr>
+    <tr data-category="consistency_check" data-result="T3Completed (Consistency Check)"><td><span class="badge-open">T3Completed (Consistency Check)</span></td><td>consistency_check</td><td><strong>Regime transition metric (ΔF)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI + Fugaku-class N-body + SPARC</td></tr>
+    <tr data-category="consistency_check" data-result="T3Quantitative compatibility supported (screened regime)"><td><span class="badge-open">T3Quantitative compatibility supported (screened regime)</span></td><td>consistency_check</td><td><strong>Solar System / PPN / EP</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Cassini / LLR / perihelion</td></tr>
+    <tr data-category="consistency_check" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>σ₈(z) full trajectory reconstruction: EFC vs ΛCDM vs multi-survey data</strong></td><td>EFC predicts σ₈(z) systematically lower than ΛCDM for z&lt;1.5, converging at z&gt;2. The maximum deviation occurs at z≈0.3-0.7 where the gate function is most active. If observed σ₈(z) values from different surveys show this z-dependent pattern, it supports late-time activation.</td><td style="font-size:0.82rem; color:#5b6a7a;">Growth ODE + DES Y6, HSC-SSP, KiDS-Legacy compiled σ₈(z) values</td></tr>
+    <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong></strong></td><td>All probes should show &lt;1 logL/pt degradation under EFC vs ΛCDM with frozen best-fit parameters.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Anti-EFE: constructive external field response in Graph-AQUAL</strong></td><td>EFC graph-AQUAL predicts constructive external field coupling (anti-EFE) where external field enhances rather than suppresses MOND-like boost. Testable against galaxy samples in external fields (e.g., Crater II, NGC 1052-DF2).</td><td style="font-size:0.82rem; color:#5b6a7a;">KT5 EFE sweep: g_ext/a₀ = [0, 0.3, 1, 2, 5]</td></tr>
+    <tr data-category="phenomenological" data-result="Primary p=0.57688, Sign coherence p=0.01953125"><td><span class="badge-open">Primary p=0.57688, Sign coherence p=0.01953125</span></td><td>phenomenological</td><td><strong>Axiom 0: S_hat(z) Regime Boundary Test</strong></td><td>BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO surveys (6dF, MGS, BOSS, eBOSS, DESI)</td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Axiom-0 S_hat(z) regime boundary test (BAO N=10)</strong></td><td>EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondary pattern: 8/9 positive deviations in TRANSITION+LATENT (binomial p=0.020). DESI z=1.0 lands exactly on FLOW/TRANSITION boundary (delta=0.000). Result: not falsified, not confirmed, consistent with smooth regime structure.</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2.</td></tr>
+    <tr data-category="phenomenological" data-result="Planned – anisotropic likelihood test"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>BAO anisotropic split (DAvs H(z))</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS, eBOSS, DESI BAO anisotropic fits</td></tr>
+    <tr data-category="phenomenological" data-result="αL2= 0.040 ± 0.024 (1.7σ)"><td><span class="badge-open">αL2= 0.040 ± 0.024 (1.7σ)</span></td><td>phenomenological</td><td><strong>BAO+RSD joint fit (αL2)</strong></td><td>BOSS DR12 consensus</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS DR12 consensus</td></tr>
+    <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Case A S₈ direction (v1.4)</strong></td><td>Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.
+        Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Cluster core-state regime: f_SCC as regime variable (cross-sample N=2)</strong></td><td>EFC predicts that the entropy-structure coupling sign (rho) is driven by core-state composition: NCC-dominated samples (low f_SCC) show negative rho (S0 frozen regime), while SCC-rich samples (high f_SCC) show positive rho (S1 flowing regime). The tanh transition occurs at f_SCC ~ 0.15-0.20. Testable when per-subpopulation rho data (SCC/WCC/NCC separately) or additional cluster samples become available.</td><td style="font-size:0.82rem; color:#5b6a7a;">TNG-Cluster (352 halos, z=0, Lehle+2024) + ACCEPT (239 clusters, Cavagnolo+2009). Cross-sample analysis with f_SCC as coordinate. Grid search: 80k evaluations. Sensitivity scan on ACCEPT f_SCC (0.12-0.50).</td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>EFC-C-003: κ Universality Across Anesthetic Agents</strong></td><td>Frozen κ = 0.37 ± 0.04 produces consistent C-values across propofol, sevoflurane, ketamine, and xenon. Cross-agent to within-agent residual variance ratio σ_cross/σ_within &lt; 2.0. KILL if ratio exceeds 2.0.</td><td style="font-size:0.82rem; color:#5b6a7a;">Chennu et al. (2014) sedation dataset (propofol) + Cambridge consciousness database (sevoflurane, ketamine, xenon)</td></tr>
+    <tr data-category="phenomenological" data-result="Planned – bias-growth joint modeling"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Galaxy bias evolution consistency</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS, DESI clustering + lensing cross-correlation</td></tr>
+    <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Weak-lensing phenomenological closure (Postulate A)</strong></td><td>Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="phenomenological" data-result="αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM)"><td><span class="badge-open">αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM)</span></td><td>phenomenological</td><td><strong>Weak-lensing shear (Case A)</strong></td><td>KiDS-1000 Flinc ξ±</td><td style="font-size:0.82rem; color:#5b6a7a;">KiDS-1000 Flinc ξ±</td></tr>
+    <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong></strong></td><td>If EFC background modification is real, alpha should remain significantly negative even with precise DESI DR2 BAO data</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 BAO (13 pts, full covariance) + fs8_extended + Hz_CC + Pantheon_binned</td></tr>
+    <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong></strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong></strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="framework_constraint" data-result="REQUIRES_EXTERNAL_TOOL"><td><span class="badge-open">REQUIRES_EXTERNAL_TOOL</span></td><td>framework_constraint</td><td><strong>Action Integral Gap — Tier-1 theoretical obstruction</strong></td><td>EFC predicts that a well-posed action principle S_EFC would yield: (1) the growth gate as an equation of motion, (2) the AQUAL limit as a weak-field reduction, and (3) k* ≈ k_NL as a solution of the coupled system. Until this action is constructed, k* remains an emergent regime boundary coinciding with the nonlinear scale.</td><td style="font-size:0.82rem; color:#5b6a7a;">First-principles derivation attempt (Newtonian potential gradient vs a₀), comparison with k_NL from ΛCDM matter power spectra, validation ledger items E1, E3, E5-E7, L6</td></tr>
+    <tr data-category="framework_constraint" data-result="REQUIRES_EXTERNAL_TOOL"><td><span class="badge-open">REQUIRES_EXTERNAL_TOOL</span></td><td>framework_constraint</td><td><strong>Action Integral Gap — k* derivability test</strong></td><td>A well-posed EFC action would yield: (1) the growth gate as an equation of motion, (2) AQUAL as a weak-field limit, (3) k* ≈ k_NL as a solution rather than input. Until constructed, k* remains an emergent regime boundary. This constrains EFC's classification as semi-fundamental effective framework.</td><td style="font-size:0.82rem; color:#5b6a7a;">First-principles derivation (Newtonian potential gradient vs a₀), k_NL from ΛCDM P(k), validation ledger E1/E3/E5-E7/L6. Document: efc_transition_scale.tex</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon</strong></td><td>Hvis Aksiom 0 holder: (1) EFC reproduserer BAO-skalaer og fσ8-kurver med S-parameterisering uten Friedmann-t-bakgrunn. (2) De 2-3σ avvikene i DH_rd og fs8 fra forseglet prediksjon korresponderer med identifiserbare S-regime-overganger (FLOW→TRANSITION→LATENT), ikke tilfeldige parametriske feil. (3) Residualene i LATENT-regimet (α→0) er systematiske, ikke stokastiske — noe som indikerer manglende fysikk i høy-S, ikke modellfeil.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR1 BAO-data, BOSS fσ8-målinger, forseglet EFC-prediksjon 2026-02-18 (freeze_20260218_050713), SPARC175 regime-datasett</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Axiom 0 meta-analysis v1.0-meta: alpha-Shat correlation</strong></td><td>If EFC regime structure is dynamically coupled to expansion-sector alpha, then alpha_mean should correlate with secondary_frac_pos (Spearman |rho|&gt;=0.35, p&lt;0.05) across independent MCMC cycles. If no correlation, Shat regimes are phenomenological only.</td><td style="font-size:0.82rem; color:#5b6a7a;">Neo4j Axiom0TestResult nodes (test_version=v1.0) from research_daemon (emcee) and gpu_nuts_daemon (NUTS)</td></tr>
+    <tr data-category="framework_constraint" data-result="REQUIRES_EXTERNAL_TOOL"><td><span class="badge-open">REQUIRES_EXTERNAL_TOOL</span></td><td>framework_constraint</td><td><strong>Background gate sign constraint (EFCLASS Technical Note I)</strong></td><td>ΔE² ≤ 0 for all z&gt;0 (sign-locked). Background channel cannot suppress structure growth. S₈ amelioration requires perturbation-level μ&lt;1.</td><td style="font-size:0.82rem; color:#5b6a7a;">CLASS v3.3.4 internal consistency (EFCLASS patch, 9-point numerical verification)</td></tr>
+    <tr data-category="framework_constraint" data-result="REQUIRES_EXTERNAL_TOOL"><td><span class="badge-open">REQUIRES_EXTERNAL_TOOL</span></td><td>framework_constraint</td><td><strong>CMB α–H₀ degeneracy corridor (structural constraint)</strong></td><td>Any late-time additive background gate E²=E²_LCDM+α·g(a) with smooth g(a) will produce α–H₀ degeneracy in CMB-only fits. CMB alone is structurally insufficient to constrain such modifications.</td><td style="font-size:0.82rem; color:#5b6a7a;">EFCLASS minimize scan: 11 α-values from 0 to −0.7, each with 7 free cosmological parameters, full Planck 2018 likelihood</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>CT-04: Cross-Domain Constant K Consistency</strong></td><td>|K_galactic - K_neural| / σ_K &lt; 3</td><td style="font-size:0.82rem; color:#5b6a7a;">Galactic: SPARC rotation curves (k = 0.415 ± 0.029 from 174-galaxy calibration). Neural: entropy gradient amplitude from CT-01 EEG/MEG datasets</td></tr>
+    <tr data-category="framework_constraint" data-result="T4Completed (diagnostic mismatch)"><td><span class="badge-open">T4Completed (diagnostic mismatch)</span></td><td>framework_constraint</td><td><strong>Cluster core entropy–structure coupling</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">ACCEPT / TNG-Cluster</td></tr>
+    <tr data-category="framework_constraint" data-result="T3Completed (structural exclusion test)"><td><span class="badge-open">T3Completed (structural exclusion test)</span></td><td>framework_constraint</td><td><strong>Cluster merger geometry</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Cluster lensing &amp; mass–gas offsets</td></tr>
+    <tr data-category="framework_constraint" data-result=""><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Core Lock consistency enforcement (31223503)</strong></td><td>Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>DES Y6 vs KiDS-Legacy divergens som EFC-strukturprediksjon</strong></td><td>EFC forutsier at DES Y6 og KiDS-Legacy *skal* gi ulike effektive S8-verdier fordi de prober ulike (k,z)-rom under et skalaavhengig gravitasjonsfelt. Under ΛCDM bør de konvergere; under EFC er divergensen forventet og kvantifiserbar via μ(k,z)-profilen med SPARC k=0.415. Euclid DR1 bør vise at divergensen er skala-kohaerent med EFCs regime-struktur.</td><td style="font-size:0.82rem; color:#5b6a7a;">DES Y6 3x2pt (S8=0.789±0.012), KiDS-Legacy (S8 lavere, innenfor CMB), Euclid DR1 (planlagt okt 2026)</td></tr>
+    <tr data-category="framework_constraint" data-result=""><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Density Saturation Θ(ρ) (v1.3)</strong></td><td>Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with explicit density discrimination</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Double-Slit as Grid-Resolution Phenomenon in GRC</strong></td><td>GRC predikerer at interferensmønsteret i dobbel-slitt-eksperimentet er begrenset av grid-skala l_g, slik at det eksisterer en geometri-avhengig cutoff i registreringsoppløsning som standard QM ikke har. Spesifikt: ved spaltegeometri der spaltebredde nærmer seg l_g, forventer GRC et avvik fra standard QM-interferensmønsteret. C(S) predikerer at dekoherens skjer via entropiøkning, ikke via tilfeldig miljøkobling alene.</td><td style="font-size:0.82rem; color:#5b6a7a;">Teoretisk derivasjon fra GRC-triaden. Fremtidig empirisk test via høy-presisjon dobbel-slitt-eksperimenter ved sub-nanometer spaltegeometri, eller indirekte via dekoherenstider i kvanteoptikk.</td></tr>
+    <tr data-category="framework_constraint" data-result="REQUIRES_EXTERNAL_TOOL"><td><span class="badge-open">REQUIRES_EXTERNAL_TOOL</span></td><td>framework_constraint</td><td><strong>EFC physics localization: perturbation sector, not background</strong></td><td>EFC background-only modifications cannot produce σ8 suppression or survive joint CMB+BAO constraints with α significantly different from zero. Observable EFC effects require perturbation-level μ≠1.</td><td style="font-size:0.82rem; color:#5b6a7a;">Joint fit results + EFCLASS Technical Note I + WP1a σ8 suppression test</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Forbidden Pattern distance-to-trigger quantification</strong></td><td>All 5 FPs should show &gt;2σ distance to trigger (safe margin). If any FP is within 1σ of triggering, it becomes the highest-priority investigation target. Publication-ready falsifiability demonstration.</td><td style="font-size:0.82rem; color:#5b6a7a;">Existing validation ledger results + 5 forbidden pattern definitions</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>G2: Operational Definition of Local S for P3 Testability</strong></td><td>Minst én av de tre S-kandidatene (A, B, C) gir en operasjonell definisjon som predikerer målbar dekoherenstid τ_d ∝ C(S) = exp(-S/S_max) med en avhengighet som ikke kollapser til ren temperatur/miljøkobling. Spesifikt: to systemer med lik temperatur men ulik lokal S vil vise ulik τ_d.</td><td style="font-size:0.82rem; color:#5b6a7a;">Teoretisk derivasjon først. Deretter: eksisterende dekoherensmålinger i kvanteoptikk og supraledende qubits der lokal termodynamisk entropi kan estimeres uavhengig av temperatur.</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>GRAV-to-cosmo μ_eff regime bridge test</strong></td><td>EFC regime framework predicts μ&gt;1 at galactic scales (L2-L3) transitioning to μ&lt;1 at cosmological linear scales (L1-L2). The transition should occur at scales k~0.01-0.1 h/Mpc where structure goes from nonlinear to linear. If μ&gt;1 persists at all scales, single-parameter α cannot accommodate both regimes.</td><td style="font-size:0.82rem; color:#5b6a7a;">Existing GRAV Graph-AQUAL runs (10 completed) + WP1a reference model</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>Gate transition zone anomaly concentration z~1</strong></td><td>EFC predicts that cosmological anomalies relative to ΛCDM will be concentrated in z=0.7-1.3 (the gate transition zone), with amplitude ≤1.1% in E(z). High-z (z&gt;2) and low-z (z&lt;0.3) should show &lt;0.3% deviations. This is a falsifiable z-dependent prediction.</td><td style="font-size:0.82rem; color:#5b6a7a;">Phase 2.2 E(z) deviation profile; gate function g(a,a_t) with n=6</td></tr>
+    <tr data-category="framework_constraint" data-result="COLLAPSED"><td><span class="badge-open">COLLAPSED</span></td><td>framework_constraint</td><td><strong>IG-1: Identifiability gate (α degeneracy break with ≥3 probes)</strong></td><td>GRC predicts: α separable at &gt;2σ when cluster counts (sensitive to G_eff via halo mass function) and lensing tomography binned by S-proxy (not just z) are added to joint fit. Expected degeneracy-breaking observable: cluster mass function at z &gt; 1 where enhanced G_eff shifts exponential tail of mass function. If α remains &lt; 2σ after ≥3 probes, S-control is operationally unconstrained but not falsified.</td><td style="font-size:0.82rem; color:#5b6a7a;">Joint MCMC fit combining ≥3 independent probe classes: BAO (DESI), fσ8 (RSD), lensing tomography (KiDS/DES/Euclid), cluster counts (eROSITA/SPT). Existing EMCEE pipeline with extended probe set.</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>KT3 v3 — Entropy-first mass scaling test</strong></td><td>EFC predikerer at en effektiv massetetthet ρ_eff(S, ∇S) = ρ₀ · [1 + δ_M · S(a) · |∇S/S|] gir konsistent masseskalering fra galakseskala (SPARC) til klyngeskala til kosmologisk skala med de samme sigmoid-parameterne (a_t ≈ 0.30, Δ ≈ 0.3) og uten separat β-kalibrering per regime. Hvis ρ_eff ikke er skala-universell med fastlåste S-parametere, er emergens-kjeden falsifisert som EFC-komplettering — og en dypere ontologisk revisjon av masse-emergens-mekanismen er nødvendig.</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC175 rotasjonskurver (galaktisk skala) + klyngetermodata + BAO/fσ₈ kosmologisk skala — alle testet mot ρ_eff(S, ∇S) uten ΛCDM-prosesserte mellomledd</td></tr>
+    <tr data-category="framework_constraint" data-result="T4Completed (meta-model evaluation)"><td><span class="badge-open">T4Completed (meta-model evaluation)</span></td><td>framework_constraint</td><td><strong>Structural coherence across regimes (SCE evaluation)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">KiDS, BAO, RSD, Lyα, CMB lensing</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>T₀ as natural Λ-equivalent from grid ontology</strong></td><td>T₀ provides natural cosmological constant: Λ_eff ∝ T₀. Dark energy is not a separate field but the ground-state tension of the grid substrate. Expansion driven by grid thermodynamics, not by Λ.</td><td style="font-size:0.82rem; color:#5b6a7a;">Observed Λ value from Planck + DESI BAO + SN Ia distance ladder</td></tr>
+    <tr data-category="framework_constraint" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong>χ(x,t) = |∇δS|/S_global as universal regime control parameter</strong></td><td>χ ≪ 1 in L0 (CMB), χ ~ 10⁻³-10⁻¹ in L1/L2 (galaxies, clusters), χ ≫ 1 in L3 (strong fields, black holes). Single scalar provides continuous regime transition. Density saturation Θ(ρ) should be expressible as function of χ.</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC rotation curves (L2), Bullet Cluster (L2-L3 transition), Solar System PPN (L3), CMB (L0)</td></tr>
+    <tr data-category="framework_constraint" data-result=""><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong></strong></td><td>All 5 FPs should show &gt;2σ distance to trigger. If any FP &lt; 1σ, highest-priority investigation target.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="framework_constraint" data-result=""><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong></strong></td><td>EFC signal, if real, lives in growth/regime sector. Background effect must be weak.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 BAO constraint + existing multi-probe pipeline</td></tr>
+    <tr data-category="framework_constraint" data-result=""><td><span class="badge-planned">Planned</span></td><td>framework_constraint</td><td><strong></strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – early-time suppression consistency check"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Big Bang Nucleosynthesis expansion-rate bound</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Primordial D/H, He⁴ abundance</td></tr>
+    <tr data-category="planned_pipeline" data-result=""><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Blind Prediction Freeze (nuts_20260220_221940)</strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="planned_pipeline" data-result=""><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Blind Prediction Freeze v1 (NUTS cycle 20260217)</strong></td><td></td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – Boltzmann-level test required"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>CMB polarization &amp; lensing internal consistency (TE/EE/φφ)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 TE/EE + CMB lensing</td></tr>
+    <tr data-category="planned_pipeline" data-result="GR recovery expected (Boltzmann validation pending)"><td><span class="badge-open">GR recovery expected (Boltzmann validation pending)</span></td><td>planned_pipeline</td><td><strong>CMB power spectrum</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Planck 2018 (TT)</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>CT-05: Full Entropy Gradient Pipeline</strong></td><td>Pipeline produces gradient maps with test-retest reliability ICC &gt; 0.7</td><td style="font-size:0.82rem; color:#5b6a7a;">Open anaesthesia EEG: Chennu et al. (2016) or Cambridge Consciousness dataset. MEG: HCP resting-state or equivalent open MEG</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – methodology defined"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Cluster abundance / mass function N(M,z)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">eROSITA / SPT / Planck SZ</td></tr>
+    <tr data-category="planned_pipeline" data-result="Pre-registered – data analysis pending"><td><span class="badge-open">Pre-registered – data analysis pending</span></td><td>planned_pipeline</td><td><strong>Cluster shock-front lensing asymmetry</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">JWST κ maps + Chandra kT, ne(Bullet, Abell 2146)</td></tr>
+    <tr data-category="planned_pipeline" data-result="T2BAO phenomenology completed"><td><span class="badge-open">T2BAO phenomenology completed</span></td><td>planned_pipeline</td><td><strong>Dark-energy evolution w(z)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 (BAO)</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – cross-probe estimator implementation"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>EGgravitational slip consistency (lensing × RSD)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI + KiDS/DES lensing</td></tr>
+    <tr data-category="planned_pipeline" data-result="PIPELINE_NOT_READY"><td><span class="badge-open">PIPELINE_NOT_READY</span></td><td>planned_pipeline</td><td><strong>Euclid DR1 pre-registration pipeline via hi_class</strong></td><td>EFC predicts: mu(k_c=0.05, z=0) = 0.940, eta = 1.200, Sigma = 1.034. E_G bump of +5.5% at k_c, z=0.35, detectable at 2.5-3.5 sigma with Euclid WL x GC cross-correlation. Gravitational slip |eta-1| &gt; 0.01 in range z=[0.5, 2.0] — falsified if Euclid measures |eta-1| &lt; 0.01.</td><td style="font-size:0.82rem; color:#5b6a7a;">Euclid DR1 (21 October 2026): ~2100 deg^2 wide survey, 10 WL tomographic bins, 4 GC spectroscopic bins. Pre-validation against Planck 2018 + DESI BAO + KiDS-1000.</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – full joint likelihood with frozen parameters"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Global parameter-lock cross-probe test</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO + RSD + lensing + ISW + Lyα</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>ISW Void Sign-Flip Observational Confrontation v1</strong></td><td>EFC predicts ISW amplitude ratio A_ISW(delta) shows sign-flip from cold (A&gt;0) to hot (A&lt;0) at void depth delta_c ≈ -0.8, due to Rees-Sciama term delta·dmu/dt dominating over linear ISW. LCDM predicts A_ISW &gt; 0 at all depths. The existing observational excess A_ISW ≈ 5.2 ± 1.6 from BOSS/DES supervoids is explained as RS enhancement at intermediate depths.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESIVAST DR1 (DESI BGS VoidFinder, z&lt;0.24), Planck PR4 SMICA/SEVEM/NILC/Commander CMB maps, Planck 2018 lensing convergence map. Secondary: BOSS DR12 supervoids, DES Y3 supervoids, eBOSS DR16 QSO voids.</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – full-shape likelihood implementation required"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Linear &amp; quasi-linear matter power spectrum shape P(k,z)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS full-shape, eBOSS QSO, DESI full-shape</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned – cross-survey joint trajectory fit"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Multi-epoch RSD growth trajectory</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">6dF, SDSS MGS, BOSS, eBOSS, DESI ELG</td></tr>
+    <tr data-category="planned_pipeline" data-result="Framework defined – quantitative tests pending"><td><span class="badge-open">Framework defined – quantitative tests pending</span></td><td>planned_pipeline</td><td><strong>Regime response surface R(k,S,ρ)</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">DES Y6 regime structure (multi-probe L2)</td></tr>
+    <tr data-category="planned_pipeline" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>planned_pipeline</td><td><strong>Small-scale structure</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Rubin LSST / Euclid</td></tr>
+    <tr data-category="planned_pipeline" data-result="PIPELINE_NOT_READY"><td><span class="badge-open">PIPELINE_NOT_READY</span></td><td>planned_pipeline</td><td><strong>hi_class scalar-tensor EFC falsification test</strong></td><td>EFC predicts: a viable region {B0&gt;0, M0&lt;0} exists where mu≈0.925, eta≳1.2, Sigma≳1.05 at z~0.7, recovering mu=eta=Sigma=1 at z≳10. If no such region exists, the scalar-tensor ansatz is falsified as an EFC completion (explicit criterion per EFT note v5).</td><td style="font-size:0.82rem; color:#5b6a7a;">hi_class numerical code + Planck 2018 CMB + DESI Y1 BAO + BOSS RSD (fσ8)</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- =========================================================
+     TAB 3: PHENOMENA (one card per phenomenon with addressings)
+     ========================================================= -->
+<section class="tab-panel" id="tab-phenomena">
+<h2>Phenomena &mdash; cross-framework matrix</h2>
+<p>
+Every phenomenon in the Atlas with the list of frameworks that address it and the
+mechanism each uses. The phenomenon regime (L0&ndash;L3) is shown as a chip &mdash; this
+is the primary structural dimension of RCMP.
+</p>
+
+<div class="filter-row">
+  <label for="phen-regime">Regime:</label>
+  <select id="phen-regime">
+    <option value="">All</option>
+    <option value="L0">L0 &ndash; Background</option>
+    <option value="L1">L1 &ndash; Linear perturbations</option>
+    <option value="L2">L2 &ndash; LSS / lensing</option>
+    <option value="L3">L3 &ndash; Strong regime</option>
+  </select>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Baryon Acoustic Oscillation Standard Ruler <code style="font-weight:400; color:#5b6a7a;">BAO_scale</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">divergence_engine_DESI_DR2</span></td></tr>
+<tr><td>LCDM</td><td>baseline_prediction</td><td><span class="mechanism-pill">sound_horizon_at_drag</span></td></tr>
+<tr><td>w0waCDM</td><td>generalized_prediction</td><td><span class="mechanism-pill">w(z)_modified_expansion</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> Big Bang Nucleosynthesis Light-Element Abundances <code style="font-weight:400; color:#5b6a7a;">BBN_abundances</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>compatible</td><td><span class="mechanism-pill">EFC_recovers_LCDM_at_z_gt_1e9</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L1" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L1">L1</span> CMB TT/EE/TE Acoustic Peaks <code style="font-weight:400; color:#5b6a7a;">CMB_acoustic_peaks</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>planned_L1_test</td><td><span class="mechanism-pill">pending_Boltzmann_solver</span></td></tr>
+<tr><td>Ekpyrotic</td><td>predicts_scale_invariance</td><td><span class="mechanism-pill">brane_collision</span></td></tr>
+<tr><td>LCDM</td><td>baseline_prediction</td><td><span class="mechanism-pill">standard_perturbation_theory</span></td></tr>
+<tr><td>RMOND_Skordis</td><td>passes</td><td><span class="mechanism-pill">acoustic_scale_preserved</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> CMB Lensing Reconstruction <code style="font-weight:400; color:#5b6a7a;">CMB_lensing</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">integrated_S_flow_lensing</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> E_G Gravitational Slip Statistic <code style="font-weight:400; color:#5b6a7a;">EG_statistic</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">scale_independent_slip</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> H₀ from background expansion <code style="font-weight:400; color:#5b6a7a;">H0_background</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>recovers_GR</td><td><span class="mechanism-pill">EFC_recovers_GR_at_L0_no_distinct_background_H0</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L1" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L1">L1</span> H₀ structure-to-background ratio (regime mismatch diagnostic) <code style="font-weight:400; color:#5b6a7a;">H0_ratio</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">exp_half_aG_factor_regime_mismatch</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L1" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L1">L1</span> H₀ from structure-channel dynamics (a_G regime) <code style="font-weight:400; color:#5b6a7a;">H0_structure</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">aG_regime_coupling_from_SPARC_anchor</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0-L1" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0-L1</span> Hubble Tension H₀ <code style="font-weight:400; color:#5b6a7a;">H0_tension</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>CCC</td><td>alternative_framework</td><td><span class="mechanism-pill">aeon_transitions</span></td></tr>
+<tr><td>EDE</td><td>native_resolution</td><td><span class="mechanism-pill">pre_recombination_sound_horizon_reduction</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>addresses_open</td><td><span class="mechanism-pill">T_dynamics_in_L0</span></td></tr>
+<tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">no_resolution_native</span></td></tr>
+<tr><td>Multi_Field_EDE</td><td>native_resolution</td><td><span class="mechanism-pill">multi_field_EDE</span></td></tr>
+<tr><td>Timescape</td><td>native_resolution</td><td><span class="mechanism-pill">void_wall_time_dilation</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> PTA Gravitational Wave Background <code style="font-weight:400; color:#5b6a7a;">PTA_gwb</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>PBH</td><td>predicts</td><td><span class="mechanism-pill">primordial_GW_background</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Radial Acceleration Relation <code style="font-weight:400; color:#5b6a7a;">RAR</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>native_prediction</td><td><span class="mechanism-pill">grid_AQUAL_emergent_a0_eff</span></td></tr>
+<tr><td>Empirical_RC_Fit</td><td>empirical_fit</td><td><span class="mechanism-pill">phenomenological</span></td></tr>
+<tr><td>LCDM</td><td>explains_via_DM</td><td><span class="mechanism-pill">concentration_mass_relation</span></td></tr>
+<tr><td>MOND</td><td>native_prediction</td><td><span class="mechanism-pill">a0_transition</span></td></tr>
+<tr><td>Machian_Gravity</td><td>fits_SPARC</td><td><span class="mechanism-pill">Machian_inertia</span></td></tr>
+<tr><td>Verlinde_2016</td><td>predicts</td><td><span class="mechanism-pill">elastic_response_to_matter</span></td></tr>
+<tr><td>Weyl_Geometric_Gravity</td><td>fits</td><td><span class="mechanism-pill">Weyl_vector</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> S₈ = σ₈√(Ω_m/0.3) Tension <code style="font-weight:400; color:#5b6a7a;">S8_tension</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_suppression</td><td><span class="mechanism-pill">mu_lt_1_in_L2</span></td></tr>
+<tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">no_resolution_native</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> MOND Acceleration Scale a₀ <code style="font-weight:400; color:#5b6a7a;">a0_scale</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>derives_from_saturation</td><td><span class="mechanism-pill">entropy_flow_saturation_latent_regime</span></td></tr>
+<tr><td>Hyperconical_RMOND</td><td>derives_geometric</td><td><span class="mechanism-pill">conical_geometry</span></td></tr>
+<tr><td>LCDM</td><td>coincidence</td><td><span class="mechanism-pill">DM_halo_emergent</span></td></tr>
+<tr><td>MOND</td><td>defines</td><td><span class="mechanism-pill">empirical_interpolation_function</span></td></tr>
+<tr><td>Machian_Gravity</td><td>derives_Machian</td><td><span class="mechanism-pill">cosmological_inertia</span></td></tr>
+<tr><td>MiHsC</td><td>derives_Unruh_like</td><td><span class="mechanism-pill">Hubble_Casimir</span></td></tr>
+<tr><td>Padmanabhan_Entropic</td><td>compatible_with</td><td><span class="mechanism-pill">holographic_DOF_counting</span></td></tr>
+<tr><td>RMOND_Skordis</td><td>derives_relativistic</td><td><span class="mechanism-pill">scalar_vector_modern</span></td></tr>
+<tr><td>Superfluid_DM</td><td>attempts_bridge</td><td><span class="mechanism-pill">superfluid_phonon_force</span></td></tr>
+<tr><td>TeVeS</td><td>derives_relativistic</td><td><span class="mechanism-pill">scalar_vector_coupling</span></td></tr>
+<tr><td>Verlinde_2010</td><td>derives</td><td><span class="mechanism-pill">entropic_force_Unruh_temperature</span></td></tr>
+<tr><td>Verlinde_2016</td><td>derives</td><td><span class="mechanism-pill">de_Sitter_horizon_entropy</span></td></tr>
+<tr><td>Weyl_Geometric_Gravity</td><td>derives</td><td><span class="mechanism-pill">Weyl_conformal_invariance</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> Background expansion sign lemma (ΔE²(z) ≤ 0) <code style="font-weight:400; color:#5b6a7a;">background_expansion_sign_structure</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>proves_structural</td><td><span class="mechanism-pill">action_level_sign_lemma_with_numerical_verification</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Bullet Cluster δκ Offset <code style="font-weight:400; color:#5b6a7a;">bullet_dkappa</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>preregistered_test</td><td><span class="mechanism-pill">shadow_mode_Phi_Psi</span></td></tr>
+<tr><td>LCDM</td><td>native_prediction</td><td><span class="mechanism-pill">collisionless_DM</span></td></tr>
+<tr><td>MOND</td><td>conflicts</td><td><span class="mechanism-pill">cannot_explain_offset</span></td></tr>
+<tr><td>SIDM</td><td>constrains_sigma</td><td><span class="mechanism-pill">sigma_DM_m_upper_bound</span></td></tr>
+<tr><td>Verlinde_2016</td><td>conflicts</td><td><span class="mechanism-pill">cannot_explain_offset</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Cluster Mass-Temperature / Mass-Lensing Scaling <code style="font-weight:400; color:#5b6a7a;">cluster_scaling</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_regime_transition</td><td><span class="mechanism-pill">f_SCC_dependent_xi</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Early Massive Structure (JWST z&gt;10) <code style="font-weight:400; color:#5b6a7a;">early_structure_JWST</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_L3_early</td><td><span class="mechanism-pill">S_flow_boost_at_high_z</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> Gravitational Wave Propagation Speed c_T <code style="font-weight:400; color:#5b6a7a;">gravitational_wave_speed</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>DGP</td><td>consistent</td><td><span class="mechanism-pill">4D_graviton_propagation</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>passes</td><td><span class="mechanism-pill">EFC_preserves_c_T_eq_c</span></td></tr>
+<tr><td>Horndeski</td><td>constrains</td><td><span class="mechanism-pill">alpha_T=0_post_GW170817</span></td></tr>
+<tr><td>TeVeS</td><td>conflicts</td><td><span class="mechanism-pill">c_T_neq_c_in_original</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Growth Index γ <code style="font-weight:400; color:#5b6a7a;">growth_index_gamma</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">gamma_modified_by_mu</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Cluster Halo Mass Function N(M,z) <code style="font-weight:400; color:#5b6a7a;">halo_mass_function</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">S_flow_damps_high_mass_tail</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Kinetic Sunyaev-Zel'dovich Peculiar Velocity <code style="font-weight:400; color:#5b6a7a;">kSZ_velocity</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>tested_by</td><td><span class="mechanism-pill">ACT_kSZ_2604_14327</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Missing Satellites / Too-Big-to-Fail / Core-Cusp <code style="font-weight:400; color:#5b6a7a;">missing_satellites</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>compatible</td><td><span class="mechanism-pill">no_DM_halo_structure_required</span></td></tr>
+<tr><td>Fuzzy_DM</td><td>native_resolution</td><td><span class="mechanism-pill">wave_suppression_below_de_Broglie</span></td></tr>
+<tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">baryonic_feedback_patch</span></td></tr>
+<tr><td>MOND</td><td>addresses</td><td><span class="mechanism-pill">no_DM_halos</span></td></tr>
+<tr><td>PBH</td><td>alternative</td><td><span class="mechanism-pill">macroscopic_DM</span></td></tr>
+<tr><td>SIDM</td><td>native_resolution</td><td><span class="mechanism-pill">self_interaction_cross_section</span></td></tr>
+<tr><td>Superfluid_DM</td><td>native_prediction</td><td><span class="mechanism-pill">superfluid_phase_boundary</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> μ(k,a) and Σ(k,a) Phenomenological MG Parameters <code style="font-weight:400; color:#5b6a7a;">mu_sigma_plane</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>DGP</td><td>modifies</td><td><span class="mechanism-pill">Vainshtein_transition</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_quadrant</td><td><span class="mechanism-pill">mu_lt_1_Sigma_gt_1_forbidden_Horndeski</span></td></tr>
+<tr><td>Horndeski</td><td>parameterizes</td><td><span class="mechanism-pill">alpha_M_alpha_B</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>modifies</td><td><span class="mechanism-pill">chameleon_scalar</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L2" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L2">L2</span> Φ/Ψ Slip (Lensing vs Dynamical Potential) <code style="font-weight:400; color:#5b6a7a;">phi_psi_slip</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>DGP</td><td>predicts_monotonic</td><td><span class="mechanism-pill">braneworld_Vainshtein_no_crossover</span></td></tr>
+<tr><td>EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_sealed</td><td><span class="mechanism-pill">preregistered_eta_eq_0.9993</span></td></tr>
+<tr><td>Galileon</td><td>predicts_monotonic</td><td><span class="mechanism-pill">Vainshtein_screening_no_slip_sign_change</span></td></tr>
+<tr><td>Horndeski</td><td>predicts_monotonic</td><td><span class="mechanism-pill">QS_alpha_T_zero_forces_Sigma_le_mu</span></td></tr>
+<tr><td>LCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">GR_baseline_no_slip</span></td></tr>
+<tr><td>MOND</td><td>predicts_monotonic</td><td><span class="mechanism-pill">modified_inertia_no_relativistic_slip</span></td></tr>
+<tr><td>Multi_Field_EDE</td><td>predicts_monotonic</td><td><span class="mechanism-pill">background_only_no_slip_mechanism</span></td></tr>
+<tr><td>Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">minimally_coupled_scalar_no_slip</span></td></tr>
+<tr><td>Thawing_Quintessence</td><td>predicts_monotonic</td><td><span class="mechanism-pill">slow_roll_thawing_no_slip</span></td></tr>
+<tr><td>Verlinde_2016</td><td>predicts_monotonic</td><td><span class="mechanism-pill">emergent_gravity_no_derived_slip_profile</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>predicts_monotonic</td><td><span class="mechanism-pill">chameleon_mu_gt_1_no_crossover</span></td></tr>
+<tr><td>w0waCDM</td><td>predicts_monotonic</td><td><span class="mechanism-pill">CPL_parametrization_background_only</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L1" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L1">L1</span> fσ₈(z) Linear Growth <code style="font-weight:400; color:#5b6a7a;">sigma8_growth</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>DGP</td><td>enhances_nDGP</td><td><span class="mechanism-pill">brane_localized_gravity</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">linear_growth_with_entropy_damping</span></td></tr>
+<tr><td>Galileon</td><td>enhances</td><td><span class="mechanism-pill">G_X_braiding</span></td></tr>
+<tr><td>IEG</td><td>modifies</td><td><span class="mechanism-pill">holographic_bound</span></td></tr>
+<tr><td>KGB</td><td>enhances</td><td><span class="mechanism-pill">kinetic_braiding</span></td></tr>
+<tr><td>RMOND_Skordis</td><td>matches</td><td><span class="mechanism-pill">relativistic_MOND_growth</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>enhances</td><td><span class="mechanism-pill">mu_greater_than_1</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Solar-System PPN Constraints / Screening Mechanism <code style="font-weight:400; color:#5b6a7a;">solar_system_screening</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>Brans_Dicke</td><td>constrains</td><td><span class="mechanism-pill">omega_BD_gt_40000</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>passes</td><td><span class="mechanism-pill">xi_sets_screening_scale</span></td></tr>
+<tr><td>fR_Starobinsky</td><td>requires</td><td><span class="mechanism-pill">chameleon_screening</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Cluster Core-State Composition f_SCC <code style="font-weight:400; color:#5b6a7a;">sparc_f_SCC</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_driver</td><td><span class="mechanism-pill">cluster_core_state_regime_threshold</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> Cosmological Constant / Vacuum Energy Problem <code style="font-weight:400; color:#5b6a7a;">vacuum_energy_problem</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>dissolves</td><td><span class="mechanism-pill">Lambda_emerges_from_S_flow</span></td></tr>
+<tr><td>Jacobson_Thermodynamic</td><td>addresses</td><td><span class="mechanism-pill">thermodynamic_origin_of_Einstein_eqs</span></td></tr>
+<tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">Lambda_fine_tuning</span></td></tr>
+<tr><td>Padmanabhan_Entropic</td><td>addresses</td><td><span class="mechanism-pill">Nsurface_minus_Nbulk_equipartition</span></td></tr>
+<tr><td>Quintessence</td><td>addresses</td><td><span class="mechanism-pill">dynamical_DE</span></td></tr>
+<tr><td>Verlinde_2010</td><td>addresses</td><td><span class="mechanism-pill">holographic_screen</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L0" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L0">L0</span> w₀wₐ Dynamical Dark Energy Preference <code style="font-weight:400; color:#5b6a7a;">w0wa_preference</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td>Coupled_DE_DM</td><td>alternative_explanation</td><td><span class="mechanism-pill">dark_sector_coupling</span></td></tr>
+<tr><td>EDE</td><td>suppresses</td><td><span class="mechanism-pill">early_injection_alters_late_time_w</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_shape</td><td><span class="mechanism-pill">S_flow_to_latent_transition</span></td></tr>
+<tr><td>IEG</td><td>entropic_DE</td><td><span class="mechanism-pill">information_density</span></td></tr>
+<tr><td>Kaniadakis_HDE</td><td>entropic_DE</td><td><span class="mechanism-pill">kappa_entropy</span></td></tr>
+<tr><td>LCDM</td><td>conflicts</td><td><span class="mechanism-pill">constant_w_assumption</span></td></tr>
+<tr><td>Mass_to_Horizon</td><td>entropic_DE</td><td><span class="mechanism-pill">mass_horizon_ratio</span></td></tr>
+<tr><td>Mass_to_Horizon_CosmicSpace</td><td>entropic_DE</td><td><span class="mechanism-pill">cosmic_space_entropy</span></td></tr>
+<tr><td>Massive_Gravity_dRGT</td><td>alternative</td><td><span class="mechanism-pill">graviton_mass</span></td></tr>
+<tr><td>Modified_Entropic_Odintsov</td><td>entropic_DE</td><td><span class="mechanism-pill">modified_entropy_index</span></td></tr>
+<tr><td>Negentropic_Gravity</td><td>sign_inverted_prediction</td><td><span class="mechanism-pill">negentropy_flow</span></td></tr>
+<tr><td>Quintessence</td><td>native_prediction</td><td><span class="mechanism-pill">scalar_field_dynamics</span></td></tr>
+<tr><td>Quintom</td><td>native_prediction</td><td><span class="mechanism-pill">phantom_divide_crossing</span></td></tr>
+<tr><td>Robust_Dynamical_DE</td><td>model_independent_detection</td><td><span class="mechanism-pill">nonparametric_w(z)</span></td></tr>
+<tr><td>Thawing_Quintessence</td><td>native_prediction</td><td><span class="mechanism-pill">slow_roll_thawing</span></td></tr>
+<tr><td>Timescape</td><td>mimics_dynamical_DE</td><td><span class="mechanism-pill">backreaction</span></td></tr>
+<tr><td>w0waCDM</td><td>native_prediction</td><td><span class="mechanism-pill">CPL_parametrization</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
+
+<!-- =========================================================
+     TAB 4: FRAMEWORKS (42 cards)
+     ========================================================= -->
+<section class="tab-panel" id="tab-frameworks">
+<h2>Frameworks &mdash; 42 cosmology/gravity frameworks</h2>
+<p>
+Each card shows the framework's ontological lens, RCMP primary regime, year, and key
+primitives. The EFC card is highlighted &mdash; all others are rivals tracked in the
+Atlas for discrimination.
+</p>
+
+<div class="filter-row">
+  <label for="fw-lens">Lens:</label>
+  <select id="fw-lens">
+    <option value="">All</option>
+        <option value="dynamical_dark_energy">dynamical_dark_energy</option>
+    <option value="entropic_emergent">entropic_emergent</option>
+    <option value="extra_dimensional">extra_dimensional</option>
+    <option value="geometric_weyl">geometric_weyl</option>
+    <option value="holographic_DE">holographic_DE</option>
+    <option value="machian">machian</option>
+    <option value="massive_graviton">massive_graviton</option>
+    <option value="modified_gravity_scalar_tensor">modified_gravity_scalar_tensor</option>
+    <option value="modified_gravity_vector_tensor">modified_gravity_vector_tensor</option>
+    <option value="modified_inertia">modified_inertia</option>
+    <option value="non_standard_expansion">non_standard_expansion</option>
+    <option value="particle_DM">particle_DM</option>
+    <option value="phenomenological">phenomenological</option>
+  </select>
+  <label for="fw-layer">Primary layer:</label>
+  <select id="fw-layer">
+    <option value="">All</option>
+    <option value="L0">L0</option>
+    <option value="L1">L1</option>
+    <option value="L2">L2</option>
+    <option value="L3">L3</option>
+  </select>
+</div>
+
+<div class="framework-grid">
+
+<div class="fw-card" data-lens="modified_gravity_scalar_tensor" data-layer="L3">
+  <div class="fw-name">Brans-Dicke Gravity</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">modified_gravity_scalar_tensor</span>
+    <span style="color:#5b6a7a;">1961</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>omega_BD</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>historical</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="non_standard_expansion" data-layer="L0">
+  <div class="fw-name">Conformal Cyclic Cosmology (Penrose)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">non_standard_expansion</span>
+    <span style="color:#5b6a7a;">2010</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>aeon_cycle</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">Coupled Dark Energy + Dark Matter</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2026</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>coupling_xi, w_DE(z)</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="extra_dimensional" data-layer="L2">
+  <div class="fw-name">DGP Braneworld Gravity (normal branch nDGP)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">extra_dimensional</span>
+    <span style="color:#5b6a7a;">2000</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>r_c_crossover_scale</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>benchmark</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L1">
+  <div class="fw-name">Early Dark Energy (pre-recombination)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L1">L1</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2019</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>f_EDE, z_c, w_n</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card efc" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Energy-Flow Cosmology</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2026</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>alpha, K, T, xi, S_flow, S_latent</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>self</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="non_standard_expansion" data-layer="L0">
+  <div class="fw-name">Ekpyrotic / Cyclic Universe</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">non_standard_expansion</span>
+    <span style="color:#5b6a7a;">2001</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>brane_collision_phase</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="phenomenological" data-layer="L3">
+  <div class="fw-name">Empirical Rotation Curve Fit</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">phenomenological</span>
+    <span style="color:#5b6a7a;">2026</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>empirical_parameters</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>phenomenological_competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="particle_DM" data-layer="L3">
+  <div class="fw-name">Fuzzy / Ultralight Scalar Dark Matter</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">particle_DM</span>
+    <span style="color:#5b6a7a;">2000</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>m_fuzzy_DM</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>orthogonal</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_scalar_tensor" data-layer="L2">
+  <div class="fw-name">Galileon (covariant)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">modified_gravity_scalar_tensor</span>
+    <span style="color:#5b6a7a;">2008</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>c_2, c_3, c_4, c_5</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>benchmark</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_scalar_tensor" data-layer="L2">
+  <div class="fw-name">Horndeski (c_T=c post-GW170817)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">modified_gravity_scalar_tensor</span>
+    <span style="color:#5b6a7a;">1974</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>alpha_M, alpha_B, alpha_K, alpha_T=0</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>excluded_region</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_vector_tensor" data-layer="L3">
+  <div class="fw-name">Hyperconical / Natural Relativistic MOND</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">modified_gravity_vector_tensor</span>
+    <span style="color:#5b6a7a;">2024</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>conical_geometry</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative_MOND_relativistic</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Informational Entropic Gravity</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2026</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>information_density, holographic_bound</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>near_cousin</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Jacobson Thermodynamic Derivation of Einstein Equations</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">1995</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>Clausius_dQ_TdS</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>conceptual_ancestor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_scalar_tensor" data-layer="L1">
+  <div class="fw-name">Kinetic Gravity Braiding</div>
+  <div class="fw-meta">
+    <span class="regime-chip L1">L1</span>
+    <span style="margin-right:6px;">modified_gravity_scalar_tensor</span>
+    <span style="color:#5b6a7a;">2010</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>alpha_B, G_X</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>benchmark</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="holographic_DE" data-layer="L0">
+  <div class="fw-name">Kaniadakis Holographic Dark Energy</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">holographic_DE</span>
+    <span style="color:#5b6a7a;">2021</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>kappa_K, IR_cutoff_L</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>near_cousin</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="particle_DM" data-layer="L0">
+  <div class="fw-name">Standard Cosmological Model (ΛCDM)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">particle_DM</span>
+    <span style="color:#5b6a7a;">1998</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>Omega_m, Omega_Lambda, H_0, sigma_8, n_s, tau</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>limit_case</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_inertia" data-layer="L3">
+  <div class="fw-name">Modified Newtonian Dynamics</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">modified_inertia</span>
+    <span style="color:#5b6a7a;">1983</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>a_0, mu(x)_interpolation</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>recovered_in_limit</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="machian" data-layer="L3">
+  <div class="fw-name">Machian Gravity (SPARC-testable)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">machian</span>
+    <span style="color:#5b6a7a;">2023</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>cosmological_inertia_coupling</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor_L3</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Mass-to-Horizon Entropic Cosmology</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>M_horizon_ratio</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Mass-to-Horizon Cosmic Space (2025)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>cosmic_space_horizon</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="massive_graviton" data-layer="L2">
+  <div class="fw-name">dRGT Massive Gravity</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">massive_graviton</span>
+    <span style="color:#5b6a7a;">2011</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>m_graviton, alpha_3, alpha_4</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>benchmark</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_inertia" data-layer="L3">
+  <div class="fw-name">Modified Inertia by a Hubble-scale Casimir effect</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">modified_inertia</span>
+    <span style="color:#5b6a7a;">2007</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>Hubble_Casimir_cutoff</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative_MOND_like</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Modified Entropic Gravity (Odintsov et al.)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>modified_entropy_index</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L1">
+  <div class="fw-name">Multi-Field Early Dark Energy</div>
+  <div class="fw-meta">
+    <span class="regime-chip L1">L1</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2026</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>f_EDE_1, f_EDE_2, z_c, coupling</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Negentropic Gravity</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>negentropy_sign_inversion</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>natural_falsifier</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="particle_DM" data-layer="L0">
+  <div class="fw-name">Primordial Black Holes as Dark Matter</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">particle_DM</span>
+    <span style="color:#5b6a7a;">2016</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>M_PBH, f_PBH</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>orthogonal</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L0">
+  <div class="fw-name">Padmanabhan Emergent Gravity</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2010</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>N_surface, N_bulk, equipartition</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>conceptual_ancestor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">Quintessence (Scalar-Field Dark Energy)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">1998</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>phi_DE, V(phi)</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">Quintom Dark Energy</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2005</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>phi_+, phi_-, w(z)_crossing</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_vector_tensor" data-layer="L2">
+  <div class="fw-name">Relativistic MOND (Skordis-Zlosnik)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">modified_gravity_vector_tensor</span>
+    <span style="color:#5b6a7a;">2020</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>K_B, lambda_s, lambda_u</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor_relativistic_MOND</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">Robust Dynamical DE (DESI+ACT+SPT)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>w(z)_nonparam</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>class_sibling</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="particle_DM" data-layer="L3">
+  <div class="fw-name">Self-Interacting Dark Matter</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">particle_DM</span>
+    <span style="color:#5b6a7a;">2000</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>sigma_DM/m_DM</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>orthogonal</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="particle_DM" data-layer="L3">
+  <div class="fw-name">Superfluid Dark Matter</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">particle_DM</span>
+    <span style="color:#5b6a7a;">2015</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>superfluid_phase_transition</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>bridge_particle_MOND</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_vector_tensor" data-layer="L3">
+  <div class="fw-name">TeVeS (Tensor-Vector-Scalar)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">modified_gravity_vector_tensor</span>
+    <span style="color:#5b6a7a;">2004</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>K_TeVeS, phi_scalar, A_vector</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor_relativistic_MOND</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">Thawing Quintessence (curved)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2025</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>phi_DE, V'(phi), Omega_k</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="non_standard_expansion" data-layer="L0">
+  <div class="fw-name">Timescape Cosmology</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">non_standard_expansion</span>
+    <span style="color:#5b6a7a;">2007</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>void_wall_time_dilation</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>alternative</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L3">
+  <div class="fw-name">Verlinde Entropic Gravity (2010)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2010</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>entropic_force, T_Unruh</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>conceptual_ancestor</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="entropic_emergent" data-layer="L3">
+  <div class="fw-name">Verlinde Emergent Gravity (2016)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">entropic_emergent</span>
+    <span style="color:#5b6a7a;">2016</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>de_Sitter_horizon_entropy, elastic_response</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>near_cousin</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="geometric_weyl" data-layer="L3">
+  <div class="fw-name">Weyl-Geometric Gravity (conformal)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L3">L3</span>
+    <span style="margin-right:6px;">geometric_weyl</span>
+    <span style="color:#5b6a7a;">2023</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>omega_Weyl_vector</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>competitor_L3</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="modified_gravity_scalar_tensor" data-layer="L2">
+  <div class="fw-name">f(R) Gravity (Starobinsky / Hu-Sawicki)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L2">L2</span>
+    <span style="margin-right:6px;">modified_gravity_scalar_tensor</span>
+    <span style="color:#5b6a7a;">2007</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>f_R0, n, chameleon_screening</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>discriminator</em>
+  </div>
+</div>
+
+
+<div class="fw-card" data-lens="dynamical_dark_energy" data-layer="L0">
+  <div class="fw-name">w₀wₐCDM (Chevallier-Polarski-Linder)</div>
+  <div class="fw-meta">
+    <span class="regime-chip L0">L0</span>
+    <span style="margin-right:6px;">dynamical_dark_energy</span>
+    <span style="color:#5b6a7a;">2003</span>
+  </div>
+  <div style="margin-top:6px; font-size:0.80rem; color:#5b6a7a;">
+    <strong>Primitives:</strong> <code>w_0, w_a</code>
+  </div>
+  <div style="margin-top:4px; font-size:0.78rem; color:#5b6a7a;">
+    EFC relation: <em>compatible</em>
+  </div>
+</div>
+
+</div>
+</section>
+
+<script>
+(function(){
+  // ---- tab switching ----
+  var tabs = document.querySelectorAll('.nav-tab');
+  var panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      var t = btn.getAttribute('data-tab');
+      var panel = document.getElementById('tab-' + t);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // ---- predictions table filter ----
+  function applyPredictionFilter(){
+    var cat = document.getElementById('filter-category').value;
+    var res = document.getElementById('filter-result').value;
+    var q   = document.getElementById('filter-search').value.toLowerCase();
+    var rows = document.querySelectorAll('#predictions-table tbody tr');
+    rows.forEach(function(row){
+      var rowCat = row.getAttribute('data-category') || '';
+      var rowRes = row.getAttribute('data-result') || '';
+      var text = row.textContent.toLowerCase();
+      var show = true;
+      if (cat && rowCat !== cat) show = false;
+      if (res && rowRes.toUpperCase().indexOf(res.toUpperCase()) < 0) show = false;
+      if (q && text.indexOf(q) < 0) show = false;
+      row.style.display = show ? '' : 'none';
+    });
+  }
+  ['filter-category','filter-result','filter-search'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', applyPredictionFilter);
+    if (el) el.addEventListener('change', applyPredictionFilter);
+  });
+
+  // ---- phenomena regime filter ----
+  var phenRegime = document.getElementById('phen-regime');
+  if (phenRegime) phenRegime.addEventListener('change', function(){
+    var r = phenRegime.value;
+    document.querySelectorAll('.phen-block').forEach(function(b){
+      var br = b.getAttribute('data-regime') || '';
+      b.style.display = (!r || br.indexOf(r) >= 0) ? '' : 'none';
+    });
+  });
+
+  // ---- framework grid filter ----
+  function applyFwFilter(){
+    var lens = document.getElementById('fw-lens').value;
+    var layer = document.getElementById('fw-layer').value;
+    document.querySelectorAll('.fw-card').forEach(function(c){
+      var cl = c.getAttribute('data-lens') || '';
+      var ly = c.getAttribute('data-layer') || '';
+      var show = true;
+      if (lens && cl !== lens) show = false;
+      if (layer && ly !== layer) show = false;
+      c.style.display = show ? '' : 'none';
+    });
+  }
+  ['fw-lens','fw-layer'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('change', applyFwFilter);
+  });
+})();
+</script>
+
+</body>
+</html>
