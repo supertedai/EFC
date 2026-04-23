@@ -10,7 +10,7 @@ pdftotext: /usr/bin/pdftotext
 
   EFC_Outcome_Estimation_CrossSurvey  (missing: src/, examples/, data/)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [RETRY] OpenAI HTTP 502 — waiting 10s (2/4)
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider

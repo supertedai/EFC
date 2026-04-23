@@ -1,0 +1,30 @@
+# fσ8(z) RSD compilation — DOI-verified original survey values
+# Each measurement traced to its primary publication DOI.
+#
+# z=0.02: 6dFGS — Beutler et al. 2012, MNRAS 423, 3430
+#         DOI: 10.1111/j.1365-2966.2012.21136.x (Table 3)
+# z=0.15: SDSS MGS — Howlett et al. 2015, MNRAS 449, 848
+#         DOI: 10.1093/mnras/stu2693 (Section 5.2)
+# z=0.38: BOSS DR12 — Alam et al. 2017, MNRAS 470, 2617
+#         DOI: 10.1093/mnras/stx721 (Table 7, consensus)
+# z=0.51: BOSS DR12 — Alam et al. 2017, MNRAS 470, 2617
+#         DOI: 10.1093/mnras/stx721 (Table 7, consensus)
+# z=0.61: BOSS DR12 — Alam et al. 2017, MNRAS 470, 2617
+#         DOI: 10.1093/mnras/stx721 (Table 7, consensus)
+# z=0.76: VIPERS PDR-2 — Pezzotta et al. 2017, A&A 604, A33
+#         DOI: 10.1051/0004-6361/201526553 (Table 4)
+# z=0.85: FastSound — Okumura et al. 2016, PASJ 68, 38
+#         DOI: 10.1093/pasj/psw029 (Section 7)
+#
+# Covariance: BOSS DR12 z=0.38/0.51/0.61 are correlated (rho~0.48).
+# See growth_module.py BOSS_FS8_COV_3x3 from Gil-Marin+2020 (DR16 BAOplus).
+# Other surveys are independent (different sky, different pipeline).
+#
+z,fs8,sigma
+0.02,0.428,0.0465
+0.15,0.490,0.145
+0.38,0.497,0.045
+0.51,0.458,0.038
+0.61,0.436,0.034
+0.76,0.440,0.040
+0.85,0.484,0.116

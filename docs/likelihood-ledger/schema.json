@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://energyflow-cosmology.com/likelihood-ledger/schema.json",
+  "title": "EFC Likelihood Ledger",
+  "description": "Schema for per-test likelihood pipeline declarations.",
+  "type": "object",
+  "required": ["version", "generated_at", "likelihoods"],
+  "properties": {
+    "version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generator": {"type": "string"},
+    "likelihoods": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/likelihood_entry"}
+    }
+  },
+  "definitions": {
+    "likelihood_entry": {
+      "type": "object",
+      "required": ["test_id", "likelihood_type", "code", "status"],
+      "properties": {
+        "test_id": {
+          "type": "string",
+          "description": "Foreign key to validation-ledger/data/tests.json"
+        },
+        "likelihood_type": {
+          "type": "string",
+          "enum": [
+            "gaussian",
+            "gaussian_cov",
+            "binned_chi2",
+            "mcmc_posterior",
+            "analytic",
+            "external"
+          ]
+        },
+        "covariance": {
+          "type": ["string", "null"],
+          "description": "Path or DOI of covariance matrix; 'diagonal' if independent errors"
+        },
+        "parameter_priors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": {"type": "string", "enum": ["uniform", "gaussian", "fixed", "reference"]},
+              "range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+              "mean": {"type": "number"},
+              "sigma": {"type": "number"},
+              "value": {"type": "number"},
+              "ref": {"type": "string", "description": "Pointer into parameters.json registry"}
+            }
+          }
+        },
+        "code": {
+          "type": "string",
+          "enum": ["cobaya", "mgcamb", "cosmoSIS", "direct_python", "external"]
+        },
+        "code_version": {
+          "type": ["string", "null"],
+          "description": "Git SHA, package version, or external version tag"
+        },
+        "entry_point": {
+          "type": ["string", "null"],
+          "description": "Repo-relative script path or external URL"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "DOIs or repo refs for input datasets"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["chi2", "best_fit", "posterior_summary", "evidence", "log_likelihood", "predictive_samples"]
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["declared", "runnable", "executed", "frozen"]
+        },
+        "notes": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
