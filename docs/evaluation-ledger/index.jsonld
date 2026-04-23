@@ -1,0 +1,34 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://energyflow-cosmology.com/evaluation-ledger/",
+  "identifier": "efc-evaluation-ledger",
+  "name": "EFC Evaluation Ledger",
+  "description": "Global decision rule, verdict thresholds, weights, and aggregated falsification state for the Energy-Flow Cosmology framework.",
+  "version": "0.1-draft",
+  "dateModified": "2026-04-23T00:00:00Z",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "author": {
+    "@type": "Person",
+    "name": "Morten Magnusson",
+    "@id": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "isBasedOn": [
+    {"@type": "Dataset", "@id": "https://energyflow-cosmology.com/validation-ledger/"},
+    {"@type": "Dataset", "@id": "https://energyflow-cosmology.com/likelihood-ledger/"}
+  ],
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "Markdown (human-readable)",
+      "contentUrl": "https://github.com/supertedai/EFC/blob/main/docs/evaluation-ledger/index.md",
+      "encodingFormat": "text/markdown"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "JSON (machine-readable)",
+      "contentUrl": "https://github.com/supertedai/EFC/blob/main/docs/evaluation-ledger/data/evaluation.json",
+      "encodingFormat": "application/json"
+    }
+  ]
+}
