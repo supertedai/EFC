@@ -1,0 +1,105 @@
+{
+  "paper": {
+    "title": "A structural closure of growth-sector couplings between discrete gravity and cosmology",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "date": "2026-04-23",
+    "doi": "10.6084/m9.figshare.32084670",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "constants": {
+    "C_grid_AQUAL": {
+      "value": 2.32,
+      "description": "Grid-AQUAL converged prefactor; controls effective gravitational amplitude in MOND-like regime"
+    },
+    "C_squared_minus_1": {
+      "value": 4.3824,
+      "description": "C^2 - 1, amplitude of Geff/G modification"
+    }
+  },
+  "fiducial_parameters": {
+    "Omega_m0": {
+      "value": 0.3,
+      "description": "Fiducial matter density parameter"
+    },
+    "sigma8": {
+      "value": 0.811,
+      "description": "Fiducial sigma_8 normalisation"
+    },
+    "a_t": {
+      "value": 0.5,
+      "description": "Logistic gate transition scale factor"
+    },
+    "delta_a": {
+      "value": 0.1,
+      "description": "Logistic gate width"
+    },
+    "k_Lambda": {
+      "value": 0.1,
+      "unit": "h/Mpc",
+      "description": "Fourier low-pass screening scale"
+    }
+  },
+  "memory_kernel_values": {
+    "G_a1": {
+      "value": 0.5,
+      "description": "Integrated gate kernel G(a=1)"
+    },
+    "G_a0p5": {
+      "value": 0.069,
+      "description": "Integrated gate kernel G(a=0.5)"
+    },
+    "G_a0p1": {
+      "value": 0.002,
+      "description": "Integrated gate kernel G(a=0.1)"
+    },
+    "g_over_G_at_a0p5": {
+      "value": 7,
+      "description": "Ratio g/G at a=0.5, showing memory kernel is smoother and delayed"
+    },
+    "g_over_G_at_a1": {
+      "value": 2,
+      "description": "Ratio g/G at a=1.0"
+    }
+  },
+  "coupling_classes": {
+    "A": {
+      "name": "Multiplicative Geff",
+      "description": "Poisson source modified by Geff/G = 1 + (C^2 - 1) g(a) s(k)",
+      "operator": "source modification"
+    },
+    "B": {
+      "name": "Local friction",
+      "description": "Friction augmented by beta*g(a)/a on the velocity term",
+      "operator": "velocity/friction modification",
+      "free_parameter": "beta"
+    },
+    "C": {
+      "name": "Non-local memory friction",
+      "description": "Friction augmented by beta*G(a)/a using integrated gate kernel; breaks Markov evolution",
+      "operator": "memory friction modification",
+      "free_parameter": "beta"
+    }
+  },
+  "data_sets_used": [
+    "DESI DR2 BAO (DM/rd, DH/rd)",
+    "Cosmic-chronometer H(z)",
+    "f*sigma8 compilation with BOSS DR12 covariance",
+    "EG statistic from five published measurements"
+  ],
+  "key_result": {
+    "description": "All three coupling classes are either structurally excluded or absorbed by the Omega_m-coupling degeneracy once geometry is locked by BAO+H(z). EG with Sigma=1 carries no independent information beyond f*sigma8. Growth observables alone are insufficient to discriminate this theory class.",
+    "Sigma_EG": {
+      "value": 1.0,
+      "description": "Gravitational slip parameter fixed to 1 (GR value); EG then collapses to Omega_m0 / f(z)"
+    }
+  },
+  "equations": {
+    "background_E2": "E^2(a) = Omega_m * a^{-3} + (1 - Omega_m)",
+    "Geff_over_G": "Geff/G = 1 + (C^2 - 1) * g(a) * s(k)",
+    "logistic_gate": "g(a) = 1 / (1 + exp(-(a - a_t) / delta_a))",
+    "fourier_screen": "s(k) = 1 / (1 + (k / k_Lambda)^2)",
+    "memory_kernel": "G(a) = delta_a * [ln(1 + exp((a-a_t)/delta_a)) - ln(1 + exp(-a_t/delta_a))]",
+    "EG_statistic": "EG(z) = Sigma(z) * Omega_m0 / f(z)"
+  }
+}
