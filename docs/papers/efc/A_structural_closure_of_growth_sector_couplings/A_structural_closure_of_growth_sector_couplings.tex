@@ -1,0 +1,411 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=28mm]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage[hidelinks,breaklinks=true]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{url}
+
+\definecolor{efcblue}{RGB}{25,60,120}
+\definecolor{efcgray}{RGB}{80,80,80}
+\definecolor{rulegray}{RGB}{180,180,180}
+
+\titleformat{\section}{\color{efcblue}\Large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\color{efcblue}\large\bfseries}{\thesubsection}{0.6em}{}
+
+\hypersetup{
+  pdftitle={A structural closure of growth-sector couplings between discrete gravity and cosmology},
+  pdfauthor={Morten Magnusson},
+  pdfsubject={Modified gravity constraints},
+  pdfkeywords={EFC, modified gravity, growth, BAO, fsigma8, E_G, coupling}
+}
+
+\newcommand{\paperdoi}{10.6084/m9.figshare.32084670}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\footnotesize\color{efcgray} M.\ Magnusson --- DOI: \paperdoi}
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize\color{efcgray} Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\title{\color{efcblue}\bfseries A structural closure of growth-sector couplings \\ between discrete gravity and cosmology}
+\author{Morten Magnusson \\[2pt]
+        \small Symbiose Research, Sandnes, Norway \\
+        \small ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095} \\
+        \small \href{mailto:morten@magnusson.as}{morten@magnusson.as} \\[2pt]
+        \small Energy-Flow Cosmology (EFC) Programme \\[1pt]
+        \small DOI: \href{https://doi.org/\paperdoi}{\paperdoi}}
+\date{2026-04-23}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\vspace{-2em}
+
+\begin{quote}\small
+\textbf{Abstract.} Theories that modify General Relativity at cosmological scales couple to observables through an operator structure that is rarely scrutinised independently of parameter inference. We test three coupling classes by which Energy-Flow Cosmology (EFC) --- with a discrete-gravity prefactor $C \approx 2.32$ measured in a separate Grid-AQUAL kill test --- could enter the linear growth equation: (i) multiplicative $G_{\rm eff}$-modification of the Poisson source, (ii) additive local friction on the velocity term, and (iii) additive non-local memory friction that breaks the Markov evolution of $\delta$. Using DESI DR2 BAO, cosmic-chronometer $H(z)$, an $f\sigma_8$ compilation, and the literature $E_G$ statistic, we find each class either structurally excluded or absorbed by the $\Omega_m$--coupling degeneracy once geometry is locked by BAO+$H(z)$. The growth-only $E_G$ direction ($\Sigma = 1$) carries no information independent of $f\sigma_8$. The result is a constraint on coupling structure, not on parameters. It establishes that growth observables alone are insufficient to discriminate this theory class; the next informative direction must lie in lensing, gravitational slip, or cross-correlations.
+\end{quote}
+
+\vspace{0.5em}
+
+\noindent\textbf{Keywords:} modified gravity; growth of structure; BAO; $f\sigma_8$; $E_G$ statistic; coupling structure; Energy-Flow Cosmology.
+
+\begin{sloppypar}
+\noindent\textbf{Code \& data:} \url{https://github.com/supertedai/EFC} under \texttt{pipelines/efc/grav\_bridge/}.
+\end{sloppypar}
+
+\noindent\textbf{License:} CC-BY-4.0 (text, data) / MIT (code).
+
+\vspace{1em}
+\color{rulegray}\hrule\color{black}
+
+% ==============================================================
+\section{Introduction}
+% ==============================================================
+
+Tests of modified gravity at cosmological scales typically proceed by fitting a small number of phenomenological parameters within a fixed operator ansatz --- most commonly a scale- and time-dependent effective gravitational coupling $\mu(k,a)$ acting on the Poisson source of the linear growth equation. The ansatz is chosen for tractability; the parameters are then constrained. A question that is rarely asked in such analyses is whether the ansatz itself is data-compatible at any setting of its parameters, and whether different operator structures that yield the same $f\sigma_8$ signature can be separated by observables beyond $f\sigma_8$.
+
+This note reports a structural test of that kind for Energy-Flow Cosmology (EFC). The motivating input is a measurement in the discrete-gravity sector of EFC: a lattice Grid-AQUAL kill test yields a converged prefactor $C \approx 2.32$ which, in the MOND-like regime, controls the effective gravitational amplitude modification at low acceleration. The relevant question for cosmology is not whether $C$ is correctly measured --- that question belongs to the Grid-AQUAL analysis --- but whether and how $C$ imports into the cosmological growth equation.
+
+We test three natural coupling classes:
+\begin{enumerate}[nosep,leftmargin=1.8em]
+    \item \textbf{Multiplicative $G_{\rm eff}$} applied to the Poisson source, with a logistic temporal gate and a low-pass Fourier screening;
+    \item \textbf{Additive local friction} on the velocity term $\dot\delta$, amplitude-controlled by a single coupling $\beta$;
+    \item \textbf{Additive non-local friction} via the integrated gate kernel $G(a) = \int_0^a g(a')\,da'$, which breaks Markov evolution of $\delta$.
+\end{enumerate}
+These span the natural operator basis for modifying a second-order linear growth ODE with a single gate-activated modification.
+
+Using the DESI DR2 BAO sample, cosmic-chronometer $H(z)$ data, an $f\sigma_8$ compilation with BOSS DR12 covariance, and the $E_G$ statistic from five published measurements, we find that every one of the three classes is either structurally rejected by the data or is absorbed by the $\Omega_m$--coupling degeneracy once geometry is independently locked. The apparent $\beta$-preferences visible in $f\sigma_8$-only analyses vanish under the BAO-anchored $\Omega_m$ prior. The $E_G$ statistic with $\Sigma = 1$ carries no information independent of the growth rate $f(z)$ that $f\sigma_8$ already measures. The result is a structural closure of the growth-sector coupling class.
+
+% ==============================================================
+\section{Framework}
+% ==============================================================
+
+\subsection{Growth equation and coupling classes}
+
+In flat $\Lambda$CDM, the linear matter overdensity $\delta(a)$ obeys
+\begin{equation}
+    \delta'' + \left[\frac{3}{a} + \frac{E'}{E}\right]\delta' - \frac{3}{2}\frac{\Omega_m}{a^5 E^2}\delta = 0,
+    \label{eq:lcdm_growth}
+\end{equation}
+where $E(a) = H(a)/H_0$ and primes denote $d/da$. The three coupling classes modify \eqref{eq:lcdm_growth} as follows.
+
+\textbf{Class A (multiplicative $G_{\rm eff}$).} The Poisson source term is modified by a factor
+\begin{equation}
+    \frac{G_{\rm eff}(k,a)}{G} = 1 + (C^2-1)\,g(a)\,s(k),
+    \label{eq:geff}
+\end{equation}
+with logistic gate $g(a) = [1 + e^{-(a-a_t)/\delta_a}]^{-1}$ and low-pass Fourier screen $s(k) = [1 + (k/k_\Lambda)^2]^{-1}$. The growth source becomes $(3/2)\,(G_{\rm eff}/G)\,\Omega_m/(a^5 E^2)$.
+
+\textbf{Class B (local friction).} The friction coefficient is augmented by $\beta\, g(a)/a$, giving
+\begin{equation}
+    \delta'' + \left[\frac{3}{a} + \frac{E'}{E} + \beta\,\frac{g(a)}{a}\right]\delta' - \frac{3}{2}\frac{\Omega_m}{a^5 E^2}\delta = 0.
+    \label{eq:variantJ}
+\end{equation}
+The Poisson source is unchanged; only the velocity term is modified. $\beta = 0$ recovers $\Lambda$CDM exactly.
+
+\textbf{Class C (non-local friction).} The gate is replaced by its time-accumulated kernel,
+\begin{equation}
+    G(a) = \int_0^a g(a')\,da' \;=\; \delta_a\Bigl[\ln(1 + e^{(a-a_t)/\delta_a}) - \ln(1 + e^{-a_t/\delta_a})\Bigr],
+    \label{eq:Ga_analytic}
+\end{equation}
+which gives a friction modification $\beta\, G(a)/a$. With $a_t = 0.5$ and $\delta_a = 0.1$, one finds $G(1) \approx 0.50$, $G(0.5) \approx 0.069$, $G(0.1) \approx 0.002$. The memory kernel is smoother and delayed relative to $g(a)$: $g/G \simeq 7$ at $a=0.5$, $g/G \simeq 2$ at $a=1$.
+
+\subsection{Background expansion}
+
+For Classes B and C the background is pure $\Lambda$CDM:
+\begin{equation}
+    E^2(a) = \Omega_m\, a^{-3} + (1 - \Omega_m).
+    \label{eq:lcdm_bg}
+\end{equation}
+For Class A, both the source and expansion modifications have been tested elsewhere; here we freeze the background to $\Lambda$CDM so as to isolate the source-side effect of $G_{\rm eff}$. This is conservative: the test asks whether $C \approx 2.32$ projected through $G_{\rm eff}$ is compatible with growth data on its own, without allowing background freedom to absorb the shift.
+
+\subsection{Observables}
+
+We use $f\sigma_8(z) = f(a)\sigma_8\, D(a)/D(1)$ where $f = d\ln D/d\ln a$, BAO distance ratios $D_M/r_d$ and $D_H/r_d$, cosmic-chronometer $H(z)$ direct measurements, and the $E_G$ statistic in its quasi-static form
+\begin{equation}
+    E_G(z) = \frac{\Sigma(z)\, \Omega_{m,0}}{f(z)}.
+    \label{eq:Eg_def}
+\end{equation}
+For growth-only modifications, $\Sigma = 1$ and $E_G$ reduces to $\Omega_{m,0}/f(z)$ --- a function of the same $f(z)$ that $f\sigma_8$ measures.
+
+% ==============================================================
+\section{Data}
+% ==============================================================
+
+\textbf{BAO:} DESI DR2 \cite{DESI_DR2} with 13 measurements of $D_M/r_d$ and $D_H/r_d$ across seven redshift bins and a full $13 \times 13$ covariance.
+
+\textbf{$H(z)$:} cosmic-chronometer compilation with nine direct $H(z)$ measurements \cite{Moresco2016}, treated as diagonal.
+
+\textbf{$f\sigma_8$:} seven measurements from 6dFGS \cite{Beutler2012}, SDSS MGS \cite{Howlett2015}, BOSS DR12 at three redshifts \cite{Alam2017}, VIPERS \cite{Pezzotta2017}, and FastSound \cite{Okumura2016}. The $3\times 3$ BOSS DR12 covariance sub-block is taken from \cite{GilMarin2020}; off-survey correlations are set to zero.
+
+\textbf{$E_G$:} five measurements from Amon et al.\ \cite{Amon2018}, Reyes et al.\ \cite{Reyes2010}, Singh et al.\ \cite{Singh2019}, Blake et al.\ \cite{Blake2016}, and de la Torre et al.\ \cite{delaTorre2017}.
+
+\textbf{Sound horizon:} $r_d = 147.09$ Mpc held fixed to the Planck 2018 calibration \cite{Planck2018}.
+
+% ==============================================================
+\section{Methodology}
+% ==============================================================
+
+Forward modelling uses a \texttt{CosmologyModel} abstraction that separates background ($E^2$, $dE^2/da$) from growth source and friction coefficients. The growth ODE \eqref{eq:lcdm_growth} is integrated from $a_{\rm ini} = 10^{-3}$ to $a = 1$ with a Dormand--Prince RK45 scheme (rtol $=10^{-8}$, atol $=10^{-10}$).
+
+Each variant must reduce to flat $\Lambda$CDM exactly at its null-coupling limit. We verify this as a sanity gate before any inference: Class A at $C = 1$, Classes B and C at $\beta = 0$. In all three cases the maximum $|\Delta f\sigma_8|$ across the seven measurement redshifts is below $10^{-10}$ relative to the $\Lambda$CDM run.
+
+MCMC sampling uses \texttt{emcee} \cite{ForemanMackey2013} with 32 walkers, 1500 production steps after 300 burn-in, and seed 42. Priors are uniform unless otherwise stated. For the BAO-locked analyses, $\Omega_m$ carries a Gaussian prior from the separate BAO+$H(z)$ inference in Section \ref{sec:results_B}. Bayes factors for the null hypothesis $\beta = 0$ are estimated via the Savage--Dickey density ratio with Gaussian kernel density at the null point.
+
+% ==============================================================
+\section{Results --- Phase 1: multiplicative $G_{\rm eff}$}
+\label{sec:results_A}
+% ==============================================================
+
+We scan the screening scale $k_\Lambda$ at fixed $C = 2.32$, $\Omega_m = 0.30$, $\sigma_8 = 0.81$, $H_0 = 70$ km/s/Mpc, and $k_{\rm eff} = 0.1$ h/Mpc with the $f\sigma_8$ compilation.
+
+\begin{table}[!ht]
+\centering\small
+\caption{Class A: $k_\Lambda$ sweep at fixed $C = 2.32$.}
+\label{tab:klambda_sweep}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$k_\Lambda$ [h/Mpc] & $s(k_{\rm eff})$ & $G_{\rm eff}(a=1)/G$ & $\Delta\chi^2$ \\
+\midrule
+0.005 & 0.0025 & 1.011 & $-0.009$ \\
+0.008 & 0.0064 & 1.028 & $-0.010$ \\
+0.015 & 0.0220 & 1.096 & $+0.12$ \\
+0.020 & 0.0385 & 1.167 & $+0.51$ \\
+0.030 & 0.0826 & 1.359 & $+2.66$ \\
+0.050 & 0.2000 & 1.871 & $+15.3$ \\
+0.080 & 0.3902 & 2.699 & $+52.0$ \\
+0.100 & 0.5000 & 3.176 & $+79.7$ \\
+0.200 & 0.8000 & 4.482 & $+170.7$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The nominal minimum at $k_\Lambda \approx 0.008$ corresponds to $G_{\rm eff}/G = 1.028$, which lies below the measurement sensitivity of the current $f\sigma_8$ compilation; no data-vs-model distinction can be drawn at that coupling strength. Above the visibility floor ($G_{\rm eff}/G \gtrsim 1.05$, i.e.\ $k_\Lambda \gtrsim 0.012$), $\Delta\chi^2$ is strictly monotonic in $k_\Lambda$. Crossings at $\Delta\chi^2 = 4$ and $\Delta\chi^2 = 16$ occur at $k_\Lambda \approx 0.033$ and $k_\Lambda \approx 0.053$ respectively. There is no interior minimum.
+
+Visibility and rejection are locked together: any $k_\Lambda$ at which the $C = 2.32$ modification is large enough to observe is a $k_\Lambda$ at which it is excluded.
+
+% ==============================================================
+\section{Results --- Phase 2: local friction and BAO lock}
+\label{sec:results_B}
+% ==============================================================
+
+We first run an unrestricted $f\sigma_8$-only MCMC on Class B, sampling $(\Omega_m, \beta)$ with $\sigma_8 = 0.81$ fixed. The posterior is elongated along a near-diagonal ridge: $\Omega_m = 0.357 \pm 0.088$, $\beta = +0.22 \pm 0.47$, with Pearson $r(\Omega_m, \beta) = +0.85$. The Savage--Dickey Bayes factor for $\beta = 0$ is 2.6.
+
+\textbf{BAO+$H(z)$ anchor.} A parallel MCMC on BAO+$H(z)$ with pure $\Lambda$CDM yields $\Omega_m = 0.2991 \pm 0.0089$ and $H_0 = 68.96 \pm 0.51$, with $r(\Omega_m, H_0) = -0.93$ (Table \ref{tab:step1}).
+
+\begin{table}[!ht]
+\centering\small
+\caption{BAO+$H(z)$ anchor (flat $\Lambda$CDM). $r_d = 147.09$ Mpc held fixed.}
+\label{tab:step1}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Parameter & Posterior mean $\pm 1\sigma$ & 68\% CI \\
+\midrule
+$\Omega_m$       & $0.2991 \pm 0.0089$ & $[0.290,\, 0.308]$ \\
+$H_0$ [km/s/Mpc] & $68.96 \pm 0.51$    & $[68.46,\, 69.47]$ \\
+\midrule
+\multicolumn{2}{@{}l}{$r(\Omega_m, H_0)$} & $-0.93$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{BAO-locked $f\sigma_8$ analysis.} We then run the Class B MCMC with an informative Gaussian prior $\Omega_m \sim \mathcal{N}(0.2991, 0.0089)$ from the BAO+$H(z)$ posterior. The $\beta$ posterior collapses (Table \ref{tab:step2}).
+
+\begin{table}[!ht]
+\centering\small
+\caption{Class B: unrestricted vs.\ BAO-locked $f\sigma_8$ posterior.}
+\label{tab:step2}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Quantity & Unrestricted & BAO-locked \\
+\midrule
+$\Omega_m$ & $0.357 \pm 0.088$ & $0.299 \pm 0.009$ \\
+$\beta$ & $+0.224 \pm 0.474$ & $-0.020 \pm 0.243$ \\
+$\beta$ 68\% CI & $[-0.33,\, +0.69]$ & $[-0.26,\, +0.22]$ \\
+$\beta$ from 0 ($\sigma$) & 0.47 & 0.08 \\
+$r(\Omega_m, \beta)$ & $+0.85$ & $+0.19$ \\
+BF$(\beta=0)$ & 2.6 & 6.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Bayes factor for $\beta = 0$ rises from 2.6 to 6.6 --- substantial evidence for the null in the Jeffreys classification. The Pearson correlation drops from $+0.85$ to $+0.19$: the $f\sigma_8$-only posterior ridge is a pure $\Omega_m$--$\beta$ degeneracy that the external geometry constraint eliminates. What looked like a marginal $\beta$-signal was the $\Omega_m$ projection of a null.
+
+% ==============================================================
+\section{Results --- Phase 3: non-local memory friction}
+\label{sec:results_C}
+% ==============================================================
+
+Class C replaces $g(a)$ with $G(a)$ in the friction term \eqref{eq:variantJ}. The analytic form of $G(a)$ \eqref{eq:Ga_analytic} is evaluated with \texttt{logaddexp} for numerical stability. Null identity at $\beta = 0$ is numerically exact.
+
+The BAO-locked MCMC returns $\Omega_m = 0.2993 \pm 0.0087$ (as expected, driven by the prior) and $\beta = -0.180 \pm 0.906$, with $r(\Omega_m, \beta) = +0.19$ and BF$(\beta=0) = 3.4$. The $\beta$ posterior sits 0.2$\sigma$ from zero --- wider than the Class B posterior but not preferring non-zero values.
+
+The width difference has a straightforward origin: at $a = 1$ the memory kernel is half the local gate ($G(1) \approx 0.5$ vs $g(1) \approx 0.99$), so a given $\beta$ produces half the friction contribution per unit parameter. The data-normalised equivalent at $a=1$ is $\beta_{\rm K,\,eq} \approx 2\beta_{\rm J}$, giving $\beta_{\rm J,\,equiv} \approx -0.09 \pm 0.45$ --- statistically indistinguishable from Class B's BAO-locked null.
+
+\emph{Breaking the Markov assumption did not move the degeneracy direction, did not improve the fit, and did not open a new observable axis.} The bottleneck in the Class B result was not locality.
+
+% ==============================================================
+\section{Results --- Phase 4: $E_G$ with $\Sigma = 1$}
+\label{sec:results_D}
+% ==============================================================
+
+\begin{table}[!ht]
+\centering\small
+\caption{$E_G$ literature compilation used in Phase 4.}
+\label{tab:eg_data}
+\begin{tabular}{@{}cccl@{}}
+\toprule
+$z$ & $E_G$ & $\sigma_{E_G}$ & Reference \\
+\midrule
+0.267 & 0.43 & 0.13 & Amon et al.\ 2018 \cite{Amon2018} \\
+0.32  & 0.39 & 0.06 & Reyes et al.\ 2010 \cite{Reyes2010} \\
+0.42  & 0.45 & 0.06 & Singh et al.\ 2019 \cite{Singh2019} \\
+0.57  & 0.30 & 0.07 & Blake et al.\ 2016 \cite{Blake2016} \\
+0.60  & 0.48 & 0.12 & de la Torre et al.\ 2017 \cite{delaTorre2017} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For growth-only modifications $\Sigma = 1$, so $E_G(z) = \Omega_{m,0}/f(z)$. The $f(z)$ function is determined by the same growth ODE that produces $f\sigma_8$; no independent information enters.
+
+\begin{table}[!ht]
+\centering\small
+\caption{Class predictions against the $E_G$ literature ($\Omega_{m,0} = 0.30$).}
+\label{tab:eg_chi2}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Model & $\chi^2$ vs.\ 5 pts & $\Delta\chi^2$ vs.\ $\Lambda$CDM \\
+\midrule
+$\Lambda$CDM (growth ODE)          & 3.33 & baseline \\
+Class B, $\beta = -0.02$ (Step 2)  & 3.26 & $-0.07$ \\
+Class B, $\beta = +0.22$ (unlocked) & 4.60 & $+1.27$ \\
+Class B, $\beta = +1.0$ (extreme)   & 18.4 & $+15.0$ \\
+Class C, $\beta = -0.18$ (Step 3)  & 3.22 & $-0.11$ \\
+Class C, $\beta = +2.0$ (extreme)   & 6.09 & $+2.76$ \\
+Constant $E_G = 0.398$             & 3.26 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A constant $E_G = 0.398$ fits the literature within 0.07 in $\chi^2$ of the $\Lambda$CDM prediction, demonstrating that present $E_G$ scatter is of order the model spread. At Class B $\beta = +1$ the $E_G$ rejection is $\Delta\chi^2 = +15.0$ --- numerically identical to the $f\sigma_8$ rejection for the same parameter. Two observables, one information direction: a modification that $f\sigma_8$ already excludes at $\Delta\chi^2 = 15$ is the same modification that $E_G$ excludes at $\Delta\chi^2 = 15$.
+
+The $E_G$ ratio only carries EFC signal if numerator and denominator respond differently. Any modification that touches only $f$ --- as growth-ODE couplings do by construction --- cannot distinguish itself in $E_G$ with $\Sigma = 1$.
+
+% ==============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ==============================================================
+
+\subsection{One null, three manifestations}
+
+The three coupling classes span the natural operator basis for modifying a second-order linear growth equation: the source term (Class A), the first-order friction coefficient in its local form (Class B), and the first-order friction coefficient in its non-local form (Class C). Any simple scalar-tensor or effective-action modification of the growth sector with a gate-activated temporal envelope reduces to one of these three.
+
+The result is not three independent nulls; it is one structural null presenting through three ansätze. In Class B the $\beta$ posterior collapses from $(+0.22 \pm 0.47)$ to $(-0.02 \pm 0.24)$ and the $(\Omega_m, \beta)$ Pearson correlation drops from $+0.85$ to $+0.19$ when the external BAO constraint is applied. Class C behaves equivalently once the per-unit amplitude of its kernel at $a = 1$ is accounted for. For Class A the rejection is more direct: the sweep of $k_\Lambda$ is monotonic above the visibility floor, with no interior minimum.
+
+\subsection{Locality was not the bottleneck}
+
+Class C was designed to break the Markov assumption underlying Classes A and B: the growth modification there depends on the time-integrated gate activation, not on its instantaneous value. In principle this opens a non-local degree of freedom that local ansätze cannot reach.
+
+The data do not support this interpretation. The BAO-locked $\beta$ posterior in Class C, once normalised to equivalent amplitude at $a = 1$, is statistically indistinguishable from the Class B null. The Savage--Dickey Bayes factor is lower (3.4 vs 6.6), but this reflects the wider $\beta$ posterior permitted by weaker per-unit response --- not preference for non-zero $\beta$. Breaking Markov did not move the degeneracy direction, did not improve the fit, and did not open a new observable axis.
+
+\subsection{Why $E_G$ with $\Sigma = 1$ carries no new information}
+
+The $E_G$ ratio \eqref{eq:Eg_def} was designed as a bias-independent probe of modified gravity. Its discriminating power for the coupling classes tested here, however, is zero by construction. For any modification that touches only the growth equation and not the lensing potentials, $\Sigma = 1$ and $E_G$ collapses to $\Omega_{m,0}/f(z)$ --- the same $f(z)$ already determined by $f\sigma_8$. A parameter setting that produces a $2\sigma$ $E_G$ shift is the same setting that $f\sigma_8$ already excludes at $\Delta\chi^2 \approx 15$. The general observation is that a ratio observable carries independent information only when numerator and denominator are modified differently. Growth-ODE couplings modify only the denominator.
+
+\subsection{A structural result about observable choice}
+
+These findings establish a constraint on coupling structure rather than on parameters. The class of modifications tested is broad: any coupling representable as a gate-activated perturbation of the linear growth ODE, whether through the Poisson source, local friction, or a memory kernel. For this entire class, current geometry-locked growth observables are either decisive against or silent on the modification; no parameter choice evades the result.
+
+The practical implication is that observable choice matters at least as much as theory choice when testing this kind of theory. The growth sector is not the axis of discrimination for this class of couplings. If EFC has a cosmological signature of the form contemplated here, it cannot appear primarily in $f\sigma_8$ or $E_G$-with-$\Sigma=1$; it must appear in observables that are not reducible to $f(z)$ under BAO-locked $\Omega_m$. Candidates are the lensing coupling $\Sigma$ itself, the gravitational slip $\eta = \Phi/\Psi$, the integrated Sachs--Wolfe signal which couples to $\dot\Phi + \dot\Psi$, and cross-correlations between lensing and galaxy clustering.
+
+\subsection{Relation to the discrete-gravity sector}
+
+The Grid-AQUAL prefactor $C \approx 2.32$ that motivated this test stands within the discrete-gravity framework from which it is derived. The present result does not bear on that measurement's internal consistency. What is excluded is the \emph{mapping} of $C$ into cosmological growth observables through the ansätze tested. Whether this implies that (a) the correct cosmological embedding of the discrete-gravity sector lies in a different operator class, or (b) the cosmological embedding is scale-dependent in a way that does not survive the BAO-locked $\Omega_m$ projection, is not determined here.
+
+\subsection{Non-claims}
+
+This is not a falsification of EFC as a theoretical framework: the claims of EFC about entropy flow, emergent gravitation, and the relation between local gravitational phenomenology and cosmological dynamics are not exhausted by the three coupling ansätze tested. It is not a falsification of modified gravity in general. It is not a statement that future data cannot constrain this theory class; rather, Phase 3 shows that the degeneracy is in the observable, not in the statistical noise, so $f\sigma_8$ precision improvements alone will not recover a signal.
+
+% ==============================================================
+\section{Conclusion}
+% ==============================================================
+
+We have shown that every member of the three-class operator basis for modifying the linear growth equation --- multiplicative source, local friction, and non-local memory friction --- is either structurally excluded or absorbed by the $\Omega_m$ degeneracy when BAO+$H(z)$ geometry is imposed as an external constraint. The $E_G$ statistic in its $\Sigma=1$ form carries no information independent of $f\sigma_8$ for this class. The result is a structural closure: growth observables alone are insufficient to test this class of theories. The next informative direction must lie in lensing, slip, ISW, or cross-spectrum observables that are not reducible to $f(z)$ under BAO-locked $\Omega_m$. Before further variant-building, that direction should be identified and its sensitivity mapped; the variants and infrastructure presented here stand as the empirical floor against which any such extension must be measured.
+
+% ==============================================================
+\appendix
+\section{Reproducibility}
+% ==============================================================
+
+\begin{sloppypar}
+All scripts, data, and documentation are in the \emph{energyflow-cosmology} repository under \texttt{pipelines/efc/grav\_bridge/}. The self-contained source module \texttt{src/efc\_grav\_bridge.py} defines classes \texttt{EFCVariantI} (Class A, multiplicative source), \texttt{EFCVariantJ} (Class B, local friction), and \texttt{EFCVariantK} (Class C, non-local memory friction), along with the \texttt{friction\_extra} hook on the growth engine. Data are in \texttt{data/}: \texttt{fs8\_extended.csv}, \texttt{hz\_cosmic\_chronometers.csv}, \texttt{bao\_desi\_dr2.json}. Each analysis script in \texttt{scripts/} writes timestamped JSON summaries and NPZ chains to \texttt{outputs/}. MCMC uses \texttt{emcee} 3.1.6, seed 42, with 32 walkers, 1500 production steps, and 300 burn-in for Steps 2--3 (Phase 2 minimal-MCMC demo uses 16 walkers and 500 steps). Identity sanity gates at null-coupling limits were verified to machine precision before any inference. The master result document is \texttt{docs/PHASES\_1\_TO\_4\_RESULT.md}.
+\end{sloppypar}
+
+\section{Analytic derivation of the memory kernel}
+
+Given the logistic gate $g(a') = [1 + e^{-(a'-a_t)/\delta_a}]^{-1}$, direct integration yields
+\begin{equation}
+    G(a) = \int_0^a g(a')\,da' = \delta_a\Bigl[\ln\bigl(1 + e^{(a-a_t)/\delta_a}\bigr) - \ln\bigl(1 + e^{-a_t/\delta_a}\bigr)\Bigr].
+\end{equation}
+Numerical evaluation uses $\ln(1+e^x) = \texttt{logaddexp}(0, x)$ to avoid overflow for large $|x|$. With $a_t = 0.5$, $\delta_a = 0.1$:  $G(1) \approx 0.4933$, $G(0.5) \approx 0.0687$, $G(0.1) \approx 0.0018$.
+
+% ==============================================================
+\begin{thebibliography}{99}
+% ==============================================================
+
+\small
+
+\bibitem{DESI_DR2} DESI Collaboration, \emph{DESI 2024 VI: cosmological constraints from the measurements of baryon acoustic oscillations}, arXiv:2503.14738 (2025).
+
+\bibitem{Planck2018} Planck Collaboration, \emph{Planck 2018 results.\ VI.\ Cosmological parameters}, A\&A \textbf{641}, A6 (2020). DOI:\href{https://doi.org/10.1051/0004-6361/201833910}{10.1051/0004-6361/201833910}.
+
+\bibitem{Alam2017} S.\ Alam et al., \emph{The clustering of galaxies in the completed SDSS-III BOSS: cosmological analysis of the DR12 galaxy sample}, MNRAS \textbf{470}, 2617 (2017). DOI:\href{https://doi.org/10.1093/mnras/stx721}{10.1093/mnras/stx721}.
+
+\bibitem{Beutler2012} F.\ Beutler et al., \emph{The 6dF Galaxy Survey: $z \approx 0$ measurements of the growth rate and $\sigma_8$}, MNRAS \textbf{423}, 3430 (2012). DOI:\href{https://doi.org/10.1111/j.1365-2966.2012.21136.x}{10.1111/j.1365-2966.2012.21136.x}.
+
+\bibitem{Howlett2015} C.\ Howlett et al., \emph{The clustering of the SDSS main galaxy sample --- II.\ Mock galaxy catalogues and a measurement of the growth of structure from RSD at $z = 0.15$}, MNRAS \textbf{449}, 848 (2015). DOI:\href{https://doi.org/10.1093/mnras/stu2693}{10.1093/mnras/stu2693}.
+
+\bibitem{Pezzotta2017} A.\ Pezzotta et al., \emph{The VIMOS Public Extragalactic Redshift Survey (VIPERS): the growth of structure at $0.5 < z < 1.2$}, A\&A \textbf{604}, A33 (2017). DOI:\href{https://doi.org/10.1051/0004-6361/201630295}{10.1051/0004-6361/201630295}.
+
+\bibitem{Okumura2016} T.\ Okumura et al., \emph{The Subaru FMOS galaxy redshift survey (FastSound).\ IV.\ New constraint on gravity theory from RSD at $z \approx 1.4$}, PASJ \textbf{68}, 38 (2016). DOI:\href{https://doi.org/10.1093/pasj/psw029}{10.1093/pasj/psw029}.
+
+\bibitem{GilMarin2020} H.\ Gil-Mar\'in et al., \emph{The completed SDSS-IV eBOSS: measurement of the BAO and growth rate of structure of the luminous red galaxy sample from the anisotropic power spectrum between redshifts 0.6 and 1.0}, MNRAS \textbf{498}, 2492 (2020). DOI:\href{https://doi.org/10.1093/mnras/staa2455}{10.1093/mnras/staa2455}.
+
+\bibitem{Moresco2016} M.\ Moresco et al., \emph{A 6\% measurement of the Hubble parameter at $z \approx 0.45$: direct evidence of the epoch of cosmic re-acceleration}, JCAP \textbf{05}, 014 (2016). DOI:\href{https://doi.org/10.1088/1475-7516/2016/05/014}{10.1088/1475-7516/2016/05/014}.
+
+\bibitem{Zhang2007} P.\ Zhang, M.\ Liguori, R.\ Bean, S.\ Dodelson, \emph{Probing gravity at cosmological scales by measurements which test the relationship between gravitational lensing and matter overdensity}, Phys.\ Rev.\ Lett.\ \textbf{99}, 141302 (2007). DOI:\href{https://doi.org/10.1103/PhysRevLett.99.141302}{10.1103/PhysRevLett.99.141302}.
+
+\bibitem{Reyes2010} R.\ Reyes et al., \emph{Confirmation of general relativity on large scales from weak lensing and galaxy velocities}, Nature \textbf{464}, 256 (2010). DOI:\href{https://doi.org/10.1038/nature08857}{10.1038/nature08857}.
+
+\bibitem{Blake2016} C.\ Blake et al., \emph{RCSLenS: testing gravitational physics through the cross-correlation of weak lensing and large-scale structure}, MNRAS \textbf{456}, 2806 (2016). DOI:\href{https://doi.org/10.1093/mnras/stv2875}{10.1093/mnras/stv2875}.
+
+\bibitem{Amon2018} A.\ Amon et al., \emph{KiDS+2dFLenS+GAMA: testing the cosmological model with the $E_G$ statistic}, MNRAS \textbf{479}, 3422 (2018). DOI:\href{https://doi.org/10.1093/mnras/sty1624}{10.1093/mnras/sty1624}.
+
+\bibitem{Singh2019} S.\ Singh, S.\ Alam, R.\ Mandelbaum, U.\ Seljak, S.\ Rodriguez-Torres, S.\ Ho, \emph{Probing gravity with a joint analysis of galaxy and CMB lensing and SDSS spectroscopy}, MNRAS \textbf{482}, 785 (2019). DOI:\href{https://doi.org/10.1093/mnras/sty2681}{10.1093/mnras/sty2681}.
+
+\bibitem{delaTorre2017} S.\ de la Torre et al., \emph{The VIMOS Public Extragalactic Redshift Survey (VIPERS): gravity test from the combination of redshift-space distortions and galaxy--galaxy lensing at $0.5 < z < 1.2$}, A\&A \textbf{608}, A44 (2017). DOI:\href{https://doi.org/10.1051/0004-6361/201630276}{10.1051/0004-6361/201630276}.
+
+\bibitem{ForemanMackey2013} D.\ Foreman-Mackey, D.\ W.\ Hogg, D.\ Lang, J.\ Goodman, \emph{emcee: the MCMC hammer}, PASP \textbf{125}, 306 (2013). DOI:\href{https://doi.org/10.1086/670067}{10.1086/670067}.
+
+\end{thebibliography}
+
+\end{document}
