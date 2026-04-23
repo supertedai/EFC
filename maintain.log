@@ -14,15 +14,14 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
+    Created src/efc_outcome_estimation_crosssurvey.py
+    Created examples/demo_efc_outcome_estimation_crosssurvey.py
+    Created data/parameters.json
     Generated src/, examples/, data/
   EFC_RCMP_Convergence_Observation  (missing: src/, examples/, data/)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
+    Created src/efc_rcmp_convergence_observation.py
+    Created examples/demo_efc_rcmp_convergence_observation.py
+    Created data/parameters.json
     Generated src/, examples/, data/
   EFC_compound_paper  (missing: src/, examples/, data/)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -30,14 +29,16 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response
+    Created src/efc_compound_paper.py
+    Created examples/demo_efc_compound_paper.py
+    Created data/parameters.json
     Generated src/, examples/, data/
 
   Enriched: 3/3
 
 >>> Step 1.5: Holistic Impact Analysis for 2 paper(s) <<<
 
-  EFC_Outcome_Estimation_CrossSurvey:
+  EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -46,7 +47,7 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  EFC_PreRegistered_Predictions:
+  EFC_Outcome_Estimation_CrossSurvey:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -131,14 +132,16 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-2 potential new dataset(s):
+1 potential new dataset(s):
   [DESI] data release — https://data.desi.lbl.gov/doc/releases/
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] 1 paper package enriched.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
@@ -204,7 +207,7 @@ Fix these before auto-commit:
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 1 error(s), 8 warning(s)
+[full-sync] invariants: 1 error(s), 7 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32029704: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32037990: expected='present' observed='absent'
@@ -212,7 +215,6 @@ Fix these before auto-commit:
   [WARN] §2 doi_in_index_but_not_in_doi_map:32080059: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32080080: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32080083: expected='present' observed='absent'
-  [WARN] §3 packages_below_10_10: expected=0 observed=3
   [ERROR] §5 forbidden_phrase:confirms efc: expected='absent' observed='docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/index.json'
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
