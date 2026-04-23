@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-04-23T10:32:06Z",
+  "generated_at": "2026-04-23T19:14:31Z",
   "categories": {
     "physics_test": [
       {
@@ -200,6 +200,21 @@
         "status_detail": "pending"
       },
       {
+        "test_id": "conv_efc_p1_p2_cross_probe_test_against_des_y6_vs_kids_legacy_s8_",
+        "name": "EFC P1/P2 cross-probe test against DES-Y6 vs KiDS-Legacy S8 bifurcation",
+        "description": "The 2026 S8-tension review (Pantos & Perivolaropoulos, arXiv:2602.12238) documents a striking bifurcation: DES Y6 retains 2.4-2.7σ S8 tension with the Combined-CMB baseline (Planck+ACT DR6+SPT-3G, S8=0.836+0.012/-0.013), while KiDS Legacy has shifted into consistency. This is not statistical noise — it is pipeline-dependent structure that EFC's RCMP framework predicts. Test EFC's sealed P1 (Σeff crossover at z≈0.44) and P2 (fσ8(0.7)=0.430) against DES Y6 and KiDS Legacy separately, not against Combined-CMB. If EFC's K0-controlled regime-transition is genuine, its predicted lensing-coupling amplitude should land between the two WL surveys, not at the CMB-consistent end. Outcome categories: (i) EFC predicts mid-band → validates RCMP bifurcation argument; (ii) EFC predicts CMB-consistent → treats S8 as resolvable with standard pipeline, weakens RCMP; (iii) EFC predicts DES-Y6-consistent → shifts EFC toward low-S8 framework family.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "DES Year 6 3x2pt (arXiv:2601.14559, S8 = 0.782 +0.021/-0.020 in wCDM); KiDS Legacy (Wright et al 2025, arXiv:2503.19441); S8 2026 review (arXiv:2602.12238). EFC sealed predictions: P1 Σeff(z) crossover at z≈0.44 (figshare 32037990), P2 fσ8(z=0.7)=0.430 (figshare 32013156). EFC regime-transition paper (figshare 32080059) provides K0 scan.",
+        "prediction": "EFC's K0 scan (from figshare 32080059) predicts that Σeff crossover at z≈0.44 with K0 in the optimal range [1.5, 2.5] produces an effective lensing amplitude consistent with KiDS-Legacy-like values, while DES-Y6's lower S8 reflects IA-modeling choices EFC's RCMP framework treats as regime-breaking. Quantitative expectation: EFC lensing-engine output at K0=2.0 should reproduce S8-equivalent within ±0.015 of KiDS Legacy central, and significantly offset from DES Y6 (≥1.5σ). Falsification: if EFC's sealed P1/P2 output forces S8 into DES Y6 territory, the RCMP bifurcation argument weakens.",
+        "notes": "Approved. Concrete physics test using existing sealed EFC predictions (P1 Σeff crossover at z≈0.44, P2 fσ8(0.7)=0.430) against the 2026 S8-tension bifurcation between DES-Y6 and KiDS-Legacy. Falsifiable: quantitative expectation is that EFC K0=2.0 reproduces KiDS-consistent S8 within ±0.015 and is ≥1.5σ offset from DES-Y6. If failed, RCMP bifurcation argument weakens.",
+        "quantitative_result": null,
+        "last_synced": "2026-04-23T18:17:04.934000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_efc_c_001_s_correlation_with_conscious_state_transitions",
         "name": "EFC-C-001: ∇S Correlation with Conscious State Transitions",
         "description": "Tests the foundational Stage 1→2 mapping of the EFC-C consciousness bridge. Computes spatial entropy gradient Ω = ||∇S|| from EEG data across wakefulness, REM, NREM3, and general anesthesia. If Ω does not distinguish conscious from unconscious states, the entire S→Ω mapping is empirically vacuous. This is the gate test — C2 and C3 depend on it passing.",
@@ -230,7 +245,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-04-23_044444_aqual",
+        "test_id": "grav_integration_2026-04-23_173101_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -320,7 +335,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-04-23_044444_aqual",
+        "test_id": "grav_kt1_2026-04-23_173101_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -335,7 +350,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-04-23_044444_aqual",
+        "test_id": "grav_kt3_2026-04-23_173101_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -350,7 +365,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-04-23_044444_aqual",
+        "test_id": "grav_kt2_2026-04-23_173101_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -950,7 +965,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v2.0 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.68722 p_binom=0.015625 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-04-23T05:31:21.746000000+00:00",
+        "last_synced": "2026-04-23T18:07:26.151000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1406,6 +1421,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_h0_resolution_second_law_no_go_cataldo_2026_",
+        "name": "H0-resolution second-law no-go (Cataldo 2026)",
+        "description": "Cataldo (arXiv:2604.17523, 19 Apr 2026) establishes a no-go theorem: ΛCDM+diffusion mechanisms in Unimodular Gravity cannot simultaneously satisfy the second law (requires dot Q < 0) and generate the growing effective Λ_eff > 0 needed to resolve H0 tension. Structural, applies to the entire class, not just specific realizations. This is a cross-framework constraint that should flag all atlas nodes proposing diffusion-like matter-to-dark-sector energy transfer as H0 resolution. Candidates to flag: Coupled_DE_DM, Robust_Dynamical_DE, Quintom (phantom-divide transitions), possibly Timescape. EFC does NOT fall under this since its H0-regime predictions arise from flow-coupling geometry, not diffusion-driven Λ_eff growth — but this should be documented explicitly in EFC's Framework node to preempt misclassification.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2604.17523 (theoretical / thermodynamic proof). Cross-check against Perez-Sudarsky-Wilson-Ewing (2021) and Landau et al (2022) as worked examples already covered.",
+        "prediction": "EFC predicts H0 consistency via regime-transition of the energy-flow ratio α(z) and lensing-coupling K0, not via matter-to-Λ diffusion. Therefore EFC is structurally exempt from the Cataldo no-go. Frameworks that ARE subject: any node in atlas where the H0-resolution mechanism involves monotonically growing Λ_eff from matter-to-dark-sector energy diffusion with pressureless matter EOS.",
+        "notes": "Approved. Structural thermodynamic constraint (Cataldo 2026, arXiv:2604.17523). Applies as framework_constraint across Coupled_DE_DM, Robust_Dynamical_DE, Quintom, Timescape classes. EFC is structurally exempt — H0 behavior arises from K0 regime transition, not matter-to-Λ_eff diffusion. Document this exemption explicitly in EFC Framework node on next rebuild.",
+        "quantitative_result": null,
+        "last_synced": "2026-04-23T18:16:55.634000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_ig_1_identifiability_gate_degeneracy_break_with_3_probes_",
         "name": "IG-1: Identifiability gate (α degeneracy break with ≥3 probes)",
         "description": "Identifiability gate (NOT a kill-test). Tests whether the EFC coupling parameter α can be separated from standard cosmological parameters (Ωm, σ8, H0) at >2σ using ≥3 independent probe classes. Current status: α = -0.77 ± 0.43 (1.8σ) after 5 EMCEE cycles — degeneracy-limited. This gate does not falsify GRC physics if failed; it determines whether the S-control hypothesis is operationally constrainable with current data. Failure means: theory may be correct but current instruments cannot resolve the signal. Success means: S-control is empirically testable and all other kill-tests gain statistical power. Separate from KT-1 through KT-4 because degeneracy is an observational limitation, not a logical inconsistency.",
@@ -1799,5 +1829,5 @@
       }
     ]
   },
-  "total_count": 119
+  "total_count": 121
 }
