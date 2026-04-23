@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) &ndash; Model Comparison</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.7; color: #1a1a2e; background: #ffffff; max-width: 1100px; margin: 0 auto; padding: 2rem 2.5rem 3rem; }
+    h1 { font-size: 1.8rem; font-weight: 700; color: #0d1b3e; border-bottom: 3px solid #007bff; padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+    h2 { font-size: 1.35rem; font-weight: 600; color: #1a3a6b; margin-top: 2.5rem; margin-bottom: 0.8rem; border-left: 4px solid #007bff; padding-left: 0.7rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: #2a4a7f; margin-top: 1.8rem; margin-bottom: 0.6rem; }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.88rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden; }
+    thead { background-color: #eaf0f9; }
+    th { border: 1px solid #d0d7e3; padding: 10px 12px; text-align: left; font-weight: 600; color: #1a3a6b; }
+    td { border: 1px solid #e2e6ed; padding: 8px 12px; vertical-align: top; }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code { font-family: 'Courier New', monospace; font-size: 0.90em; background: #f0f2f5; padding: 1px 5px; border-radius: 3px; }
+    pre { font-family: 'Courier New', monospace; font-size: 0.85em; background: #f0f2f5; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #007bff; overflow-x: auto; line-height: 1.5; }
+    .badge-placeholder { display:inline-block; background:#888;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-registered  { display:inline-block; background:#0a7bd1; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-efc         { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-lcdm        { display:inline-block; background:#333;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-neutral     { display:inline-block; background:#888;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .comp-card { background: #fafbfd; border: 1px solid #d0d7e3; border-left: 4px solid #007bff; border-radius: 6px; padding: 14px 18px; margin: 1rem 0 1.5rem; }
+    .comp-card h3 { margin-top: 0; }
+    .comp-card table { margin-bottom: 0.6rem; }
+    @media (max-width: 768px) { body { padding: 1rem; } h1 { font-size: 1.4rem; } table { font-size: 0.8rem; } th, td { padding: 6px 8px; } }
+  </style>
+</head>
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Model Comparison</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>
+  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Likelihood</a>
+  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Evaluation</a>
+  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600; color:#c22;">Models</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
+  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
+  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+April 2026 &middot; CC-BY-4.0
+</p>
+
+<div style="background-color:#fff8e1; border-left:4px solid #d4a017; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Status:</strong> This ledger closes the <strong>cross-model comparison</strong>
+gap from the 2026-04-23 system audit: EFC has not had a structured, apples-to-apples
+evaluation against &Lambda;CDM and competing modified-gravity models on identical
+likelihoods. Rows here report <code>&Delta;&chi;&sup2;</code>, <code>&Delta;AIC</code>,
+<code>&Delta;BIC</code>, and <code>ln K</code> with the reference model declared. Scope
+today: comparison protocol frozen, model registry seeded with placeholders, zero runs
+yet executed.
+</p>
+</div>
+
+<hr>
+
+<h2>1. Purpose</h2>
+<p>The <a href="EFC_Validation_Ledger.html">Validation Ledger</a> shows how EFC scores
+individually. This ledger shows how EFC scores <em>against alternatives</em> on
+identical data with identical likelihood and identical nuisance-parameter treatment.
+Anything else is apples-to-oranges and cannot feed
+<code>model_preference</code> in the <a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a>.</p>
+
+<hr>
+
+<h2>2. Comparison protocol (frozen)</h2>
+<p>A comparison row is valid only if all four conditions hold:</p>
+<ol>
+<li><strong>Same dataset</strong> (same DOI, same data version)</li>
+<li><strong>Same likelihood code</strong> (same <code>likelihood_id</code> from the <a href="EFC_Likelihood_Ledger.html">Likelihood Ledger</a>)</li>
+<li><strong>Same nuisance parameters and priors</strong></li>
+<li><strong>Different theoretical model</strong> (the only varying axis)</li>
+</ol>
+<p>Any deviation from these must be flagged in the row's <code>caveats</code> list.
+Comparisons that fail the protocol are rejected by the sync script.</p>
+
+<hr>
+
+<h2>3. Reported quantities</h2>
+<table>
+<thead><tr><th>Quantity</th><th>Required</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>chi2</code> per model</td><td>yes</td><td>At best-fit point</td></tr>
+<tr><td><code>&Delta;chi2</code> (model &minus; reference)</td><td>yes</td><td>Reference declared explicitly per row</td></tr>
+<tr><td><code>AIC</code>, <code>BIC</code> per model</td><td>yes</td><td>Uses <code>n_params</code> from model registry</td></tr>
+<tr><td><code>&Delta;AIC</code>, <code>&Delta;BIC</code></td><td>yes</td><td>Reference model is baseline</td></tr>
+<tr><td><code>ln Z</code> (Bayesian evidence) per model</td><td>when available</td><td>Requires nested sampling</td></tr>
+<tr><td><code>ln K = ln Z_A &minus; ln Z_B</code></td><td>when both ln Z available</td><td>Reported with Jeffreys-scale interpretation</td></tr>
+<tr><td><code>n_params</code> per model</td><td>yes</td><td>Cosmological free parameters only</td></tr>
+<tr><td>Reference model</td><td>yes</td><td>Declared per row, typically &Lambda;CDM</td></tr>
+</tbody>
+</table>
+<p>Jeffreys-scale interpretations are recorded verbatim in <code>interpretation</code> &mdash;
+never paraphrased.</p>
+
+<hr>
+
+<h2>4. Model registry</h2>
+<table>
+<thead><tr><th>model_id</th><th>Description</th><th>n_free_params (cosmo)</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><code>lcdm</code></td><td>Standard &Lambda;CDM (reference)</td><td>6</td><td><span class="badge-registered">registered</span></td></tr>
+<tr><td><code>efc_v3</code></td><td>EFC current frozen version</td><td>TBD</td><td><span class="badge-registered">registered</span></td></tr>
+<tr><td><code>horndeski_min</code></td><td>Minimal Horndeski (&alpha;<sub>B</sub>, &alpha;<sub>M</sub> free)</td><td>8</td><td><span class="badge-placeholder">placeholder</span></td></tr>
+<tr><td><code>f_of_r_hu_sawicki</code></td><td>f(R) Hu&ndash;Sawicki</td><td>7</td><td><span class="badge-placeholder">placeholder</span></td></tr>
+<tr><td><code>dgp_normal</code></td><td>DGP normal branch</td><td>6</td><td><span class="badge-placeholder">placeholder</span></td></tr>
+<tr><td><code>wcdm</code></td><td>wCDM (constant w)</td><td>7</td><td><span class="badge-placeholder">placeholder</span></td></tr>
+</tbody>
+</table>
+<p>Each registered model must declare its likelihood-compatible code path (e.g.
+MGCAMB module name, or analytic f&sigma;<sub>8</sub> implementation) in
+<code>data/models.json</code>.</p>
+
+<hr>
+
+<h2>5. Comparison entry template</h2>
+<div class="comp-card" id="template-fsigma8">
+<h3>Template: f&sigma;<sub>8</sub> 2026 &mdash; EFC vs &Lambda;CDM <span class="badge-placeholder">placeholder</span></h3>
+<pre>{
+  "comparison_id": "fsigma8_2026__efc_vs_lcdm",
+  "likelihood_id": "s8_growth_fsigma8_2026",
+  "reference_model": "lcdm",
+  "models": [
+    {"model_id": "efc_v3",  "chi2": null, "aic": null, "bic": null, "ln_z": null, "n_params": null},
+    {"model_id": "lcdm",    "chi2": null, "aic": null, "bic": null, "ln_z": null, "n_params": 6}
+  ],
+  "delta_chi2": null,
+  "delta_aic":  null,
+  "delta_bic":  null,
+  "ln_k":       null,
+  "interpretation": "PENDING",
+  "caveats": [],
+  "status": "declared"
+}</pre>
+<p>Once the run executes, numeric fields populate and <code>interpretation</code>
+receives a verbatim Jeffreys-scale phrase (e.g. "positive evidence for EFC",
+"strong evidence against EFC", "inconclusive").</p>
+</div>
+
+<hr>
+
+<h2>6. Interaction with the Evaluation Ledger</h2>
+<p>Model Comparison results feed <strong>only</strong> the
+<code>model_preference</code> field of the
+<a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a> <code>current_state</code>
+block &mdash; <em>not</em> <code>falsification_status</code>.</p>
+<table>
+<thead><tr><th>Comparison outcome</th><th>model_preference set to</th></tr></thead>
+<tbody>
+<tr><td>&Delta;AIC &gt; +5 against EFC &nbsp;<strong>or</strong>&nbsp; ln K &gt; +4.6 for &Lambda;CDM</td><td><span class="badge-lcdm">prefers_lcdm</span></td></tr>
+<tr><td>|&Delta;AIC| &le; 5 &nbsp;<strong>and</strong>&nbsp; |ln K| &le; 1</td><td><span class="badge-neutral">neutral</span></td></tr>
+<tr><td>&Delta;AIC &lt; &minus;5 for EFC &nbsp;<strong>or</strong>&nbsp; ln K &gt; +4.6 for EFC</td><td><span class="badge-efc">prefers_efc</span></td></tr>
+</tbody>
+</table>
+<p><strong>Being dispreferred by AIC is not the same as being falsified.</strong>
+See Evaluation Ledger &sect;5. Both fields are always reported.</p>
+
+<hr>
+
+<h2>7. External landscape anchor</h2>
+<p>The <a href="EFC_External_Research_Ledger.html">External Research Ledger</a>
+tracks peer-reviewed constraints on MG models (Horndeski, f(R), DGP). When an
+external paper publishes a likelihood-compatible constraint, it can be imported
+here as a placeholder row with <code>status: "declared"</code> and
+<code>caveats: ["external_posterior_import"]</code> until a native run reproduces it.</p>
+
+<hr>
+
+<h2>8. Open questions</h2>
+<ol>
+<li>Are competing models run inside this repo, or imported as external posteriors? <em>Proposal:</em> native first, external imports only flagged via <code>caveats</code>.</li>
+<li>For Horndeski / f(R), do we use MGCAMB defaults or repo-pinned configs? <em>Proposal:</em> repo-pinned configs with MGCAMB defaults documented as baseline.</li>
+<li>Should comparisons against scalar-tensor MG split by screening regime? <em>Proposal:</em> yes &mdash; separate comparison rows per regime, tied to the Validation Ledger regime matrix.</li>
+</ol>
+
+<hr>
+
+<h2>Bottom line</h2>
+<table data-section="bottom-line">
+<tbody>
+<tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">What this ledger fixes</td><td>Makes EFC-vs-alternatives quantitative on identical likelihoods. No more scattered, informal "looks comparable" claims.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard rule</td><td>Only rows meeting the four protocol conditions (&sect;2) are valid. Any deviation must appear in <code>caveats</code>.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard dependency</td><td><a href="EFC_Likelihood_Ledger.html">Likelihood Ledger</a> row with a shared <code>likelihood_id</code>.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Primary consumer</td><td><a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a> &rarr; <code>model_preference</code> only.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Status</td><td>Protocol frozen; registry seeded with &Lambda;CDM + EFC registered and four MG placeholders; zero runs executed.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Model Comparison &mdash; same data, same likelihood, different model
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) &ndash; Likelihood Ledger</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem 3rem;
+    }
+    h1 { font-size: 1.8rem; font-weight: 700; color: #0d1b3e; border-bottom: 3px solid #007bff; padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+    h2 { font-size: 1.35rem; font-weight: 600; color: #1a3a6b; margin-top: 2.5rem; margin-bottom: 0.8rem; border-left: 4px solid #007bff; padding-left: 0.7rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: #2a4a7f; margin-top: 1.8rem; margin-bottom: 0.6rem; }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.88rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden; }
+    thead { background-color: #eaf0f9; }
+    th { border: 1px solid #d0d7e3; padding: 10px 12px; text-align: left; font-weight: 600; color: #1a3a6b; }
+    td { border: 1px solid #e2e6ed; padding: 8px 12px; vertical-align: top; }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code { font-family: 'Courier New', monospace; font-size: 0.90em; background: #f0f2f5; padding: 1px 5px; border-radius: 3px; }
+    pre { font-family: 'Courier New', monospace; font-size: 0.85em; background: #f0f2f5; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #007bff; overflow-x: auto; line-height: 1.5; }
+    .badge-declared { display:inline-block; background:#555;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-runnable { display:inline-block; background:#0a7bd1; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-executed { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-frozen   { display:inline-block; background:#5b2d91; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-gap      { display:inline-block; background:#c22;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .like-card { background: #fafbfd; border: 1px solid #d0d7e3; border-left: 4px solid #007bff; border-radius: 6px; padding: 14px 18px; margin: 1rem 0 1.5rem; }
+    .like-card h3 { margin-top: 0; }
+    .like-card table { margin-bottom: 0.6rem; }
+    @media (max-width: 768px) { body { padding: 1rem; } h1 { font-size: 1.4rem; } table { font-size: 0.8rem; } th, td { padding: 6px 8px; } }
+  </style>
+</head>
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Likelihood Ledger</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>
+  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600; color:#c22;">Likelihood</a>
+  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Evaluation</a>
+  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600;">Models</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
+  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
+  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+April 2026 &middot; CC-BY-4.0
+</p>
+
+<div style="background-color:#fff8e1; border-left:4px solid #d4a017; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Status:</strong> This ledger closes the <strong>Dataset &rarr; Likelihood</strong>
+gap identified in the 2026-04-23 system audit. Every empirical test in the
+<a href="EFC_Validation_Ledger.html">Validation Ledger</a> must declare here
+<em>which likelihood, which covariance, which priors, which code</em>. Tests
+without a Likelihood Ledger row are not eligible for inclusion in the
+<a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a> global score.
+Scope today: schema frozen, worked example included, bulk population pending
+pipeline declaration by maintainer.
+</p>
+</div>
+
+<hr>
+
+<h2>1. Purpose</h2>
+<p>
+The <a href="EFC_Validation_Ledger.html">Validation Ledger</a> records <em>what
+was tested and how it scored</em>. The Likelihood Ledger records <em>how the
+score was computed</em>. Without this layer, two identically-named tests in
+different pipelines (e.g. direct chi&sup2; vs full Cobaya posterior) can produce
+different verdicts &mdash; the system becomes non-reproducible.
+</p>
+<p>
+Every row here binds a <code>test_id</code> from the Validation Ledger to a
+fully declared pipeline: likelihood type, covariance source, parameter priors,
+code, entry point, inputs, outputs, and execution status.
+</p>
+
+<hr>
+
+<h2>2. Schema (summary)</h2>
+<table>
+<thead><tr><th>Field</th><th>Meaning</th><th>Required</th></tr></thead>
+<tbody>
+<tr><td><code>test_id</code></td><td>Foreign key into <code>validation-ledger/data/tests.json</code></td><td>yes</td></tr>
+<tr><td><code>likelihood_type</code></td><td><code>gaussian</code> &middot; <code>gaussian_cov</code> &middot; <code>binned_chi2</code> &middot; <code>mcmc_posterior</code> &middot; <code>analytic</code> &middot; <code>external</code></td><td>yes</td></tr>
+<tr><td><code>covariance</code></td><td>Path or DOI of covariance matrix; <code>diagonal</code> if independent errors</td><td>yes</td></tr>
+<tr><td><code>parameter_priors</code></td><td>dict of parameter &rarr; {type, range / mean &plusmn; sigma / ref}</td><td>yes</td></tr>
+<tr><td><code>code</code></td><td><code>cobaya</code> &middot; <code>mgcamb</code> &middot; <code>cosmoSIS</code> &middot; <code>direct_python</code> &middot; <code>external</code></td><td>yes</td></tr>
+<tr><td><code>code_version</code></td><td>Git SHA / package version / external tag</td><td>recommended</td></tr>
+<tr><td><code>entry_point</code></td><td>Repo-relative script or external URL</td><td>yes when code is not external</td></tr>
+<tr><td><code>inputs</code></td><td>Dataset DOIs / repo refs</td><td>yes</td></tr>
+<tr><td><code>outputs</code></td><td>Subset of: <code>chi2</code>, <code>best_fit</code>, <code>posterior_summary</code>, <code>evidence</code>, <code>log_likelihood</code>, <code>predictive_samples</code></td><td>yes</td></tr>
+<tr><td><code>status</code></td><td><span class="badge-declared">declared</span> <span class="badge-runnable">runnable</span> <span class="badge-executed">executed</span> <span class="badge-frozen">frozen</span></td><td>yes</td></tr>
+</tbody>
+</table>
+<p>Full JSON Schema: <code>docs/likelihood-ledger/schema.json</code>.</p>
+
+<hr>
+
+<h2>3. Pipeline registry (initial scan)</h2>
+<p>Status as of ledger creation. Entries marked <span class="badge-gap">GAP</span>
+have no pipeline declared and block their Validation Ledger counterparts from
+the Evaluation Ledger.</p>
+<table>
+<thead><tr><th>Category</th><th>Likelihood type</th><th>Code</th><th>Entry point</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>BAO (DESI, eBOSS)</td><td><code>gaussian_cov</code></td><td><code>direct_python</code></td><td><code>reproduce_bao.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>CMB sanity</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td><code>reproduce_cmb_sanity.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>SPARC rotation curves</td><td><code>binned_chi2</code></td><td><code>direct_python</code></td><td><code>reproduce_sparc.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>EFC integration (background)</td><td><code>analytic</code></td><td><code>direct_python</code></td><td><code>reproduce_efc.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>f&sigma;<sub>8</sub> / S<sub>8</sub> (growth)</td><td><code>gaussian_cov</code></td><td>TBD (Cobaya likely)</td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+<tr><td>Cosmic shear (DES, KiDS, Euclid)</td><td><code>mcmc_posterior</code></td><td><code>cobaya</code> + <code>mgcamb</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+<tr><td>ISW cross-correlation</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+<tr><td>GW propagation (KC6)</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+<tr><td>Full CMB likelihood (plik_lite TTTEEE)</td><td><code>mcmc_posterior</code></td><td><code>cobaya</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>4. Worked example (template)</h2>
+<div class="like-card" id="example-fsigma8">
+<h3>Template entry: f&sigma;<sub>8</sub> growth test <span class="badge-declared">declared</span></h3>
+<pre>{
+  "test_id": "s8_growth_fsigma8_2026",
+  "likelihood_type": "gaussian_cov",
+  "covariance": "data/cov/fsigma8_compilation_2026.json",
+  "parameter_priors": {
+    "Omega_m": {"type": "uniform", "range": [0.20, 0.40]},
+    "sigma8":  {"type": "uniform", "range": [0.70, 0.90]},
+    "mu_efc":  {"type": "uniform", "range": [0.80, 1.20]}
+  },
+  "code": "direct_python",
+  "code_version": "efc@&lt;git-sha&gt;",
+  "entry_point": "pipelines/fsigma8_runner.py",
+  "inputs": [
+    "doi:10.xxxx/desi-y3-fsigma8",
+    "doi:10.xxxx/des-y6-3x2pt"
+  ],
+  "outputs": ["chi2", "best_fit", "posterior_summary"],
+  "status": "declared"
+}</pre>
+<p>Once a run produces numbers, <code>status</code> advances to <code>executed</code>
+and the result is recorded in the Validation Ledger. If the declaration is then
+frozen for publication, it advances to <code>frozen</code>.</p>
+</div>
+
+<hr>
+
+<h2>5. Linking to the rest of the stack</h2>
+<table>
+<thead><tr><th>Ledger</th><th>Role</th><th>Direction</th></tr></thead>
+<tbody>
+<tr><td><a href="EFC_Validation_Ledger.html">Validation Ledger</a></td><td>Defines <code>test_id</code> vocabulary</td><td>Likelihood Ledger references it (FK)</td></tr>
+<tr><td><a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a></td><td>Global score function, falsification verdict</td><td>Consumes Likelihood Ledger rows with <code>status &isin; {executed, frozen}</code></td></tr>
+<tr><td><a href="EFC_Model_Comparison.html">Model Comparison</a></td><td>EFC vs &Lambda;CDM vs MG on identical likelihood</td><td>Consumes Likelihood Ledger row via <code>likelihood_id</code></td></tr>
+<tr><td><a href="EFC_Gap_Analysis.html">Gap Analysis</a></td><td>Tracks missing pipelines</td><td>Every <span class="badge-gap">GAP</span> row here should appear as a gap row there</td></tr>
+<tr><td><a href="EFC_Stage-IV_Data_Roadmap.html">Stage-IV Roadmap</a></td><td>Maps survey releases to tests</td><td>Each roadmap test should eventually gain a Likelihood Ledger row</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>6. Sync hook (proposed, not yet written)</h2>
+<p><code>scripts/maintenance/efc_likelihood_sync.py</code> mirrors the pattern of
+<code>efc_ledger_impact_sync.py</code>:</p>
+<ul>
+<li>Reads every <code>test_id</code> from <code>validation-ledger/data/tests.json</code>.</li>
+<li>For each <code>vl_category &isin; {physics_test, phenomenological}</code> without a likelihood row, emits a warning.</li>
+<li>Validates that <code>inputs</code> DOIs exist in <code>validation-ledger/data/evidence-register.json</code>.</li>
+<li>Idempotent &mdash; re-runs are no-ops.</li>
+</ul>
+
+<hr>
+
+<h2>7. Open questions</h2>
+<ol>
+<li>Should likelihood entries live as separate JSON files per test, or as array entries inside <code>data/likelihoods.json</code>? <em>Proposal:</em> single-array file, mirroring <code>tests.json</code>.</li>
+<li>How are external likelihood codes (Cobaya, MGCAMB) version-pinned? <em>Proposal:</em> Git SHA in <code>code_version</code>; conda env export as supplementary artefact.</li>
+<li>Should <code>parameter_priors</code> inline ranges, or reference <code>validation-ledger/data/parameters.json</code>? <em>Proposal:</em> reference by default, allow inline only when a test uses a non-standard prior with documented rationale.</li>
+</ol>
+
+<hr>
+
+<h2>Bottom line</h2>
+<table data-section="bottom-line">
+<tbody>
+<tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">What this ledger fixes</td><td>Makes every empirical score reproducible by declaring its pipeline explicitly. No test enters the global score without a row here.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard dependency</td><td><a href="EFC_Validation_Ledger.html">Validation Ledger</a> &mdash; provides the <code>test_id</code> vocabulary every row references.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard consumers</td><td><a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a> and <a href="EFC_Model_Comparison.html">Model Comparison</a> &mdash; neither can fire without executed likelihood rows.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Current gaps</td><td>f&sigma;<sub>8</sub> / S<sub>8</sub>, cosmic shear, ISW, GW propagation, full CMB likelihood. All marked <span class="badge-gap">GAP</span> until a pipeline is wired.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Status</td><td>Schema frozen; pipeline registry populated with all current <code>reproduce_*.py</code> scripts; bulk population of new pipelines follows maintainer review.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Likelihood Ledger &mdash; pipeline declarations for reproducible scoring
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>

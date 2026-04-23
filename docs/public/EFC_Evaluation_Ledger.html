@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energy-Flow Cosmology (EFC) &ndash; Evaluation Ledger</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 16px; }
+    body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.7; color: #1a1a2e; background: #ffffff; max-width: 1100px; margin: 0 auto; padding: 2rem 2.5rem 3rem; }
+    h1 { font-size: 1.8rem; font-weight: 700; color: #0d1b3e; border-bottom: 3px solid #007bff; padding-bottom: 0.6rem; margin-bottom: 1.2rem; }
+    h2 { font-size: 1.35rem; font-weight: 600; color: #1a3a6b; margin-top: 2.5rem; margin-bottom: 0.8rem; border-left: 4px solid #007bff; padding-left: 0.7rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: #2a4a7f; margin-top: 1.8rem; margin-bottom: 0.6rem; }
+    p { margin: 0.6rem 0; }
+    a { color: #0056b3; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #003d80; }
+    hr { border: none; border-top: 1px solid #d0d7e3; margin: 2rem 0; }
+    ul, ol { padding-left: 1.6rem; }
+    li { margin-bottom: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.88rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-radius: 6px; overflow: hidden; }
+    thead { background-color: #eaf0f9; }
+    th { border: 1px solid #d0d7e3; padding: 10px 12px; text-align: left; font-weight: 600; color: #1a3a6b; }
+    td { border: 1px solid #e2e6ed; padding: 8px 12px; vertical-align: top; }
+    tbody tr:hover { background-color: #f5f8fd; }
+    strong { color: #0d1b3e; }
+    sub, sup { font-size: 0.78em; }
+    code { font-family: 'Courier New', monospace; font-size: 0.90em; background: #f0f2f5; padding: 1px 5px; border-radius: 3px; }
+    pre { font-family: 'Courier New', monospace; font-size: 0.85em; background: #f0f2f5; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #007bff; overflow-x: auto; line-height: 1.5; }
+    .badge-pass    { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-tension { display:inline-block; background:#d4a017; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-fail    { display:inline-block; background:#c22;    color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    .badge-kc      { display:inline-block; background:#5b2d91; color:#fff; font-size:0.75em; padding:2px 7px; border-radius:3px; }
+    @media (max-width: 768px) { body { padding: 1rem; } h1 { font-size: 1.4rem; } table { font-size: 0.8rem; } th, td { padding: 6px 8px; } }
+  </style>
+</head>
+<body>
+
+<h1>Energy-Flow Cosmology (EFC) &mdash; Evaluation Ledger</h1>
+
+<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
+  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>
+  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Likelihood</a>
+  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600; color:#c22;">Evaluation</a>
+  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600;">Models</a>
+  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
+  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
+  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
+  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
+  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
+  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
+</div>
+
+<p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
+Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
+ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
+April 2026 &middot; CC-BY-4.0
+</p>
+
+<div style="background-color:#fff8e1; border-left:4px solid #d4a017; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>Status:</strong> This ledger closes the <strong>global closure</strong> gap
+from the 2026-04-23 system audit: per-test outcomes are aggregated into a single,
+quantitative verdict via frozen thresholds and a documented score function.
+Verdicts are computed, not paraphrased. Falsification status and model preference
+are reported as <em>separate</em> fields &mdash; conflation was an explicit audit finding.
+Scope today: thresholds frozen, aggregation formula defined, weight registry
+seeded with defaults; live <code>current_state</code> computation after Likelihood
+Ledger pipelines execute.
+</p>
+</div>
+
+<hr>
+
+<h2>1. Purpose</h2>
+<p>The <a href="EFC_Validation_Ledger.html">Validation Ledger</a> records per-test
+results. The <a href="EFC_Likelihood_Ledger.html">Likelihood Ledger</a> records
+how those results were computed. This ledger computes the <strong>global verdict</strong>:
+how results combine, where the falsification line is, and what the current state
+of the framework is.</p>
+<p>Without this layer, the system can produce a wall of test outcomes without ever
+answering: is EFC currently falsified, in tension, or acceptable &mdash; and how
+does it compare overall against &Lambda;CDM?</p>
+
+<hr>
+
+<h2>2. Per-test verdict thresholds</h2>
+<p>Applied to every test with a <code>chi2</code> or <code>delta_chi2</code> in the
+Likelihood Ledger before aggregation.</p>
+<table>
+<thead><tr><th>Verdict</th><th>Criterion</th><th>Interpretation</th></tr></thead>
+<tbody>
+<tr><td><span class="badge-pass">PASS</span></td><td>|&Delta;&chi;&sup2;| &lt; 1</td><td>Indistinguishable from reference at current precision</td></tr>
+<tr><td><span class="badge-tension">TENSION</span></td><td>1 &le; |&Delta;&chi;&sup2;| &lt; 9 &nbsp; (~1&ndash;3&sigma;)</td><td>Notable deviation; not decisive</td></tr>
+<tr><td><span class="badge-fail">FAIL</span></td><td>|&Delta;&chi;&sup2;| &ge; 9 &nbsp; (&gt;3&sigma;)</td><td>Decisive deviation against expectation</td></tr>
+</tbody>
+</table>
+<p>Validation Ledger tests that carry the vocabulary value <code>COLLAPSED</code>
+map to <span class="badge-fail">FAIL</span>; <code>MARGINAL</code> maps to
+<span class="badge-tension">TENSION</span> when <code>|&Delta;&chi;&sup2;|</code>
+is unavailable.</p>
+
+<hr>
+
+<h2>3. Global score function</h2>
+<p><strong>Frequentist form (always computed):</strong></p>
+<pre>EFC_score = &Sigma;&#x1D62;  w&#x1D62; &middot; &Delta;&chi;&sup2;&#x1D62;</pre>
+<p>Sum runs over <strong>inference-grade tests only</strong> &mdash; those with a
+<a href="EFC_Likelihood_Ledger.html">Likelihood Ledger</a> row in status
+<code>executed</code> or <code>frozen</code>. Weights w&#x1D62; declared in the
+weight registry (default 1.0).</p>
+<p><strong>Bayesian form (when evidence is available):</strong></p>
+<pre>ln K_total = &Sigma;&#x1D62;  ln K&#x1D62;    &nbsp;&nbsp;(log-Bayes factor, EFC vs reference, per test)</pre>
+<p>Reported alongside the frequentist score whenever the Likelihood Ledger row
+includes <code>evidence</code> in its <code>outputs</code>.</p>
+
+<hr>
+
+<h2>4. System-level falsification rule</h2>
+<p>EFC is <strong>falsified at the system level</strong> if <em>either</em>:</p>
+<ol>
+<li>Any <span class="badge-kc">KC</span>-tagged kill-criterion test returns <span class="badge-fail">FAIL</span>, <em>or</em></li>
+<li>The global posterior odds <code>K_total</code> against &Lambda;CDM exceed <strong>1 : 100</strong> (decisive against, Jeffreys' scale).</li>
+</ol>
+<p>A non-kill-criterion test returning <span class="badge-fail">FAIL</span> produces
+<span class="badge-tension">TENSION</span> at the system level &mdash; flagged for
+review but not falsifying. The kill-criterion registry is pulled from
+<code>validation-ledger/data/grav.json</code> and mirrored into
+<code>evaluation-ledger/data/evaluation.json["thresholds"]["kill_criterion_ids"]</code>.</p>
+
+<hr>
+
+<h2>5. Falsification status &ne; model preference</h2>
+<p>An explicit gap in the 2026-04-23 audit: "non-rejectable" and "best model"
+were conflated. This ledger reports both as <strong>separate fields</strong>.</p>
+<table>
+<thead><tr><th>Field</th><th>Values</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td><code>falsification_status</code></td><td><code>non-falsified</code> &middot; <code>tension</code> &middot; <code>falsified</code></td><td>Per rule in &sect;4</td></tr>
+<tr><td><code>model_preference</code></td><td><code>prefers_efc</code> &middot; <code>neutral</code> &middot; <code>prefers_lcdm</code> &middot; <code>insufficient_data</code></td><td>Per &Delta;AIC / ln K from <a href="EFC_Model_Comparison.html">Model Comparison</a></td></tr>
+</tbody>
+</table>
+<p>Both are reported every release. "&Lambda;CDM is currently preferred" and
+"EFC is currently not falsified" can both be true simultaneously &mdash; this
+ledger refuses to paper over that.</p>
+
+<hr>
+
+<h2>6. Weight registry</h2>
+<p>Non-unit weights must carry a rationale. Default is <code>weight = 1.0</code>.</p>
+<pre>{
+  "test_id": "s8_growth_fsigma8_2026",
+  "weight": 1.0,
+  "rationale": "Primary observable for &mu; &lt; 1 prediction"
+}</pre>
+<p>Down-weighting without a rationale string is rejected by the sync script.
+This blocks silent suppression of inconvenient tensions.</p>
+
+<hr>
+
+<h2>7. Atlas linkage <span class="badge-kc">read-only</span></h2>
+<p>The <a href="EFC_Atlas.html">Atlas</a> defines the model space. This ledger
+<strong>reads from</strong> Atlas via <code>data/atlas-link.json</code> to
+project per-test posteriors back into Atlas viability regions for reporting.</p>
+<table>
+<thead><tr><th>Field</th><th>Value / meaning</th></tr></thead>
+<tbody>
+<tr><td><code>atlas_ref</code></td><td>Pointer to the Atlas resource being consumed</td></tr>
+<tr><td><code>consumed_fields</code></td><td>e.g. <code>allowed_region</code>, <code>excluded_region</code></td></tr>
+<tr><td><code>modifies_atlas</code></td><td><code>false</code> (schema-enforced constant)</td></tr>
+</tbody>
+</table>
+<p><strong>This ledger does not write to the Atlas.</strong> Downstream projection
+(posteriors &rarr; Atlas regions) is a separate step; Atlas remains the source
+of truth for its own content.</p>
+
+<hr>
+
+<h2>8. Reporting block (per release)</h2>
+<p>Every generation of the ledger publishes a <code>current_state</code> block:</p>
+<pre>{
+  "falsification_status": "non-falsified | tension | falsified",
+  "model_preference":     "prefers_efc | neutral | prefers_lcdm | insufficient_data",
+  "efc_score":            &lt;number or null&gt;,
+  "ln_k_total":           &lt;number or null&gt;,
+  "tension_tests":        ["test_id", ...],
+  "fail_tests":           ["test_id", ...]
+}</pre>
+
+<hr>
+
+<h2>9. Open questions</h2>
+<ol>
+<li>Default weighting &mdash; uniform (w&#x1D62;=1) or proportional to data volume? <em>Current:</em> uniform with opt-in rationale-backed overrides.</li>
+<li>Correlated tests &mdash; should the sum be covariance-aware when observables overlap? <em>Planned:</em> covariance-aware variant for related observables.</li>
+<li>Kill-criterion registry &mdash; hard-coded here or pulled from <code>grav.json</code>? <em>Proposal:</em> pulled from <code>grav.json</code> (single source of truth).</li>
+</ol>
+
+<hr>
+
+<h2>Bottom line</h2>
+<table data-section="bottom-line">
+<tbody>
+<tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">What this ledger fixes</td><td>Turns per-test results into a single quantitative system verdict with frozen thresholds &mdash; no more semantic verdicts.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard rule</td><td>Falsification status and model preference are reported separately, always. Conflation is blocked by schema.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Hard dependency</td><td><a href="EFC_Likelihood_Ledger.html">Likelihood Ledger</a> rows in status <code>executed</code> or <code>frozen</code>. No pipeline, no score.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Atlas safety</td><td>Read-only linkage via <code>atlas-link.json</code>; <code>modifies_atlas</code> pinned to <code>false</code> in schema.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Status</td><td>Thresholds and formulas frozen; weight registry seeded; <code>current_state</code> computation blocked until the first Likelihood Ledger pipeline executes.</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<p style="font-size:13px; color:#666;">
+&copy; 2026 Energy-Flow Cosmology Initiative &middot; Evaluation Ledger &mdash; frozen thresholds, documented aggregation, separated verdicts
+</p>
+
+<script>
+function notifyParentHeight() {
+  var h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ efc_iframe_height: h }, '*');
+}
+window.addEventListener('load', notifyParentHeight);
+window.addEventListener('resize', notifyParentHeight);
+new MutationObserver(notifyParentHeight).observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>
