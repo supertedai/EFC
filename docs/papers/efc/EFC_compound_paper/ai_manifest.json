@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-22",
+  "generated": "2026-04-23",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_compound_paper.pdf",
@@ -37,8 +37,16 @@
       "bytes": 246
     },
     {
+      "path": "data/parameters.json",
+      "bytes": 3662
+    },
+    {
       "path": "efc-compound-paper.jsonld",
       "bytes": 674
+    },
+    {
+      "path": "examples/demo_efc_compound_paper.py",
+      "bytes": 5389
     },
     {
       "path": "index.json",
@@ -51,8 +59,16 @@
     {
       "path": "schema.json",
       "bytes": 613
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 170
+    },
+    {
+      "path": "src/efc_compound_paper.py",
+      "bytes": 9921
     }
   ],
-  "n_files": 10,
+  "n_files": 14,
   "n_pdfs": 1
 }
