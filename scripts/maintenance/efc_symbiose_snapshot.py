@@ -247,8 +247,21 @@ def main():
         print("NOTE: For live Symbiose data, use MCP tools in Claude session")
         snapshot = load_symbiose_snapshot(None)
 
-    # Write snapshot
+    # Write snapshot — preserve generated_at when content is unchanged
+    # so that re-running the script (e.g. from SessionStart hook) does not
+    # produce a daily diff in .claude/symbiose_snapshot.json.
     os.makedirs(os.path.dirname(SNAPSHOT_PATH), exist_ok=True)
+    if os.path.exists(SNAPSHOT_PATH):
+        try:
+            with open(SNAPSHOT_PATH) as f:
+                existing = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            existing = None
+        if isinstance(existing, dict):
+            new_no_ts = {k: v for k, v in snapshot.items() if k != "generated_at"}
+            old_no_ts = {k: v for k, v in existing.items() if k != "generated_at"}
+            if new_no_ts == old_no_ts and "generated_at" in existing:
+                snapshot["generated_at"] = existing["generated_at"]
     with open(SNAPSHOT_PATH, "w") as f:
         json.dump(snapshot, f, indent=2)
 
