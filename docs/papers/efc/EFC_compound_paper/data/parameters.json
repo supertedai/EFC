@@ -1,0 +1,134 @@
+{
+  "paper_metadata": {
+    "title": "Parameter-Controlled Regime Transitions in Energy-Flow Cosmology: Cross-Sector Consistency Between Lensing and Background Observables",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "doi": "10.6084/m9.figshare.32080059",
+    "date": "2026-04-21",
+    "version": "v0.5",
+    "license": "CC-BY-4.0"
+  },
+  "P1_lensing_sector": {
+    "description": "Pre-registered prediction P1: sign-changing crossover in Sigma_eff(z)",
+    "crossover_redshift": 0.44,
+    "crossover_uncertainty": 0.03,
+    "target_survey": "Euclid DR1 (October 2026)",
+    "parameters": {
+      "K0": {
+        "value": 1.37,
+        "description": "Kinetic stiffness scale, primary control parameter",
+        "scan_range": [
+          0.5,
+          4.0
+        ],
+        "delta_z_across_scan": 0.87
+      },
+      "V_prime": {
+        "value": 0.05,
+        "description": "Potential gradient driving lambda-dynamics"
+      },
+      "alpha": {
+        "value": 0.1,
+        "description": "Coupling constant"
+      },
+      "rho_crit": {
+        "value": 1.0,
+        "description": "Critical density (normalised units)"
+      },
+      "gamma0": {
+        "value": 0.02,
+        "description": "Backreaction amplitude"
+      }
+    },
+    "amplitude_rescaling": {
+      "parameters_rescaled": [
+        "alpha",
+        "V_prime",
+        "gamma0"
+      ],
+      "rescaling_range": "x50",
+      "delta_z_across_rescaling": 0.11
+    },
+    "BBKS_cross_validation": {
+      "description": "Sign-change robust under BBKS transfer function",
+      "quantitative_shift_bound": 0.06
+    }
+  },
+  "P2_growth_sector": {
+    "description": "Pre-registered prediction P2: sealed f*sigma8 prediction",
+    "fsigma8_z07": {
+      "value": 0.43,
+      "uncertainty": 0.02,
+      "redshift": 0.7
+    },
+    "target_survey": "DESI DR2",
+    "parameters": {
+      "z_t": {
+        "value": 0.44,
+        "description": "Transition redshift"
+      },
+      "n": {
+        "value": 4.0,
+        "description": "Steepness of gate function"
+      },
+      "mu0": {
+        "value": 0.07,
+        "description": "Perturbation-level damping amplitude"
+      }
+    }
+  },
+  "cross_sector_consistency": {
+    "description": "Both sectors predict mu < 1 (entropic damping) despite disjoint parameterizations",
+    "comparison_redshift": 0.44,
+    "relative_mu_difference_percent": 11,
+    "sign_agreement": true,
+    "not_shared_by": [
+      "LCDM",
+      "DGP",
+      "Galileon",
+      "f(R)"
+    ]
+  },
+  "framework_comparison": {
+    "total_frameworks_in_atlas": 42,
+    "frameworks_addressing_slip": 13,
+    "frameworks_list": [
+      "EFC",
+      "Verlinde_2016",
+      "Horndeski",
+      "Galileon",
+      "f(R)_Starobinsky",
+      "DGP",
+      "MOND",
+      "EDE",
+      "Multi-Field-EDE",
+      "Quintessence",
+      "Thawing-Quintessence",
+      "w0waCDM",
+      "LCDM"
+    ],
+    "non_monotonic_sign_change": [
+      "EFC"
+    ],
+    "monotonic_profiles": 12,
+    "atlas_snapshot_date": "2026-04-21"
+  },
+  "discrimination_vectors": {
+    "D1": "Non-monotonic Sigma_eff(z) sign change (primary)",
+    "D4": "mu < 1 cross-sector consistency (primary)",
+    "D2": "Conditional secondary test",
+    "D3": "Conditional secondary test"
+  },
+  "fiducial_cosmology": {
+    "Omega_m": 0.315,
+    "sigma8": 0.811,
+    "h": 0.674
+  },
+  "related_dois": {
+    "EFC_action": "10.6084/m9.figshare.31876324",
+    "tech_note_I": "10.6084/m9.figshare.31333414",
+    "tech_note_II": "10.6084/m9.figshare.31333600",
+    "P1_pre_registration": "10.6084/m9.figshare.32037990",
+    "P2_pre_registration": "10.6084/m9.figshare.32013156"
+  }
+}

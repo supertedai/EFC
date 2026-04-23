@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-22",
+  "generated": "2026-04-23",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_RCMP_Convergence_Observation.pdf",
@@ -37,8 +37,16 @@
       "bytes": 274
     },
     {
+      "path": "data/parameters.json",
+      "bytes": 1925
+    },
+    {
       "path": "efc-rcmp-convergence-observation.jsonld",
       "bytes": 689
+    },
+    {
+      "path": "examples/demo_efc_rcmp_convergence_observation.py",
+      "bytes": 2339
     },
     {
       "path": "index.json",
@@ -51,8 +59,16 @@
     {
       "path": "schema.json",
       "bytes": 627
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 185
+    },
+    {
+      "path": "src/efc_rcmp_convergence_observation.py",
+      "bytes": 9367
     }
   ],
-  "n_files": 10,
+  "n_files": 14,
   "n_pdfs": 1
 }
