@@ -1125,15 +1125,50 @@ Rules:
 - data_json should contain every numerical value mentioned in the paper
 - Keep each file under 200 lines"""
 
-    result = call_llm(prompt, max_tokens=6000)
+    result = call_llm(prompt, max_tokens=8000)
     if not result:
         return
 
+    files = None
+    candidate = _strip_fences(result)
     try:
-        files = json.loads(result)
-    except json.JSONDecodeError:
-        print(f"    [WARN] Could not parse code generation response")
-        return
+        files = json.loads(candidate)
+    except json.JSONDecodeError as e:
+        repaired = _repair_json(candidate)
+        if repaired:
+            files = repaired
+        else:
+            m = re.search(r'\{.*\}', candidate, re.DOTALL)
+            if m:
+                try:
+                    files = json.loads(m.group(0))
+                except json.JSONDecodeError:
+                    files = None
+        if not files:
+            print(f"    [WARN] Could not parse code generation response ({e})")
+            print(f"           First 200 chars: {candidate[:200]!r}")
+
+    if not files:
+        # One retry with a stricter prompt before giving up.
+        strict = prompt + "\n\nIMPORTANT: Respond with ONLY the JSON object. No markdown fences. No prose."
+        result = call_llm(strict, max_tokens=8000)
+        if not result:
+            return
+        candidate = _strip_fences(result)
+        try:
+            files = json.loads(candidate)
+        except json.JSONDecodeError:
+            files = _repair_json(candidate)
+        if not files:
+            m = re.search(r'\{.*\}', candidate, re.DOTALL)
+            if m:
+                try:
+                    files = json.loads(m.group(0))
+                except json.JSONDecodeError:
+                    pass
+        if not files:
+            print(f"    [WARN] Code generation failed after retry for {os.path.basename(dirpath)}")
+            return
 
     # Write src/
     src_dir = os.path.join(dirpath, "src")
