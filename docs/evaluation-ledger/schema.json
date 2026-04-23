@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://energyflow-cosmology.com/evaluation-ledger/schema.json",
+  "title": "EFC Evaluation Ledger",
+  "description": "Schema for global verdict thresholds, weights, and aggregated scores.",
+  "type": "object",
+  "required": ["version", "generated_at", "thresholds", "weights", "current_state"],
+  "properties": {
+    "version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generator": {"type": "string"},
+    "thresholds": {
+      "type": "object",
+      "required": ["pass_max_dchi2", "tension_max_dchi2"],
+      "properties": {
+        "pass_max_dchi2": {"type": "number", "default": 1.0},
+        "tension_max_dchi2": {"type": "number", "default": 9.0},
+        "kill_criterion_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "test_ids that, if FAIL, falsify the system"
+        },
+        "decisive_log_bayes": {"type": "number", "default": 4.6}
+      }
+    },
+    "weights": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/weight_entry"}
+    },
+    "current_state": {
+      "type": "object",
+      "required": ["falsification_status", "model_preference"],
+      "properties": {
+        "falsification_status": {
+          "type": "string",
+          "enum": ["non-falsified", "tension", "falsified"]
+        },
+        "model_preference": {
+          "type": "string",
+          "enum": ["prefers_efc", "neutral", "prefers_lcdm", "insufficient_data"]
+        },
+        "efc_score": {"type": ["number", "null"]},
+        "ln_k_total": {"type": ["number", "null"]},
+        "tension_tests": {"type": "array", "items": {"type": "string"}},
+        "fail_tests": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "atlas_link": {
+      "type": "object",
+      "properties": {
+        "atlas_ref": {"type": ["string", "null"]},
+        "consumed_fields": {"type": "array", "items": {"type": "string"}},
+        "modifies_atlas": {"type": "boolean", "const": false}
+      }
+    }
+  },
+  "definitions": {
+    "weight_entry": {
+      "type": "object",
+      "required": ["test_id", "weight"],
+      "properties": {
+        "test_id": {"type": "string"},
+        "weight": {"type": "number", "minimum": 0},
+        "rationale": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

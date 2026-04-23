@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://energyflow-cosmology.com/model-comparison/schema.json",
+  "title": "EFC Model Comparison Ledger",
+  "description": "Schema for cross-model evaluations on shared dataset+likelihood.",
+  "type": "object",
+  "required": ["version", "generated_at", "models", "comparisons"],
+  "properties": {
+    "version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generator": {"type": "string"},
+    "models": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/model_entry"}
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/comparison_entry"}
+    }
+  },
+  "definitions": {
+    "model_entry": {
+      "type": "object",
+      "required": ["model_id", "name", "status"],
+      "properties": {
+        "model_id": {"type": "string"},
+        "name": {"type": "string"},
+        "n_free_params_cosmo": {"type": ["integer", "null"]},
+        "code_path": {"type": ["string", "null"]},
+        "code_version": {"type": ["string", "null"]},
+        "status": {"type": "string", "enum": ["placeholder", "registered", "frozen"]},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "comparison_entry": {
+      "type": "object",
+      "required": ["comparison_id", "likelihood_id", "models", "reference_model", "status"],
+      "properties": {
+        "comparison_id": {"type": "string"},
+        "likelihood_id": {
+          "type": "string",
+          "description": "Foreign key to likelihood-ledger/data/likelihoods.json"
+        },
+        "reference_model": {"type": "string"},
+        "models": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["model_id"],
+            "properties": {
+              "model_id": {"type": "string"},
+              "chi2": {"type": ["number", "null"]},
+              "aic":  {"type": ["number", "null"]},
+              "bic":  {"type": ["number", "null"]},
+              "ln_z": {"type": ["number", "null"]},
+              "n_params": {"type": ["integer", "null"]}
+            }
+          }
+        },
+        "delta_chi2": {"type": ["number", "null"]},
+        "delta_aic":  {"type": ["number", "null"]},
+        "delta_bic":  {"type": ["number", "null"]},
+        "ln_k":       {"type": ["number", "null"]},
+        "interpretation": {
+          "type": "string",
+          "description": "Verbatim Jeffreys-scale interpretation, e.g. 'inconclusive', 'positive evidence for EFC', 'strong evidence against EFC'"
+        },
+        "caveats": {"type": "array", "items": {"type": "string"}},
+        "status": {"type": "string", "enum": ["declared", "executed", "frozen"]}
+      }
+    }
+  }
+}
