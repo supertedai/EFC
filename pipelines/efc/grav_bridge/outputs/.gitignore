@@ -1,0 +1,5 @@
+# Ignore MCMC outputs (regenerate via scripts)
+*.npz
+*.json
+!.gitignore
+step*_plots_*/
