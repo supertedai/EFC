@@ -111,6 +111,33 @@ def write_always(path: str, content: str) -> None:
         fh.write(content)
 
 
+def write_json_idempotent(path: str, payload: dict, ts_field: str = "generated") -> bool:
+    """Write payload as JSON, but preserve the existing ts_field timestamp
+    when no other field has changed. Prevents daily diff churn on files that
+    only differ in their auto-stamped 'generated' date.
+
+    Returns True if the file was (re)written, False if untouched.
+    """
+    if os.path.exists(path):
+        try:
+            with open(path) as fh:
+                existing = json.load(fh)
+        except (OSError, json.JSONDecodeError):
+            existing = None
+        if isinstance(existing, dict):
+            old_no_ts = {k: v for k, v in existing.items() if k != ts_field}
+            new_no_ts = {k: v for k, v in payload.items() if k != ts_field}
+            if old_no_ts == new_no_ts:
+                return False
+            if ts_field in existing and ts_field not in payload:
+                payload = dict(payload)
+                payload[ts_field] = existing[ts_field]
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    with open(path, "w") as fh:
+        fh.write(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
+    return True
+
+
 def build_for_dir(name: str):
     d = os.path.join(ROOT, name)
     if not os.path.isdir(d):
@@ -306,8 +333,7 @@ Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
     pkg["files"] = [{"path": p, "bytes": s} for p, s in final_files if p != "ai_manifest.json"]
     pkg["n_files"] = len(final_files)
     pkg["n_pdfs"] = len(pdfs)
-    write_always(os.path.join(d, "ai_manifest.json"),
-                 json.dumps(pkg, indent=2, ensure_ascii=False) + "\n")
+    write_json_idempotent(os.path.join(d, "ai_manifest.json"), pkg)
 
     return {
         "name": name, "title": title, "track": track, "regimes": regs,
@@ -327,12 +353,11 @@ def main():
         if s:
             summary.append(s)
     out_path = os.path.join(ROOT, "ai_friendly_index.json")
-    with open(out_path, "w") as fh:
-        json.dump({
-            "generated": TODAY,
-            "n_packages": len(summary),
-            "packages": summary,
-        }, fh, indent=2, ensure_ascii=False)
+    write_json_idempotent(out_path, {
+        "generated": TODAY,
+        "n_packages": len(summary),
+        "packages": summary,
+    })
     created_total = sum(len(s["created"]) for s in summary)
     print(f"[efc-gen] {len(summary)} packages · {created_total} new files · catalogue: {out_path}")
     return 0
