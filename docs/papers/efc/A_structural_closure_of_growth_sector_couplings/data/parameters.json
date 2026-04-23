@@ -1,0 +1,110 @@
+{
+  "_description": "Key numerical values from Magnusson (2026) \u2014 A structural closure of growth-sector couplings.",
+  "constants": {
+    "C_EFC": {
+      "value": 2.32,
+      "description": "Grid-AQUAL discrete-gravity prefactor from lattice kill test"
+    },
+    "C_squared": {
+      "value": 5.3824,
+      "description": "C^2, enters Geff/G modification"
+    },
+    "C_squared_minus_1": {
+      "value": 4.3824,
+      "description": "C^2 - 1, amplitude of Geff deviation from GR"
+    },
+    "Sigma_EFC": {
+      "value": 1.0,
+      "description": "Gravitational slip parameter assumed for EG statistic"
+    }
+  },
+  "fiducial_cosmology": {
+    "Omega_m0": 0.295,
+    "H0_km_s_Mpc": 67.36,
+    "sigma8": 0.811,
+    "description": "Fiducial flat LCDM background parameters"
+  },
+  "gate_parameters": {
+    "a_t": {
+      "value": 0.5,
+      "description": "Logistic gate transition scale factor"
+    },
+    "delta_a": {
+      "value": 0.1,
+      "description": "Logistic gate width"
+    },
+    "k_Lambda_h_per_Mpc": {
+      "value": 0.2,
+      "description": "Fourier low-pass screening scale for Class A"
+    }
+  },
+  "integrated_gate_kernel_G": {
+    "G_at_a1.0": {
+      "value": 0.5,
+      "description": "Memory kernel G(a=1)"
+    },
+    "G_at_a0.5": {
+      "value": 0.069,
+      "description": "Memory kernel G(a=0.5)"
+    },
+    "G_at_a0.1": {
+      "value": 0.002,
+      "description": "Memory kernel G(a=0.1)"
+    },
+    "g_over_G_at_a0.5": {
+      "value": 7,
+      "description": "Ratio g/G at a=0.5"
+    },
+    "g_over_G_at_a1.0": {
+      "value": 2,
+      "description": "Ratio g/G at a=1.0"
+    }
+  },
+  "coupling_classes": {
+    "A": {
+      "type": "multiplicative Geff on Poisson source",
+      "equation": "Geff/G = 1 + (C^2-1) g(a) s(k)",
+      "free_parameters": [
+        "C",
+        "a_t",
+        "delta_a",
+        "k_Lambda"
+      ]
+    },
+    "B": {
+      "type": "additive local friction on velocity term",
+      "equation": "extra friction = beta * g(a) / a",
+      "free_parameters": [
+        "beta",
+        "a_t",
+        "delta_a"
+      ],
+      "LCDM_limit": "beta = 0"
+    },
+    "C": {
+      "type": "additive non-local memory friction",
+      "equation": "extra friction = beta * G(a) / a",
+      "free_parameters": [
+        "beta",
+        "a_t",
+        "delta_a"
+      ],
+      "LCDM_limit": "beta = 0"
+    }
+  },
+  "datasets_used": [
+    "DESI DR2 BAO (DM/rd, DH/rd)",
+    "Cosmic-chronometer H(z)",
+    "f sigma_8 compilation with BOSS DR12 covariance",
+    "EG statistic \u2014 5 published measurements"
+  ],
+  "key_findings": {
+    "structural_closure": "All three coupling classes are either structurally excluded or absorbed by Omega_m-coupling degeneracy once geometry is locked by BAO+H(z).",
+    "EG_information_content": "EG with Sigma=1 carries no independent information beyond f sigma_8.",
+    "next_informative_directions": [
+      "lensing",
+      "gravitational slip",
+      "cross-correlations"
+    ]
+  }
+}
