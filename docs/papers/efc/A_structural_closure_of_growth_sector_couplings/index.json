@@ -1,16 +1,111 @@
 {
+  "$schema": "./schema.json",
   "id": "a-structural-closure-of-growth-sector-couplings",
-  "title": "A structural closure of growth sector couplings",
+  "title": "A structural closure of growth-sector couplings between discrete gravity and cosmology",
+  "description": "This paper tests three operator-level ways for Energy-Flow Cosmology (EFC) to couple a discrete-gravity prefactor to the linear growth of structure: multiplicative Geff on the Poisson source, additive local friction, and additive non-local (memory) friction. Using DESI DR2 BAO, cosmic-chronometer H(z), an f\u03c38 compilation, and the EG statistic, it shows each class is either structurally excluded or fully degenerate with \u03a9m once geometry is locked, implying growth-only observables cannot discriminate this theory class.",
+  "version": "1.0",
+  "date": "2026-04-23",
+  "doi": "10.6084/m9.figshare.32084670",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "modified gravity",
+    "growth of structure",
+    "f\u03c38",
+    "BAO",
+    "cosmic chronometers",
+    "EG statistic",
+    "coupling structure",
+    "Geff",
+    "friction term",
+    "DESI DR2",
+    "discrete gravity"
+  ],
   "author": "Morten Magnusson",
-  "orcid": "0009-0002-4860-5095",
-  "affiliation": "Symbiose Research",
-  "license": "CC-BY-4.0",
-  "track": "Spor 1 — Galactic/Cosmological",
-  "regimes": [],
-  "primary_pdf": "A_structural_closure_of_growth_sector_couplings.pdf",
+  "core_equations": {
+    "linear_growth_lcdm": {
+      "latex": "\\delta''(a) + \\left[\\frac{3}{a} + \\frac{E'(a)}{E(a)}\\right] \\delta'(a) - \\frac{3\\,\\Omega_m}{2\\,a^5 E(a)^2} \\, \\delta(a) = 0,\\quad E(a) = H(a)/H_0",
+      "description": "Baseline linear growth equation for matter overdensity in flat \u039bCDM, written in scale factor a, with Hubble-normalized expansion E(a)."
+    },
+    "multiplicative_geff": {
+      "latex": "\\frac{G_{\\mathrm{eff}}(k,a)}{G} = 1 + (C^2 - 1)\\, g(a)\\, s(k),\\quad g(a) = \\left[1 + e^{-(a-a_t)/\\delta a}\\right]^{-1},\\quad s(k) = \\left[1 + (k/k_\\Lambda)^2\\right]^{-1}",
+      "description": "Class A coupling: a logistic temporal gate and low-pass Fourier screening modulate an effective gravitational coupling that multiplies the Poisson source term in the growth equation."
+    },
+    "local_friction": {
+      "latex": "\\delta''(a) + \\left[\\frac{3}{a} + \\frac{E'(a)}{E(a)} + \\beta\\,\\frac{g(a)}{a}\\right] \\delta'(a) - \\frac{3\\,\\Omega_m}{2\\,a^5 E(a)^2} \\, \\delta(a) = 0",
+      "description": "Class B coupling: an additive, gate-activated local friction term proportional to \u03b2 modifies the velocity (first-derivative) coefficient; the Poisson source is unmodified."
+    },
+    "memory_kernel": {
+      "latex": "G(a) = \\int_0^{a} g(a')\\,\\mathrm{d}a' = \\delta a\\,\\ln\\!\\left(\\frac{1 + e^{(a-a_t)/\\delta a}}{1 + e^{-a_t/\\delta a}}\\right),\\quad \\text{friction} \\propto \\beta\\,\\frac{G(a)}{a}",
+      "description": "Class C coupling: a non-local (in time) friction term built from the integrated gate kernel G(a), which delays and smooths the modification relative to the instantaneous gate g(a)."
+    },
+    "background_expansion": {
+      "latex": "E(a)^2 = \\Omega_m a^{-3} + (1-\\Omega_m)",
+      "description": "\u039bCDM background expansion used for Classes B and C, and adopted here also for Class A to isolate source-side effects."
+    },
+    "eg_statistic": {
+      "latex": "E_G(z) = \\frac{\\Sigma(z)\\,\\Omega_{m,0}}{f(z)}\\,,\\quad f(z) = \\frac{\\mathrm{d}\\ln D}{\\mathrm{d}\\ln a},\\quad \\Sigma=1\\ \\text{for growth-only modifications}",
+      "description": "Quasi-static EG statistic; for pure growth-sector modifications with no lensing/slip (\u03a3=1) it reduces to \u03a9m,0/f(z), i.e., it carries no information independent of f\u03c38."
+    }
+  },
+  "key_results": {
+    "main_finding": "All three tested growth-sector coupling classes (multiplicative Geff, additive local friction, additive non-local memory friction) are either structurally excluded by the data or fully absorbed by the \u03a9m\u2013coupling degeneracy once geometry is fixed by BAO+H(z); EG with \u03a3=1 adds no information beyond f\u03c38.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "C (discrete-gravity prefactor, \u22482.32)",
+      "k_\u039b (screening scale)",
+      "\u03b2 (friction amplitude)",
+      "a_t (gate midpoint)",
+      "\u03b4a (gate width)",
+      "\u03a9_m",
+      "\u03c38",
+      "H0"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO (DM/rd and DH/rd with full 13\u00d713 covariance)",
+      "Cosmic-chronometer H(z) compilation (9 measurements)",
+      "f\u03c38 compilation: 6dFGS, SDSS MGS, BOSS DR12 (3 z with covariance), VIPERS, FastSound",
+      "EG statistic: Amon et al., Reyes et al., Singh et al., Blake et al., de la Torre et al.",
+      "Planck 2018 sound horizon prior rd = 147.09 Mpc"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "For growth-only modifications with no lensing/slip (\u03a3=1), EG(z) will always reduce to \u03a9m,0/f(z) and thus cannot add independent constraining power beyond f\u03c38 once \u03a9m is set by BAO+H(z).",
+      "falsifiable_by": "A joint f\u03c38 + EG analysis (with \u03a3 fixed to 1 and BAO+H(z)-locked \u03a9m) that yields statistically independent constraints from EG beyond those from f\u03c38 alone."
+    },
+    {
+      "id": "P2",
+      "statement": "Apparent preferences for a nonzero local or memory-friction amplitude \u03b2 seen in f\u03c38-only fits will disappear when the \u03a9m prior from BAO+H(z) is imposed.",
+      "falsifiable_by": "A growth-only dataset that, after imposing the BAO+H(z)-locked \u03a9m prior, still detects \u03b2 \u2260 0 at high significance in Class B or C."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: A robust joint growth\u2013lensing analysis that, with BAO+H(z)-locked geometry and minimal modeling, measures EG(z) inconsistent with \u03a9m,0/f(z) at >5\u03c3 (i.e., effectively \u03a3 \u2260 1 in the relevant redshift range), falsifying the growth-only EFC coupling bridge tested here.",
+    "KC2: Sub-percent precision f\u03c38(z) measurements over 0.1 < z < 1 that, when combined with DESI-like BAO and CC H(z) and with galaxy\u2013lensing and RSD\u2013lensing cross-correlations, rule out (at >5\u03c3) all three operator pathways (multiplicative Geff with screened form, local friction, non-local memory friction), thereby excluding any viable projection of the discrete-gravity prefactor C \u2248 2.32 into linear growth.",
+    "KC3: An independent Grid-AQUAL reanalysis demonstrating that the discrete-gravity prefactor is inconsistent with C \u2248 2.32 (e.g., |C \u2212 1| < 0.1 at high confidence), removing the amplitude needed for any EFC cosmological growth coupling and killing this bridge.",
+    "KC4: Detection of a scale dependence in linear growth that is incompatible with the screened form s(k) = [1 + (k/k_\u039b)^2]^{-1} (e.g., a blue-tilted enhancement or a sign change across linear k) at high significance, falsifying the specific multiplicative Geff structure considered."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-grav-bridge",
+      "doi": "10.6084/m9.figshare.32084670",
+      "role": "code+data archive for pipelines/efc/grav_bridge (GitHub: supertedai/EFC)"
+    }
+  ],
   "files": [
     "A_structural_closure_of_growth_sector_couplings.pdf",
     "A_structural_closure_of_growth_sector_couplings.tex"
   ],
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32084670",
+  "orcid": "0009-0002-4860-5095",
+  "affiliation": "Symbiose Research",
+  "license": "CC-BY-4.0",
+  "track": "Spor 1 \u2014 Galactic/Cosmological",
+  "primary_pdf": "A_structural_closure_of_growth_sector_couplings.pdf",
   "see_also": "ai_manifest.json"
 }
