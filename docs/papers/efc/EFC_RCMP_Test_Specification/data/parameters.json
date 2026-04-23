@@ -1,142 +1,135 @@
 {
   "_description": "Numerical values from EFC-\u039bCDM Comparative Test Specification v1.1 (Magnusson 2026, DOI 10.6084/m9.figshare.32080083)",
+  "version": "1.1",
   "locked_gate_parameters": {
     "a_t": {
       "value": 0.7,
-      "description": "Scale factor at regime transition",
+      "description": "Transition scale factor for gate function g(a)",
       "source": "P1 pre-registration (figshare.32037990)"
     },
     "delta_a": {
       "value": 0.08,
-      "description": "Regime-transition width",
+      "description": "Regime-transition width for gate function g(a)",
       "source": "EFC v3.11 ledger"
     },
     "k_c": {
       "value": 0.05,
       "unit": "h/Mpc",
-      "description": "Pivot wavenumber for scale filter",
+      "description": "Scale filter cut-off wavenumber",
       "source": "P3 pre-registration (figshare.32023788)"
     }
   },
-  "efc_free_parameters": {
-    "A_mu": {
-      "prior": "Uniform",
-      "range": [
-        -0.2,
-        0.05
-      ],
-      "prediction_sign": "negative",
-      "description": "EFC predicts A\u03bc < 0"
-    },
-    "A_sigma": {
-      "prior": "Uniform",
-      "range": [
-        -0.05,
-        0.2
-      ],
-      "prediction_sign": "positive",
-      "description": "EFC predicts A\u03a3 > 0"
+  "variant_h_slip": {
+    "alpha": {
+      "value": 1.0,
+      "description": "Slip constraint coefficient: Sigma = 1 - alpha * (mu - 1)",
+      "status": "locked"
     }
   },
-  "efc_variant_h": {
-    "alpha_slip": {
-      "value": 1.0,
-      "description": "Locked slip constraint \u03b1: \u03a3 = 1 \u2212 \u03b1\u00b7(\u03bc \u2212 1)"
-    },
-    "free_parameters": 1
-  },
-  "lcdm_priors": {
+  "LCDM_priors": {
     "omega_b": {
-      "prior": "Uniform",
-      "range": [
-        0.02,
-        0.025
-      ],
-      "description": "\u03a9b h\u00b2"
+      "type": "uniform",
+      "low": 0.02,
+      "high": 0.025,
+      "description": "Baryon density Omega_b h^2"
     },
     "omega_c": {
-      "prior": "Uniform",
-      "range": [
-        0.09,
-        0.15
-      ],
-      "description": "\u03a9c h\u00b2"
+      "type": "uniform",
+      "low": 0.09,
+      "high": 0.15,
+      "description": "CDM density Omega_c h^2"
     },
     "100_theta_MC": {
-      "prior": "Uniform",
-      "range": [
-        1.03,
-        1.05
-      ],
-      "description": "100 \u00d7 \u03b8_MC"
+      "type": "uniform",
+      "low": 1.03,
+      "high": 1.05,
+      "description": "100x angular size of sound horizon"
     },
     "tau_reio": {
-      "prior": "Gaussian",
+      "type": "gaussian",
       "mean": 0.054,
-      "std": 0.007,
-      "description": "Optical depth to reionisation"
+      "sigma": 0.007,
+      "description": "Optical depth to reionization"
     },
-    "ln_10_10_As": {
-      "prior": "Uniform",
-      "range": [
-        2.0,
-        4.0
-      ],
-      "description": "ln(10^10 A_s)"
+    "ln10As": {
+      "type": "uniform",
+      "low": 2.0,
+      "high": 4.0,
+      "description": "Log scalar amplitude"
     },
     "n_s": {
-      "prior": "Uniform",
-      "range": [
-        0.87,
-        1.07
-      ],
+      "type": "uniform",
+      "low": 0.87,
+      "high": 1.07,
       "description": "Scalar spectral index"
     }
   },
-  "derived_parameter": {
-    "S8": {
-      "formula": "sigma8 * (Omega_m / 0.3)^0.5",
-      "description": "S8 \u2261 \u03c38\u00b7(\u03a9m/0.3)^0.5"
+  "EFC_free_parameters": {
+    "A_mu": {
+      "prior": "uniform",
+      "low": -0.2,
+      "high": 0.05,
+      "efc_prediction_sign": "negative",
+      "description": "Amplitude of mu deviation; EFC predicts A_mu < 0"
+    },
+    "A_Sigma": {
+      "prior": "uniform",
+      "low": -0.05,
+      "high": 0.2,
+      "efc_prediction_sign": "positive",
+      "description": "Amplitude of Sigma deviation; EFC predicts A_Sigma > 0"
     }
   },
-  "pixel_level_tolerance": {
-    "value": 0.0001,
-    "description": "\u2264 0.01% fractional agreement required for null-test verification (\u00a71.3)"
+  "derived_parameters": {
+    "S8": {
+      "formula": "sigma8 * (Omega_m / 0.3)^0.5",
+      "description": "Lensing amplitude combination"
+    }
+  },
+  "pixel_level_check": {
+    "tolerance_percent": 0.01,
+    "description": "EFC must match LCDM within 0.01% when A_mu=A_Sigma=0 or g(a)->0"
   },
   "data_specifications": {
     "DES_Y6": {
-      "observable": "\u03be\u00b1(\u03b8) cosmic shear two-point correlation function",
-      "format": "SACC file (des_y6_shear.sacc)",
+      "role": "primary test dataset",
+      "observable": "xi_pm cosmic shear two-point correlation function",
+      "format": "SACC (des_y6_shear.sacc)",
       "tomographic_bins": 4,
-      "scale_cuts": "Official DES Y6 fiducial (do NOT modify)"
+      "scale_cuts": "official DES Y6 fiducial (do not modify)"
     },
     "KiDS_Legacy": {
-      "observable": "Band powers C_\u2113^{ij} or \u03be\u00b1(\u03b8)",
+      "role": "cross-pipeline validation dataset",
+      "observable": "band powers C_ell or xi_pm",
       "tomographic_bins": 6,
-      "scale_cuts": "KiDS Legacy fiducial (SOM-based, do NOT unify with DES)"
+      "scale_cuts": "KiDS Legacy fiducial SOM-based"
     }
   },
-  "scan_analysis_results": {
+  "action_level_scan_results": {
     "K0_crossover_variation": {
       "delta_z": 0.87,
       "K0_range": [
         0.5,
         4.0
       ],
-      "description": "K0 is primary control for lensing-sector crossover redshift"
+      "description": "z_crossover varies by delta_z across K0 range"
     },
     "amplitude_rescaling_variation": {
       "delta_z": 0.11,
       "rescaling_range": "x50",
-      "description": "Joint rescaling of \u03b1, V', \u03b30 produces small crossover shift"
+      "parameters": [
+        "alpha",
+        "V_prime",
+        "gamma_0"
+      ],
+      "description": "Joint amplitude rescaling produces only small delta_z"
     }
   },
-  "version_info": {
-    "spec_version": "1.1",
-    "date_v1_0": "2026-04",
-    "date_v1_1": "2026-04-21",
-    "license": "CC-BY-4.0",
-    "status": "PUBLISHED v1.1",
-    "doi": "10.6084/m9.figshare.32080083"
+  "reference_DOIs": {
+    "this_specification": "10.6084/m9.figshare.32080083",
+    "P1_pre_registration": "10.6084/m9.figshare.32037990",
+    "P3_pre_registration": "10.6084/m9.figshare.32023788",
+    "EFC_action": "10.6084/m9.figshare.31876324",
+    "companion_compound_paper": "10.6084/m9.figshare.32080059"
   }
 }

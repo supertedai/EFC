@@ -2,22 +2,22 @@
   "$schema": "./schema.json",
   "id": "efc-rcmp-convergence-observation",
   "title": "Methodological Convergence in Stage-IV Cosmology: The Emergence of Epistemic Holism Under Precision Constraints, and Its Operationalization via RCMP",
-  "description": "This note documents a 2023\u20132026 methodological convergence across cosmic shear, gravitational-slip (EG) estimators, and dark-energy inference: analyses increasingly report explicit proxy-chain and nuisance-model dependencies under Stage-IV precision. It interprets this shift as the practical emergence of Duhem\u2013Quine-style epistemic holism and outlines RCMP (Regime-Consistent Measurement Principle) as an operational framework, while making no claim about EFC or specific physical models. It flags quantitative EFC tests at the phenomenological (\u03bc, \u03a3) level as planned and gated by release conditions.",
+  "description": "This note documents a 2023\u20132026 methodological convergence across cosmic shear, gravitational-slip (EG) estimation, and dark-energy inference: leading analyses now report results with explicit proxy-chain and nuisance-model dependence. The paper interprets this as the practical emergence of Duhem\u2013Quine epistemic holism under Stage-IV precision and highlights RCMP as a concrete operationalization, while making no claims about supporting or disfavouring EFC. It outlines that forthcoming quantitative EFC tests should be conducted at the phenomenological (\u03bc, \u03a3) level for likelihood compatibility.",
   "version": "v0.2",
   "date": "2026-04-22",
   "doi": "10.6084/m9.figshare.32080080",
   "keywords": [
     "Stage-IV cosmology",
-    "Regime-Consistent Measurement Principle",
+    "methodological convergence",
     "epistemic holism",
-    "Duhem\u2013Quine thesis",
-    "cosmic shear",
-    "S8 tension",
-    "intrinsic alignment",
+    "Duhem\u2013Quine",
+    "RCMP",
+    "proxy-chain dependence",
+    "weak-lensing S8 tension",
+    "intrinsic alignments",
     "baryonic feedback",
     "EG estimator",
     "gravitational slip",
-    "RSD and kSZ velocities",
     "DESI DR2"
   ],
   "author": {
@@ -27,39 +27,34 @@
   },
   "core_equations": {},
   "key_results": {
-    "main_finding": "Independent analyses in multiple cosmology subfields have converged on explicitly reporting proxy-chain and nuisance-model dependencies, consistent with RCMP-style methodology becoming practically necessary under Stage-IV precision.",
+    "main_finding": "Independent Stage-IV analyses now explicitly condition key cosmological inferences (S8, EG, dark-energy hints) on proxy-chain and nuisance-model choices, consistent with RCMP-style reporting under precision constraints.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "mu(z,k)",
-      "Sigma(z,k)",
-      "A_mu",
-      "A_Sigma",
-      "K0",
-      "V'",
-      "alpha"
+      "S8 framing under IA and baryonic-feedback models",
+      "EG estimator dependence on velocity-reconstruction templates",
+      "\u03bc(k,z), \u03a3(k,z) phenomenological modifiers (test plan only)"
     ],
     "datasets_used": [
-      "DES Y3 (cosmic shear)",
-      "KiDS-Legacy",
       "DES Y6 (cosmic shear)",
+      "KiDS-Legacy (cosmic shear)",
       "ACT DR6 \u00d7 SDSS BOSS (EG)",
-      "DESI DR2"
+      "DESI DR2 (dark energy, SN dependence noted)"
     ],
     "verdict": "N/A"
   },
   "sealed_predictions": [
     {
       "id": "P4",
-      "statement": "Rubin DP2 cosmic-shear inference yields S8 = 0.847 under RCMP-compliant nuisance and baryonic modeling.",
-      "falsifiable_by": "Rubin LSST DP2 weak-lensing analysis with explicitly documented intrinsic-alignment and baryonic-feedback modeling showing S8 significantly different from 0.847 across RCMP-validated pipelines."
+      "statement": "Rubin DP2 weak-lensing will infer S8 = 0.847 under RCMP-compliant analysis.",
+      "falsifiable_by": "Rubin LSST DP2 cosmic-shear pipeline delivering an RCMP-compliant S8 measurement (with documented IA and baryonic-feedback modeling) that is statistically inconsistent with 0.847."
     }
   ],
   "kill_criteria": [
-    "KC1: Future Stage-IV weak-lensing analyses (e.g., DES Y6 final, Rubin DP2/DP3) report S8 values that are stable (<0.3\u03c3 shift) across materially different intrinsic-alignment and baryonic-feedback models, indicating proxy-chain insensitivity and contradicting the claimed convergence toward explicit dependency reporting.",
-    "KC2: EG (gravitational-slip) measurements obtained via independent velocity reconstructions (RSD-derived \u03b2 and kSZ-based methods) agree within uncertainties and show GR-invariance independent of the \u03b2-extraction template, removing the proxy dependence highlighted in the paper.",
-    "KC3: Dark-energy evolution inferences (e.g., from DESI DR3/DR4) become robust to supernova compilation choice, with consistent w(z) results across SN datasets and calibration pipelines, eliminating the dataset-dependence central to the convergence claim.",
-    "KC4: A majority of new Stage-IV results explicitly revert to model-independent phrasing without proxy-chain caveats while maintaining precision, demonstrating that RCMP-type reasoning is not practically necessary under Stage-IV constraints."
+    "KC1: If Stage-IV weak-lensing analyses (e.g., DES Y6 reanalysis, KiDS-Legacy, Rubin DP2, or Euclid Y1) report S8 results that are invariant to intrinsic-alignment and baryonic-feedback model choices within their quoted statistical uncertainties, thereby demonstrating model-independence and contradicting the claimed trend toward explicit proxy dependence.",
+    "KC2: If EG measurements using independent velocity reconstructions (e.g., RSD-derived \u03b2 vs. kSZ-reconstructed velocities) yield mutually consistent results with negligible template dependence and confirm the GR-invariance of EG across methods, reversing the reported move to re-evaluate estimator assumptions.",
+    "KC3: If DESI DR2+ dark-energy evolution constraints become robust to the supernova compilation choice (i.e., consistent across SN datasets within statistical errors without requiring dataset-dependent caveats), eliminating the reported explicit dataset dependence.",
+    "KC4: If broad Stage-IV flagship papers revert to presenting key cosmological parameters as model-independent point estimates without proxy-chain documentation, contrary to RCMP-style coordinate humility and proxy accounting."
   ],
   "tier": "T3",
   "paper_type": "methodology",
@@ -67,12 +62,12 @@
     {
       "id": "rcmp",
       "doi": "10.6084/m9.figshare.31222900",
-      "role": "Defines the Regime-Consistent Measurement Principle referenced and operationalized in this note."
+      "role": "RCMP framework: 5-point checklist and operational protocol referenced as an operationalization of the observed convergence"
     },
     {
-      "id": "efc-core",
+      "id": "efc-overview",
       "doi": "10.6084/m9.figshare.31112536",
-      "role": "EFC core/model context; this note clarifies that convergence does not endorse or refute EFC."
+      "role": "EFC overview referenced for context; action-level parameters (K0, V\u2032, \u03b1) noted as separate from phenomenological (\u03bc, \u03a3)"
     }
   ],
   "files": {

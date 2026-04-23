@@ -1,15 +1,14 @@
 {
   "$schema": "./schema.json",
   "id": "efc-rcmp-test-specification",
-  "title": "EFC-\u039bCDM Comparative Test Specification v1.1: Pre-Registered Implementation Protocol for DES Y6 and KiDS Legacy Cosmic Shear",
-  "description": "Pre-registered, content-hash\u2013locked methodology specifying a three-stage, falsifiable comparative test of Energy-Flow Cosmology (EFC) versus \u039bCDM using Stage-III cosmic shear. It defines the phenomenological EFC extensions (\u00b5, \u03a3), fixed gates and scales, priors, scan procedures, nuisance handling, scale cuts, reporting outputs, and binding stopping/falsification rules for DES Y6 and KiDS Legacy pipelines.",
-  "version": "v1.1",
+  "title": "EFC-\u039bCDM Comparative Test Specification v1.1",
+  "description": "Pre-registered, content-hash\u2013locked protocol specifying a three-stage comparative test of Energy-Flow Cosmology (EFC) against \u039bCDM on Stage-III cosmic shear data. It defines the EFC phenomenological extensions (\u00b5, \u03a3), locked gate parameters, priors, scale cuts, and reporting requirements, with pixel-level verification and binding stopping/falsification rules. The specification targets DES Y6 as the primary dataset with KiDS Legacy for cross-pipeline validation using MGCAMB/MGCLASS within Cobaya or CosmoSIS.",
+  "version": "1.1",
   "date": "2026-04-21",
   "doi": "10.6084/m9.figshare.32080083",
   "keywords": [
     "Energy-Flow Cosmology",
-    "EFC",
-    "LambdaCDM",
+    "\u039bCDM",
     "cosmic shear",
     "DES Y6",
     "KiDS Legacy",
@@ -18,7 +17,8 @@
     "MGCLASS",
     "Cobaya",
     "CosmoSIS",
-    "pre-registered protocol"
+    "MCMC",
+    "S8"
   ],
   "author": {
     "name": "Morten Magnusson",
@@ -26,102 +26,86 @@
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
   "core_equations": {
-    "gate_function_g": {
-      "latex": "g(a) = \\tfrac{1}{2}\\big[1 + \\tanh\\big((a - a_t)/\\delta a\\big)\\big]",
-      "description": "Locked transition (in scale factor) gating the onset of EFC perturbations; sets when modifications become active."
+    "gate_function_g_a": {
+      "latex": "g(a) = \\tfrac{1}{2} \\left[1 + \\tanh\\!\\left(\\frac{a - a_t}{\\delta a}\\right)\\right]",
+      "description": "Late-time transition (\"gate\") controlling when EFC modifications turn on; parameters a_t=0.7 and \\delta a=0.08 are locked."
     },
-    "k_filter_fk": {
-      "latex": "f_k(k) = \\big[1 + (k/k_c)^2\\big]^{-1}",
-      "description": "Locked scale filter suppressing modifications at high k; controls the scale dependence of \u00b5 and \u03a3."
+    "scale_filter_fk_k": {
+      "latex": "f_k(k) = \\left[1 + \\left(\\frac{k}{k_c}\\right)^2\\right]^{-1}",
+      "description": "Scale filter modulating the k-dependence of perturbations; transition scale locked at k_c = 0.05\\,h\\,\\mathrm{Mpc}^{-1}."
     },
-    "mu_param": {
-      "latex": "\\mu(k,a) = 1 + A_\\mu\\, g(a)\\, f_k(k)",
-      "description": "Phenomenological modification to the Poisson equation entering growth; A_\\mu is free with sign predicted by EFC."
+    "mu_ka": {
+      "latex": "\\mu(k,a) = 1 + A_{\\mu}\\, g(a)\\, f_k(k)",
+      "description": "Modification to the effective Newtonian coupling; free amplitude A_\\mu with prior [\u22120.20, 0.05] (EFC predicts A_\\mu < 0)."
     },
-    "sigma_param": {
-      "latex": "\\Sigma(k,a) = 1 + A_\\Sigma\\, g(a)\\, f_k(k)",
-      "description": "Phenomenological modification to the lensing potential; A_\\Sigma is free with sign predicted by EFC."
-    },
-    "variantH_slip": {
-      "latex": "\\Sigma(k,a) = 1 - \\alpha\\,\\big(\\mu(k,a) - 1\\big),\\quad \\alpha = 1\\;\\text{(locked)}",
-      "description": "Optional one-parameter slip relation (VariantH) reducing the model to a single amplitude degree of freedom."
+    "Sigma_ka": {
+      "latex": "\\Sigma(k,a) = 1 + A_{\\Sigma}\\, g(a)\\, f_k(k)",
+      "description": "Modification to the lensing potential; free amplitude A_\\Sigma with prior [\u22120.05, 0.20] (EFC predicts A_\\Sigma > 0)."
     },
     "S8_definition": {
-      "latex": "S_8 \\equiv \\sigma_8\\, (\\Omega_m/0.3)^{0.5}",
-      "description": "Derived parameter used for comparison with weak-lensing constraints."
+      "latex": "S_8 \\equiv \\sigma_8 \\left(\\frac{\\Omega_m}{0.3}\\right)^{0.5}",
+      "description": "Derived clustering amplitude parameter used for reporting consistency with weak-lensing constraints."
     }
   },
   "key_results": {
-    "main_finding": "This paper provides a sealed, reproducible test protocol (not results) for comparing EFC against \u039bCDM on DES Y6 and KiDS Legacy cosmic shear, including fixed gates, priors, grid scans, MCMC, and binding stopping/falsification rules.",
+    "main_finding": "Pre-registered test protocol; no empirical results are reported in this specification.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
-      "A_mu",
-      "A_Sigma"
+      "A_\u03bc",
+      "A_\u03a3"
     ],
     "datasets_used": [
-      "DES Y6 cosmic shear \u03be\u00b1(\u03b8) with fiducial scale cuts",
-      "KiDS Legacy cosmic shear (C_ell or \u03be\u00b1) with fiducial scale cuts"
+      "DES Y6 cosmic shear",
+      "KiDS Legacy weak lensing"
     ],
-    "verdict": "SEALED"
+    "verdict": "PLANNED"
   },
   "sealed_predictions": [
     {
       "id": "SP1",
-      "statement": "EFC predicts the preferred phenomenological quadrant A_\\mu < 0 and A_\\Sigma > 0 when tested on Stage-III cosmic shear with the locked gate parameters (a_t=0.7, \\delta a=0.08, k_c=0.05 h/Mpc).",
-      "falsifiable_by": "Full DES Y6 and KiDS Legacy likelihood analyses showing statistically significant preference for A_\\mu \\ge 0 and/or A_\\Sigma \\le 0."
+      "statement": "EFC prefers the sign quadrant A_\u03bc < 0 and A_\u03a3 > 0 when confronted with Stage-III cosmic shear data (DES Y6; cross-checked with KiDS Legacy).",
+      "falsifiable_by": "DES Y6 fast-scan (grid over A_\u03bc, A_\u03a3) and full-likelihood MCMC posteriors excluding the A_\u03bc<0, A_\u03a3>0 quadrant."
     },
     {
       "id": "SP2",
-      "statement": "At A_\\mu = A_\\Sigma = 0 the EFC phenomenological model reduces identically to \u039bCDM, matching forward-model outputs (\u03be\u00b1, C_\\ell^{\\kappa\\kappa}, f(z), \\sigma_8) within \u22640.01% numerical precision.",
-      "falsifiable_by": "Pixel-level equivalence check in the likelihood pipeline; any measurable deviation indicates an implementation error and invalidates the run."
+      "statement": "Setting A_\u03bc = A_\u03a3 = 0 or forcing g(a) \u2192 0 (via a_t \u226b 1 or very small \u03b4a) recovers \u039bCDM predictions for \u03be\u00b1, C_\u2113^{\\kappa\\kappa}, f(z), and \u03c3_8 to within \u2264 0.01% numerical precision.",
+      "falsifiable_by": "Pixel-level forward-model verification prior to analysis."
     },
     {
       "id": "SP3",
-      "statement": "A background-fixed fast-scan around the \u039bCDM best-fit should exhibit a measurable response in DES Y6 \u03be\u00b1(\u03b8) along the EFC-like direction if the data are sensitive to the (A_\\mu, A_\\Sigma) perturbations.",
-      "falsifiable_by": "Fast-scan grid returning |\u0394\u03c7^2_best-fit| < 1 with negligible gradient at the origin, implying sub-sensitivity at this stage (protocol stop condition)."
-    },
-    {
-      "id": "SP4",
-      "statement": "Optional VariantH slip test with \u03a3 = 1 \u2212 (\u00b5 \u2212 1) (\u03b1 = 1 locked) provides a one-parameter EFC extension expected to prefer A_\\mu < 0 if EFC-like perturbations are supported.",
-      "falsifiable_by": "1D VariantH scan and MCMC preferring A_\\mu \\ge 0 or yielding no improvement relative to \u039bCDM under fiducial cuts."
+      "statement": "Under the VariantH slip constraint (\u03a3 \u2212 1) = \u2212 (\u03bc \u2212 1) (\u03b1 = 1 locked), a one-parameter EFC extension along A_\u03bc \u2208 [\u22120.12, 0.0] yields any improvement localized near the EFC-predicted sign.",
+      "falsifiable_by": "1D VariantH scan of \u03c7\u00b2(A_\u03bc) showing no improvement or preference away from A_\u03bc < 0."
     }
   ],
   "kill_criteria": [
-    "KC1: Pixel-level equivalence failure at A_mu = A_Sigma = 0 (EFC should reduce exactly to \u039bCDM within \u22640.01% for \u03be\u00b1, C_ell^{\u03ba\u03ba}, f(z), \u03c38). Any deviation indicates an invalid implementation; runs must be stopped and results retracted.",
-    "KC2: DES Y6 full-marginalization prefers parameter regions inconsistent with EFC sign predictions (A_mu < 0 and A_Sigma > 0), i.e., the posterior significantly favors A_mu \u2265 0 and/or A_Sigma \u2264 0 under the locked gate and priors.",
-    "KC3: KiDS Legacy full-marginalization independently favors the opposite quadrant to EFC (A_mu \u2265 0 and/or A_Sigma \u2264 0), corroborating KC2 across an independent pipeline and scale cuts.",
-    "KC4: Cross-pipeline inconsistency of EFC parameters: DES Y6 and KiDS Legacy posteriors are mutually incompatible and do not overlap in the EFC-predicted quadrant under identical locked (a_t, \u03b4a, k_c); EFC fails the cross-pipeline stability requirement.",
-    "KC5: VariantH (\u03a3 = 1 \u2212 (\u00b5 \u2212 1), \u03b1=1) is excluded by DES Y6 (and reaffirmed by KiDS Legacy) after full marginalization or shows no improvement over \u039bCDM while preferring A_mu \u2265 0; this kills the VariantH one-parameter EFC extension.",
-    "KC6: Fast-scan and subsequent full analysis indicate any significant improvement over \u039bCDM occurs in the opposite quadrant (A_mu > 0, A_Sigma < 0); this contradicts EFC sign predictions under the locked gate and falsifies the tested phenomenological direction."
+    "KC1: Combined DES Y6 and KiDS Legacy posteriors exclude the EFC sign quadrant (A_\u03bc < 0, A_\u03a3 > 0) at high credibility (e.g., the 95% credible region lies entirely outside that quadrant), indicating the phenomenological direction consistent with EFC is disfavored.",
+    "KC2: Across both datasets and independent pipelines (Cobaya/MGCAMB and CosmoSIS/MGCLASS), the best-fit EFC extension fails to improve over \u039bCDM (\u0394\u03c7\u00b2_best-fit \u2265 0 within numerical tolerance) and the posteriors are consistent with A_\u03bc = 0 and A_\u03a3 = 0, demonstrating no empirical support for EFC-like perturbations.",
+    "KC3: VariantH (\u03b1 = 1) one-parameter test shows no improvement over \u039bCDM and prefers A_\u03bc \u2248 0 with uncertainties excluding A_\u03bc < 0 at high credibility, falsifying this EFC variant.",
+    "KC4: Pixel-level \u039bCDM-recovery check fails (EFC with A_\u03bc = A_\u03a3 = 0 or with g(a) \u2192 0 does not reproduce \u039bCDM within \u2264 0.01%): test instance is invalid and all EFC claims under this implementation must be retracted."
   ],
   "tier": "T2",
   "paper_type": "methodology",
   "related_packages": [
     {
-      "id": "efc-test-spec",
-      "doi": "10.6084/m9.figshare.32080083",
-      "role": "This sealed comparative test specification (current paper)."
-    },
-    {
-      "id": "efc-lensing-engine-p1",
+      "id": "efc-p1-gate-lock",
       "doi": "10.6084/m9.figshare.32037990",
-      "role": "P1 pre-registration and sealed lensing engine (lensing.py); provides transition control context for a_t."
+      "role": "P1 pre-registration: gate and lensing engine parameters (a_t lock, sealed lensing.py)"
     },
     {
-      "id": "efc-pre-reg-p3",
+      "id": "efc-p3-kc-lock",
       "doi": "10.6084/m9.figshare.32023788",
-      "role": "P3 pre-registration; source for locked k_c."
+      "role": "P3 pre-registration: k_c lock for scale filter"
     },
     {
-      "id": "efc-action",
-      "doi": "10.6084/m9.figshare.31876324",
-      "role": "EFC action-level formulation referenced in the phenomenology-to-action mapping disclosure."
-    },
-    {
-      "id": "efc-compound-paper",
+      "id": "efc-companion-compound",
       "doi": "10.6084/m9.figshare.32080059",
-      "role": "Companion compound paper (P1\u00d7P2 cross-observable consistency) cited for mapping disclosure and scan analyses."
+      "role": "Companion compound paper (cross-observable consistency and scans)"
+    },
+    {
+      "id": "efc-action-v3",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "EFC action-level description (not in one-to-one mapping with A_\u03bc, A_\u03a3)"
     }
   ],
   "files": {

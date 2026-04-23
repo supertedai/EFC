@@ -12,14 +12,14 @@
 
 ## Overview
 
-This note documents a 2023–2026 methodological convergence across cosmic shear, gravitational-slip (EG) estimators, and dark-energy inference: analyses increasingly report explicit proxy-chain and nuisance-model dependencies under Stage-IV precision. It interprets this shift as the practical emergence of Duhem–Quine-style epistemic holism and outlines RCMP (Regime-Consistent Measurement Principle) as an operational framework, while making no claim about EFC or specific physical models. It flags quantitative EFC tests at the phenomenological (μ, Σ) level as planned and gated by release conditions.
+This note documents a 2023–2026 methodological convergence across cosmic shear, gravitational-slip (EG) estimation, and dark-energy inference: leading analyses now report results with explicit proxy-chain and nuisance-model dependence. The paper interprets this as the practical emergence of Duhem–Quine epistemic holism under Stage-IV precision and highlights RCMP as a concrete operationalization, while making no claims about supporting or disfavouring EFC. It outlines that forthcoming quantitative EFC tests should be conducted at the phenomenological (μ, Σ) level for likelihood compatibility.
 
 ## Key Result
 
-Independent analyses in multiple cosmology subfields have converged on explicitly reporting proxy-chain and nuisance-model dependencies, consistent with RCMP-style methodology becoming practically necessary under Stage-IV precision.
+Independent Stage-IV analyses now explicitly condition key cosmological inferences (S8, EG, dark-energy hints) on proxy-chain and nuisance-model choices, consistent with RCMP-style reporting under precision constraints.
 
 ## Sealed Predictions
 
 | ID | Prediction | Falsifiable by |
 |---|---|---|
-| P4 | Rubin DP2 cosmic-shear inference yields S8 = 0.847 under RCMP-compliant nuisance and baryonic modeling. | Rubin LSST DP2 weak-lensing analysis with explicitly documented intrinsic-alignment and baryonic-feedback modeling showing S8 significantly different from 0.847 across RCMP-validated pipelines. |
+| P4 | Rubin DP2 weak-lensing will infer S8 = 0.847 under RCMP-compliant analysis. | Rubin LSST DP2 cosmic-shear pipeline delivering an RCMP-compliant S8 measurement (with documented IA and baryonic-feedback modeling) that is statistically inconsistent with 0.847. |

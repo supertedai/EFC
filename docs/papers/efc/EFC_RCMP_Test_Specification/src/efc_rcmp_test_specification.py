@@ -4,120 +4,156 @@ Reference implementation of the EFC-ΛCDM Comparative Test Specification v1.1
 (Magnusson 2026, DOI: 10.6084/m9.figshare.32080083).
 
 Implements the (μ, Σ) phenomenological parametrization, gate function,
-scale filter, pixel-level checks, and S8 derived parameter.
+scale filter, priors, and pixel-level verification checks.
 """
+
 import numpy as np
-from typing import Tuple, Optional
+from typing import Tuple, Dict, Optional
 
 # ---------------------------------------------------------------------------
-# Locked gate / filter constants (Table in §1.2)
+# Locked gate / filter parameters  (Table in §1.2)
 # ---------------------------------------------------------------------------
-A_T: float = 0.7          # scale-factor at transition
-DELTA_A: float = 0.08     # regime-transition width
-K_C: float = 0.05         # h/Mpc  – pivot wavenumber
+AT: float = 0.7          # scale-factor at transition
+DELTA_A: float = 0.08    # regime-transition width
+KC: float = 0.05         # h/Mpc  –  scale cut-off
+ALPHA_SLIP: float = 1.0  # VariantH slip constraint coefficient
 
-# EFC-VariantH slip constraint
-ALPHA_SLIP: float = 1.0   # locked
+# ---------------------------------------------------------------------------
+# ΛCDM baseline priors  (Table in §1.1)
+# ---------------------------------------------------------------------------
+LCDM_PRIORS: Dict[str, dict] = {
+    "omega_b":      {"type": "uniform", "low": 0.020, "high": 0.025},
+    "omega_c":      {"type": "uniform", "low": 0.09,  "high": 0.15},
+    "100_theta_MC": {"type": "uniform", "low": 1.03,  "high": 1.05},
+    "tau_reio":     {"type": "gaussian", "mean": 0.054, "sigma": 0.007},
+    "ln10As":       {"type": "uniform", "low": 2.0,   "high": 4.0},
+    "n_s":          {"type": "uniform", "low": 0.87,  "high": 1.07},
+}
 
-# Pixel-level tolerance (§1.3)
-PIXEL_TOL: float = 1.0e-4  # 0.01 %
+# EFC extra-parameter priors  (Table in §1.2)
+EFC_PRIORS: Dict[str, dict] = {
+    "A_mu":    {"type": "uniform", "low": -0.20, "high": 0.05},
+    "A_Sigma": {"type": "uniform", "low": -0.05, "high": 0.20},
+}
 
 
-def gate_function(a: np.ndarray, a_t: float = A_T, delta_a: float = DELTA_A) -> np.ndarray:
-    """Temporal gate  g(a) = 0.5 * [1 + tanh((a - a_t) / delta_a)]   (Eq. 1)"""
-    return 0.5 * (1.0 + np.tanh((a - a_t) / delta_a))
-
-
-def scale_filter(k: np.ndarray, k_c: float = K_C) -> np.ndarray:
-    """Scale filter   f_k(k) = [1 + (k/k_c)^2]^{-1}               (Eq. 2)"""
-    return 1.0 / (1.0 + (k / k_c) ** 2)
-
-
-def mu(k: np.ndarray, a: np.ndarray,
-       A_mu: float = 0.0,
-       a_t: float = A_T, delta_a: float = DELTA_A,
-       k_c: float = K_C) -> np.ndarray:
-    """Modified gravity function μ(k,a)  (Eq. 3).
+# ---------------------------------------------------------------------------
+# Core equations  (Eqs 1–4)
+# ---------------------------------------------------------------------------
+def gate_function(a: np.ndarray, at: float = AT, delta_a: float = DELTA_A) -> np.ndarray:
+    """Eq. 1 – temporal gate function g(a).
 
     Parameters
     ----------
-    k : array  – wavenumber(s) in h/Mpc
-    a : array  – scale factor(s), broadcastable with *k*
-    A_mu : float – free EFC amplitude (default 0 → ΛCDM)
+    a : array_like   Scale factor(s).
+    at : float       Transition scale factor (locked 0.7).
+    delta_a : float  Transition width (locked 0.08).
+
+    Returns
+    -------
+    g : ndarray  Values in (0, 1).
     """
-    return 1.0 + A_mu * gate_function(a, a_t, delta_a) * scale_filter(k, k_c)
+    a = np.asarray(a, dtype=np.float64)
+    return 0.5 * (1.0 + np.tanh((a - at) / delta_a))
 
 
-def sigma(k: np.ndarray, a: np.ndarray,
-         A_sigma: float = 0.0,
-         a_t: float = A_T, delta_a: float = DELTA_A,
-         k_c: float = K_C) -> np.ndarray:
-    """Modified gravity function Σ(k,a)  (Eq. 4)."""
-    return 1.0 + A_sigma * gate_function(a, a_t, delta_a) * scale_filter(k, k_c)
+def scale_filter(k: np.ndarray, kc: float = KC) -> np.ndarray:
+    """Eq. 2 – Lorentzian scale filter f_k(k).
+
+    Parameters
+    ----------
+    k : array_like   Wavenumber(s) in h/Mpc.
+    kc : float       Cut-off wavenumber (locked 0.05 h/Mpc).
+
+    Returns
+    -------
+    fk : ndarray  Values in (0, 1].
+    """
+    k = np.asarray(k, dtype=np.float64)
+    return 1.0 / (1.0 + (k / kc) ** 2)
 
 
-def sigma_variant_h(k: np.ndarray, a: np.ndarray,
-                    A_mu: float = 0.0,
-                    alpha: float = ALPHA_SLIP,
-                    **kw) -> np.ndarray:
+def mu_efc(k: np.ndarray, a: np.ndarray, A_mu: float,
+           at: float = AT, delta_a: float = DELTA_A,
+           kc: float = KC) -> np.ndarray:
+    """Eq. 3 – modified gravity function μ(k, a).
+
+    Returns 2-D array of shape (len(a), len(k)).
+    """
+    g = gate_function(a, at, delta_a)[:, None]   # (Na, 1)
+    fk = scale_filter(k, kc)[None, :]            # (1, Nk)
+    return 1.0 + A_mu * g * fk
+
+
+def sigma_efc(k: np.ndarray, a: np.ndarray, A_Sigma: float,
+              at: float = AT, delta_a: float = DELTA_A,
+              kc: float = KC) -> np.ndarray:
+    """Eq. 4 – lensing function Σ(k, a).
+
+    Returns 2-D array of shape (len(a), len(k)).
+    """
+    g = gate_function(a, at, delta_a)[:, None]
+    fk = scale_filter(k, kc)[None, :]
+    return 1.0 + A_Sigma * g * fk
+
+
+def sigma_variant_h(k: np.ndarray, a: np.ndarray, A_mu: float,
+                    alpha: float = ALPHA_SLIP, **kw) -> np.ndarray:
     """EFC-VariantH slip constraint: Σ = 1 − α·(μ − 1)."""
-    return 1.0 - alpha * (mu(k, a, A_mu, **kw) - 1.0)
+    mu_val = mu_efc(k, a, A_mu, **kw)
+    return 1.0 - alpha * (mu_val - 1.0)
 
 
 def S8(sigma8: float, Omega_m: float) -> float:
-    """Derived parameter  S8 ≡ σ8 · (Ωm / 0.3)^0.5 ."""
+    """Derived parameter S_8 ≡ σ_8 · (Ω_m / 0.3)^0.5."""
     return sigma8 * np.sqrt(Omega_m / 0.3)
 
 
 # ---------------------------------------------------------------------------
-# Pixel-level verification (§1.3)
+# Pixel-level verification  (§1.3)
 # ---------------------------------------------------------------------------
-def pixel_level_check_null(k: np.ndarray, a: np.ndarray,
-                           tol: float = PIXEL_TOL) -> bool:
-    """Verify EFC(Aμ=0, AΣ=0) == ΛCDM within *tol* fractional error."""
-    mu_vals = mu(k, a, A_mu=0.0)
-    sig_vals = sigma(k, a, A_sigma=0.0)
-    ok_mu = np.all(np.abs(mu_vals - 1.0) <= tol)
-    ok_sig = np.all(np.abs(sig_vals - 1.0) <= tol)
-    return bool(ok_mu and ok_sig)
+def pixel_level_check(rtol: float = 1e-4) -> bool:
+    """Verify EFC → ΛCDM when A_mu = A_Sigma = 0 or g(a)→0.
 
+    Returns True if all checks pass (deviations ≤ 0.01%).
+    """
+    k = np.linspace(0.001, 1.0, 500)
+    a = np.linspace(0.3, 1.0, 200)
 
-def pixel_level_check_gate_off(k: np.ndarray, a: np.ndarray,
-                                A_mu: float = -0.10, A_sigma: float = 0.10,
-                                a_t_far: float = 5.0,
-                                tol: float = PIXEL_TOL) -> bool:
-    """Verify that when a_t >> 1 the gate suppresses EFC → ΛCDM."""
-    mu_vals = mu(k, a, A_mu=A_mu, a_t=a_t_far)
-    sig_vals = sigma(k, a, A_sigma=A_sigma, a_t=a_t_far)
-    ok_mu = np.all(np.abs(mu_vals - 1.0) <= tol)
-    ok_sig = np.all(np.abs(sig_vals - 1.0) <= tol)
-    return bool(ok_mu and ok_sig)
+    # Check 1: amplitudes zero
+    mu_zero = mu_efc(k, a, A_mu=0.0)
+    sig_zero = sigma_efc(k, a, A_Sigma=0.0)
+    ok1 = np.allclose(mu_zero, 1.0, atol=0, rtol=rtol)
+    ok2 = np.allclose(sig_zero, 1.0, atol=0, rtol=rtol)
+
+    # Check 2: at >> 1  ⟹  g(a) ≈ 0 for all observable a
+    mu_far = mu_efc(k, a, A_mu=-0.15, at=10.0)
+    sig_far = sigma_efc(k, a, A_Sigma=0.15, at=10.0)
+    ok3 = np.allclose(mu_far, 1.0, atol=0, rtol=rtol)
+    ok4 = np.allclose(sig_far, 1.0, atol=0, rtol=rtol)
+
+    passed = ok1 and ok2 and ok3 and ok4
+    return passed
 
 
 # ---------------------------------------------------------------------------
 # Self-test
 # ---------------------------------------------------------------------------
-if __name__ == '__main__':
-    k_test = np.logspace(-3, 0, 200)   # h/Mpc
-    a_test = np.linspace(0.2, 1.0, 100)
-    K, A = np.meshgrid(k_test, a_test)
+if __name__ == "__main__":
+    print("Running pixel-level verification (§1.3) ...")
+    ok = pixel_level_check()
+    status = "PASS" if ok else "FAIL – STOP: implementation error"
+    print(f"  Pixel-level check: {status}")
 
-    # 1) Null check
-    assert pixel_level_check_null(K, A), 'Pixel-level null check FAILED'
-    print('[PASS] Pixel-level null check (Aμ=AΣ=0 → ΛCDM)')
-
-    # 2) Gate-off check
-    assert pixel_level_check_gate_off(K, A), 'Pixel-level gate-off check FAILED'
-    print('[PASS] Pixel-level gate-off check (a_t >> 1 → ΛCDM)')
-
-    # 3) Spot values
-    a0 = np.array([0.7])
-    k0 = np.array([0.05])
-    g_val = gate_function(a0)[0]
-    f_val = scale_filter(k0)[0]
-    print(f'g(a=0.7) = {g_val:.6f}  (expect 0.5)')
-    print(f'f_k(k=k_c) = {f_val:.6f}  (expect 0.5)')
-    print(f'μ(k_c, 0.7, Aμ=-0.10) = {mu(k0, a0, A_mu=-0.10)[0]:.6f}')
-    print(f'Σ(k_c, 0.7, AΣ=+0.10) = {sigma(k0, a0, A_sigma=0.10)[0]:.6f}')
-    print(f'S8(σ8=0.81, Ωm=0.30) = {S8(0.81, 0.30):.4f}')
-    print('\nAll self-tests passed.')
+    # Spot values
+    a_test = np.array([0.5, 0.7, 0.9, 1.0])
+    k_test = np.array([0.01, 0.05, 0.1, 0.5])
+    print("\ng(a) at test points:", gate_function(a_test))
+    print("f_k(k) at test points:", scale_filter(k_test))
+    print("\nμ(k,a) with A_mu=-0.10:")
+    print(mu_efc(k_test, a_test, A_mu=-0.10))
+    print("\nΣ(k,a) with A_Sigma=0.10:")
+    print(sigma_efc(k_test, a_test, A_Sigma=0.10))
+    print("\nVariantH Σ (α=1, A_mu=-0.10):")
+    print(sigma_variant_h(k_test, a_test, A_mu=-0.10))
+    print("\nS8(0.81, 0.31) =", S8(0.81, 0.31))
