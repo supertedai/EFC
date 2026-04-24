@@ -6,21 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
-
-  A_structural_closure_of_growth_sector_couplings  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/a_structural_closure_of_growth_sector_co.py
-    Created examples/demo_a_structural_closure_of_growth_sector_co.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
-
-  Enriched: 2/1
+>>> Step 1: All papers at 10/10 <<<
 
 >>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
 
@@ -52,20 +38,18 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 61 paper(s) in public pages <<<
+>>> Step 2: Registering 60 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Updated Ledger (1 papers)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -77,9 +61,6 @@ EFC DOI sync — 154 paper dirs scanned
   papers with registered DOI : 151
   papers without DOI         : 3
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  A_structural_closure_of_growth_sector_couplings -> *.jsonld
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 154 paper dirs · 0 errors · 1 warnings
@@ -88,22 +69,29 @@ PROPAGATED DOIs into 1 papers:
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 7
-Traceback (most recent call last):
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 796, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 742, in main
-    rep, tests_data, stats_data, gap_html = process_paper(
-                                            ^^^^^^^^^^^^^^
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 635, in process_paper
-    pu_planned, _, _ = apply_page_updates(all_updates, bare, idx, False)
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ledger_impact_sync.py", line 408, in apply_page_updates
-    target_attr = target.replace('"', '"')
-                  ^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'replace'
-[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32084670
-[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32084670
+
+Processed 154 paper(s)
+  error: 5
+    - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
+        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+    - EFC-H0-S8-Tensions: 
+        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+    - EFC_vs_LCDM_Kill_Test_v6_final: 
+        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+    - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
+        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+    - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+  skip: 146
+  warn: 3
+    - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
+    - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
+    - EFC_PreRegistered_Predictions: DOI registered but no ledger_impact block
+
+[ledger-impact-sync] ERRORS — no writes performed
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 [efc-drift] 154 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -117,7 +105,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-04-23
+Date: 2026-04-24
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -133,16 +121,14 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
+1 potential new dataset(s):
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 2 paper packages enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
-[efc-auto-changelog] updated EFC_Changelog.html
-[efc-auto-changelog] updated changelog.json
+[efc-auto-changelog] only script/workflow changes — skipping changelog
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
@@ -244,6 +230,7 @@ Fix these before auto-commit:
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_verify.py …
 [efc-maintain] running efc_ledger_impact_sync.py --apply…
+[efc-maintain] ledger_impact_sync validation FAILED — see output above
 [efc-maintain] running efc_ledger_autofill.py …
 [efc-maintain] running efc_drift_detector.py --fix…
 [efc-maintain] running efc_symbiose_snapshot.py --from-ledger…
