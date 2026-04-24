@@ -6,21 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
-
-  A_structural_closure_of_growth_sector_couplings  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, paper_type, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/a_structural_closure_of_growth_sector_co.py
-    Created examples/demo_a_structural_closure_of_growth_sector_co.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
-
-  Enriched: 2/1
+>>> Step 1: All papers at 10/10 <<<
 
 >>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
 
@@ -52,20 +38,19 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 61 paper(s) in public pages <<<
+>>> Step 2: Registering 60 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Updated Ledger (1 papers)
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
+    Added 57 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -77,9 +62,6 @@ EFC DOI sync — 154 paper dirs scanned
   papers with registered DOI : 151
   papers without DOI         : 3
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  A_structural_closure_of_growth_sector_couplings -> *.jsonld
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 154 paper dirs · 0 errors · 1 warnings
@@ -102,8 +84,7 @@ Traceback (most recent call last):
     target_attr = target.replace('"', '"')
                   ^^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'replace'
-[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32084670
-[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32084670
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 [efc-drift] 154 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -117,7 +98,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-04-23
+Date: 2026-04-24
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -140,7 +121,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 2 paper packages enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json.
+[efc-auto-changelog] Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
