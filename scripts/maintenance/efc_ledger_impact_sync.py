@@ -385,16 +385,22 @@ def apply_page_updates(updates, bare_doi, idx, apply_mode):
     paper_desc = idx.get("description", "")
 
     for upd in updates:
-        page_key = upd.get("page", "")
-        target = upd.get("target", "")
-        action = upd.get("action", "")
-        new_badge = upd.get("new_badge", "")
-        new_text = upd.get("new_text", "")
-        doi_refs = upd.get("doi_refs", [])
+        page_key = upd.get("page") or ""
+        target = upd.get("target") or ""
+        action = upd.get("action") or ""
+        new_badge = upd.get("new_badge") or ""
+        new_text = upd.get("new_text") or ""
+        doi_refs = upd.get("doi_refs") or []
 
         page_path = PAGE_FILE_MAP.get(page_key)
         if not page_path or not os.path.exists(page_path):
             errors.append(f"page_updates: unknown page '{page_key}'")
+            continue
+
+        if not target:
+            errors.append(
+                f"page_updates: missing target for page '{page_key}' action='{action}'"
+            )
             continue
 
         # Load page HTML (use cached if already modified)
