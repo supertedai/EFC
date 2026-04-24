@@ -121,7 +121,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes a rigorous, model-agnostic empirical baseline: ΛCDM deviations are not random scatter but cluster by observational regime (low-z dynamics vs high-z abundances) with overwhelming statistical significance (p≈1.3×10⁻⁹). For EFC, this is foundational infrastructure — it documents the structured pattern that any successor framework (including EFC) must reproduce, and it pre-registers five falsifiable kill criteria that future data (JADES, CEERS, spectroscopic follow-up) can trigger. It does not prove EFC correct, but it sharpens the empirical target EFC must hit and provides the regime taxonomy (L0–L3) that downstream EFC predictions can be mapped onto.",
     "graph_insights": [
       "This paper has no 1-2 hop connections in the current graph, indicating it is a new entry node that should become a hub: it touches ΛCDM (core framework comparison), SPARC rotation curves (galactic-scale observable), JWST COSMOS-Web (high-z observable), halo mass function, and chi-squared test methodology — all of which are likely to connect to multiple existing EFC test nodes once the graph is updated.",
@@ -238,6 +238,8 @@
       "The halo mass function exceedance at z>8 (R_n >> 1) directly challenges standard hierarchical assembly timescales, which is precisely the regime where EFC's energy-flow-driven accelerated structure formation should be most distinctive. This paper quantifies the size of the anomaly EFC must match."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T04:36:35Z",
+    "applied_by_doi": "31061665"
   }
 }

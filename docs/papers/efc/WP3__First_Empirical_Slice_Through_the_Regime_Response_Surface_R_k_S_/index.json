@@ -183,7 +183,7 @@
   "data_hash": "c76720490b99dbd6",
   "run_id": "wp3_rks_v2.0",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "WP3 delivers the first empirical coordinate on the R(k,S) response surface using 12 fσ8 data points from BOSS, eBOSS, and DESI Y1, finding R≈+0.30 at (k≈0.13 h/Mpc, S≈0.30) but with ΛCDM preferred by ΔAIC=−3.8. This is a cartographic proof-of-concept — it demonstrates the methodology is operational and measurable, but makes no detection claim and explicitly acknowledges missing covariances and a proxy-only S(z). It inaugurates the response-atlas program and defines five internal kill criteria that will govern future atlas slices.",
     "graph_insights": [
       "WP3 is currently a graph isolate (no 1-2 hop connections found). It must be connected to: (a) the fσ8(z=0.7)=0.430 sealed prediction node, (b) BOSS/eBOSS/DESI data nodes, (c) modified gravity parameterization nodes (μ(k,z) formalism), and (d) the EFCLASS solver gap node. These edges are structurally necessary to integrate the atlas program into the existing knowledge graph.",
@@ -270,6 +270,8 @@
       "No graph connections found (0-hop isolation) means WP3 introduces genuinely new nodes: R(k,S), regime response surface, and structural maturity S as first-class concepts in the knowledge graph. These need to be linked to existing fσ8 and modified gravity nodes."
     ],
     "bottom_line_change": "No change. The biggest gap remains the DESI DR2 full-shape RSD rapid-response pipeline. WP3 reinforces its urgency: when DR2 drops, the R(k,S) methodology plus the sealed fσ8 prediction must be testable immediately. WP3 provides the methodological scaffolding but not the pipeline automation.",
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T04:36:35Z",
+    "applied_by_doi": "31215259"
   }
 }

@@ -110,7 +110,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "COSMOS-Web (COSMOS2025) reports a robust 3–10x excess of massive (log M*/Msun > 9) galaxies at z > 8 above the halo-limited (ε=1) cap, strengthening with redshift and persisting under extreme systematics. For EFC this is a high-leverage, model-agnostic constraint on early halo growth and baryon conversion that we must ingest as a benchmark testbed; it does not close an EFC KC but it sharpens the need for sealed predictions and a replication pipeline tied to our high-z HMF and sSFR modeling.",
     "graph_insights": [
       "No existing validation tests in the graph share these observables; this is a new, uncovered constraint linking JWST, halo mass function, baryon conversion efficiency, and sSFR.",
@@ -162,6 +162,8 @@
       "Neutrino mass effects that suppress small-scale power would exacerbate the tension, tightening EFC’s allowed Σmν within early-structure constraints."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T04:36:35Z",
+    "applied_by_doi": "31059964"
   }
 }
