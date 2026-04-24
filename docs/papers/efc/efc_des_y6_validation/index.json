@@ -226,7 +226,7 @@
     "E_G statistic — direct η = 1 test"
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "DES Y6’s 3×2pt S8 combined with the 2026 CMB baseline yields an S8_lens/S8_CMB ratio of 0.944 ± 0.018, matching the preregistered EFC prediction 0.95 ± 0.03 and passing the P3 lensing consistency window [0.90, 1.00]. This is a T2 empirical validation that the expected ~5% Stage‑III shear suppression is present and is consistent with the SPARC‑anchored screening picture (Σ_EFC) under η = 1. It strengthens the EFC narrative on the S8 tension without uniquely selecting EFC over alternative explanations and does not trigger any KC kills.",
     "graph_insights": [
       "This node bridges local galaxy dynamics (SPARC → k) to cosmological lensing via Σ_EFC, creating a new cross-domain edge in the graph.",
@@ -279,6 +279,8 @@
       "Reduces the plausibility that the S8 tension is purely a DES-specific systematic, increasing pressure on Stage‑IV (Euclid) to adjudicate KC1/KC5."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T21:14:31Z",
+    "applied_by_doi": "31951992"
   }
 }

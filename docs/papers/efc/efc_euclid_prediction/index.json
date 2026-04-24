@@ -167,7 +167,7 @@
   "pipeline": "pipelines/efc/euclid_dr1/",
   "see_also": "ai_manifest.json",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first full Boltzmann-level sealed prediction set for EFC against Euclid DR1, computed via hi_class with a custom Horndeski implementation. It freezes five coherent observables (σ8, P(k), C_ℓ^{ϕϕ}, E_G, C_ℓ^{TT} ISW) with SHA-256 integrity, creating an immutable pre-registration record months before the October 2026 data release. This is the single most important strategic move for EFC credibility: if Euclid DR1 confirms the growth–lensing decoupling pattern, EFC passes the strongest possible test; if not, the theory is cleanly falsified at the benchmark coupling.",
     "graph_insights": [
       "This paper is currently an isolated node in the graph (no 1-hop or 2-hop connections found), which means it needs to be linked to: (a) the Horndeski scalar-tensor concept cluster, (b) the hi_class/Boltzmann integration infrastructure node, (c) the gravitational slip / E_G observable nodes, (d) the ISW effect node, and (e) the sigma8 tension node. These links will make it a high-centrality hub connecting theory implementation to Stage-IV observational tests.",
@@ -319,6 +319,8 @@
       "The paper's four internal kill criteria (KC1–KC4 within the paper) are distinct from the project-level KC1–KC5 and represent the most aggressive self-falsification posture yet: a single opposite-sign observable at 2σ kills the benchmark."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T21:16:19Z",
+    "applied_by_doi": "31990053"
   }
 }

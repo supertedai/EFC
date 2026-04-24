@@ -144,7 +144,7 @@
     "sensitive_to": "Strongly redshift-dependent systematics"
   },
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first parameter-locked cross-probe prediction chain in EFC: RSD → growth → clusters, with zero free parameters fit to cluster data. It deposits four quantitative sealed predictions (total abundance excess, shape-ratio tilt, crossover redshift, per-bin R(z)) that are directly falsifiable by eRASS1 cluster catalogues. It does not close any existing KC or theory gap but opens a new high-value falsification surface and strengthens EFC's claim to be a genuinely predictive framework rather than a post-hoc fitting exercise.",
     "graph_insights": [
       "No existing graph nodes were found within 2 hops, indicating this paper opens an entirely new observational branch (galaxy clusters / halo mass function) in the EFC knowledge graph — it should seed new concept nodes for 'shape ratio R(z)', 'parameter-locked prediction', 'cross-probe chain', and 'eRASS1 cluster validation', all connected to the existing 'redshift-space distortions' and 'BOSS DR12' nodes.",
@@ -262,6 +262,8 @@
       "The f·sigma8(z=0.7) sealed prediction (action-5 / DESI pipeline) and the cluster R(z≈0.7)≈0.94 prediction are now two independent observables probing the same underlying growth enhancement at the same redshift — a joint pass or joint fail would be highly constraining."
     ],
     "bottom_line_change": "Biggest gap remains DESI DR2 full-shape RSD rapid-response pipeline, but add secondary urgency note: eRASS1 mass-calibrated cluster catalogue validation pipeline also needed — the two are now correlated via alpha_L2 parameter lock, and a joint verification script covering both the fsigma8 sealed prediction and the cluster shape-ratio predictions would maximise EFC's falsification surface when either dataset drops.",
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T21:17:08Z",
+    "applied_by_doi": "31292827"
   }
 }

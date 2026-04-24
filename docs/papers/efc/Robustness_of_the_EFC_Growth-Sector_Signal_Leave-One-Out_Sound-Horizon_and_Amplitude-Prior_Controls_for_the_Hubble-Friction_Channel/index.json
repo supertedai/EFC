@@ -313,7 +313,7 @@
     "status": "Completed (robust hint)"
   },
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper consolidates the ∼2.2σ negative-α hint in the EFC Hubble-friction channel and demonstrates it is not an artefact of sound-horizon calibration, σ8 priors, or any single growth datum. It directly executes and passes three robustness controls (N1/N2/T7), tightening confidence that the observed growth suppression signal is distributed and calibration-independent pending DESI RSD confirmation. It strengthens the growth-sector validation layer without altering the current bottom-line priority.",
     "graph_insights": [
       "This node strengthens the Hubble-friction channel by adding robust edges to calibration controls (rd) and amplitude priors (σ8), reducing dependence on early-universe calibration.",
@@ -388,6 +388,8 @@
     "kill_criteria_addressed": [
       "KC3",
       "KC4"
-    ]
+    ],
+    "applied_at": "2026-04-24T21:08:53Z",
+    "applied_by_doi": "31332730"
   }
 }
