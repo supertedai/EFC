@@ -1,66 +1,29 @@
-# EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States
+# EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States
 
-A connectome-constrained framework with falsifiable diagnostic signatures.
+## AI-Friendly Package
 
-Track 2: Neural Entropy
+- **DOI:** [10.6084/m9.figshare.32091700](https://doi.org/10.6084/m9.figshare.32091700)
+- **Version:** 2.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2026-04-01
+- **License:** CC-BY-4.0
+
+---
 
 ## Overview
 
-This paper presents a revised and quantified version of Energy-Flow Cosmology--Cognition (EFC-C), a thermodynamic framework for neural entropy gradients. The central observable is the centrifugal entropy score kappa = mean(S_hub) / mean(S_periph), derived from the EFC cross-domain Bridge B1* equation without fitting parameters to neural data.
+Revision of the EFC-C framework re-anchoring entropy-gradient predictions from the Fiedler eigenvalue to hub-to-periphery degree heterogeneity. Introduces a one-parameter power-law κ = C_eff · D_ratio^γ with γ ≈ 0.55 and separates predictions into Layer A (topological, invariant) and Layer B (absolute-scale, conditional on cross-domain constant transfer via RCMP).
 
-## Key Equation
+## Key Result
 
-```
-kappa_healthy = C / (1 + lambda_2(W) * tau_c)
-```
+Replaces the λ2-based prediction with a degree-heterogeneity power-law (κ = Ceff · Dratio^γ), with γ constrained to 0.50–0.60 and Ceff fixed via RCMP; predictions are separated into Layer A (topological) and Layer B (absolute-scale).
 
-Where:
-- C = k / a_G = 4.4 +/- 0.6 (fixed from SPARC galactic fit)
-- lambda_2(W) = Fiedler eigenvalue of the normalized graph Laplacian
-- tau_c = L_parcel^2 / D_eff ~ 3.5 s (cortical entropy redistribution timescale)
+## Sealed Predictions
 
-## Predictions
-
-| Code | Prediction | Falsification |
-|------|-----------|---------------|
-| Q1 | kappa_healthy ~ 1.6 | r < 0.30 (n >= 20) or abs(z) > 3 |
-| Q2a | alpha_AP_scz > alpha_AP_healthy | p > 0.05, n >= 15/group |
-| Q2b | alpha_AP_mdd < alpha_AP_healthy | p > 0.05, n >= 15/group |
-| Q2c | Delta_kappa correlates with Delta_lambda_2 | r < 0.25, n >= 30 |
-| Q3 | kappa < 0.73 in disorders of consciousness | kappa_DoC > 0.73 |
-
-## Files
-
-```
-EFC-C_Cognitive_Entropy_Gradients_v2/
-  README.md                        # This file
-  index.json                       # Machine-readable index
-  schema.json                      # JSON Schema validation
-  metadata.json                    # Structured metadata
-  efc_c_v2.jsonld                  # JSON-LD linked data
-  citations.bib                    # BibTeX references
-  src/__init__.py                  # Package imports
-  src/cognitive_entropy.py         # Python implementation
-  data/cognitive_entropy_data.json # Structured data
-  examples/demo_cognitive_entropy.py # Executable demo
-```
-
-## Citation
-
-```bibtex
-@misc{magnusson2026efcc_v2,
-  author = {Magnusson, Morten},
-  title  = {EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States},
-  year   = {2026}
-}
-```
-
-## License
-
-CC-BY-4.0
-
-## Author
-
-Morten Magnusson
-Symbiose Research, Sandnes, Norway
-ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1-LayerA | Across individuals, the centrifugal entropy score κ scales as a power law of the hub-to-periphery degree ratio: log κ = log Ceff + γ log Dratio with γ in [0.50, 0.60]. | Linear fit on log–log scale yields γ outside [0.50, 0.60] or cross-subject R^2 < 0.50 despite adequate SNR and matched hub/periphery partition. |
+| P2-LayerB | With Ceff fixed a priori by RCMP (no re-fitting on neural data), absolute κ values predicted by κ = Ceff · Dratio^γ lie within propagated uncertainty bounds across HCP-like datasets. | Mean absolute fractional error > 0.30 across subjects or systematic bias in residuals that cannot be removed by the prespecified secondary τc correction. |
+| P3-Comparator | Algebraic connectivity (λ2) does not outperform Dratio in explaining inter-subject variance in κ. | In multiple independent datasets, λ2-based models consistently achieve higher R^2 than Dratio-based models for κ prediction under identical preprocessing and partitions. |
+| P4-Timescale | The τc contribution is a secondary correction O(τc/τH) that does not dominate κ variance. | After applying the prespecified autocorrelation-based protocol, τc-related terms account for >30% of explained variance or are required to rescue otherwise invalid Layer A fits. |
+| P5-TopologyLock | Topological alignment holds: κ and Dratio computed with the same hub/periphery partition are robust to reasonable variations of hub/periphery thresholds. | Small, reasonable changes to hub/periphery thresholds (e.g., hubs 8–12%, periphery 25–35%) cause >25% swings in fitted γ or destroy the κ–Dratio scaling. |

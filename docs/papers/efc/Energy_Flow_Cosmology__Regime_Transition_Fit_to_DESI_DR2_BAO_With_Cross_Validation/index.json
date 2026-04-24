@@ -229,7 +229,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper is the first direct empirical confrontation of the EFC regime-transition parameterization with DESI DR2 BAO data, establishing a strong statistical preference (Δχ² = −22.01, ΔBIC = −14.5) over ΛCDM and demonstrating robustness via covariance-aware conditional hold-out validation. It cross-validates against Pantheon+ (shape residual |Δμ_shape| < 0.002 mag) and cosmic chronometers (consistent, no tension), anchoring the tanh transition at z_L1L2 ≈ 1.01 with α_L2 ≈ 0.045. This is a Tier-2 empirical milestone that survives multiple internal consistency checks but explicitly defers to future independent BAO datasets and higher-precision H(z) for definitive KC closure.",
     "graph_insights": [
       "This paper has no 1-2 hop connections in the current graph, indicating it is the founding empirical node for the DESI DR2 BAO observable cluster — all future DESI-related EFC papers will connect through it.",
@@ -388,6 +388,8 @@
       "KC1",
       "KC2",
       "KC4"
-    ]
+    ],
+    "applied_at": "2026-04-24T20:48:44Z",
+    "applied_by_doi": "31230703"
   }
 }

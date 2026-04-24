@@ -279,7 +279,7 @@
   },
   "see_also": "ai_manifest.json",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first single-parameter, scale-localised modified-gravity forecast derived from the EFC relativistic action, converting perturbation-sector physics into a directly falsifiable E_G(k,z) prediction with a sharp ε_tot window. It provides four new paper-level kill criteria and three sealed predictions targeting DESI × Planck cross-correlations, bridging the gap between the EFC action formalism and near-term Stage-IV observables. It does not close any existing Stage-IV KC or theory gap but creates a new falsification surface and strengthens the perturbation-sector programme.",
     "graph_insights": [
       "This paper is currently an orphan in the graph (no 1-hop or 2-hop connections found), yet it explicitly references the No-Go result (Figshare 31985163) and the relativistic action (Figshare 31876324) — these edges should be added to connect it to the action-formalism and no-go constraint nodes.",
@@ -447,6 +447,8 @@
       "The neutrino mass degeneracy gap (theory-neutrino-mass-degeneracy) is implicitly relevant: massive neutrinos suppress growth (mimicking µ<1) and could partially absorb or mimic the ε_tot signal, meaning the E_G forecast's discriminating power depends on breaking this degeneracy."
     ],
     "bottom_line_change": "The biggest gap should be expanded: alongside the DESI DR2 full-shape RSD pipeline, the DESI × Planck E_G(k,z) cross-correlation pipeline is now equally critical — the E_G paper deposits four kill criteria and three sealed predictions that cannot be verified without it. Both pipelines should be flagged as co-priority.",
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-24T20:50:34Z",
+    "applied_by_doi": "31985313"
   }
 }

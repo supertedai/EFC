@@ -323,7 +323,7 @@
     "Fixed-parameter test (no retuning) - pure transfer validation"
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper adds a stringent, fully reproducible BAO geometry check using the official BOSS DR12 consensus likelihood with the full 6×6 covariance, showing that the fixed-parameter EFC background (DESI DR2-calibrated) incurs no penalty and modestly improves χ² over ΛCDM. It closes the prior reproducibility gap around covariance-aware BAO consistency and anchors EFC’s background modification in a standard CosmoMC/Cobaya pipeline without any parameter retuning. This strengthens the case that EFC’s late-time background is viable and shifts attention back to growth/RSD validation.",
     "graph_insights": [
       "First explicit link between EFC and the BOSS DR12 consensus covariance node via CosmoMC/Cobaya, filling a reproducibility gap.",
@@ -369,6 +369,8 @@
     "bottom_line_change": null,
     "kill_criteria_addressed": [
       "KC1"
-    ]
+    ],
+    "applied_at": "2026-04-24T20:53:46Z",
+    "applied_by_doi": "31314922"
   }
 }
