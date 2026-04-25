@@ -5,42 +5,44 @@ LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
 Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
+  [WARN] Skipping A_structural_closure_of_growth_sector_couplings: Expecting property name enclosed in double quotes: line 5 column 1 (char 192)
+  [WARN] Skipping Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation: Expecting property name enclosed in double quotes: line 392 column 1 (char 20984)
+  [WARN] Skipping ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers: Expecting property name enclosed in double quotes: line 288 column 1 (char 18054)
+  [WARN] Skipping ISW_Void_SignFlip_Pipeline: Expecting property name enclosed in double quotes: line 154 column 1 (char 7261)
+  [WARN] Skipping Kill-Test v6 Universality_SPARC175: Expecting property name enclosed in double quotes: line 464 column 1 (char 21929)
+  [WARN] Skipping Multi_epoch_Growth_Rate_Test_of_EFC: Expecting property name enclosed in double quotes: line 291 column 1 (char 16190)
+  [WARN] Skipping Perturbation-Level_σ₈_Suppression_via_μ_Sructural_Limits_of_Scale-Free_Modifications: Expecting property name enclosed in double quotes: line 517 column 1 (char 23293)
+  [WARN] Skipping Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12: Expecting property name enclosed in double quotes: line 373 column 1 (char 19597)
+  [WARN] Skipping Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3: Expecting property name enclosed in double quotes: line 357 column 1 (char 19610)
+  [WARN] Skipping Robustness_of_the_EFC_Growth-Sector_Signal_Leave-One-Out_Sound-Horizon_and_Amplitude-Prior_Controls_for_the_Hubble-Friction_Channel: Expecting property name enclosed in double quotes: line 392 column 1 (char 15327)
+  [WARN] Skipping Scale_Localised_Modified_Gravity: Expecting property name enclosed in double quotes: line 451 column 1 (char 22665)
+  [WARN] Skipping Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM: Expecting property name enclosed in double quotes: line 214 column 1 (char 13841)
+  [WARN] Skipping Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry: Expecting property name enclosed in double quotes: line 270 column 1 (char 18583)
+  [WARN] Skipping Systematic-CMB-Constraints-on-Early-Universe-Modifications-Parameter-Degeneracies-and-Null-Results: Expecting property name enclosed in double quotes: line 180 column 1 (char 10331)
+  [WARN] Skipping Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier: Expecting property name enclosed in double quotes: line 605 column 1 (char 26444)
+  [WARN] Skipping WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_: Expecting property name enclosed in double quotes: line 274 column 1 (char 14388)
+  [WARN] Skipping WP4_BOSS_transfer_validation: Expecting property name enclosed in double quotes: line 283 column 1 (char 12135)
+  [WARN] Skipping WP4_BOSS_validation: Expecting property name enclosed in double quotes: line 322 column 1 (char 16373)
+  [WARN] Skipping bullet_cluster_efc: Expecting property name enclosed in double quotes: line 376 column 1 (char 23649)
+  [WARN] Skipping efc_boss_bao_cobaya_research_note: Expecting property name enclosed in double quotes: line 373 column 1 (char 14694)
+  [WARN] Skipping efc_case_b_eigenmode: Expecting property name enclosed in double quotes: line 258 column 1 (char 13656)
+  [WARN] Skipping efc_des_y6_validation: Expecting property name enclosed in double quotes: line 283 column 1 (char 12546)
+  [WARN] Skipping efc_eg_preregistration: Expecting property name enclosed in double quotes: line 194 column 1 (char 10502)
+  [WARN] Skipping efc_euclid_prediction: Expecting property name enclosed in double quotes: line 323 column 1 (char 17844)
+  [WARN] Skipping efc_perturbation_sector: Expecting property name enclosed in double quotes: line 178 column 1 (char 11435)
+  [WARN] Skipping entropy-bounded-empiricism-EBE-SPARC175-complete-documentation: Expecting property name enclosed in double quotes: line 247 column 1 (char 15845)
+  [WARN] Skipping observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-COSMOS-web: Expecting property name enclosed in double quotes: line 166 column 1 (char 9164)
+  [WARN] Skipping paper_rsd_to_clusters: Expecting property name enclosed in double quotes: line 266 column 1 (char 16480)
+  [WARN] Skipping regime-dependent-breakdown-of-LCDM-across-cosmic-time: Expecting property name enclosed in double quotes: line 242 column 1 (char 15654)
+  [WARN] Skipping regime_consistency_lya_bao_rsd_sce: Expecting property name enclosed in double quotes: line 552 column 1 (char 23886)
+  [WARN] Skipping void_isw_signflip_v2.1_final: Expecting property name enclosed in double quotes: line 301 column 1 (char 17834)
+  [WARN] Skipping ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology: Expecting property name enclosed in double quotes: line 482 column 1 (char 23343)
 
 >>> Step 1: All papers at 10/10 <<<
 
->>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
+>>> Step 1.5: Holistic Impact Analysis for 2 paper(s) <<<
 
   EFC_Outcome_Estimation_CrossSurvey:
-<<<<<<< HEAD
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  A_structural_closure_of_growth_sector_couplings:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  EFC_PreRegistered_Predictions:
-=======
->>>>>>> origin/main
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -71,63 +73,61 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
-
-============================================================
-EFC AI BRAIN — done
-============================================================
+Traceback (most recent call last):
+  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 1751, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 1732, in main
+    update_evidence_register(page_papers)
+  File "/home/runner/work/EFC/EFC/scripts/maintenance/efc_ai_brain.py", line 1505, in update_evidence_register
+    er = json.load(f)
+         ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 123 column 1 (char 3664)
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
 EFC DOI sync — 154 paper dirs scanned
 ========================================================================
-<<<<<<< HEAD
-  papers with registered DOI : 151
-  papers without DOI         : 3
-=======
   papers with registered DOI : 152
   papers without DOI         : 2
->>>>>>> origin/main
   papers with conflicts      : 0
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 154 paper dirs · 0 errors · 1 warnings
+[efc-verify] 154 paper dirs · 1 errors · 1 warnings
+  [ERROR] C2 data/evidence-register.json: unparseable: Expecting property name enclosed in double quotes: line 123 column 1 (char 3664)
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 7
 
-Processed 154 paper(s)
+Processed 122 paper(s)
   error: 5
     - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
-<<<<<<< HEAD
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
     - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
+        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
     - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
     - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
+        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
     - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-=======
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
->>>>>>> origin/main
-  skip: 146
-  warn: 3
-    - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'consistency_check', 'planned_pipeline', 'framework_constraint', 'phenomenological'})
+  skip: 115
+  warn: 2
     - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
     - EFC_PreRegistered_Predictions: DOI registered but no ledger_impact block
 
@@ -141,20 +141,12 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 121 total, 93 survived, 10 falsified
-<<<<<<< HEAD
-  Papers: 154 (151 DOIs)
-=======
-  Papers: 154 (152 DOIs)
->>>>>>> origin/main
+  Papers: 154 (120 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-<<<<<<< HEAD
-Date: 2026-04-24
-=======
 Date: 2026-04-25
->>>>>>> origin/main
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -170,47 +162,25 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
-<<<<<<< HEAD
-  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
-
-1 potential new dataset(s):
-=======
 
 2 potential new dataset(s):
   [DESI] data release — https://data.desi.lbl.gov/doc/releases/
->>>>>>> origin/main
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-<<<<<<< HEAD
 [efc-auto-changelog] only script/workflow changes — skipping changelog
-=======
-[efc-auto-changelog] Ledger data: evidence-register.json.
-[efc-auto-changelog] updated EFC_Changelog.html
-[efc-auto-changelog] updated changelog.json
->>>>>>> origin/main
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-<<<<<<< HEAD
-Repo: 154 papers, 151 DOIs
-Ledger: 121 tests, 10 falsified
-
---- Elevator Pitch ---
-  [CRITICAL] Paper count '147' in Elevator Pitch != 154 in repo
-  [OK]       Paper count 154 close to repo 154
-  [WARNING]  Survived 91/100 but expected 93/103 (total=121, falsified=10, pipeline=18)
-=======
-Repo: 154 papers, 152 DOIs
+Repo: 154 papers, 120 DOIs
 Ledger: 121 tests, 10 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 154 close to repo 154
   [OK]       Paper count 154 close to repo 154
   [OK]       Survival count 93/103 matches ledger
->>>>>>> origin/main
 
 --- Validation Ledger ---
   [WARNING]  '118-test' in Ledger HTML != 121 in stats
@@ -218,18 +188,9 @@ Ledger: 121 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 101 active but ledger has 103
-  [CRITICAL] Elevator Pitch: says 91 survived but ledger has 93
-  [CRITICAL] White Paper Series: says 119 total but ledger has 121
-  [CRITICAL] White Paper Series: says 101 active but ledger has 103
-  [CRITICAL] White Paper Series: says 101 active but ledger has 103
-  [CRITICAL] White Paper Series: says 91 survived but ledger has 93
-  [CRITICAL] Stage-IV Roadmap: says 119 total but ledger has 121
-  [CRITICAL] Stage-IV Roadmap: says 101 active but ledger has 103
-  [CRITICAL] Stage-IV Roadmap: says 91 survived but ledger has 93
 
 --- KC Status vs Sealed DOIs (semantic) ---
-  [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
+  [OK]       Sealed/empirical DOIs cover: KC1, KC2, KC3, KC4, KC5, KC6
 
 --- Roadmap §12 vs Gap Analysis Sync ---
   [WARNING]  KC1: Gap Analysis says 'DONE' but Roadmap §12 says 'PIPELINE NEEDED'
@@ -252,13 +213,8 @@ Ledger: 121 tests, 10 falsified
   [OK]       README paper count 154 matches repo 154
   [OK]       README paper count 154 matches repo 154
   [OK]       Stats categories sum to 121 = total_public
-<<<<<<< HEAD
-  [OK]       DOI sync script present, 151/154 papers have DOIs
-  [OK]       110 papers have sealed predictions (322 total)
-=======
-  [OK]       DOI sync script present, 152/154 papers have DOIs
-  [OK]       111 papers have sealed predictions (325 total)
->>>>>>> origin/main
+  [OK]       DOI sync script present, 120/154 papers have DOIs
+  [OK]       86 papers have sealed predictions (258 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
@@ -271,45 +227,16 @@ Ledger: 121 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-<<<<<<< HEAD
-RESULT: 14 errors, 7 warnings
-VERDICT: BLOCK — critical discrepancies prevent publishing
-Fix these before auto-commit:
-  - Paper count '147' in Elevator Pitch != 154 in repo
-  - Elevator Pitch: says 101 active but ledger has 103
-  - Elevator Pitch: says 91 survived but ledger has 93
-  - White Paper Series: says 119 total but ledger has 121
-  - White Paper Series: says 101 active but ledger has 103
-  - White Paper Series: says 101 active but ledger has 103
-  - White Paper Series: says 91 survived but ledger has 93
-  - Stage-IV Roadmap: says 119 total but ledger has 121
-  - Stage-IV Roadmap: says 101 active but ledger has 103
-  - Stage-IV Roadmap: says 91 survived but ledger has 93
-=======
 RESULT: 4 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
->>>>>>> origin/main
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-<<<<<<< HEAD
-[full-sync] invariants: 1 error(s), 8 warning(s)
-  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32029704: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32037990: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32045592: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080059: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080080: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080083: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32084670: expected='present' observed='absent'
-  [ERROR] §5 forbidden_phrase:confirms efc: expected='absent' observed='docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/index.json'
-=======
 [full-sync] invariants: 0 error(s), 2 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32091700: expected='present' observed='absent'
->>>>>>> origin/main
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
