@@ -75,7 +75,6 @@ These papers develop specific aspects of the EFC model:
 ---
 
 ## Methodology & Workflow
-- **ai_workflow_framework/** — AI-augmented scientific workflow used in EFC  
 - **EFC-Technical-Documentation-Energy-Flow-in-Space-Time/**  
 
 ---
