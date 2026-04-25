@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "efc-c-cognitive-entropy-gradients-v2",
   "title": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States",
-  "description": "Revises EFC-C by replacing the \u03bb2 (Fiedler) formulation with a degree-heterogeneity bridge (B1**) linking hub-to-periphery degree ratio to the centrifugal entropy score. Introduces a two-layer prediction scheme: Layer A (topological, parameter-light) tests a power-law scaling with exponent \u03b3\u22480.55; Layer B (absolute-scale) tests a cross-domain-anchored constant Ceff fixed a priori via regime transformation of C=k/aG.",
+  "description": "Revises EFC-C by replacing the λ2 (Fiedler) formulation with a degree-heterogeneity bridge (B1**) linking hub-to-periphery degree ratio to the centrifugal entropy score. Introduces a two-layer prediction scheme: Layer A (topological, parameter-light) tests a power-law scaling with exponent γ≈0.55; Layer B (absolute-scale) tests a cross-domain-anchored constant Ceff fixed a priori via regime transformation of C=k/aG.",
   "version": "2.1",
   "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.32091700",
@@ -25,6 +25,7 @@
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "abstract": "This revision of EFC-C replaces the Fiedler-eigenvalue formulation (Bridge B1*) used in v2.0 with the empirically-supported degree-heterogeneity formulation (Bridge B1**). The centrifugal entropy score κ = ⟨S_hub⟩/⟨S_periph⟩ is predicted from the structural hub-to-periphery degree ratio D_ratio = ⟨k_hub⟩/⟨k_periph⟩ via the power-law relation κ = C_eff · D_ratio^γ, where C_eff is fixed prior to neural data analysis via regime transformation of the cosmological constant C = k/a_G, and γ ≈ 0.55 is the one empirical fit parameter (constrained to 0.5 ≤ γ ≤ 0.6 across HCP datasets). Predictions are separated into Layer A (topological: invariant under cross-domain anchor C_eff) and Layer B (absolute scale: conditional on C_eff).",
   "core_equations": {
     "kappa_def": {
       "latex": "\\kappa = \\frac{\\langle S_{\\mathrm{hub}} \\rangle}{\\langle S_{\\mathrm{periph}} \\rangle}",
@@ -41,10 +42,44 @@
     "Ceff_def": {
       "latex": "C_{\\mathrm{eff}} = \\kappa_{\\mathrm{reg}}\\, C = \\kappa_{\\mathrm{reg}}\\, \\frac{k}{a_G}",
       "description": "Effective cross-domain constant fixed a priori by regime transformation (RCMP) of the cosmological constant C=k/a_G into the cognitive regime."
+    },
+    "alpha_AP": {
+      "latex": "\\alpha_{AP} = \\frac{\\langle S_{\\mathrm{anterior\\,hub}} \\rangle}{\\langle S_{\\mathrm{posterior\\,hub}} \\rangle}",
+      "description": "Anterior-posterior entropy asymmetry; discriminates schizophrenia (anterior-elevated) from MDD (posterior-shifted)."
+    }
+  },
+  "parameters": {
+    "C_eff": {
+      "value": 2.0,
+      "uncertainty": 0.15,
+      "source": "Regime-transformed from cosmological C = k/a_G via RCMP L3→L1 factor (Bridge paper Sec 2.3); fixed prior to neural analysis",
+      "doi": "10.6084/m9.figshare.31301953"
+    },
+    "gamma": {
+      "value": 0.55,
+      "uncertainty": 0.05,
+      "constraint": [0.5, 0.6],
+      "source": "Empirical fit, estimated once from HCP reference sample",
+      "doi": "10.6084/m9.figshare.31940370"
+    },
+    "D_ratio_baseline": {
+      "value": 1.2,
+      "uncertainty": 0.15,
+      "source": "Typical HCP value, top 10% / bottom 30% partition with log-degree proxy"
+    },
+    "kappa_healthy_central": {
+      "value": 2.2,
+      "interval_95": [1.7, 2.6],
+      "source": "Layer B prediction with propagated EBE-bounded uncertainty"
+    },
+    "kappa_crit": {
+      "value": 1.9,
+      "D_ratio_crit": 0.9,
+      "description": "Critical threshold at degree hierarchy collapse"
     }
   },
   "key_results": {
-    "main_finding": "Framework update: \u03ba is predicted by a one-parameter power law in hub\u2013periphery degree heterogeneity (\u03b3\u22480.55), with absolute scale anchored by a preregistered Ceff; predictions are layered to separate topology-only tests (Layer A) from cross-domain absolute-scale tests (Layer B).",
+    "main_finding": "Framework update: κ is predicted by a one-parameter power law in hub–periphery degree heterogeneity (γ≈0.55), with absolute scale anchored by a preregistered Ceff; predictions are layered to separate topology-only tests (Layer A) from cross-domain absolute-scale tests (Layer B).",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -61,29 +96,66 @@
     ],
     "verdict": "PLANNED"
   },
+  "predictions": [
+    {
+      "id": "A1",
+      "layer": "A",
+      "description": "Layer A (topological): Δ log κ = γ · Δ log D_ratio with slope γ ∈ [0.5, 0.6]",
+      "observable": "Log-log slope from regression of κ on D_ratio across pooled subjects",
+      "falsification": "Fitted γ outside [0.3, 0.8] (±2σ EBE-bounded) for n ≥ 30, or Pearson r(log κ, log D_ratio) < 0.50"
+    },
+    {
+      "id": "A2",
+      "layer": "A",
+      "description": "α_AP^scz > α_AP^healthy (anterior-dominant entropy elevation in schizophrenia)",
+      "observable": "Anterior/posterior hub entropy ratio",
+      "falsification": "AUC < 0.60 for n ≥ 15/group"
+    },
+    {
+      "id": "A3",
+      "layer": "A",
+      "description": "α_AP^mdd < α_AP^healthy (posterior-shifted entropy in MDD)",
+      "observable": "Anterior/posterior hub entropy ratio",
+      "falsification": "AUC < 0.60 for n ≥ 15/group"
+    },
+    {
+      "id": "B1",
+      "layer": "B",
+      "description": "κ_healthy = C_eff · D_ratio^γ ≈ 2.0 · 1.2^0.55 ≈ 2.2; EBE-bounded interval [1.7, 2.6]",
+      "observable": "κ from HCP",
+      "falsification": "Group mean outside [1.7, 2.6] for n ≥ 20"
+    },
+    {
+      "id": "B2",
+      "layer": "B",
+      "description": "κ_crit ≲ 1.9 at D_ratio ≲ 0.9 (degree hierarchy collapse, convergence κ → 1)",
+      "observable": "κ in UWS/VS patients",
+      "falsification": "κ > 2.0 with D_ratio > 1.15"
+    }
+  ],
   "sealed_predictions": [
     {
       "id": "P1A",
-      "statement": "Layer A (topological): Across subjects, log \u03ba scales linearly with log Dratio with slope \u03b3 in [0.50, 0.60] using the preregistered hub/periphery partition and MSE-based \u03ba.",
-      "falsifiable_by": "If the fitted \u03b3 falls outside [0.50, 0.60] or the \u03ba\u2013Dratio association is weak/non-significant across independent cohorts using the preregistered pipeline."
+      "statement": "Layer A (topological): Across subjects, log κ scales linearly with log Dratio with slope γ in [0.50, 0.60] using the preregistered hub/periphery partition and MSE-based κ.",
+      "falsifiable_by": "If the fitted γ falls outside [0.50, 0.60] or the κ–Dratio association is weak/non-significant across independent cohorts using the preregistered pipeline."
     },
     {
       "id": "P1B",
-      "statement": "Layer B (absolute scale): With Ceff fixed a priori via RCMP, the predicted \u03ba = Ceff\u00b7Dratio^\u03b3 matches observed \u03ba at the group and individual levels (after the specified \u03c4c secondary correction) without re-fitting Ceff.",
-      "falsifiable_by": "If fixing Ceff a priori leads to systematic, large absolute-scale mismatches that cannot be remedied by the preregistered \u03c4c correction."
+      "statement": "Layer B (absolute scale): With Ceff fixed a priori via RCMP, the predicted κ = Ceff·Dratio^γ matches observed κ at the group and individual levels (after the specified τc secondary correction) without re-fitting Ceff.",
+      "falsifiable_by": "If fixing Ceff a priori leads to systematic, large absolute-scale mismatches that cannot be remedied by the preregistered τc correction."
     },
     {
       "id": "P1C",
-      "statement": "Degree heterogeneity Dratio explains substantially more inter-subject variance in \u03ba than algebraic connectivity \u03bb2 under the same preprocessing and partitioning.",
-      "falsifiable_by": "If \u03bb2 explains equal or greater variance in \u03ba than Dratio across datasets using identical pipelines and QC."
+      "statement": "Degree heterogeneity Dratio explains substantially more inter-subject variance in κ than algebraic connectivity λ2 under the same preprocessing and partitioning.",
+      "falsifiable_by": "If λ2 explains equal or greater variance in κ than Dratio across datasets using identical pipelines and QC."
     }
   ],
   "kill_criteria": [
-    "KC1 (Layer A kill): In two or more independent, high-quality datasets (e.g., HCP and one OpenNeuro cohort), the fitted log\u2013log slope between \u03ba and Dratio lies outside the preregistered interval \u03b3 \u2208 [0.50, 0.60] using the specified hub (top 10%) and periphery (bottom 30%) partitions and MSE-based \u03ba.",
-    "KC2 (Layer A kill): After preregistered QC and nuisance controls, Dratio fails to show a significant association with \u03ba (e.g., non-significant slope or r^2 near zero) in at least two independent datasets, while analyses follow the specified pipeline.",
-    "KC3 (Model driver kill): Under identical pipelines, \u03bb2 (algebraic connectivity) consistently explains more variance in \u03ba than Dratio (e.g., adjusted R^2(\u03bb2) > adjusted R^2(Dratio) by a meaningful margin) across independent datasets.",
-    "KC4 (Partition robustness kill): The \u03ba\u2013Dratio scaling collapses (slope or significance lost) across reasonable, preregistered variations of the hub/periphery thresholds (e.g., hubs 5\u201315%, periphery 20\u201340%), indicating dependence on an idiosyncratic partition.",
-    "KC5 (Layer B kill): With Ceff fixed a priori via the RCMP mapping (no re-fitting on neural data), absolute-scale predictions show large, systematic bias across cohorts that cannot be resolved by the specified \u03c4c secondary correction (i.e., Layer B fails while Layer A holds).",
+    "KC1 (Layer A kill): In two or more independent, high-quality datasets (e.g., HCP and one OpenNeuro cohort), the fitted log–log slope between κ and Dratio lies outside the preregistered interval γ ∈ [0.50, 0.60] using the specified hub (top 10%) and periphery (bottom 30%) partitions and MSE-based κ.",
+    "KC2 (Layer A kill): After preregistered QC and nuisance controls, Dratio fails to show a significant association with κ (e.g., non-significant slope or r^2 near zero) in at least two independent datasets, while analyses follow the specified pipeline.",
+    "KC3 (Model driver kill): Under identical pipelines, λ2 (algebraic connectivity) consistently explains more variance in κ than Dratio (e.g., adjusted R^2(λ2) > adjusted R^2(Dratio) by a meaningful margin) across independent datasets.",
+    "KC4 (Partition robustness kill): The κ–Dratio scaling collapses (slope or significance lost) across reasonable, preregistered variations of the hub/periphery thresholds (e.g., hubs 5–15%, periphery 20–40%), indicating dependence on an idiosyncratic partition.",
+    "KC5 (Layer B kill): With Ceff fixed a priori via the RCMP mapping (no re-fitting on neural data), absolute-scale predictions show large, systematic bias across cohorts that cannot be resolved by the specified τc secondary correction (i.e., Layer B fails while Layer A holds).",
     "KC6 (Transfer invalidation): Independent calibration attempts demonstrate that Ceff must be re-fit on neural data to achieve adequate absolute-scale performance, contradicting the preregistered cross-domain transfer claim (this kills the cross-domain anchor while leaving Layer A testable)."
   ],
   "tier": "T2",
@@ -97,12 +169,45 @@
     {
       "id": "degree-heterogeneity-fc-variability",
       "doi": "10.6084/m9.figshare.31940370",
-      "role": "Empirical support that local degree heterogeneity predicts functional variability/entropy gradients (r^2\u22480.94)."
+      "role": "Empirical support that local degree heterogeneity predicts functional variability/entropy gradients (r^2≈0.94)."
     },
     {
       "id": "sparc-galactic-fit",
       "doi": "10.6084/m9.figshare.31301953",
       "role": "Source of cosmological constant C=k/aG used in regime transformation to obtain Ceff."
+    },
+    {
+      "id": "entropy-bounded-empiricism",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "EBE framework for layer-separated, validity-bounded inference."
+    },
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Regime-Consistent Measurement Principle: methodological foundation for L3→L1 transfer of C_eff."
+    }
+  ],
+  "datasets": [
+    {
+      "name": "HCP 1200",
+      "n_target": 50,
+      "population": "healthy adults",
+      "modalities": ["DTI", "rs-fMRI"],
+      "access": "ConnectomeDB"
+    },
+    {
+      "name": "OpenNeuro ds000030 (UCLA)",
+      "n_target": 100,
+      "population": "schizophrenia + healthy",
+      "modalities": ["structural", "rs-fMRI"],
+      "access": "OpenNeuro"
+    },
+    {
+      "name": "OpenNeuro ds000171",
+      "n_target": 40,
+      "population": "MDD + healthy",
+      "modalities": ["rs-fMRI"],
+      "access": "OpenNeuro"
     }
   ],
   "files": {
@@ -116,103 +221,10 @@
     "demo": "examples/demo_cognitive_entropy.py"
   },
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32091700",
-  "short_title": "EFC-C v2 Cognitive Entropy Gradients",
+  "short_title": "EFC-C v2.1 Cognitive Entropy Gradients",
   "framework": "Energy-Flow Cosmology (EFC)",
   "track": "Track 2: Neural Entropy",
   "license": "CC-BY-4.0",
   "type": "quantitative_prediction",
-  "status": "research_note",
-  "abstract": "Revised EFC-C framework introducing three falsifiable predictions grounded in the centrifugal entropy score kappa = <S_hub>/<S_periph>. Using Bridge B1*, kappa_healthy = C/(1 + lambda_2 * tau_c) where C = 4.4 from galactic dynamics. Extends to psychiatric populations via disorder-specific changes in structural connectome algebraic connectivity.",
-  "key_equations": {
-    "kappa_definition": "kappa = <S_hub> / <S_periph>",
-    "kappa_healthy": "kappa_healthy = C / (1 + lambda_2(W) * tau_c)",
-    "delta_kappa": "Delta_kappa = C * [1/(1 + lambda_2_h * tau_c) - 1/(1 + lambda_2_d * tau_c)]",
-    "alpha_AP": "alpha_AP = <S_anterior_hub> / <S_posterior_hub>",
-    "kappa_crit": "kappa_crit = C / (1 + lambda_2_max * tau_c_max) = 0.73"
-  },
-  "parameters": {
-    "C": {
-      "value": 4.4,
-      "uncertainty": 0.6,
-      "source": "SPARC galactic fit (Spor 1)"
-    },
-    "lambda_2_typical": {
-      "value": 0.5,
-      "range": [
-        0.3,
-        0.8
-      ],
-      "source": "HCP structural connectome"
-    },
-    "tau_c": {
-      "value": 3.5,
-      "unit": "s",
-      "range": [
-        2.0,
-        5.0
-      ],
-      "derivation": "L_parcel^2/D_eff"
-    },
-    "kappa_healthy_central": {
-      "value": 1.6
-    },
-    "kappa_crit": {
-      "value": 0.73
-    }
-  },
-  "predictions": [
-    {
-      "id": "Q1",
-      "description": "kappa_healthy ~ 1.6; kappa scales as 1/lambda_2",
-      "falsification": "r < 0.30 or |z| > 3"
-    },
-    {
-      "id": "Q2a",
-      "description": "alpha_AP_scz > alpha_AP_healthy (anterior-dominant elevation)",
-      "falsification": "p > 0.05"
-    },
-    {
-      "id": "Q2b",
-      "description": "alpha_AP_mdd < alpha_AP_healthy (posterior-shifted)",
-      "falsification": "p > 0.05"
-    },
-    {
-      "id": "Q2c",
-      "description": "Delta_kappa correlates with Delta_lambda_2",
-      "falsification": "r < 0.25"
-    },
-    {
-      "id": "Q3",
-      "description": "kappa < 0.73 in disorders of consciousness",
-      "falsification": "kappa_DoC > 0.73"
-    }
-  ],
-  "datasets": [
-    {
-      "name": "HCP 1200",
-      "n": 50,
-      "population": "healthy",
-      "modalities": [
-        "DTI",
-        "rs-fMRI"
-      ]
-    },
-    {
-      "name": "OpenNeuro ds000030",
-      "n": 100,
-      "population": "schizophrenia + healthy",
-      "modalities": [
-        "structural",
-        "rs-fMRI"
-      ]
-    },
-    {
-      "name": "OpenNeuro ds000171",
-      "n": 40,
-      "population": "MDD + healthy",
-      "modalities": [
-        "rs-fMRI"
-      ]
-    }
-  ]
+  "status": "research_note"
 }
