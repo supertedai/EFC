@@ -38,7 +38,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 62 paper(s) in public pages <<<
+>>> Step 2: Registering 61 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -54,24 +54,24 @@ pdftotext: /usr/bin/pdftotext
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 153 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 154 paper dirs scanned
+EFC DOI sync — 153 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 153
+  papers with registered DOI : 152
   papers without DOI         : 1
   papers with conflicts      : 0
 ========================================================================
-[efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 154 paper dirs · 0 errors · 1 warnings
+[efc-gen] 153 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 153 paper dirs · 0 errors · 1 warnings
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 7
 
-Processed 154 paper(s)
-  skip: 151
+Processed 153 paper(s)
+  skip: 150
   warn: 3
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
     - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
@@ -79,7 +79,7 @@ Processed 154 paper(s)
 
 [ledger-impact-sync] nothing to do — all papers in steady state
 [efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
-[efc-drift] 154 papers · no drift detected
+[efc-drift] 153 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -87,7 +87,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 155 total, 119 survived, 11 falsified
-  Papers: 154 (153 DOIs)
+  Papers: 153 (152 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -120,12 +120,12 @@ Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 154 papers, 153 DOIs
+Repo: 153 papers, 152 DOIs
 Ledger: 121 tests, 10 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 154 close to repo 154
-  [OK]       Paper count 154 close to repo 154
+  [OK]       Paper count 154 close to repo 153
+  [OK]       Paper count 153 close to repo 153
   [OK]       Survival count 93/103 matches ledger
 
 --- Validation Ledger ---
@@ -154,12 +154,12 @@ Ledger: 121 tests, 10 falsified
   [CRITICAL] 3 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
-  [OK]       README paper count 154 matches repo 154
-  [OK]       README paper count 154 matches repo 154
-  [OK]       README paper count 154 matches repo 154
-  [OK]       README paper count 154 matches repo 154
+  [OK]       README paper count 153 matches repo 153
+  [OK]       README paper count 153 matches repo 153
+  [OK]       README paper count 153 matches repo 153
+  [OK]       README paper count 153 matches repo 153
   [OK]       Stats categories sum to 121 = total_public
-  [OK]       DOI sync script present, 153/154 papers have DOIs
+  [OK]       DOI sync script present, 152/153 papers have DOIs
   [OK]       111 papers have sealed predictions (325 total)
 
 --- Gap Analysis Coherence ---
@@ -169,7 +169,7 @@ Ledger: 121 tests, 10 falsified
   Snapshot source: ledger_fallback
   [WARNING]  Symbiose tests=155 vs ledger total_public=121
   [WARNING]  Symbiose falsified=11 vs ledger n_falsified=10
-  [OK]       Symbiose paper count 154 matches repo
+  [OK]       Symbiose paper count 153 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
