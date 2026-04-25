@@ -146,7 +146,8 @@ def validate_impact(paper_name, impact, tests_by_id, gap_ids):
     """Return list of error strings (empty = valid)."""
     errors = []
     categories = {"physics_test", "consistency_check", "phenomenological",
-                  "framework_constraint", "planned_pipeline"}
+                  "framework_constraint", "planned_pipeline",
+                  "empirical_test"}
 
     for i, t in enumerate(impact.get("tests_added", [])):
         if t.get("category") not in categories:
@@ -251,7 +252,7 @@ def recount_stats(tests_data, stats_data):
                 n_falsified += 1
     changes = []
     for k in ("physics_test", "consistency_check", "phenomenological",
-             "framework_constraint", "planned_pipeline"):
+             "framework_constraint", "planned_pipeline", "empirical_test"):
         new = per_cat.get(k, 0)
         old = stats_data["stats"].get(k)
         if new != old:

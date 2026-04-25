@@ -77,472 +77,379 @@
     "full_response_length": 0
   },
   {
-<<<<<<< HEAD
-    "timestamp": "2026-04-24T04:36:35.484594Z",
-=======
     "timestamp": "2026-04-24T21:04:54.412113Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC1\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31230703",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.486458Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:05:23.953500Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC2\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31230703",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.487829Z",
-=======
     "reason": "1) The provided DOI summary (title, description, kill criteria, sealed predictions) does not report a specific conditional hold-out result of Δχ²_h|t = −18.65. While the paper mentions using a covariance-aware conditional hold-out test, the exact value is not supported by the supplied DOI content. \n2) The action type/update is not appropriate as implemented: it replaces the inner HTML of a <tr> with malformed markup (drops the <td>, includes a stray </strong>), which exceeds “update_text” intent",
     "model": "gpt-5",
     "full_response_length": 1303
   },
   {
     "timestamp": "2026-04-24T21:05:49.376584Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC4\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31230703",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.498104Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:06:21.479580Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31301953",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.504846Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:06:55.251907Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC2\"",
     "action": "update_badge",
     "doi": "10.6084/m9.figshare.31990212",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.528769Z",
-=======
     "reason": "1) The DOI content lists Kill Criteria declared: KC2 but Sealed Predictions: none. Adding a SEALED badge implies a sealed prediction/status, which is not supported by the paper. Therefore the update is not supported by the DOI content. \n2) While update_badge is a valid action type in general, using it here to mark a kill-criterion row as SEALED is semantically inappropriate because the paper does not declare any sealed prediction or sealed status for KC2. \n3) No factual information is removed, b",
     "model": "gpt-5",
     "full_response_length": 892
   },
   {
     "timestamp": "2026-04-24T21:07:11.530988Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31333600",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.551100Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:07:45.007895Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC3\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31332730",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.552382Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:08:16.260630Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC4\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31332730",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.564909Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:08:53.039307Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.32013156",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.583124Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:09:47.068537Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31368433",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.593439Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:10:28.053216Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "theory-efclass-boltzmann-solver",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31215259",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.598478Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:11:12.253214Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31954125",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.604303Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:11:39.930339Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC1\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31231522",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.605537Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:12:19.853077Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC4\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31231522",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.607065Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:12:55.013244Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC1\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31231522",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.625392Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:13:34.915048Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31990194",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.635128Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:14:31.671712Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_badge",
     "doi": "10.6084/m9.figshare.32023788",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.637013Z",
-=======
     "reason": "- Check 1 failed: The DOI preregistration defines kill criteria labeled KC1 and KC2 and sealed predictions P1–P3. There is no evidence that these map to the roadmap entry with data-kc-id=\"KC5\". Without a clear linkage, we cannot assert that KC5 should receive a SEALED badge based on this paper.\n- Check 2 partially acceptable in concept (a preregistration can warrant a SEALED badge), but the proposed implementation inserts a span directly under <tr>, which is invalid table structure and not a pro",
     "model": "gpt-5",
     "full_response_length": 1083
   },
   {
     "timestamp": "2026-04-24T21:15:27.794972Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.32023788",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.643784Z",
-=======
     "reason": "1) Supported by DOI: The content (EG_obs/EG_GR = 1.086 ± 0.012 at kc ≈ 0.05 h Mpc−1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger 1.00 ± 0.01 >3σ; SO LAT κ × Euclid DR2) matches the preregistered details and sealed predictions in the DOI. This check passes.\n2) Action type: update_text is being applied to a <tr> element and the proposed “after” replaces structured cells with raw text and a dangling </span>. This is not an appropriate use of update_text and results in invalid table structur",
     "model": "gpt-5",
     "full_response_length": 1129
   },
   {
     "timestamp": "2026-04-24T21:15:54.143420Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
     "action": "mark_done",
     "doi": "10.6084/m9.figshare.31990053",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.652961Z",
-=======
     "reason": "1) The DOI describes pre-registered predictions computed with hi_class plus a custom efc_logistic Horndeski module; it does not claim development, delivery, or validation of an “EFCLASS Boltzmann solver.” There is no support to close the “EFCLASS Boltzmann solver” gap.\n2) The action type “mark_done” is inappropriate here. A pre-registration of predictions should typically update or add prediction rows/badges (e.g., SEALED), not mark a theory/code gap as DONE.\n3) No factual content is changed in ",
     "model": "gpt-5",
     "full_response_length": 888
   },
   {
     "timestamp": "2026-04-24T21:16:19.050592Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC4\"",
     "action": "update_badge",
     "doi": "10.6084/m9.figshare.32037990",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.654517Z",
-=======
     "reason": "1) The DOI content lists only KC1–KC3; there is no KC4 in the paper. Therefore the update is not supported by the DOI. \n2) The action type update_badge is fine in general, but the specific badge “SEALED” is typically applied to sealed predictions, not to kill criteria; applying it to a KC entry is inappropriate and misleading. \n3) No factual content is removed, but the added badge asserts an unsupported status. \n4) No DOI references are included; while not required for a badge, the status must s",
     "model": "gpt-5",
     "full_response_length": 733
   },
   {
     "timestamp": "2026-04-24T21:16:46.619010Z",
->>>>>>> origin/main
     "page": "roadmap",
     "target": "data-kc-id=\"KC4\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.32037990",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.687100Z",
-=======
     "reason": "1) Supported by DOI: The content does align conceptually with the paper. The DOI indeed deposits a sealed weak-lensing prediction with a crossover at z ≈ 0.44, and tomographic weak-lensing is explicitly within the kill criteria. So the thematic update is supported. \n2) Action type/HTML correctness: The proposed “update_text” provides a malformed replacement. It reopens the <tr> tag, drops the existing <td> and badge structure, and includes a stray </span>. “update_text” should only replace the t",
     "model": "gpt-5",
     "full_response_length": 1284
   },
   {
     "timestamp": "2026-04-24T21:17:08.213296Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC1\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31304995",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.688529Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:17:41.144587Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31304995",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.706767Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:18:07.826655Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC1\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31943361",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.708022Z",
-=======
     "reason": "- Check 1: Pass. The DOI content explicitly lists KC1 with the same thresholds (δ ≤ −0.8, >5σ, 50–200 h⁻¹ Mpc) and includes sealed prediction P1 about an ISW sign-flip, so the substance is supported.\n- Check 2: Fail. The action is “update_text” on a <tr> element, but the proposed “after” HTML includes a new <tr> wrapper and a stray closing </strong>, which is not appropriate for replacing inner text/HTML of the target element. It should supply valid inner HTML (e.g., within <td> tags), not reint",
     "model": "gpt-5",
     "full_response_length": 981
   },
   {
     "timestamp": "2026-04-24T21:18:31.928080Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC2\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31943361",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-  },
-  {
-    "timestamp": "2026-04-24T04:36:35.709206Z",
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
   },
   {
     "timestamp": "2026-04-24T21:18:57.593162Z",
->>>>>>> origin/main
     "page": "gap",
     "target": "data-kc-id=\"KC5\"",
     "action": "update_text",
     "doi": "10.6084/m9.figshare.31943361",
     "verdict": "REJECTED",
-<<<<<<< HEAD
-    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
-=======
     "reason": "",
     "model": "gpt-5",
     "full_response_length": 0
->>>>>>> origin/main
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.398762Z",
+    "page": "gap",
+    "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31304980",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.428451Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC1\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31026151",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.430720Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC5\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31026151",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.465773Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC1\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31964847",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.468156Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC2\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31964847",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.469778Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC4\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31964847",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.479178Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC1\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31215613",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.480830Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC3\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31215613",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.489835Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC1\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31940469",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-04-25T09:46:06.491420Z",
+    "page": "gap",
+    "target": "data-kc-id=\"KC4\"",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31940469",
+    "verdict": "REJECTED",
+    "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
   }
 ]
