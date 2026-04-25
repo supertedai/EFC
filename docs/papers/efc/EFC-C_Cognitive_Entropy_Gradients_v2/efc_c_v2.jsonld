@@ -1,12 +1,11 @@
 {
   "@context": {
     "@vocab": "https://schema.org/",
-    "efc": "https://energyflow-cosmology.com/ontology#",
-    "figshare": "https://doi.org/10.6084/m9.figshare."
+    "efc": "https://energyflow-cosmology.com/ontology#"
   },
   "@type": "ScholarlyArticle",
-  "name": "EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States",
-  "description": "Connectome-constrained framework deriving centrifugal entropy score kappa = <S_hub>/<S_periph> from galactic dynamics parameter C = 4.4 via Bridge B1*. Predicts kappa_healthy ~ 1.6, disorder-specific kappa shifts from Delta_lambda_2, and kappa_crit = 0.73 for disorders of consciousness.",
+  "name": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States",
+  "description": "Revision of EFC-C replacing the Fiedler-eigenvalue formulation (Bridge B1*) with the empirically-supported degree-heterogeneity formulation (Bridge B1**). Centrifugal entropy score κ is predicted from hub-to-periphery degree ratio D_ratio via power-law κ = C_eff · D_ratio^γ. Predictions separated into Layer A (topological, invariant under C_eff) and Layer B (absolute-scale, conditional on Bridge validity).",
   "datePublished": "2026-04-06",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "author": {
@@ -22,36 +21,82 @@
     {
       "@type": "DefinedTerm",
       "@id": "efc:CentrifugalEntropyScore",
-      "name": "Centrifugal Entropy Score kappa",
-      "description": "kappa = <S_hub>/<S_periph>; healthy ~1.6, critical threshold 0.73"
+      "name": "Centrifugal Entropy Score κ",
+      "description": "κ = ⟨S_hub⟩/⟨S_periph⟩; healthy ≈2.2, range [1.7,2.6]"
     },
     {
       "@type": "DefinedTerm",
-      "@id": "efc:BridgeB1Star",
-      "name": "Bridge B1* Equation",
-      "description": "kappa = C / (1 + lambda_2 * tau_c), cross-domain from galactic dynamics"
+      "@id": "efc:DegreeHeterogeneity",
+      "name": "Hub-to-Periphery Degree Ratio D_ratio",
+      "description": "D_ratio = ⟨k_hub⟩/⟨k_periph⟩; baseline ≈1.2"
     },
     {
       "@type": "DefinedTerm",
-      "@id": "efc:AnteriorPosteriorAsymmetry",
-      "name": "Anterior-Posterior Entropy Asymmetry alpha_AP",
-      "description": "alpha_AP = <S_anterior_hub>/<S_posterior_hub>; discriminates schizophrenia from MDD"
+      "@id": "efc:BridgeB1DoubleStar",
+      "name": "Bridge B1** Equation",
+      "description": "κ = C_eff · D_ratio^γ (degree-heterogeneity formulation, cross-domain from galactic dynamics)"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:RegimeTransform",
+      "name": "Effective Cross-Domain Constant C_eff",
+      "description": "C_eff = κ_reg · k/a_G = 2.0±0.15, fixed prior to neural analysis via RCMP regime transformation"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:PowerLawExponent",
+      "name": "Power-Law Exponent γ",
+      "description": "γ ≈ 0.55±0.05, one empirical fit parameter constrained to [0.5,0.6]"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LayerATopological",
+      "name": "Layer A: Topological Predictions",
+      "description": "A1 (structural-entropic coupling: Δlog κ = γ·Δlog D_ratio), A2 (anterior-posterior asymmetry in schizophrenia), A3 (posterior asymmetry in MDD); invariant under C_eff"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "efc:LayerBAbsolute",
+      "name": "Layer B: Absolute-Scale Predictions",
+      "description": "B1 (κ_healthy ∈ [1.7,2.6]), B2 (κ_crit ≲ 1.9 at D_ratio ≲ 0.9); conditional on Bridge validity"
     }
   ],
   "citation": [
     {
       "@type": "ScholarlyArticle",
+      "@id": "figshare:31940547",
+      "name": "Cross-Domain Bridge Equations for the EFC Framework (Bridge B1**)"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "figshare:31940370",
+      "name": "Local Degree Heterogeneity Predicts Functional Variability Gradients (empirical r²=0.94)"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "figshare:31222903",
+      "name": "Entropy-Bounded Empiricism: Core Principles"
+    },
+    {
+      "@type": "ScholarlyArticle",
       "@id": "figshare:31301953",
-      "name": "EFC Empirical Validation (Spor 1)"
+      "name": "EFC SPARC Validation (Spor 1)"
     }
   ],
   "keywords": [
     "neural entropy",
-    "connectome",
-    "Fiedler eigenvalue",
+    "connectome degree heterogeneity",
+    "hub-periphery topology",
+    "centrifugal entropy score",
+    "multiscale entropy",
+    "resting-state fMRI",
+    "structural connectome",
+    "Bridge equations",
+    "cross-domain parameter transfer",
     "psychiatric biomarkers",
-    "EFC-C",
-    "kappa"
+    "schizophrenia",
+    "major depressive disorder",
+    "layer-separated predictions"
   ],
   "identifier": "https://doi.org/10.6084/m9.figshare.32091700",
   "sameAs": "https://doi.org/10.6084/m9.figshare.32091700",

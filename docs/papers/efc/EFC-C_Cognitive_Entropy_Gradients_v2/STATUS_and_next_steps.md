@@ -2,6 +2,9 @@
 
 **April 5, 2026**
 
+> **[HISTORICAL — superseded by EFC-C v2.1 (DOI 10.6084/m9.figshare.32091700 v2, April 2026)]**
+> This document was a working research note from 5 April 2026 before the v2.1 revision was finalized. It is preserved for historical/process traceability. The published v2.1 paper supersedes the priority list and decision points discussed here.
+
 ## What We Have (Verified)
 
 | Claim | Evidence | Strength |
