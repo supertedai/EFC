@@ -1,7 +1,8 @@
 {
   "paper": {
-    "title": "EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States",
-    "version": "2.0",
+    "title": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States",
+    "version": "2.1",
+    "doi": "10.6084/m9.figshare.32091700",
     "track": "Track 2: Neural Entropy"
   },
 
@@ -11,85 +12,97 @@
       "latex": "\\kappa = \\frac{\\langle S_{\\text{hub}} \\rangle}{\\langle S_{\\text{periph}} \\rangle}",
       "description": "Centrifugal entropy score: ratio of mean hub to peripheral entropy"
     },
-    "bridge_B1_star": {
-      "id": "Eq-B1*",
-      "latex": "\\kappa_{\\text{healthy}} = \\frac{C}{1 + \\lambda_2(W) \\cdot \\tau_c}",
+    "Dratio_definition": {
+      "id": "Eq-Dratio",
+      "latex": "D_{\\text{ratio}} = \\frac{\\langle k_{\\text{hub}} \\rangle}{\\langle k_{\\text{periph}} \\rangle}",
+      "description": "Hub-to-periphery degree ratio (top 10% / bottom 30%, weighted degree)"
+    },
+    "bridge_B1_double_star": {
+      "id": "Eq-B1**",
+      "latex": "\\kappa = C_{\\text{eff}} \\cdot D_{\\text{ratio}}^{\\gamma}",
       "parameters": {
-        "C": "k / a_G = 4.4 +/- 0.6 (SPARC galactic fit)",
-        "lambda_2": "Fiedler eigenvalue of L_sym = I - D^{-1/2} W D^{-1/2}",
-        "tau_c": "L_parcel^2 / D_eff ~ 3.5 s"
+        "C_eff": "Regime-transformed cosmological constant (RCMP L3->L1) = 2.0 +/- 0.15",
+        "gamma": "Power-law exponent (one empirical fit parameter), 0.55 +/- 0.05, constraint [0.5, 0.6]",
+        "D_ratio": "Hub-to-periphery degree ratio, baseline ~1.2 (HCP)"
       }
     },
-    "delta_kappa": {
-      "id": "Eq-Dk",
-      "latex": "\\Delta\\kappa = C \\left[ \\frac{1}{1 + \\lambda_{2,h} \\tau_c} - \\frac{1}{1 + \\lambda_{2,d} \\tau_c} \\right]"
+    "C_eff_definition": {
+      "id": "Eq-Ceff",
+      "latex": "C_{\\text{eff}} = \\kappa_{\\text{reg}} \\cdot \\frac{k}{a_G}",
+      "description": "Effective cross-domain constant fixed a priori via regime transformation of cosmological C"
     },
     "alpha_AP": {
       "id": "Eq-aAP",
-      "latex": "\\alpha_{AP} = \\frac{\\langle S_{\\text{anterior hub}} \\rangle}{\\langle S_{\\text{posterior hub}} \\rangle}"
-    },
-    "kappa_crit": {
-      "id": "Eq-kcrit",
-      "latex": "\\kappa_{\\text{crit}} = \\frac{C}{1 + \\lambda_{2,\\max} \\cdot \\tau_{c,\\max}} = 0.73"
+      "latex": "\\alpha_{AP} = \\frac{\\langle S_{\\text{anterior hub}} \\rangle}{\\langle S_{\\text{posterior hub}} \\rangle}",
+      "description": "Anterior-posterior entropy asymmetry (discriminates SCZ vs MDD)"
     }
   },
 
   "parameters": {
-    "C": {"value": 4.4, "uncertainty": 0.6, "source": "SPARC galactic fit (Spor 1)", "doi": "10.6084/m9.figshare.31301953"},
-    "lambda_2_HCP_range": {"min": 0.3, "max": 0.8, "typical": 0.5, "source": "Gu et al. 2015"},
-    "tau_c": {"value": 3.5, "unit": "s", "min": 2.0, "max": 5.0, "derivation": "L_parcel^2/D_eff, L~5mm, D~3mm/s"},
-    "kappa_healthy_central": 1.6,
-    "kappa_crit": 0.73
+    "C_eff": {"value": 2.0, "uncertainty": 0.15, "source": "Regime-transformed from cosmological C = k/a_G via RCMP L3->L1; fixed prior to neural analysis", "doi": "10.6084/m9.figshare.31301953"},
+    "gamma": {"value": 0.55, "uncertainty": 0.05, "constraint": [0.5, 0.6], "source": "Empirical fit, HCP reference sample", "doi": "10.6084/m9.figshare.31940370"},
+    "D_ratio_baseline": {"value": 1.2, "uncertainty": 0.15, "source": "Typical HCP value, top 10% / bottom 30% partition, log-degree proxy"},
+    "kappa_healthy_central": {"value": 2.2, "interval_95_EBE": [1.7, 2.6]},
+    "kappa_crit": {"value": 1.9, "D_ratio_crit": 0.9, "description": "Critical threshold at degree hierarchy collapse"}
   },
 
   "kappa_table": [
-    {"lambda_2": 0.3, "tau_c": 2.0, "kappa_pred": 2.75},
-    {"lambda_2": 0.5, "tau_c": 3.5, "kappa_pred": 1.60},
-    {"lambda_2": 0.8, "tau_c": 5.0, "kappa_pred": 0.88}
+    {"D_ratio": 0.9, "kappa_pred": 1.887},
+    {"D_ratio": 1.0, "kappa_pred": 2.000},
+    {"D_ratio": 1.2, "kappa_pred": 2.211},
+    {"D_ratio": 1.5, "kappa_pred": 2.500}
   ],
 
   "predictions": [
     {
-      "id": "Q1",
-      "description": "Healthy resting-state kappa ~ 1.6; kappa ~ 1/lambda_2",
-      "observable": "kappa from HCP MSE + connectome",
-      "falsification": "r(kappa, 1/lambda_2) < 0.30 for n >= 20, or |z| > 3 on group mean"
+      "id": "A1",
+      "layer": "A",
+      "description": "Δ log κ = γ · Δ log D_ratio, γ ∈ [0.5, 0.6] (topological, invariant under C_eff)",
+      "observable": "Log-log regression slope across pooled subjects",
+      "falsification": "γ̂ ∉ [0.3, 0.8] for n ≥ 30, or Pearson r(log κ, log D_ratio) < 0.50"
     },
     {
-      "id": "Q2a",
-      "description": "alpha_AP_scz > alpha_AP_healthy (anterior-dominant entropy elevation)",
-      "observable": "anterior/posterior hub entropy ratio",
-      "falsification": "effect not detected (p > 0.05, n >= 15/group)"
+      "id": "A2",
+      "layer": "A",
+      "description": "α_AP^scz > α_AP^healthy (anterior-dominant entropy elevation in schizophrenia)",
+      "observable": "Anterior/posterior hub entropy ratio",
+      "falsification": "AUC < 0.60 for n ≥ 15/group"
     },
     {
-      "id": "Q2b",
-      "description": "alpha_AP_mdd < alpha_AP_healthy (posterior-shifted entropy)",
-      "observable": "anterior/posterior hub entropy ratio",
-      "falsification": "effect not detected (p > 0.05, n >= 15/group)"
+      "id": "A3",
+      "layer": "A",
+      "description": "α_AP^mdd < α_AP^healthy (posterior-shifted entropy in MDD)",
+      "observable": "Anterior/posterior hub entropy ratio",
+      "falsification": "AUC < 0.60 for n ≥ 15/group"
     },
     {
-      "id": "Q2c",
-      "description": "Delta_kappa correlates with Delta_lambda_2",
-      "observable": "cross-group structural-entropic coupling",
-      "falsification": "r < 0.25 for n >= 30 pooled"
+      "id": "B1",
+      "layer": "B",
+      "description": "κ_healthy = C_eff · D_ratio^γ ≈ 2.2; EBE-bounded interval [1.7, 2.6]",
+      "observable": "κ from HCP",
+      "falsification": "Group mean outside [1.7, 2.6] for n ≥ 20"
     },
     {
-      "id": "Q3",
-      "description": "kappa < 0.73 in disorders of consciousness",
-      "observable": "kappa in UWS/VS patients",
-      "falsification": "kappa_DoC > 0.73 significantly"
+      "id": "B2",
+      "layer": "B",
+      "description": "κ_crit ≲ 1.9 at D_ratio ≲ 0.9 (degree hierarchy collapse, κ → 1 limit)",
+      "observable": "κ in UWS/VS patients",
+      "falsification": "κ > 2.0 with D_ratio > 1.15"
     }
   ],
 
-  "disorder_connectome_data": {
-    "healthy": {"lambda_2": 0.5, "connectome_change": "baseline"},
-    "schizophrenia": {"lambda_2": 0.35, "connectome_change": "reduced frontotemporal connectivity", "kappa_direction": "elevated"},
-    "MDD": {"lambda_2": 0.40, "connectome_change": "reduced global efficiency", "kappa_direction": "elevated"}
+  "disorder_data": {
+    "healthy": {"D_ratio": 1.2, "alpha_AP_direction": "baseline", "lambda_2_change": "baseline"},
+    "schizophrenia": {"alpha_AP_direction": "elevated (anterior-dominant)", "connectome_change": "reduced frontotemporal connectivity, lambda_2 reduced"},
+    "MDD": {"alpha_AP_direction": "reduced (posterior-shifted)", "connectome_change": "reduced global efficiency, lambda_2 reduced (diffuse)"}
   },
 
   "datasets": [
     {"name": "HCP 1200", "n_target": 50, "population": "healthy adults", "modalities": ["DTI", "rs-fMRI"], "access": "ConnectomeDB"},
     {"name": "OpenNeuro ds000030 (UCLA)", "n_target": 100, "population": "schizophrenia + healthy", "modalities": ["structural", "rs-fMRI"], "access": "OpenNeuro"},
     {"name": "OpenNeuro ds000171", "n_target": 40, "population": "MDD + healthy", "modalities": ["rs-fMRI"], "access": "OpenNeuro"}
-  ]
+  ],
+
+  "pipeline_modules": ["connectome_dratio.py", "entropy_mse.py", "tau_c_acf.py", "layer_analysis.py"],
+  "preregistration_repo": "github.com/symbiose-research/efc-c-validation"
 }

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Demo: EFC-C v2.0 Cognitive Entropy Gradients
-===============================================
-Demonstrates centrifugal entropy score kappa and connectome-constrained predictions.
+Demo: EFC-C v2.1 Cognitive Entropy Gradients
+=============================================
+Bridge B1** (degree-heterogeneity formulation): kappa = C_eff * D_ratio^gamma
 
+DOI: 10.6084/m9.figshare.32091700 (v2)
 Track 2: Neural Entropy
 """
 
@@ -14,11 +15,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from src.cognitive_entropy import (
     CentrifugalEntropyScore,
-    BridgeB1Star,
-    ConnectomeParameters,
-    DisorderPrediction,
-    CognitiveCoherenceThreshold,
-    EFCC_Framework,
+    DegreeRatio,
+    BridgeB1DoubleStar,
+    LayerAPredictions,
+    LayerBPredictions,
+    EFCC_v21_Framework,
 )
 
 
@@ -28,172 +29,130 @@ def demo_centrifugal_entropy():
     print("DEMO 1: Centrifugal Entropy Score")
     print("=" * 65)
 
-    # Simulated hub and peripheral entropy values
-    S_hub = [1.8, 1.9, 1.7, 2.0, 1.85]
-    S_periph = [1.1, 1.0, 1.15, 0.95, 1.05, 1.1, 0.98, 1.02]
+    S_hub = [2.18, 2.25, 2.20, 2.15, 2.22]
+    S_periph = [1.05, 0.98, 1.02, 1.00, 1.08, 0.95, 1.01, 1.04]
 
     ces = CentrifugalEntropyScore(S_hub, S_periph)
     info = ces.info()
-
     print(f"  Mean S_hub:    {info['mean_S_hub']:.3f} (n={info['n_hub']})")
     print(f"  Mean S_periph: {info['mean_S_periph']:.3f} (n={info['n_periph']})")
     print(f"  kappa:         {info['kappa']:.3f}")
     print(f"  Interpretation: {info['interpretation']}")
     print()
-
-    assert info["kappa"] > 1.0, "Hub entropy should exceed peripheral"
-    assert info["interpretation"] == "centrifugal", "Should be centrifugal gradient"
+    assert info["kappa"] > 1.0
+    assert info["interpretation"] == "centrifugal"
     print("  [PASS] Centrifugal entropy assertions passed\n")
 
 
-def demo_bridge_b1_star():
-    """2. Bridge B1* equation: kappa = C / (1 + lambda_2 * tau_c)."""
+def demo_degree_ratio():
+    """2. Hub-to-periphery degree ratio D_ratio."""
     print("=" * 65)
-    print("DEMO 2: Bridge B1* Equation")
+    print("DEMO 2: Degree Ratio")
     print("=" * 65)
 
-    bridge = BridgeB1Star(C=4.4, C_uncertainty=0.6)
+    degrees = [120, 110, 100, 95, 88, 82, 75, 70, 65, 60, 55, 48, 40, 32, 25, 18]
+    dr = DegreeRatio(degrees)
+    print(f"  N parcels: {len(degrees)}")
+    print(f"  hub set (top 10%): {len(dr.k_hub)} parcel(s), mean degree {dr.mean_k_hub:.2f}")
+    print(f"  periph set (bottom 30%): {len(dr.k_periph)} parcels, mean degree {dr.mean_k_periph:.2f}")
+    print(f"  D_ratio:   {dr.D_ratio:.3f}")
+    print()
+    assert dr.D_ratio > 1.0
+    print("  [PASS] D_ratio assertions passed\n")
 
-    print("  Kappa prediction table (from paper Section 3.1):")
-    print(f"  {'lambda_2':>10s}  {'tau_c':>8s}  {'kappa':>8s}")
-    print(f"  {'-'*10}  {'-'*8}  {'-'*8}")
 
-    table = bridge.kappa_table()
-    for row in table:
-        print(f"  {row['lambda_2']:10.1f}  {row['tau_c']:8.1f}  {row['kappa_pred']:8.2f}")
+def demo_bridge_b1_double_star():
+    """3. Bridge B1**: kappa = C_eff * D_ratio^gamma."""
+    print("=" * 65)
+    print("DEMO 3: Bridge B1** (degree-heterogeneity)")
+    print("=" * 65)
+
+    bridge = BridgeB1DoubleStar(C_eff=2.0, gamma=0.55)
+    print("  kappa(D_ratio) = C_eff * D_ratio^gamma  (C_eff=2.0, gamma=0.55):")
+    print(f"  {'D_ratio':>10s}  {'kappa':>8s}")
+    print(f"  {'-'*10}  {'-'*8}")
+    for row in bridge.kappa_table():
+        print(f"  {row['D_ratio']:10.2f}  {row['kappa_pred']:8.3f}")
     print()
 
-    # Central prediction: lambda_2=0.5, tau_c=3.5 -> kappa ~ 1.6
-    kappa_central = bridge.kappa(0.5, 3.5)
-    print(f"  Central prediction: kappa({0.5}, {3.5}) = {kappa_central:.4f}")
-
-    lo, mid, hi = bridge.kappa_range(0.5, 3.5)
-    print(f"  With uncertainty:   [{lo:.3f}, {mid:.3f}, {hi:.3f}]")
+    kappa_central = bridge.kappa(1.2)
+    lo, mid, hi = bridge.kappa_interval(1.2)
+    print(f"  Central prediction (D_ratio=1.2): kappa = {kappa_central:.3f}")
+    print(f"  95% propagated interval: [{lo:.3f}, {hi:.3f}]")
+    print(f"  EBE-bounded interval (PDF v2.1): [1.7, 2.6]")
     print()
 
-    assert abs(kappa_central - 1.6) < 0.01, f"Expected ~1.6, got {kappa_central}"
-    assert table[0]["kappa_pred"] == 2.75, "lambda_2=0.3 should give 2.75"
-    assert table[2]["kappa_pred"] == 0.88, "lambda_2=0.8 should give 0.88"
-    print("  [PASS] Bridge B1* assertions passed\n")
+    assert 2.0 <= kappa_central <= 2.4
+    assert 1.5 <= lo <= 1.85
+    assert 2.55 <= hi <= 2.85
+    print("  [PASS] Bridge B1** assertions passed\n")
 
 
-def demo_connectome_parameters():
-    """3. Connectome parameters and tau_c derivation."""
+def demo_layer_predictions():
+    """4. Layer A and Layer B predictions."""
     print("=" * 65)
-    print("DEMO 3: Connectome Parameters")
+    print("DEMO 4: Layer A and Layer B Predictions")
     print("=" * 65)
 
-    cp = ConnectomeParameters(lambda_2=0.5, n_regions=360)
-    info = cp.info()
+    layer_a = LayerAPredictions()
+    a1 = layer_a.test_A1(fitted_gamma=0.55, r_loglog=0.78, n=50)
+    print(f"  A1 (slope test): fitted_gamma={a1['fitted_gamma']}, r={a1['r_loglog']}")
+    print(f"     in falsification window: {a1['in_falsification_window']}, passes: {a1['passes']}")
 
-    print(f"  lambda_2:  {info['lambda_2']}")
-    print(f"  N regions: {info['n_regions']}")
-    print(f"  N hub:     {info['n_hub']} (top 10%)")
-    print(f"  N periph:  {info['n_periph']} (bottom 30%)")
-    print(f"  tau_c:     {info['tau_c_s']:.2f} s (L=5mm, D_eff=3mm/s)")
+    a23 = layer_a.test_A2_A3(alpha_AP_groups={"scz": 1.25, "healthy": 1.0, "mdd": 0.85}, auc=0.72)
+    print(f"  A2/A3 (alpha_AP discrimination): AUC={a23['AUC']}, passes: {a23['passes']}")
+
+    layer_b = LayerBPredictions()
+    b1 = layer_b.test_B1(group_mean_kappa=2.18, n=50)
+    print(f"  B1 (kappa interval): group_mean={b1['group_mean_kappa']}, "
+          f"interval={b1['interval']}, passes: {b1['passes']}")
+
+    b2 = layer_b.test_B2(kappa_obs=1.6, D_ratio_obs=0.85)
+    print(f"  B2 (DoC threshold): kappa={b2['kappa_obs']}, D_ratio={b2['D_ratio_obs']}, "
+          f"falsified={b2['falsified']}")
     print()
 
-    assert info["n_hub"] == 36, f"Expected 36 hub nodes, got {info['n_hub']}"
-    assert info["n_periph"] == 108, f"Expected 108 periph nodes, got {info['n_periph']}"
-    assert abs(info["tau_c_s"] - 25.0 / 3.0) < 0.01
-    print("  [PASS] Connectome parameter assertions passed\n")
-
-
-def demo_disorder_predictions():
-    """4. Disorder-specific kappa predictions (Q2)."""
-    print("=" * 65)
-    print("DEMO 4: Disorder Predictions")
-    print("=" * 65)
-
-    dp = DisorderPrediction()
-    results = dp.discrimination_test(tau_c=3.5)
-
-    print(f"  {'Disorder':>15s}  {'lambda_2':>10s}  {'kappa':>8s}  {'delta_kappa':>12s}")
-    print(f"  {'-'*15}  {'-'*10}  {'-'*8}  {'-'*12}")
-    for name, r in results.items():
-        print(f"  {name:>15s}  {r['lambda_2']:10.2f}  {r['kappa_predicted']:8.3f}  {r['delta_kappa']:12.3f}")
-    print()
-
-    # Schizophrenia: reduced lambda_2 -> elevated kappa
-    scz = results["schizophrenia"]
-    healthy = results["healthy"]
-    assert scz["kappa_predicted"] > healthy["kappa_predicted"], \
-        "Schizophrenia kappa should be elevated (reduced short-circuiting)"
-
-    # MDD: also elevated but different magnitude
-    mdd = results["MDD"]
-    assert mdd["kappa_predicted"] > healthy["kappa_predicted"], \
-        "MDD kappa should be elevated"
-    assert scz["kappa_predicted"] > mdd["kappa_predicted"], \
-        "Schizophrenia elevation should exceed MDD"
-
-    print("  [PASS] Disorder prediction assertions passed\n")
-
-
-def demo_coherence_threshold():
-    """5. Cognitive coherence threshold (Q3)."""
-    print("=" * 65)
-    print("DEMO 5: Cognitive Coherence Threshold")
-    print("=" * 65)
-
-    threshold = CognitiveCoherenceThreshold(C=4.4, lambda_2_max=1.0, tau_c_max=5.0)
-    print(f"  kappa_crit = {threshold.kappa_crit:.4f}")
-    print()
-
-    # Healthy: kappa = 1.6, should be above threshold
-    r_healthy = threshold.evaluate(1.6)
-    print(f"  Healthy (kappa=1.6): below={r_healthy['below_threshold']}, "
-          f"interp={r_healthy['interpretation']}")
-
-    # Disorders of consciousness: kappa = 0.5
-    r_doc = threshold.evaluate(0.5)
-    print(f"  DoC (kappa=0.5):     below={r_doc['below_threshold']}, "
-          f"interp={r_doc['interpretation']}")
-    print()
-
-    assert abs(threshold.kappa_crit - 0.7333) < 0.01, \
-        f"Expected ~0.73, got {threshold.kappa_crit}"
-    assert r_healthy["below_threshold"] is False
-    assert r_doc["below_threshold"] is True
-    print("  [PASS] Coherence threshold assertions passed\n")
+    assert a1["passes"]
+    assert b1["passes"]
+    print("  [PASS] Layer A/B assertions passed\n")
 
 
 def demo_full_framework():
-    """6. Complete EFC-C v2 framework."""
+    """5. Complete EFC-C v2.1 framework."""
     print("=" * 65)
-    print("DEMO 6: Full EFC-C v2 Framework")
+    print("DEMO 5: Full EFC-C v2.1 Framework")
     print("=" * 65)
 
-    fw = EFCC_Framework(C=4.4, C_uncertainty=0.6)
-    report = fw.full_report(lambda_2=0.5, tau_c=3.5)
+    fw = EFCC_v21_Framework()
+    report = fw.full_report(D_ratio=1.2)
 
-    q1 = report["Q1_healthy"]
-    print(f"  Q1 healthy kappa: {q1['kappa_predicted']} "
-          f"(range: {q1['kappa_range']})")
+    print(f"  Version: {report['version']}")
+    print(f"  DOI: {report['doi']}")
+    print(f"  C_eff: {report['C_eff']}, gamma: {report['gamma']}")
 
-    q2 = report["Q2_disorders"]
-    for name, r in q2.items():
-        print(f"  Q2 {name}: kappa={r['kappa_predicted']}")
+    b1 = report["B1_healthy"]
+    print(f"  B1 healthy kappa: {b1['kappa_predicted']} "
+          f"(propagated: {b1['kappa_interval_95']}, "
+          f"EBE-bounded: {b1['kappa_interval_EBE_bounded']})")
 
-    print(f"  Q3 threshold: {report['Q3_coherence_threshold']:.4f}")
+    print(f"  Layer A predictions: {report['layer_A_predictions']}")
+    print(f"  Layer B predictions: {report['layer_B_predictions']}")
     print()
-
-    assert abs(q1["kappa_predicted"] - 1.6) < 0.01
-    assert report["Q3_coherence_threshold"] < 1.0
+    assert report["version"] == "2.1"
+    assert b1["kappa_predicted"] > 2.0
     print("  [PASS] Full framework assertions passed\n")
 
 
 if __name__ == "__main__":
     print()
-    print("EFC-C v2.0: Cognitive Entropy Gradients Demo")
-    print("Track 2: Neural Entropy")
+    print("EFC-C v2.1: Cognitive Entropy Gradients Demo")
+    print("Bridge B1** (degree-heterogeneity formulation)")
     print()
 
     demo_centrifugal_entropy()
-    demo_bridge_b1_star()
-    demo_connectome_parameters()
-    demo_disorder_predictions()
-    demo_coherence_threshold()
+    demo_degree_ratio()
+    demo_bridge_b1_double_star()
+    demo_layer_predictions()
     demo_full_framework()
 
     print("=" * 65)
