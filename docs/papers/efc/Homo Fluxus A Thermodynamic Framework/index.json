@@ -1,24 +1,85 @@
 {
   "$schema": "./schema.json",
   "id": "homo fluxus a thermodynamic framework",
-  "title": "Homo Fluxus A Thermodynamic Framework",
-  "description": "Auto-generated package for Homo Fluxus A Thermodynamic Framework.",
+  "title": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and Aligned Intelligence",
+  "description": "Proposes a thermodynamic substrate for cognition in which local entropy minimization via coherent information flow underlies consciousness, affect, ethics, and AI alignment. Introduces Homo Fluxus (agent-as-node-in-flow) and systemic empathy (field-coupled coherence sensitivity), and specifies operational proxies for a coherence potential with falsifiable, cross-scale predictions.",
   "version": "1.0",
   "date": "2026-04-25",
+  "doi": "10.6084/m9.figshare.32099389",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Homo",
-    "Fluxus",
-    "Thermodynamic",
-    "Framework"
+    "Homo Fluxus",
+    "systemic empathy",
+    "coherence potential",
+    "entropy minimization",
+    "consciousness",
+    "AI alignment",
+    "integrated information",
+    "cross-frequency phase coherence",
+    "interoceptive-allostatic integration",
+    "field coupling",
+    "predictive processing"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "local_entropy_reduction_condition": {
+      "latex": "\\frac{\\partial S_{\\text{local}}}{\\partial t} < 0 \\; \\Rightarrow \\; \\mathbf{E}_f \\cdot \\nabla \\Phi_{\\mathrm{coh}} > 0",
+      "description": "When local entropy decreases, energy flow aligns with the gradient of the coherence potential; coherent flow drives local entropy reduction."
+    },
+    "coherence_proxy_mapping": {
+      "latex": "\\Phi_{\\mathrm{coh}} \\sim f\\!\\left(\\dot{\\Phi}_I,\\; C_{\\mathrm{phase}},\\; I_{\\mathrm{body}}\\right)",
+      "description": "At the cognitive scale, the coherence potential projects onto a low-dimensional latent factor jointly reflected in integrated information rate, cross-frequency phase coherence, and interoceptive\u2013allostatic integration."
+    }
+  },
+  "key_results": {
+    "main_finding": "Defines Homo Fluxus and systemic empathy as consequences of an EFC-based coherence potential, proposes measurable proxies that must co-vary as a single latent factor, and outlines falsifiable predictions linking consciousness, affect, cooperation, and alignment.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Phi_coh (coherence potential)",
+      "Ef (energy flow vector)",
+      "PhiI_dot (integrated information rate)",
+      "Cphase (cross-frequency phase coherence)",
+      "Ibody (interoceptive\u2013allostatic integration)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A single latent coherence factor will be recoverable that co-varies monotonically across integrated information rate, cross-frequency phase coherence, and interoceptive\u2013allostatic integration, with consistent temporal alignment across modalities during coherence transitions (e.g., anesthesia, sleep\u2013wake, meditation).",
+      "falsifiable_by": "Simultaneous EEG/MEG + autonomic/interoceptive (e.g., ECG, respiration) + behavioral reports across controlled state transitions; failure to recover a cross-modal, cross-condition latent factor invalidates the claim."
+    },
+    {
+      "id": "P2",
+      "statement": "Increasing interoceptive/field coupling (e.g., via slow breathing, vagal stimulation, or interoceptive training) will increase the latent coherence factor and measurably shift action weighting toward extra-boundary state (systemic empathy) in social decision tasks.",
+      "falsifiable_by": "Randomized controlled trials combining VNS or paced respiration with EEG/MEG/ANS recordings and economic games (public goods, commons dilemmas); absence of predicted joint shifts refutes the mechanism."
+    },
+    {
+      "id": "P3",
+      "statement": "In multi-agent computational settings, adding a field-coupling term that approximates \\nabla\\Phi_coh to local objectives will produce scalable cooperative equilibria; removing the term reverts to extractive/local optima.",
+      "falsifiable_by": "Ablation studies in MARL benchmarks comparing cooperation metrics with and without explicit coupling terms; lack of differential effect falsifies the alignment implication."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Across controlled state transitions (e.g., anesthesia induction/emergence, sleep\u2013wake, meditation), no recoverable cross-modal latent factor jointly loading on integrated information rate, cross-frequency phase coherence, and interoceptive\u2013allostatic integration, or inconsistent temporal alignment of such a factor across modalities and conditions.",
+    "KC2: Robust evidence that increases in the proposed coherence proxies are repeatedly accompanied by estimated violations of Eq. (1) (i.e., the empirical estimate of Ef \u00b7 \u2207\u03a6coh is non-positive) beyond methodological uncertainty, using pre-registered proxy-to-variable mappings.",
+    "KC3: Sustained experimental dissociations in which \u03a6\u0307I, Cphase, and Ibody can be independently driven in opposing directions for extended periods without converging or affecting reported conscious level, contradicting the single-variable projection claim.",
+    "KC4: Interventions that measurably increase field/interoceptive coupling (e.g., VNS, slow breathing) fail to produce any increase in extra-boundary weighting (systemic empathy) in pre-registered social decision tasks across adequately powered samples.",
+    "KC5: Demonstration of scalable alignment in open-world AI systems achieved by purely local optimizers without any field-coupling or extra-boundary terms, across tasks where coupled externalities are measurable, contradicting the posited structural failure mode.",
+    "KC6: Cross-laboratory replications show that the proposed proxies do not co-vary or that their relationship is best explained by independent factors rather than a common latent variable tied to a thermodynamic coherence construct."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
   "files": {
     "pdf": "Homo Fluxus A Thermodynamic Framework.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32099389"
 }

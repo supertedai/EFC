@@ -1,0 +1,35 @@
+{
+  "paper": {
+    "title": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and Aligned Intelligence",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research",
+    "orcid": "0009-0002-4860-5095",
+    "doi": "10.6084/m9.figshare.32099389",
+    "date_iso": "2026-04-25"
+  },
+  "equations": {
+    "local_entropy_reduction_condition": {
+      "label": "(1)",
+      "statement": "dS_local/dt < 0 implies Ef \u00b7 \u2207\u03a6_coh > 0",
+      "notes": "Only explicit operational condition in the provided excerpt."
+    }
+  },
+  "numerical_values": {
+    "levels_with_predictions": 6,
+    "fragmentation_domains": 5,
+    "constructs_introduced": 2
+  },
+  "units": {
+    "Ef": "energy flow (arbitrary units)",
+    "S_local": "entropy (arbitrary units)",
+    "Phi_coh": "coherence potential (arbitrary units)",
+    "time": "arbitrary units",
+    "grid_spacing": "arbitrary spatial units"
+  },
+  "calibration_and_defaults": {
+    "dot_product_positive_threshold": 0.0,
+    "default_dt": 1.0,
+    "default_grid_spacing": 1.0
+  },
+  "provenance": "This JSON records all explicit numerical facts available in the excerpt; no additional constants are introduced."
+}
