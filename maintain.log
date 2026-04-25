@@ -11,27 +11,6 @@ pdftotext: /usr/bin/pdftotext
 >>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
 
   EFC_Outcome_Estimation_CrossSurvey:
-<<<<<<< HEAD
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [RETRY] OpenAI HTTP 502 — waiting 20s (3/4)
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  A_structural_closure_of_growth_sector_couplings:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  EFC_PreRegistered_Predictions:
-=======
->>>>>>> origin/main
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -59,7 +38,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 61 paper(s) in public pages <<<
+>>> Step 2: Registering 62 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -71,7 +50,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
+    Added 2 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -80,13 +59,8 @@ EFC AI BRAIN — done
 ========================================================================
 EFC DOI sync — 154 paper dirs scanned
 ========================================================================
-<<<<<<< HEAD
-  papers with registered DOI : 151
-  papers without DOI         : 3
-=======
-  papers with registered DOI : 152
-  papers without DOI         : 2
->>>>>>> origin/main
+  papers with registered DOI : 153
+  papers without DOI         : 1
   papers with conflicts      : 0
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
@@ -98,40 +72,13 @@ EFC LEDGER IMPACT SYNC — LIVE
 Known gap IDs in HTML: 7
 
 Processed 154 paper(s)
-  error: 5
-    - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
-<<<<<<< HEAD
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-    - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-    - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-    - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-    - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'phenomenological', 'planned_pipeline', 'framework_constraint', 'physics_test', 'consistency_check'})
-=======
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-    - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
->>>>>>> origin/main
-  skip: 146
+  skip: 151
   warn: 3
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
     - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
     - EFC_PreRegistered_Predictions: DOI registered but no ledger_impact block
 
-[ledger-impact-sync] ERRORS — no writes performed
+[ledger-impact-sync] nothing to do — all papers in steady state
 [efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 [efc-drift] 154 papers · no drift detected
 ============================================================
@@ -140,21 +87,13 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 121 total, 93 survived, 10 falsified
-<<<<<<< HEAD
-  Papers: 154 (151 DOIs)
-=======
-  Papers: 154 (152 DOIs)
->>>>>>> origin/main
+  Tests: 155 total, 119 survived, 11 falsified
+  Papers: 154 (153 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-<<<<<<< HEAD
-Date: 2026-04-24
-=======
 Date: 2026-04-25
->>>>>>> origin/main
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -170,47 +109,27 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
-<<<<<<< HEAD
-  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
-
-1 potential new dataset(s):
-=======
 
 2 potential new dataset(s):
   [DESI] data release — https://data.desi.lbl.gov/doc/releases/
->>>>>>> origin/main
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-<<<<<<< HEAD
-[efc-auto-changelog] only script/workflow changes — skipping changelog
-=======
 [efc-auto-changelog] Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
->>>>>>> origin/main
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-<<<<<<< HEAD
-Repo: 154 papers, 151 DOIs
-Ledger: 121 tests, 10 falsified
-
---- Elevator Pitch ---
-  [CRITICAL] Paper count '147' in Elevator Pitch != 154 in repo
-  [OK]       Paper count 154 close to repo 154
-  [WARNING]  Survived 91/100 but expected 93/103 (total=121, falsified=10, pipeline=18)
-=======
-Repo: 154 papers, 152 DOIs
+Repo: 154 papers, 153 DOIs
 Ledger: 121 tests, 10 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 154 close to repo 154
   [OK]       Paper count 154 close to repo 154
   [OK]       Survival count 93/103 matches ledger
->>>>>>> origin/main
 
 --- Validation Ledger ---
   [WARNING]  '118-test' in Ledger HTML != 121 in stats
@@ -218,15 +137,6 @@ Ledger: 121 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 101 active but ledger has 103
-  [CRITICAL] Elevator Pitch: says 91 survived but ledger has 93
-  [CRITICAL] White Paper Series: says 119 total but ledger has 121
-  [CRITICAL] White Paper Series: says 101 active but ledger has 103
-  [CRITICAL] White Paper Series: says 101 active but ledger has 103
-  [CRITICAL] White Paper Series: says 91 survived but ledger has 93
-  [CRITICAL] Stage-IV Roadmap: says 119 total but ledger has 121
-  [CRITICAL] Stage-IV Roadmap: says 101 active but ledger has 103
-  [CRITICAL] Stage-IV Roadmap: says 91 survived but ledger has 93
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -252,64 +162,30 @@ Ledger: 121 tests, 10 falsified
   [OK]       README paper count 154 matches repo 154
   [OK]       README paper count 154 matches repo 154
   [OK]       Stats categories sum to 121 = total_public
-<<<<<<< HEAD
-  [OK]       DOI sync script present, 151/154 papers have DOIs
-  [OK]       110 papers have sealed predictions (322 total)
-=======
-  [OK]       DOI sync script present, 152/154 papers have DOIs
+  [OK]       DOI sync script present, 153/154 papers have DOIs
   [OK]       111 papers have sealed predictions (325 total)
->>>>>>> origin/main
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 121 matches ledger
+  [WARNING]  Symbiose tests=155 vs ledger total_public=121
+  [WARNING]  Symbiose falsified=11 vs ledger n_falsified=10
   [OK]       Symbiose paper count 154 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-<<<<<<< HEAD
-RESULT: 14 errors, 7 warnings
+RESULT: 4 errors, 8 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Paper count '147' in Elevator Pitch != 154 in repo
-  - Elevator Pitch: says 101 active but ledger has 103
-  - Elevator Pitch: says 91 survived but ledger has 93
-  - White Paper Series: says 119 total but ledger has 121
-  - White Paper Series: says 101 active but ledger has 103
-  - White Paper Series: says 101 active but ledger has 103
-  - White Paper Series: says 91 survived but ledger has 93
-  - Stage-IV Roadmap: says 119 total but ledger has 121
-  - Stage-IV Roadmap: says 101 active but ledger has 103
-  - Stage-IV Roadmap: says 91 survived but ledger has 93
-=======
-RESULT: 4 errors, 6 warnings
-VERDICT: BLOCK — critical discrepancies prevent publishing
-Fix these before auto-commit:
->>>>>>> origin/main
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-<<<<<<< HEAD
-[full-sync] invariants: 1 error(s), 8 warning(s)
+[full-sync] invariants: 0 error(s), 1 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32029704: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32037990: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32045592: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080059: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080080: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32080083: expected='present' observed='absent'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32084670: expected='present' observed='absent'
-  [ERROR] §5 forbidden_phrase:confirms efc: expected='absent' observed='docs/papers/efc/Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1/index.json'
-=======
-[full-sync] invariants: 0 error(s), 2 warning(s)
-  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
-  [WARN] §2 doi_in_index_but_not_in_doi_map:32091700: expected='present' observed='absent'
->>>>>>> origin/main
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
@@ -318,7 +194,6 @@ Fix these before auto-commit:
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_verify.py …
 [efc-maintain] running efc_ledger_impact_sync.py --apply…
-[efc-maintain] ledger_impact_sync validation FAILED — see output above
 [efc-maintain] running efc_ledger_autofill.py …
 [efc-maintain] running efc_drift_detector.py --fix…
 [efc-maintain] running efc_symbiose_snapshot.py --from-ledger…
