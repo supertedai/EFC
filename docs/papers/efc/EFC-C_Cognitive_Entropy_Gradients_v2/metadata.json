@@ -1,49 +1,42 @@
 {
-  "title": "EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States",
+  "title": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States",
+  "short_id": "efc-c-cognitive-entropy-gradients-v2",
+  "version": "2.1",
+  "date": "2026-04-06",
   "author": {
     "name": "Morten Magnusson",
-    "orcid": "https://orcid.org/0009-0002-4860-5095",
+    "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "date_published": "2026-04-06",
-  "version": "2.0",
-  "framework": "Energy-Flow Cosmology (EFC)",
-  "track": "Track 2: Neural Entropy",
   "license": "CC-BY-4.0",
-  "language": "en",
-
-  "classification": {
-    "domain": "computational_neuroscience",
-    "track": "neural_entropy",
-    "track_number": 2,
-    "category": "quantitative_prediction",
-    "level": "prospective_falsifiable"
+  "doi": "10.6084/m9.figshare.32091700",
+  "abstract": "Revises EFC-C by replacing the \u03bb2 (Fiedler) formulation with a degree-heterogeneity bridge (B1**) linking hub-to-periphery degree ratio to the centrifugal entropy score. Introduces a two-layer prediction scheme: Layer A (topological, parameter-light) tests a power-law scaling with exponent \u03b3\u22480.55; Layer B (absolute-scale) tests a cross-domain-anchored constant Ceff fixed a priori via regime transformation of C=k/aG.",
+  "keywords": [
+    "neural entropy",
+    "degree heterogeneity",
+    "hub-periphery topology",
+    "centrifugal entropy score",
+    "multiscale entropy",
+    "resting-state fMRI",
+    "structural connectome",
+    "Bridge equations",
+    "cross-domain parameter transfer",
+    "psychiatric biomarkers",
+    "schizophrenia",
+    "major depressive disorder"
+  ],
+  "files": {
+    "readme": "README.md",
+    "schema": "schema.json",
+    "metadata": "metadata.json",
+    "jsonld": "efc_c_v2.jsonld",
+    "citations": "citations.bib",
+    "source": "src/cognitive_entropy.py",
+    "data": "data/cognitive_entropy_data.json",
+    "demo": "examples/demo_cognitive_entropy.py"
   },
-
-  "methodology": {
-    "approach": "Cross-domain parameter transfer from galactic dynamics to neural entropy via Bridge B1*",
-    "techniques": [
-      "Centrifugal entropy score kappa from resting-state fMRI MSE",
-      "Fiedler eigenvalue from structural connectome graph Laplacian",
-      "Anterior-posterior entropy asymmetry alpha_AP",
-      "No parameters fit to neural data"
-    ]
-  },
-
-  "numerical_parameters": {
-    "C": {"value": 4.4, "uncertainty": 0.6, "source": "SPARC galactic fit"},
-    "lambda_2_typical": {"value": 0.5, "range": [0.3, 0.8]},
-    "tau_c_s": {"value": 3.5, "range": [2.0, 5.0]},
-    "kappa_healthy": {"value": 1.6},
-    "kappa_crit": {"value": 0.73},
-    "hub_threshold": "top 10% by weighted degree",
-    "periph_threshold": "bottom 30% by weighted degree",
-    "MSE_scales": [4, 5, 6]
-  },
-
-  "related_papers": [
-    {"title": "EFC Empirical Validation (Spor 1)", "doi": "10.6084/m9.figshare.31301953", "relation": "source_of_C"},
-    {"title": "Cross-Domain Bridge Equations", "relation": "bridge_B1_star"},
-    {"title": "EFC-C v0.1", "relation": "predecessor"}
-  ]
+  "paper": {
+    "doi": "10.6084/m9.figshare.32091700",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.32091700"
+  }
 }

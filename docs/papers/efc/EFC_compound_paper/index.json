@@ -1,0 +1,126 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-compound-paper",
+  "title": "Parameter-Controlled Regime Transitions in Energy-Flow Cosmology: Cross-Sector Consistency Between Lensing and Background Observables",
+  "description": "Reports controlled scans of the sealed EFC lensing engine showing that the kinetic stiffness K0 dominantly sets the redshift of the predicted sign-changing \u03a3eff(z) crossover, while amplitude parameters have minor impact. Documents cross-sector consistency (\u00b5 < 1) between sealed lensing and growth sectors, establishes robustness to power-spectrum choice, and pre-registers joint falsification tests for Euclid DR1 and DESI DR2.",
+  "version": "v0.5",
+  "date": "2026-04-21",
+  "doi": "10.6084/m9.figshare.32080059",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "weak lensing",
+    "Sigma_eff",
+    "growth rate f\u03c38",
+    "kinetic stiffness K0",
+    "modified gravity",
+    "gravitational slip",
+    "Euclid DR1",
+    "DESI DR2",
+    "BBKS transfer function",
+    "pre-registered prediction",
+    "cross-sector consistency"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "P1_crossover": {
+      "latex": "z_{\\text{cross}} \\simeq 0.44 \\pm 0.03",
+      "description": "Pre-registered EFC prediction for the redshift where the effective weak-lensing coupling \\Sigma_{\\mathrm{eff}}(z) changes sign (non-monotonic lensing slip)."
+    },
+    "P2_growth": {
+      "latex": "f\\sigma_8(z=0.7) = 0.430 \\pm 0.02",
+      "description": "Sealed EFC prediction for the linear growth observable at z = 0.7."
+    },
+    "horndeski_constraint": {
+      "latex": "(\\Sigma - 1)(\\mu - 1) \\ge 0",
+      "description": "Empirical property reported for Horndeski models (Peirone et al. 2018) used here as a contrast: surveyed non-EFC frameworks predict monotonic profiles without a sign-changing \\Sigma_{\\mathrm{eff}}."
+    },
+    "mu_sign": {
+      "latex": "\\mu(z) < 1",
+      "description": "Both EFC sectors (lensing and growth) predict entropic damping of the Newtonian potential (\\mu < 1), providing qualitative cross-sector consistency."
+    },
+    "K0_control": {
+      "latex": "\\Delta z_{\\text{cross}}\\big|_{K_0 \\in [0.5,\\,4.0]} \\approx 0.87,\\quad \\Delta z_{\\text{cross}}\\big|_{\\text{amp}\\times 50} \\approx 0.11",
+      "description": "Scan results from the sealed lensing engine: K0 dominantly controls the crossover redshift, while large rescalings of amplitude parameters have comparatively minor effect."
+    }
+  },
+  "key_results": {
+    "main_finding": "The sealed EFC lensing engine robustly predicts a sign-changing, non-monotonic \u03a3eff(z) with crossover near z \u2248 0.44, dominantly controlled by K0 (\u0394z \u2248 0.87 for K0 \u2208 [0.5,4.0]) and only weakly by amplitude parameters (\u0394z \u2248 0.11 for \u00d750 rescaling), with the sign-change robust to power-spectrum choice (BBKS cross-check shifts \u2264 0.06) and consistent \u00b5 < 1 across lensing and growth sectors.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "K0 (kinetic stiffness scale)",
+      "alpha (amplitude)",
+      "V' (potential slope)",
+      "gamma0",
+      "rho_crit"
+    ],
+    "datasets_used": [
+      "Sealed EFC lensing engine (lensing.py)",
+      "BBKS transfer function (cross-validation)",
+      "Symbiose Framework Atlas snapshot (2026-04-21) for comparative landscape"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Non-monotonic, sign-changing \u03a3eff(z) with crossover at z = 0.44 \u00b1 0.03.",
+      "falsifiable_by": "Euclid DR1 tomographic cosmic shear and lensing cross-correlations measuring \u03a3eff(z) over 0 < z < 1."
+    },
+    {
+      "id": "P2",
+      "statement": "Linear growth observable f\u03c38(z=0.7) = 0.430 \u00b1 0.02.",
+      "falsifiable_by": "DESI DR2 redshift-space distortion measurements and joint growth analyses around z \u2248 0.7."
+    },
+    {
+      "id": "D3",
+      "statement": "EG statistic EG = 1.086 (pre-registered; pending kSZ-reconstructed estimators).",
+      "falsifiable_by": "EG measurements combining lensing-galaxy and RSD with kSZ velocity reconstruction."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Euclid DR1 finds \u03a3eff(z) to be strictly monotonic with no sign change over 0 < z < 1 at \u226595% confidence, or measures a crossover redshift inconsistent with z = 0.44 \u00b1 0.03 such that no EFC configuration (within K0 \u2208 [0.5, 4.0] and \u00b1\u00d750 amplitude rescalings) can reproduce it.",
+    "KC2: DESI DR2 measures f\u03c38 at z = 0.7 outside the sealed window 0.430 \u00b1 0.02 at \u22652\u03c3 (accounting for systematic error budgets), with no consistent EFC parameter realization.",
+    "KC3: Robust observational inference of \u00b5 \u2265 1 in the late-time universe (0.3 < z < 0.9) from growth and/or combined lensing+RSD, or a demonstrable \u00b5-sign disagreement between the sealed lensing and growth sectors after consistent phenomenology-to-action mapping.",
+    "KC4: Joint Euclid+DESI constraints locate the \u03a3eff crossover (if present) and \u00b5\u2013\u03a3 quadrant in a region incompatible with EFC\u2019s non-monotonic slip and \u00b5 < 1 (i.e., consistent with Horndeski monotonic behavior and (\u03a3\u22121)(\u00b5\u22121) \u2265 0 without a sign change), excluding EFC across scanned parameter ranges.",
+    "KC5: Future EG measurements with kSZ reconstruction yield EG inconsistent with the pre-registered value 1.086 within forecasted uncertainties, in a way that cannot be reconciled within the EFC parameter space."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [
+    {
+      "id": "efc-action",
+      "doi": "10.6084/m9.figshare.31876324",
+      "role": "EFC action definition underlying the regime-transition mechanism"
+    },
+    {
+      "id": "efc-tech-note-i",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Technical Note I (development of the framework)"
+    },
+    {
+      "id": "efc-tech-note-ii",
+      "doi": "10.6084/m9.figshare.31333600",
+      "role": "Technical Note II (growth-sector parameterization and sealed prediction)"
+    },
+    {
+      "id": "efc-p1-lensing",
+      "doi": "10.6084/m9.figshare.32037990",
+      "role": "Sealed prediction P1: sign-changing \u03a3eff(z) at z \u2248 0.44"
+    },
+    {
+      "id": "efc-p2-growth",
+      "doi": "10.6084/m9.figshare.32013156",
+      "role": "Sealed prediction P2: f\u03c38(z=0.7) = 0.430"
+    }
+  ],
+  "files": {
+    "pdf": "EFC_compound_paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32080059"
+}

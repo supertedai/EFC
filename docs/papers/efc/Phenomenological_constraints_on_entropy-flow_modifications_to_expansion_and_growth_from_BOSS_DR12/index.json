@@ -250,7 +250,7 @@
     }
   },
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first direct empirical contact between the EFC framework and large-scale structure data by constraining the phenomenological entropy-flow coupling α_{L2} against BOSS DR12 BAO+RSD measurements. It demonstrates a mild (1.7σ) preference for α_{L2}>0, consistent with the EFC-predicted anti-correlation between distance enhancement and growth suppression, and formally recasts the S8 tension into EFC parameter space. While not a decisive detection, it provides the quantitative scaffold — coupling functions g(z), likelihood infrastructure, and sealed kill criteria — upon which Stage IV tests (DESI, Euclid) will deliver verdicts.",
     "graph_insights": [
       "This paper is currently an isolated node in the graph (no 1-2 hop connections found), which means it should be connected to: the fσ8(z=0.7)=0.430 sealed prediction node, the S8 tension observable node, the BOSS DR12 dataset node, and the planned DESI DR2 pipeline node. These edges encode the scaffolding relationship.",
@@ -369,6 +369,12 @@
       "KC3 of this paper (|α_{L2}|<0.02 at 95% CL ruling out L2-scale effects) sets a quantitative falsification threshold that DESI+Euclid combined will reach, meaning KC5 monitoring should incorporate α_{L2} precision forecasts."
     ],
     "bottom_line_change": "The biggest gap remains the DESI DR2 full-shape RSD rapid-response pipeline, but it is now partially scaffolded: the BOSS DR12 paper provides the coupling functions, likelihood code, and covariance handling that form the template. The gap description should be updated to reflect that methodology exists and only the DESI-specific data interface and verification script remain.",
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:07:45Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31243828"
   }
 }

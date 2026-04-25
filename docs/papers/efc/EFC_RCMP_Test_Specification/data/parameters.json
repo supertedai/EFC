@@ -1,0 +1,135 @@
+{
+  "_description": "Numerical values from EFC-\u039bCDM Comparative Test Specification v1.1 (Magnusson 2026, DOI 10.6084/m9.figshare.32080083)",
+  "version": "1.1",
+  "locked_gate_parameters": {
+    "a_t": {
+      "value": 0.7,
+      "description": "Transition scale factor for gate function g(a)",
+      "source": "P1 pre-registration (figshare.32037990)"
+    },
+    "delta_a": {
+      "value": 0.08,
+      "description": "Regime-transition width for gate function g(a)",
+      "source": "EFC v3.11 ledger"
+    },
+    "k_c": {
+      "value": 0.05,
+      "unit": "h/Mpc",
+      "description": "Scale filter cut-off wavenumber",
+      "source": "P3 pre-registration (figshare.32023788)"
+    }
+  },
+  "variant_h_slip": {
+    "alpha": {
+      "value": 1.0,
+      "description": "Slip constraint coefficient: Sigma = 1 - alpha * (mu - 1)",
+      "status": "locked"
+    }
+  },
+  "LCDM_priors": {
+    "omega_b": {
+      "type": "uniform",
+      "low": 0.02,
+      "high": 0.025,
+      "description": "Baryon density Omega_b h^2"
+    },
+    "omega_c": {
+      "type": "uniform",
+      "low": 0.09,
+      "high": 0.15,
+      "description": "CDM density Omega_c h^2"
+    },
+    "100_theta_MC": {
+      "type": "uniform",
+      "low": 1.03,
+      "high": 1.05,
+      "description": "100x angular size of sound horizon"
+    },
+    "tau_reio": {
+      "type": "gaussian",
+      "mean": 0.054,
+      "sigma": 0.007,
+      "description": "Optical depth to reionization"
+    },
+    "ln10As": {
+      "type": "uniform",
+      "low": 2.0,
+      "high": 4.0,
+      "description": "Log scalar amplitude"
+    },
+    "n_s": {
+      "type": "uniform",
+      "low": 0.87,
+      "high": 1.07,
+      "description": "Scalar spectral index"
+    }
+  },
+  "EFC_free_parameters": {
+    "A_mu": {
+      "prior": "uniform",
+      "low": -0.2,
+      "high": 0.05,
+      "efc_prediction_sign": "negative",
+      "description": "Amplitude of mu deviation; EFC predicts A_mu < 0"
+    },
+    "A_Sigma": {
+      "prior": "uniform",
+      "low": -0.05,
+      "high": 0.2,
+      "efc_prediction_sign": "positive",
+      "description": "Amplitude of Sigma deviation; EFC predicts A_Sigma > 0"
+    }
+  },
+  "derived_parameters": {
+    "S8": {
+      "formula": "sigma8 * (Omega_m / 0.3)^0.5",
+      "description": "Lensing amplitude combination"
+    }
+  },
+  "pixel_level_check": {
+    "tolerance_percent": 0.01,
+    "description": "EFC must match LCDM within 0.01% when A_mu=A_Sigma=0 or g(a)->0"
+  },
+  "data_specifications": {
+    "DES_Y6": {
+      "role": "primary test dataset",
+      "observable": "xi_pm cosmic shear two-point correlation function",
+      "format": "SACC (des_y6_shear.sacc)",
+      "tomographic_bins": 4,
+      "scale_cuts": "official DES Y6 fiducial (do not modify)"
+    },
+    "KiDS_Legacy": {
+      "role": "cross-pipeline validation dataset",
+      "observable": "band powers C_ell or xi_pm",
+      "tomographic_bins": 6,
+      "scale_cuts": "KiDS Legacy fiducial SOM-based"
+    }
+  },
+  "action_level_scan_results": {
+    "K0_crossover_variation": {
+      "delta_z": 0.87,
+      "K0_range": [
+        0.5,
+        4.0
+      ],
+      "description": "z_crossover varies by delta_z across K0 range"
+    },
+    "amplitude_rescaling_variation": {
+      "delta_z": 0.11,
+      "rescaling_range": "x50",
+      "parameters": [
+        "alpha",
+        "V_prime",
+        "gamma_0"
+      ],
+      "description": "Joint amplitude rescaling produces only small delta_z"
+    }
+  },
+  "reference_DOIs": {
+    "this_specification": "10.6084/m9.figshare.32080083",
+    "P1_pre_registration": "10.6084/m9.figshare.32037990",
+    "P3_pre_registration": "10.6084/m9.figshare.32023788",
+    "EFC_action": "10.6084/m9.figshare.31876324",
+    "companion_compound_paper": "10.6084/m9.figshare.32080059"
+  }
+}

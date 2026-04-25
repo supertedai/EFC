@@ -379,7 +379,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper is the first multi-regime empirical consistency test of the EFC entropy-gradient coupling T(z), demonstrating that a single parameter calibrated at z≈0.5 propagates without dataset-specific tuning across Lyα P1D (z=3), BAO distances, and RSD growth (z≈0.4–0.6). It does not statistically kill ΛCDM nor claim EFC superiority, but it establishes the structural discipline that T(z) does not break when extrapolated across three independent cosmological regimes. The SCE framework evaluation shows EFC trades higher Layer Consistency and lower Model Plasticity against ΛCDM's superior Explanatory Compression — neither framework dominates.",
     "graph_insights": [
       "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it needs to be linked to: (a) the T(z) derivation paper, (b) the BOSS DR12 calibration source, (c) the SCE framework definition paper, and (d) the sealed prediction registry entries for fσ8(z=0.7)=0.430.",
@@ -548,6 +548,12 @@
       "KC1",
       "KC3",
       "KC5"
-    ]
+    ],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:18:07Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31304995"
   }
 }

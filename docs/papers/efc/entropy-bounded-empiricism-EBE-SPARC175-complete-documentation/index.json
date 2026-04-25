@@ -105,7 +105,7 @@
     ]
   },
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the Entropy-Bounded Empiricism (EBE) framework as a rigorous epistemological scaffolding for EFC's domain of validity, demonstrating with nonparametric statistics that EFC achieves 100% success in the FLOW regime (62/62 SPARC galaxies) while the CMB null test confirms no spurious regime structure. It does NOT close any Stage-IV KC or theory gap — it creates a new, self-contained empirical test layer with its own internal kill criteria (EBE-KC1 through EBE-KC5) that are distinct from the five master EFC kill criteria. The paper is a Tier-2 empirical anchor that defines WHERE EFC is expected to work (low-entropy coherent-flow systems) and provides the statistical machinery to test that boundary.",
     "graph_insights": [
       "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it needs to be explicitly linked to the SPARC rotation-curve validation tests and to the entropy-interpolation formalism in the core EFC theory papers. Without those edges, the EBE results are structurally isolated from the kill-criteria chain.",
@@ -243,6 +243,12 @@
       "The three-regime structure (FLOW/TRANSITION/LATENT) implicitly maps onto the EFC entropy interpolation S ∈ [0,1], providing the first empirical calibration of which S-ranges correspond to which physical regimes — this constrains the EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver) by fixing the transition boundaries."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:17:08Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31047703"
   }
 }

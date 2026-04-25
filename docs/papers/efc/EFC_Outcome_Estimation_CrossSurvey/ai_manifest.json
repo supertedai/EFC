@@ -8,7 +8,7 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-04-20",
+  "generated": "2026-04-23",
   "track": "Spor general",
   "regimes": [],
   "primary_pdf": "EFC_Outcome_Estimation_CrossSurvey.pdf",
@@ -37,8 +37,16 @@
       "bytes": 278
     },
     {
+      "path": "data/parameters.json",
+      "bytes": 4172
+    },
+    {
       "path": "efc-outcome-estimation-crosssurvey.jsonld",
       "bytes": 628
+    },
+    {
+      "path": "examples/demo_efc_outcome_estimation_crosssurvey.py",
+      "bytes": 5493
     },
     {
       "path": "index.json",
@@ -51,8 +59,16 @@
     {
       "path": "schema.json",
       "bytes": 629
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 124
+    },
+    {
+      "path": "src/efc_outcome_estimation_crosssurvey.py",
+      "bytes": 6553
     }
   ],
-  "n_files": 10,
+  "n_files": 14,
   "n_pdfs": 1
 }

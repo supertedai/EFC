@@ -188,7 +188,7 @@
     "z_t unconstrained by fσ8 alone"
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper delivers the first multi-epoch empirical test of EFC's perturbation-sector coupling μ(a) against 14 fσ8(z) data points spanning z=0.067–1.491. The result is a clean null: ΛCDM fits marginally better (Δχ²=0.10) but EFC with μ0 in the survival valley [0.93,0.96] remains fully consistent — the framework survives but is not yet preferred. Critically, the paper identifies the Ωm–B degeneracy as the key obstacle, confirming that fσ8 alone cannot constrain the gate and that BAO cross-probe combination (exactly the DESI DR2 rapid-response pipeline) is the decisive next step.",
     "graph_insights": [
       "This paper has zero graph connections to existing papers or validation tests — it is the first node in the fσ8/RSD/growth-rate cluster. It should be linked to the sealed prediction 32013156 (fσ8(z=0.7)=0.430) and to the WP1a reference model paper, creating a three-node perturbation-sector subgraph.",
@@ -287,6 +287,12 @@
       "Paper-level KC2 (B>0 excluded at ≥3σ by Stage-IV data) is logically entangled with the master KC5 (monitoring status): if DESI DR2 triggers paper-KC2, it simultaneously advances the master KC5 toward resolution."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:07:11Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31955871"
   }
 }

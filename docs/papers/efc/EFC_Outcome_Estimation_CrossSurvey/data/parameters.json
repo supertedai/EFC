@@ -1,0 +1,202 @@
+{
+  "paper": {
+    "title": "Expected Outcomes for Energy-Flow Cosmology Cross-Survey Invariance and BIG-SPARC Tests",
+    "doi": "10.6084/m9.figshare.32045592",
+    "author": "Morten Magnusson",
+    "date": "2026-04-17",
+    "baseline_doi": "10.6084/m9.figshare.31986762"
+  },
+  "sparc_baseline": {
+    "description": "SPARC-175 Kill-Test v6 universality analysis (Table 1)",
+    "galaxies_fitted": 171,
+    "galaxies_total": 175,
+    "efc_win_rate_aic": 0.602,
+    "decisive_wins": 72,
+    "decisive_threshold_dAIC": -10,
+    "marginal_wins": 31,
+    "marginal_dAIC_range": [
+      -10,
+      0
+    ],
+    "tied": 46,
+    "lcdm_wins_total": 22,
+    "lcdm_wins_marginal": 6,
+    "lcdm_wins_decisive": 16,
+    "median_dAIC": 6.2,
+    "median_chi2red_efc": 0.44,
+    "median_chi2red_nfw": 1.69
+  },
+  "regime_fractions": {
+    "FLOW": {
+      "count": 71,
+      "total": 171,
+      "fraction": 0.415
+    },
+    "TRANSITION": {
+      "count": 84,
+      "total": 171,
+      "fraction": 0.491
+    },
+    "LATENT": {
+      "count": 16,
+      "total": 171,
+      "fraction": 0.094
+    }
+  },
+  "screening_parameter": {
+    "k": 0.415,
+    "k_err": 0.029,
+    "p5_target_k": 0.415,
+    "p5_target_err": 0.015
+  },
+  "survey_samples": {
+    "THINGS": {
+      "N": 34,
+      "typical_npts": 25
+    },
+    "LITTLE_THINGS": {
+      "N": 26,
+      "typical_npts": 15
+    },
+    "WALLABY": {
+      "N": 203,
+      "typical_npts": 12
+    },
+    "TIER1_non_SPARC": {
+      "N": 60
+    }
+  },
+  "structural_shifts": {
+    "tier1": {
+      "no_spitzer": -0.05,
+      "vel_pipeline": -0.03,
+      "hi_only": -0.02,
+      "things_high_res": 0.02,
+      "lt_flow_dwarfs": 0.03,
+      "net": -0.05
+    },
+    "wallaby": {
+      "no_spitzer": -0.05,
+      "vel_pipeline": -0.03,
+      "hi_only": -0.02,
+      "beam_smearing": -0.08,
+      "assumed_errors": -0.04,
+      "net": -0.12
+    }
+  },
+  "projected_win_rates": {
+    "description": "Estimated AIC win rates (Table 3)",
+    "SPARC": {
+      "wr_aic": 0.602,
+      "ci95": [
+        0.52,
+        0.67
+      ],
+      "wr_bic": 0.58
+    },
+    "THINGS": {
+      "wr_aic": 0.57,
+      "ci95": [
+        0.41,
+        0.72
+      ],
+      "wr_bic": 0.51
+    },
+    "LITTLE_THINGS": {
+      "wr_aic": 0.6,
+      "ci95": [
+        0.41,
+        0.76
+      ],
+      "wr_bic": 0.56
+    },
+    "WALLABY": {
+      "wr_aic": 0.43,
+      "ci95": [
+        0.37,
+        0.5
+      ],
+      "wr_bic": 0.35
+    },
+    "TIER1_non_SPARC": {
+      "wr_aic": 0.58,
+      "ci95": [
+        0.46,
+        0.7
+      ],
+      "wr_bic": 0.53
+    }
+  },
+  "bic_extra_penalty": {
+    "formula": "ln(N_pts) - 2",
+    "SPARC": 1.0,
+    "THINGS": 1.2,
+    "LITTLE_THINGS": 0.7,
+    "WALLABY": 0.5
+  },
+  "predictions": {
+    "P1": {
+      "description": "k invariance (win rate proxy)",
+      "estimate_wr": 0.58,
+      "threshold": 0.55,
+      "verdict": "MARGINAL PASS"
+    },
+    "P2": {
+      "description": "Overlap consistency (14 galaxies)",
+      "estimate": "10-12/14",
+      "threshold": 10,
+      "n_overlap": 14,
+      "verdict": "LIKELY PASS"
+    },
+    "P3": {
+      "description": "Regime fractions within \u00b115 pp",
+      "tolerance_pp": 0.15,
+      "verdict": "LIKELY PASS"
+    },
+    "P4": {
+      "description": "WALLABY win rate",
+      "estimate_wr": 0.43,
+      "threshold": 0.45,
+      "verdict": "BORDERLINE"
+    },
+    "P5": {
+      "description": "kBIG = 0.415 \u00b1 0.015",
+      "verdict": "PENDING"
+    },
+    "P6": {
+      "description": "BIG-SPARC global WR >= 50%",
+      "threshold": 0.5,
+      "verdict": "PENDING"
+    },
+    "P7": {
+      "description": "FLOW-regime WR >= 85%",
+      "threshold": 0.85,
+      "verdict": "PENDING"
+    },
+    "P8": {
+      "description": "No secondary k dependence (3\u03c3)",
+      "verdict": "PENDING"
+    }
+  },
+  "overlap_galaxies": [
+    "NGC 2403",
+    "NGC 2841",
+    "NGC 2903",
+    "NGC 2976",
+    "NGC 3198",
+    "NGC 3521",
+    "NGC 3621",
+    "NGC 4736",
+    "NGC 5055",
+    "NGC 6946",
+    "NGC 7331",
+    "NGC 7793",
+    "DDO 154",
+    "IC 2574"
+  ],
+  "scenario_probabilities": {
+    "A_strong_support": "20-25%",
+    "B_partial_support": "50-55%",
+    "C_failure": "20-25%"
+  }
+}

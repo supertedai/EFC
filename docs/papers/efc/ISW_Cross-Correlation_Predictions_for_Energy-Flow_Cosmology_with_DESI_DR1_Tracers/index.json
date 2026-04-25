@@ -154,7 +154,7 @@
     "σ_8,0 fitted as nuisance parameter"
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first sealed, quantitative ISW cross-correlation predictions for EFC using DESI DR1 tracer windows, introducing the cancellation index C as a novel EFC-specific diagnostic. It opens a new observable channel (tomographic C_ell^{Tg}) with four paper-level kill criteria and four sealed predictions anchored to the mu(a) transition at z_t ≈ 0.82. Current data are consistent with the predicted suppression (AISW ≈ 0.3–0.6) within ~1.6σ, but the decisive test awaits DESI spectroscopic tomographic bins overlapping z_t.",
     "graph_insights": [
       "This paper is currently an isolated node in the graph (no 1-2 hop connections found), indicating a genuinely new observable channel for EFC. It should be linked to: (a) the f σ_8 sealed prediction paper via the shared μ(a) parameterisation and growth factor D(a), (b) any future EFCLASS Boltzmann solver work since the Eisenstein–Hu transfer function is an acknowledged approximation, and (c) DESI DR1/DR2 RSD papers via the same tracer windows and galaxy bias calibration.",
@@ -284,6 +284,12 @@
     "bottom_line_change": null,
     "kill_criteria_addressed": [
       "KC5"
-    ]
+    ],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:06:55Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31301953"
   }
 }

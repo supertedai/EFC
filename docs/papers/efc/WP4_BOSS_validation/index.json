@@ -193,7 +193,7 @@
     "Complementary constraints: DESI → z_L1L2, BOSS → α_L2"
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes that DESI DR2 best-fit EFC parameters transfer to fully independent BOSS DR12 BAO data without refitting, yielding Δχ²=−7.77 — a genuine cross-survey predictive success. Critically, the improvement survives whitening, diagonal-covariance, and eigenmode diagnostics, directly addressing the covariance-artifact kill criterion (KC4) and strengthening the empirical base for the regime-gated ~4–5% H(z) enhancement below z≈1. Combined BOSS+eBOSS fits returning consistent (z_{L1L2}, α_{L2}) further tighten the parameter corridor ahead of DESI Y5.",
     "graph_insights": [
       "This paper is the first node in the graph connecting BOSS DR12 to EFC — it creates a new independent-survey validation chain that was entirely absent, reducing single-dataset dependence on DESI DR2.",
@@ -318,6 +318,12 @@
     "kill_criteria_addressed": [
       "KC1",
       "KC4"
-    ]
+    ],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:13:34Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31231522"
   }
 }

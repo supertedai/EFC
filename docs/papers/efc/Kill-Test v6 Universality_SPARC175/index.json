@@ -372,7 +372,7 @@
   ],
   "see_also": "ai_manifest.json",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper eliminates the cherry-picking objection against EFC's L3 rotation-curve phenomenology by extending probe-2 from 5 galaxies to the full SPARC 175 sample, demonstrating that a 3-parameter EFC-motivated fitting function outperforms 2-parameter NFW in 60.2% of cases by AIC with strong regime separation and no mass dependence. It is explicitly a model-compression test, not a theory validation — it establishes that the EFC entropy-gradient functional form has superior empirical economy at galactic scales. The paper is self-aware about its limitations (no baryonic coupling in NFW, point estimates not posteriors, post-hoc LATENT classification) and specifies concrete upgrades that map directly onto its own internal kill criteria KC2–KC3.",
     "graph_insights": [
       "No existing graph connections were found, indicating this paper creates a new L3-galactic node in the knowledge graph. It should be linked to: (a) Kill-Test v6 (DOI 28550047) as parent, (b) SPARC 175 analysis (DOI 28358629) as data parent, (c) the FLOW/TRANSITION/LATENT regime classification concept, and (d) future NFW+baryons and nested-sampling tests as downstream upgrade nodes.",
@@ -460,6 +460,12 @@
       "The absence of sealed predictions in this paper means it contributes to the survived-test count but not to the sealed-prediction ledger — the next action should be sealing a prediction for the NFW+baryons comparison outcome before running it."
     ],
     "bottom_line_change": null,
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+<<<<<<< HEAD
+    "applied_at": "2026-04-24T04:36:35Z",
+=======
+    "applied_at": "2026-04-24T21:07:11Z",
+>>>>>>> origin/main
+    "applied_by_doi": "31986762"
   }
 }
