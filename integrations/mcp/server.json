@@ -188,6 +188,41 @@
       }
     },
     {
+      "name": "atlas_list_frameworks",
+      "description": "List frameworks in the Framework Atlas (schema/framework_atlas.jsonld), optionally filtered by category, role, or regime.",
+      "parameters": {
+        "category": {
+          "type": "string",
+          "enum": ["baseline", "entropic_gravity", "modified_gravity", "dynamical_dark_energy", "dark_matter_alternative", "alternative_cosmology", "holographic_de", "phenomenological"]
+        },
+        "role": {"type": "string"},
+        "regime": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]}
+      }
+    },
+    {
+      "name": "atlas_query",
+      "description": "Query atlas predictions and relations. Narrow by any combination of framework, phenomenon, regime.",
+      "parameters": {
+        "framework": {"type": "string", "description": "Framework id (e.g. 'EFC', 'LCDM', 'MOND')."},
+        "phenomenon": {"type": "string", "description": "e.g. 'a0_scale', 'H0_tension', 'bullet_dkappa'."},
+        "regime": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]}
+      }
+    },
+    {
+      "name": "atlas_diff",
+      "description": "Compare two frameworks on shared phenomena. Returns divergent predictions and phenomena unique to each.",
+      "parameters": {
+        "framework_a": {"type": "string", "required": true},
+        "framework_b": {"type": "string", "required": true},
+        "regime": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]}
+      }
+    },
+    {
+      "name": "atlas_summary",
+      "description": "Summary stats of the committed framework atlas: counts by category, role, coverage tiers.",
+      "parameters": {}
+    },
+    {
       "name": "full_sync",
       "description": "Complete synchronization across all surfaces",
       "parameters": {

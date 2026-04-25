@@ -91,6 +91,24 @@ python -m efc_mcp_server
 | `sync_from_figshare` | Pull DOI updates from Figshare |
 | `full_sync` | Complete synchronization across all surfaces |
 
+### Framework Atlas Tools
+
+Read `schema/framework_atlas.jsonld` — a version-controlled snapshot of the
+Symbiose Framework Atlas (42 frameworks, 10 diagnostic phenomena, relations
+and predictions). Populate via `scripts/maintenance/efc_atlas_export.py` when
+a session has Symbiose MCP access.
+
+| Tool | Description |
+|------|-------------|
+| `atlas_list_frameworks` | List frameworks, filter by category / role / regime |
+| `atlas_query` | Query predictions and relations by framework / phenomenon / regime |
+| `atlas_diff` | Compare two frameworks on shared phenomena (divergences + unique) |
+| `atlas_summary` | Atlas stats: counts by category / role / coverage tier |
+
+**Semantic layer (Qdrant):** `scripts/maintenance/efc_qdrant_ingest.py`
+enumerates paper packages and atlas entries as upsertable points. Requires
+`QDRANT_URL` + `EMBEDDING_PROVIDER` to actually push.
+
 ## Configuration
 
 ### Environment Variables

@@ -1,0 +1,136 @@
+{
+  "@context": "https://supertedai.github.io/efc/schema/framework_atlas.schema.json",
+  "@type": "FrameworkAtlas",
+  "schema_version": "0.1.0",
+  "generated_at": "2026-04-20T00:00:00Z",
+  "source": "symbiose_export",
+  "provenance": {
+    "note": "Atlas populated from a Symbiose graph export (42 frameworks, 383 relations in full graph). Framework entries, categories, roles, and diagnostic AtlasPrediction values below are transcribed from a Symbiose session on 2026-04-20. The relations and predictions arrays here are a CURATED SUBSET (role-defining relations and the 10 diagnostic-phenomenon predictions) — the full 383-edge graph must be re-exported from Symbiose via scripts/maintenance/efc_atlas_export.py --apply --from-stdin to populate every edge.",
+    "seeded_by": "claude/mcp-server-inventory-ZrlRU",
+    "symbiose_snapshot_date": "2026-04-20",
+    "populate_full_graph_via": "scripts/maintenance/efc_atlas_export.py --apply --from-stdin"
+  },
+  "frameworks": [
+    {"id": "LCDM", "name": "Standard Cosmological Model (ΛCDM)", "category": "baseline", "role": "limit_case", "regimes": ["L0", "L1", "L2", "L3"], "key_primitives": ["cold_dark_matter", "cosmological_constant", "FLRW_background"], "notes": "L0/L1 limit of EFC per llms.txt and EFC_v1_3_PPN_Recovery."},
+
+    {"id": "Jacobson_Thermodynamic", "name": "Jacobson Thermodynamic Gravity", "year": 1995, "category": "entropic_gravity", "role": "conceptual_ancestor", "regimes": ["L3"]},
+    {"id": "Padmanabhan_Entropic", "name": "Padmanabhan Entropic Gravity", "year": 2010, "category": "entropic_gravity", "role": "conceptual_ancestor", "regimes": ["L3"]},
+    {"id": "Verlinde_2010", "name": "Verlinde Entropic Gravity (2010)", "year": 2010, "category": "entropic_gravity", "role": "conceptual_ancestor", "regimes": ["L3"]},
+    {"id": "Verlinde_2016", "name": "Verlinde Emergent Gravity (2016)", "year": 2016, "category": "entropic_gravity", "role": "near_cousin", "regimes": ["L2", "L3"]},
+    {"id": "Mass_to_Horizon", "name": "Mass-to-Horizon", "year": 2025, "category": "entropic_gravity", "role": "competitor", "regimes": ["L3"]},
+    {"id": "Mass_to_Horizon_Cosmic_Space", "name": "Mass-to-Horizon Cosmic Space", "year": 2025, "category": "entropic_gravity", "role": "competitor", "regimes": ["L3"]},
+    {"id": "Modified_Entropic_Odintsov", "name": "Modified Entropic / Odintsov", "year": 2025, "category": "entropic_gravity", "role": "competitor", "regimes": ["L0", "L3"]},
+    {"id": "Negentropic_Gravity", "name": "Negentropic Gravity", "year": 2025, "category": "entropic_gravity", "role": "natural_falsifier", "regimes": ["L0", "L3"]},
+    {"id": "EFC", "name": "Energy-Flow Cosmology", "year": 2026, "category": "entropic_gravity", "role": "self", "regimes": ["L0", "L1", "L2", "L3"], "key_primitives": ["entropy_structure_coupling", "regime_activation", "background_nogo", "Λ_locked_screening"], "notes": "Native framework. Source of truth is docs/papers/efc/ + docs/validation-ledger."},
+    {"id": "IEG", "name": "Informational Entropic Gravity", "year": 2026, "category": "entropic_gravity", "role": "near_cousin", "regimes": ["L3"]},
+
+    {"id": "Brans_Dicke", "name": "Brans-Dicke", "year": 1961, "category": "modified_gravity", "role": "historical", "regimes": ["L0"]},
+    {"id": "Horndeski", "name": "Horndeski", "year": 1974, "category": "modified_gravity", "role": "excluded_region", "regimes": ["L2"], "notes": "Heavily constrained post-GW170817."},
+    {"id": "MOND", "name": "Modified Newtonian Dynamics", "year": 1983, "category": "modified_gravity", "role": "recovered_in_limit", "regimes": ["L3"]},
+    {"id": "DGP_Braneworld", "name": "DGP Braneworld", "year": 2000, "category": "modified_gravity", "role": "benchmark", "regimes": ["L1", "L2"]},
+    {"id": "TeVeS", "name": "Tensor-Vector-Scalar Gravity", "year": 2004, "category": "modified_gravity", "role": "competitor_relativistic_MOND", "regimes": ["L2", "L3"]},
+    {"id": "MiHsC", "name": "Modified Inertia from Hubble-scale Casimir", "year": 2007, "category": "modified_gravity", "role": "alternative_MOND_like", "regimes": ["L3"]},
+    {"id": "f_R_Starobinsky_Hu_Sawicki", "name": "f(R) Starobinsky / Hu-Sawicki", "year": 2007, "category": "modified_gravity", "role": "discriminator", "regimes": ["L1", "L2"]},
+    {"id": "Galileon", "name": "Galileon", "year": 2008, "category": "modified_gravity", "role": "benchmark", "regimes": ["L1", "L2"]},
+    {"id": "KGB", "name": "Kinetic Gravity Braiding", "year": 2010, "category": "modified_gravity", "role": "benchmark", "regimes": ["L2"]},
+    {"id": "dRGT_Massive_Gravity", "name": "dRGT Massive Gravity", "year": 2011, "category": "modified_gravity", "role": "benchmark", "regimes": ["L0", "L2"]},
+    {"id": "RMOND_Skordis_Zlosnik", "name": "Relativistic MOND (Skordis-Zlosnik)", "year": 2020, "category": "modified_gravity", "role": "competitor_relativistic_MOND", "regimes": ["L2", "L3"]},
+    {"id": "Machian_Gravity", "name": "Machian Gravity", "year": 2023, "category": "modified_gravity", "role": "competitor_L3", "regimes": ["L3"]},
+    {"id": "Weyl_Geometric_Gravity", "name": "Weyl-Geometric Gravity", "year": 2023, "category": "modified_gravity", "role": "competitor_L3", "regimes": ["L3"]},
+    {"id": "Hyperconical_Natural_RMOND", "name": "Hyperconical / Natural RMOND", "year": 2024, "category": "modified_gravity", "role": "alternative_MOND_relativistic", "regimes": ["L3"]},
+
+    {"id": "Quintessence", "name": "Quintessence", "year": 1998, "category": "dynamical_dark_energy", "role": "alternative", "regimes": ["L0"]},
+    {"id": "w0waCDM_CPL", "name": "w₀wₐCDM / CPL", "year": 2003, "category": "dynamical_dark_energy", "role": "compatible", "regimes": ["L0"]},
+    {"id": "Quintom", "name": "Quintom", "year": 2005, "category": "dynamical_dark_energy", "role": "alternative", "regimes": ["L0"]},
+    {"id": "EDE", "name": "Early Dark Energy", "year": 2019, "category": "dynamical_dark_energy", "role": "competitor", "regimes": ["L0"]},
+    {"id": "Robust_Dynamical_DE", "name": "Robust Dynamical DE (DESI+ACT+SPT)", "year": 2025, "category": "dynamical_dark_energy", "role": "class_sibling", "regimes": ["L0"]},
+    {"id": "Thawing_Quintessence_curved", "name": "Thawing Quintessence (curved)", "year": 2025, "category": "dynamical_dark_energy", "role": "alternative", "regimes": ["L0"]},
+    {"id": "Coupled_DE_DM", "name": "Coupled Dark Energy + Dark Matter", "year": 2026, "category": "dynamical_dark_energy", "role": "alternative", "regimes": ["L0", "L1"]},
+    {"id": "Multi_Field_EDE", "name": "Multi-Field EDE", "year": 2026, "category": "dynamical_dark_energy", "role": "competitor", "regimes": ["L0"]},
+
+    {"id": "Fuzzy_Ultralight_Scalar_DM", "name": "Fuzzy / Ultralight Scalar Dark Matter", "year": 2000, "category": "dark_matter_alternative", "role": "orthogonal", "regimes": ["L2", "L3"]},
+    {"id": "SIDM", "name": "Self-Interacting Dark Matter", "year": 2000, "category": "dark_matter_alternative", "role": "orthogonal", "regimes": ["L2", "L3"]},
+    {"id": "Superfluid_DM", "name": "Superfluid Dark Matter", "year": 2015, "category": "dark_matter_alternative", "role": "bridge_particle_MOND", "regimes": ["L3"]},
+    {"id": "PBH", "name": "Primordial Black Holes", "year": 2016, "category": "dark_matter_alternative", "role": "orthogonal", "regimes": ["L0", "L2"]},
+
+    {"id": "Ekpyrotic_Cyclic", "name": "Ekpyrotic / Cyclic", "year": 2001, "category": "alternative_cosmology", "role": "alternative", "regimes": ["L0"]},
+    {"id": "Timescape", "name": "Timescape", "year": 2007, "category": "alternative_cosmology", "role": "alternative", "regimes": ["L0"]},
+    {"id": "Conformal_Cyclic_Cosmology_Penrose", "name": "Conformal Cyclic Cosmology (Penrose)", "year": 2010, "category": "alternative_cosmology", "role": "alternative", "regimes": ["L0"]},
+
+    {"id": "Kaniadakis_HDE", "name": "Kaniadakis Holographic Dark Energy", "year": 2021, "category": "holographic_de", "role": "near_cousin", "regimes": ["L0"]},
+
+    {"id": "Empirical_RC_Fit", "name": "Empirical Rotation-Curve Fit", "year": 2026, "category": "phenomenological", "role": "phenomenological_competitor", "regimes": ["L3"]}
+  ],
+  "relations": [
+    {"subject": "EFC", "predicate": "RECOVERED_BY_LIMIT_OF", "object": "LCDM", "regime": "L0", "note": "ΛCDM is L0/L1 limit of EFC."},
+    {"subject": "EFC", "predicate": "RECOVERED_BY_LIMIT_OF", "object": "MOND", "regime": "L3", "note": "MOND recovered in deep-MOND limit."},
+    {"subject": "EFC", "predicate": "SHARES_MECHANISM_WITH", "object": "Verlinde_2016", "note": "Near-cousin: emergent/entropic derivation."},
+    {"subject": "EFC", "predicate": "SHARES_MECHANISM_WITH", "object": "IEG", "note": "Near-cousin: informational entropic derivation."},
+    {"subject": "EFC", "predicate": "SHARES_MECHANISM_WITH", "object": "Kaniadakis_HDE", "note": "Near-cousin: modified-entropy scaling."},
+    {"subject": "EFC", "predicate": "DISCRIMINATES_BETWEEN", "object": "Negentropic_Gravity", "note": "Natural falsifier — opposite sign of entropy coupling."},
+    {"subject": "EFC", "predicate": "DIVERGES_NUMERICALLY", "object": "MOND", "phenomenon": "a0_scale", "regime": "L3", "note": "EFC a0=6.5e-10 vs MOND a0=1.2e-10 — 5× divergence flagged."}
+  ],
+  "predictions": [
+    {"framework": "LCDM", "phenomenon": "H0_tension", "regime": "L0", "value": 67.36, "unit": "km/s/Mpc", "method": "Planck 2018"},
+    {"framework": "LCDM", "phenomenon": "H0_tension", "regime": "L0", "value": 73.04, "unit": "km/s/Mpc", "method": "SH0ES local"},
+    {"framework": "EDE", "phenomenon": "H0_tension", "regime": "L0", "value": 71.0, "unit": "km/s/Mpc"},
+    {"framework": "Multi_Field_EDE", "phenomenon": "H0_tension", "regime": "L0", "value": 71.5, "unit": "km/s/Mpc"},
+    {"framework": "Timescape", "phenomenon": "H0_tension", "regime": "L0", "value": 61.7, "unit": "km/s/Mpc"},
+
+    {"framework": "MOND", "phenomenon": "a0_scale", "regime": "L3", "value": 1.2e-10, "unit": "m/s^2"},
+    {"framework": "Verlinde_2016", "phenomenon": "a0_scale", "regime": "L3", "value": 1.1e-10, "unit": "m/s^2"},
+    {"framework": "LCDM", "phenomenon": "a0_scale", "regime": "L3", "value": 1.2e-10, "unit": "m/s^2"},
+    {"framework": "EFC", "phenomenon": "a0_scale", "regime": "L3", "value": 6.5e-10, "unit": "m/s^2", "method": "flag", "sealed": false, "note": "5× offset from MOND/Verlinde — flagged as either signature or calibration issue."},
+
+    {"framework": "LCDM", "phenomenon": "S8_tension", "regime": "L2", "value": [0.77, 0.83], "unit": "S8", "method": "KiDS/DES/Planck range"},
+    {"framework": "EFC", "phenomenon": "S8_tension", "regime": "L2", "value": 0.847, "unit": "S8"},
+
+    {"framework": "LCDM", "phenomenon": "sigma8_growth", "regime": "L1", "value": 0.452, "unit": "fσ8(z=0.7)"},
+    {"framework": "EFC", "phenomenon": "sigma8_growth", "regime": "L1", "value": 0.430, "unit": "fσ8(z=0.7)"},
+    {"framework": "DGP_Braneworld", "phenomenon": "sigma8_growth", "regime": "L1", "value": 0.465, "unit": "fσ8(z=0.7)"},
+    {"framework": "Galileon", "phenomenon": "sigma8_growth", "regime": "L1", "value": 0.480, "unit": "fσ8(z=0.7)"},
+
+    {"framework": "MOND", "phenomenon": "bullet_dkappa", "regime": "L3", "value": 0},
+    {"framework": "LCDM", "phenomenon": "bullet_dkappa", "regime": "L3", "value": "positive", "note": "Qualitative — positive Φ/Ψ-slip signature."},
+    {"framework": "EFC", "phenomenon": "bullet_dkappa", "regime": "L3", "value": 0.9993, "note": "Φ/Ψ-signature."},
+
+    {"framework": "EFC", "phenomenon": "EG_statistic", "regime": "L2", "value": 1.086},
+    {"framework": "LCDM", "phenomenon": "EG_statistic", "regime": "L2", "value": 1.0},
+
+    {"framework": "EFC", "phenomenon": "phi_psi_slip", "regime": "L2", "value": "crossover_z=0.44"},
+    {"framework": "LCDM", "phenomenon": "phi_psi_slip", "regime": "L2", "value": "none"},
+
+    {"framework": "LCDM", "phenomenon": "BAO_scale", "regime": "L2", "value": 147.18, "unit": "Mpc", "method": "r_d"},
+    {"framework": "EFC", "phenomenon": "BAO_scale", "regime": "L2", "value": "NO_SIGNAL", "note": "Open flag in atlas."}
+  ],
+  "diagnostic_phenomena": [
+    {"id": "w0wa_preference", "regime": "L0", "framework_count": 7, "frameworks": ["EFC", "LCDM", "w0waCDM_CPL", "Kaniadakis_HDE", "Modified_Entropic_Odintsov", "Thawing_Quintessence_curved", "Negentropic_Gravity"]},
+    {"id": "H0_tension", "regime": "L0", "framework_count": 5},
+    {"id": "a0_scale", "regime": "L3", "framework_count": 4, "flag": "EFC_offset_5x"},
+    {"id": "S8_tension", "regime": "L2", "framework_count": 4},
+    {"id": "sigma8_growth", "regime": "L1", "framework_count": 4},
+    {"id": "mu_sigma_plane", "regime": "L2", "framework_count": 4, "frameworks": ["EFC", "f_R_Starobinsky_Hu_Sawicki", "Horndeski", "LCDM"], "note": "Qualitative discriminator."},
+    {"id": "bullet_dkappa", "regime": "L3", "framework_count": 3},
+    {"id": "EG_statistic", "regime": "L2", "framework_count": 2},
+    {"id": "phi_psi_slip", "regime": "L2", "framework_count": 2},
+    {"id": "BAO_scale", "regime": "L2", "framework_count": 2, "flag": "EFC_NO_SIGNAL"}
+  ],
+  "coverage_tiers": {
+    "deep": ["EFC", "LCDM", "MOND", "Verlinde_2016"],
+    "medium": ["Horndeski", "Galileon", "f_R_Starobinsky_Hu_Sawicki", "DGP_Braneworld", "EDE", "Timescape", "w0waCDM_CPL", "Multi_Field_EDE", "Thawing_Quintessence_curved", "Kaniadakis_HDE", "Modified_Entropic_Odintsov", "Negentropic_Gravity"],
+    "thin": ["Brans_Dicke", "TeVeS", "KGB", "MiHsC", "RMOND_Skordis_Zlosnik", "Hyperconical_Natural_RMOND", "dRGT_Massive_Gravity", "Machian_Gravity", "Weyl_Geometric_Gravity", "Conformal_Cyclic_Cosmology_Penrose", "Ekpyrotic_Cyclic", "Quintessence", "Quintom", "Coupled_DE_DM", "Robust_Dynamical_DE", "Fuzzy_Ultralight_Scalar_DM", "SIDM", "Superfluid_DM", "PBH", "Empirical_RC_Fit"]
+  },
+  "relation_counts_full_graph": {
+    "SHARES_MECHANISM_WITH": 170,
+    "ADDRESSES": 99,
+    "BELONGS_TO_LAYER": 77,
+    "USES_LENS": 41,
+    "PREDICTS": 37,
+    "DIVERGES_NUMERICALLY": 32,
+    "CONVERGES_NUMERICALLY": 20,
+    "DISCRIMINATES_BETWEEN": 18,
+    "RECOVERED_BY_LIMIT_OF": 10,
+    "total": 504,
+    "note": "Full Symbiose graph reports 383 inter-framework edges in its top-line summary; the counts above sum to 504 because some edges carry multiple predicate types. These numbers are informational until a canonical edge dump is imported via efc_atlas_export.py."
+  }
+}

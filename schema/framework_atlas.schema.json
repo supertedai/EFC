@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/efc/schema/framework_atlas.schema.json",
+  "title": "Framework Atlas Schema",
+  "description": "Structural schema for the EFC Framework Atlas — a machine-readable registry of cosmological frameworks, their relationships to EFC, and their quantitative predictions across regimes L0–L3.",
+  "type": "object",
+  "required": ["@context", "@type", "schema_version", "generated_at", "source", "frameworks", "relations", "predictions"],
+  "properties": {
+    "@context": {"type": "string"},
+    "@type": {"const": "FrameworkAtlas"},
+    "schema_version": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "string",
+      "enum": ["symbiose_live", "symbiose_export", "manual_seed", "ledger_fallback"]
+    },
+    "frameworks": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/Framework"}
+    },
+    "relations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/Relation"}
+    },
+    "predictions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/AtlasPrediction"}
+    }
+  },
+  "$defs": {
+    "Framework": {
+      "type": "object",
+      "required": ["id", "name", "category", "role", "regimes"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+        "name": {"type": "string"},
+        "year": {"type": "integer"},
+        "category": {
+          "type": "string",
+          "enum": [
+            "baseline",
+            "entropic_gravity",
+            "modified_gravity",
+            "dynamical_dark_energy",
+            "dark_matter_alternative",
+            "alternative_cosmology",
+            "holographic_de",
+            "phenomenological"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "self",
+            "limit_case",
+            "conceptual_ancestor",
+            "near_cousin",
+            "class_sibling",
+            "competitor",
+            "competitor_L3",
+            "competitor_relativistic_MOND",
+            "alternative",
+            "alternative_MOND_like",
+            "alternative_MOND_relativistic",
+            "natural_falsifier",
+            "discriminator",
+            "benchmark",
+            "bridge_particle_MOND",
+            "recovered_in_limit",
+            "orthogonal",
+            "compatible",
+            "historical",
+            "excluded_region",
+            "phenomenological_competitor"
+          ]
+        },
+        "regimes": {
+          "type": "array",
+          "items": {"enum": ["L0", "L1", "L2", "L3"]}
+        },
+        "key_primitives": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "doi": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "Relation": {
+      "type": "object",
+      "required": ["subject", "predicate", "object"],
+      "properties": {
+        "subject": {"type": "string"},
+        "predicate": {
+          "type": "string",
+          "enum": [
+            "SHARES_MECHANISM_WITH",
+            "ADDRESSES",
+            "BELONGS_TO_LAYER",
+            "USES_LENS",
+            "PREDICTS",
+            "DIVERGES_NUMERICALLY",
+            "CONVERGES_NUMERICALLY",
+            "DISCRIMINATES_BETWEEN",
+            "RECOVERED_BY_LIMIT_OF"
+          ]
+        },
+        "object": {"type": "string"},
+        "phenomenon": {"type": "string"},
+        "regime": {"type": "string"},
+        "note": {"type": "string"}
+      }
+    },
+    "AtlasPrediction": {
+      "type": "object",
+      "required": ["framework", "phenomenon", "regime", "value"],
+      "properties": {
+        "framework": {"type": "string"},
+        "phenomenon": {"type": "string"},
+        "regime": {"type": "string"},
+        "value": {},
+        "unit": {"type": "string"},
+        "uncertainty": {"type": ["number", "string", "null"]},
+        "method": {"type": "string"},
+        "sealed": {"type": "boolean"},
+        "hash_prefix": {"type": "string"}
+      }
+    }
+  }
+}
