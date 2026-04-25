@@ -1,13 +1,27 @@
 {
   "name": "Recent Changes",
   "version": "3.0",
-  "generated_at": "2026-04-23T19:14:31Z",
+  "generated_at": "2026-04-25T04:35:36Z",
   "period_days": 7,
   "changes": [
     {
-      "date": "2026-04-23",
+      "date": "2026-04-25",
       "type": "auto_maintenance",
+<<<<<<< HEAD
       "summary": "1 paper package enriched. 2 paper packages enriched; Public pages updated: Changelog, Validation_Ledger; Ledger data: evidence-register.json."
+=======
+      "summary": "Ledger data: evidence-register.json."
+    },
+    {
+      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
+      "status": "pending",
+      "result": "Primary p=0.68722, Sign coherence p=0.015625",
+      "last_updated": "2026-04-25T01:50:09.645000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+>>>>>>> origin/main
     },
     {
       "name": "EFC P1/P2 cross-probe test against DES-Y6 vs KiDS-Legacy S8 bifurcation",
@@ -25,16 +39,6 @@
       "result": "Planned",
       "last_updated": "2026-04-23T18:16:55.634000000+00:00",
       "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
-      "status": "pending",
-      "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-04-23T18:07:26.151000000+00:00",
-      "source": null,
       "all_labels": [
         "EFCValidation"
       ]
