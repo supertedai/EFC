@@ -103,11 +103,15 @@ def build_changelog_entry(cats):
 
 
 def update_html_changelog(html_entry):
-    """Insert entry into EFC_Changelog.html."""
+    """Insert entry into EFC_Changelog.html (skip if identical line already present)."""
     if not os.path.exists(CHANGELOG_HTML):
         return False
     with open(CHANGELOG_HTML, encoding="utf-8") as f:
         text = f.read()
+
+    # Dedup: don't insert if exact line already exists
+    if html_entry in text:
+        return False
 
     # Insert after <ul> tag
     marker = "<ul>"
