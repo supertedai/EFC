@@ -50,8 +50,12 @@ def humanize(name: str) -> str:
 
 def list_files(d: str):
     out = []
-    for root, _, files in os.walk(d):
+    for root, dirs, files in os.walk(d):
+        # Skip transient/cache directories that vary across machines
+        dirs[:] = [x for x in dirs if x not in ("__pycache__", ".git", ".pytest_cache", ".mypy_cache", ".ipynb_checkpoints")]
         for f in files:
+            if f.endswith((".pyc", ".pyo")) or f == ".DS_Store":
+                continue
             p = os.path.join(root, f)
             rel = os.path.relpath(p, d)
             try:
