@@ -390,16 +390,19 @@ def apply_page_updates(updates, bare_doi, idx, apply_mode):
         action = upd.get("action") or ""
         new_badge = upd.get("new_badge") or ""
         new_text = upd.get("new_text") or ""
-        doi_refs = upd.get("doi_refs") or []
+        doi_refs = upd.get("doi_refs", [])
 
         page_path = PAGE_FILE_MAP.get(page_key)
         if not page_path or not os.path.exists(page_path):
             errors.append(f"page_updates: unknown page '{page_key}'")
             continue
 
+        # Free-text updates without an anchor target are not yet supported
+        # by this handler — skip cleanly instead of crashing on None.replace.
         if not target:
             errors.append(
-                f"page_updates: missing target for page '{page_key}' action='{action}'"
+                f"page_updates: skipped untargeted '{action}' on '{page_key}' "
+                f"(no target anchor)"
             )
             continue
 
