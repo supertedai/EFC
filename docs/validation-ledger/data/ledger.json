@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-04-25T04:35:36Z",
+  "generated_at": "2026-04-25T10:36:18Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 42,
+    "physics_test": 43,
     "consistency_check": 20,
     "phenomenological": 14,
     "framework_constraint": 27,
     "planned_pipeline": 18,
-    "total_public": 121,
+    "total_public": 122,
     "n_falsified": 10,
     "inference_count": 6,
     "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,7 +18,7 @@
     "tcs_compression": 1.5,
     "tcs_mismatch": 0.3333,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 66,
+    "pillar_2_native": 67,
     "pillar_3_grav": 13,
     "pillar_4_cross": 42,
     "grav_kt_count": 3,
@@ -213,6 +213,21 @@
         "status_detail": "failed"
       },
       {
+        "test_id": "conv_efc_bar_instability_criterion_efc_bic_v0_2_modification_with",
+        "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions",
+        "description": "EFC predicts disk bar instability through a dynamical contribution to the epicyclic frequency, not as a multiplicative rescaling of Toomre Q. The entropy-flow term enters κ² via an effective radial acceleration:\n\n  g_EFC ≡ α·∇S        [m/s²]\n  κ²_eff = κ² + ζ·g_EFC/R   [s⁻²]\n\nDimensional check: g_EFC/R has units (m/s²)/m = s⁻², matching κ². Term interprets physically as additional radial stiffness from entropy flow.\n\nStability parameter (standard Toomre form with modified epicyclic frequency):\n  Π_EFC = (σ_R · κ_eff) / (3.36·G·Σ)\n\nm=2 mode coupling (explicit): bar (m=2) mode growth occurs when κ²_eff fails to maintain orbital phase coherence under disk self-gravity, allowing closed orbits to lock into a coherent oval pattern. The criterion is therefore dynamical (instability condition in phase space), not morphological — filling a documented blind spot shared by ΛCDM, MOND, Verlinde, fR, DGP and all other Atlas frameworks at L3, none of which provide an explicit bar-onset criterion.\n\nSymbol definitions (operational):\n• α: EFC regime amplitude per galaxy, taken from existing regime classification (sparc_regime.json field 'alpha'). Dimensionless.\n• ∇S: radial entropy gradient as output by the EFC SPARC fitting pipeline (sparc_regime.json field 'entropy_gradient'). Numerical pilot values 0.035–0.060 in EFC pipeline units. The product α·∇S has dimensions of radial gravitational acceleration in the EFC formalism. Pipeline-to-SI normalization is fixed by EFC convention and held constant across the L3 sample to preserve ζ universality.\n• R: galactocentric radius. Π_EFC is evaluated as a radial profile Π_EFC(R), not a single scalar.\n• ζ: dimensionless O(1) coupling, UNIVERSAL across the L3 regime — calibrated once on the N=20 SPARC pilot, frozen globally, applied identically to every system. ζ is NOT refitted per galaxy.\n• Evaluation range: P1/P2 applied over R ∈ [R_d, 3·R_d], the characteristic bar-formation scale range for exponential disks. R_d = disk exponential scale length per galaxy.\n\nPilot signal (preliminary regime separation, N=3, NOT evidence): NGC6503 α·∇S=0.039, NGC3198 α·∇S=0.035 (FLOW, no bar); NGC2841 α·∇S=0.0088 (LATENT, barred_disturbed). ~4× separation in α·∇S between regimes. Consistent with criterion direction; requires N≥20 for actual test.\n\nCalibration protocol: ζ fitted on 20-galaxy SPARC pilot, then frozen. All subsequent predictions sealed.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Primary anchor: SPARC (175-galaxy sample, N=20 pilot for ζ calibration, N≥100 for sealed test). Cross-validation: Galaxy Zoo bar fractions, S4G bar morphology catalog. Required derived quantities per galaxy: σ_R(R), Σ(R), V_circ(R) → κ(R), entropy gradient ∇S(R) from existing EFC SPARC fits (sparc_regime.json field 'entropy_gradient'), α from regime classification, R_d from disk decomposition.",
+        "prediction": "P1 (binary, hard threshold): Bar onset iff min{Π_EFC(R)} < 1 over R ∈ [R_d, 3·R_d]. All SPARC barred/disturbed galaxies satisfy this; all FLOW non-barred satisfy min{Π_EFC(R)} ≥ 1 over the same range. No soft threshold — falsified if mismatch rate on validation sample exceeds observational misclassification bound.\n\nP2 (continuous, growth coupling): Bar growth rate Γ_bar ∝ (1 − Π_EFC) at the radius of minimum Π_EFC, VALID ONLY for Π_EFC < 1. For Π_EFC ≥ 1, Γ_bar = 0 (mode is stable, NOT anti-growing). Predicts bar fraction f_bar(M_disk, z) and bar amplitude as continuous functions, testable against N-body simulations and observed bar amplitudes.\n\nP3 (morphological): L_bar/R_d anticorrelates with the depth of (1 − Π_EFC) at minimum, valid for Π_EFC < 1.\n\nP4 (cross-survey, sealed): After ζ-lock on SPARC pilot, predicted f_bar(M, z) from Galaxy Zoo / S4G must match within 2σ without further parameter adjustment.\n\nFalsification criteria:\n(a) Any FLOW galaxy with min{Π_EFC(R)} ≥ 1 hosting a strong bar, OR\n(b) Any LATENT/barred galaxy with min{Π_EFC(R)} < 1 absent, OR\n(c) No single value of ζ reproduces both SPARC internal dynamics and external bar fractions (Galaxy Zoo, S4G) simultaneously. ζ-universality is structural, not adjustable — failure here rejects the criterion outright.",
+        "notes": "First explicit dynamical instability criterion for bar formation in the EFC framework atlas. Replaces v0.1 (vc_fa598665fbe8) with dimensional consistency (g_EFC/R), explicit m=2 mode coupling, ζ universality across L3, growth-domain restriction (Π<1), and operational definitions for ∇S, R, and evaluation range [R_d, 3·R_d]. Promoted to EFCValidation node in Living Validation Ledger. Cross-framework status: first such criterion across Atlas (ΛCDM, MOND, Verlinde, fR, DGP all silent on explicit bar onset).",
+        "quantitative_result": null,
+        "last_synced": "2026-04-25T06:18:54.289000000+00:00",
+        "status_detail": "FALSIFIED"
+      },
+      {
         "test_id": null,
         "name": "EFC Baseline α-signal",
         "description": "Joint BAO+H(z)+SNIa+fσ₈ MCMC with EFC α-parameter. Tests whether dark energy data prefers α<0 (entropic flow) over ΛCDM (α=0).",
@@ -273,7 +288,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-04-25_010134_aqual",
+        "test_id": "grav_integration_2026-04-25_072320_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -363,7 +378,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-04-25_010134_aqual",
+        "test_id": "grav_kt1_2026-04-25_072320_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -378,7 +393,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-04-25_010134_aqual",
+        "test_id": "grav_kt3_2026-04-25_072320_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -393,7 +408,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-04-25_010134_aqual",
+        "test_id": "grav_kt2_2026-04-25_072320_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -993,7 +1008,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v2.0 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.68722 p_binom=0.015625 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-04-25T01:50:09.645000000+00:00",
+        "last_synced": "2026-04-25T08:10:40.187000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1996,7 +2011,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-25T04:20:23.955939+00:00"
+      "timestamp": "2026-04-25T10:20:33.469223+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2010,7 +2025,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-25T04:20:23.983926+00:00"
+      "timestamp": "2026-04-25T10:20:33.500398+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2024,7 +2039,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-25T04:20:24.004451+00:00"
+      "timestamp": "2026-04-25T10:20:33.513850+00:00"
     }
   },
   "parameters": {
@@ -2671,8 +2686,18 @@
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-04-25T01:50:09.645000000+00:00",
+      "last_updated": "2026-04-25T08:10:40.187000000+00:00",
       "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions",
+      "status": "FALSIFIED",
+      "result": "Planned",
+      "last_updated": "2026-04-25T06:18:54.289000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
@@ -2700,7 +2725,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-04-25_010134_aqual",
+      "run_id": "2026-04-25_072320_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
