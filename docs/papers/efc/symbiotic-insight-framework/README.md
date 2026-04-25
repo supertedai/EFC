@@ -4,6 +4,7 @@
 
 - **Version:** 1.0
 - **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+**DOI:** [10.6084/m9.figshare.30656351](https://doi.org/10.6084/m9.figshare.30656351)
 - **Date:** 2025-11-01
 - **License:** CC-BY-4.0
 
