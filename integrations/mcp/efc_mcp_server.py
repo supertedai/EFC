@@ -387,6 +387,120 @@ class EFCMCPServer:
 
         return {"dry_run": dry_run, "changes": changes}
 
+    # ==================== Framework Atlas Tools ====================
+
+    def _load_atlas(self) -> dict:
+        atlas_path = self.efc_root / "schema" / "framework_atlas.jsonld"
+        if not atlas_path.exists():
+            return {}
+        with open(atlas_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def atlas_list_frameworks(self, category: Optional[str] = None,
+                              role: Optional[str] = None,
+                              regime: Optional[str] = None) -> dict:
+        """List frameworks in the atlas, optionally filtered."""
+        atlas = self._load_atlas()
+        frameworks = atlas.get("frameworks", [])
+        if category:
+            frameworks = [f for f in frameworks if f.get("category") == category]
+        if role:
+            frameworks = [f for f in frameworks if f.get("role") == role]
+        if regime:
+            frameworks = [f for f in frameworks if regime in f.get("regimes", [])]
+        return {
+            "count": len(frameworks),
+            "source": atlas.get("source"),
+            "generated_at": atlas.get("generated_at"),
+            "frameworks": frameworks,
+        }
+
+    def atlas_query(self, framework: Optional[str] = None,
+                    phenomenon: Optional[str] = None,
+                    regime: Optional[str] = None) -> dict:
+        """Query atlas predictions and relations.
+
+        Any combination of (framework, phenomenon, regime) narrows the result.
+        """
+        atlas = self._load_atlas()
+        preds = atlas.get("predictions", [])
+        rels = atlas.get("relations", [])
+
+        if framework:
+            preds = [p for p in preds if p.get("framework") == framework]
+            rels = [r for r in rels
+                    if r.get("subject") == framework or r.get("object") == framework]
+        if phenomenon:
+            preds = [p for p in preds if p.get("phenomenon") == phenomenon]
+            rels = [r for r in rels if r.get("phenomenon") == phenomenon]
+        if regime:
+            preds = [p for p in preds if p.get("regime") == regime]
+            rels = [r for r in rels if r.get("regime") == regime]
+
+        return {
+            "source": atlas.get("source"),
+            "generated_at": atlas.get("generated_at"),
+            "predictions": preds,
+            "relations": rels,
+        }
+
+    def atlas_diff(self, framework_a: str, framework_b: str,
+                   regime: Optional[str] = None) -> dict:
+        """Return predictions that diverge between two frameworks on shared phenomena."""
+        atlas = self._load_atlas()
+        preds = atlas.get("predictions", [])
+
+        a_preds = {(p["phenomenon"], p["regime"]): p for p in preds
+                   if p.get("framework") == framework_a
+                   and (regime is None or p.get("regime") == regime)}
+        b_preds = {(p["phenomenon"], p["regime"]): p for p in preds
+                   if p.get("framework") == framework_b
+                   and (regime is None or p.get("regime") == regime)}
+
+        shared = set(a_preds.keys()) & set(b_preds.keys())
+        only_a = set(a_preds.keys()) - set(b_preds.keys())
+        only_b = set(b_preds.keys()) - set(a_preds.keys())
+
+        divergences = []
+        for key in sorted(shared):
+            a, b = a_preds[key], b_preds[key]
+            if a.get("value") != b.get("value"):
+                divergences.append({
+                    "phenomenon": key[0],
+                    "regime": key[1],
+                    framework_a: {"value": a.get("value"), "unit": a.get("unit")},
+                    framework_b: {"value": b.get("value"), "unit": b.get("unit")},
+                })
+
+        return {
+            "framework_a": framework_a,
+            "framework_b": framework_b,
+            "shared_phenomena": len(shared),
+            "divergences": divergences,
+            "only_in_a": sorted(f"{k[0]}@{k[1]}" for k in only_a),
+            "only_in_b": sorted(f"{k[0]}@{k[1]}" for k in only_b),
+        }
+
+    def atlas_summary(self) -> dict:
+        """Summary stats of the committed atlas."""
+        atlas = self._load_atlas()
+        frameworks = atlas.get("frameworks", [])
+        by_cat: dict[str, int] = {}
+        by_role: dict[str, int] = {}
+        for fw in frameworks:
+            by_cat[fw.get("category", "?")] = by_cat.get(fw.get("category", "?"), 0) + 1
+            by_role[fw.get("role", "?")] = by_role.get(fw.get("role", "?"), 0) + 1
+        return {
+            "source": atlas.get("source"),
+            "generated_at": atlas.get("generated_at"),
+            "frameworks_total": len(frameworks),
+            "relations_total": len(atlas.get("relations", [])),
+            "predictions_total": len(atlas.get("predictions", [])),
+            "by_category": by_cat,
+            "by_role": by_role,
+            "coverage_tiers": atlas.get("coverage_tiers", {}),
+        }
+
     def full_sync(self, dry_run: bool = True, surfaces: Optional[list] = None) -> dict:
         """Complete synchronization across all surfaces."""
         if surfaces is None:

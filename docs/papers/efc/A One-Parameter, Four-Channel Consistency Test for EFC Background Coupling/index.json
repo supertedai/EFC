@@ -314,7 +314,7 @@
   ],
   "architectural_constraint": "EFC behaves as a dynamical dark-energy-like background effect, not as classical modified gravity in the Poisson term",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first multi-channel empirical consistency test for EFC's background-coupling architecture, demonstrating that a single parameter (β ≈ 0.08) passes four independent probes (BAO, RSD, CMB lensing, SN Ia) while simultaneously excluding the Poisson-channel alternative. It converts the theoretical two-channel ambiguity into a resolved empirical constraint, anchoring EFC as a background-expansion modification rather than a Poisson-term modified gravity. The paper deposits four sealed predictions (Lyα null, CMB GR-recovery, BAO+RSD mild preference, SN Ia residual bound) that create falsifiable hooks for DESI DR2, Euclid, and future Lyα datasets.",
     "graph_insights": [
       "This paper is currently an isolated node in the graph (no 1-2 hop connections found), which is anomalous for a paper touching BAO, RSD, CMB lensing, and SN Ia — it should connect to existing BOSS DR12, Pantheon+, and ACT/SPT nodes. The graph likely needs manual edge creation to link this paper to the relevant dataset nodes and to the sealed prediction node for fσ8(z=0.7) = 0.430.",
@@ -442,6 +442,8 @@
       "The four-channel architecture implicitly requires that any future EFCLASS Boltzmann solver must propagate the background modification through the full transfer function rather than treating it as a post-hoc perturbative correction, because the RSD and CMB lensing channels are sensitive to different projection integrals of the same underlying H(z) modification."
     ],
     "bottom_line_change": "The biggest gap remains the DESI DR2 full-shape RSD rapid-response pipeline, but it is now better specified: the pipeline must test β ≈ 0.08 background coupling against DESI DR2 fσ8(z = 0.4–0.7) data, with the sealed prediction fσ8(z=0.7) = 0.430 as the primary target. The four-channel paper provides the calibration anchor (BOSS DR12 Δχ² = −3.89) against which the DESI DR2 result will be compared.",
-    "kill_criteria_addressed": []
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-04-25T09:46:06Z",
+    "applied_by_doi": "31304980"
   }
 }

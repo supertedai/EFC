@@ -274,7 +274,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper establishes the first rigorous empirical anchor for the EFC screening model at galactic scales (SPARC RAR) and extends it cross-scale to KiDS-1000 weak lensing, Bullet Cluster geometry, and the Hubble tension. It locks in the screening exponent k = 0.415 ± 0.029, the phase-gain C = 4.4 ± 0.6 linking galactic and cosmological aG, and demonstrates a substantial lensing likelihood improvement over ΛCDM (Δ[−2 ln L] = −50.9). It does not close any Stage-IV kill criterion outright but provides the baseline quantitative benchmarks against which KC1–KC5 will be adjudicated as Stage-IV data arrive, and it deposits five new paper-level kill criteria with sealed predictions.",
     "graph_insights": [
       "No existing graph nodes were found within 2 hops, meaning this paper creates the first empirical-test anchor node for the screening model in the knowledge graph. It should become a high-degree hub connecting to SPARC (data node), KiDS-1000 (data node), Bullet Cluster (observation node), phase-gain C (parameter node), and all five master KC nodes.",
@@ -444,6 +444,8 @@
       "KC3",
       "KC4",
       "KC5"
-    ]
+    ],
+    "applied_at": "2026-04-25T09:46:06Z",
+    "applied_by_doi": "31940469"
   }
 }

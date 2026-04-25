@@ -440,7 +440,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper is the first comprehensive multi-probe kill-test of EFC against ΛCDM, spanning six probes from DDO 154 / SPARC rotation curves through Bullet Cluster, CMB primary, Planck plik_lite μ–Σ, BAO, and Pantheon+. It demonstrates that a single two-parameter pair (K0, m²) achieves Δχ² ≤ 0 versus GR/ΛCDM across four independent cobaya minimize runs, establishing that EFC cannot be rejected by current data. Crucially, it is a minimize-level (point-estimate) result, not a full MCMC/Bayesian-evidence result — so it narrows but does not close the decisive KC1 kill criterion.",
     "graph_insights": [
       "No existing graph connections found for this paper — it should be linked as a hub node connecting to all six probe categories (CMB/Planck, BAO, SNe/Pantheon+, SPARC/rotation-curves, Bullet-Cluster, μ–Σ/MGCAMB) and to both the Relativistic Action paper (figshare.31876324) and the Localization paper (figshare.31368433) as parent nodes.",
@@ -623,6 +623,8 @@
       "KC3",
       "KC4",
       "KC5"
-    ]
+    ],
+    "applied_at": "2026-04-25T09:46:06Z",
+    "applied_by_doi": "31964847"
   }
 }
