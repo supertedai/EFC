@@ -50,6 +50,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -73,17 +74,17 @@ Known gap IDs in HTML: 7
 Processed 154 paper(s)
   error: 5
     - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
+        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
+        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
+        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
+        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
+        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'phenomenological', 'framework_constraint', 'planned_pipeline', 'consistency_check'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
   skip: 146
   warn: 3
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
@@ -128,7 +129,9 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
