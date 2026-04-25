@@ -183,7 +183,7 @@
     }
   ],
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper is the first unified multi-probe empirical test of EFC's derived μ(a) against BAO, SN Ia, and RSD simultaneously. It establishes that the one-parameter growth-only EFC model (β=0.16, γ=0) is statistically compatible with ΛCDM (Δχ²=+1.7), demonstrating no geometry–growth tension — a necessary regime-consistency check. It does not close any existing KC at the Stage-IV level but provides the T3-tier baseline against which future DESI/Euclid/LSST data will be compared, and it formally defines five paper-level kill criteria that map onto the project-wide KC structure.",
     "graph_insights": [
       "This paper is currently an orphan node in the graph (no 1-2 hop connections found), which means it must be linked to the EFC master node, the μ(a) concept cluster, and the DESI DR2 / Pantheon+ / BOSS data nodes. It also needs edges to the sealed prediction fσ8(z=0.7)=0.430 and to the three open theory gaps (EFCLASS solver produces the S(a) that this paper parameterizes; ADM stability underpins the S(a→0)→0 boundary condition; neutrino mass degeneracy could shift the β calibration).",
@@ -317,6 +317,8 @@
     "kill_criteria_addressed": [
       "KC1",
       "KC3"
-    ]
+    ],
+    "applied_at": "2026-04-25T09:46:06Z",
+    "applied_by_doi": "31215613"
   }
 }

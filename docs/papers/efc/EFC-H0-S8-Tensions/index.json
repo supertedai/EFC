@@ -154,7 +154,7 @@
   "created_at": "2026-01-09T08:19:09Z",
   "updated_at": "2026-01-09T08:19:10Z",
   "ledger_impact": {
-    "status": "ready",
+    "status": "applied",
     "holistic_analysis": "This paper is the first dedicated EFC empirical analysis resolving both the H0 and S8 tensions simultaneously via entropy-dependent local-global inference separation, achieving Δχ²=40.29 for H0 and reducing S8 tension from 3.3σ to 0.3σ. It does not alter H(z), r_d, or early-universe physics, preserving full BAO/SNe/CMB consistency. It establishes five paper-level kill criteria and four sealed predictions that map directly onto the Stage-IV KC framework, strengthening the empirical backbone of EFC without closing any Stage-IV KC outright since those require independent external data confirmation.",
     "graph_insights": [
       "This paper is currently an orphan node in the knowledge graph (no 1-2 hop connections found), which is anomalous given it touches H0, S8, BAO, CMB, weak lensing, and SPARC — all of which should have extensive existing graph presence. This suggests the graph ingestion for prior EFC papers may be incomplete, or the concept-matching thresholds are too strict. Recommend re-indexing existing papers against this paper's concept set.",
@@ -315,6 +315,8 @@
       "KC3",
       "KC4",
       "KC5"
-    ]
+    ],
+    "applied_at": "2026-04-25T09:46:06Z",
+    "applied_by_doi": "31026151"
   }
 }
