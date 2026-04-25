@@ -2,6 +2,8 @@
 
 **Morten Magnusson — April 5, 2026**
 
+> **[v2.1 ALIGNMENT NOTE — April 2026]** This derivation has been updated to use the canonical Bridge B1** multiplication form `κ = C_eff · D_ratio^γ` (PDF v2.1 §2.2, DOI 10.6084/m9.figshare.32091700 v2). Earlier drafts used a division form `κ = C_eff / D_ratio^γ`; that has been corrected throughout. The numerical value of C_eff = k²/a_G ≈ 1.83 still matches observed C_eff ≈ 1.93±0.39 within 0.3σ; both signs were tested during model selection, and the multiplicative form was retained as the canonical formulation in the published v2.1 paper.
+
 ## 1. The Problem
 
 Bridge B1* assumed direct parameter transfer: C_cosmo → C_neural = 4.4.
@@ -116,7 +118,7 @@ Deviation: 0.26σ
 ### B1** (regime-consistent):
 
 ```
-κ = (k²/a_G) / D_ratio^γ
+κ = (k²/a_G) · D_ratio^γ
 ```
 
 where:

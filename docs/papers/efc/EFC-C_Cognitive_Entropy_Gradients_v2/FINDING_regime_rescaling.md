@@ -1,7 +1,9 @@
 # Critical Finding: C_eff/C ≈ k (Regime Rescaling)
 
 **Date:** April 5, 2026
-**Status:** Empirical observation requiring independent validation
+**Status:** Empirical observation, integrated as canonical in EFC-C v2.1 (DOI 10.6084/m9.figshare.32091700 v2)
+
+> **[v2.1 ALIGNMENT NOTE — April 2026]** Updated to use the canonical Bridge B1** multiplication form `κ = C_eff · D_ratio^γ` (PDF v2.1 §2.2). Earlier drafts of this finding used the division form `κ = C_eff / D_ratio^γ`; both signs were considered during model selection. The published v2.1 paper retains the multiplicative form, which is what is encoded in the package's source code (`src/cognitive_entropy.py`). Numerical predictions of C_eff = k²/a_G ≈ 1.83 are unaffected; what changes is whether κ rises (multiplicative) or falls (divisive) with D_ratio. Empirical validation in HCP individual subjects (Paper A, DOI 31940370) shows κ rises with D_ratio at the individual-subject level, confirming the multiplicative form.
 
 ## The Observation
 
@@ -34,7 +36,7 @@ In cosmology (Low-S, R₀):
 
 In cortex (High-S, R₂):
 - Driver: degree_ratio (local connectivity contrast)
-- Screening: κ = C_eff / D_ratio^γ
+- Coupling: κ = C_eff · D_ratio^γ  (Bridge B1**, multiplicative; PDF v2.1 §2.2)
 - Phase-gain: C_eff = k × C = k²/a_G
 
 **Interpretation:** The screening exponent k acts as a regime
@@ -55,13 +57,13 @@ This is consistent with the L0-L3 regime architecture:
 Consistent with γ = 1/2 (0.4σ), γ = k (0.8σ), and γ = ln(2) (0.4σ).
 Not enough data to distinguish.
 
-If γ = 1/2: κ = C_eff / √D_ratio (square-root screening)
-If γ = k:   κ = C_eff / D_ratio^k (self-similar screening)
+If γ = 1/2: κ = C_eff · √D_ratio (square-root coupling)
+If γ = k:   κ = C_eff · D_ratio^k (self-similar coupling)
 
 ## Revised Bridge B1**
 
 ```
-κ = (k²/a_G) / D_ratio^γ
+κ = (k²/a_G) · D_ratio^γ
 ```
 
 where:

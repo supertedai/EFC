@@ -225,9 +225,12 @@ level. Individual κ values (mean 2.20) are higher than group-average
 averaging attenuates the gradient.
 
 **Finding 4:** The hub-to-periphery degree ratio explains 94% of
-inter-subject variance in κ (r² = 0.94). This is near-deterministic:
-subjects with larger hub-periphery degree contrast show lower κ.
-The relationship is κ ∝ 1/D_ratio across subjects.
+inter-subject variance in κ (r² = 0.94). This is near-deterministic.
+The reported correlation r(κ, 1/D_ratio) = −0.97 is equivalent to
+r(κ, D_ratio) ≈ +0.97: at the individual-subject level, subjects with
+larger hub-periphery degree contrast show **higher** κ, consistent
+with the Bridge B1** multiplicative form κ = C_eff · D_ratio^γ
+(EFC-C v2.1, DOI 10.6084/m9.figshare.32091700 v2).
 
 **Finding 5:** The Fiedler eigenvalue λ₂ has no predictive power for
 κ at the individual level (r = 0.16, p = 0.70). This dissociation
