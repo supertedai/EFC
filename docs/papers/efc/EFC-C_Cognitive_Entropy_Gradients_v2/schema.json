@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://energyflow-cosmology.com/schemas/efc-c-cognitive-entropy-v2",
-  "title": "EFC-C v2 Cognitive Entropy Gradients Schema",
-  "description": "Validation schema for centrifugal entropy score and connectome-constrained predictions",
+  "title": "EFC-C v2.1 Cognitive Entropy Gradients Schema",
+  "description": "Validation schema for centrifugal entropy score and degree-heterogeneity bridge predictions",
   "type": "object",
   "properties": {
     "kappa": {
@@ -17,29 +17,31 @@
     "connectome": {
       "type": "object",
       "properties": {
-        "lambda_2": {"type": "number", "description": "Fiedler eigenvalue of normalized graph Laplacian", "minimum": 0},
+        "D_ratio": {"type": "number", "description": "Hub-to-periphery degree ratio ⟨k_hub⟩/⟨k_periph⟩", "minimum": 0},
         "n_regions": {"type": "integer", "description": "Number of parcellation regions", "minimum": 1},
         "hub_threshold_percentile": {"type": "number", "minimum": 0, "maximum": 100},
         "periph_threshold_percentile": {"type": "number", "minimum": 0, "maximum": 100}
       },
-      "required": ["lambda_2"]
+      "required": ["D_ratio"]
     },
     "bridge_parameters": {
       "type": "object",
       "properties": {
-        "C": {"type": "number", "description": "Cross-domain constant k/a_G from SPARC"},
+        "C_eff": {"type": "number", "description": "Regime-transformed cross-domain constant", "minimum": 0},
+        "gamma": {"type": "number", "description": "Power-law exponent (empirical fit parameter)", "minimum": 0.5, "maximum": 0.6},
         "tau_c": {"type": "number", "description": "Cortical entropy redistribution timescale [s]", "minimum": 0}
       },
-      "required": ["C", "tau_c"]
+      "required": ["C_eff", "gamma"]
     },
     "prediction": {
       "type": "object",
       "properties": {
-        "id": {"type": "string", "enum": ["Q1", "Q2a", "Q2b", "Q2c", "Q3"]},
+        "id": {"type": "string", "enum": ["A1", "A2", "A3", "B1", "B2"]},
+        "layer": {"type": "string", "enum": ["A", "B"]},
         "kappa_predicted": {"type": "number"},
         "falsified": {"type": "boolean"}
       },
-      "required": ["id"]
+      "required": ["id", "layer"]
     },
     "alpha_AP": {
       "type": "object",
