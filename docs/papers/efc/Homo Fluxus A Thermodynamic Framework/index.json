@@ -1,24 +1,78 @@
 {
   "$schema": "./schema.json",
   "id": "homo fluxus a thermodynamic framework",
-  "title": "Homo Fluxus A Thermodynamic Framework",
-  "description": "Auto-generated package for Homo Fluxus A Thermodynamic Framework.",
+  "title": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and Aligned Intelligence",
+  "description": "Proposes a thermodynamic substrate for cognition in which local entropy minimization through coherent information flow underlies consciousness, affect, social ethics, and AI alignment. Introduces Homo Fluxus (agent-as-node-in-flow) and systemic empathy (field-coupled coherence sensitivity), and predicts cross-modal covariation of coherence proxies as observable signatures of a single coherence potential.",
   "version": "1.0",
   "date": "2026-04-25",
+  "doi": "10.6084/m9.figshare.32099389",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Homo",
-    "Fluxus",
-    "Thermodynamic",
-    "Framework"
+    "coherence potential",
+    "Homo Fluxus",
+    "systemic empathy",
+    "entropy minimization",
+    "integrated information",
+    "cross-frequency phase coherence",
+    "interoception",
+    "field coupling",
+    "AI alignment",
+    "Free Energy Principle",
+    "predictive processing"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "entropy_reduction_condition": {
+      "latex": "\\frac{\\partial S_{\\text{local}}}{\\partial t} < 0 \\;\\Rightarrow\\; \\mathbf{E_f} \\cdot \\nabla \\Phi_{\\mathrm{coh}} > 0",
+      "description": "Operational condition from EFC-C: local entropy reduction occurs when energy flow aligns with the gradient of the coherence potential, indicating coherence-increasing dynamics."
+    },
+    "coherence_proxy_mapping": {
+      "latex": "\\Phi_{\\mathrm{coh}} \\sim f\\!\\left(\\dot{\\Phi}_I,\\; C_{\\mathrm{phase}},\\; I_{\\mathrm{body}}\\right)",
+      "description": "At the cognitive scale, the coherence potential projects onto three observable proxies\u2014integrated information rate, cross-frequency phase coherence, and interoceptive\u2013allostatic integration\u2014that are constrained to co-vary as a common latent factor."
+    }
+  },
+  "key_results": {
+    "main_finding": "A single thermodynamic coherence variable governs consciousness and systemic empathy, predicting a recoverable cross-modal latent factor linking integrated information rate, large-scale neural synchrony, and interoceptive\u2013allostatic integration.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Across coherence-increasing transitions, a low-dimensional latent factor jointly loading on integrated information rate (\u03a6\u0307I), cross-frequency phase coherence (Cphase), and interoceptive\u2013allostatic integration (Ibody) will emerge and exhibit consistent temporal alignment across modalities and tasks.",
+      "falsifiable_by": "Simultaneous EEG/MEG + autonomic/fMRI studies failing to recover a stable, cross-modal latent factor with monotonic co-variation of the three proxies across pre-registered coherence manipulations."
+    },
+    {
+      "id": "P2",
+      "statement": "Agents with higher coherence potential (as indexed by the proxy latent factor) will display stronger systemic empathy, operationalized as increased weighting of extra-boundary entropy-state changes in action selection.",
+      "falsifiable_by": "Controlled behavioral experiments showing no positive association (or a robust negative association) between the proxy latent factor and prosocial field-sensitive choices after controlling for confounds."
+    },
+    {
+      "id": "P3",
+      "statement": "In coupled-field environments, optimizing purely local objectives will systematically produce externalized entropy increases, while field-aware objectives aligned to \u2207\u03a6coh will reduce such externalization at equal or lower energetic cost.",
+      "falsifiable_by": "Benchmark RL evaluations in coupled, open-world simulations showing no reduction in externalized entropy or higher energetic cost for field-aware policies relative to equally capable local optimizers."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Pre-registered, multi-lab studies fail to recover a stable low-dimensional latent factor jointly loading on \u03a6\u0307I, Cphase, and Ibody with consistent temporal alignment across modalities during coherence transitions.",
+    "KC2: Robust evidence that systems can sustain local entropy reduction (\u2202Slocal/\u2202t < 0) while energy flow anti-aligns with the coherence gradient (Ef \u00b7 \u2207\u03a6coh \u2264 0) under accurate measurement, invalidating the core operational condition.",
+    "KC3: After controlling for confounds, no positive relationship (or a consistent negative relationship) is found between the coherence proxy latent factor and field-sensitive prosocial behavior across diverse tasks and populations.",
+    "KC4: In coupled-field AI benchmarks, field-aware objectives aligned to coherence gradients do not reduce externalized entropy relative to local optimizers at comparable capability, across multiple environment classes.",
+    "KC5: Companion EFC substrate claims (EFC-S/EFC-D) are empirically falsified in ways that preclude a physically instantiated coherence potential, removing the required cross-scale substrate for EFC-C."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
   "files": {
     "pdf": "Homo Fluxus A Thermodynamic Framework.pdf",
     "readme": "README.md"
-  }
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32099389"
 }

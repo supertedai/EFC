@@ -1,0 +1,65 @@
+{
+  "paper": {
+    "title": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and Aligned Intelligence",
+    "author": {
+      "name": "Morten Magnusson",
+      "orcid": "0009-0002-4860-5095"
+    },
+    "doi": "10.6084/m9.figshare.32099389",
+    "doi_numeric_id": 32099389,
+    "date": "2026-04-25",
+    "year": 2026
+  },
+  "framework": {
+    "modules": [
+      "EFC-S",
+      "EFC-D",
+      "EFC-C"
+    ],
+    "domains_fragmentation": {
+      "count": 5,
+      "names": [
+        "cosmological dark sector",
+        "hard problem of consciousness",
+        "foundational status of affect in cognition",
+        "structural drivers of cooperative collapse",
+        "alignment of advanced artificial systems"
+      ]
+    },
+    "prediction_levels": {
+      "count": 6,
+      "names": [
+        "cosmological",
+        "neural",
+        "affective",
+        "social",
+        "ethical",
+        "computational"
+      ]
+    }
+  },
+  "equations": [
+    {
+      "number": 1,
+      "expression": "dS_local/dt < 0 => E_f \u00b7 \u2207\u03a6_coh > 0",
+      "lhs": {
+        "term": "dS_local/dt",
+        "meaning": "local entropy production rate"
+      },
+      "rhs": {
+        "term": "E_f \u00b7 \u2207\u03a6_coh",
+        "meaning": "dot product of energy-flow vector with gradient of coherence potential"
+      },
+      "inequality_thresholds": {
+        "strict_less_than_zero": true,
+        "strict_greater_than_zero": true,
+        "tolerance_note": "No numeric tolerances specified in the paper excerpt"
+      }
+    }
+  ],
+  "parameters": {
+    "calibration_constants": null,
+    "best_fit_values": null,
+    "measurement_thresholds": null
+  }
+}
