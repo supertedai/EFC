@@ -50,7 +50,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 2 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -62,15 +61,6 @@ EFC DOI sync — 154 paper dirs scanned
   papers with registered DOI : 153
   papers without DOI         : 1
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  symbiotic-insight-framework -> index.json, metadata.json, CITATION.cff, *.jsonld, README.md
-
-SYNCED efc_index.json (4 entries):
-  Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes
-  Minimal_EFC_Effective_Field_Theory_Ansatz_Scalar_Tensor_and_Vector_Tensor_Formulations_with_Gravitational_Slip_from_Entropy_Gradients
-  Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset
-  symbiotic-insight-framework
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 154 paper dirs · 0 errors · 1 warnings
@@ -125,9 +115,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 2 paper packages enriched; Ledger data: evidence-register.json.
-[efc-auto-changelog] updated EFC_Changelog.html
-[efc-auto-changelog] updated changelog.json
+[efc-auto-changelog] only script/workflow changes — skipping changelog
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
