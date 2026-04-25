@@ -6,12 +6,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
-
-  EFC-C_Cognitive_Entropy_Gradients_v2  (missing: key_results, kill_criteria)
-    Enriched metadata (key_results, kill_criteria)
-
-  Enriched: 1/1
+>>> Step 1: All papers at 10/10 <<<
 
 >>> Step 1.5: Holistic Impact Analysis for 3 paper(s) <<<
 
@@ -67,12 +62,6 @@ EFC DOI sync — 154 paper dirs scanned
   papers with registered DOI : 152
   papers without DOI         : 2
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  EFC-C_Cognitive_Entropy_Gradients_v2 -> *.jsonld
-
-SYNCED efc_index.json (1 entries):
-  EFC-C_Cognitive_Entropy_Gradients_v2
 ========================================================================
 [efc-gen] 154 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 154 paper dirs · 0 errors · 1 warnings
@@ -81,387 +70,22 @@ SYNCED efc_index.json (1 entries):
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 7
-[COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31230703)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC2" on gap (DOI m9.figshare.31230703)
-[COUNCIL] Reason: 1) The provided DOI summary (title, description, kill criteria, sealed predictions) does not report a specific conditional hold-out result of Δχ²_h|t = −18.65. While the paper mentions using a covaria
-[COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31230703)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31301953)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC2" on roadmap (DOI m9.figshare.31990212)
-[COUNCIL] Reason: 1) The DOI content lists Kill Criteria declared: KC2 but Sealed Predictions: none. Adding a SEALED badge implies a sealed prediction/status, which is not supported by the paper. Therefore the update i
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31333600)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC3" on gap (DOI m9.figshare.31332730)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31332730)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.32013156)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31368433)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: theory-efclass-boltzmann-solver on gap (DOI m9.figshare.31215259)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.31954125)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31231522)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31231522)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC1" on roadmap (DOI m9.figshare.31231522)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.31990194)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.32023788)
-[COUNCIL] Reason: - Check 1 failed: The DOI preregistration defines kill criteria labeled KC1 and KC2 and sealed predictions P1–P3. There is no evidence that these map to the roadmap entry with data-kc-id="KC5". Withou
-[COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.32023788)
-[COUNCIL] Reason: 1) Supported by DOI: The content (EG_obs/EG_GR = 1.086 ± 0.012 at kc ≈ 0.05 h Mpc−1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger 1.00 ± 0.01 >3σ; SO LAT κ × Euclid DR2) matches the preregister
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31990053)
-[COUNCIL] Reason: 1) The DOI describes pre-registered predictions computed with hi_class plus a custom efc_logistic Horndeski module; it does not claim development, delivery, or validation of an “EFCLASS Boltzmann solv
-[COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.32037990)
-[COUNCIL] Reason: 1) The DOI content lists only KC1–KC3; there is no KC4 in the paper. Therefore the update is not supported by the DOI. 
-2) The action type update_badge is fine in general, but the specific badge “SEAL
-[COUNCIL] REJECTED: data-kc-id="KC4" on roadmap (DOI m9.figshare.32037990)
-[COUNCIL] Reason: 1) Supported by DOI: The content does align conceptually with the paper. The DOI indeed deposits a sealed weak-lensing prediction with a crossover at z ≈ 0.44, and tomographic weak-lensing is explicit
-[COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31304995)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31304995)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31943361)
-[COUNCIL] Reason: - Check 1: Pass. The DOI content explicitly lists KC1 with the same thresholds (δ ≤ −0.8, >5σ, 50–200 h⁻¹ Mpc) and includes sealed prediction P1 about an ISW sign-flip, so the substance is supported.
-
-[COUNCIL] REJECTED: data-kc-id="KC2" on gap (DOI m9.figshare.31943361)
-[COUNCIL] Reason: 
-[COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31943361)
-[COUNCIL] Reason: 
 
 Processed 154 paper(s)
-  applied: 31
-    - Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation: 
-        · ADD test [physics_test] desi_dr2_bao_efc_tanh_fit result=PASS
-        · ADD test [consistency_check] desi_dr2_bao_conditional_holdout result=PASS
-        · ADD test [consistency_check] pantheonplus_efc_shape_test result=PASS
-        · ADD test [consistency_check] cosmic_chronometers_efc_consistency result=PASS
-        · ADD test [physics_test] bao_cc_joint_aic_bic result=PASS
-        · ADD test [consistency_check] lambdacdm_null_reproduction result=PASS
-        · update_text data-kc-id="KC1" on gap
-        · update_text data-kc-id="KC2" on gap
-        · update_text data-kc-id="KC4" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC2" on gap: 1) The provided DOI summary (title, description, kill criteria, sealed predictions) does not report a specific conditional hold-out result of Δχ²_h|t = −18.65. While the paper mentions using a covaria
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
-        ! page_updates: missing target for page 'roadmap' action='update_text'
-        ! page_updates: missing target for page 'elevator' action='update_text'
-        ! page_updates: missing target for page 'whitepaper' action='update_text'
-    - ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers: 
-        · ADD test [phenomenological] isw_aisw_suppression_desi_dr1 result=PASS
-        · ADD test [phenomenological] isw_cancellation_index_monotonicity result=Planned
-        · ADD test [physics_test] isw_kernel_decomposition_kmu_prime result=PASS
-        · ADD test [planned_pipeline] isw_tomographic_desi_spectro_decisive result=Planned
-        · ADD test [planned_pipeline] isw_beta_joint_fit_rejection result=Planned
-        · ADD test [consistency_check] isw_fsigma8_background_stability result=PASS
-        · update_text data-kc-id="KC5" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
-        ! page_updates: target isw-cross-correlation not found in roadmap
-        ! page_updates: target observable-count not found in elevator
-        ! page_updates: target isw-section not found in whitepaper
-    - ISW_Void_SignFlip_Pipeline: 
-        · ADD test [planned_pipeline] void_isw_sign_flip_desivast_pr4 result=Planned
-        · ADD test [planned_pipeline] void_isw_scale_trend_supervoids result=Planned
-        · ADD test [planned_pipeline] void_isw_redshift_evolution result=Planned
-        · update_badge data-kc-id="KC2" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC2" on roadmap: 1) The DOI content lists Kill Criteria declared: KC2 but Sealed Predictions: none. Adding a SEALED badge implies a sealed prediction/status, which is not supported by the paper. Therefore the update i
-        ! page_updates: target data-kc-id="KC2" not found in whitepaper
-    - Kill-Test v6 Universality_SPARC175: 
-        · ADD test [phenomenological] sparc175_efc_vs_nfw_aic_universality result=PASS
-        · ADD test [phenomenological] sparc175_flow_latent_regime_separation result=PASS
-        · ADD test [phenomenological] sparc175_mass_independence result=PASS
-        ! page_updates: target probe-2-sparc-universality not found in roadmap
-        ! page_updates: target L3-galactic-regime not found in elevator
-        ! page_updates: target sparc-nfw-baryons-upgrade not found in gap
-    - Multi_epoch_Growth_Rate_Test_of_EFC: 
-        · ADD test [physics_test] fsigma8_multi_epoch_boss_eboss_desi result=PASS
-        · ADD test [consistency_check] omega_m_B_degeneracy_identification result=PASS
-        · ADD test [phenomenological] lcdm_efc_model_comparison_fsigma8 result=MARGINAL
-        ! page_updates: target data-gap-id="bottom-line" not found in gap
-        ! page_updates: target data-action-id="action-6" not found in roadmap
-        ! page_updates: target data-section="empirical-status" not found in elevator
-        ! page_updates: target data-section="perturbation-sector" not found in whitepaper
-    - Perturbation-Level_σ₈_Suppression_via_μ_Sructural_Limits_of_Scale-Free_Modifications: 
-        · ADD test [consistency_check] mu_scale_free_factor2_invariant result=PASS
-        · ADD test [phenomenological] mu_scale_free_s8_ceiling_planck1sigma result=PASS
-        · ADD test [physics_test] mu_bsweep_n6_boss_dr12_rsd result=PASS
-        · ADD test [physics_test] mu_nsweep_boss_dr12_rsd result=PASS
-        · ADD test [framework_constraint] mu_scale_free_background_isolation result=PASS
-        · ADD test [planned_pipeline] mu_reference_point_wp1a_definition result=Planned
-        · update_text data-gap-id="theory-efclass-boltzmann-solver" on gap
-        ! page_updates: council REJECTED update_text data-gap-id="theory-efclass-boltzmann-solver" on gap: 
-        ! page_updates: target data-action-id="action-6" not found in roadmap
-        ! page_updates: target section-perturbation-channel not found in whitepaper
-        ! page_updates: target s8-tension-status not found in elevator
-    - Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12: 
-        · ADD test [phenomenological] boss_dr12_alpha_l2_bao_rsd result=MARGINAL
-        · ADD test [physics_test] boss_dr12_anticorrelation_sign result=PASS
-        · ADD test [framework_constraint] boss_dr12_gravitational_slip_prediction result=Planned
-        · ADD test [consistency_check] boss_dr12_lcdm_recovery result=PASS
-        · ADD test [planned_pipeline] stage4_alpha_l2_precision_kc result=Planned
-        ! page_updates: target data-milestone="boss-dr12-phenomenological" not found in roadmap
-        ! page_updates: target data-gap-id="desi-dr2-rapid-response" not found in gap
-        ! page_updates: target data-section="empirical-status" not found in elevator
-        ! page_updates: target data-section="observational-constraints" not found in whitepaper
-    - Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3: 
-        · ADD test [framework_constraint] rlhf_boltzmann_policy_form_check result=Planned
-        · ADD test [consistency_check] rlhf_free_energy_identity_check result=Planned
-        · ADD test [framework_constraint] rlhf_temperature_equivalence result=Planned
-        · ADD test [phenomenological] p1_beta_scales_with_task_entropy result=Planned
-        · ADD test [phenomenological] p2_grokking_latent_period_scaling result=Planned
-        · ADD test [framework_constraint] p3_alignment_capability_bound result=Planned
-        ! page_updates: target section=thermodynamic_universality not found in whitepaper
-        ! page_updates: target milestone=cross_domain_validation_T3 not found in roadmap
-        ! page_updates: target blurb=cross_domain_principle not found in elevator
-    - Robustness_of_the_EFC_Growth-Sector_Signal_Leave-One-Out_Sound-Horizon_and_Amplitude-Prior_Controls_for_the_Hubble-Friction_Channel: 
-        · ADD test [consistency_check] efc_hubble_friction_sound_horizon_robustness_n1 result=PASS
-        · ADD test [consistency_check] efc_sigma8_prior_sensitivity_n2 result=PASS
-        · ADD test [consistency_check] efc_growth_leave_one_out_t7 result=PASS
-        · update_text data-kc-id="KC3" on gap
-        · update_text data-kc-id="KC4" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC3" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
-    - Scale_Localised_Modified_Gravity: 
-        · ADD test [phenomenological] eg_bump_boss_pk_shape result=PASS
-        · ADD test [phenomenological] eg_bump_cmb_isw result=PASS
-        · ADD test [phenomenological] eg_bump_cmb_lensing_alens result=PASS
-        · ADD test [phenomenological] eg_bump_kids_shear result=MARGINAL
-        · ADD test [phenomenological] eg_bump_current_eg_data result=MARGINAL
-        · ADD test [phenomenological] eg_bump_joint_fit result=MARGINAL
-        · ADD test [planned_pipeline] eg_kz_desi_planck_bump result=Planned
-        · ADD test [planned_pipeline] eg_global_fit_epsilon_window result=Planned
-        · ADD test [planned_pipeline] eg_peak_location_kc result=Planned
-        · ADD test [planned_pipeline] eg_tomographic_a2_scaling result=Planned
-        ! page_updates: target perturbation-sector-forecasts not found in roadmap
-        ! page_updates: target data-gap-desi-eg-cross not found in gap
-        ! page_updates: target falsifiability-section not found in elevator
-        ! page_updates: target modified-gravity-observables not found in whitepaper
-    - Sealed_Blind_Predictions_for_Growth_Rate_Observables_EFC_vs_LCDM: 
-        · ADD test [planned_pipeline] sealed_fsigma8_z07 result=Planned
-        · ADD test [planned_pipeline] sealed_dh_rd_z07 result=Planned
-        · ADD test [planned_pipeline] sealed_dh_rd_z10 result=Planned
-        · ADD test [consistency_check] sealed_chain_reproducibility result=Planned
-        · ADD test [consistency_check] sealed_dual_freeze_consistency result=PASS
-        · update_text data-kc-id="KC5" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
-        ! page_updates: target action-1 not found in roadmap
-        ! page_updates: target predictions-section not found in elevator
-        ! page_updates: target predictions-and-falsifiability not found in whitepaper
-    - Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry: 
-        · ADD test [framework_constraint] bullet_local_gradient_falsification result=COLLAPSED
-        · ADD test [framework_constraint] bullet_nonlocal_component_sensitive result=PASS
-        · ADD test [phenomenological] bullet_w_mt_saturating_model result=PASS
-        · ADD test [planned_pipeline] macs_j0025_geometry_prediction result=Planned
-        · ADD test [planned_pipeline] abell_520_geometry_prediction result=Planned
-        ! page_updates: target cluster-mergers not found in roadmap
-        ! page_updates: target theory-gaps not found in gap
-        ! page_updates: target bullet-cluster-section not found in whitepaper
-        ! page_updates: target cluster-mergers-bullet not found in elevator
-    - Systematic-CMB-Constraints-on-Early-Universe-Modifications-Parameter-Degeneracies-and-Null-Results: 
-        · ADD test [physics_test] planck2018_tt_kappadot_tanh_null_result result=PASS
-        · ADD test [physics_test] planck2018_tt_eps_gaussian_with_h_marg_null result=PASS
-        ! page_updates: target data-kc-id="KC2" not found in whitepaper
-        ! page_updates: target data-kc-id="KC4" not found in whitepaper
-    - Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier: 
-        · ADD test [framework_constraint] background_gate_cmb_bao_sne result=COLLAPSED
-        · ADD test [framework_constraint] pure_growth_lensing_barrier result=COLLAPSED
-        · ADD test [phenomenological] slip_window_planck_survival result=PASS
-        · ADD test [consistency_check] al_degeneracy_identification result=PASS
-        · ADD test [phenomenological] fsigma8_sign_constraint result=PASS
-        · ADD test [consistency_check] alpha_h0_degeneracy result=PASS
-        · update_text data-gap-id="theory-efclass-boltzmann-solver" on gap
-        ! page_updates: target data-action-id="action-6" not found in roadmap
-        ! page_updates: council REJECTED update_text data-gap-id="theory-efclass-boltzmann-solver" on gap: 
-        ! page_updates: target cmb-status-section not found in elevator
-        ! page_updates: target observational-status-section not found in whitepaper
-    - WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_: 
-        · ADD test [phenomenological] wp3_rsd_response_slice_boss_eboss_desi result=MARGINAL
-        · ADD test [framework_constraint] wp3_aic_complexity_penalty_rsd result=PASS
-        · ADD test [framework_constraint] wp3_kc5_aic_threshold_check result=PASS
-        · update_text theory-efclass-boltzmann-solver on gap
-        ! page_updates: target response-atlas-program not found in roadmap
-        ! page_updates: council REJECTED update_text theory-efclass-boltzmann-solver on gap: 
-        ! page_updates: target empirical-status-section not found in whitepaper
-    - WP4_BOSS_transfer_validation: 
-        · ADD test [consistency_check] boss_dr12_bao_param_transfer_no_refit result=PASS
-        · ADD test [consistency_check] boss_dr12_bao_whitening_eigenmode_robustness result=PASS
-        · ADD test [consistency_check] boss_dr12_bao_covariance_interpolation_sweep result=PASS
-        · update_text data-kc-id="KC5" on roadmap
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on roadmap: 
-        ! page_updates: target section:validation-cross-survey not found in whitepaper
-    - WP4_BOSS_validation: 
-        · ADD test [physics_test] boss_dr12_transfer_desi_bestfit result=PASS
-        · ADD test [consistency_check] boss_dr12_diagonal_covariance_robustness result=PASS
-        · ADD test [consistency_check] boss_dr12_whitening_test result=PASS
-        · ADD test [consistency_check] boss_eboss_combined_parameter_consistency result=PASS
-        · update_text data-kc-id="KC1" on gap
-        · update_text data-kc-id="KC4" on gap
-        · update_text data-kc-id="KC1" on roadmap
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on roadmap: 
-        ! page_updates: target data-kc-id="KC1" not found in elevator
-        ! page_updates: target data-kc-id="KC1" not found in whitepaper
-    - bullet_cluster_efc: 
-        · ADD test [planned_pipeline] bullet_asig_piemd_null_baseline result=PASS
-        · ADD test [phenomenological] bullet_regime_transition_qualitative result=MARGINAL
-        · ADD test [framework_constraint] bullet_10to1_geometry_constraint result=PASS
-        · ADD test [consistency_check] bullet_sidm_bound_reinterpretation result=PASS
-        · ADD test [planned_pipeline] bullet_asig_jwst_execution result=Planned
-        ! page_updates: target data-section="cluster-scale" not found in roadmap
-        ! page_updates: target data-section="observational-gaps" not found in gap
-        ! page_updates: target data-section="cluster-scale" not found in elevator
-    - efc_boss_bao_cobaya_research_note: 
-        · ADD test [consistency_check] boss_dr12_bao_consensus_cov_fixed_params result=PASS
-        ! page_updates: target section=background_bao_consensus_covariance not found in whitepaper
-    - efc_case_b_eigenmode: 
-        · ADD test [planned_pipeline] efc_case_b_wl_eta_eff_anchor result=Planned
-        · ADD test [planned_pipeline] efc_case_b_wl_mu_sigma_corr result=Planned
-        · ADD test [planned_pipeline] efc_case_b_wl_delta_chi2_near_null result=Planned
-        · ADD test [planned_pipeline] efc_eg_ratio_prediction_anchor result=Planned
-        · ADD test [planned_pipeline] efc_case_b_cancellation_ratio result=Planned
-        · ADD test [planned_pipeline] efc_wl_scale_localization_pattern result=Planned
-        · update_text data-kc-id="KC5" on roadmap
-        ! page_updates: target data-doi-collection not found in whitepaper
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on roadmap: 
-        ! page_updates: target data-section="observational-wl" not found in gap
-    - efc_des_y6_validation: 
-        · ADD test [consistency_check] des_y6_s8_ratio_p3 result=PASS
-        ! page_updates: target section:validation:lensing_P3 not found in whitepaper
-        ! page_updates: target milestone:P3_lensing_consistency not found in roadmap
-    - efc_eg_preregistration: 
-        · ADD test [planned_pipeline] eg_so_euclid_dr2_preregistered result=Planned
-        · update_badge data-kc-id="KC5" on roadmap
-        · update_text data-kc-id="KC5" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC5" on roadmap: - Check 1 failed: The DOI preregistration defines kill criteria labeled KC1 and KC2 and sealed predictions P1–P3. There is no evidence that these map to the roadmap entry with data-kc-id="KC5". Withou
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on roadmap: 1) Supported by DOI: The content (EG_obs/EG_GR = 1.086 ± 0.012 at kc ≈ 0.05 h Mpc−1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger 1.00 ± 0.01 >3σ; SO LAT κ × Euclid DR2) matches the preregister
-        ! page_updates: target data-kc-id="KC5" not found in whitepaper
-    - efc_euclid_prediction: 
-        · ADD test [planned_pipeline] euclid_dr1_sigma8_shift result=Planned
-        · ADD test [planned_pipeline] euclid_dr1_pk_shift result=Planned
-        · ADD test [planned_pipeline] euclid_dr1_lensing_potential_shift result=Planned
-        · ADD test [planned_pipeline] euclid_dr1_eg_statistic result=Planned
-        · ADD test [planned_pipeline] euclid_dr1_isw_ctt_shift result=Planned
-        · ADD test [planned_pipeline] euclid_dr1_growth_lensing_coherence result=Planned
-        · ADD test [consistency_check] horndeski_stability_benchmark result=PASS
-        · ADD test [framework_constraint] sha256_prediction_integrity result=PASS
-        · CLOSE gap theory-efclass-boltzmann-solver
-        · mark_done data-gap-id="theory-efclass-boltzmann-solver" on gap
-        ! page_updates: council REJECTED mark_done data-gap-id="theory-efclass-boltzmann-solver" on gap: 1) The DOI describes pre-registered predictions computed with hi_class plus a custom efc_logistic Horndeski module; it does not claim development, delivery, or validation of an “EFCLASS Boltzmann solv
-        ! page_updates: target data-action-id="action-6" not found in roadmap
-        ! page_updates: target sealed-predictions-count not found in elevator
-        ! page_updates: target euclid-predictions-section not found in whitepaper
-    - efc_perturbation_sector: 
-        · ADD test [planned_pipeline] lensing_crossover_z044 result=Planned
-        · ADD test [planned_pipeline] lensing_deviation_bound_pm2pct result=Planned
-        · ADD test [planned_pipeline] cmb_lensing_crossover_consistency result=Planned
-        · update_badge data-kc-id="KC4" on gap
-        · update_text data-kc-id="KC4" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC4" on gap: 1) The DOI content lists only KC1–KC3; there is no KC4 in the paper. Therefore the update is not supported by the DOI. 
-2) The action type update_badge is fine in general, but the specific badge “SEAL
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on roadmap: 1) Supported by DOI: The content does align conceptually with the paper. The DOI indeed deposits a sealed weak-lensing prediction with a crossover at z ≈ 0.44, and tomographic weak-lensing is explicit
-        ! page_updates: target perturbation-sector not found in elevator
-        ! page_updates: target perturbation-sector not found in whitepaper
-    - entropy-bounded-empiricism-EBE-SPARC175-complete-documentation: 
-        · ADD test [phenomenological] ebe_sparc175_flow_regime_success result=PASS
-        · ADD test [physics_test] ebe_sparc175_mann_whitney_regime_separation result=PASS
-        · ADD test [physics_test] ebe_sparc175_kruskal_wallis_three_regime result=PASS
-        · ADD test [consistency_check] ebe_cmb_null_test result=PASS
-        · ADD test [consistency_check] ebe_quality_confound_check result=MARGINAL
-        · ADD test [planned_pipeline] ebe_sealed_cmb_regime_prediction result=PASS
-        · ADD test [planned_pipeline] ebe_replication_independent_rc_dataset result=Planned
-        ! page_updates: target data-section="galaxy-rotation-curves" not found in roadmap
-        ! page_updates: target data-section="evidence-summary" not found in elevator
-        ! page_updates: target data-section="phenomenology" not found in whitepaper
-        ! page_updates: target data-section="empirical-gaps" not found in gap
-    - observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-COSMOS-web: 
-        · ADD test [consistency_check] cosmosweb_zgt8_massive_counts_vs_halo_cap result=Planned
-        · ADD test [phenomenological] cosmosweb_highz_ssfr_trend result=Planned
-        ! page_updates: target section=jwst-early-universe not found in roadmap
-    - paper_rsd_to_clusters: 
-        · ADD test [planned_pipeline] erass1_total_cluster_excess result=Planned
-        · ADD test [planned_pipeline] erass1_shape_ratio_tilt result=Planned
-        · ADD test [planned_pipeline] erass1_shape_ratio_crossover result=Planned
-        · ADD test [planned_pipeline] erass1_perbin_shape_ratios result=Planned
-        · ADD test [consistency_check] rsd_cluster_parameter_lock_consistency result=Planned
-        ! page_updates: target cross-probe-predictions not found in roadmap
-        ! page_updates: target data-gap-erass1-clusters not found in gap
-        ! page_updates: target falsifiability-highlight not found in elevator
-        ! page_updates: target section-cluster-predictions not found in whitepaper
-    - regime-dependent-breakdown-of-LCDM-across-cosmic-time: 
-        · ADD test [phenomenological] regime_chi2_lcdm_uniformity result=PASS
-        · ADD test [phenomenological] highz_abundance_monotonic_excess result=PASS
-        · ADD test [phenomenological] sparc_morphology_deviation_clustering result=PASS
-        · ADD test [consistency_check] photoz_resampling_robustness result=PASS
-        · ADD test [planned_pipeline] kc_highz_spectroscopic_followup result=Planned
-        · ADD test [planned_pipeline] kc_independent_field_replication result=Planned
-        ! page_updates: target empirical-baseline not found in roadmap
-        ! page_updates: target observational-regime-taxonomy not found in gap
-        ! page_updates: target empirical-evidence-section not found in whitepaper
-    - regime_consistency_lya_bao_rsd_sce: 
-        · ADD test [phenomenological] lya_p1d_null_effect_z3 result=PASS
-        · ADD test [phenomenological] boss_dr12_bao_beta_improvement result=PASS
-        · ADD test [phenomenological] boss_dr12_rsd_growth_suppression result=MARGINAL
-        · ADD test [consistency_check] joint_bao_rsd_delta_chi2 result=PASS
-        · ADD test [framework_constraint] gr_recovery_z1100 result=PASS
-        · ADD test [consistency_check] regime_consistency_single_coupling result=PASS
-        · ADD test [framework_constraint] sce_layer_consistency_comparison result=PASS
-        · ADD test [framework_constraint] model_plasticity_decrease result=PASS
-        · update_text data-kc-id="KC1" on gap
-        · update_text data-kc-id="KC5" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
-        ! page_updates: target regime-consistency-multi-probe not found in roadmap
-        ! page_updates: target empirical-status not found in elevator
-        ! page_updates: target empirical-validation-section not found in whitepaper
-    - void_isw_signflip_v2.1_final: 
-        · ADD test [planned_pipeline] isw_depth_binned_void_stacking result=Planned
-        · ADD test [planned_pipeline] isw_deep_void_sign_flip result=Planned
-        · ADD test [planned_pipeline] isw_void_scale_dependence result=Planned
-        · ADD test [planned_pipeline] isw_redshift_evolution_rs_ratio result=Planned
-        · ADD test [planned_pipeline] isw_systematics_null_tests result=Planned
-        ! page_updates: target sealed-predictions-section not found in roadmap
-        ! page_updates: target observational-gaps not found in gap
-        ! page_updates: target testable-predictions not found in whitepaper
-        ! page_updates: target predictions-bullet not found in elevator
-    - ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology: 
-        · ADD test [physics_test] desi_dr2_background_alpha result=PASS
-        · ADD test [consistency_check] lcdm_special_case_variational_derivation result=PASS
-        · ADD test [planned_pipeline] perturbation_survival_valley_prediction result=Planned
-        · ADD test [planned_pipeline] void_isw_sign_flip result=Planned
-        · ADD test [phenomenological] sparc_universal_screening_k result=PASS
-        · ADD test [framework_constraint] regime_transition_mu_sign_change result=PASS
-        · update_text data-kc-id="KC1" on gap
-        · update_text data-kc-id="KC2" on gap
-        · update_text data-kc-id="KC5" on gap
-        ! page_updates: target main-summary not found in elevator
-        ! page_updates: target special-case-reduction not found in whitepaper
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: - Check 1: Pass. The DOI content explicitly lists KC1 with the same thresholds (δ ≤ −0.8, >5σ, 50–200 h⁻¹ Mpc) and includes sealed prediction P1 about an ISW sign-flip, so the substance is supported.
-
-        ! page_updates: council REJECTED update_text data-kc-id="KC2" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
-        ! page_updates: target consolidation-milestone not found in roadmap
   error: 5
     - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
+        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
     - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
-  skip: 115
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'physics_test', 'planned_pipeline', 'framework_constraint', 'consistency_check', 'phenomenological'})
+  skip: 146
   warn: 3
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
     - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
@@ -482,7 +106,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-04-24
+Date: 2026-04-25
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -505,7 +129,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 31 paper packages enriched; Ledger data: evidence-register.json.
+[efc-auto-changelog] Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
