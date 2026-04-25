@@ -4,13 +4,13 @@
   "title": "Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning",
   "description": "This paper introduces the Symbiotic Insight Framework (SIF), a structural methodology in which a human thinker and an adaptive computational system jointly produce stable scientific structure from high-velocity, parallel reasoning. SIF formalizes a closed-loop process of immediate externalization, structural consolidation, semantic indexing (e.g., JSON-LD), and version-locked preservation to maintain coherence across domains. The key contribution is a reproducible architecture that scales conceptual velocity into durable, cross-domain scientific artefacts.",
   "version": "1.0",
-  "date": "2025-11-01",
-  "doi": "",
+  "date": "2025-11-21",
+  "doi": "10.6084/m9.figshare.30656351",
   "keywords": [
     "symbiotic intelligence",
     "high-velocity reasoning",
     "scientific workflow",
-    "human\u2013computer interaction",
+    "human–computer interaction",
     "structural consolidation",
     "semantic indexing",
     "cross-domain integration",
@@ -27,7 +27,7 @@
   },
   "core_equations": {},
   "key_results": {
-    "main_finding": "SIF formalizes a human\u2013system symbiosis that stabilizes rapid, parallel cross-domain insight into reproducible scientific artefacts via structural consolidation, semantic integration, and version-locked pipelines.",
+    "main_finding": "SIF formalizes a human–system symbiosis that stabilizes rapid, parallel cross-domain insight into reproducible scientific artefacts via structural consolidation, semantic integration, and version-locked pipelines.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [],
@@ -36,11 +36,11 @@
   },
   "sealed_predictions": [],
   "kill_criteria": [
-    "KC1: Failure to reproduce identical outputs from identical inputs across versions (i.e., broken version-safe documentation or non-deterministic pipelines) undercuts SIF\u2019s core claim of reproducibility.",
+    "KC1: Failure to reproduce identical outputs from identical inputs across versions (i.e., broken version-safe documentation or non-deterministic pipelines) undercuts SIF’s core claim of reproducibility.",
     "KC2: Loss of cross-file or cross-domain semantic continuity during high-velocity edits, evidenced by unresolved JSON-LD links or schema violations persisting after automated validation, falsifies the claimed semantic integration.",
     "KC3: Ablation study shows a human-only workflow matches or exceeds SIF on both throughput and structural coherence (measured by predefined integrity and consistency metrics), negating the symbiotic advantage.",
     "KC4: System cannot reliably capture and externalize parallel conceptual fields before decay (e.g., repeated drop of content or irreversible drift between drafts and indexed artefacts), contradicting immediate externalization.",
-    "KC5: Repository integrity failures (e.g., index corruption or unrecoverable cross-references) that prevent end-to-end reconstruction of artefacts from version history invalidate the framework\u2019s preservation guarantees."
+    "KC5: Repository integrity failures (e.g., index corruption or unrecoverable cross-references) that prevent end-to-end reconstruction of artefacts from version history invalidate the framework’s preservation guarantees."
   ],
   "tier": "T3",
   "paper_type": "methodology",
