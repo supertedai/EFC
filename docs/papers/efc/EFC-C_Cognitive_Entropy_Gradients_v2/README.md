@@ -5,25 +5,23 @@
 - **DOI:** [10.6084/m9.figshare.32091700](https://doi.org/10.6084/m9.figshare.32091700)
 - **Version:** 2.1
 - **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
-- **Date:** 2026-04-01
+- **Date:** 2026-04-06
 - **License:** CC-BY-4.0
 
 ---
 
 ## Overview
 
-Revision of the EFC-C framework re-anchoring entropy-gradient predictions from the Fiedler eigenvalue to hub-to-periphery degree heterogeneity. Introduces a one-parameter power-law κ = C_eff · D_ratio^γ with γ ≈ 0.55 and separates predictions into Layer A (topological, invariant) and Layer B (absolute-scale, conditional on cross-domain constant transfer via RCMP).
+Revises EFC-C by replacing the λ2 (Fiedler) formulation with a degree-heterogeneity bridge (B1**) linking hub-to-periphery degree ratio to the centrifugal entropy score. Introduces a two-layer prediction scheme: Layer A (topological, parameter-light) tests a power-law scaling with exponent γ≈0.55; Layer B (absolute-scale) tests a cross-domain-anchored constant Ceff fixed a priori via regime transformation of C=k/aG.
 
 ## Key Result
 
-Replaces the λ2-based prediction with a degree-heterogeneity power-law (κ = Ceff · Dratio^γ), with γ constrained to 0.50–0.60 and Ceff fixed via RCMP; predictions are separated into Layer A (topological) and Layer B (absolute-scale).
+Framework update: κ is predicted by a one-parameter power law in hub–periphery degree heterogeneity (γ≈0.55), with absolute scale anchored by a preregistered Ceff; predictions are layered to separate topology-only tests (Layer A) from cross-domain absolute-scale tests (Layer B).
 
 ## Sealed Predictions
 
 | ID | Prediction | Falsifiable by |
 |---|---|---|
-| P1-LayerA | Across individuals, the centrifugal entropy score κ scales as a power law of the hub-to-periphery degree ratio: log κ = log Ceff + γ log Dratio with γ in [0.50, 0.60]. | Linear fit on log–log scale yields γ outside [0.50, 0.60] or cross-subject R^2 < 0.50 despite adequate SNR and matched hub/periphery partition. |
-| P2-LayerB | With Ceff fixed a priori by RCMP (no re-fitting on neural data), absolute κ values predicted by κ = Ceff · Dratio^γ lie within propagated uncertainty bounds across HCP-like datasets. | Mean absolute fractional error > 0.30 across subjects or systematic bias in residuals that cannot be removed by the prespecified secondary τc correction. |
-| P3-Comparator | Algebraic connectivity (λ2) does not outperform Dratio in explaining inter-subject variance in κ. | In multiple independent datasets, λ2-based models consistently achieve higher R^2 than Dratio-based models for κ prediction under identical preprocessing and partitions. |
-| P4-Timescale | The τc contribution is a secondary correction O(τc/τH) that does not dominate κ variance. | After applying the prespecified autocorrelation-based protocol, τc-related terms account for >30% of explained variance or are required to rescue otherwise invalid Layer A fits. |
-| P5-TopologyLock | Topological alignment holds: κ and Dratio computed with the same hub/periphery partition are robust to reasonable variations of hub/periphery thresholds. | Small, reasonable changes to hub/periphery thresholds (e.g., hubs 8–12%, periphery 25–35%) cause >25% swings in fitted γ or destroy the κ–Dratio scaling. |
+| P1A | Layer A (topological): Across subjects, log κ scales linearly with log Dratio with slope γ in [0.50, 0.60] using the preregistered hub/periphery partition and MSE-based κ. | If the fitted γ falls outside [0.50, 0.60] or the κ–Dratio association is weak/non-significant across independent cohorts using the preregistered pipeline. |
+| P1B | Layer B (absolute scale): With Ceff fixed a priori via RCMP, the predicted κ = Ceff·Dratio^γ matches observed κ at the group and individual levels (after the specified τc secondary correction) without re-fitting Ceff. | If fixing Ceff a priori leads to systematic, large absolute-scale mismatches that cannot be remedied by the preregistered τc correction. |
+| P1C | Degree heterogeneity Dratio explains substantially more inter-subject variance in κ than algebraic connectivity λ2 under the same preprocessing and partitioning. | If λ2 explains equal or greater variance in κ than Dratio across datasets using identical pipelines and QC. |

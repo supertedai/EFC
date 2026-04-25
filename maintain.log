@@ -84,30 +84,29 @@ Known gap IDs in HTML: 7
 [COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31230703)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC2" on gap (DOI m9.figshare.31230703)
-[COUNCIL] Reason: - Check 1 failed: The DOI summary provided mentions a global fit improvement Δχ² = −22.01 and that a covariance-aware conditional hold-out test was used, but it does not report a specific conditional 
+[COUNCIL] Reason: 1) The provided DOI summary (title, description, kill criteria, sealed predictions) does not report a specific conditional hold-out result of Δχ²_h|t = −18.65. While the paper mentions using a covaria
 [COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31230703)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31301953)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC2" on roadmap (DOI m9.figshare.31990212)
-[COUNCIL] Reason: - Check 1 failed: The DOI content lists no sealed predictions. Adding a SEALED badge is not supported by the paper’s metadata. The paper declares KC2 as a kill criterion, not a sealed prediction.
-- Ch
+[COUNCIL] Reason: 1) The DOI content lists Kill Criteria declared: KC2 but Sealed Predictions: none. Adding a SEALED badge implies a sealed prediction/status, which is not supported by the paper. Therefore the update i
 [COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31333600)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC3" on gap (DOI m9.figshare.31332730)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31332730)
-[COUNCIL] Reason: 1) The DOI summary supports that leave-one-out (T7) tests were performed and found the signal to be stable, but it does not provide the specific quantitative claims in the proposed text (|α|/σ ≥ 1.84,
+[COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.32013156)
-[COUNCIL] Reason: - Check 1 failed: The DOI content lists KC1–KC4 only; there is no KC5 in the paper. The added claims “SHA-256 hashed” and “timestamped Feb 2026” are not supported by the provided DOI text. While seale
+[COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31368433)
-[COUNCIL] Reason: - Check 1 failed: The DOI summary provided does not mention implementation details such as EFCLASS being used only for background modifications, the use of MGCAMB for the µ–Σ perturbation sector, or t
+[COUNCIL] Reason: 
 [COUNCIL] REJECTED: theory-efclass-boltzmann-solver on gap (DOI m9.figshare.31215259)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.31954125)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31231522)
-[COUNCIL] Reason: - Check 1: Pass. The DOI description explicitly states a cross-survey transfer using DESI DR2 parameters to BOSS DR12 with Δχ² = −7.77 without refitting, which supports the claimed reinforcement of KC
+[COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.31231522)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC1" on roadmap (DOI m9.figshare.31231522)
@@ -115,23 +114,23 @@ Known gap IDs in HTML: 7
 [COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.31990194)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.32023788)
-[COUNCIL] Reason: - Check 1 failed: The DOI’s preregistration lists kill criteria labeled KC1 and KC2. There is no evidence in the DOI content that maps this preregistration to a repository item labeled KC5. Without a 
+[COUNCIL] Reason: - Check 1 failed: The DOI preregistration defines kill criteria labeled KC1 and KC2 and sealed predictions P1–P3. There is no evidence that these map to the roadmap entry with data-kc-id="KC5". Withou
 [COUNCIL] REJECTED: data-kc-id="KC5" on roadmap (DOI m9.figshare.32023788)
-[COUNCIL] Reason: 
+[COUNCIL] Reason: 1) Supported by DOI: The content (EG_obs/EG_GR = 1.086 ± 0.012 at kc ≈ 0.05 h Mpc−1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger 1.00 ± 0.01 >3σ; SO LAT κ × Euclid DR2) matches the preregister
 [COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31990053)
-[COUNCIL] Reason: - Check 1 failed: The DOI describes pre-registered predictions computed in hi_class with a custom efc_logistic Horndeski implementation, but it does not demonstrate that an “EFCLASS Boltzmann solver” 
+[COUNCIL] Reason: 1) The DOI describes pre-registered predictions computed with hi_class plus a custom efc_logistic Horndeski module; it does not claim development, delivery, or validation of an “EFCLASS Boltzmann solv
 [COUNCIL] REJECTED: data-kc-id="KC4" on gap (DOI m9.figshare.32037990)
-[COUNCIL] Reason: 1) The DOI content lists Kill Criteria KC1–KC3 only; there is no KC4 in the provided paper information. Therefore the paper does not support adding a SEALED badge to KC4. 
-2) The action type (update_b
+[COUNCIL] Reason: 1) The DOI content lists only KC1–KC3; there is no KC4 in the paper. Therefore the update is not supported by the DOI. 
+2) The action type update_badge is fine in general, but the specific badge “SEAL
 [COUNCIL] REJECTED: data-kc-id="KC4" on roadmap (DOI m9.figshare.32037990)
-[COUNCIL] Reason: - Check 1: Pass. The DOI content explicitly presents a sealed weak-lensing prediction with a crossover at z ≈ 0.44, so referencing a sealed lensing prediction and the z ≈ 0.44 crossover is supported.
-
+[COUNCIL] Reason: 1) Supported by DOI: The content does align conceptually with the paper. The DOI indeed deposits a sealed weak-lensing prediction with a crossover at z ≈ 0.44, and tomographic weak-lensing is explicit
 [COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31304995)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31304995)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC1" on gap (DOI m9.figshare.31943361)
-[COUNCIL] Reason: 
+[COUNCIL] Reason: - Check 1: Pass. The DOI content explicitly lists KC1 with the same thresholds (δ ≤ −0.8, >5σ, 50–200 h⁻¹ Mpc) and includes sealed prediction P1 about an ISW sign-flip, so the substance is supported.
+
 [COUNCIL] REJECTED: data-kc-id="KC2" on gap (DOI m9.figshare.31943361)
 [COUNCIL] Reason: 
 [COUNCIL] REJECTED: data-kc-id="KC5" on gap (DOI m9.figshare.31943361)
@@ -150,7 +149,7 @@ Processed 154 paper(s)
         · update_text data-kc-id="KC2" on gap
         · update_text data-kc-id="KC4" on gap
         ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC2" on gap: - Check 1 failed: The DOI summary provided mentions a global fit improvement Δχ² = −22.01 and that a covariance-aware conditional hold-out test was used, but it does not report a specific conditional 
+        ! page_updates: council REJECTED update_text data-kc-id="KC2" on gap: 1) The provided DOI summary (title, description, kill criteria, sealed predictions) does not report a specific conditional hold-out result of Δχ²_h|t = −18.65. While the paper mentions using a covaria
         ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
         ! page_updates: missing target for page 'roadmap' action='update_text'
         ! page_updates: missing target for page 'elevator' action='update_text'
@@ -172,8 +171,7 @@ Processed 154 paper(s)
         · ADD test [planned_pipeline] void_isw_scale_trend_supervoids result=Planned
         · ADD test [planned_pipeline] void_isw_redshift_evolution result=Planned
         · update_badge data-kc-id="KC2" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC2" on roadmap: - Check 1 failed: The DOI content lists no sealed predictions. Adding a SEALED badge is not supported by the paper’s metadata. The paper declares KC2 as a kill criterion, not a sealed prediction.
-- Ch
+        ! page_updates: council REJECTED update_badge data-kc-id="KC2" on roadmap: 1) The DOI content lists Kill Criteria declared: KC2 but Sealed Predictions: none. Adding a SEALED badge implies a sealed prediction/status, which is not supported by the paper. Therefore the update i
         ! page_updates: target data-kc-id="KC2" not found in whitepaper
     - Kill-Test v6 Universality_SPARC175: 
         · ADD test [phenomenological] sparc175_efc_vs_nfw_aic_universality result=PASS
@@ -229,7 +227,7 @@ Processed 154 paper(s)
         · update_text data-kc-id="KC3" on gap
         · update_text data-kc-id="KC4" on gap
         ! page_updates: council REJECTED update_text data-kc-id="KC3" on gap: 
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 1) The DOI summary supports that leave-one-out (T7) tests were performed and found the signal to be stable, but it does not provide the specific quantitative claims in the proposed text (|α|/σ ≥ 1.84,
+        ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
     - Scale_Localised_Modified_Gravity: 
         · ADD test [phenomenological] eg_bump_boss_pk_shape result=PASS
         · ADD test [phenomenological] eg_bump_cmb_isw result=PASS
@@ -252,7 +250,7 @@ Processed 154 paper(s)
         · ADD test [consistency_check] sealed_chain_reproducibility result=Planned
         · ADD test [consistency_check] sealed_dual_freeze_consistency result=PASS
         · update_text data-kc-id="KC5" on gap
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: - Check 1 failed: The DOI content lists KC1–KC4 only; there is no KC5 in the paper. The added claims “SHA-256 hashed” and “timestamped Feb 2026” are not supported by the provided DOI text. While seale
+        ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
         ! page_updates: target action-1 not found in roadmap
         ! page_updates: target predictions-section not found in elevator
         ! page_updates: target predictions-and-falsifiability not found in whitepaper
@@ -280,7 +278,7 @@ Processed 154 paper(s)
         · ADD test [consistency_check] alpha_h0_degeneracy result=PASS
         · update_text data-gap-id="theory-efclass-boltzmann-solver" on gap
         ! page_updates: target data-action-id="action-6" not found in roadmap
-        ! page_updates: council REJECTED update_text data-gap-id="theory-efclass-boltzmann-solver" on gap: - Check 1 failed: The DOI summary provided does not mention implementation details such as EFCLASS being used only for background modifications, the use of MGCAMB for the µ–Σ perturbation sector, or t
+        ! page_updates: council REJECTED update_text data-gap-id="theory-efclass-boltzmann-solver" on gap: 
         ! page_updates: target cmb-status-section not found in elevator
         ! page_updates: target observational-status-section not found in whitepaper
     - WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_: 
@@ -306,7 +304,7 @@ Processed 154 paper(s)
         · update_text data-kc-id="KC1" on gap
         · update_text data-kc-id="KC4" on gap
         · update_text data-kc-id="KC1" on roadmap
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: - Check 1: Pass. The DOI description explicitly states a cross-survey transfer using DESI DR2 parameters to BOSS DR12 with Δχ² = −7.77 without refitting, which supports the claimed reinforcement of KC
+        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
         ! page_updates: council REJECTED update_text data-kc-id="KC4" on gap: 
         ! page_updates: council REJECTED update_text data-kc-id="KC1" on roadmap: 
         ! page_updates: target data-kc-id="KC1" not found in elevator
@@ -342,8 +340,8 @@ Processed 154 paper(s)
         · ADD test [planned_pipeline] eg_so_euclid_dr2_preregistered result=Planned
         · update_badge data-kc-id="KC5" on roadmap
         · update_text data-kc-id="KC5" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC5" on roadmap: - Check 1 failed: The DOI’s preregistration lists kill criteria labeled KC1 and KC2. There is no evidence in the DOI content that maps this preregistration to a repository item labeled KC5. Without a 
-        ! page_updates: council REJECTED update_text data-kc-id="KC5" on roadmap: 
+        ! page_updates: council REJECTED update_badge data-kc-id="KC5" on roadmap: - Check 1 failed: The DOI preregistration defines kill criteria labeled KC1 and KC2 and sealed predictions P1–P3. There is no evidence that these map to the roadmap entry with data-kc-id="KC5". Withou
+        ! page_updates: council REJECTED update_text data-kc-id="KC5" on roadmap: 1) Supported by DOI: The content (EG_obs/EG_GR = 1.086 ± 0.012 at kc ≈ 0.05 h Mpc−1, z_eff ≈ 0.5; pass window [1.03, 1.14]; kill trigger 1.00 ± 0.01 >3σ; SO LAT κ × Euclid DR2) matches the preregister
         ! page_updates: target data-kc-id="KC5" not found in whitepaper
     - efc_euclid_prediction: 
         · ADD test [planned_pipeline] euclid_dr1_sigma8_shift result=Planned
@@ -356,7 +354,7 @@ Processed 154 paper(s)
         · ADD test [framework_constraint] sha256_prediction_integrity result=PASS
         · CLOSE gap theory-efclass-boltzmann-solver
         · mark_done data-gap-id="theory-efclass-boltzmann-solver" on gap
-        ! page_updates: council REJECTED mark_done data-gap-id="theory-efclass-boltzmann-solver" on gap: - Check 1 failed: The DOI describes pre-registered predictions computed in hi_class with a custom efc_logistic Horndeski implementation, but it does not demonstrate that an “EFCLASS Boltzmann solver” 
+        ! page_updates: council REJECTED mark_done data-gap-id="theory-efclass-boltzmann-solver" on gap: 1) The DOI describes pre-registered predictions computed with hi_class plus a custom efc_logistic Horndeski module; it does not claim development, delivery, or validation of an “EFCLASS Boltzmann solv
         ! page_updates: target data-action-id="action-6" not found in roadmap
         ! page_updates: target sealed-predictions-count not found in elevator
         ! page_updates: target euclid-predictions-section not found in whitepaper
@@ -366,10 +364,9 @@ Processed 154 paper(s)
         · ADD test [planned_pipeline] cmb_lensing_crossover_consistency result=Planned
         · update_badge data-kc-id="KC4" on gap
         · update_text data-kc-id="KC4" on roadmap
-        ! page_updates: council REJECTED update_badge data-kc-id="KC4" on gap: 1) The DOI content lists Kill Criteria KC1–KC3 only; there is no KC4 in the provided paper information. Therefore the paper does not support adding a SEALED badge to KC4. 
-2) The action type (update_b
-        ! page_updates: council REJECTED update_text data-kc-id="KC4" on roadmap: - Check 1: Pass. The DOI content explicitly presents a sealed weak-lensing prediction with a crossover at z ≈ 0.44, so referencing a sealed lensing prediction and the z ≈ 0.44 crossover is supported.
-
+        ! page_updates: council REJECTED update_badge data-kc-id="KC4" on gap: 1) The DOI content lists only KC1–KC3; there is no KC4 in the paper. Therefore the update is not supported by the DOI. 
+2) The action type update_badge is fine in general, but the specific badge “SEAL
+        ! page_updates: council REJECTED update_text data-kc-id="KC4" on roadmap: 1) Supported by DOI: The content does align conceptually with the paper. The DOI indeed deposits a sealed weak-lensing prediction with a crossover at z ≈ 0.44, and tomographic weak-lensing is explicit
         ! page_updates: target perturbation-sector not found in elevator
         ! page_updates: target perturbation-sector not found in whitepaper
     - entropy-bounded-empiricism-EBE-SPARC175-complete-documentation: 
@@ -446,23 +443,24 @@ Processed 154 paper(s)
         · update_text data-kc-id="KC5" on gap
         ! page_updates: target main-summary not found in elevator
         ! page_updates: target special-case-reduction not found in whitepaper
-        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: 
+        ! page_updates: council REJECTED update_text data-kc-id="KC1" on gap: - Check 1: Pass. The DOI content explicitly lists KC1 with the same thresholds (δ ≤ −0.8, >5σ, 50–200 h⁻¹ Mpc) and includes sealed prediction P1 about an ISW sign-flip, so the substance is supported.
+
         ! page_updates: council REJECTED update_text data-kc-id="KC2" on gap: 
         ! page_updates: council REJECTED update_text data-kc-id="KC5" on gap: 
         ! page_updates: target consolidation-milestone not found in roadmap
   error: 5
     - A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: 
-        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
+        ! A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
     - EFC-H0-S8-Tensions: 
-        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
-        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
+        ! EFC-H0-S8-Tensions: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! EFC-H0-S8-Tensions: tests_added[1].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
     - EFC_vs_LCDM_Kill_Test_v6_final: 
-        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
+        ! EFC_vs_LCDM_Kill_Test_v6_final: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
     - Energy-Flow-Cosmology-Unified-Analysis-of-BAO: 
-        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
+        ! Energy-Flow-Cosmology-Unified-Analysis-of-BAO: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
     - Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: 
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
-        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'consistency_check', 'framework_constraint', 'physics_test', 'phenomenological', 'planned_pipeline'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[0].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
+        ! Energy-Flow_Cosmology_Empirical_Validation_of_the_EFC_Screening_Model_Track_1: tests_added[3].category='empirical_test' unknown (must be one of {'consistency_check', 'phenomenological', 'physics_test', 'framework_constraint', 'planned_pipeline'})
   skip: 115
   warn: 3
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
@@ -554,7 +552,7 @@ Ledger: 121 tests, 10 falsified
   [OK]       README paper count 154 matches repo 154
   [OK]       Stats categories sum to 121 = total_public
   [OK]       DOI sync script present, 152/154 papers have DOIs
-  [OK]       111 papers have sealed predictions (327 total)
+  [OK]       111 papers have sealed predictions (325 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
