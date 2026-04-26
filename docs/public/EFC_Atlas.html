@@ -192,7 +192,7 @@
 <p style="font-size:0.95em; color:#555; margin-bottom:1.2em;">
 Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
 ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
-2026-04-22 &middot; CC-BY-4.0
+2026-04-26 &middot; CC-BY-4.0
 </p>
 
 <p style="font-size:0.93rem; color:#1a3a6b; background:#f0f5fc; border:1px solid #c9d4e4; border-radius:5px; padding:10px 14px;">
@@ -200,7 +200,7 @@ The Atlas joins two data sources: the immutable sealed <strong>Validation Ledger
 (EFC's own predictions with DOI, hash, freeze-timestamp) and the
 <strong>Framework Atlas</strong> (<strong>42</strong> rival cosmology/gravity
 frameworks with their RCMP regime participation, ontological lens, and mechanism-level
-predictions across <strong>31</strong> phenomena). Together they make
+predictions across <strong>32</strong> phenomena). Together they make
 cross-framework discrimination explicit: for every phenomenon the Atlas records which
 frameworks address it, with what mechanism, and with what role.
 </p>
@@ -493,7 +493,7 @@ data, and the arbiter instrument scheduled to resolve it.
 <h2>All validation tests</h2>
 <p>
 Sourced from the sealed <a href="EFC_Validation_Ledger.html">Validation Ledger</a>.
-<strong>121</strong> public tests across 5 categories.
+<strong>124</strong> public tests across 5 categories.
 Filter by category, result or regime.
 </p>
 
@@ -541,6 +541,18 @@ Filter by category, result or regime.
     <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>Cluster TNG mass-only regime model: NOT SUPPORTED</strong></td><td>EFC predicts mass-driven regime transition producing sign flip in rho(ne_slope, K0). RESULT: Not observed within TNG mass bins [14.0-15.3 log M_sun]. All bins show rho ≈ -0.87 (constant). Regime variable must include core-state (cooling time, SCC/NCC) not mass alone.</td><td style="font-size:0.82rem; color:#5b6a7a;">TNG-Cluster 352 halos z=0, 4 mass bins. Grid: A_M [0.2-5.0], Xi_eff [-2.0-4.0], Delta_Xi [0.05-2.0]. Null models: constant, linear, step.</td></tr>
     <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>DESI DR2 BAO α-constraint (post-prediction)</strong></td><td>EFC BAO-only: α consistent with 0. Strong α (|α| &gt; 0.4) excluded by DESI DR2 precision at z &gt; 0.9. EFC signal, if present, must live in growth/regime sector, not background expansion.</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR2 BAO (arXiv:2503.14738), 13 measurements, 7 z-bins, full covariance</td></tr>
     <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EEG scalp entropy gradient dissipation test (Chennu propofol)</strong></td><td>EFC-C predicts corr(|∇S|², dS/dt) &lt; 0 in cortex during consciousness transitions. Under the mapping S → Ω̂ (spectral entropy of scalp EEG PSD, 0.5-45 Hz), with spatial gradient computed on parietal ROI (P3,P4,Pz,O1,O2,Oz), the prediction is r &lt; 0 with p &lt; 0.01 at group level.</td><td style="font-size:0.82rem; color:#5b6a7a;">Chennu et al. (2016) propofol sedation EEG dataset, DOI: 10.17863/CAM.690. N=20 subjects, 91-channel EGI HydroCel GSN, 250 Hz, 4 conditions per subject (baseline, mild sedation, moderate sedation, recovery). 80 recordings total.</td></tr>
+    <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions</strong></td><td>P1 (binary, hard threshold): Bar onset iff min{Π_EFC(R)} &lt; 1 over R ∈ [R_d, 3·R_d]. All SPARC barred/disturbed galaxies satisfy this; all FLOW non-barred satisfy min{Π_EFC(R)} ≥ 1 over the same range. No soft threshold — falsified if mismatch rate on validation sample exceeds observational misclassification bound.
+
+P2 (continuous, growth coupling): Bar growth rate Γ_bar ∝ (1 − Π_EFC) at the radius of minimum Π_EFC, VALID ONLY for Π_EFC &lt; 1. For Π_EFC ≥ 1, Γ_bar = 0 (mode is stable, NOT anti-growing). Predicts bar fraction f_bar(M_disk, z) and bar amplitude as continuous functions, testable against N-body simulations and observed bar amplitudes.
+
+P3 (morphological): L_bar/R_d anticorrelates with the depth of (1 − Π_EFC) at minimum, valid for Π_EFC &lt; 1.
+
+P4 (cross-survey, sealed): After ζ-lock on SPARC pilot, predicted f_bar(M, z) from Galaxy Zoo / S4G must match within 2σ without further parameter adjustment.
+
+Falsification criteria:
+(a) Any FLOW galaxy with min{Π_EFC(R)} ≥ 1 hosting a strong bar, OR
+(b) Any LATENT/barred galaxy with min{Π_EFC(R)} &lt; 1 absent, OR
+(c) No single value of ζ reproduces both SPARC internal dynamics and external bar fractions (Galaxy Zoo, S4G) simultaneously. ζ-universality is structural, not adjustable — failure here rejects the criterion outright.</td><td style="font-size:0.82rem; color:#5b6a7a;">Primary anchor: SPARC (175-galaxy sample, N=20 pilot for ζ calibration, N≥100 for sealed test). Cross-validation: Galaxy Zoo bar fractions, S4G bar morphology catalog. Required derived quantities per galaxy: σ_R(R), Σ(R), V_circ(R) → κ(R), entropy gradient ∇S(R) from existing EFC SPARC fits (sparc_regime.json field 'entropy_gradient'), α from regime classification, R_d from disk decomposition.</td></tr>
     <tr data-category="physics_test" data-result=""><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC Baseline α-signal</strong></td><td>α &lt; 0 at ≥2σ significance with ΔAIC &lt; -2 (moderate evidence)</td><td style="font-size:0.82rem; color:#5b6a7a;">emcee MCMC, 69 data points, emcee sampler</td></tr>
     <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC P1/P2 cross-probe test against DES-Y6 vs KiDS-Legacy S8 bifurcation</strong></td><td>EFC's K0 scan (from figshare 32080059) predicts that Σeff crossover at z≈0.44 with K0 in the optimal range [1.5, 2.5] produces an effective lensing amplitude consistent with KiDS-Legacy-like values, while DES-Y6's lower S8 reflects IA-modeling choices EFC's RCMP framework treats as regime-breaking. Quantitative expectation: EFC lensing-engine output at K0=2.0 should reproduce S8-equivalent within ±0.015 of KiDS Legacy central, and significantly offset from DES Y6 (≥1.5σ). Falsification: if EFC's sealed P1/P2 output forces S8 into DES Y6 territory, the RCMP bifurcation argument weakens.</td><td style="font-size:0.82rem; color:#5b6a7a;">DES Year 6 3x2pt (arXiv:2601.14559, S8 = 0.782 +0.021/-0.020 in wCDM); KiDS Legacy (Wright et al 2025, arXiv:2503.19441); S8 2026 review (arXiv:2602.12238). EFC sealed predictions: P1 Σeff(z) crossover at z≈0.44 (figshare 32037990), P2 fσ8(z=0.7)=0.430 (figshare 32013156). EFC regime-transition paper (figshare 32080059) provides K0 scan.</td></tr>
     <tr data-category="physics_test" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>physics_test</td><td><strong>EFC-C-001: ∇S Correlation with Conscious State Transitions</strong></td><td>The entropy gradient Ω = ||∇S|| is significantly higher during conscious states (wakefulness, REM) than unconscious states (NREM3, general anesthesia), with effect size Cohen's d &gt; 0.8 across subjects. KILL if d &lt; 0.5 on test partition (n ≥ 20 subjects).</td><td style="font-size:0.82rem; color:#5b6a7a;">Casarotto et al. (2016) PCI dataset (original Lempel-Ziv PCI, n=150+). NOTE: PCI_ST variant requires Comolatti et al. 2019 (J Neurosci Methods).</td></tr>
@@ -594,10 +606,12 @@ Filter by category, result or regime.
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Anti-EFE: constructive external field response in Graph-AQUAL</strong></td><td>EFC graph-AQUAL predicts constructive external field coupling (anti-EFE) where external field enhances rather than suppresses MOND-like boost. Testable against galaxy samples in external fields (e.g., Crater II, NGC 1052-DF2).</td><td style="font-size:0.82rem; color:#5b6a7a;">KT5 EFE sweep: g_ext/a₀ = [0, 0.3, 1, 2, 5]</td></tr>
     <tr data-category="phenomenological" data-result="Primary p=0.68722, Sign coherence p=0.015625"><td><span class="badge-open">Primary p=0.68722, Sign coherence p=0.015625</span></td><td>phenomenological</td><td><strong>Axiom 0: S_hat(z) Regime Boundary Test</strong></td><td>BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO surveys (6dF, MGS, BOSS, eBOSS, DESI)</td></tr>
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Axiom-0 S_hat(z) regime boundary test (BAO N=10)</strong></td><td>EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondary pattern: 8/9 positive deviations in TRANSITION+LATENT (binomial p=0.020). DESI z=1.0 lands exactly on FLOW/TRANSITION boundary (delta=0.000). Result: not falsified, not confirmed, consistent with smooth regime structure.</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2.</td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>BAO DESI Y1 — EFC preferanse-test (Δχ²=−22.01)</strong></td><td>EFC foretrekkes over ΛCDM med Δχ²&lt;0 og bestått 5-fold CV på DESI Y1 BAO-data</td><td style="font-size:0.82rem; color:#5b6a7a;">DESI DR1 BAO (bao_desi_y1 dataset)</td></tr>
     <tr data-category="phenomenological" data-result="Planned – anisotropic likelihood test"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>BAO anisotropic split (DAvs H(z))</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS, eBOSS, DESI BAO anisotropic fits</td></tr>
     <tr data-category="phenomenological" data-result="αL2= 0.040 ± 0.024 (1.7σ)"><td><span class="badge-open">αL2= 0.040 ± 0.024 (1.7σ)</span></td><td>phenomenological</td><td><strong>BAO+RSD joint fit (αL2)</strong></td><td>BOSS DR12 consensus</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS DR12 consensus</td></tr>
     <tr data-category="phenomenological" data-result=""><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Case A S₈ direction (v1.4)</strong></td><td>Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.
         Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Cluster TNG — EFC passform-test (χ²_red=0.000)</strong></td><td>EFC gir χ²_red≈0 på IllustrisTNG-klyngedata — indikerer god modell-passform ved cluster-skala</td><td style="font-size:0.82rem; color:#5b6a7a;">IllustrisTNG cluster simulation data (cluster_tng)</td></tr>
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Cluster core-state regime: f_SCC as regime variable (cross-sample N=2)</strong></td><td>EFC predicts that the entropy-structure coupling sign (rho) is driven by core-state composition: NCC-dominated samples (low f_SCC) show negative rho (S0 frozen regime), while SCC-rich samples (high f_SCC) show positive rho (S1 flowing regime). The tanh transition occurs at f_SCC ~ 0.15-0.20. Testable when per-subpopulation rho data (SCC/WCC/NCC separately) or additional cluster samples become available.</td><td style="font-size:0.82rem; color:#5b6a7a;">TNG-Cluster (352 halos, z=0, Lehle+2024) + ACCEPT (239 clusters, Cavagnolo+2009). Cross-sample analysis with f_SCC as coordinate. Grid search: 80k evaluations. Sensitivity scan on ACCEPT f_SCC (0.12-0.50).</td></tr>
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>EFC-C-003: κ Universality Across Anesthetic Agents</strong></td><td>Frozen κ = 0.37 ± 0.04 produces consistent C-values across propofol, sevoflurane, ketamine, and xenon. Cross-agent to within-agent residual variance ratio σ_cross/σ_within &lt; 2.0. KILL if ratio exceeds 2.0.</td><td style="font-size:0.82rem; color:#5b6a7a;">Chennu et al. (2014) sedation dataset (propofol) + Cambridge consciousness database (sevoflurane, ketamine, xenon)</td></tr>
     <tr data-category="phenomenological" data-result="Planned – bias-growth joint modeling"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Galaxy bias evolution consistency</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">BOSS, DESI clustering + lensing cross-correlation</td></tr>
@@ -882,6 +896,18 @@ is the primary structural dimension of RCMP.
     <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
     <tbody>
 <tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts_regime_transition</td><td><span class="mechanism-pill">f_SCC_dependent_xi</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="phen-block" data-regime="L3" style="margin-bottom:1.5rem;">
+  <h3><span class="regime-chip L3">L3</span> Disk Evolutionary State <code style="font-weight:400; color:#5b6a7a;">disk_evolutionary_state</code></h3>
+  <table>
+    <thead><tr><th style="width:20%;">Framework</th><th style="width:22%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">Pi_min_shear_proxy_disk_window_SPARC_xGASS</span></td></tr>
+<tr><td><strong style="color:#1a7a1a;">EFC</strong></td><td>predicts</td><td><span class="mechanism-pill">Pi_min_shear_proxy_disk_window_SPARC_xGASS_fgas_axis</span></td></tr>
     </tbody>
   </table>
 </div>
