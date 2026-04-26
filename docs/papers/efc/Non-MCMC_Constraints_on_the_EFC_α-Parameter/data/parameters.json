@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Non Mcmc Constraints On The Efc \u0391 Parameter",
+    "doi": "10.6084/m9.figshare.32101213",
+    "version": "1.0",
+    "date_iso": "2026-04-26",
+    "author": "Morten Magnusson",
+    "license": "CC BY 4.0",
+    "orcid": "0009-0002-4860-5095",
+    "github_repo": "github.com/supertedai/EFC"
+  },
+  "datasets_reported_count": 5,
+  "bao_desi_y1": {
+    "delta_chi2": -22.01,
+    "cv_folds": 5,
+    "cv_all_folds_prefer_efc": true,
+    "notes": "Strongest single-dataset BAO signal in the registry"
+  },
+  "bao_boss_dr12": {
+    "delta_chi2": -7.77,
+    "keff": 0,
+    "delta_aic": -7.77,
+    "notes": "EFC absorbs preference without introducing effective parameters"
+  },
+  "growth_fs8": {
+    "alpha_mean": -1.0,
+    "alpha_sigma": 0.46,
+    "significance_sigma": 2.2,
+    "delta_aic": -2.91,
+    "loo_epochs": 7,
+    "loo_votes_for_efc": 7,
+    "watchlist_id": "fs8_extended_alpha_signal_watch (W3)",
+    "notes": "Indication (<3\u03c3), not a detection"
+  },
+  "clusters_illustristng": {
+    "chi2_reduced_approx": 0.0,
+    "notes": "Proxy data; likely overfitting/uncertain DOF. Requires audit of DOF, covariance, and error model."
+  },
+  "cosmic_chronometers_hz": {
+    "delta_chi2": -0.17,
+    "notes": "Sub-statistical; included for completeness only"
+  },
+  "mcmc_posterior_alpha": {
+    "mean": -0.101,
+    "sigma": 0.212,
+    "significance_sigma": 0.479,
+    "delta_aic": 1.763,
+    "diagnostic": "STOPPED_DEGENERACY_PERSISTS",
+    "consecutive_runs": 10,
+    "node_states_summary": [
+      "COLLAPSED",
+      "FAIL",
+      "NO_SIGNAL"
+    ]
+  },
+  "sealed_predictions": {
+    "alpha_values": [
+      -0.702,
+      -0.689
+    ],
+    "agreement_with_non_mcmc_sigma_approx": 0.7,
+    "tension_with_mcmc_sigma_approx": 2.8
+  },
+  "thresholds": {
+    "detection_sigma": 3.0
+  },
+  "combination_examples": {
+    "combined_delta_chi2_bao_only": -29.78,
+    "combined_delta_chi2_bao_plus_hz": -29.95
+  }
+}

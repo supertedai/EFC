@@ -1,25 +1,105 @@
 {
   "$schema": "./schema.json",
-  "id": "non-mcmc-constraints-on-the-efc-α-parameter",
-  "title": "Non Mcmc Constraints On The Efc Α Parameter",
-  "description": "Auto-generated package for Non Mcmc Constraints On The Efc Α Parameter.",
+  "id": "non-mcmc-constraints-on-the-efc-\u03b1-parameter",
+  "title": "Non-MCMC Constraints on the EFC \u03b1-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+  "description": "Validation note reporting non-MCMC constraints on the EFC \u03b1-parameter using DESI Y1 and BOSS DR12 BAO, multi-epoch growth-rate (f\u03c38), IllustrisTNG cluster statistics, and cosmic chronometer H(z) data. Cross-validation and likelihood-ratio tests show a consistent directional preference for EFC over \u039bCDM (e.g., \u0394\u03c72DESI = \u221222.01; \u0394\u03c72BOSS = \u22127.77) and a growth-derived indication \u03b1 = \u22121.00 \u00b1 0.46 (2.20\u03c3), while concurrent MCMC remains degeneracy-limited. Results are framed as model-comparison metrics (not posteriors) and compared against pre-registered sealed predictions.",
   "version": "1.0",
   "date": "2026-04-26",
+  "doi": "10.6084/m9.figshare.32101213",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Mcmc",
-    "Constraints",
-    "Parameter"
+    "EFC",
+    "\u03b1 parameter",
+    "BAO",
+    "DESI Y1",
+    "BOSS DR12",
+    "growth rate",
+    "f\u03c38",
+    "cross-validation",
+    "likelihood ratio",
+    "AIC",
+    "MCMC degeneracy"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "delta_chi2": {
+      "latex": "\\Delta\\chi^2 = \\chi^2_{\\mathrm{EFC}} - \\chi^2_{\\Lambda\\mathrm{CDM}}",
+      "description": "Likelihood-ratio metric used for model comparison; negative values indicate preference for EFC over \u039bCDM."
+    },
+    "aic_difference": {
+      "latex": "\\Delta\\mathrm{AIC} = (\\chi^2_{\\mathrm{EFC}} + 2k_{\\mathrm{EFC}}) - (\\chi^2_{\\Lambda\\mathrm{CDM}} + 2k_{\\Lambda\\mathrm{CDM}})",
+      "description": "Information-criterion comparison accounting for parsimony; negative values favor EFC. For BOSS DR12, keff = 0."
+    },
+    "reduced_chi2": {
+      "latex": "\\chi^2_{\\mathrm{red}} = \\chi^2 / \\nu",
+      "description": "Goodness-of-fit per degree of freedom; values near 1 indicate adequate fit, values near 0 can indicate overfitting or inflated errors."
+    },
+    "z_significance": {
+      "latex": "z = \\frac{|\\alpha - \\alpha_0|}{\\sigma_\\alpha}",
+      "description": "Significance of the inferred \u03b1 relative to a reference \u03b10 (often 0), expressed in Gaussian \u03c3 units; used for growth-derived indication (2.20\u03c3)."
+    },
+    "fs8_definition": {
+      "latex": "f\\sigma_8(z) = f(z)\\,\\sigma_8(z)",
+      "description": "Product of the linear growth rate f(z) and the rms matter fluctuation amplitude \u03c38(z); multi-epoch measurements constrain growth-sector responses to \u03b1."
+    }
+  },
+  "key_results": {
+    "main_finding": "Non-MCMC model-comparison metrics consistently prefer EFC over \u039bCDM in BAO and growth probes (\u0394\u03c72DESI = \u221222.01; \u0394\u03c72BOSS = \u22127.77; \u03b1 = \u22121.00 \u00b1 0.46 from f\u03c38), while MCMC posteriors remain degeneracy-limited and uninformative for \u03b1.",
+    "delta_chi2": null,
+    "significance_sigma": 2.2,
+    "parameters_tested": [
+      "\u03b1"
+    ],
+    "datasets_used": [
+      "DESI DR1 (Y1) BAO consensus",
+      "BOSS DR12 BAO consensus",
+      "f\u03c38 multi-epoch compiled catalogue (7 epochs, LOO 7/7)",
+      "IllustrisTNG cluster catalogue (proxy)",
+      "Cosmic chronometers H(z)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "freeze_20260221_160857",
+      "statement": "Sealed prior-prediction for the EFC \u03b1-parameter: \u03b1 = \u22120.702 (NUTS).",
+      "falsifiable_by": "A robust, validated constraint showing \u03b1 inconsistent with \u22120.702 by >3\u03c3 (posterior or cross-validated estimate) across multiple independent probes."
+    },
+    {
+      "id": "freeze_20260218_050713",
+      "statement": "Sealed prior-prediction for the EFC \u03b1-parameter: \u03b1 = \u22120.689 (NUTS).",
+      "falsifiable_by": "A robust, validated constraint showing \u03b1 inconsistent with \u22120.689 by >3\u03c3 across BAO and growth datasets with audited covariances."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Cross-validated BAO (DESI final + BOSS DR12/extended) yield \u0394\u03c72 \u2265 +10 in favor of \u039bCDM over EFC in at least two independent BAO compilations using audited covariances.",
+    "KC2: Growth-sector tests (RSD f\u03c38 with \u226510 independent redshift bins) return \u03b1 consistent with 0 at |\u03b1|/\u03c3\u03b1 < 1 and show LOO preference \u22642/10 for EFC (i.e., majority preference for \u039bCDM).",
+    "KC3: Joint information-criterion comparison across BAO + growth + lensing (if included) penalizes EFC with \u0394AIC_total \u2265 +10 relative to \u039bCDM under matched keff.",
+    "KC4: Degeneracy-resolved MCMC (using next-generation datasets and validated priors) yields \u03b1 = 0.00 \u00b1 0.10 (68% C.L.) or tighter, consistent across samplers (NUTS/EMCEE) and starting points.",
+    "KC5: Independent, audited cluster statistics (observational, not proxy) with realistic DOF and covariances produce \u03c72red \u2248 1 for \u039bCDM and a statistically significant degradation for EFC (p < 0.01).",
+    "KC6: Consistency checks show sealed \u03b1-predictions disagreed by >3\u03c3 with multiple non-MCMC and MCMC constraints that are mutually consistent with \u039bCDM (\u03b1 \u2248 0) after blinding and validation."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-val-2026-002",
+      "doi": "10.6084/m9.figshare.31954125",
+      "role": "Cross-referenced validation for BOSS DR12 BAO non-MCMC result propagation."
+    },
+    {
+      "id": "efc-val-2026-003",
+      "doi": "10.6084/m9.figshare.31955871",
+      "role": "Cross-referenced validation for multi-epoch f\u03c38 growth-sector analysis."
+    }
+  ],
   "files": {
     "pdf": "efc_val_2026_005.pdf",
     "readme": "README.md"
   },
-  "doi": "10.6084/m9.figshare.32101213",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32101213"
 }
