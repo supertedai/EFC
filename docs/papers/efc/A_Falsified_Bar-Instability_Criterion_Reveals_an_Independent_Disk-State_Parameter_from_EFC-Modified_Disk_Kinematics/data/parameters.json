@@ -1,0 +1,134 @@
+{
+  "_description": "Key numerical values from Magnusson 2026, DOI 10.6084/m9.figshare.32101111",
+  "physical_constants": {
+    "G_SI": {
+      "value": 6.6743e-11,
+      "unit": "m^3 kg^-1 s^-2"
+    },
+    "kpc_m": {
+      "value": 3.0857e+19,
+      "unit": "m"
+    },
+    "Msun_kg": {
+      "value": 1.989e+30,
+      "unit": "kg"
+    }
+  },
+  "pipeline_parameters": {
+    "zeta_default": {
+      "value": 1.0,
+      "description": "dimensionless EFC coupling constant"
+    },
+    "zeta_max": {
+      "value": 1.52,
+      "description": "upper bound from kappa_eff^2 >= 0 constraint"
+    },
+    "alpha_bounds": {
+      "min": 0.05,
+      "max": 0.95,
+      "description": "alpha = 1 - L, bounded"
+    },
+    "sigma_R_fallback_km_s": {
+      "value": 30.0,
+      "description": "constant fallback radial velocity dispersion"
+    },
+    "savgol_window": {
+      "value": 5,
+      "description": "Savitzky-Golay filter window length"
+    },
+    "savgol_order": {
+      "value": 2,
+      "description": "Savitzky-Golay polynomial order"
+    },
+    "derivative_consistency_tolerance": {
+      "value": 0.002,
+      "description": "0.2% tolerance"
+    },
+    "R_eval_primary": {
+      "value": "2.2 * Rd",
+      "description": "primary evaluation radius"
+    },
+    "disk_window": {
+      "min": "Rd",
+      "max": "3*Rd",
+      "description": "radial window for Pi_min"
+    },
+    "toomre_prefactor": {
+      "value": 3.36,
+      "description": "denominator coefficient in Toomre Q / Pi_EFC"
+    }
+  },
+  "bar_prediction_falsification": {
+    "sample_size_morphological": 43,
+    "n_SB": 15,
+    "n_SA": 28,
+    "AUC_v01_local": {
+      "value": 0.22,
+      "description": "ROC AUC for v0.1 local criterion"
+    },
+    "AUC_v02_global": {
+      "value": 0.31,
+      "description": "ROC AUC for v0.2 resonance-aware criterion"
+    },
+    "result": "anti-correlated with bar truth; bar-prediction track closed"
+  },
+  "disk_state_correlations_SPARC": {
+    "sample_size": 112,
+    "spearman_Pi_logSigma": {
+      "rho": -0.71,
+      "description": "Pi_min vs log Sigma_disk"
+    },
+    "spearman_Pi_fgas": {
+      "rho": 0.65,
+      "description": "Pi_min vs f_gas"
+    },
+    "spearman_Pi_fgas_MHI_based": {
+      "rho": 0.53,
+      "description": "Pi_min vs MHI/(MHI+M*) independent estimate"
+    },
+    "random_half_splits": {
+      "seeds": 3,
+      "sub_samples": 6,
+      "all_consistent": true
+    },
+    "stratification_sources": 3
+  },
+  "disk_state_correlations_xGASS": {
+    "sample_size": 98,
+    "spearman_Piproxy_logSigma_star": {
+      "rho": -0.49,
+      "description": "Pi_proxy vs log Sigma_star"
+    },
+    "spearman_Piproxy_fgas": {
+      "rho": 0.67,
+      "description": "Pi_proxy vs f_gas"
+    }
+  },
+  "partial_correlation_result": {
+    "description": "Pi is not reducible to log Sigma alone; residual rho(Pi, log Sigma | fgas) != 0 in both samples; partition between log Sigma and fgas as predictors is sample-dependent"
+  },
+  "synthetic_verification": {
+    "n_curves": 3,
+    "Pi_range_min": 3.3,
+    "Pi_range_max": 5.9,
+    "derivative_consistency": "0.2%",
+    "RAR_degeneracy_R2": 0.97
+  },
+  "equation_1_definition": {
+    "Pi_EFC_R": "sigma_R(R) * kappa_eff(R) / (3.36 * G * Sigma(R))",
+    "kappa_eff_sq": "kappa^2 + zeta * g_EFC / R",
+    "g_EFC": "alpha * v * R * dOmega/dR"
+  },
+  "proxy_modes": {
+    "v_squared": "grad_S = d(v^2)/dr (v0.1 original)",
+    "shear": "grad_S = v * r * dOmega/dr (v0.2 onward, dimensionally equivalent)"
+  },
+  "atlas_registration": {
+    "phenomenon": "disk_evolutionary_state",
+    "predictions": [
+      "EFC_disk_state_logSigma_correlation_v0.1",
+      "EFC_disk_state_fgas_correlation_v0.1"
+    ],
+    "test_status": "candidate_external_support"
+  }
+}
