@@ -1,0 +1,92 @@
+{
+  "version": "DC_validation_v0.1",
+  "n_total": 112,
+  "reference_full_sample": {
+    "rho_log_Sigma": -0.7140977893190283,
+    "rho_f_gas": 0.6482386305395155
+  },
+  "D_random_split": {
+    "results": [
+      {
+        "seed": 42,
+        "half": "half1",
+        "n": 56,
+        "rho_log_Sigma": -0.7546138072453862,
+        "rho_f_gas": 0.697881066302119,
+        "p_log_Sigma": 0.0,
+        "p_f_gas": 8.045786259458509e-13,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      },
+      {
+        "seed": 42,
+        "half": "half2",
+        "n": 56,
+        "rho_log_Sigma": -0.671496924128503,
+        "rho_f_gas": 0.5825017088174983,
+        "p_log_Sigma": 2.754274586180827e-11,
+        "p_f_gas": 1.39301469248565e-07,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      },
+      {
+        "seed": 7,
+        "half": "half1",
+        "n": 56,
+        "rho_log_Sigma": -0.8261790840738209,
+        "rho_f_gas": 0.7451127819548872,
+        "p_log_Sigma": 0.0,
+        "p_f_gas": 2.220446049250313e-16,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      },
+      {
+        "seed": 7,
+        "half": "half2",
+        "n": 56,
+        "rho_log_Sigma": -0.5940533151059467,
+        "rho_f_gas": 0.5262474367737526,
+        "p_log_Sigma": 5.7403207520678734e-08,
+        "p_f_gas": 5.42170144290921e-06,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      },
+      {
+        "seed": 13,
+        "half": "half1",
+        "n": 56,
+        "rho_log_Sigma": -0.7589883800410115,
+        "rho_f_gas": 0.6137388926862611,
+        "p_log_Sigma": 0.0,
+        "p_f_gas": 1.1135261823724818e-08,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      },
+      {
+        "seed": 13,
+        "half": "half2",
+        "n": 56,
+        "rho_log_Sigma": -0.689336978810663,
+        "rho_f_gas": 0.6795625427204375,
+        "p_log_Sigma": 2.702504886542556e-12,
+        "p_f_gas": 9.964584712918167e-12,
+        "sign_log_Sigma_negative": true,
+        "sign_f_gas_positive": true
+      }
+    ],
+    "all_seeds_log_Sigma_negative": true,
+    "all_seeds_f_gas_positive": true,
+    "verdict": "PASS"
+  },
+  "C_observable_independence": {
+    "n_matched": 112,
+    "n_unmatched": 0,
+    "unmatched_names_sample": [],
+    "rho_Pi_vs_f_gas_internal": 0.6482386305395155,
+    "rho_Pi_vs_f_gas_external": 0.5296067242969897,
+    "rho_Pi_vs_log_Sigma": -0.7140977893190283,
+    "rho_internal_vs_external_f_gas": 0.8393412375713261,
+    "sign_external_positive": true,
+    "verdict": "PASS"
+  }
+}
