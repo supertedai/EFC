@@ -219,13 +219,13 @@ frameworks address it, with what mechanism, and with what role.
 
 <h2>Sealed predictions</h2>
 <p style="font-size:0.94rem; color:#1a3a6b;">
-7 preregistered EFC predictions with sealed DOIs, grouped by RCMP layer.
+10 preregistered EFC predictions with sealed DOIs, grouped by RCMP layer.
 Each card shows EFC's prediction, the full rival list from the
 atlas (every framework that addresses the same phenomenon with its own mechanism), a
 Stage-III empirical sandwich that brackets the prediction with already-observed survey
 data, and the arbiter instrument scheduled to resolve it.
 </p>
-<p style="font-size:0.92rem; color:#5b6a7a;">Badge mix: <span class="badge-damage">DAMAGE: 2</span> &middot; <span class="badge-kill">KILL: 3</span> &middot; <span class="badge-sealed">PROVEN: 1</span> &middot; <span class="badge-sealed">STRUCTURAL: 1</span></p>
+<p style="font-size:0.92rem; color:#5b6a7a;">Badge mix: <span class="badge-sealed">CANDIDATE: 2</span> &middot; <span class="badge-damage">DAMAGE: 2</span> &middot; <span class="badge-sealed">FALSIFIED: 1</span> &middot; <span class="badge-kill">KILL: 3</span> &middot; <span class="badge-sealed">PROVEN: 1</span> &middot; <span class="badge-sealed">STRUCTURAL: 1</span></p>
 
 <h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L0 &mdash; Background <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(1 prediction)</span></h3>
 
@@ -261,7 +261,7 @@ data, and the arbiter instrument scheduled to resolve it.
   </ul>
 </div>
 
-<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L1 &mdash; Linear perturbations <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(2 predictions)</span></h3>
+<h3 style="margin-top:2rem; border-left:4px solid #007bff; padding-left:0.7rem;">L1 &mdash; Linear perturbations <span style="font-size:0.88rem; color:#5b6a7a; font-weight:400;">(5 predictions)</span></h3>
 
 <div class="hero" style="border-left-color:#d4a017;" id="pred-P2">
   <div style="margin-bottom:0.4rem;">
@@ -335,6 +335,105 @@ data, and the arbiter instrument scheduled to resolve it.
   <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
   <ul style="margin:0.4rem 0 0.2rem;">
     <li><strong>BOSS+eBOSS full-shape</strong> <em style="color:#5b6a7a;">(low-z anchor)</em>: BAO transfer PASS without refit (Δχ² = −7.77)</li><li><strong>DESI DR1</strong> <em style="color:#5b6a7a;">(mid-z anchor)</em>: fσ₈(0.706) ≈ 0.413 — on EFC trajectory</li><li><strong>DESI DR2 (pending)</strong> <em style="color:#5b6a7a;">(decisive test)</em>: z&gt;1.5 measurements will directly probe the crossover</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#1a7a1a;" id="pred-P8">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-sealed">CANDIDATE</span>
+    <span class="regime-chip L1">L1 &mdash; Linear perturbations</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P8</strong> &middot; phenomenon: Disk Evolutionary State (SPARC + xGASS) <code style="color:#5b6a7a;">disk_evolutionary_state</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Π_EFC vs stellar surface density: log Σ_disk correlation</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">Pivot from the falsified bar-instability prediction (EFC-BIC v0.1, AUC=0.217). The same Π_EFC quantity does not predict global m=2 bar formation but does anti-correlate with stellar surface density on rotation-supported disks, identifying Π_min as a candidate disk-state proxy. Candidate status pending external IFU validation.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">ρ ≈ −0.71</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">No predicted correlation</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32101111">10.6084/m9.figshare.32101111</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">Spearman ρ on (Π_min, log Σ_disk) tuple; pipeline disk_state_analysis.py</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">EFC_disk_state_logSigma_correlation_v0.1</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Π_min ≡ min_R∈[R_d,3R_d] Π_EFC(R), with σ_R from Jeans isotropic and ζ≈1, monotonically anti-correlates with stellar surface density log Σ_disk. Same-sign correlation across SPARC (Spitzer-3.6μm, V-decomp, N=112) and xGASS (SDSS Petrosian + Arecibo HI). Independent samples, observables, pipelines.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; EFC_disk_state_logSigma_correlation_v0.1</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> If MaNGA Pipe3D (or comparable independent IFU/HI sample) with N≥30 yields ρ(Π_min, log Σ_disk) &gt; 0 or |ρ| &lt; 0.3, the candidate is falsified.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 0 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>SPARC (N=112)</strong> <em style="color:#5b6a7a;">(primary discovery sample)</em>: ρ=−0.71 (Spitzer-3.6μm)</li><li><strong>xGASS (N=112)</strong> <em style="color:#5b6a7a;">(external observable)</em>: same-sign confirmation</li><li><strong>Half-split robustness (3 seeds × 2 halves, N=56)</strong> <em style="color:#5b6a7a;">(outlier check)</em>: ρ ∈ [−0.83, −0.59], all sub-samples retain sign</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#1a7a1a;" id="pred-P9">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-sealed">CANDIDATE</span>
+    <span class="regime-chip L1">L1 &mdash; Linear perturbations</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P9</strong> &middot; phenomenon: Disk Evolutionary State (SPARC + xGASS) <code style="color:#5b6a7a;">disk_evolutionary_state</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">Π_EFC vs gas-richness: f_gas correlation</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">Companion candidate to P8: the same Π_EFC parameter that anti-correlates with stellar surface density positively correlates with gas-richness — consistent with the interpretation that high-Σ, gas-poor (mature) disks have lower Π_min than low-Σ, gas-rich (latent) disks.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">ρ ≈ +0.65</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">No predicted correlation</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32101111">10.6084/m9.figshare.32101111</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">Spearman ρ on (Π_min, f_gas); pipeline disk_state_analysis.py</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">EFC_disk_state_fgas_correlation_v0.1</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Π_min positively correlates with disk gas richness f_gas = V_gas² / (V_gas² + V_disk² + V_bulge²) median in disk window. Sign holds when internal V_gas-decomposition f_gas is replaced with external M_HI/(M_HI + Υ·L[3.6]) (ρ=+0.530, 82% of internal strength).</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; EFC_disk_state_fgas_correlation_v0.1</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> If MaNGA Pipe3D + HI sample with N≥30 yields ρ(Π_min, f_gas) &lt; 0 or |ρ| &lt; 0.3, the candidate is falsified.</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 0 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>SPARC internal V-decomp (N=112)</strong> <em style="color:#5b6a7a;">(primary measurement)</em>: ρ=+0.648</li><li><strong>SPARC external photometry+HI (N=112)</strong> <em style="color:#5b6a7a;">(decomposition-independence check)</em>: ρ=+0.530, sign preserved</li><li><strong>Pipeline-stratified subsamples (VS01, Sw09, No07)</strong> <em style="color:#5b6a7a;">(reduction-pipeline check)</em>: all three: same sign, |ρ|&gt;0.5</li>
+  </ul>
+</div>
+
+
+<div class="hero" style="border-left-color:#1a7a1a;" id="pred-P10">
+  <div style="margin-bottom:0.4rem;">
+    <span class="badge-sealed">FALSIFIED</span>
+    <span class="regime-chip L1">L1 &mdash; Linear perturbations</span>
+    <span style="font-size:0.82rem; color:#5b6a7a; margin-left:6px;">
+      <strong>P10</strong> &middot; phenomenon: Disk Evolutionary State (SPARC + xGASS) <code style="color:#5b6a7a;">disk_evolutionary_state</code>
+    </span>
+  </div>
+  <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">EFC-BIC v0.1 as bar-morphology predictor</h3>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">The first published EFC falsification at the L1 disk-galaxy level. Local Toomre-style criteria — even with EFC's shear correction — cannot predict global m=2 bar formation. The mechanism is structural: bar formation is a resonant instability requiring inter-annulus coupling that local Q-criteria do not encode. The Π_EFC parameter survives this falsification as a candidate disk-state proxy (P8, P9), establishing the v0.1 → v0.2 falsification chain as a model of disciplined research-track closure under EBE.</p>
+
+  <div class="hero-meta"><div class="cell"><span class="lbl">EFC</span><span class="val" style="font-size:0.86rem;">Predicted: AUC &gt; 0.5 (model ranks bars below threshold)</span></div><div class="cell"><span class="lbl">ΛCDM</span><span class="val" style="font-size:0.86rem;">Null (always-no-bar): 65.1%</span></div><div class="cell"><span class="lbl">Seal DOI</span><span class="val" style="font-size:0.86rem;"><a href="https://doi.org/10.6084/m9.figshare.32101111">10.6084/m9.figshare.32101111</a></span></div><div class="cell"><span class="lbl">Arbiter</span><span class="val" style="font-size:0.86rem;">scripts: classify_fit.py, efc_bic_v02_resonance.py</span></div><div class="cell"><span class="lbl">Falsifier</span><span class="val" style="font-size:0.86rem;">EFC_BIC_bar_prediction_v0.1</span></div></div>
+
+  <p style="font-size:0.92rem; color:#1a3a6b; background:#fafbfd; border-left:3px solid #c9d4e4; padding:8px 12px; margin:0.6rem 0;"><strong>Claim:</strong> Π_EFC &lt; 1.0 was hypothesised to indicate bar-prone disks. Test on N=43 SIMBAD-cleaned SPARC galaxies (15 SB + 28 SA) at ζ ∈ [1.0, 3.0] gave AUC=0.217 at ζ=1 (anti-correlated with bar truth). ζ_max-physical (κ²_eff ≥ 0) = 1.52, below the regime where Π_min crosses 1.0.</p>
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Falsifier &mdash; EFC_BIC_bar_prediction_v0.1</h4><p style="background:#fff; border:1px solid #eac2bb; border-left:4px solid #c22; border-radius:4px; padding:8px 12px; margin:0.3rem 0 0.8rem; font-size:0.90rem;"><strong>If observed:</strong> Met: AUC=0.217 &lt; 0.5 (anti-correlated, in physical ζ regime).</p>
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; 1 EFC + 0 rival frameworks tracked for this phenomenon</h4>
+  <table style="margin-top:0.4rem;">
+    <thead><tr><th style="width:22%;">Framework</th><th style="width:24%;">Role</th><th>Mechanism</th></tr></thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  
+
+  <h4 style="color:#0d1b3e; margin-top:1rem;">Stage-III empirical sandwich</h4>
+  <ul style="margin:0.4rem 0 0.2rem;">
+    <li><strong>SPARC v0.1 shear proxy (N=43)</strong> <em style="color:#5b6a7a;">(primary falsification)</em>: AUC=0.217 at ζ=1</li><li><strong>v0.1 v_squared proxy (N=43)</strong> <em style="color:#5b6a7a;">(alternate proxy)</em>: FALSIFIED on sign — g_EFC &gt; 0 in disk for all galaxies, never destabilises</li><li><strong>v0.2 resonance-aware (N=43)</strong> <em style="color:#5b6a7a;">(final attempt with CR + ILR + Toomre X)</em>: FALSIFIED 2026-04-25, AUC=0.310 at ζ=1.5; recall=18% (2/11 bars). Bar prediction track CLOSED.</li>
   </ul>
 </div>
 
@@ -493,7 +592,7 @@ data, and the arbiter instrument scheduled to resolve it.
 <h2>All validation tests</h2>
 <p>
 Sourced from the sealed <a href="EFC_Validation_Ledger.html">Validation Ledger</a>.
-<strong>121</strong> public tests across 5 categories.
+<strong>124</strong> public tests across 5 categories.
 Filter by category, result or regime.
 </p>
 
@@ -591,6 +690,9 @@ Filter by category, result or regime.
     <tr data-category="consistency_check" data-result="T3Quantitative compatibility supported (screened regime)"><td><span class="badge-open">T3Quantitative compatibility supported (screened regime)</span></td><td>consistency_check</td><td><strong>Solar System / PPN / EP</strong></td><td>⚪</td><td style="font-size:0.82rem; color:#5b6a7a;">Cassini / LLR / perihelion</td></tr>
     <tr data-category="consistency_check" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong>σ₈(z) full trajectory reconstruction: EFC vs ΛCDM vs multi-survey data</strong></td><td>EFC predicts σ₈(z) systematically lower than ΛCDM for z&lt;1.5, converging at z&gt;2. The maximum deviation occurs at z≈0.3-0.7 where the gate function is most active. If observed σ₈(z) values from different surveys show this z-dependent pattern, it supports late-time activation.</td><td style="font-size:0.82rem; color:#5b6a7a;">Growth ODE + DES Y6, HSC-SSP, KiDS-Legacy compiled σ₈(z) values</td></tr>
     <tr data-category="consistency_check" data-result=""><td><span class="badge-planned">Planned</span></td><td>consistency_check</td><td><strong></strong></td><td>All probes should show &lt;1 logL/pt degradation under EFC vs ΛCDM with frozen best-fit parameters.</td><td style="font-size:0.82rem; color:#5b6a7a;"></td></tr>
+    <tr data-category="consistency_check" data-result="FALSIFIED"><td><span class="badge-open">FALSIFIED</span></td><td>consistency_check</td><td><strong>EFC-BIC v0.1 (shear proxy) Bar Prediction — FALSIFIED</strong></td><td>Π_EFC &lt; 1.0 indicates bar-prone disks. Falsified: model ranks anti-correlated with bar truth.</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC + SIMBAD bar/no-bar labels (N=43 cleanly-labeled)</td></tr>
+    <tr data-category="consistency_check" data-result="CANDIDATE"><td><span class="badge-open">CANDIDATE</span></td><td>consistency_check</td><td><strong>Π_EFC vs log Σ_disk Correlation — CANDIDATE</strong></td><td>ρ_Spearman(Π_min, log Σ_disk) ≈ −0.71 (anti-correlation: high-Σ mature disks have lower Π_min)</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC (N=112) + xGASS external observables</td></tr>
+    <tr data-category="consistency_check" data-result="CANDIDATE"><td><span class="badge-open">CANDIDATE</span></td><td>consistency_check</td><td><strong>Π_EFC vs f_gas Correlation — CANDIDATE</strong></td><td>ρ_Spearman(Π_min, f_gas) ≈ +0.65 (positive correlation: gas-rich latent disks have higher Π_min)</td><td style="font-size:0.82rem; color:#5b6a7a;">SPARC (N=112) + photometry/HI external decomposition</td></tr>
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Anti-EFE: constructive external field response in Graph-AQUAL</strong></td><td>EFC graph-AQUAL predicts constructive external field coupling (anti-EFE) where external field enhances rather than suppresses MOND-like boost. Testable against galaxy samples in external fields (e.g., Crater II, NGC 1052-DF2).</td><td style="font-size:0.82rem; color:#5b6a7a;">KT5 EFE sweep: g_ext/a₀ = [0, 0.3, 1, 2, 5]</td></tr>
     <tr data-category="phenomenological" data-result="Primary p=0.68722, Sign coherence p=0.015625"><td><span class="badge-open">Primary p=0.68722, Sign coherence p=0.015625</span></td><td>phenomenological</td><td><strong>Axiom 0: S_hat(z) Regime Boundary Test</strong></td><td>BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO surveys (6dF, MGS, BOSS, eBOSS, DESI)</td></tr>
     <tr data-category="phenomenological" data-result="Planned"><td><span class="badge-planned">Planned</span></td><td>phenomenological</td><td><strong>Axiom-0 S_hat(z) regime boundary test (BAO N=10)</strong></td><td>EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondary pattern: 8/9 positive deviations in TRANSITION+LATENT (binomial p=0.020). DESI z=1.0 lands exactly on FLOW/TRANSITION boundary (delta=0.000). Result: not falsified, not confirmed, consistent with smooth regime structure.</td><td style="font-size:0.82rem; color:#5b6a7a;">BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2.</td></tr>

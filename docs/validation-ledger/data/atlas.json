@@ -1671,6 +1671,111 @@
         }
       ],
       "narrative_intro": "KT-4 is the L1-growth companion to P1's L2-lensing crossover. A shared primitive-chain is hypothesized to produce both Σ_eff sign-change (L2) and fσ₈ crossover (L1) as projections of the same underlying regime transition; the atlas treats this as a hypothesis consistent with both sector implementations, not a proven derivation. Cross-survey BAO transfer (BOSS ↔ DESI) already passes without refit, which is consistent with primitive rigidity under tested surveys."
+    },
+    {
+      "id": "P8",
+      "phenomenon": "disk_evolutionary_state",
+      "rcmp_layer": "L1",
+      "badge": "CANDIDATE",
+      "title": "Π_EFC vs stellar surface density: log Σ_disk correlation",
+      "observable": "ρ_Spearman(Π_min, log Σ_disk)",
+      "efc_value": "ρ ≈ −0.71",
+      "lcdm_value": "No predicted correlation",
+      "claim": "Π_min ≡ min_R∈[R_d,3R_d] Π_EFC(R), with σ_R from Jeans isotropic and ζ≈1, monotonically anti-correlates with stellar surface density log Σ_disk. Same-sign correlation across SPARC (Spitzer-3.6μm, V-decomp, N=112) and xGASS (SDSS Petrosian + Arecibo HI). Independent samples, observables, pipelines.",
+      "mechanism": "modified_local_Toomre_Q_with_EFC_shear_correction",
+      "seal_doi": "10.6084/m9.figshare.32101111",
+      "falsifier_id": "EFC_disk_state_logSigma_correlation_v0.1",
+      "falsifier_condition": "If MaNGA Pipe3D (or comparable independent IFU/HI sample) with N≥30 yields ρ(Π_min, log Σ_disk) > 0 or |ρ| < 0.3, the candidate is falsified.",
+      "arbiter_instrument": "Spearman ρ on (Π_min, log Σ_disk) tuple; pipeline disk_state_analysis.py",
+      "source_evidence": "DOI 10.6084/m9.figshare.32101111, CLAIM_DISK_STATE.md Section 'Claim'",
+      "stage_iii_sandwich": [
+        {
+          "survey": "SPARC (N=112)",
+          "role": "primary discovery sample",
+          "result": "ρ=−0.71 (Spitzer-3.6μm)"
+        },
+        {
+          "survey": "xGASS (N=112)",
+          "role": "external observable",
+          "result": "same-sign confirmation"
+        },
+        {
+          "survey": "Half-split robustness (3 seeds × 2 halves, N=56)",
+          "role": "outlier check",
+          "result": "ρ ∈ [−0.83, −0.59], all sub-samples retain sign"
+        }
+      ],
+      "narrative_intro": "Pivot from the falsified bar-instability prediction (EFC-BIC v0.1, AUC=0.217). The same Π_EFC quantity does not predict global m=2 bar formation but does anti-correlate with stellar surface density on rotation-supported disks, identifying Π_min as a candidate disk-state proxy. Candidate status pending external IFU validation."
+    },
+    {
+      "id": "P9",
+      "phenomenon": "disk_evolutionary_state",
+      "rcmp_layer": "L1",
+      "badge": "CANDIDATE",
+      "title": "Π_EFC vs gas-richness: f_gas correlation",
+      "observable": "ρ_Spearman(Π_min, f_gas)",
+      "efc_value": "ρ ≈ +0.65",
+      "lcdm_value": "No predicted correlation",
+      "claim": "Π_min positively correlates with disk gas richness f_gas = V_gas² / (V_gas² + V_disk² + V_bulge²) median in disk window. Sign holds when internal V_gas-decomposition f_gas is replaced with external M_HI/(M_HI + Υ·L[3.6]) (ρ=+0.530, 82% of internal strength).",
+      "mechanism": "modified_local_Toomre_Q_with_EFC_shear_correction",
+      "seal_doi": "10.6084/m9.figshare.32101111",
+      "falsifier_id": "EFC_disk_state_fgas_correlation_v0.1",
+      "falsifier_condition": "If MaNGA Pipe3D + HI sample with N≥30 yields ρ(Π_min, f_gas) < 0 or |ρ| < 0.3, the candidate is falsified.",
+      "arbiter_instrument": "Spearman ρ on (Π_min, f_gas); pipeline disk_state_analysis.py",
+      "source_evidence": "DOI 10.6084/m9.figshare.32101111, CLAIM_DISK_STATE.md robustness Test C",
+      "stage_iii_sandwich": [
+        {
+          "survey": "SPARC internal V-decomp (N=112)",
+          "role": "primary measurement",
+          "result": "ρ=+0.648"
+        },
+        {
+          "survey": "SPARC external photometry+HI (N=112)",
+          "role": "decomposition-independence check",
+          "result": "ρ=+0.530, sign preserved"
+        },
+        {
+          "survey": "Pipeline-stratified subsamples (VS01, Sw09, No07)",
+          "role": "reduction-pipeline check",
+          "result": "all three: same sign, |ρ|>0.5"
+        }
+      ],
+      "narrative_intro": "Companion candidate to P8: the same Π_EFC parameter that anti-correlates with stellar surface density positively correlates with gas-richness — consistent with the interpretation that high-Σ, gas-poor (mature) disks have lower Π_min than low-Σ, gas-rich (latent) disks."
+    },
+    {
+      "id": "P10",
+      "phenomenon": "disk_evolutionary_state",
+      "rcmp_layer": "L1",
+      "badge": "FALSIFIED",
+      "title": "EFC-BIC v0.1 as bar-morphology predictor",
+      "observable": "ROC AUC for bar (SB) vs no-bar (SA) classification on SPARC",
+      "efc_value": "Predicted: AUC > 0.5 (model ranks bars below threshold)",
+      "lcdm_value": "Null (always-no-bar): 65.1%",
+      "claim": "Π_EFC < 1.0 was hypothesised to indicate bar-prone disks. Test on N=43 SIMBAD-cleaned SPARC galaxies (15 SB + 28 SA) at ζ ∈ [1.0, 3.0] gave AUC=0.217 at ζ=1 (anti-correlated with bar truth). ζ_max-physical (κ²_eff ≥ 0) = 1.52, below the regime where Π_min crosses 1.0.",
+      "mechanism": "Modified local Toomre Q tests m=0/1 axisymmetric stability, not global m=2 resonant bar mode (no inter-annulus coupling, no pattern speed Ω_p, no resonance condition).",
+      "seal_doi": "10.6084/m9.figshare.32101111",
+      "falsifier_id": "EFC_BIC_bar_prediction_v0.1",
+      "falsifier_condition": "Met: AUC=0.217 < 0.5 (anti-correlated, in physical ζ regime).",
+      "arbiter_instrument": "scripts: classify_fit.py, efc_bic_v02_resonance.py",
+      "source_evidence": "DOI 10.6084/m9.figshare.32101111, FALSIFICATION_RECORD.md",
+      "stage_iii_sandwich": [
+        {
+          "survey": "SPARC v0.1 shear proxy (N=43)",
+          "role": "primary falsification",
+          "result": "AUC=0.217 at ζ=1"
+        },
+        {
+          "survey": "v0.1 v_squared proxy (N=43)",
+          "role": "alternate proxy",
+          "result": "FALSIFIED on sign — g_EFC > 0 in disk for all galaxies, never destabilises"
+        },
+        {
+          "survey": "v0.2 resonance-aware (N=43)",
+          "role": "final attempt with CR + ILR + Toomre X",
+          "result": "FALSIFIED 2026-04-25, AUC=0.310 at ζ=1.5; recall=18% (2/11 bars). Bar prediction track CLOSED."
+        }
+      ],
+      "narrative_intro": "The first published EFC falsification at the L1 disk-galaxy level. Local Toomre-style criteria — even with EFC's shear correction — cannot predict global m=2 bar formation. The mechanism is structural: bar formation is a resonant instability requiring inter-annulus coupling that local Q-criteria do not encode. The Π_EFC parameter survives this falsification as a candidate disk-state proxy (P8, P9), establishing the v0.1 → v0.2 falsification chain as a model of disciplined research-track closure under EBE."
     }
   ]
 }

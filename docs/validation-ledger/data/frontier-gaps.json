@@ -1,7 +1,7 @@
 {
   "name": "EFC Frontier Research Gaps",
   "version": "3.0",
-  "generated_at": "2026-04-25T04:35:36Z",
+  "generated_at": "2026-04-26T08:32:59.858683Z",
   "gaps": [
     {
       "question": "Applying the 'inference_cluster_tng' module from domain 'unknown' to Bullet Cluster data should result in a chi2 value less than 2.0 within 30 days of testing.",
@@ -32,6 +32,15 @@
       "efc_prediction": null,
       "source": "cross_domain_transfer",
       "created_at": "2026-02-12T16:48:15.749000000+00:00"
+    },
+    {
+      "question": "Bar formation is a global m=2 resonant instability that cannot be predicted by local Toomre-style stability criteria, even with EFC's shear correction (g_EFC = α·v·R·dΩ/dR). The EFC-BIC v0.1 / v0.2 falsification chain (DOI 32101111) shows that no local Q-criterion couples annuli or encodes a pattern speed Ω_p. An EFC-native global mode-coupling formulation is needed to address bar morphology.",
+      "domain": "L1 disk dynamics / global bar instability",
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "approach": "Develop EFC-extended global mode equation (e.g. WKB envelope + EFC entropy gradient as inter-annulus coupling channel) or accept that bar morphology is outside EFC-BIC's domain and let Π_EFC be repurposed as a disk-state proxy (already in progress, P8/P9 candidates).",
+      "trigger_doi": "32101111",
+      "last_updated": "2026-04-26T08:32:59.858659Z"
     }
   ]
 }
