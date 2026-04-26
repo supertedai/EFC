@@ -1,0 +1,348 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor,colortbl}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{mdframed}
+\usepackage{lastpage}
+\usepackage{orcidlink}
+
+% --- Colors ---
+\definecolor{efcblue}{RGB}{30,75,135}
+\definecolor{efcred}{RGB}{170,40,50}
+\definecolor{efcgreen}{RGB}{30,110,70}
+\definecolor{efcgray}{RGB}{90,90,90}
+\definecolor{lightgray}{RGB}{240,240,240}
+\definecolor{warnyellow}{RGB}{255,240,200}
+\definecolor{lavgreen}{RGB}{220,240,225}
+
+% --- Hyperref ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=efcblue,
+  urlcolor=efcblue,
+  citecolor=efcblue,
+  pdftitle={EFC-VAL-2026-005: Non-MCMC Constraints on EFC alpha},
+  pdfauthor={Morten Magnusson},
+  pdfsubject={Entropic Field Cosmology -- Validation Note -- DOI 10.6084/m9.figshare.32101213}
+}
+
+% --- Section formatting ---
+\titleformat{\section}
+  {\large\bfseries\color{efcblue}}{\thesection}{0.5em}{}
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{efcblue}}{\thesubsection}{0.4em}{}
+
+\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\subsection}{0pt}{8pt}{4pt}
+
+% --- Page header/footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{efcgray}EFC-VAL-2026-005}
+\fancyhead[R]{\small\color{efcgray}Non-MCMC constraints on $\alpha$}
+\fancyfoot[L]{\small\color{efcgray}Magnusson, M.\ (2026)}
+\fancyfoot[C]{\small\color{efcgray}CC BY 4.0}
+\fancyfoot[R]{\small\color{efcgray}\thepage{} / \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Custom box environments ---
+\newmdenv[
+  linecolor=efcblue,
+  linewidth=0.6pt,
+  backgroundcolor=lightgray,
+  innerleftmargin=8pt,
+  innerrightmargin=8pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+  skipabove=8pt,
+  skipbelow=8pt
+]{infobox}
+
+\newmdenv[
+  linecolor=efcred,
+  linewidth=0.7pt,
+  backgroundcolor=warnyellow,
+  innerleftmargin=8pt,
+  innerrightmargin=8pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+  skipabove=8pt,
+  skipbelow=8pt
+]{warnbox}
+
+\newmdenv[
+  linecolor=efcgreen,
+  linewidth=0.6pt,
+  backgroundcolor=lavgreen,
+  innerleftmargin=8pt,
+  innerrightmargin=8pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+  skipabove=8pt,
+  skipbelow=8pt
+]{notebox}
+
+\begin{document}
+
+% =========================================================
+% TITLE BLOCK
+% =========================================================
+\begin{flushleft}
+{\Large\bfseries\color{efcblue}Non-MCMC Constraints on the EFC \boldmath$\alpha$-Parameter:\\[2pt]
+BAO, Growth-Rate, and Cluster Evidence\par}
+
+\vspace{6pt}
+{\small\color{efcgray}Validation Note \textbf{EFC-VAL-2026-005} \quad$\bullet$\quad Version 1.0 \quad$\bullet$\quad 26 April 2026\par}
+{\small\color{efcgray}DOI: \href{https://doi.org/10.6084/m9.figshare.32101213}{10.6084/m9.figshare.32101213}\par}
+
+\vspace{10pt}
+\textbf{Morten Magnusson}\,\orcidlink{0009-0002-4860-5095}\\[1pt]
+\small Symbiose Research, Sandnes, Norway \\
+\small \texttt{ORCID: 0009-0002-4860-5095} \quad$\bullet$\quad \texttt{github.com/supertedai/EFC} \\
+\small License: CC BY 4.0
+\end{flushleft}
+
+\vspace{4pt}
+\hrule
+\vspace{8pt}
+
+% =========================================================
+% ABSTRACT
+% =========================================================
+\begin{infobox}
+\textbf{Abstract.} We present non-MCMC constraints on the EFC parameter $\alpha$ from five independent datasets: DESI Y1 BAO, BOSS DR12 BAO, multi-epoch growth rate ($f\sigma_8$), IllustrisTNG cluster statistics, and cosmic chronometer $H(z)$. \textbf{Non-MCMC results are treated strictly as model-comparison metrics, not as parameter posteriors.} Whereas concurrent MCMC inference is degeneracy-limited ($\alpha = -0.101 \pm 0.212$, $0.479\sigma$, all chains terminating in \texttt{STOPPED\_DEGENERACY\_PERSISTS}), cross-validation and likelihood-ratio methods yield consistent directional preference for EFC across the geometric and growth probes ($\Delta\chi^2_{\mathrm{DESI}} = -22.01$; $\Delta\chi^2_{\mathrm{BOSS}} = -7.77$; $\alpha = -1.00 \pm 0.46$ at $2.20\sigma$ from $f\sigma_8$). Non-MCMC results lie within $\sim 0.7\sigma$ of the previously sealed blind predictions ($\alpha = -0.702, -0.689$), while the MCMC posterior shows a $\sim 2.8\sigma$ tension with the same priors. We interpret this as methodological tension between inference frameworks under degeneracy, not as a detection-level signal. The note formalises results previously held only in an internal breakthrough tracker, registers two new validation IDs (DESI Y1, IllustrisTNG), and cross-references prior validations \texttt{EFC-VAL-2026-002} and \texttt{EFC-VAL-2026-003}.
+\end{infobox}
+
+% =========================================================
+% 1. MOTIVATION
+% =========================================================
+\section{Motivation}
+
+The EFC parameter $\alpha$ governs the entropic correction to the cosmological background equation (sector L0--L2 in the EFC framework atlas). Standard MCMC inference (\texttt{cobaya} with EMCEE / NUTS samplers, ten consecutive runs as of April 2026) repeatedly terminates with the diagnostic \texttt{STOPPED\_DEGENERACY\_PERSISTS}: the posterior for $\alpha$ remains uninformative ($\alpha = -0.101 \pm 0.212$, significance $0.479\sigma$, $\Delta\mathrm{AIC} = +1.763$), with all internal node states reported as \texttt{COLLAPSED}, \texttt{FAIL}, or \texttt{NO\_SIGNAL}.
+
+Non-MCMC inference --- using $\Delta\chi^2$ likelihood ratios, $k$-fold cross-validation (CV), leave-one-out (LOO) validation, and information-criterion comparison ($\Delta\mathrm{AIC}$) --- evaluates model fit and generalisation directly, without sampling the posterior. These methods constitute model comparison metrics rather than parameter estimates, and they are not vulnerable to the same parameter degeneracies that paralyse MCMC chains.
+
+This note formalises five non-MCMC results that previously existed only in an internal breakthrough tracker, registers them as system-level validation entries, and compares them against the framework's pre-registered sealed predictions.
+
+\begin{warnbox}
+\textbf{Interpretive caveat.} Non-MCMC results in this note are model-comparison metrics computed under fixed-form likelihood evaluation and cross-validation. They are \emph{not} marginalised posterior estimates and should not be interpreted as such. Statistical comparisons against MCMC posteriors are reported as inference-framework tensions, not as posterior contradictions.
+\end{warnbox}
+
+% =========================================================
+% 2. RESULTS
+% =========================================================
+\section{Results per Dataset}
+
+\subsection{BAO --- DESI Y1}
+
+\begin{tabular}{@{}lp{0.7\textwidth}@{}}
+\textbf{Result} & $\Delta\chi^2 = -22.01$ (EFC preferred over $\Lambda$CDM) \\
+\textbf{Method} & 5-fold cross-validation; all folds preferring EFC \\
+\textbf{Data} & DESI DR1 BAO consensus \\
+\textbf{Atlas link} & \texttt{w0wa\_preference} (L0); \texttt{H0\_tension} (L0) \\
+\textbf{Validation ID} & New: \texttt{vc\_1d8a8541be16} (pending approval) \\
+\end{tabular}
+
+\vspace{4pt}
+The DESI Y1 result is the strongest single-dataset BAO signal in the registry. Cross-validation across five folds confirms the preference is generalisable rather than a local fit artefact. No prior validation ID exists; one is registered with this note.
+
+\subsection{BAO --- BOSS DR12}
+
+\begin{tabular}{@{}lp{0.7\textwidth}@{}}
+\textbf{Result} & $\Delta\chi^2 = -7.77$, $k_{\mathrm{eff}} = 0$ \\
+\textbf{Method} & Direct likelihood ratio (no extra effective parameters) \\
+\textbf{Data} & BOSS DR12 consensus \\
+\textbf{Atlas link} & \texttt{sigma8\_growth} (L1); \texttt{w0wa\_preference} (L0) \\
+\textbf{Cross-ref.} & \texttt{EFC-VAL-2026-002} (DOI: \href{https://doi.org/10.6084/m9.figshare.31954125}{10.6084/m9.figshare.31954125}) \\
+\end{tabular}
+
+\vspace{4pt}
+The condition $k_{\mathrm{eff}} = 0$ is significant: the EFC correction absorbs the BAO signal preference without introducing additional effective free parameters. This entry updates \texttt{EFC-VAL-2026-002} with the propagated non-MCMC result.
+
+\subsection{Multi-epoch $f\sigma_8$ --- \texttt{fs8\_extended}}
+
+\begin{tabular}{@{}lp{0.7\textwidth}@{}}
+\textbf{Result} & $\alpha = -1.00 \pm 0.46$ ($2.20\sigma$); LOO 7/7; $\Delta\mathrm{AIC} = -2.91$ \\
+\textbf{Method} & Leave-one-out cross-validation across 7 redshift epochs \\
+\textbf{Data} & Compiled $f\sigma_8$ catalogue (multi-survey, multi-epoch) \\
+\textbf{Atlas link} & \texttt{sigma8\_growth} (L1); \texttt{S8\_tension} (L2) \\
+\textbf{Cross-ref.} & \texttt{EFC-VAL-2026-003} (DOI: \href{https://doi.org/10.6084/m9.figshare.31955871}{10.6084/m9.figshare.31955871}) \\
+\textbf{Watchlist} & \texttt{fs8\_extended\_alpha\_signal\_watch} (W3) \\
+\end{tabular}
+
+\vspace{4pt}
+This is the strongest growth-sector signal in the registry. The full LOO pass (7 of 7 epochs preferring EFC under removal-and-prediction) suggests the signal is not driven by any single epoch. The negative $\Delta\mathrm{AIC}$ confirms preference holds after parsimony correction. The result is below the standard $3\sigma$ detection threshold and is reported as an indication, not a detection.
+
+\subsection{Cluster statistics --- IllustrisTNG}
+
+\begin{tabular}{@{}lp{0.7\textwidth}@{}}
+\textbf{Result} & $\chi^2_{\mathrm{red}} \approx 0.00$ \\
+\textbf{Data} & IllustrisTNG simulation cluster catalogue (proxy data) \\
+\textbf{Atlas link} & \texttt{sigma8\_growth} (L1) \\
+\textbf{Validation ID} & New: \texttt{vc\_5b843e61b51c} (pending approval) \\
+\end{tabular}
+
+\begin{warnbox}
+\textbf{Caveat:} a reduced $\chi^2$ approaching zero is consistent with overfitting, with overestimation of measurement uncertainties, or with an effective degree-of-freedom count too small for the model. The result is reported here for completeness and registry integrity, but \emph{should not be interpreted} as an independent confirmation of EFC until (i) the effective DOF count, (ii) the underlying covariance, and (iii) the simulation-derived error model have been independently audited. This caveat is reproduced in the validation entry.
+\end{warnbox}
+
+\subsection{Cosmic chronometers --- $H(z)$}
+
+\begin{tabular}{@{}lp{0.7\textwidth}@{}}
+\textbf{Result} & $\Delta\chi^2 = -0.17$ \\
+\textbf{Atlas link} & \texttt{H0\_tension} (L0) \\
+\end{tabular}
+
+\vspace{4pt}
+The result is sub-statistical and carries no weight in the joint comparison. It is included for completeness only. Cosmic chronometer $H(z)$ is known to be systematics-dominated; the absence of a signal is neither a confirmation nor a falsification.
+
+% =========================================================
+% 3. COMPARISON WITH SEALED PREDICTIONS
+% =========================================================
+\section{Comparison with Sealed Blind Predictions}
+
+Two prior $\alpha$-predictions were sealed with cryptographic hashes prior to the analyses presented here. They are summarised in Table~\ref{tab:seals}.
+
+\begin{table}[!ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{Source} & \textbf{Seal-ID} & \textbf{$\alpha$} & \textbf{Method} \\
+\midrule
+Sealed prediction 1 & \texttt{freeze\_20260221\_160857} & $-0.702$ & NUTS \\
+Sealed prediction 2 & \texttt{freeze\_20260218\_050713} & $-0.689$ & NUTS \\
+\midrule
+\texttt{fs8\_extended} (this note) & --- & $-1.00 \pm 0.46$ & LOO \\
+Concurrent MCMC (degeneracy-limited) & --- & $-0.101 \pm 0.212$ & EMCEE \\
+\bottomrule
+\end{tabular}
+\caption{Sealed predictions vs.\ active inference results. The sealed mean is $\bar\alpha_{\mathrm{seal}} = -0.696$. Sealed predictions were registered prior to the inference work in this note.}
+\label{tab:seals}
+\end{table}
+
+\subsection{Consistency analysis}
+
+Treating the sealed mean $\bar\alpha_{\mathrm{seal}} = -0.696$ as a reference point and using the reported uncertainties:
+
+\begin{itemize}[leftmargin=18pt,itemsep=2pt]
+  \item \textbf{\texttt{fs8\_extended} vs.\ sealed mean:} offset $= 0.304$; in units of the LOO uncertainty $\sigma_{\mathrm{LOO}} = 0.46$, this corresponds to $0.66\sigma_{\mathrm{LOO}}$. \emph{Consistent.}
+  \item \textbf{MCMC vs.\ sealed mean:} offset $= 0.595$; in units of the MCMC uncertainty $\sigma_{\mathrm{MCMC}} = 0.212$, this corresponds to $2.81\sigma_{\mathrm{MCMC}}$. \emph{Tension under MCMC framing.}
+  \item \textbf{MCMC vs.\ \texttt{fs8\_extended}:} offset $= 0.899$; under quadrature combination of uncertainties ($\sqrt{0.46^2 + 0.212^2} = 0.506$), this corresponds to a cross-framework offset of $1.78\sigma$.
+\end{itemize}
+
+\begin{warnbox}
+\textbf{Methodological note.} The cross-framework offset above compares a posterior-derived $\sigma$ (MCMC) against a CV-derived uncertainty (LOO). These are \emph{not the same statistical object}: the former is a marginalised credible width, the latter a generalisation-based scatter. The tension should be read as \emph{a methodological signal that the two inference frameworks disagree under the present degeneracy condition}, not as a posterior-level contradiction. Earlier internal versions of this comparison cited a $\sim 4\sigma$ figure; that figure conflated inference frames and is corrected here.
+\end{warnbox}
+
+\subsection{Interpretation (conservative, protocol v1.2)}
+
+The non-MCMC result and the sealed predictions are mutually consistent within $1\sigma_{\mathrm{LOO}}$. The MCMC result and the sealed predictions are in tension at the $\sim 2.8\sigma_{\mathrm{MCMC}}$ level. The combined pattern is consistent with the hypothesis that the MCMC chains are degeneracy-limited rather than expressing the absence of an $\alpha$-signal. This is an indication, not a detection.
+
+% =========================================================
+% 4. CONSOLIDATED EFC vs LCDM TABLE
+% =========================================================
+\section{Consolidated Non-MCMC Comparison}
+
+Table~\ref{tab:consolidated} consolidates the five non-MCMC results into a single comparison view. The \emph{Direction} column reports whether the dataset-level metric favours EFC over $\Lambda$CDM under the conservative language convention; the \emph{Strength} column classifies the magnitude of that preference under the same convention. No entry is described as a detection. Strong indicates a multi-fold cross-validated $\Delta\chi^2$ improvement of $\gtrsim 20$; Moderate indicates a likelihood-ratio improvement without parameter inflation; Indication indicates a sub-$3\sigma$ growth-sector signal that survives leave-one-out. Inconclusive and sub-statistical entries are included for registry completeness only.
+
+\begin{table}[!ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{@{}lXcc@{}}
+\toprule
+\textbf{Dataset} & \textbf{Result} & \textbf{Direction} & \textbf{Strength} \\
+\midrule
+\rowcolor{lavgreen}
+DESI Y1 BAO & $\Delta\chi^2 = -22.01$, 5-fold CV passed & EFC preferred & Strong \\
+\rowcolor{lavgreen}
+BOSS DR12 BAO & $\Delta\chi^2 = -7.77$, $k_{\mathrm{eff}} = 0$ & EFC preferred & Moderate \\
+\rowcolor{lavgreen}
+$f\sigma_8$ extended & $\alpha = -1.00 \pm 0.46$ ($2.20\sigma$), LOO 7/7, $\Delta\mathrm{AIC} = -2.91$ & EFC preferred & Indication \\
+\rowcolor{warnyellow}
+IllustrisTNG cluster & $\chi^2_{\mathrm{red}} \approx 0.00$ & Consistent (caveat: see \S2.4) & Inconclusive \\
+\rowcolor{lightgray}
+$H(z)$ chronometers & $\Delta\chi^2 = -0.17$ & --- & Sub-statistical \\
+\bottomrule
+\end{tabularx}
+\caption{Non-MCMC comparison of EFC versus $\Lambda$CDM across five independent probes. Direction and strength are reported under the conservative language convention (protocol v1.2): no entry is described as a detection, and all sub-$3\sigma$ signals are reported as indications or consistencies.}
+\label{tab:consolidated}
+\end{table}
+
+% =========================================================
+% 5. CONCLUSION
+% =========================================================
+\section{Conclusion}
+
+Non-MCMC inference across BAO, growth-rate, and cluster datasets yields consistent directional preference for EFC in three of five probes, all sub-$3\sigma$ but mutually agreeing in sign and order of magnitude with the previously sealed predictions ($\bar\alpha_{\mathrm{seal}} = -0.696$ versus $\alpha_{\mathrm{LOO}} = -1.00 \pm 0.46$). The concurrent MCMC posterior is degeneracy-limited and agnostic on the same data. The methodological tension between MCMC and non-MCMC frameworks is interpreted as a signature of unresolved degeneracy in the posterior sampling, not as evidence for or against EFC at the detection level.
+
+\subsection{Next steps}
+
+\begin{enumerate}[leftmargin=22pt,itemsep=2pt]
+  \item \textbf{MCMC informed by non-MCMC.} Use the LOO-derived $\alpha$-direction as a profile-likelihood axis to break the posterior degeneracy without imposing a strong prior.
+  \item \textbf{Joint fit.} Combine BAO and $f\sigma_8$ likelihoods in a single inference run with the proposed profile axis to test signal robustness.
+  \item \textbf{Cluster audit.} Re-evaluate the IllustrisTNG entry under explicit DOF accounting before any further weight is placed on the $\chi^2_{\mathrm{red}} = 0$ result.
+  \item \textbf{Euclid DR1 (Oct 2026).} The sealed \texttt{phi\_psi\_slip} kill-test (watchlist W2) provides the next external falsification opportunity; pipeline preparation is in scope of the EFC roadmap.
+\end{enumerate}
+
+% =========================================================
+% 6. DATA AVAILABILITY
+% =========================================================
+\section{Data and Code Availability}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\textbf{Repository:} & \href{https://github.com/supertedai/EFC}{github.com/supertedai/EFC} \\
+\textbf{Validation IDs:} & \texttt{vc\_1d8a8541be16} (DESI Y1, pending), \texttt{vc\_5b843e61b51c} (TNG cluster, pending) \\
+\textbf{Watchlist refs:} & \texttt{grav\_kt3\_persistent\_marginal} (W1), \texttt{phi\_psi\_slip\_euclid\_watch} (W2), \texttt{fs8\_extended\_alpha\_signal\_watch} (W3) \\
+\textbf{Cross-references:} & \texttt{EFC-VAL-2026-002}, \texttt{EFC-VAL-2026-003} \\
+\textbf{Data sources:} & DESI DR1 (public release), BOSS DR12 (public release), $f\sigma_8$ compilation (multi-survey, see EFC-VAL-2026-003), IllustrisTNG (public simulation data), cosmic chronometer compilation (public). \\
+\end{tabularx}
+
+\subsection{Reproducibility statement}
+
+All numerical results in this note are reproducible from the public repository using \texttt{cobaya} $\geq 3.5$ with a working CAMB or CLASS backend. The non-MCMC inference layer (5-fold CV, LOO, $\Delta\chi^2$, $\Delta\mathrm{AIC}$) is implemented in the \texttt{empirical-validation} module. Sealed predictions are verifiable via the published cryptographic hashes in the EFC framework atlas.
+
+% =========================================================
+% 7. REFERENCES
+% =========================================================
+\section*{References}
+
+\begin{sloppypar}
+\begin{enumerate}[leftmargin=22pt,itemsep=3pt,label={[\arabic*]}]
+  \item Magnusson, M.\ (2026). \emph{Foundations of Entropic Field Cosmology (EFC)}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31135597}{10.6084/m9.figshare.31135597}.
+  \item Magnusson, M.\ (2026). \emph{Pre-Registered Predictions for EFC}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.32010399}{10.6084/m9.figshare.32010399}.
+  \item Magnusson, M.\ (2026). \emph{BOSS DR12 Transfer Validation (EFC-VAL-2026-002)}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31954125}{10.6084/m9.figshare.31954125}.
+  \item Magnusson, M.\ (2026). \emph{Multi-epoch $f\sigma_8$ Growth Rate Test (EFC-VAL-2026-003)}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31955871}{10.6084/m9.figshare.31955871}.
+  \item Magnusson, M.\ (2026). \emph{Bullet Cluster Under EFC (EFC-VAL-2026-004)}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31963668}{10.6084/m9.figshare.31963668}.
+  \item Magnusson, M.\ (2026). \emph{Cosmological Growth Constraints ($\Lambda$-Locked)}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31348414}{10.6084/m9.figshare.31348414}.
+  \item Magnusson, M.\ (2026). \emph{Entropy Budget Working Note}. Figshare. DOI: \href{https://doi.org/10.6084/m9.figshare.31942734}{10.6084/m9.figshare.31942734}.
+\end{enumerate}
+\end{sloppypar}
+
+\vspace{4pt}
+\begin{notebox}
+\begin{sloppypar}
+\textbf{Citation.} Magnusson, M.\ (2026). \emph{Non-MCMC Constraints on the EFC $\alpha$-Parameter: BAO, Growth-Rate, and Cluster Evidence} (EFC-VAL-2026-005). Figshare. \\
+DOI: \href{https://doi.org/10.6084/m9.figshare.32101213}{10.6084/m9.figshare.32101213}.
+\end{sloppypar}
+\end{notebox}
+
+\end{document}

@@ -1,0 +1,72 @@
+{
+  "title": "Non-MCMC Constraints on the EFC α-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+  "description": "Validation note EFC-VAL-2026-005. We present non-MCMC constraints on the EFC alpha parameter from five independent datasets: DESI Y1 BAO, BOSS DR12 BAO, multi-epoch growth rate (fσ8), IllustrisTNG cluster statistics, and cosmic chronometer H(z). Non-MCMC results are treated strictly as model-comparison metrics, not as parameter posteriors. While concurrent MCMC inference is degeneracy-limited (alpha = -0.101 +/- 0.212, 0.479 sigma), cross-validation and likelihood-ratio methods show consistent directional preference for EFC: Delta-chi^2 = -22.01 (DESI Y1, 5-fold CV), Delta-chi^2 = -7.77 (BOSS DR12, k_eff = 0), and alpha = -1.00 +/- 0.46 (2.20 sigma) from multi-epoch fσ8 with LOO 7/7 and Delta-AIC = -2.91. Non-MCMC results are within ~0.7 sigma of previously sealed blind predictions (alpha = -0.702, -0.689). The MCMC posterior shows a ~2.8 sigma tension with the same priors. We interpret this as methodological tension between inference frameworks under degeneracy, not as a detection-level signal. This note formalises results previously held only in an internal breakthrough tracker, registers two new validation IDs (DESI Y1, IllustrisTNG), and cross-references prior validations EFC-VAL-2026-002 and EFC-VAL-2026-003.",
+  "authors": [
+    {
+      "name": "Morten Magnusson",
+      "orcid_id": "0009-0002-4860-5095",
+      "affiliation": "Symbiose Research, Sandnes, Norway"
+    }
+  ],
+  "categories": [
+    "Cosmology and Extragalactic Astronomy",
+    "Theoretical and Computational Chemistry",
+    "Statistical Theory"
+  ],
+  "tags": [
+    "cosmology",
+    "EFC",
+    "entropic field cosmology",
+    "alpha parameter",
+    "BAO",
+    "DESI",
+    "BOSS",
+    "growth rate",
+    "fsigma8",
+    "structure growth",
+    "cross-validation",
+    "leave-one-out",
+    "model comparison",
+    "MCMC degeneracy",
+    "validation note",
+    "pre-registered prediction"
+  ],
+  "license": "CC BY 4.0",
+  "defined_type": "preprint",
+  "resource_doi": "10.6084/m9.figshare.32101213",
+  "resource_title": "Non-MCMC Constraints on the EFC α-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+  "references": [
+    "https://doi.org/10.6084/m9.figshare.31135597",
+    "https://doi.org/10.6084/m9.figshare.32010399",
+    "https://doi.org/10.6084/m9.figshare.31954125",
+    "https://doi.org/10.6084/m9.figshare.31955871",
+    "https://doi.org/10.6084/m9.figshare.31963668",
+    "https://doi.org/10.6084/m9.figshare.31348414",
+    "https://doi.org/10.6084/m9.figshare.31942734"
+  ],
+  "custom_fields": {
+    "internal_id": "EFC-VAL-2026-005",
+    "validation_candidates": [
+      "vc_1d8a8541be16",
+      "vc_5b843e61b51c"
+    ],
+    "watchlist_refs": [
+      "grav_kt3_persistent_marginal",
+      "phi_psi_slip_euclid_watch",
+      "fs8_extended_alpha_signal_watch"
+    ],
+    "framework_atlas_links": {
+      "w0wa_preference": "L0",
+      "H0_tension": "L0",
+      "sigma8_growth": "L1",
+      "S8_tension": "L2"
+    },
+    "sealed_predictions_referenced": [
+      "freeze_20260221_160857",
+      "freeze_20260218_050713"
+    ],
+    "version": "1.0",
+    "release_date": "2026-04-26",
+    "language": "en"
+  }
+}
