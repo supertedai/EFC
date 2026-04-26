@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.2",
-  "last_updated": "2026-04-19",
+  "version": "1.3",
+  "last_updated": "2026-04-26",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -582,6 +582,72 @@
       "efc_relevance": "Black holes formed in early universe as DM candidate; LIGO-Virgo detections reopened asteroid-mass window. Orthogonal to EFC; same scope-separation as FDM/SIDM.",
       "ledger_action": "Logged as particle-equivalent DM alternative.",
       "status": "framework-logged"
+    },
+    {
+      "key": "arXiv:2604.19831",
+      "title": "Van der Waals Gravity Theory",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.19831",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-20",
+      "efc_relevance": "Jacobson-Clausius extension with non-ideal thermodynamic equation of state in the gravitational sector; effective gravitational coupling becomes density-dependent and resolves the initial-singularity. Direct ontological cousin of EFC: shared Clausius-relation derivation, shared evolving-G_eff structure that EFC realises through K(ρ)-stiffness.",
+      "ledger_action": "Add to External Research Ledger as 2026 emergent-entropic-gravity competitor; cross-reference framework:Jacobson-1995 and framework:Padmanabhan-2009; required ontological-comparison row in WP1 recovery-conditions table.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.19545",
+      "title": "Viability of Big Bang Nucleosynthesis in Some Generalized Horizon Entropies",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.19545",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-21",
+      "efc_relevance": "Derives BBN bounds (freeze-out temperature, helium and deuterium abundances) on the same generalized-horizon-entropy family that contains framework:MassToHorizon-2025 and EFC's L1 entropic regime; tightens the high-z floor on EFC parameter space.",
+      "ledger_action": "Add as blocking BBN constraint to Validation Ledger; require explicit EFC L1-prediction set to satisfy BBN bounds; cross-reference framework:MassToHorizon-2025 and EFC L1→L2 transition node.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.19849",
+      "title": "Cosmology of the interacting Tsallis holographic dark energy in f(R,T) gravity framework",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.19849",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-21",
+      "efc_relevance": "Tsallis-entropy generalisation of holographic DE inside f(R,T) gravity — a hybrid of two competitor classes already logged (HolographicDE-Li2004, KaniadakisHDE-Drepanou2021). Same generalised-entropy family as EFC's information-entropy ansatz; required head-to-head ΔAIC at background plus growth.",
+      "ledger_action": "Logged under entropic/holographic-DE comparator family; cite in WP1 recovery-conditions table; add to competitor-landscape ΔAIC matrix.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.21151",
+      "title": "The f(Q,T) gravity and affine EoS: observational aspects",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.21151",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-22",
+      "efc_relevance": "Modified-gravity competitor with explicit DESI BAO + Pantheon+SH0ES + Cosmic-Chronometer constraints on a linear f(Q,T)=Q+βT model with affine equation of state. Spans the same (w0, wa)-plane as EFC's L2→L3 transition; required head-to-head ΔAIC entry.",
+      "ledger_action": "Add to WP3 competitor-landscape table; cross-reference arXiv:2503.14738 (DESI DR2) and framework:wCDM-CPL-Chevallier2001.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.21490",
+      "title": "Impact of the Infrared Cutoff on Structure Formation in Tsallis Holographic Dark Energy",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.21490",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-23",
+      "efc_relevance": "Demonstrates that fσ8(z) growth predictions in the Tsallis-entropy holographic family depend strongly on the IR-cutoff choice (future-event horizon ≈ ΛCDM, particle horizon fails). Direct lesson for EFC: the boundary-condition / IR-completion choice in the entropic field S(x) must be argued explicitly, otherwise EFC inherits the same degeneracy.",
+      "ledger_action": "Add to WP1 recovery-conditions table as IR-completion sensitivity warning; cross-reference EFC perturbation-sector growth predictions (FA2 / μ(a)<1) and ledger_perturbationsector_valley.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.21671",
+      "title": "Saturation Mechanisms in the Interacting Dark Sector",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.21671",
+      "date_seen": "2026-04-26",
+      "date_published": "2026-04-23",
+      "efc_relevance": "Introduces a half-saturation ‘sparseness scale’ in the dark-sector coupling that bounds energy exchange between DM and DE and prevents phantom-crossing. Conceptually parallel to EFC's K(ρ)-stiffness saturation in the L2→L3 transition; strong cousin of framework:CoupledDE-DM-Amendola2000 with a nonlinear saturation kernel.",
+      "ledger_action": "Add as 2026 nonlinear coupled-DE/DM cousin to competitor-landscape table; required head-to-head with EFC saturation kernel in WP3 Falsification Protocol.",
+      "status": "new"
     }
   ]
 }
