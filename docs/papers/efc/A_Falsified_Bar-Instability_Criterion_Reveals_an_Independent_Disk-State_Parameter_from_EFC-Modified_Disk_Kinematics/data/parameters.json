@@ -1,0 +1,94 @@
+{
+  "paper": {
+    "title": "A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter from EFC-Modified Disk Kinematics",
+    "author": "Morten Magnusson",
+    "doi": "10.6084/m9.figshare.32101111",
+    "date": "2026-04-25",
+    "stage": "Stage-1 candidate",
+    "version": "v0.1"
+  },
+  "equations": {
+    "Pi_EFC": "sigma_R(R) * kappa_eff(R) / (3.36 * G * Sigma(R))",
+    "kappa_eff_squared": "kappa^2 + zeta * g_EFC / R",
+    "g_EFC_shear": "alpha * v * R * dOmega/dR",
+    "g_EFC_v_squared": "alpha * d(v^2)/dR",
+    "sigma_R_jeans": "pi * G * Sigma(R) * Rd",
+    "Vflat_tanh_model": "Vflat * tanh(R / Rd)"
+  },
+  "constants": {
+    "Toomre_coefficient": 3.36,
+    "G_SI": 6.674e-11,
+    "zeta_default": 1.0,
+    "zeta_max_kappa_constraint": 1.52,
+    "sigma_R_fallback_km_s": 30.0,
+    "alpha_bounds": [
+      0.05,
+      0.95
+    ],
+    "Reval_factor": 2.2,
+    "disk_window_inner_Rd": 1.0,
+    "disk_window_outer_Rd": 3.0,
+    "savgol_window": 5,
+    "savgol_order": 2
+  },
+  "bar_prediction_results": {
+    "description": "EFC-BIC bar prediction is FALSIFIED",
+    "SPARC_sample_N_morphology": 43,
+    "SB_count": 15,
+    "SA_count": 28,
+    "AUC_v01_local": 0.22,
+    "AUC_v02_resonance_aware": 0.31,
+    "interpretation": "Anti-correlated with bar truth; bar-prediction track closed"
+  },
+  "disk_state_correlations": {
+    "SPARC_N": 112,
+    "Spearman_rho_Pimin_logSigma_disk": -0.71,
+    "Spearman_rho_Pimin_fgas": 0.65,
+    "random_half_splits": {
+      "seeds": 3,
+      "sub_samples": 6,
+      "all_consistent": true
+    },
+    "independent_fgas_test": {
+      "method": "MHI / (MHI + Mstar)",
+      "Spearman_rho": 0.53
+    },
+    "pipeline_stratification": {
+      "n_sources": 3,
+      "all_consistent": true
+    }
+  },
+  "xGASS_replication": {
+    "catalog": "xGASS (SDSS + Arecibo)",
+    "N": 98,
+    "Spearman_rho_Piproxy_logSigma_star": -0.49,
+    "Spearman_rho_Piproxy_fgas": 0.67
+  },
+  "partial_correlation_results": {
+    "description": "Pi is not reducible to log Sigma alone; residual rho(Pi, logSigma | fgas) != 0 in both samples. Partition between logSigma and fgas as predictors is sample-dependent."
+  },
+  "conclusion": {
+    "bar_instability": "REJECTED as predictor",
+    "disk_state_parameter": "Pi_min (and Pi_proxy) registered as Stage-1 candidate disk evolutionary state parameter on joint (Sigma, fgas) manifold",
+    "projection_logSigma": "negative",
+    "projection_fgas": "positive",
+    "galaxy_type": "late-type rotation-supported disks at z ~ 0"
+  },
+  "synthetic_verification": {
+    "n_templates": 3,
+    "Pi_stable_range": [
+      3.3,
+      5.9
+    ],
+    "derivative_consistency_tolerance_pct": 0.2,
+    "RAR_degeneracy_R2": 0.97
+  },
+  "atlas_registration": {
+    "phenomenon": "disk_evolutionary_state",
+    "predictions": [
+      "EFC_disk_state_logSigma_correlation_v0.1",
+      "EFC_disk_state_fgas_correlation_v0.1"
+    ],
+    "test_status": "candidate_external_support"
+  }
+}

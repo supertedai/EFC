@@ -2,27 +2,100 @@
   "$schema": "./schema.json",
   "id": "a-falsified-bar-instability-criterion-reveals-an-independent-disk-state-parameter-from-efc-modified-disk-kinematics",
   "title": "A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter from EFC-Modified Disk Kinematics",
-  "description": "Auto-generated package for A Falsified Bar Instability Criterion Reveals An Independent Disk State Parameter From Efc Modified Disk Kinematics.",
-  "version": "1.0",
-  "date": "2026-04-26",
+  "description": "This paper empirically tests an EFC-modified Toomre-like stability parameter \u03a0EFC, which augments the epicyclic frequency with an entropy-flow term, as a predictor of bar morphology in disk galaxies. The bar-onset criterion is falsified (AUC 0.22\u20130.31, anti-correlated with truth), but the minimum \u03a0 within the disk window strongly correlates with independent disk-state observables (negative with stellar surface density, positive with gas fraction) across SPARC and xGASS samples. \u03a0min is thus registered as a Stage-1 candidate disk-evolutionary-state proxy on the joint (\u03a3, fgas) manifold.",
+  "version": "v0.1",
+  "date": "2026-04-25",
+  "doi": "10.6084/m9.figshare.32101111",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Falsified",
-    "Instability",
-    "Criterion",
-    "Reveals",
-    "Independent",
-    "Disk"
+    "bar instability",
+    "Toomre Q",
+    "epicyclic frequency",
+    "disk kinematics",
+    "SPARC",
+    "xGASS",
+    "gas fraction",
+    "stellar surface density",
+    "entropy flow",
+    "shear",
+    "galactic dynamics"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "Pi_EFC": {
+      "latex": "\\Pi_{\\mathrm{EFC}}(R) = \\frac{\\sigma_R(R)\\,\\kappa_{\\mathrm{eff}}(R)}{3.36\\,G\\,\\Sigma(R)}",
+      "description": "EFC-modified Toomre-like stability parameter; smaller values indicate greater susceptibility to non-axisymmetric instabilities."
+    },
+    "kappa_eff_sq": {
+      "latex": "\\kappa_{\\mathrm{eff}}^{2} = \\kappa^{2} + \\zeta\\,\\frac{g_{\\mathrm{EFC}}}{R}",
+      "description": "Effective epicyclic frequency including an EFC entropy-flow term with universal coupling \\zeta constrained by \\kappa_{\\mathrm{eff}}^{2} \\ge 0."
+    },
+    "g_EFC_shear": {
+      "latex": "g_{\\mathrm{EFC}} = \\alpha\\, v\\, R\\, \\frac{d\\Omega}{dR}",
+      "description": "Shear-based entropy-flow proxy used in v0.2 and onward; yields the physically correct sign (reducing stability where shear is negative)."
+    },
+    "g_EFC_v2proxy": {
+      "latex": "g_{\\mathrm{EFC}} \\propto \\frac{d\\,v^{2}}{dR}",
+      "description": "Original longitudinal proxy (v0.1) for the entropy gradient; produces the wrong sign for bar triggering in rising rotation-curve regions."
+    },
+    "sigmaR_Jeans": {
+      "latex": "\\sigma_R(R) = \\pi\\,G\\,\\Sigma(R)\\,R_d",
+      "description": "Jeans-inspired prescription for the radial velocity dispersion used as the primary model; constant 30 km/s fallback only."
+    },
+    "Pi_min": {
+      "latex": "\\Pi_{\\min} = \\min_{R\\in [R_d,\\,3R_d]} \\Pi_{\\mathrm{EFC}}(R)",
+      "description": "Disk-window minimum of the stability proxy, used as the scalar observable for classification/correlation tests."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC-BIC fails as a bar predictor (AUC 0.22 local v0.1; 0.31 resonance-aware v0.2; anti-correlated rankings), but \u03a0min robustly correlates with disk state (SPARC N=112: \u03c1[\u03a0min, log \u03a3disk] = \u22120.71, \u03c1[\u03a0min, fgas] = +0.65; xGASS N=98: \u03c1[\u03a0proxy, log \u03a3\u2217] = \u22120.49, \u03c1[\u03a0proxy, fgas] = +0.67), supporting \u03a0 as a Stage-1 disk-evolution parameter.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03b6 (zeta) coupling; physical bound from \u03ba_eff^2 \u2265 0 (\u03b6_max \u2248 1.52 in sample)",
+      "entropy-gradient proxy form: d(v^2)/dR (v0.1) vs v R d\u03a9/dR shear (v0.2)",
+      "\u03c3R prescription: Jeans-based vs constant fallback",
+      "\u03a0min evaluated over R \u2208 [R_d, 3 R_d]",
+      "global resonance-aware windowing (ILR, CR, swing-X) in v0.2",
+      "\u03b1 derived per-galaxy from EFC latency fraction (bounded [0.05, 0.95])"
+    ],
+    "datasets_used": [
+      "SPARC rotation-curve sample with SIMBAD bar labels (N = 43, SA/SB clean)",
+      "SPARC structural sample for \u03a3 and fgas correlations (N = 112)",
+      "xGASS SDSS+Arecibo sample for external replication (N = 98)",
+      "SIMBAD morphological classifications (de Vaucouleurs bar code)"
+    ],
+    "verdict": "FAIL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "EFC_disk_state_logSigma_correlation_v0.1",
+      "statement": "At z \u2248 0 in late-type rotation-supported disks, the scalar \u03a0min (or \u03a0proxy) is negatively correlated with stellar/disk surface density: \u03c1(\u03a0, log \u03a3) < 0.",
+      "falsifiable_by": "Blind external samples (N \u2273 200) with resolved kinematics and surface-density maps yielding |\u03c1(\u03a0, log \u03a3)| < 0.2 (p > 0.05) after matching the analysis window and controls."
+    },
+    {
+      "id": "EFC_disk_state_fgas_correlation_v0.1",
+      "statement": "At z \u2248 0 in late-type rotation-supported disks, \u03a0min (or \u03a0proxy) is positively correlated with gas-mass fraction: \u03c1(\u03a0, fgas) > 0.",
+      "falsifiable_by": "Blind external samples (N \u2273 200) with independent MHI and M\u2217 showing |\u03c1(\u03a0, fgas)| < 0.2 (p > 0.05), and persistence of null results under partial Spearman tests controlling for log \u03a3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: On a large, blind external dataset (N \u2265 200 late-type disks) analyzed with the registered pipeline, both correlations \u03c1(\u03a0, log \u03a3) and \u03c1(\u03a0, fgas) are |\u03c1| < 0.2 with p > 0.05, and remain null under partial Spearman tests; this kills \u03a0 as a disk-state observable in EFC.",
+    "KC2: Demonstration that \u03a0 (or \u03a0proxy) is a deterministic or near-deterministic function of log \u03a3 or fgas alone (e.g., partial Spearman residuals -> |\u03c1| < 0.1 and no added explanatory power in multivariate fits), or that \u03a0 is strongly degenerate with gobs/RAR (R^2 > 0.9); this invalidates the claimed independent signal.",
+    "KC3: Replacing the Jeans \u03c3R prescription with direct resolved \u03c3R(R) measurements (stellar velocity-dispersion maps) eliminates the correlations (|\u03c1| < 0.2, p > 0.05); this indicates a pipeline artifact and kills the proposed observable.",
+    "KC4: Attempts to recover bar-prediction performance with \u03b6 requiring \u03ba_eff^2 < 0 in any part of the analysis window (i.e., \u03b6 > \u03b6_max from physical constraint) are disallowed; persistent AUC \u2264 0.5 (or anti-correlated rankings) across independent labeled samples seals the failure of EFC-BIC.",
+    "KC5: High-quality IFU kinematics showing that the sign of v R d\u03a9/dR in disk windows is predominantly positive (contrary to expectations) across a representative sample would contradict the physical sign mechanism underlying gEFC in this formulation."
+  ],
+  "tier": "T3",
+  "paper_type": "empirical_test",
+  "related_packages": [],
   "files": {
     "pdf": "PAPER_STAGE1.pdf",
     "readme": "README.md"
   },
-  "doi": "10.6084/m9.figshare.32101111",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32101111"
 }
