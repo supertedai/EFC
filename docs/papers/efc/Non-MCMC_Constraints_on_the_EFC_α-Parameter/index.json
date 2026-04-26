@@ -1,25 +1,96 @@
 {
   "$schema": "./schema.json",
-  "id": "non-mcmc-constraints-on-the-efc-α-parameter",
-  "title": "Non Mcmc Constraints On The Efc Α Parameter",
-  "description": "Auto-generated package for Non Mcmc Constraints On The Efc Α Parameter.",
+  "id": "non-mcmc-constraints-on-the-efc-\u03b1-parameter",
+  "title": "Non-MCMC Constraints on the EFC \u03b1-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+  "description": "Validation note reporting non-MCMC, model-comparison constraints on the Energy-Flow Cosmology (EFC) \u03b1-parameter using BAO (DESI Y1, BOSS DR12), multi-epoch growth-rate f\u03c38, IllustrisTNG cluster statistics, and cosmic chronometer H(z) data. Cross-validation and likelihood-ratio tests consistently prefer EFC over \u039bCDM (e.g., \u0394\u03c72DESI = \u221222.01; \u0394\u03c72BOSS = \u22127.77; \u03b1 = \u22121.00 \u00b1 0.46 at 2.20\u03c3 from f\u03c38), while concurrent MCMC inference remains degeneracy-limited. Results align within ~0.7\u03c3 of sealed blind predictions and are framed as model-comparison metrics, not posteriors.",
   "version": "1.0",
   "date": "2026-04-26",
+  "doi": "10.6084/m9.figshare.32101213",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Mcmc",
-    "Constraints",
-    "Parameter"
+    "\u03b1-parameter",
+    "BAO",
+    "DESI Y1",
+    "BOSS DR12",
+    "growth rate f\u03c38",
+    "cross-validation",
+    "likelihood ratio",
+    "\u0394\u03c72",
+    "AIC",
+    "MCMC degeneracy",
+    "cosmic chronometers"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "delta_chi2_definition": {
+      "latex": "\\Delta \\chi^2 = \\chi^2_{\\mathrm{EFC}} - \\chi^2_{\\Lambda\\mathrm{CDM}}",
+      "description": "Likelihood-ratio test statistic comparing EFC to \u039bCDM; negative values indicate EFC provides a better fit to the dataset."
+    },
+    "aic_gaussian": {
+      "latex": "\\mathrm{AIC} \\simeq \\chi^2 + 2k",
+      "description": "Akaike Information Criterion for Gaussian likelihoods; k is the number of effective free parameters. Lower AIC indicates a preferred model after parsimony correction."
+    },
+    "fsigma8_definition": {
+      "latex": "f\\sigma_8(z) = \\frac{d\\ln D(z)}{d\\ln a} \\, \\sigma_8(z)",
+      "description": "Definition of the growth-rate observable combining the logarithmic growth rate f with the matter clustering amplitude \u03c38 at redshift z."
+    }
+  },
+  "key_results": {
+    "main_finding": "Non-MCMC model-comparison tests prefer EFC over \u039bCDM across BAO and growth probes (\u0394\u03c72DESI = \u221222.01; \u0394\u03c72BOSS = \u22127.77; \u03b1 = \u22121.00 \u00b1 0.46 at 2.20\u03c3 from f\u03c38), while MCMC chains remain degeneracy-limited and uninformative for \u03b1.",
+    "delta_chi2": -22.01,
+    "significance_sigma": 2.2,
+    "parameters_tested": [
+      "\u03b1"
+    ],
+    "datasets_used": [
+      "DESI Y1 BAO (DR1 consensus; 5-fold CV)",
+      "BOSS DR12 BAO (consensus; keff = 0)",
+      "Multi-epoch f\u03c38 catalogue (7 redshift epochs; LOO CV)",
+      "IllustrisTNG cluster statistics (proxy; \u03c72red \u2248 0 with caveats)",
+      "Cosmic chronometers H(z)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "freeze_20260221_160857",
+      "statement": "Sealed blind prediction: \u03b1 = \u22120.702 (derived via NUTS) prior to analyses in this note.",
+      "falsifiable_by": "A robust, cross-validated multi-probe analysis (BAO + growth) yielding \u03b1 inconsistent with \u22120.702 at >3\u03c3 or \u0394AIC strongly favoring \u039bCDM (\u0394AIC \u2265 +10)."
+    },
+    {
+      "id": "freeze_20260218_050713",
+      "statement": "Sealed blind prediction: \u03b1 = \u22120.689 (derived via NUTS) prior to analyses in this note.",
+      "falsifiable_by": "Independent datasets (e.g., updated DESI BAO + f\u03c38) jointly constraining \u03b1 to be consistent with 0 within 1\u03c3 and preferring \u039bCDM with \u0394\u03c72 \u2265 +10 or \u0394AIC \u2265 +10."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: BAO falsification \u2014 In a joint DESI (updated releases) + BOSS analysis with k-fold CV, the aggregated preference flips to \u039bCDM with \u0394\u03c72 \u2265 +10 (EFC worse) and \u0394AIC \u2265 +10 across folds (\u226580% of folds).",
+    "KC2: Growth-rate falsification \u2014 Multi-epoch f\u03c38 leave-one-out validation shows a majority of held-out epochs (\u22655/7) preferring \u039bCDM, and the combined constraint yields |\u03b1| < 0.2 at 95% CL (i.e., \u03b1 consistent with 0) with \u0394AIC \u2265 +10 for \u039bCDM.",
+    "KC3: Degeneracy-resolved inference \u2014 A posterior-sampling analysis (e.g., improved priors/data breaking degeneracies) returns \u03b1 = 0 \u00b1 0.1 (68% CL) and \u039bCDM is strongly favored over EFC with \u0394AIC \u2265 +10 or Bayes factor lnB \u2264 \u22125 (against EFC).",
+    "KC4: Cross-probe consistency \u2014 A consistent multi-probe fit (BAO + f\u03c38 + H(z) \u00b1 clusters after audited covariances) finds no EFC preference (combined \u0394\u03c72 \u2265 0) and shows tension between EFC predictions and data at \u22653\u03c3 in at least two independent probes.",
+    "KC5: Simulation/cluster audit \u2014 After independent auditing of effective DOF and covariances for cluster/simulation-based constraints, \u03c72red \u2248 1 for \u039bCDM while EFC degrades fit by \u0394\u03c72 \u2265 +10, removing the apparent EFC advantage."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-val-2026-002",
+      "doi": "10.6084/m9.figshare.31954125",
+      "role": "BOSS DR12 BAO validation (updated here with non-MCMC \u0394\u03c72 and keff = 0 result)"
+    },
+    {
+      "id": "efc-val-2026-003",
+      "doi": "10.6084/m9.figshare.31955871",
+      "role": "Multi-epoch f\u03c38 validation (LOO CV; \u03b1 constraint reported here)"
+    }
+  ],
   "files": {
     "pdf": "efc_val_2026_005.pdf",
     "readme": "README.md"
   },
-  "doi": "10.6084/m9.figshare.32101213",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32101213"
 }

@@ -1,0 +1,114 @@
+{
+  "paper": {
+    "title": "Non-MCMC Constraints on the EFC \u03b1-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+    "validation_id": "EFC-VAL-2026-005",
+    "doi": "10.6084/m9.figshare.32101213",
+    "version": "1.0",
+    "date": "2026-04-26",
+    "author": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "license": "CC BY 4.0"
+  },
+  "fiducial_cosmology": {
+    "H0": {
+      "value": 67.4,
+      "unit": "km/s/Mpc",
+      "source": "Planck 2018"
+    },
+    "Omega_m": 0.315,
+    "Omega_Lambda": 0.685,
+    "sigma8": 0.811
+  },
+  "mcmc_results": {
+    "alpha_mean": -0.101,
+    "alpha_std": 0.212,
+    "significance_sigma": 0.479,
+    "delta_AIC": 1.763,
+    "termination_diagnostic": "STOPPED_DEGENERACY_PERSISTS",
+    "num_runs": 10,
+    "samplers": [
+      "EMCEE",
+      "NUTS"
+    ],
+    "node_states": [
+      "COLLAPSED",
+      "FAIL",
+      "NO_SIGNAL"
+    ]
+  },
+  "blind_predictions": {
+    "sealed_pred_1": -0.702,
+    "sealed_pred_2": -0.689,
+    "nonmcmc_vs_blind_tension_sigma": 0.7,
+    "mcmc_vs_blind_tension_sigma": 2.8
+  },
+  "datasets": {
+    "DESI_Y1_BAO": {
+      "delta_chi2": -22.01,
+      "method": "5-fold cross-validation",
+      "folds_preferring_EFC": 5,
+      "total_folds": 5,
+      "data_source": "DESI DR1 BAO consensus",
+      "validation_id": "vc_1d8a8541be16",
+      "validation_status": "pending approval",
+      "atlas_links": [
+        "w0wa_preference (L0)",
+        "H0_tension (L0)"
+      ]
+    },
+    "BOSS_DR12_BAO": {
+      "delta_chi2": -7.77,
+      "k_eff": 0,
+      "method": "Direct likelihood ratio",
+      "data_source": "BOSS DR12 consensus",
+      "cross_ref": "EFC-VAL-2026-002",
+      "cross_ref_doi": "10.6084/m9.figshare.31954125",
+      "atlas_links": [
+        "sigma8_growth (L1)",
+        "w0wa_preference (L0)"
+      ]
+    },
+    "fsigma8_extended": {
+      "alpha_best": -1.0,
+      "alpha_err": 0.46,
+      "significance_sigma": 2.2,
+      "method": "Leave-one-out cross-validation",
+      "LOO_epochs_preferring_EFC": 7,
+      "LOO_total_epochs": 7,
+      "delta_AIC": -2.91,
+      "data_source": "Compiled f*sigma8 catalogue (multi-survey, multi-epoch)",
+      "cross_ref": "EFC-VAL-2026-003",
+      "cross_ref_doi": "10.6084/m9.figshare.31955871",
+      "watchlist_id": "fs8_extended_alpha_signal_watch (W3)",
+      "atlas_links": [
+        "sigma8_growth (L1)",
+        "S8_tension (L2)"
+      ],
+      "detection_threshold_sigma": 3.0,
+      "status": "indication, not detection"
+    },
+    "IllustrisTNG_clusters": {
+      "chi2_reduced": 0.0,
+      "data_source": "IllustrisTNG simulation cluster catalogue (proxy data)",
+      "validation_id": "vc_5b843e61b51c",
+      "validation_status": "pending approval",
+      "caveat": "chi2_red ~ 0 consistent with overfitting, overestimated errors, or insufficient DOF. Not independent confirmation until audited.",
+      "atlas_links": [
+        "sigma8_growth (L1)"
+      ]
+    },
+    "cosmic_chronometers_Hz": {
+      "delta_chi2": -0.17,
+      "status": "sub-statistical, no weight in joint comparison",
+      "caveat": "systematics-dominated",
+      "atlas_links": [
+        "H0_tension (L0)"
+      ]
+    }
+  },
+  "summary_statistics": {
+    "strongest_BAO_signal": "DESI_Y1",
+    "strongest_growth_signal": "fsigma8_extended",
+    "framework_tension_description": "methodological tension between inference frameworks under degeneracy, not detection-level signal"
+  }
+}
