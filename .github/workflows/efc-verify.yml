@@ -42,10 +42,12 @@ jobs:
         run: python3 scripts/maintenance/efc_verify.py
       - name: Run drift detector
         run: |
-          python3 scripts/maintenance/efc_drift_detector.py
-          rc=$?
+          rc=0
+          python3 scripts/maintenance/efc_drift_detector.py || rc=$?
           if [ $rc -eq 2 ]; then
             echo "::warning::Drift detected in public pages. Run Claude Code session to auto-fix."
+          elif [ $rc -ne 0 ]; then
+            exit $rc
           fi
       - name: Fail on uncommitted changes
         run: |
