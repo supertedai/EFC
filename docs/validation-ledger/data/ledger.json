@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-04-28T12:10:57Z",
+  "generated_at": "2026-04-28T18:11:22Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 44,
@@ -14,7 +14,7 @@
     "inference_count": 6,
     "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
-    "frontier_count": 3,
+    "frontier_count": 0,
     "tcs_compression": 1.5,
     "tcs_mismatch": 0.3333,
     "pillar_1_lcdm": 0,
@@ -288,7 +288,7 @@
         "status_detail": "failed"
       },
       {
-        "test_id": "grav_integration_2026-04-28_053318_aqual",
+        "test_id": "grav_integration_2026-04-28_115937_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -378,7 +378,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-04-28_053318_aqual",
+        "test_id": "grav_kt1_2026-04-28_115937_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -393,7 +393,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-04-28_053318_aqual",
+        "test_id": "grav_kt3_2026-04-28_115937_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -408,7 +408,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-04-28_053318_aqual",
+        "test_id": "grav_kt2_2026-04-28_115937_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -1038,7 +1038,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v2.0 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.68722 p_binom=0.015625 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-04-28T10:06:52.116000000+00:00",
+        "last_synced": "2026-04-28T16:37:23.044000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1599,18 +1599,18 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "conv_c_s_entropy_dependent_lightspeed_grb_multi_wavelength_arriva",
-        "name": "c(s) entropy-dependent lightspeed: GRB multi-wavelength arrival-time test",
-        "description": "Formalises the latent GNN concept c(s) — present in the embedding space at similarity 0.706 to speed_of_light but absent from Neo4j as an explicit node — as a falsifiable EFC framework claim: lightspeed is a function of local entropy state, c=c(S), not a fundamental constant. Distinct from time-varying-c (VSL/Magueijo) cosmologies in that c varies with the entropy field S, not with cosmic time t directly. The point of this candidate is to force c(s) into a testable shape so it cannot remain unfalsifiable speculation. This is also where EFC's challenge to Lorentz invariance becomes empirically meaningful or fails to be — and therefore the cleanest framework-level constraint on the theory.",
+        "test_id": "conv_c_eff_a_via_cddr_violation_d_l_vs_d_a_1_z_consistency_test",
+        "name": "c_eff(a) via CDDR violation: D_L vs D_A(1+z)² consistency test",
+        "description": "Supersedes the malformed test conv_c_s_entropy_dependent_lightspeed_grb_multi_wavelength_arriva, which incorrectly proposed GRB photon arrival-time dispersion as the c(s) test. EFC's Core Lock projection law ln(c/c_0) = a_c·Φ(S) is explicitly a cosmological propagation scale, NOT laboratory photon speed (per api:morten_mcp_theory equation node, 2026-02-07). The correct degeneracy-breaking test for c_eff(a) is via the Cosmic Distance Duality Relation (CDDR), as identified in the c_eff(a) paper (DOI 10.6084/m9.figshare.31305421). In standard GR + photon-number conservation, D_L(z) = (1+z)^2 · D_A(z). A cosmologically varying c_eff(a) violates CDDR in a parameterised, redshift-dependent way directly tied to a_c. This test is therefore the empirically meaningful instantiation of the c(s) framework constraint, anchored to existing Symbiose theoretical work rather than improvised mid-conversation.",
         "result": "Planned",
         "status": "unknown",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
-        "data_source": "Fermi/LAT GRB catalog (multi-wavelength events with photon arrival times), LOFAR low-frequency follow-up, Vasileiou+2013 Lorentz-invariance constraints from GRB photons (used as null-test calibration), Magueijo+2003 VSL framework comparison",
-        "prediction": "If c=c(S), photons of different frequency travelling through the same cosmological entropy gradient must show frequency-dependent arrival-time differences beyond standard plasma dispersion. Specifically: gamma-band (>100 MeV) photons from high-z GRBs should arrive earlier than radio-band photons from the same event by a fractional Δt/t correlated with traversed ΔS along the line of sight, at a level distinguishable from Vasileiou+2013-style Lorentz-invariance constraints. Predicted scale: Δc/c ~ 10^-7 fractional per unit ΔS≈0.1, line-of-sight integrated. Null hypothesis: arrival-time dispersion is fully explained by plasma + standard relativity, independent of frequency band. Falsification: GRB multi-wavelength dispersion data consistent with Vasileiou+2013 bounds across all z-ranges falsifies c(s) at the predicted scale.",
-        "notes": "Approved – datadrevet til tross for sterkere teoretisk innsats (utfordrer Lorentz-invarians). Bruker Fermi/LAT GRB-katalog + LOFAR-follow-up + Vasileiou+2013 som null-test-kalibrering. Spesifikk Δt/t ~ 10^-7 per ΔS≈0.1 prediksjon, falsifisert hvis konsistent med Vasileiou-bånd. Markeres som høy-risiko framework_constraint: en falsifisering her feller c(s) men ikke nødvendigvis CMB-tolkningen i de andre to testene.",
+        "data_source": "Pantheon+ SNe Ia luminosity distances D_L(z), DESI DR2 / BOSS BAO angular diameter distances D_A(z), galaxy-cluster D_A(z) from X-ray + SZ joint analysis (Bonamente+2006-style cluster ladder), CMB acoustic scale θ_* as high-z anchor. Reference: paper 'Toward a Quantitative c_eff(a)' (DOI: 10.6084/m9.figshare.31305421).",
+        "prediction": "Define η(z) = D_L(z) / [(1+z)^2 · D_A(z)]. GR predicts η(z) ≡ 1 for all z. EFC with c_eff(a) = c_0[1 + ε·β·T(a)] predicts a redshift-dependent deviation η(z) = 1 + g(a_c, z), where g vanishes at z=0 and grows monotonically with traversed entropy gradient. With a_c in the parameter band 0.006 < a_c < 0.58 (Core Lock constraint) and closure candidate a_c ≈ a_G/4 ≈ 0.024, the predicted η-deviation at z=1 is at the ~0.5–5% level. Pass criterion: η(z) deviation detected at >2σ in joint Pantheon+ × DESI BAO × cluster D_A analysis, with a single a_c value fitting all three distance probes (Δχ² < 4 vs separate fits). Fail criterion: η(z) consistent with 1 within errors across z=0.1–2 using all three probes — c_eff(a) is then bounded below the level needed for the H0/S8 tensions roles claimed in the EFC-H0-S8-Tensions paper, and Core Lock loses its empirical anchor.",
+        "notes": "Approved – datadrevet via Pantheon+ (D_L) × DESI DR2 BAO (D_A) × galaxy-cluster X-ray+SZ ladder. Forankret til paperet 'Toward a Quantitative c_eff(a)' (DOI 10.6084/m9.figshare.31305421) og Core Lock-parameteret a_c (constraint 0.006 < a_c < 0.58, closure ~0.024). Predikert η(z)-deviasjon ~0.5–5% ved z=1, pass/fail-kriterium spesifisert. Erstatter den malformed conv_c_s_entropy_dependent_lightspeed_grb_multi_wavelength_arriva, som krever manuell neo4j-deprekering fra Morten ved neste terminal-sesjon.",
         "quantitative_result": null,
-        "last_synced": "2026-04-28T12:00:59.131000000+00:00",
+        "last_synced": "2026-04-28T12:15:35.780000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -2086,7 +2086,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-28T11:13:55.802365+00:00"
+      "timestamp": "2026-04-28T17:21:06.588481+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2100,7 +2100,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-28T11:13:55.836066+00:00"
+      "timestamp": "2026-04-28T17:21:06.612584+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2114,7 +2114,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-28T11:13:55.854245+00:00"
+      "timestamp": "2026-04-28T17:21:06.624853+00:00"
     }
   },
   "parameters": {
@@ -2659,38 +2659,7 @@
       "created_at": 1769153065162
     }
   ],
-  "frontier_gaps": [
-    {
-      "question": "Applying the 'inference_cluster_tng' module from domain 'unknown' to Bullet Cluster data should result in a chi2 value less than 2.0 within 30 days of testing.",
-      "domain": "project.bullet cluster efc test",
-      "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-02-24T11:16:21.897000000+00:00"
-    },
-    {
-      "question": "Within the next 30 days, we should observe at least one instance where a process previously considered ineffective in domain 'emergent_pattern' starts behaving similarly to Latent Regime (L0) described in domain 'efc_theory', indicating a shift from low effectiveness to high.",
-      "domain": "efc_theory",
-      "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-02-15T04:48:23.034000000+00:00"
-    },
-    {
-      "question": "After reviewing and improving the engine physics or data quality related to 'inference_shear_kids1000' module within 30 days, we expect a significant reduction in its chi2 value (<5), indicating a better fit and improved overall EFC model performance.",
-      "domain": "efc_theory",
-      "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-02-12T16:48:15.749000000+00:00"
-    }
-  ],
+  "frontier_gaps": [],
   "status_levels": [
     {
       "level_id": "completed_data_likelihood",
@@ -2758,10 +2727,20 @@
   ],
   "changelog": [
     {
-      "name": "c(s) entropy-dependent lightspeed: GRB multi-wavelength arrival-time test",
+      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
+      "status": "pending",
+      "result": "Primary p=0.68722, Sign coherence p=0.015625",
+      "last_updated": "2026-04-28T16:37:23.044000000+00:00",
+      "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "c_eff(a) via CDDR violation: D_L vs D_A(1+z)² consistency test",
       "status": "planned",
       "result": "Planned",
-      "last_updated": "2026-04-28T12:00:59.131000000+00:00",
+      "last_updated": "2026-04-28T12:15:35.780000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
@@ -2783,16 +2762,6 @@
       "result": "Planned",
       "last_updated": "2026-04-28T11:59:42.027000000+00:00",
       "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
-      "status": "pending",
-      "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-04-28T10:06:52.116000000+00:00",
-      "source": null,
       "all_labels": [
         "EFCValidation"
       ]
@@ -2850,7 +2819,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-04-28_053318_aqual",
+      "run_id": "2026-04-28_115937_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"

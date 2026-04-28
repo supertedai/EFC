@@ -1,26 +1,51 @@
 {
   "name": "Recent Changes",
   "version": "3.0",
-  "generated_at": "2026-04-28T12:10:57Z",
+  "generated_at": "2026-04-28T18:11:22Z",
   "period_days": 7,
   "changes": [
-    {
-      "date": "2026-04-28",
-      "type": "auto_maintenance",
-      "summary": "Ledger data: evidence-register.json."
-    },
     {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-04-28T10:06:52.116000000+00:00",
+      "last_updated": "2026-04-28T16:37:23.044000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
       ]
     },
     {
-      "name": "Cluster TNG \u2014 EFC passform-test (\u03c7\u00b2_red=0.000)",
+      "name": "c_eff(a) via CDDR violation: D_L vs D_A(1+z)² consistency test",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T12:15:35.780000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T11:59:50.452000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "T_CMB(z) deviation from (1+z) scaling — SZ-cluster test",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T11:59:42.027000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Cluster TNG — EFC passform-test (χ²_red=0.000)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-26T09:25:06.280000000+00:00",
@@ -30,7 +55,7 @@
       ]
     },
     {
-      "name": "BAO DESI Y1 \u2014 EFC preferanse-test (\u0394\u03c7\u00b2=\u221222.01)",
+      "name": "BAO DESI Y1 — EFC preferanse-test (Δχ²=−22.01)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-26T09:25:03.339000000+00:00",
@@ -40,7 +65,7 @@
       ]
     },
     {
-      "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 \u2014 \u03ba\u00b2 modification with operational definitions",
+      "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions",
       "status": "FALSIFIED",
       "result": "Planned",
       "last_updated": "2026-04-25T06:18:54.289000000+00:00",
