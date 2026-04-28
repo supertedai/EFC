@@ -1,0 +1,3086 @@
+{
+  "id": "efc-framework-atlas-seed",
+  "title": "EFC Framework Atlas — Ontology Seed for Cross-Model Convergence Analysis",
+  "version": "1.2",
+  "generated": "2026-04-19",
+  "last_updated": "2026-04-28",
+  "updated_by": "Reproducibility audit + post-Tier-1-fix cycle integration (audit session 2026-04-28)",
+  "generated_by": "claude-opus-4-7 (Symbiose AGI COO)",
+  "purpose": "Seed EFC/competitor framework ontology into Neo4j for RCMP-style convergence mapping. Populates Framework, Phenomenon, and Regime nodes + ADDRESSES, PREDICTS_IN_REGIME, SHARES_MECHANISM_WITH edges. Serves as declarative source-of-truth for framework_convergence_mapper_daemon.",
+  "language_protocol": {
+    "version": "v1.2_conservative",
+    "rule": "No result below 3-sigma is described as a detection. Sub-3-sigma results are 'indications' or 'consistencies'. Non-MCMC metrics (Δχ², CV, LOO, ΔAIC) are model-comparison quantities, NOT marginalized posterior estimates.",
+    "registered_by": "EFC-VAL-2026-005"
+  },
+  "rcmp_layers": {
+    "L0": "Homogeneous background (expansion history, CMB geometry)",
+    "L1": "Linear perturbations (growth, CMB acoustic, linear matter power)",
+    "L2": "Quasi-linear and nonlinear structure (BAO, weak lensing, cluster counts)",
+    "L3": "Deeply nonlinear / galactic / cluster-core / ontology (rotation curves, Bullet δκ, screening)"
+  },
+  "lens_taxonomy": {
+    "particle_DM": "Dark matter is a new particle/field species (WIMP, axion, sterile nu, SIDM, fuzzy)",
+    "modified_inertia": "Modification of the inertial response; MOND-family interpolation functions",
+    "modified_gravity_scalar_tensor": "New scalar d.o.f. modifies gravity (f(R), Horndeski, Galileon, Brans-Dicke, KGB)",
+    "modified_gravity_vector_tensor": "Vector field modifies gravity (TeVeS, RMOND, Einstein-Aether)",
+    "extra_dimensional": "Extra spatial dimensions or braneworld (DGP, Randall-Sundrum)",
+    "massive_graviton": "Graviton acquires mass / dRGT massive gravity",
+    "entropic_emergent": "Gravity/dark energy emerges from entropy/information (Verlinde, Jacobson, Padmanabhan, IEG, EFC, Mass-to-Horizon)",
+    "dynamical_dark_energy": "Time-varying w(z) (w0waCDM, quintessence, quintom, thawing, EDE)",
+    "holographic_DE": "Holographic/Kaniadakis-entropic dark energy",
+    "non_standard_expansion": "Non-FLRW or alternative expansion geometry (CCC, Timescape, MiHsC, Ekpyrotic)",
+    "geometric_weyl": "Weyl-geometric gravity (conformal)",
+    "machian": "Inertia from cosmological matter distribution"
+  },
+  "phenomena": [
+    {
+      "canonical_id": "a0_scale",
+      "name": "MOND Acceleration Scale a₀",
+      "description": "Characteristic transition acceleration ~1.2×10⁻¹⁰ m/s² below which galaxy rotation curves flatten",
+      "rcmp_regime": "L3",
+      "observable_type": "acceleration_scale",
+      "primary_data": [
+        "SPARC rotation curves",
+        "Radial Acceleration Relation"
+      ],
+      "addresses_tensions": [
+        "rotation_curve_flatness",
+        "missing_mass_problem"
+      ]
+    },
+    {
+      "canonical_id": "RAR",
+      "name": "Radial Acceleration Relation",
+      "description": "Tight empirical relation between observed and Newtonian baryonic acceleration in disk galaxies",
+      "rcmp_regime": "L3",
+      "observable_type": "acceleration_correlation",
+      "primary_data": [
+        "SPARC-175",
+        "BIG-SPARC",
+        "THINGS"
+      ],
+      "addresses_tensions": [
+        "rotation_curve_universality"
+      ]
+    },
+    {
+      "canonical_id": "bullet_dkappa",
+      "name": "Bullet Cluster δκ Offset",
+      "description": "Spatial offset between mass (weak lensing κ) and baryons (X-ray gas) in merging clusters",
+      "rcmp_regime": "L3",
+      "observable_type": "lensing_mass_offset",
+      "primary_data": [
+        "Clowe+2006",
+        "JWST Bullet 2025",
+        "AS1063 JWST"
+      ],
+      "addresses_tensions": [
+        "collisionless_DM_vs_modified_gravity"
+      ]
+    },
+    {
+      "canonical_id": "H0_tension",
+      "name": "Hubble Tension H₀",
+      "description": "Discrepancy between local (Cepheid+SNIa) and early-universe (CMB) inferred H₀",
+      "rcmp_regime": "L0",
+      "observable_type": "hubble_constant",
+      "primary_data": [
+        "SH0ES",
+        "Planck+ACT",
+        "H0LiCOW",
+        "Megamaser"
+      ],
+      "addresses_tensions": [
+        "early_vs_late_universe_inconsistency"
+      ]
+    },
+    {
+      "canonical_id": "S8_tension",
+      "name": "S₈ = σ₈√(Ω_m/0.3) Tension",
+      "description": "Lower weak-lensing / cluster-count S₈ compared to CMB-predicted S₈",
+      "rcmp_regime": "L2",
+      "observable_type": "structure_amplitude",
+      "primary_data": [
+        "KiDS-1000",
+        "DES Y6 3×2pt",
+        "HSC",
+        "ACT lensing",
+        "Planck TTTEEE"
+      ],
+      "addresses_tensions": [
+        "low_z_vs_high_z_growth"
+      ]
+    },
+    {
+      "canonical_id": "w0wa_preference",
+      "name": "w₀wₐ Dynamical Dark Energy Preference",
+      "description": "DESI DR1+DR2 BAO prefer evolving w(z) over constant w=-1",
+      "rcmp_regime": "L0",
+      "observable_type": "dark_energy_eos",
+      "primary_data": [
+        "DESI DR1",
+        "DESI DR2",
+        "SDSS BAO",
+        "Pantheon+"
+      ],
+      "addresses_tensions": [
+        "LCDM_background_adequacy"
+      ]
+    },
+    {
+      "canonical_id": "sigma8_growth",
+      "name": "fσ₈(z) Linear Growth",
+      "description": "Redshift evolution of the linear growth rate × σ₈ from RSD",
+      "rcmp_regime": "L1",
+      "observable_type": "growth_rate",
+      "primary_data": [
+        "BOSS fσ8",
+        "eBOSS fσ8",
+        "DESI fσ8",
+        "6dFGS"
+      ],
+      "addresses_tensions": [
+        "growth_vs_geometry_consistency"
+      ]
+    },
+    {
+      "canonical_id": "mu_sigma_plane",
+      "name": "μ(k,a) and Σ(k,a) Phenomenological MG Parameters",
+      "description": "Deviations of effective Newton's constant (μ) and lensing potential (Σ) from GR",
+      "rcmp_regime": "L2",
+      "observable_type": "modified_gravity_parameters",
+      "primary_data": [
+        "DES Y6",
+        "Planck+BAO+RSD",
+        "Stage-IV forecasts"
+      ],
+      "addresses_tensions": [
+        "GR_validity_at_cosmological_scales"
+      ]
+    },
+    {
+      "canonical_id": "BAO_scale",
+      "name": "Baryon Acoustic Oscillation Standard Ruler",
+      "description": "Comoving sound-horizon r_d as standard ruler in 3D galaxy clustering",
+      "rcmp_regime": "L2",
+      "observable_type": "standard_ruler",
+      "primary_data": [
+        "DESI DR2",
+        "SDSS BOSS+eBOSS",
+        "Lyα BAO"
+      ],
+      "addresses_tensions": [
+        "sound_horizon_calibration"
+      ]
+    },
+    {
+      "canonical_id": "CMB_acoustic_peaks",
+      "name": "CMB TT/EE/TE Acoustic Peaks",
+      "description": "Angular power spectrum of CMB temperature and polarization anisotropies",
+      "rcmp_regime": "L1",
+      "observable_type": "angular_power_spectrum",
+      "primary_data": [
+        "Planck",
+        "ACT",
+        "SPT-3G",
+        "SimonsObs-forecast"
+      ],
+      "addresses_tensions": [
+        "early_universe_parameters"
+      ]
+    },
+    {
+      "canonical_id": "CMB_lensing",
+      "name": "CMB Lensing Reconstruction",
+      "description": "Reconstruction of integrated structure growth via CMB lensing deflection",
+      "rcmp_regime": "L2",
+      "observable_type": "lensing_convergence",
+      "primary_data": [
+        "Planck PR4",
+        "ACT DR6",
+        "SPT-3G",
+        "ACT+SPT+Planck joint"
+      ],
+      "addresses_tensions": [
+        "S8_tension_cross_probe"
+      ]
+    },
+    {
+      "canonical_id": "cluster_scaling",
+      "name": "Cluster Mass-Temperature / Mass-Lensing Scaling",
+      "description": "Scaling relations between cluster mass and X-ray temperature, SZ signal, or lensing signal",
+      "rcmp_regime": "L3",
+      "observable_type": "scaling_relation",
+      "primary_data": [
+        "TNG clusters",
+        "FLAMINGO",
+        "X-COP",
+        "ACCEPT"
+      ],
+      "addresses_tensions": [
+        "cluster_core_physics_regime_transition"
+      ]
+    },
+    {
+      "canonical_id": "kSZ_velocity",
+      "name": "Kinetic Sunyaev-Zel'dovich Peculiar Velocity",
+      "description": "Momentum-weighted velocity field from kSZ effect",
+      "rcmp_regime": "L1",
+      "observable_type": "velocity_field",
+      "primary_data": [
+        "ACT kSZ",
+        "SPT kSZ",
+        "DESI-cross"
+      ],
+      "addresses_tensions": [
+        "gravitational_force_law_at_cluster_scales"
+      ]
+    },
+    {
+      "canonical_id": "BBN_abundances",
+      "name": "Big Bang Nucleosynthesis Light-Element Abundances",
+      "description": "Primordial D/H, ⁴He, and ⁷Li abundances set by pre-recombination baryon density",
+      "rcmp_regime": "L0",
+      "observable_type": "primordial_abundances",
+      "primary_data": [
+        "D/H quasar absorption",
+        "⁴He metal-poor"
+      ],
+      "addresses_tensions": [
+        "pre_recombination_EDE_compatibility"
+      ]
+    },
+    {
+      "canonical_id": "early_structure_JWST",
+      "name": "Early Massive Structure (JWST z>10 galaxies, clusters)",
+      "description": "Population of massive galaxies and proto-clusters at very high redshift",
+      "rcmp_regime": "L3",
+      "observable_type": "high_z_mass_function",
+      "primary_data": [
+        "JWST CEERS",
+        "JWST COSMOS-Web",
+        "JWST lensed-cluster"
+      ],
+      "addresses_tensions": [
+        "too_early_structure_formation"
+      ]
+    },
+    {
+      "canonical_id": "gravitational_wave_speed",
+      "name": "Gravitational Wave Propagation Speed c_T",
+      "description": "GW170817 confirmed c_T = c to ~10⁻¹⁵",
+      "rcmp_regime": "L2",
+      "observable_type": "tensor_propagation_speed",
+      "primary_data": [
+        "GW170817+GRB170817A"
+      ],
+      "addresses_tensions": [
+        "eliminates_c_T_neq_c_Horndeski_branches"
+      ]
+    },
+    {
+      "canonical_id": "solar_system_screening",
+      "name": "Solar-System PPN Constraints / Screening Mechanism",
+      "description": "Cassini (γ-1)<2.3e-5 forces screening in any modified gravity theory",
+      "rcmp_regime": "L3",
+      "observable_type": "PPN_parameter",
+      "primary_data": [
+        "Cassini",
+        "Lunar Laser Ranging"
+      ],
+      "addresses_tensions": [
+        "local_GR_recovery_requirement"
+      ]
+    },
+    {
+      "canonical_id": "phi_psi_slip",
+      "name": "Φ/Ψ Slip (Lensing vs Dynamical Potential)",
+      "description": "Ratio of lensing potential Ψ+Φ to dynamical potential Φ; η=1 in GR",
+      "rcmp_regime": "L2",
+      "observable_type": "potential_ratio",
+      "primary_data": [
+        "DES Y6 3x2pt",
+        "E_G statistic",
+        "future Euclid DR1"
+      ],
+      "addresses_tensions": [
+        "GR_deviation_diagnostic"
+      ]
+    },
+    {
+      "canonical_id": "growth_index_gamma",
+      "name": "Growth Index γ",
+      "description": "f(z) ≈ Ω_m(z)^γ; γ=0.55 in GR, modified in MG",
+      "rcmp_regime": "L1",
+      "observable_type": "growth_index",
+      "primary_data": [
+        "RSD compilations",
+        "Euclid forecasts"
+      ],
+      "addresses_tensions": [
+        "growth_modification_test"
+      ]
+    },
+    {
+      "canonical_id": "halo_mass_function",
+      "name": "Cluster Halo Mass Function N(M,z)",
+      "description": "Number density of halos as function of mass and redshift",
+      "rcmp_regime": "L3",
+      "observable_type": "mass_function",
+      "primary_data": [
+        "SPT-3G clusters",
+        "eROSITA eFEDS",
+        "ACT+DES"
+      ],
+      "addresses_tensions": [
+        "high_mass_exponential_tail"
+      ]
+    },
+    {
+      "canonical_id": "sparc_f_SCC",
+      "name": "Cluster Core-State Composition f_SCC",
+      "description": "Fraction of strong cool-core (SCC) clusters as regime-composition indicator",
+      "rcmp_regime": "L3",
+      "observable_type": "composition_fraction",
+      "primary_data": [
+        "TNG-300 clusters",
+        "ACCEPT X-ray sample"
+      ],
+      "addresses_tensions": [
+        "cluster_regime_transition_driver"
+      ]
+    },
+    {
+      "canonical_id": "EG_statistic",
+      "name": "E_G Gravitational Slip Statistic",
+      "description": "Scale-independent ratio of lensing-galaxy cross-correlation to velocity-galaxy cross-correlation",
+      "rcmp_regime": "L2",
+      "observable_type": "gravitational_slip",
+      "primary_data": [
+        "BOSS+Planck lensing",
+        "DES+RSD cross"
+      ],
+      "addresses_tensions": [
+        "scale_independent_GR_test"
+      ]
+    },
+    {
+      "canonical_id": "PTA_gwb",
+      "name": "PTA Gravitational Wave Background",
+      "description": "Nanohertz stochastic GW background from supermassive BH binaries or early-universe phase transitions",
+      "rcmp_regime": "L0",
+      "observable_type": "stochastic_gw_amplitude",
+      "primary_data": [
+        "NANOGrav 15yr",
+        "EPTA DR2",
+        "IPTA DR3 forecast"
+      ],
+      "addresses_tensions": [
+        "early_universe_phase_transition_signatures"
+      ]
+    },
+    {
+      "canonical_id": "vacuum_energy_problem",
+      "name": "Cosmological Constant / Vacuum Energy Problem",
+      "description": "~60-120 orders-of-magnitude discrepancy between theoretical vacuum energy and observed Λ",
+      "rcmp_regime": "L0",
+      "observable_type": "ontological_consistency",
+      "primary_data": [
+        "theoretical"
+      ],
+      "addresses_tensions": [
+        "ontological_consistency_of_Lambda"
+      ]
+    },
+    {
+      "canonical_id": "missing_satellites",
+      "name": "Missing Satellites / Too-Big-to-Fail / Core-Cusp",
+      "description": "Sub-halo abundance, density-profile central structure of dwarf galaxies",
+      "rcmp_regime": "L3",
+      "observable_type": "subhalo_population",
+      "primary_data": [
+        "Milky Way satellites",
+        "dwarf-galaxy density profiles"
+      ],
+      "addresses_tensions": [
+        "small_scale_DM_challenges"
+      ]
+    },
+    {
+      "canonical_id": "non_mcmc_alpha_signal",
+      "name": "Non-MCMC alpha-Signal Direction (model comparison)",
+      "description": "Directional preference for EFC vs LCDM extracted via Δχ², k-fold cross-validation, leave-one-out, and ΔAIC across BAO / growth-rate / cluster / chronometer probes. Strictly a model-comparison metric — NOT a marginalized posterior estimate. Concurrent MCMC posterior is degeneracy-limited.",
+      "rcmp_regime": "L0_L1",
+      "observable_type": "model_comparison_metric",
+      "primary_data": [
+        "DESI DR1 BAO",
+        "BOSS DR12 BAO",
+        "fs8_extended (multi-survey, 7 epochs)",
+        "IllustrisTNG cluster catalogue",
+        "cosmic chronometer H(z)"
+      ],
+      "addresses_tensions": [
+        "MCMC_degeneracy_limited_posterior",
+        "framework_inference_tension"
+      ],
+      "registered_by": "EFC-VAL-2026-005",
+      "interpretive_caveat": "All sub-3-sigma — indications, not detections. DR1 strong-preference (Δχ²=-22.01) conflicts with DR2 NO_SIGNAL (α=-0.141±0.208) — see EFC_alpha_DR2 and DR1_DR2_collapse open question."
+    }
+  ],
+  "frameworks": [
+    {
+      "canonical_id": "LCDM",
+      "full_name": "Standard Cosmological Model (ΛCDM)",
+      "category": "baseline",
+      "lens": "particle_DM",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/9812133",
+      "seminal_citation": "Perlmutter+1998, Riess+1998",
+      "year": 1998,
+      "key_primitives": [
+        "Omega_m",
+        "Omega_Lambda",
+        "H_0",
+        "sigma_8",
+        "n_s",
+        "tau"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "efc_relation": "limit_case",
+      "efc_relevance": "EFC recovers ΛCDM in limit K→∞, T→0, ξ≫1"
+    },
+    {
+      "canonical_id": "w0waCDM",
+      "full_name": "w₀wₐCDM (Chevallier-Polarski-Linder)",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/0208512",
+      "seminal_citation": "Chevallier & Polarski 2001, Linder 2003",
+      "year": 2003,
+      "key_primitives": [
+        "w_0",
+        "w_a"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "compatible",
+      "efc_relevance": "Phenomenological; EFC predicts w(z) shape from underlying S-dynamics"
+    },
+    {
+      "canonical_id": "Quintessence",
+      "full_name": "Quintessence (Scalar-Field Dark Energy)",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/9708069",
+      "seminal_citation": "Caldwell+1998",
+      "year": 1998,
+      "key_primitives": [
+        "phi_DE",
+        "V(phi)"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Introduces new d.o.f. — EFC uses emergent entropy flow instead"
+    },
+    {
+      "canonical_id": "Thawing_Quintessence",
+      "full_name": "Thawing Quintessence (curved)",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/2504.15190",
+      "seminal_citation": "2025 curved-space thawing",
+      "year": 2025,
+      "key_primitives": [
+        "phi_DE",
+        "V'(phi)",
+        "Omega_k"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Alternative 'LCDM-as-limit' narrative for DESI DR2"
+    },
+    {
+      "canonical_id": "Quintom",
+      "full_name": "Quintom Dark Energy",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/2601.02284",
+      "seminal_citation": "Feng+2005, Quintom-DR2 2025",
+      "year": 2005,
+      "key_primitives": [
+        "phi_+",
+        "phi_-",
+        "w(z)_crossing"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Crosses phantom-divide — direct comparison with EFC T(a)-transition"
+    },
+    {
+      "canonical_id": "EDE",
+      "full_name": "Early Dark Energy (pre-recombination)",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/1908.06995",
+      "seminal_citation": "Poulin+2019, Multi-field EDE 2025",
+      "year": 2019,
+      "key_primitives": [
+        "f_EDE",
+        "z_c",
+        "w_n"
+      ],
+      "rcmp_primary_layer": "L1",
+      "addresses_regimes": [
+        "L0",
+        "L1"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Challenges EFC's w0wa preference by resolving H0 with pre-recombination physics"
+    },
+    {
+      "canonical_id": "Multi_Field_EDE",
+      "full_name": "Multi-Field Early Dark Energy",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/2604.13535",
+      "seminal_citation": "2026",
+      "year": 2026,
+      "key_primitives": [
+        "f_EDE_1",
+        "f_EDE_2",
+        "z_c",
+        "coupling"
+      ],
+      "rcmp_primary_layer": "L1",
+      "addresses_regimes": [
+        "L0",
+        "L1"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Extended EDE may suppress DESI DR2 w0wa preference"
+    },
+    {
+      "canonical_id": "Coupled_DE_DM",
+      "full_name": "Coupled Dark Energy + Dark Matter",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/2604.08449",
+      "seminal_citation": "2026",
+      "year": 2026,
+      "key_primitives": [
+        "coupling_xi",
+        "w_DE(z)"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Parallel mechanism: inter-dark-sector coupling vs EFC S-flow coupling"
+    },
+    {
+      "canonical_id": "Kaniadakis_HDE",
+      "full_name": "Kaniadakis Holographic Dark Energy",
+      "category": "holographic_DE",
+      "lens": "holographic_DE",
+      "seminal_url": "https://inspirehep.net/literature/62229559",
+      "seminal_citation": "Drepanou+2021, Kaniadakis 2002",
+      "year": 2021,
+      "key_primitives": [
+        "kappa_K",
+        "IR_cutoff_L"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "near_cousin",
+      "efc_relevance": "Entropy-based DE — nearest entropic cousin to EFC vacuum formulation"
+    },
+    {
+      "canonical_id": "Robust_Dynamical_DE",
+      "full_name": "Robust Dynamical DE (DESI+ACT+SPT)",
+      "category": "dynamical_dark_energy",
+      "lens": "dynamical_dark_energy",
+      "seminal_url": "https://arxiv.org/abs/2511.22512",
+      "seminal_citation": "2025",
+      "year": 2025,
+      "key_primitives": [
+        "w(z)_nonparam"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1"
+      ],
+      "efc_relation": "class_sibling",
+      "efc_relevance": "Strengthens EFC-class dynamical-DE case without naming EFC"
+    },
+    {
+      "canonical_id": "fR_Starobinsky",
+      "full_name": "f(R) Gravity (Starobinsky / Hu-Sawicki)",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_scalar_tensor",
+      "seminal_url": "https://arxiv.org/abs/0705.1158",
+      "seminal_citation": "Hu & Sawicki 2007",
+      "year": 2007,
+      "key_primitives": [
+        "f_R0",
+        "n",
+        "chameleon_screening"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "discriminator",
+      "efc_relevance": "FA2 test: f(R) gives μ>1, EFC gives μ<1 in L2"
+    },
+    {
+      "canonical_id": "DGP",
+      "full_name": "DGP Braneworld Gravity (normal branch nDGP)",
+      "category": "modified_gravity",
+      "lens": "extra_dimensional",
+      "seminal_url": "https://arxiv.org/abs/hep-th/0005016",
+      "seminal_citation": "Dvali-Gabadadze-Porrati 2000",
+      "year": 2000,
+      "key_primitives": [
+        "r_c_crossover_scale"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "benchmark",
+      "efc_relevance": "Standard MG benchmark for μ/Σ sign-tests and Vainshtein-screening regime"
+    },
+    {
+      "canonical_id": "Horndeski",
+      "full_name": "Horndeski (c_T=c post-GW170817)",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_scalar_tensor",
+      "seminal_url": "https://arxiv.org/abs/1710.05877",
+      "seminal_citation": "Horndeski 1974, Creminelli+Vernizzi 2017",
+      "year": 1974,
+      "key_primitives": [
+        "alpha_M",
+        "alpha_B",
+        "alpha_K",
+        "alpha_T=0"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "excluded_region",
+      "efc_relevance": "EFC 135k-scan finding: Horndeski cannot give μ<1 AND Σ>1 simultaneously → FA3 hedge"
+    },
+    {
+      "canonical_id": "Galileon",
+      "full_name": "Galileon (covariant Galileon)",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_scalar_tensor",
+      "seminal_url": "https://arxiv.org/abs/0811.2197",
+      "seminal_citation": "Nicolis-Rattazzi-Trincherini 2008",
+      "year": 2008,
+      "key_primitives": [
+        "c_2",
+        "c_3",
+        "c_4",
+        "c_5"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "benchmark",
+      "efc_relevance": "Enhanced growth signature — mirror-image of EFC L2 suppression"
+    },
+    {
+      "canonical_id": "KGB",
+      "full_name": "Kinetic Gravity Braiding",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_scalar_tensor",
+      "seminal_url": "https://arxiv.org/abs/1008.0048",
+      "seminal_citation": "Deffayet+2010",
+      "year": 2010,
+      "key_primitives": [
+        "alpha_B",
+        "G_X"
+      ],
+      "rcmp_primary_layer": "L1",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "benchmark",
+      "efc_relevance": "Enhanced growth at moderate redshift"
+    },
+    {
+      "canonical_id": "Brans_Dicke",
+      "full_name": "Brans-Dicke Gravity",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_scalar_tensor",
+      "seminal_url": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.124.925",
+      "seminal_citation": "Brans-Dicke 1961",
+      "year": 1961,
+      "key_primitives": [
+        "omega_BD"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "efc_relation": "historical",
+      "efc_relevance": "Historical scalar-tensor root for f(R) family"
+    },
+    {
+      "canonical_id": "Massive_Gravity_dRGT",
+      "full_name": "dRGT Massive Gravity",
+      "category": "modified_gravity",
+      "lens": "massive_graviton",
+      "seminal_url": "https://arxiv.org/abs/1011.1232",
+      "seminal_citation": "de Rham-Gabadadze-Tolley 2011",
+      "year": 2011,
+      "key_primitives": [
+        "m_graviton",
+        "alpha_3",
+        "alpha_4"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L2"
+      ],
+      "efc_relation": "benchmark",
+      "efc_relevance": "Alternative to Λ via graviton mass"
+    },
+    {
+      "canonical_id": "Weyl_Geometric_Gravity",
+      "full_name": "Weyl-Geometric Gravity (conformal)",
+      "category": "modified_gravity",
+      "lens": "geometric_weyl",
+      "seminal_url": "https://arxiv.org/abs/2311.16893",
+      "seminal_citation": "2023",
+      "year": 2023,
+      "key_primitives": [
+        "omega_Weyl_vector"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "competitor_L3",
+      "efc_relevance": "SPARC-testable — head-to-head at galaxy scale"
+    },
+    {
+      "canonical_id": "MOND",
+      "full_name": "Modified Newtonian Dynamics",
+      "category": "modified_gravity",
+      "lens": "modified_inertia",
+      "seminal_url": "https://articles.adsabs.harvard.edu/full/1983ApJ...270..365M",
+      "seminal_citation": "Milgrom 1983",
+      "year": 1983,
+      "key_primitives": [
+        "a_0",
+        "mu(x)_interpolation"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "recovered_in_limit",
+      "efc_relevance": "EFC Grid-AQUAL reproduces MOND in low-a limit via C=2.32 IR-renormalized a₀_eff"
+    },
+    {
+      "canonical_id": "TeVeS",
+      "full_name": "TeVeS (Tensor-Vector-Scalar)",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_vector_tensor",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/0403694",
+      "seminal_citation": "Bekenstein 2004",
+      "year": 2004,
+      "key_primitives": [
+        "K_TeVeS",
+        "phi_scalar",
+        "A_vector"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "efc_relation": "competitor_relativistic_MOND",
+      "efc_relevance": "Relativistic MOND — must classify vs EFC relativistic extension"
+    },
+    {
+      "canonical_id": "RMOND_Skordis",
+      "full_name": "Relativistic MOND (Skordis-Zlosnik RMOND)",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_vector_tensor",
+      "seminal_url": "https://arxiv.org/abs/2007.00082",
+      "seminal_citation": "Skordis-Zlosnik 2020",
+      "year": 2020,
+      "key_primitives": [
+        "K_B",
+        "lambda_s",
+        "lambda_u"
+      ],
+      "rcmp_primary_layer": "L2",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "efc_relation": "competitor_relativistic_MOND",
+      "efc_relevance": "Passes CMB — strongest relativistic-MOND alternative to EFC"
+    },
+    {
+      "canonical_id": "Hyperconical_RMOND",
+      "full_name": "Hyperconical / Natural Relativistic MOND",
+      "category": "modified_gravity",
+      "lens": "modified_gravity_vector_tensor",
+      "seminal_url": "https://arxiv.org/abs/2410.05477",
+      "seminal_citation": "2024",
+      "year": 2024,
+      "key_primitives": [
+        "conical_geometry"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "alternative_MOND_relativistic",
+      "efc_relevance": "Geometric relativistic MOND — alternative to TeVeS/RMOND"
+    },
+    {
+      "canonical_id": "Machian_Gravity",
+      "full_name": "Machian Gravity (SPARC-testable)",
+      "category": "modified_gravity",
+      "lens": "machian",
+      "seminal_url": "https://arxiv.org/abs/2309.00057",
+      "seminal_citation": "2023",
+      "year": 2023,
+      "key_primitives": [
+        "cosmological_inertia_coupling"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "competitor_L3",
+      "efc_relevance": "SPARC-testable Machian alternative"
+    },
+    {
+      "canonical_id": "Verlinde_2010",
+      "full_name": "Verlinde Entropic Gravity (2010)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/1001.0785",
+      "seminal_citation": "Verlinde 2010",
+      "year": 2010,
+      "key_primitives": [
+        "entropic_force",
+        "T_Unruh"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "conceptual_ancestor",
+      "efc_relevance": "Founding entropic-gravity paper — conceptual ancestor of EFC"
+    },
+    {
+      "canonical_id": "Verlinde_2016",
+      "full_name": "Verlinde Emergent Gravity (2016)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/1611.02269",
+      "seminal_citation": "Verlinde 2016",
+      "year": 2016,
+      "key_primitives": [
+        "de_Sitter_horizon_entropy",
+        "elastic_response"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "near_cousin",
+      "efc_relevance": "Closest entropic-emergent cousin — both derive a₀-scale, differ in L0 treatment"
+    },
+    {
+      "canonical_id": "Jacobson_Thermodynamic",
+      "full_name": "Jacobson Thermodynamic Derivation of Einstein Equations",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/gr-qc/9504004",
+      "seminal_citation": "Jacobson 1995",
+      "year": 1995,
+      "key_primitives": [
+        "Clausius_dQ_TdS"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "conceptual_ancestor",
+      "efc_relevance": "Foundational thermodynamic-gravity derivation — EFC ontological stamtre"
+    },
+    {
+      "canonical_id": "Padmanabhan_Entropic",
+      "full_name": "Padmanabhan Emergent Gravity",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/0911.5004",
+      "seminal_citation": "Padmanabhan 2010",
+      "year": 2010,
+      "key_primitives": [
+        "N_surface",
+        "N_bulk",
+        "equipartition"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L3"
+      ],
+      "efc_relation": "conceptual_ancestor",
+      "efc_relevance": "Degree-of-freedom-count ansatz parallels EFC S-flow information capacity"
+    },
+    {
+      "canonical_id": "IEG",
+      "full_name": "Informational Entropic Gravity (IEG)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://www.preprints.org/manuscript/202601.2277",
+      "seminal_citation": "2026",
+      "year": 2026,
+      "key_primitives": [
+        "information_density",
+        "holographic_bound"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2"
+      ],
+      "efc_relation": "near_cousin",
+      "efc_relevance": "Ontological slektning — EFC lager broader perturbations-sektor"
+    },
+    {
+      "canonical_id": "Modified_Entropic_Odintsov",
+      "full_name": "Modified Entropic Gravity (Odintsov et al)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/2503.08236",
+      "seminal_citation": "Odintsov+2025",
+      "year": 2025,
+      "key_primitives": [
+        "modified_entropy_index"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Direct competitor; EFC bredere (pert.-sektor)"
+    },
+    {
+      "canonical_id": "Mass_to_Horizon",
+      "full_name": "Mass-to-Horizon Entropic Cosmology",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/2508.13260",
+      "seminal_citation": "2025",
+      "year": 2025,
+      "key_primitives": [
+        "M_horizon_ratio"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Competitor; mangler galaktisk sektor"
+    },
+    {
+      "canonical_id": "Mass_to_Horizon_CosmicSpace",
+      "full_name": "Mass-to-Horizon Cosmic Space (2025)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/2512.18054",
+      "seminal_citation": "2025",
+      "year": 2025,
+      "key_primitives": [
+        "cosmic_space_horizon"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Newest 2025 entropic-cosmology entrant"
+    },
+    {
+      "canonical_id": "Negentropic_Gravity",
+      "full_name": "Negentropic Gravity",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/2507.10450",
+      "seminal_citation": "2025",
+      "year": 2025,
+      "key_primitives": [
+        "negentropy_sign_inversion"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1"
+      ],
+      "efc_relation": "natural_falsifier",
+      "efc_relevance": "Inverted entropy-sign — natural falsifier for EFC entropy-flow direction"
+    },
+    {
+      "canonical_id": "CCC",
+      "full_name": "Conformal Cyclic Cosmology (Penrose)",
+      "category": "alternative_cosmology",
+      "lens": "non_standard_expansion",
+      "seminal_url": "https://arxiv.org/abs/1011.3706",
+      "seminal_citation": "Penrose 2010",
+      "year": 2010,
+      "key_primitives": [
+        "aeon_cycle"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Cyclic conformal alternative to Big Bang"
+    },
+    {
+      "canonical_id": "Timescape",
+      "full_name": "Timescape Cosmology",
+      "category": "alternative_cosmology",
+      "lens": "non_standard_expansion",
+      "seminal_url": "https://arxiv.org/abs/gr-qc/0702082",
+      "seminal_citation": "Wiltshire 2007",
+      "year": 2007,
+      "key_primitives": [
+        "void_wall_time_dilation"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L2"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Backreaction-driven apparent acceleration — alternative to Λ"
+    },
+    {
+      "canonical_id": "Ekpyrotic",
+      "full_name": "Ekpyrotic / Cyclic Universe",
+      "category": "alternative_cosmology",
+      "lens": "non_standard_expansion",
+      "seminal_url": "https://arxiv.org/abs/hep-th/0103239",
+      "seminal_citation": "Khoury-Ovrut-Steinhardt-Turok 2001",
+      "year": 2001,
+      "key_primitives": [
+        "brane_collision_phase"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "alternative",
+      "efc_relevance": "Alternative to inflation"
+    },
+    {
+      "canonical_id": "MiHsC",
+      "full_name": "Modified Inertia by a Hubble-scale Casimir effect",
+      "category": "modified_gravity",
+      "lens": "modified_inertia",
+      "seminal_url": "https://arxiv.org/abs/1101.3014",
+      "seminal_citation": "McCulloch 2007",
+      "year": 2007,
+      "key_primitives": [
+        "Hubble_Casimir_cutoff"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "alternative_MOND_like",
+      "efc_relevance": "Unruh-like modified inertia — parallel to MOND"
+    },
+    {
+      "canonical_id": "SIDM",
+      "full_name": "Self-Interacting Dark Matter",
+      "category": "dark_matter_alternative",
+      "lens": "particle_DM",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/9909386",
+      "seminal_citation": "Spergel-Steinhardt 2000",
+      "year": 2000,
+      "key_primitives": [
+        "sigma_DM/m_DM"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "orthogonal",
+      "efc_relevance": "Particle-sector alternative — orthogonal to EFC gravitational-sector framework"
+    },
+    {
+      "canonical_id": "Fuzzy_DM",
+      "full_name": "Fuzzy / Ultralight Scalar Dark Matter",
+      "category": "dark_matter_alternative",
+      "lens": "particle_DM",
+      "seminal_url": "https://arxiv.org/abs/astro-ph/0003365",
+      "seminal_citation": "Hu-Barkana-Gruzinov 2000",
+      "year": 2000,
+      "key_primitives": [
+        "m_fuzzy_DM"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "orthogonal",
+      "efc_relevance": "Ultralight scalar DM — orthogonal to EFC"
+    },
+    {
+      "canonical_id": "Superfluid_DM",
+      "full_name": "Superfluid Dark Matter",
+      "category": "dark_matter_alternative",
+      "lens": "particle_DM",
+      "seminal_url": "https://arxiv.org/abs/1507.01019",
+      "seminal_citation": "Berezhiani-Khoury 2015",
+      "year": 2015,
+      "key_primitives": [
+        "superfluid_phase_transition"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "bridge_particle_MOND",
+      "efc_relevance": "Attempts to bridge particle-DM + MOND-like emergent force"
+    },
+    {
+      "canonical_id": "PBH",
+      "full_name": "Primordial Black Holes as Dark Matter",
+      "category": "dark_matter_alternative",
+      "lens": "particle_DM",
+      "seminal_url": "https://arxiv.org/abs/1607.06077",
+      "seminal_citation": "Carr+2016",
+      "year": 2016,
+      "key_primitives": [
+        "M_PBH",
+        "f_PBH"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L3"
+      ],
+      "efc_relation": "orthogonal",
+      "efc_relevance": "Macroscopic DM candidate — orthogonal"
+    },
+    {
+      "canonical_id": "EFC",
+      "full_name": "Energy-Flow Cosmology",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://doi.org/10.6084/m9.figshare.30656828",
+      "seminal_citation": "Magnusson 2026",
+      "year": 2026,
+      "key_primitives": [
+        "alpha",
+        "K",
+        "T",
+        "xi",
+        "S_flow",
+        "S_latent"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "efc_relation": "self",
+      "efc_relevance": "Target theory — unified entropy-flow cosmology with full perturbations-sector",
+      "validation_ids": [
+        "EFC-VAL-2026-002",
+        "EFC-VAL-2026-003",
+        "EFC-VAL-2026-004",
+        "EFC-VAL-2026-005"
+      ],
+      "validation_doi_map": {
+        "EFC-VAL-2026-002": "10.6084/m9.figshare.31954125",
+        "EFC-VAL-2026-003": "10.6084/m9.figshare.31955871",
+        "EFC-VAL-2026-004": "10.6084/m9.figshare.31963668",
+        "EFC-VAL-2026-005": "10.6084/m9.figshare.32101213"
+      },
+      "watchlist": [
+        "W1_grav_kt3_persistent_marginal",
+        "W2_phi_psi_slip_euclid_watch",
+        "W3_fs8_extended_alpha_signal_watch",
+        "W4_variantH_two_sided_genuine_null_2026_04_28"
+      ],
+      "open_questions": [
+        "DR1_DR2_collapse: DESI Y1 non-MCMC Δχ²=-22.01 (EFC-VAL-2026-005) vs DESI DR2 MCMC NO_SIGNAL α=-0.141±0.208 (Session 20). Is the DR1 CV-signal a fit artefact under degeneracy that DR2 precision dissolves?",
+        "TNG_chi2_zero: cluster χ²_red ≈ 0 from EFC-VAL-2026-005 indicates overfitting/over-estimated covariance/insufficient effective DOF. DOF audit required before any further weight.",
+        "MCMC_vs_NonMCMC_framework_tension: 2.8σ_MCMC tension between sealed predictions (ᾱ=-0.696) and degeneracy-limited posterior (-0.101±0.212). Methodological signal, not posterior contradiction.",
+        "stub_to_real_data_signal_collapse_2026-04-26: After replacing stub data with DOI-verified real data (fs8_extended, hz_chronometers, pantheon_binned all updated 2026-04-16) and using DR2 BAO (13 points, real covariance), the most recent research_daemon cycle (rc_20260425_215615, 2026-04-26) reports α = +0.154 ± 0.196 (0.79σ, D2 self-consistent r_d) — a SIGN FLIP relative to sealed mean ᾱ = -0.696. VariantH (entropy-gradient growth, the core EFC mechanism, 5p) gives ΔAIC = +3.9 (LCDM wins on parsimony). All three VariantG constitutive-law scenarios (G01/G02/G10) verdict UNDETECTABLE. Total ΔlogL EFC−LCDM = +0.236 across all probes. This is consistent with the DR1→DR2 collapse hypothesis: the original VAL-005 DR1 Δχ²=-22.01 result was likely a fit artefact under degeneracy that better-constrained data dissolves. Sealed predictions remain prereg-protected but require formal corrigendum (new DOI, e.g. EFC-VAL-2026-006) to update the public record.",
+        "VariantH_AIC_loss: VariantH (the direct EFC mechanism: ∇S → μ → fσ₈, 5 free params) is now disfavored vs LCDM by ΔAIC=+3.9. This is the most direct test of EFC as a physical mechanism — and it loses on AIC under current data.",
+        "VariantH_genuine_null_2026_04_28: After Tier 1 patches (symmetric prior U(-0.5, 0.5), walker init straddle 0, μ-clamp lower bound 0.3, posterior_robustness wired), VariantH posterior under symmetric prior is genuinely centered near zero with both tails populated. The original ΔAIC=+3.9 was a real null, not a prior-trap artifact. The EFC mechanism as parameterized via VariantH+α+DR2-stack is NOT IDENTIFIABLE in current data — distinct from 'falsified' (data does NOT exclude the mechanism) and from 'confirmed' (data does NOT support a non-zero amplitude). VAL-006 corrigendum framing must reflect 'underdetermined under current data' rather than 'falsified'.",
+        "EFC_underdetermined_vs_falsified_distinction: The proper scientific status of EFC after the audit is 'underdetermined under current data + tests'. Falsification would require (a) a sealed prediction that disagrees with new data at >3σ AND (b) a residual that survives all known systematics. VariantH's null result is neither — it is a wide, near-symmetric posterior that includes both EFC-style mechanisms and pure ΛCDM. New observables (Euclid Phi/Psi slip, KT3 v2 β-convergence, cluster sub-population fσ8) are required to discriminate."
+      ]
+    },
+    {
+      "canonical_id": "Empirical_RC_Fit",
+      "full_name": "Empirical Rotation Curve Fit (New 2026)",
+      "category": "phenomenological",
+      "lens": "phenomenological",
+      "seminal_url": "https://arxiv.org/abs/2601.00522",
+      "seminal_citation": "2026",
+      "year": 2026,
+      "key_primitives": [
+        "empirical_parameters"
+      ],
+      "rcmp_primary_layer": "L3",
+      "addresses_regimes": [
+        "L3"
+      ],
+      "efc_relation": "phenomenological_competitor",
+      "efc_relevance": "Pure empirical fit — phenomenological competitor to derived RC"
+    },
+    {
+      "canonical_id": "Transactional_Entropic_Gravity",
+      "full_name": "Transactional Entropic Gravity (Kastner-Schlatter)",
+      "category": "entropic_gravity",
+      "lens": "entropic_emergent",
+      "seminal_url": "https://arxiv.org/abs/2604.14239",
+      "seminal_citation": "Kastner & Schlatter 2026 (review)",
+      "year": 2026,
+      "key_primitives": [
+        "transactional_handshake",
+        "PTI_absorber_response",
+        "entropic_force",
+        "emergent_spacetime"
+      ],
+      "rcmp_primary_layer": "L0",
+      "addresses_regimes": [
+        "L0"
+      ],
+      "efc_relation": "competitor",
+      "efc_relevance": "Entropic-gravity family grounded in Possibilist Transactional Interpretation of QM; shares emergent-spacetime intuition with EFC but sources thermodynamics from quantum absorber response rather than flow/latent entropy budget."
+    }
+  ],
+  "addresses": [
+    {
+      "framework": "LCDM",
+      "phenomenon": "BAO_scale",
+      "role": "baseline_prediction",
+      "mechanism": "sound_horizon_at_drag"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "CMB_acoustic_peaks",
+      "role": "baseline_prediction",
+      "mechanism": "standard_perturbation_theory"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "H0_tension",
+      "role": "conflicts",
+      "mechanism": "no_resolution_native"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "S8_tension",
+      "role": "conflicts",
+      "mechanism": "no_resolution_native"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "w0wa_preference",
+      "role": "conflicts",
+      "mechanism": "constant_w_assumption"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "RAR",
+      "role": "explains_via_DM",
+      "mechanism": "concentration_mass_relation"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "a0_scale",
+      "role": "coincidence",
+      "mechanism": "DM_halo_emergent"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "bullet_dkappa",
+      "role": "native_prediction",
+      "mechanism": "collisionless_DM"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "conflicts",
+      "mechanism": "Lambda_fine_tuning"
+    },
+    {
+      "framework": "LCDM",
+      "phenomenon": "missing_satellites",
+      "role": "conflicts",
+      "mechanism": "baryonic_feedback_patch"
+    },
+    {
+      "framework": "w0waCDM",
+      "phenomenon": "w0wa_preference",
+      "role": "native_prediction",
+      "mechanism": "CPL_parametrization"
+    },
+    {
+      "framework": "w0waCDM",
+      "phenomenon": "BAO_scale",
+      "role": "generalized_prediction",
+      "mechanism": "w(z)_modified_expansion"
+    },
+    {
+      "framework": "Quintessence",
+      "phenomenon": "w0wa_preference",
+      "role": "native_prediction",
+      "mechanism": "scalar_field_dynamics"
+    },
+    {
+      "framework": "Quintessence",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "addresses",
+      "mechanism": "dynamical_DE"
+    },
+    {
+      "framework": "Thawing_Quintessence",
+      "phenomenon": "w0wa_preference",
+      "role": "native_prediction",
+      "mechanism": "slow_roll_thawing"
+    },
+    {
+      "framework": "Quintom",
+      "phenomenon": "w0wa_preference",
+      "role": "native_prediction",
+      "mechanism": "phantom_divide_crossing"
+    },
+    {
+      "framework": "EDE",
+      "phenomenon": "H0_tension",
+      "role": "native_resolution",
+      "mechanism": "pre_recombination_sound_horizon_reduction"
+    },
+    {
+      "framework": "EDE",
+      "phenomenon": "w0wa_preference",
+      "role": "suppresses",
+      "mechanism": "early_injection_alters_late_time_w"
+    },
+    {
+      "framework": "Multi_Field_EDE",
+      "phenomenon": "H0_tension",
+      "role": "native_resolution",
+      "mechanism": "multi_field_EDE"
+    },
+    {
+      "framework": "Coupled_DE_DM",
+      "phenomenon": "w0wa_preference",
+      "role": "alternative_explanation",
+      "mechanism": "dark_sector_coupling"
+    },
+    {
+      "framework": "Kaniadakis_HDE",
+      "phenomenon": "w0wa_preference",
+      "role": "entropic_DE",
+      "mechanism": "kappa_entropy"
+    },
+    {
+      "framework": "Robust_Dynamical_DE",
+      "phenomenon": "w0wa_preference",
+      "role": "model_independent_detection",
+      "mechanism": "nonparametric_w(z)"
+    },
+    {
+      "framework": "fR_Starobinsky",
+      "phenomenon": "mu_sigma_plane",
+      "role": "modifies",
+      "mechanism": "chameleon_scalar"
+    },
+    {
+      "framework": "fR_Starobinsky",
+      "phenomenon": "sigma8_growth",
+      "role": "enhances",
+      "mechanism": "mu_greater_than_1"
+    },
+    {
+      "framework": "fR_Starobinsky",
+      "phenomenon": "solar_system_screening",
+      "role": "requires",
+      "mechanism": "chameleon_screening"
+    },
+    {
+      "framework": "DGP",
+      "phenomenon": "mu_sigma_plane",
+      "role": "modifies",
+      "mechanism": "Vainshtein_transition"
+    },
+    {
+      "framework": "DGP",
+      "phenomenon": "sigma8_growth",
+      "role": "enhances_nDGP",
+      "mechanism": "brane_localized_gravity"
+    },
+    {
+      "framework": "DGP",
+      "phenomenon": "gravitational_wave_speed",
+      "role": "consistent",
+      "mechanism": "4D_graviton_propagation"
+    },
+    {
+      "framework": "Horndeski",
+      "phenomenon": "mu_sigma_plane",
+      "role": "parameterizes",
+      "mechanism": "alpha_M_alpha_B"
+    },
+    {
+      "framework": "Horndeski",
+      "phenomenon": "gravitational_wave_speed",
+      "role": "constrains",
+      "mechanism": "alpha_T=0_post_GW170817"
+    },
+    {
+      "framework": "Galileon",
+      "phenomenon": "sigma8_growth",
+      "role": "enhances",
+      "mechanism": "G_X_braiding"
+    },
+    {
+      "framework": "KGB",
+      "phenomenon": "sigma8_growth",
+      "role": "enhances",
+      "mechanism": "kinetic_braiding"
+    },
+    {
+      "framework": "Brans_Dicke",
+      "phenomenon": "solar_system_screening",
+      "role": "constrains",
+      "mechanism": "omega_BD_gt_40000"
+    },
+    {
+      "framework": "Massive_Gravity_dRGT",
+      "phenomenon": "w0wa_preference",
+      "role": "alternative",
+      "mechanism": "graviton_mass"
+    },
+    {
+      "framework": "Weyl_Geometric_Gravity",
+      "phenomenon": "RAR",
+      "role": "fits",
+      "mechanism": "Weyl_vector"
+    },
+    {
+      "framework": "Weyl_Geometric_Gravity",
+      "phenomenon": "a0_scale",
+      "role": "derives",
+      "mechanism": "Weyl_conformal_invariance"
+    },
+    {
+      "framework": "MOND",
+      "phenomenon": "a0_scale",
+      "role": "defines",
+      "mechanism": "empirical_interpolation_function"
+    },
+    {
+      "framework": "MOND",
+      "phenomenon": "RAR",
+      "role": "native_prediction",
+      "mechanism": "a0_transition"
+    },
+    {
+      "framework": "MOND",
+      "phenomenon": "bullet_dkappa",
+      "role": "conflicts",
+      "mechanism": "cannot_explain_offset"
+    },
+    {
+      "framework": "MOND",
+      "phenomenon": "missing_satellites",
+      "role": "addresses",
+      "mechanism": "no_DM_halos"
+    },
+    {
+      "framework": "TeVeS",
+      "phenomenon": "a0_scale",
+      "role": "derives_relativistic",
+      "mechanism": "scalar_vector_coupling"
+    },
+    {
+      "framework": "TeVeS",
+      "phenomenon": "gravitational_wave_speed",
+      "role": "conflicts",
+      "mechanism": "c_T_neq_c_in_original"
+    },
+    {
+      "framework": "RMOND_Skordis",
+      "phenomenon": "a0_scale",
+      "role": "derives_relativistic",
+      "mechanism": "scalar_vector_modern"
+    },
+    {
+      "framework": "RMOND_Skordis",
+      "phenomenon": "CMB_acoustic_peaks",
+      "role": "passes",
+      "mechanism": "acoustic_scale_preserved"
+    },
+    {
+      "framework": "RMOND_Skordis",
+      "phenomenon": "sigma8_growth",
+      "role": "matches",
+      "mechanism": "relativistic_MOND_growth"
+    },
+    {
+      "framework": "Hyperconical_RMOND",
+      "phenomenon": "a0_scale",
+      "role": "derives_geometric",
+      "mechanism": "conical_geometry"
+    },
+    {
+      "framework": "Machian_Gravity",
+      "phenomenon": "a0_scale",
+      "role": "derives_Machian",
+      "mechanism": "cosmological_inertia"
+    },
+    {
+      "framework": "Machian_Gravity",
+      "phenomenon": "RAR",
+      "role": "fits_SPARC",
+      "mechanism": "Machian_inertia"
+    },
+    {
+      "framework": "Verlinde_2010",
+      "phenomenon": "a0_scale",
+      "role": "derives",
+      "mechanism": "entropic_force_Unruh_temperature"
+    },
+    {
+      "framework": "Verlinde_2010",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "addresses",
+      "mechanism": "holographic_screen"
+    },
+    {
+      "framework": "Verlinde_2016",
+      "phenomenon": "a0_scale",
+      "role": "derives",
+      "mechanism": "de_Sitter_horizon_entropy"
+    },
+    {
+      "framework": "Verlinde_2016",
+      "phenomenon": "RAR",
+      "role": "predicts",
+      "mechanism": "elastic_response_to_matter"
+    },
+    {
+      "framework": "Verlinde_2016",
+      "phenomenon": "bullet_dkappa",
+      "role": "conflicts",
+      "mechanism": "cannot_explain_offset"
+    },
+    {
+      "framework": "Jacobson_Thermodynamic",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "addresses",
+      "mechanism": "thermodynamic_origin_of_Einstein_eqs"
+    },
+    {
+      "framework": "Padmanabhan_Entropic",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "addresses",
+      "mechanism": "Nsurface_minus_Nbulk_equipartition"
+    },
+    {
+      "framework": "Padmanabhan_Entropic",
+      "phenomenon": "a0_scale",
+      "role": "compatible_with",
+      "mechanism": "holographic_DOF_counting"
+    },
+    {
+      "framework": "IEG",
+      "phenomenon": "w0wa_preference",
+      "role": "entropic_DE",
+      "mechanism": "information_density"
+    },
+    {
+      "framework": "IEG",
+      "phenomenon": "sigma8_growth",
+      "role": "modifies",
+      "mechanism": "holographic_bound"
+    },
+    {
+      "framework": "Modified_Entropic_Odintsov",
+      "phenomenon": "w0wa_preference",
+      "role": "entropic_DE",
+      "mechanism": "modified_entropy_index"
+    },
+    {
+      "framework": "Mass_to_Horizon",
+      "phenomenon": "w0wa_preference",
+      "role": "entropic_DE",
+      "mechanism": "mass_horizon_ratio"
+    },
+    {
+      "framework": "Mass_to_Horizon_CosmicSpace",
+      "phenomenon": "w0wa_preference",
+      "role": "entropic_DE",
+      "mechanism": "cosmic_space_entropy"
+    },
+    {
+      "framework": "Negentropic_Gravity",
+      "phenomenon": "w0wa_preference",
+      "role": "sign_inverted_prediction",
+      "mechanism": "negentropy_flow"
+    },
+    {
+      "framework": "CCC",
+      "phenomenon": "H0_tension",
+      "role": "alternative_framework",
+      "mechanism": "aeon_transitions"
+    },
+    {
+      "framework": "Timescape",
+      "phenomenon": "H0_tension",
+      "role": "native_resolution",
+      "mechanism": "void_wall_time_dilation"
+    },
+    {
+      "framework": "Timescape",
+      "phenomenon": "w0wa_preference",
+      "role": "mimics_dynamical_DE",
+      "mechanism": "backreaction"
+    },
+    {
+      "framework": "Ekpyrotic",
+      "phenomenon": "CMB_acoustic_peaks",
+      "role": "predicts_scale_invariance",
+      "mechanism": "brane_collision"
+    },
+    {
+      "framework": "MiHsC",
+      "phenomenon": "a0_scale",
+      "role": "derives_Unruh_like",
+      "mechanism": "Hubble_Casimir"
+    },
+    {
+      "framework": "SIDM",
+      "phenomenon": "missing_satellites",
+      "role": "native_resolution",
+      "mechanism": "self_interaction_cross_section"
+    },
+    {
+      "framework": "SIDM",
+      "phenomenon": "bullet_dkappa",
+      "role": "constrains_sigma",
+      "mechanism": "sigma_DM_m_upper_bound"
+    },
+    {
+      "framework": "Fuzzy_DM",
+      "phenomenon": "missing_satellites",
+      "role": "native_resolution",
+      "mechanism": "wave_suppression_below_de_Broglie"
+    },
+    {
+      "framework": "Superfluid_DM",
+      "phenomenon": "a0_scale",
+      "role": "attempts_bridge",
+      "mechanism": "superfluid_phonon_force"
+    },
+    {
+      "framework": "Superfluid_DM",
+      "phenomenon": "missing_satellites",
+      "role": "native_prediction",
+      "mechanism": "superfluid_phase_boundary"
+    },
+    {
+      "framework": "PBH",
+      "phenomenon": "missing_satellites",
+      "role": "alternative",
+      "mechanism": "macroscopic_DM"
+    },
+    {
+      "framework": "PBH",
+      "phenomenon": "PTA_gwb",
+      "role": "predicts",
+      "mechanism": "primordial_GW_background"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "a0_scale",
+      "role": "derives_from_saturation",
+      "mechanism": "entropy_flow_saturation_latent_regime"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "RAR",
+      "role": "native_prediction",
+      "mechanism": "grid_AQUAL_emergent_a0_eff"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "bullet_dkappa",
+      "role": "preregistered_test",
+      "mechanism": "shadow_mode_Phi_Psi"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "H0_tension",
+      "role": "addresses_open",
+      "mechanism": "T_dynamics_in_L0"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "S8_tension",
+      "role": "predicts_suppression",
+      "mechanism": "mu_lt_1_in_L2"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "w0wa_preference",
+      "role": "predicts_shape",
+      "mechanism": "S_flow_to_latent_transition"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "sigma8_growth",
+      "role": "predicts",
+      "mechanism": "linear_growth_with_entropy_damping"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "mu_sigma_plane",
+      "role": "predicts_quadrant",
+      "mechanism": "mu_lt_1_Sigma_gt_1_forbidden_Horndeski"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "BAO_scale",
+      "role": "predicts",
+      "mechanism": "divergence_engine_DESI_DR2"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "CMB_acoustic_peaks",
+      "role": "planned_L1_test",
+      "mechanism": "pending_Boltzmann_solver"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "CMB_lensing",
+      "role": "predicts",
+      "mechanism": "integrated_S_flow_lensing"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "cluster_scaling",
+      "role": "predicts_regime_transition",
+      "mechanism": "f_SCC_dependent_xi"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "kSZ_velocity",
+      "role": "tested_by",
+      "mechanism": "ACT_kSZ_2604_14327"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "BBN_abundances",
+      "role": "compatible",
+      "mechanism": "EFC_recovers_LCDM_at_z_gt_1e9"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "early_structure_JWST",
+      "role": "predicts_L3_early",
+      "mechanism": "S_flow_boost_at_high_z"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "gravitational_wave_speed",
+      "role": "passes",
+      "mechanism": "EFC_preserves_c_T_eq_c"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "solar_system_screening",
+      "role": "passes",
+      "mechanism": "xi_sets_screening_scale"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "phi_psi_slip",
+      "role": "predicts_sealed",
+      "mechanism": "preregistered_eta_eq_0.9993"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "growth_index_gamma",
+      "role": "predicts",
+      "mechanism": "gamma_modified_by_mu"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "halo_mass_function",
+      "role": "predicts",
+      "mechanism": "S_flow_damps_high_mass_tail"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "sparc_f_SCC",
+      "role": "predicts_driver",
+      "mechanism": "cluster_core_state_regime_threshold"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "EG_statistic",
+      "role": "predicts",
+      "mechanism": "scale_independent_slip"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "vacuum_energy_problem",
+      "role": "dissolves",
+      "mechanism": "Lambda_emerges_from_S_flow"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "missing_satellites",
+      "role": "compatible",
+      "mechanism": "no_DM_halo_structure_required"
+    },
+    {
+      "framework": "Empirical_RC_Fit",
+      "phenomenon": "RAR",
+      "role": "empirical_fit",
+      "mechanism": "phenomenological"
+    }
+  ],
+  "shares_mechanism": [
+    {
+      "frameworks": [
+        "MOND",
+        "TeVeS",
+        "RMOND_Skordis",
+        "Hyperconical_RMOND"
+      ],
+      "mechanism": "a0_transition_via_interpolation",
+      "regime": "L3"
+    },
+    {
+      "frameworks": [
+        "fR_Starobinsky",
+        "Horndeski",
+        "Galileon",
+        "KGB",
+        "Brans_Dicke"
+      ],
+      "mechanism": "scalar_tensor_d.o.f.",
+      "regime": "L2"
+    },
+    {
+      "frameworks": [
+        "Verlinde_2010",
+        "Verlinde_2016",
+        "Jacobson_Thermodynamic",
+        "Padmanabhan_Entropic",
+        "IEG",
+        "Modified_Entropic_Odintsov",
+        "Mass_to_Horizon",
+        "Mass_to_Horizon_CosmicSpace",
+        "Kaniadakis_HDE",
+        "EFC"
+      ],
+      "mechanism": "entropic_emergent_gravity",
+      "regime": "L0"
+    },
+    {
+      "frameworks": [
+        "SIDM",
+        "Fuzzy_DM",
+        "Superfluid_DM",
+        "PBH"
+      ],
+      "mechanism": "particle_DM_variant",
+      "regime": "L3"
+    },
+    {
+      "frameworks": [
+        "EDE",
+        "Multi_Field_EDE"
+      ],
+      "mechanism": "pre_recombination_energy_injection",
+      "regime": "L1"
+    },
+    {
+      "frameworks": [
+        "Quintessence",
+        "Thawing_Quintessence",
+        "Quintom"
+      ],
+      "mechanism": "scalar_field_DE",
+      "regime": "L0"
+    },
+    {
+      "frameworks": [
+        "DGP",
+        "Massive_Gravity_dRGT"
+      ],
+      "mechanism": "non_scalar_modification_of_gravity_at_Hubble_scale",
+      "regime": "L2"
+    },
+    {
+      "frameworks": [
+        "MOND",
+        "MiHsC",
+        "Verlinde_2010",
+        "Verlinde_2016",
+        "EFC"
+      ],
+      "mechanism": "derives_a0_scale_emergent",
+      "regime": "L3"
+    },
+    {
+      "frameworks": [
+        "Timescape",
+        "CCC",
+        "Ekpyrotic"
+      ],
+      "mechanism": "non_FLRW_background",
+      "regime": "L0"
+    }
+  ],
+  "discriminates_between": [
+    {
+      "frameworks": [
+        "EFC",
+        "LCDM"
+      ],
+      "phenomenon": "w0wa_preference",
+      "distinguishing_prediction": "EFC predicts specific w(z) shape from S-flow dynamics; LCDM predicts w=-1"
+    },
+    {
+      "frameworks": [
+        "EFC",
+        "fR_Starobinsky"
+      ],
+      "phenomenon": "mu_sigma_plane",
+      "distinguishing_prediction": "EFC predicts mu<1 in L2; f(R) predicts mu>1"
+    },
+    {
+      "frameworks": [
+        "EFC",
+        "Horndeski"
+      ],
+      "phenomenon": "mu_sigma_plane",
+      "distinguishing_prediction": "EFC can have mu<1 AND Sigma>1; Horndeski cannot per 135k-scan"
+    },
+    {
+      "frameworks": [
+        "MOND",
+        "LCDM"
+      ],
+      "phenomenon": "bullet_dkappa",
+      "distinguishing_prediction": "MOND cannot explain offset; LCDM predicts it natively via collisionless DM"
+    },
+    {
+      "frameworks": [
+        "EFC",
+        "Verlinde_2016"
+      ],
+      "phenomenon": "w0wa_preference",
+      "distinguishing_prediction": "EFC makes L0 predictions; Verlinde 2016 is L3-only"
+    },
+    {
+      "frameworks": [
+        "Negentropic_Gravity",
+        "EFC"
+      ],
+      "phenomenon": "w0wa_preference",
+      "distinguishing_prediction": "Opposite sign of entropy flow — natural falsifier pair"
+    },
+    {
+      "frameworks": [
+        "EDE",
+        "EFC"
+      ],
+      "phenomenon": "H0_tension",
+      "distinguishing_prediction": "EDE resolves via pre-recombination sound horizon; EFC via late-time T-dynamics"
+    },
+    {
+      "frameworks": [
+        "Timescape",
+        "LCDM"
+      ],
+      "phenomenon": "w0wa_preference",
+      "distinguishing_prediction": "Timescape mimics dynamical DE from backreaction; LCDM does not"
+    },
+    {
+      "frameworks": [
+        "SIDM",
+        "MOND"
+      ],
+      "phenomenon": "bullet_dkappa",
+      "distinguishing_prediction": "SIDM predicts offset (particle DM); MOND cannot"
+    },
+    {
+      "frameworks": [
+        "DGP_nDGP",
+        "LCDM"
+      ],
+      "phenomenon": "sigma8_growth",
+      "distinguishing_prediction": "nDGP enhances growth; LCDM is GR-baseline"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "MOND_a0",
+      "framework": "MOND",
+      "phenomenon": "a0_scale",
+      "value": 1.2e-10,
+      "uncertainty": 2e-11,
+      "units": "m/s^2",
+      "regime": "L3",
+      "source_citation": "Milgrom 1983",
+      "preregistered": false,
+      "status": "defined",
+      "method": "empirical_calibration_SPARC"
+    },
+    {
+      "id": "Verlinde2016_a0",
+      "framework": "Verlinde_2016",
+      "phenomenon": "a0_scale",
+      "value": 1.1e-10,
+      "uncertainty": 3e-11,
+      "units": "m/s^2",
+      "regime": "L3",
+      "source_citation": "Verlinde 2016",
+      "preregistered": false,
+      "status": "derived",
+      "method": "de_Sitter_horizon_entropy"
+    },
+    {
+      "id": "EFC_a0_eff",
+      "framework": "EFC",
+      "phenomenon": "a0_scale",
+      "value": 6.5e-10,
+      "uncertainty": 1.5e-10,
+      "units": "m/s^2",
+      "regime": "L3",
+      "source_citation": "EFC Grid-AQUAL 2026",
+      "preregistered": false,
+      "status": "derived",
+      "method": "C_squared_IR_renormalization_C=2.32"
+    },
+    {
+      "id": "LCDM_a0_emergent",
+      "framework": "LCDM",
+      "phenomenon": "a0_scale",
+      "value": 1.2e-10,
+      "uncertainty": 5e-11,
+      "units": "m/s^2",
+      "regime": "L3",
+      "source_citation": "McGaugh 2012 (emergent from DM concentration-mass)",
+      "preregistered": false,
+      "status": "emergent_coincidence",
+      "method": "DM_halo_concentration_scaling"
+    },
+    {
+      "id": "LCDM_H0_CMB",
+      "framework": "LCDM",
+      "phenomenon": "H0_tension",
+      "value": 67.36,
+      "uncertainty": 0.54,
+      "units": "km/s/Mpc",
+      "regime": "L0",
+      "source_citation": "Planck 2018 TTTEEE+lowE+lensing",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "CMB_inverse_distance_ladder"
+    },
+    {
+      "id": "LCDM_H0_local",
+      "framework": "LCDM",
+      "phenomenon": "H0_tension",
+      "value": 73.04,
+      "uncertainty": 1.04,
+      "units": "km/s/Mpc",
+      "regime": "L0",
+      "source_citation": "SH0ES 2022 (Riess+)",
+      "preregistered": false,
+      "status": "conflicting_measurement",
+      "method": "Cepheid_SNIa_distance_ladder"
+    },
+    {
+      "id": "EDE_H0",
+      "framework": "EDE",
+      "phenomenon": "H0_tension",
+      "value": 71.0,
+      "uncertainty": 1.5,
+      "units": "km/s/Mpc",
+      "regime": "L0",
+      "source_citation": "Poulin+2019, Smith+2020",
+      "preregistered": false,
+      "status": "resolution_claim",
+      "method": "pre_recombination_sound_horizon_reduction"
+    },
+    {
+      "id": "MultiFieldEDE_H0",
+      "framework": "Multi_Field_EDE",
+      "phenomenon": "H0_tension",
+      "value": 71.5,
+      "uncertainty": 1.3,
+      "units": "km/s/Mpc",
+      "regime": "L0",
+      "source_citation": "2026 multi-field EDE",
+      "preregistered": false,
+      "status": "resolution_claim",
+      "method": "multi_field_EDE"
+    },
+    {
+      "id": "Timescape_H0",
+      "framework": "Timescape",
+      "phenomenon": "H0_tension",
+      "value": 61.7,
+      "uncertainty": 3.0,
+      "units": "km/s/Mpc",
+      "regime": "L0",
+      "source_citation": "Wiltshire 2017",
+      "preregistered": false,
+      "status": "resolution_claim",
+      "method": "backreaction_void_time_dilation"
+    },
+    {
+      "id": "LCDM_S8_CMB",
+      "framework": "LCDM",
+      "phenomenon": "S8_tension",
+      "value": 0.834,
+      "uncertainty": 0.016,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "Planck 2018",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "CMB_derived"
+    },
+    {
+      "id": "LCDM_S8_DES_Y6",
+      "framework": "LCDM",
+      "phenomenon": "S8_tension",
+      "value": 0.771,
+      "uncertainty": 0.02,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "DES Y6 3x2pt 2026",
+      "preregistered": false,
+      "status": "conflicting_measurement",
+      "method": "cosmic_shear_plus_clustering"
+    },
+    {
+      "id": "LCDM_S8_KiDS1000",
+      "framework": "LCDM",
+      "phenomenon": "S8_tension",
+      "value": 0.766,
+      "uncertainty": 0.018,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "KiDS-1000 2021",
+      "preregistered": false,
+      "status": "conflicting_measurement",
+      "method": "cosmic_shear"
+    },
+    {
+      "id": "EFC_S8_Rubin_DP2",
+      "framework": "EFC",
+      "phenomenon": "S8_tension",
+      "value": 0.847,
+      "uncertainty": 0.015,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "seal_doi:10.6084/m9.figshare.32037990 P4",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "mu_lt_1_L2_suppression",
+      "badge": "DAMAGE"
+    },
+    {
+      "id": "LCDM_w0wa",
+      "framework": "LCDM",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -1.0,
+      "value_wa": 0.0,
+      "uncertainty_w0": 0.0,
+      "uncertainty_wa": 0.0,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "Lambda baseline",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "cosmological_constant_assumption"
+    },
+    {
+      "id": "w0waCDM_DESI_DR2",
+      "framework": "w0waCDM",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -0.761,
+      "value_wa": -0.77,
+      "uncertainty_w0": 0.065,
+      "uncertainty_wa": 0.29,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "DESI DR2 2025",
+      "preregistered": false,
+      "status": "data_driven_fit",
+      "method": "CPL_parametrization_BAO"
+    },
+    {
+      "id": "LCDM_fsigma8_z07",
+      "framework": "LCDM",
+      "phenomenon": "sigma8_growth",
+      "value": 0.452,
+      "uncertainty": 0.015,
+      "units": "dimensionless",
+      "regime": "L1",
+      "source_citation": "Planck LCDM prediction at z=0.7",
+      "preregistered": false,
+      "status": "baseline_prediction",
+      "method": "linear_growth_LCDM"
+    },
+    {
+      "id": "EFC_fsigma8_z07",
+      "framework": "EFC",
+      "phenomenon": "sigma8_growth",
+      "value": 0.43,
+      "uncertainty": 0.02,
+      "units": "dimensionless",
+      "regime": "L1",
+      "source_citation": "seal_doi:10.6084/m9.figshare.32037990 P2",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "linear_growth_with_entropy_damping",
+      "badge": "DAMAGE",
+      "z": 0.7
+    },
+    {
+      "id": "EFC_EG_ratio",
+      "framework": "EFC",
+      "phenomenon": "EG_statistic",
+      "value": 1.086,
+      "uncertainty": 0.012,
+      "units": "dimensionless_ratio",
+      "regime": "L2",
+      "source_citation": "seal_doi P3",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "scale_independent_slip_EFC_over_GR",
+      "badge": "KILL"
+    },
+    {
+      "id": "LCDM_EG_ratio",
+      "framework": "LCDM",
+      "phenomenon": "EG_statistic",
+      "value": 1.0,
+      "uncertainty": 0.0,
+      "units": "dimensionless_ratio",
+      "regime": "L2",
+      "source_citation": "GR baseline",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "GR_no_slip"
+    },
+    {
+      "id": "EFC_Sigma_crossover_z",
+      "framework": "EFC",
+      "phenomenon": "phi_psi_slip",
+      "value": 0.44,
+      "uncertainty": 0.03,
+      "units": "redshift",
+      "regime": "L2",
+      "source_citation": "seal_doi P1",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "Sigma_eff_sign_change_non_monotonic",
+      "badge": "KILL"
+    },
+    {
+      "id": "LCDM_Sigma_monotonic",
+      "framework": "LCDM",
+      "phenomenon": "phi_psi_slip",
+      "value": null,
+      "crossover_z": null,
+      "units": "monotonic_no_crossover",
+      "regime": "L2",
+      "source_citation": "GR baseline",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "GR_monotonic"
+    },
+    {
+      "id": "fR_Starobinsky_mu",
+      "framework": "fR_Starobinsky",
+      "phenomenon": "mu_sigma_plane",
+      "value_mu": 1.33,
+      "uncertainty_mu": 0.15,
+      "value_Sigma": 1.16,
+      "uncertainty_Sigma": 0.1,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "Hu-Sawicki f(R)",
+      "preregistered": false,
+      "status": "derived",
+      "method": "chameleon_mu_gt_1"
+    },
+    {
+      "id": "EFC_mu_sigma",
+      "framework": "EFC",
+      "phenomenon": "mu_sigma_plane",
+      "value_mu": 0.85,
+      "uncertainty_mu": 0.1,
+      "value_Sigma": 1.18,
+      "uncertainty_Sigma": 0.08,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "EFC 135k-scan + P5 structural",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "mu_lt_1_AND_Sigma_gt_1_quadrant",
+      "badge": "KILL"
+    },
+    {
+      "id": "LCDM_mu_sigma_GR",
+      "framework": "LCDM",
+      "phenomenon": "mu_sigma_plane",
+      "value_mu": 1.0,
+      "uncertainty_mu": 0.0,
+      "value_Sigma": 1.0,
+      "uncertainty_Sigma": 0.0,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "GR baseline",
+      "preregistered": false,
+      "status": "baseline",
+      "method": "GR_no_modification"
+    },
+    {
+      "id": "Horndeski_mu_forbidden",
+      "framework": "Horndeski",
+      "phenomenon": "mu_sigma_plane",
+      "value_mu": 1.5,
+      "uncertainty_mu": 0.3,
+      "value_Sigma": 0.85,
+      "uncertainty_Sigma": 0.15,
+      "units": "dimensionless",
+      "regime": "L2",
+      "source_citation": "135k Horndeski scan (EFC structural claim)",
+      "preregistered": false,
+      "status": "empirical_scan",
+      "method": "alpha_M_alpha_B_QS_scan"
+    },
+    {
+      "id": "LCDM_BAO_DR2",
+      "framework": "LCDM",
+      "phenomenon": "BAO_scale",
+      "value": "r_d=147.18 Mpc (CMB)",
+      "uncertainty": 0.29,
+      "units": "Mpc",
+      "regime": "L2",
+      "source_citation": "Planck+DESI DR2",
+      "preregistered": false,
+      "status": "calibrated_ruler",
+      "method": "CMB_sound_horizon"
+    },
+    {
+      "id": "EFC_BAO_DR2",
+      "framework": "EFC",
+      "phenomenon": "BAO_scale",
+      "value": "NO_SIGNAL",
+      "uncertainty": null,
+      "units": "joint_chi2",
+      "regime": "L2",
+      "source_citation": "Session 20 emcee DR2 result",
+      "preregistered": false,
+      "status": "alpha_collapses_to_0",
+      "method": "per_probe_deltaLogL_BAO_+0.129",
+      "note": "alpha = -0.141 ± 0.208 (0.68 sigma) — degeneracy killed by DR2 precision"
+    },
+    {
+      "id": "MOND_bullet_offset",
+      "framework": "MOND",
+      "phenomenon": "bullet_dkappa",
+      "value": 0.0,
+      "uncertainty": 0.0,
+      "units": "kpc_offset",
+      "regime": "L3",
+      "source_citation": "MOND baseline (no DM halo)",
+      "preregistered": false,
+      "status": "conflicts_with_observation",
+      "method": "no_collisionless_component"
+    },
+    {
+      "id": "LCDM_bullet_offset",
+      "framework": "LCDM",
+      "phenomenon": "bullet_dkappa",
+      "value": "positive_offset_consistent",
+      "uncertainty": "observational",
+      "units": "qualitative",
+      "regime": "L3",
+      "source_citation": "Clowe+2006, JWST 2025",
+      "preregistered": false,
+      "status": "native_prediction_confirmed",
+      "method": "collisionless_DM_separation"
+    },
+    {
+      "id": "EFC_bullet_eta",
+      "framework": "EFC",
+      "phenomenon": "bullet_dkappa",
+      "value": 0.9993,
+      "uncertainty": 0.0005,
+      "units": "Phi_over_Psi_eta",
+      "regime": "L3",
+      "source_citation": "EFC Phi/Psi Shadow-Mode + JWST Bullet",
+      "preregistered": true,
+      "status": "sealed_prediction",
+      "method": "eta_equals_1_via_EFC_screening",
+      "badge": "KILL"
+    },
+    {
+      "id": "DGP_nDGP_growth",
+      "framework": "DGP",
+      "phenomenon": "sigma8_growth",
+      "value": 0.465,
+      "uncertainty": 0.03,
+      "units": "dimensionless",
+      "regime": "L1",
+      "source_citation": "nDGP (normal branch)",
+      "preregistered": false,
+      "status": "enhanced_growth",
+      "method": "Vainshtein_brane_localized"
+    },
+    {
+      "id": "Galileon_growth",
+      "framework": "Galileon",
+      "phenomenon": "sigma8_growth",
+      "value": 0.48,
+      "uncertainty": 0.04,
+      "units": "dimensionless",
+      "regime": "L1",
+      "source_citation": "Covariant Galileon",
+      "preregistered": false,
+      "status": "enhanced_growth",
+      "method": "G_X_braiding"
+    },
+    {
+      "id": "Kaniadakis_HDE_w0",
+      "framework": "Kaniadakis_HDE",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -0.82,
+      "value_wa": -0.25,
+      "uncertainty_w0": 0.1,
+      "uncertainty_wa": 0.2,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "Drepanou+2021",
+      "preregistered": false,
+      "status": "derived_from_kappa_entropy",
+      "method": "kappa_generalized_entropy"
+    },
+    {
+      "id": "ModifiedEntropic_w0",
+      "framework": "Modified_Entropic_Odintsov",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -0.8,
+      "value_wa": -0.3,
+      "uncertainty_w0": 0.15,
+      "uncertainty_wa": 0.25,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "Odintsov+2025",
+      "preregistered": false,
+      "status": "derived",
+      "method": "modified_entropy_index"
+    },
+    {
+      "id": "Thawing_w0",
+      "framework": "Thawing_Quintessence",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -0.95,
+      "value_wa": 0.15,
+      "uncertainty_w0": 0.05,
+      "uncertainty_wa": 0.1,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "2025 curved thawing",
+      "preregistered": false,
+      "status": "slow_roll",
+      "method": "thawing_scalar_from_Omega_k"
+    },
+    {
+      "id": "EFC_alpha_postdata_2026_04_26",
+      "framework": "EFC",
+      "phenomenon": "w0wa_preference",
+      "value_alpha": 0.154,
+      "uncertainty_alpha": 0.196,
+      "units": "dimensionless_alpha",
+      "regime": "L0",
+      "source_citation": "research_daemon rc_20260425_215615 (2026-04-26), D2 self-consistent r_d, post stub→real data update (2026-04-16)",
+      "preregistered": false,
+      "status": "COLLAPSED_SIGN_FLIPPED",
+      "method": "joint_BAO_DR2_growth_extended_Hz_chronometers_Pantheon_self_consistent_rd",
+      "significance_sigma": 0.79,
+      "delta_aic": 1.56,
+      "delta_bic": 3.80,
+      "r_d_mpc": 149.43,
+      "r_d_sigma": 5.59,
+      "data_provenance": "fs8_extended.csv (DOI-verified, 7 epochs, 2026-04-16), hz_cosmic_chronometers.csv (DOI-verified, 9 pts, 2026-04-16), pantheon_binned.csv (40 binned, 2026-04-16), bao_desi_dr2.json (13 pts, full cov, 2026-02-23)",
+      "tension_with_seal": {
+        "seal_mean": -0.696,
+        "current": 0.154,
+        "offset": 0.85,
+        "sign_flipped": true,
+        "interpretation": "After data hygiene (stub→real), alpha now sits on the OPPOSITE side of zero from the sealed prediction. Original VAL-005 DR1 result (Δχ²=-22.01) is likely a fit-artefact under stub-data degeneracy."
+      },
+      "associated_results_same_cycle": {
+        "variantH_5p_entropy_gradient_growth": {
+          "delta_aic_vs_lcdm": 3.9,
+          "verdict": "MARGINAL_NOT_PREFERRED",
+          "interpretation": "Direct EFC mechanism (∇S→μ→fσ₈) loses on parsimony to LCDM under current data."
+        },
+        "variantG_constitutive_law": {
+          "G01_k_eff_001": "UNDETECTABLE",
+          "G02_k_eff_002": "UNDETECTABLE",
+          "G10_k_eff_010": "UNDETECTABLE",
+          "delta_logL_growth_max": 0.057
+        },
+        "divergence_total_dlogL": 0.236,
+        "forbidden_pattern_BAO_distance_sigma": 1.1
+      }
+    },
+    {
+      "id": "EFC_alpha_DR2",
+      "framework": "EFC",
+      "phenomenon": "w0wa_preference",
+      "value_alpha": -0.141,
+      "uncertainty_alpha": 0.208,
+      "units": "dimensionless_alpha",
+      "regime": "L0",
+      "source_citation": "Session 20 DESI DR2 emcee (2026-02-23)",
+      "preregistered": false,
+      "status": "NO_SIGNAL",
+      "method": "joint_likelihood_BAO_Hz_growth_SNIa",
+      "significance_sigma": 0.68,
+      "delta_aic": 1.59,
+      "delta_bic": 3.83,
+      "per_probe_dlogL": {
+        "BAO": 0.129,
+        "growth": 0.021,
+        "Hz": 0.037,
+        "SNIa": -0.041
+      },
+      "note": "0.68 sigma — NO_SIGNAL verdict. DR2 BAO precision dissolved the degeneracy that EFC-VAL-2026-005 DR1 result rode. Concurrent MCMC reaches STOPPED_DEGENERACY_PERSISTS state in EFC-VAL-2026-005 narrative.",
+      "tension_with_VAL_005": {
+        "VAL_005_DR1_result": "Δχ²=-22.01 (5-fold CV, EFC strongly preferred)",
+        "interpretation": "DR1 model-comparison metric (CV) found a directional signal that DR2 marginalized posterior cannot recover. Open question: is DR1 signal a degeneracy fit artefact, or did DR2 introduce systematic that hides true alpha?",
+        "next_step": "Profile-likelihood axis along LOO-derived alpha direction (EFC-VAL-2026-005 §5 next-step #1)"
+      }
+    },
+    {
+      "id": "EFC_alpha_freeze_20260221",
+      "framework": "EFC",
+      "phenomenon": "w0wa_preference",
+      "value_alpha": -0.7022,
+      "uncertainty_alpha": null,
+      "units": "dimensionless_alpha",
+      "regime": "L0",
+      "source_citation": "freeze_20260221_160857.json (NUTS GPU, code_commit 5bfed347, cosmology_model efc_variant_f)",
+      "preregistered": true,
+      "status": "sealed_blind_prediction",
+      "method": "NUTS_GPU_pre_freeze_DESI_DR2_blind",
+      "freeze_id": "freeze_20260221_160857",
+      "content_hash": "584420bb6c5b0902",
+      "document_id": "dbccda150abca0e7",
+      "significance_sigma": 1.69,
+      "alpha_ci68": [
+        -1.1019,
+        -0.2548
+      ],
+      "validation_id": "EFC-VAL-2026-005",
+      "consistency_with_LOO": "0.66 sigma_LOO from non-MCMC fs8 result alpha=-1.00±0.46"
+    },
+    {
+      "id": "EFC_alpha_freeze_20260218",
+      "framework": "EFC",
+      "phenomenon": "w0wa_preference",
+      "value_alpha": -0.6886,
+      "uncertainty_alpha": null,
+      "units": "dimensionless_alpha",
+      "regime": "L0",
+      "source_citation": "freeze_20260218_050713.json (NUTS GPU)",
+      "preregistered": true,
+      "status": "sealed_blind_prediction",
+      "method": "NUTS_GPU_pre_freeze_DESI_DR2_blind",
+      "freeze_id": "freeze_20260218_050713",
+      "content_hash": "4e9d2e70ba56d142",
+      "document_id": "7a850cfa58477701",
+      "significance_sigma": 1.62,
+      "validation_id": "EFC-VAL-2026-005",
+      "note": "Sealed mean across both freezes: bar_alpha_seal = -0.696"
+    },
+    {
+      "id": "EFC_DESI_Y1_NonMCMC",
+      "framework": "EFC",
+      "phenomenon": "non_mcmc_alpha_signal",
+      "value": -22.01,
+      "uncertainty": null,
+      "units": "delta_chi2",
+      "regime": "L0",
+      "source_citation": "EFC-VAL-2026-005 §2.1, DOI 10.6084/m9.figshare.32101213",
+      "preregistered": false,
+      "status": "model_comparison_strong_caveated",
+      "method": "5_fold_cross_validation_all_folds_prefer_EFC",
+      "validation_id": "EFC-VAL-2026-005",
+      "validation_candidate": "vc_1d8a8541be16",
+      "strength_label": "Strong (per VAL-005 protocol v1.2)",
+      "direction": "EFC_preferred",
+      "atlas_link_phenomena": [
+        "w0wa_preference",
+        "H0_tension"
+      ],
+      "caveat": "DR1 result. Direct conflict with DR2 NO_SIGNAL (EFC_alpha_DR2). Open question: DR1_DR2_collapse — see EFC framework open_questions."
+    },
+    {
+      "id": "EFC_BOSS_DR12_NonMCMC",
+      "framework": "EFC",
+      "phenomenon": "non_mcmc_alpha_signal",
+      "value": -7.77,
+      "uncertainty": null,
+      "units": "delta_chi2",
+      "regime": "L0",
+      "source_citation": "EFC-VAL-2026-005 §2.2, cross-ref EFC-VAL-2026-002 (DOI 10.6084/m9.figshare.31954125)",
+      "preregistered": false,
+      "status": "model_comparison_moderate",
+      "method": "direct_likelihood_ratio",
+      "validation_id": "EFC-VAL-2026-005",
+      "k_eff": 0,
+      "strength_label": "Moderate (per VAL-005 protocol v1.2)",
+      "direction": "EFC_preferred",
+      "atlas_link_phenomena": [
+        "sigma8_growth",
+        "w0wa_preference"
+      ],
+      "note": "k_eff=0 means EFC absorbs BAO preference without introducing additional effective free parameters."
+    },
+    {
+      "id": "EFC_fsigma8_LOO_NonMCMC",
+      "framework": "EFC",
+      "phenomenon": "non_mcmc_alpha_signal",
+      "value_alpha": -1.0,
+      "uncertainty_alpha": 0.46,
+      "significance_sigma": 2.2,
+      "delta_aic": -2.91,
+      "loo_pass": "7/7",
+      "units": "alpha_with_sigma",
+      "regime": "L1",
+      "source_citation": "EFC-VAL-2026-005 §2.3, cross-ref EFC-VAL-2026-003 (DOI 10.6084/m9.figshare.31955871)",
+      "preregistered": false,
+      "status": "indication_below_3sigma",
+      "method": "leave_one_out_seven_redshift_epochs",
+      "validation_id": "EFC-VAL-2026-005",
+      "watchlist": "W3_fs8_extended_alpha_signal_watch",
+      "atlas_link_phenomena": [
+        "sigma8_growth",
+        "S8_tension"
+      ],
+      "consistency_with_seal": "0.66 sigma_LOO from sealed mean bar_alpha=-0.696 — CONSISTENT",
+      "note": "Strongest growth-sector signal in registry. LOO 7/7 means signal not driven by any single epoch. Below 3-sigma detection threshold; reported as indication."
+    },
+    {
+      "id": "EFC_TNG_cluster_NonMCMC",
+      "framework": "EFC",
+      "phenomenon": "non_mcmc_alpha_signal",
+      "value": 0.0,
+      "uncertainty": null,
+      "units": "chi2_reduced",
+      "regime": "L2",
+      "source_citation": "EFC-VAL-2026-005 §2.4",
+      "preregistered": false,
+      "status": "INCONCLUSIVE_overfitting_alarm",
+      "method": "TNG_simulation_proxy_chi2",
+      "validation_id": "EFC-VAL-2026-005",
+      "validation_candidate": "vc_5b843e61b51c",
+      "atlas_link_phenomena": [
+        "sigma8_growth"
+      ],
+      "audit_required": true,
+      "caveat": "chi2_red ≈ 0 indicates overfitting, overestimated covariance, or insufficient effective DOF count. NOT independent confirmation. EFC-VAL-2026-005 §5 next-step #3 mandates explicit DOF audit before any further weight is placed on this entry. Cross-reference cluster_grid_search results: TNG mass-only model FAILED, core-state model only consistent with N=2 samples (2026-03-08, sessions 22-23)."
+    },
+    {
+      "id": "EFC_Hz_chronometers_NonMCMC",
+      "framework": "EFC",
+      "phenomenon": "non_mcmc_alpha_signal",
+      "value": -0.17,
+      "uncertainty": null,
+      "units": "delta_chi2",
+      "regime": "L0",
+      "source_citation": "EFC-VAL-2026-005 §2.5",
+      "preregistered": false,
+      "status": "sub_statistical",
+      "method": "delta_chi2_chronometers",
+      "validation_id": "EFC-VAL-2026-005",
+      "atlas_link_phenomena": [
+        "H0_tension"
+      ],
+      "caveat": "Cosmic chronometer H(z) is systematics-dominated; absence of signal is neither confirmation nor falsification."
+    },
+    {
+      "id": "Negentropic_w0_opposite",
+      "framework": "Negentropic_Gravity",
+      "phenomenon": "w0wa_preference",
+      "value_w0": -1.2,
+      "value_wa": 0.4,
+      "uncertainty_w0": 0.2,
+      "uncertainty_wa": 0.3,
+      "units": "dimensionless",
+      "regime": "L0",
+      "source_citation": "2025 negentropic",
+      "preregistered": false,
+      "status": "sign_inverted_from_EFC",
+      "method": "negentropy_sign_flip",
+      "note": "Explicit falsifier pair with EFC"
+    }
+  ],
+  "limit_cases": [
+    {
+      "framework": "EFC",
+      "recovers": "LCDM",
+      "conditions": "K->infinity, T->0, xi>>1"
+    },
+    {
+      "framework": "EFC",
+      "recovers": "MOND",
+      "conditions": "low-acceleration regime with a0_eff = C^2 * a0 (C=2.32 Grid-AQUAL-derived)"
+    },
+    {
+      "framework": "Horndeski",
+      "generalizes": "fR_Starobinsky",
+      "conditions": "specific alpha_M, alpha_B structure"
+    },
+    {
+      "framework": "w0waCDM",
+      "recovers": "LCDM",
+      "conditions": "w_0=-1, w_a=0"
+    },
+    {
+      "framework": "Quintessence",
+      "recovers": "LCDM",
+      "conditions": "V(phi)=const"
+    },
+    {
+      "framework": "RMOND_Skordis",
+      "recovers": "MOND",
+      "conditions": "non-relativistic_limit"
+    },
+    {
+      "framework": "Brans_Dicke",
+      "recovers": "GR",
+      "conditions": "omega_BD->infinity"
+    }
+  ],
+  "validations": [
+    {
+      "id": "EFC-VAL-2026-002",
+      "title": "BOSS DR12 Transfer Validation",
+      "doi": "10.6084/m9.figshare.31954125",
+      "category": "BAO_likelihood_ratio",
+      "framework": "EFC",
+      "regimes": ["L0", "L2"],
+      "status": "registered",
+      "cross_referenced_by": ["EFC-VAL-2026-005"]
+    },
+    {
+      "id": "EFC-VAL-2026-003",
+      "title": "Multi-epoch fσ8 Growth Rate Test",
+      "doi": "10.6084/m9.figshare.31955871",
+      "category": "growth_rate_LOO",
+      "framework": "EFC",
+      "regimes": ["L1", "L2"],
+      "status": "registered",
+      "cross_referenced_by": ["EFC-VAL-2026-005"]
+    },
+    {
+      "id": "EFC-VAL-2026-004",
+      "title": "Bullet Cluster Under EFC",
+      "doi": "10.6084/m9.figshare.31963668",
+      "category": "cluster_phi_psi_shadow",
+      "framework": "EFC",
+      "regimes": ["L3"],
+      "status": "registered",
+      "cross_referenced_by": ["EFC-VAL-2026-005"]
+    },
+    {
+      "id": "EFC-VAL-2026-005",
+      "title": "Non-MCMC Constraints on the EFC alpha-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+      "doi": "10.6084/m9.figshare.32101213",
+      "category": "non_mcmc_aggregate",
+      "version": "1.0",
+      "date": "2026-04-26",
+      "framework": "EFC",
+      "regimes": ["L0", "L1", "L2"],
+      "status": "published",
+      "url": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/Non-MCMC_Constraints_on_the_EFC_%CE%B1-Parameter",
+      "language_protocol": "v1.2_conservative",
+      "cross_references": ["EFC-VAL-2026-002", "EFC-VAL-2026-003"],
+      "registers_validation_candidates": ["vc_1d8a8541be16", "vc_5b843e61b51c"],
+      "registers_watchlist_items": ["W1_grav_kt3_persistent_marginal", "W2_phi_psi_slip_euclid_watch", "W3_fs8_extended_alpha_signal_watch"],
+      "registers_predictions": [
+        "EFC_DESI_Y1_NonMCMC",
+        "EFC_BOSS_DR12_NonMCMC",
+        "EFC_fsigma8_LOO_NonMCMC",
+        "EFC_TNG_cluster_NonMCMC",
+        "EFC_Hz_chronometers_NonMCMC"
+      ],
+      "registers_freezes": [
+        "freeze_20260221_160857",
+        "freeze_20260218_050713"
+      ],
+      "key_findings_summary": "Non-MCMC across BAO+growth+cluster shows 3/5 directional preference for EFC, all sub-3-sigma. Concurrent MCMC degeneracy-limited (alpha=-0.101±0.212, STOPPED_DEGENERACY_PERSISTS). Sealed predictions (bar_alpha=-0.696) consistent with fσ8 LOO (alpha=-1.00±0.46) within 0.66 sigma_LOO. MCMC vs sealed tension is 2.8 sigma_MCMC — interpreted as inference-framework methodological tension under degeneracy, NOT detection.",
+      "next_steps": [
+        "Profile-likelihood axis along LOO-derived alpha direction",
+        "Joint BAO+fσ8 likelihood in single inference run",
+        "TNG cluster DOF audit before any further weight",
+        "Euclid DR1 prep for sealed phi_psi_slip kill-test (W2)"
+      ]
+    }
+  ],
+  "validation_candidates": [
+    {
+      "id": "vc_1d8a8541be16",
+      "registered_by": "EFC-VAL-2026-005",
+      "dataset": "DESI Y1 BAO",
+      "method": "5_fold_cross_validation",
+      "metric": "delta_chi2 = -22.01",
+      "regime": "L0",
+      "status": "pending_review",
+      "atlas_prediction": "EFC_DESI_Y1_NonMCMC",
+      "audit_priority": "high",
+      "audit_question": "Is DR1 CV signal a degeneracy fit-artefact dissolved by DR2 precision? Re-run on DR2 BAO with profile-likelihood axis."
+    },
+    {
+      "id": "vc_5b843e61b51c",
+      "registered_by": "EFC-VAL-2026-005",
+      "dataset": "IllustrisTNG cluster catalogue",
+      "method": "TNG_simulation_proxy_chi2",
+      "metric": "chi2_red ≈ 0",
+      "regime": "L2",
+      "status": "pending_review",
+      "atlas_prediction": "EFC_TNG_cluster_NonMCMC",
+      "audit_priority": "blocking",
+      "audit_question": "Effective DOF audit, covariance audit, simulation-derived error model audit. Result MUST NOT be cited as confirmation until all three are completed."
+    }
+  ],
+  "watchlist": [
+    {
+      "id": "W1_grav_kt3_persistent_marginal",
+      "registered_by": "EFC-VAL-2026-005",
+      "domain": "discrete_entropic_gravity",
+      "description": "KT3 v2 (Grid-AQUAL N=41,61,81) β-convergence study. KT3 v1 marginal (β=0.293 vs target 0.5). KT3 v2 running on GPU-PC since 2026-02-21.",
+      "trigger": "KT3 v2 β converges to 0.5 at N=81 → EFC structurally not supported. β stays well below 0.5 → first Λ-locking signal confirmed.",
+      "current_state": "running"
+    },
+    {
+      "id": "W2_phi_psi_slip_euclid_watch",
+      "registered_by": "EFC-VAL-2026-005",
+      "domain": "weak_lensing",
+      "description": "Phi/Psi slip signature (sealed prediction EFC_Sigma_crossover_z, EFC_bullet_eta). Euclid DR1 (~Oct 2026) provides next external falsification opportunity.",
+      "trigger": "Euclid DR1 phi_psi_slip measurement.",
+      "current_state": "awaiting_Euclid_DR1"
+    },
+    {
+      "id": "W3_fs8_extended_alpha_signal_watch",
+      "registered_by": "EFC-VAL-2026-005",
+      "domain": "growth_rate",
+      "description": "fσ8 multi-epoch LOO signal (alpha=-1.00±0.46, 2.20σ, LOO 7/7). Strongest growth-sector indication. Watch for new fσ8 measurements.",
+      "trigger": "New fσ8 epoch measurements that push or break the LOO signal.",
+      "current_state": "active_indication"
+    },
+    {
+      "id": "W4_variantH_two_sided_genuine_null_2026_04_28",
+      "registered_by": "audit session 2026-04-28 post-Tier-1-fix",
+      "domain": "entropy_gradient_growth",
+      "description": "VariantH (5p, ∇S → μ → fσ8) under symmetric prior U(-0.5, 0.5) gives genuine null. Posterior centered at S̄₀ ≈ 0 with both tails populated. ΔAIC ≈ +3.9 vs LCDM. Mechanism not identifiable in current expansion+growth probe stack; distinct from falsification.",
+      "trigger": "(a) New observable that breaks degeneracy (Euclid Phi/Psi slip, KT3 v2 β-convergence, cluster fσ8 sub-population). (b) Sealed prediction that fails at >3σ — would convert null to falsification. (c) Posterior tightening that excludes either tail at >2σ — would convert null to upper limit.",
+      "current_state": "underdetermined",
+      "blocks": "Future positive growth-sector claims for EFC until G2 (PPC growth p<0.95) is also satisfied"
+    }
+  ],
+  "methodological_notes": {
+    "non_mcmc_metrics_are_not_posteriors": {
+      "registered_by": "EFC-VAL-2026-005 §1 caveat box",
+      "rule": "Δχ², k-fold CV, LOO, ΔAIC are MODEL COMPARISON metrics computed under fixed-form likelihood evaluation. They are NOT marginalized posterior estimates and must not be reported as such. Cross-framework comparisons (MCMC σ vs CV σ) compare different statistical objects."
+    },
+    "framework_inference_tension": {
+      "registered_by": "EFC-VAL-2026-005 §3",
+      "rule": "When MCMC posterior is degeneracy-limited (e.g. STOPPED_DEGENERACY_PERSISTS), tension between sealed predictions and MCMC posterior reflects methodological framework split, not posterior contradiction. Quoted figures must specify which σ-type is used.",
+      "historical_correction": "Earlier internal versions cited ~4σ MCMC-vs-sealed tension by conflating frameworks. Corrected value under proper convention is 2.8 sigma_MCMC."
+    },
+    "sub_3sigma_language": {
+      "registered_by": "EFC-VAL-2026-005 protocol v1.2",
+      "rule": "No result under 3σ is described as a detection. Use 'indication' (signal but sub-detection), 'consistency' (agrees with prior expectation), or 'inconclusive' (cannot distinguish)."
+    },
+    "stub_to_real_data_audit_2026_04_26": {
+      "registered_by": "research_daemon rc_20260425_215615",
+      "rule": "Any inference result run before 2026-04-16 used stub or starter-CSV data for fs8 / Hz / SNIa. After 2026-04-16, DOI-verified real data is in place. Pre-2026-04-16 results that informed sealed predictions or VAL-005 must be re-examined; current cycles show α-signal collapse and sign flip relative to sealed mean.",
+      "files_updated_2026_04_16": [
+        "efc_inference/data/growth/fs8_extended.csv (7 DOI-traced epochs)",
+        "efc_inference/data/hubble/hz_cosmic_chronometers.csv (DOI-traced)",
+        "efc_inference/data/snia/pantheon_binned.csv (Scolnic+ 2018, 40 bins)"
+      ],
+      "files_already_real_pre_2026_04_16": [
+        "efc_inference/data/bao/desi_dr2/bao_desi_dr2.json (13 pts, real covariance, 2026-02-23)"
+      ],
+      "files_still_stub_or_starter": [
+        "efc_inference/data/bao/desi_y1_bao_rsd.csv (4 points, no covariance — used for VAL-005 DR1 result)",
+        "efc_inference/data/bao/boss_dr12_bao.csv (6 points, no full covariance)"
+      ],
+      "implication": "VAL-005 DR1 Δχ²=-22.01 used stub-quality DESI Y1 data. Real DR2 + real fs8 (post-2026-04-16) gives α=+0.154 (sign-flipped from sealed -0.696). Strongly supports DR1_DR2_collapse hypothesis — original DR1 result is likely a fit-artefact, not a physical signal.",
+      "corrigendum_required": "EFC-VAL-2026-006 (proposed) — corrigendum to VAL-005 noting data-quality dependence and current α sign flip. Sealed predictions remain prereg-protected, but public record must reflect updated state."
+    },
+    "audit_session_2026_04_28": {
+      "registered_by": "Symbiose AGI COO + Morten",
+      "scope": "5-bias structural audit of research_daemon, follow-up Tier-1 fix and verification cycle",
+      "biases_identified": [
+        "VariantH α prior U(0, 0.5) one-sided → forced positive, suppression branch unreachable",
+        "Forbidden Pattern Distance: hard-coded +1.0 magic offset producing false WARNINGs",
+        "VariantG G10 scenario classified as failed test rather than NULL_TEST_BY_DESIGN (μ_amp << data precision)",
+        "Axiom 0 secondary p=0.0195 buried under primary status_gate logic",
+        "Divergence engine ran without posterior_robustness/null_test calibration"
+      ],
+      "fixes_applied": [
+        "research_mcmc.py: VariantH prior U(-0.5, 0.5), walker init uniform(-0.15, 0.15)",
+        "cosmology_model.py: VariantH μ-clamp lower bound 0.5 → 0.3, NULL_TEST_BY_DESIGN class attr",
+        "research_daemon.py: posterior_robustness + null_test wired into _run_divergence_analysis",
+        "scripts/forbidden_pattern_distance.py: removed +1.0 magic offset, distance for both-positive case = 10.0 (SAFE)"
+      ],
+      "audit_protocol": {
+        "script": "tools/reproducibility_audit.py",
+        "readme": "tools/reproducibility_audit.README.md",
+        "categories": "A=data provenance, B=code sync, C=math sanity, D=known bugs, E=numerical sanity, F=sealed derivation, G=cycle statistical validity, H=prior drift",
+        "v2_result_2026_04_28": "39 PASS / 3 FAIL / 1 WARN — verdict BLOCKED, FAILs documented as historical (F4 + F5 sealed-data-context, G2 deferred PPC growth issue)"
+      },
+      "post_fix_cycle_finding": "VariantH posterior under symmetric prior is genuinely centered near zero with both tails populated. Original ΔAIC=+3.9 was a real null, not a prior-trap artifact. EFC mechanism as parameterized via VariantH+α+DR2-stack is NOT IDENTIFIABLE in current data — distinct from 'falsified' and from 'confirmed'.",
+      "open_audit_gaps": [
+        "GRAV pipeline (KT3 v2 N=41,61,81) — separate from MCMC audit",
+        "SPARC pilot (R²=0.21, N=9) — small-N, not yet audited under same protocol",
+        "BIC pipeline sensitivity to ζ calibration — not audited",
+        "Theory documents (175+ DOI corpus) ↔ code mapping — not yet audited per-claim"
+      ]
+    },
+    "sealed_prediction_risk_classification_2026_04_28": {
+      "registered_by": "audit session 2026-04-28",
+      "rule": "Each sealed freeze must be classified by which audit failures touch its derivation chain. FAIL in F4/F5 is HISTORICAL FACT, not a per-cycle bug. Conditional-validity-under-version protocol applies.",
+      "classification_scheme": "conditional_validity_under_pipeline_version_AND_data_version. Each sealed freeze inherits a (pipeline_version, data_version) tag from its code_commit. Sealed predictions remain prereg-protected, but their direct comparison to current data requires either (a) re-derivation under current pipeline+data, or (b) explicit acknowledgement that the comparison is across versions.",
+      "freeze_F4_status": {
+        "verdict": "FAIL_HISTORICAL",
+        "sealed_pipeline_version": "v_pre_audit_one_sided_prior (research_mcmc.py before 2026-04-26 patches)",
+        "sealed_data_version": "fs8_smoketest_2025-Q4 (3-point stub)",
+        "current_pipeline_version": "v_post_audit_symmetric_prior (research_mcmc.py 2026-04-26+)",
+        "current_data_version": "fs8_extended_2026-04-16 (16-row DOI-traced hybrid)",
+        "comparison_validity": "Sealed fσ8 prediction is prereg-valid against the data version it was sealed against. Direct comparison to current data is invalid without re-sealing or explicit version-tagged caveat.",
+        "action_required": "Either re-derive prediction under (v_post_audit, fs8_extended_2026-04-16) and seal as new freeze, OR cite original seal with explicit version tags."
+      },
+      "freeze_F5_status": {
+        "verdict": "FAIL_HISTORICAL",
+        "sealed_pipeline_version": "v_pre_audit_one_sided_prior",
+        "sealed_data_version": "DESI_DR1_4pts_no_full_cov",
+        "current_pipeline_version": "v_post_audit_symmetric_prior",
+        "current_data_version": "DESI_DR2_13pts_full_cov_2026-02-23",
+        "comparison_validity": "Sealed BAO prediction was conditional on DR1 fit-structure. DR2's tighter constraints are a different test, not a re-evaluation of the same test.",
+        "action_required": "Either re-derive prediction under (v_post_audit, DESI_DR2) and seal as new freeze, OR cite original seal with explicit version tags."
+      },
+      "freezes_unaffected_by_data_drift": [
+        {
+          "sector": "GRAV (KT1/KT2/KT3)",
+          "rationale": "No fs8 or BAO dependency. Pipeline version: v_grav_aqual_KT3v2 (2026-02-21+). Data version: synthetic Grid-AQUAL solver outputs."
+        },
+        {
+          "sector": "SPARC rotation curves",
+          "rationale": "No cosmological-stack dependency. Pipeline version: v_sparc_pilot_v1 (scripts/efc_bic_pilot 2026-04-25). Data version: SPARC-175 archived rotation curves."
+        },
+        {
+          "sector": "Bullet δκ",
+          "rationale": "Independent observable. Pipeline version: v_bullet_v1. Data version: Clowe+2006 + JWST 2025 archival."
+        }
+      ],
+      "protocol_for_VAL_006": "VAL-006 corrigendum must explicitly state pipeline_version + data_version per sealed prediction. Sealed predictions in fσ8 and BAO sectors retain prereg status under their (pipeline_pre_audit, data_pre_2026_04_16) tags; their direct comparison to current data is across versions and must be labeled as such. Sealed predictions in GRAV/SPARC/Bullet sectors are unaffected by the 2026-04-16 data refresh and the 2026-04-26 daemon patches."
+    },
+    "ppc_growth_anomaly_g2_2026_04_28": {
+      "registered_by": "audit gate G2",
+      "observation": "Latest cycle PPC growth p_value = 0.990 (calibration: cal_1s=1.000, Δ=0.317). Posterior predicts growth observables systematically too far from null distribution.",
+      "interpretation_options": [
+        "(a) Genuine likelihood mis-specification in fσ8 sector — fσ8 covariance under-quoted, leading to over-tight likelihood and over-extreme PPC. SEVERE: distorts σ_α from growth channel.",
+        "(b) PPC calibration script bug — scale or offset error in the verification layer itself. MILD: distorts only the verification layer, not inference.",
+        "(c) Genuine model failure — EFC predictions actually do not match observed growth structure within true (correctly quoted) covariance. SEVERE in opposite direction: would falsify model parameterization."
+      ],
+      "diagnostic_to_distinguish_a_b_c": [
+        "Run the same PPC machinery on a known-good model (LCDM with Planck params) against the same fσ8 covariance and pseudo-data. If LCDM also returns p≈0.99, root cause is (b) — the PPC script. If LCDM returns p in [0.05, 0.95], root cause is (a) or (c) and depends on whether α-posterior re-fitted with widened fσ8 covariance still gives near-zero α.",
+        "Inspect fσ8 covariance eigenvalue structure: condition number, off-diagonal correlations, comparison with published BOSS-DR12 hybrid covariance.",
+        "Compute residuals (data − posterior_mean_prediction) / σ_data per fσ8 epoch. If residuals are all sub-σ but PPC still p=0.99, root cause is the PPC normalization (b)."
+      ],
+      "current_status": "structurally_open — does NOT block VAL-006 corrigendum framing because corrigendum reports DEGENERACY/null, not a positive growth claim. But this is NOT 'deferred-fix-coming-soon'. It is an open structural question about whether the growth-channel likelihood layer is correctly specified. Until resolved, σ_α from the growth sector is uncertain (over- or under-quoted depending on which interpretation holds).",
+      "blocks": "ANY future claim of EFC growth-sector signal until G2 < 0.95 AND root cause among (a)/(b)/(c) is identified. The 'underdetermined' status of the EFC mechanism after VAL-006 is conservative and survives all three interpretations.",
+      "scope_of_impact": "If (a) holds: σ_α from growth is OVER-confident; combined posterior is MORE uncertain than reported. If (b) holds: σ_α is correct; only verification layer is buggy. If (c) holds: model parameterization may be falsified by growth alone. VAL-006 claim 'underdetermined' is robust to all three because it does not assert a positive signal."
+    }
+  }
+}

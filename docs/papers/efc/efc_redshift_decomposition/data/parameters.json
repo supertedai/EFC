@@ -1,0 +1,100 @@
+{
+  "paper": {
+    "title": "A Three-Window Decomposition of Cosmological Redshift in Energy-Flow Cosmology",
+    "doi": "10.6084/m9.figshare.32113399",
+    "author": "Morten Magnusson",
+    "date": "2026-04-28"
+  },
+  "constants": {
+    "a_G": {
+      "value": 0.1,
+      "description": "Gravitational coupling coefficient of EFC (irreducible structural scale), approximate, possibly regime-dependent"
+    },
+    "a_H0": {
+      "value": 0.05,
+      "relation": "a_G / 2",
+      "description": "Hubble-structure (Friedmann) projection of a_G"
+    },
+    "a_c": {
+      "value": 0.025,
+      "relation": "a_G / 4",
+      "description": "Photon propagation (Core Lock) projection of a_G"
+    },
+    "MOND_g_over_a0_ratio": {
+      "value": 5,
+      "description": "Approximate ratio g/a0 from SPARC anchoring; flagged as open tension (~5x discrepancy between cubic-graph prediction and SPARC calibration)"
+    },
+    "C_eff_relation": {
+      "formula": "k^2 / a_G",
+      "description": "Perturbation amplitude coefficient from EFC-D action level"
+    },
+    "T_CMB_0": {
+      "value": 2.7255,
+      "unit": "K",
+      "description": "Present-day CMB temperature"
+    }
+  },
+  "regime_projections": {
+    "Hubble_Friedmann": {
+      "projection": "a_H0 = a_G / 2",
+      "source": "H^2 proportional to G_eff structure"
+    },
+    "photon_propagation_CoreLock": {
+      "projection": "a_c = a_G / 4",
+      "source": "ln(c/c0) = a_c Phi(S)"
+    },
+    "galactic_acceleration_MOND": {
+      "projection": "g/a0 ~ 5",
+      "source": "SPARC anchoring (open)",
+      "status": "open_tension"
+    },
+    "perturbation_amplitude": {
+      "projection": "C_eff = k^2 / a_G",
+      "source": "EFC-D action level"
+    }
+  },
+  "observational_windows": {
+    "window_1_thermal": {
+      "observable": "T_CMB(z)",
+      "constrains": "partial_S F via T(z) scaling",
+      "test_id": "conv_t_cmb_z_deviation",
+      "LCDM_limit": "T(z) = T0 * (1+z)"
+    },
+    "window_2_geometric": {
+      "observable": "CDDR eta(z)",
+      "constrains": "transport sector via Phi(S)",
+      "test_id": "conv_c_eff_a_via_cddr",
+      "LCDM_limit": "eta(z) = 1"
+    },
+    "window_3_structural": {
+      "observable": "JWST vs CMB consistency",
+      "constrains": "integral of S(z) via single-parameter consistency",
+      "test_id": "conv_s_z_single_parameter",
+      "LCDM_limit": "S(z) = constant"
+    }
+  },
+  "open_tensions": {
+    "a0_discrepancy": {
+      "description": "~5x discrepancy between cubic-graph prediction and SPARC calibration of a0",
+      "magnitude": "factor of ~5"
+    },
+    "regime_split": {
+      "description": "Unresolved cosmological-vs-galactic regime split of a_G",
+      "status": "open"
+    }
+  },
+  "EFC_primitives": [
+    "alpha",
+    "S_flow",
+    "S_latent",
+    "xi",
+    "K",
+    "T"
+  ],
+  "equations": {
+    "eq1_redshift_integral": "ln(1+z_obs) = integral_gamma F(alpha, S_eff, k^mu nabla_mu S_eff) dlambda",
+    "eq2_effective_field": "S_eff = P_xi(S_flow, S_latent)",
+    "eq3_additive_projection": "S_eff \u2248 S_flow + xi * S_latent"
+  },
+  "LCDM_recovery_condition": "nabla S_eff -> 0 recovers 1+z = a_obs / a_emit"
+}

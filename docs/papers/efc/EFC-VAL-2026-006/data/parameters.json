@@ -1,0 +1,142 @@
+{
+  "_meta": {
+    "paper": "EFC-VAL-2026-006",
+    "doi": "10.6084/m9.figshare.32114530",
+    "title": "Interim Audit Corrigendum to VAL-005: Stub-to-Real Data Transition, VariantH Genuine Null, and the Open G2 Growth-Likelihood Question",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-04-28",
+    "license": "CC-BY-4.0",
+    "corrigendum_to_doi": "10.6084/m9.figshare.32101213",
+    "audit_session": "2026-04-26 to 2026-04-28"
+  },
+  "desi_bao": {
+    "dr1_stub": {
+      "n_points": 4,
+      "full_covariance": false,
+      "delta_chi2": -22.01,
+      "classification": "STRONG"
+    },
+    "dr2_real": {
+      "n_points": 13,
+      "full_covariance": true,
+      "covariance_dim": "13x13",
+      "delta_chi2_approx": 0.0,
+      "classification": "NO_SIGNAL",
+      "file": "bao_desi_dr2.json",
+      "available_since": "2026-02-23"
+    }
+  },
+  "boss_dr12": {
+    "delta_chi2": -7.77,
+    "classification": "MODEST",
+    "data_state_change": false
+  },
+  "fs8_loo": {
+    "stub_alpha_mean": -1.0,
+    "stub_alpha_std": 0.46,
+    "stub_n_epochs": 7,
+    "real_n_epochs": 16,
+    "stub_classification": "INDICATION",
+    "real_classification": "W3_WATCHLIST",
+    "note": "Posterior broadens under DOI-traced 16-row hybrid covariance"
+  },
+  "tng_cluster": {
+    "chi2_red_approx": 0.0,
+    "classification": "OVERFITTING_ALARM",
+    "note": "DOF audit still required; not citable as confirmation"
+  },
+  "variant_h_prior": {
+    "old_alpha_bounds": [
+      0.0,
+      0.5
+    ],
+    "new_s0bar_bounds": [
+      -0.5,
+      0.5
+    ],
+    "description": "Tier-1 fix #1: symmetric uniform prior on coupling amplitude"
+  },
+  "walker_init": {
+    "old_range": [
+      0.01,
+      0.15
+    ],
+    "new_range": [
+      -0.15,
+      0.15
+    ],
+    "description": "Tier-1 fix #2: ensemble straddles zero"
+  },
+  "mu_clamp": {
+    "old_lower": 0.5,
+    "new_lower": 0.3,
+    "upper": 10.0,
+    "description": "Tier-1 fix #3: lower bound reduced to permit suppression solutions"
+  },
+  "magic_offset": {
+    "old_value": 1.0,
+    "new_value": 0.0,
+    "description": "Tier-1 fix #5: removed false-WARNING +1.0 offset"
+  },
+  "structural_biases": {
+    "n_biases": 5,
+    "all_direction": "null-suppressing",
+    "binomial_p_null": 0.5,
+    "binomial_p_value": 0.03125,
+    "locations": [
+      "research_mcmc.py:_log_prior_variant_h",
+      "research_mcmc.py:_init_p0_5param_h",
+      "cosmology_model.py:EFCVariantH.growth_source",
+      "research_daemon.py:_run_divergence_analysis",
+      "scripts/forbidden_pattern_distance.py"
+    ]
+  },
+  "g2_open_issue": {
+    "ppc_growth_p_value": 0.99,
+    "possible_causes": [
+      "covariance audit",
+      "PPC-script bug",
+      "genuine model failure"
+    ],
+    "status": "unresolved",
+    "note": "Corrigendum is explicitly interim; defers final until G2 resolved"
+  },
+  "data_files_upgraded": {
+    "fs8_extended": {
+      "path": "efc_inference/data/growth/fs8_extended.csv",
+      "stub_epochs": 7,
+      "real_epochs": 16,
+      "covariance": "hybrid"
+    },
+    "hz_cosmic_chronometers": {
+      "path": "efc_inference/data/hubble/hz_cosmic_chronometers.csv",
+      "description": "DOI-traced cosmic chronometer compilation"
+    },
+    "pantheon_binned": {
+      "path": "efc_inference/data/snia/pantheon_binned.csv",
+      "description": "Scolnic et al. 2018, 40 binned distance moduli with full covariance",
+      "n_bins": 40
+    }
+  },
+  "reproducibility_audit": {
+    "n_gates": 43,
+    "pass_threshold": "GREEN or YELLOW",
+    "script": "tools/reproducibility_audit.py",
+    "categories": [
+      "data provenance",
+      "code sync",
+      "math sanity",
+      "known-bug regression",
+      "numerical sanity",
+      "sealed-derivation chain",
+      "cycle statistical validity",
+      "prior drift"
+    ]
+  },
+  "overall_status": {
+    "headline": "underdetermined",
+    "description": "EFC mechanism as currently parameterised is underdetermined under the present expansion+growth probe stack \u2014 distinct from both falsification and confirmation"
+  }
+}
