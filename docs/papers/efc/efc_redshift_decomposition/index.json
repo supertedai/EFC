@@ -1,28 +1,106 @@
 {
   "$schema": "./schema.json",
   "id": "efc-redshift-decomposition",
-  "title": "A Three-Window Decomposition of Cosmological in Energy-Flow Cosmology A synthesis note: TCMB , CDDR, and S(z) consistency under one regime parameter",
-  "description": "Auto-generated package for A Three-Window Decomposition of Cosmological in Energy-Flow Cosmology A synthesis note: TCMB , CDDR, and S(z) consistency under one regime parameter.",
-  "version": "1.0",
+  "title": "A Three-Window Decomposition of Cosmological Redshift in Energy-Flow Cosmology A synthesis note: TCMB , CDDR, and S(z) consistency under one regime parameter",
+  "description": "Synthesis note introducing a single-integral decomposition of observed cosmological redshift in Energy-Flow Cosmology using an effective entropy field Seff and a unifying regime scale aG. It links three observational windows\u2014TCMB(z), the cosmic distance-duality relation \u03b7(z), and structural S(z) consistency\u2014under one parameter with explicit projections (aH0 = aG/2, ac = aG/4), and recovers \u039bCDM when \u2207Seff \u2192 0.",
+  "version": "1.3",
   "date": "2026-04-28",
+  "doi": "10.6084/m9.figshare.32113399",
   "keywords": [
     "Energy-Flow Cosmology",
-    "Three-Window",
-    "Decomposition",
-    "Cosmological",
-    "Energy-Flow",
-    "Cosmology",
-    "TCMB"
+    "cosmological redshift",
+    "effective entropy field",
+    "Seff projection",
+    "screening parameter xi",
+    "cosmic distance-duality relation",
+    "TCMB scaling",
+    "structure growth S(z)",
+    "Core Lock",
+    "aG regime scale",
+    "LambdaCDM limit"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "redshift_integral": {
+      "latex": "\\ln\\big(1+z_{\\mathrm{obs}}\\big) = \\int_{\\gamma} F\\!\\left(\\alpha, S_{\\mathrm{eff}}, \\, k^{\\mu} \\nabla_{\\mu} S_{\\mathrm{eff}}\\right) \\, d\\lambda",
+      "description": "Path-dependent decomposition of observed redshift along a null geodesic in terms of the effective entropy field and its directional derivative."
+    },
+    "Seff_projection": {
+      "latex": "S_{\\mathrm{eff}} = \\mathcal{P}_{\\xi}\\!\\left(S_{\\mathrm{flow}}, S_{\\mathrm{latent}}\\right)",
+      "description": "Definition of the regime-dependent projection operator combining flow and latent entropy fields via screening parameter \u03be."
+    },
+    "Seff_first_order": {
+      "latex": "S_{\\mathrm{eff}} \\simeq S_{\\mathrm{flow}} + \\xi \\, S_{\\mathrm{latent}}",
+      "description": "First-order approximation to Seff valid when \u03be varies slowly along the photon path."
+    },
+    "core_lock_ceff": {
+      "latex": "\\frac{c_{\\mathrm{eff}}}{c_0} \\simeq \\exp\\!\\left(a_c \\, \\Phi(S)\\right), \\quad a_c = \\frac{a_G}{4}",
+      "description": "Core Lock relation linking the effective propagation speed to the entropy potential with ac projected from the single scale aG; feeds CDDR deviations."
+    },
+    "LCDM_limit": {
+      "latex": "F\\big(\\alpha, S_{\\mathrm{eff}}, \\nabla S_{\\mathrm{eff}} \\to 0\\big) \\to \\frac{d \\ln a}{d\\lambda}",
+      "description": "In the absence of Seff gradients, the framework reduces exactly to the standard \u039bCDM redshift relation."
+    }
+  },
+  "key_results": {
+    "main_finding": "Provides a unified line-integral redshift decomposition tied to a single regime scale aG that simultaneously constrains three observational windows and predicts CDDR deviations |\u03b7(z)\u22121| ~ 10^-3\u201310^-2 (up to ~5\u00d710^-2 in saturation), while reducing to \u039bCDM when \u2207Seff \u2192 0.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "aG (regime scale)",
+      "aH0 = aG/2",
+      "ac = aG/4",
+      "xi (screening parameter)",
+      "P_xi (Seff projection functional)"
+    ],
+    "datasets_used": [],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "EG ratio: EFC/E_GR = 1.086 (sealed prediction, KILL-tagged).",
+      "falsifiable_by": "Joint RSD + weak lensing EG measurements across 0 < z \u2272 1."
+    },
+    {
+      "id": "P2",
+      "statement": "Gravitational slip in Bullet-like clusters: \u03b7 = \u03a6/\u03a8 = 0.9993 (sealed prediction, KILL-tagged).",
+      "falsifiable_by": "Combined lensing and dynamical mass reconstructions in merging clusters."
+    },
+    {
+      "id": "P3",
+      "statement": "Modified-gravity response quadrant: \u03bc < 1 and \u03a3 > 1 (sealed prediction, KILL-tagged).",
+      "falsifiable_by": "Global fits to growth-rate (RSD) and weak-lensing convergence (WL) mapping the \u03bc\u2013\u03a3 plane."
+    },
+    {
+      "id": "P4",
+      "statement": "\u03d5\u2013\u03c8 gravitational slip transition redshift z = 0.44 (sealed prediction, KILL-tagged).",
+      "falsifiable_by": "Tomographic reconstructions of metric potentials from WL+RSD/ISW-lensing cross-correlations."
+    },
+    {
+      "id": "P5",
+      "statement": "Low-redshift clustering amplitude \u03c38 = 0.43 (sealed prediction, DAMAGE-tagged).",
+      "falsifiable_by": "Galaxy clustering and weak-lensing constraints on \u03c38 at z \u2272 0.5."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: MB-independent CDDR tests find |\u03b7(z) \u2212 1| < 3\u00d710^-4 (95% CL) for 0 < z \u2264 3 with no positive trend, excluding the predicted 10^-3\u201310^-2 deviations implied by ac = aG/4.",
+    "KC2: High-precision TCMB(z) measurements confirm T(z) = T0(1+z) with fractional deviations < 3\u00d710^-4 up to z \u2273 3, leaving no room for the required \u2202S F contributions in the thermal window.",
+    "KC3: A single aG fails to map consistently across windows: best-fit parameters violate aH0 = aG/2 and ac = aG/4 by > 3\u03c3 when inferred separately from background expansion and CDDR.",
+    "KC4: Any sealed perturbation-sector prediction listed (EG=1.086, \u03b7=0.9993, \u03bc<1 & \u03a3>1, z_slip=0.44, or \u03c38=0.43) is rejected at > 3\u03c3 by robust joint analyses.",
+    "KC5: Targeted line-of-sight comparisons show redshift is purely metric-only (no path dependence) at the \u226410^-3 level across diverse environments after controlling for lensing/magnification, contradicting Eq. (1).",
+    "KC6: Structural S(z) consistency fails: JWST-era early-structure timelines and CMB-inferred growth cannot be reconciled under any single-parameter Seff projection P\u03be at > 3\u03c3."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
   "files": {
     "pdf": "efc_redshift_decomposition.pdf",
     "readme": "README.md"
   },
-  "doi": "10.6084/m9.figshare.32113399",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.32113399"
 }
