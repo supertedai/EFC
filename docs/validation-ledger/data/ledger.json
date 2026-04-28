@@ -1,15 +1,15 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-04-28T06:10:22Z",
+  "generated_at": "2026-04-28T12:10:57Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
-    "physics_test": 43,
-    "consistency_check": 20,
+    "physics_test": 44,
+    "consistency_check": 21,
     "phenomenological": 16,
-    "framework_constraint": 27,
+    "framework_constraint": 28,
     "planned_pipeline": 18,
-    "total_public": 124,
+    "total_public": 127,
     "n_falsified": 10,
     "inference_count": 6,
     "chi2_summary": "2.18, N/A, 0.00, N/A, N/A, 10.39",
@@ -18,9 +18,9 @@
     "tcs_compression": 1.5,
     "tcs_mismatch": 0.3333,
     "pillar_1_lcdm": 0,
-    "pillar_2_native": 69,
+    "pillar_2_native": 71,
     "pillar_3_grav": 13,
-    "pillar_4_cross": 42,
+    "pillar_4_cross": 43,
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
@@ -603,6 +603,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_t_cmb_z_deviation_from_1_z_scaling_sz_cluster_test",
+        "name": "T_CMB(z) deviation from (1+z) scaling — SZ-cluster test",
+        "description": "Tests whether the cosmic blackbody temperature follows pure metric scaling T(z)=T_0(1+z) (ΛCDM) or shows systematic deviation tied to the EFC scale function S(z). This is the cleanest empirical discriminator between a metric-expansion and a thermodynamic-gradient interpretation of the CMB. Connects to the existing 'CMB Thermodynamic Interpretation' node (PART_OF Energy-Flow Cosmology) and tests its core prediction directly. Replaces the broader candidate vc_700e38674df6 with a single sharp falsifiable claim.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "Hurier+2014 SZ T(z) compilation, Luzzi+2015 cluster sample, Saro+2014, de Martino+2015 high-z absorber excitation temperatures",
+        "prediction": "SZ-effect-derived T_CMB measurements in the redshift range z=0.5–2 should show monotonic deviation from T_0(1+z) at the ~0.5–2% level by z=1, of the form T(z) = T_0(1+z)·f(S(z)) with f monotonic and bounded, f(0)=1. Null hypothesis: f≡1 (ΛCDM). Statistical test: χ² fit of the EFC f-form vs the ΛCDM null against compiled Hurier+2014 / Luzzi+2015 / Saro+2014 cluster data. EFC succeeds if Δχ² > 9 in favour of f-form (≥3σ preference); EFC is falsified if data is consistent with f≡1 within 1σ across the full z-range.",
+        "notes": "Approved – ren empirisk re-analyse av publiserte SZ-cluster T(z)-data (Hurier+2014, Luzzi+2015, Saro+2014, de Martino+2015). Falsifiseringskriterium spesifisert (Δχ² > 9 mot ΛCDM-null). Datadrevet kriterium oppfylt.",
+        "quantitative_result": null,
+        "last_synced": "2026-04-28T11:59:42.027000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_verlinde_relation_a_ch_emergent_from_bulk_entropy",
         "name": "Verlinde relation a₀~cH₀ emergent from bulk entropy",
         "description": "Adding volume-law bulk term to graph functional produces screening length L_Λ ∝ Λ^{-0.500} (exact) and transition acceleration a₀ ∝ Λ^{+0.500} (exact). This is the Verlinde relation a₀ ≈ √3·cH₀ emergent from graph, not imported.",
@@ -935,6 +950,21 @@
         "status_detail": "success"
       },
       {
+        "test_id": "conv_s_z_single_parameter_joint_fit_cmb_anomaly_jwst_early_galaxy",
+        "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
+        "description": "Tests the internal consistency of EFC by requiring that one and the same S(z) function simultaneously fit two independent anomalies: the CMB temperature deviation (tested in Candidate vc_7299eaee1d6b) and the JWST-observed early-galaxy luminosity excess at z>10. If the two datasets demand incompatible S(z) shapes, EFC is internally inconsistent and falls regardless of either anomaly's individual significance. If one shape fits both, EFC gains substantial structural credibility — a single thermodynamic parameter explaining two separately puzzling observations is a strong sign of underlying mechanism. This is what the framework actually claims, and is therefore where it must be tested.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "SZ T(z) compilations (input from Candidate A) + JWST high-z luminosity function: Labbé+2023, Harikane+2024, CEERS-2024 public catalog, plus Boylan-Kolchin+2023 mass-budget constraints",
+        "prediction": "A one-parameter S(z) profile (canonical candidate: S(z) = 1 - exp(-z/z*) with z* the only free parameter) should yield an acceptable joint fit to (i) the SZ-cluster T(z) deviation and (ii) the JWST high-z luminosity function excess. Pass criterion: Δχ² < 4 between the joint single-S(z) fit and the two independent best fits, i.e. forcing both datasets onto the same S(z) costs less than 2σ. Fail criterion: required S(z) shapes for the two datasets disagree at >3σ — EFC is then internally inconsistent on its own predictive backbone.",
+        "notes": "Approved – joint-fit konsistens-test mot SZ-cluster T(z) + JWST høy-z luminosity function (Labbé+2023, Harikane+2024, CEERS-2024, Boylan-Kolchin+2023). Datadrevet, eksisterende kataloger. Pass/fail-kriterium spesifisert (Δχ² < 4 = pass; >3σ uenighet = intern inkonsistens).",
+        "quantitative_result": null,
+        "last_synced": "2026-04-28T11:59:50.452000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_solar_system_ppn_ep",
         "name": "Solar System / PPN / EP",
         "description": "⚪",
@@ -1008,7 +1038,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v2.0 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.68722 p_binom=0.015625 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-04-28T03:31:14.553000000+00:00",
+        "last_synced": "2026-04-28T10:06:52.116000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1569,6 +1599,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_c_s_entropy_dependent_lightspeed_grb_multi_wavelength_arriva",
+        "name": "c(s) entropy-dependent lightspeed: GRB multi-wavelength arrival-time test",
+        "description": "Formalises the latent GNN concept c(s) — present in the embedding space at similarity 0.706 to speed_of_light but absent from Neo4j as an explicit node — as a falsifiable EFC framework claim: lightspeed is a function of local entropy state, c=c(S), not a fundamental constant. Distinct from time-varying-c (VSL/Magueijo) cosmologies in that c varies with the entropy field S, not with cosmic time t directly. The point of this candidate is to force c(s) into a testable shape so it cannot remain unfalsifiable speculation. This is also where EFC's challenge to Lorentz invariance becomes empirically meaningful or fails to be — and therefore the cleanest framework-level constraint on the theory.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Fermi/LAT GRB catalog (multi-wavelength events with photon arrival times), LOFAR low-frequency follow-up, Vasileiou+2013 Lorentz-invariance constraints from GRB photons (used as null-test calibration), Magueijo+2003 VSL framework comparison",
+        "prediction": "If c=c(S), photons of different frequency travelling through the same cosmological entropy gradient must show frequency-dependent arrival-time differences beyond standard plasma dispersion. Specifically: gamma-band (>100 MeV) photons from high-z GRBs should arrive earlier than radio-band photons from the same event by a fractional Δt/t correlated with traversed ΔS along the line of sight, at a level distinguishable from Vasileiou+2013-style Lorentz-invariance constraints. Predicted scale: Δc/c ~ 10^-7 fractional per unit ΔS≈0.1, line-of-sight integrated. Null hypothesis: arrival-time dispersion is fully explained by plasma + standard relativity, independent of frequency band. Falsification: GRB multi-wavelength dispersion data consistent with Vasileiou+2013 bounds across all z-ranges falsifies c(s) at the predicted scale.",
+        "notes": "Approved – datadrevet til tross for sterkere teoretisk innsats (utfordrer Lorentz-invarians). Bruker Fermi/LAT GRB-katalog + LOFAR-follow-up + Vasileiou+2013 som null-test-kalibrering. Spesifikk Δt/t ~ 10^-7 per ΔS≈0.1 prediksjon, falsifisert hvis konsistent med Vasileiou-bånd. Markeres som høy-risiko framework_constraint: en falsifisering her feller c(s) men ikke nødvendigvis CMB-tolkningen i de andre to testene.",
+        "quantitative_result": null,
+        "last_synced": "2026-04-28T12:00:59.131000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv__x_t_s_s_global_as_universal_regime_control_parameter",
         "name": "χ(x,t) = |∇δS|/S_global as universal regime control parameter",
         "description": "Define χ(x,t) = |∇δS|/S_global as the single universal control parameter that indexes L0→L3 continuously. Must show χ increases monotonically with structure intensity and correctly separates all four regimes. Replaces ad-hoc regime boundaries with physics-derived scalar.",
@@ -2041,7 +2086,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-28T05:13:46.140717+00:00"
+      "timestamp": "2026-04-28T11:13:55.802365+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2055,7 +2100,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-04-28T05:13:46.172107+00:00"
+      "timestamp": "2026-04-28T11:13:55.836066+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2069,7 +2114,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-04-28T05:13:46.186349+00:00"
+      "timestamp": "2026-04-28T11:13:55.854245+00:00"
     }
   },
   "parameters": {
@@ -2713,10 +2758,40 @@
   ],
   "changelog": [
     {
+      "name": "c(s) entropy-dependent lightspeed: GRB multi-wavelength arrival-time test",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T12:00:59.131000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T11:59:50.452000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "T_CMB(z) deviation from (1+z) scaling — SZ-cluster test",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-04-28T11:59:42.027000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-04-28T03:31:14.553000000+00:00",
+      "last_updated": "2026-04-28T10:06:52.116000000+00:00",
       "source": null,
       "all_labels": [
         "EFCValidation"
