@@ -1,0 +1,95 @@
+{
+  "$schema": "./schema.json",
+  "id": "efc-val-2026-006",
+  "title": "EFC-VAL-2026-006: Interim Audit Corrigendum to VAL-005 Stub-to-Real Data Transition, VariantH Genuine",
+  "description": "Interim corrigendum auditing VAL-005 after upgrading three inputs from stub to DOI-traced observational data and patching five identified biases in the inference daemon. Re-runs show the earlier DESI DR1 non-MCMC \u0394\u03c7\u00b2 signal dissolves under DESI DR2 + real f\u03c38, and the EFC VariantH entropy-gradient growth model yields a genuine null under a symmetric prior and patched pipeline. The paper records Tier-1 fixes, institutes a reproducibility audit protocol, and flags an unresolved growth PPC anomaly (G2), concluding the EFC mechanism is currently underdetermined by the present expansion+growth probe stack.",
+  "version": "1.0",
+  "date": "2026-04-28",
+  "doi": "10.6084/m9.figshare.32114530",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "EFC",
+    "VariantH",
+    "entropy-gradient growth",
+    "BAO",
+    "DESI DR2",
+    "f\u03c38",
+    "Pantheon (SN Ia)",
+    "cosmic chronometers",
+    "MCMC",
+    "AIC",
+    "reproducibility audit"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "hill_function_variantH": {
+      "latex": "F = \\frac{\\chi^2}{\\chi^2 + \\beta_0^2}",
+      "description": "Hill-function form used in VariantH to modulate contribution (suppression weight) via the scale parameter \\beta_0."
+    },
+    "sbar0_symmetric_prior": {
+      "latex": "\\bar{S}_0 \\sim \\mathcal{U}(-0.5,\\,0.5)",
+      "description": "Patched symmetric prior on the EFC coupling amplitude in VariantH, replacing the one-sided prior that biased results toward a null."
+    },
+    "mu_clamp_relaxed": {
+      "latex": "0.3 \\le \\mu \\le 10",
+      "description": "Relaxed lower bound on the VariantH growth-source clamp to permit physical suppression solutions (previously 0.5 \\le \\mu)."
+    }
+  },
+  "key_results": {
+    "main_finding": "Under real (DOI-traced) data and patched priors/pipeline, the DESI DR1 non-MCMC signal vanishes and VariantH delivers a genuine null with \u0394AIC \u2248 +3.9 favoring \u039bCDM on parsimony, leaving EFC underdetermined by current probes.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "\u03a9m",
+      "H0",
+      "\u03c38",
+      "S\u03040",
+      "\u03b20"
+    ],
+    "datasets_used": [
+      "DESI DR2 BAO (13 points, full covariance)",
+      "BOSS DR12 BAO",
+      "f\u03c38 compilation (16 epochs; hybrid covariance)",
+      "Pantheon binned SN Ia (Scolnic et al. 2018; full covariance)",
+      "Cosmic chronometers H(z) compilation",
+      "TNG cluster sample (\u03c72_red audit flagged)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Growth-sector sealed predictions (f\u03c38/BAO) from VAL-005 are flagged as conditional on retired stub/DR1 inputs and require re-testing under DESI DR2 + real f\u03c38 with full covariance.",
+      "falsifiable_by": "Re-run of the sealed growth predictions under DESI DR2 BAO + updated f\u03c38 compilation with full covariance; disagreement beyond calibrated null floors (G3/G4) falsifies the prior sealed set."
+    },
+    {
+      "id": "P2",
+      "statement": "Non-growth sealed predictions in GRAV/SPARC/Bullet sectors remain unaffected by this corrigendum.",
+      "falsifiable_by": "Sector-specific tests (e.g., SPARC rotation curves, Bullet Cluster lensing mass\u2013gravity inferences) as originally specified in their sealed derivation chains."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: After resolving the G2 (PPC growth) issue with GREEN audit gates, VariantH yields \u0394AIC \u2265 +10 in favor of \u039bCDM across the expansion+growth probe stack with posterior_robustness and null_test wired; treat VariantH (current parameterization) as falsified for cosmologically relevant impact.",
+    "KC2: Under the symmetric prior S\u03040 ~ U(-0.5, 0.5) and relaxed \u03bc-clamp [0.3, 10], the posterior constrains |S\u03040| to a neighborhood of zero that implies growth suppression indistinguishable from \u039bCDM within measurement errors for 0 < z < 1 (95% credible), with GREEN robustness gates; declare VariantH ineffective and kill this mechanism variant.",
+    "KC3: The pathologically high growth PPC p-value (\u22480.99) persists across independent seeds, subsets, and covariance audits (GREEN), indicating systematic model\u2013data misfit rather than tooling error; reject VariantH for the growth sector.",
+    "KC4: Re-issued growth-sector sealed predictions fail against DESI DR2 BAO/RSD and the DOI-traced f\u03c38 compilation at \u22653\u03c3 with G3/G4 gates GREEN; classify the corresponding EFC growth mechanism as falsified."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-val-2026-005",
+      "doi": "10.6084/m9.figshare.32101213",
+      "role": "Base paper corrected by this interim audit corrigendum"
+    }
+  ],
+  "files": {
+    "pdf": "efc_val_2026_006.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32114530"
+}

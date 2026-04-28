@@ -1,4 +1,6 @@
-[efc-auto-meta] all paper directories have index.json
+[efc-auto-meta] 1 bare PDF(s) found, generating metadata:
+  EFC-VAL-2026-006: 10.6084/m9.figshare.32114530
+[efc-auto-meta] generated 1 package(s)
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -8,13 +10,40 @@ pdftotext: /usr/bin/pdftotext
 
 >>> Step 1: Enriching 1 paper(s) to 10/10 <<<
 
-  efc_redshift_decomposition  (missing: key_results, kill_criteria, paper_type, tier)
+  EFC-VAL-2026-006  (missing: key_results, kill_criteria, paper_type, tier, src/, examples/, data/)
     Enriched metadata (key_results, kill_criteria, paper_type, tier)
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    Created src/efc_val_2026_006.py
+    Created examples/demo_efc_val_2026_006.py
+    Created data/parameters.json
+    Generated src/, examples/, data/
 
-  Enriched: 1/1
+  Enriched: 2/1
 
->>> Step 1.5: Holistic Impact Analysis for 5 paper(s) <<<
+>>> Step 1.5: Holistic Impact Analysis for 6 paper(s) <<<
 
+  Non-MCMC_Constraints_on_the_EFC_α-Parameter:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
+  EFC_Outcome_Estimation_CrossSurvey:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
   A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -33,24 +62,6 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  EFC_Outcome_Estimation_CrossSurvey:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  Non-MCMC_Constraints_on_the_EFC_α-Parameter:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
   A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -60,8 +71,17 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
+  EFC-VAL-2026-006:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
 
->>> Step 2: Registering 63 paper(s) in public pages <<<
+>>> Step 2: Registering 64 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -73,41 +93,61 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 1 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 157 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 158 packages · 3 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 157 paper dirs scanned
+EFC DOI sync — 158 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 156
+  papers with registered DOI : 157
   papers without DOI         : 1
   papers with conflicts      : 0
 
 PROPAGATED DOIs into 1 papers:
-  efc_redshift_decomposition -> *.jsonld
+  EFC-VAL-2026-006 -> *.jsonld
 ========================================================================
-[efc-gen] 157 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 157 paper dirs · 0 errors · 1 warnings
+[efc-gen] 158 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 158 paper dirs · 0 errors · 1 warnings
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 7
 
-Processed 157 paper(s)
+Processed 158 paper(s)
   skip: 152
-  warn: 5
+  warn: 6
     - A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics: DOI registered but no ledger_impact block
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
+    - EFC-VAL-2026-006: DOI registered but no ledger_impact block
     - EFC_Outcome_Estimation_CrossSurvey: DOI registered but no ledger_impact block
     - EFC_PreRegistered_Predictions: DOI registered but no ledger_impact block
     - Non-MCMC_Constraints_on_the_EFC_α-Parameter: DOI registered but no ledger_impact block
 
 [ledger-impact-sync] nothing to do — all papers in steady state
-[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
-[efc-drift] 157 papers · no drift detected
+[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32114530
+[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32114530
+[efc-drift] 158 papers · 11 drift(s) detected:
+  README.md: claims 157 but actual is 158
+  README.md: claims 157 but actual is 158
+  README.md: claims 157 but actual is 158
+  README.md: claims 157 but actual is 158
+  README.md: claims 157 but actual is 158
+  AGENTS.md: claims 157 but actual is 158
+  AGENTS.md: claims 157 but actual is 158
+  Elevator_Pitch: claims 157 but actual is 158
+  Changelog: claims 157 but actual is 158
+  Changelog: claims 157 but actual is 158
+  AGENTS.md: claims 157 but actual is 158
+  [fixed] README.md: 157 → 158
+  [fixed] AGENTS.md: 157 → 158
+  [fixed] Elevator_Pitch: 157 → 158
+  [fixed] Changelog: 157 → 158
+[efc-drift] auto-fixed 4 file(s)
+[efc-drift] all drift resolved
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -115,7 +155,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 127 total, 99 survived, 10 falsified
-  Papers: 157 (156 DOIs)
+  Papers: 158 (157 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -143,19 +183,19 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched.
+[efc-auto-changelog] 1 paper package enriched; Public pages updated: Changelog, Elevator_Pitch, Validation_Ledger; Ledger data: evidence-register.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 157 papers, 156 DOIs
+Repo: 158 papers, 157 DOIs
 Ledger: 127 tests, 10 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 154 close to repo 157
-  [OK]       Paper count 157 close to repo 157
+  [OK]       Paper count 154 close to repo 158
+  [OK]       Paper count 158 close to repo 158
   [WARNING]  Test count '103' != total 127 or active 109
   [WARNING]  Test count '103' != total 127 or active 109
   [WARNING]  Test count '121' != total 127 or active 109
@@ -197,13 +237,13 @@ Ledger: 127 tests, 10 falsified
   [CRITICAL] 3 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
-  [OK]       README paper count 157 matches repo 157
-  [OK]       README paper count 157 matches repo 157
-  [OK]       README paper count 157 matches repo 157
-  [OK]       README paper count 157 matches repo 157
+  [OK]       README paper count 158 matches repo 158
+  [OK]       README paper count 158 matches repo 158
+  [OK]       README paper count 158 matches repo 158
+  [OK]       README paper count 158 matches repo 158
   [OK]       Stats categories sum to 127 = total_public
-  [OK]       DOI sync script present, 156/157 papers have DOIs
-  [OK]       115 papers have sealed predictions (337 total)
+  [OK]       DOI sync script present, 157/158 papers have DOIs
+  [OK]       116 papers have sealed predictions (339 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
@@ -211,7 +251,7 @@ Ledger: 127 tests, 10 falsified
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
   [OK]       Symbiose test count 127 matches ledger
-  [OK]       Symbiose paper count 157 matches repo
+  [OK]       Symbiose paper count 158 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
@@ -232,11 +272,12 @@ Fix these before auto-commit:
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 0 error(s), 4 warning(s)
+[full-sync] invariants: 0 error(s), 5 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32099389: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32101213: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32113399: expected='present' observed='absent'
+  [WARN] §2 doi_in_index_but_not_in_doi_map:32114530: expected='present' observed='absent'
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …
 [efc-maintain] running efc_ai_brain.py …
