@@ -1,17 +1,27 @@
 name: EFC main auto-sync
 
-# Auto-fix maintenance issues on main when papers are uploaded directly.
-# Generates missing metadata (index.json, CITATION.cff, etc.) from bare
-# PDFs, fixes paper count drift, and propagates DOIs.
+# Auto-fix maintenance issues on main when papers are uploaded directly
+# or when any maintenance input changes. Generates missing metadata
+# (index.json, CITATION.cff, etc.) from bare PDFs, fixes paper count
+# drift between data files and public HTML, and propagates DOIs.
 #
 # This is the "everything automatic" workflow — covers the gap where
-# efc-sync.yml only runs on dev branches.
+# efc-sync.yml only runs on dev branches. The path filter is kept in
+# sync with efc-verify.yml so that every input the maintenance pipeline
+# reconciles triggers a sync on main.
 
 on:
   push:
     branches: [main]
     paths:
       - "docs/papers/efc/**"
+      - "docs/validation-ledger/**"
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/public/EFC_Changelog.html"
+      - "docs/public/EFC_White_Paper_Series.html"
+      - "scripts/maintenance/**"
+      - "README.md"
+      - ".github/workflows/efc-main-sync.yml"
   workflow_dispatch:
 
 concurrency:
