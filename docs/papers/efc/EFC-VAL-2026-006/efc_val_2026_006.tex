@@ -1,0 +1,487 @@
+\documentclass[11pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{listings}
+
+% Custom column types for tabularx
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\definecolor{tableheader}{RGB}{230,238,247}
+\definecolor{tablerow}{RGB}{248,250,252}
+\renewcommand{\arraystretch}{1.18}
+\usepackage[hidelinks,
+  pdftitle={EFC-VAL-2026-006: Interim Audit Corrigendum to VAL-005 (Pre-G2 Resolution)},
+  pdfauthor={Morten Magnusson},
+  pdfsubject={DOI 10.6084/m9.figshare.32114530},
+  pdfkeywords={EFC, corrigendum, interim, reproducibility audit, VariantH null, G2 anomaly}]{hyperref}
+
+\definecolor{eblue}{RGB}{0,70,140}
+\definecolor{ered}{RGB}{180,30,30}
+\titleformat{\section}{\large\bfseries\color{eblue}}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{eblue}}{}{0em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{\scriptsize DOI: 10.6084/m9.figshare.32114530}
+\rfoot{\small Magnusson --- EFC-VAL-2026-006 Interim Corrigendum --- Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true, frame=single}
+
+\begin{document}
+
+% Title block
+\begin{center}
+{\LARGE\bfseries\color{eblue}
+EFC-VAL-2026-006:\\[2pt]
+Interim Audit Corrigendum to VAL-005\\[4pt]
+\textit{Stub-to-Real Data Transition, VariantH Genuine Null,\\
+and the Open G2 Growth-Likelihood Question}}
+
+\vspace{8pt}
+{\large Morten Magnusson}\\[2pt]
+{\small Symbiose Research, Sandnes, Norway\\
+ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095}\\
+\today \quad CC-BY-4.0}
+
+\vspace{6pt}
+\textbf{This document:} EFC-VAL-2026-006, DOI
+\href{https://doi.org/10.6084/m9.figshare.32114530}{10.6084/m9.figshare.32114530}
+(reserved; permanent on publication)\\
+\textbf{Corrigendum to:} EFC-VAL-2026-005, DOI
+\href{https://doi.org/10.6084/m9.figshare.32101213}{10.6084/m9.figshare.32101213}\\
+\textbf{Document type:} \textcolor{ered}{INTERIM} corrigendum --- a final corrigendum will follow once the G2 PPC growth anomaly is resolved (\S\ref{sec:g2}).\\
+\textbf{Audit session:} 2026-04-26 to 2026-04-28\\
+\textbf{Status of base paper:} Sealed predictions remain prereg-protected under their original (pipeline\_version, data\_version) tags; non-MCMC results re-classified per data-state.
+\end{center}
+
+\vspace{6pt}
+\begin{quote}
+\textbf{Plain-language summary.}
+The previous paper (VAL-005) reported five non-MCMC results constraining the
+EFC parameter $\alpha$. After publication, three of the input data files were
+upgraded from synthetic stubs and starter CSVs to DOI-traced observational
+data, and a structural code audit identified five biases all pulling toward a
+null result for $\alpha$. We document the audit, apply four corrective
+patches to the inference daemon, and re-run the full MCMC + non-MCMC stack on
+real data. Two principal findings: (1) the headline DESI~Y1
+non-MCMC $\Delta\chi^2 = -22.01$ result was conditional on stub-quality DR1
+data, and dissolves under DR2 + real $f\sigma_8$; (2) the entropy-gradient
+growth variant (VariantH), once tested with a symmetric prior under the
+patched daemon, produces a \emph{genuine} null --- not a prior-trap
+artifact. The proper status of the EFC mechanism as currently parameterized
+is \emph{underdetermined under the present expansion+growth probe stack},
+which is distinct from both falsification and confirmation.
+Sealed predictions in the GRAV/SPARC/Bullet sectors remain unaffected; sealed
+predictions in the $f\sigma_8$/BAO sectors are flagged as conditional on
+retired data and require new tests.
+\par\smallskip
+\textbf{Interim status notice.} The audit also surfaced a structurally open
+issue (G2: PPC growth $p$-value $=0.99$) whose root cause has not been
+identified in the present session. This corrigendum is therefore explicitly
+\emph{interim}: it corrects the public record about the audit and the
+VariantH null, but defers a final corrigendum until G2 is resolved (covariance
+audit vs.\ PPC-script bug vs.\ genuine model failure --- see \S\ref{sec:g2}).
+The VAL-006 framing of ``underdetermined'' is conservative and survives all
+three G2 interpretations; no positive growth-sector claim is made.
+\end{quote}
+
+% =============================================================
+\section{Why this corrigendum exists}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Data refresh on 2026-04-16.} Three inference inputs were
+upgraded from stubs to real DOI-traced data:
+\begin{itemize}[leftmargin=*]
+  \item \texttt{fs8\_extended.csv} ---
+        seven $\to$ sixteen DOI-traced epochs with hybrid covariance
+  \item \texttt{hz\_cosmic\_chronometers.csv} ---
+        DOI-traced cosmic chronometer compilation
+  \item \texttt{pantheon\_binned.csv} ---
+        Scolnic et al.\ 2018, 40 binned distance moduli with full covariance
+        (paths: \texttt{efc\_inference/data/\{growth,hubble,snia\}/})
+\end{itemize}
+The DESI DR2 BAO file (\texttt{bao\_desi\_dr2.json}, 13 points + full
+$13\times13$ covariance) was already in place since 2026-02-23.
+
+\item \textbf{Five structural biases identified in the inference daemon.}
+A code audit on 2026-04-26 found five biases in the autonomous research
+daemon, all pulling toward a null result for $\alpha$. Under a binomial
+test ($p=0.5$, $k=5$) the asymmetric pattern has $p\approx0.03$. Tier-1
+fixes were applied; results below are post-patch.
+
+\item \textbf{Reproducibility audit protocol v2 instituted.} A 43-gate
+mechanical correctness audit (\texttt{tools/reproducibility\_audit.py})
+covering data provenance, code sync, math sanity, known-bug regression,
+numerical sanity, sealed-derivation chain, cycle statistical validity,
+and prior drift. The new protocol is required to pass GREEN or YELLOW
+before any further publication.
+\end{enumerate}
+
+% =============================================================
+\section{The five identified biases (structural code audit)}
+\label{sec:biases}
+
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\linewidth}{@{}c L{4.6cm} Y L{3.6cm}@{}}
+\toprule
+\rowcolor{tableheader}
+\textbf{\#} & \textbf{Location} & \textbf{Bias} & \textbf{Direction} \\
+\midrule
+1 & \texttt{research\_mcmc.py:}\newline\texttt{\_log\_prior\_variant\_h} &
+$\alpha$ prior $\mathcal{U}(0,\,0.5)$ one-sided &
+Suppression branch unreachable \\
+\addlinespace[2pt]
+2 & \texttt{research\_mcmc.py:}\newline\texttt{\_init\_p0\_5param\_h} &
+walker init $\mathcal{U}(0.01,\,0.15)$ &
+All walkers start positive \\
+\addlinespace[2pt]
+3 & \texttt{cosmology\_model.py:}\newline\texttt{EFCVariantH.}\linebreak\texttt{growth\_source} &
+$\mu$-clamp $[0.5,\,10]$ &
+Lower bound truncates suppression \\
+\addlinespace[2pt]
+4 & \texttt{research\_daemon.py:}\newline\texttt{\_run\_divergence\_}\linebreak\texttt{analysis} &
+\texttt{posterior\_robustness} + \texttt{null\_test} not called &
+No $\sigma$-band on $\Delta\log L$ \\
+\addlinespace[2pt]
+5 & \texttt{scripts/}\newline\texttt{forbidden\_pattern\_}\linebreak\texttt{distance.py} &
+$+1.0$ magic offset &
+False WARNINGs (both-positive case) \\
+\bottomrule
+\end{tabularx}
+\caption{Five structural biases identified in the inference pipeline. All
+five biased toward null results; binomial test under $p_{H_0}=0.5$
+gives $p\approx0.03$.}
+\label{tab:biases}
+\end{table}
+
+\subsection{The four Tier-1 fixes}
+
+\begin{enumerate}[leftmargin=*]
+\item Symmetric prior $\mathcal{U}(-0.5, +0.5)$ for $\bar{S}_0$ (the EFC
+  coupling amplitude in VariantH).
+\item Walker initialization $\mathcal{U}(-0.15, +0.15)$ so initial
+  ensemble straddles zero.
+\item $\mu$-clamp lower bound $0.5 \to 0.3$ to permit physical
+  suppression solutions.
+\item Wire \texttt{posterior\_robustness} and \texttt{null\_test} into
+  the daemon's divergence analysis so $\Delta\log L$ values arrive with
+  empirical $\sigma$ bands.
+\end{enumerate}
+
+The fifth fix --- removing the $+1.0$ magic offset in
+\texttt{forbidden\_pattern\_distance.py} --- was applied to remove false
+WARNING triggers. Tier-2/3 issues (Axiom~0 secondary status promotion,
+VariantG~G10 \texttt{NULL\_TEST\_BY\_DESIGN} reclassification) are
+deferred but tracked.
+
+% =============================================================
+\section{Re-evaluation of the five VAL-005 results under real data}
+
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\begin{tabularx}{\linewidth}{@{}L{2.8cm} Y Y L{4.0cm}@{}}
+\toprule
+\rowcolor{tableheader}
+\textbf{VAL-005 result} & \textbf{Original (stub)} & \textbf{Real-data update} & \textbf{Status} \\
+\midrule
+DESI Y1 $\Delta\chi^2$ &
+$-22.01$ STRONG\newline(DR1, 4 pts, no full cov) &
+$\approx 0$ NO\_SIGNAL\newline(DR2, 13 pts, full cov) &
+\textcolor{ered}{\textbf{Conditional on retired data}}; original signal does not survive DR2 \\
+\addlinespace[2pt]
+BOSS DR12 $\Delta\chi^2$ &
+$-7.77$ MODEST &
+Unchanged at fixed BOSS DR12 stack &
+Real BOSS DR12 was already in place; no data-state change \\
+\addlinespace[2pt]
+$f\sigma_8$ LOO $\alpha$ &
+$-1.00 \pm 0.46$ INDICATION (7-pt LOO) &
+Wider posterior under DOI-traced 16-row hybrid &
+Posterior broadens; LOO signal weakens but persists in W3 watchlist \\
+\addlinespace[2pt]
+TNG cluster $\chi^2_{\rm red}\!\approx\!0$ &
+OVERFITTING ALARM &
+Same alarm; DOF audit still required &
+\textcolor{ered}{\textbf{Audit-blocking}}; not citable as confirmation until DOF + covariance audit completed \\
+\addlinespace[2pt]
+$H(z)$ &
+sub-statistical &
+Same conclusion under DOI-traced data &
+Unchanged \\
+\bottomrule
+\end{tabularx}
+\caption{VAL-005 results re-evaluated under post-2026-04-16 real-data
+inputs and patched daemon. Three results change status (DR1, $f\sigma_8$,
+TNG); two are unchanged (BOSS, Hz).}
+\label{tab:val005-reeval}
+\end{table}
+
+% =============================================================
+\section{The VariantH genuine null}
+\label{sec:varianth}
+
+VariantH is the most direct EFC mechanism test in the suite: the
+entropy-gradient growth-suppression chain
+$\nabla S \to \mu(a) \to f\sigma_8$ in five free parameters
+$(\Omega_m, H_0, \sigma_8, \bar{S}_0, \beta_0)$ with the Hill function
+$F = \chi^2/(\chi^2 + \beta_0^2)$. Before the audit, the prior on
+$\bar{S}_0$ was $\mathcal{U}(0, 0.5)$, structurally preventing the chain
+from finding a suppression solution. After Tier-1 patches (symmetric
+prior, straddle-zero walker init, relaxed $\mu$-clamp, wired
+robustness), the first valid post-patch cycle reports:
+
+\begin{itemize}[leftmargin=*]
+\item Posterior on $\bar{S}_0$ \emph{centered near zero} with both tails populated.
+\item $\Delta$AIC versus $\Lambda$CDM $\approx +3.9$ (LCDM still wins on parsimony).
+\item $\mu$-clamp not engaged (no walls hit).
+\item Per-probe $\Delta\log L$ within the calibrated null floor (G3, G4 audit gates).
+\end{itemize}
+
+The pre-patch $\Delta$AIC was $+3.9$ as well, but \emph{conditional on a
+one-sided prior}. The post-patch $\Delta$AIC is $\approx +3.9$
+\emph{conditional on a symmetric prior}. The structural identity of these
+numbers is the corrigendum's central technical finding: the original
+$+3.9$ was a real null, not a prior-trap. The data does not
+\emph{prefer} EFC ($\bar{S}_0\ne 0$), but it also does not
+\emph{exclude} it; the posterior is wide enough to contain both
+EFC-style mechanisms and pure $\Lambda$CDM.
+
+\paragraph{The proper scientific status.} ``\emph{Underdetermined under
+current data + tests}'' --- distinct from \emph{falsified} (data does NOT
+exclude the mechanism) and from \emph{confirmed} (data does NOT support a
+non-zero amplitude).
+
+% =============================================================
+\section{Sealed prediction risk classification}
+\label{sec:sealed}
+\textit{Conditional validity under (pipeline\_version, data\_version).}
+
+We separate sealed predictions by which audit failures touch their
+derivation chain. F4 and F5 in the reproducibility audit are FAIL gates,
+but they are \emph{historical facts} about which data and code state
+existed at the freeze time, not new bugs. Sealed predictions retain
+prereg status \emph{under their original (pipeline\_version,
+data\_version) tags}; direct comparison to current data crosses versions
+and must be labeled accordingly.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\linewidth}{@{}L{1.8cm} Y Y L{3.5cm}@{}}
+\toprule
+\rowcolor{tableheader}
+\textbf{Sector} & \textbf{Sealed} \emph{(pipeline, data)} & \textbf{Current} \emph{(pipeline, data)} & \textbf{Comparison validity} \\
+\midrule
+$f\sigma_8$ &
+\texttt{\footnotesize v\_pre\_audit\_}\linebreak\texttt{\footnotesize one\_sided\_prior}\newline
+\texttt{\footnotesize fs8\_smoketest\_}\linebreak\texttt{\footnotesize 2025-Q4} &
+\texttt{\footnotesize v\_post\_audit\_}\linebreak\texttt{\footnotesize symmetric\_prior}\newline
+\texttt{\footnotesize fs8\_extended\_}\linebreak\texttt{\footnotesize 2026-04-16} &
+\textcolor{ered}{\textbf{Cross-version}}. Re-derivation under current tags required for direct test. \\
+\addlinespace[3pt]
+BAO &
+\texttt{\footnotesize v\_pre\_audit\_}\linebreak\texttt{\footnotesize one\_sided\_prior}\newline
+\texttt{\footnotesize DESI\_DR1\_4pts\_}\linebreak\texttt{\footnotesize no\_full\_cov} &
+\texttt{\footnotesize v\_post\_audit\_}\linebreak\texttt{\footnotesize symmetric\_prior}\newline
+\texttt{\footnotesize DESI\_DR2\_13pts\_}\linebreak\texttt{\footnotesize full\_cov\_2026-02-23} &
+\textcolor{ered}{\textbf{Cross-version}}. DR2 is a different test, not a re-evaluation of the same test. \\
+\addlinespace[3pt]
+GRAV\newline(KT1/2/3) &
+\texttt{\footnotesize v\_grav\_aqual\_KT3v2}\newline
+synthetic Grid-AQUAL outputs &
+\textit{same} &
+\textbf{Within-version}. KT3v2 $\beta$-convergence remains the active test. \\
+\addlinespace[3pt]
+SPARC\newline rotation curves &
+\texttt{\footnotesize v\_sparc\_pilot\_v1}\newline
+SPARC-175 &
+\textit{same} &
+\textbf{Within-version}. \\
+\addlinespace[3pt]
+Bullet $\delta\kappa$ &
+\texttt{\footnotesize v\_bullet\_v1}\newline
+Clowe+2006 + JWST 2025 &
+\textit{same} &
+\textbf{Within-version}. \\
+\bottomrule
+\end{tabularx}
+\caption{Sealed prediction conditional validity under (pipeline\_version,
+data\_version). Sectors marked \emph{cross-version} have sealed
+predictions that cannot be directly compared to current data without
+either re-sealing under the new tags or carrying explicit version-tagged
+caveats. GRAV/SPARC/Bullet seals are unaffected by the 2026-04-16 data
+refresh and 2026-04-26 daemon patches.}
+\label{tab:sealed-risk}
+\end{table}
+
+% =============================================================
+\section{Reproducibility audit protocol v2}
+
+We instituted a 43-gate mechanical correctness audit covering:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{A. Data provenance} (5 gates) --- DESI DR2 file present + full cov; DOI traceability of $f\sigma_8$, $H(z)$, Pantheon; no stub references.
+\item \textbf{B. Code sync} (6 gates) --- SHA-256 hashes match across the editing repo, the Docker volume-mount repo, and the running container.
+\item \textbf{C. Math sanity} (14 gates) --- every variant reduces to $\Lambda$CDM in its parameter limit; clamps engaged correctly; finite $E^2$ at typical parameters.
+\item \textbf{D. Known bugs} (4 gates) --- previously identified bugs not regressed.
+\item \textbf{E. Numerical sanity} (3 gates) --- BAO and Pantheon covariances positive-definite; $r_d$ safety warnings within tolerance.
+\item \textbf{F. Sealed derivation chain} (7 gates) --- freeze provenance complete; freeze data identical at sealed code commit (F4 is historical FAIL for $f\sigma_8$, F5 historical FAIL for DR2 BAO).
+\item \textbf{G. Cycle statistical validity} (2 gates) --- PPC artifacts present; PPC growth $p$-value $<0.95$ (currently FAIL at 0.99).
+\item \textbf{H. Prior drift} (2 gates) --- emcee and NUTS priors symmetric.
+\end{itemize}
+
+Result on 2026-04-28: 39 PASS / 3 FAIL / 1 WARN $\to$ verdict BLOCKED. The
+3 FAILs (F4, F5, G2) are documented and bounded: F4 and F5 are historical
+facts about retired data; G2 is a known calibration anomaly that blocks
+future positive growth-sector claims but does not block this corrigendum
+because the corrigendum reports a null/degeneracy, not a positive claim.
+
+% =============================================================
+\section{The G2 anomaly (PPC growth $p=0.99$) --- structurally open}
+\label{sec:g2}
+
+In the post-patch cycle, the posterior predictive check (PPC) on the
+growth sector returned $p=0.990$ with calibration scale
+$cal_{1\sigma}=1.000$ and offset $\Delta=0.317$. This indicates posterior
+predictions for growth observables are systematically far from the
+calibrated null distribution. We classify G2 as
+\textbf{structurally open}, not deferred --- meaning we have identified the
+issue but not isolated its root cause, and the choice among three
+distinct interpretations changes how we weight the growth channel in
+inference.
+
+\paragraph{Three interpretations, each with different impact.}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{(a) Genuine likelihood mis-specification} (severe). The
+$f\sigma_8$ covariance is under-quoted; over-tight likelihood produces
+over-extreme PPC. \emph{Consequence:} $\sigma_\alpha$ from the growth
+channel is over-confident; the joint posterior is more uncertain than
+reported.
+
+\item \textbf{(b) PPC-script bug} (mild). The verification layer itself
+has a scale or offset bug. \emph{Consequence:} inference layer is fine;
+only the verification number is wrong.
+
+\item \textbf{(c) Genuine model failure} (severe in the opposite
+direction). EFC predictions actually do not match observed growth within
+correctly quoted covariance. \emph{Consequence:} growth alone may
+falsify the present parameterization.
+\end{enumerate}
+
+\paragraph{Diagnostic to discriminate.}
+Run the same PPC machinery on a known-good model ($\Lambda$CDM with
+Planck parameters) against the same $f\sigma_8$ covariance and pseudo-data.
+\emph{If $\Lambda$CDM also returns $p\approx0.99$,} the root cause is (b).
+\emph{If $\Lambda$CDM returns $p\in[0.05, 0.95]$,} the root cause is (a)
+or (c), and discriminating between them requires re-fitting $\alpha$ with
+widened $f\sigma_8$ covariance: if $\alpha$-posterior remains near zero,
+(a) holds; if posterior shifts substantially, (c) holds.
+
+\paragraph{Why VAL-006 still publishes despite open G2.} The
+``underdetermined'' framing is robust to all three interpretations because
+the corrigendum makes no positive claim. Under (a) the joint
+posterior is wider; under (b) the inference layer is unaffected; under
+(c) we already do not claim confirmation. What G2 \emph{does} block is
+any subsequent positive growth-sector claim. A final
+corrigendum will follow once G2 root cause is identified.
+
+% =============================================================
+\section{What VAL-006 does and does not assert}
+
+\subsection{Asserts}
+\begin{enumerate}[leftmargin=*]
+\item The headline VAL-005 DR1 $\Delta\chi^2 = -22.01$ result was
+conditional on stub-quality DR1 data and does not reproduce under DR2 +
+real $f\sigma_8$.
+\item Five structural code biases existed in the autonomous research
+daemon, all pulling toward null. They have been corrected (Tier 1) or
+formally tracked (Tier 2/3).
+\item Under the corrected daemon and real data, VariantH (the most direct
+EFC mechanism test) produces a genuine null: $\Delta\text{AIC}\approx+3.9$
+under symmetric prior with both posterior tails populated.
+\item A 43-gate reproducibility audit protocol is now in place and
+required for all future publications.
+\end{enumerate}
+
+\subsection{Does \emph{not} assert}
+\begin{enumerate}[leftmargin=*]
+\item EFC is falsified. (It is not. The posterior includes $\bar{S}_0=0$
+and a wide range of non-zero values.)
+\item Sealed predictions are wrong. (Sealed predictions are
+prereg-protected. Some are conditional on data that has since been
+upgraded; the corrigendum makes this explicit but does not retract the
+seals.)
+\item EFC is confirmed by other observables. (GRAV-KT3v2, SPARC pilot,
+BIC pipeline, and Bullet $\delta\kappa$ remain independent open tests
+with their own audit gaps.)
+\end{enumerate}
+
+% =============================================================
+\section{Path forward}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Resolve G2 (highest priority).} Run PPC machinery on
+$\Lambda$CDM-Planck against the same $f\sigma_8$ covariance and
+pseudo-data as the audit cycle (\S\ref{sec:g2}). This single test
+discriminates among interpretations (a)/(b)/(c). A final corrigendum
+follows once G2 root cause is identified.
+\item Complete KT3v2 $\beta$-convergence at $N\!\in\!\{41,61,81\}$ on the GPU-PC.
+\item Re-derive sealed $f\sigma_8$ and BAO predictions under the current
+\emph{post-audit} pipeline + 2026-04-16 data tags (cf.\
+Table~\ref{tab:sealed-risk}), and seal as new freezes; this restores
+within-version comparability for those sectors.
+\item Build a per-claim theory$\leftrightarrow$code map across the 175+
+DOI EFC corpus. Each theoretical assertion should map to a code primitive
+implementing it; we have not yet done this systematically.
+\item Add post-VAL-006 sealed predictions: Euclid DR1 ($\Phi/\Psi$ slip),
+new $f\sigma_8$ epochs, cluster sub-population growth.
+\end{enumerate}
+
+% =============================================================
+\section*{Reproducibility footprint}
+
+\begin{itemize}[leftmargin=*,nosep]
+\item Audit script: \texttt{tools/reproducibility\_audit.py}
+\item Audit README: \texttt{tools/reproducibility\_audit.README.md}
+\item Re-run spec (G1--G5 mandatory gates):\\
+\texttt{docs/audit/RERUN\_EXPECTED\_OUTPUT\_2026-04-26.md}
+\item Audit report (full evidence trail):\\
+\texttt{docs/audit/SESSION\_2026-04-28\_AUDIT\_REPORT.md}
+\item Atlas v1.2: \texttt{efc\_framework\_atlas/atlas\_seed.json}
+\item All Tier-1 patches landed in commits referenced in the audit report.
+\end{itemize}
+
+\section*{Acknowledgments}
+
+This corrigendum was produced through human--AI co-investigation with the
+Symbiose AGI infrastructure. The reproducibility audit protocol was
+designed in part to guard against AI-collaboration drift (the
+documented tendency of language models to confirm null results under
+uncertainty). Mechanical, deterministic audit gates without LLM judgment
+in the verdict logic are the structural answer to this risk.
+
+\end{document}
