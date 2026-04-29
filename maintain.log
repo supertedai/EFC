@@ -30,9 +30,9 @@ pdftotext: /usr/bin/pdftotext
     [SKIP] No impact generated
   A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [RETRY] OpenAI HTTP 502 — waiting 5s (1/4)
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [RETRY] OpenAI HTTP 502 — waiting 20s (3/4)
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
@@ -65,7 +65,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 63 paper(s) in public pages <<<
+>>> Step 2: Registering 59 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -77,6 +77,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -91,11 +92,11 @@ EFC DOI sync — 158 paper dirs scanned
 ========================================================================
 [efc-gen] 158 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 158 paper dirs · 0 errors · 1 warnings
-  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
+  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.1', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
-Known gap IDs in HTML: 7
+Known gap IDs in HTML: 13
 
 Processed 158 paper(s)
   skip: 152
@@ -116,7 +117,7 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 127 total, 98 survived, 11 falsified
+  Tests: 127 total, 101 survived, 8 falsified
   Papers: 158 (157 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -145,13 +146,14 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json.
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 158 papers, 157 DOIs
-Ledger: 127 tests, 11 falsified
+Ledger: 127 tests, 8 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 154 close to repo 158
@@ -160,7 +162,7 @@ Ledger: 127 tests, 11 falsified
   [WARNING]  Test count '103' != total 127 or active 109
   [WARNING]  Test count '121' != total 127 or active 109
   [WARNING]  Test count '103' != total 127 or active 109
-  [WARNING]  Survived 93/103 but expected 98/109 (total=127, falsified=11, pipeline=18)
+  [WARNING]  Survived 93/103 but expected 101/109 (total=127, falsified=8, pipeline=18)
 
 --- Validation Ledger ---
   [WARNING]  '118-test' in Ledger HTML != 127 in stats
@@ -169,14 +171,14 @@ Ledger: 127 tests, 11 falsified
 
 --- Test Count Cross-Page Consistency ---
   [CRITICAL] Elevator Pitch: says 103 active but ledger has 109
-  [CRITICAL] Elevator Pitch: says 93 survived but ledger has 98
+  [CRITICAL] Elevator Pitch: says 93 survived but ledger has 101
   [CRITICAL] White Paper Series: says 121 total but ledger has 127
   [CRITICAL] White Paper Series: says 103 active but ledger has 109
   [CRITICAL] White Paper Series: says 103 active but ledger has 109
-  [CRITICAL] White Paper Series: says 93 survived but ledger has 98
+  [CRITICAL] White Paper Series: says 93 survived but ledger has 101
   [CRITICAL] Stage-IV Roadmap: says 121 total but ledger has 127
   [CRITICAL] Stage-IV Roadmap: says 103 active but ledger has 109
-  [CRITICAL] Stage-IV Roadmap: says 93 survived but ledger has 98
+  [CRITICAL] Stage-IV Roadmap: says 93 survived but ledger has 101
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -220,20 +222,20 @@ RESULT: 13 errors, 11 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
   - Elevator Pitch: says 103 active but ledger has 109
-  - Elevator Pitch: says 93 survived but ledger has 98
+  - Elevator Pitch: says 93 survived but ledger has 101
   - White Paper Series: says 121 total but ledger has 127
   - White Paper Series: says 103 active but ledger has 109
   - White Paper Series: says 103 active but ledger has 109
-  - White Paper Series: says 93 survived but ledger has 98
+  - White Paper Series: says 93 survived but ledger has 101
   - Stage-IV Roadmap: says 121 total but ledger has 127
   - Stage-IV Roadmap: says 103 active but ledger has 109
-  - Stage-IV Roadmap: says 93 survived but ledger has 98
+  - Stage-IV Roadmap: says 93 survived but ledger has 101
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
 [full-sync] invariants: 0 error(s), 157 warning(s)
-  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
+  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.1'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098299: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098305: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098308: expected='present' observed='absent'
