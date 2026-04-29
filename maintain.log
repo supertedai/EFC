@@ -65,7 +65,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 63 paper(s) in public pages <<<
+>>> Step 2: Registering 59 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -91,11 +91,11 @@ EFC DOI sync — 158 paper dirs scanned
 ========================================================================
 [efc-gen] 158 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 158 paper dirs · 0 errors · 1 warnings
-  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
+  [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.1', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
-Known gap IDs in HTML: 7
+Known gap IDs in HTML: 13
 
 Processed 158 paper(s)
   skip: 152
@@ -233,7 +233,7 @@ Fix these before auto-commit:
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
 [full-sync] invariants: 0 error(s), 157 warning(s)
-  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
+  [WARN] §1 internal_ledger_version: expected='4.1' observed='3.1'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098299: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098305: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098308: expected='present' observed='absent'
