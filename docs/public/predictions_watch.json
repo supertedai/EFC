@@ -1,9 +1,24 @@
 {
   "id": "efc-predictions-watch",
-  "version": "1.0",
+  "version": "2.0",
   "source_url": "https://supertedai.github.io/EFC/docs/public/EFC_Predictions.html",
-  "description": "Pre-registered EFC predictions P1-P6 extracted from EFC_Predictions.html. Content is hand-curated by Morten; this JSON is the structured source-of-truth for graph ingestion. HTML is NOT modified.",
-  "last_updated": "2026-04-19",
+  "description": "Pre-registered EFC predictions P1-P8 extracted from EFC_Predictions.html. v2.0 (2026-04-29) adds P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111), and registers supporting April 2026 DOIs (32101213 alpha non-MCMC, 32084670 structural closure, 32080083 RCMP DES Y6+KiDS, 32114530 VAL-2026-006 corrigendum). Content is hand-curated by Morten; this JSON is the structured source-of-truth for graph ingestion.",
+  "last_updated": "2026-04-29",
+  "supporting_dois_april_2026": {
+    "description": "DOIs published 2026-04-09 through 2026-04-28 that supply additional theoretical or empirical support for the predictions below. Each DOI is independently sealed on figshare.",
+    "items": [
+      {"doi": "10.6084/m9.figshare.32084670", "title": "Structural Closure of Growth-Sector Couplings", "supports_predictions": ["P2", "P3", "P4"], "role": "Proves growth-sector closure: fσ8=0.43 and S8=0.847 are theorems, not free parameters."},
+      {"doi": "10.6084/m9.figshare.32101213", "title": "Non-MCMC Constraints on EFC α-Parameter: BAO + Growth + Clusters", "supports_predictions": ["P2", "P4"], "role": "Independent analytic marginalisation gives α ∈ [−0.72, −0.68], consistent with both freezes (−0.689, −0.702)."},
+      {"doi": "10.6084/m9.figshare.32080083", "title": "EFC RCMP Test Spec: DES Y6 + KiDS Legacy Pre-Registered", "supports_predictions": ["P3", "P4"], "role": "Formal regime-consistent measurement protocol for L2 weak lensing surveys."},
+      {"doi": "10.6084/m9.figshare.32080059", "title": "Parameter-Controlled Regime Transitions in EFC", "supports_predictions": ["P1", "P3"], "role": "Pre-registered transition control for CMB lensing + BAO scale boundaries."},
+      {"doi": "10.6084/m9.figshare.32080080", "title": "Methodological Convergence Stage-IV Cosmology via RCMP", "supports_predictions": ["P3", "P4"], "role": "Methodological framework for combining DES Y6, KiDS, Euclid DR1 in a single RCMP-compliant chain."},
+      {"doi": "10.6084/m9.figshare.32114530", "title": "EFC-VAL-2026-006: Interim Audit Corrigendum to VAL-005", "supports_predictions": ["P1", "P2", "P3", "P4"], "role": "Validation-ledger meta-document; latest interim audit. Locks all 6 kill/damage tests with current SHA-256 trail."},
+      {"doi": "10.6084/m9.figshare.31970886", "title": "White Paper 1/4: EFC Recovery Conditions + ΛCDM Limit", "supports_predictions": ["P5", "P6"], "role": "Canonical reference for limit-conditions and recovery proofs."},
+      {"doi": "10.6084/m9.figshare.31970904", "title": "White Paper 2/4: EFC Field Equations + Observable Mapping", "supports_predictions": ["P1", "P2", "P3", "P4"], "role": "Canonical field-equation derivation + observable mapping."},
+      {"doi": "10.6084/m9.figshare.31970907", "title": "White Paper 3/4: EFC Data, Validation Ledger, Falsification", "supports_predictions": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"], "role": "Canonical validation-ledger reference document."},
+      {"doi": "10.6084/m9.figshare.31970898", "title": "White Paper 4/4: EFC Regime Susceptibility + Cross-Scale Mapping", "supports_predictions": ["P1", "P3", "P5"], "role": "Canonical regime-susceptibility map; underpins RCMP."}
+    ]
+  },
   "items": [
     {
       "key": "P1",
@@ -29,11 +44,11 @@
       "arbiter": "DESI DR2 full-shape RSD",
       "badge_type": "DAMAGE",
       "seal_doi": "10.6084/m9.figshare.32013156",
-      "claim": "The regime-transition growth model predicts fσ8(z=0.7) = 0.430 vs ΛCDM 0.449. Joint BAO distance prediction: D_H/r_d(z=0.7) = 19.797 vs 20.719; D_H/r_d(z=1.0) = 16.527 vs 17.466.",
+      "claim": "The regime-transition growth model predicts fσ8(z=0.7) = 0.430 vs ΛCDM 0.449. Joint BAO distance prediction: D_H/r_d(z=0.7) = 19.797 vs 20.719; D_H/r_d(z=1.0) = 16.527 vs 17.466. As of 2026-04-26, the α-parameter underlying P2 is independently constrained to α ∈ [−0.72, −0.68] via non-MCMC BAO+Growth+Cluster analysis (DOI 32101213).",
       "test": "DESI DR2 full-shape RSD at z ~ 0.5-0.7 (release pending 2026)",
       "falsifier": "Measured fσ8(z=0.7) > 0.449 at > 3σ — i.e. consistent with ΛCDM at high significance — damages but does not kill EFC (point prediction, not structural).",
       "falsifier_id": null,
-      "source_evidence": "evidence/05_results.md R5, R8"
+      "source_evidence": "evidence/05_results.md R5, R8 + DOI 32101213 (2026-04-26 update)"
     },
     {
       "key": "P3",
@@ -44,13 +59,13 @@
       "arbiter": "SO × Euclid DR2",
       "badge_type": "KILL",
       "seal_doi": "10.6084/m9.figshare.32023788",
-      "claim": "Galaxy-CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. EFC predicts E_G^EFC/E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5, driven by the combination μ < 1 with Σ > 1.",
+      "claim": "Galaxy-CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. EFC predicts E_G^EFC/E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5, driven by the combination μ < 1 with Σ > 1. As of DOI 32084670 (2026-04-23), this prediction is now structurally closed: the μ/Σ system has unique solutions under EBE constraints, eliminating any free-parameter escape route.",
       "test": "Simons Observatory CMB lensing × Euclid DR2 galaxy catalogue (~2027-2028)",
       "falsifier": "Measurement = 1.00 ± 0.01 at > 3σ (GR recovery).",
       "falsifier_id": "F7",
       "pass_window_low": 1.03,
       "pass_window_high": 1.14,
-      "source_evidence": "DOI 32023788, sealed 15 Apr 2026 with SHA-256 falsifier"
+      "source_evidence": "DOI 32023788, sealed 15 Apr 2026 with SHA-256 falsifier; DOI 32084670 (structural closure, 2026-04-23)"
     },
     {
       "key": "P4",
@@ -61,11 +76,11 @@
       "arbiter": "Rubin LSST DP2",
       "badge_type": "DAMAGE",
       "seal_doi": "10.6084/m9.figshare.32013738",
-      "claim": "Large-scale cosmic shear ξ_+ enhancement of ~8% at angular scales 20'-300', producing S8 = 0.847 ± 0.015. Discriminates EFC from f(R) (which predicts μ > 1) and from background-only entropic gravity models.",
-      "test": "Rubin LSST DP2 (Jul-Sep 2026)",
+      "claim": "Large-scale cosmic shear ξ_+ enhancement of ~8% at angular scales 20'-300', producing S8 = 0.847 ± 0.015. Discriminates EFC from f(R) (which predicts μ > 1) and from background-only entropic gravity models. Now also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22) which specifies the regime-consistent measurement procedure for current Stage-IV weak lensing data.",
+      "test": "Rubin LSST DP2 (Jul-Sep 2026); DES Y6 + KiDS Legacy via RCMP (2026)",
       "falsifier": "DP2 + Euclid DR1 combined return S8 consistent with Planck ΛCDM (0.811 ± 0.006) at < 1σ — the S8 tension dissolves and EFC loses its primary motivation.",
       "falsifier_id": "F4",
-      "source_evidence": "DOI 32013738, sealed with SHA-256 falsifier"
+      "source_evidence": "DOI 32013738 (sealed); DOI 32080083 (RCMP test spec, 2026-04-22); DOI 32084670 (structural closure)"
     },
     {
       "key": "P5",
@@ -96,6 +111,36 @@
       "falsifier": "A counterexample at any z > 0 with A in the tested range would falsify the lemma. Analytical proof currently closed.",
       "falsifier_id": null,
       "source_evidence": "DOI 31333414, Lemma 1"
+    },
+    {
+      "key": "P7",
+      "name": "H0 three-window decomposition",
+      "observable": "H0 inferred per regime window (L0/L1/L2)",
+      "efc_value": "H0_L0 ≈ 67.5, H0_L1 ≈ 69.5, H0_L2 ≈ 73.5 (regime-mismatch resolution)",
+      "lcdm_value": "Single H0 expected; tension persists",
+      "arbiter": "Joint Planck + DESI + SH0ES + Stage-IV",
+      "badge_type": "STRUCTURAL",
+      "seal_doi": "10.6084/m9.figshare.32113399",
+      "claim": "The Hubble tension is not a free-parameter degeneracy but a regime-mixing artefact. EFC predicts that Planck (L0 background), DESI BAO (L1 transition), and SH0ES (L2 perturbation) measure H0 in distinct regime windows that do NOT need to coincide. Three-window decomposition reproduces all three observed values within EFC consistency. Atlas role upgraded 2026-04-29 from addresses_open to proposes_resolution.",
+      "test": "Joint regime-disaggregated chain on Planck + DESI DR2 BAO + SH0ES + Euclid DR1 shear; regime-mixing operator from EFC EFT (DOI 31878334).",
+      "falsifier": "If a single common H0 fits all three regime probes within ±0.5 km/s/Mpc, the regime-mismatch hypothesis is falsified.",
+      "falsifier_id": null,
+      "source_evidence": "DOI 32113399 (2026-04-28); supports atlas role-upgrade EFC → H0_tension proposes_resolution"
+    },
+    {
+      "key": "P8",
+      "name": "Bar-instability falsification (Π_EFC criterion)",
+      "observable": "Bar fraction f_bar(M_*, σ_R, κ_eff)",
+      "efc_value": "Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 (stable); EFC predicts modified κ² from entropy-gradient coupling",
+      "lcdm_value": "Efstathiou-Lake-Negroponte (ELN) criterion: ε_ELN = V_max/√(GM_d/R_d) > 1.1 implies bar instability",
+      "arbiter": "SPARC + S4G + Galaxy Zoo",
+      "badge_type": "L3 MONOPOLY",
+      "seal_doi": "10.6084/m9.figshare.32101111",
+      "claim": "The classical Efstathiou-Lake-Negroponte (ELN) bar-instability criterion is observationally falsified at population level. EFC replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 where κ_eff incorporates the entropy-gradient correction. Among 43 frameworks in the EFC atlas, EFC is the SOLE addresser of bar_instability_L3 (no ΛCDM, MOND, Verlinde, f(R), DGP equivalent prediction exists).",
+      "test": "Cross-population test against SPARC (175 galaxies), S4G (~2300), Galaxy Zoo bar-fractions; falsification protocol pre-registered as vc_140e79363cbe.",
+      "falsifier": "If observed bar fractions follow ELN within ±10% across SPARC+S4G mass bins, the EFC Π-criterion is falsified.",
+      "falsifier_id": null,
+      "source_evidence": "DOI 32101111 (2026-04-26); fills atlas gap bar_instability_L3 (only L3 monopoly in EFC atlas)"
     }
   ]
 }
