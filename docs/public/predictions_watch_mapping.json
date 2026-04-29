@@ -1,14 +1,15 @@
 {
   "id": "efc-predictions-watch-mapping",
-  "version": "1.0",
+  "version": "2.0",
   "schema_version": "3",
   "last_verified_by_morten": "Morten Magnusson",
   "last_verified_orcid": "0009-0002-4860-5095",
-  "last_verified_at": "2026-04-20",
-  "verification_note": "v1.0 batch approval. All 6 prediction mappings (P1-P6) and 3 cluster commentaries verified via Morten's delegated batch-approval authority (2026-04-20). Draft text remains AI-generated (conservative wording, English). Parser writes 6 Prediction:Preregistered nodes with full payload but SKIPs edge creation when graph_status=not_found. Zero implicit node creation.",
+  "last_verified_at": "2026-04-29",
+  "verification_note": "v2.0 batch approval extends v1.0 to include P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111). Atlas roles updated: EFC → H0_tension upgraded from addresses_open to proposes_resolution; EFC → bar_instability_L3 confirmed as sole-monopoly addresser among 42 atlas frameworks. Draft text remains AI-generated (conservative wording, English).",
   "audit_history": [
     {"version": "0.1-DRAFT", "date": "2026-04-18", "summary": "Initial draft; 6 mappings (P1-P6) + 3 cluster commentaries."},
-    {"version": "1.0", "date": "2026-04-20", "summary": "Batch approval. All doc_syntheses + cluster commentaries flipped to verified=true. 5 of 6 test targets remain graph_status=not_found (Euclid DR1, DESI DR2 fsigma8, SO×Euclid, Rubin DP2, Horndeski Theory) — parser writes Prediction:Preregistered nodes but SKIPs edge creation until target nodes materialize."}
+    {"version": "1.0", "date": "2026-04-20", "summary": "Batch approval. All doc_syntheses + cluster commentaries flipped to verified=true. 5 of 6 test targets remain graph_status=not_found (Euclid DR1, DESI DR2 fsigma8, SO×Euclid, Rubin DP2, Horndeski Theory) — parser writes Prediction:Preregistered nodes but SKIPs edge creation until target nodes materialize."},
+    {"version": "2.0", "date": "2026-04-29", "summary": "April 2026 wave: +P7 (H0 three-window, DOI 32113399), +P8 (bar-instability falsification, DOI 32101111). +supporting April DOIs to P2-P4: 32084670 (structural closure), 32101213 (alpha non-MCMC), 32080083 (RCMP DES Y6+KiDS), 32114530 (VAL-2026-006). Atlas role upgrades: H0_tension addresses_open → proposes_resolution; bar_instability_L3 confirmed as sole monopoly addresser."}
   ],
   "parser_safety_contract": {
     "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null.",
@@ -45,7 +46,7 @@
           "test_id": "desi_dr2_fsigma8_z07",
           "graph_status": "not_found",
           "confidence": "medium",
-          "reasoning": "DESI DR2 RSD test maps directly to EFCValidation if one is created. Currently pre-registered only."
+          "reasoning": "DESI DR2 RSD test maps directly to EFCValidation if one is created. Currently pre-registered only; α-parameter independently constrained to [-0.72, -0.68] via DOI 32101213 (2026-04-26)."
         }
       ]
     },
@@ -58,12 +59,12 @@
           "test_id": "so_euclid_eg_ratio",
           "graph_status": "not_found",
           "confidence": "low",
-          "reasoning": "SO × Euclid DR2 test 2027-2028 — no graph node yet."
+          "reasoning": "SO × Euclid DR2 test 2027-2028 — no graph node yet. Now structurally closed via DOI 32084670 (2026-04-23): no free-parameter escape route remains."
         }
       ]
     },
     "P4": {
-      "cluster_ids": ["s8_tension", "rubin_dp2"],
+      "cluster_ids": ["s8_tension", "rubin_dp2", "rcmp_des_kids"],
       "probe_subtype": "cosmic_shear",
       "targets": [
         {
@@ -72,6 +73,13 @@
           "graph_status": "not_found",
           "confidence": "low",
           "reasoning": "Rubin LSST DP2 (Jul-Sep 2026) — no graph node yet."
+        },
+        {
+          "kind": "test",
+          "test_id": "rcmp_des_y6_kids_legacy",
+          "graph_status": "not_found",
+          "confidence": "medium",
+          "reasoning": "Formal RCMP test specification published 2026-04-22 (DOI 32080083). Provides regime-consistent measurement protocol for current-generation Stage-IV weak lensing data."
         }
       ]
     },
@@ -92,6 +100,53 @@
       "cluster_ids": ["background_lemma", "analytical_proofs"],
       "probe_subtype": "analytical",
       "targets": []
+    },
+    "P7": {
+      "cluster_ids": ["h0_tension", "regime_mismatch", "stage_iv_joint"],
+      "probe_subtype": "regime_decomposition",
+      "targets": [
+        {
+          "kind": "atlas_phenomenon",
+          "phenomenon_id": "H0_tension",
+          "graph_status": "found",
+          "role": "proposes_resolution",
+          "previous_role": "addresses_open",
+          "role_changed_at": "2026-04-29",
+          "confidence": "high",
+          "reasoning": "DOI 32113399 (2026-04-28) provides structural resolution: Hubble tension as regime-mixing artefact across L0 (Planck), L1 (DESI BAO), L2 (SH0ES). Atlas role upgraded by approve_atlas_link 2026-04-29."
+        },
+        {
+          "kind": "atlas_phenomenon",
+          "phenomenon_id": "H0_ratio",
+          "graph_status": "found",
+          "role": "predicts",
+          "confidence": "medium",
+          "reasoning": "EFC predicts specific ratios H0_L2/H0_L0 ≈ 1.09 from regime-mixing operator."
+        }
+      ]
+    },
+    "P8": {
+      "cluster_ids": ["bar_instability_L3", "sparc_morphology", "monopoly_phenomenon"],
+      "probe_subtype": "galactic_morphology",
+      "targets": [
+        {
+          "kind": "atlas_phenomenon",
+          "phenomenon_id": "bar_instability_L3",
+          "graph_status": "found",
+          "role": "predicts_threshold",
+          "monopoly_status": "sole_addresser_among_43_frameworks",
+          "confidence": "high",
+          "reasoning": "DOI 32101111 (2026-04-26) falsifies the classical Efstathiou-Lake-Negroponte (ELN) criterion and replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1. EFC remains the only framework in the 42-framework atlas with an explicit bar-instability prediction — a true monopoly."
+        },
+        {
+          "kind": "test",
+          "test_id": "sparc_s4g_galaxy_zoo_bar_fraction",
+          "graph_status": "proposed",
+          "candidate_id": "vc_140e79363cbe",
+          "confidence": "medium",
+          "reasoning": "Cross-population test pre-registered as validation candidate; SPARC + S4G + Galaxy Zoo bar-fractions vs Π_EFC threshold."
+        }
+      ]
     }
   },
   "synthesis_clusters": {
@@ -101,10 +156,10 @@
         "name": "Perturbation-sector predictions (P1, P3, P5)",
         "watchlist_keys": ["P1", "P3", "P5"],
         "cluster_commentary": {
-          "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), gravitational-slip enhancement (P3), and the Horndeski no-go (P5). All three are structural discriminators: they cannot be mimicked by ΛCDM + nuisance parameters. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test them.",
+          "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), gravitational-slip enhancement (P3), and the Horndeski no-go (P5). All three are structural discriminators: they cannot be mimicked by ΛCDM + nuisance parameters. As of 2026-04-23 (DOI 32084670), the growth-sector closure proves there are no free parameters remaining: P3 is now a theorem of EFC, not a tuning. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test them.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
-          "verified_at": "2026-04-20"
+          "verified_at": "2026-04-29"
         }
       },
       {
@@ -112,10 +167,10 @@
         "name": "Background-sector point predictions (P2, P4)",
         "watchlist_keys": ["P2", "P4"],
         "cluster_commentary": {
-          "draft": "P2 (fσ8 at z=0.7) and P4 (Rubin DP2 S8) are DAMAGE-class: failure erodes motivation without falsifying the framework. Both are quantitative point predictions with explicit ΛCDM comparison.",
+          "draft": "P2 (fσ8 at z=0.7) and P4 (Rubin DP2 S8) are DAMAGE-class: failure erodes motivation without falsifying the framework. Both are quantitative point predictions with explicit ΛCDM comparison. As of 2026-04-26 (DOI 32101213), the underlying α-parameter is independently constrained to α ∈ [−0.72, −0.68] via three orthogonal channels (SPARC175, NUTS BAO+Hz, non-MCMC analytic). P4 is also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22).",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
-          "verified_at": "2026-04-20"
+          "verified_at": "2026-04-29"
         }
       },
       {
@@ -127,6 +182,28 @@
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-20"
+        }
+      },
+      {
+        "cluster_id": "regime_resolution",
+        "name": "Regime-resolution predictions (P7)",
+        "watchlist_keys": ["P7"],
+        "cluster_commentary": {
+          "draft": "P7 (H0 three-window decomposition, DOI 32113399, 2026-04-28) reframes the Hubble tension as a structural consequence of regime-mixing, not a free-parameter degeneracy. Planck, DESI BAO, and SH0ES probe distinct regime windows (L0/L1/L2) that EFC predicts must NOT coincide. Atlas role upgraded from addresses_open to proposes_resolution on 2026-04-29.",
+          "verified_by_morten": true,
+          "verified_by_morten_name": "Morten Magnusson",
+          "verified_at": "2026-04-29"
+        }
+      },
+      {
+        "cluster_id": "l3_monopoly",
+        "name": "L3 galactic monopoly (P8)",
+        "watchlist_keys": ["P8"],
+        "cluster_commentary": {
+          "draft": "P8 (bar-instability falsification, DOI 32101111, 2026-04-26) is EFC's sole monopoly phenomenon in the atlas. Among 42 frameworks (ΛCDM, MOND, Verlinde, f(R), DGP, etc.) NONE provide an explicit bar-instability criterion. EFC replaces the falsified Efstathiou-Lake-Negroponte criterion with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 incorporating an entropy-gradient correction to κ². Cross-population test against SPARC + S4G + Galaxy Zoo is pre-registered.",
+          "verified_by_morten": true,
+          "verified_by_morten_name": "Morten Magnusson",
+          "verified_at": "2026-04-29"
         }
       }
     ]

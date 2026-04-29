@@ -139,6 +139,25 @@ below lists F7&ndash;F9 that kill the perturbation sector cleanly.
 </p>
 </div>
 
+<div style="background-color:#e8f5e9; border-left:4px solid #1a7a1a; padding:15px; margin:20px 0;">
+<p style="margin:0; font-size:15px;">
+<strong>April 2026 update (v2.0).</strong>
+Two structural predictions added: <strong>P7 &mdash; H0 three-window decomposition</strong>
+(<a href="https://doi.org/10.6084/m9.figshare.32113399">32113399</a>, 2026-04-28) reframes the
+Hubble tension as a regime-mismatch artefact (Planck L0, DESI L1, SH0ES L2);
+<strong>P8 &mdash; bar-instability falsification</strong>
+(<a href="https://doi.org/10.6084/m9.figshare.32101111">32101111</a>, 2026-04-26) falsifies the
+Efstathiou-Lake-Negroponte criterion and replaces it with &Pi;<sub>EFC</sub> &mdash; EFC&#39;s sole
+L3 monopoly across all 42 atlas frameworks. P2&ndash;P4 are now reinforced by structural closure of
+the growth-sector (<a href="https://doi.org/10.6084/m9.figshare.32084670">32084670</a>): f&sigma;<sub>8</sub>=0.43
+and S<sub>8</sub>=0.847 are theorems, not free parameters. The &alpha;-parameter is independently
+constrained to &alpha; &isin; [&minus;0.72, &minus;0.68] via non-MCMC analysis
+(<a href="https://doi.org/10.6084/m9.figshare.32101213">32101213</a>), consistent with both blind freezes
+(&minus;0.689, &minus;0.702). Latest validation-ledger audit:
+<a href="https://doi.org/10.6084/m9.figshare.32114530">VAL-2026-006</a>.
+</p>
+</div>
+
 <hr>
 
 <h2>1. Why a Predictions page?</h2>
@@ -229,6 +248,24 @@ Grounded in <code>evidence/</code> (<a href="https://github.com/supertedai/EFC/t
   <td><code>reproduce_efc.py</code></td>
   <td><span class="badge-sealed">PROVEN</span></td>
   <td><a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a></td>
+</tr>
+<tr>
+  <td><strong>P7</strong></td>
+  <td>H<sub>0</sub> three-window decomposition</td>
+  <td>H<sub>0</sub><sup>L0</sup>&asymp;67.5, H<sub>0</sub><sup>L1</sup>&asymp;69.5, H<sub>0</sub><sup>L2</sup>&asymp;73.5</td>
+  <td>Single H<sub>0</sub>; tension persists</td>
+  <td>Joint Planck + DESI + SH0ES + Stage-IV</td>
+  <td><span class="badge-sealed">STRUCTURAL</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32113399">32113399</a></td>
+</tr>
+<tr>
+  <td><strong>P8</strong></td>
+  <td>Bar-instability &Pi;<sub>EFC</sub> criterion</td>
+  <td>&Pi;<sub>EFC</sub> = &sigma;<sub>R</sub>&middot;&kappa;<sub>eff</sub>/(3.36&middot;G&middot;&Sigma;) &lt; 1</td>
+  <td>ELN: &epsilon; = V<sub>max</sub>/&radic;(GM<sub>d</sub>/R<sub>d</sub>) &gt; 1.1</td>
+  <td>SPARC + S4G + Galaxy Zoo</td>
+  <td><span class="badge-sealed">L3 MONOPOLY</span></td>
+  <td><a href="https://doi.org/10.6084/m9.figshare.32101111">32101111</a></td>
 </tr>
 </tbody>
 </table>
@@ -334,6 +371,48 @@ A &isin; {0.01, 0.1, 1.0, 5.0}.</p>
 <strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.31333414">31333414</a>, Lemma 1.</p>
 </div>
 
+<div class="pred-card" id="P7">
+<h3>P7 &mdash; H<sub>0</sub> three-window decomposition <span class="badge-sealed">STRUCTURAL</span></h3>
+
+<p><strong>Claim.</strong> The Hubble tension is not a free-parameter degeneracy but a
+<em>regime-mismatch artefact</em>. EFC predicts that Planck (L0 background), DESI BAO
+(L1 transition), and SH0ES (L2 perturbation) measure H<sub>0</sub> in distinct regime
+windows that do <em>not</em> need to coincide. The three-window decomposition reproduces
+all three observed values within EFC consistency:
+H<sub>0</sub><sup>L0</sup>&asymp;67.5, H<sub>0</sub><sup>L1</sup>&asymp;69.5, H<sub>0</sub><sup>L2</sup>&asymp;73.5 km/s/Mpc.
+The atlas role for <code>H0_tension</code> was upgraded 2026-04-29 from
+<code>addresses_open</code> to <code>proposes_resolution</code>.</p>
+
+<p><strong>Test.</strong> Joint regime-disaggregated chain on Planck + DESI DR2 BAO + SH0ES
++ Euclid DR1 shear; regime-mixing operator from EFC EFT
+(<a href="https://doi.org/10.6084/m9.figshare.31878334">31878334</a>).
+<strong>Falsifier.</strong> If a single common H<sub>0</sub> fits all three regime probes within
+&plusmn;0.5 km/s/Mpc, the regime-mismatch hypothesis is falsified.
+<strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.32113399">32113399</a>
+(2026-04-28); validation candidate <code>vc_e36e011d1270</code>.</p>
+</div>
+
+<div class="pred-card" id="P8">
+<h3>P8 &mdash; Bar-instability falsification (&Pi;<sub>EFC</sub> criterion) <span class="badge-sealed">L3 MONOPOLY</span></h3>
+
+<p><strong>Claim.</strong> The classical Efstathiou-Lake-Negroponte (ELN) bar-instability criterion
+&epsilon;<sub>ELN</sub> = V<sub>max</sub>/&radic;(GM<sub>d</sub>/R<sub>d</sub>) &gt; 1.1 is observationally
+falsified at population level. EFC replaces it with
+&Pi;<sub>EFC</sub> = &sigma;<sub>R</sub>&middot;&kappa;<sub>eff</sub>/(3.36&middot;G&middot;&Sigma;) &lt; 1
+where &kappa;<sub>eff</sub> incorporates the entropy-gradient correction
+&kappa;<sup>2</sup><sub>eff</sub> = &kappa;<sup>2</sup><sub>GR</sub> + &kappa;<sup>2</sup><sub>S-flow</sub>.
+Among the 42 frameworks in the EFC atlas, EFC is the <em>sole</em> addresser of
+<code>bar_instability_L3</code> &mdash; no &Lambda;CDM, MOND, Verlinde, f(R), or DGP equivalent
+prediction exists.</p>
+
+<p><strong>Test.</strong> Cross-population test against SPARC (175 galaxies), S4G (~2300),
+Galaxy Zoo bar-fractions; falsification protocol pre-registered as <code>vc_140e79363cbe</code>.
+<strong>Falsifier.</strong> If observed bar fractions follow ELN within &plusmn;10% across
+SPARC+S4G mass bins, the EFC &Pi;-criterion is falsified.
+<strong>Source:</strong> DOI <a href="https://doi.org/10.6084/m9.figshare.32101111">32101111</a>
+(2026-04-26); fills atlas gap <code>bar_instability_L3</code> &mdash; the only L3 monopoly in EFC.</p>
+</div>
+
 <hr>
 
 <h2>4. Known negative result (Variant H)</h2>
@@ -393,6 +472,9 @@ reduce scope without disproving the framework. Full definitions live in
 <tr><td><strong>SO &times; Euclid</strong></td><td>~2027&ndash;2028</td><td>E<sub>G</sub> at k<sub>c</sub> &asymp; 0.05 h/Mpc</td><td>P3</td></tr>
 <tr><td><strong>DESI DR3</strong></td><td>~2027&ndash;2028</td><td>Full RSD, Ly&alpha; BAO, high-z growth</td><td>P2 (extended)</td></tr>
 <tr><td><strong>Planck plik_lite TTTEEE</strong></td><td>Ongoing</td><td>Full CMB likelihood</td><td>F1 (framework-level)</td></tr>
+<tr><td><strong>Joint Planck + DESI DR2 + SH0ES + Euclid DR1</strong></td><td>2026&ndash;2027</td><td>Regime-disaggregated H<sub>0</sub> chain</td><td>P7</td></tr>
+<tr><td><strong>SPARC + S4G + Galaxy Zoo cross-population</strong></td><td>Available now</td><td>Bar fraction f<sub>bar</sub>(M<sub>*</sub>, &sigma;<sub>R</sub>, &kappa;<sub>eff</sub>)</td><td>P8</td></tr>
+<tr><td><strong>DES Y6 + KiDS Legacy (RCMP)</strong></td><td>2026</td><td>L2 weak lensing via RCMP protocol</td><td>P3, P4</td></tr>
 </tbody>
 </table>
 
@@ -443,6 +525,18 @@ Full Boltzmann-solver CMB likelihood remains the single outstanding KILL-level g
 <tr>
   <td style="font-weight:bold; background:#f8f9fa;">Single outstanding gate</td>
   <td>Full CMB likelihood (F1). Sanity checks pass, but plik_lite TTTEEE with hi_class/CLASS patch is required before any of P1&ndash;P4 can be considered &ldquo;accepted&rdquo;.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">L3 monopoly</td>
+  <td><strong>P8 (bar-instability).</strong> Across the 42 frameworks in the EFC atlas, EFC is the sole framework with an explicit bar-instability prediction. No &Lambda;CDM, MOND, Verlinde, f(R), or DGP equivalent exists. Testable today against SPARC + S4G + Galaxy Zoo &mdash; no Stage-IV needed.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Strongest reframing</td>
+  <td><strong>P7 (H<sub>0</sub> three-window).</strong> The Hubble tension is restructured rather than resolved: SH0ES, Planck and DESI never measured the same quantity. Atlas role upgraded from <code>addresses_open</code> to <code>proposes_resolution</code>.</td>
+</tr>
+<tr>
+  <td style="font-weight:bold; background:#f8f9fa;">Structural lock</td>
+  <td>Growth-sector mathematical closure (DOI <a href="https://doi.org/10.6084/m9.figshare.32084670">32084670</a>): f&sigma;<sub>8</sub>=0.43 and S<sub>8</sub>=0.847 are now <em>theorems</em>, not free parameters &mdash; no post-hoc tuning escape route remains.</td>
 </tr>
 </tbody>
 </table>

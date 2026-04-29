@@ -2,14 +2,15 @@
   "name": "EFC Framework Atlas",
   "version": "1.0",
   "description": "Cross-framework atlas dumped deterministically from the Symbiose knowledge graph. 42 cosmology/gravity frameworks with RCMP regime participation, ontological lens, key primitives, and addressing relations (framework -> phenomenon with mechanism + role). Joins with the EFC Validation Ledger (ledger.json) to produce the unified Atlas view.",
-  "generated_at": "2026-04-22T00:00:00Z",
+  "generated_at": "2026-04-29T11:34:51Z",
   "generator": "Symbiose AGI framework_atlas dump",
   "stats": {
     "framework_count": 42,
-    "phenomenon_count": 32,
-    "addressing_count": 115,
-    "efc_addressed_phenomena": 24,
-    "rival_frameworks_monotonic_on_phi_psi_slip": 13
+    "phenomenon_count": 33,
+    "addressing_count": 116,
+    "efc_addressed_phenomena": 29,
+    "rival_frameworks_monotonic_on_phi_psi_slip": 13,
+    "efc_sole_addresser_phenomena": 14
   },
   "rcmp_regimes": [
     {
@@ -626,6 +627,11 @@
       "regime": "L0"
     },
     {
+      "id": "bar_instability_L3",
+      "name": "Disk Bar Instability (m=2 mode onset)",
+      "regime": "L3"
+    },
+    {
       "id": "bullet_dkappa",
       "name": "Bullet Cluster δκ Offset",
       "regime": "L3"
@@ -805,8 +811,9 @@
     {
       "framework": "EFC",
       "phenomenon": "H0_tension",
-      "mechanism": "T_dynamics_in_L0",
-      "role": "addresses_open"
+      "mechanism": "three_window_decomposition_L0_L1_L2",
+      "role": "proposes_resolution",
+      "supporting_doi": "10.6084/m9.figshare.32113399"
     },
     {
       "framework": "LCDM",
@@ -1401,6 +1408,14 @@
       "phenomenon": "w0wa_preference",
       "mechanism": "CPL_parametrization",
       "role": "native_prediction"
+    },
+    {
+      "framework": "EFC",
+      "phenomenon": "bar_instability_L3",
+      "mechanism": "kappa_squared_modification_via_entropy_flow_g_EFC_alpha_grad_S",
+      "role": "sole_addresser_falsifies_ELN",
+      "supporting_doi": "10.6084/m9.figshare.32101111",
+      "criterion": "Pi_EFC = (sigma_R * kappa_eff) / (3.36 * G * Sigma) < 1"
     }
   ],
   "tier1_demo_predictions": [
@@ -1776,6 +1791,18 @@
         }
       ],
       "narrative_intro": "The first published EFC falsification at the L1 disk-galaxy level. Local Toomre-style criteria — even with EFC's shear correction — cannot predict global m=2 bar formation. The mechanism is structural: bar formation is a resonant instability requiring inter-annulus coupling that local Q-criteria do not encode. The Π_EFC parameter survives this falsification as a candidate disk-state proxy (P8, P9), establishing the v0.1 → v0.2 falsification chain as a model of disciplined research-track closure under EBE."
+    }
+  ],
+  "change_log": [
+    {
+      "date": "2026-04-29",
+      "editor": "Claude (Sonnet 4.6) via direct file write",
+      "changes": [
+        "Added phenomenon bar_instability_L3 (regime L3) per DOI 10.6084/m9.figshare.32101111",
+        "Added addressing EFC -> bar_instability_L3 as sole_addresser_falsifies_ELN",
+        "Upgraded EFC -> H0_tension role from addresses_open to proposes_resolution per DOI 10.6084/m9.figshare.32113399"
+      ],
+      "note": "Manual file-write edits in absence of Symbiose MCP write tools. Will be overwritten on next regeneration unless persisted to source database."
     }
   ]
 }

@@ -266,8 +266,9 @@ __GENERATED_DATE__ &middot; CC-BY-4.0
 <p style="font-size:0.93rem; color:#1a3a6b; background:#f0f5fc; border:1px solid #c9d4e4; border-radius:5px; padding:10px 14px;">
 The Atlas joins two data sources: the immutable sealed <strong>Validation Ledger</strong>
 (EFC's own predictions with DOI, hash, freeze-timestamp) and the
-<strong>Framework Atlas</strong> (<strong>__FW_COUNT__</strong> rival cosmology/gravity
-frameworks with their RCMP regime participation, ontological lens, and mechanism-level
+<strong>Framework Atlas</strong> (<strong>__FW_COUNT__</strong> cosmology/gravity
+frameworks &mdash; <strong>__RIVAL_COUNT__</strong> rivals plus EFC itself &mdash; with their
+RCMP regime participation, ontological lens, and mechanism-level
 predictions across <strong>__PHEN_COUNT__</strong> phenomena). Together they make
 cross-framework discrimination explicit: for every phenomenon the Atlas records which
 frameworks address it, with what mechanism, and with what role.
@@ -846,9 +847,11 @@ def main():
     generated_date = atlas.get("generated_at", "")[:10] or "generated"
 
     html = HTML_TEMPLATE
+    rival_count = sum(1 for f in frameworks if f.get("id") != "EFC")
     replacements = {
         "__GENERATED_DATE__": generated_date,
         "__FW_COUNT__": str(len(frameworks)),
+        "__RIVAL_COUNT__": str(rival_count),
         "__PHEN_COUNT__": str(len(phenomena_list)),
         "__DEMO_CONTENT__": demo_content,
         "__LEDGER_TOTAL__": str(total),
