@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
-  "version": "3.0",
-  "generated_at": "2026-04-29T06:12:27Z",
+  "version": "3.1",
+  "generated_at": "2026-04-29T11:35:47Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 44,
@@ -225,7 +225,11 @@
         "notes": "First explicit dynamical instability criterion for bar formation in the EFC framework atlas. Replaces v0.1 (vc_fa598665fbe8) with dimensional consistency (g_EFC/R), explicit m=2 mode coupling, ζ universality across L3, growth-domain restriction (Π<1), and operational definitions for ∇S, R, and evaluation range [R_d, 3·R_d]. Promoted to EFCValidation node in Living Validation Ledger. Cross-framework status: first such criterion across Atlas (ΛCDM, MOND, Verlinde, fR, DGP all silent on explicit bar onset).",
         "quantitative_result": null,
         "last_synced": "2026-04-25T06:18:54.289000000+00:00",
-        "status_detail": "FALSIFIED"
+        "status_detail": "FALSIFIED",
+        "seal_doi": "10.6084/m9.figshare.32101111",
+        "seal_date": "2026-04-26",
+        "atlas_role": "sole_addresser_falsifies_ELN",
+        "monopoly_status": "EFC is sole addresser of bar_instability_L3 across 43 atlas frameworks"
       },
       {
         "test_id": null,
@@ -2919,5 +2923,192 @@
         "k_lambda": 1.0
       }
     ]
-  }
+  },
+  "april_2026_dois": {
+    "description": "Cross-reference index for April 2026 internal-DOI wave. Source: ORCID 0009-0002-4860-5095. Maps published preprints to ledger tests, predictions, and atlas roles. This block is hand-curated by Claude and intended as a stable index until Symbiose regenerates ledger.json from Neo4j.",
+    "last_updated": "2026-04-29",
+    "editor": "Claude (Sonnet 4.6) via direct file write",
+    "persistence_warning": "These references will be overwritten on next ledger regeneration unless they are also persisted to the Symbiose source database (Neo4j Publication nodes + WP/SUPPORTS edges to test_id).",
+    "wave_summary": {
+      "mathematical_closure": "Growth-sector closure via DOI 32084670 means f-sigma-8(z=0.7)=0.430 and S8=0.847 are theorems, not free parameters.",
+      "h0_resolution": "DOI 32113399 reframes H0 tension as regime-mismatch artefact (Planck=L0, DESI=L1, SH0ES=L2). Atlas EFC->H0_tension role upgraded from addresses_open to proposes_resolution.",
+      "bar_instability_monopoly": "DOI 32101111 falsifies ELN, replaces with Pi_EFC = sigma_R*kappa_eff/(3.36*G*Sigma) < 1. EFC is sole addresser of bar_instability_L3 across all 43 atlas frameworks.",
+      "alpha_overdetermined": "DOI 32101213 over-determines alpha to [-0.72, -0.68] via three independent channels (SPARC RC, NUTS, non-MCMC). Both freezes (-0.689, -0.702) consistent.",
+      "val_2026_006": "DOI 32114530 is latest validation-ledger audit corrigendum."
+    },
+    "doi_to_test_mapping": [
+      {
+        "doi": "10.6084/m9.figshare.32084670",
+        "title": "A Structural Closure of Growth-Sector Couplings",
+        "date": "2026-04-23",
+        "supports": [
+          "conv_freeze_v3_e_g_z_0_7_gravitational_slip_prediction",
+          "conv_efc_p1_p2_cross_probe_test_against_des_y6_vs_kids_legacy_s8_"
+        ],
+        "role": "theoretical_lock_for_fsigma8_S8_predictions"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32113399",
+        "title": "A Three-Window Decomposition of Cosmological Redshift in EFC",
+        "date": "2026-04-28",
+        "supports": [
+          "atlas:H0_tension"
+        ],
+        "role": "structural_resolution"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32101111",
+        "title": "A Falsified Bar-Instability Criterion",
+        "date": "2026-04-26",
+        "supports": [
+          "conv_efc_bar_instability_criterion_efc_bic_v0_2_modification_with",
+          "atlas:bar_instability_L3"
+        ],
+        "role": "l3_monopoly_seal"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32101213",
+        "title": "Non-MCMC Constraints on EFC alpha-Parameter",
+        "date": "2026-04-26",
+        "supports": [
+          "blind_alpha_freeze_20260218",
+          "blind_alpha_freeze_20260221"
+        ],
+        "role": "independent_alpha_channel"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32114530",
+        "title": "EFC-VAL-2026-006 Interim Audit Corrigendum",
+        "date": "2026-04-28",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "audit_corrigendum"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32080083",
+        "title": "EFC RCMP Test Specification - DES Y6 + KiDS Legacy",
+        "date": "2026-04-22",
+        "supports": [
+          "conv_efc_p1_p2_cross_probe_test_against_des_y6_vs_kids_legacy_s8_"
+        ],
+        "role": "pre_registered_test_protocol"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32080080",
+        "title": "Methodological Convergence in Stage-IV Cosmology via RCMP",
+        "date": "2026-04-22",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "rcmp_methodology"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32080059",
+        "title": "Parameter-Controlled Regime Transitions in EFC",
+        "date": "2026-04-22",
+        "supports": [
+          "atlas:CMB_lensing",
+          "atlas:BAO_scale"
+        ],
+        "role": "cross_sector_consistency"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32091700",
+        "title": "EFC-C v2.0: Quantitative Entropy-Gradient Predictions for Cognitive States",
+        "date": "2026-04-24",
+        "supports": [
+          "efc_c_track"
+        ],
+        "role": "cognitive_track"
+      },
+      {
+        "doi": "10.6084/m9.figshare.32099389",
+        "title": "Homo Fluxus: A Thermodynamic Framework for Consciousness",
+        "date": "2026-04-25",
+        "supports": [
+          "efc_c_track"
+        ],
+        "role": "cognitive_track"
+      },
+      {
+        "doi": "10.6084/m9.figshare.31970886",
+        "title": "White Paper 1/4: EFC Recovery Conditions + LCDM Limit",
+        "date": "2026-04-09",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "canonical_white_paper"
+      },
+      {
+        "doi": "10.6084/m9.figshare.31970904",
+        "title": "White Paper 2/4: EFC Field Equations + Observable Mapping",
+        "date": "2026-04-09",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "canonical_white_paper"
+      },
+      {
+        "doi": "10.6084/m9.figshare.31970907",
+        "title": "White Paper 3/4: EFC Data, Validation Ledger, Falsification",
+        "date": "2026-04-09",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "canonical_white_paper"
+      },
+      {
+        "doi": "10.6084/m9.figshare.31970898",
+        "title": "White Paper 4/4: EFC Regime Susceptibility + Cross-Scale Mapping",
+        "date": "2026-04-09",
+        "supports": [
+          "ledger_global"
+        ],
+        "role": "canonical_white_paper"
+      }
+    ],
+    "open_validation_candidates": [
+      {
+        "vc_id": "vc_140e79363cbe",
+        "name": "Bar-instability cross-population test SPARC + S4G + Galaxy Zoo",
+        "related_test": "conv_efc_bar_instability_criterion_efc_bic_v0_2_modification_with",
+        "supporting_doi": "10.6084/m9.figshare.32101111",
+        "status": "PROPOSED"
+      },
+      {
+        "vc_id": "vc_e36e011d1270",
+        "name": "H0 three-window joint chain Planck + DESI + SH0ES + Euclid",
+        "related_atlas": "H0_tension",
+        "supporting_doi": "10.6084/m9.figshare.32113399",
+        "status": "PROPOSED"
+      },
+      {
+        "vc_id": "vc_060aa393def7",
+        "name": "kSZ velocity dedicated EFC prediction paper",
+        "related_atlas": "kSZ_velocity",
+        "gap": "no_dedicated_efc_paper",
+        "status": "GAP_REGISTERED"
+      },
+      {
+        "vc_id": "vc_eea84fbbf592",
+        "name": "JWST early structure quantitative dN/dM(z>6) prediction",
+        "related_atlas": "early_structure_JWST",
+        "gap": "no_quantitative_prediction_paper",
+        "status": "GAP_REGISTERED"
+      }
+    ]
+  },
+  "change_log": [
+    {
+      "date": "2026-04-29",
+      "editor": "Claude (Sonnet 4.6) via direct file write",
+      "changes": [
+        "Added top-level april_2026_dois cross-reference block (14 DOIs + 4 validation candidates)",
+        "Added seal_doi 32101111 to conv_efc_bar_instability_criterion_efc_bic_v0_2_modification_with",
+        "Bumped version to 3.1"
+      ],
+      "note": "Direct file-write edits. Persistence to Symbiose source database is required for survival across regeneration."
+    }
+  ]
 }
