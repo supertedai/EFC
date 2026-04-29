@@ -2,9 +2,9 @@
   "id": "efc-external-research-watch-mapping",
   "title": "External Research Watchlist → EFC Graph Target Mapping + AI Synthesis (DRAFT)",
   "purpose": "Human-curated mapping from watchlist canonical keys to EFCValidation test_ids, gap_ids, or competing-framework relations, extended with AI-drafted synthesis at two levels: per-paper doc_synthesis and per-cluster cluster_commentary. Consumed by the external_watchlist_to_graph parser AND by external_research_ledger_publisher for rendering the public EFC_External_Research_Ledger.html. All ledger-facing prose is in English.",
-  "version": "1.1",
+  "version": "1.2",
   "schema_version": "3",
-  "generated": "2026-04-19",
+  "generated": "2026-04-29",
   "generated_by": "claude-opus-4-7 (AGI-Test audit session, Morten co-piloted)",
   "language_policy": "All ledger-facing text fields (doc_synthesis.draft, cluster_commentary.draft, rendered headers) MUST be in English. Internal reasoning/notes fields may be bilingual. Renderer rejects ledger-facing content that is not English.",
   "last_verified_by_morten": "Morten Magnusson",
@@ -47,8 +47,31 @@
       "version": "1.1",
       "date": "2026-04-19",
       "summary": "Added 34 competing-framework taxonomy entries (dark-energy parametrizations, modified gravity, emergent/entropic gravity, scalar-tensor/Horndeski sub-classes, alternative cosmologies, alternative DM). New cluster 'competing_frameworks_taxonomy' groups them. Morten approved via delegated batch authority (session prompt 2026-04-19 'ja dette, samt alle konkurrerende modeller av relevanse'). Parser will multi-label each as (:Publication:Framework) with COMPETES_WITH edge to Theory{canonical:'EFC'}."
+    },
+    {
+      "version": "1.2",
+      "date": "2026-04-29",
+      "summary": "April 2026 internal-DOI wave logged. External-research entries unchanged. Internal context refresh: (a) growth-sector closure (DOI 10.6084/m9.figshare.32084670) reframes external f-sigma-8 and S8 measurements as direct arbiters rather than tuning targets; (b) H0 three-window decomposition (DOI 10.6084/m9.figshare.32113399) upgrades atlas role for H0_tension from addresses_open to proposes_resolution, so external H0 measurements split into L0/L1/L2 windows for joint chains; (c) bar-instability falsification (DOI 10.6084/m9.figshare.32101111) creates EFC's only L3 monopoly across the 43-framework atlas — external SPARC/S4G/Galaxy-Zoo bar-fraction studies now arbitrate Pi_EFC criterion; (d) non-MCMC alpha constraints (DOI 10.6084/m9.figshare.32101213) over-determine alpha to [-0.72, -0.68] across three independent channels. New atlas gap_register entries: vc_060aa393def7 (kSZ_velocity, no dedicated EFC paper), vc_eea84fbbf592 (early_structure_JWST, no quantitative prediction). Latest validation-ledger audit: VAL-2026-006 (DOI 10.6084/m9.figshare.32114530)."
     }
   ],
+  "april_2026_internal_context": {
+    "purpose": "Per evidential-separation rule, internal EFC publications belong in the Validation Ledger, not here. This block exists only as a context-anchor so external-research interpretation remains aligned with the current internal state.",
+    "growth_sector_closure": "10.6084/m9.figshare.32084670 (2026-04-23)",
+    "h0_three_window": "10.6084/m9.figshare.32113399 (2026-04-28)",
+    "bar_instability_falsification": "10.6084/m9.figshare.32101111 (2026-04-26)",
+    "alpha_non_mcmc": "10.6084/m9.figshare.32101213 (2026-04-26)",
+    "white_paper_canon": [
+      "10.6084/m9.figshare.31970886",
+      "10.6084/m9.figshare.31970904",
+      "10.6084/m9.figshare.31970907",
+      "10.6084/m9.figshare.31970898"
+    ],
+    "latest_audit_corrigendum": "10.6084/m9.figshare.32114530 (VAL-2026-006, 2026-04-28)",
+    "new_open_phenomenon_gaps": [
+      {"phenomenon": "kSZ_velocity", "validation_candidate": "vc_060aa393def7"},
+      {"phenomenon": "early_structure_JWST", "validation_candidate": "vc_eea84fbbf592"}
+    ]
+  },
   "parser_safety_contract": {
     "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null.",
     "edge_status_rule": "high confidence → edge.status = 'confirmed'. medium/low → edge.status = 'proposed'.",
