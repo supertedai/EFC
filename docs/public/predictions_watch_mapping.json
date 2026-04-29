@@ -5,7 +5,7 @@
   "last_verified_by_morten": "Morten Magnusson",
   "last_verified_orcid": "0009-0002-4860-5095",
   "last_verified_at": "2026-04-29",
-  "verification_note": "v2.0 batch approval extends v1.0 to include P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111). Atlas roles updated: EFC → H0_tension upgraded from addresses_open to proposes_resolution; EFC → bar_instability_L3 confirmed as sole-monopoly addresser among 43 atlas frameworks. Draft text remains AI-generated (conservative wording, English).",
+  "verification_note": "v2.0 batch approval extends v1.0 to include P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111). Atlas roles updated: EFC → H0_tension upgraded from addresses_open to proposes_resolution; EFC → bar_instability_L3 confirmed as sole-monopoly addresser among 42 atlas frameworks. Draft text remains AI-generated (conservative wording, English).",
   "audit_history": [
     {"version": "0.1-DRAFT", "date": "2026-04-18", "summary": "Initial draft; 6 mappings (P1-P6) + 3 cluster commentaries."},
     {"version": "1.0", "date": "2026-04-20", "summary": "Batch approval. All doc_syntheses + cluster commentaries flipped to verified=true. 5 of 6 test targets remain graph_status=not_found (Euclid DR1, DESI DR2 fsigma8, SO×Euclid, Rubin DP2, Horndeski Theory) — parser writes Prediction:Preregistered nodes but SKIPs edge creation until target nodes materialize."},
@@ -136,7 +136,7 @@
           "role": "predicts_threshold",
           "monopoly_status": "sole_addresser_among_43_frameworks",
           "confidence": "high",
-          "reasoning": "DOI 32101111 (2026-04-26) falsifies the classical Efstathiou-Lake-Negroponte (ELN) criterion and replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1. EFC remains the only framework in the 43-framework atlas with an explicit bar-instability prediction — a true monopoly."
+          "reasoning": "DOI 32101111 (2026-04-26) falsifies the classical Efstathiou-Lake-Negroponte (ELN) criterion and replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1. EFC remains the only framework in the 42-framework atlas with an explicit bar-instability prediction — a true monopoly."
         },
         {
           "kind": "test",
@@ -200,7 +200,7 @@
         "name": "L3 galactic monopoly (P8)",
         "watchlist_keys": ["P8"],
         "cluster_commentary": {
-          "draft": "P8 (bar-instability falsification, DOI 32101111, 2026-04-26) is EFC's sole monopoly phenomenon in the atlas. Among 43 frameworks (ΛCDM, MOND, Verlinde, f(R), DGP, etc.) NONE provide an explicit bar-instability criterion. EFC replaces the falsified Efstathiou-Lake-Negroponte criterion with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 incorporating an entropy-gradient correction to κ². Cross-population test against SPARC + S4G + Galaxy Zoo is pre-registered.",
+          "draft": "P8 (bar-instability falsification, DOI 32101111, 2026-04-26) is EFC's sole monopoly phenomenon in the atlas. Among 42 frameworks (ΛCDM, MOND, Verlinde, f(R), DGP, etc.) NONE provide an explicit bar-instability criterion. EFC replaces the falsified Efstathiou-Lake-Negroponte criterion with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 incorporating an entropy-gradient correction to κ². Cross-population test against SPARC + S4G + Galaxy Zoo is pre-registered.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-29"
