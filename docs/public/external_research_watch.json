@@ -2,7 +2,7 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.4",
+  "version": "1.5",
   "last_updated": "2026-05-01",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
@@ -30,6 +30,91 @@
       "scalar-tensor-horndeski"
     ],
     "language_policy": "Conservative wording. Use 'EFC is positioned as', 'EFC recovery condition reduces to', 'discriminator from EFC is', 'shared mechanism with'. Never 'EFC is superior to' or 'X is wrong'."
+  },
+  "pending_review_2026_05_01": {
+    "added_at": "2026-05-01",
+    "reviewer": "claude-opus-4-7 (branch claude/review-ledger-impacts-oskwS)",
+    "purpose": "Items identified during 2026-05-01 ledger-impact review as touching the seven existing thematic clusters (or requiring a new cluster) but not yet present in items[]. Each entry needs arXiv/DOI verification before promotion to a full items[] row. Listed here so symbiose graph and HTML rendering pipeline are aware of the pending-add backlog without prematurely materialising unverified canonical IDs.",
+    "language_policy": "Same conservative wording as items[] schema. No 'confirms EFC' phrasing.",
+    "candidates": [
+      {
+        "topic": "Combined-CMB S8 = 0.836 baseline (Planck 2018 + ACT DR6 + SPT-3G)",
+        "cluster": "s8_tension_des_y6",
+        "efc_relevance": "Re-baselines P4 (sealed Rubin DP2 prediction S8 = 0.847 ± 0.015) from Planck-alone (0.811) to a higher CMB anchor; tension shrinks to ~0.7sigma from ~2.3sigma. Already cited inside arXiv:2602.12238 review row but not promoted as standalone constraint.",
+        "ledger_action": "Add standalone Combined-CMB row to items[]; mark P4 in EFC_Predictions.html as needing reference-baseline note (NO change to sealed numerical prediction).",
+        "verification_required": "Locate primary Combined-CMB methodology paper (likely DES Y6 companion or follow-up CMB compilation 2026)."
+      },
+      {
+        "topic": "Modelfree w(z) reconstruction with phantom crossings near z ~ 0.5 and z ~ 1.5",
+        "cluster": "desi_dr2_de_evolution",
+        "efc_relevance": "Independent dynamical-DE reconstruction places a sign change in w(z) close to EFC's P1 lensing-crossover at z ~ 0.44. Structural parallel — does not select EFC over alternative dynamical-DE frameworks but tightens the empirical case for a transition near that redshift.",
+        "ledger_action": "Add modelfree-w(z) reconstruction paper(s) to cluster 'desi_dr2_de_evolution'; flag z ~ 0.44/0.5 alignment for cross-reference in WP1 recovery-conditions table.",
+        "verification_required": "Locate canonical 2025/2026 Gaussian-process or PCA w(z) reconstruction (DESI DR2 + Pantheon+ + Union3 combined); candidates include Calderon et al. and Park et al. classes."
+      },
+      {
+        "topic": "Joint ACT + SPT + Planck CMB-lensing x DESI DR2 BAO -> S8 ~ 0.828 (Qu et al. 2026 class)",
+        "cluster": "cmb_lensing_high_precision",
+        "efc_relevance": "Probes redshift kernel z ~ 0.9-5 (EFC suppression regime z > 0.5 per P1 table) and lands high. Non-trivial constraint on the combination mu < 1, Sigma > 1 that EFC's P3 prediction depends on.",
+        "ledger_action": "Add as second high-precision CMB-lensing entry alongside arXiv:2504.20038; promote 'theory-efclass-boltzmann-solver' gap further if the new precision exceeds 1.6%.",
+        "verification_required": "Locate primary Qu et al. 2026 (or equivalent) joint CMB-lensing + DESI DR2 BAO paper; verify exact S8 value and redshift kernel range."
+      },
+      {
+        "topic": "KiDS-Legacy cosmic shear standalone entry (S8 ~ 0.815, < 1sigma vs Planck)",
+        "cluster": "s8_tension_des_y6",
+        "efc_relevance": "The other arm of the bifurcated S8 picture: KiDS-Legacy converges toward CMB while DES Y6 sits 2.4-2.7sigma below. Heterogeneity is itself a signal for F4 status.",
+        "ledger_action": "Promote KiDS-Legacy from being-only-cited-in-review to its own publication row; update F4 falsifier status note in EFC_Predictions.html (currently 'Monitoring 2-3sigma now') to reflect probe split.",
+        "verification_required": "Locate canonical KiDS-Legacy 2025 cosmic-shear paper (Wright et al. or analogous)."
+      },
+      {
+        "topic": "SH0ES Cepheid + JWST H0 = 73.8 +/- 0.88 km/s/Mpc (Riess et al. 2025 class)",
+        "cluster": "NEW_CLUSTER_h0_three_window",
+        "efc_relevance": "Direct empirical anchor for the L2 window in P7 (H0_L2 ~ 73.5). Closer to L2 prediction than the previously cited 73.04 value.",
+        "ledger_action": "Open new cluster 'h0_three_window_external_anchors' tied to P7; populate with SH0ES, TRGB CCHP and TDCOSMO entries.",
+        "verification_required": "Locate Riess et al. 2025 SH0ES update paper (arXiv ID); confirm published value and uncertainty."
+      },
+      {
+        "topic": "TRGB CCHP / Freedman et al. JWST H0 ~ 69.8 +/- 1.6 km/s/Mpc",
+        "cluster": "NEW_CLUSTER_h0_three_window",
+        "efc_relevance": "Sits between L0 (~67.5) and L1 (~69.5) windows of P7; near-perfect overlap with L1 prediction.",
+        "ledger_action": "Add to new H0 cluster; cross-reference with P7 sealed prediction (figshare 32113399).",
+        "verification_required": "Locate Freedman et al. 2024/2025 CCHP TRGB-JWST paper (arXiv ID); confirm exact value."
+      },
+      {
+        "topic": "TDCOSMO lensed-quasar time-delay H0",
+        "cluster": "NEW_CLUSTER_h0_three_window",
+        "efc_relevance": "Independent late-universe H0 probe via gravitational time delay; aligns with local SH0ES anchor in current 2025 results.",
+        "ledger_action": "Add to new H0 cluster as third independent late-universe anchor.",
+        "verification_required": "Locate TDCOSMO 2025 result paper (arXiv ID); confirm value and method (kinematic vs hierarchical)."
+      },
+      {
+        "topic": "eROSITA cluster cosmology S8 ~ 0.86 (high-S8 outlier)",
+        "cluster": "NEW_CLUSTER_cluster_cosmology_split",
+        "efc_relevance": "The only late-universe S8 measurement above the Combined-CMB baseline; if robust, an external parallel to EFC's Sigma > 1 track. Internal tension with SPT-3G cluster S8 ~ 0.795 makes this a calibration question not a clean confirmation.",
+        "ledger_action": "Open new cluster 'cluster_cosmology_split_eROSITA_SPT'; populate with eROSITA-DE and SPT-3G cluster cosmology references.",
+        "verification_required": "Locate eROSITA-DE cluster cosmology 2024/2025 result paper (arXiv ID); confirm value, sample, and systematics treatment."
+      },
+      {
+        "topic": "SPT-3G cluster cosmology S8 ~ 0.795 (low-S8 cluster anchor)",
+        "cluster": "NEW_CLUSTER_cluster_cosmology_split",
+        "efc_relevance": "Low-S8 cluster counterpart to eROSITA. The internal cluster-cosmology disagreement is its own signal independent of the shear-vs-CMB picture.",
+        "ledger_action": "Add to new cluster cosmology split cluster.",
+        "verification_required": "Locate SPT-3G 2024/2025 cluster cosmology paper (arXiv ID); confirm value."
+      },
+      {
+        "topic": "Euclid Q2 release window 2026-06-24 (timeline update)",
+        "cluster": "future_arbiters",
+        "efc_relevance": "Updated ESA timeline brings a Q2 staging release before the DR1 anchor on 2026-10-21. Does not affect the sealed Euclid DR1 frozen test; informational only.",
+        "ledger_action": "Add Q2 staging entry to 'future_arbiters' cluster as survey-release item; keep ESA:EuclidDR1-2026-10-21 unchanged and FROZEN.",
+        "verification_required": "Confirm ESA Q2 release announcement URL and exact 2026-06-24 date."
+      },
+      {
+        "topic": "Rubin DP2 confirmed Jul-Sep 2026 + alert stream live since 2026-02-24",
+        "cluster": "future_arbiters",
+        "efc_relevance": "DP2 is the test bed for P4 (S8 = 0.847 +/- 0.015). Alert stream availability is unrelated to P4 but worth noting as Rubin operational milestone for future predictions.",
+        "ledger_action": "Add 'Rubin:DP2-2026-Q3' as separate survey-release entry distinct from Euclid; cross-reference P4 sealed pipeline (figshare 32013738).",
+        "verification_required": "Confirm Rubin DP2 schedule from latest RTN-011 v8.0 (April 2026)."
+      }
+    ]
   },
   "items": [
     {
