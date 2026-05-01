@@ -2,9 +2,9 @@
 
 Morten Magnusson, Symbiose Research
 ORCID: 0009-0002-4860-5095
-Date: April 2026
+Date: May 2026
 
-I thank Cabannas and Silva for the depth and seriousness of their engagement with EFC v2.1. This is, to my knowledge, the first external commentary on the framework. It is useful to have the model examined against an alternative ontological discipline at this stage.
+I thank Cabannas and Silva for their engagement with EFC v2.1. This is, to my knowledge, the first external commentary on the framework, and the operational checklist they propose in Section 13 is a useful reference point at this stage of the work.
 
 I will respond on three points only.
 
@@ -12,10 +12,10 @@ I will respond on three points only.
 
 The eight bridges proposed by the authors largely overlap with the empirical programme already in progress within EFC.
 
-* Bridge 2 (galactic rotation curves from k(S), V(E_f, S)) is addressed in *Empirical Validation of Energy-Flow Cosmology: Cluster Lensing and Galaxy Rotation Curves* (2026), where rotation profiles emerge directly from the entropic field structure.
-* Bridge 3 (entropic halos vs. gravitational lensing) is addressed in the Bullet Cluster EFC analysis (Clowe et al. 2006; HSC weak-lensing), and extended in *A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear* (doi:10.6084/m9.figshare.31271917).
+- Bridge 2 (galactic rotation curves from k(S), V(E_f, S)) is addressed in *Empirical Validation of Energy-Flow Cosmology: Cluster Lensing and Galaxy Rotation Curves* (2026), where rotation profiles emerge directly from the entropic field structure.
+- Bridge 3 (entropic halos vs. gravitational lensing) is addressed in the Bullet Cluster EFC analysis (Clowe et al. 2006; HSC weak-lensing), and extended in *A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear* (doi:10.6084/m9.figshare.31271917).
 
-Bridges 5, 6, 7, and 8 — local Lorentz consistency of c(S), a quantitative CMB account, separation of information / radiation / memory / cognition, and falsifiability criteria for EFC-C — remain open. I consider these valid targets for the next phase of work.
+Bridges 1, 4, 5, 6, 7, and 8 — observables for E_f, the normalised evolution equation for S(t), local Lorentz consistency of c(S), a quantitative CMB account, the separation of physical information / atomic radiation / memory / cognition, and falsifiability criteria for EFC-C — remain open or partially open. I consider these valid targets for the next phase of work.
 
 ## 2. On the philosophical framework
 
@@ -23,10 +23,15 @@ The proposed reinterpretation of EFC within the vocabulary of the Theory of Obje
 
 EFC is not anchored in axiomatic necessity, but in operational and empirical coherence. Its claims stand or fall by confrontation with data, not by alignment with a prior modal ontology.
 
-The two programmes can engage productively without requiring convergence at the level of foundational language.
+The two frameworks can engage productively without requiring convergence at the level of foundational language.
 
 ## 3. On the evaluation
 
 I note the score (8.2/10), but do not attach significance to it. Progress in EFC will be determined by predictive power and empirical performance, not by ordinal evaluation.
 
 I welcome continued engagement, particularly on the open bridges identified above.
+
+---
+
+*This response, together with the original critique, is archived at:*
+*https://github.com/supertedai/EFC/tree/main/docs/critiques/2026-04-cabannas-silva-theory-of-objectivity*
