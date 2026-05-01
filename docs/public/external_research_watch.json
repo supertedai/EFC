@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.3",
-  "last_updated": "2026-04-26",
+  "version": "1.4",
+  "last_updated": "2026-05-01",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -647,6 +647,72 @@
       "date_published": "2026-04-23",
       "efc_relevance": "Introduces a half-saturation ‘sparseness scale’ in the dark-sector coupling that bounds energy exchange between DM and DE and prevents phantom-crossing. Conceptually parallel to EFC's K(ρ)-stiffness saturation in the L2→L3 transition; strong cousin of framework:CoupledDE-DM-Amendola2000 with a nonlinear saturation kernel.",
       "ledger_action": "Add as 2026 nonlinear coupled-DE/DM cousin to competitor-landscape table; required head-to-head with EFC saturation kernel in WP3 Falsification Protocol.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.23631",
+      "title": "CLASH-VLT: The Fifth Force in Chameleon Gravity from Joint Lensing and Kinematics Cluster Mass Profiles",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.23631",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-26",
+      "efc_relevance": "First high-precision joint gravitational-lensing + kinematics test of chameleon-screened f(R) at Mpc cluster scales using nine CLASH/CLASH-VLT clusters — exactly the regime where EFC's L2→L3 transition predicts μ<1 while f(R)/chameleon predicts μ>1 (FA2 sign-level discriminator).",
+      "ledger_action": "Add to Validation Ledger as cluster-scale fifth-force constraint; cross-reference framework:fR-Starobinsky2007 and FA2; required head-to-head with EFC L2/L3 μ-sign prediction in WP3 Falsification Protocol.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.23793",
+      "title": "From Big Bang Nucleosynthesis to Late-Time Acceleration in f(Q,L_m) Gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.23793",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-27",
+      "efc_relevance": "Non-metricity–matter coupled modified-gravity model spanning both BBN freeze-out and late-time acceleration with a single coupling — same dual-regime ambition as EFC's L1↔L3 spine. Direct competitor in the f(Q)/f(Q,L_m) family that EFC must outperform on combined BBN + DESI DR2 + Pantheon+ ΔAIC.",
+      "ledger_action": "Add to WP3 competitor-landscape table; cross-reference arXiv:2604.19545 (BBN bound on generalised entropies) and arXiv:2604.21151 (f(Q,T) affine EoS); required BBN + late-time joint-fit row in competitor matrix.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.25373",
+      "title": "Generalizing the CPL Parametrization through Dark Sector Interaction",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.25373",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-28",
+      "efc_relevance": "Extends CPL w(z) with explicit dark-sector interaction kernel — same family as framework:CoupledDE-DM-Amendola2000 and arXiv:2604.21671 saturation cousin. Maps onto EFC's L2→L3 effective w(z) but adds an exogenous Q-coupling that EFC derives endogenously from K(ρ)-stiffness gradients; the kernel functional form is the discriminator.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table; cross-reference framework:wCDM-CPL-Chevallier2001 and arXiv:2604.21671; required mapping between EFC entropic coupling and Q(φ,ρ) kernel in WP1 recovery-conditions table.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.26015",
+      "title": "Kinematic Lensing Ratio (KiLeR): Reviving Weak Lensing Cosmography as a Geometric Dark Energy Probe",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.26015",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-28",
+      "efc_relevance": "Independent geometric-only DE probe combining shear ratios with kinematic intrinsic shapes; bypasses photo-z, intrinsic-alignment and baryonic systematics. Roman Space Telescope forecast: ~1.9× improvement on DESI DR2 BAO+CMB+SN evolving-DE constraint. Provides a clean future test of EFC's L2→L3 effective w(z) with negligible perturbation-sector contamination.",
+      "ledger_action": "Add to Stage-IV Roadmap as Roman-era geometric-DE probe; mark new ledger row 'awaiting Roman first light'; cross-reference arXiv:2503.14738 (DESI DR2) and ESA:EuclidDR1-2026-10-21 as orthogonal geometric anchor.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.26541",
+      "title": "The End of the First Act: Spectral Running, Interacting Dark Radiation, and the Hubble Tension in Light of ACT DR6 Data",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.26541",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-29",
+      "efc_relevance": "ACT DR6 reanalysis (Garny–Niedermann–Sloth) showing ΔN_eff bounds are highly sensitive to spectral-running (α_s, β_s) priors; confirms Hubble tension and demonstrates Interacting Dark Radiation remains viable. Bears directly on EFC L1 regime: any entropic-flow contribution that mimics extra radiation must respect the joint (α_s, β_s, ΔN_eff) bound updated here.",
+      "ledger_action": "Add to Validation Ledger as L1-regime constraint; require explicit EFC L1 prediction for effective ΔN_eff conditional on (α_s, β_s) priors; cross-reference framework:EDE-Poulin2019 and arXiv:2604.19545 (BBN entropic bound).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2604.27320",
+      "title": "Extended Universal Rotational Curve of Spiral Galaxies (Salucci, Bhatia, Schiavone, Haridasu)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2604.27320",
+      "date_seen": "2026-05-01",
+      "date_published": "2026-04-30",
+      "efc_relevance": "Salucci-team URC extended out to 2R_opt using SPARC HI rotation curves; double-normalised RCs collapse onto a single universal profile in the dark-matter-dominated outer disk regime where MOND, Verlinde-2016 and EFC predictions diverge most. Provides a clean baryon-aware target shape against which EFC's k=0.415 universality prediction (ledger_galaxy_rotation_curves_sparc) can be tested in the regime its sealed parameters were not fitted on.",
+      "ledger_action": "Re-run EFC SPARC pipeline (seed=42, k=0.415 sealed) on the extended-URC double-normalised profile; add to Validation Ledger alongside arXiv:2411.13329 (BIG-SPARC); update gap theory-multicomponent-sparc-universality with extended-URC outer-disk row; required head-to-head ΔAIC vs framework:VerlindeEmergent-2016 and framework:MOND-Milgrom1983.",
       "status": "new"
     }
   ]
