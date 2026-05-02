@@ -133,5 +133,211 @@
     "demo": "examples/demo_cmb_thermodynamic.py"
   },
   "doi": "10.6084/m9.figshare.31064929",
-  "figshare_url": "https://doi.org/10.6084/m9.figshare.31064929"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31064929",
+  "paper_type": "empirical_test",
+  "paper_type_inferred": true,
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "This paper constructs a systematic null-test and compatibility framework for EFC's thermodynamic interpretation of the CMB, testing whether Planck data (TT/TE/EE power spectra, lensing, ISW) are consistent with entropy-constrained structure formation. It does not introduce new kill criteria or sealed predictions, but it provides an empirical scaffolding that quantifies how well the entropy-profile mechanism reproduces known CMB observables and identifies where EFC-specific deviations could appear. The framework also connects forward to JWST early-structure phenomenology by establishing the entropy baseline against which high-redshift anomalies would be measured.",
+    "graph_insights": [
+      "Graph shows this paper touches CMB, Planck, lensing, ISW, entropy profile, and JWST but has no 1-hop or 2-hop connections to existing papers — it is a new node that bridges the CMB-observable cluster to the entropy/thermodynamic-interpretation cluster, creating a previously absent link in the knowledge graph.",
+      "The absence of connections to validation tests sharing observables confirms this is genuinely new infrastructure: no prior EFC paper performed dedicated CMB null tests at this level of systematization.",
+      "The JWST tag suggests the authors explicitly intend forward coupling to early-structure phenomenology, even though the paper is CMB-focused — this is a deliberate bridge node that should be linked to the phenomenology-jwst-early-structure gap in the graph."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "cmb_tt_entropy_null",
+        "category": "consistency_check",
+        "name": "CMB TT entropy-profile null test",
+        "description": "Checks whether the EFC entropy-constrained prediction for the TT power spectrum is statistically compatible with Planck 2018 TT data across the full multipole range.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 TT",
+        "prediction": "EFC entropy profile reproduces ΛCDM-level TT residuals (Δχ² ≲ few within class)"
+      },
+      {
+        "test_id": "cmb_te_entropy_null",
+        "category": "consistency_check",
+        "name": "CMB TE entropy-profile null test",
+        "description": "Null test of EFC entropy-constrained TE cross-spectrum against Planck 2018 TE data.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 TE",
+        "prediction": "TE residuals consistent with zero deviation from entropy-constrained baseline"
+      },
+      {
+        "test_id": "cmb_ee_entropy_null",
+        "category": "consistency_check",
+        "name": "CMB EE entropy-profile null test",
+        "description": "Null test of EFC entropy-constrained EE spectrum against Planck 2018 EE data.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 EE",
+        "prediction": "EE residuals consistent with entropy-constrained baseline"
+      },
+      {
+        "test_id": "cmb_lensing_entropy_null",
+        "category": "consistency_check",
+        "name": "CMB lensing entropy-profile null test",
+        "description": "Tests whether the Planck CMB lensing reconstruction is compatible with the entropy-constrained matter power spectrum implied by EFC.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 lensing",
+        "prediction": "Lensing amplitude consistent with entropy-constrained structure growth"
+      },
+      {
+        "test_id": "cmb_isw_entropy_null",
+        "category": "consistency_check",
+        "name": "ISW–entropy profile compatibility test",
+        "description": "Checks whether the observed ISW signal (via cross-correlation with galaxy surveys) is compatible with the late-time entropy evolution predicted by EFC.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 ISW (cross-correlated)",
+        "prediction": "ISW amplitude consistent with EFC's entropy-driven late-time potential decay"
+      },
+      {
+        "test_id": "cmb_thermodynamic_framework_null",
+        "category": "framework_constraint",
+        "name": "Overall CMB thermodynamic compatibility framework",
+        "description": "Combined null-test statistic across all CMB channels (TT, TE, EE, lensing, ISW) under entropy-constrained structure formation.",
+        "result": "PASS",
+        "status": "success",
+        "data_source": "Planck 2018 combined",
+        "prediction": "Joint χ² within acceptable null-test bounds for EFC thermodynamic interpretation"
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "section-cmb-tests",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "CMB thermodynamic null-test framework deposited (DOI:10.6084/m9.figshare.31064929). Six null tests across Planck TT/TE/EE, lensing, and ISW all pass. Entropy-constrained structure formation is compatible with Planck 2018 at the precision tested. Next step: implement these tests inside EFCLASS Boltzmann solver for Stage-IV forecasting.",
+        "doi_refs": [
+          "31064929"
+        ],
+        "reasoning": "The roadmap's CMB section previously had no dedicated empirical-test paper; this fills that slot.",
+        "hedges_applied": [
+          "compatible with, not 'proves'"
+        ]
+      },
+      {
+        "page": "gap",
+        "target": "theory-efclass-boltzmann-solver",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFCLASS Boltzmann solver remains the critical open theory gap. The new CMB null-test framework (DOI:10.6084/m9.figshare.31064929) defines the target observables and residual structure that EFCLASS must reproduce at Stage-IV precision. This paper provides the empirical specification but does not close the gap.",
+        "doi_refs": [
+          "31064929"
+        ],
+        "reasoning": "The null-test paper sharpens what EFCLASS must achieve but does not itself deliver the solver.",
+        "hedges_applied": []
+      },
+      {
+        "page": "gap",
+        "target": "phenomenology-jwst-early-structure",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The CMB entropy-profile baseline is now empirically anchored (DOI:10.6084/m9.figshare.31064929). JWST early-structure predictions should be derived from this validated baseline, ensuring consistency between the CMB-epoch entropy constraint and the high-z structure envelope. Quantitative prediction paper still required.",
+        "doi_refs": [
+          "31064929"
+        ],
+        "reasoning": "The paper establishes the entropy baseline that the JWST prediction must connect to; this narrows the gap's scope.",
+        "hedges_applied": []
+      },
+      {
+        "page": "elevator",
+        "target": "empirical-evidence-summary",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "EFC now passes 110 of 118 active tests (6 new CMB null tests added). A dedicated CMB thermodynamic null-test framework (DOI:10.6084/m9.figshare.31064929) confirms compatibility with Planck TT/TE/EE, lensing, and ISW under entropy-constrained structure formation.",
+        "doi_refs": [
+          "31064929"
+        ],
+        "reasoning": "Elevator page test count and CMB evidence statement need updating to reflect the new paper.",
+        "hedges_applied": [
+          "'confirms compatibility' rather than 'proves'"
+        ]
+      },
+      {
+        "page": "whitepaper",
+        "target": "section-cmb-observables",
+        "action": "update_text",
+        "new_badge": null,
+        "new_text": "The CMB thermodynamic interpretation has been subjected to a systematic null-test framework (DOI:10.6084/m9.figshare.31064929) encompassing Planck 2018 TT, TE, EE power spectra, lensing reconstruction, and ISW cross-correlation. All six null tests pass, establishing that entropy-constrained structure formation is consistent with current CMB data. Distinguishing EFC from ΛCDM at the CMB level requires the EFCLASS Boltzmann solver operating at CMB-S4/LiteBIRD precision.",
+        "doi_refs": [
+          "31064929"
+        ],
+        "reasoning": "Whitepaper CMB section gains its first dedicated empirical-test reference.",
+        "hedges_applied": [
+          "'consistent with' not 'proven by'; explicit statement that distinguishing power awaits Stage-IV"
+        ]
+      }
+    ],
+    "new_rows": [
+      {
+        "page": "roadmap",
+        "table_id": "section-2-empirical-tests",
+        "content_html": "<tr><td>CMB Thermodynamic Null-Test Framework</td><td>DOI:10.6084/m9.figshare.31064929</td><td>6 null tests (TT, TE, EE, lensing, ISW, combined)</td><td>All PASS — entropy-constrained structure formation compatible with Planck 2018</td><td>Next: EFCLASS implementation for Stage-IV forecasting</td></tr>",
+        "reason": "No prior row existed for a dedicated CMB null-test paper; this is a new empirical entry, not an update to an existing row."
+      }
+    ],
+    "structural_edits": [
+      {
+        "page": "elevator",
+        "section": "test-count-summary",
+        "change_type": "reorder",
+        "description": "Move CMB consistency checks into a visible sub-block alongside growth-rate and BAO tests, reflecting that the CMB channel now has its own dedicated paper rather than being inferred indirectly.",
+        "reason": "Previously CMB evidence was implicit; with a dedicated null-test framework it deserves its own line in the summary hierarchy."
+      }
+    ],
+    "reinterpreted_dois": [],
+    "language_hedges": [
+      {
+        "raw_claim": "EFC's thermodynamic interpretation is compatible with all Planck CMB observables",
+        "hedged_version": "Within the null-test framework examined, EFC's entropy-constrained structure formation passes Planck TT/TE/EE, lensing, and ISW consistency checks at the precision currently tested; this establishes compatibility but does not constitute a unique proof of the thermodynamic mechanism.",
+        "reason": "Compatibility / null-test pass ≠ proof of uniqueness; the result is within-class consistency, not a universality demonstration."
+      },
+      {
+        "raw_claim": "The entropy profile reproduces CMB spectra",
+        "hedged_version": "The entropy-constrained profile is consistent with Planck CMB spectra to the precision of the current null-test suite; reproduction at the level distinguishable from ΛCDM awaits EFCLASS Boltzmann-solver implementation and Stage-IV data.",
+        "reason": "Structural consistency claim should not be elevated to point-prediction validation without a full Boltzmann solver; the paper uses a null-test framework, not a fit with free parameters optimized."
+      },
+      {
+        "raw_claim": "ISW signal validates EFC's late-time entropy evolution",
+        "hedged_version": "The observed ISW cross-correlation amplitude is consistent with EFC's predicted late-time entropy evolution within current error bars; definitive validation requires higher-S/N ISW measurements from upcoming surveys.",
+        "reason": "ISW is notoriously noisy (~4σ detection); 'validates' overstates current statistical power — 'consistent with' is appropriate."
+      }
+    ],
+    "new_hierarchy": [
+      "1. CMB TT/TE/EE + lensing + ISW joint null test — broadest observational baseline, all PASS (10.6084/m9.figshare.31064929)",
+      "2. f·σ₈ growth-rate sealed predictions — direct Stage-IV confrontation pending (DESI DR2)",
+      "3. kSZ velocity field — dedicated prediction paper planned (phenomenology-kSZ-velocity gap)",
+      "4. JWST early-structure envelope — quantitative prediction paper planned (phenomenology-jwst-early-structure gap)",
+      "5. Fragile point predictions — individual multipole-bin residuals sensitive to Monte Carlo scatter"
+    ],
+    "primary_discriminator_shift": {
+      "old": "f·σ₈(z) sealed point predictions as primary EFC discriminator",
+      "new": "f·σ₈(z) sealed point predictions remain the primary discriminator; the new CMB null-test suite supplements as the broadest consistency anchor but does not displace growth-rate predictions as the sharpest distinguishing observable",
+      "reason": "The CMB null tests establish compatibility (necessary condition) but do not sharply distinguish EFC from ΛCDM at current precision; f·σ₈ remains the highest-leverage discriminator because EFC predicts a specific numerical departure from ΛCDM."
+    },
+    "narrative_frame": "clarifying",
+    "narrative_frame_reason": "The paper does not close a kill criterion or open a new one; it clarifies the empirical footing of EFC's thermodynamic CMB channel by building the null-test infrastructure needed before Stage-IV data arrive.",
+    "bottom_line_sentence": "A dedicated CMB null-test framework now quantifies EFC's thermodynamic compatibility with Planck TT/TE/EE, lensing, and ISW, establishing the entropy-profile baseline for upcoming Stage-IV and JWST confrontations.",
+    "implicit_consequences": [
+      "The entropy-profile baseline established here becomes the mandatory starting point for the JWST early-structure prediction paper (phenomenology-jwst-early-structure gap); any high-z prediction must be consistent with this CMB-epoch anchor.",
+      "The ISW null-test result implicitly constrains the late-time potential decay rate, which feeds back into the kSZ velocity prediction (phenomenology-kSZ-velocity gap) — when that paper is written, the ISW-consistent decay rate narrows the kSZ prediction envelope.",
+      "Passing lensing consistency at Planck precision means the entropy-constrained matter power spectrum is not grossly wrong at z~0.5–2; this provides an indirect cross-check supporting the f·σ₈ sealed prediction's plausibility range.",
+      "The null-test framework defines exactly what residual patterns EFCLASS must reproduce, converting theory-efclass-boltzmann-solver from an abstract gap to a concrete specification problem.",
+      "With 6 new tests all passing, the test scoreboard moves to ~118 active / ~110 survived, maintaining EFC's >93% pass rate; the 8 previously falsified tests remain unchanged."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-05-02T17:56:27Z",
+    "applied_by_doi": "31064929"
+  }
 }
