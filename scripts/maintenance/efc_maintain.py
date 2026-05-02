@@ -44,6 +44,10 @@ DATASET_SCANNER = os.path.join(HERE, "efc_dataset_scanner.py")
 LEDGER_AUTOFILL = os.path.join(HERE, "efc_ledger_autofill.py")
 LEDGER_IMPACT_SYNC = os.path.join(HERE, "efc_ledger_impact_sync.py")
 FULL_SYNC = os.path.join(HERE, "efc_full_sync.py")
+ORCID_SYNC = os.path.join(HERE, "efc_orcid_sync.py")
+REGEN_INDEX = os.path.join(HERE, "efc_regen_index.py")
+EVIDENCE_MIRROR = os.path.join(HERE, "efc_evidence_mirror.py")
+PAPER_TYPE = os.path.join(HERE, "efc_paper_type_classifier.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -56,7 +60,19 @@ def main() -> int:
     print("[efc-maintain] --- EFC maintenance pass ---")
     # Step 0: auto-generate skeleton metadata for bare PDFs
     run(AUTO_META)
-    # Step 0b: AI Brain — enrich to 10/10 + register in all public pages
+    # Step 0a: ORCID source-of-truth check. Compares the author's
+    # public ORCID record (live or 24h cache) against repo DOIs and
+    # writes .claude/orcid_sync_report.json. Non-blocking; only flags
+    # drift between published works and what the repo holds.
+    run(ORCID_SYNC)
+    # Step 0b: deterministic paper_type classifier — fills paper_type
+    # for any paper whose index.json lacks one. Cheap heuristic that
+    # the LLM-driven AI Brain (next step) can later override.
+    run(PAPER_TYPE)
+    # Step 0c: regenerate efc_index.json from disk so the central
+    # paper-manifest never drifts to a placeholder. Idempotent.
+    run(REGEN_INDEX)
+    # Step 0d: AI Brain — enrich to 10/10 + register in all public pages
     # (requires OPENAI_API_KEY; skips gracefully if not set)
     run(AI_BRAIN)
     rc_gen = run(GEN)
@@ -87,6 +103,11 @@ def main() -> int:
     # the precommit gate never blocks on a paper whose HTML row we can
     # generate deterministically from its index.json metadata.
     run(LEDGER_AUTOFILL)
+    # Step 4c: mirror evidence-register.json ↔ ledger.json so both
+    # sides agree on empirical / methodological / structural DOI
+    # registers. Repo papers carry their paper_type into the right
+    # bucket. Idempotent and additive.
+    run(EVIDENCE_MIRROR)
     # Step 5: auto-fix drift (paper counts in README/AGENTS/Changelog)
     rc_drift = run(DRIFT, "--fix")
     # Step 6: Generate Symbiose snapshot (ground truth for cross-validation)
