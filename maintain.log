@@ -69,14 +69,12 @@ pdftotext: /usr/bin/pdftotext
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -116,13 +114,13 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 127 total, 101 survived, 8 falsified
+  Tests: 132 total, 104 survived, 8 falsified
   Papers: 158 (157 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-05-01
+Date: 2026-05-02
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -145,38 +143,44 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 158 papers, 157 DOIs
-Ledger: 127 tests, 8 falsified
+Ledger: 132 tests, 8 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 154 close to repo 158
   [OK]       Paper count 158 close to repo 158
-  [WARNING]  Test count '103' != total 127 or active 109
-  [WARNING]  Test count '103' != total 127 or active 109
-  [WARNING]  Test count '121' != total 127 or active 109
-  [WARNING]  Test count '103' != total 127 or active 109
-  [WARNING]  Survived 93/103 but expected 101/109 (total=127, falsified=8, pipeline=18)
+  [WARNING]  Test count '103' != total 132 or active 112
+  [WARNING]  Test count '103' != total 132 or active 112
+  [WARNING]  Test count '121' != total 132 or active 112
+  [WARNING]  Test count '103' != total 132 or active 112
+  [WARNING]  Survived 93/103 but expected 104/112 (total=132, falsified=8, pipeline=20)
 
 --- Validation Ledger ---
-  [WARNING]  '118-test' in Ledger HTML != 127 in stats
+  [WARNING]  '118-test' in Ledger HTML != 132 in stats
 
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 103 active but ledger has 109
-  [CRITICAL] Elevator Pitch: says 93 survived but ledger has 101
-  [CRITICAL] White Paper Series: says 121 total but ledger has 127
-  [CRITICAL] White Paper Series: says 103 active but ledger has 109
-  [CRITICAL] White Paper Series: says 103 active but ledger has 109
-  [CRITICAL] White Paper Series: says 93 survived but ledger has 101
-  [CRITICAL] Stage-IV Roadmap: says 121 total but ledger has 127
-  [CRITICAL] Stage-IV Roadmap: says 103 active but ledger has 109
-  [CRITICAL] Stage-IV Roadmap: says 93 survived but ledger has 101
+  [CRITICAL] Elevator Pitch: says 103 active but ledger has 112
+  [CRITICAL] Elevator Pitch: says 93 survived but ledger has 104
+  [CRITICAL] Elevator Pitch: says 18 pipeline but ledger has 20
+  [CRITICAL] Elevator Pitch: says 18 pipeline but ledger has 20
+  [CRITICAL] White Paper Series: says 121 total but ledger has 132
+  [CRITICAL] White Paper Series: says 103 active but ledger has 112
+  [CRITICAL] White Paper Series: says 103 active but ledger has 112
+  [CRITICAL] White Paper Series: says 93 survived but ledger has 104
+  [CRITICAL] White Paper Series: says 18 pipeline but ledger has 20
+  [CRITICAL] Stage-IV Roadmap: says 121 total but ledger has 132
+  [CRITICAL] Stage-IV Roadmap: says 103 active but ledger has 112
+  [CRITICAL] Stage-IV Roadmap: says 93 survived but ledger has 104
+  [CRITICAL] Stage-IV Roadmap: says 18 pipeline but ledger has 20
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -201,7 +205,7 @@ Ledger: 127 tests, 8 falsified
   [OK]       README paper count 158 matches repo 158
   [OK]       README paper count 158 matches repo 158
   [OK]       README paper count 158 matches repo 158
-  [OK]       Stats categories sum to 127 = total_public
+  [OK]       Stats categories sum to 132 = total_public
   [OK]       DOI sync script present, 157/158 papers have DOIs
   [OK]       116 papers have sealed predictions (339 total)
 
@@ -210,24 +214,28 @@ Ledger: 127 tests, 8 falsified
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 127 matches ledger
+  [OK]       Symbiose test count 132 matches ledger
   [OK]       Symbiose paper count 158 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 13 errors, 11 warnings
+RESULT: 17 errors, 11 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 103 active but ledger has 109
-  - Elevator Pitch: says 93 survived but ledger has 101
-  - White Paper Series: says 121 total but ledger has 127
-  - White Paper Series: says 103 active but ledger has 109
-  - White Paper Series: says 103 active but ledger has 109
-  - White Paper Series: says 93 survived but ledger has 101
-  - Stage-IV Roadmap: says 121 total but ledger has 127
-  - Stage-IV Roadmap: says 103 active but ledger has 109
-  - Stage-IV Roadmap: says 93 survived but ledger has 101
+  - Elevator Pitch: says 103 active but ledger has 112
+  - Elevator Pitch: says 93 survived but ledger has 104
+  - Elevator Pitch: says 18 pipeline but ledger has 20
+  - Elevator Pitch: says 18 pipeline but ledger has 20
+  - White Paper Series: says 121 total but ledger has 132
+  - White Paper Series: says 103 active but ledger has 112
+  - White Paper Series: says 103 active but ledger has 112
+  - White Paper Series: says 93 survived but ledger has 104
+  - White Paper Series: says 18 pipeline but ledger has 20
+  - Stage-IV Roadmap: says 121 total but ledger has 132
+  - Stage-IV Roadmap: says 103 active but ledger has 112
+  - Stage-IV Roadmap: says 93 survived but ledger has 104
+  - Stage-IV Roadmap: says 18 pipeline but ledger has 20
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
