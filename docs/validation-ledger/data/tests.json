@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-01T18:16:27Z",
+  "generated_at": "2026-05-02T00:16:57Z",
   "categories": {
     "physics_test": [
       {
@@ -155,6 +155,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_des_y6_s8_damage_test_l2_cosmic_shear_3_2pt_",
+        "name": "DES Y6 S8 — DAMAGE Test L2 (Cosmic Shear + 3×2pt)",
+        "description": "DES Y6 Cosmic Shear (arXiv:2602.10065, S8=0.798, 2.6σ CMB tension) og 3×2pt (arXiv:2601.14559, S8=0.789±0.012) aktiverer EFCs pre-registrerte DAMAGE-test. Erstatter preliminære DES Y6-rader i Validation Ledger med publiserte verdier.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2602.10065 (DES Y6 Cosmic Shear) + arXiv:2601.14559 (DES Y6 3×2pt)",
+        "prediction": "EFC forseglet: S8=0.847 (DAMAGE, preregistered, mu_lt_1_L2). DES Y6 CS: 0.798; 3×2pt: 0.789±0.012. Suppresjon er i riktig retning men ~6% under EFC-prediksjon.",
+        "notes": "DES Y6 Cosmic Shear (arXiv:2602.10065, S8=0.798) + 3×2pt (arXiv:2601.14559, S8=0.789±0.012). Erstatter preliminære DES Y6-rader. Aktiverer DAMAGE-test mot EFC S8=0.847.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-01T19:01:29.672000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_desi_dr2_bao_constraint_post_prediction_",
         "name": "DESI DR2 BAO α-constraint (post-prediction)",
         "description": "First external-data BAO test of EFC. DESI DR2 13-point BAO with full 13×13 block-diagonal covariance. MCMC posterior: α = -0.119 ± 0.227 (0.52σ). Shifts α from BOSS/eBOSS multi-probe value of -0.684±0.405 (1.69σ) to ~0 at 2.5σ. ΔAIC(EFC−ΛCDM) = +1.74 (no preference). Gate locked at a_t=0.5, δ_a=0.1. Strong α ≈ -0.7 excluded at >4σ by high-z bins (z=0.934, 1.321, 2.330). Weak α ≈ -0.1 consistent but not preferred.",
@@ -167,6 +182,21 @@
         "notes": "Approved as hard constraint. DESI DR2 BAO-only posterior: α = -0.119 ± 0.227 (0.52σ), consistent with ΛCDM. Strong α ≈ -0.68 excluded at >4σ in high-z bins. This is a CONSTRAINT node, not support. Full 13×13 covariance, well-converged (n_eff≈3065, acc=0.59).",
         "quantitative_result": null,
         "last_synced": "2026-02-23T10:21:31.770000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_desi_dr2_bao_l2_validation_ledger_row",
+        "name": "DESI DR2 BAO — L2 Validation Ledger Row",
+        "description": "DESI DR2 (arXiv:2503.14738) shows 2.3σ tension with ΛCDM and 3.1σ preference for w0wa. Tests EFC L0 background (α) and L2 divergence-engine BAO signal. Adds L2 row and marks gap theory-background-hz-modification decision-ready.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2503.14738 + DOI:10.1038/s41550-025-02669-6",
+        "prediction": "EFC: BAO NO_SIGNAL (alpha→0, deltaLogL +0.129), w0wa posterior alpha=−0.14. DESI DR2: w0=−0.838±0.054, wa=−0.62±0.23 — consistent with EFC S_flow-to-latent shape.",
+        "notes": "DESI DR2 arXiv:2503.14738 + Nature Astronomy DOI:10.1038/s41550-025-02669-6. Legger til L2-rad i Validation Ledger. Gap theory-background-hz-modification satt til decision-ready.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-01T19:01:27.003000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -408,6 +438,21 @@
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
         "status_detail": "success"
+      },
+      {
+        "test_id": "conv_jwst_bullet_cluster_kill_test_data_tilgjengelig_pipeline_er_",
+        "name": "JWST Bullet Cluster δκ — KILL-test data tilgjengelig, pipeline er bottleneck",
+        "description": "To JWST Bullet-papers gir avgjørende datasett for EFCs pre-registrerte δκ KILL-test (figshare:31963668): arXiv:2503.21870 (146 SL-constraints + tett WL) og arXiv:2601.22245 (masskart-kryssjekk). Data er klart. Stage-IV Roadmap prioritet: HØYEST.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2503.21870 (JWST 146 SL+WL) + arXiv:2601.22245 (JWST mass map)",
+        "prediction": "EFC pre-registrert: η=Φ/Ψ=0.9993 (KILL badge). MOND: 0 offset (feiler). LCDM: positivt offset (passerer). Pipeline figshare:31963668 må kjøres mot JWST-data fra 2503.21870.",
+        "notes": "arXiv:2503.21870 (146 SL+WL) + arXiv:2601.22245 (mass map). JWST data tilgjengelig. Stage-IV prioritet: HØYEST. EFC pipeline figshare:31963668 er sole bottleneck for δκ KILL-test (η=0.9993).",
+        "quantitative_result": null,
+        "last_synced": "2026-05-01T19:01:34.860000000+00:00",
+        "status_detail": "planned"
       },
       {
         "test_id": "conv_kt_1_dominance_test_strong_lens_time_delay_weak_lensing_shea",
@@ -1010,7 +1055,7 @@
         "prediction": "BAO sigma-deviations cluster near S_flow/S_trans and S_trans/S_latent boundaries",
         "notes": "Auto-updated by nuts_publisher. test_version=v2.0 method=randomise_z_uniform",
         "quantitative_result": "p_primary=0.68722 p_binom=0.015625 n=10 method=randomise_z_uniform",
-        "last_synced": "2026-05-01T14:17:58.909000000+00:00",
+        "last_synced": "2026-05-01T20:48:34.711000000+00:00",
         "status_detail": "pending"
       },
       {
@@ -1648,6 +1693,36 @@
     ],
     "planned_pipeline": [
       {
+        "test_id": "conv_act_spt_planck_cmb_lensing_boltzmann_gap_blocking",
+        "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
+        "description": "arXiv:2504.20038: S8=0.825 ved 1.6% presisjon (SNR 61). Strammer inn baseline for Kill-Test v6 probe-6. Gjør gap theory-efclass-boltzmann-solver til hard blocker — EFC kan ikke konkurrere uten Boltzmann-solver på dette presisjonsnivået. Stage-IV Roadmap CMB-lensing-rad oppdateres.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2504.20038 (ACT+SPT+Planck, 2026)",
+        "prediction": "EFC predikerer sigma8_growth=0.43 (DAMAGE, preregistered). ACT+SPT+Planck S8=0.825 strammer L1/L2-baseline. Gap theory-efclass-boltzmann-solver: BLOCKING.",
+        "notes": "arXiv:2504.20038, S8=0.825 @ 1.6% (SNR 61). Gap theory-efclass-boltzmann-solver promotert til BLOCKING. Stage-IV Roadmap CMB-lensing-rad oppdatert.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-01T19:01:32.272000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_big_sparc_kill_test_v6_pipeline_re_kj_ring_seed_42",
+        "name": "BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42",
+        "description": "BIG-SPARC (arXiv:2411.13329) utvider SPARC-databasen utover 175 galakser brukt i Kill-Test v6. Re-kjøring med scipy.differential_evolution (seed=42) lukker gap theory-multicomponent-sparc-universality og muliggjør universalitets-test utover gjeldende sample.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": "arXiv:2411.13329 (BIG-SPARC) + arXiv:2601.00522 (konkurrent empirisk modell)",
+        "prediction": "EFC Kill-Test v6: RAR og a0_scale native_prediction via entropy_flow_saturation. Forventet: universalitet holder over utvidet BIG-SPARC sample. Konkurrent arXiv:2601.00522 må ΔAIC-sammenlignes på SPARC 175.",
+        "notes": "arXiv:2411.13329 BIG-SPARC + arXiv:2601.00522 konkurrent. Re-kjør scipy.differential_evolution seed=42 på full BIG-SPARC. Lukker gap theory-multicomponent-sparc-universality. ΔAIC mot konkurrent på SPARC 175.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-01T19:01:37.537000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_big_bang_nucleosynthesis_expansionrate_bound",
         "name": "Big Bang Nucleosynthesis expansion-rate bound",
         "description": "⚪",
@@ -1919,5 +1994,5 @@
       }
     ]
   },
-  "total_count": 127
+  "total_count": 132
 }

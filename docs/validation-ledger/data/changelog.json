@@ -1,20 +1,65 @@
 {
   "name": "Recent Changes",
   "version": "3.0",
-  "generated_at": "2026-05-01T18:16:27Z",
+  "generated_at": "2026-05-02T00:16:57Z",
   "period_days": 7,
   "changes": [
-    {
-      "date": "2026-05-01",
-      "type": "auto_maintenance",
-      "summary": "Ledger data: evidence-register.json."
-    },
     {
       "name": "Axiom 0: S_hat(z) Regime Boundary Test",
       "status": "pending",
       "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-05-01T14:17:58.909000000+00:00",
+      "last_updated": "2026-05-01T20:48:34.711000000+00:00",
       "source": null,
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-01T19:01:37.537000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "JWST Bullet Cluster δκ — KILL-test data tilgjengelig, pipeline er bottleneck",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-01T19:01:34.860000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-01T19:01:32.272000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "DES Y6 S8 — DAMAGE Test L2 (Cosmic Shear + 3×2pt)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-01T19:01:29.672000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "DESI DR2 BAO — L2 Validation Ledger Row",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-01T19:01:27.003000000+00:00",
+      "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
       ]
@@ -30,7 +75,7 @@
       ]
     },
     {
-      "name": "EFCLASS sign test: \u0394H\u00b2 negative for additive gate",
+      "name": "EFCLASS sign test: ΔH² negative for additive gate",
       "status": "collapsed_in_expected_direction",
       "result": "COLLAPSED",
       "last_updated": "2026-04-29T06:45:00.000000000+00:00",
@@ -40,7 +85,7 @@
       ]
     },
     {
-      "name": "CMB+BAO Joint Fit: Background \u03b1-gate null result",
+      "name": "CMB+BAO Joint Fit: Background α-gate null result",
       "status": "collapsed_in_expected_direction",
       "result": "COLLAPSED",
       "last_updated": "2026-04-29T06:45:00.000000000+00:00",
@@ -50,7 +95,7 @@
       ]
     },
     {
-      "name": "CMB Planck constraint on EFC background gate \u03b1",
+      "name": "CMB Planck constraint on EFC background gate α",
       "status": "collapsed_in_expected_direction",
       "result": "COLLAPSED",
       "last_updated": "2026-04-29T06:45:00.000000000+00:00",
@@ -60,7 +105,7 @@
       ]
     },
     {
-      "name": "c_eff(a) via CDDR violation: D_L vs D_A(1+z)\u00b2 consistency test",
+      "name": "c_eff(a) via CDDR violation: D_L vs D_A(1+z)² consistency test",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-28T12:15:35.780000000+00:00",
@@ -70,7 +115,7 @@
       ]
     },
     {
-      "name": "S(z) single-parameter joint fit: CMB anomaly \u2194 JWST early-galaxy excess",
+      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
       "status": "pending",
       "result": "DEGENERACY_LIMITED",
       "last_updated": "2026-04-28T11:59:50.452000000+00:00",
@@ -80,7 +125,7 @@
       ]
     },
     {
-      "name": "T_CMB(z) deviation from (1+z) scaling \u2014 SZ-cluster test",
+      "name": "T_CMB(z) deviation from (1+z) scaling — SZ-cluster test",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-28T11:59:42.027000000+00:00",
@@ -90,7 +135,7 @@
       ]
     },
     {
-      "name": "Cluster TNG \u2014 EFC passform-test (\u03c7\u00b2_red=0.000)",
+      "name": "Cluster TNG — EFC passform-test (χ²_red=0.000)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-26T09:25:06.280000000+00:00",
@@ -100,7 +145,7 @@
       ]
     },
     {
-      "name": "BAO DESI Y1 \u2014 EFC preferanse-test (\u0394\u03c7\u00b2=\u221222.01)",
+      "name": "BAO DESI Y1 — EFC preferanse-test (Δχ²=−22.01)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-04-26T09:25:03.339000000+00:00",
@@ -110,7 +155,7 @@
       ]
     },
     {
-      "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 \u2014 \u03ba\u00b2 modification with operational definitions",
+      "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions",
       "status": "FALSIFIED",
       "result": "Planned",
       "last_updated": "2026-04-25T06:18:54.289000000+00:00",
