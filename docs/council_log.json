@@ -451,5 +451,27 @@
     "doi": "10.6084/m9.figshare.31940469",
     "verdict": "REJECTED",
     "reason": "No OPENAI_API_KEY set -- all updates blocked (safe default)"
+  },
+  {
+    "timestamp": "2026-05-02T17:55:36.680744Z",
+    "page": "gap",
+    "target": "theory-efclass-boltzmann-solver",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31064929",
+    "verdict": "REJECTED",
+    "reason": "",
+    "model": "gpt-5",
+    "full_response_length": 0
+  },
+  {
+    "timestamp": "2026-05-02T17:55:57.675607Z",
+    "page": "gap",
+    "target": "phenomenology-jwst-early-structure",
+    "action": "update_text",
+    "doi": "10.6084/m9.figshare.31064929",
+    "verdict": "REJECTED",
+    "reason": "1) The DOI’s title indicates a framework for compatibility/null-tests under entropy-constrained formation, but the update asserts that a “CMB entropy-profile baseline is now empirically anchored” and “validated,” which is not supported by the provided DOI metadata (no results, no sealed predictions, no kill criteria). \n2) Although update_text can be the right action, the proposed inner HTML is malformed (drops the <td>, includes a stray </strong>) and alters table structure, so it is not appropr",
+    "model": "gpt-5",
+    "full_response_length": 1033
   }
 ]

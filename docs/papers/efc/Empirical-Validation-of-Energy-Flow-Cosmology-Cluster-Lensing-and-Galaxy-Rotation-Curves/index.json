@@ -70,5 +70,39 @@
   "doi": "10.6084/m9.figshare.31190233",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.31190233",
   "paper_type": "empirical_validation",
-  "paper_type_inferred": true
+  "paper_type_inferred": true,
+  "ledger_impact": {
+    "status": "ready",
+    "holistic_analysis": "Empirical validation paper scoped to cluster-scale lensing (incl. Bullet Cluster) and galaxy rotation curves (SPARC), explicitly engaging EFC’s entropy-coupling and λ-scaling as the cross-scale mechanism. Metadata shows no sealed predictions, kill-criteria declarations, or linked validation tests; so at this stage it reads as a bridge/setup for cross-regime consistency checks rather than a metric-moving result. It points toward a joint SPARC+cluster lensing likelihood under a single λ and explicit treatment of entropy coupling across halo mass/entropy regimes.",
+    "graph_insights": [
+      "First DOI in the graph that jointly touches both 'cluster lensing' and 'rotation curves' within the EFC context, creating a new bridge across regimes.",
+      "Explicitly links Bullet Cluster and SPARC nodes via entropy coupling and λ-scaling, suggesting an imminent cross-scale consistency test once results are extracted."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [],
+    "tests_updated": [],
+    "page_updates": [],
+    "new_rows": [],
+    "structural_edits": [],
+    "reinterpreted_dois": [],
+    "language_hedges": [],
+    "new_hierarchy": [],
+    "primary_discriminator_shift": {
+      "old": null,
+      "new": null,
+      "reason": "No change to the prediction hierarchy until quantitative results and robustness are established."
+    },
+    "narrative_frame": "clarifying",
+    "narrative_frame_reason": "It delineates the data channels and the EFC mechanisms to be tested across scales, but (as deposited) does not report finalized test outcomes or sealed predictions that would alter KC status or test counts.",
+    "bottom_line_sentence": "New empirical validation paper targets cluster lensing (incl. Bullet Cluster) and SPARC rotation curves under EFC’s entropy-coupled λ-scaling; results pending extraction, no KC or test-status changes yet.",
+    "implicit_consequences": [
+      "Initiates a path to a joint SPARC+cluster lensing likelihood to test whether a single λ and entropy-coupling scheme can span galaxy-to-cluster scales.",
+      "If a consistent λ emerges, it would strengthen the interpretation that Bullet Cluster lensing can be accommodated within EFC without particle CDM; if inconsistency appears, it pressures the KC monitoring channel covering cluster-scale dynamics.",
+      "Highlights the need to propagate entropy-coupled halo response into lensing kernels, informing prioritization of solver/modelling tasks that connect small-scale dynamics to projected mass profiles."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": []
+  }
 }
