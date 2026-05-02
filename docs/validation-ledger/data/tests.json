@@ -708,6 +708,38 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "failure"
+      },
+      {
+        "test_id": "bullet_cluster_lensing_entropy_coupling",
+        "name": "Bullet Cluster lensing under EFC entropy coupling (no collisionless DM component)",
+        "description": "Evaluate whether EFC’s entropy-coupled potential reproduces the observed weak/strong lensing mass maps and galaxy–gas offsets in the Bullet Cluster without invoking a collisionless dark matter halo.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "HST/ACS weak+strong lensing reconstructions; Chandra X-ray gas maps; ground-based shear catalogs",
+        "prediction": "Structural: Lensing convergence peaks and offsets can be accounted for by baryons (galaxies + ICM) through the entropy-coupled potential, with scaling governed by the EFC λ-law.",
+        "notes": "Added by ledger_impact_sync from paper Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves"
+      },
+      {
+        "test_id": "sparc_rotation_curves_lambda_scaling",
+        "name": "SPARC rotation curves with single-parameter λ-scaling",
+        "description": "Test whether a single λ-scaling relation (potential coupling to baryonic surface density/entropy proxy) explains the flat rotation curves across the SPARC sample with low residuals and predictable trends.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "SPARC database (HI/Hα rotation curves and 3.6 μm photometry)",
+        "prediction": "Structural: Rotation curves follow a universal coupling law between baryonic distribution and effective potential; residuals track gas fraction/entropy proxies as prescribed by EFC.",
+        "notes": "Added by ledger_impact_sync from paper Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves"
       }
     ],
     "consistency_check": [
@@ -1025,6 +1057,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "partial"
+      },
+      {
+        "test_id": "cross_scale_lambda_consistency_clusters_galaxies",
+        "name": "Cross-scale λ and entropy-coupling consistency: clusters vs. galaxies",
+        "description": "Jointly fit the EFC entropy-coupling function and λ-normalization to SPARC rotation curves and cluster lensing profiles; test if one coupling law applies across galaxy and cluster scales within uncertainties.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "SPARC + cluster lensing datasets (e.g., CLASH, HSC, XMM/Chandra ICM thermodynamics)",
+        "prediction": "Structural: The same entropy-coupling function and λ-normalization (or explicitly prescribed environment dependence) reproduce both rotation curves and cluster shear/convergence profiles.",
+        "notes": "Added by ledger_impact_sync from paper Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves"
       }
     ],
     "phenomenological": [
@@ -1267,6 +1315,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "success"
+      },
+      {
+        "test_id": "mu_kz_scale_dependence_consistency",
+        "name": "μ(k,z) scale-dependence internal consistency",
+        "description": "Checks that the derived μ(k,z) functional form from Postulate A is internally consistent across k-ranges and redshift bins in the DES Y6 footprint",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 tomographic bins",
+        "prediction": "Single μ(k,z) function from Postulate A should fit all tomographic bin combinations without bin-dependent residual structure",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "framework_constraint": [
@@ -1689,6 +1753,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "success"
+      },
+      {
+        "test_id": "mu_kz_vs_mg_parametrisations",
+        "name": "EFC μ(k,z) vs generic MG parametrisations",
+        "description": "Tests whether EFC's specific μ(k,z) form is distinguishable from generic modified gravity parametrisations (μ₀-Σ₀ class) using DES Y6 data",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "DES Y6",
+        "prediction": "EFC's μ(k,z) has a distinctive k-dependent running not captured by constant-μ₀ parametrisations, providing a discriminant",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "planned_pipeline": [
@@ -1991,6 +2071,38 @@
         "quantitative_result": "Infrastructure not yet available",
         "last_synced": "2026-03-06T20:09:40.592000000+00:00",
         "status_detail": "pending"
+      },
+      {
+        "test_id": "des_y6_mu_kz_shear_correlation",
+        "name": "DES Y6 μ(k,z) shear two-point correlation test",
+        "description": "Validates EFC's predicted scale- and redshift-dependent μ(k,z) against DES Y6 cosmic shear two-point correlation functions across tomographic bins",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 cosmic shear catalog",
+        "prediction": "EFC predicts a specific μ(k,z) profile from Postulate A that suppresses small-scale power relative to ΛCDM, partially resolving the S₈ tension",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
+      },
+      {
+        "test_id": "des_y6_s8_tension_resolution",
+        "name": "DES Y6 S₈ tension resolution test",
+        "description": "Tests whether EFC's μ(k,z) framework yields an S₈ value consistent with both CMB and lensing constraints, quantifying tension reduction",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 + Planck CMB",
+        "prediction": "EFC predicts S₈ tension is reduced or eliminated when μ(k,z) modification is applied to the lensing analysis",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-02T17:55:44Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ]
   },

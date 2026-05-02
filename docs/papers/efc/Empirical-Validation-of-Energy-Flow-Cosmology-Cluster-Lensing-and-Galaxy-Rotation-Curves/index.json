@@ -70,5 +70,93 @@
   "doi": "10.6084/m9.figshare.31190233",
   "figshare_url": "https://doi.org/10.6084/m9.figshare.31190233",
   "paper_type": "empirical_validation",
-  "paper_type_inferred": true
+  "paper_type_inferred": true,
+  "ledger_impact": {
+    "status": "applied",
+    "holistic_analysis": "A new empirical-validation paper has been deposited that targets cross-scale EFC checks: cluster lensing (including Bullet Cluster) and galaxy rotation curves (SPARC), framed via entropy coupling and λ scaling. With no sealed predictions or declared kill criteria in the manuscript metadata and no extracted quantitative results yet, this primarily seeds a set of planned tests and a joint-consistency harness tying cluster lensing to rotation curves. If its results confirm a single coupling law across these regimes, it would materially strengthen EFC’s cross-scale consistency, but for now it adds planned tests without closing any KC or gap.",
+    "graph_insights": [
+      "The paper creates a new bridge in the graph between the SPARC node and cluster-lensing/Bullet-Cluster nodes via the λ-scaling and entropy-coupling concepts, where no prior validation tests were recorded.",
+      "Absence of linked sealed predictions or prior related DOIs indicates this is a new spoke in the validation network rather than an update to an existing branch."
+    ],
+    "kc_addressed": [],
+    "gaps_closed": [],
+    "priority_actions_completed": [],
+    "tests_added": [
+      {
+        "test_id": "bullet_cluster_lensing_entropy_coupling",
+        "category": "physics_test",
+        "name": "Bullet Cluster lensing under EFC entropy coupling (no collisionless DM component)",
+        "description": "Evaluate whether EFC’s entropy-coupled potential reproduces the observed weak/strong lensing mass maps and galaxy–gas offsets in the Bullet Cluster without invoking a collisionless dark matter halo.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "HST/ACS weak+strong lensing reconstructions; Chandra X-ray gas maps; ground-based shear catalogs",
+        "prediction": "Structural: Lensing convergence peaks and offsets can be accounted for by baryons (galaxies + ICM) through the entropy-coupled potential, with scaling governed by the EFC λ-law."
+      },
+      {
+        "test_id": "sparc_rotation_curves_lambda_scaling",
+        "category": "physics_test",
+        "name": "SPARC rotation curves with single-parameter λ-scaling",
+        "description": "Test whether a single λ-scaling relation (potential coupling to baryonic surface density/entropy proxy) explains the flat rotation curves across the SPARC sample with low residuals and predictable trends.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "SPARC database (HI/Hα rotation curves and 3.6 μm photometry)",
+        "prediction": "Structural: Rotation curves follow a universal coupling law between baryonic distribution and effective potential; residuals track gas fraction/entropy proxies as prescribed by EFC."
+      },
+      {
+        "test_id": "cross_scale_lambda_consistency_clusters_galaxies",
+        "category": "consistency_check",
+        "name": "Cross-scale λ and entropy-coupling consistency: clusters vs. galaxies",
+        "description": "Jointly fit the EFC entropy-coupling function and λ-normalization to SPARC rotation curves and cluster lensing profiles; test if one coupling law applies across galaxy and cluster scales within uncertainties.",
+        "result": "Planned",
+        "status": "pending",
+        "data_source": "SPARC + cluster lensing datasets (e.g., CLASH, HSC, XMM/Chandra ICM thermodynamics)",
+        "prediction": "Structural: The same entropy-coupling function and λ-normalization (or explicitly prescribed environment dependence) reproduce both rotation curves and cluster shear/convergence profiles."
+      }
+    ],
+    "tests_updated": [],
+    "page_updates": [
+      {
+        "page": "roadmap",
+        "target": "section-cross-scale-validations",
+        "action": "add_row",
+        "new_badge": null,
+        "new_text": "Add deposited paper linking cluster lensing and galaxy rotation curves via entropy coupling/λ scaling; tests registered as pending.",
+        "doi_refs": [
+          "10.6084/m9.figshare.31190233"
+        ],
+        "reasoning": "The paper defines and motivates explicit cross-scale validation tasks; even without extracted numbers yet, it warrants a roadmap entry to track execution.",
+        "hedges_applied": []
+      }
+    ],
+    "new_rows": [
+      {
+        "page": "roadmap",
+        "table_id": "section-cross-scale-validations",
+        "content_html": "<tr><td>Empirical validation</td><td>EFC Validation: Cluster Lensing and Galaxy Rotation Curves</td><td>10.6084/m9.figshare.31190233</td><td>Cross-scale: Bullet Cluster + cluster lensing profiles + SPARC rotation curves under entropy coupling/λ scaling</td><td>Deposited; analysis pending</td></tr>",
+        "reason": "This is a new cross-scale validation item not previously tracked; requires its own line to monitor test extraction and outcomes."
+      }
+    ],
+    "structural_edits": [],
+    "reinterpreted_dois": [],
+    "language_hedges": [],
+    "new_hierarchy": [],
+    "primary_discriminator_shift": {
+      "old": null,
+      "new": null,
+      "reason": "No quantitative results yet; discriminator hierarchy unchanged."
+    },
+    "narrative_frame": "clarifying",
+    "narrative_frame_reason": "It operationalizes a clear cross-scale validation pathway (lensing ↔ rotation curves via entropy coupling/λ scaling) but does not yet provide quantitative outcomes that would close a kill criterion or alter the bottom-line gap.",
+    "bottom_line_sentence": "Paper deposited (10.6084/m9.figshare.31190233) defining cross-scale lensing–rotation-curve tests under EFC entropy coupling/λ scaling; tests registered and pending extraction/verification of quantitative results.",
+    "implicit_consequences": [
+      "Triggers a unified likelihood pipeline tying SPARC rotation curves to cluster shear/convergence profiles under a single coupling law.",
+      "Requires defining and standardizing entropy proxies (e.g., surface density, gas fraction, ICM thermodynamics) consistently across galaxy and cluster regimes.",
+      "Enables a single-parameter (λ) cross-scale constraint that can tighten EFC parameter space even before DESI DR2 RSD arrives.",
+      "Motivates curation of Bullet Cluster-quality datasets for multiple merging clusters to generalize beyond a single system."
+    ],
+    "bottom_line_change": null,
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-05-02T17:55:44Z",
+    "applied_by_doi": "31190233"
+  }
 }
