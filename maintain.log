@@ -27,7 +27,7 @@ pdftotext: /usr/bin/pdftotext
 
 >>> Step 1: All papers at 10/10 <<<
 
->>> Step 1.5: Holistic Impact Analysis for 7 paper(s) <<<
+>>> Step 1.5: Holistic Impact Analysis for 6 paper(s) <<<
 
   Non-MCMC_Constraints_on_the_EFC_α-Parameter:
     Graph: 10 concepts, 0 related papers
@@ -65,15 +65,6 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  efc-weak-lensing-phenomenology:
-    Graph: 7 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Impact: This paper establishes the first dedicated weak-lensing phenomenology for EFC by deriving the scale-
-    KCs: [], page_updates: 4, tests: 3
   A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
@@ -105,7 +96,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -125,23 +115,9 @@ EFC DOI sync — 158 paper dirs scanned
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 13
-[COUNCIL] REJECTED: data-gap-id="theory-efclass-boltzmann-solver" on gap (DOI m9.figshare.31188193)
-[COUNCIL] Reason: 1) The DOI metadata provided only includes the title and contains no content indicating that the paper “explicitly requires EFCLASS for full C_ℓ forecasts.” Without explicit support in the DOI content
 
 Processed 158 paper(s)
-  applied: 1
-    - efc-weak-lensing-phenomenology: 
-        · ADD test [planned_pipeline] wl_mu_kz_des_y6_protocol result=Planned
-        · ADD test [consistency_check] wl_mu_kz_consistency_s8 result=Planned
-        · ADD test [phenomenological] wl_mu_kz_scale_dependence result=Planned
-        · update_text data-gap-id="theory-efclass-boltzmann-solver" on gap
-        · STRUCTURAL elevator/observable-channels-list: reorder (human review required)
-        ! page_updates: target data-gap-id="phenomenology-weak-lensing" not found in roadmap
-        ! page_updates: council REJECTED update_text data-gap-id="theory-efclass-boltzmann-solver" on gap: 1) The DOI metadata provided only includes the title and contains no content indicating that the paper “explicitly requires EFCLASS for full C_ℓ forecasts.” Without explicit support in the DOI content
-        ! page_updates: target observable-channels-list not found in elevator
-        ! page_updates: target section-predictions-lensing not found in whitepaper
-        ! page_updates: target section-phenomenology-predictions not found in roadmap
-  skip: 151
+  skip: 152
   warn: 6
     - A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics: DOI registered but no ledger_impact block
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
@@ -150,26 +126,92 @@ Processed 158 paper(s)
     - EFC_PreRegistered_Predictions: DOI registered but no ledger_impact block
     - Non-MCMC_Constraints_on_the_EFC_α-Parameter: DOI registered but no ledger_impact block
 
-[ledger-impact-sync] wrote:
-  - docs/validation-ledger/data/tests.json
-  - docs/validation-ledger/data/stats.json
-  - docs/public/EFC_Gap_Analysis.html
-  stats.json recount:
-    consistency_check: 21 → 22
-    phenomenological: 16 → 17
-    planned_pipeline: 21 → 22
-    empirical_test: None → 0
-    total_public: 133 → 136
-    n_falsified: 8 → 11
+[ledger-impact-sync] nothing to do — all papers in steady state
 [efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 80 → 123  (+43)    ledger: 22 → 123 (+101)
-  methodological  ev:  3 →  25  (+22)    ledger:  3 →  25 (+22)
-  structural      ev:  2 →  71  (+69)    ledger:  2 →  71 (+69)
+  empirical       ev:123 → 123  (+0)    ledger:123 → 123 (+0)
+  methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
+  structural      ev: 71 →  71  (+0)    ledger: 71 →  71 (+0)
 ========================================================================
-[efc-drift] 158 papers · no drift detected
+[efc-drift] 158 papers · 37 drift(s) detected:
+  README.md: tests_total — 138 vs 136
+  README.md: tests_total — 138 vs 136
+  Validation_Ledger: tests_total — 138 vs 136
+  Validation_Ledger: tests_total — 138 vs 136
+  Validation_Ledger: tests_active — 118 vs 114
+  Validation_Ledger: tests_survived — 107 vs 103
+  Validation_Ledger: tests_pipeline — 20 vs 22
+  White_Paper_Series: tests_total — 138 vs 136
+  White_Paper_Series: tests_total — 138 vs 136
+  White_Paper_Series: tests_total — 138 vs 136
+  White_Paper_Series: tests_active — 118 vs 114
+  White_Paper_Series: tests_survived — 107 vs 103
+  White_Paper_Series: tests_pipeline — 20 vs 22
+  White_Paper_Series: tests_active — 118 vs 114
+  White_Paper_Series: tests_survived — 107 vs 103
+  White_Paper_Series: tests_pipeline — 20 vs 22
+  White_Paper_Series: tests_pipeline — 20 vs 22
+  Elevator_Pitch: tests_total — 138 vs 136
+  Elevator_Pitch: tests_active — 118 vs 114
+  Elevator_Pitch: tests_survived — 107 vs 103
+  Elevator_Pitch: tests_pipeline — 20 vs 22
+  Elevator_Pitch: tests_total — 138 vs 136
+  Elevator_Pitch: tests_total — 138 vs 136
+  Elevator_Pitch: tests_active — 118 vs 114
+  Elevator_Pitch: tests_active — 118 vs 114
+  Elevator_Pitch: tests_survived — 107 vs 103
+  Elevator_Pitch: tests_survived — 107 vs 103
+  Elevator_Pitch: tests_pipeline — 20 vs 22
+  Elevator_Pitch: tests_pipeline — 20 vs 22
+  Elevator_Pitch: tests_pipeline — 20 vs 22
+  Elevator_Pitch: tests_survived — 107 vs 103
+  Elevator_Pitch: tests_active — 118 vs 114
+  Stage_IV_Roadmap: tests_total — 138 vs 136
+  Stage_IV_Roadmap: tests_active — 118 vs 114
+  Stage_IV_Roadmap: tests_survived — 107 vs 103
+  Stage_IV_Roadmap: tests_pipeline — 20 vs 22
+  Stage_IV_Roadmap: tests_pipeline — 20 vs 22
+  [fixed] README.md: 138 → 136 (tests_total)
+  [fixed] README.md: 138 → 136 (tests_total)
+  [fixed] Validation_Ledger: 138 → 136 (tests_total)
+  [fixed] Validation_Ledger: 138 → 136 (tests_total)
+  [fixed] Validation_Ledger: 118 → 114 (tests_active)
+  [fixed] Validation_Ledger: 107 → 103 (tests_survived)
+  [fixed] Validation_Ledger: 20 → 22 (tests_pipeline)
+  [fixed] White_Paper_Series: 138 → 136 (tests_total)
+  [fixed] White_Paper_Series: 138 → 136 (tests_total)
+  [fixed] White_Paper_Series: 138 → 136 (tests_total)
+  [fixed] White_Paper_Series: 118 → 114 (tests_active)
+  [fixed] White_Paper_Series: 107 → 103 (tests_survived)
+  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
+  [fixed] White_Paper_Series: 118 → 114 (tests_active)
+  [fixed] White_Paper_Series: 107 → 103 (tests_survived)
+  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
+  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
+  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
+  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
+  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
+  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
+  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
+  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
+  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
+  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
+  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
+  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
+  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
+  [fixed] Stage_IV_Roadmap: 138 → 136 (tests_total)
+  [fixed] Stage_IV_Roadmap: 118 → 114 (tests_active)
+  [fixed] Stage_IV_Roadmap: 107 → 103 (tests_survived)
+  [fixed] Stage_IV_Roadmap: 20 → 22 (tests_pipeline)
+  [fixed] Stage_IV_Roadmap: 20 → 22 (tests_pipeline)
+[efc-drift] auto-fixed 5 file(s)
+[efc-drift] all drift resolved
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -205,7 +247,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched; Ledger data: evidence-register.json, ledger.json, stats.json, tests.json.
+[efc-auto-changelog] Public pages updated: Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -218,33 +260,30 @@ Ledger: 133 tests, 8 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 158 close to repo 158
   [OK]       Paper count 158 close to repo 158
-  [WARNING]  Test count '118' != total 133 or active 112
-  [WARNING]  Test count '118' != total 133 or active 112
-  [WARNING]  Test count '118' != total 133 or active 112
-  [WARNING]  Survived 107/118 but expected 104/112 (total=133, falsified=8, pipeline=21)
+  [WARNING]  Survived 103/114 but expected 104/112 (total=133, falsified=8, pipeline=21)
 
 --- Validation Ledger ---
-  [WARNING]  '138-test' in Ledger HTML != 133 in stats
+  [WARNING]  '136-test' in Ledger HTML != 133 in stats
 
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 118 active but ledger has 112
-  [CRITICAL] Elevator Pitch: says 107 survived but ledger has 104
+  [CRITICAL] Elevator Pitch: says 114 active but ledger has 112
+  [CRITICAL] Elevator Pitch: says 103 survived but ledger has 104
   [CRITICAL] Elevator Pitch: says 11 falsified but ledger has 8
-  [CRITICAL] Elevator Pitch: says 20 pipeline but ledger has 21
-  [CRITICAL] Elevator Pitch: says 20 pipeline but ledger has 21
-  [CRITICAL] White Paper Series: says 138 total but ledger has 133
-  [CRITICAL] White Paper Series: says 118 active but ledger has 112
-  [CRITICAL] White Paper Series: says 118 active but ledger has 112
-  [CRITICAL] White Paper Series: says 107 survived but ledger has 104
+  [CRITICAL] Elevator Pitch: says 22 pipeline but ledger has 21
+  [CRITICAL] Elevator Pitch: says 22 pipeline but ledger has 21
+  [CRITICAL] White Paper Series: says 136 total but ledger has 133
+  [CRITICAL] White Paper Series: says 114 active but ledger has 112
+  [CRITICAL] White Paper Series: says 114 active but ledger has 112
+  [CRITICAL] White Paper Series: says 103 survived but ledger has 104
   [CRITICAL] White Paper Series: says 11 falsified but ledger has 8
-  [CRITICAL] White Paper Series: says 20 pipeline but ledger has 21
-  [CRITICAL] Stage-IV Roadmap: says 138 total but ledger has 133
-  [CRITICAL] Stage-IV Roadmap: says 118 active but ledger has 112
-  [CRITICAL] Stage-IV Roadmap: says 107 survived but ledger has 104
+  [CRITICAL] White Paper Series: says 22 pipeline but ledger has 21
+  [CRITICAL] Stage-IV Roadmap: says 136 total but ledger has 133
+  [CRITICAL] Stage-IV Roadmap: says 114 active but ledger has 112
+  [CRITICAL] Stage-IV Roadmap: says 103 survived but ledger has 104
   [CRITICAL] Stage-IV Roadmap: says 11 falsified but ledger has 8
-  [CRITICAL] Stage-IV Roadmap: says 20 pipeline but ledger has 21
+  [CRITICAL] Stage-IV Roadmap: says 22 pipeline but ledger has 21
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -286,25 +325,25 @@ Ledger: 133 tests, 8 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 20 errors, 13 warnings
+RESULT: 20 errors, 10 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 118 active but ledger has 112
-  - Elevator Pitch: says 107 survived but ledger has 104
+  - Elevator Pitch: says 114 active but ledger has 112
+  - Elevator Pitch: says 103 survived but ledger has 104
   - Elevator Pitch: says 11 falsified but ledger has 8
-  - Elevator Pitch: says 20 pipeline but ledger has 21
-  - Elevator Pitch: says 20 pipeline but ledger has 21
-  - White Paper Series: says 138 total but ledger has 133
-  - White Paper Series: says 118 active but ledger has 112
-  - White Paper Series: says 118 active but ledger has 112
-  - White Paper Series: says 107 survived but ledger has 104
+  - Elevator Pitch: says 22 pipeline but ledger has 21
+  - Elevator Pitch: says 22 pipeline but ledger has 21
+  - White Paper Series: says 136 total but ledger has 133
+  - White Paper Series: says 114 active but ledger has 112
+  - White Paper Series: says 114 active but ledger has 112
+  - White Paper Series: says 103 survived but ledger has 104
   - White Paper Series: says 11 falsified but ledger has 8
-  - White Paper Series: says 20 pipeline but ledger has 21
-  - Stage-IV Roadmap: says 138 total but ledger has 133
-  - Stage-IV Roadmap: says 118 active but ledger has 112
-  - Stage-IV Roadmap: says 107 survived but ledger has 104
+  - White Paper Series: says 22 pipeline but ledger has 21
+  - Stage-IV Roadmap: says 136 total but ledger has 133
+  - Stage-IV Roadmap: says 114 active but ledger has 112
+  - Stage-IV Roadmap: says 103 survived but ledger has 104
   - Stage-IV Roadmap: says 11 falsified but ledger has 8
-  - Stage-IV Roadmap: says 20 pipeline but ledger has 21
+  - Stage-IV Roadmap: says 22 pipeline but ledger has 21
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
