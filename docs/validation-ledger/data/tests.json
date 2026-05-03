@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-03T06:19:06Z",
+  "generated_at": "2026-05-03T12:19:23Z",
   "categories": {
     "physics_test": [
       {
@@ -290,7 +290,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-03_051201_aqual",
+        "test_id": "grav_integration_2026-05-03_113221_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -380,7 +380,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-03_051201_aqual",
+        "test_id": "grav_kt1_2026-05-03_113221_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -395,7 +395,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-03_051201_aqual",
+        "test_id": "grav_kt3_2026-05-03_113221_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -410,7 +410,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-03_051201_aqual",
+        "test_id": "grav_kt2_2026-05-03_113221_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -1025,22 +1025,6 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "partial"
-      },
-      {
-        "test_id": "wl_mu_kz_consistency_s8",
-        "name": "S₈ tension absorption consistency check",
-        "description": "Verify that the EFC-predicted S₈ shift from μ(k,z) is consistent with the magnitude and direction of the S₈ tension reported by DES Y3, KiDS-1000, and HSC-Y3.",
-        "result": "Planned",
-        "status": "pending",
-        "vl_category": "consistency_check",
-        "also_phenomenological": null,
-        "data_source": "DES Y3, KiDS-1000, HSC-Y3 published S₈ posteriors",
-        "prediction": "EFC's μ(k,z) generically shifts S₈ downward relative to Planck ΛCDM by 1–3σ, consistent with current lensing survey results.",
-        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
-        "quantitative_result": null,
-        "last_synced": "2026-05-03T00:53:46Z",
-        "status_detail": "pending",
-        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "phenomenological": [
@@ -1283,22 +1267,6 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "success"
-      },
-      {
-        "test_id": "wl_mu_kz_scale_dependence",
-        "name": "Scale-dependent μ(k,z) signature in shear correlation functions",
-        "description": "Test whether EFC's predicted k-dependent departure from GR μ=1 is detectable in the ratio of small-scale to large-scale shear correlation functions.",
-        "result": "Planned",
-        "status": "pending",
-        "vl_category": "phenomenological",
-        "also_phenomenological": null,
-        "data_source": "DES Y6 / Rubin LSST Y1",
-        "prediction": "EFC predicts a characteristic k-dependent tilt in μ(k,z) that produces a measurable scale-dependent ratio distinct from constant-μ modified-gravity models.",
-        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
-        "quantitative_result": null,
-        "last_synced": "2026-05-03T00:53:46Z",
-        "status_detail": "pending",
-        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "framework_constraint": [
@@ -2038,22 +2006,6 @@
         "quantitative_result": "Infrastructure not yet available",
         "last_synced": "2026-03-06T20:09:40.592000000+00:00",
         "status_detail": "pending"
-      },
-      {
-        "test_id": "wl_mu_kz_des_y6_protocol",
-        "name": "DES Y6 μ(k,z) weak-lensing validation",
-        "description": "End-to-end pipeline comparing EFC-predicted μ(k,z) shear power spectrum against DES Y6 cosmic-shear two-point functions to test whether the S₈ tension is absorbed by EFC's modified gravitational slip.",
-        "result": "Planned",
-        "status": "pending",
-        "vl_category": "planned_pipeline",
-        "also_phenomenological": null,
-        "data_source": "DES Y6 cosmic shear (when released)",
-        "prediction": "EFC μ(k,z) predicts a scale-dependent suppression of the lensing power spectrum at z < 1 that lowers the inferred S₈ relative to ΛCDM, resolving or substantially reducing the S₈ tension.",
-        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
-        "quantitative_result": null,
-        "last_synced": "2026-05-03T00:53:46Z",
-        "status_detail": "pending",
-        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ]
   },
