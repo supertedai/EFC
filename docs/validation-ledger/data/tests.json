@@ -1025,6 +1025,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "partial"
+      },
+      {
+        "test_id": "wl_mu_kz_consistency_s8",
+        "name": "S₈ tension absorption consistency check",
+        "description": "Verify that the EFC-predicted S₈ shift from μ(k,z) is consistent with the magnitude and direction of the S₈ tension reported by DES Y3, KiDS-1000, and HSC-Y3.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "DES Y3, KiDS-1000, HSC-Y3 published S₈ posteriors",
+        "prediction": "EFC's μ(k,z) generically shifts S₈ downward relative to Planck ΛCDM by 1–3σ, consistent with current lensing survey results.",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-03T00:53:46Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "phenomenological": [
@@ -1267,6 +1283,22 @@
         "quantitative_result": null,
         "last_synced": null,
         "status_detail": "success"
+      },
+      {
+        "test_id": "wl_mu_kz_scale_dependence",
+        "name": "Scale-dependent μ(k,z) signature in shear correlation functions",
+        "description": "Test whether EFC's predicted k-dependent departure from GR μ=1 is detectable in the ratio of small-scale to large-scale shear correlation functions.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 / Rubin LSST Y1",
+        "prediction": "EFC predicts a characteristic k-dependent tilt in μ(k,z) that produces a measurable scale-dependent ratio distinct from constant-μ modified-gravity models.",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-03T00:53:46Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ],
     "framework_constraint": [
@@ -2006,6 +2038,22 @@
         "quantitative_result": "Infrastructure not yet available",
         "last_synced": "2026-03-06T20:09:40.592000000+00:00",
         "status_detail": "pending"
+      },
+      {
+        "test_id": "wl_mu_kz_des_y6_protocol",
+        "name": "DES Y6 μ(k,z) weak-lensing validation",
+        "description": "End-to-end pipeline comparing EFC-predicted μ(k,z) shear power spectrum against DES Y6 cosmic-shear two-point functions to test whether the S₈ tension is absorbed by EFC's modified gravitational slip.",
+        "result": "Planned",
+        "status": "pending",
+        "vl_category": "planned_pipeline",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 cosmic shear (when released)",
+        "prediction": "EFC μ(k,z) predicts a scale-dependent suppression of the lensing power spectrum at z < 1 that lowers the inferred S₈ relative to ΛCDM, resolving or substantially reducing the S₈ tension.",
+        "notes": "Added by ledger_impact_sync from paper efc-weak-lensing-phenomenology",
+        "quantitative_result": null,
+        "last_synced": "2026-05-03T00:53:46Z",
+        "status_detail": "pending",
+        "source_paper": "efc-weak-lensing-phenomenology"
       }
     ]
   },
