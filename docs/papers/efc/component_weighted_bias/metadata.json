@@ -10,7 +10,7 @@
   },
   "license": "CC-BY-4.0",
   "doi": "",
-  "abstract": "Audits the standard rotation-curve model selection pipeline (Φ → V(r) → χ2 → ∆AIC) and shows that χ2 weighting induces a structural, component-weighted bias in bulge-dominated galaxies. Introduces a bulge-bias metric B_bulge, quantifies its impact across the SPARC 175 sample, and proposes an RCMB-compliant protocol that reports ∆AICinner and ∆AICouter separately to avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance.",
+  "abstract": "Applies the Regime-Consistent Measurement Principle (RCMP, DOI 10.6084/m9.figshare.31222900) to the standard rotation-curve model-selection pipeline (Φ → V(r) → χ2 → ∆AIC). The proxy chain is shown to violate RCMP via three failure modes — regime drift (σ_i⁻² weighting shifts the χ² epicentre away from the halo regime), component contamination (V_total² mixes V_bulge with V_model so χ² absorbs baryonic-fitting flexibility into a halo preference), and compression loss (a single global ∆AIC compresses inner and outer information into one scalar). Introduces a bulge-bias metric B_bulge, quantifies its impact across the SPARC 175 sample, and proposes an RCMP-compliant protocol that reports ∆AIC_inner and ∆AIC_outer separately to avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance. v1 preprint; v2 with full SPARC empirical core in preparation.",
   "keywords": [
     "rotation curves",
     "model selection",
@@ -23,7 +23,10 @@
     "NFW",
     "MOND/RAR",
     "Spearman correlation",
-    "RCMB protocol"
+    "RCMP",
+    "Regime-Consistent Measurement Principle",
+    "RCMP-compliant protocol",
+    "proxy-chain audit"
   ],
   "files": {
     "pdf": "component_weighted_bias.pdf",

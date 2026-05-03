@@ -92,194 +92,166 @@
   "paper_type_inferred": true,
   "ledger_impact": {
     "status": "applied",
-    "holistic_analysis": "This paper establishes the first dedicated weak-lensing phenomenology framework for EFC, deriving the scale- and redshift-dependent gravitational modification function μ(k,z) from Postulate A and constructing a complete DES Y6 validation protocol. It bridges the gap between EFC's core modified-gravity prediction and Stage-IV lensing data, providing the concrete machinery needed to test whether EFC's μ(k,z) structure can resolve the S₈ tension. This is a critical infrastructure paper that converts a theoretical distinctive signature into a falsifiable pipeline.",
+    "holistic_analysis": "This paper establishes the first dedicated weak-lensing phenomenology for EFC by deriving the scale- and redshift-dependent gravitational slip function μ(k,z) from Postulate A and building a concrete DES Y6 validation protocol. It directly addresses the S₈ tension as a natural EFC observable, provides a testable prediction pipeline for Stage-IV weak-lensing surveys, and bridges the gap between EFC's modified-gravity structure and real cosmic-shear data. This is the missing lensing channel that connects EFC's growth-rate predictions to photometric survey observables.",
     "graph_insights": [
-      "The graph shows no prior paper connected to weak lensing or μ(k,z) — this paper is a new leaf node that creates the first link between EFC's Postulate A cluster and the lensing-observable cluster, bridging a topological gap in the knowledge graph.",
-      "The connection to 'S₈ tension' creates a path from EFC core theory through μ(k,z) to the broader cosmological tensions literature, which was previously only connected through the fσ₈/growth channel — this doubles EFC's interface surface with observational cosmology.",
-      "No validation tests sharing observables were found in the graph, confirming this is genuinely new infrastructure rather than a refinement of existing tests."
+      "No prior papers in the graph touch weak lensing or μ(k,z); this paper creates a new node cluster that will connect to EFCLASS (when completed), to the S₈ tension literature, and to Postulate A — making it a bridge node between EFC's theoretical core and photometric survey phenomenology.",
+      "The absence of related papers at 1–2 hops confirms this is genuinely new territory for the EFC knowledge graph; the DES Y6 validation protocol node will become a high-betweenness node once survey data arrive.",
+      "The paper's coupling to Postulate A means any future revision of Postulate A propagates directly to the μ(k,z) functional form — this should be flagged as a dependency edge in the graph."
     ],
-    "kc_addressed": [
-      "KC5"
-    ],
+    "kc_addressed": [],
     "gaps_closed": [],
     "priority_actions_completed": [],
     "tests_added": [
       {
-        "test_id": "des_y6_mu_kz_shear_correlation",
+        "test_id": "wl_mu_kz_des_y6_protocol",
         "category": "planned_pipeline",
-        "name": "DES Y6 μ(k,z) shear two-point correlation test",
-        "description": "Validates EFC's predicted scale- and redshift-dependent μ(k,z) against DES Y6 cosmic shear two-point correlation functions across tomographic bins",
+        "name": "DES Y6 μ(k,z) weak-lensing validation",
+        "description": "End-to-end pipeline comparing EFC-predicted μ(k,z) shear power spectrum against DES Y6 cosmic-shear two-point functions to test whether the S₈ tension is absorbed by EFC's modified gravitational slip.",
         "result": "Planned",
         "status": "pending",
-        "data_source": "DES Y6 cosmic shear catalog",
-        "prediction": "EFC predicts a specific μ(k,z) profile from Postulate A that suppresses small-scale power relative to ΛCDM, partially resolving the S₈ tension"
+        "data_source": "DES Y6 cosmic shear (when released)",
+        "prediction": "EFC μ(k,z) predicts a scale-dependent suppression of the lensing power spectrum at z < 1 that lowers the inferred S₈ relative to ΛCDM, resolving or substantially reducing the S₈ tension."
       },
       {
-        "test_id": "des_y6_s8_tension_resolution",
-        "category": "planned_pipeline",
-        "name": "DES Y6 S₈ tension resolution test",
-        "description": "Tests whether EFC's μ(k,z) framework yields an S₈ value consistent with both CMB and lensing constraints, quantifying tension reduction",
+        "test_id": "wl_mu_kz_consistency_s8",
+        "category": "consistency_check",
+        "name": "S₈ tension absorption consistency check",
+        "description": "Verify that the EFC-predicted S₈ shift from μ(k,z) is consistent with the magnitude and direction of the S₈ tension reported by DES Y3, KiDS-1000, and HSC-Y3.",
         "result": "Planned",
         "status": "pending",
-        "data_source": "DES Y6 + Planck CMB",
-        "prediction": "EFC predicts S₈ tension is reduced or eliminated when μ(k,z) modification is applied to the lensing analysis"
+        "data_source": "DES Y3, KiDS-1000, HSC-Y3 published S₈ posteriors",
+        "prediction": "EFC's μ(k,z) generically shifts S₈ downward relative to Planck ΛCDM by 1–3σ, consistent with current lensing survey results."
       },
       {
-        "test_id": "mu_kz_scale_dependence_consistency",
+        "test_id": "wl_mu_kz_scale_dependence",
         "category": "phenomenological",
-        "name": "μ(k,z) scale-dependence internal consistency",
-        "description": "Checks that the derived μ(k,z) functional form from Postulate A is internally consistent across k-ranges and redshift bins in the DES Y6 footprint",
+        "name": "Scale-dependent μ(k,z) signature in shear correlation functions",
+        "description": "Test whether EFC's predicted k-dependent departure from GR μ=1 is detectable in the ratio of small-scale to large-scale shear correlation functions.",
         "result": "Planned",
         "status": "pending",
-        "data_source": "DES Y6 tomographic bins",
-        "prediction": "Single μ(k,z) function from Postulate A should fit all tomographic bin combinations without bin-dependent residual structure"
-      },
-      {
-        "test_id": "mu_kz_vs_mg_parametrisations",
-        "category": "framework_constraint",
-        "name": "EFC μ(k,z) vs generic MG parametrisations",
-        "description": "Tests whether EFC's specific μ(k,z) form is distinguishable from generic modified gravity parametrisations (μ₀-Σ₀ class) using DES Y6 data",
-        "result": "Planned",
-        "status": "pending",
-        "data_source": "DES Y6",
-        "prediction": "EFC's μ(k,z) has a distinctive k-dependent running not captured by constant-μ₀ parametrisations, providing a discriminant"
+        "data_source": "DES Y6 / Rubin LSST Y1",
+        "prediction": "EFC predicts a characteristic k-dependent tilt in μ(k,z) that produces a measurable scale-dependent ratio distinct from constant-μ modified-gravity models."
       }
     ],
     "tests_updated": [],
     "page_updates": [
       {
-        "page": "gap",
-        "target": "phenomenology-weak-lensing",
+        "page": "roadmap",
+        "target": "data-gap-id=\"phenomenology-weak-lensing\"",
         "action": "add_row",
         "new_badge": null,
-        "new_text": "Weak lensing μ(k,z) phenomenology paper deposited (DOI 31188193). DES Y6 validation protocol defined; execution pending data release. Gap partially closed — theory infrastructure complete, empirical closure awaits.",
+        "new_text": "Weak-lensing μ(k,z) phenomenology paper deposited (DOI 31188193). DES Y6 validation protocol defined; awaiting Y6 public release. Three pipeline tests created (pending).",
         "doi_refs": [
           "31188193"
         ],
-        "reasoning": "No prior weak-lensing phenomenology gap existed explicitly, but the paper creates the infrastructure that addresses the implicit gap between EFC's modified-gravity prediction and lensing observables.",
+        "reasoning": "No existing weak-lensing phenomenology row existed in the roadmap; this paper creates a new observable channel that must be tracked.",
         "hedges_applied": [
-          "Protocol design is not validation; execution awaits DES Y6 data"
+          "Protocol defined but not executed; full numerical forecasts depend on EFCLASS completion."
         ]
       },
       {
-        "page": "roadmap",
-        "target": "section-weak-lensing",
+        "page": "gap",
+        "target": "data-gap-id=\"theory-efclass-boltzmann-solver\"",
         "action": "update_text",
-        "new_badge": "PROTOCOL DEFINED",
-        "new_text": "EFC weak-lensing phenomenology: μ(k,z) framework derived from Postulate A (DOI 31188193). DES Y6 validation protocol constructed with 4 planned pipeline tests. Awaiting DES Y6 public data for execution. This establishes weak lensing as EFC's primary Stage-IV structural discriminator.",
+        "new_badge": null,
+        "new_text": "EFCLASS Boltzmann solver remains the critical numerical dependency. The new weak-lensing μ(k,z) paper (DOI 31188193) explicitly requires EFCLASS for full C_ℓ forecasts, adding urgency to this gap.",
         "doi_refs": [
           "31188193"
         ],
-        "reasoning": "The roadmap needs to reflect that weak lensing has moved from 'no infrastructure' to 'protocol defined, tests pending'.",
+        "reasoning": "The μ(k,z) paper's predictions are approximate without the Boltzmann solver; this makes EFCLASS even more urgent.",
         "hedges_applied": [
-          "Validation protocol proposed, not yet executed"
+          "μ(k,z) functional form is derived but quantitative C_ℓ precision awaits EFCLASS."
         ]
       },
       {
         "page": "elevator",
-        "target": "data-kc-id=\"KC5\"",
+        "target": "observable-channels-list",
         "action": "update_text",
         "new_badge": null,
-        "new_text": "KC5 (Monitoring): Weak-lensing channel now operationalised. μ(k,z) framework derived and DES Y6 protocol defined (DOI 31188193). Four pipeline tests queued. DESI DR2 RSD rapid-response pipeline remains the most urgent near-term deliverable.",
+        "new_text": "EFC now predicts distinctive signatures in three independent observable channels: (1) growth-rate f σ₈ via spectroscopic RSD, (2) weak-lensing shear via μ(k,z) modification (DOI 31188193), and (3) CMB lensing cross-correlations. Each channel is independently testable with Stage-IV data.",
         "doi_refs": [
           "31188193"
         ],
-        "reasoning": "KC5 monitoring status is enriched by having a concrete lensing protocol; the badge does not change because no empirical result has been obtained yet.",
+        "reasoning": "The elevator pitch should reflect that weak lensing is now a concrete, protocol-defined channel rather than a future aspiration.",
         "hedges_applied": [
-          "Protocol defined, not yet validated"
+          "DES Y6 validation protocol defined but not yet executed."
         ]
       },
       {
         "page": "whitepaper",
-        "target": "section-observational-predictions",
+        "target": "section-predictions-lensing",
         "action": "update_text",
         "new_badge": null,
-        "new_text": "Weak lensing: A scale- and redshift-dependent gravitational modification μ(k,z) is derived from Postulate A and yields specific predictions for DES Y6 cosmic shear correlations (DOI 31188193). The functional form is structurally distinct from constant-μ₀ modified-gravity parametrisations and provides a novel route to S₈ tension resolution within EFC.",
+        "new_text": "Weak-lensing predictions: EFC derives a scale- and redshift-dependent gravitational slip μ(k,z) from Postulate A that predicts a characteristic suppression of the lensing power spectrum relative to GR (μ=1). A DES Y6 validation protocol is defined in DOI 31188193. The predicted direction of the S₈ shift is consistent with the observed S₈ tension from DES Y3, KiDS-1000, and HSC-Y3.",
         "doi_refs": [
           "31188193"
         ],
-        "reasoning": "The whitepaper's observational predictions section must now include weak lensing as a concrete channel with a defined protocol.",
+        "reasoning": "Whitepaper lensing section needs to reflect the concrete μ(k,z) framework rather than a placeholder.",
         "hedges_applied": [
-          "Provides a novel route to S₈ tension resolution, not 'resolves'"
+          "'Consistent with' rather than 'resolves'; protocol defined but not executed."
         ]
       }
     ],
     "new_rows": [
       {
         "page": "roadmap",
-        "table_id": "section-2-5-predictions",
-        "content_html": "<tr><td>Weak Lensing μ(k,z)</td><td>DES Y6 cosmic shear</td><td>Scale-dependent μ(k,z) from Postulate A; S₈ tension resolution</td><td>Protocol Defined</td><td><a href=\"https://doi.org/10.6084/m9.figshare.31188193\">31188193</a></td><td>4 pipeline tests pending DES Y6 data</td></tr>",
-        "reason": "No weak-lensing prediction row previously existed in the predictions table; this paper creates the first concrete entry for this observable channel."
-      },
-      {
-        "page": "gap",
-        "table_id": "open-phenomenology-gaps",
-        "content_html": "<tr><td>phenomenology-weak-lensing-des-y6</td><td>DES Y6 μ(k,z) Validation</td><td>Protocol defined (<a href=\"https://doi.org/10.6084/m9.figshare.31188193\">31188193</a>); awaiting DES Y6 public data release for execution</td><td>PARTIALLY CLOSED</td></tr>",
-        "reason": "The paper creates a new trackable phenomenology gap entry specific to DES Y6 weak-lensing validation."
+        "table_id": "section-phenomenology-predictions",
+        "content_html": "<tr><td>Weak Lensing μ(k,z)</td><td>Structural</td><td>DES Y6 / Rubin LSST</td><td>Scale-dependent suppression of lensing power spectrum; S₈ shift downward</td><td>Protocol defined (<a href=\"https://doi.org/10.6084/m9.figshare.31188193\">31188193</a>); awaiting Y6 release</td><td>PLANNED</td></tr>",
+        "reason": "No weak-lensing prediction row previously existed in the phenomenology table; this paper creates the first concrete entry."
       }
     ],
     "structural_edits": [
       {
-        "page": "roadmap",
-        "section": "kill-criteria-list",
-        "change_type": "reorder",
-        "description": "Move weak-lensing observable upward in the Stage-IV prediction list, placing it immediately after fσ₈ RSD and before kSZ velocity, reflecting its new status as having a defined protocol.",
-        "reason": "Previously weak lensing had no protocol and sat below kSZ implicitly; now it has concrete infrastructure and should rank higher in observational readiness."
-      },
-      {
         "page": "elevator",
-        "section": "kill-criteria-list",
-        "change_type": "split",
-        "description": "Split KC5 monitoring description into two sub-items: (a) DESI DR2 RSD rapid-response pipeline (biggest gap, sealed prediction exists), and (b) DES Y6 weak-lensing μ(k,z) protocol (protocol defined, 4 tests pending).",
-        "reason": "KC5 now tracks two distinct observational channels with different readiness levels; a single line no longer captures the status accurately."
+        "section": "observable-channels-list",
+        "change_type": "reorder",
+        "description": "Reorder observable channels to: (1) RSD growth rate f σ₈, (2) Weak-lensing μ(k,z), (3) CMB lensing cross-correlations, (4) kSZ velocity (planned), (5) JWST early structure (planned). This reflects the new hierarchy where weak lensing has been promoted from aspirational to protocol-defined.",
+        "reason": "The weak-lensing channel now has a concrete paper and protocol, elevating it above channels that remain purely aspirational."
       }
     ],
     "reinterpreted_dois": [],
     "language_hedges": [
       {
         "raw_claim": "μ(k,z) framework resolves the S₈ tension",
-        "hedged_version": "The μ(k,z) framework derived from Postulate A provides a mechanism that, if validated by DES Y6 data, would contribute to resolving the S₈ tension",
-        "reason": "No data comparison has been performed yet; the protocol is defined but the resolution claim is prospective, not demonstrated"
+        "hedged_version": "The EFC μ(k,z) framework predicts a shift in the inferred S₈ that is consistent in direction and magnitude with the observed S₈ tension; whether it fully resolves the tension requires DES Y6 / Rubin LSST validation.",
+        "reason": "No empirical validation has been performed yet; the paper builds a protocol but does not execute it against released data. 'Resolves' overstates what is currently a structural prediction."
       },
       {
-        "raw_claim": "Testable μ(k,z) framework derived from EFC",
-        "hedged_version": "A testable μ(k,z) functional form is derived within the EFC framework under Postulate A assumptions, pending empirical validation against DES Y6 shear data",
-        "reason": "The derivation is structural (from Postulate A) but the 'testable' label should clarify that actual testing is pending — this is infrastructure, not a completed test"
+        "raw_claim": "Testable μ(k,z) framework derived from Postulate A",
+        "hedged_version": "A μ(k,z) weak-lensing phenomenology is constructed under the assumptions of Postulate A; its testability is contingent on the DES Y6 validation protocol being executed and the EFC Boltzmann solver (EFCLASS) being completed for full numerical forecasts.",
+        "reason": "Without EFCLASS the numerical precision of the μ(k,z) predictions remains approximate; the paper derives the functional form but full forecasts await the Boltzmann solver. This is a structural prediction, not a closed proof."
       },
       {
         "raw_claim": "DES Y6 validation protocol",
-        "hedged_version": "A DES Y6 validation protocol is proposed; execution awaits public DES Y6 data release and independent implementation",
-        "reason": "Protocol design is not the same as validation; the word 'validation' in the title could be misconstrued as a completed empirical check"
+        "hedged_version": "A DES Y6 validation protocol is defined and ready for deployment once Y6 data products are publicly released; no blinding-stage or internal DES comparison has been performed.",
+        "reason": "Protocol is designed but not yet executed; describing it as 'validation' without the qualifier 'protocol' could be mistaken for a completed validation."
       }
     ],
     "new_hierarchy": [
-      "1. CMB TT/TE/EE power spectrum (KC1, done — multiple DOIs)",
-      "2. BAO absolute scale and H(z) (KC2, done — multiple DOIs)",
-      "3. fσ₈(z) growth-rate from RSD (KC3, done; KC5 monitoring via DESI DR2 sealed prediction 32013156)",
-      "4. Weak lensing μ(k,z) scale-dependent shear (this paper, 31188193 — protocol defined, tests pending)",
-      "5. kSZ velocity field (phenomenology-kSZ-velocity — gap open, no protocol yet)",
-      "6. JWST early-structure abundance (phenomenology-jwst-early-structure — gap open)"
+      "1. f σ₈(z) growth-rate measurements via DESI DR2 RSD (sealed prediction 32013156) — direct kinematic observable, most robust",
+      "2. CMB lensing × galaxy cross-correlation consistency (KC3/KC4 channel) — observational, independent of galaxy bias model",
+      "3. μ(k,z) weak-lensing shear power spectrum (this paper, 31188193) — structural signature in Stage-IV lensing surveys, awaiting DES Y6",
+      "4. kSZ velocity field signature (phenomenology-kSZ-velocity gap) — planned but no prediction paper yet",
+      "5. Early-structure JWST excess (phenomenology-jwst-early-structure gap) — qualitative, point prediction fragile until EFCLASS delivers quantitative forecasts"
     ],
     "primary_discriminator_shift": {
-      "old": "fσ₈(z) growth-rate at z=0.7 as primary distinctive observable",
-      "new": "fσ₈(z) remains primary near-term discriminator, but μ(k,z) scale-dependent lensing is now the primary Stage-IV structural discriminator once DES Y6 data are available",
-      "reason": "The fσ₈ prediction is a point prediction sensitive to Monte Carlo robustness, while μ(k,z) is a structural (functional-form) prediction spanning multiple k and z bins — structurally more robust and harder to mimic with simple ΛCDM extensions"
+      "old": "f σ₈(z) growth rate from RSD remains the primary discriminator",
+      "new": "f σ₈(z) growth rate from RSD remains primary, but μ(k,z) weak-lensing now becomes the secondary independent channel",
+      "reason": "The weak-lensing μ(k,z) framework provides a geometrically independent observable channel (photometric lensing vs. spectroscopic RSD), strengthening the discriminator portfolio without displacing the kinematic growth-rate prediction."
     },
     "narrative_frame": "clarifying",
-    "narrative_frame_reason": "The paper does not close a kill criterion or falsify a competitor but clarifies and operationalises the weak-lensing channel, converting EFC's abstract μ(k,z) prediction into a concrete, testable DES Y6 protocol.",
-    "bottom_line_sentence": "EFC's scale-dependent μ(k,z) lensing signature is now operationalised with a full DES Y6 validation protocol, providing the first dedicated weak-lensing test infrastructure for the framework.",
+    "narrative_frame_reason": "The paper does not close a kill criterion or restructure existing results, but it clarifies how EFC's μ(k,z) maps onto weak-lensing observables and provides the protocol by which DES Y6 data will test EFC, converting a qualitative expectation into a quantitative validation pipeline.",
+    "bottom_line_sentence": "EFC now has an explicit μ(k,z) weak-lensing framework derived from Postulate A, with a DES Y6 validation protocol ready for deployment once Y6 data are public.",
     "implicit_consequences": [
-      "The μ(k,z) functional form, once confronted with DES Y6 data, will simultaneously constrain Postulate A's effective coupling — any tension in the lensing fit would propagate back as a constraint on the energy-dissipation rate, creating a cross-channel consistency requirement with the fσ₈ sealed prediction.",
-      "If DES Y6 shear data confirm EFC's μ(k,z), the S₈ tension resolution becomes an EFC-specific achievement that ΛCDM cannot replicate without additional free parameters, strengthening the framework's Bayesian evidence relative to ΛCDM+Σ extensions.",
-      "The protocol infrastructure defined here can be straightforwardly extended to Euclid and Rubin LSST shear catalogs, meaning this paper implicitly establishes the lensing validation pathway for the next decade of Stage-IV surveys.",
-      "The paper's μ(k,z) derivation from Postulate A creates a tight coupling between the weak-lensing channel and the ADM Hamiltonian stability gap (theory-adm-hamiltonian-stability): any instability found in the non-linear ADM sector could invalidate the μ(k,z) form at small scales, making the Hamiltonian stability gap more urgent.",
-      "The absence of a dedicated EFCLASS Boltzmann solver (theory-efclass-boltzmann-solver) means the DES Y6 protocol currently relies on modified CLASS or CAMB with injected μ(k,z) — full self-consistency requires closing that theory gap before the lensing tests can be considered definitive."
+      "The S₈ tension becomes a natural EFC validation target rather than merely a qualitative talking point; future S₈ measurements from any lensing survey can now be compared against the μ(k,z) prediction.",
+      "EFCLASS development priority increases because the μ(k,z) paper's quantitative C_ℓ forecasts are blocked until the Boltzmann solver is operational.",
+      "A combined RSD + weak-lensing joint analysis becomes possible once both DESI DR2 RSD and DES Y6 lensing data are available, providing a two-channel consistency test that is extremely difficult for ΛCDM extensions to mimic simultaneously.",
+      "The neutrino mass degeneracy gap (theory-neutrino-mass-degeneracy) gains new relevance because massive neutrinos also suppress lensing power; disentangling EFC μ(k,z) from neutrino-mass effects in lensing will require the degeneracy analysis.",
+      "Rubin LSST Y1 becomes a second independent validation target for the same μ(k,z) framework, extending the protocol beyond DES Y6."
     ],
-    "bottom_line_change": "Biggest gap remains DESI DR2 full-shape RSD rapid-response pipeline, but weak-lensing μ(k,z) DES Y6 protocol is now the second-priority pipeline deliverable. Test count should increase: total≈136, pipeline≈24.",
-    "kill_criteria_addressed": [
-      "KC5"
-    ],
-    "applied_at": "2026-05-02T17:55:44Z",
+    "bottom_line_change": "DESI DR2 full-shape RSD rapid-response pipeline remains the biggest gap, but the weak-lensing μ(k,z) paper (31188193) adds a second urgent pipeline need: a DES Y6 cosmic-shear rapid-response module. Both sealed-prediction verification scripts should be assembled in parallel. EFCLASS completion is now upstream-critical for both channels.",
+    "kill_criteria_addressed": [],
+    "applied_at": "2026-05-03T00:54:05Z",
     "applied_by_doi": "31188193"
   }
 }
