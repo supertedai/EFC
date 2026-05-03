@@ -96,6 +96,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -131,94 +132,18 @@ Processed 158 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:123 → 123  (+0)    ledger:123 → 123 (+0)
-  methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
-  structural      ev: 71 →  71  (+0)    ledger: 71 →  71 (+0)
+  empirical       ev: 80 → 123  (+43)    ledger: 22 → 123 (+101)
+  methodological  ev:  3 →  25  (+22)    ledger:  3 →  25 (+22)
+  structural      ev:  2 →  71  (+69)    ledger:  2 →  71 (+69)
 ========================================================================
-[efc-drift] 158 papers · 37 drift(s) detected:
-  README.md: tests_total — 138 vs 136
-  README.md: tests_total — 138 vs 136
-  Validation_Ledger: tests_total — 138 vs 136
-  Validation_Ledger: tests_total — 138 vs 136
-  Validation_Ledger: tests_active — 118 vs 114
-  Validation_Ledger: tests_survived — 107 vs 103
-  Validation_Ledger: tests_pipeline — 20 vs 22
-  White_Paper_Series: tests_total — 138 vs 136
-  White_Paper_Series: tests_total — 138 vs 136
-  White_Paper_Series: tests_total — 138 vs 136
-  White_Paper_Series: tests_active — 118 vs 114
-  White_Paper_Series: tests_survived — 107 vs 103
-  White_Paper_Series: tests_pipeline — 20 vs 22
-  White_Paper_Series: tests_active — 118 vs 114
-  White_Paper_Series: tests_survived — 107 vs 103
-  White_Paper_Series: tests_pipeline — 20 vs 22
-  White_Paper_Series: tests_pipeline — 20 vs 22
-  Elevator_Pitch: tests_total — 138 vs 136
-  Elevator_Pitch: tests_active — 118 vs 114
-  Elevator_Pitch: tests_survived — 107 vs 103
-  Elevator_Pitch: tests_pipeline — 20 vs 22
-  Elevator_Pitch: tests_total — 138 vs 136
-  Elevator_Pitch: tests_total — 138 vs 136
-  Elevator_Pitch: tests_active — 118 vs 114
-  Elevator_Pitch: tests_active — 118 vs 114
-  Elevator_Pitch: tests_survived — 107 vs 103
-  Elevator_Pitch: tests_survived — 107 vs 103
-  Elevator_Pitch: tests_pipeline — 20 vs 22
-  Elevator_Pitch: tests_pipeline — 20 vs 22
-  Elevator_Pitch: tests_pipeline — 20 vs 22
-  Elevator_Pitch: tests_survived — 107 vs 103
-  Elevator_Pitch: tests_active — 118 vs 114
-  Stage_IV_Roadmap: tests_total — 138 vs 136
-  Stage_IV_Roadmap: tests_active — 118 vs 114
-  Stage_IV_Roadmap: tests_survived — 107 vs 103
-  Stage_IV_Roadmap: tests_pipeline — 20 vs 22
-  Stage_IV_Roadmap: tests_pipeline — 20 vs 22
-  [fixed] README.md: 138 → 136 (tests_total)
-  [fixed] README.md: 138 → 136 (tests_total)
-  [fixed] Validation_Ledger: 138 → 136 (tests_total)
-  [fixed] Validation_Ledger: 138 → 136 (tests_total)
-  [fixed] Validation_Ledger: 118 → 114 (tests_active)
-  [fixed] Validation_Ledger: 107 → 103 (tests_survived)
-  [fixed] Validation_Ledger: 20 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 138 → 136 (tests_total)
-  [fixed] White_Paper_Series: 138 → 136 (tests_total)
-  [fixed] White_Paper_Series: 138 → 136 (tests_total)
-  [fixed] White_Paper_Series: 118 → 114 (tests_active)
-  [fixed] White_Paper_Series: 107 → 103 (tests_survived)
-  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 118 → 114 (tests_active)
-  [fixed] White_Paper_Series: 107 → 103 (tests_survived)
-  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 20 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
-  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
-  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
-  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
-  [fixed] Elevator_Pitch: 138 → 136 (tests_total)
-  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
-  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
-  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
-  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
-  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 20 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 107 → 103 (tests_survived)
-  [fixed] Elevator_Pitch: 118 → 114 (tests_active)
-  [fixed] Stage_IV_Roadmap: 138 → 136 (tests_total)
-  [fixed] Stage_IV_Roadmap: 118 → 114 (tests_active)
-  [fixed] Stage_IV_Roadmap: 107 → 103 (tests_survived)
-  [fixed] Stage_IV_Roadmap: 20 → 22 (tests_pipeline)
-  [fixed] Stage_IV_Roadmap: 20 → 22 (tests_pipeline)
-[efc-drift] auto-fixed 5 file(s)
-[efc-drift] all drift resolved
+[efc-drift] 158 papers · no drift detected
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 136 total, 103 survived, 11 falsified
+  Tests: 133 total, 104 survived, 8 falsified
   Papers: 158 (157 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -247,7 +172,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Public pages updated: Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series.
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -318,14 +243,13 @@ Ledger: 133 tests, 8 falsified
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [WARNING]  Symbiose tests=136 vs ledger total_public=133
-  [WARNING]  Symbiose falsified=11 vs ledger n_falsified=8
+  [OK]       Symbiose test count 133 matches ledger
   [OK]       Symbiose paper count 158 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 20 errors, 10 warnings
+RESULT: 20 errors, 8 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
   - Elevator Pitch: says 114 active but ledger has 112
