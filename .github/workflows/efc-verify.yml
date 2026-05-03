@@ -34,23 +34,47 @@ jobs:
         with:
           python-version: "3.11"
       - name: Regenerate AI-friendly manifests
+        id: gen_ai_friendly
         run: python3 scripts/maintenance/efc_gen_ai_friendly.py
       - name: Check DOI sync consistency (C8)
-        run: |
-          python3 scripts/maintenance/efc_sync_dois.py --check
+        id: sync_dois_check
+        run: python3 scripts/maintenance/efc_sync_dois.py --check
       - name: Run EFC verifier (C1–C8)
+        id: verify
         run: python3 scripts/maintenance/efc_verify.py
       - name: Run drift detector
+        id: drift
         run: |
+          set +e
           python3 scripts/maintenance/efc_drift_detector.py
           rc=$?
           if [ $rc -eq 2 ]; then
             echo "::warning::Drift detected in public pages. Run Claude Code session to auto-fix."
+            exit 0
           fi
+          exit $rc
       - name: Fail on uncommitted changes
+        id: uncommitted_check
         run: |
           if ! git diff --quiet; then
             echo "::error::Maintenance scripts produced changes. Run 'python3 scripts/maintenance/efc_maintain.py' locally and commit the result."
             git --no-pager diff --stat | head -40
             exit 1
           fi
+      - name: Diagnostic summary on failure
+        if: failure()
+        run: |
+          echo "::group::Failed step attribution"
+          echo "gen_ai_friendly:   ${{ steps.gen_ai_friendly.outcome }}"
+          echo "sync_dois_check:   ${{ steps.sync_dois_check.outcome }}"
+          echo "verify:            ${{ steps.verify.outcome }}"
+          echo "drift:             ${{ steps.drift.outcome }}"
+          echo "uncommitted_check: ${{ steps.uncommitted_check.outcome }}"
+          echo "::endgroup::"
+          echo "::group::Python + script versions"
+          python3 --version
+          for s in efc_gen_ai_friendly efc_sync_dois efc_verify efc_drift_detector; do
+            echo "--- $s.py ---"
+            python3 -c "import ast,sys; ast.parse(open('scripts/maintenance/$s.py').read()); print('syntax OK')" || echo "syntax FAIL"
+          done
+          echo "::endgroup::"
