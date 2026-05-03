@@ -121,7 +121,7 @@ def split_delta_aic(
     k_b: int,
     rc: float = RC_DEFAULT_KPC,
 ) -> Tuple[float, float, float]:
-    """RCMB-compliant protocol: return (ΔAIC_inner, ΔAIC_outer, ΔAIC_global)."""
+    """RCMP-compliant protocol: return (ΔAIC_inner, ΔAIC_outer, ΔAIC_global)."""
     inner = radii < rc
     outer = ~inner
 

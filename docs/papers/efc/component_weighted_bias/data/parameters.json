@@ -73,9 +73,15 @@
       "Sb"
     ]
   },
-  "rcmb_protocol": {
-    "description": "Report \u0394AIC_inner and \u0394AIC_outer separately to diagnose component-weighted bias",
-    "split_radius_kpc": 3.0
+  "rcmp_protocol": {
+    "description": "RCMP-compliant protocol: report \u0394AIC_inner and \u0394AIC_outer separately to diagnose component-weighted bias and avoid conflating baryonic-fitting flexibility with halo/modified-gravity performance.",
+    "split_radius_kpc": 3.0,
+    "principle_doi": "10.6084/m9.figshare.31222900",
+    "failure_modes": [
+      "regime_drift",
+      "component_contamination",
+      "compression_loss"
+    ]
   },
   "models_affected": [
     "NFW",
