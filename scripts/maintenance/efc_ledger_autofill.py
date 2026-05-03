@@ -54,6 +54,16 @@ MUST_BE_IN_LEDGER = {
     "observational_pipeline",
 }
 
+# Wider set of paper types that should appear in the public Changelog
+# (but NOT in the Validation Ledger HTML — that one is only for empirical
+# / sealed claims). Theory and methodology papers still need a public
+# changelog entry so external readers can see them land.
+MUST_BE_IN_CHANGELOG = MUST_BE_IN_LEDGER | {
+    "theory",
+    "methodology",
+    "infrastructure",
+}
+
 SKIP_DIRS = {"ai_friendly_index.json"}  # not a paper dir
 
 
@@ -208,12 +218,9 @@ def main():
             missing_ledger_items.append(render_ledger_item(idx))
             touched_ledger_dois.append(doi)
 
-        if doi not in changelog_text:
-            # Only auto-register empirical/sealed/observational in changelog;
-            # pure theory / methodology papers get registered by efc_auto_changelog.py.
-            if paper_type in MUST_BE_IN_LEDGER:
-                missing_changelog_items.append(render_changelog_item(idx, today))
-                touched_changelog_dois.append(doi)
+        if doi not in changelog_text and paper_type in MUST_BE_IN_CHANGELOG:
+            missing_changelog_items.append(render_changelog_item(idx, today))
+            touched_changelog_dois.append(doi)
 
     if not missing_ledger_items and not missing_changelog_items:
         print("[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI")

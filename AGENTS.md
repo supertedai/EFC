@@ -328,7 +328,7 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 158 papers (140 with AI-friendly packages, 100%)
+│   ├── papers/efc/     # 158 papers (158 with AI-friendly packages, 100%)
 │   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines

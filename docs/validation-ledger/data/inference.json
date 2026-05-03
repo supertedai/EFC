@@ -1,7 +1,7 @@
 {
   "name": "EFC Bayesian Inference Results",
   "version": "3.0",
-  "generated_at": "2026-05-02T12:18:01Z",
+  "generated_at": "2026-05-03T12:19:23Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
@@ -47,6 +47,26 @@
       "posterior_summary": {},
       "engine_status": "lcdm_stub",
       "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "mcmc_status": "not_run"
+    },
+    {
+      "test_id": "inference_cluster_core_state",
+      "name": "EFC Inference: cluster_core_state",
+      "result": "chi2_red=108.814 (poor fit)",
+      "status": "poor_fit",
+      "chi2_reduced": 108.81430997994445,
+      "converged": true,
+      "acceptance_fraction": 1.0,
+      "n_samples": 0,
+      "timestamp": "2026-05-03T11:41:33.139644Z",
+      "best_fit": {
+        "a_C": 8.0,
+        "Xi_c": 1.0,
+        "Delta_Xi": 0.5
+      },
+      "posterior_summary": {},
+      "engine_status": "active",
+      "engine_note": null,
       "mcmc_status": "not_run"
     },
     {
