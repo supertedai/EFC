@@ -1,24 +1,134 @@
 {
   "$schema": "./schema.json",
   "id": "jwst-hmf-prereg-v4",
-  "title": "Jwst Hmf Prereg V4",
-  "description": "Auto-generated package for Jwst Hmf Prereg V4.",
-  "version": "1.0",
+  "title": "Pre-Registration: EFC dN/dM (z>7) Halo Mass Function via \u00b5(a) Perturbation Channel",
+  "description": "Sealed pre-registration of an Energy-Flow Cosmology (EFC) prediction for the high-redshift (z=7\u201312) halo mass function n(M,z) derived via the \u00b5(a) perturbation channel and a gated background. The work locks the structural chain g(a) \u2192 \u00b5(a) \u2192 D(a) \u2192 \u03c3(M,z) \u2192 n(M,z), specifies datasets (JWST CEERS/COSMOS-Web/GLASS), HMF prescriptions (Press\u2013Schechter, Sheth\u2013Tormen, Tinker 2008/2010), and explicit falsification thresholds, to be executed once (B, zt, n) are fixed by a joint S(z) fit.",
+  "version": "v4",
   "date": "2026-05-03",
+  "doi": "10.6084/m9.figshare.32149654",
   "keywords": [
-    "Energy-Flow Cosmology",
-    "Jwst",
-    "Prereg"
+    "Energy-Flow Cosmology (EFC)",
+    "halo mass function (HMF)",
+    "JWST high-redshift galaxies",
+    "\u00b5(a) effective coupling",
+    "growth factor D(a)",
+    "Press\u2013Schechter",
+    "Sheth\u2013Tormen",
+    "Tinker 2008/2010",
+    "Entropy-Bounded Empiricism (EBE)",
+    "RCMP L3 regime",
+    "gate function g(a)",
+    "linear perturbation theory"
   ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "background_gate_deltaE2": {
+      "latex": "\\Delta E^2(a) = A\\,[g(a) - g(0)]",
+      "description": "Background-level modification to the Friedmann equation induced by the EFC gate function; sign lemma implies \\Delta E^2 \\le 0 for z > 0 if g(a) is monotonic in a."
+    },
+    "gate_function": {
+      "latex": "g(a) = \\frac{1}{1 + (z_t / z(a))^n},\\quad z(a) = a^{-1} - 1",
+      "description": "EFC gate function with transition redshift z_t and steepness n controlling when and how sharply the gate activates."
+    },
+    "mu_effective_coupling": {
+      "latex": "\\mu(a) = 1 - B\\,g(a)",
+      "description": "Effective gravitational coupling in the perturbation channel that modifies the Poisson source; B is the perturbation amplitude."
+    },
+    "modified_growth_ode": {
+      "latex": "f' + f^2 + \\tfrac{1}{2} - \\tfrac{3}{2}\\,\\tilde{\\Omega}_m f = \\tfrac{3}{2}\\,\\mu(a)\\,\\tilde{\\Omega}_m,\\quad \\tilde{\\Omega}_m(a) = \\Omega_m a^{-3}/E^2(a)",
+      "description": "Differential equation for the linear growth rate f = d\\ln D/d\\ln a with EFC\u2019s \\mu(a) modification; integrates to the growth factor D(a)."
+    },
+    "prediction_chain": {
+      "latex": "g(a; z_t, n) \\to \\mu(a; B, z_t, n) \\to D(a) \\to \\sigma(M,z) \\to n(M,z)",
+      "description": "Sealed structural chain from gate to halo mass function; no HMF-level parameter fitting once (B, z_t, n) are fixed by the joint S(z) fit."
+    },
+    "sigma_variance": {
+      "latex": "\\sigma^2(M,z) = \\int \\frac{d^3k}{(2\\pi)^3}\\,P_{\\rm lin}(k, z{=}0)\\,|W(kR(M))|^2\\,D^2(z)",
+      "description": "Mass variance computed from the Planck-anchored linear power spectrum, the top-hat window W, and the EFC-modified growth D(z)."
+    },
+    "hmf_generic": {
+      "latex": "n(M,z)\\,dM = \\frac{\\bar{\\rho}}{M} f(\\nu) \\frac{d\\nu}{dM}\\,dM,\\quad \\nu \\equiv \\delta_c/\\sigma(M,z)",
+      "description": "General halo mass function form; f(\\nu) specified by Press\u2013Schechter, Sheth\u2013Tormen, or Tinker prescriptions computed in parallel."
+    }
+  },
+  "key_results": {
+    "main_finding": "A sealed, falsifiable EFC prediction for n(M,z) at z=7\u201312 is registered via the \u00b5(a) channel with explicit pass/fail criteria and three parallel HMF prescriptions; numerical curves will be produced once (B, zt, n) are fixed by the joint S(z) fit.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "B",
+      "zt",
+      "n"
+    ],
+    "datasets_used": [
+      "JWST CEERS counts",
+      "JWST COSMOS-Web counts",
+      "JWST GLASS counts",
+      "Planck-anchored P_lin(k, z=0)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Given (B, zt, n) fixed by the joint S(z) fit, the EFC chain g\u2192\u00b5\u2192D\u2192\u03c3\u2192n yields unique, parameter-free (at the HMF level) predictions for n(M,z) at z = 7, 8, 9, 10, 11, 12 under an identical stellar-to-halo mapping used for \u039bCDM.",
+      "falsifiable_by": "Disagreement with JWST CEERS/COSMOS-Web/GLASS halo abundance in any redshift slice at >3\u03c3, or joint comparison exceeding the pre-registered \u2206\u03c7\u00b2 threshold."
+    },
+    {
+      "id": "P2",
+      "statement": "The EFC perturbation coupling obeys \u00b5(a) = 1 \u2212 B g(a) with \u00b5(a) < 1 in the gate-active regime and transitions controlled by (zt, n) consistent with the background gate.",
+      "falsifiable_by": "Any requirement for \u00b5(a) > 1 or non-monotonic behavior inconsistent with the sealed gate function to match data."
+    },
+    {
+      "id": "P3",
+      "statement": "Robustness across HMF modeling: Press\u2013Schechter, Sheth\u2013Tormen, and Tinker 2008/2010 computed from the same \u03c3(M,z) must give a consistent verdict regarding agreement with data.",
+      "falsifiable_by": "Simultaneous (>3\u03c3) failure of all three prescriptions to match JWST counts once parameters are fixed by the S(z) fit."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: After fixing (B, zt, n) by the joint S(z) fit, the sealed EFC n(M,z) curves produce >3\u03c3 disagreement with JWST CEERS, COSMOS-Web, or GLASS number densities in any tested z \u2208 {7,8,9,10,11,12} under an identical stellar-to-halo mapping applied to both EFC and \u039bCDM.",
+    "KC2: The joint comparison to JWST counts yields a \u2206\u03c7\u00b2 exceeding the pre-registered acceptance threshold (accept if \u2206\u03c7\u00b2 < 4; falsify if above threshold), evaluated consistently across mass thresholds used by the surveys.",
+    "KC3: All three HMF prescriptions (Press\u2013Schechter, Sheth\u2013Tormen, Tinker 2008/2010), computed from the same \u03c3(M,z), simultaneously fail to match the data within uncertainties, indicating a channel-level failure rather than a modeling-choice artifact.",
+    "KC4: The joint S(z) calibration cannot determine (B, zt, n) within Entropy-Bounded Empiricism (EBE) bounds (i.e., requires entropy-violating parameter excursions), preventing issuance of sealed curves.",
+    "KC5: Matching the data would require altering the sealed structural chain (introducing HMF-level tuning or allowing \u00b5(a) > 1 or a non-gate-consistent form), violating the pre-registration."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efclass-tech-note-i",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Background gate function calibration (EFC background-level modification)."
+    },
+    {
+      "id": "efclass-tech-note-ii",
+      "doi": "10.6084/m9.figshare.31333600",
+      "role": "Perturbation channel \u00b5(a) and modified growth formalism."
+    },
+    {
+      "id": "efc-prereg-eg",
+      "doi": "10.6084/m9.figshare.32023788",
+      "role": "Prior EFC pre-registration protocol reference (SO \u00d7 Euclid EG)."
+    },
+    {
+      "id": "efc-prereg-rubin-dp2",
+      "doi": "10.6084/m9.figshare.32013738",
+      "role": "Prior EFC pre-registration protocol reference (Rubin DP2 shear)."
+    },
+    {
+      "id": "efc-prereg-desi-fsigma8",
+      "doi": "10.6084/m9.figshare.32013156",
+      "role": "Prior EFC pre-registration protocol reference (DESI f\u03c38)."
+    }
+  ],
   "files": {
     "pdf": "jwst_hmf_prereg_v4_FINAL.pdf",
     "readme": "README.md"
   },
-  "paper_type": "theory",
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32149654",
   "paper_type_inferred": true
 }
