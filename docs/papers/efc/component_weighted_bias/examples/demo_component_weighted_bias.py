@@ -93,7 +93,7 @@ print(f"  Bbulge < 0.1 : {efc_wins_low:.1f}%  (paper: 91.9%)")
 print(f"  Bbulge > 0.2 : {efc_wins_high:.1f}%  (paper: 44.4%)")
 
 # ------------------------------------------------------------------
-# 4. RCMB-compliant split ΔAIC for one example galaxy
+# 4. RCMP-compliant split ΔAIC for one example galaxy
 # ------------------------------------------------------------------
 r_ex = np.linspace(0.3, 18.0, N_PTS)
 sig_ex = 5.0 * np.ones(N_PTS)
@@ -101,7 +101,7 @@ vobs_ex = 150 * np.sqrt(1 - np.exp(-r_ex / 4)) + np.random.normal(0, 3, N_PTS)
 va_ex = 150 * np.sqrt(1 - np.exp(-r_ex / 3.5))
 vb_ex = 150 * np.sqrt(1 - np.exp(-r_ex / 4.2))
 daic_in, daic_out, daic_gl = split_delta_aic(r_ex, vobs_ex, sig_ex, va_ex, 2, vb_ex, 1)
-print(f"\n=== RCMB split (example galaxy) ===")
+print(f"\n=== RCMP split (example galaxy) ===")
 print(f"  ΔAIC_inner  = {daic_in:+.2f}")
 print(f"  ΔAIC_outer  = {daic_out:+.2f}")
 print(f"  ΔAIC_global = {daic_gl:+.2f}")
