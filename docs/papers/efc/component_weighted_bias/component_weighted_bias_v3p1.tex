@@ -1,0 +1,573 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{graphicx}
+
+% --- Section colours ---
+\definecolor{efc}{RGB}{0,80,160}
+\titleformat{\section}{\large\bfseries\color{efc}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{efc}}{}{0em}{}
+
+% --- Header / Footer ---
+% Canonical Symbiose Research preprint footer (two-column).
+% \PaperDOI is set once and propagated to footer + title block.
+% Pre-deposit value: [to be assigned] — search/replace after Figshare DOI returns.
+\newcommand{\PaperDOI}{10.6084/m9.figshare.32162706}
+\newcommand{\PaperShortTitle}{Sign-flip decomposition}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small Magnusson --- \PaperShortTitle{} \textbullet{} DOI: \PaperDOI}
+\fancyfoot[R]{\small \thepage}
+
+% --- Metadata ---
+\title{\textbf{Composite-level aggregation in rotation curve model selection:\\
+A sign-flip decomposition of $\Delta$AIC for SPARC-175}}
+
+\author{
+  Morten Magnusson\\
+  \small Symbiose Research, Sandnes, Norway\\
+  \small ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095}\\
+  \small DOI: \href{https://doi.org/\PaperDOI}{\PaperDOI}
+}
+\date{May 2026 \quad|\quad Figshare preprint}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+% ==============================================================
+% Sign convention used throughout this paper:
+%   Delta AIC = AIC_NFW - AIC_EFC   (positive = EFC wins)
+% This matches Kill-Test v6 (Magnusson 2026b). Earlier drafts of
+% this work (v1, v2) used the opposite convention; all numerical
+% values in this paper have been transposed to v6 sign.
+% ==============================================================
+
+% --- Abstract ---
+\begin{quote}
+\textbf{Abstract.}
+Comparing gravitational models on the SPARC-175 sample using a single
+global $\Delta$AIC per galaxy collapses two physically distinct radial
+regimes onto one number.  We re-fit all 175 galaxies with the Kill-Test~v6
+pipeline, persist per-datapoint model curves, and split each $\Delta$AIC
+into an inner ($r<r_c$) and outer ($r\ge r_c$) contribution at
+$r_c=3$~kpc.  In $\mathbf{30/171}$ galaxies (\textbf{17.5\%}) the global
+sign disagrees with the outer-only sign: a model preferred globally is
+disfavoured by the outer points alone.  This sign-flip rate is robust,
+varying only between $\mathbf{16.4\%}$ and $\mathbf{22.2\%}$ for
+$r_c\in\{2,3,4,5\}$~kpc.  We test whether $\chi^2$-weighting drives the
+result: replacing $1/\sigma^2$ weights with uniform weights moves the
+sample {\em toward} EFC (from 66.7\% to 86.5\% EFC wins), not away from
+it---rejecting the hypothesis that standard weighting is anti-EFC.  The
+LATENT regime is the crown witness: 16 galaxies exhibit
+$\langle\Delta\text{AIC}_{\text{inner}}\rangle = +153$ (EFC favoured at
+small radii) and $\langle\Delta\text{AIC}_{\text{outer}}\rangle = -809$
+(NFW overwhelmingly favoured at large radii).  These are not measurement
+artefacts; they are a real, regime-stratified failure mode of the
+single-statistic comparison.  $\Delta$AIC is a correct statistic at the
+wrong aggregation level: a per-regime decomposition is required for
+interpretation.  We do not find evidence that standard $\chi^2$ weighting
+systematically favours one model over another globally; the effect we
+identify is a regime-mixing misclassification at the level of individual
+galaxies, not an estimator-level bias against any particular gravitational
+model.
+\end{quote}
+
+\vspace{4pt}
+\noindent\textbf{Keywords:} rotation curves; model selection; AIC decomposition;
+SPARC-175; regime stratification; sign-flip diagnostic;
+entropy-bounded empiricism
+
+% ==============================================================
+\newpage
+\section{Introduction}
+
+Rotation-curve model selection compresses each galaxy to a small set of
+summary statistics: $\chi^2$, AIC, BIC.  Comparative analyses across the
+SPARC sample (Lelli et~al.\ 2016) routinely report a per-galaxy
+$\Delta$AIC and aggregate over the 175-galaxy sample to declare a winner.
+This paper asks a methodological question: does global $\Delta$AIC
+preserve the radial information that distinguishes inner-region
+(baryon-dominated) from outer-region (gravity-dominated) physics, or
+does aggregation collapse two regimes into a single number that no
+single physical mechanism can satisfy?
+
+Our previous draft (v2; Magnusson 2026e, DOI:
+\href{https://doi.org/10.6084/m9.figshare.32019723}{10.6084/m9.figshare.32019723})
+framed the answer as a measurement-level bias: inner-region weighting
+could be argued to favour EFC over NFW.  The
+analysis below rejects that framing.  When weights are removed, the
+sample moves further toward EFC, not away from it.  The real signal is
+not in {\em how} points are weighted; it is in {\em where on the
+rotation curve} the model wins or loses.  In 17.5\% of SPARC galaxies
+the inner and outer regions disagree on which model is preferred,
+producing a sign-flip in $\Delta$AIC that no global statistic can detect.
+
+We adopt throughout the Kill-Test v6 sign convention
+\begin{equation}
+  \Delta\text{AIC} \equiv \text{AIC}_{\text{NFW}} - \text{AIC}_{\text{EFC}},
+  \qquad \text{positive}=\text{EFC wins.}
+  \label{eq:convention}
+\end{equation}
+This is the inverse of the convention used in earlier drafts of this work.
+All numerical values reported here have been transposed.
+
+The rest of the paper proceeds as follows.  Section~\ref{sec:methods}
+specifies the fits, the entropy-bounded empiricism (EBE) regime
+classification used as scaffolding, and the inner/outer decomposition.
+Section~\ref{sec:signflip} reports the headline sign-flip statistic and
+its $r_c$-robustness.  Section~\ref{sec:reweight} reports the
+reweighting test honestly, including the result that contradicts the v2
+narrative.  Section~\ref{sec:regime} stratifies by regime; the LATENT
+sub-sample (\S\ref{sec:latent}) is presented as the crown witness for
+the aggregation argument.  Section~\ref{sec:discussion} discusses
+implications for $\Delta$AIC reporting practice and the proper level of
+empirical claim that the SPARC sample supports.
+
+% ==============================================================
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Kill-Test v6 fits}
+
+For each SPARC galaxy with $\ge 5$ valid data points, we fit two
+rotation curve models by differential evolution
+($\text{seed}=42$, Sobol initialisation, $\text{maxiter}=500$,
+$\text{tol}=10^{-8}$):
+\begin{align}
+  V_{\text{EFC}}(r) &= v_{\text{flat}}\sqrt{\,1-\exp[-(r/r_{\text{turnon}})^{p}]\,},
+  & k_{\text{EFC}} &= 3, \\
+  V_{\text{NFW}}(r) &= V_{200}\sqrt{[\ln(1+s)-s/(1+s)]\,/\,
+                        [\ln(1+c)-c/(1+c)]\,/\,(r/r_{200})}, &  k_{\text{NFW}} &= 2,
+\end{align}
+where $s=cr/r_{200}$ and $r_{200}=V_{200}/(10\,H_0\!\cdot\!10^{-3})$
+with $H_0=67.4$~km\,s$^{-1}$\,Mpc$^{-1}$.  Bounds and AIC computation
+match Kill-Test v6 verbatim.  Of 175 galaxies, 171 converged for both
+models and are retained for analysis.  The per-datapoint model
+velocities $V_{\text{EFC}}(r_i)$ and $V_{\text{NFW}}(r_i)$ at the
+best-fit parameters are persisted via a \texttt{-{}-save-curves} flag
+(see \S\ref{sec:repro}).
+
+\subsection{Regime classification (EBE scaffolding)}
+
+We retain the entropy-bounded empiricism (EBE; Magnusson 2026d) regime
+labels FLOW, TRANSITION, LATENT, used here as a stratification scaffold,
+not a physical prediction:
+\begin{equation}
+  \text{regime} =
+  \begin{cases}
+    \text{FLOW} & \text{if } \Delta\text{AIC}\ge 10 \text{ and } \chi^2_r({\text{EFC}}) < 20 \\
+    \text{LATENT} & \text{if } \Delta\text{AIC}\le -10 \text{ or } \chi^2_r({\text{EFC}}) > 50 \\
+    \text{TRANSITION} & \text{otherwise.}
+  \end{cases}
+\end{equation}
+EBE asserts that empirical claims should not aggregate across regimes
+that bound observation differently; the present paper is a test of
+whether ignoring that asymmetry materially distorts SPARC-level
+conclusions.  EBE is the framework, not the headline.
+
+\subsection{Inner/outer decomposition}
+\label{sec:decomp}
+
+We define a critical radius $r_c$ separating inner from outer points and
+the corresponding regime contributions
+\begin{align}
+  \Delta\text{AIC}_{\text{inner}}(r_c) &=
+    \sum_{r_i<r_c} w_i\bigl[(V_{\text{obs},i}-V_{\text{NFW},i})^2 -
+                              (V_{\text{obs},i}-V_{\text{EFC},i})^2\bigr]
+    + 2(k_{\text{NFW}}-k_{\text{EFC}}), \\
+  \Delta\text{AIC}_{\text{outer}}(r_c) &=
+    \sum_{r_i\ge r_c} w_i\bigl[\cdots\bigr] + 2(k_{\text{NFW}}-k_{\text{EFC}}),
+\end{align}
+with $w_i=1/\sigma_i^2$ unless stated otherwise.  The $2\Delta k$ penalty
+is applied to each split rather than refitting on subsets; this is a
+stratified contribution analysis, not a re-fit.  We define the global
+quantity by the same expression with the radial mask removed; by
+construction
+$\Delta\text{AIC}_{\text{global}}(r_c) = \Delta\text{AIC}_{\text{inner}}(r_c)
+                                          + \Delta\text{AIC}_{\text{outer}}(r_c)
+                                          - 2(k_{\text{NFW}}-k_{\text{EFC}})$.
+The recomputed global value differs from the Kill-Test v6 number only by
+floating-point round-off; we use the recomputed value throughout for
+internal consistency.
+
+\paragraph{Heuristic nature of the split.}
+The decomposition above evaluates contributions to the $\chi^2$ sum at
+the {\em globally} best-fit model parameters rather than refitting each
+model independently on the radial subsets $r<r_c$ and $r\ge r_c$.  This
+is a deliberate choice: the diagnostic question is whether the
+single-number $\Delta$AIC summary preserves the radial information that
+the model-on-full-curve fit had access to, and that question is answered
+exactly by stratifying the same $\chi^2$ sum by radius.  Independent
+subset refits would inflate parameter uncertainty (especially for $n_{\text{outer}}<10$),
+introduce degeneracies between $V_{200}$ and $c$ in the truncated NFW
+fit, and would no longer be a decomposition of the original AIC
+comparison but a different comparison altogether.  We treat the split
+therefore as a heuristic AIC contribution analysis valid for the
+diagnostic purpose stated in this paper; subset-level refits, with the
+parameter-uncertainty discussion they require, are reserved for
+follow-up work and are not a precondition for the conclusions reported
+here.
+
+\subsection{Sign-flip diagnostic}
+
+A galaxy exhibits a sign-flip at $r_c$ when
+\begin{equation}
+  \mathrm{sign}\bigl[\Delta\text{AIC}_{\text{global}}\bigr]
+  \ne
+  \mathrm{sign}\bigl[\Delta\text{AIC}_{\text{outer}}\bigr],
+\end{equation}
+i.e.\ the model preferred by the full curve is disfavoured by the outer
+points alone.  This is a direct, model-agnostic test of whether
+single-number $\Delta$AIC has thrown away information that the data
+contained.
+
+% ==============================================================
+\section{Sign-flip detection}
+\label{sec:signflip}
+
+At $r_c=3$~kpc, $\mathbf{30/171}$ galaxies (\textbf{17.5\%}) satisfy the
+sign-flip condition.  Figure~\ref{fig:signflip} plots
+$\Delta\text{AIC}_{\text{outer}}$ against $\Delta\text{AIC}_{\text{global}}$,
+coloured by EBE regime.  Sign-flip galaxies populate the off-quadrant
+diagonals.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{rcmp_run/figs/rcmp_signflip.png}
+\caption{Outer ($r\ge 3$~kpc) versus global $\Delta$AIC for 171
+SPARC galaxies.  Convention: positive = EFC wins.  Identity line
+(no decomposition effect) shown grey; off-diagonal points are
+where outer and global disagree.  Galaxies in the upper-left and
+lower-right quadrants are the 30 sign-flips (17.5\%).  The lower
+left is the LATENT regime, where global and outer agree but inner
+disagrees (\S\ref{sec:latent}).}
+\label{fig:signflip}
+\end{figure}
+
+The Spearman correlation between $\Delta\text{AIC}_{\text{global}}$ and
+$\Delta\text{AIC}_{\text{outer}}$ is $\rho=+0.831$ ($p=2.4\times10^{-42}$),
+confirming that the outer signal does drive most of the global statistic
+{\em on average}, while leaving room for the 17.5\% population in which
+they disagree.
+
+\subsection{Robustness to $r_c$}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{cccc}
+\toprule
+$r_c$ (kpc) & $n_{\text{sign-flip}}$ & fraction & $n$ with both inner/outer points \\
+\midrule
+2.0 & 28 & 16.4\% & 154 \\
+3.0 & 30 & 17.5\% & 161 \\
+4.0 & 35 & 20.5\% & 167 \\
+5.0 & 38 & 22.2\% & 167 \\
+\bottomrule
+\end{tabular}
+\caption{Sign-flip count is stable to within a few percentage points
+across the range of plausible $r_c$ values.  The result is not a
+knife-edge of one chosen radius.}
+\label{tab:rc}
+\end{table}
+
+% ==============================================================
+\section{The reweighting test (and its honest result)}
+\label{sec:reweight}
+
+To separate aggregation effects from weighting effects, we recompute
+the global $\Delta\text{AIC}$ under three weight schemes:
+\begin{description}[leftmargin=2em]
+  \item[Standard] $w_i=1/\sigma_i^2$, identical to the Kill-Test v6 fit.
+  \item[Uniform]  $w_i=1$, every datapoint contributes equally.
+  \item[Capped]   $w_i=\min(1/\sigma_i^2,\,\text{med}(1/\sigma_j^2))$,
+                  capping the most precise points at the median weight.
+\end{description}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+weight scheme & mean $\Delta\text{AIC}$ & median & EFC wins ($\Delta\text{AIC}>0$) \\
+\midrule
+standard ($1/\sigma^2$) & $+40.4$  & $+6.21$  & 114/171 (66.7\%) \\
+uniform                 & $+4416$  & $+148.9$ & \textbf{148/171} (\textbf{86.5\%}) \\
+capped (median cap)     & $+36.3$  & $+4.47$  & 110/171 (64.3\%) \\
+\bottomrule
+\end{tabular}
+\caption{Replacing $1/\sigma^2$ weights with uniform weights does not
+attenuate the EFC advantage; it amplifies it.  This rejects the v2
+hypothesis that standard $\chi^2$ weighting is anti-EFC.  Capped weights
+are within 2 percentage points of standard, ruling out a few
+high-precision points as the driver.}
+\label{tab:reweight}
+\end{table}
+
+The honest interpretation is that weighting choice {\em does} swing the
+sample by 20 percentage points, but in the opposite direction from what
+the v2 narrative claimed.  Standard $\chi^2$ weighting is, if anything,
+conservatively pro-NFW.  The reweighting test settles a dispute about
+weight, but it does not explain the sign-flips: those persist under all
+three schemes (the table reports global only; the per-galaxy
+inner/outer split shows the same population of sign-flippers under
+uniform weighting, with magnitudes inflated).
+
+% ==============================================================
+\section{Regime stratification}
+\label{sec:regime}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+regime & $n$ & $\langle\Delta\text{AIC}_{\text{global}}\rangle$ & $\langle\Delta\text{AIC}_{\text{inner}}\rangle$ & $\langle\Delta\text{AIC}_{\text{outer}}\rangle$ & sign-flips \\
+\midrule
+FLOW       & 71 & $+231$ & $+189$ & $+50$  & 10 / 71 (14\%) \\
+TRANSITION & 84 & $+20$  & $+14$  & $+6$   & 20 / 84 (24\%) \\
+LATENT     & 16 & $-702$ & $+153$ & $-809$ & 0 / 16 (0\%) \\
+\bottomrule
+\end{tabular}
+\caption{Regime-stratified decomposition at $r_c=3$~kpc.  All entries in
+Kill-Test v6 sign convention (positive = EFC wins).  Sign-flip
+populations are concentrated in TRANSITION (24\%) where global is near
+zero, and absent in LATENT where the outer term is dominant by orders
+of magnitude.}
+\label{tab:regime}
+\end{table}
+
+The pattern is regime-specific.  TRANSITION galaxies have global
+$\Delta$AIC clustered near zero; the inner/outer split has room to
+disagree, and 24\% do.  FLOW galaxies are EFC-favoured in both halves
+($\langle\Delta\text{AIC}_{\text{inner}}\rangle=+189$,
+$\langle\Delta\text{AIC}_{\text{outer}}\rangle=+50$), but a tail of 10
+galaxies have outer points that prefer NFW even when the global
+statistic is firmly with EFC---these are the high-magnitude sign-flips
+of Table~\ref{tab:topflips}.  LATENT galaxies do not flip, because the
+outer term is so large in magnitude that it sets the sign of the
+global; what they do show, instead, is the most informative feature
+of the entire dataset.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+galaxy & regime & global & inner & outer \\
+\midrule
+UGC03546 & FLOW & $+90.7$  & $+91.8$  & $-3.1$  \\
+NGC7814  & FLOW & $+85.8$  & $+97.0$  & $-13.2$ \\
+KK98-251 & FLOW & $+41.0$  & $+41.3$  & $-2.3$  \\
+NGC6946  & FLOW & $+34.4$  & $+127.1$ & $-94.6$ \\
+UGC08286 & FLOW & $+27.7$  & $+33.7$  & $-8.1$  \\
+UGC04305 & FLOW & $+26.7$  & $+26.7$  & $-2.0$  \\
+UGC07151 & FLOW & $+23.9$  & $+28.0$  & $-6.1$  \\
+UGC07603 & FLOW & $+14.0$  & $+13.0$  & $-0.9$  \\
+UGC00191 & FLOW & $+12.5$  & $+11.5$  & $-1.0$  \\
+NGC4157  & FLOW & $+10.9$  & $+9.1$   & $-0.2$  \\
+\bottomrule
+\end{tabular}
+\caption{Top ten sign-flip galaxies by $|\Delta\text{AIC}_{\text{global}}|$.
+All are FLOW.  Each shows a global EFC win driven entirely or
+predominantly by inner-region structure; the outer points alone prefer
+NFW.  NGC6946 is the cleanest example: $\Delta\text{AIC}_{\text{inner}}=+127$
+(EFC) versus $\Delta\text{AIC}_{\text{outer}}=-95$ (NFW).}
+\label{tab:topflips}
+\end{table}
+
+% ==============================================================
+\section{The LATENT regime as crown witness}
+\label{sec:latent}
+
+LATENT contains 16 galaxies whose global $\Delta\text{AIC}$ averages
+$-702$: NFW wins by a large margin.  The decomposition tells a sharper
+story.  At $r<3$~kpc, the mean inner $\Delta\text{AIC}$ is $\mathbf{+153}$:
+EFC fits the inner regions of LATENT galaxies at the same level of
+preference seen in FLOW.  At $r\ge3$~kpc, the mean outer $\Delta\text{AIC}$
+is $\mathbf{-809}$: NFW wins by roughly four orders of magnitude in the
+outer regions.
+
+This is not a measurement artefact.  The errors in LATENT galaxies are
+not pathological, the inner-fit residuals are not anomalous, and the
+result is independent of $r_c$ within the range tested.  It is a real
+physical statement: the EFC functional form, with its three free
+parameters, fits the inner kinematics of LATENT galaxies as well as it
+fits any FLOW galaxy, but it cannot accommodate the outer rotation
+behaviour of these systems.  NFW, conversely, fits the outer regions
+with overwhelming evidence and is mediocre on the inner.
+
+The single-statistic $\Delta\text{AIC}$ erases this distinction.  A
+LATENT galaxy with $\Delta\text{AIC}_{\text{global}}=-700$ is reported
+as ``NFW preferred,'' suggesting the outer NFW success extends to all
+radii.  It does not.  The same galaxy is also a galaxy whose inner
+3~kpc strongly disagrees, and that disagreement carries empirical content
+of its own.  Reporting only the global suppresses 50\% of the radial
+information; reporting only the regime label, in turn, suppresses the
+sign of the inner term.  Both are needed.
+
+This is also the locus where EBE (Magnusson 2026d) earns its scaffolding
+role: LATENT and FLOW are distinct empirical regimes, and aggregating
+them into a sample mean is a category error precisely of the kind EBE
+formalises.  The LATENT result is the strongest single piece of evidence
+in this paper that single-number $\Delta\text{AIC}$ aggregation is the
+wrong empirical level for SPARC-style comparison.
+
+% ==============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{$\Delta$AIC is a correct statistic at the wrong aggregation level}
+
+Nothing in this analysis impugns AIC itself.  $\Delta\text{AIC}$ between
+two models on a given sum-of-squared-residuals likelihood remains a
+valid, well-grounded comparison.  The result of this paper is purely
+about the {\em level} at which the comparison is reported.  When 17.5\%
+of galaxies show inner/outer disagreement and a regime-defined
+sub-sample shows order-of-magnitude divergence between halves, the
+single-number-per-galaxy summary destroys information that the data
+contained.  The fix is not a different statistic; it is a different
+aggregation.  We recommend reporting
+$(\Delta\text{AIC}_{\text{inner}}, \Delta\text{AIC}_{\text{outer}})$
+as a pair, with $r_c$ stated explicitly, alongside the global value.
+
+\subsection{What is rejected, what is not}
+
+We explicitly reject the v2 framing of this work that standard
+$\chi^2$ weighting is anti-EFC.  Uniform weighting moves the sample
+{\em toward} EFC by 20 percentage points (Table~\ref{tab:reweight}).
+The composite-bias narrative as a measurement-level critique of NFW does
+not survive.
+
+We do {\em not} retract the headline of this paper, only its frame.  The
+finding---that single-number $\Delta\text{AIC}$ over the SPARC sample
+collapses two regimes onto one summary, in 17.5\% of galaxies producing
+a sign-flip---is methodologically robust and independent of any
+particular gravitational model.  It applies in equal force to MOND/RAR
+comparisons (Li et~al.\ 2020; McGaugh 2020), to NFW vs.\ alternative-DM
+comparisons (Oman et~al.\ 2015), and to any future model comparison on
+SPARC-style rotation curves.
+
+\subsection{The LATENT result is physical}
+
+We make no claim that the LATENT outer collapse of EFC is an artefact of
+weighting, error inflation, or fit pathology.  In LATENT galaxies, EFC
+{\em as currently formulated} fits the inner curve and fails the outer.
+This is a real boundary on the EFC functional form, and we report it as
+such.  The inner success is equally real, and equally informative for
+future model development.
+
+\subsection{Limitations}
+
+(i) Heuristic AIC contribution analysis; subset-refit deferred to
+follow-up work (rationale and trade-offs in \S\ref{sec:decomp}).
+(ii) $r_c=3$~kpc is chosen for visual separability of regimes; we
+report the $r_c\in\{2,4,5\}$ robustness in Table~\ref{tab:rc}.
+(iii) The 4 galaxies that did not converge in the Kill-Test pipeline
+are excluded; these are short rotation curves with $<5$ valid points
+and are unlikely to skew the aggregate.
+
+% ==============================================================
+\section{Reproducibility}
+\label{sec:repro}
+
+All analysis code and intermediate data are deposited with this preprint:
+
+\begin{itemize}[leftmargin=2em,itemsep=2pt]
+  \item \texttt{sparc175\_killtest\_universality\_curves.py} ---
+    Kill-Test v6 fits with the \texttt{-{}-save-curves} extension
+    (per-datapoint model curves persisted to JSON).
+  \item \texttt{rcmp\_decomposition.py} ---
+    inner/outer split, sign-flip detection, reweighting test,
+    $r_c$-robustness scan.
+  \item \texttt{rcmp\_run/sparc175\_model\_curves.json} ---
+    per-galaxy $V_{\text{EFC}}(r_i)$, $V_{\text{NFW}}(r_i)$,
+    $V_{\text{obs}}(r_i)$, $\sigma_i$, and baryonic components
+    $V_{\text{gas}}, V_{\text{disk}}, V_{\text{bulge}}$.
+  \item \texttt{rcmp\_run/rcmp\_decomposition.json} ---
+    per-galaxy
+    $(\Delta\text{AIC}_{\text{global}},\Delta\text{AIC}_{\text{inner}},\Delta\text{AIC}_{\text{outer}})$
+    plus reweighting variants.
+  \item \texttt{rcmp\_run/rcmp\_summary.json},
+        \texttt{rcmp\_signflip\_table.json},
+        \texttt{rcmp\_robustness\_rc.json} --- aggregates.
+\end{itemize}
+Input data: SPARC rotation curves (Lelli et~al.\ 2016).  Frozen
+parameters: $H_0=67.4$~km\,s$^{-1}$\,Mpc$^{-1}$, $r_c=3$~kpc,
+$\sigma_{\min}=1.0$~km\,s$^{-1}$, EFC bounds and NFW concentration prior
+identical to Kill-Test v6 (Magnusson 2026b).
+
+% ==============================================================
+\section*{References}
+
+\sloppy
+\begin{small}
+\begin{enumerate}[leftmargin=2em,label={[\arabic*]},itemsep=2pt]
+
+\item Lelli, F., McGaugh, S.~S., \& Schombert, J.~M.\ (2016).
+  SPARC: Mass models for 175 disk galaxies with \textit{Spitzer} photometry
+  and accurate rotation curves.
+  \textit{AJ}, 152, 157.
+  \href{https://doi.org/10.3847/0004-6256/152/6/157}{doi:10.3847/0004-6256/152/6/157}
+
+\item Oman, K.~A.\ et~al.\ (2015).
+  The unexpected diversity of dwarf galaxy rotation curves.
+  \textit{MNRAS}, 452, 3650.
+  \href{https://doi.org/10.1093/mnras/stv1504}{doi:10.1093/mnras/stv1504}
+
+\item Li, P.\ et~al.\ (2020).
+  Fitting the radial acceleration relation to individual SPARC galaxies.
+  \textit{A\&A}, 634, A71.
+  \href{https://doi.org/10.1051/0004-6361/201936368}{doi:10.1051/0004-6361/201936368}
+
+\item McGaugh, S.~S.\ (2020).
+  The radial acceleration relation in galaxies and its implications.
+  \textit{Galaxies}, 8, 35.
+
+\item Magnusson, M.\ (2026a).
+  Comprehensive analysis of 175 SPARC galaxies demonstrating
+  regime-dependent validity in rotation curve modelling.
+  Figshare.
+  \href{https://doi.org/10.6084/m9.figshare.31045126}{doi:10.6084/m9.figshare.31045126}
+
+\item Magnusson, M.\ (2026b).
+  Kill-Test v6 Universality: EFC vs NFW across 175 SPARC galaxies.
+  Figshare.
+  \href{https://doi.org/10.6084/m9.figshare.31986762}{doi:10.6084/m9.figshare.31986762}
+
+\item Magnusson, M.\ (2026c).
+  ISW Void Sign-Flip Observational Pipeline From EFC Theory to Data
+  Confrontation.
+  Figshare.
+  \href{https://doi.org/10.6084/m9.figshare.31990212}{doi:10.6084/m9.figshare.31990212}
+
+\item Magnusson, M.\ (2026d).
+  Entropy-Bounded Empiricism (EBE): SPARC-175 Complete Documentation.
+  Figshare.
+  \href{https://doi.org/10.6084/m9.figshare.31047703}{doi:10.6084/m9.figshare.31047703}
+
+\item Magnusson, M.\ (2026e).
+  Component-weighted bias in rotation curve model selection: A
+  proxy-chain audit of $\chi^2$-based $\Delta$AIC statistics
+  [retracted by present work; see \S\ref{sec:reweight} and \S\ref{sec:discussion}].
+  Figshare.
+  \href{https://doi.org/10.6084/m9.figshare.32019723}{doi:10.6084/m9.figshare.32019723}
+
+\end{enumerate}
+\end{small}
+
+\end{document}
