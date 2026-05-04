@@ -1,0 +1,139 @@
+{
+  "$schema": "./schema.json",
+  "id": "jwst-hmf-prereg-v4",
+  "title": "Pre-Registration: EFC dN/dM (z>7) Halo Mass Function via \u00b5(a) Perturbation Channel",
+  "description": "Sealed pre-registration of an Energy-Flow Cosmology (EFC) prediction for the high-redshift (z=7\u201312) halo mass function n(M,z) derived through the \u00b5(a) perturbation channel. The work locks the structural chain g(a) \u2192 \u00b5(a) \u2192 D(a) \u2192 \u03c3(M,z) \u2192 n(M,z), specifies datasets and falsification criteria, and commits to three HMF prescriptions (Press\u2013Schechter, Sheth\u2013Tormen, Tinker) under identical baryonic mapping to isolate the cosmology channel.",
+  "version": "v4",
+  "date": "2026-05-03",
+  "doi": "10.6084/m9.figshare.32149654",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "halo mass function",
+    "JWST",
+    "high redshift",
+    "mu(a) perturbation",
+    "linear growth factor",
+    "Press\u2013Schechter",
+    "Sheth\u2013Tormen",
+    "Tinker HMF",
+    "RCMP-L3",
+    "Entropy-Bounded Empiricism",
+    "sealed prediction"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "background_energy_modification": {
+      "latex": "\\Delta E^2(a) = A\\,[g(a) - g(0)]",
+      "description": "Background-level EFC modification to the normalized Hubble rate via the gate function g(a); sign lemma implies \\Delta E^2 \\le 0 for z>0 under monotonic g(a)."
+    },
+    "gate_function": {
+      "latex": "g(a) = \\frac{1}{1 + (z_t / z(a))^{n}}, \\quad z(a) = a^{-1} - 1",
+      "description": "Monotonic gate controlling the activation of the EFC channel, with transition redshift z_t and sharpness n."
+    },
+    "effective_gravitational_coupling": {
+      "latex": "\\mu(a) = 1 - B\\, g(a)",
+      "description": "EFC perturbation-channel modification to the Poisson source; typically \\mu(a) < 1 when the gate is active."
+    },
+    "modified_growth_equation": {
+      "latex": "f' + f^2 + \\tfrac{1}{2} - \\tfrac{3}{2} \\, \\tilde{\\Omega}_m \\, f = \\tfrac{3}{2} \\, \\mu(a) \\, \\tilde{\\Omega}_m",
+      "description": "ODE for the logarithmic growth rate f \\equiv d\\ln D/d\\ln a with EFC-modified source; integrates to the linear growth factor D(a)."
+    },
+    "omega_tilde_definition": {
+      "latex": "\\tilde{\\Omega}_m(a) = \\frac{\\Omega_m \\, a^{-3}}{E^2(a)}",
+      "description": "Effective matter fraction entering the growth equation."
+    },
+    "variance_sigma": {
+      "latex": "\\sigma^2(M,z) = \\int \\frac{d^3k}{(2\\pi)^3} \\, P_{\\mathrm{lin}}(k, z=0) \\, |W(k R(M))|^2 \\, D^2(z)",
+      "description": "Mass-variance computed from a Planck-anchored linear power spectrum and the EFC-modified growth factor."
+    },
+    "hmf_general": {
+      "latex": "n(M,z)\\,dM = \\frac{\\bar{\\rho}}{M} \\, f(\\nu) \\, \\frac{d\\nu}{dM} \\, dM, \\quad \\nu \\equiv \\delta_c / \\sigma(M,z)",
+      "description": "General halo mass function form; f(\\nu) taken as Press\u2013Schechter, Sheth\u2013Tormen, and Tinker 2008/2010 to bracket modeling uncertainty."
+    }
+  },
+  "key_results": {
+    "main_finding": "A sealed, structurally rigid prediction for the z=7\u201312 halo mass function in EFC is registered via the \u00b5(a) perturbation channel with predefined falsification thresholds and dataset commitments.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "B",
+      "z_t",
+      "n"
+    ],
+    "datasets_used": [
+      "JWST CEERS high-z counts",
+      "COSMOS-Web high-z counts",
+      "GLASS high-z counts",
+      "Planck-anchored P_lin(k) for initial conditions",
+      "Joint S(z) background fit (validation candidate vc 4ea464e38b5f)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Given (B, z_t, n) fixed solely by the joint S(z) fit, the EFC chain g(a) \u2192 \u00b5(a) \u2192 D(a) \u2192 \u03c3(M,z) \u2192 n(M,z) uniquely determines the halo mass function at z=7,8,9,10,11,12 under Planck-anchored P_lin and identical SMHM mapping as \u039bCDM.",
+      "falsifiable_by": "A >3\u03c3 disagreement between the sealed EFC n(M,z) predictions (converted to number counts under the shared mapping) and JWST CEERS/COSMOS-Web/GLASS measurements in any redshift bin."
+    },
+    {
+      "id": "P2",
+      "statement": "In the gate-active regime, \u00b5(a)=1\u2212B g(a) remains below unity (\u00b5(a)<1) with g(a) monotonic in a and \u0394E^2(a) \u2264 0 for z>0.",
+      "falsifiable_by": "Empirical or calibration requirements forcing B<0 (\u00b5(a)>1 at high z) or a non-monotonic g(a) that violates the sign lemma."
+    },
+    {
+      "id": "P3",
+      "statement": "Across Press\u2013Schechter, Sheth\u2013Tormen, and Tinker prescriptions fed the same \u03c3(M,z), the predicted counts remain within the acceptance region (\u0394\u03c7\u00b2 < 4) for the JWST z=7\u201312 datasets.",
+      "falsifiable_by": "All three HMF prescriptions generated from the sealed \u03c3(M,z) yield \u0394\u03c7\u00b2 above the acceptance bound or >3\u03c3 tension with the data."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Any >3\u03c3 disagreement between the sealed EFC n(M,z) predictions (converted to counts with the identical SMHM mapping as \u039bCDM) and JWST CEERS, COSMOS-Web, or GLASS measurements in any of the z=7\u201312 bins falsifies the EFC L3 \u00b5(a) HMF prediction.",
+    "KC2: If achieving agreement with the HMF data requires altering the sealed chain (changing the form of g(a), \u00b5(a), growth ODE, \u03c3 integration, or the fixed Planck-anchored P_lin), the preregistered prediction is invalidated.",
+    "KC3: Failure of the joint S(z) background fit to produce (B, z_t, n) within EBE bounds consistent with background and perturbation data prevents instantiation of the prediction and is counted as a failed test of the L3 \u00b5(a) channel.",
+    "KC4: Calibration or data demands that imply \u00b5(a) > 1 at high redshift (requiring B < 0) or a non-monotonic g(a) (violating \u0394E^2(a) \u2264 0 for z>0) falsify the preregistered EFC assumptions for this test."
+  ],
+  "tier": "T2",
+  "paper_type": "sealed_prediction",
+  "related_packages": [
+    {
+      "id": "efc-tn-i",
+      "doi": "10.6084/m9.figshare.31333414",
+      "role": "Background gate calibration (EFCLASS Technical Note I)"
+    },
+    {
+      "id": "efc-tn-ii",
+      "doi": "10.6084/m9.figshare.31333600",
+      "role": "Perturbation channel and growth modification (EFCLASS Technical Note II)"
+    },
+    {
+      "id": "efc-so-euclid-eg-prereg",
+      "doi": "10.6084/m9.figshare.32023788",
+      "role": "Prior EFC preregistration protocol reference (SO \u00d7 Euclid EG)"
+    },
+    {
+      "id": "efc-rubin-dp2-shear-prereg",
+      "doi": "10.6084/m9.figshare.32013738",
+      "role": "Prior EFC preregistration protocol reference (Rubin DP2 shear)"
+    },
+    {
+      "id": "efc-desi-fsigma8-prereg",
+      "doi": "10.6084/m9.figshare.32013156",
+      "role": "Prior EFC preregistration protocol reference (DESI f\u03c38)"
+    },
+    {
+      "id": "magnusson-2026-cosmos",
+      "doi": "10.6084/m9.figshare.31059964",
+      "role": "Observational context for early structure (COSMOS)"
+    }
+  ],
+  "files": {
+    "pdf": "jwst_hmf_prereg_v4_FINAL.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32149654",
+  "paper_type_inferred": true
+}
