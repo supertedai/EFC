@@ -4,10 +4,10 @@ EFC ORCID source-of-truth sync — source=cache
 ========================================================================
   ORCID works               : 161
   ORCID Figshare DOIs       : 161
-  Repo Figshare DOIs        : 156
+  Repo Figshare DOIs        : 157
   Matched                   : 156
   On ORCID, not in repo     : 5
-  In repo, not on ORCID     : 0
+  In repo, not on ORCID     : 1
 
 PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.28098350  Hypothesis: The Universe as an Energy-Driven System
@@ -15,9 +15,12 @@ PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.31970898  White Paper - Part 2 of 4 - Energy-Flow Cosmology, Part 2: Field Equations and O
   - 10.6084/m9.figshare.31970904  White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledg
   - 10.6084/m9.figshare.31970907  White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility
+
+DOIs IN REPO, NOT ON ORCID (action: register on ORCID or check draft status):
+  - 10.6084/m9.figshare.32149654  jwst_hmf_prereg_v4
 ========================================================================
 [efc-paper-type] all papers already classified
-[efc-regen-index] no diff — 159 papers, version 2.2
+[efc-regen-index] wrote efc_index.json — 159 papers, version 2.4
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -25,28 +28,7 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 1 paper(s) to 10/10 <<<
-
-  jwst_hmf_prereg_v4  (missing: key_results, kill_criteria, tier, src/, examples/, data/)
-    Enriched metadata (key_results, kill_criteria, tier)
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse code generation response (Unterminated string starting at: line 4 column 16 (char 15096))
-           First 200 chars: '{\n  "src_code": "\\"\\"\\"jwst_hmf_prereg_v4.py\\n\\nReference implementation of the EFC prediction chain for the high-redshift\\nhalo mass function (HMF) as described in:\\n\\n  Magnusson (2026), \\"Pre-Regis'
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    Created src/jwst_hmf_prereg_v4.py
-    Created examples/demo_jwst_hmf_prereg_v4.py
-    Created data/parameters.json
-    Generated src/, examples/, data/
-
-  Enriched: 2/1
+>>> Step 1: All papers at 10/10 <<<
 
 >>> Step 1.5: Holistic Impact Analysis for 7 paper(s) <<<
 
@@ -114,7 +96,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 60 paper(s) in public pages <<<
+>>> Step 2: Registering 59 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -126,7 +108,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 1 DOI(s) to evidence register
+    Added 50 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -138,12 +120,6 @@ EFC DOI sync — 159 paper dirs scanned
   papers with registered DOI : 158
   papers without DOI         : 1
   papers with conflicts      : 0
-
-PROPAGATED DOIs into 1 papers:
-  jwst_hmf_prereg_v4 -> *.jsonld
-
-SYNCED efc_index.json (1 entries):
-  jwst_hmf_prereg_v4
 ========================================================================
 [efc-gen] 159 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 [efc-verify] 159 paper dirs · 0 errors · 1 warnings
@@ -165,93 +141,18 @@ Processed 159 paper(s)
     - jwst_hmf_prereg_v4: DOI registered but no ledger_impact block
 
 [ledger-impact-sync] nothing to do — all papers in steady state
-[efc-ledger-autofill] Ledger: added 1 entry/ies for DOI(s) 32149654
-[efc-ledger-autofill] Changelog: added 1 entry/ies for DOI(s) 32149654
+[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:124 → 124  (+0)    ledger:123 → 124 (+1)
-  methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
-  structural      ev: 71 →  71  (+0)    ledger: 71 →  71 (+0)
+  empirical       ev:112 → 124  (+12)    ledger: 62 → 124 (+62)
+  methodological  ev:  3 →  25  (+22)    ledger:  3 →  25 (+22)
+  structural      ev:  2 →  71  (+69)    ledger:  2 →  71 (+69)
 ========================================================================
-[efc-drift] 159 papers · 39 drift(s) detected:
-  README.md: tests_total — 133 vs 135
-  README.md: tests_total — 133 vs 135
-  Validation_Ledger: tests_total — 133 vs 135
-  Validation_Ledger: tests_total — 133 vs 135
-  Validation_Ledger: tests_active — 112 vs 113
-  Validation_Ledger: tests_survived — 104 vs 105
-  Validation_Ledger: tests_pipeline — 21 vs 22
-  White_Paper_Series: tests_total — 133 vs 135
-  White_Paper_Series: tests_total — 133 vs 135
-  White_Paper_Series: tests_total — 133 vs 135
-  White_Paper_Series: tests_active — 112 vs 113
-  White_Paper_Series: tests_survived — 104 vs 105
-  White_Paper_Series: tests_pipeline — 21 vs 22
-  White_Paper_Series: tests_active — 112 vs 113
-  White_Paper_Series: tests_survived — 104 vs 105
-  White_Paper_Series: tests_pipeline — 21 vs 22
-  White_Paper_Series: tests_pipeline — 21 vs 22
-  Elevator_Pitch: tests_total — 133 vs 135
-  Elevator_Pitch: tests_active — 112 vs 113
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_pipeline — 21 vs 22
-  Elevator_Pitch: tests_total — 133 vs 135
-  Elevator_Pitch: tests_total — 133 vs 135
-  Elevator_Pitch: tests_active — 112 vs 113
-  Elevator_Pitch: tests_active — 112 vs 113
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_pipeline — 21 vs 22
-  Elevator_Pitch: tests_pipeline — 21 vs 22
-  Elevator_Pitch: tests_pipeline — 21 vs 22
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_active — 112 vs 113
-  Stage_IV_Roadmap: tests_total — 133 vs 135
-  Stage_IV_Roadmap: tests_active — 112 vs 113
-  Stage_IV_Roadmap: tests_survived — 104 vs 105
-  Stage_IV_Roadmap: tests_pipeline — 21 vs 22
-  Stage_IV_Roadmap: tests_pipeline — 21 vs 22
+[efc-drift] 159 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 159
   Changelog: claims 158 but actual is 159
-  [fixed] README.md: 133 → 135 (tests_total)
-  [fixed] README.md: 133 → 135 (tests_total)
-  [fixed] Validation_Ledger: 133 → 135 (tests_total)
-  [fixed] Validation_Ledger: 133 → 135 (tests_total)
-  [fixed] Validation_Ledger: 112 → 113 (tests_active)
-  [fixed] Validation_Ledger: 104 → 105 (tests_survived)
-  [fixed] Validation_Ledger: 21 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 133 → 135 (tests_total)
-  [fixed] White_Paper_Series: 133 → 135 (tests_total)
-  [fixed] White_Paper_Series: 133 → 135 (tests_total)
-  [fixed] White_Paper_Series: 112 → 113 (tests_active)
-  [fixed] White_Paper_Series: 104 → 105 (tests_survived)
-  [fixed] White_Paper_Series: 21 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 112 → 113 (tests_active)
-  [fixed] White_Paper_Series: 104 → 105 (tests_survived)
-  [fixed] White_Paper_Series: 21 → 22 (tests_pipeline)
-  [fixed] White_Paper_Series: 21 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 133 → 135 (tests_total)
-  [fixed] Elevator_Pitch: 112 → 113 (tests_active)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 21 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 133 → 135 (tests_total)
-  [fixed] Elevator_Pitch: 133 → 135 (tests_total)
-  [fixed] Elevator_Pitch: 112 → 113 (tests_active)
-  [fixed] Elevator_Pitch: 112 → 113 (tests_active)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 21 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 21 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 21 → 22 (tests_pipeline)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 112 → 113 (tests_active)
-  [fixed] Stage_IV_Roadmap: 133 → 135 (tests_total)
-  [fixed] Stage_IV_Roadmap: 112 → 113 (tests_active)
-  [fixed] Stage_IV_Roadmap: 104 → 105 (tests_survived)
-  [fixed] Stage_IV_Roadmap: 21 → 22 (tests_pipeline)
-  [fixed] Stage_IV_Roadmap: 21 → 22 (tests_pipeline)
-[efc-drift] auto-fixed 5 file(s)
+[efc-drift] auto-fixed 0 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
 ============================================================
 EFC SYMBIOSE SNAPSHOT
@@ -265,7 +166,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-05-03
+Date: 2026-05-04
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -288,7 +189,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 3 paper packages enriched; Public pages updated: Changelog, Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series; Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] 1 paper package enriched; Ledger data: evidence-register.json, ledger.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
