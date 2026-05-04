@@ -8,12 +8,13 @@
   "license": "CC-BY-4.0",
   "package_type": "ai-friendly-paper",
   "schema_version": "1.0",
-  "generated": "2026-05-03",
-  "track": "Spor general",
+  "generated": "2026-05-04",
+  "track": "Spor 1 — Galactic/Cosmological",
   "regimes": [],
   "primary_pdf": "component_weighted_bias.pdf",
   "all_pdfs": [
-    "component_weighted_bias.pdf"
+    "component_weighted_bias.pdf",
+    "component_weighted_bias_v3p1.pdf"
   ],
   "files": [
     {
@@ -41,6 +42,14 @@
       "bytes": 286662
     },
     {
+      "path": "component_weighted_bias_v3p1.pdf",
+      "bytes": 345550
+    },
+    {
+      "path": "component_weighted_bias_v3p1.tex",
+      "bytes": 25781
+    },
+    {
       "path": "data/parameters.json",
       "bytes": 3474
     },
@@ -57,8 +66,44 @@
       "bytes": 1942
     },
     {
+      "path": "rcmp_decomposition.json",
+      "bytes": 72036
+    },
+    {
+      "path": "rcmp_decomposition.py",
+      "bytes": 11210
+    },
+    {
+      "path": "rcmp_robustness_rc.json",
+      "bytes": 548
+    },
+    {
+      "path": "rcmp_signflip.png",
+      "bytes": 67296
+    },
+    {
+      "path": "rcmp_signflip_table.json",
+      "bytes": 12739
+    },
+    {
+      "path": "rcmp_summary.json",
+      "bytes": 1133
+    },
+    {
       "path": "schema.json",
       "bytes": 618
+    },
+    {
+      "path": "sparc175_killtest_results.json",
+      "bytes": 118857
+    },
+    {
+      "path": "sparc175_killtest_universality_curves.py",
+      "bytes": 23126
+    },
+    {
+      "path": "sparc175_model_curves.json",
+      "bytes": 930482
     },
     {
       "path": "src/__init__.py",
@@ -69,6 +114,6 @@
       "bytes": 4826
     }
   ],
-  "n_files": 14,
-  "n_pdfs": 1
+  "n_files": 25,
+  "n_pdfs": 2
 }
