@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "_description": "Key numerical values from the EFC JWST HMF Pre-Registration v4 (DOI 10.6084/m9.figshare.32149654)",
   "cosmology": {
     "H0_km_s_Mpc": 67.4,
@@ -35,6 +36,57 @@
     "chain": "g(a) -> mu(a) -> D(a) -> sigma(M,z) -> n(M,z)"
   },
   "prediction_redshifts": [
+=======
+  "paper_metadata": {
+    "title": "Pre-Registration: EFC dN/dM (z>7) \u2014 Halo Mass Function via mu(a) Perturbation Channel",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-05-03",
+    "license": "CC-BY-4.0",
+    "doi": "10.6084/m9.figshare.32149654",
+    "validation_candidate": "vc de9a6ee1deb6"
+  },
+  "efc_gate_parameters": {
+    "B": {
+      "description": "Perturbation channel amplitude",
+      "default_placeholder": 0.04,
+      "note": "To be fixed by joint S(z)-fit vc 4ea464e38b5f"
+    },
+    "zt": {
+      "description": "Gate transition redshift",
+      "default_placeholder": 3.0,
+      "note": "To be fixed by joint S(z)-fit"
+    },
+    "n": {
+      "description": "Gate steepness exponent",
+      "default_placeholder": 4.0,
+      "note": "To be fixed by joint S(z)-fit"
+    }
+  },
+  "equations": {
+    "eq1_background_modification": "DeltaE2(a) = A * [g(a) - g(0)]",
+    "eq2_gate_function": "g(a) = 1 / (1 + (zt / z(a))^n), z(a) = 1/a - 1",
+    "eq3_mu_effective": "mu(a) = 1 - B * g(a)"
+  },
+  "prediction_chain": [
+    "g(a)",
+    "mu(a)",
+    "D(a)",
+    "sigma(M,z)",
+    "n(M,z)"
+  ],
+  "cosmological_parameters": {
+    "Omega_m0": 0.3111,
+    "Omega_Lambda0": 0.6889,
+    "H0_km_s_Mpc": 67.66,
+    "h": 0.6766,
+    "n_s": 0.9665,
+    "sigma8": 0.8102,
+    "delta_c": 1.686
+  },
+  "redshift_targets": [
+>>>>>>> origin/main
     7,
     8,
     9,
@@ -52,13 +104,18 @@
     "a": 0.707,
     "p": 0.3
   },
+<<<<<<< HEAD
   "tinker_2008_params_Delta200": {
+=======
+  "tinker2008_params_delta200": {
+>>>>>>> origin/main
     "A0": 0.186,
     "a0": 1.47,
     "b0": 2.57,
     "c0": 1.19
   },
   "falsification_criteria": {
+<<<<<<< HEAD
     "acceptance_threshold": "Delta_chi2 < 4",
     "falsification_threshold": ">3 sigma disagreement",
     "datasets": [
@@ -86,4 +143,31 @@
     "observable": "high-z mass function / early structure JWST"
   },
   "sealing_protocol": "SHA-256 hash of numerical n(M,z) tables computed once (B, z_t, n) are fixed"
+=======
+    "acceptance": "Delta_chi2 < 4",
+    "falsification": ">3 sigma disagreement against JWST CEERS / COSMOS-Web / GLASS counts"
+  },
+  "regime_placement": {
+    "atlas_level": "L3",
+    "mechanism": "Sflow-boost at high z",
+    "observable": "high-z halo mass function"
+  },
+  "related_dois": {
+    "technical_note_I": "10.6084/m9.figshare.31333414",
+    "technical_note_II": "10.6084/m9.figshare.31333600",
+    "cosmos_web_obs": "10.6084/m9.figshare.31059964",
+    "SO_x_Euclid_EG": "10.6084/m9.figshare.32023788",
+    "Rubin_DP2_shear": "10.6084/m9.figshare.32013738",
+    "DESI_fsigma8": "10.6084/m9.figshare.32013156"
+  },
+  "sign_lemma": {
+    "statement": "DeltaE2 <= 0 for all z > 0 when g is monotonically increasing in a"
+  },
+  "jwst_datasets": [
+    "CEERS",
+    "COSMOS-Web",
+    "GLASS"
+  ],
+  "sealing_protocol": "SHA-256 hash of numerical curves before data confrontation"
+>>>>>>> origin/main
 }
