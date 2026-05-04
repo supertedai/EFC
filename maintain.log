@@ -1,13 +1,13 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
-  ORCID works               : 161
-  ORCID Figshare DOIs       : 161
+  ORCID works               : 162
+  ORCID Figshare DOIs       : 162
   Repo Figshare DOIs        : 157
-  Matched                   : 156
+  Matched                   : 157
   On ORCID, not in repo     : 5
-  In repo, not on ORCID     : 1
+  In repo, not on ORCID     : 0
 
 PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.28098350  Hypothesis: The Universe as an Energy-Driven System
@@ -15,9 +15,6 @@ PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.31970898  White Paper - Part 2 of 4 - Energy-Flow Cosmology, Part 2: Field Equations and O
   - 10.6084/m9.figshare.31970904  White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledg
   - 10.6084/m9.figshare.31970907  White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility
-
-DOIs IN REPO, NOT ON ORCID (action: register on ORCID or check draft status):
-  - 10.6084/m9.figshare.32149654  jwst_hmf_prereg_v4
 ========================================================================
 [efc-paper-type] all papers already classified
 [efc-regen-index] no diff — 159 papers, version 2.4
@@ -64,7 +61,14 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 400: Bad Request -- {
+  "error": {
+    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": null
+  }
+}
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
@@ -108,6 +112,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 8 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -144,7 +149,7 @@ Processed 159 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:124 → 124  (+0)    ledger:124 → 124 (+0)
+  empirical       ev: 92 → 124  (+32)    ledger: 84 → 124 (+40)
   methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
   structural      ev: 71 →  71  (+0)    ledger: 71 →  71 (+0)
 ========================================================================
@@ -188,7 +193,8 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
