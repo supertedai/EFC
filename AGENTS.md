@@ -15,8 +15,8 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger_public: v3.20
-validation_ledger_internal: v4.7
+validation_ledger_public: v3.18
+validation_ledger_internal: v4.6
 ai_packages: 157 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
@@ -336,7 +336,7 @@ EFC/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
 │   ├── papers/efc/     # 157 papers (157 with AI-friendly packages, 100%) + _archived/
-│   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
+│   └── public/         # Validation Ledger (v3.18), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
 ├── schema/             # Ontology, JSON-LD contexts (20 files)

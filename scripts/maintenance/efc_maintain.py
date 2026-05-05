@@ -37,6 +37,7 @@ GEN = os.path.join(HERE, "efc_gen_ai_friendly.py")
 SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
 DRIFT = os.path.join(HERE, "efc_drift_detector.py")
+ROOTFILE_CONSISTENCY = os.path.join(HERE, "efc_rootfile_consistency.py")
 SYMBIOSE = os.path.join(HERE, "efc_symbiose_snapshot.py")
 AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
@@ -110,6 +111,10 @@ def main() -> int:
     run(EVIDENCE_MIRROR)
     # Step 5: auto-fix drift (paper counts in README/AGENTS/Changelog)
     rc_drift = run(DRIFT, "--fix")
+    # Step 5a: auto-fix Ledger version-string drift in rootfiles
+    # (orthogonal axis to drift_detector — handles vX.Y badges/refs that
+    # follow the Ledger HTML's authoritative public/internal version pair)
+    run(ROOTFILE_CONSISTENCY, "--fix")
     # Step 6: Generate Symbiose snapshot (ground truth for cross-validation)
     run(SYMBIOSE, "--from-ledger")
     # Step 7: Scan for new external datasets (Euclid, DESI, KiDS, Simons)
