@@ -1,7 +1,7 @@
 {
   "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-05-05T11:47:46+00:00",
+  "generated_at": "2026-05-05T13:22:40+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -11,13 +11,13 @@
   "totals": {
     "orcid_works": 162,
     "orcid_dois": 162,
-    "repo_paper_dirs": 164,
+    "repo_paper_dirs": 161,
     "repo_unique_dois": 160,
     "matched_count": 157,
     "missing_paper_dirs": 5,
-    "duplicate_doi_dirs": 2,
-    "dirs_without_doi": 2,
-    "complete_packages": 152
+    "duplicate_doi_dirs": 1,
+    "dirs_without_doi": 0,
+    "complete_packages": 150
   },
   "papers": [
     {
@@ -88,16 +88,6 @@
       "version": "1.0",
       "repo_dir": "docs/papers/efc/CEM-Consciousness-Ego-Mirror",
       "package_complete": true,
-      "has_pdf": true
-    },
-    {
-      "doi": "",
-      "figshare_id": "",
-      "title": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework Under Entropy-Constrained Structure Formation",
-      "date": "2026-01-14",
-      "version": "1.0",
-      "repo_dir": "docs/papers/efc/CMB-Thermodynamic-Interpretation/CMB-Thermodynamic-Interpretation",
-      "package_complete": false,
       "has_pdf": true
     },
     {
@@ -1431,26 +1421,6 @@
       "has_pdf": true
     },
     {
-      "doi": "",
-      "figshare_id": "",
-      "title": "EFC — Master Specification",
-      "date": "2025-11-15",
-      "version": "1.0",
-      "repo_dir": "docs/papers/efc/efc_master",
-      "package_complete": true,
-      "has_pdf": true
-    },
-    {
-      "doi": "10.6084/m9.figshare.30630500",
-      "figshare_id": "30630500",
-      "title": "Energy-Flow Cosmology (EFC) Master Specification v1.1",
-      "date": "2025-11-16",
-      "version": "1.1",
-      "repo_dir": "docs/papers/efc/efc_master_v1",
-      "package_complete": true,
-      "has_pdf": true
-    },
-    {
       "doi": "10.6084/m9.figshare.32037990",
       "figshare_id": "32037990",
       "title": "EFC Perturbation Sector: Constraint-Driven Gravitational Slip and a Testable Lensing Crossover",
@@ -1690,14 +1660,6 @@
   ],
   "duplicate_doi_dirs": [
     {
-      "doi": "10.6084/m9.figshare.30630500",
-      "dirs": [
-        "docs/papers/efc/efc_formal_spec",
-        "docs/papers/efc/efc_master_v1"
-      ],
-      "action": "consolidate"
-    },
-    {
       "doi": "10.6084/m9.figshare.31970886",
       "dirs": [
         "docs/papers/efc/efc_white_paper_part_1_to_4/White_paper_part_1_efc_recovery_limits",
@@ -1706,14 +1668,5 @@
       "action": "consolidate"
     }
   ],
-  "dirs_without_doi": [
-    {
-      "dir": "docs/papers/efc/CMB-Thermodynamic-Interpretation/CMB-Thermodynamic-Interpretation",
-      "action": "assign_doi_or_archive"
-    },
-    {
-      "dir": "docs/papers/efc/efc_master",
-      "action": "assign_doi_or_archive"
-    }
-  ]
+  "dirs_without_doi": []
 }

@@ -45,6 +45,7 @@ SKIP_TOP = {
     "efc_graph_edges.json", "efc_graph_schema.json",
     "efc_index.json", "efc_index.jsonld",
     "ai_friendly_index.json",
+    "_archived",
 }
 
 MANDATORY = ("index.json", "metadata.json", "ai_manifest.json", "README.md")
