@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-05-05T12:56:57+00:00",
+  "policy": "Forward-looking immutability guard. Any change to a listed file must be accompanied by an explicit re-seal: update this manifest in the same commit and add a Validation Ledger v-bump entry documenting the re-seal. Unannounced changes will fail CI.",
+  "entries": [
+    {
+      "path": "pipelines/efc/euclid_dr1/data/benchmark.json",
+      "sha256": "405a1d2d23736ba3416b7197f079ab9ee867cc26dbdb603faa291cb7124a11de",
+      "bytes": 480
+    },
+    {
+      "path": "pipelines/efc/euclid_dr1/data/parameter_scan.json",
+      "sha256": "1ed34378423c65cb4f75ed874749e523f93b2006b0adc97a3e6bde790992032f",
+      "bytes": 5101
+    },
+    {
+      "path": "pipelines/efc/euclid_dr1/data/frozen_prediction_hash.json",
+      "sha256": "8882c481d2c5a37989f2c1f22f09bbe4dc7c632be0ece9b068c42e139623c140",
+      "bytes": 255
+    }
+  ]
+}
