@@ -1,16 +1,89 @@
 {
   "$schema": "./schema.json",
   "id": "hypothesis-the-universe-as-an-energy-driven-system",
-  "title": "Hypothesis: The Universe as an Energy-Driven System",
+  "title": "Hypothesis: The Universe as an Energy-Driven System \u2013 Integrating Time, Space, Consciousness, and Thermodynamics",
+  "description": "Conceptual cosmology proposing that energy flow and the second law of thermodynamics are primary, with time, space, and consciousness emerging from dynamics between two entropy extremes (S=0 \u201csingularity\u201d and S=1 \u201caltular\u201d). It outlines a normalized-entropy framework (0<S<1 \u201chalo\u201d) where observable phenomena occur, linking redshift, time dilation, and the viability of consciousness to energy flow and entropy. The work offers qualitative predictions and directions for testing via cosmological observations and non-equilibrium systems.",
+  "version": "1.0",
+  "date": "2024-12-27",
   "doi": "10.6084/m9.figshare.28098350",
-  "version": "0.1-scaffold",
-  "date": "",
+  "keywords": [
+    "energy-flow cosmology",
+    "thermodynamics",
+    "second law of thermodynamics",
+    "entropy",
+    "normalized entropy S",
+    "emergent spacetime",
+    "redshift",
+    "time dilation",
+    "consciousness",
+    "entropy gradient",
+    "singularity",
+    "halo boundary"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "singularity_boundary": {
+      "latex": "S = 0",
+      "description": "Normalized-entropy lower bound (singularity): maximal energy density, minimal entropy; time-space collapses into potentiality."
+    },
+    "altular_boundary": {
+      "latex": "S = 1",
+      "description": "Normalized-entropy upper bound (altular): maximal entropy, minimal energy density; time-space collapses into thermodynamic equilibrium."
+    },
+    "halo_region": {
+      "latex": "0 < S < 1",
+      "description": "The observable universe (\"halo\") exists between the extremes; energy flow sustains time-space and permits consciousness."
+    },
+    "second_law_global": {
+      "latex": "\\frac{dS}{dt} \\ge 0",
+      "description": "Second law of thermodynamics for an isolated system: entropy does not decrease; governs cosmic evolution from low to high entropy."
+    }
+  },
+  "key_results": {
+    "main_finding": "Time, space, and consciousness are emergent phenomena maintained by energy flow between entropy extremes, with observable effects such as redshift (as S\u21921) and time dilation (as S\u21920).",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "No conscious system can be sustained when net free-energy throughput falls below a critical threshold; consciousness ceases as energy flow approaches equilibrium (S\u21921).",
+      "falsifiable_by": "Demonstrate sustained, reportable conscious experience in a system maintained at thermodynamic equilibrium (no net energy gradients/throughput) for a prolonged interval (e.g., \u226510 minutes)."
+    },
+    {
+      "id": "P2",
+      "statement": "Approaching regions characterized by maximal entropy and minimal energy density (the \"halo\" toward S\u21921), photons exhibit monotonically increasing redshift linked to entropy increase.",
+      "falsifiable_by": "High-precision surveys showing no residual correlation between redshift and entropy proxies (e.g., background temperature uniformity, baryon-to-photon ratio) after accounting for standard expansion in \u039bCDM across comparable lines of sight."
+    },
+    {
+      "id": "P3",
+      "statement": "Near extremely low-entropy, high-energy-density environments (approaching S\u21920), operational clocks experience strong time dilation consistent with the collapse of time-flow.",
+      "falsifiable_by": "Precision timing near compact-object horizons that finds no measurable time dilation within experimental bounds where S is inferred to be near its minimum."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Verified, sustained conscious report and responsiveness in a system held at thermodynamic equilibrium (no net free-energy throughput or gradients) for \u226510 minutes.",
+    "KC2: After controlling for \u039bCDM expansion, cosmological datasets (distance\u2013redshift relations, H(z), CMB-derived proxies) show no statistically significant correlation (p < 0.01) between redshift and independent entropy/energy-density proxies across multiple surveys.",
+    "KC3: Demonstration of sustained increase in information processing/complex organization within a truly isolated, closed system at or near maximal entropy (S\u22481) without external energy input or export of entropy.",
+    "KC4: Precision clock experiments in extreme gravitational fields (approaching black hole horizons) detect no time dilation within sensitivity where the framework predicts S\u21920 behavior."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "hypothesis-the-universe-as-an-energy-driven-system.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.28098350",
   "license": "CC-BY-4.0",
   "scaffolded": true,
-  "scaffolded_at": "2026-05-05T20:45:02+00:00"
+  "scaffolded_at": "2026-05-05T20:45:02+00:00",
+  "paper_type_inferred": true
 }

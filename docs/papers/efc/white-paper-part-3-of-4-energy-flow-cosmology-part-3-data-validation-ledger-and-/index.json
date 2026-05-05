@@ -2,15 +2,131 @@
   "$schema": "./schema.json",
   "id": "white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-",
   "title": "White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
+  "description": "Presents a structured validation ledger for Energy-Flow Cosmology (102 registered tests), two sealed blind predictions with cryptographic provenance, and a pre-registered falsification protocol for Stage-IV surveys. Reports a persistent but non-detection growth-sector signal (\u03b1L2 = \u22121.00 \u00b1 0.46, \u0394AIC = \u22122.91) and defines sharp kill criteria that would compel abandoning EFC.",
+  "version": "1.0",
+  "date": "2026-04-01",
   "doi": "10.6084/m9.figshare.31970904",
-  "version": "0.1-scaffold",
-  "date": "",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "falsification protocol",
+    "validation ledger",
+    "sealed predictions",
+    "BAO",
+    "RSD",
+    "f\u03c38",
+    "gravitational slip",
+    "\u00b5\u2013\u03a3 parameterization",
+    "Stage-IV surveys",
+    "DESI",
+    "weak lensing"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "growth_sector_signal": {
+      "latex": "\\alpha L_2 = -1.00 \\pm 0.46",
+      "description": "Persistent directional signal inferred from growth-sector validation runs; not a detection."
+    },
+    "delta_AIC": {
+      "latex": "\\Delta \\mathrm{AIC} = -2.91",
+      "description": "Model comparison indicator for EFC relative to the \u039bCDM baseline in the growth sector."
+    },
+    "bao_DH_over_rd_z1p0_EFC_LCDM": {
+      "latex": "D_H/r_d\\,(z=1.0):\\ \\mathrm{EFC}=16.527,\\ \\Lambda\\mathrm{CDM}=17.466",
+      "description": "Sealed Prediction 1 BAO radial distance ratio at z=1.0, showing a 3.1\u03c3 deviation from \u039bCDM."
+    },
+    "bao_DH_over_rd_z0p7_EFC_LCDM": {
+      "latex": "D_H/r_d\\,(z=0.7):\\ \\mathrm{EFC}=19.797,\\ \\Lambda\\mathrm{CDM}=20.719",
+      "description": "Sealed Prediction 1 BAO radial distance ratio at z=0.7, a 2.3\u03c3 deviation from \u039bCDM."
+    },
+    "fsigma8_z0p7_EFC_LCDM": {
+      "latex": "f\\sigma_8\\,(z=0.7):\\ \\mathrm{EFC}=0.430,\\ \\Lambda\\mathrm{CDM}=0.449",
+      "description": "Sealed Prediction 1 growth-rate amplitude at z=0.7, a 2.0\u03c3 deviation from \u039bCDM."
+    },
+    "crossover_redshift": {
+      "latex": "z_{\\mathrm{cross}} = 2.042",
+      "description": "Predicted growth crossover redshift (from Sealed Prediction 1) to be tested by DESI DR2 ELG."
+    },
+    "kill_criterion_alpha_threshold": {
+      "latex": "|\\alpha L_2| < 0.1\\ \\text{at}\\ 3\\sigma",
+      "description": "Pre-registered kill threshold for the growth-sector coupling; if met with \u00b5=\u03a3=1 across probes, EFC is falsified."
+    }
+  },
+  "key_results": {
+    "main_finding": "A pre-registered validation ledger finds a persistent growth-sector signal \u03b1L2 = \u22121.00 \u00b1 0.46 (2.20\u03c3; \u0394AIC = \u22122.91) with 7/7 LOO robustness, while defining sealed predictions and sharp falsification criteria for Stage-IV tests.",
+    "delta_chi2": null,
+    "significance_sigma": 2.2,
+    "parameters_tested": [
+      "alpha L2",
+      "mu(k,z)",
+      "Sigma(k,z)",
+      "f\u03c38(z)",
+      "D_H/r_d(z)",
+      "z_cross"
+    ],
+    "datasets_used": [
+      "DES Y6 weak lensing",
+      "BOSS DR12 BAO",
+      "eBOSS BAO/RSD",
+      "KiDS weak-lensing shear (Case A)",
+      "Planck CMB (structural/consistency constraints)",
+      "DESI (transfer checks; Stage-IV target for DR2 ELG)",
+      "SPARC rotation curves (historical falsification)",
+      "Solar System PPN constraints",
+      "JWST early galaxies (consistency)"
+    ],
+    "verdict": "MARGINAL"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Sealed on 2026-02-18 (hash prefix 7a850cfa58477701): with parameters frozen (\u03b1L2 = \u22120.689), predict D_H/r_d(z=1.0)=16.527, D_H/r_d(z=0.7)=19.797, f\u03c38(z=0.7)=0.430, and a growth crossover at z_cross = 2.042.",
+      "falsifiable_by": "DESI DR2 ELG growth and BAO/RSD measurements; cross-check with Euclid/Rubin weak-lensing and RSD."
+    },
+    {
+      "id": "P2",
+      "statement": "Sealed on 2026-02-21 (hash prefix dbccda150abca0e7): updated parameter freeze \u03b1L2 = \u22120.702 from a second NUTS cycle.",
+      "falsifiable_by": "Same Stage-IV BAO+RSD and growth data streams (DESI, Euclid, Rubin LSST) under the sealed-parameter protocol."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If \u00b5(k,z) = 1 and \u03a3(k,z) = 1 within measurement precision across all probes simultaneously, and the combined constraint yields |\u03b1L2| < 0.1 at 3\u03c3, then EFC is falsified (growth sector).",
+    "KC2: If f\u03c38(z) is monotonically increasing for z < 2 (no growth suppression), or if the DESI DR2 ELG measurement of the crossover redshift satisfies |z_cross \u2212 2.042| > 3\u03c3, then EFC is falsified (crossover prediction)."
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-part-1-recovery-limits",
+      "doi": "10.6084/m9.figshare.31135597",
+      "role": "Companion paper: Recovery conditions and \u039bCDM limits (Part 1)."
+    },
+    {
+      "id": "efc-part-2-field-equations",
+      "doi": "10.6084/m9.figshare.30630500",
+      "role": "Companion paper: Field equations and observable mapping (Part 2)."
+    },
+    {
+      "id": "efc-falsifiability-protocol",
+      "doi": "10.6084/m9.figshare.31251277",
+      "role": "Public, pre-registered falsification protocol with encoded kill thresholds."
+    },
+    {
+      "id": "efc-relativistic-action-derivation",
+      "doi": "10.6084/m9.figshare.31562200",
+      "role": "Structural resolution paper closing the GRAV\u2192(\u00b5,\u03a3) gap via a relativistic action."
+    }
+  ],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31970904",
   "license": "CC-BY-4.0",
   "scaffolded": true,
-  "scaffolded_at": "2026-05-05T20:45:08+00:00"
+  "scaffolded_at": "2026-05-05T20:45:08+00:00",
+  "paper_type_inferred": true
 }
