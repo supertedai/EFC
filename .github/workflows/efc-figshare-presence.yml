@@ -1,0 +1,73 @@
+name: EFC figshare DOI presence-check
+
+# Weekly verification that every DOI in figshare/doi-map.json still
+# returns 200 OK from api.figshare.com, lists Morten Magnusson as
+# author, and carries a title that matches (or is a benign prefix
+# variant of) what the local map records. Catches:
+#
+#   * not_found    — figshare 404 (DOI deleted or never existed)
+#   * withdrawn    — article exists but is_metadata_record / withdrawn
+#   * wrong_author — DOI typo or homonym (someone else's paper)
+#   * title_mismatch — title drift, sub-classified into trivial vs
+#                      semantic-drift cases
+#
+# Runs as a hard gate (exit 2 if any not_found / withdrawn /
+# wrong_author appears). Title mismatches are reported but never
+# block the workflow on their own — they go to reports/figshare-check.json
+# for human review.
+#
+# Network-error-only runs are treated as "skip gate" (exit 0) so a
+# transient figshare outage cannot wedge CI.
+#
+# Local equivalent:
+#     python3 scripts/maintenance/efc_figshare_check.py --check
+#     python3 scripts/maintenance/efc_figshare_check.py --scaffold-missing --with-pdf
+
+on:
+  schedule:
+    # Mondays 05:00 UTC, before the AI council runs at 07:00.
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "figshare/doi-map.json"
+      - "scripts/maintenance/efc_figshare_check.py"
+      - ".github/workflows/efc-figshare-presence.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  presence-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Run figshare presence-check
+        id: check
+        run: python3 scripts/maintenance/efc_figshare_check.py --check
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figshare-check-report
+          path: reports/figshare-check.json
+          if-no-files-found: ignore
+      - name: Resolution guidance on failure
+        if: failure()
+        run: |
+          echo "::group::Hard-fail categories"
+          echo "  not_found    — DOI returns 404 from figshare. Confirm the DOI"
+          echo "                 is correct in doi-map.json; remove the entry"
+          echo "                 if the article was retracted."
+          echo "  withdrawn    — Article exists but figshare flags it as"
+          echo "                 withdrawn / metadata-only. Decide whether to"
+          echo "                 re-upload or remove from the EFC programme."
+          echo "  wrong_author — Author check failed. Likely DOI typo or"
+          echo "                 homonym ('the other Magnusson'). Verify."
+          echo
+          echo "Title-mismatch sub-classes (non-blocking) live in the"
+          echo "uploaded artifact under reports/figshare-check.json."
+          echo "::endgroup::"
