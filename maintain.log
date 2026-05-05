@@ -1,12 +1,12 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
-  ORCID works               : 162
-  ORCID Figshare DOIs       : 162
+  ORCID works               : 163
+  ORCID Figshare DOIs       : 163
   Repo Figshare DOIs        : 157
   Matched                   : 157
-  On ORCID, not in repo     : 5
+  On ORCID, not in repo     : 6
   In repo, not on ORCID     : 0
 
 PAPERS ON ORCID, NOT IN REPO (action: download + process):
@@ -15,6 +15,7 @@ PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.31970898  White Paper - Part 2 of 4 - Energy-Flow Cosmology, Part 2: Field Equations and O
   - 10.6084/m9.figshare.31970904  White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledg
   - 10.6084/m9.figshare.31970907  White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility
+  - 10.6084/m9.figshare.32162706  Composite-level aggregation in rotation curve model selection: A sign-flip decom
 ========================================================================
 [efc-paper-type] all papers already classified
 [efc-regen-index] no diff — 157 papers, version 2.6
@@ -49,14 +50,10 @@ pdftotext: /usr/bin/pdftotext
     [SKIP] No impact generated
   A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
-    [FAIL] OpenAI HTTP 400: Bad Request -- {
-  "error": {
-    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
-    "type": "invalid_request_error",
-    "param": null,
-    "code": null
-  }
-}
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
