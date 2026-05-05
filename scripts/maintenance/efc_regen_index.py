@@ -61,6 +61,7 @@ SKIP_TOP = {
     "README.md", "cover_letter-2.pdf", "efc_graph_edges.json",
     "efc_graph_schema.json", "efc_index.json", "efc_index.jsonld",
     "ai_friendly_index.json",
+    "_archived",
 }
 
 FIGSHARE_DOI_RE = re.compile(r"10\.6084/m9\.figshare\.(\d{7,9})")
