@@ -321,6 +321,7 @@ def scaffold_one(missing: dict, with_pdf: bool, out_root: Path) -> dict:
     (paper_dir / "src").mkdir()
     (paper_dir / "data").mkdir()
     (paper_dir / "examples").mkdir()
+    (paper_dir / "src" / "__init__.py").write_text("")
 
     index = {
         "$schema": "./schema.json",
@@ -391,6 +392,17 @@ def scaffold_one(missing: dict, with_pdf: bool, out_root: Path) -> dict:
         f"  title = {{{title or slug}}},\n"
         f"  doi = {{{doi_full}}},\n"
         f"  year = {{}},\n}}\n",
+    )
+    write_text(
+        paper_dir / "LICENSE",
+        "Creative Commons Attribution 4.0 International (CC-BY-4.0)\n"
+        "https://creativecommons.org/licenses/by/4.0/\n\n"
+        "You are free to:\n"
+        "  - Share — copy and redistribute the material in any medium or format\n"
+        "  - Adapt — remix, transform, and build upon the material\n"
+        "Under the following terms:\n"
+        "  - Attribution — You must give appropriate credit, provide a link\n"
+        "    to the license, and indicate if changes were made.\n",
     )
     (paper_dir / ".scaffolded").write_text(
         f"Scaffolded on {datetime.now(timezone.utc).isoformat(timespec='seconds')}\n"
