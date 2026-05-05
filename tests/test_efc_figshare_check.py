@@ -220,6 +220,7 @@ class ScaffoldTests(unittest.TestCase):
                 "README.md",
                 "CITATION.cff",
                 "citations.bib",
+                "LICENSE",
                 ".scaffolded",
                 "test-paper.jsonld",
             ):
@@ -229,6 +230,10 @@ class ScaffoldTests(unittest.TestCase):
                 )
             for d in ("src", "data", "examples"):
                 self.assertTrue((paper_dir / d).is_dir())
+            self.assertTrue(
+                (paper_dir / "src" / "__init__.py").exists(),
+                "missing src/__init__.py marker",
+            )
             idx = json.loads((paper_dir / "index.json").read_text())
             self.assertEqual(idx["doi"], "10.6084/m9.figshare.12345")
             self.assertTrue(idx["scaffolded"])
