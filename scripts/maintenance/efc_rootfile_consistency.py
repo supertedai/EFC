@@ -14,21 +14,25 @@ The Ledger uses a dual-version scheme:
   (``docs/validation-ledger/data/ledger.json``) and is incremented on
   every internal data update.
 
-This checker is **read-only**. It surfaces drift; it never rewrites files.
-The companion ``efc_drift_detector.py --fix`` already covers paper/test
-counts; this script complements it on the orthogonal axis of version
-strings.
+By default the checker is **read-only**: it surfaces drift, it never
+rewrites files. With ``--fix`` it will rewrite the same versioned
+substrings to match Ledger truth. The companion
+``efc_drift_detector.py --fix`` already covers paper/test counts; this
+script complements it on the orthogonal axis of version strings.
 
 Exit codes
 ----------
-0 = all rootfile version mentions match Ledger
-2 = drift detected
+0 = all rootfile version mentions match Ledger (or all drifts fixed)
+2 = drift detected (read-only mode) / fixes applied (--fix mode, when
+    invoked outside CI we still return 0; only the read-only verify
+    returns 2 on drift)
 3 = unable to extract authoritative version
 
 Usage
 -----
     python3 scripts/maintenance/efc_rootfile_consistency.py            # report
     python3 scripts/maintenance/efc_rootfile_consistency.py --json     # machine
+    python3 scripts/maintenance/efc_rootfile_consistency.py --fix      # apply fixes
 """
 from __future__ import annotations
 
@@ -177,8 +181,105 @@ def detect_drift() -> Report:
     return report
 
 
-def run(json_out: bool) -> int:
+def apply_fix(report: Report) -> int:
+    """Rewrite each drift line in-place to match Ledger truth.
+
+    Strategy: for each (file, line, found, expected, kind) drift, re-scan
+    that line for the matching pattern and replace the version substring.
+    We re-scan rather than relying on a stored offset because the file may
+    have been modified between detection and fix.
+    """
+    if not report.drifts:
+        return 0
+    changed_files: set[str] = set()
+    for fname, path in ROOTFILES.items():
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        new_text = text
+        # Only fix drifts pertaining to this file.
+        local_drifts = [d for d in report.drifts if d.file == fname]
+        if not local_drifts:
+            continue
+        # Re-derive expected versions from the report (canonical truth).
+        public_v = report.public_version
+        internal_v = report.internal_version
+        # Replacement table — each is a (regex, repl) pair where repl uses
+        # \g<...> to preserve surrounding text. Patterns mirror the
+        # detection patterns in _scan_file_for_versions.
+        substitutions: list[tuple[re.Pattern[str], str]] = [
+            # README badge
+            (
+                re.compile(r"(Validation_Ledger-v)\d+\.\d+", re.IGNORECASE),
+                lambda m: m.group(1) + public_v,
+            ),
+            # README quick-ref / prose: "(v3.17 public / v4.8 internal)"
+            (
+                re.compile(r"(\()v\d+\.\d+(\s+public\s*/\s*)v\d+\.\d+(\s+internal\))"),
+                lambda m: f"{m.group(1)}v{public_v}{m.group(2)}v{internal_v}{m.group(3)}",
+            ),
+            # README prose: "v3.17 / v4.8 internal" (without the "public" word)
+            (
+                re.compile(r"v\d+\.\d+\s*/\s*v\d+\.\d+(\s+internal)"),
+                lambda m: f"v{public_v} / v{internal_v}{m.group(1)}",
+            ),
+            # AGENTS yaml-style fields
+            (
+                re.compile(r"(validation_ledger_public:\s*v)\d+\.\d+", re.IGNORECASE),
+                lambda m: m.group(1) + public_v,
+            ),
+            (
+                re.compile(r"(validation_ledger_internal:\s*v)\d+\.\d+", re.IGNORECASE),
+                lambda m: m.group(1) + internal_v,
+            ),
+            # llms.txt header "## VALIDATION STATUS (vX.Y / vA.B)"
+            (
+                re.compile(r"(VALIDATION STATUS\s*\()v\d+\.\d+\s*/\s*v\d+\.\d+(\))"),
+                lambda m: f"{m.group(1)}v{public_v} / v{internal_v}{m.group(2)}",
+            ),
+            # README/AGENTS tree map "Validation Ledger (vX.Y)"
+            (
+                re.compile(r"(Validation Ledger\s*\()v\d+\.\d+(\))"),
+                lambda m: f"{m.group(1)}v{public_v}{m.group(2)}",
+            ),
+        ]
+        for pat, repl in substitutions:
+            new_text = pat.sub(repl, new_text)
+        if new_text != text:
+            path.write_text(new_text)
+            changed_files.add(fname)
+    if changed_files:
+        print(
+            f"[rootfile-consistency] applied fixes to:"
+            f" {', '.join(sorted(changed_files))}"
+        )
+    return 0
+
+
+def run(json_out: bool, fix: bool = False) -> int:
     report = detect_drift()
+    if fix:
+        if not report.drifts:
+            print("[rootfile-consistency] no drift to fix ✓")
+            return 0
+        print(
+            f"[rootfile-consistency] applying {len(report.drifts)} fix(es)"
+            f" — Ledger truth: public=v{report.public_version},"
+            f" internal=v{report.internal_version}"
+        )
+        apply_fix(report)
+        # Re-verify
+        report2 = detect_drift()
+        if report2.drifts:
+            print(
+                f"[rootfile-consistency] WARNING: {len(report2.drifts)} drift(s)"
+                f" remain after fix; manual cleanup needed"
+            )
+            for d in report2.drifts:
+                print(f"  {d.file}:{d.line}: {d.found} → {d.expected}")
+            return 2
+        print("[rootfile-consistency] all rootfile version mentions match ✓")
+        return 0
     if json_out:
         out = {
             "public_version": report.public_version,
@@ -217,8 +318,13 @@ def run(json_out: bool) -> int:
 def main(argv: Iterable[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="EFC rootfile-consistency checker")
     p.add_argument("--json", action="store_true", help="machine-readable JSON output")
+    p.add_argument(
+        "--fix",
+        action="store_true",
+        help="rewrite version strings to match Ledger truth",
+    )
     args = p.parse_args(list(argv) if argv is not None else None)
-    return run(json_out=args.json)
+    return run(json_out=args.json, fix=args.fix)
 
 
 if __name__ == "__main__":

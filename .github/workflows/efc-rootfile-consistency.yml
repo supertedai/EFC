@@ -7,12 +7,12 @@ name: EFC rootfile-consistency
 # "vA.B update" for the internal/data version — both of which are
 # checked.
 #
-# This is a *non-blocking* warning gate. Pre-existing rootfile drift in
-# the repo (e.g. README badge "v3.17" while Ledger publishes "v3.18")
-# would block all PRs if this were a hard gate. Running it as a warning
-# surfaces the drift in PR annotations without halting unrelated work.
-# Once rootfiles are brought into sync the workflow can be promoted to
-# a hard gate by removing the `continue-on-error: true` line below.
+# Hard gate as of Phase 7: pre-existing drift was resolved by syncing
+# rootfiles to Ledger truth (v3.18/v4.6) and the maintenance pipeline now
+# auto-applies efc_rootfile_consistency.py --fix on every push to main,
+# so a PR landing here with drift means either (a) the Ledger version
+# bumped and rootfiles haven't been resynced, or (b) someone manually
+# edited a rootfile out of sync. Both should fail review.
 #
 # Local equivalent:
 #     python3 scripts/maintenance/efc_rootfile_consistency.py
@@ -30,19 +30,23 @@ on:
 jobs:
   rootfile-consistency:
     runs-on: ubuntu-latest
-    continue-on-error: true  # warning-only until rootfiles are synced
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Run rootfile-consistency checker
+        run: python3 scripts/maintenance/efc_rootfile_consistency.py
+      - name: Resolution guidance on failure
+        if: failure()
         run: |
-          set +e
-          python3 scripts/maintenance/efc_rootfile_consistency.py
-          rc=$?
-          if [ $rc -eq 2 ]; then
-            echo "::warning::Rootfile Ledger-version drift detected. See script output above. Fix per the line/version pairs reported."
-            exit 0  # warning, not failure
-          fi
-          exit $rc
+          echo "::group::How to resolve"
+          echo "Rootfile Ledger-version drift means README/AGENTS/llms.txt"
+          echo "no longer match the Ledger HTML's authoritative version."
+          echo
+          echo "Local fix (auto-applied by the maintenance pipeline):"
+          echo "    python3 scripts/maintenance/efc_rootfile_consistency.py --fix"
+          echo
+          echo "If the Ledger HTML version itself is wrong, fix it first;"
+          echo "the rootfiles follow it, not the other way around."
+          echo "::endgroup::"
