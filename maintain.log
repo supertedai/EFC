@@ -17,7 +17,7 @@ PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.31970907  White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility
 ========================================================================
 [efc-paper-type] all papers already classified
-[efc-regen-index] no diff — 159 papers, version 2.4
+[efc-regen-index] wrote efc_index.json — 158 papers, version 2.5
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -93,7 +93,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 59 paper(s) in public pages <<<
+>>> Step 2: Registering 58 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -105,29 +105,28 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 58 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 159 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 157 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 159 paper dirs scanned
+EFC DOI sync — 158 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 158
+  papers with registered DOI : 157
   papers without DOI         : 1
   papers with conflicts      : 0
 ========================================================================
-[efc-gen] 159 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 159 paper dirs · 0 errors · 1 warnings
+[efc-gen] 157 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 157 paper dirs · 0 errors · 1 warnings
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 13
 
-Processed 159 paper(s)
-  skip: 152
+Processed 157 paper(s)
+  skip: 150
   warn: 7
     - A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics: DOI registered but no ledger_impact block
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
@@ -142,15 +141,16 @@ Processed 159 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:112 → 124  (+12)    ledger: 54 → 124 (+70)
-  methodological  ev:  3 →  25  (+22)    ledger:  3 →  25 (+22)
-  structural      ev:  2 →  71  (+69)    ledger:  2 →  71 (+69)
+  empirical       ev:124 → 124  (+0)    ledger:124 → 124 (+0)
+  methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
+  structural      ev: 71 →  71  (+0)    ledger: 71 →  71 (+0)
 ========================================================================
-[efc-drift] 159 papers · 2 drift(s) detected:
-  Changelog: claims 158 but actual is 159
-  Changelog: claims 158 but actual is 159
+[efc-drift] 157 papers · 2 drift(s) detected:
+  Changelog: claims 158 but actual is 157
+  Changelog: claims 158 but actual is 157
 [efc-drift] auto-fixed 0 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
+[rootfile-consistency] no drift to fix ✓
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -158,7 +158,7 @@ Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Tests: 135 total, 105 survived, 8 falsified
-  Papers: 159 (158 DOIs)
+  Papers: 158 (157 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
@@ -186,18 +186,19 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] 1 paper package enriched.
+[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 159 papers, 158 DOIs
+Repo: 158 papers, 157 DOIs
 Ledger: 135 tests, 8 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 159 close to repo 159
-  [OK]       Paper count 159 close to repo 159
+  [OK]       Paper count 157 close to repo 158
+  [OK]       Paper count 157 close to repo 158
   [OK]       Survival count 105/113 matches ledger
 
 --- Validation Ledger ---
@@ -227,13 +228,11 @@ Ledger: 135 tests, 8 falsified
   [CRITICAL] 3 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
-  [OK]       README paper count 159 matches repo 159
-  [OK]       README paper count 159 matches repo 159
-  [OK]       README paper count 159 matches repo 159
-  [OK]       README paper count 159 matches repo 159
+  [OK]       README paper count 157 matches repo 158
+  [OK]       README paper count 157 matches repo 158
   [OK]       Stats categories sum to 135 = total_public
-  [OK]       DOI sync script present, 158/159 papers have DOIs
-  [OK]       117 papers have sealed predictions (342 total)
+  [OK]       DOI sync script present, 157/158 papers have DOIs
+  [OK]       115 papers have sealed predictions (337 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
@@ -241,7 +240,7 @@ Ledger: 135 tests, 8 falsified
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
   [OK]       Symbiose test count 135 matches ledger
-  [OK]       Symbiose paper count 159 matches repo
+  [OK]       Symbiose paper count 158 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
@@ -426,6 +425,7 @@ Fix these before auto-commit:
 [efc-maintain] running efc_ledger_autofill.py …
 [efc-maintain] running efc_evidence_mirror.py …
 [efc-maintain] running efc_drift_detector.py --fix…
+[efc-maintain] running efc_rootfile_consistency.py --fix…
 [efc-maintain] running efc_symbiose_snapshot.py --from-ledger…
 [efc-maintain] running efc_dataset_scanner.py …
 [efc-maintain] running efc_auto_changelog.py …
