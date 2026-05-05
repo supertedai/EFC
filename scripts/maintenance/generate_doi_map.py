@@ -44,6 +44,13 @@ def walk_paper_dirs() -> list[dict]:
     for index_path in sorted(PAPERS_ROOT.rglob("index.json")):
         if "_archived" in index_path.parts:
             continue
+        # Skip nested same-name directories (e.g.
+        # CMB-Thermodynamic-Interpretation/CMB-Thermodynamic-Interpretation/)
+        # which exist as content containers for the parent's manifest, not as
+        # separate papers.
+        parent = index_path.parent
+        if parent.parent.name == parent.name and parent.parent.parent.name == "efc":
+            continue
         rel_dir = index_path.parent.relative_to(REPO_ROOT)
         try:
             data = json.loads(index_path.read_text())

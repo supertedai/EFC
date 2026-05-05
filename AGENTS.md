@@ -15,9 +15,9 @@ orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
-validation_ledger_public: v3.20
-validation_ledger_internal: v4.7
-ai_packages: 159 (100% coverage)
+validation_ledger_public: v3.18
+validation_ledger_internal: v4.6
+ai_packages: 157 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (Euclid DR1)
@@ -231,15 +231,22 @@ The council uses OpenAI GPT-5 to independently verify:
 Claude MUST check the audit results (GitHub Actions artifacts) and fix
 any findings before proceeding with other work.
 
-### Public pages that must stay in sync (7 pages)
+### Public pages that must stay in sync (13 pages)
 
 | Page | What it tracks |
 |------|---------------|
 | `docs/public/EFC_Validation_Ledger.html` | Every test, every DOI, tier status |
+| `docs/public/EFC_Evaluation_Ledger.html` | Pre/post-Stage-IV evaluation rubric for each KC |
+| `docs/public/EFC_Likelihood_Ledger.html` | Per-likelihood declared / runnable / executed / frozen status |
+| `docs/public/EFC_Model_Comparison.html` | Side-by-side EFC ↔ ΛCDM ↔ MOND comparison |
+| `docs/public/EFC_Master_v1.1.html` | Standalone master-spec snapshot (mirrors `efc_formal_spec` DOI 30630500) |
 | `docs/public/EFC_Stage-IV_Data_Roadmap.html` | Kill criteria, pipeline status, timeline |
 | `docs/public/EFC_White_Paper_Series.html` | Sealed predictions, falsifiability count |
 | `docs/public/EFC_Elevator_Pitch.html` | Plain-English summary, pipeline status |
 | `docs/public/EFC_Gap_Analysis.html` | Gaps, deadlines, competitors, symbiosis status |
+| `docs/public/EFC_External_Research_Ledger.html` | §4b external arXiv work confronted with EFC notes |
+| `docs/public/EFC_Predictions.html` | Sealed predictions with cryptographic hashes |
+| `docs/public/EFC_Atlas.html` | 43 frameworks × 35 phenomena cross-comparison |
 | `docs/public/EFC_Changelog.html` | Every structural/empirical update, versioned |
 | `README.md` | Paper count, test count, NEW banners, tree structure |
 
@@ -328,8 +335,8 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 159 papers (159 with AI-friendly packages, 100%)
-│   └── public/         # Validation Ledger (v3.20), White Paper, Roadmap, Elevator Pitch, Changelog
+│   ├── papers/efc/     # 157 papers (157 with AI-friendly packages, 100%) + _archived/
+│   └── public/         # Validation Ledger (v3.18), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
 ├── schema/             # Ontology, JSON-LD contexts (20 files)
@@ -347,7 +354,7 @@ EFC/
 
 ## AI-Friendly Paper Packages (140)
 
-All 159 papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`):
+All 157 active papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`); two superseded packages live under `docs/papers/efc/_archived/` for provenance:
 
 ### Consolidation
 | Paper | Module | DOI |

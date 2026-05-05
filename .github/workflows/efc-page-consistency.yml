@@ -1,0 +1,54 @@
+name: EFC public-page consistency
+
+# Cross-checks the public-facing HTML pages under docs/public/ against the
+# authoritative numbers produced by the Symbiose pipeline (recorded in
+# docs/validation-ledger/data/ledger.json). Catches the class of drift
+# previously seen as "Pitch contradiction" (word-form vs numeric falsified
+# count) and "Ledger arithmetic mismatch" (category sums ≠ totals) before
+# the changes reach production.
+#
+# Read-only: never rewrites HTML; only reports drift.
+#
+# Local equivalent:
+#     python3 scripts/maintenance/efc_page_consistency.py
+
+on:
+  pull_request:
+    paths:
+      - "docs/public/**.html"
+      - "docs/validation-ledger/data/ledger.json"
+      - "scripts/maintenance/efc_page_consistency.py"
+      - ".github/workflows/efc-page-consistency.yml"
+
+jobs:
+  page-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Run page-consistency checker
+        id: check
+        run: |
+          set +e
+          python3 scripts/maintenance/efc_page_consistency.py --json > .page-consistency.json
+          rc=$?
+          cat .page-consistency.json
+          exit $rc
+      - name: Summarise on failure
+        if: failure()
+        run: |
+          echo "::group::Failure summary"
+          echo "Public-page invariants violated. The drift class is one of:"
+          echo "  P1 — header banner counts diverge from underlay ledger"
+          echo "  P2 — word-form falsified count contradicts numeric form"
+          echo "  P3 — category sum inside Ledger v-update paragraph ≠ total"
+          echo "  P4 — bare 'n_falsified from X to Y' contradicts pipeline"
+          echo
+          echo "Authoritative numbers come from:"
+          echo "  docs/validation-ledger/data/ledger.json (Symbiose-generated)"
+          echo
+          echo "To reproduce locally:"
+          echo "  python3 scripts/maintenance/efc_page_consistency.py"
+          echo "::endgroup::"

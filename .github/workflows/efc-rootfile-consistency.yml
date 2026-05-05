@@ -1,0 +1,52 @@
+name: EFC rootfile-consistency
+
+# Verifies that Ledger version strings in README.md, AGENTS.md and
+# llms.txt match the authoritative version published by
+# docs/public/EFC_Validation_Ledger.html. The Ledger uses a dual-version
+# scheme — "vX.Y (public HTML)" for the citation-facing version and
+# "vA.B update" for the internal/data version — both of which are
+# checked.
+#
+# Hard gate as of Phase 7: pre-existing drift was resolved by syncing
+# rootfiles to Ledger truth (v3.18/v4.6) and the maintenance pipeline now
+# auto-applies efc_rootfile_consistency.py --fix on every push to main,
+# so a PR landing here with drift means either (a) the Ledger version
+# bumped and rootfiles haven't been resynced, or (b) someone manually
+# edited a rootfile out of sync. Both should fail review.
+#
+# Local equivalent:
+#     python3 scripts/maintenance/efc_rootfile_consistency.py
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "AGENTS.md"
+      - "llms.txt"
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "scripts/maintenance/efc_rootfile_consistency.py"
+      - ".github/workflows/efc-rootfile-consistency.yml"
+
+jobs:
+  rootfile-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Run rootfile-consistency checker
+        run: python3 scripts/maintenance/efc_rootfile_consistency.py
+      - name: Resolution guidance on failure
+        if: failure()
+        run: |
+          echo "::group::How to resolve"
+          echo "Rootfile Ledger-version drift means README/AGENTS/llms.txt"
+          echo "no longer match the Ledger HTML's authoritative version."
+          echo
+          echo "Local fix (auto-applied by the maintenance pipeline):"
+          echo "    python3 scripts/maintenance/efc_rootfile_consistency.py --fix"
+          echo
+          echo "If the Ledger HTML version itself is wrong, fix it first;"
+          echo "the rootfiles follow it, not the other way around."
+          echo "::endgroup::"

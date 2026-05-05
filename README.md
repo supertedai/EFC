@@ -21,8 +21,8 @@ Across **135 independent tests** so far (galaxy rotation curves, the cosmic micr
 [![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.30656828-blue)](https://doi.org/10.6084/m9.figshare.30656828)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--4860--5095-green)](https://orcid.org/0009-0002-4860-5095)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.17-orange)](./docs/public/EFC_Validation_Ledger.html)
-[![AI Packages](https://img.shields.io/badge/AI_Packages-159-brightgreen)](#ai-friendly-paper-packages)
+[![Validation Ledger](https://img.shields.io/badge/Validation_Ledger-v3.18-orange)](./docs/public/EFC_Validation_Ledger.html)
+[![AI Packages](https://img.shields.io/badge/AI_Packages-157-brightgreen)](#ai-friendly-paper-packages)
 
 > **NEW (April 12, 2026)**: **[Euclid DR1 Pre-Registration Pipeline](./pipelines/efc/euclid_dr1/)** ([DOI 10.6084/m9.figshare.31990053](https://doi.org/10.6084/m9.figshare.31990053)) — Complete Boltzmann-calibrated prediction pipeline using custom `efc_logistic` gravity model in hi_class. SHA-256 sealed benchmark (B0=0.02, M0=0.06): σ₈ +1.21%, P(k) +2.09%, lensing −6.01%, E_G −3.98%. 36-point parameter scan. Stability: M0≥3B0. Planck ISW: M0<0.1. Predictions frozen for Euclid DR1 (October 2026).
 
@@ -52,8 +52,9 @@ Across **135 independent tests** so far (galaxy rotation curves, the cosmic micr
 | **Repository** | [github.com/supertedai/EFC](https://github.com/supertedai/EFC) |
 | **Theory Site** | [energyflow-cosmology.com](https://energyflow-cosmology.com/) |
 | **AI Navigation** | [`llms.txt`](./llms.txt) / [`AGENTS.md`](./AGENTS.md) |
-| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.17 public / v4.8 internal) |
-| **Papers** | 159 papers in [`/docs/papers/efc/`](./docs/papers/efc/) |
+| **Validation Ledger** | [`EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) (v3.18 public / v4.6 internal) |
+| **Public Pages (13)** | Validation · [Evaluation](./docs/public/EFC_Evaluation_Ledger.html) · [Likelihood](./docs/public/EFC_Likelihood_Ledger.html) · [Model Comparison](./docs/public/EFC_Model_Comparison.html) · [Master v1.1](./docs/public/EFC_Master_v1.1.html) · [Roadmap](./docs/public/EFC_Stage-IV_Data_Roadmap.html) · [White Paper](./docs/public/EFC_White_Paper_Series.html) · [Pitch](./docs/public/EFC_Elevator_Pitch.html) · [Gap Analysis](./docs/public/EFC_Gap_Analysis.html) · [External](./docs/public/EFC_External_Research_Ledger.html) · [Predictions](./docs/public/EFC_Predictions.html) · [Atlas](./docs/public/EFC_Atlas.html) · [Changelog](./docs/public/EFC_Changelog.html) |
+| **Papers** | 157 papers in [`/docs/papers/efc/`](./docs/papers/efc/) (plus 2 superseded under `_archived/`) |
 | **AI Packages** | 138 with executable Python + structured data (100% coverage) |
 | **Stage** | **Non-rejectable model** — Δχ² ≤ 0 across all probes; global verdict OPEN |
 | **Validation Reports** | EFC-VAL-2026-002 through 007 (6 hand-curated 10/10 packages) |
@@ -177,7 +178,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.17 / v4.8 internal) tracks 135 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.18 / v4.6 internal) tracks 135 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
 ### EFC White Paper Series (Canonical Reference)
 
@@ -284,13 +285,13 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | Core Lock (Consistency Enforcement) | [31223503](https://doi.org/10.6084/m9.figshare.31223503) |
 | ISW Consistency Audit | [31329082](https://doi.org/10.6084/m9.figshare.31329082) |
 
-> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 159 papers, all with AI-friendly packages (100% coverage). Eight hand-curated 10/10 validation reports with full reproducible pipelines.
+> See [`/docs/papers/efc/`](./docs/papers/efc/) for the complete collection of 157 active papers, all with AI-friendly packages (100% coverage), plus 2 superseded packages preserved under `_archived/`. Eight hand-curated 10/10 validation reports with full reproducible pipelines.
 
 ---
 
 ## AI-Friendly Paper Packages
 
-All 159 papers have AI-friendly packages (100% coverage as of April 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
+All 157 active papers have AI-friendly packages (100% coverage as of May 2026). Eight hand-curated 10/10 validation reports with full reproducible pipelines:
 
 | Package | Module | Key Functionality |
 |---------|--------|-------------------|
@@ -334,8 +335,8 @@ EFC/
 ├── theory/             # Formal mathematics
 │   └── formal/         # S, D, R, H, C0 models (LaTeX)
 ├── docs/
-│   ├── papers/efc/     # 159 papers with AI-friendly packages (100%)
-│   ├── public/         # Validation Ledger (v3.15), Master Spec, figures
+│   ├── papers/efc/     # 157 papers with AI-friendly packages (100%) + _archived/
+│   ├── public/         # Validation Ledger (v3.18), Master Spec, figures
 │   ├── figures/        # Shared figures
 │   ├── notebooks/      # Jupyter notebooks
 │   └── notes/          # Research notes
