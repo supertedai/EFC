@@ -1,0 +1,57 @@
+name: EFC sealed-prediction guard
+
+# Verifies that no PR modifies a sealed-prediction artefact without an
+# explicit re-seal. The list of sealed artefacts and their authoritative
+# SHA-256 hashes lives in .seal-manifest.json at the repo root.
+#
+# Why: the Euclid DR1 pre-registration (October 2026) requires that the
+# benchmark predictions be byte-identical to what was sealed when the
+# prediction was deposited. Silent edits — even cosmetic re-formatting —
+# would invalidate the pre-registration. This workflow makes that
+# requirement enforceable instead of policy-on-paper.
+#
+# Local equivalent:
+#     python3 scripts/maintenance/efc_seal_manifest.py --verify
+
+on:
+  pull_request:
+    paths:
+      - "pipelines/efc/euclid_dr1/data/**"
+      - ".seal-manifest.json"
+      - "scripts/maintenance/efc_seal_manifest.py"
+      - ".github/workflows/efc-sealed-prediction-guard.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "pipelines/efc/euclid_dr1/data/**"
+      - ".seal-manifest.json"
+
+jobs:
+  seal-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Verify sealed predictions
+        id: verify
+        run: python3 scripts/maintenance/efc_seal_manifest.py --verify
+      - name: Re-seal guidance on failure
+        if: failure()
+        run: |
+          echo "::group::Re-seal procedure"
+          echo "A sealed-prediction artefact was modified without re-sealing."
+          echo "If this is intentional (e.g. a corrected benchmark),"
+          echo "the change requires research-integrity bookkeeping:"
+          echo
+          echo "  1. Add a v-bump entry to docs/public/EFC_Validation_Ledger.html"
+          echo "     explaining what changed in the sealed prediction and why."
+          echo "  2. Run locally:"
+          echo "       python3 scripts/maintenance/efc_seal_manifest.py --init --force"
+          echo "  3. Commit the updated .seal-manifest.json in the same PR."
+          echo
+          echo "Cosmetic edits (whitespace, key reordering) to sealed files"
+          echo "still break the pre-registration — never apply them silently."
+          echo "::endgroup::"
