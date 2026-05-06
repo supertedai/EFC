@@ -6,9 +6,10 @@ ensure_nav(content) before writing, so the nav block is normalized
 to the current canonical form. Idempotent and safe to run every write.
 
 This guarantees:
-  - Short labels (Pitch, Ledger, White Paper, Roadmap, Gaps, ...)
-  - External Research link present
-  - Consistent ordering across all ledgers
+  - Same 12 labels in the same order across every public page
+    (Pitch, Validation, Likelihood, Evaluation, Models, White Paper,
+    Roadmap, Gaps, External, Predictions, Atlas, Changelog)
+  - All cross-section ledgers reachable from any page
 """
 from __future__ import annotations
 import re
@@ -19,12 +20,16 @@ CANONICAL_NAV_HTML = (
     'border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; '
     'font-size:0.92rem;">\n'
     '  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>\n'
-    '  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Ledger</a>\n'
+    '  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>\n'
+    '  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Likelihood</a>\n'
+    '  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Evaluation</a>\n'
+    '  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600;">Models</a>\n'
     '  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>\n'
     '  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>\n'
     '  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>\n'
-    '  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External Research</a>\n'
+    '  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>\n'
     '  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>\n'
+    '  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>\n'
     '  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>\n'
     '</div>'
 )
