@@ -247,7 +247,10 @@ HTML_TEMPLATE = r"""<!doctype html>
 
 <div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
   <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
-  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Ledger</a>
+  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>
+  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Likelihood</a>
+  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Evaluation</a>
+  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600;">Models</a>
   <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
   <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
   <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
