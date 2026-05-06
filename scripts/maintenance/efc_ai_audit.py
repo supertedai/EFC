@@ -23,10 +23,18 @@ PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 
 AUDIT_FILES = {
     "README": os.path.join(REPO, "README.md"),
-    "Validation_Ledger": os.path.join(PUBLIC, "EFC_Validation_Ledger.html"),
-    "White_Paper_Series": os.path.join(PUBLIC, "EFC_White_Paper_Series.html"),
     "Elevator_Pitch": os.path.join(PUBLIC, "EFC_Elevator_Pitch.html"),
+    "Validation_Ledger": os.path.join(PUBLIC, "EFC_Validation_Ledger.html"),
+    "Likelihood_Ledger": os.path.join(PUBLIC, "EFC_Likelihood_Ledger.html"),
+    "Evaluation_Ledger": os.path.join(PUBLIC, "EFC_Evaluation_Ledger.html"),
+    "Model_Comparison": os.path.join(PUBLIC, "EFC_Model_Comparison.html"),
+    "Master_v1_1": os.path.join(PUBLIC, "EFC_Master_v1.1.html"),
+    "White_Paper_Series": os.path.join(PUBLIC, "EFC_White_Paper_Series.html"),
     "Stage_IV_Roadmap": os.path.join(PUBLIC, "EFC_Stage-IV_Data_Roadmap.html"),
+    "Gap_Analysis": os.path.join(PUBLIC, "EFC_Gap_Analysis.html"),
+    "External_Research_Ledger": os.path.join(PUBLIC, "EFC_External_Research_Ledger.html"),
+    "Predictions": os.path.join(PUBLIC, "EFC_Predictions.html"),
+    "Atlas": os.path.join(PUBLIC, "EFC_Atlas.html"),
     "Changelog": os.path.join(PUBLIC, "EFC_Changelog.html"),
     "pipelines_README": os.path.join(REPO, "pipelines", "README.md"),
 }
