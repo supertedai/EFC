@@ -1,0 +1,122 @@
+{
+  "$schema": "./schema.json",
+  "id": "white-paper-part-2-of-4-energy-flow-cosmology-part-2-field-equations-and-observa",
+  "title": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping (\u00b5, \u03a3, S8)",
+  "description": "Derives the field equations of Energy-Flow Cosmology (EFC) from an entropy-gradient principle, defines the entropy field S(a) and its coupling to the effective gravity parameters \u00b5(k, z) and \u03a3(k, z), and maps these to observables f\u03c38, S8, and a regime response surface. The paper presents sealed blind predictions and reports consistency checks against DES Y6, KiDS-1000, DESI DR2, and BOSS DR12, while documenting an erratum that corrects the growth-ODE friction term without affecting reported numerical results.",
+  "version": "v2",
+  "date": "2026-04-19",
+  "doi": "10.6084/m9.figshare.31970898",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "entropy field",
+    "modified gravity",
+    "growth rate",
+    "f\u03c38",
+    "S8 tension",
+    "weak lensing",
+    "effective gravitational coupling \u00b5",
+    "lensing parameter \u03a3",
+    "\u039bCDM recovery",
+    "field equations",
+    "observable mapping"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropy_coupling_mu": {
+      "latex": "\\mu(a) = 1 + \\beta\\, S(a)",
+      "description": "Derived coupling of the entropy field S(a) to the effective gravitational strength; \u03b2 \u2248 0.16 from SPARC calibration, not treated as a free parameter."
+    },
+    "sigmoid_gate_mu": {
+      "latex": "\\mu(a) = 1 - B\\, g(a;n),\\quad g(a;n) = \\frac{1}{1 + (a_t/a)^n}",
+      "description": "Phenomenological sigmoid gate for the growth-era suppression (\u00b5 < 1), with amplitude B > 0, transition epoch a_t, and sharpness n."
+    },
+    "gaussian_mu": {
+      "latex": "\\mu(a) = 1 + \\beta\\, \\exp\\!\\left[-\\frac{(a - a_t)^2}{2\\sigma_a^2}\\right]",
+      "description": "Gaussian epoch-parameterization of \u00b5(a) used in MCMC sampling."
+    },
+    "efc_kernel_mu_kz": {
+      "latex": "\\mu_{\\mathrm{EFC}}(k,z) = 1 - \\bar S(z) + \\frac{\\tilde s(k,z)}{\\tilde \\delta(k,z)}",
+      "description": "Scale-dependent EFC kernel combining the spatially averaged entropy field and the Fourier-space entropy-to-density ratio; recovers GR when S\u0304 \u2192 0 and s\u0303 \u2192 0."
+    },
+    "field_equation_entropy_gradient": {
+      "latex": "G_{\\mu\\nu} = f(\\nabla S, E_f)",
+      "description": "Schematic metric-level field equation expressing gravitational response as a functional of the entropy gradient and local energy-flow density; reduces to Einstein\u2019s equations when \u2207S \u2192 0."
+    },
+    "growth_ode": {
+      "latex": "f' + f^2 + \\left[2 + \\frac{d\\ln H}{d\\ln a}\\right] f = \\tfrac{3}{2}\\, \\mu(a)\\, \\Omega_m(a)",
+      "description": "Corrected linear growth-rate equation for f(a) = d ln D / d ln a with \u00b5(a) entering as an effective gravitational coupling; reduces to \u039bCDM when \u00b5 = 1. Erratum v2 clarifies the friction term."
+    },
+    "background_gate_alpha_L2": {
+      "latex": "E^2(z) \\to E^2(z)\\,\\big[1 + \\alpha_{\\mathrm{L2}}\\, f(z)\\, \\Theta(z)\\big]",
+      "description": "Proposed background-level L2 gate (deprecated by data); current EFC phenomenology operates in the perturbation sector only."
+    },
+    "regime_transition_theta": {
+      "latex": "\\Theta(z) = \\tfrac{1}{2}\\left[1 + \\tanh\\!\\left(\\frac{z_{\\mathrm{L1L2}} - z}{\\Delta z}\\right)\\right]",
+      "description": "Smooth regime-transition function used in the (now inactive) background gate."
+    },
+    "f_sigma8_mapping": {
+      "latex": "[f\\,\\sigma_8](z) = f(z)\\,\\sigma_{8,0}\\,\\frac{D(z)}{D(0)}",
+      "description": "Observable mapping from \u00b5(a) to the redshift-space growth observable via the linear growth factor D(z)."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC provides a concrete entropy-field coupling to effective gravity (\u00b5, \u03a3), a validated mapping to f\u03c38 and S8, and sealed blind predictions consistent with DES Y6, KiDS-1000, DESI DR2, and BOSS DR12; an erratum corrects the growth-ODE friction term without altering reported inferences.",
+    "delta_chi2": null,
+    "significance_sigma": 2.2,
+    "parameters_tested": [
+      "\u00b5(a) sigmoid gate parameters (B, a_t, n)",
+      "Gaussian \u00b5(a) parameters (\u03b2, a_t, \u03c3_a)",
+      "entropy field S(a)",
+      "scale-dependent kernel term \\tilde s/\\tilde \\delta",
+      "\u03b1_L2 background gate (deprecated by CMB+BAO)"
+    ],
+    "datasets_used": [
+      "DES Year 6 (weak lensing, S8)",
+      "KiDS-1000 (weak lensing)",
+      "DESI DR2 (RSD/BAO)",
+      "BOSS DR12 (RSD/BAO)"
+    ],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "A sealed blind prediction for f\u03c38 at z = 0.7 (generated 2026-02-18 via NUTS) with growth suppressed relative to \u039bCDM due to \u00b5(a) < 1 in the L2 regime.",
+      "falsifiable_by": "Independent RSD measurements at z \u2248 0.7 from DESI DR2/DR3 or equivalent, compared to the time-stamped sealed value."
+    },
+    {
+      "id": "P2",
+      "statement": "\u00b5(a) remains consistent with unity at early times (S \u2192 0; z \u2273 2) and transitions to \u00b5(a) < 1 at late times following a sigmoid gate.",
+      "falsifiable_by": "Joint constraints on \u00b5(z) from high-z CMB/Ly\u03b1 and low-z RSD+lensing that either require \u00b5 \u2260 1 at z \u2273 2 or prefer \u00b5 \u2265 1 at 0.2 < z < 1 at > 3\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If combined RSD+lensing analyses constrain \u00b5(a) = 1.00 \u00b1 0.01 with no late-time suppression (\u00b5 < 1) across 0.2 < z < 1 at > 3\u03c3, the EFC growth-era coupling (Eq. 2) is falsified.",
+    "KC2: If the sealed blind prediction for f\u03c38(z = 0.7) lies > 3\u03c3 away from updated RSD measurements (e.g., DESI DR2/DR3), the observable mapping from \u00b5(a) to f\u03c38 (Eq. 9) fails.",
+    "KC3: Detection of non-vanishing EFC-like modifications at high redshift (z \u2273 2), i.e., \u00b5(z) \u2212 1 \u2260 0 at > 3\u03c3, contradicting the S \u2192 0 recovery limit and falsifies the entropy-gradient principle in its presented form.",
+    "KC4: Robust constraints showing no allowed scale dependence in the growth/lensing sector (|\\tilde s/\\tilde \\delta| \u2192 0) over the k-range where EFC predicts a non-zero kernel term (Eq. 4), at > 3\u03c3, would rule out the scale-dependent kernel.",
+    "KC5: A cross-consistent set of Solar System, lensing, BAO, and growth measurements requiring \u00b5 \u2265 1 (enhanced growth) at late times at > 3\u03c3 would contradict the EFC-predicted weakened growth (\u00b5 < 1) regime."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "multi-epoch-growth-rate-test",
+      "doi": "10.6084/m9.figshare.31955871",
+      "role": "Validation and cross-check pipeline for growth-rate predictions cited in the paper"
+    }
+  ],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31970898",
+  "license": "CC-BY-4.0",
+  "scaffolded": true,
+  "scaffolded_at": "2026-05-05T20:45:06+00:00",
+  "paper_type_inferred": true
+}

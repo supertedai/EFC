@@ -1,0 +1,136 @@
+{
+  "$schema": "./schema.json",
+  "id": "white-paper-part-4-of-4-energy-flow-cosmology-part-4-regime-susceptibility-and-c",
+  "title": "White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
+  "description": "Introduces a regime susceptibility function T(S) that maps the SPARC-calibrated coupling at galactic scales to a cosmological amplitude without new parameters. Shows that \u03b2(S)\u00b7\u03c1eff(S) is constant, yielding exact self\u2011regulation, GR recovery as S\u21920, and a parameter\u2011free prediction for the amplification \u03b2cosm/\u03b2gal\u22486.25 alongside dynamical dark energy w(a)\u2260\u22121 testable by Euclid.",
+  "version": "1.0",
+  "date": "2026-04-01",
+  "doi": "10.6084/m9.figshare.31970907",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "regime susceptibility",
+    "cross-scale mapping",
+    "entropy field",
+    "effective energy density",
+    "dynamical dark energy",
+    "equation of state",
+    "SPARC calibration",
+    "self-regulation",
+    "GR recovery",
+    "Euclid",
+    "dark matter and dark energy phases"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "entropic_phases": {
+      "latex": "\\nabla_{\\mu} J^{\\mu} = \\begin{cases} < 0 & \\text{convergent flow \\;\\Rightarrow\\; excess gravity (DM regime)} \\\\ = 0 & \\text{equilibrium (matter-dominated)} \\\\ > 0 & \\text{divergent flow \\;\\Rightarrow\\; accelerated expansion (DE regime)} \\end{cases}",
+      "description": "Defines dark matter and dark energy as convergent and divergent phases of a single energy\u2011flow current along entropy gradients."
+    },
+    "rho_eff": {
+      "latex": "\\rho_{\\mathrm{eff}}(S) = S\\,(1-S)",
+      "description": "Effective energy density available for dynamical exchange; vanishes at S\u21920 and S\u21921 and peaks at S=1/2."
+    },
+    "pressure_divergence": {
+      "latex": "p_{\\mathrm{eff}} \\propto -\\nabla_{\\mu} J^{\\mu}",
+      "description": "Effective pressure is set by the divergence of the energy\u2011flow current; divergent flow yields negative pressure."
+    },
+    "w_of_a": {
+      "latex": "w(a) = -\\,\\beta(S)\\,a",
+      "description": "Leading-order effective equation of state linking background dynamics to the regime\u2011scaled coupling."
+    },
+    "T_of_S": {
+      "latex": "T(S) = \\frac{S_0\\,(1-S_0)}{S\\,(1-S)}",
+      "description": "Regime susceptibility mapping the effective coupling strength across the entropic continuum relative to a reference regime S0."
+    },
+    "beta_of_S": {
+      "latex": "\\beta(S) = \\beta_0\\,T(S) = \\beta_0\\,\\frac{S_0\\,(1-S_0)}{S\\,(1-S)}",
+      "description": "Cross\u2011scale mapping from the SPARC\u2011calibrated galactic coupling \u03b20 at S0 to its cosmological value at S."
+    },
+    "self_regulation": {
+      "latex": "\\beta(S)\\,\\rho_{\\mathrm{eff}}(S) = \\beta_0\\,S_0\\,(1-S_0) = \\text{const}",
+      "description": "Exact self\u2011regulation: the product of regime susceptibility and effective energy density is constant, enforcing GR recovery at S\u21920 and de Sitter approach as S\u21921."
+    },
+    "omega_ratio_mapping": {
+      "latex": "\\frac{\\Omega_{\\Lambda}(z)}{\\Omega_{\\mathrm{m}}(z)} = f\\!\\left( \\frac{S(z)}{S_{\\max}} \\right),\\quad f\\;\\text{monotonic}",
+      "description": "Relates the observed DE-to-matter ratio to location on the entropic continuum rather than a fundamental constant."
+    }
+  },
+  "key_results": {
+    "main_finding": "A parameter-free regime susceptibility T(S) maps galactic-scale coupling to cosmological strength, yielding self-regulation (\u03b2\u00b7\u03c1eff=const), GR recovery at S\u21920, and a concrete amplification prediction \u03b2cosm/\u03b2gal\u22486.25 with dynamical w(a)\u2260\u22121.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "beta0",
+      "S",
+      "S0",
+      "beta(S)",
+      "w0",
+      "n"
+    ],
+    "datasets_used": [
+      "SPARC rotation curves (calibration reference)"
+    ],
+    "verdict": "PLANNED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Amplification of the coupling between galactic and cosmological regimes is parameter-free with \u03b2_cosm/\u03b2_gal \u2248 6.25 implied by T(S).",
+      "falsifiable_by": "Joint inference of \u03b20 from SPARC and \u03b2_cosm (or w0) from Planck+BAO+SNe and Euclid/DESI expansion data."
+    },
+    {
+      "id": "P2",
+      "statement": "Dark energy is dynamical with w(z) \u2260 \u22121; leading-order prediction w(a) = \u2212\u03b2(S) a with w0 \u2248 \u22121 set by Scosm.",
+      "falsifiable_by": "Euclid and Rubin LSST tomographic constraints on w0, wa (and w(z)) over 0 < z \u2272 2."
+    },
+    {
+      "id": "P3",
+      "statement": "Self-regulation holds exactly: \u03b2(S)\u00b7S(1\u2212S) is constant across redshift.",
+      "falsifiable_by": "Consistency tests combining growth (f\u03c38, S8, \u03a3, R) with background expansion to recover \u03b2(S) and \u03c1eff(S) as functions of z."
+    },
+    {
+      "id": "P4",
+      "statement": "No new fields or free amplitudes are required to connect galactic and cosmological scales once T(S) is applied.",
+      "falsifiable_by": "Global fits that require additional free parameters beyond \u03b20 and the S-based mapping to match both galaxy rotation curves and cosmology."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Euclid+Rubin find w(z) consistent with \u22121 (e.g., w0 = \u22121 and wa = 0 within uncertainties across 0 < z \u2272 1.5), ruling out the predicted dynamical w(a) \u2260 \u22121.",
+    "KC2: The empirically inferred amplification between regimes is incompatible with \u03b2_cosm/\u03b2_gal \u2248 6.25 (from independent \u03b20 at S0\u22480.1 and cosmological w0), falsifying the T(S) mapping.",
+    "KC3: Combined background and growth data show redshift dependence in the product \u03b2(S)\u00b7S(1\u2212S) inconsistent with a constant, violating self-regulation.",
+    "KC4: Early-universe probes (e.g., CMB anisotropies, BBN) detect departures from GR attributable to non-vanishing effective coupling as S\u21920, contradicting exact GR recovery.",
+    "KC5: A successful joint fit to galactic dynamics and cosmological observables demonstrably requires introducing new fields or independent coupling parameters beyond \u03b20 and S, contradicting the parameter-free cross-scale mapping."
+  ],
+  "tier": "T2",
+  "paper_type": "theory",
+  "related_packages": [
+    {
+      "id": "efc-part-1-recovery-and-limits",
+      "doi": "10.6084/m9.figshare.31970886",
+      "role": "Companion white paper, Part 1: Recovery & Limits"
+    },
+    {
+      "id": "efc-part-2-field-equations-and-observables",
+      "doi": "10.6084/m9.figshare.31970898",
+      "role": "Companion white paper, Part 2: Field Equations & Observables"
+    },
+    {
+      "id": "efc-part-3-validation-and-falsification",
+      "doi": "10.6084/m9.figshare.31970904",
+      "role": "Companion white paper, Part 3: Validation & Falsification"
+    }
+  ],
+  "files": {
+    "pdf": "white-paper-part-4-of-4-energy-flow-cosmology-part-4-regime-susceptibility-and-c.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31970907",
+  "license": "CC-BY-4.0",
+  "scaffolded": true,
+  "scaffolded_at": "2026-05-05T20:45:10+00:00",
+  "paper_type_inferred": true
+}

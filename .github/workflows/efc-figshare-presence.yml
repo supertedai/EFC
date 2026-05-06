@@ -1,0 +1,224 @@
+name: EFC figshare DOI presence-check + auto-scaffold
+
+# Two-pass workflow that closes the §6 C4 loop end-to-end:
+#
+#  Pass 1 — presence check (`--check`)
+#      Verifies every DOI in figshare/doi-map.json against api.figshare.com.
+#      Hard-fails (exit 2) on not_found / withdrawn / wrong_author.
+#      Title mismatches reported via uploaded artifact, never block.
+#
+#  Pass 2 — auto-scaffold (`--scaffold-missing --with-pdf`)
+#      For each entry under doi-map.missing_repo_dirs, creates a
+#      paper directory under docs/papers/efc/<slug>/ with the canonical
+#      10-file layout and a `.scaffolded` marker. Downloads the primary
+#      attachment (PDF preferred, DOCX fallback). If anything new was
+#      created, the workflow opens a *draft* pull request — never
+#      auto-merges to main, because new paper directories require
+#      maintainer review of content + Ledger integration.
+#
+# Triggers: weekly Mondays 05:00 UTC, on-demand via workflow_dispatch,
+# and on PRs that touch doi-map.json or the script itself.
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "figshare/doi-map.json"
+      - "scripts/maintenance/efc_figshare_check.py"
+      - ".github/workflows/efc-figshare-presence.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  presence-check-and-scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Pass 1 — presence check
+        id: check
+        # continue-on-error so that a single not_found / withdrawn /
+        # wrong_author finding does not abort the workflow before
+        # Pass 2 has a chance to scaffold what *is* still valid.
+        # Findings are still surfaced via the uploaded artifact and
+        # the explicit summary step at the end.
+        continue-on-error: true
+        run: python3 scripts/maintenance/efc_figshare_check.py --check
+
+      - name: Upload check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: figshare-check-report
+          path: reports/figshare-check.json
+          if-no-files-found: ignore
+
+      - name: Summarise check findings (always)
+        if: always()
+        run: |
+          if [ ! -f reports/figshare-check.json ]; then
+            echo "::warning::No check report produced (script crashed before write)."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, pathlib, sys
+          p = pathlib.Path("reports/figshare-check.json")
+          d = json.loads(p.read_text())
+          totals = d.get("totals", {})
+          print("=== Pass 1 totals ===")
+          for k in sorted(totals):
+              print(f"  {k}: {totals[k]}")
+          hard = [r for r in d.get("results", []) if r.get("status") in {"not_found","withdrawn","wrong_author"}]
+          if hard:
+              print()
+              print(f"::warning::{len(hard)} hard-fail finding(s) (not blocking workflow)")
+              for r in hard[:10]:
+                  print(f"  {r['status']}: {r['doi']} — {r.get('detail','')}")
+          PY
+
+      - name: Pass 2 — auto-scaffold missing dirs
+        # Always run Pass 2 if not on PR — even if Pass 1 surfaced
+        # findings, scaffolding the missing dirs is still valuable.
+        if: always() && github.event_name != 'pull_request'
+        id: scaffold
+        run: |
+          set -e
+          python3 scripts/maintenance/efc_figshare_check.py \
+            --scaffold-missing --with-pdf
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new directories scaffolded — doi-map missing_repo_dirs is empty or already covered."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Scaffolded directories detected. Will open draft PR."
+            git --no-pager diff --stat | head -40
+            git ls-files --others --exclude-standard | head -40
+          fi
+
+      - name: Commit + push scaffold branch
+        if: |
+          always() &&
+          steps.scaffold.outputs.changed == 'true' &&
+          github.event_name != 'pull_request'
+        id: push
+        run: |
+          set -e
+          BRANCH="auto/scaffold-missing-papers-$(date -u +%Y%m%d-%H%M%S)"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          git config user.name "efc-sync[bot]"
+          git config user.email "efc-sync[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -A
+
+          NEW_DIRS_COUNT=$(git diff --cached --name-only -- 'docs/papers/efc/' \
+                          | awk -F'/' '{print $3}' | sort -u | wc -l)
+          echo "count=$NEW_DIRS_COUNT" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "Auto-generated by .github/workflows/efc-figshare-presence.yml"
+            echo "from figshare/doi-map.json missing_repo_dirs."
+            echo
+            echo "## What this PR does"
+            echo
+            echo "Creates paper directories under docs/papers/efc/ for each"
+            echo "DOI that is on ORCID but not yet in the repo. Each directory"
+            echo "carries a \`.scaffolded\` marker so efc_maintain.py does not"
+            echo "treat it as a complete package until reviewed."
+            echo
+            echo "## New directories"
+            echo
+            git diff --cached --name-only -- 'docs/papers/efc/' \
+              | awk -F'/' '{print "  - docs/papers/efc/" $3 "/"}' \
+              | sort -u
+            echo
+            echo "## Action items for reviewer"
+            echo
+            echo "  1. Verify each \`.scaffolded\` marker and replace stub"
+            echo "     metadata with real content."
+            echo "  2. Confirm the primary attachment downloaded correctly"
+            echo "     (PDF preferred; DOCX fallback used for some)."
+            echo "  3. Add Ledger / Pitch / Roadmap entries as appropriate."
+            echo "  4. Delete the \`.scaffolded\` marker once content is in place."
+            echo "  5. Re-run \`scripts/maintenance/efc_maintain.py\` locally and"
+            echo "     verify all guards stay green."
+          } > /tmp/pr_body.md
+
+          git commit -m "auto: scaffold $NEW_DIRS_COUNT missing paper directory(ies) from ORCID"
+          git push -u origin "$BRANCH"
+
+      - name: Open draft PR (best effort)
+        if: |
+          always() &&
+          steps.scaffold.outputs.changed == 'true' &&
+          steps.push.outcome == 'success' &&
+          github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Don't fail the workflow if the repo blocks GH Actions from
+        # creating PRs. The branch is already pushed; we just emit a
+        # clear "create-here" link so the maintainer can finish the
+        # remaining click manually.
+        continue-on-error: true
+        run: |
+          BRANCH="${{ steps.push.outputs.branch }}"
+          COUNT="${{ steps.push.outputs.count }}"
+          if gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "auto: scaffold $COUNT missing paper directory(ies) from ORCID" \
+              --body-file /tmp/pr_body.md \
+              --draft; then
+            echo "::notice::Draft PR created automatically."
+          else
+            URL="https://github.com/${{ github.repository }}/pull/new/$BRANCH"
+            echo "::warning::Could not auto-create draft PR. Branch '$BRANCH' was pushed successfully."
+            echo "::warning::Most likely cause: 'Allow GitHub Actions to create and approve pull requests' is disabled in repo settings."
+            echo "::notice::Click here to open the PR manually: $URL"
+            {
+              echo "## Auto-PR creation blocked by repo settings"
+              echo
+              echo "The scaffolded branch \`$BRANCH\` was pushed successfully"
+              echo "with $COUNT new paper directory(ies). The workflow could"
+              echo "not auto-open a PR because **GitHub Actions is not"
+              echo "permitted to create or approve pull requests** in this repo."
+              echo
+              echo "Two ways to resolve:"
+              echo
+              echo "1. **One-click manual:** open"
+              echo "   $URL"
+              echo "   to create the draft PR now."
+              echo
+              echo "2. **Permanent fix (one-time):** Settings → Actions →"
+              echo "   General → Workflow permissions → enable"
+              echo "   _Allow GitHub Actions to create and approve pull requests_."
+              echo "   After that, the workflow will open the draft PR by itself."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Resolution guidance on failure
+        if: failure()
+        run: |
+          echo "::group::How to interpret a failed run"
+          echo "Pass 1 (presence check) is non-blocking — its findings are"
+          echo "surfaced in the uploaded artifact at"
+          echo "  reports/figshare-check.json"
+          echo "and as the 'Summarise check findings' step output."
+          echo
+          echo "Pass 2 (scaffold) writes new dirs under docs/papers/efc/."
+          echo "If it failed: inspect the step log for the python traceback."
+          echo
+          echo "Commit + draft-PR step requires GITHUB_TOKEN with"
+          echo "contents:write + pull-requests:write — set in workflow"
+          echo "permissions block."
+          echo "::endgroup::"
