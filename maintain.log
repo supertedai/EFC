@@ -13,7 +13,7 @@ PAPERS ON ORCID, NOT IN REPO (action: download + process):
   - 10.6084/m9.figshare.32162706  Composite-level aggregation in rotation curve model selection: A sign-flip decom
 ========================================================================
 [efc-paper-type] all papers already classified
-[efc-regen-index] wrote efc_index.json — 162 papers, version 2.8
+[efc-regen-index] no diff — 162 papers, version 2.8
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -38,7 +38,10 @@ pdftotext: /usr/bin/pdftotext
 
   Non-MCMC_Constraints_on_the_EFC_α-Parameter:
     Graph: 10 concepts, 0 related papers
-    [FAIL] OpenAI HTTP 520: <none> -- error code: 520
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
@@ -118,7 +121,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 10 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -156,9 +158,9 @@ Processed 162 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:120 → 129  (+9)    ledger:110 → 129 (+19)
-  methodological  ev:  3 →  25  (+22)    ledger:  3 →  25 (+22)
-  structural      ev: 70 →  75  (+5)    ledger: 70 →  75 (+5)
+  empirical       ev:129 → 129  (+0)    ledger:129 → 129 (+0)
+  methodological  ev: 25 →  25  (+0)    ledger: 25 →  25 (+0)
+  structural      ev: 75 →  75  (+0)    ledger: 75 →  75 (+0)
 ========================================================================
 [efc-drift] 162 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 162
@@ -201,9 +203,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched; Ledger data: evidence-register.json, ledger.json.
-[efc-auto-changelog] updated EFC_Changelog.html
-[efc-auto-changelog] updated changelog.json
+[efc-auto-changelog] only script/workflow changes — skipping changelog
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
