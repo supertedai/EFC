@@ -35,6 +35,7 @@ No dependencies beyond the Python standard library.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import sys
 from pathlib import Path
@@ -44,6 +45,20 @@ from pathlib import Path
 # Paths
 # ------------------------------------------------------------------
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+# ------------------------------------------------------------------
+# Single source of truth for the cross-page navbar
+# ------------------------------------------------------------------
+# The canonical 12-entry navbar lives in
+# scripts/maintenance/efc_navbar_sync.py. We import its render_nav() so
+# this script and the navbar-sync script can never disagree on order,
+# labels, idempotency markers, or the active-page highlight.
+_NAV_SCRIPT = REPO_ROOT / "scripts" / "maintenance" / "efc_navbar_sync.py"
+_nav_spec = importlib.util.spec_from_file_location("efc_navbar_sync", _NAV_SCRIPT)
+_nav_module = importlib.util.module_from_spec(_nav_spec)
+_nav_spec.loader.exec_module(_nav_module)
+render_canonical_navbar = _nav_module.render_nav
 DATA_DIR = REPO_ROOT / "docs" / "validation-ledger" / "data"
 PUBLIC_DIR = REPO_ROOT / "docs" / "public"
 
@@ -245,20 +260,7 @@ HTML_TEMPLATE = r"""<!doctype html>
 
 <h1>Energy-Flow Cosmology (EFC) &mdash; Framework Atlas</h1>
 
-<div style="background:#f8f9fa; border:1px solid #d0d7e3; border-radius:6px; padding:12px 18px; margin-bottom:1.5rem; font-size:0.92rem;">
-  <a href="EFC_Elevator_Pitch.html" style="margin-right:1.5rem; font-weight:600;">Pitch</a>
-  <a href="EFC_Validation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Validation</a>
-  <a href="EFC_Likelihood_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Likelihood</a>
-  <a href="EFC_Evaluation_Ledger.html" style="margin-right:1.5rem; font-weight:600;">Evaluation</a>
-  <a href="EFC_Model_Comparison.html" style="margin-right:1.5rem; font-weight:600;">Models</a>
-  <a href="EFC_White_Paper_Series.html" style="margin-right:1.5rem; font-weight:600;">White Paper</a>
-  <a href="EFC_Stage-IV_Data_Roadmap.html" style="margin-right:1.5rem; font-weight:600;">Roadmap</a>
-  <a href="EFC_Gap_Analysis.html" style="margin-right:1.5rem; font-weight:600;">Gaps</a>
-  <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
-  <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
-  <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
-  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
-</div>
+__CANONICAL_NAVBAR__
 
 <p style="font-size:0.95em; color:#555; margin-bottom:1.2em;">
 Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
@@ -852,6 +854,7 @@ def main():
     html = HTML_TEMPLATE
     rival_count = sum(1 for f in frameworks if f.get("id") != "EFC")
     replacements = {
+        "__CANONICAL_NAVBAR__": render_canonical_navbar(active_href="EFC_Atlas.html"),
         "__GENERATED_DATE__": generated_date,
         "__FW_COUNT__": str(len(frameworks)),
         "__RIVAL_COUNT__": str(rival_count),
