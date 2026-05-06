@@ -38,6 +38,7 @@ SYNC = os.path.join(HERE, "efc_sync_dois.py")
 VERIFY = os.path.join(HERE, "efc_verify.py")
 DRIFT = os.path.join(HERE, "efc_drift_detector.py")
 ROOTFILE_CONSISTENCY = os.path.join(HERE, "efc_rootfile_consistency.py")
+NAVBAR_SYNC = os.path.join(HERE, "efc_navbar_sync.py")
 SYMBIOSE = os.path.join(HERE, "efc_symbiose_snapshot.py")
 AUTO_CHANGELOG = os.path.join(HERE, "efc_auto_changelog.py")
 CROSS_VALIDATE = os.path.join(HERE, "efc_cross_validate.py")
@@ -115,6 +116,9 @@ def main() -> int:
     # (orthogonal axis to drift_detector — handles vX.Y badges/refs that
     # follow the Ledger HTML's authoritative public/internal version pair)
     run(ROOTFILE_CONSISTENCY, "--fix")
+    # Step 5b: auto-apply canonical navbar to every public page
+    # (idempotent — single source of truth for cross-page navigation)
+    run(NAVBAR_SYNC)
     # Step 6: Generate Symbiose snapshot (ground truth for cross-validation)
     run(SYMBIOSE, "--from-ledger")
     # Step 7: Scan for new external datasets (Euclid, DESI, KiDS, Simons)
