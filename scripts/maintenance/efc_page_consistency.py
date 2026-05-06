@@ -303,12 +303,77 @@ def check_p3_p4_ledger_arithmetic(report: Report) -> None:
         )
 
 
+def check_p8_doi_anchored_in_doi_map(report: Report) -> None:
+    """Every Figshare DOI mentioned in any public page must be present
+    in figshare/doi-map.json (which is the ORCID-anchored ground truth).
+
+    This invariant catches:
+      * typo'd DOIs in pages (8-digit suffix references something that
+        does not belong to Morten / does not exist);
+      * orphan DOI references that survived after the underlying paper
+        was archived or merged;
+      * pages that cite an external paper without flagging it as
+        external (would correctly bypass §4b discipline).
+
+    Note: §4b of EFC_Validation_Ledger.html is the *only* place the
+    repo permits external (non-Morten) DOIs. Those still live under
+    the doi.org domain so this check would still flag them — to avoid
+    false positives we read the doi-map's "papers" list as the
+    *closure* of permitted DOIs. External arXiv IDs (which are not
+    figshare DOIs) are out of scope for this check.
+    """
+    doi_map_path = REPO_ROOT / "figshare" / "doi-map.json"
+    if not doi_map_path.exists():
+        report.issues.append(
+            Issue(
+                page="figshare/doi-map.json",
+                invariant="P8",
+                detail="doi-map.json missing — cannot verify cross-page DOI anchoring",
+                severity="error",
+            )
+        )
+        return
+    doi_map = json.loads(doi_map_path.read_text())
+    permitted = set()
+    for p in doi_map.get("papers", []):
+        fid = str(p.get("figshare_id") or "")
+        if fid:
+            permitted.add(fid)
+    for missing in doi_map.get("missing_repo_dirs", []) or []:
+        fid = str(missing.get("figshare_id") or "")
+        if fid:
+            permitted.add(fid)
+
+    figshare_re = re.compile(r"10\.6084/m9\.figshare\.(\d{6,9})")
+    for page_path in PUBLIC_ROOT.glob("EFC_*.html"):
+        text = page_path.read_text(encoding="utf-8", errors="replace")
+        seen_unknown: set[str] = set()
+        for m in figshare_re.finditer(text):
+            fid = m.group(1)
+            if fid in permitted or fid in seen_unknown:
+                continue
+            seen_unknown.add(fid)
+            line_no = text[: m.start()].count("\n") + 1
+            report.issues.append(
+                Issue(
+                    page=page_path.name,
+                    invariant="P8",
+                    detail=(
+                        f"DOI 10.6084/m9.figshare.{fid} on line {line_no}"
+                        f" is not in figshare/doi-map.json — possible typo,"
+                        f" archived reference, or undeclared external"
+                    ),
+                )
+            )
+
+
 def run(json_out: bool) -> int:
     truth = load_truth()
     report = Report(truth=truth)
     check_p1_header_banners(report)
     check_p2_word_number_consistency(report)
     check_p3_p4_ledger_arithmetic(report)
+    check_p8_doi_anchored_in_doi_map(report)
 
     if json_out:
         out = {
