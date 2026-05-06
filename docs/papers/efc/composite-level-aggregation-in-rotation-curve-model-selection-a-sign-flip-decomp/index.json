@@ -1,16 +1,94 @@
 {
   "$schema": "./schema.json",
   "id": "composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
-  "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of Delta-AIC for SPARC-175",
+  "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of \u2206AIC for SPARC-175",
+  "description": "Re-fits the SPARC-175 rotation-curve sample with an EFC vs NFW comparison and decomposes each galaxy\u2019s \u2206AIC into inner (r < rc) and outer (r \u2265 rc) contributions. Finds that 17.5% of galaxies flip the preference sign between the global and outer-only \u2206AIC at rc = 3 kpc (robustly 16.4\u201322.2% for rc \u2208 {2,3,4,5} kpc), showing that a single global \u2206AIC mixes physically distinct radial regimes. A reweighting test (uniform vs 1/\u03c3\u00b2) shifts the sample further toward EFC, indicating the effect is aggregation-level, not a \u03c7\u00b2-weighting bias.",
+  "version": "1.0",
+  "date": "2026-05-01",
   "doi": "10.6084/m9.figshare.32162706",
-  "version": "0.1-scaffold",
-  "date": "",
+  "keywords": [
+    "SPARC-175",
+    "rotation curves",
+    "model selection",
+    "AIC decomposition",
+    "sign-flip diagnostic",
+    "EFC",
+    "NFW",
+    "chi-square weighting",
+    "entropy-bounded empiricism",
+    "radial stratification",
+    "inner-outer split",
+    "differential evolution"
+  ],
   "author": {
     "name": "Morten Magnusson",
     "orcid": "0009-0002-4860-5095",
     "affiliation": "Symbiose Research, Sandnes, Norway"
   },
+  "core_equations": {
+    "delta_aic_definition": {
+      "latex": "\\Delta \\mathrm{AIC} \\equiv \\mathrm{AIC}_{\\mathrm{NFW}} - \\mathrm{AIC}_{\\mathrm{EFC}}",
+      "description": "Sign convention used throughout; positive values mean EFC is preferred over NFW."
+    },
+    "efc_velocity_curve": {
+      "latex": "V_{\\mathrm{EFC}}(r) = v_{\\mathrm{flat}}\\,\\sqrt{1 - \\exp\\!\\left[-\\left(\\frac{r}{r_{\\mathrm{turnon}}}\\right)^{p}\\right]}",
+      "description": "Three-parameter EFC rotation-curve model (k_EFC = 3) fit to each galaxy."
+    },
+    "nfw_velocity_curve": {
+      "latex": "V_{\\mathrm{NFW}}(r) = V_{200}\\,\\sqrt{\\frac{\\ln(1+s) - s/(1+s)}{\\ln(1+c)-c/(1+c)}\\cdot\\frac{1}{r/r_{200}}},\\quad s = \\frac{c\\,r}{r_{200}},\\; r_{200} = \\frac{V_{200}}{10\\,H_0\\cdot 10^{-3}}",
+      "description": "Two-parameter NFW rotation-curve model (k_NFW = 2); s and r200 follow the paper\u2019s definitions with H0 = 67.4 km s^{-1} Mpc^{-1}."
+    },
+    "aic_inner_contribution": {
+      "latex": "\\Delta\\mathrm{AIC}_{\\mathrm{inner}}(r_c) = \\sum_{r_i<r_c} w_i\\Big[(V_{\\mathrm{obs},i}-V_{\\mathrm{NFW},i})^2 - (V_{\\mathrm{obs},i}-V_{\\mathrm{EFC},i})^2\\Big] + 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})",
+      "description": "Inner-region contribution to the \u2206AIC at a chosen split radius rc; weights are w_i = 1/\\sigma_i^2 unless stated otherwise."
+    },
+    "aic_outer_contribution": {
+      "latex": "\\Delta\\mathrm{AIC}_{\\mathrm{outer}}(r_c) = \\sum_{r_i\\ge r_c} w_i\\Big[(V_{\\mathrm{obs},i}-V_{\\mathrm{NFW},i})^2 - (V_{\\mathrm{obs},i}-V_{\\mathrm{EFC},i})^2\\Big] + 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})",
+      "description": "Outer-region contribution to the \u2206AIC at rc, computed at the global best-fit parameters (no subset refits)."
+    },
+    "aic_global_relation": {
+      "latex": "\\Delta\\mathrm{AIC}_{\\mathrm{global}}(r_c) = \\Delta\\mathrm{AIC}_{\\mathrm{inner}}(r_c) + \\Delta\\mathrm{AIC}_{\\mathrm{outer}}(r_c) - 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})",
+      "description": "By construction, the global \u2206AIC equals the sum of inner and outer contributions minus one penalty term to avoid double-counting."
+    },
+    "sign_flip_condition": {
+      "latex": "\\operatorname{sign}\\big(\\Delta\\mathrm{AIC}_{\\mathrm{global}}\\big) \\ne \\operatorname{sign}\\big(\\Delta\\mathrm{AIC}_{\\mathrm{outer}}\\big)",
+      "description": "Diagnostic for regime-mixing: the model preferred globally is disfavored by outer points alone."
+    }
+  },
+  "key_results": {
+    "main_finding": "At rc = 3 kpc, 30/171 galaxies (17.5%) flip the preference sign between global and outer-only \u2206AIC, robustly 16.4\u201322.2% for rc \u2208 {2,3,4,5} kpc; removing \u03c7\u00b2 weights increases EFC wins (66.7% \u2192 86.5%), indicating the issue is aggregation-level, not weighting bias.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "EFC parameters: v_flat, r_turnon, p (k=3)",
+      "NFW parameters: V200, c (k=2)",
+      "Split radius rc \u2208 {2, 3, 4, 5} kpc",
+      "Weighting schemes: w_i = 1/\u03c3_i^2 vs uniform weights",
+      "Spearman correlation between \u2206AIC_global and \u2206AIC_outer"
+    ],
+    "datasets_used": [
+      "SPARC-175 (171 galaxies with converged fits for both models)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If independent refits of EFC and NFW on the inner (r < rc) and outer (r \u2265 rc) subsets across rc \u2208 {2,3,4,5} kpc reduce the sign-flip fraction to <5% with bootstrap-validated uncertainty, the claimed regime-mixing misclassification would be falsified.",
+    "KC2: If applying small-sample corrections (AICc) or alternative criteria (BIC) eliminates the sign-flip phenomenon such that >95% of galaxies show matching global and outer-only signs for all rc choices, the necessity of the proposed decomposition would be invalidated.",
+    "KC3: If reanalysis with revised uncertainties or full covariance (e.g., SPARC updates including beam smearing and inclination systematics) yields a Spearman correlation \u03c1 > 0.98 between \u2206AIC_global and \u2206AIC_outer and a sign-flip rate indistinguishable from zero within errors, the aggregation-level claim would fail.",
+    "KC4: If posterior predictive checks show no significant radial structure in per-point residuals for both models (residual slopes consistent with zero across radii at the sample level after systematics), then a single global statistic would be adequate and the paper\u2019s central claim would be undermined.",
+    "KC5: If Monte Carlo simulations under realistic noise/uncertainty models show that the observed 16\u201322% sign-flip rate is fully explained by random fluctuations (i.e., equals the null expectation within 1\u03c3 across rc choices), the reported effect would be attributable to noise rather than regime mixing."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32162706",
   "license": "CC-BY-4.0",
   "scaffolded": true,
-  "scaffolded_at": "2026-05-06T19:43:52+00:00"
+  "scaffolded_at": "2026-05-06T19:43:52+00:00",
+  "paper_type_inferred": true
 }

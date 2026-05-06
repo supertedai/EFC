@@ -1,19 +1,36 @@
 {
-  "paper": {
-    "$schema": "./schema.json",
-    "id": "composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
-    "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of Delta-AIC for SPARC-175",
-    "doi": "10.6084/m9.figshare.32162706",
-    "version": "0.1-scaffold",
-    "date": "",
-    "author": {
-      "name": "Morten Magnusson",
-      "orcid": "0009-0002-4860-5095",
-      "affiliation": "Symbiose Research, Sandnes, Norway"
-    },
-    "license": "CC-BY-4.0",
-    "scaffolded": true,
-    "scaffolded_at": "2026-05-06T19:43:52+00:00"
+  "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of \u2206AIC for SPARC-175",
+  "short_id": "composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
+  "version": "1.0",
+  "date": "2026-05-01",
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
   },
-  "scaffolded": true
+  "license": "CC-BY-4.0",
+  "doi": "10.6084/m9.figshare.32162706",
+  "abstract": "Re-fits the SPARC-175 rotation-curve sample with an EFC vs NFW comparison and decomposes each galaxy\u2019s \u2206AIC into inner (r < rc) and outer (r \u2265 rc) contributions. Finds that 17.5% of galaxies flip the preference sign between the global and outer-only \u2206AIC at rc = 3 kpc (robustly 16.4\u201322.2% for rc \u2208 {2,3,4,5} kpc), showing that a single global \u2206AIC mixes physically distinct radial regimes. A reweighting test (uniform vs 1/\u03c3\u00b2) shifts the sample further toward EFC, indicating the effect is aggregation-level, not a \u03c7\u00b2-weighting bias.",
+  "keywords": [
+    "SPARC-175",
+    "rotation curves",
+    "model selection",
+    "AIC decomposition",
+    "sign-flip diagnostic",
+    "EFC",
+    "NFW",
+    "chi-square weighting",
+    "entropy-bounded empiricism",
+    "radial stratification",
+    "inner-outer split",
+    "differential evolution"
+  ],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "paper": {
+    "doi": "10.6084/m9.figshare.32162706",
+    "figshare_url": "https://doi.org/10.6084/m9.figshare.32162706"
+  }
 }
