@@ -36,6 +36,8 @@ jobs:
           rc=$?
           cat .page-consistency.json
           exit $rc
+      - name: Verify canonical navbar on every public page
+        run: python3 scripts/maintenance/efc_navbar_sync.py --check
       - name: Summarise on failure
         if: failure()
         run: |
