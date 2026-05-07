@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-05-06T18:27:47Z",
+  "generated_at": "2026-05-07T00:28:33Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -10,7 +10,7 @@
     "framework_constraint": 28,
     "planned_pipeline": 22,
     "total_public": 135,
-    "n_falsified": 8,
+    "n_falsified": 10,
     "inference_count": 7,
     "chi2_summary": "2.18, N/A, 108.81, 0.00, N/A, N/A, 10.39",
     "hypothesis_count": 15,
@@ -97,7 +97,7 @@
         "name": "B0 Bridge Test: fσ₈ sign constraint — μ must be less than 1",
         "description": "B0 Bridge Test: Growth-sector sign constraint. Tests whether weakened (μ&lt;1) or strengthened (μ&gt;1) gravity improves fσ₈ fit. Result: μ&lt;1 improves systematically (F3: Δχ²=−5.22, >2σ for 1 DOF). μ&gt;1 killed (Δχ²=+495 to +2680). Original GRAV screening (k_Λ=0.0014) has zero effect. Relevant scales: k≈0.05-0.1 h/Mpc. This is independent of CMB A_L anomaly — fσ₈ measures growth directly. Sign constraint: EFC perturbation sector MUST produce μ&lt;1 at late times to match growth data. Current GRAV/AQUAL (μ>1) has wrong sign for cosmological growth.",
         "result": "Planned",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "fσ₈ compilation (7 datapoints, z=0.38-0.85) tested against ΛCDM + modified screening filters (F0-F3) with α_eff=0.06",
@@ -105,7 +105,7 @@
         "notes": "Sign constraint locked by data. μ>1 killed with hundreds of χ² units. μ<1 improves fσ₈ at >2σ. Independent of A_L. Relevant scales k≈0.05-0.1 h/Mpc. Current GRAV/AQUAL has wrong sign. EFC needs regime-split: MOND-like locally, growth-damping cosmologically.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T06:11:11.201000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "conv_bullet_test_promote_from_preregistered_to_in_pipeline_jwst_d",
@@ -262,7 +262,7 @@
         "name": "EFC Bar Instability Criterion (EFC-BIC) v0.2 — κ² modification with operational definitions",
         "description": "EFC predicts disk bar instability through a dynamical contribution to the epicyclic frequency, not as a multiplicative rescaling of Toomre Q. The entropy-flow term enters κ² via an effective radial acceleration:\n\n  g_EFC ≡ α·∇S        [m/s²]\n  κ²_eff = κ² + ζ·g_EFC/R   [s⁻²]\n\nDimensional check: g_EFC/R has units (m/s²)/m = s⁻², matching κ². Term interprets physically as additional radial stiffness from entropy flow.\n\nStability parameter (standard Toomre form with modified epicyclic frequency):\n  Π_EFC = (σ_R · κ_eff) / (3.36·G·Σ)\n\nm=2 mode coupling (explicit): bar (m=2) mode growth occurs when κ²_eff fails to maintain orbital phase coherence under disk self-gravity, allowing closed orbits to lock into a coherent oval pattern. The criterion is therefore dynamical (instability condition in phase space), not morphological — filling a documented blind spot shared by ΛCDM, MOND, Verlinde, fR, DGP and all other Atlas frameworks at L3, none of which provide an explicit bar-onset criterion.\n\nSymbol definitions (operational):\n• α: EFC regime amplitude per galaxy, taken from existing regime classification (sparc_regime.json field 'alpha'). Dimensionless.\n• ∇S: radial entropy gradient as output by the EFC SPARC fitting pipeline (sparc_regime.json field 'entropy_gradient'). Numerical pilot values 0.035–0.060 in EFC pipeline units. The product α·∇S has dimensions of radial gravitational acceleration in the EFC formalism. Pipeline-to-SI normalization is fixed by EFC convention and held constant across the L3 sample to preserve ζ universality.\n• R: galactocentric radius. Π_EFC is evaluated as a radial profile Π_EFC(R), not a single scalar.\n• ζ: dimensionless O(1) coupling, UNIVERSAL across the L3 regime — calibrated once on the N=20 SPARC pilot, frozen globally, applied identically to every system. ζ is NOT refitted per galaxy.\n• Evaluation range: P1/P2 applied over R ∈ [R_d, 3·R_d], the characteristic bar-formation scale range for exponential disks. R_d = disk exponential scale length per galaxy.\n\nPilot signal (preliminary regime separation, N=3, NOT evidence): NGC6503 α·∇S=0.039, NGC3198 α·∇S=0.035 (FLOW, no bar); NGC2841 α·∇S=0.0088 (LATENT, barred_disturbed). ~4× separation in α·∇S between regimes. Consistent with criterion direction; requires N≥20 for actual test.\n\nCalibration protocol: ζ fitted on 20-galaxy SPARC pilot, then frozen. All subsequent predictions sealed.",
         "result": "Planned",
-        "status": "unknown",
+        "status": "falsified",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "Primary anchor: SPARC (175-galaxy sample, N=20 pilot for ζ calibration, N≥100 for sealed test). Cross-validation: Galaxy Zoo bar fractions, S4G bar morphology catalog. Required derived quantities per galaxy: σ_R(R), Σ(R), V_circ(R) → κ(R), entropy gradient ∇S(R) from existing EFC SPARC fits (sparc_regime.json field 'entropy_gradient'), α from regime classification, R_d from disk decomposition.",
@@ -270,7 +270,7 @@
         "notes": "First explicit dynamical instability criterion for bar formation in the EFC framework atlas. Replaces v0.1 (vc_fa598665fbe8) with dimensional consistency (g_EFC/R), explicit m=2 mode coupling, ζ universality across L3, growth-domain restriction (Π<1), and operational definitions for ∇S, R, and evaluation range [R_d, 3·R_d]. Promoted to EFCValidation node in Living Validation Ledger. Cross-framework status: first such criterion across Atlas (ΛCDM, MOND, Verlinde, fR, DGP all silent on explicit bar onset).",
         "quantitative_result": null,
         "last_synced": "2026-04-25T06:18:54.289000000+00:00",
-        "status_detail": "FALSIFIED"
+        "status_detail": "falsified"
       },
       {
         "test_id": null,
@@ -333,7 +333,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-06_144946_aqual",
+        "test_id": "grav_integration_2026-05-06_205922_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -423,7 +423,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-06_144946_aqual",
+        "test_id": "grav_kt1_2026-05-06_205922_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -438,7 +438,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-06_144946_aqual",
+        "test_id": "grav_kt3_2026-05-06_205922_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -453,7 +453,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-06_144946_aqual",
+        "test_id": "grav_kt2_2026-05-06_205922_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -472,7 +472,7 @@
         "name": "ISW cancellation prediction (𝒞 metric)",
         "description": "Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)",
         "result": "Completed (Quantitative Consistency Test — No Full Likelihood) — 𝒞 = 0.59–0.96 (monotonic); AISW = 0.29–0.56; all published data within 1.6σ",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "Planck × DESI DR1 tracer windows (LRGz0, LRGz1, LRG+ELG, ELG)",
@@ -480,7 +480,7 @@
         "notes": "Kμand Kμ′have opposite signs near zt; total ISW signal is suppressed residual after cancellation. Shape ratio SEFC/SΛCDM≈ 1 confirms amplitude-only signature. H(a) sensitivity test passed (Δχ² < 1 for δw ≤ 0.05).",
         "quantitative_result": "",
         "last_synced": "2026-02-11T18:40:54.859771Z",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "conv_jwst_bullet_cluster_kill_test_data_tilgjengelig_pipeline_er_",
@@ -592,7 +592,7 @@
         "name": "MVP-G1 fσ₈ Leave-One-Out Robustness (N2a mode)",
         "description": "Leave-One-Out stress test of EFC Hubble friction channel (α parameter) in growth sector. 7 fσ₈ data points (z=0.02-0.85) + 14 BAO points, N2a mode (rd=147.09, σ₈~N(0.81,0.02)). Tests whether α<0 signal is driven by any single data point. Combined with rd-independence test (N1) and σ₈-control test (N2), this completes a three-part robustness validation of the growth-sector hint. Result: 7/7 LOO runs pass (|α|/σ ≥ 1.84 AND ΔAIC ≤ 0). α stable in range [-1.11, -0.88]. No single fσ₈ measurement drives the hint. Correlations stable across LOO: corr(α,Ωm) ≈ +0.59, corr(α,σ₈) ≈ -0.26.",
         "result": "PASS",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "fσ₈ extended compilation (7 points, z=0.02-0.85): 6dFGS, SDSS MGS, BOSS DR12 (3 bins), eBOSS, Vipers. BAO compilation (14 points). Pipeline: MVP-G1 Hubble Friction Channel with N2a nuisance controls.",
@@ -600,7 +600,7 @@
         "notes": "Approved. DOI published: 10.6084/m9.figshare.31332730. Three-part robustness validation (N1+N2+T7) complete. 7/7 LOO pass, α stable [-1.11, -0.88], no single data point drives signal. Status: Completed (robust hint). First systematic LOO robustness paper for any LCDM alternative in growth sector.",
         "quantitative_result": "α significance: 1.8278057816803883σ (best), 1.7302154299514765σ (worst)",
         "last_synced": "2026-02-13T11:53:22.563000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": null,
@@ -637,7 +637,7 @@
         "name": "Scale-dependent μ(k,z): first constraint on EFC characteristic scale k*",
         "description": "Extend WP1a (scale-free μ) to scale-dependent μ(k,z) with sigmoid cutoff h(k/k*). Scan k* to test whether current fσ₈/RSD data constrain k*. If k* unconstrained, scale-free is sufficient. If data prefer finite k*, it reveals EFC's characteristic scale — a major theoretical discriminator. Executable with modified growth ODE.",
         "result": "Planned",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "Modified growth ODE with k-dependent source μ(k,z)=1-B·g(a)·h(k/k*), existing RSD data",
@@ -645,7 +645,7 @@
         "notes": "P1 Tier 1. Teoretisk kritisk: knytter til F3 tanh-band (k≈0.1). Avgjør om EFC har karakteristisk skala eller forblir scale-free effektiv teori. Kjøres parallelt med σ₈(z) trajectory.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T12:17:52.976000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "conv_shadow_mode_v2_tdcosmo_pemd_nfw_time_delay_consistency",
@@ -727,7 +727,7 @@
         "name": null,
         "description": "DESI DR2 BAO-only MCMC with full 13×13 covariance. α = -0.119 ± 0.227 (0.52σ from zero). 95% CI [-0.567, +0.324]. Consistent with ΛCDM. ΔAIC(EFC−ΛCDM) = +1.74, no preference for extra parameter.",
         "result": null,
-        "status": "success",
+        "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "DESI DR2 (arXiv:2503.14738), 13 measurements, 7 z-bins",
@@ -735,14 +735,14 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "desi_dr2_strong_alpha_bao_falsified_v1",
         "name": null,
         "description": "EFC with α ≈ -0.68 (BOSS/eBOSS best-fit) gives χ² = 95.3 against DESI DR2 (13 dof). Per-bin: z=0.934 contributes χ²=36.8, z=1.321 χ²=24.1, z=2.330 χ²=21.4. The VariantA gate (a_t=0.5, δ_a=0.1) with strong α drives H(z) too low at z > 0.9, producing catastrophic DH/rd residuals (+5σ at z=0.934). This falsifies strong α in the BAO/background sector specifically, NOT EFC generally.",
         "result": null,
-        "status": "unknown",
+        "status": "failed",
         "vl_category": "physics_test",
         "also_phenomenological": null,
         "data_source": "DESI DR2 BAO vs pre-existing NUTS posterior (α = -0.684 ± 0.405)",
@@ -750,7 +750,7 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "failure"
+        "status_detail": "failed"
       }
     ],
     "consistency_check": [
@@ -766,7 +766,7 @@
         "prediction": "⚪",
         "notes": "BAO covariance-aware consistency test | ✅ | ⚪ | ✅ | Fixed-parameter transfer test using official Cobaya likelihood with full covariance matrix. Δχ² = −2.4 (BAO) + −0.6 (CC) = −3.0 total. No validated geometric channel penalises EFC relative to ΛCDM. | 31314922",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -781,7 +781,7 @@
         "prediction": "⚪",
         "notes": "BAO transfer test (DESI → BOSS/eBOSS; no refit) | ✅ | ⚪ | ✅ | Out-of-sample transfer: late-time growth/geometry sector must remain consistent when carried across surveys without parameter re-tuning. Later confirmed by explicit four-channel background-coupling consistency test. | 31231522,31304980",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -789,7 +789,7 @@
         "name": "BAO-RSD tension resolution via free σ8_0",
         "description": "The BAO-RSD tension in Phase 2.2 reveals that BAO geometry prefers A≈0.217 while RSD growth prefers A=0. This structural mismatch tests whether EFC's single gate function can simultaneously satisfy distance and growth probes. If a joint fit with free σ8_0 resolves the tension (σ8_0 shifts to ~0.78-0.80), it confirms EFC is consistent. If the tension persists even with free σ8_0, it indicates the gate function needs modification (separate growth coupling).",
         "result": "DEGENERACY_LIMITED",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "Phase 2.2 joint BAO+CC+RSD scan; BOSS DR12 fσ8; DESI DR2-like BAO",
@@ -797,7 +797,7 @@
         "notes": "Cross-channel consistency diagnostic. Tester om BAO-RSD spenningen løses via fri σ8_0 — men dette er diagnostisk, ikke en styrketest. Kritisk tolkning: Hvis spenning forsvinner uten ekstrem σ8_0 → robust. Krever unaturlig σ8_0 → manglende mekanisme. Spenning består → bakgrunnsmodul utilstrekkelig. Nivå: Global konsistens (sekundær).",
         "quantitative_result": "α = -0.766 ± 0.431 (1.78σ), ΔAIC=-1.2165033445554059",
         "last_synced": "2026-02-14T11:10:47.101000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "conv_ct_02_omega_kappa_anti_correlation_constraint",
@@ -841,7 +841,7 @@
         "prediction": "✅",
         "notes": "Early galaxies (JWST) | ✅ | ⚪ | ⚠️ | EFC consistent with observed abundance in high-entropy regime; ΛCDM shows tension under standard assumptions (SF, dust, IMF interpretation-dependent) | 31059964",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -856,7 +856,7 @@
         "prediction": "⚪",
         "notes": "High-z null regime consistency | ✅ | ⚪ | ✅ | Same coupling T(z) predicts near-zero modification at high redshift; data consistent with null detection, as required by the same transition function T(z) used in the four-channel background test. | 31304995",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -871,7 +871,7 @@
         "prediction": "⚪",
         "notes": "H₀ tension | ✅ | ⚪ | ❌ | Local–global inference separation; EFC survives but does not resolve the tension | 31026151",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -886,7 +886,7 @@
         "prediction": "⚪",
         "notes": "ISW cross-correlation | ✅ | ⚪ | ✅ | L1 linear perturbations: Under fully self-consistent growth-channel implementation (ODE-based D(a), no potential μ′ term), EFC predicts a uniform late-time ISW amplitude suppression AISW≈ 0.89 ± 0.03 across tracer bins. No strong tomographic gradient survives internal consistency audit.Definitive discriminator:Measured AISWmust deviate from unity by ≈10% in a tracer-independent manner. A statistically significant detection of AISW≈ 1.0 ± 0.02 would disfavor the background-driven EFC channel. | 31301953,31329082",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -901,7 +901,7 @@
         "prediction": "⚪",
         "notes": "Late-time background coupling architecture (β·T(a)) | ✅ | ⚪ | ✅ | Single-parameter background modification tested across four independent cosmological probes (BAO, RSD, SN Ia, CMB lensing). Poisson-sector coupling disfavoured by RSD; background channel produces consistent growth suppression via expansion history.v3.3 update:Systematic CMB localization (31368433) confirms background gate is observationally empty: α collapses to ≈0 under Planck+BAO joint fit (all combinations |Δχ²| < 2σ), with perfect α–H0degeneracy (corr = 0.975). CMB is blind to α; BAO breaks the degeneracy. | 31304980",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1006,7 +1006,7 @@
         "prediction": "⚪",
         "notes": "Regime transition metric (ΔF) | ✅ | ⚪ | ⚪ | Growth-sector constraint:Integrated transition strength across L0–L1–L2 regimes.\n        Measures effective gravitational enhancement rather than a background density parameter.\n        Now physically bounded by Density Saturation Θ(ρ) in high-density regimes. | 31144030",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1036,7 +1036,7 @@
         "prediction": "⚪",
         "notes": "Solar System / PPN / EP | ⚪ | ⚪ | ✅ | Density Saturation mechanism with source-smoothed effective density yields screening sufficient to pass Cassini, LLR, perihelion, and WEP bounds. Linearized field analysis shows PPN parameter γ = 1 at leading order, with residual deviations bounded far below current experimental sensitivity. Complementary result from Covariant EFT (31878334): exponential amplitude suppression A(r) ~ exp(−r/λS) provides an independent screening path for the minimally coupled scalar class. Full strong equivalence principle proof remains a target for action-level derivation. | 31244827● Cassini/Shapiro ● LLR bounds",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1044,7 +1044,7 @@
         "name": "σ₈(z) full trajectory reconstruction: EFC vs ΛCDM vs multi-survey data",
         "description": "Compute full σ₈(z) trajectory from z=0 to z=3 under EFC (α=-0.689, WP1a μ₀=0.813) vs ΛCDM. Compare against multi-survey compilation of σ₈ constraints at different redshifts. Tests whether EFC's growth suppression profile matches the z-dependent pattern seen in data, not just individual points. Executable now with growth ODE.",
         "result": "Planned",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "Growth ODE + DES Y6, HSC-SSP, KiDS-Legacy compiled σ₈(z) values",
@@ -1052,7 +1052,7 @@
         "notes": "P1 Tier 1. Full dynamisk signatur, ikke bare enkeltpunkt. Binder direkte til sealed α. Growth ODE + pipeline = lav kost. Kjøres etter μ-bridge men før freeze-prediksjoner.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T12:17:45.743000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "global_parameter_lock",
@@ -1143,7 +1143,7 @@
         "prediction": "⚪",
         "notes": "BAO anisotropic split (DAvs H(z)) | ⚪ | ⚪ | ✅ | Separately constrains transverse and radial expansion. Background coupling must shift DAand H consistently; forbids geometry retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1158,7 +1158,7 @@
         "prediction": "BOSS DR12 consensus",
         "notes": "Mild preference for positive coupling; consistent with but not conclusive for EFC",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1173,7 +1173,7 @@
         "prediction": "Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.\n        Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.",
         "notes": "Case A S₈ direction (v1.4) | L1–L2 lensing",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "unknown"
       },
       {
@@ -1233,7 +1233,7 @@
         "prediction": "⚪",
         "notes": "Galaxy bias evolution consistency | ⚪ | ⚪ | ✅ | Ensures that modified growth history does not produce inconsistent galaxy–matter bias evolution. Required for internal consistency of clustering and lensing in L2. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1248,7 +1248,7 @@
         "prediction": "Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.",
         "notes": "Weak-lensing phenomenological closure (Postulate A) | L1 linear perturbations",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "unknown"
       },
       {
@@ -1263,7 +1263,7 @@
         "prediction": "KiDS-1000 Flinc ξ±",
         "notes": "Strong fit improvement, but EFC preferslowerS₈,increasingPlanck tension (3.6σ vs 2.3σ).\n        Case A is phenomenological lensing boost, not S₈ tension solution.",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "partial"
       },
       {
@@ -1271,7 +1271,7 @@
         "name": null,
         "description": "Full multi-probe MCMC (BAO DESI DR2 + fs8 + Hz + SNIa, 69 pts) with DESI DR2 replacing BOSS/eBOSS. Alpha = -0.138 +/- 0.211 (0.65 sigma). No statistically significant deviation from LCDM. Strong background modification excluded. Weak negative skew allowed but not preferred. DAIC = +1.59 favors LCDM. Confirms that alpha ~ -0.6 from old pipeline was BAO-driven.",
         "result": null,
-        "status": "success",
+        "status": "unknown",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "DESI DR2 BAO (13 pts, full covariance) + fs8_extended + Hz_CC + Pantheon_binned",
@@ -1279,14 +1279,14 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": null,
         "name": null,
         "description": "DESI DR2 BAO-only MCMC: alpha = -0.119 +/- 0.227 (0.52 sigma). Consistent with LCDM. Strong alpha excluded.",
         "result": null,
-        "status": "success",
+        "status": "unknown",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": null,
@@ -1294,14 +1294,14 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": null,
         "name": null,
         "description": "Strong alpha (~-0.68) gives chi2=95.3 vs LCDM 16.2 against DESI DR2. Catastrophic failure at z>0.9. Gate a_t=0.5 delta_a=0.1 drives H(z) too low.",
         "result": null,
-        "status": "success",
+        "status": "unknown",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": null,
@@ -1309,7 +1309,7 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "passed"
       }
     ],
     "framework_constraint": [
@@ -1430,7 +1430,7 @@
         "prediction": "⚪",
         "notes": "Cluster core entropy–structure coupling | ⚪ | ⚪ | ❌ | Pre-registered rank correlation test between entropy profile slope (α) and core thermodynamics (K₀, tcool). Under matched Cavagnolo et al. (2009) definitions, TNG-Cluster shows strongnegativecorrelation (ρ ≈ −0.4 to −0.6), opposite topositivecorrelation in ACCEPT observations. Mass-controlled partial correlations confirm sign flip. Diagnostic mismatch points to deficiencies in simulated ICM thermodynamic regulation. | 31286368",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1445,7 +1445,7 @@
         "prediction": "⚪",
         "notes": "Cluster merger geometry | ✅ | ⚪ | ⚪ | Strong-field L2 geometric constraint; disfavours local coupling classes and imposes structural requirements on admissible operators | 31173850",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1460,7 +1460,7 @@
         "prediction": "Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3",
         "notes": "Core Lock consistency enforcement (31223503) | All regimes (method layer)",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "unknown"
       },
       {
@@ -1490,7 +1490,7 @@
         "prediction": "Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with explicit density discrimination",
         "notes": "Density Saturation Θ(ρ) (v1.3) | All regimes (L0–L3)",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "unknown"
       },
       {
@@ -1558,7 +1558,7 @@
         "name": "GRAV-to-cosmo μ_eff regime bridge test",
         "description": "Extract effective μ_eff from Graph-AQUAL solutions at cluster scales and check sign consistency with cosmological requirement μ<1 (WP1a). Current GRAV gives μ>1 locally. This is the critical regime bridge test: if μ flips sign between local and cosmological scales, the regime transition must be justified. If no consistent bridging exists, the local-cosmological gap is a structural weakness. Executable from existing GRAV output.",
         "result": "Planned",
-        "status": "success",
+        "status": "unknown",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "Existing GRAV Graph-AQUAL runs (10 completed) + WP1a reference model",
@@ -1566,7 +1566,7 @@
         "notes": "P0 CRITICAL PATH. GPT + Claude enige: dette er make-or-break for hele EFC-rammeverket. μ>1 lokalt vs μ<1 kosmologisk — hvis ingen konsistent regime-bro finnes, er EFC to urelaterte effektive modeller, ikke ett rammeverk. GRAV output har Φ(r), ∇Φ, μ(x) og EL-residual — μ_eff-ekstraksjon er post-processing på eksisterende runs. Lavthengende frukt med høyest informasjonsverdi.",
         "quantitative_result": null,
         "last_synced": "2026-02-19T12:17:38.703000000+00:00",
-        "status_detail": "success"
+        "status_detail": "passed"
       },
       {
         "test_id": "conv_gate_transition_zone_anomaly_concentration_z_1",
@@ -1640,7 +1640,7 @@
         "prediction": "⚪",
         "notes": "Structural coherence across regimes (SCE evaluation) | ⚪ | ⚪ | ⚪ | Framework-level diagnostic (not empirical observable): EFC shows higher layer consistency and lower model plasticity; ΛCDM retains higher compression | 31305550",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1723,7 +1723,7 @@
         "name": null,
         "description": "DESI DR2 confirms background sector consistent with LCDM. EFC signal, if real, must reside in growth/gravity/regime sector. KT3 v2 beta-convergence becomes decisive test.",
         "result": null,
-        "status": "success",
+        "status": "unknown",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": null,
@@ -1731,7 +1731,7 @@
         "notes": null,
         "quantitative_result": null,
         "last_synced": null,
-        "status_detail": "success"
+        "status_detail": "passed"
       }
     ],
     "planned_pipeline": [
@@ -1777,7 +1777,7 @@
         "prediction": "⚪",
         "notes": "Big Bang Nucleosynthesis expansion-rate bound | ⚪ | ⚪ | ✅ | L0 regime hard constraint. Early-time suppression must ensure ΔH/H ≪ 1 at MeV temperatures. Equivalent to ΔNeffbound. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1837,7 +1837,7 @@
         "prediction": "⚪",
         "notes": "CMB polarization & lensing internal consistency (TE/EE/φφ) | ⚪ | ⚪ | ✅ | Linear-regime metric and potential evolution constraint. Confirms that regime suppression fully removes EFC effects during recombination and linear post-recombination evolution. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1852,7 +1852,7 @@
         "prediction": "⚪",
         "notes": "CMB power spectrum | ⚪ | ⚪ | ✅ | ΛCDM preferred in L0; EFC dynamically suppressed. EFC terms expected to vanish at recombination (Θ(ρ→0)); explicit Boltzmann-level validation pending. | 31095466",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1882,7 +1882,7 @@
         "prediction": "⚪",
         "notes": "Cluster abundance / mass function N(M,z) | ⚪ | ⚪ | ✅ | L2–L3 integrated growth test: Mass function evolution N(M,z) discriminates between EFC and ΛCDM structure formation. Tests whether geometry consistency extends to actual halo abundance. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1897,7 +1897,7 @@
         "prediction": "⚪",
         "notes": "Cluster shock-front lensing asymmetry | ⚪ | ⚪ | ⚪ | L2 geometric symmetry test. Pre-registered directional residual estimator (Asig) measures whether lensing convergence residuals show shock-locked asymmetry after density-based mass model subtraction. Discriminates isotropic metric theories from entropy- or structure-coupled anisotropic lensing responses. | Methodology locked (2026)",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1912,7 +1912,7 @@
         "prediction": "⚪",
         "notes": "Dark-energy evolution w(z) | ⚪ | ⚪ | ⚠️ | Geometric BAO-only phenomenology; full dynamical multi-probe test pending | 31127380",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "success"
       },
       {
@@ -1927,7 +1927,7 @@
         "prediction": "⚪",
         "notes": "EGgravitational slip consistency (lensing × RSD) | ⚪ | ⚪ | ✅ | Direct observable linking geometry and growth. With Poisson sector fixed (μ=1), EFC predicts specific redshift-dependent EGevolution driven solely by expansion history. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -1972,7 +1972,7 @@
         "prediction": "⚪",
         "notes": "Global parameter-lock cross-probe test | ⚪ | ⚪ | ⚪ | Framework-level stress test: a single β and transition function T(a) must fit all late-time probes without retuning. Eliminates hidden model plasticity. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -2002,7 +2002,7 @@
         "prediction": "⚪",
         "notes": "Linear & quasi-linear matter power spectrum shape P(k,z) | ⚪ | ⚪ | ✅ | Tests scale-dependent growth and turnover structure under background-driven growth suppression. Shape consistency required if Poisson sector remains GR while H(a) is modified. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -2017,7 +2017,7 @@
         "prediction": "⚪",
         "notes": "Multi-epoch RSD growth trajectory | ⚪ | ⚪ | ✅ | Tests redshift continuity of growth suppression across L1→L2 transition. β·T(a) must produce a smooth, monotonic deviation pattern with no retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -2032,7 +2032,7 @@
         "prediction": "⚪",
         "notes": "Regime response surface R(k,S,ρ) | ⚪ | ⚪ | ⚪ | Framework linking μ(a) and μ(k,z) through structural state S; defines global falsification conditions across L2 probes. Extended to R(k,S,ρ) with explicit density axis enabling dwarf–cluster discrimination. | 31211437",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -2047,7 +2047,7 @@
         "prediction": "⚪",
         "notes": "Small-scale structure | ⚪ | ⚪ | ⚪ | Non-linear discriminators | Metric spec pending",
         "quantitative_result": "",
-        "last_synced": "2026-05-05T19:41:27.000018Z",
+        "last_synced": "2026-05-06T19:41:28.945337Z",
         "status_detail": "pending"
       },
       {
@@ -2072,7 +2072,7 @@
       "test_id": "inference_bao_boss_dr12",
       "name": "EFC Inference: bao_boss_dr12",
       "result": "Δχ²=−7.77 (EFC preferred, k_eff=0)",
-      "status": "pass",
+      "status": "passed",
       "chi2_reduced": 2.18,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -2095,7 +2095,7 @@
       "test_id": "inference_bao_desi_y1",
       "name": "EFC Inference: bao_desi_y1",
       "result": "Δχ²=−22.01 (EFC preferred, 5-fold CV all pass)",
-      "status": "pass",
+      "status": "passed",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -2123,7 +2123,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-05-06T18:18:43.850258Z",
+      "timestamp": "2026-05-06T23:28:35.595336Z",
       "best_fit": {
         "a_C": 8.0,
         "Xi_c": 1.0,
@@ -2138,7 +2138,7 @@
       "test_id": "inference_cluster_tng",
       "name": "EFC Inference: cluster_tng",
       "result": "chi2_red=0.000 (good fit)",
-      "status": "success",
+      "status": "passed",
       "chi2_reduced": 0.0,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -2154,7 +2154,7 @@
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
       "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
-      "status": "pass",
+      "status": "passed",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
@@ -2226,7 +2226,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-06T18:15:05.383819+00:00"
+      "timestamp": "2026-05-07T00:15:15.793290+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2240,7 +2240,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-06T18:15:05.410869+00:00"
+      "timestamp": "2026-05-07T00:15:15.829047+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2254,7 +2254,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-05-06T18:15:05.424126+00:00"
+      "timestamp": "2026-05-07T00:15:15.842939+00:00"
     }
   },
   "parameters": {
@@ -2382,231 +2382,6 @@
   "evidence_register": {
     "empirical": [
       {
-        "doi": "28098299",
-        "name": "EFC — Observational Evidence for Entropy in Cosmic Evolution",
-        "category": "empirical"
-      },
-      {
-        "doi": "28098305",
-        "name": "EFC – Why Is Light Speed a Cosmic Limit?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098308",
-        "name": "EFC – Applications and Implications",
-        "category": "structural"
-      },
-      {
-        "doi": "28098311",
-        "name": "EFC — What is the Connection Between Energy Flow and the Now?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098314",
-        "name": "EFC — Mathematical Framework for Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098317",
-        "name": "EFC — Can Energy Flow Be Observed in Galactic Clusters?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098320",
-        "name": "EFC — Introduction to Entropy in Cosmic Evolution",
-        "category": "structural"
-      },
-      {
-        "doi": "28098326",
-        "name": "EFC — Unresolved Questions and Challenges: Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "28098332",
-        "name": "EFC — Technical Documentation: Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098338",
-        "name": "EFC — How Does Balance Shape Universal Structures?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098341",
-        "name": "EFC — Introduction to Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098344",
-        "name": "Dynamic Balance: How Entropy Governs the Balance Between Order and Chaos in Cosm",
-        "category": "structural"
-      },
-      {
-        "doi": "28098347",
-        "name": "EFC — Is Consciousness Linked to Entropy?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098350",
-        "name": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, C",
-        "category": "structural"
-      },
-      {
-        "doi": "28098353",
-        "name": "EFC — Can Entropy Drive Cosmic Evolution?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098365",
-        "name": "EFC — Observational Evidence for Energy Flow",
-        "category": "empirical"
-      },
-      {
-        "doi": "28098371",
-        "name": "EFC — How Energy Flow Sustains Spacetime",
-        "category": "structural"
-      },
-      {
-        "doi": "28098380",
-        "name": "EFC — What Happens at the Universe’s Extremes?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098386",
-        "name": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, C",
-        "category": "structural"
-      },
-      {
-        "doi": "28102772",
-        "name": "Hypothesis_Entropy_Energyflow",
-        "category": "structural"
-      },
-      {
-        "doi": "28111925",
-        "name": "EFC — Light Speed as a Regulator of Energy Flow in the Universe",
-        "category": "structural"
-      },
-      {
-        "doi": "28112036",
-        "name": "EFC — Subhypothesis: Light Speed Limit",
-        "category": "structural"
-      },
-      {
-        "doi": "28112096",
-        "name": "EFC — Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
-        "category": "empirical"
-      },
-      {
-        "doi": "28113542",
-        "name": "EFC — Energy Flow as the Fundamental Dynamic of the Universe",
-        "category": "structural"
-      },
-      {
-        "doi": "28114370",
-        "name": "EFC — A Deep Dive into the Halo Concept",
-        "category": "structural"
-      },
-      {
-        "doi": "28557281",
-        "name": "EFC — Hypothesis: Interrelation Between Energy and Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "28559423",
-        "name": "Grid Model: An Entropic and Dynamic Theory for Emergent Gravity in Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "28559510",
-        "name": "EFC — Grid-Higgs Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "28560935",
-        "name": "Paradigm Shift in Cosmology: Continuous Energy Recycling Through the Grid-Higgs ",
-        "category": "structural"
-      },
-      {
-        "doi": "28570088",
-        "name": "Hypothesis on Cosmic Microwave Background as a Thermodynamic Temperature Gradien",
-        "category": "structural"
-      },
-      {
-        "doi": "28578263",
-        "name": "EFC — Integrated Hypothesis: Time and Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "30275947",
-        "name": "CEM: A Field-Theoretic Model of Consciousness Coupled to Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "30402427",
-        "name": "Energy-Flow Cosmology: A Thermodynamic Bridge Between General Relativity and Qua",
-        "category": "structural"
-      },
-      {
-        "doi": "30421807",
-        "name": "Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime",
-        "category": "structural"
-      },
-      {
-        "doi": "30455237",
-        "name": "Energy-Flow Cosmology (EFC v2.1): Modular Synthesis across Structure, Dynamics, ",
-        "category": "structural"
-      },
-      {
-        "doi": "30468737",
-        "name": "The Energy–Flow Interface: A Unified Thermodynamic Interpretation of Dark Matter",
-        "category": "structural"
-      },
-      {
-        "doi": "30478916",
-        "name": "EFC v2.1 – Complete Edition",
-        "category": "structural"
-      },
-      {
-        "doi": "30530156",
-        "name": "EFC — v2.2 Cross-Field Integration Summary",
-        "category": "structural"
-      },
-      {
-        "doi": "30563738",
-        "name": "Energy–Flow Cosmology v1.2: Foundational Framework and Cross-Field Continuity",
-        "category": "structural"
-      },
-      {
-        "doi": "30630500",
-        "name": "EFC — Formal Specification",
-        "category": "structural"
-      },
-      {
-        "doi": "30636863",
-        "name": "EFC — AI-Augmented Scientific Workflow Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "30642497",
-        "name": "Variable Effective Light Speed in Entropic Transition States: A Formal Treatment",
-        "category": "structural"
-      },
-      {
-        "doi": "30656351",
-        "name": "Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Sc",
-        "category": "structural"
-      },
-      {
-        "doi": "30656828",
-        "name": "AUTH Layer: Origin, Provenance and Structural Signature of Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "30773684",
-        "name": "Symbiosis: A Human–AI Co-Reflection Architecture Using Graph–Vector Memory for L",
-        "category": "structural"
-      },
-      {
         "doi": "31007248",
         "name": "Regime-Dependent Validity in EFC: SPARC Galaxy Rotation Curves",
         "category": "empirical"
@@ -2614,16 +2389,6 @@
       {
         "doi": "31026151",
         "name": "Resolving H0 and S8 Tensions via Local-Global Inference Separation",
-        "category": "empirical"
-      },
-      {
-        "doi": "31042678",
-        "name": "Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Compleme",
-        "category": "structural"
-      },
-      {
-        "doi": "31045126",
-        "name": "Regime-Dependent Validity in Galaxy Rotation Curve Modeling: Comprehensive Analysis of 175 SPARC Galaxies",
         "category": "empirical"
       },
       {
@@ -2642,11 +2407,6 @@
         "category": "empirical"
       },
       {
-        "doi": "31061872",
-        "name": "Energy-Flow Cosmology and Regime-Dependent Structure Formation (Paper III)",
-        "category": "structural"
-      },
-      {
         "doi": "31064929",
         "name": "CMB — Thermodynamic Interpretation",
         "category": "empirical"
@@ -2657,43 +2417,8 @@
         "category": "empirical"
       },
       {
-        "doi": "31096951",
-        "name": "Dynamical Regime Transitions in Cosmology: A CMB-Safe Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "31112536",
-        "name": "L0–L3 Regime Architecture in Entropy-Bounded Empiricism",
-        "category": "structural"
-      },
-      {
-        "doi": "31122970",
-        "name": "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inferenc",
-        "category": "structural"
-      },
-      {
-        "doi": "31127380",
-        "name": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
-        "category": "empirical"
-      },
-      {
-        "doi": "31135597",
-        "name": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodologic",
-        "category": "structural"
-      },
-      {
         "doi": "31144030",
         "name": "Regime-Dependent Growth Enhancement (Fugaku / DESI)",
-        "category": "empirical"
-      },
-      {
-        "doi": "31173850",
-        "name": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
-        "category": "empirical"
-      },
-      {
-        "doi": "31188193",
-        "name": "EFC Weak Lensing Phenomenology: A Testable μ(k,z) Framework and DES Y6 Validation Protocol",
         "category": "empirical"
       },
       {
@@ -2717,23 +2442,8 @@
         "category": "empirical"
       },
       {
-        "doi": "31222696",
-        "name": "Energy-Flow Cosmology: An Effective Phenomenological Law for Gravitational Respo",
-        "category": "structural"
-      },
-      {
-        "doi": "31223650",
-        "name": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex System",
-        "category": "structural"
-      },
-      {
         "doi": "31224538",
         "name": "EFC Phase 3 SPARC Validation (RAR)",
-        "category": "empirical"
-      },
-      {
-        "doi": "31230703",
-        "name": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO",
         "category": "empirical"
       },
       {
@@ -2752,11 +2462,6 @@
         "category": "empirical"
       },
       {
-        "doi": "31271707",
-        "name": "Persistent Cognitive Architectures for Human-AI Co-Reasoning: Beyond Retrieval t",
-        "category": "structural"
-      },
-      {
         "doi": "31271917",
         "name": "Regime-Activated Lensing Response — KiDS-1000 Cosmic Shear",
         "category": "empirical"
@@ -2764,31 +2469,6 @@
       {
         "doi": "31286368",
         "name": "Pre-Registered Test of Entropy-Structure Coupling in Galaxy Clusters",
-        "category": "empirical"
-      },
-      {
-        "doi": "31288063",
-        "name": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
-        "category": "empirical"
-      },
-      {
-        "doi": "31289806",
-        "name": "Consciousness as Field Resonance: From Ego-Filtered Ontology to Differentiation-Dominant Dynamics",
-        "category": "empirical"
-      },
-      {
-        "doi": "31292827",
-        "name": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
-        "category": "empirical"
-      },
-      {
-        "doi": "31293745",
-        "name": "Structural Coherence Evaluation for Physical Theories: A Theory-Agnostic Framewo",
-        "category": "structural"
-      },
-      {
-        "doi": "31301953",
-        "name": "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers",
         "category": "empirical"
       },
       {
@@ -2810,254 +2490,9 @@
         "doi": "31314922",
         "name": "Covariance-Aware BAO Consistency Test (BOSS DR12)",
         "category": "empirical"
-      },
-      {
-        "doi": "31332730",
-        "name": "Robustness of the EFC Growth-Sector Signal: Leave-One-Out, Sound-Horizon, and Amplitude-Prior Controls for the Hubble-Friction Channel",
-        "category": "empirical"
-      },
-      {
-        "doi": "31333600",
-        "name": "Perturbation-Level σ8 Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications",
-        "category": "empirical"
-      },
-      {
-        "doi": "31348414",
-        "name": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
-        "category": "empirical"
-      },
-      {
-        "doi": "31368433",
-        "name": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival, the Lensing Barrier, and a Growth-Sector Sign Constraint",
-        "category": "empirical"
-      },
-      {
-        "doi": "31562200",
-        "name": "Minimal EFC Effective Field Theory Ansatz: Scalar-Tensor and Vector-Tensor Formu",
-        "category": "structural"
-      },
-      {
-        "doi": "31564123",
-        "name": "Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity",
-        "category": "structural"
-      },
-      {
-        "doi": "31564129",
-        "name": "Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "31833076",
-        "name": "Regime-Locked Measurement as a General Structural Constraint: Cross-Domain Frame",
-        "category": "structural"
-      },
-      {
-        "doi": "31864993",
-        "name": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Anal",
-        "category": "structural"
-      },
-      {
-        "doi": "31940469",
-        "name": "Energy-Flow Cosmology: Empirical Validation of the EFC Screening Model Against the Radial Acceleration Relation",
-        "category": "empirical"
-      },
-      {
-        "doi": "31940535",
-        "name": "Reinforcement Learning from Human Feedback as Thermodynamic Entropy Minimisation: A Formal Isomorphism and Testable Predictions",
-        "category": "empirical"
-      },
-      {
-        "doi": "31941543",
-        "name": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
-        "category": "empirical"
-      },
-      {
-        "doi": "31942677",
-        "name": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
-        "category": "empirical"
-      },
-      {
-        "doi": "31943361",
-        "name": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
-        "category": "empirical"
-      },
-      {
-        "doi": "31951992",
-        "name": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
-        "category": "empirical"
-      },
-      {
-        "doi": "31954125",
-        "name": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
-        "category": "empirical"
-      },
-      {
-        "doi": "31955871",
-        "name": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f σ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
-        "category": "empirical"
-      },
-      {
-        "doi": "31963668",
-        "name": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
-        "category": "empirical"
-      },
-      {
-        "doi": "31964847",
-        "name": "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
-        "category": "empirical"
-      },
-      {
-        "doi": "31970898",
-        "name": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping (µ, Σ, S8)",
-        "category": "structural"
-      },
-      {
-        "doi": "31970904",
-        "name": "White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledg",
-        "category": "empirical"
-      },
-      {
-        "doi": "31970907",
-        "name": "White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility",
-        "category": "structural"
-      },
-      {
-        "doi": "31985163",
-        "name": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
-        "category": "empirical"
-      },
-      {
-        "doi": "31985313",
-        "name": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
-        "category": "empirical"
-      },
-      {
-        "doi": "31986762",
-        "name": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
-        "category": "empirical"
-      },
-      {
-        "doi": "31990053",
-        "name": "EFC Euclid DR1 Boltzmann Pre-Registration",
-        "category": "empirical"
-      },
-      {
-        "doi": "31990194",
-        "name": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
-        "category": "empirical"
-      },
-      {
-        "doi": "31990212",
-        "name": "ISW Void Sign-Flip Observational Pipeline: From EFC Theory to Data Confrontation",
-        "category": "empirical"
-      },
-      {
-        "doi": "32010399",
-        "name": "Pre-Registered Predictions for the Entropy Flow Cosmology (EFC) Model",
-        "category": "empirical"
-      },
-      {
-        "doi": "32013156",
-        "name": "Sealed Blind Predictions for Growth-Rate Observables: Energy-Flow Cosmology vs ΛCDM",
-        "category": "empirical"
-      },
-      {
-        "doi": "32013738",
-        "name": "Pre-Registered Predictions for the Energy-Flow Cosmology Model Against the Rubin Observatory LSST DP2 Cosmic Shear Dataset",
-        "category": "empirical"
-      },
-      {
-        "doi": "32019723",
-        "name": "Component-weighted bias in rotation curve model selection: A proxy-chain audit o",
-        "category": "structural"
-      },
-      {
-        "doi": "32023788",
-        "name": "Pre-Registered EFC Prediction: EG Statistic from SO × Euclid Cross-Correlation",
-        "category": "empirical"
-      },
-      {
-        "doi": "32029704",
-        "name": "Systematic elimination of local gravitational models on the SPARC 175 sample: Evidence for an irreducible galaxy-specific degree of freedom",
-        "category": "empirical"
-      },
-      {
-        "doi": "32037990",
-        "name": "EFC Perturbation Sector: Constraint-Driven Gravitational Slip and a Testable Lensing Crossover",
-        "category": "empirical"
-      },
-      {
-        "doi": "32045592",
-        "name": "Expected Outcomes for Energy-Flow Cosmology Cross-Survey Invariance and BIG-SPARC Tests",
-        "category": "empirical"
-      },
-      {
-        "doi": "32084670",
-        "name": "A structural closure of growth-sector couplings between discrete gravity and cosmology",
-        "category": "empirical"
-      },
-      {
-        "doi": "32091700",
-        "name": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive Stat",
-        "category": "structural"
-      },
-      {
-        "doi": "32099389",
-        "name": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and ",
-        "category": "structural"
-      },
-      {
-        "doi": "32101111",
-        "name": "A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter from EFC-Modified Disk Kinematics",
-        "category": "empirical"
-      },
-      {
-        "doi": "32101213",
-        "name": "Non-MCMC Constraints on the EFC α-Parameter: BAO, Growth-Rate, and Cluster Evidence",
-        "category": "empirical"
-      },
-      {
-        "doi": "32114530",
-        "name": "EFC-VAL-2026-006: Interim Audit Corrigendum to VAL-005 Stub-to-Real Data Transition, VariantH Genuine",
-        "category": "empirical"
-      },
-      {
-        "doi": "32149654",
-        "name": "Pre-Registration: EFC dN/dM (z>7) Halo Mass Function via µ(a) Perturbation Channel",
-        "category": "empirical"
       }
     ],
     "methodological": [
-      {
-        "doi": "30636863",
-        "name": "EFC — AI-Augmented Scientific Workflow Framework",
-        "category": "methodological"
-      },
-      {
-        "doi": "30656351",
-        "name": "Symbiotic Insight Framework (SIF): A Structural Methodology for High-Velocity Scientific Reasoning",
-        "category": "methodological"
-      },
-      {
-        "doi": "31096951",
-        "name": "Dynamical Regime Transitions in Cosmology: A CMB-Safe Framework",
-        "category": "methodological"
-      },
-      {
-        "doi": "31135597",
-        "name": "Foundations of Energy-Flow Cosmology (EFC): Regime Architecture and Methodological Principles of Entropy-Bounded Empiricism",
-        "category": "methodological"
-      },
-      {
-        "doi": "31144030",
-        "name": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku–DESI Matter Density Offset",
-        "category": "methodological"
-      },
-      {
-        "doi": "31222900",
-        "name": "The Regime-Consistent Measurement Principle (RCMP): A Methodological Framework for Multi-Scale Physics",
-        "category": "methodological"
-      },
       {
         "doi": "31222903",
         "name": "EBE Core Principles v1.0",
@@ -3069,465 +2504,20 @@
         "category": "methodological"
       },
       {
-        "doi": "31223650",
-        "name": "Regime-Based World Modeling: A Layered Epistemic Architecture for Complex Systems",
-        "category": "methodological"
-      },
-      {
         "doi": "31223668",
         "name": "EFC Ontological Foundations v1.0.2",
-        "category": "methodological"
-      },
-      {
-        "doi": "31267297",
-        "name": "A Triangulation Test for Possible Thermodynamic Contributions to Gravitational Lensing in Galaxy Clusters",
-        "category": "methodological"
-      },
-      {
-        "doi": "31293745",
-        "name": "Structural Coherence Evaluation for Physical Theories: A Theory-Agnostic Framework with Observation-Native Ontology and Self-Imposed Falsifiability",
-        "category": "methodological"
-      },
-      {
-        "doi": "31305421",
-        "name": "Toward a Quantitative c_eff(a): Parameterization, Constraints, and Degeneracy-Breaking Tests",
-        "category": "methodological"
-      },
-      {
-        "doi": "31305550",
-        "name": "EFC vs Stage-III Cosmology State Assessment",
-        "category": "methodological"
-      },
-      {
-        "doi": "31329082",
-        "name": "ISW Paper Revision Patch: Proposed Corrections to ISW Cross-Correlation Predictions for EFC with DESI DR1 Tracers",
-        "category": "methodological"
-      },
-      {
-        "doi": "31564123",
-        "name": "Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity",
-        "category": "methodological"
-      },
-      {
-        "doi": "31833076",
-        "name": "Regime-Locked Measurement as a General Structural Constraint: Cross-Domain Framework, Operational Meta-Regime Protocol, and Quantitative Regime-Appropriateness Scoring",
-        "category": "methodological"
-      },
-      {
-        "doi": "31864993",
-        "name": "Natural and Mechanical Entropy: Intention Detection via Episenter–Resonance Analysis in Information Systems",
-        "category": "methodological"
-      },
-      {
-        "doi": "31963821",
-        "name": "Cross-Regime Measurement Failure in the KT3b Environmental Test",
-        "category": "methodological"
-      },
-      {
-        "doi": "32011407",
-        "name": "Effective Horndeski Reduction of the EFC Perturbation Sector",
-        "category": "methodological"
-      },
-      {
-        "doi": "32019723",
-        "name": "Component-weighted bias in rotation curve model selection: A proxy-chain audit of χ2-based ∆AIC statistics",
-        "category": "methodological"
-      },
-      {
-        "doi": "32080059",
-        "name": "Parameter-Controlled Regime Transitions in Energy-Flow Cosmology: Cross-Sector Consistency Between Lensing and Background Observables",
-        "category": "methodological"
-      },
-      {
-        "doi": "32080080",
-        "name": "Methodological Convergence in Stage-IV Cosmology: The Emergence of Epistemic Holism Under Precision Constraints, and Its Operationalization via RCMP",
-        "category": "methodological"
-      },
-      {
-        "doi": "32080083",
-        "name": "EFC-ΛCDM Comparative Test Specification v1.1",
-        "category": "methodological"
-      },
-      {
-        "doi": "32113399",
-        "name": "A Three-Window Decomposition of Cosmological Redshift in Energy-Flow Cosmology A synthesis note: TCMB , CDDR, and S(z) consistency under one regime parameter",
         "category": "methodological"
       }
     ],
     "structural": [
-      {
-        "doi": "28098305",
-        "name": "EFC – Why Is Light Speed a Cosmic Limit?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098308",
-        "name": "EFC – Applications and Implications",
-        "category": "structural"
-      },
-      {
-        "doi": "28098311",
-        "name": "EFC — What is the Connection Between Energy Flow and the Now?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098314",
-        "name": "EFC — Mathematical Framework for Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098317",
-        "name": "EFC — Can Energy Flow Be Observed in Galactic Clusters?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098320",
-        "name": "EFC — Introduction to Entropy in Cosmic Evolution",
-        "category": "structural"
-      },
-      {
-        "doi": "28098326",
-        "name": "EFC — Unresolved Questions and Challenges: Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "28098332",
-        "name": "EFC — Technical Documentation: Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098338",
-        "name": "EFC — How Does Balance Shape Universal Structures?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098341",
-        "name": "EFC — Introduction to Energy Flow in Space-Time",
-        "category": "structural"
-      },
-      {
-        "doi": "28098344",
-        "name": "Dynamic Balance: How Entropy Governs the Balance Between Order and Chaos in Cosmic Evolution",
-        "category": "structural"
-      },
-      {
-        "doi": "28098347",
-        "name": "EFC — Is Consciousness Linked to Entropy?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098350",
-        "name": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, Consciousness, and Thermodynamics",
-        "category": "structural"
-      },
-      {
-        "doi": "28098353",
-        "name": "EFC — Can Entropy Drive Cosmic Evolution?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098371",
-        "name": "EFC — How Energy Flow Sustains Spacetime",
-        "category": "structural"
-      },
-      {
-        "doi": "28098380",
-        "name": "EFC — What Happens at the Universe’s Extremes?",
-        "category": "structural"
-      },
-      {
-        "doi": "28098386",
-        "name": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, Consciousness, and Thermodynamics",
-        "category": "structural"
-      },
-      {
-        "doi": "28102772",
-        "name": "Hypothesis_Entropy_Energyflow",
-        "category": "structural"
-      },
-      {
-        "doi": "28111925",
-        "name": "EFC — Light Speed as a Regulator of Energy Flow in the Universe",
-        "category": "structural"
-      },
-      {
-        "doi": "28112036",
-        "name": "EFC — Subhypothesis: Light Speed Limit",
-        "category": "structural"
-      },
-      {
-        "doi": "28113542",
-        "name": "EFC — Energy Flow as the Fundamental Dynamic of the Universe",
-        "category": "structural"
-      },
-      {
-        "doi": "28114370",
-        "name": "EFC — A Deep Dive into the Halo Concept",
-        "category": "structural"
-      },
-      {
-        "doi": "28557281",
-        "name": "EFC — Hypothesis: Interrelation Between Energy and Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "28559423",
-        "name": "Grid Model: An Entropic and Dynamic Theory for Emergent Gravity in Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "28559510",
-        "name": "EFC — Grid-Higgs Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "28560935",
-        "name": "Paradigm Shift in Cosmology: Continuous Energy Recycling Through the Grid-Higgs Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "28570088",
-        "name": "Hypothesis on Cosmic Microwave Background as a Thermodynamic Temperature Gradient",
-        "category": "structural"
-      },
-      {
-        "doi": "28578263",
-        "name": "EFC — Integrated Hypothesis: Time and Entropy",
-        "category": "structural"
-      },
-      {
-        "doi": "30275947",
-        "name": "CEM: A Field-Theoretic Model of Consciousness Coupled to Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "30402427",
-        "name": "Energy-Flow Cosmology: A Thermodynamic Bridge Between General Relativity and Quantum Field Theory",
-        "category": "structural"
-      },
-      {
-        "doi": "30421807",
-        "name": "Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime",
-        "category": "structural"
-      },
-      {
-        "doi": "30455237",
-        "name": "Energy-Flow Cosmology (EFC v2.1): Modular Synthesis across Structure, Dynamics, and Cognition",
-        "category": "structural"
-      },
-      {
-        "doi": "30468737",
-        "name": "The Energy–Flow Interface: A Unified Thermodynamic Interpretation of Dark Matter, Dark Energy, and the CMB — within the Grid–Higgs Field Framework",
-        "category": "structural"
-      },
-      {
-        "doi": "30478916",
-        "name": "EFC v2.1 – Complete Edition",
-        "category": "structural"
-      },
-      {
-        "doi": "30530156",
-        "name": "EFC — v2.2 Cross-Field Integration Summary",
-        "category": "structural"
-      },
-      {
-        "doi": "30563738",
-        "name": "Energy–Flow Cosmology v1.2: Foundational Framework and Cross-Field Continuity",
-        "category": "structural"
-      },
-      {
-        "doi": "30630500",
-        "name": "EFC — Formal Specification",
-        "category": "structural"
-      },
-      {
-        "doi": "30642497",
-        "name": "Variable Effective Light Speed in Entropic Transition States: A Formal Treatment of the s0 / s1 Structure in Energy-Flow Cosmology (EFC)",
-        "category": "structural"
-      },
-      {
-        "doi": "30656828",
-        "name": "AUTH Layer: Origin, Provenance and Structural Signature of Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "30773684",
-        "name": "Symbiosis: A Human–AI Co-Reflection Architecture Using Graph–Vector Memory for Long-Horizon Thinking",
-        "category": "structural"
-      },
-      {
-        "doi": "31042678",
-        "name": "Bridging Scales: Energy-Flow Cosmology and the Free Energy Principle as Complementary Entropy Frameworks",
-        "category": "structural"
-      },
-      {
-        "doi": "31061872",
-        "name": "Energy-Flow Cosmology and Regime-Dependent Structure Formation (Paper III)",
-        "category": "structural"
-      },
-      {
-        "doi": "31112536",
-        "name": "L0–L3 Regime Architecture in Entropy-Bounded Empiricism",
-        "category": "structural"
-      },
-      {
-        "doi": "31122970",
-        "name": "Validity-Aware AI: An Entropy-Bounded Architecture for Regime-Sensitive Inference",
-        "category": "structural"
-      },
       {
         "doi": "31188193",
         "name": "EFC Weak Lensing Phenomenology (Case A)",
         "category": "structural"
       },
       {
-        "doi": "31211437",
-        "name": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "31222696",
-        "name": "Energy-Flow Cosmology: An Effective Phenomenological Law for Gravitational Response in Structure-Dominated Regimes",
-        "category": "structural"
-      },
-      {
-        "doi": "31223503",
-        "name": "EBE Core Lock v1.0: The S-Dynamic Foundation",
-        "category": "structural"
-      },
-      {
-        "doi": "31223908",
-        "name": "Unified Origin of the Radial Acceleration Relation and the Hubble Tension via Entropic Gravity Modification",
-        "category": "structural"
-      },
-      {
-        "doi": "31224247",
-        "name": "The Hubble Tension as Regime Mismatch: Background Gravity vs Structure Gravity in Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
         "doi": "31224466",
         "name": "EFC Closure Conjectures (Density Saturation)",
-        "category": "structural"
-      },
-      {
-        "doi": "31271707",
-        "name": "Persistent Cognitive Architectures for Human-AI Co-Reasoning: Beyond Retrieval to Structural Intelligence",
-        "category": "structural"
-      },
-      {
-        "doi": "31333414",
-        "name": "Sign structure of an additive gate-function modification to the Friedmann equation",
-        "category": "structural"
-      },
-      {
-        "doi": "31348411",
-        "name": "Discrete Entropic Gravity on a Cubic Graph: Emergent Newtonian and MOND Regimes with Λ-Locked Screening",
-        "category": "structural"
-      },
-      {
-        "doi": "31348417",
-        "name": "Regime Structure and Entropic Flow Ontology in Discrete Gravity Models",
-        "category": "structural"
-      },
-      {
-        "doi": "31562200",
-        "name": "Minimal EFC Effective Field Theory Ansatz: Scalar-Tensor and Vector-Tensor Formulations with Gravitational Slip from Entropy Gradients",
-        "category": "structural"
-      },
-      {
-        "doi": "31564129",
-        "name": "Double-Slit as Grid-Resolution Phenomenon in Grid-Rendering Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "31876324",
-        "name": "EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of µ, Σ, η",
-        "category": "structural"
-      },
-      {
-        "doi": "31878334",
-        "name": "Covariant Effective Field Theory for Entropy-Driven Gravitational Modification: Derivation, Falsification, and Structural Results from a 17-Iteration Construction Programme",
-        "category": "structural"
-      },
-      {
-        "doi": "31878760",
-        "name": "From Grid Microphysics to the Radial Acceleration Relation: A Minimal Gradient-Coupled Excitation Model",
-        "category": "structural"
-      },
-      {
-        "doi": "31940370",
-        "name": "Local Degree Heterogeneity Predicts Functional Variability Gradients in the Human Connectome",
-        "category": "structural"
-      },
-      {
-        "doi": "31940505",
-        "name": "EFC-C: A Thermodynamic Framework for Cognitive Entropy and Psychiatric Biomarkers",
-        "category": "structural"
-      },
-      {
-        "doi": "31940547",
-        "name": "Cross-Domain Bridge Equations for the EFC Framework: Connecting Cosmology, Neural Entropy, and RLHF via Dissipative Gradient-Flow Dynamics",
-        "category": "structural"
-      },
-      {
-        "doi": "31940604",
-        "name": "Homo Fluxus v2.0 — A Civilization Map Through Energy-Flow Cosmology: From Grid to Governance — One Gradient, All Regimes",
-        "category": "structural"
-      },
-      {
-        "doi": "31941465",
-        "name": "EFC Gradient-Coupled Grid Action",
-        "category": "structural"
-      },
-      {
-        "doi": "31942731",
-        "name": "The Cosmic Dipole Anomaly as Regime-Dependent Anisotropy in Energy-Flow Cosmology",
-        "category": "structural"
-      },
-      {
-        "doi": "31942734",
-        "name": "The Cosmic Entropy Budget as Constraint on the EFC S-Field",
-        "category": "structural"
-      },
-      {
-        "doi": "31942800",
-        "name": "Density of States of Gravitationally Active Grid Modes: Derivation of Deff (ρ) and Completion of the Γ(ρ) Bridge",
-        "category": "structural"
-      },
-      {
-        "doi": "31942821",
-        "name": "Derivation of the Entropy Production Function Γ(ρ) from Grid-Mode Bose–Einstein Statistics",
-        "category": "structural"
-      },
-      {
-        "doi": "31969983",
-        "name": "Closing the EFC Consciousness Bridge: Dimensionless, Scale-Invariant Unification of Entropy, Dynamics, and Awareness",
-        "category": "structural"
-      },
-      {
-        "doi": "31970886",
-        "name": "efc white paper part 1 to 4",
-        "category": "structural"
-      },
-      {
-        "doi": "31970898",
-        "name": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping (µ, Σ, S8)",
-        "category": "structural"
-      },
-      {
-        "doi": "31970907",
-        "name": "White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
-        "category": "structural"
-      },
-      {
-        "doi": "32091700",
-        "name": "EFC-C v2.1: Degree-Heterogeneity Entropy-Gradient Predictions for Cognitive States",
-        "category": "structural"
-      },
-      {
-        "doi": "32099389",
-        "name": "Homo Fluxus: A Thermodynamic Framework for Consciousness, Systemic Empathy, and Aligned Intelligence",
         "category": "structural"
       }
     ]
@@ -3969,7 +2959,7 @@
   ],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-05-06_144946_aqual",
+      "run_id": "2026-05-06_205922_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
