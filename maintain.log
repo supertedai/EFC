@@ -10,7 +10,7 @@ EFC ORCID source-of-truth sync — source=cache
   In repo, not on ORCID     : 0
 ========================================================================
 [efc-paper-type] all papers already classified
-[efc-regen-index] wrote efc_index.json — 163 papers, version 2.10
+[efc-regen-index] no diff — 163 papers, version 2.10
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -120,7 +120,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 52 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -158,14 +157,36 @@ Processed 163 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:118 → 130  (+12)    ledger: 66 → 130 (+64)
-  methodological  ev: 19 →  26  (+7)    ledger: 19 →  26 (+7)
-  structural      ev:  2 →  75  (+73)    ledger:  2 →  75 (+73)
+  empirical       ev:130 → 130  (+0)    ledger:130 → 130 (+0)
+  methodological  ev: 26 →  26  (+0)    ledger: 26 →  26 (+0)
+  structural      ev: 75 →  75  (+0)    ledger: 75 →  75 (+0)
 ========================================================================
-[efc-drift] 163 papers · 2 drift(s) detected:
+[efc-drift] 163 papers · 13 drift(s) detected:
+  Validation_Ledger: tests_survived — 105 vs 103
+  White_Paper_Series: tests_survived — 105 vs 103
+  White_Paper_Series: tests_falsified — 8 vs 10
+  White_Paper_Series: tests_survived — 105 vs 103
+  Elevator_Pitch: tests_survived — 105 vs 103
+  Elevator_Pitch: tests_falsified — 8 vs 10
+  Elevator_Pitch: tests_survived — 105 vs 103
+  Elevator_Pitch: tests_survived — 105 vs 103
+  Elevator_Pitch: tests_survived — 105 vs 103
+  Stage_IV_Roadmap: tests_survived — 105 vs 103
+  Stage_IV_Roadmap: tests_falsified — 8 vs 10
   Changelog: claims 158 but actual is 163
   Changelog: claims 158 but actual is 163
-[efc-drift] auto-fixed 0 file(s)
+  [fixed] Validation_Ledger: 105 → 103 (tests_survived)
+  [fixed] White_Paper_Series: 105 → 103 (tests_survived)
+  [fixed] White_Paper_Series: 8 → 10 (tests_falsified)
+  [fixed] White_Paper_Series: 105 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 105 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 8 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 105 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 105 → 103 (tests_survived)
+  [fixed] Elevator_Pitch: 105 → 103 (tests_survived)
+  [fixed] Stage_IV_Roadmap: 105 → 103 (tests_survived)
+  [fixed] Stage_IV_Roadmap: 8 → 10 (tests_falsified)
+[efc-drift] auto-fixed 4 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
@@ -207,7 +228,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] 1 paper package enriched; Public pages updated: Changelog; Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -220,7 +241,7 @@ Ledger: 135 tests, 10 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 163 close to repo 164
   [OK]       Paper count 163 close to repo 164
-  [WARNING]  Survived 105/113 but expected 103/113 (total=135, falsified=10, pipeline=22)
+  [OK]       Survival count 103/113 matches ledger
 
 --- Validation Ledger ---
   [OK]       Test count 135 matches ledger 135
@@ -228,9 +249,6 @@ Ledger: 135 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 105 survived but ledger has 103
-  [CRITICAL] White Paper Series: says 105 survived but ledger has 103
-  [CRITICAL] Stage-IV Roadmap: says 105 survived but ledger has 103
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -269,12 +287,9 @@ Ledger: 135 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 7 errors, 7 warnings
+RESULT: 4 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 105 survived but ledger has 103
-  - White Paper Series: says 105 survived but ledger has 103
-  - Stage-IV Roadmap: says 105 survived but ledger has 103
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
