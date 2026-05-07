@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-07T06:29:18Z",
+  "generated_at": "2026-05-07T12:30:01Z",
   "categories": {
     "physics_test": [
       {
@@ -305,7 +305,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-07_031052_aqual",
+        "test_id": "grav_integration_2026-05-07_092800_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -395,7 +395,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-07_031052_aqual",
+        "test_id": "grav_kt1_2026-05-07_092800_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -410,7 +410,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-07_031052_aqual",
+        "test_id": "grav_kt3_2026-05-07_092800_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -425,7 +425,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-07_031052_aqual",
+        "test_id": "grav_kt2_2026-05-07_092800_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -1601,6 +1601,21 @@
         "status_detail": "planned"
       },
       {
+        "test_id": "conv_re_ingest_2_incomplete_efc_figshare_dois_31140000_31876324_",
+        "name": "Re-ingest 2 incomplete EFC Figshare DOIs (31140000, 31876324)",
+        "description": "Two EFC Figshare DOIs (31140000, 31876324) have Document nodes in Neo4j but no title in either Document or Publication nodes — content/metadata ingest is incomplete. Cross-validated across Qdrant (no chunks), Neo4j (null title), and Atlas (not linked). Re-ingest needed to populate metadata, content chunks, and concept-extraction.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "framework_constraint",
+        "also_phenomenological": null,
+        "data_source": "Figshare API + web_ingest_daemon for DOIs 10.6084/m9.figshare.31140000 and 10.6084/m9.figshare.31876324",
+        "prediction": "Successful re-ingest will populate Document.title, Document.text chunks in Qdrant, and concept relations in Neo4j, allowing these papers to participate in framework_atlas queries and EFC search results.",
+        "notes": "Cross-validated against truth layers: Both DOIs verified as authentic Morten Magnusson EFC papers via Qdrant JSON-LD chunks containing ORCID 0009-0002-4860-5095 and Symbiose Research affiliation. 31140000 = \"Regime-Dependent Growth Enhancement (Fugaku-DESI)\", Spor 1, published 2026-01-24. 31876324 = \"EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of µ, Σ, η\", Spor 4, published 2026-03-01, in_datacite=true.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-07T10:03:37.492000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_structural_coherence_across_regimes_sce_evaluation",
         "name": "Structural coherence across regimes (SCE evaluation)",
         "description": "⚪",
@@ -2039,5 +2054,5 @@
       }
     ]
   },
-  "total_count": 135
+  "total_count": 136
 }
