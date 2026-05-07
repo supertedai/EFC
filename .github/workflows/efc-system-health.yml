@@ -1,0 +1,61 @@
+name: EFC system health dashboard
+
+# Auto-builds docs/public/EFC_System_Health.html from current repo state
+# (ORCID cache, doi-map, ledger.json, seal-manifest). Runs hourly + on
+# any change to the underlying truth sources, so the dashboard is never
+# more than a few minutes stale.
+#
+# Read-only build: the script regenerates the HTML deterministically.
+# Re-runs are byte-idempotent except for the generated_at timestamp.
+
+on:
+  schedule:
+    - cron: "5 * * * *"  # every hour at :05
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".claude/orcid_sync_report.json"
+      - "figshare/doi-map.json"
+      - "docs/validation-ledger/data/ledger.json"
+      - ".seal-manifest.json"
+      - "scripts/maintenance/build_system_health.py"
+      - ".github/workflows/efc-system-health.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: efc-system-health
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Build dashboard
+        run: python3 scripts/maintenance/build_system_health.py
+      - name: Auto-commit if changed
+        run: |
+          if git diff --quiet docs/public/EFC_System_Health.html; then
+            echo "No diff — dashboard already up to date."
+            exit 0
+          fi
+          git config user.name "efc-sync[bot]"
+          git config user.email "efc-sync[bot]@users.noreply.github.com"
+          git add docs/public/EFC_System_Health.html
+          git commit -m "chore(dashboard): hourly system-health refresh"
+          for delay in 2 4 8 16; do
+            if git push; then
+              echo "Pushed."
+              break
+            fi
+            git pull --rebase origin main || true
+            sleep "$delay"
+          done

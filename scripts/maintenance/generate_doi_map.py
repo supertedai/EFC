@@ -62,7 +62,13 @@ def walk_paper_dirs() -> list[dict]:
             figshare_id = doi_full.split("figshare.")[-1].strip()
         files = {p.name for p in index_path.parent.iterdir() if p.is_file()}
         dirs = {p.name for p in index_path.parent.iterdir() if p.is_dir()}
-        has_pdf = any(name.lower().endswith(".pdf") for name in files)
+        # PDF / DOCX may live nested under paper/, docs/, or a same-name
+        # subfolder (legacy layout) — accept any descendant attachment.
+        all_files = list(index_path.parent.rglob("*"))
+        has_pdf = any(
+            p.is_file() and p.suffix.lower() in (".pdf", ".docx")
+            for p in all_files
+        )
         has_jsonld = any(name.lower().endswith(".jsonld") for name in files)
         package_complete = (
             REQUIRED_FILES.issubset(files)

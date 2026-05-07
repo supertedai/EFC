@@ -1,0 +1,96 @@
+{
+  "$schema": "./schema.json",
+  "id": "composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
+  "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of \u2206AIC for SPARC-175",
+  "description": "Re-fits the SPARC-175 rotation-curve sample with the Kill-Test v6 pipeline and decomposes each galaxy\u2019s \u2206AIC into inner (r < rc) and outer (r \u2265 rc) contributions to test whether single-number \u2206AIC masks regime-dependent behavior. Finds a robust sign-flip phenomenon in 17.5% of galaxies at rc = 3 kpc (16.4\u201322.2% across rc \u2208 {2,3,4,5} kpc) and shows that removing \u03c72-weighting moves the sample further toward EFC, indicating the issue is aggregation-level, not a weighting bias.",
+  "version": "1.0",
+  "date": "2026-05-01",
+  "doi": "10.6084/m9.figshare.32162706",
+  "keywords": [
+    "rotation curves",
+    "SPARC-175",
+    "model selection",
+    "AIC decomposition",
+    "\u2206AIC",
+    "EFC",
+    "NFW",
+    "regime stratification",
+    "chi-squared weighting",
+    "sign-flip diagnostic",
+    "entropy-bounded empiricism",
+    "differential evolution"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "delta_aic": {
+      "latex": "\\Delta\\mathrm{AIC} \\equiv \\mathrm{AIC}_{\\mathrm{NFW}} - \\mathrm{AIC}_{\\mathrm{EFC}} \\quad\\text{(positive = EFC wins)}",
+      "description": "Defines the AIC difference used for model comparison; positive values indicate EFC is preferred over NFW."
+    },
+    "v_efc": {
+      "latex": "V_{\\mathrm{EFC}}(r) = v_{\\mathrm{flat}}\\,\\sqrt{1 - \\exp\\!\\big[-(r/r_{\\mathrm{turnon}})^p\\big]}",
+      "description": "EFC rotation-curve template with parameters v_flat, r_turnon, and p (k_EFC = 3)."
+    },
+    "v_nfw": {
+      "latex": "V_{\\mathrm{NFW}}(r) = V_{200}\\,\\sqrt{\\frac{\\ln(1+s) - s/(1+s)}{\\ln(1+c) - c/(1+c)} \\cdot \\frac{1}{r/r_{200}}}\\,,\\quad s \\equiv c\\,\\frac{r}{r_{200}},\\; r_{200} = \\frac{V_{200}}{10\\,H_0\\,10^{-3}}",
+      "description": "NFW circular velocity profile expressed in terms of V200, concentration c, and r200 (k_NFW = 2; H0 = 67.4 km s^{-1} Mpc^{-1})."
+    },
+    "aic_inner_outer": {
+      "latex": "\\Delta\\mathrm{AIC}_{\\mathrm{inner}}(r_c) = \\sum_{r_i<r_c} w_i\\Big[(V_{\\mathrm{obs},i}-V_{\\mathrm{NFW},i})^2 - (V_{\\mathrm{obs},i}-V_{\\mathrm{EFC},i})^2\\Big] + 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})\\\\\n\\Delta\\mathrm{AIC}_{\\mathrm{outer}}(r_c) = \\sum_{r_i\\ge r_c} w_i\\Big[(V_{\\mathrm{obs},i}-V_{\\mathrm{NFW},i})^2 - (V_{\\mathrm{obs},i}-V_{\\mathrm{EFC},i})^2\\Big] + 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})",
+      "description": "Heuristic decomposition of \u2206AIC into inner and outer radial contributions evaluated at the global best-fit parameters; w_i = 1/\\sigma_i^2 unless otherwise stated."
+    },
+    "aic_consistency": {
+      "latex": "\\Delta\\mathrm{AIC}_{\\mathrm{global}}(r_c) = \\Delta\\mathrm{AIC}_{\\mathrm{inner}}(r_c) + \\Delta\\mathrm{AIC}_{\\mathrm{outer}}(r_c) - 2\\,(k_{\\mathrm{NFW}}-k_{\\mathrm{EFC}})",
+      "description": "Consistency relation linking the inner/outer decomposition back to the global \u2206AIC."
+    },
+    "sign_flip_condition": {
+      "latex": "\\operatorname{sign}\\big(\\Delta\\mathrm{AIC}_{\\mathrm{global}}\\big) \\ne \\operatorname{sign}\\big(\\Delta\\mathrm{AIC}_{\\mathrm{outer}}\\big)",
+      "description": "Defines a sign-flip: the model preferred globally is disfavoured by outer points alone."
+    }
+  },
+  "key_results": {
+    "main_finding": "At rc = 3 kpc, 17.5% (30/171) of SPARC galaxies exhibit a sign-flip between global and outer-only \u2206AIC, robustly 16.4\u201322.2% across rc \u2208 {2,3,4,5} kpc; removing \u03c72-weighting increases EFC wins (66.7% \u2192 86.5%), indicating the issue is aggregation-level, not a weighting bias.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "v_flat",
+      "r_turnon",
+      "p",
+      "V200",
+      "c"
+    ],
+    "datasets_used": [
+      "SPARC-175 (171 galaxies; Lelli et al. 2016)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Applying the same inner/outer \u2206AIC decomposition (rc \u2208 {2,3,4,5} kpc) to an independent, SPARC-quality rotation-curve sample will yield a sign-flip rate in the 15\u201325% range.",
+      "falsifiable_by": "Re-fitting an independent rotation-curve dataset with persisted per-point model curves and computing sign-flip rates across the specified rc grid."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: If independent subset refits on r < rc and r \u2265 rc (with proper uncertainty propagation) reduce the sign-flip rate below 5% across rc \u2208 {2,3,4,5} kpc with bootstrap-consistent errors, the aggregation-level misclassification claim is falsified.",
+    "KC2: If switching from 1/\u03c3^2 weights to uniform weights decreases the global EFC win fraction by \u226510 percentage points relative to standard weighting (contrary to the observed increase from 66.7% to 86.5%), the reweighting result in this paper is falsified.",
+    "KC3: If correcting for known systematics (e.g., beam smearing, distances, inclinations) on the same galaxies yields \u226590% agreement between global and outer-only \u2206AIC signs across rc \u2208 {2,3,4,5} kpc, the necessity of composite-level aggregation is refuted.",
+    "KC4: If the persisted per-point model curves do not reproduce the recomputed global \u2206AIC within numerical tolerance, the validity of the inner/outer decomposition as a contribution analysis is invalidated.",
+    "KC5: Model-level (EFC) kill: If for the majority of galaxies (\u226580%), \u2206AIC_outer(rc) \u2264 \u221210 at r \u2265 rc and simultaneously \u2206AIC_inner(rc) \u2264 0 for the same rc, then EFC is disfavoured in both regimes and fails this empirical test."
+  ],
+  "tier": "T3",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "paper.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32162706",
+  "license": "CC-BY-4.0",
+  "scaffolded": true,
+  "scaffolded_at": "2026-05-06T19:43:52+00:00",
+  "paper_type_inferred": true
+}

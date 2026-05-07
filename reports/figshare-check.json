@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-05T20:45:01+00:00",
+  "generated_at": "2026-05-06T19:43:51+00:00",
   "totals": {
-    "title_mismatch": 97,
-    "title_mismatch:truncation_after_prefix_strip": 40,
-    "ok": 69,
+    "title_mismatch": 99,
+    "title_mismatch:truncation_after_prefix_strip": 41,
+    "ok": 68,
     "title_mismatch:semantic_drift": 34,
-    "title_mismatch:truncation_remote": 8,
+    "title_mismatch:truncation_remote": 9,
     "title_mismatch:prefix_efc_dash": 8,
     "title_mismatch:truncation_local": 4,
     "title_mismatch:prefix_white_paper": 3
@@ -885,6 +885,17 @@
       "remote_title": "Entropy-Bounded Empiricism (EBE) SPARC175 Complete Documentation"
     },
     {
+      "doi": "10.6084/m9.figshare.28102772",
+      "status": "ok"
+    },
+    {
+      "doi": "10.6084/m9.figshare.28098350",
+      "status": "title_mismatch",
+      "subclass": "truncation_remote",
+      "local_title": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, Consciousness, and Thermodynamics",
+      "remote_title": "Hypothesis: The Universe as an Energy-Driven System"
+    },
+    {
       "doi": "10.6084/m9.figshare.32149654",
       "status": "title_mismatch",
       "subclass": "truncation_after_prefix_strip",
@@ -940,23 +951,11 @@
       "remote_title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids: A Testable Signature of Energy-Flow Cosmology"
     },
     {
-      "doi": "10.6084/m9.figshare.31943361",
-      "status": "title_mismatch",
-      "subclass": "semantic_drift",
-      "local_title": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
-      "remote_title": "ΛCDM as a Special Case of Entropy-Flow Cosmology"
-    },
-    {
-      "doi": "10.6084/m9.figshare.28098350",
-      "status": "ok"
-    },
-    {
-      "doi": "10.6084/m9.figshare.28102772",
-      "status": "ok"
-    },
-    {
       "doi": "10.6084/m9.figshare.31970898",
-      "status": "ok"
+      "status": "title_mismatch",
+      "subclass": "truncation_after_prefix_strip",
+      "local_title": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping (µ, Σ, S8)",
+      "remote_title": "White Paper - Part 2 of 4 - Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping"
     },
     {
       "doi": "10.6084/m9.figshare.31970904",
@@ -964,6 +963,17 @@
     },
     {
       "doi": "10.6084/m9.figshare.31970907",
+      "status": "ok"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31943361",
+      "status": "title_mismatch",
+      "subclass": "semantic_drift",
+      "local_title": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
+      "remote_title": "ΛCDM as a Special Case of Entropy-Flow Cosmology"
+    },
+    {
+      "doi": "10.6084/m9.figshare.32162706",
       "status": "ok"
     }
   ]

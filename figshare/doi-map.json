@@ -1,7 +1,7 @@
 {
   "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-05-05T13:22:40+00:00",
+  "generated_at": "2026-05-06T18:58:34+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -9,15 +9,15 @@
     "figshare_authors_id": "20477774"
   },
   "totals": {
-    "orcid_works": 162,
-    "orcid_dois": 162,
-    "repo_paper_dirs": 161,
-    "repo_unique_dois": 160,
-    "matched_count": 157,
-    "missing_paper_dirs": 5,
-    "duplicate_doi_dirs": 1,
+    "orcid_works": 163,
+    "orcid_dois": 163,
+    "repo_paper_dirs": 166,
+    "repo_unique_dois": 162,
+    "matched_count": 162,
+    "missing_paper_dirs": 1,
+    "duplicate_doi_dirs": 4,
     "dirs_without_doi": 0,
-    "complete_packages": 150
+    "complete_packages": 155
   },
   "papers": [
     {
@@ -97,8 +97,8 @@
       "date": "2026-01-14",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/CMB-Thermodynamic-Interpretation",
-      "package_complete": false,
-      "has_pdf": false
+      "package_complete": true,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.31969983",
@@ -557,8 +557,8 @@
       "date": "2026-01-20",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/EFC-Regime-Transition-Framework-A-CMB-Consistent-Approach-to-Late-Time-Cosmology",
-      "package_complete": false,
-      "has_pdf": false
+      "package_complete": true,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.28112036",
@@ -1017,8 +1017,8 @@
       "date": "2026-01-21",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism",
-      "package_complete": false,
-      "has_pdf": false
+      "package_complete": true,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.31940370",
@@ -1357,8 +1357,8 @@
       "date": "2026-01",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/efc-weak-lensing-phenomenology",
-      "package_complete": false,
-      "has_pdf": false
+      "package_complete": true,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.31314922",
@@ -1497,8 +1497,8 @@
       "date": "",
       "version": "",
       "repo_dir": "docs/papers/efc/efc_white_paper_part_1_to_4",
-      "package_complete": false,
-      "has_pdf": false
+      "package_complete": true,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.31061872",
@@ -1518,6 +1518,26 @@
       "version": "1.0",
       "repo_dir": "docs/papers/efc/entropy-bounded-empiricism-EBE-SPARC175-complete-documentation",
       "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.28102772",
+      "figshare_id": "28102772",
+      "title": "Hypothesis_Entropy_Energyflow",
+      "date": "",
+      "version": "0.1-scaffold",
+      "repo_dir": "docs/papers/efc/hypothesis-entropy-energyflow",
+      "package_complete": false,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.28098350",
+      "figshare_id": "28098350",
+      "title": "Hypothesis: The Universe as an Energy-Driven System – Integrating Time, Space, Consciousness, and Thermodynamics",
+      "date": "2024-12-27",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/hypothesis-the-universe-as-an-energy-driven-system",
+      "package_complete": false,
       "has_pdf": true
     },
     {
@@ -1621,6 +1641,36 @@
       "has_pdf": true
     },
     {
+      "doi": "10.6084/m9.figshare.31970898",
+      "figshare_id": "31970898",
+      "title": "Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping (µ, Σ, S8)",
+      "date": "2026-04-19",
+      "version": "v2",
+      "repo_dir": "docs/papers/efc/white-paper-part-2-of-4-energy-flow-cosmology-part-2-field-equations-and-observa",
+      "package_complete": false,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.31970904",
+      "figshare_id": "31970904",
+      "title": "White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
+      "date": "2026-04-01",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-",
+      "package_complete": false,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.31970907",
+      "figshare_id": "31970907",
+      "title": "White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
+      "date": "2026-04-01",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/white-paper-part-4-of-4-energy-flow-cosmology-part-4-regime-susceptibility-and-c",
+      "package_complete": false,
+      "has_pdf": true
+    },
+    {
       "doi": "10.6084/m9.figshare.31943361",
       "figshare_id": "31943361",
       "title": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
@@ -1633,28 +1683,8 @@
   ],
   "missing_repo_dirs": [
     {
-      "figshare_id": "28098350",
-      "title": "Hypothesis: The Universe as an Energy-Driven System",
-      "action": "create_paper_dir_or_decide_legacy"
-    },
-    {
-      "figshare_id": "28102772",
-      "title": "Hypothesis_Entropy_Energyflow",
-      "action": "create_paper_dir_or_decide_legacy"
-    },
-    {
-      "figshare_id": "31970898",
-      "title": "White Paper - Part 2 of 4 - Energy-Flow Cosmology, Part 2: Field Equations and Observable Mapping",
-      "action": "create_paper_dir_or_decide_legacy"
-    },
-    {
-      "figshare_id": "31970904",
-      "title": "White Paper - Part 3 of 4 - Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
-      "action": "create_paper_dir_or_decide_legacy"
-    },
-    {
-      "figshare_id": "31970907",
-      "title": "White Paper - Part 4 of 4 - Energy-Flow Cosmology, Part 4: Regime Susceptibility and Cross-Scale Mapping",
+      "figshare_id": "32162706",
+      "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of Delta-AIC for SPARC-175",
       "action": "create_paper_dir_or_decide_legacy"
     }
   ],
@@ -1664,6 +1694,30 @@
       "dirs": [
         "docs/papers/efc/efc_white_paper_part_1_to_4/White_paper_part_1_efc_recovery_limits",
         "docs/papers/efc/efc_white_paper_part_1_to_4"
+      ],
+      "action": "consolidate"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31970898",
+      "dirs": [
+        "docs/papers/efc/efc_white_paper_part_1_to_4/White_paper_part_2_efc_field_equations_observables",
+        "docs/papers/efc/white-paper-part-2-of-4-energy-flow-cosmology-part-2-field-equations-and-observa"
+      ],
+      "action": "consolidate"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31970904",
+      "dirs": [
+        "docs/papers/efc/efc_white_paper_part_1_to_4/White_paper_part_3_efc_validation_falsification",
+        "docs/papers/efc/white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-"
+      ],
+      "action": "consolidate"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31970907",
+      "dirs": [
+        "docs/papers/efc/efc_white_paper_part_1_to_4/White_paper_part_4_efc_regime_susceptibility",
+        "docs/papers/efc/white-paper-part-4-of-4-energy-flow-cosmology-part-4-regime-susceptibility-and-c"
       ],
       "action": "consolidate"
     }

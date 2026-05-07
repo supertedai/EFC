@@ -437,6 +437,72 @@ def scaffold_one(missing: dict, with_pdf: bool, out_root: Path) -> dict:
     }
 
 
+def cmd_backfill_pdfs(json_out: bool) -> int:
+    """Download primary attachment (PDF preferred, DOCX fallback) into
+    every existing paper directory whose ``has_pdf`` is False in the
+    current ``figshare/doi-map.json``. Skips directories that already
+    contain a PDF or DOCX anywhere in the tree.
+
+    Idempotent: re-running on a clean tree is a no-op.
+    """
+    doi_map = load_doi_map()
+    targets: list[dict] = []
+    for paper in doi_map.get("papers", []):
+        if paper.get("has_pdf"):
+            continue
+        repo_dir = REPO_ROOT / paper.get("repo_dir", "")
+        if not repo_dir.is_dir():
+            continue
+        # Re-check the filesystem — doi-map may be stale between runs.
+        already = any(
+            p.is_file() and p.suffix.lower() in (".pdf", ".docx")
+            for p in repo_dir.rglob("*")
+        )
+        if already:
+            continue
+        fid = str(paper.get("figshare_id") or "")
+        if not fid:
+            continue
+        targets.append({"figshare_id": fid, "repo_dir": repo_dir, "title": paper.get("title", "")})
+    if not targets:
+        print("[backfill-pdfs] no targets — every paper has a PDF/DOCX already")
+        return 0
+    print(f"[backfill-pdfs] {len(targets)} target(s):")
+    results: list[dict] = []
+    for t in targets:
+        article, err = fetch_figshare(t["figshare_id"])
+        if article is None:
+            results.append({"figshare_id": t["figshare_id"], "status": f"figshare_unreachable: {err}"})
+            print(f"  {t['figshare_id']}: SKIP — {err}")
+            continue
+        attach = primary_attachment(article)
+        if attach is None:
+            results.append({"figshare_id": t["figshare_id"], "status": "no_attachment_on_figshare"})
+            print(f"  {t['figshare_id']}: SKIP — no attachment on figshare")
+            continue
+        fname, url = attach
+        dest = t["repo_dir"] / fname
+        dl_err = download_attachment(url, dest)
+        if dl_err is None:
+            results.append(
+                {
+                    "figshare_id": t["figshare_id"],
+                    "status": "downloaded",
+                    "file": str(dest.relative_to(REPO_ROOT)),
+                }
+            )
+            print(f"  {t['figshare_id']}: downloaded → {dest.relative_to(REPO_ROOT)}")
+        else:
+            results.append(
+                {"figshare_id": t["figshare_id"], "status": f"download_failed: {dl_err}"}
+            )
+            print(f"  {t['figshare_id']}: FAIL — {dl_err}")
+    if json_out:
+        print(json.dumps({"backfill": results}, indent=2))
+    fails = sum(1 for r in results if r["status"] not in ("downloaded",))
+    return 0 if fails == 0 else 2
+
+
 def cmd_scaffold(with_pdf: bool, json_out: bool, target_root: Path) -> int:
     doi_map = load_doi_map()
     missing = doi_map.get("missing_repo_dirs", [])
@@ -475,10 +541,15 @@ def main(argv: Iterable[str] | None = None) -> int:
         default=str(PAPERS_ROOT),
         help="root directory to scaffold into (default: docs/papers/efc/)",
     )
+    p.add_argument(
+        "--backfill-pdfs",
+        action="store_true",
+        help="download primary attachment for existing dirs missing PDF/DOCX",
+    )
     p.add_argument("--json", action="store_true", help="machine-readable output")
     args = p.parse_args(list(argv) if argv is not None else None)
 
-    if not args.check and not args.scaffold_missing:
+    if not args.check and not args.scaffold_missing and not args.backfill_pdfs:
         args.check = True
 
     rc = 0
@@ -493,6 +564,8 @@ def main(argv: Iterable[str] | None = None) -> int:
             )
             or rc
         )
+    if args.backfill_pdfs:
+        rc = cmd_backfill_pdfs(json_out=args.json) or rc
     return rc
 
 
