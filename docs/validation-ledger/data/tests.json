@@ -1601,16 +1601,16 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "conv_re_ingest_2_incomplete_efc_figshare_dois_31140000_31876324_",
-        "name": "Re-ingest 2 incomplete EFC Figshare DOIs (31140000, 31876324)",
-        "description": "Two EFC Figshare DOIs (31140000, 31876324) have Document nodes in Neo4j but no title in either Document or Publication nodes — content/metadata ingest is incomplete. Cross-validated across Qdrant (no chunks), Neo4j (null title), and Atlas (not linked). Re-ingest needed to populate metadata, content chunks, and concept-extraction.",
+        "test_id": "conv_re_ingest_2_incomplete_efc_figshare_dois_31144030_31876324_",
+        "name": "Re-ingest 2 incomplete EFC Figshare DOIs (31144030, 31876324)",
+        "description": "Two EFC Figshare DOIs (31144030, 31876324) have Document nodes in Neo4j but no title in either Document or Publication nodes — content/metadata ingest is incomplete. Cross-validated across Qdrant (no chunks), Neo4j (null title), and Atlas (not linked). Re-ingest needed to populate metadata, content chunks, and concept-extraction.",
         "result": "Planned",
         "status": "unknown",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
-        "data_source": "Figshare API + web_ingest_daemon for DOIs 10.6084/m9.figshare.31140000 and 10.6084/m9.figshare.31876324",
+        "data_source": "Figshare API + web_ingest_daemon for DOIs 10.6084/m9.figshare.31144030 and 10.6084/m9.figshare.31876324",
         "prediction": "Successful re-ingest will populate Document.title, Document.text chunks in Qdrant, and concept relations in Neo4j, allowing these papers to participate in framework_atlas queries and EFC search results.",
-        "notes": "Cross-validated against truth layers: Both DOIs verified as authentic Morten Magnusson EFC papers via Qdrant JSON-LD chunks containing ORCID 0009-0002-4860-5095 and Symbiose Research affiliation. 31140000 = \"Regime-Dependent Growth Enhancement (Fugaku-DESI)\", Spor 1, published 2026-01-24. 31876324 = \"EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of µ, Σ, η\", Spor 4, published 2026-03-01, in_datacite=true.",
+        "notes": "Cross-validated against truth layers: Both DOIs verified as authentic Morten Magnusson EFC papers via Qdrant JSON-LD chunks containing ORCID 0009-0002-4860-5095 and Symbiose Research affiliation. 31144030 = \"Regime-Dependent Growth Enhancement (Fugaku-DESI)\", Spor 1, published 2026-01-24. 31876324 = \"EFC Relativistic Action: Field Equations, Perturbation Theory, and Extraction of µ, Σ, η\", Spor 4, published 2026-03-01, in_datacite=true.",
         "quantitative_result": null,
         "last_synced": "2026-05-07T10:03:37.492000000+00:00",
         "status_detail": "planned"
