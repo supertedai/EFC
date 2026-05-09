@@ -42,6 +42,12 @@ AUDIT_FILES = {
 MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")  # Best available reasoning model
 MAX_CHARS_PER_FILE = 12000  # Truncate large files for API context
 
+# Local OpenAI-compatible endpoint (LM Studio, Ollama, …). Activated by
+# EFC_LLM_PROVIDER=local. Defaults target LM Studio on port 1234.
+LOCAL_PROVIDER = os.environ.get("EFC_LLM_PROVIDER", "").strip().lower() == "local"
+LOCAL_BASE_URL = os.environ.get("LOCAL_OPENAI_BASE_URL", "http://localhost:1234/v1").rstrip("/")
+LOCAL_MODEL = os.environ.get("LOCAL_MODEL", "openai/gpt-oss-120b")
+
 
 def count_paper_dirs():
     """Count actual paper directories on disk."""
@@ -216,60 +222,69 @@ End with a SUMMARY line: X/12 PASS, Y WARN, Z FAIL.
 
 
 def call_openai(prompt):
-    """Call OpenAI API."""
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    if not api_key:
-        print("[ERROR] OPENAI_API_KEY not set. Set it as environment variable.")
-        sys.exit(1)
+    """Call OpenAI (or local OpenAI-compatible) API."""
+    if LOCAL_PROVIDER:
+        url = f"{LOCAL_BASE_URL}/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY", "lm-studio")
+        model = LOCAL_MODEL
+    else:
+        url = "https://api.openai.com/v1/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY", "")
+        if not api_key:
+            print("[ERROR] OPENAI_API_KEY not set. Set it as environment variable.")
+            sys.exit(1)
+        model = MODEL
 
-    try:
-        import openai
-    except ImportError:
-        # Minimal HTTP fallback
-        import urllib.request
-        import urllib.error
-        import ssl
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_completion_tokens": 4000,
+    }
 
-        ctx = ssl.create_default_context()
-        req = urllib.request.Request(
-            "https://api.openai.com/v1/chat/completions",
-            data=json.dumps({
-                "model": MODEL,
-                "messages": [{"role": "user", "content": prompt}],
-                "max_completion_tokens": 4000,
-            }).encode(),
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-        )
+    if not LOCAL_PROVIDER:
         try:
-            with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
-                body = resp.read()
-                data = json.loads(body)
-                return data["choices"][0]["message"]["content"]
-        except urllib.error.HTTPError as e:
-            body = e.read().decode(errors="replace")
-            print(f"[ERROR] OpenAI API HTTP {e.code}: {body[:500]}")
-            sys.exit(1)
-        except Exception as e:
-            print(f"[ERROR] OpenAI API call failed: {e}")
-            sys.exit(1)
+            import openai
+            client = openai.OpenAI(api_key=api_key)
+            resp = client.chat.completions.create(**payload)
+            return resp.choices[0].message.content
+        except ImportError:
+            pass
 
-    client = openai.OpenAI(api_key=api_key)
-    resp = client.chat.completions.create(
-        model=MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        max_completion_tokens=4000,
+    # urllib path (used for local always; cloud fallback if SDK missing)
+    import urllib.request
+    import urllib.error
+    import ssl
+    ctx = ssl.create_default_context() if url.startswith("https") else None
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
     )
-    return resp.choices[0].message.content
+    try:
+        with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+            body = resp.read()
+            data = json.loads(body)
+            return data["choices"][0]["message"]["content"]
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        print(f"[ERROR] LLM API HTTP {e.code}: {body[:500]}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"[ERROR] LLM API call failed: {e}")
+        sys.exit(1)
 
 
 def main():
     print("=" * 70)
     print("EFC AI CONSISTENCY AUDIT")
     print(f"Date: {datetime.date.today().isoformat()}")
-    print(f"Model: {MODEL}")
+    if LOCAL_PROVIDER:
+        print(f"Model: {LOCAL_MODEL} (local @ {LOCAL_BASE_URL})")
+    else:
+        print(f"Model: {MODEL} (openai)")
     print("=" * 70)
 
     # Ground truth
