@@ -37,37 +37,49 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 COUNCIL_LOG = os.path.join(REPO, "docs", "council_log.json")
 MODEL = os.environ.get("OPENAI_MODEL", "gpt-5")
 
+# Local OpenAI-compatible endpoint (LM Studio, Ollama, …). Activated by
+# EFC_LLM_PROVIDER=local. Defaults target LM Studio on port 1234.
+LOCAL_PROVIDER = os.environ.get("EFC_LLM_PROVIDER", "").strip().lower() == "local"
+LOCAL_BASE_URL = os.environ.get("LOCAL_OPENAI_BASE_URL", "http://localhost:1234/v1").rstrip("/")
+LOCAL_MODEL = os.environ.get("LOCAL_MODEL", "openai/gpt-oss-120b")
+
 
 def _call_openai(prompt: str) -> str | None:
-    """Call OpenAI API. Returns response text or None on failure."""
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    if not api_key:
-        return None
+    """Call OpenAI (or local OpenAI-compatible) API. Returns text or None."""
+    if LOCAL_PROVIDER:
+        url = f"{LOCAL_BASE_URL}/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY", "lm-studio")  # local servers ignore key
+        model = LOCAL_MODEL
+    else:
+        url = "https://api.openai.com/v1/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY", "")
+        if not api_key:
+            return None
+        model = MODEL
 
-    try:
-        import openai
-        client = openai.OpenAI(api_key=api_key)
-        resp = client.chat.completions.create(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=2000,
-        )
-        return resp.choices[0].message.content
-    except ImportError:
-        pass
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_completion_tokens": 2000,
+    }
 
-    # urllib fallback
+    if not LOCAL_PROVIDER:
+        try:
+            import openai
+            client = openai.OpenAI(api_key=api_key)
+            resp = client.chat.completions.create(**payload)
+            return resp.choices[0].message.content
+        except ImportError:
+            pass
+
+    # urllib fallback (also used for local — avoids SDK dependency)
     import urllib.request
     import urllib.error
     import ssl
-    ctx = ssl.create_default_context()
+    ctx = ssl.create_default_context() if url.startswith("https") else None
     req = urllib.request.Request(
-        "https://api.openai.com/v1/chat/completions",
-        data=json.dumps({
-            "model": MODEL,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_completion_tokens": 2000,
-        }).encode(),
+        url,
+        data=json.dumps(payload).encode(),
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
@@ -118,8 +130,8 @@ def council_validate_page_update(
     """
     timestamp = datetime.datetime.utcnow().isoformat() + "Z"
 
-    # No API key = reject all (safe default)
-    if not os.environ.get("OPENAI_API_KEY"):
+    # No API key = reject all (safe default). Local provider doesn't need a key.
+    if not LOCAL_PROVIDER and not os.environ.get("OPENAI_API_KEY"):
         reason = "No OPENAI_API_KEY set -- all updates blocked (safe default)"
         print(f"[COUNCIL] REJECTED: {reason}")
         _log_decision({
@@ -258,7 +270,8 @@ Be conservative about factual claims. Be permissive about hedging that reduces o
         "doi": paper_doi,
         "verdict": verdict,
         "reason": reasoning,
-        "model": MODEL,
+        "model": LOCAL_MODEL if LOCAL_PROVIDER else MODEL,
+        "provider": "local" if LOCAL_PROVIDER else "openai",
         "full_response_length": len(response),
     })
 

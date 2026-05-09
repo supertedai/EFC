@@ -68,6 +68,13 @@ MAX_GIT_COMMITS = 40
 MAX_ANOMALY_LINES = 50
 MAX_OUTPUT_TOKENS = 2048
 
+# Local OpenAI-compatible endpoint (LM Studio, Ollama, …). Activated by
+# EFC_LLM_PROVIDER=local. When active, bypasses the Anthropic SDK and
+# POSTs to a chat/completions endpoint instead.
+LOCAL_PROVIDER = os.environ.get("EFC_LLM_PROVIDER", "").strip().lower() == "local"
+LOCAL_BASE_URL = os.environ.get("LOCAL_OPENAI_BASE_URL", "http://localhost:1234/v1").rstrip("/")
+LOCAL_MODEL = os.environ.get("LOCAL_MODEL", "openai/gpt-oss-120b")
+
 
 def load_json(path: Path) -> dict:
     try:
@@ -214,8 +221,95 @@ def build_user_message(state: dict) -> list[dict]:
     ]
 
 
+def _call_local_openai(state: dict) -> dict:
+    """Call a local OpenAI-compatible endpoint (LM Studio / Ollama)."""
+    import urllib.request
+    import urllib.error
+
+    snapshot_text = json.dumps(state, indent=2, ensure_ascii=False)
+    if len(snapshot_text) > 30000:
+        snapshot_text = snapshot_text[:30000] + "\n... [truncated]"
+    user_text = (
+        "EFC maintenance state snapshot:\n\n```json\n"
+        + snapshot_text
+        + "\n```\n\n"
+        "Review the snapshot above and respond with the JSON object "
+        "described in the system prompt. Focus on: (1) stale or missing "
+        "ledger entries, (2) recent commits that look suspicious or "
+        "incomplete, (3) mismatches between the Phase 1 and Phase 2 "
+        "ledger state, (4) any anomaly that a maintainer should see."
+    )
+
+    payload = {
+        "model": LOCAL_MODEL,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_text},
+        ],
+        "max_tokens": MAX_OUTPUT_TOKENS,
+        "temperature": 0.2,
+    }
+
+    req = urllib.request.Request(
+        f"{LOCAL_BASE_URL}/chat/completions",
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', 'lm-studio')}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=300) as resp:
+            data = json.loads(resp.read())
+            body = data["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        return {
+            "overall_health": "yellow",
+            "anomalies": [
+                {
+                    "severity": "medium",
+                    "area": "monitor",
+                    "description": f"Local LLM call failed ({type(e).__name__}: {e})",
+                }
+            ],
+            "stale_entries": [],
+            "suggested_updates": [],
+            "commentary": (
+                f"Could not reach local provider at {LOCAL_BASE_URL}. "
+                "Confirm LM Studio (or equivalent) is running and the model "
+                f"`{LOCAL_MODEL}` is loaded."
+            ),
+        }
+
+    if body.startswith("```"):
+        body = body.split("```", 2)[1]
+        if body.startswith("json"):
+            body = body[4:]
+        body = body.strip()
+
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        return {
+            "overall_health": "yellow",
+            "anomalies": [
+                {
+                    "severity": "medium",
+                    "area": "monitor",
+                    "description": "Local LLM response was not valid JSON; kept as raw text in commentary.",
+                }
+            ],
+            "stale_entries": [],
+            "suggested_updates": [],
+            "commentary": body,
+        }
+
+
 def call_claude(state: dict, model: str) -> dict:
-    """Call Claude once, return the parsed review JSON."""
+    """Call Claude (or local OpenAI-compatible model), return parsed review JSON."""
+    if LOCAL_PROVIDER:
+        return _call_local_openai(state)
+
     try:
         import anthropic  # type: ignore
     except ImportError:
@@ -395,17 +489,21 @@ def main() -> int:
     print("[efc-ai-monitor] collecting state snapshot…")
     state = collect_state()
 
-    has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    has_key = bool(os.environ.get("ANTHROPIC_API_KEY")) or LOCAL_PROVIDER
     if args.dry_run or not has_key:
         if not has_key and not args.dry_run:
             print(
-                "[efc-ai-monitor] ANTHROPIC_API_KEY not set — producing dry-run stub",
+                "[efc-ai-monitor] ANTHROPIC_API_KEY not set (and EFC_LLM_PROVIDER!=local) "
+                "— producing dry-run stub",
                 file=sys.stderr,
             )
         review = dry_run_stub(state)
         mode = "dry-run"
     else:
-        print(f"[efc-ai-monitor] calling Claude ({args.model})…")
+        if LOCAL_PROVIDER:
+            print(f"[efc-ai-monitor] calling local model {LOCAL_MODEL} @ {LOCAL_BASE_URL}…")
+        else:
+            print(f"[efc-ai-monitor] calling Claude ({args.model})…")
         try:
             review = call_claude(state, args.model)
             mode = "live"
@@ -430,10 +528,16 @@ def main() -> int:
     json_path = args.out / "ai_review.json"
     md_path = args.out / "ai_review.md"
 
+    if mode == "live":
+        active_model = LOCAL_MODEL if LOCAL_PROVIDER else args.model
+    else:
+        active_model = None
+
     output = {
         "generated": state["generated"],
         "mode": mode,
-        "model": args.model if mode == "live" else None,
+        "provider": ("local" if LOCAL_PROVIDER else "anthropic") if mode == "live" else None,
+        "model": active_model,
         "state_snapshot_summary": {
             "phase1_ledger_version": state.get("phase1_ledger", {}).get("version"),
             "n_paper_packages": state.get("paper_archive", {}).get("n_packages"),

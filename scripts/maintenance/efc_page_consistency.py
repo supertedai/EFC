@@ -345,12 +345,37 @@ def check_p8_doi_anchored_in_doi_map(report: Report) -> None:
             permitted.add(fid)
 
     figshare_re = re.compile(r"10\.6084/m9\.figshare\.(\d{6,9})")
+    # DOIs explicitly framed as "incomplete / re-ingest needed" in a page
+    # are NOT cited as evidence — they're listed as known-bad records that
+    # the maintenance pipeline still has to fix. Treat them as exempt so
+    # P8 doesn't fire on these self-flagged tasks. We scope the lookup to
+    # the enclosing block element (tr / li / p) rather than a flat
+    # character window, so the context check is independent of HTML
+    # formatting decisions made by atlas-sync.
+    incomplete_context_re = re.compile(
+        r"(re-?ingest|incomplete|missing\s+repo\s+dir|orphaned?)",
+        re.IGNORECASE,
+    )
+
+    def _enclosing_block(text: str, pos: int) -> str:
+        """Return the smallest <tr|li|p>...</tr|li|p> block containing pos."""
+        for opener, closer in (("<tr", "</tr>"), ("<li", "</li>"), ("<p", "</p>")):
+            start = text.rfind(opener, 0, pos)
+            end = text.find(closer, pos)
+            if start != -1 and end != -1 and end > pos:
+                return text[start : end + len(closer)]
+        # Fall back to a generous window if no block element wraps the match
+        return text[max(0, pos - 600) : pos + 600]
+
     for page_path in PUBLIC_ROOT.glob("EFC_*.html"):
         text = page_path.read_text(encoding="utf-8", errors="replace")
         seen_unknown: set[str] = set()
         for m in figshare_re.finditer(text):
             fid = m.group(1)
             if fid in permitted or fid in seen_unknown:
+                continue
+            block = _enclosing_block(text, m.start())
+            if incomplete_context_re.search(block):
                 continue
             seen_unknown.add(fid)
             line_no = text[: m.start()].count("\n") + 1
