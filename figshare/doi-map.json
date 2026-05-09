@@ -1,7 +1,7 @@
 {
   "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-05-06T18:58:34+00:00",
+  "generated_at": "2026-05-09T11:28:40+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -11,10 +11,10 @@
   "totals": {
     "orcid_works": 163,
     "orcid_dois": 163,
-    "repo_paper_dirs": 166,
-    "repo_unique_dois": 162,
-    "matched_count": 162,
-    "missing_paper_dirs": 1,
+    "repo_paper_dirs": 167,
+    "repo_unique_dois": 163,
+    "matched_count": 163,
+    "missing_paper_dirs": 0,
     "duplicate_doi_dirs": 4,
     "dirs_without_doi": 0,
     "complete_packages": 155
@@ -1351,6 +1351,16 @@
       "has_pdf": true
     },
     {
+      "doi": "10.6084/m9.figshare.32162706",
+      "figshare_id": "32162706",
+      "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of ∆AIC for SPARC-175",
+      "date": "2026-05-01",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
+      "package_complete": false,
+      "has_pdf": true
+    },
+    {
       "doi": "10.6084/m9.figshare.31188193",
       "figshare_id": "31188193",
       "title": "EFC Weak Lensing Phenomenology: A Testable μ(k,z) Framework and DES Y6 Validation Protocol",
@@ -1681,13 +1691,7 @@
       "has_pdf": true
     }
   ],
-  "missing_repo_dirs": [
-    {
-      "figshare_id": "32162706",
-      "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of Delta-AIC for SPARC-175",
-      "action": "create_paper_dir_or_decide_legacy"
-    }
-  ],
+  "missing_repo_dirs": [],
   "duplicate_doi_dirs": [
     {
       "doi": "10.6084/m9.figshare.31970886",
