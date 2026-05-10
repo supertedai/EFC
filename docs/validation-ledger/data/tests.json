@@ -458,16 +458,25 @@
         "test_id": "conv_jwst_bullet_cluster_kill_test_data_tilgjengelig_pipeline_er_",
         "name": "JWST Bullet Cluster δκ — KILL-test data tilgjengelig, pipeline er bottleneck",
         "description": "To JWST Bullet-papers gir avgjørende datasett for EFCs pre-registrerte δκ KILL-test (figshare:31963668): arXiv:2503.21870 (146 SL-constraints + tett WL) og arXiv:2601.22245 (masskart-kryssjekk). Data er klart. Stage-IV Roadmap prioritet: HØYEST.",
-        "result": "Planned",
+        "result": "Pipeline ready (jwst_dkappa_killtest.py + rihtarsic2026_halos). Calibrated PIEMD baseline computed in BCG1-centred frame: A_sig(κ_PIEMD) = -8.21e-2 (5.9σ from null, p<1e-4). Awaiting Cha+2025 κ_obs FITS for full δκ verdict.",
         "status": "unknown",
         "vl_category": "physics_test",
         "also_phenomenological": null,
-        "data_source": "arXiv:2503.21870 (JWST 146 SL+WL) + arXiv:2601.22245 (JWST mass map)",
+        "data_source": "arXiv:2503.21870 (Cha+2025, JWST 146 SL+WL κ-map — pending download); arXiv:2601.22245 (Rihtaršič+2026, Table C.2 fiducial PIEMD halos — integrated into rihtarsic2026_halos)",
         "prediction": "EFC pre-registrert: η=Φ/Ψ=0.9993 (KILL badge). MOND: 0 offset (feiler). LCDM: positivt offset (passerer). Pipeline figshare:31963668 må kjøres mot JWST-data fra 2503.21870.",
-        "notes": "arXiv:2503.21870 (146 SL+WL) + arXiv:2601.22245 (mass map). JWST data tilgjengelig. Stage-IV prioritet: HØYEST. EFC pipeline figshare:31963668 er sole bottleneck for δκ KILL-test (η=0.9993).",
-        "quantitative_result": null,
-        "last_synced": "2026-05-01T19:01:34.860000000+00:00",
-        "status_detail": "planned"
+        "notes": "Pipeline implemented (PR #292, src/jwst_dkappa_killtest.py + src/asig_2d_piemd.rihtarsic2026_halos). Calibrated PIEMD baseline A_sig=-0.082 (5.9σ) replaces v3.11 placeholder coincidence -6.9e-4. Sole remaining bottleneck: Cha+2025 free-form κ_obs FITS (MAST/CANUCS/SLCAtlas — currently behind sandbox host allowlist).",
+        "quantitative_result": {
+          "asig_piemd_baseline_rihtarsic2026": -0.0821,
+          "asig_piemd_null_sigma": 0.0139,
+          "asig_over_sigma_null": -5.905,
+          "bootstrap_p_value": 0.0,
+          "frame": "rihtarsic2026 (BCG1 origin)",
+          "shock_x_kpc": 720.0,
+          "placeholder_baseline_v3_11": -0.00069,
+          "placeholder_coincidence_note": "The published v3.11 baseline A_sig ≈ -6.9e-4 was a coincidence of placeholder geometry; the calibrated Rihtaršič+2026 Table C.2 halos give -8.21e-2. P2 logic is invariant: A_sig is linear in κ."
+        },
+        "last_synced": "2026-05-10T17:21:31.312526+00:00",
+        "status_detail": "pipeline_ready_blocked_on_data"
       },
       {
         "test_id": "conv_kt_1_dominance_test_strong_lens_time_delay_weak_lensing_shea",
