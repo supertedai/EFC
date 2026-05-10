@@ -5,10 +5,35 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-05-10",
+      "type": "auto_maintenance",
+      "summary": "Ledger data: evidence-register.json, ledger.json. Public pages updated: Changelog. Public pages updated: Changelog; Ledger data: evidence-register.json, ledger.json. 1 paper package enriched."
+    },
+    {
       "name": "Re-ingest 2 incomplete EFC Figshare DOIs (31140000, 31876324)",
       "status": "planned",
       "result": "Planned",
       "last_updated": "2026-05-07T10:03:37.492000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Bullet \u03b4\u03ba test: promote from preregistered to in_pipeline (JWST data ready)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-03T17:19:04.501000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CMB acoustic peaks: Boltzmann-solver gap blocking (post arXiv:2504.20038)",
+      "status": "planned",
+      "result": "Planned",
+      "last_updated": "2026-05-03T17:19:01.955000000+00:00",
       "source": "conversation_bridge",
       "all_labels": [
         "EFCValidation"
