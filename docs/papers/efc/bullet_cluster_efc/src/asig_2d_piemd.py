@@ -270,6 +270,70 @@ def default_halos() -> List[PIEMDHalo]:
 
 
 # ---------------------------------------------------------------------------
+#   Rihtaršič et al. (2026) best-fit halos — A&A submitted, arXiv:2601.22245
+#   Table C.2 (fiducial model, large-scale halos H1–H4)
+# ---------------------------------------------------------------------------
+
+# At zl = 0.296 (FlatLambdaCDM H0=70, Om0=0.3): 1″ = 4.413 kpc
+KPC_PER_ARCSEC_Z_LENS = 4.413
+
+# PIEMD central velocity dispersion σ0 from Lenstool fiducial σlt:
+# σlt = √(2/3) · σ0  (paper eq. between Tables C.1 and C.2)
+# σ0 = √(3/2) · σlt = 1.22474 · σlt
+SIGMA_LT_TO_SIGMA0 = math.sqrt(3.0 / 2.0)
+
+# In the Rihtaršič frame the origin is at BCG1 with H3 (subcluster) at
+# x ≈ 817 kpc east. Markevitch (2006) places the bow shock ~100 kpc west of
+# the bullet's leading edge (~140 kpc behind the leading X-ray edge of the
+# bullet, with the bullet centre ≈ 40 kpc west of its leading edge). At
+# Rihtaršič's H3 centre x = 185.1″ ≈ 817 kpc this places the shock at
+# x ≈ 717 kpc, with normal pointing west toward the main cluster.
+SHOCK_X_KPC_RIHTARSIC = 720.0
+SHOCK_NORMAL_RIHTARSIC = np.array([-1.0, 0.0])
+
+
+def rihtarsic2026_halos() -> List[PIEMDHalo]:
+    """
+    Best-fit large-scale PIEMD halos H1–H4 from Rihtaršič et al. (2026)
+    Table C.2 (fiducial model). Coordinates are referenced to BCG1 at the
+    origin, with +x along the Lenstool x-axis (east, toward the subcluster)
+    and +y along +y (north). Position angles θ are taken verbatim from
+    Table C.2 — the existing pa_deg field of PIEMDHalo is interpreted in
+    the same convention as the paper (Lenstool position angle, CCW from +x).
+
+    H1, H2: main cluster double-peak (loosely associated with BCG1, BCG2).
+    H3:     subcluster (bullet) halo, aligned within 4 kpc of BCG3.
+    H4:     fixed-position halo south of BCG1, motivated by the ICL
+            extension; position fixed at (3.70″, −21.33″) per Table C.1.
+
+    r_cut is fixed at 2 Mpc (≈ r200) for all four halos in the fiducial model
+    (Section 4.1). r_core values are converted from arcsec to kpc.
+
+    σ_lt → σ_0 conversion: σ_0 = √(3/2) · σ_lt as stated under Eq. (1).
+    """
+    rows = [
+        # (name, x0″,  y0″, e,    θ°,  σlt km/s, rcore″, rcut kpc)
+        ("H1",   6.8,  7.3, 0.70, 62,   570.0,  11.0,   2000.0),
+        ("H2",  37.2, 37.9, 0.47, 65,   453.0,  18.0,   2000.0),
+        ("H3", 185.1, 49.8, 0.47,  0,   679.0,  10.0,   2000.0),
+        ("H4",   3.70,-21.33, 0.66, 27,  528.0, 31.0,   2000.0),
+    ]
+    halos: List[PIEMDHalo] = []
+    for name, x0_arcsec, y0_arcsec, e, theta_deg, sigma_lt, rcore_arcsec, rcut_kpc in rows:
+        halos.append(PIEMDHalo(
+            name=name,
+            x0_kpc=x0_arcsec * KPC_PER_ARCSEC_Z_LENS,
+            y0_kpc=y0_arcsec * KPC_PER_ARCSEC_Z_LENS,
+            sigma0_km_s=sigma_lt * SIGMA_LT_TO_SIGMA0,
+            r_core_kpc=rcore_arcsec * KPC_PER_ARCSEC_Z_LENS,
+            r_cut_kpc=rcut_kpc,
+            ellipticity=e,
+            pa_deg=float(theta_deg),
+        ))
+    return halos
+
+
+# ---------------------------------------------------------------------------
 #   End-to-end baseline
 # ---------------------------------------------------------------------------
 

@@ -58,15 +58,28 @@ from asig_2d_piemd import (  # noqa: E402
     GRID_NX,
     GRID_NY,
     SHOCK_NORMAL,
+    SHOCK_NORMAL_RIHTARSIC,
     SHOCK_X_KPC,
+    SHOCK_X_KPC_RIHTARSIC,
     STRIP_LENGTH_KPC,
     STRIP_WIDTH_KPC,
     asig_2d,
     bootstrap_null,
     default_halos,
     make_grid,
+    rihtarsic2026_halos,
     sum_halos,
 )
+
+
+# Pre-registered baseline frames for the PIEMD subtraction:
+#
+#   "placeholder" — old paper-frame placeholders, baseline A_sig ≈ -6.9e-4
+#                   (used in v3.11 paper for operator validation only)
+#   "rihtarsic2026" — Table C.2 best-fit halos in BCG1-centred frame, with
+#                     SHOCK_X_KPC_RIHTARSIC = 720 kpc. This is the calibrated
+#                     baseline used for the actual JWST killtest.
+DEFAULT_FRAME = "rihtarsic2026"
 
 
 # ---------------------------------------------------------------------------
@@ -202,15 +215,22 @@ def load_kappa_fits(path: str, source_label: str) -> KappaMap:
 #   Killtest
 # ---------------------------------------------------------------------------
 
-def compute_dkappa_residual(kappa_obs: np.ndarray, X, Y) -> np.ndarray:
-    """δκ = κ_obs - κ_PIEMD using the placeholder halos.
+def compute_dkappa_residual(
+    kappa_obs: np.ndarray, X, Y, frame: str = DEFAULT_FRAME
+) -> np.ndarray:
+    """δκ = κ_obs - κ_PIEMD.
 
-    NOTE: the placeholder halos in ``default_halos`` reproduce only the
-    *mechanism* of the test, not the paper's tuned PIEMD parameters. For
-    the full P2 verdict, replace with Rihtaršič et al. (2026) Table 4
-    best-fit halos before the residual is taken.
+    frame="rihtarsic2026" (default): subtract the Table C.2 best-fit halos
+    in the BCG1-centred frame.
+    frame="placeholder": subtract the legacy placeholder halos in the
+    paper-frame (kept for back-compat with the v3.11 baseline).
     """
-    kappa_piemd = sum_halos(X, Y, default_halos())
+    if frame == "rihtarsic2026":
+        kappa_piemd = sum_halos(X, Y, rihtarsic2026_halos())
+    elif frame == "placeholder":
+        kappa_piemd = sum_halos(X, Y, default_halos())
+    else:
+        raise ValueError(f"unknown frame {frame!r}")
     return kappa_obs - kappa_piemd
 
 
@@ -219,12 +239,19 @@ def killtest_on_residual(
     X: np.ndarray,
     Y: np.ndarray,
     n_bootstrap: int = 5000,
+    frame: str = DEFAULT_FRAME,
 ) -> dict:
-    dkappa = compute_dkappa_residual(kappa_obs, X, Y)
+    dkappa = compute_dkappa_residual(kappa_obs, X, Y, frame=frame)
+    if frame == "rihtarsic2026":
+        shock_x = SHOCK_X_KPC_RIHTARSIC
+        normal = SHOCK_NORMAL_RIHTARSIC
+    else:
+        shock_x = SHOCK_X_KPC
+        normal = SHOCK_NORMAL
     asig, kf, kb = asig_2d(
         dkappa, X, Y,
-        shock_x_kpc=SHOCK_X_KPC,
-        normal=SHOCK_NORMAL,
+        shock_x_kpc=shock_x,
+        normal=normal,
         strip_width_kpc=STRIP_WIDTH_KPC,
         strip_length_kpc=STRIP_LENGTH_KPC,
     )
@@ -244,6 +271,8 @@ def killtest_on_residual(
         "test_id": "EFC-VAL-2026-004",
         "sealed_prediction": "P2",
         "doi": "10.6084/m9.figshare.31963668",
+        "frame": frame,
+        "shock_x_kpc": float(shock_x),
         "kappa_dkappa_front_mean": kf,
         "kappa_dkappa_back_mean": kb,
         "asig_residual": float(asig),
@@ -277,13 +306,22 @@ def main(argv: list[str] | None = None) -> int:
         help="Number of random-rotation null samples.",
     )
     parser.add_argument(
+        "--frame", default=DEFAULT_FRAME,
+        choices=["rihtarsic2026", "placeholder"],
+        help="PIEMD subtraction frame. Default: rihtarsic2026.",
+    )
+    parser.add_argument(
         "--out", default=None,
         help="Optional output JSON path; default: stdout only.",
     )
     args = parser.parse_args(argv)
 
     km = load_kappa_fits(args.kappa_fits, source_label=args.source)
-    result = killtest_on_residual(km.kappa, km.X, km.Y, n_bootstrap=args.n_bootstrap)
+    result = killtest_on_residual(
+        km.kappa, km.X, km.Y,
+        n_bootstrap=args.n_bootstrap,
+        frame=args.frame,
+    )
     result["kappa_source"] = km.source
     result["kappa_fits_path"] = os.path.abspath(args.kappa_fits)
 
