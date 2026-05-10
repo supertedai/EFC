@@ -26,6 +26,13 @@ Checks:
         CITATION.cff, citations.bib, *.jsonld) must carry the SAME
         canonical Figshare DOI. Papers that register zero DOIs pass.
         Conflicts are hard errors — run efc_sync_dois.py to reconcile.
+  [C9]  Placeholder-baseline sensitivity gate. Any *_baseline_result*.json
+        file whose ``caveats[]`` mentions "placeholder" must declare a
+        ``calibrated_baseline_reference`` (path to a sibling JSON with
+        published best-fit parameters) OR an ``erratum`` cross-reference.
+        Catches the failure mode discovered 2026-05-10 in EFC-VAL-2026-004
+        where a placeholder coincidence yielded an apparent A_sig ≈ 0
+        baseline that was 120σ off the calibrated value.
 
 Usage: scripts/maintenance/efc_verify.py [--quiet]
 """
@@ -238,6 +245,58 @@ def check_c8_doi_consistency(issues, dirs):
             ))
 
 
+PLACEHOLDER_RE = re.compile(r"\bplaceholder\b", re.IGNORECASE)
+BASELINE_FILE_RE = re.compile(r"baseline_result.*\.json$|baseline_.*\.json$", re.IGNORECASE)
+
+
+def check_c9_placeholder_sensitivity(issues, dirs):
+    """Flag JSON files that publish a quantitative baseline result but rely
+    on placeholder parameters without cross-referencing a calibrated
+    counterpart or an erratum.
+
+    Trigger: a JSON file under any paper's data/ directory matching the
+    baseline-result naming pattern, with ``caveats`` (or top-level keys)
+    that mention "placeholder", and lacking BOTH:
+      - ``calibrated_baseline_reference`` (path to sibling calibrated JSON), and
+      - ``erratum`` (path to erratum doc)
+    """
+    for name in dirs:
+        data_dir = os.path.join(PAPERS, name, "data")
+        if not os.path.isdir(data_dir):
+            continue
+        for fname in sorted(os.listdir(data_dir)):
+            if not BASELINE_FILE_RE.search(fname):
+                continue
+            full = os.path.join(data_dir, fname)
+            try:
+                with open(full) as fh:
+                    doc = json.load(fh)
+            except Exception:
+                continue
+            caveats = doc.get("caveats", []) if isinstance(doc, dict) else []
+            blob = " ".join(str(c) for c in caveats) if caveats else ""
+            if not PLACEHOLDER_RE.search(blob) and not _doc_mentions_placeholder(doc):
+                continue
+            has_ref = bool(doc.get("calibrated_baseline_reference") or doc.get("erratum"))
+            if not has_ref:
+                issues.append(Issue(
+                    "C9", f"{name}/data/{fname}",
+                    "placeholder baseline without calibrated_baseline_reference or erratum cross-ref"
+                ))
+
+
+def _doc_mentions_placeholder(doc):
+    """Recursively check if any string value in doc mentions 'placeholder'.
+    Bounded scan — stops after finding a hit."""
+    if isinstance(doc, str):
+        return PLACEHOLDER_RE.search(doc) is not None
+    if isinstance(doc, dict):
+        return any(_doc_mentions_placeholder(v) for v in doc.values())
+    if isinstance(doc, list):
+        return any(_doc_mentions_placeholder(v) for v in doc)
+    return False
+
+
 def main():
     quiet = "--quiet" in sys.argv
     issues = []
@@ -247,6 +306,7 @@ def main():
     check_c4_version_consistency(issues)
     check_c5_catalogue_fresh(issues, dirs)
     check_c8_doi_consistency(issues, dirs)
+    check_c9_placeholder_sensitivity(issues, dirs)
 
     errors = [i for i in issues if i.severity == "error"]
     warns = [i for i in issues if i.severity == "warn"]
