@@ -66,8 +66,11 @@
     "Placeholder PIEMD parameters (not Rihtarsic et al. 2026 Table 4 best-fit values)",
     "Sensitivity analysis: +/- 20% variation in sigma_0^Main-NW yields |DeltaA_sig| ~ 0.01",
     "Baseline validates test operator only; physical residual delta_kappa not yet computed",
-    "Shock line position and normal from Markevitch 2006; not refit to JWST data"
+    "Shock line position and normal from Markevitch 2006; not refit to JWST data",
+    "ERRATUM 2026-05-10: the apparent A_sig ≈ 0 here is a coincidence of placeholder symmetry, NOT a property of PIEMD. Calibrated halos from Rihtarsic+2026 Table C.2 give A_sig = -0.0821 (5.9 sigma). See ../ERRATUM_v3.11.md and ./asig_baseline_rihtarsic2026.json"
   ],
+  "calibrated_baseline_reference": "asig_baseline_rihtarsic2026.json",
+  "erratum": "../ERRATUM_v3.11.md",
   "frozen_ledger_parameters": {
     "k": 0.415,
     "mu_cluster": 1.1,

@@ -8,6 +8,8 @@
 - **Date:** 2026-04-01
 - **License:** CC-BY-4.0
 
+> **Erratum (2026-05-10):** the v3.11 PIEMD baseline value `A_sig ≈ −6.9 × 10⁻⁴` reported in §3.2.3 is a placeholder-geometry diagnostic, not a calibrated PIEMD null. The Rihtaršič+2026 Table C.2 best-fit halos give `A_sig = −8.21 × 10⁻²` (5.9σ from null). Sealed prediction P2 is unaffected (A_sig is linear in κ). See [`ERRATUM_v3.11.md`](./ERRATUM_v3.11.md).
+
 ---
 
 ## Overview
