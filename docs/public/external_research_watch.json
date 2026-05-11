@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.6",
-  "last_updated": "2026-05-04",
+  "version": "1.7",
+  "last_updated": "2026-05-11",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -809,6 +809,61 @@
       "date_published": "2026-05-01",
       "efc_relevance": "Joint real/redshift-space measurement of the growth-rate amplitude fσ8 and the BAO scale at z≈0 from the CosmicFlows-4++ peculiar-velocity catalog — independent of CMB-anchored σ8 priors. Local fσ8 ≈ 0.30–0.38 sits below the Planck-anchored ΛCDM prediction at z=0 and is directionally consistent with EFC's perturbation-sector prediction μ(a)<1 (FA2 sign-level discriminator). Adds a low-z growth anchor that is orthogonal to DES Y6 / KiDS Legacy / CMB-lensing arms of the S8 picture.",
       "ledger_action": "Add to Validation Ledger as low-z (z≈0) perturbation-sector probe; update gap ledger_perturbationsector_valley with peculiar-velocity-based fσ8 row; cross-reference framework:VerlindeEmergent-2016 and arXiv:2602.12238 (S8 review) for probe-split bookkeeping; required head-to-head μ-sign comparison against framework:fR-Starobinsky2007 (FA2).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.02477",
+      "title": "Singularity softening and avoidance by the action of thermal radiation in a generalized entropic cosmology (Elizalde, Yurov, Timoshkin)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.02477",
+      "date_seen": "2026-05-11",
+      "date_published": "2026-05-04",
+      "efc_relevance": "Generalized entropic cosmology with logarithmic-EOS viscous dark fluid coupled to dark matter on a flat FLRW background; Hawking-radiation thermal terms soften or remove early-time singularities. Sits squarely in EFC's emergent-entropic-gravity heritage (alongside framework:Padmanabhan-2009 and framework:VerlindeEntropic-2010) and supplies a worked toy model where a single entropy-based fluid replaces both the singularity and an explicit DM/DE split — the same structural move EFC's S(r,t) field makes at L2/L3.",
+      "ledger_action": "Log to External Research Ledger under cluster emergent-entropic-gravity; add a row to Gap Analysis (gap theory-entropic-singularity-avoidance) noting EFC's S(r,t) flow does not yet have a published singularity-softening derivation analogous to this one; cross-reference framework:Padmanabhan-2009 and framework:VerlindeEntropic-2010; required follow-up: derive the EFC analogue of their thermal-correction condition and compare to EFC's bounce-free L0 boundary.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.04154",
+      "title": "A Master Equation for Screening in Luminal Horndeski Gravity (Sirera, Baker, Hallam, Naidoo)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.04154",
+      "date_seen": "2026-05-11",
+      "date_published": "2026-05-05",
+      "efc_relevance": "Derives the unapproximated second-order perturbation equations for luminal Horndeski theories in the α-basis and reduces them to a single master screening equation that recovers Vainshtein and Chameleon limits and identifies a new 'Phaedrus' regime where the screening radius scales linearly with source mass. Directly tightens the discriminator against framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 — EFC's recovery condition in L2 must remain distinguishable from the Phaedrus-screening signature on cluster-scale lensing profiles.",
+      "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski; update framework:Horndeski-Deffayet2011 row with Phaedrus-regime discriminator note; required follow-up in Predictions Ledger: state explicit EFC prediction for the static spherically-symmetric scalar-field profile around a galaxy-cluster halo and compare numerically to the Phaedrus master-equation solution at r ∈ [0.1, 5] h^-1 Mpc.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.04755",
+      "title": "Nearly universal CMB TT spectrum from pre-inflationary dynamics in a closed universe: KICI scenario, bouncing universe, and emergent universe (Huang)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.04755",
+      "date_seen": "2026-05-11",
+      "date_published": "2026-05-06",
+      "efc_relevance": "Phase-space analysis of pre-inflationary dynamics in a spatially closed universe shows that KICI (kinetic-initial-conditions-for-inflation), bouncing, and emergent-universe scenarios all produce essentially the same large-scale-suppressed CMB TT spectrum — i.e. CMB TT alone cannot distinguish them. Tightens the negative-result band for EFC's L0/L1 boundary: any EFC variant that posits a closed-universe pre-inflationary phase inherits the same CMB-TT degeneracy and must lean on lensing / non-Gaussianity / B-modes for discriminative power.",
+      "ledger_action": "Log to External Research Ledger under cluster alternative-cosmology; add note to framework:Ekpyrotic-Khoury2001 and framework:CCC-Penrose2011 rows that CMB-TT-only fits cannot separate them from KICI under closed-universe priors; flag in Gap Analysis (gap predictions-l0boundary-cmb) that EFC's L0-boundary observable must be specified beyond CMB TT to remain discriminating.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.05454",
+      "title": "Backreaction and the Role of Spatial Curvature in the Cosmic Neighborhood (Galoppo, Buchert, Mourier)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.05454",
+      "date_seen": "2026-05-11",
+      "date_published": "2026-05-06",
+      "efc_relevance": "First direct computation of spatially-averaged dynamical quantities in the local universe using Cosmicflows-4++ and a covariant scalar-averaging formalism out to ~300 Mpc/h. Average spatial curvature contributes ~10% of the local energy budget across all probed scales; kinematical backreaction stays ≤1%; convergence to global ΛCDM background is NOT seen within 300 Mpc/h. Provides empirical traction for any framework that treats local averaging as physically real (framework:Timescape-Wiltshire2007), and gives EFC a low-z anchor: EFC's S(r,t) entropy-flow predicts a non-zero domain-averaged curvature signature whose amplitude can be benchmarked directly against this measurement.",
+      "ledger_action": "Add to Validation Ledger as a local-universe averaging probe; update framework:Timescape-Wiltshire2007 row with quantitative ~10%-curvature anchor; new gap row (gap theory-backreaction-localdomain-efc) — EFC currently has no published prediction for domain-averaged spatial curvature on 30–300 Mpc/h scales; required follow-up: compute EFC analogue of (Ω_R^D, Ω_Q^D) on the same Cosmicflows-4++ domains.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.05691",
+      "title": "From Scalar H_0 to E(z): A Reformulation of the Hubble Tension (Lee)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.05691",
+      "date_seen": "2026-05-11",
+      "date_published": "2026-05-07",
+      "efc_relevance": "Re-expresses the Hubble tension in terms of the dimensionless expansion history E(z)=H(z)/H_0 instead of a single scalar H_0, separating the absolute-scale anchor (Pantheon+SH0ES) from the redshift-dependent shape (Planck CMB + DESI DR2 BAO). For EFC this is the natural framing: EFC predicts a specific E(z)-shape deviation from ΛCDM driven by the entropy-flow source term S(r,t), and a scalar-H_0 comparison hides exactly the redshift-dependent signature where EFC differs.",
+      "ledger_action": "Add to Likelihood Ledger and Predictions Ledger as the canonical H_0-tension framing going forward; update P-series rows that currently quote a scalar H_0 to also publish EFC's predicted E(z) at z ∈ {0.3, 0.5, 0.7, 1.0, 1.5}; cross-reference arXiv:2503.14738 (DESI DR2) and Pantheon+SH0ES anchors; deprecate scalar-H_0-only comparisons against framework:LCDM-Planck2018 in favour of E(z)-shape comparisons.",
       "status": "new"
     }
   ]
