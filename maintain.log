@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 163
   ORCID Figshare DOIs       : 163
@@ -120,6 +120,8 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 60 DOI(s) to evidence register
+    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -157,9 +159,9 @@ Processed 163 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:130 → 130  (+0)    ledger:130 → 130 (+0)
-  methodological  ev: 26 →  26  (+0)    ledger: 26 →  26 (+0)
-  structural      ev: 75 →  75  (+0)    ledger: 75 →  75 (+0)
+  empirical       ev: 86 → 130  (+44)    ledger: 22 → 130 (+108)
+  methodological  ev:  3 →  26  (+23)    ledger:  3 →  26 (+23)
+  structural      ev:  2 →  75  (+73)    ledger:  2 →  75 (+73)
 ========================================================================
 [efc-drift] 163 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 163
@@ -181,7 +183,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-05-10
+Date: 2026-05-11
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -204,7 +206,9 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
