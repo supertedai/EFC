@@ -5,24 +5,9 @@
   "period_days": 7,
   "changes": [
     {
-      "name": "EFC disk_evolutionary_state CONFIRMED via Πmin (DOI 32101111)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-05-12T06:43:13.241000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "EFC bar-instability criterion FALSIFIED (DOI 32101111)",
-      "status": "planned",
-      "result": "Planned",
-      "last_updated": "2026-05-12T06:43:10.591000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "EFCValidation"
-      ]
+      "date": "2026-05-12",
+      "type": "auto_maintenance",
+      "summary": "Ledger data: evidence-register.json, ledger.json. Public pages updated: Changelog."
     },
     {
       "name": "Re-ingest 2 incomplete EFC Figshare DOIs (31140000, 31876324)",
