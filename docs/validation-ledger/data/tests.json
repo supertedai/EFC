@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-12T06:41:57Z",
+  "generated_at": "2026-05-12T12:42:13Z",
   "categories": {
     "physics_test": [
       {
@@ -275,6 +275,21 @@
         "status_detail": "pending"
       },
       {
+        "test_id": "conv_efc_bar_instability_criterion_falsified_doi_32101111_",
+        "name": "EFC bar-instability criterion FALSIFIED (DOI 32101111)",
+        "description": "DOI 10.6084/m9.figshare.32101111 ('A Falsified Bar-Instability Criterion Reveals an Independent Di[REDACTED] Parameter from EFC-Modified Disk Kinematics') reports that EFC's modified Toomre-Q bar-instability criterion fails as a bar predictor on SPARC+Galaxy Zoo+S4G data. Measured AUC 0.22-0.31 is BELOW random (0.5) and anti-correlated with bar truth within physical ζ-range. This constitutes a hard kill against atlas prediction bar_instability_L3 (formula Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1, κ²_eff = κ² + ζ·g_EFC/R, g_EFC = α·∇S, status 'predicts_threshold'). Verification chain: Neo4j title → GitHub README direct quotes → atlas zoom EFC.bar_instability_L3.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "physics_test",
+        "also_phenomenological": null,
+        "data_source": "SPARC + Galaxy Zoo + S4G via sparc_bar_labels.json (GitHub: supertedai/EFC/docs/papers/efc/A_Falsified_Bar-Instability_Criterion.../)",
+        "prediction": "Atlas EFC.bar_instability_L3 predicts Π_EFC < 1 threshold for bar onset via α∇S disk stiffening with κ² modification (m=2 mode). Measured: AUC 0.22-0.31 (below random 0.5, anti-correlated). VERDICT: FALSIFIED.",
+        "notes": "Falsification verified via direct GitHub README quotes (AUC 0.22-0.31, anti-correlated with bar truth). Atlas bar_instability_L3 prediction Π_EFC<1 with κ²_eff modification is hard-killed. Approved 2026-05-12 as canonical EFCValidation node. Honest publication of kill-result strengthens EFC's Popper-falsifiability posture. Atlas status update from 'predicts_threshold' → 'FALSIFIED' should follow separately.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-12T06:43:10.591000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_efc_c_001_s_correlation_with_conscious_state_transitions",
         "name": "EFC-C-001: ∇S Correlation with Conscious State Transitions",
         "description": "Tests the foundational Stage 1→2 mapping of the EFC-C consciousness bridge. Computes spatial entropy gradient Ω = ||∇S|| from EEG data across wakefulness, REM, NREM3, and general anesthesia. If Ω does not distinguish conscious from unconscious states, the entire S→Ω mapping is empirically vacuous. This is the gate test — C2 and C3 depend on it passing.",
@@ -305,7 +320,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-12_020012_aqual",
+        "test_id": "grav_integration_2026-05-12_081743_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -395,7 +410,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-12_020012_aqual",
+        "test_id": "grav_kt1_2026-05-12_081743_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -410,7 +425,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-12_020012_aqual",
+        "test_id": "grav_kt3_2026-05-12_081743_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -425,7 +440,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-12_020012_aqual",
+        "test_id": "grav_kt2_2026-05-12_081743_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -1176,6 +1191,21 @@
         "notes": "Core-state model is consistent with sign flip but N=2 cross-sample data is insufficient for robust model selection. Establishes f_SCC as plausible regime variable. Next: per-subpopulation rho data needed (SCC/WCC/NCC bins). Status: partial (consistent but underpowered).",
         "quantitative_result": null,
         "last_synced": "2026-03-08T19:08:13.949000000+00:00",
+        "status_detail": "planned"
+      },
+      {
+        "test_id": "conv_efc_disk_evolutionary_state_confirmed_via_min_doi_32101111_",
+        "name": "EFC disk_evolutionary_state CONFIRMED via Πmin (DOI 32101111)",
+        "description": "Same DOI 32101111 dataset that falsifies bar_instability_L3 simultaneously CONFIRMS atlas prediction disk_evolutionary_state. Πmin emerges as independent di[REDACTED] parameter with measured Spearman correlations matching atlas predictions within 1-15%. Atlas predicted ρ[Π, log Σ_disk]=-0.6 and ρ[Π, f_gas]=+0.66. Measured: ρ=-0.71 and ρ=+0.65 respectively. This is a dual outcome: hard kill on bar_instability_L3, support for disk_evolutionary_state on same observation set. Atlas should reflect both updates.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "SPARC + xGASS (f_gas via M_HI/(M_HI+M_*)) via classify_fit.json + disk_state.json (same GitHub directory)",
+        "prediction": "Atlas EFC.disk_evolutionary_state predicts Spearman ρ[Π_min,log Σ_disk]≈-0.6 (negative correlation) and ρ[Π_min,f_gas]≈+0.66 (positive correlation). Measured: -0.71 and +0.65. VERDICT: CONFIRMED.",
+        "notes": "Confirmation verified via same DOI 32101111 dataset. Measured Spearman ρ[Πmin,log Σ_disk]=-0.71 vs atlas predicted -0.6 (consistent direction, 15% stronger). ρ[Πmin,f_gas]=+0.65 vs predicted +0.66 (1.5% agreement). Dual outcome with vc_cf9577516556: same observation set kills bar_instability_L3 but confirms disk_evolutionary_state. Demonstrates atlas predictions are specific enough to differentiate. Approved 2026-05-12.",
+        "quantitative_result": null,
+        "last_synced": "2026-05-12T06:43:13.241000000+00:00",
         "status_detail": "planned"
       },
       {
@@ -2054,5 +2084,5 @@
       }
     ]
   },
-  "total_count": 136
+  "total_count": 138
 }
