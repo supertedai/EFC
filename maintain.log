@@ -120,6 +120,8 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 60 DOI(s) to evidence register
+    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -157,9 +159,9 @@ Processed 163 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:130 → 130  (+0)    ledger:130 → 130 (+0)
-  methodological  ev: 26 →  26  (+0)    ledger: 26 →  26 (+0)
-  structural      ev: 75 →  75  (+0)    ledger: 75 →  75 (+0)
+  empirical       ev: 86 → 130  (+44)    ledger: 22 → 130 (+108)
+  methodological  ev:  3 →  26  (+23)    ledger:  3 →  26 (+23)
+  structural      ev:  2 →  75  (+73)    ledger:  2 →  75 (+73)
 ========================================================================
 [efc-drift] 163 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 163
@@ -175,7 +177,7 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 136 total, 104 survived, 10 falsified
+  Tests: 138 total, 106 survived, 10 falsified
   Papers: 164 (163 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -204,21 +206,22 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 164 papers, 163 DOIs
-Ledger: 136 tests, 10 falsified
+Ledger: 138 tests, 10 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 163 close to repo 164
   [OK]       Paper count 163 close to repo 164
-  [OK]       Survival count 104/114 matches ledger
+  [OK]       Survival count 106/116 matches ledger
 
 --- Validation Ledger ---
-  [OK]       Test count 136 matches ledger 136
+  [OK]       Test count 138 matches ledger 138
 
 --- All Pages Number Check ---
 
@@ -246,7 +249,7 @@ Ledger: 136 tests, 10 falsified
 --- Cross-consistency ---
   [OK]       README paper count 163 matches repo 164
   [OK]       README paper count 163 matches repo 164
-  [OK]       Stats categories sum to 136 = total_public
+  [OK]       Stats categories sum to 138 = total_public
   [OK]       DOI sync script present, 163/164 papers have DOIs
   [OK]       120 papers have sealed predictions (349 total)
 
@@ -255,7 +258,7 @@ Ledger: 136 tests, 10 falsified
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 136 matches ledger
+  [OK]       Symbiose test count 138 matches ledger
   [OK]       Symbiose paper count 164 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
