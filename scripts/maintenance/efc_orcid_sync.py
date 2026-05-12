@@ -106,6 +106,16 @@ def _save_json(path, data):
         f.write("\n")
 
 
+def _reports_equivalent(prev, curr):
+    """True if two reports differ only in volatile fields (checked_at)."""
+    if not isinstance(prev, dict) or not isinstance(curr, dict):
+        return False
+    volatile = {"checked_at"}
+    a = {k: v for k, v in prev.items() if k not in volatile}
+    b = {k: v for k, v in curr.items() if k not in volatile}
+    return a == b
+
+
 def _bare(doi):
     if not doi:
         return None
@@ -251,7 +261,12 @@ def main():
             for b in in_repo_not_on_orcid
         ],
     }
-    _save_json(REPORT_PATH, report)
+    # Only rewrite the report if something meaningful changed. Otherwise the
+    # rolling `checked_at` timestamp produces a noise diff on every run and
+    # spams git history with empty SessionStart commits.
+    previous = _load_json(REPORT_PATH)
+    if not _reports_equivalent(previous, report):
+        _save_json(REPORT_PATH, report)
 
     print("=" * 72)
     print(f"EFC ORCID source-of-truth sync — source={source}")
