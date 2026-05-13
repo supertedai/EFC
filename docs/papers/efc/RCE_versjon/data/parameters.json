@@ -1,0 +1,87 @@
+{
+  "paper_metadata": {
+    "title": "Ledger Epistemology and Regime-Closure Governance: An Operational Framework for Validation in Coupled Multi-Scale Systems",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095",
+    "date": "2026-05-12",
+    "version": "1.0",
+    "doi": "10.6084/m9.figshare.32256951"
+  },
+  "programme_stats": {
+    "efc_field_test_years": [
+      2024,
+      2026
+    ],
+    "public_validation_ledger_version": "4.6",
+    "counts": {
+      "deposited_dois": 163,
+      "registered_tests": 135,
+      "documented_falsifications": 11
+    }
+  },
+  "framework_components": {
+    "regime_tagging": true,
+    "frozen_parameter_governance": true,
+    "sealed_predictions": true,
+    "falsification_ledger": true,
+    "external_arbitration": true
+  },
+  "regime_architectures": {
+    "medicine": {
+      "tags": [
+        "M0",
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "description": "Pre-registered structural instantiation (example domain)"
+    },
+    "economics": {
+      "tags": [
+        "E0",
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "description": "Pre-registered structural instantiation (example domain)"
+    }
+  },
+  "cross_domain_predictions": {
+    "declared_count": 7,
+    "description": "Seven pre-registered cross-domain predictions with explicit thresholds and arbiters are deposited against this paper's DOI (values not included in excerpt)."
+  },
+  "framework_falsification_conditions": {
+    "declared_count": 5,
+    "description": "Five falsification conditions for the framework itself (specifics not included in excerpt)."
+  },
+  "demo_defaults": {
+    "deposit_doi": "10.6084/m9.figshare.32256951",
+    "author_id": "demo.author",
+    "arbitrator_id": "independent.arbiter",
+    "prediction_spec": {
+      "metric": "mae",
+      "thresholds": {
+        "mae_max": 0.1
+      },
+      "source_regimes": [
+        "M0"
+      ]
+    },
+    "predicted_vector": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "observed_vector": [
+      1.0,
+      1.3,
+      0.7
+    ],
+    "expected_mae": 0.20000000000000004
+  },
+  "notes": {
+    "excerpt_limitations": "The provided text excerpt contains no numerical model equations or domain-specific constants. The implementation focuses on the operational governance machinery and a generic NumPy-based evaluation metric (MAE).",
+    "validation_principle": "Regime-Closure Principle (RCP) operationalized by forbidding cross-regime inference unless an explicit coupling operator is registered."
+  }
+}

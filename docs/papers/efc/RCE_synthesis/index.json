@@ -1,0 +1,130 @@
+{
+  "$schema": "./schema.json",
+  "id": "rce-synthesis",
+  "title": "Regime-Closure Epistemology (RCE): A General Principle of Cross-Domain Validation in Coupled Multi-Scale Systems",
+  "description": "Introduces Regime-Closure Epistemology (RCE) as an operational principle for validating coupled multi-scale systems. The paper specifies five joint conditions\u2014regime locality, variety closure, modelling closure, frozen-parameter governance, and external arbitration via sealed predictions\u2014arguing that validation is sound if and only if these hold. It consolidates EFC machinery (EBE, RCMP, L0\u2013L3 architecture, sealed predictions, and a live falsification ledger) and deposits pre-registered cross-domain predictions.",
+  "version": "1.1",
+  "date": "2026-05-12",
+  "doi": "10.6084/m9.figshare.32256939",
+  "keywords": [
+    "Regime-Closure Epistemology",
+    "Energy-Flow Cosmology",
+    "multi-scale validation",
+    "Regime-Consistent Measurement Principle",
+    "Entropy-Bounded Empiricism",
+    "frozen-parameter governance",
+    "sealed predictions",
+    "variety closure",
+    "Conant\u2013Ashby modelling closure",
+    "cybernetics",
+    "cross-domain isomorphism",
+    "validation ledger"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "coupled_subsystems_condition": {
+      "latex": "N \\geq 2",
+      "description": "RCE applies to systems with at least two coupled subsystems operating at scale-separated timescales."
+    },
+    "rce_validity_iff": {
+      "latex": "V \\Leftrightarrow (C_1 \\wedge C_2 \\wedge C_3 \\wedge C_4 \\wedge C_5)",
+      "description": "Validation (V) is sound if and only if the five RCE conditions hold jointly: C1 regime locality; C2 variety closure (Ashby); C3 modelling closure (Conant\u2013Ashby); C4 frozen-parameter governance; C5 external arbitration via sealed predictions (Beer)."
+    }
+  },
+  "key_results": {
+    "main_finding": "States and operationalizes RCE: validation in coupled multi-scale systems is valid iff five specified regime-closure conditions are jointly satisfied, with sealed, pre-registered cross-domain predictions deposited for external arbitration.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [],
+    "verdict": "SEALED"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P0",
+      "statement": "Seven pre-registered cross-domain predictions with explicit thresholds and named arbiters are sealed and deposited against this paper\u2019s DOI; details and hashes are provided in the associated validation ledger.",
+      "falsifiable_by": "External arbitration of the sealed prediction set as deposited (hash-verified) under this DOI; failure to meet the pre-registered thresholds constitutes falsification."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Necessity counterexample \u2014 Demonstrate a coupled multi-scale system (N \u2265 2) where a validation procedure is externally adjudicated as valid despite at least one of the five RCE conditions not holding.",
+    "KC2: Sufficiency counterexample \u2014 Implement and verify all five RCE conditions in a coupled multi-scale system and show that the sealed, pre-registered predictions fail their explicit thresholds under external arbitration.",
+    "KC3: No \u2018dark X\u2019 symptom under condition failure \u2014 Identify a domain that applies single-regime methodology to a clearly coupled multi-regime system without generating residual categories or mystery entities required to close quantitative/causal ledgers.",
+    "KC4: Persistence of mystery entities after regime-consistent re-architecture \u2014 After installing regime-consistent measurement and frozen-parameter governance, show that the prior residual (\u2018dark X\u2019/idiopathic/exogenous) does not resolve into couplings/buffering/scale-transition operators.",
+    "KC5: Operational instantiation failure \u2014 Show that the claimed operational machinery (sealed numerical predictions with deposit hashes and a living falsification ledger) is not present or cannot be verified for this paper\u2019s deposits and associated EFC apparatus."
+  ],
+  "tier": "T2",
+  "paper_type": "Theory",
+  "related_packages": [
+    {
+      "id": "rcmp",
+      "doi": "10.6084/m9.figshare.31222900",
+      "role": "Regime-Consistent Measurement Principle foundation"
+    },
+    {
+      "id": "ebe-core",
+      "doi": "10.6084/m9.figshare.31222903",
+      "role": "Entropy-Bounded Empiricism core principles"
+    },
+    {
+      "id": "l0-l3-architecture",
+      "doi": "10.6084/m9.figshare.31112536",
+      "role": "L0\u2013L3 regime architecture"
+    },
+    {
+      "id": "efc-foundations",
+      "doi": "10.6084/m9.figshare.31135597",
+      "role": "Foundations of Energy-Flow Cosmology"
+    },
+    {
+      "id": "regime-bound-measurement",
+      "doi": "10.6084/m9.figshare.31564123",
+      "role": "Regime-bound measurement in complex systems"
+    },
+    {
+      "id": "regime-locked-constraint",
+      "doi": "10.6084/m9.figshare.31833076",
+      "role": "Regime-locked measurement as a general structural constraint"
+    },
+    {
+      "id": "regime-based-world-modeling",
+      "doi": "10.6084/m9.figshare.31223650",
+      "role": "Regime-based world modeling"
+    },
+    {
+      "id": "validity-aware-ai",
+      "doi": "10.6084/m9.figshare.31122970",
+      "role": "Validity-aware AI framework"
+    },
+    {
+      "id": "cross-domain-bridge-equations",
+      "doi": "10.6084/m9.figshare.31940547",
+      "role": "Cross-domain bridge equations"
+    },
+    {
+      "id": "kt3b-cross-regime-failure",
+      "doi": "10.6084/m9.figshare.31963821",
+      "role": "KT3b cross-regime measurement failure analysis"
+    },
+    {
+      "id": "composite-level-aggregation",
+      "doi": "10.6084/m9.figshare.32162706",
+      "role": "Composite-level aggregation"
+    },
+    {
+      "id": "methodological-convergence-stage-iv",
+      "doi": "10.6084/m9.figshare.32080080",
+      "role": "Methodological convergence in Stage-IV cosmology"
+    }
+  ],
+  "files": {
+    "pdf": "RCE_synthesis_v1.1.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32256939",
+  "paper_type_inferred": true
+}

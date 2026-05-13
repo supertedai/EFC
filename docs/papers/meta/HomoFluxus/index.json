@@ -1,0 +1,92 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "HomoFluxus-meta-principle",
+  "identifier": "meta/HomoFluxus",
+  "name": "Homo Fluxus (meta-principle)",
+  "title": "Homo Fluxus — Meta-layer theoretical reference",
+  "description": "Curated meta-layer reference for Homo Fluxus: humans (and any living system) treated as dynamic energy-flow processes rather than static entities, embedded in gradients of matter, energy, information, and meaning. Aligns the EFC formalism (reflection coefficient R, critical threshold R_c ≈ 1/e) with the wider non-equilibrium thermodynamics-of-life tradition (Schrödinger, Prigogine, Kauffman, Schneider & Sagan, England, Friston, Deacon, Levin). Includes HF1–HF5 sealed predictions and bridges to cognitive, medicine, and society/AI-alignment layers.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "Homo Fluxus",
+    "energy-flow cosmology",
+    "EFC",
+    "non-equilibrium thermodynamics",
+    "dissipative structures",
+    "Schrödinger negentropy",
+    "Prigogine",
+    "England dissipation-driven adaptation",
+    "Friston free energy",
+    "systemic empathy",
+    "coherence potential",
+    "interoceptive integration",
+    "reflection coefficient R",
+    "connectome variability κ",
+    "civilization map",
+    "AI alignment"
+  ],
+  "about": [
+    "thermodynamics of life",
+    "complex systems",
+    "consciousness science",
+    "AI alignment",
+    "social systems"
+  ],
+  "originator": {
+    "name": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "author": {
+    "name": "EFC meta-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "2026-04-01",
+  "key_equation": {
+    "name": "Interior reflection coefficient",
+    "latex": "R = \\kappa\\,\\frac{\\langle\\tau_{\\mathrm{ref}}\\rangle_E}{\\tau_{\\mathrm{leak}}},\\quad \\tau_{\\mathrm{ref}}(\\mathbf{r}) = \\frac{\\rho_E(\\mathbf{r})}{\\sigma(\\mathbf{r}) + \\varepsilon}",
+    "description": "Dimensionless ratio of energy-weighted internal reflection time to system-wide leakage time; crossing R_c ≈ 1/e ≈ 0.37 marks the onset of self-modelling — the transition from flow object to flow subject (Homo Fluxus proper)."
+  },
+  "sealed_predictions": [
+    {"id": "HF1", "statement": "Cross-modal coherence proxies (Φ̇I, C_phase, I_body) load on a single low-dimensional latent factor."},
+    {"id": "HF2", "statement": "Higher coherence-potential agents display stronger systemic empathy."},
+    {"id": "HF3", "statement": "Field-aware RL policies reduce externalised entropy at equal or lower energetic cost vs. locally-optimal policies."},
+    {"id": "HF4", "statement": "Local connectome metrics (degree ratio) predict κ with |r| > 0.8; global metrics (λ_2) fail."},
+    {"id": "HF5", "statement": "Targeted modulation of local degree ratio causally shifts κ in the HF4-predicted direction."}
+  ],
+  "efc_source_publications": [
+    {"doi": "10.6084/m9.figshare.32099389", "path": "docs/papers/efc/Homo Fluxus A Thermodynamic Framework", "version": "1.0", "date": "2026-04-25"},
+    {"doi": "10.6084/m9.figshare.31940604", "path": "docs/papers/efc/Homo_Fluxus", "version": "2.0", "date": "2026-04-01"}
+  ],
+  "cross_layer_bridges": {
+    "cosmos": ["docs/papers/efc/CEM-Consciousness-Ego-Mirror", "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge"],
+    "cognitive": ["docs/papers/cognitive/FEP", "docs/papers/cognitive/IIT", "docs/papers/cognitive/GWT", "docs/papers/cognitive/PP", "docs/papers/cognitive/AST"],
+    "ai_alignment": ["docs/papers/efc/Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3"]
+  },
+  "related_meta_principles": ["../Proxy", "../Autopoiesis"],
+  "canonical_references": [
+    "Schrödinger (1944). What is Life? Cambridge UP",
+    "Prigogine & Nicolis (1977). Self-Organization in Nonequilibrium Systems. Wiley",
+    "Kauffman (1993). The Origins of Order. Oxford UP",
+    "Schneider & Sagan (2005). Into the Cool. Chicago UP",
+    "Deacon (2011). Incomplete Nature. Norton",
+    "England (2013). J Chem Phys 139:121923. doi:10.1063/1.4818538",
+    "Levin (2019). Front Psychol 10:2688. doi:10.3389/fpsyg.2019.02688",
+    "Magnusson (2026a). Homo Fluxus v1. doi:10.6084/m9.figshare.32099389",
+    "Magnusson (2026b). Homo Fluxus v2.0. doi:10.6084/m9.figshare.31940604"
+  ],
+  "tier": "reference",
+  "paper_type": "meta-principle",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/meta/HomoFluxus",
+  "layer": "meta",
+  "type": "meta-principle-reference",
+  "knowledge_domain": "meta",
+  "qdrant_collection": "efc"
+}

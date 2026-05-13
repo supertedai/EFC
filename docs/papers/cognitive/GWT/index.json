@@ -1,0 +1,120 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "GWT-Global-Workspace-Theory",
+  "identifier": "cognitive/GWT",
+  "name": "Global Workspace Theory (GWT) / Global Neuronal Workspace (GNW)",
+  "title": "Global Workspace Theory / Global Neuronal Workspace — Cognitive-layer theoretical reference",
+  "description": "Curated reference for Global Workspace Theory (Baars 1988) and its neural instantiation Global Neuronal Workspace (Dehaene & Changeux, 2001-2020). Consciousness is identified with the brain-wide broadcast (ignition) of content from competing specialised processors into a capacity-limited workspace. Includes architecture, neural correlates (P3b, late gamma, frontoparietal ignition), spiking model, the front-vs-back debate, COGITATE adversarial findings, and bridges to FEP/IIT/AST/EFC.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "global workspace theory",
+    "GWT",
+    "global neuronal workspace",
+    "GNW",
+    "Bernard Baars",
+    "Stanislas Dehaene",
+    "ignition",
+    "P3b",
+    "P300",
+    "access consciousness",
+    "frontoparietal network",
+    "long-range cortical neurons",
+    "broadcast",
+    "attentional blink",
+    "no-report paradigm",
+    "COGITATE",
+    "conscious Turing machine"
+  ],
+  "about": [
+    "cognitive neuroscience",
+    "consciousness science",
+    "cognitive architectures"
+  ],
+  "originators": [
+    {
+      "name": "Bernard J. Baars",
+      "affiliation": "Neurosciences Institute, San Diego",
+      "year": 1988
+    },
+    {
+      "name": "Stanislas Dehaene",
+      "affiliation": "Collège de France / NeuroSpin, CEA Saclay",
+      "year": 1998
+    },
+    {
+      "name": "Jean-Pierre Changeux",
+      "affiliation": "Institut Pasteur / Collège de France",
+      "year": 1998
+    }
+  ],
+  "author": {
+    "name": "EFC cognitive-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "1988",
+  "core_concepts": [
+    "specialised parallel processors",
+    "capacity-limited workspace",
+    "ignition / broadcast",
+    "attentional spotlight",
+    "winner-take-all coalition dynamics",
+    "long-range cortical neurons (PFC + parietal hubs)",
+    "P3b / late gamma signatures",
+    "access vs. phenomenal consciousness"
+  ],
+  "empirical_signatures": [
+    "P3b ~300-500 ms",
+    "late frontoparietal gamma",
+    "long-range theta-gamma coupling",
+    "BOLD ignition in PFC/parietal",
+    "perturbation complexity index (PCI)"
+  ],
+  "key_paradigms": [
+    "attentional blink",
+    "backward masking",
+    "inattentional blindness",
+    "no-report paradigms",
+    "anaesthesia / NREM sleep",
+    "disorders of consciousness"
+  ],
+  "variants": [
+    "Global Neuronal Workspace (Dehaene-Changeux)",
+    "Conscious Turing Machine (Blum & Blum 2022)",
+    "Predictive Global Neuronal Workspace (Whyte & Smith 2021)",
+    "LIDA architecture (Franklin et al. 2014)"
+  ],
+  "related_frameworks": [
+    "../FEP",
+    "../PP",
+    "../IIT",
+    "../AST"
+  ],
+  "efc_bridge": [
+    "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge",
+    "docs/papers/efc/Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge"
+  ],
+  "canonical_references": [
+    "Baars (1988). A Cognitive Theory of Consciousness. Cambridge UP. ISBN 978-0521427432",
+    "Dehaene & Naccache (2001). Cognition 79:1-37. doi:10.1016/S0010-0277(00)00123-2",
+    "Dehaene & Changeux (2011). Neuron 70:200-227. doi:10.1016/j.neuron.2011.03.018",
+    "Dehaene (2014). Consciousness and the Brain. Viking. ISBN 978-0670025435",
+    "Mashour, Roelfsema, Changeux & Dehaene (2020). Neuron 105:776-798. doi:10.1016/j.neuron.2020.01.026",
+    "Blum & Blum (2022). PNAS 119:e2115934119. doi:10.1073/pnas.2115934119",
+    "Cogitate Consortium (2025). Nature. doi:10.1038/s41586-025-08888-x"
+  ],
+  "tier": "reference",
+  "paper_type": "review",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/cognitive/GWT",
+  "layer": "cognitive",
+  "type": "theory-reference",
+  "knowledge_domain": "cognitive",
+  "qdrant_collection": "cognitive"
+}

@@ -1,0 +1,1 @@
+Open-access full-texts and supporting materials.\n\nFiles in this directory are retrieved from PubMed Central or other CC-BY/CC0 sources for the GWT cognitive theory. See `../README.md` and `../references.bib` for the canonical bibliography. Each file's licence and source are recorded in `MANIFEST.json` once populated.

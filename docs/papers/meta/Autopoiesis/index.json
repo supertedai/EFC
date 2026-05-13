@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "Autopoiesis-meta-principle",
+  "identifier": "meta/Autopoiesis",
+  "name": "Autopoiesis (meta-principle)",
+  "title": "Autopoiesis — Meta-layer theoretical reference for self-producing systems",
+  "description": "Curated meta-layer reference for the Autopoiesis meta-principle (Maturana & Varela 1972, 1980; Varela 1979; Varela, Thompson & Rosch 1991). Living systems are networks of processes that continually produce their own components and specify their own boundary — operationally closed yet thermodynamically open. The meta-layer reference covers Varela's six criteria, enactivist cognition, the modern Bich/Mossio/Di Paolo revival, links to FEP/Markov-blanket biology (Kirchhoff et al. 2018), and frames autopoiesis as the operational-closure complement to Homo Fluxus.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "autopoiesis",
+    "self-organisation",
+    "operational closure",
+    "Humberto Maturana",
+    "Francisco Varela",
+    "enactivism",
+    "embodied cognition",
+    "The Embodied Mind",
+    "Evan Thompson",
+    "Ezequiel Di Paolo",
+    "Leonardo Bich",
+    "Matteo Mossio",
+    "Bourgine Stewart",
+    "second-order autopoiesis",
+    "Luhmann social systems",
+    "chemoton",
+    "Markov blanket",
+    "Kirchhoff blankets of life"
+  ],
+  "about": [
+    "theoretical biology",
+    "philosophy of biology",
+    "philosophy of mind",
+    "enactivism",
+    "complex systems"
+  ],
+  "originators": [
+    {"name": "Humberto R. Maturana", "affiliation": "Universidad de Chile", "year": 1972},
+    {"name": "Francisco J. Varela", "affiliation": "Universidad de Chile / CNRS / EPFL", "year": 1972}
+  ],
+  "author": {
+    "name": "EFC meta-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "1972",
+  "varela_six_criteria": [
+    "identifiable boundaries",
+    "constituent components produce boundaries",
+    "mechanistic system",
+    "boundary components produced by internal interactions",
+    "all components produced by internal interactions",
+    "all other operations subordinate to (1)-(5) — operational closure"
+  ],
+  "contested_claims": [
+    {"id": "AP1", "statement": "Life = autopoiesis (necessary and sufficient)"},
+    {"id": "AP2", "statement": "Cognition is co-extensive with life"},
+    {"id": "AP3", "statement": "Mind is constituted by autopoietic embodiment"},
+    {"id": "AP4", "statement": "Society is a third-order autopoietic system"},
+    {"id": "AP5", "statement": "Artificial life can be autopoietic in principle"},
+    {"id": "AP6", "statement": "Autopoiesis grounds a non-reductive yet naturalistic theory of agency"}
+  ],
+  "modern_revival_authors": [
+    "Pier Luigi Luisi",
+    "Ezequiel Di Paolo",
+    "Evan Thompson",
+    "Leonardo Bich",
+    "Matteo Mossio",
+    "Kepa Ruiz-Mirazo",
+    "Alvaro Moreno",
+    "Tom Froese"
+  ],
+  "cross_layer_bridges": {
+    "meta": ["../HomoFluxus", "../Proxy"],
+    "cognitive": ["docs/papers/cognitive/FEP", "docs/papers/cognitive/PP", "docs/papers/cognitive/IIT", "docs/papers/cognitive/GWT", "docs/papers/cognitive/AST"],
+    "cosmos": ["docs/papers/efc/CEM-Consciousness-Ego-Mirror", "docs/papers/efc/EFC-C_Consciousness_Field_Resonance"]
+  },
+  "canonical_references": [
+    "Maturana & Varela (1972). De Máquinas y Seres Vivos. Editorial Universitaria",
+    "Varela, Maturana & Uribe (1974). Biosystems 5:187-196. doi:10.1016/0303-2647(74)90031-8",
+    "Varela (1979). Principles of Biological Autonomy. North-Holland",
+    "Maturana & Varela (1980). Autopoiesis and Cognition. Reidel. ISBN 978-9027710154",
+    "Maturana & Varela (1987). The Tree of Knowledge. Shambhala. ISBN 978-0877736424",
+    "Varela, Thompson & Rosch (1991). The Embodied Mind. MIT Press. ISBN 978-0262720212",
+    "Bourgine & Stewart (2004). Artif Life 10:327-345. doi:10.1162/1064546041255557",
+    "Luisi (2003). Naturwissenschaften 90:49-59. doi:10.1007/s00114-002-0389-9",
+    "Di Paolo (2005). Phenom Cogn Sci 4:429-452. doi:10.1007/s11097-005-9002-y",
+    "Thompson (2007). Mind in Life. Harvard UP. ISBN 978-0674057517",
+    "Bich & Damiano (2012). Origins Life 42:389-397. doi:10.1007/s11084-012-9311-4",
+    "Bich, Mossio, Ruiz-Mirazo & Moreno (2016). Biology & Philosophy 31:237-265. doi:10.1007/s10539-015-9497-8",
+    "Kirchhoff et al. (2018). J R Soc Interface 15:20170792. doi:10.1098/rsif.2017.0792",
+    "Levin (2019). Front Psychol 10:2688. doi:10.3389/fpsyg.2019.02688"
+  ],
+  "critique_references": [
+    "Boden (2000). Autopoiesis and life. Cognitive Science Quarterly 1:117-145",
+    "McMullin (2004). Artif Life 10:277-295. doi:10.1162/1064546041255548",
+    "Bickhard (2009). Synthese 166:547-591. doi:10.1007/s11229-008-9375-x",
+    "Froese & Stewart (2010). Cybernetics & Human Knowing 17:7-50"
+  ],
+  "tier": "reference",
+  "paper_type": "meta-principle",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/meta/Autopoiesis",
+  "layer": "meta",
+  "type": "meta-principle-reference",
+  "knowledge_domain": "meta",
+  "qdrant_collection": "efc"
+}

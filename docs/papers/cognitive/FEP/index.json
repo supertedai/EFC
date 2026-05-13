@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "FEP-Free-Energy-Principle",
+  "identifier": "cognitive/FEP",
+  "name": "Free Energy Principle (FEP)",
+  "title": "Free Energy Principle (FEP) — Cognitive-layer theoretical reference",
+  "description": "Curated reference for the Free Energy Principle (Friston 2006, 2010, 2023): a unifying mathematical framework proposing that self-organising systems minimise an upper bound on sensory surprise (variational free energy) to maintain non-equilibrium steady state. Includes core formalism, active-inference extension, Markov-blanket partition, predictive-coding implementation, empirical predictions, criticisms, and bridge to the EFC/CEM model.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "free energy principle",
+    "FEP",
+    "active inference",
+    "variational free energy",
+    "Bayesian brain",
+    "Markov blanket",
+    "predictive coding",
+    "Karl Friston",
+    "self-organisation",
+    "expected free energy",
+    "precision weighting",
+    "evidence lower bound",
+    "ELBO",
+    "consciousness",
+    "cognitive science"
+  ],
+  "about": [
+    "computational neuroscience",
+    "theoretical cognitive science",
+    "Bayesian inference",
+    "non-equilibrium statistical mechanics"
+  ],
+  "originator": {
+    "name": "Karl J. Friston",
+    "affiliation": "Wellcome Centre for Human Neuroimaging, University College London",
+    "orcid": "0000-0001-7984-8909"
+  },
+  "author": {
+    "name": "EFC cognitive-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "2006",
+  "key_equation": {
+    "name": "Variational free energy",
+    "latex": "F[q,o] = \\mathbb{E}_{q(s)}[\\log q(s) - \\log p(s,o)] = D_{KL}[q(s)\\,\\|\\,p(s|o)] - \\log p(o)",
+    "description": "Upper bound on negative log-evidence (surprise); minimising F simultaneously approximates the Bayesian posterior (perception) and selects actions that reduce sensory surprise (active inference)."
+  },
+  "core_concepts": [
+    "variational free energy as ELBO",
+    "active inference and expected free energy",
+    "Markov blanket / particular partition",
+    "hierarchical predictive coding",
+    "precision-weighted prediction error",
+    "epistemic vs. pragmatic value",
+    "Bayesian mechanics"
+  ],
+  "empirical_targets": [
+    "mismatch negativity (MMN)",
+    "P300 / Bayesian surprise",
+    "repetition suppression",
+    "psychosis (aberrant precision)",
+    "autism (HIPPEA)",
+    "interoceptive depression (allostatic priors)"
+  ],
+  "related_frameworks": [
+    "../PP",
+    "../GWT",
+    "../IIT",
+    "../AST"
+  ],
+  "efc_bridge": [
+    "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge",
+    "docs/papers/efc/Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge",
+    "docs/papers/efc/CEM-Consciousness-Ego-Mirror"
+  ],
+  "canonical_references": [
+    "Friston, Kilner & Harrison (2006). J. Physiol. Paris 100:70-87. doi:10.1016/j.jphysparis.2006.10.001",
+    "Friston (2010). Nat. Rev. Neurosci. 11:127-138. doi:10.1038/nrn2787",
+    "Friston et al. (2017). Neural Computation 29:1-49. doi:10.1162/NECO_a_00912",
+    "Parr, Pezzulo & Friston (2022). Active Inference. MIT Press. ISBN 978-0262045353",
+    "Ramstead et al. (2023). Interface Focus 13:20220029. doi:10.1098/rsfs.2022.0029",
+    "Friston et al. (2023). Phys. Life Rev. 47:35-62. doi:10.1016/j.plrev.2023.08.016"
+  ],
+  "implementations": [
+    {"name": "pymdp", "language": "Python", "url": "https://github.com/infer-actively/pymdp"},
+    {"name": "SPM12 DEM toolbox", "language": "MATLAB", "url": "https://www.fil.ion.ucl.ac.uk/spm/"},
+    {"name": "RxInfer.jl", "language": "Julia", "url": "https://github.com/biaslab/RxInfer.jl"}
+  ],
+  "tier": "reference",
+  "paper_type": "review",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/cognitive/FEP",
+  "layer": "cognitive",
+  "type": "theory-reference",
+  "knowledge_domain": "cognitive",
+  "qdrant_collection": "cognitive"
+}
