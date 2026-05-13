@@ -1,16 +1,21 @@
-[efc-auto-meta] all paper directories have index.json
+[efc-auto-meta] 2 bare PDF(s) found, generating metadata:
+  RCE_synthesis: 10.6084/m9.figshare.32256939
+  RCE_versjon: 10.6084/m9.figshare.32256951
+[efc-auto-meta] generated 2 package(s)
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
-  ORCID works               : 163
-  ORCID Figshare DOIs       : 163
-  Repo Figshare DOIs        : 163
-  Matched                   : 163
+  ORCID works               : 165
+  ORCID Figshare DOIs       : 165
+  Repo Figshare DOIs        : 165
+  Matched                   : 165
   On ORCID, not in repo     : 0
   In repo, not on ORCID     : 0
 ========================================================================
-[efc-paper-type] all papers already classified
-[efc-regen-index] no diff — 163 papers, version 2.10
+[efc-paper-type] inferred paper_type for 2 paper(s):
+  empirical_validation    RCE_synthesis
+  empirical_validation    RCE_versjon
+[efc-regen-index] wrote efc_index.json — 165 papers, version 2.11
 ============================================================
 EFC AI BRAIN — Full Autonomous Processing
 LLM providers: OpenAI/gpt-5 → Anthropic/claude-opus-4-6
@@ -18,8 +23,25 @@ Mode: LIVE
 pdftotext: /usr/bin/pdftotext
 ============================================================
 
->>> Step 1: Enriching 5 paper(s) to 10/10 <<<
+>>> Step 1: Enriching 7 paper(s) to 10/10 <<<
 
+  RCE_synthesis  (missing: key_results, kill_criteria, tier, src/, examples/, data/)
+    Enriched metadata (key_results, kill_criteria, tier)
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    Created src/rce_synthesis.py
+    Created examples/demo_rce_synthesis.py
+    Created data/parameters.json
+    Generated src/, examples/, data/
+  RCE_versjon  (missing: key_results, kill_criteria, tier, src/, examples/, data/)
+    Enriched metadata (key_results, kill_criteria, tier)
+    Created src/rce_versjon.py
+    Created examples/demo_rce_versjon.py
+    Created data/parameters.json
+    Generated src/, examples/, data/
   composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp  (missing: examples/, data/)
     Generated examples/, data/
   hypothesis-the-universe-as-an-energy-driven-system  (missing: examples/, data/)
@@ -31,7 +53,7 @@ pdftotext: /usr/bin/pdftotext
   white-paper-part-4-of-4-energy-flow-cosmology-part-4-regime-susceptibility-and-c  (missing: examples/, data/)
     Generated examples/, data/
 
-  Enriched: 5/5
+  Enriched: 9/7
 
 >>> Step 1.5: Holistic Impact Analysis for 8 paper(s) <<<
 
@@ -108,7 +130,7 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
 
->>> Step 2: Registering 60 paper(s) in public pages <<<
+>>> Step 2: Registering 62 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -120,30 +142,33 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 60 DOI(s) to evidence register
-    Added 4 DOI(s) to evidence register
+    Added 2 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
 ============================================================
-[efc-gen] 163 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-gen] 165 packages · 6 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
 ========================================================================
-EFC DOI sync — 164 paper dirs scanned
+EFC DOI sync — 166 paper dirs scanned
 ========================================================================
-  papers with registered DOI : 163
+  papers with registered DOI : 165
   papers without DOI         : 1
   papers with conflicts      : 0
+
+PROPAGATED DOIs into 2 papers:
+  RCE_synthesis -> *.jsonld
+  RCE_versjon -> *.jsonld
 ========================================================================
-[efc-gen] 163 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
-[efc-verify] 163 paper dirs · 0 errors · 1 warnings
+[efc-gen] 165 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-verify] 165 paper dirs · 0 errors · 1 warnings
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.1'}
 ======================================================================
 EFC LEDGER IMPACT SYNC — LIVE
 ======================================================================
 Known gap IDs in HTML: 13
 
-Processed 163 paper(s)
-  skip: 155
+Processed 165 paper(s)
+  skip: 157
   warn: 8
     - A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics: DOI registered but no ledger_impact block
     - A_structural_closure_of_growth_sector_couplings: DOI registered but no ledger_impact block
@@ -155,35 +180,59 @@ Processed 163 paper(s)
     - white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-: DOI registered but no ledger_impact block
 
 [ledger-impact-sync] nothing to do — all papers in steady state
-[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI
+[efc-ledger-autofill] Changelog: added 2 entry/ies for DOI(s) 32256939, 32256951
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 86 → 130  (+44)    ledger: 22 → 130 (+108)
-  methodological  ev:  3 →  26  (+23)    ledger:  3 →  26 (+23)
-  structural      ev:  2 →  75  (+73)    ledger:  2 →  75 (+73)
+  empirical       ev:132 → 132  (+0)    ledger:130 → 132 (+2)
+  methodological  ev: 26 →  27  (+1)    ledger: 26 →  27 (+1)
+  structural      ev: 75 →  76  (+1)    ledger: 75 →  76 (+1)
 ========================================================================
-[efc-drift] 163 papers · 2 drift(s) detected:
-  Changelog: claims 158 but actual is 163
-  Changelog: claims 158 but actual is 163
-[efc-drift] auto-fixed 0 file(s)
+[efc-drift] 165 papers · 13 drift(s) detected:
+  README.md: claims 163 but actual is 165
+  README.md: claims 163 but actual is 165
+  README.md: claims 163 but actual is 165
+  README.md: claims 163 but actual is 165
+  README.md: claims 163 but actual is 165
+  AGENTS.md: claims 163 but actual is 165
+  AGENTS.md: claims 163 but actual is 165
+  AGENTS.md: claims 163 but actual is 165
+  Elevator_Pitch: claims 163 but actual is 165
+  Elevator_Pitch: claims 163 but actual is 165
+  Changelog: claims 158 but actual is 165
+  Changelog: claims 158 but actual is 165
+  AGENTS.md: claims 163 but actual is 165
+  [fixed] README.md: 163 → 165 (paper_count)
+  [fixed] README.md: 163 → 165 (paper_count)
+  [fixed] README.md: 163 → 165 (paper_count)
+  [fixed] README.md: 163 → 165 (paper_count)
+  [fixed] README.md: 163 → 165 (badge_count)
+  [fixed] AGENTS.md: 163 → 165 (paper_count)
+  [fixed] AGENTS.md: 163 → 165 (paper_count)
+  [fixed] AGENTS.md: 163 → 165 (paper_count)
+  [fixed] AGENTS.md: 163 → 165 (agents_package_count)
+  [fixed] Elevator_Pitch: 163 → 165 (paper_count)
+  [fixed] Elevator_Pitch: 163 → 165 (paper_count)
+[efc-drift] auto-fixed 3 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
-  unchanged: 13
+  replaced: 1
+  unchanged: 12
+  · EFC_Changelog.html: replaced
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 138 total, 106 survived, 10 falsified
-  Papers: 164 (163 DOIs)
+  Tests: 136 total, 104 survived, 10 falsified
+  Papers: 166 (165 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-05-12
+Date: 2026-05-13
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -206,26 +255,36 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] 2 paper packages enriched; Public pages updated: Changelog, Elevator_Pitch; Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
-Repo: 164 papers, 163 DOIs
-Ledger: 138 tests, 10 falsified
+Repo: 166 papers, 165 DOIs
+Ledger: 136 tests, 10 falsified
 
 --- Elevator Pitch ---
-  [OK]       Paper count 163 close to repo 164
-  [OK]       Paper count 163 close to repo 164
-  [OK]       Survival count 106/116 matches ledger
+  [OK]       Paper count 165 close to repo 166
+  [OK]       Paper count 165 close to repo 166
+  [WARNING]  Survived 106/116 but expected 104/114 (total=136, falsified=10, pipeline=22)
 
 --- Validation Ledger ---
-  [OK]       Test count 138 matches ledger 138
+  [OK]       Test count 138 matches ledger 136
 
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
+  [CRITICAL] Elevator Pitch: says 116 active but ledger has 114
+  [CRITICAL] Elevator Pitch: says 106 survived but ledger has 104
+  [CRITICAL] White Paper Series: says 138 total but ledger has 136
+  [CRITICAL] White Paper Series: says 116 active but ledger has 114
+  [CRITICAL] White Paper Series: says 116 active but ledger has 114
+  [CRITICAL] White Paper Series: says 106 survived but ledger has 104
+  [CRITICAL] Stage-IV Roadmap: says 138 total but ledger has 136
+  [CRITICAL] Stage-IV Roadmap: says 116 active but ledger has 114
+  [CRITICAL] Stage-IV Roadmap: says 106 survived but ledger has 104
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -247,31 +306,40 @@ Ledger: 138 tests, 10 falsified
   [CRITICAL] 3 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
-  [OK]       README paper count 163 matches repo 164
-  [OK]       README paper count 163 matches repo 164
-  [OK]       Stats categories sum to 138 = total_public
-  [OK]       DOI sync script present, 163/164 papers have DOIs
-  [OK]       120 papers have sealed predictions (349 total)
+  [OK]       README paper count 165 matches repo 166
+  [OK]       README paper count 165 matches repo 166
+  [OK]       Stats categories sum to 136 = total_public
+  [OK]       DOI sync script present, 165/166 papers have DOIs
+  [OK]       121 papers have sealed predictions (350 total)
 
 --- Gap Analysis Coherence ---
   [OK]       Gap Analysis Bottom Line coherent (10 closed rows checked)
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 138 matches ledger
-  [OK]       Symbiose paper count 164 matches repo
+  [OK]       Symbiose test count 136 matches ledger
+  [OK]       Symbiose paper count 166 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 4 errors, 6 warnings
+RESULT: 13 errors, 7 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
+  - Elevator Pitch: says 116 active but ledger has 114
+  - Elevator Pitch: says 106 survived but ledger has 104
+  - White Paper Series: says 138 total but ledger has 136
+  - White Paper Series: says 116 active but ledger has 114
+  - White Paper Series: says 116 active but ledger has 114
+  - White Paper Series: says 106 survived but ledger has 104
+  - Stage-IV Roadmap: says 138 total but ledger has 136
+  - Stage-IV Roadmap: says 116 active but ledger has 114
+  - Stage-IV Roadmap: says 106 survived but ledger has 104
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
   - 3 inference modules still on LCDM stubs
-[full-sync] invariants: 0 error(s), 165 warning(s)
+[full-sync] invariants: 0 error(s), 167 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.1' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098299: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098305: expected='present' observed='absent'
@@ -436,6 +504,8 @@ Fix these before auto-commit:
   [WARN] §2 doi_in_index_but_not_in_doi_map:32114530: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32149654: expected='present' observed='absent'
   [WARN] §2 doi_in_index_but_not_in_doi_map:32162706: expected='present' observed='absent'
+  [WARN] §2 doi_in_index_but_not_in_doi_map:32256939: expected='present' observed='absent'
+  [WARN] §2 doi_in_index_but_not_in_doi_map:32256951: expected='present' observed='absent'
   [WARN] §3 packages_below_10_10: expected=0 observed=6
 [efc-maintain] --- EFC maintenance pass ---
 [efc-maintain] running efc_auto_metadata.py …

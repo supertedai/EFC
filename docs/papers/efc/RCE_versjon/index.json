@@ -1,0 +1,57 @@
+{
+  "$schema": "./schema.json",
+  "id": "rce-versjon",
+  "title": "Ledger Epistemology and Regime-Closure Governance: An Operational Framework for Validation in Coupled Multi-Scale Systems",
+  "description": "Presents a five-component operational framework to prevent narrative reabsorption in validation of coupled multi-scale systems: explicit regime tagging, frozen-parameter governance, sealed pre-registered predictions with cryptographic hashes, a public falsification ledger, and external arbitration. The framework is field-tested within the Energy-Flow Cosmology (EFC) programme (163 DOIs, 135 registered tests, 11 falsifications; validation ledger v4.6) and shown to be portable across domains (medicine, economics, metrology).",
+  "version": "1.0",
+  "date": "2026-05-12",
+  "doi": "10.6084/m9.figshare.32256951",
+  "keywords": [
+    "validation governance",
+    "falsification ledger",
+    "sealed predictions",
+    "regime-closure",
+    "frozen-parameter governance",
+    "external arbitration",
+    "Energy-Flow Cosmology",
+    "multi-scale systems",
+    "cybernetics",
+    "pre-registration",
+    "cryptographic deposit hashes",
+    "cross-domain validation"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "A five-component governance machine is introduced and operationally demonstrated to block internal narrative reabsorption in complex, coupled multi-scale validation, with feasibility evidenced by the EFC programme\u2019s public ledger (v4.6), 163 DOIs, 135 registered tests, and 11 documented falsifications.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [],
+    "datasets_used": [
+      "EFC public validation ledger (v4.6)",
+      "EFC Figshare deposit corpus (163 DOIs)"
+    ],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Documented instance of internal narrative reabsorption occurring in a test that had all five components in place (regime tagging, frozen-parameter governance, sealed pre-registration with cryptographic hash, public falsification ledger, and external arbitration) without a corresponding recorded model/governance update.",
+    "KC2: Absence, removal, or alteration of failed sealed predictions from the public falsification ledger (i.e., failure to preserve failed predictions with documented failure modes).",
+    "KC3: Violation of frozen-parameter governance evidenced by retroactive parameter changes across datasets/regimes after a sealed prediction is deposited, without recording the change as a model extension.",
+    "KC4: Inability to verify pre-registration via cryptographic deposit hashes linking prediction statements to their deposits (e.g., missing or unverifiable hashes).",
+    "KC5: External arbitration outcomes being decided within the originating apparatus (no independent arbiter as pre-specified), or arbitral decisions subsequently reinterpreted within the originating narrative to avoid model/governance revision."
+  ],
+  "tier": "T2",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "RCE_versjonB_v1.0.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.32256951",
+  "paper_type_inferred": true
+}

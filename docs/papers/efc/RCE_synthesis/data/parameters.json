@@ -1,0 +1,201 @@
+{
+  "paper": {
+    "title": "Regime-Closure Epistemology (RCE): A General Principle of Cross-Domain Validation in Coupled Multi-Scale Systems",
+    "author": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095",
+    "doi": "10.6084/m9.figshare.32256939",
+    "version": "v1.1",
+    "date": "2026-05-12"
+  },
+  "rce_principle": {
+    "description": "Five joint conditions for valid cross-domain validation in coupled multi-scale systems",
+    "minimum_subsystems": 2,
+    "conditions": [
+      {
+        "index": 1,
+        "name": "regime_locality",
+        "description": "Each subsystem must be validated within its own regime boundaries"
+      },
+      {
+        "index": 2,
+        "name": "variety_closure_ashby",
+        "description": "The regulator (model) variety must equal or exceed the system variety (Ashby 1956)"
+      },
+      {
+        "index": 3,
+        "name": "modelling_closure_conant_ashby",
+        "description": "The model must be a good regulator of the system: R = I(M;S)/H(S) >= 1 - epsilon (Conant-Ashby 1970)"
+      },
+      {
+        "index": 4,
+        "name": "frozen_parameter_governance",
+        "description": "Parameters fixed in one regime must remain frozen when evaluated in another regime"
+      },
+      {
+        "index": 5,
+        "name": "external_arbitration_beer",
+        "description": "Validation requires sealed predictions judged by an external arbiter (Beer 1972)"
+      }
+    ],
+    "conant_ashby_epsilon": 0.05,
+    "frozen_param_min_fraction": 0.5
+  },
+  "regime_architectures": {
+    "cosmology_L": {
+      "regimes": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "description": "EFC regime architecture for cosmology",
+      "illustrative_energy_weights": [
+        0.05,
+        0.22,
+        0.45,
+        0.28
+      ],
+      "illustrative_gamma_exponents": [
+        4.0,
+        3.0,
+        1.0,
+        0.0
+      ],
+      "L0_description": "radiation-dominated / quantum regime",
+      "L1_description": "baryonic / matter coupling",
+      "L2_description": "structure-formation / gravitational coupling",
+      "L3_description": "large-scale / dark-energy-replacing regime"
+    },
+    "medicine_M": {
+      "regimes": [
+        "M0",
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "description": "RCE regime architecture for medicine"
+    },
+    "economics_E": {
+      "regimes": [
+        "E0",
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "description": "RCE regime architecture for economics"
+    }
+  },
+  "dark_x_diagnostic": {
+    "delta_crit": 0.05,
+    "description": "Normalised ledger gap; if delta > delta_crit the methodology is producing a dark-X artefact",
+    "examples": {
+      "LCDM_baryon_only": {
+        "observed": 100.0,
+        "regime_contributions": [
+          5.0
+        ],
+        "delta": 0.95,
+        "is_dark_x": true,
+        "mystery_entities": [
+          "dark matter",
+          "dark energy"
+        ]
+      },
+      "EFC_full_closure": {
+        "observed": 100.0,
+        "regime_contributions": [
+          5.0,
+          22.0,
+          45.0,
+          26.0
+        ],
+        "delta": 0.02,
+        "is_dark_x": false
+      }
+    }
+  },
+  "falsification": {
+    "n_falsification_conditions": 5,
+    "description": "Five falsification conditions stated for the RCE principle itself"
+  },
+  "preregistered_predictions": {
+    "n_predictions": 7,
+    "description": "Seven pre-registered cross-domain predictions with explicit thresholds and arbiters, deposited against the paper DOI",
+    "illustrative_values": [
+      {
+        "label": "Cosmo: H0 tension resolution",
+        "prediction": 67.4,
+        "unit": "km/s/Mpc",
+        "threshold_relative": 0.02
+      },
+      {
+        "label": "Cosmo: S8 tension resolution",
+        "prediction": 0.77,
+        "unit": "dimensionless",
+        "threshold_relative": 0.05
+      },
+      {
+        "label": "Cosmo: BAO feature scale",
+        "prediction": 148.6,
+        "unit": "Mpc",
+        "threshold_relative": 0.02
+      },
+      {
+        "label": "Med: M0-M1 cortisol coupling",
+        "prediction": 12.5,
+        "unit": "ug/dL",
+        "threshold_relative": 0.1
+      },
+      {
+        "label": "Med: M2-M3 HRV coupling",
+        "prediction": 42.0,
+        "unit": "ms",
+        "threshold_relative": 0.1
+      },
+      {
+        "label": "Econ: E1-E2 yield spread",
+        "prediction": 1.85,
+        "unit": "percent",
+        "threshold_relative": 0.05
+      },
+      {
+        "label": "Metro: SI-kg drift",
+        "prediction": 1.0,
+        "unit": "relative",
+        "threshold_relative": 0.001
+      }
+    ]
+  },
+  "coupling_operator": {
+    "equation": "phi_ij(x) = alpha_ij * x * exp(-|tau_i - tau_j| / tau_bridge)",
+    "parameters": {
+      "alpha_ij": "coupling strength between regime i and j",
+      "tau_i": "characteristic timescale of regime i",
+      "tau_j": "characteristic timescale of regime j",
+      "tau_bridge": "bridging timescale for inter-regime coupling"
+    }
+  },
+  "corpus_dois": [
+    "10.6084/m9.figshare.31222900",
+    "10.6084/m9.figshare.31222903",
+    "10.6084/m9.figshare.31112536",
+    "10.6084/m9.figshare.31135597",
+    "10.6084/m9.figshare.31223650",
+    "10.6084/m9.figshare.31564123",
+    "10.6084/m9.figshare.31833076",
+    "10.6084/m9.figshare.31122970",
+    "10.6084/m9.figshare.31940547",
+    "10.6084/m9.figshare.31963821",
+    "10.6084/m9.figshare.32080080",
+    "10.6084/m9.figshare.32162706"
+  ],
+  "cybernetic_lineage": {
+    "Ashby_1956": "Requisite variety",
+    "Conant_Ashby_1970": "Every good regulator of a system must be a model of that system",
+    "Bateson_1972": "Steps to an Ecology of Mind",
+    "Beer_1972": "Brain of the Firm \u2014 external arbitration via sealed predictions",
+    "von_Foerster_1974": "Second-order cybernetics",
+    "Friston_2010": "Free-energy principle"
+  }
+}
