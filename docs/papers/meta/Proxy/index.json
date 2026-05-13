@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "Proxy-meta-principle",
+  "identifier": "meta/Proxy",
+  "name": "Proxy (meta-principle)",
+  "title": "Proxy — Meta-layer theoretical reference for regime-bound measurement",
+  "description": "Curated meta-layer reference for the Proxy meta-principle: measurement of complex systems is cartography, not verdict. Any observable substituted for an unobserved quantity is regime-bound, with validity defined by the alignment of regime, proxy, placement, episenter, and compression. Synthesises the EFC source paper with the wider methodological literature on surrogate endpoints (Prentice, Fleming-DeMets), biomarker validation (FDA-NIH BEST), mirror systems (Rizzolatti, Gallese), and entropy proxies (Casali PCI, Lempel-Ziv). Includes P1-P4 sealed predictions and bridges to HomoFluxus, Autopoiesis, cognitive, and medicine layers.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "proxy",
+    "regime-bound measurement",
+    "surrogate endpoint",
+    "biomarker validation",
+    "Prentice criteria",
+    "Fleming DeMets",
+    "FDA BEST taxonomy",
+    "mirror neurons",
+    "Rizzolatti",
+    "embodied simulation",
+    "PCI",
+    "entropy proxy",
+    "construct validity",
+    "Campbell",
+    "placement",
+    "episenter",
+    "compression",
+    "regime"
+  ],
+  "about": [
+    "measurement theory",
+    "research methodology",
+    "clinical biomarkers",
+    "AI evaluation",
+    "cognitive neuroscience",
+    "philosophy of measurement"
+  ],
+  "originator": {
+    "name": "Morten Magnusson",
+    "affiliation": "Symbiose Research, Sandnes, Norway",
+    "orcid": "0009-0002-4860-5095"
+  },
+  "author": {
+    "name": "EFC meta-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "2026-03-07",
+  "five_operative_concepts": ["regime", "proxy", "placement", "episenter", "compression"],
+  "sealed_predictions": [
+    {"id": "P1", "statement": "Residuals at regime boundaries are systematically larger and less coherent than residuals within interiors."},
+    {"id": "P2", "statement": "Proxy substitution induces structured, directionally consistent drift in fitted parameters within the same regime."},
+    {"id": "P3", "statement": "Episenter shifts reorganise apparent signal/residual structure without changing raw data."},
+    {"id": "P4", "statement": "Placement matching reduces apparent conflicts between models or measurements."}
+  ],
+  "proxy_zoo": {
+    "pharmacological": ["surrogate endpoints", "diagnostic biomarkers", "prognostic biomarkers", "response biomarkers"],
+    "mirror": ["mirror neurons", "embodied simulation", "attention schema (AST)", "theory of mind"],
+    "entropy": ["PCI", "Lempel-Ziv complexity", "SZ-thermodynamic entropy", "RLHF reward gap"]
+  },
+  "efc_source_publication": {
+    "doi": "10.6084/m9.figshare.31564123",
+    "path": "docs/papers/efc/Regime_Bound_Measurement_in_Complex_Systems_Proxy_Placement_and_Validity",
+    "version": "1.0",
+    "date": "2026-03-07"
+  },
+  "cross_layer_bridges": {
+    "meta": ["../HomoFluxus", "../Autopoiesis"],
+    "cognitive": ["docs/papers/cognitive/IIT", "docs/papers/cognitive/AST", "docs/papers/cognitive/GWT"],
+    "cosmology": ["docs/papers/efc/Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset", "docs/papers/efc/A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters"]
+  },
+  "canonical_references": [
+    "Campbell & Fiske (1959). Psychol Bull 56:81-105",
+    "Prentice (1989). Stat Med 8:431-440. doi:10.1002/sim.4780080407",
+    "Fleming & DeMets (1996). Ann Intern Med 125:605-613. doi:10.7326/0003-4819-125-7-199610010-00011",
+    "Rizzolatti & Craighero (2004). Annu Rev Neurosci 27:169-192. doi:10.1146/annurev.neuro.27.070203.144230",
+    "Lamm, Decety & Singer (2011). NeuroImage 54:2492-2502. doi:10.1016/j.neuroimage.2010.10.014",
+    "FDA-NIH BEST (2016). Biomarkers, EndpointS, and other Tools Resource",
+    "VanderWeele (2013). Biometrics 69:561-565. doi:10.1111/biom.12071",
+    "Frank & Klein (2018). Stat Med 37:471-482. doi:10.1002/sim.7558",
+    "Casali et al. (2013). Sci Transl Med 5:198ra105. doi:10.1126/scitranslmed.3006294",
+    "Magnusson (2026). Regime-Bound Measurement. doi:10.6084/m9.figshare.31564123"
+  ],
+  "tier": "reference",
+  "paper_type": "meta-principle",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/meta/Proxy",
+  "layer": "meta",
+  "type": "meta-principle-reference",
+  "knowledge_domain": "meta",
+  "qdrant_collection": "efc"
+}
