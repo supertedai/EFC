@@ -1,0 +1,123 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "PP-Predictive-Processing",
+  "identifier": "cognitive/PP",
+  "name": "Predictive Processing (PP) / Predictive Coding",
+  "title": "Predictive Processing (PP) — Cognitive-layer theoretical reference",
+  "description": "Curated reference for Predictive Processing / predictive coding (Rao & Ballard 1999; Friston 2005, 2010; Clark 2013, 2016; Hohwy 2013; Seth 2013, 2021). The brain is treated as a hierarchical generative model that predicts its own sensory inputs and updates only on precision-weighted prediction errors. Includes canonical microcircuit (Bastos et al. 2012), active-inference action branch, controlled-hallucination perception, attention-as-precision, interoceptive inference, conservative vs. radical variants, and critiques (Macpherson, Kogo, Williams).",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "predictive processing",
+    "PP",
+    "predictive coding",
+    "Rao Ballard",
+    "Andy Clark",
+    "Jakob Hohwy",
+    "Anil Seth",
+    "Karl Friston",
+    "Bayesian brain",
+    "canonical microcircuit",
+    "precision weighting",
+    "controlled hallucination",
+    "interoceptive inference",
+    "active inference",
+    "hierarchical Gaussian filter",
+    "HGF"
+  ],
+  "about": [
+    "computational neuroscience",
+    "philosophy of mind",
+    "perception",
+    "consciousness science"
+  ],
+  "originators": [
+    {"name": "Rajesh P. N. Rao", "year": 1999},
+    {"name": "Dana H. Ballard", "year": 1999},
+    {"name": "Karl J. Friston", "year": 2005},
+    {"name": "Andy Clark", "year": 2013},
+    {"name": "Jakob Hohwy", "year": 2013},
+    {"name": "Anil K. Seth", "year": 2013}
+  ],
+  "author": {
+    "name": "EFC cognitive-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "1999",
+  "key_equation": {
+    "name": "Predictive coding update (precision-weighted)",
+    "latex": "\\dot\\mu_\\ell = -\\partial_\\mu F \\approx \\pi_\\ell^{-1} \\varepsilon_\\ell - \\pi_{\\ell-1}\\, \\partial g_\\ell/\\partial\\mu_\\ell \\cdot \\varepsilon_{\\ell-1} - \\Lambda(\\mu_\\ell - m_\\ell)",
+    "description": "Hierarchical update: bottom-up driving by own-level error, top-down correction by below-level error scaled by generative model Jacobian, and lateral prior pull. Equivalent to gradient descent on variational free energy."
+  },
+  "core_concepts": [
+    "hierarchical generative model",
+    "prediction error",
+    "precision-weighted gain",
+    "canonical microcircuit (Bastos)",
+    "active inference / motor-as-inference",
+    "attention as precision",
+    "controlled hallucination",
+    "interoceptive inference"
+  ],
+  "empirical_targets": [
+    "mismatch negativity (MMN)",
+    "repetition suppression",
+    "binocular rivalry",
+    "Kanizsa filling-in",
+    "psychosis / hallucinations",
+    "interoceptive emotion",
+    "placebo / nocebo as predictive effects"
+  ],
+  "variants": [
+    "Rao-Ballard predictive coding",
+    "active inference (Friston)",
+    "hierarchical Gaussian filter (Mathys et al.)",
+    "radical PP (Clark, Constant, Kirchhoff)",
+    "conservative PP",
+    "interoceptive PP (Seth, Barrett)"
+  ],
+  "related_frameworks": [
+    "../FEP",
+    "../GWT",
+    "../IIT",
+    "../AST"
+  ],
+  "efc_bridge": [
+    "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge",
+    "docs/papers/efc/Connecting_Cosmology_Neural_Entropy_and_RLHF_Bridge",
+    "docs/papers/efc/CEM-Consciousness-Ego-Mirror"
+  ],
+  "canonical_references": [
+    "Helmholtz (1867). Handbuch der Physiologischen Optik. Voss",
+    "Rao & Ballard (1999). Nat Neurosci 2:79-87. doi:10.1038/4580",
+    "Friston (2005). Phil. Trans. R. Soc. B 360:815-836. doi:10.1098/rstb.2005.1622",
+    "Friston (2010). Nat Rev Neurosci 11:127-138. doi:10.1038/nrn2787",
+    "Bastos et al. (2012). Neuron 76:695-711. doi:10.1016/j.neuron.2012.10.038",
+    "Clark (2013). Behav Brain Sci 36:181-204. doi:10.1017/S0140525X12000477",
+    "Hohwy (2013). The Predictive Mind. Oxford UP. ISBN 978-0199682737",
+    "Clark (2016). Surfing Uncertainty. Oxford UP. ISBN 978-0190217013",
+    "Seth (2013). Trends Cogn Sci 17:565-573. doi:10.1016/j.tics.2013.09.007",
+    "Powers, Mathys & Corlett (2017). Science 357:596-600. doi:10.1126/science.aan3458",
+    "Seth (2021). Being You. Dutton. ISBN 978-1524742874"
+  ],
+  "critique_references": [
+    "Macpherson (2012). Philos Phenomenol Res 84:24-62",
+    "Kogo & Trengove (2015). Front Comput Neurosci 9:111",
+    "Williams (2018). Conscious Cogn 61:129-147. doi:10.1016/j.concog.2018.03.005",
+    "Bayne & Hohwy (2020). Conscious Cogn 81:102921"
+  ],
+  "tier": "reference",
+  "paper_type": "review",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/cognitive/PP",
+  "layer": "cognitive",
+  "type": "theory-reference",
+  "knowledge_domain": "cognitive",
+  "qdrant_collection": "cognitive"
+}

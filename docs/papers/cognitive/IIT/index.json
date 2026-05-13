@@ -1,0 +1,130 @@
+{
+  "$schema": "https://schema.org/",
+  "@context": "https://schema.org/",
+  "@type": "ScholarlyArticle",
+  "id": "IIT-Integrated-Information-Theory",
+  "identifier": "cognitive/IIT",
+  "name": "Integrated Information Theory (IIT)",
+  "title": "Integrated Information Theory (IIT) — Cognitive-layer theoretical reference",
+  "description": "Curated reference for Integrated Information Theory (Tononi 2004-2023, IIT 1.0 through 4.0). Consciousness is identified with Φ, the irreducible cause-effect power of a system over itself from its own intrinsic perspective. Includes the five axioms, postulates, Φ formalism, qualia space, empirical predictions (PCI, posterior hot zone), COGITATE adversarial test, major critiques (Aaronson, Doerig unfolding argument, 2023 pseudoscience letter), and bridge to EFC/CEM.",
+  "version": "1.0",
+  "date": "2026-05-13",
+  "encodingFormat": "text/markdown",
+  "keywords": [
+    "integrated information theory",
+    "IIT",
+    "IIT 4.0",
+    "Phi",
+    "Φ",
+    "Giulio Tononi",
+    "Christof Koch",
+    "Larissa Albantakis",
+    "Masafumi Oizumi",
+    "axioms of consciousness",
+    "qualia space",
+    "perturbation complexity index",
+    "PCI",
+    "intrinsic existence",
+    "posterior hot zone",
+    "PyPhi",
+    "unfolding argument",
+    "Aaronson critique"
+  ],
+  "about": [
+    "consciousness science",
+    "theoretical neuroscience",
+    "philosophy of mind",
+    "information theory"
+  ],
+  "originator": {
+    "name": "Giulio Tononi",
+    "affiliation": "Wisconsin Institute for Sleep and Consciousness, University of Wisconsin–Madison",
+    "orcid": "0000-0002-3892-8157"
+  },
+  "author": {
+    "name": "EFC cognitive-layer curators (Symbiose Research)",
+    "identifier": "https://orcid.org/0009-0002-4860-5095"
+  },
+  "first_published": "2004",
+  "key_equation": {
+    "name": "System integrated information",
+    "latex": "\\Phi = \\min_{\\text{partition}} d\\big( \\text{CES}(S),\\; \\text{CES}(S^{partitioned}) \\big)",
+    "description": "Φ is the distance (intrinsic difference / Wasserstein / KL) between the system's cause-effect structure and its minimum-information partition; the locally maximum-Φ complex (Φ_max) identifies the conscious entity by the exclusion postulate."
+  },
+  "axioms": [
+    "Intrinsic existence",
+    "Composition",
+    "Information",
+    "Integration",
+    "Exclusion"
+  ],
+  "core_concepts": [
+    "Phi (Φ) — integrated information",
+    "cause-effect structure (CES)",
+    "intrinsic difference / Wasserstein distance",
+    "Φ_max complex (exclusion postulate)",
+    "qualia space",
+    "posterior hot zone",
+    "perturbation complexity index (PCI)"
+  ],
+  "empirical_signatures": [
+    "PCI distinguishing wakefulness, NREM, REM, anaesthesia",
+    "PCI-based disorders-of-consciousness diagnosis",
+    "posterior cortical correlates",
+    "feed-forward → Φ = 0 prediction",
+    "split-brain → two complexes prediction"
+  ],
+  "versions": [
+    "IIT 1.0 (Tononi 2004)",
+    "IIT 2.0 (Balduzzi & Tononi 2008)",
+    "IIT 3.0 (Oizumi, Albantakis & Tononi 2014)",
+    "IIT 4.0 (Albantakis et al. 2023)"
+  ],
+  "variants": [
+    "PCI / PCI-ST (Massimini lab)",
+    "Integrated World Modelling Theory IWMT (Safron 2020)",
+    "Geometric IIT (Esteban-Belver et al. 2024)"
+  ],
+  "related_frameworks": [
+    "../FEP",
+    "../PP",
+    "../GWT",
+    "../AST"
+  ],
+  "efc_bridge": [
+    "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge",
+    "docs/papers/efc/CEM-Consciousness-Ego-Mirror"
+  ],
+  "canonical_references": [
+    "Tononi & Edelman (1998). Science 282:1846-1851. doi:10.1126/science.282.5395.1846",
+    "Tononi (2004). BMC Neuroscience 5:42. doi:10.1186/1471-2202-5-42",
+    "Tononi (2008). Biological Bulletin 215:216-242. doi:10.2307/25470707",
+    "Balduzzi & Tononi (2008). PLOS Comp Biol 4:e1000091. doi:10.1371/journal.pcbi.1000091",
+    "Oizumi, Albantakis & Tononi (2014). PLOS Comp Biol 10:e1003588. doi:10.1371/journal.pcbi.1003588",
+    "Tononi, Boly, Massimini & Koch (2016). Nat. Rev. Neurosci. 17:450-461. doi:10.1038/nrn.2016.44",
+    "Mayner et al. (2018). PLOS Comp Biol 14:e1006343. doi:10.1371/journal.pcbi.1006343",
+    "Albantakis et al. (2023). PLOS Comp Biol 19:e1011465. doi:10.1371/journal.pcbi.1011465",
+    "Findlay et al. (2024). PNAS 121:e2402549121. doi:10.1073/pnas.2402549121"
+  ],
+  "critique_references": [
+    "Aaronson (2014). Why I am not an integrated information theorist. Shtetl-Optimized blog",
+    "Bayne (2018). Neurosci Conscious 2018:niy007. doi:10.1093/nc/niy007",
+    "Doerig et al. (2019). Conscious Cogn 72:49-59. doi:10.1016/j.concog.2019.04.002",
+    "Lenharo (2023). Nature news. doi:10.1038/d41586-023-02971-1",
+    "Negro (2024). Phenom Cogn Sci 23:1-28. doi:10.1007/s11097-022-09849-z"
+  ],
+  "implementations": [
+    {"name": "PyPhi", "language": "Python", "url": "https://github.com/wmayner/pyphi"}
+  ],
+  "tier": "reference",
+  "paper_type": "review",
+  "files": {
+    "readme": "README.md",
+    "references": "references.bib"
+  },
+  "path": "docs/papers/cognitive/IIT",
+  "layer": "cognitive",
+  "type": "theory-reference",
+  "knowledge_domain": "cognitive",
+  "qdrant_collection": "cognitive"
+}
