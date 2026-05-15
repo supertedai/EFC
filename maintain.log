@@ -44,41 +44,7 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  EFC_Outcome_Estimation_CrossSurvey:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [FAIL] OpenAI HTTP 400: Bad Request -- {
-  "error": {
-    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
-    "type": "invalid_request_error",
-    "param": null,
-    "code": null
-  }
-}
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
   A_structural_closure_of_growth_sector_couplings:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  jwst_hmf_prereg_v4:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -96,7 +62,7 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
+  EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -106,6 +72,33 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   EFC-VAL-2026-006:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
+  jwst_hmf_prereg_v4:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
+  EFC_Outcome_Estimation_CrossSurvey:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
+  A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -127,8 +120,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 62 DOI(s) to evidence register
-    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -166,9 +157,9 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
-  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
-  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
+  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
+  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
+  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
 [efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
@@ -215,8 +206,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Public pages updated: Changelog; Ledger data: evidence-register.json, ledger.json.
-[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] Public pages updated: Changelog.
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
