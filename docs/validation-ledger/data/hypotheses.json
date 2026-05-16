@@ -1,48 +1,8 @@
 {
   "name": "Cross-Domain Hypotheses",
   "version": "3.0",
-  "generated_at": "2026-05-16T15:47:38Z",
+  "generated_at": "2026-05-16T21:48:07Z",
   "hypotheses": [
-    {
-      "name": "Regime Dependent Validity",
-      "description": "The prediction that model validity varies with system complexity regimes.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 22.290000000000006,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769111465090
-    },
-    {
-      "name": "EFC Hypothesis",
-      "description": "Proposes that observable energy flow signatures exist in galaxy clusters and can be detected via lensing.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 9.370000000000003,
-      "testability": "directly_testable",
-      "source": null,
-      "created_at": 1769114199072
-    },
-    {
-      "name": "CMB Thermodynamic Gradient",
-      "description": "Interprets the observed cosmic microwave background (~2.7 K) as an active equilibrium maintained by continuous energy exchange with quantum vacuum, representing a thermodynamic temperature gradient.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 6.1,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769113942126
-    },
-    {
-      "name": "Regime-dependent validity",
-      "description": "The claim that the success of rotation curve modeling varies with system complexity regimes (FLOW vs LATENT).",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 5.3,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769111051376
-    },
     {
       "name": "Entropy Bounded Empiricism",
       "description": "A methodological principle that constrains empirical inference by entropy bounds to resolve cosmological tensions.",
@@ -152,6 +112,46 @@
       "testability": "indirectly_testable",
       "source": null,
       "created_at": 1769118119694
+    },
+    {
+      "name": "Energy Flow Regulation by c",
+      "description": "The hypothesis that the speed of light regulates energy flow across cosmic scales.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 1.0,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769151911275
+    },
+    {
+      "name": "Black Hole Entropy",
+      "description": "The relationship between the entropy of a black hole and its event horizon area.",
+      "domain": "cosmology|thermodynamics",
+      "status": "conjecture",
+      "epistemic_net": 1.0,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769151659140
+    },
+    {
+      "name": "Fundamental Dynamics of the Universe",
+      "description": "Theory connecting energy, time, space, and consciousness",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 0.95,
+      "testability": "in_principle_not_testable",
+      "source": null,
+      "created_at": 1769153065162
+    },
+    {
+      "name": "Light-Speed Limit",
+      "description": "The speed of light as a fundamental boundary in energy flow and space-time dynamics.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 0.9,
+      "testability": "indirectly_testable",
+      "source": null,
+      "created_at": 1769153290060
     }
   ]
 }

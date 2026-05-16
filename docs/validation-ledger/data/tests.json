@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-16T15:47:38Z",
+  "generated_at": "2026-05-16T21:48:07Z",
   "categories": {
     "physics_test": [
       {
@@ -255,7 +255,7 @@
         "data_source": "emcee MCMC, 69 data points, emcee sampler",
         "prediction": "α < 0 at ≥2σ significance with ΔAIC < -2 (moderate evidence)",
         "notes": null,
-        "quantitative_result": "{\"alpha_mean\": -0.1014, \"alpha_std\": 0.2117, \"significance_sigma\": 0.48, \"daic\": 1.76, \"dbic\": 4.0, \"verdict\": \"DEGENERACY_LIMITED\"}",
+        "quantitative_result": "{\"alpha_mean\": -0.1014, \"alpha_std\": 0.2117, \"significance_sigma\": 0.48, \"daic\": 1.76, \"dbic\": 4.0, \"verdict\": \"STOPPED_DEGENERACY_PERSISTS\"}",
         "last_synced": null,
         "status_detail": "pending"
       },
@@ -305,7 +305,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-16_140525_aqual",
+        "test_id": "grav_integration_2026-05-16_201850_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -395,7 +395,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-16_140525_aqual",
+        "test_id": "grav_kt1_2026-05-16_201850_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -410,7 +410,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-16_140525_aqual",
+        "test_id": "grav_kt3_2026-05-16_201850_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -425,7 +425,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-16_140525_aqual",
+        "test_id": "grav_kt2_2026-05-16_201850_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -917,7 +917,7 @@
         "data_source": "emcee MCMC, EFCVariantB with free gate",
         "prediction": "α identifiable: no α–a_t degeneracy, A_eff consistent with fixed-gate baseline",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for full sweep + A_eff\"}",
+        "quantitative_result": "{\"verdict\": \"ERROR\", \"details\": \"see DiagnosticResult for full sweep + A_eff\"}",
         "last_synced": null,
         "status_detail": "failed"
       },
@@ -932,7 +932,7 @@
         "data_source": "emcee MCMC, EFCVariantC with free μ₀",
         "prediction": "μ₀ consistent with 1.0; no tension with growth data",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"COLLAPSED\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
+        "quantitative_result": "{\"verdict\": \"ERROR\", \"details\": \"see DiagnosticResult for \\u03bc\\u2080 posterior\"}",
         "last_synced": null,
         "status_detail": "failed"
       },
@@ -956,15 +956,15 @@
         "name": "N7 Power-law Gate Shape-Robustness",
         "description": "SHAPE-ROBUSTNESS test: replaces logistic gate with power-law gate g(a)=1/(1+(a_t/a)^n), n=2 from L0 Lorentzian derivation (Core Derivation Note v0.2, Eq. 6-8). Tests whether α survives a different gate CLASS — model-invariance across functional forms. Reports both raw α and A_eff=α·G (gate-mass-normalized amplitude) for fair cross-gate comparison. Distinct from N3 (identifiability): N7 asks 'does α survive a different gate class?' while N3 asks 'can α be extracted when gate has freedom?'",
         "result": null,
-        "status": "pending",
+        "status": "failed",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "NUTS HMC, EFCVariantE (power-law gate, n=2)",
         "prediction": "α survives at ≥1.5σ with power-law gate; A_eff consistent with logistic baseline",
         "notes": null,
-        "quantitative_result": "{\"verdict\": \"NO_SIGNAL\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
+        "quantitative_result": "{\"verdict\": \"ERROR\", \"alpha_mean\": null, \"alpha_std\": null, \"alpha_sigma\": null}",
         "last_synced": null,
-        "status_detail": "pending"
+        "status_detail": "failed"
       },
       {
         "test_id": "ledger_regime_transition_metric_f",
