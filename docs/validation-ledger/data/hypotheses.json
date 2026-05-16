@@ -1,8 +1,48 @@
 {
   "name": "Cross-Domain Hypotheses",
   "version": "3.0",
-  "generated_at": "2026-05-16T09:46:58Z",
+  "generated_at": "2026-05-16T15:47:38Z",
   "hypotheses": [
+    {
+      "name": "Regime Dependent Validity",
+      "description": "The prediction that model validity varies with system complexity regimes.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 22.290000000000006,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769111465090
+    },
+    {
+      "name": "EFC Hypothesis",
+      "description": "Proposes that observable energy flow signatures exist in galaxy clusters and can be detected via lensing.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 9.370000000000003,
+      "testability": "directly_testable",
+      "source": null,
+      "created_at": 1769114199072
+    },
+    {
+      "name": "CMB Thermodynamic Gradient",
+      "description": "Interprets the observed cosmic microwave background (~2.7 K) as an active equilibrium maintained by continuous energy exchange with quantum vacuum, representing a thermodynamic temperature gradient.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 6.1,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769113942126
+    },
+    {
+      "name": "Regime-dependent validity",
+      "description": "The claim that the success of rotation curve modeling varies with system complexity regimes (FLOW vs LATENT).",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 5.3,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769111051376
+    },
     {
       "name": "Entropy Bounded Empiricism",
       "description": "A methodological principle that constrains empirical inference by entropy bounds to resolve cosmological tensions.",
@@ -14,14 +54,14 @@
       "created_at": 1769271762156
     },
     {
-      "name": "CMB Thermodynamic Gradient",
-      "description": "Interprets the observed cosmic microwave background (~2.7 K) as an active equilibrium maintained by continuous energy exchange with quantum vacuum, representing a thermodynamic temperature gradient.",
+      "name": "Regime-dependent breakdown",
+      "description": "Proposed hypothesis that deviations from LCDM predictions cluster in identifiable cosmic time regimes (L0‑L3).",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 3.25,
+      "epistemic_net": 2.55,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769113942126
+      "created_at": 1769123899522
     },
     {
       "name": "Thermodynamic Temperature Gradient",
@@ -64,44 +104,14 @@
       "created_at": 1769111101253
     },
     {
-      "name": "Dark Energy Interaction",
-      "description": "A speculative link whereby entropy influences the properties of dark energy, affecting cosmic acceleration.",
+      "name": "Thermodynamic Field",
+      "description": "The idea that the universe can be understood as a living, interconnected system of energy flow.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.7999999999999998,
+      "epistemic_net": 1.8,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769113463772
-    },
-    {
-      "name": "Entropy-Driven Evolution",
-      "description": "The proposition that entropy increase and gradients are primary drivers of cosmic change.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.72,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769117397988
-    },
-    {
-      "name": "Regime-dependent breakdown",
-      "description": "Proposed hypothesis that deviations from LCDM predictions cluster in identifiable cosmic time regimes (L0‑L3).",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.7,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769123899522
-    },
-    {
-      "name": "Entropy-dependent inference modification",
-      "description": "Proposed entropy‑driven adjustment of local‑to‑global parameter inference that simultaneously resolves H₀ and S₈ tensions.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.7,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769115931156
+      "created_at": 1769149548206
     },
     {
       "name": "Domain of Validity Theorem",
@@ -124,34 +134,24 @@
       "created_at": 1769150723992
     },
     {
-      "name": "Black Hole Entropy",
-      "description": "The relationship between the entropy of a black hole and its event horizon area.",
-      "domain": "cosmology|thermodynamics",
-      "status": "conjecture",
-      "epistemic_net": 1.0,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769151659140
-    },
-    {
-      "name": "Energy Flow Regulation by c",
-      "description": "The hypothesis that the speed of light regulates energy flow across cosmic scales.",
+      "name": "Non-Equilibrium Cosmology",
+      "description": "The view that the cosmos is fundamentally out of thermodynamic equilibrium, shaping its evolution.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.0,
+      "epistemic_net": 1.5,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769151911275
+      "created_at": 1769117397987
     },
     {
-      "name": "Emergent Light Speed",
-      "description": "Hypothesis proposing that the speed of light emerges from underlying energy flow rather than being a primary boundary.",
+      "name": "Entropy Cosmic Evolution",
+      "description": "Proposes that entropy significantly influences the evolution of the cosmos, shaping space‑time boundaries and large‑scale structures.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 0.96,
+      "epistemic_net": 1.4,
       "testability": "indirectly_testable",
       "source": null,
-      "created_at": 1769118837731
+      "created_at": 1769118119694
     }
   ]
 }
