@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=live
+EFC ORCID source-of-truth sync — source=cache
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -37,10 +37,14 @@ pdftotext: /usr/bin/pdftotext
 
   Non-MCMC_Constraints_on_the_EFC_α-Parameter:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 400: Bad Request -- {
+  "error": {
+    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": null
+  }
+}
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
