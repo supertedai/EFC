@@ -2,6 +2,144 @@
   "paper_count": 165,
   "drift": [
     {
+      "file": "Validation_Ledger",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "r, EFC has\n    survived 104. Ten probes ha",
+      "match_form": "survive[ds]?\\s+(\\d{2,3})\\b"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "istered tests; 114 active, 104 survived, 10 falsified, 22 in pipeline &mdash; from g"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "istered tests; 114 active, 104 survived, 10 falsified, 22 in pipeline &mdash; from g"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "2018): EFC has survived 104 of 114 active",
+      "match_form": "survive[ds]?\\s+(\\d{2,3})\\b"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "104 survived, 10 falsified, 22 in pipelin",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "(104 survived, 10 falsified); 2 sealed pre",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "White_Paper_Series",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "of 114 active, 10 falsified, 22 in pipelin",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "es, 136 tests (114 active, 104 survived, 10 falsified, 22 pipeline), full reprodu"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "es, 136 tests (114 active, 104 survived, 10 falsified, 22 pipeline), full reprodu"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "), EFC has\n    survived 104. Ten probes ha",
+      "match_form": "survive[ds]?\\s+(\\d{2,3})\\b"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "ve probes, EFC survives 104 (10 falsified,",
+      "match_form": "survive[ds]?\\s+(\\d{2,3})\\b"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "tus-pill warn\">10 falsified &middot; 22 in",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "survives 104 (10 falsified, 22 in pipelin",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "104 survived, 10 falsified, 22 pipeline),",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
+      "file": "Elevator_Pitch",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "pill survived\">104/114 survived</span>\n    &nb",
+      "match_form": "ratio"
+    },
+    {
+      "file": "Stage_IV_Roadmap",
+      "type": "tests_survived",
+      "claimed": 104,
+      "actual": 103,
+      "context": "ts registered (114 active, 104 survived, 10 falsified, 22 in pipeline).\n  </p>\n</div"
+    },
+    {
+      "file": "Stage_IV_Roadmap",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "ts registered (114 active, 104 survived, 10 falsified, 22 in pipeline).\n  </p>\n</div"
+    },
+    {
+      "file": "Stage_IV_Roadmap",
+      "type": "tests_falsified",
+      "claimed": 10,
+      "actual": 11,
+      "context": "104 survived, 10 falsified, 22 in pipelin",
+      "match_form": "(\\d{2,3})\\s+(?:probes?\\s+)?(?:"
+    },
+    {
       "file": "Changelog",
       "type": "paper_count",
       "claimed": 158,
