@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-05-17T09:00:00Z",
+  "generated_at": "2026-05-17T15:00:04Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 4168,
+    "grav_claims": 4647,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2138,7 +2138,7 @@
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-05-16T15:18:43.000758Z",
+      "timestamp": "2026-05-17T14:02:42.670840Z",
       "best_fit": {
         "a_C": 8.0,
         "Xi_c": 1.0,
@@ -2241,7 +2241,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-17T08:53:46.744550+00:00"
+      "timestamp": "2026-05-17T14:53:56.619937+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2255,7 +2255,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-17T08:53:46.792189+00:00"
+      "timestamp": "2026-05-17T14:53:56.642953+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2269,7 +2269,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-05-17T08:53:46.817798+00:00"
+      "timestamp": "2026-05-17T14:53:56.652771+00:00"
     }
   },
   "parameters": {
@@ -2982,7 +2982,7 @@
       {
         "text": null,
         "status": "CONFIRMED",
-        "claim_type": null
+        "claim_type": "unspecified"
       },
       {
         "text": null,
@@ -3046,18 +3046,43 @@
       },
       {
         "text": null,
-        "status": "FALSIFIED",
+        "status": "CONFIRMED",
         "claim_type": null
       },
       {
         "text": null,
-        "status": "FALSIFIED",
+        "status": "CONFIRMED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "CONFIRMED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "CONFIRMED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "CONFIRMED",
         "claim_type": null
       },
       {
         "text": null,
         "status": "FALSIFIED",
         "claim_type": "unspecified"
+      },
+      {
+        "text": null,
+        "status": "FALSIFIED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "FALSIFIED",
+        "claim_type": null
       },
       {
         "text": null,
@@ -8496,6 +8521,2111 @@
       },
       {
         "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "pending",
         "claim_type": null
       },
@@ -19642,6 +21772,41 @@
       {
         "text": null,
         "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
         "claim_type": null
       },
       {
@@ -20176,2647 +22341,32 @@
       },
       {
         "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
         "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
         "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
         "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
         "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
         "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
+        "status": "validated",
         "claim_type": null
       },
       {
@@ -23477,11 +23027,6 @@
       {
         "text": null,
         "status": null,
-        "claim_type": "unspecified"
-      },
-      {
-        "text": null,
-        "status": null,
         "claim_type": "mechanism"
       },
       {
@@ -23662,22 +23207,7 @@
       {
         "text": null,
         "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
         "claim_type": "unspecified"
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
       },
       {
         "text": null,
@@ -23708,6 +23238,2871 @@
         "text": null,
         "status": null,
         "claim_type": "mechanism"
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
       },
       {
         "text": null,
