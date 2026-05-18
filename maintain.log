@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -207,7 +207,6 @@ Scanning 4 sources...
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
 [efc-auto-changelog] Public pages updated: Changelog.
-[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
@@ -219,7 +218,7 @@ Ledger: 136 tests, 10 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [WARNING]  Survived 103/114 but expected 104/114 (total=136, falsified=10, pipeline=22)
+  [OK]       Survival count 104/114 matches ledger
 
 --- Validation Ledger ---
   [OK]       Test count 136 matches ledger 136
@@ -227,12 +226,6 @@ Ledger: 136 tests, 10 falsified
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 103 survived but ledger has 104
-  [CRITICAL] Elevator Pitch: says 11 falsified but ledger has 10
-  [CRITICAL] White Paper Series: says 103 survived but ledger has 104
-  [CRITICAL] White Paper Series: says 11 falsified but ledger has 10
-  [CRITICAL] Stage-IV Roadmap: says 103 survived but ledger has 104
-  [CRITICAL] Stage-IV Roadmap: says 11 falsified but ledger has 10
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -271,15 +264,9 @@ Ledger: 136 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 10 errors, 7 warnings
+RESULT: 4 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 103 survived but ledger has 104
-  - Elevator Pitch: says 11 falsified but ledger has 10
-  - White Paper Series: says 103 survived but ledger has 104
-  - White Paper Series: says 11 falsified but ledger has 10
-  - Stage-IV Roadmap: says 103 survived but ledger has 104
-  - Stage-IV Roadmap: says 11 falsified but ledger has 10
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - EFC Inference: fs8_extended: still LCDM stub — no DOI data
   - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
