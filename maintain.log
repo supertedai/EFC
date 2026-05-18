@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -120,8 +120,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 62 DOI(s) to evidence register
-    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -159,31 +157,69 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
-  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
-  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
+  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
+  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
+  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
-[efc-drift] 165 papers · 2 drift(s) detected:
+[efc-drift] 165 papers · 20 drift(s) detected:
+  Validation_Ledger: tests_survived — 103 vs 104
+  White_Paper_Series: tests_survived — 103 vs 104
+  White_Paper_Series: tests_falsified — 11 vs 10
+  White_Paper_Series: tests_survived — 103 vs 104
+  White_Paper_Series: tests_falsified — 11 vs 10
+  White_Paper_Series: tests_falsified — 11 vs 10
+  White_Paper_Series: tests_falsified — 11 vs 10
+  Elevator_Pitch: tests_survived — 103 vs 104
+  Elevator_Pitch: tests_falsified — 11 vs 10
+  Elevator_Pitch: tests_survived — 103 vs 104
+  Elevator_Pitch: tests_survived — 103 vs 104
+  Elevator_Pitch: tests_falsified — 11 vs 10
+  Elevator_Pitch: tests_falsified — 11 vs 10
+  Elevator_Pitch: tests_falsified — 11 vs 10
+  Elevator_Pitch: tests_survived — 103 vs 104
+  Stage_IV_Roadmap: tests_survived — 103 vs 104
+  Stage_IV_Roadmap: tests_falsified — 11 vs 10
+  Stage_IV_Roadmap: tests_falsified — 11 vs 10
   Changelog: claims 158 but actual is 165
   Changelog: claims 158 but actual is 165
-[efc-drift] auto-fixed 0 file(s)
+  [fixed] Validation_Ledger: 103 → 104 (tests_survived)
+  [fixed] White_Paper_Series: 103 → 104 (tests_survived)
+  [fixed] White_Paper_Series: 11 → 10 (tests_falsified)
+  [fixed] White_Paper_Series: 103 → 104 (tests_survived)
+  [fixed] White_Paper_Series: 11 → 10 (tests_falsified)
+  [fixed] White_Paper_Series: 11 → 10 (tests_falsified)
+  [fixed] White_Paper_Series: 11 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 103 → 104 (tests_survived)
+  [fixed] Elevator_Pitch: 11 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 103 → 104 (tests_survived)
+  [fixed] Elevator_Pitch: 103 → 104 (tests_survived)
+  [fixed] Elevator_Pitch: 11 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 11 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 11 → 10 (tests_falsified)
+  [fixed] Elevator_Pitch: 103 → 104 (tests_survived)
+  [fixed] Stage_IV_Roadmap: 103 → 104 (tests_survived)
+  [fixed] Stage_IV_Roadmap: 11 → 10 (tests_falsified)
+  [fixed] Stage_IV_Roadmap: 11 → 10 (tests_falsified)
+[efc-drift] auto-fixed 4 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
-  unchanged: 13
+  replaced: 1
+  unchanged: 12
+  · EFC_Changelog.html: replaced
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 136 total, 103 survived, 11 falsified
+  Tests: 136 total, 104 survived, 10 falsified
   Papers: 166 (165 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-05-17
+Date: 2026-05-18
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -206,7 +242,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -214,12 +250,12 @@ EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 166 papers, 165 DOIs
-Ledger: 136 tests, 11 falsified
+Ledger: 136 tests, 10 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [OK]       Survival count 103/114 matches ledger
+  [OK]       Survival count 104/114 matches ledger
 
 --- Validation Ledger ---
   [OK]       Test count 136 matches ledger 136
