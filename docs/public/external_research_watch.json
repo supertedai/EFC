@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.7",
-  "last_updated": "2026-05-11",
+  "version": "1.8",
+  "last_updated": "2026-05-18",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -864,6 +864,83 @@
       "date_published": "2026-05-07",
       "efc_relevance": "Re-expresses the Hubble tension in terms of the dimensionless expansion history E(z)=H(z)/H_0 instead of a single scalar H_0, separating the absolute-scale anchor (Pantheon+SH0ES) from the redshift-dependent shape (Planck CMB + DESI DR2 BAO). For EFC this is the natural framing: EFC predicts a specific E(z)-shape deviation from ΛCDM driven by the entropy-flow source term S(r,t), and a scalar-H_0 comparison hides exactly the redshift-dependent signature where EFC differs.",
       "ledger_action": "Add to Likelihood Ledger and Predictions Ledger as the canonical H_0-tension framing going forward; update P-series rows that currently quote a scalar H_0 to also publish EFC's predicted E(z) at z ∈ {0.3, 0.5, 0.7, 1.0, 1.5}; cross-reference arXiv:2503.14738 (DESI DR2) and Pantheon+SH0ES anchors; deprecate scalar-H_0-only comparisons against framework:LCDM-Planck2018 in favour of E(z)-shape comparisons.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.09560",
+      "title": "Challenges to the cosmological constant model following results from the Dark Energy Survey (Avila, Mena-Fernández, Vincenzi)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.09560",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "Nature Astronomy perspective consolidating DES Y6 BAO+SN Ia together with Planck CMB into a ~3σ preference for dynamical dark energy over the cosmological constant. Sits directly on top of EFC's P1/P4 sealed predictions: the data trend (w-evolution sign change in the same z-range as EFC's lensing crossover at z ~ 0.44) is now framed as a community-level challenge to ΛCDM rather than a DESI-only anomaly, raising the prior weight on any framework — including EFC — that natively predicts a dynamical-DE signature without invoking a new field.",
+      "ledger_action": "Add to External Research Ledger as a Stage-IV synthesis row (cluster desi_dr2_de_evolution); flag in Likelihood Ledger as the canonical 'why-not-ΛCDM' citation going forward; update framework:LCDM-Planck2018 row with the ~3σ DES+Planck challenge note; update framework:wCDM-CPL-Chevallier2001 row with the DES Y6 best-fit w0–wa region as the new comparison contour; cross-reference arXiv:2601.14559 (DES Y6) and arXiv:2503.14738 (DESI DR2).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.10857",
+      "title": "Milky Way Dynamics Favor Dark Matter over Modified Gravity Models (Wang et al.)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.10857",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-11",
+      "efc_relevance": "Joint reconstruction of the Milky Way radial rotation curve, Gaia vertical phase-space spirals, and a broken-exponential stellar disk shows that no modified-gravity model can simultaneously reproduce radial and vertical fields — MOND is disfavoured at >13σ and STVG at >4σ, while a standard DM halo fits all three observables. Tightens the discriminator band for any framework that aspires to reproduce galactic dynamics without a particle-DM halo (framework:MOND-Milgrom1983, framework:TeVeS-Bekenstein2004, framework:RMOND-Skordis2021, framework:MassToHorizon-2025, framework:VerlindeEmergent-2016). EFC's S(r,t) source-term must reproduce both radial RC and vertical phase-space spirals jointly; this paper sets the empirical bar.",
+      "ledger_action": "Add to External Research Ledger under cluster modified-gravity-vs-dm; update framework rows MOND-Milgrom1983 (>13σ MW tension), TeVeS-Bekenstein2004, RMOND-Skordis2021, MassToHorizon-2025, and VerlindeEmergent-2016 with the joint radial+vertical-field discriminator note; new gap row (gap predictions-mw-vertical-spirals-efc) — EFC currently has no published prediction for the Gaia vertical-spiral amplitude at the Solar neighbourhood; required follow-up: compute EFC S(r,t) contribution to the disk gravitational field K_z(z) and overlay on the Wang et al. constraint band.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.11600",
+      "title": "A hierarchical Bayesian pipeline for soliton-plus-NFW inference on SPARC rotation curves: diagnostics and prior-boundary behaviour",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.11600",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "Hierarchical Bayesian fit of soliton-plus-NFW (ultralight / fuzzy DM) profiles to the SPARC database, treating the core-halo scaling exponent as a global free parameter and explicitly mapping prior-boundary degeneracies. Provides a directly-comparable per-galaxy goodness-of-fit baseline for any EFC variant that predicts a galaxy rotation-curve shape from the entropy-flow term S(r,t): EFC must either match the soliton+NFW per-galaxy chi^2 or beat it, on the same SPARC subset, to remain a viable galactic-scale framework. Also tightens framework:FuzzyDM-Hu2000 discriminator by pinning the global core-halo scaling exponent.",
+      "ledger_action": "Add to Validation Ledger as a SPARC galaxy-scale benchmark; update framework:FuzzyDM-Hu2000 row with the global core-halo exponent constraint; cross-reference arXiv:2411.13329 (BIG-SPARC); required follow-up in Predictions Ledger: replicate the hierarchical Bayesian pipeline with EFC's S(r,t) RC predictor on the same 175-galaxy SPARC subset and report per-galaxy chi^2 distribution against soliton+NFW.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.11658",
+      "title": "GI BAO as a cosmological consistency check (Chan, Li, McCullough)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.11658",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "First density-shear (GI) BAO measurement on photometric data, using DES Y3. Constrains the BAO scale dilation parameter to 0.966 ± 0.037 and validates the density BAO, shear measurement, and linear-alignment model jointly. Provides EFC with an independent low-systematic anchor for the BAO scale at the DES Y3 effective redshift — any EFC E(z) prediction must remain consistent with this combined density+shear BAO scale, not just density-BAO alone.",
+      "ledger_action": "Add to Likelihood Ledger as a cross-check probe under cluster bao_consistency; add note to existing DESI DR2 BAO row (arXiv:2503.14738) that GI BAO from DES Y3 sits at 0.966 ± 0.037 — EFC's predicted BAO dilation at z_DES_Y3 must overlap this band within 1σ; cross-reference arXiv:2601.14559 (DES Y6).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.12054",
+      "title": "Ultra-light axion constraints from Planck and ACT: the role of nonlinear modelling (Gaughan, Green, Moss)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.12054",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "MCMC analysis with Planck 2018 + ACT DR6 + DESI DR2 BAO of ultra-light axions in the mass range 10^-25 ≤ m/eV ≤ 10^-23. Shows that naive nonlinear modelling of non-cold matter produces an artificial preference for a subdominant ULA-DM component at m ≈ 10^-24 eV via a lensing-like enhancement of the CMB power spectrum — i.e. previously-claimed ULA detections are a modelling artefact. Tightens framework:FuzzyDM-Hu2000 by removing the spurious m ≈ 10^-24 eV preference and forces EFC discriminators against fuzzy-DM to be re-baselined against the corrected, weaker preference.",
+      "ledger_action": "Add to External Research Ledger under cluster alternative-dark-matter; update framework:FuzzyDM-Hu2000 row to note the nonlinear-modelling caveat (no genuine m ≈ 10^-24 eV preference once nonlinear sector is treated correctly); cross-reference arXiv:2605.11600 (SPARC soliton+NFW) so the galactic-scale and CMB-scale ULA constraints share a single framework row.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.13557",
+      "title": "When Weak Fields Aren't Weak: Post-Newtonian effective theory and the Dark Matter Puzzle (Galoppo, Torrieri)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.13557",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-13",
+      "efc_relevance": "Gravity Research Foundation 2026 essay arguing that the post-Newtonian expansion of GR is not generically reliable in many-body relativistic dynamics: absence of globally conserved charges in the region of interest plus non-integrability can drive strong sensitivity to angular-momentum exchange across inhomogeneous curvature, invalidating naive PN power counting. Derives an explicit breakdown criterion. Extends the Galoppo–Buchert–Mourier backreaction programme (arXiv:2605.05454) and gives EFC a theoretical lever: if PN truncations are unreliable on galactic and cluster scales, the standard 'GR + DM halo' inference is itself effective-theory limited, opening a principled niche for EFC's entropy-flow source term as a non-PN correction rather than a new field.",
+      "ledger_action": "Add to External Research Ledger under cluster alternative-cosmology/backreaction; cross-reference arXiv:2605.05454 (Galoppo et al. 2026 local backreaction) and update that row with the PN-breakdown extension; new gap row (gap theory-pn-breakdown-efc) — EFC must publish where in (r, v) parameter space its S(r,t) corrections become comparable to the PN truncation error identified here.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.14977",
+      "title": "Unified dark sector and Hubble-tension alleviation in scalar-vector-tensor gravity (Jusufi, Khodahami, Sheykhi, Said, Saridakis)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.14977",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-14",
+      "efc_relevance": "Scalar-vector-tensor gravity with matter minimally coupled to a Jordan-frame metric and a massive vector sector interacting with the baryonic current. The conformal scalar coupling produces a late-time enhancement of the effective Hubble constant relevant only at low redshifts, alleviating H_0 tension without affecting early-universe cosmology; the vector behaves as effective pressureless matter via a density-dependent mass, yielding a unified dark-sector. Chameleon-type screening keeps Solar-System constraints satisfied. Positioned as a competing framework to EFC: shares EFC's 'late-time-only mechanism' philosophy but achieves it via an explicit vector field rather than an entropy-flow source term.",
+      "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski as a new competing-framework candidate (source_type='framework-seminal' upgrade pending more papers in this line); update framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 rows with a 'unified dark-sector scalar-vector-tensor' sibling note; cross-reference arXiv:2605.05691 (E(z) reformulation of H_0 tension) since both papers argue for late-time-only signatures; required follow-up in Predictions Ledger: state explicit EFC discriminator from the scalar-vector-tensor late-time enhancement on E(z) at z ≤ 0.3.",
       "status": "new"
     }
   ]
