@@ -1,0 +1,108 @@
+id:           shared.efc.mcp
+version:      1.0.0
+kind:         mcp_server
+domain:       shared
+layer:        efc.research
+group:        api
+trust_zone:   internal
+maturity:     stable
+lifecycle:    active
+owner:        morten
+
+rce:
+  regime:
+    physical_regime: S_flow
+    epistemic_layer: L2
+    regime_domain:   cross
+    coupling_operators: [tool_invocation, multi_surface_write]
+  frozen_parameters:
+    declared:
+      - wp_endpoints
+      - figshare_endpoints
+      - tools_list_spec
+    registry_ref: neo4j://FrozenParameter/efc_mcp_v1
+  sealed_predictions: { deposits_sha256: [], figshare_dois: [] }
+  living_ledger:
+    ledger_path: integrations/mcp/_ledger.json
+    neo4j_label: LedgerEntry
+    last_audit: 2026-05-13T00:00:00Z
+  external_arbitration:
+    channel: external_replication
+    arbiter_ref: "WordPress + Figshare external state"
+
+rcp:
+  regime_locality: true
+  variety_closure: true
+  modelling_closure: true
+  frozen_parameter_governance: true
+  external_arbitration: true
+
+port: { http: null, metrics: null, health: null }   # stdio MCP, no port
+resources: { cpu: "500m", mem: "512Mi", disk: "100Mi" }
+
+schedule:
+  trigger: continuous
+
+restart_policy: always
+
+depends_on:
+  - shared.external.wordpress      # energyflow-cosmology.com + magnusson.as
+  - shared.external.figshare-api
+  - efc-repo-fs
+
+subscribes: []  # MCP is request/response, not subscribe
+publishes: []
+
+storage:
+  qdrant_collections: []
+  neo4j_labels: []
+  files:
+    - figshare/doi-map.json     # via update_doi_map tool
+    - docs/papers/efc/*/index.json  # via sync_metadata tool
+
+tools_exposed:
+  - wp_list_posts
+  - wp_create_post
+  - wp_update_post
+  - figshare_list_articles
+  - figshare_create_article
+  - figshare_upload_file
+  - figshare_publish
+  - validate_jsonld
+  - update_doi_map
+  - sync_metadata
+  - check_links
+  - atlas_list_frameworks
+  - atlas_query
+  - atlas_diff
+  - atlas_summary
+  - full_sync
+prompts_exposed:
+  - publish_paper
+  - update_website
+  - validate_all
+resources_exposed:
+  - efc://schema/global
+  - efc://doi/map
+  - efc://auth/manifest
+
+sli:
+  - { name: tool_call_latency_p95_seconds, threshold: 5, window: 5m }
+  - { name: tool_error_rate, threshold: 0.02, window: 1h }
+
+slo:
+  - { objective: availability, target: 0.99, window: 30d, error_budget: 0.01 }
+
+invariants:
+  - "WP API credentials never logged"
+  - "Figshare token never logged"
+  - "validate_jsonld is read-only (cannot mutate schema)"
+  - "check_links never modifies repo state"
+
+runbook: docs/runbooks/shared.efc.mcp.md
+
+provenance:
+  source_repo: supertedai/EFC
+  source_path: integrations/mcp/efc_mcp_server.py
+  generated: false
+  first_seen_inventory: 2026-05-19
