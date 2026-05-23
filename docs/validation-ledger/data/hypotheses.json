@@ -1,7 +1,7 @@
 {
   "name": "Cross-Domain Hypotheses",
   "version": "3.0",
-  "generated_at": "2026-05-23T03:01:35Z",
+  "generated_at": "2026-05-23T09:01:39Z",
   "hypotheses": [
     {
       "name": "Entropy Cosmic Evolution",
@@ -14,16 +14,6 @@
       "created_at": 1769118119694
     },
     {
-      "name": "Altularity",
-      "description": "Transition to a state of maximum entropy per unit mass.",
-      "domain": "cosmology|meta",
-      "status": "conjecture",
-      "epistemic_net": 3.5,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769151483345
-    },
-    {
       "name": "Regime-dependent breakdown",
       "description": "Proposed hypothesis that deviations from LCDM predictions cluster in identifiable cosmic time regimes (L0‑L3).",
       "domain": "cosmology",
@@ -32,26 +22,6 @@
       "testability": "partially_testable",
       "source": null,
       "created_at": 1769123899522
-    },
-    {
-      "name": "Dissipative Structures",
-      "description": "Structures that maintain themselves by exchanging matter and energy with their surroundings",
-      "domain": "thermodynamics",
-      "status": "conjecture",
-      "epistemic_net": 2.5,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769149643621
-    },
-    {
-      "name": "Thermodynamic Temperature Gradient",
-      "description": "Proposed explanation for the CMB's existence and behavior.",
-      "domain": "thermodynamics",
-      "status": "conjecture",
-      "epistemic_net": 2.3,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769152860135
     },
     {
       "name": "Energy Flow Hypothesis",
@@ -74,84 +44,54 @@
       "created_at": 1769149853985
     },
     {
-      "name": "Regime‑dependent validity",
-      "description": "The prediction that a phenomenological fitting model is valid only within specific complexity regimes (FLOW vs LATENT).",
-      "domain": "cosmology",
+      "name": "Black Hole Entropy",
+      "description": "The relationship between the entropy of a black hole and its event horizon area.",
+      "domain": "cosmology|thermodynamics",
       "status": "conjecture",
-      "epistemic_net": 1.85,
+      "epistemic_net": 1.0,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769111101253
+      "created_at": 1769151659140
     },
     {
-      "name": "Energy-Entropy Interrelation",
-      "description": "Proposes a fundamental interrelationship between energy flow and entropy in cosmic evolution.",
-      "domain": "thermodynamics",
+      "name": "Order Chaos Balance",
+      "description": "The hypothesis that the balance between gravitational order and entropic chaos governs emergence and persistence of universal structures.",
+      "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.8,
+      "epistemic_net": 0.75,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769109384077
+      "created_at": 1769116229160
     },
     {
-      "name": "Thermodynamic Field",
-      "description": "The idea that the universe can be understood as a living, interconnected system of energy flow.",
+      "name": "Universal Energy Flow",
+      "description": "The hypothesis that energy flow is globally constant but dynamically adjusts locally in response to entropy and matter distribution.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.8,
+      "epistemic_net": 0.75,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769149548206
+      "created_at": 1769116421228
     },
     {
-      "name": "Light-Speed Limit",
-      "description": "The speed of light as a fundamental boundary in energy flow and space-time dynamics.",
+      "name": "Modified Gravity Theory",
+      "description": "Extension of General Relativity proposed to explain cosmological observations such as galaxy rotation curves and dark energy phenomena.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.7000000000000002,
-      "testability": "indirectly_testable",
+      "epistemic_net": -0.7,
+      "testability": "directly_testable",
       "source": null,
-      "created_at": 1769153290060
+      "created_at": 1769248929629
     },
     {
-      "name": "Domain of Validity Theorem",
-      "description": "Theorem stating that EFC‑R stops precisely where classical potential physics is expected to stop, mapping empirical boundaries of the model.",
+      "name": "Dark Matter Hypothesis",
+      "description": "The standard explanation for the observed rapid rotation of galaxies, proposing invisible mass holding everything together.",
       "domain": "cosmology",
       "status": "conjecture",
-      "epistemic_net": 1.65,
-      "testability": "indirectly_testable",
-      "source": null,
-      "created_at": 1769110785665
-    },
-    {
-      "name": "Structure Emergence",
-      "description": "The natural outcome of energy flow through entropy gradients that leads to the formation of galaxies and fields.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.6,
+      "epistemic_net": -3.5100000000000016,
       "testability": "partially_testable",
       "source": null,
-      "created_at": 1769150723992
-    },
-    {
-      "name": "Entropy-Driven Evolution",
-      "description": "The proposition that entropy increase and gradients are primary drivers of cosmic change.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.56,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769117397988
-    },
-    {
-      "name": "Non-Equilibrium Cosmology",
-      "description": "The view that the cosmos is fundamentally out of thermodynamic equilibrium, shaping its evolution.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 1.5,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769117397987
+      "created_at": 1769149812416
     }
   ]
 }
