@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.7",
-  "last_updated": "2026-05-11",
+  "version": "1.8",
+  "last_updated": "2026-05-25",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -864,6 +864,39 @@
       "date_published": "2026-05-07",
       "efc_relevance": "Re-expresses the Hubble tension in terms of the dimensionless expansion history E(z)=H(z)/H_0 instead of a single scalar H_0, separating the absolute-scale anchor (Pantheon+SH0ES) from the redshift-dependent shape (Planck CMB + DESI DR2 BAO). For EFC this is the natural framing: EFC predicts a specific E(z)-shape deviation from ΛCDM driven by the entropy-flow source term S(r,t), and a scalar-H_0 comparison hides exactly the redshift-dependent signature where EFC differs.",
       "ledger_action": "Add to Likelihood Ledger and Predictions Ledger as the canonical H_0-tension framing going forward; update P-series rows that currently quote a scalar H_0 to also publish EFC's predicted E(z) at z ∈ {0.3, 0.5, 0.7, 1.0, 1.5}; cross-reference arXiv:2503.14738 (DESI DR2) and Pantheon+SH0ES anchors; deprecate scalar-H_0-only comparisons against framework:LCDM-Planck2018 in favour of E(z)-shape comparisons.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.16940",
+      "title": "Reconstruction of Tsallis Holographic Dark Energy via Modified Non-Metric Gravity: An f(Q,C) Approach",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.16940",
+      "date_seen": "2026-05-25",
+      "date_published": "2026-05-16",
+      "efc_relevance": "Reconstructs Tsallis-entropy holographic dark energy inside f(Q,C) non-metricity-plus-boundary gravity — an explicit hybrid of two competitor families already logged (the generalised-entropy holographic-DE family, framework:HolographicDE-Li2004 / framework:KaniadakisHDE-Drepanou2021, and the f(Q) non-metric modified-gravity family, arXiv:2604.21151 / arXiv:2604.23793). Same generalised-entropy ansatz family as EFC's information-entropy S(x); the discriminator is the late-time fσ8(z) growth fingerprint and the boundary-term coupling.",
+      "ledger_action": "Add to WP3 competitor-landscape ΔAIC matrix under the entropic/holographic-DE comparator family; cross-reference arXiv:2604.19849 (Tsallis HDE in f(R,T)), arXiv:2604.21490 (Tsallis IR-cutoff growth sensitivity) and framework:KaniadakisHDE-Drepanou2021; required head-to-head at background plus growth.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.21456",
+      "title": "Negative neutrino mass or negative dark energy? (Kıbrıs, Elbers, Akarsu, Di Valentino)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.21456",
+      "date_seen": "2026-05-25",
+      "date_published": "2026-05-20",
+      "efc_relevance": "DESI + CMB push the inferred Σm_ν below the oscillation-experiment floor under ΛCDM; the authors show a sign-switching cosmological constant (ΛsCDM, Akarsu) supplies a negative dark-energy density that recovers positive neutrino masses by modifying the expansion history. Structurally parallel to EFC's L2→L3 transition where T(a) can invert the effective dark-energy sign — ΛsCDM does it as an abrupt sign-switch, EFC as a smooth entropic transition; the negative-Σm_ν anomaly thus becomes a joint constraint on EFC's background sector.",
+      "ledger_action": "Add to Validation Ledger as a background-sector + neutrino-mass joint constraint; require the EFC L2→L3 effective w(z) to be checked against the Σm_ν floor under DESI+CMB; cross-reference framework:Quintom-Feng2005 (phantom crossing) and arXiv:2503.14738 (DESI DR2); log ΛsCDM sign-switch as a sharp-transition competitor in WP3 Falsification Protocol.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.22143",
+      "title": "Holographic Dark Energy with Hubble Radius as an Infrared Cutoff in Einstein-Cartan Gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.22143",
+      "date_seen": "2026-05-25",
+      "date_published": "2026-05-21",
+      "efc_relevance": "Embeds Hubble-radius-cutoff holographic dark energy in Einstein-Cartan (torsion) gravity, which cures the classic Hubble-radius-IR-cutoff no-acceleration problem. Directly addresses the IR-completion / cutoff-choice question flagged for EFC in arXiv:2604.21490: torsion is offered as the IR-completion that makes the Hubble-radius cutoff work, an alternative route to EFC's K(ρ)-stiffness IR-completion of its entropic field S(x). Entropic-ontology cousin via the holographic IR cutoff.",
+      "ledger_action": "Log under the entropic/holographic-DE comparator family; cross-reference framework:HolographicDE-Li2004 and arXiv:2604.21490 (IR-completion sensitivity warning); required note in WP1 recovery-conditions that EFC's S(x) IR-completion is K(ρ)-based, not torsion-based, with the Hubble-rate growth signature as discriminator.",
       "status": "new"
     }
   ]
