@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-05-27T09:02:53Z",
+  "generated_at": "2026-05-27T15:02:58Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 19269,
+    "grav_claims": 19302,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -333,7 +333,7 @@
         "status_detail": "collapsed_in_expected_direction"
       },
       {
-        "test_id": "grav_integration_2026-05-27_065651_aqual",
+        "test_id": "grav_integration_2026-05-27_131759_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -423,7 +423,7 @@
         "status_detail": "planned"
       },
       {
-        "test_id": "grav_kt1_2026-05-27_065651_aqual",
+        "test_id": "grav_kt1_2026-05-27_131759_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -438,7 +438,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-05-27_065651_aqual",
+        "test_id": "grav_kt3_2026-05-27_131759_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -453,7 +453,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-05-27_065651_aqual",
+        "test_id": "grav_kt2_2026-05-27_131759_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -2241,7 +2241,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-27T08:46:05.126053+00:00"
+      "timestamp": "2026-05-27T14:46:14.966268+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2255,7 +2255,7 @@
       "untested": 2,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-05-27T08:46:05.150844+00:00"
+      "timestamp": "2026-05-27T14:46:15.001028+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2269,7 +2269,7 @@
       "untested": 2,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-05-27T08:46:05.164107+00:00"
+      "timestamp": "2026-05-27T14:46:15.015678+00:00"
     }
   },
   "parameters": {
@@ -2824,7 +2824,7 @@
   "changelog": [],
   "grav_pipeline": {
     "latest_run": {
-      "run_id": "2026-05-27_065651_aqual",
+      "run_id": "2026-05-27_131759_aqual",
       "verdict": "NEEDS_REVIEW",
       "started": null,
       "integration_verdict": "PARTIAL_BRIDGE"
@@ -34372,7 +34372,302 @@
       },
       {
         "text": null,
-        "status": "expired_no_data",
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "expired",
         "claim_type": null
       },
       {
@@ -34412,132 +34707,7 @@
       },
       {
         "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "pending",
+        "status": "expired_no_data",
         "claim_type": null
       },
       {
@@ -82418,11 +82588,6 @@
       {
         "text": null,
         "status": "reference_model",
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": "refuted",
         "claim_type": null
       },
       {
