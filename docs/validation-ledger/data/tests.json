@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-05-30T03:03:44Z",
+  "generated_at": "2026-05-30T09:03:48Z",
   "categories": {
     "physics_test": [
       {
@@ -731,30 +731,30 @@
         "name": "BAO covariance-aware consistency test",
         "description": "⚪",
         "result": "T2Completed (consistency test)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "BOSS DR12 consensus (6×6 cov) + cosmic chronometers",
         "prediction": "⚪",
         "notes": "BAO covariance-aware consistency test | ✅ | ⚪ | ✅ | Fixed-parameter transfer test using official Cobaya likelihood with full covariance matrix. Δχ² = −2.4 (BAO) + −0.6 (CC) = −3.0 total. No validated geometric channel penalises EFC relative to ΛCDM. | 31314922",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_bao_transfer_test_desi_bosseboss_no_refit",
         "name": "BAO transfer test (DESI → BOSS/eBOSS; no refit)",
         "description": "⚪",
         "result": "T2Completed (transfer consistency)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "BOSS / eBOSS (transfer consistency check)",
         "prediction": "⚪",
         "notes": "BAO transfer test (DESI → BOSS/eBOSS; no refit) | ✅ | ⚪ | ✅ | Out-of-sample transfer: late-time growth/geometry sector must remain consistent when carried across surveys without parameter re-tuning. Later confirmed by explicit four-channel background-coupling consistency test. | 31231522,31304980",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "conv_bao_rsd_tension_resolution_via_free_8_0",
@@ -806,75 +806,75 @@
         "name": "Early galaxies (JWST)",
         "description": "✅",
         "result": "T2Completed (interpretation-dependent)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "COSMOS-Web z > 6–10",
         "prediction": "✅",
         "notes": "Early galaxies (JWST) | ✅ | ⚪ | ⚠️ | EFC consistent with observed abundance in high-entropy regime; ΛCDM shows tension under standard assumptions (SF, dust, IMF interpretation-dependent) | 31059964",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_highz_null_regime_consistency",
         "name": "High-z null regime consistency",
         "description": "⚪",
         "result": "T2Completed (null-prediction consistency check)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "DESI Lyα P1D (z ≈ 3)",
         "prediction": "⚪",
         "notes": "High-z null regime consistency | ✅ | ⚪ | ✅ | Same coupling T(z) predicts near-zero modification at high redshift; data consistent with null detection, as required by the same transition function T(z) used in the four-channel background test. | 31304995",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_h_tension",
         "name": "H₀ tension",
         "description": "⚪",
         "result": "T2Completed (Consistency Check)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "SH0ES / JWST",
         "prediction": "⚪",
         "notes": "H₀ tension | ✅ | ⚪ | ❌ | Local–global inference separation; EFC survives but does not resolve the tension | 31026151",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_isw_crosscorrelation",
         "name": "ISW cross-correlation",
         "description": "⚪",
         "result": "T3Completed (self-consistent prediction; awaiting observational confrontation)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "Planck × DESI DR1 tracers",
         "prediction": "⚪",
         "notes": "ISW cross-correlation | ✅ | ⚪ | ✅ | L1 linear perturbations: Under fully self-consistent growth-channel implementation (ODE-based D(a), no potential μ′ term), EFC predicts a uniform late-time ISW amplitude suppression AISW≈ 0.89 ± 0.03 across tracer bins. No strong tomographic gradient survives internal consistency audit.Definitive discriminator:Measured AISWmust deviate from unity by ≈10% in a tracer-independent manner. A statistically significant detection of AISW≈ 1.0 ± 0.02 would disfavor the background-driven EFC channel. | 31301953,31329082",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_latetime_background_coupling_architecture_ta",
         "name": "Late-time background coupling architecture (β·T(a))",
         "description": "⚪",
         "result": "T1Completed (multi-channel consistency)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "BAO (BOSS), RSD (BOSS), CMB lensing, SN Ia",
         "prediction": "⚪",
         "notes": "Late-time background coupling architecture (β·T(a)) | ✅ | ⚪ | ✅ | Single-parameter background modification tested across four independent cosmological probes (BAO, RSD, SN Ia, CMB lensing). Poisson-sector coupling disfavoured by RSD; background channel produces consistent growth suppression via expansion history.v3.3 update:Systematic CMB localization (31368433) confirms background gate is observationally empty: α collapses to ≈0 under Planck+BAO joint fit (all combinations |Δχ²| < 2σ), with perfect α–H0degeneracy (corr = 0.975). CMB is blind to α; BAO breaks the degeneracy. | 31304980",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": null,
@@ -971,15 +971,15 @@
         "name": "Regime transition metric (ΔF)",
         "description": "⚪",
         "result": "T3Completed (Consistency Check)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "DESI + Fugaku-class N-body + SPARC",
         "prediction": "⚪",
         "notes": "Regime transition metric (ΔF) | ✅ | ⚪ | ⚪ | Growth-sector constraint:Integrated transition strength across L0–L1–L2 regimes.\n        Measures effective gravitational enhancement rather than a background density parameter.\n        Now physically bounded by Density Saturation Θ(ρ) in high-density regimes. | 31144030",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "conv_s_z_single_parameter_joint_fit_cmb_anomaly_jwst_early_galaxy",
@@ -1001,15 +1001,15 @@
         "name": "Solar System / PPN / EP",
         "description": "⚪",
         "result": "T3Quantitative compatibility supported (screened regime)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "Cassini / LLR / perihelion",
         "prediction": "⚪",
         "notes": "Solar System / PPN / EP | ⚪ | ⚪ | ✅ | Density Saturation mechanism with source-smoothed effective density yields screening sufficient to pass Cassini, LLR, perihelion, and WEP bounds. Linearized field analysis shows PPN parameter γ = 1 at leading order, with residual deviations bounded far below current experimental sensitivity. Complementary result from Covariant EFT (31878334): exponential amplitude suppression A(r) ~ exp(−r/λS) provides an independent screening path for the minimally coupled scalar class. Full strong equivalence principle proof remains a target for action-level derivation. | 31244827● Cassini/Shapiro ● LLR bounds",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "conv__z_full_trajectory_reconstruction_efc_vs_cdm_vs_multi_survey",
@@ -1108,30 +1108,30 @@
         "name": "BAO anisotropic split (DAvs H(z))",
         "description": "⚪",
         "result": "Planned – anisotropic likelihood test",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "BOSS, eBOSS, DESI BAO anisotropic fits",
         "prediction": "⚪",
         "notes": "BAO anisotropic split (DAvs H(z)) | ⚪ | ⚪ | ✅ | Separately constrains transverse and radial expansion. Background coupling must shift DAand H consistently; forbids geometry retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_baorsd_joint_fit_l2",
         "name": "BAO+RSD joint fit (αL2)",
         "description": "BOSS DR12 consensus",
         "result": "αL2= 0.040 ± 0.024 (1.7σ)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "BOSS DR12 consensus",
         "prediction": "BOSS DR12 consensus",
         "notes": "Mild preference for positive coupling; consistent with but not conclusive for EFC",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_case_a_s_direction_v14",
@@ -1145,8 +1145,8 @@
         "prediction": "Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.\n        Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.",
         "notes": "Case A S₈ direction (v1.4) | L1–L2 lensing",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "unknown"
       },
       {
         "test_id": "conv_cluster_tng_efc_passform_test_red_0_000_",
@@ -1198,15 +1198,15 @@
         "name": "Galaxy bias evolution consistency",
         "description": "⚪",
         "result": "Planned – bias-growth joint modeling",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "BOSS, DESI clustering + lensing cross-correlation",
         "prediction": "⚪",
         "notes": "Galaxy bias evolution consistency | ⚪ | ⚪ | ✅ | Ensures that modified growth history does not produce inconsistent galaxy–matter bias evolution. Required for internal consistency of clustering and lensing in L2. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_weaklensing_phenomenological_closure_postulate_a",
@@ -1220,23 +1220,23 @@
         "prediction": "Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.",
         "notes": "Weak-lensing phenomenological closure (Postulate A) | L1 linear perturbations",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "unknown"
       },
       {
         "test_id": "ledger_weaklensing_shear_case_a",
         "name": "Weak-lensing shear (Case A)",
         "description": "KiDS-1000 Flinc ξ±",
         "result": "αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM)",
-        "status": "unknown",
+        "status": "partial",
         "vl_category": "phenomenological",
         "also_phenomenological": true,
         "data_source": "KiDS-1000 Flinc ξ±",
         "prediction": "KiDS-1000 Flinc ξ±",
         "notes": "Strong fit improvement, but EFC preferslowerS₈,increasingPlanck tension (3.6σ vs 2.3σ).\n        Case A is phenomenological lensing boost, not S₈ tension solution.",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PARTIAL"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "partial"
       },
       {
         "test_id": null,
@@ -1395,30 +1395,30 @@
         "name": "Cluster core entropy–structure coupling",
         "description": "⚪",
         "result": "T4Completed (diagnostic mismatch)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "ACCEPT / TNG-Cluster",
         "prediction": "⚪",
         "notes": "Cluster core entropy–structure coupling | ⚪ | ⚪ | ❌ | Pre-registered rank correlation test between entropy profile slope (α) and core thermodynamics (K₀, tcool). Under matched Cavagnolo et al. (2009) definitions, TNG-Cluster shows strongnegativecorrelation (ρ ≈ −0.4 to −0.6), opposite topositivecorrelation in ACCEPT observations. Mass-controlled partial correlations confirm sign flip. Diagnostic mismatch points to deficiencies in simulated ICM thermodynamic regulation. | 31286368",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_cluster_merger_geometry",
         "name": "Cluster merger geometry",
         "description": "⚪",
         "result": "T3Completed (structural exclusion test)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "Cluster lensing & mass–gas offsets",
         "prediction": "⚪",
         "notes": "Cluster merger geometry | ✅ | ⚪ | ⚪ | Strong-field L2 geometric constraint; disfavours local coupling classes and imposes structural requirements on admissible operators | 31173850",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_core_lock_consistency_enforcement_31223503",
@@ -1432,8 +1432,8 @@
         "prediction": "Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3",
         "notes": "Core Lock consistency enforcement (31223503) | All regimes (method layer)",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "unknown"
       },
       {
         "test_id": "conv_des_y6_vs_kids_legacy_divergens_som_efc_strukturprediksjon",
@@ -1462,8 +1462,8 @@
         "prediction": "Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with explicit density discrimination",
         "notes": "Density Saturation Θ(ρ) (v1.3) | All regimes (L0–L3)",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "unknown"
       },
       {
         "test_id": "conv_double_slit_as_grid_resolution_phenomenon_in_grc",
@@ -1620,15 +1620,15 @@
         "name": "Structural coherence across regimes (SCE evaluation)",
         "description": "⚪",
         "result": "T4Completed (meta-model evaluation)",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "framework_constraint",
         "also_phenomenological": null,
         "data_source": "KiDS, BAO, RSD, Lyα, CMB lensing",
         "prediction": "⚪",
         "notes": "Structural coherence across regimes (SCE evaluation) | ⚪ | ⚪ | ⚪ | Framework-level diagnostic (not empirical observable): EFC shows higher layer consistency and lower model plasticity; ΛCDM retains higher compression | 31305550",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "conv_t_as_natural_equivalent_from_grid_ontology",
@@ -1757,15 +1757,15 @@
         "name": "Big Bang Nucleosynthesis expansion-rate bound",
         "description": "⚪",
         "result": "Planned – early-time suppression consistency check",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Primordial D/H, He⁴ abundance",
         "prediction": "⚪",
         "notes": "Big Bang Nucleosynthesis expansion-rate bound | ⚪ | ⚪ | ✅ | L0 regime hard constraint. Early-time suppression must ensure ΔH/H ≪ 1 at MeV temperatures. Equivalent to ΔNeffbound. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "freeze_20260221_160857",
@@ -1817,30 +1817,30 @@
         "name": "CMB polarization & lensing internal consistency (TE/EE/φφ)",
         "description": "⚪",
         "result": "Planned – Boltzmann-level test required",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Planck 2018 TE/EE + CMB lensing",
         "prediction": "⚪",
         "notes": "CMB polarization & lensing internal consistency (TE/EE/φφ) | ⚪ | ⚪ | ✅ | Linear-regime metric and potential evolution constraint. Confirms that regime suppression fully removes EFC effects during recombination and linear post-recombination evolution. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_cmb_power_spectrum",
         "name": "CMB power spectrum",
         "description": "⚪",
         "result": "GR recovery expected (Boltzmann validation pending)",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Planck 2018 (TT)",
         "prediction": "⚪",
         "notes": "CMB power spectrum | ⚪ | ⚪ | ✅ | ΛCDM preferred in L0; EFC dynamically suppressed. EFC terms expected to vanish at recombination (Θ(ρ→0)); explicit Boltzmann-level validation pending. | 31095466",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "conv_ct_05_full_entropy_gradient_pipeline",
@@ -1862,60 +1862,60 @@
         "name": "Cluster abundance / mass function N(M,z)",
         "description": "⚪",
         "result": "Planned – methodology defined",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "eROSITA / SPT / Planck SZ",
         "prediction": "⚪",
         "notes": "Cluster abundance / mass function N(M,z) | ⚪ | ⚪ | ✅ | L2–L3 integrated growth test: Mass function evolution N(M,z) discriminates between EFC and ΛCDM structure formation. Tests whether geometry consistency extends to actual halo abundance. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_cluster_shockfront_lensing_asymmetry",
         "name": "Cluster shock-front lensing asymmetry",
         "description": "⚪",
         "result": "Pre-registered – data analysis pending",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "JWST κ maps + Chandra kT, ne(Bullet, Abell 2146)",
         "prediction": "⚪",
         "notes": "Cluster shock-front lensing asymmetry | ⚪ | ⚪ | ⚪ | L2 geometric symmetry test. Pre-registered directional residual estimator (Asig) measures whether lensing convergence residuals show shock-locked asymmetry after density-based mass model subtraction. Discriminates isotropic metric theories from entropy- or structure-coupled anisotropic lensing responses. | Methodology locked (2026)",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_darkenergy_evolution_wz",
         "name": "Dark-energy evolution w(z)",
         "description": "⚪",
         "result": "T2BAO phenomenology completed",
-        "status": "unknown",
+        "status": "success",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "DESI DR2 (BAO)",
         "prediction": "⚪",
         "notes": "Dark-energy evolution w(z) | ⚪ | ⚪ | ⚠️ | Geometric BAO-only phenomenology; full dynamical multi-probe test pending | 31127380",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PASSED"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "success"
       },
       {
         "test_id": "ledger_eggravitational_slip_consistency_lensing_rsd",
         "name": "EGgravitational slip consistency (lensing × RSD)",
         "description": "⚪",
         "result": "Planned – cross-probe estimator implementation",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "DESI + KiDS/DES lensing",
         "prediction": "⚪",
         "notes": "EGgravitational slip consistency (lensing × RSD) | ⚪ | ⚪ | ✅ | Direct observable linking geometry and growth. With Poisson sector fixed (μ=1), EFC predicts specific redshift-dependent EGevolution driven solely by expansion history. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "conv_euclid_dr1_pre_registration_pipeline_via_hi_class",
@@ -1952,15 +1952,15 @@
         "name": "Global parameter-lock cross-probe test",
         "description": "⚪",
         "result": "Planned – full joint likelihood with frozen parameters",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "BAO + RSD + lensing + ISW + Lyα",
         "prediction": "⚪",
         "notes": "Global parameter-lock cross-probe test | ⚪ | ⚪ | ⚪ | Framework-level stress test: a single β and transition function T(a) must fit all late-time probes without retuning. Eliminates hidden model plasticity. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "conv_isw_void_sign_flip_observational_confrontation_v1",
@@ -1982,60 +1982,60 @@
         "name": "Linear & quasi-linear matter power spectrum shape P(k,z)",
         "description": "⚪",
         "result": "Planned – full-shape likelihood implementation required",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "BOSS full-shape, eBOSS QSO, DESI full-shape",
         "prediction": "⚪",
         "notes": "Linear & quasi-linear matter power spectrum shape P(k,z) | ⚪ | ⚪ | ✅ | Tests scale-dependent growth and turnover structure under background-driven growth suppression. Shape consistency required if Poisson sector remains GR while H(a) is modified. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_multiepoch_rsd_growth_trajectory",
         "name": "Multi-epoch RSD growth trajectory",
         "description": "⚪",
         "result": "Planned – cross-survey joint trajectory fit",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "6dF, SDSS MGS, BOSS, eBOSS, DESI ELG",
         "prediction": "⚪",
         "notes": "Multi-epoch RSD growth trajectory | ⚪ | ⚪ | ✅ | Tests redshift continuity of growth suppression across L1→L2 transition. β·T(a) must produce a smooth, monotonic deviation pattern with no retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_regime_response_surface_rks",
         "name": "Regime response surface R(k,S,ρ)",
         "description": "⚪",
         "result": "Framework defined – quantitative tests pending",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "DES Y6 regime structure (multi-probe L2)",
         "prediction": "⚪",
         "notes": "Regime response surface R(k,S,ρ) | ⚪ | ⚪ | ⚪ | Framework linking μ(a) and μ(k,z) through structural state S; defines global falsification conditions across L2 probes. Extended to R(k,S,ρ) with explicit density axis enabling dwarf–cluster discrimination. | 31211437",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "ledger_smallscale_structure",
         "name": "Small-scale structure",
         "description": "⚪",
         "result": "Planned",
-        "status": "unknown",
+        "status": "pending",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Rubin LSST / Euclid",
         "prediction": "⚪",
         "notes": "Small-scale structure | ⚪ | ⚪ | ⚪ | Non-linear discriminators | Metric spec pending",
         "quantitative_result": "",
-        "last_synced": "2026-05-18T08:57:55.003212Z",
-        "status_detail": "PENDING"
+        "last_synced": "2026-05-30T08:58:26.325429Z",
+        "status_detail": "pending"
       },
       {
         "test_id": "conv_hi_class_scalar_tensor_efc_falsification_test",
