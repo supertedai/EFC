@@ -5,11 +5,11 @@
   "last_verified_by_morten": "Morten Magnusson",
   "last_verified_orcid": "0009-0002-4860-5095",
   "last_verified_at": "2026-04-29",
-  "verification_note": "v2.0 batch approval extends v1.0 to include P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111). Atlas roles updated: EFC → H0_tension upgraded from addresses_open to proposes_resolution; EFC → bar_instability_L3 confirmed as sole-monopoly addresser among 42 atlas frameworks. Draft text remains AI-generated (conservative wording, English).",
+  "verification_note": "v2.0 batch approval extends v1.0 to include P7 (H0 three-window decomposition, DOI 32113399) and P8 (bar-instability falsification, DOI 32101111). Atlas roles updated: EFC → H0_tension upgraded from addresses_open to proposes_resolution; EFC → bar_instability_L3 set to falsified_predictor (Π falsified as a bar predictor on N=43 SPARC; retained as an independent disk-state parameter). Draft text remains AI-generated (conservative wording, English).",
   "audit_history": [
     {"version": "0.1-DRAFT", "date": "2026-04-18", "summary": "Initial draft; 6 mappings (P1-P6) + 3 cluster commentaries."},
     {"version": "1.0", "date": "2026-04-20", "summary": "Batch approval. All doc_syntheses + cluster commentaries flipped to verified=true. 5 of 6 test targets remain graph_status=not_found (Euclid DR1, DESI DR2 fsigma8, SO×Euclid, Rubin DP2, Horndeski Theory) — parser writes Prediction:Preregistered nodes but SKIPs edge creation until target nodes materialize."},
-    {"version": "2.0", "date": "2026-04-29", "summary": "April 2026 wave: +P7 (H0 three-window, DOI 32113399), +P8 (bar-instability falsification, DOI 32101111). +supporting April DOIs to P2-P4: 32084670 (structural closure), 32101213 (alpha non-MCMC), 32080083 (RCMP DES Y6+KiDS), 32114530 (VAL-2026-006). Atlas role upgrades: H0_tension addresses_open → proposes_resolution; bar_instability_L3 confirmed as sole monopoly addresser."}
+    {"version": "2.0", "date": "2026-04-29", "summary": "April 2026 wave: +P7 (H0 three-window, DOI 32113399), +P8 (bar-instability falsification, DOI 32101111). +supporting April DOIs to P2-P4: 32084670 (coupling-structure closure), 32101213 (alpha non-MCMC), 32080083 (RCMP DES Y6+KiDS), 32114530 (VAL-2026-006). Atlas role upgrades: H0_tension addresses_open → proposes_resolution; bar_instability_L3 set to falsified_predictor (Π falsified as bar predictor, retained as independent disk-state parameter)."}
   ],
   "parser_safety_contract": {
     "pre_run_check": "Parser MUST refuse execution while last_verified_by_morten is null.",
@@ -121,22 +121,21 @@
           "graph_status": "found",
           "role": "predicts",
           "confidence": "medium",
-          "reasoning": "EFC predicts specific ratios H0_L2/H0_L0 ≈ 1.09 from regime-mixing operator."
+          "reasoning": "The ratio H0_L2/H0_L0 ≈ 1.09 is an interpretive first-order mapping from the three-window decomposition (DOI 32113399, a synthesis of existing EFC results, not a new derivation), not the paper's decomposition."
         }
       ]
     },
     "P8": {
-      "cluster_ids": ["bar_instability_L3", "sparc_morphology", "monopoly_phenomenon"],
+      "cluster_ids": ["bar_instability_L3", "sparc_morphology", "disk_state_parameter"],
       "probe_subtype": "galactic_morphology",
       "targets": [
         {
           "kind": "atlas_phenomenon",
           "phenomenon_id": "bar_instability_L3",
           "graph_status": "found",
-          "role": "predicts_threshold",
-          "monopoly_status": "sole_addresser_among_43_frameworks",
+          "role": "falsified_predictor",
           "confidence": "high",
-          "reasoning": "DOI 32101111 (2026-04-26) falsifies the classical Efstathiou-Lake-Negroponte (ELN) criterion and replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1. EFC remains the only framework in the 42-framework atlas with an explicit bar-instability prediction — a true monopoly."
+          "reasoning": "DOI 32101111 (2026-04-26), 'A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter', tests EFC's Π bar-criterion on N=43 SPARC and FALSIFIES it as a bar predictor (AUC=0.217, anti-correlated, 0/12 bars). Π_min is retained NOT as a bar predictor but as an independent disk-state parameter (ρ[Π,logΣ]=−0.71, ρ[Π,f_gas]=+0.65, n=112)."
         },
         {
           "kind": "test",
@@ -144,7 +143,7 @@
           "graph_status": "proposed",
           "candidate_id": "vc_140e79363cbe",
           "confidence": "medium",
-          "reasoning": "Cross-population test pre-registered as validation candidate; SPARC + S4G + Galaxy Zoo bar-fractions vs Π_EFC threshold."
+          "reasoning": "Cross-population test pre-registered as validation candidate; on N=43 SPARC the Π bar-criterion is falsified as a bar predictor (AUC=0.217, 0/12 bars). Π_min is retained only as an independent disk-state parameter."
         }
       ]
     }
@@ -156,7 +155,7 @@
         "name": "Perturbation-sector predictions (P1, P3, P5)",
         "watchlist_keys": ["P1", "P3", "P5"],
         "cluster_commentary": {
-          "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), gravitational-slip enhancement (P3), and the Horndeski no-go (P5). All three are structural discriminators: they cannot be mimicked by ΛCDM + nuisance parameters. As of 2026-04-23 (DOI 32084670), the growth-sector closure proves there are no free parameters remaining: P3 is now a theorem of EFC, not a tuning. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test them.",
+          "draft": "The perturbation sector contains the distinctive EFC signatures — non-monotonic lensing (P1), the gravitational-slip estimator E_G (P3), and the Horndeski no-go (P5) — but all three rest on the same gravitational-slip boost η ∈ [1.05,1.15], classified 0% robust (fragile) per DOI 32037990. As of 2026-04-23 (DOI 32084670), the growth-sector coupling-structure closure removes the free-parameter escape route (a constraint on coupling structure, not on parameters). For P1 the robust EFC prediction is a near-flat (monotonic, ≈GR) Σ_eff(z) with no crossover (η→1 ⇒ Σ≈μ≈0.99); the z≈0.44 crossover is fragile (η-dependent, 0% robust per 32037990). For P3 the robust EFC prediction is E_G≈1 (η→1 ⇒ Σ=μ≈0.99<1, no enhancement); the 1.086 enhancement is fragile (η-dependent, 0% robust per 32037990). For P5 the robust EFC has Σ≈μ<1 (outside the forbidden quadrant), so it does not exclude Horndeski; the no-go is reached only via the fragile η-boost. Stage-IV tomography (Euclid DR1, SO × Euclid) is required to test the fragile branches.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-29"
@@ -167,7 +166,7 @@
         "name": "Background-sector point predictions (P2, P4)",
         "watchlist_keys": ["P2", "P4"],
         "cluster_commentary": {
-          "draft": "P2 (fσ8 at z=0.7) and P4 (Rubin DP2 S8) are DAMAGE-class: failure erodes motivation without falsifying the framework. Both are quantitative point predictions with explicit ΛCDM comparison. As of 2026-04-26 (DOI 32101213), the underlying α-parameter is independently constrained to α ∈ [−0.72, −0.68] via three orthogonal channels (SPARC175, NUTS BAO+Hz, non-MCMC analytic). P4 is also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22).",
+          "draft": "P2 (fσ8 at z=0.7) is a quantitative point prediction with explicit ΛCDM comparison. P4 (cosmic shear S8): the robust EFC derivation gives Σ=μ(1+η)/2 with η→1 ⇒ Σ≈0.99<1, so S8 shifts slightly downward to S8≈0.82 (DOI 31188193) — PASS/mild vs DES Y6 0.789 (~1-1.5σ) and KiDS-Legacy 0.815 (<0.5σ). The earlier S8=0.847 (Σ∈[1.03,1.07]) required the η∈[1.05,1.15] boost = 0% robust/fragile. As of 2026-04-26 (DOI 32101213), the underlying α-parameter is independently constrained to α ∈ [−0.72, −0.68] via three orthogonal channels (SPARC175, NUTS BAO+Hz, non-MCMC analytic). P4 is also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22).",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-29"
@@ -178,7 +177,7 @@
         "name": "Structural and proven (P5, P6)",
         "watchlist_keys": ["P5", "P6"],
         "cluster_commentary": {
-          "draft": "P5 (Horndeski no-go) and P6 (background sign lemma) are closed — either analytically proven or exhaustively scanned. They are listed for completeness, not as open tests.",
+          "draft": "P6 (background sign lemma) is closed — analytically proven. P5 (Horndeski no-go) was exhaustively scanned, but the EFC solutions all sit in the fragile η-boosted region (Σ > 1 requires η ∈ [1.05,1.15] = 0% robust per 32037990); the robust EFC (Σ≈μ<1) does not occupy the forbidden quadrant and does not exclude Horndeski. P5 is therefore fragile, not a closed structural result.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-20"
@@ -189,18 +188,18 @@
         "name": "Regime-resolution predictions (P7)",
         "watchlist_keys": ["P7"],
         "cluster_commentary": {
-          "draft": "P7 (H0 three-window decomposition, DOI 32113399, 2026-04-28) reframes the Hubble tension as a structural consequence of regime-mixing, not a free-parameter degeneracy. Planck, DESI BAO, and SH0ES probe distinct regime windows (L0/L1/L2) that EFC predicts must NOT coincide. Atlas role upgraded from addresses_open to proposes_resolution on 2026-04-29.",
+          "draft": "P7 (H0 three-window decomposition, DOI 32113399, 2026-04-28) reframes the Hubble tension as a structural consequence of regime-mixing, not a free-parameter degeneracy. Planck, DESI BAO, and SH0ES probe distinct regime windows (L0/L1/L2) that EFC predicts must NOT coincide. The three-window decomposition is a synthesis of existing EFC results, not a new derivation (projection P_ξ specified to first order only), and the H0 triplet is an interpretive mapping. The falsifier is the triple-null test: a result consistent with ΛCDM in all three windows is a clean falsification. Atlas role upgraded from addresses_open to proposes_resolution on 2026-04-29.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-29"
         }
       },
       {
-        "cluster_id": "l3_monopoly",
-        "name": "L3 galactic monopoly (P8)",
+        "cluster_id": "bar_instability_falsified",
+        "name": "Falsified bar-instability criterion (P8)",
         "watchlist_keys": ["P8"],
         "cluster_commentary": {
-          "draft": "P8 (bar-instability falsification, DOI 32101111, 2026-04-26) is EFC's sole monopoly phenomenon in the atlas. Among 42 frameworks (ΛCDM, MOND, Verlinde, f(R), DGP, etc.) NONE provide an explicit bar-instability criterion. EFC replaces the falsified Efstathiou-Lake-Negroponte criterion with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 incorporating an entropy-gradient correction to κ². Cross-population test against SPARC + S4G + Galaxy Zoo is pre-registered.",
+          "draft": "P8 (DOI 32101111, 2026-04-26, 'A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter') tested EFC's Π bar-criterion Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 on N=43 SPARC galaxies and FALSIFIED it as a bar predictor: AUC=0.217 (anti-correlated), capturing 0/12 bars. Π_min is retained NOT as a bar predictor but as an independent disk-state parameter (ρ[Π,logΣ]=−0.71, ρ[Π,f_gas]=+0.65, n=112). Cross-population test against SPARC + S4G + Galaxy Zoo is pre-registered.",
           "verified_by_morten": true,
           "verified_by_morten_name": "Morten Magnusson",
           "verified_at": "2026-04-29"
