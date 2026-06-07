@@ -40,7 +40,7 @@
       {
         "topic": "Combined-CMB S8 = 0.836 baseline (Planck 2018 + ACT DR6 + SPT-3G)",
         "cluster": "s8_tension_des_y6",
-        "efc_relevance": "Re-baselines P4 (sealed Rubin DP2 prediction S8 = 0.847 ± 0.015) from Planck-alone (0.811) to a higher CMB anchor; tension shrinks to ~0.7sigma from ~2.3sigma. Already cited inside arXiv:2602.12238 review row but not promoted as standalone constraint.",
+        "efc_relevance": "Re-baselines P4 from Planck-alone (0.811) to a higher CMB anchor. Note: the sealed Rubin DP2 value S8 = 0.847 ± 0.015 used the fragile eta-boost branch (eta in [1.05,1.15], 0% robust per DOI 32037990); the robust EFC derivation (Sigma approx 0.99 < 1) shifts S8 DOWN to approx 0.82 (DOI 31188193), consistent with DES Y6 0.789 and KiDS-Legacy 0.815. Already cited inside arXiv:2602.12238 review row but not promoted as standalone constraint.",
         "ledger_action": "Add standalone Combined-CMB row to items[]; mark P4 in EFC_Predictions.html as needing reference-baseline note (NO change to sealed numerical prediction).",
         "verification_required": "Locate primary Combined-CMB methodology paper (likely DES Y6 companion or follow-up CMB compilation 2026)."
       },
@@ -110,7 +110,7 @@
       {
         "topic": "Rubin DP2 confirmed Jul-Sep 2026 + alert stream live since 2026-02-24",
         "cluster": "future_arbiters",
-        "efc_relevance": "DP2 is the test bed for P4 (S8 = 0.847 +/- 0.015). Alert stream availability is unrelated to P4 but worth noting as Rubin operational milestone for future predictions.",
+        "efc_relevance": "DP2 is the test bed for P4. The sealed S8 = 0.847 +/- 0.015 used the fragile eta-boost branch (0% robust per DOI 32037990); the robust EFC derivation gives S8 approx 0.82 DOWN (DOI 31188193). Alert stream availability is unrelated to P4 but worth noting as Rubin operational milestone for future predictions.",
         "ledger_action": "Add 'Rubin:DP2-2026-Q3' as separate survey-release entry distinct from Euclid; cross-reference P4 sealed pipeline (figshare 32013738).",
         "verification_required": "Confirm Rubin DP2 schedule from latest RTN-011 v8.0 (April 2026)."
       }
