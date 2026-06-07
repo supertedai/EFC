@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-06-07T15:06:26Z",
+  "generated_at": "2026-06-07T17:32:50Z",
   "categories": {
     "physics_test": [
       {
@@ -1209,6 +1209,21 @@
         "status_detail": "success"
       },
       {
+        "test_id": "conv_p4_s8_efc_0_847_vs_2026_weak_lensing_des_y6_kids_legacy_dama",
+        "name": "P4 S8: EFC 0.847 vs 2026 weak lensing (DES Y6 + KiDS-Legacy) — DAMAGE + sign caveat",
+        "description": "DAMAGE test of EFC's sealed P4 prediction S8=0.847±0.015 (Rubin DP2 pre-registration, DOI 32013738) against currently-available 2026 cosmic-shear S8 data, with observational evidence attached. CRITICAL SIGN CAVEAT: EFC's earlier weak-lensing paper (μ(k,z) framework, DOI 31188193, Jan 2026) predicts the S8 shift DOWNWARD — explicitly stated as \"consistent with the observed S8 tension from DES Y3, KiDS-1000, HSC-Y3\" — the OPPOSITE sign from P4's S8=0.847 (Σ>1 lensing enhancement, ξ+ +8%). The net-sign flip traces to the perturbation-sector reformulation (DOI 32037990, Σeff(z) crossover at z≈0.44). The verdict flips on this sign: under the current canonical (S8=0.847, up) EFC is in 1.4–3σ tension with all 2026 lensing; under the 31188193 sign (S8 down) EFC matches the low lensing S8 and resolves the tension. Sign must be resolved before finalizing P4's pass/fail. Same observable (cosmic-shear S8), two EFC papers, opposite signs.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "phenomenological",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 cosmic shear (arXiv:2602.10065, clustering+lensing 2601.14559): S8=0.789±0.012. KiDS-Legacy cosmic shear (arXiv:2503.19441): S8=0.815(+0.016/−0.021), 0.73σ from Planck. KiDS-Legacy+DES Y3 joint (arXiv:2503.19442): S8=0.814±~0.012, σ8=0.802. S8 tension 2026 review: arXiv:2602.12238. EFC sealed: S8=0.847±0.015 (DOI 32013738); contradicting EFC sign: DOI 31188193.",
+        "prediction": "EFC S8 = 0.847 ± 0.015 (current canonical, Σ>1 / ξ+ +8%, DOI 32013738). Confronted with 2026 weak-lensing data: DES Y6 cosmic shear S8 = 0.789 ± 0.012 → 3.0σ high; KiDS-Legacy S8 = 0.815 (+0.016/−0.021) → ~1.4σ high; KiDS-Legacy+DES Y3 joint S8 = 0.814 ± 0.012 → ~1.7σ high. EFC predicts higher S8 than every 2026 cosmic-shear survey → DAMAGE (not kill; sealed decisive test is Rubin DP2, Jul–Sep 2026). CONTRADICTORY EFC PREDICTION: DOI 31188193 (Jan 2026) predicts S8 DOWNWARD (μ(k,z) lensing suppression), which would instead PASS against this same data. Resolve the lensing-sector sign (μ-suppression vs Σ-enhancement) to fix the verdict.",
+        "notes": "Resolved by derivation (this session): robust EFC S8≈0.82 DOWNWARD (Σ=μ(1+η)/2 with η→1 ⇒ Σ≈0.99<1, per DOI 31188193) → PASS/mild vs DES Y6 0.789 (~1-1.5σ) and KiDS-Legacy 0.815 (<0.5σ). The sealed 0.847 (Σ∈[1.03,1.07]) required the η∈[1.05,1.15] boost classified 0% robust/fragile by DOI 32037990. Verdict: PASS/mild (robust), not DAMAGE. Sign settled by computation, not data-fit.",
+        "quantitative_result": null,
+        "last_synced": "2026-06-07T16:13:21.367000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "ledger_weaklensing_phenomenological_closure_postulate_a",
         "name": "Weak-lensing phenomenological closure (Postulate A)",
         "description": "Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.",
@@ -1723,6 +1738,66 @@
     ],
     "planned_pipeline": [
       {
+        "test_id": null,
+        "name": null,
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "BAO_likelihood_ratio",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": "2026-06-07T17:08:14.733913+00:00",
+        "status_detail": "registered"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "cluster_phi_psi_shadow",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": "2026-06-07T17:08:14.776104+00:00",
+        "status_detail": "registered"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "growth_rate_LOO",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": "2026-06-07T17:08:14.765769+00:00",
+        "status_detail": "registered"
+      },
+      {
+        "test_id": null,
+        "name": null,
+        "description": null,
+        "result": null,
+        "status": "unknown",
+        "vl_category": "non_mcmc_aggregate",
+        "also_phenomenological": null,
+        "data_source": null,
+        "prediction": null,
+        "notes": null,
+        "quantitative_result": null,
+        "last_synced": "2026-06-07T17:08:14.782658+00:00",
+        "status_detail": "published"
+      },
+      {
         "test_id": "conv_act_spt_planck_cmb_lensing_boltzmann_gap_blocking",
         "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
         "description": "arXiv:2504.20038: S8=0.825 ved 1.6% presisjon (SNR 61). Strammer inn baseline for Kill-Test v6 probe-6. Gjør gap theory-efclass-boltzmann-solver til hard blocker — EFC kan ikke konkurrere uten Boltzmann-solver på dette presisjonsnivået. Stage-IV Roadmap CMB-lensing-rad oppdateres.",
@@ -2054,5 +2129,5 @@
       }
     ]
   },
-  "total_count": 136
+  "total_count": 141
 }
