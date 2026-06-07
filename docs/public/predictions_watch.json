@@ -7,7 +7,7 @@
   "supporting_dois_april_2026": {
     "description": "DOIs published 2026-04-09 through 2026-04-28 that supply additional theoretical or empirical support for the predictions below. Each DOI is independently sealed on figshare.",
     "items": [
-      {"doi": "10.6084/m9.figshare.32084670", "title": "Structural Closure of Growth-Sector Couplings", "supports_predictions": ["P2", "P3", "P4"], "role": "Proves growth-sector closure: fσ8=0.43 and S8=0.847 are theorems, not free parameters."},
+      {"doi": "10.6084/m9.figshare.32084670", "title": "Structural Closure of Growth-Sector Couplings", "supports_predictions": ["P2", "P3", "P4"], "role": "Proves growth-sector coupling-structure closure (unique μ/Σ under EBE): fσ8=0.43 and S8≈0.82 (robust, down) are constrained by the proven coupling-structure closure (no free-parameter escape route). A constraint on coupling structure, not on parameters."},
       {"doi": "10.6084/m9.figshare.32101213", "title": "Non-MCMC Constraints on EFC α-Parameter: BAO + Growth + Clusters", "supports_predictions": ["P2", "P4"], "role": "Independent analytic marginalisation gives α ∈ [−0.72, −0.68], consistent with both freezes (−0.689, −0.702)."},
       {"doi": "10.6084/m9.figshare.32080083", "title": "EFC RCMP Test Spec: DES Y6 + KiDS Legacy Pre-Registered", "supports_predictions": ["P3", "P4"], "role": "Formal regime-consistent measurement protocol for L2 weak lensing surveys."},
       {"doi": "10.6084/m9.figshare.32080059", "title": "Parameter-Controlled Regime Transitions in EFC", "supports_predictions": ["P1", "P3"], "role": "Pre-registered transition control for CMB lensing + BAO scale boundaries."},
@@ -22,18 +22,18 @@
   "items": [
     {
       "key": "P1",
-      "name": "Lensing crossover at z ≈ 0.44",
+      "name": "Lensing crossover: robust EFC ≈ flat (near-GR); the z ≈ 0.44 crossover is fragile",
       "observable": "Σ_eff(z) lensing crossover",
-      "efc_value": "Sign change at z ≈ 0.44",
+      "efc_value": "≈ flat in z (robust; η→1 ⇒ Σ≈μ≈0.99, near-GR, monotonic, no crossover). Sign change at z ≈ 0.44 is fragile (η-dependent, 0% robust per 32037990)",
       "lcdm_value": "Monotonic",
       "arbiter": "Euclid DR1 tomography",
-      "badge_type": "KILL",
+      "badge_type": "FRAGILE",
       "seal_doi": "10.6084/m9.figshare.32037990",
-      "claim": "The effective lensing amplitude Σ_eff(z) is non-monotonic with a sign change at z ≈ 0.44. EFC predicts enhanced lensing at z < 0.4 and suppressed lensing at z > 0.5. This profile is absent in ΛCDM and in standard QS Horndeski models with α_T=0.",
+      "claim": "The non-monotonic Σ_eff(z) crossover at z ≈ 0.44 (enhancement at z < 0.4, suppression at z > 0.5) requires Σ > 1 at low z — which comes from the gravitational-slip boost η ∈ [1.05, 1.15], classified 0% robust (fragile) by EFC's own perturbation-sector analysis (DOI 32037990). The robust EFC (η→1; slip terms ε_λ, ε_K cancel under screening) gives Σ≈μ≈0.99 flat in z ⇒ no crossover (near-GR, monotonic). This profile is absent in ΛCDM and in standard QS Horndeski models with α_T=0.",
       "test": "Euclid DR1 tomographic cosmic shear (4+ z-bins, Oct 21, 2026)",
-      "falsifier": "A monotonic Σ_eff(z) across all bins with no sign change inside z ∈ [0.3, 0.6] falsifies the prediction.",
+      "falsifier": "A monotonic Σ_eff(z) across all bins with no sign change inside z ∈ [0.3, 0.6] kills only the fragile (η-boosted) crossover branch — a monotonic result is consistent with the robust EFC prediction (Σ≈μ≈0.99 flat, near-GR).",
       "falsifier_id": "F9",
-      "source_evidence": "evidence/05_results.md R8"
+      "source_evidence": "evidence/05_results.md R8; robustness per DOI 32037990 (η ∈ [1.05,1.15] = 0% robust)"
     },
     {
       "key": "P2",
@@ -52,50 +52,51 @@
     },
     {
       "key": "P3",
-      "name": "E_G enhancement: E_G^EFC/E_G^GR = 1.086 ± 0.012",
+      "name": "E_G: robust EFC ≈ 1 (no enhancement); 1.086 enhancement is fragile",
       "observable": "E_G^EFC / E_G^GR",
-      "efc_value": "1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc",
+      "efc_value": "≈1 (robust; η→1 ⇒ Σ=μ≈0.99<1 ⇒ no enhancement). 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc is fragile (η-dependent, 0% robust per 32037990)",
       "lcdm_value": "1.000 ± 0.01",
       "arbiter": "SO × Euclid DR2",
-      "badge_type": "KILL",
+      "badge_type": "FRAGILE",
       "seal_doi": "10.6084/m9.figshare.32023788",
-      "claim": "Galaxy-CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. EFC predicts E_G^EFC/E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5, driven by the combination μ < 1 with Σ > 1. As of DOI 32084670 (2026-04-23), this prediction is now structurally closed: the μ/Σ system has unique solutions under EBE constraints, eliminating any free-parameter escape route.",
+      "claim": "Galaxy-CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. The E_G enhancement E_G^EFC/E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5 rests on the gravitational-slip boost η ∈ [1.05, 1.15], which EFC's own perturbation-sector robustness analysis (DOI 32037990) classifies as 0% robust (fragile). The robust EFC prediction (η→1; slip terms ε_λ, ε_K cancel under cosmological screening) gives Σ=μ≈0.99<1 ⇒ E_G≈1 (no enhancement). The robust prediction does NOT require E_G>1.",
       "test": "Simons Observatory CMB lensing × Euclid DR2 galaxy catalogue (~2027-2028)",
-      "falsifier": "Measurement = 1.00 ± 0.01 at > 3σ (GR recovery).",
+      "falsifier": "Measurement = 1.00 ± 0.01 at > 3σ (GR recovery) would falsify the fragile enhancement, but is consistent with the robust E_G≈1 prediction.",
       "falsifier_id": "F7",
       "pass_window_low": 1.03,
       "pass_window_high": 1.14,
-      "source_evidence": "DOI 32023788, sealed 15 Apr 2026 with SHA-256 falsifier; DOI 32084670 (structural closure, 2026-04-23)"
+      "pass_window_note": "Fragile (η-dependent) pass window; the robust prediction is E_G≈1.",
+      "source_evidence": "DOI 32023788, sealed 15 Apr 2026 with SHA-256 falsifier; robustness per DOI 32037990 (η ∈ [1.05,1.15] = 0% robust)"
     },
     {
       "key": "P4",
-      "name": "Rubin DP2 cosmic shear S8 = 0.847 ± 0.015",
+      "name": "Cosmic shear S8 ≈ 0.82 (robust, shifted downward)",
       "observable": "Cosmic shear S8 (DP2)",
-      "efc_value": "0.847 ± 0.015",
+      "efc_value": "≈0.82 (robust, down; Σ=μ(1+η)/2 with η→1 ⇒ Σ≈0.99<1)",
       "lcdm_value": "0.811 ± 0.006 (Planck)",
       "arbiter": "Rubin LSST DP2",
-      "badge_type": "DAMAGE",
+      "badge_type": "PASS/mild",
       "seal_doi": "10.6084/m9.figshare.32013738",
-      "claim": "Large-scale cosmic shear ξ_+ enhancement of ~8% at angular scales 20'-300', producing S8 = 0.847 ± 0.015. Discriminates EFC from f(R) (which predicts μ > 1) and from background-only entropic gravity models. Now also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22) which specifies the regime-consistent measurement procedure for current Stage-IV weak lensing data.",
+      "claim": "Derivation result, not data-fit: the robust EFC growth sector gives Σ=μ(1+η)/2 with η→1 ⇒ Σ≈0.99<1, so S8 shifts slightly downward to S8≈0.82 (DOI 31188193: 'S8 shift downward… consistent with the S8 tension'). The earlier S8 = 0.847 ± 0.015 value (cosmic shear ξ_+ enhancement of ~8% at angular scales 20'-300', requiring Σ ∈ [1.03,1.07]) depended on the η ∈ [1.05,1.15] boost = 0% robust/fragile. New canonical: S8≈0.82 (robust, down). vs DES Y6 0.789 (~1-1.5σ), KiDS-Legacy 0.815 (<0.5σ) ⇒ PASS/mild. Discriminates EFC from f(R) (which predicts μ > 1) and from background-only entropic gravity models. Also testable via the formal RCMP DES Y6 + KiDS Legacy protocol (DOI 32080083, 2026-04-22).",
       "test": "Rubin LSST DP2 (Jul-Sep 2026); DES Y6 + KiDS Legacy via RCMP (2026)",
-      "falsifier": "DP2 + Euclid DR1 combined return S8 consistent with Planck ΛCDM (0.811 ± 0.006) at < 1σ — the S8 tension dissolves and EFC loses its primary motivation.",
+      "falsifier": "DP2 + Euclid DR1 combined return S8 consistent with Planck ΛCDM (0.811 ± 0.006) at < 1σ — EFC loses its primary motivation.",
       "falsifier_id": "F4",
-      "source_evidence": "DOI 32013738 (sealed); DOI 32080083 (RCMP test spec, 2026-04-22); DOI 32084670 (structural closure)"
+      "source_evidence": "DOI 32013738 (sealed); S8-direction per DOI 31188193 (robust downward shift); DOI 32080083 (RCMP test spec, 2026-04-22); DOI 32084670 (coupling-structure closure)"
     },
     {
       "key": "P5",
-      "name": "Horndeski no-go (structural)",
+      "name": "Horndeski no-go: robust EFC does not exclude Horndeski",
       "observable": "Horndeski no-go",
-      "efc_value": "μ < 1 ∧ Σ > 1 forbidden with α_T=0",
+      "efc_value": "EFC reaches the forbidden (μ < 1 ∧ Σ > 1) quadrant only via the fragile η-boost (η-dependent, 0% robust per 32037990). Robust EFC has Σ≈μ<1, outside the forbidden quadrant — does not exclude Horndeski",
       "lcdm_value": "Allowed",
       "arbiter": "Parameter scan (done)",
-      "badge_type": "STRUCTURAL",
+      "badge_type": "FRAGILE",
       "seal_doi": "10.6084/m9.figshare.32037990",
-      "claim": "Standard quasi-static Horndeski with α_T=0 and c_s² > 0 cannot produce μ < 1 and Σ > 1 simultaneously — the action forces Σ ≤ μ universally. EFC breaks this via the Lagrange-multiplier flow constraint.",
-      "test": "Full numerical scan of (α_B, α_M) parameter space (done, 135,000 points; 0 Horndeski solutions vs 15 EFC solutions)",
-      "falsifier": "If P1+P3 (lensing enhancement with growth suppression) is confirmed, standard Horndeski is excluded as the mechanism; EFC or an equivalent slip-extension is required.",
+      "claim": "Standard quasi-static Horndeski with α_T=0 and c_s² > 0 cannot produce μ < 1 and Σ > 1 simultaneously — the action forces Σ ≤ μ universally. EFC was claimed to break this only by reaching the forbidden (μ < 1, Σ > 1) quadrant, which requires the gravitational-slip boost η > 1 (the Σ > 1 piece) — classified 0% robust (fragile) per DOI 32037990. The robust EFC has Σ≈μ<1 (both suppressed, η→1), so it does NOT occupy the forbidden quadrant and does NOT exclude Horndeski.",
+      "test": "Full numerical scan of (α_B, α_M) parameter space (done, 135,000 points; 0 Horndeski solutions vs 15 EFC solutions — the 15 EFC solutions all sit in the fragile η-boosted region)",
+      "falsifier": "Doubly-conditional: EFC distinguishes itself from Horndeski only via the fragile η-boost. The earlier 'if P1+P3 are confirmed ⇒ standard Horndeski is excluded' wording is now doubly-conditional — both P1 and P3 are fragile/η-dependent, so the exclusion holds only if both fragile branches survive Stage-IV.",
       "falsifier_id": "F8",
-      "source_evidence": "evidence/05_results.md R9, DOI 32037990 Result 1"
+      "source_evidence": "evidence/05_results.md R9, DOI 32037990 Result 1; robustness per same DOI (η-boost = 0% robust)"
     },
     {
       "key": "P6",
@@ -116,31 +117,31 @@
       "key": "P7",
       "name": "H0 three-window decomposition",
       "observable": "H0 inferred per regime window (L0/L1/L2)",
-      "efc_value": "H0_L0 ≈ 67.5, H0_L1 ≈ 69.5, H0_L2 ≈ 73.5 (regime-mismatch resolution)",
+      "efc_value": "Triple-null test: non-null predicted in all three windows. H0_L0 ≈ 67.5, H0_L1 ≈ 69.5, H0_L2 ≈ 73.5 is an interpretive mapping, not the paper's decomposition",
       "lcdm_value": "Single H0 expected; tension persists",
       "arbiter": "Joint Planck + DESI + SH0ES + Stage-IV",
       "badge_type": "STRUCTURAL",
       "seal_doi": "10.6084/m9.figshare.32113399",
-      "claim": "The Hubble tension is not a free-parameter degeneracy but a regime-mixing artefact. EFC predicts that Planck (L0 background), DESI BAO (L1 transition), and SH0ES (L2 perturbation) measure H0 in distinct regime windows that do NOT need to coincide. Three-window decomposition reproduces all three observed values within EFC consistency. Atlas role upgraded 2026-04-29 from addresses_open to proposes_resolution.",
-      "test": "Joint regime-disaggregated chain on Planck + DESI DR2 BAO + SH0ES + Euclid DR1 shear; regime-mixing operator from EFC EFT (DOI 31878334).",
-      "falsifier": "If a single common H0 fits all three regime probes within ±0.5 km/s/Mpc, the regime-mismatch hypothesis is falsified.",
+      "claim": "The Hubble tension is not a free-parameter degeneracy but a regime-mismatch artefact. EFC predicts that Planck (L0 background), DESI BAO (L1 transition), and SH0ES (L2 perturbation) measure H0 in distinct regime windows that do NOT need to coincide. The three-window decomposition (thermal/geometric/structural redshift) is a synthesis of existing EFC results, not a new derivation; the projection P_ξ is specified to first order only. The H0 triplet is an interpretive mapping, not the paper's decomposition. Atlas role upgraded 2026-04-29 from addresses_open to proposes_resolution.",
+      "test": "Joint regime-disaggregated chain on Planck + DESI DR2 BAO + SH0ES + Euclid DR1 shear (three-window decomposition per DOI 32113399).",
+      "falsifier": "Triple-null test: EFC predicts a non-null signal in all three windows; a triple-null result consistent with ΛCDM in every window is a clean falsification.",
       "falsifier_id": null,
-      "source_evidence": "DOI 32113399 (2026-04-28); supports atlas role-upgrade EFC → H0_tension proposes_resolution"
+      "source_evidence": "DOI 32113399 (2026-04-28), a synthesis of existing EFC results (not a new derivation); supports atlas role-upgrade EFC → H0_tension proposes_resolution"
     },
     {
       "key": "P8",
-      "name": "Bar-instability falsification (Π_EFC criterion)",
+      "name": "A falsified bar-instability criterion reveals an independent disk-state parameter",
       "observable": "Bar fraction f_bar(M_*, σ_R, κ_eff)",
-      "efc_value": "Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 (stable); EFC predicts modified κ² from entropy-gradient coupling",
+      "efc_value": "Π_min falsified as a bar predictor (AUC=0.217, anti-correlated, captures 0/12 bars, N=43 SPARC); retained as an independent disk-state parameter (ρ[Π,logΣ]=−0.71, ρ[Π,f_gas]=+0.65, n=112)",
       "lcdm_value": "Efstathiou-Lake-Negroponte (ELN) criterion: ε_ELN = V_max/√(GM_d/R_d) > 1.1 implies bar instability",
       "arbiter": "SPARC + S4G + Galaxy Zoo",
-      "badge_type": "L3 MONOPOLY",
+      "badge_type": "FALSIFIED",
       "seal_doi": "10.6084/m9.figshare.32101111",
-      "claim": "The classical Efstathiou-Lake-Negroponte (ELN) bar-instability criterion is observationally falsified at population level. EFC replaces it with Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 where κ_eff incorporates the entropy-gradient correction. Among 42 frameworks in the EFC atlas, EFC is the SOLE addresser of bar_instability_L3 (no ΛCDM, MOND, Verlinde, f(R), DGP equivalent prediction exists).",
-      "test": "Cross-population test against SPARC (175 galaxies), S4G (~2300), Galaxy Zoo bar-fractions; falsification protocol pre-registered as vc_140e79363cbe.",
-      "falsifier": "If observed bar fractions follow ELN within ±10% across SPARC+S4G mass bins, the EFC Π-criterion is falsified.",
+      "claim": "EFC's Π bar-criterion Π_EFC = σ_R·κ_eff/(3.36·G·Σ) < 1 (κ_eff incorporates the entropy-gradient correction) was tested on N=43 SPARC galaxies and is FALSIFIED as a bar predictor: AUC=0.217 (anti-correlated), capturing 0/12 bars. Π_min is retained NOT as a bar predictor but as an independent disk-state parameter (ρ[Π,logΣ]=−0.71, ρ[Π,f_gas]=+0.65, n=112).",
+      "test": "Cross-population test against SPARC (N=43 with the bar label; 175 in the rotation-curve sample), S4G (~2300), Galaxy Zoo bar-fractions; protocol pre-registered as vc_140e79363cbe.",
+      "falsifier": "Falsified: AUC=0.217 (anti-correlated, 0/12 bars captured) on N=43 SPARC rejects Π as a bar predictor.",
       "falsifier_id": null,
-      "source_evidence": "DOI 32101111 (2026-04-26); fills atlas gap bar_instability_L3 (only L3 monopoly in EFC atlas)"
+      "source_evidence": "DOI 32101111 (2026-04-26), 'A Falsified Bar-Instability Criterion Reveals an Independent Disk-State Parameter'"
     }
   ]
 }

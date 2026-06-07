@@ -232,12 +232,14 @@ def apply_tests_updated(tests_by_id, updates, source_paper):
 def recount_stats(tests_data, stats_data):
     """Recompute derived counters in stats.json from tests.json.
 
-    n_falsified semantics: a test row counts as falsified if
-    result == "COLLAPSED" OR status == "failed". The union is used
-    because historically some rows carry the verdict in `result`
-    (new entries) and others in `status` (legacy entries). The
-    deterministic sync normalises on this union until a manual
-    re-baselining pass reconciles the two fields.
+    n_falsified semantics: a test row counts as falsified iff its
+    `status_detail` is FAILED or FALSIFIED. status_detail is the
+    canonical verdict field for Neo4j-synced rows; `result` and
+    `status` are frequently left as COLLAPSED/unknown by the
+    Neo4j->tests.json mapper and therefore under-report the true
+    count (the historical result/status union missed rows whose
+    verdict only reached status_detail, e.g. the bar-instability
+    falsification 32101111).
     """
     per_cat = {}
     n_falsified = 0
@@ -246,9 +248,8 @@ def recount_stats(tests_data, stats_data):
         per_cat[cat] = len(rows)
         total += len(rows)
         for r in rows:
-            result = str(r.get("result") or "").strip()
-            status = str(r.get("status") or "").strip()
-            if result == "COLLAPSED" or status == "failed":
+            detail = str(r.get("status_detail") or "").strip().upper()
+            if detail in ("FAILED", "FALSIFIED"):
                 n_falsified += 1
     changes = []
     for k in ("physics_test", "consistency_check", "phenomenological",

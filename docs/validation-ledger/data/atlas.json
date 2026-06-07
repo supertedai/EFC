@@ -813,7 +813,8 @@
       "phenomenon": "H0_tension",
       "mechanism": "three_window_decomposition_L0_L1_L2",
       "role": "proposes_resolution",
-      "supporting_doi": "10.6084/m9.figshare.32113399"
+      "supporting_doi": "10.6084/m9.figshare.32113399",
+      "caveat": "Gated on the synthesis-note paper 32113399, whose projection P_ξ is first-order only. The three-window decomposition is thermal/geometric/structural redshift, NOT an H0-triplet, and is NOT tied to DOI 31878334 (the μ(g)-EFT-with-microphysical-gap paper)."
     },
     {
       "framework": "LCDM",
@@ -1112,8 +1113,8 @@
     {
       "framework": "EFC",
       "phenomenon": "mu_sigma_plane",
-      "mechanism": "mu_lt_1_Sigma_gt_1_forbidden_Horndeski",
-      "role": "predicts_quadrant"
+      "mechanism": "mu_lt_1_Sigma_gt_1 reached only via eta-boost (eta-dependent, 0% robust per 32037990); robust EFC has Sigma≈mu<1 outside forbidden quadrant → does not exclude Horndeski",
+      "role": "predicts_quadrant_fragile"
     },
     {
       "framework": "Horndeski",
@@ -1142,8 +1143,8 @@
     {
       "framework": "EFC",
       "phenomenon": "phi_psi_slip",
-      "mechanism": "preregistered_eta_eq_0.9993",
-      "role": "predicts_sealed"
+      "mechanism": "preregistered_eta_eq_0.9993; z≈0.44 crossover needs Sigma>1 from the eta∈[1.05,1.15] boost (0% robust per 32037990) — robust EFC (eta→1) is monotonic ≈GR, like the rivals",
+      "role": "predicts_sealed_fragile"
     },
     {
       "framework": "Galileon",
@@ -1412,10 +1413,10 @@
     {
       "framework": "EFC",
       "phenomenon": "bar_instability_L3",
-      "mechanism": "kappa_squared_modification_via_entropy_flow_g_EFC_alpha_grad_S",
-      "role": "sole_addresser_falsifies_ELN",
+      "mechanism": "Pi_bar_criterion_FALSIFIED_local_Toomre_Q_cannot_predict_global_m2_mode; Pi_retained_as_disk_state_parameter",
+      "role": "FALSIFIED",
       "supporting_doi": "10.6084/m9.figshare.32101111",
-      "criterion": "Pi_EFC = (sigma_R * kappa_eff) / (3.36 * G * Sigma) < 1"
+      "criterion": "Pi_EFC = (sigma_R * kappa_eff) / (3.36 * G * Sigma) < 1 FALSIFIED as bar predictor (AUC=0.217, 0/12 bars); Pi_min retained as disk-state proxy (rho[Pi,logSigma]=-0.71, rho[Pi,f_gas]=+0.65)"
     }
   ],
   "tier1_demo_predictions": [
@@ -1498,23 +1499,23 @@
       "id": "P1",
       "phenomenon": "phi_psi_slip",
       "rcmp_layer": "L2",
-      "badge": "KILL",
-      "title": "Φ/Ψ slip: non-monotonic Σ_eff(z) with sign change near z ≈ 0.44",
+      "badge": "FRAGILE",
+      "title": "Φ/Ψ slip: robust EFC ≈ flat Σ_eff(z) (near-GR); the z ≈ 0.44 crossover is fragile (η-dependent, 0% robust)",
       "observable": "Σ_eff(z) lensing crossover",
-      "efc_value": "Sign change at z ≈ 0.44 (η = 0.9993 at reference)",
+      "efc_value": "≈ flat in z (robust; η→1 ⇒ Σ≈μ≈0.99, near-GR, monotonic, no crossover). Sign change at z ≈ 0.44 (η = 0.9993 at reference) is fragile (η-dependent, 0% robust per 32037990)",
       "lcdm_value": "Monotonic (no crossover)",
-      "claim": "The effective lensing amplitude Σ_eff(z) is non-monotonic with a sign change at z ≈ 0.44. EFC predicts enhanced lensing at z < 0.4 and suppressed lensing at z > 0.5. This profile is absent in ΛCDM and in standard QS Horndeski models with α_T = 0.",
+      "claim": "The non-monotonic Σ_eff(z) crossover at z ≈ 0.44 (enhanced lensing at z < 0.4, suppressed at z > 0.5) requires Σ > 1 at low z, which comes from the slip boost η ∈ [1.05, 1.15] — classified 0% robust (fragile) by EFC's own robustness analysis (DOI 10.6084/m9.figshare.32037990). Robust EFC (η → 1; slip terms ε_λ, ε_K cancel under screening) gives Σ ≈ μ ≈ 0.99 flat in z → no crossover (near-GR, monotonic). The robust prediction does NOT require a sign change. Absent in ΛCDM and in standard QS Horndeski models with α_T = 0.",
       "mechanism": "Sigma_eff_sign_change_non_monotonic",
       "seal_doi": "10.6084/m9.figshare.32037990",
       "hash": "7a850cfa58477701",
       "frozen_at": "2026-02-18T05:07:13Z",
       "falsifier_id": "F9",
-      "falsifier_condition": "Monotonic Σ_eff(z) across all bins with no sign change inside z ∈ [0.3, 0.6]",
+      "falsifier_condition": "Monotonic Σ_eff(z) across all bins with no sign change inside z ∈ [0.3, 0.6] — kills only the fragile η-boosted crossover branch; a monotonic result is consistent with robust EFC (Σ ≈ μ ≈ 0.99 flat, near-GR)",
       "arbiter_instrument": "Euclid DR1 cosmic shear tomography (October 2026)",
-      "source_evidence": "evidence/05_results.md R8",
+      "source_evidence": "evidence/05_results.md R8; robustness per DOI 32037990 (η ∈ [1.05,1.15] = 0% robust)",
       "rival_count_divergent": 13,
       "relative_divergence": 1.0,
-      "exclusion_lemma": "GW-speed constraint (c_T = c) forces α_T = 0 in Horndeski/QS class, which forces Σ ≤ μ pointwise; therefore no sign-change of Σ_eff is possible in that class. P1 does not just discriminate EFC vs ΛCDM — it falsifies the entire QS class simultaneously.",
+      "exclusion_lemma": "GW-speed constraint (c_T = c) forces α_T = 0 in Horndeski/QS class, which forces Σ ≤ μ pointwise; therefore no sign-change of Σ_eff is possible in that class. EFC reaches a sign-change only via the fragile η-boost (Σ > 1, 0% robust per 32037990). The QS-class exclusion therefore holds only if the fragile crossover branch is observed; the robust EFC (Σ ≈ μ ≈ 0.99 flat) shares the monotonic behaviour of the QS class and does not exclude it.",
       "stage_iii_sandwich": [
         {
           "survey": "KiDS-1000 shear",
@@ -1532,14 +1533,14 @@
           "result": "multi-epoch pattern in z=0.3–0.7 suggests regime transition"
         }
       ],
-      "narrative_intro": "Energy-Flow Cosmology predicts a non-monotonic gravitational slip: Σ_eff(z) enhanced below z ≈ 0.4, suppressed above z ≈ 0.5, with a sealed crossover near z ≈ 0.44. All 13 rival frameworks in the atlas predict monotonic behaviour with relative divergence = 1.0. GW-speed constraints structurally forbid the crossover for the entire QS Horndeski class — so a sign-change observation by Euclid DR1 would not just favour EFC, it would exclude the QS class as a whole."
+      "narrative_intro": "The non-monotonic crossover (Σ_eff enhanced below z ≈ 0.4, suppressed above z ≈ 0.5, sealed near z ≈ 0.44) requires Σ > 1 at low z, which comes from the slip boost η ∈ [1.05, 1.15] — classified 0% robust (fragile) by EFC's own robustness analysis (DOI 32037990). Under the robust derivation η → 1 (slip terms ε_λ, ε_K cancel under screening), so Σ ≈ μ ≈ 0.99 flat in z and there is no crossover (near-GR, monotonic). The 13 rival frameworks all predict monotonic behaviour; a monotonic Euclid DR1 result kills only the fragile η-boost branch and is consistent with robust EFC."
     },
     {
       "id": "P3",
       "phenomenon": "EG_statistic",
       "rcmp_layer": "L2",
-      "badge": "KILL",
-      "title": "E_G enhancement: E_G^EFC / E_G^GR = 1.086 ± 0.012",
+      "badge": "FRAGILE",
+      "title": "E_G enhancement: E_G^EFC / E_G^GR = 1.086 ± 0.012 (fragile, η-dependent, 0% robust)",
       "observable": "E_G^EFC / E_G^GR at k_c ≈ 0.05 h/Mpc, z_eff ≈ 0.5",
       "efc_value": "1.086 ± 0.012",
       "lcdm_value": "1.000 ± 0.01",
@@ -1547,7 +1548,7 @@
         "low": 1.03,
         "high": 1.14
       },
-      "claim": "Galaxy–CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. EFC predicts E_G^EFC / E_G^GR = 1.086 ± 0.012 at k_c ≈ 0.05 h/Mpc and z_eff ≈ 0.5, driven by the combination μ < 1 with Σ > 1.",
+      "claim": "Galaxy–CMB-lensing cross-correlation combined with RSD produces the gravitational slip estimator E_G. The 1.086 ± 0.012 enhancement (at k_c ≈ 0.05 h/Mpc, z_eff ≈ 0.5) rests on the slip boost η ∈ [1.05, 1.15], which EFC's own robustness analysis (DOI 10.6084/m9.figshare.32037990) classifies as 0% robust (fragile). Robust EFC (η → 1) gives Σ = μ ≈ 0.99 < 1 → E_G ≈ 1 (no enhancement). The 1.086 value is derivation-grounded only under the fragile η-boost branch, not the robust derivation.",
       "mechanism": "scale_independent_slip",
       "seal_doi": "10.6084/m9.figshare.32023788",
       "frozen_at": "2026-04-15",
@@ -1572,18 +1573,18 @@
           "result": "independent galaxy–CMB slip measurement expected"
         }
       ],
-      "narrative_intro": "The E_G statistic is skala-uavhengig by construction — it isolates the gravitational slip Σ/μ at a reference point. EFC predicts an 8.6% enhancement over GR because regime-transition dynamics produces μ < 1 while S-flow coupling drives Σ > 1. No QS Horndeski model can match this signature. SO × Euclid DR2 will measure E_G directly — a flat (GR) result falsifies the slip prediction."
+      "narrative_intro": "The E_G statistic is skala-uavhengig by construction — it isolates the gravitational slip Σ/μ at a reference point. The 8.6% enhancement (1.086) is fragile: it depends on the slip boost η ∈ [1.05, 1.15], which EFC's own robustness analysis (DOI 32037990) classifies as 0% robust. Under the robust derivation η → 1, so Σ = μ ≈ 0.99 < 1 and E_G ≈ 1 — no enhancement. This is therefore not a clean KILL: SO × Euclid DR2 measuring a flat (GR) E_G is consistent with robust EFC, and only the fragile η-boost branch is falsified by it."
     },
     {
       "id": "P4",
       "phenomenon": "S8_tension",
       "rcmp_layer": "L2",
-      "badge": "DAMAGE",
-      "title": "Rubin DP2 cosmic shear S₈ = 0.847 ± 0.015",
+      "badge": "PASS",
+      "title": "Cosmic shear S₈ ≈ 0.82 (robust EFC, downward suppression)",
       "observable": "Cosmic shear S₈ at 20′–300′",
-      "efc_value": "0.847 ± 0.015",
+      "efc_value": "≈ 0.82 (robust); 0.847 ± 0.015 only under fragile η-boost",
       "lcdm_value": "0.811 ± 0.006 (Planck)",
-      "claim": "Large-scale cosmic shear ξ_+ enhancement of ~8% at angular scales 20′–300′, producing S₈ = 0.847 ± 0.015. Discriminates EFC from f(R) (which predicts μ > 1) and from background-only entropic gravity models.",
+      "claim": "Robust EFC gives Σ ≈ 0.99 < 1, suppressing growth DOWNWARD to S₈ ≈ 0.82 (DOI 10.6084/m9.figshare.31188193). The earlier upward value S₈ = 0.847 ± 0.015 (Σ ∈ [1.03, 1.07]) required the 0%-robust η-boost and is now superseded. Canonical robust S₈ ≈ 0.82 sits between DES Y6 (0.789) and KiDS-Legacy (0.815) → PASS/mild, not DAMAGE.",
       "mechanism": "mu_lt_1_in_L2",
       "seal_doi": "10.6084/m9.figshare.32013738",
       "falsifier_id": "F4",
@@ -1608,28 +1609,33 @@
         },
         {
           "survey": "DES Y6",
-          "role": "Stage-III high",
-          "result": "sync with EFC suppression trajectory"
+          "role": "Stage-III / Stage-IV low side",
+          "result": "S₈ = 0.789 — below robust-EFC ≈ 0.82, consistent with downward suppression"
+        },
+        {
+          "survey": "KiDS-Legacy",
+          "role": "Stage-IV high side",
+          "result": "S₈ = 0.815 — brackets robust-EFC ≈ 0.82 from above; PASS/mild"
         }
       ],
-      "narrative_intro": "EFC predicts a specific S₈ position that is higher than Planck but lower than naive μ>1 modifications of gravity like f(R). The Stage-III triple (KiDS ↔ DES ↔ Planck) already brackets the EFC value from below and above via survey-dependent kernel integrals. Rubin DP2 is the first Stage-IV arbiter with precision to test the 0.847 point directly."
+      "narrative_intro": "Robust EFC predicts a DOWNWARD S₈ suppression to ≈ 0.82 (Σ ≈ 0.99 < 1, DOI 31188193), not the earlier upward 0.847. The upward 0.847 value needed the 0%-robust η-boost (Σ ∈ [1.03, 1.07]) and is superseded. The robust ≈ 0.82 prediction is bracketed by DES Y6 (0.789) and KiDS-Legacy (0.815) → PASS/mild rather than DAMAGE. Discriminates EFC from f(R) (which predicts μ > 1, S₈ upward)."
     },
     {
       "id": "P5",
       "phenomenon": "mu_sigma_plane",
       "rcmp_layer": "L2",
-      "badge": "STRUCTURAL",
-      "title": "Horndeski no-go: μ < 1 ∧ Σ > 1 forbidden with α_T = 0",
+      "badge": "FRAGILE",
+      "title": "Horndeski no-go: robust EFC (Σ ≈ μ < 1) does not exclude Horndeski (η-dependent, 0% robust)",
       "observable": "μ(k,a) and Σ(k,a) quadrant",
-      "efc_value": "μ < 1 ∧ Σ > 1 achievable via flow-constraint",
+      "efc_value": "Robust: Σ ≈ μ < 1 (outside forbidden quadrant). (μ < 1 ∧ Σ > 1) reached only via fragile η-boost (η-dependent, 0% robust per 32037990)",
       "lcdm_value": "μ = Σ = 1 (GR)",
-      "claim": "Standard quasi-static Horndeski with α_T = 0 and c_s² > 0 cannot produce μ < 1 and Σ > 1 simultaneously — the action forces Σ ≤ μ universally. EFC breaks this via the Lagrange-multiplier flow constraint.",
+      "claim": "Standard quasi-static Horndeski with α_T = 0 and c_s² > 0 cannot produce μ < 1 and Σ > 1 simultaneously — the action forces Σ ≤ μ universally. EFC was claimed to break this only by reaching the forbidden quadrant via the slip boost η > 1 (the Σ > 1 piece), classified 0% robust (fragile) per DOI 32037990. The robust EFC (η → 1) has Σ ≈ μ < 1 and does not break the no-go, so it does NOT exclude Horndeski.",
       "mechanism": "mu_lt_1_Sigma_gt_1_forbidden_Horndeski",
       "seal_doi": "10.6084/m9.figshare.32037990",
       "falsifier_id": "F8",
-      "falsifier_condition": "If P1+P3 (lensing enhancement with growth suppression) is confirmed, standard Horndeski is excluded; EFC or an equivalent slip-extension is required.",
+      "falsifier_condition": "Doubly-conditional: standard Horndeski is excluded only if BOTH P1 and P3 are confirmed — and both rest on the fragile η-boost (0% robust). The robust EFC shares the QS-class (Σ ≤ μ) behaviour and does not exclude it.",
       "arbiter_instrument": "Parameter scan (completed)",
-      "source_evidence": "evidence/05_results.md R9, DOI 32037990 Result 1",
+      "source_evidence": "evidence/05_results.md R9, DOI 32037990 Result 1; robustness per same DOI (η-boost = 0% robust)",
       "stage_iii_sandwich": [
         {
           "survey": "Horndeski parameter scan",
@@ -1647,7 +1653,7 @@
           "result": "degeneracy valley at (μ=0.94, Σ=1.05) accessible only via slip-extension"
         }
       ],
-      "narrative_intro": "P5 is the meta-prediction that makes P1 and P3 into exclusion lemmas. It says: no quasi-static Horndeski theory can occupy the quadrant EFC predicts. The proof is parameter-scan + GW170817 anchor. If P1 or P3 passes, the entire QS class is falsified simultaneously — not just ΛCDM."
+      "narrative_intro": "P5 was the meta-prediction that turned P1 and P3 into exclusion lemmas: no quasi-static Horndeski theory can occupy the (μ < 1, Σ > 1) quadrant. But EFC reaches that quadrant only via the slip boost η > 1 (the Σ > 1 piece), classified 0% robust (fragile) per DOI 32037990. The robust EFC has Σ ≈ μ < 1 (both suppressed) and does NOT occupy the forbidden quadrant. The QS-class exclusion is therefore doubly-conditional — it holds only if both the fragile P1 and P3 branches survive Stage-IV."
     },
     {
       "id": "KT-4",
