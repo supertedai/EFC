@@ -9,10 +9,10 @@
     "rule": "falsification_status != model_preference (EBE governance)."
   },
   "numbers": {
-    "total_public": 141,
+    "total_public": 142,
     "categories": {
       "physics_test": 48,
-      "consistency_check": 21,
+      "consistency_check": 22,
       "phenomenological": 17,
       "framework_constraint": 29,
       "planned_pipeline": 26
@@ -113,7 +113,8 @@
     "RESOLVED 2026-06-08 (alpha/dAIC): 0.68sigma confirmed (graph emcee, alpha=-0.14+/-0.21); BACKGROUND fit dAIC=+1.59 (graph-verified; was wrongly stated +4.05); +4.05 is the separate Variant-H growth-extension MCMC. Both prefer LCDM mildly.",
     "RESOLVED 2026-06-08 (survival 105/115): consistent + transparently derived (active = 141 - 26 planned = 115; survived = 115 - 10 falsified = 105). Prior 'DO_NOT_cite' too strict. CAVEAT: 'survived'='not-falsified'; ~77 of 115 active are status=pending (not executed); stricter executed-and-passed subset = 43/53 (public). Both framings valid with stated scope.",
     "RESOLVED 2026-06-08 (P1 phi_psi_slip): extractable in atlas.json (efc~flat/near-GR robust, lcdm monotonic, 13 rival frameworks divergent, relative_divergence=1.0). Prior 'null/broken' outdated. BUT robust EFC is near-GR => WEAK discriminator vs LCDM; strong-divergence (crossover) version was the 0%-robust eta-boost.",
-    "RESOLVED 2026-06-08 (S8 0.789): = DES Y6 3x2pt (DOI 31951992). KiDS-Legacy=0.815. Robust EFC S8~0.82 bracketed by both => PASS/mild."
+    "RESOLVED 2026-06-08 (S8 0.789): = DES Y6 3x2pt (DOI 31951992). KiDS-Legacy=0.815. Robust EFC S8~0.82 bracketed by both => PASS/mild.",
+    "PROPAGATED 2026-06-08: +1 public consistency_check = cosmic-shear S8-amplitude first-look (vc_24f523b0a34c -> EFCValidation; robust EFC S8~0.82 best fit, fragile eta-boost disfavoured ~3.3sigma; FIRST-LOOK scope, status=planned pending full covariance + Euclid Sigma_eff shape). Counts: total_public 141->142, consistency_check 21->22. P2 (fsigma8) + F9 (Sigma_eff crossover STRUCTURE) now reproducible from the production engine -- Likelihood Ledger entries reproduce_growth_fs8.py + reproduce_lensing_sigma_eff.py (copy==production, max deviation 0.0)."
   ],
   "bottom_line": "EFC is non-rejectable, not a breakthrough; LCDM is preferred in the joint fits. Regime-stratified: L0/L1 recovers LCDM (a designed feature), L2 is the open frontier (fragile enhancements, alpha-signal collapsed, P2 (fsigma8) decisive, P1 (Phi/Psi slip) weak in robust EFC (near-GR)), L3 is a genuine strength (galactic dynamics without dark matter, MOND-class). The P4 sign is decisive and RCMP-sharpening. Internal-layer numbers are only partially verified (graph degraded); cite with scope."
 }
