@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-06-08T15:29:24Z",
+  "generated_at": "2026-06-08T21:29:38Z",
   "categories": {
     "physics_test": [
       {
@@ -305,7 +305,7 @@
         "status_detail": "PASSED"
       },
       {
-        "test_id": "grav_integration_2026-06-08_115626_aqual",
+        "test_id": "grav_integration_2026-06-08_181320_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -395,7 +395,7 @@
         "status_detail": "PENDING"
       },
       {
-        "test_id": "grav_kt1_2026-06-08_115626_aqual",
+        "test_id": "grav_kt1_2026-06-08_181320_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -410,7 +410,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-06-08_115626_aqual",
+        "test_id": "grav_kt3_2026-06-08_181320_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -425,7 +425,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-06-08_115626_aqual",
+        "test_id": "grav_kt2_2026-06-08_181320_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -1258,7 +1258,7 @@
         "name": "Weak-lensing shear (Case A)",
         "description": "KiDS-1000 Flinc ξ±",
         "result": "αL2= 0.10 ± 0.01; Δ(−2 ln L) = −50.9S₈ = 0.685 (EFC) vs 0.739 (ΛCDM)",
-        "status": "partial",
+        "status": "unknown",
         "vl_category": "phenomenological",
         "also_phenomenological": true,
         "data_source": "KiDS-1000 Flinc ξ±",
@@ -1266,7 +1266,7 @@
         "notes": "Strong fit improvement, but EFC preferslowerS₈,increasingPlanck tension (3.6σ vs 2.3σ).\n        Case A is phenomenological lensing boost, not S₈ tension solution.",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "partial"
+        "status_detail": "PARTIAL"
       },
       {
         "test_id": null,
@@ -1847,7 +1847,7 @@
         "name": "Big Bang Nucleosynthesis expansion-rate bound",
         "description": "⚪",
         "result": "Planned – early-time suppression consistency check",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Primordial D/H, He⁴ abundance",
@@ -1855,7 +1855,7 @@
         "notes": "Big Bang Nucleosynthesis expansion-rate bound | ⚪ | ⚪ | ✅ | L0 regime hard constraint. Early-time suppression must ensure ΔH/H ≪ 1 at MeV temperatures. Equivalent to ΔNeffbound. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "freeze_20260221_160857",
@@ -1907,7 +1907,7 @@
         "name": "CMB polarization & lensing internal consistency (TE/EE/φφ)",
         "description": "⚪",
         "result": "Planned – Boltzmann-level test required",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Planck 2018 TE/EE + CMB lensing",
@@ -1915,14 +1915,14 @@
         "notes": "CMB polarization & lensing internal consistency (TE/EE/φφ) | ⚪ | ⚪ | ✅ | Linear-regime metric and potential evolution constraint. Confirms that regime suppression fully removes EFC effects during recombination and linear post-recombination evolution. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_cmb_power_spectrum",
         "name": "CMB power spectrum",
         "description": "⚪",
         "result": "GR recovery expected (Boltzmann validation pending)",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Planck 2018 (TT)",
@@ -1930,7 +1930,7 @@
         "notes": "CMB power spectrum | ⚪ | ⚪ | ✅ | ΛCDM preferred in L0; EFC dynamically suppressed. EFC terms expected to vanish at recombination (Θ(ρ→0)); explicit Boltzmann-level validation pending. | 31095466",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "conv_ct_05_full_entropy_gradient_pipeline",
@@ -1952,7 +1952,7 @@
         "name": "Cluster abundance / mass function N(M,z)",
         "description": "⚪",
         "result": "Planned – methodology defined",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "eROSITA / SPT / Planck SZ",
@@ -1960,14 +1960,14 @@
         "notes": "Cluster abundance / mass function N(M,z) | ⚪ | ⚪ | ✅ | L2–L3 integrated growth test: Mass function evolution N(M,z) discriminates between EFC and ΛCDM structure formation. Tests whether geometry consistency extends to actual halo abundance. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_cluster_shockfront_lensing_asymmetry",
         "name": "Cluster shock-front lensing asymmetry",
         "description": "⚪",
         "result": "Pre-registered – data analysis pending",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "JWST κ maps + Chandra kT, ne(Bullet, Abell 2146)",
@@ -1975,7 +1975,7 @@
         "notes": "Cluster shock-front lensing asymmetry | ⚪ | ⚪ | ⚪ | L2 geometric symmetry test. Pre-registered directional residual estimator (Asig) measures whether lensing convergence residuals show shock-locked asymmetry after density-based mass model subtraction. Discriminates isotropic metric theories from entropy- or structure-coupled anisotropic lensing responses. | Methodology locked (2026)",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_darkenergy_evolution_wz",
@@ -1997,7 +1997,7 @@
         "name": "EGgravitational slip consistency (lensing × RSD)",
         "description": "⚪",
         "result": "Planned – cross-probe estimator implementation",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "DESI + KiDS/DES lensing",
@@ -2005,7 +2005,7 @@
         "notes": "EGgravitational slip consistency (lensing × RSD) | ⚪ | ⚪ | ✅ | Direct observable linking geometry and growth. With Poisson sector fixed (μ=1), EFC predicts specific redshift-dependent EGevolution driven solely by expansion history. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "conv_euclid_dr1_pre_registration_pipeline_via_hi_class",
@@ -2042,7 +2042,7 @@
         "name": "Global parameter-lock cross-probe test",
         "description": "⚪",
         "result": "Planned – full joint likelihood with frozen parameters",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "BAO + RSD + lensing + ISW + Lyα",
@@ -2050,7 +2050,7 @@
         "notes": "Global parameter-lock cross-probe test | ⚪ | ⚪ | ⚪ | Framework-level stress test: a single β and transition function T(a) must fit all late-time probes without retuning. Eliminates hidden model plasticity. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "conv_isw_void_sign_flip_observational_confrontation_v1",
@@ -2072,7 +2072,7 @@
         "name": "Linear & quasi-linear matter power spectrum shape P(k,z)",
         "description": "⚪",
         "result": "Planned – full-shape likelihood implementation required",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "BOSS full-shape, eBOSS QSO, DESI full-shape",
@@ -2080,14 +2080,14 @@
         "notes": "Linear & quasi-linear matter power spectrum shape P(k,z) | ⚪ | ⚪ | ✅ | Tests scale-dependent growth and turnover structure under background-driven growth suppression. Shape consistency required if Poisson sector remains GR while H(a) is modified. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_multiepoch_rsd_growth_trajectory",
         "name": "Multi-epoch RSD growth trajectory",
         "description": "⚪",
         "result": "Planned – cross-survey joint trajectory fit",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "6dF, SDSS MGS, BOSS, eBOSS, DESI ELG",
@@ -2095,14 +2095,14 @@
         "notes": "Multi-epoch RSD growth trajectory | ⚪ | ⚪ | ✅ | Tests redshift continuity of growth suppression across L1→L2 transition. β·T(a) must produce a smooth, monotonic deviation pattern with no retuning. | Method defined",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_regime_response_surface_rks",
         "name": "Regime response surface R(k,S,ρ)",
         "description": "⚪",
         "result": "Framework defined – quantitative tests pending",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "DES Y6 regime structure (multi-probe L2)",
@@ -2110,14 +2110,14 @@
         "notes": "Regime response surface R(k,S,ρ) | ⚪ | ⚪ | ⚪ | Framework linking μ(a) and μ(k,z) through structural state S; defines global falsification conditions across L2 probes. Extended to R(k,S,ρ) with explicit density axis enabling dwarf–cluster discrimination. | 31211437",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "ledger_smallscale_structure",
         "name": "Small-scale structure",
         "description": "⚪",
         "result": "Planned",
-        "status": "pending",
+        "status": "unknown",
         "vl_category": "planned_pipeline",
         "also_phenomenological": null,
         "data_source": "Rubin LSST / Euclid",
@@ -2125,7 +2125,7 @@
         "notes": "Small-scale structure | ⚪ | ⚪ | ⚪ | Non-linear discriminators | Metric spec pending",
         "quantitative_result": "",
         "last_synced": "2026-06-08T08:58:57.583514Z",
-        "status_detail": "pending"
+        "status_detail": "PENDING"
       },
       {
         "test_id": "conv_hi_class_scalar_tensor_efc_falsification_test",
