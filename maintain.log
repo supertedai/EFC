@@ -120,8 +120,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
-    Added 62 DOI(s) to evidence register
-    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -159,89 +157,17 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
-  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
-  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
+  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
+  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
+  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
-[efc-drift] 165 papers · 39 drift(s) detected:
-  README.md: tests_total — 136 vs 141
-  README.md: tests_total — 136 vs 141
-  Validation_Ledger: tests_total — 136 vs 141
-  Validation_Ledger: tests_total — 136 vs 141
-  Validation_Ledger: tests_active — 114 vs 115
-  Validation_Ledger: tests_survived — 104 vs 105
-  Validation_Ledger: tests_pipeline — 22 vs 26
-  White_Paper_Series: tests_total — 136 vs 141
-  White_Paper_Series: tests_total — 136 vs 141
-  White_Paper_Series: tests_total — 136 vs 141
-  White_Paper_Series: tests_active — 114 vs 115
-  White_Paper_Series: tests_survived — 104 vs 105
-  White_Paper_Series: tests_pipeline — 22 vs 26
-  White_Paper_Series: tests_active — 114 vs 115
-  White_Paper_Series: tests_survived — 104 vs 105
-  White_Paper_Series: tests_pipeline — 22 vs 26
-  White_Paper_Series: tests_pipeline — 22 vs 26
-  Elevator_Pitch: tests_total — 136 vs 141
-  Elevator_Pitch: tests_active — 114 vs 115
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_pipeline — 22 vs 26
-  Elevator_Pitch: tests_total — 136 vs 141
-  Elevator_Pitch: tests_total — 136 vs 141
-  Elevator_Pitch: tests_active — 114 vs 115
-  Elevator_Pitch: tests_active — 114 vs 115
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_pipeline — 22 vs 26
-  Elevator_Pitch: tests_pipeline — 22 vs 26
-  Elevator_Pitch: tests_pipeline — 22 vs 26
-  Elevator_Pitch: tests_survived — 104 vs 105
-  Elevator_Pitch: tests_active — 104 vs 115
-  Stage_IV_Roadmap: tests_total — 136 vs 141
-  Stage_IV_Roadmap: tests_active — 114 vs 115
-  Stage_IV_Roadmap: tests_survived — 104 vs 105
-  Stage_IV_Roadmap: tests_pipeline — 22 vs 26
-  Stage_IV_Roadmap: tests_pipeline — 22 vs 26
+[efc-drift] 165 papers · 3 drift(s) detected:
+  Elevator_Pitch: tests_active — 105 vs 115
   Changelog: claims 158 but actual is 165
   Changelog: claims 158 but actual is 165
-  [fixed] README.md: 136 → 141 (tests_total)
-  [fixed] README.md: 136 → 141 (tests_total)
-  [fixed] Validation_Ledger: 136 → 141 (tests_total)
-  [fixed] Validation_Ledger: 136 → 141 (tests_total)
-  [fixed] Validation_Ledger: 114 → 115 (tests_active)
-  [fixed] Validation_Ledger: 104 → 105 (tests_survived)
-  [fixed] Validation_Ledger: 22 → 26 (tests_pipeline)
-  [fixed] White_Paper_Series: 136 → 141 (tests_total)
-  [fixed] White_Paper_Series: 136 → 141 (tests_total)
-  [fixed] White_Paper_Series: 136 → 141 (tests_total)
-  [fixed] White_Paper_Series: 114 → 115 (tests_active)
-  [fixed] White_Paper_Series: 104 → 105 (tests_survived)
-  [fixed] White_Paper_Series: 22 → 26 (tests_pipeline)
-  [fixed] White_Paper_Series: 114 → 115 (tests_active)
-  [fixed] White_Paper_Series: 104 → 105 (tests_survived)
-  [fixed] White_Paper_Series: 22 → 26 (tests_pipeline)
-  [fixed] White_Paper_Series: 22 → 26 (tests_pipeline)
-  [fixed] Elevator_Pitch: 136 → 141 (tests_total)
-  [fixed] Elevator_Pitch: 114 → 115 (tests_active)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 22 → 26 (tests_pipeline)
-  [fixed] Elevator_Pitch: 136 → 141 (tests_total)
-  [fixed] Elevator_Pitch: 136 → 141 (tests_total)
-  [fixed] Elevator_Pitch: 114 → 115 (tests_active)
-  [fixed] Elevator_Pitch: 114 → 115 (tests_active)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 22 → 26 (tests_pipeline)
-  [fixed] Elevator_Pitch: 22 → 26 (tests_pipeline)
-  [fixed] Elevator_Pitch: 22 → 26 (tests_pipeline)
-  [fixed] Elevator_Pitch: 104 → 105 (tests_survived)
-  [fixed] Elevator_Pitch: 104 → 115 (tests_active)
-  [fixed] Stage_IV_Roadmap: 136 → 141 (tests_total)
-  [fixed] Stage_IV_Roadmap: 114 → 115 (tests_active)
-  [fixed] Stage_IV_Roadmap: 104 → 105 (tests_survived)
-  [fixed] Stage_IV_Roadmap: 22 → 26 (tests_pipeline)
-  [fixed] Stage_IV_Roadmap: 22 → 26 (tests_pipeline)
-[efc-drift] auto-fixed 5 file(s)
-[efc-drift] 3 drift(s) remain (need manual fix)
+  [fixed] Elevator_Pitch: 105 → 115 (tests_active)
+[efc-drift] auto-fixed 1 file(s)
+[efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
   replaced: 1
@@ -275,14 +201,12 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
-
-Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
+No new datasets found.
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series; Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -295,7 +219,7 @@ Ledger: 141 tests, 10 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [OK]       Survival count 105/105 matches ledger
+  [OK]       Survival count 105/115 matches ledger
 
 --- Validation Ledger ---
   [OK]       Test count 141 matches ledger 141
