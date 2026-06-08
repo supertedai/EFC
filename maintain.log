@@ -120,6 +120,8 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 62 DOI(s) to evidence register
+    Added 3 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -157,42 +159,18 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
+  empirical       ev:132 → 132  (+0)    ledger: 67 → 132 (+65)
   methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
   structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
-[efc-drift] 165 papers · 13 drift(s) detected:
-  Validation_Ledger: tests_survived — 114 vs 104
-  White_Paper_Series: tests_survived — 114 vs 104
-  White_Paper_Series: tests_falsified — 0 vs 10
-  White_Paper_Series: tests_survived — 114 vs 104
-  Elevator_Pitch: tests_survived — 114 vs 104
-  Elevator_Pitch: tests_falsified — 0 vs 10
-  Elevator_Pitch: tests_survived — 114 vs 104
-  Elevator_Pitch: tests_survived — 114 vs 104
-  Elevator_Pitch: tests_survived — 114 vs 104
-  Stage_IV_Roadmap: tests_survived — 114 vs 104
-  Stage_IV_Roadmap: tests_falsified — 0 vs 10
+[efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
   Changelog: claims 158 but actual is 165
-  [fixed] Validation_Ledger: 114 → 104 (tests_survived)
-  [fixed] White_Paper_Series: 114 → 104 (tests_survived)
-  [fixed] White_Paper_Series: 0 → 10 (tests_falsified)
-  [fixed] White_Paper_Series: 114 → 104 (tests_survived)
-  [fixed] Elevator_Pitch: 114 → 104 (tests_survived)
-  [fixed] Elevator_Pitch: 0 → 10 (tests_falsified)
-  [fixed] Elevator_Pitch: 114 → 104 (tests_survived)
-  [fixed] Elevator_Pitch: 114 → 104 (tests_survived)
-  [fixed] Elevator_Pitch: 114 → 104 (tests_survived)
-  [fixed] Stage_IV_Roadmap: 114 → 104 (tests_survived)
-  [fixed] Stage_IV_Roadmap: 0 → 10 (tests_falsified)
-[efc-drift] auto-fixed 4 file(s)
-[efc-drift] 3 drift(s) remain (need manual fix)
+[efc-drift] auto-fixed 0 file(s)
+[efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
-  replaced: 1
-  unchanged: 12
-  · EFC_Changelog.html: replaced
+  unchanged: 13
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -222,13 +200,11 @@ Known datasets in Roadmap: 9
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
   DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-1 potential new dataset(s):
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
-
-Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
+No new datasets found.
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch, Stage-IV_Data_Roadmap, Validation_Ledger, White_Paper_Series.
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
@@ -241,27 +217,14 @@ Ledger: 141 tests, 10 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [WARNING]  Survived 104/104 but expected 105/115 (total=141, falsified=10, pipeline=26)
+  [OK]       Survival count 105/115 matches ledger
 
 --- Validation Ledger ---
-  [WARNING]  '136-test' in Ledger HTML != 141 in stats
+  [OK]       Test count 141 matches ledger 141
 
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 114 active but ledger has 115
-  [CRITICAL] Elevator Pitch: says 104 survived but ledger has 105
-  [CRITICAL] Elevator Pitch: says 22 pipeline but ledger has 26
-  [CRITICAL] Elevator Pitch: says 22 pipeline but ledger has 26
-  [CRITICAL] White Paper Series: says 136 total but ledger has 141
-  [CRITICAL] White Paper Series: says 114 active but ledger has 115
-  [CRITICAL] White Paper Series: says 114 active but ledger has 115
-  [CRITICAL] White Paper Series: says 104 survived but ledger has 105
-  [CRITICAL] White Paper Series: says 22 pipeline but ledger has 26
-  [CRITICAL] Stage-IV Roadmap: says 136 total but ledger has 141
-  [CRITICAL] Stage-IV Roadmap: says 114 active but ledger has 115
-  [CRITICAL] Stage-IV Roadmap: says 104 survived but ledger has 105
-  [CRITICAL] Stage-IV Roadmap: says 22 pipeline but ledger has 26
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -277,10 +240,10 @@ Ledger: 141 tests, 10 falsified
   [CRITICAL] EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   [WARNING]  EFC Inference: cluster_core_state: active but poor fit (chi2=108.8)
   [OK]       EFC Inference: cluster_tng: self_consistent
-  [CRITICAL] EFC Inference: fs8_extended: still LCDM stub — no DOI data
-  [CRITICAL] EFC Inference: hz_chronometers: still LCDM stub — no DOI data
+  [OK]       EFC Inference: fs8_extended: active
+  [OK]       EFC Inference: hz_chronometers: active
   [WARNING]  EFC Inference: shear_kids1000: active but poor fit (chi2=10.4)
-  [CRITICAL] 3 inference modules still on LCDM stubs
+  [CRITICAL] 1 inference modules still on LCDM stubs
 
 --- Cross-consistency ---
   [OK]       README paper count 165 matches repo 166
@@ -300,26 +263,11 @@ Ledger: 141 tests, 10 falsified
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 17 errors, 8 warnings
+RESULT: 2 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 114 active but ledger has 115
-  - Elevator Pitch: says 104 survived but ledger has 105
-  - Elevator Pitch: says 22 pipeline but ledger has 26
-  - Elevator Pitch: says 22 pipeline but ledger has 26
-  - White Paper Series: says 136 total but ledger has 141
-  - White Paper Series: says 114 active but ledger has 115
-  - White Paper Series: says 114 active but ledger has 115
-  - White Paper Series: says 104 survived but ledger has 105
-  - White Paper Series: says 22 pipeline but ledger has 26
-  - Stage-IV Roadmap: says 136 total but ledger has 141
-  - Stage-IV Roadmap: says 114 active but ledger has 115
-  - Stage-IV Roadmap: says 104 survived but ledger has 105
-  - Stage-IV Roadmap: says 22 pipeline but ledger has 26
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
-  - EFC Inference: fs8_extended: still LCDM stub — no DOI data
-  - EFC Inference: hz_chronometers: still LCDM stub — no DOI data
-  - 3 inference modules still on LCDM stubs
+  - 1 inference modules still on LCDM stubs
 [full-sync] invariants: 0 error(s), 167 warning(s)
   [WARN] §1 internal_ledger_version: expected='4.2' observed='3.0'
   [WARN] §2 doi_in_index_but_not_in_doi_map:28098299: expected='present' observed='absent'

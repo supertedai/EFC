@@ -18,6 +18,9 @@ on:
       - "docs/public/**.html"
       - "docs/validation-ledger/data/ledger.json"
       - "scripts/maintenance/efc_page_consistency.py"
+      - "scripts/maintenance/efc_narrative_consistency.py"
+      - "docs/validation-ledger/data/ledger_truth.json"
+      - "docs/validation-ledger/index.md"
       - ".github/workflows/efc-page-consistency.yml"
 
 jobs:
@@ -38,6 +41,8 @@ jobs:
           exit $rc
       - name: Verify canonical navbar on every public page
         run: python3 scripts/maintenance/efc_navbar_sync.py --check
+      - name: Run semantic narrative-consistency gate
+        run: python3 scripts/maintenance/efc_narrative_consistency.py
       - name: Summarise on failure
         if: failure()
         run: |

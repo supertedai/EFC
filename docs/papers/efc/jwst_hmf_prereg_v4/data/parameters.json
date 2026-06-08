@@ -1,42 +1,4 @@
 {
-<<<<<<< HEAD
-  "_description": "Key numerical values from the EFC JWST HMF Pre-Registration v4 (DOI 10.6084/m9.figshare.32149654)",
-  "cosmology": {
-    "H0_km_s_Mpc": 67.4,
-    "Omega_m0": 0.315,
-    "Omega_Lambda0": 0.685,
-    "sigma8": 0.811,
-    "n_s": 0.965,
-    "Omega_b": 0.0493,
-    "rho_crit0_h2_Msun_Mpc3": 277500000000.0,
-    "delta_c": 1.686,
-    "CMB_temp_K": 2.7255
-  },
-  "efc_gate_parameters": {
-    "B": {
-      "description": "Perturbation-channel amplitude in mu(a) = 1 - B g(a)",
-      "default_illustrative": 0.04,
-      "note": "To be fixed by joint S(z)-fit (vc 4ea464e38b5f)"
-    },
-    "z_t": {
-      "description": "Transition redshift of the gate function",
-      "default_illustrative": 3.0,
-      "note": "To be fixed by joint S(z)-fit"
-    },
-    "n": {
-      "description": "Steepness exponent of the gate function",
-      "default_illustrative": 4.0,
-      "note": "To be fixed by joint S(z)-fit"
-    }
-  },
-  "efc_equations": {
-    "gate_function": "g(a) = 1 / (1 + (z_t / z(a))^n), z(a) = 1/a - 1",
-    "mu_eff": "mu(a) = 1 - B * g(a)",
-    "delta_E2": "Delta_E2(a) = A * [g(a) - g(0)]",
-    "chain": "g(a) -> mu(a) -> D(a) -> sigma(M,z) -> n(M,z)"
-  },
-  "prediction_redshifts": [
-=======
   "paper_metadata": {
     "title": "Pre-Registration: EFC dN/dM (z>7) \u2014 Halo Mass Function via mu(a) Perturbation Channel",
     "author": "Morten Magnusson",
@@ -86,7 +48,6 @@
     "delta_c": 1.686
   },
   "redshift_targets": [
->>>>>>> origin/main
     7,
     8,
     9,
@@ -104,46 +65,13 @@
     "a": 0.707,
     "p": 0.3
   },
-<<<<<<< HEAD
-  "tinker_2008_params_Delta200": {
-=======
   "tinker2008_params_delta200": {
->>>>>>> origin/main
     "A0": 0.186,
     "a0": 1.47,
     "b0": 2.57,
     "c0": 1.19
   },
   "falsification_criteria": {
-<<<<<<< HEAD
-    "acceptance_threshold": "Delta_chi2 < 4",
-    "falsification_threshold": ">3 sigma disagreement",
-    "datasets": [
-      "JWST CEERS",
-      "JWST COSMOS-Web",
-      "JWST GLASS"
-    ]
-  },
-  "validation_candidates": {
-    "this_document": "vc de9a6ee1deb6",
-    "joint_Sz_fit": "vc 4ea464e38b5f"
-  },
-  "prior_prereg_dois": {
-    "SO_Euclid_EG": "10.6084/m9.figshare.32023788",
-    "Rubin_DP2_shear": "10.6084/m9.figshare.32013738",
-    "DESI_fsigma8": "10.6084/m9.figshare.32013156"
-  },
-  "technical_note_dois": {
-    "TN_I_gate_calibration": "10.6084/m9.figshare.31333414",
-    "TN_II_perturbation_channel": "10.6084/m9.figshare.31333600"
-  },
-  "regime": {
-    "atlas_level": "L3",
-    "mechanism": "S_flow boost at high z",
-    "observable": "high-z mass function / early structure JWST"
-  },
-  "sealing_protocol": "SHA-256 hash of numerical n(M,z) tables computed once (B, z_t, n) are fixed"
-=======
     "acceptance": "Delta_chi2 < 4",
     "falsification": ">3 sigma disagreement against JWST CEERS / COSMOS-Web / GLASS counts"
   },
@@ -169,5 +97,4 @@
     "GLASS"
   ],
   "sealing_protocol": "SHA-256 hash of numerical curves before data confrontation"
->>>>>>> origin/main
 }
