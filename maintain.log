@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=live
+EFC ORCID source-of-truth sync — source=cache
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -66,14 +66,14 @@ pdftotext: /usr/bin/pdftotext
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [RETRY] OpenAI HTTP 503 — waiting 20s (3/4)
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   Non-MCMC_Constraints_on_the_EFC_α-Parameter:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [RETRY] OpenAI HTTP 503 — waiting 5s (1/4)
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
@@ -113,13 +113,22 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 400: Bad Request -- {
+  "error": {
+    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": null
+  }
+}
     [INFO] openai exhausted — trying fallback provider
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 62 DOI(s) to evidence register
+    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -157,9 +166,9 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
-  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
-  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
+  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
+  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
+  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
 ========================================================================
 [efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
@@ -175,7 +184,7 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 141 total, 105 survived, 10 falsified
+  Tests: 142 total, 106 survived, 10 falsified
   Papers: 166 (165 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
@@ -204,21 +213,22 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
 
 Repo: 166 papers, 165 DOIs
-Ledger: 141 tests, 10 falsified
+Ledger: 142 tests, 10 falsified
 
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [OK]       Survival count 105/115 matches ledger
+  [OK]       Survival count 106/116 matches ledger
 
 --- Validation Ledger ---
-  [OK]       Test count 141 matches ledger 141
+  [OK]       Test count 142 matches ledger 142
 
 --- All Pages Number Check ---
 
@@ -246,7 +256,7 @@ Ledger: 141 tests, 10 falsified
 --- Cross-consistency ---
   [OK]       README paper count 165 matches repo 166
   [OK]       README paper count 165 matches repo 166
-  [OK]       Stats categories sum to 141 = total_public
+  [OK]       Stats categories sum to 142 = total_public
   [OK]       DOI sync script present, 165/166 papers have DOIs
   [OK]       121 papers have sealed predictions (350 total)
 
@@ -255,7 +265,7 @@ Ledger: 141 tests, 10 falsified
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [OK]       Symbiose test count 141 matches ledger
+  [OK]       Symbiose test count 142 matches ledger
   [OK]       Symbiose paper count 166 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
