@@ -1,7 +1,7 @@
 {
   "name": "EFC Bayesian Inference Results",
   "version": "3.0",
-  "generated_at": "2026-06-07T23:33:01Z",
+  "generated_at": "2026-06-08T05:33:34Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
@@ -88,42 +88,45 @@
     {
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
-      "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
-      "status": "PASSED",
-      "chi2_reduced": null,
+      "result": "chi2_red=0.554 (good fit)",
+      "status": "success",
+      "chi2_reduced": 0.554,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-14T16:34:26.401161Z",
+      "timestamp": "2026-06-08T05:32:31Z",
       "best_fit": {
         "Omega_m": 0.315,
-        "sigma8": 0.811
+        "H0": 67.4,
+        "sigma8": 0.811,
+        "alpha_cosmo": 0.0
       },
       "posterior_summary": {},
-      "engine_status": "lcdm_stub",
-      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "engine_status": "active",
+      "engine_note": null,
       "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_hz_chronometers",
       "name": "EFC Inference: hz_chronometers",
-      "result": "CC consistency Δχ²=−0.17 (sub-statistical)",
-      "status": "PARTIAL",
-      "chi2_reduced": null,
+      "result": "chi2_red=1.549 (good fit)",
+      "status": "success",
+      "chi2_reduced": 1.549,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-14T16:34:26.386694Z",
+      "timestamp": "2026-06-08T05:32:31Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
         "Omega_de": 0.685,
         "w0": -1.0,
-        "wa": 0.0
+        "wa": 0.0,
+        "alpha_cosmo": 0.0
       },
       "posterior_summary": {},
-      "engine_status": "lcdm_stub",
-      "engine_note": "LCDM fallback engine — EFC physics not yet implemented for this module",
+      "engine_status": "active",
+      "engine_note": null,
       "mcmc_status": "not_run"
     },
     {
