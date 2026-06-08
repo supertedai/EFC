@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "script": "reproduce_shear_s8.py",
+    "timestamp": "2026-06-08T12:51:45Z",
+    "scope": "S8-amplitude leg of F7 ONLY; Sigma_eff(z) crossover (F9) is a separate GAP awaiting Euclid DR1",
+    "note": "First-look: diagonal errors, no covariance/nuisance; literature S8 values -- verify vs source DOIs before any sealed claim"
+  },
+  "models": {
+    "EFC robust (mu<1, Sigma~0.99)": {
+      "S8": 0.82,
+      "err": 0.02,
+      "src": "DOI 31188193 / 32084670"
+    },
+    "LCDM / Planck": {
+      "S8": 0.832,
+      "err": 0.013,
+      "src": "Planck 2018/2026"
+    },
+    "EFC fragile (eta-boost, 0%rob)": {
+      "S8": 0.847,
+      "err": 0.015,
+      "src": "DOI 32037990 (sealed, 0% robust)"
+    }
+  },
+  "data": [
+    {
+      "name": "DES Y6 3x2pt",
+      "S8": 0.789,
+      "err": 0.012,
+      "src": "DOI 10.6084/m9.figshare.31951992 (EFC-VAL-2026-002) citing DES Y6"
+    },
+    {
+      "name": "KiDS-Legacy",
+      "S8": 0.815,
+      "err": 0.02,
+      "src": "external_research_watch.json (error approximate)"
+    }
+  ],
+  "results": {
+    "chi2": {
+      "EFC robust (mu<1, Sigma~0.99)": 6.736,
+      "LCDM / Planck": 13.563,
+      "EFC fragile (eta-boost, 0%rob)": 25.921
+    },
+    "best_fit": "EFC robust (mu<1, Sigma~0.99)",
+    "fragile_combined_tension_sigma": 3.174,
+    "robust_to_kids_bifurcation": true
+  },
+  "checks": [
+    {
+      "name": "data_loaded",
+      "passed": true,
+      "detail": "2 lensing points"
+    },
+    {
+      "name": "predictions_finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "robust_is_best_fit",
+      "passed": true,
+      "detail": "EFC robust (mu<1, Sigma~0.99) (robust EFC predicts S8 down, matching low lensing)"
+    },
+    {
+      "name": "fragile_disfavoured",
+      "passed": true,
+      "detail": "fragile chi2=25.9 > best 6.7 (dchi2=+19.2)"
+    },
+    {
+      "name": "fragile_tension_gt_2sigma",
+      "passed": true,
+      "detail": "fragile disfavoured at 3.2 sigma (combined, model-error-propagated)"
+    },
+    {
+      "name": "fragile_disfavoured_under_both_kids",
+      "passed": true,
+      "detail": "robust < LCDM < fragile under both KiDS choices"
+    },
+    {
+      "name": "deterministic",
+      "passed": true,
+      "detail": "identical on re-run"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "content_hash": "cb8dd4d75df9541346d86252191000533027aa7f5c6515b216da585cb038cac8"
+}

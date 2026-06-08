@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-06-08T00:00:00Z",
+  "generator": "manual (F7 amplitude-leg formalisation)",
+  "likelihoods": [
+    {
+      "test_id": "shear_s8_amplitude_efc_branches",
+      "likelihood_type": "gaussian",
+      "covariance": "diagonal",
+      "parameter_priors": {
+        "S8_efc_robust": {"type": "fixed", "value": 0.820, "ref": "DOI 31188193 / 32084670 (mu<1, Sigma~0.99)"},
+        "S8_lcdm": {"type": "fixed", "value": 0.832, "ref": "Planck 2018/2026"},
+        "S8_efc_fragile": {"type": "fixed", "value": 0.847, "ref": "DOI 32037990 (eta-boost, 0% robust)"}
+      },
+      "code": "direct_python",
+      "code_version": "reproduce_shear_s8_output.json sha256:cb8dd4d75df9541346d86252191000533027aa7f5c6515b216da585cb038cac8",
+      "entry_point": "reproduce_shear_s8.py",
+      "inputs": [
+        "DES Y6 3x2pt S8=0.789+/-0.012 (DOI 10.6084/m9.figshare.31951992, EFC-VAL-2026-002 citing DES Y6)",
+        "KiDS-Legacy S8=0.815 (external_research_watch.json; KiDS-1000 0.766 tested as robustness variant)"
+      ],
+      "outputs": ["chi2", "best_fit"],
+      "status": "runnable",
+      "notes": "AMPLITUDE leg of F7 only -- tests the eta-boost amplitude consequence (eta-boost => enhanced growth => high S8). First-look result: the fragile eta-boost branch (S8=0.847) is disfavoured ~3.2 sigma (combined, model-error-propagated) by existing DES Y6 + KiDS, robust to the KiDS-1000/Legacy bifurcation; robust EFC (S8 down, 0.820) is the best fit, ahead of LCDM. The full Sigma_eff(z) crossover (z~0.44, criterion F9) remains a SEPARATE GAP awaiting Euclid DR1 + the Cobaya+MGCAMB shape likelihood. First-look only (diagonal errors, no covariance/nuisance); literature S8 values -- verify vs source DOIs before any sealed Validation-Ledger claim."
+    }
+  ]
+}
