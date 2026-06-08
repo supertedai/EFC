@@ -1,7 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "generated_at": "2026-06-08T00:00:00Z",
-  "generator": "manual (F7 amplitude-leg formalisation)",
+  "generator": "manual (F7 amplitude-leg formalisation; data verified vs source papers)",
   "likelihoods": [
     {
       "test_id": "shear_s8_amplitude_efc_branches",
@@ -13,15 +13,33 @@
         "S8_efc_fragile": {"type": "fixed", "value": 0.847, "ref": "DOI 32037990 (eta-boost, 0% robust)"}
       },
       "code": "direct_python",
-      "code_version": "reproduce_shear_s8_output.json sha256:cb8dd4d75df9541346d86252191000533027aa7f5c6515b216da585cb038cac8",
+      "code_version": "reproduce_shear_s8_output.json sha256:113d4327f9264100be476573ae34c36a8fa999f1fdfb308220f8033e8146cbbb",
       "entry_point": "reproduce_shear_s8.py",
       "inputs": [
-        "DES Y6 3x2pt S8=0.789+/-0.012 (DOI 10.6084/m9.figshare.31951992, EFC-VAL-2026-002 citing DES Y6)",
-        "KiDS-Legacy S8=0.815 (external_research_watch.json; KiDS-1000 0.766 tested as robustness variant)"
+        "DES Y6 3x2pt S8=0.789+/-0.012 (arXiv:2601.14559, Jan 2026; VERIFIED 2026-06-08)",
+        "KiDS-Legacy S8=0.814 +0.011/-0.012 (arXiv:2503.19442; VERIFIED 2026-06-08; KiDS-1000 0.766 tested as robustness variant)"
       ],
       "outputs": ["chi2", "best_fit"],
       "status": "runnable",
-      "notes": "AMPLITUDE leg of F7 only -- tests the eta-boost amplitude consequence (eta-boost => enhanced growth => high S8). First-look result: the fragile eta-boost branch (S8=0.847) is disfavoured ~3.2 sigma (combined, model-error-propagated) by existing DES Y6 + KiDS, robust to the KiDS-1000/Legacy bifurcation; robust EFC (S8 down, 0.820) is the best fit, ahead of LCDM. The full Sigma_eff(z) crossover (z~0.44, criterion F9) remains a SEPARATE GAP awaiting Euclid DR1 + the Cobaya+MGCAMB shape likelihood. First-look only (diagonal errors, no covariance/nuisance); literature S8 values -- verify vs source DOIs before any sealed Validation-Ledger claim."
+      "notes": "AMPLITUDE leg of F7 only -- tests the eta-boost amplitude consequence (eta-boost => enhanced growth => high S8). Data VERIFIED 2026-06-08 against the source papers (DES Y6 arXiv:2601.14559; KiDS-Legacy arXiv:2503.19442). First-look result: the fragile eta-boost branch (S8=0.847) is disfavoured ~3.3 sigma (combined, model-error-propagated) by existing DES Y6 + KiDS-Legacy, robust to the KiDS-1000/Legacy bifurcation; robust EFC (S8 down, 0.820) is the best fit, ahead of LCDM. Still first-look (diagonal errors, no full covariance/nuisance) -- not a sealed Validation-Ledger verdict. The full Sigma_eff(z) shape (next entry) remains the decisive distinctive test."
+    },
+    {
+      "test_id": "shear_sigma_eff_shape_crossover",
+      "likelihood_type": "mcmc_posterior",
+      "covariance": "TBD (full tomographic DES/KiDS/Euclid shear covariance)",
+      "parameter_priors": {
+        "Sigma_eff_of_z": {"type": "reference", "ref": "DOI 32037990 (non-monotonic Sigma_eff(z), crossover z~0.44; fragile eta-branch only)"}
+      },
+      "code": "cobaya",
+      "code_version": null,
+      "entry_point": null,
+      "inputs": [
+        "Euclid DR1 tomographic cosmic shear (Oct 2026, pending release)",
+        "DES Y6 / KiDS-Legacy tomographic C_ell (for a current-data shape constraint)"
+      ],
+      "outputs": ["posterior_summary", "log_likelihood"],
+      "status": "declared",
+      "notes": "The distinctive Sigma_eff(z) CROSSOVER (z~0.44, criterion F9) -- the part the amplitude leg does NOT test. A monotonic result kills only the fragile eta-boost branch and is consistent with robust EFC (Sigma~0.99 flat, near-GR). DECLARED, not yet runnable: requires the full Cobaya+MGCAMB tomographic-shear shape likelihood + the Euclid DR1 release. This is the genuine remaining GAP -- it needs the MG codes + compute, which are not wired here."
     }
   ]
 }
