@@ -1,0 +1,81 @@
+id:           cosmos.efc.qdrant-ingest
+version:      0.1.0
+kind:         workflow
+domain:       cosmos
+layer:        efc.research
+group:        maintenance
+trust_zone:   public
+maturity:     experimental
+lifecycle:    active
+owner:        morten
+
+# NOTE: Currently scaffolding-only. Upsert is intentionally gated until
+# provider-specific embedder is wired (env: EMBEDDING_PROVIDER).
+# Runs on demand via `--apply`. No cron.
+
+rce:
+  regime:
+    physical_regime: S_flow
+    epistemic_layer: L1
+    regime_domain:   cosmological_L0_L3
+    coupling_operators: [paper_to_chunk, chunk_to_embedding, embedding_to_qdrant_point]
+  frozen_parameters:
+    declared:
+      - qdrant_url
+      - qdrant_api_key
+      - embedding_provider
+      - point_id_strategy
+    registry_ref: neo4j://FrozenParameter/efc_qdrant_ingest_v0_1
+  sealed_predictions: { deposits_sha256: [], figshare_dois: [] }
+  living_ledger:
+    ledger_path: docs/validation-ledger/data/qdrant-ingest.ledger.json
+    neo4j_label: LedgerEntry
+    last_audit: 2026-05-13T00:00:00Z
+  external_arbitration:
+    channel: none_yet
+    arbiter_ref: ""
+
+rcp:
+  regime_locality: true
+  variety_closure: true
+  modelling_closure: true
+  frozen_parameter_governance: true
+  external_arbitration: false
+  rcp_exemption_rfc: RFC-0001  # experimental — external arbiter pending embedder wiring
+
+port: { http: null, metrics: null, health: null }
+resources: { cpu: "1", mem: "4Gi", disk: "4Gi" }
+
+schedule:
+  trigger: manual
+
+restart_policy: "no"
+
+depends_on:
+  - shared.platform.qdrant
+  - shared.external.openai      # or voyage / local per EMBEDDING_PROVIDER
+
+storage:
+  qdrant_collections: [efc_papers, efc_atlas]
+  neo4j_labels: []
+  files: []
+
+sli:
+  - { name: ingest_throughput_papers_per_minute, threshold: 1, window: 5m }
+  - { name: embedding_error_rate, threshold: 0.05, window: 1h }
+
+slo:
+  - { objective: scaffolding_completes, target: 1.0, window: 30d, error_budget: 0.05 }
+
+invariants:
+  - "Upsert disabled until embedder wired (currently scaffolding)"
+  - "Point IDs stable across runs (deterministic from paper DOI)"
+  - "Two collections created: efc_papers + efc_atlas"
+
+runbook: docs/runbooks/cosmos.efc.qdrant-ingest.md
+
+provenance:
+  source_repo: supertedai/EFC
+  source_path: scripts/maintenance/efc_qdrant_ingest.py
+  generated: false
+  first_seen_inventory: 2026-05-19

@@ -1,0 +1,98 @@
+id:           cosmos.efc.maintain
+version:      1.0.0
+kind:         workflow
+domain:       cosmos
+layer:        efc.research
+group:        maintenance
+trust_zone:   public
+maturity:     stable
+lifecycle:    active
+owner:        morten
+
+rce:
+  regime:
+    physical_regime: S_trans
+    epistemic_layer: L1
+    regime_domain:   cosmological_L0_L3
+    coupling_operators:
+      - paper_package_to_ledger
+      - drift_to_fix
+      - council_to_gate
+  frozen_parameters:
+    declared:
+      - validation_ledger_version_public
+      - validation_ledger_version_internal
+      - ai_friendly_paper_count_target
+    registry_ref: neo4j://FrozenParameter/efc_maintain_v3.18
+  sealed_predictions:
+    deposits_sha256: []          # populated by efc_seal_manifest.py
+    figshare_dois: []            # 102+ DOIs tracked in figshare/doi-map.json
+  living_ledger:
+    ledger_path: docs/validation-ledger/data/ledger.json
+    neo4j_label: LedgerEntry
+    last_audit: 2026-05-13T00:00:00Z
+  external_arbitration:
+    channel: council_audit
+    arbiter_ref: efc-ai-audit.yml (weekly GPT-5 council)
+
+rcp:
+  regime_locality: true
+  variety_closure: true
+  modelling_closure: true
+  frozen_parameter_governance: true
+  external_arbitration: true
+
+port: { http: null, metrics: null, health: null }   # workflow, no listening port
+resources: { cpu: "1", mem: "2Gi", disk: "2Gi" }
+
+schedule:
+  trigger: hybrid
+  events: ["SessionStart-hook", "on-push-non-main", "cron-efc-sync", "cron-efc-main-sync"]
+
+restart_policy: "no"   # one-shot per invocation
+
+depends_on:
+  - shared.external.figshare-api
+  - shared.external.orcid
+  - shared.external.openai      # ai_brain + ai_audit
+  - shared.external.anthropic   # ai_monitor
+
+publishes:
+  - subject: efc.drift.fixed
+    schema:  schemas/events/efc_drift_fixed.v1.json
+  - subject: SYMBIOSE_WEBHOOK_URL   # POST { event: efc_push, commit, papers }
+    schema:  schemas/events/efc_push_webhook.v1.json
+
+storage:
+  qdrant_collections: []         # invokes efc_qdrant_ingest separately
+  neo4j_labels: []               # writes via Symbiose orchestrator side
+  files:
+    - docs/validation-ledger/data/evidence-register.json
+    - docs/validation-ledger/data/ledger.json
+    - docs/public/*.html
+    - docs/papers/efc/*/index.json
+    - figshare/doi-map.json
+
+sli:
+  - { name: maintain_duration_seconds, threshold: 600, window: 1h }
+  - { name: drift_fix_count_per_run, threshold: 50, window: 24h }
+  - { name: invariant_violations_total, threshold: 0, window: 24h }
+
+slo:
+  - { objective: maintain_completes_clean, target: 1.0, window: 30d, error_budget: 0.05 }
+  - { objective: council_audit_pass_rate, target: 0.95, window: 30d, error_budget: 0.05 }
+
+invariants:
+  - "C1–C8 invariants in efc_verify.py pass before commit"
+  - "No 'confirms EFC' language in public pages"
+  - "Every prediction cites prior DOI in same sentence"
+  - "Three evidence layers strictly separated (own DOI / arXiv 4b / working notes)"
+  - "medicine_clinical content never written to AGI repo"
+
+runbook: scripts/maintenance/README.md
+
+provenance:
+  source_repo: supertedai/EFC
+  source_path: scripts/maintenance/efc_maintain.py
+  generated: false
+  first_seen_inventory: 2026-05-19

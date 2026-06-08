@@ -1,0 +1,72 @@
+id:           cosmos.efc.full-sync
+version:      1.0.0
+kind:         workflow
+domain:       cosmos
+layer:        efc.research
+group:        maintenance
+trust_zone:   public
+maturity:     stable
+lifecycle:    active
+owner:        morten
+
+rce:
+  regime:
+    physical_regime: S_trans
+    epistemic_layer: L1
+    regime_domain:   cosmological_L0_L3
+    coupling_operators: [classify, handlers, derived, invariants]
+  frozen_parameters:
+    declared: [fixpoint_max_iterations]
+    registry_ref: neo4j://FrozenParameter/efc_full_sync_v1
+  sealed_predictions: { deposits_sha256: [], figshare_dois: [] }
+  living_ledger:
+    ledger_path: docs/validation-ledger/data/ledger.json
+    neo4j_label: LedgerEntry
+    last_audit: 2026-05-13T00:00:00Z
+  external_arbitration:
+    channel: council_audit
+    arbiter_ref: efc-cross-validate (cross-checks public pages vs repo)
+
+rcp:
+  regime_locality: true
+  variety_closure: true
+  modelling_closure: true
+  frozen_parameter_governance: true
+  external_arbitration: true
+
+port: { http: null, metrics: null, health: null }
+resources: { cpu: "1", mem: "2Gi", disk: "1Gi" }
+
+schedule:
+  trigger: hybrid
+  events: ["invoked-from-efc_maintain", "on-demand-dispatch"]
+
+restart_policy: "no"
+
+depends_on:
+  - cosmos.efc.maintain
+  - shared.external.figshare-api
+
+storage:
+  qdrant_collections: []
+  neo4j_labels: []
+  files: [scripts/maintenance/sync_engine/state.py]
+
+sli:
+  - { name: fixpoint_iterations_to_converge, threshold: 5, window: 1d }
+  - { name: nondeterminism_drops_total, threshold: 0, window: 24h }
+
+slo:
+  - { objective: convergence, target: 1.0, window: 30d, error_budget: 0.01 }
+
+invariants:
+  - "Fixpoint converges in finite iterations or raises"
+  - "Idempotent on stable state"
+
+runbook: docs/runbooks/cosmos.efc.full-sync.md
+
+provenance:
+  source_repo: supertedai/EFC
+  source_path: scripts/maintenance/efc_full_sync.py
+  generated: false
+  first_seen_inventory: 2026-05-19

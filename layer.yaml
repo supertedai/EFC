@@ -1,0 +1,82 @@
+# Symbiose Layer Manifest — supertedai/EFC
+# Validates against som/schemas/layer.schema.json in supertedai/AGI (canonical)
+# See som/README.md for full context.
+
+layer_id:      efc.research
+repo:          supertedai/EFC
+som_version:   1
+locked_at:     2026-05-19
+owner:         morten
+
+description:   >
+  Energy-Flow Cosmology research surface. Holds 165 AI-friendly paper
+  packages (100% coverage), 4 master maintenance orchestrators, ~44
+  maintenance scripts, 6 cosmology pipelines, 1 MCP server, 6 scheduled
+  GitHub Actions workflows, and 5 reproduction scripts. Bridges to
+  Symbiose orchestrator (supertedai/AGI) via SYMBIOSE_WEBHOOK_URL POST
+  on every push or drift-fix.
+
+domains_served:
+  - cosmos        # ~95% of content (every script, every paper)
+  - cognitive     # 1 dedicated bridge: pipelines/efc/hcp_bridge_b1/
+  - meta          # docs/papers/meta/ (HomoFluxus, Proxy, Autopoiesis)
+
+trust_zone:    public      # all content is publishable / publicly verifiable
+sealed:        false
+
+provides:
+  - cosmos.efc.maintain
+  - cosmos.efc.full-sync
+  - cosmos.efc.qdrant-ingest
+  - cosmos.efc.system-health
+  - shared.efc.mcp
+  - cosmos.pipelines.native-v2-graph
+  - cosmos.pipelines.euclid-dr1
+  - cognitive.pipelines.hcp-bridge-b1
+  - cosmos.pipelines.grav-bridge
+  - cosmos.pipelines.nested-sampling
+  - cosmos.pipelines.weak-lensing-case-b
+  - shared.efc.cron-system-health
+  - shared.efc.cron-sync
+  - shared.efc.cron-atlas-sync
+  - shared.efc.cron-figshare-presence
+  - shared.efc.cron-ai-monitor
+  - shared.efc.cron-ai-audit
+
+requires:
+  - shared.platform.qdrant            # via efc_qdrant_ingest (scaffolding)
+  - shared.platform.neo4j             # via Symbiose snapshot pipeline
+  - shared.external.figshare-api      # for DOI verification + uploads
+  - shared.external.openai            # for ai-audit (GPT-5 council)
+  - shared.external.anthropic         # for ai-monitor (Claude observer)
+  - shared.external.wordpress         # via integrations/mcp
+  - shared.external.orcid             # via efc_orcid_sync
+
+publishes_to:
+  - SYMBIOSE_WEBHOOK_URL              # POST { event: efc_push, commit, papers } on every drift-fix
+  - figshare.com                      # DOI deposits + sealed predictions
+  - energyflow-cosmology.com          # WordPress public site
+  - magnusson.as                      # secondary WordPress
+
+consumes_from:
+  - arxiv.org                         # via efc_dataset_scanner
+  - desi.org, euclid.org, kids.org    # Stage-IV survey data feeds
+
+invariants:
+  - "Three evidence layers strictly separated (own DOI / arXiv 4b / working notes)"
+  - "No EFC paper claims 'confirms EFC' — only 'consistent with' (language discipline)"
+  - "Every prediction cites prior EFC DOI in same sentence (pre-registration discipline)"
+  - "Sealed predictions never mutated without explicit re-seal (efc-sealed-prediction-guard.yml)"
+  - "AI council audit passes before public-page mutations land on main"
+
+related_paper_dois:
+  rcmp:                10.6084/m9.figshare.31222900
+  ebe_core:            10.6084/m9.figshare.31222903
+  ontological_v1_0_2:  10.6084/m9.figshare.31223668
+  core_lock:           10.6084/m9.figshare.31223503
+  l0_l3_regime:        10.6084/m9.figshare.31112536
+  wp3_validation:      10.6084/m9.figshare.31970904
+  wp4_susceptibility:  10.6084/m9.figshare.31970907
+  ledger_epistemology: 10.6084/m9.figshare.32256951
+  rce_synthesis:       10.6084/m9.figshare.32256939
+  bar_instability:     10.6084/m9.figshare.32101111

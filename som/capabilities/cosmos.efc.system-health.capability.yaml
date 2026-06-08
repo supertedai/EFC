@@ -1,0 +1,74 @@
+id:           cosmos.efc.system-health
+version:      1.0.0
+kind:         workflow
+domain:       cosmos
+layer:        efc.research
+group:        maintenance
+trust_zone:   public
+maturity:     stable
+lifecycle:    active
+owner:        morten
+
+rce:
+  regime:
+    physical_regime: S_trans
+    epistemic_layer: L1
+    regime_domain:   cosmological_L0_L3
+    coupling_operators: [orcid_to_doi_to_ledger_to_html]
+  frozen_parameters:
+    declared: [system_health_page_path, orcid_cache_ttl_hours]
+    registry_ref: neo4j://FrozenParameter/efc_system_health_v1
+  sealed_predictions: { deposits_sha256: [], figshare_dois: [] }
+  living_ledger:
+    ledger_path: docs/validation-ledger/data/system-health.ledger.json
+    neo4j_label: LedgerEntry
+    last_audit: 2026-05-13T00:00:00Z
+  external_arbitration:
+    channel: external_replication
+    arbiter_ref: "public users replicate EFC_System_Health.html numbers"
+
+rcp:
+  regime_locality: true
+  variety_closure: true
+  modelling_closure: true
+  frozen_parameter_governance: true
+  external_arbitration: true
+
+port: { http: null, metrics: null, health: null }
+resources: { cpu: "500m", mem: "512Mi", disk: "500Mi" }
+
+schedule:
+  trigger: cron
+  cron: "5 * * * *"   # hourly :05 via efc-system-health.yml
+
+restart_policy: "no"
+
+depends_on:
+  - shared.external.orcid
+  - shared.external.figshare-api
+
+publishes: []
+
+storage:
+  qdrant_collections: []
+  neo4j_labels: []
+  files: [docs/public/EFC_System_Health.html]
+
+sli:
+  - { name: build_duration_seconds, threshold: 60, window: 1h }
+  - { name: orcid_cache_hit_rate, threshold: 0.95, window: 24h }
+
+slo:
+  - { objective: hourly_run_success, target: 0.99, window: 30d, error_budget: 0.01 }
+
+invariants:
+  - "Always commits if file changed; never commits if file unchanged"
+  - "Cache misses do not block run (graceful degrade to last good)"
+
+runbook: docs/runbooks/cosmos.efc.system-health.md
+
+provenance:
+  source_repo: supertedai/EFC
+  source_path: scripts/maintenance/build_system_health.py
+  generated: false
+  first_seen_inventory: 2026-05-19
