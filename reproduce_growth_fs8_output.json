@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "script": "reproduce_growth_fs8.py",
+    "timestamp": "2026-06-08T13:42:22Z",
+    "provenance": "physics copied verbatim from efc_inference (AGI-Test git de95e3e1): growth.py + cosmology_model.py",
+    "scope": "P2 growth-suppression amplitude; mu=1 Hubble-friction channel; code-reproducibility, NOT a data fit"
+  },
+  "fiducial": {
+    "Omega_m": 0.315,
+    "H0": 67.4,
+    "sigma8": 0.79
+  },
+  "alpha_efc": -0.68,
+  "results": {
+    "fs8_lcdm": {
+      "0.1": 0.43861,
+      "0.3": 0.46126,
+      "0.5": 0.46227,
+      "0.7": 0.4501,
+      "1.0": 0.42024
+    },
+    "fs8_efc": {
+      "0.1": 0.43493,
+      "0.3": 0.45258,
+      "0.5": 0.44784,
+      "0.7": 0.43224,
+      "1.0": 0.40367
+    },
+    "anchor_z": 0.72,
+    "anchor_lcdm": 0.44842,
+    "anchor_efc": 0.43042,
+    "suppression_pct": -4.0142,
+    "lcdm_limit_max_dev": 0.0
+  },
+  "checks": [
+    {
+      "name": "predictions_finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "p2_lcdm_anchor",
+      "passed": true,
+      "detail": "LCDM 0.4484 vs paper 0.449 (|d|<0.003)"
+    },
+    {
+      "name": "p2_efc_anchor",
+      "passed": true,
+      "detail": "EFC 0.4304 vs paper 0.43 (|d|<0.003)"
+    },
+    {
+      "name": "efc_suppresses_growth",
+      "passed": true,
+      "detail": "EFC below LCDM by 4.01% (robust mu<1 prediction)"
+    },
+    {
+      "name": "suppression_few_percent",
+      "passed": true,
+      "detail": "4.01% (paper ~4%)"
+    },
+    {
+      "name": "lcdm_limit_exact",
+      "passed": true,
+      "detail": "EFCVariantA(alpha=0) == FlatLCDM (max dev 0.0e+00)"
+    },
+    {
+      "name": "deterministic",
+      "passed": true,
+      "detail": "identical on re-run"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "content_hash": "f75bbb0a0955abac8e89bf6f3ac33017bd0e69be4b4e653315955e4668cadc88"
+}

@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "script": "reproduce_lensing_sigma_eff.py",
+    "timestamp": "2026-06-08T13:44:15Z",
+    "provenance": "physics copied verbatim from efc_inference (AGI-Test git de95e3e1): lensing.py",
+    "scope": "F9 crossover STRUCTURE (theory prediction); NOT the Euclid Sigma_eff(z) DATA test, NOT the exact table amplitude",
+    "amplitude_caveat": "single-scale Sigma >> k-integrated F9 table; observable needs full lensing-kernel k-integral; structure (crossover + mu<1) is the code-verified claim"
+  },
+  "params": {
+    "alpha": 0.012,
+    "K0": 1.37,
+    "rho_crit": 94.5,
+    "gamma0": 5.13,
+    "V_prime": 0.61,
+    "Omega_m": 0.315
+  },
+  "results": {
+    "sigma_k0p1": {
+      "0.1": 1.9713,
+      "0.29": 1.255,
+      "0.44": 1.0664,
+      "0.58": 0.9756,
+      "0.87": 0.8905,
+      "1.21": 0.8616
+    },
+    "mu_k0p1": {
+      "0.1": 0.9775,
+      "0.29": 0.9767,
+      "0.44": 0.9767,
+      "0.58": 0.9771,
+      "0.87": 0.9785,
+      "1.21": 0.9807
+    },
+    "f9_table_ref": {
+      "0.1": 1.026,
+      "0.29": 1.008,
+      "0.44": 1.0,
+      "0.58": 0.994,
+      "0.87": 0.988,
+      "1.21": 0.985
+    },
+    "crossover_z": 0.5289,
+    "kt_a_z0p5": {
+      "mu_avg": 0.8573,
+      "sigma_avg": 1.0332
+    },
+    "amplitude_ratio_lowz": 1.921
+  },
+  "checks": [
+    {
+      "name": "predictions_finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mu_below_1",
+      "passed": true,
+      "detail": "mu in [0.977, 0.981] < 1 (growth suppression)"
+    },
+    {
+      "name": "sigma_above_1_low_z",
+      "passed": true,
+      "detail": "Sigma(z=0.1)=1.971 > 1 (lensing boost)"
+    },
+    {
+      "name": "sigma_below_1_high_z",
+      "passed": true,
+      "detail": "Sigma(z=1.21)=0.862 < 1 (slip decays)"
+    },
+    {
+      "name": "sigma_monotonic_decreasing",
+      "passed": true,
+      "detail": "Sigma(z) decreases with z (non-monotonic crossover)"
+    },
+    {
+      "name": "crossover_z_in_range",
+      "passed": true,
+      "detail": "crossover at z=0.529 in [0.3,0.8] (F9 table ~0.44)"
+    },
+    {
+      "name": "kt_a_valley_survives",
+      "passed": true,
+      "detail": "<mu>=0.857<1 and <Sigma>=1.033>1 (valley survives k-average)"
+    },
+    {
+      "name": "deterministic",
+      "passed": true,
+      "detail": "identical on re-run"
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "content_hash": "a1e22d1b4fa6d52f15838b71daf9d90d2ef06abb3f24b809c44bc7a554450158"
+}

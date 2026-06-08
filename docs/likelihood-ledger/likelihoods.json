@@ -1,8 +1,27 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "generated_at": "2026-06-08T00:00:00Z",
-  "generator": "manual (F7 amplitude-leg formalisation; data verified vs source papers)",
+  "generator": "manual (P2 growth + F7 amplitude + F9 structure formalisation; physics copied verbatim from efc_inference @ git de95e3e1, verified copy==production maxdev 0.0)",
   "likelihoods": [
+    {
+      "test_id": "growth_fs8_suppression_efc_vs_lcdm",
+      "likelihood_type": "analytic",
+      "covariance": "n/a (forward-model reproduction, not a data fit)",
+      "parameter_priors": {
+        "alpha_cosmo": {"type": "fixed", "value": -0.68, "ref": "joint-fit representative (background -0.14+/-0.21; growth-LOO -1.00+/-0.46)"},
+        "Omega_m": {"type": "fixed", "value": 0.315, "ref": "Planck-like fiducial"},
+        "sigma8": {"type": "fixed", "value": 0.79, "ref": "P2 paper normalisation"}
+      },
+      "code": "direct_python",
+      "code_version": "reproduce_growth_fs8_output.json sha256:f75bbb0a0955abac8e89bf6f3ac33017bd0e69be4b4e653315955e4668cadc88",
+      "entry_point": "reproduce_growth_fs8.py",
+      "inputs": [
+        "EFC production growth engine (efc_inference/engine/growth.py + core/cosmology_model.py @ AGI-Test git de95e3e1), copied VERBATIM; copy==production verified to machine precision (max deviation 0.0) on 2026-06-08"
+      ],
+      "outputs": ["fs8_curve", "p2_anchor", "suppression_pct"],
+      "status": "runnable",
+      "notes": "P2 growth-suppression (mu=1 Hubble-friction channel). The production engine's fsigma8(z) is reproduced EXACTLY. EFC fsigma8 is ~4% BELOW LCDM (robust mu<1 prediction); the paper anchor 0.449/0.430 is reproduced at z~0.72 (DESI-LRG-like pivot). The absolute normalisation is z/sigma8-dependent; the robust claim is the ~4% suppression. Code-reproducibility check, NOT a data fit -- the joint fsigma8+H(z)+BAO+SNIa MCMC is the separate inference pipeline. 7/7 checks."
+    },
     {
       "test_id": "shear_s8_amplitude_efc_branches",
       "likelihood_type": "gaussian",
@@ -21,7 +40,24 @@
       ],
       "outputs": ["chi2", "best_fit"],
       "status": "runnable",
-      "notes": "AMPLITUDE leg of F7 only -- tests the eta-boost amplitude consequence (eta-boost => enhanced growth => high S8). Data VERIFIED 2026-06-08 against the source papers (DES Y6 arXiv:2601.14559; KiDS-Legacy arXiv:2503.19442). First-look result: the fragile eta-boost branch (S8=0.847) is disfavoured ~3.3 sigma (combined, model-error-propagated) by existing DES Y6 + KiDS-Legacy, robust to the KiDS-1000/Legacy bifurcation; robust EFC (S8 down, 0.820) is the best fit, ahead of LCDM. Still first-look (diagonal errors, no full covariance/nuisance) -- not a sealed Validation-Ledger verdict. The full Sigma_eff(z) shape (next entry) remains the decisive distinctive test."
+      "notes": "AMPLITUDE leg of F7 only -- tests the eta-boost amplitude consequence (eta-boost => enhanced growth => high S8). Data VERIFIED 2026-06-08 against the source papers (DES Y6 arXiv:2601.14559; KiDS-Legacy arXiv:2503.19442). First-look result: the fragile eta-boost branch (S8=0.847) is disfavoured ~3.3 sigma (combined, model-error-propagated) by existing DES Y6 + KiDS-Legacy, robust to the KiDS-1000/Legacy bifurcation; robust EFC (S8 down, 0.820) is the best fit, ahead of LCDM. Still first-look (diagonal errors, no full covariance/nuisance) -- not a sealed Validation-Ledger verdict. The full Sigma_eff(z) shape (last entry) remains the decisive distinctive test."
+    },
+    {
+      "test_id": "lensing_sigma_eff_crossover_structure",
+      "likelihood_type": "analytic",
+      "covariance": "n/a (forward-model reproduction of the action's prediction)",
+      "parameter_priors": {
+        "EFCLensingParams": {"type": "frozen", "ref": "DOI 31876324 Eq.24-32 (alpha=0.012, K0=1.37, rho_crit=94.5, gamma0=5.13, V_prime=0.61) -- no per-observable tuning"}
+      },
+      "code": "direct_python",
+      "code_version": "reproduce_lensing_sigma_eff_output.json sha256:a1e22d1b4fa6d52f15838b71daf9d90d2ef06abb3f24b809c44bc7a554450158",
+      "entry_point": "reproduce_lensing_sigma_eff.py",
+      "inputs": [
+        "EFC production lensing engine (efc_inference/engine/lensing.py @ AGI-Test git de95e3e1), copied VERBATIM; copy==production verified to machine precision (max deviation 0.0) on 2026-06-08"
+      ],
+      "outputs": ["mu_eta_Sigma_of_k_z", "crossover_z", "kt_a_k_average"],
+      "status": "runnable",
+      "notes": "F9 crossover STRUCTURE (theory prediction from the FROZEN action). Reproduces the production engine EXACTLY. Confirms: mu<1 (growth suppression) AND Sigma>1 at low z -> <1 at high z, a crossover at z~0.53 (sealed F9 table ~0.44); KT-A valley survives the k-average (<Sigma>=1.03 at z=0.5, near the table value). THEORY only -- this is NOT the Euclid DATA test (next entry), and NOT the exact table amplitude: a single observable scale (Sigma(k=0.1,z=0.1)~1.97) overstates the small k-integrated table deviation (1.03); the observable Sigma_eff(z) needs the full lensing-kernel k-integral (up-weights high-k where Sigma->~0.99). The crossover structure + mu<1 is the code-verified claim. 8/8 checks."
     },
     {
       "test_id": "shear_sigma_eff_shape_crossover",
@@ -39,7 +75,7 @@
       ],
       "outputs": ["posterior_summary", "log_likelihood"],
       "status": "declared",
-      "notes": "The distinctive Sigma_eff(z) CROSSOVER (z~0.44, criterion F9) -- the part the amplitude leg does NOT test. A monotonic result kills only the fragile eta-boost branch and is consistent with robust EFC (Sigma~0.99 flat, near-GR). DECLARED, not yet runnable: requires the full Cobaya+MGCAMB tomographic-shear shape likelihood + the Euclid DR1 release. This is the genuine remaining GAP -- it needs the MG codes + compute, which are not wired here."
+      "notes": "The distinctive Sigma_eff(z) CROSSOVER DATA test (z~0.44, criterion F9) -- the part neither the amplitude leg nor the structure-reproduction tests against DATA. The frozen-action STRUCTURE is now reproducible (previous entry, runnable); this entry is the DATA confrontation. A monotonic result kills only the fragile eta-boost branch and is consistent with robust EFC (Sigma~0.99 flat, near-GR). DECLARED, not yet runnable: requires the full Cobaya+MGCAMB tomographic-shear shape likelihood (with the proper lensing-kernel k-integral) + the Euclid DR1 release. This is the genuine remaining GAP."
     }
   ]
 }
