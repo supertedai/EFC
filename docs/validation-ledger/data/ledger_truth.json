@@ -26,9 +26,9 @@
       "DO_NOT_cite_bare": true,
       "canonical": 10,
       "public_status_failed": 10,
-      "L4_failed_all_scope": 20,
-      "L4_falsified_all_scope": 5,
-      "scope_note": "RESOLVED 2026-06-08 (graph re-queried): canonical public falsification count = 10, verified across 4 independent sources -- live Neo4j (10 EFCValidation status='failed' & vl_public=true, 0 public 'falsified'), ledger.json n_falsified=10, stats.json=10, index.md '10 confirmed falsifications'. The earlier 'L2=11' was an over-count; there is NO 11th public falsification. The all-scope graph carries 20 'failed' + 5 'falsified', but the extra ~15 are private/legacy/duplicate nodes (F5/F6/F7, EFC-R-on-SPARC dupes, 'Stage: Non-rejectable', v1 Scalar Index dupes) -- not public. Never cite a bare count without (layer, denominator); the public number is 10."
+      "L4_failed_all_scope": 16,
+      "L4_falsified_all_scope": 4,
+      "scope_note": "RESOLVED 2026-06-08 (graph re-queried): canonical public falsification count = 10, verified across 4 independent sources -- live Neo4j (10 EFCValidation status='failed' & vl_public=true, 0 public 'falsified'), ledger.json n_falsified=10, stats.json=10, index.md '10 confirmed falsifications'. The earlier 'L2=11' was an over-count; there is NO 11th public falsification. The all-scope graph carries 20 'failed' + 5 'falsified', but the extra ~15 are private/legacy/duplicate nodes (F5/F6/F7, EFC-R-on-SPARC dupes, 'Stage: Non-rejectable', v1 Scalar Index dupes) -- not public. Never cite a bare count without (layer, denominator); the public number is 10. CLEANUP 2026-06-08: 5 private cruft nodes soft-archived (2 legacy duplicates; 2 mislabeled stage/state markers -- 'Stage: Non-rejectable' had been tagged falsified, the opposite; and 1 contradictory F7 'PASSED' node carrying status=failed). All-scope active failed/falsified now 16+4=20 (was 20+5=25); public count unchanged at 10."
     },
     "survival": {
       "DO_NOT_cite_105_115": true,
