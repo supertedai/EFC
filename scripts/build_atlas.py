@@ -727,12 +727,18 @@ def render_ledger_rows(ledger: dict):
         cats.add(cat)
         for item in items:
             total += 1
+            name = item.get("name", "") or ""
+            if not name.strip():
+                # Folded one-off tests (e.g. EFC-VAL reports) lack a public title
+                # in ledger.json — counted in the total, but not rendered as a
+                # blank row. Their detail lives in the formal validation reports.
+                continue
             result = item.get("result", "") or ""
             rows_html.append(
                 f'    <tr data-category="{_esc(cat)}" data-result="{_esc(result)}">'
                 f'<td>{_result_badge(result)}</td>'
                 f'<td>{_esc(cat)}</td>'
-                f'<td><strong>{_esc(item.get("name", ""))}</strong></td>'
+                f'<td><strong>{_esc(name)}</strong></td>'
                 f'<td>{_esc(item.get("prediction", ""))}</td>'
                 f'<td style="font-size:0.82rem; color:#5b6a7a;">{_esc(item.get("data_source", ""))}</td>'
                 f"</tr>"
