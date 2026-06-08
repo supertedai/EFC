@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Tests",
   "version": "3.0",
-  "generated_at": "2026-06-08T09:29:09Z",
+  "generated_at": "2026-06-08T14:01:22Z",
   "categories": {
     "physics_test": [
       {
@@ -305,7 +305,7 @@
         "status_detail": "PASSED"
       },
       {
-        "test_id": "grav_integration_2026-06-08_053412_aqual",
+        "test_id": "grav_integration_2026-06-08_115626_aqual",
         "name": "EFC×Graph-AQUAL regime bridge (growth sector)",
         "description": "Tests whether the MOND-like G_eff(k,a) modification from Grid-AQUAL is compatible with linear structure growth (σ₈, fσ₈, growth index γ). EFC requires regime separation: non-linear local MOND must not leak into the linear Hubble-scale growth sector.",
         "result": "C=2.29: 2 survived, 2 exploded. Verdict: PARTIAL_BRIDGE.",
@@ -395,7 +395,7 @@
         "status_detail": "PENDING"
       },
       {
-        "test_id": "grav_kt1_2026-06-08_053412_aqual",
+        "test_id": "grav_kt1_2026-06-08_115626_aqual",
         "name": "Grid-AQUAL Newton/MOND limits (KT1)",
         "description": "Discrete AQUAL functional on 3D grid reproduces correct Newtonian (1/r²) and MONDian (1/r) force-law limits from a single equation.",
         "result": "MOND outer slope = -1.050 (target: -1.0), Newton outer slope = -2.029 (target: -2.0)",
@@ -410,7 +410,7 @@
         "status_detail": "success"
       },
       {
-        "test_id": "grav_kt3_2026-06-08_053412_aqual",
+        "test_id": "grav_kt3_2026-06-08_115626_aqual",
         "name": "Grid-AQUAL mass-scaling exponent (KT3)",
         "description": "Transition radius r_t scales as M^β with source mass. MOND predicts β=0.5 (r_t = √(GM/a₀)). Deviations indicate bulk-structure sensitivity beyond local g_N/a₀.",
         "result": "β = 0.3047 (target: 0.5 for √(GM/a₀))",
@@ -425,7 +425,7 @@
         "status_detail": "partial"
       },
       {
-        "test_id": "grav_kt2_2026-06-08_053412_aqual",
+        "test_id": "grav_kt2_2026-06-08_115626_aqual",
         "name": "Grid-AQUAL prefactor convergence (KT2)",
         "description": "The effective prefactor C measured from volume-weighted radial acceleration converges to a finite value as grid resolution N increases. C² encodes discrete IR renormalization of the AQUAL functional.",
         "result": "C_vw = 2.2895 (converged)",
@@ -787,6 +787,21 @@
         "status_detail": "PENDING"
       },
       {
+        "test_id": "conv_cosmic_shear_s8_amplitude_existing_lensing_disfavours_efc_bo",
+        "name": "Cosmic-shear S8 amplitude — existing lensing disfavours EFC η-boost branch (~3.3σ, first-look)",
+        "description": "Amplitude-leg (S8) test of EFC's perturbation-sector branches against existing cosmic-shear S8, formalised as a reproducible pipeline (reproduce_shear_s8.py, SHA-256 sealed; docs/likelihood-ledger entry shear_s8_amplitude_efc_branches). FIRST-LOOK and PRELIMINARY — flagged for review, not a full validation: diagonal errors only, no full covariance/nuisance marginalisation. It tests ONLY the amplitude consequence of the fragile η-boost (η-boost ⇒ enhanced growth ⇒ high S8); the decisive distinctive test, the non-monotonic Σeff(z) crossover at z≈0.44 (criterion F9), remains DECLARED/GAP awaiting Euclid DR1 + the full Cobaya+MGCAMB tomographic-shear shape likelihood. Both S8 datasets independently verified 2026-06-08 against the source papers (DES Y6 arXiv:2601.14559; KiDS-Legacy arXiv:2503.19442). Result is robust to the KiDS-1000 (0.766) vs KiDS-Legacy (0.814) bifurcation.",
+        "result": "Planned",
+        "status": "unknown",
+        "vl_category": "consistency_check",
+        "also_phenomenological": null,
+        "data_source": "DES Y6 3x2pt cosmic shear (arXiv:2601.14559, S8=0.789±0.012) + KiDS-Legacy (arXiv:2503.19442, S8=0.814 +0.011/-0.012); fragile prediction DOI 32037990; reproducible via reproduce_shear_s8.py",
+        "prediction": "EFC-robust (μ<1, Σ≈0.99) predicts S8≈0.820 (growth-suppressed, the right direction for the S8 tension); EFC-fragile (η-boost, classified 0% robust per DOI 32037990) predicts S8=0.847 (enhanced). Against existing weak-lensing S8 (DES Y6 0.789±0.012; KiDS-Legacy 0.814±0.012) the fragile branch is disfavoured ~3.3σ (combined, model-error-propagated), the robust branch is the best fit (ahead of ΛCDM at 0.832). Falsifier already partly met for the fragile branch; the robust near-GR prediction remains consistent. The crossover-shape leg (F9) is the outstanding decisive test.",
+        "notes": "Approved by Morten 2026-06-08 (his scientific decision). Sealed as consistency_check with explicit FIRST-LOOK / amplitude-leg scope — NOT a full physics_test. Finding: existing cosmic-shear S8 disfavours the fragile eta-boost branch ~3.3 sigma (combined, model-error-propagated); robust EFC (mu<1, S8 down ~0.82) is the best fit, ahead of LCDM. Both datasets independently verified vs source papers (DES Y6 arXiv:2601.14559 S8=0.789+/-0.012; KiDS-Legacy arXiv:2503.19442 S8=0.814 +0.011/-0.012), robust to the KiDS-1000/Legacy bifurcation. Reproducible: reproduce_shear_s8.py (SHA-256 sealed). LIMITATION: amplitude leg only -- the decisive distinctive test, the non-monotonic Sigma_eff(z) crossover at z~0.44 (F9), awaits Euclid DR1 (Oct 2026) + the full shape likelihood. EFC's own production code (EFCGrowth, EFCLensing) independently reproduces P2 fsigma8 (0.449/0.430 exact at sigma8=0.79) and the Sigma_eff crossover structure, strengthening the picture but not substituting for the blind Euclid test.",
+        "quantitative_result": null,
+        "last_synced": "2026-06-08T13:29:59.753000000+00:00",
+        "status_detail": "planned"
+      },
+      {
         "test_id": "conv_efc_c_002_c_measure_correlation_with_pci_st",
         "name": "EFC-C-002: C-measure Correlation with PCI_ST",
         "description": "Validates that the integrated EFC-C consciousness measure C = ∫κΩ dx dt reproduces the rank ordering of the established empirical consciousness index PCI_ST. Uses frozen κ = 0.37 ± 0.04 without recalibration. If C cannot match PCI_ST rankings, the integration step (Ω→C) adds no explanatory power beyond existing measures.",
@@ -1091,13 +1106,13 @@
       {
         "test_id": "conv_bao_desi_y1_efc_preferanse_test_22_01_",
         "name": "BAO DESI Y1 — EFC vs ΛCDM (pending real data)",
-        "description": "DESI Year 1 BAO-data viser Δχ²=−22.01 til fordel for EFC over ΛCDM. 5-fold kryssvalidering bestått for alle fold. Dette er det sterkeste enkelt-BAO-signalet for EFC, men mangler formell VAL-ID og er ikke registrert i validerings-ledgeren ((?)-markering i research status). Testen formaliserer resultatet og knytter det til atlas-noden w0wa_preference (L0).",
+        "description": "Pending real DESI DR1/DR2 BAO: the current bao_desi_y1 data file is placeholder (unphysical DH(z), z-bins not DESI's). No EFC-vs-ΛCDM verdict until real DESI BAO values are sourced.",
         "result": "Planned",
         "status": "unknown",
         "vl_category": "phenomenological",
         "also_phenomenological": null,
         "data_source": "DESI DR1 BAO (bao_desi_y1 dataset)",
-        "prediction": "Pending real DESI DR1/DR2 BAO: current data file is placeholder (unphysical DH(z), z-bins not DESI's). No EFC-vs-ΛCDM verdict until real DESI values sourced.",
+        "prediction": "Pending real DESI DR1/DR2 BAO: the current bao_desi_y1 data file is placeholder (unphysical DH(z), z-bins not DESI's). No EFC-vs-ΛCDM verdict until real DESI BAO values are sourced.",
         "notes": "Godkjent av Morten 2026-04-26. Sterkeste BAO-signal for EFC (Δχ²=−22.01, 5-fold CV alle bestått). Ingen formell VAL-ID tidligere — mangling rettet. Kobles til atlas-fenomener w0wa_preference + H0_tension (L0).",
         "quantitative_result": null,
         "last_synced": "2026-04-26T09:25:03.339000000+00:00",
@@ -2129,5 +2144,5 @@
       }
     ]
   },
-  "total_count": 141
+  "total_count": 142
 }
