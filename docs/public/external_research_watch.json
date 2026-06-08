@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.7",
-  "last_updated": "2026-05-11",
+  "version": "1.8",
+  "last_updated": "2026-06-08",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -20,7 +20,7 @@
   },
   "framework_taxonomy_note": {
     "added_at": "2026-04-19",
-    "purpose": "v1.2 introduces canonical competing-framework entries (source_type='framework-seminal') so Symbiose graph gets explicit (:Publication:Framework)-[:COMPETES_WITH]->(:Theory{canonical:'EFC'}) nodes for every major alternative to \u039bCDM and EFC. Frameworks are keyed by their seminal publication (arXiv or DOI) and positioned via recovery-condition or discriminator language \u2014 never 'ruled out' unless sealed blind test exists.",
+    "purpose": "v1.2 introduces canonical competing-framework entries (source_type='framework-seminal') so Symbiose graph gets explicit (:Publication:Framework)-[:COMPETES_WITH]->(:Theory{canonical:'EFC'}) nodes for every major alternative to ΛCDM and EFC. Frameworks are keyed by their seminal publication (arXiv or DOI) and positioned via recovery-condition or discriminator language — never 'ruled out' unless sealed blind test exists.",
     "categories": [
       "dark-energy-parametrization",
       "modified-gravity",
@@ -124,7 +124,7 @@
       "url": "https://arxiv.org/abs/2503.14738",
       "date_seen": "2026-04-17",
       "date_published": "2025-03-19",
-      "efc_relevance": "2.3\u03c3 \u039bCDM tension, 3.1\u03c3 preference for w0wa; supports EFC L2\u2192L3 regime transition and WP4 T(S).",
+      "efc_relevance": "2.3σ ΛCDM tension, 3.1σ preference for w0wa; supports EFC L2→L3 regime transition and WP4 T(S).",
       "ledger_action": "Add L2 row to Validation Ledger; update gap theory-background-hz-modification to 'decision-ready'.",
       "status": "new"
     },
@@ -135,7 +135,7 @@
       "url": "https://www.nature.com/articles/s41550-025-02669-6",
       "date_seen": "2026-04-17",
       "date_published": "2025-10-06",
-      "efc_relevance": "Independent confirmation of w0wa preference; bolsters EFC 'LCDM as special case' (\u03b1 = \u22120.14 \u00b1 0.21).",
+      "efc_relevance": "Independent confirmation of w0wa preference; bolsters EFC 'LCDM as special case' (α = −0.14 ± 0.21).",
       "ledger_action": "Cite in WP1 recovery conditions section.",
       "status": "new"
     },
@@ -146,18 +146,18 @@
       "url": "https://arxiv.org/abs/2602.10065",
       "date_seen": "2026-04-17",
       "date_published": "2026-02",
-      "efc_relevance": "S8 = 0.798 (NLA); 2.6\u03c3 CMB tension validates EFC logged DES Y6 P3 PASS (0.944 \u00b1 0.018) and \u03bc(a) < 1 prediction.",
+      "efc_relevance": "S8 = 0.798 (NLA); 2.6σ CMB tension validates EFC logged DES Y6 P3 PASS (0.944 ± 0.018) and μ(a) < 1 prediction.",
       "ledger_action": "Replace preliminary DES Y6 row in Validation Ledger with published values.",
       "status": "new"
     },
     {
       "key": "arXiv:2601.14559",
-      "title": "DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3\u00d72pt)",
+      "title": "DES Y6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing (3×2pt)",
       "source_type": "paper",
       "url": "https://arxiv.org/abs/2601.14559",
       "date_seen": "2026-04-17",
       "date_published": "2026-01",
-      "efc_relevance": "S8 = 0.789 \u00b1 0.012, \u03a9m = 0.333; wCDM: w = \u22121.12. Direct 3\u00d72pt anchor for EFC perturbation sector tests.",
+      "efc_relevance": "S8 = 0.789 ± 0.012, Ωm = 0.333; wCDM: w = −1.12. Direct 3×2pt anchor for EFC perturbation sector tests.",
       "ledger_action": "Add to Validation Ledger (perturbation probes); cross-reference in WP3 Falsification Protocol.",
       "status": "new"
     },
@@ -179,7 +179,7 @@
       "url": "https://arxiv.org/abs/2602.12238",
       "date_seen": "2026-04-17",
       "date_published": "2026-02",
-      "efc_relevance": "Canonical S8 cross-probe table: Planck+ACT+SPT 0.836; DES Y6 2.4\u20132.7\u03c3; KiDS <1\u03c3. Sharpens L1\u2192L2 transition evidence.",
+      "efc_relevance": "Canonical S8 cross-probe table: Planck+ACT+SPT 0.836; DES Y6 2.4–2.7σ; KiDS <1σ. Sharpens L1→L2 transition evidence.",
       "ledger_action": "Cite in WP3 Falsification Protocol and Validation Ledger preamble.",
       "status": "new"
     },
@@ -190,8 +190,8 @@
       "url": "https://arxiv.org/abs/2503.21870",
       "date_seen": "2026-04-17",
       "date_published": "2025-03",
-      "efc_relevance": "146 SL constraints + dense WL; decisive dataset for the pre-registered EFC \u03b4\u03ba shock-front test (figshare 31963668).",
-      "ledger_action": "Move JWST Bullet \u03b4\u03ba test up in Stage-IV Roadmap priority; data is available, test pipeline is now the bottleneck.",
+      "efc_relevance": "146 SL constraints + dense WL; decisive dataset for the pre-registered EFC δκ shock-front test (figshare 31963668).",
+      "ledger_action": "Move JWST Bullet δκ test up in Stage-IV Roadmap priority; data is available, test pipeline is now the bottleneck.",
       "status": "new"
     },
     {
@@ -201,7 +201,7 @@
       "url": "https://arxiv.org/abs/2601.22245",
       "date_seen": "2026-04-17",
       "date_published": "2026-01",
-      "efc_relevance": "Second JWST Bullet mass reconstruction; provides cross-check for EFC \u03b4\u03ba pre-registration.",
+      "efc_relevance": "Second JWST Bullet mass reconstruction; provides cross-check for EFC δκ pre-registration.",
       "ledger_action": "Link alongside 2503.21870 in Bullet Cluster under EFC paper.",
       "status": "new"
     },
@@ -224,12 +224,12 @@
       "date_seen": "2026-04-17",
       "date_published": "2026-01",
       "efc_relevance": "Competitor empirical model claiming to outperform MOND and CDM halos; must be AIC-compared against EFC Kill-Test v6.",
-      "ledger_action": "Add to WP3 competitor-landscape table; run head-to-head \u0394AIC on SPARC 175.",
+      "ledger_action": "Add to WP3 competitor-landscape table; run head-to-head ΔAIC on SPARC 175.",
       "status": "new"
     },
     {
       "key": "ESA:EuclidDR1-2026-10-21",
-      "title": "Euclid Data Release 1 (2100 deg\u00b2 cosmic shear)",
+      "title": "Euclid Data Release 1 (2100 deg² cosmic shear)",
       "source_type": "survey-release",
       "url": "https://euclid.caltech.edu/page/data-release-timeline",
       "date_seen": "2026-04-17",
@@ -256,31 +256,31 @@
       "url": "https://arxiv.org/abs/2604.14327",
       "date_seen": "2026-04-18",
       "date_published": "2026-04-17",
-      "efc_relevance": "kSZ pairwise-velocity test constrains g \u221d 1/r^n with n = 2.1 \u00b1 0.3 on 30\u2013230 Mpc (Newtonian preferred, MOND poor fit); bounds any large-scale deviation EFC's L2\u2192L3 transition could introduce.",
-      "ledger_action": "Add to Validation Ledger as blocking constraint for EFC's inter-cluster regime; require EFC L3 predictions to preserve 1/r\u00b2 at 30\u2013230 Mpc within \u00b10.3 in n. Cross-reference in WP3 Falsification Protocol and competitor-landscape table.",
+      "efc_relevance": "kSZ pairwise-velocity test constrains g ∝ 1/r^n with n = 2.1 ± 0.3 on 30–230 Mpc (Newtonian preferred, MOND poor fit); bounds any large-scale deviation EFC's L2→L3 transition could introduce.",
+      "ledger_action": "Add to Validation Ledger as blocking constraint for EFC's inter-cluster regime; require EFC L3 predictions to preserve 1/r² at 30–230 Mpc within ±0.3 in n. Cross-reference in WP3 Falsification Protocol and competitor-landscape table.",
       "status": "new"
     },
     {
       "key": "framework:LCDM-Planck2018",
-      "title": "\u039bCDM (Standard Model of Cosmology, Planck 2018 baseline)",
+      "title": "ΛCDM (Standard Model of Cosmology, Planck 2018 baseline)",
       "source_type": "framework-seminal",
       "framework_category": "dark-energy-parametrization",
       "url": "https://arxiv.org/abs/1807.06209",
       "date_seen": "2026-04-19",
       "date_published": "2018-07-17",
-      "efc_relevance": "The baseline against which every cosmological framework is measured. EFC recovers \u039bCDM as a limit when (i) K(\u03c1) \u2192 \u221e, (ii) T(a) \u2192 0, (iii) \u03be \u226b 1 hold simultaneously; then \u03bc, \u03a3, \u03b7 \u2192 1 and the relativistic action reduces to Einstein\u2013Hilbert + \u039b. \u039bCDM is thus a special case of EFC, not a competitor to be falsified.",
+      "efc_relevance": "The baseline against which every cosmological framework is measured. EFC recovers ΛCDM as a limit when (i) K(ρ) → ∞, (ii) T(a) → 0, (iii) ξ ≫ 1 hold simultaneously; then μ, Σ, η → 1 and the relativistic action reduces to Einstein–Hilbert + Λ. ΛCDM is thus a special case of EFC, not a competitor to be falsified.",
       "ledger_action": "Register as canonical baseline framework in Symbiose graph. Link recovery conditions (WP1 Consolidation Paper DOI 31943361).",
       "status": "framework-logged"
     },
     {
       "key": "framework:wCDM-CPL-Chevallier2001",
-      "title": "wCDM / w0waCDM (CPL parametrization, Chevallier\u2013Polarski\u2013Linder)",
+      "title": "wCDM / w0waCDM (CPL parametrization, Chevallier–Polarski–Linder)",
       "source_type": "framework-seminal",
       "framework_category": "dark-energy-parametrization",
       "url": "https://arxiv.org/abs/astro-ph/0009008",
       "date_seen": "2026-04-19",
       "date_published": "2001-01-25",
-      "efc_relevance": "Phenomenological w(a) = w0 + wa(1\u2212a). EFC's L2\u2192L3 regime transition gives an effective w(z) that maps onto the (w0, wa) plane; DESI DR2's 3.1\u03c3 preference for w0wa is directionally consistent with EFC's \u03b1 = \u22120.14 \u00b1 0.21. Shared signal, not EFC-exclusive.",
+      "efc_relevance": "Phenomenological w(a) = w0 + wa(1−a). EFC's L2→L3 regime transition gives an effective w(z) that maps onto the (w0, wa) plane; DESI DR2's 3.1σ preference for w0wa is directionally consistent with EFC's α = −0.14 ± 0.21. Shared signal, not EFC-exclusive.",
       "ledger_action": "Logged as parametric-competitor for background-sector tests. Cross-reference arXiv:2503.14738 (DESI DR2) and ledger_darkenergy_evolution_wz.",
       "status": "framework-logged"
     },
@@ -292,8 +292,8 @@
       "url": "https://arxiv.org/abs/astro-ph/9708069",
       "date_seen": "2026-04-19",
       "date_published": "1998-08-18",
-      "efc_relevance": "A canonical scalar \u03c6 with V(\u03c6) drives late-time acceleration (w > \u22121 always). Competing ontology vs EFC: quintessence adds a new degree of freedom, EFC re-derives DE dynamics from entropic flow on existing geometry. Discriminator: quintessence cannot cross w = \u22121; EFC can if T(a) inverts sign.",
-      "ledger_action": "Logged as competitor to EFC's L2\u2192L3 mechanism. Compare recovery conditions in WP1.",
+      "efc_relevance": "A canonical scalar φ with V(φ) drives late-time acceleration (w > −1 always). Competing ontology vs EFC: quintessence adds a new degree of freedom, EFC re-derives DE dynamics from entropic flow on existing geometry. Discriminator: quintessence cannot cross w = −1; EFC can if T(a) inverts sign.",
+      "ledger_action": "Logged as competitor to EFC's L2→L3 mechanism. Compare recovery conditions in WP1.",
       "status": "framework-logged"
     },
     {
@@ -304,8 +304,8 @@
       "url": "https://arxiv.org/abs/1811.04083",
       "date_seen": "2026-04-19",
       "date_published": "2019-06-25",
-      "efc_relevance": "Pre-recombination scalar-field injection targeting H0 tension; recent pre-recombination EDE analyses (arXiv:2511.16606, 2604.13535) partially suppress the DESI DR2 w0wa preference. Directly competes with EFC for explaining both H0 and dark-sector evolution; their CMB imprints differ (EDE shifts sound horizon; EFC shifts \u03bc\u2013\u03a3 slip).",
-      "ledger_action": "Logged as competitor for H0-tension + DESI-DR2 interpretation. Required comparison in WP3 Falsification Protocol, probe-by-probe \u0394AIC table.",
+      "efc_relevance": "Pre-recombination scalar-field injection targeting H0 tension; recent pre-recombination EDE analyses (arXiv:2511.16606, 2604.13535) partially suppress the DESI DR2 w0wa preference. Directly competes with EFC for explaining both H0 and dark-sector evolution; their CMB imprints differ (EDE shifts sound horizon; EFC shifts μ–Σ slip).",
+      "ledger_action": "Logged as competitor for H0-tension + DESI-DR2 interpretation. Required comparison in WP3 Falsification Protocol, probe-by-probe ΔAIC table.",
       "status": "framework-logged"
     },
     {
@@ -316,20 +316,20 @@
       "url": "https://arxiv.org/abs/hep-th/0403127",
       "date_seen": "2026-04-19",
       "date_published": "2004-03-12",
-      "efc_relevance": "DE density \u03c1_de \u221d c\u00b2 / (8\u03c0G L\u00b2) with holographic IR cutoff L. Ontological overlap with EFC: both derive DE from bounded information/entropy on cosmological surfaces, but HDE fixes the IR scale phenomenologically, EFC derives it from the density-stiffness K(\u03c1). A family of HDE variants (future horizon, Hubble radius, Ricci scalar) must be compared against EFC individually.",
+      "efc_relevance": "DE density ρ_de ∝ c² / (8πG L²) with holographic IR cutoff L. Ontological overlap with EFC: both derive DE from bounded information/entropy on cosmological surfaces, but HDE fixes the IR scale phenomenologically, EFC derives it from the density-stiffness K(ρ). A family of HDE variants (future horizon, Hubble radius, Ricci scalar) must be compared against EFC individually.",
       "ledger_action": "Logged as entropic-ontology cousin. Cross-reference Kaniadakis variant and WP1 recovery-conditions.",
       "status": "framework-logged"
     },
     {
       "key": "framework:KaniadakisHDE-Drepanou2021",
-      "title": "Kaniadakis Holographic Dark Energy (\u03ba-entropy generalisation)",
+      "title": "Kaniadakis Holographic Dark Energy (κ-entropy generalisation)",
       "source_type": "framework-seminal",
       "framework_category": "dark-energy-parametrization",
       "url": "https://arxiv.org/abs/2109.09181",
       "date_seen": "2026-04-19",
       "date_published": "2021-09-19",
-      "efc_relevance": "Replaces Boltzmann\u2013Gibbs entropy with Kaniadakis \u03ba-entropy in the holographic DE construction. Same information-entropy family as EFC but with a different functional form for the entropy functional S[\u03c1]. Discriminator is the late-time growth-rate fingerprint f\u03c38(z) and the sign of the deviation at the matter\u2013DE crossover.",
-      "ledger_action": "Logged as Kaniadakis-variant cousin of HDE. Required comparison in WP1 recovery-conditions table (\u03ba\u21920 should recover EFC entropic term).",
+      "efc_relevance": "Replaces Boltzmann–Gibbs entropy with Kaniadakis κ-entropy in the holographic DE construction. Same information-entropy family as EFC but with a different functional form for the entropy functional S[ρ]. Discriminator is the late-time growth-rate fingerprint fσ8(z) and the sign of the deviation at the matter–DE crossover.",
+      "ledger_action": "Logged as Kaniadakis-variant cousin of HDE. Required comparison in WP1 recovery-conditions table (κ→0 should recover EFC entropic term).",
       "status": "framework-logged"
     },
     {
@@ -340,8 +340,8 @@
       "url": "https://arxiv.org/abs/astro-ph/0407432",
       "date_seen": "2026-04-19",
       "date_published": "2005-10-21",
-      "efc_relevance": "Two-field construction (canonical + phantom) that crosses the w = \u22121 divide. DESI DR2 quintom A/B analyses (arXiv:2601.02284) are directionally compatible with EFC's L2\u2192L3 transition \u2014 both models can produce phantom-crossing without ghost instabilities at the background level. Discriminator: EFC predicts correlated \u03bc(a)<1 at perturbation sector, quintom does not.",
-      "ledger_action": "Logged as phantom-crossing competitor. Cross-reference arXiv:2601.02284 and FA2 (\u03bc sign).",
+      "efc_relevance": "Two-field construction (canonical + phantom) that crosses the w = −1 divide. DESI DR2 quintom A/B analyses (arXiv:2601.02284) are directionally compatible with EFC's L2→L3 transition — both models can produce phantom-crossing without ghost instabilities at the background level. Discriminator: EFC predicts correlated μ(a)<1 at perturbation sector, quintom does not.",
+      "ledger_action": "Logged as phantom-crossing competitor. Cross-reference arXiv:2601.02284 and FA2 (μ sign).",
       "status": "framework-logged"
     },
     {
@@ -352,8 +352,8 @@
       "url": "https://arxiv.org/abs/astro-ph/9908023",
       "date_seen": "2026-04-19",
       "date_published": "1999-11-05",
-      "efc_relevance": "Explicit Q-coupling in dark sector produces effective w(z) that crosses \u22121 and modifies DM clustering. Resurgent post-DESI-DR2 (arXiv:2604.08449). Parallel mechanism to EFC's entropic coupling: both transfer energy between components, but EFC does so via S-gradient of geometric stiffness; coupled DE/DM does so via phenomenological Q(\u03c6, \u03c1).",
-      "ledger_action": "Logged as interaction-sector competitor. Required discriminator is the clustering-rate residual on 30\u2013100 Mpc scales.",
+      "efc_relevance": "Explicit Q-coupling in dark sector produces effective w(z) that crosses −1 and modifies DM clustering. Resurgent post-DESI-DR2 (arXiv:2604.08449). Parallel mechanism to EFC's entropic coupling: both transfer energy between components, but EFC does so via S-gradient of geometric stiffness; coupled DE/DM does so via phenomenological Q(φ, ρ).",
+      "ledger_action": "Logged as interaction-sector competitor. Required discriminator is the clustering-rate residual on 30–100 Mpc scales.",
       "status": "framework-logged"
     },
     {
@@ -364,7 +364,7 @@
       "url": "https://arxiv.org/abs/2504.15190",
       "date_seen": "2026-04-19",
       "date_published": "2025-04-21",
-      "efc_relevance": "Post-DESI-DR2 variant: canonical (non-phantom) quintessence remains viable in a spatially curved FRW background. Contradicts claims that DESI DR2 forces phantom dynamics. Relevant to EFC as a non-phantom alternative with different cosmographic signature; consistent with EFC background if \u03a9_k absorbs the L2\u2192L3 residual.",
+      "efc_relevance": "Post-DESI-DR2 variant: canonical (non-phantom) quintessence remains viable in a spatially curved FRW background. Contradicts claims that DESI DR2 forces phantom dynamics. Relevant to EFC as a non-phantom alternative with different cosmographic signature; consistent with EFC background if Ω_k absorbs the L2→L3 residual.",
       "ledger_action": "Logged as 2025 non-phantom alternative. Track for Euclid-DR1-era discriminator.",
       "status": "framework-logged"
     },
@@ -376,19 +376,19 @@
       "url": "https://ui.adsabs.harvard.edu/abs/1983ApJ...270..365M/abstract",
       "date_seen": "2026-04-19",
       "date_published": "1983-07-15",
-      "efc_relevance": "Interpolation function \u03bc(x) with characteristic scale a0 \u2248 1.2\u00d710\u207b\u00b9\u2070 m/s\u00b2 fits SPARC rotation curves without dark matter. EFC contains MOND as the low-acceleration local limit: EFC's Grid-AQUAL construction reduces to Milgrom's force law when a \u226a a0 and S-gradient saturates. Shared phenomenology at galactic scales, different ontology, different predictions at cluster scale (where MOND underpredicts, EFC predicts dense-regime return to Newtonian).",
+      "efc_relevance": "Interpolation function μ(x) with characteristic scale a0 ≈ 1.2×10⁻¹⁰ m/s² fits SPARC rotation curves without dark matter. EFC contains MOND as the low-acceleration local limit: EFC's Grid-AQUAL construction reduces to Milgrom's force law when a ≪ a0 and S-gradient saturates. Shared phenomenology at galactic scales, different ontology, different predictions at cluster scale (where MOND underpredicts, EFC predicts dense-regime return to Newtonian).",
       "ledger_action": "Logged as galactic-scale mechanistic relative. Cross-reference SPARC tests (ledger_galaxy_rotation_curves_sparc) and Verlinde 2016 (shared a0).",
       "status": "framework-logged"
     },
     {
       "key": "framework:TeVeS-Bekenstein2004",
-      "title": "TeVeS (Tensor\u2013Vector\u2013Scalar gravity, Bekenstein)",
+      "title": "TeVeS (Tensor–Vector–Scalar gravity, Bekenstein)",
       "source_type": "framework-seminal",
       "framework_category": "modified-gravity",
       "url": "https://arxiv.org/abs/astro-ph/0403694",
       "date_seen": "2026-04-19",
       "date_published": "2004-03-30",
-      "efc_relevance": "Relativistic completion of MOND with three fields (g\u03bc\u03bd, U\u03bc, \u03c6). Explained galactic RC but failed CMB acoustic peaks without additional dark matter; superseded by RMOND. Positioned relative to EFC as a historical relativistic-MOND attempt \u2014 EFC achieves galactic MOND-limit without extra fields, using entropic flow on existing metric.",
+      "efc_relevance": "Relativistic completion of MOND with three fields (gμν, Uμ, φ). Explained galactic RC but failed CMB acoustic peaks without additional dark matter; superseded by RMOND. Positioned relative to EFC as a historical relativistic-MOND attempt — EFC achieves galactic MOND-limit without extra fields, using entropic flow on existing metric.",
       "ledger_action": "Logged as historical relativistic-MOND reference. Kept for recovery-condition comparison (WP1).",
       "status": "framework-logged"
     },
@@ -400,7 +400,7 @@
       "url": "https://arxiv.org/abs/2007.00082",
       "date_seen": "2026-04-19",
       "date_published": "2021-04-15",
-      "efc_relevance": "New RMOND action reproduces CMB acoustic peaks, BAO, and rotation curves in a single relativistic theory. Stronger competitor than TeVeS \u2014 must be compared against EFC on CMB, BAO, AND SPARC simultaneously. Discriminator: RMOND introduces two extra fields (A\u03bc, \u03c6) with specific coupling; EFC uses one scalar (S) derived from entropic-flow constraint.",
+      "efc_relevance": "New RMOND action reproduces CMB acoustic peaks, BAO, and rotation curves in a single relativistic theory. Stronger competitor than TeVeS — must be compared against EFC on CMB, BAO, AND SPARC simultaneously. Discriminator: RMOND introduces two extra fields (Aμ, φ) with specific coupling; EFC uses one scalar (S) derived from entropic-flow constraint.",
       "ledger_action": "Logged as primary 2021+ relativistic-MOND competitor. Required benchmark in any EFC multi-probe comparison table.",
       "status": "framework-logged"
     },
@@ -412,43 +412,43 @@
       "url": "https://arxiv.org/abs/0706.2041",
       "date_seen": "2026-04-19",
       "date_published": "2007-06-14",
-      "efc_relevance": "Replaces R with f(R) in the Einstein\u2013Hilbert action; produces effective scalar degree of freedom (scalaron). f(R) generically gives \u03bc > 1 (gravity strengthened); EFC predicts \u03bc < 1. This is a sharp sign-level discriminator (FA2 falsification criterion). DESI-DR2 analyses (arXiv:2504.05432) show f(R) is preferred over \u039bCDM; EFC and f(R) therefore sit on opposite sides of the same data.",
-      "ledger_action": "Logged as primary modified-gravity competitor. Already referenced in Gap Analysis \u00a76; explicit FA2 discriminator.",
+      "efc_relevance": "Replaces R with f(R) in the Einstein–Hilbert action; produces effective scalar degree of freedom (scalaron). f(R) generically gives μ > 1 (gravity strengthened); EFC predicts μ < 1. This is a sharp sign-level discriminator (FA2 falsification criterion). DESI-DR2 analyses (arXiv:2504.05432) show f(R) is preferred over ΛCDM; EFC and f(R) therefore sit on opposite sides of the same data.",
+      "ledger_action": "Logged as primary modified-gravity competitor. Already referenced in Gap Analysis §6; explicit FA2 discriminator.",
       "status": "framework-logged"
     },
     {
       "key": "framework:DGP-Dvali2000",
-      "title": "DGP Braneworld Gravity (Dvali\u2013Gabadadze\u2013Porrati)",
+      "title": "DGP Braneworld Gravity (Dvali–Gabadadze–Porrati)",
       "source_type": "framework-seminal",
       "framework_category": "modified-gravity",
       "url": "https://arxiv.org/abs/hep-th/0005016",
       "date_seen": "2026-04-19",
       "date_published": "2000-05-02",
-      "efc_relevance": "4D brane embedded in 5D bulk; gravity leaks to extra dimension at late times. Original self-accelerating branch ruled out by growth; normal branch (nDGP) survives as perturbation-sector test bed. Standard benchmark for modified-gravity \u03bc\u2013\u03a3 analyses. EFC must be compared head-to-head with nDGP on weak-lensing \u03a3 and growth f\u03c38.",
+      "efc_relevance": "4D brane embedded in 5D bulk; gravity leaks to extra dimension at late times. Original self-accelerating branch ruled out by growth; normal branch (nDGP) survives as perturbation-sector test bed. Standard benchmark for modified-gravity μ–Σ analyses. EFC must be compared head-to-head with nDGP on weak-lensing Σ and growth fσ8.",
       "ledger_action": "Logged as canonical extra-dimensional competitor. Required benchmark in perturbation-sector tests (ledger_perturbationsector_valley).",
       "status": "framework-logged"
     },
     {
       "key": "framework:Horndeski-Deffayet2011",
-      "title": "Horndeski Gravity (most general second-order scalar\u2013tensor)",
+      "title": "Horndeski Gravity (most general second-order scalar–tensor)",
       "source_type": "framework-seminal",
       "framework_category": "scalar-tensor-horndeski",
       "url": "https://arxiv.org/abs/1103.3260",
       "date_seen": "2026-04-19",
       "date_published": "2011-03-16",
-      "efc_relevance": "Full Horndeski Lagrangian spans all consistent second-order scalar\u2013tensor theories. GW170817 eliminated \u03b1_T \u2260 0 branches. EFC's 135k-point numerical scan (documented in FA3 hedge) shows standard quasi-static Horndeski with \u03b1_T = 0 cannot produce \u03bc < 1 and \u03a3 > 1 simultaneously \u2014 an EFC signature therefore falsifies standard Horndeski-QS. Discriminator structure is well-defined and recorded.",
+      "efc_relevance": "Full Horndeski Lagrangian spans all consistent second-order scalar–tensor theories. GW170817 eliminated α_T ≠ 0 branches. EFC's 135k-point numerical scan (documented in FA3 hedge) shows standard quasi-static Horndeski with α_T = 0 cannot produce μ < 1 and Σ > 1 simultaneously — an EFC signature therefore falsifies standard Horndeski-QS. Discriminator structure is well-defined and recorded.",
       "ledger_action": "Logged as encompassing scalar-tensor competitor class. Cross-reference FA3 and conv_hi_class_scalar_tensor_efc_falsification_test.",
       "status": "framework-logged"
     },
     {
       "key": "framework:Galileon-Nicolis2009",
-      "title": "Galileon Gravity (Nicolis\u2013Rattazzi\u2013Trincherini)",
+      "title": "Galileon Gravity (Nicolis–Rattazzi–Trincherini)",
       "source_type": "framework-seminal",
       "framework_category": "scalar-tensor-horndeski",
       "url": "https://arxiv.org/abs/0811.2197",
       "date_seen": "2026-04-19",
       "date_published": "2009-05-11",
-      "efc_relevance": "Scalar with Galilean shift-symmetry; self-accelerating cosmology, Vainshtein screening locally. Sub-class of Horndeski. Produces enhanced growth (\u03bc > 1) \u2014 again opposite sign to EFC prediction, enabling FA2-type discriminator. Cubic galileon self-accelerating branch strongly constrained by ISW cross-correlation.",
+      "efc_relevance": "Scalar with Galilean shift-symmetry; self-accelerating cosmology, Vainshtein screening locally. Sub-class of Horndeski. Produces enhanced growth (μ > 1) — again opposite sign to EFC prediction, enabling FA2-type discriminator. Cubic galileon self-accelerating branch strongly constrained by ISW cross-correlation.",
       "ledger_action": "Logged as Horndeski sub-class with enhanced growth. FA2 discriminator applies.",
       "status": "framework-logged"
     },
@@ -473,30 +473,30 @@
       "date_seen": "2026-04-19",
       "date_published": "2019-06-20",
       "efc_relevance": "Uses Weyl non-metricity to produce effective acceleration at galactic scales; tested on SPARC rotation curves (arXiv:2311.16893). Alternative geometric route to MOND-like phenomenology without entropic ingredient. Competitor in the same SPARC regime where EFC k=0.415 applies.",
-      "ledger_action": "Logged as geometric competitor on SPARC. Required head-to-head \u0394AIC comparison.",
+      "ledger_action": "Logged as geometric competitor on SPARC. Required head-to-head ΔAIC comparison.",
       "status": "framework-logged"
     },
     {
       "key": "framework:BransDicke-1961",
-      "title": "Brans\u2013Dicke Gravity (classic scalar\u2013tensor)",
+      "title": "Brans–Dicke Gravity (classic scalar–tensor)",
       "source_type": "framework-seminal",
       "framework_category": "scalar-tensor-horndeski",
       "url": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.124.925",
       "date_seen": "2026-04-19",
       "date_published": "1961-11-01",
-      "efc_relevance": "Scalar \u03c6 setting effective gravitational coupling G_eff = 1/\u03c6, constrained by Solar-System tests to \u03c9_BD > 40 000 (Cassini). EFC recovers Newtonian limit via K(\u03c1)-stiffness, not via large \u03c9_BD. Kept as historical anchor and as member of scalar\u2013tensor family sub-summed under Horndeski.",
+      "efc_relevance": "Scalar φ setting effective gravitational coupling G_eff = 1/φ, constrained by Solar-System tests to ω_BD > 40 000 (Cassini). EFC recovers Newtonian limit via K(ρ)-stiffness, not via large ω_BD. Kept as historical anchor and as member of scalar–tensor family sub-summed under Horndeski.",
       "ledger_action": "Logged as Horndeski ancestor. Solar-System bound is a EFC sanity check.",
       "status": "framework-logged"
     },
     {
       "key": "framework:MassiveGravity-dRGT-2010",
-      "title": "Massive Gravity (de Rham\u2013Gabadadze\u2013Tolley)",
+      "title": "Massive Gravity (de Rham–Gabadadze–Tolley)",
       "source_type": "framework-seminal",
       "framework_category": "modified-gravity",
       "url": "https://arxiv.org/abs/1011.1232",
       "date_seen": "2026-04-19",
       "date_published": "2010-11-04",
-      "efc_relevance": "Ghost-free massive graviton construction; cosmological viable branches tightly constrained by GW speed and tensor-mode dispersion. Distinct ontology from EFC (modifies the graviton sector) but appears in the same perturbation-sector \u03bc\u2013\u03a3 tables.",
+      "efc_relevance": "Ghost-free massive graviton construction; cosmological viable branches tightly constrained by GW speed and tensor-mode dispersion. Distinct ontology from EFC (modifies the graviton sector) but appears in the same perturbation-sector μ–Σ tables.",
       "ledger_action": "Logged as graviton-mass competitor. Bounded by GW170817 constraint on c_T.",
       "status": "framework-logged"
     },
@@ -508,7 +508,7 @@
       "url": "https://arxiv.org/abs/gr-qc/9504004",
       "date_seen": "2026-04-19",
       "date_published": "1995-04-15",
-      "efc_relevance": "Derives Einstein field equations from local Rindler horizon thermodynamics (Clausius relation \u03b4Q = T dS). Conceptual ancestor of every entropic gravity program including EFC. EFC inherits the assumption that geometry is thermodynamic in origin, but replaces local Rindler horizon with global entropic field S(x) on the grid.",
+      "efc_relevance": "Derives Einstein field equations from local Rindler horizon thermodynamics (Clausius relation δQ = T dS). Conceptual ancestor of every entropic gravity program including EFC. EFC inherits the assumption that geometry is thermodynamic in origin, but replaces local Rindler horizon with global entropic field S(x) on the grid.",
       "ledger_action": "Logged as ontological ancestor. Explicit parent-citation in WP1 recovery-conditions.",
       "status": "framework-logged"
     },
@@ -520,7 +520,7 @@
       "url": "https://arxiv.org/abs/0911.5004",
       "date_seen": "2026-04-19",
       "date_published": "2009-11-25",
-      "efc_relevance": "Systematic thermodynamic reformulation of gravitational field equations across Lanczos\u2013Lovelock theories; gravity as elasticity of spacetime with density of degrees of freedom on holographic surfaces. Shared conceptual scaffolding with EFC. Discriminator: Padmanabhan's framework leaves matter sector intact; EFC couples entropy directly to effective density through K(\u03c1).",
+      "efc_relevance": "Systematic thermodynamic reformulation of gravitational field equations across Lanczos–Lovelock theories; gravity as elasticity of spacetime with density of degrees of freedom on holographic surfaces. Shared conceptual scaffolding with EFC. Discriminator: Padmanabhan's framework leaves matter sector intact; EFC couples entropy directly to effective density through K(ρ).",
       "ledger_action": "Logged as emergent-gravity programme relative. Required comparison in WP1.",
       "status": "framework-logged"
     },
@@ -532,7 +532,7 @@
       "url": "https://arxiv.org/abs/1001.0785",
       "date_seen": "2026-04-19",
       "date_published": "2010-01-06",
-      "efc_relevance": "Newton's law as an entropic force on holographic screens. Direct conceptual predecessor of EFC; EFC replaces the holographic screen with a dynamical entropic field S(x) on a lattice and extends to perturbation sector. Shared a0-emergence (Verlinde's a0 \u223c cH0 rediscovered in EFC).",
+      "efc_relevance": "Newton's law as an entropic force on holographic screens. Direct conceptual predecessor of EFC; EFC replaces the holographic screen with a dynamical entropic field S(x) on a lattice and extends to perturbation sector. Shared a0-emergence (Verlinde's a0 ∼ cH0 rediscovered in EFC).",
       "ledger_action": "Logged as closest direct predecessor. Explicit parent-citation in WP1 and Elevator Pitch.",
       "status": "framework-logged"
     },
@@ -556,7 +556,7 @@
       "url": "https://arxiv.org/abs/2512.18054",
       "date_seen": "2026-04-19",
       "date_published": "2025-12-23",
-      "efc_relevance": "Entropic cosmology using mass-to-horizon entropy; preferred over \u039bCDM in DESI DR2 BAO Bayes-factor comparison. Shares entropic-cosmology family membership with EFC but lacks galactic / perturbation-sector sector. Referenced already in Gap Analysis \u00a76.",
+      "efc_relevance": "Entropic cosmology using mass-to-horizon entropy; preferred over ΛCDM in DESI DR2 BAO Bayes-factor comparison. Shares entropic-cosmology family membership with EFC but lacks galactic / perturbation-sector sector. Referenced already in Gap Analysis §6.",
       "ledger_action": "Logged as 2025 entropic-cosmology competitor. Cross-reference DESI DR2 BAO test.",
       "status": "framework-logged"
     },
@@ -569,7 +569,7 @@
       "date_seen": "2026-04-19",
       "date_published": "2023-08-31",
       "efc_relevance": "Machian formulation with cosmological boundary conditions fits SPARC with a characteristic acceleration. Another member of the MOND-limit family on galactic scales. Keeps EFC's competitor table complete.",
-      "ledger_action": "Logged as SPARC-family competitor. Head-to-head \u0394AIC on SPARC 175.",
+      "ledger_action": "Logged as SPARC-family competitor. Head-to-head ΔAIC on SPARC 175.",
       "status": "framework-logged"
     },
     {
@@ -580,7 +580,7 @@
       "url": "https://arxiv.org/abs/1104.4543",
       "date_seen": "2026-04-19",
       "date_published": "2011-04-22",
-      "efc_relevance": "Universe as infinite sequence of aeons joined by conformal rescaling at cosmological horizons. Radically different ontology from EFC \u2014 CCC is pre-big-bang cyclic, EFC is single-aeon with internal regime transitions. CCC predicts specific CMB anomalies (Hawking points); EFC predicts \u03bc\u2013\u03a3 deviations. Not directly comparable probe-by-probe but both challenge standard \u039bCDM initial-conditions narrative.",
+      "efc_relevance": "Universe as infinite sequence of aeons joined by conformal rescaling at cosmological horizons. Radically different ontology from EFC — CCC is pre-big-bang cyclic, EFC is single-aeon with internal regime transitions. CCC predicts specific CMB anomalies (Hawking points); EFC predicts μ–Σ deviations. Not directly comparable probe-by-probe but both challenge standard ΛCDM initial-conditions narrative.",
       "ledger_action": "Logged as alternative cosmology with orthogonal test surface. Reference only; no head-to-head foreseen.",
       "status": "framework-logged"
     },
@@ -592,7 +592,7 @@
       "url": "https://arxiv.org/abs/0709.0732",
       "date_seen": "2026-04-19",
       "date_published": "2007-09-05",
-      "efc_relevance": "Inhomogeneous cosmology: apparent acceleration arises from backreaction of voids on light propagation, not a true cosmological constant. Competitor to every DE-based framework including EFC. Recent Pantheon+ and DES-SN5YR reanalyses revive Timescape as a viable late-time alternative. Discriminator: Timescape predicts no CMB-lensing enhancement from DE; EFC predicts specific \u03a3 > 1 signal.",
+      "efc_relevance": "Inhomogeneous cosmology: apparent acceleration arises from backreaction of voids on light propagation, not a true cosmological constant. Competitor to every DE-based framework including EFC. Recent Pantheon+ and DES-SN5YR reanalyses revive Timescape as a viable late-time alternative. Discriminator: Timescape predicts no CMB-lensing enhancement from DE; EFC predicts specific Σ > 1 signal.",
       "ledger_action": "Logged as backreaction-based competitor. Required comparison in CMB-lensing tests.",
       "status": "framework-logged"
     },
@@ -616,7 +616,7 @@
       "url": "https://arxiv.org/abs/1610.06787",
       "date_seen": "2026-04-19",
       "date_published": "2016-10-20",
-      "efc_relevance": "Modification of inertia via Unruh radiation + Hubble horizon cutoff; predicts MOND-like a0 from first principles. Fringe-position competitor with specific wide-binary predictions (tested 2024). Kept for completeness of MOND-limit derivations \u2014 EFC derives similar a0 from S-field rather than from Unruh mechanism.",
+      "efc_relevance": "Modification of inertia via Unruh radiation + Hubble horizon cutoff; predicts MOND-like a0 from first principles. Fringe-position competitor with specific wide-binary predictions (tested 2024). Kept for completeness of MOND-limit derivations — EFC derives similar a0 from S-field rather than from Unruh mechanism.",
       "ledger_action": "Logged as MOND-limit derivation alternative. Reference for a0 emergence.",
       "status": "framework-logged"
     },
@@ -628,8 +628,8 @@
       "url": "https://arxiv.org/abs/astro-ph/9909386",
       "date_seen": "2026-04-19",
       "date_published": "2000-04-10",
-      "efc_relevance": "Dark matter with non-zero self-scattering cross section \u03c3/m \u223c 0.1\u20131 cm\u00b2/g addresses cusp-core, diversity, and Bullet Cluster morphology. EFC's stance: no new particle; dense-regime cluster behaviour explained by entropic return to Newtonian. SIDM and EFC are orthogonal hypotheses on the same data (Bullet, AS1063, cluster cores) \u2014 direct predictions differ.",
-      "ledger_action": "Logged as primary particle-sector DM alternative. Tested by AS1063 JWST (2602.15940); bears on Bullet \u03b4\u03ba test.",
+      "efc_relevance": "Dark matter with non-zero self-scattering cross section σ/m ∼ 0.1–1 cm²/g addresses cusp-core, diversity, and Bullet Cluster morphology. EFC's stance: no new particle; dense-regime cluster behaviour explained by entropic return to Newtonian. SIDM and EFC are orthogonal hypotheses on the same data (Bullet, AS1063, cluster cores) — direct predictions differ.",
+      "ledger_action": "Logged as primary particle-sector DM alternative. Tested by AS1063 JWST (2602.15940); bears on Bullet δκ test.",
       "status": "framework-logged"
     },
     {
@@ -640,7 +640,7 @@
       "url": "https://arxiv.org/abs/astro-ph/0003365",
       "date_seen": "2026-04-19",
       "date_published": "2000-03-23",
-      "efc_relevance": "DM as ultralight scalar m \u223c 10\u207b\u00b2\u00b2 eV with de Broglie wavelength \u223c kpc; suppresses small-scale structure. Orthogonal to EFC; scope-separation note: EFC is gravity-sector, FDM is particle-sector. FDM and EFC can in principle be simultaneously true or simultaneously false.",
+      "efc_relevance": "DM as ultralight scalar m ∼ 10⁻²² eV with de Broglie wavelength ∼ kpc; suppresses small-scale structure. Orthogonal to EFC; scope-separation note: EFC is gravity-sector, FDM is particle-sector. FDM and EFC can in principle be simultaneously true or simultaneously false.",
       "ledger_action": "Logged as particle-sector DM alternative. Scope-separation note in Elevator Pitch.",
       "status": "framework-logged"
     },
@@ -653,7 +653,7 @@
       "date_seen": "2026-04-19",
       "date_published": "2015-02-20",
       "efc_relevance": "DM undergoes BEC phase transition inside galaxies, producing MOND-like force via phonon exchange; retains CDM-like behaviour at cluster scales. One of the more sophisticated hybrids. Shares the MOND-limit galactic regime with EFC but achieves it through superfluid phonons rather than entropic field.",
-      "ledger_action": "Logged as hybrid-regime competitor. Required comparison on galactic \u2194 cluster transition.",
+      "ledger_action": "Logged as hybrid-regime competitor. Required comparison on galactic ↔ cluster transition.",
       "status": "framework-logged"
     },
     {
@@ -865,6 +865,458 @@
       "efc_relevance": "Re-expresses the Hubble tension in terms of the dimensionless expansion history E(z)=H(z)/H_0 instead of a single scalar H_0, separating the absolute-scale anchor (Pantheon+SH0ES) from the redshift-dependent shape (Planck CMB + DESI DR2 BAO). For EFC this is the natural framing: EFC predicts a specific E(z)-shape deviation from ΛCDM driven by the entropy-flow source term S(r,t), and a scalar-H_0 comparison hides exactly the redshift-dependent signature where EFC differs.",
       "ledger_action": "Add to Likelihood Ledger and Predictions Ledger as the canonical H_0-tension framing going forward; update P-series rows that currently quote a scalar H_0 to also publish EFC's predicted E(z) at z ∈ {0.3, 0.5, 0.7, 1.0, 1.5}; cross-reference arXiv:2503.14738 (DESI DR2) and Pantheon+SH0ES anchors; deprecate scalar-H_0-only comparisons against framework:LCDM-Planck2018 in favour of E(z)-shape comparisons.",
       "status": "new"
+    },
+    {
+      "key": "arXiv:2605.10022",
+      "title": "On the residual missing mass of the Bullet Cluster",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.10022",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-13",
+      "efc_relevance": "Re-confirms a residual missing-mass discrepancy in the Bullet Cluster after the JWST strong+weak lens model; sits directly on top of EFC's sealed JWST Bullet δκ shock-front prediction (figshare 31963668) and supplies a third independent reconstruction to compare against arXiv:2503.21870 and arXiv:2601.22245.",
+      "ledger_action": "Add to Validation Ledger as Bullet δκ sealed-prediction probe; promote Stage-IV Roadmap Bullet pipeline to immediate priority alongside arXiv:2503.21870 and arXiv:2601.22245; cross-reference framework:VerlindeEmergent-2016 (historical Bullet failure) and framework:SIDM-Spergel2000.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.13547",
+      "title": "UNIONS-3500 Weak Lensing III: 2D Cosmological Constraints in Configuration Space",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.13547",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-15",
+      "efc_relevance": "New Stage-III cosmic-shear S8 measurement independent of DES Y6 / KiDS-Legacy / HSC; fourth arm of the bifurcated S8 picture currently tracked in arXiv:2602.12238, and an independent anchor for EFC's sealed P4 S8 prediction and for arbitrating the eta-boost vs robust EFC branch (DOI 32037990 vs DOI 31188193).",
+      "ledger_action": "Add to Validation Ledger as S8 cross-probe anchor; update cluster s8_tension_des_y6 with UNIONS-3500 row; cross-reference pending_review_2026_05_01 KiDS-Legacy candidate and arXiv:2602.12238.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.21050",
+      "title": "Constraints on Kaniadakis Cosmology from Starobinsky Inflation and Primordial Tensor Perturbations",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.21050",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-19",
+      "efc_relevance": "Kaniadakis-entropy cosmology constrained at the inflationary/primordial-tensor end; complements arXiv:2604.19545 (BBN bound on generalised horizon entropies) by pinning the same entropy-class family from the high-z floor. Bounds EFC's L0/L1 boundary if the EFC entropic action shares the κ-deformation limit.",
+      "ledger_action": "Add to Validation Ledger as L0/L1-regime constraint; cross-reference framework:KaniadakisHDE-Drepanou2021 and arXiv:2604.19545; require EFC L1 prediction to remain consistent with the joint (n_s, r, κ) bound.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.21584",
+      "title": "Wave-optics gravitational wave lensing in modified gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.21584",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-20",
+      "efc_relevance": "Probes propagation-level departures from GR via wave-optics GW lensing — a regime invisible to geometric-optics shear analyses. Provides a new and clean discriminator for EFC's perturbation-sector P3 prediction Σ > 1, and complements arXiv:2605.04154 (Phaedrus screening regime) at the propagation rather than static-screening level.",
+      "ledger_action": "Add to Stage-IV Roadmap as GW-propagation discriminator; cross-reference framework:Horndeski-Deffayet2011 (Σ from luminal-Horndeski) and arXiv:2605.04154; required follow-up: explicit EFC prediction for the wave-optics lensing phase shift on cluster scales.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.23302",
+      "title": "Rotation-curve residuals reveal a suppressed acceleration branch in dwarf galaxies",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.23302",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-20",
+      "efc_relevance": "Two-branch RAR behaviour: SPARC high-acceleration arm vs LITTLE THINGS dwarfs with a suppressed intercept. Mirrors EFC's L1→L2 regime transition signature at low baryonic density and supplies a direct dwarf-galaxy test of EFC's MOND-limit/screening transition, in a regime where framework:VerlindeEmergent-2016 and framework:MOND-Milgrom1983 diverge most.",
+      "ledger_action": "Add to Validation Ledger as SPARC regime-transition probe; update gap theory-multicomponent-sparc-universality with LITTLE THINGS dwarf-arm row; required head-to-head ΔAIC vs framework:VerlindeEmergent-2016, framework:MOND-Milgrom1983 and framework:Weyl-geometric-Harko2019.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.28797",
+      "title": "Entropic backreaction from cosmic structure formation: a thermodynamic approach to the late-time cosmological tensions",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.28797",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-25",
+      "efc_relevance": "Direct ontological cousin: configuration-entropy dissipation during structure formation generates a late-time effective energy density (raising H0) and a dissipative velocity-flow correction (suppressing fσ8 / S8) within pure GR. This is the EFC L2→L3 narrative re-cast in GR-only language; the µ and Σ signs, the BBN/sound-horizon invariance, and the H0–S8 joint signature must be compared head-to-head with EFC sealed predictions.",
+      "ledger_action": "Add to External Research Ledger as 2026 emergent-entropic-gravity cousin; cross-reference framework:Padmanabhan-2009, framework:VerlindeEntropic-2010 and arXiv:2605.05454 (Galoppo-Buchert-Mourier backreaction); required WP1 recovery-conditions row mapping their entropy-flux Φ_S onto EFC's S(r,t) source term; flag as priority head-to-head for WP3 Falsification Protocol.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.30259",
+      "title": "Late-time Quantum Vacuum Decay and its Cosmological Implications",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.30259",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-05-28",
+      "efc_relevance": "Late-time vacuum decay as a DE-modification benchmark constrained with distance+CMB data; sits in the same comparison frame as MEDE (arXiv:2606.05723) and the dissipative-DE family (arXiv:2606.04886, arXiv:2606.05539). Useful contrast-model entry for WP3 competitor matrix — discrete-decay ontology vs EFC's continuous entropic-flow ontology.",
+      "ledger_action": "Add to WP3 competitor-landscape table; cross-reference framework:HolographicDE-Li2004 and framework:CoupledDE-DM-Amendola2000; required ΔAIC row in late-time DE-mechanism comparator family.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.00411",
+      "title": "The sound of dynamical dark energy and modified gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.00411",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-01",
+      "efc_relevance": "Joint constraint on dark-energy sound speed and (µ, Σ) using Planck PR4 + Pantheon+ + DESI DR2 + DES-Y3; the (µ, Σ) plane sampled here is exactly EFC's perturbation-sector signature (µ < 1, Σ > 1) and the paper reports a correlation between modified-gravity preference and dynamical-DE preference. Direct, simultaneous test of FA2 and EFC P3.",
+      "ledger_action": "Add to Validation Ledger as joint (µ, Σ, c_s²) probe; cross-reference framework:fR-Starobinsky2007 (opposite µ-sign), framework:Horndeski-Deffayet2011 and arXiv:2503.14738; required head-to-head in WP3 Falsification Protocol — paper's (µ, Σ) posterior is the cleanest near-term discriminator for FA2.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.00549",
+      "title": "Interacting dark energy constraints from Fermi GRBs and Pantheon+ SNe Ia with full GRB covariance",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.00549",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-01",
+      "efc_relevance": "Extends the interacting-DE redshift lever arm via Fermi GRBs at z > 3, well beyond the SN-Ia horizon; tightens the dark-sector coupling kernel that EFC's L1→L2 transition must reproduce endogenously. Adds high-z anchor orthogonal to BAO and CMB-lensing arms.",
+      "ledger_action": "Add to Validation Ledger as high-z lever-arm probe; cross-reference framework:CoupledDE-DM-Amendola2000, arXiv:2604.25373 and arXiv:2604.21671; required mapping of GRB-covariance posterior into the EFC L1 effective coupling.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.02666",
+      "title": "Testing Exponential f(R) Gravity with CMB, DESI-DR2, and Supernova Data",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.02666",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-02",
+      "efc_relevance": "Exponential f(R) lowers H0 (no relaxation) and raises S8 by ~1.2σ on the joint CMB+DESI-DR2+SN dataset — opposite sign on H0 from EFC's L2/L3 prediction and same sign on S8 as the fragile η-boost branch (DOI 32037990, 0% robust) rather than the robust EFC branch. Sharpens FA2 µ-sign discriminator and constrains the f(R) scalaron domain.",
+      "ledger_action": "Add to Gap Analysis as mod-gravity contrast row; cross-reference framework:fR-Starobinsky2007 and arXiv:2604.23631 (CLASH-VLT chameleon); required FA2 µ-sign comparison and reference baseline for EFC's robust S8 ≈ 0.82 branch.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.02712",
+      "title": "Constraints on the gravitational potential from DESI DR2 BAO and its implications for the local void scenario",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.02712",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-02",
+      "efc_relevance": "Tests the local-void H0 explanation against DESI DR2 BAO + BBN + CMB. EFC posits an entropic-flow alternative rather than a void; the paper's posterior on the local potential profile provides a direct contrast template for EFC's L2 entropic-flow contribution to the local E(z) shape (arXiv:2605.05691 framing).",
+      "ledger_action": "Add to Gap Analysis as H0-mechanism contrast row; cross-reference framework:Timescape-Wiltshire2007, arXiv:2605.05454 (Cosmicflows-4++ backreaction) and arXiv:2605.05691; required follow-up: EFC prediction for the local gravitational-potential profile on 30–300 Mpc/h scales.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.03729",
+      "title": "Constraining Scale-Dependent Growth in f(R) Gravity with Future 21 cm Surveys",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.03729",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-03",
+      "efc_relevance": "Forecasts for 21-cm scale-dependent growth signatures in f(R); the forecast methodology transfers directly to EFC's µ(k, z) and Σ(k, z) predictions and gives a concrete Stage-IV detectability template ahead of SKA / HIRAX.",
+      "ledger_action": "Add to Stage-IV Roadmap as forecast-methodology import; cross-reference framework:fR-Starobinsky2007 and gap theory-efclass-boltzmann-solver; required follow-up: re-cast forecast pipeline with EFC perturbation predictions.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.03860",
+      "title": "Biased tracers, Hybrid Effective Field Theory and Modified Gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.03860",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-03",
+      "efc_relevance": "Extends HEFT galaxy-bias framework to f(R) with chameleon screening; supplies the bias-modeling toolkit EFC needs to interpret DESI/Euclid clustering in screened/transition regimes (L2→L3). Methodological prerequisite for any clean EFC galaxy-clustering ΔAIC.",
+      "ledger_action": "Add to WP1 as HEFT methodology import; cross-reference framework:Horndeski-Deffayet2011, arXiv:2605.04154 (Phaedrus screening) and gap theory-efclass-boltzmann-solver; required follow-up: HEFT bias-table for EFC L2.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.04886",
+      "title": "Dissipative Dark Energy can explain the DESI phantom crossing",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.04886",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-03",
+      "efc_relevance": "Dissipative mechanism reproduces the DESI w0wa phantom-crossing preference without invoking ghost/phantom degrees of freedom — same structural move as EFC (entropic flow, not new scalar). Shared mechanism with arXiv:2606.05539 and arXiv:2605.28797; the dissipation kernel and EFC's K(ρ) saturation kernel must be compared functionally.",
+      "ledger_action": "Add to WP1 recovery-conditions table as dissipative-DE cousin; cross-reference framework:Quintom-Feng2005, arXiv:2604.21671 (saturation kernel) and arXiv:2503.14738; required mapping between dissipative coefficient ξ and EFC entropic-flow K(ρ).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05005",
+      "title": "Neutrino mass constraints in interacting dark energy models after DESI DR2",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05005",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-03",
+      "efc_relevance": "Shows that IDE relaxes Σm_ν bounds in a controlled way after DESI DR2. EFC's L2→L3 transition shares the same degeneracy direction (coupling between dark-sector dynamics and neutrino-mass posterior); the paper supplies a clean template for the Σm_ν corner of EFC parameter space.",
+      "ledger_action": "Add to Gap Analysis as Σm_ν degeneracy row; cross-reference framework:CoupledDE-DM-Amendola2000 and arXiv:2604.25373; required follow-up: EFC posterior for Σm_ν under L2/L3-coupled inference.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05277",
+      "title": "The free-streaming length of dark matter from JWST observations of 28 strong gravitational lenses",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05277",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Rules out CDM-departure for halo masses ≳ 10^7.2–10^7.4 M_⊙ — tightens the small-scale phenomenology EFC's L0/L1 regime must reproduce on lens-scale substructure; orthogonal to framework:FuzzyDM-Hu2000 and framework:SIDM-Spergel2000.",
+      "ledger_action": "Add to Gap Analysis as small-scale DM phenomenology constraint; cross-reference framework:FuzzyDM-Hu2000, framework:SIDM-Spergel2000 and framework:SuperfluidDM-Khoury2015; required EFC consistency check at the 10^7.2 M_⊙ floor.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05298",
+      "title": "Dynamical models of cluster members to probe the total mass properties of cluster subhalos. I. Comparison with parametric strong lensing in Abell 2744 and MACS J0416",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05298",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Reveals systematic discrepancy between dynamical subhalo masses and parametric strong-lensing reconstructions in two flagship JWST clusters. The same systematic propagates into Bullet/AS1063 δκ pipelines and is a control variable for EFC's sealed Bullet test (figshare 31963668) — must be folded into the EFC δκ error budget.",
+      "ledger_action": "Add to Validation Ledger as cluster-lensing systematic; update Stage-IV Roadmap Bullet pipeline error-budget; cross-reference arXiv:2503.21870, arXiv:2601.22245 and arXiv:2605.10022.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05539",
+      "title": "Dissipative Cosmology and the Nature of Dark Energy: Insights from Bulk Viscosity with DESI DR2 observations",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05539",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Bulk-viscous DE mimicking DESI DR2 dynamical-DE preference under Planck + SN combined; same thermodynamic-dissipation family as EFC's entropic-flow ansatz and as arXiv:2606.04886 and arXiv:2605.28797. The bulk-viscosity coefficient ζ(ρ) is the direct functional analogue of EFC's K(ρ) and must be mapped explicitly.",
+      "ledger_action": "Add to WP1 as dissipative-DE mechanism comparator; cross-reference framework:Quintom-Feng2005, arXiv:2606.04886, arXiv:2605.28797 and arXiv:2503.14738; required ζ(ρ) ↔ K(ρ) mapping in recovery-conditions table.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05540",
+      "title": "A linear residual structure across galaxy rotation curves (Hosik Lee, SPARC + LITTLE THINGS)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05540",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Identifies a universal linear residual across SPARC + LITTLE THINGS decomposable into a mass-coupled and a mass-independent component. The slope/intercept pair is a direct, falsifiable target for EFC's sealed SPARC k = 0.415 universality prediction (ledger_galaxy_rotation_curves_sparc) and sits in the same probe family as arXiv:2604.27320 and arXiv:2605.23302.",
+      "ledger_action": "Re-run EFC SPARC pipeline (seed=42, k=0.415 sealed) on the linear-residual decomposition; add to Validation Ledger alongside arXiv:2411.13329 and arXiv:2604.27320; update gap theory-multicomponent-sparc-universality with residual-slope/intercept row.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05723",
+      "title": "Metastability in Emergent Dark Energy (MEDE): A New Framework Confronting Cosmological Observations",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05723",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Phantom-crossing transition at z_t ≈ 0.42 with Δ = 0.87 preferred over ΛCDM at ΔDIC = −9.3 on DESI DR2 + Pantheon+ + Planck. The crossover redshift coincides with EFC's P1 lensing-crossover at z ≈ 0.44 (also flagged in the modelfree-w(z) candidate); structural parallel that does not select EFC over MEDE but tightens the empirical case for a transition near that redshift.",
+      "ledger_action": "Add to Validation Ledger as w(z)-crossover anchor; promote pending_review_2026_05_01 modelfree-w(z) entry alongside; cross-reference framework:MassToHorizon-2025 and arXiv:2503.14738; required head-to-head ΔAIC vs EFC in cluster desi_dr2_de_evolution.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.05853",
+      "title": "Reconstructing dark energy with fewer assumptions",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.05853",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-04",
+      "efc_relevance": "Bin-free ρ_DE(z) reconstruction with DESI + SDSS + Pantheon+ + Union3.1 + DES-Dovekie finds ρ_DE rising to a local maximum then decreasing, with two phantom-crossing oscillations near z ≈ 0.6–0.8. Directly comparable to EFC's predicted w(z) shape across the L2→L3 transition; supplies a model-independent target curve for the WP1 recovery-conditions table.",
+      "ledger_action": "Add to Validation Ledger as bin-free w(z)-shape probe; update cluster desi_dr2_de_evolution; cross-reference arXiv:2606.05723, arXiv:2503.14738 and DOI:10.1038/s41550-025-02669-6; required EFC w(z) overlay on their reconstructed ρ_DE(z).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.06495",
+      "title": "What it takes to solve the Hubble tension through modifications of cosmological recombination II: in light of ACT DR6 and DESI DR2",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.06495",
+      "date_seen": "2026-06-08",
+      "date_published": "2026-06-06",
+      "efc_relevance": "Maps the data-allowed recombination-modification space using ACT DR6 + DESI DR2; defines the upper boundary on any pre-recombination modification consistent with current data. EFC keeps standard recombination, so the paper's posterior is the explicit constraint that EFC's H0 resolution must respect (no shift of the sound horizon).",
+      "ledger_action": "Add to Validation Ledger as L1/L2 sound-horizon invariance constraint; cross-reference framework:EDE-Poulin2019, arXiv:2604.26541 (ACT DR6 IDR + α_s) and arXiv:2605.05691 (E(z) reformulation); required explicit statement in P7 (H0 three-window) that EFC's resolution preserves r_s.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.13914",
+      "title": "The Amplitude-Growth Degeneracy and Implied A_s Diagnostic for Background-Inert Modified Gravity (Kolhatkar & Sahoo)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.13914",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-13",
+      "efc_relevance": "Proves an A_s-D_0 degeneracy in background-inert modified-gravity classes (coincident f(Q) as worked example) and derives an fσ8 consistency test that exposes it; a λ_0·√(Q·Q_0) correction inflates σ8_0. Direct bearing on EFC's perturbation-sector predictions (FA2 μ(a)<1): any EFC fit that does not break the A_s-D_0 degeneracy can over-claim a σ8 signature that is actually a primordial-amplitude artefact.",
+      "ledger_action": "Add to WP3 Falsification Protocol as a mandatory diagnostic for every EFC μ(a)<1 fit; update gap ledger_perturbationsector_valley with explicit A_s-D_0 break requirement; cross-reference arXiv:2605.00450 (CosmicFlows-4++ fσ8) and framework:fR-Starobinsky2007 (FA2 sign-discriminator) — without A_s diagnostic, FA2 is degenerate.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.16453",
+      "title": "Thermodynamic implications and observational constraints of interacting f(Q,T) gravity in FRW Universe (Shekh et al.)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.16453",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-15",
+      "efc_relevance": "Adds first/second-law thermodynamic diagnostics on top of an interacting f(Q,T) = αQ + βT model with deceleration→acceleration transition. Complements arXiv:2604.21151 (affine-EoS f(Q,T)) on the thermodynamic axis EFC also lives on, and provides a worked entropy-current bookkeeping that EFC's S(r,t) flow can be benchmarked against.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table alongside arXiv:2604.21151; cross-reference framework:Jacobson-1995 and framework:Padmanabhan-2009; required thermodynamic-consistency row (GSL, T·dS ≥ 0) in WP1 recovery-conditions table for EFC's S-flow.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.16940",
+      "title": "Reconstruction of Tsallis Holographic Dark Energy via Modified Non-Metric Gravity: An f(Q,C) Approach (Sultana & Chattopadhyay)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.16940",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-16",
+      "efc_relevance": "Tsallis-entropy HDE reconstructed inside f(Q,C) non-metric gravity, MCMC-constrained on CC + Pantheon+ + DESI DR2. Hybrid of two competitor classes already logged (HolographicDE-Li2004 × non-metric f(Q) family); same generalised-entropy DOF as EFC's information-entropy ansatz but with explicit non-metric coupling.",
+      "ledger_action": "Add to entropic/holographic-DE comparator cluster alongside arXiv:2604.19849 (Tsallis HDE in f(R,T)); cross-reference framework:KaniadakisHDE-Drepanou2021 and arXiv:2604.21151; required head-to-head ΔAIC on CC + Pantheon+ + DESI DR2 against EFC L2→L3.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.20060",
+      "title": "Interacting Dark Sector field theory with phantom crossing",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.20060",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-20",
+      "efc_relevance": "Fermionic DM Yukawa-coupled to a tachyonic Born-Infeld scalar produces a double phantom crossing in w(z), constrained by DESI DR2 BAO + Planck 2018 + SNe. Mechanistic cousin to EFC's L2→L3 entropic crossing and to arXiv:2604.21671 saturation kernel; the double-crossing signature is a sharper discriminator than the single-crossing CPL pair.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table as fermionic-Yukawa dark-sector cousin; cross-reference framework:CoupledDE-DM-Amendola2000, framework:Quintom-Feng2005, and arXiv:2604.21671; required double-vs-single-crossing comparison row in WP3 Falsification Protocol — EFC must state whether its L2→L3 produces one or two w=−1 crossings.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.20214",
+      "title": "Observational Constraints and Cosmological Dynamics of Interacting Fractional Holographic Dark Energy in Light of DESI DR2 (Huang, Chen, Wu)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.20214",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-25",
+      "efc_relevance": "Fractional HDE built from fractional quantum mechanics with three explicit DM–DE interaction kernels; statefinder + phase-space diagnostics against DESI DR2. Adds another node to the entropic/holographic-DE family EFC must outperform; the fractional-QM derivation gives a non-Boltzmann entropy floor that parallels EFC's information-entropy choice.",
+      "ledger_action": "Add to entropic/holographic-DE comparator cluster; cross-reference framework:HolographicDE-Li2004, framework:KaniadakisHDE-Drepanou2021, arXiv:2604.19849, and arXiv:2605.16940; required head-to-head ΔAIC vs EFC on DESI DR2 background fit; flag statefinder-diagnostic row in WP3.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.21456",
+      "title": "Negative neutrino mass or negative dark energy? (Kibris, Elbers, Akarsu, Di Valentino)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.21456",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-20",
+      "efc_relevance": "Systematic exploration of dark-energy models that allow ρ_DE < 0 at intermediate redshift; ΛsCDM sign-switching cosmological constant uniquely recovers a positive Σm_ν compatible with DESI DR2 + CMB + SNe. Directly maps onto EFC's L2→L3 transition where the entropic source term T(a) can change sign — the paper provides the falsifiable cosmographic signature (sign-switch redshift, ΔΩ_DE amplitude) EFC must match without requiring negative neutrino mass.",
+      "ledger_action": "Add to Validation Ledger and Predictions Ledger as sign-switching DE constraint; cross-reference framework:wCDM-CPL-Chevallier2001 and EFC L2→L3 T(a) sign-flip prediction in WP1; required cosmographic-fingerprint row (z_switch, ΔΩ_DE) in Predictions Ledger so EFC vs ΛsCDM can be discriminated on the same data.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.26116",
+      "title": "Unifying Early and Late Dark Energy: Dynamical Requirements and Obstructions (Giare & Sakstein)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.26116",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-25",
+      "efc_relevance": "Shows that any single-scalar potential unifying EDE (for H0) and late-DE (for DESI DR2 w(z)) requires a steep–steeper–shallow slope hierarchy that is generically hard to construct without fine-tuning. Sharpens the comparison between EFC (which unifies pre- and late-acceleration through a single S-flow regime structure, not a single scalar potential) and the EDE+late-DE competitor class.",
+      "ledger_action": "Add to External Research Ledger under cluster dark-energy-parametrization; update framework:EDE-Poulin2019 row with single-scalar-unification obstruction note; required comparison row in WP3 Falsification Protocol where EFC's L0→L3 unification mechanism is contrasted with single-scalar potential approaches on a tuning-cost metric.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.27221",
+      "title": "Constraints on Dynamical Dark Energy from Multiple Probes in the Full Dark Energy Survey (DES Collaboration)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.27221",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-26",
+      "efc_relevance": "Full DES Y6 multi-probe combination (SNe + BAO + 3×2pt) yields w_0 = −0.84 ± 0.10, w_a = −0.44 ± 0.6 with a 2.3σ deviation from ΛCDM when combined with DESI DR2 BAO. Direct successor to arXiv:2602.10065 (DES Y6 cosmic shear) and arXiv:2601.14559 (DES Y6 3×2pt) — provides the multi-probe DE-evolution anchor EFC's L2→L3 effective w(z) must reproduce.",
+      "ledger_action": "Add to Validation Ledger as primary multi-probe DE-evolution constraint; supersede preliminary DES-Y6 DE rows; cross-reference arXiv:2503.14738 (DESI DR2 BAO) and arXiv:2602.10065; update P-series predictions to publish EFC's (w_0, w_a) point estimate against the DES+DESI 2.3σ ellipse; required head-to-head ΔAIC vs framework:LCDM-Planck2018, framework:wCDM-CPL-Chevallier2001, and framework:Quintom-Feng2005.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.27301",
+      "title": "Effective Phantom Dark Energy: What Cosmological Reconstruction Does and Does Not Imply (S. S. Mishra)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.27301",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-26",
+      "efc_relevance": "Demonstrates that the effective phantom behaviour seen in DESI+CMB+SNe reconstructions does NOT imply a fundamental phantom field or NEC violation — the apparent w(z) < −1 can arise from an effective-fluid description of a non-phantom underlying theory. Critically important for EFC's positioning: EFC's L2→L3 effective phantom-crossing is an emergent statement about the entropic source term, not evidence for a fundamental phantom scalar, and this paper provides the theoretical cover for that distinction.",
+      "ledger_action": "Add to External Research Ledger under cluster dark-energy-parametrization as canonical reference for the effective-vs-fundamental phantom distinction; cite explicitly in WP1 recovery-conditions table where EFC's L2→L3 mechanism is described; update framework:Quintom-Feng2005 and framework:ThawingQuintessence-curved-2025 rows with effective-phantom-not-fundamental cross-reference; required note in Predictions Ledger P-series that EFC predicts effective w(z) < −1 without NEC violation.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.26129",
+      "title": "Unified Cosmological Scenario in Holographic f(Q) gravity: From Inflation to Late-Time Acceleration (Ghosh, Aktas, Chattopadhyay)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.26129",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-20",
+      "efc_relevance": "f(Q) = ζQ^n with Barrow holographic fluid spans inflation through late-time acceleration under a CPL parametrisation, constrained by CC + BAO. Same dual-regime ambition (early through late) as EFC's L0→L3 spine; combines holographic-entropy ontology with non-metric gravity in a single Lagrangian, the structural move EFC bypasses via the S(r,t) field.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table as unified-regime holographic f(Q) competitor; cross-reference arXiv:2604.23793 (f(Q,L_m) BBN-to-late), arXiv:2605.16940 (Tsallis HDE in f(Q,C)), and framework:MassToHorizon-2025; required dual-regime ΔAIC row (BBN + DESI DR2 + Pantheon+).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.29814",
+      "title": "Modified Entropy from Action Principle (Dehyadegari & Sheykhi)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.29814",
+      "date_seen": "2026-06-01",
+      "date_published": "2026-05-28",
+      "efc_relevance": "Derives a modified horizon entropy directly from an f(Ricci, Kretschmann) action that yields modified Friedmann equations free of higher derivatives, with the entropy obtained via the gravity-thermodynamics correspondence. Direct ontological cousin of EFC: same action-principle-to-entropy derivation strategy, but EFC routes through the S(r,t) field while this paper routes through curvature invariants — clean comparison surface for WP1 recovery-conditions.",
+      "ledger_action": "Add to External Research Ledger under cluster emergent-entropic-gravity; cross-reference framework:Jacobson-1995, framework:Padmanabhan-2009, and arXiv:2604.19831 (Van der Waals gravity); required ontological-comparison row in WP1 recovery-conditions table — under what limit does EFC's S(r,t) action reduce to this f(Ricci, Kretschmann) entropy?",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.22143",
+      "title": "Holographic Dark Energy with Hubble Radius as an Infrared Cutoff in Einstein-Cartan Gravity",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.22143",
+      "date_seen": "2026-05-25",
+      "date_published": "2026-05-21",
+      "efc_relevance": "Embeds Hubble-radius-cutoff holographic dark energy in Einstein-Cartan (torsion) gravity, which cures the classic Hubble-radius-IR-cutoff no-acceleration problem. Directly addresses the IR-completion / cutoff-choice question flagged for EFC in arXiv:2604.21490: torsion is offered as the IR-completion that makes the Hubble-radius cutoff work, an alternative route to EFC's K(ρ)-stiffness IR-completion of its entropic field S(x). Entropic-ontology cousin via the holographic IR cutoff.",
+      "ledger_action": "Log under the entropic/holographic-DE comparator family; cross-reference framework:HolographicDE-Li2004 and arXiv:2604.21490 (IR-completion sensitivity warning); required note in WP1 recovery-conditions that EFC's S(x) IR-completion is K(ρ)-based, not torsion-based, with the Hubble-rate growth signature as discriminator.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.09560",
+      "title": "Challenges to the cosmological constant model following results from the Dark Energy Survey (Avila, Mena-Fernández, Vincenzi)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.09560",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "Nature Astronomy perspective consolidating DES Y6 BAO+SN Ia together with Planck CMB into a ~3σ preference for dynamical dark energy over the cosmological constant. Sits directly on top of EFC's P1/P4 sealed predictions: the data trend (w-evolution sign change in the same z-range as EFC's lensing crossover at z ~ 0.44) is now framed as a community-level challenge to ΛCDM rather than a DESI-only anomaly, raising the prior weight on any framework — including EFC — that natively predicts a dynamical-DE signature without invoking a new field.",
+      "ledger_action": "Add to External Research Ledger as a Stage-IV synthesis row (cluster desi_dr2_de_evolution); flag in Likelihood Ledger as the canonical 'why-not-ΛCDM' citation going forward; update framework:LCDM-Planck2018 row with the ~3σ DES+Planck challenge note; update framework:wCDM-CPL-Chevallier2001 row with the DES Y6 best-fit w0–wa region as the new comparison contour; cross-reference arXiv:2601.14559 (DES Y6) and arXiv:2503.14738 (DESI DR2).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.10857",
+      "title": "Milky Way Dynamics Favor Dark Matter over Modified Gravity Models (Wang et al.)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.10857",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-11",
+      "efc_relevance": "Joint reconstruction of the Milky Way radial rotation curve, Gaia vertical phase-space spirals, and a broken-exponential stellar disk shows that no modified-gravity model can simultaneously reproduce radial and vertical fields — MOND is disfavoured at >13σ and STVG at >4σ, while a standard DM halo fits all three observables. Tightens the discriminator band for any framework that aspires to reproduce galactic dynamics without a particle-DM halo (framework:MOND-Milgrom1983, framework:TeVeS-Bekenstein2004, framework:RMOND-Skordis2021, framework:MassToHorizon-2025, framework:VerlindeEmergent-2016). EFC's S(r,t) source-term must reproduce both radial RC and vertical phase-space spirals jointly; this paper sets the empirical bar.",
+      "ledger_action": "Add to External Research Ledger under cluster modified-gravity-vs-dm; update framework rows MOND-Milgrom1983 (>13σ MW tension), TeVeS-Bekenstein2004, RMOND-Skordis2021, MassToHorizon-2025, and VerlindeEmergent-2016 with the joint radial+vertical-field discriminator note; new gap row (gap predictions-mw-vertical-spirals-efc) — EFC currently has no published prediction for the Gaia vertical-spiral amplitude at the Solar neighbourhood; required follow-up: compute EFC S(r,t) contribution to the disk gravitational field K_z(z) and overlay on the Wang et al. constraint band.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.11600",
+      "title": "A hierarchical Bayesian pipeline for soliton-plus-NFW inference on SPARC rotation curves: diagnostics and prior-boundary behaviour",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.11600",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "Hierarchical Bayesian fit of soliton-plus-NFW (ultralight / fuzzy DM) profiles to the SPARC database, treating the core-halo scaling exponent as a global free parameter and explicitly mapping prior-boundary degeneracies. Provides a directly-comparable per-galaxy goodness-of-fit baseline for any EFC variant that predicts a galaxy rotation-curve shape from the entropy-flow term S(r,t): EFC must either match the soliton+NFW per-galaxy chi^2 or beat it, on the same SPARC subset, to remain a viable galactic-scale framework. Also tightens framework:FuzzyDM-Hu2000 discriminator by pinning the global core-halo scaling exponent.",
+      "ledger_action": "Add to Validation Ledger as a SPARC galaxy-scale benchmark; update framework:FuzzyDM-Hu2000 row with the global core-halo exponent constraint; cross-reference arXiv:2411.13329 (BIG-SPARC); required follow-up in Predictions Ledger: replicate the hierarchical Bayesian pipeline with EFC's S(r,t) RC predictor on the same 175-galaxy SPARC subset and report per-galaxy chi^2 distribution against soliton+NFW.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.11658",
+      "title": "GI BAO as a cosmological consistency check (Chan, Li, McCullough)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.11658",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "First density-shear (GI) BAO measurement on photometric data, using DES Y3. Constrains the BAO scale dilation parameter to 0.966 ± 0.037 and validates the density BAO, shear measurement, and linear-alignment model jointly. Provides EFC with an independent low-systematic anchor for the BAO scale at the DES Y3 effective redshift — any EFC E(z) prediction must remain consistent with this combined density+shear BAO scale, not just density-BAO alone.",
+      "ledger_action": "Add to Likelihood Ledger as a cross-check probe under cluster bao_consistency; add note to existing DESI DR2 BAO row (arXiv:2503.14738) that GI BAO from DES Y3 sits at 0.966 ± 0.037 — EFC's predicted BAO dilation at z_DES_Y3 must overlap this band within 1σ; cross-reference arXiv:2601.14559 (DES Y6).",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.12054",
+      "title": "Ultra-light axion constraints from Planck and ACT: the role of nonlinear modelling (Gaughan, Green, Moss)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.12054",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-12",
+      "efc_relevance": "MCMC analysis with Planck 2018 + ACT DR6 + DESI DR2 BAO of ultra-light axions in the mass range 10^-25 ≤ m/eV ≤ 10^-23. Shows that naive nonlinear modelling of non-cold matter produces an artificial preference for a subdominant ULA-DM component at m ≈ 10^-24 eV via a lensing-like enhancement of the CMB power spectrum — i.e. previously-claimed ULA detections are a modelling artefact. Tightens framework:FuzzyDM-Hu2000 by removing the spurious m ≈ 10^-24 eV preference and forces EFC discriminators against fuzzy-DM to be re-baselined against the corrected, weaker preference.",
+      "ledger_action": "Add to External Research Ledger under cluster alternative-dark-matter; update framework:FuzzyDM-Hu2000 row to note the nonlinear-modelling caveat (no genuine m ≈ 10^-24 eV preference once nonlinear sector is treated correctly); cross-reference arXiv:2605.11600 (SPARC soliton+NFW) so the galactic-scale and CMB-scale ULA constraints share a single framework row.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.13557",
+      "title": "When Weak Fields Aren't Weak: Post-Newtonian effective theory and the Dark Matter Puzzle (Galoppo, Torrieri)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.13557",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-13",
+      "efc_relevance": "Gravity Research Foundation 2026 essay arguing that the post-Newtonian expansion of GR is not generically reliable in many-body relativistic dynamics: absence of globally conserved charges in the region of interest plus non-integrability can drive strong sensitivity to angular-momentum exchange across inhomogeneous curvature, invalidating naive PN power counting. Derives an explicit breakdown criterion. Extends the Galoppo–Buchert–Mourier backreaction programme (arXiv:2605.05454) and gives EFC a theoretical lever: if PN truncations are unreliable on galactic and cluster scales, the standard 'GR + DM halo' inference is itself effective-theory limited, opening a principled niche for EFC's entropy-flow source term as a non-PN correction rather than a new field.",
+      "ledger_action": "Add to External Research Ledger under cluster alternative-cosmology/backreaction; cross-reference arXiv:2605.05454 (Galoppo et al. 2026 local backreaction) and update that row with the PN-breakdown extension; new gap row (gap theory-pn-breakdown-efc) — EFC must publish where in (r, v) parameter space its S(r,t) corrections become comparable to the PN truncation error identified here.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2605.14977",
+      "title": "Unified dark sector and Hubble-tension alleviation in scalar-vector-tensor gravity (Jusufi, Khodahami, Sheykhi, Said, Saridakis)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2605.14977",
+      "date_seen": "2026-05-18",
+      "date_published": "2026-05-14",
+      "efc_relevance": "Scalar-vector-tensor gravity with matter minimally coupled to a Jordan-frame metric and a massive vector sector interacting with the baryonic current. The conformal scalar coupling produces a late-time enhancement of the effective Hubble constant relevant only at low redshifts, alleviating H_0 tension without affecting early-universe cosmology; the vector behaves as effective pressureless matter via a density-dependent mass, yielding a unified dark-sector. Chameleon-type screening keeps Solar-System constraints satisfied. Positioned as a competing framework to EFC: shares EFC's 'late-time-only mechanism' philosophy but achieves it via an explicit vector field rather than an entropy-flow source term.",
+      "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski as a new competing-framework candidate (source_type='framework-seminal' upgrade pending more papers in this line); update framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 rows with a 'unified dark-sector scalar-vector-tensor' sibling note; cross-reference arXiv:2605.05691 (E(z) reformulation of H_0 tension) since both papers argue for late-time-only signatures; required follow-up in Predictions Ledger: state explicit EFC discriminator from the scalar-vector-tensor late-time enhancement on E(z) at z ≤ 0.3.",
+      "status": "new"
     }
-  ]
+  ],
+  "consolidation_note": "Consolidated union of research-watch scans from PRs #307/#309/#311/#314 + prior main — no item dropped (BL-450)."
 }
