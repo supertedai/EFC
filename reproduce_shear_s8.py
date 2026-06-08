@@ -55,16 +55,16 @@ MODELS = {
 }
 
 # =====================================================================
-# 2. EXISTING COSMIC-SHEAR S8 DATA  (verified 2026-06-08; literature values --
-#    VERIFY against source DOIs before any sealed claim)
+# 2. EXISTING COSMIC-SHEAR S8 DATA  (VERIFIED 2026-06-08 against the source papers:
+#    DES Y6 arXiv:2601.14559, KiDS-Legacy arXiv:2503.19442)
 # =====================================================================
 DATA = [
-    {"name": "DES Y6 3x2pt", "S8": 0.789, "err": 0.012, "src": "DOI 10.6084/m9.figshare.31951992 (EFC-VAL-2026-002) citing DES Y6"},
-    {"name": "KiDS-Legacy",  "S8": 0.815, "err": 0.020, "src": "external_research_watch.json (error approximate)"},
+    {"name": "DES Y6 3x2pt", "S8": 0.789, "err": 0.012, "src": "arXiv:2601.14559 (DES Y6 3x2pt, Jan 2026; verified 2026-06-08)"},
+    {"name": "KiDS-Legacy",  "S8": 0.814, "err": 0.012, "src": "arXiv:2503.19442 (KiDS-Legacy S8=0.814 +0.011/-0.012; verified 2026-06-08)"},
 ]
-# The KiDS-1000 (0.766) vs KiDS-Legacy (0.815) bifurcation is unresolved
+# The KiDS-1000 (0.766) vs KiDS-Legacy (0.814) bifurcation is unresolved
 # (Euclid DR1 will arbitrate); we test robustness to it below.
-KIDS_VARIANTS = {"KiDS-Legacy": {"S8": 0.815, "err": 0.020},
+KIDS_VARIANTS = {"KiDS-Legacy": {"S8": 0.814, "err": 0.012},
                  "KiDS-1000":   {"S8": 0.766, "err": 0.020}}
 
 
