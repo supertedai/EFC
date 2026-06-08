@@ -18,6 +18,10 @@ import sys
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 SYMBIOSE_SNAPSHOT = os.path.join(REPO, ".claude", "symbiose_snapshot.json")
+# Canonical, publisher-maintained ledger stats. The validation-ledger publisher
+# regenerates this from Neo4j on every publish, so it never lags an approved
+# validation the way the .claude snapshot can (BL-446).
+LEDGER_STATS = os.path.join(REPO, "docs", "validation-ledger", "data", "stats.json")
 
 SKIP_TOP = {
     "README.md", "cover_letter-2.pdf", "efc_graph_edges.json",
@@ -40,8 +44,51 @@ CHECK_FILES = {
 }
 
 
+def _load_canonical_truth():
+    """Ground-truth test counts from the publisher-maintained ledger stats
+    (docs/validation-ledger/data/stats.json -> "stats").
+
+    Preferred over the .claude snapshot because the validation-ledger publisher
+    regenerates it from Neo4j on every publish, so it reflects an approved
+    validation immediately. active/survived are DERIVED with the canonical
+    formula (active = total_public - planned_pipeline;
+    survived = active - n_falsified) — identical to how the snapshot computes
+    them, so the two sources agree once both are fresh.
+    """
+    try:
+        with open(LEDGER_STATS, encoding="utf-8") as f:
+            stats = (json.load(f) or {}).get("stats") or {}
+    except (OSError, json.JSONDecodeError):
+        return {}
+    total = stats.get("total_public")
+    if total is None:
+        return {}
+    pipeline = stats.get("planned_pipeline")
+    falsified = stats.get("n_falsified")
+    active = (total - pipeline) if pipeline is not None else None
+    survived = (active - falsified) if (active is not None and falsified is not None) else None
+    return {
+        "tests_total": total,
+        "tests_active": active,
+        "tests_survived": survived,
+        "tests_falsified": falsified,
+        "tests_pipeline": pipeline,
+    }
+
+
 def _load_symbiose_truth():
-    """Return ground-truth counts dict, or empty if snapshot is unavailable."""
+    """Return ground-truth counts dict.
+
+    Prefer the canonical ledger stats.json (publisher-maintained, never lags an
+    approved validation); fall back to the .claude snapshot only when stats.json
+    is unavailable. This is what lets the drift detector catch test-count drift
+    in the narrative pages the moment a validation changes the count — without
+    waiting for a snapshot refresh, and without reverting freshly-synced pages
+    back to a stale snapshot value (BL-446).
+    """
+    truth = _load_canonical_truth()
+    if truth.get("tests_total") is not None:
+        return truth
     try:
         with open(SYMBIOSE_SNAPSHOT, encoding="utf-8") as f:
             snap = json.load(f)

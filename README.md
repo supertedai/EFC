@@ -10,7 +10,7 @@ Today's standard picture of the universe says **95%** of it is made of two invis
 
 But the deepest difference is **ontological, not parametric.** ΛCDM treats spacetime as a fixed stage and dark matter / dark energy as *ingredients* populating it. EFC treats **energy and entropy as primary** — spacetime, the effective gravitational response, and even *time itself* (as an index over irreversible Grid transitions, *Axiom 0*) emerge from energy flowing along entropy gradients through a discrete substrate. The "dark sector" is not a set of missing particles; it is what a coarse-grained observer measures when cross-regime physics is read with single-regime rulers (*Regime-Consistent Measurement Principle*). Same observations, fewer primitives, different picture of what the universe is made of. See the [Elevator Pitch](./docs/public/EFC_Elevator_Pitch.html) for the full side-by-side.
 
-Across **141 independent tests** so far (galaxy rotation curves, the cosmic microwave background, galaxy cluster collisions, cosmic expansion), EFC has not been ruled out. It does not yet *outperform* the standard model — the margins are too small to call a winner — but it survives every test. The decisive experiments are pre-registered in the [Stage-IV Data Roadmap](./docs/public/EFC_Stage-IV_Data_Roadmap.html).
+Across **142 independent tests** so far (galaxy rotation curves, the cosmic microwave background, galaxy cluster collisions, cosmic expansion), EFC has not been ruled out. It does not yet *outperform* the standard model — the margins are too small to call a winner — but it survives every test. The decisive experiments are pre-registered in the [Stage-IV Data Roadmap](./docs/public/EFC_Stage-IV_Data_Roadmap.html).
 
 **Status:** candidate theory under test. Non-rejectable. Not proven. Not falsified. Global verdict remains **OPEN**.
 
@@ -178,7 +178,7 @@ EFC is partitioned into six physical sectors, each with its own regime and obser
 
 ## Validation Status
 
-The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.18 / v4.6 internal) tracks 141 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
+The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.18 / v4.6 internal) tracks 142 public tests. Overall stage: **Non-rejectable model** (global verdict OPEN).
 
 ### EFC White Paper Series (Canonical Reference)
 
