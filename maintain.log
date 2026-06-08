@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -161,12 +161,10 @@ EFC Evidence Mirror — registers reconciled
   methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
   structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
-[efc-drift] 165 papers · 3 drift(s) detected:
-  Elevator_Pitch: tests_active — 105 vs 115
+[efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
   Changelog: claims 158 but actual is 165
-  [fixed] Elevator_Pitch: 105 → 115 (tests_active)
-[efc-drift] auto-fixed 1 file(s)
+[efc-drift] auto-fixed 0 file(s)
 [efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
@@ -206,7 +204,7 @@ Scanning 4 sources...
 
 No new datasets found.
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Public pages updated: Changelog, Elevator_Pitch.
+[efc-auto-changelog] Public pages updated: Changelog.
 [efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
