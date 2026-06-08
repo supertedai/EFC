@@ -1,7 +1,7 @@
 {
   "name": "EFC Bayesian Inference Results",
   "version": "3.0",
-  "generated_at": "2026-06-08T05:33:34Z",
+  "generated_at": "2026-06-08T09:29:09Z",
   "modules": [
     {
       "test_id": "inference_bao_boss_dr12",
@@ -29,13 +29,13 @@
     {
       "test_id": "inference_bao_desi_y1",
       "name": "EFC Inference: bao_desi_y1",
-      "result": "Δχ²=−22.01 (EFC preferred, 5-fold CV all pass)",
-      "status": "PASSED",
+      "result": "LCDM fallback — EFC physics not implemented; data file placeholder (unphysical DH(z), z-bins not DESI's), pending real DESI DR1/DR2 BAO",
+      "status": "pending",
       "chi2_reduced": null,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-04-14T16:34:26.369040Z",
+      "timestamp": "2026-06-08T07:23:49Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,
@@ -88,13 +88,13 @@
     {
       "test_id": "inference_fs8_extended",
       "name": "EFC Inference: fs8_extended",
-      "result": "chi2_red=0.554 (good fit)",
-      "status": "success",
+      "result": "α=−1.00±0.46 (2.20σ, LOO 7/7, ΔAIC=−2.91)",
+      "status": "PASSED",
       "chi2_reduced": 0.554,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-06-08T05:32:31Z",
+      "timestamp": "2026-06-08T05:56:01Z",
       "best_fit": {
         "Omega_m": 0.315,
         "H0": 67.4,
@@ -109,13 +109,13 @@
     {
       "test_id": "inference_hz_chronometers",
       "name": "EFC Inference: hz_chronometers",
-      "result": "chi2_red=1.549 (good fit)",
-      "status": "success",
+      "result": "CC consistency Δχ²=−0.17 (sub-statistical)",
+      "status": "PARTIAL",
       "chi2_reduced": 1.549,
       "converged": true,
       "acceptance_fraction": 1.0,
       "n_samples": 0,
-      "timestamp": "2026-06-08T05:32:31Z",
+      "timestamp": "2026-06-08T05:56:01Z",
       "best_fit": {
         "H0": 67.4,
         "Omega_m": 0.315,

@@ -1,7 +1,7 @@
 {
   "name": "Theory Coherence Score Profiles",
   "version": "3.0",
-  "generated_at": "2026-06-08T05:33:34Z",
+  "generated_at": "2026-06-08T09:29:09Z",
   "profiles": {
     "efc_v1.0": {
       "version": "efc_v1.0",
@@ -15,35 +15,35 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-08T04:43:45.044092+00:00"
+      "timestamp": "2026-06-08T08:43:50.697940+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
-      "compression": 0.5,
+      "compression": 1.5,
       "mismatch_rate": 0.0,
-      "coverage_penalty": 0.6667,
-      "layer_consistency": "moderate",
+      "coverage_penalty": 0.0,
+      "layer_consistency": "high",
       "fp_coverage": 0.8235,
-      "tested": 1,
+      "tested": 3,
       "total": 3,
-      "untested": 2,
+      "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-08T04:43:45.080371+00:00"
+      "timestamp": "2026-06-08T08:43:50.742549+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
-      "compression": 1.5,
-      "mismatch_rate": 0.3333,
-      "coverage_penalty": 0.4,
-      "layer_consistency": "moderate",
+      "compression": 2.5,
+      "mismatch_rate": 0.2,
+      "coverage_penalty": 0.0,
+      "layer_consistency": "high",
       "fp_coverage": 0.8235,
-      "tested": 3,
+      "tested": 5,
       "total": 5,
-      "untested": 2,
+      "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-06-08T04:43:45.097309+00:00"
+      "timestamp": "2026-06-08T08:43:50.777283+00:00"
     }
   }
 }
