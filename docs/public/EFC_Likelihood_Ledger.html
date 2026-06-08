@@ -69,8 +69,12 @@
 <p style="font-size:0.95em; color:#555; margin-bottom:1.5em;">
 Morten Magnusson &middot; Symbiose Research, Sandnes, Norway &middot;
 ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &middot;
-April 2026 &middot; CC-BY-4.0
+June 2026 &middot; CC-BY-4.0
 </p>
+<div style="background:#f0f4fa; border-left:4px solid #4a6da7; padding:10px 16px; margin:1.2rem 0; font-size:0.92rem; color:#2a3a52;">
+<strong>RCMP framing.</strong> EFC is read <em>by regime</em> (L0&ndash;L3), not by the background: &Lambda;CDM is the <strong>special-case limit</strong> of EFC in L0/L1, derived from the variational action (K(&rho;)&rarr;&infin; &rArr; &mu;,&Sigma;,&eta;&rarr;1), so recovering &Lambda;CDM there is a designed <em>feature, not a contest</em>. EFC-distinctive physics lives in L2 (perturbation/growth) and L3 (galactic). <em>falsification_status &ne; model_preference.</em>
+</div>
+
 
 <div style="background-color:#fff8e1; border-left:4px solid #d4a017; padding:15px; margin:20px 0;">
 <p style="margin:0; font-size:15px;">
@@ -134,8 +138,11 @@ the Evaluation Ledger.</p>
 <tr><td>CMB sanity</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td><code>reproduce_cmb_sanity.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
 <tr><td>SPARC rotation curves</td><td><code>binned_chi2</code></td><td><code>direct_python</code></td><td><code>reproduce_sparc.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
 <tr><td>EFC integration (background)</td><td><code>analytic</code></td><td><code>direct_python</code></td><td><code>reproduce_efc.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
-<tr><td>f&sigma;<sub>8</sub> / S<sub>8</sub> (growth)</td><td><code>gaussian_cov</code></td><td>TBD (Cobaya likely)</td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
-<tr><td>Cosmic shear (DES, KiDS, Euclid)</td><td><code>mcmc_posterior</code></td><td><code>cobaya</code> + <code>mgcamb</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
+<tr><td>Growth f&sigma;<sub>8</sub> suppression (P2, forward-model)</td><td><code>analytic</code></td><td><code>direct_python</code></td><td><code>reproduce_growth_fs8.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>f&sigma;<sub>8</sub> / S<sub>8</sub> growth DATA fit (folded into joint MCMC)</td><td><code>gaussian_cov</code></td><td>inference pipeline</td><td><code>efc_inference</code> (joint)</td><td><span class="badge-declared">declared</span></td></tr>
+<tr><td>Cosmic shear &mdash; S<sub>8</sub> amplitude (DES&nbsp;Y6, KiDS)</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td><code>reproduce_shear_s8.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>Cosmic shear &mdash; &Sigma;<sub>eff</sub>(z) crossover STRUCTURE (forward-model)</td><td><code>analytic</code></td><td><code>direct_python</code></td><td><code>reproduce_lensing_sigma_eff.py</code></td><td><span class="badge-runnable">runnable</span></td></tr>
+<tr><td>Cosmic shear &mdash; &Sigma;<sub>eff</sub>(z) shape / crossover DATA (Euclid)</td><td><code>mcmc_posterior</code></td><td><code>cobaya</code> + <code>mgcamb</code></td><td>TBD</td><td><span class="badge-declared">declared</span></td></tr>
 <tr><td>ISW cross-correlation</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
 <tr><td>GW propagation (KC6)</td><td><code>gaussian</code></td><td><code>direct_python</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
 <tr><td>Full CMB likelihood (plik_lite TTTEEE)</td><td><code>mcmc_posterior</code></td><td><code>cobaya</code></td><td>TBD</td><td><span class="badge-gap">GAP</span></td></tr>
@@ -214,7 +221,7 @@ frozen for publication, it advances to <code>frozen</code>.</p>
 <tr><td style="font-weight:bold; width:30%; background:#f8f9fa;">What this ledger fixes</td><td>Makes every empirical score reproducible by declaring its pipeline explicitly. No test enters the global score without a row here.</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Hard dependency</td><td><a href="EFC_Validation_Ledger.html">Validation Ledger</a> &mdash; provides the <code>test_id</code> vocabulary every row references.</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Hard consumers</td><td><a href="EFC_Evaluation_Ledger.html">Evaluation Ledger</a> and <a href="EFC_Model_Comparison.html">Model Comparison</a> &mdash; neither can fire without executed likelihood rows.</td></tr>
-<tr><td style="font-weight:bold; background:#f8f9fa;">Current gaps</td><td>f&sigma;<sub>8</sub> / S<sub>8</sub>, cosmic shear, ISW, GW propagation, full CMB likelihood. All marked <span class="badge-gap">GAP</span> until a pipeline is wired.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Current gaps</td><td>f&sigma;<sub>8</sub> / S<sub>8</sub>, cosmic-shear &Sigma;<sub>eff</sub>(z) shape, ISW, GW propagation, full CMB likelihood. (Cosmic-shear S<sub>8</sub> amplitude is now <span class="badge-runnable">runnable</span> &mdash; <code>reproduce_shear_s8.py</code>; the &Sigma;<sub>eff</sub>(z) crossover awaits Euclid DR1.) Remaining marked <span class="badge-gap">GAP</span> until a pipeline is wired.</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Status</td><td>Schema frozen; pipeline registry populated with all current <code>reproduce_*.py</code> scripts; bulk population of new pipelines follows maintainer review.</td></tr>
 </tbody>
 </table>

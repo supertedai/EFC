@@ -8,18 +8,27 @@
     "dois": "ORCID 0009-0002-4860-5095 / Figshare 20477774 (always canonical for corpus + paper DOIs).",
     "rule": "falsification_status != model_preference (EBE governance)."
   },
-
   "numbers": {
-    "total_public": 141,
-    "categories": { "physics_test": 48, "consistency_check": 21, "phenomenological": 17, "framework_constraint": 29, "planned_pipeline": 26 },
-    "corpus_papers": { "value": 165, "authority": "ORCID live work-groups (2026-06-08)", "note": "Pitch (165) correct; llms.txt (137) stale, daemon to re-sync." },
+    "total_public": 142,
+    "categories": {
+      "physics_test": 48,
+      "consistency_check": 22,
+      "phenomenological": 17,
+      "framework_constraint": 29,
+      "planned_pipeline": 26
+    },
+    "corpus_papers": {
+      "value": 165,
+      "authority": "ORCID live work-groups (2026-06-08)",
+      "note": "Pitch (165) correct; llms.txt (137) stale, daemon to re-sync."
+    },
     "falsifications": {
       "DO_NOT_cite_bare": true,
-      "canonical_L2": 11,
+      "canonical": 10,
       "public_status_failed": 10,
-      "L4_status_falsified_strict": 5,
-      "L4_status_failed": 20,
-      "scope_note": "Layer- and denominator-dependent. CANONICAL = L2 truth-ring = 11. The public status='failed' subset = 10 (index.md). The generator/index.md (10) and L2 (11) disagree by 1 — OPEN reconciliation (find the 11th). L4 'falsified'=5 vs 'failed'=20 are over the 315-node scope, not the 141 public set. Never cite a bare falsification number without (layer, denominator)."
+      "L4_failed_all_scope": 16,
+      "L4_falsified_all_scope": 4,
+      "scope_note": "RESOLVED 2026-06-08 (graph re-queried): canonical public falsification count = 10, verified across 4 independent sources -- live Neo4j (10 EFCValidation status='failed' & vl_public=true, 0 public 'falsified'), ledger.json n_falsified=10, stats.json=10, index.md '10 confirmed falsifications'. The earlier 'L2=11' was an over-count; there is NO 11th public falsification. The all-scope graph carries 20 'failed' + 5 'falsified', but the extra ~15 are private/legacy/duplicate nodes (F5/F6/F7, EFC-R-on-SPARC dupes, 'Stage: Non-rejectable', v1 Scalar Index dupes) -- not public. Never cite a bare count without (layer, denominator); the public number is 10. CLEANUP 2026-06-08: 5 private cruft nodes soft-archived (2 legacy duplicates; 2 mislabeled stage/state markers -- 'Stage: Non-rejectable' had been tagged falsified, the opposite; and 1 contradictory F7 'PASSED' node carrying status=failed). All-scope active failed/falsified now 16+4=20 (was 20+5=25); public count unchanged at 10."
     },
     "survival": {
       "DO_NOT_cite_105_115": true,
@@ -30,7 +39,6 @@
       "denominator_warning": "P8 is the only falsification among the SEALED P1-P8. This is a DIFFERENT denominator from the ledger falsification count (5-11), which includes non-sealed consistency tests. Keep them separate."
     }
   },
-
   "rcmp_regime_status": {
     "axiom": "RCMP: LCDM is the EFC special-case limit in L0/L1, derived from the EFC variational action. EFC-distinctive physics lives in L2/L3. Judge EFC BY REGIME, not by the background.",
     "L0_L1": {
@@ -44,8 +52,11 @@
       "verdict": "OPEN FRONTIER",
       "robust": "mu < 1 growth-suppression MECHANISM points S8 down (regime-signature).",
       "fragile": "Sigma > 1 / eta-boost enhancements are 0%-robust (P1/P3/P4-upside/P5).",
-      "signal": "alpha growth-signal 2.20sigma (LOO, pre-DESI) COLLAPSED to 0.68sigma post-DESI-DR2; joint background fit prefers LCDM (dAIC = +4.05 = mild-to-moderate preference, NOT falsification).",
-      "decisive_blind_tests": ["P1 (Phi/Psi slip)", "P2 (fsigma8 = 0.430, DESI DR2 full-shape RSD)"]
+      "signal": "alpha growth-signal 2.20sigma (LOO, pre-DESI) COLLAPSED to 0.68sigma post-DESI-DR2 (graph-verified: latest emcee cycle alpha=-0.141+/-0.208, verdict NO_SIGNAL). Joint BACKGROUND fit prefers LCDM mildly: dAIC=+1.59 (graph-verified live; matches Changelog v3.8; <2 = essentially indistinguishable). The separate Variant-H growth-extension MCMC gives dAIC=+4.05 -- do NOT conflate the two fits.",
+      "decisive_blind_tests": [
+        "P2 (fsigma8 = 0.430, DESI DR2 full-shape RSD) -- the decisive one",
+        "P1 (Phi/Psi slip) -- WEAK discriminator in robust EFC (near-GR: eta->1 => Sigma~mu~0.99, no crossover); was strong only in the 0%-robust eta-boost (crossover) version"
+      ]
     },
     "L3": {
       "label": "galactic / void (low-density nonlinear)",
@@ -54,7 +65,6 @@
       "honest_caveat": "MOND-class strength — competitive, NOT decisive. Bullet Cluster tied (not decisive)."
     }
   },
-
   "p4_sign_linchpin": {
     "sealed_value": 0.847,
     "atlas_badge": "PASS",
@@ -64,7 +74,6 @@
     "rcmp_flag": "A mu<1 (suppression) tag coexisting with a Sigma>1-implying amplitude (0.847) in the SAME L2 regime is a mu-Sigma inconsistency RCMP forbids. The 'sign is decisive' insight is RCMP-SHARPENING, not RCMP-broken.",
     "ebe_tightening": "'matches low lensing' applies to the mu<1 MECHANISM, not the sealed 0.847 NUMBER (CMB-near). Foreground that distinction."
   },
-
   "external_facts": {
     "DESI_DR2_w0wa": {
       "value": "2.8-4.2sigma (Pantheon+ 2.8, Union3 3.8, DESY5 4.2); BAO+CMB CPL = 3.1sigma",
@@ -75,17 +84,23 @@
     "S8": {
       "Planck_CMB": "0.832 +/- 0.013",
       "weak_lensing": "~0.78-0.789 (lensing < CMB, robust across surveys)",
-      "attribution_to_pin": "0.789 cited as DES Y6 2026 (this thread's web source) vs KiDS-1000 MetaCal (cross-validation thread). Substance (lensing < CMB) holds either way.",
+      "attribution_to_pin": "RESOLVED 2026-06-08: 0.789 = DES Y6 3x2pt (DOI 31951992, EFC-VAL-2026-002, 140M galaxies). KiDS-Legacy=0.815. The 'KiDS-1000 MetaCal' attribution was wrong. Substance (lensing<CMB) holds.",
       "EFC_sealed": 0.847
     }
   },
-
   "doi_provenance": {
-    "fsigma8": ["10.1111/j.1365-2966.2012.21136.x (6dFGS)", "10.1093/mnras/stu2693 (SDSS-MGS)", "10.1093/mnras/stx721 (BOSS DR12)", "10.1051/0004-6361/201526553 (VIPERS)", "10.1093/pasj/psw029 (FastSound)"],
-    "hz": ["10.1007/s41114-022-00040-z (Moresco+2022 cosmic-chronometer compilation)"],
+    "fsigma8": [
+      "10.1111/j.1365-2966.2012.21136.x (6dFGS)",
+      "10.1093/mnras/stu2693 (SDSS-MGS)",
+      "10.1093/mnras/stx721 (BOSS DR12)",
+      "10.1051/0004-6361/201526553 (VIPERS)",
+      "10.1093/pasj/psw029 (FastSound)"
+    ],
+    "hz": [
+      "10.1007/s41114-022-00040-z (Moresco+2022 cosmic-chronometer compilation)"
+    ],
     "note": "External survey DOIs = data provenance (correctly NOT in the figshare registry). EFC paper/claim DOIs are canonical from ORCID/Figshare only."
   },
-
   "ebe_caveats": [
     "status != model_preference: dAIC ~ 4 = mild LCDM preference, NOT a falsification.",
     "Cite every number with scope (layer + denominator); never a bare count.",
@@ -93,14 +108,13 @@
     "P8 (sealed) is a different denominator from the ledger falsification count.",
     "Refuse 'breakthrough'. Refuse 'matches' where only 'moves toward' is supported."
   ],
-
   "open_reconciliations": [
-    "Falsification count: L2(11) vs generator/index.md(10) disagree by 1 — find the 11th; pick the authoritative scope.",
-    "Survival fraction: define the curated 'executed' subset, or stop citing 105/115.",
-    "Atlas divergence-mode broken for phi_psi_slip (null values, 8 framework pairs) — P1 prediction not cleanly extractable; verify the P1 number before weighting it as 'the strong test'.",
-    "alpha-signal 0.68sigma and dAIC=+4.05 could not be verified vs L4 (graph timeout) — re-run when the graph responds.",
-    "S8 0.789 attribution (DES Y6 vs KiDS-1000) — pin down the survey."
+    "RESOLVED 2026-06-08: falsification count = 10 canonical (verified vs live Neo4j + ledger.json + stats.json + index.md; no 11th).",
+    "RESOLVED 2026-06-08 (alpha/dAIC): 0.68sigma confirmed (graph emcee, alpha=-0.14+/-0.21); BACKGROUND fit dAIC=+1.59 (graph-verified; was wrongly stated +4.05); +4.05 is the separate Variant-H growth-extension MCMC. Both prefer LCDM mildly.",
+    "RESOLVED 2026-06-08 (survival 105/115): consistent + transparently derived (active = 141 - 26 planned = 115; survived = 115 - 10 falsified = 105). Prior 'DO_NOT_cite' too strict. CAVEAT: 'survived'='not-falsified'; ~77 of 115 active are status=pending (not executed); stricter executed-and-passed subset = 43/53 (public). Both framings valid with stated scope.",
+    "RESOLVED 2026-06-08 (P1 phi_psi_slip): extractable in atlas.json (efc~flat/near-GR robust, lcdm monotonic, 13 rival frameworks divergent, relative_divergence=1.0). Prior 'null/broken' outdated. BUT robust EFC is near-GR => WEAK discriminator vs LCDM; strong-divergence (crossover) version was the 0%-robust eta-boost.",
+    "RESOLVED 2026-06-08 (S8 0.789): = DES Y6 3x2pt (DOI 31951992). KiDS-Legacy=0.815. Robust EFC S8~0.82 bracketed by both => PASS/mild.",
+    "PROPAGATED 2026-06-08: +1 public consistency_check = cosmic-shear S8-amplitude first-look (vc_24f523b0a34c -> EFCValidation; robust EFC S8~0.82 best fit, fragile eta-boost disfavoured ~3.3sigma; FIRST-LOOK scope, status=planned pending full covariance + Euclid Sigma_eff shape). Counts: total_public 141->142, consistency_check 21->22. P2 (fsigma8) + F9 (Sigma_eff crossover STRUCTURE) now reproducible from the production engine -- Likelihood Ledger entries reproduce_growth_fs8.py + reproduce_lensing_sigma_eff.py (copy==production, max deviation 0.0)."
   ],
-
-  "bottom_line": "EFC is non-rejectable, not a breakthrough; LCDM is preferred in the joint fits. Regime-stratified: L0/L1 recovers LCDM (a designed feature), L2 is the open frontier (fragile enhancements, alpha-signal collapsed, P1/P2 decisive), L3 is a genuine strength (galactic dynamics without dark matter, MOND-class). The P4 sign is decisive and RCMP-sharpening. Internal-layer numbers are only partially verified (graph degraded); cite with scope."
+  "bottom_line": "EFC is non-rejectable, not a breakthrough; LCDM is preferred in the joint fits. Regime-stratified: L0/L1 recovers LCDM (a designed feature), L2 is the open frontier (fragile enhancements, alpha-signal collapsed, P2 (fsigma8) decisive, P1 (Phi/Psi slip) weak in robust EFC (near-GR)), L3 is a genuine strength (galactic dynamics without dark matter, MOND-class). The P4 sign is decisive and RCMP-sharpening. Internal-layer numbers are only partially verified (graph degraded); cite with scope."
 }
