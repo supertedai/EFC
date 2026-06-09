@@ -81,7 +81,7 @@
   <a href="EFC_External_Research_Ledger.html" style="margin-right:1.5rem; font-weight:600;">External</a>
   <a href="EFC_Predictions.html" style="margin-right:1.5rem; font-weight:600;">Predictions</a>
   <a href="EFC_Atlas.html" style="margin-right:1.5rem; font-weight:600;">Atlas</a>
-  <a href="EFC_Changelog.html" style="font-weight:600; color:#c22;">Changelog</a>
+  <a href="EFC_Changelog.html" style="font-weight:600;">Changelog</a>
 </div>
 <!-- efc-navbar:end -->
 
@@ -92,6 +92,7 @@
 <h2>2026</h2>
 
 <ul>
+  <li><strong>2026-06-09</strong> &mdash; Ledger data: evidence-register.json, ledger.json.</li>
   <li><strong>2026-06-08</strong> &mdash; <strong>Canonical narrative + semantic CI.</strong> Added <code>ledger_truth.json</code> as the single source for ledger numbers (each with explicit scope), RCMP-regime status, DOI provenance and EBE caveats. New <code>efc_narrative_consistency.py</code> gate, wired into the page-consistency workflow, catches oversell and self-contradiction classes the structural checks miss (a false zero-count of confirmed falsifications, a fabricated all-modules-DOI-anchored badge, placeholder-data preference verdicts).</li>
   <li><strong>2026-06-08</strong> &mdash; <strong>Honest-count &amp; RCMP-framing pass.</strong> Falsification counts made scope-explicit (10 public status=failed / 11 L2 truth-ring) and a contradictory zero-falsifications summary removed. Neutralised a bao_desi_y1 oversell &mdash; a spurious EFC-preference verdict computed on a placeholder data file &rarr; honest &ldquo;pending real DESI&rdquo;. Added an RCMP-regime status section to the Gap Analysis: L0/L1 &Lambda;CDM-recovery is a designed feature, L2 the open frontier, L3 (galactic) EFC&rsquo;s strongest sector.</li>
   <li><strong>2026-06-08</strong> &mdash; <strong>Infrastructure &amp; hygiene.</strong> Resolved committed git conflict markers that had left jwst_hmf_prereg_v4 Python/JSON broken (PR #316). Bound the validation-ledger publisher to RCMP-regime + EBE framing (no hardcoded zero-falsification claim; &ldquo;moves toward&rdquo; not &ldquo;matches&rdquo;; every count carries its scope) and verified its output by dry-run before resuming auto-publish. Byline dates updated April&nbsp;&rarr;&nbsp;June 2026.</li>
