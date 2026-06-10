@@ -44,7 +44,7 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  A_structural_closure_of_growth_sector_couplings:
+  EFC-VAL-2026-006:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -54,6 +54,15 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-:
+    Graph: 10 concepts, 0 related papers
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [INFO] openai exhausted — trying fallback provider
+    [WARN] Could not parse holistic impact JSON
+    [SKIP] No impact generated
+  A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -80,7 +89,7 @@ pdftotext: /usr/bin/pdftotext
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
-  EFC-VAL-2026-006:
+  A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -90,15 +99,6 @@ pdftotext: /usr/bin/pdftotext
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   jwst_hmf_prereg_v4:
-    Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] Could not parse holistic impact JSON
-    [SKIP] No impact generated
-  A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
@@ -199,15 +199,14 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
+1 potential new dataset(s):
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
 [efc-auto-changelog] Public pages updated: Changelog.
-[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
