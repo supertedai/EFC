@@ -47,14 +47,9 @@ pdftotext: /usr/bin/pdftotext
   A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [FAIL] OpenAI HTTP 400: Bad Request -- {
-  "error": {
-    "message": "Could not finish the message because max_tokens or model output limit was reached. Please try again with higher max_tokens.",
-    "type": "invalid_request_error",
-    "param": null,
-    "code": null
-  }
-}
+    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
+    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
@@ -204,15 +199,12 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
-
-Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
+No new datasets found.
 [efc-auto-changelog] checking for changes...
 [efc-auto-changelog] Public pages updated: Changelog.
-[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
