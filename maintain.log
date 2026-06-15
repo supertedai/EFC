@@ -120,6 +120,8 @@ pdftotext: /usr/bin/pdftotext
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
     [INFO] openai exhausted — trying fallback provider
+    Added 62 DOI(s) to evidence register
+    Added 4 DOI(s) to evidence register
 
 ============================================================
 EFC AI BRAIN — done
@@ -157,9 +159,9 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
-  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
-  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
+  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
+  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
+  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
 ========================================================================
 [efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
@@ -198,13 +200,13 @@ Known datasets in Roadmap: 9
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
   DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
+  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-1 potential new dataset(s):
-  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
-
-Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
+No new datasets found.
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
