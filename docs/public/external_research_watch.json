@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.8",
-  "last_updated": "2026-06-08",
+  "version": "1.9",
+  "last_updated": "2026-06-15",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -1315,6 +1315,61 @@
       "date_published": "2026-05-14",
       "efc_relevance": "Scalar-vector-tensor gravity with matter minimally coupled to a Jordan-frame metric and a massive vector sector interacting with the baryonic current. The conformal scalar coupling produces a late-time enhancement of the effective Hubble constant relevant only at low redshifts, alleviating H_0 tension without affecting early-universe cosmology; the vector behaves as effective pressureless matter via a density-dependent mass, yielding a unified dark-sector. Chameleon-type screening keeps Solar-System constraints satisfied. Positioned as a competing framework to EFC: shares EFC's 'late-time-only mechanism' philosophy but achieves it via an explicit vector field rather than an entropy-flow source term.",
       "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski as a new competing-framework candidate (source_type='framework-seminal' upgrade pending more papers in this line); update framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 rows with a 'unified dark-sector scalar-vector-tensor' sibling note; cross-reference arXiv:2605.05691 (E(z) reformulation of H_0 tension) since both papers argue for late-time-only signatures; required follow-up in Predictions Ledger: state explicit EFC discriminator from the scalar-vector-tensor late-time enhancement on E(z) at z ≤ 0.3.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.09650",
+      "title": "Pantheon+ supernovae corrected for progenitor age indicate the universe is decelerating (Sah, Rameez, Sarkar)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.09650",
+      "date_seen": "2026-06-15",
+      "date_published": "2026-06-09",
+      "efc_relevance": "Applies a redshift-dependent progenitor-age correction to the Pantheon+ SN Ia catalogue and reports that the monopole component of the deceleration parameter shifts to positive values (decelerating), while the local dipole component remains. Direct challenge to the SN-Ia-anchored cosmographic case for dynamical DE that EFC's L2→L3 effective w(z)<-1 narrative co-opts (arXiv:2503.14738 DESI DR2, arXiv:2605.27221 DES Y6 multi-probe). If the systematic holds, EFC's L2 effective-phantom signature must remain falsifiable on BAO+CMB+lensing anchors independently of SNe, and the dipole-not-monopole structure becomes an additional target shared with framework:Timescape-Wiltshire2007 and arXiv:2605.05454 backreaction.",
+      "ledger_action": "Add to Validation Ledger as Pantheon+ SN-Ia systematic constraint; cross-reference arXiv:2503.14738 (DESI DR2), arXiv:2605.27221 (DES Y6 multi-probe), arXiv:2606.05853 (bin-free w(z) reconstruction) and framework:Timescape-Wiltshire2007; required follow-up: re-run EFC L2→L3 cosmographic fit dropping Pantheon+ SNe and report whether the effective w(z)<-1 preference survives on BAO+CMB+lensing alone.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.12389",
+      "title": "KiDS-Legacy: Joint analysis of second- and third-order cosmic shear",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.12389",
+      "date_seen": "2026-06-15",
+      "date_published": "2026-06-12",
+      "efc_relevance": "Joint second-plus-third-order cosmic shear on full KiDS-Legacy gives Ωm = 0.297 +0.056/-0.040 and S8 = 0.806 +0.025/-0.023, more than doubling the Ωm–S8 figure-of-merit relative to 2pt-alone. Sits between DES Y6 (S8 ≈ 0.789) and the Combined-CMB anchor (S8 ≈ 0.836), tightens the bifurcated S8 picture (arXiv:2602.12238 review) ahead of Euclid DR1 and supplies an independent third arm for EFC's sealed P4 prediction (figshare 31990053) and the η-boost vs robust EFC branch (DOI 32037990 vs DOI 31188193).",
+      "ledger_action": "Add to Validation Ledger as KiDS-Legacy higher-order shear S8 anchor; update cluster s8_tension_des_y6 with the KiDS-Legacy 2/3pt row alongside the pending_review_2026_05_01 KiDS-Legacy 2pt candidate; cross-reference arXiv:2605.13547 (UNIONS-3500), arXiv:2602.12238 (S8 review) and arXiv:2602.10065 (DES Y6 cosmic shear); required head-to-head against EFC robust S8 ≈ 0.82 branch (DOI 31188193) and explicit note in P4 sealed-prediction commentary that S8 = 0.806 lands well inside the robust branch.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.12521",
+      "title": "Dark Matter with a Drag at Low Redshift (Schmaltz & Sivarajan, iDCDM)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.12521",
+      "date_seen": "2026-06-15",
+      "date_published": "2026-06-10",
+      "efc_relevance": "Constructs a particle-physics model — interacting Decaying Cold Dark Matter (iDCDM) — in which late-time DM-decay-sourced dark radiation drags structure growth, producing a step-shaped suppression of f(k,z) at z≲1 while leaving BBN, the background, and primary CMB intact. Direct particle-sector cousin of EFC's perturbation-sector P3 prediction (μ<1, Σ>1): both reproduce the low-z growth deficit seen in arXiv:2605.00450 (CosmicFlows-4++ fσ8) and arXiv:2602.12238 (S8 review). Discriminator is step-shaped (iDCDM) vs smooth (EFC entropic-flow) suppression in f(k,z), plus the Σ-side lensing slip which iDCDM does not produce.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table as iDCDM late-time-drag particle-sector cousin of EFC P3; cross-reference framework:CoupledDE-DM-Amendola2000, framework:FuzzyDM-Hu2000, arXiv:2605.00450 and arXiv:2606.00411 (sound of dynamical DE + modified gravity); required step-vs-smooth-suppression discriminator row in WP3 Falsification Protocol and explicit EFC f(k,z) prediction at z ∈ {0.1, 0.3, 0.5, 0.8} for DESI/Euclid/Rubin head-to-head.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.12565",
+      "title": "Galaxy formation in modified gravity – II. galaxy halo connection and assembly bias (Collier, Bose, Li)",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.12565",
+      "date_seen": "2026-06-15",
+      "date_published": "2026-06-12",
+      "efc_relevance": "Quantifies the galaxy-halo connection and assembly-bias signature in f(R) modified-gravity cosmologies, mapping the systematic that propagates from gravity-sector modifications into DESI / Euclid clustering inferences. Methodological prerequisite for any clean EFC galaxy-clustering ΔAIC at L2/L3 — without an EFC-specific galaxy-halo connection table the WP3 falsification protocol on clustering inherits an irreducible bias-modelling ambiguity.",
+      "ledger_action": "Add to WP1 as MG galaxy-halo connection methodology import; cross-reference arXiv:2606.03860 (HEFT for modified gravity), framework:fR-Starobinsky2007 and gap theory-efclass-boltzmann-solver; required follow-up: produce an EFC L2 assembly-bias table on the same halo-mass bins as Collier-Bose-Li and overlay on DESI BGS clustering.",
+      "status": "new"
+    },
+    {
+      "key": "arXiv:2606.13261",
+      "title": "Probing cosmic dynamics in f(T) teleparallel gravity: Constraints from logarithmic and log-periodic deceleration ansatzes",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.13261",
+      "date_seen": "2026-06-15",
+      "date_published": "2026-06-11",
+      "efc_relevance": "f(T) = α(-T)^n teleparallel-gravity background analysis with logarithmic and log-periodic deceleration ansatzes constrained on cosmic-chronometer + Pantheon+ + DESI BAO. Adds another modified-gravity competitor in the same (w0, wa)-plane as EFC's L2→L3 effective w(z), and the log-periodic ansatz produces oscillatory features near z ≈ 0.5–0.8 directionally parallel to the bin-free reconstruction of arXiv:2606.05853 and the MEDE crossover of arXiv:2606.05723.",
+      "ledger_action": "Add to competitor-landscape ΔAIC table as 2026 f(T)-teleparallel background competitor; cross-reference framework:fR-Starobinsky2007, arXiv:2604.21151 (f(Q,T) affine EoS), arXiv:2604.23793 (f(Q,L_m) BBN-to-late) and arXiv:2606.05853 (bin-free w(z)); required head-to-head with EFC's effective w(z) at z ∈ {0.3, 0.5, 0.8, 1.0} on the same CC+SN+BAO baseline.",
       "status": "new"
     }
   ],
