@@ -82,7 +82,7 @@ pdftotext: /usr/bin/pdftotext
     [SKIP] No impact generated
   EFC-VAL-2026-006:
     Graph: 10 concepts, 0 related papers
-    [RETRY] OpenAI HTTP 502 — waiting 5s (1/4)
+    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [WARN] OpenAI empty (finish_reason=length) attempt 3/4
     [WARN] OpenAI empty (finish_reason=length) attempt 4/4
@@ -197,9 +197,9 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
+1 potential new dataset(s):
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
