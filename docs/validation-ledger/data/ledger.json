@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-06-25T20:47:22Z",
+  "generated_at": "2026-06-26T02:47:44Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 25312,
+    "grav_claims": 25317,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-25T20:42:38.206551+00:00"
+      "timestamp": "2026-06-26T02:42:49.338273+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-25T20:42:38.426682+00:00"
+      "timestamp": "2026-06-26T02:42:49.393721+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-06-25T20:42:38.460414+00:00"
+      "timestamp": "2026-06-26T02:42:49.434024+00:00"
     }
   },
   "parameters": {
@@ -2767,16 +2767,6 @@
       "created_at": 1769118119694
     },
     {
-      "name": "Regime-Dependent Breakdown",
-      "description": "The idea that standard cosmological models work brilliantly in some cases but fail spectacularly in others due to regime structure.",
-      "domain": "cosmology",
-      "status": "conjecture",
-      "epistemic_net": 2.879999999999999,
-      "testability": "partially_testable",
-      "source": null,
-      "created_at": 1769149853985
-    },
-    {
       "name": "Regime-dependent breakdown",
       "description": "Proposed hypothesis that deviations from LCDM predictions cluster in identifiable cosmic time regimes (L0‑L3).",
       "domain": "cosmology",
@@ -2825,6 +2815,16 @@
       "testability": "partially_testable",
       "source": null,
       "created_at": 1769116421228
+    },
+    {
+      "name": "Regime-Dependent Breakdown",
+      "description": "The idea that standard cosmological models work brilliantly in some cases but fail spectacularly in others due to regime structure.",
+      "domain": "cosmology",
+      "status": "conjecture",
+      "epistemic_net": 0.47999999999999954,
+      "testability": "partially_testable",
+      "source": null,
+      "created_at": 1769149853985
     },
     {
       "name": "Dark Matter Hypothesis",
@@ -2962,6 +2962,91 @@
       {
         "text": null,
         "status": "ACTIVE",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "ARCHIVED",
         "claim_type": null
       },
       {
@@ -6803,6 +6888,16 @@
         "text": null,
         "status": "CONFIRMED",
         "claim_type": "unspecified"
+      },
+      {
+        "text": null,
+        "status": "CONFIRMED",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "CONFIRMED",
+        "claim_type": null
       },
       {
         "text": null,
@@ -113736,6 +113831,16 @@
       },
       {
         "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "reference_model",
         "claim_type": null
       },
@@ -114262,6 +114367,21 @@
       {
         "text": null,
         "status": "untested",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
         "claim_type": null
       },
       {
@@ -119552,11 +119672,6 @@
       {
         "text": null,
         "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
         "claim_type": "unspecified"
       },
       {
@@ -120702,97 +120817,7 @@
       {
         "text": null,
         "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
         "claim_type": "unspecified"
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
       },
       {
         "text": null,
