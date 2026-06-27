@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -167,13 +167,13 @@ EFC SYMBIOSE SNAPSHOT
 Source: Git ledger (fallback mode)
 
 Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
-  Tests: 149 total, 106 survived, 10 falsified
+  Tests: 142 total, 106 survived, 10 falsified
   Papers: 166 (165 DOIs)
   GRAV: KT1=unknown, KT2=unknown, KT3=unknown
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-06-26
+Date: 2026-06-27
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -190,11 +190,14 @@ Known datasets in Roadmap: 9
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
   DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
-  KiDS: could not fetch https://kids.strw.leidenuniv.nl/DR5/
 
-No new datasets found.
+1 potential new dataset(s):
+  [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
+
+Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
 [efc-auto-changelog] Public pages updated: Changelog.
+[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
@@ -206,19 +209,14 @@ Ledger: 142 tests, 10 falsified
 --- Elevator Pitch ---
   [OK]       Paper count 165 close to repo 166
   [OK]       Paper count 165 close to repo 166
-  [WARNING]  Test count '149' != total 142 or active 116
   [OK]       Survival count 106/116 matches ledger
 
 --- Validation Ledger ---
-  [WARNING]  '149-test' in Ledger HTML != 142 in stats
+  [OK]       Test count 142 matches ledger 142
 
 --- All Pages Number Check ---
 
 --- Test Count Cross-Page Consistency ---
-  [CRITICAL] Elevator Pitch: says 33 pipeline but ledger has 26
-  [CRITICAL] Elevator Pitch: says 33 pipeline but ledger has 26
-  [CRITICAL] Stage-IV Roadmap: says 149 total but ledger has 142
-  [CRITICAL] Stage-IV Roadmap: says 33 pipeline but ledger has 26
 
 --- KC Status vs Sealed DOIs (semantic) ---
   [OK]       Sealed/empirical DOIs cover: FA4, KC1, KC2, KC3, KC4, KC5, KC6, KC7, KC8, KC9
@@ -251,19 +249,15 @@ Ledger: 142 tests, 10 falsified
 
 --- Symbiose Council ---
   Snapshot source: ledger_fallback
-  [WARNING]  Symbiose tests=149 vs ledger total_public=142
+  [OK]       Symbiose test count 142 matches ledger
   [OK]       Symbiose paper count 166 matches repo
   [OK]       Sealed freeze_1: alpha=-0.689, hash=7a850cfa...
   [OK]       Sealed freeze_2: alpha=-0.702, hash=dbccda15...
 
 ============================================================
-RESULT: 6 errors, 9 warnings
+RESULT: 2 errors, 6 warnings
 VERDICT: BLOCK — critical discrepancies prevent publishing
 Fix these before auto-commit:
-  - Elevator Pitch: says 33 pipeline but ledger has 26
-  - Elevator Pitch: says 33 pipeline but ledger has 26
-  - Stage-IV Roadmap: says 149 total but ledger has 142
-  - Stage-IV Roadmap: says 33 pipeline but ledger has 26
   - EFC Inference: bao_desi_y1: still LCDM stub — no DOI data
   - 1 inference modules still on LCDM stubs
 [full-sync] invariants: 0 error(s), 167 warning(s)
