@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-06-28T14:52:52Z",
+  "generated_at": "2026-06-28T20:53:12Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 25400,
+    "grav_claims": 25421,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-28T14:44:34.647452+00:00"
+      "timestamp": "2026-06-28T20:44:44.499871+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-06-28T14:44:34.699473+00:00"
+      "timestamp": "2026-06-28T20:44:44.535372+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-06-28T14:44:34.724070+00:00"
+      "timestamp": "2026-06-28T20:44:44.551952+00:00"
     }
   },
   "parameters": {
@@ -7418,6 +7418,41 @@
       {
         "text": null,
         "status": "competing",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
         "claim_type": null
       },
       {
@@ -41732,6 +41767,56 @@
       },
       {
         "text": null,
+        "status": "falsified",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "pending",
         "claim_type": null
       },
@@ -114293,6 +114378,16 @@
       {
         "text": null,
         "status": "reference_model",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
         "claim_type": null
       },
       {
@@ -114838,6 +114933,16 @@
       {
         "text": null,
         "status": "untested",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
         "claim_type": null
       },
       {
@@ -122073,6 +122178,46 @@
       {
         "text": null,
         "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": null,
         "claim_type": "unspecified"
       },
       {
@@ -123219,46 +123364,6 @@
         "text": null,
         "status": null,
         "claim_type": "unspecified"
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
-      },
-      {
-        "text": null,
-        "status": null,
-        "claim_type": null
       },
       {
         "text": null,
