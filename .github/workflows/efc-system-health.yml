@@ -10,7 +10,7 @@ name: EFC system health dashboard
 
 on:
   schedule:
-    - cron: "5 * * * *"  # every hour at :05
+    - cron: "0 */6 * * *"  # every 6 hours (was: hourly — reduced to break ai-audit cascade)
   workflow_dispatch:
   push:
     branches: [main]
