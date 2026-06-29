@@ -16,12 +16,14 @@ on:
       - "README.md"
       - "AGENTS.md"
       - "pipelines/**/README.md"
+    paths-ignore:
+      - "docs/public/EFC_System_Health.html"
   workflow_dispatch:
     inputs:
       model:
-        description: "OpenAI model (default: gpt-5)"
+        description: "OpenAI model (default: gpt-5-mini)"
         required: false
-        default: "gpt-5"
+        default: "gpt-5-mini"
   schedule:
     - cron: "30 6 * * 3"  # Wednesday 06:30 UTC — consistency audit
     - cron: "0 7 * * 1"   # Monday 07:00 UTC — weekly full scan
@@ -54,7 +56,7 @@ jobs:
       - name: Run AI consistency audit (GPT council)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: ${{ inputs.model || 'gpt-5' }}
+          OPENAI_MODEL: ${{ inputs.model || 'gpt-5-mini' }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "::warning::OPENAI_API_KEY secret not set. Skipping AI audit."
