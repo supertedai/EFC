@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=cache
+EFC ORCID source-of-truth sync — source=live
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -189,15 +189,14 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
+  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-2 potential new dataset(s):
-  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
+1 potential new dataset(s):
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
 [efc-auto-changelog] Public pages updated: Changelog.
-[efc-auto-changelog] updated EFC_Changelog.html
 [efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
