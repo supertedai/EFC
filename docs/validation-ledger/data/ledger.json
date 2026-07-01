@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-07-01T18:26:23Z",
+  "generated_at": "2026-07-01T18:51:48Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 25543,
+    "grav_claims": 25544,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-01T18:16:39.839666+00:00"
+      "timestamp": "2026-07-01T18:50:33.561204+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-01T18:16:39.873793+00:00"
+      "timestamp": "2026-07-01T18:50:33.635018+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-07-01T18:16:39.891318+00:00"
+      "timestamp": "2026-07-01T18:50:33.666776+00:00"
     }
   },
   "parameters": {
@@ -2842,11 +2842,11 @@
       "question": "[MISSING_DATA] No observations available to test: Entropy gradient increase leads to complexity",
       "domain": "efc",
       "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
+      "status": "OPEN",
       "approach": null,
       "efc_prediction": null,
       "source": "metacognitive_gap_daemon",
-      "created_at": "2026-06-30T23:43:11.110000000+00:00"
+      "created_at": "2026-07-01T18:43:31.387000000+00:00"
     },
     {
       "question": "If an enzyme classified as a bulking agent (EC number) is isolated and tested on a suitable substrate, it should cause a measurable change in the texture of the resulting product, similar to how fillers do in food.",
@@ -115863,6 +115863,11 @@
       {
         "text": null,
         "status": "untested",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
         "claim_type": null
       },
       {
