@@ -37,55 +37,49 @@ pdftotext: /usr/bin/pdftotext
 
   EFC_PreRegistered_Predictions:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   A_structural_closure_of_growth_sector_couplings:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   Non-MCMC_Constraints_on_the_EFC_α-Parameter:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   EFC-VAL-2026-006:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
   jwst_hmf_prereg_v4:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
@@ -100,13 +94,6 @@ pdftotext: /usr/bin/pdftotext
 
 >>> Step 2: Registering 62 paper(s) in public pages <<<
 
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [FAIL] OpenAI HTTP 401: Unauthorized -- {
-  "error": {
-    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
-    [INFO] openai exhausted — trying fallback provider
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
     [FAIL] OpenAI HTTP 401: Unauthorized -- {
   "error": {
     "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
@@ -115,8 +102,10 @@ pdftotext: /usr/bin/pdftotext
   "error": {
     "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
-    Added 62 DOI(s) to evidence register
-    Added 4 DOI(s) to evidence register
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
+    [INFO] openai exhausted — trying fallback provider
 
 ============================================================
 EFC AI BRAIN — done
@@ -153,9 +142,9 @@ Processed 165 paper(s)
 ========================================================================
 EFC Evidence Mirror — registers reconciled
 ========================================================================
-  empirical       ev: 88 → 132  (+44)    ledger: 22 → 132 (+110)
-  methodological  ev:  3 →  27  (+24)    ledger:  3 →  27 (+24)
-  structural      ev:  2 →  76  (+74)    ledger:  2 →  76 (+74)
+  empirical       ev:132 → 132  (+0)    ledger:132 → 132 (+0)
+  methodological  ev: 27 →  27  (+0)    ledger: 27 →  27 (+0)
+  structural      ev: 76 →  76  (+0)    ledger: 76 →  76 (+0)
 ========================================================================
 [efc-drift] 165 papers · 2 drift(s) detected:
   Changelog: claims 158 but actual is 165
@@ -177,7 +166,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-07-01
+Date: 2026-07-02
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -200,8 +189,7 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] Ledger data: evidence-register.json, ledger.json.
-[efc-auto-changelog] updated changelog.json
+[efc-auto-changelog] only script/workflow changes — skipping changelog
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
