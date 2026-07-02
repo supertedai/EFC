@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-07-02T06:52:48Z",
+  "generated_at": "2026-07-02T12:53:07Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 25612,
+    "grav_claims": 25619,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-02T06:50:54.778679+00:00"
+      "timestamp": "2026-07-02T12:51:06.515140+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-02T06:50:54.810743+00:00"
+      "timestamp": "2026-07-02T12:51:06.563009+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-07-02T06:50:54.827181+00:00"
+      "timestamp": "2026-07-02T12:51:06.593265+00:00"
     }
   },
   "parameters": {
@@ -2846,7 +2846,7 @@
       "approach": null,
       "efc_prediction": null,
       "source": "metacognitive_gap_daemon",
-      "created_at": "2026-07-02T04:46:35.601000000+00:00"
+      "created_at": "2026-07-02T10:46:42.311000000+00:00"
     }
   ],
   "status_levels": [
@@ -2914,19 +2914,7 @@
       "sort_order": 9
     }
   ],
-  "changelog": [
-    {
-      "name": "Axiom 0: S_hat(z) Regime Boundary Test",
-      "status": "pending",
-      "result": "Primary p=0.68722, Sign coherence p=0.015625",
-      "last_updated": "2026-06-25T09:28:59.148000000+00:00",
-      "source": null,
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    }
-  ],
+  "changelog": [],
   "grav_pipeline": {
     "latest_run": {
       "run_id": "2026-06-22_143541_aqual",
@@ -115517,6 +115505,16 @@
       },
       {
         "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "reference_model",
         "claim_type": null
       },
@@ -116168,6 +116166,31 @@
       {
         "text": null,
         "status": "untested",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
         "claim_type": null
       },
       {
