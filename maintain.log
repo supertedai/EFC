@@ -91,10 +91,9 @@ pdftotext: /usr/bin/pdftotext
     [SKIP] No impact generated
   A_Falsified_Bar-Instability_Criterion_Reveals_an_Independent_Disk-State_Parameter_from_EFC-Modified_Disk_Kinematics:
     Graph: 10 concepts, 0 related papers
-    [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] Could not parse holistic impact JSON
     [SKIP] No impact generated
@@ -102,14 +101,19 @@ pdftotext: /usr/bin/pdftotext
 >>> Step 2: Registering 62 paper(s) in public pages <<<
 
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     [WARN] OpenAI empty (finish_reason=length) attempt 1/4
     [WARN] OpenAI empty (finish_reason=length) attempt 2/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 3/4
-    [WARN] OpenAI empty (finish_reason=length) attempt 4/4
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
+    [INFO] openai exhausted — trying fallback provider
+    [FAIL] OpenAI HTTP 401: Unauthorized -- {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************kV4A. You can find your API key at https://platform.openai.com/account/api-keys."
     [INFO] openai exhausted — trying fallback provider
     Added 62 DOI(s) to evidence register
     Added 4 DOI(s) to evidence register
