@@ -1,7 +1,7 @@
 {
   "name": "EFC-GRAV Pipeline",
   "version": "3.0",
-  "generated_at": "2026-07-03T06:53:52Z",
+  "generated_at": "2026-07-03T12:54:12Z",
   "latest_run": {
     "run_id": "2026-06-22_143541_aqual",
     "verdict": "NEEDS_REVIEW",
@@ -39847,6 +39847,221 @@
       "claim_type": null
     },
     {
+      "text": "ESS-gridlimit aktiv og batteriet inaktivt — Import 4.14 kW mens batteriet hverken lader eller yter. Dette kombinert med lav solproduksjon indikerer at inverteren kan være satt i grid-limit-modus som struper sol for å unngå eksport.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "ESS-struping pga. grid-limiter eller fast setpunkt — Grid-import på 4.14 kW samtidig som solcellene kun yter 0.74 kW indikerer at systemet ikke prøver å balansere forbruk lokalt. ESS kan ha aktiv grid-limit på null-eksport eller lav fast produksjon.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Ekstern hendelse i strømnettet — Hvis det var en uventend hendelse i det lokale strømnettet (f.eks. spenningssvingninger eller andre forstyrrelser), kan dette ha påvirket målingene eller forbruket.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring som førte til uventet utladning — Hvis batteristyringen feilaktig initierte en utladning for å dekke en høy last, kan dette ha bidratt til den høye nett-toppen. Dette kan skje hvis systemet misforstod behovet for energi.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13.272 kW, nesten dobbelt så høyt som setpunktet (6.71 kW), uten tydelig forklaring i dataene, kan indikere en midlertidig feil i energimåleren eller dataoverføring.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Inverter i beskyttelsesmodus etter overstrøm eller spenningssprang fra nettet — Systemet importerer strøm (4.14 kW) mens PV-effekten er lav og batteriet ikke lader. Dette kan bety at inverteren midlertidig har koblet fra nettet etter et transientsprang.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Kommunikasjonsfeil mellom sol-inverter og Venus OS — Inverter kan sende feil data til Victron når modbus-link eller VE.Direct-protokoll feiler. Da rapporteres lav produksjon selv om panelene faktisk yter korrekt.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling målt til 700 W/m² burde gitt 7.3 kW produksjon, men kun 0.74 kW observeres. Dette tilsier at én eller flere PV-strenger ikke leverer. Batteriet står på 64% og importen fra nettet øker, noe som tyder på teknisk struping, ikke mangel på last.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling på 706 W/m² burde gitt nær 7 kW ved normal virkningsgrad. Faktisk produksjon 0.74 kW tilsvarer ~10 % ytelse, typisk ved at én delstreng står nede eller at én MPPT ikke leverer.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Midler­tidig nett-ubalanse eller spenningshev fra nettselskapet — Dersom nettet lokalt har høy spenning midt på dagen pga regional soltoppproduksjon, kan anlegget automatisk strupes for å unngå over­spenning.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Målefeil eller feil sensor-tilordning mellom Ecowitt og Victron — Hvis solmåler rapporterer 706 W/m² lokalt, men er feilorientert eller ikke synkront med invertermålingen, kan beregnet avvik være kunstig høyt.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Overbelastet AC-gren eller høy lokal last som gir spenningsløft og kutter solinnmating — Ved 4.14 kW import kan lokal spenning overstige inverterens cutoff-nivå, som automatisk begrenser solleveranse for å beskytte nettet.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "PV-temperaturoverstyring eller termisk 'derating' — Høy modultemperatur (>60 °C) reduserer effekt. Ved dagens forhold (700 W/m², >30 °C modultemperatur) kunne effektreduksjonen nå 15–25 %, men ikke 90 %, så dette forklarer kun delvis.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy last fra elektrisk kjøretøy-lading — Hvis det var en EV-lader koblet til systemet, kan en plutselig start av lading med høy effekt ha drevet toppen. Dette er spesielt sannsynlig hvis ladingen ikke var planlagt eller registrert i prognosen.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy last fra store apparater — Hvis flere store apparater (f.eks. vaskemaskin, tørketrommel, oppvaskmaskin) startet samtidig, kan dette ha drevet toppen. Dette er spesielt sannsynlig hvis det var en uventet hendelse som førte til samtidig bruk.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": null,
       "status": "pending",
       "claim_type": null
@@ -113544,6 +113759,86 @@
     {
       "text": null,
       "status": "refuted",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "refuted",
+      "claim_type": null
+    },
+    {
+      "text": "Batteristyringen justerte seg uventet — Batteristyringen kan ha justert seg uventet, noe som ville forklare den store økningen i strømforbruk. Dette er spesielt sannsynlig hvis det har vært endringer i batteriets tilstand eller ladestatus.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batterikontroll eller inverter — Hvis batteriet ble satt til å lade fra nettet (grid charge) på grunn av en feil i logikken eller en manuell override, og inverteren trekker maksimalt, kan dette skape en topp. 13.272 kW kan være summen av baselast + batterilading.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (BMS) eller inverter — Hvis batteriet var i en tilstand hvor det skulle lade fra nettet (f.eks. ved lavt SOC eller feilaktig kommando fra Opus), og inverteren tillot maksimal ladeeffekt, kunne dette drive opp forbruket. 13 kW er innenfor rekkevidden for mange store husholdningsbatterier med høy effektinverter.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (inverter driftsmode) — Hvis batteri-inverteren feilaktig går inn i 'grid-following' eller 'export' mode med feil polaritet, eller hvis det oppstår en resonans/feil i AC-koblingen, kan det se ut som et høyt forbruk fra nettet selv om batteriet faktisk leverer energi, eller omvendt at det trekker uventet mye for å kompensere for intern feil.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (inverter feil) — Hvis inverteren feilaktig tolker et signal om å levere maksimal effekt til nettet (grid feed-in) i stedet for å lade eller stå stille, kan dette skape en topp. 13 kW er innenfor rekkevidden for store husholdningsinvertere.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (inverter) som eksporterer eller trekker feilaktig — Hvis batteriet er i en feiltilstand der det både trekker fra nettet og samtidig leverer til huset (ineffektiv sløyfe), eller hvis inverteren har en intern feil som rapporterer feil effektretning, kan dette skape en kunstig topp i nettinntaket. Setpunktbruddet kan være et resultat av at styringssystemet ikke har oppdatert batteriets tilstand korrekt.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (inverterfeil) — Hvis batteriinverters kommunikasjonsbrytes eller feiler, kan den slutte å levere strøm til huset og i stedet trekke strøm fra nettet for å lade batteriet, eller levere feilaktig data om egenproduksjon, noe som skaper en kunstig eller reell netttopp.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring eller grid-upstream-problemer — Hvis batteristyringen feilaktig eksporterte energi til nettet, eller hvis det var problemer med grid-upstream, kan det forklare toppen.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring eller ladeprosess — Batteriet kan ha blitt ladd med høyere effekt enn forventet, enten på grunn av en feil i styringsalgoritmen eller en manuell overstyring.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring som tillot eksport/import utenfor setpunkt — Hvis batteristyringsalgoritmen feilet og misforstod nettgrensen, kunne den ha tillatt batteriet å lade seg raskt fra nettet eller levere kraft samtidig som andre laster var på, noe som overskred setpunktet.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring — Hvis batteristyringen har en feil som fører til at batteriet trekker mer strøm enn forventet, kan dette ha ført til en topp.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyringen — Batteriet kan ha begynt å lade seg opp uventet, noe som førte til et økt strømforbruk fra nettet. Dette kan skje hvis batteristyringen har en feil eller hvis det var en feilaktig kommando fra systemet.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyringen — Batteriet kan ha startet å lade seg opp fra nettet i stedet for å bruke overskuddsenergi fra solcellene. Dette kan skje hvis styringsalgoritmen har en feil eller hvis det er en feil i kommunikasjonen mellom batteriet og styringssystemet.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyringen — Hvis batteristyringen feilet og ikke reduserte lasten som forventet, kan dette ha ført til en økt trekning fra nettet. Dette kan forklare den høye toppen hvis batteristyringen ikke fungerte som forventet.",
+      "status": "supported",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyringsalgoritmen (BMS) — Hvis batteristyringen feilaktig tolket en behovssignal eller feilet i å begrense utlading/inlading, kan den ha drevet en uønsket last fra nettet. Spesielt hvis batteriet var tomt og systemet prøvde å lade raskt.",
+      "status": "supported",
       "claim_type": null
     },
     {
@@ -116217,6 +116512,576 @@
       "claim_type": null
     },
     {
+      "text": "Aktivering av en stor apparatlast — En stor apparatlast, som f.eks. en varmepumpe eller tørketrommel, kan ha startet og drevet opp forbruket.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Aktivering av høyeffekt-ovn eller varmekabelfelt — Ved Oslo-temperaturer kan det være behov for ekstra varmekapasitet. En elektrisk ovn eller varmekabelfelt på ca. 6-7 kW som slås på manuelt (ikke via termostatstyring) vil skape en umiddelbar topp som prognosen ikke fanger.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Aktivering av kraftkrevende hvitevarer eller varmeanlegg — Hvis huset har store motorkrevende apparater (f.eks. varmepumpe i oppvarming, vaskemaskin, tørketrommel) som startet samtidig, kan dette summere til en betydelig økning. 6.5 kW ekstra last er mulig med flere store enheter.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Aktivering av stor varmelast (f.eks. gulvvarme eller poolpumpe) — Hvis det er en varmekilde som bruker direkte elektrisk oppvarming (PTC) eller en stor pumpesirkulasjon for gulvvarme/pool som ble slått på manuelt eller via termostat, kan dette gi en brå økning. 13 kW er høyt for vanlig oppvarming, men mulig ved kombinasjon av flere enheter eller feilaktig termostatoppsett.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Aktivering av store apparater — Aktivering av store apparater som varmtvannsbereder, vaskemaskin eller tørketrommel kan føre til en plutselig økning i forbruket. Hvis flere slike apparater ble aktivert samtidig, kan dette ha ført til den høye toppen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Ekstern hendelse i det lokale strømnettet — Det er mulig at det var en midlertidig hendelse i det lokale strømnettet, som f.eks. en feil eller en uventet last fra naboer, som påvirket målingene.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Ekstern nettforklaring eller oppstrøms hendelse — Selv om mindre sannsynlig for en enkeltkunde, kan en feil i nettselskapets måler eller en midlertidig spenningssvingning ha forårsaket at den lokale måleren registrerte feilaktig høy effekt, eller at en nabo-last ble feilaktig tillagt.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Elbil-lading startet med høy effekt — En økning på ~6.5 kW er typisk for en AC-lader (Type 2) som opererer ved 16A/230V eller 32A/230V (avhengig av faser). Hvis en bil ble koblet til og lading startet manuelt eller automatisk, kan dette forklare spissen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Elbil-lading startet uventet eller med høy effekt — En elbil-lader kan trekke 11-22 kW. Hvis en bil ble koblet til eller lading startet manuelt/automatisk uten at systemet var oppdatert på prognosen, kan dette forklare det store hoppet over setpunktet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "En stor apparatlast ble aktivert — Et stort apparat, som en vaskemaskin eller oppvaskmaskin, kan ha blitt aktivert samtidig, noe som ville forklare den store økningen i strømforbruk.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Endring i nettleie eller tariffvinduer — Hvis det var en endring i nettleie eller tariffvinduer som førte til at systemet automatisk justerte forbruksmønsteret, kan dette ha ført til et uventet høyt forbruk. Dette er spesielt sannsynlig hvis det var en endring i pris eller avgift.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i batteristyring (inverter drift) — Hvis batteriet feilaktig går fra lading til utlading eller omvendt med høy effekt, eller hvis inverteren oppfører seg ustabil, kan dette skape en momentant topp i nettforbruket som ikke er dekket av prognosemodellen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i elbil-lading — En elbil kan ha begynt å lade seg opp uventet, noe som førte til et plutselig hopp i strømforbruket. Dette er spesielt sannsynlig hvis det ikke var solproduksjon tilgjengelig og batteriet ikke var i bruk.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i nettleverandørens måling — Hvis nettleverandørens måleinstrument har en feil, kan dette ha ført til en feilaktig registrert topp.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i nettregulering eller oppstrøms hendelse — Det kan ha vært en hendelse i det lokale nettet som førte til at spenningen eller strømmen ble målt feil. Dette er mindre sannsynlig, men må vurderes hvis det ikke finnes noen andre forklaringer.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i prognosemodell (solproduksjon) — Hvis solcellene produserte betydelig mindre enn forventet på grunn av skyer eller skygge, og husets last var høy, ville nettinntaket økt. Men siden setpunktet er 6.71 kW, må den faktiske lasten ha vært høyere enn forventet for å nå 13.272 kW.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet 6.71 kW var feil konfigurert (f.eks. basert på en utgående tariff eller feil antagelse om solproduksjon), kan systemet ha tillatt en last som egentlig var tillatt, men som ble flagget som 'ukjent' fordi prognosen ikke dekket den. Dette er mindre sannsynlig for en så stor avvik, men mulig hvis en ny tariff ble aktivert manuelt.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet på 6.71 kW faktisk var feil konfigurert i systemet, eller hvis nettoperatøren midlertidig tillot høyere effekt uten at Opus var oppdatert, kan den faktiske lasten ha vært legitim men 'uforventet' for systemet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i prognosemodellen (ikke faktisk topp) — Hvis 'nett-topp' er beregnet basert på en feilaktig antakelse om nettleie eller dynamisk grense, og ikke faktisk målt forbruk, kan dette være en beregningsfeil. Men gitt at det sies 'oppdaget i huset-energi-styringen', er det mer sannsynlig at det er en faktisk målt verdi som ikke ble forutsagt.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i solcelleprodusjon eller værforhold — Solcellene kan ha produsert mindre enn forventet på grunn av skyer eller andre værforhold, noe som førte til at huset måtte trekke mer energi fra nettet. Dette er spesielt sannsynlig hvis det var en plutselig endring i værforholdene.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feil i tariffvinduer eller priser — Det er mulig at det var en uventet endring i tariffvinduer eller priser som førte til at systemet reagerte med høyere forbruk eller ladning.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis ingen store forbrukere (somovn, lading) er aktivert, er det høyst sannsynlig at smartmåleren rapporterer feil eller at det er en kalibreringsfeil i datainnhentingen fra nettselskapet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis ingen store laster (som lading) er logget som aktive, er det sannsynlig at måleren rapporterer feil eller at det er en kalibreringsfeil, spesielt hvis verdien er stabil eller uregelmessig uten korresponderende last.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korresponderende endring i andre laster tyder på at smartmeteret eller kommunikasjonsleddet har registrert en feil, f.eks. dobbeltregning eller støy i signalet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korresponderende forbruk i andre kanaler eller varsler om feil i smartmeteret tyder på at dataen er støy eller at målepunktet ble byttet/feilkoblet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil på nettgrensen — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis prognosen ikke forutså dette, og det ikke finnes synlige korrelater med kjent last (som lading eller varmekurser), er det sannsynlig at målepunktet (f.eks. smartmåler eller CT-klemme) rapporterte feil data, eller at det var en kortvarig støy i signalet som ble tolket som topp.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil på nettmåleren — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilsvarende endring i forbruk eller produksjon tyder på at sensoren kan ha gitt feil data. Dette er spesielt sannsynlig hvis det ikke er noen andre enheter som rapporterer høy last samtidig.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13,272 kW, nesten dobbelt så høy som setpunktet (6,71 kW), kan skyldes en midlertidig feil i måleutstyret. Slike feil er vanlige og kan oppstå uten varsel.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6,71 kW til 13,272 kW uten tilhørende endringer i andre målepunkter (f.eks. solproduksjon eller batteri) kan tyde på at sensoren har gitt feil data. Dette er spesielt sannsynlig hvis det ikke finnes andre bevis for økt forbruk.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre data (f.eks. solproduksjon eller ladning) kan tyde på en feil i måleutstyret.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — Plutselig økning fra 6.71 kW til 13.272 kW uten tydelig årsak kan indikere at sensoren har gitt feilaktige målinger. Dette er spesielt sannsynlig hvis det ikke finnes noen andre korrelerte endringer i dataene.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — Siden det ikke finnes data i 'data_window_rundt_hendelsen' for å bekrefte lasten, er det mulig at måleinstrumentet har gitt en feilaktig lesning. Dette er spesielt sannsynlig hvis det ikke finnes korresponderende data fra andre kilder.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling eller sensorfeil — Siden det ikke finnes noen dokumentert hendelse eller last som kan forklare den store økningen i nett-topp (13.272 kW), er det mulig at målingene fra energimåleren eller andre sensorer er korrupte eller feilaktige.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilaktig måling pga. sensorfeil eller kalibreringsdrift — En øyeblikkelig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre korrelerte signaler (f.eks. solproduksjon eller kjente store laster) tyder på at målepunktet rapporterer feil data, snarere enn fysisk strøm.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilkoblet eller defekt CT-sensor (falsk positiv) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i forbruksmønster eller værdata tyder ofte på målefeil, f.eks. løst kabel, støy eller at en CT er koblet feil (f.eks. doblet opp eller måler feil fase).",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilkoblet eller defekt CT-sensor (strømmåler) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre laster (f.eks. varmtvannsbereder eller AC) tyder på målefeil. 13.272 kW er nesten nøyaktig dobbelt så mye som setpunktet, noe som kan indikere at en CT-sensor er koblet feil (f.eks. to faser målt som én, eller feil transformatorforhold) eller at en sensor har hoppet til en feil kalibrering.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Feilkoblet eller defekt strømavleser (CT-klemme) — Et plutselig hopp fra setpunktet 6.71 kW til 13.272 kW uten tilhørende endring i forbruksmønster eller værdata tyder på målefeil. Dobbelt så høy verdi kan indikere at en CT-klemme er koblet feil (f.eks. doblet følsomhet) eller at en fase er gått tapt i beregningen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Høy forbruk fra varmeanlegg — Varmeanlegg, spesielt varmepumper, kan trekke mye strøm. Hvis det var en plutselig nedgang i utetemperatur eller en feil i styringen, kan dette ha ført til en uventet topp.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Nedstrøms feil i nettleverandørdata (upstream) — Dersom Opus henter data fra en fellesmåler eller et system som aggregater flere enheter, kan en feil i oppstrømsdata (f.eks. at naboens forbruk ble tilordnet denne enheten i et kort vindu) forårsake en kunstig topp.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Nettoperatør-justering eller målerfeil oppstrøms — Hvis måleren som rapporterer 'nett-topp' er en fellesmåler eller hvis det er støy på kommunikasjonslinjen fra nettselskapet, kan dataene være korrupte eller inkludere naboers forbruk (hvis fellesmåling).",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Oppstrøms nettfeil eller spenningssvikt som påvirker måling — Et plutselig spenningsfall eller frekvensavvik i det lokale nettet kan få visse måleinnretninger til å rapportere feil effekt, spesielt hvis de er kalibrert for nominell spenning. Hvis nabohus eller andre enheter i samme transformatorfelt opplever lignende anomali, er det en oppstrøms årsak.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Plutselig nedgang i solproduksjon pga. skydekke — Hvis huset har solcelleanlegg, og det plutselig skyet til, må nettet kompensere for tapen i egenproduksjon. Hvis setpunktet (6.71 kW) var basert på forventet sol, og solen forsvant, vil nettinntaket stige for å dekke den samme baselasten. En reduksjon i sol på ca 6.5 kW ville gi den observerte toppen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Simultan aktivering av store varmeelementer — Hvis flere høyeffekt-apparater (f.eks. oppvaskmaskin, tørketrommel og ovn) starter samtidig, eller hvis oppvarmingssystemet (varmekabler/pumpe) går på full effekt pga. feil termostatinnstilling eller rask nedkjøling, kan lasten doble seg.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Solcelle-produksjon falt bratt mens lasten var høy — Hvis solcelle-produksjonen falt bratt (f.eks. på grunn av skydekke) mens andre laster var aktive, kan dette ha ført til en økt trekning fra nettet. Dette kan forklare den høye toppen hvis solcelle-dataene viser en plutselig nedgang.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Solcelleanlegget produserte mer enn forventet — Hvis solcelleanlegget produserte mer energi enn prognosen forutsa, og denne energien ble eksportert til nettet, kan det forklare toppen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Solenergi-systemet produserte mer enn forventet — Hvis solenergi-systemet produserte mer strøm enn forventet, kan dette ha ført til en økning i netto-strømforbruk. Dette er spesielt sannsynlig hvis været var bedre enn forventet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uforutsett høy last fra varmekabler/ovn — 13.272 kW tilsvarer ca. 13-14 kW varmeeffekt. Dette er typisk for flere varmekabler eller en stor ovn som er slått på manuelt eller via en feil i termostatstyringen, spesielt hvis det var kaldt eller omvendt feilaktig oppvarming i Oslo.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Ukjent stor last (f.eks. varmepumpe i defrost) — Varmepumper kan trekke betydelig strøm under defrost-sykluser eller ved ekstremt høye setpunkter. Hvis varmepumpen ikke er integrert i styringssystemet, kan den skape uforutsette topper.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt EV-lading startet — En elbil som lader med 11 kW (3-fase) eller 7.4 kW (1-fase) lagt oppå grunnlasten (~6 kW) kan lett skyve netto-forbruket over 13 kW. Dette er den vanligste årsaken til uforutsagte topp i boliger med ladeinfrastruktur.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt EV-lading — Elbil-lading er den vanligste årsaken til utilsiktede netttopper i boliger. En ladeboks med høy effekt (f.eks. 11 kW) kan enkelt skyve forbruket over setpunktet hvis den starter utenfor tariffvinduet eller utenfor styringssystemets kontroll.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt aktivering av stor elektrisk varme eller poolpumpe — Differansen på ca. 6.5 kW samsvarer med typisk effekt for store varmeelementer (f.eks. gulvvarme, panelovner) eller store motorer. Hvis dette skjedde i Oslo om sommeren (02.07), er det uvanlig med varmekurs, men mulig med poolpumper eller industrielle maskiner i garasje.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt elbil-lading — 13.272 kW tilsvarer typisk ladeeffekt for en 3-faset lader (ca. 11-22 kW). Hvis en bil ble koblet til og startet lading uten at systemet registrerte dette som en planlagt hendelse, vil dette drive toppen oppover.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt elektrisk bil-lading startet manuelt — El-biler har ofte høy effekt (7-11 kW). Hvis en bruker startet lading manuelt utenfor det automatiske vinduet, eller hvis en gammel ladeboks ikke kommuniserer med Opus, kan dette enkelt doble forbruket. 13.272 kW minus 6.71 kW setpunkt gir ca 6.5 kW ekstra last, som passer godt med en typisk AC-lader.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt lading av elbil med høy effekt — 13.272 kW tilsvarer typisk 3-fase lading på ca. 11-22 kW avhengig av spenning og effekt. Hvis en elbil ble koblet til laderen ved 13:42 og startet lading med maksimal effekt, vil dette skape en brå topp. At prognosen ikke fanget dette, tyder på at ladingen ikke var planlagt i kalenderen.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt lading av elbil med høy effekt — En elbil som starter lading med maks effekt (f.eks. 11 kW eller 22 kW) kan enkelt doble nettoforbruket. Dersom bilen ikke var registrert i Opus' prognosemodul, vil dette fremstå som en 'ukjent' topp.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt start av stor elektrisk last (f.eks. varmekumulativ oppvarming eller EV-lader) — Differansen på ca. 6.56 kW er typisk for en kombinasjon av store laster som varmekumulativ oppvarming (2-3 kW) og en rask EV-lader (11 kW AC, men kanskje delvis last) eller industrielt utstyr. Hvis dette skjedde i Oslo 14:42, kan det være en manuell overstyring eller en feil i styringslogikken som slått på en last utenfor tariffvinduet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy apparatlast i huset — Noen store apparater som varmekabler, oppvaskmaskin eller tørketrommel kan ha startet samtidig, noe som førte til en økning i forbruk. Dette er spesielt sannsynlig om det er mange slike enheter i bruk samtidig.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy belastning fra en stor apparat — En stor apparat som varmtvannsbereder, vaskemaskin eller tørketrommel kan ha startet opp uventet, noe som førte til et plutselig hopp i strømforbruket. Dette er spesielt sannsynlig hvis det ikke var solproduksjon tilgjengelig.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy forbruk fra elektrisk lading — Elektrisk lading kan føre til store strømtopper. Hvis en elbil startet lading samtidig som andre høyforbrukende apparater var i bruk, kan dette ha ført til en topp over setpunktet.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy forbrukslast fra husholdningen — Det er mulig at en stor elektrisk apparat, som f.eks. et varmtvannsbereder, oppvarmingssystem eller en stor vaskemaskin, ble aktivert samtidig og skapte en uventet topp i forbruket.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy last fra elbil-lading — Elbil-lading kan trekke store strømer, spesielt hvis flere biler lader samtidig eller hvis en bil med høy ladefart starter lading. Dette kan forklare den høye toppen hvis lading ikke var planlagt.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy last fra elektrisk bil-lading — Hvis en EV-lader startet i denne perioden, kan det forklare den høye lasten. Dette er spesielt sannsynlig hvis ladingen ikke var planlagt.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": "Uventet høy last fra en elektrisk lader — En elektrisk bil kan ha startet lading med høy effekt, noe som ville forklare den store økningen i strømforbruket. Dette er spesielt sannsynlig hvis det er en ny eller uvanlig ladetid.",
+      "status": "weakened",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
+      "claim_type": null
+    },
+    {
       "text": null,
       "status": null,
       "claim_type": null
@@ -121275,261 +122140,6 @@
       "text": null,
       "status": null,
       "claim_type": "unspecified"
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
     },
     {
       "text": null,
