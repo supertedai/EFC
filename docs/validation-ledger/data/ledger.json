@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-07-04T02:49:48Z",
+  "generated_at": "2026-07-04T05:48:20Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 26018,
+    "grav_claims": 26027,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -766,7 +766,7 @@
         "prediction": "⚪",
         "notes": "BAO covariance-aware consistency test | ✅ | ⚪ | ✅ | Fixed-parameter transfer test using official Cobaya likelihood with full covariance matrix. Δχ² = −2.4 (BAO) + −0.6 (CC) = −3.0 total. No validated geometric channel penalises EFC relative to ΛCDM. | 31314922",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -781,7 +781,7 @@
         "prediction": "⚪",
         "notes": "BAO transfer test (DESI → BOSS/eBOSS; no refit) | ✅ | ⚪ | ✅ | Out-of-sample transfer: late-time growth/geometry sector must remain consistent when carried across surveys without parameter re-tuning. Later confirmed by explicit four-channel background-coupling consistency test. | 31231522,31304980",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -856,7 +856,7 @@
         "prediction": "✅",
         "notes": "Early galaxies (JWST) | ✅ | ⚪ | ⚠️ | EFC consistent with observed abundance in high-entropy regime; ΛCDM shows tension under standard assumptions (SF, dust, IMF interpretation-dependent) | 31059964",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -871,7 +871,7 @@
         "prediction": "⚪",
         "notes": "High-z null regime consistency | ✅ | ⚪ | ✅ | Same coupling T(z) predicts near-zero modification at high redshift; data consistent with null detection, as required by the same transition function T(z) used in the four-channel background test. | 31304995",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -886,7 +886,7 @@
         "prediction": "⚪",
         "notes": "H₀ tension | ✅ | ⚪ | ❌ | Local–global inference separation; EFC survives but does not resolve the tension | 31026151",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -901,7 +901,7 @@
         "prediction": "⚪",
         "notes": "ISW cross-correlation | ✅ | ⚪ | ✅ | L1 linear perturbations: Under fully self-consistent growth-channel implementation (ODE-based D(a), no potential μ′ term), EFC predicts a uniform late-time ISW amplitude suppression AISW≈ 0.89 ± 0.03 across tracer bins. No strong tomographic gradient survives internal consistency audit.Definitive discriminator:Measured AISWmust deviate from unity by ≈10% in a tracer-independent manner. A statistically significant detection of AISW≈ 1.0 ± 0.02 would disfavor the background-driven EFC channel. | 31301953,31329082",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -916,7 +916,7 @@
         "prediction": "⚪",
         "notes": "Late-time background coupling architecture (β·T(a)) | ✅ | ⚪ | ✅ | Single-parameter background modification tested across four independent cosmological probes (BAO, RSD, SN Ia, CMB lensing). Poisson-sector coupling disfavoured by RSD; background channel produces consistent growth suppression via expansion history.v3.3 update:Systematic CMB localization (31368433) confirms background gate is observationally empty: α collapses to ≈0 under Planck+BAO joint fit (all combinations |Δχ²| < 2σ), with perfect α–H0degeneracy (corr = 0.975). CMB is blind to α; BAO breaks the degeneracy. | 31304980",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1021,23 +1021,23 @@
         "prediction": "⚪",
         "notes": "Regime transition metric (ΔF) | ✅ | ⚪ | ⚪ | Growth-sector constraint:Integrated transition strength across L0–L1–L2 regimes.\n        Measures effective gravitational enhancement rather than a background density parameter.\n        Now physically bounded by Density Saturation Θ(ρ) in high-density regimes. | 31144030",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
         "test_id": "conv_s_z_single_parameter_joint_fit_cmb_anomaly_jwst_early_galaxy",
         "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
         "description": "Tests the internal consistency of EFC by requiring that one and the same S(z) function simultaneously fit two independent anomalies: the CMB temperature deviation (tested in Candidate vc_7299eaee1d6b) and the JWST-observed early-galaxy luminosity excess at z>10. If the two datasets demand incompatible S(z) shapes, EFC is internally inconsistent and falls regardless of either anomaly's individual significance. If one shape fits both, EFC gains substantial structural credibility — a single thermodynamic parameter explaining two separately puzzling observations is a strong sign of underlying mechanism. This is what the framework actually claims, and is therefore where it must be tested.",
-        "result": "DEGENERACY_LIMITED",
+        "result": "NO_SIGNAL",
         "status": "unknown",
         "vl_category": "consistency_check",
         "also_phenomenological": null,
         "data_source": "SZ T(z) compilations (input from Candidate A) + JWST high-z luminosity function: Labbé+2023, Harikane+2024, CEERS-2024 public catalog, plus Boylan-Kolchin+2023 mass-budget constraints",
         "prediction": "A one-parameter S(z) profile (canonical candidate: S(z) = 1 - exp(-z/z*) with z* the only free parameter) should yield an acceptable joint fit to (i) the SZ-cluster T(z) deviation and (ii) the JWST high-z luminosity function excess. Pass criterion: Δχ² < 4 between the joint single-S(z) fit and the two independent best fits, i.e. forcing both datasets onto the same S(z) costs less than 2σ. Fail criterion: required S(z) shapes for the two datasets disagree at >3σ — EFC is then internally inconsistent on its own predictive backbone.",
         "notes": "Approved – joint-fit konsistens-test mot SZ-cluster T(z) + JWST høy-z luminosity function (Labbé+2023, Harikane+2024, CEERS-2024, Boylan-Kolchin+2023). Datadrevet, eksisterende kataloger. Pass/fail-kriterium spesifisert (Δχ² < 4 = pass; >3σ uenighet = intern inkonsistens).",
-        "quantitative_result": "α = -0.101 ± 0.212 (0.48σ), ΔAIC=1.7634202783756336",
-        "last_synced": "2026-04-28T11:59:50.452000000+00:00",
-        "status_detail": "PENDING"
+        "quantitative_result": "α = -0.141 ± 0.208 (0.68σ), ΔAIC=1.5945085369156118",
+        "last_synced": "2026-07-04T04:25:39.503000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_solar_system_ppn_ep",
@@ -1051,7 +1051,7 @@
         "prediction": "⚪",
         "notes": "Solar System / PPN / EP | ⚪ | ⚪ | ✅ | Density Saturation mechanism with source-smoothed effective density yields screening sufficient to pass Cassini, LLR, perihelion, and WEP bounds. Linearized field analysis shows PPN parameter γ = 1 at leading order, with residual deviations bounded far below current experimental sensitivity. Complementary result from Covariant EFT (31878334): exponential amplitude suppression A(r) ~ exp(−r/λS) provides an independent screening path for the minimally coupled scalar class. Full strong equivalence principle proof remains a target for action-level derivation. | 31244827● Cassini/Shapiro ● LLR bounds",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1158,7 +1158,7 @@
         "prediction": "⚪",
         "notes": "BAO anisotropic split (DAvs H(z)) | ⚪ | ⚪ | ✅ | Separately constrains transverse and radial expansion. Background coupling must shift DAand H consistently; forbids geometry retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1173,7 +1173,7 @@
         "prediction": "BOSS DR12 consensus",
         "notes": "Mild preference for positive coupling; consistent with but not conclusive for EFC",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1188,7 +1188,7 @@
         "prediction": "Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.\n        Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test.",
         "notes": "Case A S₈ direction (v1.4) | L1–L2 lensing",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "unknown"
       },
       {
@@ -1248,7 +1248,7 @@
         "prediction": "⚪",
         "notes": "Galaxy bias evolution consistency | ⚪ | ⚪ | ✅ | Ensures that modified growth history does not produce inconsistent galaxy–matter bias evolution. Required for internal consistency of clustering and lensing in L2. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1278,7 +1278,7 @@
         "prediction": "Documents the current absence of a field-derived lensing coupling; introduces temporary phenomenological closure pending action-level derivation. Density Saturation (v1.3) provides a candidate path toward physical derivation.",
         "notes": "Weak-lensing phenomenological closure (Postulate A) | L1 linear perturbations",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "unknown"
       },
       {
@@ -1293,7 +1293,7 @@
         "prediction": "KiDS-1000 Flinc ξ±",
         "notes": "Strong fit improvement, but EFC preferslowerS₈,increasingPlanck tension (3.6σ vs 2.3σ).\n        Case A is phenomenological lensing boost, not S₈ tension solution.",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "partial"
       },
       {
@@ -1355,8 +1355,8 @@
         "prediction": "EFC predicts that a well-posed action principle S_EFC would yield: (1) the growth gate as an equation of motion, (2) the AQUAL limit as a weak-field reduction, and (3) k* ≈ k_NL as a solution of the coupled system. Until this action is constructed, k* remains an emergent regime boundary coinciding with the nonlinear scale.",
         "notes": "Approved based on k* transition scale analysis (Magnusson 2026-02-19). The action integral is confirmed as the primary theoretical obstruction: k* cannot be derived from Λ or a₀ alone, and the growth gate / AQUAL limit are coupled phenomenologically, not variationally. Both MCMC samplers (emcee + NUTS) confirm degeneracy that cannot be broken without stronger theoretical constraints. Tier-1 open problem.",
         "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
-        "last_synced": "2026-02-19T18:47:39.538000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.370000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_action_integral_gap_k_derivability_test",
@@ -1370,8 +1370,8 @@
         "prediction": "A well-posed EFC action would yield: (1) the growth gate as an equation of motion, (2) AQUAL as a weak-field limit, (3) k* ≈ k_NL as a solution rather than input. Until constructed, k* remains an emergent regime boundary. This constrains EFC's classification as semi-fundamental effective framework.",
         "notes": "Tier-1 theoretical gap. k* ≈ k_NL confirmed as emergent, not derivable from Λ or a₀. Action integral is the primary obstruction to promoting EFC from effective framework to derived field theory. Full analysis in efc_transition_scale.tex (5 pages). Approved for public ledger.",
         "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
-        "last_synced": "2026-04-07T08:04:46.088000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.248000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_axiom_0_test_s_regime_vs_friedmann_t_i_kosmologisk_evolusjon",
@@ -1430,8 +1430,8 @@
         "prediction": "Any late-time additive background gate E²=E²_LCDM+α·g(a) with smooth g(a) will produce α–H₀ degeneracy in CMB-only fits. CMB alone is structurally insufficient to constrain such modifications.",
         "notes": "Structural constraint proven empirically. α–H₀ corridor |Δχ²|<2 across α∈[0,−0.7]. CMB alone structurally insufficient for background-gate constraints.",
         "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
-        "last_synced": "2026-02-18T11:09:15.919000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.689000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_ct_04_cross_domain_constant_k_consistency",
@@ -1460,7 +1460,7 @@
         "prediction": "⚪",
         "notes": "Cluster core entropy–structure coupling | ⚪ | ⚪ | ❌ | Pre-registered rank correlation test between entropy profile slope (α) and core thermodynamics (K₀, tcool). Under matched Cavagnolo et al. (2009) definitions, TNG-Cluster shows strongnegativecorrelation (ρ ≈ −0.4 to −0.6), opposite topositivecorrelation in ACCEPT observations. Mass-controlled partial correlations confirm sign flip. Diagnostic mismatch points to deficiencies in simulated ICM thermodynamic regulation. | 31286368",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1475,7 +1475,7 @@
         "prediction": "⚪",
         "notes": "Cluster merger geometry | ✅ | ⚪ | ⚪ | Strong-field L2 geometric constraint; disfavours local coupling classes and imposes structural requirements on admissible operators | 31173850",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1490,7 +1490,7 @@
         "prediction": "Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3",
         "notes": "Core Lock consistency enforcement (31223503) | All regimes (method layer)",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "unknown"
       },
       {
@@ -1520,7 +1520,7 @@
         "prediction": "Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with explicit density discrimination",
         "notes": "Density Saturation Θ(ρ) (v1.3) | All regimes (L0–L3)",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "unknown"
       },
       {
@@ -1550,8 +1550,8 @@
         "prediction": "EFC background-only modifications cannot produce σ8 suppression or survive joint CMB+BAO constraints with α significantly different from zero. Observable EFC effects require perturbation-level μ≠1.",
         "notes": "Three independent evidence lines converge: Technical Note I (analytical), joint fit (empirical), WP1a (numerical). EFC effects must originate in perturbation sector (μ≠1), not background. This is the most important structural finding of the CMB campaign.",
         "quantitative_result": "Needs EFCLASS/cobaya infrastructure (not available in daemon)",
-        "last_synced": "2026-02-18T11:09:21.320000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.838000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_forbidden_pattern_distance_to_trigger_quantification",
@@ -1685,7 +1685,7 @@
         "prediction": "⚪",
         "notes": "Structural coherence across regimes (SCE evaluation) | ⚪ | ⚪ | ⚪ | Framework-level diagnostic (not empirical observable): EFC shows higher layer consistency and lower model plasticity; ΛCDM retains higher compression | 31305550",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -1852,8 +1852,8 @@
         "prediction": "EFC predikerer sigma8_growth=0.43 (DAMAGE, preregistered). ACT+SPT+Planck S8=0.825 strammer L1/L2-baseline. Gap theory-efclass-boltzmann-solver: BLOCKING.",
         "notes": "arXiv:2504.20038, S8=0.825 @ 1.6% (SNR 61). Gap theory-efclass-boltzmann-solver promotert til BLOCKING. Stage-IV Roadmap CMB-lensing-rad oppdatert.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-05-01T19:01:32.272000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.120000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_big_sparc_kill_test_v6_pipeline_re_kj_ring_seed_42",
@@ -1867,8 +1867,8 @@
         "prediction": "EFC Kill-Test v6: RAR og a0_scale native_prediction via entropy_flow_saturation. Forventet: universalitet holder over utvidet BIG-SPARC sample. Konkurrent arXiv:2601.00522 må ΔAIC-sammenlignes på SPARC 175.",
         "notes": "arXiv:2411.13329 BIG-SPARC + arXiv:2601.00522 konkurrent. Re-kjør scipy.differential_evolution seed=42 på full BIG-SPARC. Lukker gap theory-multicomponent-sparc-universality. ΔAIC mot konkurrent på SPARC 175.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-05-01T19:01:37.537000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.455000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_big_bang_nucleosynthesis_expansionrate_bound",
@@ -1882,7 +1882,7 @@
         "prediction": "⚪",
         "notes": "Big Bang Nucleosynthesis expansion-rate bound | ⚪ | ⚪ | ✅ | L0 regime hard constraint. Early-time suppression must ensure ΔH/H ≪ 1 at MeV temperatures. Equivalent to ΔNeffbound. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -1927,8 +1927,8 @@
         "prediction": "EFC requires a Boltzmann solver implementation to compute CMB_acoustic_peaks predictions consistent with ACT+SPT+Planck CMB lensing reconstruction. Until implemented, EFC cannot produce a sealed prediction at L1 for this phenomenon. Recommended path: extend existing perturbation pipeline with a μ(k,a)/Σ(k,a) parametrization or full CLASS/CAMB modification.",
         "notes": "Approved by Morten 2026-05-03 via Litteratur-Scan v1.2 FORSLAG 1. Promote CMB_acoustic_peaks (L1) Boltzmann-solver gap to highest Stage-IV Roadmap blocking priority.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-05-03T17:19:01.955000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.579000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_cmb_polarization_lensing_internal_consistency_teee",
@@ -1942,7 +1942,7 @@
         "prediction": "⚪",
         "notes": "CMB polarization & lensing internal consistency (TE/EE/φφ) | ⚪ | ⚪ | ✅ | Linear-regime metric and potential evolution constraint. Confirms that regime suppression fully removes EFC effects during recombination and linear post-recombination evolution. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -1957,7 +1957,7 @@
         "prediction": "⚪",
         "notes": "CMB power spectrum | ⚪ | ⚪ | ✅ | ΛCDM preferred in L0; EFC dynamically suppressed. EFC terms expected to vanish at recombination (Θ(ρ→0)); explicit Boltzmann-level validation pending. | 31095466",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -1972,8 +1972,8 @@
         "prediction": "Pipeline produces gradient maps with test-retest reliability ICC > 0.7",
         "notes": "CT-05: Full entropy gradient pipeline. Approved.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-04-14T17:05:26.581000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.719000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_cluster_abundance_mass_function_nmz",
@@ -1987,7 +1987,7 @@
         "prediction": "⚪",
         "notes": "Cluster abundance / mass function N(M,z) | ⚪ | ⚪ | ✅ | L2–L3 integrated growth test: Mass function evolution N(M,z) discriminates between EFC and ΛCDM structure formation. Tests whether geometry consistency extends to actual halo abundance. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2002,7 +2002,7 @@
         "prediction": "⚪",
         "notes": "Cluster shock-front lensing asymmetry | ⚪ | ⚪ | ⚪ | L2 geometric symmetry test. Pre-registered directional residual estimator (Asig) measures whether lensing convergence residuals show shock-locked asymmetry after density-based mass model subtraction. Discriminates isotropic metric theories from entropy- or structure-coupled anisotropic lensing responses. | Methodology locked (2026)",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2017,7 +2017,7 @@
         "prediction": "⚪",
         "notes": "Dark-energy evolution w(z) | ⚪ | ⚪ | ⚠️ | Geometric BAO-only phenomenology; full dynamical multi-probe test pending | 31127380",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "success"
       },
       {
@@ -2032,7 +2032,7 @@
         "prediction": "⚪",
         "notes": "EGgravitational slip consistency (lensing × RSD) | ⚪ | ⚪ | ✅ | Direct observable linking geometry and growth. With Poisson sector fixed (μ=1), EFC predicts specific redshift-dependent EGevolution driven solely by expansion history. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2047,8 +2047,8 @@
         "prediction": "EFC predicts: mu(k_c=0.05, z=0) = 0.940, eta = 1.200, Sigma = 1.034. E_G bump of +5.5% at k_c, z=0.35, detectable at 2.5-3.5 sigma with Euclid WL x GC cross-correlation. Gravitational slip |eta-1| > 0.01 in range z=[0.5, 2.0] — falsified if Euclid measures |eta-1| < 0.01.",
         "notes": "Pipeline package complete: 1191 lines of code+docs. k-unit bug found and fixed (k[h/Mpc]=k[1/Mpc]/h). 6 automated sanity checks all pass. RCMP compliance matrix with quantified systematics. Three open risks documented (alpha-mapping uniqueness, Limber at low ell, window smearing). Next: hi_class on Symbiose machine.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-04-12T11:45:15.593000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:38.944000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "conv_gap_ksz_velocity_no_dedicated_efc_prediction_paper",
@@ -2062,8 +2062,8 @@
         "prediction": "EFC predicts suppressed small-scale kSZ power (l > 3000) due to entropy-damping of high-k velocity modes, with enhanced large-scale bulk flow amplitude (l < 500) from L0 entropy-flow coupling. Specific: kSZ power at l=3000 is 15–25% below ΛCDM at same σ8.",
         "notes": "Approved as planned_pipeline with mandatory phasing: Phase 1 = theory derivation (linearize S_flow action around FRW, derive velocity-divergence equation θ(k,z) with entropy-coupled damping); Phase 2 = observational fit against SPT-3G + ACT DR6 kSZ maps + 2MRS bulk flow catalog. The proposed numerical values (15–25% suppression at l=3000, enhanced bulk flow at l<500) are placeholders pending Phase 1 — final predictions must be derived from S_flow perturbation theory, not postulated. Phase 1 should be coordinated with the open H(z) Level-3 recovery problem since both require the same linearization infrastructure. Hosted under EFC Empirical Gap Closure as new work thread efc|cosmology|kSZ_velocity_pipeline.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-05-02T20:19:36.120000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:39.094000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_global_parameterlock_crossprobe_test",
@@ -2077,7 +2077,7 @@
         "prediction": "⚪",
         "notes": "Global parameter-lock cross-probe test | ⚪ | ⚪ | ⚪ | Framework-level stress test: a single β and transition function T(a) must fit all late-time probes without retuning. Eliminates hidden model plasticity. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2092,8 +2092,8 @@
         "prediction": "EFC predicts ISW amplitude ratio A_ISW(delta) shows sign-flip from cold (A>0) to hot (A<0) at void depth delta_c ≈ -0.8, due to Rees-Sciama term delta·dmu/dt dominating over linear ISW. LCDM predicts A_ISW > 0 at all depths. The existing observational excess A_ISW ≈ 5.2 ± 1.6 from BOSS/DES supervoids is explained as RS enhancement at intermediate depths.",
         "notes": "ISW void sign-flip — critical EFC test. Approved for validation ledger.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-04-14T17:05:11.975000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:39.264000000+00:00",
+        "status_detail": "candidate_ready"
       },
       {
         "test_id": "ledger_linear_quasilinear_matter_power_spectrum_shape_pkz",
@@ -2107,7 +2107,7 @@
         "prediction": "⚪",
         "notes": "Linear & quasi-linear matter power spectrum shape P(k,z) | ⚪ | ⚪ | ✅ | Tests scale-dependent growth and turnover structure under background-driven growth suppression. Shape consistency required if Poisson sector remains GR while H(a) is modified. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2122,7 +2122,7 @@
         "prediction": "⚪",
         "notes": "Multi-epoch RSD growth trajectory | ⚪ | ⚪ | ✅ | Tests redshift continuity of growth suppression across L1→L2 transition. β·T(a) must produce a smooth, monotonic deviation pattern with no retuning. | Method defined",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2137,7 +2137,7 @@
         "prediction": "⚪",
         "notes": "Regime response surface R(k,S,ρ) | ⚪ | ⚪ | ⚪ | Framework linking μ(a) and μ(k,z) through structural state S; defines global falsification conditions across L2 probes. Extended to R(k,S,ρ) with explicit density axis enabling dwarf–cluster discrimination. | 31211437",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2152,7 +2152,7 @@
         "prediction": "⚪",
         "notes": "Small-scale structure | ⚪ | ⚪ | ⚪ | Non-linear discriminators | Metric spec pending",
         "quantitative_result": "",
-        "last_synced": "2026-07-01T18:51:21.225182Z",
+        "last_synced": "2026-07-04T05:47:18.836345Z",
         "status_detail": "pending"
       },
       {
@@ -2167,8 +2167,8 @@
         "prediction": "EFC predicts: a viable region {B0>0, M0<0} exists where mu≈0.925, eta≳1.2, Sigma≳1.05 at z~0.7, recovering mu=eta=Sigma=1 at z≳10. If no such region exists, the scalar-tensor ansatz is falsified as an EFC completion (explicit criterion per EFT note v5).",
         "notes": "Approved as planned_pipeline test. Corresponds to EFT note v6 (DOI-ready). Scalar-tensor falsification criterion is now explicit in the paper: if no {B0,M0} region gives mu<1, eta>1, Sigma>1 simultaneously under stability and CMB constraints in hi_class, the ansatz is falsified as EFC completion. mu and Sigma remain outside canonical baseline EFC-D pending relativistic perturbation derivation.",
         "quantitative_result": "Infrastructure not yet available",
-        "last_synced": "2026-03-06T20:09:40.592000000+00:00",
-        "status_detail": "PENDING"
+        "last_synced": "2026-07-04T04:25:39.224000000+00:00",
+        "status_detail": "candidate_ready"
       }
     ]
   },
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-04T01:55:58.866989+00:00"
+      "timestamp": "2026-07-04T05:47:32.102499+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-04T01:55:58.896349+00:00"
+      "timestamp": "2026-07-04T05:47:32.286610+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-07-04T01:55:58.909489+00:00"
+      "timestamp": "2026-07-04T05:47:32.353098+00:00"
     }
   },
   "parameters": {
@@ -2846,7 +2846,7 @@
       "approach": null,
       "efc_prediction": null,
       "source": "metacognitive_gap_daemon",
-      "created_at": "2026-07-04T00:19:17.537000000+00:00"
+      "created_at": "2026-07-04T04:19:27.405000000+00:00"
     }
   ],
   "status_levels": [
@@ -2914,7 +2914,151 @@
       "sort_order": 9
     }
   ],
-  "changelog": [],
+  "changelog": [
+    {
+      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
+      "status": "candidate_ready",
+      "result": "NO_SIGNAL",
+      "last_updated": "2026-07-04T04:25:39.503000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "ISW Void Sign-Flip Observational Confrontation v1",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:39.264000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "hi_class scalar-tensor EFC falsification test",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:39.224000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "GAP: kSZ_velocity — no dedicated EFC prediction paper",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:39.094000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Euclid DR1 pre-registration pipeline via hi_class",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:38.944000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "EFC physics localization: perturbation sector, not background",
+      "status": "candidate_ready",
+      "result": "REQUIRES_EXTERNAL_TOOL",
+      "last_updated": "2026-07-04T04:25:38.838000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CT-05: Full Entropy Gradient Pipeline",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:38.719000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CMB α–H₀ degeneracy corridor (structural constraint)",
+      "status": "candidate_ready",
+      "result": "REQUIRES_EXTERNAL_TOOL",
+      "last_updated": "2026-07-04T04:25:38.689000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "CMB acoustic peaks: Boltzmann-solver gap blocking (post arXiv:2504.20038)",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:38.579000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:38.455000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Action Integral Gap — Tier-1 theoretical obstruction",
+      "status": "candidate_ready",
+      "result": "REQUIRES_EXTERNAL_TOOL",
+      "last_updated": "2026-07-04T04:25:38.370000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "Action Integral Gap — k* derivability test",
+      "status": "candidate_ready",
+      "result": "REQUIRES_EXTERNAL_TOOL",
+      "last_updated": "2026-07-04T04:25:38.248000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    },
+    {
+      "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
+      "status": "candidate_ready",
+      "result": "PIPELINE_NOT_READY",
+      "last_updated": "2026-07-04T04:25:38.120000000+00:00",
+      "source": "conversation_bridge",
+      "all_labels": [
+        "Validation",
+        "EFCValidation"
+      ]
+    }
+  ],
   "grav_pipeline": {
     "latest_run": {
       "run_id": "2026-06-22_143541_aqual",
@@ -116835,12 +116979,57 @@
       },
       {
         "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "reference_model",
         "claim_type": null
       },
       {
         "text": null,
         "status": "reference_model",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
         "claim_type": null
       },
       {
