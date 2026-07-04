@@ -1,7 +1,7 @@
 {
   "name": "EFC-GRAV Pipeline",
   "version": "3.0",
-  "generated_at": "2026-07-03T20:49:18Z",
+  "generated_at": "2026-07-04T02:49:48Z",
   "latest_run": {
     "run_id": "2026-06-22_143541_aqual",
     "verdict": "NEEDS_REVIEW",
@@ -3608,7 +3608,12 @@
     },
     {
       "text": null,
-      "status": "CONFIRMED",
+      "status": "ARCHIVED",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "ARCHIVED",
       "claim_type": null
     },
     {
@@ -4115,6 +4120,11 @@
       "text": null,
       "status": "CONFIRMED",
       "claim_type": "unspecified"
+    },
+    {
+      "text": null,
+      "status": "CONFIRMED",
+      "claim_type": null
     },
     {
       "text": null,
@@ -39962,7 +39972,17 @@
       "claim_type": null
     },
     {
+      "text": "Batteri-ladegrense eller feil — Batteriet er ved 98% SOC (max). battery_power viser negative verdier (ladning) opp til -3024 W, men grid_power er høy. Hvis batteriet nekter å lade mer (fordi det er fullt) eller har en teknisk feil som begrenser ladestrøm, må overskuddsenergi fra forbruk eller feilkalibrering trekkes fra nett.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Batteridemping eller feilaktig innsprøytning — Hvis batteristyringen feilaktig tolket en signalendring og prøvde å levere maksimal effekt til nettet (inverterfeil) eller hvis en ekstern kilde laddet batteriet raskt, kan dette skape en topp.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Batterikontroller feil (ukontrollert utladning/innlasting) — Batteriet var ved 98% SOC. Hvis kontrollsystemet feilaktig prøvde å lade batteriet (grid_power positiv) samtidig som det var høy forbruk, ville dette skapt en kunstig topp. Men data viser battery_power avg 9.3 kW, noe som indikerer minimal aktivitet. Hypotesen er svak, men mulig hvis SOC-estimatet var feil og systemet trodde det var plass til lading.",
       "status": "pending",
       "claim_type": null
     },
@@ -40022,6 +40042,11 @@
       "claim_type": null
     },
     {
+      "text": "Ekstrem kulde (varmepumpe i full effekt) — Datoen er 3. juli, men hvis det var en ekstremt kald natt i Oslo (f.eks. uvanlig lav temperatur), kunne varmepumpen ha gått i full effekt (f.eks. 4-5 kW) for å opprettholde temperatur. Dette er mindre sannsynlig i juli, men ikke umulig hvis det var en lokal kuldeperiode eller feil i temperatur-sensor.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Ekstrem kulde med feil i varmepumpe-termostat — Hvis det var ekstremt kaldt i Oslo natt til 01.07, og varmepumpen gikk i full effekt (f.eks. 4-6 kW) kombinert med at termostaten ikke regulerte ned, kan dette ha drevet opp forbruket.",
       "status": "pending",
       "claim_type": null
@@ -40038,6 +40063,11 @@
     },
     {
       "text": "Elbil-lading startet manuelt eller feilaktig — En elbil-lader kan trekke 7-11 kW. Hvis ladingen ikke var planlagt i Opus, men startet manuelt av beboer eller via en ekstern app, vil dette forklare spiken.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Elbil-lading startet uventet — En elbil som starter lading ved 23:09 kan trekke 11-22 kW. Her ser vi en økning i forbruk. Hvis bilen lader fra nett fordi batteriet er fullt (98% SOC), vil grid_power øke for å dekke bilens behov.",
       "status": "pending",
       "claim_type": null
     },
@@ -40247,6 +40277,16 @@
       "claim_type": null
     },
     {
+      "text": "Høy intern forbruk (varmtvannsbereder/ovn) — Data viser at consumption_power maksimerte ved 5143.8 kW, nesten identisk med nett-toppen på 5226 kW. Siden batteriet var fullt (SOC 98%) og solproduksjon var lav (max 72.9 kW), ble hele lasten dekket av nettet. Differansen mellom forbruk og sol (~5070 kW) stemmer med nettinntak.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Høy intern last (varmtvann/ovn) — Forbruk (consumption_power) øker til snitt 4979 W, mens batteri leverer max 3024 W og sol er neglisjerbar (-34 W). Differansen (~1955 W) dekkes av nett, men totalt forbruk er høyt for kl 23:09.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Inverter i beskyttelsesmodus etter overstrøm eller spenningssprang fra nettet — Systemet importerer strøm (4.14 kW) mens PV-effekten er lav og batteriet ikke lader. Dette kan bety at inverteren midlertidig har koblet fra nettet etter et transientsprang.",
       "status": "pending",
       "claim_type": null
@@ -40302,6 +40342,11 @@
       "claim_type": null
     },
     {
+      "text": "Nettspenning/regulering fra leverandør — Uventet topp i grid_power kan skyldes at nettselskapet leverer mer energi enn normalt pga. spenningsregulering eller feil i målepunktet oppstrøms, selv om forbruket ikke nødvendigvis har økt like mye.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Nettsvingning eller spenningstopp fra leverandør — Hvis det var en kortvarig spenningstap eller frekvensavvik i det lokale nettet, kan inverterne ha reagert med en 'ride-through' eller feilaktig startsekvens som trekker stor startstrøm.",
       "status": "pending",
       "claim_type": null
@@ -40333,6 +40378,16 @@
     },
     {
       "text": "Sensorfeil eller målebrudd — Et plutselig hopp fra 1.8 kW til 8.128 kW uten korresponderende endring i andre variabler (f.eks. solproduksjon eller batteristrøm) tyder på at målepunktet rapporterer feilaktige verdier, kanskje pga. støy eller kalibreringsfeil.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Sensorfeil i forbruksmåler — consumption_power rapporterer 4979 W snitt, men grid_power + battery_power (ladning) + solar (negligibel) skal summere til forbruk. 3518 W (grid) + 1155 W (batteri ladning, negativt fortegn i data betyr ut fra batteri? Nei, negativt betyr vanligvis ladning i mange systemer, men her er avg -1155.5. La oss sjekke balanse: Grid 3518 + Solar -34 = 3484. Hvis batteri leverer -1155 (lader), så er total tilgjengelig 3484 - 1155 = 2329 W. Men forbruk er 4979 W. Det mangler ~2650 W. Dette tyder på at enten batteri-data er feil (skal ha levert mer) eller forbruksmåleren er f",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Sensorfeil i nett-måler (grid_power) — Det er en liten diskrepans mellom beregnet netto forbruk (consumption - solar ≈ 5071 kW) og målt nett-topp (5226 kW). Hvis consumption-sensoren underregistrerer eller grid-sensoren har en offset/feil, kan toppen være artefakt. Avg consumption (3363 kW) er høy for klokken 22:40, noe som kan tyde på systematisk feil i kalibrering.",
       "status": "pending",
       "claim_type": null
     },
@@ -40388,6 +40443,11 @@
     },
     {
       "text": "Uplanlagt høy last fra varmekabler eller varmtvann — I Oslo i juli kan det forekomme uventet kjøling eller varmtvannsprodusjon hvis termostater er feilinnstilt eller hvis det er en 'boost'-funksjon som utløses manuelt eller automatisk ved temperaturavvik.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Uplanlagt lading av elbil (EV) — Selvom consumption er høy, er det mulig at EV-laderen ble aktivert manuelt eller via en feil i lastefordeling. Hvis EV-laderen trekker f.eks. 11 kW (3-fase) men systemet kun registrerer en del av lasten i consumption, eller hvis consumption-dataen inkluderer EV men prognosen ikke kjente til ladestart, forklarer det spiken.",
       "status": "pending",
       "claim_type": null
     },
@@ -113793,7 +113853,102 @@
     },
     {
       "text": null,
-      "status": "reference_model",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
       "claim_type": null
     },
     {
@@ -113803,7 +113958,7 @@
     },
     {
       "text": null,
-      "status": "refuted",
+      "status": "reference_model",
       "claim_type": null
     },
     {
@@ -114589,6 +114744,11 @@
     {
       "text": null,
       "status": "untested",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "validated",
       "claim_type": null
     },
     {
@@ -121934,6 +122094,11 @@
     {
       "text": null,
       "status": null,
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": null,
       "claim_type": "unspecified"
     },
     {
@@ -123080,11 +123245,6 @@
       "text": null,
       "status": null,
       "claim_type": "unspecified"
-    },
-    {
-      "text": null,
-      "status": null,
-      "claim_type": null
     },
     {
       "text": null,
