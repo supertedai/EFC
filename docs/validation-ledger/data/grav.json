@@ -1,7 +1,7 @@
 {
   "name": "EFC-GRAV Pipeline",
   "version": "3.0",
-  "generated_at": "2026-07-04T11:48:52Z",
+  "generated_at": "2026-07-04T21:21:17Z",
   "latest_run": {
     "run_id": "2026-06-22_143541_aqual",
     "verdict": "NEEDS_REVIEW",
@@ -39972,6 +39972,11 @@
       "claim_type": null
     },
     {
+      "text": "Batteri-inverter feil (falsk ladning/utladning signal) — Batteriet har SOC 98% og lader (negativ power avg -308 W). Hvis inverteren rapporterte feilaktig at den laddes med f.eks. -2 kW i stedet for 0 W, ville systemet tro det trengte mindre fra nettet enn det gjorde, eller omvendt. Men her er grid positiv. Hvis batteri-sensoren rapporterte feilaktig utladning (positiv) mens den faktisk laddes, ville grid lasten øke for å dekke både forbruk og 'fiktiv' batteri-utladning. Men data viser batteri lader. Mer sannsynlig: Batteri-kontrolleren sendte feil signal om at batteriet kunne ta opp mer, men f",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Batteri-ladegrense eller feil — Batteriet er ved 98% SOC (max). battery_power viser negative verdier (ladning) opp til -3024 W, men grid_power er høy. Hvis batteriet nekter å lade mer (fordi det er fullt) eller har en teknisk feil som begrenser ladestrøm, må overskuddsenergi fra forbruk eller feilkalibrering trekkes fra nett.",
       "status": "pending",
       "claim_type": null
@@ -40352,6 +40357,11 @@
       "claim_type": null
     },
     {
+      "text": "Nettsvingning/Spente-toppl fra oppstrøms nett — I sjeldne tilfeller kan lokale nettsvingninger eller feil i målerens kalibrering under spisse laster fra naboer (hvis måleren er sensitiv for harmoniske eller spenningsfall) gi falske lesninger. Men siden consumption_power ikke speiler toppen, er dette mindre sannsynlig enn sensorfeil, med mindre consumption_power også er feil.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Overbelastet AC-gren eller høy lokal last som gir spenningsløft og kutter solinnmating — Ved 4.14 kW import kan lokal spenning overstige inverterens cutoff-nivå, som automatisk begrenser solleveranse for å beskytte nettet.",
       "status": "pending",
       "claim_type": null
@@ -40383,6 +40393,11 @@
     },
     {
       "text": "Sensorfeil i forbruksmåler — consumption_power rapporterer 4979 W snitt, men grid_power + battery_power (ladning) + solar (negligibel) skal summere til forbruk. 3518 W (grid) + 1155 W (batteri ladning, negativt fortegn i data betyr ut fra batteri? Nei, negativt betyr vanligvis ladning i mange systemer, men her er avg -1155.5. La oss sjekke balanse: Grid 3518 + Solar -34 = 3484. Hvis batteri leverer -1155 (lader), så er total tilgjengelig 3484 - 1155 = 2329 W. Men forbruk er 4979 W. Det mangler ~2650 W. Dette tyder på at enten batteri-data er feil (skal ha levert mer) eller forbruksmåleren er f",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": "Sensorfeil i nett-måler (falsk topp) — Batteriet viser ingen utladning (avg -308 W) og solen er lav (avg 77 W), men forbruksmåleren viser kun 3.9 kW maks. For at nett-topp på 5.65 kW skal være fysisk korrekt, må forbruket ha vært >5.6 kW (da batteri og sol ikke dekker differansen). Mismatch mellom beregnet forbruk (Grid - Solar + Battery) og målt forbruk indikerer at grid-sensoren rapporterte feilaktig høyt.",
       "status": "pending",
       "claim_type": null
     },
@@ -40477,6 +40492,11 @@
       "claim_type": null
     },
     {
+      "text": "Uregistrert stor last (f.eks. varmekabler eller vaskemaskin) — Forbruksmåleren (consumption_power) stiger til 3.96 kW, men batteriet lader fortsatt (negativ effekt) eller står stille. Dersom consumption_power er korrekt, må det ha vært en ekstra last på ~1.7 kW (5.65 - 3.96) som ikke ble fanget opp av sub-målerne eller ble klassifisert feil. Dette er typisk for eldre hvitevarer eller varmekabler som ikke er integrert i lasteprofilen.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
       "text": "Uventet EV-lading — Elbil-lading kan raskt trekke store mengder strøm (opptil 11 kW eller mer). Hvis en elbil ble koblet til og startet lading uten at systemet registrerte det, kan dette forklare toppen.",
       "status": "pending",
       "claim_type": null
@@ -40503,6 +40523,46 @@
     },
     {
       "text": "Uventet høy last fra store apparater — Hvis flere store apparater (f.eks. vaskemaskin, tørketrommel, oppvaskmaskin) startet samtidig, kan dette ha drevet toppen. Dette er spesielt sannsynlig hvis det var en uventet hendelse som førte til samtidig bruk.",
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
+      "status": "pending",
+      "claim_type": null
+    },
+    {
+      "text": null,
       "status": "pending",
       "claim_type": null
     },
