@@ -1,7 +1,7 @@
 {
   "name": "EFC Validation Ledger",
   "version": "3.0",
-  "generated_at": "2026-07-05T15:22:22Z",
+  "generated_at": "2026-07-05T21:22:38Z",
   "generator": "Symbiose AGI Validation Pipeline",
   "stats": {
     "physics_test": 48,
@@ -24,7 +24,7 @@
     "grav_kt_count": 3,
     "grav_kt_passed": 2,
     "grav_kt_marginal": 1,
-    "grav_claims": 27898,
+    "grav_claims": 27945,
     "grav_claims_supported": 3,
     "grav_integration_results": 4,
     "grav_integration_survived": 2,
@@ -2334,7 +2334,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-05T15:18:39.628117+00:00"
+      "timestamp": "2026-07-05T21:18:48.629785+00:00"
     },
     "efc_v2.0": {
       "version": "efc_v2.0",
@@ -2348,7 +2348,7 @@
       "untested": 0,
       "mismatches": 0,
       "primitives": 2,
-      "timestamp": "2026-07-05T15:18:39.659435+00:00"
+      "timestamp": "2026-07-05T21:18:48.721941+00:00"
     },
     "efc_v3.0": {
       "version": "efc_v3.0",
@@ -2362,7 +2362,7 @@
       "untested": 0,
       "mismatches": 1,
       "primitives": 2,
-      "timestamp": "2026-07-05T15:18:39.673937+00:00"
+      "timestamp": "2026-07-05T21:18:48.749573+00:00"
     }
   },
   "parameters": {
@@ -2842,11 +2842,11 @@
       "question": "[MISSING_DATA] No observations available to test: Entropy gradient increase leads to complexity",
       "domain": "efc",
       "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
+      "status": "OPEN",
       "approach": null,
       "efc_prediction": null,
       "source": "metacognitive_gap_daemon",
-      "created_at": "2026-07-04T23:50:53.798000000+00:00"
+      "created_at": "2026-07-05T21:21:18.045000000+00:00"
     },
     {
       "question": "In the domain of education (efc), we hypothesize that there exists an equivalent structure dedicated to preserving and teaching scientific knowledge and methods, rather than historical events. This 'Science Museum' should contain exhibitions and educational programs focused on various scientific disciplines, similar to how museums exhibit different periods or subjects in history.",
@@ -8060,6 +8060,66 @@
       {
         "text": null,
         "status": "competing",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "confirmed",
         "claim_type": null
       },
       {
@@ -45240,6 +45300,26 @@
       {
         "text": null,
         "status": "expired",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "falsified",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "falsified",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "falsified",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "falsified",
         "claim_type": null
       },
       {
@@ -125504,12 +125584,107 @@
       },
       {
         "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "pending",
+        "claim_type": null
+      },
+      {
+        "text": null,
         "status": "reference_model",
         "claim_type": null
       },
       {
         "text": null,
         "status": "reference_model",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "refuted",
         "claim_type": null
       },
       {
@@ -126590,6 +126765,66 @@
       {
         "text": null,
         "status": "untested",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
+        "claim_type": null
+      },
+      {
+        "text": null,
+        "status": "validated",
         "claim_type": null
       },
       {
