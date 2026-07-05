@@ -26,9 +26,9 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: "Local LM Studio model (default: openai/gpt-oss-120b — 128k ctx)"
+        description: "Local LM Studio model (default: qwen/qwen3.6-27b — non-reasoning, parses clean)"
         required: false
-        default: "openai/gpt-oss-120b"
+        default: "qwen/qwen3.6-27b"
   workflow_run:
     workflows: ["EFC auto-sync"]
     types: [completed]
@@ -64,7 +64,11 @@ jobs:
         env:
           EFC_LLM_PROVIDER: local
           LOCAL_OPENAI_BASE_URL: http://localhost:1234/v1
-          LOCAL_MODEL: ${{ inputs.model || 'openai/gpt-oss-120b' }}
+          # qwen3.6-27b (non-reasoning): returns the JSON answer in `content` so the
+          # monitor's parser structures it cleanly. gpt-oss-120b put its answer in the
+          # `reasoning` field (thinking-out-loud) → empty structured fields. Small
+          # snapshot prompt, so no need for 120B's big context. (BL-1212)
+          LOCAL_MODEL: ${{ inputs.model || 'qwen/qwen3.6-27b' }}
         run: |
           set -o pipefail
           curl -sf -o /dev/null "$LOCAL_OPENAI_BASE_URL/models" \
