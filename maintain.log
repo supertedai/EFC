@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=live
+EFC ORCID source-of-truth sync — source=cache
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -153,7 +153,9 @@ EFC Evidence Mirror — registers reconciled
 [efc-drift] 2 drift(s) remain (need manual fix)
 [rootfile-consistency] no drift to fix ✓
 [navbar-sync] processed 13 page(s):
-  unchanged: 13
+  replaced: 1
+  unchanged: 12
+  · EFC_Changelog.html: replaced
 ============================================================
 EFC SYMBIOSE SNAPSHOT
 ============================================================
@@ -166,7 +168,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-07-04
+Date: 2026-07-05
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -189,7 +191,9 @@ Scanning 4 sources...
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
 [efc-auto-changelog] checking for changes...
-[efc-auto-changelog] only script/workflow changes — skipping changelog
+[efc-auto-changelog] Public pages updated: Changelog.
+[efc-auto-changelog] updated EFC_Changelog.html
+[efc-auto-changelog] updated changelog.json
 ============================================================
 EFC CROSS-VALIDATION GATE (with Symbiose Council)
 ============================================================
