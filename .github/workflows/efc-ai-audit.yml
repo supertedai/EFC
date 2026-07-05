@@ -23,9 +23,9 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: "OpenAI model (default: gpt-5-mini)"
+        description: "Local LM Studio model (default: qwen/qwen3.6-27b)"
         required: false
-        default: "gpt-5-mini"
+        default: "qwen/qwen3.6-27b"
   schedule:
     - cron: "30 6 * * 3"  # Wednesday 06:30 UTC — consistency audit
     - cron: "0 7 * * 1"   # Monday 07:00 UTC — weekly full scan
