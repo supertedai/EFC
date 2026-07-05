@@ -38,9 +38,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
+      # No actions/setup-python: on the self-hosted Mac runner it fails
+      # (mkdir /Users/runner: Permission denied — it expects the cloud 'runner'
+      # user). The maintenance scripts are pure stdlib, so the system python3
+      # (/usr/bin/python3) runs them directly.
 
       - name: Run drift detector
         run: python3 scripts/maintenance/efc_drift_detector.py || true
