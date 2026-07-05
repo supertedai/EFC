@@ -32,7 +32,9 @@ on:
 
 jobs:
   ai-audit:
-    runs-on: ubuntu-latest
+    # Self-hosted runner on Morten's Mac → the GPT-council runs on the LOCAL
+    # LM Studio (EFC_LLM_PROVIDER=local below), no external API cost.
+    runs-on: [self-hosted, lmstudio]
     steps:
       - uses: actions/checkout@v5
 
@@ -55,14 +57,24 @@ jobs:
       - name: Scan for new external datasets
         run: python3 scripts/maintenance/efc_dataset_scanner.py || true
 
-      - name: Run AI consistency audit (GPT council)
+      - name: Run AI consistency audit (local council @ LM Studio)
         env:
+          # Local provider: efc_ai_audit.py hits the LM Studio OpenAI-compatible
+          # endpoint via urllib (stdlib, no pip) — no external API, no key needed.
+          EFC_LLM_PROVIDER: local
+          LOCAL_OPENAI_BASE_URL: http://localhost:1234/v1
+          LOCAL_MODEL: ${{ inputs.model || 'qwen/qwen3.6-27b' }}
+          # Kept for the cloud fallback path only (unused when provider=local).
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: ${{ inputs.model || 'gpt-5-mini' }}
         run: |
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::warning::OPENAI_API_KEY secret not set. Skipping AI audit."
+          if [ "$EFC_LLM_PROVIDER" != "local" ] && [ -z "$OPENAI_API_KEY" ]; then
+            echo "::warning::No local provider and no OPENAI_API_KEY. Skipping AI audit."
             exit 0
+          fi
+          # Fail loudly if the local endpoint is unreachable (runner lost LM Studio).
+          if [ "$EFC_LLM_PROVIDER" = "local" ]; then
+            curl -sf -o /dev/null "$LOCAL_OPENAI_BASE_URL/models" \
+              || { echo "::error::LM Studio not reachable at $LOCAL_OPENAI_BASE_URL"; exit 1; }
           fi
           python3 scripts/maintenance/efc_ai_audit.py
 
