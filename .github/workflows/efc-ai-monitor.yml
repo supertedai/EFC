@@ -26,9 +26,9 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: "Claude model to use (default: claude-sonnet-4-6)"
+        description: "Local LM Studio model (default: qwen/qwen3.6-27b — non-reasoning, parses clean)"
         required: false
-        default: "claude-sonnet-4-6"
+        default: "qwen/qwen3.6-27b"
   workflow_run:
     workflows: ["EFC auto-sync"]
     types: [completed]
@@ -44,7 +44,8 @@ permissions:
 
 jobs:
   review:
-    runs-on: ubuntu-latest
+    # Self-hosted Mac runner → local LM Studio (EFC_LLM_PROVIDER=local), no external API.
+    runs-on: [self-hosted, lmstudio]
     # Skip the workflow_run path if the upstream sync failed
     if: >
       github.event_name != 'workflow_run' ||
@@ -55,31 +56,26 @@ jobs:
         with:
           fetch-depth: 50
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
+      # No setup-python / no anthropic install: on the self-hosted Mac the system
+      # python3 runs it, and local mode uses urllib (anthropic is imported lazily and
+      # only on the non-local path). BL-1212.
 
-      - name: Install anthropic SDK
-        run: python3 -m pip install --quiet anthropic
-
-      - name: Run EFC AI monitor
+      - name: Run EFC AI monitor (local council @ LM Studio)
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EFC_LLM_PROVIDER: local
+          LOCAL_OPENAI_BASE_URL: http://localhost:1234/v1
+          # qwen3.6-27b (non-reasoning): returns the JSON answer in `content` so the
+          # monitor's parser structures it cleanly. gpt-oss-120b put its answer in the
+          # `reasoning` field (thinking-out-loud) → empty structured fields. Small
+          # snapshot prompt, so no need for 120B's big context. (BL-1212)
+          LOCAL_MODEL: ${{ inputs.model || 'qwen/qwen3.6-27b' }}
         run: |
           set -o pipefail
-          MODEL="${{ github.event.inputs.model || 'claude-sonnet-4-6' }}"
-          if [ -z "${ANTHROPIC_API_KEY}" ]; then
-            echo "::warning::ANTHROPIC_API_KEY secret is not configured — running in dry-run mode"
-            python3 scripts/maintenance/efc_ai_monitor.py \
-                --model "$MODEL" \
-                --out ai_review_out \
-                --dry-run 2>&1 | tee monitor.log
-          else
-            python3 scripts/maintenance/efc_ai_monitor.py \
-                --model "$MODEL" \
-                --out ai_review_out 2>&1 | tee monitor.log
-          fi
+          curl -sf -o /dev/null "$LOCAL_OPENAI_BASE_URL/models" \
+            || { echo "::error::LM Studio not reachable at $LOCAL_OPENAI_BASE_URL"; exit 1; }
+          python3 scripts/maintenance/efc_ai_monitor.py \
+              --model "$LOCAL_MODEL" \
+              --out ai_review_out 2>&1 | tee monitor.log
 
       - name: Post review to job summary
         if: always()
