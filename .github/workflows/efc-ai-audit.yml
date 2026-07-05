@@ -11,13 +11,15 @@ name: EFC AI consistency audit
 on:
   push:
     branches: [main]
+    # NB: `paths` and `paths-ignore` cannot both be set for the same event —
+    # GitHub rejects the workflow at startup (0s "workflow file issue"). Use a
+    # negative glob inside `paths` to exclude the generated health page instead.
     paths:
       - "docs/public/**"
+      - "!docs/public/EFC_System_Health.html"
       - "README.md"
       - "AGENTS.md"
       - "pipelines/**/README.md"
-    paths-ignore:
-      - "docs/public/EFC_System_Health.html"
   workflow_dispatch:
     inputs:
       model:
