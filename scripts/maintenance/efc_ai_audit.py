@@ -268,7 +268,10 @@ def call_openai(prompt):
         },
     )
     try:
-        with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+        # BL-1212: 180s is too short for a local big-context model on the ~45k-token
+        # audit prompt (gpt-oss-120b timed out). Env-configurable; default 600s.
+        _timeout = int(os.environ.get("EFC_AUDIT_LLM_TIMEOUT", "600"))
+        with urllib.request.urlopen(req, context=ctx, timeout=_timeout) as resp:
             body = resp.read()
             data = json.loads(body)
             msg = data["choices"][0]["message"]
