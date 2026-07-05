@@ -23,9 +23,9 @@ on:
   workflow_dispatch:
     inputs:
       model:
-        description: "Local LM Studio model (default: qwen/qwen3.6-27b)"
+        description: "Local LM Studio model (default: openai/gpt-oss-120b — 128k ctx)"
         required: false
-        default: "qwen/qwen3.6-27b"
+        default: "openai/gpt-oss-120b"
   schedule:
     - cron: "30 6 * * 3"  # Wednesday 06:30 UTC — consistency audit
     - cron: "0 7 * * 1"   # Monday 07:00 UTC — weekly full scan
@@ -64,7 +64,9 @@ jobs:
           # endpoint via urllib (stdlib, no pip) — no external API, no key needed.
           EFC_LLM_PROVIDER: local
           LOCAL_OPENAI_BASE_URL: http://localhost:1234/v1
-          LOCAL_MODEL: ${{ inputs.model || 'qwen/qwen3.6-27b' }}
+          # gpt-oss-120b: 128k context — fits the 15-file audit prompt (~45k tok).
+          # qwen3.6-27b (64k) truncated it. Slower but the audit is weekly/on-change.
+          LOCAL_MODEL: ${{ inputs.model || 'openai/gpt-oss-120b' }}
           # Kept for the cloud fallback path only (unused when provider=local).
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
