@@ -102,11 +102,15 @@ def scan_for_new_datasets():
                 # Check if it's already known
                 is_new = not any(term.lower() in k.lower() for k in known)
                 if is_new:
+                    # NB: no per-run timestamp — the report is a DETERMINISTIC signal file
+                    # (its git-diff triggers T7_DATASET_RELEASE in the sync engine). A microsecond
+                    # timestamp changed every run, so the branch↔main diff never converged and every
+                    # efc-sync run re-committed it → perpetual PR merge conflicts. Identity of a
+                    # finding is (source, term, url); "when" is recoverable from git history.
                     findings.append({
                         "source": source["name"],
                         "term": term,
                         "url": source["url"],
-                        "timestamp": datetime.datetime.utcnow().isoformat(),
                     })
 
     return findings
@@ -139,8 +143,12 @@ def main():
     # Save report
     os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
     with open(REPORT_PATH, "w") as f:
-        json.dump({"date": datetime.date.today().isoformat(),
-                   "known": list(known), "findings": findings}, f, indent=2)
+        # DETERMINISTIC output: sort both lists and drop the daily "date" stamp so the report only
+        # changes when the actual dataset set / findings change (a real T7 signal) — not on every
+        # scan. This stops the branch↔main churn that made every PR touching maintenance re-conflict.
+        json.dump({"known": sorted(known),
+                   "findings": sorted(findings, key=lambda x: (x["source"], x["term"], x["url"]))},
+                  f, indent=2)
     print(f"\nReport saved to {REPORT_PATH}")
 
     return 1
