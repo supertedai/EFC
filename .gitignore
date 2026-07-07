@@ -12,3 +12,7 @@ _quarantine/
 # Cobaya run artifacts created by running from the repo root
 /chains/
 docs/audit_report.md
+
+# Volatile per-run maintenance log — regenerated every run + uploaded as a workflow artifact;
+# tracking it caused perpetual branch↔main merge conflicts (see efc_dataset_scanner determinism fix).
+maintain.log
