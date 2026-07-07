@@ -47,3 +47,9 @@ src/*.egg-info/
 # bli installasjonsveien, hører låsen i git sammen med en CI-sjekk som holder
 # den fersk — ellers får vi en fjerde versjonskilde ingen validerer.
 uv.lock
+
+# maintain.log: a volatile per-run maintenance log. Measured (t_efc-sync-deterministic-artifacts):
+# the efc-sync bot rewrites it in almost every auto-commit, so a tracked copy made every branch
+# that had also touched it re-conflict against main on every sync. Nothing in the tree reads it;
+# it is a run log, not an artifact. Untracked here (removed from the index in this commit).
+maintain.log
