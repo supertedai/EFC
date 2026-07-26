@@ -1,0 +1,226 @@
+# ════════════════════════════════════════════════════════════════
+#  EFC Autonomous Research Policy  v1.0
+#  Single source of truth for all daemon thresholds and behavior.
+# ════════════════════════════════════════════════════════════════
+
+policy:
+  version: "1.0"
+
+  # ── Runtime ─────────────────────────────────────────────────
+  runtime:
+    cycle_interval_sec: 21600          # 6 hours
+    mcmc:
+      nwalkers: 48
+      nsteps: 4000
+      burnin: 1500
+      seed: 42
+      rhat_max: 1.05
+      ess_min: 800
+      acceptance_lo: 0.15
+      acceptance_hi: 0.65              # emcee affine-invariant: ~0.6 typical for 4-param
+      retry_on_fail: true
+      retry_nsteps_multiplier: 2.0
+
+  # ── Case Lifecycle ──────────────────────────────────────────
+  case_lifecycle:
+    states:
+      - OPEN
+      - RUNNING
+      - WATCHLIST
+      - CANDIDATE
+      - ROBUST
+      - CLOSED
+      - ESCALATED
+    initial_state: OPEN
+    data_hash_determines_case: true    # new data hash = new case
+
+  # ── Data Hygiene Gate (Phase 0) ─────────────────────────────
+  data_hygiene_gate:
+    enabled: true
+    schema_check: true                 # column names vs whitelist
+    unit_sanity: true                  # NaN, inf, negative errors
+    nan_inf_reject: true
+    z_range_check: [0.0, 3.0]         # reject z outside this range
+    error_positivity: true             # sigma > 0
+    baseline_sanity_fit: true          # quick LCDM sanity check
+    baseline_max_chi2_red: 10.0        # LCDM chi2_red above this = suspect data
+    baseline_sanity_nsteps: 500
+    compute_data_hash: true            # SHA256 per CSV
+
+  # ── Inference Gates ─────────────────────────────────────────
+  inference_gates:
+    convergence:
+      enabled: true
+      rhat_max: 1.05                   # Gelman-Rubin R-hat
+      ess_min: 800                     # effective sample size
+      acceptance_lo: 0.15
+      acceptance_hi: 0.65              # emcee affine-invariant: ~0.6 typical for 4-param
+
+    model_comparison:
+      hint:                            # trigger diagnostics
+        alpha_sigma_min: 1.5
+        daic_max: 0.0
+        p_negative_min: 0.80
+      candidate:                       # pass individual tests
+        alpha_sigma_min: 1.7
+        daic_max: 0.0
+        p_negative_min: 0.90
+      robust:                          # full suite pass
+        alpha_sigma_min: 2.0
+        daic_max: -2.0
+        p_negative_min: 0.95
+
+    degeneracy:
+      collapse_sigma: 1.3
+      max_correlation: 0.95
+
+  # ── Robustness Suite ────────────────────────────────────────
+  robustness_suite:
+    n1:
+      enabled: true
+      rd_ci_trigger: 20.0             # Mpc, 95% CI width for N1 trigger
+    n2:
+      enabled: true
+      modes: [stram, middels, flat]
+    t7:
+      enabled: true
+      min_pass: 5                      # out of 7 LOO
+      total_points: 7
+      criterion: sign_consistency      # v2: P(α<0) instead of σ-threshold
+      pass_p_negative: 0.80            # P(α<0) >= 0.80 per LOO
+      strength_strong: 0.95            # tag thresholds
+      strength_medium: 0.90
+      strength_weak: 0.80
+    n3:
+      enabled: true
+      pass_sigma: 1.7                  # alpha significance threshold (free gate)
+      collapse_sigma: 1.3              # below this = COLLAPSED
+      degeneracy_corr_max: 0.80        # |corr(alpha, a_t)| or |corr(alpha, delta_a)|
+      use_aeff: true                   # use A_eff reparameterization (v2)
+      # A_eff normalization: G = mean(gate(a_i)) over data points
+      # breaks α × gate-shape degeneracy
+    n4:
+      enabled: true
+      pass_sigma: 1.7                  # alpha significance threshold (free mu_0)
+      collapse_sigma: 1.3              # below this = COLLAPSED
+      degeneracy_corr_max: 0.80        # |corr(alpha, mu_0)|
+      mu_prior_mean: 1.0               # N(1.0, 0.3) centered on GR
+      mu_prior_std: 0.3
+    n5:
+      enabled: true
+      pass_sigma: 1.7                  # alpha significance threshold (flat rd prior)
+      collapse_sigma: 1.3              # below this = COLLAPSED
+      degeneracy_corr_max: 0.80        # |corr(alpha, rd)|
+    n6:
+      enabled: true
+      R_max: 0.01                      # EFC peak grid resistance (fixed postulate)
+      sigma_ln_a: 0.5                  # Gaussian window width in ln(a)
+      safety_threshold_pct: 0.5        # |Delta r_d(EFC-GR)/r_d(GR)| limit [%]
+      Omega_b: 0.0493                  # baryon density (Planck 2018)
+      sweep_R_max: [0.0, 0.001, 0.005, 0.01, 0.02, 0.05]
+    n7:
+      enabled: true
+      survives_sigma: 2.0
+      survives_daic: -2.0
+      marginal_sigma: 1.5
+      marginal_daic: 0.0
+      max_chi2_red: 5.0
+    d2:
+      enabled: true
+      R_max: 0.01                      # EFC grid resistance (fixed postulate)
+      safety_threshold_pct: 1.0        # max |Delta r_d| before rejecting MCMC sample
+      pass_delta_alpha: 0.3            # |Delta alpha_sig(D2 - proxy)| < this → PASS
+
+  # ── PPC Gate (Fase 2 — ACTIVE) ─────────────────────────────
+  ppc_gate:
+    enabled: true
+    auto_pass: false
+    n_posterior_samples: 200           # samples for Bayesian p-value
+    chi2_red_max: 3.0                  # maximum reduced chi-squared
+    p_value_lo: 0.05                   # Bayesian p-value lower bound
+    p_value_hi: 0.95                   # Bayesian p-value upper bound
+    calibration_1sigma_tol: 0.20       # |obs_fraction - 0.6827| tolerance (0.20 for small N)
+    max_outliers_3sigma: 3             # max data points with |residual| > 3σ
+    residual_std_max: 2.0              # max std of normalized residuals
+
+  # ── SBC Gate (Fase 3 — ACTIVE) ─────────────────────────────
+  sbc_gate:
+    enabled: true
+    auto_pass: false
+    n_simulations: 50                  # 50 sims × emcee (reduced for speed)
+    nwalkers: 24                       # reduced from 48 (SBC is many runs)
+    nsteps: 1500                       # reduced from 4000
+    burnin: 500                        # reduced from 1500
+    ks_p_value_min: 0.05               # KS test: ranks uniform?
+    coverage_68_tol: 0.15              # |obs_coverage - 0.6827| tolerance
+    coverage_95_tol: 0.10              # |obs_coverage - 0.9545| tolerance
+
+  # ── Stop Conditions ─────────────────────────────────────────
+  stop_conditions:
+    prior_dominance:
+      enabled: true
+      threshold: 0.95                  # alpha_std >= prior_width * threshold
+      action: ESCALATE
+    no_value:
+      enabled: true
+      threshold: 5                     # N consecutive NO_SIGNAL cycles
+      action: CLOSE
+    degeneracy_persists:
+      enabled: true
+      threshold: 3                     # N consecutive DEGENERACY_LIMITED
+      action: ESCALATE
+    manual:
+      enabled: true
+      threshold: 0
+      action: ESCALATE
+
+  # ── Promotion Rules ─────────────────────────────────────────
+  promotion_rules:
+    to_watchlist:
+      from_state: RUNNING
+      to_state: WATCHLIST
+      required_gates:
+        data_hygiene: true
+        convergence: true
+        signal: true                   # hint-level signal
+        robustness: false
+        ppc: false
+        sbc: false
+    to_candidate:
+      from_state: WATCHLIST
+      to_state: CANDIDATE
+      required_gates:
+        data_hygiene: true
+        convergence: true
+        signal: true                   # candidate-level signal
+        robustness: true               # N1 + N2 + T7 all pass
+        ppc: true                      # requires PPC (Fase 2)
+        sbc: false
+    to_robust:
+      from_state: CANDIDATE
+      to_state: ROBUST
+      required_gates:
+        data_hygiene: true
+        convergence: true
+        signal: true                   # robust-level signal
+        robustness: true
+        ppc: true                      # requires PPC (Fase 2)
+        sbc: true                      # requires SBC (Fase 3)
+
+  # ── Logging ─────────────────────────────────────────────────
+  logging:
+    required_artifacts:
+      - manifest.json
+      - summary.json
+      - baseline_chains.npz
+      - data_hashes.json
+      - diagnostics.json
+      - ppc_results.json
+      - code_commit.txt
+    neo4j_nodes:
+      - ResearchCycleResult
+      - DiagnosticResult
+      - ResearchCase
+      - DataHygieneResult
+      - StopCondition
+    llm_usage: narrative_only

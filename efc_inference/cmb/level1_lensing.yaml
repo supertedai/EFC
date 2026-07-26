@@ -1,0 +1,33 @@
+# Level 1: Lensing-only knife
+# Two runs: alpha_efc = 0.0 (baseline) and alpha_efc = -0.7 (sealed)
+# Compare Δχ²_lensing
+# Analytical prediction: Δχ² ≈ 2-5 (lensing changes -3.8%, Planck ~8% uncertainty)
+
+theory:
+  classy:
+    extra_args:
+      output: tCl,pCl,lCl
+      lensing: "yes"
+      l_max_scalars: 2508
+      # Set alpha_efc via run_cmb_test.py (0.0 or -0.7)
+
+params:
+  # FIXED at Planck 2018 best-fit
+  omega_b: 0.02237
+  omega_cdm: 0.1200
+  H0: 67.36
+  tau_reio: 0.0544
+  logA:
+    value: 3.044
+    derived: false
+  n_s: 0.9649
+  A_s:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    derived: false
+
+likelihood:
+  # ONLY lensing φφ — no TT/TE/EE peaks
+  planck_2018_lensing.clik: null
+
+sampler:
+  evaluate: null

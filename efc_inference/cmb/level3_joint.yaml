@@ -1,0 +1,117 @@
+# Level 3: Full joint with α free — final verdict on α-Ωm degeneracy
+# 7 free parameters: {ωb, ωc, H₀, τ, logA, ns, α}
+# RUN ONLY IF LEVEL 2 SURVIVES (Δχ² < 15)
+#
+# Key output:
+#   - Planck posterior for α (marginalised over all CMB nuisance)
+#   - Whether Planck alone constrains α to zero
+#   - α-Ωm 2D posterior (directly breaks late-time degeneracy)
+
+theory:
+  classy:
+    extra_args:
+      output: tCl,pCl,lCl
+      lensing: "yes"
+      l_max_scalars: 2508
+      # alpha_efc passed as param below
+
+params:
+  # Standard 6-param Planck basis
+  omega_b:
+    prior:
+      min: 0.019
+      max: 0.025
+    ref:
+      dist: norm
+      loc: 0.02237
+      scale: 0.00015
+    proposal: 0.00015
+    latex: \Omega_b h^2
+  omega_cdm:
+    prior:
+      min: 0.10
+      max: 0.14
+    ref:
+      dist: norm
+      loc: 0.1200
+      scale: 0.0014
+    proposal: 0.0014
+    latex: \Omega_c h^2
+  H0:
+    prior:
+      min: 60
+      max: 80
+    ref:
+      dist: norm
+      loc: 67.36
+      scale: 0.6
+    proposal: 0.6
+    latex: H_0
+  tau_reio:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref:
+      dist: norm
+      loc: 0.0544
+      scale: 0.0073
+    proposal: 0.0073
+    latex: \tau_\mathrm{reio}
+  logA:
+    prior:
+      min: 2.5
+      max: 3.5
+    ref:
+      dist: norm
+      loc: 3.044
+      scale: 0.014
+    proposal: 0.014
+    latex: \log(10^{10} A_s)
+    drop: true
+  A_s:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_s
+  n_s:
+    prior:
+      min: 0.9
+      max: 1.05
+    ref:
+      dist: norm
+      loc: 0.9649
+      scale: 0.0042
+    proposal: 0.0042
+    latex: n_s
+
+  # EFC α — FREE (the whole point of this level)
+  alpha_efc:
+    prior:
+      min: -3.0
+      max: 3.0
+    ref:
+      dist: norm
+      loc: 0.0
+      scale: 0.5
+    proposal: 0.3
+    latex: \alpha_\mathrm{EFC}
+
+  # Derived
+  sigma8:
+    latex: \sigma_8
+  rdrag:
+    latex: r_\mathrm{drag}
+
+likelihood:
+  # Full Planck
+  planck_2018_highl_plik_lite.TTTEEE: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_2018_lensing.clik: null
+
+sampler:
+  mcmc:
+    max_tries: 10000
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.1
+    burn_in: 0.3
+    learn_proposal: true
+    measure_speeds: true

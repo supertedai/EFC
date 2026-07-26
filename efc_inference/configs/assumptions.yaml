@@ -1,0 +1,85 @@
+# ════════════════════════════════════════════════════════════════
+#  Ontological Assumptions Registry
+#  Logged per MCMC cycle in Neo4j for transparency and traceability.
+#
+#  Each assumption has a status:
+#    assumed  — taken as given, not tested
+#    proxy    — using LCDM value as stand-in for EFC-native
+#    standard — consensus convention (e.g. z→a mapping)
+#    implicit — not parameterized, baked into equations
+#    native   — derived from EFC theory directly
+# ════════════════════════════════════════════════════════════════
+
+default_cosmology: efc_variant_a
+
+# Available cosmology models:
+#   efc_variant_a — fixed gate (a_t, delta_a owned by model)
+#   efc_variant_b — free gate (a_t, delta_a from MCMC params dict)
+#   flat_lcdm     — standard ΛCDM (no EFC coupling)
+
+# Gate parameters (used by efc_variant_a; variant_b reads from params dict)
+gate:
+  a_t: 0.5
+  delta_a: 0.1
+  variant_b_defaults:
+    a_t: 0.5
+    delta_a: 0.1
+
+assumptions_audit:
+  geometry:
+    type: FLRW
+    curvature: flat
+    status: assumed
+
+  redshift:
+    formula: "a = 1/(1+z)"
+    status: standard
+
+  propagation:
+    c: constant
+    status: implicit
+
+  sound_horizon:
+    source: planck_lcdm
+    value_mpc: 147.09
+    status: proxy
+
+  sigma8_prior:
+    mean: 0.80
+    std: 0.04
+    justification: "weak-lensing-informed (DES Y3, KiDS-1000)"
+    status: honest_d3
+    note: "D3 phase — widened from N(0.81,0.02) Planck-LCDM to N(0.80,0.04)"
+
+  poisson:
+    mu: 1.0
+    status: tested_d1
+    variant_c_formula: "mu(a) = 1 + (mu_0 - 1) * g(a)"
+    note: "D1 phase — mu_0 freed as MCMC parameter. mu=1 baseline (GR)."
+
+  dark_energy:
+    efc: flow_coupling_alpha
+    lcdm: cosmological_constant
+    status: primary_test_target
+
+  gate_freedom:
+    n3_diagnostic: true
+    status: tested_d0
+    note: "D0 phase — gate parameters (a_t, delta_a) freed to test signal robustness"
+
+  grav_coupling:
+    n7_diagnostic: true
+    status: tested_domstolen
+    C: 2.32
+    C_source: "KT2 Grid-AQUAL convergence (discrete IR renormalization)"
+    k_lambda: 0.0014
+    k_lambda_unit: "h/Mpc"
+    k_lambda_note: "Hubble-scale screening — only scale where regime bridge survives"
+    k_eff: 0.1
+    k_eff_unit: "h/Mpc"
+    k_eff_note: "Representative scale for f*sigma8 measurements (~60 Mpc)"
+    g_eff_formula: "G_eff(k,a)/G = 1 + (C^2 - 1) * gate(a) * screen(k)"
+    screen_formula: "screen(k) = 1 / (1 + (k/k_lambda)^2)"
+    frozen: [C, k_lambda, k_eff, a_t, delta_a, r_d]
+    free: [Omega_m, H0, sigma8, alpha_cosmo]
+    note: "N7 'Domstolen' — global parameter-lock cross-probe test. All GRAV parameters frozen from KT2. No rescue mu, no free lensing amplitude."

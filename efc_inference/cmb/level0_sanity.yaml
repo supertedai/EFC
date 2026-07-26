@@ -1,0 +1,35 @@
+# Level 0: LCDM Sanity Check
+# Verifies CLASS + Planck likelihood stack works
+# Expected: -2logL ≈ 2776 at Planck 2018 best-fit
+
+theory:
+  classy:
+    extra_args:
+      output: tCl,pCl,lCl
+      lensing: "yes"
+      l_max_scalars: 2508
+      # EFC: alpha_efc = 0 (pure LCDM)
+      alpha_efc: 0.0
+
+params:
+  # Planck 2018 best-fit (Table 2, TT,TE,EE+lowE+lensing)
+  omega_b: 0.02237
+  omega_cdm: 0.1200
+  H0: 67.36
+  tau_reio: 0.0544
+  logA:
+    value: 3.044
+    derived: false
+  n_s: 0.9649
+  # Derived
+  A_s:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    derived: false
+
+likelihood:
+  planck_2018_highl_plik_lite.TTTEEE: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+
+sampler:
+  evaluate: null

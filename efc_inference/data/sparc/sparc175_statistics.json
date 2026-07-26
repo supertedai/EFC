@@ -1,0 +1,57 @@
+{
+  "sample": {
+    "n_total": 175,
+    "n_success": 175,
+    "n_failed": 0
+  },
+  "regimes": {
+    "FLOW": {
+      "n": 62,
+      "percentage": 35.42857142857143,
+      "efc_win_rate": 100.0,
+      "L_mean": 0.28968798294916137,
+      "L_std": 0.14278018111662694,
+      "chi2_mean": 2.053649061146169,
+      "chi2_std": 2.8185863649282235
+    },
+    "TRANSITION": {
+      "n": 86,
+      "percentage": 49.142857142857146,
+      "efc_win_rate": 4.651162790697675,
+      "L_mean": 0.22337580957455097,
+      "L_std": 0.1046224695035594,
+      "chi2_mean": 2.1913613632739626,
+      "chi2_std": 7.215750860000738
+    },
+    "LATENT": {
+      "n": 27,
+      "percentage": 15.428571428571429,
+      "efc_win_rate": 3.7037037037037037,
+      "L_mean": 0.5004998885362356,
+      "L_std": 0.11118446771680304,
+      "chi2_mean": 297.82963810833775,
+      "chi2_std": 553.4955804547947
+    }
+  },
+  "correlations": {
+    "aic_vs_L": {
+      "rho": 0.02173757277205553,
+      "p_value": 0.7752350498676603,
+      "n": 175
+    },
+    "flow_vs_latent": {
+      "flow_L_mean": 0.28968798294916137,
+      "flow_L_std": 0.14278018111662694,
+      "latent_L_mean": 0.5004998885362356,
+      "latent_L_std": 0.11118446771680304,
+      "u_statistic": 221.0,
+      "p_value": 1.9743847298309836e-08
+    }
+  },
+  "key_findings": [
+    "FLOW regime shows 100% EFC success rate (n=62)",
+    "LATENT regime shows 3.7% EFC success rate (n=27)",
+    "FLOW vs LATENT separation highly significant (p < 0.0001)",
+    "Mean L(FLOW) = 0.290, L(LATENT) = 0.500"
+  ]
+}

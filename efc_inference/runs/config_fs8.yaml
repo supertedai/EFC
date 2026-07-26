@@ -1,0 +1,15 @@
+# EFC Inference: fσ8 Growth Rate Configuration
+#
+# Usage: python -m efc_inference.runs.run_fs8 --config efc_inference/runs/config_fs8.yaml
+
+# Data
+data_path: "efc_inference/data/growth/fs8_starter.csv"
+
+# Sampling
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Output
+output_dir: "efc_inference/output"
+publish_to_neo4j: false

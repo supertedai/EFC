@@ -1,0 +1,20 @@
+# fσ8 Growth Rate Inference
+# Data: Multi-survey compilation (6dFGS, BOSS, WiggleZ, eBOSS, DESI)
+# 7 data points, z = [0.02, 0.85]
+
+data_path: efc_inference/data/growth/fs8_extended.csv
+
+# MCMC settings
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Parameter overrides
+parameters:
+  Omega_m: 0.315
+  sigma8: 0.811
+
+# Epistemic levels
+epistemic:
+  Omega_m: L2    # CMB + LSS constrained
+  sigma8: L2     # CMB normalization
