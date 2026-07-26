@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  background: #fdfdfd;
+  color: #222;
+}
+
+.main-wrapper {
+  max-width: 850px;
+  margin: 40px auto 60px auto;
+  padding: 0 16px;
+}
+
+h1, h2, h3, h4 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.6;
+  margin: 0.6em 0;
+}
+
+ul, ol {
+  line-height: 1.6;
+}
+
+figure {
+  margin: 2em auto;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.math.display {
+  margin: 1.2em 0;
+}
+
+header.article-meta {
+  text-align: center;
+  margin-bottom: 2em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+header.article-meta .author {
+  font-weight: 500;
+}
+
+header.article-meta .date {
+  font-size: 0.9em;
+  color: #666;
+}
