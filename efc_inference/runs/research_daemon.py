@@ -1823,13 +1823,12 @@ class EFCResearchDaemon:
         logger.info(f"  ΔlogL_growth: {dll_growth:+.4f}")
         logger.info(f"  ΔAIC: {daic:+.3f}, ΔBIC: {dbic:+.3f}")
 
-        # Publish to Neo4j
+        # Publish to Neo4j via the shared lazy driver (owned by ResearchPublisher —
+        # do not close it here; publish_cycle reuses it later in the same run)
         try:
-            from neo4j import GraphDatabase
-            driver = GraphDatabase.driver(
-                self.neo4j_uri,
-                auth=(self.neo4j_user, self.neo4j_password)
-            )
+            driver = self.publisher._get_driver()
+            if driver is None:
+                raise RuntimeError("Neo4j driver unavailable")
             cypher = """
             MATCH (rc:ResearchCycleResult {cycle_id: $cycle_id})
             MERGE (vh:VariantHResult {cycle_id: $cycle_id})
@@ -1870,7 +1869,6 @@ class EFCResearchDaemon:
                     "total_time": result.get("total_time_seconds", 0.0),
                 })
             logger.info(f"  Published VariantHResult → Neo4j (cycle={cycle_id})")
-            driver.close()
         except Exception as e:
             logger.warning(f"  Neo4j publish failed: {type(e).__name__}: {e}")
 
