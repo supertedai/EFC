@@ -1,0 +1,24 @@
+# BAO Inference: BOSS DR12
+# Data: Alam et al. 2017 (SDSS-III BOSS DR12)
+# z_eff = 0.38, 0.51, 0.61
+
+data_path: efc_inference/data/bao/boss_dr12_bao.csv
+
+# MCMC settings
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Parameter overrides (defaults in run_bao.py)
+parameters:
+  H0: 67.4
+  Omega_m: 0.315
+  alpha_cosmo: 0.0
+  r_d: 147.09
+
+# Epistemic levels
+epistemic:
+  H0: L3        # Well measured (Planck)
+  Omega_m: L2   # CMB + LSS constrained
+  alpha_cosmo: L0  # Speculative EFC parameter
+  r_d: L2       # CMB-calibrated sound horizon

@@ -1,0 +1,22 @@
+# H(z) Inference: Cosmic Chronometers
+# Data: Moresco et al. 2016, 2022 compilation
+# 9 data points, z = [0.07, 1.43]
+
+data_path: efc_inference/data/hubble/hz_cosmic_chronometers.csv
+
+# MCMC settings
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Parameter overrides
+parameters:
+  H0: 67.4
+  Omega_m: 0.315
+  alpha_cosmo: 0.0
+
+# Epistemic levels
+epistemic:
+  H0: L3        # Well measured
+  Omega_m: L2   # CMB + LSS
+  alpha_cosmo: L0  # Speculative EFC

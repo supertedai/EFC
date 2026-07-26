@@ -1,0 +1,16 @@
+# EFC Inference: SPARC Rotation Curve Configuration
+#
+# Usage: python -m efc_inference.runs.run_sparc --config efc_inference/runs/config_sparc.yaml
+
+# Data
+data_path: "data/sparc/sparc_rotation_curves.dat"
+galaxy: "NGC2403"
+
+# Sampling
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Output
+output_dir: "efc_inference/output"
+publish_to_neo4j: false

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "const": "EFC-Paper"
+    },
+    "collection": {
+      "const": "efc"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "chunks": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "collection"
+  ]
+}

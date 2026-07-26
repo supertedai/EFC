@@ -1,0 +1,24 @@
+# BAO Inference: DESI Year 1
+# Data: DESI Collaboration 2024
+# z_eff = 0.51, 0.71 (BAO + RSD combined)
+
+data_path: efc_inference/data/bao/desi_y1_bao_rsd.csv
+
+# MCMC settings
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Parameter overrides
+parameters:
+  H0: 67.4
+  Omega_m: 0.315
+  alpha_cosmo: 0.0
+  r_d: 147.09
+
+# Epistemic levels
+epistemic:
+  H0: L3
+  Omega_m: L2
+  alpha_cosmo: L0
+  r_d: L2

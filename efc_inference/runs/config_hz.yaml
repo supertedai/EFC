@@ -1,0 +1,15 @@
+# EFC Inference: H(z) Cosmic Chronometer Configuration
+#
+# Usage: python -m efc_inference.runs.run_hz --config efc_inference/runs/config_hz.yaml
+
+# Data
+data_path: "efc_inference/data/hubble/hz_starter.csv"
+
+# Sampling
+n_walkers: 32
+n_steps: 5000
+burn_in: 1000
+
+# Output
+output_dir: "efc_inference/output"
+publish_to_neo4j: false
