@@ -1,0 +1,157 @@
+{
+  "paper": {
+    "title": "EFC \u2014 Master Specification (v1 Archive)",
+    "version": "1.1",
+    "author": "M. Magnusson",
+    "date": "2025-11-16",
+    "doi": "10.6084/m9.figshare.30630500"
+  },
+  "layers": [
+    {
+      "id": "EFC-S",
+      "name": "Structure / Halo Layer",
+      "sections": [
+        "S0",
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "id": "EFC-D",
+      "name": "Energy-Flow Dynamics",
+      "sections": [
+        "D0",
+        "D0.2",
+        "D1",
+        "D2",
+        "D3"
+      ]
+    },
+    {
+      "id": "EFC-C0",
+      "name": "Entropy\u2013Cognition Base Layer",
+      "sections": [
+        "C0",
+        "C1",
+        "C2"
+      ]
+    }
+  ],
+  "equations": {
+    "energy_flow_potential": {
+      "label": "Eq. 1",
+      "expression": "Ef(x) = rho(x) * (1 - S(x))",
+      "description": "Local energy-flow potential coupling density and entropy into a single field."
+    },
+    "halo_density_profile": {
+      "expression": "rho_h(r) = rho0 / ((r/rs)^alpha * (1 + r/rs)^(beta - alpha))",
+      "description": "Generalised halo mass-density profile; alpha=1, beta=3 recovers NFW-like form."
+    },
+    "halo_entropy_profile": {
+      "expression": "S_h(r) = S0 + (S_inf - S0) * (1 - exp(-(r/rs_S)^gamma))",
+      "description": "Monotonically rising entropy profile from low-entropy anchor outward."
+    },
+    "energy_flow_rate": {
+      "expression": "dEf/dt = -lambda * Ef",
+      "description": "Dissipative temporal evolution of energy-flow potential."
+    },
+    "effective_acceleration": {
+      "expression": "a_eff = -dEf/dr",
+      "description": "Effective acceleration from spatial gradient of Ef."
+    },
+    "expansion_rate": {
+      "expression": "H(z)^2 / H0^2 = Omega_m*(1+z)^3 + Omega_ef*(1+z)^(3*(1+w_ef))",
+      "description": "Schematic effective expansion history derived from flow and entropy."
+    },
+    "information_capacity": {
+      "expression": "I(S) = (1 - S)  [at fixed density: I = rho*(1-S) = Ef]",
+      "description": "EFC-C0 baseline mapping from entropy to information capacity."
+    }
+  },
+  "default_parameters": {
+    "rho0": {
+      "value": 1.0,
+      "unit": "density scale",
+      "description": "Central halo density normalisation"
+    },
+    "rs": {
+      "value": 10.0,
+      "unit": "kpc-like",
+      "description": "Halo density scale radius"
+    },
+    "alpha": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Inner slope of halo density profile"
+    },
+    "beta": {
+      "value": 3.0,
+      "unit": "dimensionless",
+      "description": "Outer slope of halo density profile"
+    },
+    "S0": {
+      "value": 0.05,
+      "unit": "dimensionless",
+      "description": "Central (low) entropy of anchor"
+    },
+    "S_inf": {
+      "value": 0.95,
+      "unit": "dimensionless",
+      "description": "Asymptotic far-field entropy"
+    },
+    "rs_entropy": {
+      "value": 15.0,
+      "unit": "kpc-like",
+      "description": "Entropy profile scale radius"
+    },
+    "gamma": {
+      "value": 2.0,
+      "unit": "dimensionless",
+      "description": "Entropy profile steepness"
+    },
+    "lambda_ef": {
+      "value": 1.0,
+      "unit": "1/time",
+      "description": "Dissipation coupling constant"
+    },
+    "H0": {
+      "value": 1.0,
+      "unit": "natural",
+      "description": "Hubble constant scale"
+    },
+    "G_eff": {
+      "value": 1.0,
+      "unit": "natural",
+      "description": "Effective gravitational coupling"
+    },
+    "Omega_m": {
+      "value": 0.3,
+      "unit": "dimensionless",
+      "description": "Matter density parameter"
+    },
+    "Omega_ef": {
+      "value": 0.7,
+      "unit": "dimensionless",
+      "description": "Energy-flow density parameter"
+    },
+    "w_ef": {
+      "value": -1.0,
+      "unit": "dimensionless",
+      "description": "Baseline EFC equation of state parameter"
+    }
+  },
+  "schematic_figures": {
+    "fig1": "Ef(rho,S) heatmap over (rho, S) plane",
+    "fig2": "Halo mass density profile rho_h(r)",
+    "fig3": "Halo entropy profile S_h(r)",
+    "fig4": "Rotation curves: EFC vs NFW-like",
+    "fig5": "Projected surface density Sigma(R)",
+    "fig6": "Expansion history H(z)/H0: EFC vs LCDM",
+    "fig7": "Information capacity I(S) = 1 - S"
+  },
+  "notes": {
+    "figures_nature": "All figures are schematic / theoretical; not final data-calibrated fits.",
+    "entropy_range": "S is dimensionless, normalised to [0, 1].",
+    "density_units": "Density units are arbitrary / natural in this specification."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "paper_metadata": {
+    "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+    "author": "Morten Magnusson",
+    "year": 2026,
+    "version": "1.0",
+    "doi": "10.6084/m9.figshare.31007248"
+  },
+  "constants": {
+    "G_N_pc_kms_Msun": {
+      "value": 0.004302,
+      "units": "pc (km/s)^2 / M_sun",
+      "description": "Gravitational constant in convenient galactic units"
+    }
+  },
+  "sample": {
+    "N_galaxies": 20,
+    "source": "SPARC (Spitzer Photometry and Accurate Rotation Curves)",
+    "morphological_types": [
+      "Low Surface Brightness (LSB)",
+      "Dwarf Irregular",
+      "Spiral",
+      "Barred Spiral"
+    ]
+  },
+  "key_equations": {
+    "eq1_effective_energy_field": "E_f = rho * (1 - S), where S in [0,1]",
+    "eq2_rotation_velocity": "V_rot^2(r) = r * dPhi_e/dr",
+    "efc_r_decomposition": "E_total = E_flow + E_latent"
+  },
+  "statistical_results": {
+    "spearman_rho": {
+      "value": -0.705,
+      "description": "Correlation between structural complexity (latent field proxy) and EFC performance"
+    },
+    "spearman_p_value": {
+      "value": 0.0005,
+      "description": "p-value for Spearman correlation"
+    },
+    "lsb_dwarf_success_rate": {
+      "value": 1.0,
+      "description": "100% success rate for LSB and diffuse dwarf galaxies"
+    },
+    "barred_spiral_performance": {
+      "description": "Systematically underperforms for structurally complex systems such as barred spirals"
+    }
+  },
+  "regime_classification": {
+    "threshold_L_proxy": {
+      "value": 0.15,
+      "description": "Default boundary between flow-dominated and latent-significant regimes (dimensionless latent field proxy)"
+    },
+    "flow_dominated": {
+      "condition": "L_proxy <= 0.15",
+      "description": "EFC applies without correction; LSB and diffuse dwarfs"
+    },
+    "latent_significant": {
+      "condition": "L_proxy > 0.15",
+      "description": "EFC requires latent field correction; barred spirals and structurally complex systems"
+    }
+  },
+  "entropy_field": {
+    "S_range": [
+      0.0,
+      1.0
+    ],
+    "description": "Normalised entropy field; S=0 means all energy is in flow, S=1 means fully thermalised"
+  },
+  "related_work": {
+    "fire_simulations": "EFC-R regime-dependent pattern aligns with FIRE hydrodynamical simulations showing non-equilibrium effects in dwarf galaxy evolution",
+    "classical_references": [
+      "Rubin & Ford 1970",
+      "Bosma 1981",
+      "de Blok 2010",
+      "Oman et al. 2015"
+    ]
+  }
+}

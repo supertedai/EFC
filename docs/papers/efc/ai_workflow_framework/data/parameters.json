@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "paper_title": "AI Workflow Framework \u2014 Energy-Flow Cosmology",
+    "version": "1.2 \u2014 Final DOI Release",
+    "author": "M. Magnusson",
+    "doi": "10.6084/m9.figshare.30636863"
+  },
+  "core_mechanisms": {
+    "QA": {
+      "name": "Question Architecture",
+      "description": "Structured method converting scientific intent into machine-readable question objects",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Formalizing scientific intent"
+    },
+    "EN": {
+      "name": "Entropy Navigation",
+      "description": "Navigating high-entropy information landscapes using uncertainty signals and divergence metrics",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Entropy-based novelty search"
+    },
+    "RS": {
+      "name": "Reflective Scaffolding",
+      "description": "Structural verification grounding AI reflection in external formal systems",
+      "alignment": "Medium-High",
+      "alignment_score": 0.75,
+      "unique_contribution": "External causal grounding"
+    },
+    "SR": {
+      "name": "Strict Separation of Roles",
+      "description": "Governance mechanism ensuring humans retain sole interpretive authority",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Accountability and governance model"
+    }
+  },
+  "roles": {
+    "HUMAN": "Conceptual direction, theoretical framing, question architecture, interpretation, final validation",
+    "AI": "Formal drafting, symbolic structuring, documentation support, reflective scaffolding, uncertainty-driven exploration",
+    "SYSTEM": "Version control, schema validation, build pipelines, metadata, machine-readable structure"
+  },
+  "risks": {
+    "hallucination": {
+      "description": "AI generating plausible but incorrect content",
+      "default_prior": 0.25
+    },
+    "algorithmic_bias": {
+      "description": "Systematic bias in AI outputs",
+      "default_prior": 0.25
+    },
+    "over_reliance": {
+      "description": "Excessive trust in AI without verification",
+      "default_prior": 0.25
+    },
+    "incomplete_causal_grounding": {
+      "description": "AI output lacking proper causal foundation",
+      "default_prior": 0.25
+    }
+  },
+  "thresholds": {
+    "qa_fidelity_minimum": 0.7,
+    "risk_aggregate_maximum": 0.5,
+    "rs_tolerance_default": 0.1,
+    "en_entropy_threshold_default": 0.5
+  },
+  "fair_alignment": {
+    "findable": true,
+    "accessible": true,
+    "interoperable": true,
+    "reusable": true
+  },
+  "traceability_requirements": [
+    "full provenance of AI-assisted content",
+    "version-controlled reflective history",
+    "checksum-verified artifacts",
+    "machine-readable metadata"
+  ],
+  "interaction_loop_stages": [
+    "HUMAN \u2014 conceptual framing, scientific intent, question architecture",
+    "AI \u2014 uncertainty exploration, entropy scanning, reflective scaffolding",
+    "SYSTEM \u2014 schema validation, pipelines, reproducible documentation",
+    "HUMAN VALIDATION GATE \u2014 final approval"
+  ],
+  "number_of_core_mechanisms": 4,
+  "number_of_identified_risks": 4,
+  "number_of_roles": 3
+}

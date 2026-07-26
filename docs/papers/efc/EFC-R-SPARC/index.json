@@ -1,10 +1,106 @@
 {
-  "name": "EFC-R-SPARC",
-  "type": "EFC-Paper",
-  "created": "2026-01-06T22:22:41.360794",
-  "collection": "efc",
-  "document_id": "f8540743-701a-4f12-81cb-d27346805fd2",
-  "chunks": 0,
+  "$schema": "./schema.json",
+  "id": "EFC-R-SPARC",
+  "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+  "description": "A pilot-scale analysis of Energy-Flow Cosmology (EFC) applied to 20 SPARC galaxies, demonstrating regime-dependent validity where EFC achieves 100% success for LSB and diffuse dwarf galaxies but systematically underperforms for structurally complex systems like barred spirals. Introduces the EFC-R framework with the decomposition E_total = E_flow + E_latent as a domain-of-validity layer for EFC.",
+  "version": "1.0",
+  "date": "2026-01-06",
+  "doi": "10.6084/m9.figshare.31007248",
+  "keywords": [
+    "Energy-Flow Cosmology",
+    "dark matter alternatives",
+    "galaxy rotation curves",
+    "SPARC",
+    "regime theory",
+    "non-equilibrium dynamics",
+    "low surface brightness galaxies",
+    "entropy gradient",
+    "latent field",
+    "EFC-R framework",
+    "model comparison",
+    "AIC"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Energy-Flow Cosmology Initiative, Norway"
+  },
+  "core_equations": {
+    "energy_flow_field": {
+      "latex": "E_f = \\rho(1 - S)",
+      "description": "Effective energy field governing circular velocities, where \u03c1 is local energy density and S \u2208 [0,1] is a normalized entropy field"
+    },
+    "circular_velocity": {
+      "latex": "V_{\\text{rot}}^2(r) = r \\cdot \\frac{\\partial \\Phi_e}{\\partial r}",
+      "description": "Circular velocity prediction from the energy-flow potential \u03a6_e"
+    },
+    "delta_aic": {
+      "latex": "\\Delta\\text{AIC} = \\text{AIC}_{\\text{EFC}} - \\text{AIC}_{\\Lambda\\text{CDM}}",
+      "description": "Model comparison metric; \u0394AIC < \u22122 means EFC significantly preferred, > +2 means \u039bCDM preferred"
+    },
+    "energy_decomposition": {
+      "latex": "E_{\\text{total}} = E_{\\text{flow}} + E_{\\text{latent}}",
+      "description": "EFC-R regime decomposition separating flow-dominated energy from latent structural energy in complex systems"
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC achieves 100% success rate for LSB and diffuse dwarf galaxies but 0% for barred/disturbed spirals, with structural complexity (latent field proxy) correlating with EFC performance at Spearman \u03c1 = 0.705, p = 0.0005.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "entropy_gradient_nabla_S",
+      "energy_flow_amplitude_A_Ef",
+      "entropy_scale_radius_r_entropy",
+      "power_law_index_alpha"
+    ],
+    "datasets_used": [
+      "SPARC (Lelli et al. 2016) \u2014 20 galaxies"
+    ],
+    "efc_success_rate": "16/20 (80%) EFC competitive or preferred (\u0394AIC \u2264 2)",
+    "efc_mean_chi2_red": 26.2,
+    "lcdm_mean_chi2_red": 69.6,
+    "mean_entropy_gradient": "(8.20 \u00b1 2.44) \u00d7 10\u207b\u00b2 kpc\u207b\u00b9",
+    "lsb_success_rate": "5/5 (100%)",
+    "dwarf_success_rate": "4/5 (80%)",
+    "spiral_success_rate": "6/8 (75%)",
+    "barred_success_rate": "0/2 (0%)",
+    "spearman_rho": 0.705,
+    "spearman_p": 0.0005,
+    "verdict": "PASS"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "EFC will achieve \u226590% success rate (\u0394AIC \u2264 2 vs \u039bCDM) for LSB galaxies in a larger independent SPARC sample (N \u2265 50 LSB galaxies)",
+      "falsifiable_by": "Applying EFC fitting to \u226550 LSB galaxies from SPARC and finding success rate < 90%"
+    },
+    {
+      "id": "P2",
+      "statement": "The correlation between the latent field proxy L and EFC residuals will remain statistically significant (p < 0.01) in the full SPARC sample (N \u2248 175)",
+      "falsifiable_by": "Full SPARC analysis showing Spearman p \u2265 0.01 for L vs EFC performance"
+    },
+    {
+      "id": "P3",
+      "statement": "EFC will systematically fail for barred spirals and morphologically disturbed galaxies, with \u0394AIC > +2 for \u226580% of such systems",
+      "falsifiable_by": "Finding that EFC succeeds (\u0394AIC \u2264 2) for >20% of barred/disturbed galaxies in a larger sample"
+    }
+  ],
+  "kill_criteria": [
+    "KC1: EFC fails to achieve \u0394AIC \u2264 2 for \u226570% of LSB galaxies in an independent sample of N \u2265 50 LSB galaxies from SPARC, contradicting the claimed regime-dependent success",
+    "KC2: The Spearman correlation between structural complexity (latent field proxy L) and EFC performance drops below \u03c1 = 0.3 or becomes statistically insignificant (p > 0.05) in the full SPARC sample",
+    "KC3: EFC mean \u03c7\u00b2_red exceeds \u039bCDM mean \u03c7\u00b2_red across all morphological categories in a full SPARC analysis, eliminating any regime advantage",
+    "KC4: The entropy gradient parameter \u2207S is unconstrained or varies by more than two orders of magnitude within a single morphological class, indicating the parameter is non-physical",
+    "KC5: Independent analysis shows that the latent field proxy L has no predictive power for distinguishing EFC-success vs EFC-failure galaxies in a blinded test"
+  ],
+  "tier": "T2",
+  "paper_type": "empirical_test",
+  "related_packages": [
+    {
+      "id": "efc-r-sparc-figshare",
+      "doi": "10.6084/m9.figshare.31007248",
+      "role": "Primary Figshare preprint deposit"
+    }
+  ],
   "files": [
     "EFC-R-SPARC.pdf",
     "EFC-R-SPARC.jsonld",
@@ -13,6 +109,11 @@
     "schema.json",
     "citations.bib"
   ],
-  "id": "EFC-R-SPARC",
-  "title": "EFC-R-SPARC"
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.31007248",
+  "document_id": "f8540743-701a-4f12-81cb-d27346805fd2",
+  "collection": "efc",
+  "created": "2026-01-06T22:22:41.360794",
+  "name": "EFC-R-SPARC",
+  "type": "EFC-Paper",
+  "paper_type_inferred": true
 }

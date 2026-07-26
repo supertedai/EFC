@@ -1,43 +1,26 @@
----
-title: EFC — Master Specification (v1 Archive)
-type: foundational
-date: '2026-01-04'
-layer: THEORY
-tags:
-- archive
-- auth
-- cosmology
-- efc
-- energy
-- flow
-- framework
-- master
-source_path: docs/papers/efc/efc_master_v1/README.md
+# EFC — Master Specification v1.1
+
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.30630500](https://doi.org/10.6084/m9.figshare.30630500)
+- **Version:** 1.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-16
+- **License:** CC-BY-4.0
+
 ---
 
-# EFC — Master Specification (v1 Archive)
+## Overview
 
-This directory contains the archived v1 master specification of the
-Energy-Flow Cosmology framework.  
-This version represents the earliest complete formulation of the theory,
-including initial field definitions, conceptual structure, and primary
-thermodynamic foundations.
+Canonical master specification for Energy-Flow Cosmology (EFC), defining the formal structure, notation, and baseline equations for three tightly coupled base layers: EFC-S (structural/halo layer), EFC-D (energy-flow dynamics), and EFC-C0 (entropy–information capacity mapping). The document provides a compact, mathematically explicit core that higher-level models, simulations, and epistemic layers can reference without ambiguity.
 
-The v1 archive is preserved for:
-- historical reference  
-- reproducibility  
-- validation of theory development  
-- comparison with v2.x and later specifications  
+## Key Result
 
-All newer work supersedes this version, but it remains an essential part
-of the EFC development record.
+EFC establishes a self-consistent formal framework where galaxy dynamics, expansion history, and information capacity all derive from a single energy-flow potential Ef = ρ(1−S) without invoking dark matter or dark energy as separate components.
 
-**Included files**
-- PDF (archived authoritative version)
-- Markdown (mirrors PDF)
-- JSON-LD metadata
-- Local schema
-- Machine index
-- Citations file
+## Sealed Predictions
 
-Version: 1.0 (archived)
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Galaxy rotation curves can be reproduced from the energy-flow potential Ef = ρ(1−S) using joint density-entropy halo profiles without any dark-matter component. | Systematic failure to fit observed rotation curves across diverse galaxy morphologies using EFC-S/D halo profiles. |
+| P2 | The effective expansion history H(z) derived from EFC energy-flow and entropy evolution reproduces observed cosmic expansion without a cosmological constant Λ. | EFC-derived H(z) deviating from observed BAO + SNIa expansion history beyond acceptable statistical thresholds. |

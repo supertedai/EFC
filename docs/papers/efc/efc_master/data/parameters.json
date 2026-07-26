@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "title": "EFC \u2014 Master Specification",
+    "author": "Morten Magnusson",
+    "date": "2025-11-15",
+    "description": "Numerical parameters and constants for the Energy-Flow Cosmology Master Specification"
+  },
+  "constants": {
+    "c0": {
+      "value": 299792.458,
+      "unit": "km/s",
+      "description": "Base (vacuum) speed of light"
+    },
+    "A_Phi": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Effective-potential amplitude (normalised baseline)"
+    },
+    "a_edge": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Edge-coupling coefficient in c(S) = c0 (1 + a_edge x^2)"
+    }
+  },
+  "entropy_parameters": {
+    "S0": {
+      "value": 0.0,
+      "description": "Low-entropy endpoint (focusing regime)"
+    },
+    "S1": {
+      "value": 1.0,
+      "description": "High-entropy endpoint (defocusing regime)"
+    },
+    "S_mid": {
+      "value": 0.5,
+      "description": "Mid-entropy transition zone, (S0+S1)/2"
+    }
+  },
+  "model_parameters": {
+    "beta": {
+      "value": 1.0,
+      "description": "Entropy-coupling exponent in Phi = A_Phi Ef (1 + S^beta). Baseline is linear (beta=1)."
+    },
+    "proportionality_Ef": {
+      "value": 1.0,
+      "description": "Proportionality constant in Ef = -k nabla S (default k=1)"
+    },
+    "stability_band_half_width": {
+      "value": 0.1,
+      "unit": "fraction of (S1-S0)",
+      "description": "Half-width of the transition/stability band around S_mid"
+    }
+  },
+  "equations": {
+    "energy_flow_field": "Ef = -k * grad(S)",
+    "effective_potential_general": "Phi(Ef, S) = A_Phi * Ef * (1 + S^beta)",
+    "effective_potential_baseline": "Phi(Ef, S) = A_Phi * Ef * (1 + S)",
+    "expansion_rate": "H(Ef, S) = sqrt(|Ef|) * (1 + S)",
+    "rotation_velocity": "v(r) = sqrt(r * dPhi/dr)",
+    "effective_light_speed": "c(S) = c0 * (1 + a_edge * x(S)^2)",
+    "normalised_entropy_coord": "x(S) = 2*(S - S0)/(S1 - S0) - 1"
+  },
+  "derived_values": {
+    "c_min": {
+      "value": 299792.458,
+      "unit": "km/s",
+      "description": "Minimum effective light speed at S_mid (x=0), equals c0"
+    },
+    "c_at_endpoints": {
+      "value": 599584.916,
+      "unit": "km/s",
+      "description": "c(S) at S=S0 or S=S1 (x=\u00b11), equals c0*(1+a_edge) with a_edge=1"
+    }
+  },
+  "structural_regimes": [
+    {
+      "name": "focusing",
+      "entropy_range": "S < S_mid - 0.1*(S1-S0)",
+      "description": "Low-entropy regime: energy structures focus"
+    },
+    {
+      "name": "transition",
+      "entropy_range": "S_mid - 0.1*(S1-S0) <= S <= S_mid + 0.1*(S1-S0)",
+      "description": "Stability band; c(S) near minimum; persistent halo-like structures"
+    },
+    {
+      "name": "defocusing",
+      "entropy_range": "S > S_mid + 0.1*(S1-S0)",
+      "description": "High-entropy regime: structures disperse"
+    }
+  ]
+}

@@ -1,40 +1,19 @@
----
-title: AI Workflow Framework — Energy-Flow Cosmology
-type: foundational
-date: '2026-01-04'
-layer: THEORY
-tags:
-- auth
-- cosmology
-- energy
-- flow
-- framework
-- integration
-- meta
-- schema
-source_path: docs/papers/efc/ai_workflow_framework/README.md
+# AI-Augmented Scientific Workflow Framework
+
+## AI-Friendly Package
+
+- **DOI:** [10.6084/m9.figshare.30636863](https://doi.org/10.6084/m9.figshare.30636863)
+- **Version:** 1.2
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-07-01
+- **License:** CC-BY-4.0
+
 ---
 
-# AI Workflow Framework — Energy-Flow Cosmology
+## Overview
 
-This directory contains the paper describing the AI-augmented workflow
-framework used in the Energy-Flow Cosmology project.  
-It outlines the roles, boundaries, data flow, validation structure,
-versioning, and machine-integration steps that define how AI contributes
-to structuring, stabilising, and documenting the scientific process.
+Presents a structured framework for integrating Large Language Models into scientific research workflows while maintaining human control, accountability, and scientific integrity. Formalizes four core mechanisms—Question Architecture, Entropy Navigation, Reflective Scaffolding, and Strict Separation of Roles—to support reproducible, transparent, and traceable research.
 
-The framework separates:
-- human theoretical reasoning  
-- AI structural assistance  
-- reproducible computational workflow  
-- semantic and metadata generation  
+## Key Result
 
-**Included files**
-- PDF (authoritative)
-- Markdown (readable)
-- JSON-LD metadata
-- Local schema
-- Machine index
-- Citations file
-
-Version: 1.0
+Formalizes a four-mechanism framework (QA, EN, RS, SR) that enables AI-augmented scientific research while preserving full human epistemic authority, reproducibility, and FAIR-aligned traceability.
