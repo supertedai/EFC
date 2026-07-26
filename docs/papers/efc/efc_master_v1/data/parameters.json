@@ -1,0 +1,107 @@
+{
+  "_description": "Key numerical parameters, constants, and definitions from EFC Master Specification v1.1",
+  "paper_metadata": {
+    "title": "Energy-Flow Cosmology (EFC) Master Specification v1.1",
+    "author": "M. Magnusson",
+    "date": "2025-11-16",
+    "doi": "10.6084/m9.figshare.30630500",
+    "version": "v1.1"
+  },
+  "layers": {
+    "EFC-S": "Structure / Halo Layer",
+    "EFC-D": "Energy-Flow Dynamics",
+    "EFC-C0": "Entropy\u2013Cognition Base Layer"
+  },
+  "core_equation": {
+    "name": "Local energy-flow potential",
+    "latex": "E_f(x) = rho(x) * (1 - S(x))",
+    "equation_number": 1,
+    "description": "Couples density and entropy into a single field"
+  },
+  "halo_profile_parameters": {
+    "rho0": {
+      "value": 1.0,
+      "description": "Central density scale (normalised)",
+      "units": "arbitrary"
+    },
+    "rs": {
+      "value": 1.0,
+      "description": "Halo scale radius",
+      "units": "arbitrary"
+    },
+    "alpha_h": {
+      "value": 1.0,
+      "description": "Halo inner slope (NFW default)"
+    },
+    "beta_h": {
+      "value": 3.0,
+      "description": "Halo outer slope (NFW default)"
+    }
+  },
+  "entropy_profile_parameters": {
+    "S0": {
+      "value": 0.01,
+      "description": "Central (low) entropy value \u2014 low-entropy anchor"
+    },
+    "S_inf": {
+      "value": 1.0,
+      "description": "Asymptotic entropy at large radius (dimensionless, normalised)"
+    },
+    "r_s_entropy": {
+      "value": 1.0,
+      "description": "Entropy profile scale radius"
+    },
+    "gamma_s": {
+      "value": 2.0,
+      "description": "Entropy profile steepness parameter"
+    }
+  },
+  "dynamics_parameters": {
+    "G_eff": {
+      "value": 1.0,
+      "description": "Effective gravitational coupling constant (normalised)"
+    },
+    "H0": {
+      "value": 1.0,
+      "description": "Hubble constant today (normalised)"
+    },
+    "omega_ef": {
+      "value": 0.7,
+      "description": "Effective energy-flow density parameter"
+    }
+  },
+  "cognition_parameters": {
+    "C_info": {
+      "value": 1.0,
+      "description": "Information capacity proportionality constant"
+    }
+  },
+  "lcdm_reference": {
+    "Omega_m": {
+      "value": 0.3,
+      "description": "Matter density parameter for LCDM comparison"
+    },
+    "Omega_Lambda": {
+      "value": 0.7,
+      "description": "Dark energy density parameter for LCDM comparison"
+    }
+  },
+  "equations_summary": {
+    "Ef": "rho * (1 - S)",
+    "rho_h(r)": "rho0 / ((r/rs)^alpha * (1 + r/rs)^(beta - alpha))",
+    "S_h(r)": "S_inf - (S_inf - S0) / (1 + (r/rs)^gamma)",
+    "dEf_dt": "(1 - S) * drho_dt - rho * dS_dt",
+    "a_eff": "-G_eff * dEf/dr",
+    "H_efc(z)": "H0 * sqrt(omega_ef * (1+z)^3 + (1 - omega_ef))",
+    "I(S)": "C_info * rho * (1 - S)"
+  },
+  "figure_descriptions": {
+    "fig1": "Heatmap of Ef(rho, S) over (rho, S) plane",
+    "fig2": "Halo mass density profile rho_h(r)",
+    "fig3": "Halo entropy profile S_h(r)",
+    "fig4": "Rotation curves: EFC-like vs NFW-like",
+    "fig5": "Projected surface density Sigma(R)",
+    "fig6": "Expansion history H(z)/H0: EFC-like vs LCDM-like",
+    "fig7": "Information capacity I(S) proportional to (1-S)"
+  }
+}

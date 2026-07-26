@@ -1,0 +1,84 @@
+{
+  "_description": "Key numerical values from the AI-Augmented Scientific Workflow Framework v1.2 (Magnusson, DOI 10.6084/m9.figshare.30636863)",
+  "version": "1.2",
+  "doi": "10.6084/m9.figshare.30636863",
+  "core_mechanisms": [
+    "QA",
+    "EN",
+    "RS",
+    "SR"
+  ],
+  "alignment_scores_section8": {
+    "QA": {
+      "label": "High",
+      "numeric": 1.0,
+      "unique_contribution": "Formalizing scientific intent"
+    },
+    "EN": {
+      "label": "High",
+      "numeric": 1.0,
+      "unique_contribution": "Entropy-based novelty search"
+    },
+    "RS": {
+      "label": "Medium-High",
+      "numeric": 0.75,
+      "unique_contribution": "External causal grounding"
+    },
+    "SR": {
+      "label": "High",
+      "numeric": 1.0,
+      "unique_contribution": "Accountability and governance model"
+    }
+  },
+  "thresholds": {
+    "ENTROPY_HIGH_THRESHOLD": {
+      "value": 0.7,
+      "description": "Normalised Shannon entropy above which a landscape is deemed high-entropy"
+    },
+    "RS_PASS_THRESHOLD": {
+      "value": 0.6,
+      "description": "Minimum reflective-scaffolding composite score to pass verification"
+    },
+    "SR_GATE_THRESHOLD": {
+      "value": 0.8,
+      "description": "Minimum composite score for the human-validation gate to auto-pass"
+    },
+    "KL_NOVELTY_THRESHOLD": {
+      "value": 0.5,
+      "description": "KL divergence (nats) above which a signal is classified as novel"
+    }
+  },
+  "qa_weights": {
+    "testability": 0.3,
+    "specificity": 0.25,
+    "novelty": 0.25,
+    "entropy_exposure": 0.2
+  },
+  "rs_weights": {
+    "causal_grounding": 0.4,
+    "schema_compliance": 0.35,
+    "state_consistency": 0.25
+  },
+  "sr_gate_weights": {
+    "rs_score": 0.6,
+    "provenance_complete": 0.4
+  },
+  "roles": {
+    "Human": "Conceptual direction, theoretical framing, question architecture, interpretation, final validation",
+    "AI": "Formal drafting, symbolic structuring, documentation support, reflective scaffolding, uncertainty-driven exploration",
+    "System": "Version control, schema validation, build pipelines, metadata, machine-readable structure"
+  },
+  "risks": [
+    "hallucination",
+    "algorithmic bias",
+    "over-reliance",
+    "incomplete causal grounding"
+  ],
+  "principles": [
+    "FAIR data principles alignment",
+    "Full provenance of AI-assisted content",
+    "Version-controlled reflective history",
+    "Checksum-verified artifacts",
+    "Machine-readable metadata"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "paper_title": "EFC \u2014 Master Specification",
+    "author": "Morten Magnusson",
+    "date": "2025-11-15",
+    "description": "Key numerical values, parameters and constants from the Energy-Flow Cosmology Master Formal Specification."
+  },
+  "constants": {
+    "c0": {
+      "value": 299800000.0,
+      "unit": "m/s",
+      "description": "Underlying (vacuum) speed of light."
+    },
+    "A_Phi": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Amplitude constant for the effective potential \u03a6(Ef, S)."
+    },
+    "beta": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Entropy-coupling exponent in the generalised potential. \u03b2=1 is the linear baseline."
+    },
+    "a_edge": {
+      "value": 0.05,
+      "unit": "dimensionless",
+      "description": "Edge coefficient governing the entropy-dependent deviation of c(S) from c0."
+    }
+  },
+  "entropy_endpoints": {
+    "S0": {
+      "value": 0.0,
+      "description": "Low-entropy endpoint \u2013 focusing regime."
+    },
+    "S1": {
+      "value": 1.0,
+      "description": "High-entropy endpoint \u2013 defocusing regime."
+    },
+    "S_mid": {
+      "value": 0.5,
+      "description": "Mid-entropy value, (S0+S1)/2, natural transition zone."
+    }
+  },
+  "equations": {
+    "energy_flow_field": "Ef = -nabla S",
+    "effective_potential_linear": "Phi(Ef, S) = A_Phi * Ef * (1 + S)",
+    "effective_potential_general": "Phi(Ef, S) = A_Phi * Ef * (1 + S^beta)",
+    "expansion_rate": "H(Ef, S) = sqrt(|Ef|) * (1 + S)",
+    "rotation_velocity": "v(r) = sqrt(r * dPhi/dr)",
+    "effective_light_speed": "c(S) = c0 * (1 + a_edge * x(S)^2)",
+    "x_of_S": "x(S) = (S - S_mid) / ((S1 - S0) / 2)"
+  },
+  "derived_quantities": {
+    "c_min": {
+      "value": 299800000.0,
+      "unit": "m/s",
+      "description": "Minimum effective light speed at S=S_mid (x=0), equals c0."
+    },
+    "c_at_edges": {
+      "value": 314790000.0,
+      "unit": "m/s",
+      "description": "c(S) at S=S0 or S=S1, equals c0*(1+a_edge)."
+    }
+  },
+  "structural_regimes": {
+    "focusing": {
+      "S_range": [
+        0.0,
+        0.25
+      ],
+      "description": "Low-entropy regime with strong focusing / structure formation."
+    },
+    "transition": {
+      "S_range": [
+        0.25,
+        0.75
+      ],
+      "description": "Mid-entropy stability band where c(S) is minimal and persistent halo-like structures form."
+    },
+    "defocusing": {
+      "S_range": [
+        0.75,
+        1.0
+      ],
+      "description": "High-entropy regime with defocusing."
+    }
+  }
+}

@@ -1,17 +1,108 @@
 {
+  "$schema": "./schema.json",
   "id": "efc_master",
-  "title": "EFC — Master Specification",
-  "path": "docs/papers/efc/efc_master",
-  "pdf": "efc_master.pdf",
-  "md": "efc_master.md",
+  "title": "EFC \u2014 Master Formal Specification",
+  "description": "The master formal specification of Energy-Flow Cosmology (EFC), defining the complete theoretical framework comprising the dynamical sector (EFC-D) and structural sector (EFC-S). It derives expansion, rotation curves, lensing, and structure formation from entropy-driven energy flow without invoking dark matter or dark energy, and specifies the entropy-dependent effective light speed coupling all observables.",
+  "version": "1.0",
+  "date": "2025-11-15",
+  "doi": "",
   "keywords": [
     "EFC",
     "Master Specification",
-    "Unified Theory",
-    "Field Equations",
-    "Thermodynamics"
+    "Energy-Flow Dynamics",
+    "Entropy Field",
+    "Effective Potential",
+    "Rotation Curves",
+    "Expansion Rate",
+    "Light Propagation",
+    "Structure Formation",
+    "Thermodynamic Cosmology",
+    "Variable Speed of Light",
+    "Unified Theory"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_field": {
+      "latex": "E_f \\propto -\\nabla S",
+      "description": "The scalar energy-flow field aligns with the negative gradient of the entropy field S, encoding energy transport along entropy-driven channels."
+    },
+    "effective_potential": {
+      "latex": "\\Phi(E_f, S) = A_\\Phi\\, E_f\\,(1 + S^\\beta)",
+      "description": "The effective potential coupling energy flow and entropy level, with baseline linear case \u03b2=1, building the gravitational-like potential landscape."
+    },
+    "expansion_rate": {
+      "latex": "H(E_f, S) = \\sqrt{|E_f|}\\,(1 + S)",
+      "description": "Effective expansion rate derived from energy-flow magnitude and thermodynamic modulation; late-time acceleration emerges without dark energy."
+    },
+    "rotation_velocity": {
+      "latex": "v(r) = \\sqrt{r\\,\\frac{\\partial \\Phi}{\\partial r}}",
+      "description": "Effective circular velocity from the potential gradient; flat rotation curves emerge as thermodynamic signatures without dark matter."
+    },
+    "effective_light_speed": {
+      "latex": "c(S) = c_0\\left(1 + a_{\\mathrm{edge}}\\, x(S)^2\\right)",
+      "description": "Entropy-dependent effective speed of light where x(S) = (S - S_mid)/(\u0394S/2), creating focusing at low entropy and defocusing at high entropy."
+    },
+    "light_travel_time": {
+      "latex": "t_{\\mathrm{obs}} = \\int_\\gamma \\frac{dl}{c(S(l))}",
+      "description": "Observed light-travel time along a photon path \u03b3, modulated by the entropy-dependent speed of light c(S)."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC provides a unified thermodynamic framework where expansion, rotation curves, lensing, and structure formation all emerge from a single entropy-driven energy-flow field without dark matter or dark energy.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_Phi",
+      "beta",
+      "a_edge",
+      "s0",
+      "s1",
+      "S_mid",
+      "E_f"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Mid-entropy regions (S \u2248 S_mid) produce the slowest light propagation and longest time delays, creating a measurable stability band for halo-like structures.",
+      "falsifiable_by": "Observations showing no correlation between entropy environment and lensing time delays or halo persistence."
+    },
+    {
+      "id": "P2",
+      "statement": "Flat galaxy rotation curves emerge from entropy-gradient-driven potential \u03a6(E_f, S) without requiring non-baryonic dark matter halos.",
+      "falsifiable_by": "Rotation curve data that cannot be fit by the EFC potential form for any physical parameter values."
+    },
+    {
+      "id": "P3",
+      "statement": "Late-time cosmic acceleration arises naturally from evolution of (E_f, S) without an external dark-energy component.",
+      "falsifiable_by": "Supernova or BAO data requiring a cosmological constant term even after full EFC (E_f, S) fitting."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Rotation curves of galaxies cannot be reproduced by the EFC potential gradient \u2202\u03a6/\u2202r for any physically motivated entropy profile S(r) and energy-flow field E_f(r).",
+    "KC2: The entropy-dependent light speed c(S) = c0(1 + a_edge x\u00b2) is ruled out by precision measurements of the constancy of c across environments with differing entropy levels.",
+    "KC3: Observed expansion history (H(z) from SNIa, BAO, CMB) cannot be fit by H = \u221a|E_f|(1+S) for any monotonic entropy evolution S(z).",
+    "KC4: Gravitational lensing profiles show no dual-lens (focusing/defocusing) asymmetry consistent with the s0\u2013s1 entropy endpoint structure.",
+    "KC5: Laboratory or astrophysical experiments demonstrate that the speed of light shows zero dependence on local thermodynamic entropy density, ruling out the c(S) mechanism."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "efc_master.pdf",
+    "md": "efc_master.md"
+  },
+  "figshare_url": "",
+  "path": "docs/papers/efc/efc_master",
+  "pdf": "efc_master.pdf",
+  "md": "efc_master.md",
   "layer": "docs",
   "type": "paper",
-  "version": "1.0"
+  "paper_type_inferred": true
 }
