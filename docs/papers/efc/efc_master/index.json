@@ -1,17 +1,107 @@
 {
+  "$schema": "./schema.json",
   "id": "efc_master",
-  "title": "EFC — Master Specification",
-  "path": "docs/papers/efc/efc_master",
-  "pdf": "efc_master.pdf",
-  "md": "efc_master.md",
+  "title": "EFC \u2014 Master Formal Specification",
+  "description": "The master specification for Energy-Flow Cosmology (EFC), defining the complete theoretical framework comprising a dynamical sector (EFC-D) and a structural sector (EFC-S). It derives expansion, rotation curves, lensing, and structure formation from a scalar energy-flow field coupled to an entropy field, eliminating the need for dark matter and dark energy as separate components.",
+  "version": "1.0",
+  "date": "2025-11-15",
+  "doi": "",
   "keywords": [
     "EFC",
     "Master Specification",
-    "Unified Theory",
-    "Field Equations",
-    "Thermodynamics"
+    "Energy-Flow Field",
+    "Entropy Field",
+    "Effective Potential",
+    "Rotation Curves",
+    "Expansion Rate",
+    "Variable Speed of Light",
+    "Structure Formation",
+    "Thermodynamic Cosmology",
+    "Dark Matter Alternative",
+    "Unified Framework"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_field": {
+      "latex": "E_f \\propto -\\nabla S",
+      "description": "The scalar energy-flow field aligns to leading order with the negative entropy gradient, encoding energy transport along entropy-driven channels."
+    },
+    "effective_potential": {
+      "latex": "\\Phi(E_f, S) = A_\\Phi\\, E_f\\,(1 + S^\\beta)",
+      "description": "Effective potential coupling energy flow and entropy, with amplitude A_\u03a6 and coupling exponent \u03b2 (baseline \u03b2=1)."
+    },
+    "expansion_rate": {
+      "latex": "H(E_f, S) = \\sqrt{|E_f|}\\,(1 + S)",
+      "description": "Effective expansion rate derived from the magnitude of energy flow and thermodynamic modulation by entropy, producing late-time acceleration without dark energy."
+    },
+    "rotation_velocity": {
+      "latex": "v(r) = \\sqrt{r\\,\\frac{\\partial \\Phi}{\\partial r}}",
+      "description": "Circular velocity from the gradient of the effective potential; flat rotation curves emerge from the coupled entropy-energy landscape without dark matter."
+    },
+    "effective_light_speed": {
+      "latex": "c(S) = c_0\\left[1 + a_{\\mathrm{edge}}\\,x(S)^2\\right]",
+      "description": "Entropy-dependent effective speed of light, with normalized entropy coordinate x(S) = (S \u2212 S_mid)/(\u0394S/2), producing focusing at low entropy and defocusing at high entropy."
+    },
+    "light_travel_time": {
+      "latex": "t_{\\mathrm{obs}} = \\int_\\gamma \\frac{dl}{c(S(l))}",
+      "description": "Observed light-travel time integrated along the photon path through the variable-c(S) medium."
+    }
+  },
+  "key_results": {
+    "main_finding": "A unified thermodynamic framework in which expansion, rotation curves, lensing, and structure formation all emerge from a scalar energy-flow field Ef coupled to an entropy field S, without invoking dark matter or dark energy.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "A_Phi",
+      "beta",
+      "a_edge",
+      "S0",
+      "S1",
+      "S_mid"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [
+    {
+      "id": "P1",
+      "statement": "Mid-entropy regions (S \u2248 S_mid) produce maximum light-travel-time delays due to c(S) reaching its minimum there, generating a distinctive delay-versus-entropy signature in lensing time delays.",
+      "falsifiable_by": "Strong-lensing time-delay measurements showing no correlation between inferred entropy environment and delay residuals."
+    },
+    {
+      "id": "P2",
+      "statement": "Flat rotation curves emerge from the entropy-flow potential gradient without a dark-matter halo; the predicted v(r) profile tracks \u2202\u03a6/\u2202r shaped by the local entropy landscape.",
+      "falsifiable_by": "Galaxy rotation-curve fits requiring an additional mass component beyond the EFC entropy-potential prediction at >5\u03c3 across a representative sample."
+    },
+    {
+      "id": "P3",
+      "statement": "Late-time cosmic acceleration arises from evolution of (Ef, S) without a cosmological constant, predicting a specific H(z) trajectory tied to entropy evolution.",
+      "falsifiable_by": "Precision H(z) measurements (e.g., DESI BAO) inconsistent with any realizable (Ef, S) trajectory at >5\u03c3."
+    }
+  ],
+  "kill_criteria": [
+    "KC1: Rotation-curve data across diverse galaxy morphologies cannot be fit by the entropy-potential gradient \u2202\u03a6/\u2202r without introducing an additional dark-matter-like component (>5\u03c3 residuals in a representative sample).",
+    "KC2: Precision H(z) measurements (BAO, SNe Ia) are inconsistent with any physical trajectory of (Ef, S) in the EFC expansion-rate formula at >5\u03c3.",
+    "KC3: Strong-lensing time delays show no dependence on the inferred entropy environment, contradicting the c(S) variation prediction.",
+    "KC4: Laboratory or astrophysical bounds exclude any detectable variation of the effective speed of light c(S) at the level required by EFC's a_edge parameter.",
+    "KC5: CMB power-spectrum features (acoustic peaks, damping tail) cannot be reproduced by the EFC entropy-field framework without reintroducing standard \u039bCDM components."
+  ],
+  "tier": "T3",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "efc_master.pdf",
+    "md": "efc_master.md"
+  },
+  "figshare_url": "",
+  "path": "docs/papers/efc/efc_master",
+  "pdf": "efc_master.pdf",
+  "md": "efc_master.md",
   "layer": "docs",
   "type": "paper",
-  "version": "1.0"
+  "paper_type_inferred": true
 }

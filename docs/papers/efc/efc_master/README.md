@@ -1,46 +1,26 @@
----
-title: EFC — Master Specification
-type: foundational
-date: '2026-01-04'
-layer: THEORY
-tags:
-- architecture
-- auth
-- cosmology
-- efc
-- energy
-- entropy
-- flow
-- framework
-source_path: docs/papers/efc/efc_master/README.md
+# EFC — Master Formal Specification
+
+## AI-Friendly Package
+
+- **Version:** 1.0
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-15
+- **License:** CC-BY-4.0
+
 ---
 
-# EFC — Master Specification
+## Overview
 
-This directory contains the master specification of the Energy-Flow
-Cosmology framework.  
-It is the canonical, authoritative, and complete reference for the
-theory.  
-All terms, definitions, mappings, field interactions, equations,
-interfaces, and structural logic originate here.
+The master specification for Energy-Flow Cosmology (EFC), defining the complete theoretical framework comprising a dynamical sector (EFC-D) and a structural sector (EFC-S). It derives expansion, rotation curves, lensing, and structure formation from a scalar energy-flow field coupled to an entropy field, eliminating the need for dark matter and dark energy as separate components.
 
-The master spec integrates:
-- thermodynamic foundations  
-- entropy, grid, and energy-flow fields  
-- spacetime behaviour  
-- dynamic laws  
-- structural architecture  
-- cognitive and informational layers where relevant  
-- cross-field consistency rules  
+## Key Result
 
-All other EFC papers, modules, and tools reference this document.
+A unified thermodynamic framework in which expansion, rotation curves, lensing, and structure formation all emerge from a scalar energy-flow field Ef coupled to an entropy field S, without invoking dark matter or dark energy.
 
-**Included files**
-- PDF (authoritative master)
-- Markdown (mirrors PDF)
-- JSON-LD metadata for semantic systems
-- Local schema for validation
-- Machine index for automated harvesters
-- Citations file
+## Sealed Predictions
 
-Version: 1.0
+| ID | Prediction | Falsifiable by |
+|---|---|---|
+| P1 | Mid-entropy regions (S ≈ S_mid) produce maximum light-travel-time delays due to c(S) reaching its minimum there, generating a distinctive delay-versus-entropy signature in lensing time delays. | Strong-lensing time-delay measurements showing no correlation between inferred entropy environment and delay residuals. |
+| P2 | Flat rotation curves emerge from the entropy-flow potential gradient without a dark-matter halo; the predicted v(r) profile tracks ∂Φ/∂r shaped by the local entropy landscape. | Galaxy rotation-curve fits requiring an additional mass component beyond the EFC entropy-potential prediction at >5σ across a representative sample. |
+| P3 | Late-time cosmic acceleration arises from evolution of (Ef, S) without a cosmological constant, predicting a specific H(z) trajectory tied to entropy evolution. | Precision H(z) measurements (e.g., DESI BAO) inconsistent with any realizable (Ef, S) trajectory at >5σ. |

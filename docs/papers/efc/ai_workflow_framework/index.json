@@ -1,17 +1,63 @@
 {
+  "$schema": "./schema.json",
   "id": "ai_workflow_framework",
-  "title": "AI Workflow Framework — Energy-Flow Cosmology",
-  "path": "docs/papers/efc/ai_workflow_framework",
-  "pdf": "ai_workflow_framework.pdf",
-  "md": "ai_workflow_framework.md",
+  "title": "AI-Augmented Scientific Workflow Framework",
+  "description": "Presents a structured framework for integrating Large Language Models into scientific research workflows while maintaining full human control, accountability, and scientific integrity. Formalizes four core mechanisms\u2014Question Architecture, Entropy Navigation, Reflective Scaffolding, and Strict Separation of Roles\u2014to support reproducible, transparent, and traceable research.",
+  "version": "1.2",
+  "date": "2025-07-01",
+  "doi": "10.6084/m9.figshare.30636863",
   "keywords": [
     "AI Workflow",
     "Scientific Infrastructure",
     "LLM Integration",
     "Open Science",
-    "Metadata Architecture"
+    "Metadata Architecture",
+    "Question Architecture",
+    "Entropy Navigation",
+    "Reflective Scaffolding",
+    "Separation of Roles",
+    "FAIR Principles",
+    "Reproducibility",
+    "Human-AI Interaction"
   ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {},
+  "key_results": {
+    "main_finding": "Formalizes a four-mechanism AI-assisted scientific workflow (QA, EN, RS, SR) that enables research acceleration without compromising scientific integrity, positioning question architecture and entropy navigation as central modern research competencies.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "Question Architecture (QA)",
+      "Entropy Navigation (EN)",
+      "Reflective Scaffolding (RS)",
+      "Strict Separation of Roles (SR)"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: Framework fails to maintain clear provenance\u2014if AI-generated content cannot be reliably distinguished from human-authored content in practice, the traceability guarantee is violated.",
+    "KC2: Reflective Scaffolding (RS) cannot be grounded in external formal systems (causal models, state machines, schema constraints), rendering the verification layer ineffective.",
+    "KC3: The Human Validation Gate is shown to be systematically bypassed or rendered ineffective in real workflows, undermining the Strict Separation of Roles (SR) mechanism.",
+    "KC4: Entropy Navigation (EN) produces no measurable improvement in novelty detection or meaningful signal extraction compared to unstructured exploration in controlled workflow comparisons."
+  ],
+  "tier": "N/A",
+  "paper_type": "methodology",
+  "related_packages": [],
+  "files": {
+    "pdf": "ai_workflow_framework.pdf",
+    "readme": "README.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30636863",
+  "path": "docs/papers/efc/ai_workflow_framework",
+  "pdf": "ai_workflow_framework.pdf",
+  "md": "ai_workflow_framework.md",
   "layer": "docs",
   "type": "paper",
-  "version": "1.0"
+  "paper_type_inferred": true
 }

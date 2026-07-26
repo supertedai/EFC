@@ -1,0 +1,108 @@
+{
+  "_meta": {
+    "paper": "AI Workflow Framework \u2014 Energy-Flow Cosmology",
+    "version": "1.2 \u2014 Final DOI Release",
+    "author": "M. Magnusson",
+    "doi": "10.6084/m9.figshare.30636863"
+  },
+  "core_mechanisms": {
+    "QA": {
+      "full_name": "Question Architecture",
+      "description": "Structured method for generating, expanding and formalizing scientific questions into machine-readable objects.",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Formalizing scientific intent"
+    },
+    "EN": {
+      "full_name": "Entropy Navigation",
+      "description": "Method for navigating high-entropy information landscapes using uncertainty signals and divergence metrics.",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Entropy-based novelty search"
+    },
+    "RS": {
+      "full_name": "Reflective Scaffolding",
+      "description": "Structural verification layer grounding AI reflection in external formal systems (causal models, state machines, schema constraints).",
+      "alignment": "Medium-High",
+      "alignment_score": 0.75,
+      "unique_contribution": "External causal grounding"
+    },
+    "SR": {
+      "full_name": "Strict Separation of Roles",
+      "description": "Governance mechanism ensuring humans retain sole interpretive authority and liability for conclusions.",
+      "alignment": "High",
+      "alignment_score": 1.0,
+      "unique_contribution": "Accountability and governance model"
+    }
+  },
+  "roles": {
+    "HUMAN": [
+      "Conceptual direction",
+      "Theoretical framing",
+      "Question architecture",
+      "Interpretation",
+      "Final validation"
+    ],
+    "AI": [
+      "Formal drafting",
+      "Symbolic structuring",
+      "Documentation support",
+      "Reflective scaffolding",
+      "Uncertainty-driven exploration"
+    ],
+    "SYSTEM": [
+      "Version control",
+      "Schema validation",
+      "Build pipelines",
+      "Metadata",
+      "Machine-readable structure"
+    ]
+  },
+  "thresholds": {
+    "entropy_high_threshold": {
+      "value": 0.7,
+      "unit": "normalised [0,1]",
+      "description": "Above this normalised Shannon entropy the question landscape is classified as high-entropy."
+    },
+    "kl_novelty_threshold": {
+      "value": 0.5,
+      "unit": "bits",
+      "description": "KL divergence threshold above which a posterior distribution is deemed novel relative to the prior."
+    },
+    "rs_grounding_threshold": {
+      "value": 0.6,
+      "unit": "fraction",
+      "description": "Minimum causal-grounding score for a claim set to pass Reflective Scaffolding verification."
+    },
+    "human_gate_min_score": {
+      "value": 0.8,
+      "unit": "normalised [0,1]",
+      "description": "Minimum weighted-aggregate score for the Human Validation Gate to pass."
+    }
+  },
+  "fair_compliance_weights": {
+    "Findable": 0.25,
+    "Accessible": 0.25,
+    "Interoperable": 0.25,
+    "Reusable": 0.25
+  },
+  "risks": [
+    "Hallucination",
+    "Algorithmic bias",
+    "Over-reliance",
+    "Incomplete causal grounding"
+  ],
+  "framework_principles": [
+    "Full provenance of AI-assisted content",
+    "Version-controlled reflective history",
+    "Checksum-verified artifacts",
+    "Machine-readable metadata",
+    "FAIR alignment"
+  ],
+  "interaction_loop_stages": [
+    "HUMAN \u2014 conceptual framing, scientific intent, question architecture",
+    "AI \u2014 uncertainty exploration, entropy scanning, reflective scaffolding",
+    "SYSTEM \u2014 schema validation, pipelines, reproducible documentation",
+    "HUMAN VALIDATION GATE"
+  ]
+}

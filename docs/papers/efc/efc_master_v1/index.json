@@ -1,19 +1,90 @@
 {
+  "$schema": "./schema.json",
   "id": "efc_master_v1",
-  "title": "EFC — Master Specification (v1 Archive)",
+  "title": "EFC \u2014 Master Specification (v1 Archive)",
+  "description": "Canonical master specification for Energy-Flow Cosmology (EFC), defining the formal structure, notation, and baseline equations for its three coupled base layers: EFC-S (structural/halo layer), EFC-D (energy-flow dynamics), and EFC-C0 (entropy\u2013information capacity mapping). The paper establishes EFC as a thermodynamic information framework that replaces dark matter and dark energy with energy-flow potentials driven by density and entropy gradients.",
+  "version": "1.1",
+  "date": "2025-11-16",
+  "doi": "10.6084/m9.figshare.30630500",
+  "keywords": [
+    "EFC",
+    "Energy-Flow Cosmology",
+    "master specification",
+    "energy-flow potential",
+    "entropy gradients",
+    "halo model",
+    "information capacity",
+    "thermodynamic cosmology",
+    "rotation curves",
+    "expansion history",
+    "low-entropy anchors",
+    "foundational theory"
+  ],
+  "author": {
+    "name": "Morten Magnusson",
+    "orcid": "0009-0002-4860-5095",
+    "affiliation": "Symbiose Research, Sandnes, Norway"
+  },
+  "core_equations": {
+    "energy_flow_potential": {
+      "latex": "E_f(x) = \\rho(x)\\,(1 - S(x))",
+      "description": "Local energy-flow potential coupling mass density \u03c1 and dimensionless entropy S into a single field. High density with low entropy yields large Ef; high entropy suppresses Ef."
+    },
+    "low_entropy_anchor": {
+      "latex": "\\langle s \\rangle_A \\ll \\langle s \\rangle_{\\mathrm{background}}",
+      "description": "Defines a low-entropy anchor region A where coarse-grained entropy density is much lower than background, serving as a seed for halo formation."
+    },
+    "halo_mass_profile": {
+      "latex": "\\rho_h(r) = \\rho_0\\, f\\!\\left(\\frac{r}{r_s}\\right)",
+      "description": "Parameterised radial mass density profile for halos with central density \u03c1\u2080 and mass scale radius r\u209b."
+    },
+    "halo_entropy_profile": {
+      "latex": "S_h(r) = S_0 + (1 - S_0)\\, g\\!\\left(\\frac{r}{r_c}\\right)",
+      "description": "Parameterised dimensionless entropy profile normalised to [0,1] with entropy floor S\u2080 and entropy core radius r\u2093."
+    },
+    "information_capacity": {
+      "latex": "I(S) \\propto (1 - S)",
+      "description": "Baseline EFC-C0 relation mapping entropy to information capacity at fixed density."
+    },
+    "mass_density": {
+      "latex": "\\rho = \\frac{m}{V}",
+      "description": "Standard mass density definition used as input to the energy-flow potential."
+    }
+  },
+  "key_results": {
+    "main_finding": "EFC is formally specified as a three-layer thermodynamic information framework (EFC-S, EFC-D, EFC-C0) with a single central object Ef = \u03c1(1\u2212S) replacing dark sector components, providing a compact canonical reference for all downstream models, simulations, and epistemic layers.",
+    "delta_chi2": null,
+    "significance_sigma": null,
+    "parameters_tested": [
+      "rho_0",
+      "r_s",
+      "S_0",
+      "r_c",
+      "Ef"
+    ],
+    "datasets_used": [],
+    "verdict": "N/A"
+  },
+  "sealed_predictions": [],
+  "kill_criteria": [
+    "KC1: If the energy-flow potential Ef = \u03c1(1\u2212S) is shown to be mathematically insufficient to reproduce observed galactic rotation curves for any physically reasonable entropy profile S(r).",
+    "KC2: If low-entropy anchor regions as defined by \u27e8s\u27e9_A \u226a \u27e8s\u27e9_background are demonstrated not to correlate with observed structure formation sites (galaxy/cluster seeds).",
+    "KC3: If the EFC expansion history H(z) derived from flow and entropy gradients is shown to be fundamentally incompatible with observed H(z) data (e.g., BAO, SNe Ia) at >5\u03c3 with no viable parameter choice.",
+    "KC4: If a rigorous demonstration shows that the entropy\u2013information capacity mapping I(S) \u221d (1\u2212S) leads to internal inconsistencies or violates established thermodynamic bounds.",
+    "KC5: If observations require an additional invisible mass/energy component that cannot be absorbed into the (\u03c1, S) framework under any halo class parameterisation."
+  ],
+  "tier": "T1",
+  "paper_type": "theory",
+  "related_packages": [],
+  "files": {
+    "pdf": "efc_master_v1.pdf",
+    "md": "efc_master_v1.md"
+  },
+  "figshare_url": "https://doi.org/10.6084/m9.figshare.30630500",
   "path": "docs/papers/efc/efc_master_v1",
   "pdf": "efc_master_v1.pdf",
   "md": "efc_master_v1.md",
-  "keywords": [
-    "EFC",
-    "Master Specification",
-    "Version 1",
-    "Foundational Theory",
-    "Energy Flow",
-    "Entropy",
-    "Grid"
-  ],
   "layer": "docs",
   "type": "paper",
-  "version": "1.0"
+  "paper_type_inferred": true
 }

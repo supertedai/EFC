@@ -1,36 +1,18 @@
 {
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "@id": "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/ai_workflow_framework",
-  "identifier": "ai_workflow_framework",
-  "name": "AI Workflow Framework — Energy-Flow Cosmology",
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@type": "ScholarlyArticle",
+  "name": "AI-Augmented Scientific Workflow Framework",
   "author": {
     "@type": "Person",
     "name": "Morten Magnusson",
     "identifier": "https://orcid.org/0009-0002-4860-5095"
   },
-  "version": "1.0",
-  "encodingFormat": "application/pdf",
-  "url": "ai_workflow_framework.pdf",
-  "isPartOf": {
-    "@type": "CreativeWorkSeries",
-    "name": "EFC Papers",
-    "identifier": "efc-papers"
-  },
-  "keywords": [
-    "AI Workflow",
-    "Scientific Infrastructure",
-    "LLM Integration",
-    "Reproducible Research",
-    "Open Science",
-    "EFC",
-    "Semantic Metadata"
-  ],
-  "about": [
-    "Energy-Flow Cosmology",
-    "AI-Augmented Science",
-    "Workflow Architecture",
-    "Metadata Framework",
-    "Reproducibility"
-  ]
+  "datePublished": "2025-07-01",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "@id": "doi:10.6084/m9.figshare.30636863",
+  "identifier": "https://doi.org/10.6084/m9.figshare.30636863",
+  "doi": "10.6084/m9.figshare.30636863",
+  "sameAs": "https://doi.org/10.6084/m9.figshare.30636863"
 }

@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "paper_title": "EFC \u2014 Master Specification",
+    "author": "Morten Magnusson",
+    "date": "2025-11-15",
+    "sectors": [
+      "EFC-D (Dynamical)",
+      "EFC-S (Structural)"
+    ]
+  },
+  "constants": {
+    "c0": {
+      "value": 299800000.0,
+      "unit": "m/s",
+      "description": "Vacuum speed of light"
+    },
+    "A_PHI": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Potential amplitude (normalised baseline)"
+    },
+    "a_edge": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "description": "Edge-coupling coefficient in c(S)"
+    }
+  },
+  "parameters": {
+    "beta": {
+      "baseline": 1.0,
+      "description": "Coupling exponent in Phi(Ef,S); beta=1 is linear baseline"
+    },
+    "S0": {
+      "value": 0.0,
+      "description": "Low-entropy endpoint (focusing regime)"
+    },
+    "S1": {
+      "value": 1.0,
+      "description": "High-entropy endpoint (defocusing regime)"
+    },
+    "S_mid": {
+      "value": 0.5,
+      "expression": "0.5*(S0+S1)",
+      "description": "Mid-entropy transition zone"
+    }
+  },
+  "equations": {
+    "energy_flow_field": {
+      "formula": "Ef = -grad(S)",
+      "description": "Energy-flow field aligned with negative entropy gradient"
+    },
+    "effective_potential": {
+      "formula": "Phi(Ef, S) = A_PHI * Ef * (1 + S^beta)",
+      "baseline": "beta = 1",
+      "description": "Effective potential coupling energy flow and entropy"
+    },
+    "expansion_rate": {
+      "formula": "H(Ef, S) = sqrt(|Ef|) * (1 + S)",
+      "equation_number": 1,
+      "description": "Effective expansion rate \u2014 Eq. (1)"
+    },
+    "rotation_velocity": {
+      "formula": "v(r) = sqrt(r * dPhi/dr)",
+      "description": "Circular velocity from potential gradient"
+    },
+    "effective_light_speed": {
+      "formula": "c(S) = c0 * (1 + a_edge * x(S)^2)",
+      "normalised_coordinate": "x(S) = (S - S_mid) / (S1 - S0)",
+      "description": "Entropy-dependent light speed; minimum at S_mid"
+    }
+  },
+  "structural_sector": {
+    "regimes": {
+      "low_entropy": {
+        "range": "S < S0 + (S1-S0)/3",
+        "behaviour": "focusing"
+      },
+      "mid_entropy": {
+        "range": "S0 + (S1-S0)/3 <= S <= S1 - (S1-S0)/3",
+        "behaviour": "stability band \u2014 persistent halo-like structures"
+      },
+      "high_entropy": {
+        "range": "S > S1 - (S1-S0)/3",
+        "behaviour": "defocusing"
+      }
+    },
+    "stability_band": {
+      "c_min_location": "S_mid = 0.5",
+      "c_min_value_formula": "c0 * (1 + a_edge * 0) = c0",
+      "description": "Minimum propagation speed at mid-entropy creates trapping region"
+    }
+  },
+  "observables": [
+    "Light propagation / time delays",
+    "Gravitational lensing deflection",
+    "Galaxy rotation curves",
+    "Expansion rate H(z)"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "paper_metadata": {
+    "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+    "author": "Morten Magnusson",
+    "affiliation": "Energy-Flow Cosmology Initiative, Norway",
+    "date": "January 2026",
+    "version": "1.0",
+    "doi": "10.6084/m9.figshare.31007248",
+    "website": "https://energyflow-cosmology.com/"
+  },
+  "sample": {
+    "database": "SPARC",
+    "N_galaxies": 20,
+    "morphological_types": [
+      "LSB (low surface brightness)",
+      "dwarf irregular",
+      "spiral",
+      "barred spiral"
+    ],
+    "description": "Pilot-scale sample spanning diverse morphological types"
+  },
+  "key_equations": {
+    "eq1_energy_flow_field": {
+      "formula": "E_f = rho * (1 - S)",
+      "variables": {
+        "rho": "local energy density",
+        "S": "normalized entropy field, S in [0,1]"
+      }
+    },
+    "eq2_circular_velocity": {
+      "formula": "V_rot^2(r) = r * dPhi_eff/dr",
+      "variables": {
+        "Phi_eff": "energy-flow effective potential",
+        "r": "galactocentric radius"
+      }
+    },
+    "efc_r_decomposition": {
+      "formula": "E_total = E_flow + E_latent",
+      "description": "Regime-dependent energy decomposition"
+    }
+  },
+  "key_results": {
+    "spearman_rho": 0.705,
+    "spearman_p": 0.0005,
+    "LSB_dwarf_success_rate": 1.0,
+    "barred_spiral_performance": "systematically underperforms",
+    "description": "Correlation between structural complexity (latent field proxy) and EFC performance is statistically significant"
+  },
+  "regime_classification": {
+    "pure_efc": {
+      "label": "Pure-EFC (LSB/dwarf)",
+      "latent_field_proxy_range": [
+        0.0,
+        0.1
+      ],
+      "description": "EFC applies without correction; diffuse, low-complexity systems"
+    },
+    "transitional": {
+      "label": "Transitional (spiral)",
+      "latent_field_proxy_range": [
+        0.1,
+        0.25
+      ],
+      "description": "EFC partially valid; moderate structural complexity"
+    },
+    "latent_dominated": {
+      "label": "Latent-dominated (barred/complex)",
+      "latent_field_proxy_range": [
+        0.25,
+        1.0
+      ],
+      "description": "EFC alone insufficient; significant latent field contribution required"
+    }
+  },
+  "model_parameters": {
+    "entropy_field_S": {
+      "range": [
+        0.0,
+        1.0
+      ],
+      "description": "Normalized entropy, S=0 fully ordered, S=1 thermodynamic equilibrium"
+    },
+    "latent_field_alpha": {
+      "description": "Amplitude of latent field contribution",
+      "pure_efc_value": 0.0,
+      "barred_spiral_typical": 0.4
+    },
+    "latent_field_r_lat": {
+      "description": "Scale radius for latent field activation (kpc)",
+      "typical_range_kpc": [
+        2.0,
+        8.0
+      ]
+    }
+  },
+  "convergence_notes": {
+    "FIRE_simulations": "EFC-R regime-dependent pattern aligns with independent findings from FIRE hydrodynamical simulations showing non-equilibrium effects in dwarf galaxy evolution",
+    "cusp_core_problem": "EFC-R provides principled structure relevant to the CDM cusp-core and diversity problems"
+  },
+  "physical_constants_used": {
+    "G_cgs": 6.674e-08,
+    "G_pc_Msun_kms": 0.004302,
+    "kpc_to_cm": 3.0857e+21
+  }
+}

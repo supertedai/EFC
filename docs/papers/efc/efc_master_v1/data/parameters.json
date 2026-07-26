@@ -1,0 +1,108 @@
+{
+  "_description": "Key numerical values from EFC Master Specification v1.1 (DOI 10.6084/m9.figshare.30630500)",
+  "version": "1.1",
+  "doi": "10.6084/m9.figshare.30630500",
+  "author": "M. Magnusson",
+  "date": "2025-11-16",
+  "physical_constants": {
+    "G_N": {
+      "value": 6.6743e-11,
+      "unit": "m^3 kg^-1 s^-2",
+      "description": "Newtonian gravitational constant"
+    }
+  },
+  "fiducial_cosmology": {
+    "H0": {
+      "value": 67.4,
+      "unit": "km/s/Mpc",
+      "description": "Hubble constant (fiducial)"
+    },
+    "Omega_m": {
+      "value": 0.3,
+      "description": "Matter density parameter (LCDM reference)"
+    },
+    "Omega_Lambda": {
+      "value": 0.7,
+      "description": "Dark energy density parameter (LCDM reference)"
+    }
+  },
+  "efc_s_halo_parameters": {
+    "rho0_halo": {
+      "value": 1000000.0,
+      "unit": "M_sun / kpc^3",
+      "description": "Central halo density scale"
+    },
+    "r_s": {
+      "value": 20.0,
+      "unit": "kpc",
+      "description": "Halo scale radius"
+    },
+    "S_core": {
+      "value": 0.05,
+      "description": "Core entropy (low-entropy anchor, dimensionless)"
+    },
+    "S_edge": {
+      "value": 0.95,
+      "description": "Edge / virial entropy (dimensionless)"
+    },
+    "alpha_entropy": {
+      "value": 2.0,
+      "description": "Entropy profile steepness exponent"
+    }
+  },
+  "efc_d_dynamics_parameters": {
+    "Ef_equation": "Ef(x) = rho(x) * (1 - S(x))",
+    "expansion_S0": {
+      "value": 0.7,
+      "description": "Entropy parameter in schematic H(z) expression"
+    },
+    "expansion_beta": {
+      "value": 0.4,
+      "description": "Entropy evolution index in schematic H(z)"
+    },
+    "expansion_formula": "H(z)/H0 = (1+z)^(3/2) * (1 - S0*(1-(1+z)^(-beta)))"
+  },
+  "efc_c0_information_parameters": {
+    "kappa_I": {
+      "value": 1.0,
+      "description": "Information capacity proportionality constant"
+    },
+    "I_formula": "I(rho, S) = kappa * rho * (1 - S)",
+    "phi_I_formula": "phi_I = kappa * Ef"
+  },
+  "unit_conversions": {
+    "kpc_to_m": 3.0857e+19,
+    "Msun_to_kg": 1.9885e+30
+  },
+  "layers": [
+    {
+      "id": "EFC-S",
+      "name": "Structure / Halo Layer",
+      "sections": [
+        "S0: Low-entropy anchors",
+        "S1: Halo Model of Entropy",
+        "S2: Radial profiles and halo classes"
+      ]
+    },
+    {
+      "id": "EFC-D",
+      "name": "Energy-Flow Dynamics",
+      "sections": [
+        "D0: Local energy-flow potential",
+        "D0.2: Mass density",
+        "D1: Energy-flow rate",
+        "D2: Spatial gradients / acceleration",
+        "D3: Expansion rate"
+      ]
+    },
+    {
+      "id": "EFC-C0",
+      "name": "Entropy-Cognition Base Layer",
+      "sections": [
+        "C0: Entropy and information capacity",
+        "C1: Local cognitive load",
+        "C2: Informational field coupling"
+      ]
+    }
+  ]
+}

@@ -1,43 +1,19 @@
----
-title: EFC — Master Specification (v1 Archive)
-type: foundational
-date: '2026-01-04'
-layer: THEORY
-tags:
-- archive
-- auth
-- cosmology
-- efc
-- energy
-- flow
-- framework
-- master
-source_path: docs/papers/efc/efc_master_v1/README.md
----
-
 # EFC — Master Specification (v1 Archive)
 
-This directory contains the archived v1 master specification of the
-Energy-Flow Cosmology framework.  
-This version represents the earliest complete formulation of the theory,
-including initial field definitions, conceptual structure, and primary
-thermodynamic foundations.
+## AI-Friendly Package
 
-The v1 archive is preserved for:
-- historical reference  
-- reproducibility  
-- validation of theory development  
-- comparison with v2.x and later specifications  
+- **DOI:** [10.6084/m9.figshare.30630500](https://doi.org/10.6084/m9.figshare.30630500)
+- **Version:** 1.1
+- **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
+- **Date:** 2025-11-16
+- **License:** CC-BY-4.0
 
-All newer work supersedes this version, but it remains an essential part
-of the EFC development record.
+---
 
-**Included files**
-- PDF (archived authoritative version)
-- Markdown (mirrors PDF)
-- JSON-LD metadata
-- Local schema
-- Machine index
-- Citations file
+## Overview
 
-Version: 1.0 (archived)
+Canonical master specification for Energy-Flow Cosmology (EFC), defining the formal structure, notation, and baseline equations for its three coupled base layers: EFC-S (structural/halo layer), EFC-D (energy-flow dynamics), and EFC-C0 (entropy–information capacity mapping). The paper establishes EFC as a thermodynamic information framework that replaces dark matter and dark energy with energy-flow potentials driven by density and entropy gradients.
+
+## Key Result
+
+EFC is formally specified as a three-layer thermodynamic information framework (EFC-S, EFC-D, EFC-C0) with a single central object Ef = ρ(1−S) replacing dark sector components, providing a compact canonical reference for all downstream models, simulations, and epistemic layers.
