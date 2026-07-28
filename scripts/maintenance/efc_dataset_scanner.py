@@ -140,7 +140,7 @@ def main():
     os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
     with open(REPORT_PATH, "w") as f:
         json.dump({"date": datetime.date.today().isoformat(),
-                   "known": list(known), "findings": findings}, f, indent=2)
+                   "known": sorted(known), "findings": findings}, f, indent=2)
     print(f"\nReport saved to {REPORT_PATH}")
 
     return 1
