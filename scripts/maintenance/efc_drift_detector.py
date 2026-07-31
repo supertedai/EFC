@@ -521,12 +521,26 @@ def fix_drift(drift, actual_papers):
     return len(fixed_files)
 
 
+def _write_drift_report(actual_papers, drift):
+    """Machine-readable report for downstream consumers.
+
+    Written on every exit path — a report that is only refreshed while
+    drift exists goes stale the moment drift is resolved, leaving
+    consumers reading phantom drift indefinitely.
+    """
+    report_path = os.path.join(REPO, ".claude", "drift_report.json")
+    os.makedirs(os.path.dirname(report_path), exist_ok=True)
+    with open(report_path, "w") as f:
+        json.dump({"paper_count": actual_papers, "drift": drift}, f, indent=2)
+
+
 def main():
     fix_mode = "--fix" in sys.argv
     drift, actual_papers = detect_drift()
 
     if not drift:
         print(f"[efc-drift] {actual_papers} papers · no drift detected")
+        _write_drift_report(actual_papers, [])
         return 0
 
     print(f"[efc-drift] {actual_papers} papers · {len(drift)} drift(s) detected:")
@@ -544,17 +558,16 @@ def main():
         # Re-check after fix
         drift2, _ = detect_drift()
         remaining = len(drift2)
+        # Report the post-fix state, not the pre-fix list.
+        drift = drift2
         if remaining > 0:
             print(f"[efc-drift] {remaining} drift(s) remain (need manual fix)")
         else:
             print(f"[efc-drift] all drift resolved")
+            _write_drift_report(actual_papers, [])
             return 0
 
-    # Write machine-readable drift report
-    report_path = os.path.join(REPO, ".claude", "drift_report.json")
-    os.makedirs(os.path.dirname(report_path), exist_ok=True)
-    with open(report_path, "w") as f:
-        json.dump({"paper_count": actual_papers, "drift": drift}, f, indent=2)
+    _write_drift_report(actual_papers, drift)
 
     return 2  # drift detected, not an error
 
