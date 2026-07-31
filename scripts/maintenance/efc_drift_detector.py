@@ -270,6 +270,12 @@ def detect_drift():
         for m in PAPER_PATTERN.finditer(text):
             claimed = int(m.group(1))
             if claimed != actual_papers and abs(claimed - actual_papers) < 30:
+                # The 80-char lookback below misses dates on long <li>
+                # entries, so defer to the same historical heuristic the
+                # test-count branches use (it walks the enclosing block).
+                if name == "Changelog" and _is_historical_match(
+                        text, m.start(), m.end()):
+                    continue
                 context_before = text[max(0, m.start()-80):m.start()]
                 if name == "Changelog" and re.search(r'20\d\d-\d\d', context_before):
                     continue
