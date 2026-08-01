@@ -1,7 +1,7 @@
 {
   "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-05-06T18:58:34+00:00",
+  "generated_at": "2026-08-01T03:46:51+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -9,15 +9,15 @@
     "figshare_authors_id": "20477774"
   },
   "totals": {
-    "orcid_works": 163,
-    "orcid_dois": 163,
-    "repo_paper_dirs": 166,
-    "repo_unique_dois": 162,
-    "matched_count": 162,
-    "missing_paper_dirs": 1,
-    "duplicate_doi_dirs": 4,
-    "dirs_without_doi": 0,
-    "complete_packages": 155
+    "orcid_works": 165,
+    "orcid_dois": 165,
+    "repo_paper_dirs": 173,
+    "repo_unique_dois": 165,
+    "matched_count": 165,
+    "missing_paper_dirs": 0,
+    "duplicate_doi_dirs": 7,
+    "dirs_without_doi": 1,
+    "complete_packages": 161
   },
   "papers": [
     {
@@ -27,26 +27,6 @@
       "date": "2026-02-01",
       "version": "1.0.0",
       "repo_dir": "docs/papers/efc/A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling",
-      "package_complete": true,
-      "has_pdf": true
-    },
-    {
-      "doi": "10.6084/m9.figshare.32256939",
-      "figshare_id": "32256939",
-      "title": "Regime-Closure Epistemology (RCE): A General Principle of Cross-Domain Validation in Coupled Multi-Scale Systems",
-      "date": "2026-05-12",
-      "version": "1.1",
-      "repo_dir": "docs/papers/efc/RCE_synthesis",
-      "package_complete": true,
-      "has_pdf": true
-    },
-    {
-      "doi": "10.6084/m9.figshare.32256951",
-      "figshare_id": "32256951",
-      "title": "Ledger Epistemology and Regime-Closure Governance: An Operational Framework for Validation in Coupled Multi-Scale Systems",
-      "date": "2026-05-12",
-      "version": "1.0",
-      "repo_dir": "docs/papers/efc/RCE_versjon",
       "package_complete": true,
       "has_pdf": true
     },
@@ -557,6 +537,16 @@
       "date": "2026-01-22",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/EFC-Phenomenology-vs-DESI-DR2-BAO-A-Comparative-Fit-Analysis",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.31007248",
+      "figshare_id": "31007248",
+      "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+      "date": "2026-01-06",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/EFC-R-SPARC",
       "package_complete": true,
       "has_pdf": true
     },
@@ -1121,6 +1111,26 @@
       "has_pdf": true
     },
     {
+      "doi": "10.6084/m9.figshare.32256939",
+      "figshare_id": "32256939",
+      "title": "Regime-Closure Epistemology (RCE): A General Principle of Cross-Domain Validation in Coupled Multi-Scale Systems",
+      "date": "2026-05-12",
+      "version": "1.1",
+      "repo_dir": "docs/papers/efc/RCE_synthesis",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.32256951",
+      "figshare_id": "32256951",
+      "title": "Ledger Epistemology and Regime-Closure Governance: An Operational Framework for Validation in Coupled Multi-Scale Systems",
+      "date": "2026-05-12",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/RCE_versjon",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
       "doi": "10.6084/m9.figshare.31211437",
       "figshare_id": "31211437",
       "title": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology",
@@ -1341,6 +1351,16 @@
       "has_pdf": true
     },
     {
+      "doi": "10.6084/m9.figshare.30636863",
+      "figshare_id": "30636863",
+      "title": "AI-Augmented Scientific Workflow Framework",
+      "date": "2025-07-01",
+      "version": "1.2",
+      "repo_dir": "docs/papers/efc/ai_workflow_framework",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
       "doi": "10.6084/m9.figshare.31963668",
       "figshare_id": "31963668",
       "title": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
@@ -1368,6 +1388,16 @@
       "version": "1.0",
       "repo_dir": "docs/papers/efc/component_weighted_bias",
       "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.32162706",
+      "figshare_id": "32162706",
+      "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of ∆AIC for SPARC-175",
+      "date": "2026-05-01",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/composite-level-aggregation-in-rotation-curve-model-selection-a-sign-flip-decomp",
+      "package_complete": false,
       "has_pdf": true
     },
     {
@@ -1437,6 +1467,26 @@
       "date": "2025-11-17",
       "version": "1.0",
       "repo_dir": "docs/papers/efc/efc_formal_spec",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "",
+      "figshare_id": "",
+      "title": "EFC — Master Formal Specification",
+      "date": "2025-11-15",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/efc_master",
+      "package_complete": true,
+      "has_pdf": true
+    },
+    {
+      "doi": "10.6084/m9.figshare.30630500",
+      "figshare_id": "30630500",
+      "title": "EFC — Master Specification (v1 Archive)",
+      "date": "2025-11-16",
+      "version": "1.1",
+      "repo_dir": "docs/papers/efc/efc_master_v1",
       "package_complete": true,
       "has_pdf": true
     },
@@ -1701,14 +1751,32 @@
       "has_pdf": true
     }
   ],
-  "missing_repo_dirs": [
-    {
-      "figshare_id": "32162706",
-      "title": "Composite-level aggregation in rotation curve model selection: A sign-flip decomposition of Delta-AIC for SPARC-175",
-      "action": "create_paper_dir_or_decide_legacy"
-    }
-  ],
+  "missing_repo_dirs": [],
   "duplicate_doi_dirs": [
+    {
+      "doi": "10.6084/m9.figshare.30636863",
+      "dirs": [
+        "docs/papers/efc/EFC-AI-Augmented-Scientific-Workflow-Framework",
+        "docs/papers/efc/ai_workflow_framework"
+      ],
+      "action": "consolidate"
+    },
+    {
+      "doi": "10.6084/m9.figshare.31007248",
+      "dirs": [
+        "docs/papers/efc/EFC-R-SPARC",
+        "docs/papers/efc/EFC-R-SPARC-Regime-Validity"
+      ],
+      "action": "consolidate"
+    },
+    {
+      "doi": "10.6084/m9.figshare.30630500",
+      "dirs": [
+        "docs/papers/efc/efc_formal_spec",
+        "docs/papers/efc/efc_master_v1"
+      ],
+      "action": "consolidate"
+    },
     {
       "doi": "10.6084/m9.figshare.31970886",
       "dirs": [
@@ -1742,5 +1810,10 @@
       "action": "consolidate"
     }
   ],
-  "dirs_without_doi": []
+  "dirs_without_doi": [
+    {
+      "dir": "docs/papers/efc/efc_master",
+      "action": "assign_doi_or_archive"
+    }
+  ]
 }
