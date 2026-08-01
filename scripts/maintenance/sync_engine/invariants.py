@@ -63,10 +63,19 @@ def check_doi_integrity(state: State) -> list[Violation]:
     doi_map = _safe_json(os.path.join(REPO, "figshare", "doi-map.json")) or {}
     if not isinstance(doi_map, dict):
         return out
-    map_dois = {_bare_doi(k) for k in doi_map.keys()} | {
-        _bare_doi(v.get("doi")) if isinstance(v, dict) else None
-        for v in doi_map.values()
-    }
+    # doi-map.json is a wrapper: the entries live in the "papers" list, while the
+    # top level holds metadata ($schema/version/generated_at/author/totals/…).
+    # Reading only the top level yields no DOIs at all, which reported every paper
+    # as missing. Keep the legacy flat-dict shape working too.
+    entries = doi_map.get("papers")
+    if isinstance(entries, list):
+        records = [e for e in entries if isinstance(e, dict)]
+    else:
+        records = [v for v in doi_map.values() if isinstance(v, dict)]
+
+    map_dois = {_bare_doi(e.get("doi")) for e in records}
+    if not isinstance(entries, list):
+        map_dois |= {_bare_doi(k) for k in doi_map.keys()}
     map_dois.discard(None)
 
     missing = state.paper_dois - map_dois
@@ -78,11 +87,11 @@ def check_doi_integrity(state: State) -> list[Violation]:
         ))
 
     # Orphan paths in doi-map
-    for k, v in doi_map.items():
-        path = (v.get("path") if isinstance(v, dict) else None) or ""
+    for e in records:
+        path = e.get("repo_dir") or e.get("path") or ""
         if path and not os.path.exists(os.path.join(REPO, path)):
             out.append(Violation(
-                "2", f"doi_map_path_missing:{k}",
+                "2", f"doi_map_path_missing:{e.get('doi') or path}",
                 expected="exists", observed=path,
                 severity=SEVERITY_WARN,
             ))
