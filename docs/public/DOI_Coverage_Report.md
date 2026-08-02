@@ -1,6 +1,6 @@
 # DOI Coverage Report — docs/public × ORCID canon
 
-_Generated deterministically 2026-08-01 22:15Z by `public_pages_doi_drift.py` (Symbiose). Canon source: Morten Magnusson's ORCID corpus. No LLM touches these numbers._
+_Generated deterministically 2026-08-02 04:15Z by `public_pages_doi_drift.py` (Symbiose). Canon source: Morten Magnusson's ORCID corpus. No LLM touches these numbers._
 
 **Canon:** 165 works · **Covered on public pages:** 165 · **Missing from all pages:** 0 · **Verified external refs:** 8 · **Unrecognized (anomalies):** 1 · **Pages scanned:** 15
 
