@@ -36,6 +36,10 @@ SKIP_TOP = {
     "README.md", "cover_letter-2.pdf", "efc_graph_edges.json",
     "efc_graph_schema.json", "efc_index.json", "efc_index.jsonld",
     "ai_friendly_index.json",
+    # container for superseded papers, not a paper itself — counting it
+    # inflated the repo total to 170 vs the true 169 (README, drift-detector,
+    # ai_friendly_index all agree on 169)
+    "_archived",
 }
 
 PUBLIC_PAGES = {
