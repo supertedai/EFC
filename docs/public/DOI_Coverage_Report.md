@@ -1,20 +1,14 @@
 # DOI Coverage Report — docs/public × ORCID canon
 
-_Generated deterministically 2026-08-12 10:15Z by `public_pages_doi_drift.py` (Symbiose). Canon source: Morten Magnusson's ORCID corpus. No LLM touches these numbers._
+_Generated deterministically 2026-08-12 16:15Z by `public_pages_doi_drift.py` (Symbiose). Canon source: Morten Magnusson's ORCID corpus. No LLM touches these numbers._
 
-**Canon:** 165 works · **Covered on public pages:** 165 · **Missing from all pages:** 0 · **Verified external refs:** 8 · **Unrecognized (anomalies):** 1 · **Pages scanned:** 15
+**Canon:** 165 works · **Covered on public pages:** 165 · **Missing from all pages:** 0 · **Verified external refs:** 0 · **Unrecognized (anomalies):** 9 · **Pages scanned:** 15
 
 ## Canonical works NOT referenced on any public page
 
 _None — full coverage._
 
 ## Unrecognized DOIs — NOT in ORCID canon, NOT verified external (anomalies: stale, typo, or unvetted)
-
-| DOI | Pages |
-|-----|-------|
-| 10.6084/m9.figshare.31140000 | EFC_Atlas.html |
-
-## External references (verified intentional citations of other authors' work)
 
 | DOI | Pages |
 |-----|-------|
@@ -26,6 +20,11 @@ _None — full coverage._
 | 10.1093/pasj/psw029 | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | 10.1111/j.1365-2966.2012.21136.x | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | 10.17863/cam.690 | EFC_Atlas.html |
+| 10.6084/m9.figshare.31140000 | EFC_Atlas.html |
+
+## External references (verified intentional citations of other authors' work)
+
+_None registered._
 
 ## Per-page DOI counts
 
