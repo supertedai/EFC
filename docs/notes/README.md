@@ -20,12 +20,39 @@ contain open questions, partial results, and provisional conclusions.
 
 ```
 docs/notes/
+├── EFC_Content_Source_Policy_v1.0.md  # Source/content policy for external news + research (2026-08-19)
 ├── EFC_native_v2_graph_spec.md   # v2 graph kernel specification
 ├── growth_bug_2026.md            # Growth ODE friction correction + reproducer audit (2026-04-19)
 └── README.md                     # This file
 ```
 
 ## File Descriptions
+
+### EFC_Content_Source_Policy_v1.0.md
+
+**Full title**: EFC Content and Source Policy
+**Status**: Proposed implementation contract (2026-08-19) — not yet enforced by CI
+
+Governs any agent or workflow that proposes updates to `docs/public/` from
+external news or research. Separates acquisition, editorial judgement,
+proposal, and publication, and permits automation of only the first three.
+Rather than introducing a new scanner, it governs the mechanism this
+repository already has — `.claude/prompts/research_watch_delta.md` and
+`docs/public/external_research_watch.json` — and records six known
+disagreements between that pipeline and this policy. The most actionable: the
+watchlist already carries `validates EFC`, a phrase on the forbidden list in
+`scripts/maintenance/efc_verify.py`, but check C3 scans only the HTML ledger,
+so the `efc_relevance` free-text fields go unenforced. The others include the
+absence of an evidence tier and a content hash, and a status lifecycle in
+which 71 of 106 items were still `new`. Binds the pipeline explicitly to the
+three-layer evidence separation in
+`AGENTS.md`: external literature belongs in §4b of the Validation Ledger,
+never in the JSON evidence registers.
+
+The document is partly reconstructed. An earlier Norwegian draft was lost
+before it was committed; about a quarter survived verbatim. Rules are marked
+*[recovered]* or *[new]* so that restored decisions are not confused with
+fresh proposals.
 
 ### EFC_native_v2_graph_spec.md
 
