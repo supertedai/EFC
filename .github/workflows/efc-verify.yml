@@ -19,6 +19,9 @@ on:
       - "docs/papers/efc/**"
       - "docs/validation-ledger/**"
       - "docs/public/EFC_Validation_Ledger.html"
+      # C9 scans this file's efc_relevance / ledger_action fields; without
+      # it here a watchlist-only PR would skip the language check entirely.
+      - "docs/public/external_research_watch.json"
       - "docs/public/EFC_Changelog.html"
       - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
@@ -39,7 +42,7 @@ jobs:
       - name: Check DOI sync consistency (C8)
         id: sync_dois_check
         run: python3 scripts/maintenance/efc_sync_dois.py --check
-      - name: Run EFC verifier (C1–C8)
+      - name: Run EFC verifier (C1–C9)
         id: verify
         run: python3 scripts/maintenance/efc_verify.py
       - name: Run drift detector

@@ -43,6 +43,32 @@ validation ledger, and AI-friendly metadata layer consistent.
 | C6 | No arXiv IDs have leaked into the JSON evidence registers. |
 | C7 | §4b entries carry the `[external — …]` tag. |
 | C8 | Per-paper DOI consistency. Every source that declares a DOI inside a paper directory (`index.json`, `metadata.json`, `CITATION.cff`, `*.jsonld`) must declare the **same** canonical Figshare DOI. Hard error on conflict. |
+| C9 | `docs/public/external_research_watch.json` carries no forbidden phrases in the **EFC-authored** free-text fields (`efc_relevance`, `ledger_action`). Sibling of C3 for the watchlist. Claim-like-but-arguable phrasing (`supports EFC`, …) warns rather than fails — see below. |
+
+### C9: why the §4b carve-out does not transfer to JSON
+
+C3's carve-out is **positional** — §4b is where third-party results are
+quoted, so the forbidden phrases are tolerated inside that block and rejected
+in §1–§4.
+
+The watchlist has no sections, and every item in it is external by
+construction, so a positional carve-out would exempt the whole file. C9's
+equivalent split is **by field**, i.e. by who is speaking:
+
+| Field | Voice | Scanned |
+|---|---|---|
+| `title`, `url`, `source_type` | the external work's own words | no |
+| `efc_relevance`, `ledger_action` | EFC's editorial voice | **yes** |
+
+No §4b-equivalent exemption exists *inside* the scanned fields, and none is
+wanted: there is no legitimate reason for EFC's own annotation of an external
+result to assert that the result confirms EFC.
+
+`supports EFC` / `demonstrates EFC` / `verifies EFC` are listed separately in
+`SOFT_CLAIM_PHRASES` and reported as **warnings only**. They breach the same
+discipline, but the verbs have legitimate non-claim uses ("the DESI DR2
+release supports EFC WP4's reanalysis" = supplies data for). Promoting them
+to hard errors is a human judgement call about false positives.
 
 ## The epistemic rule the verifier enforces
 

@@ -26,6 +26,11 @@ Checks:
         CITATION.cff, citations.bib, *.jsonld) must carry the SAME
         canonical Figshare DOI. Papers that register zero DOIs pass.
         Conflicts are hard errors — run efc_sync_dois.py to reconcile.
+  [C9]  external_research_watch.json carries no forbidden "confirms EFC" /
+        "validates EFC" language in the EFC-authored free-text fields
+        (efc_relevance, ledger_action). Sibling of C3 for the JSON
+        watchlist. Claim-like-but-arguable phrasing ("supports EFC") is
+        reported as a warning only — see SOFT_CLAIM_PHRASES.
 
 Usage: scripts/maintenance/efc_verify.py [--quiet]
 """
@@ -39,6 +44,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 LEDGER_DIR = os.path.join(REPO, "docs", "validation-ledger")
 HTML_LEDGER = os.path.join(REPO, "docs", "public", "EFC_Validation_Ledger.html")
+WATCH_JSON = os.path.join(REPO, "docs", "public", "external_research_watch.json")
 
 SKIP_TOP = {
     "README.md", "cover_letter-2.pdf",
@@ -53,6 +59,42 @@ MANDATORY = ("index.json", "metadata.json", "ai_manifest.json", "README.md")
 FORBIDDEN_PHRASES = (
     "confirms EFC", "proves EFC", "validates EFC",
     "EFC is confirmed", "EFC is proven",
+)
+
+# --- C9: which fields of the watchlist are subject to the discipline -------
+#
+# C3 guards the HTML ledger with a POSITIONAL carve-out: §4b is the block
+# where third-party results are quoted, so the forbidden phrases are
+# tolerated inside it and rejected in §1–§4.
+#
+# external_research_watch.json has no such sections, and every item in it is
+# external by construction — a positional carve-out would exempt the entire
+# file and the check would be theatre. The equivalent split there is by
+# FIELD, i.e. by who is speaking:
+#
+#   title, url, source_type       — the external work's own words → NOT scanned
+#   efc_relevance, ledger_action  — EFC's editorial voice        → SCANNED
+#
+# So the answer to "does JSON need a §4b-equivalent?" is no: the field split
+# already does the job the section split does in the HTML. There is no
+# legitimate reason for EFC's own annotation of an external result to assert
+# that the result confirms EFC — that is precisely the claim inflation
+# AGENTS.md forbids. (Verified 2026-08-19 against v1.8 / 106 items: no
+# claim-verb-plus-EFC construction occurs in title/url/source_type, so
+# excluding them costs no coverage today and protects future quoted titles.)
+WATCH_TEXT_FIELDS = ("efc_relevance", "ledger_action")
+
+# PROPOSED, deliberately not enforced as errors — reported as warnings.
+#
+# These breach the same discipline as FORBIDDEN_PHRASES, but unlike
+# "confirms/proves/validates" these verbs have legitimate non-claim uses
+# ("the DESI DR2 release supports EFC WP4's reanalysis" = supplies data for,
+# not vindicates). Promoting them to hard errors is a judgement call about
+# false positives and belongs to a human reviewer, not to this script.
+# Warning severity surfaces them in every run without failing CI.
+SOFT_CLAIM_PHRASES = (
+    "supports EFC", "demonstrates EFC", "verifies EFC",
+    "establishes EFC", "vindicates EFC",
 )
 
 FIGSHARE_DOI_RE = re.compile(r"^\d{8}$")
@@ -152,6 +194,48 @@ def check_c3_c7_html_language(issues):
         issues.append(Issue("C7", "HTML §4b", "external block exists but no [external — …] tags found"))
 
 
+def check_c9_watch_language(issues):
+    """Sibling of C3 for docs/public/external_research_watch.json.
+
+    Scans the EFC-authored free-text fields of every watchlist item. See
+    WATCH_TEXT_FIELDS for the field-level carve-out and why the HTML's
+    positional §4b carve-out does not transfer.
+    """
+    if not os.path.exists(WATCH_JSON):
+        issues.append(Issue("C9", "public", "external_research_watch.json missing"))
+        return
+    try:
+        with open(WATCH_JSON, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except Exception as e:
+        issues.append(Issue("C9", "external_research_watch.json", f"unparseable: {e}"))
+        return
+    items = doc.get("items") if isinstance(doc, dict) else None
+    if not isinstance(items, list):
+        issues.append(Issue("C9", "external_research_watch.json",
+                            "no 'items' list — schema changed?", severity="warn"))
+        return
+    for idx, item in enumerate(items):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get("key") or f"items[{idx}]")
+        for field in WATCH_TEXT_FIELDS:
+            text = str(item.get(field) or "")
+            if not text:
+                continue
+            low = text.lower()
+            for phrase in FORBIDDEN_PHRASES:
+                if phrase.lower() in low:
+                    issues.append(Issue(
+                        "C9", f"{key}.{field}", f"forbidden phrase: {phrase!r}"))
+            for phrase in SOFT_CLAIM_PHRASES:
+                if phrase.lower() in low:
+                    issues.append(Issue(
+                        "C9", f"{key}.{field}",
+                        f"claim-like phrasing (proposed, not enforced): {phrase!r}",
+                        severity="warn"))
+
+
 def check_c4_version_consistency(issues):
     """
     The repo runs two independent version tracks on purpose:
@@ -244,6 +328,7 @@ def main():
     dirs = check_c1_mandatory_files(issues)
     check_c2_c6_evidence_purity(issues)
     check_c3_c7_html_language(issues)
+    check_c9_watch_language(issues)
     check_c4_version_consistency(issues)
     check_c5_catalogue_fresh(issues, dirs)
     check_c8_doi_consistency(issues, dirs)
