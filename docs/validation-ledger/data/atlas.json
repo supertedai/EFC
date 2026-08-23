@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Cross-framework atlas dumped deterministically from the Symbiose knowledge graph. 42 cosmology/gravity frameworks with RCMP regime participation, ontological lens, key primitives, and addressing relations (framework -> phenomenon with mechanism + role). Joins with the EFC Validation Ledger (ledger.json) to produce the unified Atlas view.",
   "generated_at": "2026-04-29T11:34:51Z",
-  "generator": "Symbiose AGI framework_atlas dump",
+  "generator": "maintained in-repo (docs/validation-ledger/data/atlas.json)",
   "stats": {
     "framework_count": 42,
     "phenomenon_count": 33,
@@ -1810,5 +1810,6 @@
       ],
       "note": "Manual file-write edits in absence of Symbiose MCP write tools. Will be overwritten on next regeneration unless persisted to source database."
     }
-  ]
+  ],
+  "generator_note": "was: 'Symbiose AGI framework_atlas dump' — stale. Measured 2026-08-23: last written 2026-06-07 by a human, not by that pipeline."
 }
