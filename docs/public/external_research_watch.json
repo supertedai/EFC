@@ -1316,6 +1316,17 @@
       "efc_relevance": "Scalar-vector-tensor gravity with matter minimally coupled to a Jordan-frame metric and a massive vector sector interacting with the baryonic current. The conformal scalar coupling produces a late-time enhancement of the effective Hubble constant relevant only at low redshifts, alleviating H_0 tension without affecting early-universe cosmology; the vector behaves as effective pressureless matter via a density-dependent mass, yielding a unified dark-sector. Chameleon-type screening keeps Solar-System constraints satisfied. Positioned as a competing framework to EFC: shares EFC's 'late-time-only mechanism' philosophy but achieves it via an explicit vector field rather than an entropy-flow source term.",
       "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski as a new competing-framework candidate (source_type='framework-seminal' upgrade pending more papers in this line); update framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 rows with a 'unified dark-sector scalar-vector-tensor' sibling note; cross-reference arXiv:2605.05691 (E(z) reformulation of H_0 tension) since both papers argue for late-time-only signatures; required follow-up in Predictions Ledger: state explicit EFC discriminator from the scalar-vector-tensor late-time enhancement on E(z) at z ≤ 0.3.",
       "status": "new"
+    },
+    {
+      "key": "arXiv:2607.07348",
+      "title": "Present Day Cosmic Acceleration from SDSS and DESI BAO: A Call for Finer Tomography of the DESI Bright Galaxy Survey",
+      "source_type": "preprint",
+      "url": "https://arxiv.org/abs/2607.07348",
+      "date_seen": "2026-08-23",
+      "date_published": "2026-07-08",
+      "efc_relevance": "Ferri et al. attribute the DESI+Planck versus SDSS+Planck difference in q0 primarily to redshift coverage (z_eff ≈ 0.295 versus ≈ 0.15), with Pantheon+ restoring a negative q0. This is a caution for interpreting P7's regime-window decomposition and P6's background-level comparisons: survey coverage and extrapolation must be separated from any EFC-specific effect. It does not by itself test either pre-registered prediction.",
+      "ledger_action": "Add to §4b as external evidence; annotate P7 with the redshift-coverage confound and retain the sealed three-window test unchanged. Do not add to the EFC evidence register or treat the result as support or falsification of P6/P7.",
+      "status": "new"
     }
   ],
   "consolidation_note": "Consolidated union of research-watch scans from PRs #307/#309/#311/#314 + prior main — no item dropped (BL-450)."
