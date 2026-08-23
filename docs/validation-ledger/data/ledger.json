@@ -3879,16 +3879,6 @@
   ],
   "frontier_gaps": [
     {
-      "question": "Users will be able to create and manage personal assertions (e.g., 'I own a Ferrari') using the unified API, mirroring the functionality of a Personal Knowledge Spine but applied to user assertions within the 'efc' system.",
-      "domain": "efc",
-      "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-07-06T21:01:05.263000000+00:00"
-    },
-    {
       "question": "[MISSING_DATA] No observations available to test: Entropy gradient increase leads to complexity",
       "domain": "efc",
       "severity": "MEDIUM",
@@ -3896,17 +3886,8 @@
       "approach": null,
       "efc_prediction": null,
       "source": "metacognitive_gap_daemon",
-      "created_at": "2026-07-06T20:51:43.734000000+00:00"
-    },
-    {
-      "question": "Within the 'EFC' (Electronic Frontier Foundation) domain, there may be an analogous industry group or sector dedicated to constructing and adapting digital spaces (e.g., virtual reality environments, online platforms, or cyber-infrastructure) to serve specific social, political, or technological purposes.",
-      "domain": "efc",
-      "severity": "MEDIUM",
-      "status": "NEEDS_REVIEW",
-      "approach": null,
-      "efc_prediction": null,
-      "source": "cross_domain_transfer",
-      "created_at": "2026-07-06T13:58:43.736000000+00:00"
+      "created_at": "2026-07-06T20:51:43.734000000+00:00",
+      "source_status": "retired: metacognitive_gap_daemon is no longer a valid gap source (Hetzner ADR-024 §8.3 pt. 2); this entry is kept for human review, not renewed"
     }
   ],
   "status_levels": [

@@ -65,7 +65,7 @@ I need to ...
 │   → AGENTS.md §Step 1 — fix every reported item before other work
 │
 └─ anything that mutates Symbiose Qdrant/Neo4j directly from here
-    → NO. EFC pushes via SYMBIOSE_WEBHOOK_URL only.
+    → NO. EFC pushes via SYMBIOSE_WEBHOOK_URL only.  _(retired 2026-08-23: the Symbiose webhook was removed from efc-sync.yml and efc-main-sync.yml (Hetzner ADR-024 §8.3 pt. 4))_
       Mutation happens in supertedai/AGI's shared.ingestion.repo-sync daemon.
 ```
 
