@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "review_only": true,
+  "publish": false,
+  "permissions": {
+    "contents": "read",
+    "pull_requests": "none"
+  },
+  "operations": ["review"],
+  "source_files": ["config/efc-public-agent-input.json"],
+  "output_dir": "reports/efc-public-agent"
+}
