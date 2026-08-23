@@ -7,7 +7,7 @@
 - **Validation Ledger**: v3.18 public / v4.6 internal
 - **AI-friendly papers**: 165 (100% coverage of active set; 2 superseded in `_archived/`)
 - **Stage**: `non_rejectable_model` (global verdict OPEN)
-- **Repo bridge to Symbiose**: `SYMBIOSE_WEBHOOK_URL` secret POST on every drift-fix
+- **Repo bridge to Symbiose**: `SYMBIOSE_WEBHOOK_URL` secret POST on every drift-fix  _(retired 2026-08-23: the Symbiose webhook was removed from efc-sync.yml and efc-main-sync.yml (Hetzner ADR-024 §8.3 pt. 4))_
 
 ## Master orchestrators (canonical EFC "daemons"): **4**
 
@@ -91,7 +91,7 @@ Plus `tools/cobaya_bridge/` (MCMC bridge: bridge_theory.py, 6 YAML configs, efc_
 
 The architectural reference's per-30min `efc_repo_sync_daemon` does NOT exist in this repo as a long-running daemon. Its function is split:
 
-1. `efc-sync.yml` + `efc-main-sync.yml` — run maintenance + POST `{event: efc_push, commit, papers}` to `SYMBIOSE_WEBHOOK_URL`
+1. `efc-sync.yml` + `efc-main-sync.yml` — run maintenance + POST `{event: efc_push, commit, papers}` to `SYMBIOSE_WEBHOOK_URL`  _(retired 2026-08-23: the Symbiose webhook was removed from efc-sync.yml and efc-main-sync.yml (Hetzner ADR-024 §8.3 pt. 4))_
 2. `efc_qdrant_ingest.py` — scaffolding only (no upsert)
 3. The receiving "per-30min worker" lives in `supertedai/AGI` at `tools/efc_repo_sync_daemon.py`
 

@@ -134,23 +134,6 @@ jobs:
             sleep "$delay"
           done
 
-      - name: Notify Symbiose QA webhook
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          # Trigger Symbiose quality assurance cross-check
-          # Symbiose independently verifies ledger data against Neo4j/Qdrant
-          if [ -n "$SYMBIOSE_WEBHOOK_URL" ]; then
-            curl -s -X POST "$SYMBIOSE_WEBHOOK_URL" \
-              -H "Content-Type: application/json" \
-              -d "{\"event\":\"efc_push\",\"commit\":\"$(git rev-parse HEAD)\",\"papers\":$(python3 -c 'import os; print(sum(1 for d in os.listdir(\"docs/papers/efc\") if os.path.isdir(os.path.join(\"docs/papers/efc\",d)) and d not in {\"README.md\"}))')}" \
-              --max-time 10 || echo "Symbiose webhook not reachable — QA will run on next cron cycle"
-          else
-            echo "SYMBIOSE_WEBHOOK_URL not set — Symbiose QA runs via cron"
-          fi
-        env:
-          SYMBIOSE_WEBHOOK_URL: ${{ secrets.SYMBIOSE_WEBHOOK_URL }}
-        continue-on-error: true
-
       - name: Job summary
         if: always()
         run: |

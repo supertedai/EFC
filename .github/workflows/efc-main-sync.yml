@@ -104,19 +104,6 @@ jobs:
             sleep "$delay"
           done
 
-      - name: Notify Symbiose QA webhook
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          if [ -n "$SYMBIOSE_WEBHOOK_URL" ]; then
-            curl -s -X POST "$SYMBIOSE_WEBHOOK_URL" \
-              -H "Content-Type: application/json" \
-              -d "{\"event\":\"efc_push\",\"commit\":\"$(git rev-parse HEAD)\"}" \
-              --max-time 10 || echo "Symbiose webhook not reachable"
-          fi
-        env:
-          SYMBIOSE_WEBHOOK_URL: ${{ secrets.SYMBIOSE_WEBHOOK_URL }}
-        continue-on-error: true
-
       - name: Job summary
         if: always()
         run: |

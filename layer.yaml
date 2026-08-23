@@ -13,6 +13,7 @@ description:   >
   packages (100% coverage), 4 master maintenance orchestrators, ~44
   maintenance scripts, 6 cosmology pipelines, 1 MCP server, 6 scheduled
   GitHub Actions workflows, and 5 reproduction scripts. Bridges to
+  # retired 2026-08-23: the Symbiose webhook was removed from efc-sync.yml and efc-main-sync.yml (Hetzner ADR-024 §8.3 pt. 4)
   Symbiose orchestrator (supertedai/AGI) via SYMBIOSE_WEBHOOK_URL POST
   on every push or drift-fix.
 
@@ -53,6 +54,7 @@ requires:
   - shared.external.orcid             # via efc_orcid_sync
 
 publishes_to:
+  # retired 2026-08-23: the Symbiose webhook was removed from efc-sync.yml and efc-main-sync.yml (Hetzner ADR-024 §8.3 pt. 4)
   - SYMBIOSE_WEBHOOK_URL              # POST { event: efc_push, commit, papers } on every drift-fix
   - figshare.com                      # DOI deposits + sealed predictions
   - energyflow-cosmology.com          # WordPress public site
