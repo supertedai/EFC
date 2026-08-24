@@ -1327,6 +1327,17 @@
       "efc_relevance": "HSC PDR3 Fourier-Quad onsite calibration finds S8 = 0.740 ± 0.030, lower than EFC's robust P4 value near 0.82. Shear-bias dependence on photo-z bin, S/N cut, band, and estimator makes this a limitation on the robustness of the cross-survey S8 picture until a matched systematics study is performed, not a direct P4 falsification.",
       "ledger_action": "Add to §4b as external evidence; update P4 with a limitation note. Do not add to the EFC evidence register or change the sealed P4 threshold.",
       "status": "new"
+    },
+    {
+      "key": "arXiv:2606.14962",
+      "title": "The Peculiar Growth of Structure: Validating fσ8 Measurements from TITAN Type Ia Supernovae and the Uchuu Simulations",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.14962",
+      "date_seen": "2026-08-24",
+      "date_published": "2026-06-12",
+      "efc_relevance": "TITAN/Uchuu end-to-end mocks recover fσ8 = 0.429 ± 0.038 from a simulated input of 0.428, close to EFC's sealed P2 central value 0.430. This validates the reconstruction-and-scaling method's recovery of its simulated input, not an observation of P2 at z = 0.7; the result therefore informs method readiness without changing P2's status or evidential weight.",
+      "ledger_action": "Add to §4b as external method-validation evidence linked to P2; explicitly record that the input is simulated and that no P2 verdict, threshold, or EFC evidence-register entry changes.",
+      "status": "new"
     }
   ],
   "consolidation_note": "Consolidated union of research-watch scans from PRs #307/#309/#311/#314 + prior main — no item dropped (BL-450)."
