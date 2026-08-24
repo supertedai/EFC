@@ -1316,6 +1316,17 @@
       "efc_relevance": "Scalar-vector-tensor gravity with matter minimally coupled to a Jordan-frame metric and a massive vector sector interacting with the baryonic current. The conformal scalar coupling produces a late-time enhancement of the effective Hubble constant relevant only at low redshifts, alleviating H_0 tension without affecting early-universe cosmology; the vector behaves as effective pressureless matter via a density-dependent mass, yielding a unified dark-sector. Chameleon-type screening keeps Solar-System constraints satisfied. Positioned as a competing framework to EFC: shares EFC's 'late-time-only mechanism' philosophy but achieves it via an explicit vector field rather than an entropy-flow source term.",
       "ledger_action": "Add to External Research Ledger under cluster scalar-tensor-horndeski as a new competing-framework candidate (source_type='framework-seminal' upgrade pending more papers in this line); update framework:Horndeski-Deffayet2011 and framework:Galileon-Nicolis2009 rows with a 'unified dark-sector scalar-vector-tensor' sibling note; cross-reference arXiv:2605.05691 (E(z) reformulation of H_0 tension) since both papers argue for late-time-only signatures; required follow-up in Predictions Ledger: state explicit EFC discriminator from the scalar-vector-tensor late-time enhancement on E(z) at z ≤ 0.3.",
       "status": "new"
+    },
+    {
+      "key": "arXiv:2606.18705",
+      "title": "Onsite Calibration of the Shear-Shear Correlation",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2606.18705",
+      "date_seen": "2026-08-23",
+      "date_published": "2026-06-17",
+      "efc_relevance": "HSC PDR3 Fourier-Quad onsite calibration finds S8 = 0.740 ± 0.030, lower than EFC's robust P4 value near 0.82. Shear-bias dependence on photo-z bin, S/N cut, band, and estimator makes this a limitation on the robustness of the cross-survey S8 picture until a matched systematics study is performed, not a direct P4 falsification.",
+      "ledger_action": "Add to §4b as external evidence; update P4 with a limitation note. Do not add to the EFC evidence register or change the sealed P4 threshold.",
+      "status": "new"
     }
   ],
   "consolidation_note": "Consolidated union of research-watch scans from PRs #307/#309/#311/#314 + prior main — no item dropped (BL-450)."
