@@ -48,7 +48,7 @@ def _navn(post: dict, i: int) -> str:
     return f"{s or f'post-{i:03d}'}.json"
 
 
-def hent() -> int:
+def hent(rydd: bool) -> int:
     d = json.loads(SAMLET.read_text(encoding="utf-8"))
     poster = d.get("items") or []
     DELER.mkdir(parents=True, exist_ok=True)
@@ -65,30 +65,80 @@ def hent() -> int:
             json.dumps(p, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8")
     print(f"[watch] delte {len(poster)} kilder → {DELER.relative_to(ROOT)}/")
+
+    # Deler som IKKE står i den samlede fila. To helt ulike ting ser like ut
+    # her, og det er derfor den ikke sletter av seg selv:
+    #
+    #   a) etterlatenskaper — posten er fjernet fra den samlede fila, og
+    #      uten opprydding smetter den inn igjen ved neste `bygg`
+    #   b) FERSK ARBEID — en arbeider la nettopp til en kilde som ennå ikke
+    #      er bygget inn. Hele poenget med én fil per kilde er at det skal
+    #      gå an.
+    #
+    # Å slette blindt ville tatt (b) med (a). Å la være ville latt (a) leve.
+    # Derfor: navngi dem og feil lukket. `bygg` folder (b) inn i den samlede
+    # fila; deretter er det som står igjen per definisjon (a), og `--rydd`
+    # fjerner det.
+    ukjent = sorted(f.name for f in DELER.glob("*.json")
+                    if f.name != "_hode.json" and f.name not in sett)
+    if ukjent:
+        if rydd:
+            for n in ukjent:
+                (DELER / n).unlink()
+            print(f"[watch] ryddet {len(ukjent)} del(er) uten post i den "
+                  f"samlede fila: {', '.join(ukjent)}")
+            return 0
+        print(f"[watch] {len(ukjent)} del(er) staar ikke i den samlede fila:",
+              file=sys.stderr)
+        for n in ukjent:
+            print(f"          {n}", file=sys.stderr)
+        print("[watch] enten er de fersk arbeid — kjoer `bygg` foerst — "
+              "eller etterlatenskaper: `hent --rydd`.", file=sys.stderr)
+        return 1
     return 0
 
 
 def _samle() -> dict:
     hode = json.loads((DELER / "_hode.json").read_text(encoding="utf-8"))
-    poster = []
+    par = []
     for f in sorted(DELER.glob("*.json")):
         if f.name == "_hode.json":
             continue
-        poster.append(json.loads(f.read_text(encoding="utf-8")))
-    # Stabil rekkefølge: nyest sett først, så filnavn. Uten en fast orden
-    # ville generatoren laget en ny diff hver gang filsystemet svarte i en
-    # annen rekkefølge — samme støy som tidsstempel-commitene i ADR-024 §6.
-    poster.sort(key=lambda p: (str(p.get("date_seen") or ""),
-                               str(p.get("key") or "")), reverse=True)
-    return {**hode, "items": poster}
+        par.append((f.name, json.loads(f.read_text(encoding="utf-8"))))
+    # Stabil rekkefølge: nyest sett først, så `key` — og filnavnet når `key`
+    # mangler. Alle 109 postene har unik `key` i dag, så fallbacken endrer
+    # ingen rekkefølge nå; den finnes for at en framtidig post uten `key`
+    # ikke skal la filsystemets svar avgjøre ordenen. Da ville generatoren
+    # laget en ny diff uten at noe var endret — samme støy som
+    # tidsstempel-commitene i ADR-024 §6.
+    #
+    # Å sortere på filnavn i stedet ville vært like stabilt, men ville
+    # stokket om alle 109 radene nå (filnavnet stripper «arXiv:»-prefikset
+    # som `key` beholder). Denne PR-en lover at delene bygger den samlede
+    # fila BYTE FOR BYTE tilbake; en omstokking ville brutt nettopp det
+    # løftet for å vinne robusthet ingen post trenger ennå.
+    par.sort(key=lambda fp: (str(fp[1].get("date_seen") or ""),
+                             str(fp[1].get("key") or "") or fp[0]),
+             reverse=True)
+    return {**hode, "items": [p for _, p in par]}
 
 
 def bygg(bare_sjekk: bool) -> int:
     if not (DELER / "_hode.json").exists():
         print(f"[watch] delene mangler: {DELER}", file=sys.stderr)
         return 2
-    ny = json.dumps(_samle(), ensure_ascii=False, indent=2) + "\n"
+    samlet = _samle()                       # én gang: den leser hver del
+    ny = json.dumps(samlet, ensure_ascii=False, indent=2) + "\n"
     gml = SAMLET.read_text(encoding="utf-8") if SAMLET.exists() else ""
+    # `status` staar i skjemaet, men to poster paa main mangler det. Det er
+    # arvet data, ikke noe denne generatoren innfoerte — derfor VARSEL og
+    # ikke feil. En generator som begynner aa avvise data den selv fikk
+    # utlevert, stopper vedlikeholdet i stedet for aa baere det.
+    mangler = [str(x.get("key") or "?") for x in samlet["items"]
+               if "status" not in x]
+    if mangler:
+        print(f"[watch] VARSEL: {len(mangler)} post(er) uten 'status': "
+              f"{', '.join(mangler)}", file=sys.stderr)
     if ny == gml:
         print("[watch] uendret")
         return 0
@@ -97,7 +147,7 @@ def bygg(bare_sjekk: bool) -> int:
               "Kjør `efc_watch.py bygg`.", file=sys.stderr)
         return 1
     SAMLET.write_text(ny, encoding="utf-8")
-    print(f"[watch] skrev {len(_samle()['items'])} kilder til "
+    print(f"[watch] skrev {len(samlet['items'])} kilder til "
           f"{SAMLET.relative_to(ROOT)}")
     return 0
 
@@ -105,8 +155,13 @@ def bygg(bare_sjekk: bool) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("handling", choices=("hent", "bygg", "sjekk"))
+    ap.add_argument("--rydd", action="store_true",
+                    help="slett deler som ikke staar i den samlede fila "
+                         "(kjoer `bygg` foerst, ellers ryker fersk arbeid)")
     a = ap.parse_args()
-    return hent() if a.handling == "hent" else bygg(a.handling == "sjekk")
+    if a.handling == "hent":
+        return hent(a.rydd)
+    return bygg(a.handling == "sjekk")
 
 
 if __name__ == "__main__":
