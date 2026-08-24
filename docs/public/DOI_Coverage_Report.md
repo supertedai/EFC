@@ -24,7 +24,7 @@ _None — full coverage._
 
 | DOI | pages |
 |---|---|
-| `10.17863/cam.690` | EFC_Atlas.html |
+| `10.1371/journal.pcbi.1004669` | EFC_Atlas.html |
 
 ## DOI counts per page
 
