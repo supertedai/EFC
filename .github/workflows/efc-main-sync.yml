@@ -51,15 +51,52 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
           which pdftotext && pdftotext -v 2>&1 | head -1 || echo "WARNING: pdftotext not found after install"
 
-      - name: Run full maintenance pipeline (with AI Brain)
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-5
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL: claude-opus-4-6
+      # LLM-noeklene sendes IKKE lenger inn her, og det er grunnen til at
+      # denne workflowen kan staa PAA igjen.
+      #
+      # Den ble slaatt av manuelt — ikke fordi den feilet (siste kjoering
+      # 2026-07-26 var vellykket), men fordi steget «AI Brain» kaller gpt-5 og
+      # claude-opus paa hver eneste push til main som roerer papers, ledger
+      # eller scripts. Samme kostnadsgrunn som #332 og #334.
+      #
+      # Konsekvensen av at den sto av: docs/papers — 3 036 filer, tre
+      # fjerdedeler av repoet — hadde en eier paa papiret som ikke hadde
+      # kjoert siden 26. juli. Det er en dyrere tilstand enn LLM-regninga.
+      #
+      # Uten noeklene hopper efc_ai_brain.py av seg selv («LLM providers:
+      # NONE», exit 0 — verifisert), og resten av pipelinen kjoerer
+      # deterministisk: auto-metadata, gen-ai-friendly, DOI-sync, navbar-sync,
+      # drift-detector, rootfile-consistency, cross-validate, auto-changelog.
+      #
+      # Skal beriking med LLM tilbake, hoerer den hjemme som en EGEN, sjeldnere
+      # workflow — ikke som et steg som fyrer paa hver push.
+      - name: Run maintenance pipeline (deterministisk — uten AI Brain)
         run: |
           python3 scripts/maintenance/efc_maintain.py 2>&1 | tee maintain.log
         continue-on-error: true
+
+      # PORTEN. efc_cross_validate sier selv at den «blocks publishing if
+      # critical discrepancies are found», og exit 1 betyr «blocks publish».
+      # Auto-commit var likevel bare betinget av at NOE hadde endret seg:
+      # maintenance-steget har continue-on-error, saa et BLOCK gikk rett
+      # gjennom og skrev til main uansett.
+      #
+      # Maalt 2026-08-24: porten sier BLOCK i dag («bao_desi_y1: still LCDM
+      # stub»). Uten denne endringen ville en paaskrudd workflow committet
+      # over den dommen.
+      #
+      # Exit: 0 = rent, 1 = kritisk (blokker), 2 = bare advarsler. Bare 1 stopper.
+      - name: Kryssvalidering — porten foer auto-commit
+        id: gate
+        run: |
+          set +e
+          python3 scripts/maintenance/efc_cross_validate.py
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          if [ "$rc" = "1" ]; then
+            echo "::error::Kryssvalidering sier BLOCK — auto-commit hoppes over."
+          fi
+          exit 0
 
       - name: Check for changes
         id: diff
@@ -75,7 +112,7 @@ jobs:
           fi
 
       - name: Auto-commit fixes to main
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true' && steps.gate.outputs.rc != '1'
         run: |
           git config user.name "efc-sync[bot]"
           git config user.email "efc-sync[bot]@users.noreply.github.com"
