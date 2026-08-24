@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures as cf
+import html
 import threading
 import json
 import os
@@ -44,6 +45,7 @@ import subprocess
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -71,6 +73,13 @@ def _kjente() -> dict[str, str]:
                              f"en skjult feil.")
         ut[rad["doi"]] = rad["grunn"]
     return ut
+
+
+def _rentekst(s: str | None) -> str:
+    """DataCite leverer titler HTML-escaped, noen med <i>-tagger."""
+    if not s:
+        return ""
+    return re.sub(r"<[^>]+>", "", html.unescape(s)).strip()
 
 
 def _doier() -> dict[str, list[str]]:
@@ -124,24 +133,53 @@ class Strupet(Exception):
     """Nok. Resultatet er ufullstendig, og det skal ikke pyntes paa."""
 
 
+# DataCite, ikke Figshare. Tre grunner, alle maalt 2026-08-24:
+#
+# 1. Hermes er IP-BLOKKERT av api.figshare.com — nginx svarer 403 paa ALT,
+#    ogsaa det offentlige endepunktet uten token. Stroembryteren her tolket
+#    det som struping og avbroet etter 2 av 176 DOI-er. Sjekken kunne aldri
+#    virke fra verten, og sa «2 DOI-er sjekket» som om det var et resultat.
+#    DataCite svarer 200 fra samme maskin.
+#
+# 2. DataCite slaar opp DOI-STRENGEN. Figshare slaar opp ARTIKKEL-ID-en. Det
+#    er ikke det samme: 10.6084/m9.figshare.31224739 finnes ikke som DOI, men
+#    artikkel 31224739 finnes — den tilhoerer University of Wollongong. Figshare
+#    ga meg altsaa en fremmed artikkel og lot meg tro ID-en var gyldig.
+#    DataCite svarer korrekt «finnes ikke».
+#
+# 3. Svaret baerer FORFATTERE. Det er forfatternavnet som avgjoer om en DOI er
+#    Mortens — den sterkeste kontrollen av de tre, og Figshares offentlige
+#    endepunkt gir den ikke.
+#
+# Tapt: «publisert uten filer», som DataCite ikke oppgir. Den fant 0 uansett,
+# og filkontroll hoerer hjemme der kontotilgangen er.
+FORFATTER = os.environ.get("EFC_FORFATTER", "Magnusson")
+
+
 def _hent(doi: str) -> tuple[str, dict]:
-    aid = doi.rsplit(".", 1)[-1]
     req = urllib.request.Request(
-        f"https://api.figshare.com/v2/articles/{aid}",
+        "https://api.datacite.org/dois/" + urllib.parse.quote(doi, safe=""),
         headers={"Accept": "application/json",
-                 "User-Agent": "efc-presence/1.0 (+https://github.com/supertedai/EFC)"})
+                 "User-Agent": "efc-presence/2.0 (+https://github.com/supertedai/EFC)"})
     for forsok in range(4):
         if _strupet[0] >= STRUPEGRENSE:
             raise Strupet(f"{_strupet[0]} strupte svar")
         try:
             _vent_paa_tur()
             with urllib.request.urlopen(req, timeout=30) as r:
-                d = json.loads(r.read().decode())
-                return doi, {"status": "OK",
-                             "tittel": (d.get("title") or "")[:90],
-                             "doi_hos_figshare": d.get("doi") or "",
-                             "publisert": (d.get("published_date") or "")[:10],
-                             "filer": len(d.get("files") or [])}
+                at = json.loads(r.read().decode())["data"]["attributes"]
+                forf = [c.get("name") or "" for c in (at.get("creators") or [])]
+                return doi, {
+                    "status": "OK",
+                    "tittel": _rentekst((at.get("titles") or [{}])[0].get("title"))[:90],
+                    "doi_hos_figshare": at.get("doi") or "",
+                    "publisert": str(at.get("registered") or "")[:10],
+                    "tilstand": at.get("state") or "",
+                    "forfattere": forf,
+                    # Den sterkeste kontrollen: er DOI-en i det hele tatt hans?
+                    "fremmed_forfatter": bool(forf) and not any(
+                        FORFATTER.lower() in f.lower() for f in forf),
+                    "filer": None}
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return doi, {"status": "404", "tittel": "", "doi_hos_figshare": "",
@@ -224,11 +262,12 @@ def main() -> int:
     ikke_offentlig = sorted(d for d, r in res.items() if r["status"] == "404")
     feil = {d: r["status"] for d, r in res.items() if r["status"] not in ("OK", "404")}
     # Peker DOI-en et ANNET sted enn den utgir seg for? Det er verre enn 404.
-    feilpekende = sorted(
-        d for d, r in res.items()
-        if r["status"] == "OK" and r["doi_hos_figshare"]
-        and not r["doi_hos_figshare"].startswith(d))
-    tomme = sorted(d for d, r in res.items() if r["status"] == "OK" and not r["filer"])
+    # DataCite slaar opp DOI-strengen, saa «doi_hos_figshare» stemmer alltid
+    # med det vi spurte om. Det som KAN vaere galt, er at DOI-en tilhoerer noen
+    # andre — og det ser vi paa forfatteren.
+    feilpekende = sorted(d for d, r in res.items()
+                         if r["status"] == "OK" and r.get("fremmed_forfatter"))
+    tomme: list[str] = []   # DataCite oppgir ikke filer; se kommentaren over
 
     print(f"DOI-er i repoet:          {len(res)}")
     print(f"  offentlige paa Figshare:{len(res) - len(ikke_offentlig) - len(feil):>5}")
@@ -238,10 +277,11 @@ def main() -> int:
     print(f"  publisert uten filer:   {len(tomme):>5}")
 
     if feilpekende:
-        print("\n── PEKER ET ANNET STED (verre enn 404: levende lenke, feil verk) ──")
+        print("\n── FREMMED FORFATTER (DOI-en finnes, men er ikke Mortens) ──")
         for d in feilpekende:
             r = res[d]
-            print(f"   {d}\n      → {r['doi_hos_figshare']}  «{r['tittel'][:60]}»")
+            print(f"   {d}\n      → {', '.join(r.get('forfattere') or ['?'])}"
+                  f"  «{r['tittel'][:56]}»")
             for f in r["filer_i_repoet"][:3]:
                 print(f"        {f}")
     if ikke_offentlig:
