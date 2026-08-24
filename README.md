@@ -210,7 +210,7 @@ The [Validation Ledger](./docs/public/EFC_Validation_Ledger.html) (v3.18 / v4.6 
 | EFC Relativistic Action | μ < 1, Σ > 1, η ≠ 1, c_T = c | [31876324](https://doi.org/10.6084/m9.figshare.31876324) |
 | Covariant EFT (c_gw = c, RAR = BE) | Structural results | [31878334](https://doi.org/10.6084/m9.figshare.31878334) |
 | Galaxy rotation curves (SPARC175) | Completed | [31047703](https://doi.org/10.6084/m9.figshare.31047703) |
-| KiDS-1000 cosmic shear | Completed | [31224739](https://doi.org/10.6084/m9.figshare.31224739) |
+| KiDS-1000 cosmic shear | Completed | [31224739](https://doi.org/10.6084/m9.figshare.31271917) |
 | Connectome heterogeneity (r = −0.97) | Empirical (Spor 2) | [31940370](https://doi.org/10.6084/m9.figshare.31940370) |
 
 ### Falsification Conditions (F1–F7 + FA1–FA6)
@@ -236,7 +236,7 @@ Pre-registered conditions that would falsify EFC sectors. F7 (η=1) formally **P
 | WP3: First Empirical Slice | [31215259](https://doi.org/10.6084/m9.figshare.31215259) | R≈+0.30 at (k,S) |
 | Unified BAO/SN/RSD | [31215613](https://doi.org/10.6084/m9.figshare.31215613) | β=0.16, Δχ²=+1.7 |
 | SPARC175 Regime Validation | [31047703](https://doi.org/10.6084/m9.figshare.31047703) | EBE partition |
-| KiDS-1000 Cosmic Shear | [31224739](https://doi.org/10.6084/m9.figshare.31224739) | Regime-activated lensing |
+| KiDS-1000 Cosmic Shear | [31224739](https://doi.org/10.6084/m9.figshare.31271917) | Regime-activated lensing |
 | BOSS DR12 BAO Consistency | [31314922](https://doi.org/10.6084/m9.figshare.31314922) | Covariance-aware BAO |
 | Growth fσ₈ Robustness (LOO) | [31332730](https://doi.org/10.6084/m9.figshare.31332730) | α<0 at ~2σ, 7/7 LOO |
 
