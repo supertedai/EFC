@@ -2,8 +2,8 @@
   "id": "efc-external-research-watch",
   "title": "EFC External Research Watchlist",
   "purpose": "Track external datasets, surveys, and papers that could confirm, falsify, or constrain EFC. Source-of-truth for 'what has Claude already seen'. Agents MUST read this before searching the web so follow-up reports show only deltas.",
-  "version": "1.8",
-  "last_updated": "2026-06-08",
+  "version": "1.9",
+  "last_updated": "2026-08-24",
   "author": "Morten Magnusson",
   "orcid": "0009-0002-4860-5095",
   "license": "CC-BY-4.0",
@@ -100,13 +100,7 @@
         "ledger_action": "Add to new cluster cosmology split cluster.",
         "verification_required": "Locate SPT-3G 2024/2025 cluster cosmology paper (arXiv ID); confirm value."
       },
-      {
-        "topic": "Euclid Q2 release window 2026-06-24 (timeline update)",
-        "cluster": "future_arbiters",
-        "efc_relevance": "Updated ESA timeline brings a Q2 staging release before the DR1 anchor on 2026-10-21. Does not affect the sealed Euclid DR1 frozen test; informational only.",
-        "ledger_action": "Add Q2 staging entry to 'future_arbiters' cluster as survey-release item; keep ESA:EuclidDR1-2026-10-21 unchanged and FROZEN.",
-        "verification_required": "Confirm ESA Q2 release announcement URL and exact 2026-06-24 date."
-      },
+
       {
         "topic": "Rubin DP2 confirmed Jul-Sep 2026 + alert stream live since 2026-02-24",
         "cluster": "future_arbiters",
@@ -236,6 +230,17 @@
       "date_published": "2026-10-21",
       "efc_relevance": "Arbitrates DES Y6 vs KiDS S8 disagreement; tests sealed EFC pipeline (figshare 31990053, B0=0.02, M0=0.06).",
       "ledger_action": "Keep predictions FROZEN; mark Gap Analysis row 'awaiting DR1'. No action until Oct 21 2026.",
+      "status": "logged"
+    },
+    {
+      "key": "ESA:EuclidQ2-2026-06-24",
+      "title": "Euclid Quick Data Release 2 (Galactic Bulge Survey)",
+      "source_type": "survey-release",
+      "url": "https://www.euclid-ec.org/science/q2/",
+      "date_seen": "2026-08-24",
+      "date_published": "2026-06-24",
+      "efc_relevance": "Q2 releases VIS images plus astrometry and photometry catalogues for the 4.8 deg² Galactic Bulge Survey, including 60 million stars. It is not a cosmic-shear, E_G, or gravitational-slip release, so it does not test P1–P8 or alter the sealed Euclid DR1 benchmark.",
+      "ledger_action": "Add to §4b as an informational external release; keep P1–P8 statuses, the sealed Euclid DR1 prediction, and the EFC evidence register unchanged.",
       "status": "logged"
     },
     {
