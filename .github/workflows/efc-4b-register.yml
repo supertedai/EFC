@@ -1,0 +1,36 @@
+name: EFC 4b register
+
+# §4b i EFC_Validation_Ledger.html genereres fra
+# docs/validation-ledger/data/external-references.json (scripts/maintenance/efc_4b.py).
+#
+# Denne porten fanger direkte HTML-redigering. Målt 2026-08-23: registeret ble
+# innført, men ingenting hindret arbeiderne i å skrive i HTML-en likevel — de
+# gjorde det, fordi oppgaveteksten ikke sa noe annet. En kilde som kan omgås
+# uten at noe sier fra, er ikke en kilde.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/validation-ledger/data/external-references.json"
+      - "scripts/maintenance/efc_4b.py"
+  pull_request:
+    paths:
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/validation-ledger/data/external-references.json"
+      - "scripts/maintenance/efc_4b.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sjekk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: §4b must match its register
+        run: python3 scripts/maintenance/efc_4b.py sjekk
