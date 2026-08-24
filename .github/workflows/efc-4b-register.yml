@@ -1,4 +1,4 @@
-name: EFC 4b register
+name: EFC generated sources
 
 # §4b i EFC_Validation_Ledger.html genereres fra
 # docs/validation-ledger/data/external-references.json (scripts/maintenance/efc_4b.py).
@@ -13,12 +13,18 @@ on:
     paths:
       - "docs/public/EFC_Validation_Ledger.html"
       - "docs/validation-ledger/data/external-references.json"
+      - "docs/public/external_research_watch.json"
+      - "docs/public/external_research_watch/**"
       - "scripts/maintenance/efc_4b.py"
+      - "scripts/maintenance/efc_watch.py"
   pull_request:
     paths:
       - "docs/public/EFC_Validation_Ledger.html"
       - "docs/validation-ledger/data/external-references.json"
+      - "docs/public/external_research_watch.json"
+      - "docs/public/external_research_watch/**"
       - "scripts/maintenance/efc_4b.py"
+      - "scripts/maintenance/efc_watch.py"
   workflow_dispatch:
 
 permissions:
@@ -34,3 +40,6 @@ jobs:
           python-version: "3.11"
       - name: §4b must match its register
         run: python3 scripts/maintenance/efc_4b.py sjekk
+
+      - name: watchlist must match its per-source files
+        run: python3 scripts/maintenance/efc_watch.py sjekk
