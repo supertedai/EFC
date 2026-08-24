@@ -1,0 +1,11 @@
+{
+  "key": "arXiv:2605.11600",
+  "title": "A hierarchical Bayesian pipeline for soliton-plus-NFW inference on SPARC rotation curves: diagnostics and prior-boundary behaviour",
+  "source_type": "paper",
+  "url": "https://arxiv.org/abs/2605.11600",
+  "date_seen": "2026-05-18",
+  "date_published": "2026-05-12",
+  "efc_relevance": "Hierarchical Bayesian fit of soliton-plus-NFW (ultralight / fuzzy DM) profiles to the SPARC database, treating the core-halo scaling exponent as a global free parameter and explicitly mapping prior-boundary degeneracies. Provides a directly-comparable per-galaxy goodness-of-fit baseline for any EFC variant that predicts a galaxy rotation-curve shape from the entropy-flow term S(r,t): EFC must either match the soliton+NFW per-galaxy chi^2 or beat it, on the same SPARC subset, to remain a viable galactic-scale framework. Also tightens framework:FuzzyDM-Hu2000 discriminator by pinning the global core-halo scaling exponent.",
+  "ledger_action": "Add to Validation Ledger as a SPARC galaxy-scale benchmark; update framework:FuzzyDM-Hu2000 row with the global core-halo exponent constraint; cross-reference arXiv:2411.13329 (BIG-SPARC); required follow-up in Predictions Ledger: replicate the hierarchical Bayesian pipeline with EFC's S(r,t) RC predictor on the same 175-galaxy SPARC subset and report per-galaxy chi^2 distribution against soliton+NFW.",
+  "status": "new"
+}

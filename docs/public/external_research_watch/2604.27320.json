@@ -1,0 +1,11 @@
+{
+  "key": "arXiv:2604.27320",
+  "title": "Extended Universal Rotational Curve of Spiral Galaxies (Salucci, Bhatia, Schiavone, Haridasu)",
+  "source_type": "paper",
+  "url": "https://arxiv.org/abs/2604.27320",
+  "date_seen": "2026-05-01",
+  "date_published": "2026-04-30",
+  "efc_relevance": "Salucci-team URC extended out to 2R_opt using SPARC HI rotation curves; double-normalised RCs collapse onto a single universal profile in the dark-matter-dominated outer disk regime where MOND, Verlinde-2016 and EFC predictions diverge most. Provides a clean baryon-aware target shape against which EFC's k=0.415 universality prediction (ledger_galaxy_rotation_curves_sparc) can be tested in the regime its sealed parameters were not fitted on.",
+  "ledger_action": "Re-run EFC SPARC pipeline (seed=42, k=0.415 sealed) on the extended-URC double-normalised profile; add to Validation Ledger alongside arXiv:2411.13329 (BIG-SPARC); update gap theory-multicomponent-sparc-universality with extended-URC outer-disk row; required head-to-head ΔAIC vs framework:VerlindeEmergent-2016 and framework:MOND-Milgrom1983.",
+  "status": "new"
+}
