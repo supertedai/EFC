@@ -529,7 +529,7 @@ docs/papers/efc/[Paper-Name]/
 |----|-----|------------|
 | `unified-bao` | 10.6084/m9.figshare.31215613 | β=0.16, Δχ²=+1.7 |
 | `sparc175` | 10.6084/m9.figshare.31047703 | EBE regime partition |
-| `kids1000` | 10.6084/m9.figshare.31224739 | Regime-activated lensing |
+| `kids1000` | 10.6084/m9.figshare.31271917 | Regime-activated lensing |
 
 ---
 

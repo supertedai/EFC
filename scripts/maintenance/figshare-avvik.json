@@ -1,0 +1,29 @@
+{
+  "_om": "Kjente DOI-avvik som IKKE skal felle efc_figshare_presence.py --sjekk. Hver rad krever en grunn og en dato. Ei tom liste er maalet; en rad uten grunn er en skjult feil.",
+  "avvik": [
+    {
+      "doi": "10.6084/m9.figshare.999999",
+      "sett": "2026-08-24",
+      "grunn": "Plassholder i en opprydningsrapport (meta/symbiosis/QDRANT_CLEANUP_REPORT.md), ikke en paastand om et verk. MERK at den RESOLVERER — til en PLOS ONE-figur fra 2014 om hydrosalpinx hos mus. En oppdiktet Figshare-ID er ikke en doed lenke. Boer fjernes fra rapporten."
+    },
+    {
+      "doi": "10.6084/m9.figshare.28096610",
+      "sett": "2026-08-24",
+      "grunn": "citations.bib tilskriver den «Magnusson, Morten — CEM-Cosmos: Consciousness as Informational Resonance», men artikkel-ID-en tilhoerer 10.1371/journal.pone.0312706.s001 (PLOS ONE supporting information). Riktig DOI er ukjent herfra og skal ikke gjettes — krever Mortens verksliste eller kontotilgang."
+    },
+    {
+      "doi": "10.6084/m9.figshare.27315821", "sett": "2026-08-24",
+      "grunn": "Ikke offentlig. Kan vaere upublisert draft; avgjoeres med kontotilgang (figshare-hent gjennom koevakten), ikke herfra."
+    },
+    {"doi": "10.6084/m9.figshare.27452213", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."},
+    {"doi": "10.6084/m9.figshare.28358629", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."},
+    {"doi": "10.6084/m9.figshare.28550047", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."},
+    {"doi": "10.6084/m9.figshare.30604004", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."},
+    {
+      "doi": "10.6084/m9.figshare.31140000", "sett": "2026-08-24",
+      "grunn": "Ikke offentlig, OG staar paa en public-side (docs/public/EFC_Atlas.html, rad merket data-result=Planned) samt i validation-ledgeren. Ledgeren har allerede en post «Re-ingest 2 incomplete EFC Figshare DOIs (31140000, 31876324)» — den andre av de to finnes offentlig, denne gjoer ikke. Hoeyest prioritet av de aatte."
+    },
+    {"doi": "10.6084/m9.figshare.31224397", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."},
+    {"doi": "10.6084/m9.figshare.31251277", "sett": "2026-08-24", "grunn": "Ikke offentlig — samme som over."}
+  ]
+}
