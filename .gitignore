@@ -12,3 +12,11 @@ _quarantine/
 # Cobaya run artifacts created by running from the repo root
 /chains/
 docs/audit_report.md
+
+# Git-worktrees som arbeidere lager under repoet. De ble commitet inn som
+# gitlinks i #353 (`git add -A` i en utsjekk der de laa untracked og
+# uignorerte) — ni stykker, uten .gitmodules, saa hver CI-kjoering endte med
+# «fatal: No url found for submodule path '.worktrees/…'».
+#
+# En worktree er en LOKAL arbeidsflate. Den hoerer aldri hjemme i historikken.
+.worktrees/
