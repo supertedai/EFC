@@ -66,9 +66,22 @@ def registrerte() -> dict[str, str]:
     if not REGISTER.exists():
         return {}
     d = json.loads(REGISTER.read_text(encoding="utf-8"))
-    poster = d.get("references", d) if isinstance(d, dict) else d
-    return {str(p["doi"]).strip().lower(): p.get("role", "uklassifisert")
-            for p in poster if isinstance(p, dict) and p.get("doi")}
+    # Samme register som §4b genereres fra (efc_4b.py). Én sannhet for
+    # eksterne referanser, ikke to: §4b-generatoren bruker `html`, denne
+    # bruker `doi` og `rolle`. En oppforing uten `doi` er et arXiv-funn som
+    # ikke har en DOI aa avstemme — den hoerer i §4b, ikke her.
+    if isinstance(d, dict) and "grupper" in d:
+        poster = [o for g in d["grupper"] for o in g.get("oppforinger", [])]
+    else:
+        poster = d.get("references", d) if isinstance(d, dict) else d
+    ut = {}
+    for p in poster:
+        if not isinstance(p, dict):
+            continue
+        doi = str(p.get("doi") or "").strip().lower()
+        if doi.startswith("10.") and "/" in doi:
+            ut[doi] = p.get("rolle") or p.get("role") or "uklassifisert"
+    return ut
 
 
 def skann() -> dict[str, set[str]]:
