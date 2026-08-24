@@ -176,10 +176,11 @@
         "name": "Rotation curves — data and competing models",
         "watchlist_keys": [
           "arXiv:2411.13329",
-          "arXiv:2601.00522"
+          "arXiv:2601.00522",
+          "arXiv:2608.10189"
         ],
         "cluster_commentary": {
-          "draft": "BIG-SPARC extends rotation-curve data beyond the 175-galaxy SPARC sample. In parallel, arXiv:2601.00522 presents a new empirical model claiming to outperform both MOND and CDM halos. Both point to the same next step: execute Kill-Test v6 universality on the expanded data, then run head-to-head ΔAIC comparison against the competitor. No EFC analysis has yet run against these new resources.",
+          "draft": "BIG-SPARC extends rotation-curve data beyond the 175-galaxy SPARC sample. In parallel, arXiv:2601.00522 presents a new empirical model claiming to outperform both MOND and CDM halos, while arXiv:2608.10189 reviews why the Milky Way's outer decline remains sensitive to Jeans modelling and competing tracers. These resources sharpen the need for explicit model-dependence audits before any rotation-curve result is treated as a discriminator; no EFC analysis has yet run against the new resources.",
           "verified_by_morten": true,
           "verified_at": "2026-04-18T12:33:25.389267Z"
         }
@@ -589,6 +590,19 @@
           }
         }
       ]
+    },
+    {
+      "watchlist_key": "arXiv:2608.10189",
+      "title": "The Rotation Curve of the Milky Way: State of the Art, the Keplerian Decline Debate, and Implications for Dark Matter",
+      "cluster_ids": [
+        "rotation_curves_and_competitors"
+      ],
+      "doc_synthesis": {
+        "draft": "This review shows that the reported Milky Way outer rotation-curve decline beyond approximately 15 kpc is not yet a settled discriminator: the nearly Keplerian reading depends on sensitive axisymmetric Jeans modelling, while several independent tracers favour a heavier halo. It therefore weakens overconfident readings of the outer curve while leaving the competing interpretations open. The review does not test P8's bar-instability criterion on SPARC/S4G/Galaxy Zoo.",
+        "verified_by_morten": true,
+        "verified_at": "2026-08-24T00:00:00.000000Z"
+      },
+      "targets": []
     },
     {
       "watchlist_key": "ESA:EuclidDR1-2026-10-21",
