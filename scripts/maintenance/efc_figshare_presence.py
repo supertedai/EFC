@@ -36,7 +36,9 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures as cf
+import threading
 import json
+import os
 import re
 import subprocess
 import sys
@@ -87,6 +89,41 @@ def _doier() -> dict[str, list[str]]:
     return ut
 
 
+# Fast takt mellom kall, delt av alle traadene.
+#
+# Foerste versjon REAGERTE paa struping med backoff. Det virket, men saerdeles
+# daarlig: 176 oppslag brukte over 25 minutter uten aa bli ferdig, fordi hver
+# strupte forespoersel kostet 15-45 s og saa provoserte den neste. Aa vente
+# etter at man er strupet er dyrere enn aa ikke bli strupet.
+#
+# Naa: en fast minsteavstand mellom kall. 176 x 0,4 s = ~70 s, og Figshare
+# struper ikke. Backoffen staar igjen som sikkerhetsnett, ikke som strategi.
+TAKT_S = float(os.environ.get("EFC_PRESENCE_TAKT", "0.4"))
+_takt_laas = threading.Lock()
+_neste_lov = [0.0]
+
+
+def _vent_paa_tur() -> None:
+    with _takt_laas:
+        naa = time.monotonic()
+        vent = _neste_lov[0] - naa
+        if vent > 0:
+            time.sleep(vent)
+            naa = time.monotonic()
+        _neste_lov[0] = naa + TAKT_S
+
+
+# Stroembryter: gir Figshare oss 403 gang paa gang, er det ikke et svar om
+# DOI-ene — og aa fortsette i timevis for aa samle flere ikke-svar er
+# bortkastet. Da stopper vi, og sier at vi stoppet.
+STRUPEGRENSE = int(os.environ.get("EFC_PRESENCE_STRUPEGRENSE", "12"))
+_strupet = [0]
+
+
+class Strupet(Exception):
+    """Nok. Resultatet er ufullstendig, og det skal ikke pyntes paa."""
+
+
 def _hent(doi: str) -> tuple[str, dict]:
     aid = doi.rsplit(".", 1)[-1]
     req = urllib.request.Request(
@@ -94,7 +131,10 @@ def _hent(doi: str) -> tuple[str, dict]:
         headers={"Accept": "application/json",
                  "User-Agent": "efc-presence/1.0 (+https://github.com/supertedai/EFC)"})
     for forsok in range(4):
+        if _strupet[0] >= STRUPEGRENSE:
+            raise Strupet(f"{_strupet[0]} strupte svar")
         try:
+            _vent_paa_tur()
             with urllib.request.urlopen(req, timeout=30) as r:
                 d = json.loads(r.read().decode())
                 return doi, {"status": "OK",
@@ -109,8 +149,10 @@ def _hent(doi: str) -> tuple[str, dict]:
             # 403 er ogsaa rate-limiting her, ikke bare 429 — maalt
             # 2026-08-24 ved aa kjoere sjekken flere ganger paa rad. Uten
             # dette leses en strupet kjoering som «DOI-en finnes ikke».
+            if e.code in (403, 429):
+                _strupet[0] += 1
             if e.code in (403, 429, 500, 502, 503) and forsok < 3:
-                time.sleep(15 * (forsok + 1))     # 15 s, 30 s, 45 s
+                time.sleep(5 * (forsok + 1))      # sikkerhetsnett, ikke plan
                 continue
             return doi, {"status": f"HTTP {e.code}", "tittel": "",
                          "doi_hos_figshare": "", "publisert": "", "filer": 0}
@@ -147,10 +189,37 @@ def main() -> int:
     # hjemme som NATTLIG jobb, ikke som port paa hver PR — en port som
     # feiler av struping laerer folk aa kjoere den paa nytt til den gaar
     # gjennom, og da er den ikke lenger en port.
+    avbrutt = False
     with cf.ThreadPoolExecutor(max_workers=2) as ex:
-        for doi, r in ex.map(_hent, sorted(kilder)):
-            r["filer_i_repoet"] = kilder[doi]
-            res[doi] = r
+        try:
+            for doi, r in ex.map(_hent, sorted(kilder)):
+                r["filer_i_repoet"] = kilder[doi]
+                res[doi] = r
+        except Strupet as e:
+            avbrutt = True
+            print(f"\n[presence] AVBRUTT: {e}. Figshare struper. De "
+                  f"{len(kilder) - len(res)} gjenstaaende DOI-ene er IKKE "
+                  f"sjekket, og resultatet under gjelder bare de "
+                  f"{len(res)} foerste.", file=sys.stderr)
+
+    # Andre runde for etternoelerne. Et par strupte oppslag skal ikke felle en
+    # ellers fullstendig kjoering — men de skal heller ikke pyntes bort, saa
+    # runden er EN, den er sekvensiell, og det som fortsatt feiler blir
+    # staaende som feilet.
+    henge = [d for d, r in res.items() if r["status"] not in ("OK", "404")]
+    if henge and not avbrutt:
+        print(f"[presence] {len(henge)} oppslag feilet — venter 60 s og "
+              f"proever dem en gang til, sekvensielt.", file=sys.stderr)
+        time.sleep(60)
+        _strupet[0] = 0                      # ny runde, nytt budsjett
+        for d in henge:
+            try:
+                _, r = _hent(d)
+            except Strupet:
+                break
+            if r["status"] == "OK" or r["status"] == "404":
+                r["filer_i_repoet"] = res[d]["filer_i_repoet"]
+                res[d] = r
 
     ikke_offentlig = sorted(d for d, r in res.items() if r["status"] == "404")
     feil = {d: r["status"] for d, r in res.items() if r["status"] not in ("OK", "404")}
@@ -203,6 +272,10 @@ def main() -> int:
               "Rett dem, eller foer dem inn i avvikslista MED grunn.",
               file=sys.stderr)
         return 1
+    if a.sjekk and avbrutt:
+        print("\n[presence] Ufullstendig kjoering. Ikke tolket som PASS.",
+              file=sys.stderr)
+        return 2
     if a.sjekk and feil:
         print("\n[presence] oppslag feilet; sier INGENTING om DOI-ene. "
               "Ikke tolket som PASS.", file=sys.stderr)
