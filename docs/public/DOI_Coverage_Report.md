@@ -14,7 +14,7 @@ _None — full coverage._
 |---|---|---|
 | `10.1007/s41114-022-00040-z` | context | EFC_Gap_Analysis.html, EFC_White_Paper_Series.html |
 | `10.1038/s41550-025-02669-6` | under_confrontation | EFC_External_Research_Ledger.html |
-| `10.1051/0004-6361/201630276` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
+| `10.1051/0004-6361/201630295` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/mnras/stu2693` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/mnras/stx721` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/pasj/psw029` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
