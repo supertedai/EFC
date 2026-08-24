@@ -108,11 +108,11 @@
         "verification_required": "Confirm ESA Q2 release announcement URL and exact 2026-06-24 date."
       },
       {
-        "topic": "Rubin DP2 confirmed Jul-Sep 2026 + alert stream live since 2026-02-24",
+        "topic": "Rubin DP2 phased delivery: early release 2026-07-27, complete delivery Oct-Dec 2026",
         "cluster": "future_arbiters",
-        "efc_relevance": "DP2 is the test bed for P4. The sealed S8 = 0.847 +/- 0.015 used the fragile eta-boost branch (0% robust per DOI 32037990); the robust EFC derivation gives S8 approx 0.82 DOWN (DOI 31188193). Alert stream availability is unrelated to P4 but worth noting as Rubin operational milestone for future predictions.",
-        "ledger_action": "Add 'Rubin:DP2-2026-Q3' as separate survey-release entry distinct from Euclid; cross-reference P4 sealed pipeline (figshare 32013738).",
-        "verification_required": "Confirm Rubin DP2 schedule from latest RTN-011 v8.0 (April 2026)."
+        "efc_relevance": "DP2 is the test bed for P4, but the release is phased. Early DP2 coadds and catalogs became available on 2026-07-27; visit and difference images, needed for the complete practical cosmic-shear input, are targeted for Oct-Dec 2026 because of a bandwidth constraint in Rubin's hybrid cloud architecture. The sealed S8 = 0.847 +/- 0.015 used the fragile eta-boost branch (0% robust per DOI 32037990); the robust EFC derivation gives S8 approx 0.82 DOWN (DOI 31188193).",
+        "ledger_action": "Update Rubin DP2 schedule references to distinguish the 2026-07-27 early release from complete Oct-Dec delivery; cross-reference P4 sealed pipeline (figshare 32013738) without changing the sealed prediction.",
+        "verification_required": "Confirm phased DP2 schedule and bandwidth explanation from Rubin Early Science Program, updated 2026-07-27."
       }
     ]
   },
