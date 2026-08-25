@@ -1,0 +1,29 @@
+# Forsida skal stemme med sidene den peker paa.
+#
+# docs/index.html var ni linjer meta-refresh, urort siden 2026-02-13, og to av
+# fjorten sider var unaabare fra den — deriblant hovedspesifikasjonen. En
+# haandskrevet forside driver fra sidene; denne genereres, og porten her
+# hindrer at den driver igjen.
+name: EFC forside
+
+on:
+  pull_request:
+    paths:
+      - "docs/public/**.html"
+      - "docs/index.html"
+      - "scripts/maintenance/efc_forside.py"
+      - ".github/workflows/efc-forside.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/public/**.html"
+      - "docs/index.html"
+      - "scripts/maintenance/efc_forside.py"
+
+jobs:
+  forside:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forsida stemmer med docs/public/
+        run: python3 scripts/maintenance/efc_forside.py --sjekk
