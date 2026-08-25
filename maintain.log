@@ -1,6 +1,6 @@
 [efc-auto-meta] all paper directories have index.json
 ========================================================================
-EFC ORCID source-of-truth sync — source=live
+EFC ORCID source-of-truth sync — source=cache
 ========================================================================
   ORCID works               : 165
   ORCID Figshare DOIs       : 165
@@ -87,9 +87,9 @@ Known datasets in Roadmap: 9
 
 Scanning 4 sources...
   Euclid: could not fetch https://www.euclid-ec.org/science-results/
-  DESI: could not fetch https://data.desi.lbl.gov/doc/releases/
 
-1 potential new dataset(s):
+2 potential new dataset(s):
+  [DESI] data release — https://data.desi.lbl.gov/doc/releases/
   [KiDS] DR5 — https://kids.strw.leidenuniv.nl/DR5/
 
 Report saved to /home/runner/work/EFC/EFC/.claude/dataset_scan_report.json
