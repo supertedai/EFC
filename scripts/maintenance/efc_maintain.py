@@ -51,6 +51,7 @@ REGEN_INDEX = os.path.join(HERE, "efc_regen_index.py")
 EVIDENCE_MIRROR = os.path.join(HERE, "efc_evidence_mirror.py")
 PAPER_TYPE = os.path.join(HERE, "efc_paper_type_classifier.py")
 ONTOLOGY = os.path.join(HERE, "efc_ontology.py")
+CONCEPTS = os.path.join(HERE, "efc_concepts.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -92,6 +93,12 @@ def main() -> int:
         return rc_gen2
     # C9: regenerate the efc: vocabulary from the terms now in use, so a new
     # term or package never leaves docs/ontology.* stale for the verifier.
+    # C11: regenerate the concept views from the SKOS registry first — the
+    # registry's concept IRIs are terms the vocabulary (C9) must then declare.
+    rc_con = run(CONCEPTS, "--apply")
+    if rc_con != 0:
+        print(f"[efc-maintain] efc: concept view regeneration failed (rc={rc_con})")
+        return rc_con
     rc_ont = run(ONTOLOGY, "--apply")
     if rc_ont != 0:
         print(f"[efc-maintain] efc: vocabulary regeneration failed (rc={rc_ont})")

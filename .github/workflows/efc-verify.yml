@@ -48,6 +48,8 @@ jobs:
         run: python3 scripts/maintenance/efc_sync_dois.py --check
       - name: "Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)"
         run: python3 scripts/maintenance/efc_ontology.py
+      - name: Check the concept registry (C11 — SKOS source, generated views fresh, dead copies absent, all concepts declared)
+        run: python3 scripts/maintenance/efc_concepts.py
       - name: Run EFC verifier (C1–C8)
         id: verify
         run: python3 scripts/maintenance/efc_verify.py
