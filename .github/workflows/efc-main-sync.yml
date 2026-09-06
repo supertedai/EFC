@@ -10,6 +10,21 @@ name: EFC main auto-sync
 # sync with efc-verify.yml so that every input the maintenance pipeline
 # reconciles triggers a sync on main.
 
+# Triggers: everything whose change can leave a generated artifact stale, so
+# that the repair reaches the whole tree. Measured 2026-09-06 (t_d14480ff):
+# this list held 8 paths while efc-verify.yml watched 12, and 167 of 485
+# JSON-LD documents live outside the 8 (meta/, methodology/, schema/,
+# jsonld/, api/, figshare/). A new `efc:` term inside docs/papers/efc/ was
+# therefore declared by the robot and auto-committed, while the same term in
+# meta/ turned efc-verify red on "docs/ontology is stale" and stayed red
+# until a person ran --apply by hand. Same act, two outcomes, decided by
+# directory. tests/test_workflows_parse.py now locks: this list covers
+# efc-verify's, minus an explicit exclusion list of paths that cannot stale
+# anything (tests/**, that workflow's own file). Known and out of scope: the
+# drift detector also reads AGENTS.md, pipelines/README.md and three public
+# HTML pages that no path here watches. It returns 0 or 2, never 1, so it
+# cannot turn verify red — a hand edit there leaves a generated public page
+# stale silently, which is a different failure than the one measured above.
 on:
   push:
     branches: [main]
@@ -21,6 +36,11 @@ on:
       - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
       - "README.md"
+      # C9/C11/C12 read the whole tree, so any JSON-LD or JSON document can
+      # stale docs/ontology.*, the concept views or an identifier.
+      - "**/*.jsonld"
+      - "**/*.json"
+      - "docs/ontology.*"
       - ".github/workflows/efc-main-sync.yml"
   workflow_dispatch:
 

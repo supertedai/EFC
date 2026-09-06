@@ -159,7 +159,13 @@ sync repairs the tree, and the dispatched run on the sync commit goes green
 — read the newest run on `main`. `efc-schema.yml` (C10) runs on both events
 and on dispatch.
 
-`efc-main-sync.yml` runs the same gate **after** its maintenance pass and
+`efc-main-sync.yml` watches every path `efc-verify.yml` watches, minus the
+paths that cannot leave a generated artifact stale (`tests/**` and the
+verify workflow's own file); a test locks that. Until 2026-09-06 it watched
+8 paths against verify's 12, and 167 of 485 JSON-LD documents lived outside
+the 8: a new `efc:` term in `docs/papers/efc/` was declared and committed by
+the robot, while the same term in `meta/` left CI red until someone ran
+`--apply` by hand. It runs the same gate **after** its maintenance pass and
 **before** its auto-commit: a red gate skips the commit and makes the run
 red, with the drift visible in its log. Because a commit pushed with
 `GITHUB_TOKEN` triggers no workflow, it dispatches `efc-verify.yml` and

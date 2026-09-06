@@ -78,6 +78,24 @@ class Triggere(unittest.TestCase):
         self.assertIn("Push failed four times", commit["run"])
         self.assertFalse(any("pages.yml" in (s.get("run") or "") for s in steps), "no Pages dispatch: the legacy builder builds on every push")
 
+    def test_sync_ser_alt_verify_ser_utenom_en_begrunnet_unntaksliste(self):
+        """t_d14480ff: efc-verify watched 12 paths and efc-main-sync 8, so the
+        same new efc: term was auto-declared under docs/papers/efc/ and left
+        CI red in meta/. The repair must reach wherever the checks look."""
+        sync = set(self._load("efc-main-sync.yml")[True]["push"]["paths"])
+        verify = set(self._load("efc-verify.yml")[True]["push"]["paths"])
+        # These cannot leave a generated artifact stale: a test file and the
+        # checking workflow's own definition are read by nothing the
+        # maintenance pass writes.
+        kan_ikke_foreldes = {"tests/**", ".github/workflows/efc-verify.yml"}
+        # Equality, not subset-after-subtraction: the latter is vacuous if the
+        # exclusion list ever swallows the whole verify list, and it also
+        # catches drift the other way (a path leaving verify).
+        self.assertEqual(verify - sync, kan_ikke_foreldes, "efc-main-sync must watch every path efc-verify watches, except exactly the paths that cannot stale anything")
+        for p in ("**/*.jsonld", "**/*.json", "docs/ontology.*"):
+            self.assertIn(p, sync, p)
+        self.assertIn(".github/workflows/efc-main-sync.yml", sync, "the sync workflow still watches its own definition")
+
     def test_ingen_pages_workflow(self):
         """t_0d65ccdf measured the legacy 'errored' builds as supersessions, not failures."""
         self.assertFalse((ROOT / ".github" / "workflows" / "pages.yml").exists())
