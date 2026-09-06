@@ -9,7 +9,7 @@
   "distribution": {
     "@type": "DataDownload",
     "encodingFormat": "application/ld+json",
-    "contentUrl": "https://raw.githubusercontent.com/supertedai/EFC/main/api/v1/concepts.json"
+    "contentUrl": "https://raw.githubusercontent.com/supertedai/EFC/main/docs/concepts.jsonld"
   },
   "creator": {
     "@type": "Person",
@@ -18,8 +18,7 @@
     "url": "https://energyflow-cosmology.com"
   },
   "resources": {
-    "concepts": "v1/concepts.json",
-    "terms": "v1/terms.json",
+    "concepts": "../docs/concepts.jsonld",
     "examples": "v1/concept/"
   }
 }

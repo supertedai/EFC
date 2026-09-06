@@ -40,9 +40,7 @@ api/v1/
 │   ├── energy-flow-cosmology-v21...json
 │   └── ...
 │
-├── concepts.json                   # Full concept set (auto-generated)
 ├── methodology.json                # Methodological definitions
-├── terms.json                      # Key terms / definitions
 ├── meta.json                       # Metadata, DOIs, provenance
 ├── index.json                      # API index (auto-generated)
 ├── concept-index.json              # Concept index (auto-generated)
@@ -93,19 +91,19 @@ This ensures that the API always reflects the *most recent published scientific 
 
 # 🧩 Core JSON Files
 
-### **`concepts.json`**
+### **Concepts** (moved 2026-09-06)
 
-Contains every major concept in EFC.
-Used for ontology browsing and semantic indexing.
+The concept layer has one source: `docs/concepts.jsonld` — a SKOS registry
+of the five core concepts (EFC, ∇S, GHF, HME, IMX) against the `efc:`
+vocabulary. `schema/concepts.json` (schema.org DefinedTermSet) and
+`api/concept-index.json` (ItemList) are generated views
+(`scripts/maintenance/efc_concepts.py`, checked in CI as C11).
+`api/v1/concepts.json` and `api/v1/terms.json` were dead copies and are gone.
 
 ### **`concept-index.json`**
 
 Lightweight index of all concept keys.
 Useful for search and downstream agents.
-
-### **`terms.json`**
-
-Definitions of all scientific and domain-specific terms.
 
 ### **`methodology.json`**
 
@@ -168,7 +166,7 @@ It enables:
 Query the API using any JSON-aware tool:
 
 ```bash
-cat api/v1/concepts.json | jq '.concepts[0]'
+jq '."@graph"[] | select(."@type"=="skos:Concept") | ."skos:prefLabel"."@value"' docs/concepts.jsonld
 ```
 
 or in Python:
@@ -176,7 +174,7 @@ or in Python:
 ```python
 import json
 
-with open("api/v1/concepts.json") as f:
+with open("docs/concepts.jsonld") as f:
     concepts = json.load(f)
 print(concepts.keys())
 ```
