@@ -145,3 +145,28 @@ stack automatically. Then manually add:
   (with `paper_directory` set to the directory name so the sync script
   can mirror it into `evidence-register.json` / `ledger.json`
   automatically)
+
+## When the checks run (measured 2026-09-06, t_0d65ccdf)
+
+`efc-verify.yml` (C1–C9, C11, C12) runs on `pull_request`, on `push` to
+`main` (same path list — `tests/test_workflows_parse.py` keeps the two lists
+identical), on a daily schedule, and on `workflow_dispatch`. Since
+2026-04-28 it had run on `pull_request` only, to avoid racing the auto-sync:
+four merges to `main` and four `efc-sync` commits on 2026-09-06 were never
+verified after landing. The race is now expected and visible: a bare PDF
+upload turns the push run red on "Fail on uncommitted changes" while the
+sync repairs the tree, and the dispatched run on the sync commit goes green
+— read the newest run on `main`. `efc-schema.yml` (C10) runs on both events
+and on dispatch.
+
+`efc-main-sync.yml` runs the same gate **after** its maintenance pass and
+**before** its auto-commit: a red gate skips the commit and makes the run
+red, with the drift visible in its log. Because a commit pushed with
+`GITHUB_TOKEN` triggers no workflow, it dispatches `efc-verify.yml` and
+`efc-schema.yml` itself, in the same step, right after the push.
+
+GitHub Pages stays on the legacy builder (`main:/docs`). The "errored"
+builds of 2026-09-06 and 2026-08-25 were measured to be supersessions —
+each merge is followed within two minutes by the robot's own commit, whose
+build cancels the one in progress — not failures; the site was never stale.
+A real legacy failure (2026-08-24, a submodule path) does carry a log.
