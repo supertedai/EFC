@@ -39,7 +39,10 @@ that introduces it.
 Modes
 -----
   --check   (default) the registry parses; @ids are unique; every concept
-            has an efc: IRI, a prefLabel, a notation, inScheme, and at least
+            has an efc: IRI, an efc:entityType from a closed list (a
+            publication, dataset, artifact, person or organization is refused
+            outright — both errors review caught here were that category
+            mistake), a prefLabel, a notation, inScheme, and at least
             one dcterms:source that is a doi.org URL the tree PUBLISHES
             (figshare/doi-map.json papers, top-level doi of a paper's
             index.json — an invented or merely cited DOI fails); every
@@ -79,6 +82,22 @@ REGISTRY = "docs/concepts.jsonld"
 VIEW_TERMSET = "schema/concepts.json"
 VIEW_INDEX = "api/concept-index.json"
 DEAD = ["api/v1/concepts.json", "api/v1/terms.json"]
+
+# What a registered entry IS. Closed on purpose: both errors review caught in
+# this registry were a category mistake — schema/concepts.json was a
+# DefinedTermSet whose every term was a PUBLICATION, and a draft of efc:HME
+# quoted a DATASET row as its definition.
+#   `measurement_principle` is not on the card's list; RCMP is the case that
+#   needs it and neither `method` nor `concept` says what it is.
+ENTITY_TYPES = (
+    "concept", "term", "method", "measurement_principle", "module",
+    "observable", "proxy", "parameter", "regime", "boundary_condition",
+    "architecture", "hypothesis", "claim", "workflow",
+)
+# The five kinds that are not concepts at all. Refused with their own message
+# and nothing else: no attestation makes a publication a concept, so the gate
+# must not suggest one.
+NOT_A_CONCEPT = ("publication", "dataset", "artifact", "person", "organization")
 ONTOLOGY = "docs/ontology.jsonld"
 NS = "https://supertedai.github.io/EFC/ontology#"
 SCHEME_IRI = "https://supertedai.github.io/EFC/concepts.jsonld"
@@ -156,6 +175,12 @@ def render_termset(registry: dict) -> str:
             "termCode": _lit(c.get("skos:notation")),
             "alternateName": [_lit(a) for a in _list(c.get("skos:altLabel"))],
             "inDefinedTermSet": SCHEME_IRI,
+            "additionalProperty": [
+                {"@type": "PropertyValue", "name": k, "value": v}
+                for k, v in (("entityType", _lit(c.get("efc:entityType"))),
+                             ("definition_status", "explicit" if c.get("skos:definition") else "gap"))
+                if v
+            ],
         }
         if c.get("skos:definition"):
             t["description"] = _lit(c["skos:definition"])
@@ -232,6 +257,14 @@ def check(root: Path = ROOT) -> list[str]:
             problems.append(f"{REGISTRY}: {cid}: no skos:prefLabel")
         if not _lit(c.get("skos:notation")):
             problems.append(f"{REGISTRY}: {cid}: no skos:notation")
+        et = _lit(c.get("efc:entityType"))
+        if et in NOT_A_CONCEPT:
+            problems.append(f"{REGISTRY}: {cid}: efc:entityType {et!r} is not a concept and cannot be registered here")
+            continue
+        if not et:
+            problems.append(f"{REGISTRY}: {cid}: no efc:entityType — pick one of {', '.join(ENTITY_TYPES)}")
+        elif et not in ENTITY_TYPES:
+            problems.append(f"{REGISTRY}: {cid}: efc:entityType {et!r} is not in the closed list ({', '.join(ENTITY_TYPES)})")
         if SCHEME_IRI not in _ids(c.get("skos:inScheme")):
             problems.append(f"{REGISTRY}: {cid}: skos:inScheme is not the scheme")
         sources = _ids(c.get("dcterms:source"))

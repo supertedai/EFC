@@ -45,10 +45,10 @@ class Rigg(unittest.TestCase):
             "@graph": [
                 {"@id": S, "@type": "skos:ConceptScheme", "skos:hasTopConcept": [{"@id": "efc:A"}, {"@id": "efc:B"}]},
                 {"@id": "efc:A", "@type": "skos:Concept", "skos:prefLabel": {"@value": "Alpha", "@language": "en"}, "skos:altLabel": [{"@value": "A", "@language": "en"}],
-                 "skos:notation": "A", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S}, "skos:definition": {"@value": "Alpha is the first.", "@language": "en"},
+                 "skos:notation": "A", "efc:entityType": "concept", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S}, "skos:definition": {"@value": "Alpha is the first.", "@language": "en"},
                  "efc:definitionQuotedFrom": {"@id": GH + "README.md#L1"}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.1"}, {"@id": GH + "README.md#L1"}]},
                 {"@id": "efc:B", "@type": "skos:Concept", "skos:prefLabel": {"@value": "Beta", "@language": "en"}, "skos:altLabel": [],
-                 "skos:notation": "B", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S},
+                 "skos:notation": "B", "efc:entityType": "concept", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S},
                  "skos:scopeNote": {"@value": "no defining sentence in the tree (measured)", "@language": "en"}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.2"}]},
             ],
         }
@@ -191,6 +191,35 @@ class Rigg(unittest.TestCase):
     def test_sitert_doi_er_ikke_publisert(self):
         _write(self.tmp / "docs" / "papers" / "efc" / "p" / "index.json", {"doi": "10.6084/m9.figshare.1", "references": ["10.1007/978-3-662-05328-7"]})
         self.assertEqual(self.mod.known_dois(self.tmp), {"10.6084/m9.figshare.1", "10.6084/m9.figshare.2"})
+
+    def test_entitytype_er_paakrevd_lukket_og_ikke_begreper_faar_egen_melding(self):
+        for verdi, ventet, alene in ((None, "no efc:entityType", False), ("publication", "is not a concept and cannot be registered here", True),
+                                     ("dataset", "cannot be registered here", True), ("person", "cannot be registered here", True),
+                                     ("artifact", "cannot be registered here", True), ("organization", "cannot be registered here", True),
+                                     ("tullball", "is not in the closed list", False)):
+            if verdi is None:
+                self.reg["@graph"][1].pop("efc:entityType", None)
+            else:
+                self.reg["@graph"][1]["efc:entityType"] = verdi
+            self._save(); self.mod.apply(self.tmp)
+            problems = [p for p in self.mod.check(self.tmp) if "efc:A" in p]
+            self.assertTrue(any(ventet in p for p in problems), (verdi, problems))
+            if alene:
+                self.assertEqual(len(problems), 1, f"a non-concept gets its own message and nothing else: {problems}")
+        for verdi in ("concept", "method", "measurement_principle", "regime"):
+            self.reg["@graph"][1]["efc:entityType"] = verdi
+            self._save(); self.mod.apply(self.tmp)
+            self.assertEqual(self.mod.check(self.tmp), [], verdi)
+        self.reg["@graph"][1]["efc:entityType"] = "concept"
+
+    def test_visningen_baerer_type_og_definisjonsstatus(self):
+        self.mod.apply(self.tmp)
+        view = json.loads((self.tmp / self.mod.VIEW_TERMSET).read_text(encoding="utf-8"))
+        prop = {p["name"]: p["value"] for p in view["hasDefinedTerm"][0]["additionalProperty"]}
+        self.assertEqual(prop, {"entityType": "concept", "definition_status": "explicit"})
+        self.assertNotIn("definition_status", json.dumps(self.reg), "a computable fact is not stored")
+        b = {p["name"]: p["value"] for p in view["hasDefinedTerm"][1]["additionalProperty"]}
+        self.assertEqual(b["definition_status"], "gap")
 
     def test_begrep_utenfor_namespacet_er_et_problem(self):
         self.reg["@graph"][2]["@id"] = "https://example.org/B"
