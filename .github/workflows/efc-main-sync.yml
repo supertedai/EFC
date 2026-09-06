@@ -30,6 +30,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write   # gh workflow run efc-verify.yml / efc-schema.yml right after an auto-commit
 
 jobs:
   auto-sync:
@@ -98,6 +99,33 @@ jobs:
           fi
           exit 0
 
+      - name: Porten foer auto-commit (C8, C9, C11, C12, C1–C8, drift)
+        id: porten
+        # The maintenance pass above may itself be what repairs a red tree
+        # (a bare PDF upload gets its package here), so the gate runs AFTER
+        # it and BEFORE the commit: a red result keeps main as it is — drift
+        # visible in this run's log — instead of landing a red commit that
+        # no workflow would ever verify (GITHUB_TOKEN commits trigger none).
+        run: |
+          set +e
+          rc=0
+          python3 scripts/maintenance/efc_sync_dois.py --check || rc=1
+          python3 scripts/maintenance/efc_ontology.py || rc=1
+          python3 scripts/maintenance/efc_concepts.py || rc=1
+          python3 scripts/maintenance/efc_identity.py || rc=1
+          python3 scripts/maintenance/efc_verify.py || rc=1
+          python3 scripts/maintenance/efc_drift_detector.py
+          drc=$?
+          if [ "$drc" = "2" ]; then
+            echo "::warning::Drift detected in public pages (rc=2) — not blocking; efc_maintain ran --fix above."
+          elif [ "$drc" != "0" ]; then
+            rc=1
+          fi
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          if [ "$rc" = "1" ]; then
+            echo "::error::Porten er roed etter vedlikeholdspasset — auto-commit hoppes over og kjoeringen er ROED. Se stegets logg; treet paa main er uendret."
+            exit 1
+          fi
       - name: Check for changes
         id: diff
         run: |
@@ -112,7 +140,9 @@ jobs:
           fi
 
       - name: Auto-commit fixes to main
-        if: steps.diff.outputs.changed == 'true' && steps.gate.outputs.rc != '1'
+        if: steps.diff.outputs.changed == 'true' && steps.gate.outputs.rc != '1' && steps.porten.outputs.rc == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "efc-sync[bot]"
           git config user.email "efc-sync[bot]@users.noreply.github.com"
@@ -131,15 +161,29 @@ jobs:
 
           git commit -F /tmp/commit_msg
 
+          pushed=0
           for delay in 2 4 8 16; do
             if git push; then
               echo "Push succeeded."
+              pushed=1
               break
             fi
             echo "Push failed; pulling --rebase and retrying in ${delay}s"
             git pull --rebase origin main || true
             sleep "$delay"
           done
+          if [ "$pushed" != "1" ]; then
+            echo "::error::Push failed four times — nothing landed."
+            exit 1
+          fi
+          # A commit pushed with GITHUB_TOKEN triggers no workflow — except
+          # workflow_dispatch and repository_dispatch — so verification of
+          # the sync commit is dispatched here, in the same step, right
+          # after the push: no window for a cancel-in-progress to leave a
+          # landed commit unverified. Pages needs no dispatch: the legacy
+          # builder builds on every push, robot pushes included (measured).
+          gh workflow run efc-verify.yml --ref main
+          gh workflow run efc-schema.yml --ref main
 
       - name: Job summary
         if: always()
@@ -150,6 +194,8 @@ jobs:
             echo "| Field | Value |"
             echo "|---|---|"
             echo "| Changes | \`${{ steps.diff.outputs.changed }}\` |"
+            echo "| Kryssvalidering rc | \`${{ steps.gate.outputs.rc }}\` |"
+            echo "| Porten rc | \`${{ steps.porten.outputs.rc }}\` |"
             echo
             if [ -f maintain.log ]; then
               echo '```'

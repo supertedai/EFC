@@ -1,20 +1,42 @@
 name: EFC repo verify
 
-# Strict read-only verification that the EFC archive is self-consistent.
-# Runs on PRs only. Push-to-main is deliberately NOT a trigger here:
-# efc-main-sync.yml already runs the full maintenance pass (which
-# includes efc_verify.py) on every push to main and auto-commits any
-# corrections, so a parallel verify run on the same SHA would race
-# against the auto-fix and produce false failures whenever bare PDFs
-# are uploaded directly to main. Keep verify as the PR gate.
+# Triggers (measured 2026-09-06, t_0d65ccdf): this workflow had ONLY
+# pull_request since c56f0007 (2026-04-28), which kept push-to-main out to
+# avoid racing the auto-sync. Four merges to main and four efc-sync commits
+# on 2026-09-06 therefore ran no verification on main at all — C1–C12 were
+# measured in the PR window only. Now: pull_request AND push to main (same
+# paths — a test keeps the two lists identical), a daily schedule (robot
+# commits made with GITHUB_TOKEN never trigger workflows, so drift they
+# introduce is caught within a day), and workflow_dispatch — efc-main-sync
+# dispatches this right after each auto-commit; dispatch is the documented
+# exception to the GITHUB_TOKEN rule.
 #
-# If this workflow fails on a PR, the PR author should run
-# `python3 scripts/maintenance/efc_maintain.py` locally, commit the
-# result, and push -- the sync workflow will keep them honest from that
-# point on.
-
+# The race is real and expected, not hidden: a bare PDF upload makes the
+# push run RED on "Fail on uncommitted changes" (that SHA is inconsistent)
+# while efc-main-sync repairs the tree, and the dispatched run on the sync
+# commit goes green a minute later. Read the newest run on main, not the
+# first.
 on:
   pull_request:
+    paths:
+      # C9 (efc: namespace) scans every JSON-LD document in the tree —
+      # 186 of 506 live outside docs/papers/efc/ (meta/, methodology/,
+      # schema/, jsonld/, api/, figshare/, docs/index.jsonld …), hence the
+      # **/*.jsonld and **/*.json entries. Same list under push: below.
+      - "docs/papers/efc/**"
+      - "docs/validation-ledger/**"
+      - "docs/public/EFC_Validation_Ledger.html"
+      - "docs/public/EFC_Changelog.html"
+      - "docs/public/EFC_White_Paper_Series.html"
+      - "scripts/maintenance/**"
+      - "README.md"
+      - "**/*.jsonld"
+      - "**/*.json"
+      - "docs/ontology.*"
+      - "tests/**"
+      - ".github/workflows/efc-verify.yml"
+  push:
+    branches: [main]
     paths:
       - "docs/papers/efc/**"
       - "docs/validation-ledger/**"
@@ -23,14 +45,14 @@ on:
       - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
       - "README.md"
-      # C9 (efc: namespace) scans every JSON-LD document in the tree —
-      # 186 of 506 live outside the paths above (meta/, methodology/, schema/,
-      # jsonld/, api/, figshare/, docs/index.jsonld …).
       - "**/*.jsonld"
       - "**/*.json"
       - "docs/ontology.*"
       - "tests/**"
       - ".github/workflows/efc-verify.yml"
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
 
 jobs:
   verify:
