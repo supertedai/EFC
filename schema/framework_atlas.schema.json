@@ -4,37 +4,182 @@
   "title": "Framework Atlas Schema",
   "description": "Structural schema for the EFC Framework Atlas — a machine-readable registry of cosmological frameworks, their relationships to EFC, and their quantitative predictions across regimes L0–L3.",
   "type": "object",
-  "required": ["@context", "@type", "schema_version", "generated_at", "source", "frameworks", "relations", "predictions"],
+  "required": [
+    "@context",
+    "@type",
+    "schema_version",
+    "generated_at",
+    "source",
+    "frameworks",
+    "relations",
+    "predictions"
+  ],
   "properties": {
-    "@context": {"type": ["string", "object"]},
-    "@type": {"const": "FrameworkAtlas"},
-    "schema_version": {"type": "string"},
-    "generated_at": {"type": "string", "format": "date-time"},
+    "@context": {
+      "type": "object",
+      "properties": {
+        "@vocab": {
+          "const": "https://supertedai.github.io/EFC/ontology#"
+        }
+      },
+      "required": [
+        "@vocab"
+      ],
+      "additionalProperties": false,
+      "description": "Exactly {\"@vocab\": NS} — the JSON-LD context the C9 namespace commit fixed for the atlas (every plain key expands into the efc: vocabulary)."
+    },
+    "@type": {
+      "const": "FrameworkAtlas"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "source": {
       "type": "string",
-      "enum": ["symbiose_live", "symbiose_export", "manual_seed", "ledger_fallback"]
+      "enum": [
+        "symbiose_live",
+        "symbiose_export",
+        "manual_seed",
+        "ledger_fallback"
+      ]
     },
     "frameworks": {
       "type": "array",
-      "items": {"$ref": "#/$defs/Framework"}
+      "items": {
+        "$ref": "#/$defs/Framework"
+      }
     },
     "relations": {
       "type": "array",
-      "items": {"$ref": "#/$defs/Relation"}
+      "items": {
+        "$ref": "#/$defs/Relation"
+      }
     },
     "predictions": {
       "type": "array",
-      "items": {"$ref": "#/$defs/AtlasPrediction"}
+      "items": {
+        "$ref": "#/$defs/AtlasPrediction"
+      }
+    },
+    "coverage_tiers": {
+      "type": "object",
+      "properties": {
+        "deep": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "medium": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "thin": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Present in the committed atlas — transcribed from a Symbiose session (2026-04-20, see provenance) — and NOT written by scripts/maintenance/efc_atlas_export.py: an --apply --from-stdin export omits it (it is not required), so a fresh export drops this block silently. Shape measured from the instance 2026-09-06 and closed; a new key here is a change to declare."
+    },
+    "diagnostic_phenomena": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "regime": {
+            "type": "string"
+          },
+          "framework_count": {
+            "type": "integer"
+          },
+          "frameworks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "flag": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Present in the committed atlas — transcribed from a Symbiose session (2026-04-20, see provenance) — and NOT written by scripts/maintenance/efc_atlas_export.py: an --apply --from-stdin export omits it (it is not required), so a fresh export drops this block silently. Shape measured from the instance 2026-09-06 and closed; a new key here is a change to declare."
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "seeded_by": {
+          "type": "string"
+        },
+        "symbiose_snapshot_date": {
+          "type": "string"
+        },
+        "populate_full_graph_via": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Written by scripts/maintenance/efc_atlas_export.py (build_atlas_from_export); shape measured from the committed instance 2026-09-06 and closed."
+    },
+    "relation_counts_full_graph": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "patternProperties": {
+        "^[A-Z][A-Z0-9_]*$": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Present in the committed atlas — transcribed from a Symbiose session (2026-04-20, see provenance) — and NOT written by scripts/maintenance/efc_atlas_export.py: an --apply --from-stdin export omits it (it is not required), so a fresh export drops this block silently. Shape measured from the instance 2026-09-06 and closed; a new key here is a change to declare. Relation type (UPPER_SNAKE) -> integer count, plus total and a free-text note; 9 relation types measured."
     }
   },
   "$defs": {
     "Framework": {
       "type": "object",
-      "required": ["id", "name", "category", "role", "regimes"],
+      "required": [
+        "id",
+        "name",
+        "category",
+        "role",
+        "regimes"
+      ],
       "properties": {
-        "id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
-        "name": {"type": "string"},
-        "year": {"type": "integer"},
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
         "category": {
           "type": "string",
           "enum": [
@@ -76,21 +221,41 @@
         },
         "regimes": {
           "type": "array",
-          "items": {"enum": ["L0", "L1", "L2", "L3"]}
+          "items": {
+            "enum": [
+              "L0",
+              "L1",
+              "L2",
+              "L3"
+            ]
+          }
         },
         "key_primitives": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
-        "doi": {"type": "string"},
-        "notes": {"type": "string"}
-      }
+        "doi": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "Relation": {
       "type": "object",
-      "required": ["subject", "predicate", "object"],
+      "required": [
+        "subject",
+        "predicate",
+        "object"
+      ],
       "properties": {
-        "subject": {"type": "string"},
+        "subject": {
+          "type": "string"
+        },
         "predicate": {
           "type": "string",
           "enum": [
@@ -105,26 +270,72 @@
             "RECOVERED_BY_LIMIT_OF"
           ]
         },
-        "object": {"type": "string"},
-        "phenomenon": {"type": "string"},
-        "regime": {"type": "string"},
-        "note": {"type": "string"}
-      }
+        "object": {
+          "type": "string"
+        },
+        "phenomenon": {
+          "type": "string"
+        },
+        "regime": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "AtlasPrediction": {
       "type": "object",
-      "required": ["framework", "phenomenon", "regime", "value"],
+      "required": [
+        "framework",
+        "phenomenon",
+        "regime",
+        "value"
+      ],
       "properties": {
-        "framework": {"type": "string"},
-        "phenomenon": {"type": "string"},
-        "regime": {"type": "string"},
-        "value": {},
-        "unit": {"type": "string"},
-        "uncertainty": {"type": ["number", "string", "null"]},
-        "method": {"type": "string"},
-        "sealed": {"type": "boolean"},
-        "hash_prefix": {"type": "string"}
-      }
+        "framework": {
+          "type": "string"
+        },
+        "phenomenon": {
+          "type": "string"
+        },
+        "regime": {
+          "type": "string"
+        },
+        "value": {
+          "type": [
+            "array",
+            "integer",
+            "number",
+            "string"
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "uncertainty": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "method": {
+          "type": "string"
+        },
+        "sealed": {
+          "type": "boolean"
+        },
+        "hash_prefix": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     }
-  }
+  },
+  "additionalProperties": false
 }
