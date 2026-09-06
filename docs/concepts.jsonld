@@ -28,6 +28,9 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "skos:notation": {
       "@type": "xsd:string"
+    },
+    "efc:quoteSha256": {
+      "@type": "xsd:string"
     }
   },
   "@graph": [
@@ -83,7 +86,8 @@
         "@language": "en"
       },
       "efc:definitionQuotedFrom": {
-        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md"
+        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md#L15",
+        "efc:quoteSha256": "a23824a3ca743c2a4de20a08807188790a04a48f9939a7c3960ad0bd87fd159c"
       },
       "dcterms:source": [
         {
@@ -163,7 +167,8 @@
         "@language": "en"
       },
       "efc:definitionQuotedFrom": {
-        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-Grid-Higgs-Framework/README.md"
+        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-Grid-Higgs-Framework/README.md#L15",
+        "efc:quoteSha256": "f8a9aedcf45d29452bb80a3adc0d1a6ac3b9f7111dc0ba6a69ddb78bf8eaeeb0"
       },
       "skos:broader": {
         "@id": "efc:EFC"

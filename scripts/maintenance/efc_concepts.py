@@ -44,23 +44,34 @@ Modes
             (figshare/doi-map.json papers, top-level doi of a paper's
             index.json — an invented or merely cited DOI fails); every
             skos:definition names efc:definitionQuotedFrom, a file inside
-            this tree (resolved — no ../ escape), and is a non-empty VERBATIM
-            substring of it (the ADR-024 guard lives here, in the gate, not
-            only in the tests); broader targets and hasTopConcept members
+            this tree (resolved — no ../ escape) WITH a #L<n> or #L<a>-L<b>
+            line fragment, and is a non-empty VERBATIM substring of exactly
+            those lines — "somewhere in the file" is not evidence in a file
+            of thousands of lines, and the fragment is a GitHub anchor, so
+            the identifier is the clickable evidence. An optional
+            efc:quoteSha256 must be the SHA-256 of the quote if present.
+            (The ADR-024 guard lives here, in the gate, not only in the
+            tests.) broader targets and hasTopConcept members
             exist, a concept with a broader is not a top concept, and only
             skos:Concept nodes carry topConceptOf/inScheme/broader; the two generated views are
             byte-identical to what --apply would write; the dead copies
             (api/v1/concepts.json, api/v1/terms.json) are absent; and every
-            concept IRI is declared in docs/ontology.jsonld (C9).
+            concept IRI is declared in docs/ontology.jsonld (C9); and a
+            concept with no definition carries a skos:scopeNote saying what
+            was measured — an absent definition is a finding, not a blank.
             Exit 1 on any deviation. Runs in CI (efc-verify.yml).
             Not mechanically guarded: the TEXT of a scopeNote. A reader is
-            the only gate for a note that smuggles a definition.
+            the only gate for a note that smuggles a definition, and whether
+            the quoted file is a DEFINING document rather than one that
+            merely uses the term.
   --apply   regenerate the two views from the registry. Deterministic.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
+from urllib.parse import unquote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -102,6 +113,7 @@ def iri(local_or_iri: str) -> str:
 
 
 GH = "https://github.com/supertedai/EFC/blob/main/"
+FRAGMENT_RE = __import__("re").compile(r"^(?P<path>[^#]+)#L(?P<start>\d+)(?:-L(?P<end>\d+))?$")
 DOI_RE = __import__("re").compile(r"10\.\d{4,9}/[A-Za-z0-9._;()/:\-]+")
 
 
@@ -235,25 +247,50 @@ def check(root: Path = ROOT) -> list[str]:
         if c.get("skos:broader") and SCHEME_IRI in _ids(c.get("skos:topConceptOf")):
             problems.append(f"{REGISTRY}: {cid}: has skos:broader and is skos:topConceptOf — a top concept is topmost (SKOS §4.6.3)")
         if c.get("skos:definition"):
-            quoted = _ids(c.get("efc:definitionQuotedFrom"))
+            nodes = _list(c.get("efc:definitionQuotedFrom"))
+            quoted = [n.get("@id") if isinstance(n, dict) else n for n in nodes]
+            quoted = [q for q in quoted if isinstance(q, str)]
+            m = FRAGMENT_RE.match(unquote(quoted[0][len(GH):])) if len(quoted) == 1 and len(nodes) == 1 and quoted[0].startswith(GH) else None
             if len(quoted) != 1 or not quoted[0].startswith(GH):
                 problems.append(f"{REGISTRY}: {cid}: a skos:definition must name exactly one efc:definitionQuotedFrom under {GH}")
+            elif m is None:
+                problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom needs a line fragment, #L<n> or #L<a>-L<b>")
             else:
-                rel = quoted[0][len(GH):]
-                target = (root / rel).resolve()
-                inside = target.is_relative_to(root.resolve())
+                rel = m.group("path")
+                start = int(m.group("start"))
+                end = int(m.group("end") or start)
+                # resolve() itself raises on a NUL byte, which percent-decoding
+                # can now produce (%00) — a crash here would swallow every
+                # other problem in the registry (review finding, round 2).
                 try:
+                    target = (root / rel).resolve()
+                    inside = target.is_relative_to(root.resolve())
                     text = target.read_text(encoding="utf-8") if inside else None
-                except (OSError, UnicodeDecodeError):
-                    text = None
+                    lines = (text[:-1] if text.endswith("\n") else text).split("\n") if text is not None else None
+                except (OSError, UnicodeDecodeError, ValueError):
+                    inside, lines = True, None
+                quote = _lit(c["skos:definition"])
                 if not inside:
                     problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom {rel} resolves outside the tree")
-                elif text is None:
+                elif lines is None:
                     problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom {rel} is not a readable file in the tree")
-                elif not _lit(c["skos:definition"]).strip():
+                elif not quote.strip():
                     problems.append(f"{REGISTRY}: {cid}: skos:definition is empty")
-                elif _lit(c["skos:definition"]) not in text:
-                    problems.append(f"{REGISTRY}: {cid}: skos:definition is not a verbatim substring of {rel} (ADR-024)")
+                elif start < 1:
+                    problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom names line {start}; lines are numbered from 1")
+                elif end < start:
+                    problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom names lines {start}-{end}, which runs backwards")
+                elif end > len(lines):
+                    problems.append(f"{REGISTRY}: {cid}: efc:definitionQuotedFrom names lines {start}-{end}, but {rel} has {len(lines)}")
+                elif quote not in "\n".join(lines[start - 1:end]):
+                    where = "somewhere else in the file" if quote in "\n".join(lines) else "nowhere in the file"
+                    problems.append(f"{REGISTRY}: {cid}: skos:definition is not a verbatim substring of {rel} lines {start}-{end} — it is {where} (ADR-024)")
+                else:
+                    quote_hash = _lit(nodes[0].get("efc:quoteSha256") if isinstance(nodes[0], dict) else None)
+                    if quote_hash and quote_hash != hashlib.sha256(quote.encode("utf-8")).hexdigest():
+                        problems.append(f"{REGISTRY}: {cid}: efc:quoteSha256 does not match the quote")
+        if not c.get("skos:definition") and not _lit(c.get("skos:scopeNote")).strip():
+            problems.append(f"{REGISTRY}: {cid}: no skos:definition and no skos:scopeNote — an absent definition is a measurement, and it has to say so")
         if ont is not None and cid not in declared:
             problems.append(f"{ONTOLOGY}: {cid} is not declared — run efc_ontology.py --apply (C9)")
     if schemes:
