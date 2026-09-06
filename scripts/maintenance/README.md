@@ -42,6 +42,7 @@ validation ledger, and AI-friendly metadata layer consistent.
 | C5 | `ai_friendly_index.json` is present and its `n_packages` equals the number of directories on disk. |
 | C6 | No arXiv IDs have leaked into the JSON evidence registers. |
 | C7 | §4b entries carry the `[external — …]` tag. |
+| C9 | `efc:` namespace (`efc_ontology.py`): every JSON-LD document binds `efc` to `https://supertedai.github.io/EFC/ontology#` (measured 2026-09-05: nine different bindings, none a vocabulary), every `efc:` term in use — prefixed, `@vocab`-bound or context-aliased — is declared in `docs/ontology.jsonld`, and `docs/ontology.{jsonld,html}` are byte-fresh (`efc_maintain.py` runs `--apply`; `--rewrite` was the one-time migration). Declared limits: strings that start with `efc:` but are not a local name (`efc:term/x`, IRIs with spaces) are LISTED, not declared or failed — the registry's job; and a term "used as value" is a string literal in the sources, not an IRI, until the registry attaches it. Identity, not meaning. |
 | C8 | Per-paper DOI consistency. Every source that declares a DOI inside a paper directory (`index.json`, `metadata.json`, `CITATION.cff`, `*.jsonld`) must declare the **same** canonical Figshare DOI. Hard error on conflict. |
 
 ## The epistemic rule the verifier enforces

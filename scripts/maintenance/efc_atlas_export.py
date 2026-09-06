@@ -38,9 +38,10 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 ATLAS_PATH = os.path.join(REPO, "schema", "framework_atlas.jsonld")
 SCHEMA_PATH = os.path.join(REPO, "schema", "framework_atlas.schema.json")
 
-ATLAS_CONTEXT = (
-    "https://supertedai.github.io/efc/schema/framework_atlas.schema.json"
-)
+# A JSON-LD @context must be a context document, not a JSON Schema — the old
+# value pointed at framework_atlas.schema.json (and 404ed), so the atlas could
+# not expand at all. Measured 2026-09-05; see scripts/maintenance/efc_ontology.py.
+ATLAS_CONTEXT = {"@vocab": "https://supertedai.github.io/EFC/ontology#"}
 
 
 def load_current_atlas() -> dict:

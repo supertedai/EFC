@@ -26,6 +26,15 @@ import subprocess
 import sys
 from datetime import date
 
+# The efc: namespace is defined ONCE, in efc_ontology.py (C9). This generator
+# used to carry its own copy of an older binding and would have re-created
+# the drift C9 exists to stop, on the robot's own auto-commit (review finding
+# 2026-09-06). Same directory, so the import works from efc_maintain.py, from
+# `python3 scripts/maintenance/efc_auto_metadata.py` and from
+# sync_engine/handlers.py alike.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from efc_ontology import NS as EFC_NS  # noqa: E402
+
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 
@@ -196,7 +205,7 @@ repository-code: "https://github.com/supertedai/EFC"
     jsonld = {
         "@context": {
             "@vocab": "https://schema.org/",
-            "efc": "https://github.com/supertedai/EFC/ontology#",
+            "efc": EFC_NS,
         },
         "@type": "ScholarlyArticle",
         "name": title,
