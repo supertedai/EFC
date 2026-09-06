@@ -46,7 +46,7 @@ jobs:
       - name: Check DOI sync consistency (C8)
         id: sync_dois_check
         run: python3 scripts/maintenance/efc_sync_dois.py --check
-      - name: Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)
+      - name: "Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)"
         run: python3 scripts/maintenance/efc_ontology.py
       - name: Run EFC verifier (C1–C8)
         id: verify
