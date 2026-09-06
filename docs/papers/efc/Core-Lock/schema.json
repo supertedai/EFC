@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/core-lock.schema.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Core-Lock/schema.json",
   "title": "EBE Core Lock Schema",
   "description": "Schema for validating Core Lock mathematical structures",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "GridStateFunction": {
       "type": "object",
       "properties": {
@@ -39,7 +39,7 @@
           "description": "Name of projected observable"
         },
         "base_function": {
-          "$ref": "#/definitions/GridStateFunction"
+          "$ref": "#/$defs/GridStateFunction"
         },
         "phase_integral": {
           "type": "boolean",
@@ -101,21 +101,21 @@
       "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
     },
     "grid_state": {
-      "$ref": "#/definitions/GridStateFunction"
+      "$ref": "#/$defs/GridStateFunction"
     },
     "beta_constraint": {
-      "$ref": "#/definitions/BetaConstraint"
+      "$ref": "#/$defs/BetaConstraint"
     },
     "projection_laws": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ProjectionLaw"
+        "$ref": "#/$defs/ProjectionLaw"
       }
     },
     "falsification_tests": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/CorrelationTest"
+        "$ref": "#/$defs/CorrelationTest"
       }
     }
   }

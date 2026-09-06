@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/efc-vs-lcdm-kill-test-v6.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/EFC_vs_LCDM_Kill_Test_v6_final/schema.json",
   "title": "EFC vs ΛCDM Kill-Test v6 Schema",
   "description": "Schema for the six-probe EFC kill-test against ΛCDM with cobaya minimize runs",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "FieldParameters": {
       "type": "object",
       "properties": {
@@ -194,40 +194,40 @@
     }
   },
   "properties": {
-    "parameters": { "$ref": "#/definitions/FieldParameters" },
+    "parameters": { "$ref": "#/$defs/FieldParameters" },
     "regimes": {
       "type": "array",
-      "items": { "$ref": "#/definitions/RegimeAssignment" },
+      "items": { "$ref": "#/$defs/RegimeAssignment" },
       "minItems": 4,
       "maxItems": 4
     },
     "probes": {
       "type": "array",
-      "items": { "$ref": "#/definitions/ProbeResult" },
+      "items": { "$ref": "#/$defs/ProbeResult" },
       "minItems": 6,
       "maxItems": 6
     },
     "cobaya_runs": {
       "type": "array",
-      "items": { "$ref": "#/definitions/CobayaRun" },
+      "items": { "$ref": "#/$defs/CobayaRun" },
       "minItems": 4,
       "maxItems": 4
     },
     "sector_decomposition": {
       "type": "array",
-      "items": { "$ref": "#/definitions/SectorDelta" }
+      "items": { "$ref": "#/$defs/SectorDelta" }
     },
     "slip_calibration": {
       "type": "array",
-      "items": { "$ref": "#/definitions/SlipCalibration" }
+      "items": { "$ref": "#/$defs/SlipCalibration" }
     },
     "mu_k_table": {
       "type": "array",
-      "items": { "$ref": "#/definitions/MuKEntry" }
+      "items": { "$ref": "#/$defs/MuKEntry" }
     },
     "parameters_at_minimum": {
       "type": "array",
-      "items": { "$ref": "#/definitions/ParameterAtMinimum" }
+      "items": { "$ref": "#/$defs/ParameterAtMinimum" }
     }
   }
 }

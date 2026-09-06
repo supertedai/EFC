@@ -27,6 +27,8 @@ import sys
 import datetime
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "docs", "papers", "efc"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from efc_identity import served_id, ROOT as _REPO_ROOT  # noqa: E402
 TODAY = datetime.date.today().isoformat()
 
 SKIP_TOP = {
@@ -99,6 +101,46 @@ def track_guess(name: str, text: str):
                              "ppn", "eft", "relativistic"]):
         return "Spor 4 — Theory / Grid / EFT"
     return "Spor general"
+
+
+def index_schema(title: str, rel_schema_path: str) -> dict:
+    """The JSON Schema written next to a package's index.json — closed, and
+    describing what the two robots write (see the call site)."""
+    return {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": served_id(rel_schema_path),
+        "title": f"{title} — index.json",
+        "type": "object",
+        "properties": {
+            "$schema": {"type": "string"},
+            "id": {"type": "string"},
+            "title": {"type": "string"},
+            "description": {"type": "string"},
+            "version": {"type": "string"},
+            "date": {"type": "string"},
+            "keywords": {"type": "array", "items": {"type": "string"}},
+            "author": {"oneOf": [
+                {"type": "string"},
+                {"type": "object", "properties": {"name": {"type": "string"}, "orcid": {"type": "string"}, "affiliation": {"type": "string"}},
+                 "required": ["name"], "additionalProperties": False},
+            ]},
+            "orcid": {"type": "string"},
+            "affiliation": {"type": "string"},
+            "license": {"type": "string"},
+            "track": {"type": "string"},
+            "regimes": {"type": "array", "items": {"type": "string"}},
+            "primary_pdf": {"type": ["string", "null"]},
+            "files": {"oneOf": [
+                {"type": "array", "items": {"type": "string"}},
+                {"type": "object", "properties": {"pdf": {"type": "string"}, "readme": {"type": "string"}}, "additionalProperties": False},
+            ]},
+            "see_also": {"type": "string"},
+            "doi": {"type": "string"},
+            "figshare_url": {"type": "string"},
+        },
+        "required": ["id", "title"],
+        "additionalProperties": False,
+    }
 
 
 def write_if_absent(path: str, content: str) -> bool:
@@ -216,6 +258,8 @@ def build_for_dir(name: str):
 
     jsonld = {
         "@context": "https://schema.org",
+        # @id on every document (C12): the served identifier of this file.
+        "@id": served_id(os.path.relpath(os.path.join(d, slug + ".jsonld"), str(_REPO_ROOT)).replace(os.sep, "/")),
         "@type": "ScholarlyArticle",
         "name": title,
         "author": {
@@ -310,21 +354,14 @@ Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
         created.append("citations.bib")
 
     # schema.json
-    schema = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "title": f"{title} Schema",
-        "type": "object",
-        "properties": {
-            "paper_id": {"type": "string"},
-            "title": {"type": "string"},
-            "version": {"type": "string"},
-            "doi": {"type": ["string", "null"]},
-            "key_results": {"type": "array", "items": {"type": "object"}},
-            "parameters": {"type": "object"},
-            "predictions": {"type": "array"},
-        },
-        "required": ["paper_id", "title"],
-    }
+    # Describes the index.json the two robots actually write (this script:
+    # id/title/author/…/see_also; efc_auto_metadata.py: id/title/description/
+    # version/date/keywords/author{}/files{}/doi/figshare_url) — measured
+    # 2026-09-06 and closed. The template it replaced required `paper_id`,
+    # which neither robot ever wrote: 114 of 162 pairs failed their own
+    # schema. Existing hand-written schema.json files are left alone
+    # (write_if_absent).
+    schema = index_schema(title, os.path.relpath(os.path.join(d, "schema.json"), str(_REPO_ROOT)).replace(os.sep, "/"))
     if write_if_absent(os.path.join(d, "schema.json"),
                        json.dumps(schema, indent=2, ensure_ascii=False) + "\n"):
         created.append("schema.json")

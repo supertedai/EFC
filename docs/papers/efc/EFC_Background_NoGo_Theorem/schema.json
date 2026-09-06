@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/efc-background-nogo-theorem.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/EFC_Background_NoGo_Theorem/schema.json",
   "title": "EFC Background No-Go Theorem Schema",
   "description": "Validates the index.json for the EFC Background No-Go Theorem package",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "SignLemmaResult": {
       "type": "object",
       "properties": {
@@ -73,11 +73,11 @@
           "properties": {
             "results": {
               "type": "array",
-              "items": {"$ref": "#/definitions/SignLemmaResult"}
+              "items": {"$ref": "#/$defs/SignLemmaResult"}
             },
             "growth_enhancement": {
               "type": "array",
-              "items": {"$ref": "#/definitions/GrowthEnhancement"}
+              "items": {"$ref": "#/$defs/GrowthEnhancement"}
             }
           }
         },
@@ -87,7 +87,7 @@
     },
     "falsification_criteria": {
       "type": "array",
-      "items": {"$ref": "#/definitions/FalsificationCriterion"}
+      "items": {"$ref": "#/$defs/FalsificationCriterion"}
     }
   },
   "required": ["id", "title", "version", "date", "author", "three_pillars", "falsification_criteria"]

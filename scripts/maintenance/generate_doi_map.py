@@ -129,7 +129,7 @@ def build_map() -> dict:
     ]
 
     return {
-        "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
+        "$schema": "../schema/doi-map.schema.json",  # editor pointer; the file exists since 2026-09-06 and C10 validates the pair
         "version": "1.0",
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "generator": "scripts/maintenance/generate_doi_map.py",

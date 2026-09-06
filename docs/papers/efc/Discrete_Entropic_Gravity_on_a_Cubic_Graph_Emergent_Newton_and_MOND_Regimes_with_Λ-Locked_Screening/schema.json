@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/discrete-entropic-gravity.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_%CE%9B-Locked_Screening/schema.json",
   "title": "Discrete Entropic Gravity on a Cubic Graph Schema",
   "description": "Schema for the discrete AQUAL operator on cubic graph with Λ-locked screening",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "LatticeParameters": {
       "type": "object",
       "properties": {
@@ -136,22 +136,22 @@
     }
   },
   "properties": {
-    "lattice": { "$ref": "#/definitions/LatticeParameters" },
-    "interpolating_function": { "$ref": "#/definitions/InterpolatingFunction" },
-    "bulk_term": { "$ref": "#/definitions/BulkEntropicTerm" },
+    "lattice": { "$ref": "#/$defs/LatticeParameters" },
+    "interpolating_function": { "$ref": "#/$defs/InterpolatingFunction" },
+    "bulk_term": { "$ref": "#/$defs/BulkEntropicTerm" },
     "kill_tests": {
       "type": "array",
-      "items": { "$ref": "#/definitions/KillTestResult" },
+      "items": { "$ref": "#/$defs/KillTestResult" },
       "minItems": 5,
       "maxItems": 5
     },
     "convergence": {
       "type": "array",
-      "items": { "$ref": "#/definitions/PrefactorConvergence" }
+      "items": { "$ref": "#/$defs/PrefactorConvergence" }
     },
     "cosmological_check": {
       "type": "array",
-      "items": { "$ref": "#/definitions/CosmologicalCheck" }
+      "items": { "$ref": "#/$defs/CosmologicalCheck" }
     }
   }
 }

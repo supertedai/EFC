@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/h0-unification.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Unified_Origin_of_the_Radial_Acceleration_Relation_and_the_Hubble_Tension_via_Entropic_Gravity_Modification/schema.json",
   "title": "H0-RAR Unification Schema",
   "description": "Schema for H0 tension and RAR unification analysis",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "H0Measurement": {
       "type": "object",
       "properties": {
@@ -109,13 +109,13 @@
   "properties": {
     "h0_measurements": {
       "type": "array",
-      "items": { "$ref": "#/definitions/H0Measurement" }
+      "items": { "$ref": "#/$defs/H0Measurement" }
     },
     "mond_table": {
       "type": "array",
-      "items": { "$ref": "#/definitions/MONDPoint" }
+      "items": { "$ref": "#/$defs/MONDPoint" }
     },
-    "entropy_params": { "$ref": "#/definitions/EntropyParameters" },
-    "result": { "$ref": "#/definitions/UnificationResult" }
+    "entropy_params": { "$ref": "#/$defs/EntropyParameters" },
+    "result": { "$ref": "#/$defs/UnificationResult" }
   }
 }

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/rbwm.schema.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Regime-Based_World_Modeling_A_Layered_Epistemic_Architecture_for_Complex_System/schema.json",
   "title": "Regime-Based World Modeling Schema",
   "description": "Schema for validating (R, L) coordinate claims",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "RRegime": {
       "type": "string",
       "enum": ["R0", "R1", "R2"],
@@ -19,10 +19,10 @@
       "type": "object",
       "properties": {
         "r": {
-          "$ref": "#/definitions/RRegime"
+          "$ref": "#/$defs/RRegime"
         },
         "l": {
-          "$ref": "#/definitions/LLayer"
+          "$ref": "#/$defs/LLayer"
         }
       },
       "required": ["r", "l"]
@@ -38,7 +38,7 @@
           "description": "The claim being made"
         },
         "coordinate": {
-          "$ref": "#/definitions/Coordinate"
+          "$ref": "#/$defs/Coordinate"
         },
         "driver": {
           "type": "string",
@@ -81,10 +81,10 @@
       "type": "object",
       "properties": {
         "source": {
-          "$ref": "#/definitions/Coordinate"
+          "$ref": "#/$defs/Coordinate"
         },
         "target": {
-          "$ref": "#/definitions/Coordinate"
+          "$ref": "#/$defs/Coordinate"
         },
         "transfer_allowed": {
           "type": "boolean"
@@ -126,19 +126,19 @@
     "claims": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Claim"
+        "$ref": "#/$defs/Claim"
       }
     },
     "regime_gates": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/RegimeGate"
+        "$ref": "#/$defs/RegimeGate"
       }
     },
     "domain_mappings": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/DomainMapping"
+        "$ref": "#/$defs/DomainMapping"
       }
     }
   }

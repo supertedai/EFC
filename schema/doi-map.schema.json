@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
+  "title": "EFC DOI map (figshare/doi-map.json)",
+  "description": "Shape of figshare/doi-map.json as WRITTEN by scripts/maintenance/generate_doi_map.py — the three list shapes are read from the generator, not from today's (empty) instance lists — measured 2026-09-06 over all 173 entries and closed. The instance pointed at this file for months while it did not exist (t_141136b1).",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Editor pointer to this schema (relative path); not a validator binding — the C10 registry is."
+    },
+    "version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator": {
+      "type": "string"
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "orcid": {
+          "type": "string"
+        },
+        "figshare_authors_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "figshare_authors_id",
+        "name",
+        "orcid"
+      ],
+      "additionalProperties": false
+    },
+    "totals": {
+      "type": "object",
+      "properties": {
+        "orcid_works": {
+          "type": "integer"
+        },
+        "orcid_dois": {
+          "type": "integer"
+        },
+        "repo_paper_dirs": {
+          "type": "integer"
+        },
+        "repo_unique_dois": {
+          "type": "integer"
+        },
+        "matched_count": {
+          "type": "integer"
+        },
+        "missing_paper_dirs": {
+          "type": "integer"
+        },
+        "duplicate_doi_dirs": {
+          "type": "integer"
+        },
+        "dirs_without_doi": {
+          "type": "integer"
+        },
+        "complete_packages": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "complete_packages",
+        "dirs_without_doi",
+        "duplicate_doi_dirs",
+        "matched_count",
+        "missing_paper_dirs",
+        "orcid_dois",
+        "orcid_works",
+        "repo_paper_dirs",
+        "repo_unique_dois"
+      ],
+      "additionalProperties": false
+    },
+    "papers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "doi": {
+            "type": "string",
+            "pattern": "^(10\\.6084/m9\\.figshare\\.[0-9]+)?$",
+            "description": "Empty for the one directory without a DOI (totals.dirs_without_doi)"
+          },
+          "figshare_id": {
+            "type": "string",
+            "pattern": "^[0-9]*$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "repo_dir": {
+            "type": "string"
+          },
+          "package_complete": {
+            "type": "boolean"
+          },
+          "has_pdf": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "date",
+          "doi",
+          "figshare_id",
+          "has_pdf",
+          "package_complete",
+          "repo_dir",
+          "title",
+          "version"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "missing_repo_dirs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "figshare_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "figshare_id",
+          "title",
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Written by generate_doi_map.py from the ORCID cache's on_orcid_not_in_repo rows"
+    },
+    "duplicate_doi_dirs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "doi": {
+            "type": "string"
+          },
+          "dirs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "doi",
+          "dirs",
+          "action"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "dirs_without_doi": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dir": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dir",
+          "action"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "author",
+    "dirs_without_doi",
+    "duplicate_doi_dirs",
+    "generated_at",
+    "generator",
+    "missing_repo_dirs",
+    "papers",
+    "totals",
+    "version"
+  ],
+  "additionalProperties": false
+}

@@ -34,6 +34,7 @@ from datetime import date
 # sync_engine/handlers.py alike.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from efc_ontology import NS as EFC_NS  # noqa: E402
+from efc_identity import served_id, ROOT as _REPO_ROOT  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
@@ -222,13 +223,18 @@ repository-code: "https://github.com/supertedai/EFC"
         "datePublished": pub_date,
         "license": "https://creativecommons.org/licenses/by/4.0/",
     }
+    jsonld_name = f"{short_id}.jsonld"
+    # @id on every document (C12): the DOI URL when the paper has one, else
+    # the file's own identifier under the project authority. `doi:` CURIEs
+    # were written before 2026-09-06 and were not resolvable IRIs.
     if doi:
-        jsonld["@id"] = f"doi:{doi}"
+        jsonld["@id"] = f"https://doi.org/{doi}"
         jsonld["identifier"] = f"https://doi.org/{doi}"
         jsonld["sameAs"] = f"https://doi.org/{doi}"
         jsonld["doi"] = doi
+    else:
+        jsonld["@id"] = served_id(os.path.relpath(os.path.join(dirpath, jsonld_name), str(_REPO_ROOT)).replace(os.sep, "/"))
 
-    jsonld_name = f"{short_id}.jsonld"
     with open(os.path.join(dirpath, jsonld_name), "w") as f:
         json.dump(jsonld, f, indent=2)
 

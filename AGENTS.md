@@ -31,6 +31,7 @@ pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (E
 | Vocabulary (`efc:`) | [`/docs/ontology.jsonld`](./docs/ontology.jsonld) / [`ontology.html`](./docs/ontology.html) — one namespace, `https://supertedai.github.io/EFC/ontology#`, generated from use by `scripts/maintenance/efc_ontology.py` and checked in CI (C9) |
 | Schemas (JSON Schema) | `docs/likelihood-ledger/schema.json` ← `likelihoods.json`, `schema/framework_atlas.schema.json` ← `framework_atlas.jsonld` — registered in `scripts/maintenance/efc_schema_check.py`, valid and closed, checked in CI (C10, `efc-schema.yml`) |
 | Concepts | [`/docs/concepts.jsonld`](./docs/concepts.jsonld) — SKOS registry of the five core concepts (EFC, ∇S, GHF, HME, IMX) against the `efc:` namespace; `schema/concepts.json` and `api/concept-index.json` are generated views (C11, `scripts/maintenance/efc_concepts.py`) |
+| Identity | every JSON Schema `$id` and every added JSON-LD `@id` is the file's served identifier under `https://supertedai.github.io/EFC/` (docs/ is the Pages root; papers with a DOI: the DOI URL); one dialect (2020-12); `"$schema"` in an instance is an editor pointer that must resolve to a schema, not a validator binding; checked in CI (C12, `scripts/maintenance/efc_identity.py`) |
 | Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
 | DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |
 | Validation Ledger | [`/docs/public/EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) |

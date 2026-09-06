@@ -30,6 +30,7 @@ schema blind, with no data to measure it against, would assert nothing.
 Registered (2026-09-06):
   docs/likelihood-ledger/schema.json   <- docs/likelihood-ledger/likelihoods.json
   schema/framework_atlas.schema.json   <- schema/framework_atlas.jsonld
+  schema/doi-map.schema.json           <- figshare/doi-map.json   (t_141136b1: the pointer was dead)
   docs/evaluation-ledger/schema.json      (instance promised: data/evaluation.json — absent)
   docs/model-comparison/schema.json       (instance promised: data/comparisons.json — absent)
 
@@ -59,6 +60,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PAIRS: list[tuple[str, str]] = [
     ("docs/likelihood-ledger/schema.json", "docs/likelihood-ledger/likelihoods.json"),
     ("schema/framework_atlas.schema.json", "schema/framework_atlas.jsonld"),
+    ("schema/doi-map.schema.json", "figshare/doi-map.json"),
 ]
 # (schema, instance path its README promises) — checked as schemas only until
 # the instance exists; then the gate says so and the pair moves to PAIRS.

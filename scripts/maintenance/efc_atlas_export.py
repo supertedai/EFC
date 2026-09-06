@@ -42,6 +42,7 @@ SCHEMA_PATH = os.path.join(REPO, "schema", "framework_atlas.schema.json")
 # value pointed at framework_atlas.schema.json (and 404ed), so the atlas could
 # not expand at all. Measured 2026-09-05; see scripts/maintenance/efc_ontology.py.
 ATLAS_CONTEXT = {"@vocab": "https://supertedai.github.io/EFC/ontology#"}
+ATLAS_ID = "https://supertedai.github.io/EFC/schema/framework_atlas.jsonld"  # C12: the document's identifier
 
 
 def load_current_atlas() -> dict:
@@ -68,6 +69,7 @@ def build_atlas_from_export(export: dict) -> dict:
 
     return {
         "@context": ATLAS_CONTEXT,
+        "@id": ATLAS_ID,
         "@type": "FrameworkAtlas",
         "schema_version": "0.1.0",
         "generated_at": datetime.utcnow().isoformat() + "Z",
