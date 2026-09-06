@@ -176,3 +176,32 @@ builds of 2026-09-06 and 2026-08-25 were measured to be supersessions —
 each merge is followed within two minutes by the robot's own commit, whose
 build cancels the one in progress — not failures; the site was never stale.
 A real legacy failure (2026-08-24, a submodule path) does carry a log.
+
+## Proposing a concept (`efc_candidates.py`)
+
+Not a gate. `python3 scripts/maintenance/efc_candidates.py [TERM …]` reads the
+tree for a term and reports what can be measured: whether it is already a
+vocabulary term (C9) or a registered concept (C11), which spellings were
+searched and which matched, the DOIs of papers whose own files NAME it, and
+candidate definition sentences with GitHub line anchors, ranked by whether the
+sentence defines rather than merely uses. It then stops. The four judgements —
+which sentence is the definition or whether that is a gap, what kind of thing
+it is, candidate or canonical, and where it sits — are printed as open
+decisions. What C11 does and does not refuse is stated below; do not read
+the top of the ranking as an answer.
+
+Two measured reasons for its shape: a null on one spelling is a search and not
+an absence, so a NOT-IN-TREE result carries the forms tried; and proximity is
+not a source, so a paper counts only when one of its own files carries the
+term, which is the mistake two drafts of `efc:HME` made. A file is attributed
+to the longest matching paper directory, so a container is not credited with
+its child's term.
+
+Three declared limits. The forms are spellings, not translations: `oscillering`
+still reads NOT IN TREE although `oscillat` appears in 23 of the 610 files this
+tool reads, and in 60 tracked files altogether, so read that result as "these
+spellings are absent". The ranking is a heuristic and
+prints its score. And the gate does not stop a `candidate` entry whose
+definition came from the top of this list: choosing which sentence defines a
+term is judgement, and only a reader stands between the ranking and the
+registry.
