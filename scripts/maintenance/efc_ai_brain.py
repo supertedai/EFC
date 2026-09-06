@@ -42,6 +42,11 @@ import subprocess
 import sys
 from datetime import date, datetime
 
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from efc_identity import served_id as _served_id  # noqa: E402
+
+
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PAPERS = os.path.join(REPO, "docs", "papers", "efc")
 PUBLIC = os.path.join(REPO, "docs", "public")
@@ -1065,10 +1070,14 @@ repository-code: "https://github.com/supertedai/EFC"
         "datePublished": pub_date,
         "license": "https://creativecommons.org/licenses/by/4.0/",
     }
+    # @id on every document (C12): the DOI URL when the paper has one, else
+    # the served identifier of this file (`doi:` CURIEs were not resolvable).
     if doi:
-        jsonld["@id"] = f"doi:{doi}"
+        jsonld["@id"] = f"https://doi.org/{doi}"
         jsonld["identifier"] = f"https://doi.org/{doi}"
         jsonld["doi"] = doi
+    else:
+        jsonld["@id"] = _served_id(os.path.relpath(os.path.join(dirpath, f"{short_id}.jsonld"), _REPO_ROOT).replace(os.sep, "/"))
 
     with open(os.path.join(dirpath, f"{short_id}.jsonld"), "w") as f:
         json.dump(jsonld, f, indent=2)

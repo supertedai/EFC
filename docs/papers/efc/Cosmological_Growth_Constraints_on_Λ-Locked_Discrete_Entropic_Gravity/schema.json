@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/cosmological-growth-constraints.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Cosmological_Growth_Constraints_on_%CE%9B-Locked_Discrete_Entropic_Gravity/schema.json",
   "title": "Cosmological Growth Constraints Schema",
   "description": "Schema for Λ-locked growth constraint analysis on discrete entropic gravity",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "CosmologicalParameters": {
       "type": "object",
       "properties": {
@@ -104,15 +104,15 @@
     }
   },
   "properties": {
-    "cosmological_parameters": { "$ref": "#/definitions/CosmologicalParameters" },
-    "geff_model": { "$ref": "#/definitions/GeffModel" },
+    "cosmological_parameters": { "$ref": "#/$defs/CosmologicalParameters" },
+    "geff_model": { "$ref": "#/$defs/GeffModel" },
     "scenarios": {
       "type": "array",
-      "items": { "$ref": "#/definitions/ScenarioResult" }
+      "items": { "$ref": "#/$defs/ScenarioResult" }
     },
     "geff_profiles": {
       "type": "array",
-      "items": { "$ref": "#/definitions/GeffProfile" }
+      "items": { "$ref": "#/$defs/GeffProfile" }
     }
   }
 }

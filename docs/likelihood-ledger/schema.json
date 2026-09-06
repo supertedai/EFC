@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://energyflow-cosmology.com/likelihood-ledger/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/likelihood-ledger/schema.json",
   "title": "EFC Likelihood Ledger",
   "description": "Schema for per-test likelihood pipeline declarations.",
   "type": "object",
@@ -23,11 +23,11 @@
     "likelihoods": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/likelihood_entry"
+        "$ref": "#/$defs/likelihood_entry"
       }
     }
   },
-  "definitions": {
+  "$defs": {
     "likelihood_entry": {
       "type": "object",
       "required": [

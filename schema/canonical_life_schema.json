@@ -1,10 +1,11 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/schema/canonical_life_schema.json",
   "title": "Canonical Life Schema",
   "description": "Complete schema for a human life with change over time",
   "version": "1.0.0",
   
-  "definitions": {
+  "$defs": {
     "base_entity": {
       "type": "object",
       "required": ["id", "domain", "name", "status", "since", "confidence", "source"],
@@ -67,7 +68,7 @@
     
     "identity": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "IDENTITY" },
@@ -81,7 +82,7 @@
     
     "family": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "FAMILY" },
@@ -98,7 +99,7 @@
     
     "ownership": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "OWNERSHIP" },
@@ -116,7 +117,7 @@
     
     "location": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "LOCATION" },
@@ -133,7 +134,7 @@
     
     "work": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "WORK" },
@@ -151,7 +152,7 @@
     
     "project": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "PROJECTS" },
@@ -168,7 +169,7 @@
     
     "skill": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "SKILLS" },
@@ -184,7 +185,7 @@
     
     "health": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "HEALTH" },
@@ -201,7 +202,7 @@
     
     "finance": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "FINANCE" },
@@ -217,7 +218,7 @@
     
     "theory": {
       "allOf": [
-        { "$ref": "#/definitions/base_entity" },
+        { "$ref": "#/$defs/base_entity" },
         {
           "properties": {
             "domain": { "const": "THEORY" },

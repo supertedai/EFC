@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://supertedai.github.io/efc/schema/framework_atlas.schema.json",
+  "$id": "https://supertedai.github.io/EFC/schema/framework_atlas.schema.json",
   "title": "Framework Atlas Schema",
   "description": "Structural schema for the EFC Framework Atlas — a machine-readable registry of cosmological frameworks, their relationships to EFC, and their quantitative predictions across regimes L0–L3.",
   "type": "object",
@@ -12,7 +12,8 @@
     "source",
     "frameworks",
     "relations",
-    "predictions"
+    "predictions",
+    "@id"
   ],
   "properties": {
     "@context": {
@@ -157,6 +158,10 @@
       },
       "additionalProperties": false,
       "description": "Present in the committed atlas — transcribed from a Symbiose session (2026-04-20, see provenance) — and NOT written by scripts/maintenance/efc_atlas_export.py: an --apply --from-stdin export omits it (it is not required), so a fresh export drops this block silently. Shape measured from the instance 2026-09-06 and closed; a new key here is a change to declare. Relation type (UPPER_SNAKE) -> integer count, plus total and a free-text note; 9 relation types measured."
+    },
+    "@id": {
+      "const": "https://supertedai.github.io/EFC/schema/framework_atlas.jsonld",
+      "description": "The document's own identifier under the project authority (C12); written by efc_atlas_export.py"
     }
   },
   "$defs": {

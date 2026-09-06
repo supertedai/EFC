@@ -1,5 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Multi_epoch_Growth_Rate_Test_of_EFC/schema.json",
   "title": "EFC Multi-epoch fσ8 Validation Package",
   "type": "object",
   "required": ["paper", "datasets", "model", "results"],

@@ -48,6 +48,8 @@ jobs:
         run: python3 scripts/maintenance/efc_sync_dois.py --check
       - name: "Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)"
         run: python3 scripts/maintenance/efc_ontology.py
+      - name: "Check schema identity and JSON-LD form (C12 — one $id authority, one dialect, @id on top, pointers resolve, codemeta 3.0)"
+        run: python3 scripts/maintenance/efc_identity.py
       - name: Run EFC verifier (C1–C8)
         id: verify
         run: python3 scripts/maintenance/efc_verify.py

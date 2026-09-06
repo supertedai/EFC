@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://energyflow-cosmology.com/validation-ledger/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/validation-ledger/schema.json",
   "title": "EFC Validation Ledger",
   "description": "Schema for the EFC validation ledger data files.",
   "type": "object",
@@ -53,31 +53,31 @@
         "physics_test": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/validation_test"
+            "$ref": "#/$defs/validation_test"
           }
         },
         "consistency_check": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/validation_test"
+            "$ref": "#/$defs/validation_test"
           }
         },
         "phenomenological": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/validation_test"
+            "$ref": "#/$defs/validation_test"
           }
         },
         "framework_constraint": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/validation_test"
+            "$ref": "#/$defs/validation_test"
           }
         },
         "planned_pipeline": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/validation_test"
+            "$ref": "#/$defs/validation_test"
           }
         }
       }
@@ -85,7 +85,7 @@
     "inference_results": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/inference_result"
+        "$ref": "#/$defs/inference_result"
       }
     },
     "tcs_profiles": {
@@ -95,7 +95,7 @@
       "type": "object"
     }
   },
-  "definitions": {
+  "$defs": {
     "validation_test": {
       "type": "object",
       "required": [

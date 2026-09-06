@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/regime-structure-entropic-flow-ontology.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Regime_Structure_and_Entropic_Flow_Ontology_in_Discrete_Gravity_Models/schema.json",
   "title": "Regime Structure and Entropic Flow Ontology Schema",
   "description": "Schema for regime classification and entropic functional decomposition in discrete gravity models",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "InterpolatingFunction": {
       "type": "object",
       "properties": {
@@ -144,27 +144,27 @@
     }
   },
   "properties": {
-    "interpolating_function": { "$ref": "#/definitions/InterpolatingFunction" },
+    "interpolating_function": { "$ref": "#/$defs/InterpolatingFunction" },
     "functional_sectors": {
       "type": "array",
-      "items": { "$ref": "#/definitions/FunctionalSector" },
+      "items": { "$ref": "#/$defs/FunctionalSector" },
       "minItems": 3,
       "maxItems": 3
     },
     "regimes": {
       "type": "array",
-      "items": { "$ref": "#/definitions/RegimeClassification" },
+      "items": { "$ref": "#/$defs/RegimeClassification" },
       "minItems": 3,
       "maxItems": 3
     },
     "transitions": {
       "type": "array",
-      "items": { "$ref": "#/definitions/RegimeTransition" }
+      "items": { "$ref": "#/$defs/RegimeTransition" }
     },
-    "lambda_dual_role": { "$ref": "#/definitions/LambdaDualRole" },
+    "lambda_dual_role": { "$ref": "#/$defs/LambdaDualRole" },
     "ontological_commitments": {
       "type": "array",
-      "items": { "$ref": "#/definitions/OntologicalCommitment" }
+      "items": { "$ref": "#/$defs/OntologicalCommitment" }
     }
   }
 }

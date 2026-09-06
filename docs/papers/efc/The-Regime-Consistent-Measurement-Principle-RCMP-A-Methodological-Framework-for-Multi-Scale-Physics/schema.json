@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://energyflow-cosmology.com/schema/rcmp/v1",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/The-Regime-Consistent-Measurement-Principle-RCMP-A-Methodological-Framework-for-Multi-Scale-Physics/schema.json",
   "title": "RCMP Schema",
   "description": "JSON Schema for Regime-Consistent Measurement Principle data structures",
-  "definitions": {
+  "$defs": {
     "EpistemicLayer": {
       "type": "string",
       "enum": ["L0", "L1", "L2", "L3"],
@@ -34,7 +34,7 @@
           "description": "Physical unit"
         },
         "layer": {
-          "$ref": "#/definitions/EpistemicLayer"
+          "$ref": "#/$defs/EpistemicLayer"
         },
         "regime": {
           "type": "string",
@@ -51,10 +51,10 @@
           "description": "Name of this proxy step"
         },
         "from_layer": {
-          "$ref": "#/definitions/EpistemicLayer"
+          "$ref": "#/$defs/EpistemicLayer"
         },
         "to_layer": {
-          "$ref": "#/definitions/EpistemicLayer"
+          "$ref": "#/$defs/EpistemicLayer"
         },
         "transformation": {
           "type": "string",
@@ -87,7 +87,7 @@
         "steps": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ProxyStep"
+            "$ref": "#/$defs/ProxyStep"
           },
           "minItems": 1
         },
@@ -163,22 +163,22 @@
           "type": "string"
         },
         "driver": {
-          "$ref": "#/definitions/Driver"
+          "$ref": "#/$defs/Driver"
         },
         "measurements": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Measurement"
+            "$ref": "#/$defs/Measurement"
           }
         },
         "proxy_chains": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ProxyChain"
+            "$ref": "#/$defs/ProxyChain"
           }
         },
         "validation": {
-          "$ref": "#/definitions/ValidationChecklist"
+          "$ref": "#/$defs/ValidationChecklist"
         },
         "conclusion": {
           "type": "string",
@@ -191,7 +191,7 @@
   "type": "object",
   "properties": {
     "analysis": {
-      "$ref": "#/definitions/RCMPAnalysis"
+      "$ref": "#/$defs/RCMPAnalysis"
     }
   }
 }

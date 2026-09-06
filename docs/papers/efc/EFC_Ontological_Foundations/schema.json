@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/supertedai/EFC/schemas/ontology.schema.json",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/EFC_Ontological_Foundations/schema.json",
   "title": "EFC Ontological Foundations Schema",
   "description": "Schema for validating ontological structures and circularity tests",
   "type": "object",
-  "definitions": {
+  "$defs": {
     "Hypothesis": {
       "type": "object",
       "properties": {
@@ -107,22 +107,22 @@
     "hypotheses": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Hypothesis"
+        "$ref": "#/$defs/Hypothesis"
       }
     },
     "circularity_tests": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/CircularityTest"
+        "$ref": "#/$defs/CircularityTest"
       }
     },
     "differentiation_model": {
-      "$ref": "#/definitions/DifferentiationModel"
+      "$ref": "#/$defs/DifferentiationModel"
     },
     "framework_references": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/FrameworkReference"
+        "$ref": "#/$defs/FrameworkReference"
       }
     }
   }

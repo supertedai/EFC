@@ -1,11 +1,11 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://energyflow-cosmology.com/schemas/sparc175/v1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/schema.json",
   "title": "SPARC175 Data Schema",
   "description": "Schema for SPARC175 regime analysis data files",
   "version": "1.0",
   
-  "definitions": {
+  "$defs": {
     "galaxy_data": {
       "type": "object",
       "properties": {
@@ -119,8 +119,8 @@
           "type": "object",
           "properties": {
             "n_points": {"type": "integer", "minimum": 1},
-            "efc": {"$ref": "#/definitions/fit_result"},
-            "lcdm": {"$ref": "#/definitions/fit_result"},
+            "efc": {"$ref": "#/$defs/fit_result"},
+            "lcdm": {"$ref": "#/$defs/fit_result"},
             "comparison": {
               "type": "object",
               "properties": {
@@ -133,8 +133,8 @@
               },
               "required": ["delta_aic", "winner"]
             },
-            "latent": {"$ref": "#/definitions/latent_proxy"},
-            "regime": {"$ref": "#/definitions/regime_type"}
+            "latent": {"$ref": "#/$defs/latent_proxy"},
+            "regime": {"$ref": "#/$defs/regime_type"}
           },
           "required": ["n_points", "efc", "lcdm", "comparison"]
         }
