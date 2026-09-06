@@ -50,6 +50,7 @@ ORCID_SYNC = os.path.join(HERE, "efc_orcid_sync.py")
 REGEN_INDEX = os.path.join(HERE, "efc_regen_index.py")
 EVIDENCE_MIRROR = os.path.join(HERE, "efc_evidence_mirror.py")
 PAPER_TYPE = os.path.join(HERE, "efc_paper_type_classifier.py")
+ONTOLOGY = os.path.join(HERE, "efc_ontology.py")
 
 
 def run(script: str, *args: str) -> int:
@@ -89,6 +90,12 @@ def main() -> int:
     if rc_gen2 != 0:
         print(f"[efc-maintain] generator (post-sync) failed (rc={rc_gen2})")
         return rc_gen2
+    # C9: regenerate the efc: vocabulary from the terms now in use, so a new
+    # term or package never leaves docs/ontology.* stale for the verifier.
+    rc_ont = run(ONTOLOGY, "--apply")
+    if rc_ont != 0:
+        print(f"[efc-maintain] efc: vocabulary regeneration failed (rc={rc_ont})")
+        return rc_ont
     rc_verify = run(VERIFY)
     # Step 4a: ledger_impact_sync — DOI-gated deterministic mutation of
     # tests.json / stats.json / Gap_Analysis.html for every paper that

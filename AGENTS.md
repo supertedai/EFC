@@ -28,6 +28,7 @@ pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (E
 | Machine Navigation | [`llms.txt`](./llms.txt) |
 | Provenance | [`/auth/`](./auth/) |
 | Schema | [`/schema/global_schema.json`](./schema/global_schema.json) |
+| Vocabulary (`efc:`) | [`/docs/ontology.jsonld`](./docs/ontology.jsonld) / [`ontology.html`](./docs/ontology.html) — one namespace, `https://supertedai.github.io/EFC/ontology#`, generated from use by `scripts/maintenance/efc_ontology.py` and checked in CI (C9) |
 | Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
 | DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |
 | Validation Ledger | [`/docs/public/EFC_Validation_Ledger.html`](./docs/public/EFC_Validation_Ledger.html) |

@@ -6,7 +6,7 @@
   "type": "object",
   "required": ["@context", "@type", "schema_version", "generated_at", "source", "frameworks", "relations", "predictions"],
   "properties": {
-    "@context": {"type": "string"},
+    "@context": {"type": ["string", "object"]},
     "@type": {"const": "FrameworkAtlas"},
     "schema_version": {"type": "string"},
     "generated_at": {"type": "string", "format": "date-time"},

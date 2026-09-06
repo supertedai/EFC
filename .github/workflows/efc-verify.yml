@@ -23,6 +23,13 @@ on:
       - "docs/public/EFC_White_Paper_Series.html"
       - "scripts/maintenance/**"
       - "README.md"
+      # C9 (efc: namespace) scans every JSON-LD document in the tree —
+      # 186 of 506 live outside the paths above (meta/, methodology/, schema/,
+      # jsonld/, api/, figshare/, docs/index.jsonld …).
+      - "**/*.jsonld"
+      - "**/*.json"
+      - "docs/ontology.*"
+      - "tests/**"
       - ".github/workflows/efc-verify.yml"
 
 jobs:
@@ -39,6 +46,8 @@ jobs:
       - name: Check DOI sync consistency (C8)
         id: sync_dois_check
         run: python3 scripts/maintenance/efc_sync_dois.py --check
+      - name: Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)
+        run: python3 scripts/maintenance/efc_ontology.py
       - name: Run EFC verifier (C1–C8)
         id: verify
         run: python3 scripts/maintenance/efc_verify.py
