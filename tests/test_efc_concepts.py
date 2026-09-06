@@ -9,7 +9,9 @@ names (ADR-024: the registry copies, it does not write).
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -44,9 +46,10 @@ class Rigg(unittest.TestCase):
                 {"@id": S, "@type": "skos:ConceptScheme", "skos:hasTopConcept": [{"@id": "efc:A"}, {"@id": "efc:B"}]},
                 {"@id": "efc:A", "@type": "skos:Concept", "skos:prefLabel": {"@value": "Alpha", "@language": "en"}, "skos:altLabel": [{"@value": "A", "@language": "en"}],
                  "skos:notation": "A", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S}, "skos:definition": {"@value": "Alpha is the first.", "@language": "en"},
-                 "efc:definitionQuotedFrom": {"@id": GH + "README.md"}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.1"}, {"@id": GH + "README.md"}]},
+                 "efc:definitionQuotedFrom": {"@id": GH + "README.md#L1"}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.1"}, {"@id": GH + "README.md#L1"}]},
                 {"@id": "efc:B", "@type": "skos:Concept", "skos:prefLabel": {"@value": "Beta", "@language": "en"}, "skos:altLabel": [],
-                 "skos:notation": "B", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.2"}]},
+                 "skos:notation": "B", "skos:inScheme": {"@id": S}, "skos:topConceptOf": {"@id": S},
+                 "skos:scopeNote": {"@value": "no defining sentence in the tree (measured)", "@language": "en"}, "dcterms:source": [{"@id": "https://doi.org/10.6084/m9.figshare.2"}]},
             ],
         }
         _write(self.tmp / self.mod.REGISTRY, self.reg)
@@ -70,7 +73,7 @@ class Rigg(unittest.TestCase):
         self.assertEqual([i["item"]["url"] for i in idx["itemListElement"]], [self.mod.NS + "A", self.mod.NS + "B"])
 
     def test_begrep_uten_doi_kilde_er_et_problem(self):
-        self.reg["@graph"][2]["dcterms:source"] = [{"@id": GH + "README.md"}]
+        self.reg["@graph"][2]["dcterms:source"] = [{"@id": GH + "README.md#L1"}]
         self._save(); self.mod.apply(self.tmp)
         self.assertTrue(any("efc:B: no dcterms:source that is a doi.org URL" in p for p in self.mod.check(self.tmp)))
 
@@ -91,6 +94,59 @@ class Rigg(unittest.TestCase):
         self.assertTrue(any("dead copy still present" in p for p in problems), problems)
         self.assertTrue(any("efc:B is not declared" in p for p in problems), problems)
 
+    def test_fragmentanker_kreves_og_maa_peke_paa_riktige_linjer(self):
+        """t_91579b0e: «delstreng hvor som helst i fila» er ikke evidens i en
+        fil paa tusenvis av linjer. Ankeret er en GitHub-lenke, saa
+        identifikatoren er den klikkbare evidensen."""
+        (self.tmp / "README.md").write_text("intro\nAlpha is the first.\ntail\n", encoding="utf-8")
+        q = self.reg["@graph"][1]["skos:definition"]["@value"]
+        for anker, ventet in ((GH + "README.md", "needs a line fragment"), (GH + "README.md#L1", "lines 1-1"), (GH + "README.md#L99", "but README.md has")):
+            self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": anker}
+            self._save(); self.mod.apply(self.tmp)
+            problems = self.mod.check(self.tmp)
+            self.assertTrue(any(ventet in p for p in problems), (anker, problems))
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "README.md#L2", "efc:quoteSha256": "0" * 64}
+        self._save(); self.mod.apply(self.tmp)
+        self.assertTrue(any("efc:quoteSha256 does not match" in p for p in self.mod.check(self.tmp)))
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "README.md#L1-L3", "efc:quoteSha256": hashlib.sha256(q.encode("utf-8")).hexdigest()}
+        self._save(); self.mod.apply(self.tmp)
+        self.assertEqual(self.mod.check(self.tmp), [], "a wider span that still contains the quote is legitimate")
+        for anker, ventet in ((GH + "README.md#L0", "lines are numbered from 1"),
+                              (GH + "README.md#L3-L2", "runs backwards"),
+                              (GH + "README.md#L99", "but README.md has 3"),
+                              (GH + "README.md#Loverview", "needs a line fragment"),
+                              (GH + "README.md", "needs a line fragment"),
+                              (GH + "READ%00ME.md#L1", "is not a readable file in the tree")):
+            self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": anker}
+            self._save(); self.mod.apply(self.tmp)
+            self.assertTrue(any(ventet in p for p in self.mod.check(self.tmp)), (anker, self.mod.check(self.tmp)))
+        # A one-element LIST is the same statement as a bare node: a JSON-LD
+        # expand/compact round makes every value a list, and the hash check
+        # must not fall off that edge (review finding).
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = [{"@id": GH + "README.md#L2", "efc:quoteSha256": "0" * 64}]
+        self._save(); self.mod.apply(self.tmp)
+        self.assertTrue(any("efc:quoteSha256 does not match" in p for p in self.mod.check(self.tmp)), self.mod.check(self.tmp))
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = [{"@id": GH + "README.md#L2", "efc:quoteSha256": hashlib.sha256(q.encode("utf-8")).hexdigest()}]
+        self._save(); self.mod.apply(self.tmp)
+        self.assertEqual(self.mod.check(self.tmp), [], "a one-element list is the same statement")
+
+    def test_manglende_definisjon_krever_scopenote(self):
+        c = self.reg["@graph"][2]
+        self.assertNotIn("skos:definition", c)
+        for tom in (None, "", "   "):
+            if tom is None:
+                c.pop("skos:scopeNote", None)
+            else:
+                c["skos:scopeNote"] = {"@value": tom, "@language": "en"}
+            self._save(); self.mod.apply(self.tmp)
+            self.assertTrue(any("no skos:definition and no skos:scopeNote" in p for p in self.mod.check(self.tmp)), repr(tom))
+        c.pop("skos:scopeNote", None)
+        self._save(); self.mod.apply(self.tmp)
+        self.assertTrue(any("no skos:definition and no skos:scopeNote" in p for p in self.mod.check(self.tmp)))
+        c["skos:scopeNote"] = {"@value": "no defining sentence in the tree (measured)", "@language": "en"}
+        self._save(); self.mod.apply(self.tmp)
+        self.assertEqual(self.mod.check(self.tmp), [])
+
     def test_definisjon_som_ikke_er_ordrett_eller_mangler_quotedFrom_er_et_problem(self):
         """ADR-024-vernet i PORTEN: en parafrasert eller forfattet definisjon feller."""
         (self.tmp / "README.md").write_text("Alpha is the first.\n", encoding="utf-8")
@@ -99,7 +155,7 @@ class Rigg(unittest.TestCase):
         self.assertEqual(self.mod.check(self.tmp), [])
         self.reg["@graph"][1]["skos:definition"] = {"@value": "Alpha is the very first.", "@language": "en"}
         self._save(); self.mod.apply(self.tmp)
-        self.assertTrue(any("not a verbatim substring of README.md (ADR-024)" in p for p in self.mod.check(self.tmp)))
+        self.assertTrue(any("not a verbatim substring of README.md lines 1-1" in p for p in self.mod.check(self.tmp)))
         self.reg["@graph"][1]["skos:definition"] = {"@value": "Alpha is the first.", "@language": "en"}
         del self.reg["@graph"][1]["efc:definitionQuotedFrom"]
         self._save(); self.mod.apply(self.tmp)
@@ -120,13 +176,13 @@ class Rigg(unittest.TestCase):
 
     def test_traversering_tom_definisjon_og_skjemanode_med_concept_egenskaper(self):
         (self.tmp.parent / "utenfor-treet.md").write_text("Alpha is the first.\n", encoding="utf-8")
-        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "../utenfor-treet.md"}
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "../utenfor-treet.md#L1"}
         self.reg["@graph"][0]["skos:topConceptOf"] = {"@id": self.mod.SCHEME_IRI}
         self._save(); self.mod.apply(self.tmp)
         problems = self.mod.check(self.tmp)
         self.assertTrue(any("resolves outside the tree" in p for p in problems), problems)
         self.assertTrue(any("skos:topConceptOf on a node that is not a skos:Concept" in p for p in problems), problems)
-        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "README.md"}
+        self.reg["@graph"][1]["efc:definitionQuotedFrom"] = {"@id": GH + "README.md#L1"}
         self.reg["@graph"][1]["skos:definition"] = {"@value": "", "@language": "en"}
         del self.reg["@graph"][0]["skos:topConceptOf"]
         self._save(); self.mod.apply(self.tmp)
@@ -153,8 +209,15 @@ class Repoet(unittest.TestCase):
             if "skos:definition" in c:
                 src = c["efc:definitionQuotedFrom"]["@id"]
                 self.assertTrue(src.startswith(GH), src)
-                text = (ROOT / src[len(GH):]).read_text(encoding="utf-8")
-                self.assertIn(c["skos:definition"]["@value"], text, f"{c['@id']}: definition is not verbatim from {src}")
+                m = re.match(r"^([^#]+)#L(\d+)(?:-L(\d+))?$", src[len(GH):])
+                self.assertIsNotNone(m, f"{c['@id']}: efc:definitionQuotedFrom needs a #L line fragment: {src}")
+                lines = (ROOT / m.group(1)).read_text(encoding="utf-8").split("\n")
+                start, end = int(m.group(2)), int(m.group(3) or m.group(2))
+                self.assertIn(c["skos:definition"]["@value"], "\n".join(lines[start - 1:end]),
+                              f"{c['@id']}: definition is not verbatim from {m.group(1)} lines {start}-{end}")
+                digest = c["efc:definitionQuotedFrom"].get("efc:quoteSha256")
+                if digest:
+                    self.assertEqual(digest, hashlib.sha256(c["skos:definition"]["@value"].encode("utf-8")).hexdigest(), c["@id"])
             else:
                 self.assertIn("skos:scopeNote", c, f"{c['@id']}: neither a sourced definition nor a scopeNote saying why")
 
