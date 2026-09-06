@@ -29,6 +29,7 @@ pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (E
 | Provenance | [`/auth/`](./auth/) |
 | Schema | [`/schema/global_schema.json`](./schema/global_schema.json) |
 | Vocabulary (`efc:`) | [`/docs/ontology.jsonld`](./docs/ontology.jsonld) / [`ontology.html`](./docs/ontology.html) — one namespace, `https://supertedai.github.io/EFC/ontology#`, generated from use by `scripts/maintenance/efc_ontology.py` and checked in CI (C9) |
+| Schemas (JSON Schema) | `docs/likelihood-ledger/schema.json` ← `likelihoods.json`, `schema/framework_atlas.schema.json` ← `framework_atlas.jsonld` — registered in `scripts/maintenance/efc_schema_check.py`, valid and closed, checked in CI (C10, `efc-schema.yml`) |
 | Concepts | [`/docs/concepts.jsonld`](./docs/concepts.jsonld) — SKOS registry of the five core concepts (EFC, ∇S, GHF, HME, IMX) against the `efc:` namespace; `schema/concepts.json` and `api/concept-index.json` are generated views (C11, `scripts/maintenance/efc_concepts.py`) |
 | Papers | [`/docs/papers/efc/`](./docs/papers/efc/) |
 | DOI Map | [`/figshare/doi-map.json`](./figshare/doi-map.json) |

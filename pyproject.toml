@@ -23,6 +23,7 @@ dependencies = [
 [project.optional-dependencies]
 hcp = ["nibabel>=4.0,<6"]
 cosmosis = ["cosmosis>=0.5"]
+verify = ["jsonschema>=4.18,<5", "rfc3339-validator>=0.1,<1", "pytest>=8,<9", "PyYAML>=6,<7"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
