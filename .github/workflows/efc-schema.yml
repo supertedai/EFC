@@ -1,0 +1,57 @@
+name: efc-schema
+
+# C10 — registered JSON Schema / instance pairs are valid and CLOSED.
+# Measured 2026-09-05: 16 workflows, none ran a schema validator; 0 of ~400
+# schemas closed. The registry lives in scripts/maintenance/efc_schema_check.py.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/likelihood-ledger/**"
+      - "docs/evaluation-ledger/schema.json"
+      - "docs/model-comparison/schema.json"
+      - "schema/framework_atlas.*"
+      - "scripts/maintenance/efc_schema_check.py"
+      - "scripts/maintenance/efc_atlas_export.py"
+      - "tests/test_efc_schema_check.py"
+      - "tests/test_workflows_parse.py"
+      - ".github/workflows/*.yml"
+      - "requirements.txt"
+      - ".github/workflows/efc-schema.yml"
+  pull_request:
+    paths:
+      - "docs/likelihood-ledger/**"
+      - "docs/evaluation-ledger/schema.json"
+      - "docs/model-comparison/schema.json"
+      - "schema/framework_atlas.*"
+      - "scripts/maintenance/efc_schema_check.py"
+      - "scripts/maintenance/efc_atlas_export.py"
+      - "tests/test_efc_schema_check.py"
+      - "tests/test_workflows_parse.py"
+      - ".github/workflows/*.yml"
+      - "requirements.txt"
+      - ".github/workflows/efc-schema.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install validator and test runner (pinned ranges, same as requirements.txt)
+        run: python3 -m pip install --quiet "jsonschema>=4.18,<5" "rfc3339-validator>=0.1,<1" "pytest>=8,<9" "PyYAML>=6,<7"
+
+      - name: C10 — registered schema/instance pairs valid and closed
+        run: python3 scripts/maintenance/efc_schema_check.py
+
+      - name: Unit tests for the gate, and every workflow file parses
+        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py -q

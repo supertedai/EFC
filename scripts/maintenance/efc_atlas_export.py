@@ -81,6 +81,23 @@ def build_atlas_from_export(export: dict) -> dict:
     }
 
 
+def validate_against_schema(atlas: dict):
+    """Problems from schema/framework_atlas.schema.json (SCHEMA_PATH), or
+    None when jsonschema is not installed. The export must not fail for lack
+    of a validator, but must never write a snapshot the schema rejects when
+    one is present — CI gate C10 re-checks the committed pair either way.
+    (SCHEMA_PATH was defined and never used until 2026-09-06.)"""
+    try:
+        import jsonschema
+    except ImportError:
+        return None
+    with open(SCHEMA_PATH, encoding="utf-8") as f:
+        schema = json.load(f)
+    cls = jsonschema.validators.validator_for(schema)
+    return ["/".join(map(str, e.absolute_path)) + ": " + e.message[:160] if e.absolute_path else "<root>: " + e.message[:160]
+            for e in cls(schema).iter_errors(atlas)]
+
+
 def summarize(atlas: dict) -> str:
     frameworks = atlas.get("frameworks", [])
     relations = atlas.get("relations", [])
@@ -140,8 +157,22 @@ def main() -> int:
     print("\nExported atlas summary:")
     print(summarize(atlas))
 
-    if dry_run and not apply:
-        print("\n[DRY RUN] Not writing. Pass --apply to commit snapshot.")
+    # Validate BEFORE the dry-run exit, so a dry run can say the snapshot
+    # would have been refused (review finding; --apply --dry-run used to
+    # write, because `dry_run and not apply` was False for that pair).
+    problems = validate_against_schema(atlas)
+    if problems is None:
+        print("\nNote: jsonschema not installed — snapshot not validated here (CI gate C10 checks the committed pair).")
+    elif problems:
+        for p in problems:
+            print(f"SCHEMA: {p}", file=sys.stderr)
+        print(f"ERROR: export violates {os.path.relpath(SCHEMA_PATH, REPO)} ({len(problems)} problem(s)); not writing.", file=sys.stderr)
+        return 1
+    else:
+        print(f"\nSchema OK: {os.path.relpath(SCHEMA_PATH, REPO)}")
+
+    if dry_run:
+        print("\n[DRY RUN] Not writing. Pass --apply (without --dry-run) to commit snapshot.")
         return 0
 
     os.makedirs(os.path.dirname(ATLAS_PATH), exist_ok=True)

@@ -9,3 +9,9 @@ pandas>=1.4,<3
 
 # Optional: CosmoSIS integration (docs/papers/efc/efc-weak-lensing-phenomenology/)
 # cosmosis>=0.5
+
+# Verification (CI gate C10 + tests; .github/workflows/efc-schema.yml installs the same)
+jsonschema>=4.18,<5
+rfc3339-validator>=0.1,<1
+pytest>=8,<9
+PyYAML>=6,<7

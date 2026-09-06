@@ -39,7 +39,7 @@
         "comparison_id": {"type": "string"},
         "likelihood_id": {
           "type": "string",
-          "description": "Foreign key to likelihood-ledger/data/likelihoods.json"
+          "description": "Foreign key to likelihood-ledger/likelihoods.json"
         },
         "reference_model": {"type": "string"},
         "models": {
