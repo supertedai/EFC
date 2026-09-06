@@ -27,6 +27,7 @@ EFC DOI sync — 170 paper dirs scanned
   papers with conflicts      : 0
 ========================================================================
 [efc-gen] 169 packages · 0 new files · catalogue: /home/runner/work/EFC/EFC/docs/papers/efc/ai_friendly_index.json
+[efc-ontology] wrote docs/ontology.jsonld and docs/ontology.html: 228 terms from 507 JSON-LD documents
 [efc-verify] 169 paper dirs · 0 errors · 1 warnings
   [WARN ] C4 internal-versions: drift within internal track: {'ledger.json': '3.0', 'index.md': '4.2'}
 ======================================================================
@@ -71,7 +72,7 @@ Snapshot written to /home/runner/work/EFC/EFC/.claude/symbiose_snapshot.json
   Source: ledger_fallback
 ============================================================
 EFC DATASET SCANNER
-Date: 2026-08-25
+Date: 2026-09-06
 ============================================================
 
 Known datasets in Roadmap: 9
@@ -171,6 +172,7 @@ VERDICT: PASS with warnings
 [efc-maintain] running efc_gen_ai_friendly.py …
 [efc-maintain] running efc_sync_dois.py --apply…
 [efc-maintain] running efc_gen_ai_friendly.py …
+[efc-maintain] running efc_ontology.py --apply…
 [efc-maintain] running efc_verify.py …
 [efc-maintain] running efc_ledger_impact_sync.py --apply…
 [efc-maintain] running efc_ledger_autofill.py …

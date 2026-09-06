@@ -1,0 +1,278 @@
+{
+  "@context": {
+    "efc": "https://supertedai.github.io/EFC/ontology#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "skos:broader": {
+      "@type": "@id"
+    },
+    "skos:inScheme": {
+      "@type": "@id"
+    },
+    "skos:topConceptOf": {
+      "@type": "@id"
+    },
+    "skos:hasTopConcept": {
+      "@type": "@id"
+    },
+    "dcterms:source": {
+      "@type": "@id"
+    },
+    "dcterms:creator": {
+      "@type": "@id"
+    },
+    "efc:definitionQuotedFrom": {
+      "@type": "@id"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos:notation": {
+      "@type": "xsd:string"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "https://supertedai.github.io/EFC/concepts.jsonld",
+      "@type": "skos:ConceptScheme",
+      "dcterms:title": {
+        "@value": "Energy-Flow Cosmology (EFC) — core concepts",
+        "@language": "en"
+      },
+      "dcterms:description": {
+        "@value": "The five core EFC concepts named by api/concept-index.json since 2026-01, registered once, in SKOS, against the efc: vocabulary. Definitions are verbatim sentences from documents in this repository (efc:definitionQuotedFrom); where the tree holds no defining sentence the concept says so in a scopeNote. Meaning lives here; identity lives in the vocabulary (docs/ontology.jsonld).",
+        "@language": "en"
+      },
+      "dcterms:creator": {
+        "@id": "https://orcid.org/0009-0002-4860-5095"
+      },
+      "dcterms:modified": "2026-09-06",
+      "skos:hasTopConcept": [
+        {
+          "@id": "efc:EFC"
+        },
+        {
+          "@id": "efc:EntropyGradient"
+        },
+        {
+          "@id": "efc:HME"
+        }
+      ]
+    },
+    {
+      "@id": "efc:EFC",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "Energy-Flow Cosmology",
+        "@language": "en"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "EFC",
+          "@language": "en"
+        }
+      ],
+      "skos:notation": "EFC",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:definition": {
+        "@value": "Presents the Complete Edition of Energy-Flow Cosmology (EFC v2.1), a unified thermodynamic framework where a continuous energy–entropy flow field Ef generates spacetime structure, cosmic dynamics, and reflexive cognition.",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30563738"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30478916"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md"
+        }
+      ]
+    },
+    {
+      "@id": "efc:EntropyGradient",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "Entropy Gradient",
+        "@language": "en"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "∇S",
+          "@language": "en"
+        },
+        {
+          "@value": "entropy gradient",
+          "@language": "en"
+        }
+      ],
+      "skos:notation": "∇S",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "No defining sentence for ∇S exists in the repository's Markdown/TeX sources (measured 2026-09-06); theory/formal/efc-formal-spec/minimal_spec.tex §3 'Entropy Gradient and Flow' gives the formal role. Sources listed, definition deliberately absent.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30563738"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31173850"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-formal-spec/minimal_spec.tex"
+        }
+      ]
+    },
+    {
+      "@id": "efc:GHF",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "Grid–Higgs Framework",
+        "@language": "en"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "GHF",
+          "@language": "en"
+        },
+        {
+          "@value": "Grid-Higgs Framework",
+          "@language": "en"
+        }
+      ],
+      "skos:notation": "GHF",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:definition": {
+        "@value": "Introduces the Grid-Higgs Framework, which models spacetime as a dynamic grid whose structural nodes are Higgs-field excitations.",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-Grid-Higgs-Framework/README.md"
+      },
+      "skos:broader": {
+        "@id": "efc:EFC"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.28559510"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.28560935"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30468737"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-Grid-Higgs-Framework/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/architecture/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/figshare/figshare-links.json"
+        }
+      ],
+      "skos:scopeNote": {
+        "@value": "The tree carries two DOI attributions for GHF (measured 2026-09-06): the papers titled Grid-Higgs Framework / Grid-Higgs Paradigm Shift (10.6084/m9.figshare.28559510, 28560935), and the Figshare dataset 'Grid–Higgs Framework (GHF)' in figshare/figshare-links.json (10.6084/m9.figshare.30468737, 'Energy-Flow Interface'). All three are listed as sources; the registry does not decide which is canonical.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "efc:HME",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "Halo Model of Entropy",
+        "@language": "en"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "HME",
+          "@language": "en"
+        }
+      ],
+      "skos:notation": "HME",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "No source in the tree defines the term in a sentence (measured 2026-09-06). Sources that name it: the keyword list of EFC v2.1 Modular Synthesis (10.6084/m9.figshare.30455237; docs/papers/efc/EFC-v2.1-Modular-Synthesis/index.json), 'S1: Halo Model of Entropy' under 'Structure / Halo Layer' in docs/papers/efc/efc_master_v1/data/parameters.json, and a DefinedTerm in schema/pages-structure.json. The tree also disagrees with itself: figshare/figshare-links.json labels DOI 10.6084/m9.figshare.30421807 'Halo Model of Entropy (HME)', while figshare/doi-map.json, that paper's own index.json and Figshare title it 'Energy-Flow Cosmology: Field Equations for Entropy-Driven Spacetime', and its PDF does not use the term. That DOI is therefore not listed as a source, and the registry defines nothing here.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30455237"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Modular-Synthesis/index.json"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/efc_master_v1/data/parameters.json"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/schema/pages-structure.json"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/figshare/figshare-links.json"
+        }
+      ]
+    },
+    {
+      "@id": "efc:IMX",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "Informational Metastructure Extension",
+        "@language": "en"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "IMX",
+          "@language": "en"
+        }
+      ],
+      "skos:notation": "IMX",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:broader": {
+        "@id": "efc:EFC"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30478916"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/api/concept-index.json"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/architecture/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md"
+        }
+      ],
+      "skos:scopeNote": {
+        "@value": "The expansion of IMX differs between sources in this repository (measured 2026-09-06): api/concept-index.json (2026-01) says 'Informational Metastructure Extension'; theory/architecture/README.md lists 'IMX informational metastructure' among the extensions; the abstract of EFC v2.1 Complete Edition names 'an Intelligence–Matter Exchange (IMX) model'. No source in the tree states whether these are one concept. The registry records the discrepancy and defines nothing.",
+        "@language": "en"
+      }
+    }
+  ]
+}

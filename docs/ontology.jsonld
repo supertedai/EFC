@@ -418,8 +418,8 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 0,
-      "usedAsValue": 1,
-      "inDocuments": 1
+      "usedAsValue": 5,
+      "inDocuments": 2
     },
     {
       "@id": "efc:EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction",
@@ -499,6 +499,16 @@
       "usedAsClass": 0,
       "usedAsProperty": 0,
       "usedAsValue": 1,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:EntropyGradient",
+      "@type": "skos:Concept",
+      "label": "EntropyGradient",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 0,
+      "usedAsValue": 2,
       "inDocuments": 1
     },
     {
@@ -582,6 +592,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:GHF",
+      "@type": "skos:Concept",
+      "label": "GHF",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 0,
+      "usedAsValue": 1,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:GradientCoupling",
       "@type": "skos:Concept",
       "label": "GradientCoupling",
@@ -652,9 +672,29 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:HME",
+      "@type": "skos:Concept",
+      "label": "HME",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 0,
+      "usedAsValue": 2,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:HubbleTension",
       "@type": "skos:Concept",
       "label": "HubbleTension",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 0,
+      "usedAsValue": 1,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:IMX",
+      "@type": "skos:Concept",
+      "label": "IMX",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 0,
@@ -1448,6 +1488,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:definitionQuotedFrom",
+      "@type": "rdf:Property",
+      "label": "definitionQuotedFrom",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 2,
       "usedAsValue": 0,
       "inDocuments": 1
     },
