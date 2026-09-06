@@ -31,6 +31,24 @@
     },
     "efc:quoteSha256": {
       "@type": "xsd:string"
+    },
+    "efc:entityType": {
+      "@type": "xsd:string"
+    },
+    "efc:registryStatus": {
+      "@type": "xsd:string"
+    },
+    "efc:attested": {
+      "@container": "@set"
+    },
+    "efc:attests": {
+      "@type": "@id"
+    },
+    "efc:attestedBy": {
+      "@type": "@id"
+    },
+    "dcterms:isReplacedBy": {
+      "@type": "@id"
     }
   },
   "@graph": [
@@ -99,7 +117,9 @@
         {
           "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-v2.1-Complete-Edition/README.md"
         }
-      ]
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
     },
     {
       "@id": "efc:EntropyGradient",
@@ -139,7 +159,9 @@
         {
           "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-formal-spec/minimal_spec.tex"
         }
-      ]
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
     },
     {
       "@id": "efc:GHF",
@@ -196,7 +218,9 @@
       "skos:scopeNote": {
         "@value": "The tree carries two DOI attributions for GHF (measured 2026-09-06): the papers titled Grid-Higgs Framework / Grid-Higgs Paradigm Shift (10.6084/m9.figshare.28559510, 28560935), and the Figshare dataset 'Grid–Higgs Framework (GHF)' in figshare/figshare-links.json (10.6084/m9.figshare.30468737, 'Energy-Flow Interface'). All three are listed as sources; the registry does not decide which is canonical.",
         "@language": "en"
-      }
+      },
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
     },
     {
       "@id": "efc:HME",
@@ -238,7 +262,9 @@
         {
           "@id": "https://github.com/supertedai/EFC/blob/main/figshare/figshare-links.json"
         }
-      ]
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
     },
     {
       "@id": "efc:IMX",
@@ -277,7 +303,9 @@
       "skos:scopeNote": {
         "@value": "The expansion of IMX differs between sources in this repository (measured 2026-09-06): api/concept-index.json (2026-01) says 'Informational Metastructure Extension'; theory/architecture/README.md lists 'IMX informational metastructure' among the extensions; the abstract of EFC v2.1 Complete Edition names 'an Intelligence–Matter Exchange (IMX) model'. No source in the tree states whether these are one concept. The registry records the discrepancy and defines nothing.",
         "@language": "en"
-      }
+      },
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
     }
   ]
 }

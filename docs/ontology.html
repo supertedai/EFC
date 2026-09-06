@@ -1556,6 +1556,16 @@ code{background:#f4f4f4;padding:0 .2rem}small{color:#666;font-weight:normal}
       "inDocuments": 1
     },
     {
+      "@id": "efc:entityType",
+      "@type": "rdf:Property",
+      "label": "entityType",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:entropyBounded",
       "@type": "rdf:Property",
       "label": "entropyBounded",
@@ -2146,6 +2156,16 @@ code{background:#f4f4f4;padding:0 .2rem}small{color:#666;font-weight:normal}
       "inDocuments": 1
     },
     {
+      "@id": "efc:registryStatus",
+      "@type": "rdf:Property",
+      "label": "registryStatus",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:relation_counts_full_graph",
       "@type": "rdf:Property",
       "label": "relation_counts_full_graph",
@@ -2449,7 +2469,7 @@ code{background:#f4f4f4;padding:0 .2rem}small{color:#666;font-weight:normal}
 — one resolvable IRI per term — not yet <em>meaning</em>: definitions, aliases
 and supersession belong to the concept registry. Terms are classified by use:
 seen as <code>@type</code> → class; seen as a key → property; seen only as a
-value → concept. 234 terms. <strong>Note:</strong> a term "used as value"
+value → concept. 236 terms. <strong>Note:</strong> a term "used as value"
 appears in the sources as the string <code>"efc:Name"</code>, not as an IRI
 (no property in the tree is <code>@type: @id</code>) — the concept IRI is the
 identity the registry will attach it to; until then the mapping is by name.</p>
@@ -2473,7 +2493,7 @@ identity the registry will attach it to; until then the mapping is by name.</p>
 <tr id="StatisticalTest"><td><code>efc:StatisticalTest</code></td><td><a href="https://supertedai.github.io/EFC/ontology#StatisticalTest">https://supertedai.github.io/EFC/ontology#StatisticalTest</a></td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
 <tr id="Theory"><td><code>efc:Theory</code></td><td><a href="https://supertedai.github.io/EFC/ontology#Theory">https://supertedai.github.io/EFC/ontology#Theory</a></td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
 </tbody></table>
-<h2>Properties <small>(105)</small></h2>
+<h2>Properties <small>(107)</small></h2>
 <table><thead><tr><th>term</th><th>IRI</th><th>as @type</th><th>as key</th><th>as value</th><th>documents</th></tr></thead><tbody>
 <tr id="ADDRESSES"><td><code>efc:ADDRESSES</code></td><td><a href="https://supertedai.github.io/EFC/ontology#ADDRESSES">https://supertedai.github.io/EFC/ontology#ADDRESSES</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr id="BELONGS_TO_LAYER"><td><code>efc:BELONGS_TO_LAYER</code></td><td><a href="https://supertedai.github.io/EFC/ontology#BELONGS_TO_LAYER">https://supertedai.github.io/EFC/ontology#BELONGS_TO_LAYER</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
@@ -2505,6 +2525,7 @@ identity the registry will attach it to; until then the mapping is by name.</p>
 <tr id="diagnostic_phenomena"><td><code>efc:diagnostic_phenomena</code></td><td><a href="https://supertedai.github.io/EFC/ontology#diagnostic_phenomena">https://supertedai.github.io/EFC/ontology#diagnostic_phenomena</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr id="domain"><td><code>efc:domain</code></td><td><a href="https://supertedai.github.io/EFC/ontology#domain">https://supertedai.github.io/EFC/ontology#domain</a></td><td>0</td><td>2</td><td>0</td><td>2</td></tr>
 <tr id="drives"><td><code>efc:drives</code></td><td><a href="https://supertedai.github.io/EFC/ontology#drives">https://supertedai.github.io/EFC/ontology#drives</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+<tr id="entityType"><td><code>efc:entityType</code></td><td><a href="https://supertedai.github.io/EFC/ontology#entityType">https://supertedai.github.io/EFC/ontology#entityType</a></td><td>0</td><td>5</td><td>0</td><td>1</td></tr>
 <tr id="entropyBounded"><td><code>efc:entropyBounded</code></td><td><a href="https://supertedai.github.io/EFC/ontology#entropyBounded">https://supertedai.github.io/EFC/ontology#entropyBounded</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr id="epistemicLayer"><td><code>efc:epistemicLayer</code></td><td><a href="https://supertedai.github.io/EFC/ontology#epistemicLayer">https://supertedai.github.io/EFC/ontology#epistemicLayer</a></td><td>0</td><td>2</td><td>0</td><td>2</td></tr>
 <tr id="equationNumber"><td><code>efc:equationNumber</code></td><td><a href="https://supertedai.github.io/EFC/ontology#equationNumber">https://supertedai.github.io/EFC/ontology#equationNumber</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
@@ -2553,6 +2574,7 @@ identity the registry will attach it to; until then the mapping is by name.</p>
 <tr id="regimeType"><td><code>efc:regimeType</code></td><td><a href="https://supertedai.github.io/EFC/ontology#regimeType">https://supertedai.github.io/EFC/ontology#regimeType</a></td><td>0</td><td>3</td><td>0</td><td>1</td></tr>
 <tr id="regime_relevance"><td><code>efc:regime_relevance</code></td><td><a href="https://supertedai.github.io/EFC/ontology#regime_relevance">https://supertedai.github.io/EFC/ontology#regime_relevance</a></td><td>0</td><td>13</td><td>0</td><td>13</td></tr>
 <tr id="regimes"><td><code>efc:regimes</code></td><td><a href="https://supertedai.github.io/EFC/ontology#regimes">https://supertedai.github.io/EFC/ontology#regimes</a></td><td>0</td><td>42</td><td>0</td><td>1</td></tr>
+<tr id="registryStatus"><td><code>efc:registryStatus</code></td><td><a href="https://supertedai.github.io/EFC/ontology#registryStatus">https://supertedai.github.io/EFC/ontology#registryStatus</a></td><td>0</td><td>5</td><td>0</td><td>1</td></tr>
 <tr id="relation_counts_full_graph"><td><code>efc:relation_counts_full_graph</code></td><td><a href="https://supertedai.github.io/EFC/ontology#relation_counts_full_graph">https://supertedai.github.io/EFC/ontology#relation_counts_full_graph</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr id="relations"><td><code>efc:relations</code></td><td><a href="https://supertedai.github.io/EFC/ontology#relations">https://supertedai.github.io/EFC/ontology#relations</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
 <tr id="revisedModel"><td><code>efc:revisedModel</code></td><td><a href="https://supertedai.github.io/EFC/ontology#revisedModel">https://supertedai.github.io/EFC/ontology#revisedModel</a></td><td>0</td><td>1</td><td>0</td><td>1</td></tr>

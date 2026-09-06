@@ -39,7 +39,10 @@ that introduces it.
 Modes
 -----
   --check   (default) the registry parses; @ids are unique; every concept
-            has an efc: IRI, a prefLabel, a notation, inScheme, and at least
+            has an efc: IRI, an efc:entityType from a closed list (a
+            publication, dataset, artifact, person or organization is refused
+            outright — both errors review caught here were that category
+            mistake), a prefLabel, a notation, inScheme, and at least
             one dcterms:source that is a doi.org URL the tree PUBLISHES
             (figshare/doi-map.json papers, top-level doi of a paper's
             index.json — an invented or merely cited DOI fails); every
@@ -56,7 +59,25 @@ Modes
             skos:Concept nodes carry topConceptOf/inScheme/broader; the two generated views are
             byte-identical to what --apply would write; the dead copies
             (api/v1/concepts.json, api/v1/terms.json) are absent; and every
-            concept IRI is declared in docs/ontology.jsonld (C9); and a
+            concept IRI is declared in docs/ontology.jsonld (C9). A field the
+            model may not fill by itself — efc:registryStatus other than
+            `candidate`, any efc:entityType finer than `concept`,
+            empiricalStatus, mappingStrength, falsifier,
+            alternativeExplanation — is accepted ONLY with an efc:attested
+            entry naming an ORCID from the authors: block of CITATION.cff, a real
+            calendar date, a basis and the same value. The gate cannot judge
+            the science; it can refuse to let the science be asserted without
+            a human behind it. Declared omissions from the card's attestation
+            record: `attestation_source` and `scope` are not carried, since
+            the concept's own dcterms:source and skos:inScheme already say
+            those; efc:reviewAt is optional, because an attestation that can
+            never expire is a claim without an end; once set it is enforced,
+            and an expired attestation is a problem, not a note. One
+            attestation carries one field. A node whose entityType is not a
+            concept at all is reported with that alone and nothing else on
+            that node is checked — the entry fails either way, and a second
+            message would only suggest a remedy that does not exist.
+            And a
             concept with no definition carries a skos:scopeNote saying what
             was measured — an absent definition is a finding, not a blank.
             Exit 1 on any deviation. Runs in CI (efc-verify.yml).
@@ -68,8 +89,10 @@ Modes
 """
 from __future__ import annotations
 
+import datetime
 import hashlib
 import json
+import re
 import sys
 from urllib.parse import unquote
 from pathlib import Path
@@ -79,6 +102,101 @@ REGISTRY = "docs/concepts.jsonld"
 VIEW_TERMSET = "schema/concepts.json"
 VIEW_INDEX = "api/concept-index.json"
 DEAD = ["api/v1/concepts.json", "api/v1/terms.json"]
+
+# What a registered entry IS. Closed on purpose: both errors review caught in
+# this registry were a category mistake — schema/concepts.json was a
+# DefinedTermSet whose every term was a PUBLICATION, and a draft of efc:HME
+# quoted a DATASET row as its definition.
+#   `measurement_principle` is not on the card's list; RCMP is the case that
+#   needs it and neither `method` nor `concept` says what it is.
+ENTITY_TYPES = (
+    "concept", "term", "method", "measurement_principle", "module",
+    "observable", "proxy", "parameter", "regime", "boundary_condition",
+    "architecture", "hypothesis", "claim", "workflow",
+)
+# The five kinds that are not concepts at all. Refused with their own message
+# and nothing else: no attestation makes a publication a concept, so the gate
+# must not suggest one.
+NOT_A_CONCEPT = ("publication", "dataset", "artifact", "person", "organization")
+
+# Where an entry is in its life. `candidate` is a proposal and costs nothing;
+# `canonical` is a claim and needs a human (see ATTESTABLE).
+REGISTRY_STATUS = ("candidate", "canonical", "contested", "deprecated", "superseded")
+RETIRED = ("deprecated", "superseded")
+
+# Fields a model must never fill by itself: each is a judgement about the
+# science or about EFC's own structure, which ADR-024 puts outside its reach.
+# The gate accepts the value ONLY with an efc:attested entry carrying it.
+#   efc:registryStatus is on this list because the first draft exempted
+#   entityType `concept` as "true by construction", and review measured the
+#   hole: a model could register a PAPER as a concept, fill every other field
+#   mechanically and pass. Registry membership is exactly what a model can
+#   grant itself. Now `candidate` is free and `canonical` is attested, which
+#   is what the card asked the status axis to mean.
+ATTESTABLE = ("efc:registryStatus", "efc:entityType", "efc:empiricalStatus",
+              "efc:mappingStrength", "efc:falsifier", "efc:alternativeExplanation")
+FREE_VALUES = {"efc:registryStatus": ("candidate",), "efc:entityType": ("concept",)}
+ATTESTATION_BASIS = ("explicit_decision", "quoted_source", "prior_publication")
+
+
+def attesters(root: Path) -> tuple[set[str], str | None]:
+    """(ORCIDs that may attest, note). The tree's declared author identities,
+    read from the `authors:` block of CITATION.cff so a second copy cannot go
+    stale. Measured 2026-09-06: CITATION.cff, codemeta.json and 1557 tracked
+    files agree on 0009-0002-4860-5095, while three paper packages carry a
+    different ORCID under the same name — drift that predates this gate.
+
+    The whole block, not the first match: widening the author list widens who
+    may attest an EFC judgement, and that is a wider set than "author" —
+    declare it when it happens. And only that block: a CITATION.cff may carry
+    a `references:` section with other people's ORCIDs, and a line-anchored
+    regex would happily take one of those as the signing authority (review
+    finding). Falling back to the constant is reported, never silent."""
+    try:
+        text = (root / "CITATION.cff").read_text(encoding="utf-8")
+    except OSError:
+        return {ATTESTER_FALLBACK}, f"no CITATION.cff — falling back to {ATTESTER_FALLBACK}"
+    found: set[str] = set()
+    in_authors = False
+    for line in text.split("\n"):
+        if re.match(r"^\S", line):
+            in_authors = line.startswith("authors:")
+            continue
+        if in_authors:
+            if line.lstrip().startswith("#"):
+                continue  # a commented-out ORCID is not an author
+            m = re.search(r"orcid:\s*['\"]?(https://orcid\.org/[0-9X-]+)", line)
+            if m:
+                found.add(m.group(1))
+    if not found:
+        return {ATTESTER_FALLBACK}, f"CITATION.cff has no ORCID under authors: — falling back to {ATTESTER_FALLBACK}"
+    return found, None
+
+
+def iso_date(v: str) -> bool:
+    """YYYY-MM-DD and a real calendar date. Both halves are needed: a regex
+    alone accepts 2026-13-45, and date.fromisoformat on Python 3.11 accepts
+    20260906 and 2026-W36-7, so the tolerated shapes would depend on the
+    interpreter version (review findings, two rounds)."""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
+        return False
+    try:
+        datetime.date.fromisoformat(v)
+    except ValueError:
+        return False
+    return True
+
+
+def attestations(c: dict) -> list[dict]:
+    v = c.get("efc:attested")
+    return [x for x in (v if isinstance(v, list) else [v]) if isinstance(x, dict)]
+
+
+def attested_value(c: dict, field: str):
+    for a in attestations(c):
+        if (_ids(a.get("efc:attests")) or [_lit(a.get("efc:attests"))])[0] == field:
+            return _lit(a.get("efc:attestedValue"))
+    return None
 ONTOLOGY = "docs/ontology.jsonld"
 NS = "https://supertedai.github.io/EFC/ontology#"
 SCHEME_IRI = "https://supertedai.github.io/EFC/concepts.jsonld"
@@ -113,8 +231,9 @@ def iri(local_or_iri: str) -> str:
 
 
 GH = "https://github.com/supertedai/EFC/blob/main/"
-FRAGMENT_RE = __import__("re").compile(r"^(?P<path>[^#]+)#L(?P<start>\d+)(?:-L(?P<end>\d+))?$")
-DOI_RE = __import__("re").compile(r"10\.\d{4,9}/[A-Za-z0-9._;()/:\-]+")
+ATTESTER_FALLBACK = "https://orcid.org/0009-0002-4860-5095"
+FRAGMENT_RE = re.compile(r"^(?P<path>[^#]+)#L(?P<start>\d+)(?:-L(?P<end>\d+))?$")
+DOI_RE = re.compile(r"10\.\d{4,9}/[A-Za-z0-9._;()/:\-]+")
 
 
 def known_dois(root: Path) -> set[str]:
@@ -156,6 +275,13 @@ def render_termset(registry: dict) -> str:
             "termCode": _lit(c.get("skos:notation")),
             "alternateName": [_lit(a) for a in _list(c.get("skos:altLabel"))],
             "inDefinedTermSet": SCHEME_IRI,
+            "additionalProperty": [
+                {"@type": "PropertyValue", "name": k, "value": v}
+                for k, v in (("entityType", _lit(c.get("efc:entityType"))),
+                             ("registryStatus", _lit(c.get("efc:registryStatus"))),
+                             ("definition_status", "explicit" if c.get("skos:definition") else "gap"))
+                if v
+            ],
         }
         if c.get("skos:definition"):
             t["description"] = _lit(c["skos:definition"])
@@ -223,6 +349,9 @@ def check(root: Path = ROOT) -> list[str]:
                 if k in n:
                     problems.append(f"{REGISTRY}: {n.get('@id')}: {k} on a node that is not a skos:Concept (SKOS S7–S9)")
     cids = {c.get("@id") for c in cs}
+    who, who_note = attesters(root)
+    if who_note:
+        problems.append(f"{REGISTRY}: {who_note}")
     dois = known_dois(root)
     for c in cs:
         cid = c.get("@id", "")
@@ -232,6 +361,63 @@ def check(root: Path = ROOT) -> list[str]:
             problems.append(f"{REGISTRY}: {cid}: no skos:prefLabel")
         if not _lit(c.get("skos:notation")):
             problems.append(f"{REGISTRY}: {cid}: no skos:notation")
+        et = _lit(c.get("efc:entityType"))
+        if et in NOT_A_CONCEPT:
+            problems.append(f"{REGISTRY}: {cid}: efc:entityType {et!r} is not a concept and cannot be registered here")
+            continue
+        if not et:
+            problems.append(f"{REGISTRY}: {cid}: no efc:entityType — pick one of {', '.join(ENTITY_TYPES)}")
+        elif et not in ENTITY_TYPES:
+            problems.append(f"{REGISTRY}: {cid}: efc:entityType {et!r} is not in the closed list ({', '.join(ENTITY_TYPES)})")
+        rs = _lit(c.get("efc:registryStatus"))
+        if rs not in REGISTRY_STATUS:
+            problems.append(f"{REGISTRY}: {cid}: efc:registryStatus {rs!r} is not one of {', '.join(REGISTRY_STATUS)}")
+        if rs in RETIRED:
+            for r in _ids(c.get("dcterms:isReplacedBy")) or [None]:
+                if r is None:
+                    problems.append(f"{REGISTRY}: {cid}: registryStatus {rs} needs dcterms:isReplacedBy — a retired concept says what took its place")
+                elif r not in cids:
+                    problems.append(f"{REGISTRY}: {cid}: dcterms:isReplacedBy {r} is not a concept in the registry")
+        sett: set[str] = set()
+        for a in attestations(c):
+            attests = _ids(a.get("efc:attests")) or [_lit(a.get("efc:attests"))]
+            if len(attests) != 1:
+                problems.append(f"{REGISTRY}: {cid}: an attestation names {len(attests)} fields — one attestation, one field, or half a claim goes unread")
+                continue
+            felt = attests[0]
+            if felt in sett:
+                problems.append(f"{REGISTRY}: {cid}: two attestations for {felt} — only the first would be read")
+            sett.add(felt)
+            if felt not in ATTESTABLE:
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt!r}, which is not an attestable field ({', '.join(ATTESTABLE)})")
+            elif not _lit(c.get(felt)):
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt}, but the field is not set")
+            elif _lit(a.get("efc:attestedValue")) != _lit(c.get(felt)):
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt} says {_lit(a.get('efc:attestedValue'))!r} but the field says {_lit(c.get(felt))!r}")
+            by = _ids(a.get("efc:attestedBy"))
+            if len(by) != 1 or by[0] not in who:
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt} must name one efc:attestedBy from CITATION.cff ({', '.join(sorted(who))})")
+            if not iso_date(_lit(a.get("dcterms:date"))):
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt} needs a real calendar date as YYYY-MM-DD, not {_lit(a.get('dcterms:date'))!r}")
+            review = _lit(a.get("efc:reviewAt"))
+            if review:
+                # An expiry the gate never reads is a date without a
+                # consequence — the half-connection this house keeps finding.
+                # Setting efc:reviewAt is opt-in; once set, it is enforced.
+                if not iso_date(review):
+                    problems.append(f"{REGISTRY}: {cid}: attestation for {felt} has an efc:reviewAt that is not a real date")
+                elif iso_date(_lit(a.get("dcterms:date"))) and review <= _lit(a.get("dcterms:date")):
+                    problems.append(f"{REGISTRY}: {cid}: attestation for {felt} has efc:reviewAt {review} on or before the date it was made")
+                elif review < datetime.date.today().isoformat():
+                    problems.append(f"{REGISTRY}: {cid}: the attestation for {felt} expired on {review} — renew it or drop the claim")
+            if _lit(a.get("efc:basis")) not in ATTESTATION_BASIS:
+                problems.append(f"{REGISTRY}: {cid}: attestation for {felt} needs efc:basis, one of {', '.join(ATTESTATION_BASIS)}")
+        for felt in ATTESTABLE:
+            verdi = _lit(c.get(felt))
+            if not verdi or verdi in FREE_VALUES.get(felt, ()):
+                continue
+            if attested_value(c, felt) is None:
+                problems.append(f"{REGISTRY}: {cid}: {felt} = {verdi!r} is a judgement the model may not make (ADR-024) — it needs an efc:attested entry from {', '.join(sorted(who))}")
         if SCHEME_IRI not in _ids(c.get("skos:inScheme")):
             problems.append(f"{REGISTRY}: {cid}: skos:inScheme is not the scheme")
         sources = _ids(c.get("dcterms:source"))
