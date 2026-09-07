@@ -51,22 +51,9 @@
         "wa": 0.0,
         "r_d": 147.09
       },
-      "posterior_summary": {},
-      "engine_status": "doi_anchored",
-      "engine_note": "DOI-anchored: results sourced from registered Figshare papers (see doi_sources). Native EFC physics implementation pending, but conclusions are supported by peer-reviewed DOI data.",
-      "mcmc_status": "not_run",
-      "doi_sources": [
-        {
-          "doi": "10.6084/m9.figshare.31230703",
-          "role": "primary",
-          "title": "EFC: Regime-Transition Fit to DESI DR2 BAO"
-        },
-        {
-          "doi": "10.6084/m9.figshare.31231522",
-          "role": "corroborating",
-          "title": "Independent Validation of EFC BAO Predictions (DESI Cross-check)"
-        }
-      ]
+      "engine_status": "pending_placeholder",
+      "engine_note": "Placeholder data rejected for inference; no LCDM or EFC fit is claimed. Await DOI-anchored DESI DR1/DR2 BAO data and native EFC likelihood.",
+      "mcmc_status": "not_run"
     },
     {
       "test_id": "inference_cluster_core_state",
