@@ -55,46 +55,24 @@ class Triggere(unittest.TestCase):
         self.assertEqual(on["push"]["paths"], on["pull_request"]["paths"], "push and pull_request must watch the same files")
         self.assertIn("**/*.jsonld", on["push"]["paths"])
 
-    def test_main_sync_har_porten_etter_vedlikehold_og_dispatcher_verify_og_schema(self):
-        wf = self._load("efc-main-sync.yml")
-        self.assertEqual(wf["permissions"].get("actions"), "write")
-        steps = wf["jobs"]["auto-sync"]["steps"]
-        names = [s.get("name", "") for s in steps]
-        by_id = {s.get("id"): s for s in steps if s.get("id")}
-        self.assertIn("porten", by_id)
-        for tool in ("efc_sync_dois.py --check", "efc_ontology.py", "efc_concepts.py", "efc_identity.py", "efc_verify.py", "efc_drift_detector.py"):
-            self.assertIn(tool, by_id["porten"]["run"], tool)
-        self.assertIn("exit 1", by_id["porten"]["run"], "a red gate must make the run red")
-        i_maint = next(i for i, n in enumerate(names) if n.startswith("Run maintenance pipeline"))
-        i_porten = names.index("Porten foer auto-commit (C8, C9, C11, C12, C1–C8, drift)")
-        i_commit = names.index("Auto-commit fixes to main")
-        self.assertLess(i_maint, i_porten, "the gate runs AFTER the maintenance pass (which may be the repair)")
-        self.assertLess(i_porten, i_commit, "and BEFORE the commit")
-        commit = steps[i_commit]
-        self.assertIn("steps.porten.outputs.rc == '0'", commit["if"], "fail closed: an empty rc must not commit")
-        self.assertIn("gh workflow run efc-verify.yml --ref main", commit["run"])
-        self.assertIn("gh workflow run efc-schema.yml --ref main", commit["run"])
-        self.assertLess(commit["run"].index("Push succeeded."), commit["run"].index("gh workflow run efc-verify.yml"), "dispatch right after the push, in the same step")
-        self.assertIn("Push failed four times", commit["run"])
-        self.assertFalse(any("pages.yml" in (s.get("run") or "") for s in steps), "no Pages dispatch: the legacy builder builds on every push")
+    def test_cron_owns_writes_and_maintenance_actions_are_absent(self):
+        """The cron maintenance chain is the sole EFC writer.
 
-    def test_sync_ser_alt_verify_ser_utenom_en_begrunnet_unntaksliste(self):
-        """t_d14480ff: efc-verify watched 12 paths and efc-main-sync 8, so the
-        same new efc: term was auto-declared under docs/papers/efc/ and left
-        CI red in meta/. The repair must reach wherever the checks look."""
-        sync = set(self._load("efc-main-sync.yml")[True]["push"]["paths"])
-        verify = set(self._load("efc-verify.yml")[True]["push"]["paths"])
-        # These cannot leave a generated artifact stale: a test file and the
-        # checking workflow's own definition are read by nothing the
-        # maintenance pass writes.
-        kan_ikke_foreldes = {"tests/**", ".github/workflows/efc-verify.yml"}
-        # Equality, not subset-after-subtraction: the latter is vacuous if the
-        # exclusion list ever swallows the whole verify list, and it also
-        # catches drift the other way (a path leaving verify).
-        self.assertEqual(verify - sync, kan_ikke_foreldes, "efc-main-sync must watch every path efc-verify watches, except exactly the paths that cannot stale anything")
-        for p in ("**/*.jsonld", "**/*.json", "docs/ontology.*"):
-            self.assertIn(p, sync, p)
-        self.assertIn(".github/workflows/efc-main-sync.yml", sync, "the sync workflow still watches its own definition")
+        GitHub Actions validate PR/main state; they must not race cron by
+        auto-committing or auto-pushing the same public/ledger surfaces.
+        """
+        workflows = {p.name for p in (ROOT / ".github" / "workflows").glob("*.yml")}
+        for removed in ("efc-main-sync.yml", "efc-sync.yml", "atlas-sync.yml", "efc-doi-coverage.yml", "efc-system-health.yml"):
+            self.assertNotIn(removed, workflows, removed)
+
+    def test_validation_workflows_are_read_only(self):
+        """Required PR gates must not contain repository write commands."""
+        workflow_dir = ROOT / ".github" / "workflows"
+        for name in ("efc-verify.yml", "efc-schema.yml", "atlas-verify.yml", "efc-page-consistency.yml", "efc-rootfile-consistency.yml", "efc-4b-register.yml"):
+            text = (workflow_dir / name).read_text(encoding="utf-8")
+            self.assertNotIn("git push", text, name)
+            self.assertNotIn("git commit", text, name)
+            self.assertNotIn("gh pr create", text, name)
 
     def test_ingen_pages_workflow(self):
         """t_0d65ccdf measured the legacy 'errored' builds as supersessions, not failures."""

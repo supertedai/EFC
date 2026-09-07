@@ -288,6 +288,8 @@ def validate_inference_doi(result):
             anchored += 1
             dois = ", ".join(s.get("doi", "?").split("/")[-1] for s in doi_sources[:2])
             result.ok(f"{name}: DOI-anchored ({dois})")
+        elif engine == "pending_placeholder":
+            result.warn(f"{name}: pending placeholder rejected; no fit claimed")
         elif engine in ("active", "self_consistent"):
             chi2 = m.get("chi2_reduced")
             if chi2 is not None and chi2 > 5.0:
@@ -521,19 +523,20 @@ def validate_section12_sync(result):
         result.warn("Cannot compare — one or both pages missing")
         return
 
-    # Extract KC badge statuses from each page
+    # Read the status from the KC row itself. A page contains historical and
+    # summary mentions before the table; a document-wide regex can therefore
+    # attach an unrelated DONE badge to the wrong KC.
     def extract_kc_badges(html):
         badges = {}
-        for m in re.finditer(
-            r"(KC\d).*?(SEALED|DONE|PREDICTION READY|P3 PASS|"
-            r"PIPELINE NEEDED|NOT STARTED|Monitoring|PLANNED|HIGH|ACTIVE)",
-            html, re.DOTALL | re.IGNORECASE,
-        ):
-            kc = m.group(1).upper()
-            status = m.group(2).upper()
-            # Take the FIRST status found for each KC (most prominent)
-            if kc not in badges:
-                badges[kc] = status
+        for m in re.finditer(r'data-kc-id="KC(\d+)(?:-[^"]+)?"[^>]*>(.*?)</tr>', html, re.DOTALL | re.IGNORECASE):
+            kc = f"KC{m.group(1)}"
+            row = m.group(2)
+            status = re.search(
+                r">\s*(SEALED|DONE|PREDICTION READY|P3 PASS|PIPELINE NEEDED|NOT STARTED|Monitoring|PLANNED|HIGH|ACTIVE)\s*<",
+                row, re.IGNORECASE,
+            )
+            if status and kc not in badges:
+                badges[kc] = status.group(1).upper()
         return badges
 
     gap_kc = extract_kc_badges(gap_html)

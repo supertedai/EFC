@@ -37,21 +37,31 @@ class Violation:
         )
 
 
-# ---------------------------------------------------------------------------
-# §1 Version consistency (reduced — single internal track)
+# §1 Version consistency (reduced — explicit multi-track policy)
 # ---------------------------------------------------------------------------
 
 def check_version_consistency(state: State) -> list[Violation]:
-    out: list[Violation] = []
-    if state.ledger_version and state.index_md_version and \
-       state.ledger_version != state.index_md_version:
-        out.append(Violation(
-            "1", "internal_ledger_version",
-            expected=state.index_md_version,
-            observed=state.ledger_version,
-            severity=SEVERITY_WARN,
-        ))
-    return out
+    """Accept distinct machine/narrative versions when the role policy is present.
+
+    ``ledger.json`` and ``index.md`` are intentionally different artifacts;
+    ``ledger_truth.json`` supplies the narrative truth-ring. A mismatch without
+    that declaration is still reported as drift.
+    """
+    if not (state.ledger_version and state.index_md_version):
+        return []
+    if state.ledger_version == state.index_md_version:
+        return []
+    index_path = os.path.join(REPO, "docs", "validation-ledger", "index.md")
+    truth_path = os.path.join(REPO, "docs", "validation-ledger", "data", "ledger_truth.json")
+    declared = os.path.exists(index_path) and "Role/provenance" in open(index_path, encoding="utf-8").read()
+    if declared and os.path.exists(truth_path):
+        return []
+    return [Violation(
+        "1", "internal_ledger_version",
+        expected=state.index_md_version,
+        observed=state.ledger_version,
+        severity=SEVERITY_WARN,
+    )]
 
 
 # ---------------------------------------------------------------------------
