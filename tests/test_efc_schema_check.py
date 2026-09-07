@@ -167,6 +167,58 @@ class Generatoren(unittest.TestCase):
         self.assertLess(i_dry, i_dump, "--apply --dry-run must never write (review finding)")
 
 
+class Telleregelen(unittest.TestCase):
+    """t_e06d2912: a number written as "measured" must be re-runnable, and
+    nothing locked the previous one. 162/48/115 was true when C10 landed and
+    false 47 minutes later when C12 gave every schema its own $id — and it
+    stood in the README for a day. This runs the counting rule that is
+    written beside the numbers and compares it to them."""
+
+    def test_de_skrevne_tallene_stemmer_med_telleregelen(self):
+        try:
+            import jsonschema
+        except ImportError:
+            self.skipTest("jsonschema not installed")
+        import json as _json
+        import os
+        import subprocess
+        out = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"], capture_output=True)
+        if out.returncode != 0:
+            self.skipTest("not a git checkout — the counting rule lists files with git ls-files -z")
+        pairs = []
+        for rel in out.stdout.decode("utf-8", "surrogateescape").split("\0"):
+            if not rel.endswith("index.json"):
+                continue
+            try:
+                doc = _json.loads((ROOT / rel).read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            ref = doc.get("$schema") if isinstance(doc, dict) else None
+            if not (isinstance(ref, str) and ref.endswith("schema.json") and not ref.startswith("http")):
+                continue
+            sp = ROOT / os.path.normpath(os.path.join(os.path.dirname(rel), ref))
+            if sp.is_file():
+                pairs.append((rel, sp))
+        ok = 0
+        shapes = set()
+        for rel, sp in pairs:
+            schema = _json.loads(sp.read_text(encoding="utf-8"))
+            bare = {k: v for k, v in schema.items() if k not in ("$id", "title")}
+            shapes.add(_json.dumps(bare, sort_keys=True))
+            cls = jsonschema.validators.validator_for(schema)
+            try:
+                cls.check_schema(schema)
+            except jsonschema.SchemaError:
+                continue
+            if not list(cls(schema).iter_errors(_json.loads((ROOT / rel).read_text(encoding="utf-8")))):
+                ok += 1
+        written = (ROOT / "scripts" / "maintenance" / "efc_schema_check.py").read_text(encoding="utf-8")
+        self.assertIn(f"{len(pairs)} pairs, {ok} validate", written,
+                      f"the docstring's numbers no longer match the rule beside them: measured {len(pairs)} pairs, {ok} validate")
+        self.assertIn(f"{len(shapes)} distinct", written,
+                      f"measured {len(shapes)} distinct schemas once $id and title are ignored")
+
+
 class Repoet(unittest.TestCase):
     def test_registrerte_par_er_gyldige_og_lukket(self):
         mod = _load()

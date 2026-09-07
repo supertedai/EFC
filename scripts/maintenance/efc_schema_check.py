@@ -34,9 +34,20 @@ Registered (2026-09-06):
   docs/evaluation-ledger/schema.json      (instance promised: data/evaluation.json — absent)
   docs/model-comparison/schema.json       (instance promised: data/comparisons.json — absent)
 
-Declared limits, measured 2026-09-06 and NOT gated here: 162 paper
-`index.json` files point at a sibling `./schema.json`; 48 of them validate,
-and the 162 schemas are 115 distinct texts (each paper hand-rolls its own).
+Declared limits, NOT gated here. Counting rule: every `index.json` listed
+by `git ls-files -z` whose `$schema` is a relative path to an existing file,
+validated against that file with jsonschema 4.25.1, where "validates" means
+the schema is valid AND the instance has no errors. The listing method is
+part of the rule — a macOS working tree drops one half of a case-colliding
+pair, and a glob would inherit that.
+
+On 20f81f71: 161 pairs, 48 validate, 113 instances fail, 0 schemas are
+invalid; 79 distinct once `$id` and `title` are ignored, of which 74 are
+unique and 77 share two older templates. Ignoring those two keys is not
+cosmetic: C12 gives every schema a unique `$id`, so the raw text count is
+160 and measures nothing. tests/test_efc_schema_check.py runs this rule and
+compares it to the numbers written here, so they cannot go stale silently —
+which is exactly how the previous set did.
 That population needs its own decision before it can be a gate. The
 evaluation-ledger and model-comparison `index.jsonld` files are schema.org
 Datasets, not instances of their sibling schema.

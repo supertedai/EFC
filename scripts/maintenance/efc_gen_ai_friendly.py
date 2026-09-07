@@ -357,7 +357,10 @@ Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
     # Describes the index.json the two robots actually write (this script:
     # id/title/author/…/see_also; efc_auto_metadata.py: id/title/description/
     # version/date/keywords/author{}/files{}/doi/figshare_url) — measured
-    # 2026-09-06 and closed. The template it replaced required `paper_id`,
+    # 2026-09-06 and closed. Measured 2026-09-07: 0 of the 161 existing pairs
+    # carry it — write_if_absent never touches a file that exists, so this
+    # closes the template, not the population. The template it replaced
+    # required `paper_id`,
     # which neither robot ever wrote: 114 of 162 pairs failed their own
     # schema. Existing hand-written schema.json files are left alone
     # (write_if_absent).
