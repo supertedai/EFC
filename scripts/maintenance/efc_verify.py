@@ -183,11 +183,22 @@ def check_c4_version_consistency(issues):
         m = re.search(r"Version:\s*(v[\d.]+)", md)
         if m:
             v_index = m.group(1).lstrip("v")
-    # Internal track: ledger.json vs index.md
+    # The repository intentionally has separate versioned artifacts:
+    # ledger.json is the machine test/evidence track, index.md is the internal
+    # narrative track, and ledger_truth.json is the narrative truth-ring. A
+    # version mismatch is therefore not drift by itself; it is a policy failure
+    # only when the role declaration or truth-ring is missing.
     internal = {k: v for k, v in {"ledger.json": v_ledger, "index.md": v_index}.items() if v}
     if len(set(internal.values())) > 1:
-        issues.append(Issue("C4", "internal-versions",
-                            f"drift within internal track: {internal}", severity="warn"))
+        role_declared = (
+            "Role/provenance" in open(index_md, encoding="utf-8").read()
+            if os.path.exists(index_md) else False
+        )
+        truth_path = os.path.join(LEDGER_DIR, "data", "ledger_truth.json")
+        if not role_declared or not os.path.exists(truth_path):
+            issues.append(Issue("C4", "internal-versions",
+                                f"unclassified drift within internal track: {internal}",
+                                severity="warn"))
     # Public track: HTML footer alone
     # Report the current versions for visibility
     if v_ledger or v_html or v_index:

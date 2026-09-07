@@ -167,8 +167,8 @@ to <code>proposes_resolution</code> (<a href="https://doi.org/10.6084/m9.figshar
 <tbody>
 <tr data-kc-id="KC1">
   <td><strong>KC1</strong> P(k) full-shape</td>
-  <td><span class="badge-done">PREDICTION READY</span></td>
-  <td>None &mdash; hi_class + efc_logistic sealed (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>). Awaiting DESI DR3 (~2027).</td>
+  <td><span class="badge-med">PIPELINE NEEDED</span></td>
+  <td>Prediction artifact is sealed (<a href="https://doi.org/10.6084/m9.figshare.31990053">31990053</a>), but the executable full-shape P(k) likelihood pipeline is not assembled. Awaiting DESI DR3 (~2027).</td>
   <td><span class="badge-low">LOW</span></td>
 </tr>
 <tr data-kc-id="KC2">
@@ -326,11 +326,21 @@ followed by <code>python3 scripts/maintenance/efc_cross_validate.py</code>.</p>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Key differentiator vs competitors</td><td>Robust &mu; &lt; 1 (the &Sigma; &ge; 1 branch is &eta;-dependent / 61% semi-robust) + H<sub>0</sub> three-window &mdash; no competitor model predicts this combination. (&eta; &asymp; 1.10 is fragile/0% robust per <a href="https://doi.org/10.6084/m9.figshare.32037990">32037990</a>; the &Pi; bar-criterion is FALSIFIED as a bar predictor per <a href="https://doi.org/10.6084/m9.figshare.32101111">32101111</a> &mdash; neither is a differentiator.)</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Automated monitoring</td><td><code>efc_weekly_scan.py</code> runs every Monday 07:00 UTC via GitHub Actions</td></tr>
 <tr><td style="font-weight:bold; background:#f8f9fa;">Open phenomenon gaps</td><td>Two: <code>kSZ_velocity</code> (no dedicated EFC prediction paper) and <code>early_structure_JWST</code> (no quantitative dN/dM prediction). Both registered as validation candidates and slated for 2026 H2.</td></tr>
-<tr><td style="font-weight:bold; background:#f8f9fa;">Outstanding internal tension</td><td>EMCEE vs NUTS &alpha;-degeneracy (EMCEE: &minus;0.10 / 0.5&sigma;; NUTS + non-MCMC: &minus;0.70). Action #12 active. Not a theory failure &mdash; chain-config or prior issue. DOI <a href="https://doi.org/10.6084/m9.figshare.32101213">32101213</a> over-determines &alpha; from three independent channels.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Stage-III / EFC claim status</td><td>KiDS Legacy, HSC Y3 and Stage-III combined are <strong>consistent with</strong> EFC's growth-sector σ<sub>8</sub>≈0.805, but this is <strong>PARTIAL SUPPORT, not CONFIRMED</strong>. The public ledger still lacks the pre-data lock timestamp/hash, explicit β→σ<sub>8</sub>→S<sub>8</sub> mapping, Ω<sub>m</sub>/covariance readback and independent holdout.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">O-layer closure required</td><td>Before upgrading the claim, run the same EFC parameters through scale-dependent ξ<sub>±</sub>/C<sub>ℓ</sub><sup>κκ</sup>, P(k,μ)/RSD, CMB-lensing C<sub>L</sub><sup>φφ</sup>, environmental clustering and dynamical-versus-lensing mass. S<sub>8</sub> alone is an M-layer summary and is not a structural-equivalence test.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Robustness branch</td><td>Keep robust μ&lt;1, η→1, Σ≈0.99 separate from the fragile η-boost branch (S<sub>8</sub>≈0.847, E<sub>G</sub>≈1.086; 0% robust). Do not use the fragile branch as the main EFC prediction.</td></tr>
+<tr><td style="font-weight:bold; background:#f8f9fa;">Canonical artifact roles</td><td><code>data/ledger.json</code> v3.0 is the machine test/evidence track; <code>data/ledger_truth.json</code> v1.0 is the canonical narrative truth-ring; <code>index.md</code> v4.2 is the internal narrative track; public HTML is v3.18. These are cross-validated views, not one interchangeable file.</td></tr>
+
 </tbody>
 </table>
 
 <hr>
+
+<section style="border:1px solid #ccd6e0; padding:14px; margin:20px 0; background:#f7fbff;">
+<h2 style="margin-top:0;">External evidence boundary (2026-09-07)</h2>
+<p>Recent external items constrain or prepare the measurement regime; they do not confirm EFC. SPT-3G D1 (<a href="https://arxiv.org/abs/2608.31136">2608.31136</a>) is CMB-lensing-only and remains relevant-dataset-only because full text was not recovered. HSC PDR3 onsite calibration (<a href="https://arxiv.org/html/2606.18705v1">2606.18705</a>) reports S<sub>8</sub>=0.740&plusmn;0.030 with calibration/systematics caveats and is not an EFC test. DESI DR2 Bayesian EDE/CPL (<a href="https://arxiv.org/html/2609.05410v1">2609.05410</a>) constrains broad background model space, not EFC perturbations. Euclid Q2 is a Galactic Bulge release, not cosmology shear; Rubin DP2 yielded no verified published cosmic-shear result in this run.</p>
+<p><strong>Next decisive test:</strong> apply matched nuisance models, covariance and holdout evaluation to the same frozen EFC branch across observable-level shear, clustering/RSD and lensing data. No status upgrade is made here.</p>
+</section>
 
 <p style="font-size:13px; color:#666;">
 &copy; 2026 Energy-Flow Cosmology Initiative &middot; Gap Analysis &mdash; auto-updated by weekly scan
