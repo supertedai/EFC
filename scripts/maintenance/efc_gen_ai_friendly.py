@@ -272,9 +272,22 @@ def build_for_dir(name: str):
         "keywords": ["Energy-Flow Cosmology", "EFC"] + regs,
         "about": [track],
     }
-    if write_if_absent(os.path.join(d, slug + ".jsonld"),
-                       json.dumps(jsonld, indent=2, ensure_ascii=False) + "\n"):
-        created.append(slug + ".jsonld")
+    # Guard against the case-collision class (kanban t_e505c64c): slugify()
+    # lowercases, so for a directory like EFC-R-SPARC the slug jsonld
+    # (efc-r-sparc.jsonld) differs from an already-present hand-curated jsonld
+    # (EFC-R-SPARC.jsonld) only by case. On a case-insensitive filesystem those
+    # two names ARE the same file, so writing the slug form would silently
+    # overwrite the curated one — and on Linux it creates a second file that a
+    # macOS/Windows checkout cannot represent (the collision this repo tracks).
+    # Skip creation when a case-equivalent jsonld already exists.
+    slug_jsonld = slug + ".jsonld"
+    case_equivalent_exists = any(
+        rel.lower() == slug_jsonld.lower() for rel, _ in initial_files
+    )
+    if not case_equivalent_exists and write_if_absent(
+            os.path.join(d, slug_jsonld),
+            json.dumps(jsonld, indent=2, ensure_ascii=False) + "\n"):
+        created.append(slug_jsonld)
 
     pdf_line = f"**Primary PDF:** `{pkg_base['primary_pdf']}`\n\n" if pkg_base["primary_pdf"] else ""
     files_md = "\n".join(f"- `{p}` ({s} B)" for p, s in initial_files[:50])
