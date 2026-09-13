@@ -72,10 +72,40 @@
           "@id": "efc:EFC"
         },
         {
+          "@id": "efc:EFCC"
+        },
+        {
+          "@id": "efc:EFCD"
+        },
+        {
+          "@id": "efc:EFCR"
+        },
+        {
+          "@id": "efc:EFCS"
+        },
+        {
           "@id": "efc:EntropyGradient"
         },
         {
           "@id": "efc:HME"
+        },
+        {
+          "@id": "efc:L0"
+        },
+        {
+          "@id": "efc:L1"
+        },
+        {
+          "@id": "efc:L2"
+        },
+        {
+          "@id": "efc:L3"
+        },
+        {
+          "@id": "efc:S0"
+        },
+        {
+          "@id": "efc:S1"
         }
       ]
     },
@@ -304,6 +334,427 @@
         "@value": "The expansion of IMX differs between sources in this repository (measured 2026-09-06): api/concept-index.json (2026-01) says 'Informational Metastructure Extension'; theory/architecture/README.md lists 'IMX informational metastructure' among the extensions; the abstract of EFC v2.1 Complete Edition names 'an Intelligence–Matter Exchange (IMX) model'. No source in the tree states whether these are one concept. The registry records the discrepancy and defines nothing.",
         "@language": "en"
       },
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:EFCR",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "EFC-R",
+        "@language": "en"
+      },
+      "skos:notation": "EFC-R",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "EFC–R",
+          "@language": "en"
+        },
+        {
+          "@value": "Regime sector",
+          "@language": "en"
+        }
+      ],
+      "skos:definition": {
+        "@value": "EFC-R governs **galactic-scale dynamics** where spatial entropy gradients\nmodify the effective gravitational potential without introducing dark matter\nor altering cosmic expansion.",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-r-model/README.md#L6-L8",
+        "efc:quoteSha256": "ed0ebc0ecd90faa8c2a24d573e659073a733e1fa439deb039a1bcb160e1274cd"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31007248"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31045126"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-r-model/README.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate",
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      }
+    },
+    {
+      "@id": "efc:EFCS",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "EFC-S",
+        "@language": "en"
+      },
+      "skos:notation": "EFC-S",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "EFC–S",
+          "@language": "en"
+        },
+        {
+          "@value": "Structural model",
+          "@language": "en"
+        }
+      ],
+      "skos:definition": {
+        "@value": "The EFC–S model defines the spatial structure of density, entropy, and\nenergy–flow profiles in Energy-Flow Cosmology (EFC).",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-s-model/index.tex#L9-L10",
+        "efc:quoteSha256": "7f96af2315bb8437a543019cbac2915fdc83a4061f3586a8d19ace5cb73b4103"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30630500"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31942734"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-s-model/index.tex"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate",
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      }
+    },
+    {
+      "@id": "efc:EFCD",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "EFC-D",
+        "@language": "en"
+      },
+      "skos:notation": "EFC-D",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "EFC–D",
+          "@language": "en"
+        },
+        {
+          "@value": "Dynamics model",
+          "@language": "en"
+        }
+      ],
+      "skos:definition": {
+        "@value": "The EFC–D model defines the dynamical evolution of the energy–entropy\nsystem in Energy-Flow Cosmology (EFC).",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-d-model/index.tex#L9-L10",
+        "efc:quoteSha256": "dfe9886f838c55b47e4cda6e297434163b9069103d2feeb35a414328eff7f888"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30630500"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/theory/formal/efc-d-model/index.tex"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate",
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      }
+    },
+    {
+      "@id": "efc:EFCC",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "EFC-C",
+        "@language": "en"
+      },
+      "skos:notation": "EFC-C",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:altLabel": [
+        {
+          "@value": "EFC–C",
+          "@language": "en"
+        },
+        {
+          "@value": "Cognitive entropy framework",
+          "@language": "en"
+        }
+      ],
+      "skos:definition": {
+        "@value": "Introduces EFC-C, a thermodynamic framework that models the brain as an open system governed by entropy-gradient dynamics.",
+        "@language": "en"
+      },
+      "efc:definitionQuotedFrom": {
+        "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2/README.md#L15",
+        "efc:quoteSha256": "d4fe5792c544de29b4ff3a6da8ad38900fe477e8433f0a40f7d6d89d5b2fc8fe"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31940505"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.32091700"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/EFC-C_A_Thermodynamic_Framework_for_Cognitive_Entropy_and_Psychiatric_Biomarkers_Track_2/README.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate",
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      }
+    },
+    {
+      "@id": "efc:S0",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "S0",
+        "@language": "en"
+      },
+      "skos:notation": "S0",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token S0 is used in several senses that no source reconciles (measured 2026-09-13). The variable-light paper (10.6084/m9.figshare.30642497) reads it as one of two entropic phases, “s0 rigidity”; validity-aware-ai (10.6084/m9.figshare.31122970) defines “S0: the total space of possible structures and dynamics”; theory/formal/efc-c0-model records “S0: Low-entropy reference regime”; and EFC v2.1 Complete Edition (10.6084/m9.figshare.30478916) writes the thermodynamic boundary in an equals form (“S = 0”) — not as the S0 token; the tree phrases the boundary itself several different ways. The registry therefore defines nothing and lists the sources that name the term. No source identifies S0 with an L0–L3 layer; the Foundations paper (10.6084/m9.figshare.31135597) keeps “S0–S1 observational regimes” distinct from the “L0–L3 regime architecture”.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30642497"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/variable-light-s0-s1/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/validity-aware-ai/docs/paper_unified_architecture_statement.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:S1",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "S1",
+        "@language": "en"
+      },
+      "skos:notation": "S1",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token S1 is used in several senses that no source reconciles (measured 2026-09-13). The variable-light paper (10.6084/m9.figshare.30642497) reads it as one of two entropic phases, “s1 dissipation”; validity-aware-ai (10.6084/m9.figshare.31122970) defines “S1: the realized universe or system instantiated within that space”; theory/formal/efc-c0-model records “S1: High-entropy reference regime”; and EFC v2.1 Complete Edition (10.6084/m9.figshare.30478916) writes the thermodynamic boundary in an equals form (“S = 1”) — not as the S1 token; the tree phrases the boundary itself several different ways. The registry therefore defines nothing and lists the sources that name the term. No source identifies S1 with an L0–L3 layer; the Foundations paper (10.6084/m9.figshare.31135597) keeps “S0–S1 observational regimes” distinct from the “L0–L3 regime architecture”.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.30642497"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/variable-light-s0-s1/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/validity-aware-ai/docs/paper_unified_architecture_statement.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:L0",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "L0",
+        "@language": "en"
+      },
+      "skos:notation": "L0",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token L0 is used for two distinct, unrelated taxonomies that no source reconciles (measured 2026-09-13). The L0–L3 regime architecture (10.6084/m9.figshare.31112536) defines “L0 (Latent): Configuration space without active dynamics”, a system-state regime; the EFC-R regime map (Comprehensive-analysis-of-175-SPARC…, 10.6084/m9.figshare.31045126) defines a different, epistemic taxonomy — “L0 (Observational): What galaxies show in data”. The registry therefore defines nothing and lists the sources that name the term.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31112536"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31045126"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/EFC_R_REGIME_MAP.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:L1",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "L1",
+        "@language": "en"
+      },
+      "skos:notation": "L1",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token L1 is used for two distinct, unrelated taxonomies that no source reconciles (measured 2026-09-13). The L0–L3 regime architecture (10.6084/m9.figshare.31112536) defines “L1 (Stable Active): Low-entropy, predictable operation”, a system-state regime; the EFC-R regime map (Comprehensive-analysis-of-175-SPARC…, 10.6084/m9.figshare.31045126) defines a different, epistemic taxonomy — “L1 (Derived): How model fits numerically”. The registry therefore defines nothing and lists the sources that name the term.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31112536"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31045126"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/EFC_R_REGIME_MAP.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:L2",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "L2",
+        "@language": "en"
+      },
+      "skos:notation": "L2",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token L2 is used for two distinct, unrelated taxonomies that no source reconciles (measured 2026-09-13). The L0–L3 regime architecture (10.6084/m9.figshare.31112536) defines “L2 (Complex Active): Non-linear dynamics, structural formation”, a system-state regime; the EFC-R regime map (Comprehensive-analysis-of-175-SPARC…, 10.6084/m9.figshare.31045126) defines a different, epistemic taxonomy — “L2 (Interpretive): What physical regime galaxy occupies”. The registry therefore defines nothing and lists the sources that name the term.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31112536"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31045126"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/EFC_R_REGIME_MAP.md"
+        }
+      ],
+      "efc:entityType": "concept",
+      "efc:registryStatus": "candidate"
+    },
+    {
+      "@id": "efc:L3",
+      "@type": "skos:Concept",
+      "skos:prefLabel": {
+        "@value": "L3",
+        "@language": "en"
+      },
+      "skos:notation": "L3",
+      "skos:inScheme": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:topConceptOf": {
+        "@id": "https://supertedai.github.io/EFC/concepts.jsonld"
+      },
+      "skos:scopeNote": {
+        "@value": "The token L3 is used for two distinct, unrelated taxonomies that no source reconciles (measured 2026-09-13). The L0–L3 regime architecture (10.6084/m9.figshare.31112536) defines “L3 (Residual): Structure without process, information without flow”, a system-state regime; the EFC-R regime map (Comprehensive-analysis-of-175-SPARC…, 10.6084/m9.figshare.31045126) defines a different, epistemic taxonomy — “L3 (Methodological): Why model succeeds/fails”. The registry therefore defines nothing and lists the sources that name the term.",
+        "@language": "en"
+      },
+      "dcterms:source": [
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31112536"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31122970"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31045126"
+        },
+        {
+          "@id": "https://doi.org/10.6084/m9.figshare.31135597"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/L0–L3-Regime-Architecture-in-Entropy-Bounded-Empiricism/README.md"
+        },
+        {
+          "@id": "https://github.com/supertedai/EFC/blob/main/docs/papers/efc/Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling/EFC_R_REGIME_MAP.md"
+        }
+      ],
       "efc:entityType": "concept",
       "efc:registryStatus": "candidate"
     }

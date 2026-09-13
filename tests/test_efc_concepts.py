@@ -350,7 +350,10 @@ class Repoet(unittest.TestCase):
         self.assertEqual(mod.check(), [])
         reg = json.loads((ROOT / mod.REGISTRY).read_text(encoding="utf-8"))
         cs = mod.concepts(reg)
-        self.assertEqual(sorted(c["@id"] for c in cs), ["efc:EFC", "efc:EntropyGradient", "efc:GHF", "efc:HME", "efc:IMX"])
+        self.assertEqual(sorted(c["@id"] for c in cs),
+                         ["efc:EFC", "efc:EFCC", "efc:EFCD", "efc:EFCR", "efc:EFCS",
+                          "efc:EntropyGradient", "efc:GHF", "efc:HME", "efc:IMX",
+                          "efc:L0", "efc:L1", "efc:L2", "efc:L3", "efc:S0", "efc:S1"])
         for c in cs:
             if "skos:definition" in c:
                 src = c["efc:definitionQuotedFrom"]["@id"]
