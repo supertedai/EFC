@@ -197,11 +197,17 @@ term, which is the mistake two drafts of `efc:HME` made. A file is attributed
 to the longest matching paper directory, so a container is not credited with
 its child's term.
 
-Three declared limits. The forms are spellings, not translations: `oscillering`
-still reads NOT IN TREE although `oscillat` appears in 23 of the 610 files this
-tool reads, and in 60 tracked files altogether, so read that result as "these
-spellings are absent". The ranking is a heuristic and
-prints its score. And the gate does not stop a `candidate` entry whose
-definition came from the top of this list: choosing which sentence defines a
-term is judgement, and only a reader stands between the ranking and the
-registry.
+The forms tried are four layers, each declared: literal case and punctuation,
+morphology (plural, acronym), Unicode (Greek letter ↔ Latin name, subscript
+digit ↔ plain digit, so `Λ` and `σ₈` are searched as `Lambda` and `sigma8`
+too), and a curated English/alias table (Norwegian ↔ English, notation
+aliases). Measured 2026-09-06: `oscillering` alone reads NOT IN TREE while
+`oscillat*` is in 60 tracked files; the English table closes that gap, so
+`oscillering` now resolves to `oscillation`/`oscillating`/`oscillatory`. The
+table is curated and finite, not a general dictionary — a term absent from it
+is searched without translation, and the NOT-IN-TREE result says so.
+
+Two limits remain. The ranking is a heuristic and prints its score. And the
+gate does not stop a `candidate` entry whose definition came from the top of
+this list: choosing which sentence defines a term is judgement, and only a
+reader stands between the ranking and the registry.

@@ -73,6 +73,24 @@ class Rigg(unittest.TestCase):
         self.assertNotIn("CL", self.mod.forms("Core Lock"), "a two-letter acronym matched CLASS (measured)")
         self.assertIn("proxies", self.mod.forms("proxy"))
 
+    def test_engelske_former_proeves(self):
+        """Card 8/11: «oscillering» is Norwegian for oscillation; a null on the
+        Norwegian spelling is not an absence — the English form must be tried."""
+        f = self.mod.forms("oscillering")
+        for venter in ("oscillation", "oscillating", "oscillatory", "oscillates"):
+            self.assertIn(venter, f, venter)
+        # symmetric: the English spelling also reaches back to the Norwegian
+        self.assertIn("oscillering", self.mod.forms("oscillation"))
+
+    def test_unicode_og_notasjon(self):
+        # Greek letter ↔ Latin name
+        self.assertIn("Λ", self.mod.forms("Lambda"))
+        self.assertIn("Lambda", self.mod.forms("Λ"))
+        # subscript ↔ plain digit, so σ₈ is searched as sigma8/S8 and back
+        f = self.mod.forms("sigma8")
+        for venter in ("σ8", "σ₈", "S8", "S₈", "sigma_8", "S_8"):
+            self.assertIn(venter, f, venter)
+
     def test_helord_ikke_delstreng(self):
         self.assertTrue(self.mod.whole_word("CL", "the CL value"))
         self.assertFalse(self.mod.whole_word("CL", "CLASS v3.2.0"))
@@ -81,6 +99,12 @@ class Rigg(unittest.TestCase):
         self.assertFalse(self.mod.whole_word("lock", "blålock er ikke en lås"),
                          "the boundary is \\w, so a Norwegian note does not produce a hit")
         self.assertFalse(self.mod.whole_word("sol", "solår"))
+
+    def test_latin_til_gresk_roerer_ikke_andre_ord(self):
+        """`pi` inside `episenter` and `eta` inside `metadata` are not Greek
+        letters — the Latin→Greek step is token-bounded."""
+        self.assertNotIn("eπsenter", self.mod.forms("episenter"))
+        self.assertNotIn("mηdata", self.mod.forms("metadata"))
 
     def test_en_feilet_git_er_en_feil_ikke_en_dom(self):
         """Review: a failing `git ls-files` produced an empty file list, and

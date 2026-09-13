@@ -40,12 +40,14 @@ Why forms matter (measured 2026-09-06): "oscillering" has 0 occurrences while
 altogether. A null on one spelling is a search, not an
 absence, so a NOT-FOUND result here carries the list of forms tried.
 
-DECLARED LIMIT: the forms are spellings, NOT translations. `oscillering` still
-comes back NOT IN TREE even though `oscillat*` is there, because no dictionary
-is consulted. Card 8/11 asked for English forms; this delivers the second half
-of that card — that negative evidence names what was searched. Read a
-NOT-IN-TREE result as "these spellings are absent", never as "the concept is
-absent".
+The forms are now four layers, each declared: literal case and punctuation,
+morphology (plural, acronym), Unicode (Greek letter ↔ Latin name, subscript
+digit ↔ plain digit, so Λ and σ₈ are searched as Lambda and sigma8 too), and a
+CURATED alias/translation table (Norwegian ↔ English, notation aliases) —
+measured against the tree, not guessed. The table is not a general dictionary:
+a term absent from it is searched without translation, and the result says so.
+Read a NOT-IN-TREE result as "these spellings are absent", never as "the
+concept is absent".
 
 Ranking is a heuristic and says so. A sentence that contains "is a", "is
 defined as", "we define", "refers to", "denotes" or "introduces the" near the
@@ -96,23 +98,128 @@ DEFINING = (
     # plain use, "standard models succeed or fail" (review finding).
 
 
+# ── English forms, aliases, Unicode variants (card 8/11) ─────────────
+# The candidate search must try more than the literal spelling, or a null on
+# one spelling is read as an absence. Three layers, all declared:
+#   Unicode: a Greek letter ↔ its Latin name, a subscript digit ↔ its plain
+#     digit. The tree writes Λ, σ₈, H₀ and also Lambda, sigma8, H0 — mechanical.
+#   Alias/translation: a CURATED table, not a general dictionary. Each value is
+#     a spelling measured to exist in the tree for the same thing the key
+#     names. A term absent from this table is searched without translation, and
+#     the NOT-IN-TREE result says so — a null on these spellings is a null on
+#     exactly these spellings, never a claim that the concept is absent.
+GREEK = {
+    "Λ": "Lambda", "λ": "lambda", "Σ": "Sigma", "σ": "sigma",
+    "Μ": "Mu", "μ": "mu", "Α": "Alpha", "α": "alpha",
+    "Δ": "Delta", "δ": "delta", "Ω": "Omega", "ω": "omega",
+    "Π": "Pi", "π": "pi", "Φ": "Phi", "φ": "phi",
+    "Γ": "Gamma", "γ": "gamma", "Θ": "Theta", "θ": "theta",
+    "Ψ": "Psi", "ψ": "psi", "Ρ": "Rho", "ρ": "rho",
+    "Κ": "Kappa", "κ": "kappa", "Ν": "Nu", "ν": "nu",
+    "Τ": "Tau", "τ": "tau", "Η": "Eta", "η": "eta",
+    "Ε": "Epsilon", "ε": "epsilon", "Χ": "Chi", "χ": "chi",
+    "Ξ": "Xi", "ξ": "xi",
+}
+_SUB_TO_PLAIN = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")
+_PLAIN_TO_SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+
+# English translations (Norwegian → English) and notation aliases. Curated and
+# measured, not guessed: every value was counted in the tree 2026-09-06.
+ALIASES = {
+    # English form — the measured failure that opened the card: «oscillering»
+    # had 0 hits while English «oscillat*» had 58 files.
+    "oscillering": ["oscillation", "oscillations", "oscillating",
+                    "oscillates", "oscillatory"],
+    "episenter": ["epicenter", "epicentre"],
+    "bevissthet": ["consciousness"],
+    "selvmodell": ["self-model", "self model", "selfmodel"],
+    "verdensmodell": ["world model"],
+    "svingning": ["oscillation", "oscillations", "oscillating"],
+    # Notation aliases — the same quantity under different symbols.
+    "s8": ["sigma8", "sigma_8", "S_8"],
+    "sigma8": ["S8", "S_8", "sigma_8"],
+    "sigma_8": ["S8", "s8", "sigma8"],
+    "s_8": ["S8", "s8", "sigma8"],
+}
+# Symmetric lookup: searching the English spelling also tries the Norwegian,
+# and vice versa. Built once; a term absent from both maps gets no translation.
+_ALIAS_MAP: dict[str, set[str]] = {}
+for _k, _vs in ALIASES.items():
+    _ALIAS_MAP.setdefault(_k.lower(), set()).update(_vs)
+    for _v in _vs:
+        _ALIAS_MAP.setdefault(_v.lower(), set()).add(_k)
+
+
+def _greek_to_latin(f: str) -> str:
+    """Greek letter → its Latin name. σ₈ → sigma₈, Λ → Lambda. Always safe:
+    a Greek letter in a search form names itself."""
+    for g, l in GREEK.items():
+        f = f.replace(g, l)
+    return f
+
+
+def _latin_to_greek(f: str) -> str:
+    """Latin name → Greek letter, only as a standalone token (bounded by
+    non-letters), so `sigma8` → `σ8` and `Lambda-CDM` → `Λ-CDM` while
+    `episenter` keeps its `pi` and `metadata` keeps its `eta`."""
+    for g, l in GREEK.items():
+        f = re.sub(rf"(?<![A-Za-z]){re.escape(l)}(?![A-Za-z])", g, f)
+    return f
+
+
+def _unicode_variants(seed: set[str]) -> set[str]:
+    """Greek↔Latin and subscript↔plain-digit spellings of each form, to a
+    fixed point, so `sigma8` reaches `σ₈` and `σ₈` reaches `sigma8`."""
+    out = set(seed)
+    frontier = set(seed)
+    for _ in range(4):
+        nxt: set[str] = set()
+        for f in frontier:
+            nxt.add(_greek_to_latin(f))
+            nxt.add(_latin_to_greek(f))
+            nxt.add(f.translate(_SUB_TO_PLAIN))
+            nxt.add(f.translate(_PLAIN_TO_SUB))
+        frontier = nxt - out
+        out |= nxt
+        if not frontier:
+            break
+    return {f for f in out if f}
+
+
+def _alias_forms(term: str) -> set[str]:
+    """Curated English forms and aliases of `term`, in both directions.
+    Empty when the term is not in the table — searched without translation."""
+    return set(_ALIAS_MAP.get(term.lower(), ()))
+
+
 def forms(term: str) -> list[str]:
-    """Spellings to search for. A null on one of them is not an absence."""
-    out = {term, term.lower(), term.upper()}
-    out.add(term.replace("-", " "))
-    out.add(term.replace(" ", "-"))
-    out.add(term.replace(" ", "_"))
-    out.add(term.replace("–", "-"))          # en dash, which the tree uses
-    out.add(term.replace("-", "–"))
-    ord_ = [w for w in re.split(r"[^A-Za-z0-9]+", term) if w]
-    if len(ord_) > 1:                         # acronym of a multi-word term,
-        acronym = "".join(w[0] for w in ord_).upper()   # split on punctuation
-        if len(acronym) >= 3:                 # too, or Grid–Higgs gives GF
-            out.add(acronym)                  # and "CL" for Core Lock matched CLASS
-    if not term.endswith("s"):
-        out.add(term + "s")
-    if term.endswith("y"):
-        out.add(term[:-1] + "ies")
+    """Spellings to search for. A null on one of them is not an absence.
+
+    Layers, all declared: literal case and punctuation, morphology (plural,
+    acronym), Unicode (Greek↔Latin, subscript↔plain digit), and the curated
+    alias/translation table. A term absent from the table gets no translation,
+    and the NOT-IN-TREE result says so."""
+    seeds = {term} | _alias_forms(term)
+    out: set[str] = set()
+    for s in seeds:
+        out.add(s)
+        out.add(s.lower())
+        out.add(s.upper())
+        out.add(s.replace("-", " "))
+        out.add(s.replace(" ", "-"))
+        out.add(s.replace(" ", "_"))
+        out.add(s.replace("–", "-"))          # en dash, which the tree uses
+        out.add(s.replace("-", "–"))
+        ord_ = [w for w in re.split(r"[^A-Za-z0-9]+", s) if w]
+        if len(ord_) > 1:                     # acronym of a multi-word term,
+            acronym = "".join(w[0] for w in ord_).upper()   # split on punctuation
+            if len(acronym) >= 3:             # too, or Grid–Higgs gives GF
+                out.add(acronym)              # and "CL" for Core Lock matched CLASS
+        if not s.endswith("s"):
+            out.add(s + "s")
+        if s.endswith("y"):
+            out.add(s[:-1] + "ies")
+    out |= _unicode_variants(out)
     return sorted(f for f in out if f)
 
 
@@ -296,6 +403,7 @@ def draft(root: Path, term: str, limit: int = 5) -> dict:
     local = re.sub(r"[^A-Za-z0-9]", "", term)
     decl = declared_terms(root)
     sources = sources_for(carriers, dois)
+    aliases = _alias_forms(term)
     return {
         "term": term,
         "suggested_id_not_a_decision": f"efc:{local}",
@@ -303,6 +411,8 @@ def draft(root: Path, term: str, limit: int = 5) -> dict:
         "already_registered": f"efc:{local}" in registered(root),
         "forms_searched": sorted(per_form),
         "forms_found": {f: n for f, n in sorted(per_form.items()) if n},
+        "english_and_alias_forms_consulted": sorted(aliases),
+        "translation_consulted": bool(aliases),
         "in_tree": any(per_form.values()),
         "files_carrying_the_term": len(carriers),
         "files_unreadable": skipped,
@@ -330,6 +440,10 @@ def render(d: dict, limit: int = 5) -> str:
     lines.append(f"   identity     {id_state}")
     if not d["in_tree"]:
         lines.append(f"   NOT IN TREE  searched {len(d['forms_searched'])} forms: {', '.join(d['forms_searched'])}")
+        if d["translation_consulted"]:
+            lines.append(f"                also tried English/alias: {', '.join(d['english_and_alias_forms_consulted'])} — none matched")
+        else:
+            lines.append("                no curated English/alias form exists for this term; those were not searched")
         lines.append("                registering it would be inventing EFC vocabulary — find a source first")
         return "\n".join(lines)
     lines.append("   forms        " + ", ".join(f"{f} ({n})" for f, n in d["forms_found"].items()))
