@@ -62,6 +62,16 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+      - name: No case-colliding paths (a macOS/Windows checkout must represent every file)
+        id: case_collision
+        run: |
+          dups=$(git ls-tree -r --name-only HEAD | tr 'A-Z' 'a-z' | sort | uniq -d)
+          if [ -n "$dups" ]; then
+            echo "::error::Paths that differ only in letter case — a case-insensitive filesystem collapses them into one file:"
+            echo "$dups"
+            exit 1
+          fi
+          echo "No case-colliding paths."
       - name: Regenerate AI-friendly manifests
         id: gen_ai_friendly
         run: python3 scripts/maintenance/efc_gen_ai_friendly.py
