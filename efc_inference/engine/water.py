@@ -248,13 +248,29 @@ class WaterPhaseEngine(EFCEngine):
         Id og gyldighetsomraade er IKKE lokale valg: de skal stemme med
         h2o-nodenes deklarerte regimer i schema/regime_nodes.jsonld —
         konsistensen testes maskinelt (tests/test_engine_manifest_bridge.py).
+        Grensene DERIVERES fra de effektive parametrene, slik at
+        selvbeskrivelsen aldri lyver om motorens faktiske regimer —
+        ogsa ved alternative parametre (review 2026-09-16).
         """
+        t_vap = params["t_vap_ref"]
+        p_ice = params["p_ice_ih_max"]
+        t_sub = params["t_sublim_min"]
+        n = float(params.get("watson_exponent", WATSON_EXPONENT_DEFAULT))
+        validity = (
+            "damp ["
+            + str(params["t_triple"]) + ", " + str(t_vap) + "] K; "
+            "smelte [0, " + str(p_ice / 1e6) + "] MPa (ice Ih); "
+            "sublimasjon [" + str(t_sub) + " K, t_triple] — "
+            "for kanoniske parametre identisk med h2o-nodenes gyldighetsomraader"
+        )
+        law_form = ("Clausius-Clapeyron med Watson L_v(T) (n=" + str(n)
+                    + ") — numerisk integrasjon, ingen tabell-oppslag")
         return {
             "id": "efc.water_phase_engine",
             "regime": {
                 "name": "H2O fase-grense-beregning",
-                "validity": "gyldighetsomraadene er identiske med h2o-nodenes: damp [273.16, 373.15] K, smelte [0, 208.566] MPa (ice Ih), sublimasjon [50 K, t_triple]",
-                "law_form": "Clausius-Clapeyron med Watson L_v(T) (n=0.33) — numerisk integrasjon, ingen tabell-oppslag",
+                "validity": validity,
+                "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {

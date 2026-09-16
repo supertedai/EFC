@@ -138,3 +138,26 @@ def test_engine_validity_matches_atlas_validity():
     # rapporterer for sin kalibrering.
     assert "208.566" in h2o["h2o.solid"]["regime"]["validity"]
     assert "373.15" in h2o["h2o.liquid"]["regime"]["validity"]
+
+
+def test_engine_regime_node_reflects_effective_params():
+    """Review runde 1: selvbeskrivelsen skal DERIVERES fra de effektive
+    parametrene — med alternative parametre skal noden deklarere de
+    alternative grensene, ikke de kanoniske."""
+    alt = {
+        **PARAMS,
+        "t_vap_ref": 370.0,
+        "p_ice_ih_max": 123.0e6,
+        "t_sublim_min": 60.0,
+        "watson_exponent": 0.5,
+    }
+    node = WaterPhaseEngine().regime_node(alt)
+    tekst = node["regime"]["validity"] + node["regime"]["law_form"]
+    assert "370" in tekst          # t_vap_ref er med
+    assert "123" in tekst          # p_ice_ih_max er med (i MPa)
+    assert "60" in tekst           # t_sublim_min er med
+    assert "0.5" in tekst          # watson-eksponenten er med
+    # ...og de kanoniske tallene skal IKKE staa der.
+    assert "373.15" not in tekst
+    assert "208.566" not in tekst
+    assert "0.33" not in tekst
