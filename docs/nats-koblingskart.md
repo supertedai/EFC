@@ -28,17 +28,17 @@ den).
 
 | Emne | Motor | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Bussen bærer tre serier: `batteri_spenning` (V), `batteri_ladning` (SOC) og — fra trinn 10 — `batteri_stroem` (A, VRM-kode `CI`, målt). Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` med grunn. |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Live på bussen: `batteri_spenning` (V) og `batteri_ladning` (SOC). `batteri_stroem` (A, VRM-kode `CI`, målt) er **bygget, ikke deployet** — produsentkoden er merget i trinn 10, men deploy til bussen er eiernes steg. Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` og tellere — ingen grunnfelt; forklaringen av grunnen står i broens kjøringsartefakt). |
 
 **Motorens kontrakt vs broens skjema — to forskjellige ting.** Motoren
 er injiserbar og krever per kjøring:
 
 1. `v_series` — spenning over tid (V). Bussen bærer den i dag
    (`batteri_spenning`).
-2. `i_series` — strøm over tid (A). Bussen bærer den fra trinn 10
-   (`batteri_stroem`); produsentkoden er merget (Hetzner-repoet,
-   PR #969) og **deploy til bussen er eiernes steg** — inntil da er
-   serien fraværende på bussen.
+2. `i_series` — strøm over tid (A). Bygget i trinn 10
+   (`batteri_stroem`); produsentkoden er merget (PR #969, i
+   driftsrepoet) og **deploy til bussen er eiernes steg** — inntil da
+   er serien fraværende på bussen.
 3. Tersklene `v_knee_tol`, `di_threshold`, `cc_flat_threshold` —
    motorens egne, aldri bussens ansvar.
 
@@ -50,14 +50,23 @@ tidsoppløsning fin nok til å se strømplatået: kneet er målt usynlig i
 15-min-midler (trinn 8), så en I-serie på timeoppløsning vil fortsatt
 gi `found=False` — bare med en annen grunn.
 
-### Eksisterende på bussen (bygget av andre, ikke av motoren)
+### Live på bussen (målt)
 
 | Emne | Innhold | Motor |
 |---|---|---|
 | `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-**baseline**: OBSERVERTE målinger (DESI DR1, eBOSS) med L/S-klassifisering — referanseverdier, ikke EFC-utfall | ingen — baselinen er arbiterens grunnlag, ikke motor-output |
-| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
-| `kosmos.kosmologi.utfall.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12; publikasjon forutsetter skrivetilgang eierne ennå ikke har gitt |
 | `kosmos.kosmologi.diskusjon.arxiv` | arXiv-papirer | (kildegrunnlag, ikke måling) |
+
+### Kontrakter definert — publikasjon venter på skrivetilgang
+
+Disse emnene har et definert skjema og en implementert produsent-side,
+men er **ikke verifisert live på bussen** — publisering tilbake krever
+skrivetilgang eierne ennå ikke har gitt.
+
+| Emne | Innhold | Produsent |
+|---|---|---|
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
+| `kosmos.kosmologi.utfall.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12 |
 
 ### Kandidater (emner som finnes, kobling ikke bygget)
 
