@@ -217,6 +217,26 @@ def test_classify_supercritical_requires_pressure_above_critical():
     assert m.classify(PARAMS, 700.0, 101325.0) == "gas"
 
 
+def test_classify_at_critical_temperature_is_not_supercritical():
+    """K5 runde 2: superkritisk krever STRENGT T > T_c. Ved T == T_c:
+    P < P_c -> gas, P == P_c -> coexistence (kritisk punkt),
+    P > P_c -> unknown (utenfor motorens dommekraft)."""
+    m = _motor()
+    tc = PARAMS["t_critical"]
+    pc = PARAMS["p_critical"]
+    assert m.classify(PARAMS, tc, 2.0 * pc) != "supercritical"
+    assert m.classify(PARAMS, tc, 2.0 * pc) == "unknown"
+    assert m.classify(PARAMS, tc, pc) == "coexistence"
+    assert m.classify(PARAMS, tc, 1.0e6) == "gas"
+
+
+def test_classify_boiling_point_is_coexistence():
+    """K5 runde 2: (t_vap_ref, p_vap_ref) ER kokepunktet — en fasegrense,
+    ikke «gas». Referansepunktet brukes fordi modellens P_sat(373.15)
+    ligger 1.7 % under den fysiske definisjonen."""
+    assert _motor().classify(PARAMS, 373.15, 101325.0) == "coexistence"
+
+
 def test_classify_on_vapor_boundary_is_coexistence():
     """K5: et punkt paa fasegrensen er coexistence, ikke vilkaarlig side."""
     m = _motor()
@@ -267,6 +287,15 @@ def test_compute_incomplete_params_returns_nan():
     mangler = {k: v for k, v in PARAMS.items() if k != "p_triple"}
     p = m.compute(mangler, np.array([300.0]))
     assert np.all(np.isnan(p))
+
+
+def test_compute_invalid_param_types_return_nan():
+    """K3 runde 2: ugyldige parametertyper (None, streng, array) skal gi
+    NaN, ikke TypeError/ValueError."""
+    m = _motor()
+    for darlig in (None, "273.16", np.array([273.16, 273.17])):
+        p = m.compute({**PARAMS, "t_triple": darlig}, np.array([300.0]))
+        assert np.all(np.isnan(p)), f"t_triple={darlig!r} krasjet ikke"
 
 
 def test_compute_2d_coordinates_returns_nan():

@@ -173,15 +173,29 @@ class WaterPhaseEngine(EFCEngine):
         p = float(p)
         tc = params["t_critical"]
         pc = params["p_critical"]
-        if t >= tc:
+        if t > tc:
+            # Superkritisk krever STRENGT T > T_c og P > P_c (review runde 2).
             return "supercritical" if p > pc else "gas"
-        if t >= params["t_vap_ref"]:
+        if abs(t - tc) <= self.EPS_T:
+            # Selve kritiske temperatur: P == P_c er det kritiske punktet
+            # (grense), P < P_c er gass, P > P_c utenfor dommekraften.
+            if abs(p - pc) <= self.EPS_REL * pc:
+                return "coexistence"
+            return "gas" if p < pc else "unknown"
+        if t > params["t_vap_ref"]:
             # Over kalibreringsvinduet er P_sat monotont stigende, og den
             # FYSISKE referansen p_vap_ref (kokepunkt per definisjon) er en
             # nedre grense for ekte P_sat(T). p <= p_vap_ref er SIKKERT
             # gass. Hoyere p kan motoren ikke avgjoere ærlig — «unknown»,
             # ikke en gjettet side.
             return "gas" if p <= params["p_vap_ref"] else "unknown"
+        if (abs(t - params["t_vap_ref"]) <= self.EPS_T
+                and abs(p - params["p_vap_ref"])
+                <= self.EPS_REL * params["p_vap_ref"]):
+            # Kokepunktet er en fasegrense — modellens P_sat(373.15)
+            # ligger 1.7 % under den fysiske definisjonen, saa
+            # referansepunktet maa brukes her (review runde 2).
+            return "coexistence"
         if t < params["t_triple"]:
             p_vap = float(self.sublimation_pressure(
                 params, np.array([t]))[0])
@@ -207,7 +221,13 @@ class WaterPhaseEngine(EFCEngine):
         koordinatformer gir NaN-array — aldri unntak.
         """
         coordinates = np.asarray(coordinates, dtype=float)
-        if coordinates.ndim != 1 or not self.validate_params(params_dict):
+        try:
+            ok = self.validate_params(params_dict)
+        except (TypeError, ValueError):
+            # Ugyldige parametertyper (None, streng, array) skal feile
+            # lukket som NaN, ikke som unntak (review runde 2).
+            ok = False
+        if coordinates.ndim != 1 or not ok:
             return np.full(coordinates.shape, np.nan)
         return self.saturation_pressure(params_dict, coordinates)
 
