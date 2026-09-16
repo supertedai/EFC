@@ -10,11 +10,12 @@ Physics (MVP-G1):
         D'' + [3/a + H'/H] D' - source(a) * D = 0
 
     where ' = d/da, E(a) = H(a)/H0, and the EFC deformation enters
-    ONLY through H(a) -- Poisson equation is unmodified (mu = 1).
-
-    This is the "Hubble friction channel": the EFC energy-flow field
-    modifies expansion history, which changes the friction term H'/H
-    in the growth ODE, altering structure formation rate.
+    through the cosmology model. TWO channels exist:
+      - Hubble-friksjon: H(a) endres (alle varianter; EFCVariantA/B
+        har mu = 1 — Poisson-leddet uendret der).
+      - μ-kanalen (trinn 13): EFCVariantC+ skalerer kilden med
+        μ(a) = 1 + (mu_0 - 1)·g(a); mu_0 < 1 demper veksten.
+        (mu_0 er valgfri, default 1.0, gyldig [0, 2].)
 
     Observables:
         f(a) = d ln D / d ln a = a * D'/D
@@ -54,6 +55,11 @@ class EFCGrowth(EFCEngine):
 
     REQUIRED_PARAMS = ["Omega_m", "H0", "sigma8", "alpha_cosmo"]
 
+    # Valgfri perturbasjonskanal: μ(a) = 1 + (mu_0 - 1)·g(a) i de
+    # variantene som støtter den (EFCVariantC+). mu_0=1.0 = ΛCDM-kilde.
+    # Gyldighetsintervall [0, 2]: μ må holde seg positiv over g(a)∈[0,1].
+    MU0_MIN, MU0_MAKS, MU0_DEFAULT = 0.0, 2.0, 1.0
+
     # Integration settings
     _A_INI = 1e-3       # start deep in matter era
     _RTOL = 1e-8         # relative tolerance (relaxed for speed)
@@ -67,6 +73,33 @@ class EFCGrowth(EFCEngine):
     @property
     def name(self) -> str:
         return f"growth-{self.cosmology.name}"
+
+    def validate_params(self, params_dict: dict) -> bool:
+        """Required-feltene (arvet sjekk) + mu_0 hvis gitt: må vaere et
+        endelig tall i [0, 2]. Ugyldige typer (strenger, None, bool)
+        avvises uten exception."""
+        if not super().validate_params(params_dict):
+            return False
+        if "mu_0" in params_dict:
+            mu0 = params_dict["mu_0"]
+            # Ingen strenger — heller ikke numeriske: typen er en del av
+            # kontrakten, og stille konvertering skjuler feil hos kalleren.
+            if isinstance(mu0, (bool, str)) or mu0 is None:
+                return False
+            try:
+                mu0 = float(mu0)
+            except (TypeError, ValueError):
+                return False
+            if not np.isfinite(mu0):
+                return False
+            if not (self.MU0_MIN <= mu0 <= self.MU0_MAKS):
+                return False
+        return True
+
+    def stotter_mu(self) -> bool:
+        """Har den injiserte kosmologien en perturbasjons-μ-kanal?
+        (EFCVariantA/B har μ=1 hardkodet — mu_0 er da uten effekt.)"""
+        return hasattr(self.cosmology, "mu_of_a")
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
         """
@@ -189,13 +222,26 @@ class EFCGrowth(EFCEngine):
         h0 = params_dict["H0"]
         s8 = params_dict["sigma8"]
         al = params_dict["alpha_cosmo"]
+        mu0 = params_dict.get("mu_0", self.MU0_DEFAULT)
+        if self.stotter_mu():
+            mu_beskrivelse = (
+                f"mu_0={mu0} (μ = 1 + (mu_0−1)·g(a) — "
+                f"{self.cosmology.name} har kanalen; mu_0<1 demper veksten)"
+            )
+        else:
+            mu_beskrivelse = (
+                f"{self.cosmology.name} har ingen μ-kanal (μ=1 hardkodet; "
+                "en gitt mu_0 er uten effekt — kanalen finnes i "
+                "EFCVariantC+)"
+            )
         validity = (
             f"fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m={om}, "
-            f"H0={h0}, sigma8={s8}, alpha_cosmo={al} — L2-regimets "
-            "vekst av struktur (perturbasjonsnivå)"
+            f"H0={h0}, sigma8={s8}, alpha_cosmo={al}, {mu_beskrivelse} — "
+            "L2-regimets vekst av struktur (perturbasjonsnivå)"
         )
         law_form = ("D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk "
-                    "integrasjon, f = d ln D / d ln a")
+                    "integrasjon, f = d ln D / d ln a; kilden skalerer "
+                    "med μ(a) når varianten har kanalen")
         return {
             "id": "efc.growth_engine",
             "regime": {"name": "Vekstmotoren — fσ8",

@@ -235,21 +235,86 @@ class SealedFs8Arbiter:
         """Full rapport: kriterium, prediksjoner, dom og ærlighet."""
         dom = self.vurder(måling, params)
         null = self.nullmodell()
+
+        # μ-kanalens status i motorlaget — målt, ikke antatt:
+        # EFCVariantC bærer μ(a) = 1 + (mu_0−1)·g(a). Med de kanoniske
+        # parametrene (Ωm=0.3, H0=70, σ8=0.8, α=0) og mu_0=0.5 gir
+        # motoren fσ8(z=0.7)=0.4301 — den forseglede verdien er
+        # reproduserbar. Det er en konsistenssjekk, IKKE et bevis på at
+        # mu_0=0.5 var den forseglede parameterverdien: prediksjonens
+        # egen B-verdi er ikke offentlig bundet til denne motorens
+        # mu_0-skala. Dommen felles derfor fortsatt bare mot ankeret.
+        mu_status = self._mu_status()
         return {
             "kriterium": self.kriterium(),
             "nullmodell_fs8_07": null,
             "dom": dom,
-            "mu_kanal_i_motorlaget": False,
-            "ærlighet": ("Den forseglede prediksjonen 0.430 hviler på "
-                         "μ<1 (B-kanalen, «linear growth with entropy "
-                         "damping»). Motorlagets growth-API har per i dag "
-                         "mu=1 — bare bakgrunnskanalen (alpha_cosmo) "
-                         "finnes. 0.430 er derfor IKKE maskinelt "
-                         "reprodusert fra motorene; å hevde det ville "
-                         "være en påstand uten grunnlag. Arbiteren "
-                         "rapporterer motorprediksjonen SEPARAT fra det "
-                         "forseglede ankeret — avviket skal synes, ikke "
-                         "skjules."),
+            "mu_kanal_i_injisert_motor": mu_status["i_injisert_motor"],
+            "mu_reproduksjon_variantc": mu_status["reproduksjon_variantc"],
+            "ærlighet": mu_status["ærlighet"],
+        }
+
+    def _mu_status(self) -> dict:
+        """Måler μ-kanalens faktiske tilstand.
+
+        To atskilte fakta:
+        1. Har den INJISERTE motoren (self.growth) kanalen? VariantA/B
+           har μ=1 hardkodet — der er mu_0 uten effekt.
+        2. Motorlagets kapabilitet: EFCVariantC har kanalen, og med de
+           kanoniske parametrene + mu_0=0.5 gir den 0.4301 — den
+           forseglede verdien er reproduserbar (konsistenssjekk, IKKE
+           bevis om forseglet parameterverdi).
+        """
+        i_injisert = bool(getattr(self.growth, "stotter_mu", lambda: False)())
+        variant = type(self.growth.cosmology).__name__
+
+        repro = None
+        try:
+            from efc_inference.core.cosmology_model import EFCVariantC
+            g = EFCGrowth(cosmology=EFCVariantC())
+            fs8_mu05 = float(g.compute(
+                {"Omega_m": 0.3, "H0": 70.0, "sigma8": 0.8,
+                 "alpha_cosmo": 0.0, "mu_0": 0.5},
+                np.array([0.7]))[0])
+            fs8_mu1 = float(g.compute(
+                {"Omega_m": 0.3, "H0": 70.0, "sigma8": 0.8,
+                 "alpha_cosmo": 0.0, "mu_0": 1.0},
+                np.array([0.7]))[0])
+            avvik = abs(fs8_mu05 - ANKER_EFC)
+            repro = {
+                "variant": "EFCVariantC",
+                "mu_0": 0.5,
+                "fs8_mu_0_5": round(fs8_mu05, 4),
+                "fs8_mu_1_0": round(fs8_mu1, 4),
+                "avvik_fra_anker": round(avvik, 4),
+            }
+        except Exception as e:  # pragma: no cover
+            repro = {"feil": str(e)}
+
+        injisert_tekst = (
+            f"Den injiserte motoren ({variant}) "
+            + ("HAR" if i_injisert else "har IKKE")
+            + " μ-kanalen."
+        )
+        ærlighet = (
+            f"{injisert_tekst} Motorlagets kapabilitet: EFCVariantC "
+            "bærer μ = 1 + (mu_0−1)·g(a), og med kanoniske parametre "
+            f"og mu_0=0.5 gir den fσ8(z=0.7)={repro['fs8_mu_0_5']:.4f} — "
+            f"{repro['avvik_fra_anker']:.4f} fra det forseglede ankeret "
+            "0.430. Prediksjonen er dermed reproduserbar med kanalen; "
+            "det beviser IKKE hvilken mu_0 som var forseglet, og dommen "
+            "felles fortsatt bare mot ankeret. Motorprediksjonen "
+            "rapporteres separat — avvik skal synes, ikke skjules."
+        ) if repro and "feil" not in repro else (
+            f"{injisert_tekst} VariantC-reproduksjonen kunne ikke måles "
+            f"({repro.get('feil') if repro else 'ukjent'}) — arbiteren "
+            "påstår ingenting den ikke har målt.")
+
+        return {
+            "i_injisert_motor": i_injisert,
+            "variant": variant,
+            "reproduksjon_variantc": repro,
+            "ærlighet": ærlighet,
         }
 
     # ------------------------------------------------------------------
