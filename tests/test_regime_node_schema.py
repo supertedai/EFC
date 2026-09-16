@@ -223,3 +223,57 @@ def test_existing_h2o_nodes_untouched():
     ids = {n["id"] for n in _instance()["nodes"]}
     assert {"h2o.solid", "h2o.liquid", "h2o.gas",
             "h2o.supercritical", "h2o.triple_point"} <= ids
+
+
+# --------------------------------------------------------------------------
+# Trinn 5: L0–L3-kosmologien — EFCs kjerne inn i samme struktur
+# --------------------------------------------------------------------------
+
+def test_l0_l3_nodes_exist():
+    """EFCs fire regimer skal staa som noder i atlaset."""
+    ids = {n["id"] for n in _instance()["nodes"]}
+    assert {"efc.l0", "efc.l1", "efc.l2", "efc.l3"} <= ids
+
+
+def test_l0_l3_transition_chain():
+    """Regimene danner kjeden L0→L1→L2→L3 via TRANSITIONS_TO."""
+    rels = _instance()["relations"]
+    preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
+    assert ("efc.l0", "TRANSITIONS_TO", "efc.l1") in preds
+    assert ("efc.l1", "TRANSITIONS_TO", "efc.l2") in preds
+    assert ("efc.l2", "TRANSITIONS_TO", "efc.l3") in preds
+
+
+def test_l1_l2_is_declared_regime_transition():
+    """L1→L2 er EFCs regimeovergang — trippelpunkt-analogien. Den skal
+    vaere deklarert i overgangsrelasjonens note (ikke bare en kant)."""
+    rels = _instance()["relations"]
+    overgang = next(
+        (r for r in rels
+         if (r["subject"], r["predicate"]) == ("efc.l1", "TRANSITIONS_TO")
+         and r["object"] == "efc.l2"),
+        None)
+    assert overgang is not None
+    assert "overgang" in overgang["note"].lower()
+
+
+def test_regimes_declare_s_values():
+    """Hvert regime skal deklarere sin S-verdi i validity (S→0, S≈0,
+    S>0, S→1) — S er regimekoordinaten, ikke dekor."""
+    inst = _instance()
+    noder = {n["id"]: n for n in inst["nodes"]}
+    assert "S" in noder["efc.l0"]["regime"]["validity"]
+    assert "S" in noder["efc.l1"]["regime"]["validity"]
+    assert "S" in noder["efc.l2"]["regime"]["validity"]
+    assert "S" in noder["efc.l3"]["regime"]["validity"]
+
+
+def test_observer_is_inside_l2():
+    """Observatoren er INNE i systemet: vi observerer FRA L2 og ser
+    bakover i tid til L1 (CMB) — observatorens plassering er en del av
+    strukturen, ikke en noeytral utsiktspost."""
+    inst = _instance()
+    obs = next(n for n in inst["nodes"] if n["id"] == "efc.l2")
+    # L2-noden skal selv deklarere observatorens posisjon.
+    assert "observat" in obs["observer"]["bandwidth"].lower() or \
+        "observat" in obs["episenter"].lower()

@@ -596,6 +596,218 @@
         "global": "motorens gyldighetsomraader ER h2o-nodenes — og broen testes maskinelt mot regime_nodes.jsonld",
         "empathy_note": "motoren vet hvilke atlas-noder den baerer (CARRIES), og testene verifiserer at den ikke deklarerer noe atlaset motsier."
       }
+    },
+    {
+      "id": "efc.l0",
+      "regime": {
+        "name": "L0 — pre-inflation",
+        "validity": "S -> 0; pre-inflation; kvantedominert — regimet er definert av sin grense, ikke av en maaling",
+        "law_form": "kvantefelt; ingen klassisk struktur enda"
+      },
+      "phase": "quantum_regime",
+      "measure": {
+        "target": "urbetingelser og strukturfro",
+        "measurer": "teoretisk rekonstruksjon",
+        "instrument": "ingen direkte — modellavhengig",
+        "proxy_chain": [
+          "inflasjonsprediksjoner -> P(k)-avtrykk i L1",
+          "ingen direkte observabel i L0"
+        ],
+        "placement": "teorirom — ikke et instrumentvindu",
+        "compression": "L0 komprimeres til froene som L1 og L2 baerer"
+      },
+      "episenter": "S-rammen: L0 leses som grensen S -> 0 — regimet eksisterer i rammen, ikke i noe teleskop",
+      "buffer": {
+        "role": "vakuumsvingningene er frobanken — en buffer av potensial som inflasjonen tapper",
+        "note": "buffer i opprinnelsesform: kapasitet foer utfoldelse."
+      },
+      "ontology": {
+        "assumes": [
+          "S er en veldefinert regimekoordinat",
+          "et pre-inflasjonært regime eksisterer"
+        ],
+        "source": "EFC README regime-arkitektur (L0-L3); Grid-Higgs Framework (GHF)"
+      },
+      "observer": {
+        "bandwidth": "ingen observator kan se L0 direkte — bare via L1-avtrykket (primordial P(k)); en kanal av hele spekteret",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kvantesvingninger -> inflasjon -> frodige svingninger — loopen gir strukturfroene",
+        "properties": [
+          "strukturfro",
+          "spektralindeks n_s"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme regimelogikk som H2O-fasene: grensene definerer regimene — L0 er S->0-grensen i kosmologiens fasekart",
+        "note": "et regimemonster som gjentas paa alle skalaer: grense -> regime -> overgang."
+      },
+      "coupling": {
+        "local": "kvantevakuumets svingninger er lokale i hvert punkt",
+        "global": "L0s svingninger er froene til all struktur i L2 — hele dagens univers hviler paa dem",
+        "empathy_note": "det usynligste regimet baerer alt det synlige."
+      }
+    },
+    {
+      "id": "efc.l1",
+      "regime": {
+        "name": "L1 — CMB",
+        "validity": "S ~ 0; z ~ 1100; lineært; GR gyldig (mu ~ 1) — her ser EFC ut som LCDM (L0/L1-grensen)",
+        "law_form": "lineær perturbasjonsteori under GR"
+      },
+      "phase": "linear_regime",
+      "measure": {
+        "target": "CMB-anisotropier og BAO-skala",
+        "measurer": "romteleskoper og surveyer (Planck, DESI)",
+        "instrument": "CMB-kart + galakse-survey",
+        "proxy_chain": [
+          "temperaturanisotropier -> P(k)",
+          "BAO-skala -> H(z)",
+          "polarisasjon -> optisk dybde"
+        ],
+        "placement": "observatoren i L2 ser BAKOVER til L1 — instrumentene maaler fotoner som har reist siden z ~ 1100",
+        "compression": "hele CMB-himmelen -> ett effektspektrum"
+      },
+      "episenter": "S-rammen: L1 er der mu ~ 1 og GR holder — LCDM er spesialtilfellet av EFC i dette regimet, og det er en EGENSKAP ved rammen, ikke en konkurranse",
+      "buffer": {
+        "role": "plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon — en koblingsbuffer som slipper fotonene ved z ~ 1100",
+        "note": "buffer som forsinkelse: signalet holdes til det slippes."
+      },
+      "ontology": {
+        "assumes": [
+          "S ~ 0 i dette regimet",
+          "CMB-fotonene baerer L1s tilstand uendret til oss"
+        ],
+        "source": "EFC README regime-arkitektur; RCMP (Regime-Consistent Measurement Principle)"
+      },
+      "observer": {
+        "bandwidth": "vi ser L1 gjennom EM-vinduet (CMB-fotoner) — en kanal av hele spekteret; gravitasjonsbolger er et nytt, ennå umodent vindu",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "plasma -> rekombinasjon -> frie fotoner — loopen fryser inn L1s tilstand",
+        "properties": [
+          "CMB",
+          "BAO-skalaen",
+          "rekombinasjonshistorien"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme regimemonster: L1 er S~0-grensen — plasmaet er ett regime, fotonene dets frosne avtrykk",
+        "note": "hvert regime fryser sitt avtrykk inn i det neste."
+      },
+      "coupling": {
+        "local": "hver plasmaboble svinger lokalt (akustiske svingninger)",
+        "global": "alle boblene sammen gir effektspekteret — og det spekteret er kosmologiens felles referansebilde",
+        "empathy_note": "lokale svingninger, ett globalt bilde som alle modeller maales mot."
+      }
+    },
+    {
+      "id": "efc.l2",
+      "regime": {
+        "name": "L2 — senuniverset",
+        "validity": "S > 0; strukturvekst; mu < 1 paa perturbasjonsnivaa — EFC skiller seg fra LCDM HER",
+        "law_form": "modifisert vekst via R(k,S)"
+      },
+      "phase": "growth_regime",
+      "measure": {
+        "target": "fsigma8, P(k), svak linse (S8)",
+        "measurer": "survey-teleskoper",
+        "instrument": "galakse-survey + svak linse (KiDS, DES, Euclid)",
+        "proxy_chain": [
+          "galaksefordeling -> P(k) full-shape",
+          "roedforskyvningsromforvrengning -> fsigma8",
+          "skjær -> S8"
+        ],
+        "placement": "observatoren staar I L2 — vi maaler veksten i vårt eget regime med L2-instrumenter",
+        "compression": "3D-struktur -> vekstrate fsigma8(z)"
+      },
+      "episenter": "S-rammen: L2 er der EFC skiller seg fra LCDM — og der observatoren staar. Observatoren er INNE i systemet, ikke en noeytral utsiktspost.",
+      "buffer": {
+        "role": "strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot ekspansjonen — vekstraten er buffret av gravitasjonell respons",
+        "note": "buffer i makroskopisk form: masse som holder og demper."
+      },
+      "ontology": {
+        "assumes": [
+          "S > 0 og vokser i dette regimet",
+          "vekstmodifikasjonen er perturbasjonsnivaaets, ikke bakgrunnens"
+        ],
+        "source": "EFC README regime-arkitektur; EFC Screening Model (DOI 10.6084/m9.figshare.31940469)"
+      },
+      "observer": {
+        "bandwidth": "OBSERVATOREN STAAR I L2: vi ser bakover til L1 (CMB) og maaler veksten i vårt eget regime — EM-vinduet og gravitasjonsbolger er noen faa kanaler av hele spekteret",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst -> struktur -> gravitasjonell respons -> vekst — loopen bygger strukturen opp",
+        "properties": [
+          "galakser og klynger",
+          "filamenter",
+          "S8-spenningen som regime-signatur"
+        ]
+      },
+      "fractal": {
+        "pattern": "strukturer paa alle skalaer — fra galakser til filamenter; samme vekstlov, ulike skalaer",
+        "note": "det fraktale monsteret i sin kosmiske form."
+      },
+      "coupling": {
+        "local": "hver galakse vokser lokalt i sitt morke-stoff-miljoe",
+        "global": "strukturen i L2 er avtrykket av L0s fro og L1s plasma — hele kjeden er tilstede i hver maaling",
+        "empathy_note": "en lokal vekstrate baerer hele regimets historie — og observatoren som maaler den er selv en del av strukturen."
+      }
+    },
+    {
+      "id": "efc.l3",
+      "regime": {
+        "name": "L3 — fjern fremtid",
+        "validity": "S -> 1; struktursaturasjon — vekstens endestasjon",
+        "law_form": "metning: R(k,S) -> asymptotisk grense"
+      },
+      "phase": "saturation_regime",
+      "measure": {
+        "target": "fjern-fremtid-tilstanden",
+        "measurer": "ekstrapolasjon fra vekstloven",
+        "instrument": "ingen direkte — predikert grense",
+        "proxy_chain": [
+          "vekstlovens asymptote -> S->1-tilstanden",
+          "ingen maalbar proxy i dag"
+        ],
+        "placement": "teorirom — som L0, den andre enden av kjeden",
+        "compression": "hele fremtiden -> en metningsgrense"
+      },
+      "episenter": "S-rammen: L3 er grensen S -> 1 — strukturens endestasjon, lest fra vekstloven vi maaler i L2",
+      "buffer": {
+        "role": "metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe loepsk",
+        "note": "buffer som grense, ikke som lagring."
+      },
+      "ontology": {
+        "assumes": [
+          "S -> 1 er en ekte asymptote",
+          "vekstloven fra L2 forlenges gyldig"
+        ],
+        "source": "EFC README regime-arkitektur (L3: far future, S -> 1)"
+      },
+      "observer": {
+        "bandwidth": "ingen observator naar L3 — det er en predikert grense, ikke et maalbart vindu",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst -> metning -> stabil struktur — loopen stopper opp i en likevekt",
+        "properties": [
+          "struktursaturasjon",
+          "likevektstilstand"
+        ]
+      },
+      "fractal": {
+        "pattern": "den siste grensen i samme regimemonster — L0 og L3 er kjedens to ender, begge rene grenser",
+        "note": "begynnelse og slutt er samme type punkt: en grense."
+      },
+      "coupling": {
+        "local": "hver struktur mettes lokalt",
+        "global": "L3 er hele kjedens endestasjon — alle regimene ender her",
+        "empathy_note": "den fjerneste grensen er skrevet inn i den naermeste maalingen."
+      }
     }
   ],
   "relations": [
@@ -688,6 +900,24 @@
       "predicate": "CARRIES",
       "object": "h2o.gas",
       "note": "motoren baerer sublimasjonskurvens lovform — P_sub(T)"
+    },
+    {
+      "subject": "efc.l0",
+      "predicate": "TRANSITIONS_TO",
+      "object": "efc.l1",
+      "note": "inflasjonens slutt -> varmt plasma — S gaar fra ->0 til ~0"
+    },
+    {
+      "subject": "efc.l1",
+      "predicate": "TRANSITIONS_TO",
+      "object": "efc.l2",
+      "note": "REGIMEOVERGANGEN: 0 < S < 1 — «Regime transitions ARE phase transitions in fragment resonance» (theory/EFC_R_FRAGMENT_TOPOLOGY_MAPPING.md). Dette er EFCs trippelpunkt: her skifter mu fra ~1 til <1."
+    },
+    {
+      "subject": "efc.l2",
+      "predicate": "TRANSITIONS_TO",
+      "object": "efc.l3",
+      "note": "S -> 1: struktursaturasjon — vekstens endestasjon"
     }
   ]
 }
