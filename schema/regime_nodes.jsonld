@@ -2648,7 +2648,7 @@
           "TF-binding → uttrykk",
           "epigenetisk merke → terskelskifte"
         ],
-        "placement": "genreguleringen er den molekylære bunnen av homo.fluxus — flytens grunnlag",
+        "placement": "ATLASETS PLASSERING: genreguleringen er den molekylære bunnen av homo.fluxus (analogisk lesning)",
         "compression": "tusener av gener → reguleringsnettverk"
       },
       "episenter": "terskelen: der et gen skrus på — bryterne er beslutningspunktene",
@@ -2681,7 +2681,7 @@
       },
       "coupling": {
         "local": "ett gen, én bryter",
-        "global": "reguleringsnettverket ER homo.fluxus sin molekylære kropp — CARRIES homo.fluxus (rammeverkets plassering)",
+        "global": "ATLASETS PLASSERING (analogisk lesning, ikke empirisk etablert egenskap): reguleringsnettverket er den molekylære kroppen som CARRIES homo.fluxus",
         "empathy_note": "genomet vet ikke at det holder et menneske — det regulerer."
       }
     },
@@ -2690,7 +2690,7 @@
       "regime": {
         "name": "Cellesyklusen — delingens periodiske regime",
         "validity": "Cellen går gjennom periodiske faser (G1, S, G2, M) med sjekkpunkter som holder den tilbake til kriteriene er oppfylt — holding→release ved hvert sjekkpunkt. ANALOGI til hjertets fyll-press-syklus og ladesyklusen: periodisk, kontrollert, aldri ubetjente overganger.",
-        "law_form": "G1 → S (DNA-replikasjon) → G2 → M (mitose) → G1; sjekkpunkter: G1/S og G2/M — CDK/cyklin-konsentrasjon setter tersklene"
+        "law_form": "G1 → S (DNA-replikasjon) → G2 → M (mitose) → G1; kontrollpunkter: G1-restriksjonspunktet, intra-S, G2/M og spindelkontrollen (spindle assembly checkpoint) — CDK/cyklin-aktivitet (ikke bare konsentrasjon: også fosforylering, CDK-hemmere og checkpoint-signaler) setter overgangene"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2701,17 +2701,17 @@
           "DNA-innhold → fase",
           "CDK/cyklin → sjekkpunkt-status"
         ],
-        "placement": "cellen er homo.fluxus sin minste selvreplikerende enhet",
+        "placement": "ATLASETS PLASSERING: cellen er homo.fluxus sin minste selvreplikerende enhet (analogisk lesning)",
         "compression": "millioner av celler → en fasefordeling"
       },
-      "episenter": "sjekkpunktene: G1/S og G2/M — der syklusen venter eller slipper",
+      "episenter": "kontrollpunktene: G1-restriksjonen, intra-S, G2/M og spindelkontrollen — der syklusen venter eller slipper",
       "buffer": {
         "role": "sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt",
         "note": "ANALOGI til hjertets fylling (vent-til-full) og ladestyringens terskel — ikke identitet."
       },
       "ontology": {
         "assumes": [
-          "CDK/cyklin-maskineriet er korrekt beskrivelse",
+          "CDK/cyklin-maskineriet med fosforylering, inhibitorer og checkpoint-signaler er korrekt beskrivelse",
           "sjekkpunktenes strenge kobling er det som hindrer ukontrollert deling (kreft = regimebrudd)"
         ],
         "source": "cellebiologi (standard); analogi-merkingen er atlasets egen"
@@ -2734,7 +2734,7 @@
       },
       "coupling": {
         "local": "én celle, én syklus",
-        "global": "celledelingen opprettholder homo.fluxus — CARRIES homo.fluxus",
+        "global": "ATLASETS PLASSERING (analogisk lesning): celledelingen opprettholder flyten og CARRIES homo.fluxus — ikke en empirisk etablert biologisk egenskap",
         "empathy_note": "hver deling er en bitteliten overgang — kroppen er summen av dem."
       }
     },
@@ -2742,8 +2742,8 @@
       "id": "homo.metabolisme",
       "regime": {
         "name": "Metabolismen — energiflytens biokjemi",
-        "validity": "Metabolismen er homo.fluxus sin energiflyt i molekylær form: glykolyse og Krebs-syklusen pumper ATP, og ATP drives tilbake — en kontinuerlig lade/tøm-syklus med kraftig negativ tilbakekobling (ATP bremser sin egen produksjon). ANALOGI til batteriets kjemiske buffer — ikke identitet: metabolismen er åpen og dissipativ, batteriet er lukket.",
-        "law_form": "glukose → pyruvat → acetyl-CoA → Krebs → NADH/FADH₂ → elektrontransport → ATP; ATP/ADP-forholdet regulerer fluksen (negativ tilbakekobling)"
+        "validity": "Metabolismen er homo.fluxus sin energiflyt i molekylær form: glykolyse og Krebs-syklusen lader reduksjonsmidlene (NADH/FADH₂), og elektrontransportkjeden med ATP-syntase omsetter protongradienten til ATP — en kontinuerlig lade/tøm-syklus med energiavhengig regulering. ANALOGI til batteriets kjemiske buffer — ikke identitet: metabolismen er åpen og dissipativ, batteriet er lukket.",
+        "law_form": "glukose → pyruvat → acetyl-CoA → Krebs → NADH/FADH₂ → elektrontransportkjede (protonmotorkraft) → ATP-syntase; regulering: høy energistatus hemmer bestemte trinn (f.eks. PFK-1, PDH/respirasjon), ADP/AMP og substrattilgang stimulerer fluksen"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2754,7 +2754,7 @@
           "O₂-forbruk → fluks",
           "ATP/ADP → reguleringsstatus"
         ],
-        "placement": "metabolismen er homo.fluxus sin motor — den kontinuerlige flyten som resten står på",
+        "placement": "ATLASETS PLASSERING: metabolismen er homo.fluxus sin motor — den kontinuerlige flyten som resten står på (analogisk lesning)",
         "compression": "hele næringsnettet → én fluks-vektor"
       },
       "episenter": "ATP/ADP-forholdet: der produksjon og forbruk møtes — flytens knutepunkt",
@@ -2765,7 +2765,7 @@
       "ontology": {
         "assumes": [
           "glykolyse/Krebs/elektrontransport er korrekt biokjemi",
-          "negativ tilbakekobling (ATP bremser egen produksjon) er den stabile reguleringen"
+          "energistatus-reguleringen er kontekstavhengig: ATP hemmer noen trinn (PFK-1, PDH), ADP/AMP stimulerer — ingen enkel global brems"
         ],
         "source": "biokjemi (standard); analogi-merkingen er atlasets egen"
       },
@@ -2787,7 +2787,7 @@
       },
       "coupling": {
         "local": "én celle, én metabolisme",
-        "global": "metabolismen mater homo.fluxus — CARRIES homo.fluxus",
+        "global": "ATLASETS PLASSERING (analogisk lesning): metabolismen mater flyten og CARRIES homo.fluxus — ikke en empirisk etablert biologisk egenskap",
         "empathy_note": "hver ATP-molekyl er en bitteliten utbetaling — livet er summen."
       }
     }
