@@ -2058,6 +2058,59 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       }
+    },
+    {
+      "id": "efc.victron_cccv_engine",
+      "regime": {
+        "name": "Victron lademotor — CC/CV-kneet",
+        "validity": "CC->CV-kneet: foerste tidspunkt der strømmen avtar (dI/dt < -0.1) mens spenningen er innenfor 0.05 av sitt maksimum — laderegimets fasegrense",
+        "law_form": "CC: I konstant, V stigende. CV: V konstant, I avtagende. Kneet er overgangen — samme overgangsmonster som H2Os trippelpunkt."
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "ladekurven V(t), I(t)",
+        "measurer": "VictronChargeEngine (injiserbar tidsserie)",
+        "instrument": "V/I-tidsserie — motoren leser aldri live-data selv",
+        "proxy_chain": [
+          "V(t), I(t) -> regime-labels (0=CC, 1=CV)",
+          "foerste CV-label -> kneet (t_k, V_k, I_k)"
+        ],
+        "placement": "motoren klassifiserer regimet langs tiden — samme moenster som WaterPhaseEngine i P-T-rommet",
+        "compression": "hundrevis av V/I-maalinger -> ett kne-punkt"
+      },
+      "episenter": "kne-rammen: CC->CV leses som laderegimets faseovergang — trippelpunkt-analogien i elektrisk form",
+      "buffer": {
+        "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen er bufferens metning",
+        "note": "motoren maaler overgangen; bufferen er det som mettes."
+      },
+      "ontology": {
+        "assumes": [
+          "CC/CV-protokollen er den kanoniske ladeprotokollen",
+          "kneet er lesbart i V og I alene (ingen SOC kreves)"
+        ],
+        "source": "CC/CV-ladeprotokoll; motor-kontrakt efc_inference/engine/base_engine.py"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare V og I — to kanaler; SOC er ikke paakrevd for kneet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "CC -> kne -> CV -> metning — ladeløypas tre-trinns emergence",
+        "properties": [
+          "t_knee",
+          "v_knee",
+          "i_knee"
+        ]
+      },
+      "fractal": {
+        "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster",
+        "note": "motoren er overgangens egen maaler."
+      },
+      "coupling": {
+        "local": "motoren arbeider lokalt paa én ladekurve av gangen",
+        "global": "motorens kne kobles til batteri.lading-noden i atlaset (CARRIES) — maalingen baerer regimets overgang",
+        "empathy_note": "motoren vet hvilken atlas-node den baerer — broen testes maskinelt."
+      }
     }
   ],
   "relations": [
@@ -2324,6 +2377,12 @@
       "predicate": "OBSERVED_IN",
       "object": "efc.l3",
       "note": "observasjonen baerer efc.l3-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "efc.victron_cccv_engine",
+      "predicate": "CARRIES",
+      "object": "batteri.lading",
+      "note": "motoren maaler CC->CV-kneet — batteri.lading-nodens overgang"
     }
   ]
 }
