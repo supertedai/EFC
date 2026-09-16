@@ -14,9 +14,25 @@
       "properties": {
         "@vocab": {
           "const": "https://supertedai.github.io/EFC/ontology#"
+        },
+        "id": {
+          "const": "@id",
+          "description": "Node-id-er skal ekspandere til @id — instansen er en lenket graf, ikke loes tekst."
+        },
+        "subject": {
+          "const": {
+            "@type": "@id"
+          },
+          "description": "Relasjonsendepunkter er IRI-referanser til noder."
+        },
+        "object": {
+          "const": {
+            "@type": "@id"
+          },
+          "description": "Relasjonsendepunkter er IRI-referanser til noder."
         }
       },
-      "required": ["@vocab"],
+      "required": ["@vocab", "id", "subject", "object"],
       "additionalProperties": false
     },
     "@id": {
@@ -50,7 +66,7 @@
     "RegimeNode": {
       "type": "object",
       "required": [
-        "id", "regime", "phase", "measure", "epicenter", "buffer",
+        "id", "regime", "phase", "measure", "episenter", "buffer",
         "ontology", "observer", "emergence", "fractal", "coupling"
       ],
       "properties": {
@@ -117,9 +133,9 @@
           },
           "additionalProperties": false
         },
-        "epicenter": {
+        "episenter": {
           "type": "string",
-          "description": "Episenteret: den fortolkende rammen resultatet leses i (DOI-papiret: the interpretive frame used to read the result). Ikke «hvor fenomenet sitter» — det er hvilken ramme som gjor reststruktur til signal."
+          "description": "Episenteret: den fortolkende rammen resultatet leses i (DOI-papiret: the interpretive frame used to read the result). Ikke «hvor fenomenet sitter» — det er hvilken ramme som gjor reststruktur til signal. Kanonisk norsk term fra kilde-README-en (docs/papers/meta/Proxy/)."
         },
         "buffer": {
           "type": "object",

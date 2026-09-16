@@ -57,9 +57,28 @@ def test_schema_is_valid_and_closed():
 def test_schema_requires_mortens_node_fields():
     s = _schema()
     node_req = set(s["$defs"]["RegimeNode"]["required"])
-    assert {"id", "regime", "phase", "measure", "epicenter", "buffer",
+    assert {"id", "regime", "phase", "measure", "episenter", "buffer",
             "ontology", "observer", "emergence", "fractal",
             "coupling"} <= node_req
+
+
+def test_schema_uses_canonical_episenter_spelling():
+    """Review runde 1: kanonisk term i kilde-README-en og PR-en er
+    «episenter» — det engelske «epicenter» skal ikke vaere feltnavn."""
+    s = _schema()
+    props = s["$defs"]["RegimeNode"]["properties"]
+    assert "episenter" in props
+    assert "epicenter" not in props
+
+
+def test_context_maps_ids_and_relation_targets_to_iris():
+    """Review runde 1: instansen skal vaere en lenket JSON-LD-graf —
+    node-id-er og relasjonsendepunkter er IRI-referanser, ikke loes tekst."""
+    inst = _instance()
+    ctx = inst["@context"]
+    assert ctx.get("id") == "@id"
+    assert ctx.get("subject") == {"@type": "@id"}
+    assert ctx.get("object") == {"@type": "@id"}
 
 
 def test_schema_requires_measurement_chain():

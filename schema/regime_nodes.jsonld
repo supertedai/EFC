@@ -1,6 +1,13 @@
 {
   "@context": {
-    "@vocab": "https://supertedai.github.io/EFC/ontology#"
+    "@vocab": "https://supertedai.github.io/EFC/ontology#",
+    "id": "@id",
+    "subject": {
+      "@type": "@id"
+    },
+    "object": {
+      "@type": "@id"
+    }
   },
   "@id": "https://supertedai.github.io/EFC/schema/regime_nodes.jsonld",
   "@type": "RegimeNodeAtlas",
@@ -27,7 +34,7 @@
         "placement": "laboratorie-P-T-rom; instrumentet i termisk kontakt med proeven",
         "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
       },
-      "epicenter": "P-T-landskapet: fasen leses som regionen UNDER smeltekurven — samme punkt lest i en annen ramme (f.eks. optikk) ville vaert et annet signal",
+      "episenter": "P-T-landskapet: fasen leses som regionen UNDER smeltekurven — samme punkt lest i en annen ramme (f.eks. optikk) ville vaert et annet signal",
       "buffer": {
         "role": "krystallgitteret + latent varme L_f: isen holder drikken ved 0 C til siste krystall er borte — termisk buffer ved faseovergangen. Samme brede logikk som homeostase og batteri: en kapasitet som demper endring, her paa termisk akse.",
         "note": "Multaksial: bufferen finnes ogsaa paa andre akser (albedo, struktur)."
@@ -80,10 +87,10 @@
         "placement": "laboratorie-P-T-rom; instrumentet i termisk kontakt med proeven",
         "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
       },
-      "epicenter": "P-T-landskapet: regionen MELLOM smelte- og dampkurven — 'vaeske' er en lesning i P-T-rammen, ikke en egenskap ved ett molekyl",
+      "episenter": "P-T-landskapet: regionen MELLOM smelte- og dampkurven — 'vaeske' er en lesning i P-T-rammen, ikke en egenskap ved ett molekyl",
       "buffer": {
         "role": "hoey varmekapasitet (4.18 kJ/(kg*K)): vann holder temperaturen under oppvarming — demper endring helt til kokepunktet, der L_v absorberer resten foer temperaturen stiger videre. Havene er jordens termiske buffer — homeostatisk rolle i klimasystemet.",
-        "note": "Det brede buffer-begrepet i sin reneste form: termisk treghet som bremser endring. Batteri og homeostase er samme logikk paa andre akser. Forankret i repoets egen teori: HomoFluxus (docs/papers/meta/HomoFluxus/README.md — tau_ref = rho_E/(sigma+epsilon), persistens som oppholdstid) og Autopoiesis (Levin 2019 — homeostase som holding: «maintain state after transient stimuli»)."
+        "note": "Det brede buffer-begrepet i sin reneste form: termisk treghet som bremser endring. Batteri og homeostase er samme logikk paa andre akser. Forankret i repoets egen teori: HomoFluxus (docs/papers/meta/HomoFluxus/README.md — τ_ref(r) = ρ_E / (σ + ε), persistens som oppholdstid) og Autopoiesis (Levin 2019 — homeostase som holding: «maintain state after transient stimuli»)."
       },
       "ontology": {
         "assumes": [
@@ -133,7 +140,7 @@
         "placement": "laboratorie-P-T-rom eller atmosfaere",
         "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
       },
-      "epicenter": "P-T-landskapet: regionen UNDER dampkurven — 'gass' er lesningen av samme molekyler i en annen region",
+      "episenter": "P-T-landskapet: regionen UNDER dampkurven — 'gass' er lesningen av samme molekyler i en annen region",
       "buffer": {
         "role": "gassens varmekapasitet og utvidelse demper lokale trykk- og temperaturgradienter; metningstrykket er selve buffergrensen mot kondensasjon",
         "note": "ingen latent buffer i gassen selv — den sitter i OVERGANGENE, ikke i fasen."
@@ -186,7 +193,7 @@
         "placement": "hoeytrykksautoklav",
         "compression": "fasediagram-projeksjon: (T, P) -> region over kritisk punkt"
       },
-      "epicenter": "P-T-landskapet: regionen OVER kritisk punkt — en leseramme der fasebegrepet selv opploeses",
+      "episenter": "P-T-landskapet: regionen OVER kritisk punkt — en leseramme der fasebegrepet selv opploeses",
       "buffer": {
         "role": "ingen fasegrense aa holde — bufferkapasiteten er kontinuerlig, uten latent varme",
         "note": "regimet der buffer-begrepet skifter form: ikke treghet mot overgang, men kontinuerlig kapasitet."
@@ -238,7 +245,7 @@
         "placement": "metrologisk laboratorium",
         "compression": "punktprojeksjon: hele celle-tilstanden -> ett temperaturnummer"
       },
-      "epicenter": "punktet der tre rammer moetes — fasen er ikke EN; leserammen maa romme tre samtidig",
+      "episenter": "punktet der tre rammer moetes — fasen er ikke EN; leserammen maa romme tre samtidig",
       "buffer": {
         "role": "punktet absorberer energi uten temperaturstigning saa lenge tre faser sameksisterer — den ultimate lokale bufferen; all tilfort energi gaar til faseveksling, ikke til dT",
         "note": "buffer-logikken i sin ekstrem: perfekt dempning av temperatur-endring akkurat her."
