@@ -98,7 +98,7 @@ class EFCCluster(EFCEngine):
                 "note": "bufferen er virkelighetens, ikke motorens.",
             },
             "ontology": {
-                "assumes": ["hopefunksjonen er et gyldig "
+                "assumes": ["halomassefunksjonen er et gyldig "
                             "strukturinstrument", "EFC-deformasjonen "
                             "lar seg oversette til n(M,z) — uverifisert"],
                 "source": "stub-kontrakt; efc_inference/engine/"
