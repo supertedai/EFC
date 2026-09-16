@@ -820,7 +820,7 @@
       "phase": "kjemisk_regime",
       "measure": {
         "target": "SOC og SOH",
-        "measurer": "Battery Monitor som leser Seplos BMS (privat anlegg)",
+        "measurer": "Battery Monitor som leser LiFePO4-BMS (privat anlegg)",
         "instrument": "spennings-, strøm- og temperatursensorer",
         "proxy_chain": [
           "coulomb-telling (I over tid) -> SOC-estimat",
@@ -841,7 +841,7 @@
           "SOC er en veldefinert regimekoordinat for cellen",
           "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
         ],
-        "source": "Seplos BMS (LiFePO4) — levende avlesning fra et privat Victron VRM-anlegg via intern MCP-bro (full site-proveniens i privat artifact; snapshot, ikke stabil tilstand). Feltkoder Battery Monitor 512: Voltage, Current, Temperature, StateOfCharge, StateOfHealth; tilstand «charging» — maalt 2026-09-16T13:41:57Z. Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
+        "source": "LiFePO4-BMS — anonymisert avlesning fra et privat Victron-anlegg (full site-proveniens i privat artifact). Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
       },
       "observer": {
         "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
@@ -875,7 +875,7 @@
       "phase": "overgang",
       "measure": {
         "target": "ladekurven V(t), I(t)",
-        "measurer": "laderen (MultiPlus/VE.Bus, privat anlegg)",
+        "measurer": "laderen (VE.Bus-inverter, privat anlegg)",
         "instrument": "V/I-sensorer i laderen",
         "proxy_chain": [
           "V, I over tid -> ladekurven",
@@ -895,7 +895,7 @@
           "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
           "kneet er et ekte regimeskifte, ikke bare en justering"
         ],
-        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning (snapshot): «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
+        "source": "VE.Bus-ladeprotokollen — «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
       },
       "observer": {
         "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
@@ -928,8 +928,8 @@
       "phase": "lagring",
       "measure": {
         "target": "SOC, effektbalanse, sykluser",
-        "measurer": "Victron-systemet (Cerbo GX/VRM)",
-        "instrument": "Battery Monitor (Seplos BMS), VE.Bus (MultiPlus), Grid meter, Growatt PV",
+        "measurer": "Victron-systemet (systemmonitor/VRM)",
+        "instrument": "Battery Monitor (LiFePO4-BMS), VE.Bus (inverter/lader), Grid meter, PV-vekselretter",
         "proxy_chain": [
           "shunt (A) -> coulomb-telling -> SOC",
           "spenningsmaaling (V) -> terminaltilstand",
@@ -949,7 +949,7 @@
           "bufferen er mer enn en lagerboks — den er en homeostatisk mekanisme",
           "SOC er bufferens tilstandskoordinat"
         ],
-        "source": "levende privat Victron VRM-anlegg (ESS, Cerbo GX, Seplos BMS) — avlest via intern MCP-bro; snapshot, ikke stabil tilstand; feltkoder: Voltage, Current, Battery Power, Temperature, StateOfCharge, StateOfHealth, tilstand «charging» — maalt 2026-09-16T13:41:57Z; full site-proveniens i privat artifact"
+        "source": "privat Victron VRM-anlegg (ESS) — anonymisert; full site-proveniens i privat artifact"
       },
       "observer": {
         "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",
@@ -1001,7 +1001,7 @@
           "DC og AC er to veldefinerte regimer",
           "konverteringen er en ekte transformasjon, ikke bare skalering"
         ],
-        "source": "inverterprodusentens spesifikasjon (Victron MultiPlus/Quattro)"
+        "source": "inverterprodusentens spesifikasjon (VE.Bus-inverter)"
       },
       "observer": {
         "bandwidth": "inverteren ser DC-siden og AC-siden hver for seg — broen selv har to vinduer",
@@ -2063,8 +2063,8 @@
       "id": "efc.victron_cccv_engine",
       "regime": {
         "name": "Victron lademotor — CC/CV-kneet",
-        "validity": "CC->CV-kneet: foerste tidspunkt der strømmen avtar (dI/dt < -0.1) mens spenningen er innenfor 0.05 av sitt maksimum — laderegimets fasegrense",
-        "law_form": "CC: I konstant, V stigende. CV: V konstant, I avtagende. Kneet er overgangen — samme overgangsmonster som H2Os trippelpunkt."
+        "validity": "CC->CV-kneet: foerste tidspunkt der strømmen avtar (dI/dt < -0.1) mens spenningen er innenfor 0.05 av sitt maksimum — lest som laderegimets fasegrense",
+        "law_form": "CC: I konstant, V stigende. CV: V konstant, I avtagende. Kneet leses som overgangen — analogi (ikke identitet) til H2Os trippelpunkt."
       },
       "phase": "regime_engine",
       "measure": {
@@ -2080,7 +2080,7 @@
       },
       "episenter": "kne-rammen: CC->CV leses som laderegimets faseovergang — trippelpunkt-analogien i elektrisk form",
       "buffer": {
-        "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen er bufferens metning",
+        "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen tolkes som bufferens metning",
         "note": "motoren maaler overgangen; bufferen er det som mettes."
       },
       "ontology": {
@@ -2103,7 +2103,7 @@
         ]
       },
       "fractal": {
-        "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster",
+        "pattern": "kneet er ett overgangsmonster som ekkoer H2Os trippelpunkt og L1->L2 — tre domener, ett monster (analogi)",
         "note": "motoren er overgangens egen maaler."
       },
       "coupling": {

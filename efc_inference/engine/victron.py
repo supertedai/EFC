@@ -64,45 +64,71 @@ class VictronChargeEngine(EFCEngine):
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
         """Classify each sample: 0 = CC (constant current), 1 = CV.
 
-        params_dict: {v_series, i_series, v_knee_tol, di_threshold}.
-        coordinates: times (np.ndarray, length n).
+        params_dict: {v_series, i_series, v_knee_tol, di_threshold,
+        cc_flat_threshold}. coordinates: times (np.ndarray, length n).
         Returns: np.ndarray of int labels, length n. Invalid input ->
         all zeros (no transition is claimed).
         """
-        n = int(np.asarray(coordinates).size)
+        t = np.asarray(coordinates, dtype=float)
+        n = t.size
+        out = np.zeros(n, dtype=int)
+
+        # Lukket håndtering: None-params, ikke-endelige/ikke-positive
+        # terskler, eller uordnede/ikke-endelige tider gir ingen overgang.
+        if not isinstance(params_dict, dict):
+            return out
+        if t.ndim != 1 or not np.all(np.isfinite(t)):
+            return out
+        if n < 2 or np.any(np.diff(t) <= 0):
+            return out
         v = np.asarray(params_dict.get("v_series", []), dtype=float)
         i = np.asarray(params_dict.get("i_series", []), dtype=float)
-        tol = float(params_dict.get("v_knee_tol", np.inf))
-        di_thr = float(params_dict.get("di_threshold", np.inf))
-        flat_thr = float(params_dict.get("cc_flat_threshold", np.inf))
+        tol = float(params_dict.get("v_knee_tol", np.nan))
+        di_thr = float(params_dict.get("di_threshold", np.nan))
+        flat_thr = float(params_dict.get("cc_flat_threshold", np.nan))
+        for thr in (tol, di_thr, flat_thr):
+            if not (np.isfinite(thr) and thr >= 0):
+                return out
         min_cc = 5  # CC-plataaet kreves over minst 5 bins foer kneet
+        cv_win, cv_need = 3, 2  # bekreftelsesvindu ETTER kandidaten
 
-        if v.size != n or i.size != n or n < min_cc + 3:
-            return np.zeros(n, dtype=int)
+        if v.size != n or i.size != n or n < min_cc + cv_win + 1:
+            return out
         if not np.all(np.isfinite(v)) or not np.all(np.isfinite(i)):
-            return np.zeros(n, dtype=int)
+            return out
 
         # Smooth the current with a short running mean (window 3) so
         # sensor jitter does not fake a decay.
         pad = np.concatenate(([i[0]], i, [i[-1]]))
         i_s = np.convolve(pad, np.ones(3) / 3.0, mode="valid")
 
-        # dI/dt via central differences, scaled per dt step (dt assumed
-        # uniform; knee location is robust to mild non-uniformity).
+        # dI/dt via central differences delt paa FAKTISK dt (terskelen er
+        # per tidsenhet, ikke per sample) — samme kurve gir samme kne
+        # uansett samplingsintervall.
         di = np.zeros(n)
-        di[1:-1] = (i_s[2:] - i_s[:-2]) / 2.0
+        dt_mid = t[2:] - t[:-2]
+        di[1:-1] = (i_s[2:] - i_s[:-2]) / dt_mid
 
         v_max = np.max(v)
         labels = np.zeros(n, dtype=int)
         knee_idx = None
-        for k in range(min_cc, n):
+        for k in range(min_cc, n - cv_win):
             # CC-fasen: strømmen skal ha vaert FLAT (median |dI/dt| under
             # flat_thr) over de foregaaende min_cc binnene — ellers er
             # avtagningen kildeeffekt (solkurve), ikke CV-start.
             plateau = np.median(np.abs(di[k - min_cc:k])) < flat_thr
             decaying = di[k] < -di_thr
             near_limit = v[k] >= v_max - tol
-            if plateau and decaying and near_limit:
+            if not (plateau and decaying and near_limit):
+                continue
+            # Bekreftelsesvindu: overgangen maa HOLDE — minst cv_need av
+            # de neste cv_win binnene avtar fortsatt og spenningen holder
+            # seg nær grensen. En enkeltstaaende spike eller et rebound
+            # (soltopp) bekreftes ikke, og soeket fortsetter.
+            window = range(k + 1, k + 1 + cv_win)
+            dec = sum(1 for j in window
+                      if di[j] < -di_thr and v[j] >= v_max - tol)
+            if dec >= cv_need:
                 knee_idx = k
                 break
         if knee_idx is not None:
@@ -155,7 +181,7 @@ class VictronChargeEngine(EFCEngine):
         validity = (
             "CC->CV-kneet: foerste tidspunkt der strømmen avtar "
             f"(dI/dt < -{di_thr}) mens spenningen er innenfor "
-            f"{tol} av sitt maksimum — laderegimets fasegrense"
+            f"{tol} av sitt maksimum — lest som laderegimets fasegrense"
         )
         return {
             "id": "efc.victron_cccv_engine",
@@ -164,8 +190,8 @@ class VictronChargeEngine(EFCEngine):
                 "validity": validity,
                 "law_form": (
                     "CC: I konstant, V stigende. CV: V konstant, I "
-                    "avtagende. Kneet er overgangen — samme "
-                    "overgangsmonster som H2Os trippelpunkt."
+                    "avtagende. Kneet leses som overgangen — analogi "
+                    "(ikke identitet) til H2Os trippelpunkt."
                 ),
             },
             "phase": "regime_engine",
@@ -182,7 +208,7 @@ class VictronChargeEngine(EFCEngine):
             },
             "episenter": "kne-rammen: CC->CV leses som laderegimets faseovergang — trippelpunkt-analogien i elektrisk form",
             "buffer": {
-                "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen er bufferens metning",
+                "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen tolkes som bufferens metning",
                 "note": "motoren maaler overgangen; bufferen er det som mettes.",
             },
             "ontology": {
