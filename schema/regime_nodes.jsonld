@@ -626,7 +626,7 @@
           "S er en veldefinert regimekoordinat",
           "et pre-inflasjonært regime eksisterer"
         ],
-        "source": "EFC README regime-arkitektur (L0-L3); Grid-Higgs Framework (GHF)"
+        "source": "EFC README regime-arkitektur (README.md:163-175) for den kosmologiske instansen; Foundations of EFC (DOI 10.6084/m9.figshare.31135597) for den generiske L-definisjonen. S-konvensjonen her er den normaliserte (S i [0,1]); R(k,S)-dokumentet bruker en logaritmisk S-variabel — de blandes ikke."
       },
       "observer": {
         "bandwidth": "ingen observator kan se L0 direkte — bare via L1-avtrykket (primordial P(k)); en kanal av hele spekteret",
@@ -731,9 +731,10 @@
       "ontology": {
         "assumes": [
           "S > 0 og vokser i dette regimet",
-          "vekstmodifikasjonen er perturbasjonsnivaaets, ikke bakgrunnens"
+          "vekstmodifikasjonen er perturbasjonsnivaaets, ikke bakgrunnens",
+          "mu < 1 er perturbasjonsnivaa-konvensjonen (README.md:170); AGENTS.md:322-330 oppgir mu > 1 for en annen sektor — repoet forener ikke disse to konvensjonene, og denne noden deklarerer perturbasjonsnivaaet eksplisitt"
         ],
-        "source": "EFC README regime-arkitektur; EFC Screening Model (DOI 10.6084/m9.figshare.31940469)"
+        "source": "EFC README regime-arkitektur (README.md:163-175); RCMP_COMPLIANCE_MATRIX.md (f sigma8, P(k), S8, E_G); EFC Screening Model (DOI 10.6084/m9.figshare.31940469)"
       },
       "observer": {
         "bandwidth": "OBSERVATOREN STAAR I L2: vi ser bakover til L1 (CMB) og maaler veksten i vårt eget regime — EM-vinduet og gravitasjonsbolger er noen faa kanaler av hele spekteret",
