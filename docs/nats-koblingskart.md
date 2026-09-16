@@ -1,10 +1,10 @@
 # NATS-koblingskart — hvilke bussemner mater hvilke motorer
 
-Trinn 9 (2026-09-16). Kartet er en **observasjon**, ikke en taksonomi:
-det beskriver hvilke emner verdensbussen faktisk bærer, og hvilke
-EFC-motorer de kan mate. Inndelingen av verden i domener er en beslutning
-for eierne — dette kartet bare SPEILER den beslutningen slik den står på
-bussen i dag.
+Trinn 9 (2026-09-16), oppdatert etter trinn 10–12. Kartet er en
+**observasjon**, ikke en taksonomi: det beskriver hvilke emner
+verdensbussen faktisk bærer, og hvilke EFC-motorer de kan mate.
+Inndelingen av verden i domener er en beslutning for eierne — dette
+kartet bare SPEILER den beslutningen slik den står på bussen i dag.
 
 ## Bussen
 
@@ -28,24 +28,35 @@ den).
 
 | Emne | Motor | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Bussen bærer `batteri_spenning` (V) og `batteri_ladning` (SOC) — timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` med grunn. |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Bussen bærer tre serier: `batteri_spenning` (V), `batteri_ladning` (SOC) og — fra trinn 10 — `batteri_stroem` (A, VRM-kode `CI`, målt). Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` med grunn. |
 
 **Motorens kontrakt vs broens skjema — to forskjellige ting.** Motoren
-er injiserbar og krever tre ting per kjøring: `v_series` (V over tid),
-`i_series` (A over tid) og tersklene `v_knee_tol`, `di_threshold`,
-`cc_flat_threshold` — ingen av dem er bussens ansvar. Broens skjema er
-bussens egne serier; det broen gjør er å oversette dem til kontrakten.
-Auto-deteksjon krever derfor TO ting fra kilden, ikke én: at `i_series`
-publiseres (serie `batteri_stroem`, A), OG at oppløsningen er fin nok —
-kneet er målt usynlig i 15-min-midler (trinn 8), så en I-serie på
-timeoppløsning ville fortsatt gi `found=False`, bare med en annen grunn.
+er injiserbar og krever per kjøring:
+
+1. `v_series` — spenning over tid (V). Bussen bærer den i dag
+   (`batteri_spenning`).
+2. `i_series` — strøm over tid (A). Bussen bærer den fra trinn 10
+   (`batteri_stroem`); produsentkoden er merget (Hetzner-repoet,
+   PR #969) og **deploy til bussen er eiernes steg** — inntil da er
+   serien fraværende på bussen.
+3. Tersklene `v_knee_tol`, `di_threshold`, `cc_flat_threshold` —
+   motorens egne, aldri bussens ansvar.
+
+Broens skjema er bussens egne serier; det broen gjør er å oversette dem
+til kontrakten. **Auto-deteksjon av CC→CV-kneet krever alle tre
+delene av kontrakten** — v-serien finnes, i-serien er bygget men
+deploy-avhengig, tersklene er motorens. I tillegg krever kneet en
+tidsoppløsning fin nok til å se strømplatået: kneet er målt usynlig i
+15-min-midler (trinn 8), så en I-serie på timeoppløsning vil fortsatt
+gi `found=False` — bare med en annen grunn.
 
 ### Eksisterende på bussen (bygget av andre, ikke av motoren)
 
 | Emne | Innhold | Motor |
 |---|---|---|
-| `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-**baseline**: OBSERVERTE målinger (DESI DR1, eBOSS) med L/S-klassifisering — referanseverdier, ikke EFC-utfall | ingen — baselinen er arbiterens grunnlag, ikke motor-output; `growth` er kandidaten som skal MÅLES mot den |
-| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` (fσ8 — prediksjonssiden av arbiteren) |
+| `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-**baseline**: OBSERVERTE målinger (DESI DR1, eBOSS) med L/S-klassifisering — referanseverdier, ikke EFC-utfall | ingen — baselinen er arbiterens grunnlag, ikke motor-output |
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
+| `kosmos.kosmologi.utfall.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12; publikasjon forutsetter skrivetilgang eierne ennå ikke har gitt |
 | `kosmos.kosmologi.diskusjon.arxiv` | arXiv-papirer | (kildegrunnlag, ikke måling) |
 
 ### Kandidater (emner som finnes, kobling ikke bygget)
@@ -72,4 +83,6 @@ Dette repoet **leser aldri bussen selv** — motoren er injiserbar og
 site-anonym (trinn 8-designet). Broen som leser bussen er en ekstern
 datakilde med read-only-konsument-rolle. Skillet er med vilje: atlaset
 skal ikke avhenge av en levende buss; bussen er én av flere kilder som
-kan mate det.
+kan mate det. Det gjelder begge veier: **publisering tilbake til
+bussen** (f.eks. arbiterens utfall) er ikke bygget inn — det er en
+dør eierne kan åpne, ikke en dør repoet lukker.
