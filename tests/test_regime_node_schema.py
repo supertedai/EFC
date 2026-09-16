@@ -386,33 +386,31 @@ def test_no_private_site_info_in_public_instance():
 # --------------------------------------------------------------------------
 
 # De kosmologiske OBSERVASJONENE i docs/validation-ledger/data/atlas.json
-# (instrumentbaarne maalinger, ikke modellparametriseringer). Listen er en
-# eksplisitt designbeslutning; atlas.json er kilden for hver enkelt.
+# (instrumentbaarne maalinger, ikke modellparametriseringer). Verdien er
+# LISTEN av regime-noder observasjonen er koblet til — bro-observasjoner
+# (bao, isw, h0_tension) bærer to regimer. Atlasets L-labels er en ANNEN
+# akse (lag-akse) enn fasekjeden efc.l0-l3; hver node deklarerer begge.
 KOSMOLOGISKE_OBSERVASJONER = {
-    # L1-regimet (lineaert, mu ~ 1)
-    "obs.bao": "efc.l1",
-    "obs.cmb_tt": "efc.l1",
-    "obs.cmb_lensing": "efc.l1",
-    "obs.bbn": "efc.l1",
-    # L2-regimet (vekst/struktur)
-    "obs.fsigma8": "efc.l2",
-    "obs.s8": "efc.l2",
-    "obs.eg": "efc.l2",
-    "obs.isw": "efc.l2",
-    "obs.ksz": "efc.l2",
-    "obs.cluster_mass": "efc.l2",
-    "obs.cluster_hmf": "efc.l2",
-    "obs.rar": "efc.l2",
-    "obs.bullet": "efc.l2",
-    "obs.satellites": "efc.l2",
-    "obs.jwst_ems": "efc.l2",
-    "obs.gw_ct": "efc.l2",
-    "obs.pta_gwb": "efc.l2",
-    # H0-tensionen er KRYSS-REGIME: spenningen mellom L1 og L2
-    "obs.h0_tension": "efc.l2",
-    # L3 (fjern fremtid / bakgrunn)
-    "obs.w0wa": "efc.l3",
-    "obs.cc": "efc.l3",
+    "obs.bao": ["efc.l1", "efc.l2"],   # r_d frosset i L1, maalt i L2
+    "obs.cmb_tt": ["efc.l1"],
+    "obs.cmb_lensing": ["efc.l2"],     # linser L2-struktur
+    "obs.bbn": ["efc.l1"],             # fasekjedens tidligste avlesning
+    "obs.fsigma8": ["efc.l2"],
+    "obs.s8": ["efc.l2"],
+    "obs.eg": ["efc.l2"],
+    "obs.isw": ["efc.l1", "efc.l2"],   # kryssregime
+    "obs.ksz": ["efc.l2"],
+    "obs.cluster_mass": ["efc.l2"],
+    "obs.cluster_hmf": ["efc.l2"],
+    "obs.rar": ["efc.l2"],
+    "obs.bullet": ["efc.l2"],
+    "obs.satellites": ["efc.l2"],
+    "obs.jwst_ems": ["efc.l2"],
+    "obs.gw_ct": ["efc.l2"],
+    "obs.pta_gwb": ["efc.l2"],
+    "obs.h0_tension": ["efc.l1", "efc.l2"],  # spenningen MELLOM regimene
+    "obs.w0wa": ["efc.l3"],
+    "obs.cc": ["efc.l3"],
 }
 
 
@@ -424,24 +422,34 @@ def test_cosmological_observation_nodes_exist():
 
 
 def test_observations_are_coupled_to_regimes():
-    """Hver observasjon skal vaere koblet til sitt regime med
+    """Hver observasjon skal vaere koblet til sine regime(r) med
     OBSERVED_IN — ikke bare ligge loest i atlaset."""
     rels = _instance()["relations"]
     koblede = {(r["subject"], r["object"])
                for r in rels if r["predicate"] == "OBSERVED_IN"}
-    for obs_id, regime in KOSMOLOGISKE_OBSERVASJONER.items():
-        assert (obs_id, regime) in koblede, \
-            f"mangler OBSERVED_IN-kobling: {obs_id} -> {regime}"
+    for obs_id, regimer in KOSMOLOGISKE_OBSERVASJONER.items():
+        for regime in regimer:
+            assert (obs_id, regime) in koblede, \
+                f"mangler OBSERVED_IN-kobling: {obs_id} -> {regime}"
 
 
 def test_bao_is_standard_ruler():
-    """BAO-noden skal deklarere lydhorisonten r_s som standardlinjal —
+    """BAO-noden skal deklarere lydhorisonten r_d som standardlinjal —
     den eneste kjente fysiske lengden i kosmologien."""
     inst = _instance()
     bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
     tekst = (bao["regime"]["validity"] + " " + bao["episenter"]).upper()
-    assert "R_S" in tekst or "STANDARDLINJAL" in tekst or \
+    assert "R_D" in tekst or "STANDARDLINJAL" in tekst or \
         "STANDARD RULER" in tekst or "LYDHORISONT" in tekst
+
+
+def test_bao_declares_lag_axis_vs_phase_chain():
+    """BAO-noden skal deklarere at atlasets L-akse er en ANNEN inndeling
+    enn regime-nodenes fasekjede — aksene blandes ikke."""
+    inst = _instance()
+    bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
+    kilde = bao["ontology"]["source"].lower()
+    assert "lag-akse" in kilde and "fasekjede" in kilde
 
 
 def test_observation_nodes_sourced_from_atlas():
