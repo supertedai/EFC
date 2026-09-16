@@ -75,8 +75,17 @@ skrivetilgang eierne ennå ikke har gitt.
 | `kosmos.hoper.observasjon.mast-caom` | Hoper (MAST/CAOM) | `cluster` |
 | `kosmos.galakser.observasjon.mast-caom` | Galakser | `lensing` (svak linsing) |
 | `kosmos.stjerner.observasjon.mast-caom` | Stjerner | `rotation` (galakserotasjon er L2-domenet; stjernerotasjon er analogi-kandidat) |
-| `verden.vaer.tilstand.ecowitt` / `metar` | Vær-tilstand | `water` (faseoverganger i atmosfærisk vann — analogi, ikke identitet) |
 | `verden.energi.prediksjon.entsoe-dayahead` | Kraftpris-prognoser | (energiøkonomi — ingen motor ennå) |
+
+### Koblet via vær-broen (L-008)
+
+| Emne | Motor | Status |
+|---|---|---|
+| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** (utenfor dette repoet, read-only). METAR-kanalen: temperatur + duggpunkt → spredning, RH-proxy (P_sat(Td)/P_sat(T) via motorens dampkurve), regime-klassifisering og 0 °C-passeringer. Første kjøring (2026-09-16): 459 punkter, 149 kondensasjonsnære, én fullstendig metning (spredning 0,0 °C). |
+| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — ecowitt-kanalen har bare temperatur (ingen fuktighet); der er 0 °C-passeringene de eneste temperaturbaserte indikatorene/proxyene for mulig frysing eller smelting — selve faseovergangen er ikke observert. |
+
+Merk: kondensasjonsnærhet er en faseovergangs-PROXY, ikke selve overgangen —
+analogi, ikke identitet (samme disiplin som resten av kartet).
 
 ### Ikke koblet, og ikke åpenbart motorkandidat (per i dag)
 
