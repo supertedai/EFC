@@ -814,7 +814,7 @@
       "id": "batteri.celle",
       "regime": {
         "name": "LiFePO4-cellen — det kjemiske regimet",
-        "validity": "SOC i [0,1] er regimekoordinaten: OCV-kurven er flat i midten og bratt i endene — spenningen er avlesningen, SOC er tilstanden",
+        "validity": "SOC i [0,1] er regimekoordinaten: OCV-kurven er flat i midten og bratt i endene — spenningen er avlesningen, SOC er tilstanden. Celle vs pakke: maalingene er PAKKESpenning; cellenivaaet er BMS-intern proxy. Serie 16S er antatt fra pakkespenning ~53 V, men er ikke dokumentert i atlaset.",
         "law_form": "Li+ interkalering i FePO4/grafen — kjemisk potensial som spenning"
       },
       "phase": "kjemisk_regime",
@@ -823,12 +823,12 @@
         "measurer": "Battery Monitor som leser Seplos BMS (Hasselvegen 5)",
         "instrument": "spennings-, strøm- og temperatursensorer",
         "proxy_chain": [
-          "V (OCV) -> SOC",
-          "I (coulomb-telling) -> SOC",
+          "coulomb-telling (I over tid) -> SOC-estimat",
+          "V (OCV) -> SOC-korreksjon kun etter hvile",
           "temperatur -> SOH-korreksjon",
-          "V/A/W -> effekt og aldring"
+          "BMS-kalibreringslogikk -> SOC/SOH (estimator, ikke momentanmaaling)"
         ],
-        "placement": "sensorene sitter paa cellen, ikke i kjemien — alt er proxy",
+        "placement": "sensorene sitter paa pakken, ikke i kjemien — cellenivaaet er BMS-intern proxy av pakkemaalingene",
         "compression": "mV og mA -> ett SOC-tall"
       },
       "episenter": "SOC-rammen: cellens tilstand leses gjennom SOC — spenningen er proxyen, ikke tilstanden selv",
@@ -841,7 +841,7 @@
           "SOC er en veldefinert regimekoordinat for cellen",
           "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
         ],
-        "source": "Seplos BMS (LiFePO4) — levende avlesning via /opt/hermes-opus/victron-mcp.py, anlegg 380961 «Hasselvegen 5»; LiFePO4-cellekjemi (OCV-SOC-flathet ved lav C-rate)"
+        "source": "Seplos BMS (LiFePO4) — levende avlesning via /opt/hermes-opus/victron-mcp.py, anlegg 380961 «Hasselvegen 5» (snapshot, ikke stabil tilstand): feltkoder Battery Monitor 512: Voltage 53,13 V, Current 47,90 A, Temperature 20 °C, StateOfCharge 38 %, StateOfHealth 100 %, tilstand «charging» — maalt 2026-09-16T13:41:57Z. Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
       },
       "observer": {
         "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
@@ -883,7 +883,7 @@
           "CC-fasens lengde -> utnyttet kapasitet"
         ],
         "placement": "laderen styrer og maaler i samme sløyfe",
-        "compression": "to timer lading -> ett kne-punkt"
+        "compression": "ladehistorikk -> ett kne-punkt (tidsserien kreves for aa dokumentere kneet)"
       },
       "episenter": "kneet: CC -> CV er laderegimets faseovergang — trippelpunkt-analogien: to regimer (strømstyrt og spenningsstyrt) møtes i ett punkt",
       "buffer": {
@@ -895,7 +895,7 @@
           "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
           "kneet er et ekte regimeskifte, ikke bare en justering"
         ],
-        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning: «Effective charge voltage» 55,9 V (Hasselvegen 5, 2026-09-16); CC/CV er standard LiFePO4-protokoll"
+        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning (snapshot): «Effective charge voltage» 55,9 V, «Charge voltage setpoint» 55,8 V, BMS-CVL 57,6 V (Hasselvegen 5, 2026-09-16T13:41:57Z) — tre ulike nivaaer: effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
       },
       "observer": {
         "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
@@ -931,9 +931,10 @@
         "measurer": "Victron-systemet (Cerbo GX/VRM)",
         "instrument": "Battery Monitor (Seplos BMS), VE.Bus (MultiPlus), Grid meter, Growatt PV",
         "proxy_chain": [
-          "shunt (V, A) -> SOC via coulomb-telling",
-          "lastmåling -> topp-effekter",
-          "syklus-telling -> aldring"
+          "shunt (A) -> coulomb-telling -> SOC",
+          "spenningsmaaling (V) -> terminaltilstand",
+          "lastmåling (W) -> topp-effekter",
+          "syklus-telling + BMS-estimator -> aldring (SOH)"
         ],
         "placement": "målingen skjer i bufferen selv — den ser sin egen fyllstand",
         "compression": "sekund-for-sekund-strømmer -> ett SOC-tall og én dagkurve"
@@ -976,7 +977,7 @@
       "regime": {
         "name": "Inverteren — regimekonverteren",
         "validity": "DC inn, AC ut (50 Hz, 230 V) — to regimer i ett hus; konverteringen er reversibel (ladevekselretter)",
-        "law_form": "pulsbreddemodulasjon: likestrøm kappes til vekselstrøm"
+        "law_form": "pulsbreddemodulasjon DC->AC (invertermodus); likeretting AC->DC (lademodus) — to retninger, samme hus"
       },
       "phase": "konvertering",
       "measure": {
@@ -1007,7 +1008,7 @@
         "awareness": "instrument_window"
       },
       "emergence": {
-        "loop": "DC -> pulsbreddemodulasjon -> AC -> forbruk -> DC igjen — konverteringsloopen",
+        "loop": "DC -> PWM -> AC -> forbruk; AC -> likeretting -> DC -> lading — den toveis konverteringsloopen",
         "properties": [
           "sinusbølge",
           "nettfølging",

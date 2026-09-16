@@ -339,3 +339,34 @@ def test_proxy_chain_v_a_w_to_soc():
     celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
     kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
     assert "V" in kjede and "SOC" in kjede
+
+
+def test_soc_proxy_is_qualified():
+    """SOC er et ESTIMAT, ikke en direkte maaling: proxychain skal skille
+    coulomb-telling (estimert) fra OCV (kun etter hvile) — ellers
+    forveksler vi ladespenning med hvilespenning."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
+    assert "COULOMB" in kjede and "ETTER HVILE" in kjede
+    assert "ESTIMAT" in kjede or "ESTIMATOR" in kjede
+
+
+def test_pack_vs_cell_declared():
+    """Målingene er PAKKESpenning; cellenivaaet er BMS-intern proxy.
+    Skillet skal vaere deklarert i cellenodens validity."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    validity = celle["regime"]["validity"].upper()
+    assert "PAKKE" in validity and "BMS" in validity
+
+
+def test_inverter_is_bidirectional():
+    """Inverteren er en TOVEIS konverterer: DC->AC (invertermodus) og
+    AC->DC (lademodus) — ikke bare den ene retningen."""
+    inst = _instance()
+    inv = next(n for n in inst["nodes"] if n["id"] == "batteri.inverter")
+    tekst = (inv["regime"]["law_form"] + " " + inv["emergence"]["loop"]).upper()
+    assert "DC -> AC" in tekst.replace("DC->AC", "DC -> AC").replace(
+        "AC->DC", "AC -> DC") or ("DC->AC" in tekst and "AC->DC" in tekst)
+    assert ("LADEMODUS" in tekst or "LADING" in tekst)
