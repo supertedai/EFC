@@ -78,3 +78,41 @@ def test_artefakt_skrives_uansett(tmp_path):
                       publiser=lambda emne, payload: "test")
     artefakt = json.loads((tmp_path / "dom.json").read_text())
     assert artefakt["rapport"]["dom"]["status"] == r["dom"]["status"]
+
+
+def test_transport_med_krasj_stopper_ikke_artefakten(tmp_path):
+    """En transport som KASTRER unntak skal ikke stoppe kjøringen —
+    dommen er felt, artefakten skrives, feilen rapporteres."""
+    def krasjende_transport(emne, payload):
+        raise RuntimeError("nettet falt ut")
+
+    r = kjoerer.kjoer(_dr2_melding(fs8=0.430, sigma=0.030),
+                      artefakt_sti=str(tmp_path / "dom.json"),
+                      publiser=krasjende_transport)
+    assert r["dom"]["status"] == "PASS"
+    assert "publiseringsfeil" in r["publiseringsstatus"]
+    artefakt = json.loads((tmp_path / "dom.json").read_text())
+    assert artefakt["rapport"]["dom"]["status"] == "PASS"
+
+
+def test_transport_feilstatus_stopper_ikke_artefakten(tmp_path):
+    """En transport som returnerer en feilstatus (ikke kaster) —
+    artefakten skrives likevel, statusen rapporteres ærlig."""
+    r = kjoerer.kjoer(_dr2_melding(fs8=0.430, sigma=0.030),
+                      artefakt_sti=str(tmp_path / "dom.json"),
+                      publiser=lambda emne, payload: "nettverksfeil: tidsavbrudd")
+    assert r["dom"]["status"] == "PASS"
+    assert r["publiseringsstatus"] == "nettverksfeil: tidsavbrudd"
+    assert (tmp_path / "dom.json").exists()
+
+
+def test_ugyldig_nats_produsent_gir_status_uten_krasj(monkeypatch):
+    """Ugyldig NATS_PRODUSENT-form (ikke-tall port, manglende deler)
+    skal gi en statusstreng — aldri ValueError."""
+    for url in ("nats://u:p@vert:ikke-port",
+                "nats://u:p@vert",
+                "ikke-en-url"):
+        monkeypatch.setenv("NATS_PRODUSENT", url)
+        status = kjoerer.publiser_best_effort(
+            "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter", "{}")
+        assert isinstance(status, str) and status != "ok", url

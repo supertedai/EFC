@@ -43,10 +43,11 @@ def publiser_best_effort(emne: str, payload: str) -> str:
         bruker, rest = url.split("://", 1)[1].split(":", 1)
         passord, vertport = rest.rsplit("@", 1)
         vert, port = vertport.split(":", 1)
+        port = int(port)
     except (ValueError, IndexError):
         return "ugyldig NATS_PRODUSENT-form"
     try:
-        s = socket.create_connection((vert, int(port)), timeout=TIDSAVBRUDD)
+        s = socket.create_connection((vert, port), timeout=TIDSAVBRUDD)
         s.settimeout(TIDSAVBRUDD)
         s.recv(4096)
         c = json.dumps({"verbose": False, "headers": True,
@@ -99,9 +100,6 @@ def main() -> int:
     parser.add_argument("--params", default=None,
                         help="valgfri JSON-fil med motorparametre "
                              "(f.eks. mu_0) for motorprediksjonen")
-    parser.add_argument("--publiser-emne", default=OPPGJOER_EMNE,
-                        help="emne for oppgjør-publisering (bare "
-                             "PASS/FAIL)")
     args = parser.parse_args()
 
     melding = json.loads(Path(args.melding).read_text(encoding="utf-8"))
@@ -109,8 +107,7 @@ def main() -> int:
     if args.params:
         params = json.loads(Path(args.params).read_text(encoding="utf-8"))
 
-    resultat = kjoer(melding, artefakt_sti=args.artefakt, params=params,
-                     publiser_emne=args.publiser_emne)
+    resultat = kjoer(melding, artefakt_sti=args.artefakt, params=params)
     dom = resultat["dom"]
     print(f"dom: {dom['status']}")
     print(f"årsak: {dom['årsak']}")
