@@ -20,3 +20,7 @@ docs/audit_report.md
 #
 # En worktree er en LOKAL arbeidsflate. Den hoerer aldri hjemme i historikken.
 .worktrees/
+
+# Kunnskapslivssyklusen: råinntaket lever lokalt (append-only arbeidsdata);
+# kandidater som skal bevares går til efc-banken.
+data/inntak/

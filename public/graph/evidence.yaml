@@ -1,0 +1,69 @@
+# EFC evidensregister — fase 1
+#
+# Én post per evidenskilde. source_class må aldri alene gi en påstand
+# høyere epistemisk status: et internt ledger-resultat støtter
+# derived_result, ikke automatisk independent_support.
+schema_version: "1.0"
+evidence:
+  - evidence_id: ev.efc.h1.001
+    type: derived_result
+    title: "Vekstrate-analyse: fσ₈ under ΛCDM-kurven, DAIC = -2.91"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: H1}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.h1.001, efc.core.status.001]
+    limitations: ["2,2σ-signal er under terskelen for sikker deteksjon; indikasjon, ikke påstand."]
+
+  - evidence_id: ev.efc.desidr2.001
+    type: derived_result
+    title: "DESI DR2-analyse: α kollapset -1.00 ± 0.46 → -0.14 ± 0.21; Variant H DAIC = +4.05"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: "H1 DESI DR2 update"}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.h1.002, efc.h1.003, efc.core.status.001]
+    limitations: ["EFCs EGEN analyse av DESI DR2-data; den eksterne DESI-referansen (paper/DOI/tabell) skal etterfylles i locator før klassen kan heves tilbake til external_release. Bakgrunnssignalet er eliminert; perturbasjonssektoren er primærkanalen og krever Stage-IV."]
+
+  - evidence_id: ev.efc.h2.001
+    type: derived_result
+    title: "Planck 2018-konsistens: mu-Σ-degenerasjonsdal funnet, L0-grensen holder"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: H2}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.h2.001]
+    limitations: ["Konsistens er ikke bekreftelse; L0-reduksjonen er en modell-egenskap som må overleve CMB-validering."]
+
+  - evidence_id: ev.efc.h3.001
+    type: derived_result
+    title: "B0 Bridge Test: mu > 1 ekskludert med Δχ² = +495 til +2680"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: H3}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.h3.001]
+    limitations: ["Intern analyse; sign-begrensningen gjelder innenfor modellens antakelser."]
+
+  - evidence_id: ev.efc.h4.001
+    type: derived_result
+    title: "Lemma 1: DE²(z) ≤ 0, analytisk bevist og numerisk verifisert"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: H4}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.h4.001]
+    limitations: ["Matematisk lemma — beviser modell-egenskapen, ikke at modellen beskriver universet."]
+
+  - evidence_id: ev.efc.h5.001
+    type: external_source
+    title: "Strukturell mekanisme fra virkningen: mu < 1 OG Σ ≥ 1 (DOI:10.6084/m9.figshare.32037990)"
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: H5, doi: "10.6084/m9.figshare.32037990"}
+    source_class: published_artifact
+    status: available
+    supports_scope: [efc.h5.001, efc.h5.002]
+    limitations: ["15 levedyktige løsninger av 135 000 skannede; mu < 1 robust (100 %), Σ > 1 semirobust (61 %)."]
+
+  - evidence_id: ev.efc.sparc.001
+    type: derived_result
+    title: "EFC-R-SPARC: ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹"
+    locator: {repository: supertedai/EFC, path: efc_inference, dataset: SPARC}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.sparc.001]
+    limitations: ["Én måling, én metodikk; krever uavhengig reproduksjon før høyere status."]

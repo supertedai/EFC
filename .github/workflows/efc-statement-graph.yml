@@ -1,0 +1,33 @@
+name: EFC statement-graph
+
+# Fase 1: statement-grafen og side-eierskapet valideres på hver PR som
+# rører dem. Leser bare; skriver aldri noe.
+on:
+  pull_request:
+    paths:
+      - "public/graph/**"
+      - "public/page-meta/**"
+      - "scripts/maintenance/statement_graph_check.py"
+      - "logs/activity.jsonl"
+      - "scripts/maintenance/validate_activity_log.py"
+      - "schemas/insight-candidate.schema.json"
+      - "scripts/maintenance/triage_insikt.py"
+      - "scripts/maintenance/verifier_bench.py"
+      - ".github/workflows/efc-statement-graph.yml"
+
+jobs:
+  statement-graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Installer avhengigheter
+        run: python3 -m pip install pyyaml jsonschema
+      - name: Statement-graf
+        run: python3 scripts/maintenance/statement_graph_check.py --json
+      - name: Aktivitetslogg
+        run: python3 scripts/maintenance/validate_activity_log.py --json
+      - name: Verifier-benchmark
+        run: python3 scripts/maintenance/verifier_bench.py --json

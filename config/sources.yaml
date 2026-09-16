@@ -1,0 +1,23 @@
+# Web-inntak fase 1 — tre nøkkelfrie kilder.
+# NASA ADS (ads) ligger kommentert: krever ADS_API_TOKEN.
+# Takene er fase-1-verdier; endringer versjoneres og testes på replay.
+daglig_tak: 100
+per_kilde_tak: 40
+ttl_dager_kandidat: 90
+arxiv:
+  enabled: true
+  poll_interval_hours: 6
+  max_items: 40
+crossref:
+  enabled: true
+  poll_interval_hours: 24
+  max_items: 40
+openalex:
+  enabled: true
+  poll_interval_hours: 24
+  max_items: 40
+# ads:
+#   enabled: false
+#   poll_interval_hours: 24
+#   max_items: 40
+#   krever_token: ADS_API_TOKEN
