@@ -8,12 +8,12 @@
 schema_version: "1.0"
 statements:
   - statement_id: efc.core.status.001
-    text: "EFC er forenlig med sen-tids-data på ~2σ-nivå og er en kandidat-utvidelse av ΛCDM i påvente av CMB-validering; under 3σ-terskelen for sikker deteksjon, og Stage-IV-data (DESI DR3, Euclid DR1) kreves for avgjørende signifikans."
+    text: "EFC er forenlig med sen-tids VEKSTRATE-data på ~2σ-nivå i perturbasjonssektoren og er en kandidat-utvidelse av ΛCDM i påvente av CMB-validering. Bakgrunnssektoren bærer IKKE lenger noe signal (DESI DR2: 2,2σ → 0,68σ, se efc.h1.002); statusen gjelder kun μ/Σ/η-kanalen."
     kind: status
     epistemic_level: partial_support
     owner_role: researcher
     status: active
-    supported_by: [ev.efc.h1.001]
+    supported_by: [ev.efc.h1.001, ev.efc.desidr2.001]
     contradicts: []
     supersedes: null
     appears_on: []

@@ -73,18 +73,29 @@ def hoved() -> int:
     sti = Path(sys.argv[1])
     import yaml
     k = yaml.safe_load(sti.read_text(encoding="utf-8")) or {}
-    # content_hash-kontroll: hashen i fila skal stemme med innholdet.
+    if not isinstance(k, dict):
+        print(json.dumps({"status": "needs-rework", "grunn": "kandidaten er ikke et YAML-objekt"},
+                         ensure_ascii=False, indent=1))
+        return 1
+    # content_hash-kontroll: ALLTID — manglende hash er needs-rework, ikke et
+    # valgfritt tillegg. Kanonisk serialisering: json.dumps(sort_keys=True,
+    # ensure_ascii=False) over det yaml-lastede objektet uten content_hash.
+    # Generator og verifier MÅ dele denne formen (design §0, ærlighetsregel 2).
     lagret = k.get("content_hash")
-    if lagret:
-        kopi = dict(k)
-        kopi.pop("content_hash", None)
-        beregnet = "sha256:" + hashlib.sha256(
-            json.dumps(kopi, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-        if beregnet != lagret:
-            print(json.dumps({"status": "needs-rework",
-                              "grunn": "content_hash stemmer ikke med innholdet"},
-                             ensure_ascii=False, indent=1))
-            return 1
+    if not isinstance(lagret, str):
+        print(json.dumps({"status": "needs-rework",
+                          "grunn": "content_hash mangler eller er ugyldig"},
+                         ensure_ascii=False, indent=1))
+        return 1
+    kopi = dict(k)
+    kopi.pop("content_hash", None)
+    beregnet = "sha256:" + hashlib.sha256(
+        json.dumps(kopi, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    if beregnet != lagret:
+        print(json.dumps({"status": "needs-rework",
+                          "grunn": "content_hash stemmer ikke med innholdet"},
+                         ensure_ascii=False, indent=1))
+        return 1
     try:
         import jsonschema
     except ImportError:

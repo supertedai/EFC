@@ -35,7 +35,8 @@ NIVAA_GYLDIG = {"documented", "reconstruction", "partial_support",
 def _last_yaml(sti: Path) -> dict:
     import yaml  # fraktes med repoets avhengigheter
     with open(sti, encoding="utf-8") as f:
-        return yaml.safe_load(f) or {}
+        d = yaml.safe_load(f)
+    return d if isinstance(d, dict) else {}
 
 
 def sjekk() -> dict:
@@ -101,6 +102,12 @@ def sjekk() -> dict:
         if eid in ev_ids:
             funn["harde"].append({"type": "duplicate_evidence_id", "msg": f"duplikat: {eid}"})
         ev_ids[eid] = e
+        if e.get("type") == "external_source":
+            lok = e.get("locator") or {}
+            if not (lok.get("doi") or lok.get("url")):
+                funn["harde"].append(
+                    {"type": "external_source_uten_lenke", "id": eid,
+                     "msg": "ekstern kilde må ha doi eller url i locator"})
         for ref in e.get("supports_scope", []):
             if ref not in st_ids:
                 funn["dangling_reference"].append(

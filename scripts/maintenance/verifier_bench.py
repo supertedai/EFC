@@ -129,15 +129,21 @@ def hoved() -> int:
                          "detektert": detektert, "utfall": utfall.get("status"),
                          "triage": utfall.get("triage"), "grunn": utfall.get("grunn")})
     detekterte = sum(1 for r in resultat if r["detektert"])
+    etikett = ("ÆRLIG ETIKETT: benchen måler deteksjon av KJENTE MEKANISKE feil "
+               "(hash/proveniens/rolle/injeksjon) i triage-leddet. Den beviser "
+               "IKKE vitenskapelig validitet og er ikke en uavhengig fasit — "
+               "uavhengige/adversarielle negative eksempler er et senere trinn.")
     if a.json:
         print(json.dumps({"detekterte": detekterte, "av": len(resultat),
-                          "resultater": resultat}, ensure_ascii=False, indent=1))
+                          "resultater": resultat, "etikett": etikett},
+                         ensure_ascii=False, indent=1))
     else:
         print(f"verifier-bench: {detekterte}/{len(resultat)} kjente feil detektert")
         for r in resultat:
             merke = "OK " if r["detektert"] else "GAP"
             print(f"  {merke} {r['feilklasse']}: {r['utfall']}"
                   + (f" ({r['grunn']})" if r.get("grunn") else ""))
+        print("  " + etikett)
     return 0 if detekterte == len(resultat) else 1
 
 
