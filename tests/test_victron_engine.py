@@ -218,6 +218,24 @@ def test_dt_uavhengighet():
     assert abs(knee_grov["t_knee"] - 60.0) <= 4.0 * step
 
 
+def test_dt_skalering_mutersikker():
+    """Dekay som er SUB-terskel per tidsenhet men SUPER-terskel per
+    sample skal IKKE gi kne — motoren MA dele på faktisk dt.
+
+    Mutasjonsfølsom: med /2.0 i stedet for /dt_mid blir |dI/dt| per
+    sample 0.6/2 = 0.3 > terskelen, og koden ville finne et falskt kne."""
+    step = 60.0  # sample hvert 60. sekund
+    n = 120
+    t = np.arange(n) * step
+    v = np.full(n, 3.45)
+    i = np.full(n, 10.0)
+    # Svak dekay: -0.01 A/s => -0.6 A per sample (langt over 0.05).
+    i[60:] = 10.0 - 0.01 * (t[60:] - t[60])
+    engine = VictronChargeEngine()
+    knee = engine.find_knee(params_for(t, v, i, di_threshold=0.05), t)
+    assert knee["found"] is False
+
+
 def test_enkeltstaaende_stroemspike_gir_ikke_kne():
     """Én negativ spike midt i flatt CC-plataa => ingen overgang.
 
