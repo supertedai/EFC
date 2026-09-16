@@ -58,10 +58,11 @@ def test_mu0_ugyldig_avvises():
 
 
 def test_mu0_ugyldig_type_avvises_uten_exception():
-    """Strenger, None og bool er ikke gyldige mu_0-verdier — de skal
-    avvises kontrollert (NaN), aldri krasje med TypeError."""
+    """Strenger — OGSÅ numeriske — None og bool er ikke gyldige mu_0-
+    verdier. De skal avvises kontrollert (NaN), aldri krasje eller
+    konverteres stille."""
     g = EFCGrowth(cosmology=EFCVariantC())
-    for mu in ("bad", None, True, False):
+    for mu in ("bad", "0.5", "1.0", None, True, False):
         v = g.compute({**KANONISKE, "mu_0": mu}, Z_07)[0]
         assert np.isnan(v), mu
 

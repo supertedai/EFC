@@ -82,7 +82,9 @@ class EFCGrowth(EFCEngine):
             return False
         if "mu_0" in params_dict:
             mu0 = params_dict["mu_0"]
-            if isinstance(mu0, bool):
+            # Ingen strenger — heller ikke numeriske: typen er en del av
+            # kontrakten, og stille konvertering skjuler feil hos kalleren.
+            if isinstance(mu0, (bool, str)) or mu0 is None:
                 return False
             try:
                 mu0 = float(mu0)
