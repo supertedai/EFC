@@ -82,7 +82,7 @@ skrivetilgang eierne ennå ikke har gitt.
 | Emne | Motor | Status |
 |---|---|---|
 | `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** (utenfor dette repoet, read-only). METAR-kanalen: temperatur + duggpunkt → spredning, RH-proxy (P_sat(Td)/P_sat(T) via motorens dampkurve), regime-klassifisering og 0 °C-passeringer. Første kjøring (2026-09-16): 459 punkter, 149 kondensasjonsnære, én fullstendig metning (spredning 0,0 °C). |
-| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — ecowitt-kanalen har bare temperatur (ingen fuktighet); der er 0 °C-passeringene de eneste påståelige faseovergangene, og broen sier det ærlig. |
+| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — ecowitt-kanalen har bare temperatur (ingen fuktighet); der er 0 °C-passeringene de eneste temperaturbaserte indikatorene/proxyene for mulig frysing eller smelting — selve faseovergangen er ikke observert. |
 
 Merk: kondensasjonsnærhet er en faseovergangs-PROXY, ikke selve overgangen —
 analogi, ikke identitet (samme disiplin som resten av kartet).
