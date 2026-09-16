@@ -1,0 +1,18 @@
+{
+ "pr": 416,
+ "repo": "supertedai/EFC",
+ "foerste_panel": {
+  "model": "gpt-5.6-luna",
+  "model_verified": true,
+  "dom": "request-changes",
+  "konfidens": 0.91,
+  "sammendrag": "4 blocker-funn: DESI-kollaps skjult, bench falsk trygghet, ekstern-eviden uten lenke, betinget hash-sjekk"
+ },
+ "andre_panel": {
+  "model": "gpt-5.6-luna",
+  "model_verified": true,
+  "dom": "approve",
+  "konfidens": 0.88,
+  "sammendrag": "alle 4 funn adressert; ikke-blokkerende oppfølging: ordlyd (fikset), ekstern DESI-referanse etterfylles, serialiseringslås, migrering av eldre external_source-poster"
+ }
+}
