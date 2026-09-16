@@ -12,8 +12,7 @@ legitimasjon.
 
 Bruk:
     python scripts/maintenance/arbiter_vakt_kjoer.py \
-        --melding siste-melding.json --artefakt utfall.json \
-        [--publiser-emne kosmos.kosmologi.oppgjoer.efc-fs8-arbiter]
+        --melding siste-melding.json --artefakt utfall.json
 """
 from __future__ import annotations
 
@@ -71,9 +70,9 @@ def publiser_best_effort(emne: str, payload: str) -> str:
 def kjoer(melding: dict,
           artefakt_sti: str,
           params: Optional[dict] = None,
-          publiser_emne: str = OPPGJOER_EMNE,
           publiser: Optional[Callable[[str, str], str]] = None) -> dict:
-    """Kjernelogikken — testbar, transport injiserbar."""
+    """Kjernelogikken — testbar, transport injiserbar. Emnet er ALLTID
+    OPPGJOER_EMNE — ingen override finnes."""
     publiser = publiser or publiser_best_effort
     vakt = RapidResponseVakt(artefakt_sti=artefakt_sti)
     payload = vakt.sjekk(melding, params=params)
@@ -83,7 +82,7 @@ def kjoer(melding: dict,
     if dom["status"] in ("PASS", "FAIL"):
         try:
             publiseringsstatus = publiser(
-                publiser_emne, json.dumps(payload, ensure_ascii=False))
+                OPPGJOER_EMNE, json.dumps(payload, ensure_ascii=False))
         except Exception as e:  # pragma: no cover
             publiseringsstatus = f"publiseringsfeil: {e}"
 
