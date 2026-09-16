@@ -2631,6 +2631,165 @@
         "global": "hjertet mater hver celle i homo.fluxus — flytens uavbrutte kilde",
         "empathy_note": "hjertet spør aldri om lov — det bare pumper."
       }
+    },
+    {
+      "id": "homo.genregulering",
+      "regime": {
+        "name": "Genregulering — uttrykkets regime-brytere",
+        "validity": "Genuttrykk er ikke en jevn flyt, men brytere: transkripsjonsfaktorer og epigenetiske merker holder gener av eller på, og utløser programmer når terskler krysses. ANALOGI til atlasets andre brytere (nevronets terskel, CC→CV-kneet) — genomet ER ikke et EFC-regime uten videre; dette er rammeverkets kartlegging av reguleringslogikken.",
+        "law_form": "promoter + TF-konsentrasjon ⇄ uttrykk; epigenetisk merke endrer terskelen; feedback: proteinet regulerer sitt eget gen"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "uttrykksnivå per gen (mRNA/protein)",
+        "measurer": "RNA-seq, ChIP-seq (molekylærbiologisk måling)",
+        "instrument": "sekvensering; her beskrivelse av reguleringslogikken",
+        "proxy_chain": [
+          "TF-binding → uttrykk",
+          "epigenetisk merke → terskelskifte"
+        ],
+        "placement": "genreguleringen er den molekylære bunnen av homo.fluxus — flytens grunnlag",
+        "compression": "tusener av gener → reguleringsnettverk"
+      },
+      "episenter": "terskelen: der et gen skrus på — bryterne er beslutningspunktene",
+      "buffer": {
+        "role": "genomet holder reguleringsprogrammene lagret — en kapasitet som demper tilfeldige uttrykk",
+        "note": "ANALOGI til nevronets terskel og ladebrytere — ikke identitet: genetiske brytere er stokastiske og kontekstavhengige."
+      },
+      "ontology": {
+        "assumes": [
+          "uttrykk er regulerbart og arvelig reguleringslogikk finnes (epigenetikk)",
+          "nettverkets tilbakekoblinger er den stabile enheten, ikke enkeltgenene"
+        ],
+        "source": "molekylærbiologi (standard); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "uttrykksnivåer — ikke nettverkets fulle dynamikk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "signal → TF → uttrykk → protein → regulerer eget gen — reguleringsloopen",
+        "properties": [
+          "terskler",
+          "merker",
+          "tilbakekoblinger"
+        ]
+      },
+      "fractal": {
+        "pattern": "terskel + tilbakekobling: genregulering, nevron, ladebryter (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett gen, én bryter",
+        "global": "reguleringsnettverket ER homo.fluxus sin molekylære kropp — CARRIES homo.fluxus (rammeverkets plassering)",
+        "empathy_note": "genomet vet ikke at det holder et menneske — det regulerer."
+      }
+    },
+    {
+      "id": "homo.cellesyklus",
+      "regime": {
+        "name": "Cellesyklusen — delingens periodiske regime",
+        "validity": "Cellen går gjennom periodiske faser (G1, S, G2, M) med sjekkpunkter som holder den tilbake til kriteriene er oppfylt — holding→release ved hvert sjekkpunkt. ANALOGI til hjertets fyll-press-syklus og ladesyklusen: periodisk, kontrollert, aldri ubetjente overganger.",
+        "law_form": "G1 → S (DNA-replikasjon) → G2 → M (mitose) → G1; sjekkpunkter: G1/S og G2/M — CDK/cyklin-konsentrasjon setter tersklene"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "fase per celle (G1/S/G2/M)",
+        "measurer": "flow-cytometri (DNA-innhold), FUCCI-markører",
+        "instrument": "laboratoriemåling; her beskrivelse",
+        "proxy_chain": [
+          "DNA-innhold → fase",
+          "CDK/cyklin → sjekkpunkt-status"
+        ],
+        "placement": "cellen er homo.fluxus sin minste selvreplikerende enhet",
+        "compression": "millioner av celler → en fasefordeling"
+      },
+      "episenter": "sjekkpunktene: G1/S og G2/M — der syklusen venter eller slipper",
+      "buffer": {
+        "role": "sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt",
+        "note": "ANALOGI til hjertets fylling (vent-til-full) og ladestyringens terskel — ikke identitet."
+      },
+      "ontology": {
+        "assumes": [
+          "CDK/cyklin-maskineriet er korrekt beskrivelse",
+          "sjekkpunktenes strenge kobling er det som hindrer ukontrollert deling (kreft = regimebrudd)"
+        ],
+        "source": "cellebiologi (standard); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "fasefordelingen — ikke den enkelte cellens historie",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst → replikasjon → sjekk → deling — syklusens loop",
+        "properties": [
+          "sjekkpunktterskler",
+          "syklustid",
+          "CDK/cyklin-nivåer"
+        ]
+      },
+      "fractal": {
+        "pattern": "periodisk regime med ventepunkter: cellesyklus, hjerte, ladesyklus (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "én celle, én syklus",
+        "global": "celledelingen opprettholder homo.fluxus — CARRIES homo.fluxus",
+        "empathy_note": "hver deling er en bitteliten overgang — kroppen er summen av dem."
+      }
+    },
+    {
+      "id": "homo.metabolisme",
+      "regime": {
+        "name": "Metabolismen — energiflytens biokjemi",
+        "validity": "Metabolismen er homo.fluxus sin energiflyt i molekylær form: glykolyse og Krebs-syklusen pumper ATP, og ATP drives tilbake — en kontinuerlig lade/tøm-syklus med kraftig negativ tilbakekobling (ATP bremser sin egen produksjon). ANALOGI til batteriets kjemiske buffer — ikke identitet: metabolismen er åpen og dissipativ, batteriet er lukket.",
+        "law_form": "glukose → pyruvat → acetyl-CoA → Krebs → NADH/FADH₂ → elektrontransport → ATP; ATP/ADP-forholdet regulerer fluksen (negativ tilbakekobling)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "ATP/ADP-forhold, O₂-forbruk, substrat-fluks",
+        "measurer": "respirasjonsmåling, metabolomikk (laboratorie)",
+        "instrument": "laboratoriemåling; her beskrivelse",
+        "proxy_chain": [
+          "O₂-forbruk → fluks",
+          "ATP/ADP → reguleringsstatus"
+        ],
+        "placement": "metabolismen er homo.fluxus sin motor — den kontinuerlige flyten som resten står på",
+        "compression": "hele næringsnettet → én fluks-vektor"
+      },
+      "episenter": "ATP/ADP-forholdet: der produksjon og forbruk møtes — flytens knutepunkt",
+      "buffer": {
+        "role": "ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingninger",
+        "note": "ANALOGI til batteriets SOC-buffer — men metabolismen er åpen: energi strømmer gjennom, lagres ikke for alltid."
+      },
+      "ontology": {
+        "assumes": [
+          "glykolyse/Krebs/elektrontransport er korrekt biokjemi",
+          "negativ tilbakekobling (ATP bremser egen produksjon) er den stabile reguleringen"
+        ],
+        "source": "biokjemi (standard); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "fluks og forhold — ikke alle intermediater",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "substrat → ATP → arbeid → ADP → substrat — metabolismens loop",
+        "properties": [
+          "ATP/ADP",
+          "fluks",
+          "lagre"
+        ]
+      },
+      "fractal": {
+        "pattern": "lade/tøm-syklus med tilbakekobling: metabolisme, batteri, hjertet (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "én celle, én metabolisme",
+        "global": "metabolismen mater homo.fluxus — CARRIES homo.fluxus",
+        "empathy_note": "hver ATP-molekyl er en bitteliten utbetaling — livet er summen."
+      }
     }
   ],
   "relations": [
@@ -2973,6 +3132,31 @@
       "subject": "homo.hjerte_syklus",
       "predicate": "ANALOGOUS_TO",
       "object": "homo.aksjonspotensial"
+    },
+    {
+      "subject": "homo.genregulering",
+      "predicate": "CARRIES",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.cellesyklus",
+      "predicate": "CARRIES",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.metabolisme",
+      "predicate": "CARRIES",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.cellesyklus",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.hjerte_syklus"
+    },
+    {
+      "subject": "homo.metabolisme",
+      "predicate": "ANALOGOUS_TO",
+      "object": "batteri.buffer"
     }
   ]
 }
