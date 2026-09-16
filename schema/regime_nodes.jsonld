@@ -820,7 +820,7 @@
       "phase": "kjemisk_regime",
       "measure": {
         "target": "SOC og SOH",
-        "measurer": "Battery Monitor som leser Seplos BMS (Hasselvegen 5)",
+        "measurer": "Battery Monitor som leser Seplos BMS (privat anlegg)",
         "instrument": "spennings-, strøm- og temperatursensorer",
         "proxy_chain": [
           "coulomb-telling (I over tid) -> SOC-estimat",
@@ -841,7 +841,7 @@
           "SOC er en veldefinert regimekoordinat for cellen",
           "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
         ],
-        "source": "Seplos BMS (LiFePO4) — levende avlesning via /opt/hermes-opus/victron-mcp.py, anlegg 380961 «Hasselvegen 5» (snapshot, ikke stabil tilstand): feltkoder Battery Monitor 512: Voltage 53,13 V, Current 47,90 A, Temperature 20 °C, StateOfCharge 38 %, StateOfHealth 100 %, tilstand «charging» — maalt 2026-09-16T13:41:57Z. Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
+        "source": "Seplos BMS (LiFePO4) — levende avlesning fra et privat Victron VRM-anlegg via intern MCP-bro (full site-proveniens i privat artifact; snapshot, ikke stabil tilstand). Feltkoder Battery Monitor 512: Voltage, Current, Temperature, StateOfCharge, StateOfHealth; tilstand «charging» — maalt 2026-09-16T13:41:57Z. Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
       },
       "observer": {
         "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
@@ -875,11 +875,11 @@
       "phase": "overgang",
       "measure": {
         "target": "ladekurven V(t), I(t)",
-        "measurer": "laderen (MultiPlus/VE.Bus, Hasselvegen 5)",
+        "measurer": "laderen (MultiPlus/VE.Bus, privat anlegg)",
         "instrument": "V/I-sensorer i laderen",
         "proxy_chain": [
           "V, I over tid -> ladekurven",
-          "strømavtag under CV -> fullt (SOC -> 1)",
+          "strømavtag under CV under strømterskel -> ladeslutt-KRITERIUM (SOC ~ 1, men ikke automatisk; termineres av terskel/tidskriterium)",
           "CC-fasens lengde -> utnyttet kapasitet"
         ],
         "placement": "laderen styrer og maaler i samme sløyfe",
@@ -895,7 +895,7 @@
           "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
           "kneet er et ekte regimeskifte, ikke bare en justering"
         ],
-        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning (snapshot): «Effective charge voltage» 55,9 V, «Charge voltage setpoint» 55,8 V, BMS-CVL 57,6 V (Hasselvegen 5, 2026-09-16T13:41:57Z) — tre ulike nivaaer: effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
+        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning (snapshot): «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
       },
       "observer": {
         "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
@@ -949,7 +949,7 @@
           "bufferen er mer enn en lagerboks — den er en homeostatisk mekanisme",
           "SOC er bufferens tilstandskoordinat"
         ],
-        "source": "levende anlegg: «Hasselvegen 5» (idSite 380961), Cerbo GX v3.80~51, ESS, Seplos BMS — avlest via /opt/hermes-opus/victron-mcp.py; målt 2026-09-16T13:41:57Z: 53,13 V, 47,90 A, 2544 W, 20 °C, SOC 38 %, SOH 100 %, tilstand «charging»"
+        "source": "levende privat Victron VRM-anlegg (ESS, Cerbo GX, Seplos BMS) — avlest via intern MCP-bro; snapshot, ikke stabil tilstand; feltkoder: Voltage, Current, Battery Power, Temperature, StateOfCharge, StateOfHealth, tilstand «charging» — maalt 2026-09-16T13:41:57Z; full site-proveniens i privat artifact"
       },
       "observer": {
         "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",

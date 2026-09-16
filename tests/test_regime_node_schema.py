@@ -370,3 +370,12 @@ def test_inverter_is_bidirectional():
     assert "DC -> AC" in tekst.replace("DC->AC", "DC -> AC").replace(
         "AC->DC", "AC -> DC") or ("DC->AC" in tekst and "AC->DC" in tekst)
     assert ("LADEMODUS" in tekst or "LADING" in tekst)
+
+
+def test_no_private_site_info_in_public_instance():
+    """Den offentlige instansen skal IKKE baere privat site-info: adresse,
+    site-ID eller intern filsti. Full proveniens ligger i et privat
+    artifact — regresjonsvern mot aa gjeninnfoere den her."""
+    raw = INSTANCE_PATH.read_text(encoding="utf-8")
+    for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite"]:
+        assert forbudt not in raw, f"privat info lekker: {forbudt}"
