@@ -2111,6 +2111,261 @@
         "global": "motorens kne kobles til batteri.lading-noden i atlaset (CARRIES) — maalingen baerer regimets overgang",
         "empathy_note": "motoren vet hvilken atlas-node den baerer — broen testes maskinelt."
       }
+    },
+    {
+      "id": "efc.rotation_engine",
+      "regime": {
+        "name": "Rotasjonsmotoren — galakserotasjon",
+        "validity": "rotasjonskurver v(r) fra EFC-kjernen (fallback: parametrisk) — entropiskala 1.0, lengdeskala 1.0, hastighetsskala 200.0; flat rotasjon UTEN moerk-materie-antakelse — lest som L2-regimets lokale test (analogi, ikke bevist)",
+        "law_form": "v(r) via efc_core; fallback v = vs*sqrt(r/(r+ls)) — numerisk kurve, ingen tabell"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "v(r) — rotasjonshastighet som funksjon av radius",
+        "measurer": "EFCRotation (efc_core + parametrisk fallback)",
+        "instrument": "observasjonssiden er galaksespektre; motoren regner kurven",
+        "proxy_chain": [
+          "spektrallinjer -> v(r) (observasjon)",
+          "v(r) -> EFC-parametre (inferens)"
+        ],
+        "placement": "motoren klassifiserer L2-regimets lokale struktur — galaksen som gravitasjonsrom",
+        "compression": "en rotasjonskurve -> fire EFC-parametre"
+      },
+      "episenter": "radiusrammen: kurvens flathet er testen — hypotese, ikke dom",
+      "buffer": {
+        "role": "galaksens materie-buffer holder kurven flat gjennom koplingsfeltet — tolkning, ikke maaling",
+        "note": "bufferen er modellens, ikke motorens."
+      },
+      "ontology": {
+        "assumes": [
+          "rotasjonskurver er et rent gravitasjons-maaleri",
+          "EFC-kjernen er korrekt for galakseskalaen"
+        ],
+        "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare v(r) — én kanal av galaksens fulle dynamikk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "masse -> koplingsfelt -> flat rotasjon — kurvens flathet er loopens signatur",
+        "properties": [
+          "v_flat",
+          "r_skala"
+        ]
+      },
+      "fractal": {
+        "pattern": "flathet som regime — samme observasjonsmonster som CC-plataaet og vannets faseplatåer (analogi)",
+        "note": "ett monster, tre domener — ikke identitet."
+      },
+      "coupling": {
+        "local": "motoren arbeider på én galakse av gangen",
+        "global": "rotasjonskurver er L2-regimets lokale avlesning — koblet til vekst- og hubble-motorene via regimet (COUPLED_TO)",
+        "empathy_note": "hver galakse bærer hele regimet i sin egen kurve."
+      }
+    },
+    {
+      "id": "efc.hubble_engine",
+      "regime": {
+        "name": "Hubble-motoren — ekspansjonen",
+        "validity": "H(z) for z >= 0 — EFC-deformert ekspansjon: Omega_m=0.3, H0=70.0, alpha_cosmo=0.0 (alpha=0 = LCDM-baseline); motoren BEREGNER raten via den injiserte bakgrunnsmodellen — den klassifiserer ingen regimegrense selv",
+        "law_form": "E²(a) = Om*a^-3 + (1-Om) + alpha*[g(a)-g(1)] — EFCVariantA-bakgrunnen (default; motoren aksepterer ogsaa andre injiserte modeller — denne lovformen beskriver bare default-en)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "H(z) — ekspansjonsraten",
+        "measurer": "EFCHubble (EFCVariantA-cosmologi)",
+        "instrument": "observasjonssiden er BAO/kronometer; motoren regner raten",
+        "proxy_chain": [
+          "BAO/SNIa -> H(z) (observasjon)",
+          "H(z) -> EFC-parametre (inferens)"
+        ],
+        "placement": "motoren beregner ekspansjonsraten langs z — r_d-kalibreringen er L1-ankeret (observasjons-siden, ikke motorens egen klassifisering)",
+        "compression": "hele H(z) -> tre EFC-parametre"
+      },
+      "episenter": "z-rammen: H(z)-kurven er regimets ryggrad — observasjonene baeres av den",
+      "buffer": {
+        "role": "bakgrunnsenergien er bufferen som holder ekspansjonen — modellert, ikke målt direkte",
+        "note": "bufferen er bakgrunnens, ikke motorens."
+      },
+      "ontology": {
+        "assumes": [
+          "bakgrunnen er homogen og isotrop",
+          "E²(a) er den riktige deformasjonen"
+        ],
+        "source": "EFCVariantA; efc_inference/engine/hubble.py"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare H(z) — én kanal av ekspansjonens fulle tilstand",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "tetthet -> ekspansjon -> rødforskyvning — H(z) er loopens avlesning",
+        "properties": [
+          "H0",
+          "Omega_m",
+          "alpha_cosmo"
+        ]
+      },
+      "fractal": {
+        "pattern": "ekspansjonens regimekne — samme overgangs-monster som CC->CV-kneet (analogi, ikke identitet)",
+        "note": "ett monster, to domener."
+      },
+      "coupling": {
+        "local": "motoren arbeider langs z-aksen",
+        "global": "H(z) baerer L1->L2-overgangen — koblet til growth (veksten foeler ekspansjonen) og obs.bao (COUPLED_TO/OBSERVED_IN)",
+        "empathy_note": "ekspansjonen vet ikke selv at den observeres — men motoren vet hva den baerer."
+      }
+    },
+    {
+      "id": "efc.growth_engine",
+      "regime": {
+        "name": "Vekstmotoren — fσ8",
+        "validity": "fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m=0.3, H0=70.0, sigma8=0.8, alpha_cosmo=0.0 — L2-regimets vekst av struktur (perturbasjonsnivå)",
+        "law_form": "D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk integrasjon, f = d ln D / d ln a"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "fσ8(z) — vekstrate ganger amplitude",
+        "measurer": "EFCGrowth (vekst-ODE med EFC-H)",
+        "instrument": "observasjonssiden er RSD/ELG/QSO; motoren regner veksten",
+        "proxy_chain": [
+          "RSD-målinger -> fσ8 (observasjon)",
+          "fσ8 -> EFC-parametre (inferens)"
+        ],
+        "placement": "motoren er L2-regimets egen målestokk — arbiteren mot den forseglede fσ8-baselinen er den faktiske EFC-testen",
+        "compression": "hele veksthistorien -> fire parametre"
+      },
+      "episenter": "vekstrammen: fσ8-kurven er der EFC møter observasjonen — dommen, ikke dommen avgjort",
+      "buffer": {
+        "role": "strukturens materie-buffer vokser gjennom koplingsfeltet — modellert, ikke målt direkte",
+        "note": "bufferen er modellens, ikke motorens."
+      },
+      "ontology": {
+        "assumes": [
+          "lineær perturbasjonsteori holder på fσ8-skalene",
+          "vekst-ODE-en med EFC-H(a) er riktig deformasjon"
+        ],
+        "source": "MVP-G1 hubble-friksjonskanal; efc_inference/engine/growth.py"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare fσ8(z) — én kanal av vekstens fulle tilstand",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "tetthet -> vekst -> struktur — fσ8 er loopens akselerasjonsmåler",
+        "properties": [
+          "sigma8",
+          "gamma_vekst"
+        ]
+      },
+      "fractal": {
+        "pattern": "vekstens regimekne — samme overgangsmonster som CC->CV og L1->L2 (analogi)",
+        "note": "ett monster, tre domener."
+      },
+      "coupling": {
+        "local": "motoren arbeider langs z innenfor L2",
+        "global": "fσ8 er arbiterens prediksjonsside — koblet til kosmos.kosmologi-emnene (prediksjon) og obs.fsigma8 (OBSERVED_IN)",
+        "empathy_note": "motoren vet at baselinen dømmer den — den beskriver seg likevel bare, den dømmer ikke seg selv."
+      }
+    },
+    {
+      "id": "efc.lensing_engine",
+      "regime": {
+        "name": "Linsemotoren — kappa(theta) [stub]",
+        "validity": "STUB: konvergensen kappa(theta) — fysikken er IKKE implementert (alpha_lens=0.0, kappa_EFC=0.0); motoren beskriver kontrakten, ikke beregningen — ingen maaling er påstått",
+        "law_form": "(kontrakt: kappa(theta) fra alpha_lens/kappa_EFC — venter på implementering)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "kappa(theta) — konvergens som funksjon av vinkelposisjon",
+        "measurer": "EFCLensing (stub — compute() hever NotImplementedError)",
+        "instrument": "observasjonssiden er svak linsing; motoren regner ingenting ennå",
+        "proxy_chain": [
+          "shear -> kappa (observasjon)",
+          "kappa -> EFC-parametre (venter på fysikken)"
+        ],
+        "placement": "motorens plass i L2 er reservert, ikke inntatt",
+        "compression": "ingen kompresjon ennå — kontrakten er definert, verdien ikke"
+      },
+      "episenter": "vinkelrammen: linsingen er L2-strukturens avbildning — kontrakten står, fysikken venter",
+      "buffer": {
+        "role": "strukturens masse-buffer bøyer lyset — mekanismen er observert, motoren modellerer den ikke ennå",
+        "note": "bufferen er virkelighetens, ikke motorens."
+      },
+      "ontology": {
+        "assumes": [
+          "svak linsing er et gyldig avbildnings-instrument",
+          "EFC-deformasjonen lar seg oversette til kappa — uverifisert"
+        ],
+        "source": "stub-kontrakt; efc_inference/engine/lensing.py"
+      },
+      "observer": {
+        "bandwidth": "ingen — motoren observerer ikke ennå",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "masse -> krumning -> kappa — loopen er observert, ikke modellert her",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "avbildning som regime — samme mønster som observasjonskjedene i atlaset (analogi)",
+        "note": "stubben bærer mønsteret uten beregningen."
+      },
+      "coupling": {
+        "local": "kontrakten er lokal per synslinje",
+        "global": "kappa er L2-avbildningen — koblet til obs.cmb_lensing (OBSERVED_IN, når fysikken finnes)",
+        "empathy_note": "stubben vet hva den ikke kan — og sier det."
+      }
+    },
+    {
+      "id": "efc.cluster_engine",
+      "regime": {
+        "name": "Hopemotoren — n(M,z) [stub]",
+        "validity": "STUB: mass funksjonen n(M,z) — fysikken er IKKE implementert (Omega_m=0.3, sigma8=0.8, alpha_cluster=0.0); motoren beskriver kontrakten, ikke beregningen — ingen maaling er påstått",
+        "law_form": "(kontrakt: n(M,z) fra Omega_m/sigma8/alpha_cluster — venter på implementering)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "n(M,z) — halomassefunksjonen",
+        "measurer": "EFCCluster (stub — compute() hever NotImplementedError)",
+        "instrument": "observasjonssiden er hopetellinger; motoren regner ingenting ennå",
+        "proxy_chain": [
+          "hopetelling -> n(M,z) (observasjon)",
+          "n(M,z) -> EFC-parametre (venter på fysikken)"
+        ],
+        "placement": "motorens plass i L2 er reservert, ikke inntatt",
+        "compression": "ingen kompresjon ennå — kontrakten er definert, verdien ikke"
+      },
+      "episenter": "masse-rommet: halomassefunksjonen er L2-strukturens telling — kontrakten står, fysikken venter",
+      "buffer": {
+        "role": "hopene er strukturens tetteste buffere — observert, ikke modellert her ennå",
+        "note": "bufferen er virkelighetens, ikke motorens."
+      },
+      "ontology": {
+        "assumes": [
+          "halomassefunksjonen er et gyldig strukturinstrument",
+          "EFC-deformasjonen lar seg oversette til n(M,z) — uverifisert"
+        ],
+        "source": "stub-kontrakt; efc_inference/engine/cluster.py"
+      },
+      "observer": {
+        "bandwidth": "ingen — motoren observerer ikke ennå",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "tetthet -> kollaps -> hoper — loopen er observert, ikke modellert her",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "telling som regime — samme mønster som observasjonskjedene i atlaset (analogi)",
+        "note": "stubben bærer mønsteret uten beregningen."
+      },
+      "coupling": {
+        "local": "kontrakten er lokal per massebin",
+        "global": "n(M,z) er L2-strukturens telling — koblet til obs.klynger (OBSERVED_IN, når fysikken finnes)",
+        "empathy_note": "stubben vet hva den ikke kan — og sier det."
+      }
     }
   ],
   "relations": [
@@ -2383,6 +2638,56 @@
       "predicate": "CARRIES",
       "object": "batteri.lading",
       "note": "motoren maaler CC->CV-kneet — batteri.lading-nodens overgang"
+    },
+    {
+      "subject": "efc.rotation_engine",
+      "predicate": "COUPLED_TO",
+      "object": "efc.l2"
+    },
+    {
+      "subject": "efc.hubble_engine",
+      "predicate": "COUPLED_TO",
+      "object": "efc.l1"
+    },
+    {
+      "subject": "efc.hubble_engine",
+      "predicate": "COUPLED_TO",
+      "object": "efc.l2"
+    },
+    {
+      "subject": "efc.hubble_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.bao"
+    },
+    {
+      "subject": "efc.growth_engine",
+      "predicate": "COUPLED_TO",
+      "object": "efc.l2"
+    },
+    {
+      "subject": "efc.growth_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.fsigma8"
+    },
+    {
+      "subject": "efc.growth_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.s8"
+    },
+    {
+      "subject": "efc.lensing_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.cmb_lensing"
+    },
+    {
+      "subject": "efc.cluster_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.cluster_hmf"
+    },
+    {
+      "subject": "efc.cluster_engine",
+      "predicate": "OBSERVED_IN",
+      "object": "obs.cluster_mass"
     }
   ]
 }

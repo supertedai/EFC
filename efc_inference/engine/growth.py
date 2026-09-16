@@ -180,3 +180,73 @@ class EFCGrowth(EFCEngine):
             fs8[i] = f_i * sigma8_z
 
         return fs8
+
+    # ------------------------------------------------------------------
+    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # ------------------------------------------------------------------
+    def regime_node(self, params_dict: dict) -> dict:
+        om = params_dict["Omega_m"]
+        h0 = params_dict["H0"]
+        s8 = params_dict["sigma8"]
+        al = params_dict["alpha_cosmo"]
+        validity = (
+            f"fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m={om}, "
+            f"H0={h0}, sigma8={s8}, alpha_cosmo={al} — L2-regimets "
+            "vekst av struktur (perturbasjonsnivå)"
+        )
+        law_form = ("D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk "
+                    "integrasjon, f = d ln D / d ln a")
+        return {
+            "id": "efc.growth_engine",
+            "regime": {"name": "Vekstmotoren — fσ8",
+                       "validity": validity, "law_form": law_form},
+            "phase": "regime_engine",
+            "measure": {
+                "target": "fσ8(z) — vekstrate ganger amplitude",
+                "measurer": "EFCGrowth (vekst-ODE med EFC-H)",
+                "instrument": "observasjonssiden er RSD/ELG/QSO; motoren "
+                              "regner veksten",
+                "proxy_chain": ["RSD-målinger -> fσ8 (observasjon)",
+                                "fσ8 -> EFC-parametre (inferens)"],
+                "placement": "motoren er L2-regimets egen målestokk — "
+                             "arbiteren mot den forseglede fσ8-baselinen "
+                             "er den faktiske EFC-testen",
+                "compression": "hele veksthistorien -> fire parametre",
+            },
+            "episenter": "vekstrammen: fσ8-kurven er der EFC møter "
+                         "observasjonen — dommen, ikke dommen avgjort",
+            "buffer": {
+                "role": "strukturens materie-buffer vokser gjennom "
+                        "koplingsfeltet — modellert, ikke målt direkte",
+                "note": "bufferen er modellens, ikke motorens.",
+            },
+            "ontology": {
+                "assumes": ["lineær perturbasjonsteori holder på "
+                            "fσ8-skalene", "vekst-ODE-en med EFC-H(a) "
+                            "er riktig deformasjon"],
+                "source": "MVP-G1 hubble-friksjonskanal; "
+                          "efc_inference/engine/growth.py",
+            },
+            "observer": {"bandwidth": "motoren ser bare fσ8(z) — én kanal "
+                                     "av vekstens fulle tilstand",
+                         "awareness": "instrument_window"},
+            "emergence": {
+                "loop": "tetthet -> vekst -> struktur — fσ8 er loopens "
+                        "akselerasjonsmåler",
+                "properties": ["sigma8", "gamma_vekst"],
+            },
+            "fractal": {
+                "pattern": "vekstens regimekne — samme overgangsmonster "
+                           "som CC->CV og L1->L2 (analogi)",
+                "note": "ett monster, tre domener.",
+            },
+            "coupling": {
+                "local": "motoren arbeider langs z innenfor L2",
+                "global": "fσ8 er arbiterens prediksjonsside — koblet til "
+                          "kosmos.kosmologi-emnene (prediksjon) og "
+                          "obs.fsigma8 (OBSERVED_IN)",
+                "empathy_note": "motoren vet at baselinen dømmer den — "
+                                "den beskriver seg likevel bare, den "
+                                "dømmer ikke seg selv.",
+            },
+        }
