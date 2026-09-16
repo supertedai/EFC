@@ -2416,7 +2416,7 @@
       },
       "coupling": {
         "local": "én kropp, én flyt",
-        "global": "mennesket er L3-regimets bærer — selvmodelleringen; ANALOGOUS_TO batteri.buffer via den brede bufferlogikken",
+        "global": "RAMMEVERKETS HYPOTESE: mennesket er L3-regimets bærer — selvmodelleringen; ANALOGOUS_TO batteri.buffer via den brede bufferlogikken. Ikke empirisk etablert regime — plasseringen er rammeverkets egen",
         "empathy_note": "hver kropp bærer hele regimet i sin egen flyt."
       }
     },
@@ -2442,7 +2442,7 @@
       "episenter": "båndet: innenfor er regimet holdt; utenfor bryter det (feber, sjokk)",
       "buffer": {
         "role": "selve bufferen: kapasitet som demper endring — den brede logikken i ren form",
-        "note": "ANALOGI: batteriets kjemiske buffer og isens latente varme er samme form på andre akser."
+        "note": "ANALOGI til batteriets kjemiske buffer og isens latente varme — samme form på andre akser, ikke identitet. Ingen kobling til Victron/lading påstås."
       },
       "ontology": {
         "assumes": [
@@ -2478,7 +2478,7 @@
       "regime": {
         "name": "Feber — kroppens kontrollerte regimeskifte",
         "validity": "Feber er et KONTROLLERT skifte av setpunktet (37 → 38–40 °C): bufferen bytter regime for å bekjempe infeksjon. ANALOGI til CC→CV-kneet i lading: et styrt regimeskifte med et nytt platå, ikke identitet. Utenfor kontroll blir feberen hypertermi — regimebrudd.",
-        "law_form": "setpunkt(t) → setpunkt_høy; buffer kompenserer mot NYTT setpunkt; ved ~41 °C kollapser reguleringen (denaturering)"
+        "law_form": "setpunkt(t) → setpunkt_høy; buffer kompenserer mot NYTT setpunkt; over ~41 °C: klinisk kritisk område med reguleringssvikt og økt risiko for proteindenaturering (proteiner har ulike denatureringstemperaturer — ingen universell hard grense)"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2500,7 +2500,7 @@
       "ontology": {
         "assumes": [
           "setpunktet er nevralt kontrollert (hypothalamus)",
-          "41 °C-grensen er denatureringsgrensen — hard grense"
+          "~41 °C er et klinisk kritisk område, ikke en universell hard grense"
         ],
         "source": "fysiologi (standard); analogi-merkingen er EFC-atlasets egen"
       },
@@ -2523,15 +2523,16 @@
       "coupling": {
         "local": "feberen er kroppens eget skifte",
         "global": "feberen er homeostase-bufferens utgang og retur — et lukket skift i homo.fluxus",
-        "empathy_note": "kroppen velger selv overgangen — feberen er ikke svikt, den er strategi."
-      }
+        "empathy_note": "feberen er ikke svikt, den er regulert respons — men «kroppen velger» er rammeverkets språk, ikke en påvist beslutning."
+      },
+      "emergent_tekst": null
     },
     {
       "id": "homo.aksjonspotensial",
       "regime": {
         "name": "Aksjonspotensialet — nevronets holding→release",
-        "validity": "Membranpotensialet LADES (Na+-kanalene står klare, gradienten bygges) og UTLØSES (terskel → depolarisering → repolarisering) — holding→release i ren form, samme mønster som solens flares og jordas skjelv (ANALOGI, ikke identitet).",
-        "law_form": "dV/dt = −(1/C)·Σ I_ion; terskel V_th → all-eller-ingenting-spike; refraktærperiode gjenlader bufferen"
+        "validity": "Membranpotensialet LADES (Na+-kanalene står klare, gradienten bygges) og UTLØSES (terskel → depolarisering → repolarisering) — holding→release i ren form. ANALOGI til solens flares, jordas skjelv og batteriets lading — samme form, ulike akser; ANALOGI, ikke identitet.",
+        "law_form": "dV/dt = −(1/C)·Σ I_ion (ekstern strøm I_ext utelatt); terskel V_th → all-eller-ingenting-spike; refraktærperiode gjenlader bufferen — etter Hodgkin–Huxley, en etablert men idealisert konduktansmodell, ikke en universelt komplett beskrivelse"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2552,8 +2553,8 @@
       },
       "ontology": {
         "assumes": [
-          "Hodgkin–Huxley-dynamikken er korrekt beskrivelse",
-          "terskelen er skarp nok til all-eller-ingenting"
+          "Hodgkin–Huxley er en etablert, idealisert konduktansmodell for eksitable membraner",
+          "terskelen er skarp nok til all-eller-ingenting (approksimasjon)"
         ],
         "source": "nevrofysiologi (standard); analogi-merkingen er atlasets egen"
       },
@@ -2583,8 +2584,8 @@
       "id": "homo.hjerte_syklus",
       "regime": {
         "name": "Hjertets syklus — den periodiske flyten",
-        "validity": "Hjertet er en periodisk holding→release: fylling (diastole, bufferen lades) → utpressing (systole, bufferen tømmes) — med sinusknuten som pacemaker. ANALOGI til ladesyklusen i batteriet (periodisk, ikke identisk: hjertet går aldri til null).",
-        "law_form": "fyll → press → fyll; SV×HR = CO (cardiac output); Frank–Starling: fyllingen setter slagvolumet"
+        "validity": "Hjertet er en periodisk holding→release: fylling (diastole, bufferen lades) → utpressing (systole, bufferen tømmes) — med sinusknuten som pacemaker. ANALOGI til ladesyklusen i batteriet — ANALOGI, ikke identitet: hjertet går aldri til null.",
+        "law_form": "fyll → press → fyll; SV×HR = CO; Frank–Starling: økt preload øker normalt slagvolumet innenfor fysiologisk område — kontraktilitet og afterload påvirker også SV"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2606,7 +2607,7 @@
       "ontology": {
         "assumes": [
           "sinusknuten setter rytmen",
-          "Frank–Starling-mekanismen kobler fylling og slagvolum"
+          "Frank–Starling-mekanismen gjelder innenfor fysiologisk område — kontraktilitet og afterload virker også"
         ],
         "source": "kardiologi (standard); analogi-merkingen er atlasets egen"
       },
