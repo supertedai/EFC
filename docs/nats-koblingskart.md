@@ -28,7 +28,7 @@ den).
 
 | Emne | Motor | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Live på bussen: `batteri_spenning` (V) og `batteri_ladning` (SOC). `batteri_stroem` (A, VRM-kode `CI`, målt) er **bygget, ikke deployet** — produsentkoden er merget i trinn 10, men deploy til bussen er eiernes steg. Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` og tellere — ingen grunnfelt; forklaringen av grunnen står i broens kjøringsartefakt). |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Live på bussen: `batteri_spenning` (V) og `batteri_ladning` (SOC). `batteri_stroem` (A, VRM-kode `CI`, målt) er **bygget, ikke deployet** — produsentkoden er merget i trinn 10, men deploy til bussen er eiernes steg. Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` — NaN når ikke funnet — pluss tellerne `n_samples`, `n_cc`, `n_cv`; ingen grunnfelt; forklaringen av grunnen står i broens kjøringsartefakt). |
 
 **Motorens kontrakt vs broens skjema — to forskjellige ting.** Motoren
 er injiserbar og krever per kjøring:
