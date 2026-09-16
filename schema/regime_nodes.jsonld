@@ -2743,7 +2743,7 @@
       "regime": {
         "name": "Metabolismen — energiflytens biokjemi",
         "validity": "Metabolismen er homo.fluxus sin energiflyt i molekylær form: glykolyse og Krebs-syklusen lader reduksjonsmidlene (NADH/FADH₂), og elektrontransportkjeden med ATP-syntase omsetter protongradienten til ATP — en kontinuerlig lade/tøm-syklus med energiavhengig regulering. ANALOGI til batteriets kjemiske buffer — ikke identitet: metabolismen er åpen og dissipativ, batteriet er lukket.",
-        "law_form": "glukose → pyruvat → acetyl-CoA → Krebs → NADH/FADH₂ → elektrontransportkjede (protonmotorkraft) → ATP-syntase; regulering: høy energistatus hemmer bestemte trinn (f.eks. PFK-1), ADP/AMP stimulerer fluksen"
+        "law_form": "glukose → pyruvat → acetyl-CoA → Krebs → NADH/FADH₂ → elektrontransportkjede (protonmotorkraft) → ATP-syntase; regulering: høy energistatus hemmer PFK-1, ADP/AMP stimulerer fluksen"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2765,7 +2765,7 @@
       "ontology": {
         "assumes": [
           "glykolyse/Krebs/elektrontransport er korrekt biokjemi",
-          "energistatus-reguleringen er kontekstavhengig: ATP hemmer noen trinn (f.eks. PFK-1), ADP/AMP stimulerer — ingen enkel global brems"
+          "energistatus-reguleringen er kontekstavhengig: ATP hemmer PFK-1, ADP/AMP stimulerer — ingen enkel global brems"
         ],
         "source": "biokjemi (standard); analogi-merkingen er atlasets egen"
       },
