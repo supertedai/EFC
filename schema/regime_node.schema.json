@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/schema/regime_node.schema.json",
+  "title": "EFC Regime Node Schema",
+  "description": "Generisk regime-node-skjema: beholderen som ethvert ledd i EFC-atlaset er en instans av. Hver node bærer hele observasjonskjeden og sin ontologiske ramme — slik at H2O-fasene, L0-L3-kosmologien og regnbuen kan beskrives med samme struktur. Skjemaet hevder ingen fysikk: det er en struktur; felt som er hypoteser, merkes som hypoteser (se observer.awareness). Forankring: regime/proxy/placement/episenter/compression er definert i 'Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity' (DOI 10.6084/m9.figshare.31564123, 2026-03-07) og meta-referansen docs/papers/meta/Proxy/ — episenter betyr der 'the interpretive frame used to read the result'. Mortens utvidelser (target/measurer/instrument/proxy_chain, buffer, phase, ontology, observer-båndbredde, emergence-loop, fractal, coupling) er strukturelle beholdere med kilde i samtale 2026-09-16.",
+  "type": "object",
+  "required": [
+    "@context", "@id", "@type", "schema_version", "generated_at",
+    "nodes", "relations"
+  ],
+  "properties": {
+    "@context": {
+      "type": "object",
+      "properties": {
+        "@vocab": {
+          "const": "https://supertedai.github.io/EFC/ontology#"
+        },
+        "id": {
+          "const": "@id",
+          "description": "Node-id-er skal ekspandere til @id — instansen er en lenket graf, ikke loes tekst."
+        },
+        "subject": {
+          "const": {
+            "@type": "@id"
+          },
+          "description": "Relasjonsendepunkter er IRI-referanser til noder."
+        },
+        "object": {
+          "const": {
+            "@type": "@id"
+          },
+          "description": "Relasjonsendepunkter er IRI-referanser til noder."
+        }
+      },
+      "required": ["@vocab", "id", "subject", "object"],
+      "additionalProperties": false
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "@type": {
+      "const": "RegimeNodeAtlas"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RegimeNode"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RegimeRelation"
+      }
+    }
+  },
+  "$defs": {
+    "RegimeNode": {
+      "type": "object",
+      "required": [
+        "id", "regime", "phase", "measure", "episenter", "buffer",
+        "ontology", "observer", "emergence", "fractal", "coupling"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "regime": {
+          "type": "object",
+          "required": ["name", "validity"],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "validity": {
+              "type": "string",
+              "description": "Gyldighetsomraadet — HVA gjelder noden for. Et regime uten deklarert gyldighet er en pastand uten grense."
+            },
+            "law_form": {
+              "type": "string",
+              "description": "Lovformen som holder i regimet (fra DOI-papiret: a single law-form fits)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "phase": {
+          "type": "string",
+          "description": "Tilstanden innenfor regimet (f.eks. solid/liquid/gas/supercritical)."
+        },
+        "measure": {
+          "type": "object",
+          "required": [
+            "target", "measurer", "instrument", "proxy_chain",
+            "placement", "compression"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "description": "Målet: den uobserverte/kostbare storheten man sikter mot (det proxyen staar for)."
+            },
+            "measurer": {
+              "type": "string",
+              "description": "Måleren: det som utforer målingen (aktor/mekanisme)."
+            },
+            "instrument": {
+              "type": "string",
+              "description": "Måleinstrumentet: den fysiske innretningen."
+            },
+            "proxy_chain": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "description": "Proxychain: den ordnede kjeden av proxyer fra målet til det som faktisk avleses. Hvert ledd er en proxy med eget regime."
+            },
+            "placement": {
+              "type": "string",
+              "description": "Plasseringen: hvor observatoren sitter (instrument, sample, koordinatsystem) og hvordan proxyen beregnes (DOI-papiret)."
+            },
+            "compression": {
+              "type": "string",
+              "description": "Komprimeringen: reduksjonen av hoydimensjonale data til en lavdimensjonal oppsummering (DOI-papiret)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "episenter": {
+          "type": "string",
+          "description": "Episenteret: den fortolkende rammen resultatet leses i (DOI-papiret: the interpretive frame used to read the result). Ikke «hvor fenomenet sitter» — det er hvilken ramme som gjor reststruktur til signal. Kanonisk norsk term fra kilde-README-en (docs/papers/meta/Proxy/)."
+        },
+        "buffer": {
+          "type": "object",
+          "required": ["role"],
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Buffer/holding-rollen: kapasiteten eller tregheten som demper endring — bredt men logisk: termisk treghet (vann som holder temperaturen under oppvarming til kokepunktet, latent varme ved faseovergang), kjemisk/elektrisk lagring (batteri), biologisk regulering (homeostase i en kropp). Bufferen er fraktalt tilstede: hvert nivå, hver skala og hver akse har sin egen buffer (multaksial)."
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ontology": {
+          "type": "object",
+          "required": ["assumes", "source"],
+          "properties": {
+            "assumes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Hva beskrivelsen antar finnes — de ontologiske startpunktene, skrevet EKSPLISITT."
+            },
+            "source": {
+              "type": "string",
+              "description": "Kilden antakelsene hviler paa (DOI, papir, maalt referanse)."
+            }
+          },
+          "additionalProperties": false
+        },
+        "observer": {
+          "type": "object",
+          "required": ["bandwidth", "awareness"],
+          "properties": {
+            "bandwidth": {
+              "type": "string",
+              "description": "Observatorens vindu: hvilken del av spekteret den ser. Hele virkeligheten ligger paa et bredt spekter; en observator ser noen faa nm."
+            },
+            "awareness": {
+              "type": "string",
+              "enum": [
+                "instrument_window",
+                "hypothesis_open",
+                "not_claimed"
+              ],
+              "description": "Bevissthetsstatus, ærlig deklarert: instrument_window = fysisk instrument uten bevissthetskrav; hypothesis_open = aapen hypotese (f.eks. felt-resonans), ikke etablert; not_claimed = ingen pastand."
+            }
+          },
+          "additionalProperties": false
+        },
+        "emergence": {
+          "type": "object",
+          "required": ["loop", "properties"],
+          "properties": {
+            "loop": {
+              "type": "string",
+              "description": "Emergence-loopen: tilbakekoblingen som holder det emergente nivået oppe."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Emergente egenskaper — de finnes paa dette nivået, ikke i delene alene."
+            }
+          },
+          "additionalProperties": false
+        },
+        "fractal": {
+          "type": "object",
+          "required": ["pattern"],
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Fraktal-relasjonen: hvordan samme monster gjentas — hver del er sin egen emergence med egne loops i samme landskap."
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "coupling": {
+          "type": "object",
+          "required": ["local", "global"],
+          "properties": {
+            "local": {
+              "type": "string",
+              "description": "Lokal rolle: hva noden gjor der den er."
+            },
+            "global": {
+              "type": "string",
+              "description": "Global rekkevidde: hvilke konsekvenser noden har utenfor seg selv — systemisk empati, lokalt-globalt kobling."
+            },
+            "empathy_note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "RegimeRelation": {
+      "type": "object",
+      "required": ["subject", "predicate", "object"],
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "predicate": {
+          "type": "string",
+          "enum": [
+            "TRANSITIONS_TO",
+            "COUPLED_TO",
+            "INSTANCE_OF",
+            "EMERGES_FROM",
+            "OBSERVED_THROUGH",
+            "CARRIES"
+          ]
+        },
+        "object": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

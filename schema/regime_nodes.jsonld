@@ -1,0 +1,320 @@
+{
+  "@context": {
+    "@vocab": "https://supertedai.github.io/EFC/ontology#",
+    "id": "@id",
+    "subject": {
+      "@type": "@id"
+    },
+    "object": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://supertedai.github.io/EFC/schema/regime_nodes.jsonld",
+  "@type": "RegimeNodeAtlas",
+  "schema_version": "0.1.0",
+  "generated_at": "2026-09-16T12:35:00Z",
+  "nodes": [
+    {
+      "id": "h2o.solid",
+      "regime": {
+        "name": "ice Ih",
+        "validity": "T <= T_m(P); T >= 50 K (sublimasjonsgrensen) der P <= p_triple; P <= 208.566 MPa (ice Ih-grensen, IAPWS R14-08)",
+        "law_form": "Clausius-Clapeyron (fast-vaeske) med dv_melt < 0 — is flyter"
+      },
+      "phase": "solid (ice Ih)",
+      "measure": {
+        "target": "termodynamisk fase",
+        "measurer": "P-T-sensor",
+        "instrument": "kalibrert termometer + barometer (kalibrert mot trippelpunktcellen)",
+        "proxy_chain": [
+          "temperatur via termisk ekspansjon (termometer)",
+          "trykk via membran (barometer)",
+          "fase identifisert via T_m(P) / P_sub(T) (Clausius-Clapeyron-invers)"
+        ],
+        "placement": "laboratorie-P-T-rom; instrumentet i termisk kontakt med proeven",
+        "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
+      },
+      "episenter": "P-T-landskapet: fasen leses som regionen UNDER smeltekurven — samme punkt lest i en annen ramme (f.eks. optikk) ville vaert et annet signal",
+      "buffer": {
+        "role": "krystallgitteret + latent varme L_f: isen holder drikken ved 0 C til siste krystall er borte — termisk buffer ved faseovergangen. Samme brede logikk som homeostase og batteri: en kapasitet som demper endring, her paa termisk akse.",
+        "note": "Multaksial: bufferen finnes ogsaa paa andre akser (albedo, struktur)."
+      },
+      "ontology": {
+        "assumes": [
+          "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P",
+          "en makroskopisk fase er en veldefinert tilstand"
+        ],
+        "source": "standard termodynamikk; IAPWS R6-95/R14-08; EFC WaterPhaseEngine (efc_inference/engine/water.py)"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: termometer og barometer ser bare T og P — noen faa kanaler av hele spekteret (elektromagnetisk, akustisk, kjemisk ...)",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "gittervibrasjoner <-> termisk balanse med omgivelsen — loopen holder krystallordenen oppe",
+        "properties": [
+          "heksagonal krystallstruktur",
+          "lavere tetthet enn vaeske (is flyter)"
+        ]
+      },
+      "fractal": {
+        "pattern": "hver fase er sin egen emergence med egne loops i samme P-T-landskap — samme molekyler, annen orden",
+        "note": "monsteret gjentas paa hver skala: molekyl -> krystall -> isbre -> klima"
+      },
+      "coupling": {
+        "local": "hver krystall er lokalt ordnet i gitteret",
+        "global": "isens albedo reflekterer sollys og kjoler hele jorden — lokale gitterbindinger, global klimaeffekt",
+        "empathy_note": "en lokal fase har global rekkevidde uten at noen enkeltbinding 'vet' det — koblingen er maalbar, ikke tilsiktet."
+      }
+    },
+    {
+      "id": "h2o.liquid",
+      "regime": {
+        "name": "liquid water",
+        "validity": "T_m(P) <= T <= kokepunktet; P_sat(T) <= P <= p_ice_ih_max; kalibreringsvindu 273.16-373.15 K (WaterPhaseEngine)",
+        "law_form": "Clausius-Clapeyron (vaeske-gass) med L_v(T) via Watson-korrelasjonen"
+      },
+      "phase": "liquid",
+      "measure": {
+        "target": "termodynamisk fase",
+        "measurer": "P-T-sensor",
+        "instrument": "kalibrert termometer + barometer",
+        "proxy_chain": [
+          "temperatur via termisk ekspansjon",
+          "trykk via membran",
+          "fase identifisert via P_sat(T) og T_m(P)"
+        ],
+        "placement": "laboratorie-P-T-rom; instrumentet i termisk kontakt med proeven",
+        "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
+      },
+      "episenter": "P-T-landskapet: regionen MELLOM smelte- og dampkurven — 'vaeske' er en lesning i P-T-rammen, ikke en egenskap ved ett molekyl",
+      "buffer": {
+        "role": "hoey varmekapasitet (4.18 kJ/(kg*K)): vann holder temperaturen under oppvarming — demper endring helt til kokepunktet, der L_v absorberer resten foer temperaturen stiger videre. Havene er jordens termiske buffer — homeostatisk rolle i klimasystemet.",
+        "note": "Det brede buffer-begrepet i sin reneste form: termisk treghet som bremser endring. Batteri og homeostase er samme logikk paa andre akser. Forankret i repoets egen teori: HomoFluxus (docs/papers/meta/HomoFluxus/README.md — τ_ref(r) = ρ_E / (σ + ε), persistens som oppholdstid) og Autopoiesis (Levin 2019 — homeostase som holding: «maintain state after transient stimuli»)."
+      },
+      "ontology": {
+        "assumes": [
+          "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P"
+        ],
+        "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: T og P av hele spekteret — optiske, akustiske og kjemiske kanaler er lukket for dette instrumentet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "hydrogenbindinger dannes og brytes kontinuerlig — loopen holder vaesken flytende",
+        "properties": [
+          "flyt",
+          "overflatespenning",
+          "hoey varmekapasitet"
+        ]
+      },
+      "fractal": {
+        "pattern": "hver fase er sin egen emergence med egne loops i samme landskap",
+        "note": "vannmolekylet -> draapen -> havet -> klima: samme buffer-logikk paa hver skala. Forankret i theory/EFC_R_FRAGMENT_TOPOLOGY_MAPPING.md: «Regime transitions ARE phase transitions in fragment resonance» — samme fysikk paa ulike skalaer."
+      },
+      "coupling": {
+        "local": "molekylene strommer og binder seg lokalt i hver draape",
+        "global": "havene transporterer varme over jorden (golfstrommen) og demper klimasvingninger — og regnbuen forutsetter flytende draaper i gassfase",
+        "empathy_note": "lokal stromning, global vaermaskin — koblet via systemisk empati, lokalt-globalt."
+      }
+    },
+    {
+      "id": "h2o.gas",
+      "regime": {
+        "name": "water vapor",
+        "validity": "P <= P_sat(T) for T i [273.16, 373.15] K; P <= 101325 Pa er sikkert gass over; hoyere P: unknown (WaterPhaseEngine)",
+        "law_form": "ideell-gassnaer damp; Clausius-Clapeyron for metningsgrensen"
+      },
+      "phase": "gas",
+      "measure": {
+        "target": "termodynamisk fase",
+        "measurer": "P-T-sensor",
+        "instrument": "kalibrert termometer + barometer (evt. hygrometer for damp)",
+        "proxy_chain": [
+          "temperatur via termisk ekspansjon",
+          "trykk via membran",
+          "dampinnhold via duggpunkt (hygrometer) — en ekstra proxy for gassfase"
+        ],
+        "placement": "laboratorie-P-T-rom eller atmosfaere",
+        "compression": "fasediagram-projeksjon: (T, P) -> fasemerke"
+      },
+      "episenter": "P-T-landskapet: regionen UNDER dampkurven — 'gass' er lesningen av samme molekyler i en annen region",
+      "buffer": {
+        "role": "gassens varmekapasitet og utvidelse demper lokale trykk- og temperaturgradienter; metningstrykket er selve buffergrensen mot kondensasjon",
+        "note": "ingen latent buffer i gassen selv — den sitter i OVERGANGENE, ikke i fasen."
+      },
+      "ontology": {
+        "assumes": [
+          "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P"
+        ],
+        "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: T og P — gassen er usynlig i det synlige spekteret, men fullt tilstede i IR (drivhuseffekten er IR-baandbredde)",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "frie molekyler i kollisjon — loopen holder trykket og temperaturen spredt",
+        "properties": [
+          "kompressibilitet",
+          "metningstrykk",
+          "usynlighet i synlig lys, absorpsjon i IR"
+        ]
+      },
+      "fractal": {
+        "pattern": "hver fase er sin egen emergence med egne loops i samme landskap",
+        "note": "molekyl -> damp -> sky -> globalt vaersystem"
+      },
+      "coupling": {
+        "local": "hvert molekyl er fritt lokalt",
+        "global": "vanndamp er den sterkeste drivhusgassen og driver hele vaersystemet — og regnbuen krever gassfase-luft rundt flytende draaper",
+        "empathy_note": "et lokalt usynlig molekyl, en global atmosfaereeffekt — settes sammen med lys og draaper blir det en regnbue."
+      }
+    },
+    {
+      "id": "h2o.supercritical",
+      "regime": {
+        "name": "supercritical water",
+        "validity": "T > 647.096 K OG P > 22.064 MPa (kritisk punkt, IAPWS)",
+        "law_form": "ingen fasegrense — kontinuerlig fluid"
+      },
+      "phase": "supercritical",
+      "measure": {
+        "target": "termodynamisk tilstand (ikke 'fase' — grensen er borte)",
+        "measurer": "P-T-sensor",
+        "instrument": "hoeytrykks-P-T-celle",
+        "proxy_chain": [
+          "temperatur via termoelement",
+          "trykk via hoeytrykksmembran",
+          "ingen faseobservabel — grensen finnes ikke"
+        ],
+        "placement": "hoeytrykksautoklav",
+        "compression": "fasediagram-projeksjon: (T, P) -> region over kritisk punkt"
+      },
+      "episenter": "P-T-landskapet: regionen OVER kritisk punkt — en leseramme der fasebegrepet selv opploeses",
+      "buffer": {
+        "role": "ingen fasegrense aa holde — bufferkapasiteten er kontinuerlig, uten latent varme",
+        "note": "regimet der buffer-begrepet skifter form: ikke treghet mot overgang, men kontinuerlig kapasitet."
+      },
+      "ontology": {
+        "assumes": [
+          "H2O-molekyler i en tilstand der vaeske/gass-skillet ikke eksisterer"
+        ],
+        "source": "standard termodynamikk; IAPWS R6-95 (kritisk punkt 647.096 K / 22.064 MPa)"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: T og P — men det synlige skillet observatoeren pleier aa se (fasegrense) er utenfor vinduets rekkevidde",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kontinuerlig fluid — ingen faseovergangs-loop",
+        "properties": [
+          "loesende som en vaeske",
+          "penetrerende som en gass"
+        ]
+      },
+      "fractal": {
+        "pattern": "regimet der fase-emergensen selv opploeses — monsteret bryter ved skalaens ende",
+        "note": "superkritisk vann er den industrielle arbeidshesten (oksidasjon, kraftverk)"
+      },
+      "coupling": {
+        "local": "en kontinuerlig fluidfase lokalt",
+        "global": "superkritisk vann brukes industrielt til oksidasjon og kraft — et laboratorieregime med global teknologisk rekkevidde",
+        "empathy_note": "et regime ingen 'ser' i naturen, men som barer industri."
+      }
+    },
+    {
+      "id": "h2o.triple_point",
+      "regime": {
+        "name": "triple point",
+        "validity": "eksakt punkt: T = 273.16 K, P = 611.657 Pa (IAPWS-95-definisjon)",
+        "law_form": "skjaeringen mellom damp-, smelte- og sublimasjonskurvene"
+      },
+      "phase": "coexistence (solid + liquid + gas)",
+      "measure": {
+        "target": "temperaturskalaens referansepunkt",
+        "measurer": "trippelpunktcelle",
+        "instrument": "kalibrert trippelpunktcelle — ITS-90-referansen",
+        "proxy_chain": [
+          "trykk holdt konstant (611.657 Pa)",
+          "temperatur avlest som celleveggens termiske likevekt",
+          "273.16 K ER definisjonen — maalingen er kalibreringen"
+        ],
+        "placement": "metrologisk laboratorium",
+        "compression": "punktprojeksjon: hele celle-tilstanden -> ett temperaturnummer"
+      },
+      "episenter": "punktet der tre rammer moetes — fasen er ikke EN; leserammen maa romme tre samtidig",
+      "buffer": {
+        "role": "punktet absorberer energi uten temperaturstigning saa lenge tre faser sameksisterer — den ultimate lokale bufferen; all tilfort energi gaar til faseveksling, ikke til dT",
+        "note": "buffer-logikken i sin ekstrem: perfekt dempning av temperatur-endring akkurat her."
+      },
+      "ontology": {
+        "assumes": [
+          "tre faser kan sameksistere i ett punkt",
+          "dette punktet er reproduserbart og definerer skalaen"
+        ],
+        "source": "IAPWS-95; ITS-90 temperaturskala"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: termometret ser bare temperaturen — av tre samtidige faser ser det ETT tall",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "tre faselikevekter i ett punkt — loopen er balansen mellom dem",
+        "properties": [
+          "entydig punkt (Gibbs' faseregel: F = 0)",
+          "definerer 273.16 K"
+        ]
+      },
+      "fractal": {
+        "pattern": "det minste mulige faselandskapet — ett punkt som alle andre fasekart kalibreres mot",
+        "note": "punktet er et helt landskap komprimert: hver fase med sine loops, moetes her."
+      },
+      "coupling": {
+        "local": "tre faser i ett lokalt punkt",
+        "global": "trippelpunktet definerer temperaturskalaen — hvert termometer i verden er kalibrert mot dette punktet",
+        "empathy_note": "et punkt paa 611 Pa barer global maalestandard."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "subject": "h2o.solid",
+      "predicate": "TRANSITIONS_TO",
+      "object": "h2o.liquid",
+      "note": "smelting — T_m(P), dv_melt < 0"
+    },
+    {
+      "subject": "h2o.liquid",
+      "predicate": "TRANSITIONS_TO",
+      "object": "h2o.gas",
+      "note": "fordamping/koking — P_sat(T)"
+    },
+    {
+      "subject": "h2o.solid",
+      "predicate": "TRANSITIONS_TO",
+      "object": "h2o.gas",
+      "note": "sublimasjon — P_sub(T)"
+    },
+    {
+      "subject": "h2o.triple_point",
+      "predicate": "COUPLED_TO",
+      "object": "h2o.solid",
+      "note": "trippelpunktet er fast-gass-grensen og fast-vaeske-grensen samtidig"
+    },
+    {
+      "subject": "h2o.triple_point",
+      "predicate": "COUPLED_TO",
+      "object": "h2o.liquid",
+      "note": "trippelpunktet er vaeske-gass-grensen og fast-vaeske-grensen samtidig"
+    },
+    {
+      "subject": "h2o.triple_point",
+      "predicate": "COUPLED_TO",
+      "object": "h2o.gas",
+      "note": "trippelpunktet er vaeske-gass-grensen og fast-gass-grensen samtidig"
+    }
+  ]
+}
