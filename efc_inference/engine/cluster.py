@@ -89,8 +89,9 @@ class EFCCluster(EFCEngine):
                 "compression": "ingen kompresjon ennå — kontrakten er "
                                "definert, verdien ikke",
             },
-            "episenter": "masse-rommet: hopefunksjonen er L2-strukturens "
-                         "telling — kontrakten står, fysikken venter",
+            "episenter": "masse-rommet: halomassefunksjonen er L2-"
+                         "strukturens telling — kontrakten står, "
+                         "fysikken venter",
             "buffer": {
                 "role": "hopene er strukturens tetteste buffere — "
                         "observert, ikke modellert her ennå",

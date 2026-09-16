@@ -102,11 +102,14 @@ class EFCHubble(EFCEngine):
         al = params_dict["alpha_cosmo"]
         validity = (
             f"H(z) for z >= 0 — EFC-deformert ekspansjon: Omega_m={om}, "
-            f"H0={h0}, alpha_cosmo={al} (alpha=0 = LCDM-baseline); "
-            "L1/L2-grensen er der E²(a) skifter regime"
+            f"H0={h0}, alpha_cosmo={al} (alpha=0 = LCDM-baseline); motoren "
+            "BEREGNER raten via den injiserte bakgrunnsmodellen — den "
+            "klassifiserer ingen regimegrense selv"
         )
         law_form = ("E²(a) = Om*a^-3 + (1-Om) + alpha*[g(a)-g(1)] — "
-                    "bakgrunnsutvidelse, lest som ekspansjonens lovform")
+                    "EFCVariantA-bakgrunnen (default; motoren aksepterer "
+                    "ogsaa andre injiserte modeller — denne lovformen "
+                    "beskriver bare default-en)")
         return {
             "id": "efc.hubble_engine",
             "regime": {"name": "Hubble-motoren — ekspansjonen",
@@ -119,8 +122,9 @@ class EFCHubble(EFCEngine):
                               "motoren regner raten",
                 "proxy_chain": ["BAO/SNIa -> H(z) (observasjon)",
                                 "H(z) -> EFC-parametre (inferens)"],
-                "placement": "motoren klassifiserer ekspansjonsregimet "
-                             "langs z — r_d-kalibreringen er L1-ankeret",
+                "placement": "motoren beregner ekspansjonsraten langs z — "
+                             "r_d-kalibreringen er L1-ankeret (observasjons-"
+                             "siden, ikke motorens egen klassifisering)",
                 "compression": "hele H(z) -> tre EFC-parametre",
             },
             "episenter": "z-rammen: H(z)-kurven er regimets ryggrad — "
