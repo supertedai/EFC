@@ -1,4 +1,4 @@
-"""EFC Water Phase Engine — H2O fasemotor (trinn 1).
+"""EFC Water Phase Engine — H2O fasemotor (trinn 1, runde 2).
 
 Beregner fase-grense-kurvene til H2O (damp, smelte, sublimasjon) og
 klassifiserer fasen for et gitt (T, P)-punkt, fra materialparametre og
@@ -11,12 +11,15 @@ plugges inn og sammenlignes uten aa bytte motor.
 EFC-rolle: H2O er demonstratoraksen for node/regime/fase/emergens/proxy.
 Fasene er regimer med egne gyldighetsomraader; grensekurvene er
 regimeovergangene; trippelpunktet er punktet der tre regimer moetes.
-Motoren svarer «utenfor gyldighetsomraade» med NaN, ikke med et tall.
 
-Regimegrenser (hver metode har sitt regime):
-    saturation_pressure :  t_triple <= T <= t_critical   (vaeske <-> gass)
-    melting_temperature :  alle P (is I)                 (fast <-> vaeske)
-    sublimation_pressure:  T <= t_triple                 (fast <-> gass)
+Gyldighetsomraader (hvert regime svarer NaN utenfor sitt, maalt mot IAPWS):
+    saturation_pressure :  t_triple <= T <= t_vap_ref
+                           (Watson-korrelasjonen n=0.33 er kalibrert i
+                           0-100 C; ved 450 K er avviket -9.7 %, ved 625 K
+                           -52.5 % — derfor ingen extrapolering mot T_c)
+    melting_temperature :  0 <= P <= p_ice_ih_max (208.566 MPa, IAPWS
+                           R14-08; hoyere trykk er andre isfaser)
+    sublimation_pressure:  t_sublim_min (50 K) <= T <= t_triple
 """
 from __future__ import annotations
 
@@ -37,13 +40,18 @@ class WaterPhaseEngine(EFCEngine):
         "t_triple",                  # K
         "p_triple",                  # Pa
         "t_critical",                # K
+        "p_critical",                # Pa (brukes i klassifiseringen)
         "latent_vaporization_ref",   # J/kg, ved t_vap_ref
-        "t_vap_ref",                 # K
+        "t_vap_ref",                 # K — ogsaa ovre kalibreringsgrense
+        "p_vap_ref",                 # Pa — fysisk referanse ved t_vap_ref
+                                     # (kokepunkt per definisjon: 101325 Pa)
         "latent_fusion",             # J/kg
         "latent_sublimation",        # J/kg, ved ~0 C
         "gas_constant",              # J/(kg*K), R_v for H2O
         "density_ice",               # kg/m3
         "density_water",             # kg/m3
+        "p_ice_ih_max",              # Pa — ice Ih-grensen (IAPWS R14-08)
+        "t_sublim_min",              # K — nedre sublimasjonsgrense
     ]
 
     @property
@@ -59,7 +67,8 @@ class WaterPhaseEngine(EFCEngine):
 
         L_v(T) = L_ref * ((Tc - T) / (Tc - T_ref)) ** n
         For T > Tc blir argumentet negativt og resultatet NaN — det er
-        riktig: over kritisk punkt fins ingen latent varme.
+        riktig: over kritisk punkt fins ingen latent varme. (Motoren
+        bruker uansett bare korrelasjonen innenfor kalibreringsvinduet.)
         """
         n = float(params.get("watson_exponent", WATSON_EXPONENT_DEFAULT))
         tc = params["t_critical"]
@@ -73,15 +82,17 @@ class WaterPhaseEngine(EFCEngine):
         Integrert Clausius-Clapeyron med L_v(T):
             P_sat(T) = p_triple * exp( int_{t_triple}^{T} L_v/(R T^2) dT )
 
-        Gyldighetsomraade: t_triple <= T <= t_critical. Utenfor: NaN.
+        Gyldighetsomraade: t_triple <= T <= t_vap_ref. Utenfor: NaN
+        (korrelasjonen er kalibrert i 0-100 C; extrapolering mot T_c
+        ble maalt til -52.5 % avvik ved 625 K i uavhengig review).
         """
-        t = np.asarray(t, dtype=float)
+        t = np.atleast_1d(np.asarray(t, dtype=float))
         t0 = params["t_triple"]
-        tc = params["t_critical"]
+        tmax = params["t_vap_ref"]
         r = params["gas_constant"]
         p0 = params["p_triple"]
         out = np.full(t.shape, np.nan)
-        ok = (t >= t0) & (t <= tc)
+        ok = (t >= t0) & (t <= tmax)
         if not np.any(ok):
             return out
         try:
@@ -103,28 +114,37 @@ class WaterPhaseEngine(EFCEngine):
         return out
 
     def melting_temperature(self, params: dict, p: np.ndarray) -> np.ndarray:
-        """Smeltetemperatur T_m(P) langs fast-vaeske-grensen (is I).
+        """Smeltetemperatur T_m(P) langs fast-vaeske-grensen (ice Ih).
 
         Clausius-Clapeyron for fast-vaeske med konstant latent varme og
         volumendring:
             T_m(P) = t_triple * exp( dv_melt * (P - p_triple) / L_f )
         der dv_melt = 1/rho_vann - 1/rho_is < 0 (is flyter).
+
+        Gyldighetsomraade: 0 <= P <= p_ice_ih_max (208.566 MPa, IAPWS
+        R14-08). Over det finnes andre isfaser — NaN, ikke extrapolering.
+        Negativt trykk avvises ogsaa deterministisk.
         """
-        p = np.asarray(p, dtype=float)
+        p = np.atleast_1d(np.asarray(p, dtype=float))
         dv = 1.0 / params["density_water"] - 1.0 / params["density_ice"]
         lf = params["latent_fusion"]
-        return params["t_triple"] * np.exp(dv * (p - params["p_triple"]) / lf)
+        out = np.full(p.shape, np.nan)
+        ok = (p >= 0.0) & (p <= params["p_ice_ih_max"])
+        out[ok] = params["t_triple"] * np.exp(
+            dv * (p[ok] - params["p_triple"]) / lf)
+        return out
 
     def sublimation_pressure(self, params: dict, t: np.ndarray) -> np.ndarray:
         """Sublimasjonstrykk P_sub(T) langs fast-gass-grensen.
 
         Clausius-Clapeyron med konstant L_s:
             P_sub(T) = p_triple * exp( -(L_s/R) * (1/T - 1/t_triple) )
-        Gyldighetsomraade: T <= t_triple. Over: NaN.
+        Gyldighetsomraade: t_sublim_min (50 K, IAPWS R14-08) <= T <=
+        t_triple. Utenfor: NaN (negativ temperatur ga tidligere inf).
         """
-        t = np.asarray(t, dtype=float)
+        t = np.atleast_1d(np.asarray(t, dtype=float))
         out = np.full(t.shape, np.nan)
-        ok = t <= params["t_triple"]
+        ok = (t >= params["t_sublim_min"]) & (t <= params["t_triple"])
         r = params["gas_constant"]
         ls = params["latent_sublimation"]
         out[ok] = params["p_triple"] * np.exp(
@@ -135,10 +155,33 @@ class WaterPhaseEngine(EFCEngine):
     # Klassifisering — «hvilken fase er H2O her?»
     # ------------------------------------------------------------------
 
+    # Relativ toleranse for «punktet ligger paa fasegrensen».
+    EPS_REL = 1e-6
+    EPS_T = 1e-6  # K
+
     def classify(self, params: dict, t: float, p: float) -> str:
-        """Fase for ett (T, P)-punkt: solid / liquid / gas / supercritical."""
-        if t > params["t_critical"]:
-            return "supercritical"
+        """Fase for ett (T, P)-punkt.
+
+        Returverdier: solid, liquid, gas, supercritical, coexistence.
+        - Superkritisk krever T > T_c OG P > P_c (konvensjonen); over
+          T_c med P <= P_c er det én gasslignende fluidfase.
+        - Et punkt paa en fasegrense (innenfor EPS_REL/EPS_T) er
+          «coexistence» — to faser sameksisterer der, grensen er ikke
+          en vilkaarlig side.
+        """
+        t = float(t)
+        p = float(p)
+        tc = params["t_critical"]
+        pc = params["p_critical"]
+        if t >= tc:
+            return "supercritical" if p > pc else "gas"
+        if t >= params["t_vap_ref"]:
+            # Over kalibreringsvinduet er P_sat monotont stigende, og den
+            # FYSISKE referansen p_vap_ref (kokepunkt per definisjon) er en
+            # nedre grense for ekte P_sat(T). p <= p_vap_ref er SIKKERT
+            # gass. Hoyere p kan motoren ikke avgjoere ærlig — «unknown»,
+            # ikke en gjettet side.
+            return "gas" if p <= params["p_vap_ref"] else "unknown"
         if t < params["t_triple"]:
             p_vap = float(self.sublimation_pressure(
                 params, np.array([t]))[0])
@@ -146,6 +189,9 @@ class WaterPhaseEngine(EFCEngine):
             p_vap = float(self.saturation_pressure(
                 params, np.array([t]))[0])
         t_melt = float(self.melting_temperature(params, np.array([p]))[0])
+        if (abs(p - p_vap) <= self.EPS_REL * max(p_vap, 1.0)
+                or abs(t - t_melt) <= self.EPS_T):
+            return "coexistence"
         if t < t_melt:
             return "gas" if p < p_vap else "solid"
         return "gas" if p <= p_vap else "liquid"
@@ -155,7 +201,14 @@ class WaterPhaseEngine(EFCEngine):
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
-        """Primaerobservabel: dampkurven. coordinates = T-array (K)."""
+        """Primaerobservabel: dampkurven. coordinates = 1-D T-array (K).
+
+        Kontrakten: ugyldige eller manglende parametre og feil
+        koordinatformer gir NaN-array — aldri unntak.
+        """
+        coordinates = np.asarray(coordinates, dtype=float)
+        if coordinates.ndim != 1 or not self.validate_params(params_dict):
+            return np.full(coordinates.shape, np.nan)
         return self.saturation_pressure(params_dict, coordinates)
 
     # ------------------------------------------------------------------
