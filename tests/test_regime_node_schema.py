@@ -377,7 +377,9 @@ def test_no_private_site_info_in_public_instance():
     site-ID eller intern filsti. Full proveniens ligger i et privat
     artifact — regresjonsvern mot aa gjeninnfoere den her."""
     raw = INSTANCE_PATH.read_text(encoding="utf-8")
-    for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite"]:
+    for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite",
+                    "maalt 2026-09-16T13:41:57Z", "intern MCP-bro",
+                    "feltkoder"]:
         assert forbudt not in raw, f"privat info lekker: {forbudt}"
 
 
