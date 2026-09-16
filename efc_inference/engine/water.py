@@ -234,6 +234,76 @@ class WaterPhaseEngine(EFCEngine):
         return self.saturation_pressure(params_dict, coordinates)
 
     # ------------------------------------------------------------------
+    # Motor↔skjema-broen — motorens selvbeskrivelse som regime-node
+    # ------------------------------------------------------------------
+
+    def regime_node(self, params: dict) -> dict:
+        """Full RegimeNode etter schema/regime_node.schema.json.
+
+        Broen mellom motor og atlas: enhver EFCEngine med denne metoden
+        er en gyldig node i EFC-atlaset — koblingsgrafen og regime-
+        instansene kan konsumere selvbeskrivelsen maskinelt. Manifestet
+        nedenfor er en bakoverkompatibel projeksjon av denne.
+
+        Id og gyldighetsomraade er IKKE lokale valg: de skal stemme med
+        h2o-nodenes deklarerte regimer i schema/regime_nodes.jsonld —
+        konsistensen testes maskinelt (tests/test_engine_manifest_bridge.py).
+        """
+        return {
+            "id": "efc.water_phase_engine",
+            "regime": {
+                "name": "H2O fase-grense-beregning",
+                "validity": "gyldighetsomraadene er identiske med h2o-nodenes: damp [273.16, 373.15] K, smelte [0, 208.566] MPa (ice Ih), sublimasjon [50 K, t_triple]",
+                "law_form": "Clausius-Clapeyron med Watson L_v(T) (n=0.33) — numerisk integrasjon, ingen tabell-oppslag",
+            },
+            "phase": "computation_engine",
+            "measure": {
+                "target": "fasegrenser P_sat(T), T_m(P), P_sub(T)",
+                "measurer": "numerisk integrasjon av Clausius-Clapeyron",
+                "instrument": "WaterPhaseEngine (efc_inference/engine/water.py)",
+                "proxy_chain": [
+                    "P_sat(T) via Watson L_v(T)",
+                    "T_m(P) via dv_melt = 1/rho_vann - 1/rho_is",
+                    "P_sub(T) via konstant L_s"
+                ],
+                "placement": "P-T-rom — motoren regner ett (T,P)-punkt om gangen",
+                "compression": "grensekurver + faseklassifisering (solid/liquid/gas/supercritical + coexistence/unknown)"
+            },
+            "episenter": "P-T-landskapet — motoren leser det samme landskapet som h2o-nodene, og deklarerer de samme grensene",
+            "buffer": {
+                "role": "gyldighetsomraadene er motorens buffer: utenfor dem svarer den NaN/unknown i stedet for aa ekstrapolere",
+                "note": "buffer-logikken i instrumentform: motoren demper sin egen overrekkevidde."
+            },
+            "ontology": {
+                "assumes": [
+                    "materialparametrene (latente varme, tettheter, kritiske konstanter) er korrekte",
+                    "Clausius-Clapeyron gjelder i de deklarerte regimene"
+                ],
+                "source": "IAPWS R6-95/R14-08; standard termodynamikk; review-verifisert mot IAPWS (2026-09-16)"
+            },
+            "observer": {
+                "bandwidth": "motoren ser bare T og P — ingen optiske, akustiske eller kjemiske kanaler",
+                "awareness": "instrument_window"
+            },
+            "emergence": {
+                "loop": "parametre -> grensekurver -> faseklassifisering -> kalibrering mot trippelpunktet -> parametre",
+                "properties": [
+                    "faseklassifisering",
+                    "deklarert gyldighetsomraade per kurve"
+                ]
+            },
+            "fractal": {
+                "pattern": "samme beregningslov i hvert punkt av P-T-landskapet — motoren er en instans av monsteret h2o-nodene beskriver",
+                "note": "en motor, ett monster, tre grensekurver som moetes."
+            },
+            "coupling": {
+                "local": "hver kurve beregnes lokalt i sitt regime",
+                "global": "motorens gyldighetsomraader ER h2o-nodenes — og broen testes maskinelt mot regime_nodes.jsonld",
+                "empathy_note": "motoren vet hvilke atlas-noder den baerer (CARRIES), og testene verifiserer at den ikke deklarerer noe atlaset motsier."
+            },
+        }
+
+    # ------------------------------------------------------------------
     # Empati-porten — hva motoren betjener og er kalibrert mot
     # ------------------------------------------------------------------
 
