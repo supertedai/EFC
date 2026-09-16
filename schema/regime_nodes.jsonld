@@ -1942,7 +1942,7 @@
         "loop": "L1-ekstrapolasjon -> H0_lav; stige -> H0_hoey; gap -> tension",
         "properties": [
           "H0",
-          "5 sigma gap"
+          "H0-gap (datasett-/analyseavhengig)"
         ]
       },
       "fractal": {
@@ -2021,7 +2021,7 @@
         "instrument": "alle kanaler",
         "proxy_chain": [
           "alle observasjoner -> omega_Lambda ~ 0.7",
-          "teoriens prediksjon -> 120 stoerrelsesordener avvik"
+          "naivt teoretisk QFT-estimat -> ~120 stoerrelsesordener avvik (cutoff-avhengig antakelse)"
         ],
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
         "compression": "raadata -> ett sammenfattende maal"
