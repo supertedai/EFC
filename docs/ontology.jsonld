@@ -1122,6 +1122,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:RegimeNodeAtlas",
+      "@type": "rdfs:Class",
+      "label": "RegimeNodeAtlas",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 1,
+      "usedAsProperty": 0,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:RegimeStructureEntropicFlowOntology",
       "@type": "skos:Concept",
       "label": "RegimeStructureEntropicFlowOntology",
@@ -1322,6 +1332,46 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:assumes",
+      "@type": "rdf:Property",
+      "label": "assumes",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:awareness",
+      "@type": "rdf:Property",
+      "label": "awareness",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:bandwidth",
+      "@type": "rdf:Property",
+      "label": "bandwidth",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:buffer",
+      "@type": "rdf:Property",
+      "label": "buffer",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:category",
       "@type": "rdf:Property",
       "label": "category",
@@ -1392,6 +1442,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:compression",
+      "@type": "rdf:Property",
+      "label": "compression",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:conclusion",
       "@type": "rdf:Property",
       "label": "conclusion",
@@ -1458,6 +1518,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:coupling",
+      "@type": "rdf:Property",
+      "label": "coupling",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1542,6 +1612,26 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:emergence",
+      "@type": "rdf:Property",
+      "label": "emergence",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:empathy_note",
+      "@type": "rdf:Property",
+      "label": "empathy_note",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:entityType",
       "@type": "rdf:Property",
       "label": "entityType",
@@ -1558,6 +1648,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:epicenter",
+      "@type": "rdf:Property",
+      "label": "epicenter",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1622,6 +1722,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:fractal",
+      "@type": "rdf:Property",
+      "label": "fractal",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:framework",
       "@type": "rdf:Property",
       "label": "framework",
@@ -1677,7 +1787,17 @@
       "label": "generated_at",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 1,
+      "usedAsProperty": 2,
+      "usedAsValue": 0,
+      "inDocuments": 2
+    },
+    {
+      "@id": "efc:global",
+      "@type": "rdf:Property",
+      "label": "global",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1697,9 +1817,9 @@
       "label": "id",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 55,
+      "usedAsProperty": 60,
       "usedAsValue": 0,
-      "inDocuments": 2
+      "inDocuments": 3
     },
     {
       "@id": "efc:influences",
@@ -1708,6 +1828,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:instrument",
+      "@type": "rdf:Property",
+      "label": "instrument",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1742,6 +1872,16 @@
       "inDocuments": 2
     },
     {
+      "@id": "efc:law_form",
+      "@type": "rdf:Property",
+      "label": "law_form",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:layer",
       "@type": "rdf:Property",
       "label": "layer",
@@ -1762,12 +1902,52 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:local",
+      "@type": "rdf:Property",
+      "label": "local",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:loop",
+      "@type": "rdf:Property",
+      "label": "loop",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:meanChi2Reduced",
       "@type": "rdf:Property",
       "label": "meanChi2Reduced",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 2,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:measure",
+      "@type": "rdf:Property",
+      "label": "measure",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:measurer",
+      "@type": "rdf:Property",
+      "label": "measurer",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1877,9 +2057,19 @@
       "label": "name",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 45,
+      "usedAsProperty": 50,
       "usedAsValue": 0,
-      "inDocuments": 2
+      "inDocuments": 3
+    },
+    {
+      "@id": "efc:nodes",
+      "@type": "rdf:Property",
+      "label": "nodes",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
     },
     {
       "@id": "efc:note",
@@ -1887,9 +2077,9 @@
       "label": "note",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 14,
+      "usedAsProperty": 30,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:notes",
@@ -1917,7 +2107,17 @@
       "label": "object",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 7,
+      "usedAsProperty": 13,
+      "usedAsValue": 0,
+      "inDocuments": 2
+    },
+    {
+      "@id": "efc:observer",
+      "@type": "rdf:Property",
+      "label": "observer",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1929,6 +2129,16 @@
       "usedAsClass": 0,
       "usedAsProperty": 0,
       "usedAsValue": 1,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:ontology",
+      "@type": "rdf:Property",
+      "label": "ontology",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
       "inDocuments": 1
     },
     {
@@ -1962,6 +2172,26 @@
       "inDocuments": 2
     },
     {
+      "@id": "efc:pattern",
+      "@type": "rdf:Property",
+      "label": "pattern",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:phase",
+      "@type": "rdf:Property",
+      "label": "phase",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:phenomenon",
       "@type": "rdf:Property",
       "label": "phenomenon",
@@ -1982,6 +2212,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:placement",
+      "@type": "rdf:Property",
+      "label": "placement",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:populate_full_graph_via",
       "@type": "rdf:Property",
       "label": "populate_full_graph_via",
@@ -1997,9 +2237,9 @@
       "label": "predicate",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 7,
+      "usedAsProperty": 13,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:prediction",
@@ -2032,12 +2272,32 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:properties",
+      "@type": "rdf:Property",
+      "label": "properties",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:provenance",
       "@type": "rdf:Property",
       "label": "provenance",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:proxy_chain",
+      "@type": "rdf:Property",
+      "label": "proxy_chain",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -2067,9 +2327,9 @@
       "label": "regime",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 38,
+      "usedAsProperty": 43,
       "usedAsValue": 0,
-      "inDocuments": 2
+      "inDocuments": 3
     },
     {
       "@id": "efc:regimeArchitecture",
@@ -2167,9 +2427,9 @@
       "label": "relations",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 1,
+      "usedAsProperty": 2,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:revisedModel",
@@ -2187,9 +2447,9 @@
       "label": "role",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 42,
+      "usedAsProperty": 47,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:scenario_classification",
@@ -2207,9 +2467,9 @@
       "label": "schema_version",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 1,
+      "usedAsProperty": 2,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:sealed",
@@ -2267,9 +2527,9 @@
       "label": "source",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 1,
+      "usedAsProperty": 6,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:steps",
@@ -2287,9 +2547,9 @@
       "label": "subject",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 7,
+      "usedAsProperty": 13,
       "usedAsValue": 0,
-      "inDocuments": 1
+      "inDocuments": 2
     },
     {
       "@id": "efc:successRate",
@@ -2315,6 +2575,16 @@
       "@id": "efc:symbol",
       "@type": "rdf:Property",
       "label": "symbol",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:target",
+      "@type": "rdf:Property",
+      "label": "target",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 5,
@@ -2420,6 +2690,16 @@
       "usedAsProperty": 2,
       "usedAsValue": 0,
       "inDocuments": 2
+    },
+    {
+      "@id": "efc:validity",
+      "@type": "rdf:Property",
+      "label": "validity",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 5,
+      "usedAsValue": 0,
+      "inDocuments": 1
     },
     {
       "@id": "efc:value",
