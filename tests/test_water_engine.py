@@ -237,6 +237,14 @@ def test_classify_boiling_point_is_coexistence():
     assert _motor().classify(PARAMS, 373.15, 101325.0) == "coexistence"
 
 
+def test_classify_boiling_point_tolerance_is_symmetric():
+    """Runde 3: toleransen rundt t_vap_ref skal vaere symmetrisk — bade
+    rett under og rett over kokepunktstemperaturen er grensen."""
+    m = _motor()
+    for t_k in (373.15 - 0.5e-6, 373.15 + 0.5e-6):
+        assert m.classify(PARAMS, t_k, 101325.0) == "coexistence", t_k
+
+
 def test_classify_on_vapor_boundary_is_coexistence():
     """K5: et punkt paa fasegrensen er coexistence, ikke vilkaarlig side."""
     m = _motor()

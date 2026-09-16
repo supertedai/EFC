@@ -182,6 +182,15 @@ class WaterPhaseEngine(EFCEngine):
             if abs(p - pc) <= self.EPS_REL * pc:
                 return "coexistence"
             return "gas" if p < pc else "unknown"
+        if (abs(t - params["t_vap_ref"]) <= self.EPS_T
+                and abs(p - params["p_vap_ref"])
+                <= self.EPS_REL * params["p_vap_ref"]):
+            # Kokepunktet er en fasegrense — modellens P_sat(373.15)
+            # ligger 1.7 % under den fysiske definisjonen, saa
+            # referansepunktet maa brukes her. Staar FOER t_vap_ref-
+            # grenen slik at toleransen er symmetrisk paa begge sider
+            # av kokepunktstemperaturen (review runde 3).
+            return "coexistence"
         if t > params["t_vap_ref"]:
             # Over kalibreringsvinduet er P_sat monotont stigende, og den
             # FYSISKE referansen p_vap_ref (kokepunkt per definisjon) er en
@@ -189,13 +198,6 @@ class WaterPhaseEngine(EFCEngine):
             # gass. Hoyere p kan motoren ikke avgjoere ærlig — «unknown»,
             # ikke en gjettet side.
             return "gas" if p <= params["p_vap_ref"] else "unknown"
-        if (abs(t - params["t_vap_ref"]) <= self.EPS_T
-                and abs(p - params["p_vap_ref"])
-                <= self.EPS_REL * params["p_vap_ref"]):
-            # Kokepunktet er en fasegrense — modellens P_sat(373.15)
-            # ligger 1.7 % under den fysiske definisjonen, saa
-            # referansepunktet maa brukes her (review runde 2).
-            return "coexistence"
         if t < params["t_triple"]:
             p_vap = float(self.sublimation_pressure(
                 params, np.array([t]))[0])
