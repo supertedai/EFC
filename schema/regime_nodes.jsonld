@@ -809,6 +809,221 @@
         "global": "L3 er hele kjedens endestasjon — alle regimene ender her",
         "empathy_note": "den fjerneste grensen er skrevet inn i den naermeste maalingen."
       }
+    },
+    {
+      "id": "batteri.celle",
+      "regime": {
+        "name": "LiFePO4-cellen — det kjemiske regimet",
+        "validity": "SOC i [0,1] er regimekoordinaten: OCV-kurven er flat i midten og bratt i endene — spenningen er avlesningen, SOC er tilstanden. Celle vs pakke: maalingene er PAKKESpenning; cellenivaaet er BMS-intern proxy. Serie 16S er antatt fra pakkespenning ~53 V, men er ikke dokumentert i atlaset.",
+        "law_form": "Li+ interkalering i FePO4/grafen — kjemisk potensial som spenning"
+      },
+      "phase": "kjemisk_regime",
+      "measure": {
+        "target": "SOC og SOH",
+        "measurer": "Battery Monitor som leser Seplos BMS (privat anlegg)",
+        "instrument": "spennings-, strøm- og temperatursensorer",
+        "proxy_chain": [
+          "coulomb-telling (I over tid) -> SOC-estimat",
+          "V (OCV) -> SOC-korreksjon kun etter hvile",
+          "temperatur -> SOH-korreksjon",
+          "BMS-kalibreringslogikk -> SOC/SOH (estimator, ikke momentanmaaling)"
+        ],
+        "placement": "sensorene sitter paa pakken, ikke i kjemien — cellenivaaet er BMS-intern proxy av pakkemaalingene",
+        "compression": "mV og mA -> ett SOC-tall"
+      },
+      "episenter": "SOC-rammen: cellens tilstand leses gjennom SOC — spenningen er proxyen, ikke tilstanden selv",
+      "buffer": {
+        "role": "cellekjemien er mikro-bufferen: interkalasjonsstrukturen holder og slipper litiumioner — kapasitet paa minste skala",
+        "note": "den minste bufferen i kjeden."
+      },
+      "ontology": {
+        "assumes": [
+          "SOC er en veldefinert regimekoordinat for cellen",
+          "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
+        ],
+        "source": "Seplos BMS (LiFePO4) — levende avlesning fra et privat Victron VRM-anlegg via intern MCP-bro (full site-proveniens i privat artifact; snapshot, ikke stabil tilstand). Feltkoder Battery Monitor 512: Voltage, Current, Temperature, StateOfCharge, StateOfHealth; tilstand «charging» — maalt 2026-09-16T13:41:57Z. Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
+      },
+      "observer": {
+        "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "interkalering -> spenning -> strøm -> interkalering — loopen ER cellen",
+        "properties": [
+          "OCV",
+          "kapasitet",
+          "aldring (SOH)"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme regimemonster som H2O: flat midt er ett regime, bratte ender er grenser — cellen er et fasekart i elektrisk form",
+        "note": "regimet, grensen og overgangen gjentar seg paa celle-, batteri- og nett-nivaa."
+      },
+      "coupling": {
+        "local": "hver celle svinger lokalt med lade/slade-strømmen",
+        "global": "alle celler i serie danner batteriets felles spenning — en celle ute av balanse trekker ned hele pakken",
+        "empathy_note": "cellen kjenner hele batteriet gjennom sin egen spenning."
+      }
+    },
+    {
+      "id": "batteri.lading",
+      "regime": {
+        "name": "Laderegimet — CC/CV",
+        "validity": "CC: konstant strøm, stigende spenning. CV: konstant spenning, avtagende strøm. Kneet mellom dem er overgangen — laderegimets fasegrense.",
+        "law_form": "to-trinns ladeprotokoll: CC til spenningsgrensen, CV deretter"
+      },
+      "phase": "overgang",
+      "measure": {
+        "target": "ladekurven V(t), I(t)",
+        "measurer": "laderen (MultiPlus/VE.Bus, privat anlegg)",
+        "instrument": "V/I-sensorer i laderen",
+        "proxy_chain": [
+          "V, I over tid -> ladekurven",
+          "strømavtag under CV under strømterskel -> ladeslutt-KRITERIUM (SOC ~ 1, men ikke automatisk; termineres av terskel/tidskriterium)",
+          "CC-fasens lengde -> utnyttet kapasitet"
+        ],
+        "placement": "laderen styrer og maaler i samme sløyfe",
+        "compression": "ladehistorikk -> ett kne-punkt (tidsserien kreves for aa dokumentere kneet)"
+      },
+      "episenter": "kneet: CC -> CV er laderegimets faseovergang — trippelpunkt-analogien: to regimer (strømstyrt og spenningsstyrt) møtes i ett punkt",
+      "buffer": {
+        "role": "laderen er bufferens fyllemekanisme: den styrer hvor fort energien strømmer inn",
+        "note": "bufferens inngang."
+      },
+      "ontology": {
+        "assumes": [
+          "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
+          "kneet er et ekte regimeskifte, ikke bare en justering"
+        ],
+        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning (snapshot): «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
+      },
+      "observer": {
+        "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "CC -> kne -> CV -> full — ladeløypa er en tre-trinns emergence",
+        "properties": [
+          "ladekurven",
+          "kneet som overgangssignatur"
+        ]
+      },
+      "fractal": {
+        "pattern": "kneet er laderegimets svar paa H2Os trippelpunkt og kosmologiens L1->L2 — samme overgangsstruktur i tre domener",
+        "note": "tre domener, ett overgangsmonster."
+      },
+      "coupling": {
+        "local": "laderen regulerer lokalt mot spenningsgrensen",
+        "global": "ladingen kobler produksjonen (sol) til lagringen (buffer) — overgangen ER koblingen",
+        "empathy_note": "laderegimet er der energien bytter adresse."
+      }
+    },
+    {
+      "id": "batteri.buffer",
+      "regime": {
+        "name": "Batteriet som buffer",
+        "validity": "SOC i [0,1] er fyllstanden — kapasiteten (kWh) er bufferens volum; bufferen virker i hele SOC-intervallet, ikke bare full/ikke-full",
+        "law_form": "energilagring: P_inn - P_ut = dE/dt"
+      },
+      "phase": "lagring",
+      "measure": {
+        "target": "SOC, effektbalanse, sykluser",
+        "measurer": "Victron-systemet (Cerbo GX/VRM)",
+        "instrument": "Battery Monitor (Seplos BMS), VE.Bus (MultiPlus), Grid meter, Growatt PV",
+        "proxy_chain": [
+          "shunt (A) -> coulomb-telling -> SOC",
+          "spenningsmaaling (V) -> terminaltilstand",
+          "lastmåling (W) -> topp-effekter",
+          "syklus-telling + BMS-estimator -> aldring (SOH)"
+        ],
+        "placement": "målingen skjer i bufferen selv — den ser sin egen fyllstand",
+        "compression": "sekund-for-sekund-strømmer -> ett SOC-tall og én dagkurve"
+      },
+      "episenter": "balanserammen: bufferen leses som avstanden mellom produksjon og forbruk — dens tilstand ER balansen den skaper",
+      "buffer": {
+        "role": "batteriet ER en buffer i bred forstand: homeostase (holder nettspenningen stabil), lagring (flytter energi i tid), demping (absorberer topper) — som en kropps homeostase, i elektrisk form",
+        "note": "Mortens brede bufferdefinisjon, elektrisk: homeostase + lagring + demping paa samme sted."
+      },
+      "ontology": {
+        "assumes": [
+          "bufferen er mer enn en lagerboks — den er en homeostatisk mekanisme",
+          "SOC er bufferens tilstandskoordinat"
+        ],
+        "source": "levende privat Victron VRM-anlegg (ESS, Cerbo GX, Seplos BMS) — avlest via intern MCP-bro; snapshot, ikke stabil tilstand; feltkoder: Voltage, Current, Battery Power, Temperature, StateOfCharge, StateOfHealth, tilstand «charging» — maalt 2026-09-16T13:41:57Z; full site-proveniens i privat artifact"
+      },
+      "observer": {
+        "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "lade -> lagre -> slippe -> lade — bufferens puste-syklus",
+        "properties": [
+          "dag/natt-syklusen",
+          "topp-effekt-stabilitet"
+        ]
+      },
+      "fractal": {
+        "pattern": "bufferen gjentar seg paa alle skalaer: celle -> batteripakke -> husets energibalanse — samme homeostatiske monster",
+        "note": "bufferen er fraktal: hver skala har sin egen homeostase."
+      },
+      "coupling": {
+        "local": "balanserer lokalt: solcelleoverskudd inn, forbrukstopper ut",
+        "global": "batteriet kobler lokal produksjon til global (nettets) balanse — lokal lagring, systemisk empati",
+        "empathy_note": "bufferens hele poeng er lokalglobal kobling: den jevner ut det lokale saa det globale holder seg."
+      }
+    },
+    {
+      "id": "batteri.inverter",
+      "regime": {
+        "name": "Inverteren — regimekonverteren",
+        "validity": "DC inn, AC ut (50 Hz, 230 V) — to regimer i ett hus; konverteringen er reversibel (ladevekselretter)",
+        "law_form": "pulsbreddemodulasjon DC->AC (invertermodus); likeretting AC->DC (lademodus) — to retninger, samme hus"
+      },
+      "phase": "konvertering",
+      "measure": {
+        "target": "utgangsspenning, frekvens, effekt",
+        "measurer": "inverterens egne sensorer",
+        "instrument": "V/I/f-sensorer paa utgangen",
+        "proxy_chain": [
+          "DC-effekt inn -> AC-effekt ut (virkningsgrad)",
+          "utgangsspenning/frekvens -> nettkvalitet"
+        ],
+        "placement": "inverteren maaler i begge regimer samtidig — den er broens egen observator",
+        "compression": "to strømverdener -> én virkningsgrad"
+      },
+      "episenter": "konverteringsrammen: inverteren leses som det punktet der batteriregimet (DC) og nettregimet (AC) møtes",
+      "buffer": {
+        "role": "inverteren har en liten intern buffer (DC-link-kondensatorer) som glatter pulsbreddemodulasjonen — buffer i miniatyr inne i konvertereren",
+        "note": "hver konverterer baerer sin egen lille buffer."
+      },
+      "ontology": {
+        "assumes": [
+          "DC og AC er to veldefinerte regimer",
+          "konverteringen er en ekte transformasjon, ikke bare skalering"
+        ],
+        "source": "inverterprodusentens spesifikasjon (Victron MultiPlus/Quattro)"
+      },
+      "observer": {
+        "bandwidth": "inverteren ser DC-siden og AC-siden hver for seg — broen selv har to vinduer",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "DC -> PWM -> AC -> forbruk; AC -> likeretting -> DC -> lading — den toveis konverteringsloopen",
+        "properties": [
+          "sinusbølge",
+          "nettfølging",
+          "øydrift"
+        ]
+      },
+      "fractal": {
+        "pattern": "inverteren er overgangsnoden som H2Os fasegrense og kosmologiens L1->L2 — to regimer, ett møtepunkt",
+        "note": "hvert domene har sin konverterer."
+      },
+      "coupling": {
+        "local": "konverterer lokalt per fase og per krets",
+        "global": "inverteren er porten mellom batteriregimet og nettregimet — uten den kan ikke bufferen nå forbruket",
+        "empathy_note": "konvertereren er der de to verdenene forstaar hverandre."
+      }
     }
   ],
   "relations": [
@@ -919,6 +1134,24 @@
       "predicate": "TRANSITIONS_TO",
       "object": "efc.l3",
       "note": "S -> 1: struktursaturasjon — vekstens endestasjon"
+    },
+    {
+      "subject": "batteri.celle",
+      "predicate": "TRANSITIONS_TO",
+      "object": "batteri.lading",
+      "note": "CC -> CV: kneet der strømmen avtar — laderegimets faseovergang, trippelpunkt-analogien i elektrisk form"
+    },
+    {
+      "subject": "batteri.buffer",
+      "predicate": "COUPLED_TO",
+      "object": "batteri.celle",
+      "note": "bufferen er cellenes makroform — hjemmehomeostasen bestaar av cellekjemier"
+    },
+    {
+      "subject": "batteri.inverter",
+      "predicate": "COUPLED_TO",
+      "object": "batteri.buffer",
+      "note": "inverteren trekker fra bufferen og konverterer DC -> AC — bufferen naar forbruket gjennom konvertereren"
     }
   ]
 }

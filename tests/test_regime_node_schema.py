@@ -277,3 +277,105 @@ def test_observer_is_inside_l2():
     # L2-noden skal selv deklarere observatorens posisjon.
     assert "observat" in obs["observer"]["bandwidth"].lower() or \
         "observat" in obs["episenter"].lower()
+
+
+# --------------------------------------------------------------------------
+# Trinn 6: Victron/batteri — bufferens elektriske form
+# --------------------------------------------------------------------------
+
+def test_battery_nodes_exist():
+    """Batteridomenet skal staa som noder: celle, lading, buffer,
+    inverter — kjemisk regime, overgang, lagring, konvertering."""
+    ids = {n["id"] for n in _instance()["nodes"]}
+    assert {"batteri.celle", "batteri.lading",
+            "batteri.buffer", "batteri.inverter"} <= ids
+
+
+def test_cc_cv_transition_declared():
+    """CC -> CV-kneet er laderegimets faseovergang — trippelpunkt-
+    analogien i elektrisk form. Overgangen skal vaere deklarert i
+    relasjonen mellom celle og lading."""
+    rels = _instance()["relations"]
+    overgang = next(
+        (r for r in rels
+         if (r["subject"], r["predicate"], r["object"])
+         == ("batteri.celle", "TRANSITIONS_TO", "batteri.lading")),
+        None)
+    assert overgang is not None
+    note = overgang["note"].upper()
+    assert "CC" in note and "CV" in note
+
+
+def test_soc_is_regime_coordinate():
+    """SOC er batteriets regimekoordinat — flat midt, bratt i endene.
+    Cellenoden skal deklarere dette i validity."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    assert "SOC" in celle["regime"]["validity"]
+
+
+def test_buffer_is_broad_electric():
+    """Bufferen er Mortens brede buffer i elektrisk form: homeostase,
+    lagring, demping — ikke bare en lagerboks."""
+    inst = _instance()
+    buffer_node = next(n for n in inst["nodes"] if n["id"] == "batteri.buffer")
+    rolle = buffer_node["buffer"]["role"].lower()
+    assert "homeost" in rolle or "lagr" in rolle or "energi" in rolle
+
+
+def test_inverter_is_regime_converter():
+    """Inverteren er regimekonverteren: DC <-> AC — transformasjonsnoden
+    der to regimer motes."""
+    inst = _instance()
+    inv = next(n for n in inst["nodes"] if n["id"] == "batteri.inverter")
+    assert ("DC" in inv["emergence"]["loop"].upper()
+            or "DC" in inv["regime"]["validity"].upper())
+
+
+def test_proxy_chain_v_a_w_to_soc():
+    """Victron-instrumentene maaler V/A/W og avleder SOC/SOH — proxy-
+    kjeden skal vaere deklarert i cellenodens maaling."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
+    assert "V" in kjede and "SOC" in kjede
+
+
+def test_soc_proxy_is_qualified():
+    """SOC er et ESTIMAT, ikke en direkte maaling: proxychain skal skille
+    coulomb-telling (estimert) fra OCV (kun etter hvile) — ellers
+    forveksler vi ladespenning med hvilespenning."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
+    assert "COULOMB" in kjede and "ETTER HVILE" in kjede
+    assert "ESTIMAT" in kjede or "ESTIMATOR" in kjede
+
+
+def test_pack_vs_cell_declared():
+    """Målingene er PAKKESpenning; cellenivaaet er BMS-intern proxy.
+    Skillet skal vaere deklarert i cellenodens validity."""
+    inst = _instance()
+    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    validity = celle["regime"]["validity"].upper()
+    assert "PAKKE" in validity and "BMS" in validity
+
+
+def test_inverter_is_bidirectional():
+    """Inverteren er en TOVEIS konverterer: DC->AC (invertermodus) og
+    AC->DC (lademodus) — ikke bare den ene retningen."""
+    inst = _instance()
+    inv = next(n for n in inst["nodes"] if n["id"] == "batteri.inverter")
+    tekst = (inv["regime"]["law_form"] + " " + inv["emergence"]["loop"]).upper()
+    assert "DC -> AC" in tekst.replace("DC->AC", "DC -> AC").replace(
+        "AC->DC", "AC -> DC") or ("DC->AC" in tekst and "AC->DC" in tekst)
+    assert ("LADEMODUS" in tekst or "LADING" in tekst)
+
+
+def test_no_private_site_info_in_public_instance():
+    """Den offentlige instansen skal IKKE baere privat site-info: adresse,
+    site-ID eller intern filsti. Full proveniens ligger i et privat
+    artifact — regresjonsvern mot aa gjeninnfoere den her."""
+    raw = INSTANCE_PATH.read_text(encoding="utf-8")
+    for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite"]:
+        assert forbudt not in raw, f"privat info lekker: {forbudt}"
