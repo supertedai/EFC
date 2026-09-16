@@ -10,11 +10,12 @@ Physics (MVP-G1):
         D'' + [3/a + H'/H] D' - source(a) * D = 0
 
     where ' = d/da, E(a) = H(a)/H0, and the EFC deformation enters
-    ONLY through H(a) -- Poisson equation is unmodified (mu = 1).
-
-    This is the "Hubble friction channel": the EFC energy-flow field
-    modifies expansion history, which changes the friction term H'/H
-    in the growth ODE, altering structure formation rate.
+    through the cosmology model. TWO channels exist:
+      - Hubble-friksjon: H(a) endres (alle varianter; EFCVariantA/B
+        har mu = 1 — Poisson-leddet uendret der).
+      - μ-kanalen (trinn 13): EFCVariantC+ skalerer kilden med
+        μ(a) = 1 + (mu_0 - 1)·g(a); mu_0 < 1 demper veksten.
+        (mu_0 er valgfri, default 1.0, gyldig [0, 2].)
 
     Observables:
         f(a) = d ln D / d ln a = a * D'/D
@@ -75,11 +76,18 @@ class EFCGrowth(EFCEngine):
 
     def validate_params(self, params_dict: dict) -> bool:
         """Required-feltene (arvet sjekk) + mu_0 hvis gitt: må vaere et
-        endelig tall i [0, 2]."""
+        endelig tall i [0, 2]. Ugyldige typer (strenger, None, bool)
+        avvises uten exception."""
         if not super().validate_params(params_dict):
             return False
         if "mu_0" in params_dict:
             mu0 = params_dict["mu_0"]
+            if isinstance(mu0, bool):
+                return False
+            try:
+                mu0 = float(mu0)
+            except (TypeError, ValueError):
+                return False
             if not np.isfinite(mu0):
                 return False
             if not (self.MU0_MIN <= mu0 <= self.MU0_MAKS):

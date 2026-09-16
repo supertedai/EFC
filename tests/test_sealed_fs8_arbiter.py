@@ -170,16 +170,31 @@ def test_under_2sigma_fra_begge_ankre_venter():
 # ----------------------------------------------------------------------
 def test_rapporten_maaler_mu_kanalen_arlig():
     """Trinn 13 koblet μ-kanalen inn (EFCVariantC, mu_0). Rapporten
-    skal MÅLE den faktiske tilstanden — ikke påstå at kanalen mangler.
-    Reproduksjonen skal vaere dokumentert med tall, og teksten skal
-    skille reproduserbarhet fra bevis om forseglet parameterverdi."""
+    skal MÅLE den faktiske tilstanden — både den injiserte motoren og
+    motorlagets kapabilitet. Reproduksjonen skal vaere dokumentert med
+    tall, og teksten skal skille reproduserbarhet fra bevis om
+    forseglet parameterverdi."""
     rapport = _arbiter().rapport()
-    assert rapport["mu_kanal_i_motorlaget"] is True
-    rep = rapport["mu_reproduksjon"]
+    # Default-motoren er EFCVariantA — den har IKKE kanalen...
+    assert rapport["mu_kanal_i_injisert_motor"] is False
+    # ...men motorlagets kapabilitet (VariantC) er målt og dokumentert.
+    rep = rapport["mu_reproduksjon_variantc"]
     assert rep["variant"] == "EFCVariantC"
     assert abs(rep["fs8_mu_0_5"] - 0.430) < 0.005
     assert "reproduserbar" in rapport["ærlighet"]
     assert "IKKE" in rapport["ærlighet"]  # beviser ikke forseglet mu_0
+    assert "har IKKE" in rapport["ærlighet"]  # injisert variant rapportert
+
+
+def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
+    """Med EFCVariantC injisert skal statusen si det — variant-bevisst,
+    ikke hardkodet."""
+    from efc_inference.core.cosmology_model import EFCVariantC
+    from efc_inference.engine.growth import EFCGrowth
+    arb = SealedFs8Arbiter(growth=EFCGrowth(cosmology=EFCVariantC()))
+    rapport = arb.rapport()
+    assert rapport["mu_kanal_i_injisert_motor"] is True
+    assert "HAR" in rapport["ærlighet"]
 
 
 def test_payload_har_kriterium_og_proveniens():

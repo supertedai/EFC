@@ -249,13 +249,26 @@ class SealedFs8Arbiter:
             "kriterium": self.kriterium(),
             "nullmodell_fs8_07": null,
             "dom": dom,
-            "mu_kanal_i_motorlaget": mu_status["tilgjengelig"],
-            "mu_reproduksjon": mu_status["reproduksjon"],
+            "mu_kanal_i_injisert_motor": mu_status["i_injisert_motor"],
+            "mu_reproduksjon_variantc": mu_status["reproduksjon_variantc"],
             "ærlighet": mu_status["ærlighet"],
         }
 
     def _mu_status(self) -> dict:
-        """Måler μ-kanalens faktiske tilstand i motorlaget."""
+        """Måler μ-kanalens faktiske tilstand.
+
+        To atskilte fakta:
+        1. Har den INJISERTE motoren (self.growth) kanalen? VariantA/B
+           har μ=1 hardkodet — der er mu_0 uten effekt.
+        2. Motorlagets kapabilitet: EFCVariantC har kanalen, og med de
+           kanoniske parametrene + mu_0=0.5 gir den 0.4301 — den
+           forseglede verdien er reproduserbar (konsistenssjekk, IKKE
+           bevis om forseglet parameterverdi).
+        """
+        i_injisert = bool(getattr(self.growth, "stotter_mu", lambda: False)())
+        variant = type(self.growth.cosmology).__name__
+
+        repro = None
         try:
             from efc_inference.core.cosmology_model import EFCVariantC
             g = EFCGrowth(cosmology=EFCVariantC())
@@ -268,34 +281,41 @@ class SealedFs8Arbiter:
                  "alpha_cosmo": 0.0, "mu_0": 1.0},
                 np.array([0.7]))[0])
             avvik = abs(fs8_mu05 - ANKER_EFC)
-            return {
-                "tilgjengelig": True,
-                "reproduksjon": {
-                    "variant": "EFCVariantC",
-                    "mu_0": 0.5,
-                    "fs8_mu_0_5": round(fs8_mu05, 4),
-                    "fs8_mu_1_0": round(fs8_mu1, 4),
-                    "avvik_fra_anker": round(avvik, 4),
-                },
-                "ærlighet": (
-                    "μ-kanalen finnes i motorlaget (EFCVariantC, "
-                    f"μ = 1 + (mu_0−1)·g(a)): med kanoniske parametre "
-                    f"og mu_0=0.5 gir motoren fσ8(z=0.7)={fs8_mu05:.4f} "
-                    f"— {avvik:.4f} fra det forseglede ankeret 0.430. "
-                    "Dette viser at prediksjonen er reproduserbar med "
-                    "kanalen; det beviser IKKE hvilken mu_0 som var "
-                    "forseglet, og dommen felles fortsatt bare mot "
-                    "ankeret. Motorprediksjonen rapporteres separat — "
-                    "avvik skal synes, ikke skjules."),
+            repro = {
+                "variant": "EFCVariantC",
+                "mu_0": 0.5,
+                "fs8_mu_0_5": round(fs8_mu05, 4),
+                "fs8_mu_1_0": round(fs8_mu1, 4),
+                "avvik_fra_anker": round(avvik, 4),
             }
         except Exception as e:  # pragma: no cover
-            return {
-                "tilgjengelig": False,
-                "reproduksjon": None,
-                "ærlighet": (
-                    f"μ-kanalens status kunne ikke måles ({e}) — "
-                    "arbiteren påstår ingenting den ikke har målt."),
-            }
+            repro = {"feil": str(e)}
+
+        injisert_tekst = (
+            f"Den injiserte motoren ({variant}) "
+            + ("HAR" if i_injisert else "har IKKE")
+            + " μ-kanalen."
+        )
+        ærlighet = (
+            f"{injisert_tekst} Motorlagets kapabilitet: EFCVariantC "
+            "bærer μ = 1 + (mu_0−1)·g(a), og med kanoniske parametre "
+            f"og mu_0=0.5 gir den fσ8(z=0.7)={repro['fs8_mu_0_5']:.4f} — "
+            f"{repro['avvik_fra_anker']:.4f} fra det forseglede ankeret "
+            "0.430. Prediksjonen er dermed reproduserbar med kanalen; "
+            "det beviser IKKE hvilken mu_0 som var forseglet, og dommen "
+            "felles fortsatt bare mot ankeret. Motorprediksjonen "
+            "rapporteres separat — avvik skal synes, ikke skjules."
+        ) if repro and "feil" not in repro else (
+            f"{injisert_tekst} VariantC-reproduksjonen kunne ikke måles "
+            f"({repro.get('feil') if repro else 'ukjent'}) — arbiteren "
+            "påstår ingenting den ikke har målt.")
+
+        return {
+            "i_injisert_motor": i_injisert,
+            "variant": variant,
+            "reproduksjon_variantc": repro,
+            "ærlighet": ærlighet,
+        }
 
     # ------------------------------------------------------------------
     # Busspayloaden (emne kosmos.kosmologi.utfall.efc-fs8-arbiter)

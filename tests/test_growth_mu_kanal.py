@@ -57,6 +57,15 @@ def test_mu0_ugyldig_avvises():
         assert np.isnan(v), mu
 
 
+def test_mu0_ugyldig_type_avvises_uten_exception():
+    """Strenger, None og bool er ikke gyldige mu_0-verdier — de skal
+    avvises kontrollert (NaN), aldri krasje med TypeError."""
+    g = EFCGrowth(cosmology=EFCVariantC())
+    for mu in ("bad", None, True, False):
+        v = g.compute({**KANONISKE, "mu_0": mu}, Z_07)[0]
+        assert np.isnan(v), mu
+
+
 def test_varianta_har_ingen_mu_kanal_og_endres_ikke():
     """EFCVariantA har μ=1 hardkodet — mu_0 skal IKKE endre kurven der,
     og motorens selvbeskrivelse skal si at varianten mangler kanalen."""
