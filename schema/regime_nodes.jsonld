@@ -2366,6 +2366,271 @@
         "global": "n(M,z) er L2-strukturens telling — koblet til obs.klynger (OBSERVED_IN, når fysikken finnes)",
         "empathy_note": "stubben vet hva den ikke kan — og sier det."
       }
+    },
+    {
+      "id": "homo.fluxus",
+      "regime": {
+        "name": "Homo Fluxus — mennesket som flytprosess",
+        "validity": "Mennesket er ikke en ting som beveger seg, men et flytmønster som krever kontinuerlig energi- og entropigjennomstrømning: R = κ·⟨τ_ref⟩_E/τ_leak med τ_ref = ρ_E/(σ+ε); over R_c ≈ 1/e ≈ 0.37 blir flyten selvmodellerende (flytsubjekt), under er den et flytobjekt. Kilde: Homo Fluxus v1/v2 (DOI 32099389, 31940604) — rammeverk, ikke måling.",
+        "law_form": "∂_t ρ_E + ∇·J = −L; σ = max(J·∇S̃, 0); τ_ref = ρ_E/(σ+ε); R = κ·⟨τ_ref⟩_E/τ_leak"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "R — den indre refleksjonskoeffisienten",
+        "measurer": "kohrens-proxyene Φ̇I, C_phase, I_body (EEG/MEG + autonomi)",
+        "instrument": "hf1–hf5-observasjonskravene (falsifiserbare påstander i rammeverket)",
+        "proxy_chain": [
+          "kohrens-proxyer → R (inferens)",
+          "R → flytobjekt/flytsubjekt (terskel)"
+        ],
+        "placement": "mennesket plasseres i L2/L3-grensen: levende struktur i L2, selvmodellering i L3 — analogene til atlasets regimer",
+        "compression": "hele menneskets tilstand → én refleksjonskoeffisient"
+      },
+      "episenter": "R-terskelen: overgangen flytobjekt↔flytsubjekt er menneskets regimeskifte — hypotesen, ikke dommen",
+      "buffer": {
+        "role": "kroppens buffere (termisk, kjemisk, nevral) holder flytmønsteret stabilt under transient stimuli — den brede bufferlogikken",
+        "note": "ANALOGI til batteri.buffer og vannets termiske buffer — samme form, andre akser, ikke identitet."
+      },
+      "ontology": {
+        "assumes": [
+          "liv er en ikke-likevekts-termodynamisk prosess (Schrödinger, Prigogine, England)",
+          "R er operasjonaliserbart via kohrens-proxyene"
+        ],
+        "source": "docs/papers/meta/HomoFluxus/README.md + Homo Fluxus v1/v2"
+      },
+      "observer": {
+        "bandwidth": "kohrens-proxyene ser deler av flyten — aldri hele",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "energigjennomstrømning → struktur → selvmodellering — R er loopens mål",
+        "properties": [
+          "κ",
+          "τ_ref",
+          "R"
+        ]
+      },
+      "fractal": {
+        "pattern": "persistens som oppholdstid — samme mønster som batteriets ladeplateå og isens termiske buffer (analogi)",
+        "note": "ett mønster, tre domener — ikke identitet."
+      },
+      "coupling": {
+        "local": "én kropp, én flyt",
+        "global": "mennesket er L3-regimets bærer — selvmodelleringen; ANALOGOUS_TO batteri.buffer via den brede bufferlogikken",
+        "empathy_note": "hver kropp bærer hele regimet i sin egen flyt."
+      }
+    },
+    {
+      "id": "homo.homeostase_buffer",
+      "regime": {
+        "name": "Homeostase-bufferen — kroppens holding",
+        "validity": "Kroppen holder 37 °C, blod-pH, glukose og osmolalitet innenfor trange bånd ved å dempe forstyrrelser — den brede bufferlogikken på kjemisk/termisk akse. ANALOGI til batteriets SOC-buffer og isens termiske buffer (latent varme), ikke identitet. Kilde: Levin 2019 (homeostase som holding).",
+        "law_form": "holding: dT/dx ≈ 0 i båndet; forstyrrelse → kompensasjon (negativ tilbakekopling)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "avvik fra setpunkt (ΔT, ΔpH, Δglukose)",
+        "measurer": "termo-, kjemo- og osmoregulering (målt i kroppen)",
+        "instrument": "fysiologiske sensorer; her er noden beskrivelse, ikke sensor",
+        "proxy_chain": [
+          "sensor → avvik",
+          "avvik → kompensasjonsrespons"
+        ],
+        "placement": "bufferen er L2-livets lokale stabilisator",
+        "compression": "alle regulerte variabler → én avviksvektor"
+      },
+      "episenter": "båndet: innenfor er regimet holdt; utenfor bryter det (feber, sjokk)",
+      "buffer": {
+        "role": "selve bufferen: kapasitet som demper endring — den brede logikken i ren form",
+        "note": "ANALOGI: batteriets kjemiske buffer og isens latente varme er samme form på andre akser."
+      },
+      "ontology": {
+        "assumes": [
+          "setpunktene er adaptive, ikke faste (allostase)",
+          "kompensasjonen er begrenset — bufferens kapasitet kan mettes"
+        ],
+        "source": "docs/papers/meta/HomoFluxus/README.md (Levin 2019); Homo Fluxus v1"
+      },
+      "observer": {
+        "bandwidth": "avviksvektoren, ikke flytens fulle tilstand",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "forstyrrelse → kompensasjon → stabilitet — bufferens loop",
+        "properties": [
+          "kapasitet",
+          "setpunkt",
+          "responsrate"
+        ]
+      },
+      "fractal": {
+        "pattern": "dempe-endring-mønsteret: batteri, is, homeostase — tre domener, samme form (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "bufferen virker per variabel, per organ",
+        "global": "homo.fluxus sin stabilitetsbasis — uten bufferen ingen flyt",
+        "empathy_note": "bufferen vet ikke at den holder et menneske — den bare holder."
+      }
+    },
+    {
+      "id": "homo.feber_regime",
+      "regime": {
+        "name": "Feber — kroppens kontrollerte regimeskifte",
+        "validity": "Feber er et KONTROLLERT skifte av setpunktet (37 → 38–40 °C): bufferen bytter regime for å bekjempe infeksjon. ANALOGI til CC→CV-kneet i lading: et styrt regimeskifte med et nytt platå, ikke identitet. Utenfor kontroll blir feberen hypertermi — regimebrudd.",
+        "law_form": "setpunkt(t) → setpunkt_høy; buffer kompenserer mot NYTT setpunkt; ved ~41 °C kollapser reguleringen (denaturering)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "kroppstemperatur mot setpunkt",
+        "measurer": "hypothalamus-setpunktet (fysiologisk måling)",
+        "instrument": "termometer + pyrogen-markører; her beskrivelse",
+        "proxy_chain": [
+          "pyrogener → setpunktsskifte",
+          "temperatur → avstand til nytt setpunkt"
+        ],
+        "placement": "feberen er homeostase-bufferens regimeskifte — L2-livets faseovergang",
+        "compression": "infeksjon + temperatur → ett setpunktsskifte"
+      },
+      "episenter": "kneet: der setpunktet flyttes — overgangen er kontrollert, ikke kollaps",
+      "buffer": {
+        "role": "bufferen bytter TARGET, ikke kapasitet — det er selve regimeskiftet",
+        "note": "ANALOGI til CC→CV: strømkilden bytter mål, ikke kilde."
+      },
+      "ontology": {
+        "assumes": [
+          "setpunktet er nevralt kontrollert (hypothalamus)",
+          "41 °C-grensen er denatureringsgrensen — hard grense"
+        ],
+        "source": "fysiologi (standard); analogi-merkingen er EFC-atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "temperatur og setpunkt — ikke pyrogen-kaskaden",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "infeksjon → pyrogener → setpunktsskifte → varmeproduksjon — feberens loop",
+        "properties": [
+          "setpunkt_høy",
+          "stigningstakt",
+          "grense 41 °C"
+        ]
+      },
+      "fractal": {
+        "pattern": "kontrollert regimeskifte med nytt platå: CC→CV, feber, solens flare-syklus (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "feberen er kroppens eget skifte",
+        "global": "feberen er homeostase-bufferens utgang og retur — et lukket skift i homo.fluxus",
+        "empathy_note": "kroppen velger selv overgangen — feberen er ikke svikt, den er strategi."
+      }
+    },
+    {
+      "id": "homo.aksjonspotensial",
+      "regime": {
+        "name": "Aksjonspotensialet — nevronets holding→release",
+        "validity": "Membranpotensialet LADES (Na+-kanalene står klare, gradienten bygges) og UTLØSES (terskel → depolarisering → repolarisering) — holding→release i ren form, samme mønster som solens flares og jordas skjelv (ANALOGI, ikke identitet).",
+        "law_form": "dV/dt = −(1/C)·Σ I_ion; terskel V_th → all-eller-ingenting-spike; refraktærperiode gjenlader bufferen"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "membranpotensialet V(t) mot terskelen",
+        "measurer": "elektrofysiologi (patch-clamp, EEG som aggregat)",
+        "instrument": "fysiologisk måling; her beskrivelse",
+        "proxy_chain": [
+          "ionestrømmer → V(t)",
+          "V(t) mot V_th → spike"
+        ],
+        "placement": "nevronet er L2/L3-grensens grunncelle — den minste selvmodellerende enheten",
+        "compression": "ionekanalenes tilstand → én spike-beslutning"
+      },
+      "episenter": "terskelen: V_th — punktet der bufferen slipper det den har holdt",
+      "buffer": {
+        "role": "membranen er bufferen: gradienten lades og holdes til utløsning",
+        "note": "ANALOGI til forkastningsspenning (jordskjelv) og magnetisk buffer (flares) — holding→release, tre domener."
+      },
+      "ontology": {
+        "assumes": [
+          "Hodgkin–Huxley-dynamikken er korrekt beskrivelse",
+          "terskelen er skarp nok til all-eller-ingenting"
+        ],
+        "source": "nevrofysiologi (standard); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "V(t) — ikke kanalenes fulle tilstand",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "lad gradient → nå terskel → utløs → gjenlad — nevronets loop",
+        "properties": [
+          "V_th",
+          "refraktærtid",
+          "spikefrekvens"
+        ]
+      },
+      "fractal": {
+        "pattern": "holding→release: nevron, forkastning, solflare — samme form, tre domener (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett nevron, én beslutning",
+        "global": "mange nevroner = hjernen = homo.fluxus sin selvmodellering",
+        "empathy_note": "hvert spike er en bitteliten utløsning — tanken er en storm av dem."
+      }
+    },
+    {
+      "id": "homo.hjerte_syklus",
+      "regime": {
+        "name": "Hjertets syklus — den periodiske flyten",
+        "validity": "Hjertet er en periodisk holding→release: fylling (diastole, bufferen lades) → utpressing (systole, bufferen tømmes) — med sinusknuten som pacemaker. ANALOGI til ladesyklusen i batteriet (periodisk, ikke identisk: hjertet går aldri til null).",
+        "law_form": "fyll → press → fyll; SV×HR = CO (cardiac output); Frank–Starling: fyllingen setter slagvolumet"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "slagvolum, frekvens, minuttvolum",
+        "measurer": "EKG, ekkokardiografi (klinisk måling)",
+        "instrument": "fysiologisk måling; her beskrivelse",
+        "proxy_chain": [
+          "EKG → elektrisk syklus",
+          "ekko → mekanisk syklus"
+        ],
+        "placement": "hjertet er homo.fluxus sin sentrale pumpe — flytens motor",
+        "compression": "hele sirkulasjonen → CO (liter/min)"
+      },
+      "episenter": "sykelen selv: fyll-press-overgangen er hjertets regimeklokke",
+      "buffer": {
+        "role": "ventriklene er bufferne: de fylles og tømmes rytmisk — aldri til null, aldri over",
+        "note": "ANALOGI til ladesyklus — men hjertet er PERIODISK ved design, batteriet ved behov."
+      },
+      "ontology": {
+        "assumes": [
+          "sinusknuten setter rytmen",
+          "Frank–Starling-mekanismen kobler fylling og slagvolum"
+        ],
+        "source": "kardiologi (standard); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "elektrisk + mekanisk syklus — ikke perfusjonens fulle rom",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "fyll → press → fyll — hjertets loop opprettholder hele flyten",
+        "properties": [
+          "SV",
+          "HR",
+          "CO"
+        ]
+      },
+      "fractal": {
+        "pattern": "periodisk holding→release: hjerte, solsyklus, døgnrytme (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett hjerte, én rytme",
+        "global": "hjertet mater hver celle i homo.fluxus — flytens uavbrutte kilde",
+        "empathy_note": "hjertet spør aldri om lov — det bare pumper."
+      }
     }
   ],
   "relations": [
@@ -2688,6 +2953,26 @@
       "subject": "efc.cluster_engine",
       "predicate": "OBSERVED_IN",
       "object": "obs.cluster_mass"
+    },
+    {
+      "subject": "homo.homeostase_buffer",
+      "predicate": "ANALOGOUS_TO",
+      "object": "batteri.buffer"
+    },
+    {
+      "subject": "homo.feber_regime",
+      "predicate": "ANALOGOUS_TO",
+      "object": "efc.victron_cccv_engine"
+    },
+    {
+      "subject": "homo.aksjonspotensial",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.hjerte_syklus"
+    },
+    {
+      "subject": "homo.hjerte_syklus",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.aksjonspotensial"
     }
   ]
 }
