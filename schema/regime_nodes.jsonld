@@ -388,7 +388,7 @@
       "id": "optikk.dispersjon",
       "regime": {
         "name": "dispersjon i vann",
-        "validity": "n(lambda) faller med boelgelengden i synlig omraade; n ~ 1.33; blaatt (~450 nm) brytes sterkere enn roedt (~650 nm)",
+        "validity": "n(lambda) faller med boelgelengden i synlig omraade; NIST (20 C, 101.325 kPa): n(450 nm) ~ 1.3397 og n(650 nm) ~ 1.3317 — blaatt brytes sterkere enn roedt, begge ~1.33",
         "law_form": "Snells lov + Lorentz-oscillatormodellen for n(lambda)"
       },
       "phase": "material_optical_property",
@@ -441,7 +441,7 @@
       "id": "regnbue",
       "regime": {
         "name": "regnbue",
-        "validity": "primær bue ~42 grader fra anti-solar retning; sekundær bue ~51 grader med omvendt fargerekkefoelge; KREVER flytende (sfaeriske) draaper — iskrystaller gir haloer (22/46 grader) i stedet",
+        "validity": "primær bue ~42 grader fra anti-solar retning; sekundær bue ~50-51 grader med omvendt fargerekkefoelge; KREVER flytende (sfaeriske) draaper — iskrystaller gir haloer (22/46 grader) i stedet",
         "law_form": "Descartes' straalebaner (refraksjon + 1 intern refleksjon primær / 2 sekundær) + dispersjon"
       },
       "phase": "emergent_pattern",
