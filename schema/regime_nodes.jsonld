@@ -820,7 +820,7 @@
       "phase": "kjemisk_regime",
       "measure": {
         "target": "SOC og SOH",
-        "measurer": "BMS/BMV (Victron)",
+        "measurer": "Battery Monitor som leser Seplos BMS (Hasselvegen 5)",
         "instrument": "spennings-, strøm- og temperatursensorer",
         "proxy_chain": [
           "V (OCV) -> SOC",
@@ -841,7 +841,7 @@
           "SOC er en veldefinert regimekoordinat for cellen",
           "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
         ],
-        "source": "LiFePO4-celledatablad; Victron BMV/BMS-dokumentasjon — subagent verifiserer mot Hetzner-oppsettet"
+        "source": "Seplos BMS (LiFePO4) — levende avlesning via /opt/hermes-opus/victron-mcp.py, anlegg 380961 «Hasselvegen 5»; LiFePO4-cellekjemi (OCV-SOC-flathet ved lav C-rate)"
       },
       "observer": {
         "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
@@ -875,7 +875,7 @@
       "phase": "overgang",
       "measure": {
         "target": "ladekurven V(t), I(t)",
-        "measurer": "laderen (Victron MPPT/MultiPlus)",
+        "measurer": "laderen (MultiPlus/VE.Bus, Hasselvegen 5)",
         "instrument": "V/I-sensorer i laderen",
         "proxy_chain": [
           "V, I over tid -> ladekurven",
@@ -895,7 +895,7 @@
           "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
           "kneet er et ekte regimeskifte, ikke bare en justering"
         ],
-        "source": "laderprodusentens protokollspesifikasjon (subagent verifiserer)"
+        "source": "MultiPlus/VE.Bus-ladeprotokollen — levende avlesning: «Effective charge voltage» 55,9 V (Hasselvegen 5, 2026-09-16); CC/CV er standard LiFePO4-protokoll"
       },
       "observer": {
         "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
@@ -928,8 +928,8 @@
       "phase": "lagring",
       "measure": {
         "target": "SOC, effektbalanse, sykluser",
-        "measurer": "Victron-systemet (Cerbo/VRM)",
-        "instrument": "BMV-shunt, MPPT, MultiPlus",
+        "measurer": "Victron-systemet (Cerbo GX/VRM)",
+        "instrument": "Battery Monitor (Seplos BMS), VE.Bus (MultiPlus), Grid meter, Growatt PV",
         "proxy_chain": [
           "shunt (V, A) -> SOC via coulomb-telling",
           "lastmåling -> topp-effekter",
@@ -948,7 +948,7 @@
           "bufferen er mer enn en lagerboks — den er en homeostatisk mekanisme",
           "SOC er bufferens tilstandskoordinat"
         ],
-        "source": "Victron VRM/Cerbo-dokumentasjon; subagent kartlegger hva som faktisk kjoerer i Hetzner"
+        "source": "levende anlegg: «Hasselvegen 5» (idSite 380961), Cerbo GX v3.80~51, ESS, Seplos BMS — avlest via /opt/hermes-opus/victron-mcp.py; målt 2026-09-16T13:41:57Z: 53,13 V, 47,90 A, 2544 W, 20 °C, SOC 38 %, SOH 100 %, tilstand «charging»"
       },
       "observer": {
         "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",
