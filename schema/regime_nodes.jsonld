@@ -277,6 +277,272 @@
         "global": "trippelpunktet definerer temperaturskalaen — hvert termometer i verden er kalibrert mot dette punktet",
         "empathy_note": "et punkt paa 611 Pa barer global maalestandard."
       }
+    },
+    {
+      "id": "lys.sol",
+      "regime": {
+        "name": "hvitt sollys",
+        "validity": "elektromagnetisk straaling fra solen; den synlige delen er 400-700 nm — solen sender hele spekteret (UV, IR, radio ...), observatoeren ser noen faa nm",
+        "law_form": "Maxwells likninger — lys som elektromagnetiske boelger"
+      },
+      "phase": "electromagnetic_field",
+      "measure": {
+        "target": "elektromagnetisk straaling",
+        "measurer": "spektrometer",
+        "instrument": "prisme/gitter-spektrometer",
+        "proxy_chain": [
+          "boelgelengde via gitter-dispersjon",
+          "intensitet via detektor",
+          "farge som observator-proxy for boelgelengde"
+        ],
+        "placement": "solrettet instrument",
+        "compression": "kontinuerlig spektrum -> fargeopplevelse hos observatoeren"
+      },
+      "episenter": "spekter-rammen: hvitt lys leses som en superposisjon av boelgelengder — «hvit» er en observator-lesning, ikke en egenskap ved det enkelte fotonet",
+      "buffer": {
+        "role": "solen er en enorm energikilde med tilnaermet stabil spektralfordeling over menneskelige tidsskalaer",
+        "note": "en energibuffer paa astronomisk skala — samme brede logikk som batteri og homeostase."
+      },
+      "ontology": {
+        "assumes": [
+          "lys er elektromagnetiske boelger med boelgelengde",
+          "hvitt lys er en blanding av boelgelengder"
+        ],
+        "source": "klassisk elektromagnetisme; Met Office optical effects (rainbows)"
+      },
+      "observer": {
+        "bandwidth": "menneskets oeye fanger ~400-700 nm av hele EM-spekteret — resten (UV, IR, radio, roentgen) er usynlig for oss",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "fotonemisjon fra solen <-> absorpsjon og spredning i atmosfaeren",
+        "properties": [
+          "kontinuerlig spektrum",
+          "parallelt innfall fra en fjern kilde"
+        ]
+      },
+      "fractal": {
+        "pattern": "hvert boelgelengde-baand er sin egen kanal — spekteret er fraktalt delt, og hver observator ser bare sitt vindu av det",
+        "note": "samme monster paa hver skala av spekteret."
+      },
+      "coupling": {
+        "local": "hvert foton baerer sin boelgelengde lokalt",
+        "global": "sollyset driver hele jordens klimasystem, fotosyntesen og hvert synsorgan",
+        "empathy_note": "et lokalt foton, en global energioekonomi."
+      }
+    },
+    {
+      "id": "h2o.droplet",
+      "regime": {
+        "name": "flytende draape",
+        "validity": "flytende vann (h2o.liquid-regimet) i atmosfaeren; tilnaermet sfaerisk form via overflatespenning; regnbueoptikk gjelder for draapediameter ~0.1-2 mm",
+        "law_form": "Laplace-trykk + overflatespenning (form); Snells lov (optikk)"
+      },
+      "phase": "liquid_droplet",
+      "measure": {
+        "target": "draapeform og brytningsindeks",
+        "measurer": "optisk maaling",
+        "instrument": "hoyhastighetskamera / refraktometer",
+        "proxy_chain": [
+          "draapeform via overflatespenning",
+          "brytningsindeks via refraksjon (n ~ 1.33)",
+          "draapestoerrelse via fallhastighet"
+        ],
+        "placement": "fritt fall i luft, observert fra siden",
+        "compression": "draapens 3D-form -> sfaerisk linse-modell"
+      },
+      "episenter": "linse-rammen: draapen leses som et optisk element — en sfaere som baade bryter og reflekterer, samtidig som den er h2o.liquid",
+      "buffer": {
+        "role": "overflatespenningen holder draapen sfaerisk — en geometrisk buffer som demper formforstyrrelser",
+        "note": "buffer paa formaksen, ikke termisk: treghet mot deformasjon."
+      },
+      "ontology": {
+        "assumes": [
+          "draapen er h2o.liquid med overflatespenning",
+          "sma draaper er tilnaermet sfaeriske"
+        ],
+        "source": "standard fluidmekanikk og optikk; EFC regime_nodes (h2o.liquid)"
+      },
+      "observer": {
+        "bandwidth": "instrumentvindu: hoyhastighetskamera eller oeye — form og farge, ikke molekylaer dynamikk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "overflatespenning <-> tyngdekraft — balansen holder sfaeren",
+        "properties": [
+          "sfaerisk linse",
+          "intern refleksjon (glassaktig)"
+        ]
+      },
+      "fractal": {
+        "pattern": "hver draape er et komplett optisk system i seg selv — samme straalebane og samme monster i hver draape i svermen",
+        "note": "fraktal-eksempelet i ren form: delen er et helt system."
+      },
+      "coupling": {
+        "local": "hver draape bryter og reflekterer lokalt",
+        "global": "millioner av draaper sammen lager buen — ingen enkelt draape er noedvendig",
+        "empathy_note": "det statistiske ensemblet er globalt robust selv om hver draape faller ut — lokal del, globalt monster."
+      }
+    },
+    {
+      "id": "optikk.dispersjon",
+      "regime": {
+        "name": "dispersjon i vann",
+        "validity": "n(lambda) faller med boelgelengden i synlig omraade; NIST (20 C, 101.325 kPa): n(450 nm) ~ 1.3397 og n(650 nm) ~ 1.3317 — blaatt brytes sterkere enn roedt, begge ~1.33",
+        "law_form": "Snells lov + Lorentz-oscillatormodellen for n(lambda)"
+      },
+      "phase": "material_optical_property",
+      "measure": {
+        "target": "brytningsindeksen n(lambda)",
+        "measurer": "refraktometer",
+        "instrument": "spektrometer + prisme",
+        "proxy_chain": [
+          "avboyningsvinkel via Snells lov",
+          "n(lambda) via vinkelmaaling",
+          "fargeseparasjon som proxy for n-forskjellen"
+        ],
+        "placement": "laboratorie-optikk; eller naturlig i hver regndraape",
+        "compression": "n(lambda)-kurve -> enkelt dispersjonsmal (blaatt mer enn roedt)"
+      },
+      "episenter": "vinkel-rammen: dispersjonen leses som avboyningsvinkel per boelgelengde — separasjonen av farger ER rammens signal",
+      "buffer": {
+        "role": "vannets elektroniske struktur gir dispersjonen stabilitet — n(lambda) er en materialkonstant, ikke et engangsfenomen",
+        "note": "materialets respons er bufferen som holder dispersjonen konstant."
+      },
+      "ontology": {
+        "assumes": [
+          "lys vekselvirker med materie via elektronpolarisasjon",
+          "responsen er boelgelengdeavhengig"
+        ],
+        "source": "klassisk optikk (Snell, Descartes 1637; Newton, Opticks)"
+      },
+      "observer": {
+        "bandwidth": "det synlige vinduet er der dispersjonen blir til farge for oss — utenfor 400-700 nm er separasjonen usynlig for oeyet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "elektronrespons <-> lysfelt (Lorentz-oscillatoren) — loopen gir n(lambda)",
+        "properties": [
+          "fargeavhengig avboyning",
+          "fargeseparasjon"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme dispersjonslov virker i hver draape, i hvert prisme og i hver regndraape som noensinne har eksistert",
+        "note": "en lov, utallige instanser."
+      },
+      "coupling": {
+        "local": "n(lambda) virker lokalt i hver draape",
+        "global": "dispersjonen gjoer alle himmelfenomenene (regnbue, halo, gronn blink) mulige",
+        "empathy_note": "en lokal materialegenskap, en global himmelkatalog."
+      }
+    },
+    {
+      "id": "regnbue",
+      "regime": {
+        "name": "regnbue",
+        "validity": "primær bue ~42 grader fra anti-solar retning; sekundær bue ~50-51 grader med omvendt fargerekkefoelge; KREVER flytende (sfaeriske) draaper — iskrystaller gir haloer (22/46 grader) i stedet",
+        "law_form": "Descartes' straalebaner (refraksjon + 1 intern refleksjon primær / 2 sekundær) + dispersjon"
+      },
+      "phase": "emergent_pattern",
+      "measure": {
+        "target": "buens vinkel og fargerekkefoelge",
+        "measurer": "observatoerens oeye eller kamera",
+        "instrument": "retina eller CCD-sensor",
+        "proxy_chain": [
+          "farge via boelgelengde-dispersjon i draapen",
+          "buevinkel via refraksjonsgeometri (~42 grader)",
+          "retning via anti-solar geometri"
+        ],
+        "placement": "observatoeren med solen i ryggen, regndraaper foran",
+        "compression": "3D-draapesverm -> 2D-bue i synsfeltet"
+      },
+      "episenter": "observator-geometrien: buen finnes bare som et retningsavhengig monster rundt anti-solar-punktet — flytter observatoeren seg, flytter buen seg. Uten den rammen er det bare spredt lys i draaper.",
+      "buffer": {
+        "role": "draapesvermen er en statistisk buffer — monsteret overlever at enkeltdraaper faller ut og nye kommer til",
+        "note": "samme brede buffer-logikk som homeostase: ensemblet holder tilstanden selv om delene skiftes ut."
+      },
+      "ontology": {
+        "assumes": [
+          "draaper + lys + observatorgeometri er tilstrekkelig for buen",
+          "regnbuen er IKKE en gjenstand i draapeomraadet — den er et monster"
+        ],
+        "source": "Descartes (1637); Newton (Opticks); Met Office optical effects — rainbows"
+      },
+      "observer": {
+        "bandwidth": "oeyet ser fargene fordi vinduet er ~400-700 nm — et UV- eller IR-oeye ville ikke sett buen slik, eller ikke sett den i det hele tatt",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "lys inn -> refraksjon -> intern refleksjon -> dispersjon -> lys ut mot observatoeren — straalebanen er loopen, og koherensen over svermen er ordenen",
+        "properties": [
+          "fargebue",
+          "42-graders kjegle",
+          "Aleksanders moerke baand mellom buene"
+        ]
+      },
+      "fractal": {
+        "pattern": "hver draape lager sin egen mini-regnbue — sin egen straalebane med spredning; helheten er svermen av dem. Samme monster i hver del, og hver observatoer ser sin egen bue.",
+        "note": "to oeyer, to buer i samme hode: monsteret er fraktalt ogsaa i observatorens ende."
+      },
+      "coupling": {
+        "local": "hver draape sender sin egen spredte fargebunt lokalt",
+        "global": "millioner av draaper summeres til en bue — og hver observatoer ser SIN egen bue, ingen andres",
+        "empathy_note": "den lokale draapen vet ingenting om buen; den globale buen finnes bare gjennom observatorens ramme — systemisk empati: lokalt bidrag, globalt monster, og monsteret avhenger av hvem som ser."
+      }
+    },
+    {
+      "id": "regnbue.observator",
+      "regime": {
+        "name": "menneskelig observator",
+        "validity": "oeyet: ~400-700 nm; anti-solar geometri — solen bak observatoeren, draaper foran",
+        "law_form": "retinal fototransduksjon (S/M/L-kjegler) + visuell persepsjon"
+      },
+      "phase": "observer",
+      "measure": {
+        "target": "buen som retnings- og fargemonster",
+        "measurer": "oeyet",
+        "instrument": "retina (S-, M- og L-kjegler)",
+        "proxy_chain": [
+          "fotoner -> fotoreseptorer",
+          "S/M/L-respons -> fargeopplevelse",
+          "retning -> buens posisjon i synsfeltet"
+        ],
+        "placement": "observatorens egen posisjon definerer anti-solar-retningen",
+        "compression": "kontinuerlig spektrum -> tredimensjonal fargeopplevelse"
+      },
+      "episenter": "anti-solar-rammen: observatorens egen posisjon er koordinatsystemets nullpunkt — og den er en INNGANG i systemet, ikke en noeytral utsiktspost",
+      "buffer": {
+        "role": "oeyets adaptasjon (pupille, bleking av fotopigment) bufferer mot lysvariasjon — buen sees i skiftende lys",
+        "note": "homeostatisk regulering i synssystemet — buffer-begrepet i biologisk form."
+      },
+      "ontology": {
+        "assumes": [
+          "observatoeren er et punkt med en retning og et fargevindu",
+          "opplevelsen av buen konstrueres av synssystemet"
+        ],
+        "source": "fysiologisk optikk og fargesyn; Met Office optical effects"
+      },
+      "observer": {
+        "bandwidth": "menneskets oeye: ~400-700 nm av hele det elektromagnetiske spekteret — fra radio til gammastraaling er mange dekader; vi ser noen faa nm av totalen",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "retina -> visuell korteks -> farge- og formopplevelse — loopen konstruerer buen som ett sammenhengende monster",
+        "properties": [
+          "fargeopplevelse",
+          "formopplevelse (buen som helhet)"
+        ]
+      },
+      "fractal": {
+        "pattern": "hvert oeye ser sin egen bue — to oeyer, to buer i samme hode, samme monster. Observatoeren er selv en instans av det fraktale monsteret: en del som baerer helheten.",
+        "note": "Morten 2026-09-16: «alt er paa et elektrospektrum totalt, mens observatoeren ser noen faa nm» — strukturert her, ikke hevdet som fysikk."
+      },
+      "coupling": {
+        "local": "hvert oeye registrerer retninger og farger lokalt",
+        "global": "observatoeren ER betingelsen for at buen finnes som monster — uten observator er det bare spredt lys i en draapesverm",
+        "empathy_note": "det lokale oeyet og det globale monsteret er samme hendelse sett fra to sider — koblingen er rammen, og rammen er en deltaker."
+      }
     }
   ],
   "relations": [
@@ -315,6 +581,42 @@
       "predicate": "COUPLED_TO",
       "object": "h2o.gas",
       "note": "trippelpunktet er vaeske-gass-grensen og fast-gass-grensen samtidig"
+    },
+    {
+      "subject": "h2o.droplet",
+      "predicate": "INSTANCE_OF",
+      "object": "h2o.liquid",
+      "note": "draapen er flytende vann i atmosfaerisk form — samme regime, ny geometri"
+    },
+    {
+      "subject": "lys.sol",
+      "predicate": "COUPLED_TO",
+      "object": "h2o.droplet",
+      "note": "refraksjon og refleksjon i draapen — Snells lov ved n ~ 1.33"
+    },
+    {
+      "subject": "regnbue",
+      "predicate": "EMERGES_FROM",
+      "object": "h2o.droplet",
+      "note": "buen oppstaar av draapesvermen — ingen enkelt draape, men heller ingen bue uten dem"
+    },
+    {
+      "subject": "regnbue",
+      "predicate": "EMERGES_FROM",
+      "object": "lys.sol",
+      "note": "uten hvitt lys og dets spektrum ingen dispersjon og ingen fargebue"
+    },
+    {
+      "subject": "regnbue",
+      "predicate": "COUPLED_TO",
+      "object": "optikk.dispersjon",
+      "note": "fargeseparasjonen i buen ER dispersjonen n(lambda) i vann"
+    },
+    {
+      "subject": "regnbue",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "regnbue.observator",
+      "note": "buen finnes som monster bare i observatorens anti-solar-ramme — hver observator ser sin egen bue"
     }
   ]
 }

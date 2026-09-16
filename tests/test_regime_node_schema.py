@@ -164,3 +164,62 @@ def test_phase_nodes_declare_regime_validity():
     for n in inst["nodes"]:
         if n["id"].startswith("h2o.") and n["id"] != "h2o.triple_point":
             assert n["regime"]["validity"], n["id"]
+
+
+# --------------------------------------------------------------------------
+# Trinn 3: regnbuen — generisitetstesten (en emergence, ikke en fase)
+# --------------------------------------------------------------------------
+
+def test_rainbow_nodes_exist():
+    """Regnbuen som andre instans: lys, draape, dispersjon, observator."""
+    ids = {n["id"] for n in _instance()["nodes"]}
+    assert {"lys.sol", "h2o.droplet", "optikk.dispersjon",
+            "regnbue", "regnbue.observator"} <= ids
+
+
+def test_rainbow_emerges_from_droplets_and_light():
+    """Regnbuen er en EMERGENCE av draaper + lys — ikke en node ved siden av."""
+    rels = _instance()["relations"]
+    preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
+    assert ("regnbue", "EMERGES_FROM", "h2o.droplet") in preds
+    assert ("regnbue", "EMERGES_FROM", "lys.sol") in preds
+
+
+def test_rainbow_is_observed_through_observer():
+    """Uten observator i anti-solar geometri er det bare spredt lys —
+    regnbuen OBSERVED_THROUGH observatoren."""
+    rels = _instance()["relations"]
+    preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
+    assert ("regnbue", "OBSERVED_THROUGH", "regnbue.observator") in preds
+
+
+def test_observer_bandwidth_states_visible_window():
+    """«Alt er paa et elektrospektrum totalt, observatoeren ser noen faa nm»
+    — oeyets vindu (400-700 nm) skal staa i observatorens baandbredde."""
+    inst = _instance()
+    obs = next(n for n in inst["nodes"] if n["id"] == "regnbue.observator")
+    bw = obs["observer"]["bandwidth"]
+    assert "400" in bw and "700" in bw
+
+
+def test_rainbow_is_emergent_pattern_not_phase():
+    """Regnbuen er ingen termodynamisk fase — den er et emergert monster.
+    Skjemaet maa kunne baere emergences utover faser."""
+    inst = _instance()
+    rb = next(n for n in inst["nodes"] if n["id"] == "regnbue")
+    assert rb["phase"] == "emergent_pattern"
+
+
+def test_rainbow_requires_liquid_droplets():
+    """Regnbuen krever FLYTENDE (sfaeriske) draaper — iskrystaller gir
+    haloer, ikke regnbue. Gyldighetsomraadet maa si det."""
+    inst = _instance()
+    rb = next(n for n in inst["nodes"] if n["id"] == "regnbue")
+    assert "flytende" in rb["regime"]["validity"].lower()
+
+
+def test_existing_h2o_nodes_untouched():
+    """H2O-nodene fra trinn 2 skal vaere urorte i samme atlas."""
+    ids = {n["id"] for n in _instance()["nodes"]}
+    assert {"h2o.solid", "h2o.liquid", "h2o.gas",
+            "h2o.supercritical", "h2o.triple_point"} <= ids
