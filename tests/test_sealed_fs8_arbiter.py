@@ -168,10 +168,18 @@ def test_under_2sigma_fra_begge_ankre_venter():
 # ----------------------------------------------------------------------
 # Rapporten og payloaden
 # ----------------------------------------------------------------------
-def test_rapporten_sier_arlig_at_mu_kanalen_mangler():
+def test_rapporten_maaler_mu_kanalen_arlig():
+    """Trinn 13 koblet μ-kanalen inn (EFCVariantC, mu_0). Rapporten
+    skal MÅLE den faktiske tilstanden — ikke påstå at kanalen mangler.
+    Reproduksjonen skal vaere dokumentert med tall, og teksten skal
+    skille reproduserbarhet fra bevis om forseglet parameterverdi."""
     rapport = _arbiter().rapport()
-    assert rapport["mu_kanal_i_motorlaget"] is False
-    assert "0.430" in rapport["ærlighet"]
+    assert rapport["mu_kanal_i_motorlaget"] is True
+    rep = rapport["mu_reproduksjon"]
+    assert rep["variant"] == "EFCVariantC"
+    assert abs(rep["fs8_mu_0_5"] - 0.430) < 0.005
+    assert "reproduserbar" in rapport["ærlighet"]
+    assert "IKKE" in rapport["ærlighet"]  # beviser ikke forseglet mu_0
 
 
 def test_payload_har_kriterium_og_proveniens():

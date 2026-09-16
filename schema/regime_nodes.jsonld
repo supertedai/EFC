@@ -2221,8 +2221,8 @@
       "id": "efc.growth_engine",
       "regime": {
         "name": "Vekstmotoren — fσ8",
-        "validity": "fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m=0.3, H0=70.0, sigma8=0.8, alpha_cosmo=0.0 — L2-regimets vekst av struktur (perturbasjonsnivå)",
-        "law_form": "D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk integrasjon, f = d ln D / d ln a"
+        "validity": "fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m=0.3, H0=70.0, sigma8=0.8, alpha_cosmo=0.0, efc_variant_a har ingen μ-kanal (μ=1 hardkodet; en gitt mu_0 er uten effekt — kanalen finnes i EFCVariantC+) — L2-regimets vekst av struktur (perturbasjonsnivå)",
+        "law_form": "D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk integrasjon, f = d ln D / d ln a; kilden skalerer med μ(a) når varianten har kanalen"
       },
       "phase": "regime_engine",
       "measure": {
