@@ -81,8 +81,37 @@ skrivetilgang eierne ennå ikke har gitt.
 
 | Emne | Motor | Status |
 |---|---|---|
-| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** (utenfor dette repoet, read-only). METAR-kanalen: temperatur + duggpunkt → spredning, RH-proxy (P_sat(Td)/P_sat(T) via motorens dampkurve), regime-klassifisering og 0 °C-passeringer. Første kjøring (2026-09-16): 459 punkter, 149 kondensasjonsnære, én fullstendig metning (spredning 0,0 °C). |
-| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — ecowitt-kanalen har bare temperatur (ingen fuktighet); der er 0 °C-passeringene de eneste temperaturbaserte indikatorene/proxyene for mulig frysing eller smelting — selve faseovergangen er ikke observert. |
+| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** (utenfor dette repoet, read-only). Målt 2026-09-16, 14-døgnsvindu: **42 stasjoner, 23 688 punkter**, 6 094 kondensasjonsnære, 1 815 med spredning 0,0 °C (full metning) og **12 0 °C-passeringer** — 3 av 42 stasjoner gikk under null (ENRO, ENDU, ENNA). Seriene holdes **per stasjon**: slås flyplassene sammen til én serie, blir et sprang mellom to byer en faseovergang som aldri skjedde. Under 0 °C er kurven over is, ikke over underkjølt vann (motoren er kalibrert 0–100 °C og ekstrapolerer ikke). |
+| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — 3 836 meldinger, **14 serier**, timeoppløsning (`opploesning: H`), anonymisert stedskode: `duggpunkt_ute`, `foelt_temperatur_ute`, `luftfuktighet_inne`, `luftfuktighet_ute`, `lufttrykk`, `lynavstand`, `lynnedslag_doegn`, `nedboer_doegn`, `solinnstraaling`, `temperatur_inne`, `temperatur_ute`, `uv_indeks`, `vindkast`, `vindstyrke`. 274 målinger av `temperatur_ute.sola` i vinduet 2026-09-05T12:00Z → 2026-09-16T21:00Z, alle i væskeregimet. **0 passeringer** — minimum i vinduet er 8,5 °C; det er et svar om vinduet, ikke om året. |
+
+**Rettelse 2026-09-16: ecowitt-seriene HAR fuktighet.** En tidligere
+utgave av dette kartet sa at ecowitt-kanalen «har bare temperatur (ingen
+fuktighet)», og at metningsavstand derfor ikke kunne beregnes. Det var
+målt feil, og feilen var leseren: den hentet fem meldinger fra emnet i
+stedet for emnets serie, og fikk med seg én temperaturmåling.
+`luftfuktighet_ute.sola` (prosent) og `duggpunkt_ute.sola` (°C) står på
+emnet med timeoppløsning, og metningsavstanden er derfor **beregnet**:
+median 113,48 Pa over 274 målinger (11,33–706,21 Pa), med duggpunktet som
+uavhengig kontrollkanal for samme størrelse — største relative avvik
+mellom kanalene 0,63 %, median 0,17 %. (Metningsavstand er P_sat(T) − e,
+der e er vanndamptrykket; den er ikke det samme som relativ fuktighet, og
+den er ikke en faseovergang.) Broen bærer likevel `found: false`-stien med
+grunn og med kravet som ville aktivert analysen, og en selftest mater en
+syntetisk serie gjennom NØYAKTIG samme kode og finner signalet — et
+`found: false` er dermed en egenskap ved dataene, ikke ved koden.
+
+**0 °C-passeringer: null er en EGEN tilstand, ikke et fortegn.** En måling
+som treffer nøyaktig 0,0 °C er hverken positiv eller negativ. Regelen ser
+på siden før og etter hver nullsekvens: + → 0 → − er én passering ned,
+− → 0 → + er én opp, + → 0 → + er en berøring uten passering. Det er ikke
+kosmetikk: METAR oppgir temperatur i hele grader, og en regel som krevde at
+NABOMÅLINGER skiftet fortegn ga **null** passeringer for de tre stasjonene
+som faktisk gikk under null — til den ble rettet. Passeringstiden er
+interpolert mellom målingene og merket `estimert: true`: en passering er en
+mellom-sampling ved timeoppløsning, ikke en observert overgang. Latent
+varme, fasebrøk og faseskifte-energi kan ikke måles fra lufttemperatur
+alene — passeringen sier at vannet ville vært under/over frysepunktet der
+og da, ikke at vann frøs.
 
 Merk: kondensasjonsnærhet er en faseovergangs-PROXY, ikke selve overgangen —
 analogi, ikke identitet (samme disiplin som resten av kartet).
