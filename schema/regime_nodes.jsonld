@@ -1024,6 +1024,1040 @@
         "global": "inverteren er porten mellom batteriregimet og nettregimet — uten den kan ikke bufferen nå forbruket",
         "empathy_note": "konvertereren er der de to verdenene forstaar hverandre."
       }
+    },
+    {
+      "id": "obs.bao",
+      "regime": {
+        "name": "BAO — standardlinjalen",
+        "validity": "r_s er den eneste kjente ABSOLUTTE lengden i kosmologien — synlig i CMB (z ~ 1100) og i galaksefordelingen (z ~ 0.2-2.5)",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "BAO-skalaen (r_s ~ 147 Mpc comoving)",
+        "measurer": "galakse-surveyer (DESI, eBOSS, BOSS)",
+        "instrument": "galakse-surveyer (DESI, eBOSS, BOSS)",
+        "proxy_chain": [
+          "galakse-korrelasjonsfunksjon -> BAO-topp ved ~150 Mpc",
+          "BAO-topp -> D_H(z), D_M(z)/r_s",
+          "isotrop BAO -> D_V(z)"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "r_s er den eneste kjente ABSOLUTTE lengden i kosmologien — synlig i CMB (z ~ 1100) og i galaksefordelingen (z ~ 0.2-2.5)",
+      "buffer": {
+        "role": "drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses før den leses",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: galakse-surveyer (DESI, eBOSS, BOSS)"
+      },
+      "observer": {
+        "bandwidth": "surveyer ser bare roedforskyvning og vinkel — hver avstand er relativ til r_s",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "lydbolger i plasma -> fryses ved drag -> avtrykk i galakser — loopen gir linjalen",
+        "properties": [
+          "r_s",
+          "D_H(z)",
+          "D_M(z)"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i galakse-surveyer (DESI, eBOSS, BOSS) sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.cmb_tt",
+      "regime": {
+        "name": "CMB TT/EE/TE akustiske topper",
+        "validity": "toppene er L1s lineære akustiske svingninger frosset ved rekombinasjon — mu ~ 1-regimets reneste avlesning",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "temperatur-/polarisasjonsspekteret",
+        "measurer": "Planck",
+        "instrument": "Planck",
+        "proxy_chain": [
+          "temperaturspektrum -> P(k)",
+          "toppavstand -> theta_* og r_s",
+          "polarisasjon -> optisk dybde"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "toppene er L1s lineære akustiske svingninger frosset ved rekombinasjon — mu ~ 1-regimets reneste avlesning",
+      "buffer": {
+        "role": "rekombinasjonen fryser fotonene — signalet holdes til det slippes ved z ~ 1100",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck"
+      },
+      "observer": {
+        "bandwidth": "Planck ser hele himmelen i ni frekvensbaand — ett spekter av hele L1",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "plasma -> rekombinasjon -> frie fotoner — loopen fryser L1s tilstand",
+        "properties": [
+          "theta_*",
+          "n_s",
+          "A_s"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i Planck sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.cmb_lensing",
+      "regime": {
+        "name": "CMB Lensing Reconstruction",
+        "validity": "CMB-fotonene baerer avtrykket av L2s masse gjennom linsing — en L1-maaling av L2-struktur",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "linsingspotensialet",
+        "measurer": "Planck, ACT, SPT",
+        "instrument": "Planck, ACT, SPT",
+        "proxy_chain": [
+          "CMB-anisotropi-fordeling -> linsingspotensial",
+          "linsingspotensial -> P(k) ved z ~ 2"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "CMB-fotonene baerer avtrykket av L2s masse gjennom linsing — en L1-maaling av L2-struktur",
+      "buffer": {
+        "role": "fotonenes frie ferd er bufferen — de samler masseavtrykk underveis",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck, ACT, SPT"
+      },
+      "observer": {
+        "bandwidth": "linsingen leses av CMB-kartets hoeyere-ordens statistikk — strukturen i støyen",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "L2-struktur -> linser L1-fotoner -> avtrykk i kartet",
+        "properties": [
+          "A_L",
+          "P(k) ved z ~ 2"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i Planck, ACT, SPT sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.bbn",
+      "regime": {
+        "name": "BBN lette elementer",
+        "validity": "BBN er den tidligste avlesningen — regimet foer alle andre; D/H er frosset inn minutter etter start",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "deuterium/hydrogen-forholdet",
+        "measurer": "quasar-spektroskopi",
+        "instrument": "quasar-spektroskopi",
+        "proxy_chain": [
+          "D/H i quasarskyer -> baryontetthet omega_b h^2",
+          "omega_b h^2 -> kryssjekk mot CMB"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "BBN er den tidligste avlesningen — regimet foer alle andre; D/H er frosset inn minutter etter start",
+      "buffer": {
+        "role": "kjernereaksjonene fryser D/H ved T ~ 80 keV — et signal som aldri endres",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: quasar-spektroskopi"
+      },
+      "observer": {
+        "bandwidth": "spektroskopien ser D-absorpsjon i fjerne skyer — en kjemisk proxy for kosmologi",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kjernefysikk -> frosset D/H -> absorpsjonslinjer i dag",
+        "properties": [
+          "omega_b h^2"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i quasar-spektroskopi sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.fsigma8",
+      "regime": {
+        "name": "f-sigma-8(z) lineær vekst",
+        "validity": "vekstraten er L2s direkte signatur — der EFCs R(k,S) skiller seg fra GR-vekst",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "vekstraten fsigma8",
+        "measurer": "BOSS, eBOSS, DESI",
+        "instrument": "BOSS, eBOSS, DESI",
+        "proxy_chain": [
+          "roedforskyvningsromforvrengning (RSD) -> f sigma8",
+          "f sigma8(z) -> vekstlovens form"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "vekstraten er L2s direkte signatur — der EFCs R(k,S) skiller seg fra GR-vekst",
+      "buffer": {
+        "role": "strukturen selv er bufferen — gravitasjonell respons holder masse mot ekspansjonen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: BOSS, eBOSS, DESI"
+      },
+      "observer": {
+        "bandwidth": "surveyer maaler posisjoner og roedforskyvninger — hastigheter er avledet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst -> struktur -> respons -> vekst — loopen ER f sigma8",
+        "properties": [
+          "f sigma8(z)",
+          "vekstindeks gamma"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i BOSS, eBOSS, DESI sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.s8",
+      "regime": {
+        "name": "S8-tension",
+        "validity": "S8-spenningen er L1-L2-signaturen: CMBs S8-prediksjon møter L2s målte struktur — en regimespenning",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "S8 = sigma8 sqrt(omega_m/0.3)",
+        "measurer": "KiDS, DES, HSC, Euclid",
+        "instrument": "KiDS, DES, HSC, Euclid",
+        "proxy_chain": [
+          "skjær (svak linse) -> S8",
+          "S8 lav vs CMB-forventning -> tension"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "S8-spenningen er L1-L2-signaturen: CMBs S8-prediksjon møter L2s målte struktur — en regimespenning",
+      "buffer": {
+        "role": "linsebildene holder avtrykket av masse langs synslinjen — en akkumulert buffer",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: KiDS, DES, HSC, Euclid"
+      },
+      "observer": {
+        "bandwidth": "svak linse ser formforvrengning — massen er usynlig, bare bøyningen synes",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "masse -> boeyer lys -> formforvrengning -> S8",
+        "properties": [
+          "S8",
+          "tension"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i KiDS, DES, HSC, Euclid sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.eg",
+      "regime": {
+        "name": "E_G gravitasjonsslip-statistikk",
+        "validity": "E_G kombinerer linse og dynamikk — en ren test av om lys og masse boeyer likt (Phi = Psi)",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "E_G-krysset",
+        "measurer": "SDSS, KiDS+BOSS",
+        "instrument": "SDSS, KiDS+BOSS",
+        "proxy_chain": [
+          "linse (kappa) x RSD (beta) -> E_G",
+          "E_G -> slip mellom lys og masse"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "E_G kombinerer linse og dynamikk — en ren test av om lys og masse boeyer likt (Phi = Psi)",
+      "buffer": {
+        "role": "to uavhengige proxyer buffrer hverandre — krysset er mer robust enn hver del",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SDSS, KiDS+BOSS"
+      },
+      "observer": {
+        "bandwidth": "krysset krever to surveyer i samme himmelregion — observatoeren bygger broen selv",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "linse x RSD -> E_G -> slip-maal",
+        "properties": [
+          "E_G(z)"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i SDSS, KiDS+BOSS sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.isw",
+      "regime": {
+        "name": "ISW krysskorrelasjon",
+        "validity": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "ISW-signalet",
+        "measurer": "CMB x galaksekart",
+        "instrument": "CMB x galaksekart",
+        "proxy_chain": [
+          "CMB-kart x galaksefordeling -> ISW-kryss"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling",
+      "buffer": {
+        "role": "fotonene integrerer potensialets tidsderivat over ferdselen — reisen er bufferen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: CMB x galaksekart"
+      },
+      "observer": {
+        "bandwidth": "signalet finnes bare i krysset mellom to kart — ingen av dem ser det alene",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "L2-potensial endres -> CMB-fotoner faar energiskift -> krysssignal",
+        "properties": [
+          "ISW-amplitude"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i CMB x galaksekart sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.ksz",
+      "regime": {
+        "name": "kSZ egenhastigheter",
+        "validity": "kSZ maaler klyngers egenhastigheter — den eneste direkte hastighetsmaalingen av L2-struktur",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "kSZ-signalet",
+        "measurer": "ACT, DES x SPT",
+        "instrument": "ACT, DES x SPT",
+        "proxy_chain": [
+          "CMB x galakser -> kSZ",
+          "kSZ -> egenhastighetsfelt"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "kSZ maaler klyngers egenhastigheter — den eneste direkte hastighetsmaalingen av L2-struktur",
+      "buffer": {
+        "role": "elektronene i klynger spretter fotoner doppler — plasmaet er bufferen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: ACT, DES x SPT"
+      },
+      "observer": {
+        "bandwidth": "signalet er svakt og trenger mange kryss — statistikken er instrumentet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "klynge beveger seg -> doppler i CMB -> kSZ-avtrykk",
+        "properties": [
+          "egenhastighetsfelt"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i ACT, DES x SPT sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.cluster_mass",
+      "regime": {
+        "name": "klyngemasse-skalering",
+        "validity": "klyngene er L2s stoerste bundne strukturer — massen deres er vekstens integral",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "M_500 fra flere kanaler",
+        "measurer": "Chandra, XMM, HST",
+        "instrument": "Chandra, XMM, HST",
+        "proxy_chain": [
+          "rontgen (T_X) -> masse",
+          "svak linse -> masse",
+          "skaleringsrelasjoner -> masse"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "klyngene er L2s stoerste bundne strukturer — massen deres er vekstens integral",
+      "buffer": {
+        "role": "klyngens potensial holder gassen varm og lyset boeyd — to buffere, én masse",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Chandra, XMM, HST"
+      },
+      "observer": {
+        "bandwidth": "masse er aldri direkte maalt — alltid gjennom gass eller lys",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kollaps -> virialisert gass -> masseproxyer",
+        "properties": [
+          "M_500",
+          "skaleringsrelasjoner"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i Chandra, XMM, HST sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.cluster_hmf",
+      "regime": {
+        "name": "klyngehalo-massetetthet N(M,z)",
+        "validity": "N(M,z)s eksponentialhale er sensitiv for sigma8 — en vekstmaaling gjennom telling",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "halomassetetthetsfunksjonen",
+        "measurer": "DES, SDSS, eROSITA",
+        "instrument": "DES, SDSS, eROSITA",
+        "proxy_chain": [
+          "antall klynger per masse -> N(M,z)",
+          "N(M,z) -> sigma8 og vekst"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "N(M,z)s eksponentialhale er sensitiv for sigma8 — en vekstmaaling gjennom telling",
+      "buffer": {
+        "role": "kollapsen buffrer masse i halos — tellingen er buffernes fordeling",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, SDSS, eROSITA"
+      },
+      "observer": {
+        "bandwidth": "surveyen teller og sorterer — massen er avledet fra rikdom",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst -> kollaps -> haloer -> fordeling",
+        "properties": [
+          "N(M,z)",
+          "sigma8"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i DES, SDSS, eROSITA sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.rar",
+      "regime": {
+        "name": "Radial Acceleration Relation",
+        "validity": "RAR er galakseskalaens tetteste lovmessighet — hver galakse følger samme kurve",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "a_obs vs a_bar",
+        "measurer": "SPARC",
+        "instrument": "SPARC",
+        "proxy_chain": [
+          "rotasjonskurver -> a_obs",
+          "barionisk fordeling -> a_bar",
+          "avvik -> a_obs/a_bar"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "RAR er galakseskalaens tetteste lovmessighet — hver galakse følger samme kurve",
+      "buffer": {
+        "role": "galaksens potensial holder rotasjonen — dynamikken er bufferen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SPARC"
+      },
+      "observer": {
+        "bandwidth": "kurven er synlig i rotasjonshastighet — massen selv er moerk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "barioner -> potensial -> rotasjon -> avvik",
+        "properties": [
+          "a_obs/a_bar"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i SPARC sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.bullet",
+      "regime": {
+        "name": "Bullet-klyngen delta-kappa",
+        "validity": "offseten viser at massen foelger kollisjonsfrie komponenter — en direkte kollisjonsavlesning",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "masse-gass-offseten",
+        "measurer": "HST + Chandra",
+        "instrument": "HST + Chandra",
+        "proxy_chain": [
+          "linse (masse) vs rontgen (gass) -> offset delta-kappa"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "offseten viser at massen foelger kollisjonsfrie komponenter — en direkte kollisjonsavlesning",
+      "buffer": {
+        "role": "kollisjonen separerer komponentene — hendelsen er bufferen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST + Chandra"
+      },
+      "observer": {
+        "bandwidth": "to instrumenter ser to komponenter — bare offseten mellom dem er signalet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kollisjon -> separasjon -> offset",
+        "properties": [
+          "delta-kappa"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i HST + Chandra sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.satellites",
+      "regime": {
+        "name": "manglende satellitter / TBTF / core-cusp",
+        "validity": "spenningen mellom simulerte og observerte subhalos er L2s smaaskala-problem",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "subhalo-populasjonen",
+        "measurer": "HST, simuleringer",
+        "instrument": "HST, simuleringer",
+        "proxy_chain": [
+          "telte dverg-satellitter vs predikerte -> underskudd",
+          "tette kjerner vs cusp -> profil"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "spenningen mellom simulerte og observerte subhalos er L2s smaaskala-problem",
+      "buffer": {
+        "role": "subhalos holdes av vertens potensial — bufferen er tidevannsstrippingen",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST, simuleringer"
+      },
+      "observer": {
+        "bandwidth": "underskuddet er synlig bare mot en prediksjon — observasjonen trenger modellen",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "vekst -> subhalos -> stripping -> observert populasjon",
+        "properties": [
+          "subhalo-underskudd",
+          "kjerneprofil"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i HST, simuleringer sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.jwst_ems",
+      "regime": {
+        "name": "tidlig massiv struktur (JWST z>10)",
+        "validity": "tidlig massiv struktur utfordrer kollapsens tidsplan — L2 starter tidligere enn ventet",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "galakse-massefunksjonen ved z>10",
+        "measurer": "JWST",
+        "instrument": "JWST",
+        "proxy_chain": [
+          "JWST-fotometri -> masse ved z>10",
+          "massefunksjon -> kollapstidsskala"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "tidlig massiv struktur utfordrer kollapsens tidsplan — L2 starter tidligere enn ventet",
+      "buffer": {
+        "role": "tidlige halos er de foerste bufferne — de foerste som holdt masse",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: JWST"
+      },
+      "observer": {
+        "bandwidth": "JWST ser bakover — hvert bilde er et annet regimes øyeblikksbilde",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "kollaps -> tidlige galakser -> massefunksjon",
+        "properties": [
+          "masse ved z>10"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i JWST sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.gw_ct",
+      "regime": {
+        "name": "Gravitasjonsbolgehastighet c_T",
+        "validity": "c_T = c innenfor 1e-15 — en lokal maaling som skjaerer ned modellrommet for L1-teoriene",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "c_T fra GW170817",
+        "measurer": "LIGO/Virgo",
+        "instrument": "LIGO/Virgo",
+        "proxy_chain": [
+          "GW- og gammaankomst -> c_T/c innen 1e-15"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "c_T = c innenfor 1e-15 — en lokal maaling som skjaerer ned modellrommet for L1-teoriene",
+      "buffer": {
+        "role": "1.7-sekunders-forsinkelsen over 40 Mpc er maalingens buffer — reisen kalibrerer",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: LIGO/Virgo"
+      },
+      "observer": {
+        "bandwidth": "én hendelse, to budbringere — hver kanal bekrefter den andre",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "fusjon -> GW + gamma -> ankomsttid",
+        "properties": [
+          "c_T/c"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i LIGO/Virgo sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.pta_gwb",
+      "regime": {
+        "name": "PTA gravitasjonsbolge-bakgrunn",
+        "validity": "nHz-bakgrunnen er senuniversets sukk — SMBH-fusjoner som kollektiv bolge",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "GW-bakgrunnen ved nHz",
+        "measurer": "NANOGrav, EPTA",
+        "instrument": "NANOGrav, EPTA",
+        "proxy_chain": [
+          "pulsar-timing-residualer -> Hellings-Downs-korrelasjon -> GW-bakgrunn"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "nHz-bakgrunnen er senuniversets sukk — SMBH-fusjoner som kollektiv bolge",
+      "buffer": {
+        "role": "pulsarene ER bufferen — deres rotasjon holder fasen over aar",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: NANOGrav, EPTA"
+      },
+      "observer": {
+        "bandwidth": "signalet finnes bare i korrelasjonen mellom dusinvis av pulsarer — ingen pulsar ser det alene",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "SMBH-fusjoner -> nHz-bolger -> timing-residualer",
+        "properties": [
+          "nHz-spekteret"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i NANOGrav, EPTA sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.h0_tension",
+      "regime": {
+        "name": "Hubble-tension H0",
+        "validity": "H0-spenningen er L1-L2-signaturen: tidlig-regimets prediksjon møter lokal maaling — 5 sigma gap",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "H0 fra to uavhengige kanaler",
+        "measurer": "Planck vs SH0ES",
+        "instrument": "Planck vs SH0ES",
+        "proxy_chain": [
+          "CMB (LCDM-ekstrapolasjon) -> H0 ~ 67",
+          "cepheid/SN-stige -> H0 ~ 73",
+          "gap -> tension"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "H0-spenningen er L1-L2-signaturen: tidlig-regimets prediksjon møter lokal maaling — 5 sigma gap",
+      "buffer": {
+        "role": "to uavhengige maalekjeder buffrer hverandre — nettopp derfor kan ingen av dem skyves bort",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck vs SH0ES"
+      },
+      "observer": {
+        "bandwidth": "spenningen er synlig bare i sammenligningen — ingen enkeltkanal ser den",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "L1-ekstrapolasjon -> H0_lav; stige -> H0_hoey; gap -> tension",
+        "properties": [
+          "H0",
+          "5 sigma gap"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i Planck vs SH0ES sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.w0wa",
+      "regime": {
+        "name": "w0-wa dynamisk moerk energi",
+        "validity": "w0-wa er L3s observasjonsprobe: hvis w != -1, beveger bakgrunnen seg mot en annen endestasjon",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "w(z)-parametriseringen",
+        "measurer": "DES, BAO+CMB",
+        "instrument": "DES, BAO+CMB",
+        "proxy_chain": [
+          "SN + BAO + CMB -> w0, wa",
+          "w0, wa -> avvik fra -1"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "w0-wa er L3s observasjonsprobe: hvis w != -1, beveger bakgrunnen seg mot en annen endestasjon",
+      "buffer": {
+        "role": "SN-lysets strekk over avstand er bufferen — ekspansjonshistorien er skrevet i den",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, BAO+CMB"
+      },
+      "observer": {
+        "bandwidth": "avviket er synlig bare mot w=-1-referansen — nullhypotesen er instrumentet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "SN -> avstander -> w(z) -> endestasjon",
+        "properties": [
+          "w0",
+          "wa"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i DES, BAO+CMB sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
+    },
+    {
+      "id": "obs.cc",
+      "regime": {
+        "name": "kosmologisk konstant / vakuumenergi",
+        "validity": "vakuumenergiproblemet er L3s dypeste gap — den maalte verdien er 10^120 unna den naive prediksjonen",
+        "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
+      },
+      "phase": "observasjon",
+      "measure": {
+        "target": "vakuumenergiens stoerrelse",
+        "measurer": "alle kanaler",
+        "instrument": "alle kanaler",
+        "proxy_chain": [
+          "alle observasjoner -> omega_Lambda ~ 0.7",
+          "teoriens prediksjon -> 120 stoerrelsesordener avvik"
+        ],
+        "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
+        "compression": "raadata -> ett sammenfattende maal"
+      },
+      "episenter": "vakuumenergiproblemet er L3s dypeste gap — den maalte verdien er 10^120 unna den naive prediksjonen",
+      "buffer": {
+        "role": "bakgrunnens akselerasjon er bufferen — den holder ekspansjonen oppe",
+        "note": "hver observasjon har en buffer som holder signalet til det leses."
+      },
+      "ontology": {
+        "assumes": [
+          "signalet baerer regimets tilstand",
+          "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
+        ],
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: alle kanaler"
+      },
+      "observer": {
+        "bandwidth": "problemet er synlig bare i sammenligningen maalt/teoretisk — det er et regneproblem, ikke en maaling",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "alle kanaler -> omega_Lambda -> gap",
+        "properties": [
+          "omega_Lambda",
+          "10^120-gapet"
+        ]
+      },
+      "fractal": {
+        "pattern": "samme observasjonsmonster som H2O-, regnbue- og batteri-nodene: signal -> proxy -> maal — observasjonen er et vindu, ikke virkeligheten",
+        "note": "hvert regime har sine observasjoner; hver observasjon har sitt vindu."
+      },
+      "coupling": {
+        "local": "maalingen skjer lokalt i alle kanaler sitt felt",
+        "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
+        "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
+      }
     }
   ],
   "relations": [
@@ -1152,6 +2186,126 @@
       "predicate": "COUPLED_TO",
       "object": "batteri.buffer",
       "note": "inverteren trekker fra bufferen og konverterer DC -> AC — bufferen naar forbruket gjennom konvertereren"
+    },
+    {
+      "subject": "obs.bao",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l1",
+      "note": "observasjonen bærer efc.l1-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.cmb_tt",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l1",
+      "note": "observasjonen bærer efc.l1-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.cmb_lensing",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l1",
+      "note": "observasjonen bærer efc.l1-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.bbn",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l1",
+      "note": "observasjonen bærer efc.l1-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.fsigma8",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.s8",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.eg",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.isw",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.ksz",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.cluster_mass",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.cluster_hmf",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.rar",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.bullet",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.satellites",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.jwst_ems",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.gw_ct",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.pta_gwb",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.h0_tension",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l2",
+      "note": "observasjonen bærer efc.l2-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.w0wa",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l3",
+      "note": "observasjonen bærer efc.l3-regimets informasjon til observatøren i L2"
+    },
+    {
+      "subject": "obs.cc",
+      "predicate": "OBSERVED_IN",
+      "object": "efc.l3",
+      "note": "observasjonen bærer efc.l3-regimets informasjon til observatøren i L2"
     }
   ]
 }
