@@ -77,11 +77,10 @@ class RapidResponseVakt:
         if str(hoder.get("observabel", "")).lower() != "fsigma8":
             return None
 
-        # Surveyet må være DESI DR2 (full-shape-søsken) — kilden kan
-        # ikke redde et feil survey. En vilkårlig LRG-melding fra et
-        # annet survey er ikke kriteriets måling.
+        # Surveyet må være DESI DR2 — ikke bare inneholde «dr2»
+        # («BOSS DR2» ville være et annet datasett).
         survey = str(hoder.get("survey", "")).lower()
-        if "dr2" not in survey:
+        if not ("desi" in survey and "dr2" in survey):
             return None
 
         tracer = hoder.get("tracer")
@@ -194,7 +193,7 @@ class RapidResponseVakt:
             return (f"Observabelen er {hoder.get('observabel', 'ukjent')} "
                     "— vakten dømmer bare fsigma8.")
         survey = str(hoder.get("survey", "")).lower()
-        if "dr2" not in survey:
+        if not ("desi" in survey and "dr2" in survey):
             return ("Surveyet er ikke DESI DR2 full-shape "
                     f"(survey={hoder.get('survey', 'ukjent')}, "
                     f"kilde={hoder.get('kilde', 'ukjent')}).")

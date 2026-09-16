@@ -145,10 +145,14 @@ def test_falsk_lrg_uten_dr2_proveniens_avvises(tmp_path):
     """En vilkårlig LRG-melding uten DESI DR2 full-shape-survey/kilde
     er ikke kriteriets måling."""
     vakt = _vakt(tmp_path)
-    # Feil survey
+    # Feil survey — ikke DESI (BOSS DR12)
     p1 = vakt.sjekk(_dr2_melding(survey="BOSS DR12"))
     assert p1["rapport"]["dom"]["status"] == "VENTER"
-    assert "DR2" in p1["rapport"]["dom"]["årsak"]
+    assert "DESI DR2" in p1["rapport"]["dom"]["årsak"]
+    # Feil survey — «dr2» uten DESI (BOSS DR2)
+    p1b = vakt.sjekk(_dr2_melding(survey="BOSS DR2"))
+    assert p1b["rapport"]["dom"]["status"] == "VENTER"
+    assert "DESI DR2" in p1b["rapport"]["dom"]["årsak"]
     # Feil observabel
     p2 = vakt.sjekk(_dr2_melding(observabel="fz8"))
     assert p2["rapport"]["dom"]["status"] == "VENTER"
