@@ -1029,7 +1029,7 @@
       "id": "obs.bao",
       "regime": {
         "name": "BAO — standardlinjalen",
-        "validity": "r_d (lydhorisont ved baryon-drag) er den eneste kjente ABSOLUTTE lengden — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
+        "validity": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
         "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
       },
       "phase": "observasjon",
@@ -1045,7 +1045,7 @@
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
         "compression": "raadata -> ett sammenfattende maal"
       },
-      "episenter": "r_d (lydhorisont ved baryon-drag) er den eneste kjente ABSOLUTTE lengden — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
+      "episenter": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
       "buffer": {
         "role": "drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses i L1 og leses i L2",
         "note": "hver observasjon har en buffer som holder signalet til det leses."
@@ -1093,7 +1093,7 @@
         "instrument": "Planck",
         "proxy_chain": [
           "temperaturspektrum -> P(k)",
-          "toppavstand -> theta_* og r_d",
+          "toppavstand -> theta_* og r_s(z_*)",
           "polarisasjon -> optisk dybde"
         ],
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
@@ -1395,7 +1395,7 @@
       "id": "obs.isw",
       "regime": {
         "name": "ISW krysskorrelasjon",
-        "validity": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling; ledgeren har test mot Planck x DESI",
+        "validity": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling; ledgeren har en intern konsistens-/prediksjonstest (Planck x DESI) som avventer observasjonell konfrontasjon",
         "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
       },
       "phase": "observasjon",
@@ -1409,7 +1409,7 @@
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
         "compression": "raadata -> ett sammenfattende maal"
       },
-      "episenter": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling; ledgeren har test mot Planck x DESI",
+      "episenter": "ISW er en ekte L1xL2-bro: CMB-fotoner plukker opp L2s potensial endring — kryssregime-maaling; ledgeren har en intern konsistens-/prediksjonstest (Planck x DESI) som avventer observasjonell konfrontasjon",
       "buffer": {
         "role": "fotonene integrerer potensialets tidsderivat over ferdselen — reisen er bufferen",
         "note": "hver observasjon har en buffer som holder signalet til det leses."
@@ -1906,7 +1906,7 @@
       "id": "obs.h0_tension",
       "regime": {
         "name": "Hubble-tension H0",
-        "validity": "H0-spenningen er L1-L2-broens signatur: tidlig-regimets prediksjon møter lokal maaling — 5 sigma gap; atlasets tre H0-kanaler (background, ratio, structure) er EFCs interne prediksjoner",
+        "validity": "H0-spenningen er L1-L2-broens signatur: tidlig-regimets prediksjon møter lokal maaling — et gap med datasett-/analyseavhengig signifikans (nyeste analyser ~5 sigma). Atlaset skiller tre H0-kanaler: H0_background (EFC recovers GR), H0_ratio og H0_structure (EFC predicts) — ulike statusklasser, ikke én prediksjon",
         "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
       },
       "phase": "observasjon",
@@ -1922,7 +1922,7 @@
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
         "compression": "raadata -> ett sammenfattende maal"
       },
-      "episenter": "H0-spenningen er L1-L2-broens signatur: tidlig-regimets prediksjon møter lokal maaling — 5 sigma gap; atlasets tre H0-kanaler (background, ratio, structure) er EFCs interne prediksjoner",
+      "episenter": "H0-spenningen er L1-L2-broens signatur: tidlig-regimets prediksjon møter lokal maaling — et gap med datasett-/analyseavhengig signifikans (nyeste analyser ~5 sigma). Atlaset skiller tre H0-kanaler: H0_background (EFC recovers GR), H0_ratio og H0_structure (EFC predicts) — ulike statusklasser, ikke én prediksjon",
       "buffer": {
         "role": "to uavhengige maalekjeder buffrer hverandre — nettopp derfor kan ingen av dem skyves bort",
         "note": "hver observasjon har en buffer som holder signalet til det leses."
@@ -1932,7 +1932,7 @@
           "signalet baerer regimets tilstand",
           "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
         ],
-        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck vs SH0ES. Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+        "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck vs SH0ES. Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.; H0-tall: framework_atlas.jsonld:75-76 (Planck 67.36, SH0ES 73.04 km/s/Mpc)"
       },
       "observer": {
         "bandwidth": "spenningen er synlig bare i sammenligningen — ingen enkeltkanal ser den",
@@ -2011,7 +2011,7 @@
       "id": "obs.cc",
       "regime": {
         "name": "kosmologisk konstant / vakuumenergi",
-        "validity": "vakuumenergiproblemet er endestasjonens dypeste gap — den maalte verdien er 10^120 unna den naive prediksjonen; atlaset plasserer det i L0 (bakgrunns-aksen)",
+        "validity": "vakuumenergiproblemet er endestasjonens dypeste gap — den maalte verdien er ~10^120 unna det NAIVE teoretiske QFT-estimatet (cutoff-avhengig antakelse); atlaset plasserer det i L0 (bakgrunns-aksen)",
         "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
       },
       "phase": "observasjon",
@@ -2026,7 +2026,7 @@
         "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
         "compression": "raadata -> ett sammenfattende maal"
       },
-      "episenter": "vakuumenergiproblemet er endestasjonens dypeste gap — den maalte verdien er 10^120 unna den naive prediksjonen; atlaset plasserer det i L0 (bakgrunns-aksen)",
+      "episenter": "vakuumenergiproblemet er endestasjonens dypeste gap — den maalte verdien er ~10^120 unna det NAIVE teoretiske QFT-estimatet (cutoff-avhengig antakelse); atlaset plasserer det i L0 (bakgrunns-aksen)",
       "buffer": {
         "role": "bakgrunnens akselerasjon er bufferen — den holder ekspansjonen oppe",
         "note": "hver observasjon har en buffer som holder signalet til det leses."
