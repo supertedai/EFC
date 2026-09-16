@@ -80,3 +80,71 @@ class EFCRotation(EFCEngine):
 
         except Exception:
             return np.full_like(coordinates, np.nan)
+
+    # ------------------------------------------------------------------
+    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # ------------------------------------------------------------------
+    def regime_node(self, params_dict: dict) -> dict:
+        es = params_dict["entropy_scale"]
+        ls = params_dict["length_scale"]
+        vs = params_dict["velocity_scale"]
+        validity = (
+            "rotasjonskurver v(r) fra EFC-kjernen (fallback: parametrisk) — "
+            f"entropiskala {es}, lengdeskala {ls}, hastighetsskala {vs}; "
+            "flat rotasjon UTEN moerk-materie-antakelse — lest som L2-"
+            "regimets lokale test (analogi, ikke bevist)"
+        )
+        law_form = ("v(r) via efc_core; fallback v = vs*sqrt(r/(r+ls)) — "
+                    "numerisk kurve, ingen tabell")
+        return {
+            "id": "efc.rotation_engine",
+            "regime": {"name": "Rotasjonsmotoren — galakserotasjon",
+                       "validity": validity, "law_form": law_form},
+            "phase": "regime_engine",
+            "measure": {
+                "target": "v(r) — rotasjonshastighet som funksjon av radius",
+                "measurer": "EFCRotation (efc_core + parametrisk fallback)",
+                "instrument": "observasjonssiden er galaksespektre; motoren "
+                              "regner kurven",
+                "proxy_chain": ["spektrallinjer -> v(r) (observasjon)",
+                                "v(r) -> EFC-parametre (inferens)"],
+                "placement": "motoren klassifiserer L2-regimets lokale "
+                             "struktur — galaksen som gravitasjonsrom",
+                "compression": "en rotasjonskurve -> fire EFC-parametre",
+            },
+            "episenter": "radiusrammen: kurvens flathet er testen — "
+                         "hypotese, ikke dom",
+            "buffer": {
+                "role": "galaksens materie-buffer holder kurven flat "
+                        "gjennom koplingsfeltet — tolkning, ikke maaling",
+                "note": "bufferen er modellens, ikke motorens.",
+            },
+            "ontology": {
+                "assumes": ["rotasjonskurver er et rent gravitasjons-"
+                            "maaleri", "EFC-kjernen er korrekt for "
+                            "galakseskalaen"],
+                "source": "efc_core; parametrisk fallback — "
+                          "efc_inference/engine/rotation.py",
+            },
+            "observer": {"bandwidth": "motoren ser bare v(r) — én kanal "
+                                     "av galaksens fulle dynamikk",
+                         "awareness": "instrument_window"},
+            "emergence": {
+                "loop": "masse -> koplingsfelt -> flat rotasjon — "
+                        "kurvens flathet er loopens signatur",
+                "properties": ["v_flat", "r_skala"],
+            },
+            "fractal": {
+                "pattern": "flathet som regime — samme observasjonsmonster "
+                           "som CC-plataaet og vannets faseplatåer (analogi)",
+                "note": "ett monster, tre domener — ikke identitet.",
+            },
+            "coupling": {
+                "local": "motoren arbeider på én galakse av gangen",
+                "global": "rotasjonskurver er L2-regimets lokale avlesning "
+                          "— koblet til vekst- og hubble-motorene via "
+                          "regimet (COUPLED_TO)",
+                "empathy_note": "hver galakse bærer hele regimet i sin "
+                                "egen kurve.",
+            },
+        }
