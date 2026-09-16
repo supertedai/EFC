@@ -379,3 +379,85 @@ def test_no_private_site_info_in_public_instance():
     raw = INSTANCE_PATH.read_text(encoding="utf-8")
     for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite"]:
         assert forbudt not in raw, f"privat info lekker: {forbudt}"
+
+
+# --------------------------------------------------------------------------
+# Trinn 7: BAO + kobling av kosmologiske observasjoner til regime-nodene
+# --------------------------------------------------------------------------
+
+# De kosmologiske OBSERVASJONENE i docs/validation-ledger/data/atlas.json
+# (instrumentbaarne maalinger, ikke modellparametriseringer). Verdien er
+# LISTEN av regime-noder observasjonen er koblet til — bro-observasjoner
+# (bao, isw, h0_tension) bærer to regimer. Atlasets L-labels er en ANNEN
+# akse (lag-akse) enn fasekjeden efc.l0-l3; hver node deklarerer begge.
+KOSMOLOGISKE_OBSERVASJONER = {
+    "obs.bao": ["efc.l1", "efc.l2"],   # r_d frosset i L1, maalt i L2
+    "obs.cmb_tt": ["efc.l1"],
+    "obs.cmb_lensing": ["efc.l2"],     # linser L2-struktur
+    "obs.bbn": ["efc.l1"],             # fasekjedens tidligste avlesning
+    "obs.fsigma8": ["efc.l2"],
+    "obs.s8": ["efc.l2"],
+    "obs.eg": ["efc.l2"],
+    "obs.isw": ["efc.l1", "efc.l2"],   # kryssregime
+    "obs.ksz": ["efc.l2"],
+    "obs.cluster_mass": ["efc.l2"],
+    "obs.cluster_hmf": ["efc.l2"],
+    "obs.rar": ["efc.l2"],
+    "obs.bullet": ["efc.l2"],
+    "obs.satellites": ["efc.l2"],
+    "obs.jwst_ems": ["efc.l2"],
+    "obs.gw_ct": ["efc.l2"],
+    "obs.pta_gwb": ["efc.l2"],
+    "obs.h0_tension": ["efc.l1", "efc.l2"],  # spenningen MELLOM regimene
+    "obs.w0wa": ["efc.l3"],
+    "obs.cc": ["efc.l3"],
+}
+
+
+def test_cosmological_observation_nodes_exist():
+    """Hver kosmologisk observasjon i atlaset skal staa som node."""
+    ids = {n["id"] for n in _instance()["nodes"]}
+    for obs_id in KOSMOLOGISKE_OBSERVASJONER:
+        assert obs_id in ids, f"mangler node: {obs_id}"
+
+
+def test_observations_are_coupled_to_regimes():
+    """Hver observasjon skal vaere koblet til sine regime(r) med
+    OBSERVED_IN — ikke bare ligge loest i atlaset."""
+    rels = _instance()["relations"]
+    koblede = {(r["subject"], r["object"])
+               for r in rels if r["predicate"] == "OBSERVED_IN"}
+    for obs_id, regimer in KOSMOLOGISKE_OBSERVASJONER.items():
+        for regime in regimer:
+            assert (obs_id, regime) in koblede, \
+                f"mangler OBSERVED_IN-kobling: {obs_id} -> {regime}"
+
+
+def test_bao_is_standard_ruler():
+    """BAO-noden skal deklarere lydhorisonten r_d som standardlinjal —
+    den eneste kjente fysiske lengden i kosmologien."""
+    inst = _instance()
+    bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
+    tekst = (bao["regime"]["validity"] + " " + bao["episenter"]).upper()
+    assert "R_D" in tekst or "STANDARDLINJAL" in tekst or \
+        "STANDARD RULER" in tekst or "LYDHORISONT" in tekst
+
+
+def test_bao_declares_lag_axis_vs_phase_chain():
+    """BAO-noden skal deklarere at atlasets L-akse er en ANNEN inndeling
+    enn regime-nodenes fasekjede — aksene blandes ikke."""
+    inst = _instance()
+    bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
+    kilde = bao["ontology"]["source"].lower()
+    assert "lag-akse" in kilde and "fasekjede" in kilde
+
+
+def test_observation_nodes_sourced_from_atlas():
+    """Hver observasjonsnode skal peke til atlas.json som kilde —
+    koblingen er maskinelt forankret, ikke ad hoc."""
+    inst = _instance()
+    noder = {n["id"]: n for n in inst["nodes"]}
+    for obs_id in KOSMOLOGISKE_OBSERVASJONER:
+        kilde = noder[obs_id]["ontology"]["source"].lower()
+        assert "atlas.json" in kilde or "validation-ledger" in kilde, \
+            f"{obs_id}: kilde peker ikke til atlaset"
