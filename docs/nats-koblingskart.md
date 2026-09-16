@@ -28,14 +28,24 @@ den).
 
 | Emne | Motor | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Bussen bærer V(t), SOC(t) og effekter — timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` med grunn: bussen har ingen ladestrøm I(t), og timeoppløsning er grovt nok til at CC→CV-kneet ikke er lesbart (målt i trinn 8: usynlig i 15-min-midler). Krav for auto: serie `batteri_stroem` (A) på emnet. |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Bussen bærer `batteri_spenning` (V) og `batteri_ladning` (SOC) — timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` med grunn. |
+
+**Motorens kontrakt vs broens skjema — to forskjellige ting.** Motoren
+er injiserbar og krever tre ting per kjøring: `v_series` (V over tid),
+`i_series` (A over tid) og tersklene `v_knee_tol`, `di_threshold`,
+`cc_flat_threshold` — ingen av dem er bussens ansvar. Broens skjema er
+bussens egne serier; det broen gjør er å oversette dem til kontrakten.
+Auto-deteksjon krever derfor TO ting fra kilden, ikke én: at `i_series`
+publiseres (serie `batteri_stroem`, A), OG at oppløsningen er fin nok —
+kneet er målt usynlig i 15-min-midler (trinn 8), så en I-serie på
+timeoppløsning ville fortsatt gi `found=False`, bare med en annen grunn.
 
 ### Eksisterende på bussen (bygget av andre, ikke av motoren)
 
 | Emne | Innhold | Motor |
 |---|---|---|
-| `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-baseline (DESI DR1, eBOSS) med L/S-klassifisering og arbiter-kriterium mot DESI DR2 full-shape | `growth` (fσ8) — arbiteren er den faktiske EFC-testen |
-| `kosmos.kosmologi.prediksjon.efc-fs8` | Én EFC-prediksjon | `growth` |
+| `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-**baseline**: OBSERVERTE målinger (DESI DR1, eBOSS) med L/S-klassifisering — referanseverdier, ikke EFC-utfall | ingen — baselinen er arbiterens grunnlag, ikke motor-output; `growth` er kandidaten som skal MÅLES mot den |
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` (fσ8 — prediksjonssiden av arbiteren) |
 | `kosmos.kosmologi.diskusjon.arxiv` | arXiv-papirer | (kildegrunnlag, ikke måling) |
 
 ### Kandidater (emner som finnes, kobling ikke bygget)
