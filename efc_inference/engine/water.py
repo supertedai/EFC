@@ -271,6 +271,13 @@ class WaterPhaseEngine(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["0 C / 273.15 K — smeltepunktet (ved 1 atm) — fasegrense", "100 C / 373.15 K — kokepunktet (ved 1 atm) — fasegrense"],
             "motor": "water"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {
                 "name": "H2O fase-grense-beregning",
                 "validity": validity,

@@ -118,6 +118,13 @@ class OekonomiEngine(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["drift_rate <= 0 -> NaN (ikke stille klipping) — ærlighetsgrense", "hedge/spekulativ/ponzi-grensene — Minsky-typologi — en tradisjon blant flere"],
             "motor": "oekonomi"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {
                 "name": "Minskys finansregimer — stabilitet som holding",
                 "validity": validity,

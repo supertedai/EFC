@@ -189,6 +189,13 @@ class MuKZEngine(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["rho >= rho_crit -> K divergerer — stivhetsgrense", "regimebetingelse: k/a >> H — gyldighetsgrense", "mu < 1 -> stivhetsdominert — regimebetingelse"],
             "motor": "mu_kz"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {
                 "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
                 "validity": (

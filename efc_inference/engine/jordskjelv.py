@@ -97,6 +97,13 @@ class JordskjelvEngine(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["elastic-rebound-antakelsen — idealisert modell — modellgrense, ikke prediktor"],
             "motor": "jordskjelv"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {
                 "name": "Jordas holding->release (forkastningsbuffer)",
                 "validity": validity,

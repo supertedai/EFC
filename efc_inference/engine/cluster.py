@@ -76,6 +76,13 @@ class EFCCluster(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["telling som regime — observert, ikke modellert — stubbegrense"],
             "motor": "cluster"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {"name": "Hopemotoren — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
