@@ -20,6 +20,10 @@ tree", whatever the documentation says.
 The atlas exists in several working copies, and they do not show the same
 map. Measured 2026-09-17:
 
+**Historical measurement, 2026-09-17** — kept because it is what
+motivated the rule, not because it describes these copies today
+(`/opt/agent-work/EFC` has since been brought level with `main`):
+
 | Copy | Nodes | Problem |
 |---|---|---|
 | `/opt/agent-work/EFC` (working tree) | 72 | six PRs behind `origin/main` |
@@ -49,6 +53,20 @@ there.
 ## The other copies
 
 Every other copy of the atlas is a **working copy** and must not be read as
-the atlas. They exist for editing, not for answering. Measured on the
-authoritative ref 2026-09-17: **82 nodes, 19 engines, `perspektiv` set on
-all 82** (48 paradigm / 23 consensus / 11 academia).
+the atlas. They exist for editing, not for answering.
+
+## Measured on the authoritative ref
+
+`origin/main` @ `2026-09-17`: **82 nodes.**
+
+| Measure | Value |
+|---|---|
+| Nodes | 82 |
+| Nodes with `_engine` in the id | 19 |
+| Distinct values of `stipulasjoner.motor` | 32 |
+| `perspektiv` set | 82 of 82 — 48 paradigm / 23 consensus / 11 academia |
+
+**Two different numbers, and both are real.** "Engines" is ambiguous: 19
+node ids contain `_engine`, while 32 distinct engine names appear in
+`stipulasjoner.motor`. Earlier text said "19 engines" and meant the first
+measure while reading as the second. State which one you mean.

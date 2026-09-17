@@ -62,11 +62,16 @@ class TestAtlasLesing(unittest.TestCase):
             andre = les_atlas(REPO)
         finally:
             fil.write_bytes(opprinnelig)
+        # BIT-FOR-BIT: hele strukturen, ikke bare id-ene. Reviewfunn
+        # runde 2: en mutant som endret alle FELTER men beholdt id-ene
+        # passerte en sammenligning paa id-nivaa.
         self.assertEqual(
-            [n["id"] for n in forsta["noder"]],
-            [n["id"] for n in andre["noder"]],
+            forsta["noder"], andre["noder"],
             "lesningen endret seg da arbeidsstreet endret seg — den leser "
             "arbeidsstreet, ikke refen")
+        self.assertEqual(json.dumps(forsta, sort_keys=True),
+                         json.dumps(andre, sort_keys=True),
+                         "hele resultatet maa vaere identisk")
         self.assertNotIn("SLEPTET", [n["id"] for n in andre["noder"]])
 
     def test_ukjent_ref_feiler_og_faller_ikke_stille_tilbake(self):
@@ -109,3 +114,63 @@ class TestDokumentetPekerPaaKoden(unittest.TestCase):
 
     def test_funksjonen_som_dokumentet_peker_paa_finnes(self):
         self.assertTrue((ROT / "scripts" / "atlas_lesing.py").exists())
+
+
+class TestFunksjonensKanter(unittest.TestCase):
+    """Reviewfunn runde 2: ugyldig JSON og manglende 'nodes' ga raa
+    JSONDecodeError/KeyError. Samme prinsipp som resten — ingen stille
+    eller feilaktig feiltype naar leseren skal kunne stole paa resultatet.
+    """
+
+    def _repo(self, innhold: str):
+        t = tempfile.mkdtemp()
+        r = Path(t)
+        (r / "schema").mkdir()
+        (r / "schema" / "regime_nodes.jsonld").write_text(innhold,
+                                                          encoding="utf-8")
+        for cmd in (["init", "-q"], ["add", "-A"],
+                    ["-c", "user.name=t", "-c", "user.email=t@t",
+                     "commit", "-qm", "x"]):
+            subprocess.run(["git", "-C", str(r), *cmd],
+                           capture_output=True, text=True)
+        return r
+
+    def test_ugyldig_json_gir_AtlasLesingFeil(self):
+        r = self._repo("{ikke json")
+        with self.assertRaises(AtlasLesingFeil):
+            les_atlas(r, ref="HEAD")
+
+    def test_manglende_nodes_gir_AtlasLesingFeil(self):
+        r = self._repo('{"noe": "annet"}')
+        with self.assertRaises(AtlasLesingFeil):
+            les_atlas(r, ref="HEAD")
+
+    def test_hent_oppdaterer_refen(self):
+        """`hent=True` skal faktisk hente. Revieweren beviste det manuelt;
+        det skal staa i testsettet, ikke bare i en rapport."""
+        opp = tempfile.mkdtemp()
+        subprocess.run(["git", "init", "-q", "--bare", opp],
+                       capture_output=True, text=True)
+        arb = tempfile.mkdtemp()
+        r = Path(arb)
+        for cmd in (["init", "-q", "-b", "main"],
+                    ["remote", "add", "origin", opp]):
+            subprocess.run(["git", "-C", str(r), *cmd],
+                           capture_output=True, text=True)
+        (r / "schema").mkdir()
+        f = r / "schema" / "regime_nodes.jsonld"
+        f.write_text('{"nodes": [{"id": "a"}]}', encoding="utf-8")
+        for cmd in (["add", "-A"],
+                    ["-c", "user.name=t", "-c", "user.email=t@t",
+                     "commit", "-qm", "1"], ["push", "-q", "origin", "main"]):
+            subprocess.run(["git", "-C", str(r), *cmd],
+                           capture_output=True, text=True)
+        forsta = les_atlas(r, ref="origin/main", hent=True)["commit"]
+        f.write_text('{"nodes": [{"id": "b"}]}', encoding="utf-8")
+        for cmd in (["add", "-A"],
+                    ["-c", "user.name=t", "-c", "user.email=t@t",
+                     "commit", "-qm", "2"], ["push", "-q", "origin", "main"]):
+            subprocess.run(["git", "-C", str(r), *cmd],
+                           capture_output=True, text=True)
+        andre = les_atlas(r, ref="origin/main", hent=True)["commit"]
+        self.assertNotEqual(forsta, andre, "hent=True hentet ikke")

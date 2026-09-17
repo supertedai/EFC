@@ -61,7 +61,15 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
         _git(repo, "fetch", "-q", "origin")
     commit = _git(repo, "rev-parse", ref).strip()
     raa = _git(repo, "show", f"{ref}:{sti}")
-    data = json.loads(raa)
+    try:
+        data = json.loads(raa)
+    except json.JSONDecodeError as e:
+        raise AtlasLesingFeil(
+            f"{ref}:{sti} i {repo} er ikke gyldig JSON: {e}") from e
+    if not isinstance(data, dict) or "nodes" not in data:
+        raise AtlasLesingFeil(
+            f"{ref}:{sti} i {repo} mangler 'nodes' — "
+            f"noekler: {sorted(data)[:8] if isinstance(data, dict) else type(data).__name__}")
     return {
         "kilde": f"git:{ref}",
         "ref": ref,
