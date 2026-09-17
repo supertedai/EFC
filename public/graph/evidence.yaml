@@ -17,7 +17,8 @@ evidence:
   - evidence_id: ev.efc.desidr2.001
     type: derived_result
     title: "DESI DR2-analyse: α kollapset -1.00 ± 0.46 → -0.14 ± 0.21; Variant H DAIC = +4.05"
-    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: "H1 DESI DR2 update"}
+    locator: {repository: supertedai/EFC, path: evidence/01_hypothesis.md, section: "H1 DESI DR2 update",
+              basis: {arxiv: "2503.14738", tittel: "DESI DR2 Results II: Measurements of BAO"}}
     source_class: internal_analysis
     status: available
     supports_scope: [efc.h1.002, efc.h1.003, efc.core.status.001]

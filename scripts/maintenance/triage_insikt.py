@@ -78,9 +78,10 @@ def hoved() -> int:
                          ensure_ascii=False, indent=1))
         return 1
     # content_hash-kontroll: ALLTID — manglende hash er needs-rework, ikke et
-    # valgfritt tillegg. Kanonisk serialisering: json.dumps(sort_keys=True,
-    # ensure_ascii=False) over det yaml-lastede objektet uten content_hash.
-    # Generator og verifier MÅ dele denne formen (design §0, ærlighetsregel 2).
+    # valgfritt tillegg. Kanonisk form: scripts/maintenance/kanon_hash.py (v1),
+    # den ene delte spesifikasjonen for generator og verifier.
+    sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+    from kanon_hash import kanon_hash
     lagret = k.get("content_hash")
     if not isinstance(lagret, str):
         print(json.dumps({"status": "needs-rework",
@@ -89,8 +90,7 @@ def hoved() -> int:
         return 1
     kopi = dict(k)
     kopi.pop("content_hash", None)
-    beregnet = "sha256:" + hashlib.sha256(
-        json.dumps(kopi, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    beregnet = kanon_hash(kopi)
     if beregnet != lagret:
         print(json.dumps({"status": "needs-rework",
                           "grunn": "content_hash stemmer ikke med innholdet"},

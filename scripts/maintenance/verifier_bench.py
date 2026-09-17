@@ -85,13 +85,16 @@ created_at: "2026-09-16T00:00:00Z"
 def kjoer_fixture(navn: str, tekst: str, korrekt_hash: bool, utfallskrav: str) -> dict:
     sti = Path("/tmp") / f"bench-{navn}.yaml"
     if korrekt_hash:
-        # Beregn riktig content_hash over innholdet, slik triage-ens
-        # hash-sjekk passerer og den TILTENKTE feilen er det som avvises.
+        # Beregn riktig content_hash over innholdet via DEN kanoniske
+        # hash-funksjonen, slik triage-ens hash-sjekk passerer og den
+        # TILTENKTE feilen er det som avvises.
+        import sys as _sys
+        _sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+        from kanon_hash import kanon_hash
         import yaml
         k = yaml.safe_load(tekst) or {}
         k.pop("content_hash", None)
-        h = "sha256:" + hashlib.sha256(
-            json.dumps(k, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+        h = kanon_hash(k)
         tekst = tekst.replace("content_hash: sha256:REPLACEME", f"content_hash: {h}")
     sti.write_text(tekst, encoding="utf-8")
     import subprocess
