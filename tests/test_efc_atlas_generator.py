@@ -38,3 +38,14 @@ def test_generert_atlas_har_doctype_og_charset():
     html = (ROT / "docs" / "efc-atlas" / "atlas.html").read_text()
     assert html.startswith("<!doctype html>"), "quirks mode"
     assert '<meta charset="utf-8">' in html[:120], "mojibake arrows"
+
+
+def test_bygget_output_har_ingen_trailing_whitespace():
+    """build.mjs skriver tomme linjer med mellomrom — generatoren
+    stripper dem. Denne testen laaser at den COMMITTEDE tilstanden
+    er strippet, ikke bare arbeidstreet."""
+    for navn in ("SYSTEM.md", "atlas.html"):
+        p = ROT / "docs" / "efc-atlas" / navn
+        darlige = [i for i, l in enumerate(
+            p.read_text().splitlines(), 1) if l.rstrip() != l]
+        assert not darlige, f"{navn}: trailing whitespace pa linjene {darlige}"

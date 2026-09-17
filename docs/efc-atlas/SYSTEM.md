@@ -607,7 +607,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — modellrelativ / proxy / institusjonell
-3. **Social mechanism** — EG-målinger er avhengige av få instrumenter — narrativet bæres av en liten gruppe spesialister med høy publiseringsmakt
+3. **Social mechanism** — EG-målinger er avhengige av få instrumenter — narrativet bæres av en liten gruppe spesialister med høy publiseringsmakt 
 
 #### OB · obs.isw _(not switched on)_
 
@@ -733,7 +733,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — modellrelativ / proxy / institusjonell
-3. **Social mechanism** — Gravitasjonsbølger er en ung, raskt institusjonalisert tradisjon — LIGO/Virgo/KAGRA-samarbeidene har monopol på dataene
+3. **Social mechanism** — Gravitasjonsbølger er en ung, raskt institusjonalisert tradisjon — LIGO/Virgo/KAGRA-samarbeidene har monopol på dataene 
 
 #### OB · obs.pta_gwb _(not switched on)_
 
@@ -747,7 +747,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — modellrelativ / proxy / institusjonell
-3. **Social mechanism** — PTA-konsensusen bygges av noen få store samarbeid med tiår lange datasett — dataene er private frem til publisering, så
+3. **Social mechanism** — PTA-konsensusen bygges av noen få store samarbeid med tiår lange datasett — dataene er private frem til publisering, så 
 
 #### OB · obs.h0_tension _(not switched on)_
 
@@ -775,7 +775,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — modellrelativ / proxy / institusjonell
-3. **Social mechanism** — mørk-energi-parametriseringen er en konsensus KONVENSJON mer enn en måling — narrativet bæres av survey-designenes valg
+3. **Social mechanism** — mørk-energi-parametriseringen er en konsensus KONVENSJON mer enn en måling — narrativet bæres av survey-designenes valg 
 
 #### OB · obs.cc _(not switched on)_
 
