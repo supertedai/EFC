@@ -196,7 +196,11 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
         # bokstaver og bindestrek (Release-2026), og refs/-form
         # (refs/heads/main). Reviewfunn runde 8: den forrige formen
         # krevde [a-z]+/[a-z]+ og avviste alle disse.
-        re.compile(r"^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*:[A-Za-z0-9_/.-]+$"),
+        # Sti-delen etter kolon maa STARTE med et vanlig tegn, ikke "/".
+        # Uten dette matchet `file:///Users/...` ref-formen med `file`
+        # som ref og `///Users/...` som sti — og rullet tilbake til
+        # noeyaktig det runde 5-6 hadde stengt.
+        re.compile(r"^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*:[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$"),
     ]
 
     @staticmethod
