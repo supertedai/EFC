@@ -98,6 +98,7 @@ class EnerFlytEngine(EFCEngine):
         u = self.vurder(params)
         return {
             "id": "efc.enerflyt_engine",
+            "synlighet": self.SYNLIGHET,
             "regime": {
                 "name": u["regime"],
                 "validity": ("overflod: P > C + L — bufferen fylles; "

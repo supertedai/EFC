@@ -70,6 +70,7 @@ class EFCLensing(EFCEngine):
                     "venter på implementering)")
         return {
             "id": "efc.lensing_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["kappa-avbildningen — observert, ikke modellert — stubbegrense"],

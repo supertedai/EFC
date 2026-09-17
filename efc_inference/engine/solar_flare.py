@@ -116,6 +116,7 @@ class SolarFlareEngine(EFCEngine):
                     "(dB/dt); utlosning ved B = b_crit")
         return {
             "id": "efc.solar_flare_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["GOES-bins: 1e20->B, 1e21->C, 1e22->M, 1e23->X J — klassegrenser — proxy-kjede, ikke fysikalsk lov"],

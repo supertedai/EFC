@@ -185,6 +185,7 @@ class MuKZEngine(EFCEngine):
     def regime_node(self, params: dict) -> dict:
         return {
             "id": "efc.mu_kz_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["rho >= rho_crit -> K divergerer — stivhetsgrense", "regimebetingelse: k/a >> H — gyldighetsgrense", "mu < 1 -> stivhetsdominert — regimebetingelse"],

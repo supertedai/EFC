@@ -112,6 +112,7 @@ class EFCHubble(EFCEngine):
                     "beskriver bare default-en)")
         return {
             "id": "efc.hubble_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["fσ8-målingene (Stage-III, 7 stk) — datagrunnlag"],

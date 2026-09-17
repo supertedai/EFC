@@ -98,6 +98,7 @@ class GridMikroEngine(EFCEngine):
     def regime_node(self, params: dict) -> dict:
         return {
             "id": "efc.grid_mikro_engine",
+            "synlighet": self.SYNLIGHET,
             "regime": {
                 "name": self.regime(params),
                 "validity": ("lav_tetthet: Gamma ~ lineaer (A) eller ~ "

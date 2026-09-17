@@ -50,6 +50,9 @@ from efc_inference.engine.base_engine import EFCEngine
 
 
 class VictronChargeEngine(EFCEngine):
+    #: Bundet til et privat, instrumentert anlegg — noden
+    #: holdes utenfor GitHub Pages (regel 16).
+    SYNLIGHET = "intern"
     """Locate the CC->CV charge-regime knee in a V/I time series."""
 
     REQUIRED_PARAMS = ["v_knee_tol", "di_threshold", "cc_flat_threshold"]
@@ -185,6 +188,7 @@ class VictronChargeEngine(EFCEngine):
         )
         return {
             "id": "efc.victron_cccv_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["batteriets lade-/tømmeterskler — anleggsspesifikke — driftsgrenser"],

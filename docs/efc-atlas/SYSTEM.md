@@ -6,7 +6,7 @@ _Question status: **6 open · 1 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 82 nodes, 18 engines, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 73 nodes, 18 engines, NATS bridges.
 
 ## Decisions locked
 
@@ -25,11 +25,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
 3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time.
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
-5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-victron-cccv-engine, kjemi-periodesystemet)_
+5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time.
-7. **Epistemics** — Chapter 7 of 9 — a few structures at a time. _(adds efc-selv-paradigme-tid)_
-8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-water-phase-engine, efc-l1, efc-l2, efc-l3, batteri-celle, batteri-lading, batteri-buffer, batteri-inverter, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, efc-mu-kz-engine, efc-selv-atlas, efc-selv-skjema, efc-selv-paradigme-masse, efc-romvaer-engine, efc-oekonomi-engine, efc-orbital-engine, efc-klima-engine, efc-samfunn-engine, efc-tidevann-engine, efc-transient-engine, efc-enerflyt-engine)_
-9. **The whole atlas** — Everything at once — 82 nodes, 79 relations.
+7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
+8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-water-phase-engine, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, efc-mu-kz-engine, efc-romvaer-engine, efc-oekonomi-engine, efc-orbital-engine, efc-klima-engine, efc-samfunn-engine, efc-tidevann-engine, efc-transient-engine, efc-enerflyt-engine)_
+9. **The whole atlas** — Everything at once — 73 nodes, 72 relations.
 
 ## Structures
 
@@ -211,20 +211,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 ### Structures — H2O and chemistry
 
-#### VC · efc.victron_cccv_engine
-
-**In one line.** Perspective: paradigm. ladekurven V(t), I(t)
-
-**What it does.** V/I-tidsserie — motoren leser aldri live-data selv — proxy chain: V(t), I(t) -> regime-labels (0=CC, 1=CV) -> foerste CV-label -> kneet (t_k, V_k, I_k)
-
-**How it's built.** Buffer role: batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen tolkes . Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
 #### PS · kjemi.periodesystemet
 
 **In one line.** Perspective: academia. periodesystemets struktur (118 grunnstoff)
@@ -242,20 +228,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 ### Society — energy flow
 
 ### Epistemics
-
-#### PT · efc.selv.paradigme_tid
-
-**In one line.** Perspective: paradigm. tidskoordinatet
-
-**What it does.** SI-sekundet (cesium-klokken) — proxy chain: svingning -> sekund -> tid
-
-**How it's built.** Buffer role: tidskoordinatet er bufferen som holder hendelser i rekkefølge. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
 ### Not yet built
 
@@ -448,62 +420,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 **What it does.** ingen direkte — predikert grense — proxy chain: vekstlovens asymptote -> S->1-tilstanden -> ingen maalbar proxy i dag
 
 **How it's built.** Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe loep. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### BA · batteri.celle _(not switched on)_
-
-**In one line.** Perspective: paradigm. SOC og SOH
-
-**What it does.** spennings-, strøm- og temperatursensorer — proxy chain: coulomb-telling (I over tid) -> SOC-estimat -> V (OCV) -> SOC-korreksjon kun etter hvile -
-
-**How it's built.** Buffer role: cellekjemien er mikro-bufferen: interkalasjonsstrukturen holder og slipper litiu. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### BA · batteri.lading _(not switched on)_
-
-**In one line.** Perspective: paradigm. ladekurven V(t), I(t)
-
-**What it does.** V/I-sensorer i laderen — proxy chain: V, I over tid -> ladekurven -> strømavtag under CV under strømterskel -> ladeslutt-KRITERI
-
-**How it's built.** Buffer role: laderen er bufferens fyllemekanisme: den styrer hvor fort energien strømmer inn. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### BA · batteri.buffer _(not switched on)_
-
-**In one line.** Perspective: paradigm. SOC, effektbalanse, sykluser
-
-**What it does.** Battery Monitor (LiFePO4-BMS), VE.Bus (inverter/lader), Grid meter, PV-vekselretter — proxy chain: shunt (A) -> coulomb-telling -> SOC -> spenningsmaaling (V) -> terminaltilstand -> lastmål
-
-**How it's built.** Buffer role: batteriet ER en buffer i bred forstand: homeostase (holder nettspenningen stabil. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### BA · batteri.inverter _(not switched on)_
-
-**In one line.** Perspective: paradigm. utgangsspenning, frekvens, effekt
-
-**What it does.** V/I/f-sensorer paa utgangen — proxy chain: DC-effekt inn -> AC-effekt ut (virkningsgrad) -> utgangsspenning/frekvens -> nettkvalitet
-
-**How it's built.** Buffer role: inverteren har en liten intern buffer (DC-link-kondensatorer) som glatter pulsbr. Epistemic: hypotese / proxy / minoritet.
 
 **Steps in execution.**
 
@@ -1064,48 +980,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 **What it does.** MuKZEngine (efc_inference/engine/mu_kz.py) — proxy chain: bakgrunns-innganger -> eps_F, eps_K, R -> eps_F, eps_K, R -> mu (eq. 28)
 
 **How it's built.** Buffer role: gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont — utenfor det . Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### EF · efc.selv.atlas _(not switched on)_
-
-**In one line.** Perspective: paradigm. atlaset selv
-
-**What it does.** lesningens ramme — proxy chain: atlas-tekst -> lesning -> forståelse
-
-**How it's built.** Buffer role: atlaset er bufferen som holder det kjente før det neste legges til. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### EF · efc.selv.skjema _(not switched on)_
-
-**In one line.** Perspective: paradigm. skjemaet selv
-
-**What it does.** definisjonens ramme — proxy chain: feltnavn -> betydning -> verden
-
-**How it's built.** Buffer role: skjemaet er bufferen som holder formen stabil mellom revisjoner. Epistemic: hypotese / proxy / minoritet.
-
-**Steps in execution.**
-
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
-
-#### EF · efc.selv.paradigme_masse _(not switched on)_
-
-**In one line.** Perspective: paradigm. massebegrepet
-
-**What it does.** SI-kilogrammet — proxy chain: kraft/akselerasjon -> kg -> masse
-
-**How it's built.** Buffer role: massebegrepet er bufferen som holder tregeheten tellelig. Epistemic: hypotese / proxy / minoritet.
 
 **Steps in execution.**
 

@@ -244,6 +244,7 @@ class EFCGrowth(EFCEngine):
                     "med μ(a) når varianten har kanalen")
         return {
             "id": "efc.growth_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["mu=0.5 (EFCVariantC) reproduserer fsigma8 ~ 0.430 — parametervalg — forseglet kriterium", "mu=1.0 gir 0.4534 — kontrastpunkt"],

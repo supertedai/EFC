@@ -267,6 +267,7 @@ class WaterPhaseEngine(EFCEngine):
                     + ") — numerisk integrasjon, ingen tabell-oppslag")
         return {
             "id": "efc.water_phase_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["0 C / 273.15 K — smeltepunktet (ved 1 atm) — fasegrense", "100 C / 373.15 K — kokepunktet (ved 1 atm) — fasegrense"],

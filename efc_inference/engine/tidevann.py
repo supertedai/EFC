@@ -109,6 +109,7 @@ class TidevannEngine(EFCEngine):
                     "fase-låsing: P_rot = P_omløp")
         return {
             "id": "efc.tidevann_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"],

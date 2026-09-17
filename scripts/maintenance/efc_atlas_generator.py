@@ -131,8 +131,29 @@ def _node_rad(node: dict, i: int) -> dict:
 
 def hoved() -> int:
     atlas = json.load(open(JSONLD, encoding="utf-8"))
-    noder = atlas["nodes"]
-    print(f"nodes: {len(noder)}")
+    alle = atlas["nodes"]
+    # Bare offentlige noder gaar til GitHub Pages. Filteret er DEKLARERT per
+    # node (`synlighet`), ikke en skjult regel her — en node som forsvinner
+    # uten at noen ser hvorfor er samme feilklasse som resten av huset
+    # finnes for aa hindre. Interne noder er ikke slettet: de lever videre
+    # i det komplette atlaset, og telles eksplisitt i utskriften saa
+    # tilbakeholdelsen er synlig.
+    noder = [n for n in alle if n.get("synlighet") == "offentlig"]
+    interne = [n["id"] for n in alle if n.get("synlighet") != "offentlig"]
+    print(f"nodes: {len(noder)} offentlige av {len(alle)}")
+    if interne:
+        print(f"  holdt tilbake ({len(interne)}): {', '.join(sorted(interne))}")
+
+    # Tallene under er DYNAMISKE med vilje. De stod hardkodet som «82 nodes,
+    # 79 relations» og «82 nodes, 18 engines», og ble dermed staaende og
+    # lyve i det offentlige kartet i det oyeblikket filteret tok virkning —
+    # 73 noder publisert, 82 paastatt. Det røpet i tillegg at noe var holdt
+    # tilbake, som er noeyaktig det filteret skal skjule.
+    offentlige_id = {n["id"] for n in noder}
+    relasjoner = [r for r in atlas.get("relations", [])
+                  if r.get("subject") in offentlige_id
+                  and r.get("object") in offentlige_id]
+    motorer = sum(1 for n in noder if "_engine" in str(n.get("id", "")))
 
     rader = [_node_rad(n, i) for i, n in enumerate(noder)]
     # Ghost-noder: de uten PLASSERING og med epistemikk «ingen»
@@ -172,7 +193,8 @@ def hoved() -> int:
         })
     ch.append({
         "id": "all", "title": "The whole atlas",
-        "reveal": [], "lede": "Everything at once — 82 nodes, 79 relations.",
+        "reveal": [], "lede": f"Everything at once — {len(noder)} nodes, "
+                              f"{len(relasjoner)} relations.",
         "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
         "flow": None,
     })
@@ -200,7 +222,7 @@ export const META = {{
   stats: [{{ k: 'Nodes', v: '{len(noder)}' }},
           {{ k: 'Perspectives', v: 'paradigm / consensus / academia' }}],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 82 nodes, 18 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],

@@ -101,6 +101,7 @@ class RomvaerEngine(EFCEngine):
                     "3t-tikk; G-nivåer ved Kp 5-9")
         return {
             "id": "efc.romvaer_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala", "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"],

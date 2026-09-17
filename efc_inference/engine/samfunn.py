@@ -117,6 +117,7 @@ class SamfunnEngine(EFCEngine):
                     "dR/dt = gamma I; R0 = beta/gamma")
         return {
             "id": "efc.samfunn_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["R0 = 1 — terskelen mellom tre regimer — regimebryter"],
