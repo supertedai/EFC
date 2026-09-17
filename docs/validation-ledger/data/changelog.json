@@ -6,55 +6,6 @@
   "changes": [
     {
       "date": "2026-09-17",
-      "sha": "11b4531cc280",
-      "summary": "fix(atlas): review-runde 1 — trailing whitespace strippes i generatoren + changelog-projeksjon",
-      "categories": {
-        "public_pages": 1,
-        "ledger_data": 1,
-        "scripts": 1
-      },
-      "id": "11b4531cc280"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "c6bcfdfeb4ce",
-      "summary": "feat(atlas): gap_nats_bro + ocean/biosphere/volcano nodes (gap domains round 2)",
-      "categories": {
-        "other": 4,
-        "public_pages": 1,
-        "ledger_data": 1,
-        "code": 1,
-        "tests": 1
-      },
-      "id": "c6bcfdfeb4ce"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "b18c75b44353",
-      "summary": "fix(atlas): review-runde 1 — konkrete maale_paradigme + regex-regresjonstest",
-      "categories": {
-        "public_pages": 1,
-        "ledger_data": 1,
-        "other": 2,
-        "tests": 1
-      },
-      "id": "b18c75b44353"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "ef7bb2ca4f09",
-      "summary": "feat(atlas): gap_nats_bro + tre maalingsnoder (hav, biosfaere, vulkan)",
-      "categories": {
-        "other": 4,
-        "public_pages": 1,
-        "ledger_data": 1,
-        "code": 1,
-        "tests": 1
-      },
-      "id": "ef7bb2ca4f09"
-    },
-    {
-      "date": "2026-09-17",
       "sha": "bdc54c031a5e",
       "summary": "fix(privacy): home address and phone removed from efc-toolkit (13 files) + guard",
       "categories": {
@@ -86,7 +37,7 @@
     {
       "date": "2026-09-17",
       "sha": "2dc396b0b7aa",
-      "summary": "fix(privacy): trailing whitespace i de tre redigerte filene (review-krav PR #455 r3)",
+      "summary": "fix(privacy): trailing whitespace in the three edited files (review-krav PR #455 r3)",
       "categories": {
         "papers": 3
       },
@@ -101,36 +52,6 @@
         "scripts": 3
       },
       "id": "1cf0a2c5a82e"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "1b51a04ed255",
-      "summary": "feat(publish): DOI-git reconciler — Figshare publish and git hang together (#456)",
-      "categories": {
-        "public_pages": 1,
-        "ledger_data": 1,
-        "scripts": 1
-      },
-      "id": "1b51a04ed255"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "8d79a2d052f9",
-      "summary": "chore: fjern test-artefakt Test_Paper_Y (utilsiktet committet)",
-      "categories": {
-        "papers": 5
-      },
-      "id": "8d79a2d052f9"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "c2a1ea7a855a",
-      "summary": "chore(ci): vedlikeholds-sekvensen — maintain -> navbar -> doi-map (PR #459)",
-      "categories": {
-        "papers": 3,
-        "other": 1
-      },
-      "id": "c2a1ea7a855a"
     },
     {
       "date": "2026-09-17",
@@ -161,149 +82,6 @@
       "date": "2026-07-06",
       "type": "auto_maintenance",
       "summary": "Ledger data: evidence-register.json, ledger.json."
-    },
-    {
-      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
-      "status": "candidate_ready",
-      "result": "NO_SIGNAL",
-      "last_updated": "2026-07-04T04:25:39.503000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "ISW Void Sign-Flip Observational Confrontation v1",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:39.264000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "hi_class scalar-tensor EFC falsification test",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:39.224000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "GAP: kSZ_velocity — no dedicated EFC prediction paper",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:39.094000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Euclid DR1 pre-registration pipeline via hi_class",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:38.944000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "EFC physics localization: perturbation sector, not background",
-      "status": "candidate_ready",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-07-04T04:25:38.838000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "CT-05: Full Entropy Gradient Pipeline",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:38.719000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "CMB α–H₀ degeneracy corridor (structural constraint)",
-      "status": "candidate_ready",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-07-04T04:25:38.689000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "CMB acoustic peaks: Boltzmann-solver gap blocking (post arXiv:2504.20038)",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:38.579000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:38.455000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Action Integral Gap — Tier-1 theoretical obstruction",
-      "status": "candidate_ready",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-07-04T04:25:38.370000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "Action Integral Gap — k* derivability test",
-      "status": "candidate_ready",
-      "result": "REQUIRES_EXTERNAL_TOOL",
-      "last_updated": "2026-07-04T04:25:38.248000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
-    },
-    {
-      "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
-      "status": "candidate_ready",
-      "result": "PIPELINE_NOT_READY",
-      "last_updated": "2026-07-04T04:25:38.120000000+00:00",
-      "source": "conversation_bridge",
-      "all_labels": [
-        "Validation",
-        "EFCValidation"
-      ]
     }
   ],
   "metadata": {
