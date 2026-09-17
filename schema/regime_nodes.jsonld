@@ -962,7 +962,7 @@
    },
    "buss_domene": "verden.miljo",
    "synlighet": "offentlig",
-   "ville_falsifisere": "En målt fasegrense for H2O utenfor IAPWS-95-verdien med mer enn oppgitt usikkerhet ville felle kalibreringen."
+   "ville_falsifisere": "En målt fasegrense for H2O som avviker fra IAPWS-95-verdien utenfor den usikkerheten IAPWS-95 selv oppgir for punktet. (Referansen er standarden, ikke et tall her — tallet er standardens.)"
   },
   {
    "id": "efc.l0",
@@ -3580,7 +3580,10 @@
    },
    "buss_domene": "kosmos.galakser",
    "synlighet": "offentlig",
-   "ville_falsifisere": "En rotasjonskurve der EFC-kjernen ikke kan følge dataene innenfor oppgitt toleranse, mens en alternativ profil kan."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "kriteriet krevde at EFC-kjernen skulle foelge dataene innenfor en toleranse — men toleransen er IKKE fastsatt noe sted. Uten den kan noden ikke felles ennaa"
+   }
   },
   {
    "id": "efc.hubble_engine",
@@ -6012,7 +6015,7 @@
    },
    "buss_domene": "verden.klima",
    "synlighet": "offentlig",
-   "ville_falsifisere": "En likevektstemperatur som ikke følger 0D-energibalansen, eller en tidskonstant vesentlig ulik τ ≈ 4 år."
+   "ville_falsifisere": "En likevektstemperatur som ikke følger 0D-energibalansen. (Den opprinnelige teksten krevde ogsaa en tidskonstant ulik tau ~ 4 aar, men uten en grense for hvor ulik — den delen er fjernet, ikke omformulert.)"
   },
   {
    "id": "efc.samfunn_engine",
