@@ -46,7 +46,17 @@ def git_indeks(root: Path) -> list[str] | None:
     if ut.returncode != 0:
         return None
     stier = [p for p in ut.stdout.decode("utf-8", "surrogateescape").split("\0") if p]
-    return stier or None
+    # TOM LISTE ER ET SVAR — ikke «ingen indeks».
+    #
+    # Foerste utgave returnerte `stier or None`. Da ble et gyldig, tomt
+    # git-tre behandlet som «ikke et git-tre», `filer()` falt tilbake til
+    # diskvandring, og USPOREDE filer ble lest — i strid med premisset om at
+    # git-treet er autoritativt. Reprodusert i review 2026-09-17:
+    # `git init` + én usporet fil med privat innhold ble returnert.
+    #
+    # Docstringen over sa allerede at None betyr «ikke et git-tre jeg kan
+    # lese» og ikke «tomt tre». Koden gjorde det motsatte av det den sa.
+    return stier
 
 
 def _fra_disk(root: Path, ignorerte: frozenset) -> list[str]:

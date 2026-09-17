@@ -39,10 +39,24 @@ class Rigg(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.addCleanup(lambda: shutil.rmtree(self.tmp, ignore_errors=True))
 
-    def skriv(self, rel: str, tekst: str = "x\n") -> Path:
+    def skriv(self, rel: str, tekst: str = "x\n", spor: bool = True) -> Path:
+        """Skriv en fil. `spor=True` legger den i indeksen naar treet er git.
+
+        Verktoeyet leser INDEKSEN, ikke disken. En rigg som bare skriver
+        til disk bygger derfor et tomt tre — og det ble «loest» ved aa la
+        `filer()` falle tilbake til diskvandring, som gjorde at USPOREDE
+        filer ble lest i et ekte, tomt tre. Rettelsen hoerer her.
+
+        `spor=False` for testene som bevisst vil ha en fil utenfor
+        indeksen; ignorerte stier feiler stille paa `git add`, som er
+        meningen (se `test_ignorert_katalog_er_ikke_med`).
+        """
         p = self.tmp / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(tekst, encoding="utf-8")
+        if spor and (self.tmp / ".git").exists():
+            subprocess.run(["git", "-C", str(self.tmp), "add", "--", rel],
+                           capture_output=True)  # ignorert sti feiler — greit
         return p
 
     def git(self, *args: str) -> None:
@@ -57,6 +71,37 @@ class Rigg(unittest.TestCase):
 
 
 class GitTre(Rigg):
+    def test_tomt_indeks_er_et_svar_ikke_en_fallback(self):
+        """Et gyldig, TOMT git-tre skal gi null filer — ikke diskvandring.
+
+        Maalt i uavhengig review 2026-09-17: `git_indeks` returnerte
+        `stier or None`. Et tomt tre ble dermed behandlet som «ikke et
+        git-tre», `filer()` falt tilbake til diskvandring, og USPOREDE
+        filer ble lest — i strid med premisset om at git-treet er
+        autoritativt. Reprodusert med `git init` + én usporet fil.
+
+        De to tilstandene maa skilles: «git svarte, og svaret var tomt»
+        mot «git svarte ikke». Bare den andre skal falle tilbake.
+        """
+        with tempfile.TemporaryDirectory() as d:
+            rot = Path(d)
+            subprocess.run(["git", "init", "-q"], cwd=rot, check=True)
+            (rot / "usporet.jsonld").write_text("PRIVAT", encoding="utf-8")
+            self.assertEqual(git_indeks(rot), [],
+                             "tomt tre skal gi tom liste, ikke None")
+            self.assertEqual(filer(rot), [],
+                             "en usporet fil skal ikke leses fra et git-tre")
+
+    def test_utenfor_git_faller_tilbake_til_disk(self):
+        """Den andre halvdelen: utenfor et git-tre SKAL disken leses."""
+        with tempfile.TemporaryDirectory() as d:
+            rot = Path(d)
+            (rot / "a.jsonld").write_text("{}", encoding="utf-8")
+            self.assertIsNone(git_indeks(rot),
+                              "utenfor git skal svaret vaere None")
+            self.assertEqual(len(filer(rot)), 1,
+                             "fallbacken skal fortsatt virke")
+
     def test_ignorert_katalog_er_ikke_med(self):
         """Den målte feilen: `.worktrees/` står i .gitignore, men ligger på
         disk — og en diskvandring svarte med den."""
@@ -72,13 +117,17 @@ class GitTre(Rigg):
         tilfeldigvis ligger ulagt i arbeidsstreet. `git add` er grensen."""
         self.git_init()
         self.skriv("docs/sporet.json", "{}\n")
-        self.skriv("docs/ulost.json", "{}\n")
-        self.git("add", "docs/sporet.json")
+        self.skriv("docs/ulost.json", "{}\n", spor=False)
         self.assertEqual(self.rel(filer(self.tmp)), ["docs/sporet.json"])
 
-    def test_tom_indeks_faller_tilbake_til_disken(self):
-        """Riggene bygger trær som ikke er lagt inn i git — de må fortsatt
-        kunne leses, ellers måler ikke enhetstestene noe."""
+    def test_sporet_fil_leses_fra_indeksen(self):
+        """Riggen legger filen i indeksen, og den leses derfra.
+
+        Dette erstatter `test_tom_indeks_faller_tilbake_til_disken`, som
+        laaste inne feilen: den bygget et tomt indeks og krevde at
+        `filer()` leste DISKEN i stedet. Det er den atferden som lekker —
+        se `test_tomt_indeks_er_et_svar_ikke_en_fallback`.
+        """
         self.git_init()
         self.skriv("docs/a.json", "{}\n")
         self.assertEqual(self.rel(filer(self.tmp)), ["docs/a.json"])
