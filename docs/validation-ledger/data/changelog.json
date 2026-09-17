@@ -6,6 +6,24 @@
   "changes": [
     {
       "date": "2026-09-17",
+      "sha": "dc8ace4d3048",
+      "summary": "fix(bridge): volcano topic aligned with house layer semantics (tilstand)",
+      "categories": {
+        "code": 1
+      },
+      "id": "dc8ace4d3048"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "0478e7d41a26",
+      "summary": "fix(bridge): ocean and biosphere topics aligned with house domain namespace",
+      "categories": {
+        "code": 1
+      },
+      "id": "0478e7d41a26"
+    },
+    {
+      "date": "2026-09-17",
       "sha": "c6bcfdfeb4ce",
       "summary": "feat(atlas): gap_nats_bro + ocean/biosphere/volcano nodes (gap domains round 2)",
       "categories": {
@@ -372,7 +390,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "c6bcfdfeb4cee673e67448639ef7bd85274a52cc",
-    "generated_at": "2026-09-17T11:55:42.069057+00:00"
+    "last_processed_sha": "0478e7d41a2635e6731d2a7653860e5b1b040def",
+    "generated_at": "2026-09-17T12:49:23.591824+00:00"
   }
 }
