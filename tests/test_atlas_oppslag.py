@@ -483,3 +483,56 @@ class TestVisningsgrensen:
             f"CLI viste {len(linjer)} treff, grensen er {atlas_lesing._VIS_MAKS}")
         assert "flere" in p.stdout, (
             "naar treffene kuttes, skal CLI si hvor mange som ligger under")
+
+
+class TestStorrelsenPaaHullet:
+    """«Kjent hull» uten størrelse kan ikke prioriteres.
+
+    Maalt 2026-09-17: `verden.vaer` (190 770 meldinger) og
+    `kosmos.asteroider` (228) ga IDENTISK svar. PR #475 gjør at
+    dekningsfilen bærer `meldinger` per domene — men den er ikke merget, så
+    lesingen må være VALGFRI: finnes feltet, vises det; finnes det ikke,
+    virker oppslaget som før.
+
+    Alternativet — å kreve feltet — ville låst denne PR-en til #475, og et
+    oppslagsverk som ikke virker før en annen PR lander, er et oppslagsverk
+    som ikke virker.
+    """
+
+    def _repo_med(self, tmp_path: Path, ekstra: dict) -> Path:
+        repo = tmp_path / "r"
+        (repo / "efc_inference" / "engine").mkdir(parents=True)
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            '{"nodes": []}', encoding="utf-8")
+        dekning = {"domener": {"kosmos.asteroider": dict(
+            {"status": "ikke_dekket", "noder": [], "begrunnelse": "ingen node"}.items(),
+            **ekstra)}}
+        (repo / "schema" / "atlas_dekning.json").write_text(
+            json.dumps(dekning), encoding="utf-8")
+        for a in (("init", "-q"), ("config", "user.email", "t@t"),
+                  ("config", "user.name", "t"), ("add", "-A"),
+                  ("commit", "-q", "-m", "x")):
+            subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)
+        return repo
+
+    def test_meldinger_er_med_nar_feltet_finnes(self, tmp_path: Path) -> None:
+        repo = self._repo_med(tmp_path, {"meldinger": 228})
+        svar = atlas_lesing.finn(repo, "kosmos.asteroider", ref="HEAD")
+        assert svar["kjent_hull"] is not None
+        assert svar["kjent_hull"]["meldinger"] == 228, (
+            f"stoerrelsen mangler: {svar['kjent_hull']}")
+
+    def test_uten_feltet_virker_oppslaget_som_foer(self, tmp_path: Path) -> None:
+        repo = self._repo_med(tmp_path, {})
+        svar = atlas_lesing.finn(repo, "kosmos.asteroider", ref="HEAD")
+        assert svar["kjent_hull"] is not None, (
+            "oppslaget skal virke ogsaa uten `meldinger` — feltet er valgfritt")
+        assert svar["kjent_hull"]["meldinger"] is None
+
+    def test_navnet_matches_fortsatt_bare_paa_domenenavn(self, tmp_path: Path) -> None:
+        """Stoerrelsen skal ikke gjore at flere ting matcher."""
+        repo = self._repo_med(tmp_path, {"meldinger": 228})
+        svar = atlas_lesing.finn(repo, "228", ref="HEAD")
+        assert svar["kjent_hull"] is None, (
+            "tallet 228 er ikke et domenenavn")

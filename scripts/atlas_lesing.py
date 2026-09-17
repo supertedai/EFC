@@ -129,7 +129,14 @@ def _kjent_hull(dekning: dict, naal: str) -> dict | None:
         d_lav = domene.lower()
         if naal_lav == d_lav or naal_lav in d_lav.split("."):
             return {"domene": domene, "status": v.get("status"),
-                    "noder": v.get("noder"), "begrunnelse": v.get("begrunnelse")}
+                    "noder": v.get("noder"), "begrunnelse": v.get("begrunnelse"),
+                    # VALGFRITT: PR #475 legger maalt meldingsvolum per
+                    # domene i dekningsfilen. Finnes det, vises det — og da
+                    # kan et hull paa 190 770 skilles fra ett paa 228.
+                    # Finnes det ikke, virker oppslaget som foer; et
+                    # oppslagsverk som ikke virker foer en annen PR lander,
+                    # er et oppslagsverk som ikke virker.
+                    "meldinger": v.get("meldinger")}
     return None
 
 
@@ -258,9 +265,13 @@ if __name__ == "__main__":
         if s["hull"]:
             kh = s["kjent_hull"]
             if kh:
-                print(f"  KJENT HULL — maalt som «{kh['status']}» i {s['dekning_fil']}")
+                ant = kh.get("meldinger")
+                storrelse = f" · {ant} meldinger" if ant is not None else ""
+                print(f"  KJENT HULL — maalt som «{kh['status']}»{storrelse}")
                 if kh.get("begrunnelse"):
                     print(f"  begrunnelse: {kh['begrunnelse']}")
+                if ant is None:
+                    print("  (stoerrelse ikke maalt — kommer fra PR #475)")
             else:
                 print("  ATLASET VET IKKE — ingen node baerer dette emnet, "
                       "og det er ikke et maalt dekningshull.")
