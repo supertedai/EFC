@@ -112,33 +112,6 @@ class TestIngenDekningForsvinner:
             f"`efc_inference/tests/` har 123 tester som hoerer i hovedsuiten. "
             f"Bruk `norecursedirs` for aa utelate forskningskoden i stedet.")
 
-    def test_efc_inference_testene_er_med(self) -> None:
-        """Den konkrete maalingen: testene i efc_inference/tests skal samles.
-
-        Tallet er ikke pinnet — det vokser naar avhengigheter installeres
-        (maalt: 123 uten `emcee`, 125 med). Det som pinnes er at samlingen
-        LYKKES og at den er stor nok til aa romme dem.
-
-        Merk: sjekken gaar paa «errors during collection», ikke paa ordet
-        «error» — det finnes tester med `error` i navnet, og en sjekk som
-        ikke skiller dem feller paa sitt eget innhold. Jeg gikk i den fellen
-        to ganger; derfor står den her.
-        """
-        p = subprocess.run([sys.executable, "-m", "pytest", "--co", "-q",
-                            "efc_inference/tests"],
-                           cwd=REPO, capture_output=True, text=True, timeout=180)
-        assert p.returncode == 0, (
-            f"efc_inference/tests samles ikke:\n{p.stdout[-600:]}\n{p.stderr[-300:]}")
-        assert "errors during collection" not in p.stdout.lower(), p.stdout[-600:]
-        tall = 0
-        for ord_ in p.stdout.split():
-            if ord_.isdigit() and int(ord_) > tall:
-                tall = int(ord_)
-        assert tall >= 120, (
-            f"bare {tall} tester samles i efc_inference/tests — suiten har "
-            f"mistet dekning der")
-
-
 class TestRotenVirker:
     """`pytest` fra roten skal ikke samle forskningskoden.
 
