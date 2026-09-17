@@ -60,6 +60,16 @@ def test_solarflare_goes_klasse_monoton():
     assert all(k in "ABCMX" for k in klasser)
 
 
+def test_solarflare_goes_anker_1e22_j_er_m():
+    """Kalibreringsankeret: 1e22 J ~ M-klasse (typisk M-flare-energi).
+    Proxeyens dokumentasjon og kode skal stemme."""
+    e = SolarFlareEngine()
+    assert e.goes_klasse(1e22) == "M"
+    assert e.goes_klasse(1e23) == "X"
+    assert e.goes_klasse(1e21) == "C"
+    assert e.goes_klasse(1e20) == "B"
+
+
 def test_solarflare_holdingsfase_for_terskel():
     """For B < b_crit er bufferen i holding: ingen utlosning, energien
     bygges. compute() skal rapportere holding, ikke utlosning."""

@@ -60,17 +60,18 @@ class SolarFlareEngine(EFCEngine):
     def goes_klasse(self, energi: float) -> str:
         """Mapper utlost energi til forventet GOES-klasse (proxy).
 
-        Proxy-kjede: energi -> peak flux (1-8 A) -> klasse. Kalibrert
-        slik at ~1e22 J (typisk M-klasse, ~1e-4 W/m^2 flux) gir M.
+        Proxy-kjede: energi -> peak flux (1-8 A) -> klasse.
+        Kalibreringsanker: 1e22 J ~ M-klasse. Bins per dekade:
+            A < 1e20, B < 1e21, C < 1e22, M < 1e23, X >= 1e23 J.
+        (1e22 J er typisk frigjort energi for M-klasse-flares.)
         Idealisert: ekte flares slipper bare en BRAKDEL av bufferen.
         """
-        # Kalibreringsanker: 1e22 J ~ M-klasse. Energi-faktor per klasse.
         energi_per_klasse = {
-            "A": 1e19,   # ~A-klasse
-            "B": 1e20,
-            "C": 1e21,
-            "M": 1e22,
-            "X": 1e23,
+            "A": 1e20,   # A: energi < 1e20 J
+            "B": 1e21,
+            "C": 1e22,
+            "M": 1e23,   # M: 1e22 <= energi < 1e23 (ankeret 1e22 -> M)
+            "X": float("inf"),
         }
         klasse = "X"
         for k in GOES_KLASSER:
