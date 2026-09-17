@@ -7169,6 +7169,117 @@
    "id": "kosmos.jord.vulkan",
    "buss_domene": "kosmos.jord",
    "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.vaer",
+   "regime": {
+    "name": "vaer",
+    "validity": "stedprognose (met-locationforecast-2.0) mot METAR-maaling; ledetid og gyldighetsvindu per sted; oppgjoer_versjon 2"
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "temperatur, vind, trykk, skydekke og fuktighet",
+    "measurer": "MET Norway — prognose, og METAR — maaling",
+    "instrument": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding",
+    "proxy_chain": [
+     "prognose -> forventet",
+     "METAR-maaling -> utfall",
+     "avvik = utfall minus forventet, per stoerrelse"
+    ],
+    "placement": "observasjon",
+    "compression": "hvert sted komprimeres til ett oppgjoer per gyldighetsvindu"
+   },
+   "episenter": "oppgjoeret — der prognosen moeter maalingen og avviket blir et tall",
+   "buffer": {
+    "role": "atmosfaeren som buffer mellom prognose og virkelighet",
+    "note": "ingen motor eier dette enn aa — sloeyfa er instrumentets, ikke modellens"
+   },
+   "ontology": {
+    "assumes": [
+     "METAR er en maaling, ikke en modell",
+     "avviket er reelt og ikke et artefakt av interpolasjon"
+    ],
+    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne verden.vaer.oppgjoer.metno"
+   },
+   "observer": {
+    "bandwidth": "ett sted per melding; stasjonsnettet er ikke komplett",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "prognose -> maaling -> avvik -> kalibrering; sloeyfa som helhet",
+    "properties": []
+   },
+   "fractal": {
+    "pattern": "ett sted er hele nettets proxy",
+    "note": "konsensus-praksis i operativ meteorologi"
+   },
+   "buss_domene": "verden.vaer",
+   "synlighet": "offentlig",
+   "perspektiv": "konsensus",
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "instrumenttid",
+    "lengdeskala": "domene"
+   },
+   "prediction": {
+    "source": "met-locationforecast-2.0",
+    "observable": "vaer",
+    "issued_at": "2026-09-17T17:30:01Z",
+    "valid_for": "2026-09-17T19:00:00Z",
+    "expected": "{\"air_pressure_at_sea_level\": 994.4, \"air_temperature\": 10.5, \"cloud_area_fraction\": 83.0, \"relative_humidity\": 74.4, \"wind_speed\": 3.4}",
+    "correlation": "metno.trondheim-vaernes.2026-09-17T17:30:01Z",
+    "basis": "speilet fra en maalt melding paa bussen (seq 168744), ikke utledet her",
+    "criterion": "utfall maalt med METAR innen gyldighetsvinduet",
+    "tolerance_rule": "ingen fast baand — avviket rapporteres som det er, uten aa bli en test",
+    "lead_time_minutes": "89",
+    "observed_at": "2026-09-17T18:50:00Z"
+   },
+   "settlement": {
+    "correlation": "metno.trondheim-vaernes.2026-09-17T17:30:01Z",
+    "expected": "{\"air_pressure_at_sea_level\": 994.4, \"air_temperature\": 10.5, \"cloud_area_fraction\": 83.0, \"relative_humidity\": 74.4, \"wind_speed\": 3.4}",
+    "outcome": "{\"air_pressure_qnh\": 994.0, \"air_temperature\": 10.0, \"dew_point_temperature\": 8.0, \"wind_from_direction\": 130.0, \"wind_speed\": 2.57}",
+    "deviation": "{\"air_temperature\": -0.5, \"wind_speed\": -0.83}",
+    "outcome_source": "maaling-metar",
+    "outcome_time": "2026-09-17T18:50:00Z",
+    "settlement_version": "2",
+    "location": "trondheim-vaernes"
+   },
+   "coupling": {
+    "local": "hvert sted maaler og oppgjoeres for seg",
+    "global": "alle stedene til sammen er vaerets tilstand — og avviksfordelingen er det som sier noe om prognosen",
+    "empathy_note": "oppgjoeret maaler prognosen, ikke vaeret; et stort avvik kan betyde daarlig prognose eller daarlig sted"
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen terskler — oppgjoeret rapporterer avviket, det setter det ikke"
+    ],
+    "motor": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)"
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "temperatur",
+     "trykk",
+     "hastighet",
+     "tid"
+    ],
+    "enheter": "SI per stoerrelse (hPa, grader C, m/s), ved sted og gyldighetsvindu — fuktighet og skydekke er prosent og ikke i koordinat-enumen",
+    "status": "valgt_ramme",
+    "alternativer": [
+     "fuktighet (%) — rapportert, men ikke en koordinat i enumen",
+     "skydekke (%) — rapportert, men ikke en koordinat i enumen",
+     "nowcast som utfallskilde (brukt for nabo-steder, men selv-referensielt: da maaler modellen sin egen modell)"
+    ]
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler",
+    "konsensus_er_ikke_sannhet": true
+   }
   }
  ],
  "relations": [

@@ -475,10 +475,12 @@
       ]
     },
     "verden.vaer": {
-      "status": "ikke_dekket",
+      "status": "delvis",
       "meldinger": 190770,
-      "noder": [],
-      "begrunnelse": "ingen node har buss_domene for dette domenet — og dette er det største hullet i kartet målt i meldinger. Sløyfen prediksjon.metno → oppgjoer.metno (forventet → utfall → avvik) ligger komplett på bussen med tilstand.metar og tilstand.ecowitt ved siden av, uten en eneste node som eier den. Noden som mangler ville eid nettopp den sløyfen. Størrelsen står i `meldinger` og måles på nytt ved hver `atlas_volum.py --maal` — den skal ikke skrives inn her.",
+      "noder": [
+        "verden.vaer"
+      ],
+      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: metno-paret (prediksjon + oppgjoer) er speilet i noden, ecowitt/tilstand eies av broen, og observasjon.gdelt-gkg eies av ingen — den rutes inn i tjue domener uten en node",
       "emner": [
         "observasjon.gdelt-gkg",
         "oppgjoer.metno",

@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '73' },
+  stats: [{ k: 'Nodes', v: '74' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 73 nodes, 18 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 74 nodes, 18 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -2410,6 +2410,38 @@ export const NODES = [
         "to": "connector deploy (human step)"
       }
     ]
+  },
+  {
+    "id": "verden-vaer",
+    "code": "VE",
+    "name": "verden.vaer",
+    "short": "vaer",
+    "group": "ghost",
+    "gx": 3.9,
+    "gy": 30.200000000000003,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: consensus. temperatur, vind, trykk, skydekke og fuktighet",
+    "what": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per st",
+    "how": "Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "MET Norway-prognose mot METAR-maaling \u2014 to uavhengige institusjonelle kanaler"
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -2598,17 +2630,18 @@ export const CH = [
       "efc-samfunn-engine",
       "efc-tidevann-engine",
       "efc-transient-engine",
-      "efc-enerflyt-engine"
+      "efc-enerflyt-engine",
+      "verden-vaer"
     ],
     "lede": "Chapter 8 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
     "flow": null
   },
   {
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 73 nodes, 72 relations.",
+    "lede": "Everything at once \u2014 74 nodes, 72 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }
