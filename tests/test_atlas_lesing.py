@@ -248,6 +248,16 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
             self._avvik(self._docstring(ROT / "scripts" / "atlas_lesing.py")),
             [])
 
+    def test_volummodulens_docstring_har_bare_tillatte_referanser(self):
+        """Samme regel for den nye modulen. Denne testen ble til ved et
+        mål: `docs/atlas-lesing.md` fikk en henvisning til husets
+        verktøysti, og vakten over felte den. Regelen gjelder derfor også
+        den modulen som ble skrevet sammen med den — ellers ville det
+        publiserte dokumentet vært vernet og koden ikke."""
+        self.assertEqual(
+            self._avvik(self._docstring(ROT / "scripts" / "atlas_volum.py")),
+            [])
+
     def test_hvitelisten_fanger_formene_seks_runder_fant(self):
         """Hver form svartelisten slapp gjennom skal hvitelisten felle.
         Testet eksplisitt så listen ikke driver tilbake til en oppramsing av

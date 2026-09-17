@@ -137,6 +137,66 @@ class TestDekningsinvarianten(unittest.TestCase):
                 f"{domene}: nodene sier {fra_noder}, deklarasjonen sier "
                 f"{fra_dekl} — listen maa vaere utledet, ikke skrevet")
 
+    def test_maalingen_baerer_antall_per_emne(self):
+        """Volumet maa vaere en MAALING. JetStream bærer antall per emne i
+        stroemmens eget `state.subjects`; snapshottet invarianten proeves
+        mot skal bære det samme tallet, ikke bare navnet.
+
+        Den tidligere merknaden i fila sa at per-emne-tall ikke var
+        tilgjengelig. Den var en antakelse om NATS' overvaakings-API, ikke
+        en maaling av JetStream-API-et — og en maaling viste det motsatte.
+        """
+        for domene, rad in _les(SNAPSHOT)["domener"].items():
+            self.assertIsInstance(
+                rad["emner"], dict,
+                f"{domene}: emnene maa baere antall, ikke bare navn")
+            for emne, antall in rad["emner"].items():
+                self.assertIsInstance(antall, int, f"{domene}.{emne}")
+                self.assertGreaterEqual(
+                    antall, 1,
+                    f"{domene}.{emne} staar med {antall} meldinger — et emne "
+                    f"uten meldinger baerer ikke trafikk og skal ikke "
+                    f"deklareres")
+
+    def test_volumet_per_domene_er_utledet_av_maalingen(self):
+        """Samme krav som for `noder`-listene, gjentatt for volumet: jeg
+        kunne skrevet et tall som SER riktig ut. Utledningen skal derfor
+        vaere TESTENS — summen av de maalte per-emne-tallene — ikke
+        forfatterens. Et hardkodet volum overlever ikke en ny maaling."""
+        snap = _les(SNAPSHOT)["domener"]
+        for domene, rad in _les(DEKNING)["domener"].items():
+            maalt = sum((snap.get(domene, {}).get("emner") or {}).values())
+            self.assertIn("meldinger", rad,
+                          f"{domene} mangler meldinger — et hull uten "
+                          f"stoerrelse leses likt som et hvilket som helst "
+                          f"annet hull")
+            self.assertEqual(
+                rad["meldinger"], maalt,
+                f"{domene}: deklarasjonen sier {rad['meldinger']}, maalingen "
+                f"sier {maalt} — volumet maa vaere utledet, ikke skrevet")
+
+    def test_deklarasjonens_emneliste_er_maalingens_emneliste(self):
+        """Motsatt vei av testen over: et emne som er DEKLARERT men ikke
+        finnes i maalingen er en påstand om en stroem som ikke bærer noe
+        lenger. Begge veier maa stemme — ellers teller deklarasjonen og
+        maalingen to ulike verdener, og summen deres er ikke volumet."""
+        snap = _les(SNAPSHOT)["domener"]
+        for domene, rad in _les(DEKNING)["domener"].items():
+            maalt = set((snap.get(domene, {}).get("emner") or {}))
+            deklarert = set(rad.get("emner") or [])
+            self.assertEqual(
+                sorted(deklarert - maalt), [],
+                f"{domene}: deklarert for emner som ikke bærer meldinger: "
+                f"{sorted(deklarert - maalt)}")
+
+    def test_hvert_domene_i_deklarasjonen_har_volum(self):
+        """Ogsaa en `dekket` kanal skal bære tallet. Uten det ser en dekket
+        kanal med 23 477 meldinger bak én node like ferdig ut som en med én
+        melding bak tjue."""
+        for domene, rad in _les(DEKNING)["domener"].items():
+            self.assertIsInstance(rad.get("meldinger"), int, domene)
+            self.assertGreaterEqual(rad["meldinger"], 0, domene)
+
     def test_hvert_domene_med_noder_er_deklarert_dekket(self):
         """Motsatt vei av den over: har en node sagt at den beskriver et
         domenet, skal deklarasjonen si det samme. Uten denne kunne atlaset

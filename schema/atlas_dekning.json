@@ -1,8 +1,9 @@
 {
-  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris.",
+  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris. `meldinger` er UTLEDT som summen av de MÅLTE per-emne-tallene i schema/nats_domener.snapshot.json, og måles på nytt med `scripts/atlas_volum.py --maal` — aldri skrevet for hånd. Volumet finnes fordi et hull på 190 000 meldinger og ett på 200 ellers leses likt: `atlas_volum.py --hull` sorterer ikke_dekket etter det. `status` og `begrunnelse` er MENNESKETS stillingtagen og utledes aldri.",
   "domener": {
     "kosmos.asteroider": {
       "status": "ikke_dekket",
+      "meldinger": 228,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -14,6 +15,7 @@
     },
     "kosmos.galakser": {
       "status": "delvis",
+      "meldinger": 19,
       "noder": [
         "efc.rotation_engine",
         "obs.jwst_ems"
@@ -25,6 +27,7 @@
     },
     "kosmos.gammaglimt": {
       "status": "ikke_dekket",
+      "meldinger": 146,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -33,6 +36,7 @@
     },
     "kosmos.hoper": {
       "status": "delvis",
+      "meldinger": 44,
       "noder": [
         "efc.cluster_engine",
         "obs.cluster_hmf",
@@ -45,6 +49,7 @@
     },
     "kosmos.interstellart": {
       "status": "ikke_dekket",
+      "meldinger": 54,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -53,6 +58,7 @@
     },
     "kosmos.jord": {
       "status": "dekket",
+      "meldinger": 1911,
       "noder": [
         "efc.jordskjelv_engine",
         "kosmos.jord.vulkan"
@@ -65,6 +71,7 @@
     },
     "kosmos.kosmologi": {
       "status": "dekket",
+      "meldinger": 279,
       "noder": [
         "efc.growth_engine",
         "efc.hubble_engine",
@@ -96,6 +103,7 @@
     },
     "kosmos.maane": {
       "status": "ikke_dekket",
+      "meldinger": 311,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -104,6 +112,7 @@
     },
     "kosmos.noeytrinoer": {
       "status": "ikke_dekket",
+      "meldinger": 13,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -112,6 +121,7 @@
     },
     "kosmos.planetsystem": {
       "status": "ikke_dekket",
+      "meldinger": 2177,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -120,6 +130,7 @@
     },
     "kosmos.roentgentransienter": {
       "status": "ikke_dekket",
+      "meldinger": 59,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -129,6 +140,7 @@
     },
     "kosmos.romfart": {
       "status": "ikke_dekket",
+      "meldinger": 194,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -139,6 +151,7 @@
     },
     "kosmos.romvaer": {
       "status": "dekket",
+      "meldinger": 166,
       "noder": [
         "efc.romvaer_engine"
       ],
@@ -149,6 +162,7 @@
     },
     "kosmos.satellitter": {
       "status": "delvis",
+      "meldinger": 232,
       "noder": [
         "efc.orbital_engine",
         "obs.satellites"
@@ -161,6 +175,7 @@
     },
     "kosmos.sol": {
       "status": "dekket",
+      "meldinger": 3906,
       "noder": [
         "efc.solar_flare_engine"
       ],
@@ -172,6 +187,7 @@
     },
     "kosmos.stjerner": {
       "status": "ikke_dekket",
+      "meldinger": 26,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -180,6 +196,7 @@
     },
     "kosmos.transienter": {
       "status": "dekket",
+      "meldinger": 23477,
       "noder": [
         "efc.transient_engine"
       ],
@@ -190,6 +207,7 @@
     },
     "kosmos.uklassifisert": {
       "status": "ikke_dekket",
+      "meldinger": 30,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -199,6 +217,7 @@
     },
     "opus.dommekraft": {
       "status": "ikke_dekket",
+      "meldinger": 6621,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -213,6 +232,7 @@
     },
     "verden.arbeid": {
       "status": "ikke_dekket",
+      "meldinger": 2570,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -225,6 +245,7 @@
     },
     "verden.demografi": {
       "status": "ikke_dekket",
+      "meldinger": 1656,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -236,6 +257,7 @@
     },
     "verden.energi": {
       "status": "delvis",
+      "meldinger": 8259,
       "noder": [
         "batteri.buffer",
         "batteri.celle",
@@ -256,6 +278,7 @@
     },
     "verden.finans": {
       "status": "ikke_dekket",
+      "meldinger": 206,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -265,6 +288,7 @@
     },
     "verden.geopolitikk": {
       "status": "ikke_dekket",
+      "meldinger": 2582,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -276,6 +300,7 @@
     },
     "verden.handel": {
       "status": "ikke_dekket",
+      "meldinger": 120,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -285,6 +310,7 @@
     },
     "verden.helse": {
       "status": "ikke_dekket",
+      "meldinger": 2606,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -297,6 +323,7 @@
     },
     "verden.infrastruktur": {
       "status": "ikke_dekket",
+      "meldinger": 1400,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -308,6 +335,7 @@
     },
     "verden.klima": {
       "status": "delvis",
+      "meldinger": 104,
       "noder": [
         "efc.klima_engine",
         "efc.tidevann_engine",
@@ -322,6 +350,7 @@
     },
     "verden.kommunikasjon": {
       "status": "ikke_dekket",
+      "meldinger": 2591,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -333,6 +362,7 @@
     },
     "verden.lov": {
       "status": "ikke_dekket",
+      "meldinger": 2578,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -344,6 +374,7 @@
     },
     "verden.militaer": {
       "status": "ikke_dekket",
+      "meldinger": 2600,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -355,6 +386,7 @@
     },
     "verden.miljo": {
       "status": "delvis",
+      "meldinger": 1280,
       "noder": [
         "efc.water_phase_engine",
         "verden.biosfaere"
@@ -372,6 +404,7 @@
     },
     "verden.oekonomi": {
       "status": "dekket",
+      "meldinger": 2624,
       "noder": [
         "efc.oekonomi_engine"
       ],
@@ -386,6 +419,7 @@
     },
     "verden.politikk": {
       "status": "ikke_dekket",
+      "meldinger": 2585,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -397,6 +431,7 @@
     },
     "verden.sikkerhet": {
       "status": "ikke_dekket",
+      "meldinger": 2588,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -408,6 +443,7 @@
     },
     "verden.teknologi": {
       "status": "ikke_dekket",
+      "meldinger": 118,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -418,6 +454,7 @@
     },
     "verden.transport": {
       "status": "ikke_dekket",
+      "meldinger": 111,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -427,6 +464,7 @@
     },
     "verden.utdanning": {
       "status": "ikke_dekket",
+      "meldinger": 2602,
       "noder": [],
       "begrunnelse": "ingen node har buss_domene for dette domenet",
       "emner": [
@@ -438,8 +476,9 @@
     },
     "verden.vaer": {
       "status": "ikke_dekket",
+      "meldinger": 190770,
       "noder": [],
-      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "begrunnelse": "ingen node har buss_domene for dette domenet — og dette er det største hullet i kartet målt i meldinger. Sløyfen prediksjon.metno → oppgjoer.metno (forventet → utfall → avvik) ligger komplett på bussen med tilstand.metar og tilstand.ecowitt ved siden av, uten en eneste node som eier den. Noden som mangler ville eid nettopp den sløyfen. Størrelsen står i `meldinger` og måles på nytt ved hver `atlas_volum.py --maal` — den skal ikke skrives inn her.",
       "emner": [
         "observasjon.gdelt-gkg",
         "oppgjoer.metno",
