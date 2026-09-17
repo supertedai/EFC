@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
-"""changelog_projeksjon — deterministisk changelog fra git-historikken.
+"""changelog_projeksjon — deterministic changelog projection from git history.
 
-Prinsippet (P0 t_26dd0ef5): changelogen er en PROJEKSJON av én kanonisk
-kilde, aldri en alternativ sannhet. Kanonisk kilde er git-historikken —
-den er utappelig, append-only og inneholder ALT som faktisk endret seg —
-mens logs/activity.jsonl annoterer (change_id/kanban_card) der den finnes.
+Principle (P0 t_26dd0ef5): the changelog is a PROJECTION of one canonical
+source, never an alternative truth. The canonical source is the git history —
+it is unlosable, append-only, and contains everything that actually changed —
+while logs/activity.jsonl annotates it (change_id/kanban_card) where present.
 
-Regenerering er deterministisk: gitt last_processed_sha (lagret i
-changelog.json) og HEAD, produserer dette skriptet alltid samme output.
-CI-gaten (efc-changelog-sync.yml) kjører skriptet og FEILER hvis den
-committede changelogen avviker — dermed blir changelogen de facto
-oppdatert i samme PR som endrer public HTML, ellers rød CI.
+Regeneration is deterministic: given last_processed_sha (stored in
+changelog.json) and HEAD, this script always produces the same output.
+The CI gate (efc-changelog-sync.yml) runs the script and FAILS if the
+committed changelog diverges — so the changelog is de facto updated in the
+same PR that changes public HTML, or CI goes red.
 
-Bruk:  python3 scripts/maintenance/changelog_projeksjon.py
+Language rule (Morten 2026-09-17): ALL EFC repo content is English.
+Summaries are projected verbatim from commit messages, so commit messages
+must be English too — the CI gate enforces this on new entries.
+
+Usage:  python3 scripts/maintenance/changelog_projeksjon.py
 """
 from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -32,17 +37,25 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HTML = os.path.join(REPO, "docs", "public", "EFC_Changelog.html")
 JSON = os.path.join(REPO, "docs", "validation-ledger", "data", "changelog.json")
 
+# High-precision Norwegian stopwords (avoids English false positives like
+# "for", "den", "det"). Two or more hits = Norwegian content.
+NORSKE_ORD = re.compile(
+    r"\b(skal|ikke|v[æe]re|v[æe]rt|ble|har|som|med|og|forutsier|konsistent|"
+    r"prediksjonen|målt|stor|negativ|også|etter|men|mot|fra|til|endret|"
+    r"oppdatert|påkrevd|rettet|æ|ø|å)\b",
+    re.I)
+
 
 def _git(*args: str) -> str:
     r = subprocess.run(["git", *args], capture_output=True, text=True,
                        cwd=REPO, timeout=30)
     if r.returncode != 0:
-        raise SystemExit(f"git {' '.join(args)} feilet: {r.stderr.strip()[:200]}")
+        raise SystemExit(f"git {' '.join(args)} failed: {r.stderr.strip()[:200]}")
     return r.stdout.strip()
 
 
 def _fil_kategori(f: str) -> str:
-    """Alle repo-områder — changelogen skal dekke HELE treet."""
+    """Covers the WHOLE tree — the changelog must reflect every area."""
     if f.startswith("docs/public/"):
         return "public_pages"
     if f.startswith("docs/papers/"):
@@ -71,11 +84,11 @@ def _fil_kategori(f: str) -> str:
         return "code"
     if f.startswith("logs/activity.jsonl"):
         return "activity_log"
-    return "annet"
+    return "other"
 
 
 def _infra_bare(filer: list[str]) -> bool:
-    """Endring som kun rører selve changelog-maskineriet trenger ingen oppføring."""
+    """A change touching ONLY the changelog machinery needs no entry."""
     infra = {
         "scripts/maintenance/changelog_projeksjon.py",
         ".github/workflows/efc-changelog-sync.yml",
@@ -148,12 +161,12 @@ def _hoved() -> int:
               f'<span style="color:#6b7f9e;">({c["id"]})</span></li>')
         if li in tekst:
             continue
-        # Changelog-lista ligger ETTER siste årstallsoverskrift — aldri
-        # navigasjonens <ul> (første <ul> i fila er nav).
-        anker = tekst.rfind("2026")
+        # The changelog list sits AFTER the year heading — never in the
+        # navigation's <ul> (the first <ul> in the file is the nav).
+        anker = tekst.find("<h2>202")
         ul = tekst.find("<ul>", anker) if anker > 0 else -1
         if ul < 0:
-            raise SystemExit("EFC_Changelog.html mangler changelog-<ul>")
+            raise SystemExit("EFC_Changelog.html missing changelog <ul>")
         tekst = tekst[:ul + 4] + "\n  " + li + tekst[ul + 4:]
     tekst = ensure_nav(tekst)
     with open(HTML, "w", encoding="utf-8") as f:
