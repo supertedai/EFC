@@ -14,7 +14,9 @@ formen. Spesifikasjonen:
 - resultat: "sha256:" + hexdigest
 
 Endringer her er en schema-ENDring: bump versjonen og kjør verifier-bench
-før deploy.
+før deploy. Ingen eksisterende artefakter bærer hasher fra noen eldre
+form — pipelinen er ny, så v1 gjelder fra dag én og ingen migrering
+trengs. Første artefakt som bærer en v1-hash, låser formen for alle.
 """
 from __future__ import annotations
 
