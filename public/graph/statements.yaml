@@ -1,4 +1,11 @@
 schema_version: '1.0'
+# appears_on: hver oppføring kan bære `anchor`. Er den satt, MÅ siden inneholde
+# et element med data-statement-id="<anchor>" — det er den mekaniske koblingen
+# mellom påstanden og teksten på den offentlige siden, og
+# scripts/maintenance/statement_graph_check.py feiler hvis den ikke holder.
+# Oppføringer UTEN anchor er ikke verifisert mot sideteksten og listes som
+# egen arbeidskø (INFO). Sider som inneholder et anker uten å stå i appears_on
+# er en hard feil (siden hevder en påstand grafen ikke tilskriver den).
 statements:
 - statement_id: efc.core.status.001
   text: 'EFC er forenlig med sen-tids VEKSTRATE-data på ~2σ-nivå i perturbasjonssektoren
@@ -17,6 +24,7 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.core.status.001
 - statement_id: efc.h1.001
   text: 'Sen-tids kosmiske entropigradienter modifiserer den effektive gravitasjonskoblingen:
     mu(a) < 1 ved z < z_t undertrykker strukturell vekst (σ₈) uten å endre tidlig-univers-fysikk.'
@@ -32,7 +40,13 @@ statements:
     type: explicit
     description: fσ₈(z) systematisk OVER ΛCDM-kurven ved z < 1 ville falsifisere mu
       < 1-kanalen.
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.001
+    note: 'Forenklet bærer: atlas viser konsekvensen (P2: fσ₈(z=0.7) = 0.430 under
+      ΛCDM fordi regime-transisjonen demper veksten i L1) og μ < 1-formen, ikke den
+      fulle H1-formuleringen med z_t og tidlig-univers-avgrensningen.'
 - statement_id: efc.h1.002
   text: 'DESI DR2: bakgrunnssektorens koblingsparameter α kollapset fra -1.00 ± 0.46
     (2,2σ) til -0.14 ± 0.21 (0,68σ) — bakgrunnssignalet er borte, og perturbasjonssektoren
@@ -45,7 +59,16 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: validation-ledger
+    role: primary
+    anchor: efc.h1.002
+  - page_id: predictions
+    role: cited
+    anchor: efc.h1.002
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.002
 - statement_id: efc.h1.003
   text: 'Variant H (entropigradient-vekstmekanismen) viser ingen datapreferanse: DAIC
     = +4.05, S₀ = 0.21 ± 0.14 ved 1,5σ — signalet kan ligge under nåværende sensitivitet.'
@@ -57,7 +80,16 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: predictions
+    role: primary
+    anchor: efc.h1.003
+  - page_id: validation-ledger
+    role: cited
+    anchor: efc.h1.003
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.003
 - statement_id: efc.h2.001
   text: 'EFC-effektene er regimespesifikke: L0 (CMB/lineært) reduserer til ΛCDM eksakt,
     L1 (BAO/kvasilineært) har liten perturbativ modifikasjon, L2 (galakse/ikke-lineært)
@@ -76,8 +108,10 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.h2.001
   - page_id: white-paper-series
     role: cited
+    anchor: efc.h2.001
 - statement_id: efc.h3.001
   text: 'mu < 1 ved sen tid er påkrevd: mu > 1 (forsterket gravitasjon) er ekskludert
     av fσ₈-data med Δχ² = +495 til +2680 (B0 Bridge Test).'
@@ -91,7 +125,11 @@ statements:
   supersedes: null
   appears_on:
   - page_id: atlas
-    role: primary
+    role: cited
+    note: 'Svekket 2026-09-17: atlas bærer B0 Bridge Test-raden («μ must be less than
+      1»), men ikke tallene Δχ² = +495…+2680. Ankeret mangler derfor — raden er
+      generert fra ledger.json og kan ikke festes uten en navneavhengighet i
+      build_atlas.py. Verifiser og sett anchor, eller la stå i køen.'
 - statement_id: efc.h4.001
   text: 'Bakgrunnslemma: DE²(z) ≤ 0 for alle z > 0, slik at H_EFC(z) ≤ H_ΛCDM(z) —
     redusert Hubble-friksjon, forbedret vekst. Analytisk bevist (Lemma 1) og numerisk
@@ -104,7 +142,13 @@ statements:
   - ev.efc.h4.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
+    anchor: efc.h4.001
+  - page_id: predictions
+    role: cited
+    anchor: efc.h4.001
 - statement_id: efc.h5.001
   text: 'EFCs Lagrange-multiplikator-strømningsbetingelse gir anisotrop stress uten
     standard Horndeski-korrespondanse: mu < 1 OG Σ ≥ 1 samtidig — et regime standard
@@ -121,12 +165,13 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.h5.001
   - page_id: predictions
     role: cited
-  - page_id: model-comparison
-    role: cited
+    anchor: efc.h5.001
   - page_id: validation-ledger
     role: cited
+    anchor: efc.h5.001
 - statement_id: efc.h5.002
   text: 'Prediksjon: en rødforskyvningsavhengig linsekryssing ved z ~ 0.44 med prosentnivå-amplitude
     — Σ_eff > 1 ved z < 0.4, Σ_eff < 1 ved z > 0.5. Denne ikke-monotone tomografiske
@@ -146,8 +191,13 @@ statements:
   appears_on:
   - page_id: predictions
     role: primary
+    anchor: efc.h5.002
   - page_id: atlas
     role: cited
+    anchor: efc.h5.002
+  - page_id: validation-ledger
+    role: cited
+    anchor: efc.h5.002
 - statement_id: efc.sparc.001
   text: ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹ (EFC-R-SPARC) — entropigradienten målt fra
     galakserotasjonskurver.
@@ -159,10 +209,9 @@ statements:
   - ev.efc.sparc.001
   contradicts: []
   supersedes: null
-  appears_on:
-  - page_id: atlas
-    role: cited
-  - page_id: likelihood-ledger
-    role: cited
-  - page_id: validation-ledger
-    role: cited
+  # TREKK TILBAKE 2026-09-17: fase-1 kartla sparc.001 til atlas, likelihood-ledger
+  # og validation-ledger. Målt mot faktisk sidetekst er alle tre falske: verdien
+  # 8.20 / 2.44 / 0.082 finnes ikke på noen av dem, og ∇S der det nevnes (atlas:
+  # EEG/bevissthet + et planlagt testfelt; validation-ledger: kosmisk dipol) er en
+  # annen størrelse. Påstanden er reelt side-løs — egen side-oppgave.
+  appears_on: []
