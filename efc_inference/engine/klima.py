@@ -21,6 +21,12 @@ import numpy as np
 
 from .base_engine import EFCEngine
 
+#: De to kanoniske tilstandene bryteren kjenner. Navngitt i koden fordi
+#: et kall utenfra treffer nettopp denne flaten: en translitterasjon
+#: («snoball») eller en type utenfor kontrakten skal ikke kunne leses
+#: som en av dem.
+TILSTANDER = ("varm", "snøball")
+
 
 class KlimaEngine(EFCEngine):
     """0D-energibalansemotor med buffer og regimebryter (idealisert)."""
@@ -78,7 +84,18 @@ class KlimaEngine(EFCEngine):
         først når albedoen krysser alpha_fall (der T_eq = 273.15 K);
         fra «snøball» returnerer det først når albedoen krysser
         alpha_retur (< alpha_fall — snøballjordens reflektans
-        stabiliserer den, idealisert hysteresebredde)."""
+        stabiliserer den, idealisert hysteresebredde).
+
+        Tilstanden må være en av TILSTANDER. Et ukjent ledd feiler
+        LUKKET: en translitterasjon («snoball») eller en type utenfor
+        kontrakten ga tidligere «varm»-svaret i hysteresebåndet — altså
+        motsatt regime, uten et ord. En bryter som ikke kan skille
+        tilstandene den finnes for, er ikke en bryter.
+        """
+        if tilstand not in TILSTANDER:
+            raise ValueError(
+                f"ukjent tilstand {tilstand!r}: bryteren kjenner bare "
+                f"{TILSTANDER} — kanonisk stavemåte er «snøball»")
         alpha_fall = self._alpha_ved_frysepunkt(params)
         alpha_retur = params.get("alpha_retur", 0.35)
         if tilstand == "snøball":
