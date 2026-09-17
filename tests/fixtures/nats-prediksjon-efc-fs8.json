@@ -1,0 +1,37 @@
+{
+  "_proveniens": {
+    "kilde": "NATS-bussen, emne kosmos.kosmologi.prediksjon.efc-fs8, strøm VERDEN_PROGNOSE",
+    "seq": 31058,
+    "tid": "2026-09-07T15:00:05.147740542Z",
+    "lest": "2026-09-17 via verden-MCP (verden_siste)",
+    "merknad": "Dette er den MALTE meldingen, felt for felt, slik den stod paa bussen. Den er ikke skrevet av fra hukommelsen — hvert felt under er hentet fra avlesningen. Endres meldingen paa bussen, skal denne fixturen oppdateres fra en NY avlesning, ikke redigeres for haand."
+  },
+  "hoder": {
+    "Nats-Msg-Id": "efc-fs8.v1.fsigma8.z0.7.0f14b7a56f59d1ba",
+    "kilde": "efc-sealed-prediction",
+    "lag": "prediksjon",
+    "undertype": "efc-fs8",
+    "domene": "kosmologi",
+    "ebe_l_layer": "L3",
+    "ebe_l_grunnlag": "modellavhengig, ikke direkte observerbart",
+    "ebe_s_regime": "high_s",
+    "ebe_s_grunnlag": "galakser",
+    "observabel": "fsigma8",
+    "kompilasjon": "sealed-predictions-table2",
+    "forseglet_doi": "10.6084/m9.figshare.32013156",
+    "forsegling_sha256": "fbb53d618f5e8843710739c192f8eb8e4bd2fd6458bf8ad8aedd2390f3e575dd",
+    "frys": "{\"primary_freeze\": {\"alpha\": -0.689, \"sampler\": \"NUTS\", \"sha256_truncated\": \"7a850cfa58477701\", \"timestamp_utc\": \"2026-02-18T05:07:13\"}, \"secondary_freeze\": {\"alpha\": -0.702, \"sampler\": \"NUTS\", \"sha256_truncated\": \"dbccda150abca0e7\", \"timestamp_utc\": \"2026-02-21T16:08:57.818002\"}}",
+    "arbiter": "nei",
+    "arbiter_venter_paa": "DESI DR2 full-shape",
+    "kriterium": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+    "kriterier": "{\"description\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\", \"multi_tracer_consistency\": \"LRG and ELG must agree\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\"}",
+    "toleranse_regel": "innenfor 1 sigma av DR2-maalingens EGEN usikkerhet, ikke en fast baand",
+    "observert": "2026-04-14",
+    "gyldig_for": "2026-04-14",
+    "korrelasjon": "efc-fs8.fsigma8.z0.7",
+    "skjema_versjon": "1",
+    "forventet": "{\"fsigma8_efc\": 0.43, \"fsigma8_lcdm\": 0.449, \"separasjon_sigma\": 2.0, \"z_eff\": 0.7}",
+    "enheter": "{\"fsigma8_efc\": \"dimensjonsloes \\u2014 vekstrate f ganger amplituden sigma8(z)\", \"fsigma8_lcdm\": \"dimensjonsloes \\u2014 samme stoerrelse, LCDM-motstykket\", \"separasjon_sigma\": \"modellavstand i pakkens egen enhet, ikke maalefeil\", \"z_eff\": \"effektiv rodforskyvning prediksjonen gjelder\"}",
+    "grunnlag": "forseglet blind prediksjon, EFC mot LCDM; tallene er lest fra pakken og ikke utledet her"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_proveniens": {
+    "kilde": "NATS-bussen, emne verden.vaer.oppgjoer.metno, strøm VERDEN_PROGNOSE",
+    "seq": 165947,
+    "tid": "2026-09-17T14:26:01.560836129Z",
+    "lest": "2026-09-17 av Opus, interaktiv sesjon 20260917_141807_62c9fd",
+    "merknad": "Vær-oppgjøret. Bærer BEGGE sider av sløyfa: forventet (fra prediksjonen) OG utfall (fra målingen), pluss avviket mellom dem. Det er denne asymmetrien som gjør oppgjøret selvstendig — det trenger ikke prediksjonen ved siden av seg for å være lesbart."
+  },
+  "hoder": {
+    "domene": "vaer",
+    "lag": "oppgjoer",
+    "undertype": "metno",
+    "kilde": "met-locationforecast-2.0",
+    "sted": "longyearbyen-svalbard",
+    "utstedt": "2026-09-17T13:13:22Z",
+    "gyldig_for": "2026-09-17T14:00:00Z",
+    "ledetid_min": "46",
+    "observert": "2026-09-17T13:50:00Z",
+    "utfall_tid": "2026-09-17T13:50:00Z",
+    "korrelasjon": "metno.longyearbyen-svalbard.2026-09-17T13:13:22Z",
+    "forventet": "{\"air_pressure_at_sea_level\": 995.2, \"air_temperature\": 4.9, \"cloud_area_fraction\": 60.6, \"relative_humidity\": 83.6, \"wind_speed\": 1.8}",
+    "utfall": "{\"air_pressure_qnh\": 995.0, \"air_temperature\": 5.0, \"dew_point_temperature\": 3.0, \"wind_from_direction\": 290.0, \"wind_speed\": 1.54}",
+    "avvik": "{\"air_temperature\": 0.1, \"wind_speed\": -0.26}",
+    "utfall_kilde": "maaling-metar",
+    "oppgjoer_versjon": "2"
+  }
+}

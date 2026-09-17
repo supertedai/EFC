@@ -505,6 +505,162 @@
         "buss_domene": {
           "type": "string",
           "description": "Bussdomenet denne noden beskriver, f.eks. 'kosmos.kosmologi'. DEKLARERT paa noden — ikke utledet av en generator — slik at koblingen kan verifiseres i begge retninger. Fravær betyr at noden ikke beskriver et bussdomene."
+        },
+        "prediction": {
+          "type": "object",
+          "description": "Prediksjonskontrakten SPEILET fra bussen (NATS VERDEN_PROGNOSE), ikke oppfunnet her. Kontrakten finnes allerede med forseglet DOI, SHA256, frys, kriterium, toleranseregel og arbiter-status; atlaset hadde null noder som bar den mens vaer-domenet gjorde opp 77 112 ganger. `correlation` er den stabile noekkelen som baerer baade prediksjon og settlement.",
+          "required": [
+            "source",
+            "issued_at",
+            "valid_for",
+            "expected",
+            "correlation"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "observable": {
+              "type": "string"
+            },
+            "issued_at": {
+              "type": "string"
+            },
+            "valid_for": {
+              "type": "string"
+            },
+            "lead_time_minutes": {
+              "type": "string",
+              "description": "Ledetid (`ledetid_min`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+            },
+            "expected": {
+              "type": "string",
+              "description": "expected som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+            },
+            "units": {
+              "type": "string",
+              "description": "units som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+            },
+            "correlation": {
+              "type": "string"
+            },
+            "sealed_doi": {
+              "type": "string"
+            },
+            "sealing_sha256": {
+              "type": "string"
+            },
+            "freeze": {
+              "type": "string",
+              "description": "Frysningsparameterne (`frys`) som JSON-kodet streng — samme form som bussen sender. Innholdet har en kjent struktur (primary_freeze/secondary_freeze med alpha, sampler, sha256_truncated, timestamp_utc), men FORMEN er streng: skjemaet speiler formen, og testen validerer strukturen ved aa parse den."
+            },
+            "arbiter": {
+              "type": "string"
+            },
+            "arbiter_waiting_for": {
+              "type": "string"
+            },
+            "criterion": {
+              "type": "string"
+            },
+            "criteria": {
+              "type": "string",
+              "description": "criteria som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+            },
+            "tolerance_rule": {
+              "type": "string"
+            },
+            "basis": {
+              "type": "string"
+            },
+            "ebe_l_layer": {
+              "type": "string"
+            },
+            "ebe_s_regime": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "description": "Sted fra meldingen (`sted`) — den operative varianten bærer sted, den forseglede gjør ikke."
+            },
+            "latitude": {
+              "type": "string",
+              "description": "Breddegrad (`lat`). Maalt som STRENG paa bussen (\"70.3554\") — ikke et tall."
+            },
+            "longitude": {
+              "type": "string",
+              "description": "Lengdegrad (`lon`). Maalt som STRENG."
+            },
+            "horizon_ordered_hours": {
+              "type": "string",
+              "description": "Bestilt prognosehorisont (`horisont_bestilt_timer`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+            },
+            "observed_at": {
+              "type": "string",
+              "description": "Naar kilden utstedte/observerte (`observert`)."
+            }
+          }
+        },
+        "settlement": {
+          "type": "object",
+          "description": "Oppgjoeret av en prediksjon. Baerer SAMME `correlation` som prediction — koblingen er en felles noekkel, ikke et nytt relasjonspredikat (predikat-enumen er lukket). Vaer-domenet skriver forventet/utfall/avvik/utfall_kilde/utfall_tid/oppgjoer_versjon; denne kontrakten speiler de feltene.",
+          "required": [
+            "correlation",
+            "outcome",
+            "outcome_source"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "correlation": {
+              "type": "string"
+            },
+            "outcome": {
+              "type": "string",
+              "description": "outcome som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+            },
+            "deviation": {
+              "type": "string",
+              "description": "deviation som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+            },
+            "outcome_source": {
+              "type": "string"
+            },
+            "outcome_time": {
+              "type": "string"
+            },
+            "settlement_version": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "description": "Sted fra oppgjoersmeldingen (`sted`)."
+            },
+            "expected": {
+              "type": "string",
+              "description": "Forventningen slik den stod i prediksjonen (`forventet`). Oppgjoeret baerer BEGGE sider av sloeyfa — det er derfor det kan leses alene."
+            },
+            "lead_time_minutes": {
+              "type": "string",
+              "description": "Ledetid (`ledetid_min`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+            },
+            "source": {
+              "type": "string",
+              "description": "Kilden som produserte prognosen som ble gjort opp (`kilde`)."
+            },
+            "issued_at": {
+              "type": "string",
+              "description": "Naar prognosen ble utstedt (`utstedt`)."
+            },
+            "valid_for": {
+              "type": "string",
+              "description": "Tidspunktet oppgjoeret gjelder for (`gyldig_for`)."
+            },
+            "observed_at": {
+              "type": "string",
+              "description": "Naar maalingen ble gjort (`observert`)."
+            }
+          }
         }
       },
       "additionalProperties": false

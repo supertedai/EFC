@@ -1,0 +1,26 @@
+{
+  "_proveniens": {
+    "kilde": "NATS-bussen, emne verden.vaer.prediksjon.metno, strøm VERDEN_PROGNOSE",
+    "seq": 166245,
+    "tid": "2026-09-17T15:25:09.093361974Z",
+    "lest": "2026-09-17 av Opus, interaktiv sesjon 20260917_141807_62c9fd",
+    "merknad": "Operativ prediksjon — den andre av to maalte varianter. Denne bærer sted/lat/lon/horisont, som den forseglede ikke har. Merk at lat og lon er STRENGER paa bussen, ikke tall."
+  },
+  "hoder": {
+    "kilde": "met-locationforecast-2.0",
+    "lag": "prediksjon",
+    "undertype": "metno",
+    "domene": "vaer",
+    "sted": "vardoe-svartnes",
+    "lat": "70.3554",
+    "lon": "31.0449",
+    "utstedt": "2026-09-17T14:30:19Z",
+    "gyldig_for": "2026-09-18T15:00:00Z",
+    "horisont_bestilt_timer": "24",
+    "ledetid_min": "1469",
+    "observert": "2026-09-17T14:30:19Z",
+    "korrelasjon": "metno.vardoe-svartnes.2026-09-17T14:30:19Z",
+    "forventet": "{\"air_pressure_at_sea_level\": 993.1, \"air_temperature\": 9.5, \"cloud_area_fraction\": 99.4, \"relative_humidity\": 83.2, \"wind_speed\": 3.0}",
+    "enheter": "{\"air_pressure_at_sea_level\": \"hPa\", \"air_temperature\": \"celsius\", \"cloud_area_fraction\": \"%\", \"relative_humidity\": \"%\", \"wind_speed\": \"m/s\"}"
+  }
+}
