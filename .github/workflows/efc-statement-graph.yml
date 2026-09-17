@@ -25,6 +25,8 @@ jobs:
           python-version: "3.11"
       - name: Installer avhengigheter
         run: python3 -m pip install pyyaml jsonschema defusedxml pytest
+      - name: Repo-contract (struktur, navn, forbudte filer)
+        run: python3 scripts/maintenance/validate_repo.py --json
       - name: Statement-graf
         run: python3 scripts/maintenance/statement_graph_check.py --json
       - name: Aktivitetslogg
@@ -33,3 +35,5 @@ jobs:
         run: python3 scripts/maintenance/verifier_bench.py --json
       - name: Regresjonstester (kanon hash, triage-roundtrip, arxiv-parser)
         run: python3 -m pytest tests/test_kunnskapslivssyklus.py -q
+      - name: Lenker (interne harde, eksterne utvalg)
+        run: python3 scripts/maintenance/validate_links.py --json --maks-eksterne 10

@@ -1,0 +1,22 @@
+# CODEOWNERS — EFC-repoet
+#
+# ÆRLIG AVGRENSNING: GitHub krever ekte identiteter, og @supertedai er
+# Mortens konto — menneske-eier overalt. Rolle-kartet under har INGEN
+# maskinell betydning i GitHub; det er dokumentasjon av ansvar, og
+# rolle-håndhevingen skjer i våre egne sjekkere (statement_graph_check.py
+# mot public/page-meta/*.yaml) og i kanban-rutingen. Denne fila er
+# menneskets siste instans — ikke en erstatning for rolle-mekanismen.
+
+*                         @supertedai
+/docs/public/             @supertedai
+/public/graph/            @supertedai
+/public/page-meta/        @supertedai
+/public/candidates/       @supertedai
+/evidence/                @supertedai
+/schemas/                 @supertedai
+/.github/workflows/       @supertedai
+
+# Rolle-kart (håndhevet av scripts/maintenance/statement_graph_check.py):
+#   /research/**, /evidence/**, /public/**  → researcher + verifier
+#   /scripts/**, /tests/**                   → faber + verifier
+#   /adr/**, /logs/**, /GOVERNANCE.md        → orchestrator + mennesket
