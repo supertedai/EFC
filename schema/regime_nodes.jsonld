@@ -2896,6 +2896,218 @@
         "global": "skjelv er kosmos.jord sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.solar_flare_engine",
         "empathy_note": "jorda holder og holder — til den slipper. Som alle buffere."
       }
+    },
+    {
+      "id": "homo.immunologi",
+      "regime": {
+        "name": "Immunsystemet — terskelstyrt forsvar med hukommelse",
+        "validity": "Immunresponsen aktiveres ved terskler (antigen-konsentrasjon, fare-signaler) og etterlater hukommelse som senker neste aktiveringsterskel — en terskelstyrt buffer med læring. ANALOGI til nevronets V_th og solens b_crit (holding->release-formen), ikke identitet: immunresponsen er distribuert og adaptiv, ikke en enkel utløsning.",
+        "law_form": "faresignaler + antigen + kontekst -> aktivering over terskel -> klonal ekspansjon -> effektorrespons -> hukommelsesceller senker terskelen for neste møte (aktiveringen styres av KONTEKST/fare, ikke antigenmengde alene — fare-modellen)"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "aktiveringsstatus, antistofftiter, hukommelsespopulasjon",
+        "measurer": "immunologiske analyser (ELISA, flow-cytometri)",
+        "instrument": "laboratoriemåling; her beskrivelse",
+        "proxy_chain": [
+          "faresignaler + antigenkonsentrasjon -> aktivering",
+          "titer -> hukommelse"
+        ],
+        "placement": "ATLASETS PLASSERING: immunsystemet er homo.fluxus sin grenseregjering (analogisk lesning)",
+        "compression": "hele immunresponsen -> aktiveringsstatus + titer"
+      },
+      "episenter": "aktiveringsterskelen: under den er systemet tolerant, over den forsvarer det",
+      "buffer": {
+        "role": "hukommelsen er bufferen: den senker terskelen og gjør neste respons raskere",
+        "note": "ANALOGI til ladede buffere som utløses raskere andre gang — men immunhukommelsen er adaptiv, ikke mekanisk."
+      },
+      "ontology": {
+        "assumes": [
+          "fare-modellen (Matzinger): kontekst, ikke bare gjenkjenning, styrer aktivering",
+          "selv/ikke-selv-skillet er flytende, ikke absolutt"
+        ],
+        "source": "immunologi (standard: Janeway/Matzinger); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "titer og cellepopulasjoner — ikke repertoarets fulle rom",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "antigen -> aktivering -> respons -> hukommelse -> lavere terskel — immunitetens loop",
+        "properties": [
+          "terskler",
+          "titer",
+          "hukommelsespopulasjon"
+        ]
+      },
+      "fractal": {
+        "pattern": "terskelstyrt utløsning med hukommelse: immunitet, nevron, sol-flare (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett epitop, én respons",
+        "global": "ATLASETS PLASSERING: immunsystemet vokter homo.fluxus — CARRIES homo.fluxus (analogisk lesning)",
+        "empathy_note": "forsvaret vet ikke at det forsvarer et menneske — det reagerer."
+      }
+    },
+    {
+      "id": "homo.sovn_vaaken",
+      "regime": {
+        "name": "Søvn/våken — hjernens regimeskifte",
+        "validity": "Hjernen veksler mellom to regimer: våken (lav synkroni, desynkronisert aktivitet) og søvn (høy synkroni, langsomme bølger; REM som eget delregime). Overgangen er et ekte regimeskifte med bistabile nettverk — ANALOGI til fasenes regimegrenser i H2O (to stabile tilstander med en overgang), ikke identitet: søvn er homeostatisk drevet (søvnbehov akkumuleres som en buffer som må tømmes).",
+        "law_form": "søvnbehov (homeostatisk trykk) akkumuleres i våken tilstand -> terskel -> søvn -> trykket tømmes; døgnrytmen (SCN) setter timingen"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "søvnstadium (våken/NREM/REM), homeostatisk trykk",
+        "measurer": "EEG, polysomnografi",
+        "instrument": "klinisk måling; her beskrivelse",
+        "proxy_chain": [
+          "EEG-synkroni -> stadium",
+          "våkenhetsvarighet -> homeostatisk trykk"
+        ],
+        "placement": "ATLASETS PLASSERING: søvnen er hjernens nattskift i homo.fluxus (analogisk lesning)",
+        "compression": "hele hjerneaktiviteten -> ett stadium"
+      },
+      "episenter": "overgangen våken->søvn: der nettverket hopper mellom to stabile tilstander",
+      "buffer": {
+        "role": "søvnbehovet er bufferen: det akkumuleres i våken og tømmes i søvn — hjernens døgnbuffer",
+        "note": "ANALOGI til lade/tøm-syklusen i batteriet — men søvn er homeostatisk og rytmisk, ikke eksternt drevet."
+      },
+      "ontology": {
+        "assumes": [
+          "to-prosess-modellen (Borbély): homeostatisk trykk + døgnrytme",
+          "bistabiliteten i thalamokortikale nettverk forklarer overgangen"
+        ],
+        "source": "søvnfysiologi (standard: Borbély, Steriade); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "stadium og timing — ikke drømmenes innhold",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "våken -> trykk akkumuleres -> terskel -> søvn -> trykk tømmes -> våken — døgnets loop",
+        "properties": [
+          "homeostatisk trykk",
+          "stadium",
+          "døgnfase"
+        ]
+      },
+      "fractal": {
+        "pattern": "akkumuler-og-tøm: søvnbehov, batterilading, solens flaresyklus (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "en hjerne, en overgang",
+        "global": "ATLASETS PLASSERING: søvnen vedlikeholder homo.fluxus — CARRIES homo.fluxus (analogisk lesning)",
+        "empathy_note": "hjernen slipper ikke kontrollen i søvn — den bytter regime."
+      }
+    },
+    {
+      "id": "homo.okologi",
+      "regime": {
+        "name": "Økosystemregimer — alternative stabile tilstander",
+        "validity": "Økosystemer kan ha alternative stabile tilstander med vippepunkter mellom dem (f.eks. klar innsjø -> grumset innsjø; skog -> savanne). ANALOGI til regimegrenser og bistabilitet i H2O og hjernens søvn/våken — ikke identitet: økosystemers tilstander er statistiske og romlig heterogene. Hysterese: tilbakeveien krever mer enn veien inn.",
+        "law_form": "næringsstoffer/produksjon -> bifurkasjon -> alternativ tilstand; hysterese: tilbakeskiftet ligger ved en annen terskel enn skiftet inn"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "tilstandsvariabler (næringsstoffer, dekning, artssammensetning)",
+        "measurer": "feltmålinger, fjernmåling, tidsrekker",
+        "instrument": "økologisk overvåking; her beskrivelse",
+        "proxy_chain": [
+          "næringsstoffer -> tilstand",
+          "dekning -> regime"
+        ],
+        "placement": "ATLASETS PLASSERING: økosystemer er homo.fluxus sin ytre kropp (analogisk lesning)",
+        "compression": "hele økosystemet -> tilstandsvariabler"
+      },
+      "episenter": "vippepunktet: der systemet hopper mellom stabile tilstander — og hysterese gjør hoppet asymmetrisk",
+      "buffer": {
+        "role": "økosystemets bufferevne (resiliens) demper forstyrrelser — til bufferen er brukt opp",
+        "note": "ANALOGI til homeostase-bufferens kapasitet — men økosystemer har ingen setpunkt-mekanisme, bare tiltrekningsbassenger."
+      },
+      "ontology": {
+        "assumes": [
+          "alternative stabile tilstander og vippepunkter beskriver noen (ikke alle) økosystemer",
+          "resiliens er målbart som avstand til vippepunktet (med stor usikkerhet)"
+        ],
+        "source": "regime-shift-økologi (Scheffer); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "noen tilstandsvariabler — ikke hele næringsnettet",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "forstyrrelse -> buffering -> vippepunkt -> ny tilstand -> ny buffering — økosystemets loop",
+        "properties": [
+          "tilstand",
+          "resiliens",
+          "hysterese"
+        ]
+      },
+      "fractal": {
+        "pattern": "bistabilitet med hysterese: økosystem, søvn/våken, H2Os faser (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett system, ett vippepunkt",
+        "global": "ATLASETS PLASSERING: økosystemene er homo.fluxus sin omverden — gjensidig koblet (COUPLED_TO homo.fluxus, analogisk lesning): mennesket former økosystemene, og de former mennesket",
+        "empathy_note": "økosystemet velger ikke side ved vippepunktet — det faller."
+      }
+    },
+    {
+      "id": "homo.evolusjon",
+      "regime": {
+        "name": "Evolusjon — stasis og utbrudd i dyp tid",
+        "validity": "Den punktuerte likevekten (Eldredge & Gould) viser formen i evolusjonstid: lange perioder med stasis (holding) avbrutt av raske endringer (release) ved artdannelse. ANALOGI til holding->release i nevronet, solens flares og jordas skjelv — ikke identitet: evolusjonens utbrudd er statistiske fenomener over generasjoner, ikke enkeltutløsninger. RAMMEVERKETS HYPOTESE: den samme formen i biologisk dyp tid.",
+        "law_form": "stasis (seleksjon holder fenotypen) -> isolasjon/endring i seleksjonsregimet -> rask divergens -> ny stasis"
+      },
+      "phase": "regime_engine",
+      "measure": {
+        "target": "endringstakt i fenotype/art (morfologiske og molekylære rater)",
+        "measurer": "fossiler, molekylære klokker, fylogenier",
+        "instrument": "paleontologisk/genomisk måling; her beskrivelse",
+        "proxy_chain": [
+          "fossilrekke -> morfologisk rate",
+          "molekylær avstand -> tid siden splitt"
+        ],
+        "placement": "ATLASETS PLASSERING: evolusjonen er homo.fluxus sin dype tidsakse (analogisk lesning)",
+        "compression": "millioner av år -> endringstakt"
+      },
+      "episenter": "utbruddet: der stasis brytes og formen hopper — artdannelsens punkt",
+      "buffer": {
+        "role": "stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen — til regimet skifter",
+        "note": "ANALOGI til forkastningens holding for spenning — men evolusjonens «utløsning» er generasjoner, ikke sekunder."
+      },
+      "ontology": {
+        "assumes": [
+          "punktuert likevekt beskriver MØNSTERET (ikke nødvendigvis mekanismen) i deler av fossilrekka",
+          "raske endringer er raske i geologisk tid, ikke i enkeltgenerasjoner"
+        ],
+        "source": "Eldredge & Gould (1972); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "rater og splitt-tidspunkter — ikke de levende populasjonenes fulle historie",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "stasis -> regimeskifte -> rask endring -> ny stasis — evolusjonens loop i dyp tid",
+        "properties": [
+          "stasis-varighet",
+          "utbruddsrate",
+          "artdannelsestakt"
+        ]
+      },
+      "fractal": {
+        "pattern": "holding->release i dyp tid: evolusjon, solens flaresyklus, jordas skjelvsyklus (analogi)",
+        "note": "ett mønster, tre domener — men hver på sin tidsskala."
+      },
+      "coupling": {
+        "local": "en avstamning, en bane",
+        "global": "ATLASETS PLASSERING: evolusjonen frembrakte homo.fluxus — EMERGES_FROM homo.evolusjon (analogisk lesning)",
+        "empathy_note": "stasis er ikke stillstand — det er holding. Livet holder seg selv, helt til det endrer seg."
+      }
     }
   ],
   "relations": [
@@ -3276,6 +3488,36 @@
     },
     {
       "subject": "efc.solar_flare_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "efc.jordskjelv_engine"
+    },
+    {
+      "subject": "homo.immunologi",
+      "predicate": "CARRIES",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.sovn_vaaken",
+      "predicate": "CARRIES",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.okologi",
+      "predicate": "COUPLED_TO",
+      "object": "homo.fluxus"
+    },
+    {
+      "subject": "homo.fluxus",
+      "predicate": "EMERGES_FROM",
+      "object": "homo.evolusjon"
+    },
+    {
+      "subject": "homo.sovn_vaaken",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.feber_regime"
+    },
+    {
+      "subject": "homo.evolusjon",
       "predicate": "ANALOGOUS_TO",
       "object": "efc.jordskjelv_engine"
     }
