@@ -53,21 +53,38 @@ def _hent(url: str) -> dict | None:
 
 
 def _arxiv(max_items: int) -> list[dict]:
+    """arXiv svarer Atom XML, ikke JSON — derfor egen parser her."""
     q = urllib.parse.quote(" OR ".join(f'abs:"{k}"' for k in NOKKELORD[:6]))
-    d = _hent(f"http://export.arxiv.org/api/query?search_query={q}"
-              f"&sortBy=submittedDate&sortOrder=descending&max_results={max_items}")
-    if not d:
+    try:
+        # XXE-/billion-laughs-sikker parsing: defusedxml først, stdlib med tak
+        # som fallback (stdlib-expat løser ikke eksterne entiteter i 3.8+).
+        try:
+            import defusedxml.ElementTree as ET  # type: ignore
+        except ImportError:
+            import xml.etree.ElementTree as ET
+        req = urllib.request.Request(
+            f"http://export.arxiv.org/api/query?search_query={q}"
+            f"&sortBy=submittedDate&sortOrder=descending&max_results={max_items}",
+            headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=TIDSFRIST) as r:
+            rot = ET.fromstring(r.read(5 * 1024 * 1024).decode())  # tak: 5 MB
+    except Exception:
         return []
+    ns = {"a": "http://www.w3.org/2005/Atom"}
     ut = []
-    for e in d.get("entries") or []:
+    for e in rot.findall("a:entry", ns):
+        eid = (e.findtext("a:id", "", ns) or "").strip()
+        tittel = " ".join((e.findtext("a:title", "", ns) or "").split())
+        publisert = e.findtext("a:published", "", ns)
         doi = None
-        for l in e.get("links") or []:
-            if "doi.org" in (l.get("href") or ""):
-                doi = l["href"].split("doi.org/")[-1]
-        ut.append({"kilde": "arxiv", "id": e.get("id"),
-                   "tittel": (e.get("title") or "").strip()[:300],
-                   "publisert": e.get("published"), "doi": doi,
-                   "url": e.get("id"), "abstrakt": (e.get("summary") or "")[:800]})
+        for l in e.findall("a:link", ns):
+            href = l.get("href") or ""
+            if "doi.org" in href:
+                doi = href.split("doi.org/")[-1]
+        summ = " ".join((e.findtext("a:summary", "", ns) or "").split())
+        ut.append({"kilde": "arxiv", "id": f"arxiv:{eid}", "tittel": tittel[:300],
+                   "publisert": publisert, "doi": doi, "url": eid,
+                   "abstrakt": summ[:800]})
     return ut
 
 
