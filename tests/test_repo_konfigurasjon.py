@@ -18,9 +18,9 @@ som ser ryddig ut og fjerner dekning i stillhet.
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
-import tomllib
 from pathlib import Path
 
 import pytest
@@ -33,10 +33,35 @@ PYTEST_STANDARDER = ["*.egg", ".*", "_darcs", "build", "CVS", "dist",
                      "node_modules", "venv", "{arch}"]
 
 
+def _les_ini_options() -> dict:
+    """Les `norecursedirs` og `testpaths` fra pyproject.toml.
+
+    Bevisst uten `tomllib`: den finnes foerst i Python 3.11, mens prosjektet
+    deklarerer `requires-python = ">=3.9"`. En testfil som ikke kan lastes
+    paa en stottet versjon, er en test som forsvinner i stillhet — noeyaktig
+    feilmodusen denne filen finnes for aa hindre.
+
+    Vi trenger bare to noekler i én seksjon, saa vi leser dem direkte.
+    """
+    tekst = (REPO / "pyproject.toml").read_text(encoding="utf-8")
+    if "[tool.pytest.ini_options]" not in tekst:
+        return {}
+    seksjon = tekst.split("[tool.pytest.ini_options]", 1)[1]
+    # stopp ved neste toppnivaa-seksjon
+    stopp = re.search(r"^\[", seksjon, re.M)
+    if stopp:
+        seksjon = seksjon[:stopp.start()]
+    ut: dict = {}
+    for noekkel in ("testpaths", "norecursedirs"):
+        m = re.search(rf"^{noekkel}\s*=\s*\[(.*?)\]", seksjon, re.M | re.S)
+        if m:
+            ut[noekkel] = re.findall(r'"([^"]+)"', m.group(1))
+    return ut
+
+
 @pytest.fixture(scope="module")
 def ini_options() -> dict:
-    with open(REPO / "pyproject.toml", "rb") as f:
-        return tomllib.load(f).get("tool", {}).get("pytest", {}).get("ini_options", {})
+    return _les_ini_options()
 
 
 class TestForskjellskillet:
@@ -147,17 +172,26 @@ class TestAvhengighetslisteneErISynk:
         import re
         tekst = (REPO / "requirements.txt").read_text(encoding="utf-8")
         i = tekst.index("Verification (CI gate C10")
-        return sorted(re.findall(r"^([A-Za-z][A-Za-z0-9_-]*)>=", tekst[i:], re.M))
+        # `\s*` foran `>=` er ikke pynt: uten den faller `jsonschema >=4.18`
+        # ut av BEGGE listene, og testen passerer fordi de er «like».
+        # Maalt i review runde 3.
+        return sorted(re.findall(r"^([A-Za-z][A-Za-z0-9_-]*)\s*>=", tekst[i:], re.M))
 
     def _ci_pakker(self) -> list[str]:
         import re
         tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
         m = re.search(r"pip install --quiet (.+)", tekst)
         assert m, "fant ikke pip-installasjonen i efc-schema.yml"
-        return sorted(re.findall(r'"([A-Za-z][A-Za-z0-9_-]*)>=', m.group(1)))
+        return sorted(re.findall(r'"([A-Za-z][A-Za-z0-9_-]*)\s*>=', m.group(1)))
 
     def test_listene_er_identiske(self) -> None:
         req, ci = self._req_pakker(), self._ci_pakker()
+        # To tomme lister er ogsa «identiske». Uten denne kunne en
+        # omformatering som skjulte alle pakker passere som samsvar.
+        assert len(req) >= 4, (
+            f"fant bare {len(req)} pakker i requirements.txt — leser "
+            f"parseren feil formatering? {req}")
+        assert len(ci) >= 4, f"fant bare {len(ci)} pakker i CI-listen: {ci}"
         assert req == ci, (
             f"requirements.txt og CI-installasjonen har glidd fra hverandre.\n"
             f"  requirements.txt: {req}\n"
@@ -175,3 +209,37 @@ class TestAvhengighetslisteneErISynk:
             assert "emcee" in pakker, (
                 f"`emcee` mangler i {navn} — efc_inference/tests kan ikke "
                 f"samles uten den")
+
+
+class TestVernetKjoererISelv:
+    """Testen maa selv staa i CI-kommandoen — ellers er den ikke en gate.
+
+    Review runde 3, BLOKKERER: `efc-schema.yml` kjorer tre navngitte
+    testfiler, og `tests/test_repo_konfigurasjon.py` var ikke blant dem.
+    Vernet mot at avhengighetslistene glir fra hverandre fantes altsaa, men
+    kjorte ikke i den eneste kjøringen som betyr noe.
+
+    Det er samme form som resten av denne PR-en: et vern som ser riktig ut
+    og ikke maaler. En testfil som ikke kjoeres, er dokumentasjon.
+    """
+
+    def _ci_pytest_kommando(self) -> str:
+        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
+        m = re.search(r"python3 -m pytest ([^\n]+)", tekst)
+        assert m, "fant ingen pytest-kommando i efc-schema.yml"
+        return m.group(1)
+
+    def test_denne_filen_staar_i_ci_kommandoen(self) -> None:
+        kommand = self._ci_pytest_kommando()
+        assert "test_repo_konfigurasjon.py" in kommand, (
+            f"tests/test_repo_konfigurasjon.py kjoeres ikke i CI:\n"
+            f"  CI kjorer: {kommand}\n"
+            f"Da er ikke avhengighetsbindingen en gate — bare en lokal test.")
+
+    def test_alle_navngitte_testfiler_finnes(self) -> None:
+        """CI navngir filer eksplisitt. Forsvinner en, feiler CI stille."""
+        for navn in self._ci_pytest_kommando().split():
+            if navn.endswith(".py"):
+                assert (REPO / navn).exists(), (
+                    f"CI kjorer `{navn}`, men filen finnes ikke — "
+                    f"pytest vil feile med «file or directory not found»")
