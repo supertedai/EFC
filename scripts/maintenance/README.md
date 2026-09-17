@@ -177,6 +177,47 @@ each merge is followed within two minutes by the robot's own commit, whose
 build cancels the one in progress — not failures; the site was never stale.
 A real legacy failure (2026-08-24, a submodule path) does carry a log.
 
+## The changelog projection (`efc-changelog-sync.yml`, `changelog_projeksjon.py`)
+
+`docs/validation-ledger/data/changelog.json` is a projection of the git
+history from `metadata.last_processed_sha` to `HEAD`: every non-merge commit
+that touches more than the four changelog-infrastructure files becomes one
+entry (`sha`, `summary` = the verbatim commit subject, file categories), and
+`docs/public/EFC_Changelog.html` gets the matching `<li>`. The gate re-runs the
+projection in CI and goes red if the committed files diverge, so the projection
+is regenerated in the same PR as the change:
+
+```
+python3 scripts/maintenance/changelog_projeksjon.py   # regenerate
+python3 scripts/maintenance/efc_navbar_sync.py        # the projection's ensure_nav drops the current-page highlight
+```
+
+**The start point must exist.** `last_processed_sha` is stamped from the commit
+the projection ran on, and a squash-merge leaves that commit on no branch, so a
+recorded start can be unreachable even though it was real when written.
+Measured 2026-09-17: `72d91914…` was squashed to `1b51a04e` and *every* run —
+on `main` and on every PR — died with `fatal: Invalid revision range`; no
+change could turn the gate green. An unreachable start is now repaired
+deterministically (`origin/main`, else `HEAD~1`), printed and persisted.
+`tests/test_changelog_projeksjon.py` locks the repair and is run by the gate.
+
+**Choosing the boundary is part of the change.** The boundary must be an
+ancestor of the PR's merge ref and newer than everything already projected —
+otherwise CI projects commits your branch does not carry (a `main` that moved
+after you branched), rewrites `metadata.generated_at`, and goes red. Practical
+rule: merge `main` into the branch, then let the last projection run record a
+commit that contains it.
+
+**Known conflict with the language rule.** Summaries are verbatim commit
+subjects, and the language step of the same workflow rejects the first 30
+entries that hit the Norwegian stopword list. A landed Norwegian commit
+subject inside the projection window therefore makes the two steps mutually
+unsatisfiable — measured 2026-09-17 on
+`7c7e30b7 feat(atlas): sorte hull (fra Grid-Higgs) og periodesystemet …`
+(`fra`, `og`). The repair is an English *source* for the summary (the
+activity-log/`change_id` route in PR #430), never an edited or translated
+entry: the changelog is a projection, not a second truth source.
+
 ## Proposing a concept (`efc_candidates.py`)
 
 Not a gate. `python3 scripts/maintenance/efc_candidates.py [TERM …]` reads the
