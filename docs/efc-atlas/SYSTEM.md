@@ -227,7 +227,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 ### Not yet built
 
-#### H2 · h2o.solid _(not switched on)_
+#### SO · h2o.solid _(not switched on)_
 
 **In one line.** Perspective: academia. termodynamisk fase
 
@@ -241,7 +241,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### H2 · h2o.liquid _(not switched on)_
+#### LI · h2o.liquid _(not switched on)_
 
 **In one line.** Perspective: academia. termodynamisk fase
 
@@ -255,7 +255,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### H2 · h2o.gas _(not switched on)_
+#### GA · h2o.gas _(not switched on)_
 
 **In one line.** Perspective: academia. termodynamisk fase
 
@@ -269,7 +269,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### H2 · h2o.supercritical _(not switched on)_
+#### SC · h2o.supercritical _(not switched on)_
 
 **In one line.** Perspective: academia. termodynamisk tilstand (ikke 'fase' — grensen er borte)
 
@@ -283,7 +283,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### H2 · h2o.triple_point _(not switched on)_
+#### TP · h2o.triple_point _(not switched on)_
 
 **In one line.** Perspective: academia. temperaturskalaens referansepunkt
 
@@ -311,7 +311,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### H2 · h2o.droplet _(not switched on)_
+#### DR · h2o.droplet _(not switched on)_
 
 **In one line.** Perspective: academia. draapeform og brytningsindeks
 
@@ -339,7 +339,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### RE · regnbue _(not switched on)_
+#### RB · regnbue _(not switched on)_
 
 **In one line.** Perspective: academia. buens vinkel og fargerekkefoelge
 
@@ -353,7 +353,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### RE · regnbue.observator _(not switched on)_
+#### OB · regnbue.observator _(not switched on)_
 
 **In one line.** Perspective: academia. buen som retnings- og fargemonster
 
@@ -367,7 +367,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
-#### EF · efc.water_phase_engine _(not switched on)_
+#### WA · efc.water_phase_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. fasegrenser P_sat(T), T_m(P), P_sub(T)
 
@@ -381,7 +381,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.l1 _(not switched on)_
+#### L1 · efc.l1 _(not switched on)_
 
 **In one line.** Perspective: paradigm. CMB-anisotropier og BAO-skala
 
@@ -395,7 +395,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.l2 _(not switched on)_
+#### L2 · efc.l2 _(not switched on)_
 
 **In one line.** Perspective: paradigm. fsigma8, P(k), svak linse (S8)
 
@@ -409,7 +409,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.l3 _(not switched on)_
+#### L3 · efc.l3 _(not switched on)_
 
 **In one line.** Perspective: paradigm. fjern-fremtid-tilstanden
 
@@ -423,7 +423,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### OB · obs.bao _(not switched on)_
+#### BA · obs.bao _(not switched on)_
 
 **In one line.** Perspective: consensus. BAO-skalaen (r_d ~ 147 Mpc comoving)
 
@@ -437,7 +437,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — BAO-toppen ble kanonisert via SDSS/BOSS/eBOSS og DESI — store samarbeid med NSF/DOE-finansiering; survey-konkurransen og
 
-#### OB · obs.cmb_tt _(not switched on)_
+#### TT · obs.cmb_tt _(not switched on)_
 
 **In one line.** Perspective: consensus. temperatur-/polarisasjonsspekteret
 
@@ -451,7 +451,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — CMB-temperaturspekteret bæres av Planck-samarbeidets institusjonelle autoritet — resultatet ble kanonisert i lærebøker o
 
-#### OB · obs.cmb_lensing _(not switched on)_
+#### LC · obs.cmb_lensing _(not switched on)_
 
 **In one line.** Perspective: consensus. linsingspotensialet
 
@@ -465,7 +465,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Lensing-konsensusen bæres av Planck og ACT/SPT — to konkurrerende instrumentgrupper som bekrefter hverandre; avviks-funn
 
-#### OB · obs.bbn _(not switched on)_
+#### BB · obs.bbn _(not switched on)_
 
 **In one line.** Perspective: consensus. deuterium/hydrogen-forholdet
 
@@ -479,7 +479,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — BBN er kanonisert i lærebøker og bæres av den estetiske sammenhengen med CMB — å teste den på nytt gir lite prestisje, s
 
-#### OB · obs.fsigma8 _(not switched on)_
+#### F8 · obs.fsigma8 _(not switched on)_
 
 **In one line.** Perspective: consensus. vekstraten fsigma8
 
@@ -493,7 +493,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — fσ8-målingene kommer fra store survey-samarbeid — karriereveiene ligger i samarbeidene, og systematikker publiseres sjel
 
-#### OB · obs.s8 _(not switched on)_
+#### S8 · obs.s8 _(not switched on)_
 
 **In one line.** Perspective: consensus. S8 = sigma8 sqrt(omega_m/0.3)
 
@@ -507,7 +507,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — S8-tensionen er omstridt MELLOM instrument-tradisjoner — to fellesskap med egne karrierer leser samme data; hvem som har
 
-#### OB · obs.eg _(not switched on)_
+#### EG · obs.eg _(not switched on)_
 
 **In one line.** Perspective: consensus. E_G-krysset
 
@@ -521,7 +521,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — EG-målinger er avhengige av få instrumenter — narrativet bæres av en liten gruppe spesialister med høy publiseringsmakt
 
-#### OB · obs.isw _(not switched on)_
+#### IS · obs.isw _(not switched on)_
 
 **In one line.** Perspective: consensus. ISW-signalet
 
@@ -535,7 +535,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — ISW-signalet er svakt og var lenge omstridt — konsensusen vokste med CMB-tradisjonens autoritet, ikke med nye uavhengige
 
-#### OB · obs.ksz _(not switched on)_
+#### KS · obs.ksz _(not switched on)_
 
 **In one line.** Perspective: consensus. kSZ-signalet
 
@@ -549,7 +549,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — kSZ er en ung tradisjon — konsensusen er institusjonell før den er replikert; få grupper har instrumentene
 
-#### OB · obs.cluster_mass _(not switched on)_
+#### CM · obs.cluster_mass _(not switched on)_
 
 **In one line.** Perspective: consensus. M_500 fra flere kanaler
 
@@ -563,7 +563,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Hopemassene avhenger av røntgen/svak-lensing-kalibreringer fra noen få store samarbeid — konsensusen arver deres interne
 
-#### OB · obs.cluster_hmf _(not switched on)_
+#### HM · obs.cluster_hmf _(not switched on)_
 
 **In one line.** Perspective: consensus. halomassetetthetsfunksjonen
 
@@ -577,7 +577,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Hopfunsjonen er forankret i numeriske simuleringer med egne kode-tradisjoner — konsensusen bæres av simuleringsgruppenes
 
-#### OB · obs.rar _(not switched on)_
+#### RA · obs.rar _(not switched on)_
 
 **In one line.** Perspective: consensus. a_obs vs a_bar
 
@@ -591,7 +591,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — RAR (radial acceleration relation) er omstridt i MOND-debatten — to fellesskap med uforenlige narrativ leser samme data;
 
-#### OB · obs.bullet _(not switched on)_
+#### BU · obs.bullet _(not switched on)_
 
 **In one line.** Perspective: consensus. masse-gass-offseten
 
@@ -605,7 +605,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Bullet Cluster leses i MOND-debatten — to rammer med egne karrierebaner; bildet er det samme, fortellingen er kampen
 
-#### OB · obs.satellites _(not switched on)_
+#### SL · obs.satellites _(not switched on)_
 
 **In one line.** Perspective: consensus. subhalo-populasjonen
 
@@ -619,7 +619,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Satellittproblemet bæres av simuleringstradisjonen vs observatørene — et kjent spenningspunkt der konsensusen skifter me
 
-#### OB · obs.jwst_ems _(not switched on)_
+#### JW · obs.jwst_ems _(not switched on)_
 
 **In one line.** Perspective: consensus. galakse-massefunksjonen ved z>10
 
@@ -633,7 +633,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — JWST-funnene er nye og forhandles ÅPENT — hvert «uventet» funn gir publisitet og dermed insentiv til spenning i narrativ
 
-#### OB · obs.gw_ct _(not switched on)_
+#### GW · obs.gw_ct _(not switched on)_
 
 **In one line.** Perspective: consensus. c_T fra GW170817
 
@@ -647,7 +647,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Gravitasjonsbølger er en ung, raskt institusjonalisert tradisjon — LIGO/Virgo/KAGRA-samarbeidene har monopol på dataene
 
-#### OB · obs.pta_gwb _(not switched on)_
+#### PA · obs.pta_gwb _(not switched on)_
 
 **In one line.** Perspective: consensus. GW-bakgrunnen ved nHz
 
@@ -661,7 +661,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — PTA-konsensusen bygges av noen få store samarbeid med tiår lange datasett — dataene er private frem til publisering, så
 
-#### OB · obs.h0_tension _(not switched on)_
+#### H0 · obs.h0_tension _(not switched on)_
 
 **In one line.** Perspective: consensus. H0 fra to uavhengige kanaler
 
@@ -675,7 +675,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — Hubble-tensionen er AKTUELT omstridt — avstandsskala vs CMB, to karriereveier; hver ny måling flytter narrativet, og beg
 
-#### OB · obs.w0wa _(not switched on)_
+#### W0 · obs.w0wa _(not switched on)_
 
 **In one line.** Perspective: consensus. w(z)-parametriseringen
 
@@ -689,7 +689,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — mørk-energi-parametriseringen er en konsensus KONVENSJON mer enn en måling — narrativet bæres av survey-designenes valg
 
-#### OB · obs.cc _(not switched on)_
+#### CC · obs.cc _(not switched on)_
 
 **In one line.** Perspective: consensus. vakuumenergiens stoerrelse
 
@@ -703,7 +703,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — modellrelativ / proxy / institusjonell
 3. **Social mechanism** — klynge-tellingens konsensus bæres av masse-kalibreringskjeden — en lang kjede av antakelser som hver for seg er konsensu
 
-#### EF · efc.rotation_engine _(not switched on)_
+#### RO · efc.rotation_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. v(r) — rotasjonshastighet som funksjon av radius
 
@@ -717,7 +717,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.hubble_engine _(not switched on)_
+#### HB · efc.hubble_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. H(z) — ekspansjonsraten
 
@@ -731,7 +731,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.growth_engine _(not switched on)_
+#### GR · efc.growth_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. fσ8(z) — vekstrate ganger amplitude
 
@@ -745,7 +745,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.lensing_engine _(not switched on)_
+#### LN · efc.lensing_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. kappa(theta) — konvergens som funksjon av vinkelposisjon
 
@@ -759,7 +759,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.cluster_engine _(not switched on)_
+#### CL · efc.cluster_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. n(M,z) — halomassefunksjonen
 
@@ -773,7 +773,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.fluxus _(not switched on)_
+#### HF · homo.fluxus _(not switched on)_
 
 **In one line.** Perspective: paradigm. R — den indre refleksjonskoeffisienten
 
@@ -801,7 +801,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.feber_regime _(not switched on)_
+#### FE · homo.feber_regime _(not switched on)_
 
 **In one line.** Perspective: paradigm. kroppstemperatur mot setpunkt
 
@@ -815,7 +815,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.aksjonspotensial _(not switched on)_
+#### AP · homo.aksjonspotensial _(not switched on)_
 
 **In one line.** Perspective: paradigm. membranpotensialet V(t) mot terskelen
 
@@ -829,7 +829,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.hjerte_syklus _(not switched on)_
+#### HJ · homo.hjerte_syklus _(not switched on)_
 
 **In one line.** Perspective: paradigm. slagvolum, frekvens, minuttvolum
 
@@ -843,7 +843,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.genregulering _(not switched on)_
+#### GN · homo.genregulering _(not switched on)_
 
 **In one line.** Perspective: paradigm. uttrykksnivå per gen (mRNA/protein)
 
@@ -857,7 +857,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.cellesyklus _(not switched on)_
+#### CY · homo.cellesyklus _(not switched on)_
 
 **In one line.** Perspective: paradigm. fase per celle (G1/S/G2/M)
 
@@ -871,7 +871,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.metabolisme _(not switched on)_
+#### ME · homo.metabolisme _(not switched on)_
 
 **In one line.** Perspective: paradigm. ATP/ADP-forhold, O₂-forbruk, substrat-fluks
 
@@ -885,7 +885,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.solar_flare_engine _(not switched on)_
+#### SF · efc.solar_flare_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. oppladningstid, utlost energi, GOES-klasse
 
@@ -899,7 +899,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.jordskjelv_engine _(not switched on)_
+#### JS · efc.jordskjelv_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. gjentakelsestid, seismisk moment, moment-magnitude
 
@@ -913,7 +913,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.immunologi _(not switched on)_
+#### IM · homo.immunologi _(not switched on)_
 
 **In one line.** Perspective: paradigm. aktiveringsstatus, antistofftiter, hukommelsespopulasjon
 
@@ -927,7 +927,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.sovn_vaaken _(not switched on)_
+#### SV · homo.sovn_vaaken _(not switched on)_
 
 **In one line.** Perspective: paradigm. søvnstadium (våken/NREM/REM), homeostatisk trykk
 
@@ -941,7 +941,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.okologi _(not switched on)_
+#### OE · homo.okologi _(not switched on)_
 
 **In one line.** Perspective: paradigm. tilstandsvariabler (næringsstoffer, dekning, artssammensetning)
 
@@ -955,7 +955,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### HO · homo.evolusjon _(not switched on)_
+#### EV · homo.evolusjon _(not switched on)_
 
 **In one line.** Perspective: paradigm. endringstakt i fenotype/art (morfologiske og molekylære rater)
 
@@ -969,7 +969,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.mu_kz_engine _(not switched on)_
+#### MK · efc.mu_kz_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. mu(k,z) — effektiv Poisson-kobling
 
@@ -983,7 +983,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.romvaer_engine _(not switched on)_
+#### RV · efc.romvaer_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. forventet Kp, stormnivå, utladningsbane
 
@@ -997,7 +997,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.oekonomi_engine _(not switched on)_
+#### OK · efc.oekonomi_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift
 
@@ -1011,7 +1011,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.orbital_engine _(not switched on)_
+#### OR · efc.orbital_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. periode, hastighet, spesifikk energi, Hill-sfære
 
@@ -1025,7 +1025,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.klima_engine _(not switched on)_
+#### KL · efc.klima_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. likevektstemperatur, tidskonstant, regimebryter
 
@@ -1039,7 +1039,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.samfunn_engine _(not switched on)_
+#### SA · efc.samfunn_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. R0, utbruddsstatus, epidemi-banen
 
@@ -1053,7 +1053,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.tidevann_engine _(not switched on)_
+#### TI · efc.tidevann_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. tidevannsakselerasjon, tidevannshøyde, Roche-grense, fase-låsingsstatu
 
@@ -1067,7 +1067,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
-#### EF · efc.transient_engine _(not switched on)_
+#### TR · efc.transient_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. holdetid, utlost energi, lettkurvens form
 

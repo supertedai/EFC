@@ -60,7 +60,7 @@ export const GROUPS = [
 export const NODES = [
   {
     "id": "h2o-solid",
-    "code": "H2",
+    "code": "SO",
     "name": "h2o.solid",
     "short": "solid",
     "group": "ghost",
@@ -92,7 +92,7 @@ export const NODES = [
   },
   {
     "id": "h2o-liquid",
-    "code": "H2",
+    "code": "LI",
     "name": "h2o.liquid",
     "short": "liquid",
     "group": "ghost",
@@ -124,7 +124,7 @@ export const NODES = [
   },
   {
     "id": "h2o-gas",
-    "code": "H2",
+    "code": "GA",
     "name": "h2o.gas",
     "short": "gas",
     "group": "ghost",
@@ -156,7 +156,7 @@ export const NODES = [
   },
   {
     "id": "h2o-supercritical",
-    "code": "H2",
+    "code": "SC",
     "name": "h2o.supercritical",
     "short": "supercritical",
     "group": "ghost",
@@ -188,7 +188,7 @@ export const NODES = [
   },
   {
     "id": "h2o-triple-point",
-    "code": "H2",
+    "code": "TP",
     "name": "h2o.triple_point",
     "short": "triple point",
     "group": "ghost",
@@ -252,7 +252,7 @@ export const NODES = [
   },
   {
     "id": "h2o-droplet",
-    "code": "H2",
+    "code": "DR",
     "name": "h2o.droplet",
     "short": "droplet",
     "group": "ghost",
@@ -316,7 +316,7 @@ export const NODES = [
   },
   {
     "id": "regnbue",
-    "code": "RE",
+    "code": "RB",
     "name": "regnbue",
     "short": "regnbue",
     "group": "ghost",
@@ -348,7 +348,7 @@ export const NODES = [
   },
   {
     "id": "regnbue-observator",
-    "code": "RE",
+    "code": "OB",
     "name": "regnbue.observator",
     "short": "observator",
     "group": "ghost",
@@ -380,7 +380,7 @@ export const NODES = [
   },
   {
     "id": "efc-water-phase-engine",
-    "code": "EF",
+    "code": "WA",
     "name": "efc.water_phase_engine",
     "short": "water phase en",
     "group": "ghost",
@@ -444,7 +444,7 @@ export const NODES = [
   },
   {
     "id": "efc-l1",
-    "code": "EF",
+    "code": "L1",
     "name": "efc.l1",
     "short": "l1",
     "group": "ghost",
@@ -476,7 +476,7 @@ export const NODES = [
   },
   {
     "id": "efc-l2",
-    "code": "EF",
+    "code": "L2",
     "name": "efc.l2",
     "short": "l2",
     "group": "ghost",
@@ -508,7 +508,7 @@ export const NODES = [
   },
   {
     "id": "efc-l3",
-    "code": "EF",
+    "code": "L3",
     "name": "efc.l3",
     "short": "l3",
     "group": "ghost",
@@ -540,7 +540,7 @@ export const NODES = [
   },
   {
     "id": "obs-bao",
-    "code": "OB",
+    "code": "BA",
     "name": "obs.bao",
     "short": "bao",
     "group": "ghost",
@@ -572,7 +572,7 @@ export const NODES = [
   },
   {
     "id": "obs-cmb-tt",
-    "code": "OB",
+    "code": "TT",
     "name": "obs.cmb_tt",
     "short": "cmb tt",
     "group": "ghost",
@@ -604,7 +604,7 @@ export const NODES = [
   },
   {
     "id": "obs-cmb-lensing",
-    "code": "OB",
+    "code": "LC",
     "name": "obs.cmb_lensing",
     "short": "cmb lensing",
     "group": "ghost",
@@ -636,7 +636,7 @@ export const NODES = [
   },
   {
     "id": "obs-bbn",
-    "code": "OB",
+    "code": "BB",
     "name": "obs.bbn",
     "short": "bbn",
     "group": "ghost",
@@ -668,7 +668,7 @@ export const NODES = [
   },
   {
     "id": "obs-fsigma8",
-    "code": "OB",
+    "code": "F8",
     "name": "obs.fsigma8",
     "short": "fsigma8",
     "group": "ghost",
@@ -700,7 +700,7 @@ export const NODES = [
   },
   {
     "id": "obs-s8",
-    "code": "OB",
+    "code": "S8",
     "name": "obs.s8",
     "short": "s8",
     "group": "ghost",
@@ -732,7 +732,7 @@ export const NODES = [
   },
   {
     "id": "obs-eg",
-    "code": "OB",
+    "code": "EG",
     "name": "obs.eg",
     "short": "eg",
     "group": "ghost",
@@ -764,7 +764,7 @@ export const NODES = [
   },
   {
     "id": "obs-isw",
-    "code": "OB",
+    "code": "IS",
     "name": "obs.isw",
     "short": "isw",
     "group": "ghost",
@@ -796,7 +796,7 @@ export const NODES = [
   },
   {
     "id": "obs-ksz",
-    "code": "OB",
+    "code": "KS",
     "name": "obs.ksz",
     "short": "ksz",
     "group": "ghost",
@@ -828,7 +828,7 @@ export const NODES = [
   },
   {
     "id": "obs-cluster-mass",
-    "code": "OB",
+    "code": "CM",
     "name": "obs.cluster_mass",
     "short": "cluster mass",
     "group": "ghost",
@@ -860,7 +860,7 @@ export const NODES = [
   },
   {
     "id": "obs-cluster-hmf",
-    "code": "OB",
+    "code": "HM",
     "name": "obs.cluster_hmf",
     "short": "cluster hmf",
     "group": "ghost",
@@ -892,7 +892,7 @@ export const NODES = [
   },
   {
     "id": "obs-rar",
-    "code": "OB",
+    "code": "RA",
     "name": "obs.rar",
     "short": "rar",
     "group": "ghost",
@@ -924,7 +924,7 @@ export const NODES = [
   },
   {
     "id": "obs-bullet",
-    "code": "OB",
+    "code": "BU",
     "name": "obs.bullet",
     "short": "bullet",
     "group": "ghost",
@@ -956,7 +956,7 @@ export const NODES = [
   },
   {
     "id": "obs-satellites",
-    "code": "OB",
+    "code": "SL",
     "name": "obs.satellites",
     "short": "satellites",
     "group": "ghost",
@@ -988,7 +988,7 @@ export const NODES = [
   },
   {
     "id": "obs-jwst-ems",
-    "code": "OB",
+    "code": "JW",
     "name": "obs.jwst_ems",
     "short": "jwst ems",
     "group": "ghost",
@@ -1020,7 +1020,7 @@ export const NODES = [
   },
   {
     "id": "obs-gw-ct",
-    "code": "OB",
+    "code": "GW",
     "name": "obs.gw_ct",
     "short": "gw ct",
     "group": "ghost",
@@ -1052,7 +1052,7 @@ export const NODES = [
   },
   {
     "id": "obs-pta-gwb",
-    "code": "OB",
+    "code": "PA",
     "name": "obs.pta_gwb",
     "short": "pta gwb",
     "group": "ghost",
@@ -1084,7 +1084,7 @@ export const NODES = [
   },
   {
     "id": "obs-h0-tension",
-    "code": "OB",
+    "code": "H0",
     "name": "obs.h0_tension",
     "short": "h0 tension",
     "group": "ghost",
@@ -1116,7 +1116,7 @@ export const NODES = [
   },
   {
     "id": "obs-w0wa",
-    "code": "OB",
+    "code": "W0",
     "name": "obs.w0wa",
     "short": "w0wa",
     "group": "ghost",
@@ -1148,7 +1148,7 @@ export const NODES = [
   },
   {
     "id": "obs-cc",
-    "code": "OB",
+    "code": "CC",
     "name": "obs.cc",
     "short": "cc",
     "group": "ghost",
@@ -1180,7 +1180,7 @@ export const NODES = [
   },
   {
     "id": "efc-rotation-engine",
-    "code": "EF",
+    "code": "RO",
     "name": "efc.rotation_engine",
     "short": "rotation engin",
     "group": "ghost",
@@ -1212,7 +1212,7 @@ export const NODES = [
   },
   {
     "id": "efc-hubble-engine",
-    "code": "EF",
+    "code": "HB",
     "name": "efc.hubble_engine",
     "short": "hubble engine",
     "group": "ghost",
@@ -1244,7 +1244,7 @@ export const NODES = [
   },
   {
     "id": "efc-growth-engine",
-    "code": "EF",
+    "code": "GR",
     "name": "efc.growth_engine",
     "short": "growth engine",
     "group": "ghost",
@@ -1276,7 +1276,7 @@ export const NODES = [
   },
   {
     "id": "efc-lensing-engine",
-    "code": "EF",
+    "code": "LN",
     "name": "efc.lensing_engine",
     "short": "lensing engine",
     "group": "ghost",
@@ -1308,7 +1308,7 @@ export const NODES = [
   },
   {
     "id": "efc-cluster-engine",
-    "code": "EF",
+    "code": "CL",
     "name": "efc.cluster_engine",
     "short": "cluster engine",
     "group": "ghost",
@@ -1340,7 +1340,7 @@ export const NODES = [
   },
   {
     "id": "homo-fluxus",
-    "code": "HO",
+    "code": "HF",
     "name": "homo.fluxus",
     "short": "fluxus",
     "group": "ghost",
@@ -1404,7 +1404,7 @@ export const NODES = [
   },
   {
     "id": "homo-feber-regime",
-    "code": "HO",
+    "code": "FE",
     "name": "homo.feber_regime",
     "short": "feber regime",
     "group": "ghost",
@@ -1436,7 +1436,7 @@ export const NODES = [
   },
   {
     "id": "homo-aksjonspotensial",
-    "code": "HO",
+    "code": "AP",
     "name": "homo.aksjonspotensial",
     "short": "aksjonspotensi",
     "group": "ghost",
@@ -1468,7 +1468,7 @@ export const NODES = [
   },
   {
     "id": "homo-hjerte-syklus",
-    "code": "HO",
+    "code": "HJ",
     "name": "homo.hjerte_syklus",
     "short": "hjerte syklus",
     "group": "ghost",
@@ -1500,7 +1500,7 @@ export const NODES = [
   },
   {
     "id": "homo-genregulering",
-    "code": "HO",
+    "code": "GN",
     "name": "homo.genregulering",
     "short": "genregulering",
     "group": "ghost",
@@ -1532,7 +1532,7 @@ export const NODES = [
   },
   {
     "id": "homo-cellesyklus",
-    "code": "HO",
+    "code": "CY",
     "name": "homo.cellesyklus",
     "short": "cellesyklus",
     "group": "ghost",
@@ -1564,7 +1564,7 @@ export const NODES = [
   },
   {
     "id": "homo-metabolisme",
-    "code": "HO",
+    "code": "ME",
     "name": "homo.metabolisme",
     "short": "metabolisme",
     "group": "ghost",
@@ -1596,7 +1596,7 @@ export const NODES = [
   },
   {
     "id": "efc-solar-flare-engine",
-    "code": "EF",
+    "code": "SF",
     "name": "efc.solar_flare_engine",
     "short": "solar flare en",
     "group": "ghost",
@@ -1628,7 +1628,7 @@ export const NODES = [
   },
   {
     "id": "efc-jordskjelv-engine",
-    "code": "EF",
+    "code": "JS",
     "name": "efc.jordskjelv_engine",
     "short": "jordskjelv eng",
     "group": "ghost",
@@ -1660,7 +1660,7 @@ export const NODES = [
   },
   {
     "id": "homo-immunologi",
-    "code": "HO",
+    "code": "IM",
     "name": "homo.immunologi",
     "short": "immunologi",
     "group": "ghost",
@@ -1692,7 +1692,7 @@ export const NODES = [
   },
   {
     "id": "homo-sovn-vaaken",
-    "code": "HO",
+    "code": "SV",
     "name": "homo.sovn_vaaken",
     "short": "sovn vaaken",
     "group": "ghost",
@@ -1724,7 +1724,7 @@ export const NODES = [
   },
   {
     "id": "homo-okologi",
-    "code": "HO",
+    "code": "OE",
     "name": "homo.okologi",
     "short": "okologi",
     "group": "ghost",
@@ -1756,7 +1756,7 @@ export const NODES = [
   },
   {
     "id": "homo-evolusjon",
-    "code": "HO",
+    "code": "EV",
     "name": "homo.evolusjon",
     "short": "evolusjon",
     "group": "ghost",
@@ -1788,7 +1788,7 @@ export const NODES = [
   },
   {
     "id": "efc-mu-kz-engine",
-    "code": "EF",
+    "code": "MK",
     "name": "efc.mu_kz_engine",
     "short": "mu kz engine",
     "group": "ghost",
@@ -1820,7 +1820,7 @@ export const NODES = [
   },
   {
     "id": "efc-romvaer-engine",
-    "code": "EF",
+    "code": "RV",
     "name": "efc.romvaer_engine",
     "short": "romvaer engine",
     "group": "ghost",
@@ -1852,7 +1852,7 @@ export const NODES = [
   },
   {
     "id": "efc-oekonomi-engine",
-    "code": "EF",
+    "code": "OK",
     "name": "efc.oekonomi_engine",
     "short": "oekonomi engin",
     "group": "ghost",
@@ -1884,7 +1884,7 @@ export const NODES = [
   },
   {
     "id": "efc-orbital-engine",
-    "code": "EF",
+    "code": "OR",
     "name": "efc.orbital_engine",
     "short": "orbital engine",
     "group": "ghost",
@@ -1916,7 +1916,7 @@ export const NODES = [
   },
   {
     "id": "efc-klima-engine",
-    "code": "EF",
+    "code": "KL",
     "name": "efc.klima_engine",
     "short": "klima engine",
     "group": "ghost",
@@ -1948,7 +1948,7 @@ export const NODES = [
   },
   {
     "id": "efc-samfunn-engine",
-    "code": "EF",
+    "code": "SA",
     "name": "efc.samfunn_engine",
     "short": "samfunn engine",
     "group": "ghost",
@@ -1980,7 +1980,7 @@ export const NODES = [
   },
   {
     "id": "efc-tidevann-engine",
-    "code": "EF",
+    "code": "TI",
     "name": "efc.tidevann_engine",
     "short": "tidevann engin",
     "group": "ghost",
@@ -2012,7 +2012,7 @@ export const NODES = [
   },
   {
     "id": "efc-transient-engine",
-    "code": "EF",
+    "code": "TR",
     "name": "efc.transient_engine",
     "short": "transient engi",
     "group": "ghost",

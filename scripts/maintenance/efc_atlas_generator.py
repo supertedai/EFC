@@ -19,20 +19,73 @@ ROT = pathlib.Path(__file__).resolve().parents[2]
 ATLAS_DIR = ROT / "docs" / "efc-atlas" / "atlas"
 JSONLD = ROT / "schema" / "regime_nodes.jsonld"
 
-#: Kode-bokstaver per node (1-2 tegn) — stabil saalenge atlaset lever.
+#: Koden er nodens KORTE IDENTIFIKATOR (1-2 tegn) — ikke en visuell etikett.
+#:
+#: Maalt 2026-09-17: tabellen dekket 28 av 82 noder; resten falt tilbake til
+#: `nid[:2].upper()`. De 73 offentlige nodene fikk dermed 18 koder — «EF»
+#: pekte paa 20 noder, «OB» paa 20 — og 15 av de 28 noeklene navnga noder som
+#: ikke finnes (efc.hubble, efc.water, … de heter `*_engine` i banken). Ingen
+#: av feilene var synlige, fordi fallbacken svarte i stedet for aa si fra.
+#:
+#: Koden ER en identifikator, og den brukes som en: `build.mjs` bygger
+#: spoersmaal-ID-er av den (`Q-<kode><n>`, og indeksen sier «Reference by
+#: ID»), og FLOWS navngir hoppene sine med den (HA, BI, VU, EF). En kode som
+#: peker paa tjue noder samtidig identifiserer ingen av dem.
+#:
+#: Derfor: hver node i banken SKAL staa her, koden skal vaere entydig, og
+#: generatoren FEILER heller enn aa gjette (se `manglende_koder`). Brikken
+#: som tegner koden er 16 px bred (template.html), derav 1-2 tegn.
+#:
+#: Koden er stabil: den foelger noden, ikke navnet den hadde i en tidligere
+#: tanke. Endres en node-id, skal koden flyttes med — testen
+#: `test_deklarasjonen_raatner_ikke` feller etterlatte noekler.
 KODER = {
-    "efc.l0": "L0", "efc.selv.paradigme_tid": "PT",
+    # Rot og selv-referanse
+    "efc.l0": "L0", "efc.l1": "L1", "efc.l2": "L2", "efc.l3": "L3",
+    # Gitteret — publiserte arbeider
     "efc.grid_higgs": "GH", "efc.gr_qft_bro": "GQ",
     "efc.grid_mikrofysikk": "GM", "efc.grid_mikro_engine": "GE",
-    "efc.mu_kz": "MK", "efc.growth": "GR", "efc.rotation": "RO",
-    "efc.hubble": "HB", "efc.lensing": "LN", "efc.cluster": "CL",
-    "efc.enerflyt": "EF", "efc.victron_cccv_engine": "VC",
-    "efc.water": "WA", "efc.klima": "KL", "efc.romvaer": "RV",
-    "efc.orbital": "OR", "efc.tidevann": "TI", "efc.transient": "TR",
-    "efc.oekonomi": "OK", "efc.samfunn": "SA",
     "efc.double_slit": "DS", "efc.sort_hull": "SH",
+    # Kosmos — motorene paa bussen
+    "efc.mu_kz_engine": "MK", "efc.growth_engine": "GR",
+    "efc.rotation_engine": "RO", "efc.hubble_engine": "HB",
+    "efc.lensing_engine": "LN", "efc.cluster_engine": "CL",
+    "efc.transient_engine": "TR", "efc.romvaer_engine": "RV",
+    "efc.orbital_engine": "OR", "efc.tidevann_engine": "TI",
+    "efc.klima_engine": "KL", "efc.solar_flare_engine": "SF",
+    "efc.jordskjelv_engine": "JS",
+    # Broer — gap-domenene
     "verden.hav": "HA", "verden.biosfaere": "BI",
-    "kosmos.jord.vulkan": "VU", "kjemi.periodesystemet": "PS",
+    "kosmos.jord.vulkan": "VU",
+    # Strukturer — vann og kjemi
+    "kjemi.periodesystemet": "PS", "efc.water_phase_engine": "WA",
+    "h2o.solid": "SO", "h2o.liquid": "LI", "h2o.gas": "GA",
+    "h2o.supercritical": "SC", "h2o.triple_point": "TP",
+    "h2o.droplet": "DR", "lys.sol": "LY", "optikk.dispersjon": "OP",
+    "regnbue": "RB", "regnbue.observator": "OB",
+    # Samfunn — energiflyt
+    "efc.enerflyt_engine": "EF", "efc.oekonomi_engine": "OK",
+    "efc.samfunn_engine": "SA", "efc.victron_cccv_engine": "VC",
+    # Observasjoner — hver med sitt eget maal
+    "obs.bao": "BA", "obs.cmb_tt": "TT", "obs.cmb_lensing": "LC",
+    "obs.bbn": "BB", "obs.fsigma8": "F8", "obs.s8": "S8",
+    "obs.eg": "EG", "obs.isw": "IS", "obs.ksz": "KS",
+    "obs.cluster_mass": "CM", "obs.cluster_hmf": "HM", "obs.rar": "RA",
+    "obs.bullet": "BU", "obs.satellites": "SL", "obs.jwst_ems": "JW",
+    "obs.gw_ct": "GW", "obs.pta_gwb": "PA", "obs.h0_tension": "H0",
+    "obs.w0wa": "W0", "obs.cc": "CC",
+    # Homo — regime-motoren
+    "homo.fluxus": "HF", "homo.homeostase_buffer": "HO",
+    "homo.feber_regime": "FE", "homo.aksjonspotensial": "AP",
+    "homo.hjerte_syklus": "HJ", "homo.genregulering": "GN",
+    "homo.cellesyklus": "CY", "homo.metabolisme": "ME",
+    "homo.immunologi": "IM", "homo.sovn_vaaken": "SV",
+    "homo.okologi": "OE", "homo.evolusjon": "EV",
+    # Interne noder — ikke publisert, men samme navnerom
+    "batteri.celle": "BC", "batteri.lading": "BL",
+    "batteri.buffer": "BF", "batteri.inverter": "IN",
+    "efc.selv.atlas": "AT", "efc.selv.skjema": "SK",
+    "efc.selv.paradigme_tid": "PT", "efc.selv.paradigme_masse": "PM",
 }
 
 #: Gruppe- og kapittel-tilhoerighet: (gruppe, kapittel).
@@ -67,6 +120,23 @@ GRUPPER = [
     {"id": "ghost", "title": "Not yet built"},
 ]
 
+#: De tre bro-kjedene som dataflyt. Hoppene navngir nodene med KODEN — det
+#: er derfor koden maa vaere entydig: «EF» betyr `efc.enerflyt_engine`, og
+#: bare den. (At rendereren i atlas/template.html i dag slår opp hoppene i
+#: `id`-navnerommet og derfor ikke tegner dem, er en egen feil med egen
+#: rotårsak — den hoerer ikke i denne tabellen.)
+FLOWS = [
+    {"id": "hav", "name": "Ocean state",
+     "hops": [["HA", "KL", "temperature proxy",
+               {"emne": "verden.klima.tilstand.noaa-tides"}, "xy"]]},
+    {"id": "bio", "name": "Biosphere counts",
+     "hops": [["BI", "EF", "species counts",
+               {"emne": "verden.miljo.tilstand.gbif-planter"}, "xy"]]},
+    {"id": "vul", "name": "Volcano state",
+     "hops": [["VU", "TR", "activity level",
+               {"emne": "kosmos.jord.tilstand.usgs-vulkan"}, "yx"]]},
+]
+
 
 def _kap(navn: str) -> int:
     return PLASSERING.get(navn, ("ghost", 8))[1]
@@ -79,6 +149,48 @@ def _gruppe(navn: str) -> str:
 def _perspektiv_tekst(p: str | None) -> str:
     return {"akademia": "academia", "konsensus": "consensus",
             "paradigme": "paradigm"}.get(p or "", "agnostic")
+
+
+def kode_for(nid: str) -> str:
+    """Nodens korte identifikator. Ingen fallback.
+
+    En node uten kode er en feil som skal SEES. Fallbacken
+    (`nid[:2].upper()`) gjorde den usynlig i maanedene den sto her: den
+    svarte med en kode som saa riktig ut, og 20 noder delte den.
+    """
+    try:
+        return KODER[nid]
+    except KeyError:
+        raise KeyError(
+            f"{nid} har ingen kode. Legg den inn i KODER i "
+            f"scripts/maintenance/efc_atlas_generator.py — koden er nodens "
+            f"korte identifikator, og spoersmaal-ID-er (Q-<kode><n>) og "
+            f"FLOWS-hopp bygges av den.") from None
+
+
+def manglende_koder(noder: list[dict]) -> list[str]:
+    """Noder i banken uten deklarert kode, sortert. Skal vaere tom."""
+    return sorted(n["id"] for n in noder if n["id"] not in KODER)
+
+
+def foreldede_koder(noder: list[dict]) -> list[str]:
+    """Koder deklarert for noder som ikke finnes, sortert. Skal vaere tom.
+
+    Fanget ikke seg selv: 15 av de 28 noeklene navnga noder som aldri har
+    eksistert under det navnet (`efc.hubble` mot `efc.hubble_engine`), og
+    fallbacken svarte i stedet for aa melde fra.
+    """
+    id_er = {n["id"] for n in noder}
+    return sorted(set(KODER) - id_er)
+
+
+def kollisjoner(noder: list[dict]) -> dict[str, list[str]]:
+    """Koder som baeres av mer enn en node: {kode: [node-id, …]}."""
+    per: dict[str, list[str]] = {}
+    for n in noder:
+        if n["id"] in KODER:
+            per.setdefault(KODER[n["id"]], []).append(n["id"])
+    return {k: sorted(v) for k, v in sorted(per.items()) if len(v) > 1}
 
 
 def _node_rad(node: dict, i: int) -> dict:
@@ -101,7 +213,7 @@ def _node_rad(node: dict, i: int) -> dict:
                      "to": "connector deploy (human step)"})
     return {
         "id": nid.replace(".", "-").replace("_", "-")[:40],
-        "code": KODER.get(nid, nid[:2].upper()),
+        "code": kode_for(nid),
         "name": nid,
         "short": navn[:14],
         "group": gr,
@@ -132,6 +244,38 @@ def _node_rad(node: dict, i: int) -> dict:
 def hoved() -> int:
     atlas = json.load(open(JSONLD, encoding="utf-8"))
     alle = atlas["nodes"]
+
+    # Kode-preflight. Denne staar FOER noe skrives, og den FEILER — den
+    # gjetter ikke. Rekkefoelgen er poenget: et atlas som bygges med en
+    # kode som peker paa tjue noder, er verre enn et atlas som ikke
+    # bygges, fordi det foerste ser ferdig ut.
+    mangler = manglende_koder(alle)
+    if mangler:
+        print(f"FEIL: {len(mangler)} node(r) i banken mangler kode i KODER:")
+        for m in mangler:
+            print(f"  {m}")
+        print("Koden er nodens korte identifikator (Q-ID-er og FLOWS-hopp "
+              "bygges av den). Legg den inn i KODER i denne fila.")
+        return 1
+    doede = foreldede_koder(alle)
+    if doede:
+        print(f"FEIL: {len(doede)} kode(r) er deklarert for noder som ikke "
+              f"finnes:")
+        for d in doede:
+            print(f"  {d} -> {KODER[d]}")
+        print("Tabellen har raatnet (en node-id er endret uten at koden "
+              "flyttet med). Rett noekkelen.")
+        return 1
+    koll = kollisjoner(alle)
+    if koll:
+        print(f"FEIL: {len(koll)} kode(r) baeres av flere noder:")
+        for k, ids in koll.items():
+            print(f"  {k}: {', '.join(ids)}")
+        print("En kode som peker paa flere noder identifiserer ingen av "
+              "dem. Velg en entydig kode per node.")
+        return 1
+    print(f"koder: {len(KODER)} entydige for {len(alle)} noder")
+
     # Bare offentlige noder gaar til GitHub Pages. Filteret er DEKLARERT per
     # node (`synlighet`), ikke en skjult regel her — en node som forsvinner
     # uten at noen ser hvorfor er samme feilklasse som resten av huset
@@ -199,18 +343,8 @@ def hoved() -> int:
         "flow": None,
     })
 
-    # FLOWS: de tre bro-kjedene som dataflyt
-    flows = [
-        {"id": "hav", "name": "Ocean state",
-         "hops": [["HA", "KL", "temperature proxy",
-                   {"emne": "verden.klima.tilstand.noaa-tides"}, "xy"]]},
-        {"id": "bio", "name": "Biosphere counts",
-         "hops": [["BI", "EF", "species counts",
-                   {"emne": "verden.miljo.tilstand.gbif-planter"}, "xy"]]},
-        {"id": "vul", "name": "Volcano state",
-         "hops": [["VU", "TR", "activity level",
-                   {"emne": "kosmos.jord.tilstand.usgs-vulkan"}, "yx"]]},
-    ]
+    # FLOWS: de tre bro-kjedene som dataflyt (tabellen staar oeverst i fila)
+    flows = FLOWS
 
     data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
 // IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
