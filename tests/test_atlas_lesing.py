@@ -19,6 +19,7 @@ arbeidsstreet», uansett hva dokumentet sier.
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -176,24 +177,60 @@ class TestFunksjonensKanter(unittest.TestCase):
         self.assertNotEqual(forsta, andre, "hent=True hentet ikke")
 
 
-class TestIngenVertsspesifikkeStier(unittest.TestCase):
+class TestIngenAbsolutteStier(unittest.TestCase):
     """Regel 16: `docs/` er Pages-roten — det som staar der PUBLISERES.
 
-    Reviewfunn runde 3: dokumentet navnga vertsspesifikke stier til
-    arbeidskopier. Prinsippet skal staa, men stiene er infrastruktur som
-    ikke hoerer i et offentlig dokument — og de raatner naar kopiene
-    flyttes. Denne testen holder dem ute.
+    Reviewfunn runde 3: dokumentet navnga vertsspesifikke stier.
+    Reviewfunn runde 4 (BLOKKERER): den foerste testen brukte en fast liste
+    av stier jeg tilfeldigvis kom paa. Den slapp `/Users/morten/...`,
+    `C:\\Users\\morten\\...` og `/srv/agent-work/...` gjennom.
+
+      En liste over kjente tilfeller er ikke en invariant over klassen.
+      Det er samme feil som resten av PR-en handler om.
+
+    Invarianten er generisk: en ABSOLUTT filsystem-sti er vertsspesifikk
+    uansett hvilken vert den peker paa. Repo-relative navn er dokumentasjon
+    og skal gjennom.
     """
 
-    MONSTER = ("/opt/agent-work", "/home/morten", "worktrees/",
-               "supertedai/Hetzner")
+    ABSOLUTT = re.compile(r"""
+        (?:^|[\s(\[`"'>])
+        (?:
+            /(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]*   # unix-absolutt
+          | [A-Za-z]:[\\/]                        # windows-stasjon
+          | ~/                                      # hjemmekatalog
+        )
+    """, re.VERBOSE)
 
-    def test_publisert_dokument_har_ingen_vertsspesifikke_stier(self):
-        t = (ROT / "docs" / "atlas-lesing.md").read_text(encoding="utf-8")
-        for m in self.MONSTER:
-            self.assertNotIn(m, t, f"vertsspesifikk sti i publisert doc: {m}")
+    def _sjekk(self, sti: Path, hva: str):
+        t = sti.read_text(encoding="utf-8")
+        treff = [m.group(0).strip() for m in self.ABSOLUTT.finditer(t)]
+        self.assertEqual(treff, [], f"absolutt sti i {hva}: {treff}")
 
-    def test_modulens_docstring_har_ingen_vertsspesifikke_stier(self):
-        t = (ROT / "scripts" / "atlas_lesing.py").read_text(encoding="utf-8")
-        for m in self.MONSTER:
-            self.assertNotIn(m, t, f"vertsspesifikk sti i docstring: {m}")
+    def test_publisert_dokument_har_ingen_absolutte_stier(self):
+        self._sjekk(ROT / "docs" / "atlas-lesing.md", "publisert doc")
+
+    def test_modulens_docstring_har_ingen_absolutte_stier(self):
+        self._sjekk(ROT / "scripts" / "atlas_lesing.py", "docstring")
+
+    def test_invarianten_fanger_vertsformer_den_forrige_misset(self):
+        """Reviewerens fire eksempler, som alle slapp gjennom den forrige
+        lista. Testes eksplisitt saa invarianten ikke driver tilbake til en
+        oppramsing."""
+        for form in ("/Users/morten/EFC-review", "C:\\Users\\morten\\EFC",
+                     "/srv/agent-work/EFC", "/opt/agent_work/EFC",
+                     "~/EFC"):
+            self.assertIsNotNone(
+                self.ABSOLUTT.search("se " + form),
+                f"invarianten fanger ikke vertsformen {form}")
+
+    def test_invarianten_slipper_repo_relative_navn_gjennom(self):
+        for form in ("scripts/atlas_lesing.py", "docs/atlas-lesing.md",
+                     "origin/main:schema/regime_nodes.jsonld"):
+            self.assertIsNone(
+                self.ABSOLUTT.search("se " + form),
+                f"invarianten felte et repo-relativt navn: {form}")
+
+
+if __name__ == "__main__":
+    unittest.main()
