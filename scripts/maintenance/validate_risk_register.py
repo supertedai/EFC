@@ -28,10 +28,11 @@ Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
      merking i stedet for en falsk repo-sti).
   9. Append-only er en git-egenskap: med --base <ref> avvises en diff som
      fjerner eller endrer en linje i risiko-register.jsonl — med ETT unntak:
-     lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på
-     en eksisterende post kan endres i stedet for å appendes, fordi det er
-     menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
-     felt, omordning) er fortsatt forbudt.
+     en komplett menneskelig gateovergang på en eksisterende ventende gatepost
+     (`oppdaget` + `venter` → `lukket` + `godkjent`, eller `superseded` +
+     `avslått`, alltid `gate_besluttet_av=menneske` og ny `sist_vurdert`).
+     Vilkårlige endringer i status, gate_decision, gate_besluttet_av eller
+     sist_vurdert er fortsatt not_append_only.
 
 Bruk:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
@@ -305,9 +306,28 @@ def _uten_lukkefelter(post: dict) -> dict:
     return {k: v for k, v in post.items() if k not in LUKKE_FELTER}
 
 
-def _lukkefelter_endret(gammel: dict, ny: dict) -> bool:
-    return any((k in gammel) != (k in ny) or gammel.get(k) != ny.get(k)
-               for k in LUKKE_FELTER)
+def _gyldig_gateovergang(gammel: dict, ny: dict) -> bool:
+    """Returner True bare for den dokumenterte menneskelige gateovergangen.
+
+    Lukkefeltene er ikke en generell oppdateringskanal. En eksisterende,
+    ventende gatepost kan bare avgjøres av mennesket, med en avsluttende status
+    og en ny vurderingsdato. Alle andre endringer må appendes som ny post.
+    """
+    beslutning = ny.get("gate_decision")
+    forventet_status = (
+        {"godkjent": "lukket", "avslått": "superseded"}.get(beslutning)
+        if isinstance(beslutning, str) else None
+    )
+    return (
+        gammel.get("gate_required") is True
+        and gammel.get("gate_decision") == "venter"
+        and gammel.get("status") == "oppdaget"
+        and gammel.get("gate_besluttet_av") is None
+        and beslutning in ("godkjent", "avslått")
+        and ny.get("gate_besluttet_av") == "menneske"
+        and ny.get("status") == forventet_status
+        and ny.get("sist_vurdert") != gammel.get("sist_vurdert")
+    )
 
 
 def append_only(base: str, rot: Path) -> list[dict]:
@@ -357,8 +377,9 @@ def append_only(base: str, rot: Path) -> list[dict]:
             # Et annet felt enn lukkefeltene ble endret.
             return [{"type": "not_append_only", "base": base, "risk_id": rid,
                      "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
-        if not _lukkefelter_endret(gammel, ny):
-            # Identisk linje fjernet og lagt til igjen = ren omordning.
+        if not _gyldig_gateovergang(gammel, ny):
+            # Lukkefeltene er ikke et generelt unntak: bare en komplett,
+            # menneskelig gateovergang fra ventende oppdaget post er lov.
             return [{"type": "not_append_only", "base": base, "risk_id": rid,
                      "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
     return []

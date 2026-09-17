@@ -195,8 +195,19 @@ def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
     reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
                    json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # Én godkjent, én venter → gaten er fortsatt ikke oppfylt.
+    # Én godkjent + én ugyldig beslutning → fail closed, selv uten «venter».
     p1.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
+    p2["gate_decision"] = "ikke_nodvendig"
+    reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
+                   json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
+    r_invalid = _kall(rot, "--diff", "HEAD", "--json", "--gate", "--change-id", "t_deadbeef")
+    ut_invalid = json.loads(r_invalid.stdout)
+    assert ut_invalid["gate"]["oppfylt"] is False
+    assert ut_invalid["gate"]["uavklart"] == ["RISK-BLAST_RADIUS-0002"]
+    assert r_invalid.returncode == 1
+
+    # Én godkjent, én venter → gaten er fortsatt ikke oppfylt.
+    p2["gate_decision"] = "venter"
     reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
                    json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
     r = _kall(rot, "--diff", "HEAD", "--json", "--gate", "--change-id", "t_deadbeef")

@@ -101,13 +101,14 @@ en menneskelig beslutning. `blast_radius.py --gate` nekter (exit 1) å slippe
 gjennom en kritisk/blokkerende endring uten en slik beslutning i registeret.
 
 **Hvordan mennesket skriver beslutningen.** Registeret er append-only, men
-beslutningen er IKKE en ny linje — den er en endring av **lukkefeltene** på den
-posten som venter: `status` (`oppdaget` → `lukket`/`superseded`),
-`gate_decision` (`venter` → `godkjent`/`avslått`), `gate_besluttet_av`
-(`null` → `menneske`) og `sist_vurdert` (beslutningsdatoen). Det er det ENE
-unntaket `append_only()` tillater: alt annet på posten er immutabelt funndata,
-og en diff som rører et annet felt — eller sletter posten, eller bare flytter
-den (omordning) — er fortsatt `not_append_only` og stopper CI.
+beslutningen er IKKE en ny linje — den er en komplett endring av lukkefeltene
+på posten som venter: `status` (`oppdaget` → `lukket` ved godkjent, eller
+`superseded` ved avslått), `gate_decision` (`venter` → `godkjent`/`avslått`),
+`gate_besluttet_av` (`null` → `menneske`) og `sist_vurdert` (ny
+beslutningsdato). Det er det ENE unntaket `append_only()` tillater. En
+vilkårlig endring av bare status, beslutning, beslutningstaker eller dato —
+eller en diff som rører et annet felt, sletter posten, eller bare flytter den
+(omordning) — er `not_append_only` og stopper CI.
 
 **Beslutningen er per post, ikke per change-id.** En change-id kan ha flere
 åpne gate-poster (seedet har to for `t_f882cfca`). `--gate` slipper ikke

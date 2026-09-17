@@ -194,18 +194,28 @@ def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
     base = subprocess.run(git + ["rev-parse", "HEAD"], cwd=tmp_path,
                           capture_output=True, text=True).stdout.strip()
 
-    # (a) beslutningen: flip av lukkefeltene på posten — lovlig.
+    # (a) beslutningen: komplett gateovergang — lovlig.
     besluttet = {**GYLDIG, "status": "lukket", "gate_decision": "godkjent",
                  "gate_besluttet_av": "menneske", "sist_vurdert": "2026-09-18"}
     register.write_text(json.dumps(besluttet, ensure_ascii=False) + "\n", encoding="utf-8")
     assert vr.append_only(base, tmp_path) == [], "gatebeslutningen er det ene unntaket"
 
-    # (b) et annet felt (rest_risiko) endret uten beslutning — fortsatt forbudt.
+    # (b) hvert enkelt lukkefelt er fortsatt beskyttet mot vilkårlig omskriving.
+    for endring in (
+        {"status": "lukket"},
+        {"sist_vurdert": "2026-09-18"},
+        {"gate_decision": "godkjent", "gate_besluttet_av": "menneske"},
+    ):
+        register.write_text(json.dumps({**GYLDIG, **endring}, ensure_ascii=False) + "\n",
+                            encoding="utf-8")
+        assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
+
+    # (c) et annet felt (rest_risiko) endret uten komplett beslutning — fortsatt forbudt.
     register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omskrevet"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
     assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
 
-    # (c) en post slettet — fortsatt forbudt.
+    # (d) en post slettet — fortsatt forbudt.
     register.write_text("", encoding="utf-8")
     assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
 

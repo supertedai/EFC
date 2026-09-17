@@ -318,12 +318,19 @@ def slaa_opp_gate(poster: list[dict], change_id: str) -> dict:
     godkjent = [p for p in gate_poster
                 if p.get("gate_decision") == "godkjent"
                 and p.get("gate_besluttet_av") == "menneske"]
-    oppfylt = bool(godkjent) and not venter and not avslaatt
+    # Fail closed: every gate-post must be explicitly approved by a human.
+    # A malformed, missing, or "ikke_nodvendig" decision is unresolved too.
+    uavklart = [p for p in gate_poster if not (
+        p.get("gate_decision") == "godkjent"
+        and p.get("gate_besluttet_av") == "menneske"
+    )]
+    oppfylt = bool(gate_poster) and not uavklart
     return {
         "change_id": change_id,
         "poster": [p.get("risk_id") for p in mine],
         "venter": [p.get("risk_id") for p in venter],
         "avslaatt": [p.get("risk_id") for p in avslaatt],
+        "uavklart": [p.get("risk_id") for p in uavklart],
         "oppfylt": oppfylt,
         "besluttet_av": godkjent[0].get("gate_besluttet_av") if godkjent else None,
         "risk_id": godkjent[0].get("risk_id") if godkjent else None,
