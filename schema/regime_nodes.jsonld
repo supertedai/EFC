@@ -880,7 +880,7 @@
    "id": "efc.water_phase_engine",
    "regime": {
     "name": "H2O fase-grense-beregning",
-    "validity": "gyldighetsomraadene er identiske med h2o-nodenes: damp [273.16, 373.15] K, smelte [0, 208.566] MPa (ice Ih), sublimasjon [50 K, t_triple]",
+    "validity": "damp [273.16, 373.15] K; smelte [0, 208.566] MPa (ice Ih); sublimasjon [50.0 K, t_triple] — for kanoniske parametre identisk med h2o-nodenes gyldighetsomraader",
     "law_form": "Clausius-Clapeyron med Watson L_v(T) (n=0.33) — numerisk integrasjon, ingen tabell-oppslag"
    },
    "phase": "computation_engine",

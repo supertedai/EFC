@@ -7,6 +7,7 @@ check:
 	python3 scripts/maintenance/validate_activity_log.py
 	python3 scripts/maintenance/validate_risk_register.py
 	python3 scripts/maintenance/verifier_bench.py
+	python3 scripts/maintenance/efc_bro_synk.py --sjekk
 
 inntak-dry:
 	python3 scripts/maintenance/efc_inntak.py --dry-run

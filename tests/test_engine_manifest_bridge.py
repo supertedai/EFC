@@ -14,6 +14,7 @@ TDD: skrives foer regime_node() finnes — feiler med AttributeError.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -121,23 +122,117 @@ def test_engine_carries_the_phase_nodes():
     assert ("efc.water_phase_engine", "CARRIES", "h2o.gas") in preds
 
 
-def test_engine_validity_matches_atlas_validity():
-    """Maskinell konsistens: motorens deklarerte gyldighetstall skal finnes
-    i de tilsvarende h2o-nodenes validity-tekster — broen er maalbar,
-    ikke bare prosa."""
+# --------------------------------------------------------------------------
+# Maskinell tallkonsistens motor <-> atlas (empati-porten)
+# --------------------------------------------------------------------------
+#
+# Reviewfunn 2026-09-17 (trinn 4): den forrige testen var en
+# substring-test — den sa at broen var «maskinelt verifisert» mens den
+# bare lette etter tekstbiter. Denne bolken sammenligner TALL: motorens
+# deklarerte grenser mot h2o-nodenes tall, begge veier, og motorens
+# eget atlas-node mot regime_node(). «50 K» og «50.0» er samme grense;
+# «50» som en del av «IAPWS R14-08» er en referanse og hoppes over.
+
+# Kurvenavn i motorens deklarasjon -> h2o-nodene grensen gjelder for.
+GRENSE_TIL_NODER = {
+    "damp": ("h2o.liquid", "h2o.gas"),
+    "smelte": ("h2o.solid",),
+    "sublimasjon": ("h2o.solid",),
+}
+
+# Tall med enhet («50 K», «208.566 MPa», «101325 Pa») — ikke prosa-tall.
+_TALL_MED_ENHET = re.compile(r"(\d+(?:[.,]\d+)?)\s*(K|MPa|Pa)\b")
+_GRENSE = re.compile(r"(damp|smelte|sublimasjon)\s*\[([^\]]+)\]")
+
+
+def _tall(tekst: str) -> list:
+    return [float(t.replace(",", "."))
+            for t in re.findall(r"\d+(?:[.,]\d+)?", tekst)]
+
+
+def _har(tall: float, kandidater: list) -> bool:
+    """Numerisk likhet — atlasets «50» og motorens «50.0» er samme grense."""
+    return any(abs(tall - k) <= 1e-9 * max(1.0, abs(tall)) for k in kandidater)
+
+
+def _grenser(validity: str) -> dict:
+    """Motorens deklarerte grenser, per kurvenavn, som tall.
+
+    Grensen kan vaere skrevet med et symbol («t_triple»); symbolet er
+    parameterens navn og verdien ligger i PARAMS — her leses bare tallene.
+    """
+    return {navn: _tall(kropp) for navn, kropp in _GRENSE.findall(validity)}
+
+
+def test_engine_declaration_carries_the_three_machine_readable_limits():
+    """Deklarasjonen maa ha alle tre grensene som TALL — ellers ville
+    testene under vaert tomme (og broen «verifisert» uten innhold)."""
+    grenser = _grenser(
+        WaterPhaseEngine().regime_node(PARAMS)["regime"]["validity"])
+    assert set(grenser) == set(GRENSE_TIL_NODER)
+    for navn, tall in grenser.items():
+        assert tall, f"{navn}: ingen tall i grensen"
+
+
+def test_engine_declared_limits_are_the_atlas_nodes_limits():
+    """FOROVER: hver grense motoren deklarerer skal finnes som TALL i
+    validity-teksten til h2o-noden den gjelder for.
+
+    Unntak: 0 MPa — den naturlige nullen, som atlaset ikke siterer.
+    """
     node = WaterPhaseEngine().regime_node(PARAMS)
-    validity = node["regime"]["validity"]
-    inst = _instance()
-    h2o = {n["id"]: n for n in inst["nodes"]}
-    # Motoren deklarerer de tre grensene; atlaset gjentar dem per fase.
-    assert "273.16" in validity and "373.15" in validity
-    assert "208.566" in validity
-    for nid in ("h2o.solid", "h2o.liquid", "h2o.gas"):
-        assert h2o[nid]["regime"]["validity"], nid
-    # Eksplisitt bro: gyldighetsteksten er IDENTISK med det motoren
-    # rapporterer for sin kalibrering.
-    assert "208.566" in h2o["h2o.solid"]["regime"]["validity"]
-    assert "373.15" in h2o["h2o.liquid"]["regime"]["validity"]
+    grenser = _grenser(node["regime"]["validity"])
+    h2o = {n["id"]: n for n in _instance()["nodes"]}
+    for navn, noder in GRENSE_TIL_NODER.items():
+        for tall in grenser[navn]:
+            if tall == 0.0:
+                continue
+            for nid in noder:
+                assert _har(tall, _tall(h2o[nid]["regime"]["validity"])), (
+                    f"motoren deklarerer {tall} i «{navn}», men {nid} "
+                    f"nevner den ikke: {h2o[nid]['regime']['validity']}")
+
+
+def test_atlas_node_numbers_are_numbers_the_engine_holds():
+    """BAKOVER: hvert tall MED ENHET i h2o-nodenes validity skal motoren
+    kunne gjenskape — fra en deklarert grense eller fra en parameter.
+    Et tall atlaset siterer og motoren ikke holder, er en loes påstand.
+    """
+    node = WaterPhaseEngine().regime_node(PARAMS)
+    grenser = _grenser(node["regime"]["validity"])
+    motorens = [t for tall in grenser.values() for t in tall] + [
+        float(v) for v in PARAMS.values()]
+    h2o = {n["id"]: n for n in _instance()["nodes"]}
+    for navn, noder in GRENSE_TIL_NODER.items():
+        for nid in noder:
+            for raa, enhet in _TALL_MED_ENHET.findall(
+                    h2o[nid]["regime"]["validity"]):
+                verdi = float(raa.replace(",", "."))
+                assert _har(verdi, motorens), (
+                    f"{nid} siterer {verdi} {enhet}, men motoren holder "
+                    f"ikke det tallet (grenser: {grenser})")
+
+
+def test_engine_node_and_its_atlas_node_agree_on_derived_fields():
+    """Motorens EGET atlas-node skal baere de samme parameteravledede
+    feltene som regime_node() gir — samme krav som trinn 11 stiller til
+    de fem kosmologiske motorene (test_broer_matcher_atlas_maskinelt).
+
+    Maalt 2026-09-17: vann-noden feilet kravet — atlasets validity var en
+    ELDRE tekst enn motorens (motoren ble skjerpet i review 2026-09-16 og
+    atlaset ble ikke regenerert). Regenerering:
+    scripts/maintenance/efc_bro_synk.py.
+
+    Bare de avledede tekstfeltene sjekkes her. Resten av noden — nivaa,
+    epistemikk/sosial_mekanisme, maale_paradigme/koordinater,
+    stipulasjoner, buss_domene — har avvik i BEGGE retninger mellom motor
+    og atlas (maalt i samme audit), og konvensjonen maa vedtas én gang for
+    alle noder; det ligger i eget kort, ikke her.
+    """
+    node = WaterPhaseEngine().regime_node(PARAMS)
+    atlas = {n["id"]: n for n in _instance()["nodes"]}["efc.water_phase_engine"]
+    assert atlas["regime"]["validity"] == node["regime"]["validity"]
+    assert atlas["regime"]["law_form"] == node["regime"]["law_form"]
 
 
 def test_engine_regime_node_reflects_effective_params():
