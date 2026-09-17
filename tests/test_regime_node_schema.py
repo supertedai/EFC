@@ -24,8 +24,21 @@ _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
+# Felles leser av git-treet — se scripts/maintenance/_repo_tre.py.
+_MAINT = _REPO / "scripts" / "maintenance"
+if str(_MAINT) not in sys.path:
+    sys.path.insert(0, str(_MAINT))
+from _repo_tre import filer as _tre_filer  # noqa: E402
+
 SCHEMA_PATH = _REPO / "schema" / "regime_node.schema.json"
 INSTANCE_PATH = _REPO / "schema" / "regime_nodes.jsonld"
+
+# Den private hjemmeadressen skrives aldri rett ut i denne fila. Den er selv
+# sporet, og regresjonsvernet nedenfor skanner alle sporede filer — skrevet
+# rett ut ville vakten felt seg selv og måttet hatt et unntak. Bygd av deler
+# er ingen fil unntatt, heller ikke vakten selv.
+HJEM = "Hassel" + "vegen"
+POSTSTED = "4051 " + "Sola"
 
 try:
     import jsonschema
@@ -378,7 +391,7 @@ def test_no_private_site_info_in_public_instance():
     site-ID eller intern filsti. Full proveniens ligger i et privat
     artifact — regresjonsvern mot aa gjeninnfoere den her."""
     raw = INSTANCE_PATH.read_text(encoding="utf-8")
-    for forbudt in ["Hasselvegen", "380961", "/opt/hermes-opus", "idSite",
+    for forbudt in [HJEM, "380961", "/opt/hermes-opus", "idSite",
                     "maalt 2026-09-16T13:41:57Z", "intern MCP-bro",
                     "feltkoder"]:
         assert forbudt not in raw, f"privat info lekker: {forbudt}"
@@ -466,23 +479,30 @@ def test_observation_nodes_sourced_from_atlas():
             f"{obs_id}: kilde peker ikke til atlaset"
 
 
+# Forbudte strenger for vernet under, bygd av de samme delene som over.
+FORBUDTE_ADRESSER = (HJEM, POSTSTED, HJEM + " 5")
+
+
 def test_ingen_privat_info_i_hele_repoet():
-    """Regresjonsvern (utvidet 2026-09-17): Hasselvegen/adressen skal
-    ikke finnes i NOEN fil i repoet — vakten dekket bare schema-
-    mappen, og efc-toolkit lakk adresse + telefon i 13 filer."""
-    for sti in Path(".").rglob("*"):
-        if ".git" in sti.parts or "__pycache__" in sti.parts:
-            continue
+    """Regresjonsvern (utvidet 2026-09-17): hjemmeadressen skal ikke finnes i
+    NOEN sporet fil — vakten dekket bare schema-mappen, og efc-toolkit lakk
+    adresse + telefon i 13 filer.
+
+    Leser git-treet, ikke disken (`_repo_tre`). En `rglob` over arbeidsstreet
+    fant `.worktrees/` i hovedklonen — gitignorert, men på disk — og felt
+    testen på filer som ikke er i repoet.
+    """
+    for sti in _tre_filer(_REPO):
         if sti.suffix.lower() in (".csv", ".png", ".pdf", ".jpg", ".pyc"):
             continue  # vitenskapelige data / kompilert cache
         try:
             raw = sti.read_text(encoding="utf-8", errors="ignore")
         except OSError:
             continue
-        for forbudt in ("Hasselvegen", "4051 Sola", "Hasselvegen 5"):
-            if forbudt in raw and str(sti) != \
-                    "tests/test_regime_node_schema.py":
-                raise AssertionError(f"privat adresse lekker: {sti}")
+        for forbudt in FORBUDTE_ADRESSER:
+            if forbudt in raw:
+                raise AssertionError(
+                    f"privat adresse lekker: {sti.relative_to(_REPO).as_posix()}")
 
 
 def test_ingen_tomme_redaksjons_felt_i_toolkit():

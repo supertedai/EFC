@@ -37,3 +37,13 @@ docs/papers/**/*.out
 
 # Byggeartefakter fra lokal pakkeinstallasjon
 src/*.egg-info/
+
+# uv.lock: usporet artefakt fra en lokal `uv sync` (målt 2026-09-17: aldri
+# sporet — `git log --all -- uv.lock` er tom). Makefile:install er
+# `uv sync --frozen`, som KREVER en lås, så valget står mellom å spore den
+# eller å ignorere den. Den ignoreres her fordi låsen ikke kan etterprøves på
+# denne maskinen (uv er ikke installert, `uv lock --check` kan ikke kjøres) og
+# `--frozen` feiler høylytt om den er ute av synk med pyproject.toml. Skal uv
+# bli installasjonsveien, hører låsen i git sammen med en CI-sjekk som holder
+# den fersk — ellers får vi en fjerde versjonskilde ingen validerer.
+uv.lock

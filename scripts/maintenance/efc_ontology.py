@@ -67,10 +67,14 @@ from __future__ import annotations
 
 import html
 import json
-import os
 import re
 import sys
 from pathlib import Path
+
+# Søskenmodulen ligger ved siden av denne fila, og verktøyet lastes både som
+# script og via importlib fra testene — da er ikke katalogen på sys.path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _repo_tre import filer as _tre_filer  # noqa: E402
 
 NS = "https://supertedai.github.io/EFC/ontology#"
 ROOT = Path(__file__).resolve().parents[2]
@@ -99,24 +103,24 @@ TERM_RE = re.compile(r"^(efc|EFC):([A-Za-z_][A-Za-z0-9_\-]*)$")
 def jsonld_files(root: Path = ROOT):
     """(path, doc) for every JSON document with a top-level @context.
 
+    Read from the git tree (`_repo_tre.filer`), not from the disk: a walk over
+    the working tree found `.worktrees/` in the main clone — gitignored, but
+    present — and reported legacy bindings that are not in the repository.
+
     The generated vocabulary itself is excluded: it binds `efc` and lists
     every term as a value, so scanning it would feed the generator its own
-    output — --check then reported "stale" one second after --apply."""
+    output — --check then reported "stale" one second after --apply.
+    """
     egen = (root / "docs" / "ontology.jsonld").resolve()
-    for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS)
-        for fn in sorted(filenames):
-            if not (fn.endswith(".json") or fn.endswith(".jsonld")):
-                continue
-            p = Path(dirpath) / fn
-            if p.resolve() == egen:
-                continue
-            try:
-                doc = json.loads(p.read_text(encoding="utf-8"))
-            except (OSError, ValueError, UnicodeDecodeError):
-                continue
-            if isinstance(doc, dict) and "@context" in doc:
-                yield p, doc
+    for p in _tre_filer(root, suffixes={".json", ".jsonld"}, skip_dirs=SKIP_DIRS):
+        if p.resolve() == egen:
+            continue
+        try:
+            doc = json.loads(p.read_text(encoding="utf-8"))
+        except (OSError, ValueError, UnicodeDecodeError):
+            continue
+        if isinstance(doc, dict) and "@context" in doc:
+            yield p, doc
 
 
 def bindings(doc: dict) -> list[tuple[str, str]]:

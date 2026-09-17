@@ -82,6 +82,11 @@ import sys
 from pathlib import Path
 from urllib.parse import quote
 
+# Søskenmodulen ligger ved siden av denne fila, og verktøyet lastes både som
+# script og via importlib fra testene — da er ikke katalogen på sys.path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _repo_tre import filer as _tre_filer  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[2]
 AUTHORITY = "https://supertedai.github.io/EFC/"
 DIALECT = "https://json-schema.org/draft/2020-12/schema"
@@ -105,12 +110,14 @@ def served_id(rel: str) -> str:
 
 
 def _files(root: Path, suffixes):
-    for p in sorted(root.rglob("*")):
-        if p.suffix not in suffixes or any(part in SKIP_DIRS for part in p.parts):
-            continue
-        if p.relative_to(root).as_posix() in SKIP_FILES:
-            continue
-        yield p
+    """Filene verktøyet svarer på: git-treet, ikke arbeidsstreet.
+
+    Leste tidligere disken med `root.rglob("*")`. I hovedklonen fant den
+    `.worktrees/` — gitignorert, men på disk — og `check()` ble rød lokalt og
+    grønn i CI, som kloner rent. Se `_repo_tre.py` (kanban t_12494ba1).
+    """
+    return _tre_filer(root, suffixes=set(suffixes), skip_dirs=SKIP_DIRS,
+                      skip_files=SKIP_FILES)
 
 
 def _load(p: Path):
