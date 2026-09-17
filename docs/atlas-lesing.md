@@ -43,6 +43,31 @@ does not fetch on its own — it reports the full commit SHA it read, so a
 stale ref is visible in the result rather than in the reader's assumption.
 Pass `hent=True` when the reader wants the freshest available.
 
+## Reading the gaps — with a size
+
+The rule for *how large* a gap is lives in `scripts/atlas_volum.py`. Same
+discipline as above: the number is not restated here, because a number
+written twice is a number that drifts.
+
+    python3 scripts/atlas_volum.py --hull     # not-covered, largest first
+    python3 scripts/atlas_volum.py --alle     # every domain, largest first
+
+Sorting alphabetically answers a question nobody asked. **Historical
+measurement, 2026-09-17** — kept because it is what motivated the rule,
+not as a current figure: `verden.vaer` carried 190 229 messages and
+`verden.utdanning` 2 598, and the reading was identical for both — 73×
+apart. The largest prediction-and-settlement loop on the bus sat behind
+the same words as the smallest. Today's figure comes from `--hull`.
+
+The size is **measured**, not estimated. `--maal` reads the per-subject
+message counts from the bus through the house tool for the bus (its path
+is given by `VERDEN_MCP`; the module never carries a host path) and writes
+them to `schema/nats_domener.snapshot.json`, whose `_proveniens.maalt` is
+the only freshness claim made anywhere. `schema/atlas_dekning.json` carries
+the sum per domain, and a test derives that sum again rather than trusting
+it. A volume table in the code would rot at the first change in bus
+traffic — and a test forbids one.
+
 ## What is *not* claimed here
 
 An operations guard in a separate systems repository applies the same
