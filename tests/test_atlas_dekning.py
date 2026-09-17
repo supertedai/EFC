@@ -83,13 +83,17 @@ class TestDekningsinvarianten(unittest.TestCase):
             self.assertTrue(rad.get("begrunnelse", "").strip(),
                             f"{domene} mangler begrunnelse")
 
-    def test_dekket_status_navngir_noder_som_faktisk_finnes(self):
-        """Reviewfunn 1 og 2, det blokkerende. `dekket` og `delvis` er
-        PAASTANDER om at atlaset beskriver domenet. Hver navngitte node maa
-        finnes — og en dekket-status uten en eneste node er nettopp den
-        udekkede påstanden som gjorde at verden.vaer kunne staa som dekket
-        uten at noen node hadde den id-en."""
-        finnes = {n["id"] for n in _les(NODER)["nodes"]}
+    def test_dekket_status_navngir_noder_som_faktisk_eier_domenet(self):
+        """Reviewfunn runde 1 (id-eksistens) og runde 2 (SEMANTIKK).
+
+        Runde 1: `dekket` kunne innfris av en hvilken som helst node.
+        Runde 2: selv med navngitte noder kontrollerte testen bare at ID-en
+        fantes — en eksisterende men irrelevant node ville passert.
+
+        Naa maa noden EIE domenet: dens eget `buss_domene`-felt skal peke
+        tilbake paa domenet den begrunner. Det er den maskinelle koblingen
+        som gjor semantikk til noe en test kan se."""
+        noder = {n["id"]: n for n in _les(NODER)["nodes"]}
         for domene, rad in _les(DEKNING)["domener"].items():
             ns = rad.get("noder", [])
             if rad["status"] in ("dekket", "delvis"):
@@ -98,9 +102,30 @@ class TestDekningsinvarianten(unittest.TestCase):
                         f"— en dekket-status maa kunne innfris")
             for n in ns:
                 self.assertIn(
-                    n, finnes,
-                    f"{domene} peker paa noden '{n}', som ikke finnes i "
-                    f"regime_nodes.jsonld")
+                    n, noder,
+                    f"{domene} peker paa noden '{n}', som ikke finnes")
+                self.assertEqual(
+                    noder[n].get("buss_domene"), domene,
+                    f"{domene} peker paa '{n}', men den noden har "
+                    f"buss_domene={noder[n].get('buss_domene')!r} — en "
+                    f"eksisterende node er ikke det samme som en relevant en")
+
+    def test_hvert_domene_med_noder_er_deklarert_dekket(self):
+        """Motsatt vei av den over: har en node sagt at den beskriver et
+        domenet, skal deklarasjonen si det samme. Uten denne kunne atlaset
+        beskrive et domene mens deklarasjonen sa at det var udekket —
+        og deklarasjonen er det mennesker leser."""
+        noder = _les(NODER)["nodes"]
+        eide = {n["buss_domene"] for n in noder if n.get("buss_domene")}
+        dekl = _les(DEKNING)["domener"]
+        for domene in sorted(eide):
+            self.assertIn(domene, dekl,
+                          f"noder beskriver {domene}, men det staar ikke i "
+                          f"deklarasjonen")
+            self.assertIn(
+                dekl[domene]["status"], ("dekket", "delvis"),
+                f"{domene} har noder som beskriver det, men er deklarert "
+                f"'{dekl[domene]['status']}'")
 
     def test_snapshottet_baerer_sin_egen_proveniens(self):
         """Uten maaletidspunkt kan ingen se om snaoshottet er ferskt."""
