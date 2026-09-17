@@ -80,6 +80,37 @@ def les_snapshot(repo: Path, ref: str) -> dict:
     return d.get("domener", d)
 
 
+
+def _epistemisk(noder: list[dict]) -> dict:
+    """Hva sloeyfa INNEHOLDER — ikke bare hva den er koblet til.
+
+    Maalt 2026-09-17 ved aa bruke oppslaget: 0 av 73 offentlige noder kunne
+    felles av en observasjon. Det er ikke en koblingsfeil — det er en
+    egenskap ved innholdet, og den forsvant saa snart samtalen var over.
+
+    Offentlige og interne telles hver for seg: de offentlige er det
+    PUBLISERTE atlaset, og et hull der er alvorligere enn blant vaare egne.
+    """
+    def har_falsifikator(n: dict) -> bool:
+        return "ville_falsifisere" in json.dumps(n, ensure_ascii=False)
+
+    offentlige = [n for n in noder if n.get("synlighet") == "offentlig"]
+
+    def tell(pred, mengde: list[dict]) -> tuple[int, int]:
+        return sum(1 for n in mengde if pred(n)), len(mengde)
+
+    def har(n: dict, felt: str) -> bool:
+        return bool(n.get(felt))
+
+    return {
+        "falsifikator": tell(har_falsifikator, noder),
+        "falsifikator_offentlig": tell(har_falsifikator, offentlige),
+        "prediksjon": tell(lambda n: har(n, "prediction"), noder),
+        "oppgjoer": tell(lambda n: har(n, "settlement"), noder),
+        "offentlige": len(offentlige),
+    }
+
+
 def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
     """Maal navigasjonen paa tvers av noder, motorer og NATS.
 
@@ -146,6 +177,7 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
             "domener_uten_node": domener_uten_node,
             "motorer_uten_buss": sorted(motorer_uten_buss),
         },
+        "epistemisk": _epistemisk(noder),
         "dekning": {
             "emner": (len(alle_emner) - len(emner_uten_node), len(alle_emner)),
             "domener": (len(snapshot) - len(domener_uten_node), len(snapshot)),
@@ -164,6 +196,9 @@ if __name__ == "__main__":
           f"{lag['emner']} emner i {lag['buss_domener']} domener")
     for navn, (n, t) in d["dekning"].items():
         print(f"  {navn:9}: {n}/{t} naar fram")
+    e = d["epistemisk"]
+    print(f"  epistemisk: kan felles {e['falsifikator_offentlig'][0]}/{e['falsifikator_offentlig'][1]} "
+          f"offentlige · prediksjon {e['prediksjon'][0]} · oppgjoer {e['oppgjoer'][0]}")
     for navn, hull in d["hull"].items():
         if hull:
             print(f"  HULL {navn} ({len(hull)}): {', '.join(str(h) for h in hull[:5])}"

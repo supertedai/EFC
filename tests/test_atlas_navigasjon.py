@@ -271,3 +271,56 @@ class TestUdekkedeGrener:
         d = atlas_navigasjon.naviger(repo, ref="HEAD")
         assert None not in d["kobling"]["domene_til_noder"].get("verden.energi", []), (
             "en node uten id havnet i koblingen — den kan ikke navngis")
+
+
+class TestEpistemiskTilstand:
+    """Hva sloeyfa INNEHOLDER — ikke bare hva den er koblet til.
+
+    Maalt 2026-09-17 ved aa BRUKE oppslaget: 0 av 73 offentlige noder kunne
+    felles av en observasjon, og 0 av 82 bar et utfall. Begge var
+    engangsobservasjoner fra en samtale. Uten en maaling forsvinner de naar
+    noen spoer igjen — og et atlas som ikke kan si hvor tynt det er, sier
+    implisitt at det er tykt.
+
+    Navigatoren maaler naa ogsaa dette, slik at tallene er reproduserbare og
+    et fall fanges.
+    """
+
+    def test_falsifikatorer_er_talt(self, nav: dict) -> None:
+        e = nav["epistemisk"]
+        assert "falsifikator" in e, f"mangler falsifikator-telling: {e}"
+        naadd, totalt = e["falsifikator"]
+        assert 0 <= naadd <= totalt
+        assert totalt == nav["lag"]["noder"], (
+            f"tellingen dekker ikke alle nodene: {naadd}/{totalt} mot "
+            f"{nav['lag']['noder']} noder")
+
+    def test_prediksjoner_og_oppgjoer_er_talt(self, nav: dict) -> None:
+        e = nav["epistemisk"]
+        for nokkel in ("prediksjon", "oppgjoer"):
+            assert nokkel in e, f"mangler {nokkel}-telling: {e}"
+            naadd, totalt = e[nokkel]
+            assert 0 <= naadd <= totalt
+
+    def test_offentlige_og_interne_er_skilt(self, nav: dict) -> None:
+        """Et hull blant de OFFENTLIGE er alvorligere enn blant de interne.
+
+        De offentlige er det publiserte atlaset; de interne er vaare egne.
+        """
+        e = nav["epistemisk"]
+        assert "falsifikator_offentlig" in e, (
+            f"offentlige og interne maa telles hver for seg: {e}")
+        off, tot = e["falsifikator_offentlig"]
+        assert tot > 0, "forutsetning: det finnes offentlige noder"
+        assert off <= tot
+
+    def test_tallet_er_ikke_skjult(self, nav: dict) -> None:
+        """Naar null offentlige noder kan felles, skal det STAA — ikke skjules.
+
+        Et atlas der dette tallet er 0 og ikke nevnes, ser fyldigere ut enn
+        det er. Det var hele funnet.
+        """
+        e = nav["epistemisk"]
+        off, tot = e["falsifikator_offentlig"]
+        assert isinstance(off, int) and isinstance(tot, int), (
+            "tallet skal kunne leses, ogsaa naar det er 0")
