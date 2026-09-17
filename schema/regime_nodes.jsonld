@@ -6136,7 +6136,7 @@
    },
    "regime": {
     "name": "Klimaets strålingsbalanse og regimebrytere",
-    "validity": "0D-energibalanseregime: energi inn (sol) -> buffer (hav, tau ~ 4 år) -> ut (emisjon). Is-albedo-bryteren er regimeovergangen MED TILSTANDSAVHENGIGE terskler (hysterese): fra «varm» faller systemet ved alpha_fall, fra «snøball» returnerer det først ved alpha_retur (< alpha_fall — snøballens reflektans stabiliserer den, idealisert bredde). IDEALISERT 0D-modell — IKKE en klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen romlig struktur.",
+    "validity": "0D-energibalanseregime: energi inn (sol) -> buffer (hav, tau ~ 1 år) -> ut (emisjon). Is-albedo-bryteren er regimeovergangen MED TILSTANDSAVHENGIGE terskler (hysterese): fra «varm» faller systemet ved alpha_fall, fra «snøball» returnerer det først ved alpha_retur (< alpha_fall — snøballens reflektans stabiliserer den, idealisert bredde). IDEALISERT 0D-modell — IKKE en klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen romlig struktur.",
     "law_form": "C dT/dt = (S/4)(1-alpha) - eps sigma T^4; T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); tau = C/(4 eps sigma T_eq^3)"
    },
    "phase": "computation_engine",
@@ -6192,6 +6192,10 @@
     "konsensusstatus": "minoritet",
     "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
     "konsensus_er_ikke_sannhet": true
+   },
+   "analogi": {
+    "avbildning": "havets varmekapasitet -> bufferens kapasitet (homeostase-buffer, batteri), is-albedo-terskelen -> terskelbryteren der den varme likevekten forsvinner, tau -> bufferens treghet",
+    "bryter_der": "klimaet er ikke en organisme og ikke en celle: ingen setpunkt-mekanisme (bare tiltrekningsbassenger), ingen hensikt, og 0D-approksimasjonen leser ett globalt gjennomsnitt — all romlig struktur er borte. Skalaene skiller ~10^20 i masse."
    },
    "maale_paradigme": {
     "koordinater": [
@@ -11004,6 +11008,22 @@
    "subject": "efc.grid_mikro_engine",
    "predicate": "COUPLED_TO",
    "object": "efc.mu_kz_engine"
+  },
+  {
+   "subject": "efc.klima_engine",
+   "predicate": "ANALOGOUS_TO",
+   "object": "homo.okologi"
+  },
+  {
+   "subject": "efc.klima_engine",
+   "predicate": "ANALOGOUS_TO",
+   "object": "homo.homeostase_buffer"
+  },
+  {
+   "subject": "efc.klima_engine",
+   "predicate": "COUPLED_TO",
+   "object": "homo.fluxus",
+   "note": "klimaet bærer flytens YTRE tilstand — energibalansen er rammen homo.fluxus lever i; kobling, ikke analogi"
   }
  ]
 }
