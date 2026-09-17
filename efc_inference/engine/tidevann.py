@@ -109,6 +109,7 @@ class TidevannEngine(EFCEngine):
                     "fase-låsing: P_rot = P_omløp")
         return {
             "id": "efc.tidevann_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Tidevann — periodisk gravitasjonskopling",
                 "validity": validity,

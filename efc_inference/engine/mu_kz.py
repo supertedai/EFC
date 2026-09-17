@@ -185,6 +185,7 @@ class MuKZEngine(EFCEngine):
     def regime_node(self, params: dict) -> dict:
         return {
             "id": "efc.mu_kz_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
                 "validity": (

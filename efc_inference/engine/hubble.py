@@ -112,6 +112,7 @@ class EFCHubble(EFCEngine):
                     "beskriver bare default-en)")
         return {
             "id": "efc.hubble_engine",
+            "perspektiv": "paradigme",
             "regime": {"name": "Hubble-motoren — ekspansjonen",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

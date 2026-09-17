@@ -114,6 +114,7 @@ class OekonomiEngine(EFCEngine):
                     "(1 + (r - g + tillit) * dt)")
         return {
             "id": "efc.oekonomi_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Minskys finansregimer — stabilitet som holding",
                 "validity": validity,

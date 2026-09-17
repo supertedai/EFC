@@ -124,6 +124,7 @@ class OrbitalEngine(EFCEngine):
                     "r_H = a (m/(3M))^(1/3)")
         return {
             "id": "efc.orbital_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Baneregimer — Kepler og bindingsterskler",
                 "validity": validity,

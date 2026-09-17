@@ -132,6 +132,7 @@ class KlimaEngine(EFCEngine):
                     "tau = C/(4 eps sigma T_eq^3)")
         return {
             "id": "efc.klima_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Klimaets strålingsbalanse og regimebrytere",
                 "validity": validity,

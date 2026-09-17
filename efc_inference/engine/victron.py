@@ -185,6 +185,7 @@ class VictronChargeEngine(EFCEngine):
         )
         return {
             "id": "efc.victron_cccv_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,

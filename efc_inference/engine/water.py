@@ -267,6 +267,7 @@ class WaterPhaseEngine(EFCEngine):
                     + ") — numerisk integrasjon, ingen tabell-oppslag")
         return {
             "id": "efc.water_phase_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "H2O fase-grense-beregning",
                 "validity": validity,
