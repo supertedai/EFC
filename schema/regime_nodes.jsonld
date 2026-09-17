@@ -3208,7 +3208,7 @@
       },
       "ontology": {
         "assumes": [
-          "motoren kjører SPESIALTILFELET av EFC-rammen: mu -> 1-grensen der entropi-rammen leses som masse -> krumning (konsensus-romtiden)"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py"
       },
@@ -3288,7 +3288,7 @@
       },
       "ontology": {
         "assumes": [
-          "motoren kjører SPESIALTILFELET av EFC-rammen: mu -> 1-grensen der entropi-rammen leses som masse -> krumning (konsensus-romtiden)"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "EFCVariantA; efc_inference/engine/hubble.py"
       },
@@ -3448,7 +3448,7 @@
       },
       "ontology": {
         "assumes": [
-          "motoren kjører SPESIALTILFELET av EFC-rammen: mu -> 1-grensen der entropi-rammen leses som masse -> krumning (konsensus-romtiden)"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "stub-kontrakt; efc_inference/engine/lensing.py"
       },
@@ -3524,7 +3524,7 @@
       },
       "ontology": {
         "assumes": [
-          "motoren kjører SPESIALTILFELET av EFC-rammen: mu -> 1-grensen der entropi-rammen leses som masse -> krumning (konsensus-romtiden)"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "stub-kontrakt; efc_inference/engine/cluster.py"
       },
@@ -4776,7 +4776,8 @@
       "ontology": {
         "assumes": [
           "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
-          "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen"
+          "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
+          "KANDIDAT-kobling til growth: MuKZEngine beregner mu(k,z), men injeksjonen i EFCGrowth er IKKE implementert — growth bruker cosmology.growth_source(...). Relasjonen er kartets plan, ikke kodens kobling."
         ],
         "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py"
       },
@@ -5044,7 +5045,7 @@
         "enheter": "s (SI, cesium) — lokal egentid; kosmisk tid t i FRW for comoving-observatører",
         "status": "valgt_ramme",
         "alternativer": [
-          "romtid-tid: egentiden er en funksjon av hastighet (Lorentz), masse (gravitasjonell tidsdilatasjon) og rommets skala a(t) (FRW) — det er to valgte rammer, ikke én",
+          "romtid-tid: egentiden bestemmes av METRIKKEN og verdenslinjen — hastighet blander koordinatene (Lorentz), masse setter metrikken som kilde (feltligningene), og a(t) er FRW-skalafaktoren; masse er ikke en direkte kinematisk variabel for egentiden",
           "termisk tid, hendelsesrekkefølge"
         ]
       }

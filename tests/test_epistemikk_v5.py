@@ -73,10 +73,29 @@ def test_efc_motorene_deklarerer_entropi_rammen():
 
 
 def test_lcdm_motorene_deklarerer_spesialtilfelle():
-    """LCDM-kjørende motorer skal si at de kjører mu -> 1-grensen —
-    ikke en konkurrerende ramme."""
+    """LCDM-kjørende motorer skal deklarere HELE grensen — mu -> 1
+    med alpha_cosmo = 0 og flat FLRW — ikke bare én parameter."""
     for nid in ("efc.rotation_engine", "efc.hubble_engine",
                 "efc.lensing_engine", "efc.cluster_engine"):
         n = _node(nid)
         assumes = n["ontology"]["assumes"]
-        assert any("SPESIALTILFELET" in a for a in assumes), nid
+        assert any("alpha_cosmo" in a and "mu -> 1" in a
+                   for a in assumes), nid
+
+
+def test_mu_kz_koblingen_er_deklarert_som_plan():
+    """Review-krav (PR #447 r1): mu_kz -> growth er IKKE implementert —
+    noden skal si det eksplisitt, ikke late som koden kobler."""
+    n = _node("efc.mu_kz_engine")
+    assumes = n["ontology"]["assumes"]
+    assert any("IKKE implementert" in a for a in assumes), (
+        "mu_kz-noden overpåstår koblingen til growth")
+
+
+def test_egentid_er_metrikk_og_verdenslinje():
+    """Review-krav: egentiden bestemmes av metrikken og verdenslinjen —
+    masse er kilde til metrikken, ikke direkte kinematisk variabel."""
+    n = _node("efc.selv.paradigme_tid")
+    alt = n["maale_paradigme"]["alternativer"]
+    assert any("METRIKKEN" in a and "verdenslinjen" in a for a in alt), (
+        "formuleringen av egentiden er upresis")
