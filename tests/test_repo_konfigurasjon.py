@@ -140,30 +140,57 @@ class TestIngenDekningForsvinner:
 
 
 class TestRotenVirker:
-    def test_pytest_fra_roten_feiler_ikke(self) -> None:
-        """Den faktiske maalingen: samlingen skal gaa gjennom fra roten."""
-        p = subprocess.run([sys.executable, "-m", "pytest", "--co", "-q"],
-                           cwd=REPO, capture_output=True, text=True, timeout=180)
-        assert p.returncode == 0, (
-            f"pytest fra repo-roten feiler i samlingen:\n"
-            f"{p.stdout[-800:]}\n{p.stderr[-400:]}")
-        # Sjekk den FAKTISKE feilmeldingen, ikke ordet «error» — det finnes
-        # tester som heter `..._error`, og en sjekk som ikke skiller dem
-        # feller paa navnet sitt eget innhold. Maalt: den felle skjedde.
-        assert "errors during collection" not in p.stdout.lower(), (
-            f"pytest samler noe det ikke skal:\n{p.stdout[-600:]}")
+    """`pytest` fra roten skal ikke samle forskningskoden.
 
-    def test_samlingen_er_stor_nok(self) -> None:
-        """Et gulv. Faller tallet, er noe blitt usynlig for suiten."""
-        p = subprocess.run([sys.executable, "-m", "pytest", "--co", "-q"],
-                           cwd=REPO, capture_output=True, text=True, timeout=180)
-        tall = 0
-        for ord_ in p.stdout.split():
-            if ord_.isdigit() and int(ord_) > tall:
-                tall = int(ord_)
-        assert tall >= 650, (
-            f"bare {tall} tester samles fra roten — maalt 667 den 2026-09-17. "
-            f"Er noe blitt utelatt?")
+    MERK hva som maales her, og hva som IKKE maales. CI installerer bare
+    `verify`-settet, ikke prosjektets egne kjerneavhengigheter (numpy,
+    scipy, matplotlib, pandas). `efc_inference/tests` importerer scipy, saa
+    «hele suiten kan samles» er et MILJOE-spoersmaal — ikke et
+    konfigurasjonsspoersmaal.
+
+    Foerste utgave av denne testen krevde at HELE samlingen lyktes. Den
+    passerte lokalt (der alt er installert) og feilet i CI med ni
+    collection-feil. Den maalte altsaa miljoeet sitt og kalte det
+    konfigurasjon. Det som faktisk skal vernes her er at `norecursedirs`
+    holder forskningskoden ute — det er en egenskap ved konfigurasjonen og
+    er lik i alle miljoeer.
+    """
+
+    def _samling(self) -> subprocess.CompletedProcess:
+        return subprocess.run([sys.executable, "-m", "pytest", "--co", "-q"],
+                              cwd=REPO, capture_output=True, text=True, timeout=180)
+
+    def test_forskningskoden_samles_ikke(self) -> None:
+        """Den presise maalingen: docs/ og pipelines/ skal ikke med."""
+        p = self._samling()
+        funnet = [linje for linje in p.stdout.splitlines()
+                  if linje.startswith("docs/") or linje.startswith("pipelines/")]
+        assert not funnet, (
+            f"forskningskoden samles fra roten — `norecursedirs` virker ikke:\n"
+            f"  {funnet[:5]}")
+
+    def test_hovedsuiten_er_med(self) -> None:
+        """...og `tests/` skal VAERE med. Utelatelse skal vaere valgt, ikke tilfeldig."""
+        p = self._samling()
+        assert any(linje.startswith("tests/") for linje in p.stdout.splitlines()), (
+            f"ingen tester under tests/ ble samlet fra roten:\n{p.stdout[-400:]}")
+
+    def test_efc_inference_testene_er_med(self) -> None:
+        """De 123 som `testpaths` fjernet skal fortsatt samles.
+
+        Kan feile paa manglende avhengigheter i miljoeet — men da sier vi
+        DET, i stedet for aa late som konfigurasjonen er feil.
+        """
+        p = self._samling()
+        linjer = p.stdout.splitlines()
+        if "errors during collection" in p.stdout:
+            mangler = [l for l in linjer if l.startswith("ERROR")]
+            pytest.skip(
+                f"miljoeet mangler avhengigheter, saa samlingen er ufullstendig "
+                f"({len(mangler)} moduler). Det er ikke en konfigurasjonsfeil: "
+                f"{mangler[:3]}")
+        assert any(linje.startswith("efc_inference/tests/") for linje in linjer), (
+            "efc_inference/tests samles ikke — de 123 testene er borte igjen")
 
 
 class TestAvhengighetslisteneErISynk:
