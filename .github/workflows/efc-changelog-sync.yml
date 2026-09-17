@@ -1,0 +1,60 @@
+name: EFC changelog sync
+
+# P0 t_26dd0ef5: changelogen er en deterministisk projeksjon av
+# git-historikken. Denne gaten gjør den DE FACTO påkrevd: enhver PR som
+# endrer public HTML (eller andre repo-områder) MÅ bære den regenererte
+# changelogen, ellers rød CI.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/public/**'
+      - 'docs/papers/**'
+      - 'docs/validation-ledger/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'config/**'
+      - 'governance/**'
+      - 'evidence/**'
+      - 'tests/**'
+      - 'efc_inference/**'
+      - 'src/**'
+      - '.github/workflows/efc-changelog-sync.yml'
+      - 'scripts/maintenance/changelog_projeksjon.py'
+  pull_request:
+    paths:
+      - 'docs/public/**'
+      - 'docs/papers/**'
+      - 'docs/validation-ledger/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'config/**'
+      - 'governance/**'
+      - 'evidence/**'
+      - 'tests/**'
+      - 'efc_inference/**'
+      - 'src/**'
+
+jobs:
+  changelog-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerer changelog (projeksjon)
+        run: python3 scripts/maintenance/changelog_projeksjon.py
+      - name: Krev sync (rød hvis changelog avviker)
+        run: |
+          if ! git diff --quiet -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json; then
+            echo "::error::Changelog ute av sync. Kjør: python3 scripts/maintenance/changelog_projeksjon.py og commit resultatet i samme PR."
+            git diff --stat -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json
+            exit 1
+          fi
+          echo "✓ Changelog er i sync (projeksjonen stemmer med historikken)"
