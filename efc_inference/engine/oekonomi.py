@@ -115,6 +115,8 @@ class OekonomiEngine(EFCEngine):
         return {
             "id": "efc.oekonomi_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "Minskys finansregimer — stabilitet som holding",
                 "validity": validity,
@@ -147,6 +149,7 @@ class OekonomiEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare gjeldsgrad og renter — ingen sektorbalanser, ingen valutadynamikk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "stabilitet -> tillit -> gjeld -> spekulasjon -> ponzi -> krise -> ny stabilitet — Minsky-syklusen",

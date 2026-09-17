@@ -48,7 +48,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: termometer og barometer ser bare T og P — noen faa kanaler av hele spekteret (elektromagnetisk, akustisk, kjemisk ...)",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "gittervibrasjoner <-> termisk balanse med omgivelsen — loopen holder krystallordenen oppe",
@@ -66,7 +67,12 @@
         "global": "isens albedo reflekterer sollys og kjoler hele jorden — lokale gitterbindinger, global klimaeffekt",
         "empathy_note": "en lokal fase har global rekkevidde uten at noen enkeltbinding 'vet' det — koblingen er maalbar, ikke tilsiktet."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_solid"
+      }
     },
     {
       "id": "h2o.liquid",
@@ -101,7 +107,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: T og P av hele spekteret — optiske, akustiske og kjemiske kanaler er lukket for dette instrumentet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "hydrogenbindinger dannes og brytes kontinuerlig — loopen holder vaesken flytende",
@@ -120,7 +127,12 @@
         "global": "havene transporterer varme over jorden (golfstrommen) og demper klimasvingninger — og regnbuen forutsetter flytende draaper i gassfase",
         "empathy_note": "lokal stromning, global vaermaskin — koblet via systemisk empati, lokalt-globalt."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_liquid"
+      }
     },
     {
       "id": "h2o.gas",
@@ -155,7 +167,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: T og P — gassen er usynlig i det synlige spekteret, men fullt tilstede i IR (drivhuseffekten er IR-baandbredde)",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "frie molekyler i kollisjon — loopen holder trykket og temperaturen spredt",
@@ -174,7 +187,12 @@
         "global": "vanndamp er den sterkeste drivhusgassen og driver hele vaersystemet — og regnbuen krever gassfase-luft rundt flytende draaper",
         "empathy_note": "et lokalt usynlig molekyl, en global atmosfaereeffekt — settes sammen med lys og draaper blir det en regnbue."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_gas"
+      }
     },
     {
       "id": "h2o.supercritical",
@@ -209,7 +227,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: T og P — men det synlige skillet observatoeren pleier aa se (fasegrense) er utenfor vinduets rekkevidde",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kontinuerlig fluid — ingen faseovergangs-loop",
@@ -227,7 +246,12 @@
         "global": "superkritisk vann brukes industrielt til oksidasjon og kraft — et laboratorieregime med global teknologisk rekkevidde",
         "empathy_note": "et regime ingen 'ser' i naturen, men som barer industri."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_supercritical"
+      }
     },
     {
       "id": "h2o.triple_point",
@@ -263,7 +287,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: termometret ser bare temperaturen — av tre samtidige faser ser det ETT tall",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "tre faselikevekter i ett punkt — loopen er balansen mellom dem",
@@ -281,7 +306,12 @@
         "global": "trippelpunktet definerer temperaturskalaen — hvert termometer i verden er kalibrert mot dette punktet",
         "empathy_note": "et punkt paa 611 Pa barer global maalestandard."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_triple_point"
+      }
     },
     {
       "id": "lys.sol",
@@ -317,7 +347,8 @@
       },
       "observer": {
         "bandwidth": "menneskets oeye fanger ~400-700 nm av hele EM-spekteret — resten (UV, IR, radio, roentgen) er usynlig for oss",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "fotonemisjon fra solen <-> absorpsjon og spredning i atmosfaeren",
@@ -335,7 +366,12 @@
         "global": "sollyset driver hele jordens klimasystem, fotosyntesen og hvert synsorgan",
         "empathy_note": "et lokalt foton, en global energioekonomi."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "h2o.droplet",
@@ -371,7 +407,8 @@
       },
       "observer": {
         "bandwidth": "instrumentvindu: hoyhastighetskamera eller oeye — form og farge, ikke molekylaer dynamikk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "overflatespenning <-> tyngdekraft — balansen holder sfaeren",
@@ -389,7 +426,12 @@
         "global": "millioner av draaper sammen lager buen — ingen enkelt draape er noedvendig",
         "empathy_note": "det statistiske ensemblet er globalt robust selv om hver draape faller ut — lokal del, globalt monster."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_droplet"
+      }
     },
     {
       "id": "optikk.dispersjon",
@@ -425,7 +467,8 @@
       },
       "observer": {
         "bandwidth": "det synlige vinduet er der dispersjonen blir til farge for oss — utenfor 400-700 nm er separasjonen usynlig for oeyet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "elektronrespons <-> lysfelt (Lorentz-oscillatoren) — loopen gir n(lambda)",
@@ -443,7 +486,12 @@
         "global": "dispersjonen gjoer alle himmelfenomenene (regnbue, halo, gronn blink) mulige",
         "empathy_note": "en lokal materialegenskap, en global himmelkatalog."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "regnbue",
@@ -479,7 +527,8 @@
       },
       "observer": {
         "bandwidth": "oeyet ser fargene fordi vinduet er ~400-700 nm — et UV- eller IR-oeye ville ikke sett buen slik, eller ikke sett den i det hele tatt",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "lys inn -> refraksjon -> intern refleksjon -> dispersjon -> lys ut mot observatoeren — straalebanen er loopen, og koherensen over svermen er ordenen",
@@ -498,7 +547,12 @@
         "global": "millioner av draaper summeres til en bue — og hver observatoer ser SIN egen bue, ingen andres",
         "empathy_note": "den lokale draapen vet ingenting om buen; den globale buen finnes bare gjennom observatorens ramme — systemisk empati: lokalt bidrag, globalt monster, og monsteret avhenger av hvem som ser."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "regnbue.observator",
@@ -534,7 +588,8 @@
       },
       "observer": {
         "bandwidth": "menneskets oeye: ~400-700 nm av hele det elektromagnetiske spekteret — fra radio til gammastraaling er mange dekader; vi ser noen faa nm av totalen",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "retina -> visuell korteks -> farge- og formopplevelse — loopen konstruerer buen som ett sammenhengende monster",
@@ -552,7 +607,12 @@
         "global": "observatoeren ER betingelsen for at buen finnes som monster — uten observator er det bare spredt lys i en draapesverm",
         "empathy_note": "det lokale oeyet og det globale monsteret er samme hendelse sett fra to sider — koblingen er rammen, og rammen er en deltaker."
       },
-      "perspektiv": "akademia"
+      "perspektiv": "akademia",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "efc.water_phase_engine",
@@ -588,7 +648,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare T og P — ingen optiske, akustiske eller kjemiske kanaler",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "parametre -> grensekurver -> faseklassifisering -> kalibrering mot trippelpunktet -> parametre",
@@ -606,7 +667,12 @@
         "global": "motorens gyldighetsomraader ER h2o-nodenes — og broen testes maskinelt mot regime_nodes.jsonld",
         "empathy_note": "motoren vet hvilke atlas-noder den baerer (CARRIES), og testene verifiserer at den ikke deklarerer noe atlaset motsier."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.water_phase_engine"
+      }
     },
     {
       "id": "efc.l0",
@@ -641,7 +707,8 @@
       },
       "observer": {
         "bandwidth": "ingen observator kan se L0 direkte — bare via L1-avtrykket (primordial P(k)); en kanal av hele spekteret",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kvantesvingninger -> inflasjon -> frodige svingninger — loopen gir strukturfroene",
@@ -659,7 +726,12 @@
         "global": "L0s svingninger er froene til all struktur i L2 — hele dagens univers hviler paa dem",
         "empathy_note": "det usynligste regimet baerer alt det synlige."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.l0"
+      }
     },
     {
       "id": "efc.l1",
@@ -695,7 +767,8 @@
       },
       "observer": {
         "bandwidth": "vi ser L1 gjennom EM-vinduet (CMB-fotoner) — en kanal av hele spekteret; gravitasjonsbolger er et nytt, ennå umodent vindu",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "plasma -> rekombinasjon -> frie fotoner — loopen fryser inn L1s tilstand",
@@ -714,7 +787,12 @@
         "global": "alle boblene sammen gir effektspekteret — og det spekteret er kosmologiens felles referansebilde",
         "empathy_note": "lokale svingninger, ett globalt bilde som alle modeller maales mot."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.l1"
+      }
     },
     {
       "id": "efc.l2",
@@ -751,7 +829,8 @@
       },
       "observer": {
         "bandwidth": "OBSERVATOREN STAAR I L2: vi ser bakover til L1 (CMB) og maaler veksten i vårt eget regime — EM-vinduet og gravitasjonsbolger er noen faa kanaler av hele spekteret",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst -> struktur -> gravitasjonell respons -> vekst — loopen bygger strukturen opp",
@@ -770,7 +849,12 @@
         "global": "strukturen i L2 er avtrykket av L0s fro og L1s plasma — hele kjeden er tilstede i hver maaling",
         "empathy_note": "en lokal vekstrate baerer hele regimets historie — og observatoren som maaler den er selv en del av strukturen."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.l2"
+      }
     },
     {
       "id": "efc.l3",
@@ -805,7 +889,8 @@
       },
       "observer": {
         "bandwidth": "ingen observator naar L3 — det er en predikert grense, ikke et maalbart vindu",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst -> metning -> stabil struktur — loopen stopper opp i en likevekt",
@@ -823,7 +908,12 @@
         "global": "L3 er hele kjedens endestasjon — alle regimene ender her",
         "empathy_note": "den fjerneste grensen er skrevet inn i den naermeste maalingen."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.l3"
+      }
     },
     {
       "id": "batteri.celle",
@@ -860,7 +950,8 @@
       },
       "observer": {
         "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "interkalering -> spenning -> strøm -> interkalering — loopen ER cellen",
@@ -879,7 +970,12 @@
         "global": "alle celler i serie danner batteriets felles spenning — en celle ute av balanse trekker ned hele pakken",
         "empathy_note": "cellen kjenner hele batteriet gjennom sin egen spenning."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "batteri.lading",
@@ -915,7 +1011,8 @@
       },
       "observer": {
         "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "CC -> kne -> CV -> full — ladeløypa er en tre-trinns emergence",
@@ -933,7 +1030,12 @@
         "global": "ladingen kobler produksjonen (sol) til lagringen (buffer) — overgangen ER koblingen",
         "empathy_note": "laderegimet er der energien bytter adresse."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "batteri.buffer",
@@ -970,7 +1072,8 @@
       },
       "observer": {
         "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "lade -> lagre -> slippe -> lade — bufferens puste-syklus",
@@ -988,7 +1091,12 @@
         "global": "batteriet kobler lokal produksjon til global (nettets) balanse — lokal lagring, systemisk empati",
         "empathy_note": "bufferens hele poeng er lokalglobal kobling: den jevner ut det lokale saa det globale holder seg."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "batteri.inverter",
@@ -1023,7 +1131,8 @@
       },
       "observer": {
         "bandwidth": "inverteren ser DC-siden og AC-siden hver for seg — broen selv har to vinduer",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "DC -> PWM -> AC -> forbruk; AC -> likeretting -> DC -> lading — den toveis konverteringsloopen",
@@ -1042,7 +1151,12 @@
         "global": "inverteren er porten mellom batteriregimet og nettregimet — uten den kan ikke bufferen nå forbruket",
         "empathy_note": "konvertereren er der de to verdenene forstaar hverandre."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.bao",
@@ -1078,7 +1192,8 @@
       },
       "observer": {
         "bandwidth": "surveyer ser bare roedforskyvning og vinkel — hver avstand er relativ til r_d",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "lydbolger i plasma -> fryses ved drag -> avtrykk i galakser — loopen gir linjalen",
@@ -1097,7 +1212,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.cmb_tt",
@@ -1133,7 +1253,8 @@
       },
       "observer": {
         "bandwidth": "Planck ser hele himmelen i ni frekvensbaand — ett spekter av hele L1",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "plasma -> rekombinasjon -> frie fotoner — loopen fryser L1s tilstand",
@@ -1152,7 +1273,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.cmb_lensing",
@@ -1187,7 +1313,8 @@
       },
       "observer": {
         "bandwidth": "linsingen leses av CMB-kartets hoeyere-ordens statistikk — strukturen i støyen",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "L2-struktur -> linser L1-fotoner -> avtrykk i kartet",
@@ -1205,7 +1332,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.bbn",
@@ -1240,7 +1372,8 @@
       },
       "observer": {
         "bandwidth": "spektroskopien ser D-absorpsjon i fjerne skyer — en kjemisk proxy for kosmologi",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kjernefysikk -> frosset D/H -> absorpsjonslinjer i dag",
@@ -1257,7 +1390,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.fsigma8",
@@ -1292,7 +1430,8 @@
       },
       "observer": {
         "bandwidth": "surveyer maaler posisjoner og roedforskyvninger — hastigheter er avledet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst -> struktur -> respons -> vekst — loopen ER f sigma8",
@@ -1310,7 +1449,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.s8",
@@ -1345,7 +1489,8 @@
       },
       "observer": {
         "bandwidth": "svak linse ser formforvrengning — massen er usynlig, bare bøyningen synes",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "masse -> boeyer lys -> formforvrengning -> S8",
@@ -1363,7 +1508,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.eg",
@@ -1398,7 +1548,8 @@
       },
       "observer": {
         "bandwidth": "krysset krever to surveyer i samme himmelregion — observatoeren bygger broen selv",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "linse x RSD -> E_G -> slip-maal",
@@ -1415,7 +1566,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.isw",
@@ -1449,7 +1605,8 @@
       },
       "observer": {
         "bandwidth": "signalet finnes bare i krysset mellom to kart — ingen av dem ser det alene",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "L2-potensial endres -> CMB-fotoner faar energiskift -> krysssignal",
@@ -1466,7 +1623,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.ksz",
@@ -1501,7 +1663,8 @@
       },
       "observer": {
         "bandwidth": "signalet er svakt og trenger mange kryss — statistikken er instrumentet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "klynge beveger seg -> doppler i CMB -> kSZ-avtrykk",
@@ -1518,7 +1681,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.cluster_mass",
@@ -1554,7 +1722,8 @@
       },
       "observer": {
         "bandwidth": "masse er aldri direkte maalt — alltid gjennom gass eller lys",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kollaps -> virialisert gass -> masseproxyer",
@@ -1572,7 +1741,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.cluster_hmf",
@@ -1607,7 +1781,8 @@
       },
       "observer": {
         "bandwidth": "surveyen teller og sorterer — massen er avledet fra rikdom",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst -> kollaps -> haloer -> fordeling",
@@ -1625,7 +1800,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.rar",
@@ -1661,7 +1841,8 @@
       },
       "observer": {
         "bandwidth": "kurven er synlig i rotasjonshastighet — massen selv er moerk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "barioner -> potensial -> rotasjon -> avvik",
@@ -1678,7 +1859,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.bullet",
@@ -1712,7 +1898,8 @@
       },
       "observer": {
         "bandwidth": "to instrumenter ser to komponenter — bare offseten mellom dem er signalet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kollisjon -> separasjon -> offset",
@@ -1729,7 +1916,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.satellites",
@@ -1764,7 +1956,8 @@
       },
       "observer": {
         "bandwidth": "underskuddet er synlig bare mot en prediksjon — observasjonen trenger modellen",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst -> subhalos -> stripping -> observert populasjon",
@@ -1782,7 +1975,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.jwst_ems",
@@ -1817,7 +2015,8 @@
       },
       "observer": {
         "bandwidth": "JWST ser bakover — hvert bilde er et annet regimes øyeblikksbilde",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "kollaps -> tidlige galakser -> massefunksjon",
@@ -1834,7 +2033,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.gw_ct",
@@ -1868,7 +2072,8 @@
       },
       "observer": {
         "bandwidth": "én hendelse, to budbringere — hver kanal bekrefter den andre",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "fusjon -> GW + gamma -> ankomsttid",
@@ -1885,7 +2090,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.pta_gwb",
@@ -1919,7 +2129,8 @@
       },
       "observer": {
         "bandwidth": "signalet finnes bare i korrelasjonen mellom dusinvis av pulsarer — ingen pulsar ser det alene",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "SMBH-fusjoner eller primordial -> nHz-bolger -> timing-residualer",
@@ -1936,7 +2147,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.h0_tension",
@@ -1972,7 +2188,8 @@
       },
       "observer": {
         "bandwidth": "spenningen er synlig bare i sammenligningen — ingen enkeltkanal ser den",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "L1-ekstrapolasjon -> H0_lav; stige -> H0_hoey; gap -> tension",
@@ -1990,7 +2207,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.w0wa",
@@ -2025,7 +2247,8 @@
       },
       "observer": {
         "bandwidth": "avviket er synlig bare mot w=-1-referansen — nullhypotesen er instrumentet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "SN -> avstander -> w(z) -> endestasjon",
@@ -2043,7 +2266,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "obs.cc",
@@ -2078,7 +2306,8 @@
       },
       "observer": {
         "bandwidth": "problemet er synlig bare i sammenligningen maalt/teoretisk — det er et regneproblem, ikke en maaling",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "alle kanaler -> omega_Lambda -> gap",
@@ -2096,7 +2325,12 @@
         "global": "observasjonen baerer hele regimets informasjon til observatoeren i L2",
         "empathy_note": "en lokal avlesning, en global betydning — det er observasjonens vesen."
       },
-      "perspektiv": "konsensus"
+      "perspektiv": "konsensus",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "efc.victron_cccv_engine",
@@ -2131,7 +2365,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare V og I — to kanaler; SOC er ikke paakrevd for kneet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "CC -> kne -> CV -> metning — ladeløypas tre-trinns emergence",
@@ -2150,7 +2385,12 @@
         "global": "motorens kne kobles til batteri.lading-noden i atlaset (CARRIES) — maalingen baerer regimets overgang",
         "empathy_note": "motoren vet hvilken atlas-node den baerer — broen testes maskinelt."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.victron_cccv_engine"
+      }
     },
     {
       "id": "efc.rotation_engine",
@@ -2185,7 +2425,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare v(r) — én kanal av galaksens fulle dynamikk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "masse -> koplingsfelt -> flat rotasjon — kurvens flathet er loopens signatur",
@@ -2203,7 +2444,12 @@
         "global": "rotasjonskurver er L2-regimets lokale avlesning — koblet til vekst- og hubble-motorene via regimet (COUPLED_TO)",
         "empathy_note": "hver galakse bærer hele regimet i sin egen kurve."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.rotation_engine"
+      }
     },
     {
       "id": "efc.hubble_engine",
@@ -2238,7 +2484,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare H(z) — én kanal av ekspansjonens fulle tilstand",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "tetthet -> ekspansjon -> rødforskyvning — H(z) er loopens avlesning",
@@ -2257,7 +2504,12 @@
         "global": "H(z) baerer L1->L2-overgangen — koblet til growth (veksten foeler ekspansjonen) og obs.bao (COUPLED_TO/OBSERVED_IN)",
         "empathy_note": "ekspansjonen vet ikke selv at den observeres — men motoren vet hva den baerer."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.hubble_engine"
+      }
     },
     {
       "id": "efc.growth_engine",
@@ -2292,7 +2544,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare fσ8(z) — én kanal av vekstens fulle tilstand",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "tetthet -> vekst -> struktur — fσ8 er loopens akselerasjonsmåler",
@@ -2310,7 +2563,12 @@
         "global": "fσ8 er arbiterens prediksjonsside — koblet til kosmos.kosmologi-emnene (prediksjon) og obs.fsigma8 (OBSERVED_IN)",
         "empathy_note": "motoren vet at baselinen dømmer den — den beskriver seg likevel bare, den dømmer ikke seg selv."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.growth_engine"
+      }
     },
     {
       "id": "efc.lensing_engine",
@@ -2345,7 +2603,8 @@
       },
       "observer": {
         "bandwidth": "ingen — motoren observerer ikke ennå",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "masse -> krumning -> kappa — loopen er observert, ikke modellert her",
@@ -2360,7 +2619,12 @@
         "global": "kappa er L2-avbildningen — koblet til obs.cmb_lensing (OBSERVED_IN, når fysikken finnes)",
         "empathy_note": "stubben vet hva den ikke kan — og sier det."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.lensing_engine"
+      }
     },
     {
       "id": "efc.cluster_engine",
@@ -2395,7 +2659,8 @@
       },
       "observer": {
         "bandwidth": "ingen — motoren observerer ikke ennå",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "tetthet -> kollaps -> hoper — loopen er observert, ikke modellert her",
@@ -2410,7 +2675,12 @@
         "global": "n(M,z) er L2-strukturens telling — koblet til obs.klynger (OBSERVED_IN, når fysikken finnes)",
         "empathy_note": "stubben vet hva den ikke kan — og sier det."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.cluster_engine"
+      }
     },
     {
       "id": "homo.fluxus",
@@ -2445,7 +2715,8 @@
       },
       "observer": {
         "bandwidth": "kohrens-proxyene ser deler av flyten — aldri hele",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "energigjennomstrømning → struktur → selvmodellering — R er loopens mål",
@@ -2464,7 +2735,12 @@
         "global": "RAMMEVERKETS HYPOTESE: mennesket er L3-regimets bærer — selvmodelleringen; ANALOGOUS_TO batteri.buffer via den brede bufferlogikken. Ikke empirisk etablert regime — plasseringen er rammeverkets egen",
         "empathy_note": "hver kropp bærer hele regimet i sin egen flyt."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.homeostase_buffer",
@@ -2499,7 +2775,8 @@
       },
       "observer": {
         "bandwidth": "avviksvektoren, ikke flytens fulle tilstand",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "forstyrrelse → kompensasjon → stabilitet — bufferens loop",
@@ -2518,7 +2795,12 @@
         "global": "homo.fluxus sin stabilitetsbasis — uten bufferen ingen flyt",
         "empathy_note": "bufferen vet ikke at den holder et menneske — den bare holder."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.feber_regime",
@@ -2553,7 +2835,8 @@
       },
       "observer": {
         "bandwidth": "temperatur og setpunkt — ikke pyrogen-kaskaden",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "infeksjon → pyrogener → setpunktsskifte → varmeproduksjon — feberens loop",
@@ -2572,7 +2855,12 @@
         "global": "feberen er homeostase-bufferens utgang og retur — et lukket skift i homo.fluxus",
         "empathy_note": "feberen er ikke svikt, den er regulert respons — men «kroppen velger» er rammeverkets språk, ikke en påvist beslutning."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.aksjonspotensial",
@@ -2607,7 +2895,8 @@
       },
       "observer": {
         "bandwidth": "V(t) — ikke kanalenes fulle tilstand",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "lad gradient → nå terskel → utløs → gjenlad — nevronets loop",
@@ -2626,7 +2915,12 @@
         "global": "mange nevroner = hjernen = homo.fluxus sin selvmodellering",
         "empathy_note": "hvert spike er en bitteliten utløsning — tanken er en storm av dem."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.hjerte_syklus",
@@ -2661,7 +2955,8 @@
       },
       "observer": {
         "bandwidth": "elektrisk + mekanisk syklus — ikke perfusjonens fulle rom",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "fyll → press → fyll — hjertets loop opprettholder hele flyten",
@@ -2680,7 +2975,12 @@
         "global": "hjertet mater hver celle i homo.fluxus — flytens uavbrutte kilde",
         "empathy_note": "hjertet spør aldri om lov — det bare pumper."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.genregulering",
@@ -2715,7 +3015,8 @@
       },
       "observer": {
         "bandwidth": "uttrykksnivåer — ikke nettverkets fulle dynamikk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "signal → TF → uttrykk → protein → regulerer eget gen — reguleringsloopen",
@@ -2734,7 +3035,12 @@
         "global": "ATLASETS PLASSERING (analogisk lesning, ikke empirisk etablert egenskap): reguleringsnettverket er den molekylære kroppen som CARRIES homo.fluxus",
         "empathy_note": "genomet vet ikke at det holder et menneske — det regulerer."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.cellesyklus",
@@ -2769,7 +3075,8 @@
       },
       "observer": {
         "bandwidth": "fasefordelingen — ikke den enkelte cellens historie",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "vekst → replikasjon → sjekk → deling — syklusens loop",
@@ -2788,7 +3095,12 @@
         "global": "ATLASETS PLASSERING (analogisk lesning): celledelingen opprettholder flyten og CARRIES homo.fluxus — ikke en empirisk etablert biologisk egenskap",
         "empathy_note": "hver deling er en bitteliten overgang — kroppen er summen av dem."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.metabolisme",
@@ -2823,7 +3135,8 @@
       },
       "observer": {
         "bandwidth": "fluks og forhold — ikke alle intermediater",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "substrat → ATP → arbeid → ADP → substrat — metabolismens loop",
@@ -2842,7 +3155,12 @@
         "global": "ATLASETS PLASSERING (analogisk lesning): metabolismen mater flyten og CARRIES homo.fluxus — ikke en empirisk etablert biologisk egenskap",
         "empathy_note": "hver ATP-molekyl er en bitteliten utbetaling — livet er summen."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "efc.solar_flare_engine",
@@ -2877,7 +3195,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare feltstyrke og oppladningsrate — ingen magnetisk topologi, ingen plasma-dynamikk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "fotbevegelser -> feltet vrir seg -> terskel -> utlosning -> feltet bygges pa nytt — flare-syklusen",
@@ -2896,7 +3215,12 @@
         "global": "flares er kosmos.sol sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.jordskjelv_engine",
         "empathy_note": "solen holder og holder — til den slipper. Som alle buffere."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.solar_flare_engine"
+      }
     },
     {
       "id": "efc.jordskjelv_engine",
@@ -2931,7 +3255,8 @@
       },
       "observer": {
         "bandwidth": "motoren ser bare spenning og lade-rate — ingen friksjonslov, ingen poretrykk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "platedrift -> spenning bygges -> terskel -> utlosning -> spenning bygges pa nytt — skjelvsyklusen",
@@ -2950,7 +3275,12 @@
         "global": "skjelv er kosmos.jord sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.solar_flare_engine",
         "empathy_note": "jorda holder og holder — til den slipper. Som alle buffere."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.jordskjelv_engine"
+      }
     },
     {
       "id": "homo.immunologi",
@@ -2985,7 +3315,8 @@
       },
       "observer": {
         "bandwidth": "titer og cellepopulasjoner — ikke repertoarets fulle rom",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "antigen -> aktivering -> respons -> hukommelse -> lavere terskel — immunitetens loop",
@@ -3004,7 +3335,12 @@
         "global": "ATLASETS PLASSERING: immunsystemet vokter homo.fluxus — CARRIES homo.fluxus (analogisk lesning)",
         "empathy_note": "forsvaret vet ikke at det forsvarer et menneske — det reagerer."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.sovn_vaaken",
@@ -3039,7 +3375,8 @@
       },
       "observer": {
         "bandwidth": "stadium og timing — ikke drømmenes innhold",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "våken -> trykk akkumuleres -> terskel -> søvn -> trykk tømmes -> våken — døgnets loop",
@@ -3058,7 +3395,12 @@
         "global": "ATLASETS PLASSERING: søvnen vedlikeholder homo.fluxus — CARRIES homo.fluxus (analogisk lesning)",
         "empathy_note": "hjernen slipper ikke kontrollen i søvn — den bytter regime."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.okologi",
@@ -3093,7 +3435,8 @@
       },
       "observer": {
         "bandwidth": "noen tilstandsvariabler — ikke hele næringsnettet",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "forstyrrelse -> buffering -> vippepunkt -> ny tilstand -> ny buffering — økosystemets loop",
@@ -3112,7 +3455,12 @@
         "global": "ATLASETS PLASSERING: økosystemene er homo.fluxus sin omverden — gjensidig koblet (COUPLED_TO homo.fluxus, analogisk lesning): mennesket former økosystemene, og de former mennesket",
         "empathy_note": "økosystemet velger ikke side ved vippepunktet — det faller."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "homo.evolusjon",
@@ -3147,7 +3495,8 @@
       },
       "observer": {
         "bandwidth": "rater og splitt-tidspunkter — ikke de levende populasjonenes fulle historie",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "stasis -> regimeskifte -> rask endring -> ny stasis — evolusjonens loop i dyp tid",
@@ -3166,7 +3515,12 @@
         "global": "ATLASETS PLASSERING: evolusjonen frembrakte homo.fluxus — EMERGES_FROM homo.evolusjon (analogisk lesning)",
         "empathy_note": "stasis er ikke stillstand — det er holding. Livet holder seg selv, helt til det endrer seg."
       },
-      "perspektiv": "paradigme"
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      }
     },
     {
       "id": "efc.mu_kz_engine",
@@ -3202,7 +3556,8 @@
       },
       "observer": {
         "bandwidth": "modulen ser bare bakgrunns-inngangene og (a,k) — ingen felt-dynamikk",
-        "awareness": "instrument_window"
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
       },
       "emergence": {
         "loop": "bakgrunn -> eps-er -> mu -> growth-motorens fσ8 — koblingen L-029 ba om",
@@ -3220,7 +3575,228 @@
         "local": "hvert (a,k)-punkt beregnes lokalt",
         "global": "modulen mater growth-motoren med den avledede mu — COUPLED_TO efc.growth_engine",
         "empathy_note": "modulen vet hva den ikke vet: bakgrunnen."
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": "efc.mu_kz_engine"
       }
+    },
+    {
+      "regime": {
+        "name": "selvbeskrivelse av atlaset",
+        "validity": "Atlaset er en EFC-konstruksjon — gyldig som kart, ikke som territorium."
+      },
+      "phase": "stabil",
+      "measure": {
+        "target": "atlaset selv",
+        "measurer": "den som leser atlaset (mennesket — instrumentet)",
+        "instrument": "lesningens ramme",
+        "proxy_chain": [
+          "atlas-tekst -> lesning -> forståelse"
+        ],
+        "placement": "inne i systemet — leseren står ikke utenfor",
+        "compression": "60 noder komprimerer en verden"
+      },
+      "episenter": "Atlaset er selv en node i atlaset — ingen beskrivelse utenfra.",
+      "buffer": {
+        "role": "atlaset er bufferen som holder det kjente før det neste legges til",
+        "note": "kartet holder verden midlertidig."
+      },
+      "ontology": {
+        "assumes": [
+          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+        ],
+        "source": "EFC epistemikk v2 — selvanvendelse"
+      },
+      "observer": {
+        "bandwidth": "masse som begrepsvalg",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "note": ""
+      },
+      "coupling": {
+        "local": "hver node er lokal i sitt domene",
+        "global": "atlaset er leseren som binder domenene",
+        "empathy_note": "kartet er ikke territoriet — men det er alt vi har å holde orden med."
+      },
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      },
+      "id": "efc.selv.atlas",
+      "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema."
+    },
+    {
+      "regime": {
+        "name": "selvbeskrivelse av skjemaet",
+        "validity": "Skjemaet er EFCs egen definisjon — gyldig innenfor rammen, ikke utenfor."
+      },
+      "phase": "stabil",
+      "measure": {
+        "target": "skjemaet selv",
+        "measurer": "den som definerer feltene (oss)",
+        "instrument": "definisjonens ramme",
+        "proxy_chain": [
+          "feltnavn -> betydning -> verden"
+        ],
+        "placement": "inne i systemet — definisjonen står ikke utenfor",
+        "compression": "12 felt komprimerer enhver node"
+      },
+      "episenter": "RegimeNode-skjemaet er selv et RegimeNode-objekt — feltene beskriver feltet.",
+      "buffer": {
+        "role": "skjemaet er bufferen som holder formen stabil mellom revisjoner",
+        "note": "formen holder innholdet."
+      },
+      "ontology": {
+        "assumes": [
+          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+        ],
+        "source": "EFC epistemikk v2 — selvanvendelse"
+      },
+      "observer": {
+        "bandwidth": "masse som begrepsvalg",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "note": ""
+      },
+      "coupling": {
+        "local": "hvert felt er lokalt i sin betydning",
+        "global": "skjemaet er formen som binder alle noder",
+        "empathy_note": "skjemaet definerer ordenen — og er selv definert av oss."
+      },
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      },
+      "id": "efc.selv.skjema",
+      "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema."
+    },
+    {
+      "regime": {
+        "name": "tidskoordinatet som valg",
+        "validity": "SI-sekundet er et valgt instrument — gyldig der klokker og fysikk antar det."
+      },
+      "phase": "stabil",
+      "measure": {
+        "target": "tidskoordinatet",
+        "measurer": "klokker og fysikk som antar tid",
+        "instrument": "SI-sekundet (cesium-klokken)",
+        "proxy_chain": [
+          "svingning -> sekund -> tid"
+        ],
+        "placement": "instrumentvindu — klokken ser bare svingninger",
+        "compression": "all forandring komprimeres til ett tall"
+      },
+      "episenter": "Tid er et VALGT koordinat (SI-sekundet), ikke noe gitt — alle noder med tidsmål står på denne stipulasjonen.",
+      "buffer": {
+        "role": "tidskoordinatet er bufferen som holder hendelser i rekkefølge",
+        "note": "rekkefølge er et valg vi gjorde."
+      },
+      "ontology": {
+        "assumes": [
+          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+        ],
+        "source": "EFC epistemikk v2 — selvanvendelse"
+      },
+      "observer": {
+        "bandwidth": "masse som begrepsvalg",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "note": ""
+      },
+      "coupling": {
+        "local": "hver klokke tikker lokalt",
+        "global": "tiden binder alle regimers forandring",
+        "empathy_note": "vi bygde klokken og kalte tikkingen tid."
+      },
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      },
+      "id": "efc.selv.paradigme_tid",
+      "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema."
+    },
+    {
+      "regime": {
+        "name": "massebegrepet som valg",
+        "validity": "SI-kilogrammet er et valgt begrep — gyldig der vekter og fysikk antar det."
+      },
+      "phase": "stabil",
+      "measure": {
+        "target": "massebegrepet",
+        "measurer": "vekter og fysikk som antar masse",
+        "instrument": "SI-kilogrammet",
+        "proxy_chain": [
+          "kraft/akselerasjon -> kg -> masse"
+        ],
+        "placement": "instrumentvindu — vekten ser bare motstand",
+        "compression": "tregeheten komprimeres til ett tall"
+      },
+      "episenter": "Masse er et VALGT begrep (SI-kilogrammet), ikke noe gitt.",
+      "buffer": {
+        "role": "massebegrepet er bufferen som holder tregeheten tellelig",
+        "note": "tellelighet er et valg vi gjorde."
+      },
+      "ontology": {
+        "assumes": [
+          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+        ],
+        "source": "EFC epistemikk v2 — selvanvendelse"
+      },
+      "observer": {
+        "bandwidth": "masse som begrepsvalg",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "note": ""
+      },
+      "coupling": {
+        "local": "hver vekt måler lokalt",
+        "global": "massen binder alle regimers treghet",
+        "empathy_note": "vi fant treghet og kalte den masse."
+      },
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [],
+        "motor": ""
+      },
+      "id": "efc.selv.paradigme_masse",
+      "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema."
     }
   ],
   "relations": [

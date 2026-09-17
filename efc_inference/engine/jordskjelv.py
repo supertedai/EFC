@@ -94,6 +94,8 @@ class JordskjelvEngine(EFCEngine):
         return {
             "id": "efc.jordskjelv_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "Jordas holding->release (forkastningsbuffer)",
                 "validity": validity,
@@ -126,6 +128,7 @@ class JordskjelvEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare spenning og lade-rate — ingen friksjonslov, ingen poretrykk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "platedrift -> spenning bygges -> terskel -> utlosning -> spenning bygges pa nytt — skjelvsyklusen",

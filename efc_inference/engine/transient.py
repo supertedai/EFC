@@ -160,6 +160,8 @@ class TransientEngine(EFCEngine):
         return {
             "id": "efc.transient_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "Stjernedodens holding->release (kollaps-buffer)",
                 "validity": validity,
@@ -194,6 +196,7 @@ class TransientEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare kjernemasse og en massetilvekst — ingen rotasjon, ingen metallisitet, ingen forloperstruktur; lettkurven ser den normaliserte formen, ikke spekteret eller en lysstyrkeskala",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "masse bygges -> stabilitetsgrensen krysses -> kollaps -> transient -> resten star igjen — stjernedodens syklus",

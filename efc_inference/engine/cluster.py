@@ -73,6 +73,8 @@ class EFCCluster(EFCEngine):
         return {
             "id": "efc.cluster_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {"name": "Hopemotoren — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -105,7 +107,8 @@ class EFCCluster(EFCEngine):
                 "source": "stub-kontrakt; efc_inference/engine/"
                           "cluster.py",
             },
-            "observer": {"bandwidth": "ingen — motoren observerer ikke "
+            "observer": {
+                "er_del_av_systemet": True,"bandwidth": "ingen — motoren observerer ikke "
                                      "ennå",
                          "awareness": "instrument_window"},
             "emergence": {

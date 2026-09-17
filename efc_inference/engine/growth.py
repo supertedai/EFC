@@ -245,6 +245,8 @@ class EFCGrowth(EFCEngine):
         return {
             "id": "efc.growth_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {"name": "Vekstmotoren — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -274,7 +276,8 @@ class EFCGrowth(EFCEngine):
                 "source": "MVP-G1 hubble-friksjonskanal; "
                           "efc_inference/engine/growth.py",
             },
-            "observer": {"bandwidth": "motoren ser bare fσ8(z) — én kanal "
+            "observer": {
+                "er_del_av_systemet": True,"bandwidth": "motoren ser bare fσ8(z) — én kanal "
                                      "av vekstens fulle tilstand",
                          "awareness": "instrument_window"},
             "emergence": {

@@ -118,6 +118,8 @@ class SamfunnEngine(EFCEngine):
         return {
             "id": "efc.samfunn_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "SIR-epidemiologi — flyt med terskel",
                 "validity": validity,
@@ -151,6 +153,7 @@ class SamfunnEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare aggregatene S, I, R — ingen individer, ingen nettverk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "smitte -> utbrudd -> reservoaret tømmes -> flokkimmunitet -> smitten dør — epidemiens loop",

@@ -71,6 +71,8 @@ class EFCLensing(EFCEngine):
         return {
             "id": "efc.lensing_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {"name": "Linsemotoren — kappa(theta) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -104,7 +106,8 @@ class EFCLensing(EFCEngine):
                 "source": "stub-kontrakt; efc_inference/engine/"
                           "lensing.py",
             },
-            "observer": {"bandwidth": "ingen — motoren observerer ikke "
+            "observer": {
+                "er_del_av_systemet": True,"bandwidth": "ingen — motoren observerer ikke "
                                      "ennå",
                          "awareness": "instrument_window"},
             "emergence": {

@@ -268,6 +268,8 @@ class WaterPhaseEngine(EFCEngine):
         return {
             "id": "efc.water_phase_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "H2O fase-grense-beregning",
                 "validity": validity,
@@ -299,6 +301,7 @@ class WaterPhaseEngine(EFCEngine):
                 "source": "IAPWS R6-95/R14-08; standard termodynamikk; review-verifisert mot IAPWS (2026-09-16)"
             },
             "observer": {
+                "er_del_av_systemet": True,
                 "bandwidth": "motoren ser bare T og P — ingen optiske, akustiske eller kjemiske kanaler",
                 "awareness": "instrument_window"
             },

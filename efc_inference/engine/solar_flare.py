@@ -117,6 +117,8 @@ class SolarFlareEngine(EFCEngine):
         return {
             "id": "efc.solar_flare_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+                             "terskler": [], "motor": ""},
             "regime": {
                 "name": "Solens holding->release (magnetisk buffer)",
                 "validity": validity,
@@ -149,6 +151,7 @@ class SolarFlareEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare feltstyrke og oppladningsrate — ingen magnetisk topologi, ingen plasma-dynamikk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "fotbevegelser -> feltet vrir seg -> terskel -> utlosning -> feltet bygges pa nytt — flare-syklusen",
