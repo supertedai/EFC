@@ -90,6 +90,45 @@ def _har_falsifikator(node: dict) -> bool:
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
+
+def _dekning(repo: Path, ref: str, hent: bool) -> dict:
+    """Les dekningsfilen fra SAMME ref. Mangler den, er svaret tomt — ikke en feil.
+
+    Dekningsstatusen er et eget artefakt (`schema/atlas_dekning.json`), ikke
+    et felt paa nodene. Uten dette leser oppslaget bare nodene, og maa svare
+    «vet ikke» om noe noen faktisk har maalt og funnet manglende.
+    """
+    try:
+        raa = _git(repo, "show", f"{ref}:schema/atlas_dekning.json")
+    except AtlasLesingFeil:
+        return {"_mangler": True}
+    try:
+        d = json.loads(raa)
+    except json.JSONDecodeError:
+        return {"_mangler": True}
+    dom = d.get("domener")
+    return dom if isinstance(dom, dict) else {"_mangler": True}
+
+
+def _kjent_hull(dekning: dict, naal: str) -> dict | None:
+    """Er emnet et domene noen har maalt? Seker paa domeneNAVN, ikke innhold.
+
+    Bare et treff paa navnet teller. Et treff paa en begrunnelse ville gjort
+    «kjent» til «nevnt et sted», og da mister ordet sin verdi.
+    """
+    if dekning.get("_mangler"):
+        return None
+    naal_lav = naal.lower()
+    for domene, v in dekning.items():
+        if not isinstance(v, dict):
+            continue
+        d_lav = domene.lower()
+        if naal_lav == d_lav or naal_lav in d_lav.split("."):
+            return {"domene": domene, "status": v.get("status"),
+                    "noder": v.get("noder"), "begrunnelse": v.get("begrunnelse")}
+    return None
+
+
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
     """Slaa opp et emne i atlaset — leser fra `ref`, aldri fra arbeidsstreet.
@@ -116,6 +155,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "dermed ikke svart paa noe")
     atlas = les_atlas(repo, ref, hent=hent, sti="schema/regime_nodes.jsonld")
     naal = emne.strip().lower()
+    dekning = _dekning(Path(repo), ref, hent)
     # `\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
     # `homo.sovn_vaaken`, `efc.solar_flare_engine`. Med `\b` ble `sovn`
     # svekket til delstreng selv om den er et eget ledd i id-en (maalt i
@@ -161,6 +201,8 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
         "commit": atlas["commit"],
         "antall": len(treff),
         "hull": len(treff) == 0,
+        "kjent_hull": _kjent_hull(dekning, naal),
+        "dekning_fil": "schema/atlas_dekning.json",
         "treff": treff,
     }
 
@@ -180,8 +222,18 @@ if __name__ == "__main__":
         s = finn(a.repo, a.emne, ref=a.ref, hent=a.hent)
         print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} treff paa «{s['emne']}»")
         if s["hull"]:
-            print("  ATLASET VET IKKE — ingen node baerer dette emnet.")
+            kh = s["kjent_hull"]
+            if kh:
+                print(f"  KJENT HULL — maalt som «{kh['status']}» i {s['dekning_fil']}")
+                if kh.get("begrunnelse"):
+                    print(f"  begrunnelse: {kh['begrunnelse']}")
+            else:
+                print("  ATLASET VET IKKE — ingen node baerer dette emnet, "
+                      "og det er ikke et maalt dekningshull.")
             sys.exit(0)
+        kh = s["kjent_hull"]
+        if kh:
+            print(f"  (domenet {kh['domene']} er maalt som «{kh['status']}»)")
         for t in s["treff"]:
             merker = []
             if t["har_falsifikator"]:

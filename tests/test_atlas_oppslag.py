@@ -255,3 +255,41 @@ class TestKommandolinjen:
         p = self._kjoer("--ref", "HEAD")
         assert p.returncode == 0, p.stderr
         assert "82 noder" in p.stdout, p.stdout[:200]
+
+
+class TestKjenteHull:
+    """«Atlaset vet ikke» og «dette er et KJENT hull» er ikke samme svar.
+
+    Maalt 2026-09-17: `finn()` leste bare `regime_nodes.jsonld`, mens
+    dekningsstatusen ligger i `schema/atlas_dekning.json` (27 ikke_dekket,
+    6 delvis, 6 dekket). Et oppslagsverk som svarer «vet ikke» om noe noen
+    faktisk har maalt og funnet manglende, kaster bort det dyreste det vet.
+    """
+
+    def test_kjent_hull_navngis_som_kjent(self, ekte_repo: Path) -> None:
+        """Dekningsfilens form er maalt, ikke antatt: `domener` er en DICT
+        fra domenenavn til {status, noder, begrunnelse, emner}."""
+        import json as _json
+        dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
+        domener = dek["domener"]
+        assert isinstance(domener, dict), "forutsetning: domener er en dict"
+        ikke_dekket = [k for k, v in domener.items()
+                       if isinstance(v, dict) and v.get("status") == "ikke_dekket"]
+        assert ikke_dekket, "forutsetning: dekningsfilen har kjente hull"
+        svar = atlas_lesing.finn(ekte_repo, ikke_dekket[0], ref="HEAD")
+        assert svar["kjent_hull"] is not None, (
+            f"`{ikke_dekket[0]}` er maalt som ikke_dekket — oppslaget skal "
+            f"si det, ikke bare «vet ikke»")
+        assert svar["kjent_hull"]["status"] == "ikke_dekket"
+
+    def test_ukjent_emne_uten_dekning_er_fortsatt_bare_ukjent(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "kvantegravitasjon_xyzzy", ref="HEAD")
+        assert svar["hull"] is True
+        assert svar["kjent_hull"] is None, (
+            "noe ingen har maalt skal ikke meldes som et kjent hull — "
+            "det ville gjort «kjent» meningsloest")
+
+    def test_svaret_sier_hvor_dekningen_kom_fra(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
+        assert "dekning_fil" in svar, (
+            "leseren maa kunne se hvilken fil dekningsstatusen kom fra")
