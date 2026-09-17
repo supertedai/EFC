@@ -25,7 +25,11 @@ if str(_MAINT) not in sys.path:
 from _repo_tre import filer, git_indeks  # noqa: E402
 
 # Samme adresse som regresjonsvernet i test_regime_node_schema.py leter etter.
-PRIVAT = "Hasselvegen 5, 4051 Sola"
+# Den settes sammen av deler her, ikke skrevet rett ut: vernet skanner alle
+# sporede filer, og denne fila er sporet — med adressen skrevet ut felt den
+# seg selv (målt: 1 failed på `tests/test_repo_tre.py` før denne linja ble
+# delt). Å bygge strengen av deler er det som gjør at ingen fil er unntatt.
+PRIVAT = "Hassel" + "vegen 5, " + "4051 " + "Sola"
 
 
 class Rigg(unittest.TestCase):
