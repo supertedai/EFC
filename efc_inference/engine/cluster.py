@@ -89,7 +89,12 @@ class EFCCluster(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {"name": "Hopemotoren — n(M,z) [stub]",
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "efc.selv.paradigme_tid",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {"name": "Hopemotoren — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {

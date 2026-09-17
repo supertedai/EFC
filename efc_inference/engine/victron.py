@@ -202,7 +202,12 @@ class VictronChargeEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "batteri.lading",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,
                 "law_form": (

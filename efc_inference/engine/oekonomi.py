@@ -131,7 +131,12 @@ class OekonomiEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "homo.fluxus",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "Minskys finansregimer — stabilitet som holding",
                 "validity": validity,
                 "law_form": law_form,
