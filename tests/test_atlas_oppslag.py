@@ -342,3 +342,55 @@ class TestRelevans:
         assert "efc." in linjer[0], (
             f"offentlige motor-noder skal ikke ligge under interne batteri-"
             f"noder naar begge er ord-treff: {linjer[:3]}")
+
+
+class TestBareNavnetTeller:
+    """Matching skjer paa domeneNAVN — aldri paa begrunnelsesteksten.
+
+    Pastanden stod i commit-meldingen for 0a41054b, men var IKKE dekket av
+    en test. Review runde 3 viste det: mutanten som ogsaa matcher begrunnelsen
+    passerte hele suiten (40/40). En pastand om vernet som vernet ikke kan
+    felle, er den samme feilen som resten av denne perioden.
+
+    Proben er reviewens egen: `mast-caom-observasjonen` staar i
+    `kosmos.galakser`s BEGRUNNELSE, men er ikke et domenenavn. Hadde
+    matchingen lest prosa, ville den sluppet gjennom som «kjent hull».
+    """
+
+    def test_begrunnelsestekst_er_ikke_et_treff(self, ekte_repo: Path) -> None:
+        import json as _json
+        dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
+        domener = dek["domener"]
+        # Finn et ord som staar i en begrunnelse men ikke er et domenenavn.
+        kandidat = None
+        for dom, v in domener.items():
+            tekst = (v or {}).get("begrunnelse") or ""
+            for ord_ in tekst.replace(",", " ").replace(".", " ").split():
+                if len(ord_) > 8 and ord_ not in domener and not any(
+                        ord_ in d for d in domener):
+                    kandidat = ord_
+                    break
+            if kandidat:
+                break
+        assert kandidat, "forutsetning: en begrunnelse inneholder et ord som ikke er et domenenavn"
+
+        svar = atlas_lesing.finn(ekte_repo, kandidat, ref="HEAD")
+        assert svar["kjent_hull"] is None, (
+            f"`{kandidat}` staar i en BEGRUNNELSE, ikke i et domenenavn — "
+            f"oppslaget leste prosa og meldte «kjent hull». Matching skal "
+            f"bare skje paa navnet: {svar['kjent_hull']}")
+
+    def test_ordet_finnes_faktisk_i_en_begrunnelse(self, ekte_repo: Path) -> None:
+        """Negativ kontroll: uten denne kunne testen over passere fordi
+        ordet ikke fantes noe sted — og da testet den ingenting."""
+        import json as _json
+        dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
+        all_tekst = " ".join((v or {}).get("begrunnelse", "")
+                             for v in dek["domener"].values())
+        assert "mast-caom" in all_tekst, (
+            "reviewens probe skal finnes i en begrunnelse — ellers er "
+            "testen over tom")
+        svar = atlas_lesing.finn(ekte_repo, "mast-caom", ref="HEAD")
+        assert svar["kjent_hull"] is None, (
+            "`mast-caom` er ikke et domenenavn. At det staar i en begrunnelse "
+            "skal ikke gjore det til et kjent hull.")
