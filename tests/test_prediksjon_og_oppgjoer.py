@@ -32,6 +32,30 @@ def _noder():
     return json.loads(JSONLD.read_text(encoding="utf-8"))["nodes"]
 
 
+
+def _node_ved_id(node_id: str):
+    """Hent en node VED ID — ikke «den foerste som tilfeldigvis baerer X».
+
+    Maalt av orchestrator 2026-09-17: tre tester i denne fila fant maalet
+    sitt med `next(n for n in _noder() if n.get("prediction"))`. Med en ny
+    prediction-baerer plassert FOERST i nodearrayet falt alle tre; den samme
+    noden plassert SIST ga 6 passed. Bare POSISJONEN skilte.
+
+    Det betyr at testene paastod «den forseglede kontrakten er speilet» og
+    maalte «den foerste noden som tilfeldigvis baerer en prediction». Det er
+    samme feilklasse som resten av huset verner mot: instrumentet svarer paa
+    et nabospoersmaal.
+
+    Pinneren er noedvendig FOER en andre prediction-baerer finnes — etterpaa
+    er feilen usynlig, fordi den foerste noden da er den riktige av slump.
+    """
+    for n in _noder():
+        if n.get("id") == node_id:
+            return n
+    raise AssertionError(
+        f"noden `{node_id}` finnes ikke — testen maaler feil atlas")
+
+
 class TestPrediksjonOgOppgjoer(unittest.TestCase):
 
     def test_skjemaet_deklarerer_prediction_og_settlement(self):
@@ -53,9 +77,9 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         """Speilingen: noden skal bære den målte kontrakten, ikke en fri
         tekst som ligner."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
-        node = next((n for n in _noder()
-                     if n.get("prediction")), None)
-        self.assertIsNotNone(node, "ingen node bærer en prediction")
+        node = _node_ved_id("efc.growth_engine")
+        self.assertIsNotNone(node.get("prediction"),
+                             "efc.growth_engine bærer ingen prediction")
         p = node["prediction"]
         for felt in ("observable", "sealed_doi", "sealing_sha256",
                      "criterion", "tolerance_rule", "correlation"):
@@ -72,7 +96,7 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         tall feller."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
         ventet = json.loads(fixture["forventet"])
-        node = next(n for n in _noder() if n.get("prediction"))
+        node = _node_ved_id("efc.growth_engine")
         faktisk = node["prediction"]["expected"]
         if isinstance(faktisk, str):
             faktisk = json.loads(faktisk)
@@ -83,7 +107,7 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         """At arbiteren venter er en DEL av prediksjonens tilstand —
         uten den ser en uavgjort prediksjon ut som en avgjort."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
-        node = next(n for n in _noder() if n.get("prediction"))
+        node = _node_ved_id("efc.growth_engine")
         p = node["prediction"]
         self.assertEqual(p.get("arbiter_waiting_for"),
                          fixture["arbiter_venter_paa"])
