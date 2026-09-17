@@ -220,8 +220,12 @@ def _git(rot: Path, *args: str) -> subprocess.CompletedProcess:
 
 def endrede_filer(base: str, rot: Path) -> list[str]:
     """Filer endret mot `base` — pluss utrackede filer, slik at en kjøring
-    før commit måler det samme som CI måler etter."""
-    r = _git(rot, "diff", "--name-only", "-z", "--diff-filter=d", base)
+    før commit måler det samme som CI måler etter.
+
+    INGEN diff-filter: en SLETTET fil er den mest irreversible endringen av
+    alle, og en `--diff-filter=d` ville gjort den usynlig for scoreren.
+    """
+    r = _git(rot, "diff", "--name-only", "-z", base)
     if r.returncode != 0:
         raise VerktoyFeil(
             f"git diff mot «{base}» feilet: {r.stderr.decode('utf-8', 'replace').strip()[:200]}")
@@ -380,9 +384,14 @@ def hoved() -> int:
     try:
         ut = regn_ut(a.diff, rot, eierregister, risikoregister, a.change_id)
     except VerktoyFeil as ex:
-        print(json.dumps({"feil": [{"type": "tool_error", "msg": str(ex)}]},
-                         ensure_ascii=False, indent=1) if a.json
-              else f"blast-radius: verktøyfeil — {ex}", file=sys.stdout if a.json else sys.stderr)
+        if a.json:
+            # JSON på stdout også ved verktøyfeil: vedlikeholdsrunden leser
+            # «feil»-lista og lager et funn av den — en måling som ikke
+            # kunne gjøres er ikke «ingen risiko».
+            print(json.dumps({"feil": [{"type": "tool_error", "msg": str(ex)}]},
+                             ensure_ascii=False, indent=1))
+        else:
+            print(f"blast-radius: verktøyfeil — {ex}", file=sys.stderr)
         return 2
     if a.json:
         print(json.dumps(ut, ensure_ascii=False, indent=1))

@@ -328,7 +328,7 @@ def hoved() -> int:
     if a.base:
         feil += append_only(a.base, rot)
     if a.json:
-        print(json.dumps({"feil": feil, "poster": None}, ensure_ascii=False, indent=1))
+        print(json.dumps({"feil": feil}, ensure_ascii=False, indent=1))
     else:
         print(f"risikoregister: {len(feil)} feil")
         for x in feil[:20]:

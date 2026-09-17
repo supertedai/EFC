@@ -184,6 +184,16 @@ def test_cli_gate_nekter_uten_og_slipper_med_menneskelig_beslutning(tmp_path):
     assert r2.returncode == 0
 
 
+def test_cli_slettet_fil_telles_med(tmp_path):
+    """En sletting er den mest irreversible endringen — den skal ikke kunne
+    forsvinne ut av målingen fordi den ikke er en «endring» i filtrets øyne."""
+    rot = _git_rot(tmp_path, {"docs/public/side.html": "<h1>krav</h1>\n"})
+    (rot / "docs" / "public" / "side.html").unlink()
+    ut = json.loads(_kall(rot, "--diff", "HEAD", "--json").stdout)
+    assert ut["antall_filer"] == 1 and "docs/public/side.html" in ut["filer"]
+    assert ut["faktorer"]["P"] == 3, "en slettet offentlig side er fortsatt offentlig flate"
+
+
 def test_cli_tom_diff_er_liten_men_ukjent_ref_er_verktoyfeil(tmp_path):
     rot = _git_rot(tmp_path, {"scripts/a.py": "x\n"})
     ut = json.loads(_kall(rot, "--diff", "HEAD", "--json").stdout)
