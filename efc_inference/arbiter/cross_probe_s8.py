@@ -31,7 +31,8 @@ HVA ESTIMATOREN GJOR — og ikke gjor:
     motor_avvik() og følger med i hver dom.
   * Manglende kilde gir VENTER — aldri en dom paa data man ikke har.
 
-Alt leses repo-lokalt. Ingen nettverkshenting. Ingen datafiler skrives.
+Alt leses repo-lokalt. Ingen nettverkshenting, og ingenting skrives tilbake
+til repoet: CLI-en kan skrive rapporten til en sti kalleren selv oppgir.
 """
 from __future__ import annotations
 
