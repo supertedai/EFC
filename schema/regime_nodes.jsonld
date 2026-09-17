@@ -6785,6 +6785,244 @@
         "lengdeskala": "Å (atomer)"
       },
       "id": "kjemi.periodesystemet"
+    },
+    {
+      "regime": {
+        "name": "maaling",
+        "validity": "havoverflate-temperatur som proxy for hav-energi; NOAA tides/currents, times-intervall, stasjonsnett"
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "havtemperatur",
+        "measurer": "NOAA",
+        "instrument": "boeyestasjoner (tides & currents)",
+        "proxy_chain": [
+          "stasjon -> temperatur -> hav-energi"
+        ],
+        "placement": "observasjon",
+        "compression": "stasjonsnettet komprimeres til middel/min/max per runde"
+      },
+      "episenter": "lesning av havtemperatur — instrument-vinduet",
+      "buffer": {
+        "role": "havet som varmebuffer i klimaet",
+        "note": "broen mater klima-motoren (0D-proxy, aarlig)"
+      },
+      "ontology": {
+        "assumes": [
+          "NOAA-temperaturer er maalt, ikke modellert"
+        ],
+        "source": "NOAA tides & currents (aapent, maalt 200)"
+      },
+      "observer": {
+        "bandwidth": "stasjonsdekning — kystnaert, ikke dyphav",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "oppvarming -> stratifisering -> sirkulasjonsendring — loopens instrument-del",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "en stasjon er hele havets proxy",
+        "note": "konsensus-praksis i operasjonell oseanografi"
+      },
+      "coupling": {
+        "local": "hver stasjon maaler lokalt",
+        "global": "stasjonsnettet tegner havets tilstand",
+        "empathy_note": "havet maales kystnaert — dyphavet er fortsatt et vindu uten dekning"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "direkte",
+        "konsensusstatus": "institusjonell",
+        "sosial_mekanisme": "NOAA-stasjonsnettet som konsensus-kanal",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "temperatur",
+          "tid"
+        ],
+        "enheter": "grader C ved tidspunkt (stasjons-maaling)",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "salinitet (ikke i enumen — dokumentert her)",
+          "stromhastighet (ikke i enumen)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "ingen terskler — maalingsnode"
+        ],
+        "motor": "klima (proxy-mater)"
+      },
+      "nivaa": {
+        "indeks": 0,
+        "forelder": null,
+        "tidsskala": "timer",
+        "lengdeskala": "km"
+      },
+      "id": "verden.hav"
+    },
+    {
+      "regime": {
+        "name": "maaling",
+        "validity": "artsobservasjons-tellinger som biosfaere-fotavtrykk; GBIF, 6-timers"
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "arts-tellinger (planteriket)",
+        "measurer": "GBIF",
+        "instrument": "taksonomisk soek",
+        "proxy_chain": [
+          "soek -> telling -> fotavtrykk"
+        ],
+        "placement": "observasjon",
+        "compression": "108 042 treff komprimeres til en telling per soek"
+      },
+      "episenter": "lesning av arts-tellinger — instrument-vinduet",
+      "buffer": {
+        "role": "biosfaeren som energiflyt-buffer",
+        "note": "broen mater enerflyt-motoren (fotavtrykk)"
+      },
+      "ontology": {
+        "assumes": [
+          "GBIF-tellinger er indeks, ikke folketelling"
+        ],
+        "source": "GBIF species search (aapent, maalt 200)"
+      },
+      "observer": {
+        "bandwidth": "taksonomisk soek — ikke felt-maaling",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "artsregistrering -> taksonomi -> observasjonsnettet vokser — loopens instrument-del",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "en telling er hele rikets proxy",
+        "note": "volumloven: aggregat, aldri rader"
+      },
+      "coupling": {
+        "local": "hvert soek teller lokalt",
+        "global": "tellingene tegner biosfaerens kart",
+        "empathy_note": "tellingen er indeksen, ikke skogen"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "proxy",
+        "konsensusstatus": "institusjonell",
+        "sosial_mekanisme": "GBIF-taksonomien som konsensus-kanal",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "fraksjon"
+        ],
+        "enheter": "antall registrerte arter (telling; fraksjon av artsrommet)",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "feltmaaling (ikke i enumen)",
+          "genom-indeks (ikke i enumen)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "ingen terskler — maalingsnode"
+        ],
+        "motor": "enerflyt (proxy-mater)"
+      },
+      "nivaa": {
+        "indeks": 0,
+        "forelder": null,
+        "tidsskala": "timer",
+        "lengdeskala": "global"
+      },
+      "id": "verden.biosfaere"
+    },
+    {
+      "regime": {
+        "name": "maaling",
+        "validity": "vulkantilstand (statusliste) — VHP; konnektoren kjoerer paa eierens nett (datasenter-lukket, maalt 400/403)"
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "vulkantilstand",
+        "measurer": "USGS VHP",
+        "instrument": "statusliste (alertLevel)",
+        "proxy_chain": [
+          "alertLevel -> aktivitet -> regime-status"
+        ],
+        "placement": "observasjon",
+        "compression": "statuslisten komprimeres til antall aktive per runde"
+      },
+      "episenter": "lesning av vulkantilstand — instrument-vinduet",
+      "buffer": {
+        "role": "vulkaner som jordas termiske buffer",
+        "note": "slektning av seismikk-noden; broen er KANDIDAT inntil konnektor-deploy"
+      },
+      "ontology": {
+        "assumes": [
+          "VHP-statuslisten er maalt, ikke modellert"
+        ],
+        "source": "USGS Volcano Hazards Program (datasenter-lukket; deploy er menneskeord)"
+      },
+      "observer": {
+        "bandwidth": "statusliste — bare overvaakede vulkaner",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "aktivitet -> status -> varsling — loopens instrument-del",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "en vulkan er jordas termiske proxy",
+        "note": "GVP-tellingen (1 425 holocene) er katalogen, ikke stroemmen"
+      },
+      "coupling": {
+        "local": "hver vulkan maales lokalt",
+        "global": "statuslisten tegner den vulkanske tilstanden",
+        "empathy_note": "de fleste vulkaner er uovervaaket — listen er et vindu, ikke et kart"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "direkte",
+        "konsensusstatus": "institusjonell",
+        "sosial_mekanisme": "USGS-statuslisten som konsensus-kanal",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "energi"
+        ],
+        "enheter": "USGS-statusliste som energisk aktivitetsnivaa (NORMAL/WATCH/WARNING)",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "seismisk energi (ikke i enumen)",
+          "SO2-fluks (ikke i enumen)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "ingen terskler — maalingsnode"
+        ],
+        "motor": "KANDIDAT (broen venter paa konnektor-deploy)"
+      },
+      "nivaa": {
+        "indeks": 0,
+        "forelder": null,
+        "tidsskala": "timer",
+        "lengdeskala": "km"
+      },
+      "id": "kosmos.jord.vulkan"
     }
   ],
   "relations": [

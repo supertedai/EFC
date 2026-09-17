@@ -6,6 +6,177 @@
   "changes": [
     {
       "date": "2026-09-17",
+      "sha": "b18c75b44353",
+      "summary": "fix(atlas): review-runde 1 — konkrete maale_paradigme + regex-regresjonstest",
+      "categories": {
+        "public_pages": 1,
+        "ledger_data": 1,
+        "other": 2,
+        "tests": 1
+      },
+      "id": "b18c75b44353"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "ef7bb2ca4f09",
+      "summary": "feat(atlas): gap_nats_bro + tre maalingsnoder (hav, biosfaere, vulkan)",
+      "categories": {
+        "other": 4,
+        "public_pages": 1,
+        "ledger_data": 1,
+        "code": 1,
+        "tests": 1
+      },
+      "id": "ef7bb2ca4f09"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "c27efb8ad452",
+      "summary": "fix(bridge): regex-escape i _legit (samme defekt som Hetzner-reviewet fant)",
+      "categories": {
+        "code": 1
+      },
+      "id": "c27efb8ad452"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "bdc54c031a5e",
+      "summary": "fix(privacy): hjemmeadresse og telefon fjernet fra efc-toolkit (13 filer) + vakten utvidet til hele repoet Public pages updated: Changelog.",
+      "categories": {
+        "papers": 13,
+        "tests": 1
+      },
+      "id": "bdc54c031a5e"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "71af653d8844",
+      "summary": "fix(test): vakten hopper over __pycache__/kompilerte artefakter",
+      "categories": {
+        "tests": 1
+      },
+      "id": "71af653d8844"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "22ebf8e98ed2",
+      "summary": "fix(privacy): alle adresserester fjernet — husnummer, postnummer og affiliations i jsonld/tex (review-krav PR #455 r1)",
+      "categories": {
+        "papers": 12,
+        "tests": 1
+      },
+      "id": "22ebf8e98ed2"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "763c2d4e0e7e",
+      "summary": "fix(privacy): ugyldig JSON fra tømte felt rettet + ny vakt mot tomme redaksjons-felt (review-krav PR #455 r2)",
+      "categories": {
+        "papers": 3,
+        "tests": 1
+      },
+      "id": "763c2d4e0e7e"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "2dc396b0b7aa",
+      "summary": "fix(privacy): trailing whitespace i de tre redigerte filene (review-krav PR #455 r3)",
+      "categories": {
+        "papers": 3
+      },
+      "id": "2dc396b0b7aa"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "c741bf948556",
+      "summary": "fix(json): tre pre-eksisterende ugyldige JSON-filer reparert (review-krav PR #455 r3)",
+      "categories": {
+        "other": 2,
+        "scripts": 1
+      },
+      "id": "c741bf948556"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "7efad5f19197",
+      "summary": "fix(json): template.jsonld — siste ugyldige JSON i repoet (review-krav PR #455 r4)",
+      "categories": {
+        "scripts": 1
+      },
+      "id": "7efad5f19197"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "1cf0a2c5a82e",
+      "summary": "fix(templates): malene OG generert utdata gyldige samtidig (review-krav PR #455 r5)",
+      "categories": {
+        "papers": 5,
+        "scripts": 3
+      },
+      "id": "1cf0a2c5a82e"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "1b51a04ed255",
+      "summary": "feat(publish): DOI-git reconciler — Figshare publish and git hang together (#456)",
+      "categories": {
+        "public_pages": 1,
+        "ledger_data": 1,
+        "scripts": 1
+      },
+      "id": "1b51a04ed255"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "8d79a2d052f9",
+      "summary": "chore: fjern test-artefakt Test_Paper_Y (utilsiktet committet)",
+      "categories": {
+        "papers": 5
+      },
+      "id": "8d79a2d052f9"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "e2541ba962d1",
+      "summary": "feat(grid): GridMikroEngine + fire publiserte verk inn i atlaset (L-031)",
+      "categories": {
+        "other": 4,
+        "code": 1,
+        "tests": 1
+      },
+      "id": "e2541ba962d1"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "b5dc8bdafcaa",
+      "summary": "fix(grid): regime() håndterer NaN/negative innganger (review-krav PR #458 r1)",
+      "categories": {
+        "code": 1,
+        "tests": 1
+      },
+      "id": "b5dc8bdafcaa"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "7c7e30b7e33d",
+      "summary": "feat(atlas): sorte hull (fra Grid-Higgs) og periodesystemet (akademia) inn i atlaset",
+      "categories": {
+        "other": 4
+      },
+      "id": "7c7e30b7e33d"
+    },
+    {
+      "date": "2026-09-17",
+      "sha": "c2a1ea7a855a",
+      "summary": "chore(ci): vedlikeholds-sekvensen — maintain -> navbar -> doi-map (PR #459)",
+      "categories": {
+        "papers": 3,
+        "other": 1
+      },
+      "id": "c2a1ea7a855a"
+    },
+    {
+      "date": "2026-09-17",
       "sha": "72d919146b23",
       "summary": "feat(publish): DOI-git reconciler — Figshare publish and git hang together",
       "categories": {
@@ -188,7 +359,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "72d919146b23821139472758b4b1a0ab68b5fbd8",
-    "generated_at": "2026-09-17T10:45:01.919011+00:00"
+    "last_processed_sha": "b18c75b4435325d674d1328ee031a329066f7e14",
+    "generated_at": "2026-09-17T11:51:45.783473+00:00"
   }
 }
