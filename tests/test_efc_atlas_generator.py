@@ -26,12 +26,15 @@ def test_data_mjs_er_fersk_etter_regenerering():
 
 
 def test_atlas_bygger_uten_feil():
-    r = subprocess.run(["node", "build.mjs"],
-                       capture_output=True, text=True,
-                       cwd=ROT / "docs" / "efc-atlas" / "atlas",
-                       timeout=120)
-    assert r.returncode == 0, r.stderr[:400]
-    assert "82 structures" in r.stdout or "structures" in r.stdout
+    """Generatoren ER byggetrinnet naa — den skriver data.mjs, kjoerer
+    build.mjs og stripper whitespace. Ikke kall node direkte: det
+    overskriver den strippede outputen."""
+    r = subprocess.run(
+        ["/opt/venvs/t_123ed6d9/bin/python",
+         str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
+        capture_output=True, text=True, cwd=ROT, timeout=120)
+    assert r.returncode == 0, r.stderr[-400:]
+    assert "built" in r.stdout or "structures" in r.stdout
 
 
 def test_generert_atlas_har_doctype_og_charset():
