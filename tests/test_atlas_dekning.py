@@ -51,6 +51,20 @@ class TestDekningsinvarianten(unittest.TestCase):
             f"staa i atlas_dekning.json — atlaset vet ikke at de finnes:\n  "
             + "\n  ".join(udeklarerte))
 
+    def test_hvert_emne_i_et_kjent_domene_er_tatt_stilling_til(self):
+        """Reviewfunn 3: bare domenenoekkelen ble sammenlignet, saa et kjent
+        domene kunne faa nye emner usett. Naa sammenlignes emne-listene."""
+        snap = _les(SNAPSHOT)["domener"]
+        dekl = _les(DEKNING)["domener"]
+        for domene, rad in snap.items():
+            if domene not in dekl:
+                continue  # fanges av testen over
+            nye = sorted(set(rad["emner"]) - set(dekl[domene]["emner"]))
+            self.assertEqual(
+                nye, [],
+                f"{domene} har nye buss-emner som ikke er tatt stilling "
+                f"til: {nye}")
+
     def test_deklarasjonen_raatner_ikke(self):
         """Motsatt retning: en deklarasjon for et domene som ikke lenger
         finnes er en påstand om en verden som er borte."""
@@ -63,24 +77,30 @@ class TestDekningsinvarianten(unittest.TestCase):
             f"{foreldede}")
 
     def test_hver_deklarasjon_har_status_og_begrunnelse(self):
-        """Et gap uten grunn er bare et hull. Hver linje skal si hva
-        atlaset gjor med domenet, og hvorfor."""
+        """Et gap uten grunn er bare et hull."""
         for domene, rad in _les(DEKNING)["domener"].items():
             self.assertIn(rad.get("status"), GYLDIGE_STATUS, domene)
             self.assertTrue(rad.get("begrunnelse", "").strip(),
                             f"{domene} mangler begrunnelse")
 
-    def test_status_dekket_krever_en_faktisk_node(self):
-        """`dekket` er en PAASTAND om at atlaset beskriver domenet. Den skal
-        kunne innfris: det maa finnes noder, og de skal kunne navngis. Uten
-        denne kunne jeg merket alt som dekket uten at noe var det."""
-        noder = _les(NODER)["nodes"]
-        antall = len(noder) if isinstance(noder, list) else len(noder)
-        self.assertGreater(antall, 0, "atlaset har ingen noder")
-        dekket = [d for d, r in _les(DEKNING)["domener"].items()
-                  if r["status"] == "dekket"]
-        self.assertGreater(len(dekket), 0,
-                           "ingen domener er dekket — da er statusen feil")
+    def test_dekket_status_navngir_noder_som_faktisk_finnes(self):
+        """Reviewfunn 1 og 2, det blokkerende. `dekket` og `delvis` er
+        PAASTANDER om at atlaset beskriver domenet. Hver navngitte node maa
+        finnes — og en dekket-status uten en eneste node er nettopp den
+        udekkede påstanden som gjorde at verden.vaer kunne staa som dekket
+        uten at noen node hadde den id-en."""
+        finnes = {n["id"] for n in _les(NODER)["nodes"]}
+        for domene, rad in _les(DEKNING)["domener"].items():
+            ns = rad.get("noder", [])
+            if rad["status"] in ("dekket", "delvis"):
+                self.assertTrue(
+                    ns, f"{domene} er '{rad['status']}' uten en eneste node "
+                        f"— en dekket-status maa kunne innfris")
+            for n in ns:
+                self.assertIn(
+                    n, finnes,
+                    f"{domene} peker paa noden '{n}', som ikke finnes i "
+                    f"regime_nodes.jsonld")
 
     def test_snapshottet_baerer_sin_egen_proveniens(self):
         """Uten maaletidspunkt kan ingen se om snaoshottet er ferskt."""

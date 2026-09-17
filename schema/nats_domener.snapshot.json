@@ -2,49 +2,283 @@
   "_proveniens": {
     "kilde": "NATS-bussen, verden_domener (MCP) — emner utledet av meldinger som faktisk bærer trafikk",
     "maalt": "2026-09-17T15:40:00Z",
-    "lest_av": "Opus, interaktiv sesjon 20260917_141807_62c9fd",
-    "merknad": "Antall emner per domene. Busstilgang finnes ikke i testmiljøet; snapshottet er derfor den målte formen invarianten prøves mot. Det oppdateres av vakta, ikke for hånd."
+    "lest_av": "Opus, sesjon 20260917_141807_62c9fd",
+    "merknad": "Per-emne-tall er ikke tilgjengelig via NATS-monitoring-API-et; snapshottet er den målte formen invarianten prøves mot."
   },
   "domener": {
-    "opus.dommekraft": 7,
-    "kosmos.asteroider": 4,
-    "kosmos.galakser": 1,
-    "kosmos.hoper": 1,
-    "kosmos.interstellart": 1,
-    "kosmos.roentgentransienter": 2,
-    "kosmos.stjerner": 1,
-    "kosmos.uklassifisert": 2,
-    "kosmos.kosmologi": 3,
-    "kosmos.maane": 1,
-    "kosmos.planetsystem": 1,
-    "kosmos.romfart": 3,
-    "kosmos.jord": 2,
-    "kosmos.romvaer": 1,
-    "kosmos.satellitter": 2,
-    "kosmos.sol": 2,
-    "kosmos.gammaglimt": 1,
-    "kosmos.noeytrinoer": 1,
-    "kosmos.transienter": 1,
-    "verden.arbeid": 5,
-    "verden.demografi": 4,
-    "verden.energi": 6,
-    "verden.finans": 2,
-    "verden.geopolitikk": 4,
-    "verden.handel": 2,
-    "verden.helse": 5,
-    "verden.infrastruktur": 4,
-    "verden.klima": 3,
-    "verden.kommunikasjon": 4,
-    "verden.lov": 4,
-    "verden.militaer": 4,
-    "verden.miljo": 7,
-    "verden.oekonomi": 5,
-    "verden.politikk": 4,
-    "verden.sikkerhet": 4,
-    "verden.teknologi": 3,
-    "verden.transport": 2,
-    "verden.utdanning": 4,
-    "verden.vaer": 5
-  },
-  "emner_totalt": 118
+    "opus.dommekraft": {
+      "emner": [
+        "hendelse.lukkeliste",
+        "oppgjoer.handlingsledger",
+        "prediksjon.handlingsledger",
+        "tilstand.broer",
+        "tilstand.domeneinventar",
+        "tilstand.efc-lcdm-sammenligning",
+        "tilstand.lukkeliste"
+      ]
+    },
+    "kosmos.asteroider": {
+      "emner": [
+        "observasjon.mast-caom",
+        "oppgjoer.jpl-sentry",
+        "prediksjon.jpl-cneos",
+        "prediksjon.jpl-sentry"
+      ]
+    },
+    "kosmos.galakser": {
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.hoper": {
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.interstellart": {
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.roentgentransienter": {
+      "emner": [
+        "observasjon.heasarc",
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.stjerner": {
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.uklassifisert": {
+      "emner": [
+        "observasjon.mast-caom",
+        "diskusjon.gcn"
+      ]
+    },
+    "verden.arbeid": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.eurostat",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.demografi": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.energi": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.entsoe-dayahead",
+        "tilstand.entsoe-dayahead",
+        "tilstand.tibber",
+        "tilstand.victron",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.finans": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecb-data"
+      ]
+    },
+    "verden.geopolitikk": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.handel": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.helse": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.who-gho",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.infrastruktur": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.klima": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.noaa-tides",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.kommunikasjon": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.lov": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.militaer": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.miljo": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecowitt",
+        "tilstand.gbif-planter",
+        "tilstand.mgnify-mikrobiom",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.oekonomi": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.imf-datamapper",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.politikk": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.sikkerhet": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.teknologi": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.arxiv-quant"
+      ]
+    },
+    "verden.transport": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.utdanning": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.vaer": {
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "oppgjoer.metno",
+        "prediksjon.metno",
+        "tilstand.ecowitt",
+        "tilstand.metar"
+      ]
+    },
+    "kosmos.kosmologi": {
+      "emner": [
+        "prediksjon.efc-fs8",
+        "tilstand.efc-fs8",
+        "diskusjon.arxiv"
+      ]
+    },
+    "kosmos.maane": {
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.planetsystem": {
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.romfart": {
+      "emner": [
+        "oppgjoer.launch-library",
+        "prediksjon.launch-library",
+        "hendelse.launch-library"
+      ]
+    },
+    "kosmos.jord": {
+      "emner": [
+        "tilstand.usgs-seismikk",
+        "tilstand.usgs-vulkan"
+      ]
+    },
+    "kosmos.romvaer": {
+      "emner": [
+        "tilstand.swpc-kp"
+      ]
+    },
+    "kosmos.satellitter": {
+      "emner": [
+        "tilstand.celestrak-katalog",
+        "tilstand.celestrak-stasjoner"
+      ]
+    },
+    "kosmos.sol": {
+      "emner": [
+        "tilstand.swpc-goes-xray",
+        "hendelse.nasa-donki"
+      ]
+    },
+    "kosmos.gammaglimt": {
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.noeytrinoer": {
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.transienter": {
+      "emner": [
+        "hendelse.alerce"
+      ]
+    }
+  }
 }

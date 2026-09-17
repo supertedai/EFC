@@ -1,205 +1,432 @@
 {
-  "_form": "Hvert domene som baerer meldinger paa bussen skal staa her — enten som dekket, delvis, eller navngitt gap. Et domene som hverken er dekket eller deklarert er usynlig, og et usynlig gap er hvordan prediksjonslaget kunne ligge komplett paa bussen uten at atlaset visste det.",
-  "_proveniens": {
-    "snapshot": "schema/nats_domener.snapshot.json",
-    "maalt": "2026-09-17",
-    "skrevet_av": "Opus, sesjon 20260917_141807_62c9fd"
-  },
+  "_form": "Hvert domene som bærer meldinger skal stå her, og hver `dekket`/`delvis` skal NAVNGI nodene som begrunner den. En status uten node er en påstand uten dekning — samme feilklasse som gjorde at prediksjonslaget kunne ligge usett.",
   "domener": {
+    "opus.dommekraft": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "hendelse.lukkeliste",
+        "oppgjoer.handlingsledger",
+        "prediksjon.handlingsledger",
+        "tilstand.broer",
+        "tilstand.domeneinventar",
+        "tilstand.efc-lcdm-sammenligning",
+        "tilstand.lukkeliste"
+      ]
+    },
     "kosmos.asteroider": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom",
+        "oppgjoer.jpl-sentry",
+        "prediksjon.jpl-cneos",
+        "prediksjon.jpl-sentry"
+      ]
     },
     "kosmos.galakser": {
       "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.gammaglimt": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
     },
     "kosmos.hoper": {
       "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
     },
     "kosmos.interstellart": {
       "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.jord": {
-      "status": "dekket",
-      "emner": 2,
-      "begrunnelse": "kosmos.jord.vulkan; usgs-seismikk har ingen egen node"
-    },
-    "kosmos.kosmologi": {
-      "status": "dekket",
-      "emner": 3,
-      "begrunnelse": "efc.growth_engine baerer den forseglede fsigma8-prediksjonen; obs.fsigma8 er observabelen"
-    },
-    "kosmos.maane": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.noeytrinoer": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.planetsystem": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
     },
     "kosmos.roentgentransienter": {
       "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.romfart": {
-      "status": "delvis",
-      "emner": 3,
-      "begrunnelse": "kosmos.romfart.prediksjon.launch-library har oppgjoersmotpart, men ingen atlas-node"
-    },
-    "kosmos.romvaer": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.satellitter": {
-      "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.sol": {
-      "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.heasarc",
+        "diskusjon.gcn"
+      ]
     },
     "kosmos.stjerner": {
       "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "kosmos.transienter": {
-      "status": "ikke_dekket",
-      "emner": 1,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
     },
     "kosmos.uklassifisert": {
       "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
-    },
-    "opus.dommekraft": {
-      "status": "delvis",
-      "emner": 7,
-      "begrunnelse": "opus.dommekraft.oppgjoer.handlingsledger er den rikeste kontrakten som finnes; de oevrige opus-emnene har ingen node"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.mast-caom",
+        "diskusjon.gcn"
+      ]
     },
     "verden.arbeid": {
       "status": "ikke_dekket",
-      "emner": 5,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.eurostat",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.demografi": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.energi": {
       "status": "delvis",
-      "emner": 6,
-      "begrunnelse": "batteri.* er interne noder; entsoe-dayahead-tilstanden har stanset siden 2026-09-04 (t_395dc396); energi-oppgjoeret mangler"
+      "noder": [
+        "efc.victron_cccv_engine"
+      ],
+      "begrunnelse": "victron-tilstanden er dekket; entsoe (baade prediksjon og tilstand), tibber og world-bank mangler. Tilstandskilden for entsoe har dessuten stanset siden 2026-09-04 (t_395dc396)",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.entsoe-dayahead",
+        "tilstand.entsoe-dayahead",
+        "tilstand.tibber",
+        "tilstand.victron",
+        "tilstand.world-bank"
+      ]
     },
     "verden.finans": {
       "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecb-data"
+      ]
     },
     "verden.geopolitikk": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.handel": {
       "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
     },
     "verden.helse": {
       "status": "ikke_dekket",
-      "emner": 5,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.who-gho",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.infrastruktur": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.klima": {
-      "status": "ikke_dekket",
-      "emner": 3,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "status": "delvis",
+      "noder": [
+        "efc.klima_engine",
+        "efc.tidevann_engine",
+        "verden.hav"
+      ],
+      "begrunnelse": "noaa-tides er dekket; gdelt-observasjon og world-bank-tilstand har ingen node",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.noaa-tides",
+        "tilstand.world-bank"
+      ]
     },
     "verden.kommunikasjon": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.lov": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.militaer": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.miljo": {
-      "status": "ikke_dekket",
-      "emner": 7,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "status": "delvis",
+      "noder": [
+        "verden.biosfaere",
+        "efc.water_phase_engine"
+      ],
+      "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom og gdelt mangler",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecowitt",
+        "tilstand.gbif-planter",
+        "tilstand.mgnify-mikrobiom",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.oekonomi": {
       "status": "ikke_dekket",
-      "emner": 5,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.imf-datamapper",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.politikk": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.sikkerhet": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.teknologi": {
       "status": "ikke_dekket",
-      "emner": 3,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.arxiv-quant"
+      ]
     },
     "verden.transport": {
       "status": "ikke_dekket",
-      "emner": 2,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
     },
     "verden.utdanning": {
       "status": "ikke_dekket",
-      "emner": 4,
-      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
     },
     "verden.vaer": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "INGEN node beskriver værvirkeligheten. PR #467 speilet prediksjons- og oppgjørskontrakten i SKJEMAET, men kontrakt er ikke dekning — det finnes fortsatt ingen node for metno, metar eller ecowitt. Merket feilaktig som dekket i første runde av denne PR-en",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "oppgjoer.metno",
+        "prediksjon.metno",
+        "tilstand.ecowitt",
+        "tilstand.metar"
+      ]
+    },
+    "kosmos.kosmologi": {
       "status": "dekket",
-      "emner": 5,
-      "begrunnelse": "verden.vaer.prediksjon/oppgjoer/tilstand — kontrakten speilet i PR #467; oppgjoeret er det eneste som faktisk lukker sloeyfa"
+      "noder": [
+        "efc.growth_engine",
+        "efc.hubble_engine",
+        "efc.lensing_engine",
+        "efc.cluster_engine",
+        "efc.rotation_engine",
+        "obs.fsigma8",
+        "obs.s8",
+        "obs.bao",
+        "obs.cmb_tt",
+        "obs.cmb_lensing"
+      ],
+      "begrunnelse": "ti noder beskriver domenet — den tetteste dekningen i atlaset",
+      "emner": [
+        "prediksjon.efc-fs8",
+        "tilstand.efc-fs8",
+        "diskusjon.arxiv"
+      ]
+    },
+    "kosmos.maane": {
+      "status": "dekket",
+      "noder": [
+        "efc.orbital_engine"
+      ],
+      "begrunnelse": "jpl-horizons for maanen; orbital-motoren baerer banemekanikken",
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.planetsystem": {
+      "status": "dekket",
+      "noder": [
+        "efc.orbital_engine"
+      ],
+      "begrunnelse": "jpl-horizons for planetsystemet; samme motor",
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.romfart": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "oppgjoer.launch-library",
+        "prediksjon.launch-library",
+        "hendelse.launch-library"
+      ]
+    },
+    "kosmos.jord": {
+      "status": "dekket",
+      "noder": [
+        "kosmos.jord.vulkan",
+        "efc.jordskjelv_engine"
+      ],
+      "begrunnelse": "vulkan og seismikk har hver sin node",
+      "emner": [
+        "tilstand.usgs-seismikk",
+        "tilstand.usgs-vulkan"
+      ]
+    },
+    "kosmos.romvaer": {
+      "status": "dekket",
+      "noder": [
+        "efc.romvaer_engine"
+      ],
+      "begrunnelse": "swpc-kp har motor og node",
+      "emner": [
+        "tilstand.swpc-kp"
+      ]
+    },
+    "kosmos.satellitter": {
+      "status": "dekket",
+      "noder": [
+        "obs.satellites",
+        "efc.orbital_engine"
+      ],
+      "begrunnelse": "celestrak-katalog og -stasjoner",
+      "emner": [
+        "tilstand.celestrak-katalog",
+        "tilstand.celestrak-stasjoner"
+      ]
+    },
+    "kosmos.sol": {
+      "status": "dekket",
+      "noder": [
+        "efc.solar_flare_engine"
+      ],
+      "begrunnelse": "swpc-goes-xray og nasa-donki; ett emne, én node",
+      "emner": [
+        "tilstand.swpc-goes-xray",
+        "hendelse.nasa-donki"
+      ]
+    },
+    "kosmos.gammaglimt": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.noeytrinoer": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node beskriver dette domenet",
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.transienter": {
+      "status": "dekket",
+      "noder": [
+        "efc.transient_engine"
+      ],
+      "begrunnelse": "alerce-transienter har motor og node",
+      "emner": [
+        "hendelse.alerce"
+      ]
     }
   }
 }
