@@ -409,7 +409,11 @@
               "description": "Disanalogien: hvor analogien brekker — obligatorisk når noden erklærer ANALOGOUS_TO."
             }
           },
-          "description": "Analogi-disciplin: en analogi uten disanalogi herdes til ontologi."
+          "description": "Analogi-disciplin: en analogi uten disanalogi herdes til ontologi.",
+          "required": [
+            "avbildning",
+            "bryter_der"
+          ]
         }
       },
       "additionalProperties": false

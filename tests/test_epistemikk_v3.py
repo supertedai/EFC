@@ -66,7 +66,8 @@ def test_konsensus_noder_har_sosial_mekanisme():
 
 
 def test_analogiske_noder_har_disanalogi():
-    """ANALOGOUS_TO-relasjonen krever analogi-feltet med disanalogi."""
+    """ANALOGOUS_TO-relasjonen krever analogi-feltet med BÅDE avbildning
+    og disanalogi (review-krav: begge er obligatoriske)."""
     atlas = _atlas()
     analogiske = {r["subject"] for r in atlas.get("relations", [])
                   if r.get("predicate") == "ANALOGOUS_TO"}
@@ -74,8 +75,25 @@ def test_analogiske_noder_har_disanalogi():
         if n["id"] in analogiske:
             assert "analogi" in n, (
                 f"{n['id']}: ANALOGOUS_TO uten analogi-felt")
+            assert n["analogi"]["avbildning"], (
+                f"{n['id']}: avbildningen mangler")
             assert n["analogi"]["bryter_der"], (
                 f"{n['id']}: disanalogi mangler — analogien er udisiplinert")
+
+
+def test_analogi_feltene_er_required_i_skjema():
+    """analogi.required skal kreve begge feltene (review-krav PR #445 r1)."""
+    analogi = _skjema()["$defs"]["RegimeNode"]["properties"]["analogi"]
+    assert set(analogi.get("required", [])) == {"avbildning", "bryter_der"}
+
+
+def test_konsensus_mekanismer_er_individualiserte():
+    """Ingen to konsensus-noder skal dele sosial_mekanisme-tekst —
+    malbasert fylling er en falsk sporbarhet (review-krav)."""
+    tekster = [n["epistemikk"]["sosial_mekanisme"] for n in _atlas()["nodes"]
+               if n["perspektiv"] == "konsensus"]
+    assert len(tekster) == len(set(tekster)), (
+        "dupliserte sosial_mekanisme-tekster blant konsensus-nodene")
 
 
 def test_epistemikk_statusene_er_gyldige_enum():
