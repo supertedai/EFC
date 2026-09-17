@@ -3863,7 +3863,10 @@
    },
    "buss_domene": "kosmos.kosmologi",
    "synlighet": "offentlig",
-   "ville_falsifisere": "STUB — fysikken er ikke implementert. Noden kan ikke falsifiseres før den regner noe; dette er en melding om tilstand, ikke en påstand."
+   "falsifiserbarhet": {
+    "status": "stub",
+    "grunn": "konvergensen kappa(theta) — compute() hever NotImplementedError — en stub kan ikke felles for den regner"
+   }
   },
   {
    "id": "efc.cluster_engine",
@@ -3949,7 +3952,10 @@
    },
    "buss_domene": "kosmos.hoper",
    "synlighet": "offentlig",
-   "ville_falsifisere": "STUB — mass funksjonen n(M,z) er ikke implementert. Kan ikke falsifiseres før den regner."
+   "falsifiserbarhet": {
+    "status": "stub",
+    "grunn": "halomassefunksjonen n(M,z) — compute() hever NotImplementedError — en stub kan ikke felles for den regner"
+   }
   },
   {
    "id": "homo.fluxus",
@@ -6458,7 +6464,7 @@
    },
    "id": "efc.grid_higgs",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Gyldig som EFC-hypotese, ikke som målt konsensus. Felles av en måling som skiller den fra etablert gravitasjonsfysikk på samme skala."
+   "ville_falsifisere": "Felles av en måling som skiller Grid-Higgs-rammen fra GR på en navngitt skala med en oppgitt terskel — f.eks. et avvik i den radiale akselerasjonsrelasjonen ved a0 som GR ikke kan reprodusere. En måling uten navngitt skala og terskel feller den ikke."
   },
   {
    "regime": {
@@ -6539,7 +6545,7 @@
    },
    "id": "efc.gr_qft_bro",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av en beregning som viser at den termodynamiske broen ikke reproduserer kjent GR- eller QFT-grense."
+   "ville_falsifisere": "Felles av en beregning som viser at den termodynamiske broen ikke reproduserer kjent GR- eller QFT-grense i et navngitt grensetilfelle (f.eks. svakt felt, eller Planck-skala)."
   },
   {
    "regime": {
@@ -6620,7 +6626,7 @@
    },
    "id": "efc.double_slit",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Et interferensmønster som ikke kan følge av grid-oppløsning på den aktuelle skalaen."
+   "ville_falsifisere": "Felles av et interferensmønster med oppgitt spalteavstand og bølgelengde der grid-oppløsningen ikke kan reprodusere kontrasten."
   },
   {
    "regime": {
@@ -6701,7 +6707,7 @@
    },
    "id": "efc.grid_mikrofysikk",
    "synlighet": "offentlig",
-   "ville_falsifisere": "En målt akselerasjon som ikke følger den radiale akselerasjonsrelasjonen avledet fra grid-mikrofysikken."
+   "ville_falsifisere": "Felles av en målt akselerasjon ved en navngitt akselerasjonsskala som ikke følger den radiale akselerasjonsrelasjonen avledet fra grid-mikrofysikken."
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -6871,7 +6877,7 @@
    },
    "id": "efc.sort_hull",
    "synlighet": "offentlig",
-   "ville_falsifisere": "En måling av sort-hull-entropi som ikke kan forenes med den entropiske grensen i Grid-Higgs-rammen."
+   "ville_falsifisere": "Felles av en målt sort-hull-entropi som avviker fra den entropiske grensen i Grid-Higgs-rammen med mer enn oppgitt usikkerhet."
   },
   {
    "regime": {

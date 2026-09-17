@@ -670,6 +670,26 @@
               "description": "Naar maalingen ble gjort (`observert`)."
             }
           }
+        },
+        "falsifiserbarhet": {
+          "type": "object",
+          "description": "Hvorfor en node IKKE kan felles. Skill fra `ville_falsifisere`: en stub kan ikke felles for den regner — det er en tilstandsbeskrivelse, ikke en falsifikator, og den skal ikke telle som oppfylt falsifiserbarhet.",
+          "required": [
+            "status",
+            "grunn"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "stub"
+              ]
+            },
+            "grunn": {
+              "type": "string"
+            }
+          }
         }
       },
       "additionalProperties": false

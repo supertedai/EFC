@@ -47,8 +47,16 @@ def _offentlige():
 class TestFalsifiserbarhet:
 
     def test_hver_efc_paastand_kan_felles(self):
+        """Hver EFC-node som PAASTAAR noe skal kunne felles.
+
+        En stub paastaar ingenting — compute() hever NotImplementedError.
+        Den skal ha en grunn i stedet for en falsifikator, og den
+        umslippelsen er selv pinnet i testen under.
+        """
         mangler = [n["id"] for n in _offentlige()
-                   if n["id"].startswith("efc.") and "ville_falsifisere" not in n]
+                   if n["id"].startswith("efc.")
+                   and "ville_falsifisere" not in n
+                   and (n.get("falsifiserbarhet") or {}).get("status") != "stub"]
         assert mangler == [], f"EFC-paastander uten falsifikator: {mangler}"
 
     def test_falsifikatoren_sier_mer_enn_paastanden(self):
@@ -80,6 +88,23 @@ class TestFalsifiserbarhet:
         assert ukjente == set(), (
             f"nye prefikser uten vurdering: {sorted(ukjente)}")
 
+    def test_en_stub_kan_ikke_felles_og_skal_ikke_telle(self):
+        """Review 2026-09-17: en STUB hadde `ville_falsifisere` satt til
+        «kan ikke falsifiseres for den regner noe». Det er aerlig, men det
+        er en TILSTANDSBESKRIVELSE — ikke en falsifikator — og den fikk
+        tallet til aa gaa opp mens feltet svarte paa noe annet.
+
+        En node hvis motor hever NotImplementedError skal ikke ha en
+        falsifikator. Den skal ha en grunn.
+        """
+        stubber = [n for n in _offentlige()
+                   if (n.get("falsifiserbarhet") or {}).get("status") == "stub"]
+        assert len(stubber) == 2, f"forventet 2 stubber, fikk {len(stubber)}"
+        for n in stubber:
+            assert "ville_falsifisere" not in n, (
+                f"{n['id']} er en stub MEN har en falsifikator — da teller "
+                f"en tilstandsbeskrivelse som oppfylt falsifiserbarhet")
+
     def test_tallet_er_27_av_74(self):
         """Tallet skal vaere kjent, ikke bare overraskende.
 
@@ -88,5 +113,10 @@ class TestFalsifiserbarhet:
         """
         off = _offentlige()
         kan = sum(1 for n in off if "ville_falsifisere" in n)
+        stub = sum(1 for n in off
+                   if (n.get("falsifiserbarhet") or {}).get("status") == "stub")
         assert len(off) == 74, f"offentlige endret: {len(off)}"
-        assert kan == 27, f"kan felles: {kan} — forventet 27"
+        assert kan == 25, (
+            f"kan felles: {kan} — forventet 25. 27 var feil: to av dem var "
+            f"stubber som ikke kan felles for de regner")
+        assert stub == 2, f"stubber: {stub} — forventet 2"
