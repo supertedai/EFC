@@ -13927,6 +13927,99 @@
       "open_questions": [
         "verden.klima_isbre: the stream does not exist — waits for a connector"
       ]
+    },
+    {
+      "id": "verden.kvanteinfo",
+      "regime": {
+        "name": "measurement — diskusjon.arxiv-quant",
+        "validity": "arXiv quant-ph publications — an index of knowledge (L2), not a physical measurement."
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "quantum-information publications",
+        "measurer": "arXiv",
+        "instrument": "category feeds (quant-ph)",
+        "proxy_chain": [
+          "publication -> title -> the field's activity"
+        ],
+        "placement": "observation",
+        "compression": "the ten newest titles per round"
+      },
+      "episenter": "the reading of the publication stream — the instrument window",
+      "buffer": {
+        "role": "the field as a knowledge buffer",
+        "note": "the bridge feeds energy flow as a proxy"
+      },
+      "ontology": {
+        "assumes": [
+          "the publication rate is an index of the field's activity"
+        ],
+        "source": "arXiv quant-ph (open, measured 200 over https)",
+        "proveniens": {
+          "kilder": [
+            {
+              "type": "stroem",
+              "ref": "diskusjon.arxiv-quant",
+              "hentet": "2026-09-17"
+            }
+          ],
+          "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
+          "fullstendig": false
+        }
+      },
+      "observer": {
+        "bandwidth": "titles — not content, not quality",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "research -> pre-print -> the field grows — the instrument part of the loop",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "one title is a proxy for the whole field",
+        "note": "the P3 protocol is the candidate for the deeper measurement"
+      },
+      "coupling": {
+        "local": "each title describes one work",
+        "global": "the titles draw the field's movement",
+        "empathy_note": "the index says the field is moving — not what is true"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "proxy",
+        "konsensusstatus": "minoritet",
+        "sosial_mekanisme": "the arXiv pre-print culture — publish first, judge after",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "fraksjon"
+        ],
+        "enheter": "number of titles",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "benchmarks (the P3 protocol)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "no thresholds of its own — a measurement node; the producer's measurement contract applies"
+        ],
+        "motor": "",
+        "motor_status": "instrument — needs no engine",
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
+      },
+      "nivaa": {
+        "forelder": null,
+        "indeks": 0,
+        "lengdeskala": "global",
+        "tidsskala": "hours"
+      },
+      "buss_domene": "verden.teknologi",
+      "synlighet": "offentlig"
     }
   ],
   "relations": [

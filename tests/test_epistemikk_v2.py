@@ -136,7 +136,8 @@ def test_skjemaet_kjenner_falsifiseringsavgjorelsen():
 def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
     """Counts nodes that CARRY a decision — not nodes that CAN carry one.
 
-    126 of 126 (was 113 before the 13 new nodes came). The field must be
+    127 of 127 (was 113 before the 13 new nodes came, and 126 on 2026-09-21
+    before the quantum-info node). The field must be
     present, also when the answer is no: a node without an answer does not
     answer, and an answer that does not exist cannot be read.
     """
@@ -147,5 +148,5 @@ def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
                     .get("ikke_falsifiserbar_grunn"))]
     assert not uten, (
         f"{len(uten)} of {len(noder)} node(s) have not taken a position: {uten[:8]}")
-    assert len(noder) - len(uten) == 126, (
-        f"coverage must be 126 of 126 (the atlas grew from 113 on 2026-09-19; all 13 new nodes answered), is {len(noder) - len(uten)}")
+    assert len(noder) - len(uten) == 127, (
+        f"coverage must be 127 of 127 (the atlas grew from 113 on 2026-09-19 and 126 on 2026-09-21; every new node answered), is {len(noder) - len(uten)}")

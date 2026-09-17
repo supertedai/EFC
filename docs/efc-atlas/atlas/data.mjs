@@ -5,15 +5,15 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '116 · 52 without a group yet' },
-          { k: 'S-axis', v: '39 of 116 measured · 52 without a group yet' },
+  stats: [{ k: 'Nodes', v: '117 · 52 without a group yet' },
+          { k: 'S-axis', v: '39 of 117 measured · 52 without a group yet' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 117 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 117 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).`,
   platformGives: 'NATS bus (read by measurement code, scheduled by nothing — see Known holes), engines, review fan-out, the EFC bank.',
   busHull: [
   "**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days \u2014 a stale measurement that still answers, which is the failure mode the atlas exists to name.",
-  "**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen."
+  "**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 96 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen."
 ],
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -4748,6 +4748,45 @@ export const NODES = [
     "cond": [
       "verden.klima_isbre: the stream does not exist \u2014 waits for a connector"
     ]
+  },
+  {
+    "id": "verden-kvanteinfo",
+    "code": "QI",
+    "name": "verden.kvanteinfo",
+    "short": "kvanteinfo",
+    "group": "samfunn",
+    "gx": 6.3,
+    "gy": 48.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "quantum-information publications \u00b7 perspective: consensus",
+    "what": "category feeds (quant-ph) \u2014 proxy chain: publication -> title -> the field's activity",
+    "how": "Buffer role: the field as a knowledge buffer. Epistemic: stottet / proxy / minoritet.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "klarhet": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / proxy / minoritet"
+      ],
+      [
+        "Social mechanism",
+        "the arXiv pre-print culture \u2014 publish first, judge after"
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -4912,10 +4951,11 @@ export const CH = [
       "verden-oekonomi-worldbank",
       "verden-oekonomi-imf",
       "verden-oekonomi-gdelt",
-      "verden-klima-isbre"
+      "verden-klima-isbre",
+      "verden-kvanteinfo"
     ],
     "lede": "Chapter 6 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-isbre, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-miljo-gdelt, verden-miljo-mikrobiom, verden-oekonomi-gdelt, verden-oekonomi-imf, verden-oekonomi-worldbank, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
+    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-isbre, verden-klima-worldbank, verden-kommunikasjon, verden-kvanteinfo, verden-lov, verden-militaer, verden-miljo-gdelt, verden-miljo-mikrobiom, verden-oekonomi-gdelt, verden-oekonomi-imf, verden-oekonomi-worldbank, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
     "flow": null
   },
   {
@@ -4991,7 +5031,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.",
+    "lede": "Everything at once \u2014 117 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
@@ -5000,4 +5040,4 @@ export const CH = [
 export const HOW_HTML = `<div class="eyebrow">EFC · generated</div><h1 class="t">How it's built</h1><div class="sub">one source, two views</div>
 <h3 class="sec">Source</h3><pre>schema/regime_nodes.jsonld — the atlas bank</pre>
 <h3 class="sec">Generator</h3><pre>scripts/maintenance/efc_atlas_generator.py</pre>
-<h3 class="sec">Known holes</h3><p>The bus is read by code, not consumed in drift. <code>scripts/atlas_volum.py --maal</code> reads the JetStream streams' <code>state.subjects</code> through the house's own <code>verden_domener</code> (MCP) and writes <code>schema/nats_domener.snapshot.json</code> with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in <code>.github/workflows</code> reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is <code>tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato</code> at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.</p><p>Bus routes in the node bank. 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.</p>`;
+<h3 class="sec">Known holes</h3><p>The bus is read by code, not consumed in drift. <code>scripts/atlas_volum.py --maal</code> reads the JetStream streams' <code>state.subjects</code> through the house's own <code>verden_domener</code> (MCP) and writes <code>schema/nats_domener.snapshot.json</code> with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in <code>.github/workflows</code> reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is <code>tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato</code> at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.</p><p>Bus routes in the node bank. 21 of the published nodes name a bus route; the other 96 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.</p>`;

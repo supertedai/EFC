@@ -44,7 +44,7 @@ def dekning() -> dict:
 
 def test_hver_akse_kan_roteres(atlas: dict) -> None:
     """En akse som tilbys skal svare — og svare like mange."""
-    assert len(atlas["noder"]) == 126
+    assert len(atlas["noder"]) == 127
     dode = []
     for sti, (antall, _) in sorted(atlas_lesing.akser(atlas).items()):
         try:

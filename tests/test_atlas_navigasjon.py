@@ -402,7 +402,7 @@ class TestFalsifiserbarhetsSkillet:
         e = d["epistemisk"]
         assert "maaler_eller_observert" in e, "the instrument nodes are not named"
         n, t_ = e["maaler_eller_observert"]
-        assert n == t_ == 85, f"expected 80/80, got {n}/{t_}"
+        assert n == t_ == 86, f"expected 86/86 (the quantum-info node joined the class on 2026-09-21), got {n}/{t_}"
 
 
 class TestMotornavnetErEntydig:

@@ -86,8 +86,8 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 # suite was green anyway, also for `obs.bao` — the node that carries the
 # counter-evidence to our own regime.
 #
-# Measured 2026-09-19: 126 nodes (13 new since), 31 can be felled, 4 with a
-# status, 91 with a written class.
+# Measured 2026-09-21: 127 nodes (the quantum-info node is new since
+# 2026-09-19), 31 can be felled, 4 with a status, 92 with a written class.
 #
 # The rule is the same as for bus and engine: the choice must be TAKEN. An
 # instrument node cannot be felled by an observation — that is a valid answer.
@@ -111,7 +111,7 @@ def _grunn(n: dict) -> str | None:
 def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> None:
     """Every node answers: a falsifier, a fixed status — or a reason.
 
-    The population is ALL 126 nodes, not only the public ones. The numbers are
+    The population is ALL 127 nodes, not only the public ones. The numbers are
     pinned because both outcomes are real: a node that loses its falsifier, and
     a node that is reclassified, must be a choice someone has made — not
     something that happens while nobody looks.
@@ -127,14 +127,14 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
     kan = [n["id"] for n in nodes if n.get("ville_falsifisere")]
     skylder = [n["id"] for n in nodes if n.get("falsifiserbarhet")]
     maa = [n["id"] for n in nodes if _grunn(n)]
-    assert len(nodes) == 126, f"the atlas changed size: {len(nodes)}"
+    assert len(nodes) == 127, f"the atlas changed size: {len(nodes)}"
     assert len(kan) == 31, (
         f"falsifiable: {len(kan)} — expected 31 (27 public + 4 "
         f"internal). If the number fell, a node lost its falsifier")
     assert len(skylder) == 4, (
         f"with a falsifiability status: {len(skylder)} — expected 4")
-    assert len(maa) == 91, (
-        f"with a written reason: {len(maa)} — expected 91. If the number fell, "
+    assert len(maa) == 92, (
+        f"with a written reason: {len(maa)} — expected 92. If the number fell, "
         f"a node has been given a falsifier; someone must have decided that")
     assert len(kan) + len(skylder) + len(maa) == len(nodes), (
         "at least one node has answered twice — see test_atlas_motsigelse.py")
@@ -143,8 +143,8 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
 def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
     """A shared reason must be a DECLARED class, not a silent copy.
 
-    Measured 2026-09-19: 91 of the 126 nodes carry a rationale, and they use
-    exactly three texts - 63 instrument nodes, 27 established-physics nodes
+    Measured 2026-09-21: 92 of the 127 nodes carry a rationale, and they use
+    exactly three texts - 64 instrument nodes, 27 established-physics nodes
     and one self-description. Requiring a UNIQUE sentence per node would
     require 91 paraphrases of two ideas; that was this test's earlier demand,
     and the data broke it the right way.
@@ -179,8 +179,8 @@ def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
         sett[nok] = t
 
     klasse = sorted(len(ids) for ids in tekster.values() if len(ids) > 1)
-    assert klasse == [27, 63], (
-        f"the classes changed: {klasse} - expected [27, 63]. A node moved "
+    assert klasse == [27, 64], (
+        f"the classes changed: {klasse} - expected [27, 64]. A node moved "
         f"between classes; that is a decision someone must make")
 
 def test_grunnen_navngir_ikke_feltet_den_erstatter(nodes: list[dict]) -> None:

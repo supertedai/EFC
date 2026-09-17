@@ -56,6 +56,23 @@ def test_analyser_hav_skjermer_nan():
     assert r["middel_c"] == 12.0
 
 
+def test_analyser_mikrobiom_mot_maalt_form():
+    from efc_inference.bridge.gap_nats_bro import analyser_mikrobiom
+    r = analyser_mikrobiom({"nyeste_studier": ["Metagenome assembly"],
+                            "proever_i_nyeste": 12,
+                            "sist_oppdatert": "2026-04-24"})
+    assert r["proever_i_nyeste"] == 12
+    assert len(r["nyeste_studier"]) == 1
+
+
+def test_analyser_kvante_mot_maalt_form():
+    from efc_inference.bridge.gap_nats_bro import analyser_kvante
+    r = analyser_kvante({"antall_hentet": 10,
+                         "nyeste_titler": ["Magic state cultivation"]})
+    assert r["antall_hentet"] == 10
+    assert len(r["nyeste_titler"]) == 1
+
+
 def test_bro_runde_uten_melding_er_aarlig():
     from efc_inference.bridge.gap_nats_bro import bro_runde
     r = bro_runde({})

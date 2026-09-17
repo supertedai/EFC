@@ -35,7 +35,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
     """Each node must declare its measurement, its engine status, its
     falsifiability and its source. The rationale is the SHARED instrument
     class (a declared class, not a per-node sentence): measured 2026-09-19,
-    63 of 126 nodes carry it, and this file previously pinned the same text
+    63 of 126 nodes carried it on 2026-09-19 (64 of 127 on 2026-09-21), and this file previously pinned the same text
     in a second spelling without diacritics."""
     noder = {node["id"]: node for node in NODER}
     for node_id, (domene, stroem) in FORVENTET.items():

@@ -151,7 +151,9 @@ class TestFalsifiserbarhet:
         avventer = sum(1 for n in off
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
-        assert len(off) == 116, f"the public set changed: {len(off)}"
+        # 117 since 2026-09-21: the quantum-info node is public and joined
+        # the instrument class (the count was 116 on 2026-09-19).
+        assert len(off) == 117, f"the public set changed: {len(off)}"
         assert kan == 27, (
             f"can be felled: {kan} — expected 27. 19 was wrong: 2 stubs and 6 "
             f"framework nodes without a fixed threshold could not be felled")
