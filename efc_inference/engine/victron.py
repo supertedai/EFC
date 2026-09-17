@@ -196,6 +196,12 @@ class VictronChargeEngine(EFCEngine):
                 "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
                 "konsensus_er_ikke_sannhet": True
             },
+            "maale_paradigme": {
+                "koordinater": ["elektrisk_potensial", "energi", "tid"],
+                "enheter": "motorspesifikke (SI)",
+                "status": "avledet",
+                "alternativer": ["koordinatfrie formuleringer"]
+            },
             "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,

@@ -89,7 +89,8 @@
         "coupling",
         "perspektiv",
         "stipulasjoner",
-        "epistemikk"
+        "epistemikk",
+        "maale_paradigme"
       ],
       "properties": {
         "id": {
@@ -414,6 +415,59 @@
             "avbildning",
             "bryter_der"
           ]
+        },
+        "maale_paradigme": {
+          "type": "object",
+          "required": [
+            "koordinater",
+            "enheter",
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "koordinater": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "tid",
+                  "rom",
+                  "masse",
+                  "temperatur",
+                  "energi",
+                  "elektrisk_potensial",
+                  "magnetfelt",
+                  "fraksjon",
+                  "trykk",
+                  "ingen",
+                  "hastighet"
+                ]
+              },
+              "description": "Koordinat-valgene noden står på — de antatte aksene, ikke gitte."
+            },
+            "enheter": {
+              "type": "string",
+              "description": "Enhetene noden måler i (SI eller andre)."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "valgt_ramme",
+                "avledet",
+                "direkte_observerbar",
+                "proxy"
+              ],
+              "description": "Er koordinatet en valgt ramme, noe avledet, direkte observerbart eller en proxy?"
+            },
+            "alternativer": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Alternative beskrivelser som er utelatt — bevissthet om at andre rammer kunne vært valgt."
+            }
+          },
+          "description": "Koordinat-paradigmene (krav d): tid, rom, masse og hastighet er valgte koordinater — noden deklarerer hvilke den antar."
         }
       },
       "additionalProperties": false
