@@ -7280,6 +7280,112 @@
     "sosial_mekanisme": "MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler",
     "konsensus_er_ikke_sannhet": true
    }
+  },
+  {
+   "id": "opus.dommekraft",
+   "regime": {
+    "name": "handlingsledger",
+    "validity": "hver handling foer den utfoeres baerer en forventning; naar den er utfoert maales den mot sitt eget utfall. Sloeyfa er lukket og kjorer kontinuerlig i OPUS_SELV."
+   },
+   "phase": "observer",
+   "measure": {
+    "target": "om handlingens forventning traff sitt utfall",
+    "measurer": "opus-action-ledger — forventningen skrives foer, utfallet etter",
+    "instrument": "ledgeren selv; hver post baerer baade forventet og utfall",
+    "proxy_chain": [
+     "handling -> forventet",
+     "utfall -> maalt",
+     "avvik = traff/ikke traff"
+    ],
+    "placement": "observasjon",
+    "compression": "45 367 poster, maalt 2026-09-17 med `wc -l`. MEN: postene er ikke ett skjema. Fem ulike nokkel-sett dominerer (10 917 / 10 827 / 8 453 / 3 024 / 2 187), og bare 711 av 45 367 baerer `aktor`. Tallet er en filstorrelse, ikke en maalt enhet — det staar her fordi det er sant, ikke fordi det er en enhet."
+   },
+   "episenter": "oppgjoeret — der forventningen moeter sitt eget utfall, skrevet ned foer svaret var kjent",
+   "buffer": {
+    "role": "ledgeren som minne mellom intensjon og utfall",
+    "note": "forventningen kan ikke skrives etterpaa uten at det synes"
+   },
+   "ontology": {
+    "assumes": [
+     "forventningen er skrevet foer utfallet var kjent",
+     "utfallet er maalt, ikke husket"
+    ],
+    "source": "NATS-stroemmen OPUS_SELV, emne opus.dommekraft.*"
+   },
+   "observer": {
+    "bandwidth": "én post per handling",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "forvent -> handling -> utfall -> avvik -> justering",
+    "properties": []
+   },
+   "fractal": {
+    "pattern": "én post er hele dommekraftens proxy",
+    "note": "og det er nettopp derfor den kan vaere feil"
+   },
+   "coupling": {
+    "local": "hver handling doemmes for seg, mot sin egen forventning",
+    "global": "IKKE maalt. Klasser over hele ledgeren forutsetter ett skjema, og det finnes ikke: feltnavnene varierer (avvik vs avvik_meldt, forventet vs forventning), og 98 % av postene mangler `aktor`. Den globale klassen er en hypotese om hva ledgeren KAN bli, ikke en maaling av hva den er.",
+    "empathy_note": "ledgeren maaler om FORVENTNINGEN traff, ikke om handlingen var klok — de to kan peke hver sin vei"
+   },
+   "perspektiv": "paradigme",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "traff/ikke traff — ingen gradering",
+     "MEN: terskelen er bare anvendbar der skjemaet har `avvik`; 10 827 poster har `grunnlag` i stedet og kan ikke doemmes av denne noden"
+    ],
+    "motor": "ingen egen motor — sloeyfa loeper i ledgeren"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "ingen",
+    "sosial_mekanisme": "den speilede posten (seq 6655) er direkte maalt. Resten av ledgeren er bare talt — og tellingen skjuler fem skjemaer, saa noden er en proxy for en helhet den ikke kan lese.",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "traff/ikke traff per post",
+    "status": "valgt_ramme",
+    "alternativer": [
+     "gradering av avvik (ikke i enumen)",
+     "alvorlighet per bom (ikke maalt)"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "handlingstid",
+    "lengdeskala": "domene"
+   },
+   "buss_domene": "opus.dommekraft",
+   "synlighet": "intern",
+   "prediction": {
+    "source": "opus-action-ledger",
+    "observable": "handlingsutfall",
+    "issued_at": "2026-09-17T19:52:31Z",
+    "valid_for": "2026-09-17T19:52:31Z",
+    "expected": "{\"tekst\": \"arbeidet godkjennes i review paa trinnet det ble gjort\"}",
+    "correlation": "t_c729c7b9",
+    "basis": "speilet fra EN malt melding paa bussen (seq 6655). Feltene i den meldingen er det som er verifisert. Alt annet i denne noden er utledet eller talt, og det staar eksplisitt hvor.",
+    "criterion": "kildens ord i utfallsrommet",
+    "tolerance_rule": "traff/ikke traff — ingen fast baand"
+   },
+   "settlement": {
+    "correlation": "t_c729c7b9",
+    "expected": "{\"tekst\": \"arbeidet godkjennes i review paa trinnet det ble gjort\"}",
+    "outcome": "{\"kildens_ord\": \"blokkert\", \"klasse\": \"blokkert\"}",
+    "deviation": "{\"klasse\": \"blokkert\", \"traff\": false}",
+    "outcome_source": "kanbanstyrer",
+    "outcome_time": "2026-09-17T19:56:26Z",
+    "settlement_version": "1"
+   }
   }
  ],
  "relations": [
