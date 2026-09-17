@@ -6,7 +6,7 @@ A Python package for regime-dependent cosmological calculations,
 transition metrics, and validity-aware inference.
 
 Author: Morten Magnusson
-Address: Hasselvegen 5, 4051 Sola, Norway
+Address: Sola, Norway
 ORCID: 0009-0002-4860-5095
 License: MIT
 
@@ -20,7 +20,7 @@ Core Publications (DOIs):
 
 __version__ = "0.1.0"
 __author__ = "Morten Magnusson"
-__author_address__ = "Hasselvegen 5, 4051 Sola, Norway"
+__author_address__ = "Sola, Norway"
 __orcid__ = "0009-0002-4860-5095"
 
 from .regimes import Regime, L0, L1, L2, L3, get_regime

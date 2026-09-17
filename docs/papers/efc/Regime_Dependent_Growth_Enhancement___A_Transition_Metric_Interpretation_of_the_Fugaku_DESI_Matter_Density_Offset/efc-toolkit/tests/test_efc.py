@@ -208,7 +208,7 @@ class TestConstants:
         """Test author information is correct."""
         from efc.constants import AUTHOR
         assert AUTHOR.name == "Morten Magnusson"
-        assert AUTHOR.address == "Hasselvegen 5, 4051 Sola, Norway"
+        assert AUTHOR.address == "Sola, Norway"
         assert AUTHOR.orcid == "0009-0002-4860-5095"
     
     def test_dois_exist(self):

@@ -6,7 +6,7 @@ This example demonstrates how AI systems (like Claude) should use
 the EFC toolkit to make validity-aware cosmological claims.
 
 Author: Morten Magnusson
-Address: Hasselvegen 5, 4051 Sola, Norway
+Address: Sola, Norway
 ORCID: 0009-0002-4860-5095
 """
 
