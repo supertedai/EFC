@@ -91,7 +91,8 @@
         "stipulasjoner",
         "epistemikk",
         "maale_paradigme",
-        "nivaa"
+        "nivaa",
+        "synlighet"
       ],
       "properties": {
         "id": {
@@ -330,6 +331,14 @@
           },
           "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
           "additionalProperties": false
+        },
+        "synlighet": {
+          "type": "string",
+          "enum": [
+            "offentlig",
+            "intern"
+          ],
+          "description": "Publiseringsflate. offentlig = genereres til GitHub Pages; intern = lever bare i det komplette atlaset. Filteret er DEKLARERT per node, aldri en skjult regel i generatoren — en node som forsvinner uten at noen ser hvorfor er samme feilklasse som resten av dette skjemaet finnes for aa hindre."
         },
         "ville_falsifisere": {
           "type": "string",

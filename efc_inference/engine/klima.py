@@ -132,6 +132,7 @@ class KlimaEngine(EFCEngine):
                     "tau = C/(4 eps sigma T_eq^3)")
         return {
             "id": "efc.klima_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer", "straalingslikevekt under frysepunktet -> NaN — modellgrense"],

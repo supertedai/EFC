@@ -98,7 +98,8 @@
     "forelder": null,
     "tidsskala": "ps (gittervibrasjon)",
     "lengdeskala": "Å (krystall)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "h2o.liquid",
@@ -184,7 +185,8 @@
     "forelder": null,
     "tidsskala": "ps (H-bindinger)",
     "lengdeskala": "Å (molekylklynge)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "h2o.gas",
@@ -270,7 +272,8 @@
     "forelder": null,
     "tidsskala": "ps (kollisjoner)",
     "lengdeskala": "nm (fri bane)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "h2o.supercritical",
@@ -355,7 +358,8 @@
     "forelder": null,
     "tidsskala": "ps",
     "lengdeskala": "nm"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "h2o.triple_point",
@@ -441,7 +445,8 @@
     "forelder": null,
     "tidsskala": "ps",
     "lengdeskala": "Å"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "lys.sol",
@@ -525,7 +530,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "nm (bølgelengde)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "h2o.droplet",
@@ -611,7 +617,8 @@
     "forelder": "h2o.liquid",
     "tidsskala": "ms (dråpedynamikk)",
     "lengdeskala": "mm (dråpe)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "optikk.dispersjon",
@@ -695,7 +702,8 @@
     "forelder": "h2o.droplet",
     "tidsskala": "ns (lysets gang)",
     "lengdeskala": "mm (dråpe)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "regnbue",
@@ -780,7 +788,8 @@
     "forelder": "optikk.dispersjon",
     "tidsskala": "—",
     "lengdeskala": "m (bue)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "regnbue.observator",
@@ -828,7 +837,7 @@
    },
    "fractal": {
     "pattern": "hvert oeye ser sin egen bue — to oeyer, to buer i samme hode, samme monster. Observatoeren er selv en instans av det fraktale monsteret: en del som baerer helheten.",
-    "note": "Morten 2026-09-16: «alt er paa et elektrospektrum totalt, mens observatoeren ser noen faa nm» — strukturert her, ikke hevdet som fysikk."
+    "note": "Internt notat 2026-09-16: «alt er paa et elektrospektrum totalt, mens observatoeren ser noen faa nm» — strukturert her, ikke hevdet som fysikk."
    },
    "coupling": {
     "local": "hvert oeye registrerer retninger og farger lokalt",
@@ -864,7 +873,8 @@
     "forelder": "regnbue",
     "tidsskala": "—",
     "lengdeskala": "posisjon"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.water_phase_engine",
@@ -950,7 +960,8 @@
     "tidsskala": "s (motortid)",
     "lengdeskala": "makro (P-T-rom)"
    },
-   "buss_domene": "verden.miljo"
+   "buss_domene": "verden.miljo",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.l0",
@@ -1032,7 +1043,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.l1",
@@ -1118,7 +1130,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.l2",
@@ -1205,7 +1218,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.l3",
@@ -1289,7 +1303,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "batteri.celle",
@@ -1379,7 +1394,8 @@
     "tidsskala": "s (elektrokjemi)",
     "lengdeskala": "µm (elektrode)"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "intern"
   },
   {
    "id": "batteri.lading",
@@ -1467,7 +1483,8 @@
     "tidsskala": "min (ladekurve)",
     "lengdeskala": "celle"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "intern"
   },
   {
    "id": "batteri.buffer",
@@ -1556,7 +1573,8 @@
     "tidsskala": "h (lager)",
     "lengdeskala": "anlegg"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "intern"
   },
   {
    "id": "batteri.inverter",
@@ -1644,7 +1662,8 @@
     "tidsskala": "ms (vekselretning)",
     "lengdeskala": "anlegg"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "intern"
   },
   {
    "id": "obs.bao",
@@ -1732,7 +1751,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.cmb_tt",
@@ -1820,7 +1840,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.cmb_lensing",
@@ -1906,7 +1927,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.bbn",
@@ -1991,7 +2013,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.fsigma8",
@@ -2077,7 +2100,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.s8",
@@ -2163,7 +2187,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.eg",
@@ -2248,7 +2273,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.isw",
@@ -2332,7 +2358,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.ksz",
@@ -2417,7 +2444,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.cluster_mass",
@@ -2504,7 +2532,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.hoper"
+   "buss_domene": "kosmos.hoper",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.cluster_hmf",
@@ -2590,7 +2619,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.hoper"
+   "buss_domene": "kosmos.hoper",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.rar",
@@ -2676,7 +2706,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.bullet",
@@ -2760,7 +2791,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.satellites",
@@ -2846,7 +2878,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.satellitter"
+   "buss_domene": "kosmos.satellitter",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.jwst_ems",
@@ -2931,7 +2964,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.galakser"
+   "buss_domene": "kosmos.galakser",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.gw_ct",
@@ -3015,7 +3049,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.pta_gwb",
@@ -3099,7 +3134,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.h0_tension",
@@ -3186,7 +3222,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.w0wa",
@@ -3272,7 +3309,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "obs.cc",
@@ -3358,7 +3396,8 @@
     "tidsskala": "år-milliarder",
     "lengdeskala": "kosmos"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.victron_cccv_engine",
@@ -3446,7 +3485,8 @@
     "tidsskala": "s",
     "lengdeskala": "anlegg"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "intern"
   },
   {
    "id": "efc.rotation_engine",
@@ -3533,7 +3573,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.galakser"
+   "buss_domene": "kosmos.galakser",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.hubble_engine",
@@ -3620,7 +3661,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.growth_engine",
@@ -3727,7 +3769,8 @@
     "basis": "forseglet blind prediksjon, EFC mot LCDM; tallene er lest fra pakken og ikke utledet her",
     "ebe_l_layer": "L3",
     "ebe_s_regime": "high_s"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.lensing_engine",
@@ -3810,7 +3853,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.cluster_engine",
@@ -3894,7 +3938,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.hoper"
+   "buss_domene": "kosmos.hoper",
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.fluxus",
@@ -3981,7 +4026,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "kroppen"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.homeostase_buffer",
@@ -4005,7 +4051,7 @@
    "episenter": "båndet: innenfor er regimet holdt; utenfor bryter det (feber, sjokk)",
    "buffer": {
     "role": "selve bufferen: kapasitet som demper endring — den brede logikken i ren form",
-    "note": "ANALOGI til batteriets kjemiske buffer og isens latente varme — samme form på andre akser, ikke identitet. Ingen kobling til Victron/lading påstås."
+    "note": "ANALOGI til batteriets kjemiske buffer og isens latente varme — samme form på andre akser, ikke identitet. Ingen kobling til lading eller batteristyring påstås."
    },
    "ontology": {
     "assumes": [
@@ -4072,7 +4118,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "min-h (setpunkt)",
     "lengdeskala": "kroppen"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.feber_regime",
@@ -4163,7 +4210,8 @@
     "forelder": "homo.homeostase_buffer",
     "tidsskala": "timer (feber)",
     "lengdeskala": "kroppen"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.aksjonspotensial",
@@ -4254,7 +4302,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "ms (spike)",
     "lengdeskala": "µm (akson)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.hjerte_syklus",
@@ -4345,7 +4394,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "s (slag)",
     "lengdeskala": "hjerte"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.genregulering",
@@ -4432,7 +4482,8 @@
     "forelder": null,
     "tidsskala": "min-t (ekspresjon)",
     "lengdeskala": "celle"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.cellesyklus",
@@ -4523,7 +4574,8 @@
     "forelder": "homo.genregulering",
     "tidsskala": "timer (syklus)",
     "lengdeskala": "celle"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.metabolisme",
@@ -4614,7 +4666,8 @@
     "forelder": null,
     "tidsskala": "s-min (fluks)",
     "lengdeskala": "celle"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.solar_flare_engine",
@@ -4705,7 +4758,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.sol"
+   "buss_domene": "kosmos.sol",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.jordskjelv_engine",
@@ -4797,7 +4851,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.jord"
+   "buss_domene": "kosmos.jord",
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.immunologi",
@@ -4884,7 +4939,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "dager (respons)",
     "lengdeskala": "vev"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.sovn_vaaken",
@@ -4975,7 +5031,8 @@
     "forelder": "homo.homeostase_buffer",
     "tidsskala": "døgn (rytme)",
     "lengdeskala": "hjerne"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.okologi",
@@ -5062,7 +5119,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "år (suksesjon)",
     "lengdeskala": "økosystem"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "homo.evolusjon",
@@ -5153,7 +5211,8 @@
     "forelder": "homo.okologi",
     "tidsskala": "Mår (art)",
     "lengdeskala": "biosfære"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.mu_kz_engine",
@@ -5245,7 +5304,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -5322,7 +5382,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "intern"
   },
   {
    "regime": {
@@ -5399,7 +5460,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "intern"
   },
   {
    "regime": {
@@ -5480,7 +5542,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "intern"
   },
   {
    "regime": {
@@ -5561,7 +5624,8 @@
     "forelder": null,
     "tidsskala": "—",
     "lengdeskala": "—"
-   }
+   },
+   "synlighet": "intern"
   },
   {
    "id": "efc.romvaer_engine",
@@ -5650,7 +5714,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.romvaer"
+   "buss_domene": "kosmos.romvaer",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.oekonomi_engine",
@@ -5738,7 +5803,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "verden.oekonomi"
+   "buss_domene": "verden.oekonomi",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.orbital_engine",
@@ -5831,7 +5897,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.satellitter"
+   "buss_domene": "kosmos.satellitter",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.klima_engine",
@@ -5921,7 +5988,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "verden.klima"
+   "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.samfunn_engine",
@@ -6008,7 +6076,8 @@
     "forelder": "homo.fluxus",
     "tidsskala": "motortid",
     "lengdeskala": "domene"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.tidevann_engine",
@@ -6098,7 +6167,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "verden.klima"
+   "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.transient_engine",
@@ -6193,7 +6263,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.transienter"
+   "buss_domene": "kosmos.transienter",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.enerflyt_engine",
@@ -6284,7 +6355,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "verden.energi"
+   "buss_domene": "verden.energi",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6363,7 +6435,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "id": "efc.grid_higgs"
+   "id": "efc.grid_higgs",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6442,7 +6515,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "id": "efc.gr_qft_bro"
+   "id": "efc.gr_qft_bro",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6521,7 +6595,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "id": "efc.double_slit"
+   "id": "efc.double_slit",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6600,7 +6675,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "id": "efc.grid_mikrofysikk"
+   "id": "efc.grid_mikrofysikk",
+   "synlighet": "offentlig"
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -6690,7 +6766,8 @@
     "forelder": "efc.grid_mikrofysikk",
     "tidsskala": "gitter-skala",
     "lengdeskala": "lg (grid-lengden)"
-   }
+   },
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6766,7 +6843,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "id": "efc.sort_hull"
+   "id": "efc.sort_hull",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6845,7 +6923,8 @@
     "tidsskala": "—",
     "lengdeskala": "Å (atomer)"
    },
-   "id": "kjemi.periodesystemet"
+   "id": "kjemi.periodesystemet",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -6926,7 +7005,8 @@
     "lengdeskala": "km"
    },
    "id": "verden.hav",
-   "buss_domene": "verden.klima"
+   "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -7006,7 +7086,8 @@
     "lengdeskala": "global"
    },
    "id": "verden.biosfaere",
-   "buss_domene": "verden.miljo"
+   "buss_domene": "verden.miljo",
+   "synlighet": "offentlig"
   },
   {
    "regime": {
@@ -7086,7 +7167,8 @@
     "lengdeskala": "km"
    },
    "id": "kosmos.jord.vulkan",
-   "buss_domene": "kosmos.jord"
+   "buss_domene": "kosmos.jord",
+   "synlighet": "offentlig"
   }
  ],
  "relations": [

@@ -159,6 +159,7 @@ class TransientEngine(EFCEngine):
         )
         return {
             "id": "efc.transient_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["E_bind = G*M^2/R — kollapsbufferen — terskelstyrt holding->release"],

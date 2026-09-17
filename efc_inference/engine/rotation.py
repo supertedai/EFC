@@ -98,6 +98,7 @@ class EFCRotation(EFCEngine):
                     "numerisk kurve, ingen tabell")
         return {
             "id": "efc.rotation_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["PPN gamma=1 — ledende orden — gyldighetsgrense"],

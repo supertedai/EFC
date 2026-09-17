@@ -114,6 +114,7 @@ class OekonomiEngine(EFCEngine):
                     "(1 + (r - g + tillit) * dt)")
         return {
             "id": "efc.oekonomi_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["drift_rate <= 0 -> NaN (ikke stille klipping) — ærlighetsgrense", "hedge/spekulativ/ponzi-grensene — Minsky-typologi — en tradisjon blant flere"],

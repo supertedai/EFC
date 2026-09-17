@@ -124,6 +124,7 @@ class OrbitalEngine(EFCEngine):
                     "r_H = a (m/(3M))^(1/3)")
         return {
             "id": "efc.orbital_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense", "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"],

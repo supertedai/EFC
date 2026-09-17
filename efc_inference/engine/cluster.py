@@ -72,6 +72,7 @@ class EFCCluster(EFCEngine):
                     "— venter på implementering)")
         return {
             "id": "efc.cluster_engine",
+            "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["telling som regime — observert, ikke modellert — stubbegrense"],
