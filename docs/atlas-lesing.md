@@ -22,13 +22,13 @@ map. Measured 2026-09-17:
 
 **Historical measurement, 2026-09-17** — kept because it is what
 motivated the rule, not because it describes these copies today
-(`/opt/agent-work/EFC` has since been brought level with `main`):
+(the primary working clone has since been brought level with `main`):
 
 | Copy | Nodes | Problem |
 |---|---|---|
-| `/opt/agent-work/EFC` (working tree) | 72 | six PRs behind `origin/main` |
-| `/home/morten/EFC-review` (`pr-463`) | 82 | a PR branch, later merged |
-| `.worktrees/vedlikehold` | 45 | `perspektiv` missing on all 45 nodes |
+| the primary working clone | 72 | six PRs behind `origin/main` |
+| a separate review clone (`pr-463`) | 82 | a PR branch, later merged |
+| a maintenance worktree | 45 | `perspektiv` missing on all 45 nodes |
 
 A copy that answers reads as a live atlas. The figure "82 atlas nodes"
 reported in the *Atlas, NATS and motorer* thread came from a PR branch, not
@@ -45,10 +45,9 @@ Pass `hent=True` when the reader wants the freshest available.
 
 ## What is *not* claimed here
 
-The guard in `supertedai/Hetzner` (`metrikk/atlasoppgjoer.py`, PR #1016)
-applies the same rule inside that repository. This document does not
-describe that file — it lives in a different repository and is reviewed
-there.
+An operations guard in a separate systems repository applies the same
+rule there. This document does not describe that file — it lives in
+different repository and is reviewed there.
 
 ## The other copies
 
@@ -63,10 +62,13 @@ the atlas. They exist for editing, not for answering.
 |---|---|
 | Nodes | 82 |
 | Nodes with `_engine` in the id | 19 |
-| Distinct values of `stipulasjoner.motor` | 32 |
+| Distinct `stipulasjoner.motor` values, empty excluded | 32 |
+| Distinct `stipulasjoner.motor` values, raw | 33 |
+| Nodes with `motor` empty | 50 |
 | `perspektiv` set | 82 of 82 — 48 paradigm / 23 consensus / 11 academia |
 
 **Two different numbers, and both are real.** "Engines" is ambiguous: 19
-node ids contain `_engine`, while 32 distinct engine names appear in
-`stipulasjoner.motor`. Earlier text said "19 engines" and meant the first
-measure while reading as the second. State which one you mean.
+node ids contain `_engine`, while 33 raw values appear in
+`stipulasjoner.motor` (32 non-empty — 50 nodes carry an empty string).
+Earlier text said "19 engines" and meant the first measure while reading as
+the second. State which one you mean, and whether empty values are counted.

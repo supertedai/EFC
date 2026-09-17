@@ -7,9 +7,9 @@ snudde regelen til «les fra arbeidskopien» passerte tre dokumenttester.
 Meningen maa derfor bo i en funksjon som kan kjores og muteres mot.
 
 Bakgrunnen, maalt 2026-09-17: atlaset finnes i flere arbeidskopier som ikke
-viser samme kart. /opt/agent-work/EFC viste 72 noder mens origin/main hadde
-82; /home/morten/EFC-review sto paa en senere merget PR-gren;
-.worktrees/vedlikehold manglet `perspektiv` paa alle 45 noder.
+viser samme kart. Ett arbeidsstre viste 72 noder mens origin/main hadde 82;
+en annen klone sto paa en senere merget PR-gren; et vedlikeholds-worktree
+manglet `perspektiv` paa alle 45 noder.
 
     En kopi som svarer, leser som et levende atlas.
 

@@ -174,3 +174,26 @@ class TestFunksjonensKanter(unittest.TestCase):
                            capture_output=True, text=True)
         andre = les_atlas(r, ref="origin/main", hent=True)["commit"]
         self.assertNotEqual(forsta, andre, "hent=True hentet ikke")
+
+
+class TestIngenVertsspesifikkeStier(unittest.TestCase):
+    """Regel 16: `docs/` er Pages-roten — det som staar der PUBLISERES.
+
+    Reviewfunn runde 3: dokumentet navnga vertsspesifikke stier til
+    arbeidskopier. Prinsippet skal staa, men stiene er infrastruktur som
+    ikke hoerer i et offentlig dokument — og de raatner naar kopiene
+    flyttes. Denne testen holder dem ute.
+    """
+
+    MONSTER = ("/opt/agent-work", "/home/morten", "worktrees/",
+               "supertedai/Hetzner")
+
+    def test_publisert_dokument_har_ingen_vertsspesifikke_stier(self):
+        t = (ROT / "docs" / "atlas-lesing.md").read_text(encoding="utf-8")
+        for m in self.MONSTER:
+            self.assertNotIn(m, t, f"vertsspesifikk sti i publisert doc: {m}")
+
+    def test_modulens_docstring_har_ingen_vertsspesifikke_stier(self):
+        t = (ROT / "scripts" / "atlas_lesing.py").read_text(encoding="utf-8")
+        for m in self.MONSTER:
+            self.assertNotIn(m, t, f"vertsspesifikk sti i docstring: {m}")
