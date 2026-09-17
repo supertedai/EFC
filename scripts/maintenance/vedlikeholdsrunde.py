@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import fcntl
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime
@@ -70,10 +71,28 @@ def _lag_kort(tittel: str, kropp: str, dry: bool) -> bool:
     return r.returncode == 0
 
 
+def _kun_vert(dry: bool) -> bool:
+    """TEKNISK skrive-gate, ikke dokumentasjon: kortopprettelse skjer bare
+    når prosessen beviselig kjører på Hermes-verten (kanban-hjemmet finnes)
+    og ikke er en CI-job. CI-runnere har verken /opt/hermes-tavle eller
+    hermes-binæren."""
+    if dry:
+        return True
+    if os.environ.get("CI"):
+        return False
+    if not Path("/opt/hermes-tavle/kanban.db").is_file():
+        return False
+    return Path(HERMES).is_file()
+
+
 def hoved() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
+    if not a.dry_run and not _kun_vert(a.dry_run):
+        print("skrive-gate: kortopprettelse er kun tillatt på Hermes-verten",
+              file=sys.stderr)
+        return 2
     if not a.dry_run:
         laasfil = open(LAAS, "w", encoding="utf-8")
         try:

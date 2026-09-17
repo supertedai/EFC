@@ -76,7 +76,10 @@ class _SikkerHandler(urllib.request.HTTPRedirectHandler):
 
 
 def _aapner():
-    return urllib.request.build_opener(_SikkerHandler())
+    """Opener UTEN proxy (HTTP_PROXY/HTTPS_PROXY kan omgå den validerte
+    nettverksstien) og med SSRF-validerende redirect-handler."""
+    return urllib.request.build_opener(_SikkerHandler(),
+                                       urllib.request.ProxyHandler({}))
 
 
 def _sjekk_ekstern(url: str, tidsfrist: int = 8) -> tuple[str, int | None]:
