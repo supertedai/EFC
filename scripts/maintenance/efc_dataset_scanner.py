@@ -136,11 +136,27 @@ def main():
     for f in findings:
         print(f"  [{f['source']}] {f['term']} — {f['url']}")
 
-    # Save report
+    # Save report — idempotent: hopp over skriving hvis innholdet
+    # (bortsett fra finding-timestamps, som er utcnow) er uendret.
+    # Uten denne vaktet skriver hver kjøring nye timestamps, og
+    # efc_maintain/CI-verify feiler «git diff» evig (PR #452 r8).
+    def _uten_ts(f: list) -> list:
+        return [{k: v for k, v in x.items() if k != "timestamp"}
+                for x in f]
+
+    ny_rapport = {"date": datetime.date.today().isoformat(),
+                  "known": sorted(known), "findings": findings}
+    if os.path.exists(REPORT_PATH):
+        gammel = json.load(open(REPORT_PATH))
+        if (gammel.get("known") == ny_rapport["known"]
+                and _uten_ts(gammel.get("findings", []))
+                == _uten_ts(findings)
+                and gammel.get("date") == ny_rapport["date"]):
+            print("\nReport unchanged — skipping write (idempotent).")
+            return 0
     os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
     with open(REPORT_PATH, "w") as f:
-        json.dump({"date": datetime.date.today().isoformat(),
-                   "known": sorted(known), "findings": findings}, f, indent=2)
+        json.dump(ny_rapport, f, indent=2)
     print(f"\nReport saved to {REPORT_PATH}")
 
     return 1

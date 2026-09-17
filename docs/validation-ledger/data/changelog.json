@@ -6,23 +6,8 @@
   "changes": [
     {
       "date": "2026-09-17",
-      "sha": "1790e4447226",
-      "summary": "fix(public): DESI DR2-kollapsen inn på offentlige sider — ærlig + ankere (#450)",
-      "categories": {
-        "public_pages": 3
-      },
-      "id": "1790e4447226"
-    },
-    {
-      "date": "2026-09-17",
-      "sha": "24a8191eaf32",
-      "summary": "fix(atlas): DR2-kollapsen i KILDEN + anker-generator — retter rød verify fra #450 (#451)",
-      "categories": {
-        "public_pages": 1,
-        "ledger_data": 1,
-        "scripts": 1
-      },
-      "id": "24a8191eaf32"
+      "type": "auto_maintenance",
+      "summary": "1 paper package enriched; Public pages updated: Elevator_Pitch; Ledger data: evidence-register.json, ledger.json. Public pages updated: System_Health. 2 paper packages enriched; Public pages updated: Changelog, System_Health; Ledger data: changelog.json. Public pages updated: Changelog."
     },
     {
       "date": "2026-09-07",
@@ -50,7 +35,7 @@
       "summary": "Ledger data: evidence-register.json, ledger.json."
     },
     {
-      "name": "S(z) single-parameter joint fit: CMB anomaly ↔ JWST early-galaxy excess",
+      "name": "S(z) single-parameter joint fit: CMB anomaly \u2194 JWST early-galaxy excess",
       "status": "candidate_ready",
       "result": "NO_SIGNAL",
       "last_updated": "2026-07-04T04:25:39.503000000+00:00",
@@ -83,7 +68,7 @@
       ]
     },
     {
-      "name": "GAP: kSZ_velocity — no dedicated EFC prediction paper",
+      "name": "GAP: kSZ_velocity \u2014 no dedicated EFC prediction paper",
       "status": "candidate_ready",
       "result": "PIPELINE_NOT_READY",
       "last_updated": "2026-07-04T04:25:39.094000000+00:00",
@@ -127,7 +112,7 @@
       ]
     },
     {
-      "name": "CMB α–H₀ degeneracy corridor (structural constraint)",
+      "name": "CMB \u03b1\u2013H\u2080 degeneracy corridor (structural constraint)",
       "status": "candidate_ready",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-07-04T04:25:38.689000000+00:00",
@@ -149,7 +134,7 @@
       ]
     },
     {
-      "name": "BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42",
+      "name": "BIG-SPARC Kill-Test v6 \u2014 pipeline re-kj\u00f8ring seed=42",
       "status": "candidate_ready",
       "result": "PIPELINE_NOT_READY",
       "last_updated": "2026-07-04T04:25:38.455000000+00:00",
@@ -160,7 +145,7 @@
       ]
     },
     {
-      "name": "Action Integral Gap — Tier-1 theoretical obstruction",
+      "name": "Action Integral Gap \u2014 Tier-1 theoretical obstruction",
       "status": "candidate_ready",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-07-04T04:25:38.370000000+00:00",
@@ -171,7 +156,7 @@
       ]
     },
     {
-      "name": "Action Integral Gap — k* derivability test",
+      "name": "Action Integral Gap \u2014 k* derivability test",
       "status": "candidate_ready",
       "result": "REQUIRES_EXTERNAL_TOOL",
       "last_updated": "2026-07-04T04:25:38.248000000+00:00",
@@ -182,7 +167,7 @@
       ]
     },
     {
-      "name": "ACT+SPT+Planck CMB Lensing — Boltzmann Gap → BLOCKING",
+      "name": "ACT+SPT+Planck CMB Lensing \u2014 Boltzmann Gap \u2192 BLOCKING",
       "status": "candidate_ready",
       "result": "PIPELINE_NOT_READY",
       "last_updated": "2026-07-04T04:25:38.120000000+00:00",
@@ -192,10 +177,5 @@
         "EFCValidation"
       ]
     }
-  ],
-  "metadata": {
-    "last_processed_sha": "24a8191eaf3258282b70802a9fc5c2d878f5e891",
-    "projeksjon": "deterministisk fra git-historikk (scripts/maintenance/changelog_projeksjon.py); CI-gate: efc-changelog-sync.yml",
-    "generated_at": "2026-09-17T09:55:52.190716+00:00"
-  }
+  ]
 }

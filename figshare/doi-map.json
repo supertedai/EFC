@@ -1,7 +1,7 @@
 {
-  "$schema": "https://supertedai.github.io/EFC/schema/doi-map.schema.json",
+  "$schema": "../schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-08-01T03:46:51+00:00",
+  "generated_at": "2026-09-17T10:17:02+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -11,12 +11,12 @@
   "totals": {
     "orcid_works": 165,
     "orcid_dois": 165,
-    "repo_paper_dirs": 173,
+    "repo_paper_dirs": 174,
     "repo_unique_dois": 165,
     "matched_count": 165,
     "missing_paper_dirs": 0,
     "duplicate_doi_dirs": 7,
-    "dirs_without_doi": 1,
+    "dirs_without_doi": 2,
     "complete_packages": 161
   },
   "papers": [
@@ -769,6 +769,16 @@
       "repo_dir": "docs/papers/efc/EFC_Gradient_Coupled_Grid_Action",
       "package_complete": true,
       "has_pdf": true
+    },
+    {
+      "doi": "",
+      "figshare_id": "",
+      "title": "EFC L043 L044 PreRegistration",
+      "date": "",
+      "version": "",
+      "repo_dir": "docs/papers/efc/EFC_L043_L044_PreRegistration",
+      "package_complete": false,
+      "has_pdf": false
     },
     {
       "doi": "10.6084/m9.figshare.31223668",
@@ -1811,6 +1821,10 @@
     }
   ],
   "dirs_without_doi": [
+    {
+      "dir": "docs/papers/efc/EFC_L043_L044_PreRegistration",
+      "action": "assign_doi_or_archive"
+    },
     {
       "dir": "docs/papers/efc/efc_master",
       "action": "assign_doi_or_archive"

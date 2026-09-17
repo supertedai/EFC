@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/papers/efc/EFC_L043_L044_PreRegistration/schema.json",
+  "title": "EFC L043 L044 PreRegistration — index.json",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "author": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "orcid": {
+              "type": "string"
+            },
+            "affiliation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "orcid": {
+      "type": "string"
+    },
+    "affiliation": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "track": {
+      "type": "string"
+    },
+    "regimes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "primary_pdf": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "files": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "pdf": {
+              "type": "string"
+            },
+            "readme": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "see_also": {
+      "type": "string"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "figshare_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title"
+  ],
+  "additionalProperties": false
+}
