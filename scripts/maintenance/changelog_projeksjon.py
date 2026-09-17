@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""changelog_projeksjon — deterministic changelog projection from git history.
+"""changelog_projeksjon — deterministic PUBLIC changelog from git history.
 
-Principle (P0 t_26dd0ef5): the changelog is a PROJECTION of one canonical
-source, never an alternative truth. The canonical source is the git history —
-it is unlosable, append-only, and contains everything that actually changed —
-while logs/activity.jsonl annotates it (change_id/kanban_card) where present.
+Principle (P0 t_26dd0ef5 + Morten 2026-09-17): the PUBLIC changelog is a
+PROJECTION of one canonical source — the git history — but ONLY of changes
+relevant to the public pages, written for HUMANS (English, readable
+summaries). Two atlases exist by design: the internal atlas (everything:
+house, world, ocean/biosphere/volcano) and the public EFC atlas (cosmos).
+This changelog belongs to the PUBLIC pages only; internal-atlas work never
+appears here — it has its own changelog.
 
 Regeneration is deterministic: given last_processed_sha (stored in
 changelog.json) and HEAD, this script always produces the same output.
@@ -12,9 +15,8 @@ The CI gate (efc-changelog-sync.yml) runs the script and FAILS if the
 committed changelog diverges — so the changelog is de facto updated in the
 same PR that changes public HTML, or CI goes red.
 
-Language rule (Morten 2026-09-17): ALL EFC repo content is English.
-Summaries are projected verbatim from commit messages, so commit messages
-must be English too — the CI gate enforces this on new entries.
+Language rule (Morten 2026-09-17): ALL EFC public content is English —
+summaries are cleaned commit subjects; Norwegian stopwords fail the gate.
 
 Usage:  python3 scripts/maintenance/changelog_projeksjon.py
 """
@@ -37,6 +39,15 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HTML = os.path.join(REPO, "docs", "public", "EFC_Changelog.html")
 JSON = os.path.join(REPO, "docs", "validation-ledger", "data", "changelog.json")
 
+# The changelog files THEMSELVES are side-effects, not public content: a
+# commit whose only public-path touch is the changelog is internal work
+# (the old generator wrote the changelog on every commit — that loop must
+# not make internal commits "public-relevant").
+CHANGELOG_SELV = {
+    "docs/public/EFC_Changelog.html",
+    "docs/validation-ledger/data/changelog.json",
+}
+
 # High-precision Norwegian stopwords (avoids English false positives like
 # "for", "den", "det"). One or more hits = Norwegian content.
 NORSKE_ORD = re.compile(
@@ -54,37 +65,32 @@ def _git(*args: str) -> str:
     return r.stdout.strip()
 
 
-def _fil_kategori(f: str) -> str:
-    """Covers the WHOLE tree — the changelog must reflect every area."""
+def _fil_kategori(f: str) -> str | None:
+    """PUBLIC-relevant categories only — changelog side-effects excluded.
+
+    Two atlases exist BY DESIGN (Morten 2026-09-17): the internal atlas
+    (everything: house, world, ocean/biosphere/volcano nodes) and the public
+    EFC atlas (cosmos). The PUBLIC changelog is a projection of changes
+    relevant to the PUBLIC pages ONLY. Returns None for internal paths.
+    """
+    if f in CHANGELOG_SELV:
+        return None  # side-effect, not content
     if f.startswith("docs/public/"):
         return "public_pages"
     if f.startswith("docs/papers/"):
         return "papers"
     if f.startswith("docs/validation-ledger/"):
         return "ledger_data"
-    if f.startswith("public/graph/"):
+    if f.startswith("public/"):
         return "statement_graph"
-    if f.startswith("public/page-meta/"):
-        return "page_meta"
-    if f.startswith("schemas/"):
-        return "schemas"
-    if f.startswith("scripts/"):
-        return "scripts"
-    if f.startswith(".github/workflows/"):
-        return "workflows"
-    if f.startswith("config/"):
-        return "config"
-    if f.startswith("governance/"):
-        return "governance"
-    if f.startswith("evidence/"):
-        return "evidence"
-    if f.startswith("tests/"):
-        return "tests"
-    if f.startswith("efc_inference/") or f.startswith("src/"):
-        return "code"
-    if f.startswith("logs/activity.jsonl"):
-        return "activity_log"
-    return "other"
+    return None
+
+
+def _ren_tekst(melding: str) -> str:
+    """Human-readable: strip backslash-escapes that raw commit subjects can
+    carry (e.g. 'fix\\(x\\)'), collapse whitespace."""
+    s = re.sub(r"\\([()\\])", r"\1", melding)
+    return " ".join(s.split())[:140]
 
 
 def _infra_bare(filer: list[str]) -> bool:
@@ -115,9 +121,14 @@ def _hent_commits(siden: str) -> list[dict]:
         kategorier = {}
         for f in filer:
             k = _fil_kategori(f)
-            kategorier[k] = kategorier.get(k, 0) + 1
-        commits.append({"sha": sha, "dato": dato[:10], "melding": melding,
-                        "kategorier": kategorier})
+            if k:
+                kategorier[k] = kategorier.get(k, 0) + 1
+        if not kategorier:
+            # No public-relevant file touched — internal-only change,
+            # invisible on the public pages, so no changelog entry here.
+            continue
+        commits.append({"sha": sha, "dato": dato[:10],
+                        "melding": _ren_tekst(melding), "kategorier": kategorier})
     commits.reverse()  # oldest first
     return commits
 
@@ -149,11 +160,10 @@ def _hoved() -> int:
 
     nye = []
     for c in commits:
-        kat = ", ".join(f"{k}:{v}" for k, v in sorted(c["kategorier"].items()))
         nye.append({
             "date": c["dato"],
             "sha": c["sha"][:12],
-            "summary": c["melding"][:140],
+            "summary": c["melding"],
             "categories": c["kategorier"],
             "id": c["sha"][:12],
         })
@@ -162,7 +172,6 @@ def _hoved() -> int:
     friske = [c for c in nye if c["id"] not in kjente_ider]
     cl["changes"] = friske + eksisterende
     cl.setdefault("metadata", {})["last_processed_sha"] = commits[-1]["sha"]
-    cl.setdefault("metadata", {})["generated_at"] = datetime.now(timezone.utc).isoformat()
     with open(JSON, "w", encoding="utf-8") as f:
         json.dump(cl, f, ensure_ascii=False, indent=2)
 
