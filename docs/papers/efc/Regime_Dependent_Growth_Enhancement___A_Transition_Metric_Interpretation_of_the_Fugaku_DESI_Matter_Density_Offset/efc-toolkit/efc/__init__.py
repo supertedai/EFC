@@ -6,8 +6,7 @@ A Python package for regime-dependent cosmological calculations,
 transition metrics, and validity-aware inference.
 
 Author: Morten Magnusson
-Address: Sola, Norway
-ORCID: 0009-0002-4860-5095
+Address: Sola, NorwayORCID: 0009-0002-4860-5095
 License: MIT
 
 Core Publications (DOIs):

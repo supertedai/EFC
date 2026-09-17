@@ -5,8 +5,7 @@ EFC Constants and References
 Canonical constants, DOIs, and reference values for EFC.
 
 Author: Morten Magnusson
-Address: Sola, Norway
-ORCID: 0009-0002-4860-5095
+Address: Sola, NorwayORCID: 0009-0002-4860-5095
 """
 
 from dataclasses import dataclass

@@ -10,10 +10,9 @@ A Python package implementing the Energy-Flow Cosmology (EFC) framework for regi
 
 ## Author
 
-**Morten Magnusson**  
-Independent Researcher  
-Sola, Norway  
-ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
+**Morten Magnusson**
+Independent Researcher
+Sola, NorwayORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095)
 
 ## Purpose
 

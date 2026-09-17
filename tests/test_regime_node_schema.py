@@ -478,6 +478,7 @@ def test_ingen_privat_info_i_hele_repoet():
             raw = sti.read_text(encoding="utf-8", errors="ignore")
         except OSError:
             continue
-        if "Hasselvegen" in raw and str(sti) != \
-                "tests/test_regime_node_schema.py":
-            raise AssertionError(f"privat adresse lekker: {sti}")
+        for forbudt in ("Hasselvegen", "4051 Sola", "Hasselvegen 5"):
+            if forbudt in raw and str(sti) != \
+                    "tests/test_regime_node_schema.py":
+                raise AssertionError(f"privat adresse lekker: {sti}")
