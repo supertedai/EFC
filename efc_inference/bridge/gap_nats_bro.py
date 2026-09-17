@@ -18,6 +18,8 @@ import socket
 EMNE_VULKAN = "kosmos.jord.tilstand.usgs-vulkan"
 EMNE_HAV = "verden.klima.tilstand.noaa-tides"
 EMNE_PLANTER = "verden.miljo.tilstand.gbif-planter"
+EMNE_MIKROBIOM = "verden.miljo.tilstand.mgnify-mikrobiom"
+EMNE_KVANTE = "verden.teknologi.diskusjon.arxiv-quant"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
                               "/etc/nats/legitimasjon.env")
@@ -72,6 +74,19 @@ def analyser_planter(melding: dict) -> dict:
     return {"tellinger": tellinger,
             "sum": sum(tellinger.values()),
             "feil": len(melding.get("feil", []))}
+
+
+def analyser_mikrobiom(melding: dict) -> dict:
+    """MGnify-studier -> mikrobiom-indeks."""
+    return {"nyeste_studier": melding.get("nyeste_studier", []),
+            "proever_i_nyeste": melding.get("proever_i_nyeste", 0),
+            "sist_oppdatert": melding.get("sist_oppdatert", "")}
+
+
+def analyser_kvante(melding: dict) -> dict:
+    """arXiv quant-ph -> felt-aktivitets-indeks."""
+    return {"antall_hentet": melding.get("antall_hentet", 0),
+            "nyeste_titler": melding.get("nyeste_titler", [])}
 
 
 def bro_runde(emner: dict) -> dict:

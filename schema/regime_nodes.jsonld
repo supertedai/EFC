@@ -7023,6 +7023,162 @@
         "lengdeskala": "km"
       },
       "id": "kosmos.jord.vulkan"
+    },
+    {
+      "regime": {
+        "name": "maaling",
+        "validity": "MGnify-analyserte metagenomer — bioinformatisk bearbeidet (L2), ikke feltavlesning"
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "mikrobiom-studier",
+        "measurer": "MGnify/EBI",
+        "instrument": "metagenom-analyse",
+        "proxy_chain": [
+          "studie -> proever -> mikrobiom-dekning"
+        ],
+        "placement": "observasjon",
+        "compression": "studie-listen komprimeres til nyeste + proevetall"
+      },
+      "episenter": "lesning av analyse-registeret — instrument-vinduet",
+      "buffer": {
+        "role": "mikrobiomet som oekosystem-buffer",
+        "note": "broen mater enerflyt som proxy"
+      },
+      "ontology": {
+        "assumes": [
+          "MGnify-studier er indeks over mikrobiom-forskningen, ikke folke-telling"
+        ],
+        "source": "MGnify/EBI (aapent, maalt 200)"
+      },
+      "observer": {
+        "bandwidth": "analyserte studier — bare det som er sekvensert OG publisert",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "proevetaking -> sekvensering -> analyse -> publisering — loopens instrument-del",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "en studie er hele mikrobiomets proxy",
+        "note": "volumloven: aggregat, aldri rader"
+      },
+      "coupling": {
+        "local": "hver studie beskriver ett biomen",
+        "global": "studiene tegner mikrobiomets kart",
+        "empathy_note": "det usynlige oekosystemet faar et indeks-vindu, ikke en folketelling"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "proxy",
+        "konsensusstatus": "institusjonell",
+        "sosial_mekanisme": "EBI-registeret som konsensus-kanal",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "fraksjon"
+        ],
+        "enheter": "antall studier/proever",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "direkte sekvensering (ikke i enumen)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "ingen terskler — maalingsnode"
+        ],
+        "motor": "enerflyt (proxy-mater)"
+      },
+      "nivaa": {
+        "indeks": 0,
+        "forelder": null,
+        "tidsskala": "timer",
+        "lengdeskala": "global"
+      },
+      "id": "verden.mikrobiom"
+    },
+    {
+      "regime": {
+        "name": "maaling",
+        "validity": "arXiv quant-ph-publikasjoner — kunnskapsindeks (L2), ikke en fysisk maaling"
+      },
+      "phase": "instrument",
+      "measure": {
+        "target": "kvanteinfo-publikasjoner",
+        "measurer": "arXiv",
+        "instrument": "kategori-feeds (quant-ph)",
+        "proxy_chain": [
+          "publikasjon -> tittel -> feltets aktivitet"
+        ],
+        "placement": "observasjon",
+        "compression": "10 nyeste titler per runde"
+      },
+      "episenter": "lesning av publikasjonsstrømmen — instrument-vinduet",
+      "buffer": {
+        "role": "feltet som kunnskapsbuffer",
+        "note": "broen mater enerflyt som proxy"
+      },
+      "ontology": {
+        "assumes": [
+          "publikasjonsraten er en indeks over feltets aktivitet"
+        ],
+        "source": "arXiv quant-ph (aapent, maalt 200 over https)"
+      },
+      "observer": {
+        "bandwidth": "titler — ikke innhold, ikke kvalitet",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "forskning -> pre-print -> feltet vokser — loopens instrument-del",
+        "properties": []
+      },
+      "fractal": {
+        "pattern": "en tittel er hele feltets proxy",
+        "note": "P3-protokollen er kandidaten for den dypere maalingen"
+      },
+      "coupling": {
+        "local": "hver tittel beskriver ett arbeid",
+        "global": "titlene tegner feltets bevegelse",
+        "empathy_note": "indeksen sier at feltet beveger seg — ikke hva som er sant"
+      },
+      "perspektiv": "konsensus",
+      "epistemikk": {
+        "sannhetsstatus": "stottet",
+        "evidensstatus": "proxy",
+        "konsensusstatus": "minoritet",
+        "sosial_mekanisme": "arXiv-pre-print-kulturen — publiser foerst, vurder etter",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "fraksjon"
+        ],
+        "enheter": "antall titler",
+        "status": "valgt_ramme",
+        "alternativer": [
+          "benchmarks (P3-protokollen)"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": false,
+        "terskler": [
+          "ingen terskler — maalingsnode"
+        ],
+        "motor": "enerflyt (proxy-mater)"
+      },
+      "nivaa": {
+        "indeks": 0,
+        "forelder": null,
+        "tidsskala": "timer",
+        "lengdeskala": "global"
+      },
+      "id": "verden.kvanteinfo"
     }
   ],
   "relations": [
