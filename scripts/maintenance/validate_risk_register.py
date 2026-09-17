@@ -27,7 +27,11 @@ Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
      `url:` (http/https) eller `ekstern:` (kilde utenfor treet — ærlig
      merking i stedet for en falsk repo-sti).
   9. Append-only er en git-egenskap: med --base <ref> avvises en diff som
-     fjerner eller endrer en linje i risiko-register.jsonl.
+     fjerner eller endrer en linje i risiko-register.jsonl — med ETT unntak:
+     lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på
+     en eksisterende post kan endres i stedet for å appendes, fordi det er
+     menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
+     felt, omordning) er fortsatt forbudt.
 
 Bruk:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
@@ -97,6 +101,13 @@ MAKS_SCORE = 256  # 4×4×4×4 — taket i blast-radius-modellen
 
 # Minimumsklassen en gitt score kan ha. Strengere er lov, laxere er feil.
 SCORE_MIN_KLASSE = ((16, "rød"), (4, "gul"))
+
+# Lukkefeltene er de ENESTE feltene som kan endres på en eksisterende post i
+# stedet for å appendes. De utgjør menneskets beslutningssti: en rød post går
+# fra «venter» til «godkjent»/«avslått» ved at status, gate_decision og
+# gate_besluttet_av flippes, og sist_vurdert oppdateres til beslutningsdatoen.
+# Alt annet er immutabelt funndata — en endring der er fortsatt not_append_only.
+LUKKE_FELTER = ("status", "gate_decision", "gate_besluttet_av", "sist_vurdert")
 
 
 def _er_tekst(v: object) -> bool:
@@ -290,20 +301,66 @@ def valider_innhold(register: Path, eierregister: dict, rot: Path) -> list[dict]
     return feil
 
 
+def _uten_lukkefelter(post: dict) -> dict:
+    return {k: v for k, v in post.items() if k not in LUKKE_FELTER}
+
+
+def _lukkefelter_endret(gammel: dict, ny: dict) -> bool:
+    return any((k in gammel) != (k in ny) or gammel.get(k) != ny.get(k)
+               for k in LUKKE_FELTER)
+
+
 def append_only(base: str, rot: Path) -> list[dict]:
-    """Diffen på risiko-register.jsonl skal BARE legge til linjer."""
+    """Diffen på risiko-register.jsonl skal BARE legge til linjer — med ETT unntak.
+
+    Lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på en
+    eksisterende post kan endres i stedet for å appendes: det er menneskets
+    beslutningssti, og den skjer som en linjeendring («venter» → «godkjent»/«avslått»),
+    ikke som en ny linje. Alt annet — sletting av en post, endring av et annet
+    felt, eller en identisk linje som bare flyttes (omordning) — er not_append_only.
+    """
     r = subprocess.run(["git", "diff", "-U0", base, "--", REGISTER],
                        cwd=str(rot), capture_output=True, timeout=60)
     if r.returncode != 0:
         return [{"type": "tool_error",
                  "msg": f"git diff mot «{base}» feilet: "
                         f"{r.stderr.decode('utf-8', 'replace').strip()[:200]}"}]
-    fjernet = [ln for ln in r.stdout.decode("utf-8", errors="replace").splitlines()
-               if ln.startswith("-") and not ln.startswith("---")]
-    if fjernet:
-        return [{"type": "not_append_only", "base": base,
-                 "fjernede_linjer": len(fjernet),
-                 "eksempel": fjernet[0][:120]}]
+    linjer = r.stdout.decode("utf-8", errors="replace").splitlines()
+    fjernet = [ln for ln in linjer if ln.startswith("-") and not ln.startswith("---")]
+    lagt_til = [ln for ln in linjer if ln.startswith("+") and not ln.startswith("+++")]
+    if not fjernet:
+        return []
+
+    def _post(ln: str) -> dict | None:
+        try:
+            post = json.loads(ln[1:])
+        except (json.JSONDecodeError, IndexError):
+            return None
+        return post if isinstance(post, dict) else None
+
+    ny_etter_rid: dict[str, dict] = {}
+    for ln in lagt_til:
+        post = _post(ln)
+        if post is not None and isinstance(post.get("risk_id"), str):
+            ny_etter_rid[post["risk_id"]] = post
+
+    for ln in fjernet:
+        gammel = _post(ln)
+        rid = gammel.get("risk_id") if (gammel is not None
+                                        and isinstance(gammel.get("risk_id"), str)) else None
+        if gammel is None or rid is None or rid not in ny_etter_rid:
+            # Slettet post, ulesbar linje, eller omskrevet til en annen risk_id.
+            return [{"type": "not_append_only", "base": base,
+                     "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
+        ny = ny_etter_rid[rid]
+        if _uten_lukkefelter(gammel) != _uten_lukkefelter(ny):
+            # Et annet felt enn lukkefeltene ble endret.
+            return [{"type": "not_append_only", "base": base, "risk_id": rid,
+                     "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
+        if not _lukkefelter_endret(gammel, ny):
+            # Identisk linje fjernet og lagt til igjen = ren omordning.
+            return [{"type": "not_append_only", "base": base, "risk_id": rid,
+                     "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
     return []
 
 

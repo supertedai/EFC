@@ -43,8 +43,9 @@ Bruk:
 
 Change-id (korrelasjonsnøkkelen mot risikoregisteret): --change-id hvis gitt,
 ellers et kanban-/PR-id funnet i grennavnet (t_<hex>, pr<nummer>), ellers
-«<base-sha>..<head-sha>». Gaten slår opp en risikopost med samme
-source_change_id og en MENNESKELIG godkjent beslutning.
+«<base-sha>..<head-sha>». Gaten slår opp risikopostene med samme
+source_change_id og krever en MENNESKELIG godkjent beslutning per gate-post:
+én godkjent post dekker IKKE en annen post som fortsatt står «venter».
 
 Exit: 0 = rapport (uten --gate), 1 = --gate avviste endringen, 2 = verktøyfeil
 (ukjent ref, manglende/ugyldig eierregister, ugyldig risikoregister). En TOM
@@ -304,14 +305,26 @@ def les_poster(sti: Path) -> list[dict]:
 
 
 def slaa_opp_gate(poster: list[dict], change_id: str) -> dict:
+    """Gaten for en change-id er oppfylt når HVER gate-post (gate_required=true)
+    for change-id-en er godkjent av mennesket — ingen står «venter» og ingen er
+    «avslått». Beslutningen er per post: én godkjent post dekker IKKE en annen
+    post som fortsatt venter. Gaten slipper først gjennom når alle er avgjort
+    og minst én er godkjent.
+    """
     mine = [p for p in poster if p.get("source_change_id") == change_id]
-    godkjent = [p for p in mine
+    gate_poster = [p for p in mine if p.get("gate_required") is True]
+    venter = [p for p in gate_poster if p.get("gate_decision") == "venter"]
+    avslaatt = [p for p in gate_poster if p.get("gate_decision") == "avslått"]
+    godkjent = [p for p in gate_poster
                 if p.get("gate_decision") == "godkjent"
                 and p.get("gate_besluttet_av") == "menneske"]
+    oppfylt = bool(godkjent) and not venter and not avslaatt
     return {
         "change_id": change_id,
         "poster": [p.get("risk_id") for p in mine],
-        "oppfylt": bool(godkjent),
+        "venter": [p.get("risk_id") for p in venter],
+        "avslaatt": [p.get("risk_id") for p in avslaatt],
+        "oppfylt": oppfylt,
         "besluttet_av": godkjent[0].get("gate_besluttet_av") if godkjent else None,
         "risk_id": godkjent[0].get("risk_id") if godkjent else None,
     }

@@ -184,6 +184,37 @@ def test_cli_gate_nekter_uten_og_slipper_med_menneskelig_beslutning(tmp_path):
     assert r2.returncode == 0
 
 
+def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
+    """F2: én godkjent post dekker IKKE en annen gate-post som fortsatt venter."""
+    rot = _git_rot(tmp_path, {".github/workflows/y.yml": "on: push\n"})
+    (rot / ".github" / "workflows" / "y.yml").write_text("on: pull_request\n", encoding="utf-8")
+    reg = rot / "governance" / "risiko" / "risiko-register.jsonl"
+
+    p1 = dict(GYLDIG_POST)
+    p2 = {**GYLDIG_POST, "risk_id": "RISK-BLAST_RADIUS-0002"}
+    reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
+                   json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    # Én godkjent, én venter → gaten er fortsatt ikke oppfylt.
+    p1.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
+    reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
+                   json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
+    r = _kall(rot, "--diff", "HEAD", "--json", "--gate", "--change-id", "t_deadbeef")
+    ut = json.loads(r.stdout)
+    assert ut["gate"]["oppfylt"] is False
+    assert ut["gate"]["venter"] == ["RISK-BLAST_RADIUS-0002"]
+    assert r.returncode == 1, "én godkjent post skal ikke slippe en ventende post gjennom"
+
+    # Begge godkjent → gaten er oppfylt og --gate slipper gjennom.
+    p2.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
+    reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
+                   json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
+    r2 = _kall(rot, "--diff", "HEAD", "--json", "--gate", "--change-id", "t_deadbeef")
+    ut2 = json.loads(r2.stdout)
+    assert ut2["gate"]["oppfylt"] is True
+    assert r2.returncode == 0
+
+
 def test_cli_slettet_fil_telles_med(tmp_path):
     """En sletting er den mest irreversible endringen — den skal ikke kunne
     forsvinne ut av målingen fordi den ikke er en «endring» i filtrets øyne."""

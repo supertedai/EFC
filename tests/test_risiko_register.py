@@ -177,6 +177,39 @@ def test_append_only_er_en_git_egenskap(tmp_path):
     assert vr.append_only("finnes-ikke", tmp_path)[0]["type"] == "tool_error"
 
 
+def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
+    """Menneskets beslutningssti er det ENE unntaket fra append-only.
+
+    F1: å flippe lukkefeltene (status, gate_decision, gate_besluttet_av,
+    sist_vurdert) på en post er lovlig — det er menneskets gatebeslutning.
+    Alt annet (endring av et annet felt, sletting) er fortsatt forbudt.
+    """
+    register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
+    register.parent.mkdir(parents=True)
+    register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
+    git = ["git", "-c", "user.name=t", "-c", "user.email=t@e.org"]
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(git + ["add", "-A"], cwd=tmp_path, check=True)
+    subprocess.run(git + ["commit", "-qm", "base"], cwd=tmp_path, check=True)
+    base = subprocess.run(git + ["rev-parse", "HEAD"], cwd=tmp_path,
+                          capture_output=True, text=True).stdout.strip()
+
+    # (a) beslutningen: flip av lukkefeltene på posten — lovlig.
+    besluttet = {**GYLDIG, "status": "lukket", "gate_decision": "godkjent",
+                 "gate_besluttet_av": "menneske", "sist_vurdert": "2026-09-18"}
+    register.write_text(json.dumps(besluttet, ensure_ascii=False) + "\n", encoding="utf-8")
+    assert vr.append_only(base, tmp_path) == [], "gatebeslutningen er det ene unntaket"
+
+    # (b) et annet felt (rest_risiko) endret uten beslutning — fortsatt forbudt.
+    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omskrevet"},
+                                   ensure_ascii=False) + "\n", encoding="utf-8")
+    assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
+
+    # (c) en post slettet — fortsatt forbudt.
+    register.write_text("", encoding="utf-8")
+    assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
+
+
 def test_det_ekte_registeret_validerer():
     """Readback av registeret i treet — ikke bare av en fixture."""
     register = ROT / "governance" / "risiko" / "risiko-register.jsonl"

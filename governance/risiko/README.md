@@ -28,7 +28,8 @@ validatoren kontrollerer det selv i tillegg til `validate_ownership.py`.
 
 Registeret er **lukket**: et felt som ikke står her er en feil, ikke en
 opplysning. Norske etiketter fra bestillingen står i parentes der JSON-nøkkelen
-er translitterert.
+er translitterert. Feltene merket **lukkefelt** er de eneste som kan endres på
+en eksisterende post — det er menneskets gatebeslutning (se «Gaten»).
 
 | Felt | Type | Krav |
 |---|---|---|
@@ -48,16 +49,16 @@ er translitterert.
 | `eier` | str | Én av `owners` i eierregisteret |
 | `utforer` (utfører) | str | Den som registrerte posten |
 | `reviewer` | str | **Må være forskjellig fra `utforer`** (ingen selv-review) |
-| `status` | str | `oppdaget` → `lukket` \| `superseded` |
+| `status` | str | `oppdaget` → `lukket` \| `superseded` — **lukkefelt** |
 | `tiltak` | list[str] | Handlingsbare tiltak |
 | `kanban_card_id` | str | `t_<hex>` \| `pr<nummer>` |
 | `gate_required` | bool | Påkrevd (`true`) for rød klasse |
-| `gate_decision` | str | `venter` \| `godkjent` \| `avslått` \| `ikke_nodvendig` |
-| `gate_besluttet_av` | str\|null | Påkrevd når beslutningen er `godkjent`/`avslått`, og må da være `menneske` |
+| `gate_decision` | str | `venter` \| `godkjent` \| `avslått` \| `ikke_nodvendig` — **lukkefelt** |
+| `gate_besluttet_av` | str\|null | Påkrevd når beslutningen er `godkjent`/`avslått`, og må da være `menneske` — **lukkefelt** |
 | `evidenslenker` | list[str] | Prefiks `repo:` (stien må finnes) \| `url:` (http/https) \| `ekstern:` (kilde utenfor treet) |
 | `opprettet_tid` | str | ISO-8601 |
 | `forfall` | str\|null | `YYYY-MM-DD`, `null` = ingen avtalt frist |
-| `sist_vurdert` | str | `YYYY-MM-DD` |
+| `sist_vurdert` | str | `YYYY-MM-DD` — **lukkefelt** |
 | `rest_risiko` (rest-risiko) | str | Hva som fortsatt står åpent |
 | `supersedes` | list[str] | risk_id-er denne posten erstatter — må finnes |
 | `related_ids` | list[str] | Beslektede risk_id-er — må finnes |
@@ -98,6 +99,22 @@ lukkes før mennesket har besluttet den.** En lukket post med gatekrav krever
 Ingen automatikk — verken CI, vedlikeholdsrunden eller en profil — kan skrive
 en menneskelig beslutning. `blast_radius.py --gate` nekter (exit 1) å slippe
 gjennom en kritisk/blokkerende endring uten en slik beslutning i registeret.
+
+**Hvordan mennesket skriver beslutningen.** Registeret er append-only, men
+beslutningen er IKKE en ny linje — den er en endring av **lukkefeltene** på den
+posten som venter: `status` (`oppdaget` → `lukket`/`superseded`),
+`gate_decision` (`venter` → `godkjent`/`avslått`), `gate_besluttet_av`
+(`null` → `menneske`) og `sist_vurdert` (beslutningsdatoen). Det er det ENE
+unntaket `append_only()` tillater: alt annet på posten er immutabelt funndata,
+og en diff som rører et annet felt — eller sletter posten, eller bare flytter
+den (omordning) — er fortsatt `not_append_only` og stopper CI.
+
+**Beslutningen er per post, ikke per change-id.** En change-id kan ha flere
+åpne gate-poster (seedet har to for `t_f882cfca`). `--gate` slipper ikke
+gjennom bare fordi én av dem er godkjent: `slaa_opp_gate` krever at HVER
+gate-post for change-id-en er avgjort, at ingen står `venter` og ingen er
+`avslått`, og at minst én er `godkjent` av mennesket. Én godkjent post dekker
+altså ikke den andre som fortsatt venter.
 
 ## Slik brukes det
 
