@@ -58,8 +58,16 @@ def les_motorer(repo: Path, ref: str) -> list[str]:
     Samme regel som `atlas_lesing`: en arbeidskopi som svarer, leser som et
     levende atlas. En motorfil som ligger ucommittet paa disken finnes ikke
     for den som leser fra refen.
+
+    Mangler katalogen, er svaret TOMT — ikke en feil. Git sporer ikke tomme
+    kataloger, og en repo uten motorer er en gyldig repo. Maalt: uten dette
+    krasjet `naviger()` med `fatal: Not a valid object name` i stedet for aa
+    rapportere null motorer.
     """
-    ut = _git(repo, "ls-tree", "--name-only", f"{ref}:{MOTOR_KATALOG}")
+    try:
+        ut = _git(repo, "ls-tree", "--name-only", f"{ref}:{MOTOR_KATALOG}")
+    except NavigasjonFeil:
+        return []
     return sorted(
         Path(l).stem for l in ut.splitlines()
         if l.endswith(".py") and not l.endswith("__init__.py")

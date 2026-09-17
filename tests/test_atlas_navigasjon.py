@@ -208,3 +208,66 @@ class TestMotorKoblesTilRiktigNode:
             assert "water" in str(kobling["water"]), (
                 f"`water` peker paa {kobling['water']} — skal peke paa noden "
                 f"som baerer navnet")
+
+
+class TestUdekkedeGrener:
+    """Grener review runde 7 navnga som utestet.
+
+    Disse er ikke stramming — de er grener som aldri har vaert kjort. En
+    gren som aldri er kjort, er en gren ingen vet om virker.
+    """
+
+    def test_ugyldig_ref_reiser(self, tmp_path: Path) -> None:
+        """`_git` feiler -> NavigasjonFeil. Aldri stille tomt svar."""
+        repo = tmp_path / "r"
+        repo.mkdir()
+        subprocess.run(["git", "-C", str(repo), "init", "-q"], check=True,
+                       capture_output=True)
+        with pytest.raises(atlas_navigasjon.NavigasjonFeil):
+            atlas_navigasjon.les_noder(repo, "finnes/ikke")
+
+    def test_malformed_json_reiser(self, tmp_path: Path) -> None:
+        """Ugyldig JSON i nodene skal REISE, ikke gi tom liste."""
+        repo = tmp_path / "r"
+        repo.mkdir()
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text("{ikke gyldig", encoding="utf-8")
+        for a in (("init", "-q"), ("config", "user.email", "t@t"),
+                  ("config", "user.name", "t"), ("add", "-A"),
+                  ("commit", "-q", "-m", "x")):
+            subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)
+        with pytest.raises(Exception):
+            atlas_navigasjon.les_noder(repo, "HEAD")
+
+    def test_tomt_snapshot_gir_null_emner(self, tmp_path: Path) -> None:
+        """Snapshot uten domener skal gi 0 emner, ikke krasje."""
+        repo = tmp_path / "r"
+        (repo / "efc_inference" / "engine").mkdir(parents=True)
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text('{"nodes": []}', encoding="utf-8")
+        (repo / "schema" / "nats_domener.snapshot.json").write_text('{"domener": {}}', encoding="utf-8")
+        for a in (("init", "-q"), ("config", "user.email", "t@t"),
+                  ("config", "user.name", "t"), ("add", "-A"),
+                  ("commit", "-q", "-m", "x")):
+            subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)
+        d = atlas_navigasjon.naviger(repo, ref="HEAD")
+        assert d["lag"]["emner"] == 0
+        assert d["dekning"]["emner"] == (0, 0)
+
+    def test_node_uten_id_ignoreres(self, tmp_path: Path) -> None:
+        """En node uten `id` skal ikke kunne bli en noekkel i koblingen."""
+        repo = tmp_path / "r"
+        (repo / "efc_inference" / "engine").mkdir(parents=True)
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            '{"nodes": [{"buss_domene": "verden.energi"}, {"id": "ekte.node"}]}',
+            encoding="utf-8")
+        (repo / "schema" / "nats_domener.snapshot.json").write_text(
+            '{"domener": {"verden.energi": {"emner": ["tilstand.x"]}}}', encoding="utf-8")
+        for a in (("init", "-q"), ("config", "user.email", "t@t"),
+                  ("config", "user.name", "t"), ("add", "-A"),
+                  ("commit", "-q", "-m", "x")):
+            subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)
+        d = atlas_navigasjon.naviger(repo, ref="HEAD")
+        assert None not in d["kobling"]["domene_til_noder"].get("verden.energi", []), (
+            "en node uten id havnet i koblingen — den kan ikke navngis")
