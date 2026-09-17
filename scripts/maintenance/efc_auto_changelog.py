@@ -68,13 +68,11 @@ from efc_change_id import (  # noqa: E402
     sett_inn_region,
 )
 
-# Defensive nav sanitizer — ensures short labels + External Research link
-# survive every HTML write. Idempotent; no-op if nav already canonical.
-try:
-    from _nav_helper import ensure_nav  # type: ignore
-except ImportError:  # pragma: no cover
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from _nav_helper import ensure_nav  # type: ignore
+# MERK: ingen nav-normalisering her. _nav_helper.ensure_nav() er eldre enn
+# efc_navbar_sync.py og fjerner den røde «du er her»-markeringen
+# (color:#c22) fra siden den skriver til — målt med
+# `efc_navbar_sync.py --check`: navbar_drift på EFC_Changelog.html. Denne
+# generatoren skriver bare sin egen region; navbaren eies av navbar-syncen.
 
 REPO = Path(__file__).resolve().parents[2]
 LOGG = REPO / KILDELOGG
@@ -300,8 +298,6 @@ def projiser(tørr: bool) -> dict:
         aar = (oppføringer[0]["date"][:4] if oppføringer
                else str(datetime.now(timezone.utc).year))
         ny_html = sett_inn_region(html, html_region(oppføringer), aar)
-        if ny_html != html:
-            ny_html = ensure_nav(ny_html)   # normaliser nav (idempotent)
         if _skriv(CHANGELOG_HTML, ny_html, tørr):
             skrevet.append(str(CHANGELOG_HTML.relative_to(REPO)))
     else:

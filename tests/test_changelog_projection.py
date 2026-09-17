@@ -44,8 +44,13 @@ from efc_change_id import (  # noqa: E402
 
 SIDE_HODE = (
     "<!doctype html>\n<html><body>\n"
-    '<div><a href="EFC_Elevator_Pitch.html">Pitch</a>'
-    '<a href="EFC_Changelog.html">Changelog</a></div>\n'
+    # Navbaren bærer den røde «du er her»-markeringen slik efc_navbar_sync.py
+    # rendrer den. Generatoren skal IKKE røre navbaren (målt: den gamle
+    # _nav_helper.ensure_nav fjernet markeringen og ga navbar_drift).
+    '<div style="background:#f8f9fa;">\n'
+    '  <a href="EFC_Elevator_Pitch.html">Pitch</a>\n'
+    '  <a href="EFC_Changelog.html" style="color:#c22;">Changelog</a>\n'
+    "</div>\n"
     "<h2>2026</h2>\n\n<ul>\n"
     "  <li><strong>2026-09-07</strong> &mdash; eldre linje.</li>\n"
     "</ul>\n</body></html>\n"
@@ -297,7 +302,7 @@ def _mal_repo(tmp_path: Path) -> Path:
     (repo / "docs" / "public").mkdir(parents=True)
     (repo / "logs").mkdir()
     for navn in ("efc_change_id.py", "efc_auto_changelog.py",
-                 "efc_changelog_check.py", "_nav_helper.py",
+                 "efc_changelog_check.py",
                  "validate_activity_log.py"):
         (repo / "scripts" / "maintenance" / navn).write_text(
             (MAINT / navn).read_text(encoding="utf-8"), encoding="utf-8")
@@ -350,6 +355,8 @@ def test_testendring_i_scripts_gir_change_id_paa_alle_tre_flatene(tmp_path):
         encoding="utf-8")
     assert f'data-change-id="{cid}"' in html
     assert "eldre linje" in html, "historikken skal stå urørt"
+    assert 'color:#c22;' in html, \
+        "generatoren skal ikke røre navbarens «du er her»-markering"
 
     # kjeden er konsistent, og sjekken sier det
     res = _kjor(repo, "scripts/maintenance/efc_changelog_check.py", "--json",
