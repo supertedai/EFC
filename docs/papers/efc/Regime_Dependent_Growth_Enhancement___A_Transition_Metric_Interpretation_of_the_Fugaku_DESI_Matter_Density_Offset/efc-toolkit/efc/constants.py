@@ -5,8 +5,7 @@ EFC Constants and References
 Canonical constants, DOIs, and reference values for EFC.
 
 Author: Morten Magnusson
-Address: Hasselvegen 5, 4051 Sola, Norway
-ORCID: 0009-0002-4860-5095
+Address: Sola, NorwayORCID: 0009-0002-4860-5095
 """
 
 from dataclasses import dataclass
@@ -21,7 +20,7 @@ from typing import Dict
 class AuthorInfo:
     """Canonical author information."""
     name: str = "Morten Magnusson"
-    address: str = "Hasselvegen 5, 4051 Sola, Norway"
+    address: str = "Sola, Norway"
     orcid: str = "0009-0002-4860-5095"
     orcid_url: str = "https://orcid.org/0009-0002-4860-5095"
 
