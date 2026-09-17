@@ -1,8 +1,8 @@
 """gap_nats_bro — tre broer fra NATS inn i EFC-motorene (hav, planter, vulkan).
 
     kosmos.jord.tilstand.usgs-vulkan        -> vulkan-tilstand (regime-status)
-    verden.hav.tilstand.noaa-tides     -> hav-temperatur-proxy
-    verden.biosfaere.tilstand.gbif-planter -> biosfaere-tellinger
+    verden.klima.tilstand.noaa-tides     -> hav-temperatur-proxy
+    verden.miljo.tilstand.gbif-planter -> biosfaere-tellinger
 
 Tilstandene er beskrevet i kaldarkiv-seed (Hetzner PR #1006). Disse
 broene LESER stroemmene og mater motorene — injiserbarhetsdesignet:
@@ -16,8 +16,8 @@ import re
 import socket
 
 EMNE_VULKAN = "kosmos.jord.tilstand.usgs-vulkan"
-EMNE_HAV = "verden.hav.tilstand.noaa-tides"
-EMNE_PLANTER = "verden.biosfaere.tilstand.gbif-planter"
+EMNE_HAV = "verden.klima.tilstand.noaa-tides"
+EMNE_PLANTER = "verden.miljo.tilstand.gbif-planter"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
                               "/etc/nats/legitimasjon.env")
