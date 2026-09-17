@@ -501,6 +501,10 @@
             }
           },
           "description": "Platå-strukturen (krav b): rekursjonen som graf — hver node deklarerer sitt nivå, sin forelder og sine skalaer. Fractal-feltet er prosaen; nivaa er strukturen."
+        },
+        "buss_domene": {
+          "type": "string",
+          "description": "Bussdomenet denne noden beskriver, f.eks. 'kosmos.kosmologi'. DEKLARERT paa noden — ikke utledet av en generator — slik at koblingen kan verifiseres i begge retninger. Fravær betyr at noden ikke beskriver et bussdomene."
         }
       },
       "additionalProperties": false

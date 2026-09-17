@@ -1,0 +1,452 @@
+{
+  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris.",
+  "domener": {
+    "kosmos.asteroider": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.mast-caom",
+        "oppgjoer.jpl-sentry",
+        "prediksjon.jpl-cneos",
+        "prediksjon.jpl-sentry"
+      ]
+    },
+    "kosmos.galakser": {
+      "status": "delvis",
+      "noder": [
+        "efc.rotation_engine",
+        "obs.jwst_ems"
+      ],
+      "begrunnelse": "jwst-ems dekker massefunksjonen; mast-caom-observasjonen mangler",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.gammaglimt": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.hoper": {
+      "status": "delvis",
+      "noder": [
+        "efc.cluster_engine",
+        "obs.cluster_hmf",
+        "obs.cluster_mass"
+      ],
+      "begrunnelse": "klyngemasse og halomassetetthet; mast-caom-observasjonen mangler",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.interstellart": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.jord": {
+      "status": "dekket",
+      "noder": [
+        "efc.jordskjelv_engine",
+        "kosmos.jord.vulkan"
+      ],
+      "begrunnelse": "2 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "tilstand.usgs-seismikk",
+        "tilstand.usgs-vulkan"
+      ]
+    },
+    "kosmos.kosmologi": {
+      "status": "dekket",
+      "noder": [
+        "efc.growth_engine",
+        "efc.hubble_engine",
+        "efc.lensing_engine",
+        "efc.mu_kz_engine",
+        "obs.bao",
+        "obs.bbn",
+        "obs.bullet",
+        "obs.cc",
+        "obs.cmb_lensing",
+        "obs.cmb_tt",
+        "obs.eg",
+        "obs.fsigma8",
+        "obs.gw_ct",
+        "obs.h0_tension",
+        "obs.isw",
+        "obs.ksz",
+        "obs.pta_gwb",
+        "obs.rar",
+        "obs.s8",
+        "obs.w0wa"
+      ],
+      "begrunnelse": "20 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "prediksjon.efc-fs8",
+        "tilstand.efc-fs8",
+        "diskusjon.arxiv"
+      ]
+    },
+    "kosmos.maane": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.noeytrinoer": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.planetsystem": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "prediksjon.jpl-horizons"
+      ]
+    },
+    "kosmos.roentgentransienter": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.heasarc",
+        "diskusjon.gcn"
+      ]
+    },
+    "kosmos.romfart": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "oppgjoer.launch-library",
+        "prediksjon.launch-library",
+        "hendelse.launch-library"
+      ]
+    },
+    "kosmos.romvaer": {
+      "status": "dekket",
+      "noder": [
+        "efc.romvaer_engine"
+      ],
+      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "tilstand.swpc-kp"
+      ]
+    },
+    "kosmos.satellitter": {
+      "status": "delvis",
+      "noder": [
+        "efc.orbital_engine",
+        "obs.satellites"
+      ],
+      "begrunnelse": "celestrak-katalog og -stasjoner dekkes av obs.satellites; banemekanikken av orbital-motoren",
+      "emner": [
+        "tilstand.celestrak-katalog",
+        "tilstand.celestrak-stasjoner"
+      ]
+    },
+    "kosmos.sol": {
+      "status": "dekket",
+      "noder": [
+        "efc.solar_flare_engine"
+      ],
+      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "tilstand.swpc-goes-xray",
+        "hendelse.nasa-donki"
+      ]
+    },
+    "kosmos.stjerner": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.mast-caom"
+      ]
+    },
+    "kosmos.transienter": {
+      "status": "dekket",
+      "noder": [
+        "efc.transient_engine"
+      ],
+      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "hendelse.alerce"
+      ]
+    },
+    "kosmos.uklassifisert": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.mast-caom",
+        "diskusjon.gcn"
+      ]
+    },
+    "opus.dommekraft": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "hendelse.lukkeliste",
+        "oppgjoer.handlingsledger",
+        "prediksjon.handlingsledger",
+        "tilstand.broer",
+        "tilstand.domeneinventar",
+        "tilstand.efc-lcdm-sammenligning",
+        "tilstand.lukkeliste"
+      ]
+    },
+    "verden.arbeid": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.eurostat",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.demografi": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.energi": {
+      "status": "delvis",
+      "noder": [
+        "batteri.buffer",
+        "batteri.celle",
+        "batteri.inverter",
+        "batteri.lading",
+        "efc.enerflyt_engine",
+        "efc.victron_cccv_engine"
+      ],
+      "begrunnelse": "entsoe (baade prediksjon og tilstand), tibber og world-bank mangler node; tilstandskilden for entsoe stanset 2026-09-04 (t_395dc396)",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.entsoe-dayahead",
+        "tilstand.entsoe-dayahead",
+        "tilstand.tibber",
+        "tilstand.victron",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.finans": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecb-data"
+      ]
+    },
+    "verden.geopolitikk": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.handel": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.helse": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.who-gho",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.infrastruktur": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.klima": {
+      "status": "delvis",
+      "noder": [
+        "efc.klima_engine",
+        "efc.tidevann_engine",
+        "verden.hav"
+      ],
+      "begrunnelse": "noaa-tides er dekket; gdelt-observasjon og world-bank-tilstand mangler",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.noaa-tides",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.kommunikasjon": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.lov": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.militaer": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.miljo": {
+      "status": "delvis",
+      "noder": [
+        "efc.water_phase_engine",
+        "verden.biosfaere"
+      ],
+      "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom og gdelt mangler",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.ecowitt",
+        "tilstand.gbif-planter",
+        "tilstand.mgnify-mikrobiom",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.oekonomi": {
+      "status": "dekket",
+      "noder": [
+        "efc.oekonomi_engine"
+      ],
+      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "prediksjon.imf-datamapper",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.politikk": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.sikkerhet": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.teknologi": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.arxiv-quant"
+      ]
+    },
+    "verden.transport": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank"
+      ]
+    },
+    "verden.utdanning": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "tilstand.world-bank",
+        "diskusjon.gdelt-mentions",
+        "hendelse.gdelt-export"
+      ]
+    },
+    "verden.vaer": {
+      "status": "ikke_dekket",
+      "noder": [],
+      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "emner": [
+        "observasjon.gdelt-gkg",
+        "oppgjoer.metno",
+        "prediksjon.metno",
+        "tilstand.ecowitt",
+        "tilstand.metar"
+      ]
+    }
+  }
+}
