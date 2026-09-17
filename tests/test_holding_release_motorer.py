@@ -13,10 +13,11 @@ elastic-rebound/Burridge-Knopoff-stil forkastningslading; kollaps-buffer
 med G*M^2/R). Det skal sta i motorens egen beskrivelse, og utlosning skal
 vaere TERSKELSTYRT — ikke tidsstyrt.
 
-Transient-motoren (L-036) har UTSATT atlas-kobling: schema/regime_nodes.jsonld
-roeres ikke for kollisjonsrekkefolgen i kortet er landet (t_bdf8e82f).
-Testen nedenfor gjor utsettelsen maskinelt synlig og sier hva som skal
-skje naar atlas-noden legges.
+Transient-motoren (L-036) har LANDET atlas-kobling: noden
+efc.transient_engine staar i schema/regime_nodes.jsonld med de tre
+ANALOGOUS_TO-relasjonene. Vakten som gjorde utsettelsen maskinelt synlig
+er byttet mot bro-testen nedenfor, som holder motorens regime_node() og
+atlas-noden maskinelt sammen.
 """
 from __future__ import annotations
 
@@ -349,6 +350,10 @@ def test_transient_atlas_node_bro_test():
     atlasnode = noder["efc.transient_engine"]
     for felt in ("id", "regime", "phase", "perspektiv"):
         assert motornode[felt] == atlasnode[felt], felt
+    # Kortets krav, eksplisitt: validity og law_form er FELT-identiske
+    # med regime_node() (maskinelt), ikke prosa-like.
+    assert atlasnode["regime"]["validity"] == motornode["regime"]["validity"]
+    assert atlasnode["regime"]["law_form"] == motornode["regime"]["law_form"]
     # Stipulasjonene skal speile motoren (review-krav: ingen tom maske)
     assert atlasnode["stipulasjoner"]["motor"] == "transient"
     assert atlasnode["stipulasjoner"]["terskler"]

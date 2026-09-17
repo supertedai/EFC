@@ -15,15 +15,14 @@ Den fjerde instansen av formen som allerede er bygget for solens flares
 (SolarFlareEngine), jordas skjelv (JordskjelvEngine) og nevronet
 (homo.aksjonspotensial).
 
-ATLAS-KOBLINGEN ER UTSATT MED VILJE (t_bdf8e82f): schema/regime_nodes.jsonld
-roeres ikke av denne endringen, fordi kollisjonsrekkefolgen krever at
-sol/jord-kandidatradene og mu(k,z)-noden lander forst. Motoren leverer
-derfor regime_node()-broen KLAR — full RegimeNode med de tre
-ANALOGOUS_TO-endepunktene navngitt (homo.aksjonspotensial,
-efc.solar_flare_engine, efc.jordskjelv_engine) — og atlas-noden + de tre
-relasjonene legges i en egen, avhengig oppfolgingsoppgave. Vakten
-tests/test_holding_release_motorer.py::test_transient_atlas_node_venter_paa_kollisjonsrekkefolgen
-feiler den dagen noden legges, med instruksen om hva som da skal gjores.
+ATLAS-KOBLINGEN ER LANDET: noden efc.transient_engine staar i
+schema/regime_nodes.jsonld med de tre ANALOGOUS_TO-endepunktene
+(homo.aksjonspotensial, efc.solar_flare_engine, efc.jordskjelv_engine) —
+samme monster som sol/jord/nevron. Vakten som ventet paa
+kollisjonsrekkefolgen er byttet mot bro-testen
+tests/test_holding_release_motorer.py::test_transient_atlas_node_bro_test,
+som holder atlas-nodens regime (validity + law_form) IDENTISK med
+regime_node() her — maskinelt, ikke prosa-likt.
 """
 from __future__ import annotations
 
