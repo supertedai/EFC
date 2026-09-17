@@ -90,7 +90,8 @@
         "perspektiv",
         "stipulasjoner",
         "epistemikk",
-        "maale_paradigme"
+        "maale_paradigme",
+        "nivaa"
       ],
       "properties": {
         "id": {
@@ -468,6 +469,38 @@
             }
           },
           "description": "Koordinat-paradigmene (krav d): tid, rom, masse og hastighet er valgte koordinater — noden deklarerer hvilke den antar."
+        },
+        "nivaa": {
+          "type": "object",
+          "required": [
+            "indeks",
+            "forelder",
+            "tidsskala",
+            "lengdeskala"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "indeks": {
+              "type": "integer",
+              "description": "Platå-indeksen: 0 = substratet, økende = mer emergert nivå."
+            },
+            "forelder": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Node-id-en til platået under — null for roten. Grafen skal være lukket."
+            },
+            "tidsskala": {
+              "type": "string",
+              "description": "Platåets karakteristiske tidsskala."
+            },
+            "lengdeskala": {
+              "type": "string",
+              "description": "Platåets karakteristiske lengdeskala."
+            }
+          },
+          "description": "Platå-strukturen (krav b): rekursjonen som graf — hver node deklarerer sitt nivå, sin forelder og sine skalaer. Fractal-feltet er prosaen; nivaa er strukturen."
         }
       },
       "additionalProperties": false

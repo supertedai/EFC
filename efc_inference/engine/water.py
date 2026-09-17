@@ -284,7 +284,12 @@ class WaterPhaseEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "h2o.liquid",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "H2O fase-grense-beregning",
                 "validity": validity,
                 "law_form": law_form,

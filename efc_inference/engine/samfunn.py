@@ -134,7 +134,12 @@ class SamfunnEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "homo.fluxus",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "SIR-epidemiologi — flyt med terskel",
                 "validity": validity,
                 "law_form": law_form,

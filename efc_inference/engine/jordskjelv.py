@@ -110,7 +110,12 @@ class JordskjelvEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "efc.selv.paradigme_tid",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "Jordas holding->release (forkastningsbuffer)",
                 "validity": validity,
                 "law_form": law_form,

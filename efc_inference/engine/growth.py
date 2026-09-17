@@ -261,7 +261,12 @@ class EFCGrowth(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {"name": "Vekstmotoren — fσ8",
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "efc.selv.paradigme_tid",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {"name": "Vekstmotoren — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {

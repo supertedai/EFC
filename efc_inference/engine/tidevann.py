@@ -126,7 +126,12 @@ class TidevannEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
-            "regime": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "efc.selv.paradigme_tid",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "regime": {
                 "name": "Tidevann — periodisk gravitasjonskopling",
                 "validity": validity,
                 "law_form": law_form,

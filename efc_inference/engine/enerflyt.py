@@ -189,7 +189,12 @@ class EnerFlytEngine(EFCEngine):
                                  "ikke-konserverte valutaer utenfor "
                                  "modellen"],
             },
-            "stipulasjoner": {
+            "nivaa": {
+                "indeks": 2,
+                "forelder": "homo.fluxus",
+                "tidsskala": "motortid",
+                "lengdeskala": "domene"
+            },            "stipulasjoner": {
                 "stipulert_av_oss": True,
                 "terskler": [("terskelen er buffergrensen VI setter — "
                               "knapphet er vaar definisjon, ikke "
