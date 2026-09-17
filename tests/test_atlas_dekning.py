@@ -110,6 +110,33 @@ class TestDekningsinvarianten(unittest.TestCase):
                     f"buss_domene={noder[n].get('buss_domene')!r} — en "
                     f"eksisterende node er ikke det samme som en relevant en")
 
+    def test_nodelistene_er_utledet_av_nodenes_eget_felt(self):
+        """Reviewfunn runde 3, og det treffer meg paa ordet «utledet».
+
+        Jeg SA at `noder`-listene var utledet fra nodenes `buss_domene`.
+        Det var de ikke — jeg utledet dem EN gang med et script. Testen
+        verifiserte bare at det som STOD der var konsistent, saa en node
+        kunne utelates fra listen og gaa rett gjennom. Blokkereren ble
+        bevist: efc.orbital_engine fjernet fra kosmos.satellitter.noder,
+        mens noden fortsatt hadde buss_domene satt — 8 passed.
+
+        Naa utleder testen listene selv og sammenligner BEGGE veier. Da er
+        «utledet» en egenskap ved testen og ikke en paastand i en commit.
+        """
+        from collections import defaultdict
+        per: dict[str, list[str]] = defaultdict(list)
+        for n in _les(NODER)["nodes"]:
+            if n.get("buss_domene"):
+                per[n["buss_domene"]].append(n["id"])
+        dekl = _les(DEKNING)["domener"]
+        for domene in sorted(set(per) | set(dekl)):
+            fra_noder = sorted(per.get(domene, []))
+            fra_dekl = sorted(dekl.get(domene, {}).get("noder", []))
+            self.assertEqual(
+                fra_noder, fra_dekl,
+                f"{domene}: nodene sier {fra_noder}, deklarasjonen sier "
+                f"{fra_dekl} — listen maa vaere utledet, ikke skrevet")
+
     def test_hvert_domene_med_noder_er_deklarert_dekket(self):
         """Motsatt vei av den over: har en node sagt at den beskriver et
         domenet, skal deklarasjonen si det samme. Uten denne kunne atlaset
