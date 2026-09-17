@@ -67,7 +67,14 @@ def build_placeholders(args) -> dict:
 def render_template(raw: str, placeholders: dict) -> str:
     out = raw
     for key, value in placeholders.items():
-        out = out.replace("{" + key + "}", value)
+        if key == "PLACEHOLDER_KEYWORDS":
+            # Malen har «["{PLACEHOLDER_KEYWORDS}"]» — bytt ut HELE
+            # listen slik at resultatet er gyldig JSON-liste, ikke en
+            # dobbel-sitert streng.
+            out = out.replace('["{' + key + '}"]',
+                              "[" + value + "]")
+        else:
+            out = out.replace("{" + key + "}", value)
     return out
 
 
