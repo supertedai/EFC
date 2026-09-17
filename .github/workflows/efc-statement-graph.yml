@@ -7,12 +7,14 @@ on:
     paths:
       - "public/graph/**"
       - "public/page-meta/**"
+      - "docs/public/**.html"
       - "scripts/maintenance/statement_graph_check.py"
       - "logs/activity.jsonl"
       - "scripts/maintenance/validate_activity_log.py"
       - "schemas/insight-candidate.schema.json"
       - "scripts/maintenance/triage_insikt.py"
       - "scripts/maintenance/verifier_bench.py"
+      - "tests/test_statement_ankere.py"
       - ".github/workflows/efc-statement-graph.yml"
 
 jobs:
