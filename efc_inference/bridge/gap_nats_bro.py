@@ -1,6 +1,6 @@
 """gap_nats_bro — tre broer fra NATS inn i EFC-motorene (hav, planter, vulkan).
 
-    kosmos.jord.vulkan.usgs-vhp        -> vulkan-tilstand (regime-status)
+    kosmos.jord.tilstand.usgs-vulkan        -> vulkan-tilstand (regime-status)
     verden.hav.tilstand.noaa-tides     -> hav-temperatur-proxy
     verden.biosfaere.tilstand.gbif-planter -> biosfaere-tellinger
 
@@ -15,7 +15,7 @@ import os
 import re
 import socket
 
-EMNE_VULKAN = "kosmos.jord.vulkan.usgs-vhp"
+EMNE_VULKAN = "kosmos.jord.tilstand.usgs-vulkan"
 EMNE_HAV = "verden.hav.tilstand.noaa-tides"
 EMNE_PLANTER = "verden.biosfaere.tilstand.gbif-planter"
 
