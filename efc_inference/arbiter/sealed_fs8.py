@@ -318,14 +318,14 @@ class SealedFs8Arbiter:
         }
 
     # ------------------------------------------------------------------
-    # Busspayloaden (emne kosmos.kosmologi.utfall.efc-fs8-arbiter)
+    # Busspayloaden (emne kosmos.kosmologi.oppgjoer.efc-fs8-arbiter)
     # ------------------------------------------------------------------
     def payload(self, måling: Optional[dict] = None,
                 params: Optional[dict] = None) -> dict:
         """Payload for publisering — eller for artefakt når bussen er
         read-only for oss (verden-MCP er kun konsument)."""
         return {
-            "emne": "kosmos.kosmologi.utfall.efc-fs8-arbiter",
+            "emne": "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter",
             "kriterium": self.kriterium(),
             "rapport": self.rapport(måling, params),
             "proveniens": {

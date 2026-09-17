@@ -66,7 +66,7 @@ skrivetilgang eierne ennå ikke har gitt.
 | Emne | Innhold | Produsent |
 |---|---|---|
 | `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
-| `kosmos.kosmologi.utfall.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12 |
+| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12 |
 
 ### Kandidater (emner som finnes, kobling ikke bygget)
 

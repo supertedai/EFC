@@ -136,7 +136,7 @@ class RapidResponseVakt:
             dom = self.arbiter.vurder(måling, params)
 
         payload = {
-            "emne": "kosmos.kosmologi.utfall.efc-fs8-arbiter",
+            "emne": "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter",
             "kriterium": self.arbiter.kriterium(),
             "input": self._input_proveniens(melding, måling, params),
             "rapport": {
