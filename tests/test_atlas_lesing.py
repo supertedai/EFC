@@ -1,4 +1,4 @@
-"""Atlas-lesing: regelen er KJØRBAR, og referanser er HVITELISTET.
+r"""Atlas-lesing: regelen er KJØRBAR, og referanser er HVITELISTET.
 
 To ting denne filen verner, og begge kom av reviewfunn:
 
@@ -185,11 +185,26 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
     git-ref:sti. Alt annet som bærer en sti-separator er et avvik.
     """
 
-    TILLATT = [
+    # Tillatte former. `..` som HELT segment peker ut av repoet og avvises
+    # — reviewfunn runde 7: ../../etc/passwd slapp gjennom fordi '..'
+    # matchet [A-Za-z0-9_.-]+. Regex alene er feil verktøy for dette
+    # (lookahead ble for svak), saa segmentene sjekkes direkte.
+    FORME = [
         re.compile(r"^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$"),
         re.compile(r"^https?://[^\s]+$"),
         re.compile(r"^[a-z]+/[a-z]+:[A-Za-z0-9_/.-]+$"),
     ]
+
+    @staticmethod
+    def _traverserer(t: str) -> bool:
+        """`..` som eget segment, i stien eller etter git-refens kolon."""
+        sti = t.split(":", 1)[1] if re.match(r"^[a-z]+/[a-z]+:", t) else t
+        return ".." in sti.split("/")
+
+    def _tillatt(self, t: str) -> bool:
+        return (not self._traverserer(t)
+                and any(r.match(t) for r in self.FORME))
+
     DEL = re.compile(r"[\s`|<>()\[\]{}\"'*,;]+")
 
     def _referanser(self, tekst: str):
@@ -206,7 +221,7 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
 
     def _avvik(self, tekst: str):
         return [t for t in self._referanser(tekst)
-                if not any(r.match(t) for r in self.TILLATT)]
+                if not self._tillatt(t)]
 
     def _docstring(self, sti: Path) -> str:
         t = sti.read_text(encoding="utf-8")
@@ -252,3 +267,27 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTraversering(unittest.TestCase):
+    """Reviewfunn runde 7: hvitelisten tillot `..` som segment.
+
+    `../../etc/passwd` og `foo/../../etc` slapp gjennom fordi `..` matchet
+    `[A-Za-z0-9_.-]+`. En hviteliste som tillater traversering peker ut av
+    repoet og er ikke en hviteliste. Segmentet `..` avvises naa eksplisitt.
+    """
+
+    T = TestIngenVertsspesifikkeReferanser()
+
+    def test_traversering_avvises(self):
+        for form in ("../../etc/passwd", "../outside/file", "foo/../../etc",
+                     "origin/main:../../etc", "a/./../b"):
+            self.assertTrue(self.T._avvik("se " + form),
+                            f"traversering slipper gjennom: {form}")
+
+    def test_vanlige_dotnavn_avvises_ikke(self):
+        """`.github/workflows/x.yml` og `a.b/c.d` er legitime — prikker er
+        bare farlige som HELT segment."""
+        for form in (".github/workflows/x.yml", "a.b/c.d"):
+            self.assertEqual(self.T._avvik("se " + form), [],
+                             f"felte et legitimt navn: {form}")
