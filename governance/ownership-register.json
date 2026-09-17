@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "repository": "supertedai/EFC",
+  "generated_at": "2026-09-17",
+  "owners": [
+    "researcher",
+    "faber",
+    "orchestrator",
+    "menneske"
+  ],
+  "_om": "Eierskapsregister over HELE repoet (design v2 + HAZID/HAZOP/GAP 2026-09-17). researcher eier faglig sannhet, faber implementerer, orchestrator eier flyt, mennesket godkjenner irreversibelt/eksternt. validate_ownership.py feiler (fail-closed) på filer uten komponent-treff.",
+  "components": [
+    {
+      "id": "public-graf",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "public/graph/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "public-page-meta",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "public/page-meta/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "public-kandidater",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "public/candidates/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "offentlige-sider",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "docs/public/**",
+        "docs/index.html"
+      ],
+      "cadence": "per_change+weekly",
+      "verifiers": [
+        "efc_page_consistency",
+        "statement_graph_check",
+        "validate_links"
+      ]
+    },
+    {
+      "id": "dokumentasjon",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "docs/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "evidens",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "evidence/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "inferens",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "efc_inference/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "skjema",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "schema/**",
+        "schemas/**"
+      ],
+      "cadence": "per_change",
+      "verifiers": [
+        "efc_identity"
+      ]
+    },
+    {
+      "id": "jsonld-og-graf",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "jsonld/**",
+        "meta-graph/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "teori-og-metode",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "theory/**",
+        "methodology/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "pipelines-og-src",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "pipelines/**",
+        "src/**",
+        "simple/**",
+        "som/**",
+        "tools/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "data-og-figshare",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "data/**",
+        "figshare/**",
+        "reports/**"
+      ],
+      "cadence": "per_change+weekly",
+      "irreversible_approver": "menneske"
+    },
+    {
+      "id": "integrasjoner-og-api",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "api/**",
+        "auth/**",
+        "integrations/**",
+        "shared/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "konfig",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "config/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "vedlikeholdsskript",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "scripts/**"
+      ],
+      "cadence": "per_change+weekly",
+      "verifiers": [
+        "statement_graph_check",
+        "validate_activity_log",
+        "verifier_bench"
+      ]
+    },
+    {
+      "id": "tester",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "tests/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "logger",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "logs/**"
+      ],
+      "cadence": "continuous",
+      "verifiers": [
+        "validate_activity_log"
+      ]
+    },
+    {
+      "id": "workflows",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        ".github/workflows/**",
+        ".github/CODEOWNERS"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "rotfiler",
+      "kind": "dir",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "Makefile",
+        "README.md",
+        "AGENTS.md",
+        "OPERATING_MODEL.md",
+        "CITATION.cff",
+        "codemeta.json",
+        "ecosystem.jsonld",
+        "pyproject.toml",
+        "uv.lock",
+        ".gitignore",
+        ".gitattributes",
+        ".seal-manifest.json",
+        "governance/**",
+        "meta/**",
+        "requirements.txt"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "claude-verktoy",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        ".claude/**"
+      ],
+      "cadence": "per_change+weekly",
+      "irreversible_approver": "menneske"
+    },
+    {
+      "id": "rot-reproduksjon-og-agent",
+      "kind": "file",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "efc_integration_test.py",
+        "reproduce_*.py",
+        "reproduce_*_output.json",
+        "layer.yaml",
+        "llms.txt"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
+      "id": "rot-vedlikeholdslogg",
+      "kind": "file",
+      "owner": "orchestrator",
+      "implementer": "faber",
+      "coverage_glob": [
+        "maintain.log"
+      ],
+      "cadence": "continuous"
+    }
+  ],
+  "_unntak": [
+    "data/inntak/** (gitignored råinntak)",
+    ".venv/ (gitignored)",
+    ".worktrees/ (kanban-arbeidsområder)",
+    ".git/**"
+  ],
+  "changes": []
+}

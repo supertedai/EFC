@@ -27,6 +27,8 @@ jobs:
         run: python3 -m pip install pyyaml jsonschema defusedxml pytest
       - name: Repo-contract (struktur, navn, forbudte filer)
         run: python3 scripts/maintenance/validate_repo.py --json
+      - name: Eierskap (hver tracked fil har eier — fail-closed)
+        run: python3 scripts/maintenance/validate_ownership.py --json
       - name: Statement-graf
         run: python3 scripts/maintenance/statement_graph_check.py --json
       - name: Aktivitetslogg
