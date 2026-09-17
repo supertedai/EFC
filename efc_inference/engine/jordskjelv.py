@@ -95,7 +95,8 @@ class JordskjelvEngine(EFCEngine):
             "id": "efc.jordskjelv_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["elastic-rebound-antakelsen — idealisert modell — modellgrense, ikke prediktor"],
+            "motor": "jordskjelv"},
             "regime": {
                 "name": "Jordas holding->release (forkastningsbuffer)",
                 "validity": validity,

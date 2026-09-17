@@ -187,7 +187,8 @@ class VictronChargeEngine(EFCEngine):
             "id": "efc.victron_cccv_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["batteriets lade-/tømmeterskler — anleggsspesifikke — driftsgrenser"],
+            "motor": "victron"},
             "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,

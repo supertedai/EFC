@@ -103,7 +103,8 @@ class RomvaerEngine(EFCEngine):
             "id": "efc.romvaer_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala", "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"],
+            "motor": "romvaer"},
             "regime": {
                 "name": "Magnetosfærens Kp-buffer",
                 "validity": validity,

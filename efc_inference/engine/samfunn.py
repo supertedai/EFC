@@ -119,7 +119,8 @@ class SamfunnEngine(EFCEngine):
             "id": "efc.samfunn_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["R0 = 1 — terskelen mellom tre regimer — regimebryter"],
+            "motor": "samfunn"},
             "regime": {
                 "name": "SIR-epidemiologi — flyt med terskel",
                 "validity": validity,

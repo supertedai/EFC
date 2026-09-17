@@ -126,7 +126,8 @@ class OrbitalEngine(EFCEngine):
             "id": "efc.orbital_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense", "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"],
+            "motor": "orbital"},
             "regime": {
                 "name": "Baneregimer — Kepler og bindingsterskler",
                 "validity": validity,

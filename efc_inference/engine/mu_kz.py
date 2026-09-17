@@ -187,7 +187,8 @@ class MuKZEngine(EFCEngine):
             "id": "efc.mu_kz_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["rho >= rho_crit -> K divergerer — stivhetsgrense", "regimebetingelse: k/a >> H — gyldighetsgrense", "mu < 1 -> stivhetsdominert — regimebetingelse"],
+            "motor": "mu_kz"},
             "regime": {
                 "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
                 "validity": (

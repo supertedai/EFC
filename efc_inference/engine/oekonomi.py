@@ -116,7 +116,8 @@ class OekonomiEngine(EFCEngine):
             "id": "efc.oekonomi_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["drift_rate <= 0 -> NaN (ikke stille klipping) — ærlighetsgrense", "hedge/spekulativ/ponzi-grensene — Minsky-typologi — en tradisjon blant flere"],
+            "motor": "oekonomi"},
             "regime": {
                 "name": "Minskys finansregimer — stabilitet som holding",
                 "validity": validity,

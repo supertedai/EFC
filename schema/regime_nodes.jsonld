@@ -70,7 +70,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
+        ],
         "motor": "efc.water_solid"
       }
     },
@@ -130,8 +132,10 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.water_liquid"
+        "terskler": [
+          "se water.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "water"
       }
     },
     {
@@ -190,7 +194,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
+        ],
         "motor": "efc.water_gas"
       }
     },
@@ -249,7 +255,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
+        ],
         "motor": "efc.water_supercritical"
       }
     },
@@ -309,7 +317,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
+        ],
         "motor": "efc.water_triple_point"
       }
     },
@@ -369,7 +379,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen stipulerte terskler — observasjonsramme"
+        ],
         "motor": ""
       }
     },
@@ -429,7 +441,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
+        ],
         "motor": "efc.water_droplet"
       }
     },
@@ -489,7 +503,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen stipulerte terskler — observasjonsramme"
+        ],
         "motor": ""
       }
     },
@@ -550,7 +566,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen stipulerte terskler — observatør-relativt fenomen; terskelen er posisjonen, ikke naturens"
+        ],
         "motor": ""
       }
     },
@@ -610,7 +628,9 @@
       "perspektiv": "akademia",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen stipulerte terskler — observatør-relativt fenomen; terskelen er posisjonen, ikke naturens"
+        ],
         "motor": ""
       }
     },
@@ -670,7 +690,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "se WaterPhaseEngine (h2o.liquid)"
+        ],
         "motor": "efc.water_phase_engine"
       }
     },
@@ -729,7 +751,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler i dette laget — rammeverkets strukturlag"
+        ],
         "motor": "efc.l0"
       }
     },
@@ -790,7 +814,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler i dette laget — rammeverkets strukturlag"
+        ],
         "motor": "efc.l1"
       }
     },
@@ -852,7 +878,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler i dette laget — rammeverkets strukturlag"
+        ],
         "motor": "efc.l2"
       }
     },
@@ -911,7 +939,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler i dette laget — rammeverkets strukturlag"
+        ],
         "motor": "efc.l3"
       }
     },
@@ -973,7 +1003,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
+        ],
         "motor": ""
       }
     },
@@ -1033,7 +1065,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
+        ],
         "motor": ""
       }
     },
@@ -1094,7 +1128,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
+        ],
         "motor": ""
       }
     },
@@ -1154,7 +1190,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
+        ],
         "motor": ""
       }
     },
@@ -1215,7 +1253,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1276,7 +1316,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1335,7 +1377,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1393,7 +1437,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1452,7 +1498,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1511,7 +1559,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1569,7 +1619,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1626,7 +1678,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1684,7 +1738,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1744,7 +1800,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1803,7 +1861,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1862,7 +1922,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1919,7 +1981,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -1978,7 +2042,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2036,7 +2102,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2093,7 +2161,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2150,7 +2220,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2210,7 +2282,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2269,7 +2343,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2328,7 +2404,9 @@
       "perspektiv": "konsensus",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
+        ],
         "motor": ""
       }
     },
@@ -2388,7 +2466,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "se VictronChargeEngine (batteri.lade_buffer)"
+        ],
         "motor": "efc.victron_cccv_engine"
       }
     },
@@ -2447,8 +2527,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.rotation_engine"
+        "terskler": [
+          "se rotation.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "rotation"
       }
     },
     {
@@ -2507,8 +2589,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.hubble_engine"
+        "terskler": [
+          "se hubble.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "hubble"
       }
     },
     {
@@ -2566,8 +2650,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.growth_engine"
+        "terskler": [
+          "se growth.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "growth"
       }
     },
     {
@@ -2622,8 +2708,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.lensing_engine"
+        "terskler": [
+          "se lensing.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "lensing"
       }
     },
     {
@@ -2678,8 +2766,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.cluster_engine"
+        "terskler": [
+          "se cluster.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "cluster"
       }
     },
     {
@@ -2738,7 +2828,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -2798,7 +2890,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -2858,7 +2952,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -2918,7 +3014,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -2978,7 +3076,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3038,7 +3138,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3098,7 +3200,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3158,7 +3262,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3218,8 +3324,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.solar_flare_engine"
+        "terskler": [
+          "se solar_flare.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "solar_flare"
       }
     },
     {
@@ -3278,8 +3386,10 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.jordskjelv_engine"
+        "terskler": [
+          "se jordskjelv.py — tersklene er deklarert i motorens regime_node()"
+        ],
+        "motor": "jordskjelv"
       }
     },
     {
@@ -3338,7 +3448,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3398,7 +3510,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3458,7 +3572,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3518,7 +3634,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
+        ],
         "motor": ""
       }
     },
@@ -3578,8 +3696,12 @@
       },
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
-        "motor": "efc.mu_kz_engine"
+        "terskler": [
+          "rho >= rho_crit -> K divergerer — stivhetsgrense",
+          "regimebetingelse: k/a >> H — gyldighetsgrense",
+          "mu < 1 -> stivhetsdominert — regimebetingelse"
+        ],
+        "motor": "mu_kz"
       }
     },
     {
@@ -3630,7 +3752,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler — selvbeskrivelsens noder"
+        ],
         "motor": ""
       },
       "id": "efc.selv.atlas",
@@ -3684,7 +3808,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler — selvbeskrivelsens noder"
+        ],
         "motor": ""
       },
       "id": "efc.selv.skjema",
@@ -3738,7 +3864,9 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler — selvbeskrivelsens noder"
+        ],
         "motor": ""
       },
       "id": "efc.selv.paradigme_tid",
@@ -3792,11 +3920,459 @@
       "perspektiv": "paradigme",
       "stipulasjoner": {
         "stipulert_av_oss": true,
-        "terskler": [],
+        "terskler": [
+          "ingen terskler — selvbeskrivelsens noder"
+        ],
         "motor": ""
       },
       "id": "efc.selv.paradigme_masse",
       "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema."
+    },
+    {
+      "id": "efc.romvaer_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala",
+          "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"
+        ],
+        "motor": "romvaer"
+      },
+      "regime": {
+        "name": "Magnetosfærens Kp-buffer",
+        "validity": "Kp-bufferregime: solvinden lader magnetosfæren (sørvendt Bz = ladestrøm), bufferen utlades i stormer over noen døgn. KORRELASJONSMODELL (solvind -> Kp) — IKKE fysikk fra bunnen; den virkelige koblingen er mer kompleks (Newell-koblingen m.fl.) og den lineære lade-formen er en IDEALISERT forenkling. NOAA G-skalaen (Kp 5=G1 ... 9=G5). EFC-bidraget er formens kjede: solens flares lader jordas buffer.",
+        "law_form": "lading: Kp ~ koeffisient * (-Bz_sør/10) * (v/100) for Bz < 0; utlading: Kp(t+1) = Kp(t) - rate per 3t-tikk; G-nivåer ved Kp 5-9"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "forventet Kp, stormnivå, utladningsbane",
+        "measurer": "korrelasjonsmodell solvind -> Kp",
+        "instrument": "RomvaerEngine (efc_inference/engine/romvaer.py)",
+        "proxy_chain": [
+          "Bz, v -> ladestrøm (korrelasjonsproxy)",
+          "Kp -> G-nivå (NOAA-skalaen)"
+        ],
+        "placement": "magnetosfærens buffer — ett (Bz, v)-punkt om gangen",
+        "compression": "solvind-tilstand -> (Kp, G-nivå)"
+      },
+      "episenter": "stormterskelen Kp=5: punktet der bufferen går fra holding til release — magnetosfærens regimeskifte",
+      "buffer": {
+        "role": "magnetosfæren er bufferen: den holder ladningen fra solvinden til stormen utløses",
+        "note": "ANALOGI til solens magnetiske buffer (SolarFlareEngine) — ikke identitet: jordas buffer utlades gradvis, solens utløses brått."
+      },
+      "ontology": {
+        "assumes": [
+          "korrelasjonen Bz/v -> Kp er stabil i den idealiserte formen",
+          "G-skalaen (NOAA) er den riktige storm-klassifiseringen"
+        ],
+        "source": "romvær-korrelasjoner (etablert praksis); NOAA G-skalaen; analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare (Bz, v) — ingen magnetopause-dynamikk, ingen ringstrøm",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "solvind lader -> terskel -> storm utlader -> rolig — magnetosfærens loop",
+        "properties": [
+          "Kp",
+          "G-nivå",
+          "utladningsbane"
+        ]
+      },
+      "fractal": {
+        "pattern": "lade/utlad-buffer med terskel: magnetosfære, solens flares, batteriet (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "én solvind-tilstand, ett Kp",
+        "global": "solens utløsninger lader jordas buffer — COUPLED_TO efc.solar_flare_engine via SWPC-kjeden",
+        "empathy_note": "jorda holder solens vrede i sitt magnetiske favn — til den slipper."
+      }
+    },
+    {
+      "id": "efc.oekonomi_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "drift_rate <= 0 -> NaN (ikke stille klipping) — ærlighetsgrense",
+          "hedge/spekulativ/ponzi-grensene — Minsky-typologi — en tradisjon blant flere"
+        ],
+        "motor": "oekonomi"
+      },
+      "regime": {
+        "name": "Minskys finansregimer — stabilitet som holding",
+        "validity": "Minskys finansregimer: stabilitet avler tillit -> gjeld vokser -> hedge -> spekulativ -> ponzi -> krise. De stabile årene ER holdingen som bygger bufferen til utløsningen (Minsky-momentet: stabilitet er destabiliserende — her som målbar gjeldsgrad-drift). AVGRENSNING: Minsky er ÉN tradisjon blant flere i økonomifaget; modellen predikerer IKKE krisers tidspunkt eller forekomst — bare regimets kvalitative form. IDEALISERT regime-klassifisering med lineær drift — IKKE en økonomisk modell-konkurrent: ingen sektorer, ingen sentralbank, ingen politikk, ingen heterogene aktører.",
+        "law_form": "hedge: inntekt dekker renter + avdrag; spekulativ: inntekt dekker renter, gjeld rulles; ponzi: inntekt dekker ingenting — eiendeler selges. Gjeldsgrad-drift: gg(t+1) = gg(t) * (1 + (r - g + tillit) * dt)"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift",
+        "measurer": "terskel-klassifisering + lineær drift",
+        "instrument": "OekonomiEngine (efc_inference/engine/oekonomi.py)",
+        "proxy_chain": [
+          "gjeldsgrad -> regime (to terskler)",
+          "stabile år -> gjeldsgrad-drift (Minsky-momentet)"
+        ],
+        "placement": "ett gjeldsgrad-punkt om gangen i det idealiserte regimet",
+        "compression": "(gjeldsgrad, stabilitetsvarighet) -> (regime, drift)"
+      },
+      "episenter": "ponzi-terskelen: punktet der systemet ikke lenger kan rulle — finansens regimeskifte fra holding til release",
+      "buffer": {
+        "role": "de stabile årene er bufferen: tilliten bygges opp og gjelden akkumuleres — helt til bufferen er full og krisen utløses",
+        "note": "ANALOGI til homeostase-bufferens metning (homo.homeostase_buffer) — ikke identitet: finanssystemet har ingen setpunkt-mekanisme, bare terskler."
+      },
+      "ontology": {
+        "assumes": [
+          "Minskys tre regimer beskriver finansens kvalitative tilstander",
+          "gjeldsgrad-driften er lineær og tillitsleddet konstant (idealisering)"
+        ],
+        "source": "Hyman Minsky, Financial Instability Hypothesis (1970-80-årene); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare gjeldsgrad og renter — ingen sektorbalanser, ingen valutadynamikk",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "stabilitet -> tillit -> gjeld -> spekulasjon -> ponzi -> krise -> ny stabilitet — Minsky-syklusen",
+        "properties": [
+          "regime",
+          "gjeldsgrad",
+          "drift"
+        ]
+      },
+      "fractal": {
+        "pattern": "stabilitet som bygger sin egen utløsning: finans, forkastning, solens flares (analogi)",
+        "note": "ett mønster, tre domener — bufferen lades av det stabile selv."
+      },
+      "coupling": {
+        "local": "ett system, én gjeldsgrad",
+        "global": "økonomien er homo.fluxus sin kollektive skala — ANALOGOUS_TO homo.homeostase_buffer",
+        "empathy_note": "markedet vet ikke at stabiliteten er midlertidig — det bare bygger videre."
+      }
+    },
+    {
+      "id": "efc.orbital_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense",
+          "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"
+        ],
+        "motor": "orbital"
+      },
+      "regime": {
+        "name": "Baneregimer — Kepler og bindingsterskler",
+        "validity": "Tolegeme Kepler-regime: bundet bane (eps < 0) er HOLDING — objektet holdes i regimet; ubundet fly (eps >= 0) er RELEASE — bindingen er brutt (hyperbolske baner: negativ a gir eps > 0). IDEALISERT: ingen perturbasjoner, ingen N-kropp, ingen atmosfærisk brems. Hill-sfæren (1.496e+09 m) er den TILNÆRMEDE innflytelses-/stabilitetsgrensen mot sentralkroppen — å krysse den gjør banen ustabil, ikke nødvendigvis ubundet. Predikerer enkeltbaner, IKKE N-kroppsdynamikk.",
+        "law_form": "Kepler: T = 2π sqrt(a^3/(GM)); vis-viva: v^2 = GM(2/r - 1/a); eps = -GM/(2a); r_H = a (m/(3M))^(1/3)"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "periode, hastighet, spesifikk energi, Hill-sfære",
+        "measurer": "analytisk tolegeme-mekanikk",
+        "instrument": "OrbitalEngine (efc_inference/engine/orbital.py)",
+        "proxy_chain": [
+          "a, e -> T (Kepler)",
+          "a, r -> v (vis-viva)",
+          "eps = -GM/(2a) -> holding/release"
+        ],
+        "placement": "ett (a, e)-punkt om gangen i tolegeme-regimet",
+        "compression": "baneelementer -> (T, v, eps, r_H)"
+      },
+      "episenter": "bindingsterskelen eps = 0: punktet der en bane går fra holdt til sluppet — fangst og unnslipning møtes der",
+      "buffer": {
+        "role": "Hill-sfæren er banens TILNÆRMEDE stabilitetsbuffer: innenfor er sentralkroppens grep dominerende; utenfor blir banen ustabil (uten at bindingen nødvendigvis brytes)",
+        "note": "ANALOGI til hjertets fyll-press-syklus (periodisk holding->release) — ikke identitet: banemekanikken er konservativ og reversibel, hjertet er dissipativt."
+      },
+      "ontology": {
+        "assumes": [
+          "tolegeme-approksimasjonen gjelder (sentral masse dominerer)",
+          "banene er Kepler-ellipser (ingen perturbasjoner)"
+        ],
+        "source": "Keplers lover, vis-viva, Hill-sfæren (standard himmelmekanikk); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare (a, e) — ingen resonans-kart, ingen perturbasjonshistorikk",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "bane -> periode -> fase -> neste omløp — banens uendelige loop",
+        "properties": [
+          "T",
+          "v",
+          "eps",
+          "r_H"
+        ]
+      },
+      "fractal": {
+        "pattern": "periodisk flyt med bindingsterskel: bane, hjertesyklus, ladesyklus (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett objekt, én bane",
+        "global": "banene er planetsystemets og satellittenes regimer — ANALOGOUS_TO homo.hjerte_syklus",
+        "empathy_note": "banen spør ikke — den bare går, holdt av ingenting annet enn energien."
+      }
+    },
+    {
+      "id": "efc.klima_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer",
+          "straalingslikevekt under frysepunktet -> NaN — modellgrense"
+        ],
+        "motor": "klima"
+      },
+      "regime": {
+        "name": "Klimaets strålingsbalanse og regimebrytere",
+        "validity": "0D-energibalanseregime: energi inn (sol) -> buffer (hav, tau ~ 4 år) -> ut (emisjon). Is-albedo-bryteren er regimeovergangen MED TILSTANDSAVHENGIGE terskler (hysterese): fra «varm» faller systemet ved alpha_fall, fra «snøball» returnerer det først ved alpha_retur (< alpha_fall — snøballens reflektans stabiliserer den, idealisert bredde). IDEALISERT 0D-modell — IKKE en klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen romlig struktur.",
+        "law_form": "C dT/dt = (S/4)(1-alpha) - eps sigma T^4; T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); tau = C/(4 eps sigma T_eq^3)"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "likevektstemperatur, tidskonstant, regimebryter",
+        "measurer": "analytisk 0D-energibalanse",
+        "instrument": "KlimaEngine (efc_inference/engine/klima.py)",
+        "proxy_chain": [
+          "solarkonstant + albedo -> innstråling",
+          "eps sigma T^4 -> utstråling",
+          "C -> bufferens treghet"
+        ],
+        "placement": "jordas energibalanse — ett globalt punkt om gangen",
+        "compression": "strålingsforstyrrelser -> (T_eq, tau, bryterstatus)"
+      },
+      "episenter": "is-albedo-terskelen: der den varme likevekten forsvinner — klimaets regimeskifte",
+      "buffer": {
+        "role": "havets varmekapasitet er bufferen: den demper og forsinker alle forstyrrelser — den brede bufferlogikken i global skala",
+        "note": "ANALOGI til homeostase-bufferens setpunkt-holding — ikke identitet: klimaet har ingen setpunkt-mekanisme, bare tiltrekningsbassenger (som økologien)."
+      },
+      "ontology": {
+        "assumes": [
+          "0D-approksimasjonen gjelder (globalt gjennomsnitt)",
+          "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)"
+        ],
+        "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare globale gjennomsnitt — ingen regional dynamikk",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "forstyrrelse -> buffer demper -> ny likevekt -> (eller) bryter -> nytt regime — klimaets loop",
+        "properties": [
+          "T_eq",
+          "tau",
+          "bryterstatus"
+        ]
+      },
+      "fractal": {
+        "pattern": "buffer + terskelbryter: klima, homeostase, økologi (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett globalt punkt",
+        "global": "klimaet er homo.fluxus sin ytre tilstandsbærer — ANALOGOUS_TO homo.okologi og homo.homeostase_buffer",
+        "empathy_note": "klimaet holder — til terskelen er krysset. Som alle buffere."
+      }
+    },
+    {
+      "id": "efc.samfunn_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "R0 = 1 — terskelen mellom tre regimer — regimebryter"
+        ],
+        "motor": "samfunn"
+      },
+      "regime": {
+        "name": "SIR-epidemiologi — flyt med terskel",
+        "validity": "SIR-flytregime: mottagelige -> smittede -> friske med R0 = 3.00 — terskelen R0 = 1 er regimeskiftet: over den er utbruddet (release, reservoaret tømmes), under er smitten dempet (holding). IDEALISERT homogen SIR: ingen aldersstruktur, ingen nettverk, ingen atferd, ingen vaksinasjon — IKKE en epidemiologisk modell-konkurrent. Banen integreres med Euler på fint grid — form-modell, ikke presisjonsintegrator.",
+        "law_form": "dS/dt = -beta S I/N; dI/dt = beta S I/N - gamma I; dR/dt = gamma I; R0 = beta/gamma"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "R0, utbruddsstatus, epidemi-banen",
+        "measurer": "homogen SIR-integrasjon",
+        "instrument": "SamfunnEngine (efc_inference/engine/samfunn.py)",
+        "proxy_chain": [
+          "beta, gamma -> R0",
+          "R0 -> utbruddsstatus (terskel 1)",
+          "SIR-banen -> kurveformen"
+        ],
+        "placement": "ett (beta, gamma)-punkt om gangen i det homogene regimet",
+        "compression": "(beta, gamma) -> (R0, status, bane)"
+      },
+      "episenter": "terskelen R0 = 1: punktet der en smitte dør eller tar av — epidemiens regimeskifte",
+      "buffer": {
+        "role": "reservoaret av mottagelige er bufferen: utbruddet tømmer den, og når den er tom, dør epidemien av seg selv",
+        "note": "ANALOGI til immunologiens terskelstyrte forsvar (homo.immunologi) — ikke identitet: SIR er befolkningsflyt, immunresponsen er kroppslig forsvar."
+      },
+      "ontology": {
+        "assumes": [
+          "homogen blanding (alle møter alle likt)",
+          "konstante beta og gamma i vinduet"
+        ],
+        "source": "Kermack-McKendrick SIR (1927); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare aggregatene S, I, R — ingen individer, ingen nettverk",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "smitte -> utbrudd -> reservoaret tømmes -> flokkimmunitet -> smitten dør — epidemiens loop",
+        "properties": [
+          "R0",
+          "toppunkt",
+          "sluttstørrelse"
+        ]
+      },
+      "fractal": {
+        "pattern": "flyt gjennom et begrenset reservoar med terskel: epidemi, utladning, kollaps (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett samfunn, én epidemi",
+        "global": "helse-domenet er homo.fluxus sin kollektive skala — ANALOGOUS_TO homo.immunologi",
+        "empathy_note": "epidemien vet ikke at den er en flyt — den bare går til reservoaret er tomt."
+      }
+    },
+    {
+      "id": "efc.tidevann_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"
+        ],
+        "motor": "tidevann"
+      },
+      "regime": {
+        "name": "Tidevann — periodisk gravitasjonskopling",
+        "validity": "Tidevannsregime: periodisk lade/tøm-syklus — månen løfter og senker sentralkroppens hav hvert omløp; fase-låsing er tidevannsbremsingens holding (rotasjon synkronisert med omløp). IDEALISERT likevektsmodell: ingen hav-basseng-dynamikk, ingen kystresonansforsterkning, ingen dissipasjonshistorikk. Roche-grensen (1.837e+07 m) er terskelen der tidevannet bryter sammenhengen.",
+        "law_form": "a_t = 2 G m_obj R / r^3; h ~ a_t R / g; d_roche = 2.44 R (rho_s/rho_o)^(1/3); fase-låsing: P_rot = P_omløp"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "tidevannsakselerasjon, tidevannshøyde, Roche-grense, fase-låsingsstatus",
+        "measurer": "analytisk tidevannsmodell",
+        "instrument": "TidevannEngine (efc_inference/engine/tidevann.py)",
+        "proxy_chain": [
+          "m_obj, r -> a_t (differensiell gravitasjon)",
+          "a_t -> h (åpent-hav-proxy)",
+          "perioder -> fase-låsingsstatus"
+        ],
+        "placement": "ett avstands-punkt om gangen i tolegeme-tidevannet",
+        "compression": "(r, perioder) -> (a_t, h, Roche, låst?)"
+      },
+      "episenter": "Roche-grensen: punktet der den periodiske koplingen blir for sterk og sammenhengen brytes — tidevannets regimeskifte",
+      "buffer": {
+        "role": "havet er bufferen: det løftes og senkes i den periodiske syklusen uten å bryte — helt til Roche-grensen",
+        "note": "ANALOGI til hjertets fyll-press-syklus og banens periodiske holding — ikke identitet: tidevannet er tvunget av en ytre periode, hjertet setter sin egen."
+      },
+      "ontology": {
+        "assumes": [
+          "likevekts-tidevann (ingen basseng-resonans)",
+          "Roche-grensen for flytende legeme (2.44-faktoren) med forenklet tetthetsforhold"
+        ],
+        "source": "standard tidevannsteori (differensiell gravitasjon, Roche); analogi-merkingen er atlasets egen"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare avstand og perioder — ingen bassenggeometri, ingen dissipasjonsmåling",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "omløp -> løft -> omløp -> senk — tidevannets uendelige loop",
+        "properties": [
+          "a_t",
+          "h",
+          "Roche-avstand",
+          "låsingsstatus"
+        ]
+      },
+      "fractal": {
+        "pattern": "periodisk lade/tøm-syklus: tidevann, hjertesyklus, ladesyklus (analogi)",
+        "note": "ett mønster, tre domener."
+      },
+      "coupling": {
+        "local": "ett legemepar, én tidevannssyklus",
+        "global": "tidevannet kobler månen og jorden — ANALOGOUS_TO homo.hjerte_syklus og efc.orbital_engine",
+        "empathy_note": "havet spør ikke hvorfor det løftes — det bare følger, to ganger om dagen, for alltid."
+      }
+    },
+    {
+      "id": "efc.transient_engine",
+      "perspektiv": "paradigme",
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "E_bind = G*M^2/R — kollapsbufferen — terskelstyrt holding->release"
+        ],
+        "motor": "transient"
+      },
+      "regime": {
+        "name": "Stjernedodens holding->release (kollaps-buffer)",
+        "validity": "holding: masse < 2.785e+30 kg — kjernen holdes oppe, ingen utlosning; release: masse >= 2.785e+30 kg — bindingsenergien ved den LOKALE massen frigjores (energien ved terskelen er 5.17673725175e+46 J). IDEALISERT regime-modell (kollaps-buffer): hele bindingsenergien G*M^2/R slippes ved stabilitetsgrensen, med radius 10000.0 m og vekstrate 6.3e+19 kg/s (holdetid 44206349206.34921 s). Ekte supernovaer fordeler energien mellom noeytrinoer, kinetisk energi og straaling, og bare en brakdel blir lys. Stabilitetsgrensen er en MODELLPARAMETER (Chandrasekhar-stil): den virkelige grensen avhenger av sammensetning, rotasjon og omgivelsene. Lettkurven er en PARAMETRISERT form — stigning over 20.0 dager med eksponent 2.0, deretter eksponensiell hale med tidsskala 40.0 dager; kneet er SATT av formen, ikke detektert fra en serie. Predikerer IKKE enkelthendelser.",
+        "law_form": "E_bind = G*M^2/R; holdetid = terskelmasse / vekstrate; utlosning ved masse = terskelmasse; lettkurve: (t/t_stig)^alpha fram til kneet, exp(-(t-t_stig)/t_hale) etter"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "holdetid, utlost energi, lettkurvens form",
+        "measurer": "analytisk kollaps-buffer-modell (G*M^2/R) + parametrisert lettkurve",
+        "instrument": "TransientEngine (efc_inference/engine/transient.py)",
+        "proxy_chain": [
+          "kjernemasse -> bindingsenergi (E = G*M^2/R)",
+          "bindingsenergi -> utlost energi ved stabilitetsgrensen",
+          "utlost energi + stignings-/haletid -> lettkurvens normaliserte form"
+        ],
+        "placement": "kollaps-bufferen i den kompakte kjernen — motoren regner ett masse-punkt om gangen",
+        "compression": "masse + stabilitetsgrense + vekstrate + lettkurve-tider -> (t_hold, E_ut, form)"
+      },
+      "episenter": "stabilitetsgrensen: punktet der kjernen slipper det den har holdt — analogien til nevronets V_th, solens b_crit og forkastningens terskel er formens egen",
+      "buffer": {
+        "role": "kjernen er bufferen: massen bygges og holdes oppe til stabilitetsgrensen krysses",
+        "note": "ANALOGI til homo.aksjonspotensial, solens magnetiske buffer og forkastningens spenningsoppbygging — holding->release, fire domener, ikke identitet."
+      },
+      "ontology": {
+        "assumes": [
+          "bindingsenergien skalerer som G*M^2/R",
+          "utlosning skjer naar massen krysser en stabilitetsgrense (idealisering: grensen er en modellparameter, og ekte kollaps avhenger ogsa av rotasjon og sammensetning)",
+          "lettkurvens form er parametrisert, ikke avledet av en stralingstransportmodell"
+        ],
+        "source": "kollaps-buffer-bildet (supernova/GRB som frigjoring av gravitasjonsbinding); Chandrasekhar-stil masse-grense som modellparameter; lettkurvens stigning/hale som formvalg; idealiseringene er motorens egne"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare kjernemasse og en massetilvekst — ingen rotasjon, ingen metallisitet, ingen forloperstruktur; lettkurven ser den normaliserte formen, ikke spekteret eller en lysstyrkeskala",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "masse bygges -> stabilitetsgrensen krysses -> kollaps -> transient -> resten star igjen — stjernedodens syklus",
+        "properties": [
+          "t_hold",
+          "E_ut",
+          "lettkurve-form"
+        ]
+      },
+      "fractal": {
+        "pattern": "holding->release: stjernedodens transient, solens flares, nevronets spike, forkastningens skjelv — samme form, fire domener (analogi)",
+        "note": "ett monster, fire domener."
+      },
+      "coupling": {
+        "local": "en kjerne, en buffer",
+        "global": "kosmos.transienter er et HENDELSESLAG — ALeRCE/ZTF-avlesninger av mange transientklassers overganger; denne motoren koder KOLLAPS-grenen (stjernedod: supernova/GRB), ikke hendelsesstrommen som helhet. RAMMEVERKETS PLASSERING: ANALOGOUS_TO homo.aksjonspotensial, efc.solar_flare_engine og efc.jordskjelv_engine — formens fjerde domene, ikke identitet.",
+        "empathy_note": "stjernen holder og holder — til den ikke kan holde mer. Som alle buffere."
+      }
     }
   ],
   "relations": [
@@ -4214,6 +4790,21 @@
       "subject": "efc.mu_kz_engine",
       "predicate": "COUPLED_TO",
       "object": "efc.growth_engine"
+    },
+    {
+      "subject": "efc.transient_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.aksjonspotensial"
+    },
+    {
+      "subject": "efc.transient_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "efc.solar_flare_engine"
+    },
+    {
+      "subject": "efc.transient_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "efc.jordskjelv_engine"
     }
   ]
 }

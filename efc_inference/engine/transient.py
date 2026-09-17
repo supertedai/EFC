@@ -161,7 +161,8 @@ class TransientEngine(EFCEngine):
             "id": "efc.transient_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["E_bind = G*M^2/R — kollapsbufferen — terskelstyrt holding->release"],
+            "motor": "transient"},
             "regime": {
                 "name": "Stjernedodens holding->release (kollaps-buffer)",
                 "validity": validity,

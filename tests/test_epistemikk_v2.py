@@ -74,3 +74,22 @@ def test_selv_nodene_er_agnostiske_eller_paradigme():
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.selv."):
             assert n["perspektiv"] in ("paradigme", "agnostikk"), n["id"]
+
+
+def test_ingen_node_uten_terskel_deklarasjon():
+    """Review-krav (PR #444 r1): stipulasjoner.terskler skal være
+    fylt med verdi/kilde ELLER eksplisitt deklarasjon — aldri tom
+    maske."""
+    for n in _atlas()["nodes"]:
+        terskler = n["stipulasjoner"]["terskler"]
+        assert terskler, (
+            f"{n['id']}: tom terskelliste — populer eller deklarer "
+            f"eksplisitt at noden ikke har terskler")
+
+
+def test_motor_nodene_har_motor_referanse():
+    """efc.*-motornodene skal peke på motoren som holder terskelen."""
+    for n in _atlas()["nodes"]:
+        if n["id"].startswith("efc.") and "_engine" in n["id"]:
+            assert n["stipulasjoner"].get("motor"), (
+                f"{n['id']}: mangler motor-referanse i stipulasjoner")

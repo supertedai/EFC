@@ -111,7 +111,8 @@ class TidevannEngine(EFCEngine):
             "id": "efc.tidevann_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"],
+            "motor": "tidevann"},
             "regime": {
                 "name": "Tidevann — periodisk gravitasjonskopling",
                 "validity": validity,

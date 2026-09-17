@@ -134,7 +134,8 @@ class KlimaEngine(EFCEngine):
             "id": "efc.klima_engine",
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-                             "terskler": [], "motor": ""},
+            "terskler": ["alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer", "straalingslikevekt under frysepunktet -> NaN — modellgrense"],
+            "motor": "klima"},
             "regime": {
                 "name": "Klimaets strålingsbalanse og regimebrytere",
                 "validity": validity,
