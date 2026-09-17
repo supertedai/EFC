@@ -24,6 +24,12 @@ _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
+# Felles leser av git-treet — se scripts/maintenance/_repo_tre.py.
+_MAINT = _REPO / "scripts" / "maintenance"
+if str(_MAINT) not in sys.path:
+    sys.path.insert(0, str(_MAINT))
+from _repo_tre import filer as _tre_filer  # noqa: E402
+
 SCHEMA_PATH = _REPO / "schema" / "regime_node.schema.json"
 INSTANCE_PATH = _REPO / "schema" / "regime_nodes.jsonld"
 
@@ -469,10 +475,15 @@ def test_observation_nodes_sourced_from_atlas():
 def test_ingen_privat_info_i_hele_repoet():
     """Regresjonsvern (utvidet 2026-09-17): Hasselvegen/adressen skal
     ikke finnes i NOEN fil i repoet — vakten dekket bare schema-
-    mappen, og efc-toolkit lakk adresse + telefon i 13 filer."""
-    for sti in Path(".").rglob("*"):
-        if ".git" in sti.parts or "__pycache__" in sti.parts:
-            continue
+    mappen, og efc-toolkit lakk adresse + telefon i 13 filer.
+
+    Leser git-treet, ikke disken (`_repo_tre`). En `rglob` over
+    arbeidsstreet fant `.worktrees/` i hovedklonen — gitignorert, men på
+    disk — og felt testen på filer som ikke er i repoet. Denne fila selv
+    nevner adressen i sitt eget vern og holdes utenfor.
+    """
+    egen = "tests/test_regime_node_schema.py"
+    for sti in _tre_filer(_REPO, skip_files={egen}):
         if sti.suffix.lower() in (".csv", ".png", ".pdf", ".jpg", ".pyc"):
             continue  # vitenskapelige data / kompilert cache
         try:
@@ -480,9 +491,9 @@ def test_ingen_privat_info_i_hele_repoet():
         except OSError:
             continue
         for forbudt in ("Hasselvegen", "4051 Sola", "Hasselvegen 5"):
-            if forbudt in raw and str(sti) != \
-                    "tests/test_regime_node_schema.py":
-                raise AssertionError(f"privat adresse lekker: {sti}")
+            if forbudt in raw:
+                raise AssertionError(
+                    f"privat adresse lekker: {sti.relative_to(_REPO).as_posix()}")
 
 
 def test_ingen_tomme_redaksjons_felt_i_toolkit():
