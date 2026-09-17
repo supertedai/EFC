@@ -324,3 +324,30 @@ class TestEpistemiskTilstand:
         off, tot = e["falsifikator_offentlig"]
         assert isinstance(off, int) and isinstance(tot, int), (
             "tallet skal kunne leses, ogsaa naar det er 0")
+
+
+class TestRefErFaktiskValgt:
+    """`--ref` ble stille ignorert i foerste utgave.
+
+    CLI-en leste bare `sys.argv[1]` og brukte standardrefen ellers. Da
+    maalte `--ref origin/wt/vaer-node` i virkeligheten `origin/main` — og
+    svarte med de gamle tallene uten aa si fra. Instrumentet svarte paa et
+    nabospoersmaal, som er feilklassen resten av huset verner mot.
+    """
+
+    def test_ref_maa_kunne_velges(self):
+        import subprocess
+        r = subprocess.run(
+            ["/opt/venvs/t_123ed6d9/bin/python",
+             str(REPO / "scripts" / "atlas_navigasjon.py"), str(REPO),
+             "--help"], capture_output=True, text=True)
+        assert "--ref" in r.stdout, "CLI-en tilbyr ikke --ref"
+
+    def test_ugyldig_ref_feiler_hoeyt(self):
+        """En ref som ikke finnes skal si det — ikke falle tilbake."""
+        import subprocess
+        r = subprocess.run(
+            ["/opt/venvs/t_123ed6d9/bin/python",
+             str(REPO / "scripts" / "atlas_navigasjon.py"), str(REPO),
+             "--ref", "finnes/ikke"], capture_output=True, text=True)
+        assert r.returncode != 0, "ukjent ref gav exit 0"

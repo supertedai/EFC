@@ -187,9 +187,18 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
 
-    d = naviger(sys.argv[1] if len(sys.argv) > 1 else ".", )
+    ap = argparse.ArgumentParser(
+        description="Maal hvor mye av atlaset som naar fram, fra en gitt ref.")
+    ap.add_argument("repo", nargs="?", default=".",
+                    help="sti til repoet (standard: .)")
+    ap.add_argument("--ref", default=None,
+                    help="git-ref aa maale (standard: origin/main). Uten "
+                         "denne maaler kommandoen alltid standardrefen, "
+                         "ogsaa naar du tror du maaler en gren.")
+    a = ap.parse_args()
+    d = naviger(a.repo, a.ref) if a.ref else naviger(a.repo)
     lag = d["lag"]
     print(f"{d['ref']} @ {d['commit'][:8]}")
     print(f"  lag      : {lag['noder']} noder · {lag['motorer']} motorer · "
