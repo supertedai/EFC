@@ -1,9 +1,10 @@
 name: EFC changelog sync
 
-# P0 t_26dd0ef5: changelogen er en deterministisk projeksjon av
-# git-historikken. Denne gaten gjør den DE FACTO påkrevd: enhver PR som
-# endrer public HTML (eller andre repo-områder) MÅ bære den regenererte
-# changelogen, ellers rød CI.
+# P0 t_26dd0ef5: the changelog is a deterministic projection of git history.
+# This gate makes it DE FACTO required: any PR that changes public HTML (or
+# other repo areas) MUST carry the regenerated changelog, or CI goes red.
+# Language rule (Morten 2026-09-17): all EFC repo content is English — new
+# changelog entries are checked for Norwegian stopwords and rejected.
 
 on:
   push:
@@ -48,13 +49,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Regenerer changelog (projeksjon)
+      - name: Regenerate changelog (projection)
         run: python3 scripts/maintenance/changelog_projeksjon.py
-      - name: Krev sync (rød hvis changelog avviker)
+      - name: Require sync (red if the changelog diverges)
         run: |
           if ! git diff --quiet -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json; then
-            echo "::error::Changelog ute av sync. Kjør: python3 scripts/maintenance/changelog_projeksjon.py og commit resultatet i samme PR."
+            echo "::error::Changelog out of sync. Run: python3 scripts/maintenance/changelog_projeksjon.py and commit the result in the same PR."
             git diff --stat -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json
             exit 1
           fi
-          echo "✓ Changelog er i sync (projeksjonen stemmer med historikken)"
+          echo "✓ Changelog in sync (projection matches history)"
+      - name: Language gate (English only in changelog)
+        run: |
+          python3 - << 'PYEOF'
+          import json, re, sys
+          cl = json.load(open('docs/validation-ledger/data/changelog.json'))
+          no = re.compile(r'\b(skal|ikke|v[æe]re|v[æe]rt|ble|har|som|med|og|forutsier|konsistent|prediksjonen|målt|stor|negativ|også|etter|men|mot|fra|til|endret|oppdatert|påkrevd|rettet|æ|ø|å)\b', re.I)
+          bad = [e.get('summary','') for e in cl.get('changes', [])[:30] if len(no.findall(e.get('summary',''))) >= 1]
+          if bad:
+              print('::error::Norwegian content in changelog entries — ALL EFC repo content must be English:')
+              for b in bad: print('  -', b)
+              sys.exit(1)
+          print('✓ Changelog language: English only')
+          PYEOF
