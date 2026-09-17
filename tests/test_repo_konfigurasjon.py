@@ -33,21 +33,32 @@ PYTEST_STANDARDER = ["*.egg", ".*", "_darcs", "build", "CVS", "dist",
                      "node_modules", "venv", "{arch}"]
 
 
-def _les_ini_options() -> dict:
+def _les_ini_options(tekst: str | None = None) -> dict:
     """Les `norecursedirs` og `testpaths` fra pyproject.toml.
 
-    Bevisst uten `tomllib`: den finnes foerst i Python 3.11, mens prosjektet
-    deklarerer `requires-python = ">=3.9"`. En testfil som ikke kan lastes
-    paa en stottet versjon, er en test som forsvinner i stillhet — noeyaktig
-    feilmodusen denne filen finnes for aa hindre.
+    Bruker `tomllib` der den finnes (Python 3.11+), som er det CI kjoerer og
+    det utvikleren her kjoerer. Paa 3.9/3.10 — som `requires-python` tillater
+    — finnes den ikke, og vi faller tilbake til aa lese de to noeklene
+    direkte. Den veien er en FORENKLING med kjente grenser (se
+    `TestParserensGrenser`), ikke en full TOML-parser.
 
-    Vi trenger bare to noekler i én seksjon, saa vi leser dem direkte.
+    Foerste utgave haandskrev parsing ubetinget. Review runde 5 maalte at den
+    ga feil svar paa `]` inne i en streng og paa escaped quotes — og at
+    vernet ikke felt en gjeninnsetting av den, fordi `pyproject.toml` har
+    doble fnutter. Begge er rettet: `tomllib` der den finnes, og en
+    enhetstest som proever BEGGE fnutt-stiler direkte mot parseren.
     """
-    tekst = (REPO / "pyproject.toml").read_text(encoding="utf-8")
+    if tekst is None:
+        tekst = (REPO / "pyproject.toml").read_text(encoding="utf-8")
+    try:
+        import tomllib
+        return (tomllib.loads(tekst).get("tool", {}).get("pytest", {})
+                .get("ini_options", {}))
+    except ModuleNotFoundError:
+        pass
     if "[tool.pytest.ini_options]" not in tekst:
         return {}
     seksjon = tekst.split("[tool.pytest.ini_options]", 1)[1]
-    # stopp ved neste toppnivaa-seksjon
     stopp = re.search(r"^\[", seksjon, re.M)
     if stopp:
         seksjon = seksjon[:stopp.start()]
@@ -55,9 +66,6 @@ def _les_ini_options() -> dict:
     for noekkel in ("testpaths", "norecursedirs"):
         m = re.search(rf"^{noekkel}\s*=\s*\[(.*?)\]", seksjon, re.M | re.S)
         if m:
-            # BEGGE fnutter: TOML tillater 'docs' like sa vel som "docs".
-            # Maalt i review runde 4 — med bare `"` falt enkeltfnutter ut,
-            # og en legitim omformatering ville brutt vernet.
             ut[noekkel] = [a or b for a, b in
                            re.findall(r'"([^"]*)"|\'([^\']*)\'', m.group(1))]
     return ut
@@ -247,3 +255,67 @@ class TestVernetKjoererISelv:
                 assert (REPO / navn).exists(), (
                     f"CI kjorer `{navn}`, men filen finnes ikke — "
                     f"pytest vil feile med «file or directory not found»")
+
+
+class TestParserensGrenser:
+    """Parseren skal proves DIREKTE, ikke gjennom filens tilfeldige format.
+
+    Review runde 5: den gamle parseren ble gjeninnsatt og suiten passerte
+    fortsatt — fordi `pyproject.toml` har doble fnutter, og den gamle
+    parseren haandterer nettopp dem. Vernet felt altsaa bare kombinasjonen
+    «skjor parser OG omformatert fil». Gjeninnfoerer noen den skjore
+    parseren alene, sier testene ingenting.
+
+    Denne testen gir parseren BEGGE formatene som tekst, uavhengig av hva
+    filen inneholder.
+    """
+
+    TO_DOBLE = '[tool.pytest.ini_options]\ntestpaths = ["tests"]\nnorecursedirs = ["docs", "pipelines"]\n'
+    TO_ENKLE = "[tool.pytest.ini_options]\ntestpaths = ['tests']\nnorecursedirs = ['docs', 'pipelines']\n"
+
+    def test_doble_fnutter(self) -> None:
+        d = _les_ini_options(self.TO_DOBLE)
+        assert d.get("testpaths") == ["tests"], d
+        assert d.get("norecursedirs") == ["docs", "pipelines"], d
+
+    def test_enkle_fnutter(self) -> None:
+        """Den varianten som felte den gamle parseren."""
+        d = _les_ini_options(self.TO_ENKLE)
+        assert d.get("testpaths") == ["tests"], (
+            f"enkeltfnutter ble ikke lest: {d}")
+        assert d.get("norecursedirs") == ["docs", "pipelines"], d
+
+    def test_blandede_fnutter(self) -> None:
+        d = _les_ini_options(
+            '[tool.pytest.ini_options]\n'
+            'testpaths = ["tests"]\n'
+            "norecursedirs = ['docs', 'pipelines']\n")
+        assert d.get("testpaths") == ["tests"], d
+        assert d.get("norecursedirs") == ["docs", "pipelines"], d
+
+    def test_kommentar_inni_listen(self) -> None:
+        d = _les_ini_options(
+            '[tool.pytest.ini_options]\n'
+            'norecursedirs = [\n'
+            '    "docs",  # forskningskoden\n'
+            '    "pipelines",\n'
+            ']\n')
+        assert d.get("norecursedirs") == ["docs", "pipelines"], d
+
+    def test_kant_i_streng(self) -> None:
+        """`]` inne i en streng skal ikke avslutte listen.
+
+        Review runde 5 maalte at den haandskrevne parseren feilet her.
+        Med `tomllib` er dette riktig — og testen laaser det.
+        """
+        d = _les_ini_options(
+            '[tool.pytest.ini_options]\n'
+            'norecursedirs = ["a]b", "tests"]\n')
+        assert d.get("norecursedirs") == ["a]b", "tests"], (
+            f"`]` inne i en streng ble feillest: {d}")
+
+    def test_mange_elementer_paa_linja(self) -> None:
+        d = _les_ini_options(
+            '[tool.pytest.ini_options]\n'
+            'norecursedirs = ["a", "b", "c", "d", "e"]\n')
+        assert d.get("norecursedirs") == ["a", "b", "c", "d", "e"], d
