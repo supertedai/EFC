@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """validate_activity_log.py — fase 1-kontroll av logs/activity.jsonl.
 
-Append-only er en git-egenskap, ikke en fil-egenskap: CI kjører med
---base origin/main og krever at diffen på logs/ BARE er innsettinger
-(sjekkes i CI-steget, ikke her — her valideres linjene). Dette skriptet
-sjekker per linje: gyldig JSON, obligatoriske felter, unik event_id,
-gyldig ISO-8601-tid, kjent action, rolle innenfor enum.
+Append-only er en git-egenskap, ikke en fil-egenskap: CI kjører
+``efc_changelog_check.py --base origin/main`` og krever at diffen på logs/
+BARE er innsettinger. Dette skriptet sjekker per linje: gyldig JSON,
+obligatoriske felter, unik event_id, gyldig ISO-8601-tid, kjent action,
+rolle innenfor enum — og, når change_id finnes, at den er sha256 av linjens
+eget innhold (change_id-kontrakten i efc_change_id.py).
 
 Bruk: python3 scripts/maintenance/validate_activity_log.py [--json]
 Exit: 0 = OK, 1 = feil.
@@ -18,6 +19,10 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from efc_change_id import id_kontroll  # noqa: E402
+
 ROT = Path(__file__).resolve().parents[2]
 LOGG = ROT / "logs" / "activity.jsonl"
 
@@ -26,8 +31,15 @@ AKSJONER = {
     "validation_finished", "commit_created", "pr_opened", "review_completed",
     "merge_completed", "remote_readback", "public_readback", "blocked",
     "unblocked", "card_closed", "rollback_completed",
+    # Metatype: projeksjonens egen proveniens (generator + input_hash).
+    # Den er ikke en endring og holdes utenfor changelog-projeksjonen.
+    "projection_built",
 }
-ROLLER = {"researcher", "orchestrator", "faber", "opus-core", "verifier", "legacy", "menneske"}
+ROLLER = {"researcher", "orchestrator", "faber", "opus-core", "verifier",
+          "legacy", "menneske",
+          # «auto» = maskinelt registrert (commit-diff eller projeksjonsbygg)
+          # der ingen menneskelig/rolle-oppgitt aktør finnes i hendelsen.
+          "auto"}
 PLIKT = ["event_id", "occurred_at", "action", "role", "kanban_card",
          "files", "why", "result", "reversible"]
 
@@ -38,6 +50,7 @@ def hoved() -> int:
     a = p.parse_args()
     feil = []
     sett = set()
+    hendelser = []
     if not LOGG.is_file():
         feil.append({"type": "missing_log", "msg": str(LOGG)})
     else:
@@ -63,6 +76,8 @@ def hoved() -> int:
                 datetime.fromisoformat(str(e.get("occurred_at", "")).replace("Z", "+00:00"))
             except ValueError:
                 feil.append({"type": "invalid_timestamp", "linje": nr})
+            hendelser.append(e)
+        feil.extend(id_kontroll(hendelser))
     if a.json:
         print(json.dumps({"feil": feil}, ensure_ascii=False, indent=1))
     else:
