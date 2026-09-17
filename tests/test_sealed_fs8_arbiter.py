@@ -199,7 +199,7 @@ def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
 
 def test_payload_har_kriterium_og_proveniens():
     p = _arbiter().payload()
-    assert p["emne"] == "kosmos.kosmologi.utfall.efc-fs8-arbiter"
+    assert p["emne"] == "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter"
     assert p["kriterium"]["anker_efc"] == 0.430
     assert p["kriterium"]["forseglet_doi"] == "10.6084/m9.figshare.32013156"
     assert p["proveniens"]["generert_av"] == "SealedFs8Arbiter"
