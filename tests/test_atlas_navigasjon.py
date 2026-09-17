@@ -288,12 +288,15 @@ class TestEpistemiskTilstand:
 
     def test_falsifikatorer_er_talt(self, nav: dict) -> None:
         e = nav["epistemisk"]
-        assert "falsifikator" in e, f"mangler falsifikator-telling: {e}"
-        naadd, totalt = e["falsifikator"]
-        assert 0 <= naadd <= totalt
-        assert totalt == nav["lag"]["noder"], (
-            f"tellingen dekker ikke alle nodene: {naadd}/{totalt} mot "
-            f"{nav['lag']['noder']} noder")
+        kf, kt = e["kan_felles"]
+        mo, mt = e["maaler_eller_observert"]
+        assert 0 <= kf <= kt and 0 <= mo <= mt
+        # Til sammen skal de dekke HELE det offentlige atlaset — ellers
+        # finnes det noder ingen av kategoriene eier, og de forsvinner
+        # fra alle tall uten at noen ser det.
+        assert kt + mt == e["offentlige"], (
+            f"kategoriene dekker ikke alle offentlige: {kt} + {mt} "
+            f"mot {e['offentlige']}")
 
     def test_prediksjoner_og_oppgjoer_er_talt(self, nav: dict) -> None:
         e = nav["epistemisk"]
@@ -308,10 +311,10 @@ class TestEpistemiskTilstand:
         De offentlige er det publiserte atlaset; de interne er vaare egne.
         """
         e = nav["epistemisk"]
-        assert "falsifikator_offentlig" in e, (
-            f"offentlige og interne maa telles hver for seg: {e}")
-        off, tot = e["falsifikator_offentlig"]
-        assert tot > 0, "forutsetning: det finnes offentlige noder"
+        assert "kan_felles" in e and "maaler_eller_observert" in e, (
+            f"skillet mellom vaare paastander og resten mangler: {e}")
+        off, tot = e["kan_felles"]
+        assert tot > 0, "forutsetning: det finnes EFC-paastander"
         assert off <= tot
 
     def test_tallet_er_ikke_skjult(self, nav: dict) -> None:
@@ -321,9 +324,13 @@ class TestEpistemiskTilstand:
         det er. Det var hele funnet.
         """
         e = nav["epistemisk"]
-        off, tot = e["falsifikator_offentlig"]
+        off, tot = e["kan_felles"]
         assert isinstance(off, int) and isinstance(tot, int), (
             "tallet skal kunne leses, ogsaa naar det er 0")
+        # og den andre halvdelen skal staa like tydelig
+        mo, mt = e["maaler_eller_observert"]
+        assert mo == mt, (
+            f"{mt - mo} ikke-EFC-noder mangler begrunnelse for aa maale")
 
 
 class TestRefErFaktiskValgt:
@@ -351,3 +358,29 @@ class TestRefErFaktiskValgt:
              str(REPO / "scripts" / "atlas_navigasjon.py"), str(REPO),
              "--ref", "finnes/ikke"], capture_output=True, text=True)
         assert r.returncode != 0, "ukjent ref gav exit 0"
+
+
+class TestFalsifiserbarhetsSkillet:
+    """«Kan felles» maa ikke telle instrumenter som mangler.
+
+    `_epistemisk` talte ALT likt: 0 av 74. Men 47 av de 74 er ikke
+    EFC-paastander — de er etablert fysikk, observasjoner og instrumenter.
+    Et instrument kan ikke felles av en observasjon; det ER observasjonen.
+    Aa telle det som et hull gjor tallet verre enn virkeligheten, og et
+    tall som lyver nedover er like ubrukelig som ett som lyver oppover.
+    """
+
+    def test_kan_felles_teller_bare_efc_paastander(self):
+        d = atlas_navigasjon.naviger(REPO, "HEAD")
+        e = d["epistemisk"]
+        assert "kan_felles" in e, "mangler skillet"
+        n, t_ = e["kan_felles"]
+        assert t_ == 27, f"nevneren skal vaere de 27 EFC-nodene, fikk {t_}"
+        assert n == 19, f"kan felles: {n} av {t_} — forventet 19 (8 avventer, 47 maaler)"
+
+    def test_instrumentene_telles_for_seg(self):
+        d = atlas_navigasjon.naviger(REPO, "HEAD")
+        e = d["epistemisk"]
+        assert "maaler_eller_observert" in e, "de 47 er ikke navngitt"
+        n, t_ = e["maaler_eller_observert"]
+        assert n == t_ == 47, f"forventet 47/47, fikk {n}/{t_}"

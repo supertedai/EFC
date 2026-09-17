@@ -102,9 +102,17 @@ def _epistemisk(noder: list[dict]) -> dict:
     def har(n: dict, felt: str) -> bool:
         return bool(n.get(felt))
 
+    # SKILLET: en EFC-node PAASTAAR noe og skal kunne felles. En
+    # instrument-node MAALER — den kan ikke felles av en observasjon, den
+    # ER observasjonen. Aa telle dem sammen gjor tallet verre enn
+    # virkeligheten, og et tall som lyver nedover er like ubrukelig som
+    # ett som lyver oppover. Maalt 2026-09-17: 27 av 74 kan felles; 47
+    # maaler eller er etablert kunnskap vi ikke eier.
+    vaare = [n for n in offentlige if n["id"].startswith("efc.")]
+    andres = [n for n in offentlige if not n["id"].startswith("efc.")]
     return {
-        "falsifikator": tell(har_falsifikator, noder),
-        "falsifikator_offentlig": tell(har_falsifikator, offentlige),
+        "kan_felles": tell(har_falsifikator, vaare),
+        "maaler_eller_observert": tell(lambda n: True, andres),
         "prediksjon": tell(lambda n: har(n, "prediction"), noder),
         "oppgjoer": tell(lambda n: har(n, "settlement"), noder),
         "offentlige": len(offentlige),
@@ -206,8 +214,12 @@ if __name__ == "__main__":
     for navn, (n, t) in d["dekning"].items():
         print(f"  {navn:9}: {n}/{t} naar fram")
     e = d["epistemisk"]
-    print(f"  epistemisk: kan felles {e['falsifikator_offentlig'][0]}/{e['falsifikator_offentlig'][1]} "
-          f"offentlige · prediksjon {e['prediksjon'][0]} · oppgjoer {e['oppgjoer'][0]}")
+    kf, kt = e["kan_felles"]
+    mo, mt = e["maaler_eller_observert"]
+    print(f"  epistemisk: kan felles {kf}/{kt} EFC-paastander · "
+          f"{mo}/{mt} maaler eller er etablert")
+    print(f"              prediksjon {e['prediksjon'][0]} · "
+          f"oppgjoer {e['oppgjoer'][0]}")
     for navn, hull in d["hull"].items():
         if hull:
             print(f"  HULL {navn} ({len(hull)}): {', '.join(str(h) for h in hull[:5])}"
