@@ -88,6 +88,9 @@ class GridMikroEngine(EFCEngine):
     def regime(self, params: dict) -> str:
         rho = float(params["rho"])
         rho_crit = float(params["rho_crit"])
+        if not (math.isfinite(rho) and math.isfinite(rho_crit)) \
+                or rho < 0 or rho_crit <= 0:
+            return "ugyldig"
         if rho < rho_crit:
             return "lav_tetthet"
         return "mettet"

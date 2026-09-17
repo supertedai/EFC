@@ -52,6 +52,17 @@ def test_regime_skifte_ved_rho_crit():
     assert e.regime({**P, "rho": 1.0}) == "mettet"
 
 
+def test_regime_ugyldige_innganger_gir_ugyldig():
+    """Review-krav PR #458 r1: NaN/negative innganger skal gi
+    'ugyldig', ikke falle gjennom til 'mettet'."""
+    e = GridMikroEngine()
+    assert e.regime({**P, "rho": float("nan")}) == "ugyldig"
+    assert e.regime({**P, "rho_crit": float("nan")}) == "ugyldig"
+    assert e.regime({**P, "rho_crit": -1.0}) == "ugyldig"
+    assert e.regime({**P, "rho": -0.5}) == "ugyldig"
+    assert e.regime({**P, "rho": float("inf")}) == "ugyldig"
+
+
 def test_negativ_tetthet_gir_nan():
     e = GridMikroEngine()
     assert math.isnan(e.gamma({**P, "rho": -1.0}, scenario="A"))
