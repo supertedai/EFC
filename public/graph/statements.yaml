@@ -1,127 +1,168 @@
-# EFC statement-graf — fase 1
-#
-# Én node per atomisk påstand. Proveniens og status er hentet fra
-# evidence/01_hypothesis.md (kanonisk hypotesegrunnlag) per 2026-09-16.
-# appears_on fylles inn når side-kartleggingen er gjort — tom liste er et
-# ærlig «ukjent», ikke et «ingensteds». Falsifikatorer: en lærdom uten
-# betingelse er en fordom.
-schema_version: "1.0"
+schema_version: '1.0'
 statements:
-  - statement_id: efc.core.status.001
-    text: "EFC er forenlig med sen-tids VEKSTRATE-data på ~2σ-nivå i perturbasjonssektoren og er en kandidat-utvidelse av ΛCDM i påvente av CMB-validering. Bakgrunnssektoren viser ingen signifikant evidens for signal (DESI DR2: 2,2σ → 0,68σ, se efc.h1.002); statusen gjelder kun μ/Σ/η-kanalen."
-    kind: status
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h1.001, ev.efc.desidr2.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h1.001
-    text: "Sen-tids kosmiske entropigradienter modifiserer den effektive gravitasjonskoblingen: mu(a) < 1 ved z < z_t undertrykker strukturell vekst (σ₈) uten å endre tidlig-univers-fysikk."
-    kind: hypothesis
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h1.001]
-    contradicts: []
-    supersedes: null
-    falsifier:
-      type: explicit
-      description: "fσ₈(z) systematisk OVER ΛCDM-kurven ved z < 1 ville falsifisere mu < 1-kanalen."
-    appears_on: []
-
-  - statement_id: efc.h1.002
-    text: "DESI DR2: bakgrunnssektorens koblingsparameter α kollapset fra -1.00 ± 0.46 (2,2σ) til -0.14 ± 0.21 (0,68σ) — bakgrunnssignalet er borte, og perturbasjonssektoren (mu, Σ, η) er nå primærkanal."
-    kind: derived_result
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.desidr2.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h1.003
-    text: "Variant H (entropigradient-vekstmekanismen) viser ingen datapreferanse: DAIC = +4.05, S₀ = 0.21 ± 0.14 ved 1,5σ — signalet kan ligge under nåværende sensitivitet."
-    kind: negative_result
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.desidr2.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h2.001
-    text: "EFC-effektene er regimespesifikke: L0 (CMB/lineært) reduserer til ΛCDM eksakt, L1 (BAO/kvasilineært) har liten perturbativ modifikasjon, L2 (galakse/ikke-lineært) har aktiv entropi-struktur-kobling, L3 (klynge/sterkt felt) full EFC-dynamikk."
-    kind: model_definition
-    epistemic_level: documented
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h2.001]
-    contradicts: []
-    supersedes: null
-    falsifier:
-      type: explicit
-      description: "Ethvert avvik fra ΛCDM på CMB-skalaer (L0) falsifiserer rammeverket."
-    appears_on: []
-
-  - statement_id: efc.h3.001
-    text: "mu < 1 ved sen tid er påkrevd: mu > 1 (forsterket gravitasjon) er ekskludert av fσ₈-data med Δχ² = +495 til +2680 (B0 Bridge Test)."
-    kind: derived_result
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h3.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h4.001
-    text: "Bakgrunnslemma: DE²(z) ≤ 0 for alle z > 0, slik at H_EFC(z) ≤ H_ΛCDM(z) — redusert Hubble-friksjon, forbedret vekst. Analytisk bevist (Lemma 1) og numerisk verifisert."
-    kind: derived_result
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h4.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h5.001
-    text: "EFCs Lagrange-multiplikator-strømningsbetingelse gir anisotrop stress uten standard Horndeski-korrespondanse: mu < 1 OG Σ ≥ 1 samtidig — et regime standard kvasistatisk Horndeski med α_T = 0 beviselig ikke kan produsere (Σ ≤ mu universelt der)."
-    kind: derived_result
-    epistemic_level: documented
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h5.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
-
-  - statement_id: efc.h5.002
-    text: "Prediksjon: en rødforskyvningsavhengig linsekryssing ved z ~ 0.44 med prosentnivå-amplitude — Σ_eff > 1 ved z < 0.4, Σ_eff < 1 ved z > 0.5. Denne ikke-monotone tomografiske signaturen finnes ikke i ΛCDM."
-    kind: prediction
-    epistemic_level: pending_external_validation
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.h5.001]
-    contradicts: []
-    supersedes: null
-    falsifier:
-      type: explicit
-      description: "Tomografiske målinger uten kryssing, eller med monotont Σ_eff, svekker prediksjonen."
-    appears_on: []
-
-  - statement_id: efc.sparc.001
-    text: "∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹ (EFC-R-SPARC) — entropigradienten målt fra galakserotasjonskurver."
-    kind: derived_result
-    epistemic_level: partial_support
-    owner_role: researcher
-    status: active
-    supported_by: [ev.efc.sparc.001]
-    contradicts: []
-    supersedes: null
-    appears_on: []
+- statement_id: efc.core.status.001
+  text: 'EFC er forenlig med sen-tids VEKSTRATE-data på ~2σ-nivå i perturbasjonssektoren
+    og er en kandidat-utvidelse av ΛCDM i påvente av CMB-validering. Bakgrunnssektoren
+    viser ingen signifikant evidens for signal (DESI DR2: 2,2σ → 0,68σ, se efc.h1.002);
+    statusen gjelder kun μ/Σ/η-kanalen.'
+  kind: status
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h1.001
+  - ev.efc.desidr2.001
+  contradicts: []
+  supersedes: null
+  appears_on:
+  - page_id: atlas
+    role: primary
+- statement_id: efc.h1.001
+  text: 'Sen-tids kosmiske entropigradienter modifiserer den effektive gravitasjonskoblingen:
+    mu(a) < 1 ved z < z_t undertrykker strukturell vekst (σ₈) uten å endre tidlig-univers-fysikk.'
+  kind: hypothesis
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h1.001
+  contradicts: []
+  supersedes: null
+  falsifier:
+    type: explicit
+    description: fσ₈(z) systematisk OVER ΛCDM-kurven ved z < 1 ville falsifisere mu
+      < 1-kanalen.
+  appears_on: []
+- statement_id: efc.h1.002
+  text: 'DESI DR2: bakgrunnssektorens koblingsparameter α kollapset fra -1.00 ± 0.46
+    (2,2σ) til -0.14 ± 0.21 (0,68σ) — bakgrunnssignalet er borte, og perturbasjonssektoren
+    (mu, Σ, η) er nå primærkanal.'
+  kind: derived_result
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.desidr2.001
+  contradicts: []
+  supersedes: null
+  appears_on: []
+- statement_id: efc.h1.003
+  text: 'Variant H (entropigradient-vekstmekanismen) viser ingen datapreferanse: DAIC
+    = +4.05, S₀ = 0.21 ± 0.14 ved 1,5σ — signalet kan ligge under nåværende sensitivitet.'
+  kind: negative_result
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.desidr2.001
+  contradicts: []
+  supersedes: null
+  appears_on: []
+- statement_id: efc.h2.001
+  text: 'EFC-effektene er regimespesifikke: L0 (CMB/lineært) reduserer til ΛCDM eksakt,
+    L1 (BAO/kvasilineært) har liten perturbativ modifikasjon, L2 (galakse/ikke-lineært)
+    har aktiv entropi-struktur-kobling, L3 (klynge/sterkt felt) full EFC-dynamikk.'
+  kind: model_definition
+  epistemic_level: documented
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h2.001
+  contradicts: []
+  supersedes: null
+  falsifier:
+    type: explicit
+    description: Ethvert avvik fra ΛCDM på CMB-skalaer (L0) falsifiserer rammeverket.
+  appears_on:
+  - page_id: atlas
+    role: primary
+  - page_id: white-paper-series
+    role: cited
+- statement_id: efc.h3.001
+  text: 'mu < 1 ved sen tid er påkrevd: mu > 1 (forsterket gravitasjon) er ekskludert
+    av fσ₈-data med Δχ² = +495 til +2680 (B0 Bridge Test).'
+  kind: derived_result
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h3.001
+  contradicts: []
+  supersedes: null
+  appears_on:
+  - page_id: atlas
+    role: primary
+- statement_id: efc.h4.001
+  text: 'Bakgrunnslemma: DE²(z) ≤ 0 for alle z > 0, slik at H_EFC(z) ≤ H_ΛCDM(z) —
+    redusert Hubble-friksjon, forbedret vekst. Analytisk bevist (Lemma 1) og numerisk
+    verifisert.'
+  kind: derived_result
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h4.001
+  contradicts: []
+  supersedes: null
+  appears_on: []
+- statement_id: efc.h5.001
+  text: 'EFCs Lagrange-multiplikator-strømningsbetingelse gir anisotrop stress uten
+    standard Horndeski-korrespondanse: mu < 1 OG Σ ≥ 1 samtidig — et regime standard
+    kvasistatisk Horndeski med α_T = 0 beviselig ikke kan produsere (Σ ≤ mu universelt
+    der).'
+  kind: derived_result
+  epistemic_level: documented
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h5.001
+  contradicts: []
+  supersedes: null
+  appears_on:
+  - page_id: atlas
+    role: primary
+  - page_id: predictions
+    role: cited
+  - page_id: model-comparison
+    role: cited
+  - page_id: validation-ledger
+    role: cited
+- statement_id: efc.h5.002
+  text: 'Prediksjon: en rødforskyvningsavhengig linsekryssing ved z ~ 0.44 med prosentnivå-amplitude
+    — Σ_eff > 1 ved z < 0.4, Σ_eff < 1 ved z > 0.5. Denne ikke-monotone tomografiske
+    signaturen finnes ikke i ΛCDM.'
+  kind: prediction
+  epistemic_level: pending_external_validation
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.h5.001
+  contradicts: []
+  supersedes: null
+  falsifier:
+    type: explicit
+    description: Tomografiske målinger uten kryssing, eller med monotont Σ_eff, svekker
+      prediksjonen.
+  appears_on:
+  - page_id: predictions
+    role: primary
+  - page_id: atlas
+    role: cited
+- statement_id: efc.sparc.001
+  text: ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹ (EFC-R-SPARC) — entropigradienten målt fra
+    galakserotasjonskurver.
+  kind: derived_result
+  epistemic_level: partial_support
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.efc.sparc.001
+  contradicts: []
+  supersedes: null
+  appears_on:
+  - page_id: atlas
+    role: cited
+  - page_id: likelihood-ledger
+    role: cited
+  - page_id: validation-ledger
+    role: cited
