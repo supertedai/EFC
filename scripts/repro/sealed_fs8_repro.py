@@ -39,7 +39,7 @@ from efc_inference.core.cosmology_model import EFCVariantC  # noqa: E402
 
 FORSEGLET = 0.430
 FORSEGLET_DOI = "10.6084/m9.figshare.32013156"
-TOLERANSE = 0.005  # innen 0.5 % av den forseglede verdien
+TOLERANSE = 0.005  # RELATIV: innen 0.5 % av den forseglede verdien
 
 KANONISKE = {"Omega_m": 0.3, "H0": 70.0, "sigma8": 0.8,
              "alpha_cosmo": 0.0}
@@ -47,19 +47,22 @@ MU_0 = 0.5
 Z_07 = np.array([0.7])
 
 
-def main() -> int:
-    g = EFCGrowth(cosmology=EFCVariantC())
-    verdi = g.compute({**KANONISKE, "mu_0": MU_0}, Z_07)[0]
+def main(compute_fn=None) -> int:
+    if compute_fn is None:
+        g = EFCGrowth(cosmology=EFCVariantC())
+        compute_fn = lambda: g.compute({**KANONISKE, "mu_0": MU_0},  # noqa: E731
+                                       Z_07)[0]
+    verdi = compute_fn()
     if not np.isfinite(verdi):
         print("FEIL: motoren ga ikke-finitt verdi.")
         return 1
-    avvik = abs(verdi - FORSEGLET)
+    avvik = abs(verdi - FORSEGLET) / FORSEGLET  # relativ avvik
     ok = avvik < TOLERANSE
     print("=== EFC forseglet-prediksjonsreproduksjon ===")
     print(f"Forseglet verdi:       fσ8(z≈0.7) = {FORSEGLET:.3f}")
     print(f"Forseglet kilde (DOI): {FORSEGLET_DOI}")
     print(f"Beregnet:              fσ8(z=0.7) = {verdi:.4f}")
-    print(f"Avvik:                 {avvik:.4f} "
+    print(f"Relativt avvik:        {avvik:.5f} "
           f"({'OK — innen 0.5 %' if ok else 'UTENFOR toleransen'})")
     print(f"Innganger:             Ω_m={KANONISKE['Omega_m']}, "
           f"H0={KANONISKE['H0']}, σ8={KANONISKE['sigma8']}, "

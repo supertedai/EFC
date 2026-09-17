@@ -50,8 +50,16 @@ def test_readme_har_instruksjoner_og_aerlighet():
 
 def test_repro_skriptet_feiler_kontrollert_ved_gal_mu0():
     """Skriptet skal returnere != 0 dersom den beregnede verdien er
-    utenfor toleransen — ingen stille falsk suksess. (Simuleres ved å
-    sjekke at toleranse-logikken finnes i koden.)"""
-    innhold = REPRO.read_text(encoding="utf-8")
-    assert "TOLERANSE" in innhold
-    assert "else 2" in innhold
+    utenfor toleransen — ingen stille falsk suksess. Faktisk test:
+    injiser en feil beregner via main(compute_fn=...) og sjekk retur."""
+    import sys as _sys
+    _sys.path.insert(0, str(REPRO.parent.parent.parent))
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "sealed_fs8_repro", str(REPRO))
+    assert spec is not None
+    mod = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(mod)
+    ret = mod.main(compute_fn=lambda: 0.5000)  # 16 % unna — utenfor
+    assert ret == 2

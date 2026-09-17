@@ -21,7 +21,7 @@ EFCVariantC, kjørt med kanoniske parametre (Ω_m = 0.3, H0 = 70,
 git clone https://github.com/supertedai/EFC.git
 cd EFC
 python -m venv .venv && . .venv/bin/activate
-pip install numpy
+pip install numpy scipy
 python scripts/repro/sealed_fs8_repro.py
 ```
 
