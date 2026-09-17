@@ -2,8 +2,9 @@
 
 SIR-modellen er flytmodellen i ren form: mottagelige (S) -> smittede
 (I) -> friske (R), med R0 = beta/gamma som terskelen — R0 > 1 er
-UTBRUDD (release: reservoaret av mottagelige tømmes), R0 <= 1 er
-DEMPET (holding: smitten finner ikke nok mottagelige).
+UTBRUDD (release: reservoaret av mottagelige tømmes), R0 < 1 er
+DEMPET (holding: smitten finner ikke nok mottagelige), og R0 = 1 er
+selve TERSKELEN (regimeskiftet).
 
 Modellen er en IDEALISERT homogen SIR: ingen aldersstruktur, ingen
 nettverkstopologi, ingen atferd, ingen vaksinasjonsstrategier. Den
@@ -57,7 +58,8 @@ class SamfunnEngine(EFCEngine):
 
     def sir_bane(self, params: dict, t: np.ndarray,
                  s0: float = 0.999, i0: float = 0.001):
-        """SIR-banen som brøker av N (s + i + r = 1 til enhver tid).
+        """SIR-banen som FRAKSJONER av N (s + i + r = 1 til enhver
+        tid; populasjonstallene er S = N*s, I = N*i, R = N*r).
 
         Integreres med Euler på et fint grid — tilstrekkelig for
         formens kvalitative bane (dette er en form-modell, ikke en

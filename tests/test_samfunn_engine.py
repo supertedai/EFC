@@ -2,9 +2,10 @@
 
 SIR er flytmodellen i ren form: mottagelige -> smittede -> friske,
 med R0 = beta/gamma som terskelen: R0 > 1 = utbrudd (release),
-R0 <= 1 = dempet (holding). Motoren er en IDEALISERT homogen SIR —
-ingen aldersstruktur, ingen nettverk, ingen atferd — og den sier
-det selv. Den er IKKE en epidemiologisk modell-konkurrent.
+R0 < 1 = dempet (holding), R0 = 1 = selve terskelen. Motoren er en
+IDEALISERT homogen SIR — ingen aldersstruktur, ingen nettverk,
+ingen atferd — og den sier det selv. Den er IKKE en epidemiologisk
+modell-konkurrent.
 """
 from __future__ import annotations
 
@@ -39,8 +40,9 @@ def test_r0_eksakt_1_er_terskelen():
     assert e.utbrudds_status(terskel) == "terskel"
 
 
-def test_sir_dynamikk_bevarer_populasjon():
-    """S + I + R = N til enhver tid — flyten lekker ikke."""
+def test_sir_dynamikk_bevarer_fraksjonssummen():
+    """s + i + r = 1 til enhver tid (fraksjoner; populasjonstallene
+    er S = N*s, I = N*i, R = N*r) — flyten lekker ikke."""
     e = SamfunnEngine()
     t = np.linspace(0, 30, 100)
     s, i, r = e.sir_bane(PARAMS, t, s0=0.999, i0=0.001)
