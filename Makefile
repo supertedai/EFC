@@ -5,6 +5,7 @@ install:
 check:
 	python3 scripts/maintenance/statement_graph_check.py
 	python3 scripts/maintenance/validate_activity_log.py
+	python3 scripts/maintenance/validate_risk_register.py
 	python3 scripts/maintenance/verifier_bench.py
 
 inntak-dry:
@@ -19,3 +20,6 @@ full-check: check
 
 runde:
 	python3 scripts/maintenance/vedlikeholdsrunde.py
+
+blast:
+	python3 scripts/maintenance/blast_radius.py --diff origin/main --gate

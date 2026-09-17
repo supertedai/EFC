@@ -32,6 +32,8 @@ SJEKKER = [
     ("eierskap", "validate_ownership.py", []),
     ("repo-contract", "validate_repo.py", []),
     ("aktivitetslogg", "validate_activity_log.py", []),
+    ("risikoregister", "validate_risk_register.py", []),
+    ("blast-radius", "blast_radius.py", ["--diff", "origin/main"]),
     ("lenker", "validate_links.py", ["--maks-eksterne", "15"]),
     ("verifier-bench", "verifier_bench.py", []),
 ]
@@ -116,6 +118,13 @@ def hoved() -> int:
             funn = ut.get("feil") or []
         elif navn == "aktivitetslogg":
             funn = ut.get("feil") or []
+        elif navn == "risikoregister":
+            funn = ut.get("feil") or []
+        elif navn == "blast-radius":
+            # funn = klasser over «liten» (material → blokkerende) pluss
+            # verktøyfeil: en måling som ikke kunne gjøres er et funn, ikke
+            # et tomt svar. Blast-scoreren returnerer exit 2 på verktøyfeil.
+            funn = (ut.get("funn") or []) + (ut.get("feil") or [])
         elif navn == "lenker":
             funn = (ut.get("harde") or []) + (ut.get("funn") or [])
         elif navn == "verifier-bench":

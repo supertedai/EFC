@@ -7,6 +7,16 @@ Append-only er en git-egenskap, ikke en fil-egenskap: CI kjører med
 sjekker per linje: gyldig JSON, obligatoriske felter, unik event_id,
 gyldig ISO-8601-tid, kjent action, rolle innenfor enum.
 
+Statusordene (t_882cfca): `statusord` er en VALGFRI liste med verdier fra
+{maskinelt kontrollert, eksternt verifisert, faglig godkjent}. De tre ordene
+er gjensidig uavhengige — ingen av dem impliserer de to andre, og vakten
+legger aldri til eller krever et ord som ikke står i posten. Den ene regelen
+som håndheves: «faglig godkjent» kan bare stå på en post med role=menneske,
+fordi faglig godkjenning ikke kan delegeres til en etikett (avgjørelsen
+2026-09-17, §«Tre statusord som aldri må blandes»). Å skrive «maskinelt
+kontrollert» er prosesskontroll og kan gjøres av en profil; å skrive
+«faglig godkjent» er menneskets.
+
 Bruk: python3 scripts/maintenance/validate_activity_log.py [--json]
 Exit: 0 = OK, 1 = feil.
 """
@@ -28,8 +38,37 @@ AKSJONER = {
     "unblocked", "card_closed", "rollback_completed",
 }
 ROLLER = {"researcher", "orchestrator", "faber", "opus-core", "verifier", "legacy", "menneske"}
+STATUSORD = {"maskinelt kontrollert", "eksternt verifisert", "faglig godkjent"}
+MENNESKELIGE_ORD = {"faglig godkjent"}
 PLIKT = ["event_id", "occurred_at", "action", "role", "kanban_card",
          "files", "why", "result", "reversible"]
+
+
+def sjekk_statusord(e: dict, nr: int) -> list[dict]:
+    """Statusordene er gjensidig uavhengige.
+
+    Denne funksjonen legger ALDRI til et ord og krever ALDRI et ord som ikke
+    står i posten — den avviser bare ukjente verdier, duplikater, tom liste,
+    og «faglig godkjent» på en post som ikke er menneskets.
+    """
+    feil: list[dict] = []
+    if "statusord" not in e:
+        return feil
+    v = e["statusord"]
+    if not isinstance(v, list) or not v:
+        return [{"type": "bad_statusord", "linje": nr,
+                 "msg": "statusord må være en ikke-tom liste"}]
+    sett: set[str] = set()
+    for ord_ in v:
+        if ord_ not in STATUSORD:
+            feil.append({"type": "unknown_statusord", "linje": nr, "statusord": ord_})
+        if ord_ in sett:
+            feil.append({"type": "duplicate_statusord", "linje": nr, "statusord": ord_})
+        sett.add(ord_)
+    if (sett & MENNESKELIGE_ORD) and e.get("role") != "menneske":
+        feil.append({"type": "faglig_godkjent_uten_menneske", "linje": nr,
+                     "role": e.get("role")})
+    return feil
 
 
 def hoved() -> int:
@@ -63,6 +102,7 @@ def hoved() -> int:
                 datetime.fromisoformat(str(e.get("occurred_at", "")).replace("Z", "+00:00"))
             except ValueError:
                 feil.append({"type": "invalid_timestamp", "linje": nr})
+            feil += sjekk_statusord(e, nr)
     if a.json:
         print(json.dumps({"feil": feil}, ensure_ascii=False, indent=1))
     else:

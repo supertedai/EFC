@@ -1,0 +1,90 @@
+name: EFC risiko
+
+# Fase 1 av reviewer-funksjonen (t_882cfca): risikoregisteret og
+# blast-radius-scoreren.
+#
+# To gater med hver sin karakter, og forskjellen er med vilje:
+#   * registervalidatoren er FAIL-CLOSED — en ugyldig post eller en diff som
+#     ikke bare legger til linjer stopper jobben.
+#   * scoreren kjoeres som RAPPORT. Den skriver klassen og hvilken gate
+#     endringen kraver, men feiler ikke paa hoey klasse: gaten for en
+#     gate-endring er menneskets merge paa protected main, ikke en groenn
+#     CI-jobb. `--gate` brukes der en automatisk nektelse faktisk er riktig
+#     (vedlikeholdsrunden og foer release), og da mot registerets beslutning.
+on:
+  pull_request:
+    paths:
+      - "governance/risiko/**"
+      - "governance/ownership-register.json"
+      - "scripts/maintenance/blast_radius.py"
+      - "scripts/maintenance/validate_risk_register.py"
+      - "scripts/maintenance/vedlikeholdsrunde.py"
+      - "scripts/maintenance/validate_activity_log.py"
+      - "logs/activity.jsonl"
+      - "tests/test_blast_radius.py"
+      - "tests/test_risiko_register.py"
+      - "tests/test_aktivitet_statusord.py"
+      - "Makefile"
+      - ".github/workflows/efc-risiko.yml"
+  push:
+    branches: [main]
+    paths:
+      - "governance/risiko/**"
+      - "governance/ownership-register.json"
+      - "scripts/maintenance/blast_radius.py"
+      - "scripts/maintenance/validate_risk_register.py"
+      - "scripts/maintenance/vedlikeholdsrunde.py"
+      - "scripts/maintenance/validate_activity_log.py"
+      - "logs/activity.jsonl"
+      - "tests/test_blast_radius.py"
+      - "tests/test_risiko_register.py"
+      - "tests/test_aktivitet_statusord.py"
+      - "Makefile"
+      - ".github/workflows/efc-risiko.yml"
+  workflow_dispatch:
+
+jobs:
+  risiko:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Scoreren maaler mot en base-SHA; full historie er det som gjoer
+          # baade PR-basen og main-forrige commit kjennbare lokalt.
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Installer avhengigheter
+        run: python3 -m pip install pytest
+      - name: Finn diff-base
+        id: base
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            sha="${{ github.event.pull_request.base.sha }}"
+          else
+            sha="${{ github.event.before }}"
+          fi
+          if [ -z "$sha" ] || [ "$sha" = "0000000000000000000000000000000000000000" ]; then
+            sha="HEAD^"
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "diff-base: $sha"
+      - name: Regresjonstester (faktorene hver for seg, registeret, statusordene)
+        run: |
+          python3 -m pytest tests/test_blast_radius.py tests/test_risiko_register.py \
+            tests/test_aktivitet_statusord.py -q
+      - name: Risikoregisteret (fail-closed, append-only mot diff-basen)
+        run: |
+          python3 scripts/maintenance/validate_risk_register.py --json \
+            --base "${{ steps.base.outputs.sha }}"
+      - name: Aktivitetsloggen (statusordene)
+        run: python3 scripts/maintenance/validate_activity_log.py --json
+      - name: Blast-radius for diffen (rapport + hvilken gate den kraver)
+        # change-id utledes av grennavnet (t_<hex>/pr<nummer>) eller blir
+        # <base-sha>..<head-sha>. Vi sender den ikke inn her: en PR-sjekk
+        # kjorer i detached HEAD, og et gjettet id ville korrelert feil mot
+        # registeret. --gate brukes der en nektelse er riktig (runden/release).
+        run: |
+          python3 scripts/maintenance/blast_radius.py --diff "${{ steps.base.outputs.sha }}" --json
