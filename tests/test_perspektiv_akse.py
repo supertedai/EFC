@@ -42,6 +42,10 @@ def test_skjemaet_har_perspektiv_feltet():
         "RegimeNode-skjemaet mangler perspektiv-feltet"
     enum = node["properties"]["perspektiv"].get("enum", [])
     assert set(enum) == set(PERSPEKTIV), enum
+    # Review-krav (PR #442 r1): feltet skal være OBLIGATORISK — en node
+    # uten perspektiv er en påstand uten epistemisk hjemsted.
+    assert "perspektiv" in node.get("required", []), \
+        "perspektiv må være required for at umerkede noder feiler"
 
 
 def test_alle_atlas_noder_har_gyldig_perspektiv():
