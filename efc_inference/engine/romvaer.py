@@ -5,9 +5,13 @@ bufferen (sørvendt Bz er ladestrømmen — magnetisk gjenkobling åpner
 porten), og bufferen utlades i geomagnetiske stormer over noen døgn.
 
 Dette er en KORRELASJONSMODELL (solvind -> Kp), ikke fysikk fra
-bunnen — geomagnetisk stormfysikk er et eget fag. EFC-bidraget er
-formens kobling: solens flares (SolarFlareEngine) lader jordas
-buffer (denne motoren) — to domener, én kjede (samme kilde, SWPC).
+bunnen — geomagnetisk stormfysikk er et eget fag. Den virkelige
+solvind-Kp-koblingen er betydelig mer kompleks enn den lineære
+formen her (se f.eks. Newell-koblingen og andre fluks-koblinger);
+den lineære lade-formen er en IDEALISERT forenkling, kalibrert så
+Bz=-12/v=600 gir Kp~5. EFC-bidraget er formens kobling: solens
+flares (SolarFlareEngine) lader jordas buffer (denne motoren) — to
+domener, én kjede (samme kilde, SWPC).
 
 Idealisert lade-/utladningsmodell:
     lading:  Kp_opp ~ koeffisient * (-Bz_sør/10) * (v/100)
@@ -86,10 +90,11 @@ class RomvaerEngine(EFCEngine):
             "Kp-bufferregime: solvinden lader magnetosfæren (sørvendt "
             "Bz = ladestrøm), bufferen utlades i stormer over noen "
             "døgn. KORRELASJONSMODELL (solvind -> Kp) — IKKE fysikk "
-            "fra bunnen; geomagnetisk stormfysikk er et eget fag. "
-            "IDealisert lade-/utladningsmodell med NOAA G-skalaen "
-            "(Kp 5=G1 ... 9=G5). EFC-bidraget er formens kjede: "
-            "solens flares lader jordas buffer."
+            "fra bunnen; den virkelige koblingen er mer kompleks "
+            "(Newell-koblingen m.fl.) og den lineære lade-formen er "
+            "en IDEALISERT forenkling. NOAA G-skalaen (Kp 5=G1 ... "
+            "9=G5). EFC-bidraget er formens kjede: solens flares "
+            "lader jordas buffer."
         )
         law_form = ("lading: Kp ~ koeffisient * (-Bz_sør/10) * (v/100) "
                     "for Bz < 0; utlading: Kp(t+1) = Kp(t) - rate per "
