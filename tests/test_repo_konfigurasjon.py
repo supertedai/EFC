@@ -55,7 +55,11 @@ def _les_ini_options() -> dict:
     for noekkel in ("testpaths", "norecursedirs"):
         m = re.search(rf"^{noekkel}\s*=\s*\[(.*?)\]", seksjon, re.M | re.S)
         if m:
-            ut[noekkel] = re.findall(r'"([^"]+)"', m.group(1))
+            # BEGGE fnutter: TOML tillater 'docs' like sa vel som "docs".
+            # Maalt i review runde 4 — med bare `"` falt enkeltfnutter ut,
+            # og en legitim omformatering ville brutt vernet.
+            ut[noekkel] = [a or b for a, b in
+                           re.findall(r'"([^"]*)"|\'([^\']*)\'', m.group(1))]
     return ut
 
 
