@@ -1,16 +1,15 @@
 {
-  "source": "ledger_fallback",
-  "generated_at": "2026-09-17T10:02:48.296545Z",
+  "source": "symbiose_live",
+  "generated_at": "2026-09-17T10:05:52.935608Z",
   "tests": {
-    "total": 142,
-    "active": 116,
-    "survived": 106,
-    "falsified": 10,
-    "planned_pipeline": 26,
-    "physics_test": 48,
-    "consistency_check": 22,
-    "phenomenological": 17,
-    "framework_constraint": 29
+    "total": 104,
+    "passed": 30,
+    "partial": 8,
+    "failed": 10,
+    "planned": 28,
+    "active": 76,
+    "survived": 66,
+    "falsified": 10
   },
   "papers": {
     "total": 171,
@@ -18,22 +17,43 @@
     "sealed_predictions_total": 356
   },
   "grav": {
-    "kt1": "unknown",
-    "kt2": "unknown",
-    "kt3": "unknown",
-    "integration_exploded": 2
+    "kt1": "PASSED",
+    "kt2": "PASSED",
+    "kt3": "MARGINAL",
+    "integration_exploded": 2,
+    "latest_status": "NEEDS_REVIEW"
   },
   "alpha_signal": {
-    "current_value": null,
-    "current_sigma": null,
-    "status": "unknown",
-    "note": "Symbiose unavailable \u2014 no live \u03b1 data"
+    "current_value": -0.141,
+    "current_sigma": 0.677,
+    "current_uncertainty": 0.208,
+    "status": "STOPPED_DEGENERACY_PERSISTS",
+    "delta_aic": 1.595,
+    "loo_value": -1.0,
+    "loo_sigma": 2.2,
+    "note": "Current 0.7\u03c3 much weaker than LOO 2.2\u03c3"
   },
   "sealed_predictions": {
     "freeze_1": {
       "alpha": -0.689,
       "hash_prefix": "7a850cfa",
-      "date": "2026-02-18"
+      "date": "2026-02-18",
+      "fs8_crossover_z": 2.042,
+      "DH_rd_z10": {
+        "efc": 16.527,
+        "lcdm": 17.466,
+        "sigma": 3.1
+      },
+      "DH_rd_z07": {
+        "efc": 19.797,
+        "lcdm": 20.719,
+        "sigma": 2.3
+      },
+      "fs8_z07": {
+        "efc": 0.43,
+        "lcdm": 0.449,
+        "sigma": 2.0
+      }
     },
     "freeze_2": {
       "alpha": -0.702,
@@ -42,12 +62,18 @@
     }
   },
   "learning_loops": {
-    "connected": null,
-    "total": 7
+    "connected": 5,
+    "total": 7,
+    "missing": [
+      "gap_to_fill",
+      "inference_to_learning"
+    ]
   },
   "tcs": {
-    "compression": 2.5,
-    "mismatch": 0.2
+    "compression": 1.0,
+    "mismatch": 0.5
   },
-  "chi2_summary": "2.18, N/A, 108.81, 0.00, 0.55, 1.55, 10.39"
+  "health_score": 62,
+  "escalated_cases": 3,
+  "validation_candidates_pending": 14
 }
