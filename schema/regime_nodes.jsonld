@@ -3707,7 +3707,27 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "buss_domene": "kosmos.kosmologi"
+   "buss_domene": "kosmos.kosmologi",
+   "prediction": {
+    "source": "efc-sealed-prediction",
+    "observable": "fsigma8",
+    "issued_at": "2026-04-14",
+    "valid_for": "2026-04-14",
+    "expected": "{\"fsigma8_efc\": 0.43, \"fsigma8_lcdm\": 0.449, \"separasjon_sigma\": 2.0, \"z_eff\": 0.7}",
+    "units": "{\"fsigma8_efc\": \"dimensjonsloes \\u2014 vekstrate f ganger amplituden sigma8(z)\", \"fsigma8_lcdm\": \"dimensjonsloes \\u2014 samme stoerrelse, LCDM-motstykket\", \"separasjon_sigma\": \"modellavstand i pakkens egen enhet, ikke maalefeil\", \"z_eff\": \"effektiv rodforskyvning prediksjonen gjelder\"}",
+    "correlation": "efc-fs8.fsigma8.z0.7",
+    "sealed_doi": "10.6084/m9.figshare.32013156",
+    "sealing_sha256": "fbb53d618f5e8843710739c192f8eb8e4bd2fd6458bf8ad8aedd2390f3e575dd",
+    "freeze": "{\"primary_freeze\": {\"alpha\": -0.689, \"sampler\": \"NUTS\", \"sha256_truncated\": \"7a850cfa58477701\", \"timestamp_utc\": \"2026-02-18T05:07:13\"}, \"secondary_freeze\": {\"alpha\": -0.702, \"sampler\": \"NUTS\", \"sha256_truncated\": \"dbccda150abca0e7\", \"timestamp_utc\": \"2026-02-21T16:08:57.818002\"}}",
+    "arbiter": "nei",
+    "arbiter_waiting_for": "DESI DR2 full-shape",
+    "criterion": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+    "criteria": "{\"description\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\", \"multi_tracer_consistency\": \"LRG and ELG must agree\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\"}",
+    "tolerance_rule": "innenfor 1 sigma av DR2-maalingens EGEN usikkerhet, ikke en fast baand",
+    "basis": "forseglet blind prediksjon, EFC mot LCDM; tallene er lest fra pakken og ikke utledet her",
+    "ebe_l_layer": "L3",
+    "ebe_s_regime": "high_s"
+   }
   },
   {
    "id": "efc.lensing_engine",
