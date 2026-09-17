@@ -192,7 +192,11 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
     FORME = [
         re.compile(r"^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$"),
         re.compile(r"^https?://[^\s]+$"),
-        re.compile(r"^[a-z]+/[a-z]+:[A-Za-z0-9_/.-]+$"),
+        # Git-ref kan ha flere segmenter (origin/feature/foo), store
+        # bokstaver og bindestrek (Release-2026), og refs/-form
+        # (refs/heads/main). Reviewfunn runde 8: den forrige formen
+        # krevde [a-z]+/[a-z]+ og avviste alle disse.
+        re.compile(r"^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*:[A-Za-z0-9_/.-]+$"),
     ]
 
     @staticmethod
@@ -291,3 +295,33 @@ class TestTraversering(unittest.TestCase):
         for form in (".github/workflows/x.yml", "a.b/c.d"):
             self.assertEqual(self.T._avvik("se " + form), [],
                              f"felte et legitimt navn: {form}")
+
+
+class TestGitRefFormer(unittest.TestCase):
+    """Reviewfunn runde 8: hvitelisten var for SNEVER, ikke for vid.
+
+    Den avviste origin/feature/foo:..., upstream/release/v1:... og
+    Release-2026:... — alle legitime git-refs. En hviteliste som avviser
+    ekte referanser er ogsaa en feil; den tvinger fram omskrivinger av
+    korrekt dokumentasjon.
+
+    Samtidig skal utvidelsen IKKE aapne for traversering: `..` er forbudt
+    som segment baade i refen og i stien.
+    """
+
+    T = TestIngenVertsspesifikkeReferanser()
+
+    def test_fler_segmenter_store_bokstaver_og_refs_form(self):
+        for f in ("origin/main:schema/regime_nodes.jsonld",
+                  "origin/feature/foo:schema/x.jsonld",
+                  "upstream/release/v1:schema/x.jsonld",
+                  "origin/Release-2026:schema/x.jsonld",
+                  "refs/heads/main:schema/x.jsonld"):
+            self.assertEqual(self.T._avvik("se " + f), [],
+                             f"felte en legitim git-ref: {f}")
+
+    def test_utvidelsen_aapnet_ikke_for_traversering(self):
+        for f in ("origin/main:../../etc", "../../etc/passwd", "../x",
+                  "foo/../../etc", "origin/../..:x"):
+            self.assertTrue(self.T._avvik("se " + f),
+                            f"traversering slipper gjennom: {f}")
