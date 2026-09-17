@@ -1,0 +1,40 @@
+"""EFC-atlasets ene invariant: data.mjs er alltid fersk.
+
+Atlaset har ingen egen sannhet — det genereres fra regime_nodes.jsonld.
+En utdatert data.mjs er derfor ikke en kosmetisk drift; det er to
+navnerom for samme system, og hele poenget med generatoren er at den
+feilen skal vaere UMULIG aa committe.
+"""
+import pathlib
+import subprocess
+
+ROT = pathlib.Path(__file__).resolve().parents[1]
+
+
+def test_data_mjs_er_fersk_etter_regenerering():
+    r = subprocess.run(
+        ["/opt/venvs/t_123ed6d9/bin/python",
+         str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
+        capture_output=True, text=True, cwd=ROT, timeout=60)
+    assert r.returncode == 0, r.stderr[:400]
+    r2 = subprocess.run(["git", "diff", "--exit-code", "--",
+                         "docs/efc-atlas/atlas/data.mjs"],
+                        capture_output=True, cwd=ROT, timeout=30)
+    assert r2.returncode == 0, (
+        "data.mjs er utdatert — generatoren endret den. Kjør "
+        "efc_atlas_generator.py og commit resultatet.")
+
+
+def test_atlas_bygger_uten_feil():
+    r = subprocess.run(["node", "build.mjs"],
+                       capture_output=True, text=True,
+                       cwd=ROT / "docs" / "efc-atlas" / "atlas",
+                       timeout=120)
+    assert r.returncode == 0, r.stderr[:400]
+    assert "82 structures" in r.stdout or "structures" in r.stdout
+
+
+def test_generert_atlas_har_doctype_og_charset():
+    html = (ROT / "docs" / "efc-atlas" / "atlas.html").read_text()
+    assert html.startswith("<!doctype html>"), "quirks mode"
+    assert '<meta charset="utf-8">' in html[:120], "mojibake arrows"
