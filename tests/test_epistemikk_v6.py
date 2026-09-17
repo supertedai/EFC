@@ -71,3 +71,51 @@ def test_h2o_kjeden_er_sammenhengende():
         ("efc.water_phase_engine", "h2o.liquid"),
     ):
         assert noder[barn]["nivaa"]["forelder"] == forelder, barn
+
+
+def test_forelder_har_lavere_indeks():
+    """Platå-retningen: forelderen er platået UNDER — dens indeks skal
+    være lavere enn barnets (review-krav PR #449 r1)."""
+    atlas = _atlas()
+    noder = {n["id"]: n for n in atlas["nodes"]}
+    for n in atlas["nodes"]:
+        far = n["nivaa"]["forelder"]
+        if far is not None:
+            assert noder[far]["nivaa"]["indeks"] < n["nivaa"]["indeks"], (
+                f"{n['id']}: forelder {far} har indeks "
+                f"{noder[far]['nivaa']['indeks']} >= {n['nivaa']['indeks']}")
+
+
+def test_grafen_er_asyklisk():
+    """DFS fra hver node — ingen sykler i forelder-grafen."""
+    atlas = _atlas()
+    noder = {n["id"]: n for n in atlas["nodes"]}
+    for start in noder:
+        sett = set()
+        nid = start
+        while nid is not None:
+            if nid in sett:
+                raise AssertionError(f"syklus fra {start}")
+            sett.add(nid)
+            nid = noder[nid]["nivaa"]["forelder"]
+
+
+def test_atlas_og_motor_nivaa_stemmer():
+    """Samfunns-motorenes nivaa i atlaset skal stemme med motorenes
+    regime_node() (review-krav: de var uenige)."""
+    import importlib
+    for motor, nid in (("samfunn", "efc.samfunn_engine"),
+                       ("oekonomi", "efc.oekonomi_engine"),
+                       ("enerflyt", "efc.enerflyt_engine")):
+        mod = importlib.import_module(f"efc_inference.engine.{motor}")
+        klasser = [k for k in vars(mod).values()
+                   if isinstance(k, type) and hasattr(k, "regime_node")
+                   and k.__module__ == mod.__name__]
+        motor_node = klasser[0]().regime_node({
+            "produksjon": 1.0, "forbruk": 1.0, "buffer": 1.0} if motor ==
+            "enerflyt" else {"beta": 0.3, "gamma": 0.1, "N": 100.0} if motor ==
+            "samfunn" else {"gjeld": 1.0, "inntekt": 1.0, "rente": 0.05,
+                            "tillit": 0.06})
+        atlas_node = {n["id"]: n for n in _atlas()["nodes"]}[nid]
+        assert atlas_node["nivaa"]["forelder"] == \
+            motor_node["nivaa"]["forelder"], motor
