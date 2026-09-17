@@ -2790,6 +2790,112 @@
         "global": "ATLASETS PLASSERING (analogisk lesning): metabolismen mater flyten og CARRIES homo.fluxus — ikke en empirisk etablert biologisk egenskap",
         "empathy_note": "hver ATP-molekyl er en bitteliten utbetaling — livet er summen."
       }
+    },
+    {
+      "id": "efc.solar_flare_engine",
+      "regime": {
+        "name": "Solens holding->release (magnetisk buffer)",
+        "validity": "holding: B < 0.3 T — bufferen lades, ingen utlosning; release: B >= 0.3 T — bufferen slippes. IDEALISERT regime-modell (Avallon-stil buffer): hele bufferen slippes ved terskelen; ekte flares slipper en brakdel. Predikerer IKKE enkelthendelser.",
+        "law_form": "E = B^2/(2 mu_0) * V; oppladningstid = b_crit / (dB/dt); utlosning ved B = b_crit"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "oppladningstid, utlost energi, GOES-klasse",
+        "measurer": "analytisk buffermodell + GOES-klasseproxy",
+        "instrument": "SolarFlareEngine (efc_inference/engine/solar_flare.py)",
+        "proxy_chain": [
+          "B -> magnetisk energi (E = B^2/(2 mu_0) * V)",
+          "energi -> GOES-klasse (kalibreringsproxy: 1e22 J ~ M)"
+        ],
+        "placement": "det aktive omraadets magnetiske buffer — motoren regner ett feltstyrke-punkt om gangen",
+        "compression": "feltstyrke + oppladningsrate -> (t_opp, E_ut, klasse)"
+      },
+      "episenter": "terskelen b_crit: punktet der bufferen slipper det den har holdt — analogien til nevronets V_th og forkastningens terskel er formens egen",
+      "buffer": {
+        "role": "magnetfeltet er bufferen: energien lades og holdes til terskelen krysses",
+        "note": "ANALOGI til homo.aksjonspotensial og jordskjelvets forkastning — holding->release, tre domener, ikke identitet."
+      },
+      "ontology": {
+        "assumes": [
+          "magnetisk energitetthet B^2/(2 mu_0) gjelder",
+          "utlosning skjer ved en kritisk feltstyrke (idealisering: ekte utlosning avhenger ogsa av topologi)"
+        ],
+        "source": "sol-fysikkens energibuffer-bilde (Avallon-stil); GOES-klasseskalaen (1-8 A); idealiseringene er motorens egne"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare feltstyrke og oppladningsrate — ingen magnetisk topologi, ingen plasma-dynamikk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "fotbevegelser -> feltet vrir seg -> terskel -> utlosning -> feltet bygges pa nytt — flare-syklusen",
+        "properties": [
+          "t_opp",
+          "E_ut",
+          "GOES-klasse"
+        ]
+      },
+      "fractal": {
+        "pattern": "holding->release: solens flares, nevronets spike, forkastningens skjelv — samme form, tre domener (analogi)",
+        "note": "ett monster, tre domener."
+      },
+      "coupling": {
+        "local": "ett aktivt omraade, en buffer",
+        "global": "flares er kosmos.sol sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.jordskjelv_engine",
+        "empathy_note": "solen holder og holder — til den slipper. Som alle buffere."
+      }
+    },
+    {
+      "id": "efc.jordskjelv_engine",
+      "regime": {
+        "name": "Jordas holding->release (forkastningsbuffer)",
+        "validity": "holding: spenning < 3000000.0 Pa — forkastningen lades, ingen utlosning; release: spenning >= 3000000.0 Pa — bufferen slippes. IDEALISERT regime-modell (Burridge-Knopoff-stil lading): utlosningen skjer ved en fast terskel og hele spenningsfallet slippes. Predikerer IKKE enkeltskjelv.",
+        "law_form": "gjentakelsestid = terskel / lade_rate; M0 = mu * A * (terskel/mu); Mw = (2/3)(log10 M0 - 9.1)"
+      },
+      "phase": "computation_engine",
+      "measure": {
+        "target": "gjentakelsestid, seismisk moment, moment-magnitude",
+        "measurer": "analytisk elastic-rebound-modell",
+        "instrument": "JordskjelvEngine (efc_inference/engine/jordskjelv.py)",
+        "proxy_chain": [
+          "lade-rate -> gjentakelsestid",
+          "spenningsfall -> slipp -> M0 -> Mw (Kanamori)"
+        ],
+        "placement": "forkastningens spenningsbuffer — motoren regner ett spennings-punkt om gangen",
+        "compression": "lade-rate + terskel + areal -> (t_rep, M0, Mw)"
+      },
+      "episenter": "terskelen: punktet der forkastningen slipper det den har holdt — analogien til nevronets V_th og solens b_crit er formens egen",
+      "buffer": {
+        "role": "forkastningen er bufferen: spenningen lades og holdes til terskelen krysses",
+        "note": "ANALOGI til homo.aksjonspotensial og solens magnetiske buffer — holding->release, tre domener, ikke identitet."
+      },
+      "ontology": {
+        "assumes": [
+          "elastic rebound gjelder: spenningen akkumuleres elastisk og slippes bratt",
+          "utlosning skjer ved en fast terskel (idealisering: ekte friksjon er hastighets- og tilstandsavhengig)"
+        ],
+        "source": "elastic rebound (Reid), Burridge-Knopoff-tradisjonen, Kanamoris Mw; idealiseringene er motorens egne"
+      },
+      "observer": {
+        "bandwidth": "motoren ser bare spenning og lade-rate — ingen friksjonslov, ingen poretrykk",
+        "awareness": "instrument_window"
+      },
+      "emergence": {
+        "loop": "platedrift -> spenning bygges -> terskel -> utlosning -> spenning bygges pa nytt — skjelvsyklusen",
+        "properties": [
+          "t_rep",
+          "M0",
+          "Mw"
+        ]
+      },
+      "fractal": {
+        "pattern": "holding->release: forkastningens skjelv, solens flares, nevronets spike — samme form, tre domener (analogi)",
+        "note": "ett monster, tre domener."
+      },
+      "coupling": {
+        "local": "en forkastning, en buffer",
+        "global": "skjelv er kosmos.jord sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.solar_flare_engine",
+        "empathy_note": "jorda holder og holder — til den slipper. Som alle buffere."
+      }
     }
   ],
   "relations": [
@@ -3157,6 +3263,21 @@
       "subject": "homo.metabolisme",
       "predicate": "ANALOGOUS_TO",
       "object": "batteri.buffer"
+    },
+    {
+      "subject": "efc.solar_flare_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.aksjonspotensial"
+    },
+    {
+      "subject": "efc.jordskjelv_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "homo.aksjonspotensial"
+    },
+    {
+      "subject": "efc.solar_flare_engine",
+      "predicate": "ANALOGOUS_TO",
+      "object": "efc.jordskjelv_engine"
     }
   ]
 }
