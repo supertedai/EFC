@@ -3208,8 +3208,7 @@
       },
       "ontology": {
         "assumes": [
-          "rotasjonskurver er et rent gravitasjons-maaleri",
-          "EFC-kjernen er korrekt for galakseskalaen"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py"
       },
@@ -3258,7 +3257,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -3288,8 +3288,7 @@
       },
       "ontology": {
         "assumes": [
-          "bakgrunnen er homogen og isotrop",
-          "E²(a) er den riktige deformasjonen"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "EFCVariantA; efc_inference/engine/hubble.py"
       },
@@ -3338,7 +3337,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -3368,8 +3368,8 @@
       },
       "ontology": {
         "assumes": [
-          "lineær perturbasjonsteori holder på fσ8-skalene",
-          "vekst-ODE-en med EFC-H(a) er riktig deformasjon"
+          "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
+          "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen"
         ],
         "source": "MVP-G1 hubble-friksjonskanal; efc_inference/engine/growth.py"
       },
@@ -3417,7 +3417,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -3447,8 +3448,7 @@
       },
       "ontology": {
         "assumes": [
-          "svak linsing er et gyldig avbildnings-instrument",
-          "EFC-deformasjonen lar seg oversette til kappa — uverifisert"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "stub-kontrakt; efc_inference/engine/lensing.py"
       },
@@ -3493,7 +3493,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -3523,8 +3524,7 @@
       },
       "ontology": {
         "assumes": [
-          "halomassefunksjonen er et gyldig strukturinstrument",
-          "EFC-deformasjonen lar seg oversette til n(M,z) — uverifisert"
+          "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
         ],
         "source": "stub-kontrakt; efc_inference/engine/cluster.py"
       },
@@ -3570,7 +3570,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -4774,8 +4775,9 @@
       },
       "ontology": {
         "assumes": [
-          "aksjonen (eq. 1) og de kvasi-statiske uttrykkene (eq. 24-31) er korrekt avledet i papiret",
-          "bakgrunns-kvantitetene er gitt utenfra — modulen avleder dem ikke"
+          "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
+          "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
+          "KANDIDAT-kobling til growth: MuKZEngine beregner mu(k,z), men injeksjonen i EFCGrowth er IKKE implementert — growth bruker cosmology.growth_source(...). Relasjonen er kartets plan, ikke kodens kobling."
         ],
         "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py"
       },
@@ -4826,7 +4828,8 @@
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "tiden her er romtid-vevd (FRW / metrikk), ikke SI-bakgrunnstid — a(t) kobler rom og tid"
         ]
       }
     },
@@ -4995,7 +4998,8 @@
       },
       "ontology": {
         "assumes": [
-          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+          "beskrivelsen kan beskrive seg selv uten å stå utenfor",
+          "SI-sekundet er en lokal måler av egentid — den globale tidskoordinaten i ΛCDM er en annen, romtid-vevd ramme"
         ],
         "source": "EFC epistemikk v2 — selvanvendelse"
       },
@@ -5038,9 +5042,10 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "s (SI-sekundet — cesium-klokken)",
+        "enheter": "s (SI, cesium) — lokal egentid; kosmisk tid t i FRW for comoving-observatører",
         "status": "valgt_ramme",
         "alternativer": [
+          "romtid-tid: egentiden bestemmes av METRIKKEN og verdenslinjen — hastighet blander koordinatene (Lorentz), masse setter metrikken som kilde (feltligningene), og a(t) er FRW-skalafaktoren; masse er ikke en direkte kinematisk variabel for egentiden",
           "termisk tid, hendelsesrekkefølge"
         ]
       }
@@ -5068,7 +5073,7 @@
       },
       "ontology": {
         "assumes": [
-          "beskrivelsen kan beskrive seg selv uten å stå utenfor"
+          "«masse» er rammeavhengig: i EFC er den entropiens tette ende; LCDMs masse-kobling er spesialtilfellet av den samme rammen"
         ],
         "source": "EFC epistemikk v2 — selvanvendelse"
       },
@@ -5114,6 +5119,8 @@
         "enheter": "kg (SI-kilogrammet)",
         "status": "valgt_ramme",
         "alternativer": [
+          "EFC-rammen er den generelle: gravitasjon er entropi — masse er den tette enden av entropigradienten",
+          "LCDM er et SPESIALTILFELLE av EFC: i grensen (mu -> 1) reduserer entropi-rammen til masse-krumning (G_mynu = 8pi G T_mynu)",
           "energi-treghet, tellbarhet"
         ]
       }
