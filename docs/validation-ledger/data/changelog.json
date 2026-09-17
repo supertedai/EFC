@@ -6,6 +6,19 @@
   "changes": [
     {
       "date": "2026-09-17",
+      "sha": "c6bcfdfeb4ce",
+      "summary": "feat(atlas): gap_nats_bro + ocean/biosphere/volcano nodes (gap domains round 2)",
+      "categories": {
+        "other": 4,
+        "public_pages": 1,
+        "ledger_data": 1,
+        "code": 1,
+        "tests": 1
+      },
+      "id": "c6bcfdfeb4ce"
+    },
+    {
+      "date": "2026-09-17",
       "sha": "b18c75b44353",
       "summary": "fix(atlas): review-runde 1 — konkrete maale_paradigme + regex-regresjonstest",
       "categories": {
@@ -32,7 +45,7 @@
     {
       "date": "2026-09-17",
       "sha": "c27efb8ad452",
-      "summary": "fix(bridge): regex-escape i _legit (samme defekt som Hetzner-reviewet fant)",
+      "summary": "fix(bridge): regex escape in _legit (same defect as Hetzner review found)",
       "categories": {
         "code": 1
       },
@@ -41,7 +54,7 @@
     {
       "date": "2026-09-17",
       "sha": "bdc54c031a5e",
-      "summary": "fix(privacy): hjemmeadresse og telefon fjernet fra efc-toolkit (13 filer) + vakten utvidet til hele repoet Public pages updated: Changelog.",
+      "summary": "fix(privacy): home address and phone removed from efc-toolkit (13 files) + guard",
       "categories": {
         "papers": 13,
         "tests": 1
@@ -60,7 +73,7 @@
     {
       "date": "2026-09-17",
       "sha": "22ebf8e98ed2",
-      "summary": "fix(privacy): alle adresserester fjernet — husnummer, postnummer og affiliations i jsonld/tex (review-krav PR #455 r1)",
+      "summary": "fix(privacy): all address remnants removed — street number, postal code, affiliations",
       "categories": {
         "papers": 12,
         "tests": 1
@@ -70,7 +83,7 @@
     {
       "date": "2026-09-17",
       "sha": "763c2d4e0e7e",
-      "summary": "fix(privacy): ugyldig JSON fra tømte felt rettet + ny vakt mot tomme redaksjons-felt (review-krav PR #455 r2)",
+      "summary": "fix(privacy): invalid JSON from emptied fields fixed + new guard against empty editorial",
       "categories": {
         "papers": 3,
         "tests": 1
@@ -108,7 +121,7 @@
     {
       "date": "2026-09-17",
       "sha": "1cf0a2c5a82e",
-      "summary": "fix(templates): malene OG generert utdata gyldige samtidig (review-krav PR #455 r5)",
+      "summary": "fix(templates): templates AND generated output valid simultaneously (review req PR #455)",
       "categories": {
         "papers": 5,
         "scripts": 3
@@ -159,7 +172,7 @@
     {
       "date": "2026-09-17",
       "sha": "7c7e30b7e33d",
-      "summary": "feat(atlas): sorte hull (fra Grid-Higgs) og periodesystemet (akademia) inn i atlaset",
+      "summary": "feat(atlas): black holes (from Grid-Higgs) and periodic table (academia) added to atlas",
       "categories": {
         "other": 4
       },
@@ -359,7 +372,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "b18c75b4435325d674d1328ee031a329066f7e14",
-    "generated_at": "2026-09-17T11:51:45.783473+00:00"
+    "last_processed_sha": "c6bcfdfeb4cee673e67448639ef7bd85274a52cc",
+    "generated_at": "2026-09-17T11:55:42.069057+00:00"
   }
 }
