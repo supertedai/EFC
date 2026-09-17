@@ -6464,7 +6464,10 @@
    },
    "id": "efc.grid_higgs",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av en måling som skiller Grid-Higgs-rammen fra GR på en navngitt skala med en oppgitt terskel — f.eks. et avvik i den radiale akselerasjonsrelasjonen ved a0 som GR ikke kan reprodusere. En måling uten navngitt skala og terskel feller den ikke."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "en maalt avvik i den radiale akselerasjonsrelasjonen — men terskelen, skalaen og hvilken maaling som skiller rammen fra GR er IKKE fastsatt — derfor kan noden ikke felles ennaa"
+   }
   },
   {
    "regime": {
@@ -6545,7 +6548,10 @@
    },
    "id": "efc.gr_qft_bro",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av en beregning som viser at den termodynamiske broen ikke reproduserer kjent GR- eller QFT-grense i et navngitt grensetilfelle (f.eks. svakt felt, eller Planck-skala)."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "en beregning som viser at broen ikke reproduserer en kjent grense — men hvilken grense, og hvor mye avvik som teller, er IKKE fastsatt — derfor kan noden ikke felles ennaa"
+   }
   },
   {
    "regime": {
@@ -6626,7 +6632,10 @@
    },
    "id": "efc.double_slit",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av et interferensmønster med oppgitt spalteavstand og bølgelengde der grid-oppløsningen ikke kan reprodusere kontrasten."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "et interferensmoenster grid-opploesningen ikke kan reprodusere — men spalteavstand, boelgelengde og kontrastterskel er IKKE fastsatt — derfor kan noden ikke felles ennaa"
+   }
   },
   {
    "regime": {
@@ -6707,7 +6716,10 @@
    },
    "id": "efc.grid_mikrofysikk",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av en målt akselerasjon ved en navngitt akselerasjonsskala som ikke følger den radiale akselerasjonsrelasjonen avledet fra grid-mikrofysikken."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "en maalt akselerasjon som ikke foelger den radiale akselerasjonsrelasjonen — men akselerasjonsskalaen og toleransen er IKKE fastsatt — derfor kan noden ikke felles ennaa"
+   }
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -6877,7 +6889,10 @@
    },
    "id": "efc.sort_hull",
    "synlighet": "offentlig",
-   "ville_falsifisere": "Felles av en målt sort-hull-entropi som avviker fra den entropiske grensen i Grid-Higgs-rammen med mer enn oppgitt usikkerhet."
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "en maalt sort-hull-entropi som avviker fra den entropiske grensen — men usikkerheten og hva som teller som avvik er IKKE fastsatt — derfor kan noden ikke felles ennaa"
+   }
   },
   {
    "regime": {

@@ -49,14 +49,17 @@ class TestFalsifiserbarhet:
     def test_hver_efc_paastand_kan_felles(self):
         """Hver EFC-node som PAASTAAR noe skal kunne felles.
 
-        En stub paastaar ingenting — compute() hever NotImplementedError.
-        Den skal ha en grunn i stedet for en falsifikator, og den
-        umslippelsen er selv pinnet i testen under.
+        En node kan slippe unna av to grunner, og BARE to: den er en stub
+        (compute() hever NotImplementedError), eller den er et publisert
+        rammeverk der terskelen ikke er fastsatt. Begge skal si det selv,
+        og begge er pinnet i antall. En tredje grunn skal felle denne
+        testen — det er saann en ny umskyldning blir synlig.
         """
         mangler = [n["id"] for n in _offentlige()
                    if n["id"].startswith("efc.")
                    and "ville_falsifisere" not in n
-                   and (n.get("falsifiserbarhet") or {}).get("status") != "stub"]
+                   and (n.get("falsifiserbarhet") or {}).get("status")
+                   not in ("stub", "terskel_ikke_fastsatt")]
         assert mangler == [], f"EFC-paastander uten falsifikator: {mangler}"
 
     def test_falsifikatoren_sier_mer_enn_paastanden(self):
@@ -105,6 +108,29 @@ class TestFalsifiserbarhet:
                 f"{n['id']} er en stub MEN har en falsifikator — da teller "
                 f"en tilstandsbeskrivelse som oppfylt falsifiserbarhet")
 
+    def test_en_terskel_som_ikke_er_fastsatt_er_ikke_et_kriterium(self):
+        """Review 2026-09-17, runde 2: de fem rammeverk-nodene brukte
+        formuleringer som «oppgitt terskel» og «mer enn oppgitt usikkerhet»
+        UTEN aa oppgi verdien.
+
+        Det er tredje gang samme mangel: feltet var fylt ut, og svarte paa
+        et annet spoersmaal enn sitt eget. For de fire `efc.selv.*` var det
+        en kopi. For «0 av 74» var det feil nevner. For stubene var det en
+        tilstandsbeskrivelse. Her er det en INTENSJON.
+
+        En node som ikke kan oppgi en terskel kan ikke felles. Den skal
+        si det — ikke skrive ordet «terskel» og la det passere.
+        """
+        avventer = [n for n in _offentlige()
+                    if (n.get("falsifiserbarhet") or {}).get("status")
+                    == "terskel_ikke_fastsatt"]
+        assert len(avventer) == 5, f"forventet 5, fikk {len(avventer)}"
+        for n in avventer:
+            assert "ville_falsifisere" not in n, (
+                f"{n['id']} mangler terskel MEN har en falsifikator")
+            assert "IKKE fastsatt" in n["falsifiserbarhet"]["grunn"], (
+                f"{n['id']} sier ikke selv hva som mangler")
+
     def test_tallet_er_27_av_74(self):
         """Tallet skal vaere kjent, ikke bare overraskende.
 
@@ -113,10 +139,14 @@ class TestFalsifiserbarhet:
         """
         off = _offentlige()
         kan = sum(1 for n in off if "ville_falsifisere" in n)
-        stub = sum(1 for n in off
-                   if (n.get("falsifiserbarhet") or {}).get("status") == "stub")
+        avventer = sum(1 for n in off
+                       if (n.get("falsifiserbarhet") or {}).get("status")
+                       in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 74, f"offentlige endret: {len(off)}"
-        assert kan == 25, (
-            f"kan felles: {kan} — forventet 25. 27 var feil: to av dem var "
-            f"stubber som ikke kan felles for de regner")
-        assert stub == 2, f"stubber: {stub} — forventet 2"
+        assert kan == 20, (
+            f"kan felles: {kan} — forventet 20. 27 var feil: 2 stubber og 5 "
+            f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
+        assert avventer == 7, f"avventer: {avventer} — forventet 7 (2+5)"
+        assert kan + avventer == 27, (
+            f"{kan} + {avventer} = {kan + avventer}, men det er 27 EFC-noder "
+            f"blant de offentlige")
