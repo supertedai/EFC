@@ -7,11 +7,19 @@ form hver gang: DOI, navn, e-post og ORCID.
 
 ## Steg 0 — Verifiser vertens Figshare-tilgang (MÅLES, ikke antas)
 
-Målt 2026-09-17: Hermes-verten får HTTP 403 fra api.figshare.com
-(nginx datasenter-blokkering); DataCite svarer 200. 10.9.0.2 (.12)
-nekter fjerne kommandoer — dens egress-status er UVERIFISERT.
-Regelen: draft/publish-kallene kjøres fra en vert som måler 200.
-Målingen er steg 0 hver gang — aldri en antakelse om .12/.13/.15.
+Maskin-topologi (Mortens korreksjon 2026-09-17):
+- **Hermes på Hetzner** — datasenter-egress. Målt 403 fra
+  api.figshare.com (nginx-blokkering); DataCite svarer 200.
+- **.12** — LOKAL LLM-boks (2× RTX 6000, 48 GB VRAM), ikke
+  Hetzner. Lokal egress: sannsynligvis IKKE blokkert, men uverifisert
+  — boksen nekter fjerne kommandoer via den nåværende policyen.
+- **.13 (Morpheus)** — den designede draft-kjøreren.
+
+Regelen: draft/publish-kallene kjøres fra en vert som MÅLER 200.
+Målingen er steg 0 hver gang — aldri en antakelse om .12/.13/Hetzner.
+Hvis .12 måler 200 (når policyen tillater målingen), kan hele
+draft-stien gå lokalt — og .12 kan dessuten kjøre P1-silico-testene
+på egne GPU-er.
 
 ## Steg 1 — DOI FØR git
 
