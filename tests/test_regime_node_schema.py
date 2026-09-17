@@ -14,6 +14,7 @@ Forankring (skjemaets kanoniske kilde):
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -482,3 +483,14 @@ def test_ingen_privat_info_i_hele_repoet():
             if forbudt in raw and str(sti) != \
                     "tests/test_regime_node_schema.py":
                 raise AssertionError(f"privat adresse lekker: {sti}")
+
+
+def test_ingen_tomme_redaksjons_felt_i_toolkit():
+    """Review-krav PR #455 r2: redaksjonen må ikke etterlate
+    «felt»: , — feltet skal fjernes, ikke tømmes."""
+    for sti in Path("docs/papers/efc").rglob("*"):
+        if not sti.is_file() or sti.suffix not in (".json", ".jsonld"):
+            continue
+        raw = sti.read_text(encoding="utf-8", errors="ignore")
+        if re.search(r'"[^"]+"\s*:\s*,', raw):
+            raise AssertionError(f"tomt felt etter redaksjon: {sti}")
