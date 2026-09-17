@@ -62,12 +62,20 @@ def test_motor_noder_deklarerer_sine_koordinater():
     """Motornoder skal deklarere koordinatene de antar — ikke stå
     uten deklarasjon."""
     forventet = {
-        "efc.orbital_engine": ("rom", "masse", "tid"),
+        "efc.orbital_engine": ("rom", "masse", "tid", "hastighet"),
         "efc.water_phase_engine": ("temperatur",),
-        "efc.romvaer_engine": ("magnetfelt", "tid"),
+        "efc.romvaer_engine": ("magnetfelt", "tid", "hastighet"),
     }
     for n in _atlas()["nodes"]:
         if n["id"] in forventet:
             for koord in forventet[n["id"]]:
                 assert koord in n["maale_paradigme"]["koordinater"], (
                     f"{n['id']}: mangler {koord}")
+
+
+def test_hastighet_er_i_enumet():
+    """Review-krav (PR #446 r1): skjemaet erklærer hastighet som
+    paradigme — enumet må kunne representere den."""
+    mp = _skjema()["$defs"]["RegimeNode"]["properties"]["maale_paradigme"]
+    enum = mp["properties"]["koordinater"]["items"]["enum"]
+    assert "hastighet" in enum

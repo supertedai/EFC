@@ -136,7 +136,7 @@ class OrbitalEngine(EFCEngine):
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
-                "koordinater": ["rom", "masse", "tid"],
+                "koordinater": ["rom", "masse", "tid", "hastighet"],
                 "enheter": "motorspesifikke (SI)",
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]

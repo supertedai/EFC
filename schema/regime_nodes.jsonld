@@ -5190,7 +5190,8 @@
       "maale_paradigme": {
         "koordinater": [
           "magnetfelt",
-          "tid"
+          "tid",
+          "hastighet"
         ],
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
@@ -5355,12 +5356,14 @@
         "koordinater": [
           "rom",
           "masse",
-          "tid"
+          "tid",
+          "hastighet"
         ],
         "enheter": "motorspesifikke (SI)",
         "status": "avledet",
         "alternativer": [
-          "koordinatfrie formuleringer"
+          "koordinatfrie formuleringer",
+          "hastighet er avledet (rom/tid) — vis-viva gir fart som avledet størrelse"
         ]
       }
     },

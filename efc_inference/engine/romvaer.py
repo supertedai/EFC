@@ -113,7 +113,7 @@ class RomvaerEngine(EFCEngine):
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
-                "koordinater": ["magnetfelt", "tid"],
+                "koordinater": ["magnetfelt", "tid", "hastighet"],
                 "enheter": "motorspesifikke (SI)",
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
