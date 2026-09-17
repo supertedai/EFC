@@ -1,27 +1,30 @@
 #!/usr/bin/env python3
 """vedlikeholdsrunde.py — den ukentlige eierskapsløkken.
 
-Kjører hele sjekkebatteriet og OPPRETTER kanban-kort på
-energy-flow-cosmology for hver funnklasse med funn — med idempotens
-(samme funnklasse får ikke to åpne kort). Dette er mekanismen som gjør
-eierskapet LEVENDE: sjekk → funn → kort → dispatcher → researcher fikser
-→ CI bekrefter → neste runde.
+KJØRES FRA SYSTEM-TIMEREN PÅ HERMES-VERTEN — ALDRI FRA CI. CI kjører bare
+sjekkerne (read-only); denne prosessen OPPRETTER kanban-kort og trenger
+derfor vertens hermes-tilgang. Idempotens: stabil kort-tittel per funnklasse
+(uten antall), flock-lås mot samtidige runder, og hardt tak på kort per kjøring.
 
 Bruk: python3 scripts/maintenance/vedlikeholdsrunde.py [--dry-run]
-Exit: 0 = runde ferdig (kort opprettet eller ikke nødvendig), 1 = sjekkfeil.
+Exit: 0 = runde ferdig, 1 = sjekkfeil.
 """
 from __future__ import annotations
 
 import argparse
+import fcntl
 import json
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROT = Path(__file__).resolve().parents[2]
 MAINT = ROT / "scripts" / "maintenance"
 BRETT = "energy-flow-cosmology"
 HERMES = "/home/morten/.hermes/hermes-agent/venv/bin/hermes"
+MAKS_KORT_PER_KJOERING = 5
+LAAS = Path("/tmp/efc-vedlikeholdsrunde.lock")
 
 SJEKKER = [
     ("statement-graf", "statement_graph_check.py", []),
@@ -71,9 +74,17 @@ def hoved() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
+    if not a.dry_run:
+        laasfil = open(LAAS, "w", encoding="utf-8")
+        try:
+            fcntl.flock(laasfil, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print("en annen runde kjører allerede — avslutter", file=sys.stderr)
+            return 0
     apne = _apne_kort_titler() if not a.dry_run else set()
     print("vedlikeholdsrunde:")
     totalt_funn = 0
+    opprettet = 0
     for navn, skript, ekstra in SJEKKER:
         rc, ut = _kjor(navn, skript, ekstra)
         funn = []
@@ -89,18 +100,23 @@ def hoved() -> int:
             funn = [] if rc == 0 else [{"type": "bench_gap"}]
         print(f"  {navn}: rc={rc}, {len(funn)} funn")
         totalt_funn += len(funn)
-        if funn:
-            tittel = f"[vedlikehold] {navn}: {len(funn)} funn"
-            if not a.dry_run and any(tittel.split(':')[0] in t for t in apne):
-                print(f"  → åpent kort finnes allerede for {navn}; hopper")
+        if funn and opprettet < MAKS_KORT_PER_KJOERING:
+            # STABIL nøkkel: tittel uten antall, slik at ett åpent kort per
+            # funnklasse er idempotens-nøkkelen (antall endres, klassen ikke).
+            tittel = f"[vedlikehold] {navn}-funn"
+            if not a.dry_run and any(tittel == t for t in apne):
+                print(f"  → åpent kort finnes allerede: {tittel}; hopper")
                 continue
             kropp = (f"Automatisk funn fra vedlikeholdsrunden "
-                     f"({__import__('datetime').datetime.now():%Y-%m-%d}).\n\n"
+                     f"({datetime.now():%Y-%m-%d}).\n\n"
                      f"Sjekk: scripts/maintenance/{skript}\n\n"
                      f"Funn:\n```json\n{json.dumps(funn[:40], ensure_ascii=False, indent=1)}\n```\n\n"
                      f"Fiks i branch → PR → CI → merge. Lukk kortet etter readback.")
-            _lag_kort(tittel, kropp, a.dry_run)
-    print(f"  totalt: {totalt_funn} funn")
+            if _lag_kort(tittel, kropp, a.dry_run):
+                opprettet += 1
+            else:
+                print(f"  → kortopprettelse feilet for {navn}; funnene står i loggen")
+    print(f"  totalt: {totalt_funn} funn, {opprettet} kort opprettet")
     return 0
 
 

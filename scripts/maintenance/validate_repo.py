@@ -39,7 +39,7 @@ def sjekk() -> list[dict]:
         if not rot.is_dir():
             continue
         for p in rot.rglob("*"):
-            if not p.is_file():
+            if not p.is_file() or p.is_symlink():  # symlinker følges ikke
                 continue
             rel = f"{prefix}{p.relative_to(rot)}"
             if FORBUDTE_NAVN.search(p.name):
@@ -57,9 +57,9 @@ def sjekk() -> list[dict]:
                     p.read_text(encoding="utf-8")
                 except UnicodeDecodeError:
                     feil.append({"type": "non_utf8", "msg": rel})
-    # forbudte filer i hele repoet (utenom .git/.worktrees)
+    # forbudte filer i hele repoet (utenom .git/.worktrees; symlinker følges ikke)
     for p in ROT.rglob("*"):
-        if not p.is_file() or ".git" in p.parts or ".worktrees" in p.parts:
+        if not p.is_file() or p.is_symlink() or ".git" in p.parts or ".worktrees" in p.parts:
             continue
         if FORBUDTE_NAVN.search(p.name):
             feil.append({"type": "forbidden_file", "msg": str(p.relative_to(ROT))})
