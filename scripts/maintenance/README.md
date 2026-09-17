@@ -211,3 +211,45 @@ Two limits remain. The ranking is a heuristic and prints its score. And the
 gate does not stop a `candidate` entry whose definition came from the top of
 this list: choosing which sentence defines a term is judgement, and only a
 reader stands between the ranking and the registry.
+
+## The changelog is a projection of the activity log (t_26dd0ef5)
+
+`logs/activity.jsonl` is the canonical log. `docs/validation-ledger/data/
+changelog.json` (key `activity_projection`) and the marked region in
+`docs/public/EFC_Changelog.html` are **generated** from it:
+
+```
+python3 scripts/maintenance/efc_auto_changelog.py     # register + rebuild
+python3 scripts/maintenance/efc_changelog_check.py    # the gate (reads only)
+```
+
+Registration reads the **commit diff** (`merge-base origin/main..HEAD`), never
+the working copy, and covers every file category: papers, `docs/public`,
+ledger data, scripts, workflows, code, schemas, config and root files. Each
+`file_changed` line carries a `change_id` (`CHG-<12 hex>`), the commit sha and
+the blob oid. `change_id` is sha256 over the line's own content, so it is
+stable, recomputable from the log alone, and every edit of a line is visible.
+Lines written before the contract have no such field: their id is derived by
+the same rule and the check reports them as `legacy`, never as an error.
+
+The projection is deterministic. `input_hash` = sha256 over the canonical
+projection input — every event **except** the `projection_built` meta line, in
+which the generator records its own version and that hash. Without the
+exemption a rebuild would change its own input and never converge; with it, a
+second run on unchanged input writes nothing at all.
+
+Enforced by `efc_changelog_check.py` (CI: `.github/workflows/efc-changelog.yml`):
+register post → `changelog.json` → `EFC_Changelog.html` must carry the same
+`change_id`; an entry without one, a hand-edited generated region, a stale
+projection, or a rewritten (non-appended) activity log is a hard error. The
+hand-maintained revision history **outside** the region is grandfathered and
+only counted (`historiske_linjer_utenfor_regionen`), but a `change_id`
+appearing outside the region is refused — a correlation key that no log line
+backs is fabricated by definition.
+
+Two measured limits. A file returned to *exactly* its previous content (revert
+and re-apply) produces no new register post, because registration dedups on
+`(path, blob)`; that is what keeps a landed branch from being registered twice
+when the local `main` catches up after a squash merge, and the log will not
+show the re-application. And a change that is never committed does not exist
+for registration.

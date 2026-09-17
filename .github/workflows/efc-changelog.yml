@@ -1,0 +1,39 @@
+name: EFC changelog-projeksjon
+
+# Changelogen er ikke en kilde: den er en projeksjon av logs/activity.jsonl.
+# Denne jobben sjekker at registerposten, changelog.json og EFC_Changelog.html
+# peker på samme change_id, at den genererte regionen ikke er håndredigert, at
+# projeksjonen svarer til loggen, og at aktivitetsloggen er appendert (ikke
+# omskrevet). Leser bare; skriver aldri.
+on:
+  pull_request:
+    paths:
+      - "logs/activity.jsonl"
+      - "docs/validation-ledger/data/changelog.json"
+      - "docs/public/EFC_Changelog.html"
+      - "scripts/maintenance/efc_change_id.py"
+      - "scripts/maintenance/efc_auto_changelog.py"
+      - "scripts/maintenance/efc_changelog_check.py"
+      - "scripts/maintenance/validate_activity_log.py"
+      - "tests/test_changelog_projection.py"
+      - ".github/workflows/efc-changelog.yml"
+
+jobs:
+  changelog-projeksjon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # --base origin/main krever at basen finnes i den lokale klonen.
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Installer avhengigheter
+        run: python3 -m pip install pytest
+      - name: Change_id-kjeden (registerpost → changelog.json → EFC_Changelog.html)
+        run: python3 scripts/maintenance/efc_changelog_check.py --json --base origin/main
+      - name: Aktivitetsloggens linjer
+        run: python3 scripts/maintenance/validate_activity_log.py --json
+      - name: Regresjonstester for projeksjonen
+        run: python3 -m pytest tests/test_changelog_projection.py -q

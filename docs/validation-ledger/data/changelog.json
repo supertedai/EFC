@@ -172,5 +172,244 @@
         "EFCValidation"
       ]
     }
-  ]
+  ],
+  "activity_projection": {
+    "generator": "efc_auto_changelog.py",
+    "generator_version": "2.0",
+    "source": "logs/activity.jsonl",
+    "input_hash": "8358a6f4fdba1e37a91c7c9fe6395e9edddd4fa64a3f711f2421c66914d2ca64",
+    "count": 15,
+    "entries": [
+      {
+        "change_id": "CHG-f13157332121",
+        "event_id": "EVT-2026-000016",
+        "occurred_at": "2026-09-17T05:16:36+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "tests/test_changelog_projection.py"
+        ],
+        "why": "commit a80a0ea: fix(changelog): generatoren skal ikke normalisere navbaren",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-56cb9cb4da5d",
+        "event_id": "EVT-2026-000015",
+        "occurred_at": "2026-09-17T05:16:36+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/efc_auto_changelog.py"
+        ],
+        "why": "commit a80a0ea: fix(changelog): generatoren skal ikke normalisere navbaren",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-a989561dd692",
+        "event_id": "EVT-2026-000005",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          ".github/workflows/efc-changelog.yml"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-a2bccf68c574",
+        "event_id": "EVT-2026-000010",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/efc_changelog_check.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-6b30b76bddb7",
+        "event_id": "EVT-2026-000007",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/README.md"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-5e38faf5723a",
+        "event_id": "EVT-2026-000008",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/efc_auto_changelog.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-5ad267f5b065",
+        "event_id": "EVT-2026-000006",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "Makefile"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-55c01c818c4c",
+        "event_id": "EVT-2026-000011",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/validate_activity_log.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-4962122a1291",
+        "event_id": "EVT-2026-000013",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "tests/test_changelog_projection.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-1cf9e81413a8",
+        "event_id": "EVT-2026-000009",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/efc_change_id.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-0cc496e619ac",
+        "event_id": "EVT-2026-000012",
+        "occurred_at": "2026-09-17T05:15:32+00:00",
+        "date": "2026-09-17",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_26dd0ef5",
+        "files": [
+          "scripts/maintenance/vedlikeholdsrunde.py"
+        ],
+        "why": "commit bf7f356: feat(changelog): changelogen som deterministisk projeksjon av aktivitetsloggen",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-e8ce8a705397",
+        "event_id": "EVT-2026-000001",
+        "occurred_at": "2026-09-16T21:09:34.518264+00:00",
+        "date": "2026-09-16",
+        "action": "branch_created",
+        "role": "researcher",
+        "kanban_card": "t_33a3b6ee",
+        "files": [
+          "public/graph/statements.yaml"
+        ],
+        "why": "statement-graf fase 1 seedet fra evidence/01_hypothesis.md",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-db76be31e081",
+        "event_id": "EVT-2026-000002",
+        "occurred_at": "2026-09-16T21:09:34.518264+00:00",
+        "date": "2026-09-16",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_33a3b6ee",
+        "files": [
+          "public/page-meta/*.yaml"
+        ],
+        "why": "side-eierskap for 13 offentlige sider",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-adbb57dcfc3e",
+        "event_id": "EVT-2026-000004",
+        "occurred_at": "2026-09-16T21:09:34.518264+00:00",
+        "date": "2026-09-16",
+        "action": "file_changed",
+        "role": "researcher",
+        "kanban_card": "t_33a3b6ee",
+        "files": [
+          "schemas/insight-candidate.schema.json",
+          "scripts/maintenance/triage_insikt.py",
+          "scripts/maintenance/efc_inntak.py",
+          "scripts/maintenance/verifier_bench.py",
+          "config/sources.yaml"
+        ],
+        "why": "innsiktspipeline + web-inntak fase 1",
+        "result": "success",
+        "reversible": true
+      },
+      {
+        "change_id": "CHG-8dec761dbaea",
+        "event_id": "EVT-2026-000003",
+        "occurred_at": "2026-09-16T21:09:34.518264+00:00",
+        "date": "2026-09-16",
+        "action": "file_changed",
+        "role": "faber",
+        "kanban_card": "t_33a3b6ee",
+        "files": [
+          "scripts/maintenance/statement_graph_check.py",
+          "scripts/maintenance/validate_activity_log.py"
+        ],
+        "why": "fase 1-sjekkere",
+        "result": "success",
+        "reversible": true
+      }
+    ]
+  }
 }

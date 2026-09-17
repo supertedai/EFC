@@ -32,6 +32,7 @@ SJEKKER = [
     ("eierskap", "validate_ownership.py", []),
     ("repo-contract", "validate_repo.py", []),
     ("aktivitetslogg", "validate_activity_log.py", []),
+    ("changelog-projeksjon", "efc_changelog_check.py", []),
     ("lenker", "validate_links.py", ["--maks-eksterne", "15"]),
     ("verifier-bench", "verifier_bench.py", []),
 ]
@@ -115,6 +116,8 @@ def hoved() -> int:
         elif navn == "repo-contract":
             funn = ut.get("feil") or []
         elif navn == "aktivitetslogg":
+            funn = ut.get("feil") or []
+        elif navn == "changelog-projeksjon":
             funn = ut.get("feil") or []
         elif navn == "lenker":
             funn = (ut.get("harde") or []) + (ut.get("funn") or [])
