@@ -191,15 +191,30 @@ class TestIngenAbsolutteStier(unittest.TestCase):
     Invarianten er generisk: en ABSOLUTT filsystem-sti er vertsspesifikk
     uansett hvilken vert den peker paa. Repo-relative navn er dokumentasjon
     og skal gjennom.
+
+    Reviewfunn runde 5: den forrige utgaven krevde to stiledd og manglet
+    UNC og filsystem-URL-er. /Users, \\server\share\EFC,
+    //server/share/EFC og file:///Users/morten/EFC slapp gjennom. Naa
+    dekkes de.
+
+    GRENSE, sagt hoeyt: dette er en SVARTELISTE over kjente stiformer, og
+    en svarteliste kan i prinsippet alltid omgaas. Den er likevel et reelt
+    vern her fordi den fanger formene som faktisk forekommer i praksis —
+    og fordi testen under krever at hver form den paastaar aa fange FAKTISK
+    fanges. Blir den omgaatt igjen, er spoersmaalet om tilnaermingen er
+    feil, ikke om monsteret mangler et ledd.
     """
 
     ABSOLUTT = re.compile(r"""
-        (?:^|[\s(\[`"'>])
-        (?:
-            /(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]*   # unix-absolutt
-          | [A-Za-z]:[\\/]                        # windows-stasjon
-          | ~/                                      # hjemmekatalog
-        )
+    (?:^|[\s(\[`"'>])
+    (?:
+        /(?:[A-Za-z0-9._-]+)(?:/[A-Za-z0-9._-]*)*   # unix-absolutt, 1+ ledd
+      | /{2,}[A-Za-z0-9._-]+                        # UNC med skraastrek
+      | \\\\{1,2}[A-Za-z0-9._-]+                    # windows UNC
+      | [A-Za-z][A-Za-z0-9+.-]*:///                 # filsystem-URL, tom vert
+      | [A-Za-z]:[\\/]                              # windows-stasjon
+      | ~/                                          # hjemmekatalog
+    )
     """, re.VERBOSE)
 
     def _sjekk(self, sti: Path, hva: str):
@@ -219,7 +234,10 @@ class TestIngenAbsolutteStier(unittest.TestCase):
         oppramsing."""
         for form in ("/Users/morten/EFC-review", "C:\\Users\\morten\\EFC",
                      "/srv/agent-work/EFC", "/opt/agent_work/EFC",
-                     "~/EFC"):
+                     "~/EFC",
+                     # runde 5 — disse slapp gjennom den forrige invarianten
+                     "/Users", "\\\\server\\share\\EFC",
+                     "//server/share/EFC", "file:///Users/morten/EFC"):
             self.assertIsNotNone(
                 self.ABSOLUTT.search("se " + form),
                 f"invarianten fanger ikke vertsformen {form}")
