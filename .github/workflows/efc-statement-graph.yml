@@ -33,5 +33,5 @@ jobs:
         run: python3 scripts/maintenance/validate_activity_log.py --json
       - name: Verifier-benchmark
         run: python3 scripts/maintenance/verifier_bench.py --json
-      - name: Regresjonstester (kanon hash, triage-roundtrip, arxiv-parser)
-        run: python3 -m pytest tests/test_kunnskapslivssyklus.py -q
+      - name: Regresjonstester (kanon hash, triage-roundtrip, arxiv-parser, anker-mekanikk)
+        run: python3 -m pytest tests/test_kunnskapslivssyklus.py tests/test_statement_ankere.py -q
