@@ -961,7 +961,8 @@
     "lengdeskala": "makro (P-T-rom)"
    },
    "buss_domene": "verden.miljo",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En målt fasegrense for H2O utenfor IAPWS-95-verdien med mer enn oppgitt usikkerhet ville felle kalibreringen."
   },
   {
    "id": "efc.l0",
@@ -1044,7 +1045,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et observert strukturfrø eller en ikke-Gaussisk signatur i CMB som ikke kan føres tilbake til kvantesvingninger ved S→0."
   },
   {
    "id": "efc.l1",
@@ -1131,7 +1133,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et avvik fra LCDM i CMB-spekteret eller BAO-skalaen på L1-nivå — der EFC selv sier den ser ut som LCDM. Finner man EFC-spesifikk struktur her, er lagmodellen feil."
   },
   {
    "id": "efc.l2",
@@ -1219,7 +1222,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "DESI DR2 full-shape fσ8(z≈0.7) utenfor ~1σ av 0.430, eller S8 som ikke ligger mellom CMB-prediksjonen og svak linse."
   },
   {
    "id": "efc.l3",
@@ -1304,7 +1308,8 @@
     "tidsskala": "—",
     "lengdeskala": "—"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En målt mørk-energi-tilstand som ikke går mot struktursaturasjon, eller en w(z) som ekskluderer endestasjonen."
   },
   {
    "id": "batteri.celle",
@@ -3574,7 +3579,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.galakser",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En rotasjonskurve der EFC-kjernen ikke kan følge dataene innenfor oppgitt toleranse, mens en alternativ profil kan."
   },
   {
    "id": "efc.hubble_engine",
@@ -3662,7 +3668,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "H(z)-målinger som ekskluderer den EFC-deformerte ekspansjonen ved Omega_m=0.3, H0=70.0."
   },
   {
    "id": "efc.growth_engine",
@@ -3770,7 +3777,8 @@
     "ebe_l_layer": "L3",
     "ebe_s_regime": "high_s"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "DESI DR2 full-shape fσ8(z~0.7) utenfor ~1σ av 0.430 — den forseglede prediksjonen."
   },
   {
    "id": "efc.lensing_engine",
@@ -3854,7 +3862,8 @@
     "lengdeskala": "—"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "STUB — fysikken er ikke implementert. Noden kan ikke falsifiseres før den regner noe; dette er en melding om tilstand, ikke en påstand."
   },
   {
    "id": "efc.cluster_engine",
@@ -3939,7 +3948,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.hoper",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "STUB — mass funksjonen n(M,z) er ikke implementert. Kan ikke falsifiseres før den regner."
   },
   {
    "id": "homo.fluxus",
@@ -4759,7 +4769,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.sol",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En utløst flare med B < 0.3 T, eller en oppladning som ikke følger loven — begge bryter holding/release-regimet."
   },
   {
    "id": "efc.jordskjelv_engine",
@@ -4852,7 +4863,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.jord",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et jordskjelv utløst under spenningsterskelen 3e6 Pa, eller en gjentakelsestid som ikke følger oppladningsloven."
   },
   {
    "id": "homo.immunologi",
@@ -5305,7 +5317,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En målt μ(k,z) som ikke går mot 1 på store skalaer — det bryter den kvasi-statiske sub-horisont-betingelsen k/a >> H."
   },
   {
    "regime": {
@@ -5715,7 +5728,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.romvaer",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En geomagnetisk storm uten sørvendt Bz, eller et Kp-nivå som ikke følger bufferregimet."
   },
   {
    "id": "efc.oekonomi_engine",
@@ -5804,7 +5818,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "verden.oekonomi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et gjeldsoppbygg som ikke følger Minsky-sekvensen (hedge→spekulativ→ponzi), eller en krise uten gjeldsgrad-drift forut."
   },
   {
    "id": "efc.orbital_engine",
@@ -5898,7 +5913,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.satellitter",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En bundet bane med ε ≥ 0, eller en Hill-sfære som avviker fra Kepler-beregningen ved måling."
   },
   {
    "id": "efc.klima_engine",
@@ -5989,7 +6005,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "verden.klima",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En likevektstemperatur som ikke følger 0D-energibalansen, eller en tidskonstant vesentlig ulik τ ≈ 4 år."
   },
   {
    "id": "efc.samfunn_engine",
@@ -6077,7 +6094,8 @@
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et utbrudd med R0 < 1 som likevel vokser, eller en epidemi-bane som ikke følger SIR gitt målt R0."
   },
   {
    "id": "efc.tidevann_engine",
@@ -6168,7 +6186,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "verden.klima",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En tidevannsakselerasjon med motsatt fortegn, eller en Roche-grense som ikke stemmer ved måling."
   },
   {
    "id": "efc.transient_engine",
@@ -6264,7 +6283,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "kosmos.transienter",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En transient med masse over 2,785e30 kg (over grensen) som likevel utløses — det bryter holding-regimet."
   },
   {
    "id": "efc.enerflyt_engine",
@@ -6356,7 +6376,8 @@
     "lengdeskala": "domene"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En buffer S som vokser mens C + L > P (underskudd), eller en drift dS/dt med motsatt fortegn av P − C − L."
   },
   {
    "regime": {
@@ -6436,7 +6457,8 @@
     "lengdeskala": "—"
    },
    "id": "efc.grid_higgs",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Gyldig som EFC-hypotese, ikke som målt konsensus. Felles av en måling som skiller den fra etablert gravitasjonsfysikk på samme skala."
   },
   {
    "regime": {
@@ -6516,7 +6538,8 @@
     "lengdeskala": "—"
    },
    "id": "efc.gr_qft_bro",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Felles av en beregning som viser at den termodynamiske broen ikke reproduserer kjent GR- eller QFT-grense."
   },
   {
    "regime": {
@@ -6596,7 +6619,8 @@
     "lengdeskala": "—"
    },
    "id": "efc.double_slit",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "Et interferensmønster som ikke kan følge av grid-oppløsning på den aktuelle skalaen."
   },
   {
    "regime": {
@@ -6676,7 +6700,8 @@
     "lengdeskala": "—"
    },
    "id": "efc.grid_mikrofysikk",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En målt akselerasjon som ikke følger den radiale akselerasjonsrelasjonen avledet fra grid-mikrofysikken."
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -6767,7 +6792,8 @@
     "tidsskala": "gitter-skala",
     "lengdeskala": "lg (grid-lengden)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En målt Γ(ρ) som faller utenfor både lav-tetthets- og mettet-grenen i modellrommet."
   },
   {
    "regime": {
@@ -6844,7 +6870,8 @@
     "lengdeskala": "—"
    },
    "id": "efc.sort_hull",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ville_falsifisere": "En måling av sort-hull-entropi som ikke kan forenes med den entropiske grensen i Grid-Higgs-rammen."
   },
   {
    "regime": {
