@@ -59,7 +59,7 @@ def test_bufferen_demper_forstyrrelser():
 
 def test_regimeskifte_ved_albedo_terskel():
     """Is-albedo-bryteren: over en terskel-albedo finnes ingen varm
-    likevekt — systemet faller til snøballjord (hysterese)."""
+    likevekt — systemet faller til snøballjord."""
     e = KlimaEngine()
     albedoer = np.linspace(0.3, 0.9, 7)
     stabile = [e.har_varm_likevekt({**PARAMS, "albedo": a})
@@ -67,6 +67,22 @@ def test_regimeskifte_ved_albedo_terskel():
     # ved høy albedo forsvinner den varme likevekten
     assert stabile[-1] is False
     assert stabile[0] is True
+
+
+def test_hysterese_to_tilstandsavhengige_terskler():
+    """Ekte hysterese: systemet faller fra «varm» ved alpha_fall,
+    men returnerer fra «snøball» først ved alpha_retur (< alpha_fall).
+    I vinduet mellom dem avhenger svaret av TILSTANDEN."""
+    e = KlimaEngine()
+    alpha_fall = e._alpha_ved_frysepunkt(PARAMS)
+    alpha_retur = PARAMS.get("alpha_retur", 0.35)
+    assert alpha_retur < alpha_fall
+    # I hysteresebåndet: varm-tilstand sier «varm», snøball-tilstand
+    # sier «ingen varm likevekt»
+    midt = (alpha_fall + alpha_retur) / 2
+    p = {**PARAMS, "albedo": midt}
+    assert e.har_varm_likevekt(p, tilstand="varm") is True
+    assert e.har_varm_likevekt(p, tilstand="snøball") is False
 
 
 def test_regime_node_selvbeskrivelse():

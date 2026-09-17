@@ -72,12 +72,25 @@ class KlimaEngine(EFCEngine):
         forsterkning = 1.0 / (1.0 - følsomhet * stigning)
         return float(forsterkning)
 
-    def har_varm_likevekt(self, params: dict) -> bool:
-        """Eksisterer en varm likevekt ved denne albedoen? Over
-        terskelen (høy albedo) forsvinner den — snøballjord."""
-        t_eq = self.likevektstemperatur(params)
-        # Varm likevekt = T_eq over frysepunktet (273.15 K)
-        return bool(t_eq > 273.15)
+    def har_varm_likevekt(self, params: dict, tilstand: str = "varm") -> bool:
+        """Varm likevekt finnes når T_eq > 273.15 K — med TILSTANDS-
+        avhengige terskler (hysterese): fra «varm» faller systemet
+        først når albedoen krysser alpha_fall (der T_eq = 273.15 K);
+        fra «snøball» returnerer det først når albedoen krysser
+        alpha_retur (< alpha_fall — snøballjordens reflektans
+        stabiliserer den, idealisert hysteresebredde)."""
+        alpha_fall = self._alpha_ved_frysepunkt(params)
+        alpha_retur = params.get("alpha_retur", 0.35)
+        if tilstand == "snøball":
+            return bool(params["albedo"] < alpha_retur)
+        return bool(params["albedo"] <= alpha_fall)
+
+    def _alpha_ved_frysepunkt(self, params: dict) -> float:
+        """Albedoen der T_eq krysser 273.15 K:
+        alpha = 1 - 4 eps sigma T^4 / S."""
+        t = 273.15
+        utstraaling = 4 * params["emissivitet"] * params["stefan_boltzmann"] * t ** 4
+        return float(1.0 - utstraaling / params["solarkonstant"])
 
     # ------------------------------------------------------------------
     # EFCEngine-kontrakten
@@ -85,14 +98,15 @@ class KlimaEngine(EFCEngine):
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt albedo-verdier, returner T_eq (K) — NaN der ingen
-        likevekt finnes (buffer-regimets gyldighetsgrense)."""
+        """Gitt albedo-verdier, returner T_eq (K) av den
+        STRÅLINGSmessige likevekten — NaN der likevekten ligger under
+        frysepunktet (ingen VARM likevekt finnes der)."""
         alb = np.asarray(coordinates, dtype=float)
         ut = []
         for a in alb:
             p = {**params_dict, "albedo": float(a)}
             t_eq = self.likevektstemperatur(p)
-            ut.append(t_eq if t_eq > 0 else np.nan)
+            ut.append(t_eq if t_eq > 273.15 else np.nan)
         return np.array(ut)
 
     # ------------------------------------------------------------------
@@ -105,10 +119,13 @@ class KlimaEngine(EFCEngine):
         validity = (
             "0D-energibalanseregime: energi inn (sol) -> buffer (hav, "
             f"tau ~ {tau_aar:.0f} år) -> ut (emisjon). Is-albedo-bryteren "
-            "er regimeovergangen med hysterese: over en terskel-albedo "
-            "forsvinner den varme likevekten (snøballjord). IDEALISERT "
-            "0D-modell — IKKE en klimamodell-konkurrent: ingen "
-            "sirkulasjon, ingen skyer, ingen romlig struktur."
+            "er regimeovergangen MED TILSTANDSAVHENGIGE terskler "
+            "(hysterese): fra «varm» faller systemet ved alpha_fall, "
+            "fra «snøball» returnerer det først ved alpha_retur "
+            "(< alpha_fall — snøballens reflektans stabiliserer den, "
+            "idealisert bredde). IDEALISERT 0D-modell — IKKE en "
+            "klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, "
+            "ingen romlig struktur."
         )
         law_form = ("C dT/dt = (S/4)(1-alpha) - eps sigma T^4; "
                     "T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); "
