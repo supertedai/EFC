@@ -648,7 +648,7 @@ def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) ->
     </span>
   </div>
   <h3 style="margin-top:0.4rem; font-size:1.18rem; color:#0d1b3e;">{_esc(pred["title"])}</h3>
-  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;">{_esc(pred.get("narrative_intro", ""))}</p>
+  <p style="margin-top:0.4rem; color:#1a3a6b; font-size:0.94rem;" data-statement-id="{_esc(pred.get("statement_id", ""))}">{_esc(pred.get("narrative_intro", ""))}</p>
 
   <div class="hero-meta">{cell_html}</div>
 
