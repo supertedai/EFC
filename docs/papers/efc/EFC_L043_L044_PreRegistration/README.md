@@ -31,19 +31,32 @@ målt over batteriet og midlet. Selv-refererende token = token som
 peker tilbake på agentens egen tilstand (førstepersons-pronomen,
 egne parametre, egen historikk).
 
+**Implementasjons-lås (fiksert her):**
+- Oppgavebatteri: 3 oppgavetyper × 20 prompt, generert fra en
+  fastsatt mal; prompt-listen publiseres i testplanen (SHA-forseglet).
+- Tokenizer: arkitekturens egen default-tokenizer.
+- Tokenklassifisering: to uavhengige annotatorer; Cohen's κ ≥ 0.8
+  kreves — ellers er målingen ugyldig.
+- Måling: temperatur 0 (deterministisk), 1 prøve per prompt.
+- «Knekkpunkt» (statistisk): to-segmentert lineær regresjon
+  (broken stick); knekk = segmenthellings-forhold > 2 OG knakkets
+  95 %-konfidensintervall innenfor ±0.05 av 1/e.
+- «Glatt» (falsifiserende): ingen signifikant hellingsendring
+  (segmenthellings-forhold ≤ 2) gjennom R_c ∈ [0.25, 0.5].
+
 **Aksen er FIKSAKT:** kontekst-lengden (det enkleste monotone
 R_c-instrumentet i dagens arkitekturer). Ikke modellstørrelse, ikke
 lag — kontekst-lengde alene.
 
 **Prediksjon:** for DE TO FØRSTE uavhengige arkitekturene som testes
 på denne aksen, skal ytelsen på selv-refererende oppgaver ha et
-knekkpunkt innen ΔR_c = ±0.05 rundt 1/e ≈ 0.3679 — en regime-bryter,
-ikke en glatt kurve.
+knekkpunkt (etter definisjonen over) innen ΔR_c = ±0.05 rundt
+1/e ≈ 0.3679.
 
-**Falsifikator:** et glatt, knekkløst ytelsesforløp gjennom
-R_c ∈ [0.25, 0.5] i BEGGE de to første testede arkitekturene dreper
-prediksjonen. (Prediksjonen gjelder uttrykkelig bare de to første —
-ikke «enhver» arkitektur; det gjør den falsifiserbar.)
+**Falsifikator:** «glatt»-utfallet i BEGGE de to første testede
+arkitekturene dreper prediksjonen. (Prediksjonen gjelder uttrykkelig
+bare de to første — ikke «enhver» arkitektur; det gjør den
+falsifiserbar.)
 
 **Silico-status:** testbar i dag uten ekstern kilde — kandidat for
 første motor-verifisering.
@@ -61,11 +74,19 @@ systemets Markov-teppe.
   (MIB), som i standard IIT-praksis,
 - summen går over alle MIB-partisjoner.
 
-**Referanseverktøy:** PyPhi (eller publiserte Φ-verdier fra
-IIT-litteraturen) — ikke vår egen implementasjon av Φ.
+**Referanseverktøy:** PyPhi, frosset versjon (den publiserte stabile
+1.x), default config — IKKE vår egen implementasjon av Φ.
 
-**Datasett:** publiserte nettverk der IIT-verdier allerede finnes
-(i silico-nettverk fra IIT-artikler). Ingen ny datainnsamling.
+**Datasett (fiksert):** de publiserte IIT-nettverkene med kjente
+sannhetstabeller (AND, OR, XOR, enkelt-loop, feedforward, feedback
+m.fl. fra IIT 3.0/4.0-dokumentasjonen) — minst 8 nettverk; den
+konkrete listen med kilde-DOI-er låses i testplanen (SHA-forseglet).
+
+**Beregning (fiksert):**
+- ∇S_i = tilstandsentropi-differansen over bipartisjonskanten i,
+  beregnet fra nettverkets sannhetstabell (TPM).
+- MIB_i = minimum information partition fra PyPhis Φ-kjerne.
+- Φ_EFC = Σ_i |∇S_i| · MIB_i (nats).
 
 **Prediksjon:** rank-korrelasjon (Spearman) ρ > 0.8 mellom Φ_EFC og
 referanse-Φ over nettverkssettet, med n ≥ 8 nettverk og ensidig
@@ -91,13 +112,16 @@ men HØYERE på distribusjoner utenfor trening.
 **Måleprotokoll (fiksert):**
 - S = Shannon-entropi av modellens respons-distribusjon (per token,
   nats) over en fastsatt prompt-bank på 100 prompt per domene,
-  temperatur 1.0, 5 prøver per prompt.
+  temperatur 1.0, 5 prøver per prompt, seed 0–4.
 - In-distribusjon: prompt-bank fra modellkortets oppgitte
   treningsdomene (f.eks. MMLU-lignende). Out-distribusjon: to
   disjunkte domener (f.eks. GSM8K-lignende + en kreativ skrivebank).
+- Promptbankene publiseres som filer i testplanen (SHA-forseglet).
 - RLHF-styrke: publiserte sjekkpunkt-nummer (SFT → RLHF-steg
-  k=1,2,3...). Sammenlignbare sjekkpunkter fra samme modellfamilie.
+  k=1,2,3...) fra EN modellfamilie med minst 3 sjekkpunkter langs
+  stigen; den konkrete familien låses i testplanen.
 - ΔS = S_out − S_in, midlet over de to out-domenene.
+- R²: OLS av ΔS på sjekkpunkt-nummer, tre eller flere punkter.
 
 **Prediksjon:** ΔS > 0 og monotont økende med sjekkpunkt-nummer,
 med R² > 0.5 over minst tre sjekkpunkter.
@@ -124,9 +148,25 @@ likt.
 - IIT-Φ-broen (P2) er en formell bro; den testes som
   rang-prediksjon, ikke som identitet.
 
-## Forsegling
+## Forseglingslagene
 
-SHA-256 av denne filen ved forsegling registreres i
+**Lag A (dette dokumentet, SHA-forseglet nå):** prediksjonene,
+falsifikatorene, formlene, statistikk-definisjonene og
+måleprotokollenes struktur.
+
+**Lag B (testplanen, SHA-forsegles FØR motorbygging):** de
+konkrete artefaktene som først kan eksistere ved motorbygging —
+promptbank-filer, nettverkslisten med kilde-DOI-er, modellfamilie
+og sjekkpunkt-liste, PyPhi-versjons-pinne. Lag B forsegles når
+planen skrives, og i alle tilfeller FØR første måling.
+
+Regelen: ingen måling uten begge lag forseglet. Testplanen er selv
+et SHA-registrert dokument i evidence-registeret.
+
+## SHA-forsegling
+
+SHA-256 av dette dokumentet ved forsegling registreres i
 `docs/validation-ledger/data/evidence-register.json` og testes av
-`tests/test_prereg_l043_l044.py` — endringer etter forsegling
-krever et nytt dokument, ikke redigering av dette.
+`tests/test_prereg_l043_l044.py` — med hardkodet uavhengig digest i
+testen. Endringer etter forsegling krever et nytt dokument, ikke
+redigering av dette.

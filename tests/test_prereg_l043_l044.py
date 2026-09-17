@@ -18,8 +18,8 @@ REGISTER = Path("docs/validation-ledger/data/evidence-register.json")
 # Forseglet 2026-09-17 — UAVHENGIG forventet digest, hardkodet her
 # (review-krav PR #452 r1: digesten må ikke beregnes dynamisk fra
 # fila, ellers kan dokument OG register endres sammen og passere).
-FORSEGLET = ("235e99672011ef64e13e2c0b94117087a5a21370dca862cee421"
-             "adf25364edd1")
+FORSEGLET = ("09f660b66bcf68f484e5a62e4056d734"
+             "a2c0780c6a3d0b6b3e5a688dfcfef33e")
 
 
 def _fil_sha() -> str:
