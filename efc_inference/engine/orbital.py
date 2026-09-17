@@ -135,6 +135,12 @@ class OrbitalEngine(EFCEngine):
                 "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
                 "konsensus_er_ikke_sannhet": True
             },
+            "maale_paradigme": {
+                "koordinater": ["rom", "masse", "tid"],
+                "enheter": "motorspesifikke (SI)",
+                "status": "avledet",
+                "alternativer": ["koordinatfrie formuleringer"]
+            },
             "regime": {
                 "name": "Baneregimer — Kepler og bindingsterskler",
                 "validity": validity,

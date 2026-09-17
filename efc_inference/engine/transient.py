@@ -170,6 +170,12 @@ class TransientEngine(EFCEngine):
                 "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
                 "konsensus_er_ikke_sannhet": True
             },
+            "maale_paradigme": {
+                "koordinater": ["masse", "rom", "tid", "energi"],
+                "enheter": "motorspesifikke (SI)",
+                "status": "avledet",
+                "alternativer": ["koordinatfrie formuleringer"]
+            },
             "regime": {
                 "name": "Stjernedodens holding->release (kollaps-buffer)",
                 "validity": validity,

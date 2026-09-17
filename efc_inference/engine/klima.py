@@ -143,6 +143,12 @@ class KlimaEngine(EFCEngine):
                 "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
                 "konsensus_er_ikke_sannhet": True
             },
+            "maale_paradigme": {
+                "koordinater": ["temperatur", "energi", "tid"],
+                "enheter": "motorspesifikke (SI)",
+                "status": "avledet",
+                "alternativer": ["koordinatfrie formuleringer"]
+            },
             "regime": {
                 "name": "Klimaets strålingsbalanse og regimebrytere",
                 "validity": validity,
