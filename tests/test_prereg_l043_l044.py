@@ -15,8 +15,16 @@ import pytest
 DOK = Path("docs/papers/efc/EFC_L043_L044_PreRegistration/README.md")
 REGISTER = Path("docs/validation-ledger/data/evidence-register.json")
 
-# Forseglet ved skriving 2026-09-17 — hash av DOK som forseglet
-FORSEGLET = hashlib.sha256(DOK.read_text(encoding="utf-8").encode()).hexdigest()
+# Forseglet 2026-09-17 — UAVHENGIG forventet digest, hardkodet her
+# (review-krav PR #452 r1: digesten må ikke beregnes dynamisk fra
+# fila, ellers kan dokument OG register endres sammen og passere).
+FORSEGLET = ("235e99672011ef64e13e2c0b94117087a5a21370dca862cee421"
+             "adf25364edd1")
+
+
+def _fil_sha() -> str:
+    return hashlib.sha256(
+        DOK.read_text(encoding="utf-8").encode()).hexdigest()
 
 
 def _register() -> dict:
@@ -41,10 +49,18 @@ def test_forseglingen_matcher_registeret():
     for p in reg.get("forseglinger", []):
         if p.get("dok") == str(DOK):
             assert p.get("sha256") == FORSEGLET, (
-                "dokumentet er endret etter forsegling — et nytt "
-                "dokument kreves, ikke redigering")
+                "registeret avviker fra den hardkodede digesten — "
+                "endringer i register OG dokument kan ikke begge passere")
             return
     pytest.fail("forseglingen ikke funnet")
+
+
+def test_filen_matcher_den_hardkodede_digesten():
+    """Uavhengig digest-kontroll: filen selv må matche konstanten —
+    redigering etter forsegling krever nytt dokument."""
+    assert _fil_sha() == FORSEGLET, (
+        "dokumentet er endret etter forsegling — et nytt dokument "
+        "kreves, ikke redigering")
 
 
 def test_prediksjonene_har_falsifikatorer():

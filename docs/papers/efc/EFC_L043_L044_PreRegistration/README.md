@@ -23,21 +23,27 @@ tallene.
 
 ## Prediksjon P1 — R_c ≈ 1/e som selvmodellerings-regimekriterium (L-044)
 
-**Påstand:** en selvmodellerende agent krysser en kvalitativ
-regimegrense når dens rekursive selvmodellering-kapasitet R_c
-(fraksjonen av egen modell som er selv-refererende, normalisert)
-passerer 1/e ≈ 0.3679.
+**Operasjonell definisjon av R_c:** for en gitt agent-arkitektur og et
+fastsatt oppgave-batteri (selvbeskrivelse, egne-feil-gjenkjenning,
+intensjons-rapportering) er R_c = (antall selv-refererende token i
+agentens egen selvbeskrivelse) / (total lengde av selvbeskrivelsen),
+målt over batteriet og midlet. Selv-refererende token = token som
+peker tilbake på agentens egen tilstand (førstepersons-pronomen,
+egne parametre, egen historikk).
 
-**Prediksjon:** for enhver agent-arkitektur som lar seg
-parametrisere med en monoton R_c-akse (modellstørrelse, lag,
-kontekst-lengde), skal en regime-bryter kunne lokaliseres innen
-ΔR_c = ±0.05 rundt 1/e — KJENNETEGNET ved at ytelsen på
-selv-refererende oppgaver (selvbeskrivelse, egne feil-gjenkjenning,
-intensjons-rapportering) har et knekkpunkt der, ikke en glatt
-kurve.
+**Aksen er FIKSAKT:** kontekst-lengden (det enkleste monotone
+R_c-instrumentet i dagens arkitekturer). Ikke modellstørrelse, ikke
+lag — kontekst-lengde alene.
+
+**Prediksjon:** for DE TO FØRSTE uavhengige arkitekturene som testes
+på denne aksen, skal ytelsen på selv-refererende oppgaver ha et
+knekkpunkt innen ΔR_c = ±0.05 rundt 1/e ≈ 0.3679 — en regime-bryter,
+ikke en glatt kurve.
 
 **Falsifikator:** et glatt, knekkløst ytelsesforløp gjennom
-R_c ∈ [0.25, 0.5] i to uavhengige arkitekturer dreper prediksjonen.
+R_c ∈ [0.25, 0.5] i BEGGE de to første testede arkitekturene dreper
+prediksjonen. (Prediksjonen gjelder uttrykkelig bare de to første —
+ikke «enhver» arkitektur; det gjør den falsifiserbar.)
 
 **Silico-status:** testbar i dag uten ekstern kilde — kandidat for
 første motor-verifisering.
@@ -46,17 +52,30 @@ første motor-verifisering.
 
 **Påstand:** Tononis Φ (IIT) har en EFC-lesning der integrert
 informasjon fremkommer som entropigradientens informasjons-mål over
-systemets Markov-teppe — den formelle broen FEP allerede har fått,
-mangler for IIT.
+systemets Markov-teppe.
 
-**Prediksjon:** for nettverk med kjent topologi skal EFC-Φ-proxyen
-(≈ gradient·partisjonsstruktur) rangere «mer integrert enn summen
-av delene»-systemer i samme rekkefølge som etablert IIT-verktøy der
-slike finnes, innen en rank-korrelasjon ρ > 0.8.
+**Formel (fiksert):** Φ_EFC = Σ_i |∇S_i| · MIB_i, der
+- ∇S_i = entropigradienten over del i (nats per kobling, beregnet
+  fra systemets tilstandsfordeling),
+- MIB_i = partisjonsindeksen fra minimum information bipartition
+  (MIB), som i standard IIT-praksis,
+- summen går over alle MIB-partisjoner.
 
-**Falsifikator:** ρ < 0.5 mot to uavhengige IIT-mål på samme
-nettverk dreper broens prediksjonsevne (broen kan stå som formell
-teori uten prediksjonskraft — da deklareres det).
+**Referanseverktøy:** PyPhi (eller publiserte Φ-verdier fra
+IIT-litteraturen) — ikke vår egen implementasjon av Φ.
+
+**Datasett:** publiserte nettverk der IIT-verdier allerede finnes
+(i silico-nettverk fra IIT-artikler). Ingen ny datainnsamling.
+
+**Prediksjon:** rank-korrelasjon (Spearman) ρ > 0.8 mellom Φ_EFC og
+referanse-Φ over nettverkssettet, med n ≥ 8 nettverk og ensidig
+test på 5 %-nivå.
+
+**Falsifikator:** ρ < 0.5 på samme sett dreper broens
+prediksjonsevne. Intervallet 0.5 ≤ ρ ≤ 0.8 er et DEKLARERT gråsone-
+utfall («uklart — verken støtte eller død»), ikke et stille hull.
+Broen kan stå som formell teori uten prediksjonskraft — da
+deklareres det eksplisitt.
 
 **Datastatus:** ingen kilde på bussen ennå — prediksjonen gjelder
 når en kilde (connectome/EEG/markov-teppe-data) blir tilgjengelig.
@@ -67,16 +86,27 @@ Avhengigheten er deklarert, ikke skjult.
 **Påstand:** RLHF som termodynamisk entropi-minimering
 (DOI 31940535) predikerer at preferanse-optimerte modeller får
 lavere målbar utfalls-entropi på distribusjoner de er trent på,
-men HØYERE på distribusjoner utenfor trening — en
-generaliserings-avveining med termodynamisk form.
+men HØYERE på distribusjoner utenfor trening.
 
-**Prediksjon:** entropi-gapet ΔS = S_out − S_in skal være positivt
-og monotont med optimeringsstyrken (antall RLHF-steg), med
-forklart varians R² > 0.5 over minst tre uavhengige publiserte
-benchmark-kombinasjoner.
+**Måleprotokoll (fiksert):**
+- S = Shannon-entropi av modellens respons-distribusjon (per token,
+  nats) over en fastsatt prompt-bank på 100 prompt per domene,
+  temperatur 1.0, 5 prøver per prompt.
+- In-distribusjon: prompt-bank fra modellkortets oppgitte
+  treningsdomene (f.eks. MMLU-lignende). Out-distribusjon: to
+  disjunkte domener (f.eks. GSM8K-lignende + en kreativ skrivebank).
+- RLHF-styrke: publiserte sjekkpunkt-nummer (SFT → RLHF-steg
+  k=1,2,3...). Sammenlignbare sjekkpunkter fra samme modellfamilie.
+- ΔS = S_out − S_in, midlet over de to out-domenene.
 
-**Falsifikator:** ΔS ≤ 0 eller ikke-monotont i to uavhengige
-benchmark-par dreper prediksjonen.
+**Prediksjon:** ΔS > 0 og monotont økende med sjekkpunkt-nummer,
+med R² > 0.5 over minst tre sjekkpunkter.
+
+**Falsifikator:** prediksjonen er DØD i sin prediktive form hvis
+noen av disse inntreffer: (i) ΔS ≤ 0 ved noe sjekkpunkt, eller
+(ii) ΔS ikke-monotont over sjekkpunktene, eller (iii) ΔS > 0 og
+monotont men R² ≤ 0.5 (positivt men ikke forklarende — deklarert
+som død, ikke som delvis støtte).
 
 ## Toleranse- og metoderegel
 
