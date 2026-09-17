@@ -394,3 +394,92 @@ class TestBareNavnetTeller:
         assert svar["kjent_hull"] is None, (
             "`mast-caom` er ikke et domenenavn. At det staar i en begrunnelse "
             "skal ikke gjore det til et kjent hull.")
+
+
+class TestBreddeKriteriet:
+    """«For bredt» skal hvile paa et PRESIST treff, ikke paa et tall.
+
+    Review runde 4 maalte terskelen jeg hadde valgt (50 treff eller 60 %):
+    sol=20, energi=25, kosmos=32, h2o=36 — alle langt under. instrument=82,
+    over. Ingen ekte spoersmaal laa i naarheten. Tallet var gjettet.
+
+    Det meningsfulle kriteriet er om soket har NOE presist: et `id`-treff
+    eller et `domene`-treff. `sol` har `lys.sol` — det er ikke bredt, uansett
+    hvor mange som ellers nevner ordet i prosa. `instrument` har null presise
+    treff; alt er loes prosa.
+    """
+
+    def test_sok_uten_presist_treff_er_bredt(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "instrument", ref="HEAD")
+        presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
+        assert not presise, "forutsetning: instrument har ingen presise treff"
+        assert svar["for_bredt"] is True, (
+            "et sok med NULL presise treff er bredt — uansett antall")
+
+    def test_sok_med_presist_treff_er_ikke_bredt(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
+        presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
+        assert presise, "forutsetning: sol har id-treffet lys.sol"
+        assert svar["for_bredt"] is False, (
+            f"et sok med et presist treff er ikke bredt, selv om "
+            f"{svar['antall']} noder nevner ordet i prosa")
+
+    def test_de_maalte_spoersmaalene_fra_reviewen(self, ekte_repo: Path) -> None:
+        """Reviewens egne maalinger — de skal holde som grenseverdier."""
+        forventet = {"sol": False, "energi": False, "kosmos": False,
+                     "h2o": False, "instrument": True}
+        for emne, skal_vaere_bredt in forventet.items():
+            s = atlas_lesing.finn(ekte_repo, emne, ref="HEAD")
+            assert s["for_bredt"] is skal_vaere_bredt, (
+                f"«{emne}»: forventet for_bredt={skal_vaere_bredt}, "
+                f"fikk {s['for_bredt']} ({s['antall']} treff)")
+
+    def test_mange_treff_med_presist_er_ikke_bredt(self, ekte_repo: Path) -> None:
+        """DET AVGJOERENDE TILFELLET — der de to kriteriene er uenige.
+
+        `efc` gir 68 treff, hvorav 32 presise (`efc.*`-nodene). En
+        ANTALLS-terskel sier «bredt» fordi 68 > 50. Det er feil: 32 presise
+        treff er det stikk motsatte av bredt.
+
+        Uten denne testen passerer begge kriteriene paa de samme dataene —
+        og da maaler testene ikke skillet de paastaar aa verne.
+        """
+        svar = atlas_lesing.finn(ekte_repo, "efc", ref="HEAD")
+        presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
+        assert len(presise) > 10, f"forutsetning: efc har mange presise ({len(presise)})"
+        assert svar["antall"] > 50, f"forutsetning: efc har mange treff ({svar['antall']})"
+        assert svar["for_bredt"] is False, (
+            f"«efc» har {len(presise)} PRESISE treff av {svar['antall']} — "
+            f"det er ikke et bredt sok. En antalls-terskel ville sagt bredt.")
+
+    def test_kriteriet_skalerer_med_atlaset(self, ekte_repo: Path) -> None:
+        """Kriteriet skal ikke avhenge av hvor STORT atlaset er.
+
+        En prosent-terskel ville flyttet seg naar atlaset vokste; «finnes
+        det et presist treff» gjoer det ikke.
+        """
+        s = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
+        presise = [t for t in s["treff"] if t["trefftype"] in ("id", "domene")]
+        assert presise, "h2o har id-treff"
+        assert s["for_bredt"] is False
+
+
+class TestVisningsgrensen:
+    """`_VIS_MAKS` skal faktisk begrense — mutanten 999 ble ikke felt."""
+
+    def test_grensen_er_satt_og_lav_nok(self) -> None:
+        assert 0 < atlas_lesing._VIS_MAKS <= 30, (
+            f"_VIS_MAKS={atlas_lesing._VIS_MAKS} — en grense som ikke "
+            f"begrenser noe er ikke en grense")
+
+    def test_cli_kutter_og_sier_hvor_mange_som_ligger_under(self, ekte_repo: Path) -> None:
+        import subprocess as _sp
+        p = _sp.run([sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+                     str(REPO), "--ref", "HEAD", "--emne", "instrument"],
+                    capture_output=True, text=True, timeout=120)
+        assert p.returncode == 0, p.stderr
+        linjer = [l for l in p.stdout.splitlines() if "(ord)" in l or "(delstreng)" in l]
+        assert len(linjer) <= atlas_lesing._VIS_MAKS, (
+            f"CLI viste {len(linjer)} treff, grensen er {atlas_lesing._VIS_MAKS}")
+        assert "flere" in p.stdout, (
+            "naar treffene kuttes, skal CLI si hvor mange som ligger under")

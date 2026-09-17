@@ -208,13 +208,23 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
     treff.sort(key=lambda x: (_rang[x["trefftype"]],
                               x["synlighet"] != "offentlig",
                               x["id"] or ""))
-    # Et sok som treffer nesten alt, er ikke et svar. Si det.
-    totalt = len(atlas["noder"])
-    for_bredt = len(treff) > 50 or (totalt and len(treff) / totalt > 0.6)
+    # «For bredt» hviler paa om soket har NOE PRESIST — ikke paa et antall.
+    #
+    # Foerste versjon brukte «>50 treff eller >60 % av atlaset». Review runde 4
+    # maalte den mot ekte spoersmaal: sol=20, energi=25, kosmos=32, h2o=36 —
+    # alle langt under, instrument=82 over. Ingen ekte spoersmaal laa i
+    # naarheten, saa tallet var gjettet. Verre: `efc` gir 68 treff hvorav 32
+    # PRESISE — en antalls-terskel kalte det bredt, som er stikk motsatt.
+    #
+    # Kriteriet er derfor: et treff er presist hvis det staar i node-id-en
+    # eller dekker et buss-domene. Er det ingen presise treff OG svaret ikke
+    # faar plass i visningen, er soket bredt — uansett hvor stort atlaset blir.
+    presise = [t for t in treff if t["trefftype"] in ("id", "domene")]
+    for_bredt = not presise and len(treff) > _VIS_MAKS
     raad = None
     if for_bredt:
-        raad = ("soket treffer nesten hele atlaset — bruk et mer presist emne, "
-                "eller se de sterkeste treffene nedenfor")
+        raad = (f"ingen presise treff — alle {len(treff)} er loes prosa. "
+                f"Bruk et mer presist emne, eller se de sterkeste nedenfor")
     return {
         "emne": emne,
         "kilde": atlas["kilde"],
