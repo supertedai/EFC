@@ -19,6 +19,12 @@ on:
       - "docs/validation-ledger/data/ledger.json"
       - "scripts/maintenance/efc_page_consistency.py"
       - "scripts/maintenance/efc_narrative_consistency.py"
+      # Navbar-eierskapet: skriverne og helperen de går gjennom. Endres de,
+      # skal testen som låser at navbaren ikke strippes kjøre.
+      - "scripts/maintenance/_nav_helper.py"
+      - "scripts/maintenance/efc_ai_brain.py"
+      - "scripts/maintenance/efc_ledger_autofill.py"
+      - "tests/test_nav_helper_canonical.py"
       - "docs/validation-ledger/data/ledger_truth.json"
       - "docs/validation-ledger/index.md"
       - ".github/workflows/efc-page-consistency.yml"
@@ -43,6 +49,10 @@ jobs:
         run: python3 scripts/maintenance/efc_navbar_sync.py --check
       - name: Run semantic narrative-consistency gate
         run: python3 scripts/maintenance/efc_narrative_consistency.py
+      - name: Install test runner for the navbar ownership lock
+        run: python3 -m pip install --quiet "pytest>=8,<9"
+      - name: Navbar ownership — writers may not strip the active-page marker
+        run: python3 -m pytest tests/test_nav_helper_canonical.py -q
       - name: Summarise on failure
         if: failure()
         run: |
