@@ -14,14 +14,6 @@ on:
       - 'docs/papers/**'
       - 'docs/validation-ledger/**'
       - 'public/**'
-      - 'scripts/**'
-      - 'schemas/**'
-      - 'config/**'
-      - 'governance/**'
-      - 'evidence/**'
-      - 'tests/**'
-      - 'efc_inference/**'
-      - 'src/**'
       - '.github/workflows/efc-changelog-sync.yml'
       - 'scripts/maintenance/changelog_projeksjon.py'
   pull_request:
@@ -30,14 +22,6 @@ on:
       - 'docs/papers/**'
       - 'docs/validation-ledger/**'
       - 'public/**'
-      - 'scripts/**'
-      - 'schemas/**'
-      - 'config/**'
-      - 'governance/**'
-      - 'evidence/**'
-      - 'tests/**'
-      - 'efc_inference/**'
-      - 'src/**'
 
 jobs:
   changelog-sync:

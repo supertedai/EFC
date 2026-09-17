@@ -129,9 +129,18 @@ def _hoved() -> int:
         cl = json.load(f)
 
     siste = (cl.get("metadata") or {}).get("last_processed_sha") or ""
+    if siste:
+        # The stored SHA must be reachable — squash merges discard the
+        # pre-squash commits, leaving an invalid revision range. Fall back
+        # to the tip's parent instead of crashing.
+        r = subprocess.run(["git", "merge-base", "--is-ancestor", siste, "HEAD"],
+                           capture_output=True, cwd=REPO, timeout=30)
+        if r.returncode != 0:
+            siste = ""
     if not siste:
-        # Empty seed (legacy or interrupted regeneration): start from the
-        # tip's parent so the projection is forward-looking and deterministic.
+        # Empty or unreachable seed (legacy or interrupted regeneration):
+        # start from the tip's parent so the projection is forward-looking
+        # and deterministic.
         siste = _git("rev-parse", "HEAD~1")
     commits = _hent_commits(siste)
     if not commits:
