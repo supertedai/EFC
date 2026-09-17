@@ -23,23 +23,43 @@ dependencies = [
 [project.optional-dependencies]
 hcp = ["nibabel>=4.0,<6"]
 cosmosis = ["cosmosis>=0.5"]
-verify = ["jsonschema>=4.18,<5", "rfc3339-validator>=0.1,<1", "pytest>=8,<9", "PyYAML>=6,<7"]
+# Merk:  kreves av efc_inference/runs/research_daemon.py, som
+# efc_inference/tests/test_research_daemon_publish.py importerer. Uten den
+# kan ikke den testen samles fra repo-roten.
+verify = ["jsonschema>=4.18,<5", "rfc3339-validator>=0.1,<1", "pytest>=8,<9", "PyYAML>=6,<7", "emcee>=3,<4"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-# Hovedsuiten er `tests/`. Uten denne linjen samler `pytest` fra repo-roten
-# ogsaa forskningskoden under `docs/papers/` og `pipelines/` — de er ekte
-# tester for sine respektive papirer, men har egne avhengigheter (emcee,
-# efc.perturbation, run_pilot) som ikke er installert her.
+# Skillet mellom hovedsuiten og forskningskoden. Uten det samler `pytest`
+# fra repo-roten ogsaa forskningskoden under `docs/papers/` — ekte tester for
+# sine papirer, men med egne avhengigheter (emcee, efc.perturbation, run_pilot)
+# som ikke er installert her.
 #
 # Maalt 2026-09-17: `pytest` fra roten ga 10 collection-feil, alle i
-# docs/papers/efc/. `pytest tests/` samler 539 tester uten feil. Fire
-# reviewere brukte tid paa aa gjette riktig kommando fordi skillet ikke
-# stod noe sted — dette er skillet, skrevet ned der det blir lest.
+# docs/papers/efc/. Fem reviewere brukte tid paa aa gjette riktig kommando.
+#
+# VIKTIG — `norecursedirs` OVERSKRIVER Pytests standarder. Den maa derfor
+# liste dem opp igjen, ellers samles skjulte kataloger og byggemapper.
+# Standardene (pytest 8): *.egg .* _darcs build CVS dist node_modules venv {arch}
+# Maalt: uten `.*` ble en midlertidig `tests/.probe/` samlet.
+#
+# MERK: `efc_inference/tests/` (123 tester) hoerer i hovedsuiten og skal IKKE
+# utelates. `testpaths` alene ville fjernet dem — det ble maalt og rettet.
 #
 # Forskningskoden kjoeres fra sin egen katalog:
 #     pytest docs/papers/efc/<papir>/
-testpaths = ["tests"]
-norecursedirs = ["docs", "pipelines", ".worktrees", ".git", "node_modules"]
+norecursedirs = [
+    "docs",
+    "pipelines",
+    "*.egg",
+    ".*",
+    "_darcs",
+    "build",
+    "CVS",
+    "dist",
+    "node_modules",
+    "venv",
+    "{arch}",
+]
