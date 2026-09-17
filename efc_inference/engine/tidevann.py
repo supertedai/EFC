@@ -110,6 +110,9 @@ class TidevannEngine(EFCEngine):
         return {
             "id": "efc.tidevann_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"],
+            "motor": "tidevann"},
             "regime": {
                 "name": "Tidevann — periodisk gravitasjonskopling",
                 "validity": validity,
@@ -143,6 +146,7 @@ class TidevannEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare avstand og perioder — ingen bassenggeometri, ingen dissipasjonsmåling",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "omløp -> løft -> omløp -> senk — tidevannets uendelige loop",

@@ -102,6 +102,9 @@ class RomvaerEngine(EFCEngine):
         return {
             "id": "efc.romvaer_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala", "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"],
+            "motor": "romvaer"},
             "regime": {
                 "name": "Magnetosfærens Kp-buffer",
                 "validity": validity,
@@ -134,6 +137,7 @@ class RomvaerEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare (Bz, v) — ingen magnetopause-dynamikk, ingen ringstrøm",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "solvind lader -> terskel -> storm utlader -> rolig — magnetosfærens loop",

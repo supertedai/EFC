@@ -337,22 +337,28 @@ def test_transient_validity_deriveres_fra_parametrene():
         assert kanonisk in tekst, kanonisk
 
 
-def test_transient_atlas_node_venter_paa_kollisjonsrekkefolgen():
-    """Atlas-noden er UTSATT med vilje (kollisjonsrekkefolgen i kortet:
-    schema/regime_nodes.jsonld roeres ikke for t_bdf8e82f er landet).
-
-    Denne testen er en VAKT, ikke en pastand om at noe mangler: den feiler
-    den dagen noden legges — med instruksen om hva som da skal gjores.
+def test_transient_atlas_node_bro_test():
+    """Atlas-noden er lagt inn (epistemikk v2, PR #444 r1) — vakten er
+    byttet mot bro-testen: motorens regime_node() skal stemme maskinelt
+    med atlas-noden, og ANALOGOUS_TO-relasjonene skal finnes.
     """
     atlas = json.loads(_ATLAS.read_text(encoding="utf-8"))
-    ids = {n["id"] for n in atlas["nodes"]}
-    if "efc.transient_engine" in ids:
-        pytest.fail(
-            "efc.transient_engine finnes naa i atlaset: bytt denne vakten mot "
-            "bro-testen (regime_node() == atlas-noden, maskinelt) og legg inn "
-            "ANALOGOUS_TO-relasjonene til homo.aksjonspotensial, "
-            "efc.solar_flare_engine og efc.jordskjelv_engine.")
-    assert TransientEngine().regime_node(TRANS_PARAMS)["id"] == "efc.transient_engine"
+    noder = {n["id"]: n for n in atlas["nodes"]}
+    assert "efc.transient_engine" in noder
+    motornode = TransientEngine().regime_node(TRANS_PARAMS)
+    atlasnode = noder["efc.transient_engine"]
+    for felt in ("id", "regime", "phase", "perspektiv"):
+        assert motornode[felt] == atlasnode[felt], felt
+    # Stipulasjonene skal speile motoren (review-krav: ingen tom maske)
+    assert atlasnode["stipulasjoner"]["motor"] == "transient"
+    assert atlasnode["stipulasjoner"]["terskler"]
+    # ANALOGOUS_TO-relasjonene
+    objekter = {r["object"] for r in atlas.get("relations", [])
+                if r.get("subject") == "efc.transient_engine"
+                and r.get("predicate") == "ANALOGOUS_TO"}
+    assert objekter == {"homo.aksjonspotensial",
+                        "efc.solar_flare_engine",
+                        "efc.jordskjelv_engine"}
 
 
 # ----------------------------------------------------------------------

@@ -186,6 +186,9 @@ class MuKZEngine(EFCEngine):
         return {
             "id": "efc.mu_kz_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["rho >= rho_crit -> K divergerer — stivhetsgrense", "regimebetingelse: k/a >> H — gyldighetsgrense", "mu < 1 -> stivhetsdominert — regimebetingelse"],
+            "motor": "mu_kz"},
             "regime": {
                 "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
                 "validity": (
@@ -234,6 +237,7 @@ class MuKZEngine(EFCEngine):
             "observer": {
                 "bandwidth": "modulen ser bare bakgrunns-inngangene og (a,k) — ingen felt-dynamikk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "bakgrunn -> eps-er -> mu -> growth-motorens fσ8 — koblingen L-029 ba om",

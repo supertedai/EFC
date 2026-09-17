@@ -99,6 +99,9 @@ class EFCRotation(EFCEngine):
         return {
             "id": "efc.rotation_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["PPN gamma=1 — ledende orden — gyldighetsgrense"],
+            "motor": "rotation"},
             "regime": {"name": "Rotasjonsmotoren — galakserotasjon",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -127,7 +130,8 @@ class EFCRotation(EFCEngine):
                 "source": "efc_core; parametrisk fallback — "
                           "efc_inference/engine/rotation.py",
             },
-            "observer": {"bandwidth": "motoren ser bare v(r) — én kanal "
+            "observer": {
+                "er_del_av_systemet": True,"bandwidth": "motoren ser bare v(r) — én kanal "
                                      "av galaksens fulle dynamikk",
                          "awareness": "instrument_window"},
             "emergence": {

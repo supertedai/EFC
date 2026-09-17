@@ -133,6 +133,9 @@ class KlimaEngine(EFCEngine):
         return {
             "id": "efc.klima_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer", "straalingslikevekt under frysepunktet -> NaN — modellgrense"],
+            "motor": "klima"},
             "regime": {
                 "name": "Klimaets strålingsbalanse og regimebrytere",
                 "validity": validity,
@@ -166,6 +169,7 @@ class KlimaEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare globale gjennomsnitt — ingen regional dynamikk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "forstyrrelse -> buffer demper -> ny likevekt -> (eller) bryter -> nytt regime — klimaets loop",

@@ -87,7 +87,8 @@
         "emergence",
         "fractal",
         "coupling",
-        "perspektiv"
+        "perspektiv",
+        "stipulasjoner"
       ],
       "properties": {
         "id": {
@@ -205,7 +206,8 @@
           "type": "object",
           "required": [
             "bandwidth",
-            "awareness"
+            "awareness",
+            "er_del_av_systemet"
           ],
           "properties": {
             "bandwidth": {
@@ -220,6 +222,15 @@
                 "not_claimed"
               ],
               "description": "Bevissthetsstatus, ærlig deklarert: instrument_window = fysisk instrument uten bevissthetskrav; hypothesis_open = aapen hypotese (f.eks. felt-resonans), ikke etablert; not_claimed = ingen pastand."
+            },
+            "er_del_av_systemet": {
+              "type": "boolean",
+              "const": true,
+              "description": "Vi er måleinstrumentet selv, ikke en observatør utenfor systemet. Konst sann — en node som påstår noe annet er en epistemisk feil i skjema-øyemed."
+            },
+            "maalepavirkning": {
+              "type": "string",
+              "description": "Hvordan målingen påvirker/avgrenser det målte (back-action), om relevant."
             }
           },
           "additionalProperties": false
@@ -291,6 +302,42 @@
             "agnostikk"
           ],
           "description": "Epistemisk hjemsted: paradigme = vår ramme; konsensus = rådende verdensbilde; akademia = etablert kunnskapsbase; agnostikk = det åpne"
+        },
+        "stipulasjoner": {
+          "type": "object",
+          "required": [
+            "stipulert_av_oss"
+          ],
+          "properties": {
+            "stipulert_av_oss": {
+              "type": "boolean",
+              "description": "True: fase-/regimegrensene er VÅRE definisjoner, ikke naturens gitte linjer."
+            },
+            "terskler": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "De stipulerte tersklene, med verdi og kilde."
+            },
+            "motor": {
+              "type": "string",
+              "description": "Motoren som holder terskelen i kode."
+            }
+          },
+          "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
+          "additionalProperties": false
+        },
+        "ville_falsifisere": {
+          "type": "string",
+          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
+        },
+        "revisjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Logg over endrede terskler/antakelser (dato + hva)."
         }
       },
       "additionalProperties": false

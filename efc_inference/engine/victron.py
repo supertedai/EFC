@@ -186,6 +186,9 @@ class VictronChargeEngine(EFCEngine):
         return {
             "id": "efc.victron_cccv_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["batteriets lade-/tømmeterskler — anleggsspesifikke — driftsgrenser"],
+            "motor": "victron"},
             "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,
@@ -223,6 +226,7 @@ class VictronChargeEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare V og I — to kanaler; SOC er ikke paakrevd for kneet",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "CC -> kne -> CV -> metning — ladeløypas tre-trinns emergence",

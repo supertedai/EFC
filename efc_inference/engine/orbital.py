@@ -125,6 +125,9 @@ class OrbitalEngine(EFCEngine):
         return {
             "id": "efc.orbital_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense", "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"],
+            "motor": "orbital"},
             "regime": {
                 "name": "Baneregimer — Kepler og bindingsterskler",
                 "validity": validity,
@@ -158,6 +161,7 @@ class OrbitalEngine(EFCEngine):
             "observer": {
                 "bandwidth": "motoren ser bare (a, e) — ingen resonans-kart, ingen perturbasjonshistorikk",
                 "awareness": "instrument_window",
+                "er_del_av_systemet": True,
             },
             "emergence": {
                 "loop": "bane -> periode -> fase -> neste omløp — banens uendelige loop",

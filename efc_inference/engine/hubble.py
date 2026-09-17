@@ -113,6 +113,9 @@ class EFCHubble(EFCEngine):
         return {
             "id": "efc.hubble_engine",
             "perspektiv": "paradigme",
+            "stipulasjoner": {"stipulert_av_oss": True,
+            "terskler": ["fσ8-målingene (Stage-III, 7 stk) — datagrunnlag"],
+            "motor": "hubble"},
             "regime": {"name": "Hubble-motoren — ekspansjonen",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -140,7 +143,8 @@ class EFCHubble(EFCEngine):
                             "E²(a) er den riktige deformasjonen"],
                 "source": "EFCVariantA; efc_inference/engine/hubble.py",
             },
-            "observer": {"bandwidth": "motoren ser bare H(z) — én kanal "
+            "observer": {
+                "er_del_av_systemet": True,"bandwidth": "motoren ser bare H(z) — én kanal "
                                      "av ekspansjonens fulle tilstand",
                          "awareness": "instrument_window"},
             "emergence": {
