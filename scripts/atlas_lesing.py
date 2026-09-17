@@ -32,6 +32,10 @@ from pathlib import Path
 
 STANDARD_REF = "origin/main"
 
+# Hvor mange treff CLI-en viser foer den sier «... og N flere». Et svar paa
+# 80 linjer blir ikke lest; de sterkeste treffene er sortert foerst.
+_VIS_MAKS = 15
+
 
 class AtlasLesingFeil(RuntimeError):
     """Refen kunne ikke leses. Aldri stille fallback til arbeidsstreet."""
@@ -175,8 +179,14 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
         # sol. Og «sol» traff `h2o.solid` som delstreng av «solid». Uten
         # skillet maa leseren gjette hvilke treff som er ekte.
         id_tekst = str(n.get("id", "")).lower()
+        buss = str(n.get("buss_domene") or "").lower()
         if ordmonster.search(id_tekst):
             trefftype = "id"
+        elif buss and (naal == buss or naal in buss.split(".")):
+            # En node som DEKKER domenet `verden.energi` er relevant for
+            # «energi» selv om ordet bare staar i prosaen. Uten dette
+            # rangerte `efc.enerflyt_engine` som loes prosa.
+            trefftype = "domene"
         elif ordmonster.search(tekst):
             trefftype = "ord"
         else:
@@ -192,8 +202,19 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    _rang = {"id": 0, "ord": 1, "delstreng": 2}
-    treff.sort(key=lambda x: (_rang[x["trefftype"]], x["id"] or ""))
+    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3}
+    # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
+    # det publiserte atlaset; de interne er kontekst.
+    treff.sort(key=lambda x: (_rang[x["trefftype"]],
+                              x["synlighet"] != "offentlig",
+                              x["id"] or ""))
+    # Et sok som treffer nesten alt, er ikke et svar. Si det.
+    totalt = len(atlas["noder"])
+    for_bredt = len(treff) > 50 or (totalt and len(treff) / totalt > 0.6)
+    raad = None
+    if for_bredt:
+        raad = ("soket treffer nesten hele atlaset — bruk et mer presist emne, "
+                "eller se de sterkeste treffene nedenfor")
     return {
         "emne": emne,
         "kilde": atlas["kilde"],
@@ -201,6 +222,8 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
         "commit": atlas["commit"],
         "antall": len(treff),
         "hull": len(treff) == 0,
+        "for_bredt": for_bredt,
+        "raad": raad,
         "kjent_hull": _kjent_hull(dekning, naal),
         "dekning_fil": "schema/atlas_dekning.json",
         "treff": treff,
@@ -216,6 +239,7 @@ if __name__ == "__main__":
     p.add_argument("--emne", "-e", help="slaa opp et emne i stedet for aa lese alt")
     p.add_argument("--ref", default=STANDARD_REF, help=f"git-ref (standard: {STANDARD_REF})")
     p.add_argument("--hent", action="store_true", help="hent origin foerst")
+    p.add_argument("--alle", action="store_true", help="vis alle treff, ikke bare de sterkeste")
     a = p.parse_args()
 
     if a.emne:
@@ -234,7 +258,12 @@ if __name__ == "__main__":
         kh = s["kjent_hull"]
         if kh:
             print(f"  (domenet {kh['domene']} er maalt som «{kh['status']}»)")
-        for t in s["treff"]:
+        if s["for_bredt"]:
+            print(f"  FOR BREDT — {s['raad']}")
+        # Et svar paa 80 linjer er ikke et svar. Vis de sterkeste, og si
+        # hvor mange som ligger under — leseren kan be om alle med --alle.
+        viste = s["treff"] if a.alle else s["treff"][:_VIS_MAKS]
+        for t in viste:
             merker = []
             if t["har_falsifikator"]:
                 merker.append("kan felles")
@@ -247,6 +276,8 @@ if __name__ == "__main__":
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
             print(f"  {t['id']:<34} {t['synlighet'] or '?':<9} "
                   f"{t['perspektiv'] or '':<10} {' · '.join(merker)}{tt}")
+        if not a.alle and s["antall"] > _VIS_MAKS:
+            print(f"  ... og {s['antall'] - _VIS_MAKS} flere — bruk --alle for hele listen")
     else:
         d = les_atlas(a.repo, ref=a.ref, hent=a.hent)
         print(f"{d['kilde']} @ {d['commit'][:8]} — {len(d['noder'])} noder")

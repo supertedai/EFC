@@ -154,8 +154,8 @@ class TestTrefftypenErSynlig:
     flyttet vi bare arbeidet tilbake til leseren.
     """
 
-    def test_tre_nivaaer_og_rekkefolgen(self, ekte_repo: Path) -> None:
-        """`id` er sterkest, saa `ord`, saa `delstreng`.
+    def test_fire_nivaaer_og_rekkefolgen(self, ekte_repo: Path) -> None:
+        """`id` > `domene` > `ord` > `delstreng`.
 
         «sol» traff `batteri.lading` som ORD — fordi ordet finnes i en tekst
         inne i noden. Det er ikke det samme som at noden handler om sol.
@@ -165,11 +165,12 @@ class TestTrefftypenErSynlig:
         assert svar["antall"] > 0
         typer = [t["trefftype"] for t in svar["treff"]]
         assert "id" in typer, "lys.sol har sol i id-en"
-        for svakere, sterkere in (("ord", "id"), ("delstreng", "ord")):
+        for svakere, sterkere in (("domene", "id"), ("ord", "domene"),
+                                  ("delstreng", "ord")):
             if svakere in typer and sterkere in typer:
                 assert typer.index(sterkere) < typer.index(svakere), (
                     f"{sterkere} skal komme foran {svakere}")
-        rekkefolge = {"id": 0, "ord": 1, "delstreng": 2}
+        rekkefolge = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3}
         assert typer == sorted(typer, key=lambda x: rekkefolge[x]), (
             f"feil rekkefolge: {typer}")
 
@@ -293,3 +294,51 @@ class TestKjenteHull:
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         assert "dekning_fil" in svar, (
             "leseren maa kunne se hvilken fil dekningsstatusen kom fra")
+
+
+class TestRelevans:
+    """Et oppslagsverk som svarer med alt, svarer ikke.
+
+    Maalt 2026-09-17 ved aa BRUKE oppslaget paa ekte spoersmaal:
+      «EF»         → 80 treff, ALLE delstreng av «efc»/«buffer»/«celle»
+      «instrument» → 82 treff — alle 82 noder, fordi ordet finnes i alle
+      «atlas»      → 46 treff, ETT er relevant (efc.selv.atlas)
+
+    Svakeste trefftype maa derfor ikke dominere svaret. `buss_domene` er
+    ogsaa et signal: en node som dekker domenet `verden.energi` ER relevant
+    for «energi», selv om ordet bare staar i prosaen.
+    """
+
+    def test_buss_domene_treff_rangeres_over_prosa(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "energi", ref="HEAD")
+        domene = [t for t in svar["treff"] if t.get("buss_domene") == "verden.energi"]
+        assert domene, "forutsetning: verden.energi finnes"
+        assert domene[0]["trefftype"] in ("id", "domene"), (
+            f"en node som DEKKER domenet skal ikke rangeres som loes prosa: "
+            f"{domene[0]}")
+
+    def test_for_bredt_sok_navngis(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "instrument", ref="HEAD")
+        assert svar["antall"] > 50, "forutsetning: instrument treffer bredt"
+        assert svar["for_bredt"] is True, (
+            "et sok som treffer nesten hele atlaset skal SI det, ikke late "
+            "som det er et presist svar")
+        assert svar["raad"] is not None, "naar soket er for bredt, si hva man kan gjore"
+
+    def test_presist_sok_er_ikke_for_bredt(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "regnbue", ref="HEAD")
+        assert svar["for_bredt"] is False, (
+            "et presist sok skal ikke merkes som bredt — da blir varselet "
+            "stoy og ignoreres")
+
+    def test_cli_viser_relevante_forst(self, ekte_repo: Path) -> None:
+        import subprocess as _sp
+        p = _sp.run([sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+                     str(REPO), "--ref", "HEAD", "--emne", "energi"],
+                    capture_output=True, text=True, timeout=120)
+        assert p.returncode == 0, p.stderr
+        linjer = [l for l in p.stdout.splitlines() if "efc." in l or "batteri" in l]
+        assert linjer, p.stdout[:300]
+        assert "efc." in linjer[0], (
+            f"offentlige motor-noder skal ikke ligge under interne batteri-"
+            f"noder naar begge er ord-treff: {linjer[:3]}")
