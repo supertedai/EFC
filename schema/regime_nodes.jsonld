@@ -2902,7 +2902,7 @@
       "regime": {
         "name": "Immunsystemet — terskelstyrt forsvar med hukommelse",
         "validity": "Immunresponsen aktiveres ved terskler (antigen-konsentrasjon, fare-signaler) og etterlater hukommelse som senker neste aktiveringsterskel — en terskelstyrt buffer med læring. ANALOGI til nevronets V_th og solens b_crit (holding->release-formen), ikke identitet: immunresponsen er distribuert og adaptiv, ikke en enkel utløsning.",
-        "law_form": "antigen > terskel -> klonal ekspansjon -> effektorrespons -> hukommelsesceller senker terskelen for neste møte"
+        "law_form": "faresignaler + antigen + kontekst -> aktivering over terskel -> klonal ekspansjon -> effektorrespons -> hukommelsesceller senker terskelen for neste møte (aktiveringen styres av KONTEKST/fare, ikke antigenmengde alene — fare-modellen)"
       },
       "phase": "regime_engine",
       "measure": {
@@ -2910,7 +2910,7 @@
         "measurer": "immunologiske analyser (ELISA, flow-cytometri)",
         "instrument": "laboratoriemåling; her beskrivelse",
         "proxy_chain": [
-          "antigenkonsentrasjon -> aktivering",
+          "faresignaler + antigenkonsentrasjon -> aktivering",
           "titer -> hukommelse"
         ],
         "placement": "ATLASETS PLASSERING: immunsystemet er homo.fluxus sin grenseregjering (analogisk lesning)",
@@ -3052,7 +3052,7 @@
       },
       "coupling": {
         "local": "ett system, ett vippepunkt",
-        "global": "ATLASETS PLASSERING: økosystemene er homo.fluxus sin omverden — OBSERVED_IN homo.fluxus (analogisk lesning)",
+        "global": "ATLASETS PLASSERING: økosystemene er homo.fluxus sin omverden — gjensidig koblet (COUPLED_TO homo.fluxus, analogisk lesning): mennesket former økosystemene, og de former mennesket",
         "empathy_note": "økosystemet velger ikke side ved vippepunktet — det faller."
       }
     },
@@ -3503,7 +3503,7 @@
     },
     {
       "subject": "homo.okologi",
-      "predicate": "OBSERVED_IN",
+      "predicate": "COUPLED_TO",
       "object": "homo.fluxus"
     },
     {
