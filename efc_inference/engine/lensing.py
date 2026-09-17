@@ -70,6 +70,7 @@ class EFCLensing(EFCEngine):
                     "venter på implementering)")
         return {
             "id": "efc.lensing_engine",
+            "perspektiv": "paradigme",
             "regime": {"name": "Linsemotoren — kappa(theta) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

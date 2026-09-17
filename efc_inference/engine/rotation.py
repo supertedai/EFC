@@ -98,6 +98,7 @@ class EFCRotation(EFCEngine):
                     "numerisk kurve, ingen tabell")
         return {
             "id": "efc.rotation_engine",
+            "perspektiv": "paradigme",
             "regime": {"name": "Rotasjonsmotoren — galakserotasjon",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

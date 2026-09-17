@@ -244,6 +244,7 @@ class EFCGrowth(EFCEngine):
                     "med μ(a) når varianten har kanalen")
         return {
             "id": "efc.growth_engine",
+            "perspektiv": "paradigme",
             "regime": {"name": "Vekstmotoren — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

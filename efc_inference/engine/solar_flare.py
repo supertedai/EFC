@@ -116,6 +116,7 @@ class SolarFlareEngine(EFCEngine):
                     "(dB/dt); utlosning ved B = b_crit")
         return {
             "id": "efc.solar_flare_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Solens holding->release (magnetisk buffer)",
                 "validity": validity,

@@ -101,6 +101,7 @@ class RomvaerEngine(EFCEngine):
                     "3t-tikk; G-nivåer ved Kp 5-9")
         return {
             "id": "efc.romvaer_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Magnetosfærens Kp-buffer",
                 "validity": validity,

@@ -117,6 +117,7 @@ class SamfunnEngine(EFCEngine):
                     "dR/dt = gamma I; R0 = beta/gamma")
         return {
             "id": "efc.samfunn_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "SIR-epidemiologi — flyt med terskel",
                 "validity": validity,

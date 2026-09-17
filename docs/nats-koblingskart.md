@@ -87,6 +87,22 @@ skrivetilgang eierne ennå ikke har gitt.
 Merk: kondensasjonsnærhet er en faseovergangs-PROXY, ikke selve overgangen —
 analogi, ikke identitet (samme disiplin som resten av kartet).
 
+### Koblet via bro-laget (2026-09-17, kosmos_nats_bro/jord_nats_bro/sol_nats_bro)
+
+| Emne | Motor | Status |
+|---|---|---|
+| `kosmos.sol.tilstand.swpc-goes-xray` + `kosmos.sol.hendelse.nasa-donki` | `solar_flare` (SolarFlareEngine) | **Koblet via sol-nats-bro** — GOES-flux til klasse, DONKI-utbrudd som utløsningshendelser. Kandidat-status: idealisert holding→release-modell, IKKE flare-prediktor. |
+| `kosmos.jord.tilstand.usgs-seismikk` | `jordskjelv` (JordskjelvEngine) | **Koblet via jord-nats-bro** — magnitude → moment (Kanamori-invers), b-verdi fra hendelsessekvensen. Kandidat-status: idealisert elastic-rebound, IKKE skjelv-prediktor. |
+| `kosmos.romvaer.tilstand.swpc-kp` | `romvaer` (RomvaerEngine) | **Koblet via kosmos-nats-bro** — Kp lest direkte, G-nivå fra NOAA-skalaen. Korrelasjonsmodell, Newell-caveat. |
+| `kosmos.transienter.hendelse.alerce` | `transient` (TransientEngine) | **Koblet via kosmos-nats-bro** — klasse-fordeling, stjernedød-telling. ALeRCEs egen klassifikasjon, ikke motorens prediksjon. |
+| `kosmos.planetsystem.prediksjon.jpl-horizons` | `orbital` (OrbitalEngine) | **Koblet via kosmos-nats-bro** — avstand_sol_au som a-proxy (deklarert). Kepler gjengir planetperiodene. |
+| `kosmos.maane.prediksjon.jpl-horizons` | `tidevann` (TidevannEngine) | **Koblet via kosmos-nats-bro** — avstand_jord_au → tidevannshøyde (åpent hav ~0.62 m). |
+| `verden.miljo.tilstand.ecowitt` | `klima` (KlimaEngine) | **CO2-observasjon via kosmos-nats-bro** — drivhus-proxy, IKKE tvunget gjennom motoren (CO2→emissivitet er en egen, upåstått kjede). |
+
+Bro-runden kjører hver time (cron e8c6fd64b23f) og publiserer på
+`opus.dommekraft.tilstand.broer`. Alle broene er eksterne og
+read-only (samme design som vær-broen).
+
 ### Ikke koblet, og ikke åpenbart motorkandidat (per i dag)
 
 Samfunnsemnene (`verden.*` utenom energi/vær: arbeid, demografi, finans,

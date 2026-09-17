@@ -72,6 +72,7 @@ class EFCCluster(EFCEngine):
                     "— venter på implementering)")
         return {
             "id": "efc.cluster_engine",
+            "perspektiv": "paradigme",
             "regime": {"name": "Hopemotoren — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

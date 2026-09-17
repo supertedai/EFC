@@ -93,6 +93,7 @@ class JordskjelvEngine(EFCEngine):
                     "Mw = (2/3)(log10 M0 - 9.1)")
         return {
             "id": "efc.jordskjelv_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Jordas holding->release (forkastningsbuffer)",
                 "validity": validity,

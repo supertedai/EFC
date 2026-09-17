@@ -5,8 +5,13 @@
   "description": "Generisk regime-node-skjema: beholderen som ethvert ledd i EFC-atlaset er en instans av. Hver node bærer hele observasjonskjeden og sin ontologiske ramme — slik at H2O-fasene, L0-L3-kosmologien og regnbuen kan beskrives med samme struktur. Skjemaet hevder ingen fysikk: det er en struktur; felt som er hypoteser, merkes som hypoteser (se observer.awareness). Forankring: regime/proxy/placement/episenter/compression er definert i 'Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity' (DOI 10.6084/m9.figshare.31564123, 2026-03-07) og meta-referansen docs/papers/meta/Proxy/ — episenter betyr der 'the interpretive frame used to read the result'. Mortens utvidelser (target/measurer/instrument/proxy_chain, buffer, phase, ontology, observer-båndbredde, emergence-loop, fractal, coupling) er strukturelle beholdere med kilde i samtale 2026-09-16.",
   "type": "object",
   "required": [
-    "@context", "@id", "@type", "schema_version", "generated_at",
-    "nodes", "relations"
+    "@context",
+    "@id",
+    "@type",
+    "schema_version",
+    "generated_at",
+    "nodes",
+    "relations"
   ],
   "properties": {
     "@context": {
@@ -32,7 +37,12 @@
           "description": "Relasjonsendepunkter er IRI-referanser til noder."
         }
       },
-      "required": ["@vocab", "id", "subject", "object"],
+      "required": [
+        "@vocab",
+        "id",
+        "subject",
+        "object"
+      ],
       "additionalProperties": false
     },
     "@id": {
@@ -66,8 +76,18 @@
     "RegimeNode": {
       "type": "object",
       "required": [
-        "id", "regime", "phase", "measure", "episenter", "buffer",
-        "ontology", "observer", "emergence", "fractal", "coupling"
+        "id",
+        "regime",
+        "phase",
+        "measure",
+        "episenter",
+        "buffer",
+        "ontology",
+        "observer",
+        "emergence",
+        "fractal",
+        "coupling",
+        "perspektiv"
       ],
       "properties": {
         "id": {
@@ -75,7 +95,10 @@
         },
         "regime": {
           "type": "object",
-          "required": ["name", "validity"],
+          "required": [
+            "name",
+            "validity"
+          ],
           "properties": {
             "name": {
               "type": "string"
@@ -98,8 +121,12 @@
         "measure": {
           "type": "object",
           "required": [
-            "target", "measurer", "instrument", "proxy_chain",
-            "placement", "compression"
+            "target",
+            "measurer",
+            "instrument",
+            "proxy_chain",
+            "placement",
+            "compression"
           ],
           "properties": {
             "target": {
@@ -139,7 +166,9 @@
         },
         "buffer": {
           "type": "object",
-          "required": ["role"],
+          "required": [
+            "role"
+          ],
           "properties": {
             "role": {
               "type": "string",
@@ -153,7 +182,10 @@
         },
         "ontology": {
           "type": "object",
-          "required": ["assumes", "source"],
+          "required": [
+            "assumes",
+            "source"
+          ],
           "properties": {
             "assumes": {
               "type": "array",
@@ -171,7 +203,10 @@
         },
         "observer": {
           "type": "object",
-          "required": ["bandwidth", "awareness"],
+          "required": [
+            "bandwidth",
+            "awareness"
+          ],
           "properties": {
             "bandwidth": {
               "type": "string",
@@ -191,7 +226,10 @@
         },
         "emergence": {
           "type": "object",
-          "required": ["loop", "properties"],
+          "required": [
+            "loop",
+            "properties"
+          ],
           "properties": {
             "loop": {
               "type": "string",
@@ -209,7 +247,9 @@
         },
         "fractal": {
           "type": "object",
-          "required": ["pattern"],
+          "required": [
+            "pattern"
+          ],
           "properties": {
             "pattern": {
               "type": "string",
@@ -223,7 +263,10 @@
         },
         "coupling": {
           "type": "object",
-          "required": ["local", "global"],
+          "required": [
+            "local",
+            "global"
+          ],
           "properties": {
             "local": {
               "type": "string",
@@ -238,13 +281,27 @@
             }
           },
           "additionalProperties": false
+        },
+        "perspektiv": {
+          "type": "string",
+          "enum": [
+            "paradigme",
+            "konsensus",
+            "akademia",
+            "agnostikk"
+          ],
+          "description": "Epistemisk hjemsted: paradigme = vår ramme; konsensus = rådende verdensbilde; akademia = etablert kunnskapsbase; agnostikk = det åpne"
         }
       },
       "additionalProperties": false
     },
     "RegimeRelation": {
       "type": "object",
-      "required": ["subject", "predicate", "object"],
+      "required": [
+        "subject",
+        "predicate",
+        "object"
+      ],
       "properties": {
         "subject": {
           "type": "string"

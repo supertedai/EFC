@@ -159,6 +159,7 @@ class TransientEngine(EFCEngine):
         )
         return {
             "id": "efc.transient_engine",
+            "perspektiv": "paradigme",
             "regime": {
                 "name": "Stjernedodens holding->release (kollaps-buffer)",
                 "validity": validity,
