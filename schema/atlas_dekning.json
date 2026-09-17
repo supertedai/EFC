@@ -1,0 +1,205 @@
+{
+  "_form": "Hvert domene som baerer meldinger paa bussen skal staa her — enten som dekket, delvis, eller navngitt gap. Et domene som hverken er dekket eller deklarert er usynlig, og et usynlig gap er hvordan prediksjonslaget kunne ligge komplett paa bussen uten at atlaset visste det.",
+  "_proveniens": {
+    "snapshot": "schema/nats_domener.snapshot.json",
+    "maalt": "2026-09-17",
+    "skrevet_av": "Opus, sesjon 20260917_141807_62c9fd"
+  },
+  "domener": {
+    "kosmos.asteroider": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.galakser": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.gammaglimt": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.hoper": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.interstellart": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.jord": {
+      "status": "dekket",
+      "emner": 2,
+      "begrunnelse": "kosmos.jord.vulkan; usgs-seismikk har ingen egen node"
+    },
+    "kosmos.kosmologi": {
+      "status": "dekket",
+      "emner": 3,
+      "begrunnelse": "efc.growth_engine baerer den forseglede fsigma8-prediksjonen; obs.fsigma8 er observabelen"
+    },
+    "kosmos.maane": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.noeytrinoer": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.planetsystem": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.roentgentransienter": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.romfart": {
+      "status": "delvis",
+      "emner": 3,
+      "begrunnelse": "kosmos.romfart.prediksjon.launch-library har oppgjoersmotpart, men ingen atlas-node"
+    },
+    "kosmos.romvaer": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.satellitter": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.sol": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.stjerner": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.transienter": {
+      "status": "ikke_dekket",
+      "emner": 1,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "kosmos.uklassifisert": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "opus.dommekraft": {
+      "status": "delvis",
+      "emner": 7,
+      "begrunnelse": "opus.dommekraft.oppgjoer.handlingsledger er den rikeste kontrakten som finnes; de oevrige opus-emnene har ingen node"
+    },
+    "verden.arbeid": {
+      "status": "ikke_dekket",
+      "emner": 5,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.demografi": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.energi": {
+      "status": "delvis",
+      "emner": 6,
+      "begrunnelse": "batteri.* er interne noder; entsoe-dayahead-tilstanden har stanset siden 2026-09-04 (t_395dc396); energi-oppgjoeret mangler"
+    },
+    "verden.finans": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.geopolitikk": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.handel": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.helse": {
+      "status": "ikke_dekket",
+      "emner": 5,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.infrastruktur": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.klima": {
+      "status": "ikke_dekket",
+      "emner": 3,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.kommunikasjon": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.lov": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.militaer": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.miljo": {
+      "status": "ikke_dekket",
+      "emner": 7,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.oekonomi": {
+      "status": "ikke_dekket",
+      "emner": 5,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.politikk": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.sikkerhet": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.teknologi": {
+      "status": "ikke_dekket",
+      "emner": 3,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.transport": {
+      "status": "ikke_dekket",
+      "emner": 2,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.utdanning": {
+      "status": "ikke_dekket",
+      "emner": 4,
+      "begrunnelse": "atlaset beskriver ikke dette domenet ennaa"
+    },
+    "verden.vaer": {
+      "status": "dekket",
+      "emner": 5,
+      "begrunnelse": "verden.vaer.prediksjon/oppgjoer/tilstand — kontrakten speilet i PR #467; oppgjoeret er det eneste som faktisk lukker sloeyfa"
+    }
+  }
+}
