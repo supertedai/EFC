@@ -88,7 +88,8 @@
         "fractal",
         "coupling",
         "perspektiv",
-        "stipulasjoner"
+        "stipulasjoner",
+        "epistemikk"
       ],
       "properties": {
         "id": {
@@ -338,6 +339,81 @@
             "type": "string"
           },
           "description": "Logg over endrede terskler/antakelser (dato + hva)."
+        },
+        "epistemikk": {
+          "type": "object",
+          "required": [
+            "sannhetsstatus",
+            "evidensstatus",
+            "konsensusstatus",
+            "sosial_mekanisme",
+            "konsensus_er_ikke_sannhet"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sannhetsstatus": {
+              "type": "string",
+              "enum": [
+                "uavklart",
+                "hypotese",
+                "modellrelativ",
+                "stottet",
+                "motbevist"
+              ],
+              "description": "Hvor sann er påstanden — uavhengig av hvem som tror den."
+            },
+            "evidensstatus": {
+              "type": "string",
+              "enum": [
+                "ingen",
+                "proxy",
+                "direkte",
+                "uavhengig",
+                "replikert"
+              ],
+              "description": "Hva slags evidens bærer påstanden."
+            },
+            "konsensusstatus": {
+              "type": "string",
+              "enum": [
+                "ingen",
+                "minoritet",
+                "omstridt",
+                "institusjonell",
+                "bred"
+              ],
+              "description": "Sosial oppslutning — en MEKANISME-beskrivelse, ikke sannhetsstatus."
+            },
+            "sosial_mekanisme": {
+              "type": "string",
+              "description": "Hvilke sosiale krefter bærer konsensusen: narrativ-styrke, insentiver, finansiering, prestisje, ego, karriererisiko."
+            },
+            "konsensus_er_ikke_sannhet": {
+              "type": "boolean",
+              "const": true,
+              "description": "Mortens prinsipp (e): konsensus definerer ikke sannheten — mennesker er sosiale dyr som følger det sterkeste narrativet."
+            }
+          },
+          "description": "Epistemisk regnskap per node: sannhets-, evidens- og konsensusstatus er ORTOGONALE akser. Konsensus er et sosialt fenomen; den bærer ikke sannhet i seg selv."
+        },
+        "analogi": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "avbildning": {
+              "type": "string",
+              "description": "Hva svarer til hva i analogien."
+            },
+            "bryter_der": {
+              "type": "string",
+              "description": "Disanalogien: hvor analogien brekker — obligatorisk når noden erklærer ANALOGOUS_TO."
+            }
+          },
+          "description": "Analogi-disciplin: en analogi uten disanalogi herdes til ontologi.",
+          "required": [
+            "avbildning",
+            "bryter_der"
+          ]
         }
       },
       "additionalProperties": false

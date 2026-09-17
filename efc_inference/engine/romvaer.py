@@ -105,6 +105,13 @@ class RomvaerEngine(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala", "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"],
             "motor": "romvaer"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {
                 "name": "Magnetosfærens Kp-buffer",
                 "validity": validity,

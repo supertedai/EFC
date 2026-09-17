@@ -102,6 +102,13 @@ class EFCRotation(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["PPN gamma=1 — ledende orden — gyldighetsgrense"],
             "motor": "rotation"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {"name": "Rotasjonsmotoren — galakserotasjon",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",

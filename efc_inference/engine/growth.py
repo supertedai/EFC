@@ -248,6 +248,13 @@ class EFCGrowth(EFCEngine):
             "stipulasjoner": {"stipulert_av_oss": True,
             "terskler": ["mu=0.5 (EFCVariantC) reproduserer fsigma8 ~ 0.430 — parametervalg — forseglet kriterium", "mu=1.0 gir 0.4534 — kontrastpunkt"],
             "motor": "growth"},
+            "epistemikk": {
+                "sannhetsstatus": "hypotese",
+                "evidensstatus": "proxy",
+                "konsensusstatus": "minoritet",
+                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "konsensus_er_ikke_sannhet": True
+            },
             "regime": {"name": "Vekstmotoren — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
