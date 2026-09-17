@@ -25,5 +25,15 @@ docs/audit_report.md
 # kandidater som skal bevares går til efc-banken.
 data/inntak/
 
+# TeX-byggeartefakter fra efc_pdf_bygg.sh (docker efc-tex) — deterministisk
+# bygg, artefaktene hører ikke hjemme i historikken.
+docs/papers/**/*.log
+docs/papers/**/*.aux
+docs/papers/**/*.out
+.build.sha256
+
 # uv-venv hører ikke hjemme i repoet
 .venv/
+
+# Byggeartefakter fra lokal pakkeinstallasjon
+src/*.egg-info/
