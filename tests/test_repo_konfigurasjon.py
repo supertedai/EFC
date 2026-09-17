@@ -127,3 +127,51 @@ class TestRotenVirker:
         assert tall >= 650, (
             f"bare {tall} tester samles fra roten — maalt 667 den 2026-09-17. "
             f"Er noe blitt utelatt?")
+
+
+class TestAvhengighetslisteneErISynk:
+    """`requirements.txt` og CI-installasjonen PASTAAR de er identiske.
+
+    Maalt 2026-09-17: begge filene sier det i en kommentar —
+    requirements.txt: «CI gate C10 + tests; .github/workflows/efc-schema.yml
+    installs the same», og workflowen: «pinned ranges, same as
+    requirements.txt». Ingen av dem holdt den paastanden oppdatert.
+
+    Review runde 2 fant det: `emcee` ble lagt i `[project.optional-
+    dependencies].verify`, men CI installerer pakkene EKSPLISITT — den leser
+    ikke ekstraen. Uten denne testen ville de to listene glidd fra hverandre
+    igjen, og kommentarene ville fortsatt paastatt at de var like.
+    """
+
+    def _req_pakker(self) -> list[str]:
+        import re
+        tekst = (REPO / "requirements.txt").read_text(encoding="utf-8")
+        i = tekst.index("Verification (CI gate C10")
+        return sorted(re.findall(r"^([A-Za-z][A-Za-z0-9_-]*)>=", tekst[i:], re.M))
+
+    def _ci_pakker(self) -> list[str]:
+        import re
+        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
+        m = re.search(r"pip install --quiet (.+)", tekst)
+        assert m, "fant ikke pip-installasjonen i efc-schema.yml"
+        return sorted(re.findall(r'"([A-Za-z][A-Za-z0-9_-]*)>=', m.group(1)))
+
+    def test_listene_er_identiske(self) -> None:
+        req, ci = self._req_pakker(), self._ci_pakker()
+        assert req == ci, (
+            f"requirements.txt og CI-installasjonen har glidd fra hverandre.\n"
+            f"  requirements.txt: {req}\n"
+            f"  efc-schema.yml  : {ci}\n"
+            f"Begge filene paastaar i en kommentar at de er like. Oppdater begge.")
+
+    def test_emcee_er_i_begge(self) -> None:
+        """Det konkrete funnet fra review runde 2.
+
+        `efc_inference/runs/research_mcmc.py` importerer `emcee` ved
+        modulimport, saa samling av `efc_inference/tests/` feiler uten den.
+        """
+        for navn, pakker in (("requirements.txt", self._req_pakker()),
+                             ("efc-schema.yml", self._ci_pakker())):
+            assert "emcee" in pakker, (
+                f"`emcee` mangler i {navn} — efc_inference/tests kan ikke "
+                f"samles uten den")

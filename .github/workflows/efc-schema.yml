@@ -54,7 +54,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install validator and test runner (pinned ranges, same as requirements.txt)
-        run: python3 -m pip install --quiet "jsonschema>=4.18,<5" "rfc3339-validator>=0.1,<1" "pytest>=8,<9" "PyYAML>=6,<7"
+        run: python3 -m pip install --quiet "jsonschema>=4.18,<5" "rfc3339-validator>=0.1,<1" "pytest>=8,<9" "PyYAML>=6,<7" "emcee>=3,<4"
 
       - name: C10 — registered schema/instance pairs valid and closed
         run: python3 scripts/maintenance/efc_schema_check.py
