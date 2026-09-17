@@ -191,3 +191,67 @@ class TestTrefftypenErSynlig:
         if "ord" in typer:
             assert typer.index("id") < typer.index("ord"), (
                 f"id-treff skal ligge foran ord-treff: {typer}")
+
+
+class TestSeparatorer:
+    """Underscore er en separator i id-er, ikke et ordtegn.
+
+    Maalt i review 2026-09-17: `sovn` i `homo.sovn_vaaken` ble klassifisert
+    som `delstreng`, fordi `\\b` regner `_` som ordtegn. Men i node-id-er
+    skiller `_` ledd — `homo.sovn_vaaken`, `efc.solar_flare_engine`. Saa
+    `sovn` ER et eget ledd i id-en, og skal merkes som `id`, ikke svekkes
+    til en delstreng.
+    """
+
+    def test_underscore_skiller_ledd_i_id(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "sovn", ref="HEAD")
+        treff = [t for t in svar["treff"] if t["id"] == "homo.sovn_vaaken"]
+        assert treff, "forutsetning: homo.sovn_vaaken finnes"
+        assert treff[0]["trefftype"] == "id", (
+            f"`sovn` er et eget ledd i `homo.sovn_vaaken` — underscore "
+            f"skiller ledd, den limer dem ikke sammen. Fikk: {treff[0]['trefftype']}")
+
+    def test_bindestrek_skiller_ledd_i_id(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "dayahead", ref="HEAD")
+        for t in svar["treff"]:
+            if "-" in str(t["id"]):
+                assert t["trefftype"] == "id", (
+                    "ogsaa bindestrek skiller ledd i en id")
+
+    def test_delstreng_i_midten_av_et_ledd_er_fortsatt_delstreng(self, ekte_repo: Path) -> None:
+        """`sol` i `solid` skal FORTSATT vaere delstreng — skillet skal ikke slakkes."""
+        svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
+        solid = [t for t in svar["treff"] if t["id"] == "h2o.solid"]
+        assert solid and solid[0]["trefftype"] == "delstreng", (
+            "`sol` er midt inne i leddet `solid` — det er en delstreng, "
+            "og skal ikke bli id-treff naar vi utvider separator-settet")
+
+
+class TestKommandolinjen:
+    """CLI-en er en PASTAND i PR-beskrivelsen — og den skal kunne kjores.
+
+    Review 2026-09-17: `finn()` var dekket, men ikke subprocess-kjoringen.
+    En CLI som ikke testes, er en pastand om at den virker.
+    """
+
+    def _kjoer(self, *args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"), str(REPO), *args],
+            capture_output=True, text=True, timeout=120)
+
+    def test_oppslag_paa_kommandolinjen(self) -> None:
+        p = self._kjoer("--emne", "sovn", "--ref", "HEAD")
+        assert p.returncode == 0, p.stderr
+        assert "homo.sovn_vaaken" in p.stdout
+        assert "1 treff" in p.stdout
+
+    def test_hull_paa_kommandolinjen_er_tydelig(self) -> None:
+        p = self._kjoer("--emne", "kvantegravitasjon_xyzzy", "--ref", "HEAD")
+        assert p.returncode == 0, (
+            "et hull er et gyldig svar — kommandolinjen skal ikke feile paa det")
+        assert "ATLASET VET IKKE" in p.stdout
+
+    def test_uten_emne_listes_hele_atlaset(self) -> None:
+        p = self._kjoer("--ref", "HEAD")
+        assert p.returncode == 0, p.stderr
+        assert "82 noder" in p.stdout, p.stdout[:200]

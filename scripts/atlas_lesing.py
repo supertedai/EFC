@@ -116,7 +116,15 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "dermed ikke svart paa noe")
     atlas = les_atlas(repo, ref, hent=hent, sti="schema/regime_nodes.jsonld")
     naal = emne.strip().lower()
-    ordmonster = re.compile(r"\b" + re.escape(naal) + r"\b")
+    # `\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
+    # `homo.sovn_vaaken`, `efc.solar_flare_engine`. Med `\b` ble `sovn`
+    # svekket til delstreng selv om den er et eget ledd i id-en (maalt i
+    # review 2026-09-17). Vi definerer derfor ordtegnet eksplisitt, slik at
+    # `_`, `.` og `-` alle er separatorer — og `sol` i `solid` fortsatt er
+    # en delstreng.
+    _ORDTEGN = "a-z0-9æøå"
+    ordmonster = re.compile(
+        rf"(?<![{_ORDTEGN}])" + re.escape(naal) + rf"(?![{_ORDTEGN}])")
     treff = []
     for n in atlas["noder"]:
         tekst = json.dumps(n, ensure_ascii=False).lower()
