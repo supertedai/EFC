@@ -13,6 +13,8 @@ deklarere inngangene eksplisitt og aldri late som de er avledet.
 """
 from __future__ import annotations
 
+import json
+
 import numpy as np
 import pytest
 
@@ -163,4 +165,30 @@ def test_mukz_engine_deklarerer_bakgrunn_som_inngang():
            "ikke lost" in tekst
 
 
-import json  # noqa: E402
+def test_k_rho_grenseoppforsel():
+    """K(rho) divergerer ved kritisk tetthet (inf for rho >= rho_crit)
+    — samme oppforsel som referansekoden efc_relativistic.py:26-29."""
+    from efc_inference.engine.mu_kz import k_rho
+    assert np.isinf(k_rho(PARAMS, PARAMS["rho_crit"]))
+    assert np.isinf(k_rho(PARAMS, PARAMS["rho_crit"] * 1.5))
+    assert np.isfinite(k_rho(PARAMS, 0.4))
+    assert k_rho(PARAMS, 0.4) > 0
+
+
+def test_eps_er_dimensjonslose_skalering():
+    """Dimensjonsloshets-verifisering: eps_F skalerer som 1/k^2 og R
+    som 1/k^4 — forholdene er noyaktige, som dokumentasjonen pastar."""
+    a = 0.7
+    F_bar = 1.0 + PARAMS["alpha"] * PARAMS["phi_bar"]
+    K_bar = PARAMS["K0"] / (1 - PARAMS["rho_bar"] / PARAMS["rho_crit"])
+    gp = gamma_prime_rho(PARAMS, PARAMS["rho_bar"])
+    eps_F_1 = compute_epsilon_F(PARAMS["alpha"], PARAMS["phi_bar"],
+                                F_bar, gp, a, 0.1)
+    eps_F_2 = compute_epsilon_F(PARAMS["alpha"], PARAMS["phi_bar"],
+                                F_bar, gp, a, 0.2)
+    assert np.isclose(eps_F_2 / eps_F_1, 1 / 4)  # 1/k^2
+    R_1 = compute_stiffness_response(K_bar, gp, PARAMS["phi_dot_bar"],
+                                     PARAMS["M_Pl"], F_bar, a, 0.1)
+    R_2 = compute_stiffness_response(K_bar, gp, PARAMS["phi_dot_bar"],
+                                     PARAMS["M_Pl"], F_bar, a, 0.2)
+    assert np.isclose(R_2 / R_1, 1 / 16)  # 1/k^4

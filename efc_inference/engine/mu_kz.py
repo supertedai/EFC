@@ -39,7 +39,23 @@ from .base_engine import EFCEngine
 # ---------------------------------------------------------------------------
 
 def k_rho(params: dict, rho: float) -> float:
-    """Eq. 2: K(rho) = K0 / (1 - rho/rho_crit)."""
+    """Eq. 2: K(rho) = K0 / (1 - rho/rho_crit).
+
+    ENHETER (natural units, c = 1; aksjonspapirets konvensjon):
+        M_Pl : masse (Planck-masse)
+        k    : 1/lengde (komovende bølgetall)
+        rho  : masse^4 (energitetthet)
+        Gamma og Gamma' : dimensjoner bestemt av flyt-betingelsen
+        phi_dot, lambda_dot : bakgrunns-derivater
+    Alle eps-uttrykk (24-26, 29) er DIMENSJONSLOSE i denne
+    konvensjonen — testene verifiserer skaleringen.
+
+    Grenseoppforsel (som referansekoden efc_relativistic.py:26-29):
+    for rho >= rho_crit returneres +inf — stivheten divergerer ved
+    kritisk tetthet, og modellen er ikke definert utenfor.
+    """
+    if rho >= params["rho_crit"]:
+        return np.inf
     return params["K0"] / (1.0 - rho / params["rho_crit"])
 
 
@@ -172,13 +188,17 @@ class MuKZEngine(EFCEngine):
             "regime": {
                 "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
                 "validity": (
-                    "Kvasi-statisk sub-horisont-regime (eq. 24-31). "
-                    "BAKGRUNNEN ER INNGANG, IKKE AVLEDET: phi_bar, "
-                    "phi_dot_bar, rho_bar og lambda_dot_bar er "
-                    "parametre — en selvkonsistent EFC-bakgrunn er "
+                    "Kvasi-statisk sub-horisont-regime (eq. 24-31), "
+                    "betingelse: k/a >> H — modusene ligger dypt "
+                    "innenfor horisonten slik at tidsderiverte kan "
+                    "neglisjeres. BAKGRUNNEN ER INNGANG, IKKE AVLEDET: "
+                    "phi_bar, phi_dot_bar, rho_bar og lambda_dot_bar "
+                    "er parametre — en selvkonsistent EFC-bakgrunn er "
                     "ikke lost (aksjonspapirets egen begrensning). "
                     "Ansatzen mu(a) forblir referansen i growth-"
-                    "motoren inntil bakgrunnen finnes."
+                    "motoren inntil bakgrunnen finnes. mu < 1 gjelder "
+                    "KUN i stivhetsdominert regime med F > 0, eps-ledd "
+                    "små mot 1 og R > 0 — ikke universelt."
                 ),
                 "law_form": (
                     "mu = (1 + eps_F + eps_K) / (F (1 + R)) med "
@@ -198,7 +218,7 @@ class MuKZEngine(EFCEngine):
                 "placement": "ett (a, k)-punkt om gangen i kvasi-statisk regime",
                 "compression": "bakgrunn + (a,k) -> mu",
             },
-            "episenter": "stivhetens dominans: naar R dominerer nevneren, er mu < 1 — papirets prediksjon, naa beregnbart i motorlaget",
+            "episenter": "stivhetens dominans: naar R dominerer nevneren (med F > 0, eps-ledd smaa mot 1, R > 0) er mu < 1 — papirets prediksjon, naa beregnbart i motorlaget",
             "buffer": {
                 "role": "gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont — utenfor det deklarerer den det ikke",
                 "note": "modulen deklarerer bakgrunnen som inngang i stedet for aa late som den er avledet.",
