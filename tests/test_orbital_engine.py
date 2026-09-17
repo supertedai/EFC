@@ -35,8 +35,8 @@ def test_kepler_periode_maten():
     assert np.isclose(t, T_FORVENTET, rtol=1e-9)
 
 
-def test_periode_maten_er_synodisk_riktig():
-    """Månens omløpstid skal være ~27.3 døgn."""
+def test_periode_maten_er_siderisk_riktig():
+    """Månens sideriske omløpstid skal være ~27.3 døgn."""
     e = OrbitalEngine()
     t_dogn = e.periode(PARAMS) / 86400.0
     assert 27.0 < t_dogn < 28.0
@@ -74,15 +74,22 @@ def test_hill_sfaere_er_bufferen():
 
 
 def test_compute_rapporterer_regime_per_bane():
-    """compute() skal gi regime-status: bundet (holding) eller ubundet
-    (release) per (a, e)-koordinat."""
+    """compute() skal gi regime-status: bundet (holding, eps<0) for
+    a>0, ubundet (release, eps>0) for hyperbolsk a<0."""
     e = OrbitalEngine()
     koord = np.array([[PARAMS["a"], PARAMS["e"]],
-                      [1.0e9, 0.9]])  # stor bane — fortsatt bundet
+                      [-1.0e9, 0.9]])  # hyperbolsk — negativ a
     ut = e.compute(PARAMS, koord)
     assert ut.shape == (2,)
     assert ut[0] < 0  # bundet = negativ energi = holding
-    assert ut[1] < 0
+    assert ut[1] > 0  # ubundet = positiv energi = release
+
+
+def test_compute_haandterer_ugyldige_parametre():
+    """Ugyldige parametre skal gi NaN, ikke KeyError."""
+    e = OrbitalEngine()
+    ut = e.compute({"G": 6.67430e-11}, np.array([[3.844e8, 0.05]]))
+    assert np.all(np.isnan(ut))
 
 
 def test_regime_node_selvbeskrivelse():

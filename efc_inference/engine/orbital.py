@@ -62,7 +62,10 @@ class OrbitalEngine(EFCEngine):
                      / (2.0 * params["a"]))
 
     def hill_sfaere(self, params: dict) -> float:
-        """r_H = a (m/(3M))^(1/3) — bufferen mot sentralkroppen."""
+        """r_H = a (m/(3M))^(1/3) — den TILNÆRMEDE innflytelses-/
+        stabilitetsgrensen mot sentralkroppen (ikke en garanti om
+        brutt binding — å krysse grensen gjør banen ustabil, ikke
+        nødvendigvis ubundet)."""
         return float(params["a"] * (params["m_objekt"]
                                     / (3 * params["M_sentral"])) ** (1 / 3))
 
@@ -78,36 +81,43 @@ class OrbitalEngine(EFCEngine):
                 coordinates: np.ndarray) -> np.ndarray:
         """Gitt (a, e)-par (N x 2), returner spesifikk energi (J/kg).
 
-        Negativ = bundet = HOLDING; positiv/eksakt 0 = RELEASE
-        (ubundet fly / unnslipning).
+        a > 0: elliptisk bane — negativ eps = bundet = HOLDING.
+        a < 0: hyperbolsk bane — positiv eps = ubundet = RELEASE
+        (konvensjonen for hyperbel er negativ store halvakse; eps =
+        -GM/(2a) gir da positiv verdi automatisk).
+        a == 0 eller ugyldige parametre: NaN.
         """
+        if not self.validate_params(params_dict):
+            return np.full((len(np.atleast_1d(coordinates)),), np.nan)
         koord = np.asarray(coordinates, dtype=float)
         if koord.ndim == 1:
             koord = koord.reshape(1, -1)
-        ut = np.array([
-            -params_dict["G"] * (params_dict["M_sentral"]
-                                 + params_dict["m_objekt"])
-            / (2.0 * float(rad[0]))
-            if float(rad[0]) > 0 else np.nan
-            for rad in koord
-        ])
-        return ut
+        m_tot = params_dict["M_sentral"] + params_dict["m_objekt"]
+        ut = []
+        for rad in koord:
+            a = float(rad[0])
+            if a == 0:
+                ut.append(np.nan)
+            else:
+                ut.append(-params_dict["G"] * m_tot / (2.0 * a))
+        return np.array(ut)
 
     # ------------------------------------------------------------------
     # Selvbeskrivelse
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
-        t_dogn = self.periode(params) / 86400.0
         r_h = self.hill_sfaere(params)
         validity = (
             "Tolegeme Kepler-regime: bundet bane (eps < 0) er HOLDING — "
             "objektet holdes i regimet; ubundet fly (eps >= 0) er "
-            "RELEASE — bindingen er brutt. IDEALISERT: ingen "
-            "perturbasjoner, ingen N-kropp, ingen atmosfærisk brems. "
-            "Hill-sfæren (" + f"{r_h:.3e}" + " m) er bufferen mot "
-            "sentralkroppen. Predikerer enkeltbaner, IKKE "
-            "N-kroppsdynamikk."
+            "RELEASE — bindingen er brutt (hyperbolske baner: negativ "
+            "a gir eps > 0). IDEALISERT: ingen perturbasjoner, ingen "
+            "N-kropp, ingen atmosfærisk brems. Hill-sfæren ("
+            + f"{r_h:.3e}" + " m) er den TILNÆRMEDE innflytelses-/"
+            "stabilitetsgrensen mot sentralkroppen — å krysse den gjør "
+            "banen ustabil, ikke nødvendigvis ubundet. Predikerer "
+            "enkeltbaner, IKKE N-kroppsdynamikk."
         )
         law_form = ("Kepler: T = 2π sqrt(a^3/(GM)); vis-viva: "
                     "v^2 = GM(2/r - 1/a); eps = -GM/(2a); "
@@ -134,7 +144,7 @@ class OrbitalEngine(EFCEngine):
             },
             "episenter": "bindingsterskelen eps = 0: punktet der en bane går fra holdt til sluppet — fangst og unnslipning møtes der",
             "buffer": {
-                "role": "Hill-sfæren er banens buffer: innenfor holder sentralkroppen objektet; utenfor brytes bindingen",
+                "role": "Hill-sfæren er banens TILNÆRMEDE stabilitetsbuffer: innenfor er sentralkroppens grep dominerende; utenfor blir banen ustabil (uten at bindingen nødvendigvis brytes)",
                 "note": "ANALOGI til hjertets fyll-press-syklus (periodisk holding->release) — ikke identitet: banemekanikken er konservativ og reversibel, hjertet er dissipativt.",
             },
             "ontology": {
