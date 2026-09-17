@@ -5708,6 +5708,90 @@
           "koordinatfrie formuleringer"
         ]
       }
+    },
+    {
+      "id": "efc.enerflyt_engine",
+      "regime": {
+        "name": "overflod",
+        "validity": "overflod: P > C + L — bufferen fylles; balanse: P ~ C + L; knapphet: C + L > P — bufferen toemmes og release-regimet er rasjonering/omfordeling. Predikerer IKKE naar krisen inntreffer — bare naer bufferen krysser terskelen i modellen."
+      },
+      "phase": "overflod",
+      "measure": {
+        "target": "bufferen S og driften dS/dt = P - C - L",
+        "measurer": "energistatistikk — produksjon, forbruk, lager (samfunnsregnskap)",
+        "instrument": "statistikkbyraaer og nettoperatoerer",
+        "proxy_chain": [
+          "registrert produksjon -> forbruk -> bufferanslag — alle er regnskaps-proxyer, ikke direkte maalinger"
+        ],
+        "placement": "samfunnets eget regnskap",
+        "compression": "hele samfunnet komprimeres til tre tall per tidsenhet"
+      },
+      "episenter": "energiregnskapets ramme: knapphet er en lesning i P-C-L-rammen, ikke en egenskap ved samfunnet i seg selv",
+      "buffer": {
+        "role": "S er samfunnets energibuffer — holdingen som absorberer ubalansen mellom produksjon og forbruk",
+        "note": "samme bufferlogikk som batteriet og hjemostasen — pa samfunnsskala"
+      },
+      "ontology": {
+        "assumes": [
+          "energi er EN akse av samfunnet — penger, oppmerksomhet og tillit er andre valutaer med eksplisitt IKKE-konservering og er ikke i modellen",
+          "produksjon og forbruk er idealiserte skalarer — virkelige samfunn har sektorer, nettverk og makt",
+          "dS/dt = P - C - L er en idealisert flytligning, ikke en sosial lov"
+        ],
+        "source": "energiregnskapets konservering; EFC bufferlogikk (analogi til batteri og hjemostase — ikke identitet)"
+      },
+      "observer": {
+        "bandwidth": "samfunnets eget regnskap — bare det som registreres og rapporteres; svart økonomi og uregistrerte flukser er usynlige for dette instrumentet",
+        "awareness": "instrument_window",
+        "er_del_av_systemet": true
+      },
+      "emergence": {
+        "loop": "produksjon -> buffer -> forbruk -> produksjonsinsentiver — loopen holder samfunnets energisystem gaende",
+        "properties": [
+          "overflod",
+          "balanse",
+          "knapphet"
+        ]
+      },
+      "fractal": {
+        "pattern": "celle -> kropp -> husholdning -> samfunn: samme bufferbalanse pa hver skala",
+        "note": "homeostase er den biologiske versjonen av samme flytlogikk"
+      },
+      "coupling": {
+        "local": "hver husholdning balanserer lokalt",
+        "global": "samfunnets energibuffer er kollektivet — knapphet kopler alle",
+        "empathy_note": "knappheten rammer ikke likt — modellen har ingen fordeling, og det er et bevisst hull"
+      },
+      "perspektiv": "paradigme",
+      "epistemikk": {
+        "sannhetsstatus": "hypotese",
+        "evidensstatus": "proxy",
+        "konsensusstatus": "minoritet",
+        "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+        "konsensus_er_ikke_sannhet": true
+      },
+      "maale_paradigme": {
+        "koordinater": [
+          "energi",
+          "tid",
+          "fraksjon"
+        ],
+        "enheter": "energi/tid, per-kapita-fraksjoner",
+        "status": "proxy",
+        "alternativer": [
+          "penger, oppmerksomhet, tillit — ikke-konserverte valutaer utenfor modellen"
+        ]
+      },
+      "stipulasjoner": {
+        "stipulert_av_oss": true,
+        "terskler": [
+          "terskelen er buffergrensen VI setter — knapphet er vaar definisjon, ikke naturens linje"
+        ],
+        "motor": "enerflyt"
+      },
+      "analogi": {
+        "avbildning": "buffer -> batterilager/hjemostase, knapphet -> utladning/feber, produksjon -> lading/inntak",
+        "bryter_der": "samfunnet er ikke en organisme: ingen sentral regulator, fordelingen er politisk, og aktorene har intensjoner — flytligningen har ingen av dem"
+      }
     }
   ],
   "relations": [
@@ -6140,6 +6224,11 @@
       "subject": "efc.transient_engine",
       "predicate": "ANALOGOUS_TO",
       "object": "efc.jordskjelv_engine"
+    },
+    {
+      "subject": "efc.enerflyt_engine",
+      "predicate": "COUPLED_TO",
+      "object": "efc.samfunn_engine"
     }
   ]
 }
