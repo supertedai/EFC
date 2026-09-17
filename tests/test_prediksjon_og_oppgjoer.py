@@ -124,3 +124,41 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSloeyfaErLukketDerDenErMaalt(unittest.TestCase):
+    """En node som SPEILER en maalt sloeyfe maa baere BEGGE sider.
+
+    Uavhengig review av #484 fant at `settlement` kunne fjernes fra
+    `verden.vaer` uten at en eneste test reagerte (50 passed paa mutanten).
+    Sjekjemaet kan ikke hjelpe: `settlement` er valgfritt, og det MAА vaere
+    valgfritt — `efc.growth_engine` baerer en prediction som venter paa DESI
+    DR2 og skal IKKE ha et oppgjoer.
+
+    Men naar en node foerst speiler en maalt sloeyfe, er de to sidene ett
+    objekt. Da er det ikke et skjemasporsmaal, det er en invariant.
+    """
+
+    def test_verden_vaer_baerer_begge_sider(self):
+        n = _node_ved_id("verden.vaer")
+        self.assertIn("prediction", n, "verden.vaer mistet prediksjonen")
+        self.assertIn("settlement", n,
+                      "verden.vaer speiler en maalt sloeyfe — oppgjoeret er "
+                      "ikke valgfritt naar sloeyfa faktisk har loept")
+
+    def test_de_to_sidene_deler_korrelasjon(self):
+        """Uten felles noekkel er de to objektene loesrevne, ikke en sloeyfe."""
+        n = _node_ved_id("verden.vaer")
+        self.assertEqual(n["prediction"]["correlation"],
+                         n["settlement"]["correlation"],
+                         "prediksjon og oppgjoer peker ikke paa samme maaling")
+
+    def test_oppgjoeret_baerer_et_faktisk_utfall(self):
+        """Et settlement uten utfall er en paastand om at noe ble maalt."""
+        n = _node_ved_id("verden.vaer")
+        s = n["settlement"]
+        for felt in ("outcome", "outcome_source", "deviation"):
+            self.assertTrue(s.get(felt), f"oppgjoeret mangler {felt}")
+        self.assertNotEqual(s["outcome"], n["prediction"]["expected"],
+                            "utfall og forventning er identiske — da er det "
+                            "ikke maalt, det er speilet to ganger")

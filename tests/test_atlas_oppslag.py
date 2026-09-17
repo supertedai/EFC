@@ -253,9 +253,31 @@ class TestKommandolinjen:
         assert "ATLASET VET IKKE" in p.stdout
 
     def test_uten_emne_listes_hele_atlaset(self) -> None:
+        """Antallet leses fra kilden — ikke skrevet inn.
+
+        Foerste utgave hadde `assert "82 noder" in p.stdout`. Det var sant
+        da det ble skrevet, og usant samme kveld: atlaset gikk til 83 og
+        deretter 84, og testen feilet paa TALLET mens den trodde den
+        maalte at CLI-en lister hele atlaset. Et hardkodet tall blir
+        staaende lenger enn kilden sin og lyver til slutt — det er samme
+        klasse som resten av huset verner mot.
+
+        Det som faktisk skal maales er at CLI-en og filen er ENIGE — og
+        filen maa leses fra SAMME sted som CLI-en. Foerste rettelse leste
+        arbeidsstreet mens CLI-en leste `--ref HEAD`; de gikk fra
+        hverandre i det oyeblikket en node var lagt til men ikke
+        committet. Arbeidsstreet og git-treet svarer ikke paa samme
+        spoersmaal — samme klasse en gang til.
+        """
+        import json as _json
+        import subprocess as _sp
+        raa = _sp.run(["git", "show", "HEAD:schema/regime_nodes.jsonld"],
+                      cwd=REPO, capture_output=True, text=True, check=True)
+        noder = _json.loads(raa.stdout)["nodes"]
         p = self._kjoer("--ref", "HEAD")
         assert p.returncode == 0, p.stderr
-        assert "82 noder" in p.stdout, p.stdout[:200]
+        assert f"{len(noder)} noder" in p.stdout, (
+            f"CLI-en og filen er uenige om antallet: {p.stdout[:200]}")
 
 
 class TestKjenteHull:

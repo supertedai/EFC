@@ -216,10 +216,12 @@
       ]
     },
     "opus.dommekraft": {
-      "status": "ikke_dekket",
+      "status": "delvis",
       "meldinger": 6621,
-      "noder": [],
-      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "noder": [
+        "opus.dommekraft"
+      ],
+      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: oppgjoer.handlingsledger og prediksjon.handlingsledger er speilet i noden, hendelse.lukkeliste og de fire ovrige emnene er ikke.",
       "emner": [
         "hendelse.lukkeliste",
         "oppgjoer.handlingsledger",
