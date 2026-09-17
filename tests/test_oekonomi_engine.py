@@ -78,4 +78,25 @@ def test_regime_node_selvbeskrivelse():
     assert node["regime"]["law_form"].strip()
 
 
+def test_avgresning_minsky_og_ikke_prediksjon():
+    """Blokkerende krav fra review: Minsky er ÉN tradisjon blant
+    flere, og modellen predikerer IKKE krisers tidspunkt — begge
+    deler skal stå i selvbeskrivelsen og ontology.source."""
+    e = OekonomiEngine()
+    node = e.regime_node(PARAMS)
+    tekst = json.dumps(node, ensure_ascii=False).lower()
+    assert "én tradisjon" in tekst or "en tradisjon" in tekst
+    assert "predikerer ikke kriser" in tekst or \
+           "ikke krisers tidspunkt" in tekst
+
+
+def test_negativ_drift_er_aerlig_nan():
+    """Uten positiv drift er Minsky-momentet udefinert — NaN, ikke
+    stille klipping til stillstand."""
+    e = OekonomiEngine()
+    umulig = {**PARAMS, "inntektsavkastning": 0.20}  # gapet > tillitsleddet
+    ut = e.gjeldsgrad_drift(umulig, 1.5, stabile_aar=10)
+    assert np.isnan(ut)
+
+
 import json  # noqa: E402

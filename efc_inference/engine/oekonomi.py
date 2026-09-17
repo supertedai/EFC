@@ -67,7 +67,12 @@ class OekonomiEngine(EFCEngine):
         tillitsledd = 0.06
         drift_rate = (params["rente"] - params["inntektsavkastning"]
                       + tillitsledd)
-        return float(max(0.0, gjeldsgrad * (1.0 + drift_rate * stabile_aar)))
+        if drift_rate <= 0:
+            # Modellen forutsetter positiv drift; uten den er
+            # Minsky-momentet udefinert — ærlig NaN, ikke stille
+            # klipping til stillstand.
+            return float("nan")
+        return float(gjeldsgrad * (1.0 + drift_rate * stabile_aar))
 
     # ------------------------------------------------------------------
     # EFCEngine-kontrakten
@@ -94,6 +99,9 @@ class OekonomiEngine(EFCEngine):
             "stabile årene ER holdingen som bygger bufferen til "
             "utløsningen (Minsky-momentet: stabilitet er "
             "destabiliserende — her som målbar gjeldsgrad-drift). "
+            "AVGRENSNING: Minsky er ÉN tradisjon blant flere i "
+            "økonomifaget; modellen predikerer IKKE krisers tidspunkt "
+            "eller forekomst — bare regimets kvalitative form. "
             "IDEALISERT regime-klassifisering med lineær drift — "
             "IKKE en økonomisk modell-konkurrent: ingen sektorer, "
             "ingen sentralbank, ingen politikk, ingen heterogene "
