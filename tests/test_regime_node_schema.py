@@ -470,10 +470,10 @@ def test_ingen_privat_info_i_hele_repoet():
     ikke finnes i NOEN fil i repoet — vakten dekket bare schema-
     mappen, og efc-toolkit lakk adresse + telefon i 13 filer."""
     for sti in Path(".").rglob("*"):
-        if not sti.is_file() or ".git" in sti.parts:
+        if ".git" in sti.parts or "__pycache__" in sti.parts:
             continue
-        if sti.suffix.lower() in (".csv", ".png", ".pdf", ".jpg"):
-            continue  # vitenskapelige data — desimaler kan matche tall
+        if sti.suffix.lower() in (".csv", ".png", ".pdf", ".jpg", ".pyc"):
+            continue  # vitenskapelige data / kompilert cache
         try:
             raw = sti.read_text(encoding="utf-8", errors="ignore")
         except OSError:
