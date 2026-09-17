@@ -171,3 +171,40 @@ class TestKildenErGitRefen:
         assert "spokelse" not in motorer, (
             "navigasjonen leste arbeidsstreet — en ucommittet motorfil "
             "skal ikke kunne svare")
+
+
+class TestMotorKoblesTilRiktigNode:
+    """Hver motor skal kobles til den noden som BAERER navnet dens.
+
+    Review runde 6: mutanten `if nid and m in nid` -> `if nid` koblet ALLE
+    motorer til den foerste noden, og alle 9 tester passerte. Koblingen er
+    ikke pynt: den mater `motorer_uten_buss`, saa en feil kobling gir en feil
+    hull-liste — i stillhet, og rapporten ville sett like overbevisende ut.
+    """
+
+    def test_hver_motor_peker_paa_en_node_som_inneholder_navnet(self, nav: dict) -> None:
+        kobling = nav["kobling"]["motor_til_node"]
+        assert kobling, "forutsetning: minst én motor er koblet"
+        feil = {m: n for m, n in kobling.items() if m not in str(n)}
+        assert not feil, (
+            f"motorer koblet til en node som ikke inneholder motornavnet: "
+            f"{feil} — koblingen har falt til «foerste node»")
+
+    def test_koblingene_er_unike(self, nav: dict) -> None:
+        """To motorer skal ikke dele node med mindre navnet faktisk deles."""
+        noder = list(nav["kobling"]["motor_til_node"].values())
+        if len(noder) != len(set(noder)):
+            from collections import Counter
+            delte = [n for n, c in Counter(noder).items() if c > 1]
+            for n in delte:
+                motorer = [m for m, x in nav["kobling"]["motor_til_node"].items() if x == n]
+                assert all(m in str(n) for m in motorer), (
+                    f"flere motorer peker paa {n} uten at navnene deles: {motorer}")
+
+    def test_en_kjent_motor_peker_paa_riktig_node(self, nav: dict) -> None:
+        """Konkret anker: `water` skal peke paa `efc.water_phase_engine`."""
+        kobling = nav["kobling"]["motor_til_node"]
+        if "water" in kobling:
+            assert "water" in str(kobling["water"]), (
+                f"`water` peker paa {kobling['water']} — skal peke paa noden "
+                f"som baerer navnet")
