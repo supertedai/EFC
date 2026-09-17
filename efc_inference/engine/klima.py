@@ -14,6 +14,18 @@ Fysikken:
 Likevekt: T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4).
 Is-albedo-bryteren: albedo vokser når T faller under frysepunktet —
 over en terskel finnes ingen varm likevekt (snøballjord, hysterese).
+
+BEVISST UTELATT — AMOC-bryteren (t_9978fc90). Kortet for klimamotoren
+(L-040) navngir TO regimebrytere: is-albedo-tilbakekoblingen og AMOC.
+Bare is-albedo er kodet her. AMOC-bryteren er VURDERT og BEVISST
+UTELATT: 0D-energibalansen har ingen sirkulasjon å slå av — AMOC er en
+omveltningscelle som krever minst to bokser (temperatur OG salinitet)
+drevet av ferskvannspåslag, og hverken motorens tilstandsrom (T) eller
+parameterrom (S, alpha, eps, sigma, C) rommer den. En Stommel-boks er
+et eget fag med egen litteratur og hører hjemme i en EGEN MOTOR, ikke
+i strålingsbalansen. Avgrensningen står også i regime_node(); den er
+gjort maskinelt synlig i tests/test_klima_engine.py, ikke latt som
+taushet. Ingen AMOC-terskel er oppgitt noe sted — fordi ingen finnes.
 """
 from __future__ import annotations
 
@@ -125,7 +137,12 @@ class KlimaEngine(EFCEngine):
             "(< alpha_fall — snøballens reflektans stabiliserer den, "
             "idealisert bredde). IDEALISERT 0D-modell — IKKE en "
             "klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, "
-            "ingen romlig struktur."
+            "ingen romlig struktur. AMOC-bryteren (som kortet navngir "
+            "ved siden av is-albedo) er VURDERT og BEVISST UTELATT: "
+            "0D-energibalansen har ingen sirkulasjon å slå av — AMOC "
+            "krever to bokser og ferskvannspåslag, og hører hjemme i "
+            "en EGEN MOTOR (eget fag, egen litteratur). Ingen "
+            "AMOC-terskel er oppgitt — fordi ingen finnes."
         )
         law_form = ("C dT/dt = (S/4)(1-alpha) - eps sigma T^4; "
                     "T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); "
@@ -182,6 +199,10 @@ class KlimaEngine(EFCEngine):
                 "assumes": [
                     "0D-approksimasjonen gjelder (globalt gjennomsnitt)",
                     "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)",
+                    "AMOC-bryteren er VURDERT og BEVISST UTELATT (t_9978fc90): "
+                    "motoren har ingen sirkulasjonsvariabel — en "
+                    "ferskvannsdrevet omveltningscelle krever to bokser og "
+                    "hører hjemme i en EGEN MOTOR, ikke i strålingsbalansen",
                 ],
                 "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen",
             },
