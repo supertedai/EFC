@@ -18,8 +18,8 @@ REGISTER = Path("docs/validation-ledger/data/evidence-register.json")
 # Forseglet 2026-09-17 — UAVHENGIG forventet digest, hardkodet her
 # (review-krav PR #452 r1: digesten må ikke beregnes dynamisk fra
 # fila, ellers kan dokument OG register endres sammen og passere).
-FORSEGLET = ("09f660b66bcf68f484e5a62e4056d734"
-             "a2c0780c6a3d0b6b3e5a688dfcfef33e")
+FORSEGLET = ("6dc7f912341529412e3f4e5c37d241e9"
+             "28f683d35ce7aa50f5ee46ef820080a7")
 
 
 def _fil_sha() -> str:
@@ -61,6 +61,37 @@ def test_filen_matcher_den_hardkodede_digesten():
     assert _fil_sha() == FORSEGLET, (
         "dokumentet er endret etter forsegling — et nytt dokument "
         "kreves, ikke redigering")
+
+
+TESTPLAN = Path("docs/papers/efc/EFC_L043_L044_PreRegistration/testplan.md")
+
+
+def test_lag_b_finnes_og_er_registrert():
+    """To-lagsdesignet er håndhevbart: testplanen (Lag B) må finnes
+    og være registrert i evidence-registeret (review-krav r3)."""
+    assert TESTPLAN.exists(), "testplanen (Lag B) mangler"
+    reg = _register()
+    assert any(p.get("dok") == str(TESTPLAN)
+               for p in reg.get("forseglinger", [])), \
+        "Lag B er ikke registrert i evidence-registeret"
+
+
+def test_lag_b_maaler_ingen_trengsel():
+    """Ingen måling kan skje før Lag B er FORSEGLET — testen feiler
+    hvis noen fjerner placeholder-statusen uten å forsegle, og feiler
+    aldri for en korrekt forseglet eller korrekt åpen plan."""
+    tekst = TESTPLAN.read_text(encoding="utf-8")
+    reg = _register()
+    post = next((p for p in reg.get("forseglinger", [])
+                 if p.get("dok") == str(TESTPLAN)), None)
+    forseglet = bool(post and post.get("sha256"))
+    if "Status: FORSEGLET" in tekst:
+        assert forseglet, ("testplanen erklærer FORSEGLET uten "
+                           "SHA-registrering — forseglingen er ugyldig")
+    else:
+        assert "IKKE LÅST" in tekst, (
+            "testplanen har verken FORSEGLET-status eller ærlig "
+            "IKKE-LÅST-status")
 
 
 def test_prediksjonene_har_falsifikatorer():

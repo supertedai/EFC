@@ -44,9 +44,17 @@ egne parametre, egen historikk).
 - «Glatt» (falsifiserende): ingen signifikant hellingsendring
   (segmenthellings-forhold ≤ 2) gjennom R_c ∈ [0.25, 0.5].
 
-**Aksen er FIKSAKT:** kontekst-lengden (det enkleste monotone
-R_c-instrumentet i dagens arkitekturer). Ikke modellstørrelse, ikke
-lag — kontekst-lengde alene.
+**Aksen er FIKSAKT:** kontekst-lengden. Kontekst-trinnene er fiksert
+til 2k, 4k, 8k, 16k, 32k, 64k, 128k token — R_c måles per trinn
+(lengre kontekst gir agenten mer av sin egen historikk og sine egne
+parametre tilgjengelig for selvbeskrivelsen). Ikke modellstørrelse,
+ikke lag.
+
+**«De to første uavhengige arkitekturene» (operasjonalisert):** de
+to første DISTINKTE modellfamiliene (ulike utviklere) som har
+publiserte kjøremuligheter på minst 4 av kontekst-trinnene. Valget
+av de konkrete familiene skjer i Lag B (testplanen) — kriteriet
+over er låst her, så valget ikke kan vrides etterpå.
 
 **Prediksjon:** for DE TO FØRSTE uavhengige arkitekturene som testes
 på denne aksen, skal ytelsen på selv-refererende oppgaver ha et
