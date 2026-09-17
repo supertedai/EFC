@@ -29,6 +29,7 @@ LAAS = Path("/tmp/efc-vedlikeholdsrunde.lock")
 
 SJEKKER = [
     ("statement-graf", "statement_graph_check.py", []),
+    ("eierskap", "validate_ownership.py", []),
     ("repo-contract", "validate_repo.py", []),
     ("aktivitetslogg", "validate_activity_log.py", []),
     ("lenker", "validate_links.py", ["--maks-eksterne", "15"]),
@@ -109,6 +110,8 @@ def hoved() -> int:
         funn = []
         if navn == "statement-graf":
             funn = (ut.get("harde") or []) + (ut.get("dangling_reference") or [])
+        elif navn == "eierskap":
+            funn = ut.get("feil") or []
         elif navn == "repo-contract":
             funn = ut.get("feil") or []
         elif navn == "aktivitetslogg":
