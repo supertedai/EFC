@@ -1,19 +1,32 @@
-"""Regelen for atlas-lesing er KJORBAR, ikke beskrevet.
+"""Atlas-lesing: regelen er KJØRBAR, og referanser er HVITELISTET.
 
-Reviewfunn runde 1 (PR #471), blokkerende og rett: de forrige testene leste
-dokumentet og krevde at ordene «origin/main» og «working copy» fantes. En
-mutant som SNUDDE regelen — «read the atlas from the working copy ... Never
-from git:origin/main» — passerte 3/3. Testen saa formen, ikke meningen.
+To ting denne filen verner, og begge kom av reviewfunn:
 
-Samme feilklasse som `startswith("git:")`-testen i PR #1016: den kontrollerte
-formatet og slapp enhver verdi gjennom.
+1. REGELEN. Den forrige utgaven leste dokumentet og krevde at ordene
+   «origin/main» og «working copy» fantes. En mutant som SNUDDE regelen —
+   «read from the working copy … Never from git:origin/main» — passerte
+   3/3. Samme feilklasse som `startswith("git:")` i PR #1016: formen ble
+   kontrollert, enhver verdi slapp gjennom.
 
-  En test kan ikke lese mening ut av prosa. Regelen maa derfor bo i en
-  funksjon som kan kjores — og testes ved aa endre VERDEN, ikke teksten.
+     En test kan ikke lese mening ut av prosa. Regelen bor derfor i
+     `scripts/atlas_lesing.py`, og testes ved å endre VERDEN — testen
+     muterer arbeidsstreet og krever at lesningen er bit-for-bit identisk.
 
-Den avgjorende testen under muterer arbeidsstreet og krever at lesningen er
-UPAVIRKET. Det er den eneste testen som skiller «les fra refen» fra «les fra
-arbeidsstreet», uansett hva dokumentet sier.
+2. REFERANSER. Tre runder prøvde å verne det publiserte dokumentet med en
+   SVARTELISTE over onde stiformer:
+
+     runde 3: fast liste (/opt/agent-work, /home/morten)
+     runde 4: revieweren brøt den med /Users/morten, C:\\..., /srv/...
+     runde 5: revieweren brøt den med UNC, file:///, ett-ledds absolutte
+     runde 6: revieweren brøt den med path=..., markdown-tabellceller,
+              file://<vert>/..., windows extended-length (\\?\)
+
+   Og ga svaret: «Dette bør ikke løses med enda en lengre svarteliste. En
+   whitelist av tillatte publiserte referanser er bedre.»
+
+   Det er rett. En svarteliste må gjette BÅDE stiformene OG hvilke tegn som
+   kan stå foran dem, og begge kan alltid omgås. Spørsmålet er snudd: ikke
+   «er dette en vond sti?» men «er dette en form vi TILLATER?».
 """
 
 from __future__ import annotations
@@ -31,101 +44,87 @@ sys.path.insert(0, str(ROT / "scripts"))
 
 from atlas_lesing import AtlasLesingFeil, les_atlas  # noqa: E402
 
-REPO = ROT
-
 
 def _git(*a: str) -> str:
-    return subprocess.run(["git", "-C", str(REPO), *a],
+    return subprocess.run(["git", "-C", str(ROT), *a],
                           capture_output=True, text=True).stdout
 
 
 class TestAtlasLesing(unittest.TestCase):
     def test_leser_fra_refen_og_navngir_kilden(self):
-        d = les_atlas(REPO)
+        d = les_atlas(ROT)
         self.assertEqual(d["kilde"], "git:origin/main")
         self.assertEqual(d["ref"], "origin/main")
         self.assertTrue(d["commit"], "commit mangler — kilden er ikke navngitt")
         self.assertGreater(len(d["noder"]), 0)
 
     def test_arbeidsstreet_paavirker_ikke_lesningen(self):
-        """DEN AVGJORENDE TESTEN.
+        """DEN AVGJØRENDE TESTEN — endrer verden, ikke teksten.
 
-        Endrer arbeidsstreet — den filen en naiv implementasjon ville lest —
-        og krever at resultatet er bit for bit likt. En implementasjon som
-        leste filen ville endret seg her. Uansett hva dokumentet sier.
+        Muterer arbeidsstreets fil og krever at resultatet er BIT-FOR-BIT
+        identisk. Reviewfunn runde 2: den forrige utgaven sammenlignet bare
+        node-ID-er, så en mutant som endret alle FELTER men beholdt id-ene
+        passerte. Nå sammenlignes hele strukturen.
         """
-        forsta = les_atlas(REPO)
-        fil = REPO / "schema" / "regime_nodes.jsonld"
+        forsta = les_atlas(ROT)
+        fil = ROT / "schema" / "regime_nodes.jsonld"
         opprinnelig = fil.read_bytes()
         try:
-            odelagt = {"nodes": [{"id": "SLEPTET"}]}
-            fil.write_text(json.dumps(odelagt), encoding="utf-8")
-            andre = les_atlas(REPO)
+            fil.write_text(
+                json.dumps({"nodes": [dict(n, tampered=True)
+                                      for n in forsta["noder"]]}),
+                encoding="utf-8")
+            andre = les_atlas(ROT)
         finally:
             fil.write_bytes(opprinnelig)
-        # BIT-FOR-BIT: hele strukturen, ikke bare id-ene. Reviewfunn
-        # runde 2: en mutant som endret alle FELTER men beholdt id-ene
-        # passerte en sammenligning paa id-nivaa.
-        self.assertEqual(
-            forsta["noder"], andre["noder"],
-            "lesningen endret seg da arbeidsstreet endret seg — den leser "
-            "arbeidsstreet, ikke refen")
+        self.assertEqual(forsta["noder"], andre["noder"],
+                         "lesningen endret seg da arbeidsstreet endret seg — "
+                         "den leser arbeidsstreet, ikke refen")
         self.assertEqual(json.dumps(forsta, sort_keys=True),
                          json.dumps(andre, sort_keys=True),
-                         "hele resultatet maa vaere identisk")
-        self.assertNotIn("SLEPTET", [n["id"] for n in andre["noder"]])
+                         "hele resultatet må være identisk")
+        self.assertNotIn("tampered", json.dumps(andre))
 
     def test_ukjent_ref_feiler_og_faller_ikke_stille_tilbake(self):
         """En stille fallback til arbeidsstreet er nettopp feilmodusen."""
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(REPO, ref="finnes/ikke")
+            les_atlas(ROT, ref="finnes/ikke")
 
     def test_den_leste_commiten_er_den_refen_peker_paa(self):
-        d = les_atlas(REPO)
-        self.assertEqual(d["commit"], _git("rev-parse", "origin/main").strip())
+        self.assertEqual(les_atlas(ROT)["commit"],
+                         _git("rev-parse", "origin/main").strip())
 
     def test_foreldet_ref_er_synlig_i_resultatet(self):
-        """`origin/main` kan vaere foreldet — den er en remote-tracking ref.
-        Funksjonen henter ikke av seg selv, men den RAPPORTERER commiten,
-        saa en foreldet ref staar i resultatet og ikke i leserens antakelse.
-        """
-        d = les_atlas(REPO, hent=False)
-        self.assertEqual(len(d["commit"]), 40,
-                         "commit maa vaere full SHA — ellers kan ferskhet "
-                         "ikke sammenlignes med origin")
-
-
-if __name__ == "__main__":
-    unittest.main()
+        """`origin/main` kan være foreldet — den er en remote-tracking ref.
+        Funksjonen henter ikke av seg selv, men den RAPPORTERER full commit,
+        så en foreldet ref står i resultatet og ikke i leserens antakelse."""
+        self.assertEqual(len(les_atlas(ROT, hent=False)["commit"]), 40)
 
 
 class TestDokumentetPekerPaaKoden(unittest.TestCase):
-    """Dokumentet skal ikke baere regelen selv — den kan ikke testes.
+    """Dokumentet skal ikke bære regelen selv — den kan ikke testes.
 
-    En prosa-regel kan snus uten at noen test feller (bevist i runde 1:
-    mutanten «read from the working copy ... Never from git:origin/main»
-    passerte 3/3). Derfor skal dokumentet PEKE PAA funksjonen, og denne
-    testen holder pekeren fast.
+    En prosa-regel kan snus uten at noen test feller (bevist i runde 1).
+    Derfor skal dokumentet PEKE PÅ funksjonen, og denne testen holder
+    pekeren fast.
     """
 
     def test_dokumentet_navngir_den_kjorbare_regelen(self):
         t = (ROT / "docs" / "atlas-lesing.md").read_text(encoding="utf-8")
         self.assertIn("scripts/atlas_lesing.py", t,
-                      "dokumentet peker ikke paa den kjorbare regelen")
+                      "dokumentet peker ikke på den kjørbare regelen")
 
     def test_funksjonen_som_dokumentet_peker_paa_finnes(self):
         self.assertTrue((ROT / "scripts" / "atlas_lesing.py").exists())
 
 
 class TestFunksjonensKanter(unittest.TestCase):
-    """Reviewfunn runde 2: ugyldig JSON og manglende 'nodes' ga raa
-    JSONDecodeError/KeyError. Samme prinsipp som resten — ingen stille
-    eller feilaktig feiltype naar leseren skal kunne stole paa resultatet.
-    """
+    """Ugyldig JSON og manglende 'nodes' skal gi AtlasLesingFeil, ikke rå
+    JSONDecodeError/KeyError. Ingen stille eller feil-typet feil når en
+    leser skal kunne stole på resultatet."""
 
-    def _repo(self, innhold: str):
-        t = tempfile.mkdtemp()
-        r = Path(t)
+    def _repo(self, innhold: str) -> Path:
+        r = Path(tempfile.mkdtemp())
         (r / "schema").mkdir()
         (r / "schema" / "regime_nodes.jsonld").write_text(innhold,
                                                           encoding="utf-8")
@@ -137,23 +136,20 @@ class TestFunksjonensKanter(unittest.TestCase):
         return r
 
     def test_ugyldig_json_gir_AtlasLesingFeil(self):
-        r = self._repo("{ikke json")
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(r, ref="HEAD")
+            les_atlas(self._repo("{ikke json"), ref="HEAD")
 
     def test_manglende_nodes_gir_AtlasLesingFeil(self):
-        r = self._repo('{"noe": "annet"}')
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(r, ref="HEAD")
+            les_atlas(self._repo('{"noe": "annet"}'), ref="HEAD")
 
     def test_hent_oppdaterer_refen(self):
         """`hent=True` skal faktisk hente. Revieweren beviste det manuelt;
-        det skal staa i testsettet, ikke bare i en rapport."""
+        det skal stå i testsettet, ikke bare i en rapport."""
         opp = tempfile.mkdtemp()
         subprocess.run(["git", "init", "-q", "--bare", opp],
                        capture_output=True, text=True)
-        arb = tempfile.mkdtemp()
-        r = Path(arb)
+        r = Path(tempfile.mkdtemp())
         for cmd in (["init", "-q", "-b", "main"],
                     ["remote", "add", "origin", opp]):
             subprocess.run(["git", "-C", str(r), *cmd],
@@ -166,7 +162,7 @@ class TestFunksjonensKanter(unittest.TestCase):
                      "commit", "-qm", "1"], ["push", "-q", "origin", "main"]):
             subprocess.run(["git", "-C", str(r), *cmd],
                            capture_output=True, text=True)
-        forsta = les_atlas(r, ref="origin/main", hent=True)["commit"]
+        forste = les_atlas(r, ref="origin/main", hent=True)["commit"]
         f.write_text('{"nodes": [{"id": "b"}]}', encoding="utf-8")
         for cmd in (["add", "-A"],
                     ["-c", "user.name=t", "-c", "user.email=t@t",
@@ -174,80 +170,84 @@ class TestFunksjonensKanter(unittest.TestCase):
             subprocess.run(["git", "-C", str(r), *cmd],
                            capture_output=True, text=True)
         andre = les_atlas(r, ref="origin/main", hent=True)["commit"]
-        self.assertNotEqual(forsta, andre, "hent=True hentet ikke")
+        self.assertNotEqual(forste, andre, "hent=True hentet ikke")
 
 
-class TestIngenAbsolutteStier(unittest.TestCase):
-    """Regel 16: `docs/` er Pages-roten — det som staar der PUBLISERES.
+class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
+    r"""Regel 16: `docs/` er Pages-roten — det som står der PUBLISERES.
 
-    Reviewfunn runde 3: dokumentet navnga vertsspesifikke stier.
-    Reviewfunn runde 4 (BLOKKERER): den foerste testen brukte en fast liste
-    av stier jeg tilfeldigvis kom paa. Den slapp `/Users/morten/...`,
-    `C:\\Users\\morten\\...` og `/srv/agent-work/...` gjennom.
+    HVITELISTE, ikke svarteliste. Se modulens docstring for historikken:
+    tre runder med stramming ble brutt tre ganger, og reviewen ga svaret
+    som står der. Her sjekkes det motsatte spørsmålet — er dette en form
+    vi TILLATER?
 
-      En liste over kjente tilfeller er ikke en invariant over klassen.
-      Det er samme feil som resten av PR-en handler om.
-
-    Invarianten er generisk: en ABSOLUTT filsystem-sti er vertsspesifikk
-    uansett hvilken vert den peker paa. Repo-relative navn er dokumentasjon
-    og skal gjennom.
-
-    Reviewfunn runde 5: den forrige utgaven krevde to stiledd og manglet
-    UNC og filsystem-URL-er. /Users, \\server\share\EFC,
-    //server/share/EFC og file:///Users/morten/EFC slapp gjennom. Naa
-    dekkes de.
-
-    GRENSE, sagt hoeyt: dette er en SVARTELISTE over kjente stiformer, og
-    en svarteliste kan i prinsippet alltid omgaas. Den er likevel et reelt
-    vern her fordi den fanger formene som faktisk forekommer i praksis —
-    og fordi testen under krever at hver form den paastaar aa fange FAKTISK
-    fanges. Blir den omgaatt igjen, er spoersmaalet om tilnaermingen er
-    feil, ikke om monsteret mangler et ledd.
+    Tillatt: repo-relative stier (to eller flere ledd), http(s)-lenker, og
+    git-ref:sti. Alt annet som bærer en sti-separator er et avvik.
     """
 
-    ABSOLUTT = re.compile(r"""
-    (?:^|[\s(\[`"'>])
-    (?:
-        /(?:[A-Za-z0-9._-]+)(?:/[A-Za-z0-9._-]*)*   # unix-absolutt, 1+ ledd
-      | /{2,}[A-Za-z0-9._-]+                        # UNC med skraastrek
-      | \\\\{1,2}[A-Za-z0-9._-]+                    # windows UNC
-      | [A-Za-z][A-Za-z0-9+.-]*:///                 # filsystem-URL, tom vert
-      | [A-Za-z]:[\\/]                              # windows-stasjon
-      | ~/                                          # hjemmekatalog
-    )
-    """, re.VERBOSE)
+    TILLATT = [
+        re.compile(r"^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$"),
+        re.compile(r"^https?://[^\s]+$"),
+        re.compile(r"^[a-z]+/[a-z]+:[A-Za-z0-9_/.-]+$"),
+    ]
+    DEL = re.compile(r"[\s`|<>()\[\]{}\"'*,;]+")
 
-    def _sjekk(self, sti: Path, hva: str):
+    def _referanser(self, tekst: str):
+        ut = []
+        for linje in tekst.splitlines():
+            if linje.startswith("#!"):
+                continue
+            for t in self.DEL.split(linje):
+                if t in ("/", "\\"):
+                    continue
+                if "/" in t or "\\" in t or re.match(r"^[A-Za-z]:[\\/]", t):
+                    ut.append(t)
+        return ut
+
+    def _avvik(self, tekst: str):
+        return [t for t in self._referanser(tekst)
+                if not any(r.match(t) for r in self.TILLATT)]
+
+    def _docstring(self, sti: Path) -> str:
         t = sti.read_text(encoding="utf-8")
-        treff = [m.group(0).strip() for m in self.ABSOLUTT.finditer(t)]
-        self.assertEqual(treff, [], f"absolutt sti i {hva}: {treff}")
+        i = t.index('"""') + 3
+        return t[i:t.index('"""', i)]
 
-    def test_publisert_dokument_har_ingen_absolutte_stier(self):
-        self._sjekk(ROT / "docs" / "atlas-lesing.md", "publisert doc")
+    def test_publisert_dokument_har_bare_tillatte_referanser(self):
+        self.assertEqual(
+            self._avvik((ROT / "docs" / "atlas-lesing.md")
+                        .read_text(encoding="utf-8")), [])
 
-    def test_modulens_docstring_har_ingen_absolutte_stier(self):
-        self._sjekk(ROT / "scripts" / "atlas_lesing.py", "docstring")
+    def test_modulens_docstring_har_bare_tillatte_referanser(self):
+        """Kun DOCSTRINGEN — filen inneholder også kode, og
+        `except ... as e:` er ikke en sti."""
+        self.assertEqual(
+            self._avvik(self._docstring(ROT / "scripts" / "atlas_lesing.py")),
+            [])
 
-    def test_invarianten_fanger_vertsformer_den_forrige_misset(self):
-        """Reviewerens fire eksempler, som alle slapp gjennom den forrige
-        lista. Testes eksplisitt saa invarianten ikke driver tilbake til en
-        oppramsing."""
-        for form in ("/Users/morten/EFC-review", "C:\\Users\\morten\\EFC",
-                     "/srv/agent-work/EFC", "/opt/agent_work/EFC",
-                     "~/EFC",
-                     # runde 5 — disse slapp gjennom den forrige invarianten
-                     "/Users", "\\\\server\\share\\EFC",
-                     "//server/share/EFC", "file:///Users/morten/EFC"):
-            self.assertIsNotNone(
-                self.ABSOLUTT.search("se " + form),
-                f"invarianten fanger ikke vertsformen {form}")
+    def test_hvitelisten_fanger_formene_seks_runder_fant(self):
+        """Hver form svartelisten slapp gjennom skal hvitelisten felle.
+        Testet eksplisitt så listen ikke driver tilbake til en oppramsing av
+        onde former — den er en hviteliste over TILLATTE former, og alt
+        utenfor den felles uansett hvilken form det har."""
+        for form in (
+                "/Users", "/Users/morten/EFC", "C:\\Users\\morten",
+                "path=/Users/morten/EFC", "|/Users/morten/EFC|",
+                "<file:///Users/morten/EFC>", "file:///Users/morten/EFC",
+                "file://localhost/Users/morten/EFC",
+                "file://server/share/EFC",
+                "\\\\?\\C:\\Users\\morten", "\\\\?\\UNC\\server\\share",
+                "//server/share", "~/EFC", "\\\\server\\share\\EFC",
+                "/opt/agent-work/EFC"):
+            self.assertTrue(self._avvik("se " + form),
+                            f"hvitelisten slipper gjennom {form}")
 
-    def test_invarianten_slipper_repo_relative_navn_gjennom(self):
+    def test_hvitelisten_slipper_legitime_referanser_gjennom(self):
         for form in ("scripts/atlas_lesing.py", "docs/atlas-lesing.md",
-                     "origin/main:schema/regime_nodes.jsonld"):
-            self.assertIsNone(
-                self.ABSOLUTT.search("se " + form),
-                f"invarianten felte et repo-relativt navn: {form}")
+                     "origin/main:schema/regime_nodes.jsonld",
+                     "https://example.com/a", "10.5281/zenodo.123"):
+            self.assertEqual(self._avvik("se " + form), [],
+                             f"hvitelisten felte {form}")
 
 
 if __name__ == "__main__":
