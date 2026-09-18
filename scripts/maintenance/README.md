@@ -181,9 +181,15 @@ A real legacy failure (2026-08-24, a submodule path) does carry a log.
 
 `docs/validation-ledger/data/changelog.json` is a projection of the git
 history from `metadata.last_processed_sha` to `HEAD`: every non-merge commit
-that touches more than the four changelog-infrastructure files becomes one
-entry (`sha`, `summary` = the verbatim commit subject, file categories), and
-`docs/public/EFC_Changelog.html` gets the matching `<li>`. The gate re-runs the
+that touches a PUBLIC path (`docs/public/`, `docs/papers/`,
+`docs/validation-ledger/`, `public/` — minus the two changelog files
+themselves, which are side-effects) becomes one entry (`sha`, `summary` = the
+commit subject, file categories), and
+`docs/public/EFC_Changelog.html` gets the matching `<li>`. Internal work —
+the internal atlas, `scripts/`, `tests/`, `schema/`, `figshare/` — touches no
+public path and is invisible here by the two-atlases decision: measured
+2026-09-18, three of the four commits a card raised as «never projected» were
+exactly that case. The gate re-runs the
 projection in CI and goes red if the committed files diverge, so the projection
 is regenerated in the same PR as the change:
 
@@ -220,22 +226,48 @@ change could turn the gate green. An unreachable start is now repaired
 deterministically (`origin/main`, else `HEAD~1`), printed and persisted.
 `tests/test_changelog_projeksjon.py` locks the repair and is run by the gate.
 
+**The repair must not skip the window.** The repair looks forward, and on
+`main` its range is empty — so every commit between a dead start and the tip
+was skipped without a word. Measured 2026-09-18: a recorded start that was a
+squashed PR head left four public-relevant commits (#459's maintenance
+sequence, the `Test_Paper_Y` artefact, #497 and #460) with no entry, while the
+gate reported «no new commits since last projection». When the recorded start
+is unusable the projection therefore also considers the newest entry in
+`changes[]` that `HEAD` still descends from, and starts at the OLDER of the
+two. «Usable» means ancestry, not object existence: a clone that once fetched
+a deleted branch keeps the object, so `rev-parse` resolves it while
+`git log <rev>..HEAD` silently drops everything that branch carried — the same
+tree would project two different windows.
+
 **Choosing the boundary is part of the change.** The boundary must be an
 ancestor of the PR's merge ref and newer than everything already projected —
 otherwise CI projects commits your branch does not carry (a `main` that moved
-after you branched), rewrites `metadata.generated_at`, and goes red. Practical
+after you branched) and goes red. Practical
 rule: merge `main` into the branch, then let the last projection run record a
 commit that contains it.
 
-**Known conflict with the language rule.** Summaries are verbatim commit
-subjects, and the language step of the same workflow rejects the first 30
-entries that hit the Norwegian stopword list. A landed Norwegian commit
-subject inside the projection window therefore makes the two steps mutually
-unsatisfiable — measured 2026-09-17 on
-`7c7e30b7 feat(atlas): sorte hull (fra Grid-Higgs) og periodesystemet …`
-(`fra`, `og`). The repair is an English *source* for the summary (the
-activity-log/`change_id` route in PR #430), never an edited or translated
-entry: the changelog is a projection, not a second truth source.
+**The language rule and the verbatim rule.** An entry's `summary` is the commit
+subject, a landed subject cannot be amended, and the public page must be
+English. Three resolutions, in the order they apply:
+
+- The collector is public-only, so an internal commit's Norwegian subject never
+  reaches the language step. Measured 2026-09-18: `7c7e30b7 feat(atlas): sorte
+  hull (fra Grid-Higgs) og periodesystemet …` — the example this section used to
+  name as the conflict — touches `docs/ontology.*`,
+  `schema/regime_nodes.jsonld` and `figshare/doi-map.json`, and is filtered out
+  before the language step sees it.
+- A non-English subject that IS public-relevant gets its English form declared,
+  keyed by sha, in `scripts/maintenance/changelog_summaries.json`. That file is
+  an input, reviewed in the diff; the projection stays a function of (history +
+  declared inputs) and the sha stays the provenance, so the artifact is
+  reproduced by CI rather than edited by hand. Precedent: `450632ee` translated
+  six historical Norwegian summaries at projection time.
+- The generator refuses a subject that trips the stopword list and has no
+  declared form, instead of projecting it. The list is a weak proxy: measured
+  2026-09-18, three of the four subjects given a declared English form score 0
+  hits while being plain Norwegian prose — a verbatim projection would have put
+  Norwegian on the public page with the language gate green. The declared form
+  is therefore also where a subject the list cannot see states its English.
 
 ## The repo-wide language gate (`efc_spraakvakt.py`, card t_537ab101)
 

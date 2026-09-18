@@ -1,0 +1,20 @@
+{
+  "_note": [
+    "Declared English forms for commit subjects that are not English.",
+    "Input to changelog_projeksjon.py, not an edit of its output: the sha stays",
+    "the provenance and the projection stays reproducible (CI regenerates and",
+    "compares). A subject the Norwegian stopword list can see, and that no entry",
+    "here covers, is refused by the generator instead of being projected.",
+    "The gate's stopword list is a weak proxy: measured 2026-09-18, three of the",
+    "four subjects below score 0 hits and would have reached the public page as",
+    "Norwegian. That is why the English form is declared for all three, and why",
+    "a landed subject cannot be amended (a squash/merge already happened).",
+    "Precedent: 450632ee translated six historical Norwegian summaries at",
+    "projection time; here the English form is declared once, keyed by sha, so",
+    "the act is reviewable in the diff of this file rather than inside the",
+    "generated artifact."
+  ],
+  "c2a1ea7a855a": "chore(ci): the maintenance sequence — maintain -> navbar -> doi-map (PR #459)",
+  "8d79a2d052f9": "chore: remove the Test_Paper_Y test artefact (committed by accident)",
+  "94f5c3b90de1": "EFC: record the provenance deviation for the four light-speed DOIs + C13 gate (t_20a3c257) (#497)"
+}
