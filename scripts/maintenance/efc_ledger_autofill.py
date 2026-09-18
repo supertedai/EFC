@@ -186,6 +186,30 @@ def insert_into_changelog(changelog_text, items, year):
     return head + block + tail
 
 
+def kanonisk_nav(innhold: str, sti: str) -> str:
+    """Navbaren for DENNE siden, eller innholdet uendret om den ikke kan hentes.
+
+    Navbaren eies av ``efc_navbar_sync.py``; ``_nav_helper.ensure_nav`` spør
+    den om den kanoniske blokken for ``sti`` (med «du er her»-markeringen).
+    Uten sidens navn røres navbaren ikke i det hele tatt — en skriver skal
+    aldri kunne strippe markeringen til siden den skriver.
+    """
+    try:
+        import os as _os
+        import sys as _sys
+        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+        from _nav_helper import ensure_nav
+    except Exception:
+        return innhold
+    return ensure_nav(innhold, _os.path.basename(sti))
+
+
+def skriv_side(sti: str, innhold: str) -> None:
+    """Skriv en offentlig side med kanonisk navbar for nettopp denne siden."""
+    with open(sti, "w", encoding="utf-8") as f:
+        f.write(kanonisk_nav(innhold, sti))
+
+
 def main():
     with open(LEDGER, encoding="utf-8") as f:
         ledger_text = f.read()
@@ -226,29 +250,16 @@ def main():
         print("[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI")
         return 0
 
-    # Defensive nav sanitizer: guarantees short labels + External Research
-    # link on every write. Idempotent; no-op if nav already canonical.
-    try:
-        import sys as _sys
-        import os as _os
-        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-        from _nav_helper import ensure_nav as _ensure_nav
-    except Exception:
-        _ensure_nav = lambda x: x  # noqa: E731 — fallback no-op
-
+    # Navbaren har én eier: efc_navbar_sync.py. Vi normaliserer den til den
+    # kanoniske blokken FOR DENNE SIDEN før vi skriver (se skriv_side), slik at
+    # autofyllingen aldri etterlater siden med navbar_drift.
     if missing_ledger_items:
-        new_ledger = insert_into_ledger(ledger_text, missing_ledger_items)
-        new_ledger = _ensure_nav(new_ledger)
-        with open(LEDGER, "w", encoding="utf-8") as f:
-            f.write(new_ledger)
+        skriv_side(LEDGER, insert_into_ledger(ledger_text, missing_ledger_items))
         print(f"[efc-ledger-autofill] Ledger: added {len(missing_ledger_items)} "
               f"entry/ies for DOI(s) {', '.join(touched_ledger_dois)}")
 
     if missing_changelog_items:
-        new_changelog = insert_into_changelog(changelog_text, missing_changelog_items, year)
-        new_changelog = _ensure_nav(new_changelog)
-        with open(CHANGELOG, "w", encoding="utf-8") as f:
-            f.write(new_changelog)
+        skriv_side(CHANGELOG, insert_into_changelog(changelog_text, missing_changelog_items, year))
         print(f"[efc-ledger-autofill] Changelog: added {len(missing_changelog_items)} "
               f"entry/ies for DOI(s) {', '.join(touched_changelog_dois)}")
 

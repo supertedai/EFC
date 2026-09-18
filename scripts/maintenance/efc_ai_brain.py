@@ -667,14 +667,16 @@ def read_page(key):
 def write_page(key, text):
     path = PUBLIC_PAGES.get(key, "")
     if path:
-        # Defensive: ensure nav block is canonical (short labels +
-        # External Research link) on every HTML write. Idempotent.
+        # Navbaren har én eier (efc_navbar_sync.py). Vi normaliserer den til
+        # den kanoniske blokken FOR DENNE SIDEN — med «du er her»-markeringen
+        # (color:#c22) — før vi skriver. Uten sidens navn ble markeringen
+        # strippet og siden etterlatt med navbar_drift (målt 2026-09-17).
         try:
             import sys as _sys
             import os as _os
             _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
             from _nav_helper import ensure_nav as _ensure_nav
-            text = _ensure_nav(text)
+            text = _ensure_nav(text, _os.path.basename(path))
         except Exception:
             pass  # never let nav sanitation block a real write
         with open(path, "w", encoding="utf-8") as f:
