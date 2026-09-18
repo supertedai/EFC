@@ -133,6 +133,24 @@ def _hent_commits(siden: str) -> list[dict]:
     return commits
 
 
+def _finnes(ref: str) -> bool:
+    """Returner om *ref* peker paa en commit i dette repoet."""
+    if not ref:
+        return False
+    r = subprocess.run(["git", "rev-parse", "--verify", f"{ref}^{{commit}}"],
+                       capture_output=True, cwd=REPO, timeout=30)
+    return r.returncode == 0
+
+
+def _los_opp_startpunkt(start: str) -> str:
+    """Behold gyldig projeksjonsstart; reparer foreldede squash-SHA-er."""
+    if _finnes(start):
+        return start
+    if _finnes("origin/main"):
+        return _git("rev-parse", "origin/main")
+    return _git("rev-parse", "HEAD")
+
+
 def _hoved() -> int:
     if not os.path.exists(JSON):
         raise SystemExit("changelog.json missing")
@@ -140,19 +158,13 @@ def _hoved() -> int:
         cl = json.load(f)
 
     siste = (cl.get("metadata") or {}).get("last_processed_sha") or ""
-    if siste:
-        # The stored SHA must be reachable — squash merges discard the
-        # pre-squash commits, leaving an invalid revision range. Fall back
-        # to the tip's parent instead of crashing.
-        r = subprocess.run(["git", "merge-base", "--is-ancestor", siste, "HEAD"],
-                           capture_output=True, cwd=REPO, timeout=30)
-        if r.returncode != 0:
-            siste = ""
+    if siste and not _finnes(siste):
+        # Squash merges can discard the recorded SHA. Use the stable remote
+        # main tip rather than inventing a revision range.
+        siste = ""
     if not siste:
-        # Empty or unreachable seed (legacy or interrupted regeneration):
-        # start from the tip's parent so the projection is forward-looking
-        # and deterministic.
-        siste = _git("rev-parse", "HEAD~1")
+        # Empty or unreachable seed: use the canonical repair point.
+        siste = _los_opp_startpunkt(siste)
     commits = _hent_commits(siste)
     if not commits:
         print("changelog_projeksjon: no new commits since last projection")

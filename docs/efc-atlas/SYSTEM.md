@@ -29,7 +29,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 103 nodes, 72 relations.
+9. **The whole atlas** — Everything at once — 103 nodes, 79 relations.
 
 ## Structures
 
@@ -1461,11 +1461,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### EE · efc.efc_background_engine _(not switched on)_
 
-**In one line.** Perspective: paradigm. H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot
+**In one line.** Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)
 
-**What it does.** EFCBackgroundSolver (efc_inference/engine/efc_background.py) — proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a,
+**What it does.** ingen direkte — avledet og loest numerisk — proxy chain: aksjon -> feltligninger -> FRW-bakgrunn
 
-**How it's built.** Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan b. Epistemic: hypotese / ingen / minoritet.
+**How it's built.** Buffer role: F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / ingen / minoritet.
 
 **Steps in execution.**
 
