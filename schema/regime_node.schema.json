@@ -337,6 +337,11 @@
               "type": "string",
               "description": "Enten har noden en motor, ELLER den sier her hvorfor den ikke har det. En instrument-node trenger ingen motor; den skal bare si det.",
               "minLength": 1
+            },
+            "alene_status": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Noden har ingen koblinger til andre noder. Da skal den si HVORFOR her — «alene» er et gyldig svar, et tomt felt er ikke. Maalt 2026-09-18 (t_7dd41524): 13 av 113 noder sto slik."
             }
           },
           "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
