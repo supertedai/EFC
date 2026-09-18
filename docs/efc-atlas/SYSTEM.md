@@ -327,9 +327,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### KI · kosmos.interstellart
 
-**In one line.** arkivobservasjoner — instrumentbårne rådata fra romteleskoper · perspektiv: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspektiv: consensus
 
-**What it does.** romteleskopene hvis observasjoner arkiveres; emnet bærer observasjonen, ikke instrumentet — proxy chain: fotoner inn -> kalibrert og arkivert observasjon -> andel per domene
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
 **How it's built.** Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 
@@ -397,9 +397,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### RF · kosmos.romfart
 
-**In one line.** oppskytingsdata — planlagte, oppskutte og oppgjorte oppskytninger · perspektiv: consensus
+**In one line.** launch data — planned, flown and settled launches · perspektiv: consensus
 
-**What it does.** oppskytingsaktørenes egne annonseringer, samlet i én katalog — proxy chain: annonsert manifest -> oppskytingshendelse -> andel per domene
+**What it does.** the operators' own announcements, collected into one catalogue — proxy chain: announced manifest -> launch event -> share per domain
 
 **How it's built.** Buffer role: Launch Library er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 
@@ -411,9 +411,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### ST · kosmos.stjerner
 
-**In one line.** arkivobservasjoner — instrumentbårne rådata fra romteleskoper · perspektiv: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspektiv: consensus
 
-**What it does.** romteleskopene hvis observasjoner arkiveres; emnet bærer observasjonen, ikke instrumentet — proxy chain: fotoner inn -> kalibrert og arkivert observasjon -> andel per domene
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
 **How it's built.** Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 

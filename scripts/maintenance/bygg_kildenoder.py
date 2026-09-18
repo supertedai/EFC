@@ -8,25 +8,32 @@ Hvert domene er likevel et domene og skal eie sin node. Forskjellen fra
 tidligere forsøk: nodene bygges fra de MALTE tallene i
 schema/atlas_dekning.json — meldingstall, emner, lag — ikke fra prosa.
 
-## Kilden kan ikke gjettes (rettet 2026-09-18)
+## The source cannot be guessed (corrected 2026-09-18)
 
-Oppslaget her hadde en fallback: sto ikke emneleddet i `KILDE`, svarte den
-GDELT. Maalt konsekvens: kosmos.interstellart, kosmos.stjerner og
-kosmos.romfart sa `measure.measurer = «GDELT-prosjektet»` mens domenene
-deres bærer `observasjon.mast-caom` og `launch-library` og NULL
-GDELT-meldinger — og påstanden sto i det publiserte atlaset. Se
-`kilde_for()`: ukjent kilde er nå en `KildeFeil`, og de tre nodene er
-rettet med `--rett`, som beholder feltene mennesker har skrevet.
+The lookup here had a fallback: if the subject segment was not in `KILDE`,
+it answered GDELT. Measured consequence: kosmos.interstellart,
+kosmos.stjerner and kosmos.romfart said `measure.measurer = "the GDELT
+project"` while their domains carry `observasjon.mast-caom` and
+`launch-library` and NULL GDELT messages -- and the claim stood in the
+published atlas. See `kilde_for()`: an unknown source is now a `KildeFeil`,
+and the three nodes are corrected with `--rett`, which keeps the fields
+humans have written.
 
-Kildenoden skriver også `buss_domene`, og `lagdeling.kilde.kilde` er det
-ENESTE feltet `tests/test_atlas_kilder.py` leser navnet fra. Et felt ingen
-test leser kan bære hva som helst; dette kan ikke.
+The source node also writes `buss_domene`, and `lagdeling.kilde.kilde` is the
+ONLY field `tests/test_atlas_kilder.py` reads the name from. A field no test
+reads can carry anything; this one cannot.
 
-`verden.politikk` er unntaket: den er BÆREREN for GDELT-lagene, og om den
-skal være offentlig eller intern er Mortens beslutning. Den bygges som
-intern inntil videre, og sier det selv. MERK: koden under skriver
-`offentlig` for alle byggede noder, også denne — docstringen og koden sier
-altså to ulike ting, og motsigelsen er navngitt her, ikke avgjort i koden.
+Language: English only in the prose that this change adds, per the repo-wide
+language gate (`scripts/maintenance/efc_spraakvakt.py`). The `KILDE` entries
+written before this change keep their recorded Norwegian debt; the two added
+here are English, and so are the three nodes they generate.
+
+`verden.politikk` is the exception: it is the CARRIER of the GDELT layers, and
+whether it should be public or internal is Morten's decision. It is built as
+internal until further notice, and says so itself. NOTE: the code below writes
+`offentlig` for every built node, this one included -- so the docstring and the
+code say two different things, and the contradiction is named here, not decided
+in the code.
 """
 import argparse
 import json
@@ -119,36 +126,38 @@ KILDE = {
         "fractal": "hvert land er hele arbeidsmarkedet i miniatyr — samme indikatorer, ulik struktur",
         "proxy": ["nasjonal statistikk", "harmonisering", "indikator"],
     },
-    # De to leddene under er skrevet inn 2026-09-18, av feilen denne filen
-    # feller: kosmos.interstellart, kosmos.stjerner og kosmos.romfart PEKTE
-    # paa GDELT fordi oppslaget hadde en fallback. Kilden deres er MAST/CAOM
-    # og Launch Library — og de staar her fordi de maa stå ET STED for at en
-    # generator skal kunne navngi dem uten aa gjette.
+    # The two entries below were written in 2026-09-18, out of the fault this
+    # file convicts: kosmos.interstellart, kosmos.stjerner and kosmos.romfart
+    # POINTED at GDELT because the lookup had a fallback. Their source is
+    # MAST/CAOM and Launch Library -- and they stand here because a source has
+    # to stand SOMEWHERE for a generator to be able to name it without
+    # guessing. English, because the language gate fails on Norwegian added
+    # under scripts/.
     "mast-caom": {
         "navn": "MAST/CAOM",
-        "hva": "arkivobservasjoner — instrumentbårne rådata fra romteleskoper",
-        "hvem": "MAST/CAOM — arkivet, ikke teleskopet",
-        "instrument": "romteleskopene hvis observasjoner arkiveres; emnet bærer observasjonen, ikke instrumentet",
+        "hva": "archival observations — instrument-borne raw data from space telescopes",
+        "hvem": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "perspektiv": "konsensus",
         "sannhet": "stottet",
         "konsensus": "institusjonell",
         "evidens": "direkte",
-        "loop": "deteksjon -> kalibrering -> arkivering -> uttrekk per domene -> ny deteksjon",
-        "fractal": "hvert domene er hele arkivet sett gjennom én seleksjon — samme korpus, ulik andel",
-        "proxy": ["fotoner inn", "kalibrert og arkivert observasjon", "andel per domene"],
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
+        "fractal": "each domain is the whole archive seen through one selection — same corpus, different share",
+        "proxy": ["photons in", "calibrated and archived observation", "share per domain"],
     },
     "launch-library": {
         "navn": "Launch Library",
-        "hva": "oppskytingsdata — planlagte, oppskutte og oppgjorte oppskytninger",
-        "hvem": "Launch Library — den aggregerte oppskytingskatalogen, ikke oppskytingsaktøren",
-        "instrument": "oppskytingsaktørenes egne annonseringer, samlet i én katalog",
+        "hva": "launch data — planned, flown and settled launches",
+        "hvem": "Launch Library — the aggregated launch catalogue, not the launch operator",
+        "instrument": "the operators' own announcements, collected into one catalogue",
         "perspektiv": "konsensus",
         "sannhet": "stottet",
         "konsensus": "institusjonell",
         "evidens": "direkte",
-        "loop": "annonsert oppskytning -> oppskytning -> oppgjort utfall -> neste annonsering",
-        "fractal": "hver oppskytning er hele manifestet i miniatyr — samme aktører, ulik bane",
-        "proxy": ["annonsert manifest", "oppskytingshendelse", "andel per domene"],
+        "loop": "announced launch -> launch -> settled outcome -> next announcement",
+        "fractal": "each launch is the whole manifest in miniature — same operators, different orbit",
+        "proxy": ["announced manifest", "launch event", "share per domain"],
     },
 }
 
@@ -156,10 +165,10 @@ KILDE = {
 LAG = {"observasjon": "tilstand", "diskusjon": "diskusjon", "hendelse": "hendelse",
        "prediksjon": "prediksjon", "tilstand": "tilstand"}
 
-#: Feltene som er skrevet for haand ETTER at noden ble bygget. Rettingen
-#: nedenfor rører dem ikke: den erstatter kildens navn i prosaen, ikke
-#: menneskets svar. Maalt 2026-09-18: 27 noder bærer disse feltene, og ingen
-#: av dem kommer fra `node_for()`.
+#: The fields written by hand AFTER the node was built. The repair below does
+#: not touch them: it replaces the source's name in the prose, not the human
+#: answer. Measured 2026-09-18: 27 nodes carry these fields, and none of them
+#: comes from `node_for()`.
 BEVART: set[tuple[str, ...]] = {
     ("ontology", "proveniens"),
     ("epistemikk", "sosial_mekanisme"),
@@ -170,46 +179,49 @@ BEVART: set[tuple[str, ...]] = {
 
 
 class KildeFeil(RuntimeError):
-    """Kilden kunne ikke bestemmes. Aldri et gjettet navn."""
+    """The source could not be determined. Never a guessed name."""
 
 
 def kilde_for(emner: list[str]) -> str:
-    """Kildeleddet domenets egne emner bærer — eller en feil, aldri et gjett.
+    """The source segment the domain's own subjects carry -- or a fault, never
+    a guess.
 
-    Emnet har formen `<rot>.<domene>.<lag>.<kilde>`, og det siste leddet ER
-    kilden (docs/nats-koblingskart.md, docs/efc-atlas/SYSTEM.md). Maalt
-    2026-09-18: oppslaget her hadde en fallback til GDELT, og tre noder —
-    kosmos.interstellart, kosmos.stjerner, kosmos.romfart — fikk derfor
-    navnet på en kilde de ikke leser, mens domenene deres bærer
-    `observasjon.mast-caom` og `launch-library` og null GDELT-meldinger.
+    The subject has the form `<root>.<domain>.<layer>.<source>`, and the last
+    segment IS the source (docs/nats-koblingskart.md). Measured 2026-09-18: the
+    lookup here had a fallback to GDELT, and three nodes -- kosmos.interstellart,
+    kosmos.stjerner, kosmos.romfart -- therefore got the name of a source they
+    do not read, while their domains carry `observasjon.mast-caom` and
+    `launch-library` and null GDELT messages.
 
-    Et svar som alltid finnes, er ikke et svar. Denne funksjonen svarer bare
-    når målingen bærer svaret, og sier hva som mangler ellers.
+    An answer that always exists is not an answer. This function answers only
+    when the measurement carries the answer, and says what is missing otherwise.
     """
     ledd = sorted({str(e).split(".")[-1] for e in emner})
     if not ledd:
         raise KildeFeil(
-            "domenet bærer ingen emner — kilden kan ikke leses fra målingen")
+            "the domain carries no subjects -- the source cannot be read from "
+            "the measurement")
     if len(ledd) > 1:
         raise KildeFeil(
-            f"domenet bærer {len(ledd)} kildeledd ({', '.join(ledd)}); én "
-            f"node kan bare navngi ÉN kilde. Del domenet opp, eller skriv "
-            f"noden for hånd — den skal ikke velge blant dem selv.")
+            f"the domain carries {len(ledd)} source segments "
+            f"({', '.join(ledd)}); one node can only name ONE source. Split the "
+            f"domain, or write the node by hand -- it must not choose among them "
+            f"itself.")
     kilde = ledd[0]
     if kilde not in KILDE:
         raise KildeFeil(
-            f"kildeleddet «{kilde}» står ikke i KILDE. Skriv kilden inn med "
-            f"hvem som måler, med hvilket instrument og med hvilken "
-            f"proxy-kjede — eller la noden stå ubygd. Et gjettet kildenavn er "
-            f"en påstand om en kilde noden ikke leser.")
+            f"the source segment \"{kilde}\" does not stand in KILDE. Write the "
+            f"source in with who measures, with which instrument and with which "
+            f"proxy chain -- or leave the node unbuilt. A guessed source name is "
+            f"a claim about a source the node does not read.")
     return kilde
 
 
 def node_for(domene: str, v: dict) -> dict:
-    """Bygg EN node fra de MALTE tallene — ikke fra prosa om dem."""
+    """Build ONE node from the MEASURED numbers -- not from prose about them."""
     emner = v.get("emner") or []
     meldinger = v.get("meldinger", 0)
-    # kilden: det siste leddet i emnene — eller en feil, aldri et gjett
+    # the source: the last segment of the subjects -- or a fault, never a guess
     kilde = kilde_for(emner)
     k = KILDE[kilde]
     lag = LAG.get(str(emner[0]).split(".")[0] if emner else "", "tilstand")
@@ -296,13 +308,14 @@ def node_for(domene: str, v: dict) -> dict:
 
 
 def rett(gammel: dict, ny: dict, sti: tuple[str, ...] = ()) -> dict:
-    """`node_for()` sine verdier over den gamle noden — de skrevne feltene står.
+    """`node_for()`'s values over the old node -- the written fields stand.
 
-    Rettingen finnes fordi feilen den retter var usynlig i dataene: nodene
-    bygget med fallbacken sier GDELT i `measure`, `regime`, `buffer` og
-    `lagdeling`, og en omskriving fra bunnen ville slettet det menneskene har
-    svart på i mellomtiden (BEVART). Den rører derfor bare det generatoren
-    selv eier — kildens navn i prosaen — og lar alt annet stå.
+    The repair exists because the fault it repairs was invisible in the data:
+    the nodes built with the fallback say GDELT in `measure`, `regime`, `buffer`
+    and `lagdeling`, and rewriting them from scratch would have deleted what
+    humans have answered in the meantime (BEVART). It therefore touches only
+    what the generator owns -- the source's name in the prose -- and leaves
+    everything else standing.
     """
     ut = dict(gammel)
     for nokkel, verdi in ny.items():
@@ -319,9 +332,9 @@ def rett(gammel: dict, ny: dict, sti: tuple[str, ...] = ()) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--rett", nargs="+", metavar="DOMENE", default=[],
-                    help="bygg disse nodene på nytt fra kildene og behold "
-                         "feltene som er skrevet for hånd (reparerer noder "
-                         "bygget før KildeFeil fantes)")
+                    help="rebuild these nodes from the sources and keep the "
+                         "fields written by hand (repairs nodes built before "
+                         "KildeFeil existed)")
     a = ap.parse_args()
 
     p = Path("schema/regime_nodes.jsonld")
@@ -333,8 +346,9 @@ def main() -> int:
         if n["id"] not in a.rett:
             continue
         if n["id"] not in dek["domener"]:
-            raise KildeFeil(f"«{n['id']}» står ikke i atlas_dekning.json — "
-                            f"kilden kan ikke leses fra målingen")
+            raise KildeFeil(f"\"{n['id']}\" does not stand in "
+                            f"atlas_dekning.json -- the source cannot be read "
+                            f"from the measurement")
         d["nodes"][i] = rett(n, node_for(n["id"], dek["domener"][n["id"]]))
         rettet += 1
 
@@ -343,9 +357,9 @@ def main() -> int:
     nye = [node_for(k, v) for k, v in sorted(ude.items()) if k not in finnes]
     d["nodes"].extend(nye)
     p.write_text(json.dumps(d, **K.FORMAT) + "\n", encoding="utf-8")
-    print(f"la til {len(nye)} noder for {len(ude)} udekkede domener")
-    print(f"rettet {rettet} node(r) fra kildene")
-    print(f"totalt {len(d['nodes'])} noder")
+    print(f"added {len(nye)} nodes for {len(ude)} uncovered domains")
+    print(f"repaired {rettet} node(s) from the sources")
+    print(f"{len(d['nodes'])} nodes in total")
     return 0
 
 

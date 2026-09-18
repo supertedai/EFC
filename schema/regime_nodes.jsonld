@@ -10017,13 +10017,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "arkivobservasjoner — instrumentbårne rådata fra romteleskoper",
-        "measurer": "MAST/CAOM — arkivet, ikke teleskopet",
-        "instrument": "romteleskopene hvis observasjoner arkiveres; emnet bærer observasjonen, ikke instrumentet",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "fotoner inn",
-          "kalibrert og arkivert observasjon",
-          "andel per domene"
+          "photons in",
+          "calibrated and archived observation",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om interstellart -> én andel"
@@ -10058,13 +10058,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "deteksjon -> kalibrering -> arkivering -> uttrekk per domene -> ny deteksjon",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "54 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hvert domene er hele arkivet sett gjennom én seleksjon — samme korpus, ulik andel",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "ett domene, samme korpus"
       },
       "coupling": {
@@ -10592,13 +10592,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "oppskytingsdata — planlagte, oppskutte og oppgjorte oppskytninger",
-        "measurer": "Launch Library — den aggregerte oppskytingskatalogen, ikke oppskytingsaktøren",
-        "instrument": "oppskytingsaktørenes egne annonseringer, samlet i én katalog",
+        "target": "launch data — planned, flown and settled launches",
+        "measurer": "Launch Library — the aggregated launch catalogue, not the launch operator",
+        "instrument": "the operators' own announcements, collected into one catalogue",
         "proxy_chain": [
-          "annonsert manifest",
-          "oppskytingshendelse",
-          "andel per domene"
+          "announced manifest",
+          "launch event",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om romfart -> én andel"
@@ -10633,13 +10633,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "annonsert oppskytning -> oppskytning -> oppgjort utfall -> neste annonsering",
+        "loop": "announced launch -> launch -> settled outcome -> next announcement",
         "properties": [
           "194 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hver oppskytning er hele manifestet i miniatyr — samme aktører, ulik bane",
+        "pattern": "each launch is the whole manifest in miniature — same operators, different orbit",
         "note": "ett domene, samme korpus"
       },
       "coupling": {
@@ -10707,13 +10707,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "arkivobservasjoner — instrumentbårne rådata fra romteleskoper",
-        "measurer": "MAST/CAOM — arkivet, ikke teleskopet",
-        "instrument": "romteleskopene hvis observasjoner arkiveres; emnet bærer observasjonen, ikke instrumentet",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "fotoner inn",
-          "kalibrert og arkivert observasjon",
-          "andel per domene"
+          "photons in",
+          "calibrated and archived observation",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om stjerner -> én andel"
@@ -10748,13 +10748,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "deteksjon -> kalibrering -> arkivering -> uttrekk per domene -> ny deteksjon",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "26 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hvert domene er hele arkivet sett gjennom én seleksjon — samme korpus, ulik andel",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "ett domene, samme korpus"
       },
       "coupling": {

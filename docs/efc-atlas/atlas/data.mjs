@@ -3350,8 +3350,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "arkivobservasjoner \u2014 instrumentb\u00e5rne r\u00e5data fra romteleskoper \u00b7 perspektiv: consensus",
-    "what": "romteleskopene hvis observasjoner arkiveres; emnet b\u00e6rer observasjonen, ikke instrumentet \u2014 proxy chain: fotoner inn -> kalibrert og arkivert observasjon -> andel per domene",
+    "one": "archival observations \u2014 instrument-borne raw data from space\u2026 \u00b7 perspektiv: consensus",
+    "what": "the space telescopes whose observations are archived; the subject carries the observation\u2026 \u2014 proxy chain: photons in -> calibrated and archived observation -> share per domain",
     "how": "Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3545,8 +3545,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "oppskytingsdata \u2014 planlagte, oppskutte og oppgjorte oppskytninger \u00b7 perspektiv: consensus",
-    "what": "oppskytingsakt\u00f8renes egne annonseringer, samlet i \u00e9n katalog \u2014 proxy chain: annonsert manifest -> oppskytingshendelse -> andel per domene",
+    "one": "launch data \u2014 planned, flown and settled launches \u00b7 perspektiv: consensus",
+    "what": "the operators' own announcements, collected into one catalogue \u2014 proxy chain: announced manifest -> launch event -> share per domain",
     "how": "Buffer role: Launch Library er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3584,8 +3584,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "arkivobservasjoner \u2014 instrumentb\u00e5rne r\u00e5data fra romteleskoper \u00b7 perspektiv: consensus",
-    "what": "romteleskopene hvis observasjoner arkiveres; emnet b\u00e6rer observasjonen, ikke instrumentet \u2014 proxy chain: fotoner inn -> kalibrert og arkivert observasjon -> andel per domene",
+    "one": "archival observations \u2014 instrument-borne raw data from space\u2026 \u00b7 perspektiv: consensus",
+    "what": "the space telescopes whose observations are archived; the subject carries the observation\u2026 \u2014 proxy chain: photons in -> calibrated and archived observation -> share per domain",
     "how": "Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,

@@ -1,43 +1,48 @@
-"""Kildeaksen: en kilde som rutes inn i mange domener skal ikke kunne være usynlig.
+"""The source axis: a source routed into many domains cannot stay invisible.
 
-FUNNET som gjorde denne testen nødvendig (2026-09-18). Domeneaksen
-(`test_atlas_dekning.py`) maaler eierskap per BUSSDOMENE. Maalt mot
-origin/main etter at alle 39 domener hadde faatt sin node:
+THE FINDING that made this test necessary (2026-09-18). The domain axis
+(`test_atlas_dekning.py`) measures ownership per BUS DOMAIN. Measured against
+origin/main after all 39 domains had been given their node:
 
-    39 av 39 domener dekket.
+    39 of 39 domains covered.
 
-og samtidig, maalt paa den andre aksen:
+and at the same time, on the other axis:
 
-    GDELT GKG    20 domener   30 352 meldinger   14 lesere   0 eiere
-    World Bank   18 domener      302 meldinger    0 lesere   0 eiere
-    MAST/CAOM     6 domener      174 meldinger    0 lesere   0 eiere
+    GDELT GKG    20 domains   30 352 messages   14 readers   0 owners
+    World Bank   18 domains      302 messages    0 readers   0 owners
+    MAST/CAOM     6 domains      174 messages    0 readers   0 owners
 
-Den stoerste kilden paa bussen — 30 352 meldinger, tjue domener — eies av
-ingen. Domeneaksen kunne ikke se det: hvert domene har sin node, hver node
-staar som `dekket`, og kilden de alle LESER finnes ikke i kartet som noe
-annet enn et felt i hver av dem.
+The largest source on the bus -- 30 352 messages, twenty domains -- is owned by
+nobody. The domain axis could not see it: every domain has its node, every node
+stands as `covered`, and the source they all READ exists in the map as nothing
+but a field inside each of them.
 
-    Et kart som maaler hvor mange steder noe kommer inn, og ikke hvor det
-    kommer fra, teller symptomer.
+    A map that measures how many places something enters, and not where it
+    comes from, is counting symptoms.
 
-## Fire feil denne filen feller
+## Four faults this file convicts
 
-1. En kilde som baerer meldinger uten aa staa i deklarasjonen (stillhet).
-2. En deklarert kilde som ikke lenger baerer noe (raatnende påstand).
-3. En node som navngir en kilde dens EGET bussdomene ikke baerer. Maalt:
-   `kosmos.interstellart`, `kosmos.stjerner` og `kosmos.romfart` hadde
-   `measure.measurer = «GDELT-prosjektet»` mens domenene deres baerer
-   `observasjon.mast-caom` og `launch-library` og NULL GDELT-meldinger.
-   Generatoren hadde en fallback til GDELT der oppslaget skulle sagt fra.
-4. En kilde som bæres av flere domener UTEN eier og UTEN begrunnelse.
+1. A source that carries messages without standing in the declaration (silence).
+2. A declared source that no longer carries anything (a rotting claim).
+3. A node naming a source its OWN bus domain does not carry. Measured:
+   `kosmos.interstellart`, `kosmos.stjerner` and `kosmos.romfart` carried
+   `measure.measurer = "the GDELT project"` while their domains carry
+   `observasjon.mast-caom` and `launch-library` and NULL GDELT messages.
+   The generator had a fallback to GDELT where the lookup should have said no.
+4. A source carried by several domains WITHOUT an owner and WITHOUT a reason.
 
-Terskelen i punkt 4 er ikke valgt: en kilde som bæres av ETT domene eies av
-det domenets node — lesningen ER noden, og det finnes ingen skygge. Baeres
-den av to eller flere, kan ingen enkelt node dekke den, og da maa fravaeret
-av eier stå navngitt.
+The threshold in point 4 is not chosen: a source carried by ONE domain is owned
+by that domain's node -- the reading IS the node, and there is no shadow.
+Carried by two or more, no single node can cover it, and then the absence of an
+owner must stand named.
 
-Listene i deklarasjonen (`lesere`, `domener`, `meldinger`) utledes HER, ikke
-i byggeren: en liste som bare sjekkes mot seg selv roterer i takt med feilen.
+The lists in the declaration (`lesere`, `domener`, `meldinger`) are derived
+HERE, not in the builder: a list checked only against itself rotates in step
+with the fault.
+
+Language: English only, per the repo-wide language gate
+(`scripts/maintenance/efc_spraakvakt.py`), which fails on any Norwegian this
+change adds under `tests/`.
 """
 from __future__ import annotations
 
@@ -62,15 +67,16 @@ def _les(p: Path) -> dict:
 
 
 def _kilde_for_node(n: dict) -> str | None:
-    """Kilden noden SELV skriver — ikke en liste vi har skrevet for den."""
+    """The source the node ITSELF writes -- not a list we wrote for it."""
     return ((n.get("lagdeling") or {}).get("kilde") or {}).get("kilde")
 
 
 def _baert(snapshot: dict) -> dict[str, dict]:
-    """Kildeleddene bussen bærer, med domener og meldinger — utledet av emnene.
+    """The source segments the bus carries, with domains and messages -- derived
+    from the subject names.
 
-    Skaperen av emnenavnene er `docs/nats-koblingskart.md`: emnene har formen
-    `<rot>.<domene>.<lag>.<kilde>`. Det siste leddet ER kilden.
+    The maker of the subject names is `docs/nats-koblingskart.md`: subjects have
+    the form `<root>.<domain>.<layer>.<source>`. The last segment IS the source.
     """
     ut: dict[str, dict] = defaultdict(lambda: {"meldinger": 0, "domener": set()})
     for domene, rad in snapshot["domener"].items():
@@ -91,39 +97,41 @@ class TestKildeaksen(unittest.TestCase):
         self.baert = _baert(self.snapshot)
 
     def test_kilder_seksjonen_finnes(self):
-        """Uten seksjonen er hele aksen en paastand om at noen husker den."""
+        """Without the section the whole axis is a claim that somebody remembers
+        it."""
         self.assertIn("kilder", self.dekning,
-                      "atlas_dekning.json har ingen `kilder`-seksjon — "
-                      "kildeaksen er ikke deklarert")
+                      "schema/atlas_dekning.json has no `kilder` section -- "
+                      "the source axis is not declared at all")
 
     def test_ingen_kilde_baerer_meldinger_uten_aa_staa_i_deklarasjonen(self):
-        """Kjernen, og den samme invarianten som for domenene.
+        """The core, and the same invariant as for the domains.
 
-        Et kildeledd som begynner aa baere meldinger skal felle denne
-        testen inntil noen har tatt stilling til det — ikke gli inn i
-        stillhet fordi domenet den mater alt har en node.
+        A source segment that starts carrying messages must convict this test
+        until somebody has taken a position on it -- not slide into silence
+        because the domain it feeds already has a node.
         """
         udeklarerte = sorted(set(self.baert) - set(self.dekning["kilder"]))
         self.assertEqual(
             udeklarerte, [],
-            f"{len(udeklarerte)} kildeledd baerer meldinger uten aa staa i "
-            f"atlas_dekning.json: {udeklarerte}")
+            f"{len(udeklarerte)} source segments carry messages without "
+            f"standing in atlas_dekning.json: {udeklarerte}")
 
     def test_ingen_deklarert_kilde_har_sluttet_aa_baere(self):
-        """Motsatt vei: en deklarasjon for en stroem som er borte er en
-        påstand om en verden som ikke finnes lenger."""
+        """The other direction: a declaration for a stream that is gone is a
+        claim about a world that no longer exists."""
         doede = sorted(set(self.dekning["kilder"]) - set(self.baert))
         self.assertEqual(doede, [],
-                         f"deklarert for kildeledd som ikke bærer noe: {doede}")
+                         f"declared for source segments that carry nothing: "
+                         f"{doede}")
 
     def test_hver_node_navngir_en_kilde_dens_eget_domene_baerer(self):
-        """Fabriceringsvakten. Maalt 2026-09-18: tre noder navnga GDELT for
-        domener uten en eneste GDELT-melding, fordi generatorens oppslag
-        svarte GDELT naar kilden var ukjent.
+        """The fabrication guard. Measured 2026-09-18: three nodes named GDELT
+        for domains without a single GDELT message, because the generator's
+        lookup answered GDELT when the source was unknown.
 
-        Kravet er maskinelt: kildenoden skriver, maa hoere til et ledd som
-        domenet HUN eier faktisk bærer. Da kan etiketten ikke vaere usann —
-        den kan bare vaere vilkaarlig, og det er en annen sak.
+        The requirement is mechanical: the source node writes must belong to a
+        segment the domain IT owns actually carries. Then the label cannot be
+        false -- it can only be arbitrary, which is another matter.
         """
         navn_til_ledd: dict[str, set[str]] = defaultdict(set)
         for ledd, rad in self.dekning["kilder"].items():
@@ -138,49 +146,51 @@ class TestKildeaksen(unittest.TestCase):
                 continue
             ledd = navn_til_ledd.get(kilde)
             if not ledd:
-                feil.append((n["id"], kilde, domene, "kilden er ikke deklarert"))
+                feil.append((n["id"], kilde, domene, "the source is not declared"))
                 continue
             baerer = any(domene in self.baert.get(l, {}).get("domener", [])
                          for l in ledd)
             if not baerer:
                 feil.append((n["id"], kilde, domene,
-                             "domenet bærer ingen av kildens ledd"))
+                             "the domain carries none of the source's segments"))
         self.assertEqual(
             feil, [],
-            f"{len(feil)} node(r) navngir en kilde de ikke leser:\n  " +
-            "\n  ".join(f"{i} sier «{k}», domenet {d} — {h}" for i, k, d, h in feil))
+            f"{len(feil)} node(s) name a source they do not read:\n  " +
+            "\n  ".join(f"{i} says \"{k}\", the domain {d} -- {h}"
+                        for i, k, d, h in feil))
 
     def test_leserlisten_er_utledet_av_nodenes_eget_felt(self):
-        """Samme krav som `noder`-listene i domeneaksen: en liste som er
-        skrevet for haand kan utelate en node uten at noe ser det."""
+        """The same requirement as the `noder` lists of the domain axis: a list
+        written by hand can omit a node without anything seeing it."""
         for ledd, rad in self.dekning["kilder"].items():
             navn = rad.get("navn")
             maalt = sorted(n["id"] for n in self.noder
                            if navn and _kilde_for_node(n) == navn)
             self.assertEqual(
                 sorted(rad.get("lesere") or []), maalt,
-                f"{ledd}: deklarasjonen sier leserne {rad.get('lesere')}, "
-                f"banken sier {maalt}")
+                f"{ledd}: the declaration says the readers "
+                f"{rad.get('lesere')}, the bank says {maalt}")
 
     def test_domenene_og_volumet_er_utledet_av_maalingen(self):
-        """Begge veier: en kilde kan ikke tilskrives et domene den ikke
-        mater, og et domene den mater kan ikke utelates."""
+        """Both directions: a source cannot be attributed to a domain it does
+        not feed, and a domain it feeds cannot be left out."""
         for ledd, rad in self.dekning["kilder"].items():
-            self.assertIn(ledd, self.baert, f"{ledd} bærer ikke meldinger")
+            self.assertIn(ledd, self.baert, f"{ledd} carries no messages")
             maalt = self.baert[ledd]
             self.assertEqual(sorted(rad.get("domener") or []), maalt["domener"],
-                             f"{ledd}: deklarasjonen sier {rad.get('domener')}, "
-                             f"maalingen sier {maalt['domener']}")
+                             f"{ledd}: the declaration says {rad.get('domener')}, "
+                             f"the measurement says {maalt['domener']}")
             self.assertEqual(rad.get("meldinger"), maalt["meldinger"],
-                             f"{ledd}: deklarasjonen sier {rad.get('meldinger')} "
-                             f"meldinger, maalingen sier {maalt['meldinger']}")
+                             f"{ledd}: the declaration says "
+                             f"{rad.get('meldinger')} messages, the measurement "
+                             f"says {maalt['meldinger']}")
 
     def test_en_delt_kilde_uten_eier_maa_baere_grunnen_sin(self):
-        """Et fravaer av eier skal staa navngitt, ikke vaere stille.
+        """An absence of an owner must stand named, not be silent.
 
-        Terskelen er ikke valgt: baeres kilden av ett domene, eies den av
-        det domenets node. Baeres den av flere, kan ingen enkelt node dekke
-        den — og da er stillheten feilen.
+        The threshold is not chosen: carried by one domain, the source is owned
+        by that domain's node. Carried by several, no single node can cover it
+        -- and then the silence is the fault.
         """
         mangler = []
         for ledd, rad in self.dekning["kilder"].items():
@@ -191,47 +201,51 @@ class TestKildeaksen(unittest.TestCase):
                     mangler.append(ledd)
         self.assertEqual(
             mangler, [],
-            f"{len(mangler)} kildeledd bæres av flere domener og har hverken "
-            f"eier eller begrunnelse: {mangler}")
+            f"{len(mangler)} source segments are carried by several domains and "
+            f"have neither an owner nor a reason: {mangler}")
 
     def test_eid_status_kreve_en_eier_som_navngir_kilden(self):
-        """«eid» skal bety at en node ER kilden — ikke at noen nevner den."""
+        """`eid` must mean that a node IS the source -- not that somebody
+        mentions it."""
         bank = {n["id"]: n for n in self.noder}
         for ledd, rad in self.dekning["kilder"].items():
             eiere = list(rad.get("eiere") or [])
             if rad.get("status") == "eid":
-                self.assertTrue(eiere, f"{ledd} er «eid» uten eier")
+                self.assertTrue(eiere, f"{ledd} is `eid` without an owner")
             else:
                 self.assertEqual(eiere, [],
-                                 f"{ledd} navngir eiere {eiere} uten status «eid»")
+                                 f"{ledd} names the owners {eiere} without "
+                                 f"status `eid`")
             for e in eiere:
-                self.assertIn(e, bank, f"{ledd}: eieren «{e}» finnes ikke")
+                self.assertIn(e, bank, f"{ledd}: the owner \"{e}\" does not exist")
                 self.assertEqual(_kilde_for_node(bank[e]), rad.get("navn"),
-                                 f"{ledd}: eieren «{e}» navngir ikke kilden")
+                                 f"{ledd}: the owner \"{e}\" does not name the "
+                                 f"source")
 
     def test_aksen_er_ikke_tom(self):
-        """En test som ikke kan felle noe beviser ingenting. Denne sier at
-        kildeaksen faktisk baerer de to formene den ble bygget for: en kilde
-        med flere lesere, og en kilde som bæres av flere domener."""
+        """A test that cannot convict anything proves nothing. This one says the
+        source axis actually carries the two shapes it was built for: a source
+        with several readers, and a source carried by several domains."""
         lesere = sum(1 for rad in self.dekning["kilder"].values()
                      if rad.get("lesere"))
         brede = sum(1 for ledd in self.dekning["kilder"]
                     if len(self.baert.get(ledd, {}).get("domener", [])) > 1)
-        self.assertGreater(lesere, 0, "ingen node navngir noen kilde — "
-                                      "koblingen mellom bank og kilde er borte")
-        self.assertGreater(brede, 0, "ingen kilde bæres av flere domener — "
-                                     "da maaler aksen ingenting")
+        self.assertGreater(lesere, 0, "no node names any source -- the link "
+                                      "between bank and source is gone")
+        self.assertGreater(brede, 0, "no source is carried by several domains -- "
+                                     "then the axis measures nothing")
 
     def test_sjekken_i_verktoyet_og_testen_er_enede(self):
-        """`atlas_kilder.py --sjekk` er den kjoerbare inngangen; testene over
-        er de som feller. Sier de to ulike ting, er en av dem feil."""
+        """`atlas_kilder.py --sjekk` is the runnable entry; the tests above are
+        the ones that convict. If the two say different things, one of them is
+        wrong."""
         self.assertEqual(ak.avvik({"snapshot": self.snapshot,
                                    "dekning": self.dekning,
                                    "noder": {"nodes": self.noder}}), [])
 
     def test_generatoren_gjetter_ikke_paa_kilden(self):
-        """Fallbacken som fabrikkerte tre kilder. `KILDE.get(ledd, GDELT)`
-        svarte i stedet for aa si fra. Den skal ikke kunne svare igjen."""
+        """The fallback that fabricated three sources. A source lookup answered
+        GDELT instead of saying no. It must not be able to answer again."""
         sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
         sys.modules.pop("bygg_kildenoder", None)
         import bygg_kildenoder as bk  # noqa: E402
@@ -239,14 +253,14 @@ class TestKildeaksen(unittest.TestCase):
             bk.kilde_for(["observasjon.finnes_ikke"])
         with self.assertRaises(bk.KildeFeil):
             bk.kilde_for([])
-        # og tripwiren mot selve oppslaget: navnet paa den gamle
-        # fallbacken skal ikke kunne staa i en kilde-oppslag igjen.
+        # and the tripwire against the lookup itself: the name of the old
+        # fallback must not be able to stand inside a source lookup again.
         kilde = GENERATOR.read_text(encoding="utf-8")
         kodelinjer = "\n".join(
             l for l in kilde.splitlines()
             if "KILDE.get(" in l and not l.strip().startswith("#"))
-        self.assertEqual(kodelinjer, "", "generatoren har et kilde-oppslag "
-                                        f"med fallback igjen: {kodelinjer!r}")
+        self.assertEqual(kodelinjer, "", "the generator has a source lookup "
+                                         f"with a fallback again: {kodelinjer!r}")
 
 
 if __name__ == "__main__":
