@@ -1,4 +1,4 @@
-"""Ekte CLI-tester for atlasets retain-inngang."""
+"""Real CLI tests for the atlas retain intake."""
 from __future__ import annotations
 
 import json
@@ -16,8 +16,8 @@ def kjør_inntak(tmp_path: Path, tekst: str, kilde: str) -> subprocess.Completed
     """Run the real CLI against an isolated intake area."""
     data = tmp_path / "data"
     data.mkdir(exist_ok=True)
-    # CLI-en bruker repoets data/inntak; testens repo er derfor en kopi av
-    # bare inntaksomraadet via miljøvariabelen i den offentlige funksjonen.
+    # The CLI uses the repo data/inntak; the test repo is therefore a copy
+    # of the intake area alone, through the public function environment.
     return subprocess.run(
         [PYTHON, str(CLI), str(REPO), "--ref", "HEAD", "--innta", tekst,
          "--kilde", kilde, "--inntak-fil", str(data / "atlas_fragmenter.jsonl")],
