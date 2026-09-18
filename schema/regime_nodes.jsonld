@@ -100,7 +100,8 @@
     "tidsskala": "ps (gittervibrasjon)",
     "lengdeskala": "Å (krystall)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert fysikk (IAPWS-95 / R14-08): noden beskriver is Ih som standardens område, ikke en påstand fra oss. Det som kunne felle den — en målt fasegrense utenfor oppgitt usikkerhet — er allerede ført på efc.water_phase_engine. Å gjenta den her ville telt samme observasjon to ganger."
   },
   {
    "id": "h2o.liquid",
@@ -188,7 +189,8 @@
     "tidsskala": "ps (H-bindinger)",
     "lengdeskala": "Å (molekylklynge)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert fysikk (IAPWS-95): «væske» er standardens område mellom smelte- og dampkurven, ikke en EFC-hypotese. En observasjon feller ikke noden, den måler den; et avvik fra standarden hører hjemme på efc.water_phase_engine, som alt bærer det."
   },
   {
    "id": "h2o.gas",
@@ -276,7 +278,8 @@
     "tidsskala": "ps (kollisjoner)",
     "lengdeskala": "nm (fri bane)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert fysikk (IAPWS-95): vanndamp er området under dampkurven, og grensen der den slutter å være «sikkert gass» er standardens egen. Noden bærer ingen EFC-spesifikk påstand en observasjon kan felle; et avvik ville revidert referansen eller målingen."
   },
   {
    "id": "h2o.supercritical",
@@ -363,7 +366,8 @@
     "tidsskala": "ps",
     "lengdeskala": "nm"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert fysikk (IAPWS, kritisk punkt 647.096 K / 22.064 MPa): tilstanden over kritisk punkt er en deklarert leseramme, ikke en hypotese. Ingen observasjon feller den — fasegrensen er borte per definisjon, og verdiene er standardens."
   },
   {
    "id": "h2o.triple_point",
@@ -452,7 +456,8 @@
     "tidsskala": "ps",
     "lengdeskala": "Å"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert fysikk (IAPWS-95 / ITS-90): triple punktet er skalaens referansepunkt, ikke vår påstand. Det felles av at en kalibrering bommer på cellen — og det er en feil i instrumentkjeden, ikke en observasjon som feller rammen."
   },
   {
    "id": "lys.sol",
@@ -540,7 +545,8 @@
     "tidsskala": "—",
     "lengdeskala": "nm (bølgelengde)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Observasjon av kilden selv: solspekteret er inngangsdata for regnbuen, ikke en påstand fra oss. Et annet spektrum ville endret modellen vår — men da er det observasjonen som er revidert, ikke noden felt."
   },
   {
    "id": "h2o.droplet",
@@ -628,7 +634,8 @@
     "tidsskala": "ms (dråpedynamikk)",
     "lengdeskala": "mm (dråpe)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert optikk og fluiddynamikk: dråpen er objektet regnbueoptikken forutsetter, ikke en EFC-påstand. Den kan feilkalibreres og måles på nytt, men den kan ikke felles av en observasjon — den ER det som observeres."
   },
   {
    "id": "optikk.dispersjon",
@@ -715,7 +722,8 @@
     "tidsskala": "ns (lysets gang)",
     "lengdeskala": "mm (dråpe)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert optikk (NIST): n(λ) for vann er referanseverdier, ikke vår hypotese. Noden felles av at en måling faller utenfor oppgitt n — og da er det referansen eller målingen som revideres, ikke rammen."
   },
   {
    "id": "regnbue",
@@ -803,7 +811,8 @@
     "tidsskala": "—",
     "lengdeskala": "m (bue)"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert optikk: buen er en geometrisk konsekvens av brytning i sfæriske dråper (~42°, sekundærbue ~50-51° med omvendt fargerekkefølge). At den finnes er ikke en hypotese vi kan felle; vår bruk av den som emergence-eksempel felles av disanalogien, ikke av vær og sol."
   },
   {
    "id": "regnbue.observator",
@@ -890,7 +899,8 @@
     "tidsskala": "—",
     "lengdeskala": "posisjon"
    },
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert sansefysiologi: øyets vindu (400-700 nm) og anti-solar-geometrien er målt, ikke antatt. Noden bærer ingen EFC-spesifikk påstand — den bærer observatørens plass i systemet, og den plassen er en forutsetning for lesningen."
   },
   {
    "id": "efc.water_phase_engine",
@@ -1422,7 +1432,8 @@
     "lengdeskala": "µm (elektrode)"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "intern"
+   "synlighet": "intern",
+   "ikke_falsifiserbar_grunn": "batteri.celle er en INTERN instrument-node: SOC og SOH leses gjennom spenning, strøm og temperatur (coulomb-telling, OCV etter hvile) — en proxy-kjede, ikke en EFC-påstand. Det den kan felle er lademodellen vår, og da er det modellen som revideres."
   },
   {
    "id": "batteri.lading",
@@ -1512,7 +1523,8 @@
     "lengdeskala": "celle"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "intern"
+   "synlighet": "intern",
+   "ikke_falsifiserbar_grunn": "batteri.lading er en INTERN node: CC/CV-kneet er en stipulasjon om laderen (strømmen avtar mens spenningen er nær sitt maksimum), ikke en hypotese om verden. Et annet kne ville endret lesningen vår, ikke felt en EFC-påstand."
   },
   {
    "id": "batteri.buffer",
@@ -1603,7 +1615,8 @@
     "lengdeskala": "anlegg"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "intern"
+   "synlighet": "intern",
+   "ikke_falsifiserbar_grunn": "batteri.buffer er en INTERN node: bufferen leses som avstanden mellom produksjon og forbruk, gjennom BMS, VE.Bus, grid-meter og PV-vekselretter. Den er instrumentet i vårt eget anlegg og felles av feilkalibrering — ikke av en observasjon som strider mot rammen."
   },
   {
    "id": "batteri.inverter",
@@ -1693,7 +1706,8 @@
     "lengdeskala": "anlegg"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "intern"
+   "synlighet": "intern",
+   "ikke_falsifiserbar_grunn": "batteri.inverter er en INTERN node: DC↔AC-konverteringen er utstyr med spesifikasjon (50 Hz, 230 V), ikke en hypotese. Den kan slå feil på apparatet eller på sensorene, men den kan ikke felles av en observasjon."
   },
   {
    "id": "obs.bao",
@@ -1783,7 +1797,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "obs.bao er målingen selv: surveyene (DESI, eBOSS, BOSS) leser r_d, og det er denne målingen som bærer motbeviset mot vårt eget regime. En måling felles ikke av en prediksjon; den revideres av kalibrering. Det som kan felles er vår lesning av r_d, og den ligger på efc.l1 og efc.l2."
   },
   {
    "id": "obs.cmb_tt",
@@ -1873,7 +1888,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "CMB-spekteret (Planck) er målingen selv. De akustiske toppene er data, ikke vår hypotese, så noden felles av at spekteret revideres — ikke av en prediksjon fra oss. Vår bruk av toppene står på efc.l1."
   },
   {
    "id": "obs.cmb_lensing",
@@ -1961,7 +1977,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Linsingsrekonstruksjonen (Planck, ACT, SPT) er målingen selv. Et nytt linsingskart ville endret noden, men det er en revisjon av data, ikke falsifikasjon av en påstand. Vår lesning av L2-struktur ligger på efc.l2."
   },
   {
    "id": "obs.bbn",
@@ -2048,7 +2065,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "D/H-forholdet (quasar-spektroskopi) er målingen selv. BBN er ikke vår modell: noden felles av en revidert baryontetthet ω_b h², ikke av en prediksjon fra oss. Fasekjedens krav til L0 står på efc.l0."
   },
   {
    "id": "obs.fsigma8",
@@ -2136,7 +2154,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Vekstraten fσ8 (BOSS, eBOSS, DESI) er målingen selv — den er den forseglede prediksjonens dommer, ikke vår påstand. Noden kan ikke felles av det den feller: EFCs eget krav ligger på regime-nodene, ikke her."
   },
   {
    "id": "obs.s8",
@@ -2224,7 +2243,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "S8-tensionen (KiDS, DES, HSC, Euclid) er målingen selv. Spenningen står mellom to målekanaler og er ingen EFC-påstand; noden felles av nye data eller av en felles analyse, ikke av en prediksjon fra oss."
   },
   {
    "id": "obs.eg",
@@ -2311,7 +2331,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "E_G-krysset (SDSS, KiDS+BOSS) er målingen selv, og det tester om lys og masse bøyer likt (Φ = Ψ). Noden er altså en test — den kan ikke felles av sin egen test, bare erstattes av en bedre kalibrering."
   },
   {
    "id": "obs.isw",
@@ -2397,7 +2418,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "ISW-signalet (CMB × galaksekart) er målingen selv. Krysset er svakt og var lenge omstridt; noden felles av at signalet forsvinner i dataene, ikke av en modellprediksjon fra oss."
   },
   {
    "id": "obs.ksz",
@@ -2484,7 +2506,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "kSZ-signalet (ACT, DES × SPT) er målingen selv — den eneste direkte hastighetsmålingen av L2-struktur. Den felles av kalibrering og av flere uavhengige instrumenter, ikke av en prediksjon."
   },
   {
    "id": "obs.cluster_mass",
@@ -2573,7 +2596,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.hoper",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Klyngemassen M_500 (Chandra, XMM, HST) er målingen selv. Skaleringsrelasjonene er kildens, ikke våre: en revidert kalibrering endrer noden uten å felle noen EFC-påstand."
   },
   {
    "id": "obs.cluster_hmf",
@@ -2661,7 +2685,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.hoper",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Halomassetettheten N(M,z) (DES, SDSS, eROSITA) er målingen selv. Tellingen felles av seleksjon og masse-kalibrering, ikke av en prediksjon fra oss; vår lesning av veksten ligger på efc.l2."
   },
   {
    "id": "obs.rar",
@@ -2749,7 +2774,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "RAR (SPARC) er målingen selv: galakseskalaens tetteste lovmessighet. Den er MOND-debattens data, ikke vår påstand — en observasjon kan ikke felle sin egen lovmessighet, bare måles på nytt."
   },
   {
    "id": "obs.bullet",
@@ -2835,7 +2861,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Bullet-klyngen (HST + Chandra) er målingen selv. Offseten mellom gass og masse er en direkte kollisjonsavlesning; den felles av en revidert masse-kartlegging, ikke av en prediksjon fra oss."
   },
   {
    "id": "obs.satellites",
@@ -2923,7 +2950,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.satellitter",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Satellitt-tellingen (HST + simuleringer) er målingen selv. TBTF/core-cusp er en spenning mellom simulering og observasjon — begge sider kan revideres, og ingen av dem er en EFC-påstand."
   },
   {
    "id": "obs.jwst_ems",
@@ -3010,7 +3038,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.galakser",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Massefunksjonen ved z>10 (JWST) er målingen selv. Den tidlige massive strukturen utfordrer kollapsens tidsplan — det er observasjonen som utfordrer, og vår lesning av L2 ligger på efc.l2."
   },
   {
    "id": "obs.gw_ct",
@@ -3096,7 +3125,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "c_T = c innenfor 1e-15 (LIGO/Virgo, GW170817) er målingen selv. Noden skjærer ned modellrommet for L1-teoriene: den er en falsifikator for andres modeller, ikke en påstand som kan felles av en observasjon."
   },
   {
    "id": "obs.pta_gwb",
@@ -3182,7 +3212,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "nHz-bakgrunnen (NANOGrav, EPTA) er målingen selv, og noden deklarerer BEGGE åpne tolkninger av den. En måling som peker på én av dem feller tolkningen, ikke noden som bar dem begge."
   },
   {
    "id": "obs.h0_tension",
@@ -3271,7 +3302,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "H0-spenningen (Planck vs SH0ES) er målingen selv. Gapet er datasett- og analyseavhengig; noden felles av at spenningen forsvinner i en felles analyse, ikke av en prediksjon fra oss."
   },
   {
    "id": "obs.w0wa",
@@ -3359,7 +3391,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "w(z)-parametriseringen (DES, BAO+CMB) er målingen selv og bakgrunnens endestasjonsprobe. Den tester L3 og kan derfor ikke felles av sin egen test — bare av et bedre datasett."
   },
   {
    "id": "obs.cc",
@@ -3447,7 +3480,8 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Vakuumenergien (alle kanaler) er målingen selv. Gapet på ~10^120 mot det naive QFT-estimatet er en spenning i fysikken, ikke en EFC-påstand; noden felles av en revidert måling, ikke av en prediksjon."
   },
   {
    "id": "efc.victron_cccv_engine",
@@ -3536,7 +3570,8 @@
     "lengdeskala": "anlegg"
    },
    "buss_domene": "verden.energi",
-   "synlighet": "intern"
+   "synlighet": "intern",
+   "ikke_falsifiserbar_grunn": "efc.victron_cccv_engine er en INTERN motor-node og leser aldri live-data selv: den definerer CC→CV-kneet i en V/I-tidsserie (dI/dt < -0.1 innenfor 0.05 av maksimal spenning). Kriteriet er en stipulasjon om laderen, ikke en EFC-påstand — derfor ingen falsifikator."
   },
   {
    "id": "efc.rotation_engine",
@@ -3628,7 +3663,8 @@
    "falsifiserbarhet": {
     "status": "terskel_ikke_fastsatt",
     "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om SPARC-rotasjonskurvene lar seg tilpasse like godt uten feltet — eller om den beste tilpasningen krever en K som varierer fra galakse til galakse. En konstant som maa justeres per"
-   }
+   },
+   "ikke_falsifiserbar_grunn": "efc.rotation_engine skylder en terskel, ikke en observasjon: falsifiserbarhet.status er terskel_ikke_fastsatt og kriteriet ligger i klartekst der (SPARC-kurvene må ikke kunne tilpasses like godt uten feltet). Ingen falsifikator før noen har bestemt hvor stort avviket må være."
   },
   {
    "id": "efc.hubble_engine",
@@ -3916,7 +3952,8 @@
    "falsifiserbarhet": {
     "status": "stub",
     "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om linse-kartene lar seg forklare like godt med en massemodell som ikke er en potensialbronn fra feltet — eller om KiDS-1000-tilpasningen forverres naar bakgrunnsmodellen erstattes "
-   }
+   },
+   "ikke_falsifiserbar_grunn": "efc.lensing_engine er en stub: konvergensen κ(θ) er ikke implementert (α_lens = κ_EFC = 0), så motoren beskriver kontrakten og regner ingenting. falsifiserbarhet.status er stub, og kriteriet står i klartekst i grunnen der."
   },
   {
    "id": "efc.cluster_engine",
@@ -4007,7 +4044,8 @@
    "falsifiserbarhet": {
     "status": "stub",
     "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om hopemassene ikke foelger av feltet — eller om Bullet Cluster (der gass og masse er skilt) ikke kan gjengis. Det skillet er den strenge proeven: den krever at feltet henger ved ma"
-   }
+   },
+   "ikke_falsifiserbar_grunn": "efc.cluster_engine er en stub: halomassefunksjonen n(M,z) er ikke implementert (α_cluster = 0), og noden beskriver kontrakten. falsifiserbarhet.status er stub, og Bullet-klyngen-kriteriet ligger klartekst i grunnen der — det flyttes hit når fysikken finnes."
   },
   {
    "id": "homo.fluxus",
@@ -4104,7 +4142,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.fluxus er vår egen ramme (lagdeling.analogi: paradigme, hypotese) og ikke etablert biologi. Den kan ikke felles av en fysiologisk observasjon: hf1–hf5 er krav til hvilke observasjoner rammen skal gjøre, ikke en prediksjon som måles mot dem. Kriteriet som KUNNE felle den — R-terskelen for regimeskiftet — mangler fortsatt en fastsatt terskel."
   },
   {
    "id": "homo.homeostase_buffer",
@@ -4211,7 +4250,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.homeostase_buffer bærer lærebokfysiologien i lagdeling.fysiologi (akademia, støttet, institusjonell): 37 °C, pH og glukose holdes i bånd. En observasjon av kroppen holder den ikke og feller den ikke. EFC-påstanden er analogien i lagdeling.analogi, og en analogi felles av disanalogien."
   },
   {
    "id": "homo.feber_regime",
@@ -4318,7 +4358,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.feber_regime bærer lærebokfysiologien (lagdeling.fysiologi: akademia, støttet) — setpunktet flyttes kontrollert ved infeksjon. Ingen observasjon av feberen feller noden. Det som er vårt er analogien til CC→CV-kneet (lagdeling.analogi), og den felles av disanalogien."
   },
   {
    "id": "homo.aksjonspotensial",
@@ -4425,7 +4466,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.aksjonspotensial er nevrofysiologisk lærebok (lagdeling.fysiologi: akademia, støttet): terskel, depolarisering, repolarisering. Noden felles ikke av en måling av membranpotensialet — bare analogien (lagdeling.analogi) er vår, og den felles av disanalogien."
   },
   {
    "id": "homo.hjerte_syklus",
@@ -4532,7 +4574,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.hjerte_syklus er kardiologisk lærebok (lagdeling.fysiologi: akademia, støttet): fylling og utpressing, sinusknuten som pacemaker. En observasjon av hjertet bekrefter eller korrigerer fysiologien; den feller ikke noden. Analogien er vår og felles av disanalogien."
   },
   {
    "id": "homo.genregulering",
@@ -4621,7 +4664,8 @@
     "lengdeskala": "celle"
    },
    "synlighet": "offentlig",
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.genregulering er etablert cellebiologi (transkripsjonsfaktorer og epigenetiske brytere), og noden beskriver reguleringslogikken selv — ikke en EFC-påstand. En observasjon av uttrykksnivået er nettopp det noden forutsier, så den kan ikke felle den."
   },
   {
    "id": "homo.cellesyklus",
@@ -4728,7 +4772,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.cellesyklus er cellebiologisk lærebok (lagdeling.fysiologi: akademia, støttet): G1/S/G2/M med sjekkpunkter. Observasjoner av syklusen tester fysiologien, ikke rammen vår; det som er vårt er analogien i lagdeling.analogi, og den felles av disanalogien."
   },
   {
    "id": "homo.metabolisme",
@@ -4835,7 +4880,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.metabolisme er biokjemisk lærebok (lagdeling.fysiologi: akademia, støttet): glykolyse, Krebs, elektrontransportkjeden. ATP/ADP-forholdet er målt, ikke antatt. Vår påstand er analogien (lagdeling.analogi) til energiflyten, og den felles av disanalogien."
   },
   {
    "id": "efc.solar_flare_engine",
@@ -5111,7 +5157,8 @@
     "lengdeskala": "vev"
    },
    "synlighet": "offentlig",
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.immunologi er etablert immunologi (terskelstyrt aktivering med hukommelse). Noden beskriver lærebokens mekanisme og bærer ingen EFC-spesifikk påstand; en observasjon av antistofftiter tester fysiologien, ikke rammen, og feller derfor ikke noden."
   },
   {
    "id": "homo.sovn_vaaken",
@@ -5218,7 +5265,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.helse"
+   "buss_domene": "verden.helse",
+   "ikke_falsifiserbar_grunn": "homo.sovn_vaaken er sovnfysiologisk lærebok (lagdeling.fysiologi: akademia, støttet: Borbely, Steriade). Våken/søvn/REM er målt med EEG, ikke antatt. Det som er vårt er analogien til regimeskifte (lagdeling.analogi), og den felles av disanalogien, ikke av en søvnmåling."
   },
   {
    "id": "homo.okologi",
@@ -5307,7 +5355,8 @@
     "lengdeskala": "økosystem"
    },
    "synlighet": "offentlig",
-   "buss_domene": "verden.miljo"
+   "buss_domene": "verden.miljo",
+   "ikke_falsifiserbar_grunn": "homo.okologi er etablert økologi (alternative stabile tilstander og vippepunkter). Noden beskriver overvåkede tilstandsvariabler og bærer ingen EFC-spesifikk påstand: en observasjon av et vippepunkt er data for modellen, ikke en felling av den."
   },
   {
    "id": "homo.evolusjon",
@@ -5414,7 +5463,8 @@
      "konsensus": "minoritet"
     }
    },
-   "buss_domene": "verden.miljo"
+   "buss_domene": "verden.miljo",
+   "ikke_falsifiserbar_grunn": "homo.evolusjon er evolusjonsbiologisk lærebok (lagdeling.fysiologi: akademia, støttet: Darwin, Eldredge/Gould). Stasis og utbrudd er målt i dyp tid. Vår påstand er analogien (lagdeling.analogi), og en analogi felles av disanalogien, ikke av en fossil."
   },
   {
    "id": "efc.mu_kz_engine",
@@ -7179,7 +7229,8 @@
     "lengdeskala": "Å (atomer)"
    },
    "id": "kjemi.periodesystemet",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "Etablert struktur (IUPAC): periodesystemet er konsensus-kjemi, ikke en EFC-avledning. Noden har verken egen motor eller egen påstand, så det finnes ingen observasjon som feller den — bare en revisjon av referansen."
   },
   {
    "regime": {
@@ -7264,7 +7315,8 @@
    },
    "id": "verden.hav",
    "buss_domene": "verden.klima",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "verden.hav er en LESNING av NOAA-stasjonsnettet (havoverflate-temperatur), ikke en måling av havets energi. Noden felles av at stasjonene eller intervallet endres — ikke av en observasjon av havet. Det er ingen EFC-påstand i den som en observasjon kan felle."
   },
   {
    "regime": {
@@ -7348,7 +7400,8 @@
    },
    "id": "verden.biosfaere",
    "buss_domene": "verden.miljo",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "verden.biosfaere er en LESNING av GBIFs taksonomiske søk (artsobservasjons-tellinger), ikke en måling av biosfæren. Fotavtrykket felles av at søket eller taksonomien endres, ikke av en observasjon av artene."
   },
   {
    "regime": {
@@ -7432,7 +7485,8 @@
    },
    "id": "kosmos.jord.vulkan",
    "buss_domene": "kosmos.jord",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "ikke_falsifiserbar_grunn": "kosmos.jord.vulkan er en LESNING av VHP-statuslisten (alertLevel), ikke en måling av vulkanen. Noden er et instrument-vindu som felles av at listen eller konnektoren endres — det er ingen EFC-påstand i den som en observasjon kan felle."
   },
   {
    "id": "verden.vaer",
@@ -7546,7 +7600,8 @@
     "konsensusstatus": "institusjonell",
     "sosial_mekanisme": "MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler",
     "konsensus_er_ikke_sannhet": true
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.vaer er oppgjøret selv: prognose (met-locationforecast-2.0) mot METAR-måling, med avviket lest som tall. Noden kan ikke felles av en observasjon — den ER sammenligningen, og utfallet er dens eget svar."
   },
   {
    "id": "opus.dommekraft",
@@ -7655,7 +7710,8 @@
     "outcome_source": "kanbanstyrer",
     "outcome_time": "2026-09-17T19:56:26Z",
     "settlement_version": "1"
-   }
+   },
+   "ikke_falsifiserbar_grunn": "opus.dommekraft er en INTERN node: handlingsledgeren skriver forventningen før utfallet og måler posten mot sitt eget utfall. Sløyfen er lukket, så en post felles av et manglende utfall — ikke av en observasjon av verden. Noden er instrumentet for vår dømmekraft, ikke en påstand om den."
   },
   {
    "id": "kosmos.asteroider",
@@ -7762,7 +7818,8 @@
     "outcome_source": "jpl-sentry-oppgjoer",
     "outcome_time": "2026-09-14T13:11:39Z",
     "settlement_version": "1"
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.asteroider er en LESNING av JPL Sentry-listen, ikke en måling av risikoen. Noden er oppgjøret mot listen som fasit: revisjonen er dens eget svar, og en revidert bane feller prognosen, ikke noden."
   },
   {
    "id": "efc.efc_background_engine",
@@ -7850,7 +7907,8 @@
    "falsifiserbarhet": {
     "status": "terskel_ikke_fastsatt",
     "grunn": "skal reprodusere LCDM i en grense, og avvike fra den i en annen — men hvilken grense, og hvor mye avvik som teller, er IKKE fastsatt i noden. Foerste skritt er aa navngi grensetilfellet mot efc.hubble_engine"
-   }
+   },
+   "ikke_falsifiserbar_grunn": "efc.efc_background_engine skylder en terskel: falsifiserbarhet.status er terskel_ikke_fastsatt — grensetilfellet mot LCDM er ikke navngitt, og hvor mye avvik som teller er ikke bestemt. En bakgrunn som skal reprodusere LCDM i én grense kan ikke felles før grensen er skrevet."
   },
   {
    "id": "efc.lag_s",
@@ -8218,7 +8276,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.gammaglimt er en LESNING av GCN-korpuset (146 meldinger), ikke en måling av gammaglimt. GCN varsler når noe DETEKTERES, så andelen måler instrumentdekningen — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.interstellart",
@@ -8320,7 +8379,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.interstellart er en LESNING av GDELT-korpuset, ikke en måling av det interstellare. Det er kjent fra et fåtall objekter, så andelen hviler på en håndfull målinger — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.maane",
@@ -8422,7 +8482,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.maane er en LESNING av JPL Horizons (DE441-ephemeriden), ikke en måling av månen. Noden felles av at ephemeriden revideres — den er en tilpasning til historiske observasjoner, ikke himmelen selv."
   },
   {
    "id": "kosmos.noeytrinoer",
@@ -8524,7 +8585,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.noeytrinoer er en LESNING av GCN-korpuset (13 meldinger), ikke en måling av nøytrinoflukser. Deteksjonen er en håndfull anlegg verden over, så andelen måler anleggene — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.planetsystem",
@@ -8626,7 +8688,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.planetsystem er en LESNING av JPL Horizons (DE441-ephemeriden), ikke en måling av planetene. Andelen måler ephemeriden, ikke himmelen; den felles av en revidert ephemeride, ikke av en observasjon."
   },
   {
    "id": "kosmos.roentgentransienter",
@@ -8728,7 +8791,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.roentgentransienter er en LESNING av GCN-korpuset (59 meldinger over 2 emner), ikke en måling av røntgenhendelser. Uten instrumenter i det båndet finnes de ikke i dataene — andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.romfart",
@@ -8830,7 +8894,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.romfart er en LESNING av GDELT-korpuset, ikke en måling av romfart. Oppskytingsdata er institusjonelle og nasjonale: det som ikke annonseres telles ikke — andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.stjerner",
@@ -8932,7 +8997,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.stjerner er en LESNING av GDELT-korpuset (26 meldinger), ikke en måling av stjerner. Stjernedata kommer fra surveyer med hver sin seleksjon, så andelen bærer surveyens blikk — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "kosmos.uklassifisert",
@@ -9034,7 +9100,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "kosmos.uklassifisert er en LESNING av GCN-korpuset (30 meldinger over 2 emner), ikke en måling av noe fenomen. Kategorien er definert ved at innholdet IKKE passer: andelen måler skjemaets grense, og felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.arbeid",
@@ -9137,7 +9204,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.arbeid er en LESNING av Eurostat (nasjonale byråer, harmonisert), ikke en måling av arbeid. Andelen felles av at harmoniseringen eller korpuset endres: den uformelle økonomien er strukturelt fraværende i den."
   },
   {
    "id": "verden.demografi",
@@ -9239,7 +9307,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.demografi er en LESNING av GDELT-korpuset, ikke en måling av befolkningen. Folkeregistre er ujevnt utbygd, så andelen måler registreringen like mye som folkene — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.finans",
@@ -9341,7 +9410,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.finans er en LESNING av GDELT-korpuset, ikke en måling av finansielle strømmer. Strømmene beveger seg raskere enn statistikken, så andelen er et etterslep — den felles av korpuset og kodingen, ikke av en observasjon."
   },
   {
    "id": "verden.geopolitikk",
@@ -9443,7 +9513,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.geopolitikk er en LESNING av GDELT-korpuset, ikke en måling av maktforhold. Kodingsskjemaet velger hva som får en etikett, så andelen felles av skjemaet og korpuset, ikke av en observasjon av verden."
   },
   {
    "id": "verden.handel",
@@ -9545,7 +9616,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.handel er en LESNING av GDELT-korpuset, ikke en måling av handel. Handel telles over grenser med tollskjema; tjenester og digitalt bytte faller utenfor — andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.helse",
@@ -9647,7 +9719,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.helse er en LESNING av GDELT-korpuset, ikke en måling av helse. WHO og nasjonale registre setter hva som telles som helse, så det som ikke rapporteres finnes ikke i andelen — den felles av kodingen, ikke av en observasjon."
   },
   {
    "id": "verden.infrastruktur",
@@ -9749,7 +9822,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.infrastruktur er en LESNING av GDELT-korpuset, ikke en måling av infrastruktur. Infrastruktur telles når den bygges og når den feiler; den stille virkedagen er usynlig i andelen, som felles av korpuset."
   },
   {
    "id": "verden.kommunikasjon",
@@ -9851,7 +9925,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.kommunikasjon er en LESNING av GDELT-korpuset, ikke en måling av kommunikasjon. Mediedekningen er skjevt fordelt — rike land melder mer — så andelen måler mediet, ikke hendelsen, og felles av korpuset."
   },
   {
    "id": "verden.lov",
@@ -9953,7 +10028,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.lov er en LESNING av GDELT-korpuset, ikke en måling av lov. Lovgivning registreres når den vedtas, ikke når den virker — og ikke i land uten frie registre. Andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.militaer",
@@ -10055,7 +10131,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.militaer er en LESNING av GDELT-korpuset, ikke en måling av militære forhold. Det rapportene utelater er usynlig i korpuset, men ikke i verden — andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.politikk",
@@ -10157,7 +10234,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.politikk er en LESNING av GDELT-korpuset, ikke en måling av politikk. GDELT koder verdens nyhetsstrøm, så andelen måler hva som BLE skrevet om, ikke hva som skjedde — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.sikkerhet",
@@ -10259,7 +10337,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.sikkerhet er en LESNING av GDELT-korpuset, ikke en måling av sikkerhet. Spektakulære hendelser rapporteres, den stille hverdagen telles ikke — andelen felles av korpuset og kodingen, ikke av en observasjon."
   },
   {
    "id": "verden.teknologi",
@@ -10361,7 +10440,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.teknologi er en LESNING av GDELT-korpuset, ikke en måling av teknologi. Teknologinyheter er framtidsorienterte, så andelen måler forventning, ikke utbredelse — den felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.transport",
@@ -10463,7 +10543,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.transport er en LESNING av GDELT-korpuset, ikke en måling av transport. Transport måles der den registreres; uformell og lokal transport er usynlig — andelen felles av korpuset, ikke av en observasjon."
   },
   {
    "id": "verden.utdanning",
@@ -10565,7 +10646,8 @@
      "sannhet": "hypotese",
      "konsensus": "minoritet"
     }
-   }
+   },
+   "ikke_falsifiserbar_grunn": "verden.utdanning er en LESNING av GDELT-korpuset, ikke en måling av utdanning. Statistikken måler skolegang, ikke læring, og land som ikke rapporterer blir usynlige i samme andel — som felles av korpuset, ikke av en observasjon."
   }
  ],
  "relations": [

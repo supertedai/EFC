@@ -45,7 +45,7 @@ SAMME som atlaset — og naar de to gaar fra hverandre, rettes motoren:
 | `epistemikk.*`, `perspektiv` | sannhets-, evidens- og konsensusstatus er epistemiske påstander om noden |
 | `ontology.source` | kilden plasseringen hviler på |
 | `maale_paradigme.alternativer` | hvilke rammer som ble VALGT BORT |
-| `buss_domene`, `ville_falsifisere`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | kuratert: hva noden ikke sier, hva som ville felle den, hvilken analogi den staar i, og en forseglet prediksjon |
+| `buss_domene`, `ville_falsifisere`, `ikke_falsifiserbar_grunn`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | kuratert: hva noden ikke sier, hva som ville felle den, hvorfor den ikke kan felles, hvilken analogi den staar i, og en forseglet prediksjon |
 
 **To unntak fra likhet**, begge i `DELMENGDE`: `ontology.assumes` og
 `maale_paradigme.alternativer` er lister der atlaset skal kunne bære mer enn

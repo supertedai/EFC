@@ -94,6 +94,18 @@
         "nivaa",
         "synlighet"
       ],
+      "oneOf": [
+        {
+          "required": [
+            "ville_falsifisere"
+          ]
+        },
+        {
+          "required": [
+            "ikke_falsifiserbar_grunn"
+          ]
+        }
+      ],
       "properties": {
         "id": {
           "type": "string"
@@ -357,7 +369,13 @@
         },
         "ville_falsifisere": {
           "type": "string",
-          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
+          "minLength": 1,
+          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand. Ett av to felt som avgjør om noden er falsifiserbar: enten dette, ELLER `ikke_falsifiserbar_grunn`. Feltet var valgfritt til 2026-09-18, og målt den dagen manglet det på 82 av 113 noder — deriblant `obs.bao`, som bærer motbeviset mot vårt eget regime."
+        },
+        "ikke_falsifiserbar_grunn": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Hvorfor noden ikke kan felles av en observasjon. Ikke en utelatelse og ikke en tilstandsbeskrivelse: «instrument-noden måler og påstår ikke» er et gyldig svar, et tomt felt er ikke. Samme regel som `buss_status`/`motor_status` og `alene_status` — valget skal være TATT, ikke utelatt. En node kan ikke ha både denne og `ville_falsifisere`; en avgjørelse står alene."
         },
         "revisjon": {
           "type": "array",

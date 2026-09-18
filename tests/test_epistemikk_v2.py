@@ -10,8 +10,12 @@ som en VALIDERBAR INVARIANT, ikke som fritekst:
 2. Stipulasjons-eksplisitthet: motorenes terskler skal kunne
    deklareres i noden med `stipulert_av_oss: true` — og en node kan
    referere motoren som holder terskelen.
-3. Falsifiseringsbetingelse: hver node kan bære `ville_falsifisere`
-   og `revisjon` (logg over endrede terskler/antakelser).
+3. Falsifiseringsbetingelse: hver node SKAL ha tatt stilling — en
+   falsifikator (`ville_falsifisere`) ELLER en skriftlig grunn til at
+   den ikke finnes (`ikke_falsifiserbar_grunn`). «Kan bære» var feilen:
+   feltet var valgfritt, og maalt 2026-09-18 svarte 82 av 113 noder
+   verken ja eller nei. `revisjon` er loggen over endrede
+   terskler/antakelser.
 4. Observatøren i systemet: `observer.er_del_av_systemet` er
    OBLIGATORISK og skal være true for alle noder — vi er
    måleinstrumentet, ikke en gud utenfor.
@@ -93,3 +97,40 @@ def test_motor_nodene_har_motor_referanse():
         if n["id"].startswith("efc.") and "_engine" in n["id"]:
             assert n["stipulasjoner"].get("motor"), (
                 f"{n['id']}: mangler motor-referanse i stipulasjoner")
+
+
+def test_skjemaet_krever_en_falsifiseringsavgjorelse():
+    """Skjemaet skal ikke bare TILLATE feltet — det skal kreve ett av de to.
+
+    Kravet bor i skjemaet og ikke bare i testene: `additionalProperties:
+    false` betyr at et felt skjemaet ikke nevner er et hull, og en regel
+    som bare staar i en test kan fjernes uten at noen ser at kravet forsvant.
+    """
+    node = _skjema()["$defs"]["RegimeNode"]
+    for felt in ("ville_falsifisere", "ikke_falsifiserbar_grunn"):
+        assert felt in node["properties"], f"skjemaet kjenner ikke {felt}"
+    grener = [set(g.get("required") or []) for g in node.get("oneOf") or []]
+    assert {"ville_falsifisere"} in grener, (
+        "skjemaet krever ikke en falsifikator — da er feltet valgfritt igjen")
+    assert {"ikke_falsifiserbar_grunn"} in grener, (
+        "skjemaet krever ikke en grunn — en node kan tie om falsifiserbarhet")
+    assert len(grener) == 2, (
+        f"oneOf har {len(grener)} grener — en node kan oppfylle to samtidig")
+
+
+def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
+    """Teller noder som BAERER en avgjorelse — ikke noder som KAN baere en.
+
+    113 av 113. Feltet skal vaere til stede, ogsaa naar svaret er nei: en
+    node uten felt svarer ikke, og et svar som ikke finnes kan ikke leses.
+    """
+    noder = _atlas()["nodes"]
+    uten = [n["id"] for n in noder
+            if "ville_falsifisere" not in n and "ikke_falsifiserbar_grunn" not in n]
+    assert not uten, (
+        f"{len(uten)} av {len(noder)} node(r) har ikke tatt stilling: {uten[:8]}")
+    begge = [n["id"] for n in noder
+             if "ville_falsifisere" in n and "ikke_falsifiserbar_grunn" in n]
+    assert not begge, f"to svar paa samme spoersmaal: {begge[:6]}"
+    assert len(noder) - len(uten) == 113, (
+        f"dekningen skal vaere 113 av 113, er {len(noder) - len(uten)}")
