@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-"""atlas_navigasjon — maal om atlaset kan navigeres i ALLE tre lag.
+"""atlas_navigasjon — measure whether the atlas can be navigated in ALL three layers.
 
-Atlaset har tre lag som ikke er det samme:
+The atlas has three layers that are not the same:
 
-    NODER    (schema/regime_nodes.jsonld)      det konseptuelle kartet
-    MOTORER  (efc_inference/engine/*.py)       koden som regner
-    NATS     (schema/nats_domener.snapshot)    stroemmene som baerer data
+    NODES    (schema/regime_nodes.jsonld)      the conceptual map
+    ENGINES  (efc_inference/engine/*.py)       the code that computes
+    NATS     (schema/nats_domener.snapshot)    the streams that carry the data
 
-Et oppslagsverk som bare kjenner ett av lagene, kan ikke svare paa «hvor
-kommer dette tallet fra?» eller «hva mater denne motoren?». Maalt
-2026-09-17 fantes koblingene emne -> motor som PROSA i
-`docs/nats-koblingskart.md` — dokumentert for et menneske, ikke kjoerbart
-for den som skal navigere.
+A reference work that knows only one of the layers cannot answer "where
+does this number come from?" or "what feeds this engine?". Measured
+2026-09-17 the links topic -> engine existed as PROSE in
+`docs/nats-koblingskart.md` — documented for a human, not runnable
+for whoever must navigate.
 
-Denne modulen maaler hvor langt navigasjonen faktisk rekker, og NAVNGIR
-hullene. Den er en maaling, ikke en garanti: et tomt hull-liste betyr at
-hver node, motor og emne har en vei til de andre lagene.
+This module measures how far navigation actually reaches, and NAMES
+the gaps. It is a measurement, not a guarantee: an empty gap list means
+that every node, engine and topic has a path to the other layers.
 
-Feilmodusen den finnes for aa hindre: «jeg trodde jeg kunne navigere
-atlaset» naar det egentlig bare var nodene jeg kunne lese.
+The failure mode it exists to prevent: "I thought I could navigate the
+atlas" when in fact it was only the nodes I could read.
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ SNAPSHOT_STI = "schema/nats_domener.snapshot.json"
 
 
 class NavigasjonFeil(RuntimeError):
-    """Grunnlaget kunne ikke leses. Aldri stille tomt svar."""
+    """The source could not be read. Never a silent empty answer."""
 
 
 def _git(repo: Path, *args: str) -> str:
@@ -43,7 +43,7 @@ def _git(repo: Path, *args: str) -> str:
                        capture_output=True, text=True)
     if p.returncode != 0:
         raise NavigasjonFeil(
-            f"git {' '.join(args)} feilet i {repo}: {p.stderr.strip()}")
+            f"git {' '.join(args)} failed in {repo}: {p.stderr.strip()}")
     return p.stdout
 
 
@@ -53,16 +53,16 @@ def les_noder(repo: Path, ref: str) -> list[dict]:
 
 
 def les_motorer(repo: Path, ref: str) -> list[str]:
-    """Motornavn fra git-treet — ikke fra disken.
+    """Engine names from the git tree — not from the disk.
 
-    Samme regel som `atlas_lesing`: en arbeidskopi som svarer, leser som et
-    levende atlas. En motorfil som ligger ucommittet paa disken finnes ikke
-    for den som leser fra refen.
+    Same rule as `atlas_lesing`: a working copy that answers reads as a
+    living atlas. An engine file that sits uncommitted on the disk does not
+    exist for whoever reads from the ref.
 
-    Mangler katalogen, er svaret TOMT — ikke en feil. Git sporer ikke tomme
-    kataloger, og en repo uten motorer er en gyldig repo. Maalt: uten dette
-    krasjet `naviger()` med `fatal: Not a valid object name` i stedet for aa
-    rapportere null motorer.
+    If the directory is missing, the answer is EMPTY — not an error. Git does
+    not track empty directories, and a repo without engines is a valid repo.
+    Measured: without this, `naviger()` crashed with `fatal: Not a valid
+    object name` instead of reporting zero engines.
     """
     try:
         ut = _git(repo, "ls-tree", "--name-only", f"{ref}:{MOTOR_KATALOG}")
@@ -82,14 +82,15 @@ def les_snapshot(repo: Path, ref: str) -> dict:
 
 
 def _epistemisk(noder: list[dict]) -> dict:
-    """Hva sloeyfa INNEHOLDER — ikke bare hva den er koblet til.
+    """What the loop CONTAINS — not just what it is linked to.
 
-    Maalt 2026-09-17 ved aa bruke oppslaget: 0 av 73 offentlige noder kunne
-    felles av en observasjon. Det er ikke en koblingsfeil — det er en
-    egenskap ved innholdet, og den forsvant saa snart samtalen var over.
+    Measured 2026-09-17 by using the lookup: 0 of 73 public nodes could be
+    falsified by an observation. That is not a linking error — it is a
+    property of the content, and it vanished as soon as the conversation was
+    over.
 
-    Offentlige og interne telles hver for seg: de offentlige er det
-    PUBLISERTE atlaset, og et hull der er alvorligere enn blant vaare egne.
+    Public and internal are counted separately: the public ones are the
+    PUBLISHED atlas, and a gap there is more serious than among our own.
     """
     def har_falsifikator(n: dict) -> bool:
         return "ville_falsifisere" in json.dumps(n, ensure_ascii=False)
@@ -99,45 +100,46 @@ def _epistemisk(noder: list[dict]) -> dict:
     def tell(pred, mengde: list[dict]) -> tuple[int, int]:
         return sum(1 for n in mengde if pred(n)), len(mengde)
 
-    def har(n: dict, felt: str) -> bool:
+    def har_felt(n: dict, felt: str) -> bool:
         return bool(n.get(felt))
 
-    # SKILLET: en EFC-node PAASTAAR noe og skal kunne felles. En
-    # instrument-node MAALER — den kan ikke felles av en observasjon, den
-    # ER observasjonen. Aa telle dem sammen gjor tallet verre enn
-    # virkeligheten, og et tall som lyver nedover er like ubrukelig som
-    # ett som lyver oppover. Maalt 2026-09-17: 27 av 74 kan felles; 47
-    # maaler eller er etablert kunnskap vi ikke eier.
+    # THE DISTINCTION: an EFC node CLAIMS something and must be falsifiable.
+    # An instrument node MEASURES — it cannot be falsified by an observation,
+    # it IS the observation. Counting them together makes the number worse
+    # than reality, and a number that lies downwards is as useless as one
+    # that lies upwards. Measured 2026-09-17: 27 of 74 can be falsified; 47
+    # measure or are established knowledge we do not own.
     vaare = [n for n in offentlige if n["id"].startswith("efc.")]
     andres = [n for n in offentlige if not n["id"].startswith("efc.")]
     return {
         "kan_felles": tell(har_falsifikator, vaare),
         "maaler_eller_observert": tell(lambda n: True, andres),
-        "prediksjon": tell(lambda n: har(n, "prediction"), noder),
-        "oppgjoer": tell(lambda n: har(n, "settlement"), noder),
+        "prediksjon": tell(lambda n: har_felt(n, "prediction"), noder),
+        "oppgjoer": tell(lambda n: har_felt(n, "settlement"), noder),
         "offentlige": len(offentlige),
     }
 
 
 def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
-    """Maal navigasjonen paa tvers av noder, motorer og NATS.
+    """Measure navigation across nodes, engines and NATS.
 
-    Returnerer dekningsgraden OG hullene, navngitt. Et hull er ikke en feil
-    — `verden.vaer` er ikke dekket fordi ingen har bygget den noden ennå.
-    Men et UNEVNT hull er en feil: da ser kartet komplett ut uten aa vaere det.
+    Returns the coverage AND the gaps, named. A gap is not an error
+    — `verden.vaer` is not covered because nobody has built that node yet.
+    But an UNNAMED gap is an error: then the map looks complete without it.
     """
     repo = Path(repo)
     noder = les_noder(repo, ref)
     motorer = les_motorer(repo, ref)
     snapshot = les_snapshot(repo, ref)
 
-    # Sett-iterasjon var IKKE-deterministisk. Maalt 2026-09-18: samme kommando
-    # paa samme ref ga «31/32 naar fram · HULL klima» i to av fem kjoeringer og
-    # «32/32» i tre — forskjellen var PYTHONHASHSEED. `klima` matcher fire
-    # noder (`efc.klima_engine` MED buss-domene og tre `verden.klima_*` uten),
-    # og den foerste settet tilfeldig ga vant. En maaling som svarer ulikt paa
-    # samme spoersmaal er verre enn ingen maaling: den ser riktig ut begge
-    # ganger, og et hull som kommer og gaar blir ikke trodd naar det er ekte.
+    # Set iteration was NOT deterministic. Measured 2026-09-18: the same
+    # command on the same ref gave "31/32 reachable · GAP klima" in two of
+    # five runs and "32/32" in three — the difference was PYTHONHASHSEED.
+    # `klima` matches four nodes (`efc.klima_engine` with a bus domain and
+    # three `verden.klima_*` without), and the first set drawn at random won.
+    # A measurement that answers differently to the same question is worse
+    # than no measurement: it looks right both times, and a gap that comes
+    # and goes is not believed when it is real.
     node_ider = sorted(str(n["id"]) for n in noder if n.get("id"))
 
     domene_til_noder: dict[str, list[str]] = {}
@@ -148,12 +150,12 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
             if nid:
                 domene_til_noder.setdefault(b, []).append(nid)
 
-    # node -> motor. Rekkefoelgen er en REGEL naa, ikke en tilfeldighet:
-    #   1. den navngitte motornoden `efc.<motor>_engine`
-    #   2. en node der SISTE ledd er noeyaktig `<motor>` eller `<motor>_engine`
-    #   3. ellers noder som inneholder navnet
-    # Matcher flere enn én paa samme nivaa, velges den sortert foerste — og
-    # navnet meldes som FLERTYDIG i stedet for aa bli avgjort i det stille.
+    # node -> engine. The order is a RULE now, not a coincidence:
+    #   1. the named engine node `efc.<engine>_engine`
+    #   2. a node whose LAST segment is exactly `<engine>` or `<engine>_engine`
+    #   3. otherwise nodes that contain the name
+    # If more than one matches at the same `nivaa`, the sorted first is chosen
+    # — and the name is reported as AMBIGUOUS instead of being settled silently.
     motor_til_node: dict[str, str] = {}
     motor_flertydig: dict[str, list[str]] = {}
     for m in motorer:
@@ -171,7 +173,7 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
         if len(kandidater) > 1:
             motor_flertydig[m] = kandidater
 
-    # emner: hvert domene i snapshotet har en liste av emner
+    # topics: every domain in the snapshot has a list of topics
     alle_emner: list[str] = []
     for domene, v in snapshot.items():
         for e in (v or {}).get("emner", []):
@@ -182,14 +184,14 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
                       and ".".join(e.split(".")[:2]) in domene_til_noder]
     emner_uten_node = [e for e in alle_emner if e not in emner_med_node]
 
-    # En motor naar bussen naar dens NODE har et `buss_domene`. Uten det
-    # finnes ingen vei fra stroemmen tilbake til koden som regnet den.
+    # An engine reaches the bus when its NODE has a `buss_domene`. Without it
+    # there is no path from the stream back to the code that computed it.
     motorer_uten_buss = [
         m for m in motorer
         if not any(n.get("buss_domene") for n in noder
                    if n.get("id") == motor_til_node.get(m))]
 
-    # Hvilke domener paa bussen har INGEN node?
+    # Which domains on the bus have NO node?
     domener_uten_node = sorted(d for d in snapshot if d not in domene_til_noder)
 
     return {
@@ -221,40 +223,41 @@ if __name__ == "__main__":
     import argparse
 
     ap = argparse.ArgumentParser(
-        description="Maal hvor mye av atlaset som naar fram, fra en gitt ref.")
+        description="Measure how much of the atlas is reachable, from a given ref.")
     ap.add_argument("repo", nargs="?", default=".",
-                    help="sti til repoet (standard: .)")
+                    help="path to the repo (default: .)")
     ap.add_argument("--ref", default=None,
-                    help="git-ref aa maale (standard: origin/main). Uten "
-                         "denne maaler kommandoen alltid standardrefen, "
-                         "ogsaa naar du tror du maaler en gren.")
+                    help="git ref to measure (default: origin/main). Without "
+                         "it the command always measures the default ref, "
+                         "also when you think you are measuring a branch.")
     a = ap.parse_args()
     d = naviger(a.repo, a.ref) if a.ref else naviger(a.repo)
     lag = d["lag"]
-    # Ordet «motor» betyr to ting i dette huset: motoren paa disk (32 filer) og
-    # noden som baerer den (`efc.*_engine`, 19). Maalt 2026-09-18 sto begge som
-    # «motorer» — 32 her og 19 i SYSTEM.md — og et ord som betyr to tall er
-    # ikke et navn. Utad heter det naa MOTORFILER her (nokkelen er uendret, for
-    # den er et API) og «engine nodes» i teksttvillingen.
+    # The word "engine" means two things in this house: the engine on disk
+    # (32 files) and the node that carries it (`efc.*_engine`, 19). Measured
+    # 2026-09-18 both stood as "motorer" — 32 here and 19 in SYSTEM.md — and
+    # a word that means two numbers is not a name. Outward it is now called
+    # MOTORFILER here (the key is unchanged, because it is an API) and
+    # "engine nodes" in the text twin.
     ETIKETT = {"motorer": "motorfiler"}
     print(f"{d['ref']} @ {d['commit'][:8]}")
-    print(f"  lag      : {lag['noder']} noder · {lag['motorer']} motorfiler · "
-          f"{lag['emner']} emner i {lag['buss_domener']} domener")
+    print(f"  layers   : {lag['noder']} nodes · {lag['motorer']} motorfiler · "
+          f"{lag['emner']} topics in {lag['buss_domener']} domains")
     for navn, (n, t) in d["dekning"].items():
-        print(f"  {ETIKETT.get(navn, navn):9}: {n}/{t} naar fram")
+        print(f"  {ETIKETT.get(navn, navn):9}: {n}/{t} reachable")
     e = d["epistemisk"]
     kf, kt = e["kan_felles"]
     mo, mt = e["maaler_eller_observert"]
-    print(f"  epistemisk: kan felles {kf}/{kt} EFC-paastander · "
-          f"{mo}/{mt} maaler eller er etablert")
-    print(f"              prediksjon {e['prediksjon'][0]} · "
-          f"oppgjoer {e['oppgjoer'][0]}")
+    print(f"  epistemic: can be falsified {kf}/{kt} EFC claims · "
+          f"{mo}/{mt} measure or are established")
+    print(f"             prediction {e['prediksjon'][0]} · "
+          f"settlement {e['oppgjoer'][0]}")
     for navn, hull in d["hull"].items():
         if hull:
-            print(f"  HULL {navn} ({len(hull)}): {', '.join(str(h) for h in hull[:5])}"
+            print(f"  GAP {navn} ({len(hull)}): {', '.join(str(h) for h in hull[:5])}"
                   f"{' ...' if len(hull) > 5 else ''}")
-    # Et navn som peker paa flere noder er ikke et hull — men det skal SEES,
-    # ikke avgjoeres i det stille av en tilfeldig rekkefoelge.
+    # A name that points at several nodes is not a gap — but it must be SEEN,
+    # not settled silently by an arbitrary order.
     for m, kandidater in d["kobling"]["motor_flertydig"].items():
-        print(f"  FLERTYDIG motor {m}: {', '.join(kandidater)} "
-              f"(valgte {d['kobling']['motor_til_node'][m]})")
+        print(f"  AMBIGUOUS engine {m}: {', '.join(kandidater)} "
+              f"(chose {d['kobling']['motor_til_node'][m]})")

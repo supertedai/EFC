@@ -1,4 +1,4 @@
-"""Tester arbeidskoeen mot den versjonerte atlasbanken."""
+"""Tests the work queue against the versioned atlas bank."""
 from __future__ import annotations
 
 import ast
@@ -13,16 +13,16 @@ ROT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROT / "scripts"))
 from atlas_arbeidskoe import _fylt  # noqa: E402
 
-#: `sys.executable`, ikke en hardkodet sti: en test som bare virker
-#: med prosjektets venv feiler i en kopi uten den — og da maaler den
-#: miljoeet, ikke koden.
+#: `sys.executable`, not a hard-coded path: a test that only works
+#: with the project's venv fails in a copy without it — and then it measures
+#: the environment, not the code.
 PYTHON = sys.executable
 CLI = ROT / "scripts" / "atlas_arbeidskoe.py"
 REF = "HEAD"
 
 
 def kjoer(mode: str) -> dict:
-    """Maskinlesbar modus. Standardutskriften er LESBAR (se testen under)."""
+    """Machine-readable mode. The default output is READABLE (see the test below)."""
     ut = subprocess.run(
         [str(PYTHON), str(CLI), mode, "--json", "--ref", REF],
         cwd=ROT,
@@ -44,15 +44,15 @@ def kjoer_raa(mode: str) -> str:
 
 
 def test_standardutskriften_er_lesbar_ikke_json():
-    """En koe som bare finnes som JSON er ikke en koe for et menneske.
+    """A queue that exists only as JSON is not a queue for a human.
 
-    Maalt 2026-09-18: foerste utgave skrev JSON i alle modi. Riktig, men den
-    som skal velge hva som fylles neste gang maatte hente et ekstra verktoy.
+    Measured 2026-09-18: the first version wrote JSON in every mode. Correct,
+    but whoever had to choose what gets filled next had to fetch an extra tool.
     """
     for mode in ("--sakse", "--ghost"):
         ut = kjoer_raa(mode)
-        assert not ut.lstrip().startswith("{"), f"{mode} skriver JSON som standard"
-        assert "mangler" in ut or "bygget" in ut, ut[:200]
+        assert not ut.lstrip().startswith("{"), f"{mode} writes JSON by default"
+        assert "missing" in ut or "built" in ut, ut[:200]
 
 
 def bank() -> dict:
@@ -75,15 +75,16 @@ def plassering() -> dict[str, tuple[str, int]]:
             isinstance(t, ast.Name) and t.id == "PLASSERING" for t in node.targets
         ):
             return ast.literal_eval(node.value)
-    raise AssertionError("PLASSERING mangler")
+    raise AssertionError("PLASSERING is missing")
 
 
 def test_tellingene_er_utledet_fra_offentlig_bank():
     noder = [n for n in bank()["nodes"] if n.get("synlighet") == "offentlig"]
     felter = ["s_regime", "klarhetsfunksjon", "ebe_function", "sektor"]
-    # SAMME definisjon av «fylt» som koden. Foerste utgave regnet ventetallet
-    # med `bool()`, mens koden brukte sin egen `_fylt()` — to definisjoner av
-    # samme ord, og en test som ville passert selv om de gled fra hverandre.
+    # The SAME definition of filled as the code. The first version computed the
+    # expected count with `bool()`, while the code used its own `_fylt()` — two
+    # definitions of the same word, and a test that would pass even if they
+    # drifted apart.
     ventet = {
         felt: sum(_fylt((n.get("maale_paradigme") or {}).get(felt))
                   for n in noder)
@@ -94,26 +95,27 @@ def test_tellingene_er_utledet_fra_offentlig_bank():
 
 
 def test_manglende_plassering_feiler_istedenfor_aa_gjette():
-    """En node uten plassering skal meldes, ikke bli «ghost» av en standardverdi.
+    """A node without a placement must be reported, not become «ghost» from a default.
 
-    Klasseslekten er maalt: `PLASSERING.get(navn, ("ghost", 8))` gjorde 68 av
-    73 noder til «ikke bygget» i atlaset, og feilen saa ut som data.
+    The class of defect is measured: `PLASSERING.get(navn, ("ghost", 8))` turned
+    68 of 73 nodes into not-yet-built rows in the atlas, and the error looked
+    like data.
     """
     import atlas_arbeidskoe
 
-    node = {"id": "finnes.ikke", "synlighet": "offentlig"}
+    node = {"id": "does.not-exist", "synlighet": "offentlig"}
     with pytest.raises(SystemExit, match="PLASSERING"):
         atlas_arbeidskoe.arbeidskoe_ghost({"nodes": [node]}, {})
 
 
 def test_hvitrom_er_ikke_et_svar():
-    """`"   "` er ikke en maaling, selv om strengen er sann."""
+    """`"   "` is not a measurement, even if the string is true."""
     import atlas_arbeidskoe
 
     assert atlas_arbeidskoe._fylt("   ") is False
     assert atlas_arbeidskoe._fylt(None) is False
-    assert atlas_arbeidskoe._fylt(False) is True       # deklarert svar
-    assert atlas_arbeidskoe._fylt(0) is True           # deklarert svar
+    assert atlas_arbeidskoe._fylt(False) is True       # declared answer
+    assert atlas_arbeidskoe._fylt(0) is True           # declared answer
 
 
 def test_node_med_alle_feltene_er_ikke_i_saksekoeen():
