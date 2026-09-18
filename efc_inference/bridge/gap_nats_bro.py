@@ -1,12 +1,12 @@
-"""gap_nats_bro — tre broer fra NATS inn i EFC-motorene (hav, planter, vulkan).
+"""gap_nats_bro — three bridges from NATS into the EFC engines (ocean, plants, volcano).
 
-    kosmos.jord.tilstand.usgs-vulkan        -> vulkan-tilstand (regime-status)
-    verden.klima.tilstand.noaa-tides     -> hav-temperatur-proxy
-    verden.miljo.tilstand.gbif-planter -> biosfaere-tellinger
+    kosmos.jord.tilstand.usgs-vulkan        -> volcano state (regime status)
+    verden.klima.tilstand.noaa-tides     -> ocean temperature proxy
+    verden.miljo.tilstand.gbif-planter -> biosphere counts
 
-Tilstandene er beskrevet i kaldarkiv-seed (Hetzner PR #1006). Disse
-broene LESER stroemmene og mater motorene — injiserbarhetsdesignet:
-NATS er ikke en atlas-node, NATS -> bro -> motor -> atlas-node.
+The states are described in the cold-archive seed (Hetzner PR #1006). These
+bridges READ the streams and feed the engines — the injectability design:
+NATS is not an atlas node, NATS -> bridge -> engine -> atlas node.
 """
 from __future__ import annotations
 
@@ -35,11 +35,11 @@ def _legit(rolle: str = "KONSUMENT"):
                             int(m.group(4)), "")
     except OSError as e:
         return None, None, None, None, f"{LEGITIMASJON}: {type(e).__name__}"
-    return None, None, None, None, f"rollen {rolle} mangler"
+    return None, None, None, None, f"the role {rolle} is missing"
 
 
 def analyser_vulkan(melding: dict) -> dict:
-    """VHP-tilstand -> regime-klassifisering (statuslisten)."""
+    """VHP state -> regime classification (the status list)."""
     tilstand = melding.get("tilstand", {})
     antall_aktive = sum(1 for v in tilstand.values()
                         if str(v.get("nivaa", "")).upper()
@@ -52,7 +52,7 @@ def analyser_vulkan(melding: dict) -> dict:
 
 
 def analyser_hav(melding: dict) -> dict:
-    """NOAA-temperaturer -> proxy for hav-energi (klima-motoren)."""
+    """NOAA temperatures -> proxy for ocean energy (the climate engine)."""
     temp = melding.get("temperaturer_c", {})
     verdier = [v for v in temp.values()
                if isinstance(v, (int, float)) and v == v]
@@ -67,7 +67,7 @@ def analyser_hav(melding: dict) -> dict:
 
 
 def analyser_planter(melding: dict) -> dict:
-    """GBIF-tellinger -> biosfaere-fotavtrykk (enerflyt-motoren)."""
+    """GBIF counts -> biosphere footprint (the energy-flow engine)."""
     tellinger = melding.get("tellinger", {})
     return {"tellinger": tellinger,
             "sum": sum(tellinger.values()),
@@ -75,12 +75,12 @@ def analyser_planter(melding: dict) -> dict:
 
 
 def bro_runde(emner: dict) -> dict:
-    """Én runde: les tilstandene (via lesergrensesnittet som mates
-    inn), analyser, returner motoren-input. Lesingen selv skjer
-    gjennom verden-mcp (husets STREAM.MSG.GET-form)."""
+    """One round: read the states (via the reader interface that is fed
+    in), analyse, return the engine input. The reading itself happens
+    through the verden-MCP (the house STREAM.MSG.GET form)."""
     resultat = {}
     for navn, (emne, analyser, melding) in emner.items():
         resultat[navn] = analyser(melding) if melding else {
             "lesbar": False,
-            "note": "ingen melding — broen venter paa konnektor-deploy"}
+            "note": "no message — the bridge waits for connector deploy"}
     return resultat

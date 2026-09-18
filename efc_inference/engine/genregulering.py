@@ -1,4 +1,4 @@
-"""Fysiologisk genreguleringsmotor: Hill-regulering med eksplisitte regimer."""
+"""Physiological gene-regulation engine: Hill regulation with explicit regimes."""
 from __future__ import annotations
 import numpy as np
 from .base_engine import EFCEngine
@@ -36,4 +36,4 @@ class GenreguleringEngine(EFCEngine):
         if c.ndim != 1 or not valid: return np.full(c.shape, np.nan)
         return self.expression(params_dict, c)
     def regime_node(self, params):
-        return {"id":"homo.genregulering", "synlighet":self.SYNLIGHET, "phase":"regime_engine", "regime":{"name":"Genregulering", "regimes":["av","basalt","aktivert","repressivt"], "validity":"TF-konsentrasjon >= 0; av ved 0, basalt under aktiveringsterskel, aktivert mellom terskler, repressivt over terskel", "law_form":"Hill-kinetikk med negativ tilbakekobling"}, "measure":{"target":"mRNA/protein-uttrykk", "measurer":"RNA-seq/ChIP-seq", "instrument":"sekvensering"}, "emergence":{"loop":"signal -> TF -> uttrykk -> protein -> tilbakekobling"}, "lagdeling":{"fysiologi":{"status":"akademia","kilde":"molekylærbiologi (standard)"},"analogi":{"status":"paradigme","kilde":"EFC: regimeskifte"}}}
+        return {"id":"homo.genregulering", "synlighet":self.SYNLIGHET, "phase":"regime_engine", "regime":{"name":"Gene regulation", "regimes":["av","basalt","aktivert","repressivt"], "validity":"TF concentration >= 0; off at 0, basal below the activation threshold, activated between the thresholds, repressive above the threshold", "law_form":"Hill kinetics with negative feedback"}, "measure":{"target":"mRNA/protein expression", "measurer":"RNA-seq/ChIP-seq", "instrument":"sequencing"}, "emergence":{"loop":"signal -> TF -> expression -> protein -> feedback"}, "lagdeling":{"fysiologi":{"status":"akademia","kilde":"molecular biology (standard)"},"analogi":{"status":"paradigme","kilde":"EFC: regime shift"}}}

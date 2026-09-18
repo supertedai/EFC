@@ -1,31 +1,35 @@
-"""EFC Klima Engine — strålingsbalanse og regimebrytere (L-040).
+"""EFC Klima Engine — radiation balance and regime switches (L-040).
 
-Klimaets 0D-energibalanse er EFC-formen i ren form på jorden: energi
-inn (sol), buffer (havets varmekapasitet), terskeloverganger
-(is-albedo-bryteren med hysterese mot snøballjord).
+The climate's 0D energy balance is the EFC form in pure form on Earth:
+energy in (the sun), buffer (the ocean's heat capacity), threshold
+transitions (the ice-albedo switch with hysteresis towards snowball
+Earth).
 
-Modellen er en IDEALISERT 0D-energibalansemodell — den er IKKE en
-klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen
-romlig struktur. Det står i selvbeskrivelsen. Klimamodellering er
-et eget fag med egen litteratur; motoren koder bare formen.
+The model is an IDEALIZED 0D energy-balance model — it is NOT a
+climate-model competitor: no circulation, no clouds, no spatial
+structure. That stands in the self-description. Climate modelling is a
+discipline of its own with its own literature; the engine codes only the
+form.
 
-Fysikken:
+The physics:
     C dT/dt = (S/4)(1 - alpha) - eps sigma T^4
-Likevekt: T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4).
-Is-albedo-bryteren: albedo vokser når T faller under frysepunktet —
-over en terskel finnes ingen varm likevekt (snøballjord, hysterese).
+Equilibrium: T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4).
+The ice-albedo switch: the albedo grows when T falls below the freezing
+point — above a threshold no warm equilibrium exists (snowball Earth,
+hysteresis).
 
-BEVISST UTELATT — AMOC-bryteren (t_9978fc90). Kortet for klimamotoren
-(L-040) navngir TO regimebrytere: is-albedo-tilbakekoblingen og AMOC.
-Bare is-albedo er kodet her. AMOC-bryteren er VURDERT og BEVISST
-UTELATT: 0D-energibalansen har ingen sirkulasjon å slå av — AMOC er en
-omveltningscelle som krever minst to bokser (temperatur OG salinitet)
-drevet av ferskvannspåslag, og hverken motorens tilstandsrom (T) eller
-parameterrom (S, alpha, eps, sigma, C) rommer den. En Stommel-boks er
-et eget fag med egen litteratur og hører hjemme i en EGEN MOTOR, ikke
-i strålingsbalansen. Avgrensningen står også i regime_node(); den er
-gjort maskinelt synlig i tests/test_klima_engine.py, ikke latt som
-taushet. Ingen AMOC-terskel er oppgitt noe sted — fordi ingen finnes.
+DELIBERATELY OMITTED — the AMOC switch (t_9978fc90). The card for the
+climate engine (L-040) names TWO regime switches: the ice-albedo
+feedback and AMOC. Only ice-albedo is coded here. The AMOC switch is
+ASSESSED and DELIBERATELY OMITTED: the 0D energy balance has no
+circulation to switch off — AMOC is an overturning cell that requires at
+least two boxes (temperature AND salinity) driven by freshwater forcing,
+and neither the engine's state space (T) nor its parameter space
+(S, alpha, eps, sigma, C) holds it. A Stommel box is a discipline of its
+own with its own literature and belongs in an ENGINE OF ITS OWN, not in
+the radiation balance. The delimitation also stands in regime_node(); it
+has been made machine-visible in tests/test_klima_engine.py, not left as
+silence. No AMOC threshold is stated anywhere — because none exists.
 """
 from __future__ import annotations
 
@@ -35,14 +39,14 @@ from .base_engine import EFCEngine
 
 
 class KlimaEngine(EFCEngine):
-    """0D-energibalansemotor med buffer og regimebryter (idealisert)."""
+    """0D energy-balance engine with buffer and regime switch (idealized)."""
 
     REQUIRED_PARAMS = [
         "solarkonstant",       # W/m^2 — S
         "albedo",              # 1 — alpha
-        "emissivitet",         # 1 — eps (drivhuseffekt inkludert)
+        "emissivitet",         # 1 — eps (greenhouse effect included)
         "stefan_boltzmann",    # W/(m^2 K^4) — sigma
-        "hav_varmekapasitet",  # J/(m^2 K) — C (blandingslaget)
+        "hav_varmekapasitet",  # J/(m^2 K) — C (the mixed layer)
     ]
 
     @property
@@ -50,7 +54,7 @@ class KlimaEngine(EFCEngine):
         return "klima"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def likevektstemperatur(self, params: dict) -> float:
@@ -61,36 +65,36 @@ class KlimaEngine(EFCEngine):
                             * params["stefan_boltzmann"])) ** 0.25)
 
     def tidskonstant(self, params: dict) -> float:
-        """Tau = C / (4 eps sigma T_eq^3) — bufferens treghet."""
+        """Tau = C / (4 eps sigma T_eq^3) — the buffer's inertia."""
         t_eq = self.likevektstemperatur(params)
         return float(params["hav_varmekapasitet"]
                      / (4 * params["emissivitet"]
                         * params["stefan_boltzmann"] * t_eq ** 3))
 
     def albedo_tilbakekobling(self, params: dict, delta_t: float) -> float:
-        """Is-albedo-tilbakekoblingen: kaldere -> mer is -> høyere
-        albedo. Forsterkningsfaktoren for en temperaturforstyrrelse
-        (positiv tilbakekobling > 1)."""
-        # Idealisert: albedo stiger lineært med fall under 0 °C med
-        # stigningskoeffisient 0.005 K^-1 (størrelsesorden fra
-        # is-utbredelse).
+        """The ice-albedo feedback: colder -> more ice -> higher
+        albedo. The amplification factor for a temperature perturbation
+        (positive feedback > 1)."""
+        # Idealized: the albedo rises linearly with a fall below 0 °C
+        # with slope coefficient 0.005 K^-1 (order of magnitude from
+        # ice extent).
         stigning = 0.005
         d_alpha = stigning * (-delta_t) if delta_t < 0 else 0.0
         if d_alpha <= 0:
             return 1.0
-        # T_eq-følsomhet for albedo: dT_eq/d_alpha = -T_eq/(4(1-alpha))
+        # T_eq sensitivity to albedo: dT_eq/d_alpha = -T_eq/(4(1-alpha))
         t_eq = self.likevektstemperatur(params)
         følsomhet = t_eq / (4 * (1 - params["albedo"]))
         forsterkning = 1.0 / (1.0 - følsomhet * stigning)
         return float(forsterkning)
 
     def har_varm_likevekt(self, params: dict, tilstand: str = "varm") -> bool:
-        """Varm likevekt finnes når T_eq > 273.15 K — med TILSTANDS-
-        avhengige terskler (hysterese): fra «varm» faller systemet
-        først når albedoen krysser alpha_fall (der T_eq = 273.15 K);
-        fra «snøball» returnerer det først når albedoen krysser
-        alpha_retur (< alpha_fall — snøballjordens reflektans
-        stabiliserer den, idealisert hysteresebredde)."""
+        """A warm equilibrium exists when T_eq > 273.15 K — with STATE-
+        dependent thresholds (hysteresis): from «warm» the system falls
+        only when the albedo crosses alpha_fall (where T_eq = 273.15 K);
+        from «snowball» it returns only when the albedo crosses
+        alpha_retur (< alpha_fall — the snowball Earth's reflectance
+        stabilizes it, idealized hysteresis width)."""
         alpha_fall = self._alpha_ved_frysepunkt(params)
         alpha_retur = params.get("alpha_retur", 0.35)
         if tilstand == "snøball":
@@ -98,21 +102,21 @@ class KlimaEngine(EFCEngine):
         return bool(params["albedo"] <= alpha_fall)
 
     def _alpha_ved_frysepunkt(self, params: dict) -> float:
-        """Albedoen der T_eq krysser 273.15 K:
+        """The albedo where T_eq crosses 273.15 K:
         alpha = 1 - 4 eps sigma T^4 / S."""
         t = 273.15
         utstraaling = 4 * params["emissivitet"] * params["stefan_boltzmann"] * t ** 4
         return float(1.0 - utstraaling / params["solarkonstant"])
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt albedo-verdier, returner T_eq (K) av den
-        STRÅLINGSmessige likevekten — NaN der likevekten ligger under
-        frysepunktet (ingen VARM likevekt finnes der)."""
+        """Given albedo values, return T_eq (K) of the RADIATIVE
+        equilibrium — NaN where the equilibrium lies below the freezing
+        point (no WARM equilibrium exists there)."""
         alb = np.asarray(coordinates, dtype=float)
         ut = []
         for a in alb:
@@ -122,27 +126,28 @@ class KlimaEngine(EFCEngine):
         return np.array(ut)
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
         t_eq = self.likevektstemperatur(params)
         tau_aar = self.tidskonstant(params) / (365.25 * 86400)
         validity = (
-            "0D-energibalanseregime: energi inn (sol) -> buffer (hav, "
-            f"tau ~ {tau_aar:.0f} år) -> ut (emisjon). Is-albedo-bryteren "
-            "er regimeovergangen MED TILSTANDSAVHENGIGE terskler "
-            "(hysterese): fra «varm» faller systemet ved alpha_fall, "
-            "fra «snøball» returnerer det først ved alpha_retur "
-            "(< alpha_fall — snøballens reflektans stabiliserer den, "
-            "idealisert bredde). IDEALISERT 0D-modell — IKKE en "
-            "klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, "
-            "ingen romlig struktur. AMOC-bryteren (som kortet navngir "
-            "ved siden av is-albedo) er VURDERT og BEVISST UTELATT: "
-            "0D-energibalansen har ingen sirkulasjon å slå av — AMOC "
-            "krever to bokser og ferskvannspåslag, og hører hjemme i "
-            "en EGEN MOTOR (eget fag, egen litteratur). Ingen "
-            "AMOC-terskel er oppgitt — fordi ingen finnes."
+            "0D energy-balance regime: energy in (sun) -> buffer (ocean, "
+            f"tau ~ {tau_aar:.0f} year) -> out (emission). The ice-albedo "
+            "switch is the regime transition with STATE-DEPENDENT "
+            "thresholds (hysteresis): from «warm» the system falls at "
+            "alpha_fall, from «snowball» it returns only at alpha_retur "
+            "(< alpha_fall — the snowball's reflectance stabilizes it, "
+            "idealized width). IDEALIZED 0D model — NOT a "
+            "climate-model competitor: no circulation, no clouds, no "
+            "spatial structure. The AMOC switch (which the card names "
+            "alongside ice-albedo) is CONSIDERED and DELIBERATELY "
+            "OMITTED: the 0D energy balance has no circulation to switch "
+            "off — AMOC requires two boxes and freshwater forcing, and "
+            "belongs in a SEPARATE ENGINE (its own discipline, its own "
+            "literature). No AMOC threshold is stated — because none "
+            "exists."
         )
         law_form = ("C dT/dt = (S/4)(1-alpha) - eps sigma T^4; "
                     "T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); "
@@ -152,79 +157,79 @@ class KlimaEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer", "straalingslikevekt under frysepunktet -> NaN — modellgrense"],
+            "terskler": ["alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysteresis thresholds — state-dependent albedos", "radiation equilibrium below the freezing point -> NaN — model boundary"],
             "motor": "klima"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["temperatur", "energi", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "motor-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nonetheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
             },            "regime": {
-                "name": "Klimaets strålingsbalanse og regimebrytere",
+                "name": "The radiation balance of the climate and its regime switches",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "likevektstemperatur, tidskonstant, regimebryter",
-                "measurer": "analytisk 0D-energibalanse",
+                "target": "equilibrium temperature, time constant, regime switch",
+                "measurer": "analytic 0D energy balance",
                 "instrument": "KlimaEngine (efc_inference/engine/klima.py)",
                 "proxy_chain": [
-                    "solarkonstant + albedo -> innstråling",
-                    "eps sigma T^4 -> utstråling",
-                    "C -> bufferens treghet",
+                    "solar constant + albedo -> incoming radiation",
+                    "eps sigma T^4 -> outgoing radiation",
+                    "C -> the buffer's inertia",
                 ],
-                "placement": "jordas energibalanse — ett globalt punkt om gangen",
-                "compression": "strålingsforstyrrelser -> (T_eq, tau, bryterstatus)",
+                "placement": "the Earth's energy balance — one global point at a time",
+                "compression": "radiation perturbations -> (T_eq, tau, switch status)",
             },
-            "episenter": "is-albedo-terskelen: der den varme likevekten forsvinner — klimaets regimeskifte",
+            "episenter": "the ice-albedo threshold: where the warm equilibrium disappears — the climate's regime shift",
             "buffer": {
-                "role": "havets varmekapasitet er bufferen: den demper og forsinker alle forstyrrelser — den brede bufferlogikken i global skala",
-                "note": "ANALOGI til homeostase-bufferens setpunkt-holding — ikke identitet: klimaet har ingen setpunkt-mekanisme, bare tiltrekningsbassenger (som økologien).",
+                "role": "the ocean's heat capacity is the buffer: it damps and delays all disturbances — the broad buffer logic at global scale",
+                "note": "ANALOGY to the setpoint-holding of the homeostasis buffer — not identity: the climate has no setpoint mechanism, only basins of attraction (like the ecology).",
             },
             "ontology": {
                 "assumes": [
                     "0D-approksimasjonen gjelder (globalt gjennomsnitt)",
                     "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)",
-                    "AMOC-bryteren er VURDERT og BEVISST UTELATT (t_9978fc90): "
-                    "motoren har ingen sirkulasjonsvariabel — en "
-                    "ferskvannsdrevet omveltningscelle krever to bokser og "
-                    "hører hjemme i en EGEN MOTOR, ikke i strålingsbalansen",
+                    "The AMOC switch is ASSESSED and DELIBERATELY OMITTED (t_9978fc90): "
+                    "the engine has no circulation variable — a "
+                    "freshwater-driven overturning cell requires two boxes and "
+                    "belongs in a SEPARATE ENGINE, not in the radiation balance",
                 ],
                 "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen",
             },
             "observer": {
-                "bandwidth": "motoren ser bare globale gjennomsnitt — ingen regional dynamikk",
+                "bandwidth": "the engine sees only global averages — no regional dynamics",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "forstyrrelse -> buffer demper -> ny likevekt -> (eller) bryter -> nytt regime — klimaets loop",
+                "loop": "perturbation -> the buffer damps -> new equilibrium -> (or) switch -> new regime — the climate's loop",
                 "properties": ["T_eq", "tau", "bryterstatus"],
             },
             "fractal": {
-                "pattern": "buffer + terskelbryter: klima, homeostase, økologi (analogi)",
-                "note": "ett mønster, tre domener.",
+                "pattern": "buffer + threshold switch: climate, homeostasis, ecology (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "ett globalt punkt",
-                "global": "klimaet er homo.fluxus sin ytre tilstandsbærer — ANALOGOUS_TO homo.okologi og homo.homeostase_buffer",
-                "empathy_note": "klimaet holder — til terskelen er krysset. Som alle buffere.",
+                "local": "one global point",
+                "global": "the climate is homo.fluxus's outer state carrier — ANALOGOUS_TO homo.okologi and homo.homeostase_buffer",
+                "empathy_note": "the climate holds — until the threshold is crossed. Like all buffers.",
             },
         }

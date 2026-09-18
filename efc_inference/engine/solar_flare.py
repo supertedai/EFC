@@ -1,20 +1,20 @@
-"""EFC Solar Flare Engine — solens holding->release-motor (L-026).
+"""EFC Solar Flare Engine — the Sun's holding->release engine (L-026).
 
-Koder formen som ble funnet i recon-en av kosmos.sol (GOES-roentgenflux,
-DONKI-utbruddskatalog): solens magnetiske felt er en buffer som LADES
-langsomt (fotbevegelser vrir feltet) og UTLOSES plutselig naar feltet
-overstiger en kritisk styrke — flare/CME.
+Encodes the form found in the recon of kosmos.sol (GOES X-ray flux,
+DONKI eruption catalogue): the Sun's magnetic field is a buffer that
+CHARGES slowly (footpoint motions twist the field) and is TRIGGERED
+suddenly when the field exceeds a critical strength — flare/CME.
 
-Modellen er IDEALISERT (Avallon-stil energibuffer): magnetisk energi
-B^2/(2 mu_0) * V bygges opp med en oppladningsrate dB/dt, og hele
-bufferen slippes naar B naar b_crit. Den PASTAAR ikke prediksjonskraft
-for enkelthendelser — den regner formens observabler: oppladningstid,
-utlost energi og forventet GOES-klasse.
+The model is IDEALISED (Avallon-style energy buffer): magnetic energy
+B^2/(2 mu_0) * V is built up with a charging rate dB/dt, and the whole
+buffer is released when B reaches b_crit. It does NOT claim predictive
+power for single events — it computes the form's observables: charging
+time, released energy and the expected GOES class.
 
-GOES-klassifiseringen folger den kanoniske skalaen (peak roentgenflux i
-1-8 Angstrom-baandet): A < 1e-7, B < 1e-6, C < 1e-5, M < 1e-4,
-X >= 1e-4 W/m^2. Motoren mapper utlost energi til klasse via en enkel
-energi-til-flux-proxy — markert som proxy, ikke identitet.
+The GOES classification follows the canonical scale (peak X-ray flux in
+the 1-8 Angstrom band): A < 1e-7, B < 1e-6, C < 1e-5, M < 1e-4,
+X >= 1e-4 W/m^2. The engine maps released energy to class via a simple
+energy-to-flux proxy — marked as proxy, not identity.
 """
 from __future__ import annotations
 
@@ -22,18 +22,18 @@ import numpy as np
 
 from .base_engine import EFCEngine
 
-# GOES-klasser i stigende rekkefolge (kanonisk skala)
+# GOES classes in ascending order (canonical scale)
 GOES_KLASSER = "ABCMX"
 
 
 class SolarFlareEngine(EFCEngine):
-    """Holding->release-motor for solens magnetiske buffer (idealisert)."""
+    """Holding->release engine for the Sun's magnetic buffer (idealised)."""
 
     REQUIRED_PARAMS = [
-        "mu_0",            # N/A^2 — vakumpermeabilitet
-        "b_crit",          # T — kritisk feltstyrke for utlosning
-        "oppladningsrate", # T/s — dB/dt i aktivt omraade
-        "volum",           # m^3 — aktivt omraade-volum
+        "mu_0",            # N/A^2 — vacuum permeability
+        "b_crit",          # T — critical field strength for release
+        "oppladningsrate", # T/s — dB/dt in the active region
+        "volum",           # m^3 — active region volume
     ]
 
     @property
@@ -41,29 +41,28 @@ class SolarFlareEngine(EFCEngine):
         return "solar_flare"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def _gyldig_felt(self, b: np.ndarray) -> np.ndarray:
-        """Motorens fail-closed-kontrakt for feltstyrke — EEN kilde.
+        """The engine's fail-closed contract for field strength — ONE source.
 
-        Gyldig feltstyrke er ENDELIG og IKKE-NEGATIV: bufferen lades fra
-        B = 0 og oppover, saa negativ B er utenfor modellens
-        tilstandsrom. Skilt ut fordi baade compute() og
-        magnetisk_energi() maa holde SAMME kontrakt — to kopier driver
-        fra hverandre. Samme form som TransientEngine._gyldig_masse()
-        (L-036), og av samme grunn: kvadratet gjor inngangen positiv.
+        Valid field strength is FINITE and NON-NEGATIVE: the buffer charges
+        from B = 0 and upwards, so negative B is outside the model's state
+        space. Separated out because both compute() and magnetisk_energi()
+        must keep the SAME contract — two copies drift apart. The same form
+        as TransientEngine._gyldig_masse() (L-036), and for the same reason:
+        the square makes the input positive.
         """
         return np.isfinite(b) & (b >= 0.0)
 
     def magnetisk_energi(self, params: dict, b: np.ndarray) -> np.ndarray:
-        """Magnetisk bufferenergi E = B^2 / (2 mu_0) * V.
+        """Magnetic buffer energy E = B^2 / (2 mu_0) * V.
 
-        Ugyldig inngang (negativ eller ikke-endelig B) er utenfor
-        vinduet og gir NaN — aldri en gjetning. Uten masken ville B^2
-        gjort energien POSITIV ogsaa for negativ B, saa en direkte
-        kallende part fikk et tall der compute() svarer «utenfor
-        vinduet».
+        Invalid input (negative or non-finite B) is outside the window
+        and yields NaN — never a guess. Without the mask, B^2 would have
+        made the energy POSITIVE also for negative B, so a direct caller
+        got a number where compute() answers «outside the window».
         """
         b = np.asarray(b, dtype=float)
         ut = np.full(b.shape, np.nan)
@@ -72,27 +71,27 @@ class SolarFlareEngine(EFCEngine):
         return ut
 
     def oppladningstid(self, params: dict) -> float:
-        """Tid fra B=0 til terskelen ved konstant oppladningsrate."""
+        """Time from B=0 to the threshold at constant charging rate."""
         return float(params["b_crit"] / params["oppladningsrate"])
 
     def utlost_energi(self, params: dict) -> float:
-        """Energien som slippes naar bufferen naar terskelen."""
+        """The energy released when the buffer reaches the threshold."""
         return float(self.magnetisk_energi(params, np.array([params["b_crit"]]))[0])
 
     def goes_klasse(self, energi: float) -> str:
-        """Mapper utlost energi til forventet GOES-klasse (proxy).
+        """Maps released energy to expected GOES class (proxy).
 
-        Proxy-kjede: energi -> peak flux (1-8 A) -> klasse.
-        Kalibreringsanker: 1e22 J ~ M-klasse. Bins per dekade:
+        Proxy chain: energy -> peak flux (1-8 A) -> class.
+        Calibration anchor: 1e22 J ~ M class. Bins per decade:
             A < 1e20, B < 1e21, C < 1e22, M < 1e23, X >= 1e23 J.
-        (1e22 J er typisk frigjort energi for M-klasse-flares.)
-        Idealisert: ekte flares slipper bare en BRAKDEL av bufferen.
+        (1e22 J is the typical released energy for M class flares.)
+        Idealised: real flares release only a FRACTION of the buffer.
         """
         energi_per_klasse = {
-            "A": 1e20,   # A: energi < 1e20 J
+            "A": 1e20,   # A: energy < 1e20 J
             "B": 1e21,
             "C": 1e22,
-            "M": 1e23,   # M: 1e22 <= energi < 1e23 (ankeret 1e22 -> M)
+            "M": 1e23,   # M: 1e22 <= energy < 1e23 (the anchor 1e22 -> M)
             "X": float("inf"),
         }
         klasse = "X"
@@ -103,18 +102,18 @@ class SolarFlareEngine(EFCEngine):
         return klasse
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
-        """Gitt feltstyrker B (T), returner utlost energi (J).
+        """Given field strengths B (T), return released energy (J).
 
-        Holding: B < b_crit -> bufferen holder, utlosning = 0.
-        Release: B >= b_crit -> bufferen slippes (idealisert: helt).
+        Holding: B < b_crit -> the buffer holds, release = 0.
+        Release: B >= b_crit -> the buffer is released (idealised: entirely).
 
-        Ugyldig inngang (negativ eller ikke-endelig B) er utenfor
-        vinduet og gir NaN — aldri en gjetning. For ble NaN og -inf
-        rapportert som «holding» (0.0) og +inf som en utlosning.
+        Invalid input (negative or non-finite B) is outside the window
+        and yields NaN — never a guess. Previously NaN and -inf were
+        reported as «holding» (0.0) and +inf as a release.
         """
         b = np.asarray(coordinates, dtype=float)
         ut = np.full(b.shape, np.nan)
@@ -125,7 +124,7 @@ class SolarFlareEngine(EFCEngine):
         return ut
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
@@ -134,97 +133,98 @@ class SolarFlareEngine(EFCEngine):
         t_opp = self.oppladningstid(params)
         e_ut = self.utlost_energi(params)
         validity = (
-            "holding: B < " + str(b_crit) + " T — bufferen lades, ingen "
-            "utlosning; release: B >= " + str(b_crit) + " T — bufferen "
-            "slippes. IDEALISERT regime-modell (Avallon-stil buffer): "
-            "hele bufferen slippes ved terskelen; ekte flares slipper "
-            "en brakdel. Ugyldig inngang (negativ eller ikke-endelig B) "
-            "er utenfor vinduet og gir NaN — aldri en gjetning: bufferen "
-            "lades fra B = 0, og B^2 ville ellers gjort energien positiv "
-            "ogsaa for negativ B. Predikerer IKKE enkelthendelser."
+            "holding: B < " + str(b_crit) + " T — the buffer charges, no "
+            "release; release: B >= " + str(b_crit) + " T — the buffer "
+            "is released. IDEALIZED regime model (Avallon-style buffer): "
+            "the whole buffer is released at the threshold; real flares "
+            "release a fraction. Invalid input (negative or non-finite B) "
+            "is outside the window and yields NaN — never a guess: the "
+            "buffer is charged from B = 0, and B^2 would otherwise have "
+            "made the energy positive also for negative B. Does NOT "
+            "predict single events."
         )
-        law_form = ("E = B^2/(2 mu_0) * V; oppladningstid = b_crit / "
-                    "(dB/dt); utlosning ved B = b_crit")
+        law_form = ("E = B^2/(2 mu_0) * V; charging time = b_crit / "
+                    "(dB/dt); trigger at B = b_crit")
         return {
             "id": "efc.solar_flare_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["GOES-bins: 1e20->B, 1e21->C, 1e22->M, 1e23->X J — klassegrenser — proxy-kjede, ikke fysikalsk lov"],
+            "terskler": ["GOES bins: 1e20->B, 1e21->C, 1e22->M, 1e23->X J — class boundaries — proxy chain, not a physical law"],
             "motor": "solar_flare"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["energi", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # still stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
             },            "regime": {
-                "name": "Solens holding->release (magnetisk buffer)",
+                "name": "The Sun's holding->release (magnetic buffer)",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "oppladningstid, utlost energi, GOES-klasse",
-                "measurer": "analytisk buffermodell + GOES-klasseproxy",
+                "target": "charging time, released energy, GOES class",
+                "measurer": "analytic buffer model + GOES class proxy",
                 "instrument": "SolarFlareEngine (efc_inference/engine/solar_flare.py)",
                 "proxy_chain": [
-                    "B -> magnetisk energi (E = B^2/(2 mu_0) * V)",
-                    "energi -> GOES-klasse (kalibreringsproxy: 1e22 J ~ M)",
+                    "B -> magnetic energy (E = B^2/(2 mu_0) * V)",
+                    "energy -> GOES class (calibration proxy: 1e22 J ~ M)",
                 ],
-                "placement": "det aktive omraadets magnetiske buffer — motoren regner ett feltstyrke-punkt om gangen",
-                "compression": "feltstyrke + oppladningsrate -> (t_opp, E_ut, klasse)",
+                "placement": "the magnetic buffer of the active region — the engine computes one field-strength point at a time",
+                "compression": "field strength + charging rate -> (t_opp, E_ut, class)",
             },
-            "episenter": "terskelen b_crit: punktet der bufferen slipper det den har holdt — analogien til nevronets V_th og forkastningens terskel er formens egen",
+            "episenter": "the threshold b_crit: the point where the buffer releases what it has held — the analogy to the neuron's V_th and the fault's threshold is the form's own",
             "buffer": {
-                "role": "magnetfeltet er bufferen: energien lades og holdes til terskelen krysses",
-                "note": "ANALOGI til homo.aksjonspotensial og jordskjelvets forkastning — holding->release, tre domener, ikke identitet.",
+                "role": "the magnetic field is the buffer: the energy is charged and held until the threshold is crossed",
+                "note": "ANALOGY to homo.aksjonspotensial and the earthquake's fault — holding->release, three domains, not identity.",
             },
             "ontology": {
                 "assumes": [
-                    "magnetisk energitetthet B^2/(2 mu_0) gjelder",
-                    "utlosning skjer ved en kritisk feltstyrke (idealisering: ekte utlosning avhenger ogsa av topologi)",
+                    "the magnetic energy density B^2/(2 mu_0) applies",
+                    "release happens at a critical field strength (idealisation: real release also depends on topology)",
                 ],
-                "source": "sol-fysikkens energibuffer-bilde (Avallon-stil); GOES-klasseskalaen (1-8 A); idealiseringene er motorens egne",
+                "source": "the energy-buffer picture of solar physics (Avallon style); the GOES class scale (1-8 A); the idealizations are the engine's own",
             },
             "observer": {
-                "bandwidth": "motoren ser bare feltstyrke og oppladningsrate — ingen magnetisk topologi, ingen plasma-dynamikk",
+                "bandwidth": "the engine sees only field strength and charging rate — no magnetic topology, no plasma dynamics",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "fotbevegelser -> feltet vrir seg -> terskel -> utlosning -> feltet bygges pa nytt — flare-syklusen",
-                "properties": ["t_opp", "E_ut", "GOES-klasse"],
+                "loop": "footpoint motions -> the field twists -> threshold -> release -> the field is rebuilt — the flare cycle",
+                "properties": ["t_opp", "E_ut", "GOES class"],
             },
             "fractal": {
-                "pattern": "holding->release: solens flares, nevronets spike, forkastningens skjelv — samme form, tre domener (analogi)",
-                "note": "ett monster, tre domener.",
+                "pattern": "holding->release: the Sun's flares, the neuron's spike, the fault's quakes — the same form, three domains (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "ett aktivt omraade, en buffer",
-                "global": "flares er kosmos.sol sitt regimeskifte — ANALOGOUS_TO homo.aksjonspotensial og efc.jordskjelv_engine",
-                "empathy_note": "solen holder og holder — til den slipper. Som alle buffere.",
+                "local": "one active region, one buffer",
+                "global": "flares are the regime shift of kosmos.sol — ANALOGOUS_TO homo.aksjonspotensial and efc.jordskjelv_engine",
+                "empathy_note": "the sun holds and holds — until it lets go. Like all buffers.",
             },
         }
 
 
 class SolarFlareEngineBrakdel(SolarFlareEngine):
-    """Variant som slipper en brakdel av bufferen (mer realistisk)."""
+    """Variant that releases a fraction of the buffer (more realistic)."""
 
     @property
     def name(self) -> str:

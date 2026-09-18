@@ -1,17 +1,17 @@
-"""EFC Samfunn Engine — SIR-epidemiologi som flytmodell (L-042).
+"""EFC Samfunn Engine — SIR epidemiology as a flow model (L-042).
 
-SIR-modellen er flytmodellen i ren form: mottagelige (S) -> smittede
-(I) -> friske (R), med R0 = beta/gamma som terskelen — R0 > 1 er
-UTBRUDD (release: reservoaret av mottagelige tømmes), R0 < 1 er
-DEMPET (holding: smitten finner ikke nok mottagelige), og R0 = 1 er
-selve TERSKELEN (regimeskiftet).
+The SIR model is the flow model in pure form: susceptible (S) -> infected
+(I) -> recovered (R), with R0 = beta/gamma as the threshold — R0 > 1 is
+OUTBREAK (release: the reservoir of susceptibles is emptied), R0 < 1 is
+DAMPED (holding: the infection finds no susceptibles), and R0 = 1 is the
+THRESHOLD itself (the regime shift).
 
-Modellen er en IDEALISERT homogen SIR: ingen aldersstruktur, ingen
-nettverkstopologi, ingen atferd, ingen vaksinasjonsstrategier. Den
-er IKKE en epidemiologisk modell-konkurrent — epidemiologi er et
-eget fag med egen litteratur; motoren koder bare formen.
+The model is an IDEALIZED homogeneous SIR: no age structure, no network
+topology, no behavior, no vaccination strategies. It is NOT an
+epidemiological model competitor — epidemiology is a field of its own with
+its own literature; the engine codes only the form.
 
-Fysikken (homogen SIR):
+The physics (homogeneous SIR):
     dS/dt = -beta S I / N
     dI/dt =  beta S I / N - gamma I
     dR/dt =  gamma I
@@ -25,12 +25,12 @@ from .base_engine import EFCEngine
 
 
 class SamfunnEngine(EFCEngine):
-    """Homogen SIR-flytmodell med R0-terskel (idealisert)."""
+    """Homogeneous SIR flow model with an R0 threshold (idealized)."""
 
     REQUIRED_PARAMS = [
-        "beta",   # 1/døgn — smitterate
-        "gamma",  # 1/døgn — tilfriskningsrate
-        "N",      # populasjonsstørrelse
+        "beta",   # 1/day — infection rate
+        "gamma",  # 1/day — recovery rate
+        "N",      # population size
     ]
 
     @property
@@ -38,17 +38,17 @@ class SamfunnEngine(EFCEngine):
         return "samfunn"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def r0(self, params: dict) -> float:
-        """R0 = beta / gamma — det grunnleggende reproduksjonstallet."""
+        """R0 = beta / gamma — the basic reproduction number."""
         if params["gamma"] == 0:
             return float("inf")
         return float(params["beta"] / params["gamma"])
 
     def utbrudds_status(self, params: dict) -> str:
-        """Regimeklassifisering ved terskelen R0 = 1."""
+        """Regime classification at the threshold R0 = 1."""
         r0 = self.r0(params)
         if r0 > 1:
             return "utbrudd"
@@ -58,12 +58,12 @@ class SamfunnEngine(EFCEngine):
 
     def sir_bane(self, params: dict, t: np.ndarray,
                  s0: float = 0.999, i0: float = 0.001):
-        """SIR-banen som FRAKSJONER av N (s + i + r = 1 til enhver
-        tid; populasjonstallene er S = N*s, I = N*i, R = N*r).
+        """The SIR trajectory as FRACTIONS of N (s + i + r = 1 at all
+        times; the population counts are S = N*s, I = N*i, R = N*r).
 
-        Integreres med Euler på et fint grid — tilstrekkelig for
-        formens kvalitative bane (dette er en form-modell, ikke en
-        presisjonsintegrator; det står i docstringens ærlighet)."""
+        Integrated with Euler on a fine grid — sufficient for the
+        qualitative trajectory of the form (this is a form model, not a
+        precision integrator; the docstring's honesty says so)."""
         s, i = s0, i0
         s_bane, i_bane, r_bane = [s], [i], [1 - s - i]
         dt = float(np.mean(np.diff(np.asarray(t, dtype=float))))
@@ -79,12 +79,12 @@ class SamfunnEngine(EFCEngine):
         return (np.array(s_bane), np.array(i_bane), np.array(r_bane))
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt (beta, gamma)-par (N x 2), returner R0 per punkt."""
+        """Given (beta, gamma) pairs (N x 2), return R0 per point."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
         koord = np.asarray(coordinates, dtype=float)
@@ -98,20 +98,20 @@ class SamfunnEngine(EFCEngine):
         return np.array(ut)
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
         r0 = self.r0(params)
         validity = (
-            "SIR-flytregime: mottagelige -> smittede -> friske med "
-            f"R0 = {r0:.2f} — terskelen R0 = 1 er regimeskiftet: over "
-            "den er utbruddet (release, reservoaret tømmes), under er "
-            "smitten dempet (holding). IDEALISERT homogen SIR: ingen "
-            "aldersstruktur, ingen nettverk, ingen atferd, ingen "
-            "vaksinasjon — IKKE en epidemiologisk modell-konkurrent. "
-            "Banen integreres med Euler på fint grid — form-modell, "
-            "ikke presisjonsintegrator."
+            "SIR flow regime: susceptible -> infected -> recovered with "
+            f"R0 = {r0:.2f} — the threshold R0 = 1 is the regime shift: "
+            "above it is the outbreak (release, the reservoir empties), "
+            "below it the infection is damped (holding). IDEALIZED "
+            "homogeneous SIR: no age structure, no network, no behavior, "
+            "no vaccination — NOT an epidemiological model competitor. "
+            "The trajectory is integrated with Euler on a fine grid — a "
+            "form model, not a precision integrator."
         )
         law_form = ("dS/dt = -beta S I/N; dI/dt = beta S I/N - gamma I; "
                     "dR/dt = gamma I; R0 = beta/gamma")
@@ -120,75 +120,75 @@ class SamfunnEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["R0 = 1 — terskelen mellom tre regimer — regimebryter"],
+            "terskler": ["R0 = 1 — the threshold between three regimes — regime breaker"],
             "motor": "samfunn"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["tid", "fraksjon"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": "homo.fluxus",
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
             },            "regime": {
-                "name": "SIR-epidemiologi — flyt med terskel",
+                "name": "SIR epidemiology — flow with threshold",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "R0, utbruddsstatus, epidemi-banen",
-                "measurer": "homogen SIR-integrasjon",
+                "target": "R0, outbreak status, the epidemic trajectory",
+                "measurer": "homogeneous SIR integration",
                 "instrument": "SamfunnEngine (efc_inference/engine/samfunn.py)",
                 "proxy_chain": [
                     "beta, gamma -> R0",
-                    "R0 -> utbruddsstatus (terskel 1)",
-                    "SIR-banen -> kurveformen",
+                    "R0 -> outbreak status (threshold 1)",
+                    "the SIR trajectory -> the shape of the curve",
                 ],
-                "placement": "ett (beta, gamma)-punkt om gangen i det homogene regimet",
-                "compression": "(beta, gamma) -> (R0, status, bane)",
+                "placement": "one (beta, gamma) point at a time in the homogeneous regime",
+                "compression": "(beta, gamma) -> (R0, status, trajectory)",
             },
-            "episenter": "terskelen R0 = 1: punktet der en smitte dør eller tar av — epidemiens regimeskifte",
+            "episenter": "the threshold R0 = 1: the point where an infection dies out or takes off — the epidemic's regime shift",
             "buffer": {
-                "role": "reservoaret av mottagelige er bufferen: utbruddet tømmer den, og når den er tom, dør epidemien av seg selv",
-                "note": "ANALOGI til immunologiens terskelstyrte forsvar (homo.immunologi) — ikke identitet: SIR er befolkningsflyt, immunresponsen er kroppslig forsvar.",
+                "role": "the reservoir of susceptibles is the buffer: the outbreak drains it, and when it is empty, the epidemic dies out on its own",
+                "note": "ANALOGY to immunology's threshold-governed defence (homo.immunologi) — not identity: SIR is population flow, the immune response is bodily defence.",
             },
             "ontology": {
                 "assumes": [
                     "homogen blanding (alle møter alle likt)",
-                    "konstante beta og gamma i vinduet",
+                    "constant beta and gamma in the window",
                 ],
                 "source": "Kermack-McKendrick SIR (1927); analogi-merkingen er atlasets egen",
             },
             "observer": {
-                "bandwidth": "motoren ser bare aggregatene S, I, R — ingen individer, ingen nettverk",
+                "bandwidth": "the engine sees only the aggregates S, I, R — no individuals, no network",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "smitte -> utbrudd -> reservoaret tømmes -> flokkimmunitet -> smitten dør — epidemiens loop",
-                "properties": ["R0", "toppunkt", "sluttstørrelse"],
+                "loop": "infection -> outbreak -> the reservoir empties -> herd immunity -> the infection dies — the epidemic's loop",
+                "properties": ["R0", "peak", "final size"],
             },
             "fractal": {
-                "pattern": "flyt gjennom et begrenset reservoar med terskel: epidemi, utladning, kollaps (analogi)",
-                "note": "ett mønster, tre domener.",
+                "pattern": "flow through a limited reservoir with a threshold: epidemic, discharge, collapse (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "ett samfunn, én epidemi",
-                "global": "helse-domenet er homo.fluxus sin kollektive skala — ANALOGOUS_TO homo.immunologi",
-                "empathy_note": "epidemien vet ikke at den er en flyt — den bare går til reservoaret er tomt.",
+                "local": "one society, one epidemic",
+                "global": "the health domain is the collective scale of homo.fluxus — ANALOGOUS_TO homo.immunologi",
+                "empathy_note": "the epidemic does not know it is a flow — it just runs until the reservoir is empty.",
             },
         }

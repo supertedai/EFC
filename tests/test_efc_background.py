@@ -335,9 +335,9 @@ def test_regime_node_deklarerer_at_bakgrunnen_er_foerste_og_boltzmann_aapen():
     Boltzmann/CMB som ikke sier det, blir lest som en full loesning."""
     node = EFCBackgroundEngine().regime_node(EFC)
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "foerste" in tekst or "første" in tekst
+    assert "the first self-consistent efc background" in tekst
     assert "boltzmann" in tekst
-    assert "aapen" in tekst or "åpen" in tekst
+    assert "boltzmann/cmb is open" in tekst
     # V-valget skal staa i klartekst (papiret spesifiserer ikke V(phi))
     assert "v = const" in tekst or "v=const" in tekst
     # og regimet skal deklarere gyldighet + lovform
