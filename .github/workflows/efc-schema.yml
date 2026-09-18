@@ -16,12 +16,18 @@ on:
       - "schema/regime_nodes.jsonld"
       - "scripts/maintenance/efc_schema_check.py"
       - "scripts/maintenance/efc_atlas_export.py"
+      - "scripts/maintenance/efc_bro_synk.py"
+      - "scripts/maintenance/efc_bro_konvensjon.py"
+      - "scripts/maintenance/bygg_kildenoder.py"
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
       - "tests/test_regime_node_schema.py"
       - "tests/test_efc_provenance.py"
+      - "tests/test_bro_konvensjon.py"
+      - "tests/test_holding_release_motorer.py"
       - ".github/workflows/*.yml"
       - "requirements.txt"
+      - "Makefile"
       - ".github/workflows/efc-schema.yml"
   pull_request:
     paths:
@@ -33,12 +39,18 @@ on:
       - "schema/regime_nodes.jsonld"
       - "scripts/maintenance/efc_schema_check.py"
       - "scripts/maintenance/efc_atlas_export.py"
+      - "scripts/maintenance/efc_bro_synk.py"
+      - "scripts/maintenance/efc_bro_konvensjon.py"
+      - "scripts/maintenance/bygg_kildenoder.py"
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
       - "tests/test_regime_node_schema.py"
       - "tests/test_efc_provenance.py"
+      - "tests/test_bro_konvensjon.py"
+      - "tests/test_holding_release_motorer.py"
       - ".github/workflows/*.yml"
       - "requirements.txt"
+      - "Makefile"
       - ".github/workflows/efc-schema.yml"
   workflow_dispatch:
 
@@ -61,5 +73,8 @@ jobs:
       - name: C10 — registered schema/instance pairs valid and closed
         run: python3 scripts/maintenance/efc_schema_check.py
 
+      - name: Motor↔atlas-broen — fila i deklarert format, ingen avvik
+        run: python3 scripts/maintenance/efc_bro_synk.py --sjekk
+
       - name: Unit tests for the gate, and every workflow file parses
-        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py -q
+        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py -q

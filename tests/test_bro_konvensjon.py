@@ -159,6 +159,67 @@ def test_synken_kan_vedlikeholde_alt_den_eier(broer: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# The generator itself: a guard nobody calls is a comment
+# ---------------------------------------------------------------------------
+
+def test_the_bank_stands_in_the_declared_format() -> None:
+    """The bank must stand in ``K.FORMAT`` — ONE source for both writers.
+
+    The tests above compare engine against atlas, and are therefore GREEN
+    even when the generator is dead; they only read the file. This one reads
+    the guard the generator itself uses, and fails when the file has been
+    rewritten in another format: then ``--skriv`` refuses to write, and ALL
+    bridges stand without machine maintenance while everything else looks
+    healthy.
+
+    Measured 2026-09-18 (t_2bc25575): #545 (d826235b) rewrote the whole bank
+    as indent=2 as a side effect of adding nodes. The file had been indent=1
+    since 2026-09-17T19:37, ``FORMAT`` declared indent=1, and ``make check``
+    stood red for four hours without anyone running it."""
+    tekst = S.ATLAS.read_text(encoding="utf-8")
+    feil = S.formatavvik(tekst)
+    assert feil is None, (
+        f"{feil}\n  The bank stands in another format than K.FORMAT declares. "
+        "Fix the file — or K.FORMAT — in the same PR, never in a separate "
+        "one: the format is what separates a real change from a full rewrite.")
+
+
+def test_the_format_guard_actually_fires() -> None:
+    """The guard above must REJECT a bank written in another format.
+
+    A test that only asserts ``None`` on the real file passes just as well
+    for a guard that always returns ``None``. The mutant is therefore built
+    in memory — the same JSON at indent=4 — so the proof costs nothing and
+    touches no file. This is the kill: ``formatavvik`` must name the
+    reformatted bank, and must stay silent on the canonical one."""
+    tekst = S.ATLAS.read_text(encoding="utf-8")
+    data = json.loads(tekst)
+    rewritten = json.dumps(data, indent=4, ensure_ascii=False) + "\n"
+    assert S.formatavvik(rewritten) is not None, (
+        "the format guard accepts a bank rewritten at indent=4 — then it "
+        "guards nothing, and the sync would reformat the whole file")
+    assert S.formatavvik(json.dumps(data, **S.FORMAT) + "\n") is None
+
+
+def test_the_sync_is_not_green_only_on_paper(broer: dict) -> None:
+    """The tool must run all the way and measure EVERY registered bridge.
+
+    The point is not that the report is empty — the two tests above measure
+    the content independently of the tool — but that the tool gets there at
+    all. An exception in the format guard or in the parameter lookup yields a
+    generator that never writes, and a separate, green content test does not
+    see it."""
+    tekst = S.ATLAS.read_text(encoding="utf-8")
+    funn = S.avvik(tekst)
+    assert funn == {}, f"the sync reports deviations: {sorted(funn)}"
+    assert len(broer) == len(S.BROER), (
+        f"the sync measured {len(broer)} of {len(S.BROER)} registered bridges")
+    for nid in ("efc.solar_flare_engine", "efc.jordskjelv_engine",
+                "efc.transient_engine"):
+        assert nid in broer, f"{nid}: registered, but not measured"
+
+
+# ---------------------------------------------------------------------------
 # Konvensjonen mot skjemaet: ingen felt uten eier
 # ---------------------------------------------------------------------------
 

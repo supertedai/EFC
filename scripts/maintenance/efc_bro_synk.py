@@ -40,10 +40,11 @@ import efc_bro_konvensjon as K  # noqa: E402
 ROT = Path(__file__).resolve().parents[2]
 ATLAS = ROT / K.ATLAS[0] / K.ATLAS[1]
 
-#: Filformatet atlaset er skrevet i. Skriving som IKKE reproduserer de
-#: eksisterende bytes nektes — en generator skal ikke reformatere 289 kB
-#: for aa endre to felt.
-FORMAT = dict(indent=1, ensure_ascii=False)
+#: The file format the atlas is written in. The source is
+#: ``efc_bro_konvensjon`` — the same constant ``bygg_kildenoder.py`` writes
+#: with, so that two writers cannot diverge on the format (measured
+#: 2026-09-18: they did, and the guard below stayed red in silence).
+FORMAT = K.FORMAT
 
 #: node-id -> (motormodul, motorklasse, testmodul med de kanoniske
 #: parametrene). Registeret ER registeret: enhver EFCEngine med
@@ -224,6 +225,25 @@ def _sett_verdi(node: dict, sti: tuple, verdi) -> None:
     node[sti[-1]] = verdi
 
 
+def formatavvik(tekst: str) -> str | None:
+    """None when the file stands in the declared format, else a message.
+
+    The guard is split out of ``main()`` on purpose: it is the ONE thing
+    that detects that someone rewrote the whole bank, and the test must
+    therefore call EXACTLY the code the tool calls — not a copy of it.
+
+    Measured 2026-09-18 (t_2bc25575): the guard was right, but out of reach.
+    ``--sjekk`` was red for all 20 bridges from #545 until this card, and
+    nothing called it. A guard nobody calls is a comment.
+    """
+    kanonisk = json.dumps(json.loads(tekst), **FORMAT) + "\n"
+    if kanonisk == tekst:
+        return None
+    return (f"{ATLAS.name}: the file is not in canonical format "
+            f"({len(tekst)} bytes against {len(kanonisk)}) — "
+            "the sync does not write, to avoid format noise")
+
+
 def motoren(modul_sti: str, klassenavn: str):
     """Motoren importeres som PAKKE-modul: motorfilene bruker relativ
     import (``from .base_engine import EFCEngine``), og en
@@ -263,15 +283,12 @@ def main() -> int:
     a = ap.parse_args()
 
     tekst = ATLAS.read_text(encoding="utf-8")
-    kanonisk = json.dumps(json.loads(tekst), **FORMAT) + "\n"
-    if kanonisk != tekst:
+    feil = formatavvik(tekst)
+    if feil:
         # Nekter heller enn aa reformatere hele fila: en generator som
         # skriver et annet format enn fila staar i, lager en diff som
         # skjuler hva som faktisk ble endret.
-        raise SystemExit(
-            f"{ATLAS.name}: fila staar ikke i kanonisk format "
-            f"({len(tekst)} bytes mot {len(kanonisk)}) — "
-            "synken skriver ikke for aa unngaa formatstøy")
+        raise SystemExit(feil)
 
     if a.skriv:
         ny, endret = skriv(tekst)
