@@ -132,7 +132,7 @@ VARIANTER: dict[str, str] = {
     "SolarFlareEngineBrakdel": "efc.solar_flare_engine",
 }
 
-# Biologimotorene har egne atlas-kontrakter; de er ikke EFC-broer.
+# The biology engines have their own atlas contracts; they are not EFC bridges.
 IKKE_BRO_MOTORER = frozenset({
     "ActionPotentialEngine", "CardiacCycleEngine", "CellCycleEngine",
     "EvolusjonEngine", "FeberRegimeEngine", "FluxusEngine",

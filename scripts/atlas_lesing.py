@@ -1264,7 +1264,7 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
 
 def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
                  kilde: str = "samtale") -> dict:
-    """Append ett retain-fragment til koe-filen, uten aa opprette en node."""
+    """Append one retain fragment to the queue file, without creating a node."""
     plassering = plasser(atlas, tekst)
     record = {
         "tekst": tekst,
@@ -1335,7 +1335,7 @@ if __name__ == "__main__":
         record = skriv_inntak(atlas, a.innta, fil, kilde=a.kilde)
         print(f"FRAGMENT: {a.innta!r}  ->  {record['plasseringsstatus']}")
         print(f"  proveniens: {record['kilde']}")
-        print(f"  skrevet til: {fil}")
+        print(f"  written to: {fil}")
         if record["plasseringsstatus"] == "uten_hjem":
             print("  koe: uten_hjem — menneskelig vurdering kreves")
         else:
