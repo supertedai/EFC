@@ -16,13 +16,14 @@
       ]
     },
     "kosmos.galakser": {
-      "status": "delvis",
+      "status": "dekket",
       "meldinger": 19,
       "noder": [
         "efc.rotation_engine",
-        "obs.jwst_ems"
+        "obs.jwst_ems",
+        "kosmos.galakser_mast"
       ],
-      "begrunnelse": "jwst-ems dekker massefunksjonen; mast-caom-observasjonen mangler",
+      "begrunnelse": "jwst-ems dekker massefunksjonen; mast-caom kobler den målte observasjonsstrømmen til domenet.",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -387,14 +388,16 @@
       ]
     },
     "verden.klima": {
-      "status": "delvis",
+      "status": "dekket",
       "meldinger": 104,
       "noder": [
         "efc.klima_engine",
         "efc.tidevann_engine",
-        "verden.hav"
+        "verden.hav",
+        "verden.klima_gdelt",
+        "verden.klima_worldbank"
       ],
-      "begrunnelse": "noaa-tides er dekket; gdelt-observasjon og world-bank-tilstand mangler",
+      "begrunnelse": "noaa-tides dekker havtilstanden; gdelt-gkg kobler klimaobservasjon og world-bank kobler land- og årsindikatorer til domenet.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.noaa-tides",

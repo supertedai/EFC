@@ -105,6 +105,9 @@ KODER = {
     "obs.bullet": "BU", "obs.satellites": "SL", "obs.jwst_ems": "JW",
     "obs.gw_ct": "GW", "obs.pta_gwb": "PA", "obs.h0_tension": "H0",
     "obs.w0wa": "W0", "obs.cc": "CC",
+    # Live stream instruments — each code identifies exactly one node
+    "kosmos.galakser_mast": "KM", "verden.klima_gdelt": "GG",
+    "verden.klima_worldbank": "WB",
     # Homo — regime-motoren
     "homo.fluxus": "HF", "homo.homeostase_buffer": "HO",
     "homo.feber_regime": "FE", "homo.aksjonspotensial": "AP",
@@ -203,6 +206,9 @@ PLASSERING = {
     "obs.s8": ("ghost", 8),
     "obs.satellites": ("ghost", 8),
     "obs.w0wa": ("ghost", 8),
+    "kosmos.galakser_mast": ("kosmos", 3),
+    "verden.klima_gdelt": ("samfunn", 6),
+    "verden.klima_worldbank": ("samfunn", 6),
     "optikk.dispersjon": ("ghost", 8),
     "regnbue": ("ghost", 8),
     "regnbue.observator": ("ghost", 8),

@@ -6,7 +6,7 @@ _Question status: **7 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 103 nodes, 19 engines, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 106 nodes, 19 engines, NATS bridges.
 
 ## Decisions locked
 
@@ -23,13 +23,13 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Roots — time and self** — Chapter 1 of 9 — a few structures at a time. _(adds efc-l0)_
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
-3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert)_
+3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast)_
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
-6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning)_
+6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 103 nodes, 79 relations.
+9. **The whole atlas** — Everything at once — 106 nodes, 79 relations.
 
 ## Structures
 
@@ -441,6 +441,20 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — Det uklassifiserte er definert ved at det IKKE passer — andelen maaler skjemaets grense, ikke fenomenet
 
+#### KM · kosmos.galakser_mast
+
+**In one line.** Perspective: consensus. astronomiske observasjoner og katalogiserte kilder
+
+**What it does.** MAST CAOM observasjonskatalog — proxy chain: instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde
+
+**How it's built.** Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — MAST/CAOM bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+
 ### Bridges — gap domains, round two
 
 #### HA · verden.hav
@@ -768,6 +782,34 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — Utdanningsstatistikk maaler skolegang, ikke laering — og land som ikke rapporterer, blir usynlige i samme andel
+
+#### GG · verden.klima_gdelt
+
+**In one line.** Perspective: consensus. klimarelatert omtale kodet i globale nyhetsdokumenter
+
+**What it does.** GDELT GKG-koding av dokument, tema, aktør og sted — proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon
+
+**How it's built.** Buffer role: GDELT-korpuset holder kodingen mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — GDELT-prosjektet bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+
+#### WB · verden.klima_worldbank
+
+**In one line.** Perspective: consensus. klima- og utviklingsindikatorer per land og år
+
+**What it does.** World Bank-indikatorenes innrapporterte og harmoniserte datasett — proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding
+
+**How it's built.** Buffer role: harmoniserte indikatorserier holder tilstanden mellom årlige oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
 
 ### Epistemics
 

@@ -12477,6 +12477,297 @@
      "konsensus": "minoritet"
     }
    }
+  },
+  {
+   "id": "kosmos.galakser_mast",
+   "regime": {
+    "name": "maaling — observasjon.mast-caom",
+    "validity": "Instrumentavlesning fra observasjon.mast-caom; snapshot av astronomiske observasjoner og katalogiserte kilder, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "astronomiske observasjoner og katalogiserte kilder",
+    "measurer": "MAST/CAOM",
+    "instrument": "MAST CAOM observasjonskatalog",
+    "proxy_chain": [
+     "instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde"
+    ],
+    "placement": "observasjon",
+    "compression": "observasjon.mast-caom komprimeres til den dokumenterte meldingen per oppdatering"
+   },
+   "episenter": "lesningen fra observasjon.mast-caom — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "observasjonskatalogen holder metadata mellom uttrekk",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "observasjon.mast-caom leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "observasjon.mast-caom",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "observasjon.mast-caom",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "observasjon.mast-caom: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "observasjon -> CAOM-katalog -> atlaslesning",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "hver observasjon er et lite utsnitt av hele observasjonskatalogen",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver CAOM-observasjon avleses lokalt i katalogen",
+    "global": "katalogen gjør observasjonene sammenlignbare på tvers av galaksefelt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "MAST/CAOM bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "kilde- og metadatafelt per observasjon",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "observasjonstid",
+    "lengdeskala": "galaksefelt"
+   },
+   "buss_domene": "kosmos.galakser",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.klima_gdelt",
+   "regime": {
+    "name": "maaling — observasjon.gdelt-gkg",
+    "validity": "Instrumentavlesning fra observasjon.gdelt-gkg; snapshot av klimarelatert omtale kodet i globale nyhetsdokumenter, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "klimarelatert omtale kodet i globale nyhetsdokumenter",
+    "measurer": "GDELT-prosjektet",
+    "instrument": "GDELT GKG-koding av dokument, tema, aktør og sted",
+    "proxy_chain": [
+     "nyhetsdokument -> GKG-koder -> klimarelatert observasjon"
+    ],
+    "placement": "observasjon",
+    "compression": "observasjon.gdelt-gkg komprimeres til den dokumenterte meldingen per oppdatering"
+   },
+   "episenter": "lesningen fra observasjon.gdelt-gkg — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "GDELT-korpuset holder kodingen mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "observasjon.gdelt-gkg leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "observasjon.gdelt-gkg",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "observasjon.gdelt-gkg",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "observasjon.gdelt-gkg: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsdokument -> GKG-koding -> strømobservasjon",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "ett kodet dokument er et utsnitt av det globale nyhetskorpuset",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding kodes lokalt i GKG",
+    "global": "samlet strøm viser hvordan klimadiskursen fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "GDELT-prosjektet bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.klima_worldbank",
+   "regime": {
+    "name": "maaling — tilstand.world-bank",
+    "validity": "Instrumentavlesning fra tilstand.world-bank; snapshot av klima- og utviklingsindikatorer per land og år, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "klima- og utviklingsindikatorer per land og år",
+    "measurer": "World Bank",
+    "instrument": "World Bank-indikatorenes innrapporterte og harmoniserte datasett",
+    "proxy_chain": [
+     "nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding"
+    ],
+    "placement": "observasjon",
+    "compression": "tilstand.world-bank komprimeres til den dokumenterte meldingen per oppdatering"
+   },
+   "episenter": "lesningen fra tilstand.world-bank — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "harmoniserte indikatorserier holder tilstanden mellom årlige oppdateringer",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "tilstand.world-bank leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "tilstand.world-bank",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "tilstand.world-bank",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "tilstand.world-bank: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "land rapporterer -> banken harmoniserer -> indikator -> tilstandsmelding",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert land-år er et utsnitt av den globale indikatorserien",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver indikator gjelder lokalt for et land og år",
+    "global": "land- og årsseriene gir et globalt sammenligningsgrunnlag",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "indikatorverdi per land og år",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "år",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
   }
  ],
  "relations": [

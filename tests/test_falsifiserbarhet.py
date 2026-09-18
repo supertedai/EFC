@@ -144,7 +144,7 @@ class TestFalsifiserbarhet:
         avventer = sum(1 for n in off
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
-        assert len(off) == 103, f"offentlige endret: {len(off)}"
+        assert len(off) == 106, f"offentlige endret: {len(off)}"
         assert kan == 27, (
             f"kan felles: {kan} — forventet 27. 19 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
