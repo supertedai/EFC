@@ -17,12 +17,12 @@ def test_data_mjs_er_fersk_etter_regenerering():
          str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
         capture_output=True, text=True, cwd=ROT, timeout=60)
     assert r.returncode == 0, r.stderr[:400]
-    r2 = subprocess.run(["git", "diff", "--exit-code", "--",
-                         "docs/efc-atlas/atlas/data.mjs"],
-                        capture_output=True, cwd=ROT, timeout=30)
-    assert r2.returncode == 0, (
-        "data.mjs er utdatert — generatoren endret den. Kjør "
-        "efc_atlas_generator.py og commit resultatet.")
+    for generated in ("docs/efc-atlas/atlas/data.mjs", "docs/efc-atlas/INDEKS.md"):
+        r2 = subprocess.run(["git", "diff", "--exit-code", "--", generated],
+                            capture_output=True, cwd=ROT, timeout=30)
+        assert r2.returncode == 0, (
+            f"{generated} er utdatert — generatoren endret den. Kjør "
+            "efc_atlas_generator.py og commit resultatet.")
 
 
 def test_atlas_bygger_uten_feil():

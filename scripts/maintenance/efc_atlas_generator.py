@@ -526,6 +526,48 @@ def _node_rad(node: dict, i: int) -> dict:
     }
 
 
+def _indeks(noder: list[dict], rader: list[dict]) -> str:
+    grupper = {r["group"]: [] for r in rader}
+    for rad, node in zip(rader, noder):
+        grupper[rad["group"]].append((rad, node))
+    titler = {"roots": "Roots", "grid": "The grid", "kosmos": "Cosmos",
+              "broer": "Bridges", "struktur": "Structures",
+              "samfunn": "Society", "epist": "Epistemics",
+              "ghost": "Not yet built"}
+    ghost = sum(rad["ghost"] for rad in rader)
+    evidens = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen"
+                  for node in noder)
+    spoersmaal = sum(len(node.get("open_questions") or []) for node in noder)
+    lines = ["# Atlasindeks", "",
+             (f"> {len(noder)} publiserte noder · {ghost} designet og ikke bygget · "
+              f"{evidens} mangler evidens · {spoersmaal} aapne spoersmaal"), "",
+             "Hver rad er generert fra samme bank som atlaset.", ""]
+    for gruppe in ("roots", "grid", "kosmos", "broer", "struktur", "samfunn",
+                   "epist", "ghost"):
+        if not grupper.get(gruppe):
+            continue
+        lines.append(f"## {titler[gruppe]}")
+        for rad, node in grupper[gruppe]:
+            st = sakse_tekst(node) or "ikke maalt"
+            stip = node.get("stipulasjoner") or {}
+            motor = stip.get("motor") or "ikke oppgitt"
+            buss = stip.get("buss_status") or "ikke oppgitt"
+            spm = len(node.get("open_questions") or [])
+            perspektiv = _perspektiv_tekst(node.get("perspektiv"))
+            fields = [rad["code"], node["id"],
+                      klipp(rad["one"], 48), perspektiv, klipp(st, 24),
+                      klipp(str(motor), 24), klipp(str(buss), 24), str(spm),
+                      "ja" if rad["ghost"] else "nei"]
+            lines.append("- " + " · ".join(fields))
+        lines.append("")
+    lines.append("## Hva som ikke er bygget")
+    lines.append("")
+    for rad, node in (item for item in sum(grupper.values(), []) if item[0]["ghost"]):
+        lines.append(f"- {node['id']} — {klipp(node.get('navn') or node['id'], 100)}")
+    lines.append("")
+    return "\n".join(line.rstrip() for line in lines) + "\n"
+
+
 def hoved() -> int:
     atlas = json.load(open(JSONLD, encoding="utf-8"))
     alle = atlas["nodes"]
@@ -650,6 +692,9 @@ def hoved() -> int:
     # hull. En linje per node («ikke maalt») ville derimot vaert den samme malen
     # som spoersmaalsfanen nettopp ble ryddet for.
     sakse_maalt = sum(1 for n in noder if sakse_tekst(n))
+
+    indeks = _indeks(noder, rader)
+    (ATLAS_DIR.parent / "INDEKS.md").write_text(indeks, encoding="utf-8")
 
     data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
 // IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
