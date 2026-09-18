@@ -327,6 +327,16 @@
             "motor": {
               "type": "string",
               "description": "Motoren som holder terskelen i kode."
+            },
+            "buss_status": {
+              "type": "string",
+              "description": "Enten har noden et buss_domene, ELLER den sier her hvorfor den ikke har det. En utelatelse er ikke et svar — maalt 2026-09-18 (t_fc25238b).",
+              "minLength": 1
+            },
+            "motor_status": {
+              "type": "string",
+              "description": "Enten har noden en motor, ELLER den sier her hvorfor den ikke har det. En instrument-node trenger ingen motor; den skal bare si det.",
+              "minLength": 1
             }
           },
           "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
