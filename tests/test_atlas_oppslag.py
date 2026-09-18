@@ -261,13 +261,13 @@ class TestKommandolinjen:
         p = self._kjoer("--emne", "sovn", "--ref", "HEAD")
         assert p.returncode == 0, p.stderr
         assert "homo.sovn_vaaken" in p.stdout
-        assert "1 treff" in p.stdout
+        assert "1 hit(s) on" in p.stdout
 
     def test_hull_paa_kommandolinjen_er_tydelig(self) -> None:
         p = self._kjoer("--emne", "kvantegravitasjon_xyzzy", "--ref", "HEAD")
         assert p.returncode == 0, (
             "et hull er et gyldig svar — kommandolinjen skal ikke feile paa det")
-        assert "ATLASET VET IKKE" in p.stdout
+        assert "THE ATLAS DOES NOT KNOW" in p.stdout
 
     def test_uten_emne_listes_hele_atlaset(self) -> None:
         """Antallet leses fra kilden — ikke skrevet inn.
@@ -293,7 +293,7 @@ class TestKommandolinjen:
         noder = _json.loads(raa.stdout)["nodes"]
         p = self._kjoer("--ref", "HEAD")
         assert p.returncode == 0, p.stderr
-        assert f"{len(noder)} noder" in p.stdout, (
+        assert f"{len(noder)} nodes" in p.stdout, (
             f"CLI-en og filen er uenige om antallet: {p.stdout[:200]}")
 
 
@@ -526,7 +526,7 @@ class TestVisningsgrensen:
         linjer = [l for l in p.stdout.splitlines() if "(ord)" in l or "(delstreng)" in l]
         assert len(linjer) <= atlas_lesing._VIS_MAKS, (
             f"CLI viste {len(linjer)} treff, grensen er {atlas_lesing._VIS_MAKS}")
-        assert "flere" in p.stdout, (
+        assert "more — use --alle" in p.stdout, (
             "naar treffene kuttes, skal CLI si hvor mange som ligger under")
 
 

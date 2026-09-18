@@ -103,4 +103,4 @@ class TestPlassererBedre:
     def test_ordlikhet_kalles_ikke_viten(self, atlas: dict) -> None:
         p = atlas_lesing.plasser(atlas, "kvantedatamaskin")
         assert p["domene_visshet"] == "ingen_anelse"
-        assert "ordlikhet" in p["domene_grunnlag"] or "ingen" in p["domene_grunnlag"]
+        assert "word similarity" in p["domene_grunnlag"] or "no domain" in p["domene_grunnlag"]

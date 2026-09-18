@@ -1,11 +1,11 @@
 """
 validate_efc.py
 ----------------
-Kjører en enkel validering av EFC-modellen mot mock-data
-(JWST, DESI, SPARC) og sammenligner med et ΛCDM-baseline.
-Koden er designet for å vise struktur og prinsipp – ikke nøyaktige observasjonsdata.
+Runs a simple validation of the EFC model against mock data
+(JWST, DESI, SPARC) and compares with a ΛCDM baseline.
+The code is designed to show structure and principle – not accurate observational data.
 
-Bruk:
+Usage:
     python3 scripts/validate_efc.py --dataset jwst
 """
 
@@ -21,39 +21,39 @@ from src.efc.core.efc_core import EFCModel, EFCParameters
 # ----------------------------
 
 def load_dataset(name):
-    """Returnerer et mock-datasett basert på valgt type."""
+    """Returns a mock dataset based on the chosen type."""
     np.random.seed(42)
     z = np.linspace(0, 5, 50)
 
     if name == "jwst":
-        # Simulerer early-galaxy luminosity–density trend
+        # Simulates an early-galaxy luminosity–density trend
         observed = np.exp(-z) + np.random.normal(0, 0.05, len(z))
         label = "JWST early galaxies"
     elif name == "desi":
-        # BAO-lignende avstand–redshift-kurve
+        # BAO-like distance–redshift curve
         observed = np.sin(z) / z + np.random.normal(0, 0.03, len(z))
         label = "DESI BAO"
     elif name == "sparc":
-        # Rotasjonskurver – flat mot radial distanse
+        # Rotation curves – flat against radial distance
         z = np.linspace(0, 30, 50)
         observed = 1 - np.exp(-z/5) + np.random.normal(0, 0.02, len(z))
         label = "SPARC rotation curves"
     else:
-        raise ValueError(f"Ukjent datasett: {name}")
+        raise ValueError(f"Unknown dataset: {name}")
 
     return pd.DataFrame({"z": z, "obs": observed, "label": label})
 
 # ----------------------------
-# 2. EFC-MODELL
+# 2. EFC MODEL
 # ----------------------------
 
 def efc_prediction(z):
     """
-    Enkel EFC-baseline-prediksjon for observasjonsdata.
-    Konverterer rødforskyvning z → simplifisert energiflyt.
+    Simple EFC baseline prediction for observational data.
+    Converts redshift z → simplified energy flow.
     """
 
-    # placeholder fysikk — fjernes når du legger inn EFC-D
+    # placeholder physics — remove once EFC-D is wired in
     rho = 1e-26 * (1 + z)
     S = 0.5 + 0.1 * z
 
@@ -64,15 +64,15 @@ def efc_prediction(z):
 
 
 # ----------------------------
-# 3. ΛCDM-BENCHMARK
+# 3. ΛCDM BENCHMARK
 # ----------------------------
 
 def lcdm_prediction(z, H0=70, Ωm=0.3, ΩΛ=0.7):
-    """Standard kosmologi: H(z) = H0 * sqrt(Ωm*(1+z)^3 + ΩΛ)"""
+    """Standard cosmology: H(z) = H0 * sqrt(Ωm*(1+z)^3 + ΩΛ)"""
     return H0 * np.sqrt(Ωm * (1 + z)**3 + ΩΛ) / H0
 
 # ----------------------------
-# 4. VALIDERING
+# 4. VALIDATION
 # ----------------------------
 
 def validate(dataset_name):
@@ -82,7 +82,7 @@ def validate(dataset_name):
     efc_vals = efc_prediction(z)
     lcdm_vals = lcdm_prediction(z)
 
-    # Sammenligning (r^2)
+    # Comparison (r^2)
     corr_efc = np.corrcoef(data["obs"], efc_vals)[0, 1]
     corr_lcdm = np.corrcoef(data["obs"], lcdm_vals)[0, 1]
 
@@ -90,7 +90,7 @@ def validate(dataset_name):
     print(f"  Corr(EFC, observed)  = {corr_efc:.3f}")
     print(f"  Corr(ΛCDM, observed) = {corr_lcdm:.3f}")
 
-    # Plot resultater
+    # Plot the results
     plt.figure(figsize=(6,4))
     plt.plot(z, data["obs"], "k.", label="Observed")
     plt.plot(z, efc_vals, "r-", label="EFC prediction")
@@ -104,7 +104,7 @@ def validate(dataset_name):
     outdir = Path("output")
     outdir.mkdir(exist_ok=True)
     plt.savefig(outdir / f"validation_{dataset_name}.png", dpi=200)
-    print(f"  → Plot lagret i {outdir}/validation_{dataset_name}.png")
+    print(f"  → Plot saved to {outdir}/validation_{dataset_name}.png")
 
 # ----------------------------
 # 5. MAIN

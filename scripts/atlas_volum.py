@@ -1,49 +1,52 @@
 #!/usr/bin/env python3
-"""atlas_volum — dekningsfilens manglende dimensjon: STØRRELSE.
+"""atlas_volum — the missing dimension of the coverage file: SIZE.
 
-Funnet ved å BRUKE atlasoppslaget (PR #472), ikke ved å teste det. Svaret
-«KJENT HULL — målt som `ikke_dekket`» var riktig, men uten størrelse. Målt
-2026-09-17 mot `verden_domener`:
+Found by USING the atlas lookup (PR #472), not by testing it. The answer
+"KNOWN GAP — measured as `ikke_dekket`" was correct, but without a size.
+Measured 2026-09-17 against `verden_domener`:
 
-    verden.vaer        190 229 meldinger    ikke_dekket
-    verden.utdanning     2 598 meldinger    ikke_dekket
+    verden.vaer        190 229 messages    ikke_dekket
+    verden.utdanning     2 598 messages    ikke_dekket
 
-73× forskjell, samme svar. Et hull på 190 000 og ett på 200 er ikke samme
-sak, og et kart som ikke kan skille dem, kan heller ikke si hvor neste
-node skal bygges. `kosmos.kosmologi` er `dekket` med 1 prediksjon — kartet
-vier altså mer struktur til den minste kanalen enn til den største.
+A 73× difference, the same answer. A gap of 190 000 and one of 200 are not
+the same thing, and a map that cannot tell them apart cannot say where the
+next node is to be built either. `kosmos.kosmologi` is `dekket` with 1
+prediction — so the map grants more structure to the smallest channel than
+to the largest one.
 
-## Volumet er en MÅLING, ikke en tabell
+## The volume is a MEASUREMENT, not a table
 
-Tallene hentes fra bussen ved generering (`--maal`) og skrives til
-`schema/nats_domener.snapshot.json`, som alt bærer måletidspunkt, kilde og
-en utløpsdato (testen `test_snapshottet_har_ikke_gaatt_ut_paa_dato`).
-Deklarasjonsfilens `meldinger` er UTLEDT som summen av snapshottets
-per-emne-tall — ikke skrevet for hånd. Samme krav som `noder`-listene:
-det som står i fila skal kunne utledes, og en test skal utlede det.
+The numbers are read from the bus at generation time (`--maal`) and written
+to `schema/nats_domener.snapshot.json`, which already carries a measurement
+time, a source and an expiry date (the test
+`test_snapshottet_har_ikke_gaatt_ut_paa_dato`). The declaration file's
+`meldinger` is DERIVED as the sum of the snapshot's per-subject numbers —
+not written by hand. The same requirement as the `noder` lists: what stands
+in the file must be derivable, and a test must derive it.
 
-    En hardkodet volumtabell ville råtnet ved første endring i
-    busstrafikken — og løyet på samme måte som «82 nodes» gjorde.
+    A hardcoded volume table would rot at the first change in bus
+    traffic — and would lie the same way "82 nodes" did.
 
-## Én implementasjon av buss-protokollen
+## One implementation of the bus protocol
 
-`--maal` snakker med bussen gjennom husets eget verktøy for den, og kaller
-`verden_domener` — samme kilde kortet ble målt mot. Stien til verktøyet
-staar i miljoevariabelen `VERDEN_MCP`; modulen bærer den ikke selv (den
-publiserte flaten skal ikke navngi en vert, og en noekkel som laa her ville
-vaert en delt en). Protokollen — innboks-tilfeldighet, Nagle, rammebuffer —
-er finjustert der; den dupliseres ikke her. En andre implementasjon ville
-vaert to sannheter om samme grensesnitt, og den ene ville sviktet stille.
+`--maal` talks to the bus through the house's own tool for it, and calls
+`verden_domener` — the same source the card was measured against. The path
+to the tool stands in the environment variable `VERDEN_MCP`; the module does
+not carry it itself (the published surface must not name a host, and a key
+that lay here would be a shared one). The protocol — inbox randomness,
+Nagle, frame buffering — is fine-tuned there; it is not duplicated here. A
+second implementation would be two truths about one interface, and one of
+them would fail silently.
 
-## Lesing
+## Reading
 
-`hull()` sorterer etter STØRRELSE, ikke alfabetisk — det er hele
-poenget. Den leser fra en git-ref (samme regel som `atlas_lesing`), slik
-at en arbeidskopi som svarer ikke kan lese som et levende atlas.
+`hull()` sorts by SIZE, not alphabetically — that is the whole point. It
+reads from a git ref (the same rule as `atlas_lesing`), so that a working
+copy that answers cannot read as a live atlas.
 
-    python3 scripts/atlas_volum.py --hull          # ikke_dekket, størst først
-    python3 scripts/atlas_volum.py --alle          # alle domener, størst først
-    python3 scripts/atlas_volum.py --maal          # mål bussen og skriv filene
+    python3 scripts/atlas_volum.py --hull          # ikke_dekket, largest first
+    python3 scripts/atlas_volum.py --alle          # every domain, largest first
+    python3 scripts/atlas_volum.py --maal          # measure the bus, write files
 """
 
 from __future__ import annotations
@@ -62,39 +65,41 @@ STANDARD_REF = "origin/main"
 SNAPSHOT_STI = "schema/nats_domener.snapshot.json"
 DEKNING_STI = "schema/atlas_dekning.json"
 
-#: Husets verktøy for bussen. Stien kan pekes et annet sted med `VERDEN_MCP`
-#: — den ligger utenfor repoet med vilje: nøkkelen er per dør (regel nr. 1 i
-#: verden-mcp), og en nøkkel som lå i dette repoet ville vært en delt en.
+#: The house's tool for the bus. The path can be pointed elsewhere with
+#: `VERDEN_MCP` — it lies outside the repository on purpose: the key is per
+#: door (rule no. 1 in verden-mcp), and a key that lay in this repository
+#: would be a shared one.
 VERDEN_MCP = Path(os.environ.get(
     "VERDEN_MCP", str(Path.home() / ".hermes" / "scripts" / "verden-mcp.py")))
 
-#: Brukerens egen `.env` — der `NATS_VERDEN` står naar verktøyet kjoeres som
-#: MCP-server under Hermes. Leses bare for aa sette miljoeet verktøyet selv
-#: forventer; innholdet skrives aldri ut.
+#: The user's own `.env` — where `NATS_VERDEN` stands when the tool runs as
+#: an MCP server under Hermes. Read only to set the environment the tool
+#: itself expects; the contents are never printed.
 NATS_ENV = Path(os.environ.get(
     "NATS_ENV_FIL", str(Path.home() / ".hermes" / ".env")))
 
 
 class VolumFeil(RuntimeError):
-    """Maalingen eller lesingen kunne ikke gjoeres. Aldri et gjettet tall."""
+    """The measurement or the reading could not be done. Never a guessed
+    number."""
 
 
 def _git(repo: Path, *args: str) -> str:
     p = subprocess.run(["git", "-C", str(repo), *args],
                        capture_output=True, text=True)
     if p.returncode != 0:
-        raise VolumFeil(f"git {' '.join(args)} feilet i {repo}: "
+        raise VolumFeil(f"git {' '.join(args)} failed in {repo}: "
                         f"{p.stderr.strip()}")
     return p.stdout
 
 
 def les_fra_ref(repo: str | Path = ROT, ref: str = STANDARD_REF, *,
                 hent: bool = False) -> dict:
-    """Les maalingen og deklarasjonen fra `ref` — aldri fra arbeidsstreet.
+    """Read the measurement and the declaration from `ref`, never the worktree.
 
-    Returnerer begge filene sammen med den commiten de ble lest fra, slik
-    at en foreldet ref er synlig i resultatet i stedet for i leserens
-    antakelse.
+    Returns both files together with the commit they were read from, so that
+    a stale ref is visible in the result instead of in the reader's
+    assumption.
     """
     repo = Path(repo)
     if hent:
@@ -106,34 +111,34 @@ def les_fra_ref(repo: str | Path = ROT, ref: str = STANDARD_REF, *,
         try:
             ut[nokkel] = json.loads(raa)
         except json.JSONDecodeError as e:
-            raise VolumFeil(f"{ref}:{sti} er ikke gyldig JSON: {e}") from e
+            raise VolumFeil(f"{ref}:{sti} is not valid JSON: {e}") from e
     return ut
 
 
 def meldinger_per_domene(snapshot: dict) -> dict[str, int]:
-    """Summen av de MÅLTE per-emne-tallene, per domene.
+    """The sum of the MEASURED per-subject numbers, per domain.
 
-    Deklarasjonsfilens `meldinger` skal være nøyaktig dette tallet. Testen
-    utleder det paa nytt og sammenligner, saa feltet kan ikke råtne til en
-    paastand fra en tidligere maaling.
+    The declaration file's `meldinger` must be exactly this number. The test
+    derives it again and compares, so the field cannot rot into a claim from
+    an earlier measurement.
 
-    Reiser naar maalingen mangler tallene. Foerste utgave av filen bar
-    emnene som en LISTE — den formen finnes i refs som er eldre enn denne
-    modulen, og en leser som krasjet med `AttributeError: 'list' object has
-    no attribute 'values'` sa ingenting om hva som manglet eller hva som
-    skulle gjoeres. Formen sjekkes derfor eksplisitt.
+    Raises when the measurement lacks the numbers. The first version of the
+    file carried the subjects as a LIST — that form exists in refs older
+    than this module, and a reader that crashed with `AttributeError: 'list'
+    object has no attribute 'values'` said nothing about what was missing or
+    what was to be done about it. The form is therefore checked explicitly.
     """
     ut: dict[str, int] = {}
     for domene, rad in (snapshot.get("domener") or {}).items():
         emner = rad.get("emner")
         if not isinstance(emner, dict):
             raise VolumFeil(
-                f"maalingen baerer ikke antall per emne ({domene}: "
-                f"{type(emner).__name__}). Snapshottet er fra foer volumet "
-                f"ble maalt — kjoer `atlas_volum.py --maal` mot bussen, eller "
-                f"les en ref som alt baerer volumet (`--ref HEAD`). "
-                f"Volumet kan ikke utledes av en navneliste, og det skal "
-                f"ikke gjettes.")
+                f"the measurement does not carry a count per subject "
+                f"({domene}: {type(emner).__name__}). The snapshot predates "
+                f"the volume measurement — run `atlas_volum.py --maal` "
+                f"against the bus, or read a ref that already carries the "
+                f"volume (`--ref HEAD`). The volume cannot be derived from a "
+                f"list of names, and it must not be guessed.")
         ut[domene] = sum(emner.values())
     return ut
 
@@ -141,15 +146,15 @@ def meldinger_per_domene(snapshot: dict) -> dict[str, int]:
 def hull(dekning: dict, snapshot: dict | None = None, *,
          statuser: tuple[str, ...] | None = ("ikke_dekket",),
          topp: int | None = None) -> list[dict]:
-    """Hullene, sortert etter BETYDNING — meldinger synkende, saa navn.
+    """The gaps, sorted by MEANING — messages descending, then name.
 
-    Alfabetisk rekkefølge er tilfeldig informasjon om verden: den sier
-    hva domenet heter, ikke hvor mye som ligger i det. Sorteringen her er
-    den eneste grunnen til at `verden.vaer` (190 000) ikke leses likt som
-    `verden.utdanning` (2 600).
+    Alphabetical order is random information about the world: it says what
+    the domain is called, not how much lies in it. The sorting here is the
+    only reason `verden.vaer` (190 000) does not read like `verden.utdanning`
+    (2 600).
 
-    `statuser=None` gir alle domener — da synes ogsaa en `dekket` kanal
-    som baerer mye bak én node.
+    `statuser=None` gives every domain — then a `dekket` channel that
+    carries a lot behind one node shows up too.
     """
     maalt = meldinger_per_domene(snapshot) if snapshot else {}
     rader: list[dict] = []
@@ -173,11 +178,12 @@ def hull(dekning: dict, snapshot: dict | None = None, *,
 
 
 def _last_env(sti: Path = NATS_ENV) -> bool:
-    """Sett `NATS_VERDEN` fra husets `.env` naar miljoeet ikke alt har den.
+    """Set `NATS_VERDEN` from the house's `.env` when the environment lacks it.
 
-    Verktøyet leser URL-en fra miljoeet fordi Hermes starter det med brukerens
-    egen `.env`. Kjoeres scriptet fra en skallet, er den ikke satt — og da
-    feiler maalingen med «NATS_VERDEN er ikke satt» selv om noekkelen finnes.
+    The tool reads the URL from the environment because Hermes starts it
+    with the user's own `.env`. When the script is run from a shell, it is
+    not set — and then the measurement fails, reporting that NATS_VERDEN is
+    missing, even though the key exists.
     """
     if os.environ.get("NATS_VERDEN"):
         return True
@@ -195,39 +201,40 @@ def _last_env(sti: Path = NATS_ENV) -> bool:
 def _kort_emne(domene: str, emne: str) -> str:
     """`verden.vaer.prediksjon.metno` -> `prediksjon.metno`.
 
-    Bussen navngir emnet FULLT UT; domenet er alt noekkelen. Snapshottet
-    (og deklarasjonen) bærer den korte formen — den er relativ til domenet,
-    og en full form ville dobbeltfoert domenenavnet i hver rad.
+    The bus names the subject IN FULL; the domain is already the key. The
+    snapshot (and the declaration) carries the short form — it is relative to
+    the domain, and a full form would repeat the domain name in every row.
     """
     prefiks = f"{domene}."
     return emne[len(prefiks):] if emne.startswith(prefiks) else emne
 
 
 def maal_bussen(mcp_fil: str | Path | None = None) -> dict:
-    """Mål bussen: `{domene: {emne: antall}}` — og de tomme stroemmene.
+    """Measure the bus: `{domene: {emne: antall}}` — and the empty streams.
 
-    Feiler HOYT naar verktøyet eller legitimasjonen mangler. Et hull uten
-    tall er ikke et maalt hull, og et gjettet tall er verre enn ingen tall:
-    det ser ut som en maaling.
+    Fails LOUDLY when the tool or the credential is missing. A gap without a
+    number is not a measured gap, and a guessed number is worse than no
+    number: it looks like a measurement.
     """
     fil = Path(mcp_fil or VERDEN_MCP)
     if not fil.exists():
         raise VolumFeil(
-            f"verden-verktoeyet finnes ikke: {fil} — maalingen kan ikke "
-            f"gjoeres. Sett VERDEN_MCP, eller kjoer der verktøyet bor.")
+            f"the verden tool does not exist: {fil} — the measurement "
+            f"cannot be made. Set VERDEN_MCP, or run where the tool lives.")
     if not _last_env():
         raise VolumFeil(
-            "NATS_VERDEN er ikke satt, og ingen .env med den ble funnet "
-            f"({NATS_ENV}). Maalingen krever brukerens EGEN konsumentnoekkel.")
+            "NATS_VERDEN is not set, and no .env carrying it was found "
+            f"({NATS_ENV}). The measurement requires the user's OWN "
+            f"consumer key.")
     spec = importlib.util.spec_from_file_location("verden_mcp_volum", fil)
     if spec is None or spec.loader is None:
-        raise VolumFeil(f"kunne ikke laste {fil} som modul")
+        raise VolumFeil(f"could not load {fil} as a module")
     modul = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(modul)
     try:
         svar = modul.verden_domener({})
     except Exception as e:                                    # noqa: BLE001
-        raise VolumFeil(f"verden_domener feilet: {type(e).__name__}: {e}") from e
+        raise VolumFeil(f"verden_domener failed: {type(e).__name__}: {e}") from e
     domener = {navn: {_kort_emne(navn, r["emne"]): int(r["meldinger"])
                       for r in rader}
                for navn, rader in sorted((svar.get("domener") or {}).items())}
@@ -242,22 +249,23 @@ def _skriv_json(sti: Path, data: dict) -> None:
 
 def skriv_snapshot(sti: str | Path, domener: dict, *,
                    lest_av: str, maalt: str | None = None) -> dict:
-    """Skriv maalingen. Proveniensen er en del av dataene, ikke en kommentar."""
+    """Write the measurement. The provenance is data, not a comment."""
     maalt = maalt or datetime.datetime.now(
         datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     data = {
         "_proveniens": {
-            "kilde": ("NATS-bussen, verden_domener (MCP) — emner og antall "
-                      "meldinger lest av JetStream-stroemmenes eget "
+            "kilde": ("The NATS bus, verden_domener (MCP) — subjects and "
+                      "message counts read from the JetStream streams' own "
                       "state.subjects"),
             "maalt": maalt,
             "lest_av": lest_av,
-            "merknad": ("Per-emne-tall ER tilgjengelig: `state.subjects` i "
-                        "STREAM.INFO bærer antall per emne. Den tidligere "
-                        "merknaden her sa det motsatte — den var en antakelse "
-                        "om NATS' overvåkings-API, ikke en måling av "
-                        "JetStream-API-et. Tallene her er målte, og "
-                        "dekningsfilens `meldinger` er summen av dem."),
+            "merknad": ("Per-subject counts ARE available: `state.subjects` "
+                        "in STREAM.INFO carries the count per subject. The "
+                        "earlier note here said the opposite — it was an "
+                        "assumption about NATS' monitoring API, not a "
+                        "measurement of the JetStream API. The numbers here "
+                        "are measured, and the coverage file's `meldinger` "
+                        "is their sum."),
         },
         "domener": {navn: {"emner": dict(sorted(emner.items()))}
                     for navn, emner in sorted(domener.items())},
@@ -267,15 +275,15 @@ def skriv_snapshot(sti: str | Path, domener: dict, *,
 
 
 def oppdater_dekning(dekning: dict, domener: dict) -> tuple[dict, dict]:
-    """Sett `meldinger` per domene = summen av de maalte per-emne-tallene.
+    """Set `meldinger` per domain = the sum of the measured subject counts.
 
-    Alt annet i deklarasjonen er MENNESKETS: `status` og `begrunnelse` er
-    en stillingtagen, ikke en utledning. Denne funksjonen rører dem ikke —
-    den skriver bare tallet, og rapporterer det den ikke kunne skrive:
-    nye domener og nye emner skal felle invarianten inntil noen har tatt
-    stilling til dem.
+    Everything else in the declaration is the HUMAN'S: `status` and
+    `begrunnelse` are a position taken, not a derivation. This function does
+    not touch them — it writes only the number, and reports what it could
+    not write: new domains and new subjects must trip the invariant until
+    someone has taken a position on them.
 
-    Returnerer `(ny_dekning, rapport)`.
+    Returns `(ny_dekning, rapport)`.
     """
     maalt = {navn: sum(emner.values()) for navn, emner in domener.items()}
     rapport: dict = {"nye_domener": [], "nye_emner": {}, "borte": []}
@@ -300,15 +308,16 @@ def oppdater_dekning(dekning: dict, domener: dict) -> tuple[dict, dict]:
 
 
 def formater(rader: list[dict]) -> str:
-    """Tabellen mennesket leser — størst først, med emnene under."""
+    """The table the human reads — largest first, with the subjects below."""
     if not rader:
-        return "  (ingen hull i dette utsnittet)"
+        return "  (no gaps in this slice)"
     bredde = max(len(r["domene"]) for r in rader)
     linjer = []
     for r in rader:
         linjer.append(f"{r['meldinger']:>10}  {r['status']:<11}  "
                       f"{r['domene']:<{bredde}}  "
-                      f"{len(r['noder'])} node(r), {len(r['emner'])} emne(r)")
+                      f"{len(r['noder'])} node(s), "
+                      f"{len(r['emner'])} subject(s)")
         for emne, antall in r["emner"][:3]:
             tall = "?" if antall is None else f"{antall}"
             linjer.append(f"{'':>10}  {'':<11}  {emne}  {tall}")
@@ -317,43 +326,46 @@ def formater(rader: list[dict]) -> str:
 
 def hoved(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(
-        description="Dekningsfilens volum — maalt fra bussen, sortert etter "
-                    "betydning.")
+        description="The coverage file's volume — measured from the bus, "
+                    "sorted by meaning.")
     ap.add_argument("--ref", default=STANDARD_REF,
-                    help=f"git-ref aa lese fra (standard: {STANDARD_REF})")
+                    help=f"git ref to read from (default: {STANDARD_REF})")
     ap.add_argument("--topp", type=int, default=None,
-                    help="vis bare de N stoerste")
+                    help="show only the N largest")
     ap.add_argument("--hull", action="store_true",
-                    help="ikke_dekket, stoerst foerst (standard)")
+                    help="ikke_dekket, largest first (default)")
     ap.add_argument("--alle", action="store_true",
-                    help="alle domener, ikke bare ikke_dekket")
+                    help="every domain, not only ikke_dekket")
     ap.add_argument("--maal", action="store_true",
-                    help="maal bussen og skriv snapshot + dekningsfil")
+                    help="measure the bus and write the snapshot + "
+                         "coverage file")
     ap.add_argument("--torr", action="store_true",
-                    help="med --maal: skriv ingenting, vis hva som ville blitt skrevet")
+                    help="with --maal: write nothing, show what would "
+                         "have been written")
     ap.add_argument("--repo", default=str(ROT))
     args = ap.parse_args(argv)
 
     repo = Path(args.repo)
 
     if args.maal:
-        # MAALINGEN LESER ARBEIDSSTREET, ikke refen: den skal skrive til
-        # arbeidsstreet, og en pre-bilde fra refen ville stille kastet
-        # ukommitterte endringer i deklarasjonen. Lesing av refen er for
-        # den som SPOER; maaling er for den som SKRIVER.
+        # THE MEASUREMENT READS THE WORKING TREE, not the ref: it writes to
+        # the working tree, and a pre-image from the ref would silently have
+        # discarded uncommitted changes to the declaration. Reading the ref
+        # is for the one who ASKS; measuring is for the one who WRITES.
         sti = repo / DEKNING_STI
         if not sti.exists():
-            raise VolumFeil(f"{sti} finnes ikke — det er deklarasjonen som "
-                            f"skal faa volum, og den kan ikke gjettes fram")
+            raise VolumFeil(f"{sti} does not exist — it is the declaration "
+                            f"that is to receive a volume, and it cannot be "
+                            f"guessed into place")
         try:
             dekning = json.loads(sti.read_text(encoding="utf-8"))
         except json.JSONDecodeError as e:
-            raise VolumFeil(f"{sti} er ikke gyldig JSON: {e}") from e
+            raise VolumFeil(f"{sti} is not valid JSON: {e}") from e
         ny = maal_bussen()
         domener = ny["domener"]
         lest_av = os.environ.get(
             "ATLAS_LEST_AV",
-            f"{os.environ.get('HERMES_PROFILE', 'ukjent')} "
+            f"{os.environ.get('HERMES_PROFILE', 'unknown')} "
             f"(scripts/atlas_volum.py)")
         if not args.torr:
             skriv_snapshot(repo / SNAPSHOT_STI, domener, lest_av=lest_av)
@@ -364,21 +376,22 @@ def hoved(argv: list[str] | None = None) -> int:
                 domener.items(), key=lambda kv: -sum(kv[1].values())):
             print(f"{sum(rader.values()):>10}  {domene}")
         if rapport["nye_domener"]:
-            print(f"\nIKKE DEKLARERT ({len(rapport['nye_domener'])}) — bærer "
-                  f"meldinger, staar ikke i {DEKNING_STI}. Atlaset vet ikke at "
-                  f"de finnes, og invarianten skal FELLE inntil noen har tatt "
-                  f"stilling til dem:")
+            print(f"\nNOT DECLARED ({len(rapport['nye_domener'])}) — carries "
+                  f"messages, is not listed in {DEKNING_STI}. The atlas does "
+                  f"not know they exist, and the invariant must TRIP until "
+                  f"someone has taken a position on them:")
             for d in rapport["nye_domener"]:
                 print(f"    {d}  {sum(domener[d].values())}")
         for domene, emner in sorted(rapport["nye_emner"].items()):
-            print(f"\nNYE EMNER i {domene} — ikke tatt stilling til: {emner}")
+            print(f"\nNEW SUBJECTS in {domene} — no position taken: {emner}")
         if rapport["borte"]:
-            print(f"\nDEKLARERT, MEN UTE AV MAALINGEN: {rapport['borte']} — "
-                  f"deklarasjonen lover en verden som ikke lenger er der. "
-                  f"Buss-emner innenfor retensjonsvinduet forsvinner av seg "
-                  f"selv; fjern dem fra filen eller forklar hvorfor.")
+            print(f"\nDECLARED, BUT OUT OF THE MEASUREMENT: "
+                  f"{rapport['borte']} — "
+                  f"the declaration promises a world that is no longer there. "
+                  f"Bus subjects inside the retention window disappear on "
+                  f"their own; remove them from the file or explain why.")
         if args.torr:
-            print("\n(--torr: ingenting skrevet)")
+            print("\n(--torr: nothing written)")
         return 0
 
     lest = les_fra_ref(repo, args.ref)
@@ -391,11 +404,11 @@ def hoved(argv: list[str] | None = None) -> int:
 
 
 def _hoved_med_feil(argv: list[str] | None = None) -> int:
-    """VolumFeil er et SVAR, ikke en stakksporing.
+    """VolumFeil is an ANSWER, not a stack trace.
 
-    En leser som faar «refen baerer ikke volumet ennaa» vet hva den skal
-    gjoere; en leser som faar en stakksporing proever igjen og lurer paa om
-    noe er i stykker. Meldingen gaar til stderr, ikke inn i tabellen.
+    A reader who gets "the ref does not carry the volume yet" knows what to
+    do; a reader who gets a stack trace tries again and wonders whether
+    something is broken. The message goes to stderr, not into the table.
     """
     try:
         return hoved(argv)
