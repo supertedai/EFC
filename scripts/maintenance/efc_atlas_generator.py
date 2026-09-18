@@ -97,23 +97,77 @@ KODER = {
 
 #: Gruppe- og kapittel-tilhoerighet: (gruppe, kapittel).
 PLASSERING = {
+    # Ghost er et VALG: disse er maalt aa ikke ha en gruppe ennaa.
+    "efc.efc_background_engine": ("ghost", 8),
+    "efc.jordskjelv_engine": ("ghost", 8),
+    "efc.l1": ("ghost", 8),
+    "efc.l2": ("ghost", 8),
+    "efc.l3": ("ghost", 8),
+    "efc.lag_c0": ("ghost", 8),
+    "efc.lag_d": ("ghost", 8),
+    "efc.lag_s": ("ghost", 8),
+    "efc.solar_flare_engine": ("ghost", 8),
+    "h2o.droplet": ("ghost", 8),
+    "h2o.gas": ("ghost", 8),
+    "h2o.liquid": ("ghost", 8),
+    "h2o.solid": ("ghost", 8),
+    "h2o.supercritical": ("ghost", 8),
+    "h2o.triple_point": ("ghost", 8),
+    "homo.aksjonspotensial": ("ghost", 8),
+    "homo.cellesyklus": ("ghost", 8),
+    "homo.evolusjon": ("ghost", 8),
+    "homo.feber_regime": ("ghost", 8),
+    "homo.fluxus": ("ghost", 8),
+    "homo.genregulering": ("ghost", 8),
+    "homo.hjerte_syklus": ("ghost", 8),
+    "homo.homeostase_buffer": ("ghost", 8),
+    "homo.immunologi": ("ghost", 8),
+    "homo.metabolisme": ("ghost", 8),
+    "homo.okologi": ("ghost", 8),
+    "homo.sovn_vaaken": ("ghost", 8),
+    "kosmos.asteroider": ("ghost", 8),
+    "lys.sol": ("ghost", 8),
+    "obs.bao": ("ghost", 8),
+    "obs.bbn": ("ghost", 8),
+    "obs.bullet": ("ghost", 8),
+    "obs.cc": ("ghost", 8),
+    "obs.cluster_hmf": ("ghost", 8),
+    "obs.cluster_mass": ("ghost", 8),
+    "obs.cmb_lensing": ("ghost", 8),
+    "obs.cmb_tt": ("ghost", 8),
+    "obs.eg": ("ghost", 8),
+    "obs.fsigma8": ("ghost", 8),
+    "obs.gw_ct": ("ghost", 8),
+    "obs.h0_tension": ("ghost", 8),
+    "obs.isw": ("ghost", 8),
+    "obs.jwst_ems": ("ghost", 8),
+    "obs.ksz": ("ghost", 8),
+    "obs.pta_gwb": ("ghost", 8),
+    "obs.rar": ("ghost", 8),
+    "obs.s8": ("ghost", 8),
+    "obs.satellites": ("ghost", 8),
+    "obs.w0wa": ("ghost", 8),
+    "optikk.dispersjon": ("ghost", 8),
+    "regnbue": ("ghost", 8),
+    "regnbue.observator": ("ghost", 8),
+    "verden.vaer": ("ghost", 8),
     "efc.l0": ("roots", 1), "efc.selv.paradigme_tid": ("epist", 7),
     "efc.grid_higgs": ("grid", 2), "efc.gr_qft_bro": ("grid", 2),
     "efc.grid_mikrofysikk": ("grid", 2), "efc.grid_mikro_engine": ("grid", 2),
     "efc.double_slit": ("grid", 2), "efc.sort_hull": ("grid", 2),
-    "efc.mu_kz": ("kosmos", 3), "efc.growth": ("kosmos", 3),
-    "efc.rotation": ("kosmos", 3), "efc.hubble": ("kosmos", 3),
-    "efc.lensing": ("kosmos", 3), "efc.cluster": ("kosmos", 3),
-    "efc.transient": ("kosmos", 3),
-    "efc.romvaer": ("kosmos", 3), "efc.orbital": ("kosmos", 3),
-    "efc.tidevann": ("kosmos", 3), "efc.klima": ("kosmos", 3),
+    "efc.mu_kz_engine": ("kosmos", 3), "efc.growth_engine": ("kosmos", 3),
+    "efc.rotation_engine": ("kosmos", 3), "efc.hubble_engine": ("kosmos", 3),
+    "efc.lensing_engine": ("kosmos", 3), "efc.cluster_engine": ("kosmos", 3),
+    "efc.transient_engine": ("kosmos", 3),
+    "efc.romvaer_engine": ("kosmos", 3), "efc.orbital_engine": ("kosmos", 3),
+    "efc.tidevann_engine": ("kosmos", 3), "efc.klima_engine": ("kosmos", 3),
     "verden.hav": ("broer", 4), "verden.biosfaere": ("broer", 4),
     "kosmos.jord.vulkan": ("broer", 4),
     "kjemi.periodesystemet": ("struktur", 5),
-    "efc.water": ("struktur", 5),
+    "efc.water_phase_engine": ("struktur", 5),
     "efc.victron_cccv_engine": ("struktur", 5),
-    "efc.enerflyt": ("samfunn", 6), "efc.oekonomi": ("samfunn", 6),
-    "efc.samfunn": ("samfunn", 6),
+    "efc.enerflyt_engine": ("samfunn", 6), "efc.oekonomi_engine": ("samfunn", 6),
+    "efc.samfunn_engine": ("samfunn", 6),
 }
 
 GRUPPER = [
@@ -146,11 +200,19 @@ FLOWS = [
 
 
 def _kap(navn: str) -> int:
-    return PLASSERING.get(navn, ("ghost", 8))[1]
+    if navn not in PLASSERING:
+        raise SystemExit(
+            f"[efc-atlas] `{navn}` staar ikke i PLASSERING — og en fallback "
+            f"ville skjult at noen glemte den. Legg den i riktig gruppe, "
+            f"eller si eksplisitt at den er ghost.")
+    return PLASSERING[navn][1]
 
 
 def _gruppe(navn: str) -> str:
-    return PLASSERING.get(navn, ("ghost", 8))[0]
+    if navn not in PLASSERING:
+        raise SystemExit(
+            f"[efc-atlas] `{navn}` staar ikke i PLASSERING — se _kapittel().")
+    return PLASSERING[navn][0]
 
 
 def _perspektiv_tekst(p: str | None) -> str:
