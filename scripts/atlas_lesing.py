@@ -171,6 +171,37 @@ def _norm(s: str) -> str:
     return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
 
 
+def _valider_aliaser(aliaser: dict[str, str], node_ids: set[str]) -> None:
+    """Stopp et alias foer det kan gi et svar fra en node som ikke finnes."""
+    doede = sorted(set(aliaser.values()) - node_ids)
+    if doede:
+        raise AtlasLesingFeil(f"alias peker paa node som mangler: {', '.join(doede)}")
+
+
+def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
+    """Finn registrerte begreper uten aa late som de er atlasnoder."""
+    naal = _norm(emne)
+    funn = []
+    for sti in ("docs/concepts.jsonld", "docs/ontology.jsonld"):
+        try:
+            data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
+        except (AtlasLesingFeil, json.JSONDecodeError):
+            continue
+        for post in data.get("@graph", []):
+            kandidater = [post.get("@id"), post.get("label")]
+            for felt in ("skos:prefLabel", "skos:notation", "skos:altLabel"):
+                verdi = post.get(felt)
+                verdier = verdi if isinstance(verdi, list) else [verdi]
+                kandidater.extend(
+                    v.get("@value") if isinstance(v, dict) else v for v in verdier)
+            if any(isinstance(v, str) and _norm(v) == naal for v in kandidater):
+                funn.append({"id": post.get("@id"), "kilde": sti})
+    unike = {}
+    for post in funn:
+        unike.setdefault(post["id"], post)
+    return sorted(unike.values(), key=lambda x: x["id"] or "")
+
+
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
     """Slaa opp et emne i atlaset — leser fra `ref`, aldri fra arbeidsstreet.
@@ -267,7 +298,24 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3}
+    if not treff:
+        registrert = _navnerom(Path(repo), ref, emne)
+        if registrert:
+            treff = [{
+                "trefftype": "navnerom",
+                "id": post["id"],
+                "synlighet": None,
+                "perspektiv": None,
+                "fase": None,
+                "buss_domene": None,
+                "har_prediksjon": False,
+                "har_oppgjoer": False,
+                "har_falsifikator": False,
+                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
+                          "node i schema/regime_nodes.jsonld"),
+            } for post in registrert]
+    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
+             "navnerom": 4}
     # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
     # det publiserte atlaset; de interne er kontekst.
     treff.sort(key=lambda x: (_rang[x["trefftype"]],
@@ -1260,6 +1308,8 @@ if __name__ == "__main__":
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
             print(f"  {t['id']:<34} {t['synlighet'] or '?':<9} "
                   f"{t['perspektiv'] or '':<10} {' · '.join(merker)}{tt}")
+            if t["trefftype"] == "navnerom":
+                print(f"    grunn: {t['grunn']}")
         if not a.alle and s["antall"] > _VIS_MAKS:
             print(f"  ... og {s['antall'] - _VIS_MAKS} flere — bruk --alle for hele listen")
     else:
