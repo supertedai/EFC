@@ -1383,21 +1383,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. avvik fra setpunkt (\u0394T, \u0394pH, \u0394glukose)",
+    "one": "Perspective: academia. avvik fra setpunkt (\u0394T, \u0394pH, \u0394glukose)",
     "what": "fysiologiske sensorer; her er noden beskrivelse, ikke sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
-    "how": "Buffer role: selve bufferen: kapasitet som demper endring \u2014 den brede logikken i ren form. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: selve bufferen: kapasitet som demper endring \u2014 den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Levin 2019 (biologi) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
       ]
     ],
     "cond": []
@@ -1415,21 +1415,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. kroppstemperatur mot setpunkt",
+    "one": "Perspective: academia. kroppstemperatur mot setpunkt",
     "what": "termometer + pyrogen-mark\u00f8rer; her beskrivelse \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperatur \u2192 avstand til nytt setpunkt",
-    "how": "Buffer role: bufferen bytter TARGET, ikke kapasitet \u2014 det er selve regimeskiftet. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: bufferen bytter TARGET, ikke kapasitet \u2014 det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "fysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
       ]
     ],
     "cond": []
@@ -1447,21 +1447,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. membranpotensialet V(t) mot terskelen",
+    "one": "Perspective: academia. membranpotensialet V(t) mot terskelen",
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: ionestr\u00f8mmer \u2192 V(t) -> V(t) mot V_th \u2192 spike",
-    "how": "Buffer role: membranen er bufferen: gradienten lades og holdes til utl\u00f8sning. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: membranen er bufferen: gradienten lades og holdes til utl\u00f8sning. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "nevrofysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av felt"
       ]
     ],
     "cond": []
@@ -1479,21 +1479,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. slagvolum, frekvens, minuttvolum",
+    "one": "Perspective: academia. slagvolum, frekvens, minuttvolum",
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EKG \u2192 elektrisk syklus -> ekko \u2192 mekanisk syklus",
-    "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri ove. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri ove. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "kardiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
       ]
     ],
     "cond": []
@@ -1511,21 +1511,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. uttrykksniv\u00e5 per gen (mRNA/protein)",
+    "one": "Perspective: academia. uttrykksniv\u00e5 per gen (mRNA/protein)",
     "what": "sekvensering; her beskrivelse av reguleringslogikken \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetisk merke \u2192 terskelskifte",
-    "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper tilfeldig. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper tilfeldig. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "molekylaerbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen paa"
       ]
     ],
     "cond": []
@@ -1543,21 +1543,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. fase per celle (G1/S/G2/M)",
+    "one": "Perspective: academia. fase per celle (G1/S/G2/M)",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: DNA-innhold \u2192 fase -> CDK/cyklin \u2192 sjekkpunkt-status",
-    "how": "Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "cellebiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet"
       ]
     ],
     "cond": []
@@ -1575,21 +1575,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks",
+    "one": "Perspective: academia. ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: O\u2082-forbruk \u2192 fluks -> ATP/ADP \u2192 reguleringsstatus",
-    "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "biokjemi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
       ]
     ],
     "cond": []
@@ -1671,21 +1671,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. aktiveringsstatus, antistofftiter, hukommelsespopulasjon",
+    "one": "Perspective: academia. aktiveringsstatus, antistofftiter, hukommelsespopulasjon",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse",
-    "how": "Buffer role: hukommelsen er bufferen: den senker terskelen og gj\u00f8r neste respons raskere. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: hukommelsen er bufferen: den senker terskelen og gj\u00f8r neste respons raskere. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "immunologi (standard: Janeway/Matzinger) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke "
       ]
     ],
     "cond": []
@@ -1703,21 +1703,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. s\u00f8vnstadium (v\u00e5ken/NREM/REM), homeostatisk trykk",
+    "one": "Perspective: academia. s\u00f8vnstadium (v\u00e5ken/NREM/REM), homeostatisk trykk",
     "what": "klinisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EEG-synkroni -> stadium -> v\u00e5kenhetsvarighet -> homeostatisk trykk",
-    "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens d\u00f8g. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens d\u00f8g. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "sovnfysiologi (standard: Borbely, Steriade) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og b"
       ]
     ],
     "cond": []
@@ -1735,21 +1735,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. tilstandsvariabler (n\u00e6ringsstoffer, dekning, artssammensetning)",
+    "one": "Perspective: academia. tilstandsvariabler (n\u00e6ringsstoffer, dekning, artssammensetning)",
     "what": "\u00f8kologisk overv\u00e5king; her beskrivelse \u2014 proxy chain: n\u00e6ringsstoffer -> tilstand -> dekning -> regime",
-    "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "regime-shift-okologi (Scheffer) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen "
       ]
     ],
     "cond": []
@@ -1767,21 +1767,21 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. endringstakt i fenotype/art (morfologiske og molekyl\u00e6re rater)",
+    "one": "Perspective: academia. endringstakt i fenotype/art (morfologiske og molekyl\u00e6re rater)",
     "what": "paleontologisk/genomisk m\u00e5ling; her beskrivelse \u2014 proxy chain: fossilrekke -> morfologisk rate -> molekyl\u00e6r avstand -> tid siden splitt",
-    "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til r. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til r. Epistemic: stottet / replikert / institusjonell.",
     "steps": [
       [
         "Perspective",
-        "paradigm"
+        "academia"
       ],
       [
         "Epistemics",
-        "hypotese / proxy / minoritet"
+        "stottet / replikert / institusjonell"
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "evolusjonsbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av f"
       ]
     ],
     "cond": []

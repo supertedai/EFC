@@ -1347,7 +1347,7 @@
       "label": "analogi",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 13,
+      "usedAsProperty": 22,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1982,6 +1982,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:fysiologi",
+      "@type": "rdf:Property",
+      "label": "fysiologi",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 8,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:galaxyCount",
       "@type": "rdf:Property",
       "label": "galaxyCount",
@@ -2112,6 +2122,26 @@
       "inDocuments": 2
     },
     {
+      "@id": "efc:kilde",
+      "@type": "rdf:Property",
+      "label": "kilde",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 17,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:konsensus",
+      "@type": "rdf:Property",
+      "label": "konsensus",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 17,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:konsensus_er_ikke_sannhet",
       "@type": "rdf:Property",
       "label": "konsensus_er_ikke_sannhet",
@@ -2138,6 +2168,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 89,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:lagdeling",
+      "@type": "rdf:Property",
+      "label": "lagdeling",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 9,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -2842,6 +2882,16 @@
       "inDocuments": 2
     },
     {
+      "@id": "efc:sannhet",
+      "@type": "rdf:Property",
+      "label": "sannhet",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 17,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:sannhetsstatus",
       "@type": "rdf:Property",
       "label": "sannhetsstatus",
@@ -2987,7 +3037,7 @@
       "label": "status",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 93,
+      "usedAsProperty": 110,
       "usedAsValue": 0,
       "inDocuments": 1
     },
