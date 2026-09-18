@@ -69,7 +69,7 @@ def test_hver_motor_med_regime_node_er_registrert(broer: dict) -> None:
                     and verdi.__module__ == modul.__name__
                     and hasattr(verdi, "regime_node")):
                 klasser[navn] = verdi
-    registrert = {klasse for _, klasse, _ in S.BROER.values()} | set(K.VARIANTER)
+    registrert = {klasse for _, klasse, _ in S.BROER.values()} | set(K.VARIANTER) | K.IKKE_BRO_MOTORER
     assert set(klasser) == registrert, (
         f"motorer uten bro: {sorted(set(klasser) - registrert)}; "
         f"broer uten motor: {sorted(registrert - set(klasser))}")

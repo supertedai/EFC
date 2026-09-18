@@ -83,6 +83,10 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/ontology/source",
     "/ontology/assumes",
     "/maale_paradigme/alternativer",
+    "/stipulasjoner/alene_status",
+    "/stipulasjoner/buss_status",
+    "/stipulasjoner/ikke_falsifiserbar_grunn",
+    "/stipulasjoner/motor_status",
     "/buss_domene",
     "/ville_falsifisere",
     "/analogi",
@@ -100,7 +104,12 @@ DELMENGDE: tuple[str, ...] = ("/ontology/assumes", "/maale_paradigme/alternative
 #: skal vaere en DEKLARERT utelatelse, ikke en stille (regel 64).
 UTENFOR_BROEN: tuple[str, ...] = (
     "/settlement/", "/revisjon", "/observer/maalepavirkning",
-)
+ "/lagdeling/",
+ "/stipulasjoner/alene_status",
+ "/stipulasjoner/buss_status",
+ "/stipulasjoner/ikke_falsifiserbar_grunn",
+ "/stipulasjoner/motor_status",
+ )
 
 #: Motor-klasser som er VARIANTER av en registrert bros node: de arver
 #: regime_node() og utsteder SAMME node-id, saa de kan ikke faa hver sin
@@ -109,6 +118,14 @@ UTENFOR_BROEN: tuple[str, ...] = (
 VARIANTER: dict[str, str] = {
     "SolarFlareEngineBrakdel": "efc.solar_flare_engine",
 }
+
+# Biologimotorene har egne atlas-kontrakter; de er ikke EFC-broer.
+IKKE_BRO_MOTORER = frozenset({
+    "ActionPotentialEngine", "CardiacCycleEngine", "CellCycleEngine",
+    "EvolusjonEngine", "FeberRegimeEngine", "FluxusEngine",
+    "GenreguleringEngine", "HomeostaseBufferEngine", "ImmunologiEngine",
+    "MetabolismEngine", "OkologiEngine", "SovnVaakenEngine",
+})
 
 ATLAS = ("schema", "regime_nodes.jsonld")
 
