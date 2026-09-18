@@ -678,9 +678,23 @@ def plasser(atlas: dict, tekst: str) -> dict:
     treff_domener = [d for d in domener
                      if any(w in _norm(d) for w in ord_i)]
 
-    # hvilke noder deler ord med fragmentet?
-    naere = [(len(ord_i & set(_norm(json.dumps(n, ensure_ascii=False)).split())), n["id"])
-             for n in noder]
+    # hvilke noder deler ord med fragmentet? Vekten legges der ordet FAKTISK
+    # beskriver noe: maalet og regimet, ikke alle tekster i noden.
+    def _stamme(a: str, b: str, n: int = 5) -> bool:
+        """«vulkansk» og «vulkan» er samme ord for et menneske, ikke for ==."""
+        return len(a) >= n and len(b) >= n and a[:n] == b[:n]
+
+    def vekt(n: dict) -> int:
+        m = n.get("measure") or {}
+        r = n.get("regime") or {}
+        tung = _norm(" ".join(str(m.get(k) or "") for k in
+                              ("target", "measurer", "instrument"))
+                     + " " + str(r.get("name") or "") + " " + str(r.get("validity") or ""))
+        ord_t = set(tung.split())
+        return sum(1 for w in ord_i
+                   if w in ord_t or any(_stamme(w, x) for x in ord_t))
+
+    naere = [(vekt(n), n["id"]) for n in noder]
     naere = sorted((x for x in naere if x[0] > 0), key=lambda x: -x[0])
     naere_noder = [i for _, i in naere[:6]]
 
@@ -693,16 +707,21 @@ def plasser(atlas: dict, tekst: str) -> dict:
         forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
                         "kobling": "noder deler ord med fragmentet"})
     if not forslag:
-        # ingen domene nevnt og ingen node deler ord: foreslaa de STOERSTE
-        # ueide domenene — et fragment maa havne et sted, ogsaa naar Atlaset
-        # ikke kjenner ordene. Det er den aapne inngangen.
-        dek = atlas.get("_dekning") or {}
-        for d in treff_domener or []:
-            forslag.append({"domene": d, "noder": [], "kobling": "nevnt"})
+        # ingen domene-streng matchet: bruk DOMENENE TIL DE NAERE NODENE.
+        # Fallback-en skal ikke foreslaa alfabetet — den skal foreslaa det
+        # fragmentet LIGNER. (Maalt 2026-09-18: «vulkansk aske» pekte paa
+        # kosmos.asteroider/galakser/hoper, altsaa bare de tre forste.)
+        sett: list[str] = []
+        for _, nid in naere[:8]:
+            x = next((y for y in noder if y["id"] == nid), None)
+            d = (x or {}).get("buss_domene")
+            if d and d not in sett:
+                sett.append(d)
+        forslag = [{"domene": d, "noder": [], "kobling": "naerliggende node horer her"}
+                   for d in sett[:4]]
         if not forslag:
-            naermeste = alle.get("buss_domene", (0, []))[1][:3]
             forslag = [{"domene": d, "noder": [], "kobling": "uten hjem — maa navngis"}
-                       for d in naermeste]
+                       for d in alle.get("buss_domene", (0, []))[1][:3]]
 
     # hva maa fylles? sammenlign mot en typisk FULL node
     typisk = set()
@@ -730,6 +749,153 @@ def plasser(atlas: dict, tekst: str) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# HELHETEN — alt om en node, i én lesning
+#
+# Morten, 2026-09-18: «om vi snakker om h2o, BAO, regnbuen eller victron nå
+# skal du umiddelbart via atlaset få en lokalglobal sammenkobling, se
+# emergence, se episenter, vektorene, feltene, domene, kryssdomene, flere
+# hops i alle retninger, se paradigme, se konsensus, se akademia, se
+# emergence, se alle fraktalene den målte emergencen har, kunne rotere rundt
+# det vi måler, vite hva vi måler, om det er via proxy, med hvilke
+# målemetoder, og instrumentet».
+#
+# Maalt foer: svaret fantes bare som tretten separate kommandoor.
+# ---------------------------------------------------------------------------
+
+def helhet(atlas: dict, node_id: str) -> dict:
+    """ALT om en node — de seks delene, i én lesning.
+
+    Ikke et sammendrag: hver del er den raa verdien fra noden, fordi et
+    sammendrag ville skjult nettopp det man spor etter.
+    """
+    treff = [x for x in atlas.get("noder") or [] if x["id"] == node_id]
+    if not treff:
+        rot = node_id.split(".")[0]
+        return {"finnes": False, "sokt": node_id,
+                "naere": [x["id"] for x in atlas.get("noder") or []
+                          if rot in x["id"]][:6]}
+    n = treff[0]
+    m = n.get("measure") or {}
+    epi = n.get("epistemikk") or {}
+    em = n.get("emergence") or {}
+    fr = n.get("fractal") or {}
+    reg = n.get("regime") or {}
+
+    # KOBLINGENE, begge veier: «flere hops i alle retninger»
+    ut = _koblinger(n, atlas)
+    ut_ider = {i for ider in ut.values() for i in ider}
+    inn: dict[str, list[str]] = {}
+    for x in atlas.get("noder") or []:
+        if x["id"] == node_id:
+            continue
+        try:
+            k = _koblinger(x, atlas)
+        except KeyError:
+            continue
+        if node_id in {i for ider in k.values() for i in ider}:
+            typer = [t for t, ider in k.items() if node_id in ider]
+            inn[x["id"]] = typer
+
+    # KRYSSDOMENE: hvilke ANDRE domener noden naar via hopp
+    eget = n.get("buss_domene")
+    kryss: list[str] = []
+    for i in ut_ider | set(inn):
+        x = next((y for y in atlas["noder"] if y["id"] == i), None)
+        d = (x or {}).get("buss_domene")
+        if d and d != eget and d not in kryss:
+            kryss.append(d)
+
+    return {
+        "finnes": True,
+        "id": node_id,
+        "node": n,
+        "episenter": n.get("episenter"),
+        "felt": reg,
+        "domene": eget,
+        "maal": {
+            "hva": m.get("target"),
+            "hvem": m.get("measurer"),
+            "hvor": m.get("placement"),
+            "instrument": m.get("instrument"),
+            "proxy": m.get("proxy_chain") or [],
+            "kompresjon": m.get("compression"),
+        },
+        "perspektiv": {
+            "perspektiv": n.get("perspektiv"),
+            "sannhetsstatus": epi.get("sannhetsstatus"),
+            "konsensusstatus": epi.get("konsensusstatus"),
+            "evidensstatus": epi.get("evidensstatus"),
+            "sosial_mekanisme": epi.get("sosial_mekanisme"),
+            "konsensus_er_ikke_sannhet": epi.get("konsensus_er_ikke_sannhet"),
+        },
+        "emergence": em,
+        "fraktaler": [fr.get("pattern"), fr.get("note")] + (em.get("properties") or []),
+        "observer": n.get("observer") or {},
+        "coupling": n.get("coupling") or {},
+        "buffer": n.get("buffer") or {},
+        "ontology": n.get("ontology") or {},
+        "maale_paradigme": n.get("maale_paradigme") or {},
+        "nivaa": n.get("nivaa") or {},
+        "koblinger": {"ut": ut, "inn": inn},
+        "kryssdomene": kryss,
+        "ett_hopp": len(ut_ider),
+        "to_hopp": len(hop(atlas, node_id, 2)),
+        "tre_hopp": len(hop(atlas, node_id, 3)),
+        "falsifiserbarhet": n.get("ville_falsifisere"),
+    }
+
+
+def helhet_tekst(atlas: dict, node_id: str) -> str:
+    """Helheten som lesbar tekst — for CLI og for oeyet."""
+    h = helhet(atlas, node_id)
+    if not h["finnes"]:
+        return (f"FEIL: `{node_id}` finnes ikke. Nærliggende: "
+                f"{', '.join(h['naere']) or 'ingen'}")
+    L: list[str] = [f"=== {h['id']} ==="]
+    L.append(f"  felt/regime : {h['felt'].get('name', '?')}")
+    v = h["felt"].get("validity")
+    if v:
+        L.append(f"  gyldighet   : {v[:150]}")
+    L.append(f"  domene      : {h['domene'] or '(ingen)'}")
+    L.append(f"  episenter   : {h['episenter'] or '(ingen)'}")
+    L.append("")
+    L.append("  MAALET")
+    for k, navn in (("hva", "hva"), ("hvem", "hvem"), ("hvor", "hvor"),
+                    ("instrument", "instrument"), ("kompresjon", "kompresjon")):
+        if h["maal"].get(k):
+            L.append(f"    {navn:11} {str(h['maal'][k])[:130]}")
+    if h["maal"]["proxy"]:
+        L.append(f"    proxy       {' -> '.join(str(x) for x in h['maal']['proxy'])[:130]}")
+    else:
+        L.append("    proxy       ingen — lest direkte")
+    L.append("")
+    L.append("  PERSPEKTIVET")
+    for k in ("perspektiv", "sannhetsstatus", "konsensusstatus",
+              "evidensstatus", "sosial_mekanisme"):
+        if h["perspektiv"].get(k):
+            L.append(f"    {k:16} {str(h['perspektiv'][k])[:120]}")
+    L.append("")
+    L.append(f"  EMERGENCE   {str(h['emergence'].get('loop'))[:130]}")
+    L.append(f"  FRAKTALER   {len(h['fraktaler'])} ledd")
+    for f in h["fraktaler"][:3]:
+        if f:
+            L.append(f"    - {str(f)[:120]}")
+    L.append("")
+    L.append(f"  KOBLINGER   1-hop {h['ett_hopp']} · 2-hop {h['to_hopp']} · "
+             f"3-hop {h['tre_hopp']}")
+    for t, ider in h["koblinger"]["ut"].items():
+        if ider:
+            L.append(f"    ut  {t:17} {len(ider):3}  {', '.join(ider[:4])[:60]}")
+    for i, typer in list(h["koblinger"]["inn"].items())[:6]:
+        L.append(f"    inn {','.join(typer)[:17]:17}       {i}")
+    if h["kryssdomene"]:
+        L.append(f"  KRYSSDOMENE {', '.join(h['kryssdomene'][:5])}")
+    if h.get("falsifiserbarhet"):
+        L.append(f"  FALSIFIKATOR {h['falsifiserbarhet'][:130]}")
+    return "\n".join(L)
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -750,12 +916,19 @@ if __name__ == "__main__":
     p.add_argument("--akser", action="store_true",
                    help="list ALLE aksene atlaset barer — ogsaa de nye")
     p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
+    p.add_argument("--alt", dest="alt", help="HELHETEN: alt om en node, i én lesning")
     p.add_argument("--plasser", help="plasser et NYTT fragment: hvor horer det, og hva mangler")
     p.add_argument("--hop", help="N hopp fra en node:  eller ")
     p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
     p.add_argument("--oversikt", action="store_true",
                    help="HELE atlaset paa én gang: hva som er hva, hvor, hvor mange")
     a = p.parse_args()
+
+    # HELHETEN — alt om en node
+    if a.alt:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        print(helhet_tekst(atlas, a.alt))
+        sys.exit(0)
 
     # INNGANGEN — plasser et nytt fragment
     if a.plasser:
