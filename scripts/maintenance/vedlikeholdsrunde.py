@@ -36,6 +36,10 @@ SJEKKER = [
     ("blast-radius", "blast_radius.py", ["--diff", "origin/main"]),
     ("lenker", "validate_links.py", ["--maks-eksterne", "15"]),
     ("verifier-bench", "verifier_bench.py", []),
+    # The dataset scan report declares its own expiry (stale_after_days) and
+    # answers it read-only: a finding nobody has handled ages into a card
+    # instead of ageing in silence inside a file that says everything is fine.
+    ("dataset-report-age", "efc_dataset_scanner.py", ["--check-stale"]),
 ]
 
 
@@ -129,6 +133,13 @@ def hoved() -> int:
             funn = (ut.get("harde") or []) + (ut.get("funn") or [])
         elif navn == "verifier-bench":
             funn = [] if rc == 0 else [{"type": "bench_gap"}]
+        elif navn == "dataset-report-age":
+            # The scanner answers read-only: whatever the report does not say
+            # (no expiry, no reader, an unreadable date) plus every finding past
+            # its expiry is a finding class of its own.
+            funn = (ut.get("problems") or []) + (ut.get("expired") or [])
+            if rc != 0 and not funn:
+                funn = [{"type": "scan_report_unreadable"}]
         print(f"  {navn}: rc={rc}, {len(funn)} funn")
         totalt_funn += len(funn)
         if funn and opprettet < MAKS_KORT_PER_KJOERING:
