@@ -8283,7 +8283,7 @@
   {
    "id": "efc.lag_c0",
    "regime": {
-    "name": "EFC-C0 — entropi-informasjons-kapasitet",
+    "name": "EFC-C0 — bevissthet (entropi-informasjons-kapasitet som maal, ikke som navn)",
     "validity": "mappingen mellom entropi-feltet S og informasjonskapasitet. Grensetilstander: S=0 (singularitet), S=1 (altularitet)."
    },
    "phase": "regime_engine",
@@ -8298,7 +8298,7 @@
     "placement": "teorirom",
     "compression": "hele entropi-feltet -> én skalar C"
    },
-   "episenter": "der S naar en grense — S=0 og S=1 er der tid-rom-oppfoerselen skifter",
+   "episenter": "bevisstheten — C er ikke en ting i kosmos, den er aktiviteten som leser S og D langs aksene; noden er C-sektoren, maalt via propofol-EEG (Omega, kappa)",
    "buffer": {
     "role": "entropien selv: den absorberer energi uten at strukturen endres, til grensen naas",
     "note": "modellens, ikke motorens"
@@ -8307,7 +8307,8 @@
     "assumes": [
      "S er et felt, ikke bare et tall",
      "S=0 og S=1 er grensetilstander, ikke verdier",
-     "Omega og kappa er ikke separable"
+     "Omega og kappa er ikke separable",
+     "Eiers korreksjon 2026-09-18: S=Struktur, D=Dynamikk, R=Regime, C(S)=klarhetsfunksjon, EFC-C=BEVISSTHET — ikke kapasitet"
     ],
     "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG)"
    },
