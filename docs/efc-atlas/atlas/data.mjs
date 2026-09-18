@@ -2408,7 +2408,7 @@ export const NODES = [
   },
   {
     "id": "verden-vaer",
-    "code": "VE",
+    "code": "VV",
     "name": "verden.vaer",
     "short": "vaer",
     "group": "ghost",
@@ -2440,7 +2440,7 @@ export const NODES = [
   },
   {
     "id": "kosmos-asteroider",
-    "code": "KO",
+    "code": "KA",
     "name": "kosmos.asteroider",
     "short": "asteroider",
     "group": "ghost",
@@ -2472,7 +2472,7 @@ export const NODES = [
   },
   {
     "id": "efc-efc-background-engine",
-    "code": "EF",
+    "code": "EE",
     "name": "efc.efc_background_engine",
     "short": "efc background",
     "group": "ghost",
@@ -2506,7 +2506,7 @@ export const NODES = [
   },
   {
     "id": "efc-lag-s",
-    "code": "EF",
+    "code": "LS",
     "name": "efc.lag_s",
     "short": "lag s",
     "group": "ghost",
@@ -2538,7 +2538,7 @@ export const NODES = [
   },
   {
     "id": "efc-lag-d",
-    "code": "EF",
+    "code": "LD",
     "name": "efc.lag_d",
     "short": "lag d",
     "group": "ghost",
@@ -2570,7 +2570,7 @@ export const NODES = [
   },
   {
     "id": "efc-lag-c0",
-    "code": "EF",
+    "code": "C0",
     "name": "efc.lag_c0",
     "short": "lag c0",
     "group": "ghost",

@@ -1095,7 +1095,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
 
-#### VE · verden.vaer _(not switched on)_
+#### VV · verden.vaer _(not switched on)_
 
 **In one line.** Perspective: consensus. temperatur, vind, trykk, skydekke og fuktighet
 
@@ -1109,7 +1109,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler
 
-#### KO · kosmos.asteroider _(not switched on)_
+#### KA · kosmos.asteroider _(not switched on)_
 
 **In one line.** Perspective: consensus. treffsannsynlighet og Palermo-kumulativ per objekt
 
@@ -1123,7 +1123,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / proxy / institusjonell
 3. **Social mechanism** — JPL Sentry som konsensus-kanal
 
-#### EF · efc.efc_background_engine _(not switched on)_
+#### EE · efc.efc_background_engine _(not switched on)_
 
 **In one line.** Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)
 
@@ -1139,9 +1139,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **Questions.**
 
-- **Q-EF1** efc.efc_background_engine: no evidence yet — hypothesis marked honestly
+- **Q-EE1** efc.efc_background_engine: no evidence yet — hypothesis marked honestly
 
-#### EF · efc.lag_s _(not switched on)_
+#### LS · efc.lag_s _(not switched on)_
 
 **In one line.** Perspective: paradigm. strukturen som energy-flow-feltet holder oppe
 
@@ -1155,7 +1155,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vaar ramme — erstatter mork materie, som er et MINORITETSstandpunkt mot LCDM
 
-#### EF · efc.lag_d _(not switched on)_
+#### LD · efc.lag_d _(not switched on)_
 
 **In one line.** Perspective: paradigm. energy-flow-feltet J_mu og dets divergens
 
@@ -1169,7 +1169,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vaar ramme — erstatter mork energi, som er konsensus i LCDM
 
-#### EF · efc.lag_c0 _(not switched on)_
+#### C0 · efc.lag_c0 _(not switched on)_
 
 **In one line.** Perspective: paradigm. entropi-feltet S og dets grenser
 
@@ -1215,7 +1215,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 - **Q-GM1** (GM) efc.grid_mikrofysikk: no evidence yet — hypothesis marked honestly
 - **Q-GE1** (GE) efc.grid_mikro_engine: no evidence yet — hypothesis marked honestly
 - **Q-SH1** (SH) efc.sort_hull: no evidence yet — hypothesis marked honestly
-- **Q-EF1** (EF) efc.efc_background_engine: no evidence yet — hypothesis marked honestly
+- **Q-EE1** (EE) efc.efc_background_engine: no evidence yet — hypothesis marked honestly
 
 ## What the platform gives vs what we own
 

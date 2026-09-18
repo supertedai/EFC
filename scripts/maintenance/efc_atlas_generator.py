@@ -40,6 +40,13 @@ JSONLD = ROT / "schema" / "regime_nodes.jsonld"
 #: tanke. Endres en node-id, skal koden flyttes med — testen
 #: `test_deklarasjonen_raatner_ikke` feller etterlatte noekler.
 KODER = {
+    "verden.vaer": "VV",
+    "opus.dommekraft": "OD",
+    "kosmos.asteroider": "KA",
+    "efc.efc_background_engine": "EE",
+    "efc.lag_s": "LS",
+    "efc.lag_d": "LD",
+    "efc.lag_c0": "C0",
     # Rot og selv-referanse
     "efc.l0": "L0", "efc.l1": "L1", "efc.l2": "L2", "efc.l3": "L3",
     # Gitteret — publiserte arbeider
