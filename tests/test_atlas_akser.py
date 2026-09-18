@@ -126,3 +126,35 @@ class TestNavnelaget:
     def test_ukjent_navn_feiler_fortsatt(self, atlas: dict) -> None:
         with pytest.raises(KeyError):
             atlas_lesing.roter_akse(atlas, "finnes.ikke.her")
+
+
+class TestOversikten:
+    """«ALT dette skal vaere globalt i atlaset og du skal umiddelbart vite
+    hva som er hva hvor osv.» — ikke et soek. Tilstanden."""
+
+    def test_oversikt_gir_aksene_som_skiller(self, atlas: dict) -> None:
+        o = dict(atlas_lesing.oversikt(atlas))
+        for sti in ("perspektiv", "synlighet", "epistemikk.sannhetsstatus",
+                    "nivaa.indeks", "stipulasjoner.stipulert_av_oss"):
+            assert sti in o, f"oversikten skjuler `{sti}`"
+
+    def test_oversikten_utelater_konstanter(self, atlas: dict) -> None:
+        """En akse med én verdi skiller ingenting — den skal bort."""
+        o = dict(atlas_lesing.oversikt(atlas))
+        for sti, ford in o.items():
+            assert len(ford) > 1, f"`{sti}` er en konstant og skal ikke vises"
+
+    def test_oversikten_utelater_fritekst(self, atlas: dict) -> None:
+        """«Umiddelbart» betyr at det maa kunne leses paa én linje."""
+        o = dict(atlas_lesing.oversikt(atlas))
+        for sti, ford in o.items():
+            for v, _ in ford[:8]:
+                assert len(v) <= 34, f"`{sti}` har fritekstverdien {v[:40]!r}"
+
+    def test_tellingen_stemmer_med_nodene(self, atlas: dict) -> None:
+        o = dict(atlas_lesing.oversikt(atlas))
+        persp = dict(o["perspektiv"])
+        fra_data = {}
+        for n in atlas["noder"]:
+            fra_data[n["perspektiv"]] = fra_data.get(n["perspektiv"], 0) + 1
+        assert persp == fra_data, "oversikten og dataene er uenige"
