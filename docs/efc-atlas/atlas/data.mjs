@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '106' },
+  stats: [{ k: 'Nodes', v: '111' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 106 nodes, 19 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 111 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -4215,7 +4215,197 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "World Bank b\u00e6rer klimaets institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette e"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-miljo-mikrobiom",
+    "code": "MX",
+    "name": "verden.miljo_mikrobiom",
+    "short": "miljo mikrobio",
+    "group": "samfunn",
+    "gx": 11.1,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. microbial taxa and functional profiles across sampled environments",
+    "what": "MGnify microbiome profiles \u2014 proxy chain: sample -> sequence processing -> taxonomic and functional profile -> state message",
+    "how": "Buffer role: MGnify-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "MGnify b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-miljo-gdelt",
+    "code": "GY",
+    "name": "verden.miljo_gdelt",
+    "short": "miljo gdelt",
+    "group": "samfunn",
+    "gx": 13.5,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. environment-related coverage encoded in global news documents",
+    "what": "GDELT GKG coding of documents, themes, actors and places \u2014 proxy chain: news document -> GKG codes -> environmental observation",
+    "how": "Buffer role: GDELT-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "GDELT b\u00e6rer milj\u00f8ets nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-oekonomi-worldbank",
+    "code": "OX",
+    "name": "verden.oekonomi_worldbank",
+    "short": "oekonomi world",
+    "group": "samfunn",
+    "gx": 1.5,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. economic indicators by country and year",
+    "what": "World Bank reported and harmonized indicator datasets \u2014 proxy chain: national reporting -> harmonization -> indicator value -> state message",
+    "how": "Buffer role: World Bank-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "World Bank b\u00e6rer \u00f8konomiens institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-oekonomi-imf",
+    "code": "IX",
+    "name": "verden.oekonomi_imf",
+    "short": "oekonomi imf",
+    "group": "samfunn",
+    "gx": 3.9,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. macroeconomic projections and scenario indicators",
+    "what": "IMF DataMapper projections and macroeconomic scenarios \u2014 proxy chain: institutional projection -> DataMapper series -> forecast reading",
+    "how": "Buffer role: IMF DataMapper-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "IMF DataMapper b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-oekonomi-gdelt",
+    "code": "OY",
+    "name": "verden.oekonomi_gdelt",
+    "short": "oekonomi gdelt",
+    "group": "samfunn",
+    "gx": 6.3,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. economic coverage encoded in global news documents",
+    "what": "GDELT GKG coding of documents, themes, actors and places \u2014 proxy chain: news document -> GKG codes -> economic observation",
+    "how": "Buffer role: GDELT-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "GDELT b\u00e6rer \u00f8konomiens nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
       ]
     ],
     "cond": []
@@ -4372,10 +4562,15 @@ export const CH = [
       "verden-transport",
       "verden-utdanning",
       "verden-klima-gdelt",
-      "verden-klima-worldbank"
+      "verden-klima-worldbank",
+      "verden-miljo-mikrobiom",
+      "verden-miljo-gdelt",
+      "verden-oekonomi-worldbank",
+      "verden-oekonomi-imf",
+      "verden-oekonomi-gdelt"
     ],
     "lede": "Chapter 6 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
+    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-miljo-gdelt, verden-miljo-mikrobiom, verden-oekonomi-gdelt, verden-oekonomi-imf, verden-oekonomi-worldbank, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
     "flow": null
   },
   {
@@ -4452,7 +4647,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 106 nodes, 79 relations.",
+    "lede": "Everything at once \u2014 111 nodes, 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }

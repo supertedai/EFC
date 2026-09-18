@@ -108,6 +108,9 @@ KODER = {
     # Live stream instruments — each code identifies exactly one node
     "kosmos.galakser_mast": "KM", "verden.klima_gdelt": "GG",
     "verden.klima_worldbank": "WB",
+    "verden.miljo_mikrobiom": "MX", "verden.miljo_gdelt": "GY",
+    "verden.oekonomi_worldbank": "OX", "verden.oekonomi_imf": "IX",
+    "verden.oekonomi_gdelt": "OY",
     # Homo — regime-motoren
     "homo.fluxus": "HF", "homo.homeostase_buffer": "HO",
     "homo.feber_regime": "FE", "homo.aksjonspotensial": "AP",
@@ -151,6 +154,11 @@ PLASSERING = {
     "verden.kommunikasjon": ("samfunn", 6),
     "verden.lov": ("samfunn", 6),
     "verden.militaer": ("samfunn", 6),
+    "verden.miljo_mikrobiom": ("samfunn", 6),
+    "verden.miljo_gdelt": ("samfunn", 6),
+    "verden.oekonomi_worldbank": ("samfunn", 6),
+    "verden.oekonomi_imf": ("samfunn", 6),
+    "verden.oekonomi_gdelt": ("samfunn", 6),
     "verden.politikk": ("samfunn", 6),
     "verden.sikkerhet": ("samfunn", 6),
     "verden.teknologi": ("samfunn", 6),

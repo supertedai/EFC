@@ -173,12 +173,12 @@
       ]
     },
     "kosmos.romvaer": {
-      "status": "dekket",
+      "status": "delvis",
       "meldinger": 166,
       "noder": [
         "efc.romvaer_engine"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "romvaer-motoren beskriver korrelasjoner; tilstand.swpc-kp har ingen egen instrumentnode.",
       "emner": [
         "tilstand.swpc-kp"
       ]
@@ -197,12 +197,12 @@
       ]
     },
     "kosmos.sol": {
-      "status": "dekket",
+      "status": "delvis",
       "meldinger": 3906,
       "noder": [
         "efc.solar_flare_engine"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "solflaremotoren beskriver flare-regimer; swpc-goes-xray og nasa-donki har ingen egne instrumentnoder.",
       "emner": [
         "tilstand.swpc-goes-xray",
         "hendelse.nasa-donki"
@@ -220,12 +220,12 @@
       ]
     },
     "kosmos.transienter": {
-      "status": "dekket",
+      "status": "delvis",
       "meldinger": 23477,
       "noder": [
         "efc.transient_engine"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "transientmotoren beskriver kollapsregimet; alerce-strømmen har ingen egen instrumentnode.",
       "emner": [
         "hendelse.alerce"
       ]
@@ -453,9 +453,11 @@
         "efc.water_phase_engine",
         "homo.evolusjon",
         "homo.okologi",
-        "verden.biosfaere"
+        "verden.biosfaere",
+        "verden.miljo_gdelt",
+        "verden.miljo_mikrobiom"
       ],
-      "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom og gdelt mangler",
+      "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom måler mikrobiomtilstanden og gdelt-gkg måler miljøomtale.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.ecowitt",
@@ -470,9 +472,12 @@
       "status": "dekket",
       "meldinger": 2624,
       "noder": [
-        "efc.oekonomi_engine"
+        "efc.oekonomi_engine",
+        "verden.oekonomi_gdelt",
+        "verden.oekonomi_imf",
+        "verden.oekonomi_worldbank"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "motoren dekker økonomiregimet; world-bank dekker tilstandsindikatorer, imf-datamapper dekker prognoser, og gdelt-gkg dekker økonomisk omtale.",
       "emner": [
         "observasjon.gdelt-gkg",
         "prediksjon.imf-datamapper",

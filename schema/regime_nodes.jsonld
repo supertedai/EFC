@@ -12737,7 +12737,7 @@
     "sannhetsstatus": "stottet",
     "evidensstatus": "direkte",
     "konsensusstatus": "institusjonell",
-    "sosial_mekanisme": "World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "sosial_mekanisme": "World Bank bærer klimaets institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette er ikke sannheten selv",
     "konsensus_er_ikke_sannhet": true
    },
    "maale_paradigme": {
@@ -12767,6 +12767,496 @@
     "lengdeskala": "globalt"
    },
    "buss_domene": "verden.klima",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.miljo_mikrobiom",
+   "regime": {
+    "name": "maaling — tilstand.mgnify-mikrobiom",
+    "validity": "Instrumentavlesning fra tilstand.mgnify-mikrobiom; microbial taxa and functional profiles across sampled environments, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "microbial taxa and functional profiles across sampled environments",
+    "measurer": "MGnify",
+    "instrument": "MGnify microbiome profiles",
+    "proxy_chain": [
+     "sample -> sequence processing -> taxonomic and functional profile -> state message"
+    ],
+    "placement": "observasjon",
+    "compression": "sampled microbiome data are harmonized into an atlas reading"
+   },
+   "episenter": "lesningen fra tilstand.mgnify-mikrobiom — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "MGnify-kilden holder målekontrakten mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "tilstand.mgnify-mikrobiom leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "tilstand.mgnify-mikrobiom",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "tilstand.mgnify-mikrobiom",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "tilstand.mgnify-mikrobiom: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true,
+    "c_s_posisjon": "C(S)-punkt fra: S>0; differensiert klarhet; L2-avlesning i observatoerens smale vindu."
+   },
+   "emergence": {
+    "loop": "sample -> sequence processing -> taxonomic and functional profile -> state message",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "målekontrakten gjentas per melding og per aggregert vindu",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding leses lokalt fra tilstand.mgnify-mikrobiom",
+    "global": "samlet strøm viser hvordan verden.miljo fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "MGnify bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "forelder": null,
+    "indeks": 0,
+    "lengdeskala": "globalt",
+    "tidsskala": "løpende"
+   },
+   "buss_domene": "verden.miljo",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.miljo_gdelt",
+   "regime": {
+    "name": "maaling — observasjon.gdelt-gkg",
+    "validity": "Instrumentavlesning fra observasjon.gdelt-gkg; environment-related coverage encoded in global news documents, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "environment-related coverage encoded in global news documents",
+    "measurer": "GDELT",
+    "instrument": "GDELT GKG coding of documents, themes, actors and places",
+    "proxy_chain": [
+     "news document -> GKG codes -> environmental observation"
+    ],
+    "placement": "observasjon",
+    "compression": "coded documents are compressed into the documented message per update"
+   },
+   "episenter": "lesningen fra observasjon.gdelt-gkg — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "GDELT-kilden holder målekontrakten mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "observasjon.gdelt-gkg leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "observasjon.gdelt-gkg",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "observasjon.gdelt-gkg",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "observasjon.gdelt-gkg: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true,
+    "c_s_posisjon": "C(S)-punkt fra: S>0; differensiert klarhet; L2-avlesning i observatoerens smale vindu."
+   },
+   "emergence": {
+    "loop": "news document -> GKG codes -> environmental observation",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "målekontrakten gjentas per melding og per aggregert vindu",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding leses lokalt fra observasjon.gdelt-gkg",
+    "global": "samlet strøm viser hvordan verden.miljo fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "GDELT bærer miljøets nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "forelder": null,
+    "indeks": 0,
+    "lengdeskala": "globalt",
+    "tidsskala": "løpende"
+   },
+   "buss_domene": "verden.miljo",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.oekonomi_worldbank",
+   "regime": {
+    "name": "maaling — tilstand.world-bank",
+    "validity": "Instrumentavlesning fra tilstand.world-bank; economic indicators by country and year, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "economic indicators by country and year",
+    "measurer": "World Bank",
+    "instrument": "World Bank reported and harmonized indicator datasets",
+    "proxy_chain": [
+     "national reporting -> harmonization -> indicator value -> state message"
+    ],
+    "placement": "observasjon",
+    "compression": "country-year series are compressed into the documented message per update"
+   },
+   "episenter": "lesningen fra tilstand.world-bank — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "World Bank-kilden holder målekontrakten mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "tilstand.world-bank leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "tilstand.world-bank",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "tilstand.world-bank",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "tilstand.world-bank: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true,
+    "c_s_posisjon": "C(S)-punkt fra: S>0; differensiert klarhet; L2-avlesning i observatoerens smale vindu."
+   },
+   "emergence": {
+    "loop": "national reporting -> harmonization -> indicator value -> state message",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "målekontrakten gjentas per melding og per aggregert vindu",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding leses lokalt fra tilstand.world-bank",
+    "global": "samlet strøm viser hvordan verden.oekonomi fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "World Bank bærer økonomiens institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette er ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "forelder": null,
+    "indeks": 0,
+    "lengdeskala": "globalt",
+    "tidsskala": "løpende"
+   },
+   "buss_domene": "verden.oekonomi",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.oekonomi_imf",
+   "regime": {
+    "name": "maaling — prediksjon.imf-datamapper",
+    "validity": "Instrumentavlesning fra prediksjon.imf-datamapper; macroeconomic projections and scenario indicators, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "macroeconomic projections and scenario indicators",
+    "measurer": "IMF DataMapper",
+    "instrument": "IMF DataMapper projections and macroeconomic scenarios",
+    "proxy_chain": [
+     "institutional projection -> DataMapper series -> forecast reading"
+    ],
+    "placement": "observasjon",
+    "compression": "projection series are compressed into the documented message per update"
+   },
+   "episenter": "lesningen fra prediksjon.imf-datamapper — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "IMF DataMapper-kilden holder målekontrakten mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "prediksjon.imf-datamapper leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "prediksjon.imf-datamapper",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "prediksjon.imf-datamapper",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "prediksjon.imf-datamapper: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true,
+    "c_s_posisjon": "C(S)-punkt fra: S>0; differensiert klarhet; L2-avlesning i observatoerens smale vindu."
+   },
+   "emergence": {
+    "loop": "institutional projection -> DataMapper series -> forecast reading",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "målekontrakten gjentas per melding og per aggregert vindu",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding leses lokalt fra prediksjon.imf-datamapper",
+    "global": "samlet strøm viser hvordan verden.oekonomi fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "IMF DataMapper bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "forelder": null,
+    "indeks": 0,
+    "lengdeskala": "globalt",
+    "tidsskala": "løpende"
+   },
+   "buss_domene": "verden.oekonomi",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "verden.oekonomi_gdelt",
+   "regime": {
+    "name": "maaling — observasjon.gdelt-gkg",
+    "validity": "Instrumentavlesning fra observasjon.gdelt-gkg; economic coverage encoded in global news documents, ikke en motorisk forklaring."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "economic coverage encoded in global news documents",
+    "measurer": "GDELT",
+    "instrument": "GDELT GKG coding of documents, themes, actors and places",
+    "proxy_chain": [
+     "news document -> GKG codes -> economic observation"
+    ],
+    "placement": "observasjon",
+    "compression": "coded documents are compressed into the documented message per update"
+   },
+   "episenter": "lesningen fra observasjon.gdelt-gkg — der instrumentvinduet blir til en atlasobservasjon",
+   "buffer": {
+    "role": "GDELT-kilden holder målekontrakten mellom meldinger",
+    "note": "instrumentbuffer; den holder kildens observasjon mellom oppdateringer"
+   },
+   "ontology": {
+    "assumes": [
+     "observasjon.gdelt-gkg leverer en aktuell melding for det dokumenterte observasjonsvinduet",
+     "strømmen er en kilde til måling, ikke selve hele domenet"
+    ],
+    "source": "observasjon.gdelt-gkg",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "stroem",
+       "ref": "observasjon.gdelt-gkg",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
+   },
+   "observer": {
+    "bandwidth": "observasjon.gdelt-gkg: bare feltene i den målte meldingen",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true,
+    "c_s_posisjon": "C(S)-punkt fra: S>0; differensiert klarhet; L2-avlesning i observatoerens smale vindu."
+   },
+   "emergence": {
+    "loop": "news document -> GKG codes -> economic observation",
+    "properties": [
+     "ingen egne — instrumentet leser og komprimerer målingen"
+    ]
+   },
+   "fractal": {
+    "pattern": "målekontrakten gjentas per melding og per aggregert vindu",
+    "note": "samme målekontrakt gjentas per melding og per aggregert vindu"
+   },
+   "coupling": {
+    "local": "hver melding leses lokalt fra observasjon.gdelt-gkg",
+    "global": "samlet strøm viser hvordan verden.oekonomi fordeler seg globalt",
+    "empathy_note": "en måling er et avgrenset vindu; den skal ikke leses som hele domenet"
+   },
+   "perspektiv": "konsensus",
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "GDELT bærer økonomiens nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "fraksjon"
+    ],
+    "enheter": "kodede dokument- og temafelt per melding",
+    "status": "direkte_observerbar",
+    "alternativer": [
+     "andre observasjonskilder utenfor denne strømmen"
+    ]
+   },
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — produsentens målekontrakt gjelder"
+    ],
+    "motor": "",
+    "motor_status": "instrument — trenger ingen motor",
+    "ikke_falsifiserbar_grunn": "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+   },
+   "nivaa": {
+    "forelder": null,
+    "indeks": 0,
+    "lengdeskala": "globalt",
+    "tidsskala": "løpende"
+   },
+   "buss_domene": "verden.oekonomi",
    "synlighet": "offentlig"
   }
  ],

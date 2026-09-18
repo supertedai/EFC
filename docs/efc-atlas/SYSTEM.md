@@ -6,7 +6,7 @@ _Question status: **7 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 106 nodes, 19 engines, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 111 nodes, 19 engines, NATS bridges.
 
 ## Decisions locked
 
@@ -26,10 +26,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast)_
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
-6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank)_
+6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 106 nodes, 79 relations.
+9. **The whole atlas** — Everything at once — 111 nodes, 79 relations.
 
 ## Structures
 
@@ -809,7 +809,77 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+3. **Social mechanism** — World Bank bærer klimaets institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette e
+
+#### MX · verden.miljo_mikrobiom
+
+**In one line.** Perspective: consensus. microbial taxa and functional profiles across sampled environments
+
+**What it does.** MGnify microbiome profiles — proxy chain: sample -> sequence processing -> taxonomic and functional profile -> state message
+
+**How it's built.** Buffer role: MGnify-kilden holder målekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — MGnify bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+
+#### GY · verden.miljo_gdelt
+
+**In one line.** Perspective: consensus. environment-related coverage encoded in global news documents
+
+**What it does.** GDELT GKG coding of documents, themes, actors and places — proxy chain: news document -> GKG codes -> environmental observation
+
+**How it's built.** Buffer role: GDELT-kilden holder målekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — GDELT bærer miljøets nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv
+
+#### OX · verden.oekonomi_worldbank
+
+**In one line.** Perspective: consensus. economic indicators by country and year
+
+**What it does.** World Bank reported and harmonized indicator datasets — proxy chain: national reporting -> harmonization -> indicator value -> state message
+
+**How it's built.** Buffer role: World Bank-kilden holder målekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — World Bank bærer økonomiens institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette
+
+#### IX · verden.oekonomi_imf
+
+**In one line.** Perspective: consensus. macroeconomic projections and scenario indicators
+
+**What it does.** IMF DataMapper projections and macroeconomic scenarios — proxy chain: institutional projection -> DataMapper series -> forecast reading
+
+**How it's built.** Buffer role: IMF DataMapper-kilden holder målekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — IMF DataMapper bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+
+#### OY · verden.oekonomi_gdelt
+
+**In one line.** Perspective: consensus. economic coverage encoded in global news documents
+
+**What it does.** GDELT GKG coding of documents, themes, actors and places — proxy chain: news document -> GKG codes -> economic observation
+
+**How it's built.** Buffer role: GDELT-kilden holder målekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — GDELT bærer økonomiens nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv
 
 ### Epistemics
 

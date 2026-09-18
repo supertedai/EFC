@@ -1,4 +1,4 @@
-"""FALSIFISERBARHET: alle 116 noder skal ha en eksplisitt avgjoerelse.
+"""FALSIFISERBARHET: alle 121 noder skal ha en eksplisitt avgjoerelse.
 
 En node kan ha en konkret falsifikator, en faktisk falsifiserbarhet-status,
 eller en skriftlig grunn til at den ikke kan felles av en observasjon.
@@ -34,7 +34,7 @@ def _har_status(n: dict) -> bool:
 
 
 def test_alle_noder_har_falsifiserbarhetsavgjoerelse(noder: list[dict]) -> None:
-    """Avgjorelser skal dekke 116 av 116 noder, ikke bare feltkapasiteten."""
+    """Avgjorelser skal dekke 121 av 121 noder, ikke bare feltkapasiteten."""
     avgjort = [
         n for n in noder
         if _har_falsifikator(n)
@@ -42,7 +42,7 @@ def test_alle_noder_har_falsifiserbarhetsavgjoerelse(noder: list[dict]) -> None:
         or bool(((n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn") or "").strip())
     ]
     uten = [n["id"] for n in noder if n not in avgjort]
-    assert len(avgjort) == len(noder) == 116, (
+    assert len(avgjort) == len(noder) == 121, (
         f"{len(avgjort)}/{len(noder)} noder har falsifiserbarhetsavgjoerelse; "
         f"mangler: {uten[:8]}"
     )

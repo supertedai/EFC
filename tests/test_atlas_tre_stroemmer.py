@@ -1,4 +1,4 @@
-"""Regresjonstest for de tre målte NATS-strømmene."""
+"""Regresjonstest for de åtte målte NATS-strømmene."""
 from __future__ import annotations
 
 import json
@@ -14,6 +14,11 @@ FORVENTET = {
     "kosmos.galakser_mast": ("kosmos.galakser", "observasjon.mast-caom"),
     "verden.klima_gdelt": ("verden.klima", "observasjon.gdelt-gkg"),
     "verden.klima_worldbank": ("verden.klima", "tilstand.world-bank"),
+    "verden.miljo_mikrobiom": ("verden.miljo", "tilstand.mgnify-mikrobiom"),
+    "verden.miljo_gdelt": ("verden.miljo", "observasjon.gdelt-gkg"),
+    "verden.oekonomi_worldbank": ("verden.oekonomi", "tilstand.world-bank"),
+    "verden.oekonomi_imf": ("verden.oekonomi", "prediksjon.imf-datamapper"),
+    "verden.oekonomi_gdelt": ("verden.oekonomi", "observasjon.gdelt-gkg"),
 }
 
 
