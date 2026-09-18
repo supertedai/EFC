@@ -383,4 +383,4 @@ class TestFalsifiserbarhetsSkillet:
         e = d["epistemisk"]
         assert "maaler_eller_observert" in e, "de 47 er ikke navngitt"
         n, t_ = e["maaler_eller_observert"]
-        assert n == t_ == 72, f"forventet 72/72, fikk {n}/{t_}"
+        assert n == t_ == 75, f"forventet 75/75, fikk {n}/{t_}"
