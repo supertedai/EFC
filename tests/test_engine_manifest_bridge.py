@@ -223,11 +223,10 @@ def test_engine_node_and_its_atlas_node_agree_on_derived_fields():
     atlaset ble ikke regenerert). Regenerering:
     scripts/maintenance/efc_bro_synk.py.
 
-    Bare de avledede tekstfeltene sjekkes her. Resten av noden — nivaa,
-    epistemikk/sosial_mekanisme, maale_paradigme/koordinater,
-    stipulasjoner, buss_domene — har avvik i BEGGE retninger mellom motor
-    og atlas (maalt i samme audit), og konvensjonen maa vedtas én gang for
-    alle noder; det ligger i eget kort, ikke her.
+    Vann er ett tilfelle. Klassen — alle 20 motorer og ALLE felt, med
+    eierskapet delt mellom motor og atlas — testes i
+    tests/test_bro_konvensjon.py, og konvensjonen staar i
+    scripts/maintenance/efc_bro_konvensjon.py.
     """
     node = WaterPhaseEngine().regime_node(PARAMS)
     atlas = {n["id"]: n for n in _instance()["nodes"]}["efc.water_phase_engine"]

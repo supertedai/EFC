@@ -204,9 +204,12 @@ class GridMikroEngine(EFCEngine):
                                "formen er lik, substratets status er "
                                "ikke"),
             },
+            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
+            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
+            # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
-                "indeks": 0,
-                "forelder": None,
+                "indeks": 3,
+                "forelder": "efc.grid_mikrofysikk",
                 "tidsskala": "gitter-skala",
                 "lengdeskala": "lg (grid-lengden)",
             },

@@ -7,6 +7,10 @@ check:
 	python3 scripts/maintenance/validate_activity_log.py
 	python3 scripts/maintenance/validate_risk_register.py
 	python3 scripts/maintenance/verifier_bench.py
+# Bro-synken leser de KANONISKE parametrene fra testmodulene (én kilde for
+# test og synk), og de modulene importerer numpy/pytest. Kjor denne linja
+# med testvenv-en (f.eks. /opt/venvs/t_123ed6d9/bin/python), ikke en bar
+# python3 — ellers stopper den paa importen og sier hvilken modul som mangler.
 	python3 scripts/maintenance/efc_bro_synk.py --sjekk
 
 inntak-dry:

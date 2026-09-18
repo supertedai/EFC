@@ -123,7 +123,7 @@ class OekonomiEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
@@ -132,8 +132,11 @@ class OekonomiEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
+            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
+            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
+            # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
-                "indeks": 2,
+                "indeks": 1,
                 "forelder": "homo.fluxus",
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"

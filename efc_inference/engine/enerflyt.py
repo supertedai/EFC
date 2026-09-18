@@ -190,8 +190,11 @@ class EnerFlytEngine(EFCEngine):
                                  "ikke-konserverte valutaer utenfor "
                                  "modellen"],
             },
+            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
+            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
+            # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
-                "indeks": 2,
+                "indeks": 1,
                 "forelder": "homo.fluxus",
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
