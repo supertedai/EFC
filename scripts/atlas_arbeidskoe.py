@@ -14,6 +14,21 @@ MAALEFELT = ("s_regime", "klarhetsfunksjon", "ebe_function", "sektor")
 ALLE_FELT = MAALEFELT + ("rcmp",)
 
 
+def _git_sha(ref: str) -> str:
+    """Loes refen opp til en commit ÉN gang, og les alt derfra.
+
+    Uten dette leser kjoeringen den bevegelige refen om og om igjen: flytter
+    `origin/main` seg underveis, kan to filer i samme svar komme fra hver sin
+    tilstand, og svaret blir umulig aa reprodusere.
+    """
+    try:
+        ut = subprocess.run(["git", "rev-parse", ref], cwd=ROT, check=True,
+                            capture_output=True, text=True)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise SystemExit(f"ukjent ref {ref!r}: {exc}") from exc
+    return ut.stdout.strip()
+
+
 def _git_fil(ref: str, sti: str) -> str:
     """Les ei fil fra ref slik at ulagte endringar ikkje kan endre svaret."""
     try:
@@ -46,7 +61,16 @@ def _plassering(ref: str) -> dict[str, tuple[str, int]]:
 
 
 def _fylt(verdi: Any) -> bool:
-    return verdi is not None and verdi != "" and verdi != [] and verdi != {}
+    """Er feltet DEKLARERT med innhold?
+
+    `"   "` er ikke et svar. Foerste utgave behandlet en hvitromsstreng som
+    fylt, saa en node kunne se maalt ut med et tomt felt — og testen regnet
+    ventetallet med `bool()`, altsaa en ANNEN definisjon enn koden den testet.
+    `False` og `0` teller som deklarert: de er svar, ikke fravaer av svar.
+    """
+    if isinstance(verdi, str):
+        return bool(verdi.strip())
+    return verdi is not None and verdi != [] and verdi != {}
 
 
 def _status(objekt: dict[str, Any], felt: str) -> str | None:
@@ -95,13 +119,23 @@ def arbeidskoe_ghost(data: dict[str, Any], plassering: dict[str, tuple[str, int]
     for node in data.get("nodes", []):
         if node.get("synlighet") != "offentlig":
             continue
-        gruppe, kapittel = plassering.get(node["id"], ("ghost", 8))
+        if node["id"] not in plassering:
+            # Ingen standardverdi her. Klasseslekten er maalt foer: i atlaset
+            # gjorde `PLASSERING.get(navn, ("ghost", 8))` 68 av 73 noder til
+            # «ikke bygget», og feilen saa ut som data. En node som mangler
+            # plassering skal meldes, ikke gjettes.
+            raise SystemExit(
+                f"[arbeidskoe] {node['id']} staar ikke i generatorens "
+                f"PLASSERING — kan ikke avgjoere om den er bygget eller ghost")
+        gruppe, kapittel = plassering[node["id"]]
         if gruppe != "ghost":
             continue
         # target er bankens egen deklarasjon av hva noden skal maale.
+        maal = (node.get("measure") or {}).get("target")
         rader.append({
             "id": node["id"],
-            "intensjon": (node.get("measure") or {}).get("target"),
+            "intensjon": maal,
+            "intensjon_status": "deklarert" if _fylt(maal) else "ikke deklarert",
             "gruppe": gruppe,
             "kapittel": kapittel,
         })
@@ -118,11 +152,15 @@ def main() -> None:
     parser.add_argument("--json", action="store_true",
                         help="maskinlesbar utdata (standard: lesbar liste)")
     args = parser.parse_args()
-    data = _bank(args.ref)
+    # Les alt fra ÉN opploest commit, ikke fra den bevegelige refen. Flytter
+    # `origin/main` seg midt i kjoeringen, ville ellers overskriften og
+    # innholdet kunne svare paa hver sin tilstand.
+    sha = _git_sha(args.ref)
+    data = _bank(sha)
     if args.sakse:
         svar = arbeidskoe_sakse(data)
     else:
-        svar = arbeidskoe_ghost(data, _plassering(args.ref))
+        svar = arbeidskoe_ghost(data, _plassering(sha))
     if args.json:
         print(json.dumps(svar, ensure_ascii=False, indent=2, sort_keys=True))
         return
@@ -146,7 +184,8 @@ def main() -> None:
         print(f"Ghost-noder · {len(svar['noder'])} designet, ikke bygget")
         print()
         for rad in svar["noder"]:
-            print(f"  {rad['id']:<28} [{rad['gruppe']}] {rad.get('intensjon', '')}")
+            intensjon = rad.get("intensjon") or "intensjon: ikke deklarert"
+            print(f"  {rad['id']:<28} [{rad['gruppe']}] {intensjon}")
 
 
 if __name__ == "__main__":

@@ -32,10 +32,19 @@ def json_ref(repo: Path, ref: str, sti: str) -> dict:
 
 
 def motorfiler(repo: Path, ref: str) -> list[str]:
+    """Motorfiler i git-treet paa `ref`.
+
+    En TOM liste betyr at katalogen finnes og ikke har motorer. Foerste utgave
+    svelget ogsaa «katalogen finnes ikke» og svarte det samme — «ingen
+    motorfil» — og da ser et manglende tre ut som et funn. Naas katalogen ikke
+    finnes, sier kallet fra.
+    """
     try:
         filer = git(repo, "ls-tree", "--name-only", f"{ref}:{MOTOR_STI}")
-    except InngangFeil:
-        return []
+    except InngangFeil as e:
+        raise InngangFeil(
+            f"{MOTOR_STI} finnes ikke paa {ref} — motorlaget er ikke lest"
+        ) from e
     return sorted(Path(x).stem for x in filer.splitlines()
                   if x.endswith(".py") and Path(x).stem not in {"__init__", "base_engine"})
 
@@ -58,25 +67,77 @@ def kjent_hull(dekning: dict, ordet: str) -> dict | None:
     return None
 
 
+def emne_oppslag(repo: Path, sha: str, ordet: str) -> tuple[list[str], bool]:
+    """Del resloseren med `atlas_lesing` i stedet for aa ha to sannheter.
+
+    Maalt i review 2026-09-18: denne inngangen slo bare opp EKSAKTE node-id-er
+    og buss-domener. Ordet «entropy gradient» kunne da svares «ATLASET VET
+    IKKE» her, mens `atlas_lesing --emne` svarte med treff — to innganger, to
+    svar, samme spoersmaal. Den ene inngangen skal ikke ha sin egen ordbok.
+
+    Returnerer (linjer, er_registrert_begrep). Det siste flagget finnes fordi
+    «atlaset vet ikke» er FEIL svar naar begrepet staar i navnerommet:
+    atlaset vet hva ordet er, det har bare ingen node for det.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import atlas_lesing
+    except ImportError as e:  # pragma: no cover - bare naar fila mangler
+        return ([f"EMNE: ikke slaat opp — atlas_lesing kunne ikke leses ({e})"],
+                False)
+    svar = atlas_lesing.finn(repo, ordet, sha)
+    treff = svar.get("treff", [])
+    begrep = [t for t in treff if t.get("trefftype") == "navnerom"]
+    linjer = [f"EMNE: {svar['antall']} treff i banken"
+              + (" — ATLASET VET IKKE" if svar.get("hull") else "")]
+    for t in treff[:5]:
+        merke = " (navnerom, ingen node)" if t.get("trefftype") == "navnerom" else ""
+        linjer.append(f"  {t.get('id', '?')}{merke}")
+    if begrep:
+        linjer.append(f"  begrepet er registrert, men har ingen node: "
+                      f"{begrep[0].get('grunn', 'grunn ikke oppgitt')}")
+    if svar.get("hull"):
+        kjent = atlas_lesing._kjent_hull(
+            atlas_lesing._dekning(repo, sha, False), ordet)
+        if kjent:
+            linjer.append(f"  kjent hull: {kjent.get('domene')} — "
+                          f"{kjent.get('begrunnelse', 'ingen grunn oppgitt')}")
+    return linjer, bool(begrep)
+
+
 def les(repo: str | Path, ord_eller_node: str, ref: str = STANDARD_REF) -> str:
     repo = Path(repo)
-    commit = git(repo, "rev-parse", ref).strip()
-    atlas = json_ref(repo, ref, NODE_STI)
+    # ÉN opploest commit. Leser vi den bevegelige refen videre, kan to filer i
+    # samme svar komme fra hver sin tilstand naar refen flytter seg.
+    sha = git(repo, "rev-parse", ref).strip()
+    atlas = json_ref(repo, sha, NODE_STI)
     node = next((n for n in atlas.get("nodes", [])
                  if n.get("id") == ord_eller_node), None)
-    nats = json_ref(repo, ref, NATS_STI).get("domener", {})
-    dekning = json_ref(repo, ref, DEKNING_STI)
-    motorer = motorfiler(repo, ref)
-    lines = [f"INNGANG: {ord_eller_node}", f"REF: {ref} @ {commit[:8]}"]
+    nats = json_ref(repo, sha, NATS_STI).get("domener", {})
+    dekning = json_ref(repo, sha, DEKNING_STI)
+    try:
+        motorer = motorfiler(repo, sha)
+        motor_feil = None
+    except InngangFeil as e:
+        # Navngitt fravaer, ikke «ingen motorfil». Et manglende tre er ikke et
+        # funn om at noden ikke har motor.
+        motorer, motor_feil = [], str(e)
+    lines = [f"INNGANG: {ord_eller_node}", f"REF: {ref} @ {sha[:8]}"]
     if node is None:
         hull = kjent_hull(dekning, ord_eller_node)
-        if hull is not None:
+        emne_linjer, er_begrep = emne_oppslag(repo, sha, ord_eller_node)
+        if er_begrep:
+            # «Atlaset vet ikke» er feil svar naar begrepet er registrert.
+            # Atlaset vet hva ordet ER; det har bare ingen node for det.
+            lines.append("NODE: ingen node — REGISTRERT BEGREP, ingen atlasnode")
+        elif hull is not None:
             lines += ["NODE: ingen node — KJENT HULL",
                       f"  domene: {hull['domene']}",
                       f"  status: {hull.get('status', 'ukjent')}"]
             lines.append(f"  grunn: {hull.get('begrunnelse', 'ingen deklarert grunn')}")
         else:
             lines.append("NODE: ingen node — ATLASET VET IKKE (ingen maaling)")
+        lines += emne_linjer
         lines.append("MOTOR: ingen motorfil")
         lines.append("BUSS: ingen buss-vei")
     else:
@@ -96,7 +157,13 @@ def les(repo: str | Path, ord_eller_node: str, ref: str = STANDARD_REF) -> str:
                   f"  epistemikk: sannhet={ep.get('sannhetsstatus', 'ikke deklarert')}; evidens={ep.get('evidensstatus', 'ikke deklarert')}",
                   f"  S-akse-status: {s_status}"]
         motor = node_motor(node["id"], motorer)
-        lines.append(f"MOTOR: {motor or 'ingen motorfil'}")
+        if motor_feil:
+            lines.append(f"MOTOR: ikke lest — {motor_feil}")
+        else:
+            lines.append(f"MOTOR: {motor or 'ingen motorfil'}"
+                         + (" (utledet av navnekonvensjonen node-id -> "
+                            "motornavn, ikke av en deklarert kobling)"
+                            if motor else ""))
         domene = node.get("buss_domene")
         if domene and domene in nats:
             emner = nats[domene].get("emner", {})

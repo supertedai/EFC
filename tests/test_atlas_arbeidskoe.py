@@ -7,10 +7,18 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 ROT = Path(__file__).resolve().parents[1]
-PYTHON = Path("/opt/venvs/t_123ed6d9/bin/python")
+sys.path.insert(0, str(ROT / "scripts"))
+from atlas_arbeidskoe import _fylt  # noqa: E402
+
+#: `sys.executable`, ikke en hardkodet sti: en test som bare virker
+#: med prosjektets venv feiler i en kopi uten den — og da maaler den
+#: miljoeet, ikke koden.
+PYTHON = sys.executable
 CLI = ROT / "scripts" / "atlas_arbeidskoe.py"
-REF = "origin/main"
+REF = "HEAD"
 
 
 def kjoer(mode: str) -> dict:
@@ -73,12 +81,39 @@ def plassering() -> dict[str, tuple[str, int]]:
 def test_tellingene_er_utledet_fra_offentlig_bank():
     noder = [n for n in bank()["nodes"] if n.get("synlighet") == "offentlig"]
     felter = ["s_regime", "klarhetsfunksjon", "ebe_function", "sektor"]
+    # SAMME definisjon av «fylt» som koden. Foerste utgave regnet ventetallet
+    # med `bool()`, mens koden brukte sin egen `_fylt()` — to definisjoner av
+    # samme ord, og en test som ville passert selv om de gled fra hverandre.
     ventet = {
-        felt: sum(bool((n.get("maale_paradigme") or {}).get(felt)) for n in noder)
+        felt: sum(_fylt((n.get("maale_paradigme") or {}).get(felt))
+                  for n in noder)
         for felt in felter
     }
-    ventet["rcmp"] = sum(bool(n.get("rcmp")) for n in noder)
+    ventet["rcmp"] = sum(_fylt(n.get("rcmp")) for n in noder)
     assert kjoer("--sakse")["maalte"] == ventet
+
+
+def test_manglende_plassering_feiler_istedenfor_aa_gjette():
+    """En node uten plassering skal meldes, ikke bli «ghost» av en standardverdi.
+
+    Klasseslekten er maalt: `PLASSERING.get(navn, ("ghost", 8))` gjorde 68 av
+    73 noder til «ikke bygget» i atlaset, og feilen saa ut som data.
+    """
+    import atlas_arbeidskoe
+
+    node = {"id": "finnes.ikke", "synlighet": "offentlig"}
+    with pytest.raises(SystemExit, match="PLASSERING"):
+        atlas_arbeidskoe.arbeidskoe_ghost({"nodes": [node]}, {})
+
+
+def test_hvitrom_er_ikke_et_svar():
+    """`"   "` er ikke en maaling, selv om strengen er sann."""
+    import atlas_arbeidskoe
+
+    assert atlas_arbeidskoe._fylt("   ") is False
+    assert atlas_arbeidskoe._fylt(None) is False
+    assert atlas_arbeidskoe._fylt(False) is True       # deklarert svar
+    assert atlas_arbeidskoe._fylt(0) is True           # deklarert svar
 
 
 def test_node_med_alle_feltene_er_ikke_i_saksekoeen():

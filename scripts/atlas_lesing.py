@@ -171,21 +171,25 @@ def _norm(s: str) -> str:
     return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
 
 
-def _valider_aliaser(aliaser: dict[str, str], node_ids: set[str]) -> None:
-    """Stopp et alias foer det kan gi et svar fra en node som ikke finnes."""
-    doede = sorted(set(aliaser.values()) - node_ids)
-    if doede:
-        raise AtlasLesingFeil(f"alias peker paa node som mangler: {', '.join(doede)}")
-
-
 def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
-    """Finn registrerte begreper uten aa late som de er atlasnoder."""
+    """Finn registrerte begreper uten aa late som de er atlasnoder.
+
+    To ting skal IKKE svelges stille: et begrep uten `@id` er en defekt i
+    registeret (ikke et brukbart treff), og ugyldig JSON i det PRIMAERE
+    begrepsregisteret er en feil — ikke «ikke funnet». Et oppslagsverk som
+    gjor en lesefeil om til «vet ikke», har svart paa noe annet enn det ble
+    spurt om.
+    """
     naal = _norm(emne)
     funn = []
     for sti in ("docs/concepts.jsonld", "docs/ontology.jsonld"):
         try:
             data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
-        except (AtlasLesingFeil, json.JSONDecodeError):
+        except json.JSONDecodeError as feil:
+            raise AtlasLesingFeil(f"{sti} er ikke gyldig JSON: {feil}") from feil
+        except AtlasLesingFeil:
+            # Fila finnes ikke paa denne refen. Det er et maalt fravaer av et
+            # VALGFRITT register, ikke en defekt — og det meldes ikke som treff.
             continue
         for post in data.get("@graph", []):
             kandidater = [post.get("@id"), post.get("label")]
@@ -195,7 +199,12 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
                 kandidater.extend(
                     v.get("@value") if isinstance(v, dict) else v for v in verdier)
             if any(isinstance(v, str) and _norm(v) == naal for v in kandidater):
-                funn.append({"id": post.get("@id"), "kilde": sti})
+                if not isinstance(post.get("@id"), str) or not post["@id"]:
+                    raise AtlasLesingFeil(
+                        f"{sti}: et begrep matcher «{emne}» men mangler @id — "
+                        "registeret er defekt, og et treff uten id kan ikke "
+                        "etterproeves")
+                funn.append({"id": post["@id"], "kilde": sti})
     unike = {}
     for post in funn:
         unike.setdefault(post["id"], post)
@@ -311,6 +320,13 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "har_prediksjon": False,
                 "har_oppgjoer": False,
                 "har_falsifikator": False,
+                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
+                # ga en ikke-tom treffliste, og en leser (eller et
+                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
+                # noden — det har begrepet i navnerommet. De to feltene sier
+                # det uten at noen maa lese prosaen.
+                "har_node": False,
+                "dekning": "navnerom_uten_node",
                 "grunn": (f"registrert i {post['kilde']}, men er ikke en "
                           "node i schema/regime_nodes.jsonld"),
             } for post in registrert]
